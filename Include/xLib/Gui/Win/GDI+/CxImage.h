@@ -1,0 +1,59 @@
+/****************************************************************************
+* Class name:  CxImage
+* Description: GDI+ image
+* File name:   CxImage.h
+* Compilers:   Visual C++ 2010 
+* String type: Ansi, Unicode
+* Libraries:   WinAPI, Stl, xLib
+* Author:      Alca
+* E-mail:      dr.web.agent@gmail.com
+* Created:     14.05.2010 17:10:16
+* Version:     1.0.0.0 Debug
+*
+*****************************************************************************/
+
+
+#ifndef xLib_GdiPlus_CxImageH
+#define xLib_GdiPlus_CxImageH
+//---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+#include <GDIPlus.h>
+//---------------------------------------------------------------------------
+class CxImage : public CxNonCopyable {
+	public:
+		//encoder type
+		enum EEncoderType {
+			etBmp  = 0, 
+			etJpeg = 1, 
+			etGif  = 2, 
+			etTiff = 3, 
+			etPng  = 4
+		};
+		
+		                CxImage   ();
+	                   ~CxImage   ();
+
+		BOOL            bLoad     (const tString &csFilePath);
+		BOOL            bLoad     (IStream *pisStream);
+		BOOL            bSave     (const tString &csFilePath, EEncoderType etType);
+		BOOL            bSave     (IStream *pisStream, EEncoderType etType);
+		BOOL            bDraw     (HDC hDC, const RECT &crcRect);
+		BOOL            bDraw     (HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight);
+		BOOL            bClear    (HDC hDC, Gdiplus::Color clBackGround);
+		BOOL            bDestroy  ();
+		BOOL            bIsLoaded ();
+
+		UINT            uiGetWidth ();
+		UINT            uiGetHeight();	
+
+		Gdiplus::Status stGetLastStatus();
+		tString         sGetLastStatus (Gdiplus::Status stCode);
+
+	private:
+		Gdiplus::Status _m_stRes;
+		Gdiplus::Image *_m_pimgImage;
+
+		BOOL            _bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid);
+};
+//---------------------------------------------------------------------------
+#endif //xLib_GdiPlus_CxImageH

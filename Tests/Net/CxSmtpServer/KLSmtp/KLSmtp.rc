@@ -1,0 +1,102 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_OK_MSG              "220 OK"
+    IDS_UNKNOWN_MSG         "550 Unknown Command"
+    IDS_WELCOME_MSG         "220 Welcome to XmailServer"
+    IDS_MSG_SYNTAX_ERROR    "500 Syntax error, command unrecognized"
+    IDS_INCORRECT_PARAMETER "501 Syntax error in parameters or arguments"
+    IDS_CMD_NOT_IMPLEMENTED "502 Command not implemented"
+    IDS_BAD_SEQUENCE        "503 Bad sequence of commands"
+    IDS_PARAM_NOT_IMPLEMENTED "504 Command parameter not implemented"
+    IDS_SYSTEM_STATUS       "211 System status, or system help reply"
+    IDS_HELP_MSG            "214 Help message"
+    IDS_WELCOME             "220 %s Service ready"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING112           "221 %s Service closing transmission channel"
+    IDS_STRING113           "421 %s Service not available, closing transmission channel"
+    IDS_STRING114           "250 OK, Action completed"
+    IDS_STRING115           "251 User not local; will forward to %s"
+    IDS_STRING116           "450 Requested mail action not taken: mailbox unavailable"
+    IDS_STRING117           "550 Requested action not taken: mailbox unavailable"
+    IDS_STRING118           "451 Requested action aborted: error in processing"
+    IDS_STRING119           "551 User not local; please try <forward-path>"
+    IDS_STRING120           "452 Requested action not taken: insufficient system storage"
+    IDS_STRING121           "552 Requested mail action aborted: exceeded storage allocation"
+    IDS_STRING122           "553 Requested action not taken: mailbox name not allowed"
+    IDS_STRING123           "354 Start mail input; end with <CRLF>.<CRLF>"
+    IDS_STRING124           "554 Transaction failed"
+    IDS_APP_TITLE           "yEmail"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

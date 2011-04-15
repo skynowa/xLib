@@ -1,0 +1,547 @@
+/****************************************************************************
+* Class name:  CxUri
+* Description: ��������������� ������������� �������
+* File name:   CxUri.cpp
+* Compilers:   Visual C++ 2008
+* String type: Ansi
+* Libraries:   WinAPI, Stl, xLib
+* Author:      Alca
+* E-mail:      dr.web.agent@gmail.com
+* Created:     17.11.2009 12:41:10
+* Version:     1.0.0.0 Debug
+*
+*****************************************************************************/
+
+
+#include <xLib/Net/CxUri.h>
+
+/****************************************************************************
+* public
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+//TODO: + CxUri
+CxUri::CxUri() :
+	_m_sScheme   (),
+	_m_sAuthority(),
+	_m_sUserInfo (),
+	_m_sHost     (),
+	_m_usPort    (0),
+	_m_sPath     (),
+	_m_sQuery    (),
+	_m_sFragment ()
+{
+
+}
+//---------------------------------------------------------------------------
+//TODO: + CxUri
+CxUri::CxUri(const std::string &csUri) :
+	_m_sScheme   (),
+	_m_sAuthority(),
+	_m_sUserInfo (),
+	_m_sHost     (),
+	_m_usPort    (0),
+	_m_sPath     (),
+	_m_sQuery    (),
+	_m_sFragment ()
+{
+	BOOL bRes = FALSE;
+
+	bRes = _bParse(csUri);
+	/*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+}
+//---------------------------------------------------------------------------
+//TODO: + ~CxUri
+CxUri::~CxUri() {
+
+}
+//---------------------------------------------------------------------------
+//TODO: - sGetUri
+/*
+URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
+
+foo://userinfo@example.com:8042/over/there?name=ferret#nose
+\_/   \_______________________/\_________/ \_________/ \__/
+|                |                |            |       |
+scheme        authority           path        query   fragment
+*/
+
+/*
+http   : //ru.wikipedia.org/wiki/URI
+ftp    : //ftp.is.co.za/rfc/rfc1808.txt
+file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
+ldap   : //[2001:db8::7]/c=GB                                       ? objectClass?one
+
+mailto : John.Doe@example.com
+sip    : 911@pbx.mycompany.com
+news   : comp.infosystems.www.servers.unix
+data   : text/plain;charset=iso-8859-7,%be%fg%be
+tel    : +1-816-555-1212
+telnet : //192.0.2.16:80/
+*/
+std::string CxUri::sGetUri() {
+	/*DEBUG*/
+
+	std::string sRes;
+	std::string sTemp;
+
+	sTemp = sGetScheme();
+	if (false == sTemp.empty()) {
+		sRes += "";
+		sRes += sTemp;
+	}
+
+	sTemp = sGetAuthority();
+	if (false == sTemp.empty()) {
+		sRes += ":";
+		sRes += sTemp;
+	}
+
+	sTemp = sGetPath();
+	if (false == sTemp.empty()) {
+		sRes += "";
+		sRes += sTemp;
+	}
+
+	sTemp = sGetQuery();
+    if (false == sTemp.empty()) {
+		sRes += "?";
+		sRes += sTemp;
+	}
+
+	sTemp = sGetFragment();
+	if (false == sTemp.empty()) {
+		sRes += "#";
+		sRes += sTemp;
+	}
+
+	return sRes;
+}
+BOOL CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment) {
+	/*DEBUG*/
+
+	BOOL bRes = FALSE;
+
+	bRes = bSetScheme   (csScheme);
+	bRes = bSetAuthority(csAuthority);
+	bRes = bSetPath     (csPath);
+	bRes = bSetQuery    (csQuery);
+	bRes = bSetFragment (csFragment);
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: - sGetScheme
+std::string CxUri::sGetScheme() {
+	return sEncodeComponent(_m_sScheme);
+}
+BOOL CxUri::bSetScheme(const std::string &csScheme) {
+	_m_sScheme = sDecodeComponent(csScheme);
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + sGetAuthority
+std::string CxUri::sGetAuthority() {
+	std::string sTempAuthority;
+
+	sTempAuthority += "//";
+
+	if (false == _m_sUserInfo.empty()) {
+		sTempAuthority += _m_sUserInfo;
+		sTempAuthority += "@";
+	}
+
+	if (false == _m_sHost.empty()) {
+		sTempAuthority += _m_sHost;
+	}
+
+	if (0 < _m_usPort && FALSE == _bIsDefaultPort()) {
+		sTempAuthority += ":";
+		sTempAuthority += CxString::lexical_cast(_m_usPort);
+	}
+
+	return sEncodeComponent(sTempAuthority/*_m_sAuthority*/);
+}
+BOOL CxUri::bSetAuthority(const std::string &csAuthority) {
+	_m_sAuthority = sDecodeComponent(csAuthority);
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + sGetUserInfo
+std::string CxUri::sGetUserInfo() {
+	return sEncodeComponent(_m_sUserInfo);
+}
+BOOL CxUri::bSetUserInfo(const std::string &csUserInfo) {
+	_m_sUserInfo = sDecodeComponent(csUserInfo);
+
+	//TODO: bSetAuthority
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + sGetHost
+std::string CxUri::sGetHost() {
+	return sEncodeComponent(_m_sHost);
+}
+BOOL CxUri::bSetHost(const std::string &csHost) {
+	_m_sHost = sDecodeComponent(csHost);
+
+	//TODO: bSetAuthority
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + usGetPort
+USHORT CxUri::usGetPort() {
+	return _m_usPort;
+}
+BOOL CxUri::bSetPort(const USHORT &cusPort) {
+	_m_usPort = cusPort;
+
+	//TODO: bSetAuthority
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + sGetPath
+std::string CxUri::sGetPath() {
+	return sEncodeComponent(_m_sPath);
+}
+BOOL CxUri::bSetPath(const std::string &csPath) {
+	_m_sPath = sDecodeComponent(csPath);
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + sGetQuery
+std::string CxUri::sGetQuery() {
+	return sEncodeComponent(_m_sQuery);
+}
+BOOL CxUri::bSetQuery(const std::string &csQuery) {
+	_m_sQuery = sDecodeComponent(csQuery);
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + sGetFragment
+std::string CxUri::sGetFragment() {
+	return sEncodeComponent(_m_sFragment);
+}
+BOOL CxUri::bSetFragment(const std::string &csFragment) {
+	_m_sFragment = sDecodeComponent(csFragment);
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + bClear ()
+BOOL CxUri::bClear() {
+	////BOOL bRes = FALSE;
+
+	_m_sScheme.clear();
+	_m_sAuthority.clear();
+	_m_sUserInfo.clear();
+	_m_sHost.clear();
+	_m_usPort = 0;
+	_m_sPath.clear();
+	_m_sQuery.clear();
+	_m_sFragment.clear();
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO:
+//void URI::encode(const std::string& str, const std::string& reserved, std::string& encodedStr)
+/*static*/ std::string CxUri::sEncodeComponent(const std::string &csUri) {
+	std::string sRes;
+
+	for (std::string::const_iterator it = csUri.begin(); it != csUri.end(); ++ it) {
+		char c = *it;
+
+		if (
+			(c >= 'a' && c <= 'z') ||
+			(c >= 'A' && c <= 'Z') ||
+			(c >= '0' && c <= '9') ||
+			c == '-' ||
+			c == '_' ||
+			c == '.' ||
+			c == '~')
+		{
+			sRes += c;
+		}
+		/*
+		RESERVED_PATH     = "?#";
+		RESERVED_QUERY    = "#";
+		RESERVED_FRAGMENT = "";
+		ILLEGAL           = "%<>{}|\\\"^`";
+		*/
+		else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::string::npos /*|| reserved.find(c) != std::string::npos*/) {
+			//� -> %FF
+			sRes += CxString::sFormat("%%%02X", (UINT)(UCHAR)c);
+		}
+		else {
+			sRes += c;
+		}
+	}
+
+	return sRes;
+}
+//---------------------------------------------------------------------------
+//TODO:
+//void URI::decode(const std::string& str, std::string& decodedStr)
+/*static*/ std::string CxUri::sDecodeComponent(const std::string &csUri) {
+	std::string sRes;
+
+	std::string::const_iterator it  = csUri.begin();
+	std::string::const_iterator end = csUri.end();
+
+	while (it != end) {
+		char c = *it ++;
+
+		if (c == '%') {
+			if (it == end) {
+				//throw SyntaxException("URI encoding: no hex digit following percent sign", csUri);
+				/*DEBUG*/xASSERT_RET(FALSE, "");
+			}
+
+			char hi = *it ++;
+
+			if (it == end) {
+				//throw SyntaxException("URI encoding: two hex digits must follow percent sign", csUri);
+				/*DEBUG*/xASSERT_RET(FALSE, "");
+			}
+
+			char lo = *it ++;
+
+			if (       hi >= '0' && hi <= '9') {
+				c = hi - '0';
+			} else if (hi >= 'A' && hi <= 'F') {
+				c = hi - 'A' + 10;
+			} else if (hi >= 'a' && hi <= 'f') {
+				c = hi - 'a' + 10;
+			} else {
+				//throw SyntaxException("URI encoding: not a hex digit");
+				/*DEBUG*/xASSERT_RET(FALSE, "");
+			}
+
+			c *= 16;
+
+			if (       lo >= '0' && lo <= '9') {
+				c += lo - '0';
+			} else if (lo >= 'A' && lo <= 'F') {
+				c += lo - 'A' + 10;
+			} else if (lo >= 'a' && lo <= 'f') {
+				c += lo - 'a' + 10;
+			} else {
+				//throw SyntaxException("URI encoding: not a hex digit");
+				/*DEBUG*/xASSERT_RET(FALSE, "");
+			}
+		}
+
+		sRes += c;
+	}
+
+	return sRes;
+}
+//---------------------------------------------------------------------------
+
+
+
+/****************************************************************************
+*	private
+*
+*****************************************************************************/
+
+const std::string CxUri::RESERVED_PATH     = "?#";
+const std::string CxUri::RESERVED_QUERY    = "#";
+const std::string CxUri::RESERVED_FRAGMENT = "";
+const std::string CxUri::ILLEGAL           = "%<>{}|\\\"^`";
+
+
+//---------------------------------------------------------------------------
+//TODO: - bParse (������ URI)
+/*
+URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
+
+foo://userinfo@example.com:8042/over/there?name=ferret#nose
+\_/   \_______________________/\_________/ \_________/ \__/
+|                |                |            |       |
+scheme        authority           path        query   fragment
+*/
+
+/*
+http   : //ru.wikipedia.org/wiki/URI
+ftp    : //ftp.is.co.za/rfc/rfc1808.txt
+file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
+ldap   : //[2001:db8::7]/c=GB                                       ? objectClass?one
+
+mailto : John.Doe@example.com
+sip    : 911@pbx.mycompany.com
+news   : comp.infosystems.www.servers.unix
+data   : text/plain;charset=iso-8859-7,%be%fg%be
+tel    : +1-816-555-1212
+telnet : //192.0.2.16:80/
+*/
+BOOL CxUri::_bParse(const std::string &csUri) {
+	BOOL bRes = FALSE;
+
+	//Normilize();
+
+	bRes = bClear();
+	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+	//-------------------------------------
+	//[scheme] - [foo]
+	//[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+	size_t uiSchemeStart = 0;
+	size_t uiSchemeEnd   = csUri.find_first_of(CxConst::xCOLON);
+	/*DEBUG*/xASSERT_RET(std::string::npos       != uiSchemeEnd, FALSE);
+	/*DEBUG*/xASSERT_RET(7/*SCHEME_MAX_SIZE + 1*/ > uiSchemeEnd, FALSE);
+
+	_m_sScheme = CxString::sCut(csUri, uiSchemeStart, uiSchemeEnd);
+
+	//-------------------------------------
+	//[authority] - [example.com:8042]
+	//[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+	size_t uiAuthorityStart = uiSchemeEnd + 1/*":"*/;
+
+	//���� ����� [:] ���� [//] - ����������
+	size_t uiSlashCount = 0;
+	while ('/' == csUri.at(uiAuthorityStart + uiSlashCount)) {
+		uiSlashCount ++;
+	}
+
+	size_t uiAuthorityEnd = csUri.find_first_of("/?#", uiAuthorityStart + uiSlashCount); //or by the end
+
+	if (std::string::npos == uiAuthorityEnd) {
+		uiAuthorityEnd = csUri.size();
+	}
+
+	_m_sAuthority = CxString::sCut(csUri, uiAuthorityStart /*+ uiSlashCount*/, uiAuthorityEnd);
+
+	//-------------------------------------
+	//[_m_sUserInfo] - [userinfo]
+	//[INPUT]        - userinfo@example.com:8042
+	size_t uiUserInfoStart = 0 + uiSlashCount;
+	size_t uiUserInfoEnd   = _m_sAuthority.find_first_of("@", uiUserInfoStart);
+
+	if (std::string::npos != uiUserInfoEnd) {
+	    _m_sUserInfo = CxString::sCut(_m_sAuthority, uiUserInfoStart, uiUserInfoEnd);
+	}
+
+	//-------------------------------------
+	//[_m_sHost] - [example.com]
+	//[INPUT]    -  userinfo@example.com:8042
+	size_t uiHostStart = _m_sAuthority.find_first_of("@");
+	size_t uiHostEnd   = _m_sAuthority.find_first_of(":");
+
+	if (std::string::npos != uiHostStart) {
+		//���� ��� �����
+		if (std::string::npos == uiHostEnd) {
+			uiHostEnd = _m_sAuthority.size();
+		}
+
+		_m_sHost = CxString::sCut(_m_sAuthority, uiHostStart + 1/*"@"*/, uiHostEnd);
+	}
+
+	//-------------------------------------
+	//[_sPort] - [8042]
+	//[INPUT]  -  userinfo@example.com:8042
+	size_t uiPortStart = _m_sAuthority.find_first_of(":");
+	size_t uiPortEnd   = _m_sAuthority.size();
+
+	if (std::string::npos != uiPortStart) {
+		std::string sPort = CxString::sCut(_m_sAuthority, uiPortStart + 1/*":"*/, uiPortEnd);
+		_m_usPort = CxString::lexical_cast<USHORT>(sPort);
+	}
+	if (0 == _m_usPort) {
+		_m_usPort = _usGetDefaultPort();
+	}
+
+	//-------------------------------------
+	//[_m_sHost] - [example.com] - ������ ������
+	//[INPUT]    -  userinfo@example.com:8042
+	size_t uiAuthorityChars = _m_sAuthority.find_first_of("@:");
+
+	//���� � Authority ��� "@:" - _m_sHost ��� Authority ��� "//"
+	if (std::string::npos == uiAuthorityChars) {
+		_m_sHost = CxString::sTrimChars(_m_sAuthority, "/");
+	}
+
+	//-------------------------------------
+	//[_m_sPath] - [/over/there?]
+	//[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+	size_t uiPathStart = uiAuthorityEnd;
+	size_t uiPathEnd   = csUri.find_first_of("?#", uiPathStart);  //or by the end
+
+	if (std::string::npos == uiPathEnd) {
+		uiPathEnd = csUri.size();
+	}
+
+	_m_sPath = CxString::sCut(csUri, uiPathStart, uiPathEnd);
+
+	//-------------------------------------
+	//[_m_sQuery] - [name=ferret]
+	//[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+	size_t uiQueryStart = uiPathEnd;
+	size_t uiQueryEnd   = csUri.find_first_of("#", uiQueryStart);
+
+	if (std::string::npos == uiQueryEnd) {
+		uiQueryEnd = csUri.size();
+	}
+
+	_m_sQuery = CxString::sCut(csUri, uiQueryStart + 1/*"?"*/, uiQueryEnd);
+
+	//-------------------------------------
+	//[_m_sFragment] - [nose]
+	//[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+	size_t uiFragmentStart = uiQueryEnd + std::string("#").size();
+	size_t uiFragmentEnd   = csUri.size();						//by the end
+
+	_m_sFragment = CxString::sCut(csUri, uiFragmentStart, uiFragmentEnd);
+
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: - _bNormilize ()
+BOOL CxUri::_bNormilize(const std::string &csUri) {
+	////BOOL bRes = FALSE;
+
+	//trim
+	//lowcase(_m_sScheme)
+	//remove dot-segment
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: - _usGetDefaultPort ()
+USHORT CxUri::_usGetDefaultPort() const {
+	if (       "ftp"    == _m_sScheme) {
+		return 21;
+	} else if ("ssh"    == _m_sScheme) {
+		return 22;
+	} else if ("telnet" == _m_sScheme) {
+		return 23;
+	} else if ("gopher" == _m_sScheme) {
+		return 70;
+	} else if ("http"   == _m_sScheme) {
+		return 80;
+	} else if ("nntp"   == _m_sScheme) {
+		return 119;
+	} else if ("ldap"   == _m_sScheme) {
+		return 389;
+	} else if ("https"  == _m_sScheme) {
+		return 443;
+	} else {
+		return 0;
+	}
+}
+//---------------------------------------------------------------------------
+//TODO: - _bIsDefaultPort ()
+BOOL CxUri::_bIsDefaultPort() const {
+    return static_cast<BOOL>( _m_usPort == _usGetDefaultPort() );
+}
+//---------------------------------------------------------------------------

@@ -1,0 +1,199 @@
+/****************************************************************************
+* Class name:  CxProcess
+* Description: process
+* File name:   CxProcess.cpp
+* Compilers:   Visual C++ 2010, C++ Builder 2010
+* String type: Ansi, Unicode
+* Libraries:   WinAPI, Stl, xLib
+* Author:      Alca
+* E-mail:      dr.web.agent@gmail.com
+* Created:     19.01.2011 22:42:07
+* Version:     1.0.0.0 Debug
+*
+*****************************************************************************/
+
+
+#include <xLib/Sync/CxProcess.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Common/Win/CxHandleT.h>
+#elif defined(xOS_LINUX)
+
+#endif
+
+
+/****************************************************************************
+*    public
+*
+*****************************************************************************/
+
+
+//---------------------------------------------------------------------------
+//DONE: ulGetCurrId (process ID of the calling process)
+/*static*/
+ULONG
+CxProcess::ulGetCurrId() {
+    /*DEBUG*/// n/a
+
+    ULONG ulRes = - 1;
+
+#if defined(xOS_WIN)
+    ulRes = ::GetCurrentProcessId();
+    /*DEBUG*/// n/a
+#elif defined(xOS_LINUX)
+    ulRes = static_cast<ULONG>( getpid() );
+    /*DEBUG*/// n/a
+#endif
+
+    return ulRes;
+}
+//---------------------------------------------------------------------------
+//DONE: ulGetCurrParentId (process ID of the parent of the calling process)
+/*static*/
+ULONG
+CxProcess::ulGetCurrParentId() {
+    /*DEBUG*/// n/a
+
+    ULONG ulRes = 0;
+
+#if defined(xOS_WIN)
+    const ULONG culInvalidId = (ULONG)- 1;
+
+    ULONG_PTR pbi[6] = {0};
+    ULONG     ulSize = 0;
+    LONG (WINAPI *NtQueryInformationProcess)(HANDLE ProcessHandle, ULONG ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength); 
+    
+    *(FARPROC *)&NtQueryInformationProcess = ::GetProcAddress(::LoadLibraryA("NTDLL.DLL"), "NtQueryInformationProcess");
+    /*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
+    
+    BOOL bRes = ( NtQueryInformationProcess(::GetCurrentProcess(), 0, &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi) );
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, culInvalidId);  
+
+    ulRes = pbi[5];
+#elif defined(xOS_LINUX)
+    ulRes = static_cast<ULONG>( getppid() );
+    /*DEBUG*/// n/a
+#endif
+
+    return ulRes;
+}
+//---------------------------------------------------------------------------
+//DONE: bExit (Ends the calling process and all its threads)
+/*static*/
+BOOL
+CxProcess::bExit(ULONG ulPid, UINT uiExitCode) {
+    /*DEBUG*/// uiExitCode - n/a
+
+#if defined(xOS_WIN)
+    ::ExitProcess(uiExitCode);
+    /*DEBUG*/// n/a
+#elif defined(xOS_LINUX)
+    exit(static_cast<INT>( uiExitCode ));
+    /*DEBUG*/// n/a
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bTerminate (kills the calling process and all of its threads)
+/*static*/
+BOOL
+CxProcess::bTerminate(ULONG ulPid) {
+    /*DEBUG*/// uiExitCode - n/a
+
+#if defined(xOS_WIN)
+    CxHandle hProcess;
+    
+    hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, ulPid);
+    /*DEBUG*/xASSERT_RET(NULL != hProcess, FALSE);
+
+    BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+#elif defined(xOS_LINUX)
+    INT iRes = kill(static_cast<pid_t>( ulPid ), SIGKILL);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+
+
+
+//---------------------------------------------------------------------------
+//TODO: - bExec (execute a file)
+//http://www-theorie.physik.unizh.ch/~dpotter/howto/daemonize
+/*static*/
+BOOL
+CxProcess::bExec(const tString &csFilePath, LPCTSTR pcszCmdLine, ...) {
+	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+	/*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        FALSE);
+
+    tString sCmdLine;
+
+    va_list palArgs = NULL;
+    va_start(palArgs, pcszCmdLine);
+    sCmdLine = CxString::sFormatV(pcszCmdLine, palArgs);
+    va_end(palArgs);
+
+#if defined(xOS_WIN)
+    BOOL bRes = FALSE;
+
+    STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
+	PROCESS_INFORMATION piInfo = {0};
+
+	bRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
+	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    bRes = ::CloseHandle(piInfo.hThread);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    bRes = ::CloseHandle(piInfo.hProcess);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+#elif defined(xOS_LINUX)
+    /*
+    int execute(const char *command) {
+        pid_t cpid;
+
+        cpid = fork();
+
+        switch (cpid) {
+            case -1:
+                perror("fork");
+                break;
+
+            case 0:
+                execl("/etc/init.d/test", "test", command, NULL); //this is the child
+                _exit (EXIT_FAILURE);
+
+            default:
+                waitpid(cpid, NULL, 0);
+    }
+    */
+
+    INT iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), NULL);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    private
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+//TODO: - CxProcess (construcor)
+CxProcess::CxProcess() {
+
+}
+//---------------------------------------------------------------------------
+//TODO: - ~CxProcess (destructor)
+/*virtual*/
+CxProcess::~CxProcess() {
+
+}
+//---------------------------------------------------------------------------
