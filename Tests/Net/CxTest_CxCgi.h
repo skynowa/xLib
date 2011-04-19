@@ -53,10 +53,17 @@ CxTest_CxCgi::bUnit() {
     }
 
     #if xTEMP_DISABLED
+        CxCgi cgCgi(CxCgi::MAX_DATA_SIZE_DEFAULT);
+
+        cgCgi.Formdata.sGetDump();
+    #endif
+
+
+    #if xTEMP_ENABLED
     {
         tcout << xT("<pre>");
 
-        CxCgi cgCgi;
+        CxCgi cgCgi(CxCgi::MAX_DATA_SIZE_DEFAULT);
 
         //--------------------------------------------------
         //CxCgi::CxCgiEnvironment
@@ -235,7 +242,7 @@ CxTest_CxCgi::bUnit() {
                 m_bRes = CxCgi::bUriDecode(sEncodedStr, &sDecodedStr);
                 xASSERT_EQUAL(TRUE, m_bRes)
                 xASSERT_EQUAL(sUri, sDecodedStr);
-                }
+            }
         }
 
         //2

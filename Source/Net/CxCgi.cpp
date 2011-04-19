@@ -15,6 +15,7 @@
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 
+using namespace NxCgi;
 
 /****************************************************************************
 *	public
@@ -23,11 +24,10 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxCgi (constructor)
-CxCgi::CxCgi() :
+CxCgi::CxCgi(const size_t cuiMaxSize) :
     Environment(*this),
     Cookies    (*this),
-    Formdata   (*this),
-    _m_bRes    (FALSE)
+    Formdata   (*this, cuiMaxSize)
 {
 
 }
@@ -38,7 +38,7 @@ CxCgi::~CxCgi() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDump ()
+//DONE: sGetDump (dump)
 tString
 CxCgi::sGetDump()  const{
     /*DEBUG*/
@@ -86,7 +86,7 @@ namespace {
     static const tString ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
 }
 //---------------------------------------------------------------------------
-//TODO: bUriComponentEncode
+//TODO: bUriEncode ()
 /*static*/
 BOOL
 CxCgi::bUriEncode(
@@ -124,7 +124,7 @@ CxCgi::bUriEncode(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bUriComponentDecode
+//TODO: bUriDecode ()
 /*static*/
 BOOL
 CxCgi::bUriDecode(
@@ -331,18 +331,13 @@ CxCgi::cgl_hex2char(char *what) {
 
 /****************************************************************************
 * Class name:  CxCgiEnvironment
-* Description:
+* Description: CGI environment
 * File name:   CxCgiEnvironment.cpp
-
-
-
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     12 квіт. 2011 18:10:17
-
 *
 *****************************************************************************/
-
 
 /****************************************************************************
 *   public
@@ -352,8 +347,7 @@ CxCgi::cgl_hex2char(char *what) {
 //---------------------------------------------------------------------------
 //DONE: CxCgiEnvironment
 CxCgiEnvironment::CxCgiEnvironment(CxCgi &ccgCgi) :
-    _m_bRes  (FALSE),
-    _m_ccgCgi(ccgCgi),
+    _m_ccgCgi         (ccgCgi),
     _m_rmRequestMethod(rmUknown)
 {
     _bInit();
@@ -365,7 +359,7 @@ CxCgiEnvironment::~CxCgiEnvironment() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: sGetAuthType
+//DONE: sGetAuthType
 const tString &
 CxCgiEnvironment::sGetAuthType() const {
     /*DEBUG*/
@@ -613,7 +607,7 @@ CxCgiEnvironment::rmGetRequestMethod() const {
     return _m_rmRequestMethod;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDump ()
+//DONE: sGetDump (dump)
 tString
 CxCgiEnvironment::sGetDump() const {
     /*DEBUG*/
@@ -694,7 +688,7 @@ CxCgiEnvironment::sGetDump() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bInit (initiate environment variables)
+//DONE: _bInit (initiate class data)
 BOOL
 CxCgiEnvironment::_bInit() {
     /*DEBUG*/
@@ -755,15 +749,11 @@ CxCgiEnvironment::_bInit() {
 
 /****************************************************************************
 * Class name:  CxCgiCookies
-* Description:
+* Description: CGI cookies
 * File name:   CxCgiCookies
-
-
-
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     12 квіт. 2011 18:19:42
-
 *
 *****************************************************************************/
 
@@ -775,7 +765,6 @@ CxCgiEnvironment::_bInit() {
 //---------------------------------------------------------------------------
 //DONE: CxCgiCookies
 CxCgiCookies::CxCgiCookies(CxCgi &ccgCgi):
-    _m_bRes  (FALSE),
     _m_ccgCgi(ccgCgi)
 {
     _bInit();
@@ -845,17 +834,18 @@ CxCgiCookies::sGetDump() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bInit ()
+//DONE: _bInit (initiate class data)
 BOOL
 CxCgiCookies::_bInit() {
     /*DEBUG*/
 
-    tString               sRawCookies    = _m_ccgCgi.Environment.sGetHttpCookie();
-    std::vector<tString>  vecsRawCookies;
-    TCookies              vecckCookies;
+    BOOL                 bRes           = FALSE;
+    tString              sRawCookies    = _m_ccgCgi.Environment.sGetHttpCookie();
+    std::vector<tString> vecsRawCookies;
+    TCookies             vecckCookies;
 
-    _m_bRes = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vecsRawCookies);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    bRes = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vecsRawCookies);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     for (std::vector<tString>::const_iterator it = vecsRawCookies.begin(); it != vecsRawCookies.end(); ++ it) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
@@ -871,18 +861,13 @@ CxCgiCookies::_bInit() {
 //---------------------------------------------------------------------------
 
 
-
 /****************************************************************************
 * Class name:  CxCgiFormData
-* Description:
+* Description: CGI form data
 * File name:   CxCgiFormData.cpp
-
-
-
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     12 квіт. 2011 18:19:42
-
 *
 *****************************************************************************/
 
@@ -893,9 +878,9 @@ CxCgiCookies::_bInit() {
 
 //---------------------------------------------------------------------------
 //DONE: CxCgiFormData
-CxCgiFormData::CxCgiFormData(CxCgi &ccgCgi):
-    _m_bRes  (FALSE),
-    _m_ccgCgi(ccgCgi)
+CxCgiFormData::CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize):
+    _m_cuiMaxData(cuiMaxSize),
+    _m_ccgCgi    (ccgCgi)
 {
     _bInit();
 }
@@ -906,7 +891,7 @@ CxCgiFormData::~CxCgiFormData() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: sGetRawData ()
+//DONE: sGetRawData ()
 const tString &
 CxCgiFormData::sGetRawData() const {
     /*DEBUG*/
@@ -936,12 +921,13 @@ CxCgiFormData::sGetDump() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bInitFormData (initiate for data)
+//DONE: _bInitFormData (initiate class data)
 BOOL
 CxCgiFormData::_bInit() {
     /*DEBUG*/
 
-    switch (_m_ccgCgi.Environment.rmGetRequestMethod()) {
+    INT iRes = _m_ccgCgi.Environment.rmGetRequestMethod();
+    switch (iRes) {
         case CxCgiEnvironment::rmGet: {
                 /*DEBUG*/xASSERT_RET(false == _m_ccgCgi.Environment.sGetQueryString().empty(), FALSE);
 
@@ -952,8 +938,10 @@ CxCgiFormData::_bInit() {
             break;
 
         case CxCgiEnvironment::rmPost: {
-                _m_bRes = CxString::bCompareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.sGetContentType());
-                /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                BOOL bRes = FALSE;
+
+                bRes = CxString::bCompareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.sGetContentType());
+                /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
                 //get content length
                 size_t uiPostSize = 0;  // in bytes
@@ -972,8 +960,8 @@ CxCgiFormData::_bInit() {
                 CxStdioFile sfFile;
                 tString     sBuff;
 
-                _m_bRes = sfFile.bOpen(stdin);
-                /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                bRes = sfFile.bOpen(stdin);
+                /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
                 sBuff.resize(uiPostSize);
 
