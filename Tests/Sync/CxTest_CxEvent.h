@@ -19,7 +19,7 @@
 class CxTest_CxEvent : public CxTest {
 	public:
 		CxTest_CxEvent();
-	   ~CxTest_CxEvent();
+		virtual     ~CxTest_CxEvent();
 
 	    virtual BOOL bUnit();
 
@@ -50,7 +50,7 @@ CxTest_CxEvent::bUnit() {
 		g_bRes = objEvent.bCreate(0, TRUE, FALSE, NULL);
 		xASSERT(FALSE != g_bRes);
 
-		g_bRes = objEvent.bIsSignaled(); 
+		g_bRes = objEvent.bIsSignaled();
 		xASSERT(FALSE == g_bRes);
 
 		g_hRes = objEvent.hGetHandle();
@@ -65,13 +65,13 @@ CxTest_CxEvent::bUnit() {
 		g_bRes = objEvent.bReset();
 		xASSERT(FALSE != g_bRes);
 
-		g_bRes = objEvent.bIsSignaled(); 
+		g_bRes = objEvent.bIsSignaled();
 		xASSERT(FALSE == g_bRes);
 
 		g_bRes = objEvent.bSet();
 		xASSERT(FALSE != g_bRes);
 
-		g_bRes = objEvent.bIsSignaled(); 
+		g_bRes = objEvent.bIsSignaled();
 		xASSERT(TRUE == g_bRes);
 
 		g_bRes = objEvent.bWait(5000);
@@ -85,7 +85,7 @@ CxTest_CxEvent::bUnit() {
 		g_bRes = objEvent.bCreate(0, FALSE, TRUE, _T("XLib_CxEvent_25_01_2010"));
 		xASSERT(FALSE != g_bRes);
 
-		g_bRes = objEvent.bIsSignaled(); 
+		g_bRes = objEvent.bIsSignaled();
 		xASSERT(TRUE == g_bRes);
 
 		g_hRes = objEvent.hGetHandle();
@@ -100,13 +100,13 @@ CxTest_CxEvent::bUnit() {
 		g_bRes = objEvent.bReset();
 		xASSERT(FALSE != g_bRes);
 
-		g_bRes = objEvent.bIsSignaled(); 
+		g_bRes = objEvent.bIsSignaled();
 		xASSERT(FALSE == g_bRes);
 
 		g_bRes = objEvent.bSet();
 		xASSERT(FALSE != g_bRes);
 
-		g_bRes = objEvent.bIsSignaled(); 
+		g_bRes = objEvent.bIsSignaled();
 		xASSERT(TRUE == g_bRes);
 
 		g_bRes = objEvent.bSet();

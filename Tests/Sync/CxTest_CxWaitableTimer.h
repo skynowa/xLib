@@ -19,7 +19,7 @@
 class CxTest_CxWaitableTimer : public CxTest {
 	public:
 		CxTest_CxWaitableTimer();
-	   ~CxTest_CxWaitableTimer();
+		virtual     ~CxTest_CxWaitableTimer();
 
 	    virtual BOOL bUnit();
 
@@ -44,7 +44,7 @@ CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 BOOL
 CxTest_CxWaitableTimer::bUnit() {
 	BOOL bRes = FALSE;
-	
+
 	CxWaitableTimer WT;
 
 	//-------------------------------------
@@ -71,7 +71,7 @@ CxTest_CxWaitableTimer::bUnit() {
 		//ждем
 		BOOL bRes = WT.bWait(INFINITE);
 		printf("ulWait success (%d)\n", GetLastError());
-		
+
 		if (FALSE == bRes) {
 			printf("ulWait failed (%d)\n", GetLastError());
 		} else {

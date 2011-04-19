@@ -23,7 +23,7 @@
 #if defined(xOS_WIN)
     #include "Common/CxTest_CxClipboard.h"
     #include "Common/CxTest_CxCom.h"
-    #include "Common/CxTest_CxHandleT.h"
+    #include "Common/CxTest_CxHandle.h"
     #include "Common/CxTest_CxShell.h"
     #include "Common/CxTest_CxComPort.h"
     #include "Common/CxTest_CxConsole.h"

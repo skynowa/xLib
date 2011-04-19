@@ -15,14 +15,14 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxMimeMessage.h>
-#include <xLib/Net/CxPop3.h>	
-#include <xLib/Net/CxSmtp.h>	
+#include <xLib/Net/CxPop3.h>
+#include <xLib/Net/CxSmtp.h>
 #include <xLib/Net/CxMimeHeader.h>
 //---------------------------------------------------------------------------
 class CxTest_CxMimeMessage : public CxTest {
 	public:
 		CxTest_CxMimeMessage();
-	   ~CxTest_CxMimeMessage();
+		virtual     ~CxTest_CxMimeMessage();
 
 	    virtual BOOL bUnit();
 
@@ -68,9 +68,9 @@ CxTest_CxMimeMessage::bUnit() {
 	const std::string csFilePath = "C:/Temp/1.eml";
 	ULONG             ulSum      = 0;
 	ULONG             ulSize     = 0;
-	
 
-	
+
+
 	/****************************************************************************
 	* CxMimeHeader
 	*
@@ -99,7 +99,7 @@ CxTest_CxMimeMessage::bUnit() {
 
 	*/
 
-	const std::string csRawHeader = 
+	const std::string csRawHeader =
 		"+OK message 1 (570821 octets)\r\n"
 		"Date: Mon, 6 Apr 2009 20:14:51 +0400\r\n"
 		"From: Admin@localhost\r\n"
@@ -120,31 +120,31 @@ CxTest_CxMimeMessage::bUnit() {
 	//-------------------------------------
 	//sGenerateMessageID
 	{
-		g_sRes = CxMimeHeader::sGenerateMessageID();	
+		g_sRes = CxMimeHeader::sGenerateMessageID();
 		xASSERT(false == g_sRes.empty());
 	}
 
 
 	//-------------------------------------
 	//bCreate
-	g_bRes = objPop3.bCreate(csUser, csPass, csServer, usPort); 
+	g_bRes = objPop3.bCreate(csUser, csPass, csServer, usPort);
 	xASSERT(TRUE == g_bRes);
 
 	//-------------------------------------
 	//bConnect
-	g_bRes = objPop3.bConnect(); 
+	g_bRes = objPop3.bConnect();
 	xASSERT(TRUE == g_bRes);
 
 	//-------------------------------------
 	//bLogin
-	g_bRes = objPop3.bLogin(); 
+	g_bRes = objPop3.bLogin();
 	xASSERT(TRUE == g_bRes);
 
 	//-------------------------------------
 	//bStat
 	g_bRes = objPop3.bStat(ulSum, ulSize);
 	xASSERT(TRUE == g_bRes);
-	/*LOG*/printf("Mails %i\n", ulSum); 
+	/*LOG*/printf("Mails %i\n", ulSum);
 
 	//-------------------------------------
 	//bTop
@@ -159,9 +159,9 @@ CxTest_CxMimeMessage::bUnit() {
 		//CxMimeHeader
 		CxMimeHeader objHeader;
 
-		g_bRes = objPop3.bTop(i, 0, /*ref*/sRawHeader);      
+		g_bRes = objPop3.bTop(i, 0, /*ref*/sRawHeader);
 		xASSERT(TRUE == g_bRes);
- 
+
 		//-------------------------------------
 		//bParse
 		g_bRes = objHeader.bParse(sRawHeader);
@@ -192,7 +192,7 @@ CxTest_CxMimeMessage::bUnit() {
 		////xASSERT(false               == g_sRes.empty());
 		////xASSERT("<Admin@localhost>" == g_sRes);
 
-		/*LOG*/printf("bTop %i\n", i); 
+		/*LOG*/printf("bTop %i\n", i);
 	}
 
 	//-------------------------------------
@@ -230,7 +230,7 @@ CxTest_CxMimeMessage::bUnit() {
 		////xASSERT(false               == g_sRes.empty());
 		////xASSERT("<Admin@localhost>" == g_sRes);
 
-		/*LOG*/printf("bRetrieveHeader %i\n", y); 
+		/*LOG*/printf("bRetrieveHeader %i\n", y);
 	}
 
 	//-------------------------------------

@@ -19,7 +19,7 @@
 class CxTest_CxDrive : public CxTest {
 	public:
 		CxTest_CxDrive();
-	   ~CxTest_CxDrive();
+		virtual     ~CxTest_CxDrive();
 
 	    virtual BOOL bUnit();
 
@@ -49,23 +49,23 @@ CxTest_CxDrive::bUnit() {
     const tString  g_csNewFilePath                = xT("C:\\New.Test.txt");
     const tString  g_csBakFilePath                = xT("C:\\Test_Static.txt.bak");
     const tString  g_csFilePathSt                 = xT("C:\\Test_Static.txt");
-    ULONGLONG      g_ulFreeBytesAvailableToCaller; 
-    ULONGLONG      g_ulTotalNumberOfBytes; 
-    ULONGLONG      g_ulTotalNumberOfFreeBytes; 
+    ULONGLONG      g_ulFreeBytesAvailableToCaller;
+    ULONGLONG      g_ulTotalNumberOfBytes;
+    ULONGLONG      g_ulTotalNumberOfFreeBytes;
 
 	//-------------------------------------
 	//bIsReady
-	m_bRes = CxDrive::bIsReady(g_csDrivePathWithSlash); 
+	m_bRes = CxDrive::bIsReady(g_csDrivePathWithSlash);
 	xASSERT(TRUE == m_bRes);
 
 	//-------------------------------------
 	//bIsEmpty
-	m_bRes = CxDrive::bIsEmpty(g_csDrivePathWithSlash); 
+	m_bRes = CxDrive::bIsEmpty(g_csDrivePathWithSlash);
 	xASSERT(FALSE == m_bRes);
 
 	//-------------------------------------
 	//bGetFreeSpace
-	m_bRes = CxDrive::bGetFreeSpace(g_csDrivePathWithSlash, &g_ulFreeBytesAvailableToCaller, &g_ulTotalNumberOfBytes, &g_ulTotalNumberOfFreeBytes); 
+	m_bRes = CxDrive::bGetFreeSpace(g_csDrivePathWithSlash, &g_ulFreeBytesAvailableToCaller, &g_ulTotalNumberOfBytes, &g_ulTotalNumberOfFreeBytes);
 	xASSERT(TRUE == m_bRes);
 
 	//-------------------------------------
@@ -81,11 +81,11 @@ CxTest_CxDrive::bUnit() {
 	tString sFileSystemName;
 
 	m_bRes = CxDrive::bGetInfo(
-						g_csDrivePathWithoutSlash, 
-						&szVolumeName, 
-						&ulVolumeSerialNumber, 
-						&ulMaximumComponentLength, 
-						&ulFileSystemFlags, 
+						g_csDrivePathWithoutSlash,
+						&szVolumeName,
+						&ulVolumeSerialNumber,
+						&ulMaximumComponentLength,
+						&ulFileSystemFlags,
 						&sFileSystemName);
 	xASSERT(TRUE == m_bRes);
 
@@ -108,7 +108,7 @@ CxTest_CxDrive::bUnit() {
 	}
 
 	//-------------------------------------
-	//bDefineDosDevice  
+	//bDefineDosDevice
 	{
 
 	}
@@ -180,10 +180,10 @@ CxTest_CxDrive::bUnit() {
 	}
 
 	//-------------------------------------
-	//sQueryDosDevice  
+	//sQueryDosDevice
 
 	//-------------------------------------
-	//bSetVolumeLabel    
+	//bSetVolumeLabel
 	{
 
 	}

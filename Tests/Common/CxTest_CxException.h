@@ -19,7 +19,7 @@
 class CxTest_CxException : public CxTest {
 	public:
 		CxTest_CxException();
-	   ~CxTest_CxException();
+		virtual     ~CxTest_CxException();
 
 	    /*virtual*/ BOOL bUnit();
 

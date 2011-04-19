@@ -19,7 +19,7 @@
 class CxTest_CxProcess : public CxTest {
 	public:
 		CxTest_CxProcess();
-	   ~CxTest_CxProcess();
+		virtual     ~CxTest_CxProcess();
 
 	    virtual BOOL bUnit();
 

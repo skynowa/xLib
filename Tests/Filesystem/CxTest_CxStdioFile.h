@@ -19,9 +19,9 @@
 class CxTest_CxStdioFile : public CxTest {
 	public:
 		CxTest_CxStdioFile();
-	   ~CxTest_CxStdioFile();
+		virtual     ~CxTest_CxStdioFile();
 
-	    virtual BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };

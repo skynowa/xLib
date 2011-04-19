@@ -19,7 +19,7 @@
 class CxTest_CxSemaphore : public CxTest {
 	public:
 		CxTest_CxSemaphore();
-	   ~CxTest_CxSemaphore();
+		virtual     ~CxTest_CxSemaphore();
 
 	    virtual BOOL bUnit();
 
@@ -30,11 +30,11 @@ class CxTest_CxSemaphore : public CxTest {
 
 //---------------------------------------------------------------------------
 BOOL g_bRes = FALSE;
-CxSemaphore m_Semaphore; 
+CxSemaphore m_Semaphore;
 //---------------------------------------------------------------------------
 unsigned __stdcall vTest( void* pArguments ) {
 	BOOL bRes = FALSE;
-	
+
 	/*LOG*/std::cout << "Start" << std::endl;
 
 	for (int i = 1; i < 100; i ++) {
@@ -45,7 +45,7 @@ unsigned __stdcall vTest( void* pArguments ) {
 	}
 
 	/*LOG*/std::cout << "Stop" << std::endl;
-	
+
 	return 0;
 }
 //---------------------------------------------------------------------------
@@ -74,7 +74,7 @@ CxTest_CxSemaphore::bUnit() {
 	//bRelease
 	for (int i = 0; i < 100; ++ i) {
 		::Sleep(2000);
-	
+
 		for (int x = 0; x < 2; x ++) {
 			g_bRes = m_Semaphore.bRelease(1, NULL);
 			xASSERT(FALSE != g_bRes);

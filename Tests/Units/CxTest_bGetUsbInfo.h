@@ -19,7 +19,7 @@
 class CxTest_bGetUsbInfo : public CxTest {
 	public:
 		CxTest_bGetUsbInfo();
-	   ~CxTest_bGetUsbInfo();
+		virtual     ~CxTest_bGetUsbInfo();
 
 	    virtual BOOL bUnit();
 
@@ -46,7 +46,7 @@ CxTest_bGetUsbInfo::bUnit() {
 	//-------------------------------------
 	//bGetUsbInfo
 	{
-		const tstring        csDrive = _T("I:"); 
+		const tstring        csDrive = _T("I:");
 		std::vector<tstring> vecsInfo;
 
 		g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
@@ -62,7 +62,7 @@ CxTest_bGetUsbInfo::bUnit() {
 	}
 
 	{
-		////const tstring        csDrive = _T("Y:"); 
+		////const tstring        csDrive = _T("Y:");
 		////std::vector<tstring> vecsInfo;
 
 		////g_bRes = bGetUsbInfo(csDrive, &vecsInfo);

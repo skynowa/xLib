@@ -19,9 +19,9 @@
 class CxTest_CxConnectionString : public CxTest {
 	public:
 		CxTest_CxConnectionString();
-	   ~CxTest_CxConnectionString();
+		virtual     ~CxTest_CxConnectionString();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };

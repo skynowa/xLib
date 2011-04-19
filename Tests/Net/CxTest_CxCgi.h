@@ -19,7 +19,7 @@
 class CxTest_CxCgi : public CxTest {
 	public:
 		CxTest_CxCgi();
-	   ~CxTest_CxCgi();
+		virtual     ~CxTest_CxCgi();
 
 	    virtual BOOL bUnit();
 

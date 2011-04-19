@@ -19,7 +19,7 @@
 class CxTest_CxChar : public CxTest {
 	public:
 		CxTest_CxChar();
-	   ~CxTest_CxChar();
+		virtual     ~CxTest_CxChar();
 
 	    virtual BOOL bUnit();
 

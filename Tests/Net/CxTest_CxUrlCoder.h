@@ -19,7 +19,7 @@
 class CxTest_CxUrlCoder : public CxTest {
 	public:
 		CxTest_CxUrlCoder();
-	   ~CxTest_CxUrlCoder();
+		virtual     ~CxTest_CxUrlCoder();
 
 	    virtual BOOL bUnit();
 
@@ -44,14 +44,14 @@ CxTest_CxUrlCoder::~CxTest_CxUrlCoder() {
 BOOL
 CxTest_CxUrlCoder::bUnit() {
 	std::string sStr("Privet chuvyrlo! ! !+");
-	
+
 	CXUrlCoder C;
 	sStr = C.sEncode(sStr);
 	std::cout << "encode:\t" << sStr << std::endl;
 
 	sStr = C.sDecode(sStr);
 	std::cout << "decode:\t" << sStr << std::endl;
-	
+
 	system("pause");
 
     return TRUE;

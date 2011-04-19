@@ -19,7 +19,7 @@
 class CxTest_CxLocale : public CxTest {
 	public:
 		CxTest_CxLocale();
-	   ~CxTest_CxLocale();
+		virtual     ~CxTest_CxLocale();
 
 	    virtual BOOL bUnit();
 
@@ -57,7 +57,7 @@ CxTest_CxLocale::bUnit() {
 
         sCurrLocale = m_sRes; //(don't change current locale)
 	}
-	
+
 	//-------------------------------------
 	//bSetCurrent
 	{
@@ -70,7 +70,7 @@ CxTest_CxLocale::bUnit() {
         xASSERT(FALSE != m_bRes);
     #endif
 	}
-	
+
 	//-------------------------------------
 	//bSetCurrent
 	{

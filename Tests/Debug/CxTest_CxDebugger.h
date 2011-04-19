@@ -19,7 +19,7 @@
 class CxTest_CxDebugger : public CxTest {
 	public:
 		CxTest_CxDebugger();
-	   ~CxTest_CxDebugger();
+		virtual     ~CxTest_CxDebugger();
 
 	    virtual BOOL bUnit();
 
@@ -129,16 +129,16 @@ CxTest_CxDebugger::bUnit() {
 
 
  	//-------------------------------------
-	//xASSERT(exp)     
+	//xASSERT(exp)
 	//xASSERT(FALSE);
 
 	////-------------------------------------
-	////XASSERT_EX(exp, comment)   
+	////XASSERT_EX(exp, comment)
 	//xASSERT_MSG(FALSE, xT("Simple xASSERT_EX comment"));
 
 
 	////-------------------------------------
-	////xASSERT_RET(exp, return_exp) 
+	////xASSERT_RET(exp, return_exp)
 	//xASSERT_RET(TRUE, FALSE);
 
 	////-------------------------------------
@@ -146,18 +146,18 @@ CxTest_CxDebugger::bUnit() {
 	//xASSERT_MSG_RET(TRUE, xT("Simple xASSERT_EX_RET comment"), FALSE);
 
 	////-------------------------------------
-	////xASSERT_DO(exp, do_instructions) 
+	////xASSERT_DO(exp, do_instructions)
 	//INT iCount_AssertDo = 0;
 	//for (iCount_AssertDo = 0; iCount_AssertDo < 100; iCount_AssertDo ++) {
 	//	xASSERT_DO(iCount_AssertDo < 50, break);
 	//}
 
 	////-------------------------------------
-	////xCHECK_RET(exp, return_exp)  
+	////xCHECK_RET(exp, return_exp)
 	//xCHECK_RET(FALSE, FALSE);
 
 	////-------------------------------------
-	////xCHECK_DO(exp, do_instructions)   
+	////xCHECK_DO(exp, do_instructions)
 	//INT iCount_CheckDo = 0;
 	//for (iCount_CheckDo = 0; iCount_CheckDo < 100; iCount_CheckDo ++) {
 	//	xCHECK_DO(iCount_CheckDo > 40, break);

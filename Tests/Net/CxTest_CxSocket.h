@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxTest_CxSocket
-* Description: test CxSocket 
+* Description: test CxSocket
 * File name:   CxTest_CxSocket.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -19,9 +19,9 @@
 class CxTest_CxSocket : public CxTest {
 	public:
 		CxTest_CxSocket();
-	   ~CxTest_CxSocket();
+		virtual     ~CxTest_CxSocket();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };

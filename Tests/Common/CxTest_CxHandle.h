@@ -20,7 +20,7 @@
 class CxTest_CxHandleT : public CxTest {
 	public:
 		CxTest_CxHandleT();
-	   ~CxTest_CxHandleT();
+		virtual     ~CxTest_CxHandleT();
 
 	    virtual BOOL bUnit();
 
@@ -53,7 +53,7 @@ CxTest_CxHandleT::bUnit() {
 		///CxHandle objHandle2(objHandle.m_hHandle);
 	}
 	{
-		///CxHandle objHandle1(objHandle);	
+		///CxHandle objHandle1(objHandle);
 	}
 
 

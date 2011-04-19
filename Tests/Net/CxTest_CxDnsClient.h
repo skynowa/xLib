@@ -19,9 +19,9 @@
 class CxTest_CxDnsClient : public CxTest {
 	public:
 		CxTest_CxDnsClient();
-	   ~CxTest_CxDnsClient();
+		virtual     ~CxTest_CxDnsClient();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };
@@ -48,7 +48,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 	//-------------------------------------
 	//bGetHostAddrByName
-	{	
+	{
 		tString sHostName = xT("msdn.microsoft.com");
 		tString sHostAddr = xT("");
 
@@ -60,7 +60,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 	//-------------------------------------
 	//bGetHostNameByAddr
-	{		
+	{
 		tString sHostName = xT("");
 		tString sHostAddr = xT("127.0.0.1");
 
@@ -68,11 +68,11 @@ BOOL CxTest_CxDnsClient::bUnit() {
 		xASSERT(FALSE != m_bRes);
 
 		//tcout << xT("[bGetHostNameByAddr]: ") << sHostName << tendl;
-	}	
+	}
 
 	//-------------------------------------
 	//bGetLocalHostName
-	{		
+	{
 		tString sLocalHostName = xT("");
 
 		m_bRes = CxDnsClient::bGetLocalHostName(&sLocalHostName);
@@ -83,7 +83,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 	//-------------------------------------
 	//bGetNameInfo
-	{		
+	{
 		////CxDnsClient::EAddressFamily afFamily  = CxDnsClient::afInet;
 		////tString                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
 		////USHORT                      usPort    = 27015;
@@ -96,7 +96,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 	//-------------------------------------
 	//bGetHostAddrInfo
-	{		
+	{
 		tString sHostName = xT("www.google.ru");
 		tString sPort     = xT("80");
 
@@ -108,7 +108,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 		///xSTD_COUT(xT("[bGetLocalHostName]: ") << sLocalHostName);
 
-	
+
 		{
 			///*int*/                 paiList->ai_flags;       // AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST
 			///*int*/                 paiList->ai_family;      // PF_xxx
@@ -131,7 +131,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 	//-------------------------------------
 	//bGetProtocolByName
-	{	
+	{
 		const TCHAR cszProtocolNames[][10] =
 		{
             xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"),
@@ -139,8 +139,8 @@ BOOL CxTest_CxDnsClient::bUnit() {
 		};
 
 		for (size_t i = 0; i < xARRAY_SIZE(cszProtocolNames); ++ i) {
-			tString              sName; 
-			std::vector<tString> vecsAliases; 
+			tString              sName;
+			std::vector<tString> vecsAliases;
 			SHORT                siNumber = - 1;
 
 			m_bRes = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vecsAliases, &siNumber);
@@ -150,7 +150,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 			//tcout << xT("	sName:    ") << sName             << tendl;
 			for (size_t i = 0; i < vecsAliases.size(); ++ i) {
 			//tcout << xT("	sAlias:   ") << vecsAliases.at(i) << tendl;
-			}		 
+			}
 			//tcout << xT("	siNumber: ") << siNumber          << tendl;
 			//tcout << xT("	--------------------")            << tendl;
 		}
@@ -159,14 +159,14 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 	//-------------------------------------
 	//cszProtocolNumbers
-	{	
+	{
 		const INT ciProtocolNumbers[] = {
 		    0, 1, 3, 6, 8, 12, 17, 20, 22, 27
 		};
-	
+
 		for (size_t i = 0; i < xARRAY_SIZE(ciProtocolNumbers); ++ i) {
-			tString              sName; 
-			std::vector<tString> vecsAliases; 
+			tString              sName;
+			std::vector<tString> vecsAliases;
 			SHORT                siNumber = - 1;
 
 			m_bRes = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vecsAliases, &siNumber);
@@ -176,7 +176,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 			//tcout << xT("	sName:    ") << sName             << tendl;;
 			for (size_t i = 0; i < vecsAliases.size(); ++ i) {
 			//tcout << xT("	sAlias:   ") << vecsAliases.at(i) << tendl;
-			}		 
+			}
 			//tcout << xT("	siNumber: ") << siNumber          << tendl;
 			//tcout << xT("	--------------------")            << tendl;
 		}
@@ -185,12 +185,12 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 	//-------------------------------------
 	//bGetServiceByName
-	{	
-		tString              csServiceName  = xT("http"); 
+	{
+		tString              csServiceName  = xT("http");
 		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
-		tString              sName; 
-		std::vector<tString> vecsAliases; 
-		SHORT                siPort;  
+		tString              sName;
+		std::vector<tString> vecsAliases;
+		SHORT                siPort;
 		tString              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vecsAliases, &siPort, &sProtocolName);
@@ -200,7 +200,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 		//tcout << xT("	sName:         ") << sName             << tendl;
 		for (size_t i = 0; i < vecsAliases.size(); ++ i) {
 		//tcout << xT("	sAlias:        ") << vecsAliases.at(i) << tendl;
-		}		 
+		}
 		//tcout << xT("	siPort:        ") << siPort            << tendl;
 		//tcout << xT("	sProtocolName: ") << sProtocolName     << tendl;
 		//tcout << xT("	--------------------")                 << tendl;
@@ -210,12 +210,12 @@ BOOL CxTest_CxDnsClient::bUnit() {
 
 	//-------------------------------------
 	//bGetServiceByPort
-	{	
-		SHORT                csiPort  = 20480; 
+	{
+		SHORT                csiPort  = 20480;
 		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
-		tString              sName; 
-		std::vector<tString> vecsAliases; 
-		SHORT                siPort = - 1;  
+		tString              sName;
+		std::vector<tString> vecsAliases;
+		SHORT                siPort = - 1;
 		tString              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vecsAliases, &siPort, &sProtocolName);
@@ -225,7 +225,7 @@ BOOL CxTest_CxDnsClient::bUnit() {
 		//tcout << xT("	sName:         ") << sName << tendl;
 		for (size_t i = 0; i < vecsAliases.size(); ++ i) {
 		//tcout << xT("	sAlias:        ") << vecsAliases.at(i) << tendl;
-		}		 
+		}
 		//tcout << xT("	siPort:        ") << siPort            << tendl;
 		//tcout << xT("	sProtocolName: ") << sProtocolName     << tendl;
         //tcout << xT("  --------------------")                << tendl;

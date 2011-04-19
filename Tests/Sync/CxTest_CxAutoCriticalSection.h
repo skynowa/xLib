@@ -19,7 +19,7 @@
 class CxTest_CxAutoCriticalSection : public CxTest {
 	public:
 		CxTest_CxAutoCriticalSection();
-	   ~CxTest_CxAutoCriticalSection();
+		virtual     ~CxTest_CxAutoCriticalSection();
 
 	    virtual BOOL bUnit();
 

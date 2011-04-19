@@ -19,7 +19,7 @@
 class CxTest_CxAutoProfiler : public CxTest {
 	public:
 		CxTest_CxAutoProfiler();
-	   ~CxTest_CxAutoProfiler();
+		virtual     ~CxTest_CxAutoProfiler();
 
 	    virtual BOOL bUnit();
 
@@ -41,7 +41,7 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 //---------------------------------------------------------------------------
 //TODO: - bUnit ()
 /*virtual*/
-BOOL 
+BOOL
 CxTest_CxAutoProfiler::bUnit() {
 	const CxProfiler::EMode pmPerformMode[] = {
 	        CxProfiler::pmClock,
@@ -84,7 +84,7 @@ CxTest_CxAutoProfiler::bUnit() {
 			}
 		}
 	}
-	
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------

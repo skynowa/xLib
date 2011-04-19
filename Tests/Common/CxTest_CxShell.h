@@ -19,9 +19,9 @@
 class CxTest_CxShell : public CxTest {
 	public:
 		CxTest_CxShell();
-	   ~CxTest_CxShell();
+		virtual     ~CxTest_CxShell();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };
@@ -75,9 +75,9 @@ BOOL CxTest_CxShell::bUnit() {
 	{
 		////m_bRes = CxShell::bExecuteFtp(xT(" ftp://ftp.drweb.com/ "));
 	}
-	
+
 	//-------------------------------------
-	//bExecuteEmail		
+	//bExecuteEmail
 	{
 		////m_bRes = CxShell::bExecuteEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
 	}

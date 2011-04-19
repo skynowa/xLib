@@ -19,7 +19,7 @@
 class CxTest_CxSmtp : public CxTest {
 	public:
 		CxTest_CxSmtp();
-	   ~CxTest_CxSmtp();
+		virtual     ~CxTest_CxSmtp();
 
 	    virtual BOOL bUnit();
 
@@ -53,7 +53,7 @@ CxTest_CxSmtp::bUnit() {
 	//const std::string  csTo       = "skynowa@gmail.com";
 	//const std::string  csFilePath = "C:/Temp/test.eml";
 	//const std::string  csDirPath  = "C:/Temp";
-	
+
 	//-------------------------------------
 	//CourierMS
 	const std::string  csUser     = "test_1";
@@ -64,7 +64,7 @@ CxTest_CxSmtp::bUnit() {
 	const std::string  csTo       = "test_2@serg.com";
 	const std::string  csFilePath = "C:/Temp2/test.eml";
 	const std::string  csDirPath  = "C:/Temp";
-	
+
 	//-------------------------------------
 	//hMailServer
 	//const std::string  csUser     = "test_1@serg.com";
@@ -75,11 +75,11 @@ CxTest_CxSmtp::bUnit() {
 	//const std::string  csTo       = "test_2@serg.com";
 	//const std::string  csFilePath = "C:/Temp2/test.eml";
 	//const std::string  csDirPath  = "C:/Temp";
-	
 
 
 
-	
+
+
 	//-------------------------------------
 	//
 	ULONG              ulSum      = 0;
@@ -89,12 +89,12 @@ CxTest_CxSmtp::bUnit() {
 	ULONG              ulIndex    = 1;
 	INT                iNum       = 1;
 	const std::string  csText     = "HELO";
-	
+
 	CxSmtp objSmtp;
-	
+
 	//-------------------------------------
 	//bCreate
-	g_bRes = objSmtp.bCreate(csUser, csPass, csServer, usPort); 
+	g_bRes = objSmtp.bCreate(csUser, csPass, csServer, usPort);
 	xASSERT(TRUE == g_bRes);
 
 	//-------------------------------------
@@ -104,7 +104,7 @@ CxTest_CxSmtp::bUnit() {
 
 	//-------------------------------------
 	//bLogin
-	////g_bRes = objSmtp.bLogin(); 
+	////g_bRes = objSmtp.bLogin();
 	////xASSERT(TRUE == g_bRes);
 
 	//-------------------------------------
@@ -114,26 +114,26 @@ CxTest_CxSmtp::bUnit() {
 
 	//-------------------------------------
 	//bSendRaw
-	g_vecsRes = CxDir::vecsListFiles(csDirPath, "*.eml"); 
+	g_vecsRes = CxDir::vecsListFiles(csDirPath, "*.eml");
 	for (size_t i = 0; i < g_vecsRes.size(); i ++) {
-		g_bRes = objSmtp.bSendRaw(csDirPath + "\\" + g_vecsRes.at(i), csFrom, csTo); 
+		g_bRes = objSmtp.bSendRaw(csDirPath + "\\" + g_vecsRes.at(i), csFrom, csTo);
 		xASSERT(TRUE == g_bRes);
 		/*LOG*///printf("Send msg %s\n", g_vecsRes.at(i).c_str());
 	}
 
 	//-------------------------------------
 	//bNoop
-	g_bRes = objSmtp.bNoop(); 
+	g_bRes = objSmtp.bNoop();
 	xASSERT(TRUE == g_bRes);
 
 	//-------------------------------------
 	//bRset
-	g_bRes = objSmtp.bRset(); 
+	g_bRes = objSmtp.bRset();
 	xASSERT(TRUE == g_bRes);
 
 	//-------------------------------------
 	//bDisconnect
-	g_bRes = objSmtp.bDisconnect(); 
+	g_bRes = objSmtp.bDisconnect();
 	xASSERT(TRUE == g_bRes);
 
     return TRUE;

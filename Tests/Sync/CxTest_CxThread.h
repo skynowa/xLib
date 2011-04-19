@@ -21,7 +21,7 @@
 class CxTest_CxThread : public CxTest {
 	public:
 		CxTest_CxThread();
-	   ~CxTest_CxThread();
+		virtual     ~CxTest_CxThread();
 
 	    virtual BOOL bUnit();
 
@@ -45,13 +45,13 @@ CxTest_CxThread::~CxTest_CxThread() {
 /*virtual*/
 BOOL
 CxTest_CxThread::bUnit() {
-	size_t uiI = 0; 
-	
+	size_t uiI = 0;
+
 	//while (true) {
 		CWorkThread *pthT = new CWorkThread(TRUE, TRUE);
 		xASSERT(pthT != NULL);
 
-		uiI ++; 
+		uiI ++;
 
 		pthT->m_uiIndex = uiI;
 		///pthT->vOnExit2  = vOnExitHandle;
@@ -60,7 +60,7 @@ CxTest_CxThread::bUnit() {
 		//�������z
 		INT iParam = 1000/*00000*/;
 		m_bRes = pthT->bCreate(0, &iParam);
-		xASSERT(FALSE != m_bRes); 
+		xASSERT(FALSE != m_bRes);
 		////LOG("bCreate()");
 
 		//-------------------------------------
@@ -97,7 +97,7 @@ CxTest_CxThread::bUnit() {
 		m_bRes = pthT->bSetPriority(CxThread::tpPRIORITY_LOWEST);
 		xASSERT(FALSE != m_bRes);
 
-		m_iRes = pthT->tpGetPriority(); 
+		m_iRes = pthT->tpGetPriority();
 		xASSERT(CxThread::tpPRIORITY_LOWEST == m_iRes);
 
 		m_sRes = pthT->sGetPriorityString();
@@ -108,22 +108,22 @@ CxTest_CxThread::bUnit() {
 
 		m_bRes = pthT->bPriorityDown();
 		xASSERT(FALSE != m_bRes);
-		
-		m_bRes = pthT->bIsPriorityBoost();	
+
+		m_bRes = pthT->bIsPriorityBoost();
 		xASSERT(FALSE != m_bRes);
 
 		{
 			m_bRes = pthT->bSetPriorityBoost(FALSE);
 			xASSERT(FALSE != m_bRes);
-	
-			m_bRes = pthT->bIsPriorityBoost();	
+
+			m_bRes = pthT->bIsPriorityBoost();
 			xASSERT(FALSE == m_bRes);
 		}
 		{
 			m_bRes = pthT->bSetPriorityBoost(TRUE);
 			xASSERT(FALSE != m_bRes);
-	
-			m_bRes = pthT->bIsPriorityBoost();	
+
+			m_bRes = pthT->bIsPriorityBoost();
 			xASSERT(TRUE == m_bRes);
 		}
 
@@ -153,7 +153,7 @@ CxTest_CxThread::bUnit() {
 		////LOG("ulGetIdealCPU()");
 
 		m_ulRes = pthT->ulGetCPUCount();
-		xASSERT(0 < m_ulRes);		
+		xASSERT(0 < m_ulRes);
 
 
 		//-------------------------------------
@@ -165,21 +165,21 @@ CxTest_CxThread::bUnit() {
 		xASSERT(0 < m_ulRes);
 
 		m_ulRes = pthT->ulGetExitCode();
-		xASSERT(0 <= m_ulRes);    
-		
+		xASSERT(0 <= m_ulRes);
+
 		m_bRes = pthT->bSetDebugName(xT("TestThreadName"));
 		xASSERT(FALSE != m_bRes);
 		////LOG("bSetDebugName()");
-		
-		
+
+
 		//-------------------------------------
 		//static
 		////g_hRes = CxThread::hOpen(THREAD_ALL_ACCESS, FALSE, ::GetCurrentThreadId());
 		////xASSERT(NULL != g_hRes);
-		 
+
 		m_ulRes = CxThread::ulGetCurrId();
 		xASSERT(0 < m_ulRes);
-		
+
 		m_hRes  = CxThread::hGetCurrHandle();
 		xASSERT(NULL !=  m_hRes);
 

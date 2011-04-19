@@ -19,7 +19,7 @@
 class CxTest_CxBlowfish : public CxTest {
 	public:
 		CxTest_CxBlowfish();
-	   ~CxTest_CxBlowfish();
+		virtual     ~CxTest_CxBlowfish();
 
 	    virtual BOOL bUnit();
 
@@ -76,7 +76,7 @@ CxTest_CxBlowfish::bUnit() {
 			xASSERT(FALSE != m_bRes);
 
 			xASSERT(usPlain[i] == sDecrypted);
-		}	
+		}
 	}
 
 	//-------------------------------------

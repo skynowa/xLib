@@ -19,7 +19,7 @@
 class CxTest_CxBase64 : public CxTest {
 	public:
 		CxTest_CxBase64();
-	   ~CxTest_CxBase64();
+		virtual     ~CxTest_CxBase64();
 
 	    virtual BOOL bUnit();
 
@@ -55,7 +55,7 @@ CxTest_CxBase64::bUnit() {
 			{"TEST_STRING_3"},
             {"On-line Testing Pages by dev.FYIcenter.comWelcome to dev.FYIcenter.com on-line learning and testing pages.Click the Start button to play regular expression, date formatting, \nURL encoding, and many more programming techniques..."},
             {"If you need a javascript for md5: http://pajhome.org.uk/crypt/md5/md5src.html"},
-            {"Если MD5 совпало - могут быть физические дефекты носителя. Или сидюка. На том скриншоте, второй пункт \"Check disk for defects\"."}
+            {"Р•СЃР»Рё MD5 СЃРѕРІРїР°Р»Рѕ - РјРѕРіСѓС‚ Р±С‹С‚СЊ С„РёР·РёС‡РµСЃРєРёРµ РґРµС„РµРєС‚С‹ РЅРѕСЃРёС‚РµР»СЏ. Р�Р»Рё СЃРёРґСЋРєР°. РќР° С‚РѕРј СЃРєСЂРёРЅС€РѕС‚Рµ, РІС‚РѕСЂРѕР№ РїСѓРЅРєС‚ \"Check disk for defects\"."}
 		};
 
 		for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
@@ -73,7 +73,7 @@ CxTest_CxBase64::bUnit() {
 	    const std::string casData[][2] = {
             {"YOYO!", "WU9ZTyE="},
             {"111111111111111", "MTExMTExMTExMTExMTEx"},
-	        {"Итак, получили чистый рабочий каталог.", "0JjRgtCw0LosINC/0L7Qu9GD0YfQuNC70Lgg0YfQuNGB0YLRi9C5INGA0LDQsdC+0YfQuNC5INC60LDRgtCw0LvQvtCzLg=="},
+	        {"Р�С‚Р°Рє, РїРѕР»СѓС‡РёР»Рё С‡РёСЃС‚С‹Р№ СЂР°Р±РѕС‡РёР№ РєР°С‚Р°Р»РѕРі.", "0JjRgtCw0LosINC/0L7Qu9GD0YfQuNC70Lgg0YfQuNGB0YLRi9C5INGA0LDQsdC+0YfQuNC5INC60LDRgtCw0LvQvtCzLg=="},
 	        {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},
 	        {"A", "QQ=="},
             {"AB", "QUI="},
@@ -105,7 +105,7 @@ CxTest_CxBase64::bUnit() {
             xASSERT(FALSE != m_bRes);
         }
 
-        const std::string csNonValidChars = "-|фыгшуктфгшктщшьрдукшщщшзщшор!№!\"№;%:?*()_ЪЗШЩКЕУКЕМЭЖДЛБЮ,ФЫВАПРЫАРМЕНКНТУУЫКЕУЦ**";
+        const std::string csNonValidChars = "-|С„С‹РіС€СѓРєС‚С„РіС€РєС‚С‰С€СЊСЂРґСѓРєС€С‰С‰С€Р·С‰С€РѕСЂ!в„–!\"в„–;%:?*()_РЄР—РЁР©РљР•РЈРљР•РњР­Р–Р”Р›Р‘Р®,Р¤Р«Р’РђРџР Р«РђР РњР•РќРљРќРўРЈРЈР«РљР•РЈР¦**";
 
         for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
             m_bRes = CxBase64::bIsCharValid(csNonValidChars.at(0));

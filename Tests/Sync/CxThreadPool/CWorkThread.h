@@ -25,7 +25,8 @@ class CWorkThread : public CxThread {
 		size_t       m_uiIndex;
 
 				     CWorkThread(BOOL bIsPaused, BOOL bAutoDelete, BOOL bIsUsingCOM);
-			        ~CWorkThread();
+		virtual     ~CWorkThread();
+
 	protected:
 		virtual UINT uiOnRun    (VOID *pData);	/*overload*/
 		virtual VOID vOnEnter   ();			    /*overload*/

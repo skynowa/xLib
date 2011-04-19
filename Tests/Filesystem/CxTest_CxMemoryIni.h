@@ -19,9 +19,9 @@
 class CxTest_CxMemoryIni : public CxTest {
 	public:
 		CxTest_CxMemoryIni();
-	   ~CxTest_CxMemoryIni();
+		virtual     ~CxTest_CxMemoryIni();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };

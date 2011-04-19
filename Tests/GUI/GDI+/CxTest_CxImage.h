@@ -20,9 +20,9 @@
 class CxTest_CxImage : public CxTest {
 	public:
 		CxTest_CxImage();
-	   ~CxTest_CxImage();
+		virtual     ~CxTest_CxImage();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };
@@ -34,7 +34,7 @@ class CxTest_CxImage : public CxTest {
 * Class name:  CxTest_CxImage
 * Description: test CxImage
 * File name:   CxTest_CxImage.cpp
- 
+
 
 
 * Author:      skynowa

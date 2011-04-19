@@ -19,7 +19,7 @@
 class CxTest_CxEnvironment : public CxTest {
 	public:
 		CxTest_CxEnvironment();
-	   ~CxTest_CxEnvironment();
+		virtual     ~CxTest_CxEnvironment();
 
 	    virtual BOOL bUnit();
 

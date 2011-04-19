@@ -20,9 +20,9 @@
 class CxTest_CxDir : public CxTest {
 	public:
 		CxTest_CxDir();
-	   ~CxTest_CxDir();
+		virtual     ~CxTest_CxDir();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };
@@ -70,11 +70,11 @@ BOOL CxTest_CxDir::bUnit() {
 	*****************************************************************************/
 
 	{
-		m_bRes = CxDir::bDeleteForce(csRootTestDirPath); 
+		m_bRes = CxDir::bDeleteForce(csRootTestDirPath);
 		xASSERT(FALSE != m_bRes);
 
-		m_bRes = CxDir::bCreateForce(csDirPath); 
-		xASSERT(FALSE != m_bRes);	
+		m_bRes = CxDir::bCreateForce(csDirPath);
+		xASSERT(FALSE != m_bRes);
 	}
 
 	/****************************************************************************
@@ -112,16 +112,16 @@ BOOL CxTest_CxDir::bUnit() {
 		xASSERT(FALSE == m_bRes);
 
 		m_bRes = CxDir::bIsExists(xT("C:\\pagefile.sys"));
-		xASSERT(FALSE == m_bRes);		
+		xASSERT(FALSE == m_bRes);
 	}
 
 	//-------------------------------------
 	//bIsEmpty
 	{
-		m_bRes = CxDir::bIsEmpty(csDirPath, CxConst::xMASK_ALL); 
+		m_bRes = CxDir::bIsEmpty(csDirPath, CxConst::xMASK_ALL);
 		xASSERT(FALSE == m_bRes);
 
-		m_bRes = CxDir::bIsEmpty(csDirPath2, CxConst::xMASK_ALL); 
+		m_bRes = CxDir::bIsEmpty(csDirPath2, CxConst::xMASK_ALL);
 		xASSERT(TRUE == m_bRes);
 
 		m_bRes = CxDir::bIsEmpty(sGetWorkDirPath(), CxConst::xMASK_ALL);
@@ -131,27 +131,27 @@ BOOL CxTest_CxDir::bUnit() {
 	//-------------------------------------
 	//bSetCurrent
 
-		m_sRes = CxDir::sGetCurrent();  
+		m_sRes = CxDir::sGetCurrent();
 		xASSERT(false == m_sRes.empty());
-	{	
+	{
 		m_bRes = CxDir::bSetCurrent( sGetWorkDirPath() );
 		xASSERT(FALSE != m_bRes);
-		
+
 	    m_bRes = CxDir::bSetCurrent(m_sRes);
-		xASSERT(FALSE != m_bRes);		
+		xASSERT(FALSE != m_bRes);
 	}
 
 	//-------------------------------------
 	//sGetCurrent
 	{
-		tString sRes = CxDir::sGetCurrent();  
+		tString sRes = CxDir::sGetCurrent();
 		xASSERT(m_sRes == sRes);
 	}
 
 	//-------------------------------------
 	//sGetTempPath
 	{
-		m_sRes = CxDir::sGetTempPath(); 
+		m_sRes = CxDir::sGetTempPath();
         #if defined(xOS_WIN)
         xASSERT(xT("C:\\Temp\\") == m_sRes);
         #elif defined(xOS_LINUX)
@@ -162,7 +162,7 @@ BOOL CxTest_CxDir::bUnit() {
 	//-------------------------------------
 	//bCreateForce
 	{
-		m_bRes = CxDir::bCreateForce(csDirPath); 
+		m_bRes = CxDir::bCreateForce(csDirPath);
 		xASSERT(FALSE != m_bRes);
 	}
 
@@ -170,14 +170,14 @@ BOOL CxTest_CxDir::bUnit() {
 	//
 	//bMove
 	{
-	
+
 	}
 
 	//-------------------------------------
 	//
 	//bCopy
 	{
-	
+
 	}
 
     //-------------------------------------

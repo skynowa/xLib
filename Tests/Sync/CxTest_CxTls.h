@@ -19,7 +19,7 @@
 class CxTest_CxTls : public CxTest {
 	public:
 		CxTest_CxTls();
-	   ~CxTest_CxTls();
+		virtual     ~CxTest_CxTls();
 
 	    virtual BOOL bUnit();
 
@@ -47,9 +47,9 @@ CxTest_CxTls::bUnit() {
 	//[FUNCTION_NAME]
 	{
 		CxTls objTls;
-		
-		
-		
+
+
+
 		tString sTestData[][2] = {
 				{_T("TEST_STRING_1"),		 _T("MUST_BE_1")},
 				{_T("TEST_STRING_2"),		 _T("MUST_BE_2")},
@@ -57,7 +57,7 @@ CxTest_CxTls::bUnit() {
 				{_T("TEST_STRING_4"),		 _T("MUST_BE_4")}
 		};
 
-		for (size_t i = 0; i < ARRAYSIZE(sTestData); ++ i) {
+		for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
 			////tString sStr1 = [FUNCTION_NAME](sTestData[i][0]);
 			////tString sStr2 = [FUNCTION_NAME](sTestData[i][1]);
 			////xASSERT(sStr1 == sStr2);

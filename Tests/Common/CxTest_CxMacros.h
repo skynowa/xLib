@@ -19,9 +19,9 @@
 class CxTest_CxMacros : public CxTest {
 	public:
 		CxTest_CxMacros();
-	   ~CxTest_CxMacros();
+		virtual     ~CxTest_CxMacros();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };

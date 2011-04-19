@@ -19,7 +19,7 @@
 class CxTest_CxSleeper : public CxTest {
 	public:
 		CxTest_CxSleeper();
-	   ~CxTest_CxSleeper();
+		virtual     ~CxTest_CxSleeper();
 
 	    virtual BOOL bUnit();
 
@@ -44,7 +44,7 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 BOOL
 CxTest_CxSleeper::bUnit() {
 	BOOL bRes = FALSE;
-	
+
 	{
 		CxSleeper objSleeper;
 
@@ -58,7 +58,7 @@ CxTest_CxSleeper::bUnit() {
 			bRes = objSleeper.bIsSleeping();
 			xASSERT(FALSE == bRes);
 		}
-	
+
 		std::cout << "Stop sleeping"       << std::endl;
 	}
 

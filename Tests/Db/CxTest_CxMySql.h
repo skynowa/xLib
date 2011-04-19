@@ -19,7 +19,7 @@
 class CxTest_CxMySql : public CxTest {
 	public:
 		CxTest_CxMySql();
-	   ~CxTest_CxMySql();
+		virtual     ~CxTest_CxMySql();
 
 	    virtual BOOL bUnit();
 

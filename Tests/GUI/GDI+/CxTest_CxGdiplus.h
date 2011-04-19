@@ -19,9 +19,9 @@
 class CxTest_CxGdiplus : public CxTest {
 	public:
 		CxTest_CxGdiplus();
-	   ~CxTest_CxGdiplus();
+		virtual     ~CxTest_CxGdiplus();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };
@@ -33,7 +33,7 @@ class CxTest_CxGdiplus : public CxTest {
 * Class name:  CxTest_CxGdiplus
 * Description: test CxGdiplus
 * File name:   CxTest_CxGdiplus.cpp
- 
+
 
 
 * Author:      skynowa

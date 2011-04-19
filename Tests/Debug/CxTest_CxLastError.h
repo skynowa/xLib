@@ -19,7 +19,7 @@
 class CxTest_CxLastError : public CxTest {
 	public:
 		CxTest_CxLastError();
-	   ~CxTest_CxLastError();
+		virtual     ~CxTest_CxLastError();
 
 	    virtual BOOL bUnit();
 
@@ -73,8 +73,8 @@ CxTest_CxLastError::bUnit() {
             xASSERT(FALSE != m_bRes);
         }
     }
-    
-    
+
+
     //-------------------------------------
     //bReset
     {
@@ -87,10 +87,10 @@ CxTest_CxLastError::bUnit() {
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
 			xASSERT(FALSE != m_bRes);
-			
+
 			m_bRes = CxLastError::bReset();
 			xASSERT(FALSE != m_bRes);
-			
+
 			xASSERT(0UL == CxLastError::ulGet());
         }
     }
@@ -100,7 +100,7 @@ CxTest_CxLastError::bUnit() {
     {
         m_sRes = CxLastError::sFormat(0);
         xASSERT(false == m_sRes.empty());
-  
+
         m_sRes = CxLastError::sFormat(1);
         xASSERT(false == m_sRes.empty());
 

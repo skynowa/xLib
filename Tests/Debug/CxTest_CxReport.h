@@ -19,7 +19,7 @@
 class CxTest_CxReport : public CxTest {
 	public:
 		CxTest_CxReport();
-	   ~CxTest_CxReport();
+		virtual     ~CxTest_CxReport();
 
 	    virtual BOOL bUnit();
 

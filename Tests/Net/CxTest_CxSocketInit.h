@@ -19,9 +19,9 @@
 class CxTest_CxSocketInit : public CxTest {
 	public:
 		CxTest_CxSocketInit();
-	   ~CxTest_CxSocketInit();
+		virtual     ~CxTest_CxSocketInit();
 
-	   /*virtual*/ BOOL bUnit();
+		virtual     BOOL bUnit();
 
 	private:
 };

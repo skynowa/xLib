@@ -19,9 +19,9 @@
 class CxTest_CxFunctorT : public CxTest {
     public:
                     CxTest_CxFunctorT();
-       /*virtual*/ ~CxTest_CxFunctorT();
+		virtual     ~CxTest_CxFunctorT();
 
-       /*virtual*/  BOOL bUnit();
+		virtual     BOOL bUnit();
 
     private:
 };
@@ -163,8 +163,8 @@ CxTest_CxFunctorT::bUnit() {
         m_bRes = bF.Execute(a);
         xASSERT(FALSE != m_bRes);
     }
-    
-    
+
+
     //-------------------------------------
     //Execute
     {

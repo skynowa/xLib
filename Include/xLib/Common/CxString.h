@@ -138,18 +138,22 @@ class CxString : public CxNonCopyable {
 		static
         tString
         lexical_cast(const T &cValueT) {
-			tostringstream ossStream;
-			ossStream.exceptions(/*tostringstream::eofbit |*/ tostringstream::failbit | tostringstream::badbit);
+			tString sRes;
 
 			try {
-				ossStream << cValueT;
+				tostringstream ossRes;
+
+				ossRes.exceptions(tostringstream::eofbit | tostringstream::failbit | tostringstream::badbit);
+				ossRes << cValueT;
+
+				sRes.assign( ossRes.str() );
 			} catch (tostringstream::failure &e) {
-				/*DEBUG*///xASSERT_RET(FALSE, tString());
+				sRes.clear();
 			} catch (...) {
-				/*DEBUG*///xASSERT_RET(FALSE, tString());
+				sRes.clear();
 			}
 
-			return ossStream.str();
+			return sRes;
 		}
 
 		//---------------------------------------------------------------------------
@@ -158,16 +162,17 @@ class CxString : public CxNonCopyable {
 		static
         T
         lexical_cast(const tString &csStr) {
-			tistringstream issStream(csStr);
-			issStream.exceptions(/*tistringstream::eofbit |*/ tistringstream::failbit | tistringstream::badbit);
-
 			T ResT;
+
 			try {
+				tistringstream issStream(csStr);
+
+				issStream.exceptions(tistringstream::eofbit | tistringstream::failbit | tistringstream::badbit);
 				issStream >> ResT;
 			} catch (tistringstream::failure &e) {
-				/*DEBUG*///xASSERT_RET(FALSE, T());
+				return T();
 			} catch (...) {
-				/*DEBUG*///xASSERT_RET(FALSE, T());
+				return T();
 			}
 
 			return ResT;

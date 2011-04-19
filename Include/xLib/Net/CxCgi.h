@@ -19,6 +19,7 @@
 class CxCgi;
 
 namespace NxCgi {
+
     /****************************************************************************
     * Class name:  CxCgiEnvironment
     * Description: CGI environment
@@ -173,6 +174,8 @@ namespace NxCgi {
 
             BOOL           _bInit       ();
     };
+    //---------------------------------------------------------------------------
+
 }; //namespace NCgi
 //---------------------------------------------------------------------------
 
@@ -181,7 +184,6 @@ namespace NxCgi {
 class CxCgi : public CxNonCopyable {
 	public:
         static const size_t     MAX_DATA_SIZE_DEFAULT = 1024 * 1024;
-
 
         NxCgi::CxCgiEnvironment Environment;
         NxCgi::CxCgiCookies     Cookies;

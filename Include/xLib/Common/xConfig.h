@@ -51,5 +51,8 @@
 
 #endif
 
+//auto linkage
+//#define xIS_AUTO_LINCKAGE          1
+
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xConfigH
