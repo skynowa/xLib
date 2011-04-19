@@ -2,13 +2,9 @@
 * Class name:  CxCheckBox
 * Description: 
 * File name:   CxCheckBox.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     24.07.2009 11:47:59
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,8 +12,8 @@
 #ifndef XLib_Gui_CxCheckBoxH
 #define XLib_Gui_CxCheckBoxH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CxWindow.h>
-#include <XLib/GUI/CxButtonBase.h>
+#include <xLib/GUI/CxWindow.h>
+#include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
 class CxCheckBox: public CxButtonBase {
 	public:

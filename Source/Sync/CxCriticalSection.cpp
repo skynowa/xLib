@@ -1,14 +1,10 @@
 /****************************************************************************
-* Class name:  CXLockScope
-* Description: ������ � ������������ ��������
-* File name:   CXLockScope.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Class name:  CxCriticalSection
+* Description: critical section
+* File name:   CxCriticalSection.cpp
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 21:16:33
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxCriticalSection ()
+//DONE: CxCriticalSection ()
 CxCriticalSection::CxCriticalSection() :
 #if defined(xOS_WIN)
     _m_CS()
@@ -38,7 +34,7 @@ CxCriticalSection::CxCriticalSection() :
     #endif
 }
 //---------------------------------------------------------------------------
-//TODO: + CxCriticalSection ()
+//DONE: CxCriticalSection ()
 CxCriticalSection::CxCriticalSection(ULONG ulSpinCount) {
 	/*DEBUG*///ulSpinCount - not need
 
@@ -48,27 +44,27 @@ CxCriticalSection::CxCriticalSection(ULONG ulSpinCount) {
 	/*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxCriticalSection ()
+//DONE: ~CxCriticalSection ()
 CxCriticalSection::~CxCriticalSection() {
 	::DeleteCriticalSection(&_m_CS);
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + vEnter ()
+//DONE: vEnter ()
 VOID
 CxCriticalSection::vEnter() {
 	::EnterCriticalSection(&_m_CS);
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + vLeave ()
+//DONE: vLeave ()
 VOID
 CxCriticalSection::vLeave() {
 	::LeaveCriticalSection(&_m_CS);
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + ulSetSpinCount ()
+//DONE: ulSetSpinCount ()
 ULONG
 CxCriticalSection::ulSetSpinCount(ULONG ulSpinCount) {
 	/*DEBUG*///ulSpinCount - n/a
@@ -77,7 +73,7 @@ CxCriticalSection::ulSetSpinCount(ULONG ulSpinCount) {
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + bTryEnter ()
+//DONE: bTryEnter ()
 BOOL
 CxCriticalSection::bTryEnter() {
 	return ::TryEnterCriticalSection(&_m_CS);

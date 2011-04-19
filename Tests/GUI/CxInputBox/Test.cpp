@@ -8,7 +8,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <commctrl.h>
-#include <XLib/Gui/Dialogs/CxInputBox.h>
+#include <xLib/Gui/Dialogs/CxInputBox.h>
 //---------------------------------------------------------------------------
 HINSTANCE        g_hInstance  = NULL; 
 HWND             g_hMainWnd   = NULL; 

@@ -2,13 +2,9 @@
 * Class name:  CxSharedMemory
 * Description: share memory
 * File name:   CxSharedMemory.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     15.02.2011 21:44:10
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

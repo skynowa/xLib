@@ -1,4 +1,4 @@
-#include <XLib/Gui/CXDialog.h>
+#include <xLib/Gui/CXDialog.h>
 
 #include "CWndDialog.h"
 //---------------------------------------------------------------------------

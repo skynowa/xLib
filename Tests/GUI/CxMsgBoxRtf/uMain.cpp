@@ -4,8 +4,8 @@
 *****************************************************************************/
 
 
-#include <XLib/xCommon.h>
-#include <XLib/Gui/Dialogs/CxMsgBoxRtf.h>
+#include <xLib/xCommon.h>
+#include <xLib/Gui/Dialogs/CxMsgBoxRtf.h>
 //---------------------------------------------------------------------------
 INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	//WS_POPUP | WS_BORDER | WS_SYSMENU | DS_MODALFRAME | WS_CAPTION|WS_VISIBLE

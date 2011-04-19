@@ -1,8 +1,8 @@
 #ifndef CMyCDlgH
 #define CMyCDlgH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CXDialog.h>
-#include <XLib/GUI/CXButton.h>
+#include <xLib/GUI/CXDialog.h>
+#include <xLib/GUI/CXButton.h>
 //---------------------------------------------------------------------------
 class CMyCDlg : public CXDialog {
 	public:

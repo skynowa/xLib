@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxWaitableTimer
-* Description: ������ � �������� ��������
+* Description: waitable timer
 * File name:   CxWaitableTimer.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.05.2009 17:07:46
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #define xLib_Sync_CxWaitableTimerH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxWaitableTimer  : public CxNonCopyable {
 	public:
@@ -32,7 +28,7 @@ class CxWaitableTimer  : public CxNonCopyable {
 		BOOL     bWait          (ULONG ulTimeout) const;
 
 	private:
-		CxHandleT<NULL>         _m_hWaitableTimer;
+		CxHandle _m_hWaitableTimer;
 };
 //---------------------------------------------------------------------------
 #endif	//xLib_Sync_CxWaitableTimerH

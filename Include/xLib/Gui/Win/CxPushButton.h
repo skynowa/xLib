@@ -2,13 +2,9 @@
 * Class name:  CxPushButton
 * Description: 
 * File name:   CxPushButton.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25.07.2009 21:38:38
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,8 +12,8 @@
 #ifndef XLib_Gui_CxPushButtonH
 #define XLib_Gui_CxPushButtonH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CxWindow.h>
-#include <XLib/GUI/CxButtonBase.h>
+#include <xLib/GUI/CxWindow.h>
+#include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
 class CxPushButton: public CxButtonBase {
 	public:

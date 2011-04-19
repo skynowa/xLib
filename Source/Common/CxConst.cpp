@@ -2,13 +2,9 @@
 * Class name:  CxConst
 * Description: constants
 * File name:   CxConst.cpp
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     13.04.2010 17:51:37
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

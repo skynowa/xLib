@@ -1,35 +1,35 @@
 #ifndef CMyFrameH
 #define CMyFrameH
 //---------------------------------------------------------------------------
-#include <XLib/Gui/CxWindowImpl.h>
-#include <XLib/Gui/CxButton.h>
-#include <XLib/Gui/CxPushButton.h>
-#include <XLib/Gui/CxOwnerDrawButton.h>
-#include <XLib/Gui/CxEdit.h>
-#include <XLib/Gui/CxComboBox.h>
-#include <XLib/Gui/CxPicture.h>
-#include <XLib/Gui/CxStatic.h>
-#include <XLib/Gui/CxToolBar.h>
-#include <XLib/Gui/CxRebar.h>
-#include <XLib/Gui/CxGroupBox.h>
-#include <XLib/Gui/CxCheckBox.h>
-#include <XLib/Gui/CxListBox.h>
-#include <XLib/Gui/CxListView.h>
-#include <XLib/Gui/CxProgressBar.h>
-#include <XLib/Gui/CxRadioButton.h>
-#include <XLib/Gui/CxRichEdit.h>
-#include <XLib/Gui/CxStatusBar.h>
-#include <XLib/Gui/CxTab.h>
-#include <XLib/Gui/CxWaitCursor.h>
-#include <XLib/Gui/CxImageList.h>
-#include <XLib/Gui/CxHotKey.h>
-#include <XLib/Gui/Dialogs/CXMsgBoxT.h>
-#include <XLib/Gui/CxDC.h>
-#include <XLib/Gui/CxIcon.h>
-//#include <XLib/Gui/CxMsgBoxRtf.h>
+#include <xLib/Gui/CxWindowImpl.h>
+#include <xLib/Gui/CxButton.h>
+#include <xLib/Gui/CxPushButton.h>
+#include <xLib/Gui/CxOwnerDrawButton.h>
+#include <xLib/Gui/CxEdit.h>
+#include <xLib/Gui/CxComboBox.h>
+#include <xLib/Gui/CxPicture.h>
+#include <xLib/Gui/CxStatic.h>
+#include <xLib/Gui/CxToolBar.h>
+#include <xLib/Gui/CxRebar.h>
+#include <xLib/Gui/CxGroupBox.h>
+#include <xLib/Gui/CxCheckBox.h>
+#include <xLib/Gui/CxListBox.h>
+#include <xLib/Gui/CxListView.h>
+#include <xLib/Gui/CxProgressBar.h>
+#include <xLib/Gui/CxRadioButton.h>
+#include <xLib/Gui/CxRichEdit.h>
+#include <xLib/Gui/CxStatusBar.h>
+#include <xLib/Gui/CxTab.h>
+#include <xLib/Gui/CxWaitCursor.h>
+#include <xLib/Gui/CxImageList.h>
+#include <xLib/Gui/CxHotKey.h>
+#include <xLib/Gui/Dialogs/CXMsgBoxT.h>
+#include <xLib/Gui/CxDC.h>
+#include <xLib/Gui/CxIcon.h>
+//#include <xLib/Gui/CxMsgBoxRtf.h>
 
 #include "CWndDialog.h"
-#include <XLib/GUI/Resource.xrc.h>
+#include <xLib/GUI/Resource.xrc.h>
 //---------------------------------------------------------------------------
 class CWndMain : public CxWindowImpl {
 	public: 

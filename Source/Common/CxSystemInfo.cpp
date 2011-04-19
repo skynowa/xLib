@@ -2,13 +2,9 @@
 * Class name:  CxSystemInfo
 * Description: system information
 * File name:   CxSystemInfo.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     09.07.2009 11:52:01
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -102,7 +98,7 @@ CxSystemInfo::osGetOS() {
                 xCHECK_RET(ovVer.dwMajorVersion <= 4,                              otWindowsNT);
                 xCHECK_RET(5 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otWindows2000);
                 xCHECK_RET(5 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otWindowsXP);
-                xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsXPProfessionalx64Edition);
+                xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsXPProx64Edition);
                 xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsServer2003);
                 xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsHomeServer);
                 xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsServer2003R2);
@@ -142,7 +138,7 @@ CxSystemInfo::oaGetOsArchitecture() {
     //http://www.tek-tips.com/viewthread.cfm?qid=1573774&page=6
 
 
-    SYSTEM_INFO siSysInfo = {0};
+    SYSTEM_INFO siSysInfo = {{0}};
 
     ::GetSystemInfo(&siSysInfo);
     /*DEBUG*/// n/a
@@ -210,20 +206,28 @@ CxSystemInfo::oaGetOsArchitecture() {
 /*static*/
 tString
 CxSystemInfo::sFormatOsType(EOsType otOsType) {
-	/*DEBUG*/// ulOsVersion - n/a
+	/*DEBUG*/// otOsType - n/a
 
 	tString sRes;
 
 #if defined(xOS_WIN)
     switch (otOsType) {
-        case xWIN32_NT4:   { sRes = xT("Win NT 4.0");                      }	break;
-        case xWIN32_2K:    { sRes = xT("Win 2000");                        }	break;
-        case xWIN32_XP:    { sRes = xT("Win Server 2003, Win XP");         }	break;
-        case xWIN32_S03:   { sRes = xT("Win Server 2003 SP1, Win XP SP2"); }	break;
-        case xWIN32_VISTA: { sRes = xT("Win Vista, Win Server 2008");      }	break;
-        case xWIN32_7:     { sRes = xT("Win 7, Win Server 2008 R2");       }	break;
+        case otWindows3:   		    	{ sRes = xT("Windows 3.1");                }	break;
+        case otWindows95:   			{ sRes = xT("Windows 95");                 }	break;
+        case otWindows98:   			{ sRes = xT("Windows 98");                 }	break;
+        case otWindowsNT:   			{ sRes = xT("Windows NT 4.0");             }	break;
+        case otWindows2000:   			{ sRes = xT("Windows 2000");               }	break;
+        case otWindowsXP:   			{ sRes = xT("Windows XP");                 }	break;
+        case otWindowsXPProx64Edition:  { sRes = xT("Windows XP Pro x64 Edition"); }	break;
+        case otWindowsServer2003:   	{ sRes = xT("Windows Server 2003");        }	break;
+        case otWindowsHomeServer:   	{ sRes = xT("Windows Home Server");        }	break;
+        case otWindowsServer2003R2:   	{ sRes = xT("Windows Server 2003 R2");     }	break;
+        case otWindowsVista:   			{ sRes = xT("Windows Vista");              }	break;
+        case otWindowsServer2008:   	{ sRes = xT("Windows Server 2008");        }	break;
+        case otWindowsServer2008R2:   	{ sRes = xT("Windows Server 2008 R2");     }	break;
+        case otWindows7:   				{ sRes = xT("Windows 7");                  }	break;
 
-        default:		   { sRes = xT("Unknown Win OS");                  }	break;
+        default:		  				{ sRes = xT("Unknown Windows OS");         }	break;
     }
 #elif defined(xOS_LINUX)
     //Linux user-exm-5 2.6.35-27-generic #48-Ubuntu SMP Tue Feb 22 20:25:29 UTC 2011 i686 GNU/Linux
@@ -353,7 +357,7 @@ CxSystemInfo::ulGetNumOfCPUs() {
 	ULONG ulRes = 0;
 
 #if defined(xOS_WIN)
-    SYSTEM_INFO siSysInfo = {0};
+    SYSTEM_INFO siSysInfo = {{0}};
 
     ::GetSystemInfo(&siSysInfo);
     /*DEBUG*/// n/a
@@ -478,13 +482,13 @@ CxSystemInfo::iGetCpuSpeed() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxSystemInfo (construcor)
+//DONE: CxSystemInfo (construcor)
 /*virtual*/
 CxSystemInfo::CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxSystemInfo (destructor)
+//DONE: ~CxSystemInfo (destructor)
 CxSystemInfo::~CxSystemInfo(){
 
 }

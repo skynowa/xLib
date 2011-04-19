@@ -1,11 +1,9 @@
 /****************************************************************************
 * Class name:  CxPop3
-* Description: Pop3 ������
+* Description: POP3
 * File name:   CxPop3.h
-* String type: Ansi
-* Compilers:   Visual C++ 2008
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     13.04.2009 16:44:49
 *
 *****************************************************************************/

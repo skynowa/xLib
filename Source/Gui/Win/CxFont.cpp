@@ -2,13 +2,9 @@
 * Class name:  CxFont
 * Description: רנטפע
 * File name:   CxFont.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     09.03.2010 10:36:56
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -64,7 +60,7 @@ BOOL CxFont::bCreate(
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateDefault
+//DONE: bCreateDefault
 BOOL CxFont::bCreateDefault() {
 	/*DEBUG*/xASSERT_RET(NULL == _m_hFont, FALSE); 
 
@@ -76,7 +72,7 @@ BOOL CxFont::bCreateDefault() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + hGet
+//DONE: hGet
 HFONT CxFont::hGet(HWND hWnd) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hFont, NULL);
 	/*DEBUG*/xASSERT_RET(NULL != hWnd,     NULL); 
@@ -89,7 +85,7 @@ HFONT CxFont::hGet(HWND hWnd) {
 	return hFont;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSet
+//DONE: bSet
 BOOL CxFont::bSet(HWND hWnd) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hFont, FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != hWnd,     FALSE); 
@@ -101,7 +97,7 @@ BOOL CxFont::bSet(HWND hWnd) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bDelete
+//DONE: bDelete
 BOOL CxFont::bDelete() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hFont, FALSE);
 

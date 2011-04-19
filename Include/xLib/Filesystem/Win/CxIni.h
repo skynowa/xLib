@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxIni
-* Description: ������ � ini-�������
+* Description: ini
 * File name:   CxIni.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.04.2009 12:10:56
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

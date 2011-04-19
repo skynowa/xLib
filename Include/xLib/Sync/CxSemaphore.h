@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxSemaphore
-* Description: ������ � ����������
+* Description: semaphore
 * File name:   CxSemaphore.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 18:46:41
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #define xLib_Sync_CxSemaphoreH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxSemaphore : public CxNonCopyable {
 	public:
@@ -34,7 +30,7 @@ class CxSemaphore : public CxNonCopyable {
 		BOOL            bReset     (LONG liInitialCount, LONG liMaxCount);
 
 	private:
-		CxHandleT<NULL>         _m_hSemaphore;
+		CxHandle         _m_hSemaphore;
 		LPSECURITY_ATTRIBUTES   _m_lpsaAttributes;
 		LPCTSTR                 _m_pcszName;
 };

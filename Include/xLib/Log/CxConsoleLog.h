@@ -2,13 +2,9 @@
 * Class name:  CxConsoleLog
 * Description: logging to console
 * File name:   CxConsoleLog.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.06.2009 17:53:59
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

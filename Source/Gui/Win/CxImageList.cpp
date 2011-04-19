@@ -2,19 +2,15 @@
 * Class name:  CxImageList
 * Description: список картинок
 * File name:   CxImageList.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.07.2009 12:58:27
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxImageList.h>
+#include <xLib/Gui/CxImageList.h>
 
 
 /****************************************************************************

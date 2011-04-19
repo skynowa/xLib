@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxWndLog
-* Description: ����������� � ����
+* Description: windows logging
 * File name:   CxWndLog.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.06.2009 17:44:10
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -28,25 +24,23 @@
 //---------------------------------------------------------------------------
 CxCriticalSection CxWndLog::_ms_csListBox;
 //---------------------------------------------------------------------------
-//TODO: + CxWndLog (constructor)
+//DONE: CxWndLog (constructor)
 CxWndLog::CxWndLog(EWindowClass wcWC) :
 	_m_eWC (wcWC)
 {
 	/*DEBUG*/xASSERT_DO(wcListBox == _m_eWC, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxWndLog (destructor)
+//DONE: ~CxWndLog (destructor)
 CxWndLog::~CxWndLog() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + bWrite (write)
+//DONE: bWrite (write)
 BOOL
 CxWndLog::bWrite(HWND hWnd, LPCTSTR pcszFormat, ...) {
 	/*DEBUG*/xASSERT_RET(NULL != hWnd,       FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
-
-	BOOL bRes = FALSE;
 
 	//-------------------------------------
 	//time
@@ -60,7 +54,7 @@ CxWndLog::bWrite(HWND hWnd, LPCTSTR pcszFormat, ...) {
 
 	va_start(palArgs, pcszFormat);
 	sParam = CxString::sFormatV(pcszFormat, palArgs);
-	va_end(palArgs);	
+	va_end(palArgs);
 
 	//-------------------------------------
 	//choose window
@@ -78,7 +72,7 @@ CxWndLog::bWrite(HWND hWnd, LPCTSTR pcszFormat, ...) {
 //			}
 //			break;
 //	}
-	
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------

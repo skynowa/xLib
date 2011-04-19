@@ -2,13 +2,9 @@
 * Class name:  CxTest_CxSmtp
 * Description: test CxSmtp
 * File name:   CxTest_CxSmtp.h
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -54,7 +50,7 @@ CxTest_CxSmtp::bUnit() {
 	//const std::string  csServer   = "mail.ipnet.kiev.ua";
 	//USHORT             usPort     = 25;
 	//const std::string  csFrom     = "domen@ipnet.kiev.ua";
-	//const std::string  csTo       = "dr.web.agent@gmail.com";
+	//const std::string  csTo       = "skynowa@gmail.com";
 	//const std::string  csFilePath = "C:/Temp/test.eml";
 	//const std::string  csDirPath  = "C:/Temp";
 	

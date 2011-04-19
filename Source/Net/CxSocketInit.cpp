@@ -2,13 +2,9 @@
 * Class name:  CxSocketInit
 * Description: initiates use of the Winsock DLL by a process
 * File name:   CxSocketInit.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     22.06.2010 10:25:42
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

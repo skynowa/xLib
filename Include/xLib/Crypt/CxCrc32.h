@@ -2,13 +2,9 @@
 * Class name:  CxCrc32
 * Description: Crc32
 * File name:   CxCrc32.h
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     13.09.2010 12:25:59
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

@@ -2,13 +2,9 @@
 * Class name:  xDebug
 * Description: code debugging
 * File name:   xDebug.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.11.2009 16:39:23
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -195,7 +191,7 @@
 ////    return static_cast<TypeTo>(p);
 ////}
 //---------------------------------------------------------------------------
-//TODO: + VERIFY_COM_INTERFACE (verify validity of COM object)
+//DONE: VERIFY_COM_INTERFACE (verify validity of COM object)
 // Note:
 //        Verify that a pointer to a COM object is still valid
 // Usage:

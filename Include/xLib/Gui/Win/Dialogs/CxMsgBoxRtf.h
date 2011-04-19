@@ -1,14 +1,10 @@
 ﻿/****************************************************************************
 * Class name:  NMsgBoxRtf
-* Description: ������ ���� � RTF-�� �������
+* Description: RTF message box
 * File name:   NMsgBoxRtf.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     08.05.2009 12:38:09
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -21,11 +17,11 @@
 //---------------------------------------------------------------------------
 namespace CxMsgBoxRtf {
     enum EModalResult {
-		mrInternalError = - 1, 
-		mrNone          = 0, 
-		mrAbort         = 1, 
-		mrRetry         = 2, 
-		mrIgnore        = 3, 
+		mrInternalError = - 1,
+		mrNone          = 0,
+		mrAbort         = 1,
+		mrRetry         = 2,
+		mrIgnore        = 3,
 		mrCopyToClip    = 4,
 		mrSendReport    = 5
 	};
@@ -33,25 +29,25 @@ namespace CxMsgBoxRtf {
 	EModalResult g_mrRes           = mrNone;
 	tString   g_sTitle;
 	tString   g_sMessage;
-	
-	const INT ID_staImg        = 200;           
+
+	const INT ID_staImg        = 200;
 	const INT ID_redtText      = 201;
 	const INT ID_btnAbort      = 202;
 	const INT ID_btnRetry      = 203;
 	const INT ID_btnIgnore     = 204;
 	const INT ID_btnCopyToClip = 205;
 	const INT ID_btnSendReport = 206;
-	
+
 	HWND      g_hMainWnd       = NULL;
 	HINSTANCE g_hInst          = NULL;	/*::GetModuleHandle(NULL);*/
 	HFONT     g_hFont          = NULL;
-	HWND      g_hStaImg        = NULL;	
-	HWND      g_hRedtText      = NULL;	
-	HWND	  g_hBtnAbort      = NULL;	
-	HWND	  g_hBtnBreak      = NULL;	
+	HWND      g_hStaImg        = NULL;
+	HWND      g_hRedtText      = NULL;
+	HWND	  g_hBtnAbort      = NULL;
+	HWND	  g_hBtnBreak      = NULL;
 	HWND	  g_hBtnIgnore     = NULL;
-	HWND	  g_hBtnCopyToClip = NULL;	
-	HWND	  g_hBtnSendReport = NULL;	
+	HWND	  g_hBtnCopyToClip = NULL;
+	HWND	  g_hBtnSendReport = NULL;
 
 	const INT ciLeft           = 150;
 	const INT ciTop            = 100;
@@ -62,27 +58,27 @@ namespace CxMsgBoxRtf {
 	const INT ciBtnHeight      = 25;
 	const INT ciBtnShift       = 100;
 	const INT ciRichEdtShift   = 68;
-	
+
 	const INT ciBtnLeftMargin  = 100;	//75
 	const INT ciBtnSpace       = 8;
-	
+
 	//---------------------------------------------------------------------------
 	//TODO: bCreateContent
-	BOOL 
+	BOOL
 	bCreateContent(HWND hParent) {
 		g_hFont = (HFONT)::SendMessage(g_hMainWnd, WM_GETFONT, 0, 0);
 
 		//-------------------------------------
 		//image
 		g_hStaImg = ::CreateWindowEx(
-							0x00000000, 
-							xT("Static"), 
-							xT("ID_staImg"),  
-							WS_CHILD | WS_VISIBLE | SS_ICON, 
-							16, 16, 56, 40, 
-							hParent, 
-							(HMENU)ID_staImg, 
-							g_hInst, 
+							0x00000000,
+							xT("Static"),
+							xT("ID_staImg"),
+							WS_CHILD | WS_VISIBLE | SS_ICON,
+							16, 16, 56, 40,
+							hParent,
+							(HMENU)ID_staImg,
+							g_hInst,
 							NULL);
 		::SendMessage(g_hStaImg, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
 		::SendMessage(g_hStaImg, STM_SETICON, (WPARAM)::LoadIcon(NULL, IDI_ERROR), (LPARAM)0);
@@ -90,14 +86,14 @@ namespace CxMsgBoxRtf {
 		//-------------------------------------
 		//text field (RICHEDIT)
 		g_hRedtText = ::CreateWindowEx(
-							0x00000000, 
-							xCXRICHEDIT10_CONTROL_CLASS /*xT("RICHEDIT")*/, 
-							xT(""), 
-							WS_CHILD | WS_VISIBLE | ES_LEFT | ES_MULTILINE | ES_WANTRETURN | ES_READONLY, 
-							90, 8, 420/*400*/, 200, 
-							hParent, 
-							(HMENU)ID_redtText, 
-							g_hInst, 
+							0x00000000,
+							xCXRICHEDIT10_CONTROL_CLASS /*xT("RICHEDIT")*/,
+							xT(""),
+							WS_CHILD | WS_VISIBLE | ES_LEFT | ES_MULTILINE | ES_WANTRETURN | ES_READONLY,
+							90, 8, 420/*400*/, 200,
+							hParent,
+							(HMENU)ID_redtText,
+							g_hInst,
 							NULL);
 		::SendMessage(g_hRedtText, EM_SETBKGNDCOLOR, (WPARAM)0, (LPARAM)::GetSysColor(COLOR_3DFACE));
 		::SendMessage(g_hRedtText, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
@@ -113,88 +109,88 @@ namespace CxMsgBoxRtf {
 		//-------------------------------------
 		//button "Abort"
 		g_hBtnAbort = ::CreateWindowEx(
-							0x00000000, 
-							xCXBUTTON_CONTROL_CLASS, 
-							xT("Abort"), 
-							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 
-							ciBtnLeftMargin, 216, ciBtnWidth, ciBtnHeight, 
-							hParent, 
-							(HMENU)ID_btnAbort, 
-							g_hInst, 
+							0x00000000,
+							xCXBUTTON_CONTROL_CLASS,
+							xT("Abort"),
+							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
+							ciBtnLeftMargin, 216, ciBtnWidth, ciBtnHeight,
+							hParent,
+							(HMENU)ID_btnAbort,
+							g_hInst,
 							NULL);
 		::SendMessage(g_hBtnAbort, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
 
 		//-------------------------------------
 		//button "Retry"
 		g_hBtnBreak = ::CreateWindowEx(
-							0x00000000, 
-							xCXBUTTON_CONTROL_CLASS, 
-							xT("Break"), 
-							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 
-							ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 1, 216, ciBtnWidth, ciBtnHeight, 
-							hParent, 
-							(HMENU)ID_btnRetry, 
-							g_hInst, 
+							0x00000000,
+							xCXBUTTON_CONTROL_CLASS,
+							xT("Break"),
+							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
+							ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 1, 216, ciBtnWidth, ciBtnHeight,
+							hParent,
+							(HMENU)ID_btnRetry,
+							g_hInst,
 							NULL);
 		::SendMessage(g_hBtnBreak, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
 
 		//-------------------------------------
 		//button "Ignore"
 		g_hBtnIgnore = ::CreateWindowEx(
-							0x00000000, 
-							xCXBUTTON_CONTROL_CLASS, 
-							xT("Ignore"), 
-							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 
+							0x00000000,
+							xCXBUTTON_CONTROL_CLASS,
+							xT("Ignore"),
+							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
 							ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 2, 216, ciBtnWidth, ciBtnHeight,
-							hParent, 
-							(HMENU)ID_btnIgnore, 
-							g_hInst, 
-							NULL);			
+							hParent,
+							(HMENU)ID_btnIgnore,
+							g_hInst,
+							NULL);
 		::SendMessage(g_hBtnIgnore, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
-		
+
 		//-------------------------------------
 		//button "Copy to clip"
 		g_hBtnIgnore = ::CreateWindowEx(
-							0x00000000, 
-							xCXBUTTON_CONTROL_CLASS, 
-							xT("Copy"), 
-							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 
+							0x00000000,
+							xCXBUTTON_CONTROL_CLASS,
+							xT("Copy"),
+							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
 							ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 3, 216, ciBtnWidth, ciBtnHeight,
-							hParent, 
-							(HMENU)ID_btnCopyToClip, 
-							g_hInst, 
-							NULL);			
+							hParent,
+							(HMENU)ID_btnCopyToClip,
+							g_hInst,
+							NULL);
 		::SendMessage(g_hBtnIgnore, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
 
 		//-------------------------------------
 		//button "Send report"
 		g_hBtnSendReport = ::CreateWindowEx(
-							0x00000000, 
-							xCXBUTTON_CONTROL_CLASS, 
-							xT("Report"), 
-							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 
+							0x00000000,
+							xCXBUTTON_CONTROL_CLASS,
+							xT("Report"),
+							WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
 							ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 4, 216, ciBtnWidth, ciBtnHeight,
-							hParent, 
-							(HMENU)ID_btnSendReport, 
-							g_hInst, 
-							NULL);			
+							hParent,
+							(HMENU)ID_btnSendReport,
+							g_hInst,
+							NULL);
 		::SendMessage(g_hBtnSendReport, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
-		
+
 		return TRUE;
 	}
 
 	//---------------------------------------------------------------------------
 	//TODO: DialogProc
-	INT_PTR CALLBACK 
+	INT_PTR CALLBACK
 	DialogProc(HWND hDlg, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 		switch(uiMsg)	{
 			case WM_INITDIALOG:	{
-					bCreateContent(hDlg);	
+					bCreateContent(hDlg);
 				}
 				return TRUE;
 
 			case WM_CLOSE: {
-					::EndDialog(hDlg, 0);	
+					::EndDialog(hDlg, 0);
 				}
 				return TRUE;
 
@@ -206,19 +202,19 @@ namespace CxMsgBoxRtf {
 								::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
 							}
 							return TRUE;
-							
+
 						case ID_btnRetry: {
 								g_mrRes = CxMsgBoxRtf::mrRetry;
 								::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
 							}
 							return TRUE;
-							
+
 						case ID_btnIgnore: {
 								g_mrRes = CxMsgBoxRtf::mrIgnore;
 								::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
 							}
 							return TRUE;
-							
+
 						case ID_btnCopyToClip: {
 								g_mrRes = CxMsgBoxRtf::mrCopyToClip;
 								::SendMessage(g_hRedtText, WM_COPY, (WPARAM)0, (LPARAM)0);
@@ -230,55 +226,56 @@ namespace CxMsgBoxRtf {
 								::MessageBox(0, xT("ID_btnSendReport"), xT(""), MB_OK);
 							}
 							return TRUE;
-						
+
 						default: {
 
 							}
 							return FALSE;
 					}
 				}
+				return TRUE;
 		}
-		
+
 		return FALSE;
 	}
 
 	//---------------------------------------------------------------------------
 	//TODO: iShow
-	EModalResult 
+	EModalResult
 	iShow(HWND hwndOwner, const tString &csMessage, const tString &csTiltle) {
-		HMODULE           hmRichEdtDll = NULL; 
+		HMODULE           hmRichEdtDll = NULL;
 		HGLOBAL           hgbl         = INVALID_HANDLE_VALUE;
-		LPDLGTEMPLATE     lpdt         = {0};
-		LPDLGITEMTEMPLATE lpdit        = {0};
+		LPDLGTEMPLATE     lpdt         = NULL;
+		////LPDLGITEMTEMPLATE lpdit        = NULL;
 		LPWORD            lpw          = NULL;
 		LPWSTR            lpwsz        = NULL;
-		LRESULT           lpRes        = NULL;
+		LRESULT           lpRes        = (LRESULT)NULL;
 		INT               nchar        = - 1;
-		
+
 		//-------------------------------------
 		//loading DLL
-		hmRichEdtDll = ::LoadLibrary(xT("RICHED32.DLL")); 
+		hmRichEdtDll = ::LoadLibrary(xT("RICHED32.DLL"));
 		if (NULL == hmRichEdtDll) {
-			return mrInternalError; 
+			return mrInternalError;
 		}
-		
+
 		hgbl = ::GlobalAlloc(GMEM_ZEROINIT, 1024);
 		if (NULL == hgbl) {
-			return mrInternalError; 
+			return mrInternalError;
 		}
 
 		lpdt = (LPDLGTEMPLATE)::GlobalLock(hgbl);
 		if (NULL == lpdt) {
-			return mrInternalError; 
+			return mrInternalError;
 		}
-		
+
 		//-------------------------------------
 		//������� dialog box
 		lpdt->style = WS_POPUP | WS_BORDER | WS_SYSMENU | DS_MODALFRAME | WS_CAPTION;
 		lpdt->cdit = 0;         // Number of controls
-		lpdt->x    = ciLeft;  
+		lpdt->x    = ciLeft;
 		lpdt->y    = ciTop;
-		lpdt->cx   = ciWidth; 
+		lpdt->cx   = ciWidth;
 		lpdt->cy   = ciHeight;
 
 		lpw = (LPWORD)(lpdt + 1);
@@ -291,11 +288,11 @@ namespace CxMsgBoxRtf {
 		lpw += nchar;
 
 		g_sTitle   = csTiltle;
-		g_sMessage = csMessage; 
+		g_sMessage = csMessage;
 
-		::GlobalUnlock(hgbl); 
+		::GlobalUnlock(hgbl);
 		lpRes = ::DialogBoxIndirect(g_hInst, (LPDLGTEMPLATE)hgbl, hwndOwner, reinterpret_cast<DLGPROC>(DialogProc));
-		::GlobalFree(hgbl); 
+		::GlobalFree(hgbl);
 
 		//-------------------------------------
 		//unloading DLL
@@ -303,7 +300,7 @@ namespace CxMsgBoxRtf {
 			::FreeLibrary(hmRichEdtDll);	hmRichEdtDll = NULL;
 		}
 
-		return /*lpRes*/g_mrRes; 
+		return /*lpRes*/g_mrRes;
 	}
 	//---------------------------------------------------------------------------
 };

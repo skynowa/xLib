@@ -2,13 +2,9 @@
 * Class name:  CxGroupBox
 * Description: 
 * File name:   CxGroupBox.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25.07.2009 21:10:19
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,8 +12,8 @@
 #ifndef XLib_Gui_CxGroupBoxH
 #define XLib_Gui_CxGroupBoxH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CxWindow.h>
-#include <XLib/GUI/CxButtonBase.h>
+#include <xLib/GUI/CxWindow.h>
+#include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
 class CxGroupBox: public CxButtonBase {
 	public:

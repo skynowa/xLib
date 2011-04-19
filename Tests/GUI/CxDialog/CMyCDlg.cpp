@@ -1,7 +1,7 @@
 #include "CMyCDlg.h"
 #include "resource.h"
 
-#include <XLib/GUI/CXApplication.h>
+#include <xLib/GUI/CXApplication.h>
 //---------------------------------------------------------------------------
 CMyCDlg::CMyCDlg() :
 	CXDialog() 

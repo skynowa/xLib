@@ -1,11 +1,9 @@
 /****************************************************************************
 * Class name:  CxSocket
-* Description: socket
+* Description: blocking socket
 * File name:   CxSocket.cpp
-* String type: Ansi
-* Compilers:   Visual C++ 2008
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     04.04.2009 6:21:18
 *
 *****************************************************************************/    
@@ -208,7 +206,7 @@ CxSocket::bSendAll(const tString &csBuff, INT iFlags) {
 	return TRUE;    
 } 
 //---------------------------------------------------------------------------  
-//TODO: + iRecv (recieve data)
+//DONE: iRecv (recieve data)
 INT 
 CxSocket::iRecv(LPTSTR pszBuff, INT iBuffSize, INT iFlags) {  
 	/*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, etError);
@@ -232,7 +230,7 @@ CxSocket::iRecv(LPTSTR pszBuff, INT iBuffSize, INT iFlags) {
 	return iRes / sizeof(TCHAR);
 }   
 //--------------------------------------------------------------------------- 
-//TODO: + sRecvBytes ()
+//DONE: sRecvBytes ()
 tString 
 CxSocket::sRecvAll(INT iFlags) {
 	tString      sRes;
@@ -263,7 +261,7 @@ CxSocket::sRecvAll(INT iFlags) {
 	return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + sRecvBytes (recive data to delimiter, includs it)
+//DONE: sRecvBytes (recive data to delimiter, includs it)
 tString 
 CxSocket::sRecvAll(INT iFlags, const tString &csDelimiter) {   
 	tString      sRes;
@@ -461,7 +459,7 @@ CxSocket::iGetLastError() {
 #endif     
 }   
 //---------------------------------------------------------------------------
-//TODO: + iSelect (determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O.)
+//DONE: iSelect (determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O.)
 /*static*/
 INT 
 CxSocket::iSelect(INT nfds, fd_set *pReadfds, fd_set *pWritefds, fd_set *pExceptfds, timeval *tvTimeout) {

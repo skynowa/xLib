@@ -2,23 +2,19 @@
 * Class name:  CxWindowImpl
 * Description: работа с окнами
 * File name:   CxWindowImpl.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:10:17
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxWindowImpl.h>
+#include <xLib/Gui/CxWindowImpl.h>
 
-#include <XLib/Gui/xCommon.h>
-#include <XLib/GUI/CxApplication.h>
-#include <XLib/CxString.h>
+#include <xLib/Gui/xCommon.h>
+#include <xLib/GUI/CxApplication.h>
+#include <xLib/CxString.h>
 
 
 /****************************************************************************
@@ -115,7 +111,7 @@ BOOL CxWindowImpl::bCreateRes(INT iID, HWND hParent) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bShowModal
+//DONE: bShowModal
 BOOL CxWindowImpl::bShowModal() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, NULL);
 

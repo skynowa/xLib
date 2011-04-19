@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxClipboard
-* Description: ����� ������
+* Description: clipboard
 * File name:   CxClipboard.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     12.07.2010 12:43:35
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxClipboard (comment)
+//DONE: CxClipboard (comment)
 CxClipboard::CxClipboard() :
 	_m_bRes     (FALSE),
 	_m_hObject  (NULL),
@@ -30,12 +26,12 @@ CxClipboard::CxClipboard() :
 {
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxClipboard (comment)
+//DONE: ~CxClipboard (comment)
 CxClipboard::~CxClipboard() {
 	/*DEBUG*///
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetOwner ()
+//DONE: bSetOwner ()
 BOOL 
 CxClipboard::bSetOwner(HWND hWndOwner) {
 	/*DEBUG*///
@@ -45,7 +41,7 @@ CxClipboard::bSetOwner(HWND hWndOwner) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bOpen ()
+//DONE: bOpen ()
 BOOL 
 CxClipboard::bOpen() {
 	/*DEBUG*///
@@ -56,7 +52,7 @@ CxClipboard::bOpen() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bClose ()
+//DONE: bClose ()
 BOOL 
 CxClipboard::bClose() {
 	/*DEBUG*///
@@ -67,7 +63,7 @@ CxClipboard::bClose() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetData ()
+//DONE: bGetData ()
 BOOL 
 CxClipboard::bGetData(EFormat fmFormat) {
 	/*DEBUG*///
@@ -78,7 +74,7 @@ CxClipboard::bGetData(EFormat fmFormat) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetData ()
+//DONE: bSetData ()
 BOOL 
 CxClipboard::bSetData(EFormat fmFormat, HANDLE hData) {
 	/*DEBUG*///
@@ -89,7 +85,7 @@ CxClipboard::bSetData(EFormat fmFormat, HANDLE hData) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetText ()
+//DONE: bGetText ()
 BOOL 
 CxClipboard::bGetText(tString *psText) {
 	/*DEBUG*/xASSERT_RET(NULL != psText, FALSE); 
@@ -124,7 +120,7 @@ CxClipboard::bGetText(tString *psText) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetText ()
+//DONE: bSetText ()
 BOOL 
 CxClipboard::bSetText(const tString csText) {
 	/*DEBUG*/
@@ -165,7 +161,7 @@ CxClipboard::bSetText(const tString csText) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bClear ()
+//DONE: bClear ()
 BOOL 
 CxClipboard::bClear() {
 	/*DEBUG*///

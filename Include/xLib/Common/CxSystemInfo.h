@@ -2,13 +2,9 @@
 * Class name:  CxSystemInfo
 * Description: system information
 * File name:   CxSystemInfo.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     09.07.2009 11:52:01
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -25,20 +21,20 @@ class CxSystemInfo : public CxNonCopyable {
             otUnknown,
 
             //windows
-            otWindows3,                         //
-            otWindows95,                        //
-            otWindows98,                        //
-            otWindowsNT,                        //
-            otWindows2000,	                    //5.0
-            otWindowsXP,	                    //5.1
-            otWindowsXPProfessionalx64Edition,	//5.2
-            otWindowsServer2003,	            //5.2
-            otWindowsHomeServer,	            //5.2
-            otWindowsServer2003R2,	            //5.2
-            otWindowsVista,	                    //6.0
-            otWindowsServer2008,	            //6.0
-            otWindowsServer2008R2,	            //6.1
-            otWindows7,	                        //6.1
+            otWindows3,                 //
+            otWindows95,                //
+            otWindows98,                //
+            otWindowsNT,                //
+            otWindows2000,	            //5.0
+            otWindowsXP,	            //5.1
+            otWindowsXPProx64Edition,	//5.2
+            otWindowsServer2003,	    //5.2
+            otWindowsHomeServer,	    //5.2
+            otWindowsServer2003R2,	    //5.2
+            otWindowsVista,	            //6.0
+            otWindowsServer2008,	    //6.0
+            otWindowsServer2008R2,	    //6.1
+            otWindows7,	                //6.1
 
             //nix
             otLinux,

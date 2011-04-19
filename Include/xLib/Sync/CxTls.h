@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxTls
-* Description: ��������� ������ ������
+* Description: tread local storage
 * File name:   CxTls.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     18.01.2010 14:42:20
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

@@ -2,13 +2,9 @@
 * Class name:  CxCOMPort
 * Description: COM port
 * File name:   CxCOMPort.h
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.04.2010 9:29:26
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #define xLib_Common_Win_CxComPortH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxCOMPort : public CxNonCopyable {
 	public:
@@ -40,7 +36,7 @@ class CxCOMPort : public CxNonCopyable {
 		
     private:
 		BOOL         _m_bRes;
-		CxHandleT<INVALID_HANDLE_VALUE> _m_hComPort;
+		CxHandle     _m_hComPort;  //INVALID_HANDLE_VALUE
 		tString      _m_sPortNum;
 
 		COMMTIMEOUTS CommTimeOuts;

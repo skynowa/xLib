@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxConsole
-* Description: �������
+* Description: console
 * File name:   CxConsole.cpp
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     09.09.2010 10:06:20
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -268,7 +264,7 @@ BOOL CxConsole::bCenterWindow() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bPrompt (���� ������) 
+//DONE: bPrompt (���� ������) 
 BOOL CxConsole::bPrompt(const tString &csPrompt, tString *psAnswer) {
 	/*DEBUG*/xASSERT_RET(false == csPrompt.empty(), FALSE);
 	/*DEBUG*/xASSERT_RET(NULL  != psAnswer,         FALSE);

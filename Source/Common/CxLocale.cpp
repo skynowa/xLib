@@ -2,13 +2,9 @@
 * Class name:  CxLocale
 * Description: locale
 * File name:   CxLocale.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     09.08.2009 19:47:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -24,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + sGetCurrent (get current)
+//DONE: sGetCurrent (get current)
 /*static*/ 
 tString
 CxLocale::sGetCurrent() {
@@ -87,7 +83,7 @@ CxLocale::bSetCurrent(const tString &csLocale) {
 	////return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetDefault (set default)
+//DONE: bSetDefault (set default)
 /*static*/ 
 BOOL
 CxLocale::bSetDefault() {
@@ -109,12 +105,12 @@ CxLocale::bSetDefault() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxLocale
+//DONE: CxLocale
 CxLocale::CxLocale() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxLocale
+//DONE: ~CxLocale
 /*virtual*/
 CxLocale::~CxLocale() {
     /*DEBUG*/// n/a

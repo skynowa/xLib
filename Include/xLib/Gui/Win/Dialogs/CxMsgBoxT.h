@@ -2,13 +2,9 @@
 * Class name:  CxMsgBoxT
 * Description: message box
 * File name:   CxMsgBoxT.h
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.04.2009 10:24:49
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

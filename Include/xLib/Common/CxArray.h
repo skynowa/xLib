@@ -1,14 +1,9 @@
 /****************************************************************************
 * Class name:  CxArray
 * Description: fixed-size array
-* File name:   CxArray.h
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     28.03.2011 14:40:50
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

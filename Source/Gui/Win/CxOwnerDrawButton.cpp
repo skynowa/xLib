@@ -2,21 +2,17 @@
 * Class name:  CxOwnerDrawButton
 * Description: 
 * File name:   CxOwnerDrawButton.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25.07.2009 21:38:38
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxOwnerDrawButton.h>
+#include <xLib/Gui/CxOwnerDrawButton.h>
 
-#include <XLib/GUI/CxWindowImpl.h>
+#include <xLib/GUI/CxWindowImpl.h>
 
 
 /****************************************************************************
@@ -25,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxOwnerDrawButton
+//DONE: CxOwnerDrawButton
 CxOwnerDrawButton::CxOwnerDrawButton() {
 	/*DEBUG*/
 
@@ -45,7 +41,7 @@ CxOwnerDrawButton::CxOwnerDrawButton() {
 	_m_bIsControl     = TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxOwnerDrawButton
+//DONE: ~CxOwnerDrawButton
 /*virtual*/
 CxOwnerDrawButton::~CxOwnerDrawButton() {
 	LOG();
@@ -55,7 +51,7 @@ CxOwnerDrawButton::~CxOwnerDrawButton() {
 	xCHECK_DO(FALSE == _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxOwnerDrawButton::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);

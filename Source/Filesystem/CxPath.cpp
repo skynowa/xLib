@@ -2,13 +2,9 @@
 * Class name:  CxPath
 * Description: file system path
 * File name:   CxPath.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     04.06.2009 9:27:28
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -335,7 +331,7 @@ CxPath::sSetExt(const tString &csFilePath, const tString &csExt) {
 
 
 //--------------------------------------------------------------------------
-//TODO: + sRemoveExt
+//DONE: sRemoveExt
 /*static*/
 tString
 CxPath::sRemoveExt(const tString &csFilePath) {
@@ -347,7 +343,7 @@ CxPath::sRemoveExt(const tString &csFilePath) {
 	return csFilePath.substr(0, uiDotPos);
 }
 //--------------------------------------------------------------------------
-//TODO: + sRemoveExtIf
+//DONE: sRemoveExtIf
 /*static*/
 tString
 CxPath::sRemoveExtIf(const tString &csFilePath, const tString &csExt) {
@@ -391,7 +387,7 @@ CxPath::bIsValidName(const tString &csFilePath) {
 
 
 //---------------------------------------------------------------------------
-//TODO: + sSetValidName
+//DONE: sSetValidName
 /*static*/
 tString
 CxPath::sSetValidName(const tString &csFileName) {
@@ -652,12 +648,12 @@ CxPath::sSlashRemove(const tString &csDirPath) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxPath
+//DONE: CxPath
 CxPath::CxPath() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxPath
+//DONE: ~CxPath
 CxPath::~CxPath() {
 	//code
 }

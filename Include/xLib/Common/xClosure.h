@@ -2,9 +2,6 @@
 * Class name:  Closure library 1.1
 * Description: Closure library 1.1
 * File name:   closure.h.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
 * Author:      Written by Ivan Yankov aka _Winnie. Many thanks to Wolfhound
 * E-mail:      woowoowoow@bk.ru (http://dobrokot.nm.ru/cpp/CppMethodsCallback.html)
 * Created:     18.12.2009 9:36:41

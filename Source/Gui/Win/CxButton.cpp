@@ -2,21 +2,17 @@
 * Class name:  CxButton
 * Description: работа с кнопкой
 * File name:   CxButton.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:11:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxButton.h>
+#include <xLib/Gui/CxButton.h>
 
-#include <XLib/GUI/CxApplication.h>
-#include <XLib/GUI/CxWindowImpl.h>
+#include <xLib/GUI/CxApplication.h>
+#include <xLib/GUI/CxWindowImpl.h>
 
 
 /****************************************************************************
@@ -25,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxButton
+//DONE: CxButton
 CxButton::CxButton() {
 	LOG();
 
@@ -47,7 +43,7 @@ CxButton::CxButton() {
 	_m_vsViewStyle    = vsText;
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxButton
+//DONE: ~CxButton
 /*virtual*/
 CxButton::~CxButton() {
 	LOG();
@@ -57,7 +53,7 @@ CxButton::~CxButton() {
 	xCHECK_DO(FALSE == _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreate
+//DONE: bCreate
 BOOL CxButton::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
@@ -137,12 +133,12 @@ BOOL CxButton::bSetImage(EImageType itImageType, HANDLE hImage) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + vSet_OnClick ()
+//DONE: vSet_OnClick ()
 VOID CxButton::vSet_OnClick(SClosureT<VOID(CxButton *pbtnSender)> vCallback) {
 	_m_vCallback_OnClick = vCallback;
 }
 //---------------------------------------------------------------------------
-//TODO: + _vHandler_OnClick ()
+//DONE: _vHandler_OnClick ()
 VOID CxButton::_vHandler_OnClick(CxButton *pbtnSender)	{
 	xCHECK_DO(NULL == _m_vCallback_OnClick, return); 
 
@@ -153,12 +149,12 @@ VOID CxButton::_vHandler_OnClick(CxButton *pbtnSender)	{
 
 
 //---------------------------------------------------------------------------
-//TODO: + vSet_OnDbClick ()
+//DONE: vSet_OnDbClick ()
 VOID CxButton::vSet_OnDbClick(SClosureT<VOID(CxButton *pbtnSender)> vCallback) {
 	_m_vCallback_OnDbClick = vCallback;
 }
 //---------------------------------------------------------------------------
-//TODO: + _vHandler_OnClick ()
+//DONE: _vHandler_OnClick ()
 VOID CxButton::_vHandler_OnDbClick(CxButton *pbtnSender) {
 	xCHECK_DO(NULL == _m_vCallback_OnDbClick, return); 
 
@@ -169,12 +165,12 @@ VOID CxButton::_vHandler_OnDbClick(CxButton *pbtnSender) {
 
 
 //---------------------------------------------------------------------------
-//TODO: + vSet_OnKillFocus ()
+//DONE: vSet_OnKillFocus ()
 VOID CxButton::vSet_OnKillFocus(SClosureT<VOID(CxButton *pbtnSender)> vCallback) {
 	_m_vCallback_OnKillFocus = vCallback;
 }
 //---------------------------------------------------------------------------
-//TODO: + _vHandler_OnKillFocus()
+//DONE: _vHandler_OnKillFocus()
 VOID CxButton::_vHandler_OnKillFocus(CxButton *pbtnSender)	{
 	xCHECK_DO(NULL == _m_vCallback_OnKillFocus, return); 
 
@@ -185,12 +181,12 @@ VOID CxButton::_vHandler_OnKillFocus(CxButton *pbtnSender)	{
 
 
 //---------------------------------------------------------------------------
-//TODO: + vSet_OnSetFocus ()
+//DONE: vSet_OnSetFocus ()
 VOID CxButton::vSet_OnSetFocus(SClosureT<VOID(CxButton *pbtnSender)> vCallback) {
 	_m_vCallback_OnSetFocus = vCallback;
 }
 //---------------------------------------------------------------------------
-//TODO: + _vHandler_OnSetFocus ()
+//DONE: _vHandler_OnSetFocus ()
 VOID CxButton::_vHandler_OnSetFocus(CxButton *pbtnSender)	{
 	xCHECK_DO(NULL == _m_vCallback_OnSetFocus, return); 
 

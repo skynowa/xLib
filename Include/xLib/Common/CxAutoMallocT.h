@@ -2,13 +2,9 @@
 * Class name:  CxAutoMallocT
 * Description: test CxAutoMallocT
 * File name:   CxAutoMallocT.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     17.05.2009 17:20:09
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -42,7 +38,7 @@ class CxAutoMallocT : public CxNonCopyable {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxAutoMallocT (construcor)
+//DONE: CxAutoMallocT (construcor)
 template<class PtrT>
 CxAutoMallocT<PtrT>::CxAutoMallocT(const std::size_t cuiSize) :
 	_m_pDataT(NULL)
@@ -54,7 +50,7 @@ CxAutoMallocT<PtrT>::CxAutoMallocT(const std::size_t cuiSize) :
 	/*DEBUG*/xASSERT(NULL != _m_pDataT);		//MessageBox(0, "Constructor", "", MB_OK);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxAutoMallocT (destructor)
+//DONE: ~CxAutoMallocT (destructor)
 template<class PtrT>
 CxAutoMallocT<PtrT>::~CxAutoMallocT() {
 	/*DEBUG*/xASSERT_DO(NULL != _m_pDataT, return);
@@ -65,7 +61,7 @@ CxAutoMallocT<PtrT>::~CxAutoMallocT() {
 	}
 }
 //---------------------------------------------------------------------------
-//TODO: + pGetPtr (get pointer)
+//DONE: pGetPtr (get pointer)
 template<class PtrT>
 PtrT
 CxAutoMallocT<PtrT>::pGetPtr() {

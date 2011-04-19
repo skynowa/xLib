@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxUri
-* Description: ��������������� ������������� �������
+* Description: URI
 * File name:   CxUri.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     17.11.2009 12:41:10
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -21,7 +17,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxUri
+//DONE: CxUri
 CxUri::CxUri() :
 	_m_sScheme   (),
 	_m_sAuthority(),
@@ -35,7 +31,7 @@ CxUri::CxUri() :
 
 }
 //---------------------------------------------------------------------------
-//TODO: + CxUri
+//DONE: CxUri
 CxUri::CxUri(const std::string &csUri) :
 	_m_sScheme   (),
 	_m_sAuthority(),
@@ -52,7 +48,7 @@ CxUri::CxUri(const std::string &csUri) :
 	/*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxUri
+//DONE: ~CxUri
 CxUri::~CxUri() {
 
 }
@@ -80,7 +76,7 @@ data   : text/plain;charset=iso-8859-7,%be%fg%be
 tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
-std::string CxUri::sGetUri() {
+std::string CxUri::sGetUri() const {
 	/*DEBUG*/
 
 	std::string sRes;
@@ -133,7 +129,7 @@ BOOL CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority,
 }
 //---------------------------------------------------------------------------
 //TODO: - sGetScheme
-std::string CxUri::sGetScheme() {
+std::string CxUri::sGetScheme() const {
 	return sEncodeComponent(_m_sScheme);
 }
 BOOL CxUri::bSetScheme(const std::string &csScheme) {
@@ -142,8 +138,8 @@ BOOL CxUri::bSetScheme(const std::string &csScheme) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetAuthority
-std::string CxUri::sGetAuthority() {
+//DONE: sGetAuthority
+std::string CxUri::sGetAuthority() const {
 	std::string sTempAuthority;
 
 	sTempAuthority += "//";
@@ -170,8 +166,8 @@ BOOL CxUri::bSetAuthority(const std::string &csAuthority) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetUserInfo
-std::string CxUri::sGetUserInfo() {
+//DONE: sGetUserInfo
+std::string CxUri::sGetUserInfo() const {
 	return sEncodeComponent(_m_sUserInfo);
 }
 BOOL CxUri::bSetUserInfo(const std::string &csUserInfo) {
@@ -182,8 +178,8 @@ BOOL CxUri::bSetUserInfo(const std::string &csUserInfo) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetHost
-std::string CxUri::sGetHost() {
+//DONE: sGetHost
+std::string CxUri::sGetHost() const {
 	return sEncodeComponent(_m_sHost);
 }
 BOOL CxUri::bSetHost(const std::string &csHost) {
@@ -194,7 +190,7 @@ BOOL CxUri::bSetHost(const std::string &csHost) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + usGetPort
+//DONE: usGetPort
 USHORT CxUri::usGetPort() {
 	return _m_usPort;
 }
@@ -206,8 +202,8 @@ BOOL CxUri::bSetPort(const USHORT &cusPort) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetPath
-std::string CxUri::sGetPath() {
+//DONE: sGetPath
+std::string CxUri::sGetPath() const {
 	return sEncodeComponent(_m_sPath);
 }
 BOOL CxUri::bSetPath(const std::string &csPath) {
@@ -216,8 +212,8 @@ BOOL CxUri::bSetPath(const std::string &csPath) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetQuery
-std::string CxUri::sGetQuery() {
+//DONE: sGetQuery
+std::string CxUri::sGetQuery() const {
 	return sEncodeComponent(_m_sQuery);
 }
 BOOL CxUri::bSetQuery(const std::string &csQuery) {
@@ -226,8 +222,8 @@ BOOL CxUri::bSetQuery(const std::string &csQuery) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetFragment
-std::string CxUri::sGetFragment() {
+//DONE: sGetFragment
+std::string CxUri::sGetFragment() const {
 	return sEncodeComponent(_m_sFragment);
 }
 BOOL CxUri::bSetFragment(const std::string &csFragment) {
@@ -236,7 +232,7 @@ BOOL CxUri::bSetFragment(const std::string &csFragment) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bClear ()
+//DONE: bClear ()
 BOOL CxUri::bClear() {
 	////BOOL bRes = FALSE;
 
@@ -250,6 +246,59 @@ BOOL CxUri::bClear() {
 	_m_sFragment.clear();
 
 	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: sEscape ()
+/*static*/
+std::string
+CxUri::sEscape(const std::string &csUri) {
+    /*DEBUG*/
+
+    /*
+    int    c;
+
+    while((c = *s++) != (char)0) {
+        switch(c) {
+            case '\0':
+                break;
+
+            case '%': case ' ': case '?': case '&':
+            case '>': case '<': case '\"': case ';':
+            case '=': case '@': case ':': case '#':
+                fprintf(fw, "%%%02x", c);
+                break;
+
+            default:
+                if (fputc(c, fw) == EOF)
+                    return EOF;
+                break;
+        }
+    }
+
+    return 0;
+    */
+
+
+    std::string sRes;
+
+    sRes.assign(csUri);
+
+
+
+    return sRes;
+}
+//---------------------------------------------------------------------------
+//TODO: sUnescape ()
+/*static*/
+std::string
+CxUri::sUnescape(const std::string &csUri) {
+    /*DEBUG*/
+
+    std::string sRes;
+
+    //TODO:
+
+    return sRes;
 }
 //---------------------------------------------------------------------------
 //TODO:

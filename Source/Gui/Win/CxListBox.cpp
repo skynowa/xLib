@@ -2,18 +2,14 @@
 * Class name:  CxListBox
 * Description: 
 * File name:   CxListBox.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25.07.2009 22:59:33
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxListBox.h>
+#include <xLib/Gui/CxListBox.h>
 
 
 /****************************************************************************
@@ -48,7 +44,7 @@ CxListBox::~CxListBox() {
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxListBox::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
@@ -595,7 +591,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 
 
 //////---------------------------------------------------------------------------
-//////TODO: + bAddString 
+//////DONE: bAddString 
 ////BOOL CxListBox::bAddString(const tString &csItem) {
 ////	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
@@ -604,7 +600,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////	return TRUE;
 ////}
 //////---------------------------------------------------------------------------
-//////TODO: + bResetContent 
+//////DONE: bResetContent 
 ////BOOL CxListBox::bResetContent() {
 ////	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
@@ -613,7 +609,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////	return TRUE;
 ////}
 //////---------------------------------------------------------------------------
-//////TODO: + bAddFile
+//////DONE: bAddFile
 ////BOOL CxListBox::bAddFile(const tString &csFileName) {
 ////	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////

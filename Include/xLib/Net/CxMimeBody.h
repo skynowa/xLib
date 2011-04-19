@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxMimeBody
-* Description: ���� ��������� ������ (RFC 822)
+* Description: MIME body (RFC 822)
 * File name:   CxMimeBody.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     06.07.2009 19:11:02
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

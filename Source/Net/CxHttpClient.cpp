@@ -2,13 +2,9 @@
 * Class name:  CxHttpClient
 * Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 * File name:   CxHttpClient.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     16.11.2009 14:43:15
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -118,13 +114,13 @@ CxHttpClient::bUnlink(const std::string &csUrl) {
 * Class name:  CxStatusLine
 * Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 * File name:   CxHttpClient.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+
+
+
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     14.02.2011
-* Version:     1.0.0.0 Debug
+
 *
 *****************************************************************************/
 
@@ -147,13 +143,13 @@ CxHttpClient::CxStatusLine::~CxStatusLine() {
 * Class name:  CxHeader
 * Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 * File name:   CxHttpClient.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+
+
+
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     14.02.2011
-* Version:     1.0.0.0 Debug
+
 *
 *****************************************************************************/
 
@@ -176,13 +172,13 @@ CxHttpClient::CxHeader::~CxHeader() {
 * Class name:  CxBody
 * Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 * File name:   CxHttpClient.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+
+
+
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     14.02.2011
-* Version:     1.0.0.0 Debug
+
 *
 *****************************************************************************/
 

@@ -1,14 +1,11 @@
 /****************************************************************************
 * Class name:  CCompletionPort
-* Description: ���� ����������
+* Description: completion port
 * File name:   CCompletionPort.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.02.2010 14:28:40
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +14,7 @@
 #define xLib_Sync_CxCompletionPortH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxCompletionPort : public CxNonCopyable  {
 	public:
@@ -31,7 +28,7 @@ class CxCompletionPort : public CxNonCopyable  {
 
 	private:
 		BOOL            _m_bRes;
-		CxHandleT<NULL> _m_hCP;
+		CxHandle _m_hCP;
 };
 //---------------------------------------------------------------------------
 #endif	//xLib_Sync_CxCompletionPortH

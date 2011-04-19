@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxInputBox
-* Description: ������ �����
+* Description: input box
 * File name:   CxInputBox.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     22.10.2010 13:53:30
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxInputBox
+//DONE: CxInputBox
 CxInputBox::CxInputBox() :
 	_m_sText     (),
 	_m_hWndMain  (NULL),
@@ -33,13 +29,13 @@ CxInputBox::CxInputBox() :
 {
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxInputBox
+//DONE: ~CxInputBox
 /*virtual*/ 
 CxInputBox::~CxInputBox() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + iShowModal (�����������)
+//DONE: iShowModal (�����������)
 CxInputBox::EModalResult 
 CxInputBox::mrShowModal(const tString &csCaption, const tString &csPrompt, const tString &csText) {
 	/*DEBUG*/// csCaption - n/a
@@ -188,7 +184,7 @@ CxInputBox::mrShowModal(const tString &csCaption, const tString &csPrompt, const
 	return static_cast<EModalResult>(msgMsg.wParam);
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetText (�����)
+//DONE: sGetText (�����)
 tString 
 CxInputBox::sGetText() {
 	return _m_sText;	
@@ -202,7 +198,7 @@ CxInputBox::sGetText() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + _ms_pWndProc (������)
+//DONE: _ms_pWndProc (������)
 /*static*/ 
 LRESULT CALLBACK 
 CxInputBox::_ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {

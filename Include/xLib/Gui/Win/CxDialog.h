@@ -2,13 +2,9 @@
 * Class name:  CXDialog
 * Description: работа с окнами
 * File name:   CXDialog.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Sergey Shapka
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:10:17
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +12,7 @@
 #ifndef XLib_Gui_CXDialogH
 #define XLib_Gui_CXDialogH
 //---------------------------------------------------------------------------
-#include <XLib/Gui/CXWindow.h>
+#include <xLib/Gui/CXWindow.h>
 //---------------------------------------------------------------------------
 class CXDialog : public CxWindow {
 	public:

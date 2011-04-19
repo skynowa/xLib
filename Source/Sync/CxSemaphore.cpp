@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxSemaphore
-* Description: работа с семафорами
+* Description: semaphore
 * File name:   CxSemaphore.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 18:46:41
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxSemaphore ()
+//DONE: CxSemaphore ()
 CxSemaphore::CxSemaphore() :
 	_m_hSemaphore    (),
 	_m_lpsaAttributes(NULL),
@@ -30,12 +26,12 @@ CxSemaphore::CxSemaphore() :
 {
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxSemaphore ()
+//DONE: ~CxSemaphore ()
 CxSemaphore::~CxSemaphore() {
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + hGetHandle ()
+//DONE: hGetHandle ()
 HANDLE 
 CxSemaphore::hGetHandle() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), NULL);
@@ -43,7 +39,7 @@ CxSemaphore::hGetHandle() const {
 	return _m_hSemaphore.m_hHandle;
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreate (Creates or opens a named or unnamed semaphore object)
+//DONE: bCreate (Creates or opens a named or unnamed semaphore object)
 BOOL 
 CxSemaphore::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, LONG liInitialCount, LONG liMaxCount, LPCTSTR pcszName) {
 	/*DEBUG*/xASSERT_RET(FALSE == _m_hSemaphore.bIsValid(),					  FALSE);
@@ -63,7 +59,7 @@ CxSemaphore::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, LONG liInitialCount, 
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bOpen ()
+//DONE: bOpen ()
 BOOL 
 CxSemaphore::bOpen(ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
@@ -80,7 +76,7 @@ CxSemaphore::bOpen(ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bRelease ()
+//DONE: bRelease ()
 BOOL 
 CxSemaphore::bRelease(LONG liReleaseCount, LONG *pliOldCount) const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
@@ -95,7 +91,7 @@ CxSemaphore::bRelease(LONG liReleaseCount, LONG *pliOldCount) const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bWait ()
+//DONE: bWait ()
 BOOL 
 CxSemaphore::bWait(ULONG ulTimeout) const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
@@ -109,7 +105,7 @@ CxSemaphore::bWait(ULONG ulTimeout) const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + liGetValue ()
+//DONE: liGetValue ()
 LONG 
 CxSemaphore::liGetValue() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), - 1);
@@ -123,7 +119,7 @@ CxSemaphore::liGetValue() const {
 	return liRes; 
 }
 //---------------------------------------------------------------------------
-//TODO: + bReset ()
+//DONE: bReset ()
 BOOL 
 CxSemaphore::bReset(LONG liInitialCount, LONG liMaxCount) {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(),                   FALSE);

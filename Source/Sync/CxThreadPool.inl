@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxThreadPool
-* Description: пул потоков
+* Description: thread pool
 * File name:   CxThreadPool.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     10.12.2009 22:10:16
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -25,7 +21,7 @@ CxCriticalSection CxThreadPool<TaskT>::_m_csList;
 template<class TaskT>
 CxConsoleLog      CxThreadPool<TaskT>::_m_clLog(FALSE); 
 //---------------------------------------------------------------------------
-//TODO: + CxThreadPool (конструктор)
+//DONE: CxThreadPool (конструктор)
 template<class TaskT>
 CxThreadPool<TaskT>::CxThreadPool(BOOL bIsPaused,      BOOL bIsAutoDelete,
 						          BOOL bIsGroupPaused, BOOL bIsGroupAutoDelete
@@ -49,7 +45,7 @@ CxThreadPool<TaskT>::CxThreadPool(BOOL bIsPaused,      BOOL bIsAutoDelete,
 	/*LOG*/_m_clLog.bWrite(xT("CxThreadPool: construct"));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxThreadPool (деструктор)
+//DONE: ~CxThreadPool (деструктор)
 template<class TaskT>
 CxThreadPool<TaskT>::~CxThreadPool() {
 	/*DEBUG*/

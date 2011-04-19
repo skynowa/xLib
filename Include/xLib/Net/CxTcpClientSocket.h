@@ -2,10 +2,8 @@
 * Class name:  CxTcpClientSocket
 * Description: client socket
 * File name:   CxTcpClientSocket.h
-* String type: Ansi (юникод не должен использоваться!!!)
-* Compilers:   Visual C++ 2008
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     04.04.2009 6:21:18
 *
 *****************************************************************************/

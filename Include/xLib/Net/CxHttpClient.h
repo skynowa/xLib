@@ -2,13 +2,9 @@
 * Class name:  CxHttpClient
 * Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 * File name:   CxHttpClient.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     16.11.2009 14:43:15
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

@@ -2,13 +2,9 @@
 * Class name:  CxAtomicLongInt
 * Description: atomic operartions with LONG
 * File name:   CxAtomicLongInt.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25.11.2009 10:03:17
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxAtomicLongInt ()
+//DONE: CxAtomicLongInt ()
 CxAtomicLongInt::CxAtomicLongInt() : 
     _m_liValue(0)      
 { 
@@ -33,12 +29,12 @@ CxAtomicLongInt::CxAtomicLongInt() :
 #endif
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxAtomicLongInt ()
+//DONE: ~CxAtomicLongInt ()
 CxAtomicLongInt::~CxAtomicLongInt() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + operator += ()
+//DONE: operator += ()
 CxAtomicLongInt & 
 CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
 #if defined(xOS_WIN)
@@ -50,7 +46,7 @@ CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
 	return *this;
 }
 //---------------------------------------------------------------------------
-//TODO: + operator -= ()
+//DONE: operator -= ()
 CxAtomicLongInt & 
 CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
 #if defined(xOS_WIN)
@@ -62,7 +58,7 @@ CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
 	return *this;
 }
 //---------------------------------------------------------------------------
-//TODO: + operator = ()
+//DONE: operator = ()
 CxAtomicLongInt & 
 CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)	{
 #if defined(xOS_WIN)
@@ -74,7 +70,7 @@ CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)	{
 	return *this;
 }
 //---------------------------------------------------------------------------
-//TODO: + operator += ()
+//DONE: operator += ()
 CxAtomicLongInt & 
 CxAtomicLongInt::operator += (const LONG cliRight) {
 #if defined(xOS_WIN)
@@ -86,7 +82,7 @@ CxAtomicLongInt::operator += (const LONG cliRight) {
 	return *this;
 }
 //---------------------------------------------------------------------------
-//TODO: + operator -= ()
+//DONE: operator -= ()
 CxAtomicLongInt & 
 CxAtomicLongInt::operator -= (const LONG cliRight) {
 #if defined(xOS_WIN)
@@ -98,7 +94,7 @@ CxAtomicLongInt::operator -= (const LONG cliRight) {
 	return *this;
 }
 //---------------------------------------------------------------------------
-//TODO: + operator = ()
+//DONE: operator = ()
 CxAtomicLongInt & 
 CxAtomicLongInt::operator = (const LONG cliRight) {
 #if defined(xOS_WIN)
@@ -110,41 +106,41 @@ CxAtomicLongInt::operator = (const LONG cliRight) {
 	return *this;
 }
 //---------------------------------------------------------------------------
-//TODO: + operator == ()
+//DONE: operator == ()
 BOOL 
 CxAtomicLongInt::operator == (const CxAtomicLongInt &cRight) const {
 	return (BOOL)(_m_liValue == cRight._m_liValue);
 }
 //---------------------------------------------------------------------------
-//TODO: + operator != ()
+//DONE: operator != ()
 BOOL 
 CxAtomicLongInt::operator != (const CxAtomicLongInt &cRight) const {
 	return (BOOL)(!(_m_liValue == cRight._m_liValue));
 }
 //---------------------------------------------------------------------------
-//TODO: + operator == ()
+//DONE: operator == ()
 BOOL 
 CxAtomicLongInt::operator == (const LONG cliRight) const {
 	return (BOOL)(_m_liValue == cliRight);
 }
 //---------------------------------------------------------------------------
-//TODO: + operator != ()
+//DONE: operator != ()
 BOOL 
 CxAtomicLongInt::operator != (const LONG cliRight) const {
 	return (BOOL)( !(_m_liValue == cliRight) );
 }
 //---------------------------------------------------------------------------
-//TODO: + operator LONG ()
+//DONE: operator LONG ()
 CxAtomicLongInt::operator LONG () const {
 	return _m_liValue;
 }
 //---------------------------------------------------------------------------
-//TODO: + operator BOOL ()
+//DONE: operator BOOL ()
 CxAtomicLongInt::operator BOOL () const {
 	return _m_liValue ? TRUE : FALSE; 
 }
 //---------------------------------------------------------------------------
-//TODO: + operator ++ ()
+//DONE: operator ++ ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator ++ (INT iPos) {
 	#if defined(xOS_WIN)
@@ -160,7 +156,7 @@ CxAtomicLongInt::operator ++ (INT iPos) {
 	return *this;
 }
 //---------------------------------------------------------------------------
-//TODO: + operator -- ()
+//DONE: operator -- ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator -- (INT iPos) {
 	#if defined(xOS_WIN)

@@ -2,13 +2,9 @@
 * Class name:  CxDll
 * Description: dynamic linking loader
 * File name:   CxDll.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     06.11.2009 23:39:28
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

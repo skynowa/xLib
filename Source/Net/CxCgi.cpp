@@ -1,14 +1,10 @@
 ﻿/****************************************************************************
 * Class name:  CxCgi
-* Description: common gateway interace
+* Description: CGI
 * File name:   CxCgi.cpp
-* Compilers:   Visual C++ 2010
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     11:01:2010 13:20:00
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -188,42 +184,42 @@ CxCgi::bUriDecode(
 //TODO: cgl_parsecgibuf
 int
 cgl_parsecgibuf(/*cgllist *cdata,*/ char *query) {
-    char *s;
-    char *np;
-    char *vp;
-
-    if (!cdata || !query) {
-        cgl_seterrno(CGL_NULLARG);
-        return -1;
-    }
-
-    /* get rid of + signs */
-    cgl_charify(query, '+', ' ');
-
-    np = s = query;
-
-    while (*np) {
-
-        /* find name/value pairs */
-        for ( ; *s && *s != '&'; s++) ;
-
-        /* chop them up */
-        if (*s == '&') {
-            *s = '\0'; s++;
-        }
-        if ((vp = strchr(np, '=')) != NULL) {
-            *vp = '\0';
-            vp++;
-            cgl_urlunescape(np);
-            cgl_urlunescape(vp);
-            if (cgl_insertnode(cdata,
-                np, vp, CGL_INSERT_TAIL) == -1) {
-                return -1;
-            }
-        }
-
-        np = s;
-    }
+//    char *s;
+//    char *np;
+//    char *vp;
+//
+//    if (!cdata || !query) {
+//        cgl_seterrno(CGL_NULLARG);
+//        return -1;
+//    }
+//
+//    /* get rid of + signs */
+//    cgl_charify(query, '+', ' ');
+//
+//    np = s = query;
+//
+//    while (*np) {
+//
+//        /* find name/value pairs */
+//        for ( ; *s && *s != '&'; s++) ;
+//
+//        /* chop them up */
+//        if (*s == '&') {
+//            *s = '\0'; s++;
+//        }
+//        if ((vp = strchr(np, '=')) != NULL) {
+//            *vp = '\0';
+//            vp++;
+//            cgl_urlunescape(np);
+//            cgl_urlunescape(vp);
+//            if (cgl_insertnode(cdata,
+//                np, vp, CGL_INSERT_TAIL) == -1) {
+//                return -1;
+//            }
+//        }
+//
+//        np = s;
+//    }
 
     return 0;
 }
@@ -256,25 +252,25 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *query) {
 //TODO: bUrlEscape
 int
 CxCgi::bUrlEscape(char *s, FILE *fw) {
-    register int    c;
-
-    while((c = *s++) != (char)0) {
-        switch(c) {
-            case '\0':
-                break;
-
-            case '%': case ' ': case '?': case '&':
-            case '>': case '<': case '\"': case ';':
-            case '=': case '@': case ':': case '#':
-                fprintf(fw, "%%%02x", c);
-                break;
-
-            default:
-                if (fputc(c, fw) == EOF)
-                    return EOF;
-                break;
-        }
-    }
+//    register int    c;
+//
+//    while((c = *s++) != (char)0) {
+//        switch(c) {
+//            case '\0':
+//                break;
+//
+//            case '%': case ' ': case '?': case '&':
+//            case '>': case '<': case '\"': case ';':
+//            case '=': case '@': case ':': case '#':
+//                fprintf(fw, "%%%02x", c);
+//                break;
+//
+//            default:
+//                if (fputc(c, fw) == EOF)
+//                    return EOF;
+//                break;
+//        }
+//    }
 
     return 0;
 }
@@ -283,34 +279,34 @@ CxCgi::bUrlEscape(char *s, FILE *fw) {
 //modified from the Apache code. Code shrinks string, so can be done in place.
 int
 CxCgi::bUrlUnescape(char *s) {
-    int    error;
-    char    *p;
-
-    if (!s)
-        return 0;
-
-    error = 0;
-
-    for (p = s; *s; s++, p++) {
-        if (*s != '%') {
-            *p = *s;
-            continue;
-        } else {
-            if (!isxdigit((unsigned char)*(s+1)) || !isxdigit((unsigned char)*(s+2))) {
-                error = 1;
-                *p = '%';
-            } else {
-                *p = cgl_hex2char((s+1));
-                s++; s++;
-                if (*p == '/' || *p == (char)0)
-                    error = 1;
-            }
-        }
-    }
-
-    *p = (char)0;
-    if (error)
-        return -1;
+//    int    error;
+//    char    *p;
+//
+//    if (!s)
+//        return 0;
+//
+//    error = 0;
+//
+//    for (p = s; *s; s++, p++) {
+//        if (*s != '%') {
+//            *p = *s;
+//            continue;
+//        } else {
+//            if (!isxdigit((unsigned char)*(s+1)) || !isxdigit((unsigned char)*(s+2))) {
+//                error = 1;
+//                *p = '%';
+//            } else {
+//                *p = cgl_hex2char((s+1));
+//                s++; s++;
+//                if (*p == '/' || *p == (char)0)
+//                    error = 1;
+//            }
+//        }
+//    }
+//
+//    *p = (char)0;
+//    if (error)
+//        return -1;
 
     return 0;
 }
@@ -319,14 +315,14 @@ CxCgi::bUrlUnescape(char *s) {
 //ripped off from the Apache code
 char
 CxCgi::cgl_hex2char(char *what) {
-    register char digit;
+    register char digit = '\0';
 
-    if (!what)
-        return (char)0;
-
-    digit = ((what[0] >= 'A') ? ((what[0] & 0xdf) - 'A')+10 : (what[0] - '0'));
-    digit *= 16;
-    digit += (what[1] >= 'A' ? ((what[1] & 0xdf) - 'A')+10 : (what[1] - '0'));
+//    if (!what)
+//        return (char)0;
+//
+//    digit = ((what[0] >= 'A') ? ((what[0] & 0xdf) - 'A')+10 : (what[0] - '0'));
+//    digit *= 16;
+//    digit += (what[1] >= 'A' ? ((what[1] & 0xdf) - 'A')+10 : (what[1] - '0'));
 
     return(digit);
 }
@@ -337,13 +333,13 @@ CxCgi::cgl_hex2char(char *what) {
 * Class name:  CxCgiEnvironment
 * Description:
 * File name:   CxCgiEnvironment.cpp
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+
+
+
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     12 квіт. 2011 18:10:17
-* Version:     1.0.0.0 Debug
+
 *
 *****************************************************************************/
 
@@ -761,13 +757,13 @@ CxCgiEnvironment::_bInit() {
 * Class name:  CxCgiCookies
 * Description:
 * File name:   CxCgiCookies
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+
+
+
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     12 квіт. 2011 18:19:42
-* Version:     1.0.0.0 Debug
+
 *
 *****************************************************************************/
 
@@ -880,13 +876,13 @@ CxCgiCookies::_bInit() {
 * Class name:  CxCgiFormData
 * Description:
 * File name:   CxCgiFormData.cpp
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+
+
+
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     12 квіт. 2011 18:19:42
-* Version:     1.0.0.0 Debug
+
 *
 *****************************************************************************/
 

@@ -2,13 +2,9 @@
 * Class name:  CxChar
 * Description: character
 * File name:   CxChar.h
-* Compilers:   Visual C++ 2010 
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     11:01:2010 13:20:00
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

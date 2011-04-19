@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxEvent
-* Description: ивенты
+* Description: event
 * File name:   CxEvent.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 17:53:15
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,19 +18,19 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxEvent (конструктор)
+//DONE: CxEvent (конструктор)
 CxEvent::CxEvent() :
 	_m_hEvent()
 {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxEvent (деструктор)
+//DONE: ~CxEvent (деструктор)
 CxEvent::~CxEvent() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + hGetHandle (A handle to the event object)
+//DONE: hGetHandle (A handle to the event object)
 HANDLE 
 CxEvent::hGetHandle() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), NULL);
@@ -42,7 +38,7 @@ CxEvent::hGetHandle() const {
     return _m_hEvent.m_hHandle;
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreate (Creates or opens a named or unnamed event object)
+//DONE: bCreate (Creates or opens a named or unnamed event object)
 BOOL 
 CxEvent::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bManualReset, BOOL bInitialState, LPCTSTR pcszName) {
 	/*DEBUG*/xASSERT_RET(FALSE == _m_hEvent.bIsValid(), FALSE);
@@ -59,7 +55,7 @@ CxEvent::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bManualReset, BOOL b
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bOpen (Opens an existing named event object)
+//DONE: bOpen (Opens an existing named event object)
 BOOL 
 CxEvent::bOpen(ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);		
@@ -77,7 +73,7 @@ CxEvent::bOpen(ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bPulse (Sets the specified event object to the signaled state and then resets it to the nonsignaled state after releasing the appropriate number of waiting threads)
+//DONE: bPulse (Sets the specified event object to the signaled state and then resets it to the nonsignaled state after releasing the appropriate number of waiting threads)
 BOOL 
 CxEvent::bPulse() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);		
@@ -91,7 +87,7 @@ CxEvent::bPulse() const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bReset (Sets the specified event object to the nonsignaled state)
+//DONE: bReset (Sets the specified event object to the nonsignaled state)
 BOOL 
 CxEvent::bReset() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);		
@@ -105,7 +101,7 @@ CxEvent::bReset() const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSet (Sets the specified event object to the signaled state) 
+//DONE: bSet (Sets the specified event object to the signaled state) 
 BOOL 
 CxEvent::bSet() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);		
@@ -119,7 +115,7 @@ CxEvent::bSet() const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bWait (Waits until the specified event is in the signaled state or the time-out interval elapses)
+//DONE: bWait (Waits until the specified event is in the signaled state or the time-out interval elapses)
 BOOL 
 CxEvent::bWait(ULONG ulTimeout) const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);		
@@ -136,7 +132,7 @@ CxEvent::bWait(ULONG ulTimeout) const {
 	return (WAIT_OBJECT_0 == ulRes);
 }
 //---------------------------------------------------------------------------
-//TODO: + bIsSignaled (проверка состояния)
+//DONE: bIsSignaled (проверка состояния)
 BOOL 
 CxEvent::bIsSignaled() const {
 	/*DEBUG*/// n/a

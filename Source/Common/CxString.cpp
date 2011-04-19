@@ -2,10 +2,8 @@
 * Class name:  CxString
 * Description: strings
 * File name:   CxString.cpp
-* String type: ansi, unicode
-* Compilers:   Visual C++ 2008
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     07.04.2009 17:01:15
 *
 *****************************************************************************/

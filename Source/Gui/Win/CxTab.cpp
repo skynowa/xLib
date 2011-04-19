@@ -2,22 +2,18 @@
 * Class name:  CxTab
 * Description: закладки
 * File name:   CxTab.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:11:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxTab.h>
+#include <xLib/Gui/CxTab.h>
 
-#include <XLib/GUI/Resource.xrc.h>
-#include <XLib/CxString.h>
+#include <xLib/GUI/Resource.xrc.h>
+#include <xLib/CxString.h>
 
 
 /****************************************************************************
@@ -26,7 +22,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxTab
+//DONE: CxTab
 CxTab::CxTab() {	
 	LOG();
 
@@ -44,7 +40,7 @@ CxTab::CxTab() {
 	_m_bIsControl     = TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTab
+//DONE: ~CxTab
 CxTab::~CxTab() {
 	LOG();
 
@@ -55,7 +51,7 @@ CxTab::~CxTab() {
 	}
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxTab::bCreateRes(INT iID, HWND hParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != hParent, FALSE);

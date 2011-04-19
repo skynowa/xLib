@@ -2,13 +2,9 @@
 * Class name:  CxStyle
 * Description: атрибуты файла
 * File name:   CxStyle.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     06.04.2010 13:37:54
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -44,7 +40,7 @@ BOOL CxStyle::bSetOwner(HWND hWnd) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + atGet
+//DONE: atGet
 /*static*/
 CxStyle::TStyle CxStyle::stGet() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -53,7 +49,7 @@ CxStyle::TStyle CxStyle::stGet() {
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + bSet
+//DONE: bSet
 /*static*/
 BOOL CxStyle::bSet(TStyle stValue) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -65,7 +61,7 @@ BOOL CxStyle::bSet(TStyle stValue) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bAdd
+//DONE: bAdd
 /*static*/
 BOOL CxStyle::bAdd(TStyle stValue) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -74,7 +70,7 @@ BOOL CxStyle::bAdd(TStyle stValue) {
 	return bModify(static_cast<TStyle>(0), stValue);
 }
 //---------------------------------------------------------------------------
-//TODO: + bRemove ()
+//DONE: bRemove ()
 /*static*/
 BOOL CxStyle::bRemove(TStyle stValue)  {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -83,7 +79,7 @@ BOOL CxStyle::bRemove(TStyle stValue)  {
 	return bModify(stValue, static_cast<TStyle>(0));
 }
 //---------------------------------------------------------------------------
-//TODO: + bModify
+//DONE: bModify
 /*static*/
 BOOL CxStyle::bModify(TStyle stRemoveValue, TStyle stAddValue) {	
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -152,7 +148,7 @@ BOOL CxStyle::bIsExists(TStyle stValue) {
 
 
 //---------------------------------------------------------------------------
-//TODO: + atGet
+//DONE: atGet
 /*static*/
 CxStyle::TStyle CxStyle::stGetEx() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -161,7 +157,7 @@ CxStyle::TStyle CxStyle::stGetEx() {
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + bSet
+//DONE: bSet
 /*static*/
 BOOL CxStyle::bSetEx(TStyle stValue) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -173,7 +169,7 @@ BOOL CxStyle::bSetEx(TStyle stValue) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bAdd
+//DONE: bAdd
 /*static*/
 BOOL CxStyle::bAddEx(TStyle stValue) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -182,7 +178,7 @@ BOOL CxStyle::bAddEx(TStyle stValue) {
 	return bModifyEx(static_cast<TStyle>(0), stValue);
 }
 //---------------------------------------------------------------------------
-//TODO: + bRemove ()
+//DONE: bRemove ()
 /*static*/
 BOOL CxStyle::bRemoveEx(TStyle stValue)  {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -191,7 +187,7 @@ BOOL CxStyle::bRemoveEx(TStyle stValue)  {
 	return bModifyEx(stValue, static_cast<TStyle>(0));
 }
 //---------------------------------------------------------------------------
-//TODO: + bModify
+//DONE: bModify
 /*static*/
 BOOL CxStyle::bModifyEx(TStyle stRemoveValue, TStyle stAddValue) {	
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
@@ -272,49 +268,49 @@ BOOL CxStyle::bIsExistsEx(TStyle stValue) {
 *****************************************************************************/
 
 //////---------------------------------------------------------------------------
-//////TODO: + bGetStyle
+//////DONE: bGetStyle
 ////ULONG CxWindow::ulGetStyle() {
 ////	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////	return static_cast<ULONG>( liGetWindowLong(GWL_STYLE) );
 ////	}
 //////---------------------------------------------------------------------------
-//////TODO: + bGetStyleEx
+//////DONE: bGetStyleEx
 ////ULONG CxWindow::ulGetStyleEx() {
 ////	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////	return static_cast<ULONG>( liGetWindowLong(GWL_EXSTYLE));
 ////	}
 //////---------------------------------------------------------------------------
-//////TODO: + bAddStyle
+//////DONE: bAddStyle
 ////BOOL CxWindow::bAddStyle(ULONG ulStyle) {
 ////	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////	return bModifyStyle(0, ulStyle);
 ////	}
 //////---------------------------------------------------------------------------
-//////TODO: + bAddStyleEx
+//////DONE: bAddStyleEx
 ////BOOL CxWindow::bAddStyleEx(ULONG ulStyleEx) {
 ////	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////	return bModifyStyleEx(0, ulStyleEx);
 ////	}
 //////---------------------------------------------------------------------------
-//////TODO: + bRemoveStyle ()
+//////DONE: bRemoveStyle ()
 ////BOOL CxWindow::bRemoveStyle(ULONG ulStyle)  {
 ////	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////	return bModifyStyleEx(ulStyle, 0);
 ////	}
 //////---------------------------------------------------------------------------
-//////TODO: + bRemoveStyleEx ()
+//////DONE: bRemoveStyleEx ()
 ////BOOL CxWindow::bRemoveStyleEx(ULONG ulStyleEx)  {
 ////	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////	return bModifyStyleEx(ulStyleEx, 0);
 ////	}
 //////---------------------------------------------------------------------------
-//////TODO: + bModifyStyle
+//////DONE: bModifyStyle
 ////BOOL CxWindow::bModifyStyle(ULONG ulRemoveStyle, ULONG ulAddStyle) {	
 ////	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
@@ -344,7 +340,7 @@ BOOL CxStyle::bIsExistsEx(TStyle stValue) {
 ////	//SetWindowLong(Handle, GWL_STYLE, GetWindowLong(Handle, GWL_STYLE) xor WS_BORDER);
 ////	}
 //////---------------------------------------------------------------------------
-//////TODO: + bModifyStyleEx
+//////DONE: bModifyStyleEx
 ////BOOL CxWindow::bModifyStyleEx(ULONG ulRemoveStyleEx, ULONG ulAddStyleEx) {	
 ////	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////

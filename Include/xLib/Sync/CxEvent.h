@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxEvent
-* Description: ������
+* Description: event
 * File name:   CxEvent.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 17:53:15
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #define xLib_Sync_CxEventH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxEvent : public CxNonCopyable {
 	public:
@@ -36,7 +32,7 @@ class CxEvent : public CxNonCopyable {
 		//BOOL   bIsExists  () const;
 
 	private:
-		CxHandleT<NULL_HANDLE_VALUE> _m_hEvent;
+		CxHandle _m_hEvent;
 };
 //---------------------------------------------------------------------------
 #endif	//xLib_Sync_CxEventH

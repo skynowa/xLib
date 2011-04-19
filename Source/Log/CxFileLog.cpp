@@ -2,13 +2,9 @@
 * Class name:  CxFileLog
 * Description: logging to file
 * File name:   CxFileLog.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.06.2009 17:40:37
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -28,7 +24,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxFileLog (constructor)
+//DONE: CxFileLog (constructor)
 CxFileLog::CxFileLog() : 
 	_m_sLogPath       (), 
 	_m_ulMaxFileSizeMb(lsDefaultMaxSize)
@@ -40,7 +36,7 @@ CxFileLog::CxFileLog() :
 	_m_sLogPath = CxPath::sSetExt(CxPath::sGetExe(), xT("exe.log"));
 }
 //---------------------------------------------------------------------------
-//TODO: + CxFileLog (constructor)
+//DONE: CxFileLog (constructor)
 CxFileLog::CxFileLog(const tString &csFilePath, ULONG ulMaxFileSizeMb) : 
 	_m_sLogPath       (), 
 	_m_ulMaxFileSizeMb(ulMaxFileSizeMb)////,
@@ -60,12 +56,12 @@ CxFileLog::CxFileLog(const tString &csFilePath, ULONG ulMaxFileSizeMb) :
 	}
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxFileLog (destructor)
+//DONE: ~CxFileLog (destructor)
 CxFileLog::~CxFileLog() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + bWrite (write)
+//DONE: bWrite (write)
 BOOL
 CxFileLog::bWrite(LPCTSTR pcszFormat, ...) {
 	/*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
@@ -103,7 +99,7 @@ CxFileLog::bWrite(LPCTSTR pcszFormat, ...) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bOpen (execute)
+//DONE: bOpen (execute)
 BOOL
 CxFileLog::bOpen() {
 	BOOL bRes = FALSE;
@@ -114,7 +110,7 @@ CxFileLog::bOpen() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bClear (clear content)
+//DONE: bClear (clear content)
 BOOL
 CxFileLog::bClear() {
 	BOOL bRes = FALSE;
@@ -131,7 +127,7 @@ CxFileLog::bClear() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bDelete (delete)
+//DONE: bDelete (delete)
 BOOL
 CxFileLog::bDelete() {
 	BOOL bRes = FALSE;
@@ -153,7 +149,7 @@ CxFileLog::bDelete() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + _bDeleteIfFull (delete log, if it is full)
+//DONE: _bDeleteIfFull (delete log, if it is full)
 BOOL
 CxFileLog::_bDeleteIfFull() {
 	BOOL bRes = FALSE;

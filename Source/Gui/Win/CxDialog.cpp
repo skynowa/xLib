@@ -2,21 +2,17 @@
 * Class name:  CXDialog
 * Description: работа с окнами
 * File name:   CXDialog.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Sergey Shapka
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:10:17
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CXDialog.h>
+#include <xLib/Gui/CXDialog.h>
 
-#include <XLib/GUI/xCommon.h>
-#include <XLib/GUI/CxApplication.h>
+#include <xLib/GUI/xCommon.h>
+#include <xLib/GUI/CxApplication.h>
 //---------------------------------------------------------------------------
 CXDialog::CXDialog() :
 	_m_siTemplID  (0),

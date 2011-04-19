@@ -2,13 +2,9 @@
 * Class name:  CxStdioFile
 * Description: file
 * File name:   CxStdioFile.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     21.05.2009 17:46:38
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -567,8 +563,6 @@ BOOL
 CxStdioFile::bIsFile(const tString &csFilePath) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
-    BOOL bRes = FALSE;
-
 #if defined(xOS_WIN)
     //TODO: xOS_WIN
     ////bRes = CxFileAttribute::bIsExists(csFilePath, /*! CxFileAttribute::faDirectory*/);
@@ -580,6 +574,8 @@ CxStdioFile::bIsFile(const tString &csFilePath) {
                                                     FILE_ATTRIBUTE_OFFLINE |
                                                     FILE_ATTRIBUTE_REPARSE_POINT));
 #elif defined(xOS_LINUX)
+    BOOL bRes = FALSE;
+
     struct stat stInfo = {0};
 
     INT iRes = stat/*lstat*/(csFilePath.c_str(), &stInfo);

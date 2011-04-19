@@ -1,14 +1,9 @@
 /****************************************************************************
 * Class name:  CxCommon
 * Description: common header for xLib
-* File name:   CxCommon.h
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.12.2010 23:24:26
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -165,7 +160,7 @@ namespace NxLib {}
     #include <xLib/Common/Linux/xCommon_Linux.h>
 #endif
 //---------------------------------------------------------------------------
-////#include <xLib/Common/xLinking.h>
+#include <xLib/Common/xLinking.h>
 #include <xLib/Common/CxMacros.h>
 #include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxNonCopyable.h>

@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxMimeHeader
-* Description: �������� ��������� (RFC 822) 
+* Description: MIME header (RFC 822) 
 * File name:   CxMimeHeader.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     06.07.2009 19:10:09
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

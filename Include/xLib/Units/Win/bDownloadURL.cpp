@@ -2,13 +2,9 @@
 * Unit name:   bDownloadURL
 * Description: скачка файла с инета в файл по протоколам ftp, http, https
 * File name:   bDownloadURL.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Sergey Shapka
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     06.11.2009 11:50:17
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

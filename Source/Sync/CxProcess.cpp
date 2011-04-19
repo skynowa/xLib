@@ -2,13 +2,9 @@
 * Class name:  CxProcess
 * Description: process
 * File name:   CxProcess.cpp
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.01.2011 22:42:07
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +12,7 @@
 #include <xLib/Sync/CxProcess.h>
 
 #if defined(xOS_WIN)
-    #include <xLib/Common/Win/CxHandleT.h>
+    #include <xLib/Common/Win/CxHandle.h>
 #elif defined(xOS_LINUX)
 
 #endif
@@ -61,13 +57,13 @@ CxProcess::ulGetCurrParentId() {
 
     ULONG_PTR pbi[6] = {0};
     ULONG     ulSize = 0;
-    LONG (WINAPI *NtQueryInformationProcess)(HANDLE ProcessHandle, ULONG ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength); 
-    
+    LONG (WINAPI *NtQueryInformationProcess)(HANDLE ProcessHandle, ULONG ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
+
     *(FARPROC *)&NtQueryInformationProcess = ::GetProcAddress(::LoadLibraryA("NTDLL.DLL"), "NtQueryInformationProcess");
     /*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
-    
+
     BOOL bRes = ( NtQueryInformationProcess(::GetCurrentProcess(), 0, &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi) );
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, culInvalidId);  
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, culInvalidId);
 
     ulRes = pbi[5];
 #elif defined(xOS_LINUX)
@@ -103,7 +99,7 @@ CxProcess::bTerminate(ULONG ulPid) {
 
 #if defined(xOS_WIN)
     CxHandle hProcess;
-    
+
     hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, ulPid);
     /*DEBUG*/xASSERT_RET(NULL != hProcess, FALSE);
 

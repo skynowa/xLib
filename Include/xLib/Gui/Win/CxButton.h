@@ -2,13 +2,9 @@
 * Class name:  CxButton
 * Description: работа с кнопкой
 * File name:   CxButton.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:11:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,9 +12,9 @@
 #ifndef XLib_Gui_CxButtonH
 #define XLib_Gui_CxButtonH
 //---------------------------------------------------------------------------
-#include <XLib/Gui/xCommon.h>
-#include <XLib/Gui/CxWindow.h>
-#include <XLib/GUI/CxButtonBase.h>
+#include <xLib/Gui/xCommon.h>
+#include <xLib/Gui/CxWindow.h>
+#include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
 class CxButton : public CxButtonBase {
 	public:

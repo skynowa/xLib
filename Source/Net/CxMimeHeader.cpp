@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxMimeHeader
-* Description: �������� ��������� (RFC 822) 
+* Description: MIME header (RFC 822) 
 * File name:   CxMimeHeader.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     06.07.2009 19:10:09
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -23,7 +19,7 @@ const tString CxMimeHeader::_ms_csAttrDelimiter = xT(":");
 const tString CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n"); 
 const tString CxMimeHeader::_ms_csEndOfLine     = xT("\r\n"); 
 //---------------------------------------------------------------------------
-//TODO: + CxMimeHeader  
+//DONE: CxMimeHeader  
 CxMimeHeader::CxMimeHeader() :
 	_m_bRes     (FALSE),
 	_m_sRes     (),
@@ -31,12 +27,12 @@ CxMimeHeader::CxMimeHeader() :
 {
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxMimeHeader
+//DONE: ~CxMimeHeader
 CxMimeHeader::~CxMimeHeader () {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
+//DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
 BOOL CxMimeHeader::bParse(const tString &csRawHeader) {
 	/*
 	+OK message 1 (570821 octets)
@@ -122,7 +118,7 @@ BOOL CxMimeHeader::bParse(const tString &csRawHeader) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetField
+//DONE: sGetField
 tString CxMimeHeader::sGetField(const tString &csName) {
 	/*DEBUG*/xASSERT_RET(false == _m_mmsHeader.empty(), tString());
 	/*DEBUG*/xASSERT_RET(false == csName.empty(),       tString());
@@ -139,7 +135,7 @@ tString CxMimeHeader::sGetField(const tString &csName) {
 	return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + uiCount
+//DONE: uiCount
 std::size_t CxMimeHeader::uiCount() {
 	return _m_mmsHeader.size();
 }

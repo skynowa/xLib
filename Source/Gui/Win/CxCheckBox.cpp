@@ -2,20 +2,16 @@
 * Class name:  CxCheckBox
 * Description: 
 * File name:   CxCheckBox.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     24.07.2009 11:47:59
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxCheckBox.h>
+#include <xLib/Gui/CxCheckBox.h>
 
-#include <XLib/GUI/CxWindowImpl.h>
+#include <xLib/GUI/CxWindowImpl.h>
 
 
 /****************************************************************************
@@ -24,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxCheckBox
+//DONE: CxCheckBox
 CxCheckBox::CxCheckBox() {
 	LOG();
 	
@@ -42,7 +38,7 @@ CxCheckBox::CxCheckBox() {
 	_m_bIsControl     = TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxCheckBox
+//DONE: ~CxCheckBox
 CxCheckBox::~CxCheckBox() {
 	LOG();
 	
@@ -51,7 +47,7 @@ CxCheckBox::~CxCheckBox() {
 	xCHECK_DO(FALSE == _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxCheckBox::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
@@ -74,7 +70,7 @@ BOOL CxCheckBox::bCreateRes(INT iID, CxWindow *pwndParent) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + lpGetState (Gets the check state of a radio button or check box)
+//DONE: lpGetState (Gets the check state of a radio button or check box)
 CxCheckBox::ECheckState CxCheckBox::csGetState() {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), csUknown);
 
@@ -86,7 +82,7 @@ CxCheckBox::ECheckState CxCheckBox::csGetState() {
 	return csRes;	
 } 
 //---------------------------------------------------------------------------
-//TODO: + bSetState (Sets the check state of a radio button or check box)
+//DONE: bSetState (Sets the check state of a radio button or check box)
 BOOL CxCheckBox::bSetState(CxCheckBox::ECheckState csCheckState) {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 	/*DEBUG*///bstState

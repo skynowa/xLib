@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 
-#include <XLib/Gui/CxWaitCursor.h>
+#include <xLib/Gui/CxWaitCursor.h>
 //---------------------------------------------------------------------------
 BOOL                                    g_bRes    = FALSE;
 INT                                     g_iRes    = - 1;

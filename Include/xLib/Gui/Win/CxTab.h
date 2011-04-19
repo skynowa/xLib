@@ -2,13 +2,9 @@
 * Class name:  CxTab
 * Description: закладки
 * File name:   CxTab.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:11:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,9 +12,9 @@
 #ifndef XLib_Gui_CxTabH
 #define XLib_Gui_CxTabH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CxWindow.h>
-#include <XLib/Gui/CxWindowImpl.h>
-#include <XLib/GUI/CxLayout.h>
+#include <xLib/GUI/CxWindow.h>
+#include <xLib/Gui/CxWindowImpl.h>
+#include <xLib/GUI/CxLayout.h>
 //---------------------------------------------------------------------------
 ////class CxTab;
 //---------------------------------------------------------------------------

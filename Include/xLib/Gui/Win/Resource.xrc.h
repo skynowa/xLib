@@ -2,13 +2,9 @@
 * Class name:  
 * Description: файл ресурсов (синтаксис С++)
 * File name:   Resource.xrc.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     07.09.2009 9:44:20
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

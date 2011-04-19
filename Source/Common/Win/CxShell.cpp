@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxShell
-* Description: ���
+* Description: shell
 * File name:   CxShell.cpp
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     26.04.2010 22:05:23
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -175,7 +171,7 @@ tString CxShell::sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken) {
 	return tString(szRes);
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateShortcut
+//DONE: bCreateShortcut
 /*static*/
 BOOL
 CxShell::bCreateShortcut(const tString &csFilePath, const tString &csShortCutPath, const tString &csDescription) {
@@ -186,7 +182,7 @@ CxShell::bCreateShortcut(const tString &csFilePath, const tString &csShortCutPat
 	CxCom comCom(CxCom::cmMultiThreaded);
 
 	IShellLink *pslSL = NULL;
-	HRESULT     hRes  = NULL;
+	HRESULT     hRes  = 0;
 
 	hRes = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void **)&pslSL);
 	/*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);

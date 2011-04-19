@@ -2,13 +2,9 @@
 * Class name:  CxMacros
 * Description: functions like macroses
 * File name:   CxMacros.h
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     10.12.2010 19:13:57
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

@@ -2,13 +2,9 @@
 * Class name:  CxPkcs11
 * Description: Aladdin eToken, PKCS #11
 * File name:   CxPkcs11.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib, Aladdin eToken SDK
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25.02.2010 13:31:54
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

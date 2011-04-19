@@ -2,13 +2,9 @@
 * Class name:  CxEdit
 * Description: текстовое поле
 * File name:   CxEdit.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:11:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +12,7 @@
 #ifndef XLib_Gui_CxEditH
 #define XLib_Gui_CxEditH
 //---------------------------------------------------------------------------
-#include <XLib/Gui/CxWindow.h>
+#include <xLib/Gui/CxWindow.h>
 //---------------------------------------------------------------------------
 class CxEdit : public CxWindow {
 	public:

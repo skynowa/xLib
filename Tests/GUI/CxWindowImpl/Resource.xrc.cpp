@@ -2,13 +2,10 @@
 * Class name:  
 * Description: файл ресурсов (синтаксис С++)
 * File name:   Resource.xrc
-* Compilers:   Visual C++ 2008
 * String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Sergey Shapka
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     07.09.2009 9:44:20
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +13,7 @@
 #ifndef XLib_Gui_ResourceXrcH
 #define XLib_Gui_ResourceXrcH
 
-#include <XLib/GUI/Resource.xrc.h>
+#include <xLib/GUI/Resource.xrc.h>
 #include <tchar.h>
 
 /****************************************************************************

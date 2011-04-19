@@ -2,19 +2,15 @@
 * Class name:  CxComboBox
 * Description: работа с выпадающем списком
 * File name:   CxComboBox.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     24.07.2009 17:01:13
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxComboBox.h>
+#include <xLib/Gui/CxComboBox.h>
 
 
 /****************************************************************************
@@ -23,7 +19,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxComboBox
+//DONE: CxComboBox
 CxComboBox::CxComboBox() {
 	LOG();
 	
@@ -44,12 +40,12 @@ CxComboBox::CxComboBox() {
 	//внутр
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxComboBox
+//DONE: ~CxComboBox
 CxComboBox::~CxComboBox() {
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxComboBox::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);

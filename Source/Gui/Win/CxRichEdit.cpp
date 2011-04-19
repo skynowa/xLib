@@ -2,19 +2,15 @@
 * Class name:  CxRichEdit
 * Description: 
 * File name:   CxRichEdit.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.07.2009 12:28:52
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxRichEdit.h>
+#include <xLib/Gui/CxRichEdit.h>
 
 
 /****************************************************************************
@@ -49,7 +45,7 @@ CxRichEdit::~CxRichEdit() {
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxRichEdit::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);

@@ -2,13 +2,9 @@
 * Class name:  CxLastError
 * Description: system last error
 * File name:   CxLastError.h
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25 січ. 2011 11:01:46
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

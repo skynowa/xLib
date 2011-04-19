@@ -2,13 +2,9 @@
 * Class name:  CxCookiePv1
 * Description: cookie (http://www.ietf.org/rfc/rfc2109.txt)
 * File name:   CxCookiePv1.h
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     26.01.2011 0:04:44
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

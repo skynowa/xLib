@@ -2,13 +2,9 @@
 * Class name:  CxConsoleLog
 * Description: logging to console
 * File name:   CxConsoleLog.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.06.2009 17:53:59
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -39,19 +35,19 @@
 
 #endif
 //---------------------------------------------------------------------------
-//TODO: + CxConsoleLog (constructor)
+//DONE: CxConsoleLog (constructor)
 CxConsoleLog::CxConsoleLog(BOOL bIsUseTimeStr) :
 	_m_bIsUseTimeStr(bIsUseTimeStr)
 {
 	
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxConsoleLog (destructor)
+//DONE: ~CxConsoleLog (destructor)
 CxConsoleLog::~CxConsoleLog() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + bWrite (write)
+//DONE: bWrite (write)
 BOOL
 CxConsoleLog::bWrite(LPCTSTR pcszFormat, ...) {
 	/*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);

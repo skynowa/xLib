@@ -2,13 +2,9 @@
 * Class name:  CxLocale
 * Description: locale
 * File name:   CxLocale.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     09.08.2009 19:47:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

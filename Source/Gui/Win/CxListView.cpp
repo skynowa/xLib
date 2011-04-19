@@ -2,18 +2,14 @@
 * Class name:  CxListView
 * Description: 
 * File name:   CxListView.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.07.2009 12:12:03
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxListView.h>
+#include <xLib/Gui/CxListView.h>
 
 //---------------------------------------------------------------------------
 CxListView::CxListView() : 
@@ -55,7 +51,7 @@ CxListView::CxListView() :
 	ListView_SetImageList(_m_hWnd, m_hSmallImageList, LVSIL_SMALL);
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxListView::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);

@@ -2,13 +2,9 @@
 * Class name:  CxReport
 * Description: debug message
 * File name:   CxReport.h
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     1 лют. 2011 13:58:33
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

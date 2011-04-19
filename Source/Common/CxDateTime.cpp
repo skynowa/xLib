@@ -2,13 +2,9 @@
 * Class name:  CxDateTime
 * Description: date, time
 * File name:   CxDateTime.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     12.06.2009 15:37:34
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

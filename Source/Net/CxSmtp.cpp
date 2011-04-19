@@ -1,11 +1,9 @@
 /****************************************************************************
 * Class name:  CxSmtp
-* Description: SMTP ������ (RFC 2821)
+* Description: SMTP (RFC 2821)
 * File name:   CxSmtp.cpp
-* String type: Ansi
-* Compilers:   Visual C++ 2008
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     13.04.2009 16:44:49
 *
 *****************************************************************************/
@@ -28,7 +26,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxSmtp
+//DONE: CxSmtp
 CxSmtp::CxSmtp() :
 	_m_scktSocket(), 
 	_m_ConsoleLog(FALSE),
@@ -41,7 +39,7 @@ CxSmtp::CxSmtp() :
 ////--	CxSocket::bInit(); 
 }   
 //--------------------------------------------------------------------------- 
-//TODO: + ~CxSmtp 
+//DONE: ~CxSmtp 
 CxSmtp::~CxSmtp() { 
 	if (TRUE == _m_bConnected) {
 		bDisconnect();
@@ -50,7 +48,7 @@ CxSmtp::~CxSmtp() {
 ////--	CxSocket::bClean(); 
 }   
 //--------------------------------------------------------------------------- 
-//TODO: + bCreate
+//DONE: bCreate
 BOOL CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const std::string &csServer, USHORT usPort) {
 	/*DEBUG*/xASSERT_RET(FALSE == csUser.empty(),          FALSE);
 	/*DEBUG*/////xASSERT_RET(FALSE == csPass.empty(),          FALSE);
@@ -65,7 +63,7 @@ BOOL CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const
 	return TRUE;   
 }   
 //---------------------------------------------------------------------------    
-//TODO: + bConnect
+//DONE: bConnect
 BOOL CxSmtp::bConnect() {   
     BOOL        bRes = FALSE;
 	std::string sRes = "";
@@ -105,7 +103,7 @@ BOOL CxSmtp::bConnect() {
     return TRUE;   
 }   
 //---------------------------------------------------------------------------  
-//TODO: + bLogin (��������� �� ������)
+//DONE: bLogin (��������� �� ������)
 BOOL CxSmtp::bLogin() {   
 	//-------------------------------------
 	//RFC
@@ -144,7 +142,7 @@ BOOL CxSmtp::bLogin() {
     return TRUE;   
 }   
 //---------------------------------------------------------------------------
-//TODO: + bNoop (�������� ��������� ���������� � ���������)   
+//DONE: bNoop (�������� ��������� ���������� � ���������)   
 BOOL CxSmtp::bNoop() {
 	//-------------------------------------
 	//RFC
@@ -166,7 +164,7 @@ BOOL CxSmtp::bNoop() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bRset (������ ����� �������� �����)   
+//DONE: bRset (������ ����� �������� �����)   
 BOOL CxSmtp::bRset() {
 	//-------------------------------------
 	//RFC
@@ -188,7 +186,7 @@ BOOL CxSmtp::bRset() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------    
-//TODO: + bSendRaw
+//DONE: bSendRaw
 BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, const std::string &sTo) {   
 	/*DEBUG*/xASSERT_RET(INVALID_SOCKET != _m_scktSocket, FALSE);
 	/*DEBUG*/xASSERT_RET(FALSE == sFrom.empty(),         FALSE); 
@@ -224,7 +222,7 @@ BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, c
 	xCHECK_RET(FALSE == bRes, FALSE);
 
 	//-------------------------------------
-	//TODO: + ������ �� ����� � ����� ����� � �����
+	//DONE: ������ �� ����� � ����� ����� � �����
 	std::string sText = "";
 	
 	bRes = CxStdioFile::bReadFile(csFilePath, /*ref*/sText);
@@ -238,7 +236,7 @@ BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, c
 	return TRUE;   
 }   
 //---------------------------------------------------------------------------  
-//TODO: + bSend
+//DONE: bSend
 BOOL CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const std::string &sTo) {   
 	/*DEBUG*/xASSERT_RET(INVALID_SOCKET != _m_scktSocket, FALSE);
 	/*DEBUG*/xASSERT_RET(FALSE == sFrom.empty(),          FALSE); 
@@ -286,7 +284,7 @@ BOOL CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const st
 	return TRUE;   
 }   
 //--------------------------------------------------------------------------- 
-//TODO: + bDisconnect
+//DONE: bDisconnect
 BOOL CxSmtp::bDisconnect() {
 	//-------------------------------------
 	//RFC
@@ -322,7 +320,7 @@ BOOL CxSmtp::bDisconnect() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + _bCommand
+//DONE: _bCommand
 BOOL CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply) {
 	/*DEBUG*/xASSERT_RET(false == csCmd.empty(),            FALSE);	
 	/*DEBUG*/xASSERT_RET(false == csReplyDelimiter.empty(), FALSE);	
@@ -345,7 +343,7 @@ BOOL CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelim
 	return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: + _bIsError
+//DONE: _bIsError
 BOOL CxSmtp::_bIsError(const std::string &csText) {
     /*DEBUG*/xASSERT_RET(FALSE == csText.empty(), TRUE);
      

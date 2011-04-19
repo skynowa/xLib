@@ -2,13 +2,9 @@
 * Class name:  xCommon_Linux.h
 * Description: Linux common header for xLib
 * File name:   xCommon_Linux.h.h
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.12.2010 23:26:11
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

@@ -2,13 +2,9 @@
 * Class name:  CxBlowfish
 * Description: blowfish (openssl-1.0.0a)
 * File name:   CxBlowfish.h
-* Compilers:   Visual C++ 2008
-* String type: Unicode, Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     04.08.2009 10:41:45
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

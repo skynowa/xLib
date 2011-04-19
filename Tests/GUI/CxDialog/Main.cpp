@@ -1,6 +1,6 @@
 #include <windows.h>
 #include "resource.h"
-#include <XLib/GUI/CXApplication.h>
+#include <xLib/GUI/CXApplication.h>
 
 #include "CMyCDlg.h"
 //---------------------------------------------------------------------------

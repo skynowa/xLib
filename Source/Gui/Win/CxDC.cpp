@@ -2,18 +2,14 @@
 * Class name:  CxDC
 * Description: работа с контекстом устройства
 * File name:   CxDC.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     18.06.2009 21:30:49
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxDC.h>
+#include <xLib/Gui/CxDC.h>
 //---------------------------------------------------------------------------------------
 CxDC::CxDC() : 
 	_m_hDC(NULL)

@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxMutex
-* Description: работа с мьютексами
+* Description: mutex
 * File name:   CxMutex.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 18:48:44
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -23,18 +19,18 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxMutex ()
+//DONE: CxMutex ()
 CxMutex::CxMutex() :
 	_m_hMutex()
 {
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxMutex ()
+//DONE: ~CxMutex ()
 CxMutex::~CxMutex() {
 	/*DEBUG*/xASSERT(FALSE != _m_hMutex.bIsValid());
 }
 //---------------------------------------------------------------------------
-//TODO: + hGetHandle ()
+//DONE: hGetHandle ()
 HANDLE 
 CxMutex::hGetHandle() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), NULL);
@@ -42,7 +38,7 @@ CxMutex::hGetHandle() const {
 	return _m_hMutex.m_hHandle;
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreate ()
+//DONE: bCreate ()
 BOOL 
 CxMutex::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bInitialOwner, LPCTSTR pcszName) {
 	/*DEBUG*/xASSERT_RET(FALSE == _m_hMutex.bIsValid(), FALSE);
@@ -60,7 +56,7 @@ CxMutex::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bInitialOwner, LPCTS
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bOpen ()
+//DONE: bOpen ()
 BOOL 
 CxMutex::bOpen(ULONG dwAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);
@@ -78,7 +74,7 @@ CxMutex::bOpen(ULONG dwAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bRelease ()
+//DONE: bRelease ()
 BOOL 
 CxMutex::bRelease() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);
@@ -91,7 +87,7 @@ CxMutex::bRelease() const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bWait ()
+//DONE: bWait ()
 BOOL 
 CxMutex::bWait(ULONG ulTimeout) const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);

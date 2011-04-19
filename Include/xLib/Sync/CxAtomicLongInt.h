@@ -2,13 +2,9 @@
 * Class name:  CxAtomicLongInt
 * Description: atomic operartions with LONG
 * File name:   CxAtomicLongInt.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25.11.2009 10:03:17
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

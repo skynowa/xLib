@@ -2,13 +2,9 @@
 * Class name:  CxWndLog
 * Description: logging to window
 * File name:   CxWndLog.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.06.2009 17:44:10
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

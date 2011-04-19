@@ -2,21 +2,17 @@
 * Class name:  CWorkThread
 * Description: рабочий поток
 * File name:   CWorkThread.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     10.12.2009 22:10:16
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 #include "CWorkThread.h"
 
-#include <XLib/CxString.h>
-#include <XLib/Sync/CxThreadPool.h>
+#include <xLib/CxString.h>
+#include <xLib/Sync/CxThreadPool.h>
 //---------------------------------------------------------------------------
 CxCriticalSection g_csCounter;
 volatile size_t   g_uiLinesCount = 0;

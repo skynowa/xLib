@@ -2,13 +2,9 @@
 * Class name:  xCommon_Win
 * Description: Windows common header for xLib
 * File name:   xCommon_Win.h
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.12.2010 23:25:16
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -216,8 +212,6 @@
 #ifndef NOMINMAX
 #  define NOMINMAX
 #endif
-
-#define NULL_HANDLE_VALUE (HANDLE)(void *)(NULL)
 //---------------------------------------------------------------------------
 #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 //---------------------------------------------------------------------------

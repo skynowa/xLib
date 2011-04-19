@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxApplication
-* Description: работа с приложением
+* Description: application
 * File name:   CxApplication.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:08:45
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -19,7 +15,7 @@
 #include <xLib/Gui/CxResources.h>
 #include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
-//TODO: + инициализируем статик члены
+//DONE: инициализируем статик члены
 HINSTANCE CxApplication::_m_hInstance = NULL;
 
 
@@ -29,7 +25,7 @@ HINSTANCE CxApplication::_m_hInstance = NULL;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + bInit
+//DONE: bInit
 /*static*/
 BOOL CxApplication::bInit(HINSTANCE hInstance, const tString &csCmdLine) {
 	/*DEBUG*/xASSERT_RET(NULL == _m_hInstance, FALSE);
@@ -50,7 +46,7 @@ BOOL CxApplication::bInit(HINSTANCE hInstance, const tString &csCmdLine) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + hGetInstance
+//DONE: hGetInstance
 /*static*/
 HINSTANCE CxApplication::hGetInstance() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hInstance, NULL);
@@ -58,7 +54,7 @@ HINSTANCE CxApplication::hGetInstance() {
 	return _m_hInstance;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetCmdLine
+//DONE: bGetCmdLine
 /*static*/
 BOOL CxApplication::bGetCmdLine(std::vector<std::wstring> *pvecwsCmdLine) {
 	/*DEBUG*/xASSERT_RET(NULL != pvecwsCmdLine, FALSE);
@@ -80,7 +76,7 @@ BOOL CxApplication::bGetCmdLine(std::vector<std::wstring> *pvecwsCmdLine) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + vProcessMessages
+//DONE: vProcessMessages
 /*static*/
 VOID CxApplication::vProcessMessages() {
 	MSG msgMsg = {0};
@@ -91,7 +87,7 @@ VOID CxApplication::vProcessMessages() {
 	}
 }
 //---------------------------------------------------------------------------
-//TODO: + bRun (runs the window (waits for messages and processes them))
+//DONE: bRun (runs the window (waits for messages and processes them))
 /*static*/
 BOOL CxApplication::bRun() {
 	BOOL bRes   = FALSE;
@@ -144,7 +140,7 @@ BOOL CxApplication::bRun() {
 	*/
 }
 //---------------------------------------------------------------------------
-//TODO: + (Test to see if we are already running.)
+//DONE: (Test to see if we are already running.)
 /*static*/
 BOOL CxApplication::bIsRunning(const tString &csInstanceName) {
 	HANDLE hMutex = ::CreateMutex(NULL, TRUE, csInstanceName.c_str());
@@ -156,7 +152,7 @@ BOOL CxApplication::bIsRunning(const tString &csInstanceName) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + vTerminate
+//DONE: vTerminate
 /*static*/
 VOID CxApplication::vTerminate() {
 	//::PostQuitMessage(WM_QUIT);
@@ -185,13 +181,13 @@ VOID CxApplication::vCreateWnd() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxApplication
+//DONE: CxApplication
 CxApplication::CxApplication() {
 	//LOG();
 	/*DEBUG*/xASSERT(FALSE);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxApplication
+//DONE: ~CxApplication
 CxApplication::~CxApplication() {
 	//LOG();
 	/*DEBUG*/xASSERT(FALSE);

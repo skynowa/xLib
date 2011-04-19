@@ -2,13 +2,9 @@
 * Func name:   sGetEan13BarCode
 * Description: ��� EAN-13 (http://grandzebu.net/index.php?page=/informatique/codbar-en/ean13.htm)
 * File name:   sGetEan13BarCode.h
-* Compilers:   Visual C++ 2010, BC++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2010 9:33:24
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

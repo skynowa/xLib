@@ -2,13 +2,9 @@
 * Class name:  CxAutoCriticalSection
 * Description: работа с критичечкими секциями в блоке
 * File name:   CxAutoCriticalSection.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 21:16:33
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,14 +18,14 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxAutoCriticalSection (конструктор)
+//DONE: CxAutoCriticalSection (конструктор)
 CxAutoCriticalSection::CxAutoCriticalSection(CxCriticalSection &csCS) : 
 	_m_csCS(csCS) 
 {
 	_m_csCS.vEnter();
 }
 //---------------------------------------------------------------------------
-//TODO: + CxAutoCriticalSection (конструктор)
+//DONE: CxAutoCriticalSection (конструктор)
 ////CxAutoCriticalSection::CxAutoCriticalSection(CxCriticalSection &csCS, BOOL bTry, ULONG ulTimeout /*= 1000*/) : 
 ////	_m_csCS(csCS) 
 ////{
@@ -53,7 +49,7 @@ CxAutoCriticalSection::CxAutoCriticalSection(CxCriticalSection &csCS) :
 ////	}
 ////}
 //---------------------------------------------------------------------------
-//TODO: + ~CxAutoCriticalSection (деструктор)
+//DONE: ~CxAutoCriticalSection (деструктор)
 CxAutoCriticalSection::~CxAutoCriticalSection() {
 	_m_csCS.vLeave();
 }

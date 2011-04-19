@@ -19,10 +19,10 @@
 #include <objbase.h>
 #include <memory.h>
 
-#include <XLib/CXString.h>
-#include <XLib/Fso/CxPath.h>
-#include <XLib/Fso/CxDrive.h>
-#include <XLib/CxAutoMallocT.h>
+#include <xLib/CXString.h>
+#include <xLib/Fso/CxPath.h>
+#include <xLib/Fso/CxDrive.h>
+#include <xLib/CxAutoMallocT.h>
 //---------------------------------------------------------------------------
 BOOL bGetUsbInfo(const tstring &csDrive, std::vector<tstring> *pvecsInfo) {
 	/*DEBUG*/XASSERT_RET(false == csDrive.empty(), FALSE);

@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxPin
-* Description: Pkcs11 ���-���
+* Description: Pkcs11 pin
 * File name:   CxPin.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib, Aladdin eToken SDK
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.03.2010 13:09:04
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

@@ -2,21 +2,17 @@
 * Class name:  CxStatic
 * Description: работа с статическим полем
 * File name:   CxStatic.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     24.07.2009 11:20:41
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxStatic.h>
+#include <xLib/Gui/CxStatic.h>
 
-#include <XLib/GUI/CxWindowImpl.h>
+#include <xLib/GUI/CxWindowImpl.h>
 
 //---------------------------------------------------------------------------
 //TODO: - CxStatic
@@ -46,7 +42,7 @@ CxStatic::~CxStatic() {
 	xCHECK_DO(FALSE == _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxStatic::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);

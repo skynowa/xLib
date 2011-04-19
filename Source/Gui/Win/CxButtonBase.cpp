@@ -2,25 +2,21 @@
 * Class name:  CxButtonBase
 * Description: работа с кнопкой
 * File name:   CxButtonBase.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:11:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxButtonBase.h>
+#include <xLib/Gui/CxButtonBase.h>
 
-#include <XLib/GUI/CxApplication.h>
-#include <XLib/GUI/CxWindowImpl.h>
+#include <xLib/GUI/CxApplication.h>
+#include <xLib/GUI/CxWindowImpl.h>
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxButtonBase
+//DONE: CxButtonBase
 CxButtonBase::CxButtonBase() {
 	LOG();
 
@@ -32,13 +28,13 @@ CxButtonBase::CxButtonBase() {
 	*/
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxButtonBase
+//DONE: ~CxButtonBase
 /*virtual*/
 CxButtonBase::~CxButtonBase() {
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreate
+//DONE: bCreate
 ////BOOL CxButtonBase::bCreateRes(INT iID, CxWindow *pwndParent) {
 ////	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 ////	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
@@ -123,7 +119,7 @@ BOOL CxButtonBase::bSetMultiLine(BOOL bFlag) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bClick ()
+//DONE: bClick ()
 BOOL CxButtonBase::bClick() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
@@ -164,12 +160,12 @@ BOOL CxButtonBase::bClick() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + vSet_OnClick ()
+//DONE: vSet_OnClick ()
 VOID CxButtonBase::vSet_OnClick(SClosureT<VOID(CxButtonBase *pbtnSender)> vCallback) {
 	_m_vCallback_OnClick = vCallback;
 }
 //---------------------------------------------------------------------------
-//TODO: + _vHandler_OnClick ()
+//DONE: _vHandler_OnClick ()
 VOID CxButtonBase::_vHandler_OnClick(CxButtonBase *pbtnSender)	{
 	xCHECK_DO(NULL == _m_vCallback_OnClick, return); 
 
@@ -180,12 +176,12 @@ VOID CxButtonBase::_vHandler_OnClick(CxButtonBase *pbtnSender)	{
 
 
 //---------------------------------------------------------------------------
-//TODO: + vSet_OnDbClick ()
+//DONE: vSet_OnDbClick ()
 VOID CxButtonBase::vSet_OnDbClick(SClosureT<VOID(CxButtonBase *pbtnSender)> vCallback) {
 	_m_vCallback_OnDbClick = vCallback;
 }
 //---------------------------------------------------------------------------
-//TODO: + _vHandler_OnClick ()
+//DONE: _vHandler_OnClick ()
 VOID CxButtonBase::_vHandler_OnDbClick(CxButtonBase *pbtnSender) {
 	xCHECK_DO(NULL == _m_vCallback_OnDbClick, return); 
 
@@ -196,12 +192,12 @@ VOID CxButtonBase::_vHandler_OnDbClick(CxButtonBase *pbtnSender) {
 
 
 //---------------------------------------------------------------------------
-//TODO: + vSet_OnKillFocus ()
+//DONE: vSet_OnKillFocus ()
 VOID CxButtonBase::vSet_OnKillFocus(SClosureT<VOID(CxButtonBase *pbtnSender)> vCallback) {
 	_m_vCallback_OnKillFocus = vCallback;
 }
 //---------------------------------------------------------------------------
-//TODO: + _vHandler_OnKillFocus()
+//DONE: _vHandler_OnKillFocus()
 VOID CxButtonBase::_vHandler_OnKillFocus(CxButtonBase *pbtnSender)	{
 	xCHECK_DO(NULL == _m_vCallback_OnKillFocus, return); 
 
@@ -212,12 +208,12 @@ VOID CxButtonBase::_vHandler_OnKillFocus(CxButtonBase *pbtnSender)	{
 
 
 //---------------------------------------------------------------------------
-//TODO: + vSet_OnSetFocus ()
+//DONE: vSet_OnSetFocus ()
 VOID CxButtonBase::vSet_OnSetFocus(SClosureT<VOID(CxButtonBase *pbtnSender)> vCallback) {
 	_m_vCallback_OnSetFocus = vCallback;
 }
 //---------------------------------------------------------------------------
-//TODO: + _vHandler_OnSetFocus ()
+//DONE: _vHandler_OnSetFocus ()
 VOID CxButtonBase::_vHandler_OnSetFocus(CxButtonBase *pbtnSender)	{
 	xCHECK_DO(NULL == _m_vCallback_OnSetFocus, return); 
 

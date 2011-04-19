@@ -2,21 +2,17 @@
 * Class name:  CxStatusBar
 * Description: строка состояния
 * File name:   CxStatusBar.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     26.07.2009 23:49:15
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxStatusBar.h>
+#include <xLib/Gui/CxStatusBar.h>
 
-#include <XLib/GUI/CxApplication.h>
+#include <xLib/GUI/CxApplication.h>
 
 
 /****************************************************************************
@@ -63,7 +59,7 @@ CxStatusBar::~CxStatusBar() {
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes (создание из ресурсов)
+//DONE: bCreateRes (создание из ресурсов)
 BOOL CxStatusBar::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(NULL == _m_hWnd, FALSE);
 	/*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
@@ -83,7 +79,7 @@ BOOL CxStatusBar::bCreateRes(INT iID, CxWindow *pwndParent) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bIsSimple (Checks a status bar control to determine if it is in simple mode)
+//DONE: bIsSimple (Checks a status bar control to determine if it is in simple mode)
 BOOL CxStatusBar::bIsSimple() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
@@ -93,7 +89,7 @@ BOOL CxStatusBar::bIsSimple() {
 	return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetSimple (Specifies whether a status window displays simple text or displays all window parts set by a previous SB_SETPARTS message.)
+//DONE: bSetSimple (Specifies whether a status window displays simple text or displays all window parts set by a previous SB_SETPARTS message.)
 BOOL CxStatusBar::bSetSimple(BOOL bFlag) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 	/*DEBUG*/// bFlag - n/a
@@ -104,7 +100,7 @@ BOOL CxStatusBar::bSetSimple(BOOL bFlag) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetUnicodeFormat (Sets the Unicode character format flag for the control. This message allows you to change the character set used by the control at run time rather than having to re-create the control. )
+//DONE: bSetUnicodeFormat (Sets the Unicode character format flag for the control. This message allows you to change the character set used by the control at run time rather than having to re-create the control. )
 BOOL CxStatusBar::bSetUnicodeFormat(BOOL bFlag) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 	/*DEBUG*/// bFlag - n/a
@@ -115,7 +111,7 @@ BOOL CxStatusBar::bSetUnicodeFormat(BOOL bFlag) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bIsUnicodeFormat (Retrieves the Unicode character format flag for the control)
+//DONE: bIsUnicodeFormat (Retrieves the Unicode character format flag for the control)
 BOOL CxStatusBar::bIsUnicodeFormat() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
@@ -125,7 +121,7 @@ BOOL CxStatusBar::bIsUnicodeFormat() {
 	return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetMinHeight (Sets the minimum height of a status window's drawing area)
+//DONE: bSetMinHeight (Sets the minimum height of a status window's drawing area)
 BOOL CxStatusBar::bSetMinHeight(INT iHeight) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 	/*DEBUG*/// iHeight - n/a 
@@ -136,7 +132,7 @@ BOOL CxStatusBar::bSetMinHeight(INT iHeight) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetBorders (Retrieves the current widths of the horizontal and vertical borders of a status window. )
+//DONE: bGetBorders (Retrieves the current widths of the horizontal and vertical borders of a status window. )
 BOOL CxStatusBar::bGetBorders(INT *piHorz, INT *piVert, INT *piSpacing) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 	/*DEBUG*/// piHorz    - n/a
@@ -161,7 +157,7 @@ BOOL CxStatusBar::bGetBorders(INT *piHorz, INT *piVert, INT *piSpacing) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetBkColor (Sets the background color in a status bar)
+//DONE: bSetBkColor (Sets the background color in a status bar)
 BOOL CxStatusBar::bSetBkColor(COLORREF crColor) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 	/*DEBUG*/// crColor - n/a
@@ -207,7 +203,7 @@ BOOL CxStatusBar::bSetBkColor(COLORREF crColor) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CXItems (конструктор)
+//DONE: CXItems (конструктор)
 CxStatusBar::CXItems::CXItems() :
 	_m_bRes      (FALSE),
 	_m_pstaParent(NULL),
@@ -218,7 +214,7 @@ CxStatusBar::CXItems::CXItems() :
 	/*DEBUG*/xASSERT_DO(TRUE  == _m_vecpItems.empty(), return);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CXItems (деструктор)
+//DONE: ~CXItems (деструктор)
 CxStatusBar::CXItems::~CXItems() {
 	/*DEBUG*/xASSERT_DO(NULL != _m_pstaParent, return);
 
@@ -227,7 +223,7 @@ CxStatusBar::CXItems::~CXItems() {
 	}	
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetParent (установка дочернего CxStatusBar-а)
+//DONE: bSetParent (установка дочернего CxStatusBar-а)
 BOOL CxStatusBar::CXItems::bSetParent(CxStatusBar *pstaParent) {
 	/*DEBUG*/// _m_pstaParent - n/a
 	/*DEBUG*/xASSERT_RET(NULL != pstaParent, FALSE);
@@ -237,7 +233,7 @@ BOOL CxStatusBar::CXItems::bSetParent(CxStatusBar *pstaParent) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bAdd (добавление пустого айтема)
+//DONE: bAdd (добавление пустого айтема)
 BOOL CxStatusBar::CXItems::bAdd() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 
@@ -266,7 +262,7 @@ BOOL CxStatusBar::CXItems::bAdd() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSet (установка)
+//DONE: bSet (установка)
 BOOL CxStatusBar::CXItems::bSet(INT iIndex, HICON hIcon, const tString &csText, const tString &csTipText, INT iWidth, UINT uiType) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????
@@ -292,7 +288,7 @@ BOOL CxStatusBar::CXItems::bSet(INT iIndex, HICON hIcon, const tString &csText, 
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bInsert (вставка)
+//DONE: bInsert (вставка)
 BOOL CxStatusBar::CXItems::bInsert(INT iIndex, HICON hIcon, const tString &csText, const tString &csTipText, INT iWidth, UINT uiType) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????
@@ -329,7 +325,7 @@ BOOL CxStatusBar::CXItems::bInsert(INT iIndex, HICON hIcon, const tString &csTex
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bRemove (удаление)
+//DONE: bRemove (удаление)
 BOOL CxStatusBar::CXItems::bRemove(INT iIndex) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex - n/a  ???????
@@ -347,7 +343,7 @@ BOOL CxStatusBar::CXItems::bRemove(INT iIndex) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bClear (удаление всех)
+//DONE: bClear (удаление всех)
 BOOL CxStatusBar::CXItems::bClear()  {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 
@@ -364,7 +360,7 @@ BOOL CxStatusBar::CXItems::bClear()  {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bUpdateAll (обновление всех)
+//DONE: bUpdateAll (обновление всех)
 BOOL CxStatusBar::CXItems::bUpdateAll() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 
@@ -407,7 +403,7 @@ BOOL CxStatusBar::CXItems::bUpdateAll() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetText (The SB_GETTEXT message retrieves the text from the specified part of a status window)
+//DONE: bGetText (The SB_GETTEXT message retrieves the text from the specified part of a status window)
 tString CxStatusBar::CXItems::sGetText(INT iIndex) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex - n/a  ???????
@@ -426,7 +422,7 @@ tString CxStatusBar::CXItems::sGetText(INT iIndex) {
 	return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetText (The SB_SETTEXT message sets the text in the specified part of a status window)
+//DONE: bSetText (The SB_SETTEXT message sets the text in the specified part of a status window)
 BOOL CxStatusBar::CXItems::bSetText(INT iIndex, const tString &csText, UINT uiType) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????
@@ -439,7 +435,7 @@ BOOL CxStatusBar::CXItems::bSetText(INT iIndex, const tString &csText, UINT uiTy
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetTipText (Retrieves the tooltip text for a part in a status bar. The status bar must be created with the SBT_TOOLTIPS style to enable tooltips)
+//DONE: bGetTipText (Retrieves the tooltip text for a part in a status bar. The status bar must be created with the SBT_TOOLTIPS style to enable tooltips)
 tString CxStatusBar::CXItems::sGetTipText(INT iIndex) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????
@@ -452,7 +448,7 @@ tString CxStatusBar::CXItems::sGetTipText(INT iIndex) {
 	return sRes.assign(sRes.c_str());
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetTipText (Sets the tooltip text for a part in a status bar. The status bar must have been created with the SBT_TOOLTIPS style to enable tooltips.)
+//DONE: bSetTipText (Sets the tooltip text for a part in a status bar. The status bar must have been created with the SBT_TOOLTIPS style to enable tooltips.)
 BOOL CxStatusBar::CXItems::bSetTipText(INT iIndex, const tString &csText) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????
@@ -464,7 +460,7 @@ BOOL CxStatusBar::CXItems::bSetTipText(INT iIndex, const tString &csText) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + hGetIcon (Retrieves the icon for a part in a status bar)
+//DONE: hGetIcon (Retrieves the icon for a part in a status bar)
 HICON CxStatusBar::CXItems::hGetIcon(INT iIndex) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex - n/a  ???????
@@ -477,7 +473,7 @@ HICON CxStatusBar::CXItems::hGetIcon(INT iIndex) {
 	return hIcon;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetIcon (Sets the icon for a part in a status bar)
+//DONE: bSetIcon (Sets the icon for a part in a status bar)
 BOOL CxStatusBar::CXItems::bSetIcon(INT iIndex, HICON hIcon) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????
@@ -489,7 +485,7 @@ BOOL CxStatusBar::CXItems::bSetIcon(INT iIndex, HICON hIcon) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetWidth (Sets the width for a part in a status bar)
+//DONE: bSetWidth (Sets the width for a part in a status bar)
 BOOL CxStatusBar::CXItems::bSetWidth(INT iIndex, INT iWidth)  {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????
@@ -503,7 +499,7 @@ BOOL CxStatusBar::CXItems::bSetWidth(INT iIndex, INT iWidth)  {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + iGetWidth (Gets the width for a part in a status bar)
+//DONE: iGetWidth (Gets the width for a part in a status bar)
 INT CxStatusBar::CXItems::iGetWidth(INT iIndex)  {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????
@@ -522,7 +518,7 @@ INT CxStatusBar::CXItems::iGetWidth(INT iIndex)  {
 	return iRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetRect (Retrieves the bounding rectangle of a part in a status window)
+//DONE: bGetRect (Retrieves the bounding rectangle of a part in a status window)
 BOOL CxStatusBar::CXItems::bGetRect(INT iIndex, RECT *prcRect)  {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 	/*DEBUG*///iIndex    - n/a  ???????

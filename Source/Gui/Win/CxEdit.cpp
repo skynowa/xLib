@@ -2,18 +2,14 @@
 * Class name:  CxEdit
 * Description: текстовое поле
 * File name:   CxEdit.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:11:14
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxEdit.h>
+#include <xLib/Gui/CxEdit.h>
 
 
 /****************************************************************************
@@ -48,7 +44,7 @@ CxEdit::~CxEdit() {
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxEdit::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);

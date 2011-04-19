@@ -2,13 +2,9 @@
 * Class name:  CxListView
 * Description: 
 * File name:   CxListView.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.07.2009 12:12:03
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +12,7 @@
 #ifndef XLib_Gui_CxListViewH
 #define XLib_Gui_CxListViewH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CxWindow.h>
+#include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
 class CxListView : public CxWindow {
 	private:

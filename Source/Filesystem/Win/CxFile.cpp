@@ -2,13 +2,9 @@
 * Class name:  CxFile
 * Description: file
 * File name:   CxFile.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     03.06.2009 16:30:15
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -37,18 +33,18 @@ BOOL CxFile::_ms_bRes = FALSE;
 //---------------------------------------------------------------------------
 //TODO: - CxFile
 CxFile::CxFile() :
-	_m_bRes  (FALSE),
-	m_hHandle()
+	m_hHandle(),
+	_m_bRes  (FALSE)
 {
 }
 //---------------------------------------------------------------------------
 //TODO: - ~CxFile
-CxFile::~CxFile() { 
+CxFile::~CxFile() {
 	/*DEBUG*/// m_hHandle - n/a
 }
 //---------------------------------------------------------------------------
 //TODO: - bCreate
-BOOL 
+BOOL
 CxFile::bCreate(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
@@ -56,7 +52,7 @@ CxFile::bCreate(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, UL
 }
 //---------------------------------------------------------------------------
 //TODO: - bTryOpen
-BOOL 
+BOOL
 CxFile::bTryOpen(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
@@ -70,7 +66,7 @@ CxFile::bTryOpen(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, U
 }
 //---------------------------------------------------------------------------
 //TODO: - bOpen
-BOOL 
+BOOL
 CxFile::bOpen(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
@@ -84,10 +80,10 @@ CxFile::bOpen(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULON
 }
 //---------------------------------------------------------------------------
 //TODO: - bClose
-BOOL 
+BOOL
 CxFile::bClose() {
 	/*DEBUG*/// m_hHandle - n/a
-    
+
 	_m_bRes = m_hHandle.bClose();
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -95,7 +91,7 @@ CxFile::bClose() {
 }
 //---------------------------------------------------------------------------
 //TODO: - bIsOpen
-BOOL 
+BOOL
 CxFile::bIsOpen() {
 	/*DEBUG*/// n/a
 
@@ -103,7 +99,7 @@ CxFile::bIsOpen() {
 }
 //---------------------------------------------------------------------------
 //TODO: - bIsEmpty
-BOOL 
+BOOL
 CxFile::bIsEmpty() {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
 
@@ -111,8 +107,8 @@ CxFile::bIsEmpty() {
 }
 //---------------------------------------------------------------------------
 //TODO: - bRead
-BOOL 
-CxFile::bRead(LPVOID pvBuff, ULONG ulCount) {    
+BOOL
+CxFile::bRead(LPVOID pvBuff, ULONG ulCount) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(),     FALSE);
 	/*DEBUG*/xASSERT_RET(pvBuff   != NULL,                  FALSE);
 	/*DEBUG*/xASSERT_RET(!::IsBadWritePtr(pvBuff, ulCount), FALSE);
@@ -124,12 +120,12 @@ CxFile::bRead(LPVOID pvBuff, ULONG ulCount) {
 
 	_m_bRes = ::ReadFile(m_hHandle, pvBuff, ulCount, &ulBytesRead, NULL);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-    
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bRead
-BOOL 
+BOOL
 CxFile::bRead(LPVOID pvBuf, ULONG ulCount, LPDWORD pulRead) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
 	/*DEBUG*/xASSERT_RET(NULL                 != pvBuf,    FALSE);
@@ -143,17 +139,17 @@ CxFile::bRead(LPVOID pvBuf, ULONG ulCount, LPDWORD pulRead) {
 
 	_m_bRes = ::ReadFile(m_hHandle, pvBuf, ulCount, pulRead, NULL);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-    
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bWrite
-BOOL 
+BOOL
 CxFile::bWrite(LPCVOID pvBuf, ULONG ulCount) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(),    FALSE);
 	/*DEBUG*/xASSERT_RET(NULL                 != pvBuf,   FALSE);
-	/*DEBUG*/xASSERT_RET(!::IsBadReadPtr(pvBuf, ulCount), FALSE);   
-    
+	/*DEBUG*/xASSERT_RET(!::IsBadReadPtr(pvBuf, ulCount), FALSE);
+
 	//avoid Win32 "null-write"
 	xCHECK_RET(0 == ulCount, TRUE);
 
@@ -161,18 +157,18 @@ CxFile::bWrite(LPCVOID pvBuf, ULONG ulCount) {
 
 	_m_bRes = ::WriteFile(m_hHandle, pvBuf, ulCount, &ulBytesWritten, NULL);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-    
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bWrite
-BOOL 
+BOOL
 CxFile::bWrite(LPCVOID pvBuf, ULONG ulCount, LPDWORD pulWritten) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(),      FALSE);
 	/*DEBUG*/xASSERT_RET(NULL                 != pvBuf,      FALSE);
-	/*DEBUG*/xASSERT_RET(!::IsBadReadPtr(pvBuf, ulCount),    FALSE); 
-	/*DEBUG*/xASSERT_RET(NULL                 != pulWritten, FALSE); 
-    
+	/*DEBUG*/xASSERT_RET(!::IsBadReadPtr(pvBuf, ulCount),    FALSE);
+	/*DEBUG*/xASSERT_RET(NULL                 != pulWritten, FALSE);
+
 	//avoid Win32 "null-write"
 	xCHECK_RET(0 == ulCount, TRUE);
 
@@ -180,17 +176,17 @@ CxFile::bWrite(LPCVOID pvBuf, ULONG ulCount, LPDWORD pulWritten) {
 
 	_m_bRes = ::WriteFile(m_hHandle, pvBuf, ulCount, pulWritten, NULL);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-    
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - ulSetPosition
-ULONG 
-CxFile::ulSetPosition(LONG liOff, EPointerPosition fpPos) {    
+ULONG
+CxFile::ulSetPosition(LONG liOff, EPointerPosition fpPos) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), INVALID_SET_FILE_POINTER);
-    
+
 	ULONG ulRes = INVALID_SET_FILE_POINTER;
-	
+
 	ulRes = ::SetFilePointer(m_hHandle, liOff, NULL, static_cast<ULONG>(fpPos));
 	/*DEBUG*/xASSERT_RET(INVALID_SET_FILE_POINTER != ulRes, INVALID_SET_FILE_POINTER);
 
@@ -198,18 +194,18 @@ CxFile::ulSetPosition(LONG liOff, EPointerPosition fpPos) {
 }
 //---------------------------------------------------------------------------
 //TODO: - ulGetPosition
-ULONG 
+ULONG
 CxFile::ulGetPosition() {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), INVALID_SET_FILE_POINTER);
-    
+
 	return ulSetPosition(0, ppCurr);
 }
 //---------------------------------------------------------------------------
 //TODO: - bLock
-BOOL 
+BOOL
 CxFile::bLock(ULONG ulOffset, ULONG ulSize) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
-    
+
 	_m_bRes = ::LockFile(m_hHandle, ulOffset, 0, ulSize, 0);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -217,10 +213,10 @@ CxFile::bLock(ULONG ulOffset, ULONG ulSize) {
 }
 //---------------------------------------------------------------------------
 //TODO: - bUnlock
-BOOL 
+BOOL
 CxFile::bUnlock(ULONG ulOffset, ULONG ulSize) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
-    
+
 	_m_bRes = ::UnlockFile(m_hHandle, ulOffset, 0, ulSize, 0);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -228,7 +224,7 @@ CxFile::bUnlock(ULONG ulOffset, ULONG ulSize) {
 }
 //---------------------------------------------------------------------------
 //TODO: - bSetEof
-BOOL 
+BOOL
 CxFile::bSetEof() {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
 
@@ -239,7 +235,7 @@ CxFile::bSetEof() {
 }
 //---------------------------------------------------------------------------
 //TODO: - bFlush
-BOOL 
+BOOL
 CxFile::bFlush() {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
 
@@ -250,10 +246,10 @@ CxFile::bFlush() {
 }
 //---------------------------------------------------------------------------
 //TODO: - llGetSize
-LONGLONG 
+LONGLONG
 CxFile::llGetSize() {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), 0);
-	
+
 	LARGE_INTEGER llRes;
 
 	_m_bRes = ::GetFileSizeEx(m_hHandle, &llRes);
@@ -263,7 +259,7 @@ CxFile::llGetSize() {
 }
 //---------------------------------------------------------------------------
 //TODO: - bSetSize
-BOOL 
+BOOL
 CxFile::bSetSize(ULONG ulSize) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), 0);
 
@@ -277,10 +273,10 @@ CxFile::bSetSize(ULONG ulSize) {
 }
 //---------------------------------------------------------------------------
 //TODO: - ulGetType
-ULONG/*EFileType*/ 
-CxFile::ulGetType() {	
+ULONG/*EFileType*/
+CxFile::ulGetType() {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
-    
+
 	ULONG ulRes = (ULONG)ftUnknown;
 
 	ulRes = ::GetFileType(m_hHandle);
@@ -290,10 +286,10 @@ CxFile::ulGetType() {
 }
 //---------------------------------------------------------------------------
 //TODO: - bGetTime
-BOOL 
+BOOL
 CxFile::bGetTime(FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
-    
+
 	_m_bRes = ::GetFileTime(m_hHandle, pftCreate, pftAccess, pftModified);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -301,10 +297,10 @@ CxFile::bGetTime(FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified
 }
 //---------------------------------------------------------------------------
 //TODO: - bSetTime
-BOOL 
+BOOL
 CxFile::bSetTime(FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified) {
 	/*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
- 
+
 	_m_bRes = ::SetFileTime(m_hHandle, pftCreate, pftAccess, pftModified);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -322,14 +318,14 @@ CxFile::bSetTime(FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified
 //---------------------------------------------------------------------------
 //TODO: - bIsExists
 /*static*/
-BOOL 
+BOOL
 CxFile::bIsExists(const tString &csFilePath) {
 	///////////*DEBUG*/xASSERT_RET(!::IsBadStringPtr(csFilePath.c_str(), MAX_PATH), FALSE);
-	//////////   
+	//////////
 	//////////ULONG ulErrMode = ::SetErrorMode(SEM_FAILCRITICALERRORS);
 	//////////ULONG ulAttribs = ::GetFileAttributes(csFilePath.c_str());
 	//////////::SetErrorMode(ulErrMode);
-	//////////   
+	//////////
 	//////////return (ulAttribs != (ULONG) -1) && (ulAttribs & FILE_ATTRIBUTE_DIRECTORY) == 0;
 
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -349,7 +345,7 @@ CxFile::bIsExists(const tString &csFilePath) {
 //---------------------------------------------------------------------------
 //TODO: - sIsExists
 /*static*/
-tString 
+tString
 CxFile::sIsExists(const tString &csFilePath) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
@@ -357,9 +353,9 @@ CxFile::sIsExists(const tString &csFilePath) {
 	sRes.assign(csFilePath);
 
 	//--static INT s_iFileExistsIndex = 0;
-	tString    sFileDir           = CxPath::sGetDir(sRes);	
-	tString    sFileName          = CxPath::sGetName(sRes);	
-	tString    sFileExt           = CxPath::sGetExt(sRes);	
+	tString    sFileDir           = CxPath::sGetDir(sRes);
+	tString    sFileName          = CxPath::sGetName(sRes);
+	tString    sFileExt           = CxPath::sGetExt(sRes);
 
 	for (INT s_iFileExistsIndex = 1; TRUE == bIsExists(sRes); ++ s_iFileExistsIndex) {
 		sRes = sFileDir                                   + CxConst::xSLASH     +
@@ -375,20 +371,20 @@ CxFile::sIsExists(const tString &csFilePath) {
 //---------------------------------------------------------------------------
 //TODO: - tpGetTypeEx
 /*static*/
-CxFile::ETypeEx 
-CxFile::tpGetTypeEx(const tString &csFilePath) {	
+CxFile::ETypeEx
+CxFile::tpGetTypeEx(const tString &csFilePath) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), fteUnknown);
 
 	ETypeEx ftRes = fteUnknown;
 
 	if (TRUE == CxFile::bIsExists(csFilePath)) {
-		ftRes = fteFile;	
+		ftRes = fteFile;
 	}
 	else if (TRUE == CxDir::bIsExists(csFilePath)) {
-		ftRes = fteDir;	
+		ftRes = fteDir;
 	}
 	else {
-		ftRes = fteUnknown;	
+		ftRes = fteUnknown;
 	}
 
 	return ftRes;
@@ -396,7 +392,7 @@ CxFile::tpGetTypeEx(const tString &csFilePath) {
 //---------------------------------------------------------------------------
 //TODO: - llGetSize
 /*static*/
-LONGLONG 
+LONGLONG
 CxFile::llGetSize(const tString &csFilePath) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
@@ -419,7 +415,7 @@ CxFile::llGetSize(const tString &csFilePath) {
 //---------------------------------------------------------------------------
 //TODO: - bDelete
 /*static*/
-BOOL 
+BOOL
 CxFile::bDelete(const tString &csFilePath) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
@@ -437,9 +433,9 @@ CxFile::bDelete(const tString &csFilePath) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: FIXME - bMove 
+//TODO: FIXME - bMove
 /*static*/
-BOOL 
+BOOL
 CxFile::bMove(const tString &csFilePathIn, const tString &csFilePathOut) {
 	/*DEBUG*/xASSERT_RET(false == csFilePathIn.empty(),    FALSE);
 	/*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePathIn), FALSE);
@@ -451,8 +447,8 @@ CxFile::bMove(const tString &csFilePathIn, const tString &csFilePathOut) {
 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
 	bRes = CxFileAttribute::bSet(csFilePathIn, CxFileAttribute::faNormal);
 	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-	
-	
+
+
 	if (TRUE == bIsExists(csFilePathOut)) {
 		bRes = CxFileAttribute::bSet(csFilePathOut, CxFileAttribute::faNormal);
 		/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -468,11 +464,11 @@ CxFile::bMove(const tString &csFilePathIn, const tString &csFilePathOut) {
 //--------------------------------------------------------------------------
 //TODO: - sCreateTempName
 /*static*/
-tString 
+tString
 CxFile::sCreateTempName(const tString &csExt) {	//csDirPath - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	/*DEBUG*/TCHAR szFatalChars[] = {xT('\\'), xT('/'), xT(':'), xT('*'), xT('<'), xT('>'), xT('|'), xT('?'), xT('"'), xT('\t'), xT('\n'), xT('\r')};
 	/*DEBUG*/for (size_t i = 0; i < xARRAY_SIZE(szFatalChars); ++ i) {
-	/*DEBUG*/	xASSERT_RET(tString::npos == csExt.find(szFatalChars[i]), tString());	
+	/*DEBUG*/	xASSERT_RET(tString::npos == csExt.find(szFatalChars[i]), tString());
 	/*DEBUG*/}
 
 	tString sRes;
@@ -488,7 +484,7 @@ CxFile::sCreateTempName(const tString &csExt) {	//csDirPath - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿
 //--------------------------------------------------------------------------
 //TODO: - bCopy
 /*static*/
-BOOL 
+BOOL
 CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo) {
 	/*DEBUG*/xASSERT_RET(false == csFilePathFrom.empty(),    FALSE);
 	/*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePathFrom), FALSE);
@@ -498,7 +494,7 @@ CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo) {
 	if (!ifsStream || ifsStream.fail() || !ifsStream.good() || !ifsStream.is_open() || ifsStream.eof()) {
 		return FALSE;
 	}
-	std::ofstream ofsStream(csFilePathTo.c_str()); 
+	std::ofstream ofsStream(csFilePathTo.c_str());
 	if (!ofsStream || ofsStream.fail() || !ofsStream.good() || !ofsStream.is_open() || ofsStream.eof()) {
 		return FALSE;
 	}
@@ -511,7 +507,7 @@ CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo) {
 //--------------------------------------------------------------------------
 //TODO: - bCopy
 /*static*/
-BOOL 
+BOOL
 CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo, BOOL bFailIfExists) {
 	/*DEBUG*/xASSERT_RET(false == csFilePathFrom.empty(),    FALSE);
 	/*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePathFrom), FALSE);
@@ -527,7 +523,7 @@ CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo, BOOL b
 //---------------------------------------------------------------------------
 //TODO: - bReplace
 /*static*/
-BOOL 
+BOOL
 CxFile::bReplace(const tString &csOldFileName, const tString &csNewFilePath, const tString &csBackupFilePath) {
 	/*DEBUG*/xASSERT_RET(false == csOldFileName.empty(),    FALSE);
 	/*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csOldFileName), FALSE);
@@ -537,15 +533,15 @@ CxFile::bReplace(const tString &csOldFileName, const tString &csNewFilePath, con
 
 	BOOL bRes = FALSE;
 
-	bRes = ::ReplaceFile(csOldFileName.c_str(), csNewFilePath.c_str(), csBackupFilePath.c_str(), REPLACEFILE_WRITE_THROUGH/* | REPLACEFILE_IGNORE_MERGE_ERRORS*/, (LPVOID)NULL, (LPVOID)NULL); 
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);	
+	bRes = ::ReplaceFile(csOldFileName.c_str(), csNewFilePath.c_str(), csBackupFilePath.c_str(), REPLACEFILE_WRITE_THROUGH/* | REPLACEFILE_IGNORE_MERGE_ERRORS*/, (LPVOID)NULL, (LPVOID)NULL);
+	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
 	return TRUE;
 }
 //--------------------------------------------------------------------------
 //TODO: - bSecureDelete
 /*static*/
-BOOL 
+BOOL
 CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 	/*DEBUG*/// csFilePath - n/a
 	/*DEBUG*/// iPasses    - n/a
@@ -561,7 +557,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 	const LONG     cliBuffSize     	   = 32 * 1024;
 	UCHAR          ucBuff[cliBuffSize] = {0};
 	tString        sFilePathOut;
-	
+
 	//-------------------------------------
 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
@@ -581,7 +577,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 		//-------------------------------------
 		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 32kb, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ ï¿½ï¿½ï¿½
 		{
-			bRes = flFile.bOpen(csFilePath, CxFile::grAll, CxFile::smRead | CxFile::smWrite, CxFile::cfOpenExisting, CxFileAttribute::faNormal); 
+			bRes = flFile.bOpen(csFilePath, CxFile::grAll, CxFile::smRead | CxFile::smWrite, CxFile::cfOpenExisting, CxFileAttribute::faNormal);
 			/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
 			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
@@ -595,7 +591,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					for (LONGLONG j = 0; j < cliBuffSize; ++ j) {
 						ucBuff[j] = static_cast<UCHAR>(xRANDOM(255) + 1);
-					}  
+					}
 
 					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½
 					bRes = flFile.bWrite(ucBuff, cliBuffSize);
@@ -615,7 +611,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 		{
 			//-------------------------------------
 			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-			FILETIME ftCreationTime = {0}; 
+			FILETIME ftCreationTime = {0};
 			xRANDOMIZE();
 			ftCreationTime.dwHighDateTime = rand();
 			xRANDOMIZE();
@@ -623,7 +619,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 
 			//-------------------------------------
 			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-			FILETIME ftLastAccessTime = {0};  
+			FILETIME ftLastAccessTime = {0};
 			xRANDOMIZE();
 			ftLastAccessTime.dwHighDateTime = rand();
 			xRANDOMIZE();
@@ -631,7 +627,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 
 			//-------------------------------------
 			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-			FILETIME ftLastWriteTime = {0};  
+			FILETIME ftLastWriteTime = {0};
 			xRANDOMIZE();
 			ftLastWriteTime.dwHighDateTime = rand();
 			xRANDOMIZE();
@@ -639,8 +635,8 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 
 			//-------------------------------------
 			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-			bRes = flFile.bSetTime(&ftCreationTime, &ftLastAccessTime, &ftLastWriteTime);	
-			/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);	
+			bRes = flFile.bSetTime(&ftCreationTime, &ftLastAccessTime, &ftLastWriteTime);
+			/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 		}
 
 		//-------------------------------------
@@ -650,7 +646,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 			/*DEBUG*/xASSERT_RET(INVALID_SET_FILE_POINTER != ulFilePointer, FALSE);
 
 			bRes = flFile.bSetEof();
-			/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);	
+			/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 		}
 	}
 
@@ -679,7 +675,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 //--------------------------------------------------------------------------
 //TODO: - bCutFromEnd
 ///*/*static*/*/
-////BOOL 
+////BOOL
 ////CxFile::bCutFromEnd(const tString &csFilePath, LONG lDistanceToCut) {
 ////	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(),   FALSE);
 ////	/*DEBUG*/xASSERT_RET(TRUE == bIsExists(csFilePath), FALSE);
@@ -687,11 +683,11 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 ////
 ////	BOOL bRes = FALSE;
 ////
-////	CxHandleT<INVALID_HANDLE_VALUE> hFile;
-////	
+////	CxHandle<INVALID_HANDLE_VALUE> hFile;
+////
 ////	hFile = ::CreateFile(csFilePath.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 ////	/*DEBUG*/xASSERT_RET(FALSE != hFile.bIsValid(), FALSE);
-////	
+////
 ////	if (INVALID_SET_FILE_POINTER != ::SetFilePointer(hFile, - (lDistanceToCut), NULL, FILE_END)) {
 ////		if (TRUE == ::SetEndOfFile(hFile)) {
 ////			bRes = TRUE;
@@ -703,13 +699,13 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 //---------------------------------------------------------------------------
 //TODO: - bCutFromEnd
 ///*/*static*/*/
-////BOOL 
+////BOOL
 ////CxFile::bCutFromEnd(FILE *pFile, ULONG ulDistanceToCut) {
 ////	/*DEBUG*/xASSERT_RET(NULL != pFile, false);
 ////	/*DEBUG*/xASSERT_RET(0 < ulDistanceToCut, false);
 ////
 ////	BOOL bRes = FALSE;
-////	
+////
 ////	//////////if (0 != chsize(fileno(pFile), ulFileSize(pFile) - ulDistanceToCut)) {
 ////	//////////	return FALSE;
 ////	//////////}
@@ -719,7 +715,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 //--------------------------------------------------------------------------
 //TODO: - bCheckSignature
 /////*static*/
-////BOOL 
+////BOOL
 ////CxFile::bCheckSignature(LPCTSTR pcszBuff, LPCTSTR pcszSignature, INT iSignatureSize) {
 ////	/*DEBUG*/xASSERT_RET(NULL != pcszBuff,             FALSE);
 ////	/*DEBUG*/xASSERT_RET(0 < ::lstrlen(pcszBuff),      FALSE);
@@ -739,57 +735,57 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
 //--------------------------------------------------------------------------
 //TODO: - bSetRandomDate
 /*static*/
-BOOL 
+BOOL
 CxFile::bSetRandomDate(const tString &csFilePath) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
 	/*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), FALSE);
 
-	CxHandleT<INVALID_HANDLE_VALUE> hFile;
-	
-	hFile = ::CreateFile(csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS, NULL);
-	/*DEBUG*/xASSERT_RET(FALSE != hFile.bIsValid(), FALSE);
+	//////////CxHandle<INVALID_HANDLE_VALUE> hFile;
 
-	//-------------------------------------
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	FILETIME ftCreationTime = {0}; 
-	xRANDOMIZE();
-	ftCreationTime.dwHighDateTime = rand();
-	xRANDOMIZE();
-	ftCreationTime.dwLowDateTime  = rand();
+	//////////hFile = ::CreateFile(csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS, NULL);
+	///////////*DEBUG*/xASSERT_RET(FALSE != hFile.bIsValid(), FALSE);
 
-	//-------------------------------------
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	FILETIME ftLastAccessTime = {0};  
-	xRANDOMIZE();
-	ftLastAccessTime.dwHighDateTime = rand();
-	xRANDOMIZE();
-	ftLastAccessTime.dwLowDateTime  = rand();
+	////////////-------------------------------------
+	////////////ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//////////FILETIME ftCreationTime = {0};
+	//////////xRANDOMIZE();
+	//////////ftCreationTime.dwHighDateTime = rand();
+	//////////xRANDOMIZE();
+	//////////ftCreationTime.dwLowDateTime  = rand();
 
-	//-------------------------------------
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	FILETIME ftLastWriteTime = {0};  
-	xRANDOMIZE();
-	ftLastWriteTime.dwHighDateTime = rand();
-	xRANDOMIZE();
-	ftLastWriteTime.dwLowDateTime  = rand();
+	////////////-------------------------------------
+	////////////ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//////////FILETIME ftLastAccessTime = {0};
+	//////////xRANDOMIZE();
+	//////////ftLastAccessTime.dwHighDateTime = rand();
+	//////////xRANDOMIZE();
+	//////////ftLastAccessTime.dwLowDateTime  = rand();
 
-	//-------------------------------------
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	BOOL bRes = ::SetFileTime(hFile, &ftCreationTime, &ftLastAccessTime, &ftLastWriteTime);	
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+	////////////-------------------------------------
+	////////////ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//////////FILETIME ftLastWriteTime = {0};
+	//////////xRANDOMIZE();
+	//////////ftLastWriteTime.dwHighDateTime = rand();
+	//////////xRANDOMIZE();
+	//////////ftLastWriteTime.dwLowDateTime  = rand();
+
+	////////////-------------------------------------
+	////////////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//////////BOOL bRes = ::SetFileTime(hFile, &ftCreationTime, &ftLastAccessTime, &ftLastWriteTime);
+	///////////*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
 	return TRUE;
 }
 //--------------------------------------------------------------------------
 //TODO: - ullGetCompressedSize
 /*static*/
-ULONGLONG 
+ULONGLONG
 CxFile::ullGetCompressedSize(const tString &csFilePath) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
 	ULONG ulLowPart  = 0;
 	ULONG ulHighPart = 0;
-		
+
 	ulLowPart = ::GetCompressedFileSize(csFilePath.c_str(), &ulHighPart);
 	if (INVALID_FILE_SIZE == ulLowPart) {
 		/*DEBUG*/xASSERT_RET(NO_ERROR == ::GetLastError(), INVALID_FILE_SIZE);
@@ -806,9 +802,9 @@ CxFile::ullGetCompressedSize(const tString &csFilePath) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - bSetAttrUncompressed 
+//TODO: - bSetAttrUncompressed
 /*static*/
-BOOL 
+BOOL
 CxFile::bSetAttrUncompressed(const tString &csFilePath) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
@@ -827,9 +823,9 @@ CxFile::bSetAttrUncompressed(const tString &csFilePath) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetAttrCompressed 
+//TODO: - bSetAttrCompressed
 /*static*/
-BOOL 
+BOOL
 CxFile::bSetAttrCompressed(const tString &csFilePath, BOOL bIsCompress) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 	/*DEBUG*/// bIsCompress - n/a
@@ -848,7 +844,7 @@ CxFile::bSetAttrCompressed(const tString &csFilePath, BOOL bIsCompress) {
 
 	bRes = ::DeviceIoControl(fFile.m_hHandle, FSCTL_SET_COMPRESSION, &siCompression, sizeof(SHORT), NULL, 0, &ulBytesReturned, NULL);
 	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-	
+
 	return TRUE;
 }
 //--------------------------------------------------------------------------
@@ -859,7 +855,7 @@ CxFile::bSetAttrCompressed(const tString &csFilePath, BOOL bIsCompress) {
 
 //--------------------------------------------------------------------------
 /*static*/
-bool 
+bool
 CxFile::bWriteText(const tString &csFilePath, const tString &csText) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
 
@@ -889,7 +885,7 @@ CxFile::bWriteText(const tString &csFilePath, const tString &csText) {
 }
 //--------------------------------------------------------------------------
 /*static*/
-tString 
+tString
 CxFile::sReadText(const tString &csFilePath) {	///char -> BYTE
 	/*
 	tString xstr;
@@ -931,23 +927,23 @@ CxFile::sReadText(const tString &csFilePath) {	///char -> BYTE
 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	tString  sRes = xT("");
 	ULONG        dwRealyRead = 0;
-	TCHAR        *pBuff       = new TCHAR[dwFileSize + 1];  	
+	TCHAR        *pBuff       = new TCHAR[dwFileSize + 1];
 	if (NULL == pBuff) {
 		::CloseHandle(hFile);
 
-		return xT("");		
+		return xT("");
 	}
 	if (FALSE == ::ReadFile(hFile, pBuff, dwFileSize, &dwRealyRead, NULL)) {
 		delete [] pBuff;
-		::CloseHandle(hFile);		
+		::CloseHandle(hFile);
 
-		return xT("");	
-	} 
+		return xT("");
+	}
 	if (dwFileSize != dwRealyRead) {
 		delete [] pBuff;
-		::CloseHandle(hFile);		
+		::CloseHandle(hFile);
 
-		return xT("");	
+		return xT("");
 	}
 
 	//-------------------------------------
@@ -964,7 +960,7 @@ CxFile::sReadText(const tString &csFilePath) {	///char -> BYTE
 	/*DEBUG*/xASSERT_RET(NULL != hFile, xT(""));
 	if (NULL != hFile) {
 		::CloseHandle(hFile); 	hFile = NULL;
-	}    
+	}
 
 	return sRes;
 }
@@ -978,9 +974,9 @@ CxFile::sReadText(const tString &csFilePath) {	///char -> BYTE
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bBackup 
+//TODO: bBackup
 /*static*/
-BOOL 
+BOOL
 CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bMakeDaily) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
 	/*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), FALSE);
@@ -996,9 +992,9 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
 	//ï¿½ï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½ï¿½ï¿½
 	CxDateTime dtDT;
 
-	tString sBackupFilePath = 
-		CxPath::sSlashAppend(csDestDirPath) + 
-		CxPath::sGetFullName(csFilePath)    + 
+	tString sBackupFilePath =
+		CxPath::sSlashAppend(csDestDirPath) +
+		CxPath::sGetFullName(csFilePath)    +
 		xT(".bak [") + CxString::sReplaceAll((TRUE == bMakeDaily) ? (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDate)) : (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDateTime)), xT(":"), xT("-")) + xT("]");
 
 	bRes = CxFile::bIsExists(sBackupFilePath);
@@ -1022,10 +1018,10 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bExec
+//DONE: bExec
 /*static*/
-BOOL 
-CxFile::bExec(const tString &csFilePath, const tString &csParams) { 
+BOOL
+CxFile::bExec(const tString &csFilePath, const tString &csParams) {
 	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 	/*DEBUG*/// csParams - n/a
 
@@ -1044,7 +1040,7 @@ CxFile::bExec(const tString &csFilePath, const tString &csParams) {
 		bRes = CxFile::bIsExists(csFilePath);
 		xASSERT_RET(FALSE != bRes, FALSE);
 		xCHECK_RET(FALSE == bRes, FALSE);
-			
+
 		if (xT("cpl") == CxPath::sGetExt(csFilePath)) {
 			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			sCmdLine = xT("control.exe ") + csFilePath;
@@ -1053,7 +1049,7 @@ CxFile::bExec(const tString &csFilePath, const tString &csParams) {
 			sCmdLine = csFilePath;
 		}
 	}
-	
+
 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	xCHECK_DO(false == csParams.empty(), sCmdLine += xT(" ") + csParams);
 
@@ -1067,7 +1063,7 @@ CxFile::bExec(const tString &csFilePath, const tString &csParams) {
 
 	::CloseHandle(pi.hThread);
 	::CloseHandle(pi.hProcess);
-	
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------

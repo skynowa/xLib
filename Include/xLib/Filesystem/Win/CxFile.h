@@ -2,13 +2,9 @@
 * Class name:  CxFile
 * Description: file
 * File name:   CxFile.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     03.06.2009 16:30:15
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #define xLib_Fso_CxFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 #include <xLib/Filesystem/Win/CxFileAttribute.h>
 //---------------------------------------------------------------------------
 class CxFile : public CxNonCopyable {
@@ -70,7 +66,7 @@ class CxFile : public CxNonCopyable {
 			fteDir     = 2
 		};
 
-		CxHandleT<INVALID_HANDLE_VALUE> m_hHandle;
+		CxHandle m_hHandle;
 
 
 					     CxFile              ();

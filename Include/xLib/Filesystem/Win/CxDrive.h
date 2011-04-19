@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxDrive
-* Description: �������� � �������
+* Description: drive
 * File name:   CxDrive.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     04.06.2009 9:25:22
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

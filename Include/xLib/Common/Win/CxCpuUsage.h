@@ -2,13 +2,9 @@
 * Class name:  CxCpuUsage
 * Description: cpu usage
 * File name:   CxCpuUsage.h
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     07.02.2011 21:57:45
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

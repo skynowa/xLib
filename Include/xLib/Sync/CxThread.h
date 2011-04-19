@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxThread
-* Description: �����
+* Description: thread
 * File name:   CxThread.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     22.11.2009 13:59:34
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -18,7 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/xClosure.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 #include <xLib/Sync/CxEvent.h>
 #include <xLib/Sync/CxSleeper.h>
 #include <xLib/Log/xLog.h>
@@ -45,7 +41,7 @@ class CxThread : public CxNonCopyable {
 		const ULONG             _m_culExitTimeout;			//таймаут выхода / уничтожения
 
 		//thread data
-		CxHandleT<NULL>         _m_hThread;					//хендл
+		CxHandle                _m_hThread;					//хендл
 		ULONG                   _m_ulID;					//ID
 		UINT                    _m_uiExitCode;				//код возврата
 		VOID                   *_m_pvParam;					//параметр для раьочей функции

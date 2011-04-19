@@ -2,13 +2,9 @@
 * Class name:  CxDir
 * Description: directory
 * File name:   CxDir.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     04.06.2009 9:23:33
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -29,7 +25,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + bIsExists (check for existence)
+//DONE: bIsExists (check for existence)
 /*static*/
 BOOL 
 CxDir::bIsExists(const tString &csDirPath) { 
@@ -56,7 +52,7 @@ CxDir::bIsExists(const tString &csDirPath) {
     return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + bIsEmpty (is empty)
+//DONE: bIsEmpty (is empty)
 /*static*/
 BOOL 
 CxDir::bIsEmpty(const tString &csDirPath, const tString &csMask) { 
@@ -116,7 +112,7 @@ CxDir::bIsEmpty(const tString &csDirPath, const tString &csMask) {
 	return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + bIsDir (is dir)
+//DONE: bIsDir (is dir)
 /*static*/
 BOOL
 CxDir::bIsDir(const tString &csDirPath) {
@@ -145,7 +141,7 @@ CxDir::bIsDir(const tString &csDirPath) {
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: + sGetCurrent (get current)
+//DONE: sGetCurrent (get current)
 /*static*/
 tString 
 CxDir::sGetCurrent() {
@@ -174,7 +170,7 @@ CxDir::sGetCurrent() {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//TODO: + bSetCurrent (set current)
+//DONE: bSetCurrent (set current)
 /*static*/
 BOOL 
 CxDir::bSetCurrent(const tString &csDirPath) {
@@ -221,7 +217,7 @@ CxDir::sGetTempPath() {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//TODO: + bCreate (creation)
+//DONE: bCreate (creation)
 /*static*/
 BOOL 
 CxDir::bCreate(const tString &csDirPath) {
@@ -245,7 +241,7 @@ CxDir::bCreate(const tString &csDirPath) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateForce (creation of all dirs that not exists in path)
+//DONE: bCreateForce (creation of all dirs that not exists in path)
 BOOL 
 CxDir::bCreateForce(const tString &csDirPath) {
 	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
@@ -326,7 +322,7 @@ CxDir::bMove(const tString &csInDirPath, const tString &csOutDirPath) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bDelete (deletion dir which empty)
+//DONE: bDelete (deletion dir which empty)
 /*static*/
 BOOL 
 CxDir::bDelete(const tString &csDirPath) {
@@ -355,7 +351,7 @@ CxDir::bDelete(const tString &csDirPath) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bClearForce (detetion all content of dir)
+//DONE: bClearForce (detetion all content of dir)
 /*static*/
 BOOL 
 CxDir::bClearForce(const tString &csDirPath) { 
@@ -410,7 +406,7 @@ CxDir::bClearForce(const tString &csDirPath) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bDeleteForce (detetion dir fnd all content of it)
+//DONE: bDeleteForce (detetion dir fnd all content of it)
 /*static*/
 BOOL 
 CxDir::bDeleteForce(const tString &csDirPath) {
@@ -574,7 +570,7 @@ CxDir::bFindFiles(const tString &csDirPath, const tString &cMask, BOOL bIsRecurs
 	return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: + bFindDirs (search subdirs)
+//DONE: bFindDirs (search subdirs)
 //NOTE: need empty pvecsDirPathes param
 /*static*/
 BOOL 
@@ -670,12 +666,12 @@ CxDir::bFindDirs(const tString &csDirPath, const tString &cMask, BOOL bIsRecurse
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxDir
+//DONE: CxDir
 CxDir::CxDir() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxDir
+//DONE: ~CxDir
 CxDir::~CxDir() {
 
 }

@@ -1,10 +1,10 @@
 #ifndef CMyDialogH
 #define CMyDialogH
 //---------------------------------------------------------------------------
-#include <XLib/Gui/CxWindowImpl.h>
-#include <XLib/Gui/CxButton.h>
-#include <XLib/Gui/CxToolBar.h>
-#include <XLib/Gui/CxResources.h>
+#include <xLib/Gui/CxWindowImpl.h>
+#include <xLib/Gui/CxButton.h>
+#include <xLib/Gui/CxToolBar.h>
+#include <xLib/Gui/CxResources.h>
 //---------------------------------------------------------------------------
 class  CWndDialog : public CxWindowImpl {
 	public:

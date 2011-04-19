@@ -2,18 +2,14 @@
 * Class name:  CxProgressBar
 * Description: индикатор выполнения
 * File name:   CxProgressBar.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.07.2009 11:05:22
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxProgressBar.h>
+#include <xLib/Gui/CxProgressBar.h>
 
 
 /****************************************************************************
@@ -52,7 +48,7 @@ CxProgressBar::~CxProgressBar() {
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxProgressBar::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);

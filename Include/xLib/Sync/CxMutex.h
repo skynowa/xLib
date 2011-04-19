@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxMutex
-* Description: ������ � ����������
+* Description: mutex
 * File name:   CxMutex.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 18:48:30
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #define xLib_Sync_CxMutexH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxMutex : public CxNonCopyable {
 	public:
@@ -31,7 +27,7 @@ class CxMutex : public CxNonCopyable {
 		BOOL     bWait     (ULONG ulTimeout) const;
 
 	private:
-		CxHandleT<NULL>  _m_hMutex;
+		CxHandle _m_hMutex;
 };
 //---------------------------------------------------------------------------
 #endif	//xLib_Sync_CxMutexH

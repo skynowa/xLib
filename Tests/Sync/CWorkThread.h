@@ -2,13 +2,9 @@
 * Class name:  CWorkThread
 * Description: рабочий поток
 * File name:   CWorkThread.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     10.12.2009 22:10:16
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -29,7 +25,8 @@ class CWorkThread : public CxThread {
 		size_t       m_uiIndex;
 
 				     CWorkThread(BOOL bIsPaused, BOOL bAutoDelete);
-			        ~CWorkThread();
+		virtual     ~CWorkThread();
+
 	protected:
 		virtual UINT uiOnRun    (VOID *pData);	/*overload*/
 		virtual VOID vOnEnter   ();			    /*overload*/
@@ -43,8 +40,8 @@ class CWorkThread : public CxThread {
 
 
 /****************************************************************************
-*    public                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
@@ -52,7 +49,7 @@ class CWorkThread : public CxThread {
 CWorkThread::CWorkThread(BOOL bIsPaused, BOOL bAutoDelete) :
 	CxThread (bIsPaused, bAutoDelete),
 	m_uiIndex(0),
-	_m_clLog (FALSE)	
+	_m_clLog (FALSE)
 {
 }
 //---------------------------------------------------------------------------
@@ -64,15 +61,15 @@ CWorkThread::~CWorkThread() {
 
 
 /****************************************************************************
-*    protected                                                       
-*                                                                            
+*    protected
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: - uiOnRun
-UINT CWorkThread::uiOnRun(VOID *pData) { 
-	/*LOG*/_m_clLog.bWrite(_T("Start thread: #%i\n"), m_uiIndex); 
-	
+UINT CWorkThread::uiOnRun(VOID *pData) {
+	/*LOG*/_m_clLog.bWrite(_T("Start thread: #%i\n"), m_uiIndex);
+
 	UINT uiRes = 0;
 	BOOL bRes  = FALSE;
 
@@ -81,17 +78,17 @@ UINT CWorkThread::uiOnRun(VOID *pData) {
 		//не пора ли выйти или приостановиться
 		bRes = bIsTimeToExit();
 		xCHECK_DO(TRUE == bRes, break);
-		
+
 
 		//-------------------------------------
 		//рабочий код
 		for (int i = 0; i < 2; i ++) {
-			/*LOG*/_m_clLog.bWrite(_T("*\n")); 
+			/*LOG*/_m_clLog.bWrite(_T("*\n"));
 			::Sleep(1000);
 		}
-	}	
+	}
 
-	/*LOG*/_m_clLog.bWrite(_T("End thread: #%i\n"), m_uiIndex); 
+	/*LOG*/_m_clLog.bWrite(_T("End thread: #%i\n"), m_uiIndex);
 
 	return uiRes;
 }
@@ -102,7 +99,7 @@ VOID CWorkThread::vOnEnter() {
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnExit
-VOID CWorkThread::vOnExit() {        
+VOID CWorkThread::vOnExit() {
 	//LOG("vOnExit");
 
 	BOOL bRes = FALSE;

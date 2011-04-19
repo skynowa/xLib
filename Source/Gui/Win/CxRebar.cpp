@@ -2,19 +2,15 @@
 * Class name:  CxRebar
 * Description: работа с ребаром
 * File name:   CxRebar.сзз
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     24.07.2009 11:20:41
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxRebar.h>
+#include <xLib/Gui/CxRebar.h>
 
 //---------------------------------------------------------------------------
 CxRebar::CxRebar() : 

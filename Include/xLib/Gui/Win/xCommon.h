@@ -2,13 +2,9 @@
 * Class name:  
 * Description: 
 * File name:   Common.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:09:37
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

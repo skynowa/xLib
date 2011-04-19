@@ -2,13 +2,9 @@
 * Class name:  CxWindow
 * Description: Класс root для всех дочерних окон 
 * File name:   CxWindow.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     31.08.2009 16:44:56
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -29,7 +25,7 @@ CxTraceLog CxWindow::_m_tlLog(FALSE);
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxWindow
+//DONE: CxWindow
 CxWindow::CxWindow() :
 	m_fnFont     (),
 	m_stStyle    (),
@@ -52,12 +48,12 @@ CxWindow::CxWindow() :
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxWindow
+//DONE: ~CxWindow
 CxWindow::~CxWindow() {
 	LOG();
 }
 //---------------------------------------------------------------------------
-//TODO: + lpProcessMsg
+//DONE: lpProcessMsg
 /*virtual*/
 LRESULT CxWindow::lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam) {	
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), NULL);
@@ -65,21 +61,21 @@ LRESULT CxWindow::lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 	return ::DefWindowProc(_m_hWnd, uiMsg, wParam, lParam);
 }
 //---------------------------------------------------------------------------
-//TODO: + bIsWindow
+//DONE: bIsWindow
 BOOL CxWindow::bIsWindow() const {
 	/*DEBUG*///not need
 
 	return (NULL != _m_hWnd) && (INVALID_HANDLE_VALUE != _m_hWnd) && (FALSE != ::IsWindow(_m_hWnd));
 }
 //---------------------------------------------------------------------------
-//TODO: + hGetHandle
+//DONE: hGetHandle
 HWND CxWindow::hGetHandle() const { 
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), NULL);
 
 	return _m_hWnd; 
 }
 //---------------------------------------------------------------------------
-//TODO: + hSetHandle
+//DONE: hSetHandle
 BOOL CxWindow::bSetHandle(HWND hWnd) {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -88,7 +84,7 @@ BOOL CxWindow::bSetHandle(HWND hWnd) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + iGetID
+//DONE: iGetID
 INT CxWindow::iGetID() const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), 0);
 	/*DEBUG*/xASSERT_RET(0     <  _m_iID,      0);
@@ -96,7 +92,7 @@ INT CxWindow::iGetID() const {
 	return _m_iID;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetID
+//DONE: bSetID
 BOOL CxWindow::bSetID(INT iID) {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 	/*DEBUG*/xASSERT_RET(0     <  iID,         FALSE);
@@ -108,14 +104,14 @@ BOOL CxWindow::bSetID(INT iID) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetClassName
+//DONE: sGetClassName
 tString CxWindow::sGetClassName() const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), tString());
 
 	return _m_sClassName;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetClassName 
+//DONE: bSetClassName 
 BOOL CxWindow::bSetClassName(const tString &csClassName) {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(),         FALSE);
 	/*DEBUG*/xASSERT_RET(FALSE != csClassName.empty(), FALSE);
@@ -125,7 +121,7 @@ BOOL CxWindow::bSetClassName(const tString &csClassName) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + sGetText
+//DONE: sGetText
 tString CxWindow::sGetText() const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), tString());
 
@@ -145,7 +141,7 @@ tString CxWindow::sGetText() const {
 	return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetText
+//DONE: bSetText
 BOOL CxWindow::bSetText(const tString &csText) {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 	/*DEBUG*///csText - n/a
@@ -158,7 +154,7 @@ BOOL CxWindow::bSetText(const tString &csText) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreate
+//DONE: bCreate
 BOOL CxWindow::bCreate(INT iID, HWND hParent, const tString &csClassName, const tString &csText, 
 					   INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx, LPVOID lpParam)
 {
@@ -216,7 +212,7 @@ BOOL CxWindow::bCreate(INT iID, HWND hParent, const tString &csClassName, const 
 	return TRUE; 
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreate
+//DONE: bCreate
 BOOL CxWindow::bCreate(INT iID, CxWindow *pwndParent, const tString &csClassName, const tString &csText, 
 					   INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx, LPVOID lpParam)
 {
@@ -242,7 +238,7 @@ BOOL CxWindow::bCreate(INT iID, CxWindow *pwndParent, const tString &csClassName
 	return TRUE; 
 }
 //---------------------------------------------------------------------------
-//TODO: + bShow
+//DONE: bShow
 BOOL CxWindow::bShow(INT iCmdShow) const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 	/*DEBUG*///not need
@@ -258,7 +254,7 @@ BOOL CxWindow::bShow(INT iCmdShow) const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bUpdate
+//DONE: bUpdate
 BOOL CxWindow::bUpdate() const  {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -332,7 +328,7 @@ BOOL CxWindow::bMoveCenter(HWND hParentWnd) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetPos
+//DONE: bSetPos
 BOOL CxWindow::bSetPos(INT iLeft, INT iTop, INT iWidth, INT iHeight, UINT uiFlags) {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -342,7 +338,7 @@ BOOL CxWindow::bSetPos(INT iLeft, INT iTop, INT iWidth, INT iHeight, UINT uiFlag
 	return TRUE;	
 }
 //---------------------------------------------------------------------------
-//TODO: + bEnable
+//DONE: bEnable
 BOOL CxWindow::bEnable(BOOL bFlag) const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -352,7 +348,7 @@ BOOL CxWindow::bEnable(BOOL bFlag) const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetActive
+//DONE: bSetActive
 BOOL CxWindow::bSetActive() const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -362,7 +358,7 @@ BOOL CxWindow::bSetActive() const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetRedraw
+//DONE: bSetRedraw
 BOOL CxWindow::bSetRedraw(BOOL bFlag) const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -382,7 +378,7 @@ BOOL CxWindow::bInvalidateRect(const RECT *prcRect, BOOL bErase) const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bDestroy
+//DONE: bDestroy
 BOOL CxWindow::bDestroy() const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -392,7 +388,7 @@ BOOL CxWindow::bDestroy() const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bClose
+//DONE: bClose
 BOOL CxWindow::bClose() {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -417,7 +413,7 @@ LRESULT CxWindow::pSendMessage(UINT uiMsg, WPARAM wParam, LPARAM lParam) const {
 	return lpRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + bPostMessage
+//DONE: bPostMessage
 BOOL CxWindow::bPostMessage(UINT uiMsg, WPARAM wParam, LPARAM lParam) const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 
@@ -435,7 +431,7 @@ BOOL CxWindow::bPostMessage(UINT uiMsg, WPARAM wParam, LPARAM lParam) const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + liGetWindowLong
+//DONE: liGetWindowLong
 LONG CxWindow::liGetWindowLong(INT iIndex) {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), 0);
 
@@ -445,7 +441,7 @@ LONG CxWindow::liGetWindowLong(INT iIndex) {
 	return liRes;
 }
 //---------------------------------------------------------------------------
-//TODO: + liSetWindowLong
+//DONE: liSetWindowLong
 LONG CxWindow::liSetWindowLong(INT iIndex, LONG liNewLong) {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), 0);
 
@@ -488,7 +484,7 @@ LRESULT CALLBACK Window::MsgRouter(HWND hwnd, UINT message,	WPARAM wparam, LPARA
 }
 */
 //---------------------------------------------------------------------------
-//TODO: + _s_pWndProc
+//DONE: _s_pWndProc
 /*static*/
 LRESULT CxWindow::_s_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 	/*DEBUG*/xASSERT_RET((NULL != hWnd) && (INVALID_HANDLE_VALUE != hWnd) && (FALSE != ::IsWindow(hWnd)), NULL);
@@ -547,7 +543,7 @@ LRESULT CxWindow::_s_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lPara
 	//return ::DefWindowProc(_m_hWnd, uiMsg, wParam, lParam);
 }
 //---------------------------------------------------------------------------
-//TODO: + _bInitCommonControls
+//DONE: _bInitCommonControls
 /*static*/
 BOOL CxWindow::_bInitCommonControls(ULONG ulFlags) {
 	/*DEBUG*/
@@ -564,7 +560,7 @@ BOOL CxWindow::_bInitCommonControls(ULONG ulFlags) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + _bRegisterClassEx
+//DONE: _bRegisterClassEx
 /*static*/
 BOOL CxWindow::_bRegisterClass(const WNDCLASSEX *cpwcWndClassEx) {		
 	/*DEBUG*/xASSERT_RET(NULL != cpwcWndClassEx, FALSE);
@@ -577,7 +573,7 @@ BOOL CxWindow::_bRegisterClass(const WNDCLASSEX *cpwcWndClassEx) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + _bRegisterClassEx
+//DONE: _bRegisterClassEx
 /*static*/
 BOOL CxWindow::_bUnregisterClass(const tString &csClassName) {		
 	/*DEBUG*///xASSERT_RET(false != csClassName.empty(), FALSE);

@@ -2,13 +2,9 @@
 * Class name:  CxWaitCursor
 * Description: wait cursor
 * File name:   CxWaitCursor.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     14.06.2009 19:08:17
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #include <xLib/Gui/CxWaitCursor.h>
 
 //---------------------------------------------------------------------------
-//TODO: + CxWaitCursor (Set the cursor remembering the old cursor)
+//DONE: CxWaitCursor (Set the cursor remembering the old cursor)
 CxWaitCursor::CxWaitCursor() :
 	_m_hCursor(NULL)
 {
@@ -30,7 +26,7 @@ CxWaitCursor::CxWaitCursor() :
 	/*DEBUG*///not need
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxWaitCursor (Restore cursor when it was valid. If it was not set the arrow cursor)
+//DONE: ~CxWaitCursor (Restore cursor when it was valid. If it was not set the arrow cursor)
 CxWaitCursor::~CxWaitCursor() {
 	HCURSOR hRes = NULL;
 
@@ -41,7 +37,7 @@ CxWaitCursor::~CxWaitCursor() {
 	/*DEBUG*///not need
 }
 //---------------------------------------------------------------------------
-//TODO: + bRestore (Restore the wait cursor)
+//DONE: bRestore (Restore the wait cursor)
 BOOL CxWaitCursor::bRestore() {
 	HCURSOR hRes = NULL;
 

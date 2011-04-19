@@ -2,13 +2,9 @@
 * Class name:  CxTest
 * Description: code testing
 * File name:   CxTest.h
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 9:29:52
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

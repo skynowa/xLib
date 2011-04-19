@@ -2,13 +2,9 @@
 * Class name:  CxWindowImpl
 * Description: работа с окнами
 * File name:   CxWindowImpl.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     23.07.2009 13:10:17
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,8 +12,8 @@
 #ifndef XLib_Gui_CxWindowImplH
 #define XLib_Gui_CxWindowImplH
 //---------------------------------------------------------------------------
-#include <XLib/Gui/CxWindow.h>
-#include <XLib/Gui/CxWndsContainer.h>
+#include <xLib/Gui/CxWindow.h>
+#include <xLib/Gui/CxWndsContainer.h>
 //---------------------------------------------------------------------------
 class CxWindowImpl : public CxWindow {
 	public:

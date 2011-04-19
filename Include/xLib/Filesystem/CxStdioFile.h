@@ -2,13 +2,9 @@
 * Class name:  CxStdioFile
 * Description: file
 * File name:   CxStdioFile.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     21.05.2009 17:46:38
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

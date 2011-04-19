@@ -1,14 +1,10 @@
 /****************************************************************************
-* Class name:  CXLockScope
-* Description: ������ � ������������ ��������
-* File name:   CXLockScope.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Class name:  CxCriticalSection
+* Description: critical section
+* File name:   CxCriticalSection.h
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 21:16:33
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

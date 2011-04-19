@@ -1,11 +1,9 @@
 /****************************************************************************
 * Class name:  CxPop3
-* Description: Pop3 ������
+* Description: POP3
 * File name:   CxPop3.cpp
-* String type: Ansi
-* Compilers:   Visual C++ 2008
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     13.04.2009 16:44:49
 *
 *****************************************************************************/
@@ -22,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxPop3 
+//DONE: CxPop3 
 CxPop3::CxPop3() :
 	_m_bRes      (FALSE),
 	_m_sRes      (),
@@ -37,12 +35,12 @@ CxPop3::CxPop3() :
 { 
 }   
 //--------------------------------------------------------------------------- 
-//TODO: + ~CxPop3 
+//DONE: ~CxPop3 
 CxPop3::~CxPop3() {   
 	xCHECK_DO(TRUE == _m_bConnected, bDisconnect());
 }   
 //--------------------------------------------------------------------------- 
-//TODO: + bCreate 
+//DONE: bCreate 
 BOOL CxPop3::bCreate(const tString &csUser, const tString &csPass, const tString &csServer, USHORT usPort) {  
 	 /*DEBUG*/xASSERT_RET(FALSE == csUser.empty(),          FALSE);
 	 /*DEBUG*/xASSERT_RET(FALSE == csPass.empty(),          FALSE);
@@ -57,7 +55,7 @@ BOOL CxPop3::bCreate(const tString &csUser, const tString &csPass, const tString
 	 return TRUE;  
 }   
 //--------------------------------------------------------------------------- 
-//TODO: + bConnect  
+//DONE: bConnect  
 BOOL CxPop3::bConnect() {   
 	 //-------------------------------------
 	 //Create sock   
@@ -86,7 +84,7 @@ BOOL CxPop3::bConnect() {
      return TRUE;   
  }  
 //---------------------------------------------------------------------------   
-//TODO: + bLogin 
+//DONE: bLogin 
 BOOL CxPop3::bLogin() {  
 	//-------------------------------------
 	//RFC
@@ -131,7 +129,7 @@ BOOL CxPop3::bLogin() {
 	return TRUE; 
 } 
 //---------------------------------------------------------------------------
-//TODO: + bStat     
+//DONE: bStat     
 BOOL CxPop3::bStat(ULONG &ulSum, ULONG &ulSize) { 
 	//-------------------------------------
 	//RFC
@@ -210,7 +208,7 @@ BOOL CxPop3::bListAt(ULONG &ulIndex) {
 	return FALSE;
 }	
 //---------------------------------------------------------------------------
-//TODO: + bNoop (�������� ��������� ���������� � ����)   
+//DONE: bNoop (�������� ��������� ���������� � ����)   
 BOOL CxPop3::bNoop() {
 	//-------------------------------------
 	//RFC
@@ -229,7 +227,7 @@ BOOL CxPop3::bNoop() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bRset (������ ����� �������� �����)   
+//DONE: bRset (������ ����� �������� �����)   
 BOOL CxPop3::bRset() {
 	//-------------------------------------
 	//RFC
@@ -248,7 +246,7 @@ BOOL CxPop3::bRset() {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bTop (�������� ��������� ������)   
+//DONE: bTop (�������� ��������� ������)   
 BOOL CxPop3::bTop(INT iNum, INT iLines, tString &sBuff) {
 	/*DEBUG*/xASSERT_RET(iNum   > 0,   FALSE);
 	/*DEBUG*/xASSERT_RET(iLines > - 1, FALSE);
@@ -276,7 +274,7 @@ BOOL CxPop3::bTop(INT iNum, INT iLines, tString &sBuff) {
 	return TRUE; 
 }
 //---------------------------------------------------------------------------  
-//TODO: + bRetriveRaw () 
+//DONE: bRetriveRaw () 
 BOOL CxPop3::bRetriveRaw(INT iNum, const tString &csDirPath, const tString &csFileName) {  //csDirPath ��� ����� 
 	/*DEBUG*/xASSERT_RET(iNum > 0,                    FALSE);
 	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  FALSE);
@@ -299,7 +297,7 @@ BOOL CxPop3::bRetriveRaw(INT iNum, const tString &csDirPath, const tString &csFi
 	xCHECK_RET(FALSE == _m_bRes, FALSE);
 
 	//-------------------------------------
-	//TODO: + ������� 1-�� ������ [+OK message 1 (652 octets)]
+	//DONE: ������� 1-�� ������ [+OK message 1 (652 octets)]
 	size_t uiOkPos      = _m_sRes.find("+OK");
 	size_t uiFirstCRPos = _m_sRes.find("\r\n");
 	if (tString::npos != uiOkPos && 0 == uiOkPos && tString::npos != uiFirstCRPos) {
@@ -309,7 +307,7 @@ BOOL CxPop3::bRetriveRaw(INT iNum, const tString &csDirPath, const tString &csFi
 	}	
 
 	//-------------------------------------
-	//TODO: + ������� [\r\n.\r\n]
+	//DONE: ������� [\r\n.\r\n]
 	size_t uiEndOfMessagePos = _m_sRes.rfind("\r\n.\r\n");
 	if (tString::npos != uiEndOfMessagePos) {
 		_m_sRes.erase(uiEndOfMessagePos, 5);	//"\r\n.\r\n" - 5 c������"
@@ -330,7 +328,7 @@ BOOL CxPop3::bRetriveRaw(INT iNum, const tString &csDirPath, const tString &csFi
     return TRUE;  
 }   
 //---------------------------------------------------------------------------
-//TODO: + bRetriveRawAndBackup ()
+//DONE: bRetriveRawAndBackup ()
 BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const tString &csDirPath, const tString &csBackupDirPath, const tString &csFileName) {
 	/*DEBUG*/xASSERT_RET(iNum > 0,                                                         FALSE);
 	/*DEBUG*/xASSERT_RET(! (true == csDirPath.empty() && true == csBackupDirPath.empty()), FALSE);
@@ -353,7 +351,7 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const tString &csDirPath, const tStr
 	xCHECK_RET(FALSE == _m_bRes, FALSE);
 
 	//-------------------------------------
-	//TODO: + ������� 1-�� ������ [+OK message 1 (652 octets)]
+	//DONE: ������� 1-�� ������ [+OK message 1 (652 octets)]
 	size_t uiOkPos      = _m_sRes.find("+OK");
 	size_t uiFirstCRPos = _m_sRes.find("\r\n");
 	if (tString::npos != uiOkPos && 0 == uiOkPos && tString::npos != uiFirstCRPos) {
@@ -363,7 +361,7 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const tString &csDirPath, const tStr
 	}	
 
 	//-------------------------------------
-	//TODO: + ������� [\r\n.\r\n]
+	//DONE: ������� [\r\n.\r\n]
 	size_t uiEndOfMessagePos = _m_sRes.rfind("\r\n.\r\n");
 	if (tString::npos != uiEndOfMessagePos) {
 		_m_sRes.erase(uiEndOfMessagePos, 5);	//"\r\n.\r\n" - 5 c������"
@@ -398,7 +396,7 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const tString &csDirPath, const tStr
 	return TRUE;  
 }
 //---------------------------------------------------------------------------
-//TODO: + bRetrieveHeader ()
+//DONE: bRetrieveHeader ()
 BOOL CxPop3::bRetrieveHeader(INT iNum, CxMimeHeader &mhMimeHeader) {
 	/*DEBUG*/xASSERT_RET(iNum > 0, FALSE);
 
@@ -427,7 +425,7 @@ BOOL CxPop3::bRetrieveHeader(INT iNum, CxMimeHeader &mhMimeHeader) {
 	return TRUE; 
 }
 //---------------------------------------------------------------------------
-//TODO: + bDelete (������� ������)
+//DONE: bDelete (������� ������)
 BOOL CxPop3::bDelete(INT iNum) {
 	/*DEBUG*/xASSERT_RET(iNum > 0, FALSE);
 
@@ -455,7 +453,7 @@ BOOL CxPop3::bDelete(INT iNum) {
 	return TRUE;     
 }
 //---------------------------------------------------------------------------
-//TODO: + bDisconnect (������������� �� �������)
+//DONE: bDisconnect (������������� �� �������)
 BOOL CxPop3::bDisconnect() {  
 	//-------------------------------------
 	//RFC
@@ -479,7 +477,7 @@ BOOL CxPop3::bDisconnect() {
 	return TRUE; 
 }   
 //---------------------------------------------------------------------------
-//TODO: + _ulMailsSum (������� ����� �����)
+//DONE: _ulMailsSum (������� ����� �����)
 ULONG CxPop3::_ulMailsSum(const tString &csServerAnswer) {
 	/*DEBUG*/xASSERT_RET(false == csServerAnswer.empty(), FALSE);	
 
@@ -497,7 +495,7 @@ ULONG CxPop3::_ulMailsSum(const tString &csServerAnswer) {
 	return ulSum;
 }
 //---------------------------------------------------------------------------
-//TODO: + _ulMailsSize (����� ������ ����� � ������)
+//DONE: _ulMailsSize (����� ������ ����� � ������)
 ULONG CxPop3::_ulMailsSize(const tString &csServerAnswer) {
 	/*DEBUG*/xASSERT_RET(false == csServerAnswer.empty(), FALSE);	
 
@@ -524,7 +522,7 @@ ULONG CxPop3::_ulMailsSize(const tString &csServerAnswer) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + _bCommand ()
+//DONE: _bCommand ()
 BOOL CxPop3::_bCommand(const tString &csCmd, const tString &csReplyDelimiter, tString *psReply) {
 	/*DEBUG*/xASSERT_RET(false == csCmd.empty(),            FALSE);	
 	/*DEBUG*/xASSERT_RET(false == csReplyDelimiter.empty(), FALSE);	
@@ -545,7 +543,7 @@ BOOL CxPop3::_bCommand(const tString &csCmd, const tString &csReplyDelimiter, tS
 	return static_cast<BOOL>( !_bIsError(_m_sRes)/*TRUE*/ );
 } 
 //---------------------------------------------------------------------------
-//TODO: + _bIsError ()
+//DONE: _bIsError ()
 BOOL CxPop3::_bIsError(const tString &csText) {
 	/*DEBUG*/xASSERT_RET(FALSE == csText.empty(), TRUE);
 

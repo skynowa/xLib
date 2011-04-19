@@ -2,13 +2,9 @@
 * Class name:  CxStatusBar
 * Description: строка состояния
 * File name:   CxStatusBar.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     26.07.2009 23:49:15
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +12,7 @@
 #ifndef XLib_Gui_CxStatusBarH
 #define XLib_Gui_CxStatusBarH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CxWindow.h>
+#include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
 class CxStatusBar: public CxWindow {
 	public:

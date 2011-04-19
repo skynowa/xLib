@@ -2,19 +2,15 @@
 * Class name:  CxLayout
 * Description: слой для размещения контролов
 * File name:   CxLayout.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     11.03.2010 14:32:02
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxLayout.h>
+#include <xLib/Gui/CxLayout.h>
 
 /****************************************************************************
 *    Public methods                                                          

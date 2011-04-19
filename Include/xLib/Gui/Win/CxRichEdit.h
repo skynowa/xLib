@@ -2,13 +2,9 @@
 * Class name:  CxRichEdit
 * Description: 
 * File name:   CxRichEdit.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.07.2009 12:28:52
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,9 +12,9 @@
 #ifndef XLib_Gui_CxRichEdit10H
 #define XLib_Gui_CxRichEdit10H
 //---------------------------------------------------------------------------
-#include <XLib/Gui/xCommon.h>
-#include <XLib/Gui/CxWindow.h>
-#include <XLib/Fso/CxDll.h>
+#include <xLib/Gui/xCommon.h>
+#include <xLib/Gui/CxWindow.h>
+#include <xLib/Fso/CxDll.h>
 #include <richedit.h>
 //---------------------------------------------------------------------------
 class CxRichEdit: public CxWindow {

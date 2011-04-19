@@ -2,18 +2,14 @@
 * Class name:  CxIcon
 * Description: иконка
 * File name:   CxIcon.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     13.04.2010 11:21:37
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
-#include <XLib/Gui/CxIcon.h>
+#include <xLib/Gui/CxIcon.h>
 
 
 /****************************************************************************

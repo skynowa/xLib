@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxThreadPool
-* Description: ��� �������
+* Description: tread pool
 * File name:   CxThreadPool.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     10.12.2009 22:10:16
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxAutoCriticalSection
-* Description: ������ � ������������ �������� � �����
+* Description: auto critical section
 * File name:   CxAutoCriticalSection.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     19.05.2009 21:16:33
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

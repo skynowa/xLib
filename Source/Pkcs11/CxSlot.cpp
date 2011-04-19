@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxSlot
-* Description: Pkcs11 ����
+* Description: Pkcs11 slot
 * File name:   CxSlot.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib, Aladdin eToken SDK
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.03.2010 13:07:29
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -19,10 +15,10 @@
 
 
 /****************************************************************************
-*    public                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
- 
+
 //---------------------------------------------------------------------------
 //TODO: + CxSlot ()
 CxSlot::CxSlot(const CxPkcs11 &cPkcs11) :
@@ -43,12 +39,12 @@ CxSlot::~CxSlot() {
 ////	CK_BBOOL       bTokenPresent,  /* only slots with tokens? */
 ////	CK_SLOT_ID_PTR pSlotList,      /* receives array of slot IDs */
 ////	CK_ULONG_PTR   pulCount        /* receives number of slots */
-////) 
+////)
 BOOL
 CxSlot::bGetList(
 	CK_BBOOL                 bTokenPresent,		/* only slots with tokens? */
 	std::vector<CK_SLOT_ID> *pvecSlotList       /* receives array of slot IDs */
-) 
+)
 {
 	/*DEBUG*/xASSERT_RET(NULL != _m_pFunc,     FALSE);
 	/*DEBUG*/// bTokenPresent - n/a
@@ -56,18 +52,18 @@ CxSlot::bGetList(
 
 	CK_ULONG ulCount = 0;
 
-	(*pvecSlotList).clear();	
+	(*pvecSlotList).clear();
 
 	_m_ulRes = _m_pFunc->C_GetSlotList(bTokenPresent, NULL_PTR, &ulCount);
 	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 	xCHECK_RET(0 == ulCount, TRUE);
 
-	(*pvecSlotList).resize(ulCount);	
+	(*pvecSlotList).resize(ulCount);
 
 	_m_ulRes = _m_pFunc->C_GetSlotList(bTokenPresent, &(*pvecSlotList).at(0), &ulCount);
 	/*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 	/*DEBUG*/xASSERT_RET    ((*pvecSlotList).size() == ulCount,                                        FALSE);
-		
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -84,8 +80,8 @@ CxSlot::bGetInfo(
 
 	_m_ulRes = _m_pFunc->C_GetSlotInfo(slotID, pInfo);
 	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
-	
-	return TRUE;	
+
+	return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: + bWaitForEvent (waits for a slot event (token insertion, removal, etc.) to occur)
@@ -101,33 +97,33 @@ CxSlot::nfWaitForEvent(
 	/*DEBUG*/xASSERT_RET(NULL     != pSlot,    nfError);
 	/*DEBUG*/// pRserved - n/a
 
-	_m_ulRes = _m_pFunc->C_WaitForSlotEvent(flags, pSlot, pRserved);		
+	_m_ulRes = _m_pFunc->C_WaitForSlotEvent(flags, pSlot, pRserved);
 	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), nfError);
 
 	//-------------------------------------
 	//�������� ������� ������ � �����
-	CK_SLOT_INFO siInfo = {0};
+	CK_SLOT_INFO siInfo = {{0}};
 
 	_m_bRes = bGetInfo(*pSlot, &siInfo);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, nfError);
 
 	xCHECK_RET(siInfo.flags & CKF_TOKEN_PRESENT, nfInsertion);
-		
+
 	return nfRemoval;
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*    public: utils                                                         
-*                                                                            
-*****************************************************************************/ 
+*    public: utils
+*
+*****************************************************************************/
 
 
 
 /****************************************************************************
-*    Private methods                                                         
-*                                                                            
+*    Private methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------

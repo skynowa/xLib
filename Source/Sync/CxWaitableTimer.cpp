@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxWaitableTimer
-* Description: работа с таймером ожидания
+* Description: waitable timer
 * File name:   CxWaitableTimer.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.05.2009 17:07:46
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,20 +18,20 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxWaitableTimer ()
+//DONE: CxWaitableTimer ()
 CxWaitableTimer::CxWaitableTimer() :
 	_m_hWaitableTimer()
 {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxWaitableTimer ()
+//DONE: ~CxWaitableTimer ()
 CxWaitableTimer::~CxWaitableTimer() {
 	/*DEBUG*/xASSERT(FALSE != _m_hWaitableTimer.bIsValid());
 
 }
 //---------------------------------------------------------------------------
-//TODO: + hGetHandle ()
+//DONE: hGetHandle ()
 HANDLE
 CxWaitableTimer::hGetHandle() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), NULL);
@@ -43,7 +39,7 @@ CxWaitableTimer::hGetHandle() const {
 	return _m_hWaitableTimer.m_hHandle;
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreate ()
+//DONE: bCreate ()
 BOOL
 CxWaitableTimer::bCreate(BOOL bManualReset, LPCTSTR pcszName, LPSECURITY_ATTRIBUTES lpTimerAttributes) {
 	/*DEBUG*/xASSERT_RET(FALSE == _m_hWaitableTimer.bIsValid(), FALSE);
@@ -58,14 +54,14 @@ CxWaitableTimer::bCreate(BOOL bManualReset, LPCTSTR pcszName, LPSECURITY_ATTRIBU
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bOpen ()
+//DONE: bOpen ()
 BOOL
 CxWaitableTimer::bOpen(LPCTSTR pcszName, ULONG ulDesiredAccess, BOOL bInheritHandle) {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
 
 	HANDLE hRes = NULL;
 
-	hRes = ::OpenWaitableTimer(ulDesiredAccess, bInheritHandle, pcszName);
+	hRes = ::OpenWaitableTimerA(ulDesiredAccess, bInheritHandle, pcszName);
 	/*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
 	_m_hWaitableTimer.m_hHandle = hRes;
@@ -73,7 +69,7 @@ CxWaitableTimer::bOpen(LPCTSTR pcszName, ULONG ulDesiredAccess, BOOL bInheritHan
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bCancel ()
+//DONE: bCancel ()
 BOOL
 CxWaitableTimer::bCancel() const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
@@ -86,7 +82,7 @@ CxWaitableTimer::bCancel() const {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSet ()
+//DONE: bSet ()
 BOOL
 CxWaitableTimer::bSet(LONGLONG i64DueTime, LONG liPeriod, PTIMERAPCROUTINE pfnCompletionRoutine, LPVOID pvArgToCompletionRoutine, BOOL bResume) const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
@@ -108,7 +104,7 @@ CxWaitableTimer::bSet(LONGLONG i64DueTime, LONG liPeriod, PTIMERAPCROUTINE pfnCo
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bWait ()
+//DONE: bWait ()
 BOOL
 CxWaitableTimer::bWait(ULONG ulTimeout) const {
 	/*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);

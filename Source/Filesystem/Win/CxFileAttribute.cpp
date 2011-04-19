@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxFileAttribute
-* Description: �������� �����
+* Description: file attribute
 * File name:   CxFileAttribute.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     06.04.2010 13:37:54
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -22,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + atGet
+//DONE: atGet
 /*static*/
 CxFileAttribute::EAttribute 
 CxFileAttribute::atGet(const tString &csFilePath) {
@@ -32,7 +28,7 @@ CxFileAttribute::atGet(const tString &csFilePath) {
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: + bSet
+//DONE: bSet
 /*static*/
 BOOL 
 CxFileAttribute::bSet(const tString &csFilePath, EAttribute atValue) {
@@ -47,7 +43,7 @@ CxFileAttribute::bSet(const tString &csFilePath, EAttribute atValue) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bAdd
+//DONE: bAdd
 /*static*/
 BOOL 
 CxFileAttribute::bAdd(const tString &csFilePath, EAttribute atValue) {
@@ -57,7 +53,7 @@ CxFileAttribute::bAdd(const tString &csFilePath, EAttribute atValue) {
 	return bModify(csFilePath, static_cast<EAttribute>(0), atValue);
 }
 //---------------------------------------------------------------------------
-//TODO: + bRemove ()
+//DONE: bRemove ()
 /*static*/
 BOOL 
 CxFileAttribute::bRemove(const tString &csFilePath, EAttribute atValue)  {
@@ -67,7 +63,7 @@ CxFileAttribute::bRemove(const tString &csFilePath, EAttribute atValue)  {
 	return bModify(csFilePath, atValue, static_cast<EAttribute>(0));
 }
 //---------------------------------------------------------------------------
-//TODO: + bModify
+//DONE: bModify
 /*static*/
 BOOL 
 CxFileAttribute::bModify(const tString &csFilePath, EAttribute atRemoveValue, EAttribute atAddValue) {	
@@ -133,12 +129,12 @@ CxFileAttribute::bIsExists(const tString &csFilePath, EAttribute atValue) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxFileAttribute (comment)
+//DONE: CxFileAttribute (comment)
 CxFileAttribute::CxFileAttribute() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxFileAttribute (comment)
+//DONE: ~CxFileAttribute (comment)
 CxFileAttribute::~CxFileAttribute() {
 
 }

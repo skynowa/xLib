@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxDebugger
-* Description: отладка кода
+* Description: debbuger
 * File name:   CxDebugger.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     27.11.2009 16:39:23
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

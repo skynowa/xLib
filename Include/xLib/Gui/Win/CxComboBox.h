@@ -2,13 +2,9 @@
 * Class name:  CxComboBox
 * Description: работа с выпадающем списком
 * File name:   CxComboBox.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     24.07.2009 17:01:13
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +12,7 @@
 #ifndef XLib_Gui_CxComboBoxH
 #define XLib_Gui_CxComboBoxH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CxWindow.h>
+#include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
 class CxComboBox: public CxWindow { 
 	public:

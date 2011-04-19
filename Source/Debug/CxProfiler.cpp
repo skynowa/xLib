@@ -2,10 +2,8 @@
 * Class name:  CxProfiler
 * Description: code profiling
 * File name:   CxProfiler.cpp
-* String type: Ansi (tString)
-* Compilers:   Visual C++ 2008
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     07.04.2009 16:59:44
 *
 *****************************************************************************/

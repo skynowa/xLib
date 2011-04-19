@@ -1,14 +1,10 @@
 /****************************************************************************
 * Class name:  CxInputBox
-* Description: ������ �����
+* Description: input box
 * File name:   CxInputBox.h
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     22.10.2010 13:53:30
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

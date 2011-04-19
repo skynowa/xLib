@@ -5,14 +5,14 @@
 #include <vector>
 #include <map>
 
-#include <XLib/CxString.h>
-#include <XLib/Sync/CxThreadPool.h>
-#include <XLib/Debug/CxAssert.h>
-#include <XLib/Sync/CxCriticalSection.h>
-#include <XLib/Sync/CxAutoCriticalSection.h>
-#include <XLib/Fso/CxStdioFile.h>
-#include <XLib/Log/CxConsoleLog.h>
-#include <XLib/Log/CxTraceLog.h>
+#include <xLib/CxString.h>
+#include <xLib/Sync/CxThreadPool.h>
+#include <xLib/Debug/CxAssert.h>
+#include <xLib/Sync/CxCriticalSection.h>
+#include <xLib/Sync/CxAutoCriticalSection.h>
+#include <xLib/Fso/CxStdioFile.h>
+#include <xLib/Log/CxConsoleLog.h>
+#include <xLib/Log/CxTraceLog.h>
 
 #include "CWorkThread.h"
 //---------------------------------------------------------------------------

@@ -2,13 +2,9 @@
 * Class name:  CxCrc32
 * Description: Crc32
 * File name:   CxCrc32.cpp
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     13.09.2010 12:25:59
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -24,17 +20,17 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxCrc32
+//DONE: CxCrc32
 CxCrc32::CxCrc32() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxCrc32
+//DONE: ~CxCrc32
 CxCrc32::~CxCrc32() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + ulCalc
+//DONE: ulCalc
 /*static*/
 ULONG
 CxCrc32::ulCalc(UCHAR *pucBuff, ULONG ulSize) {
@@ -62,7 +58,7 @@ CxCrc32::ulCalc(UCHAR *pucBuff, ULONG ulSize) {
 	return crc ^ 0xFFFFFFFFUL;
 }
 //---------------------------------------------------------------------------
-//TODO: + ulCalcFile
+//DONE: ulCalcFile
 /*static*/
 ULONG
 CxCrc32::ulCalcFile(const tString &csFilePath) {
@@ -84,7 +80,7 @@ CxCrc32::ulCalcFile(const tString &csFilePath) {
 	return ulRes; 
 }
 //---------------------------------------------------------------------------
-//TODO: + ulCalcFast
+//DONE: ulCalcFast
 /*static*/
 ULONG
 CxCrc32::ulCalcFast(UCHAR *pucBuff, ULONG ulSize) {
@@ -183,7 +179,7 @@ CxCrc32::ulCalcFast(UCHAR *pucBuff, ULONG ulSize) {
 	return crc ^ 0xFFFFFFFFUL;
 }
 //---------------------------------------------------------------------------
-//TODO: + ulCalcFileFast
+//DONE: ulCalcFileFast
 /*static*/
 ULONG
 CxCrc32::ulCalcFileFast(const tString &csFilePath) {
@@ -205,7 +201,7 @@ CxCrc32::ulCalcFileFast(const tString &csFilePath) {
 	return ulRes; 
 }
 //---------------------------------------------------------------------------
-//TODO: + sFormatHex (format Crc32 like "0AADDEA0")
+//DONE: sFormatHex (format Crc32 like "0AADDEA0")
 /*static*/
 tString
 CxCrc32::sFormatHex(ULONG ulCrc32) {

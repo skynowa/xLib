@@ -2,13 +2,9 @@
 * Class name:  CxImage
 * Description: GDI+ image
 * File name:   CxImage.cpp
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     14.05.2010 17:10:16
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

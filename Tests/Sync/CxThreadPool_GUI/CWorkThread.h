@@ -2,13 +2,9 @@
 * Class name:  CWorkThread
 * Description: рабочий поток
 * File name:   CWorkThread.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     10.12.2009 22:10:16
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,14 +12,14 @@
 #ifndef CWorkThreadH
 #define CWorkThreadH
 //---------------------------------------------------------------------------
-#include <XLib/xCommon.h>
-#include <XLib/Sync/CxCriticalSection.h>
-#include <XLib/Sync/CxAutoCriticalSection.h>
-#include <XLib/Sync/CxThread.h>
-#include <XLib/Log/CxConsoleLog.h>
-#include <XLib/Log/CxTraceLog.h>
-#include <XLib/Log/CxFileLog.h>
-#include <XLib/Log/CxWndLog.h>
+#include <xLib/xCommon.h>
+#include <xLib/Sync/CxCriticalSection.h>
+#include <xLib/Sync/CxAutoCriticalSection.h>
+#include <xLib/Sync/CxThread.h>
+#include <xLib/Log/CxConsoleLog.h>
+#include <xLib/Log/CxTraceLog.h>
+#include <xLib/Log/CxFileLog.h>
+#include <xLib/Log/CxWndLog.h>
 #include <string>
 #include <vector>
 //---------------------------------------------------------------------------
@@ -32,7 +28,8 @@ class CWorkThread : public CxThread {
 		size_t       m_uiIndex;
 
 				     CWorkThread(BOOL bIsPaused, BOOL bAutoDelete);
-			        ~CWorkThread();
+		virtual     ~CWorkThread();
+
 	protected:
 		virtual UINT uiOnRun    (VOID *pData);	/*overload*/
 		virtual VOID vOnEnter   ();			    /*overload*/

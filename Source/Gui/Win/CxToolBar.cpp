@@ -2,19 +2,15 @@
 * Class name:  CxToolBar
 * Description: работа с тулбаром
 * File name:   CxToolBar.сзз
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     24.07.2009 11:20:41
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxToolBar.h>
+#include <xLib/Gui/CxToolBar.h>
 
 //---------------------------------------------------------------------------
 CxToolBar::CxToolBar() : 
@@ -105,11 +101,11 @@ INT CxToolBar::AddButton(INT nBitmap,//номер картинки для тулбара (ресурс/ширина
 	tb.hInst = GetModuleHandle(NULL);
 	tb.nID = 100;
 	stdidx = (INT)SendMessage (_m_hWnd, TB_ADDBITMAP, 0, (LPARAM)&tb);
-	for (INT i = 0; i < ARRAYSIZE(tbButtonsAdd); i++)
+	for (INT i = 0; i < xARRAY_SIZE(tbButtonsAdd); i++)
 		tbButtonsAdd[i].iBitmap += stdidx;
 	SendMessage (_m_hWnd,
 		TB_ADDBUTTONS, 
-		ARRAYSIZE(tbButtonsAdd), 
+		xARRAY_SIZE(tbButtonsAdd), 
 		(LPARAM) &tbButtonsAdd[0]);
 	return TRUE;
 }

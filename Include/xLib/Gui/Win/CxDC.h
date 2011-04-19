@@ -2,13 +2,9 @@
 * Class name:  CxDC
 * Description: работа с контекстом устройства
 * File name:   CxDC.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     18.06.2009 21:30:49
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +12,7 @@
 #ifndef CxDCH
 #define CxDCH
 //---------------------------------------------------------------------------------------
-#include <XLib/xCommon.h>
+#include <xLib/xCommon.h>
 //---------------------------------------------------------------------------------------
 class CxDC : public CxNonCopyable {
 	public:

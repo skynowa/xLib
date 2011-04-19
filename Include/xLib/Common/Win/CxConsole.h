@@ -2,13 +2,9 @@
 * Class name:  CxConsole
 * Description: console
 * File name:   CxConsole.h
-* Compilers:   Visual C++ 2010, C++ Builder 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     09.09.2010 10:06:20
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #define xLib_Coomon_Win_CxConsoleH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxConsole : public CxNonCopyable {
 	public:
@@ -43,8 +39,8 @@ class CxConsole : public CxNonCopyable {
 		BOOL                            _m_bRes;
 		HWND                            _m_hWnd; 
 		HMENU                           _m_hMenu; 
-		CxHandleT<INVALID_HANDLE_VALUE> _m_hStdIn; 
-		CxHandleT<INVALID_HANDLE_VALUE> _m_hStdOut; 
+		CxHandle _m_hStdIn;   //INVALID_HANDLE_VALUE
+		CxHandle _m_hStdOut;  //INVALID_HANDLE_VALUE
 
 		HWND                     	    hGetWndHandle (); 
 		HMENU                    		hGetMenuHandle(BOOL bRevert); 

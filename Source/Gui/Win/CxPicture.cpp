@@ -2,21 +2,17 @@
 * Class name:  CxPicture
 * Description: картинка
 * File name:   CxPicture.cpp
-* Compilers:   Visual C++ 2008
-* String type: Unicode, Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     20.07.2010 20:40:41
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxPicture.h>
+#include <xLib/Gui/CxPicture.h>
 
-#include <XLib/GUI/CxWindowImpl.h>
+#include <xLib/GUI/CxWindowImpl.h>
 
 //---------------------------------------------------------------------------
 //TODO: - CxPicture
@@ -50,7 +46,7 @@ CxPicture::~CxPicture() {
 	xCHECK_DO(FALSE == _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxPicture::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
@@ -73,7 +69,7 @@ BOOL CxPicture::bCreateRes(INT iID, CxWindow *pwndParent) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + bSetViewStyle (установка стиля)
+//DONE: bSetViewStyle (установка стиля)
 BOOL CxPicture::bSetViewStyle(EViewStyle vsViewStyle) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
@@ -85,7 +81,7 @@ BOOL CxPicture::bSetViewStyle(EViewStyle vsViewStyle) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bSetImage (установка изображения)
+//DONE: bSetImage (установка изображения)
 BOOL CxPicture::bSetImage(EImageType itImageType, HANDLE hImage) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 		

@@ -2,13 +2,9 @@
 * Class name:  CxCom
 * Description: COM
 * File name:   CxCom.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     10.12.2009 15:27:35
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 

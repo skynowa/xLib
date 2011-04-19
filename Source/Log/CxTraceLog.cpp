@@ -2,13 +2,9 @@
 * Class name:  CxTraceLog
 * Description: tracing
 * File name:   CxTraceLog.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     01.06.2009 17:45:21
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -26,14 +22,14 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxTraceLog ()
+//DONE: CxTraceLog ()
 CxTraceLog::CxTraceLog(BOOL bIsUseTimeStr) :
 	_m_bIsEnable    (TRUE),
 	_m_bIsUseTimeStr(bIsUseTimeStr)
 {
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTraceLog ()
+//DONE: ~CxTraceLog ()
 CxTraceLog::~CxTraceLog() {
 
 }
@@ -48,7 +44,7 @@ CxTraceLog::bSetEnabled(BOOL bFlag) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bWrite ()
+//DONE: bWrite ()
 BOOL
 CxTraceLog::bWrite(LPCTSTR pcszFormat, ...) {
 	/*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);

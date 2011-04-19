@@ -2,13 +2,9 @@
 * Class name:  CxPicture
 * Description: картинка
 * File name:   CxPicture.h
-* Compilers:   Visual C++ 2008
-* String type: Unicode, Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     20.07.2010 20:40:41
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,7 +12,7 @@
 #ifndef XLib_Gui_CxPictureH
 #define XLib_Gui_CxPictureH
 //---------------------------------------------------------------------------
-#include <XLib/GUI/CxWindow.h>
+#include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
 class CxPicture : public CxWindow {
 	public:

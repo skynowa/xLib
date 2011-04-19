@@ -2,13 +2,9 @@
 * Class name:  CxInputBox
 * Description: диалог ввода
 * File name:   CxInputBox.h
-* Compilers:   Visual C++ 2010 
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     22.10.2010 13:53:30
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -17,7 +13,7 @@
 #ifndef XLib_Gui_CxInputBoxH
 #define XLib_Gui_CxInputBoxH
 //---------------------------------------------------------------------------
-#include <XLib/xCommon.h>
+#include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
 #define ID_staPrompt	101
 #define ID_edtText 	    102
@@ -188,7 +184,7 @@ class CxInputBox : public CxNonCopyable {
 		}
 
 		//---------------------------------------------------------------------------
-		//TODO: + sGetText (текст)
+		//DONE: sGetText (текст)
 		tString sGetText() {
 			return _m_sText;	
 		}

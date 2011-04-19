@@ -2,13 +2,9 @@
 * Class name:  CxResources
 * Description: 
 * File name:   CxResources.h
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     07.09.2009 9:44:20
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
@@ -16,8 +12,8 @@
 #ifndef XLib_Gui_CxResourcesH
 #define XLib_Gui_CxResourcesH
 //---------------------------------------------------------------------------
-#include <XLib/Common/xCommon.h>
-#include <XLib/Gui/Win/xCommon.h>
+#include <xLib/Common/xCommon.h>
+#include <xLib/Gui/Win/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
 class CxResources : public CxNonCopyable {

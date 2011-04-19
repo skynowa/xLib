@@ -1,11 +1,9 @@
 /****************************************************************************
 * Class name:  CxString
-* Description: strigs
+* Description: strings utils
 * File name:   CxString.h
-* String type: ansi, unicode
-* Compilers:   Visual C++ 2008
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     07.04.2009 17:01:15
 *
 *****************************************************************************/
@@ -145,7 +143,7 @@ class CxString : public CxNonCopyable {
 
 			try {
 				ossStream << cValueT;
-			} catch (tostringstream::failure e) {
+			} catch (tostringstream::failure &e) {
 				/*DEBUG*///xASSERT_RET(FALSE, tString());
 			} catch (...) {
 				/*DEBUG*///xASSERT_RET(FALSE, tString());
@@ -166,7 +164,7 @@ class CxString : public CxNonCopyable {
 			T ResT;
 			try {
 				issStream >> ResT;
-			} catch (tistringstream::failure e) {
+			} catch (tistringstream::failure &e) {
 				/*DEBUG*///xASSERT_RET(FALSE, T());
 			} catch (...) {
 				/*DEBUG*///xASSERT_RET(FALSE, T());

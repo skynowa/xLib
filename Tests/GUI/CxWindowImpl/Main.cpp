@@ -1,10 +1,10 @@
 #include <windows.h>
 #include <tchar.h>
 
-#include <XLib/Gui/CxIcon.h>
-#include <XLib/Gui/CxApplication.h>
-#include <XLib/Gui/Resource.xrc.h>
-#include <XLib/CxSystemInfo.h>
+#include <xLib/Gui/CxIcon.h>
+#include <xLib/Gui/CxApplication.h>
+#include <xLib/Gui/Resource.xrc.h>
+#include <xLib/CxSystemInfo.h>
 
 #include "Windows/CWndMain.h"
 

@@ -2,21 +2,17 @@
 * Class name:  CxPushButton
 * Description: 
 * File name:   CxPushButton.cpp
-* Compilers:   Visual C++ 2008
-* String type: Ansi
-* Libraries:   WinAPI, Stl, XLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
 * Created:     25.07.2009 21:38:38
-* Version:     1.0.0.0 Debug
 *
 *****************************************************************************/
 
 
 
-#include <XLib/Gui/CxPushButton.h>
+#include <xLib/Gui/CxPushButton.h>
 
-#include <XLib/GUI/CxWindowImpl.h>
+#include <xLib/GUI/CxWindowImpl.h>
 
 
 /****************************************************************************
@@ -25,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxPushButton
+//DONE: CxPushButton
 CxPushButton::CxPushButton(BOOL bRadioButtonLike) {
 	LOG();
 
@@ -47,7 +43,7 @@ CxPushButton::CxPushButton(BOOL bRadioButtonLike) {
 	_m_vsViewStyle    = vsText;
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxPushButton
+//DONE: ~CxPushButton
 /*virtual*/
 CxPushButton::~CxPushButton() {
 	LOG();
@@ -57,7 +53,7 @@ CxPushButton::~CxPushButton() {
 	xCHECK_DO(FALSE == _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + bCreateRes
+//DONE: bCreateRes
 BOOL CxPushButton::bCreateRes(INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
@@ -105,7 +101,7 @@ BOOL CxPushButton::bSetImage(EImageType itImageType, HANDLE hImage) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + csGetState (Gets the check state of a radio button or check box)
+//DONE: csGetState (Gets the check state of a radio button or check box)
 CxPushButton::ECheckState CxPushButton::csGetState() {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, csUknown);
 
@@ -117,7 +113,7 @@ CxPushButton::ECheckState CxPushButton::csGetState() {
 	return bstRes;	
 } 
 //---------------------------------------------------------------------------
-//TODO: + bSetState (Sets the check state of a radio button or check box)
+//DONE: bSetState (Sets the check state of a radio button or check box)
 BOOL CxPushButton::bSetState(CxPushButton::ECheckState csCheckState) {
 	/*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 	/*DEBUG*///csCheckState
