@@ -46,7 +46,7 @@ CxTest_CxBlowfish::bUnit() {
 	//-------------------------------------
 	//bEncryptCfb64
 	{
-		uString usPlain[] = {
+		const uString usPlain[] = {
 			uString(1,  'a'),
 			uString(2,  'b'),
 			uString(3,  'c'),
@@ -60,7 +60,7 @@ CxTest_CxBlowfish::bUnit() {
 			uString(51, 'k')
 		};
 
-		for (INT i = 0; i < xARRAY_SIZE(usPlain); i ++) {
+		for (size_t i = 0; i < xARRAY_SIZE(usPlain); i ++) {
 			CxBlowfish BF;
 			tString sKey       = xT("888888888");
 			uString sEncrypted;
@@ -112,7 +112,7 @@ CxTest_CxBlowfish::bUnit() {
 		tString sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
 		m_bRes = BF.bSetKey(sKey);
-		xASSERT(FALSE != cmRes);
+		xASSERT(FALSE != m_bRes);
 
 		cmRes = BF.cmGetFileCryptStatus(sFilePlain, usStamp);
 		xASSERT(CxBlowfish::cmDecrypt == cmRes);

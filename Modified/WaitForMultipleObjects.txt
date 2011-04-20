@@ -1,0 +1,33 @@
+		////HANDLE hThread = _m_vecpthWorkThreads.at(i)->hGetHandle();
+		/////*DEBUG*/XASSERT(NULL != hThread);
+
+		////DWORD ulRes = ::WaitForMultipleObjects(1, &hThread, TRUE, INFINITE);
+		////switch (ulRes) {
+		////	//Объект перешёл в состояние свободного
+		////	case (WAIT_OBJECT_0 + 0): {
+		////		}
+		////		break;			
+		////							
+		////	case (WAIT_OBJECT_0 + 1): {
+		////			::Sleep(1); ////Application->ProcessMessages();
+		////		}
+		////		break;
+
+		////	//Объект не перешёл в состояние свободного за указанный период времени
+		////	case WAIT_TIMEOUT: {
+		////			/*DEBUG*/XASSERT(FALSE);
+		////		}
+		////		break;
+
+		////	//Объект мьютекс стал свободен из-за отказа от него
+		////	case WAIT_ABANDONED: {
+		////			/*DEBUG*/XASSERT(FALSE);
+		////		}
+		////		break;
+
+		////	//Произошла ошибка
+		////	case WAIT_FAILED: {
+		////			/*DEBUG*/XASSERT(FALSE);
+		////		}
+		////		break;
+		////}

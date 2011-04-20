@@ -1,0 +1,62 @@
+			////dec	read/write integral values using decimal base format.
+			////hex	read/write integral values using hexadecimal base format.
+			////oct	read/write integral values using octal base format.
+			
+			//---------------------------------------------------------------------------
+			//
+			template<typename CharT>
+			static tstring sStrToBase(const std::basic_string<CharT> &csStr, INT iBase)	{
+				/*DEBUG*/xASSERT_RET(false == csStr.empty(),                   FALSE);
+				/*DEBUG*/xASSERT_RET(8 == iBase || 10 == iBase || 16 == iBase, FALSE);
+				
+				std::basic_stringstream<CharT> ssStream;
+				ssStream << std::setbase(iBase) << std::showbase << std::uppercase;
+
+				copy(csStr.begin(), csStr.end(), std::ostream_iterator<INT, CharT>(ssStream, _T(" ")/*csSep.at(0)*/));
+				
+				return ssStream.str();
+			}
+			/*
+			string CharToHexString(char ch)
+			{
+				ostringstream oss;
+				oss << hex << uppercase << (int)ch;
+				return oss.str();
+			}
+			*/
+
+			/*
+			std::string str = "41 42 43";
+			std::istringstream iss(str);
+			std::vector<int> vi;
+
+			iss >> std::hex;
+			std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(vi));
+
+			tcout << (TCHAR)vi.at(0) << std::endl;
+			tcout << (TCHAR)vi.at(1) << std::endl;
+			tcout << (TCHAR)vi.at(2) << std::endl;
+			*/
+
+			template<typename CharT> 
+			static tstring sBaseToStr(const std::basic_string<CharT> &csStr, INT iBase) {
+				/*DEBUG*/xASSERT_RET(false == csStr.empty(),                   FALSE);
+				/*DEBUG*/xASSERT_RET(8 == iBase || 10 == iBase || 16 == iBase, FALSE);
+				
+				tstring sResT;
+
+				tistringstream issStream(csStr);
+				issStream >> std::setbase(iBase);
+
+				std::copy(std::istream_iterator<INT>(issStream), std::istream_iterator<INT>(), std::back_inserter(sResT));
+
+				return sResT; 
+			};
+
+
+			////std::string str = "10 11 b";
+			////std::istringstream iss(str);
+			////std::vector<int> vi;
+
+			////iss >> std::hex;
+			////std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(vi));

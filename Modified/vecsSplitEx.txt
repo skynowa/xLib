@@ -1,0 +1,21 @@
+std::vector<std::string> vecsSplitEx(CHAR *pszStr, CHAR *pszDelimiter) {
+    /*DEBUG*/XASSERT_RET(NULL != pszStr,        std::vector<std::string>());        
+	/*DEBUG*/XASSERT_RET('\0' != *pszStr,       std::vector<std::string>()); 
+    /*DEBUG*/XASSERT_RET(NULL != pszDelimiter,  std::vector<std::string>());        
+	/*DEBUG*/XASSERT_RET('\0' != *pszDelimiter, std::vector<std::string>()); 
+
+	CHECK_RET(std::string::npos == std::string(pszStr).find(pszDelimiter),  std::vector<std::string>());
+
+	std::vector<std::string> vescRes;
+	std::size_t              uiPos     = 0; 
+	std::size_t              uiPrevPos = 0;
+	std::string              sCopy(pszStr);
+
+	while (std::string::npos != (uiPos = sCopy.find(pszDelimiter, uiPos))) {
+		vescRes.push_back(std::string(sCopy, uiPrevPos, uiPos - uiPrevPos));
+		uiPrevPos = ++ uiPos;
+	}
+	vescRes.push_back(std::string(sCopy, uiPrevPos, sCopy.size() - uiPrevPos));
+
+	return vescRes;
+}

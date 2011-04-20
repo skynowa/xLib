@@ -1,0 +1,28 @@
+		//-------------------------------------
+		//приоритет потока
+		class CXPriority : public CXNonCopyable {
+			public:
+				static const INT tpError        = THREAD_PRIORITY_ERROR_RETURN;
+				static const INT tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL;
+				static const INT tpHighest      = THREAD_PRIORITY_HIGHEST;
+				static const INT tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL;
+				static const INT tpNormal       = THREAD_PRIORITY_NORMAL;
+				static const INT tpBelowNormal  = THREAD_PRIORITY_BELOW_NORMAL;
+				static const INT tpLowest       = THREAD_PRIORITY_LOWEST;
+				static const INT tpIdle         = THREAD_PRIORITY_IDLE;
+
+				enum EPriority {
+					_tpError        = THREAD_PRIORITY_ERROR_RETURN,
+					_tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL,
+					_tpHighest      = THREAD_PRIORITY_HIGHEST,
+					_tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
+					_tpNormal       = THREAD_PRIORITY_NORMAL,
+					_tpBelowNormal  = THREAD_PRIORITY_BELOW_NORMAL,
+					_tpLowest       = THREAD_PRIORITY_LOWEST,
+					_tpIdle         = THREAD_PRIORITY_IDLE
+				};				
+
+			private:
+				CXPriority();
+		};
+		typedef CXPriority::EPriority  TPriority;

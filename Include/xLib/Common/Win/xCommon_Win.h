@@ -148,7 +148,11 @@
 //---------------------------------------------------------------------------
 //OBM_ (#include <winuser.h>)
 #define OEMRESOURCE
-////#define WIN32_LEAN_AND_MEAN //Prevent winsock.h #include's
+
+#ifndef WIN32_LEAN_AND_MEAN
+    #define WIN32_LEAN_AND_MEAN
+#endif
+
 #define _WINSOCKAPI_        //Prevent winsock.h #include's
 
 #include <winsock2.h>
@@ -202,13 +206,7 @@
 	#define OPENFILENAME_SIZE_VERSION_400 sizeof(OPENFILENAME)
 #endif
 
-// disable min/max macros:
-#ifdef min
-#  undef min
-#endif
-#ifdef max
-#  undef max
-#endif
+//disable min/max macros:
 #ifndef NOMINMAX
 #  define NOMINMAX
 #endif

@@ -1,0 +1,46 @@
+//---------------------------------------------------------------------------
+//TODO: + bResume_Depr (возобновление потока)
+BOOL CXThread::bResume_Depr() {
+	/*DEBUG*/XASSERT_RET(CHECK_HANDLE(_m_hThread), FALSE);
+
+	ULONG ulResumeCount = (ULONG) - 1;
+
+	ulResumeCount = ::ResumeThread(_m_hThread);
+	/*DEBUG*/XASSERT_RET((ULONG) - 1 != ulResumeCount, FALSE);
+
+	while (ulResumeCount > 1) {
+		ulResumeCount = ::ResumeThread(_m_hThread);
+		/*DEBUG*/XASSERT_RET((ULONG) - 1 != ulResumeCount, FALSE);
+	}
+
+	//-------------------------------------
+	//состояние потоков
+	/*_m_bIsCreated*/
+	/*_m_bIsRunning*/
+	_m_bIsPaused = FALSE;
+	/*_m_bIsSleeping*/
+	/*_m_bIsExited*/
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: + bPause_Depr (приостановка потока)
+BOOL CXThread::bPause_Depr() {
+	/*DEBUG*/XASSERT_RET(CHECK_HANDLE(_m_hThread), FALSE); 
+
+	ULONG ulRes = (ULONG) -1;
+
+	ulRes = ::SuspendThread(_m_hThread);         
+	/*DEBUG*/XASSERT_RET((ULONG) -1 != ulRes, FALSE);
+
+	//-------------------------------------
+	//состояние потоков
+	/*_m_bIsCreated*/
+	/*_m_bIsRunning*/
+	_m_bIsPaused = TRUE;
+	/*_m_bIsSleeping*/
+	/*_m_bIsExited*/
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------

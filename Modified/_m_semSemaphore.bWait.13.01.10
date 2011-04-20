@@ -1,0 +1,10 @@
+	//do {	
+	bRes = _m_semSemaphore.bWait(INFINITE);
+	/*DEBUG*/XASSERT_RET(FALSE != bRes, FALSE);
+	//}
+	//while (bRes != TRUE);
+
+	////while (WAIT_OBJECT_0 != ulWaitResult) {
+	////	ulWaitResult = ::WaitForSingleObject(_m_semSemaphore, 1);
+	////	cout << "Test 3 TIMEOUT" << endl;
+	////}

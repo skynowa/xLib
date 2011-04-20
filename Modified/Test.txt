@@ -1,0 +1,139 @@
+	////while (true) 
+	////{
+	////	CXThreadPool *pthT = new CXThreadPool(TRUE, TRUE, TRUE);
+
+	////	//-------------------------------------
+	////	//действиz
+	////	INT iParam = 1000/*00000*/;
+	////	g_bRes = pthT->bCreate(0, &iParam);
+	////	XASSERT(FALSE != g_bRes);
+	////	LOG("bCreate()");
+
+	////	//-------------------------------------
+	////	//флаги действий
+	////	g_bRes = pthT->bIsCreated();
+	////	XASSERT(FALSE != g_bRes);
+	////	LOG("bIsCreated()");
+
+	////	g_bRes = pthT->bIsRunning();
+	////	XASSERT(FALSE != g_bRes);
+	////	LOG("bIsRunning()");
+
+	////	g_bRes = pthT->bIsPaused();
+	////	XASSERT(TRUE == g_bRes);
+	////	LOG("bIsPaused()");
+
+	////	g_bRes = pthT->bIsSleeping();
+	////	XASSERT(FALSE == g_bRes);
+	////	LOG("bIsSleeping()");
+
+	////	g_bRes = pthT->bIsExited();
+	////	XASSERT(FALSE == g_bRes);
+	////	LOG("bIsExited()");
+
+
+	////	//-------------------------------------
+	////	//сообщения
+	////	g_bRes = pthT->bPostMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
+	////	g_bRes = pthT->bSendMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
+	////	///g_bRes = pthT->bPostThreadMessage(WM_TEST_MSG_1, 0, 0);
+
+	////	//-------------------------------------
+	////	//приоритет
+	////	g_bRes = pthT->bSetPriority(CXThread::PRIORITY_LOWEST);
+	////	XASSERT(FALSE != g_bRes);
+
+	////	g_iRes = pthT->tpGetPriority(); 
+	////	XASSERT(g_iRes == CXThread::PRIORITY_LOWEST);
+
+	////	g_bRes = pthT->bPriorityUp();
+	////	XASSERT(FALSE != g_bRes);
+
+	////	g_bRes = pthT->bPriorityDown();
+	////	XASSERT(FALSE != g_bRes);
+
+
+	////	//-------------------------------------
+	////	//CPU
+	////	////g_bRes = bSetAffinityMask(DWORD_PTR pulMask);
+	////	////XASSERT(FALSE != g_bRes);
+
+	////	g_bRes = pthT->bSetIdealCPU(0);
+	////	XASSERT(FALSE != g_bRes);
+
+	////	g_ulRes = pthT->ulGetIdealCPU();
+	////	XASSERT(0 <= g_ulRes);
+
+	////	g_bRes = pthT->bSetIdealCPU(10);
+	////	XASSERT(FALSE != g_bRes);
+	////	LOG("bSetIdealCPU()");
+
+	////	g_bRes = pthT->bSetIdealCPU(0);
+	////	XASSERT(FALSE != g_bRes);
+	////	LOG("bSetIdealCPU()");
+
+	////	g_ulRes = pthT->ulGetIdealCPU();
+	////	XASSERT(0 == g_ulRes);
+	////	LOG("ulGetIdealCPU()");
+
+	////	g_ulRes = pthT->ulGetCPUCount();
+	////	XASSERT(0 < g_ulRes);		
+
+
+	////	//-------------------------------------
+	////	//остальное
+	////	g_hRes  = pthT->hGetHandle();
+	////	XASSERT(NULL != g_hRes);
+
+	////	g_ulRes = pthT->ulGetId();
+	////	XASSERT(0 < g_ulRes);
+
+	////	g_ulRes = pthT->ulGetExitCode();
+	////	XASSERT(0 <= g_ulRes);    
+	////	
+	////	g_bRes = pthT->bSetDebugNameA("TestThreadName");
+	////	XASSERT(FALSE != g_bRes);
+	////	LOG("bSetDebugName()");
+
+
+		//////-------------------------------------
+		//////static
+		////g_hRes = CXThread::hOpen(THREAD_ALL_ACCESS, FALSE, ::GetCurrentThreadId());
+		////XASSERT(NULL != g_hRes);
+
+
+	////	//-------------------------------------
+	////	//выход
+	////	for (int i = 0; i < 3; i ++) {
+	////		//::MessageBox(0, _T("Приостановить"), _T(""), MB_OK);
+
+	////		g_bRes = pthT->bPause();
+	////		XASSERT(FALSE != g_bRes);
+	////		////LOG("bPause()");
+
+	////		//::MessageBox(0, _T("Возобновить"), _T(""), MB_OK);
+
+	////		g_bRes = pthT->bResume();
+	////		XASSERT(FALSE != g_bRes);
+	////		////LOG("bResume()");
+	////	}
+
+	////	////g_bRes = pthT->bExit(INFINITE);
+	////	////XASSERT(FALSE != g_bRes);
+	////	////LOG("bExit()");
+
+	////	////g_uiRes = pthT->uiKill(INFINITE);
+	////	////XASSERT(0 == g_uiRes);
+	////	////////LOG("uiKill()");
+
+	////	////g_bRes = pthT->bWait(INFINITE);
+	////	////XASSERT(FALSE != g_bRes);
+	////	////LOG("bWait(INFINITE)");
+
+	////	ULONG ulRes = pthT->ulGetExitCode();
+	////	LOG("ulGetExitCode(): ");
+	////	//LOG(lexical_cast(ulRes).c_str());
+
+	////	::Sleep(1);
+	////	//system("pause");
+	////}
