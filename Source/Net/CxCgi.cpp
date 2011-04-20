@@ -36,7 +36,7 @@ CxCgi::CxCgi(const size_t cuiMaxSize) :
 //DONE: CxCgi (destructor)
 /*virtual*/
 CxCgi::~CxCgi() {
-
+ int i;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetDump (dump)
