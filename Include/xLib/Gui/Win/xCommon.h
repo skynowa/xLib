@@ -53,7 +53,7 @@ WC_BUTTON          - Creates button controls. These controls enable a user to in
 WC_COMBOBOX        - Creates combobox controls. These controls contain a drop-down list from which a single item can be selected. 
 WC_COMBOBOXEX      - Creates ComboBoxEx controls. These controls provide an extension of the combo box control that provides native support for item images. 
 WC_EDIT            - Creates edit controls. These controls contain editable text. 
-WC_HEADER		   - Creates header controls. These controls display headings at the top of columns of information and let the user sort the information by clicking the headings. 
+WC_HEADER           - Creates header controls. These controls display headings at the top of columns of information and let the user sort the information by clicking the headings. 
 WC_LISTBOX         - Creates listbox controls. These controls contain lists of items. 
 WC_IPADDRESS       - Creates IP address controls. These controls are similar to an edit control, but they enable you to enter a numeric address in Internet protocol (IP) format. 
 WC_LINK            - Creates SysLink controls. These controls contain hypertext links.
@@ -61,9 +61,9 @@ WC_LISTVIEW        - Creates list-view controls. These controls display a collec
 WC_NATIVEFONTCTL   - Creates native font controls. These are invisible controls that work in the background to enable a dialog box's predefined controls to display the current system language.
 WC_PAGESCROLLER    - Creates pager controls. These controls are used to contain and scroll another window. 
 WC_SCROLLBAR       - Creates scrollbar controls. These controls enable the user to scroll the contents of a window.
-WC_STATIC		   - Creates static controls. These controls contain noneditable text. 
-WC_TABCONTROL	   - Creates tab controls. These controls define multiple pages for the same area of a window or dialog box. Each page consists of a set of information or a group of controls that an application displays when the user selects the corresponding tab.
-WC_TREEVIEW		   - Creates tree-view controls. These controls display a hierarchical list of items. Each item consists of a label and an optional bitmap.
+WC_STATIC           - Creates static controls. These controls contain noneditable text. 
+WC_TABCONTROL       - Creates tab controls. These controls define multiple pages for the same area of a window or dialog box. Each page consists of a set of information or a group of controls that an application displays when the user selects the corresponding tab.
+WC_TREEVIEW           - Creates tree-view controls. These controls display a hierarchical list of items. Each item consists of a label and an optional bitmap.
 */
 #define xCXWINDOW_CONTROL_CLASS                 xT("WC_XWINDOW")
 #define xCXLAYOUT_CONTROL_CLASS                 xT("WC_XLAYOUT")
@@ -94,8 +94,8 @@ WC_TREEVIEW		   - Creates tree-view controls. These controls display a hierarchi
 #define xCXFRAME_DEFAULT_WINDOW_STYLE           WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX
 #define xCXFRAME_DEFAULT_WINDOW_STYLE_EX        0
 
-#define xCXLAYOUT_DEFAULT_WINDOW_STYLE			WS_CHILD | WS_TABSTOP | WS_CAPTION
-#define xCXLAYOUT_DEFAULT_WINDOW_STYLE_EX		WS_EX_CONTROLPARENT
+#define xCXLAYOUT_DEFAULT_WINDOW_STYLE            WS_CHILD | WS_TABSTOP | WS_CAPTION
+#define xCXLAYOUT_DEFAULT_WINDOW_STYLE_EX        WS_EX_CONTROLPARENT
 
 
 
@@ -123,16 +123,16 @@ WC_TREEVIEW		   - Creates tree-view controls. These controls display a hierarchi
 
 
 
-#define xCXCOMBOBOX_DEFAULT_WINDOW_STYLE        WS_CHILD | WS_VISIBLE | WS_TABSTOP | CBS_DROPDOWN | CBS_SORT | WS_VSCROLL 	/*WS_CHILD | WS_VISIBLE | WS_TABSTOP*/
+#define xCXCOMBOBOX_DEFAULT_WINDOW_STYLE        WS_CHILD | WS_VISIBLE | WS_TABSTOP | CBS_DROPDOWN | CBS_SORT | WS_VSCROLL     /*WS_CHILD | WS_VISIBLE | WS_TABSTOP*/
 #define xCXCOMBOBOX_DEFAULT_WINDOW_STYLE_EX     0
 
 #define xCXEDIT_DEFAULT_WINDOW_STYLE            WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL
 #define xCXEDIT_DEFAULT_WINDOW_STYLE_EX         WS_EX_CLIENTEDGE
 
-#define xCXMDICLIENT_DEFAULT_WINDOW_STYLE       0	//TODO:
+#define xCXMDICLIENT_DEFAULT_WINDOW_STYLE       0    //TODO:
 #define xCXMDICLIENT_DEFAULT_WINDOW_STYLE_EX    0
 
-#define xCXSCROLLBAR_DEFAULT_WINDOW_STYLE       0	//TODO:
+#define xCXSCROLLBAR_DEFAULT_WINDOW_STYLE       0    //TODO:
 #define xCXSCROLLBAR_DEFAULT_WINDOW_STYLE_EX    0
 
 #define xCXSTATIC_DEFAULT_WINDOW_STYLE          WS_CHILD | WS_VISIBLE | WS_TABSTOP | SS_SIMPLE | SS_NOTIFY
@@ -158,7 +158,7 @@ WC_TREEVIEW		   - Creates tree-view controls. These controls display a hierarchi
 #define xCXRICHEDIT_DEFAULT_WINDOW_STYLE        WS_CHILD | WS_VISIBLE | WS_TABSTOP
 #define xCXRICHEDIT_DEFAULT_WINDOW_STYLE_EX     0
 
-#define xCXTAB_DEFAULT_WINDOW_STYLE			   WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_CLIPSIBLINGS | TCS_FOCUSNEVER | TCS_SINGLELINE//WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_CLIPSIBLINGS
+#define xCXTAB_DEFAULT_WINDOW_STYLE               WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_CLIPSIBLINGS | TCS_FOCUSNEVER | TCS_SINGLELINE//WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_CLIPSIBLINGS
 #define xCXTAB_DEFAULT_WINDOW_STYLE_EX          0
 //---------------------------------------------------------------------------
 //дефолтные размеры контролов (ширина, высота)
@@ -232,14 +232,14 @@ WC_TREEVIEW		   - Creates tree-view controls. These controls display a hierarchi
 #define xCXTAB_DEFAULT_HEIGHT                   350
 //---------------------------------------------------------------------------
 #define xSNDMSG(TCastType, uiMsg, wParam, lParam) \
-	((TCastType)( pSendMessage((UINT)(uiMsg), (WPARAM)(wParam), (LPARAM)(lParam)) ));
+    ((TCastType)( pSendMessage((UINT)(uiMsg), (WPARAM)(wParam), (LPARAM)(lParam)) ));
 
 #define xSNDMSG_API(TCastType, hWnd, uiMsg, wParam, lParam) \
-	((TCastType)( ::SendMessage((HWND)(hWnd), (UINT)(uiMsg), (WPARAM)(wParam), (LPARAM)(lParam)) ));
+    ((TCastType)( ::SendMessage((HWND)(hWnd), (UINT)(uiMsg), (WPARAM)(wParam), (LPARAM)(lParam)) ));
 
 #define LOG()                                  _m_tlLog.bWrite(_T(__FUNCTION__))
 //---------------------------------------------------------------------------
-#endif	//xLib_Gui_CommonH
+#endif    //xLib_Gui_CommonH
 
 
 

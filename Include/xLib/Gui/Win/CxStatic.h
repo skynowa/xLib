@@ -15,18 +15,18 @@
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
 class CxStatic: public CxWindow {
-	public:
-		         CxStatic  ();
-		virtual ~CxStatic  ();
+    public:
+                 CxStatic  ();
+        virtual ~CxStatic  ();
 
-		BOOL     bCreateRes(INT iID, CxWindow *pwndParent);
-		
-		//-------------------------------------
-		//сообщения
+        BOOL     bCreateRes(INT iID, CxWindow *pwndParent);
+        
+        //-------------------------------------
+        //сообщения
 
 
-		//-------------------------------------
-		//события
+        //-------------------------------------
+        //события
 };
 //---------------------------------------------------------------------------
-#endif	//XLib_Gui_CxStaticH
+#endif    //XLib_Gui_CxStaticH

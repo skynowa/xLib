@@ -16,42 +16,41 @@
 //---------------------------------------------------------------------------
 class CxHandle {
     private:
-		mutable BOOL  _m_bRes;
+        mutable      BOOL   _m_bRes;
+        ////const        HANDLE _m_chFailValue;
+        static const HANDLE _ms_chCurrProcessHandle;
 
-		HANDLE hFailValueT;
-		static const HANDLE _ms_chCurrProcessHandle;
+    public:
+        HANDLE        m_hHandle;
 
-	public:
-		HANDLE        m_hHandle;
+                      CxHandle                ();
+        explicit      CxHandle                (HANDLE hHandle);
+        explicit      CxHandle                (const CxHandle &hHandle);
+        virtual      ~CxHandle                ();
 
-		              CxHandle               ();
-		explicit      CxHandle               (HANDLE hHandle);
-		explicit      CxHandle               (const CxHandle &hHandle);
-		virtual      ~CxHandle               ();
+        CxHandle&     operator =              (HANDLE hHandle);
+        CxHandle&     operator =              (const CxHandle &hHandle);
+                      operator HANDLE         () const;
 
-		CxHandle&     operator =              (HANDLE hHandle);
-		CxHandle&     operator =              (const CxHandle &hHandle);
-		              operator HANDLE         () const;
+        BOOL          bIsValid                () const;
+        BOOL          bAttach                 (HANDLE hHandle);
+        HANDLE        hDetach                 ();
+        BOOL          bClose                  ();
 
-		BOOL          bIsValid                () const;
-		BOOL          bAttach                 (HANDLE hHandle);
-		HANDLE        hDetach                 ();
-		BOOL          bClose                  ();
+        ULONG         ulGetInformation        () const;
+        BOOL          bSetInformation         (ULONG ulMask, ULONG ulFlags);
+        BOOL          bIsFlagInherit          () const;
+        BOOL          bIsFlagProtectFromClose () const;
+        BOOL          bSetFlagInherit         (BOOL bFlagInherit);
+        BOOL          bSetFlagProtectFromClose(BOOL bFlagProtectFromClose);
+        HANDLE        hDuplicate              (HANDLE hTargetProcess, ULONG luDesiredAccess, BOOL bInheritHandle/* = FALSE*/, ULONG luOptions/* = 0*/) const;
 
-		ULONG         ulGetInformation        () const;
-		BOOL          bSetInformation         (ULONG ulMask, ULONG ulFlags);
-		BOOL 	      bIsFlagInherit          () const;
-		BOOL          bIsFlagProtectFromClose () const;
-		BOOL          bSetFlagInherit         (BOOL bFlagInherit);
-		BOOL          bSetFlagProtectFromClose(BOOL bFlagProtectFromClose);
-		HANDLE        hDuplicate              (HANDLE hTargetProcess, ULONG luDesiredAccess, BOOL bInheritHandle/* = FALSE*/, ULONG luOptions/* = 0*/) const;
-
-		//static
-		static HANDLE hGetCurrentProcess      ();
-		static BOOL   bIsValid                (HANDLE hHandle);
+        //static
+        static HANDLE hGetCurrentProcess      ();
+        static BOOL   bIsValid                (HANDLE hHandle);
 };
 //---------------------------------------------------------------------------
 //typedef CxHandle<NULL>                 CxHandle;
 //typedef CxHandle<INVALID_HANDLE_VALUE> CxFileHandle;
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_Win_CxHandleH
+#endif    //xLib_Common_Win_CxHandleH

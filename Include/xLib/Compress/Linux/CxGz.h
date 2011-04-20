@@ -40,16 +40,16 @@
 #define OS_CODE         3    /* Unix */
 //---------------------------------------------------------------------------
 class CxGz : public CxNonCopyable {
-	public:
-				 CxGz         ();
-		virtual ~CxGz         ();
+    public:
+                 CxGz         ();
+        virtual ~CxGz         ();
 
-		BOOL     bCompress    (INT iFileIn, INT iFileOut, const tString &csOriginName);
-		BOOL     bUncompress  (INT iFileIn, INT iFileOut);
+        BOOL     bCompress    (INT iFileIn, INT iFileOut, const tString &csOriginName);
+        BOOL     bUncompress  (INT iFileIn, INT iFileOut);
 
-	private:
-		off_t    _liCompress  (INT iFileIn, INT iFileOut, const char *pcszOriginName);
-		off_t    _liUncompress(INT iFileIn, INT iFileOut, char *pszPre, size_t uiPreLen, off_t *pliGsizep);
+    private:
+        off_t    _liCompress  (INT iFileIn, INT iFileOut, const char *pcszOriginName);
+        off_t    _liUncompress(INT iFileIn, INT iFileOut, char *pszPre, size_t uiPreLen, off_t *pliGsizep);
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Compress_CxGzH

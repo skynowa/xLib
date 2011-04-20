@@ -16,21 +16,21 @@
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
 class CxGroupBox: public CxButtonBase {
-	public:
-		//-------------------------------------
-		//константы
+    public:
+        //-------------------------------------
+        //константы
 
-		         CxGroupBox();
-		virtual ~CxGroupBox();
+                 CxGroupBox();
+        virtual ~CxGroupBox();
 
-		BOOL     bCreateRes(INT iID, CxWindow *pwndParent);
+        BOOL     bCreateRes(INT iID, CxWindow *pwndParent);
 
-		//-------------------------------------
-		//сообщения
-					
+        //-------------------------------------
+        //сообщения
+                    
 
-		//-------------------------------------
-		//события
+        //-------------------------------------
+        //события
 };
 //---------------------------------------------------------------------------
-#endif	//XLib_Gui_CxGroupBoxH
+#endif    //XLib_Gui_CxGroupBoxH

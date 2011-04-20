@@ -20,112 +20,112 @@ template <TEMPLATE_PARAM_LIST>
 struct SClosureT<R(PARAM_TYPE_LIST)>;
 //---------------------------------------------------------------------------
 namespace detail {
-	//this template generate function, which call "pmem" member function
-	template <class T, TEMPLATE_PARAM_LIST, R (T::*pmem)(PARAM_TYPE_LIST)> 
-	R ProxyFunc(void *p_this PARAM_FORM_ARG_LIST_COMMA) { 
-	    return (static_cast<T *>(p_this) ->* pmem)( PARAM_ARG_LIST); 
-	}
+    //this template generate function, which call "pmem" member function
+    template <class T, TEMPLATE_PARAM_LIST, R (T::*pmem)(PARAM_TYPE_LIST)> 
+    R ProxyFunc(void *p_this PARAM_FORM_ARG_LIST_COMMA) { 
+        return (static_cast<T *>(p_this) ->* pmem)( PARAM_ARG_LIST); 
+    }
 
-	//this template generate function, which call "pmem" const member function
-	template <class T, TEMPLATE_PARAM_LIST, R (T::*pmem)(PARAM_TYPE_LIST)const> 
-	R ProxyFuncConst(void *p_this PARAM_FORM_ARG_LIST_COMMA) { 
-	    return (static_cast<T *>(p_this) ->* pmem)(PARAM_ARG_LIST); 
-	}
+    //this template generate function, which call "pmem" const member function
+    template <class T, TEMPLATE_PARAM_LIST, R (T::*pmem)(PARAM_TYPE_LIST)const> 
+    R ProxyFuncConst(void *p_this PARAM_FORM_ARG_LIST_COMMA) { 
+        return (static_cast<T *>(p_this) ->* pmem)(PARAM_ARG_LIST); 
+    }
 
-	namespace CLOSURE_NUM {
-		//base for SClosureT
-		//for example, if CLOSURE_NUM is Closure2, then 
-		//Closure2::ClosureBase is superclass for SClosureT<int(long, long)>
-		template <TEMPLATE_PARAM_LIST>
-		struct ClosureBase {
-			typedef R     (*p_proxy_type)(void * PARAM_FORM_ARG_LIST_COMMA);
-			void         *p_this;
-			p_proxy_type  p_proxy;
+    namespace CLOSURE_NUM {
+        //base for SClosureT
+        //for example, if CLOSURE_NUM is Closure2, then 
+        //Closure2::ClosureBase is superclass for SClosureT<int(long, long)>
+        template <TEMPLATE_PARAM_LIST>
+        struct ClosureBase {
+            typedef R     (*p_proxy_type)(void * PARAM_FORM_ARG_LIST_COMMA);
+            void         *p_this;
+            p_proxy_type  p_proxy;
 
-			R operator() (PARAM_FORM_ARG_LIST) { 
-				return p_proxy(p_this PARAM_ARG_LIST_COMMA); 
-			}
-		};
-	}	//namespace CLOSURE_NUM
-}	//namespace detail
+            R operator() (PARAM_FORM_ARG_LIST) { 
+                return p_proxy(p_this PARAM_ARG_LIST_COMMA); 
+            }
+        };
+    }    //namespace CLOSURE_NUM
+}    //namespace detail
 //---------------------------------------------------------------------------
 template <TEMPLATE_PARAM_LIST>
 struct SClosureT<R(PARAM_TYPE_LIST)> : public detail::CLOSURE_NUM::ClosureBase<R PARAM_TYPE_LIST_COMMA> {
-	//default initialization
-	SClosureT() {
-		this->p_this  = 0;
-		this->p_proxy = 0;
-	}
+    //default initialization
+    SClosureT() {
+        this->p_this  = 0;
+        this->p_proxy = 0;
+    }
 
-	//initialization whith proxy function "p_proxy_function" and context "p_this".
-	//signature of p_proxy_function should match template parameters of SClosureT<...>
-	//and take additional parameter void *
-	SClosureT(void *p_this, typename detail::CLOSURE_NUM::ClosureBase<R PARAM_TYPE_LIST_COMMA>::p_proxy_type p_proxy_function)  {
-		this->p_this  = p_this;
-		this->p_proxy = p_proxy_function;
-	}
+    //initialization whith proxy function "p_proxy_function" and context "p_this".
+    //signature of p_proxy_function should match template parameters of SClosureT<...>
+    //and take additional parameter void *
+    SClosureT(void *p_this, typename detail::CLOSURE_NUM::ClosureBase<R PARAM_TYPE_LIST_COMMA>::p_proxy_type p_proxy_function)  {
+        this->p_this  = p_this;
+        this->p_proxy = p_proxy_function;
+    }
 
     private:
-		struct dummy { 
-			void nonnull() {} 
-		};
-		typedef void (dummy::*safe_bool)();
+        struct dummy { 
+            void nonnull() {} 
+        };
+        typedef void (dummy::*safe_bool)();
   
-	public:
-		//return value which can be implicitly casted to bool.
-		//true, if object initialized with some non-NULL function false, otherwise
-		operator safe_bool() const { 
-			if (this->p_proxy) { 
-			    return &dummy::nonnull;
-			} else {
-			    return 0;
-			}
-		}
-	  
-		bool operator!() const { 
-			return !safe_bool(*this);
-		}
+    public:
+        //return value which can be implicitly casted to bool.
+        //true, if object initialized with some non-NULL function false, otherwise
+        operator safe_bool() const { 
+            if (this->p_proxy) { 
+                return &dummy::nonnull;
+            } else {
+                return 0;
+            }
+        }
+      
+        bool operator!() const { 
+            return !safe_bool(*this);
+        }
 };
 //---------------------------------------------------------------------------
 namespace detail {
-	namespace CLOSURE_NUM {
-		template <class T, TEMPLATE_PARAM_LIST> 
-		struct CreateClosureHelper {
-			template <R (T::*p_mem)(PARAM_TYPE_LIST)>
-			SClosureT<R(PARAM_TYPE_LIST)> Init(T *p_this)	{
-				SClosureT<R(PARAM_TYPE_LIST)> c(
-					p_this, 
-					ProxyFunc<T, R PARAM_TYPE_LIST_COMMA , p_mem>);
+    namespace CLOSURE_NUM {
+        template <class T, TEMPLATE_PARAM_LIST> 
+        struct CreateClosureHelper {
+            template <R (T::*p_mem)(PARAM_TYPE_LIST)>
+            SClosureT<R(PARAM_TYPE_LIST)> Init(T *p_this)    {
+                SClosureT<R(PARAM_TYPE_LIST)> c(
+                    p_this, 
+                    ProxyFunc<T, R PARAM_TYPE_LIST_COMMA , p_mem>);
 
-				return c;
-			}
-		}; 
+                return c;
+            }
+        }; 
 
-		template <class T, TEMPLATE_PARAM_LIST> 
-		struct CreateClosureHelperConst	{
-			template <R (T::*p_mem)(PARAM_TYPE_LIST)const>
-			SClosureT<R(PARAM_TYPE_LIST)> Init(const T *p_this) {
-				SClosureT<R(PARAM_TYPE_LIST)> c(
-					const_cast<void*>(static_cast<const void*>(p_this)),	
-					ProxyFuncConst<T, R PARAM_TYPE_LIST_COMMA, p_mem>);
+        template <class T, TEMPLATE_PARAM_LIST> 
+        struct CreateClosureHelperConst    {
+            template <R (T::*p_mem)(PARAM_TYPE_LIST)const>
+            SClosureT<R(PARAM_TYPE_LIST)> Init(const T *p_this) {
+                SClosureT<R(PARAM_TYPE_LIST)> c(
+                    const_cast<void*>(static_cast<const void*>(p_this)),    
+                    ProxyFuncConst<T, R PARAM_TYPE_LIST_COMMA, p_mem>);
 
-				return c;
-			}
-		};
-	}	//namespace CLOSURE_NUM
+                return c;
+            }
+        };
+    }    //namespace CLOSURE_NUM
 
-	//helper function, to deduce return and parameters types of given pointer to member function
-	template <class T, TEMPLATE_PARAM_LIST> 
-	CLOSURE_NUM::CreateClosureHelper<T, R PARAM_TYPE_LIST_COMMA> CreateClosure(R (T::*)(PARAM_TYPE_LIST)) {
-		return CLOSURE_NUM::CreateClosureHelper<T, R PARAM_TYPE_LIST_COMMA>();
-	}
+    //helper function, to deduce return and parameters types of given pointer to member function
+    template <class T, TEMPLATE_PARAM_LIST> 
+    CLOSURE_NUM::CreateClosureHelper<T, R PARAM_TYPE_LIST_COMMA> CreateClosure(R (T::*)(PARAM_TYPE_LIST)) {
+        return CLOSURE_NUM::CreateClosureHelper<T, R PARAM_TYPE_LIST_COMMA>();
+    }
 
-	//helper function, to deduce return and parameters types of given pointer to member const function
-	template <class T, TEMPLATE_PARAM_LIST> 
-	CLOSURE_NUM::CreateClosureHelperConst<T, R PARAM_TYPE_LIST_COMMA> CreateClosure(R (T::*)(PARAM_TYPE_LIST)const) {
-		return CLOSURE_NUM::CreateClosureHelperConst<T, R PARAM_TYPE_LIST_COMMA>();
-	}
-}	//namespace detail
+    //helper function, to deduce return and parameters types of given pointer to member const function
+    template <class T, TEMPLATE_PARAM_LIST> 
+    CLOSURE_NUM::CreateClosureHelperConst<T, R PARAM_TYPE_LIST_COMMA> CreateClosure(R (T::*)(PARAM_TYPE_LIST)const) {
+        return CLOSURE_NUM::CreateClosureHelperConst<T, R PARAM_TYPE_LIST_COMMA>();
+    }
+}    //namespace detail
 //---------------------------------------------------------------------------
 #undef TEMPLATE_PARAM_LIST
 #undef PARAM_TYPE_LIST

@@ -15,38 +15,38 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxAtomicLongInt : public CxNonCopyable {  
-	public:
-		                 CxAtomicLongInt();
-	    virtual         ~CxAtomicLongInt();
+    public:
+                         CxAtomicLongInt();
+        virtual         ~CxAtomicLongInt();
 
-		CxAtomicLongInt& operator +=   (const CxAtomicLongInt &cRight);
-		CxAtomicLongInt& operator -=   (const CxAtomicLongInt &cRight);
-		CxAtomicLongInt& operator =    (const CxAtomicLongInt &cRight);
-		CxAtomicLongInt& operator +=   (const LONG cliRight);
-		CxAtomicLongInt& operator -=   (const LONG cliRight);
-		CxAtomicLongInt& operator =    (const LONG cliRight);
-		BOOL             operator ==   (const CxAtomicLongInt &cRight) const ;
-		BOOL             operator !=   (const CxAtomicLongInt &cRight) const ;
-		BOOL             operator ==   (const LONG cliRight) const ;
-		BOOL             operator !=   (const LONG cliRight) const ;
-		                 operator LONG () const ;
-		                 operator BOOL () const ;
-		CxAtomicLongInt& operator ++   (INT iPos);
-		CxAtomicLongInt& operator --   (INT iPos);
+        CxAtomicLongInt& operator +=   (const CxAtomicLongInt &cRight);
+        CxAtomicLongInt& operator -=   (const CxAtomicLongInt &cRight);
+        CxAtomicLongInt& operator =    (const CxAtomicLongInt &cRight);
+        CxAtomicLongInt& operator +=   (const LONG cliRight);
+        CxAtomicLongInt& operator -=   (const LONG cliRight);
+        CxAtomicLongInt& operator =    (const LONG cliRight);
+        BOOL             operator ==   (const CxAtomicLongInt &cRight) const ;
+        BOOL             operator !=   (const CxAtomicLongInt &cRight) const ;
+        BOOL             operator ==   (const LONG cliRight) const ;
+        BOOL             operator !=   (const LONG cliRight) const ;
+                         operator LONG () const ;
+                         operator BOOL () const ;
+        CxAtomicLongInt& operator ++   (INT iPos);
+        CxAtomicLongInt& operator --   (INT iPos);
 
-	private:
-		LONG             _m_liValue;
+    private:
+        LONG             _m_liValue;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxAtomicLongIntH
+#endif    //xLib_Sync_CxAtomicLongIntH
 
 /*
 //Performs an atomic addition operation on the specified LONG values.
-InterlockedAdd	
+InterlockedAdd    
 //Performs an atomic addition operation on the specified LONGLONG values.
 InterlockedAdd64
 //Performs an atomic addition operation on the specified LONG values. The operation is performed with acquire memory access semantics.
-InterlockedAddAcquire	
+InterlockedAddAcquire    
 //Performs an atomic addition operation on the specified LONGLONG values. The operation is performed with acquire memory access semantics.
 InterlockedAddAcquire64
 //Performs an atomic addition operation on the specified LONG values. The operation is performed with release memory access semantics.

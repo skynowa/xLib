@@ -17,13 +17,13 @@
 #include <xLib/Common/CxDateTime.h>
 //---------------------------------------------------------------------------
 class CxTest_CxDateTime : public CxTest {
-	public:
-		CxTest_CxDateTime();
-		virtual     ~CxTest_CxDateTime();
+    public:
+        CxTest_CxDateTime();
+        virtual     ~CxTest_CxDateTime();
 
-		virtual     BOOL bUnit();
+        virtual     BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 
@@ -342,7 +342,7 @@ BOOL CxTest_CxDateTime::bUnit() {
 
 
     /****************************************************************************
-    *	formating
+    *    formating
     *
     *****************************************************************************/
 

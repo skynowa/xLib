@@ -15,12 +15,12 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxBase64 : public CxNonCopyable {
-	public:
+    public:
         static std::string sEncode     (const std::string &csStr);
         static std::string sDecode     (const std::string &csStr);
         static BOOL        bIsCharValid(INT iChar);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Crypt_CxBase64H
+#endif    //xLib_Crypt_CxBase64H

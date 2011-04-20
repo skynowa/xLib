@@ -16,17 +16,17 @@
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
 class CxCriticalSection : public CxNonCopyable {
-	public:
-		                  CxCriticalSection();
-		explicit          CxCriticalSection(ULONG ulSpinCount);
-		                 ~CxCriticalSection();
+    public:
+                          CxCriticalSection();
+        explicit          CxCriticalSection(ULONG ulSpinCount);
+                         ~CxCriticalSection();
 
-		VOID              vEnter           ();
-		VOID              vLeave           ();
-		ULONG             ulSetSpinCount   (ULONG ulSpinCount);
-		BOOL              bTryEnter        ();
+        VOID              vEnter           ();
+        VOID              vLeave           ();
+        ULONG             ulSetSpinCount   (ULONG ulSpinCount);
+        BOOL              bTryEnter        ();
 
-	private:
+    private:
     #if defined(xOS_WIN)
         CRITICAL_SECTION  _m_CS;
     #elif defined(xOS_LINUX)
@@ -34,4 +34,4 @@ class CxCriticalSection : public CxNonCopyable {
     #endif
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxCriticalSectionH
+#endif    //xLib_Sync_CxCriticalSectionH

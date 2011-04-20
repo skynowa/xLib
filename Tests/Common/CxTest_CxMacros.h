@@ -17,13 +17,13 @@
 #include <xLib/Common/CxMacros.h>
 //---------------------------------------------------------------------------
 class CxTest_CxMacros : public CxTest {
-	public:
-		CxTest_CxMacros();
-		virtual     ~CxTest_CxMacros();
+    public:
+        CxTest_CxMacros();
+        virtual     ~CxTest_CxMacros();
 
-		virtual     BOOL bUnit();
+        virtual     BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 
@@ -43,108 +43,108 @@ CxTest_CxMacros::~CxTest_CxMacros() {
 /*virtual*/
 BOOL
 CxTest_CxMacros::bUnit() {
-	//-------------------------------------
-	//xPTR_DELETE
-	{
-		INT *pPtr = new INT();
-		xASSERT(NULL != pPtr);
+    //-------------------------------------
+    //xPTR_DELETE
+    {
+        INT *pPtr = new INT();
+        xASSERT(NULL != pPtr);
 
-		/*CxMacros::*/xPTR_DELETE(pPtr);
-		xASSERT(NULL == pPtr);
-	}
-	//-------------------------------------
-	//xARRAY_DELETE
-	{
-		INT *pPtr = new INT[5];
-		xASSERT(NULL != pPtr);
+        /*CxMacros::*/xPTR_DELETE(pPtr);
+        xASSERT(NULL == pPtr);
+    }
+    //-------------------------------------
+    //xARRAY_DELETE
+    {
+        INT *pPtr = new INT[5];
+        xASSERT(NULL != pPtr);
 
-		/*CxMacros::*/xARRAY_DELETE(pPtr);
-		xASSERT(NULL == pPtr);
-	}
+        /*CxMacros::*/xARRAY_DELETE(pPtr);
+        xASSERT(NULL == pPtr);
+    }
 
-	//-------------------------------------
-	//xARRAY_ZERO_DELETE
-	{
-		INT *pPtr = new INT[5];
-		xASSERT(NULL != pPtr);
+    //-------------------------------------
+    //xARRAY_ZERO_DELETE
+    {
+        INT *pPtr = new INT[5];
+        xASSERT(NULL != pPtr);
 
-		xARRAY_ZERO_DELETE(pPtr);
-		xASSERT(NULL == pPtr);
-	}
+        xARRAY_ZERO_DELETE(pPtr);
+        xASSERT(NULL == pPtr);
+    }
 
-	//-------------------------------------
-	//xBUFF_ZERO
-	{
-		TCHAR szBuff[256];
+    //-------------------------------------
+    //xBUFF_ZERO
+    {
+        TCHAR szBuff[256];
 
-		xBUFF_ZERO(szBuff);
-	}
+        xBUFF_ZERO(szBuff);
+    }
 
-	//-------------------------------------
-	//xARRAY_SIZE
-	{
-		TCHAR szBuff[256] = {0};
+    //-------------------------------------
+    //xARRAY_SIZE
+    {
+        TCHAR szBuff[256] = {0};
 
-		m_uiRes = xARRAY_SIZE(szBuff);
-		xASSERT(256 == m_uiRes);
-	}
+        m_uiRes = xARRAY_SIZE(szBuff);
+        xASSERT(256 == m_uiRes);
+    }
 
-	//-------------------------------------
-	//xMAX
-	{
-		m_uiRes = xMAX(0, 1);
-		/*DEBUG*/xASSERT(1 == m_uiRes);
-	}
+    //-------------------------------------
+    //xMAX
+    {
+        m_uiRes = xMAX(0, 1);
+        /*DEBUG*/xASSERT(1 == m_uiRes);
+    }
 
-	//-------------------------------------
-	//xMIN
-	{
-		m_uiRes = xMIN(5, 8);
-		/*DEBUG*/xASSERT(5 == m_uiRes);
-	}
-	//-------------------------------------
-	//xUNUSED
-	{
-		size_t uiArg = 0;
+    //-------------------------------------
+    //xMIN
+    {
+        m_uiRes = xMIN(5, 8);
+        /*DEBUG*/xASSERT(5 == m_uiRes);
+    }
+    //-------------------------------------
+    //xUNUSED
+    {
+        size_t uiArg = 0;
 
-		xUNUSED(uiArg);
-	}
+        xUNUSED(uiArg);
+    }
 
-	//-------------------------------------
-	//xS2US
-	{
-	}
+    //-------------------------------------
+    //xS2US
+    {
+    }
 
-	//-------------------------------------
-	//xUS2S
-	{
-	}
+    //-------------------------------------
+    //xUS2S
+    {
+    }
 
-	//-------------------------------------
-	//xS2TS
-	{
-	}
+    //-------------------------------------
+    //xS2TS
+    {
+    }
 
-	//-------------------------------------
-	//xTS2S
-	{
-	}
+    //-------------------------------------
+    //xTS2S
+    {
+    }
 
-	//-------------------------------------
-	//xRANDOMIZE
-	{
-		////xRANDOMIZE();
-		// n/a
-	}
+    //-------------------------------------
+    //xRANDOMIZE
+    {
+        ////xRANDOMIZE();
+        // n/a
+    }
 
-	//-------------------------------------
-	//xRANDOM
-	{
-		m_uiRes = xRANDOM(10);
-		//xASSERT();
-	}
+    //-------------------------------------
+    //xRANDOM
+    {
+        m_uiRes = xRANDOM(10);
+        //xASSERT();
+    }
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 #endif //CxTest_CxMacrosH

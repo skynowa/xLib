@@ -16,16 +16,16 @@
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
 class CxSleeper : public CxNonCopyable {
-	public:
-         	     CxSleeper  ();
-		virtual ~CxSleeper  ();
+    public:
+                  CxSleeper  ();
+        virtual ~CxSleeper  ();
 
-		BOOL     bSleep     (ULONG ulTimeout) const;
-		BOOL     bWakeUp    () const;
-		BOOL     bIsSleeping() const;
+        BOOL     bSleep     (ULONG ulTimeout) const;
+        BOOL     bWakeUp    () const;
+        BOOL     bIsSleeping() const;
 
-	private:
+    private:
         CxEvent _m_objEvent; 
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxSleeperH
+#endif    //xLib_Sync_CxSleeperH

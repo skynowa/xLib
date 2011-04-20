@@ -17,13 +17,13 @@
 #include <xLib/Common/CxLocale.h>
 //---------------------------------------------------------------------------
 class CxTest_CxLocale : public CxTest {
-	public:
-		CxTest_CxLocale();
-		virtual     ~CxTest_CxLocale();
+    public:
+        CxTest_CxLocale();
+        virtual     ~CxTest_CxLocale();
 
-	    virtual BOOL bUnit();
+        virtual BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 
@@ -43,12 +43,12 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 /*virtual*/
 BOOL
 CxTest_CxLocale::bUnit() {
-	//-------------------------------------
-	//sGetCurrent (don't change current locale)
+    //-------------------------------------
+    //sGetCurrent (don't change current locale)
     tString sCurrLocale;
 
-	{
-		m_sRes = CxLocale::sGetCurrent();
+    {
+        m_sRes = CxLocale::sGetCurrent();
     #if defined(xOS_WIN)
         xASSERT_MSG(xT("Russian") == m_sRes, m_sRes.c_str());
     #elif defined(xOS_LINUX)
@@ -56,11 +56,11 @@ CxTest_CxLocale::bUnit() {
     #endif
 
         sCurrLocale = m_sRes; //(don't change current locale)
-	}
+    }
 
-	//-------------------------------------
-	//bSetCurrent
-	{
+    //-------------------------------------
+    //bSetCurrent
+    {
     #if defined(xOS_WIN)
         m_bRes = CxLocale::bSetCurrent(xT("English"));
         xASSERT(FALSE != m_bRes);
@@ -69,15 +69,15 @@ CxTest_CxLocale::bUnit() {
         m_bRes = CxLocale::bSetCurrent(xT("ru_RU.UTF-8"));
         xASSERT(FALSE != m_bRes);
     #endif
-	}
+    }
 
-	//-------------------------------------
-	//bSetCurrent
-	{
-		m_bRes = CxLocale::bSetDefault();
-		xASSERT(FALSE != m_bRes);
-		//xTRACE(xT("Должен быть русский текст"));
-	}
+    //-------------------------------------
+    //bSetCurrent
+    {
+        m_bRes = CxLocale::bSetDefault();
+        xASSERT(FALSE != m_bRes);
+        //xTRACE(xT("Должен быть русский текст"));
+    }
 
     //-------------------------------------
     //bSetCurrent (don't change current locale)

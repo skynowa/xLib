@@ -15,37 +15,37 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#define ID_staPrompt	101
-#define ID_edtText 	    102
-#define ID_btnOK		IDOK
+#define ID_staPrompt    101
+#define ID_edtText         102
+#define ID_btnOK        IDOK
 #define ID_btnCancel    IDCANCEL
 //---------------------------------------------------------------------------
 class CxInputBox : public CxNonCopyable {
-	public:
-		//
-		enum EModalResult {
-			mrOk,
-			mrCancel
-		};
+    public:
+        //
+        enum EModalResult {
+            mrOk,
+            mrCancel
+        };
 
-		                        CxInputBox  ();
-		virtual	               ~CxInputBox  ();
+                                CxInputBox  ();
+        virtual                   ~CxInputBox  ();
 
-		EModalResult            mrShowModal (const tString &csCaption, const tString &csPrompt, const tString &csText);
-		tString                 sGetText    ();
+        EModalResult            mrShowModal (const tString &csCaption, const tString &csPrompt, const tString &csText);
+        tString                 sGetText    ();
 
-	private:
-		BOOL                    _m_bRes;
-		tString                 _m_sText;
-		HWND                    _m_hWndMain;
-		HWND                    _m_hBtnOk;
-		HWND                    _m_hBtnCancel;
-		HWND                    _m_hStaPrompt;
-		HWND                    _m_hEdtText;
+    private:
+        BOOL                    _m_bRes;
+        tString                 _m_sText;
+        HWND                    _m_hWndMain;
+        HWND                    _m_hBtnOk;
+        HWND                    _m_hBtnCancel;
+        HWND                    _m_hStaPrompt;
+        HWND                    _m_hEdtText;
 
-		//---------------------------------------------------------------------------
-		//TODO: - ms_pWndProc (������)
-		static LRESULT CALLBACK _ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
+        //---------------------------------------------------------------------------
+        //TODO: - ms_pWndProc (������)
+        static LRESULT CALLBACK _ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Gui_CxInputBoxH

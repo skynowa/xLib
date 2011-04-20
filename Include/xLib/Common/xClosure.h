@@ -65,4 +65,4 @@
 
 #define xCLOSURE(PTR, MEM_PTR)    (detail::CreateClosure(MEM_PTR).Init<MEM_PTR>(PTR))
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_ClosureH
+#endif    //xLib_Common_ClosureH

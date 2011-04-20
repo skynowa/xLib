@@ -22,7 +22,7 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -38,9 +38,9 @@ CxRandom::CxRandom(LONG liSeed) :
     _m_dNextNextGaussian    (false),
     _m_bHaveNextNextGaussian(false)
 {
-	bSetSeed(liSeed);
+    bSetSeed(liSeed);
 
-	liNext();
+    liNext();
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxRandom
@@ -52,110 +52,110 @@ CxRandom::~CxRandom() {
 //TODO: bSetSeed
 BOOL
 CxRandom::bSetSeed(LONG liSeed) {
-	srand(liSeed);
+    srand(liSeed);
 
-////	if (liSeed < 0)	{
-////	    liSeed = liSeed + (M + 1);
-////	}
+////    if (liSeed < 0)    {
+////        liSeed = liSeed + (M + 1);
+////    }
 
-	_m_liSeed = liSeed;
+    _m_liSeed = liSeed;
 
-	if (0 == _m_liSeed) {
-	    _m_liSeed = 1;
-	}
+    if (0 == _m_liSeed) {
+        _m_liSeed = 1;
+    }
 
-	_m_bHaveNextNextGaussian = false;
+    _m_bHaveNextNextGaussian = false;
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: iNextInt
 INT
 CxRandom::iNextInt() {
-	return static_cast<INT>( liNext() );
+    return static_cast<INT>( liNext() );
 }
 //---------------------------------------------------------------------------
 //TODO: iNextInt
 INT
 CxRandom::iNextInt(INT max) {
-	return iNextInt() % max;
+    return iNextInt() % max;
 }
 //---------------------------------------------------------------------------
 //TODO: iNextInt
 INT
 CxRandom::iNextInt(INT a, INT b) {
-	return iNextInt() % (b - a) + a;
+    return iNextInt() % (b - a) + a;
 }
 //---------------------------------------------------------------------------
 //TODO: liNextLong
 LONG
 CxRandom::liNextLong() {
-	return liNext();
+    return liNext();
 }
 //---------------------------------------------------------------------------
 //TODO: bNextBoolean
 bool
 CxRandom::bNextBoolean() {
-	return 0 == (liNext() % 2);
+    return 0 == (liNext() % 2);
 }
 //---------------------------------------------------------------------------
 //TODO: fNextFloat
 FLOAT
 CxRandom::fNextFloat() {
-	return static_cast<FLOAT>( iNextInt() / FLOAT(M) );
+    return static_cast<FLOAT>( iNextInt() / FLOAT(M) );
 }
 //---------------------------------------------------------------------------
 //TODO: bNextDouble
 DOUBLE
 CxRandom::bNextDouble() {
-	return static_cast<DOUBLE>( iNextInt() / DOUBLE(M) );
+    return static_cast<DOUBLE>( iNextInt() / DOUBLE(M) );
 }
 //---------------------------------------------------------------------------
 //TODO:
 CHAR
 CxRandom::chNextChar() {
-	return CHAR(('z' - 'a' + 1) * bNextDouble() + 'a');
+    return CHAR(('z' - 'a' + 1) * bNextDouble() + 'a');
 }
 //---------------------------------------------------------------------------
 //TODO: chNextFigure
 CHAR
 CxRandom::chNextFigure() {
-	return CHAR(('9' - '0' + 1) * bNextDouble() + '0');
+    return CHAR(('9' - '0' + 1) * bNextDouble() + '0');
 }
 //---------------------------------------------------------------------------
 //TODO: dNextGaussian
 DOUBLE
 CxRandom::dNextGaussian() {
-	//See Knuth, ACP, Section 3.4.1 Algorithm C.
-	if (_m_bHaveNextNextGaussian) {
-    	_m_bHaveNextNextGaussian = false;
+    //See Knuth, ACP, Section 3.4.1 Algorithm C.
+    if (_m_bHaveNextNextGaussian) {
+        _m_bHaveNextNextGaussian = false;
 
-    	return static_cast<DOUBLE>( _m_dNextNextGaussian );
-	} else {
-		DOUBLE v1 = 0.0;
-		DOUBLE v2 = 0.0;
-		DOUBLE s  = 0.0;
+        return static_cast<DOUBLE>( _m_dNextNextGaussian );
+    } else {
+        DOUBLE v1 = 0.0;
+        DOUBLE v2 = 0.0;
+        DOUBLE s  = 0.0;
 
-    	do {
-			v1 = 2 * bNextDouble() - 1; // between -1 and 1
-			v2 = 2 * bNextDouble() - 1; // between -1 and 1
-			s = v1 * v1 + v2 * v2;
-    	}
-		while (s >= 1 || s == 0);
+        do {
+            v1 = 2 * bNextDouble() - 1; // between -1 and 1
+            v2 = 2 * bNextDouble() - 1; // between -1 and 1
+            s = v1 * v1 + v2 * v2;
+        }
+        while (s >= 1 || s == 0);
 
-		DOUBLE multiplier = sqrt(-2 * log(s)/s);
+        DOUBLE multiplier = sqrt(-2 * log(s)/s);
 
-    	_m_dNextNextGaussian     = v2 * multiplier;
-		_m_bHaveNextNextGaussian = true;
+        _m_dNextNextGaussian     = v2 * multiplier;
+        _m_bHaveNextNextGaussian = true;
 
-		return static_cast<DOUBLE>( v1 * multiplier );
-	}
+        return static_cast<DOUBLE>( v1 * multiplier );
+    }
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*	protected
+*    protected
 *
 *****************************************************************************/
 

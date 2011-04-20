@@ -16,8 +16,8 @@
 //---------------------------------------------------------------------------
 class CxSystemInfo : public CxNonCopyable {
    public:
-		//OS version
-		enum EOsType {
+        //OS version
+        enum EOsType {
             otUnknown,
 
             //windows
@@ -25,16 +25,16 @@ class CxSystemInfo : public CxNonCopyable {
             otWindows95,                //
             otWindows98,                //
             otWindowsNT,                //
-            otWindows2000,	            //5.0
-            otWindowsXP,	            //5.1
-            otWindowsXPProx64Edition,	//5.2
-            otWindowsServer2003,	    //5.2
-            otWindowsHomeServer,	    //5.2
-            otWindowsServer2003R2,	    //5.2
-            otWindowsVista,	            //6.0
-            otWindowsServer2008,	    //6.0
-            otWindowsServer2008R2,	    //6.1
-            otWindows7,	                //6.1
+            otWindows2000,                //5.0
+            otWindowsXP,                //5.1
+            otWindowsXPProx64Edition,    //5.2
+            otWindowsServer2003,        //5.2
+            otWindowsHomeServer,        //5.2
+            otWindowsServer2003R2,        //5.2
+            otWindowsVista,                //6.0
+            otWindowsServer2008,        //6.0
+            otWindowsServer2008R2,        //6.1
+            otWindows7,                    //6.1
 
             //nix
             otLinux,
@@ -43,7 +43,7 @@ class CxSystemInfo : public CxNonCopyable {
             otFreeBSD
         };
 
-		//OS architecture
+        //OS architecture
         enum EOsArchitecture {
             oaUnknown,
             oa32bit,
@@ -51,23 +51,23 @@ class CxSystemInfo : public CxNonCopyable {
         };
 
 
-		static EOsType         osGetOS            ();
-		static EOsArchitecture oaGetOsArchitecture();
-		static tString         sFormatOsType      (EOsType otOsType);
-		static tString         sGetComputerName   ();
-		static BOOL            bIsUserAnAdmin     ();
-		static tString         sGetUserName       ();
-		static ULONG           ulGetNumOfCPUs     ();
-		static ULONG           ulGetCurrentCpuNum ();
-		static BOOL            bIsUnicodeOS       ();
-		static INT             iGetCpuSpeed       ();
+        static EOsType         osGetOS            ();
+        static EOsArchitecture oaGetOsArchitecture();
+        static tString         sFormatOsType      (EOsType otOsType);
+        static tString         sGetComputerName   ();
+        static BOOL            bIsUserAnAdmin     ();
+        static tString         sGetUserName       ();
+        static ULONG           ulGetNumOfCPUs     ();
+        static ULONG           ulGetCurrentCpuNum ();
+        static BOOL            bIsUnicodeOS       ();
+        static INT             iGetCpuSpeed       ();
 
    private:
-		                       CxSystemInfo       ();
-		virtual               ~CxSystemInfo       ();
+                               CxSystemInfo       ();
+        virtual               ~CxSystemInfo       ();
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_CxSystemInfoH
+#endif    //xLib_Common_CxSystemInfoH
 
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc

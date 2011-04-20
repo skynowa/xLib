@@ -21,4 +21,4 @@ class CxNonAssignable {
        const CxNonAssignable &operator = (const CxNonAssignable &);
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_CxNonAssignableH
+#endif    //xLib_CxNonAssignableH

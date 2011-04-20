@@ -16,23 +16,23 @@
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxSemaphore : public CxNonCopyable {
-	public:
-			            CxSemaphore();
-		virtual        ~CxSemaphore();
+    public:
+                        CxSemaphore();
+        virtual        ~CxSemaphore();
 
         HANDLE          hGetHandle () const;
-		BOOL            bCreate    (PSECURITY_ATTRIBUTES lpsaAttributes, LONG liInitialCount, LONG liMaxCount, LPCTSTR pcszName);
-		BOOL            bOpen      (ULONG ulAccess, BOOL bInheritHandle, LPCTSTR lpszName) ;
-		BOOL            bRelease   (LONG liReleaseCount/* = 1*/, LONG *pliOldCount/* = NULL*/)  const;
+        BOOL            bCreate    (PSECURITY_ATTRIBUTES lpsaAttributes, LONG liInitialCount, LONG liMaxCount, LPCTSTR pcszName);
+        BOOL            bOpen      (ULONG ulAccess, BOOL bInheritHandle, LPCTSTR lpszName) ;
+        BOOL            bRelease   (LONG liReleaseCount/* = 1*/, LONG *pliOldCount/* = NULL*/)  const;
         BOOL            bWait      (ULONG ulTimeout) const;
 
-		LONG            liGetValue () const;
-		BOOL            bReset     (LONG liInitialCount, LONG liMaxCount);
+        LONG            liGetValue () const;
+        BOOL            bReset     (LONG liInitialCount, LONG liMaxCount);
 
-	private:
-		CxHandle         _m_hSemaphore;
-		LPSECURITY_ATTRIBUTES   _m_lpsaAttributes;
-		LPCTSTR                 _m_pcszName;
+    private:
+        CxHandle         _m_hSemaphore;
+        LPSECURITY_ATTRIBUTES   _m_lpsaAttributes;
+        LPCTSTR                 _m_pcszName;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxSemaphoreH
+#endif    //xLib_Sync_CxSemaphoreH

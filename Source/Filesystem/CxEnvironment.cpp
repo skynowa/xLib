@@ -15,7 +15,7 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -52,9 +52,9 @@ CxEnvironment::bIsExists(const tString &csVarName) {
 /*static*/
 tString
 CxEnvironment::sGetVar(const tString &csVarName) {
-	/*DEBUG*/xASSERT_RET(false == csVarName.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csVarName.empty(), tString());
 
-	xCHECK_RET(FALSE == bIsExists(csVarName), tString());
+    xCHECK_RET(FALSE == bIsExists(csVarName), tString());
 
     tString sRes;
 
@@ -82,24 +82,24 @@ CxEnvironment::sGetVar(const tString &csVarName) {
     sRes.assign(pszRes);
 #endif
 
-	return sRes;
+    return sRes;
 }
 //--------------------------------------------------------------------------
 //DONE: bSetVar (set or change value by name)
 /*static*/
 BOOL
 CxEnvironment::bSetVar(const tString &csVarName, const tString &csValue) {
-	/*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
 
 #if defined(xOS_WIN)
-	BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
+    BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     INT iRes = setenv(csVarName.c_str(), csValue.c_str(), TRUE);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bDeleteVar (delete var)
@@ -125,11 +125,11 @@ CxEnvironment::bDeleteVar(const tString &csVarName) {
 /*static*/
 BOOL
 CxEnvironment::bGetValues(std::vector<tString> *pvecsValues) {
-	/*DEBUG*/xASSERT_RET(NULL != pvecsValues, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pvecsValues, FALSE);
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	(*pvecsValues).clear();
+    (*pvecsValues).clear();
 
 #if defined(xOS_WIN)
     //TODO: xOS_WIN
@@ -142,7 +142,7 @@ CxEnvironment::bGetValues(std::vector<tString> *pvecsValues) {
     //Variable strings are separated by NULL byte, and the block is terminated by a NULL byte.
     pszVar = static_cast<LPTSTR>( lpvEnv );
 
-    while (*pszVar)	{
+    while (*pszVar)    {
         //printf("%s\n", lpszVariable);
         (*pvecsValues).push_back(pszVar);
         pszVar += ::lstrlen(pszVar) + 1;
@@ -180,16 +180,16 @@ CxEnvironment::bGetValues(std::vector<tString> *pvecsValues) {
     }
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //--------------------------------------------------------------------------
 //DONE: sExpandStrings
 /*static*/
 tString
 CxEnvironment::sExpandStrings(const tString &csVar) {
-	/*DEBUG*/xASSERT_RET(false == csVar.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csVar.empty(), tString());
 
-	tString sRes;
+    tString sRes;
 
 #if defined(xOS_WIN)
     ULONG ulStored = FALSE;
@@ -206,7 +206,7 @@ CxEnvironment::sExpandStrings(const tString &csVar) {
         /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
     }
 
-    sRes.resize(ulStored - 1);	//cut '\0', including the terminating null character
+    sRes.resize(ulStored - 1);    //cut '\0', including the terminating null character
 #elif defined(xOS_LINUX)
     const tString csSep = xT("%");
 
@@ -256,7 +256,7 @@ CxEnvironment::sExpandStrings(const tString &csVar) {
     }
 #endif
 
-	return sRes;
+    return sRes;
 }
 //--------------------------------------------------------------------------
 //DONE: sGetCommandLine (Retrieves the command-line string for the current process)
@@ -331,26 +331,26 @@ CxEnvironment::bGetCommandLineArgs(std::vector<tString> *pvecsArgs) {
     (*pvecsArgs).clear();
 
 #if defined(xOS_WIN)
-//	extern int        __argc;   /* count of cmd line args */
-//	extern char    ** __argv;   /* pointer to table of cmd line args */
-	extern wchar_t ** __wargv;  /* pointer to table of wide cmd line args */
+//    extern int        __argc;   /* count of cmd line args */
+//    extern char    ** __argv;   /* pointer to table of cmd line args */
+    extern wchar_t ** __wargv;  /* pointer to table of wide cmd line args */
 
 #if defined(UNICODE) || defined(_UNICODE)
-	TCHAR **targv = __wargv;
+    TCHAR **targv = __wargv;
 #else
-	TCHAR **targv = __argv;
+    TCHAR **targv = __argv;
 #endif  /*_UNICODE*/
 
-	/*DEBUG*/xASSERT_RET(NULL != targv, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != targv, FALSE);
 
-	for (TCHAR **pszVar = targv; *pszVar; ++ pszVar) {
-		pvecsArgs->push_back(*pszVar);
-	}
+    for (TCHAR **pszVar = targv; *pszVar; ++ pszVar) {
+        pvecsArgs->push_back(*pszVar);
+    }
 #elif defined(xOS_LINUX)
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	bRes = CxString::bSplit(sGetCommandLine(), CxConst::xSPACE, pvecsArgs) ;
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bRes = CxString::bSplit(sGetCommandLine(), CxConst::xSPACE, pvecsArgs) ;
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #endif
 
     return TRUE;
@@ -361,7 +361,7 @@ http://www.codeguru.com/Cpp/W-P/win32/article.php/c1427
 */
 
 /****************************************************************************
-*	private
+*    private
 *
 *****************************************************************************/
 

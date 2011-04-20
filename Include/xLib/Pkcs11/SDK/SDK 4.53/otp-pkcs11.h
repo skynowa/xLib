@@ -91,23 +91,23 @@ extern "C" {
 typedef CK_ULONG CK_PARAM_TYPE;
 
 typedef struct CK_OTP_PARAM {
-	CK_PARAM_TYPE type;
-	CK_VOID_PTR pValue;
-	CK_ULONG ulValueLen;
+    CK_PARAM_TYPE type;
+    CK_VOID_PTR pValue;
+    CK_ULONG ulValueLen;
 } CK_OTP_PARAM;
 
 typedef CK_OTP_PARAM CK_PTR CK_OTP_PARAM_PTR;
 
 typedef struct CK_OTP_PARAMS {
-	CK_OTP_PARAM_PTR pParams;
-	CK_ULONG ulCount;
+    CK_OTP_PARAM_PTR pParams;
+    CK_ULONG ulCount;
 } CK_OTP_PARAMS;
 
 typedef CK_OTP_PARAMS CK_PTR CK_OTP_PARAMS_PTR;
 
 typedef struct CK_OTP_SIGNATURE_INFO {
-	CK_OTP_PARAM_PTR pParams;
-	CK_ULONG ulCount;
+    CK_OTP_PARAM_PTR pParams;
+    CK_ULONG ulCount;
 } CK_OTP_SIGNATURE_INFO;
 
 typedef CK_OTP_SIGNATURE_INFO CK_PTR CK_OTP_SIGNATURE_INFO_PTR;

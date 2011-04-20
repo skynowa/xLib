@@ -15,19 +15,19 @@
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
 class CxFont : public CxNonCopyable {
-	public:
-		CxFont();
-	   ~CxFont();
-	   
-		BOOL  bCreate       (INT iHeight, INT iWidth, INT iEscapement, INT iOrientation, INT iWeight, ULONG ulItalic, ULONG ulUnderline, ULONG ulStrikeOut, ULONG ulCharSet, ULONG ulOutputPrecision, ULONG ulClipPrecision, ULONG ulQuality, ULONG ulPitchAndFamily, LPCTSTR pcszFace);
-		BOOL  bCreateDefault();
-		HFONT hGet          (HWND hWnd);
-		BOOL  bSet          (HWND hWnd);
-		BOOL  bDelete       ();
-		
-	private:
-		BOOL  _m_bRes;
-		HFONT _m_hFont;
+    public:
+        CxFont();
+       ~CxFont();
+       
+        BOOL  bCreate       (INT iHeight, INT iWidth, INT iEscapement, INT iOrientation, INT iWeight, ULONG ulItalic, ULONG ulUnderline, ULONG ulStrikeOut, ULONG ulCharSet, ULONG ulOutputPrecision, ULONG ulClipPrecision, ULONG ulQuality, ULONG ulPitchAndFamily, LPCTSTR pcszFace);
+        BOOL  bCreateDefault();
+        HFONT hGet          (HWND hWnd);
+        BOOL  bSet          (HWND hWnd);
+        BOOL  bDelete       ();
+        
+    private:
+        BOOL  _m_bRes;
+        HFONT _m_hFont;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Gui_CxFontH
+#endif    //xLib_Gui_CxFontH

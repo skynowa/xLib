@@ -16,23 +16,23 @@
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxEvent : public CxNonCopyable {
-	public:
+    public:
                  CxEvent    ();
-		virtual ~CxEvent    ();
+        virtual ~CxEvent    ();
 
         HANDLE   hGetHandle () const ;
-		BOOL     bCreate    (PSECURITY_ATTRIBUTES lpsaAttributes, BOOL bManualReset, BOOL bInitialState, LPCTSTR pcszName);
-		BOOL     bOpen      (ULONG ulAccess, BOOL bInheritHandle, LPCTSTR lpcszName);
-		BOOL     bPulse     () const;
-		BOOL     bReset     () const;
-		BOOL     bSet       () const;
-		BOOL     bWait      (ULONG ulTimeout) const;
+        BOOL     bCreate    (PSECURITY_ATTRIBUTES lpsaAttributes, BOOL bManualReset, BOOL bInitialState, LPCTSTR pcszName);
+        BOOL     bOpen      (ULONG ulAccess, BOOL bInheritHandle, LPCTSTR lpcszName);
+        BOOL     bPulse     () const;
+        BOOL     bReset     () const;
+        BOOL     bSet       () const;
+        BOOL     bWait      (ULONG ulTimeout) const;
 
-		BOOL     bIsSignaled() const;
-		//BOOL   bIsExists  () const;
+        BOOL     bIsSignaled() const;
+        //BOOL   bIsExists  () const;
 
-	private:
-		CxHandle _m_hEvent;
+    private:
+        CxHandle _m_hEvent;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxEventH
+#endif    //xLib_Sync_CxEventH

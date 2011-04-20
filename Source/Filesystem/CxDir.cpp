@@ -29,9 +29,9 @@
 /*static*/
 BOOL 
 CxDir::bIsExists(const tString &csDirPath) { 
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
@@ -56,10 +56,10 @@ CxDir::bIsExists(const tString &csDirPath) {
 /*static*/
 BOOL 
 CxDir::bIsEmpty(const tString &csDirPath, const tString &csMask) { 
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
-	/*DEBUG*/xASSERT_RET(false == csMask.empty(),    FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csMask.empty(),    FALSE);
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
@@ -73,10 +73,10 @@ CxDir::bIsEmpty(const tString &csDirPath, const tString &csMask) {
         tString sFileName = fdData.cFileName;
 
         if (CxConst::xDOT != sFileName && CxConst::x2DOT != sFileName) {
-            bRes = FALSE;	//not empty
+            bRes = FALSE;    //not empty
             break;
         } else {
-            bRes = TRUE;	//empty
+            bRes = TRUE;    //empty
         }
     }
     while (FALSE != ::FindNextFile(hFile, &fdData));
@@ -109,7 +109,7 @@ CxDir::bIsEmpty(const tString &csDirPath, const tString &csMask) {
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
-	return bRes;
+    return bRes;
 }
 //---------------------------------------------------------------------------
 //DONE: bIsDir (is dir)
@@ -145,8 +145,8 @@ CxDir::bIsDir(const tString &csDirPath) {
 /*static*/
 tString 
 CxDir::sGetCurrent() {
-	/*DEBUG*/// n/a
-	
+    /*DEBUG*/// n/a
+    
     tString sRes;
 
 #if defined(xOS_WIN)
@@ -174,7 +174,7 @@ CxDir::sGetCurrent() {
 /*static*/
 BOOL 
 CxDir::bSetCurrent(const tString &csDirPath) {
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE); 
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE); 
 
 #if defined(xOS_WIN)
     BOOL bRes = ::SetCurrentDirectory(csDirPath.c_str());
@@ -183,15 +183,15 @@ CxDir::bSetCurrent(const tString &csDirPath) {
     INT iRes = chdir(csDirPath.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
-	
-	return TRUE;
+    
+    return TRUE;
 }
 //--------------------------------------------------------------------------
 //TODO: - sGetTempPath (get path to system var %Temp%)
 /*static*/
 tString 
 CxDir::sGetTempPath() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
     tString sRes;
 
@@ -221,9 +221,9 @@ CxDir::sGetTempPath() {
 /*static*/
 BOOL 
 CxDir::bCreate(const tString &csDirPath) {
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE); 
-	
-	BOOL bRes = FALSE;
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE); 
+    
+    BOOL bRes = FALSE;
 
     bRes = bIsExists(csDirPath);
     xCHECK_RET(FALSE != bRes, TRUE);
@@ -238,15 +238,15 @@ CxDir::bCreate(const tString &csDirPath) {
 
     /*DEBUG*/xASSERT_RET(TRUE == bIsExists(csDirPath), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bCreateForce (creation of all dirs that not exists in path)
 BOOL 
 CxDir::bCreateForce(const tString &csDirPath) {
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-	BOOL                 bRes = FALSE;
+    BOOL                 bRes = FALSE;
     std::vector<tString> vecsPathParts;
     tString              sBuildPath;
 
@@ -266,42 +266,42 @@ CxDir::bCreateForce(const tString &csDirPath) {
 
     /*DEBUG*/xASSERT_RET(TRUE == bIsExists(csDirPath), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bCopy (copy)
 /*static*/
 BOOL 
 CxDir::bCopy(const tString &csFromDirPath, const tString &csToDirPath, BOOL bFailIfExists) {
-	/*DEBUG*/xASSERT_RET(false == csFromDirPath.empty(),    FALSE);
-	/*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFromDirPath), FALSE);
-	/*DEBUG*/xASSERT_RET(false == csToDirPath.empty(),      FALSE);
-	/*DEBUG*/// bFailIfExists - n/a
+    /*DEBUG*/xASSERT_RET(false == csFromDirPath.empty(),    FALSE);
+    /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFromDirPath), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csToDirPath.empty(),      FALSE);
+    /*DEBUG*/// bFailIfExists - n/a
 
 #if defined(xOS_WIN)
     //TODO: xOS_WIN
-	BOOL bRes = ::CopyFile(csFromDirPath.c_str(), csToDirPath.c_str(), bFailIfExists);
+    BOOL bRes = ::CopyFile(csFromDirPath.c_str(), csToDirPath.c_str(), bFailIfExists);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
     xNOT_IMPLEMENTED_RET(FALSE);
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bMove (move)
 /*static*/
 BOOL 
 CxDir::bMove(const tString &csInDirPath, const tString &csOutDirPath) {
-	/*DEBUG*/xASSERT_RET(false == csInDirPath.empty(),    FALSE);
-	/*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csInDirPath), FALSE);
-	/*DEBUG*/xASSERT_RET(false == csOutDirPath.empty(),   FALSE);
+    /*DEBUG*/xASSERT_RET(false == csInDirPath.empty(),    FALSE);
+    /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csInDirPath), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csOutDirPath.empty(),   FALSE);
 
     #if defined(xOS_WIN)
         //-------------------------------------
         //sets attr "normal"
-	    BOOL bRes = bIsExists(csOutDirPath);
+        BOOL bRes = bIsExists(csOutDirPath);
         if (TRUE == bRes) {
             bRes = CxFileAttribute::bSet(csOutDirPath, CxFileAttribute::faNormal);
             /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -319,14 +319,14 @@ CxDir::bMove(const tString &csInDirPath, const tString &csOutDirPath) {
         xNOT_IMPLEMENTED_RET(FALSE);
     #endif
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bDelete (deletion dir which empty)
 /*static*/
 BOOL 
 CxDir::bDelete(const tString &csDirPath) {
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE); 
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE); 
 
     BOOL bRes = FALSE;
 
@@ -348,17 +348,17 @@ CxDir::bDelete(const tString &csDirPath) {
 
     /*DEBUG*/xASSERT_RET(FALSE == bIsExists(csDirPath), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bClearForce (detetion all content of dir)
 /*static*/
 BOOL 
 CxDir::bClearForce(const tString &csDirPath) { 
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(),    FALSE); 
-	/*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csDirPath), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),    FALSE); 
+    /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csDirPath), FALSE);
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
     //-------------------------------------
     //checks
@@ -403,29 +403,29 @@ CxDir::bClearForce(const tString &csDirPath) {
 
     /*DEBUG*/xASSERT_RET(TRUE == bIsEmpty(csDirPath), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bDeleteForce (detetion dir fnd all content of it)
 /*static*/
 BOOL 
 CxDir::bDeleteForce(const tString &csDirPath) {
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE); 
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE); 
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	bRes = bIsExists(csDirPath);
-	xCHECK_RET(FALSE == bRes, TRUE);
+    bRes = bIsExists(csDirPath);
+    xCHECK_RET(FALSE == bRes, TRUE);
 
-	bRes = bClearForce(csDirPath);
-	/*DEBUG*/// n/a
+    bRes = bClearForce(csDirPath);
+    /*DEBUG*/// n/a
 
-	bRes = bDelete(csDirPath);
-	/*DEBUG*/// n/a
+    bRes = bDelete(csDirPath);
+    /*DEBUG*/// n/a
 
-	/*DEBUG*/xASSERT_RET(FALSE == bIsExists(csDirPath), FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE == bIsExists(csDirPath), FALSE);
 
-	return bRes;  /*TRUE*/
+    return bRes;  /*TRUE*/
 }
 //--------------------------------------------------------------------------
 //TODO: - bFindFiles (search files)
@@ -434,12 +434,12 @@ CxDir::bDeleteForce(const tString &csDirPath) {
 /*static*/
 BOOL 
 CxDir::bFindFiles(const tString &csDirPath, const tString &cMask, BOOL bIsRecurse, std::vector<tString> *pvecsFilePathes) {
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
-	/*DEBUG*/xASSERT_RET(false == cMask.empty(),     FALSE);
-	/*DEBUG*/// bIsRecurse - n/a
-	/*DEBUG*/xASSERT_RET(NULL != pvecsFilePathes,    FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == cMask.empty(),     FALSE);
+    /*DEBUG*/// bIsRecurse - n/a
+    /*DEBUG*/xASSERT_RET(NULL != pvecsFilePathes,    FALSE);
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
     ////--(*pvecsFilePathes).clear();
 
@@ -567,7 +567,7 @@ CxDir::bFindFiles(const tString &csDirPath, const tString &cMask, BOOL bIsRecurs
 //    }
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //--------------------------------------------------------------------------
 //DONE: bFindDirs (search subdirs)
@@ -575,13 +575,13 @@ CxDir::bFindFiles(const tString &csDirPath, const tString &cMask, BOOL bIsRecurs
 /*static*/
 BOOL 
 CxDir::bFindDirs(const tString &csDirPath, const tString &cMask, BOOL bIsRecurse, std::vector<tString> *pvecsDirPathes) {
-	/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
-	/*DEBUG*/// bIsRecurse - n/a
-	/*DEBUG*/xASSERT_RET(NULL != pvecsDirPathes,     FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
+    /*DEBUG*/// bIsRecurse - n/a
+    /*DEBUG*/xASSERT_RET(NULL != pvecsDirPathes,     FALSE);
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	////--(*pvecsDirPathes).clear();
+    ////--(*pvecsDirPathes).clear();
 
 #if defined(xOS_WIN)
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
@@ -605,7 +605,7 @@ CxDir::bFindDirs(const tString &csDirPath, const tString &cMask, BOOL bIsRecurse
             //is search in subdirs ?
             xCHECK_DO(FALSE == bIsRecurse, continue);
 
-            bRes = bFindDirs(sDirPath, cMask, bIsRecurse, pvecsDirPathes);	//recursion
+            bRes = bFindDirs(sDirPath, cMask, bIsRecurse, pvecsDirPathes);    //recursion
             /*DEBUG*/// n/a
         }
         //files
@@ -655,13 +655,13 @@ CxDir::bFindDirs(const tString &csDirPath, const tString &cMask, BOOL bIsRecurse
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*	private
+*    private
 *
 *****************************************************************************/
 

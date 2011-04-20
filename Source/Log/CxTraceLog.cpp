@@ -24,8 +24,8 @@
 //---------------------------------------------------------------------------
 //DONE: CxTraceLog ()
 CxTraceLog::CxTraceLog(BOOL bIsUseTimeStr) :
-	_m_bIsEnable    (TRUE),
-	_m_bIsUseTimeStr(bIsUseTimeStr)
+    _m_bIsEnable    (TRUE),
+    _m_bIsUseTimeStr(bIsUseTimeStr)
 {
 }
 //---------------------------------------------------------------------------
@@ -37,41 +37,41 @@ CxTraceLog::~CxTraceLog() {
 //TODO: - bSetEnabled ()
 BOOL
 CxTraceLog::bSetEnabled(BOOL bFlag) {
-	/*DEBUG*/// bFlag - n/a 
+    /*DEBUG*/// bFlag - n/a 
 
-	_m_bIsEnable = bFlag;
+    _m_bIsEnable = bFlag;
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bWrite ()
 BOOL
 CxTraceLog::bWrite(LPCTSTR pcszFormat, ...) {
-	/*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
-	
-	xCHECK_RET(FALSE == _m_bIsEnable, TRUE);
+    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
+    
+    xCHECK_RET(FALSE == _m_bIsEnable, TRUE);
 
-	//-------------------------------------
-	//time
-	tString sTime;
+    //-------------------------------------
+    //time
+    tString sTime;
 
-	if (TRUE == _m_bIsUseTimeStr) {
-		sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
-	} else {
-		sTime = xT("");
-	}
+    if (TRUE == _m_bIsUseTimeStr) {
+        sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
+    } else {
+        sTime = xT("");
+    }
 
-	//-------------------------------------
-	//comment
-	tString sParam;
-	va_list palArgs = NULL;
+    //-------------------------------------
+    //comment
+    tString sParam;
+    va_list palArgs = NULL;
 
-	va_start(palArgs, pcszFormat);
-	sParam = CxString::sFormatV(pcszFormat, palArgs);
-	va_end(palArgs);	
+    va_start(palArgs, pcszFormat);
+    sParam = CxString::sFormatV(pcszFormat, palArgs);
+    va_end(palArgs);    
 
-	//-------------------------------------
-	//tracing
+    //-------------------------------------
+    //tracing
 #if defined(xOS_WIN)
     ::OutputDebugString((sTime + sParam + CxConst::xNL).c_str());
     /*DEBUG*/// n/a
@@ -79,6 +79,6 @@ CxTraceLog::bWrite(LPCTSTR pcszFormat, ...) {
     tcout << (sTime + sParam + CxConst::xNL);   tcout.flush();
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

@@ -18,19 +18,19 @@
 #include <xLib/Pkcs11/CxSession.h>
 //---------------------------------------------------------------------------
 class CxLogin : public CxNonCopyable {
-	public:
-		                     CxLogin(const CxPkcs11 &cPkcs11, const CxSession &cSession);
-	                        ~CxLogin();
-	   
-	   	BOOL                 bLogin (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);	
-		BOOL                 bLogout();	
-	  	
-	private:
-		BOOL                 _m_bRes;
-		CK_RV                _m_ulRes;
+    public:
+                             CxLogin(const CxPkcs11 &cPkcs11, const CxSession &cSession);
+                            ~CxLogin();
+       
+           BOOL                 bLogin (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);    
+        BOOL                 bLogout();    
+          
+    private:
+        BOOL                 _m_bRes;
+        CK_RV                _m_ulRes;
 
-		CK_FUNCTION_LIST_PTR _m_pFunc;
-		CK_SESSION_HANDLE    _m_hSession;
+        CK_FUNCTION_LIST_PTR _m_pFunc;
+        CK_SESSION_HANDLE    _m_hSession;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Pkcs11_CxLoginH
+#endif    //xLib_Pkcs11_CxLoginH

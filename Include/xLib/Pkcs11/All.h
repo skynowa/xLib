@@ -32,4 +32,4 @@
 #include <xLib/Pkcs11/CxSign.h>
 #include <xLib/Pkcs11/CxVerify.h>
 //---------------------------------------------------------------------------
-#endif	//xLib_Pkcs11_AllH
+#endif    //xLib_Pkcs11_AllH

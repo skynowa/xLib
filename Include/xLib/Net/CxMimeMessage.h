@@ -17,15 +17,15 @@
 #include <xLib/Net/CxMimeBody.h>
 //---------------------------------------------------------------------------
 class CxMimeMessage : public CxNonCopyable {
-	public:
-				CxMimeMessage();
-			   ~CxMimeMessage(); 
-		static BOOL bParse          (const tString &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body); 
-		static BOOL	bLoadFromRawFile(const tString &csFilePath);	   //csFilePath - raw msg
-		static BOOL bSaveToRawFile  (const tString &csFilePath);       //csFilePath - raw msg
-	   
-	private:
-		tString _m_csRawMessage;
+    public:
+                CxMimeMessage();
+               ~CxMimeMessage(); 
+        static BOOL bParse          (const tString &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body); 
+        static BOOL    bLoadFromRawFile(const tString &csFilePath);       //csFilePath - raw msg
+        static BOOL bSaveToRawFile  (const tString &csFilePath);       //csFilePath - raw msg
+       
+    private:
+        tString _m_csRawMessage;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Net_CxMimeMessageH
+#endif    //xLib_Net_CxMimeMessageH

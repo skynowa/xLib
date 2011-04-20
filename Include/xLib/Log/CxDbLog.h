@@ -16,11 +16,11 @@
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 class CxDbLog : public CxNonCopyable {
-	public:
-		        CxDbLog();
-	   virtual ~CxDbLog();
+    public:
+                CxDbLog();
+       virtual ~CxDbLog();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Log_CxDbLogH
+#endif    //xLib_Log_CxDbLogH

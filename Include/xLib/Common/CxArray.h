@@ -18,7 +18,7 @@ class CxArray {
     public:
         TypeT tArray[uiNumT];
 
-	public:
+    public:
         //--------------------------------------------------
         //types
         typedef TypeT          value_type;

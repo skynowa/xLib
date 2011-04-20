@@ -17,14 +17,14 @@
 ////#include <xLib/Sync/CxSleeper.h>
 //---------------------------------------------------------------------------
 class CxAutoCriticalSection : public CxNonCopyable {
-	public:
-						   CxAutoCriticalSection(CxCriticalSection &csCS);
-						   ////CxAutoCriticalSection(CxCriticalSection &csCS, BOOL bTry, ULONG ulTimeout = 1000);
-   		virtual 	      ~CxAutoCriticalSection();
+    public:
+                           CxAutoCriticalSection(CxCriticalSection &csCS);
+                           ////CxAutoCriticalSection(CxCriticalSection &csCS, BOOL bTry, ULONG ulTimeout = 1000);
+           virtual           ~CxAutoCriticalSection();
 
-	private:
-		CxCriticalSection &_m_csCS;
-		////CxSleeper	   _m_slSleeper;	//������
+    private:
+        CxCriticalSection &_m_csCS;
+        ////CxSleeper       _m_slSleeper;    //������
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxAutoCriticalSectionH
+#endif    //xLib_Sync_CxAutoCriticalSectionH

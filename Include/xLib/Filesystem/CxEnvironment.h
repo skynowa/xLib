@@ -15,19 +15,19 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxEnvironment : public CxNonCopyable {
-	public:
+    public:
         static BOOL    bIsExists          (const tString &csVarName);
-	   	static tString sGetVar		      (const tString &csVarName);
-		static BOOL    bSetVar		      (const tString &csVarName, const tString &csValue);
-		static BOOL    bDeleteVar         (const tString &csVarName);
-		static BOOL    bGetValues         (std::vector<tString> *pvecsValues);
-		static tString sExpandStrings     (const tString &csvVar);
-		static tString sGetCommandLine    ();
-		static BOOL    bGetCommandLineArgs(std::vector<tString> *pvecsArgs);
+           static tString sGetVar              (const tString &csVarName);
+        static BOOL    bSetVar              (const tString &csVarName, const tString &csValue);
+        static BOOL    bDeleteVar         (const tString &csVarName);
+        static BOOL    bGetValues         (std::vector<tString> *pvecsValues);
+        static tString sExpandStrings     (const tString &csvVar);
+        static tString sGetCommandLine    ();
+        static BOOL    bGetCommandLineArgs(std::vector<tString> *pvecsArgs);
 
-	private:
-		               CxEnvironment      ();
-	    virtual       ~CxEnvironment      ();
+    private:
+                       CxEnvironment      ();
+        virtual       ~CxEnvironment      ();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Fso_CxEnvironmentH

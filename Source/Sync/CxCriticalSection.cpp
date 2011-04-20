@@ -13,7 +13,7 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -36,47 +36,47 @@ CxCriticalSection::CxCriticalSection() :
 //---------------------------------------------------------------------------
 //DONE: CxCriticalSection ()
 CxCriticalSection::CxCriticalSection(ULONG ulSpinCount) {
-	/*DEBUG*///ulSpinCount - not need
+    /*DEBUG*///ulSpinCount - not need
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	bRes = ::InitializeCriticalSectionAndSpinCount(&_m_CS, ulSpinCount);
-	/*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    bRes = ::InitializeCriticalSectionAndSpinCount(&_m_CS, ulSpinCount);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxCriticalSection ()
 CxCriticalSection::~CxCriticalSection() {
-	::DeleteCriticalSection(&_m_CS);
-	/*DEBUG*/// n/a
+    ::DeleteCriticalSection(&_m_CS);
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: vEnter ()
 VOID
 CxCriticalSection::vEnter() {
-	::EnterCriticalSection(&_m_CS);
-	/*DEBUG*/// n/a
+    ::EnterCriticalSection(&_m_CS);
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: vLeave ()
 VOID
 CxCriticalSection::vLeave() {
-	::LeaveCriticalSection(&_m_CS);
-	/*DEBUG*/// n/a
+    ::LeaveCriticalSection(&_m_CS);
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: ulSetSpinCount ()
 ULONG
 CxCriticalSection::ulSetSpinCount(ULONG ulSpinCount) {
-	/*DEBUG*///ulSpinCount - n/a
+    /*DEBUG*///ulSpinCount - n/a
 
-	return ::SetCriticalSectionSpinCount(&_m_CS, ulSpinCount);
-	/*DEBUG*/// n/a
+    return ::SetCriticalSectionSpinCount(&_m_CS, ulSpinCount);
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: bTryEnter ()
 BOOL
 CxCriticalSection::bTryEnter() {
-	return ::TryEnterCriticalSection(&_m_CS);
-	/*DEBUG*/// n/a
+    return ::TryEnterCriticalSection(&_m_CS);
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------

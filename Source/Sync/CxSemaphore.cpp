@@ -13,135 +13,135 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: CxSemaphore ()
 CxSemaphore::CxSemaphore() :
-	_m_hSemaphore    (),
-	_m_lpsaAttributes(NULL),
-	_m_pcszName      (NULL)
+    _m_hSemaphore    (),
+    _m_lpsaAttributes(NULL),
+    _m_pcszName      (NULL)
 {
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxSemaphore ()
 CxSemaphore::~CxSemaphore() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: hGetHandle ()
 HANDLE 
 CxSemaphore::hGetHandle() const {
-	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), NULL);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), NULL);
 
-	return _m_hSemaphore.m_hHandle;
+    return _m_hSemaphore.m_hHandle;
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate (Creates or opens a named or unnamed semaphore object)
 BOOL 
 CxSemaphore::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, LONG liInitialCount, LONG liMaxCount, LPCTSTR pcszName) {
-	/*DEBUG*/xASSERT_RET(FALSE == _m_hSemaphore.bIsValid(),					  FALSE);
-	/*DEBUG*///lpsaAttributes - n/a
-	/*DEBUG*/xASSERT_RET(0 <= liInitialCount && liInitialCount <= liMaxCount, FALSE);
-	/*DEBUG*/xASSERT_RET(MAX_PATH > ::lstrlen(pcszName),					  FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE == _m_hSemaphore.bIsValid(),                      FALSE);
+    /*DEBUG*///lpsaAttributes - n/a
+    /*DEBUG*/xASSERT_RET(0 <= liInitialCount && liInitialCount <= liMaxCount, FALSE);
+    /*DEBUG*/xASSERT_RET(MAX_PATH > ::lstrlen(pcszName),                      FALSE);
 
-	HANDLE hRes = NULL;
+    HANDLE hRes = NULL;
 
-	hRes = ::CreateSemaphore(lpsaAttributes, liInitialCount, liMaxCount, pcszName);
-	/*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
+    hRes = ::CreateSemaphore(lpsaAttributes, liInitialCount, liMaxCount, pcszName);
+    /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-	_m_hSemaphore.m_hHandle = hRes;
-	_m_lpsaAttributes       = lpsaAttributes;
-	_m_pcszName             = pcszName;
+    _m_hSemaphore.m_hHandle = hRes;
+    _m_lpsaAttributes       = lpsaAttributes;
+    _m_pcszName             = pcszName;
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bOpen ()
 BOOL 
 CxSemaphore::bOpen(ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
-	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
-	/*DEBUG*///ulAccess - not need
-	/*DEBUG*///pcszName - not need
-	
-	HANDLE hRes = NULL;
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
+    /*DEBUG*///ulAccess - not need
+    /*DEBUG*///pcszName - not need
+    
+    HANDLE hRes = NULL;
 
-	hRes = ::OpenSemaphore(ulAccess, bInheritHandle, pcszName);
-	/*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
+    hRes = ::OpenSemaphore(ulAccess, bInheritHandle, pcszName);
+    /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-	_m_hSemaphore.m_hHandle = hRes;
-	
-	return TRUE;
+    _m_hSemaphore.m_hHandle = hRes;
+    
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bRelease ()
 BOOL 
 CxSemaphore::bRelease(LONG liReleaseCount, LONG *pliOldCount) const {
-	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
-	/*DEBUG*///liReleaseCount - not need
-	/*DEBUG*///pliOldCount    - not need
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
+    /*DEBUG*///liReleaseCount - not need
+    /*DEBUG*///pliOldCount    - not need
 
-	BOOL bRes = FALSE;
-	
-	bRes = ::ReleaseSemaphore(_m_hSemaphore.m_hHandle, liReleaseCount, pliOldCount);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL bRes = FALSE;
+    
+    bRes = ::ReleaseSemaphore(_m_hSemaphore.m_hHandle, liReleaseCount, pliOldCount);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bWait ()
 BOOL 
 CxSemaphore::bWait(ULONG ulTimeout) const {
-	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
-	/*DEBUG*///ulTimeout - not need
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);
+    /*DEBUG*///ulTimeout - not need
 
-	ULONG ulRes = WAIT_FAILED;
+    ULONG ulRes = WAIT_FAILED;
 
-	ulRes = ::WaitForSingleObject(_m_hSemaphore.m_hHandle, ulTimeout); 
-	/*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
+    ulRes = ::WaitForSingleObject(_m_hSemaphore.m_hHandle, ulTimeout); 
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: liGetValue ()
 LONG 
 CxSemaphore::liGetValue() const {
-	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), - 1);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), - 1);
 
-	LONG liRes = - 1; 
-	BOOL bRes  = FALSE;
+    LONG liRes = - 1; 
+    BOOL bRes  = FALSE;
 
-	bRes = bRelease(0, &liRes);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, - 1);
+    bRes = bRelease(0, &liRes);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, - 1);
 
-	return liRes; 
+    return liRes; 
 }
 //---------------------------------------------------------------------------
 //DONE: bReset ()
 BOOL 
 CxSemaphore::bReset(LONG liInitialCount, LONG liMaxCount) {
-	/*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(),                   FALSE);
-	/*DEBUG*/xASSERT_RET(0 <= liInitialCount && liInitialCount <= liMaxCount, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(),                   FALSE);
+    /*DEBUG*/xASSERT_RET(0 <= liInitialCount && liInitialCount <= liMaxCount, FALSE);
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	/*
-	void Reset(int init = 0)	{ 
-		sem_destroy(&S); 
-		
-		sem_init(&S, 0, init); 
-	}
-	*/
+    /*
+    void Reset(int init = 0)    { 
+        sem_destroy(&S); 
+        
+        sem_init(&S, 0, init); 
+    }
+    */
 
 
-	bRes = _m_hSemaphore.bClose();
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bRes = _m_hSemaphore.bClose();
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-	bRes = bCreate(_m_lpsaAttributes, liInitialCount, liMaxCount, _m_pcszName);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bRes = bCreate(_m_lpsaAttributes, liInitialCount, liMaxCount, _m_pcszName);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

@@ -13,7 +13,7 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -76,7 +76,7 @@ const tString      CxConst::xEOL              (xNL);
 #endif
 
 //xDRIVE_DELIM (drive separator)
-const std::string  CxConst::xDRIVE_SEP_A      (xCOLON_A);	//DELIM
+const std::string  CxConst::xDRIVE_SEP_A      (xCOLON_A);    //DELIM
 const std::wstring CxConst::xDRIVE_SEP_W      (xCOLON_W);
 const tString      CxConst::xDRIVE_SEP        (xCOLON);
 
@@ -136,7 +136,7 @@ const std::wstring CxConst::xBS_W             (L"\b");
 const tString      CxConst::xBS               (xT("\b"));
 
 //xFF (formfeed)
-const std::string  CxConst::xFF_A          	  ("\f");
+const std::string  CxConst::xFF_A                ("\f");
 const std::wstring CxConst::xFF_W             (L"\f");
 const tString      CxConst::xFF               (xT("\f"));
 

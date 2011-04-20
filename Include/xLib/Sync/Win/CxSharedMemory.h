@@ -15,9 +15,9 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxSharedMemory : public CxNonCopyable {
-	public:
-				 CxSharedMemory();
-		virtual ~CxSharedMemory();
+    public:
+                 CxSharedMemory();
+        virtual ~CxSharedMemory();
 };
 //---------------------------------------------------------------------------
 #endif //CxSharedMemoryH

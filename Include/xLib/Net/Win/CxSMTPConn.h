@@ -1,8 +1,8 @@
 /**********************************************************************
-*	CxSMTPConn.h
+*    CxSMTPConn.h
 *
-*	7021 - on
-*	7020 - off
+*    7021 - on
+*    7020 - off
 *   7022 - info
 ***********************************************************************/
 
@@ -16,11 +16,11 @@
 //#pragma comment(lib,"Dnsapi.lib")
 ////---------------------------------------------------------------------
 //class CxSMTPConn : public CxSMTPConnection {
-//	public:
-//		BOOL Connect(LPCTSTR lpszHostDomain, DWORD dwTimeout /*= 10000*/) throw();
+//    public:
+//        BOOL Connect(LPCTSTR lpszHostDomain, DWORD dwTimeout /*= 10000*/) throw();
 //
-//	private:
-//		void _GetSMTPList(LPCTSTR lpszHostDomain, CSimpleArray<CString>& arrSMTP);
+//    private:
+//        void _GetSMTPList(LPCTSTR lpszHostDomain, CSimpleArray<CString>& arrSMTP);
 //};
 //---------------------------------------------------------------------
-#endif	//xLib_CxSMTPConnH
+#endif    //xLib_CxSMTPConnH

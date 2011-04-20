@@ -16,13 +16,13 @@
 #include <xLib/Debug/CxProfiler.h>
 //---------------------------------------------------------------------------
 class CxAutoProfiler : public CxNonCopyable {
-	public:
-		           CxAutoProfiler(const tString &csFilePath, CxProfiler::EMode pmMode, LPCTSTR pcszComment, ...);
-	    virtual   ~CxAutoProfiler();
-	
-	private:
-		CxProfiler _m_pfProfiler;
-		tString    _m_sComment;
+    public:
+                   CxAutoProfiler(const tString &csFilePath, CxProfiler::EMode pmMode, LPCTSTR pcszComment, ...);
+        virtual   ~CxAutoProfiler();
+    
+    private:
+        CxProfiler _m_pfProfiler;
+        tString    _m_sComment;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxAutoProfilerH

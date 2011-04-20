@@ -16,29 +16,29 @@
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
 class CxRadioButton: public CxButtonBase {
-	public:
-		//-------------------------------------
-		//константы
+    public:
+        //-------------------------------------
+        //константы
 
-		//состояния
-		enum ECheckState {
-			csUknown    = - 1,
-			csChecked	= BST_CHECKED,
-			csUnchecked	= BST_UNCHECKED,	
-		};	
+        //состояния
+        enum ECheckState {
+            csUknown    = - 1,
+            csChecked    = BST_CHECKED,
+            csUnchecked    = BST_UNCHECKED,    
+        };    
 
-			        CxRadioButton();
-		virtual    ~CxRadioButton();
-			
-	    BOOL        bCreateRes   (INT iID, CxWindow *pwndParent);
+                    CxRadioButton();
+        virtual    ~CxRadioButton();
+            
+        BOOL        bCreateRes   (INT iID, CxWindow *pwndParent);
 
-		//-------------------------------------
-		//сообщения
-		ECheckState bstGetState  ();							
-		BOOL        bSetState    (CxRadioButton::ECheckState csCheckState);					
+        //-------------------------------------
+        //сообщения
+        ECheckState bstGetState  ();                            
+        BOOL        bSetState    (CxRadioButton::ECheckState csCheckState);                    
 
-		//-------------------------------------
-		//события
+        //-------------------------------------
+        //события
 };
 //---------------------------------------------------------------------------
-#endif	//XLib_Gui_CxRadioButtonH
+#endif    //XLib_Gui_CxRadioButtonH

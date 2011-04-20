@@ -14,104 +14,104 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #ifdef __BORLANDC__
-	#include <vcl.h>
+    #include <vcl.h>
 #endif
 //---------------------------------------------------------------------------
 class CxDateTime {
-	public:
-		//format type
-		enum EFormatType {
-    		ftTime,     //HH.MM.SS.MMM
-			ftDate,     //DD.MM.YYYY
-			ftDateTime, //DD.MM.YYYY HH.MM.SS.MMM
-			ftRFC1123   //Wdy, DD Mon YYYY HH:MM:SS GMT
-		};
+    public:
+        //format type
+        enum EFormatType {
+            ftTime,     //HH.MM.SS.MMM
+            ftDate,     //DD.MM.YYYY
+            ftDateTime, //DD.MM.YYYY HH.MM.SS.MMM
+            ftRFC1123   //Wdy, DD Mon YYYY HH:MM:SS GMT
+        };
 
-		//constructors, destructor
-				           CxDateTime          ();
+        //constructors, destructor
+                           CxDateTime          ();
         explicit           CxDateTime          (const tString &csDT, EFormatType ftFormat);
-		/*explicit*/       CxDateTime          (const CxDateTime &cdtDT);
-		explicit           CxDateTime          (ULONGLONG ullMilliseconds);
-						   CxDateTime          (USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond);
-						   CxDateTime          (USHORT usYear, USHORT usMonth, USHORT usDay); 
-						   CxDateTime          (USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond);
-		virtual 	   	  ~CxDateTime          (); 
+        /*explicit*/       CxDateTime          (const CxDateTime &cdtDT);
+        explicit           CxDateTime          (ULONGLONG ullMilliseconds);
+                           CxDateTime          (USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond);
+                           CxDateTime          (USHORT usYear, USHORT usMonth, USHORT usDay); 
+                           CxDateTime          (USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond);
+        virtual              ~CxDateTime          (); 
 
-		//comparison operators
-		BOOL               operator ==         (const CxDateTime &cdtDT) const;
-		BOOL               operator !=         (const CxDateTime &cdtDT) const;
-		BOOL               operator <          (const CxDateTime &cdtDT) const;
-		BOOL               operator <=         (const CxDateTime &cdtDT) const;
-		BOOL               operator >          (const CxDateTime &cdtDT) const;
-		BOOL               operator >=         (const CxDateTime &cdtDT) const;
+        //comparison operators
+        BOOL               operator ==         (const CxDateTime &cdtDT) const;
+        BOOL               operator !=         (const CxDateTime &cdtDT) const;
+        BOOL               operator <          (const CxDateTime &cdtDT) const;
+        BOOL               operator <=         (const CxDateTime &cdtDT) const;
+        BOOL               operator >          (const CxDateTime &cdtDT) const;
+        BOOL               operator >=         (const CxDateTime &cdtDT) const;
 
-		//assignment operators
-		const CxDateTime  &operator =          (const CxDateTime &cdtDT);
-	#ifdef __BORLANDC__
-		const CxDateTime  &operator =          (const TDateTime  &cdtDT);
-	#endif
-		const CxDateTime  &operator =          (ULONGLONG ullMillisecond);
+        //assignment operators
+        const CxDateTime  &operator =          (const CxDateTime &cdtDT);
+    #ifdef __BORLANDC__
+        const CxDateTime  &operator =          (const TDateTime  &cdtDT);
+    #endif
+        const CxDateTime  &operator =          (ULONGLONG ullMillisecond);
 
-		CxDateTime         operator +          (const CxDateTime &cdtDT) const;
-		CxDateTime         operator -          (const CxDateTime &cdtDT) const;
-		const CxDateTime  &operator +=         (const CxDateTime &cdtDT);
-		const CxDateTime  &operator -=         (const CxDateTime &cdtDT);
-		//++
-		//--
+        CxDateTime         operator +          (const CxDateTime &cdtDT) const;
+        CxDateTime         operator -          (const CxDateTime &cdtDT) const;
+        const CxDateTime  &operator +=         (const CxDateTime &cdtDT);
+        const CxDateTime  &operator -=         (const CxDateTime &cdtDT);
+        //++
+        //--
 
-		//get/set
-		BOOL               bGet                (USHORT *pusYear, USHORT *pusMonth, USHORT *pusDay, USHORT *pusHour, USHORT *pusMinute, USHORT *pusSecond, USHORT *pusMillisecond) const;
+        //get/set
+        BOOL               bGet                (USHORT *pusYear, USHORT *pusMonth, USHORT *pusDay, USHORT *pusHour, USHORT *pusMinute, USHORT *pusSecond, USHORT *pusMillisecond) const;
         USHORT             usGetDayOfWeek      () const;
-		BOOL               bSet                (ULONGLONG ullMSec);
-		BOOL               bSet                (USHORT  usYear,  USHORT  usMonth,  USHORT  usDay,  USHORT  usHour,  USHORT  usMinute,  USHORT  usSecond,  USHORT  usMillisecond);
+        BOOL               bSet                (ULONGLONG ullMSec);
+        BOOL               bSet                (USHORT  usYear,  USHORT  usMonth,  USHORT  usDay,  USHORT  usHour,  USHORT  usMinute,  USHORT  usSecond,  USHORT  usMillisecond);
 
-		//converting
-		ULONGLONG          ullToMilliseconds   () const;
+        //converting
+        ULONGLONG          ullToMilliseconds   () const;
         ////ToUniversalTime();
         ////ToLocalTime();
 
-		//formating
-		tString            sFormat             (EFormatType ftFormat) const;
-		
-		//static
+        //formating
+        tString            sFormat             (EFormatType ftFormat) const;
+        
+        //static
         static BOOL        bIsValid            (USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond);
         static BOOL        bIsValid            (const CxDateTime &cdtDT); //TODO: tests
-		       BOOL        bIsValid            () const; //TODO: tests
+               BOOL        bIsValid            () const; //TODO: tests
 
-		static CxDateTime  dtGetCurrent        (); 
-		static USHORT      usDaysInMonth       (USHORT usYear, USHORT usMonth);
-		static BOOL        bIsLeapYear         (USHORT usYear);
+        static CxDateTime  dtGetCurrent        (); 
+        static USHORT      usDaysInMonth       (USHORT usYear, USHORT usMonth);
+        static BOOL        bIsLeapYear         (USHORT usYear);
     #if defined(xOS_WIN)
         static LONGLONG    i64FiletimeToInt64  (const FILETIME &cftTime);
     #endif
 
-		//other
-		static tString     sGetZodiacSign      (USHORT usMonth, USHORT usDay);
+        //other
+        static tString     sGetZodiacSign      (USHORT usMonth, USHORT usDay);
         static tString     sGetMonthStr        (USHORT usMonth, BOOL bIsShortName);
-		static USHORT      usGetMonthNum       (const tString &csMonth, BOOL bIsShortName);
+        static USHORT      usGetMonthNum       (const tString &csMonth, BOOL bIsShortName);
         static tString     sGetWeekDayStr      (USHORT usDay, BOOL bIsShortName);
-		static USHORT      usGetWeekDayNum     (const tString &csDay, BOOL bIsShortName);
+        static USHORT      usGetWeekDayNum     (const tString &csDay, BOOL bIsShortName);
 
-   	private:
-		BOOL               _m_bRes;
+       private:
+        BOOL               _m_bRes;
 
-		//datetime msec member
-		ULONGLONG          _m_ullDateTimeInMSec;	//LARGE_INTEGER
+        //datetime msec member
+        ULONGLONG          _m_ullDateTimeInMSec;    //LARGE_INTEGER
 
-		//datetime members
-		USHORT			   _m_usYear;           //0-2010    Win (1601 through 30827)
-		USHORT	           _m_usMonth;          //1-12      Win (1-12)
-		USHORT	           _m_usDay;            //1-31      Win (1-31)
-		USHORT	           _m_usHour;           //0-23      Win (0-23)
-		USHORT	           _m_usMinute;         //0-59      Win (0-59)
-		USHORT	           _m_usSecond;         //0-61*     Win (0-59)
-		USHORT	           _m_usMillisecond;    //0-999     Win (0-99)
+        //datetime members
+        USHORT               _m_usYear;           //0-2010    Win (1601 through 30827)
+        USHORT               _m_usMonth;          //1-12      Win (1-12)
+        USHORT               _m_usDay;            //1-31      Win (1-31)
+        USHORT               _m_usHour;           //0-23      Win (0-23)
+        USHORT               _m_usMinute;         //0-59      Win (0-59)
+        USHORT               _m_usSecond;         //0-61*     Win (0-59)
+        USHORT               _m_usMillisecond;    //0-999     Win (0-99)
 
-		static BOOL        _bParse             (const tString &csDT, EFormatType ftFormat, CxDateTime *pdtDT);
+        static BOOL        _bParse             (const tString &csDT, EFormatType ftFormat, CxDateTime *pdtDT);
         ULONGLONG          _ullToMilliseconds  () const;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_CxDateTimeH
+#endif    //xLib_Common_CxDateTimeH
 
 // http://www.csharp-examples.net/string-format-datetime/
 /*
@@ -127,9 +127,9 @@ GMT работает с летнем/зимнем временем, поэтом
 __int64 i64DateTimeToSeconds(const TDateTime &dtDateTime) {
     WORD wYear, wMonth, wDay, wHour, wMin, wSec, wMSec;
     
-	DecodeTime(dtDateTime, wHour, wMin, wSec, wMSec);
+    DecodeTime(dtDateTime, wHour, wMin, wSec, wMSec);
     
-	return (wHour * 60 * 60) + (wMin * 60) + (wSec);
+    return (wHour * 60 * 60) + (wMin * 60) + (wSec);
 }
 //---------------------------------------------------------------------------
 */
@@ -142,10 +142,10 @@ __int64 i64DateTimeToSeconds(const TDateTime &dtDateTime) {
 #define INTERVAL_HOUR       360000L
 #define INTERVAL_DAY        8640000L
 
-#define INTERVAL_SEC_SEC	1
-#define INTERVAL_MIN_SEC	60
-#define INTERVAL_HOUR_SEC	3600
-#define INTERVAL_DAY_SEC	86400
+#define INTERVAL_SEC_SEC    1
+#define INTERVAL_MIN_SEC    60
+#define INTERVAL_HOUR_SEC    3600
+#define INTERVAL_DAY_SEC    86400
 */
 
 
@@ -155,14 +155,14 @@ __int64 i64DateTimeToSeconds(const TDateTime &dtDateTime) {
 
 /*
 typedef struct _SYSTEMTIME {
-	WORD wYear;
-	WORD wMonth;
-	WORD wDayOfWeek;
-	WORD wDay;
-	WORD wHour;
-	WORD wMinute;
-	WORD wSecond;
-	WORD wMilliseconds;
+    WORD wYear;
+    WORD wMonth;
+    WORD wDayOfWeek;
+    WORD wDay;
+    WORD wHour;
+    WORD wMinute;
+    WORD wSecond;
+    WORD wMilliseconds;
 } SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 */
 

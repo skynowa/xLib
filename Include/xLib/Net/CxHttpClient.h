@@ -15,56 +15,56 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxHttpClient {
-	public:
-		//status line
-		class CxStatusLine;
+    public:
+        //status line
+        class CxStatusLine;
 
-		//header
-		class CxHeader;
+        //header
+        class CxHeader;
 
-		//body
-		class CxBody;
+        //body
+        class CxBody;
 
-		/****************************************************************************
-		* ���������
-		*
-		*****************************************************************************/
+        /****************************************************************************
+        * ���������
+        *
+        *****************************************************************************/
 
-		//protocol version
-		enum EProtocolVersion {
-			pv10 = 0,
-			pv11 = 1
-		};
+        //protocol version
+        enum EProtocolVersion {
+            pv10 = 0,
+            pv11 = 1
+        };
 
-		//method
-		enum EMethod {
-			hmHead,
-			hmGet,
-			hmPost,
-			hmOptions,
-			hmTrace,
-			hmPut,
-			hmDelete,
-			hmConnect,
-			hmPatch,
-			hmLink,
-			hmUnlink
-		};
+        //method
+        enum EMethod {
+            hmHead,
+            hmGet,
+            hmPost,
+            hmOptions,
+            hmTrace,
+            hmPut,
+            hmDelete,
+            hmConnect,
+            hmPatch,
+            hmLink,
+            hmUnlink
+        };
 
-		BOOL     bHead   (const std::string &csUrl,  std::string *psResponse);
-		BOOL     bGet    (const std::string &csUrl,  std::string *psResponse);
-		BOOL     bPost   (const std::string &csUrl,  const std::string &csParams, std::string *psResponse);
-		BOOL     bOptions(const std::string &csUrl);
-		BOOL     bTrace  (const std::string &csUrl);
-		BOOL     bPut    (const std::string &csUrl);
-		BOOL     bDelete (const std::string &csUrl);
-		BOOL     bConnect(const std::string &csUrl);
-		BOOL     bPatch  (const std::string &csUrl);
-		BOOL     bLink   (const std::string &csUrl);
-		BOOL     bUnlink (const std::string &csUrl);
+        BOOL     bHead   (const std::string &csUrl,  std::string *psResponse);
+        BOOL     bGet    (const std::string &csUrl,  std::string *psResponse);
+        BOOL     bPost   (const std::string &csUrl,  const std::string &csParams, std::string *psResponse);
+        BOOL     bOptions(const std::string &csUrl);
+        BOOL     bTrace  (const std::string &csUrl);
+        BOOL     bPut    (const std::string &csUrl);
+        BOOL     bDelete (const std::string &csUrl);
+        BOOL     bConnect(const std::string &csUrl);
+        BOOL     bPatch  (const std::string &csUrl);
+        BOOL     bLink   (const std::string &csUrl);
+        BOOL     bUnlink (const std::string &csUrl);
 
-		         CxHttpClient();
-	    virtual ~CxHttpClient();
+                 CxHttpClient();
+        virtual ~CxHttpClient();
 };
 //---------------------------------------------------------------------------
 //status line
@@ -97,4 +97,4 @@ class CxHttpClient::CxBody {
 
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Net_CxHttpClientH
+#endif    //xLib_Net_CxHttpClientH

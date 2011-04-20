@@ -19,22 +19,22 @@
 #include <vector>
 //---------------------------------------------------------------------------
 class CxApplication : public CxNonCopyable { 
-	public:
-	    static BOOL		 bInit           (HINSTANCE hInstance, const tString &csCmdLine);
-		static HINSTANCE hGetInstance    ();
-		static BOOL      bGetCmdLine     (std::vector<std::wstring> *pvecwsCmdLine); 
-		static VOID      vProcessMessages();
-		static BOOL      bRun            ();
-		static BOOL      bIsRunning      (const tString &csInstanceName);
-		static VOID      vTerminate      ();
+    public:
+        static BOOL         bInit           (HINSTANCE hInstance, const tString &csCmdLine);
+        static HINSTANCE hGetInstance    ();
+        static BOOL      bGetCmdLine     (std::vector<std::wstring> *pvecwsCmdLine); 
+        static VOID      vProcessMessages();
+        static BOOL      bRun            ();
+        static BOOL      bIsRunning      (const tString &csInstanceName);
+        static VOID      vTerminate      ();
 
-		static VOID      vCreateWnd      ();
+        static VOID      vCreateWnd      ();
 
-	private:
-		static HINSTANCE _m_hInstance;
+    private:
+        static HINSTANCE _m_hInstance;
 
-						 CxApplication   ();
-						~CxApplication   ();
+                         CxApplication   ();
+                        ~CxApplication   ();
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Gui_CxApplication_H
+#endif    //xLib_Gui_CxApplication_H

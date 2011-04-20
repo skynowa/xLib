@@ -13,7 +13,7 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -164,7 +164,7 @@ CxTcpClientSocket::bSetTimeout(LONG liSec, LONG liMicroSec) {
 
 
 /****************************************************************************
-*	public: static
+*    public: static
 *
 *****************************************************************************/
 
@@ -173,36 +173,36 @@ CxTcpClientSocket::bSetTimeout(LONG liSec, LONG liMicroSec) {
 /*static*/
 BOOL
 CxTcpClientSocket::bIsServerAlive(const tString &csIp, USHORT usPort) {
-	/*DEBUG*/xASSERT_RET(false == csIp.empty(),            FALSE);
-	/*DEBUG*/xASSERT_RET((65535 > usPort) && (0 < usPort), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csIp.empty(),            FALSE);
+    /*DEBUG*/xASSERT_RET((65535 > usPort) && (0 < usPort), FALSE);
 
-	BOOL bRes     = FALSE;
-	INT  iRes     = - 1;
+    BOOL bRes     = FALSE;
+    INT  iRes     = - 1;
 
-	CxTcpClientSocket objSocket;
+    CxTcpClientSocket objSocket;
 
-	//-------------------------------------
-	//bCreate
-	bRes = objSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    //-------------------------------------
+    //bCreate
+    bRes = objSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-	//-------------------------------------
-	//bConnect
-	//convert from UNICODE
-	std::string asIp(csIp.begin(), csIp.end());
+    //-------------------------------------
+    //bConnect
+    //convert from UNICODE
+    std::string asIp(csIp.begin(), csIp.end());
 
-	sockaddr_in saSockAddr = {0};
-	saSockAddr.sin_family      = CxSocket::afInet;
-	saSockAddr.sin_addr.s_addr = inet_addr(asIp.c_str());
-	saSockAddr.sin_port        = htons(usPort); //???????
+    sockaddr_in saSockAddr = {0};
+    saSockAddr.sin_family      = CxSocket::afInet;
+    saSockAddr.sin_addr.s_addr = inet_addr(asIp.c_str());
+    saSockAddr.sin_port        = htons(usPort); //???????
 
-	//connect - [+] 0 [-] SOCKET_ERROR
-	iRes = connect(objSocket.iGetSocket(), CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
-	/*DEBUG*/// n/a
+    //connect - [+] 0 [-] SOCKET_ERROR
+    iRes = connect(objSocket.iGetSocket(), CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    /*DEBUG*/// n/a
 
-	xCHECK_RET(0 != iRes, FALSE);
+    xCHECK_RET(0 != iRes, FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
  

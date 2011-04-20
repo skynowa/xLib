@@ -17,13 +17,13 @@
 #include <xLib/Common/CxChar.h>
 //---------------------------------------------------------------------------
 class CxTest_CxChar : public CxTest {
-	public:
-		CxTest_CxChar();
-		virtual     ~CxTest_CxChar();
+    public:
+        CxTest_CxChar();
+        virtual     ~CxTest_CxChar();
 
-	    virtual BOOL bUnit();
+        virtual BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 

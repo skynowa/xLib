@@ -15,12 +15,12 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxAsyncSocket : public CxNonCopyable {
-	public:
-				 CxAsyncSocket();
-		virtual ~CxAsyncSocket();
+    public:
+                 CxAsyncSocket();
+        virtual ~CxAsyncSocket();
 
-	private:
-		BOOL     _m_bRes;
+    private:
+        BOOL     _m_bRes;
 
 };
 //---------------------------------------------------------------------------

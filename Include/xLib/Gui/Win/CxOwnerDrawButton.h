@@ -16,22 +16,22 @@
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
 class CxOwnerDrawButton: public CxButtonBase {
-	public:
-		//-------------------------------------
-		//константы
+    public:
+        //-------------------------------------
+        //константы
 
-			     CxOwnerDrawButton();
-		virtual ~CxOwnerDrawButton();
-			
-	    BOOL     bCreateRes       (INT iID, CxWindow *pwndParent);
+                 CxOwnerDrawButton();
+        virtual ~CxOwnerDrawButton();
+            
+        BOOL     bCreateRes       (INT iID, CxWindow *pwndParent);
 
-		//-------------------------------------
-		//сообщения
+        //-------------------------------------
+        //сообщения
 
 
-		//-------------------------------------
-		//события
+        //-------------------------------------
+        //события
 
 };
 //---------------------------------------------------------------------------
-#endif	//XLib_Gui_CxOwnerDrawButtonH
+#endif    //XLib_Gui_CxOwnerDrawButtonH

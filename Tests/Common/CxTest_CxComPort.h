@@ -17,13 +17,13 @@
 #include <xLib/Common/Win/CxComPort.h>
 //---------------------------------------------------------------------------
 class CxTest_CxComPort : public CxTest {
-	public:
-		CxTest_CxComPort();
-		virtual     ~CxTest_CxComPort();
+    public:
+        CxTest_CxComPort();
+        virtual     ~CxTest_CxComPort();
 
-		virtual     BOOL bUnit();
+        virtual     BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 
@@ -42,30 +42,30 @@ CxTest_CxComPort::~CxTest_CxComPort() {
 //TODO: - bUnit ()
 /*virtual*/
 BOOL CxTest_CxComPort::bUnit() {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	//////-------------------------------------
-	//////[FUNCTION_NAME]
-	////{
-	////	tString sTestData[][2] = {
-	////		{_T("TEST_STRING_1"),		 _T("MUST_BE_1")},
-	////		{_T("TEST_STRING_2"),		 _T("MUST_BE_2")},
-	////		{_T("TEST_STRING_3"),		 _T("MUST_BE_3")},
-	////		{_T("TEST_STRING_4"),		 _T("MUST_BE_4")}
-	////	};
+    //////-------------------------------------
+    //////[FUNCTION_NAME]
+    ////{
+    ////    tString sTestData[][2] = {
+    ////        {_T("TEST_STRING_1"),         _T("MUST_BE_1")},
+    ////        {_T("TEST_STRING_2"),         _T("MUST_BE_2")},
+    ////        {_T("TEST_STRING_3"),         _T("MUST_BE_3")},
+    ////        {_T("TEST_STRING_4"),         _T("MUST_BE_4")}
+    ////    };
 
-	////	for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-	////		////tString sStr1 = [FUNCTION_NAME](sTestData[i][0]);
-	////		////tString sStr2 = [FUNCTION_NAME](sTestData[i][1]);
-	////		////XASSERT(sStr1 == sStr2);
+    ////    for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+    ////        ////tString sStr1 = [FUNCTION_NAME](sTestData[i][0]);
+    ////        ////tString sStr2 = [FUNCTION_NAME](sTestData[i][1]);
+    ////        ////XASSERT(sStr1 == sStr2);
 
-	////		////tString sStr3 = [FUNCTION_NAME](sTestData[i][0]);
-	////		////tString sStr4 = sTestData[i][1];
-	////		////XASSERT(sStr3 == sStr4);
-	////	}
-	////}
+    ////        ////tString sStr3 = [FUNCTION_NAME](sTestData[i][0]);
+    ////        ////tString sStr4 = sTestData[i][1];
+    ////        ////XASSERT(sStr3 == sStr4);
+    ////    }
+    ////}
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 #endif //CxTest_CxComPortH

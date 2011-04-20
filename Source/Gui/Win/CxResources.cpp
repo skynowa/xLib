@@ -28,73 +28,73 @@ CxResources::TSettingsMap CxResources::_m_mapResContent;
 //DONE: bInit ()
 /*static*/
 BOOL CxResources::bInit() {
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	#ifndef RES_FILE_PATH
-		#error "xLib: [Please, define RES_FILE_PATH]" 
-		
-		return FALSE;
-	#endif
+    #ifndef RES_FILE_PATH
+        #error "xLib: [Please, define RES_FILE_PATH]" 
+        
+        return FALSE;
+    #endif
 
-	//включаем файл с кодом свойств контролов
-	#include RES_FILE_PATH
+    //включаем файл с кодом свойств контролов
+    #include RES_FILE_PATH
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetText (по ID контрола ищем свойство)
 /*static*/
 tString CxResources::sGetText(INT iID) {
-	xCHECK_RET(true == _m_mapResContent.empty(), 0);
+    xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
-	return _m_mapResContent[iID].sGetText();
+    return _m_mapResContent[iID].sGetText();
 }
 //---------------------------------------------------------------------------
 //DONE: iGetLeft (по ID контрола ищем свойство)
 /*static*/INT CxResources::iGetLeft(INT iID) {
-	xCHECK_RET(true == _m_mapResContent.empty(), 0);
+    xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
-	return _m_mapResContent[iID].iGetLeft();
+    return _m_mapResContent[iID].iGetLeft();
 }
 //---------------------------------------------------------------------------
 //DONE: iGetTop (по ID контрола ищем свойство)
 /*static*/
 INT CxResources::iGetTop(INT iID) {
-	xCHECK_RET(true == _m_mapResContent.empty(), 0);
+    xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
-	return _m_mapResContent[iID].iGetTop();
+    return _m_mapResContent[iID].iGetTop();
 }
 //---------------------------------------------------------------------------
 //DONE: iGetWidth (по ID контрола ищем свойство)
 /*static*/
 INT CxResources::iGetWidth(INT iID) {
-	xCHECK_RET(true == _m_mapResContent.empty(), 0);
+    xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
-	return _m_mapResContent[iID].iGetWidth();
+    return _m_mapResContent[iID].iGetWidth();
 }
 //---------------------------------------------------------------------------
 //DONE: iGetHeight (по ID контрола ищем свойство)
 /*static*/
 INT CxResources::iGetHeight(INT iID) {
-	xCHECK_RET(true == _m_mapResContent.empty(), 0);
+    xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
-	return _m_mapResContent[iID].iGetHeight();
+    return _m_mapResContent[iID].iGetHeight();
 }
 //---------------------------------------------------------------------------
 //DONE: ulGetStyle (по ID контрола ищем свойство)
 /*static*/
 ULONG CxResources::ulGetStyle(INT iID) {
-	xCHECK_RET(true == _m_mapResContent.empty(), 0);
+    xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
-	return _m_mapResContent[iID].ulGetStyle();
+    return _m_mapResContent[iID].ulGetStyle();
 } 
 //---------------------------------------------------------------------------
 //DONE: ulGetStyleEx (по ID контрола ищем свойство)
 /*static*/
 ULONG CxResources::ulGetStyleEx(INT iID) {
-	xCHECK_RET(true == _m_mapResContent.empty(), 0);
+    xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
-	return _m_mapResContent[iID].ulGetStyleEx();
+    return _m_mapResContent[iID].ulGetStyleEx();
 }
 //---------------------------------------------------------------------------
 
@@ -107,40 +107,40 @@ ULONG CxResources::ulGetStyleEx(INT iID) {
 //---------------------------------------------------------------------------
 //DONE: CxResources
 CxResources::CxResources() {        
-	/*DEBUG*/xASSERT(FALSE);
+    /*DEBUG*/xASSERT(FALSE);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxResources
-CxResources::~CxResources() {		 
-	/*DEBUG*/xASSERT(FALSE);
+CxResources::~CxResources() {         
+    /*DEBUG*/xASSERT(FALSE);
 }
 //---------------------------------------------------------------------------
 //DONE: _bInitControl
 /*static*/
 BOOL CxResources::_bInitControl(INT iID, const tString &csText, INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx) {
-	xASSERT_RET(0 <  iID,     FALSE);
-	xASSERT_RET(0 <= iLeft,   FALSE);
-	xASSERT_RET(0 <= iTop,    FALSE);
-	xASSERT_RET(0 <= iWidth,  FALSE);
-	xASSERT_RET(0 <= iHeight, FALSE);
+    xASSERT_RET(0 <  iID,     FALSE);
+    xASSERT_RET(0 <= iLeft,   FALSE);
+    xASSERT_RET(0 <= iTop,    FALSE);
+    xASSERT_RET(0 <= iWidth,  FALSE);
+    xASSERT_RET(0 <= iHeight, FALSE);
 
-	_m_mapResContent[iID] = CXSettings(csText, iLeft, iTop, iWidth, iHeight, ulStyle, ulStyleEx);
+    _m_mapResContent[iID] = CXSettings(csText, iLeft, iTop, iWidth, iHeight, ulStyle, ulStyleEx);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: _bRemoveControl
 /*static*/
 BOOL CxResources::_bRemoveControl(INT iID) {
-	xASSERT_RET(0 < iID, FALSE);
+    xASSERT_RET(0 < iID, FALSE);
 
-	TSettingsMap::const_iterator it;
+    TSettingsMap::const_iterator it;
 
-	it = _m_mapResContent.find(iID);
-	xASSERT_RET(_m_mapResContent.end() != it, FALSE);
+    it = _m_mapResContent.find(iID);
+    xASSERT_RET(_m_mapResContent.end() != it, FALSE);
 
-	_m_mapResContent.erase(it);
+    _m_mapResContent.erase(it);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

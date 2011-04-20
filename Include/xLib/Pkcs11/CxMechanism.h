@@ -17,18 +17,18 @@
 #include <xLib/Pkcs11/CxPkcs11.h>
 //---------------------------------------------------------------------------
 class CxMechanism : public CxNonCopyable {
-	public:
-		                     CxMechanism(const CxPkcs11 &cPkcs11);
-	                        ~CxMechanism();
-	   
-	   	BOOL                 bGetInfo   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);		
-		BOOL                 bGetList   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);	
-		
-	private:
-		BOOL                 _m_bRes;
-		CK_RV                _m_ulRes;
+    public:
+                             CxMechanism(const CxPkcs11 &cPkcs11);
+                            ~CxMechanism();
+       
+           BOOL                 bGetInfo   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);        
+        BOOL                 bGetList   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);    
+        
+    private:
+        BOOL                 _m_bRes;
+        CK_RV                _m_ulRes;
 
-		CK_FUNCTION_LIST_PTR _m_pFunc;
+        CK_FUNCTION_LIST_PTR _m_pFunc;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Pkcs11_CxMechanismH
+#endif    //xLib_Pkcs11_CxMechanismH

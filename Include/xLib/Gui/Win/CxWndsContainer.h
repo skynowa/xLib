@@ -16,17 +16,17 @@
 #include <xLib/Gui/CxWindow.h>
 //---------------------------------------------------------------------------
 class CxWndsContainer : public CxNonCopyable {
-	public:
-			      CxWndsContainer();
-			     ~CxWndsContainer();
+    public:
+                  CxWndsContainer();
+                 ~CxWndsContainer();
 
-		BOOL      bAdd           (CxWindow *pwndCtrl);
-		BOOL      bRemove        (CxWindow *pwndCtrl);
-		CxWindow *pwndGet        (UINT uiIndex);
-		UINT      uiGetSize      ();
+        BOOL      bAdd           (CxWindow *pwndCtrl);
+        BOOL      bRemove        (CxWindow *pwndCtrl);
+        CxWindow *pwndGet        (UINT uiIndex);
+        UINT      uiGetSize      ();
 
-	private:
-		std::vector<CxWindow *>  _m_vecpWnds;
+    private:
+        std::vector<CxWindow *>  _m_vecpWnds;
 };
 //---------------------------------------------------------------------------
 #endif //XLib_Gui_CxWndsContainerH

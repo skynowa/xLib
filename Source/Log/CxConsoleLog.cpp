@@ -37,9 +37,9 @@
 //---------------------------------------------------------------------------
 //DONE: CxConsoleLog (constructor)
 CxConsoleLog::CxConsoleLog(BOOL bIsUseTimeStr) :
-	_m_bIsUseTimeStr(bIsUseTimeStr)
+    _m_bIsUseTimeStr(bIsUseTimeStr)
 {
-	
+    
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxConsoleLog (destructor)
@@ -50,39 +50,39 @@ CxConsoleLog::~CxConsoleLog() {
 //DONE: bWrite (write)
 BOOL
 CxConsoleLog::bWrite(LPCTSTR pcszFormat, ...) {
-	/*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
 
-	//-------------------------------------
-	//time
-	tString sTime;
+    //-------------------------------------
+    //time
+    tString sTime;
 
-	if (TRUE == _m_bIsUseTimeStr) {
-		sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
-	} else {
-		sTime = xT("");
-	}
+    if (TRUE == _m_bIsUseTimeStr) {
+        sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
+    } else {
+        sTime = xT("");
+    }
 
-	//-------------------------------------
-	//comment
-	tString sParam;
-	va_list palArgs = NULL;
+    //-------------------------------------
+    //comment
+    tString sParam;
+    va_list palArgs = NULL;
 
-	va_start(palArgs, pcszFormat);
-	sParam = CxString::sFormatV(pcszFormat, palArgs);
-	va_end(palArgs);	
+    va_start(palArgs, pcszFormat);
+    sParam = CxString::sFormatV(pcszFormat, palArgs);
+    va_end(palArgs);    
 
-	//-------------------------------------
-	//write
+    //-------------------------------------
+    //write
 #if defined(xOS_WIN)
     /*LOCK*/CxAutoCriticalSection SL(_ms_csConsole);
 #elif defined(xOS_LINUX)
     xNOT_IMPLEMENTED_RET(FALSE);
 #endif
 
-	////--CxStdioFile::iPrintf(xT("%s%s\n"), sTime.c_str(), sParam.c_str());
+    ////--CxStdioFile::iPrintf(xT("%s%s\n"), sTime.c_str(), sParam.c_str());
 
     tcout << sTime << sParam << tendl; 
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

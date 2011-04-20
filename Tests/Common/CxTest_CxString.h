@@ -17,13 +17,13 @@
 #include <xLib/Common/CxString.h>
 //---------------------------------------------------------------------------
 class CxTest_CxString : public CxTest {
-	public:
-		CxTest_CxString();
-		virtual     ~CxTest_CxString();
+    public:
+        CxTest_CxString();
+        virtual     ~CxTest_CxString();
 
-		virtual     BOOL bUnit();
+        virtual     BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 
@@ -930,7 +930,7 @@ CxTest_CxString::bUnit() {
     }
 
     /****************************************************************************
-    *	memory
+    *    memory
     *
     *****************************************************************************/
 

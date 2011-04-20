@@ -16,4 +16,4 @@
 #include "SDK/SDK 4.53/eTSAPI.h"
 #include "SDK/SDK 4.53/otp-pkcs11.h"
 //---------------------------------------------------------------------------
-#endif	//xLib_Pkcs11_CommonH
+#endif    //xLib_Pkcs11_CommonH

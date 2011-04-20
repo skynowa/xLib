@@ -15,18 +15,18 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxCrc32 : public CxNonCopyable {
-	public:
-		static ULONG   ulCalc        (UCHAR *pucBuff, ULONG ulSize);
-		static ULONG   ulCalcFile    (const tString &csFilePath);
-		
-		static ULONG   ulCalcFast    (UCHAR *pucBuff, ULONG ulSize);
-		static ULONG   ulCalcFileFast(const tString &csFilePath);
+    public:
+        static ULONG   ulCalc        (UCHAR *pucBuff, ULONG ulSize);
+        static ULONG   ulCalcFile    (const tString &csFilePath);
+        
+        static ULONG   ulCalcFast    (UCHAR *pucBuff, ULONG ulSize);
+        static ULONG   ulCalcFileFast(const tString &csFilePath);
 
-		static tString sFormatHex    (ULONG ulCrc32);   
+        static tString sFormatHex    (ULONG ulCrc32);   
 
-	private:
+    private:
                        CxCrc32       ();
         virtual       ~CxCrc32       ();
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Crypt_CxCrc32H
+#endif    //xLib_Crypt_CxCrc32H

@@ -13,21 +13,21 @@
 #define xLib_Fso_CxMemoryIniH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <map>	
+#include <map>    
 //---------------------------------------------------------------------------
 class CxMemoryIni : public CxNonCopyable {
-	public:
-    			  CxMemoryIni();
-		explicit  CxMemoryIni(const tString &csFilePath);
-		virtual  ~CxMemoryIni();
+    public:
+                  CxMemoryIni();
+        explicit  CxMemoryIni(const tString &csFilePath);
+        virtual  ~CxMemoryIni();
 
-		BOOL      bFlush     ();
+        BOOL      bFlush     ();
 
-	private:
-		typedef std::map<tString, tString> IniPair;
+    private:
+        typedef std::map<tString, tString> IniPair;
 
-		BOOL      _m_bRes;
-		tString   _m_sFilePath;
+        BOOL      _m_bRes;
+        tString   _m_sFilePath;
 
 
 };

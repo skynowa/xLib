@@ -225,7 +225,7 @@ extern "C" {
 /*Добавлен код для SDK 4.53 ()*/
 /* Win 32 specific */
 #ifdef _WIN32
-	#pragma pack(push, cryptoki, 1)
+    #pragma pack(push, cryptoki, 1)
 
     #define CK_PTR *
     #define CK_DEFINE_FUNCTION(returnType, name)          returnType name
@@ -235,7 +235,7 @@ extern "C" {
 #endif /* _WIN32 */
 
 #ifndef NULL_PTR
-	#define NULL_PTR 0
+    #define NULL_PTR 0
 #endif
 /*---------------------------------------------------------------------------*/
 /*либо код для SDK 4.53 ()*/
@@ -338,7 +338,7 @@ struct CK_FUNCTION_LIST {
 /*Добавлен код для SDK 4.53 ()*/
 /* Win32 stuff */
 #ifdef _WIN32
-	#pragma pack(pop, cryptoki)
+    #pragma pack(pop, cryptoki)
 #endif /* _WIN32 */
 /*---------------------------------------------------------------------------*/
 

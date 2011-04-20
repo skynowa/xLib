@@ -14,35 +14,35 @@
 
 //---------------------------------------------------------------------------
 CxHttpClient::CxHttpClient() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 CxHttpClient::~CxHttpClient() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: bHead ()
 BOOL
 CxHttpClient::bHead(const std::string &csUrl, std::string *psResponse) {
-	BOOL bRes = FALSE;
-	xUNUSED(bRes);
+    BOOL bRes = FALSE;
+    xUNUSED(bRes);
 
-	//csUrl = http://dn1.berloga.net/83841/zombie_baseball_2.swf
+    //csUrl = http://dn1.berloga.net/83841/zombie_baseball_2.swf
 
-	std::string sStartLine;
-	std::string sHeader;
-	std::string sBody;
-	
-	sStartLine = "HEAD /83841/zombie_baseball_2.swf HTTP/1.1"         + CxConst::xCRNL;
-		
-	sHeader    = "Host: dn1.berloga.net"                              + CxConst::xCRNL +
-			     "Accept: text/html, */*"                             + CxConst::xCRNL +
-				 "Accept-Encoding: identity"                          + CxConst::xCRNL +
-				 "User-Agent: Mozilla/3.0 (compatible; Indy Library)" + CxConst::xCRNL + CxConst::xCRNL;	
+    std::string sStartLine;
+    std::string sHeader;
+    std::string sBody;
+    
+    sStartLine = "HEAD /83841/zombie_baseball_2.swf HTTP/1.1"         + CxConst::xCRNL;
+        
+    sHeader    = "Host: dn1.berloga.net"                              + CxConst::xCRNL +
+                 "Accept: text/html, */*"                             + CxConst::xCRNL +
+                 "Accept-Encoding: identity"                          + CxConst::xCRNL +
+                 "User-Agent: Mozilla/3.0 (compatible; Indy Library)" + CxConst::xCRNL + CxConst::xCRNL;    
 
-	sBody      = "";
+    sBody      = "";
 
-	return TRUE;
+    return TRUE;
 
 
 
@@ -51,61 +51,61 @@ CxHttpClient::bHead(const std::string &csUrl, std::string *psResponse) {
 //TODO: bGet ()
 BOOL
 CxHttpClient::bGet(const std::string &csUrl,  std::string *psResponse) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bPost ()
 BOOL
 CxHttpClient::bPost(const std::string &csUrl,  const std::string &csParams, std::string *psResponse) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bOptions ()
 BOOL
 CxHttpClient::bOptions(const std::string &csUrl) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bTrace ()
 BOOL
 CxHttpClient::bTrace(const std::string &csUrl) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bPut ()
 BOOL
 CxHttpClient::bPut(const std::string &csUrl) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bDelete ()
 BOOL
 CxHttpClient::bDelete(const std::string &csUrl) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bConnect ()
 BOOL
 CxHttpClient::bConnect(const std::string &csUrl) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bPatch ()
 BOOL
 CxHttpClient::bPatch(const std::string &csUrl) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bLink ()
 BOOL
 CxHttpClient::bLink(const std::string &csUrl) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 //TODO: bUnlink ()
 BOOL
 CxHttpClient::bUnlink(const std::string &csUrl) {
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 

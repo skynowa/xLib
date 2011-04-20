@@ -16,32 +16,32 @@
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
 class CxCheckBox: public CxButtonBase {
-	public:
-		//-------------------------------------
-		//константы
+    public:
+        //-------------------------------------
+        //константы
 
-		//состояния
-		enum ECheckState {
-			csUknown    = - 1,
-			csChecked	= BST_CHECKED,
-			csGrayed    = BST_INDETERMINATE, 
-			csUnchecked = BST_UNCHECKED,	
-		};	
+        //состояния
+        enum ECheckState {
+            csUknown    = - 1,
+            csChecked    = BST_CHECKED,
+            csGrayed    = BST_INDETERMINATE, 
+            csUnchecked = BST_UNCHECKED,    
+        };    
 
-			        CxCheckBox     ();
-		virtual    ~CxCheckBox     ();
+                    CxCheckBox     ();
+        virtual    ~CxCheckBox     ();
 
-		BOOL        bCreateRes     (INT iID, CxWindow *pwndParent);
+        BOOL        bCreateRes     (INT iID, CxWindow *pwndParent);
 
-		//-------------------------------------
-		//сообщения
-		ECheckState csGetState     ();							
-		BOOL        bSetState      (CxCheckBox::ECheckState csCheckState);
-		BOOL        bSetAllowGrayed(BOOL bFlag);
+        //-------------------------------------
+        //сообщения
+        ECheckState csGetState     ();                            
+        BOOL        bSetState      (CxCheckBox::ECheckState csCheckState);
+        BOOL        bSetAllowGrayed(BOOL bFlag);
 
-		//-------------------------------------
-		//события
+        //-------------------------------------
+        //события
 
 };
 //---------------------------------------------------------------------------
-#endif	//XLib_Gui_CxCheckBoxH
+#endif    //XLib_Gui_CxCheckBoxH

@@ -16,20 +16,20 @@
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 class CxWndLog : public CxNonCopyable {
-	public:
-		//window classes
-		enum EWindowClass {
-			wcListBox
-		};	
+    public:
+        //window classes
+        enum EWindowClass {
+            wcListBox
+        };    
 
-								 CxWndLog(EWindowClass wcWC);
-		virtual 				~CxWndLog();
+                                 CxWndLog(EWindowClass wcWC);
+        virtual                 ~CxWndLog();
 
-   		BOOL                     bWrite  (HWND hWnd, LPCTSTR pcszFormat, ...);
-   		
-   	private:	
-   		EWindowClass             _m_eWC;
-   		static CxCriticalSection _ms_csListBox;  //Mutex
+           BOOL                     bWrite  (HWND hWnd, LPCTSTR pcszFormat, ...);
+           
+       private:    
+           EWindowClass             _m_eWC;
+           static CxCriticalSection _ms_csListBox;  //Mutex
 };
 //---------------------------------------------------------------------------
 #endif

@@ -116,9 +116,9 @@ extern "C" {
 
 // -------------------- OTP modes ---------------------
 #define CK_SAPI_OTP_NEXT                     0x00000000
-#define	CK_SAPI_OTP_CURRENT                  0x00000001
-#define	CK_SAPI_OTP_ZERO                     0x00000002
-#define	CK_SAPI_OTP_RELEASE                  0x00000081
+#define    CK_SAPI_OTP_CURRENT                  0x00000001
+#define    CK_SAPI_OTP_ZERO                     0x00000002
+#define    CK_SAPI_OTP_RELEASE                  0x00000081
 
 // --------------- OTP mechanism flags ----------------
 #define CK_SAPI_OTP_CURRENT_SUPPORTED        0x00000001
@@ -134,7 +134,7 @@ extern "C" {
 #define CK_SAPI_COLOR_BLUE                   0x00000001
 #define CK_SAPI_COLOR_GREEN                  0x00000002
 #define CK_SAPI_COLOR_TANGERINE              0x00000003
-#define CK_SAPI_COLOR_ICE              	     0x00000004
+#define CK_SAPI_COLOR_ICE                       0x00000004
 #define CK_SAPI_COLOR_PURPLE                 0x00000005
 #define CK_SAPI_COLOR_LIME                   0x00000006
 #define CK_SAPI_COLOR_PINK                   0x00000007
@@ -358,7 +358,7 @@ typedef CK_RV (*f_SAPI_BI_GetConfig)(
 typedef struct tagCK_SAPI_OTP_MECHANISM_INFO
 {
   CK_ULONG       mechanism;                      // CK_SAPI_OTP_HMAC_SHA1_DEC6
-	CK_ULONG       minKeyLen;
+    CK_ULONG       minKeyLen;
   CK_ULONG       maxKeyLen;
   CK_ULONG       OTPLen;                         // 6
   CK_ULONG       defDuration;

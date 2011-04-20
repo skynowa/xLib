@@ -15,13 +15,13 @@
 //---------------------------------------------------------------------------
 //TODO: - CxSharedMemory (comment)
 CxSharedMemory::CxSharedMemory() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - ~CxSharedMemory (comment)
 /*virtual*/
 CxSharedMemory::~CxSharedMemory() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 

@@ -17,16 +17,16 @@
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 class CxTraceLog : public CxNonCopyable {
-	public:	
+    public:    
         explicit CxTraceLog (BOOL bIsUseTimeStr);
-		virtual ~CxTraceLog ();
+        virtual ~CxTraceLog ();
 
-		BOOL     bSetEnabled(BOOL bFlag);
-		BOOL     bWrite     (LPCTSTR pcszFormat, ...);  
+        BOOL     bSetEnabled(BOOL bFlag);
+        BOOL     bWrite     (LPCTSTR pcszFormat, ...);  
 
-	private:	
-		BOOL     _m_bIsEnable;
-		BOOL     _m_bIsUseTimeStr;
+    private:    
+        BOOL     _m_bIsEnable;
+        BOOL     _m_bIsUseTimeStr;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Log_CxTraceLogH
+#endif    //xLib_Log_CxTraceLogH

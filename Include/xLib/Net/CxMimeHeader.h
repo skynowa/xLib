@@ -15,48 +15,48 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxMimeHeader : public CxNonCopyable {
-	public:
-					         CxMimeHeader      (); 
-				            ~CxMimeHeader      (); 
+    public:
+                             CxMimeHeader      (); 
+                            ~CxMimeHeader      (); 
 
-		BOOL                 bParse            (const tString &csRawHeader); 
-		tString				 sGetField         (const tString &csName);  
-		size_t               uiCount           (); 
-		BOOL			     bLoadFromFile     (const tString &csRawMessageFilePath); 
-		BOOL		         bSaveToFile       (const tString &csFilePath); 
+        BOOL                 bParse            (const tString &csRawHeader); 
+        tString                 sGetField         (const tString &csName);  
+        size_t               uiCount           (); 
+        BOOL                 bLoadFromFile     (const tString &csRawMessageFilePath); 
+        BOOL                 bSaveToFile       (const tString &csFilePath); 
 
-		static tString		 sGenerateMessageID();
+        static tString         sGenerateMessageID();
 
-	private:
-		static const tString _ms_csAttrDelimiter;
-		static const tString _ms_csEndOfHeader;
-		static const tString _ms_csEndOfLine;
+    private:
+        static const tString _ms_csAttrDelimiter;
+        static const tString _ms_csEndOfHeader;
+        static const tString _ms_csEndOfLine;
 
-		BOOL                 _m_bRes;
-		tString              _m_sRes;
-		TStringMultiMap      _m_mmsHeader;
+        BOOL                 _m_bRes;
+        tString              _m_sRes;
+        TStringMultiMap      _m_mmsHeader;
 
-		//Delivered-To:
-		//Return-Path:
-		//Received: 
-		//From: 
-		//To: 
-		//CC:
-		//BCC:
-		//Subject: 
-		//X-Priority:
-		//X-MSMail-Priority: 
-		//X-Mailer: 
-		//X-MimeOLE:
-		//Reply-To:
-		//MIME-Version: 
-		//Content-Type: 
-		//Content-Transfer-Encoding:
-		//Date:
-		//Message-ID:
+        //Delivered-To:
+        //Return-Path:
+        //Received: 
+        //From: 
+        //To: 
+        //CC:
+        //BCC:
+        //Subject: 
+        //X-Priority:
+        //X-MSMail-Priority: 
+        //X-Mailer: 
+        //X-MimeOLE:
+        //Reply-To:
+        //MIME-Version: 
+        //Content-Type: 
+        //Content-Transfer-Encoding:
+        //Date:
+        //Message-ID:
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Net_CxMimeHeaderH 
+#endif    //xLib_Net_CxMimeHeaderH 
 
 /*
 procedure TIdMessage.ClearHeader;
