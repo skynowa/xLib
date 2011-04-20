@@ -1,0 +1,12 @@
+		/*
+		typedef enum {
+			StateInitialized,
+			StateReady,
+			StateRunning,
+			StateStandby,
+			StateTerminated,
+			StateWait,
+			StateTransition,
+			StateUnknown
+		}THREAD_STATE
+		*/

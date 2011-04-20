@@ -1,0 +1,21 @@
+	bool CSocketServer::p_StopTcpPump(void)
+	{
+		DWORD dwExitCode = 0;
+
+		if(this->p_bTcpPumpActive)	{
+			this->p_bShutdownTcpPump = true;
+
+			while(GetExitCodeThread(this->p_hTcpPump, &dwExitCode))		{
+				if(dwExitCode != STILL_ACTIVE)	{
+					CloseHandle(this->p_hTcpPump);
+					return true;
+				}
+
+				Sleep(1);
+			}
+
+			return this->p_ThrowError(24);
+		}
+
+		return true;
+	}

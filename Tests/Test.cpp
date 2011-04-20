@@ -67,12 +67,12 @@
 #include "Net/CxTest_CxCookiePv0.h"
 #include "Net/CxTest_CxCookiePv1.h"
 #include "Net/CxTest_CxCgi.h"
-//#include "Net/CxTest_CxSocketInit.h"
-//#include "Net/CxTest_CxSocket.h"
-//#include "Net/CxTest_CxDnsClient.h"
-//#include "Net/CxTest_CxTcpClientSocket.h"
-//#include "Net/CxTest_CxTcpServerSocket.h"
-//#include "Net/CxTest_CxHttpClient.h"
+#include "Net/CxTest_CxSocketInit.h"
+#include "Net/CxTest_CxSocket.h"
+#include "Net/CxTest_CxDnsClient.h"
+#include "Net/CxTest_CxTcpClientSocket.h"
+#include "Net/CxTest_CxTcpServerSocket.h"
+#include "Net/CxTest_CxHttpClient.h"
 
 //Compress
 #if defined(xOS_WIN)
@@ -83,10 +83,10 @@
 
 
 //Crypt
-////#include "Crypt/CxTest_CxBase64.h"
-////////#include "Crypt/CxTest_CxCrc32.h"
+#include "Crypt/CxTest_CxBase64.h"
+#include "Crypt/CxTest_CxCrc32.h"
 #include "Crypt/CxTest_CxRandom.h"
-////#include "Crypt/CxTest_CxBlowfish.h"
+#include "Crypt/CxTest_CxBlowfish.h"
 
 //Db
 #include "Db/CxTest_CxConnectionString.h"
@@ -112,9 +112,6 @@
 //---------------------------------------------------------------------------
 INT
 _tmain(INT argc, TCHAR *argv[]) {
-    //xASSERT_EQUAL(xT(""), xT("aaaaa"));
-
-
     tcout << "Content-type: text/html\n\n" << tendl;
 
     #if xTEMP_DISABLED
@@ -141,10 +138,7 @@ _tmain(INT argc, TCHAR *argv[]) {
     std::vector<CxTest *> vecpvTests;
 
 
-    vecpvTests.push_back( new CxTest_CxCgi );
-    vecpvTests.push_back( new CxTest_CxString );
-
-    #if xTEMP_DISABLED
+    #if xTEMP_ENABLED
         //--------------------------------------------------
         //Other
         vecpvTests.push_back( new CxTest_CxMacros );
@@ -181,7 +175,7 @@ _tmain(INT argc, TCHAR *argv[]) {
         vecpvTests.push_back( new CxTest_CxPath );
         vecpvTests.push_back( new CxTest_CxStdioFile );
         vecpvTests.push_back( new CxTest_CxDir );
-        /////vecpvTests.push_back( new CxTest_CxEnvironment );
+        vecpvTests.push_back( new CxTest_CxEnvironment );
         vecpvTests.push_back( new CxTest_CxDll );
 
         #if defined(xOS_WIN)
@@ -211,9 +205,9 @@ _tmain(INT argc, TCHAR *argv[]) {
         vecpvTests.push_back( new CxTest_CxCgi );
         vecpvTests.push_back( new CxTest_CxSocketInit );
         vecpvTests.push_back( new CxTest_CxDnsClient );
-        //vecpvTests.push_back( new xTest_CxTcpClientSocket );
-        //vecpvTests.push_back( new CxTest_CxTcpServerSocket );
-        //vecpvTests.push_back( new CxTest_CxHttpClient );
+        ////vecpvTests.push_back( new CxTest_CxTcpClientSocket );
+        ////vecpvTests.push_back( new CxTest_CxTcpServerSocket );
+        vecpvTests.push_back( new CxTest_CxHttpClient );
 
         //--------------------------------------------------
         //Compress
@@ -225,13 +219,13 @@ _tmain(INT argc, TCHAR *argv[]) {
 
         //--------------------------------------------------
         //Crypt
-        ////vecpvTests.push_back( new CxTest_CxCrc32 );
+        vecpvTests.push_back( new CxTest_CxCrc32 );
         ////vecpvTests.push_back( new CxTest_CxBlowfish );
 
         //--------------------------------------------------
         //Db
         vecpvTests.push_back( new CxTest_CxConnectionString );
-        ////vecpvTests.push_back( new CxTest_CxMySql );
+        vecpvTests.push_back( new CxTest_CxMySql );
 
         //--------------------------------------------------
         //Sync
@@ -255,8 +249,6 @@ _tmain(INT argc, TCHAR *argv[]) {
         #endif
     #endif
 
-
-
     //--------------------------------------------------
     //run all tests
     for (ULONGLONG i = 0; i < ullTimesForAll; ++ i) {
@@ -278,7 +270,6 @@ _tmain(INT argc, TCHAR *argv[]) {
 
     xTRACE(xT("All tests successful done.\n\n"));
 
-    //system("pause");
     return 0;
 }
 //---------------------------------------------------------------------------

@@ -1,0 +1,36 @@
+//--------------------------------------------------------------------------
+/*static*/BOOL CXDateTime::bMilliSecToDateTime(ULONGLONG ullMilliSec, SYSTEMTIME &stST) { 
+	BOOL bRes = FALSE;
+	
+	const INT SECOND = 1000;
+	
+	//stST.wYear         = ullMilliSec / 3600000;
+	//stST.wMonth        = ullMilliSec / 3600000;
+	stST.wDay          = ullMilliSec % 2592000000 / 86400000;
+
+	stST.wHour         = ullMilliSec % 86400000 / 3600000;		//stST.wHour         = ullMilliSec / 3600000;
+	stST.wMinute       = ullMilliSec % 3600000 / 60000;
+	stST.wSecond       = ullMilliSec % 60000   / 1000;
+	/////////stST.wMilliseconds = ullMilliSec % 1000;
+	
+	////////////////////stST.wYear         = ullMilliSec / 3600 * SECOND;
+	////////////////////stST.wMonth        = ullMilliSec / 3600 * SECOND;
+	////////////////////stST.wDay          = ullMilliSec / 3600 * SECOND;
+
+	////////////////////stST.wHour         = ullMilliSec / 3600 * SECOND;
+	////////////////////stST.wMinute       = ullMilliSec % 3600 * SECOND / 60 * SECOND;
+	////////////////////stST.wSecond       = ullMilliSec % 60   * SECOND / SECOND;
+	////////////////////stST.wMilliseconds = ullMilliSec % SECOND;
+	//////////
+	//////////stST.wYear         = ullMilliSec / 3600 * SECOND;
+	//////////stST.wMonth        = ullMilliSec / 3600 * SECOND;
+	//////////stST.wDay          = ullMilliSec / 3600 * SECOND;
+
+	//////////stST.wHour         = ullMilliSec / 3600 * SECOND;
+	//////////stST.wMinute       = ullMilliSec % 60;
+	//////////stST.wSecond       = ullMilliSec % 60;
+	//////////stST.wMilliseconds = ullMilliSec % SECOND;
+	
+	return TRUE;
+}
+//--------------------------------------------------------------------------

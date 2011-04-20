@@ -20,15 +20,14 @@ class CxDnsClient : public CxNonCopyable {
 		static BOOL bGetHostAddrByName  (const tString &csHostName, tString *psHostAddr);
 		static BOOL bGetHostNameByAddr  (const tString &csHostAddr, CxSocket::EAddressFamily afFamily, tString *psHostName);
 		static BOOL bGetLocalHostName   (tString *psHostName);
-		////static BOOL bGetNameInfo    (EAddressFamily afFamily, const tString &csHostAddr, USHORT usPort);
-		///////////////////////////////static BOOL bGetHostAddrInfo    (const tString &csHostName, const tString &csPort, const ADDRINFOT *pHints, ADDRINFOT **ppResult);
+		static BOOL bGetNameInfo        (CxSocket::EAddressFamily afFamily, const tString &csHostAddr, USHORT usPort);
+		static BOOL bGetHostAddrInfo    (const tString &csHostName, const tString &csPort, const ADDRINFOT *pHints, ADDRINFOT **ppResult);
 
-
-		//TODO: ������� ����� �������
+		//TODO:
 		static BOOL bGetProtocolByName  (const tString &csProtocolName, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiNumber);
 		static BOOL bGetProtocolByNumber(SHORT siNumber, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiNum);
 
-		//TODO: ������� ����� �������
+		//TODO:
 		static BOOL bGetServiceByName   (const tString &csServiceName, const tString &csProtocolName, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiPort,  tString *psProtocolName);
 		static BOOL bGetServiceByPort   (SHORT siPort, const tString &csProtocolName, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiPort,  tString *psProtocolName);
 

@@ -1,0 +1,14 @@
+//-------------------------------------
+	//убиваем объекты потоков 
+	//-- т,к, мы выносим со списка потоки, то здесь мы удалим не все потоки --
+	//////{
+	//////	CXCriticalSectionLocker CS(_m_csList);
+
+	//////	/*DEBUG*/XASSERT_RET(false == _m_lstpthTasks.empty(), 0);
+
+	//////	for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin(); it != _m_lstpthTasks.end(); ++ it) {
+	//////		/*DEBUG*/XASSERT(NULL != *it);
+
+	//////		DELETE_POINTER(*it);
+	//////	}
+	//////}

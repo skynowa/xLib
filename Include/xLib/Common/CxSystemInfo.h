@@ -68,3 +68,6 @@ class CxSystemInfo : public CxNonCopyable {
 };
 //---------------------------------------------------------------------------
 #endif	//xLib_Common_CxSystemInfoH
+
+
+// https://github.com/joyent/node/blob/master/src/platform_linux.cc

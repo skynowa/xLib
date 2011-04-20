@@ -47,7 +47,7 @@ CxTest_CxTcpServerSocket::~CxTest_CxTcpServerSocket() {
 BOOL CxTest_CxTcpServerSocket::bUnit() {
 	/*DEBUG*/
 
-	CxSocket::EAddressFamily afAf       = CxSocket::afIPv4;
+	CxSocket::EAddressFamily afAf       = CxSocket::afInet;
 	CxSocket::EType          tpType     = CxSocket::tpStream;
 	CxSocket::EProtocol      ptProtocol = CxSocket::ptIp;
 

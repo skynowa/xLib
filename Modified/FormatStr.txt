@@ -1,0 +1,141 @@
+//---------------------------------------------------------------------------
+/*static*/CXDateTime CXDateTime::sGetLocalDate() {
+	SYSTEMTIME  stST = {0};
+
+	::GetLocalTime(&stST);
+	/*DEBUG*///not need
+
+	return sFormatStr("%d-%.2d-%.2d", stST.wYear, stST.wMonth,  stST.wDay);
+}
+//---------------------------------------------------------------------------
+/*static*/CXDateTime CXDateTime::sGetLocalTime() {
+	SYSTEMTIME  stST  = {0};
+
+	::GetLocalTime(&stST);
+	/*DEBUG*///not need
+
+	return sFormatStr("%d:%.2d:%.2d:%.3d", stST.wHour, stST.wMinute, stST.wSecond, stST.wMilliseconds);
+}
+
+
+//---------------------------------------------------------------------------
+//Set the date.
+/*static*/BOOL CXDateTime::bSetLocalDate(USHORT usYear, USHORT usMonth, USHORT usDay)	{ 
+	return bSetLocalDateTime(usYear, usMonth, usDay, 0, 0, 0, 0); 
+}
+//---------------------------------------------------------------------------
+//Set the time.
+/*static*/BOOL CXDateTime::bSetLocalTime(USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMilliseconds) { 
+	return bSetLocalDateTime(1899, 12, 30, usHour, usMinute, usSecond, usMilliseconds); 
+}
+//---------------------------------------------------------------------------
+
+
+
+//timestamp
+/*static*/std::string CXDateTime::sTimeStamp() {
+	size_t uiRes = 0;
+	
+	const ULONG culRunDateSize                = 128;
+	CHAR        szRunDate[culRunDateSize + 1] = {0};
+
+	time_t tod;
+	time(&tod);
+	uiRes = strftime(szRunDate, culRunDateSize, "%Y-%m-%d %X UTC", gmtime(&tod));
+	/*DEBUG*/XASSERT_RET(0 != uiRes, "");
+
+	return std::string(szRunDate, uiRes);
+}   
+
+
+
+
+
+//--------------------------------------------------------------------------
+//конвертируем FILETIME в time_t
+/*static*/std::string CXDateTime::sFiletimeToStr(LPFILETIME ftFiletime) {
+	if (0 == ftFiletime->dwLowDateTime && 0 == ftFiletime->dwHighDateTime) {
+		return "";
+	} 
+
+	SYSTEMTIME st = {0};
+	::FileTimeToSystemTime(ftFiletime, &st);
+
+	CHAR szDate[20 + 1] = {0};
+	::GetDateFormat(LOCALE_USER_DEFAULT, DATE_SHORTDATE, &st, NULL, szDate, 20);
+
+	return std::string(szDate);
+}
+//---------------------------------------------------------------------------
+/*static*/LONGLONG CXDateTime::llFiletimeToInt64(FILETIME F) {
+	return ::Int64ShllMod32(F.dwHighDateTime, 32) | F.dwLowDateTime;
+}
+//--------------------------------------------------------------------------
+
+
+
+
+/****************************************************************************
+*
+*
+*****************************************************************************/
+
+		//-------------------------------------
+		//статик
+		static CXDateTime  sGetLocalDateTime(); /*+*/ 
+		static BOOL        bSetLocalDateTime(USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMilliseconds); /*+*/
+        
+        
+        /****************************************************************************
+*	static
+*
+*****************************************************************************/
+
+
+//---------------------------------------------------------------------------
+/*static*/CXDateTime CXDateTime::sGetLocalDateTime() {
+	SYSTEMTIME  stST  = {0};
+
+	::GetLocalTime(&stST);
+	/*DEBUG*///not need
+	
+	return CXDateTime(stST.wYear, stST.wMonth,  stST.wDay,
+					  stST.wHour, stST.wMinute, stST.wSecond, stST.wMilliseconds);
+}
+//---------------------------------------------------------------------------
+/*static*/BOOL CXDateTime::bSetLocalDateTime(USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMilliseconds) {
+	/*DEBUG*/XASSERT_RET(usYear         >= 0,                           FALSE);
+	/*DEBUG*/XASSERT_RET(usMonth        >= 1 && usMonth        <= 31,   FALSE);
+	/*DEBUG*/XASSERT_RET(usDay          >= 1 && usDay          <= 365,  FALSE);
+	/*DEBUG*/XASSERT_RET(usHour         >= 0 && usHour         <= 23,   FALSE);
+	/*DEBUG*/XASSERT_RET(usMinute       >= 0 && usMinute       <= 59,   FALSE);
+	/*DEBUG*/XASSERT_RET(usSecond       >= 0 && usSecond       <= 59,   FALSE);
+	/*DEBUG*/XASSERT_RET(usMilliseconds >= 0 && usMilliseconds <= 999,  FALSE);
+	
+	BOOL          bRes = FALSE;
+	SYSTEMTIME    stST = {0};
+	
+	stST.wYear         = usYear;
+	stST.wMonth        = usMonth;
+	////stST.wDayOfWeek    = usDayOfWeek; 
+	stST.wDay          = usDay;
+	stST.wHour         = usHour;
+	stST.wMinute       = usMinute;
+	stST.wSecond       = usSecond;
+	stST.wMilliseconds = usMilliseconds;	
+	
+	bRes = ::SetLocalTime(&stST);
+	/*DEBUG*/XASSERT_RET(FALSE != bRes, FALSE);
+
+	return bRes;
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+

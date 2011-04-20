@@ -336,15 +336,13 @@ CxSystemInfo::sGetUserName() {
 #elif defined(xOS_LINUX)
     //http://www.metalshell.com/source_code/107/List_Users.html
     //http://www.metalshell.com/source_code/83/Get_GID_Name.html
-    //env vars: USER, LOGNAME, USERNAME
 
-    sRes.resize(L_cuserid);
+    passwd *ppwPassword = getpwuid(getuid());
+    /*DEBUG*/xASSERT_RET(NULL != ppwPassword, tString());
 
-    INT iRes = getlogin_r(&sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != iRes, tString());
-
-    sRes.assign(sRes.c_str());
+    sRes.assign(ppwPassword->pw_name);
 #endif
+
 	return sRes;
 }
 //---------------------------------------------------------------------------

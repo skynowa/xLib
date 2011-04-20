@@ -44,7 +44,7 @@ CxTest_CxTcpClientSocket::~CxTest_CxTcpClientSocket() {
 //TODO: - bUnit ()
 /*virtual*/
 BOOL CxTest_CxTcpClientSocket::bUnit() {
-	CxSocket::EAddressFamily afAf           = CxSocket::afIPv4;
+	CxSocket::EAddressFamily afAf           = CxSocket::afInet;
 	CxSocket::EType          tpType         = CxSocket::tpStream;
 	CxSocket::EProtocol      ptProtocol     = CxSocket::ptIp;
 
@@ -52,7 +52,7 @@ BOOL CxTest_CxTcpClientSocket::bUnit() {
 	tString					 sIp            = xT("127.0.0.1");
 	USHORT                   usPort         = 6666;
 	tString                  sSendBuff      = xT("TEST_STRING");
-	CHAR                     szRecvBuff[32] = {0};
+	////CHAR                     szRecvBuff[32] = {0};
 
 	//-------------------------------------
 	//�������������

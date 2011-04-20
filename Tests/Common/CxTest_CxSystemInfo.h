@@ -137,7 +137,7 @@ CxTest_CxSystemInfo::bUnit() {
         #if defined(xOS_WIN)
         xASSERT(false == m_sRes.empty());
         #elif defined(xOS_LINUX)
-        xASSERT(xT("user") == m_sRes);
+        xASSERT_EQUAL(tString(xT("user")), m_sRes);
         #endif
     }
 
