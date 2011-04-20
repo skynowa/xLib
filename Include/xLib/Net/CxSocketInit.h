@@ -15,11 +15,11 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxSocketInit : public CxNonCopyable {
-	public:
-		          CxSocketInit(USHORT usHighVersion, USHORT usLowVersion);
-	    virtual  ~CxSocketInit();
+    public:
+                  CxSocketInit(USHORT usHighVersion, USHORT usLowVersion);
+        virtual  ~CxSocketInit();
 
-	private:
+    private:
 
 };
 //---------------------------------------------------------------------------

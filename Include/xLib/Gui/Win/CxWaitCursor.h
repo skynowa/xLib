@@ -15,14 +15,14 @@
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
 class CxWaitCursor : public CxNonCopyable {
-	public:
-		        CxWaitCursor();
-	           ~CxWaitCursor();
+    public:
+                CxWaitCursor();
+               ~CxWaitCursor();
 
-		BOOL    bRestore    ();
-		
-	private:
-		HCURSOR _m_hCursor;
+        BOOL    bRestore    ();
+        
+    private:
+        HCURSOR _m_hCursor;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Gui_CxWaitCursorH
+#endif    //xLib_Gui_CxWaitCursorH

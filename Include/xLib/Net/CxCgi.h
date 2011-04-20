@@ -182,7 +182,7 @@ namespace NxCgi {
 
 //---------------------------------------------------------------------------
 class CxCgi : public CxNonCopyable {
-	public:
+    public:
         static const size_t     MAX_DATA_SIZE_DEFAULT = 1024 * 1024;
 
         NxCgi::CxCgiEnvironment Environment;
@@ -190,7 +190,7 @@ class CxCgi : public CxNonCopyable {
         NxCgi::CxCgiFormData    Formdata;
 
         explicit                CxCgi          (const size_t cuiMaxSize);
-		virtual                ~CxCgi          ();
+        virtual                ~CxCgi          ();
 
         tString                 sGetDump       () const;
 
@@ -200,7 +200,7 @@ class CxCgi : public CxNonCopyable {
         static BOOL             bUriEncode     (const tString &csUri, const tString &csReserved, tString *psEncodedStr);
         static BOOL             bUriDecode     (const tString &csUri, tString *psDecodedStr);
 
-	private:
+    private:
         //--------------------------------------------------
         //encoding, decoding
         int                     cgl_parsecgibuf(/*cgllist *cdata, */char *query);

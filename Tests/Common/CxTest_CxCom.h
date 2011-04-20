@@ -17,13 +17,13 @@
 #include <xLib/Common/Win/CxCom.h>
 //---------------------------------------------------------------------------
 class CxTest_CxCom : public CxTest {
-	public:
-					CxTest_CxCom();
-		virtual    ~CxTest_CxCom();
+    public:
+                    CxTest_CxCom();
+        virtual    ~CxTest_CxCom();
 
-		virtual     BOOL bUnit();
+        virtual     BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 
@@ -42,23 +42,23 @@ CxTest_CxCom::~CxTest_CxCom() {
 //TODO: - bUnit ()
 /*virtual*/
 BOOL CxTest_CxCom::bUnit() {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	//-------------------------------------
-	//bIsInit
-	{
-		{
-			CxCom cmCom(CxCom::cmMultiThreaded);
+    //-------------------------------------
+    //bIsInit
+    {
+        {
+            CxCom cmCom(CxCom::cmMultiThreaded);
 
-			m_bRes = CxCom::bIsInit();
-			xASSERT(FALSE != m_bRes);
-		}
+            m_bRes = CxCom::bIsInit();
+            xASSERT(FALSE != m_bRes);
+        }
 
-		m_bRes = CxCom::bIsInit();
-		xASSERT(FALSE == m_bRes);
-	}
+        m_bRes = CxCom::bIsInit();
+        xASSERT(FALSE == m_bRes);
+    }
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 #endif //CxTest_CxComH

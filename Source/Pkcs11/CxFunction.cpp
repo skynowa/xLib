@@ -22,64 +22,64 @@
 //---------------------------------------------------------------------------
 //TODO: - CxFunction ()
 CxFunction::CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
-	_m_bRes    (FALSE),
-	_m_ulRes   (!CKR_OK),
-	_m_pFunc   (cPkcs11.pGetFuncList()),
-	_m_hSession(cSession.hGetHandle())
+    _m_bRes    (FALSE),
+    _m_ulRes   (!CKR_OK),
+    _m_pFunc   (cPkcs11.pGetFuncList()),
+    _m_hSession(cSession.hGetHandle())
 {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - ~CxFunction ()
 CxFunction::~CxFunction() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - bGetList (returns the function list)
 BOOL
 CxFunction::bGetList(
-	CK_FUNCTION_LIST_PTR_PTR ppFunctionList  /* receives pointer to function list */
+    CK_FUNCTION_LIST_PTR_PTR ppFunctionList  /* receives pointer to function list */
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_GetFunctionList(ppFunctionList);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_GetFunctionList(ppFunctionList);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bGetStatus (is a legacy function; it obtains an updated status of a function running in parallel with an application)
 BOOL
 CxFunction::bGetStatus() {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_GetFunctionStatus(_m_hSession );
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_GetFunctionStatus(_m_hSession );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bCancel (is a legacy function; it cancels a function running in parallel)
 BOOL
 CxFunction::bCancel() {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_CancelFunction(_m_hSession);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_CancelFunction(_m_hSession);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bGetListEx (� SDK 4.53 ���� ������� ���)
 BOOL
 CxFunction::bGetListEx() {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	////_m_ulRes = _m_pFunc->ETC_GetFunctionListEx();
-	/////*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    ////_m_ulRes = _m_pFunc->ETC_GetFunctionListEx();
+    /////*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 

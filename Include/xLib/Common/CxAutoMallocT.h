@@ -11,11 +11,11 @@
 /*
 Usage:
 
-	PSP_DEVICE_INTERFACE_DETAIL_DATA pData = (PSP_DEVICE_INTERFACE_DETAIL_DATA)malloc(ulBytesReturned);
-	...
-	free(pData);
+    PSP_DEVICE_INTERFACE_DETAIL_DATA pData = (PSP_DEVICE_INTERFACE_DETAIL_DATA)malloc(ulBytesReturned);
+    ...
+    free(pData);
 
-	CxAutoMallocT<PSP_DEVICE_INTERFACE_DETAIL_DATA> diddDeviceInterfaceDetailData((size_t)ulBytesReturned);
+    CxAutoMallocT<PSP_DEVICE_INTERFACE_DETAIL_DATA> diddDeviceInterfaceDetailData((size_t)ulBytesReturned);
 */
 
 #ifndef xLib_Common_CxMallocH
@@ -25,13 +25,13 @@ Usage:
 //---------------------------------------------------------------------------
 template<class PtrT>
 class CxAutoMallocT : public CxNonCopyable {
-	public:
-		     CxAutoMallocT(const std::size_t cuiSize);
-		    ~CxAutoMallocT();
+    public:
+             CxAutoMallocT(const std::size_t cuiSize);
+            ~CxAutoMallocT();
 
-		PtrT pGetPtr      ();
+        PtrT pGetPtr      ();
             
-	private:
+    private:
         PtrT _m_pDataT;
 };
 //---------------------------------------------------------------------------
@@ -41,33 +41,33 @@ class CxAutoMallocT : public CxNonCopyable {
 //DONE: CxAutoMallocT (construcor)
 template<class PtrT>
 CxAutoMallocT<PtrT>::CxAutoMallocT(const std::size_t cuiSize) :
-	_m_pDataT(NULL)
+    _m_pDataT(NULL)
 {
-	/*DEBUG*/xASSERT_DO(NULL == _m_pDataT, return);
-	/*DEBUG*/// cuiSize - n/a
+    /*DEBUG*/xASSERT_DO(NULL == _m_pDataT, return);
+    /*DEBUG*/// cuiSize - n/a
 
-	_m_pDataT = static_cast<PtrT>( malloc(cuiSize) );
-	/*DEBUG*/xASSERT(NULL != _m_pDataT);		//MessageBox(0, "Constructor", "", MB_OK);
+    _m_pDataT = static_cast<PtrT>( malloc(cuiSize) );
+    /*DEBUG*/xASSERT(NULL != _m_pDataT);        //MessageBox(0, "Constructor", "", MB_OK);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxAutoMallocT (destructor)
 template<class PtrT>
 CxAutoMallocT<PtrT>::~CxAutoMallocT() {
-	/*DEBUG*/xASSERT_DO(NULL != _m_pDataT, return);
+    /*DEBUG*/xASSERT_DO(NULL != _m_pDataT, return);
 
-	if (NULL != _m_pDataT) {
-		free(_m_pDataT);	
-		_m_pDataT = NULL;							//MessageBox(0, "Destructor", "", MB_OK);
-	}
+    if (NULL != _m_pDataT) {
+        free(_m_pDataT);    
+        _m_pDataT = NULL;                            //MessageBox(0, "Destructor", "", MB_OK);
+    }
 }
 //---------------------------------------------------------------------------
 //DONE: pGetPtr (get pointer)
 template<class PtrT>
 PtrT
 CxAutoMallocT<PtrT>::pGetPtr() {
-	/*DEBUG*/xASSERT_RET(NULL != _m_pDataT, NULL);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pDataT, NULL);
 
-	return _m_pDataT; 
+    return _m_pDataT; 
 }
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_CxMallocH
+#endif    //xLib_Common_CxMallocH

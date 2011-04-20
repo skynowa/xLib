@@ -18,21 +18,21 @@
 #include <xLib/Pkcs11/CxSession.h>
 //---------------------------------------------------------------------------
 class CxFunction : public CxNonCopyable {
-	public:
-		                     CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession);
-	                        ~CxFunction();
-	   	
-		BOOL                 bGetList  (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);	
-		BOOL                 bGetStatus(); 				
-		BOOL                 bCancel   ();				
-		BOOL                 bGetListEx();									
-		
-	private:
-		BOOL                 _m_bRes;
-		CK_RV                _m_ulRes;
+    public:
+                             CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession);
+                            ~CxFunction();
+           
+        BOOL                 bGetList  (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);    
+        BOOL                 bGetStatus();                 
+        BOOL                 bCancel   ();                
+        BOOL                 bGetListEx();                                    
+        
+    private:
+        BOOL                 _m_bRes;
+        CK_RV                _m_ulRes;
 
-		CK_FUNCTION_LIST_PTR _m_pFunc;
-		CK_SESSION_HANDLE    _m_hSession;
+        CK_FUNCTION_LIST_PTR _m_pFunc;
+        CK_SESSION_HANDLE    _m_hSession;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Pkcs11_CxFunctionH
+#endif    //xLib_Pkcs11_CxFunctionH

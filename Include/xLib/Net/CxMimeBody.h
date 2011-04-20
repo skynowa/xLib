@@ -15,12 +15,12 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxMimeBody {
-	public:
-						CxMimeBody();
-					   ~CxMimeBody();
-	
-	private:
-		TStringMultiMap _m_mmsBody;
+    public:
+                        CxMimeBody();
+                       ~CxMimeBody();
+    
+    private:
+        TStringMultiMap _m_mmsBody;
 };
 //---------------------------------------------------------------------------
 #endif

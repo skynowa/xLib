@@ -20,14 +20,14 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: CxDll (constructor)
 CxDll::CxDll() :
-	_m_bRes(FALSE),
+    _m_bRes(FALSE),
     _m_hDLL(NULL)
 {
 }
@@ -35,26 +35,26 @@ CxDll::CxDll() :
 //DONE: ~CxDll (destructor)
 /*virtual*/
 CxDll::~CxDll() {
-	_m_bRes = bFree();
-	/*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    _m_bRes = bFree();
+    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: bIsLoaded (is loading)
 BOOL
 CxDll::bIsLoaded() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
-	return static_cast<BOOL>( NULL != _m_hDLL );
+    return static_cast<BOOL>( NULL != _m_hDLL );
 }
 //---------------------------------------------------------------------------
 //DONE: bLoad (loading)
 BOOL
 CxDll::bLoad(const tString &csDllPath) {
-	/*DEBUG*/// n/a
-	/*DEBUG*/xASSERT_RET(false == csDllPath.empty(), FALSE);
+    /*DEBUG*/// n/a
+    /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), FALSE);
 
-	_m_bRes = bFree();
-	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    _m_bRes = bFree();
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
 #if defined(xOS_WIN)
     _m_hDLL = ::LoadLibrary(csDllPath.c_str());
@@ -64,15 +64,15 @@ CxDll::bLoad(const tString &csDllPath) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, FALSE);
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: fpGetProcAddress (get address of an exported function or variable )
 VOID * /*FARPROC*/
 CxDll::fpGetProcAddress(const tString &csProcName) {
-	/*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);
 
-	VOID *fpRes = NULL;
+    VOID *fpRes = NULL;
 
 #if defined(xOS_WIN)
     fpRes = (VOID *)( ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str()) );
@@ -95,9 +95,9 @@ CxDll::fpGetProcAddress(const tString &csProcName) {
 //DONE: bFree (free)
 BOOL
 CxDll::bFree() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
-	xCHECK_RET(FALSE == bIsLoaded(), TRUE);
+    xCHECK_RET(FALSE == bIsLoaded(), TRUE);
 
 #if defined(xOS_WIN)
     _m_bRes = ::FreeLibrary(_m_hDLL);
@@ -106,9 +106,9 @@ CxDll::bFree() {
     INT iRes = dlclose(_m_hDLL);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #endif
-	
-	_m_hDLL = NULL;	
+    
+    _m_hDLL = NULL;    
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

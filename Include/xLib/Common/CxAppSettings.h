@@ -13,25 +13,25 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #ifdef __BORLANDC__
-	#include <xVCL/xCommon.h>
+    #include <xVCL/xCommon.h>
 #endif
 //---------------------------------------------------------------------------
 class CxAppSettings : public CxNonCopyable {
-	private:
-				           CxAppSettings();
-		virtual           ~CxAppSettings();
+    private:
+                           CxAppSettings();
+        virtual           ~CxAppSettings();
 
-	public:
-		static tString     m_sAppTitle;
-		static tString     m_sAppDir;
-		static tString     m_sDbDir;
-		static tString     m_sDbBackupDir;
-		static tString     m_sDbFilePath;
+    public:
+        static tString     m_sAppTitle;
+        static tString     m_sAppDir;
+        static tString     m_sDbDir;
+        static tString     m_sDbBackupDir;
+        static tString     m_sDbFilePath;
 
-		static const UCHAR m_ucDbEmpty[];
-		static ULONG       m_ulDbEmptySize;
-		static tString     m_sPass;
-		static tString     m_sPassDefault;
+        static const UCHAR m_ucDbEmpty[];
+        static ULONG       m_ulDbEmptySize;
+        static tString     m_sPass;
+        static tString     m_sPassDefault;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxAppSettingsH

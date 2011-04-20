@@ -17,13 +17,13 @@
 #include <xLib/Common/Win/CxShell.h>
 //---------------------------------------------------------------------------
 class CxTest_CxShell : public CxTest {
-	public:
-		CxTest_CxShell();
-		virtual     ~CxTest_CxShell();
+    public:
+        CxTest_CxShell();
+        virtual     ~CxTest_CxShell();
 
-		virtual     BOOL bUnit();
+        virtual     BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 
@@ -42,54 +42,54 @@ CxTest_CxShell::~CxTest_CxShell() {
 //TODO: - bUnit ()
 /*virtual*/
 BOOL CxTest_CxShell::bUnit() {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	//-------------------------------------
-	//bFindExecutable
-	{
-		m_sRes = CxShell::bFindExecutable(xT("win.ini"), xT("C:"));
-		xASSERT(false == m_sRes.empty());
-	}
+    //-------------------------------------
+    //bFindExecutable
+    {
+        m_sRes = CxShell::bFindExecutable(xT("win.ini"), xT("C:"));
+        xASSERT(false == m_sRes.empty());
+    }
 
-	//-------------------------------------
-	//bExecuteEx
-	{
-		//SHELLEXECUTEINFO eiExecInfo = {0};
-		//m_bRes = CxShell::bExecuteEx(&eiExecInfo);
-	}
+    //-------------------------------------
+    //bExecuteEx
+    {
+        //SHELLEXECUTEINFO eiExecInfo = {0};
+        //m_bRes = CxShell::bExecuteEx(&eiExecInfo);
+    }
 
-	//-------------------------------------
-	//bExecute
-	{
-		//m_bRes = CxShell::bExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, INT iShowCmd);
-	}
+    //-------------------------------------
+    //bExecute
+    {
+        //m_bRes = CxShell::bExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, INT iShowCmd);
+    }
 
-	//-------------------------------------
-	//bExecuteHttp
-	{
-		////m_bRes = CxShell::bExecuteHttp(xT(" http://www.google.ru/ "));
-	}
+    //-------------------------------------
+    //bExecuteHttp
+    {
+        ////m_bRes = CxShell::bExecuteHttp(xT(" http://www.google.ru/ "));
+    }
 
-	//-------------------------------------
-	//bExecuteFtp
-	{
-		////m_bRes = CxShell::bExecuteFtp(xT(" ftp://ftp.drweb.com/ "));
-	}
+    //-------------------------------------
+    //bExecuteFtp
+    {
+        ////m_bRes = CxShell::bExecuteFtp(xT(" ftp://ftp.drweb.com/ "));
+    }
 
-	//-------------------------------------
-	//bExecuteEmail
-	{
-		////m_bRes = CxShell::bExecuteEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
-	}
+    //-------------------------------------
+    //bExecuteEmail
+    {
+        ////m_bRes = CxShell::bExecuteEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
+    }
 
-	//-------------------------------------
-	//sGetSpecialDirPath
-	#if (xWINVER >= xWIN32_2K)
-		m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
-		xASSERT(xT("C:\\WINDOWS\\Fonts") == m_sRes);
-	#endif //xWIN32_2K
+    //-------------------------------------
+    //sGetSpecialDirPath
+    #if (xWINVER >= xWIN32_2K)
+        m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
+        xASSERT(xT("C:\\WINDOWS\\Fonts") == m_sRes);
+    #endif //xWIN32_2K
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 #endif //CxTest_CxShellH

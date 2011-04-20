@@ -46,11 +46,11 @@ class CxMySQLConnection : public CxNonCopyable  {
 };
 //---------------------------------------------------------------------------
 class CxMySQLRecordset : public CxNonCopyable {
-	public:
+    public:
                      CxMySQLRecordset (const CxMySQLConnection &cmsConnection, BOOL bIsUseResult);
-		virtual     ~CxMySQLRecordset ();
+        virtual     ~CxMySQLRecordset ();
 
-		MYSQL_RES   *pmrGet           () const;
+        MYSQL_RES   *pmrGet           () const;
         BOOL         bIsValid         () const;
 
         UINT         uiFieldsNum      () const;
@@ -61,8 +61,8 @@ class CxMySQLRecordset : public CxNonCopyable {
         BOOL         bFetchRow        (std::vector<tString> *pvecsRow) const;
 
     private:
-		MYSQL_RES               *_m_pmrResult;
-		const CxMySQLConnection *_m_pmcConnection;
+        MYSQL_RES               *_m_pmrResult;
+        const CxMySQLConnection *_m_pmcConnection;
 
         BOOL         bFetchLengths    (ULONG **ppulFieldLengths) const;
         BOOL         bFetchRow        (MYSQL_ROW *pmrRow) const;

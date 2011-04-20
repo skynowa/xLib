@@ -16,7 +16,7 @@
 //---------------------------------------------------------------------------
 class CxCookiePv0 : public CxNonCopyable {
     public:
-		explicit         CxCookiePv0 ();
+        explicit         CxCookiePv0 ();
                          CxCookiePv0 (const tString &csRawCookie);
         virtual         ~CxCookiePv0 ();
 

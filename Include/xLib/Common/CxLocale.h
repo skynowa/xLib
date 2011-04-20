@@ -15,17 +15,17 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxLocale : public CxNonCopyable {
-	public:
-	   static tString sGetCurrent();
-	   static BOOL    bSetCurrent(const tString &csLocale);
-	   static BOOL    bSetDefault();
+    public:
+       static tString sGetCurrent();
+       static BOOL    bSetCurrent(const tString &csLocale);
+       static BOOL    bSetDefault();
 
-	private:
+    private:
                       CxLocale   ();
        virtual       ~CxLocale   ();
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_CxLocaleH
+#endif    //xLib_Common_CxLocaleH
 
 
 

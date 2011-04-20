@@ -21,22 +21,22 @@ class CxTcpClientSocket : public CxSocket {
                     CxTcpClientSocket  ();
         virtual    ~CxTcpClientSocket  ();
 
-		BOOL        bIsReadable        ();  //TODO: repeats from CxSocket
-		BOOL        bIsWritable        ();  //TODO: repeats from CxSocket
-		BOOL        bConnect           (const tString &csIp, USHORT usPort);
+        BOOL        bIsReadable        ();  //TODO: repeats from CxSocket
+        BOOL        bIsWritable        ();  //TODO: repeats from CxSocket
+        BOOL        bConnect           (const tString &csIp, USHORT usPort);
 
         BOOL        bIoctl             (LONG liCmd, ULONG *pulArgp);
         BOOL        bSetNonBlockingMode(const BOOL cbFlag);
         BOOL        bGetTimeout        (LONG *pliSec, LONG *pliMicroSec);
         BOOL        bSetTimeout        (LONG liSec,   LONG liMicroSec);
 
-		static BOOL bIsServerAlive     (const tString &csIp, USHORT usPort);
+        static BOOL bIsServerAlive     (const tString &csIp, USHORT usPort);
 
-	protected: 
+    protected: 
         timeval     _m_tvTimeout;
 }; 
 //---------------------------------------------------------------------------
-#endif	//xLib_Net_CxTcpClientSocketH
+#endif    //xLib_Net_CxTcpClientSocketH
 
 
 /*

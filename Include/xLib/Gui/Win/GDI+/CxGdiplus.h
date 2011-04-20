@@ -18,11 +18,11 @@
 #pragma comment (lib, "Gdiplus.lib")
 //---------------------------------------------------------------------------
 class CxGdiplus : public CxNonCopyable {
-	public:
-		          CxGdiplus();
-	             ~CxGdiplus();
-	private:
-		ULONG_PTR _m_pulToken;
+    public:
+                  CxGdiplus();
+                 ~CxGdiplus();
+    private:
+        ULONG_PTR _m_pulToken;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_GdiPlus_CxGdiplusH

@@ -332,7 +332,7 @@ CK_DECLARE_FUNCTION(CK_RV, ETC_InitTokenInit)
   CK_SLOT_ID             slotID,        
   CK_UTF8CHAR_PTR        pPin,          
   CK_ULONG               ulPinLen,      
-	CK_ULONG               ulRetryCounter,
+    CK_ULONG               ulRetryCounter,
   CK_UTF8CHAR_PTR        pLabel,        
   CK_SESSION_HANDLE_PTR  phSession      
 );
@@ -342,7 +342,7 @@ typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_InitTokenInit)
   CK_SLOT_ID             slotID,        
   CK_UTF8CHAR_PTR        pPin,          
   CK_ULONG               ulPinLen,      
-	CK_ULONG               ulRetryCounter,
+    CK_ULONG               ulRetryCounter,
   CK_UTF8CHAR_PTR        pLabel,        
   CK_SESSION_HANDLE_PTR  phSession      
 );
@@ -368,8 +368,8 @@ CK_DECLARE_FUNCTION(CK_RV, ETC_InitPIN)
   CK_SESSION_HANDLE hSession,        
   CK_UTF8CHAR_PTR   pPin,            
   CK_ULONG          ulPinLen,        
-	CK_ULONG          ulRetryCounter,  
-	CK_BBOOL          toBeChanged      
+    CK_ULONG          ulRetryCounter,  
+    CK_BBOOL          toBeChanged      
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_InitPIN)
@@ -377,8 +377,8 @@ typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_InitPIN)
   CK_SESSION_HANDLE hSession,        
   CK_UTF8CHAR_PTR   pPin,            
   CK_ULONG          ulPinLen,        
-	CK_ULONG          ulRetryCounter,  
-	CK_BBOOL          toBeChanged      
+    CK_ULONG          ulRetryCounter,  
+    CK_BBOOL          toBeChanged      
 );
 
 /*
@@ -408,8 +408,8 @@ CK_DECLARE_FUNCTION(CK_RV, ETC_UnlockComplete)
   CK_ULONG          ulResponse,
   CK_UTF8CHAR_PTR   pPin,            
   CK_ULONG          ulPinLen,        
-	CK_ULONG          ulRetryCounter,  
-	CK_BBOOL          toBeChanged      
+    CK_ULONG          ulRetryCounter,  
+    CK_BBOOL          toBeChanged      
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_UnlockComplete)
@@ -419,8 +419,8 @@ typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_UnlockComplete)
   CK_ULONG          ulResponse,
   CK_UTF8CHAR_PTR   pPin,            
   CK_ULONG          ulPinLen,        
-	CK_ULONG          ulRetryCounter,  
-	CK_BBOOL          toBeChanged      
+    CK_ULONG          ulRetryCounter,  
+    CK_BBOOL          toBeChanged      
 );
 
 /*
@@ -486,7 +486,7 @@ typedef struct tag_ETCK_FUNCTION_LIST_EX
   CK_ETC_SetProperty            ETC_SetProperty;
   CK_ETC_CreateVirtualSession   ETC_CreateVirtualSession;
   CK_ETC_PrepareSoftwareToken   ETC_PrepareSoftwareToken;
-	CK_ETC_SingleLogonGetPin			ETC_SingleLogonGetPin;
+    CK_ETC_SingleLogonGetPin            ETC_SingleLogonGetPin;
   CK_ETC_InitTokenInit          ETC_InitTokenInit;
   CK_ETC_InitTokenFinal         ETC_InitTokenFinal;
   CK_ETC_InitPIN                ETC_InitPIN;

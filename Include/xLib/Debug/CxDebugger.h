@@ -18,25 +18,25 @@
 //---------------------------------------------------------------------------
 class CxReport;
 class CxDebugger : public CxNonCopyable {
-	public:
+    public:
         static BOOL  bGetEnabled  ();
         static BOOL  bSetEnabled  (BOOL bFlag);
         static BOOL  bIsPresent   ();
         static BOOL  bBreak       ();
 
-		static BOOL  bReportMake  (const CxReport &crpReport);
+        static BOOL  bReportMake  (const CxReport &crpReport);
         static BOOL  bTrace       (LPCTSTR pcszFormat, ...);
         static BOOL  bTrace       (const tString &csMsg);
 
         //MessageBeep
 
-	private:
+    private:
         static BOOL  _ms_bIsEnabled;
 
-	                 CxDebugger   ();
-		virtual	    ~CxDebugger   ();
+                     CxDebugger   ();
+        virtual        ~CxDebugger   ();
 
-		static BOOL  bMsgboxPlain (const CxReport &crpReport);
+        static BOOL  bMsgboxPlain (const CxReport &crpReport);
         static BOOL  bMsgboxRtf   (const CxReport &crpReport);
 
         static BOOL  bStdoutPlain (const CxReport &crpReport);
@@ -46,7 +46,7 @@ class CxDebugger : public CxNonCopyable {
         static BOOL  bLoggingHtml (const CxReport &crpReport);
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Debug_CxDebuggerH
+#endif    //xLib_Debug_CxDebuggerH
 
 
 

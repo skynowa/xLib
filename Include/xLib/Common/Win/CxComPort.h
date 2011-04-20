@@ -16,33 +16,33 @@
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxCOMPort : public CxNonCopyable {
-	public:
-	                 CxCOMPort       (const tString &sPortNum/* = xT("COM1")*/);
-		virtual     ~CxCOMPort       ();
-		
-		BOOL         bOpen           ();
-		BOOL         bConfig         ();
-		BOOL         bClearData      ();
-		tString      bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
-		INT          iReadDataWaiting();
-		BOOL         bWriteData      (LPCTSTR pcszBuff, ULONG ulNumOfBytesToWrite);
-		BOOL         bClose          ();
+    public:
+                     CxCOMPort       (const tString &sPortNum/* = xT("COM1")*/);
+        virtual     ~CxCOMPort       ();
+        
+        BOOL         bOpen           ();
+        BOOL         bConfig         ();
+        BOOL         bClearData      ();
+        tString      bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
+        INT          iReadDataWaiting();
+        BOOL         bWriteData      (LPCTSTR pcszBuff, ULONG ulNumOfBytesToWrite);
+        BOOL         bClose          ();
 
-		ULONG        ulInputBuffTest ();
-		BOOL         bClearCLRDTR    (); 
-		BOOL         bClearCLRRTS    (); 
-    	BOOL         bSetSETDTR      ();  
-		BOOL         bSetSETRTS      ();   
-		
+        ULONG        ulInputBuffTest ();
+        BOOL         bClearCLRDTR    (); 
+        BOOL         bClearCLRRTS    (); 
+        BOOL         bSetSETDTR      ();  
+        BOOL         bSetSETRTS      ();   
+        
     private:
-		BOOL         _m_bRes;
-		CxHandle     _m_hComPort;  //INVALID_HANDLE_VALUE
-		tString      _m_sPortNum;
+        BOOL         _m_bRes;
+        CxHandle     _m_hComPort;  //INVALID_HANDLE_VALUE
+        tString      _m_sPortNum;
 
-		COMMTIMEOUTS CommTimeOuts;
-		DCB          dcb;
-		COMSTAT      ComState;              
-		OVERLAPPED   Overlap;
+        COMMTIMEOUTS CommTimeOuts;
+        DCB          dcb;
+        COMSTAT      ComState;              
+        OVERLAPPED   Overlap;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_Win_CxComPortH
+#endif    //xLib_Common_Win_CxComPortH

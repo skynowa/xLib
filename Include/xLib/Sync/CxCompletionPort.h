@@ -17,18 +17,18 @@
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxCompletionPort : public CxNonCopyable  {
-	public:
-		                CxCompletionPort();
-	    virtual        ~CxCompletionPort();
+    public:
+                        CxCompletionPort();
+        virtual        ~CxCompletionPort();
 
-		BOOL            bCreate         (ULONG ulThreadsNum /*= 0*/);
-		BOOL            bAssociate      (HANDLE hFile, ULONG_PTR pulCompletionKey);
-		BOOL            bGetStatus      (LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, ULONG ulMilliseconds);
-		BOOL            bPostStatus     (ULONG ulNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
+        BOOL            bCreate         (ULONG ulThreadsNum /*= 0*/);
+        BOOL            bAssociate      (HANDLE hFile, ULONG_PTR pulCompletionKey);
+        BOOL            bGetStatus      (LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, ULONG ulMilliseconds);
+        BOOL            bPostStatus     (ULONG ulNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
 
-	private:
-		BOOL            _m_bRes;
-		CxHandle _m_hCP;
+    private:
+        BOOL            _m_bRes;
+        CxHandle _m_hCP;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxCompletionPortH
+#endif    //xLib_Sync_CxCompletionPortH

@@ -15,12 +15,12 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxConnectionString : public CxNonCopyable {
-	public:
-		static tString sMSJetOleDb40     (const tString &csDataSource, const tString &csUserId, const tString &csPassword, const tString &csDatabasePassword);
+    public:
+        static tString sMSJetOleDb40     (const tString &csDataSource, const tString &csUserId, const tString &csPassword, const tString &csDatabasePassword);
 
-	private:
-				       CxConnectionString();
-		virtual       ~CxConnectionString();
+    private:
+                       CxConnectionString();
+        virtual       ~CxConnectionString();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Db_CxConnectionStringH

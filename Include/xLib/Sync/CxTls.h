@@ -15,17 +15,17 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxTls : public CxNonCopyable {
-	public:
-		         CxTls();
-		virtual ~CxTls();
+    public:
+                 CxTls();
+        virtual ~CxTls();
 
-		BOOL     bAlloc    ();
-		BOOL     bFree     ();
-		VOID    *pvGetValue();
-		BOOL     bSetValue (VOID *pvValue);
+        BOOL     bAlloc    ();
+        BOOL     bFree     ();
+        VOID    *pvGetValue();
+        BOOL     bSetValue (VOID *pvValue);
 
-	private:
-		ULONG    _m_ulIndex;
+    private:
+        ULONG    _m_ulIndex;
 };
 //---------------------------------------------------------------------------
-#endif	//CxLib_Sync_CxTlsH
+#endif    //CxLib_Sync_CxTlsH

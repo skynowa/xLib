@@ -15,14 +15,14 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxEventLog : public CxNonCopyable {
-	public:
-		        CxEventLog();
-	   virtual ~CxEventLog();
+    public:
+                CxEventLog();
+       virtual ~CxEventLog();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Log_CxEventLogH
+#endif    //xLib_Log_CxEventLogH
 
 
 

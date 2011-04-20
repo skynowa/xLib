@@ -22,128 +22,128 @@
 //---------------------------------------------------------------------------
 //TODO: - CxSign ()
 CxSign::CxSign(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
-	_m_bRes    (FALSE),
-	_m_ulRes   (!CKR_OK),
-	_m_pFunc   (cPkcs11.pGetFuncList()),
-	_m_hSession(cSession.hGetHandle())
+    _m_bRes    (FALSE),
+    _m_ulRes   (!CKR_OK),
+    _m_pFunc   (cPkcs11.pGetFuncList()),
+    _m_hSession(cSession.hGetHandle())
 {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - ~CxSign ()
 CxSign::~CxSign() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - bInit (initializes a signature (private key encryption) operation, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bInit(
-	CK_MECHANISM_PTR  pMechanism,  /* the signature mechanism */
-	CK_OBJECT_HANDLE  hKey         /* handle of signature key */
+    CK_MECHANISM_PTR  pMechanism,  /* the signature mechanism */
+    CK_OBJECT_HANDLE  hKey         /* handle of signature key */
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_SignInit(_m_hSession, pMechanism, hKey);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_SignInit(_m_hSession, pMechanism, hKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bMake (signs (encrypts with private key) data in a single part, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bMake(
-	CK_BYTE_PTR       pData,           /* the data to sign */
-	CK_ULONG          ulDataLen,       /* count of bytes to sign */
-	CK_BYTE_PTR       pSignature,      /* gets the signature */
-	CK_ULONG_PTR      pulSignatureLen  /* gets signature length */
+    CK_BYTE_PTR       pData,           /* the data to sign */
+    CK_ULONG          ulDataLen,       /* count of bytes to sign */
+    CK_BYTE_PTR       pSignature,      /* gets the signature */
+    CK_ULONG_PTR      pulSignatureLen  /* gets signature length */
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_Sign(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_Sign(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bUpdate (continues a multiple-part signature operation,where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bUpdate(
-	CK_BYTE_PTR       pPart,     /* the data to sign */
-	CK_ULONG          ulPartLen  /* count of bytes to sign */
+    CK_BYTE_PTR       pPart,     /* the data to sign */
+    CK_ULONG          ulPartLen  /* count of bytes to sign */
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_SignUpdate(_m_hSession, pPart, ulPartLen);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_SignUpdate(_m_hSession, pPart, ulPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bEncryptUpdate (continues a multiple-part signing and encryption operation)
 BOOL
 CxSign::bEncryptUpdate(
-	CK_BYTE_PTR       pPart,               /* the plaintext data */
-	CK_ULONG          ulPartLen,           /* plaintext length */
-	CK_BYTE_PTR       pEncryptedPart,      /* gets ciphertext */
-	CK_ULONG_PTR      pulEncryptedPartLen  /* gets c-text length */
+    CK_BYTE_PTR       pPart,               /* the plaintext data */
+    CK_ULONG          ulPartLen,           /* plaintext length */
+    CK_BYTE_PTR       pEncryptedPart,      /* gets ciphertext */
+    CK_ULONG_PTR      pulEncryptedPartLen  /* gets c-text length */
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_SignEncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_SignEncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bFinal (finishes a multiple-part signature operation, returning the signature)
 BOOL
 CxSign::bFinal(
-	CK_BYTE_PTR       pSignature,      /* gets the signature */
-	CK_ULONG_PTR      pulSignatureLen  /* gets signature length */
+    CK_BYTE_PTR       pSignature,      /* gets the signature */
+    CK_ULONG_PTR      pulSignatureLen  /* gets signature length */
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_SignFinal(_m_hSession, pSignature, pulSignatureLen);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_SignFinal(_m_hSession, pSignature, pulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bRecoverInit (initializes a signature operation, where the data can be recovered from the signature)
 BOOL
 CxSign::bRecoverInit(
-	CK_MECHANISM_PTR  pMechanism, /* the signature mechanism */
-	CK_OBJECT_HANDLE  hKey        /* handle of the signature key */
+    CK_MECHANISM_PTR  pMechanism, /* the signature mechanism */
+    CK_OBJECT_HANDLE  hKey        /* handle of the signature key */
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_SignRecoverInit(_m_hSession, pMechanism, hKey);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_SignRecoverInit(_m_hSession, pMechanism, hKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: - bRecover (signs data in a single operation, where the data can be recovered from the signature)
 BOOL
 CxSign::bRecover(
-	CK_BYTE_PTR       pData,           /* the data to sign */
-	CK_ULONG          ulDataLen,       /* count of bytes to sign */
-	CK_BYTE_PTR       pSignature,      /* gets the signature */
-	CK_ULONG_PTR      pulSignatureLen  /* gets signature length */
+    CK_BYTE_PTR       pData,           /* the data to sign */
+    CK_ULONG          ulDataLen,       /* count of bytes to sign */
+    CK_BYTE_PTR       pSignature,      /* gets the signature */
+    CK_ULONG_PTR      pulSignatureLen  /* gets signature length */
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	_m_ulRes = _m_pFunc->C_SignRecover(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_SignRecover(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 

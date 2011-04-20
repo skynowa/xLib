@@ -16,18 +16,18 @@
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
 class CxMutex : public CxNonCopyable {
-	public:
-		         CxMutex   ();
-		virtual ~CxMutex   ();
+    public:
+                 CxMutex   ();
+        virtual ~CxMutex   ();
 
-	    HANDLE   hGetHandle() const;
-		BOOL     bCreate   (LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bInitialOwner, LPCTSTR pcszName);
-		BOOL     bOpen     (ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName);
-		BOOL     bRelease  () const;
-		BOOL     bWait     (ULONG ulTimeout) const;
+        HANDLE   hGetHandle() const;
+        BOOL     bCreate   (LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bInitialOwner, LPCTSTR pcszName);
+        BOOL     bOpen     (ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName);
+        BOOL     bRelease  () const;
+        BOOL     bWait     (ULONG ulTimeout) const;
 
-	private:
-		CxHandle _m_hMutex;
+    private:
+        CxHandle _m_hMutex;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxMutexH
+#endif    //xLib_Sync_CxMutexH

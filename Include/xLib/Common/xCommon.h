@@ -20,17 +20,17 @@
 
 
 /****************************************************************************
-*	Predefined xLib macros
+*    Predefined xLib macros
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: OS family (http://predef.sourceforge.net/preos.html)
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
-	#define xOS_WIN
+    #define xOS_WIN
     ////#pragma message("  --- xLib: xOS_WIN ---")
 #elif defined(linux) || defined(__linux)
-	#define xOS_LINUX
+    #define xOS_LINUX
     ////#pragma message("  --- xLib: xOS_LINUX ---")
 #elif defined(__FreeBSD__)
     #define xOS_FREEBSD
@@ -97,24 +97,24 @@
 //---------------------------------------------------------------------------
 #if defined(UNICODE) || defined(_UNICODE)
     #define xTEXT(x)                         L##x
-    #define xT(x)					         xTEXT(x)
+    #define xT(x)                             xTEXT(x)
 
     typedef wchar_t                          TCHAR;
     typedef wchar_t *                        LPTSTR;
     typedef const wchar_t *                  LPCTSTR;
 
-	#define tcin					         std::wcin
-	#define tcout					         std::wcout
+    #define tcin                             std::wcin
+    #define tcout                             std::wcout
     #define tcerr                            std::wcerr
     #define tclog                            std::wclog
-	#define tendl                            std::endl
+    #define tendl                            std::endl
 
-#define _ttmpnam    _wtmpnam
+    #define _ttmpnam                         _wtmpnam
 
     ////#pragma message("  --- xLib: xUNICODE ---")
 #else
     #define xTEXT(x)                         x
-    #define xT(x)					         xTEXT(x)
+    #define xT(x)                             xTEXT(x)
 
     typedef char                             TCHAR;
     typedef char *                           LPTSTR;
@@ -122,13 +122,13 @@
     typedef char *                           LPSTR;   //ansi
     typedef const char *                     LPCSTR;  //ansi
 
-	#define tcin                             std::cin
-	#define tcout                            std::cout
+    #define tcin                             std::cin
+    #define tcout                            std::cout
     #define tcerr                            std::cerr
     #define tclog                            std::clog
-	#define tendl                            std::endl
+    #define tendl                            std::endl
 
-#define _ttmpnam    tmpnam
+    #define _ttmpnam                         tmpnam
 
     ////#pragma message("  --- xLib: xANSI ---")
 #endif  /*_UNICODE*/
@@ -147,6 +147,8 @@ typedef std::basic_stringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<T
 typedef std::basic_ifstream<TCHAR, std::char_traits<TCHAR> >                                              tifstream;
 typedef std::basic_ofstream<TCHAR, std::char_traits<TCHAR> >                                              tofstream;
 typedef std::basic_fstream<TCHAR, std::char_traits<TCHAR> >                                               tfstream;
+
+typedef double DOUBLE;
 //---------------------------------------------------------------------------
 //Automatically include the xLib namespace, define xNO_USING_NAMESPACE to skip this step
 namespace NxLib {}

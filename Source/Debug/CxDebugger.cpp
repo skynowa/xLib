@@ -24,7 +24,7 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -81,13 +81,13 @@ CxDebugger::bBreak() {
     /*DEBUG*/// n/a
 
 #if defined(xOS_WIN)
-	#if defined(_MSC_VER)
-		_asm {int 3}
-	#elif defined(__MINGW32__)
-		asm("int 3");
-	#else
-		abort();
-	#endif
+    #if defined(_MSC_VER)
+        _asm {int 3}
+    #elif defined(__MINGW32__)
+        asm("int 3");
+    #else
+        abort();
+    #endif
 #elif defined(xOS_LINUX)
     INT iRes = kill(getpid(), SIGINT);
     xCHECK_RET(- 1 == iRes, FALSE);
@@ -107,7 +107,7 @@ CxDebugger::bReportMake(const CxReport &crpReport) {
     ULONG _ulLastError = crpReport.ulGetLastError();
 
     INT iRes = crpReport.rtGetType();
-	switch (iRes) {
+    switch (iRes) {
         case CxReport::rtMsgboxPlain:  { bMsgboxPlain (crpReport); } break;
         case CxReport::rtMsgboxRtf:    { bMsgboxRtf   (crpReport); } break;
         case CxReport::rtStdoutPlain:  { bStdoutPlain (crpReport); } break;
@@ -115,7 +115,7 @@ CxDebugger::bReportMake(const CxReport &crpReport) {
         case CxReport::rtLoggingPlain: { bLoggingPlain(crpReport); } break;
         case CxReport::rtLoggingHtml:  { bLoggingHtml (crpReport); } break;
 
-    	default:                       { bStdoutPlain (crpReport); } break;
+        default:                       { bStdoutPlain (crpReport); } break;
     }
 
     //-------------------------------------
@@ -166,7 +166,7 @@ CxDebugger::bTrace(const tString &csMsg) {
 
 
 /****************************************************************************
-*	private
+*    private
 *
 *****************************************************************************/
 

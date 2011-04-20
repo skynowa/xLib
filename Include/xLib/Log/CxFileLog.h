@@ -16,28 +16,28 @@
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 class CxFileLog : public CxNonCopyable {
-	public:
-		enum ELogSizes {
-			lsDefaultSize    = 20,
-			lsDefaultMaxSize = 200,
-			lsLimitSize      = 500
-		};	
-			
-						  CxFileLog    ();
-						  CxFileLog    (const tString &csFilePath, ULONG ulMaxFileSizeMb);
-		virtual     	 ~CxFileLog    ();
+    public:
+        enum ELogSizes {
+            lsDefaultSize    = 20,
+            lsDefaultMaxSize = 200,
+            lsLimitSize      = 500
+        };    
+            
+                          CxFileLog    ();
+                          CxFileLog    (const tString &csFilePath, ULONG ulMaxFileSizeMb);
+        virtual          ~CxFileLog    ();
 
-		BOOL              bWrite       (LPCTSTR pcszFormat, ...); 
-		BOOL              bOpen        ();
-		BOOL              bClear       ();
-		BOOL              bDelete      ();
-	   
-	private:	
-		tString           _m_sLogPath;
-		ULONG             _m_ulMaxFileSizeMb;
-		////CxCriticalSection _m_csFile;    //TODO: Mutex
-		
-		BOOL              _bDeleteIfFull();
+        BOOL              bWrite       (LPCTSTR pcszFormat, ...); 
+        BOOL              bOpen        ();
+        BOOL              bClear       ();
+        BOOL              bDelete      ();
+       
+    private:    
+        tString           _m_sLogPath;
+        ULONG             _m_ulMaxFileSizeMb;
+        ////CxCriticalSection _m_csFile;    //TODO: Mutex
+        
+        BOOL              _bDeleteIfFull();
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Log_CxFileLogH
+#endif    //xLib_Log_CxFileLogH

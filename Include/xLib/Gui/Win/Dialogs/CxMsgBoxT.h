@@ -65,4 +65,4 @@ class CxMsgBoxT : public CxNonCopyable  {
         virtual ~CxMsgBoxT();
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Gui_CxMsgBoxTH
+#endif    //xLib_Gui_CxMsgBoxTH

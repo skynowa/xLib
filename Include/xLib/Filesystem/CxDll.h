@@ -24,14 +24,14 @@ class CxDll : public CxNonCopyable {
         VOID    *_m_hDLL;
     #endif
 
-	public:
-		         CxDll           ();
-		virtual ~CxDll           ();
+    public:
+                 CxDll           ();
+        virtual ~CxDll           ();
 
-		BOOL     bIsLoaded       ();
-		BOOL     bLoad           (const tString &csDllPath);
-		VOID *   fpGetProcAddress(const tString &csProcName);
-		BOOL     bFree           ();
+        BOOL     bIsLoaded       ();
+        BOOL     bLoad           (const tString &csDllPath);
+        VOID *   fpGetProcAddress(const tString &csProcName);
+        BOOL     bFree           ();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Fso_CxDllH

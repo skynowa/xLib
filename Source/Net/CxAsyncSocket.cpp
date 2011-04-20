@@ -15,15 +15,15 @@
 //---------------------------------------------------------------------------
 //TODO: - CxAsyncSocket (comment)
 CxAsyncSocket::CxAsyncSocket() : 
-	_m_bRes(FALSE)
+    _m_bRes(FALSE)
  {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - ~CxAsyncSocket (comment)
 /*virtual*/
 CxAsyncSocket::~CxAsyncSocket() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 

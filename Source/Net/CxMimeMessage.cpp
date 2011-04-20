@@ -12,31 +12,31 @@
 #include <xLib/Net/CxMimeMessage.h>
 //---------------------------------------------------------------------------
 CxMimeMessage::CxMimeMessage() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 CxMimeMessage::~CxMimeMessage() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 /*static*/BOOL CxMimeMessage::bParse(const tString &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body) {
-	BOOL bRes = FALSE;
-	
-	//m_Header;
-	//m_Body;
-	
-	return FALSE;
+    BOOL bRes = FALSE;
+    
+    //m_Header;
+    //m_Body;
+    
+    return FALSE;
 }
 //---------------------------------------------------------------------------
-/*static*/BOOL	bLoadFromRawFile(const tString &csFilePath) {
-	BOOL bRes = FALSE;
+/*static*/BOOL    bLoadFromRawFile(const tString &csFilePath) {
+    BOOL bRes = FALSE;
 
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------
 /*static*/BOOL bSaveToRawFile  (const tString &csFilePath) {
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	return FALSE;
+    return FALSE;
 }
 //---------------------------------------------------------------------------

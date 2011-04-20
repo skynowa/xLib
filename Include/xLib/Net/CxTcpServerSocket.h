@@ -17,18 +17,18 @@
 //---------------------------------------------------------------------------
 class CxTcpServerSocket : public CxSocket { 
     public: 
-                	CxTcpServerSocket();
+                    CxTcpServerSocket();
         virtual    ~CxTcpServerSocket();
 
-    	BOOL        bBind            (USHORT usPort);
-     	BOOL        bListen          (INT iBacklog /* = SOMAXCONN*/);
-		BOOL        bAccept          (CxTcpServerSocket *pscktAcceptSocket, tString *psFromIp);
+        BOOL        bBind            (USHORT usPort);
+         BOOL        bListen          (INT iBacklog /* = SOMAXCONN*/);
+        BOOL        bAccept          (CxTcpServerSocket *pscktAcceptSocket, tString *psFromIp);
 
-	protected: 
-		timeval     _m_tvTimeout;
+    protected: 
+        timeval     _m_tvTimeout;
 }; 
 //---------------------------------------------------------------------------
-#endif	//xLib_Net_CxTcpServerSocketH
+#endif    //xLib_Net_CxTcpServerSocketH
 
 
 

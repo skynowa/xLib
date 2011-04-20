@@ -26,9 +26,9 @@ CxCriticalSection CxWndLog::_ms_csListBox;
 //---------------------------------------------------------------------------
 //DONE: CxWndLog (constructor)
 CxWndLog::CxWndLog(EWindowClass wcWC) :
-	_m_eWC (wcWC)
+    _m_eWC (wcWC)
 {
-	/*DEBUG*/xASSERT_DO(wcListBox == _m_eWC, return);
+    /*DEBUG*/xASSERT_DO(wcListBox == _m_eWC, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxWndLog (destructor)
@@ -39,40 +39,40 @@ CxWndLog::~CxWndLog() {
 //DONE: bWrite (write)
 BOOL
 CxWndLog::bWrite(HWND hWnd, LPCTSTR pcszFormat, ...) {
-	/*DEBUG*/xASSERT_RET(NULL != hWnd,       FALSE);
-	/*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != hWnd,       FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
 
-	//-------------------------------------
-	//time
-	tString sTime;
-	sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
+    //-------------------------------------
+    //time
+    tString sTime;
+    sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
 
-	//-------------------------------------
-	//comment
-	tString sParam;
-	va_list palArgs = NULL;
+    //-------------------------------------
+    //comment
+    tString sParam;
+    va_list palArgs = NULL;
 
-	va_start(palArgs, pcszFormat);
-	sParam = CxString::sFormatV(pcszFormat, palArgs);
-	va_end(palArgs);
+    va_start(palArgs, pcszFormat);
+    sParam = CxString::sFormatV(pcszFormat, palArgs);
+    va_end(palArgs);
 
-	//-------------------------------------
-	//choose window
-//	switch(_m_eWC) {
-//		case wcListBox: {
-//				/*LOCK*/CxAutoCriticalSection SL(_ms_csListBox);
+    //-------------------------------------
+    //choose window
+//    switch(_m_eWC) {
+//        case wcListBox: {
+//                /*LOCK*/CxAutoCriticalSection SL(_ms_csListBox);
 //
-//				::SendMessage(hWnd, LB_ADDSTRING, 0, (LPARAM)(CxString::sRemoveEOL(xT("[") + sTime + xT("] ") + xT(" ") + sParam)).c_str());
-//				::SendMessage(hWnd, WM_VSCROLL, MAKEWORD(SB_LINEDOWN, 0), 0);
-//			}
-//			break;
+//                ::SendMessage(hWnd, LB_ADDSTRING, 0, (LPARAM)(CxString::sRemoveEOL(xT("[") + sTime + xT("] ") + xT(" ") + sParam)).c_str());
+//                ::SendMessage(hWnd, WM_VSCROLL, MAKEWORD(SB_LINEDOWN, 0), 0);
+//            }
+//            break;
 //
-//		default: {
-//				/*DEBUG*/xASSERT_RET(FALSE, FALSE);
-//			}
-//			break;
-//	}
+//        default: {
+//                /*DEBUG*/xASSERT_RET(FALSE, FALSE);
+//            }
+//            break;
+//    }
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

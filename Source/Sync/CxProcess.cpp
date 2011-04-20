@@ -122,8 +122,8 @@ CxProcess::bTerminate(ULONG ulPid) {
 /*static*/
 BOOL
 CxProcess::bExec(const tString &csFilePath, LPCTSTR pcszCmdLine, ...) {
-	/*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-	/*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        FALSE);
 
     tString sCmdLine;
 
@@ -136,10 +136,10 @@ CxProcess::bExec(const tString &csFilePath, LPCTSTR pcszCmdLine, ...) {
     BOOL bRes = FALSE;
 
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
-	PROCESS_INFORMATION piInfo = {0};
+    PROCESS_INFORMATION piInfo = {0};
 
-	bRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     bRes = ::CloseHandle(piInfo.hThread);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);

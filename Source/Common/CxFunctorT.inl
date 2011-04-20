@@ -18,31 +18,31 @@
 //TODO: - CxFunctorT (constructor)
 template <class ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(ClassT *pObject, Method method) :
-	_m_pObject(pObject),
-	_m_Method (method)
+    _m_pObject(pObject),
+    _m_Method (method)
 {
-	/*DEBUG*/xASSERT_DO(NULL != _m_pObject, return);
-	/*DEBUG*/xASSERT_DO(NULL != _m_Method,  return);
+    /*DEBUG*/xASSERT_DO(NULL != _m_pObject, return);
+    /*DEBUG*/xASSERT_DO(NULL != _m_Method,  return);
 }
 //---------------------------------------------------------------------------
 //TODO: - ~CxFunctorT (destuctor)
 template <class ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::~CxFunctorT() {
-	/*DEBUG*/
+    /*DEBUG*/
 }
 //---------------------------------------------------------------------------
 //TODO: - operator() (COMMENTS)
 template <class ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::operator()(ParamT Param) {
-	return (_m_pObject->*_m_Method)(Param);
+    return (_m_pObject->*_m_Method)(Param);
 }
 //---------------------------------------------------------------------------
 //TODO: - Execute (COMMENTS)
 template <class ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::Execute(ParamT Param) {
-	return operator()(Param);
+    return operator()(Param);
 }
 //---------------------------------------------------------------------------
 

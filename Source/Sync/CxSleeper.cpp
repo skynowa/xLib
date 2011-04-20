@@ -13,19 +13,19 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: CxSleeper (конструктор)
 CxSleeper::CxSleeper() :
-	_m_objEvent()
+    _m_objEvent()
 {
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	bRes = _m_objEvent.bCreate(NULL, FALSE, FALSE, NULL);
-	/*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    bRes = _m_objEvent.bCreate(NULL, FALSE, FALSE, NULL);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxSleeper (деструктор)
@@ -36,35 +36,35 @@ CxSleeper::~CxSleeper() {
 //DONE: bSleep (засыпание)
 BOOL
 CxSleeper::bSleep(ULONG ulTimeout) const {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
-	ULONG ulRes = 0;
+    ULONG ulRes = 0;
 
-	ulRes = ::WaitForSingleObject(_m_objEvent.hGetHandle(), ulTimeout);
-	/*DEBUG*/xASSERT_RET(WAIT_FAILED != ulRes || WAIT_OBJECT_0 == ulRes, FALSE);
+    ulRes = ::WaitForSingleObject(_m_objEvent.hGetHandle(), ulTimeout);
+    /*DEBUG*/xASSERT_RET(WAIT_FAILED != ulRes || WAIT_OBJECT_0 == ulRes, FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bWakeUp (сброс засыпания)
 BOOL
 CxSleeper::bWakeUp() const {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	bRes = _m_objEvent.bSet();
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bRes = _m_objEvent.bSet();
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bIsSleeping (спим ли)
 BOOL
 CxSleeper::bIsSleeping() const {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
-	return _m_objEvent.bIsSignaled();
-	/*DEBUG*/// n/a
+    return _m_objEvent.bIsSignaled();
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------

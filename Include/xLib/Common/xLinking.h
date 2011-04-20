@@ -12,26 +12,26 @@
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
 #if defined(xIS_AUTO_LINCKAGE) && defined (_MSC_VER) && !defined(_LIB)
-	#if defined(NDEBUG)
-		//release
-		#if defined(UNICODE) || defined(_UNICODE)
-			////#pragma message("  --- xLib: unicode, release ---")
-			#pragma comment(lib, "xLibW_Release.lib")
-		#else
-			////#pragma message("  --- xLib: ansi, release ---")
-			#pragma comment(lib, "xLibA_Release.lib")
-		#endif
-	#else
-		//debug
-		#if defined(UNICODE) || defined(_UNICODE)
-			////#pragma message("  --- xLib: unicode, debug ---")
-			#pragma comment(lib, "xLibW_Debug.lib")
-		#else
-			////#pragma message("  --- xLib: ansi, debug ---")
-			#pragma comment(lib, "xLibA_Debug.lib")
-		#endif
-	#endif	
-#endif	//_LIB
+    #if defined(NDEBUG)
+        //release
+        #if defined(UNICODE) || defined(_UNICODE)
+            ////#pragma message("  --- xLib: unicode, release ---")
+            #pragma comment(lib, "xLibW_Release.lib")
+        #else
+            ////#pragma message("  --- xLib: ansi, release ---")
+            #pragma comment(lib, "xLibA_Release.lib")
+        #endif
+    #else
+        //debug
+        #if defined(UNICODE) || defined(_UNICODE)
+            ////#pragma message("  --- xLib: unicode, debug ---")
+            #pragma comment(lib, "xLibW_Debug.lib")
+        #else
+            ////#pragma message("  --- xLib: ansi, debug ---")
+            #pragma comment(lib, "xLibA_Debug.lib")
+        #endif
+    #endif    
+#endif    //_LIB
 //---------------------------------------------------------------------------
 #endif //xLib_Common_xLinkingH
 

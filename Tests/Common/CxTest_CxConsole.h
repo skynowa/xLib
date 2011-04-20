@@ -17,13 +17,13 @@
 #include <xLib/Common/Win/CxConsole.h>
 //---------------------------------------------------------------------------
 class CxTest_CxConsole : public CxTest {
-	public:
-		CxTest_CxConsole();
-		virtual     ~CxTest_CxConsole();
+    public:
+        CxTest_CxConsole();
+        virtual     ~CxTest_CxConsole();
 
-		virtual     BOOL bUnit();
+        virtual     BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 
@@ -42,16 +42,16 @@ CxTest_CxConsole::~CxTest_CxConsole() {
 //TODO: - bUnit ()
 /*virtual*/
 BOOL CxTest_CxConsole::bUnit() {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	CxConsole cnConsole;
+    CxConsole cnConsole;
 
-	//////Console.vSetTextColor(0xa);
-	//////Console.bEnableClose(true);
-	//////cout << "111111111111111111111111111111111111111";
-	//////Console.bClearScreen();
+    //////Console.vSetTextColor(0xa);
+    //////Console.bEnableClose(true);
+    //////cout << "111111111111111111111111111111111111111";
+    //////Console.bClearScreen();
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 #endif //CxTest_CxConsoleH

@@ -70,7 +70,7 @@ CxTcpServerSocket::bAccept(CxTcpServerSocket *pscktAcceptSocket, tString *psFrom
     struct sockaddr_in cliaddr  = {0};
     INT                iAddrlen = sizeof(cliaddr);
 
-    scktClient = accept(_m_puiSocket, xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = accept(_m_puiSocket, CxMacros::xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
     /*DEBUG*/xASSERT_RET(etInvalid != scktClient, FALSE);
 #elif defined(xOS_LINUX)
     struct sockaddr_in cliaddr  = {0};

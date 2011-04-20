@@ -9,8 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef	xLib_Fso_CxStdioFileH
-#define	xLib_Fso_CxStdioFileH
+#ifndef    xLib_Fso_CxStdioFileH
+#define    xLib_Fso_CxStdioFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
@@ -35,84 +35,84 @@ class CxStdioFile : public CxNonCopyable {
 
         INT                _iGetHandle  ();
 
-	public:
-	    //EErrorType
-	    enum EErrorType {
-			etError = EOF
-		};
+    public:
+        //EErrorType
+        enum EErrorType {
+            etError = EOF
+        };
 
-		//Open mode
-		class CxOpenMode {
-			public:
-				static const tString omRead;				//"r"
-				static const tString omWrite;				//"w"
-				static const tString omAppend;				//"a"
-				static const tString omOpenReadWrite;		//"r+"
-				static const tString omCreateReadWrite;		//"w+"
-				static const tString omOpenReadAppend;		//"a+"
+        //Open mode
+        class CxOpenMode {
+            public:
+                static const tString omRead;                //"r"
+                static const tString omWrite;                //"w"
+                static const tString omAppend;                //"a"
+                static const tString omOpenReadWrite;        //"r+"
+                static const tString omCreateReadWrite;        //"w+"
+                static const tString omOpenReadAppend;        //"a+"
 
-				static const tString omBinRead;				//"rb"
-				static const tString omBinWrite;			//"wb"
-				static const tString omBinAppend;			//"ab"
-				static const tString omBinOpenReadWrite;	//"rb+"
-				static const tString omBinCreateReadWrite;	//"wb+"
-				static const tString omBinOpenReadAppend;	//"ab+"
-		};
+                static const tString omBinRead;                //"rb"
+                static const tString omBinWrite;            //"wb"
+                static const tString omBinAppend;            //"ab"
+                static const tString omBinOpenReadWrite;    //"rb+"
+                static const tString omBinCreateReadWrite;    //"wb+"
+                static const tString omBinOpenReadAppend;    //"ab+"
+        };
 
-		//File attribute
-		////enum EAttributes {
-		////	faInvalid  = - 1,           /*?*/
-		////	faNormal   =  _A_NORMAL,    /* Normal file - No read/write restrictions */
-		////	faReadOnly =  _A_RDONLY,	/* Read only file */
-		////	faHidden   =  _A_HIDDEN,    /* Hidden file */
-		////	faSystem   =  _A_SYSTEM,    /* System file */
-		////	faSubDir   =  _A_SUBDIR,    /* Subdirectory */
-		////	faArchive  =  _A_ARCH ,     /* Archive file */
-		////};
+        //File attribute
+        ////enum EAttributes {
+        ////    faInvalid  = - 1,           /*?*/
+        ////    faNormal   =  _A_NORMAL,    /* Normal file - No read/write restrictions */
+        ////    faReadOnly =  _A_RDONLY,    /* Read only file */
+        ////    faHidden   =  _A_HIDDEN,    /* Hidden file */
+        ////    faSystem   =  _A_SYSTEM,    /* System file */
+        ////    faSubDir   =  _A_SUBDIR,    /* Subdirectory */
+        ////    faArchive  =  _A_ARCH ,     /* Archive file */
+        ////};
 
-		//Translation mode
-		////enum ETranslationMode {
-		////	tmText   = _O_TEXT,          /* file mode is text (translated) */
-		////	tmBinary = _O_BINARY         /* file mode is binary (untranslated) */
-		////};
+        //Translation mode
+        ////enum ETranslationMode {
+        ////    tmText   = _O_TEXT,          /* file mode is text (translated) */
+        ////    tmBinary = _O_BINARY         /* file mode is binary (untranslated) */
+        ////};
 
-		//Access mode
-		enum EAccessMode {
-			amExistence = 0,	//Existence only
-			amWrite     = 2, 	//Write permission
-			amRead      = 4,	//Read permission
-			amReadWrite = 6		//Read and write permission
-		};
+        //Access mode
+        enum EAccessMode {
+            amExistence = 0,    //Existence only
+            amWrite     = 2,     //Write permission
+            amRead      = 4,    //Read permission
+            amReadWrite = 6        //Read and write permission
+        };
 
-		//file position data for the given stream
-		enum EPointerPosition {
-			ppBegin = SEEK_SET,
-			ppCurr  = SEEK_CUR,
-			ppEnd   = SEEK_END,
-			ppError = - 1L
-		};
+        //file position data for the given stream
+        enum EPointerPosition {
+            ppBegin = SEEK_SET,
+            ppCurr  = SEEK_CUR,
+            ppEnd   = SEEK_END,
+            ppError = - 1L
+        };
 
-		//mode for file buffering
-		enum EBufferingMode {
-			bmFull = _IOFBF,
-			bmLine = _IOLBF,
-			bmNo   = _IONBF
-		};
+        //mode for file buffering
+        enum EBufferingMode {
+            bmFull = _IOFBF,
+            bmLine = _IOLBF,
+            bmNo   = _IONBF
+        };
 
-		//Locking action to perform
-////		enum ELockingMode {
-//			lmTryLock = LK_LOCK/*_LK_LOCK*/,		//Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second. If, after 10 attempts, the bytes cannot be locked, the constant returns an error.
-//			lmLock    = LK_NBLCK/*_LK_NBLCK*/,		//Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
-//			//lmXXX = _LK_NBRLCK,		            //Same as _LK_NBLCK.
-//			//lmXXX = _LK_RLCK,		                //Same as _LK_LOCK.
-//			lmUnlock  = LK_UNLCK/*_LK_UNLCK*/		//Unlocks the specified bytes, which must have been previously locked.
-////		};
+        //Locking action to perform
+////        enum ELockingMode {
+//            lmTryLock = LK_LOCK/*_LK_LOCK*/,        //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second. If, after 10 attempts, the bytes cannot be locked, the constant returns an error.
+//            lmLock    = LK_NBLCK/*_LK_NBLCK*/,        //Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
+//            //lmXXX = _LK_NBRLCK,                    //Same as _LK_NBLCK.
+//            //lmXXX = _LK_RLCK,                        //Same as _LK_LOCK.
+//            lmUnlock  = LK_UNLCK/*_LK_UNLCK*/        //Unlocks the specified bytes, which must have been previously locked.
+////        };
 
-		//Permission mode
-		enum EPermissionMode {
+        //Permission mode
+        enum EPermissionMode {
             #if defined(xOS_WIN)
                 pmRead             = _S_IREAD,                  //read permitted
-		        pmWrite            = _S_IWRITE,				    //write permitted
+                pmWrite            = _S_IWRITE,                    //write permitted
                 pmReadWrite        = (_S_IREAD | _S_IWRITE)     //read and write
             #elif defined(xOS_LINUX)
                 pmSetUserId        = S_ISUID,                   //set-user-ID
@@ -132,26 +132,26 @@ class CxStdioFile : public CxNonCopyable {
                 pmWriteOthers      = S_IWOTH,                   //write by others
                 pmExecSearchOthers = S_IXOTH                    //execute/search by others
             #endif
-		};
+        };
 
 
-		//constructors, destructor
-			               CxStdioFile  ();
-		virtual           ~CxStdioFile  ();
+        //constructors, destructor
+                           CxStdioFile  ();
+        virtual           ~CxStdioFile  ();
 
-		//open, get
-		BOOL               bOpen        (FILE *pflFile);    //TODO:
-		BOOL               bOpen        (const tString &csFilePath, const tString &omMode);
-		BOOL               bReopen      (const tString &csFilePath, const tString &csMode);
+        //open, get
+        BOOL               bOpen        (FILE *pflFile);    //TODO:
+        BOOL               bOpen        (const tString &csFilePath, const tString &omMode);
+        BOOL               bReopen      (const tString &csFilePath, const tString &csMode);
         FILE              *pGet         () const;
-		tString            sGetPath     () const;
+        tString            sGetPath     () const;
 
-		//read, write
-		std::size_t        uiRead       (LPVOID pvBuf,         std::size_t uiCount) const;
-		std::size_t        uiWrite      (const LPVOID pcvBuff, std::size_t uiCount) const;
+        //read, write
+        std::size_t        uiRead       (LPVOID pvBuf,         std::size_t uiCount) const;
+        std::size_t        uiWrite      (const LPVOID pcvBuff, std::size_t uiCount) const;
 
-		BOOL               bReadAll     (LPVOID pvBuff,        std::size_t uiBuffSize, std::size_t uiBlockSize) const;
-		BOOL               bWriteAll    (const LPVOID pcvBuf,  std::size_t uiBuffSize, std::size_t uiBlockSize) const;
+        BOOL               bReadAll     (LPVOID pvBuff,        std::size_t uiBuffSize, std::size_t uiBlockSize) const;
+        BOOL               bWriteAll    (const LPVOID pcvBuf,  std::size_t uiBuffSize, std::size_t uiBlockSize) const;
 
         BOOL               bReadAll     (uString *psBuff,       std::size_t uiBlockSize) const;
         BOOL               bWriteAll    (const uString &csBuff, std::size_t uiBlockSize) const;
@@ -159,25 +159,25 @@ class CxStdioFile : public CxNonCopyable {
         BOOL               bReadAll     (tString *psBuff,       std::size_t uiBlockSize) const;
         BOOL               bWriteAll    (const tString &csBuff, std::size_t uiBlockSize) const;
 
-		BOOL               bReadLine    (LPTSTR pszStr, std::size_t uiMaxSize) const;
+        BOOL               bReadLine    (LPTSTR pszStr, std::size_t uiMaxSize) const;
         BOOL               bWriteLine   (const tString &csStr) const;
-		BOOL               bWriteString (const tString &csStr) const;
+        BOOL               bWriteString (const tString &csStr) const;
 
         TCHAR              cReadChar    ();
         BOOL               bWriteChar   (TCHAR cChar);
-		BOOL               bUngetChar   (TCHAR cChar);
+        BOOL               bUngetChar   (TCHAR cChar);
 
         //formatting write
         INT                iFprintf     (LPCTSTR pcszFormat, ...) const;
         INT                iFprintfV    (LPCTSTR pcszFormat, va_list arg) const;
 
-		//other
-		////BOOL               bLocking   (ELockingMode lmMode, LONG liBytes);
-		BOOL               bSetPosition (LONG lOffset, EPointerPosition fpPos/* = fpBegin*/) const;
-		LONG               liGetPosition() const;
+        //other
+        ////BOOL               bLocking   (ELockingMode lmMode, LONG liBytes);
+        BOOL               bSetPosition (LONG lOffset, EPointerPosition fpPos/* = fpBegin*/) const;
+        LONG               liGetPosition() const;
 
-		BOOL               bSetVBuff    (LPSTR pszBuff, EBufferingMode bmMode, std::size_t uiSize);
-		////BOOL               bSetMode (ETranslationMode tmMode);
+        BOOL               bSetVBuff    (LPSTR pszBuff, EBufferingMode bmMode, std::size_t uiSize);
+        ////BOOL               bSetMode (ETranslationMode tmMode);
 
         LONG               liGetSize    () const;
         ////BOOL               bChsize  (LONG liSize);
@@ -187,8 +187,8 @@ class CxStdioFile : public CxNonCopyable {
         BOOL               bIsError     () const;
         BOOL               bClearErr    () const;
 
-		//closing
-		BOOL               bFlush       () const;
+        //closing
+        BOOL               bFlush       () const;
         BOOL               bClose       ();
 
         //static
@@ -204,31 +204,31 @@ class CxStdioFile : public CxNonCopyable {
         static tString     sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
         static ULONGLONG   ullLines     (const tString &csFilePath);
 
-		//Macros
-		//FILENAME_MAX	Maximum length of file names (constant)
-		//TMP_MAX		Number of temporary files (constant)
+        //Macros
+        //FILENAME_MAX    Maximum length of file names (constant)
+        //TMP_MAX        Number of temporary files (constant)
 
-		/****************************************************************************
-		* static (all not tested)
-		*
-		*****************************************************************************/
+        /****************************************************************************
+        * static (all not tested)
+        *
+        *****************************************************************************/
 
-		static LONG        liGetSize    (const tString &csFilePath);
+        static LONG        liGetSize    (const tString &csFilePath);
 
         static BOOL        bReadFile    (const tString &csFilePath, std::vector<tString> *pvecsVector);
         static BOOL        bWriteFile   (const tString &csFilePath, const std::vector<tString> *pcvecsVector);
 
-		static BOOL        bReadFileEx  (const tString &csFilePath, std::vector<tString> *pvecsFile);
-		static BOOL        bReadFile	(const tString &csFilePath, std::vector<TCHAR>   *pvecchFile);
+        static BOOL        bReadFileEx  (const tString &csFilePath, std::vector<tString> *pvecsFile);
+        static BOOL        bReadFile    (const tString &csFilePath, std::vector<TCHAR>   *pvecchFile);
 
-		static BOOL        bReadFile    (const tString &csFilePath, const tString &csDelimiter, std::map<tString, tString> *pmapsFile);
-		static BOOL        bReadFile    (const tString &csFilePath, tString *psStr);
+        static BOOL        bReadFile    (const tString &csFilePath, const tString &csDelimiter, std::map<tString, tString> *pmapsFile);
+        static BOOL        bReadFile    (const tString &csFilePath, tString *psStr);
 
-		static BOOL        bReadFile    (const tString &csFilePath, uString *pusStr);
-		static BOOL        bWriteFile   (const tString &csFilePath, const uString &cusStr);
+        static BOOL        bReadFile    (const tString &csFilePath, uString *pusStr);
+        static BOOL        bWriteFile   (const tString &csFilePath, const uString &cusStr);
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Fso_CxStdioFileH
+#endif    //xLib_Fso_CxStdioFileH
 /*
 #include <stdio.h>
 #include <stdlib.h>
@@ -264,12 +264,12 @@ int main(int argc, char *argv[]) {
 */
 
 /*
-"r"		Open a file for reading. The file must exist.
-"w"		Create an empty file for writing. If a file with the same name already exists its content is erased and the file is treated as a new empty file.
-"a"		Append to a file. Writing operations append data at the end of the file. The file is created if it does not exist.
-"r+"	Open a file for update both reading and writing. The file must exist.
-"w+"	Create an empty file for both reading and writing. If a file with the same name already exists its content is erased and the file is treated as a new empty file.
-"a+"	Open a file for reading and appending. All writing operations are performed at the end of the file, protecting the previous content to be overwritten. You can re
+"r"        Open a file for reading. The file must exist.
+"w"        Create an empty file for writing. If a file with the same name already exists its content is erased and the file is treated as a new empty file.
+"a"        Append to a file. Writing operations append data at the end of the file. The file is created if it does not exist.
+"r+"    Open a file for update both reading and writing. The file must exist.
+"w+"    Create an empty file for both reading and writing. If a file with the same name already exists its content is erased and the file is treated as a new empty file.
+"a+"    Open a file for reading and appending. All writing operations are performed at the end of the file, protecting the previous content to be overwritten. You can re
 */
 
 

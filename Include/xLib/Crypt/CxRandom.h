@@ -23,35 +23,35 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxRandom : CxNonCopyable {
-	public:
+    public:
                          CxRandom     (LONG liSeed = time(NULL));
         virtual         ~CxRandom     ();
 
-		BOOL             bSetSeed     (LONG liSeed);
+        BOOL             bSetSeed     (LONG liSeed);
 
-		INT              iNextInt     ();
-		INT              iNextInt     (INT max);
-		INT              iNextInt     (INT a, INT b);
-		LONG             liNextLong   ();
-		bool             bNextBoolean ();
-		FLOAT            fNextFloat   ();
-		DOUBLE           bNextDouble  ();
-		CHAR             chNextChar   ();
-		CHAR             chNextFigure ();
-		DOUBLE           dNextGaussian();
+        INT              iNextInt     ();
+        INT              iNextInt     (INT max);
+        INT              iNextInt     (INT a, INT b);
+        LONG             liNextLong   ();
+        bool             bNextBoolean ();
+        FLOAT            fNextFloat   ();
+        double           bNextDouble  ();
+        CHAR             chNextChar   ();
+        CHAR             chNextFigure ();
+        double           dNextGaussian();
 
-	protected:
-		LONG             liNext       ();
+    protected:
+        LONG             liNext       ();
 
-	private:
-		static const INT A;
-		static const INT M;
-		static const INT Q;
-		static const INT R;
+    private:
+        static const INT A;
+        static const INT M;
+        static const INT Q;
+        static const INT R;
 
-		LONG             _m_liSeed;
-		DOUBLE           _m_dNextNextGaussian;
-		bool             _m_bHaveNextNextGaussian;
+        LONG             _m_liSeed;
+        double           _m_dNextNextGaussian;
+        bool             _m_bHaveNextNextGaussian;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Crypt_RandomH
+#endif    //xLib_Crypt_RandomH

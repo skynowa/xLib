@@ -16,16 +16,16 @@
 //---------------------------------------------------------------------------
 template <class ClassNameT>
 class CxSingleton : public CxNonCopyable {
-	public:
-		static ClassNameT &GetInstance() {
-			static ClassNameT m_Instance; 
-			
-			return m_Instance;
-		}		
+    public:
+        static ClassNameT &GetInstance() {
+            static ClassNameT m_Instance; 
+            
+            return m_Instance;
+        }        
 
-	private:
-		CxSingleton();                                 
-	   ~CxSingleton();                                 
+    private:
+        CxSingleton();                                 
+       ~CxSingleton();                                 
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Patterns_CxSingletonH
@@ -35,27 +35,27 @@ class CxSingleton : public CxNonCopyable {
 /*
 template <class T>
 class CxSingleton {
-	public:
-		static CxSingleton &Instance();
+    public:
+        static CxSingleton &Instance();
 
-	private:
-		CxSingleton();
-	   ////~CxSingleton();
-	
+    private:
+        CxSingleton();
+       ////~CxSingleton();
+    
 };
 template <class T>
 CxSingleton<T> &CxSingleton<T>::Instance() {
-	static CxSingleton theSingleInstance;
+    static CxSingleton theSingleInstance;
 
-	return theSingleInstance;
+    return theSingleInstance;
 }
 template <class T>
 T &Singleton<T>::Instance() {
-	Create();
-	T *p;
-	if (!Locked() && (p = Obj().p))
-		return *p;
-	throw E_AccessViolation("Uutl::Singleton<T>::Instance");
+    Create();
+    T *p;
+    if (!Locked() && (p = Obj().p))
+        return *p;
+    throw E_AccessViolation("Uutl::Singleton<T>::Instance");
 }
 //---------------------------------------------------------------------------
 
@@ -63,18 +63,18 @@ T &Singleton<T>::Instance() {
 
 /*
 class OnlyOne {
-	private:
-		OnlyOne()
-		{
-		}
+    private:
+        OnlyOne()
+        {
+        }
  
-	public:
-		static OnlyOne& Instance()
-		{
-			static OnlyOne theSingleInstance;
-			return theSingleInstance;
-		}
+    public:
+        static OnlyOne& Instance()
+        {
+            static OnlyOne theSingleInstance;
+            return theSingleInstance;
+        }
  
-		// ...
+        // ...
 };
 */

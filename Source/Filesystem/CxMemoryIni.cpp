@@ -20,24 +20,24 @@
 //---------------------------------------------------------------------------
 //TODO: - CxMemoryIni (comment)
 CxMemoryIni::CxMemoryIni() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - CxMemoryIni (comment)
 CxMemoryIni::CxMemoryIni(const tString &csFilePath) {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - ~CxMemoryIni (comment)
 /*virtual*/
 CxMemoryIni::~CxMemoryIni() {
-	//code
+    //code
 }
 //---------------------------------------------------------------------------
 //TODO: - bFlush (comment)
 BOOL CxMemoryIni::bFlush() {
-	//code;
+    //code;
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

@@ -23,36 +23,36 @@
 //---------------------------------------------------------------------------
 //DONE: CxProfiler (constructor)
 CxProfiler::CxProfiler(const tString &csLogFilePath, EMode pmMode) :
-	_m_bRes      (FALSE),
+    _m_bRes      (FALSE),
     _m_pmModeNow (pmMode),
     _m_bIsStarted(FALSE),
-	_flLog       (csLogFilePath, CxFileLog::lsDefaultSize)
+    _flLog       (csLogFilePath, CxFileLog::lsDefaultSize)
 {
-	/*DEBUG*/xASSERT_DO(false == csLogFilePath.empty(), return);
+    /*DEBUG*/xASSERT_DO(false == csLogFilePath.empty(), return);
 #if defined(xOS_WIN)
-	/*DEBUG*/xASSERT_DO(pmTickCount == pmMode || pmPerformanceCount == pmMode || pmThreadTimes == pmMode || pmClock == pmMode || pmTime == pmMode, return);
+    /*DEBUG*/xASSERT_DO(pmTickCount == pmMode || pmPerformanceCount == pmMode || pmThreadTimes == pmMode || pmClock == pmMode || pmTime == pmMode, return);
 #elif defined(xOS_LINUX)
-	/*DEBUG*/xASSERT_DO(pmGetTimeOfDay == pmMode || pmClock == pmMode || pmTime == pmMode, return);
+    /*DEBUG*/xASSERT_DO(pmGetTimeOfDay == pmMode || pmClock == pmMode || pmTime == pmMode, return);
 #endif
-	
-	_m_bRes = _flLog.bWrite(xT("----------------------------------------"));
-	/*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    
+    _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
+    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxProfiler (destructor)
 CxProfiler::~CxProfiler() {
-	_m_bRes = _flLog.bWrite(xT("----------------------------------------"));
-	/*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
+    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //--------------------------------------------------------------------------
 //DONE: bStart (start measurement)
 BOOL
 CxProfiler::bStart() {
-	/*DEBUG*/xASSERT_RET(FALSE == _m_bIsStarted, FALSE);
-	
-	_m_bRes = _bResetData();
-	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-	
+    /*DEBUG*/xASSERT_RET(FALSE == _m_bIsStarted, FALSE);
+    
+    _m_bRes = _bResetData();
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    
 #if defined(xOS_WIN)
     _m_bRes = ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
     /*DEBUG*/xASSERT(FALSE != _m_bRes);
@@ -60,7 +60,7 @@ CxProfiler::bStart() {
     ::Sleep(100);
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
-#endif	
+#endif    
 
     switch (_m_pmModeNow) {
         case pmClock: {
@@ -69,11 +69,11 @@ CxProfiler::bStart() {
             }
             break;
 
-		case pmTime: {
-				_m_dtTimesStart = CxDateTime::dtGetCurrent();
-				/*DEBUG*/// n/a
-			}
-			break;
+        case pmTime: {
+                _m_dtTimesStart = CxDateTime::dtGetCurrent();
+                /*DEBUG*/// n/a
+            }
+            break;
 
         #if defined(xOS_WIN)
             case pmTickCount: {
@@ -106,26 +106,26 @@ CxProfiler::bStart() {
                 }
                 break;
         #endif
-		
+        
         default: {
-				/*DEBUG*/xASSERT_MSG_RET(FALSE, xT("Unknown mode"), FALSE);
-			}
+                /*DEBUG*/xASSERT_MSG_RET(FALSE, xT("Unknown mode"), FALSE);
+            }
             break;
     }
 
     _m_bIsStarted = TRUE;
 
-	return TRUE;
+    return TRUE;
 }
 //--------------------------------------------------------------------------
 //DONE: bStop (stop measurement)
 BOOL
 CxProfiler::bStop(LPCTSTR pcszComment, ...) {
-	/*DEBUG*/xASSERT_RET(FALSE != _m_bIsStarted, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bIsStarted, FALSE);
 
-	tString sTimeString = xT("0:00:00:000");
-	
-	switch (_m_pmModeNow) {
+    tString sTimeString = xT("0:00:00:000");
+    
+    switch (_m_pmModeNow) {
         case pmClock: {
                 _m_ctClocksStop = std::clock();
                 /*DEBUG*/xASSERT_RET(- 1 != _m_ctClocksStop, FALSE);
@@ -134,14 +134,14 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
             }
             break;
 
-		case pmTime: {
-				_m_dtTimesStop = CxDateTime::dtGetCurrent();
-				/*DEBUG*/// n/a
+        case pmTime: {
+                _m_dtTimesStop = CxDateTime::dtGetCurrent();
+                /*DEBUG*/// n/a
 
-				//--/*DEBUG*/xASSERT_MSG(_m_dtTimesStop >= _m_dtTimesStart, CxString::sFormat(xT("_m_dtTimesStop: %s, _m_dtTimesStart: %s"), _m_dtTimesStop.sFormat(CxDateTime::ftDateTime).c_str(), _m_dtTimesStart.sFormat(CxDateTime::ftDateTime).c_str()));
+                //--/*DEBUG*/xASSERT_MSG(_m_dtTimesStop >= _m_dtTimesStart, CxString::sFormat(xT("_m_dtTimesStop: %s, _m_dtTimesStart: %s"), _m_dtTimesStop.sFormat(CxDateTime::ftDateTime).c_str(), _m_dtTimesStart.sFormat(CxDateTime::ftDateTime).c_str()));
                 sTimeString = (_m_dtTimesStop - _m_dtTimesStart).sFormat(CxDateTime::ftTime);
-			}
-			break;
+            }
+            break;
 
         #if defined(xOS_WIN)
             case pmTickCount: {
@@ -180,62 +180,62 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
                 break;
         #endif
 
-		default: {
-				/*DEBUG*/xASSERT_RET(FALSE, FALSE);
-			}
-			break;
-	}
+        default: {
+                /*DEBUG*/xASSERT_RET(FALSE, FALSE);
+            }
+            break;
+    }
 
-	//-------------------------------------
-	//format comment
-	tString sRes;
+    //-------------------------------------
+    //format comment
+    tString sRes;
 
-	va_list palArgs = NULL;
-	va_start(palArgs, pcszComment);
+    va_list palArgs = NULL;
+    va_start(palArgs, pcszComment);
 
-	sRes = CxString::sFormatV(pcszComment, palArgs);
+    sRes = CxString::sFormatV(pcszComment, palArgs);
 
-	va_end(palArgs);
-	
-	//-------------------------------------
-	//write to log
-	_m_bRes = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRes.c_str());
-	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    va_end(palArgs);
+    
+    //-------------------------------------
+    //write to log
+    _m_bRes = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRes.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-	_m_bIsStarted = FALSE;
+    _m_bIsStarted = FALSE;
 
-	return TRUE;
+    return TRUE;
 }
 //--------------------------------------------------------------------------
 //DONE: bPulse (stop, start measurement)
 BOOL
 CxProfiler::bPulse(LPCTSTR pcszComment, ...) {
-	//-------------------------------------
-	//format comment
-	tString sRes;
+    //-------------------------------------
+    //format comment
+    tString sRes;
 
-	va_list palArgs = NULL;
-	va_start(palArgs, pcszComment);
+    va_list palArgs = NULL;
+    va_start(palArgs, pcszComment);
 
-	sRes = CxString::sFormatV(pcszComment, palArgs);
+    sRes = CxString::sFormatV(pcszComment, palArgs);
 
-	va_end(palArgs);
-	
-	//-------------------------------------
-	//stop, start
-	_m_bRes = bStop(sRes.c_str());
-	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    va_end(palArgs);
+    
+    //-------------------------------------
+    //stop, start
+    _m_bRes = bStop(sRes.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-	_m_bRes = bStart();
-	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    _m_bRes = bStart();
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*	private	
+*    private    
 *
 *****************************************************************************/
 
@@ -251,14 +251,14 @@ CxProfiler::_bResetData() {
 #endif
 
     _m_bIsStarted                       = FALSE;
-	
+    
     //pmClock
     xSTRUCT_ZERO(_m_ctClocksStart);
     xSTRUCT_ZERO(_m_ctClocksStop);
 
-	//pmTime
-	//_m_dtTimesStart - n/a
-	//_m_dtTimesStop  - n/a
+    //pmTime
+    //_m_dtTimesStart - n/a
+    //_m_dtTimesStop  - n/a
 
 #if defined(xOS_WIN)
     //pmGetTickCount
@@ -290,7 +290,7 @@ CxProfiler::_bResetData() {
     _m_dMicrosecStop                    = 0.0;
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //--------------------------------------------------------------------------
 

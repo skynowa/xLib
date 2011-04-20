@@ -15,9 +15,9 @@
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
 class CXHotKey : public CxNonCopyable {
-	public:
-		CXHotKey();
-	   ~CXHotKey();
+    public:
+        CXHotKey();
+       ~CXHotKey();
 };
 //---------------------------------------------------------------------------
 #endif //XLib_Gui_CXHotKeyH

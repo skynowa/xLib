@@ -18,16 +18,16 @@
 class CxDebugger;
 
 class CxMacros : CxNonCopyable {
-	public:
-		#define xPTR_DELETE(p)   	  { if (NULL != (p)) {delete p;     p = NULL;} }
-		/*template<class T>
-		static inline VOID
-		xPTR_DELETE(T *&a_ptr) {
-			if (NULL != a_ptr)  {
-				delete a_ptr;
-				a_ptr = NULL;
-			}
-		}*/
+    public:
+        #define xPTR_DELETE(p)         { if (NULL != (p)) {delete p;     p = NULL;} }
+        /*template<class T>
+        static inline VOID
+        xPTR_DELETE(T *&a_ptr) {
+            if (NULL != a_ptr)  {
+                delete a_ptr;
+                a_ptr = NULL;
+            }
+        }*/
         /*template <class T>
         static inline
         void xPTR_DELETE(T &p) {
@@ -36,31 +36,31 @@ class CxMacros : CxNonCopyable {
                 delete p; p = NULL;
         }*/
 
-		#define xARRAY_DELETE(a)	  { if (NULL != (a)) {delete [] a;  a = NULL;} }
-		/*template<class T>
-		static inline VOID
-		xARRAY_DELETE(T *&a_ptr) {
-			if (NULL != a_ptr)  {
-				delete [] a_ptr;
-				a_ptr = NULL;
-			}
-		}*/
+        #define xARRAY_DELETE(a)      { if (NULL != (a)) {delete [] a;  a = NULL;} }
+        /*template<class T>
+        static inline VOID
+        xARRAY_DELETE(T *&a_ptr) {
+            if (NULL != a_ptr)  {
+                delete [] a_ptr;
+                a_ptr = NULL;
+            }
+        }*/
 
-		#define xARRAY_ZERO_DELETE(a) { if (NULL != (a)) {xBUFF_ZERO(a); delete [] a;  a = NULL;} }
+        #define xARRAY_ZERO_DELETE(a) { if (NULL != (a)) {xBUFF_ZERO(a); delete [] a;  a = NULL;} }
         #define xARRAY_SIZE(a)        ( sizeof(a) / sizeof((a)[0]) )
 
         #define xBUFF_ZERO(Buff)      { memset(static_cast<void *>( &Buff[0] ), 0, sizeof(Buff)); }
         #define xSTRUCT_ZERO(Buff)    { memset(static_cast<void *>( &Buff ),    0, sizeof(Buff)); }
         #define xBUFF_FREE(pvBuff)    { if (NULL != pvBuff) { free(pvBuff); pvBuff = NULL;} }
 
-		#define xS2US(s)			  uString( (s).begin(),  (s).begin()  + (s).size()  )
-		#define xUS2S(us)			  tString( (us).begin(), (us).begin() + (us).size() )
+        #define xS2US(s)              uString( (s).begin(),  (s).begin()  + (s).size()  )
+        #define xUS2S(us)              tString( (us).begin(), (us).begin() + (us).size() )
 
-		#define xS2TS(s)			  tString( (s).begin(),  (s).begin()  + (s).size()  )
-		#define xTS2S(ts)			  std::string( (ts).begin(), (ts).begin() + (ts).size() )
+        #define xS2TS(s)              tString( (s).begin(),  (s).begin()  + (s).size()  )
+        #define xTS2S(ts)              std::string( (ts).begin(), (ts).begin() + (ts).size() )
 
-		#define xRANDOMIZE() 		  ( srand( (UINT)::GetTickCount() ) )
-		#define xRANDOM(x)            ( rand() % x )
+        #define xRANDOMIZE()           ( srand( (UINT)::GetTickCount() ) )
+        #define xRANDOM(x)            ( rand() % x )
 
         #define xFCLOSE(f)            { if (NULL != (f)) { fclose(f); f = NULL; } }
 
@@ -182,9 +182,9 @@ class CxMacros : CxNonCopyable {
 
         #define xSTD_CIN(s)        { tcin  >> (s) >> tendl; }
 
-	private:
-				CxMacros();
-		       ~CxMacros();
+    private:
+                CxMacros();
+               ~CxMacros();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxMacrosH

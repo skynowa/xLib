@@ -21,7 +21,7 @@
 #endif
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -47,29 +47,29 @@ CxSystemInfo::osGetOS() {
     */
 
     /*
-    Operating system	                Version number		Other
+    Operating system                    Version number        Other
     -------------------------------------------------------------------------------------------
-    Windows 7	                        6.1    OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION
-    Windows Server 2008 R2	            6.1	   OSVERSIONINFOEX.wProductType != VER_NT_WORKSTATION
-    Windows Server 2008	                6.0	   OSVERSIONINFOEX.wProductType != VER_NT_WORKSTATION
-    Windows Vista	                    6.0	   OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION
-    Windows Server 2003 R2	            5.2	   GetSystemMetrics(SM_SERVERR2) != 0
-    Windows Home Server	                5.2	   OSVERSIONINFOEX.wSuiteMask & VER_SUITE_WH_SERVER
-    Windows Server 2003	                5.2	   GetSystemMetrics(SM_SERVERR2) == 0
-    Windows XP Professional x64 Edition	5.2    (OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION) && (SYSTEM_INFO.wProcessorArchitecture==PROCESSOR_ARCHITECTURE_AMD64)
-    Windows XP	                        5.1	   Not applicable
-    Windows 2000	                    5.0	   Not applicable
+    Windows 7                            6.1    OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION
+    Windows Server 2008 R2                6.1       OSVERSIONINFOEX.wProductType != VER_NT_WORKSTATION
+    Windows Server 2008                    6.0       OSVERSIONINFOEX.wProductType != VER_NT_WORKSTATION
+    Windows Vista                        6.0       OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION
+    Windows Server 2003 R2                5.2       GetSystemMetrics(SM_SERVERR2) != 0
+    Windows Home Server                    5.2       OSVERSIONINFOEX.wSuiteMask & VER_SUITE_WH_SERVER
+    Windows Server 2003                    5.2       GetSystemMetrics(SM_SERVERR2) == 0
+    Windows XP Professional x64 Edition    5.2    (OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION) && (SYSTEM_INFO.wProcessorArchitecture==PROCESSOR_ARCHITECTURE_AMD64)
+    Windows XP                            5.1       Not applicable
+    Windows 2000                        5.0       Not applicable
 
 
-    Windows NT	3.10
-    Windows 98	4.10
-    Windows 95	4.0
-    1	30
-    1	25
-    1	20
-    1	15
-    1	10
-    Win32s	1	0
+    Windows NT    3.10
+    Windows 98    4.10
+    Windows 95    4.0
+    1    30
+    1    25
+    1    20
+    1    15
+    1    10
+    Win32s    1    0
     */
 
     OSVERSIONINFO ovVer = {0};
@@ -206,28 +206,28 @@ CxSystemInfo::oaGetOsArchitecture() {
 /*static*/
 tString
 CxSystemInfo::sFormatOsType(EOsType otOsType) {
-	/*DEBUG*/// otOsType - n/a
+    /*DEBUG*/// otOsType - n/a
 
-	tString sRes;
+    tString sRes;
 
 #if defined(xOS_WIN)
     switch (otOsType) {
-        case otWindows3:   		    	{ sRes = xT("Windows 3.1");                }	break;
-        case otWindows95:   			{ sRes = xT("Windows 95");                 }	break;
-        case otWindows98:   			{ sRes = xT("Windows 98");                 }	break;
-        case otWindowsNT:   			{ sRes = xT("Windows NT 4.0");             }	break;
-        case otWindows2000:   			{ sRes = xT("Windows 2000");               }	break;
-        case otWindowsXP:   			{ sRes = xT("Windows XP");                 }	break;
-        case otWindowsXPProx64Edition:  { sRes = xT("Windows XP Pro x64 Edition"); }	break;
-        case otWindowsServer2003:   	{ sRes = xT("Windows Server 2003");        }	break;
-        case otWindowsHomeServer:   	{ sRes = xT("Windows Home Server");        }	break;
-        case otWindowsServer2003R2:   	{ sRes = xT("Windows Server 2003 R2");     }	break;
-        case otWindowsVista:   			{ sRes = xT("Windows Vista");              }	break;
-        case otWindowsServer2008:   	{ sRes = xT("Windows Server 2008");        }	break;
-        case otWindowsServer2008R2:   	{ sRes = xT("Windows Server 2008 R2");     }	break;
-        case otWindows7:   				{ sRes = xT("Windows 7");                  }	break;
+        case otWindows3:                   { sRes = xT("Windows 3.1");                }    break;
+        case otWindows95:               { sRes = xT("Windows 95");                 }    break;
+        case otWindows98:               { sRes = xT("Windows 98");                 }    break;
+        case otWindowsNT:               { sRes = xT("Windows NT 4.0");             }    break;
+        case otWindows2000:               { sRes = xT("Windows 2000");               }    break;
+        case otWindowsXP:               { sRes = xT("Windows XP");                 }    break;
+        case otWindowsXPProx64Edition:  { sRes = xT("Windows XP Pro x64 Edition"); }    break;
+        case otWindowsServer2003:       { sRes = xT("Windows Server 2003");        }    break;
+        case otWindowsHomeServer:       { sRes = xT("Windows Home Server");        }    break;
+        case otWindowsServer2003R2:       { sRes = xT("Windows Server 2003 R2");     }    break;
+        case otWindowsVista:               { sRes = xT("Windows Vista");              }    break;
+        case otWindowsServer2008:       { sRes = xT("Windows Server 2008");        }    break;
+        case otWindowsServer2008R2:       { sRes = xT("Windows Server 2008 R2");     }    break;
+        case otWindows7:                   { sRes = xT("Windows 7");                  }    break;
 
-        default:		  				{ sRes = xT("Unknown Windows OS");         }	break;
+        default:                          { sRes = xT("Unknown Windows OS");         }    break;
     }
 #elif defined(xOS_LINUX)
     //Linux user-exm-5 2.6.35-27-generic #48-Ubuntu SMP Tue Feb 22 20:25:29 UTC 2011 i686 GNU/Linux
@@ -251,14 +251,14 @@ CxSystemInfo::sFormatOsType(EOsType otOsType) {
     //out:  Linux 2.6.35-27-generic (#48-Ubuntu SMP Tue Feb 22 20:25:29 UTC 2011) i686
 #endif
 
-	return sRes;
+    return sRes;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetComputerName (Retrieves the NetBIOS name of the local computer)
 /*static*/
 tString
 CxSystemInfo::sGetComputerName() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
     tString sRes;
 
@@ -280,7 +280,7 @@ CxSystemInfo::sGetComputerName() {
     sRes.assign(unKernelInfo.nodename);
 #endif
 
-	return sRes;
+    return sRes;
 }
 //---------------------------------------------------------------------------
 //DONE: bIsUserAnAdmin (is current user an admin)
@@ -320,7 +320,7 @@ CxSystemInfo::bIsUserAnAdmin() {
 /*static*/
 tString
 CxSystemInfo::sGetUserName() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
     tString sRes;
 
@@ -343,16 +343,16 @@ CxSystemInfo::sGetUserName() {
     sRes.assign(ppwPassword->pw_name);
 #endif
 
-	return sRes;
+    return sRes;
 }
 //---------------------------------------------------------------------------
 //DONE: ulGetNumOfCPUs ()
 /*static*/
 ULONG
 CxSystemInfo::ulGetNumOfCPUs() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
-	ULONG ulRes = 0;
+    ULONG ulRes = 0;
 
 #if defined(xOS_WIN)
     SYSTEM_INFO siSysInfo = {{0}};
@@ -382,9 +382,9 @@ CxSystemInfo::ulGetNumOfCPUs() {
 /*static*/
 ULONG
 CxSystemInfo::ulGetCurrentCpuNum() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
-	ULONG ulRes = - 1;
+    ULONG ulRes = - 1;
 
 #if defined(xOS_WIN)
     #if (xWINVER >= xWIN32_7)
@@ -410,7 +410,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 //TODO: bIsUnicodeOS (is OS support unicode)
 BOOL
 CxSystemInfo::bIsUnicodeOS()  {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
     BOOL bRes = FALSE;
 
@@ -425,57 +425,57 @@ CxSystemInfo::bIsUnicodeOS()  {
     bRes = TRUE;
 #endif
 
-	return bRes;
+    return bRes;
 }
 //---------------------------------------------------------------------------
 //TODO: - iGetCpuSpeed (calculates the CPU speed in MHz)
 /*static*/
 INT
 CxSystemInfo::iGetCpuSpeed() {
-	/*DEBUG*/// n/a
+    /*DEBUG*/// n/a
 
-	INT iRes = - 1;
+    INT iRes = - 1;
 
 #if defined(xOS_WIN)
     //TODO: xOS_WIN
-//	//TODO: CxCycle
-//	class CxCycle {
-//		public:
-//			static /*inline*/ unsigned __int64 ullGetCount();
-//	};
-//	unsigned __int64 CxCycle::ullGetCount() {
-//			UINT uiTimeHigh = 0;
-//			UINT uiTimeLow  = 0;
+//    //TODO: CxCycle
+//    class CxCycle {
+//        public:
+//            static /*inline*/ unsigned __int64 ullGetCount();
+//    };
+//    unsigned __int64 CxCycle::ullGetCount() {
+//            UINT uiTimeHigh = 0;
+//            UINT uiTimeLow  = 0;
 //
-//			__asm {
-//				rdtsc
-//				mov uiTimeHigh, edx;
-//				mov uiTimeLow,  eax;
-//			}
+//            __asm {
+//                rdtsc
+//                mov uiTimeHigh, edx;
+//                mov uiTimeLow,  eax;
+//            }
 //
-//			return ((unsigned __int64)uiTimeHigh << 32) + (unsigned __int64)uiTimeLow;
-//	};
+//            return ((unsigned __int64)uiTimeHigh << 32) + (unsigned __int64)uiTimeLow;
+//    };
 //
 //
-//	const ULONGLONG ullStartCycle = CxCycle::ullGetCount();
+//    const ULONGLONG ullStartCycle = CxCycle::ullGetCount();
 //
-//	::Sleep(1000);
+//    ::Sleep(1000);
 //
-//	iRes = static_cast<INT>( (CxCycle::ullGetCount() - ullStartCycle) / 1000000 );
+//    iRes = static_cast<INT>( (CxCycle::ullGetCount() - ullStartCycle) / 1000000 );
 
-	xNOT_IMPLEMENTED_RET(- 1);
+    xNOT_IMPLEMENTED_RET(- 1);
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
     xNOT_IMPLEMENTED_RET(- 1);
 #endif
 
-	return iRes;
+    return iRes;
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*	private
+*    private
 *
 *****************************************************************************/
 

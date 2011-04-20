@@ -15,7 +15,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxChar : public CxNonCopyable {
-	public:
+    public:
         static BOOL  bIsAlphaNum(INT iChar);
         static BOOL  bIsAlpha   (INT iChar);
         static BOOL  bIsControl (INT iChar);
@@ -33,8 +33,8 @@ class CxChar : public CxNonCopyable {
         static CHAR  chToLower  (INT iChar);
         static CHAR  chToUpper  (INT iChar);
 
-	private:
-		BOOL         _m_bRes;
+    private:
+        BOOL         _m_bRes;
 
                      CxChar     ();
         virtual     ~CxChar     ();

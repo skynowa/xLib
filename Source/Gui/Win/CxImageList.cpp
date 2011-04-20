@@ -14,14 +14,14 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: - CxImageList
 CxImageList::CxImageList() : 
-	_m_hImglst(NULL)
+    _m_hImglst(NULL)
 {
 }
 //---------------------------------------------------------------------------
@@ -33,7 +33,7 @@ CxImageList::~CxImageList() {
 
 
 /****************************************************************************
-*	public: COM
+*    public: COM
 *
 *****************************************************************************/
 
@@ -74,7 +74,7 @@ HRESULT CxImageList::lpQueryInterface (REFIID riId, VOID **ppvParam) {
 
 
 /****************************************************************************
-*	public: создание/разрушение
+*    public: создание/разрушение
 *
 *****************************************************************************/
 
@@ -129,7 +129,7 @@ BOOL CxImageList::bDestroy() {
 
 
 /****************************************************************************
-*	public: действия
+*    public: действия
 *
 *****************************************************************************/
 
@@ -238,7 +238,7 @@ HIMAGELIST CxImageList::hMerge(INT iIndex1, HIMAGELIST hImageList2, INT iIndex2,
 
 
 /****************************************************************************
-*	public: чтение/запись
+*    public: чтение/запись
 *
 *****************************************************************************/
 
@@ -247,7 +247,7 @@ HIMAGELIST CxImageList::hMerge(INT iIndex1, HIMAGELIST hImageList2, INT iIndex2,
 #if (xWINVER >= xWIN32_31)
 HIMAGELIST CxImageList::hRead(LPSTREAM pStream) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hImglst, NULL);
-	/*DEBUG*///pStream
+    /*DEBUG*///pStream
 
     HIMAGELIST hRes = NULL;
     
@@ -262,8 +262,8 @@ HIMAGELIST CxImageList::hRead(LPSTREAM pStream) {
 #if (xWINVER >= xWIN32_VISTA)
 HRESULT CxImageList::lpReadEx(ULONG ulFlags, LPSTREAM pStream, REFIID riId, VOID **ppvParam) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hImglst, S_FALSE);
-	/*DEBUG*///ulFlags
-	/*DEBUG*///pStream
+    /*DEBUG*///ulFlags
+    /*DEBUG*///pStream
     /*DEBUG*///riId
     /*DEBUG*///*ppvParam
     
@@ -310,7 +310,7 @@ HRESULT CxImageList::lpWriteEx(ULONG ulFlags, LPSTREAM pStream) {
 
 
 /****************************************************************************
-*	public: перетаскивание
+*    public: перетаскивание
 *
 *****************************************************************************/
 
@@ -336,8 +336,8 @@ BOOL CxImageList::bBeginDrag(INT iIndex, INT iLeft, INT iTop) {
 #if (xWINVER >= xWIN32_31)
 BOOL CxImageList::bDragEnter(HWND hwndLock, INT iLeft, INT iTop) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hImglst, FALSE);
-	/*DEBUG*///hwndLock
-	/*DEBUG*///iLeft
+    /*DEBUG*///hwndLock
+    /*DEBUG*///iLeft
     /*DEBUG*///iTop
     
     BOOL bRes = FALSE;
@@ -414,7 +414,7 @@ HIMAGELIST CxImageList::hGetDragImage(POINT *pptReciever, POINT *pptHotspot) {
 #if (xWINVER >= xWIN32_31)
 BOOL CxImageList::bDragLeave(HWND hwndLock) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hImglst, FALSE);
-	/*DEBUG*///hwndLock
+    /*DEBUG*///hwndLock
 
     BOOL bRes = FALSE;
     
@@ -440,7 +440,7 @@ BOOL CxImageList::bEndDrag() {
 
 
 /****************************************************************************
-*	public: рисование
+*    public: рисование
 *
 *****************************************************************************/
 
@@ -491,7 +491,7 @@ BOOL CxImageList::bDrawEx(INT iIndex, HDC hDC, INT iLeft, INT iTop, INT iWidth, 
 #if (xWINVER >= xWIN32_31)
 BOOL CxImageList::bDrawIndirect(IMAGELISTDRAWPARAMS *pimldpImageListDrawParams) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hImglst, FALSE);
-	/*DEBUG*///pimldpImageListDrawParams
+    /*DEBUG*///pimldpImageListDrawParams
 
     BOOL bRes = FALSE;
     
@@ -505,7 +505,7 @@ BOOL CxImageList::bDrawIndirect(IMAGELISTDRAWPARAMS *pimldpImageListDrawParams) 
 
 
 /****************************************************************************
-*	public: Bitmap/Icon
+*    public: Bitmap/Icon
 *
 *****************************************************************************/
 
@@ -514,8 +514,8 @@ BOOL CxImageList::bDrawIndirect(IMAGELISTDRAWPARAMS *pimldpImageListDrawParams) 
 #if (xWINVER >= xWIN32_31)
 HIMAGELIST CxImageList::hLoadImage(HINSTANCE hInstance, LPCTSTR pcszImage, INT iWidth, INT iGrow, COLORREF crMask, UINT uiType, UINT uiFlags) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hImglst, NULL);
-	/*DEBUG*///hInstance
-	/*DEBUG*///pcszImage
+    /*DEBUG*///hInstance
+    /*DEBUG*///pcszImage
     /*DEBUG*///iWidth
     /*DEBUG*///iGrow
     /*DEBUG*///crMask
@@ -659,7 +659,7 @@ BOOL CxImageList::bSetIconSize(INT iWidth, INT iHeight) {
 
 
 /****************************************************************************
-*	public: цвет
+*    public: цвет
 *
 *****************************************************************************/
 
@@ -669,8 +669,8 @@ BOOL CxImageList::bSetIconSize(INT iWidth, INT iHeight) {
 COLORREF CxImageList::crGetBkColor() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hImglst, RGB(0, 0, 0));
     
-	return static_cast<COLORREF>( ImageList_GetBkColor(_m_hImglst) );
-	/*DEBUG*/// n/a
+    return static_cast<COLORREF>( ImageList_GetBkColor(_m_hImglst) );
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_31
 //---------------------------------------------------------------------------
@@ -699,7 +699,7 @@ INT CxImageList::iSetColorTable(INT iStart, INT iSize, RGBQUAD *pColor) {
     
     INT iRes = - 1;
     
-	//FIX: ImageList_SetColorTable
+    //FIX: ImageList_SetColorTable
     ////iRes = static_cast<INT>( ImageList_SetColorTable(_m_hImglst, iStart, iSize, pColor) );
     /////*DEBUG*/xASSERT_RET(0 < iRes, ?);
     
@@ -742,276 +742,276 @@ INT CxImageList::iSetColorTable(INT iStart, INT iSize, RGBQUAD *pColor) {
 
 ////////---------------------------------------------------------------------------
 //////CxImageList::CxImageList(HIMAGELIST hImageList = NULL) : 
-//////	m_hImageList(hImageList) 
+//////    m_hImageList(hImageList) 
 //////{ 
-//////   	//LOG();
-//////	//
+//////       //LOG();
+//////    //
 //////}
 ////////---------------------------------------------------------------------------
 //////CxImageList& CxImageList::operator = (HIMAGELIST hImageList) {
-//////	m_hImageList = hImageList;
-//////	
-//////	return *this;
+//////    m_hImageList = hImageList;
+//////    
+//////    return *this;
 //////}
 ////////---------------------------------------------------------------------------
 //////CxImageList::operator HIMAGELIST() const { 
-//////	return m_hImageList;
+//////    return m_hImageList;
 //////}
 ////////---------------------------------------------------------------------------
 //////void CxImageList::Attach(HIMAGELIST hImageList) {
-//////	/*DEBUG*/xASSERT(NULL == m_hImageList);
-//////	/*DEBUG*/xASSERT(NULL != hImageList);
-//////	
-//////	m_hImageList = hImageList;
+//////    /*DEBUG*/xASSERT(NULL == m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL != hImageList);
+//////    
+//////    m_hImageList = hImageList;
 //////}
 ////////---------------------------------------------------------------------------
 //////HIMAGELIST CxImageList::Detach() {
-//////	HIMAGELIST hImageList = m_hImageList;
-//////	m_hImageList = NULL;
-//////	
-//////	return hImageList;
+//////    HIMAGELIST hImageList = m_hImageList;
+//////    m_hImageList = NULL;
+//////    
+//////    return hImageList;
 //////}
 ////////---------------------------------------------------------------------------
 //////bool CxImageList::IsNull() const { 
-//////	return (NULL == m_hImageList); 
+//////    return (NULL == m_hImageList); 
 //////}
 ////////---------------------------------------------------------------------------
 //////INT CxImageList::GetImageCount() const {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_GetImageCount(m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_GetImageCount(m_hImageList);
 //////}
 ////////---------------------------------------------------------------------------
 //////COLORREF CxImageList::GetBkColor() const {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_GetBkColor(m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_GetBkColor(m_hImageList);
 //////}
 ////////---------------------------------------------------------------------------
 //////COLORREF CxImageList::SetBkColor(COLORREF cr) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_SetBkColor(m_hImageList, cr);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_SetBkColor(m_hImageList, cr);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::GetImageInfo(INT nImage, IMAGEINFO* pImageInfo) const {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_GetImageInfo(m_hImageList, nImage, pImageInfo);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_GetImageInfo(m_hImageList, nImage, pImageInfo);
 //////}
 ////////---------------------------------------------------------------------------
 //////HICON CxImageList::GetIcon(INT nIndex, UINT uFlags = ILD_NORMAL) const {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_GetIcon(m_hImageList, nIndex, uFlags);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_GetIcon(m_hImageList, nIndex, uFlags);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::GetIconSize(INT& cx, INT& cy) const {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_GetIconSize(m_hImageList, &cx, &cy);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_GetIconSize(m_hImageList, &cx, &cy);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::GetIconSize(SIZE& size) const {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_GetIconSize(m_hImageList, (INT*)&size.cx, (INT*)&size.cy);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_GetIconSize(m_hImageList, (INT*)&size.cx, (INT*)&size.cy);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::SetIconSize(INT cx, INT cy) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_SetIconSize(m_hImageList, cx, cy);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_SetIconSize(m_hImageList, cx, cy);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::SetIconSize(SIZE size) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_SetIconSize(m_hImageList, size.cx, size.cy);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_SetIconSize(m_hImageList, size.cx, size.cy);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::SetImageCount(UINT uNewCount) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_SetImageCount(m_hImageList, uNewCount);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_SetImageCount(m_hImageList, uNewCount);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::SetOverlayImage(INT nImage, INT nOverlay) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_SetOverlayImage(m_hImageList, nImage, nOverlay);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_SetOverlayImage(m_hImageList, nImage, nOverlay);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Create(INT cx, INT cy, UINT nFlags, INT nInitial, INT nGrow) {
-//////	/*DEBUG*/xASSERT(NULL == m_hImageList);
-//////	
-//////	m_hImageList = ImageList_Create(cx, cy, nFlags, nInitial, nGrow);
-//////	
-//////	return (NULL != m_hImageList) ? TRUE : FALSE;
+//////    /*DEBUG*/xASSERT(NULL == m_hImageList);
+//////    
+//////    m_hImageList = ImageList_Create(cx, cy, nFlags, nInitial, nGrow);
+//////    
+//////    return (NULL != m_hImageList) ? TRUE : FALSE;
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Create(UINT nBitmapID, INT cx, INT nGrow, COLORREF crMask) {
-//////	/*DEBUG*/xASSERT(NULL == m_hImageList);
-//////	/* Создание ImageList’a для иконок, отображаемых перед ветками в TreeView. 
-//////	Загружаются 3 картинки из ресурсов текущего проекта (предварительно надо 
-//////	создать их в разделе Bitmap закладки Resource View, причем все три рисунка 
-//////	должны располагаться последовательно в одном BMP ресурсе, а высота и ширина
-//////	каждого должна быть cx_x_cx (16x16) точек).*/ 
-//////	/*cx     - высота и ширина битмапа
-//////	nGrow  - кол-во битмапов
-//////	crMask - цвет прозрачности*/
-//////	m_hImageList = ImageList_LoadBitmap(GetModuleHandle(NULL)/*g_hInst*/, MAKEINTRESOURCE(nBitmapID), cx, nGrow, crMask);
+//////    /*DEBUG*/xASSERT(NULL == m_hImageList);
+//////    /* Создание ImageList’a для иконок, отображаемых перед ветками в TreeView. 
+//////    Загружаются 3 картинки из ресурсов текущего проекта (предварительно надо 
+//////    создать их в разделе Bitmap закладки Resource View, причем все три рисунка 
+//////    должны располагаться последовательно в одном BMP ресурсе, а высота и ширина
+//////    каждого должна быть cx_x_cx (16x16) точек).*/ 
+//////    /*cx     - высота и ширина битмапа
+//////    nGrow  - кол-во битмапов
+//////    crMask - цвет прозрачности*/
+//////    m_hImageList = ImageList_LoadBitmap(GetModuleHandle(NULL)/*g_hInst*/, MAKEINTRESOURCE(nBitmapID), cx, nGrow, crMask);
 //////
-//////	return (NULL != m_hImageList) ? TRUE : FALSE; 
+//////    return (NULL != m_hImageList) ? TRUE : FALSE; 
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::CreateFromImage(UINT nBitmapID, INT cx, INT nGrow, COLORREF crMask, UINT uType, UINT uFlags = LR_DEFAULTCOLOR | LR_DEFAULTSIZE) {
-//////	/*DEBUG*/xASSERT(NULL == m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL == m_hImageList);
 //////
-//////	m_hImageList = ImageList_LoadImage(GetModuleHandle(NULL)/*g_hInst*/, MAKEINTRESOURCE(nBitmapID), cx, nGrow, crMask, uType, uFlags);
+//////    m_hImageList = ImageList_LoadImage(GetModuleHandle(NULL)/*g_hInst*/, MAKEINTRESOURCE(nBitmapID), cx, nGrow, crMask, uType, uFlags);
 //////
-//////	return (NULL != m_hImageList) ? TRUE : FALSE;
+//////    return (NULL != m_hImageList) ? TRUE : FALSE;
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Merge(HIMAGELIST hImageList1, INT nImage1, HIMAGELIST hImageList2, INT nImage2, INT dx, INT dy) {
-//////	/*DEBUG*/xASSERT(NULL == m_hImageList);
-//////	
-//////	m_hImageList = ImageList_Merge(hImageList1, nImage1, hImageList2, nImage2, dx, dy);
-//////	
-//////	return (NULL != m_hImageList) ? TRUE : FALSE;
+//////    /*DEBUG*/xASSERT(NULL == m_hImageList);
+//////    
+//////    m_hImageList = ImageList_Merge(hImageList1, nImage1, hImageList2, nImage2, dx, dy);
+//////    
+//////    return (NULL != m_hImageList) ? TRUE : FALSE;
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Destroy() {
-//////	if (NULL == m_hImageList) {
-//////		return FALSE;
-//////	}
-//////	BOOL bRet = ImageList_Destroy(m_hImageList);
-//////	if (bRet) {
-//////		m_hImageList = NULL;
-//////	}
-//////	
-//////	return bRet;
+//////    if (NULL == m_hImageList) {
+//////        return FALSE;
+//////    }
+//////    BOOL bRet = ImageList_Destroy(m_hImageList);
+//////    if (bRet) {
+//////        m_hImageList = NULL;
+//////    }
+//////    
+//////    return bRet;
 //////}
 ////////---------------------------------------------------------------------------
 //////INT CxImageList::Add(HBITMAP hBitmap, HBITMAP hBitmapMask = NULL) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_Add(m_hImageList, hBitmap, hBitmapMask);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_Add(m_hImageList, hBitmap, hBitmapMask);
 //////}
 ////////---------------------------------------------------------------------------
 //////INT CxImageList::Add(HBITMAP hBitmap, COLORREF crMask) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_AddMasked(m_hImageList, hBitmap, crMask);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_AddMasked(m_hImageList, hBitmap, crMask);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Remove(INT nImage) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_Remove(m_hImageList, nImage);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_Remove(m_hImageList, nImage);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::RemoveAll() {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
 //////
-//////	return ImageList_RemoveAll(m_hImageList);
+//////    return ImageList_RemoveAll(m_hImageList);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Replace(INT nImage, HBITMAP hBitmap, HBITMAP hBitmapMask) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_Replace(m_hImageList, nImage, hBitmap, hBitmapMask);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_Replace(m_hImageList, nImage, hBitmap, hBitmapMask);
 //////}
 ////////---------------------------------------------------------------------------
 //////INT CxImageList::AddIcon(HICON hIcon) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_AddIcon(m_hImageList, hIcon);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_AddIcon(m_hImageList, hIcon);
 //////}
 ////////---------------------------------------------------------------------------
 //////INT CxImageList::ReplaceIcon(INT nImage, HICON hIcon) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_ReplaceIcon(m_hImageList, nImage, hIcon);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_ReplaceIcon(m_hImageList, nImage, hIcon);
 //////}
 ////////---------------------------------------------------------------------------
 //////HICON CxImageList::ExtractIcon(INT nImage) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_ExtractIcon(NULL, m_hImageList, nImage);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_ExtractIcon(NULL, m_hImageList, nImage);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Draw(HDC hDC, INT nImage, INT x, INT y, UINT nStyle) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	/*DEBUG*/xASSERT(NULL != hDC);
-//////	
-//////	return ImageList_Draw(m_hImageList, nImage, hDC, x, y, nStyle);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL != hDC);
+//////    
+//////    return ImageList_Draw(m_hImageList, nImage, hDC, x, y, nStyle);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Draw(HDC hDC, INT nImage, POINT pt, UINT nStyle) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	/*DEBUG*/xASSERT(NULL != hDC);
-//////	
-//////	return ImageList_Draw(m_hImageList, nImage, hDC, pt.x, pt.y, nStyle);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL != hDC);
+//////    
+//////    return ImageList_Draw(m_hImageList, nImage, hDC, pt.x, pt.y, nStyle);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::DrawEx(INT nImage, HDC hDC, INT x, INT y, INT dx, INT dy, COLORREF rgbBk, COLORREF rgbFg, UINT fStyle) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	/*DEBUG*/xASSERT(NULL != hDC);
-//////	
-//////	return ImageList_DrawEx(m_hImageList, nImage, hDC, x, y, dx, dy, rgbBk, rgbFg, fStyle);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL != hDC);
+//////    
+//////    return ImageList_DrawEx(m_hImageList, nImage, hDC, x, y, dx, dy, rgbBk, rgbFg, fStyle);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::DrawEx(INT nImage, HDC hDC, RECT& rect, COLORREF rgbBk, COLORREF rgbFg, UINT fStyle) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	/*DEBUG*/xASSERT(NULL != hDC);
-//////	
-//////	return ImageList_DrawEx(m_hImageList, nImage, hDC, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, rgbBk, rgbFg, fStyle);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    /*DEBUG*/xASSERT(NULL != hDC);
+//////    
+//////    return ImageList_DrawEx(m_hImageList, nImage, hDC, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, rgbBk, rgbFg, fStyle);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::Copy(INT nSrc, INT nDst, UINT uFlags = ILCF_MOVE) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_Copy(m_hImageList, nDst, m_hImageList, nSrc, uFlags);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_Copy(m_hImageList, nDst, m_hImageList, nSrc, uFlags);
 //////}
 ////////---------------------------------------------------------------------------
 //////#if (_WIN32_WINNT >= 0x0501)
 ////// ////HRESULT CxImageList::WriteEx(DWORD dwFlags, LPSTREAM lpStream) {
-//////	/////*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    /////*DEBUG*/xASSERT(NULL != m_hImageList);
 //////
-//////	////return ImageList_WriteEx(m_hImageList, dwFlags, lpStream);
+//////    ////return ImageList_WriteEx(m_hImageList, dwFlags, lpStream);
 ////// ////}
 //////#endif // (_WIN32_WINNT >= 0x0501)
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::BeginDrag(INT nImage, POINT ptHotSpot) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_BeginDrag(m_hImageList, nImage, ptHotSpot.x, ptHotSpot.y);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_BeginDrag(m_hImageList, nImage, ptHotSpot.x, ptHotSpot.y);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::BeginDrag(INT nImage, INT xHotSpot, INT yHotSpot) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_BeginDrag(m_hImageList, nImage, xHotSpot, yHotSpot);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_BeginDrag(m_hImageList, nImage, xHotSpot, yHotSpot);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::SetDragCursorImage(INT nDrag, POINT ptHotSpot){
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_SetDragCursorImage(m_hImageList, nDrag, ptHotSpot.x, ptHotSpot.y);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_SetDragCursorImage(m_hImageList, nDrag, ptHotSpot.x, ptHotSpot.y);
 //////}
 ////////---------------------------------------------------------------------------
 //////BOOL CxImageList::SetDragCursorImage(INT nDrag, INT xHotSpot, INT yHotSpot) {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return ImageList_SetDragCursorImage(m_hImageList, nDrag, xHotSpot, yHotSpot);
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return ImageList_SetDragCursorImage(m_hImageList, nDrag, xHotSpot, yHotSpot);
 //////}
 ////////---------------------------------------------------------------------------
 //////#if (_WIN32_IE >= 0x0400)
 //////CxImageList CxImageList::Duplicate() const {
-//////	/*DEBUG*/xASSERT(NULL != m_hImageList);
-//////	
-//////	return CxImageList(ImageList_Duplicate(m_hImageList));
+//////    /*DEBUG*/xASSERT(NULL != m_hImageList);
+//////    
+//////    return CxImageList(ImageList_Duplicate(m_hImageList));
 //////}
 //////#endif // (_WIN32_IE >= 0x0400)
 ////////---------------------------------------------------------------------------

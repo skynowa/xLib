@@ -14,15 +14,15 @@
 //---------------------------------------------------------------------------
 class CxNonCopyable {
    protected:
-			  CxNonCopyable() /*throw ()*/ {}
-			 ~CxNonCopyable() /*throw ()*/ {}
+              CxNonCopyable() /*throw ()*/ {}
+             ~CxNonCopyable() /*throw ()*/ {}
       
    private: 
-		      //--CxNonCopyable(      CxNonCopyable &);
-		      CxNonCopyable(const CxNonCopyable &);
+              //--CxNonCopyable(      CxNonCopyable &);
+              CxNonCopyable(const CxNonCopyable &);
 
-		      //--CxNonCopyable &operator = (      CxNonCopyable &);
-		const CxNonCopyable &operator = (const CxNonCopyable &);
+              //--CxNonCopyable &operator = (      CxNonCopyable &);
+        const CxNonCopyable &operator = (const CxNonCopyable &);
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_CxNonCopyableH
+#endif    //xLib_Common_CxNonCopyableH

@@ -17,13 +17,13 @@
 #include <xLib/Common/CxException.h>
 //---------------------------------------------------------------------------
 class CxTest_CxException : public CxTest {
-	public:
-		CxTest_CxException();
-		virtual     ~CxTest_CxException();
+    public:
+        CxTest_CxException();
+        virtual     ~CxTest_CxException();
 
-	    /*virtual*/ BOOL bUnit();
+        /*virtual*/ BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 

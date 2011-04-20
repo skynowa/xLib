@@ -18,40 +18,40 @@
 //---------------------------------------------------------------------------
 //TODO: CxProfiler
 class CxProfiler : public CxNonCopyable {
-	public:
-		//Perfomance mode
-		enum EMode {
+    public:
+        //Perfomance mode
+        enum EMode {
             pmClock,            //std::clock (msec)
-		    pmTime,				//xLib::CxDateTime
+            pmTime,                //xLib::CxDateTime
         #if defined(xOS_WIN)
-            pmTickCount,		//::GetTickCount (msec)
-            pmPerformanceCount,	//::QueryPerformanceFrequency (msec)
-            pmThreadTimes,		//::GetThreadTimes (msec)
+            pmTickCount,        //::GetTickCount (msec)
+            pmPerformanceCount,    //::QueryPerformanceFrequency (msec)
+            pmThreadTimes,        //::GetThreadTimes (msec)
         #elif defined(xOS_LINUX)
             pmGetTimeOfDay      //gettimeofday (microsec)
         #endif
-		};
-		
-		              CxProfiler(const tString &csLogFilePath, EMode pmMode); //TODO: csFileName + iPerfomMode
-		virtual      ~CxProfiler();
+        };
+        
+                      CxProfiler(const tString &csLogFilePath, EMode pmMode); //TODO: csFileName + iPerfomMode
+        virtual      ~CxProfiler();
 
-		BOOL          bStart   ();
-		BOOL          bStop    (LPCTSTR pcszComment, ...);
+        BOOL          bStart   ();
+        BOOL          bStop    (LPCTSTR pcszComment, ...);
         BOOL          bPulse   (LPCTSTR pcszComment, ...);   
 
     private:
-	    BOOL          _m_bRes;
-		EMode		  _m_pmModeNow;		 
+        BOOL          _m_bRes;
+        EMode          _m_pmModeNow;         
         BOOL          _m_bIsStarted;
-		CxFileLog     _flLog;
+        CxFileLog     _flLog;
 
         //pmClock
         std::clock_t  _m_ctClocksStart;
         std::clock_t  _m_ctClocksStop;
 
-		//pmTime
-		CxDateTime    _m_dtTimesStart;
-		CxDateTime    _m_dtTimesStop;
+        //pmTime
+        CxDateTime    _m_dtTimesStart;
+        CxDateTime    _m_dtTimesStop;
 
     #if defined(xOS_WIN)
         //pmTickCount
@@ -59,7 +59,7 @@ class CxProfiler : public CxNonCopyable {
         ULONG         _m_ulTicksStop;
 
         //pmPerformanceCount
-        LARGE_INTEGER _m_liCountersPerfFreq;	//Ticks per second
+        LARGE_INTEGER _m_liCountersPerfFreq;    //Ticks per second
         LARGE_INTEGER _m_liCountersStart;
         LARGE_INTEGER _m_liCountersStop;
 
@@ -77,10 +77,10 @@ class CxProfiler : public CxNonCopyable {
         DOUBLE        _m_dMicrosecStop;
     #endif
 
-		BOOL          _bResetData();
+        BOOL          _bResetData();
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Debug_CxProfilerH
+#endif    //xLib_Debug_CxProfilerH
 
 //http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
 

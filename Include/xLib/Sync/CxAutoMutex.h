@@ -16,12 +16,12 @@
 #include <xLib/Sync/CxMutex.h>
 //---------------------------------------------------------------------------
 class CxAutoMutex : public CxNonCopyable {
-	public:
-				 CxAutoMutex(CxMutex &mtMutex);
-		virtual ~CxAutoMutex();
+    public:
+                 CxAutoMutex(CxMutex &mtMutex);
+        virtual ~CxAutoMutex();
 
-	private:
-		CxMutex &_m_mtMutex;
+    private:
+        CxMutex &_m_mtMutex;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Sync_CxAutoMutexH
+#endif    //xLib_Sync_CxAutoMutexH

@@ -13,7 +13,7 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -43,7 +43,7 @@ CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
     //TODO:
 #endif
 
-	return *this;
+    return *this;
 }
 //---------------------------------------------------------------------------
 //DONE: operator -= ()
@@ -55,19 +55,19 @@ CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
     //TODO:
 #endif
 
-	return *this;
+    return *this;
 }
 //---------------------------------------------------------------------------
 //DONE: operator = ()
 CxAtomicLongInt & 
-CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)	{
+CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)    {
 #if defined(xOS_WIN)
     ::InterlockedExchange(&_m_liValue, cRight._m_liValue);
 #elif defined(xOS_LINUX)
     //TODO:
 #endif
 
-	return *this;
+    return *this;
 }
 //---------------------------------------------------------------------------
 //DONE: operator += ()
@@ -79,7 +79,7 @@ CxAtomicLongInt::operator += (const LONG cliRight) {
     //TODO:
 #endif
 
-	return *this;
+    return *this;
 }
 //---------------------------------------------------------------------------
 //DONE: operator -= ()
@@ -91,7 +91,7 @@ CxAtomicLongInt::operator -= (const LONG cliRight) {
     //TODO:
 #endif
 
-	return *this;
+    return *this;
 }
 //---------------------------------------------------------------------------
 //DONE: operator = ()
@@ -103,47 +103,47 @@ CxAtomicLongInt::operator = (const LONG cliRight) {
     //TODO:
 #endif
 
-	return *this;
+    return *this;
 }
 //---------------------------------------------------------------------------
 //DONE: operator == ()
 BOOL 
 CxAtomicLongInt::operator == (const CxAtomicLongInt &cRight) const {
-	return (BOOL)(_m_liValue == cRight._m_liValue);
+    return (BOOL)(_m_liValue == cRight._m_liValue);
 }
 //---------------------------------------------------------------------------
 //DONE: operator != ()
 BOOL 
 CxAtomicLongInt::operator != (const CxAtomicLongInt &cRight) const {
-	return (BOOL)(!(_m_liValue == cRight._m_liValue));
+    return (BOOL)(!(_m_liValue == cRight._m_liValue));
 }
 //---------------------------------------------------------------------------
 //DONE: operator == ()
 BOOL 
 CxAtomicLongInt::operator == (const LONG cliRight) const {
-	return (BOOL)(_m_liValue == cliRight);
+    return (BOOL)(_m_liValue == cliRight);
 }
 //---------------------------------------------------------------------------
 //DONE: operator != ()
 BOOL 
 CxAtomicLongInt::operator != (const LONG cliRight) const {
-	return (BOOL)( !(_m_liValue == cliRight) );
+    return (BOOL)( !(_m_liValue == cliRight) );
 }
 //---------------------------------------------------------------------------
 //DONE: operator LONG ()
 CxAtomicLongInt::operator LONG () const {
-	return _m_liValue;
+    return _m_liValue;
 }
 //---------------------------------------------------------------------------
 //DONE: operator BOOL ()
 CxAtomicLongInt::operator BOOL () const {
-	return _m_liValue ? TRUE : FALSE; 
+    return _m_liValue ? TRUE : FALSE; 
 }
 //---------------------------------------------------------------------------
 //DONE: operator ++ ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator ++ (INT iPos) {
-	#if defined(xOS_WIN)
+    #if defined(xOS_WIN)
         if (0 == iPos) {
             ::InterlockedIncrement(&_m_liValue);
         } else {
@@ -153,13 +153,13 @@ CxAtomicLongInt::operator ++ (INT iPos) {
         //TODO:
     #endif
 
-	return *this;
+    return *this;
 }
 //---------------------------------------------------------------------------
 //DONE: operator -- ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator -- (INT iPos) {
-	#if defined(xOS_WIN)
+    #if defined(xOS_WIN)
         if (0 == iPos) {
             ::InterlockedDecrement(&_m_liValue);
         } else {
@@ -169,6 +169,6 @@ CxAtomicLongInt::operator -- (INT iPos) {
         //TODO:
     #endif
 
-	return *this;
+    return *this;
 }
 //---------------------------------------------------------------------------

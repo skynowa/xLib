@@ -18,23 +18,23 @@
 #include <xLib/Pkcs11/CxSession.h>
 //---------------------------------------------------------------------------
 class CxPin : public CxNonCopyable {
-	public:
-		                    CxPin     (const CxPkcs11 &cPkcs11, const CxSession &cSession);
-	                       ~CxPin     ();
-	   
-		BOOL                bInitToken(CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);		
-		BOOL                bInitPIN  (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);		
-		BOOL                bSetPIN   (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);	
-		
-		//Utils
-		////tString sChangeUserPin  (const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
-		////tString sChangeSOPin    (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
-	private:
-		BOOL                 _m_bRes;
-		CK_RV                _m_ulRes;
+    public:
+                            CxPin     (const CxPkcs11 &cPkcs11, const CxSession &cSession);
+                           ~CxPin     ();
+       
+        BOOL                bInitToken(CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);        
+        BOOL                bInitPIN  (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);        
+        BOOL                bSetPIN   (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);    
+        
+        //Utils
+        ////tString sChangeUserPin  (const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
+        ////tString sChangeSOPin    (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
+    private:
+        BOOL                 _m_bRes;
+        CK_RV                _m_ulRes;
 
-		CK_FUNCTION_LIST_PTR _m_pFunc;
-		CK_SESSION_HANDLE    _m_hSession;
+        CK_FUNCTION_LIST_PTR _m_pFunc;
+        CK_SESSION_HANDLE    _m_hSession;
 };
 //---------------------------------------------------------------------------
-#endif	//xLib_Pkcs11_CxPinH
+#endif    //xLib_Pkcs11_CxPinH

@@ -17,7 +17,7 @@
 
 
 /****************************************************************************
-*	public
+*    public
 *
 *****************************************************************************/
 
@@ -352,7 +352,7 @@ CxString::bCompareNoCase(const tString &csStr1, const tString &csStr2) {
 
 
 /****************************************************************************
-*	memory
+*    memory
 *
 *****************************************************************************/
 
@@ -564,7 +564,7 @@ CxString::sTranslitLatToRus(const tString &csStr) {
 
     for (std::size_t i = 0; i < xARRAY_SIZE(csDict); ++ i) {
         sRes.assign( sReplaceAll(sRes, csDict[i][0], csDict[i][1]) );
-	}
+    }
 
     return sRes;
 }
