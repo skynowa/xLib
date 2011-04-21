@@ -239,7 +239,7 @@ BOOL CxTest_CxDir::bUnit() {
         for (size_t i = 0; i < xARRAY_SIZE(g_sFilePathes); ++ i) {
             CxStdioFile sfFile;
 
-            m_bRes = sfFile.bOpen(g_sFilePathes[i], CxStdioFile::CxOpenMode::omWrite);
+            m_bRes = sfFile.bOpen(g_sFilePathes[i], CxStdioFile::omWrite);
             xASSERT(FALSE != m_bRes);
         }
 

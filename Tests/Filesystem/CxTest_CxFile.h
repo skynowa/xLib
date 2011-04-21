@@ -53,7 +53,6 @@ BOOL CxTest_CxFile::bUnit() {
 	const tString csTmpDirPath  = sGetWorkDirPath() + xT("\\Test");
 
 
-
 	//-------------------------------------
 	//??????
 	////_tsystem(tString(xT("del ") + csFilePath    + xT("/f")).c_str());

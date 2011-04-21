@@ -28,35 +28,27 @@
 #endif
 //---------------------------------------------------------------------------
 class CxStdioFile : public CxNonCopyable {
-    private:
-        BOOL               _m_bRes;
-        FILE              *_m_pFile;
-        tString            _m_sFilePath;
-
-        INT                _iGetHandle  ();
-
     public:
-        //EErrorType
+        //error type
         enum EErrorType {
             etError = EOF
         };
 
         //Open mode
-        class CxOpenMode {
-            public:
-                static const tString omRead;                //"r"
-                static const tString omWrite;                //"w"
-                static const tString omAppend;                //"a"
-                static const tString omOpenReadWrite;        //"r+"
-                static const tString omCreateReadWrite;        //"w+"
-                static const tString omOpenReadAppend;        //"a+"
+        enum EOpenMode {
+            omRead,                //"r"
+            omWrite,               //"w"
+            omAppend,              //"a"
+            omOpenReadWrite,       //"r+"
+            omCreateReadWrite,     //"w+"
+            omOpenReadAppend,      //"a+"
 
-                static const tString omBinRead;                //"rb"
-                static const tString omBinWrite;            //"wb"
-                static const tString omBinAppend;            //"ab"
-                static const tString omBinOpenReadWrite;    //"rb+"
-                static const tString omBinCreateReadWrite;    //"wb+"
-                static const tString omBinOpenReadAppend;    //"ab+"
+            omBinRead,             //"rb"
+            omBinWrite,            //"wb"
+            omBinAppend,           //"ab"
+            omBinOpenReadWrite,    //"rb+"
+            omBinCreateReadWrite,  //"wb+"
+            omBinOpenReadAppend    //"ab+"
         };
 
         //File attribute
@@ -79,9 +71,9 @@ class CxStdioFile : public CxNonCopyable {
         //Access mode
         enum EAccessMode {
             amExistence = 0,    //Existence only
-            amWrite     = 2,     //Write permission
+            amWrite     = 2,    //Write permission
             amRead      = 4,    //Read permission
-            amReadWrite = 6        //Read and write permission
+            amReadWrite = 6     //Read and write permission
         };
 
         //file position data for the given stream
@@ -99,20 +91,23 @@ class CxStdioFile : public CxNonCopyable {
             bmNo   = _IONBF
         };
 
+
+        #if defined(xOS_WIN)
         //Locking action to perform
-////        enum ELockingMode {
-//            lmTryLock = LK_LOCK/*_LK_LOCK*/,        //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second. If, after 10 attempts, the bytes cannot be locked, the constant returns an error.
-//            lmLock    = LK_NBLCK/*_LK_NBLCK*/,        //Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
-//            //lmXXX = _LK_NBRLCK,                    //Same as _LK_NBLCK.
-//            //lmXXX = _LK_RLCK,                        //Same as _LK_LOCK.
-//            lmUnlock  = LK_UNLCK/*_LK_UNLCK*/        //Unlocks the specified bytes, which must have been previously locked.
-////        };
+        enum ELockingMode {
+            lmTryLock = LK_LOCK/*_LK_LOCK*/,        //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second. If, after 10 attempts, the bytes cannot be locked, the constant returns an error.
+            lmLock    = LK_NBLCK/*_LK_NBLCK*/,      //Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
+            //lmXXX = _LK_NBRLCK,                   //Same as _LK_NBLCK.
+            //lmXXX = _LK_RLCK,                     //Same as _LK_LOCK.
+            lmUnlock  = LK_UNLCK/*_LK_UNLCK*/       //Unlocks the specified bytes, which must have been previously locked.
+        };
+        #endif
 
         //Permission mode
         enum EPermissionMode {
             #if defined(xOS_WIN)
                 pmRead             = _S_IREAD,                  //read permitted
-                pmWrite            = _S_IWRITE,                    //write permitted
+                pmWrite            = _S_IWRITE,                 //write permitted
                 pmReadWrite        = (_S_IREAD | _S_IWRITE)     //read and write
             #elif defined(xOS_LINUX)
                 pmSetUserId        = S_ISUID,                   //set-user-ID
@@ -140,9 +135,10 @@ class CxStdioFile : public CxNonCopyable {
         virtual           ~CxStdioFile  ();
 
         //open, get
-        BOOL               bOpen        (FILE *pflFile);    //TODO:
-        BOOL               bOpen        (const tString &csFilePath, const tString &omMode);
-        BOOL               bReopen      (const tString &csFilePath, const tString &csMode);
+        BOOL               bIsValid     () const;
+        BOOL               bOpen        (const tString &csFilePath, const EOpenMode omMode);
+        BOOL               bReopen      (const tString &csFilePath, const EOpenMode omMode);
+        BOOL               bAttach      (FILE *pflFile);
         FILE              *pGet         () const;
         tString            sGetPath     () const;
 
@@ -172,7 +168,10 @@ class CxStdioFile : public CxNonCopyable {
         INT                iFprintfV    (LPCTSTR pcszFormat, va_list arg) const;
 
         //other
-        ////BOOL               bLocking   (ELockingMode lmMode, LONG liBytes);
+        #if defined(xOS_WIN)
+        BOOL               bLocking     (ELockingMode lmMode, LONG liBytes);
+        #endif
+
         BOOL               bSetPosition (LONG lOffset, EPointerPosition fpPos/* = fpBegin*/) const;
         LONG               liGetPosition() const;
 
@@ -180,7 +179,10 @@ class CxStdioFile : public CxNonCopyable {
         ////BOOL               bSetMode (ETranslationMode tmMode);
 
         LONG               liGetSize    () const;
-        ////BOOL               bChsize  (LONG liSize);
+
+        #if defined(xOS_WIN)
+        BOOL               bChsize      (LONG liSize);
+        #endif
 
         //error handling
         BOOL               bIsEof       () const;
@@ -226,6 +228,14 @@ class CxStdioFile : public CxNonCopyable {
 
         static BOOL        bReadFile    (const tString &csFilePath, uString *pusStr);
         static BOOL        bWriteFile   (const tString &csFilePath, const uString &cusStr);
+
+    private:
+        mutable BOOL       _m_bRes;
+        FILE              *_m_pFile;
+        tString            _m_sFilePath;
+
+        INT                _iGetHandle  ();
+        static tString     _sGetOpenMode(const EOpenMode omMode);
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Fso_CxStdioFileH

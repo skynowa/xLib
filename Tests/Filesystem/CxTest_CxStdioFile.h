@@ -73,18 +73,42 @@ CxTest_CxStdioFile::bUnit() {
     *
     *****************************************************************************/
 
+    //--------------------------------------------------
+    //bIsValid()
+    {
+        m_bRes = F.bIsValid();
+        xASSERT(FALSE == m_bRes);
+    }
+
     //-------------------------------------
     //bOpen
     {
-        m_bRes = F.bOpen(csFilePath, CxStdioFile::CxOpenMode::omCreateReadWrite);
+        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
         xASSERT_MSG(FALSE != m_bRes, csFilePath.c_str());
+
+        m_bRes = F.bIsValid();
+        xASSERT(FALSE != m_bRes);
     }
 
     //-------------------------------------
     //bReopen
     {
-        m_bRes = F.bReopen(csFilePath, CxStdioFile::CxOpenMode::omOpenReadWrite);
+        m_bRes = F.bReopen(csFilePath, CxStdioFile::omOpenReadWrite);
         xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bIsValid();
+        xASSERT(FALSE != m_bRes);
+    }
+
+    //--------------------------------------------------
+    //bAttach
+    {
+        CxStdioFile _F;
+        m_bRes = _F.bAttach(stdout);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = _F.bIsValid();
+        xASSERT(FALSE == m_bRes);
     }
 
     //-------------------------------------
@@ -135,7 +159,7 @@ CxTest_CxStdioFile::bUnit() {
             {
                 CxStdioFile _F;
 
-                m_bRes = _F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("Data.dat"), CxStdioFile::CxOpenMode::omBinWrite);
+                m_bRes = _F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("Data.dat"), CxStdioFile::omBinWrite);
                 xASSERT(FALSE != m_bRes);
 
                 m_bRes = _F.bWriteAll(sContent, uiBlockSize[i]);
@@ -147,7 +171,7 @@ CxTest_CxStdioFile::bUnit() {
             {
                 CxStdioFile _F;
 
-                m_bRes = _F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("Data.dat"), CxStdioFile::CxOpenMode::omBinRead);
+                m_bRes = _F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("Data.dat"), CxStdioFile::omBinRead);
                 xASSERT(FALSE != m_bRes);
 
                 m_bRes = _F.bReadAll(&sText1, uiBlockSize[i]);
@@ -159,7 +183,7 @@ CxTest_CxStdioFile::bUnit() {
             {
                 CxStdioFile _F;
 
-                m_bRes = _F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxStdioFile::CxOpenMode::omBinWrite);
+                m_bRes = _F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxStdioFile::omBinWrite);
                 xASSERT(FALSE != m_bRes);
 
                 m_bRes = _F.bWriteAll(sText1, uiBlockSize[i]);
@@ -171,7 +195,7 @@ CxTest_CxStdioFile::bUnit() {
             {
                 CxStdioFile _F;
 
-                m_bRes = _F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("Data.dat"), xT("rb"));
+                m_bRes = _F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("Data.dat"), CxStdioFile::omBinRead);
                 xASSERT(FALSE != m_bRes);
 
                 m_bRes = _F.bReadAll(&sText2, uiBlockSize[i]);
@@ -345,6 +369,9 @@ CxTest_CxStdioFile::bUnit() {
     {
         m_bRes = F.bFlush();
         xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bIsValid();
+        xASSERT(FALSE != m_bRes);
     }
 
     //-------------------------------------
@@ -352,23 +379,10 @@ CxTest_CxStdioFile::bUnit() {
     {
         m_bRes = F.bClose();
         xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bIsValid();
+        xASSERT(FALSE == m_bRes);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /****************************************************************************
@@ -429,7 +443,6 @@ CxTest_CxStdioFile::bUnit() {
         m_bRes = CxStdioFile::bReadFile(csNewFilePath, &vecchVector);
         xASSERT(FALSE != m_bRes);
     }
-
 
     //-------------------------------------
     //bReadFile
