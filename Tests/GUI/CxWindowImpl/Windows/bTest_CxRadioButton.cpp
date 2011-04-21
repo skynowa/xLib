@@ -24,10 +24,10 @@ BOOL CWndMain::bTest_CxRadioButton(CxRadioButton &xObj, INT iID, CxWindow *pwndP
 	/*DEBUG*/xASSERT(CxRadioButton::csUnchecked == bstRes);
 
 	_m_bRes = xObj.bSetState(CxRadioButton::csChecked);
-	/*DEBUG*/xASSERT(FALSE != _m_bRes);			//iMsgBox(_T("CxRadioButton::csChecked"));
+	/*DEBUG*/xASSERT(FALSE != _m_bRes);			//iMsgBox(xT("CxRadioButton::csChecked"));
 
 	_m_bRes = xObj.bSetState(CxRadioButton::csUnchecked);
-	/*DEBUG*/xASSERT(FALSE != _m_bRes);		    //iMsgBox(_T("CxRadioButton::csUnchecked"));
+	/*DEBUG*/xASSERT(FALSE != _m_bRes);		    //iMsgBox(xT("CxRadioButton::csUnchecked"));
 
 
 	return TRUE;

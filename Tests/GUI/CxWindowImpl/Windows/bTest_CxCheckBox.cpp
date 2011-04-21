@@ -33,11 +33,11 @@ BOOL CWndMain::bTest_CxCheckBox(CxCheckBox &xObj, INT iID, CxWindow *pwndParent)
 	///////*DEBUG*/xASSERT(TRUE  == bIsStyleExists(BS_AUTO3STATE));*/
 
 	_m_bRes = xObj.bSetState(CxCheckBox::csChecked);
-	/*DEBUG*/xASSERT(FALSE != _m_bRes);			//iMsgBox(_T("CxCheckBox::csChecked"));
+	/*DEBUG*/xASSERT(FALSE != _m_bRes);			//iMsgBox(xT("CxCheckBox::csChecked"));
 	_m_bRes = xObj.bSetState(CxCheckBox::csGrayed);
-	/*DEBUG*/xASSERT(FALSE != _m_bRes);		    //iMsgBox(_T("CxCheckBox::csGrayed"));
+	/*DEBUG*/xASSERT(FALSE != _m_bRes);		    //iMsgBox(xT("CxCheckBox::csGrayed"));
 	_m_bRes = xObj.bSetState(CxCheckBox::csUnchecked);
-	/*DEBUG*/xASSERT(FALSE != _m_bRes);		    //iMsgBox(_T("CxCheckBox::csUnchecked"));
+	/*DEBUG*/xASSERT(FALSE != _m_bRes);		    //iMsgBox(xT("CxCheckBox::csUnchecked"));
 
 	return TRUE;
 }

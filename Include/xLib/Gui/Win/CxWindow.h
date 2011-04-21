@@ -76,10 +76,10 @@ class CxWindow : public CxNonCopyable {
         LONG              liGetWindowLong    (INT iIndex);
         LONG              liSetWindowLong    (INT iIndex, LONG liNewLong);
 
-        virtual VOID      vOnClick           () {/*iMsgBox(_T(__FUNCTION__);*/}
-        virtual VOID      vOnDbClick         () {/*iMsgBox(_T(__FUNCTION__);*/}
-        virtual VOID      vOnKillFocus       () {/*iMsgBox(_T(__FUNCTION__);*/}
-        virtual VOID      vOnSetFocus        () {/*iMsgBox(_T(__FUNCTION__);*/}
+        virtual VOID      vOnClick           () {/*iMsgBox(xT(__FUNCTION__);*/}
+        virtual VOID      vOnDbClick         () {/*iMsgBox(xT(__FUNCTION__);*/}
+        virtual VOID      vOnKillFocus       () {/*iMsgBox(xT(__FUNCTION__);*/}
+        virtual VOID      vOnSetFocus        () {/*iMsgBox(xT(__FUNCTION__);*/}
 
     protected:
         HWND              _m_hWnd;                //хэндл окна

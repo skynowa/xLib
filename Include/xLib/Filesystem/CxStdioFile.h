@@ -63,10 +63,10 @@ class CxStdioFile : public CxNonCopyable {
         ////};
 
         //Translation mode
-        ////enum ETranslationMode {
-        ////    tmText   = _O_TEXT,          /* file mode is text (translated) */
-        ////    tmBinary = _O_BINARY         /* file mode is binary (untranslated) */
-        ////};
+        enum ETranslationMode {
+            tmText   = _O_TEXT,          /* file mode is text (translated) */
+            tmBinary = _O_BINARY         /* file mode is binary (untranslated) */
+        };
 
         //Access mode
         enum EAccessMode {
@@ -91,15 +91,12 @@ class CxStdioFile : public CxNonCopyable {
             bmNo   = _IONBF
         };
 
-
         #if defined(xOS_WIN)
         //Locking action to perform
         enum ELockingMode {
-            lmTryLock = LK_LOCK/*_LK_LOCK*/,        //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second. If, after 10 attempts, the bytes cannot be locked, the constant returns an error.
-            lmLock    = LK_NBLCK/*_LK_NBLCK*/,      //Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
-            //lmXXX = _LK_NBRLCK,                   //Same as _LK_NBLCK.
-            //lmXXX = _LK_RLCK,                     //Same as _LK_LOCK.
-            lmUnlock  = LK_UNLCK/*_LK_UNLCK*/       //Unlocks the specified bytes, which must have been previously locked.
+            lmTryLock = LK_LOCK,        //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second. If, after 10 attempts, the bytes cannot be locked, the constant returns an error.
+            lmLock    = LK_NBLCK,       //Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
+            lmUnlock  = LK_UNLCK        //Unlocks the specified bytes, which must have been previously locked.
         };
         #endif
 
@@ -172,11 +169,11 @@ class CxStdioFile : public CxNonCopyable {
         BOOL               bLocking     (ELockingMode lmMode, LONG liBytes);
         #endif
 
-        BOOL               bSetPosition (LONG lOffset, EPointerPosition fpPos/* = fpBegin*/) const;
+        BOOL               bSetPosition (LONG lOffset, EPointerPosition fpPos) const;
         LONG               liGetPosition() const;
 
         BOOL               bSetVBuff    (LPSTR pszBuff, EBufferingMode bmMode, std::size_t uiSize);
-        ////BOOL               bSetMode (ETranslationMode tmMode);
+        BOOL               bSetMode     (ETranslationMode tmMode);
 
         LONG               liGetSize    () const;
 

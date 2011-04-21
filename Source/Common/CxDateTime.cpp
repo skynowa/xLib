@@ -1055,7 +1055,7 @@ TzSpecificLocalTimeToSystemTime( &TimeZoneInfo,
 // Local time expressed in terms of GMT bias.
 float TimeZoneDifference = -( float(TimeZoneInfo.Bias) / 60 );
 CString csLocalTimeInGmt;
-csLocalTimeInGmt.Format( _T("%ld:%ld:%ld + %2.1f Hrs"),
+csLocalTimeInGmt.Format( xT("%ld:%ld:%ld + %2.1f Hrs"),
 GmtTime.wHour,
 GmtTime.wMinute,
 GmtTime.wSecond,

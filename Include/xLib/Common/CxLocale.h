@@ -32,4 +32,4 @@ class CxLocale : public CxNonCopyable {
 //-------------------------------------
 ////_tsetlocale(LC_ALL, NULL);
 ////setlocale(LC_ALL, "Russian"); 
-//////_tsetlocale(LC_ALL, _T(""));
+//////_tsetlocale(LC_ALL, xT(""));

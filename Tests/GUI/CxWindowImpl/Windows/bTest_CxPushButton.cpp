@@ -24,7 +24,7 @@ BOOL CWndMain::bTest_CxPushButton(CxPushButton &xObj, INT iID, CxWindow *pwndPar
 		_m_bRes = xObj.bSetViewStyle(CxPushButton::vsText);  
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 
-		_m_bRes = xObj.bSetText(_T("xxxx"));
+		_m_bRes = xObj.bSetText(xT("xxxx"));
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 	}
 
@@ -72,13 +72,13 @@ BOOL CWndMain::bTest_CxPushButton(CxPushButton &xObj, INT iID, CxWindow *pwndPar
 		/*DEBUG*/xASSERT(CxPushButton::csUnchecked == csRes);
 
 		_m_bRes = xObj.bSetState(CxPushButton::csChecked);
-		/*DEBUG*/xASSERT(FALSE != _m_bRes);			//iMsgBox(_T("CxRadioButton::csChecked"));
+		/*DEBUG*/xASSERT(FALSE != _m_bRes);			//iMsgBox(xT("CxRadioButton::csChecked"));
 
 		csRes = xObj.csGetState(); 
 		/*DEBUG*/xASSERT(CxPushButton::csChecked == csRes);
 
 		_m_bRes = xObj.bSetState(CxPushButton::csUnchecked);
-		/*DEBUG*/xASSERT(FALSE != _m_bRes);		    //iMsgBox(_T("CxRadioButton::csUnchecked"));
+		/*DEBUG*/xASSERT(FALSE != _m_bRes);		    //iMsgBox(xT("CxRadioButton::csUnchecked"));
 
 		csRes = xObj.csGetState(); 
 		/*DEBUG*/xASSERT(CxPushButton::csUnchecked == csRes);

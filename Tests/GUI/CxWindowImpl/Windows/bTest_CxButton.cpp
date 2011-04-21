@@ -24,7 +24,7 @@ BOOL CWndMain::bTest_CxButton(CxButton &xObj, INT iID, CxWindow *pwndParent) {
 		_m_bRes = xObj.bSetViewStyle(CxButton::vsText);  
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 
-		_m_bRes = xObj.bSetText(_T("xxxxxxxxxxxxxxx"));
+		_m_bRes = xObj.bSetText(xT("xxxxxxxxxxxxxxx"));
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);	
 
 
@@ -49,7 +49,7 @@ BOOL CWndMain::bTest_CxButton(CxButton &xObj, INT iID, CxWindow *pwndParent) {
 		_m_bRes = xObj.bSetViewStyle(CxButton::vsText);  
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 
-		_m_bRes = xObj.bSetText(_T("xxxx"));
+		_m_bRes = xObj.bSetText(xT("xxxx"));
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 	}
 

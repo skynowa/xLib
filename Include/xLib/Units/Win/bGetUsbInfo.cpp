@@ -103,9 +103,9 @@ BOOL bGetUsbInfo(const tstring &csDrive, std::vector<tstring> *pvecsInfo) {
 			ULONG ulResSize      = 256;
 			TCHAR szRes[256 + 1] = {0};
 
-			if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, _T("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
-				//--*pvecsInfo = vecsSplit(tstring(szRes, ulResSize / sizeof(TCHAR)), _T("#"));
-				bRes = bSplit(tstring(szRes, ulResSize / sizeof(TCHAR)), _T("#"), pvecsInfo);
+			if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, xT("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
+				//--*pvecsInfo = vecsSplit(tstring(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
+				bRes = bSplit(tstring(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvecsInfo);
 				/*DEBUG*/XASSERT(TRUE == bRes);
 			}
 

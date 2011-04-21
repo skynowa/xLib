@@ -175,7 +175,7 @@ CxCpuUsage::GetCpuUsage() {
         case WIN2K_XP:
             dwObjectIndex = PROCESSOR_OBJECT_INDEX;
             dwCpuUsageIndex = PROCESSOR_TIME_COUNTER_INDEX;
-            wcscpy(szInstance, _T("_Total"));
+            wcscpy(szInstance, xT("_Total"));
             break;
             
         default:

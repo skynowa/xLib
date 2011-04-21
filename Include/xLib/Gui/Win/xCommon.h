@@ -237,7 +237,7 @@ WC_TREEVIEW           - Creates tree-view controls. These controls display a hie
 #define xSNDMSG_API(TCastType, hWnd, uiMsg, wParam, lParam) \
     ((TCastType)( ::SendMessage((HWND)(hWnd), (UINT)(uiMsg), (WPARAM)(wParam), (LPARAM)(lParam)) ));
 
-#define LOG()                                  _m_tlLog.bWrite(_T(__FUNCTION__))
+#define LOG()                                  _m_tlLog.bWrite(xT(__FUNCTION__))
 //---------------------------------------------------------------------------
 #endif    //xLib_Gui_CommonH
 

@@ -34,7 +34,7 @@ CxTraceLog                 g_clLog(FALSE);
 
 CxThreadPool<CWorkThread> *thpTP     = NULL;
 std::vector<tString>       vecsFileContent;
-tString                    sFilePath = _T("C:/test.txt");
+tString                    sFilePath = xT("C:/test.txt");
 //////#define CRASH_SOMETIMES 10/(rand()%10)
 
 
@@ -70,7 +70,7 @@ VOID vInitGUI() {
 
 	g_hLbLog          = ::GetDlgItem(g_hDlgMain, IDC_lbLog); 
 	g_hEdtMaxTasks    = ::GetDlgItem(g_hDlgMain, IDC_edtMaxTasks); 
-	::SetWindowText(g_hEdtMaxTasks, _T("4"));
+	::SetWindowText(g_hEdtMaxTasks, xT("4"));
 }
 //---------------------------------------------------------------------------
 VOID vBtnResume_OnClick() {

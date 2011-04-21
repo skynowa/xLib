@@ -66,8 +66,8 @@ class CxPath : public CxNonCopyable {
 //TODO:   convert path separators to forward slashes
 void convert_path_separators(tString &s) {
     for (tString::iterator itr = s.begin(); itr != s.end(); ++ itr) {
-        if (*itr == _T('\\') || *itr == _T('!')) {
-            *itr = _T('/');
+        if (*itr == xT('\\') || *itr == xT('!')) {
+            *itr = xT('/');
         }
     }
 }
