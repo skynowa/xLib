@@ -4,7 +4,7 @@
 * File name:   CxTemplate.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
-* Created:     26.01.2011 0:08:50
+* Created:     
 *
 *****************************************************************************/
 
