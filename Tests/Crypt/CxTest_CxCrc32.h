@@ -55,7 +55,7 @@ BOOL CxTest_CxCrc32::bUnit() {
         sFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");
         usFileContent.resize(1024);
 
-        flFile.bOpen(sFilePath, CxStdioFile::CxOpenMode::omCreateReadWrite);
+        flFile.bOpen(sFilePath, CxStdioFile::omCreateReadWrite);
         flFile.bWriteAll(usFileContent, 1);
     }
 

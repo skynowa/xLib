@@ -113,7 +113,7 @@ CxHandle::operator HANDLE() const {
     return m_hHandle;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsValid ()
+//DONE: bIsValid (validating handle)
 BOOL
 CxHandle::bIsValid() const {
     /*DEBUG*///n/a
@@ -212,9 +212,9 @@ CxHandle::bClose() {
     if (FALSE != bIsValid()) {
         _m_bRes = ::CloseHandle(m_hHandle);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-
-        m_hHandle = NULL;
     }
+
+    m_hHandle = NULL;
 
     return TRUE;
 }

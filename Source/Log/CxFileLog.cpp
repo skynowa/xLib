@@ -25,8 +25,8 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxFileLog (constructor)
-CxFileLog::CxFileLog() : 
-    _m_sLogPath       (), 
+CxFileLog::CxFileLog() :
+    _m_sLogPath       (),
     _m_ulMaxFileSizeMb(lsDefaultMaxSize)
 ////    _m_csFile         ()
 {
@@ -37,8 +37,8 @@ CxFileLog::CxFileLog() :
 }
 //---------------------------------------------------------------------------
 //DONE: CxFileLog (constructor)
-CxFileLog::CxFileLog(const tString &csFilePath, ULONG ulMaxFileSizeMb) : 
-    _m_sLogPath       (), 
+CxFileLog::CxFileLog(const tString &csFilePath, ULONG ulMaxFileSizeMb) :
+    _m_sLogPath       (),
     _m_ulMaxFileSizeMb(ulMaxFileSizeMb)////,
     ////_m_csFile         ()
 {
@@ -83,7 +83,7 @@ CxFileLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     va_start(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);
-    va_end(palArgs);    
+    va_end(palArgs);
 
     //-------------------------------------
     //write to file
@@ -91,7 +91,7 @@ CxFileLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     CxStdioFile sfFile;
 
-    bRes = sfFile.bOpen(_m_sLogPath, xT("a"));
+    bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omAppend);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     sfFile.iFprintf(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
@@ -118,10 +118,10 @@ CxFileLog::bClear() {
     /////*LOCK*/CxAutoCriticalSection SL(_m_csFile);
 
     CxStdioFile sfFile;
-    
-    bRes = sfFile.bOpen(_m_sLogPath, xT("w"));
+
+    bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omWrite);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    
+
     sfFile.iFprintf(xT(""));
 
     return TRUE;
@@ -145,7 +145,7 @@ CxFileLog::bDelete() {
 
 /****************************************************************************
 *    private
-*                                                                            
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------

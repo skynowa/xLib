@@ -91,7 +91,7 @@ CxBlowfish::bSetFileKey(const tString &csFilePath) {
     uString     usFile;
     CxStdioFile sfFile;
 
-    _m_bRes = sfFile.bOpen(csFilePath, CxStdioFile::CxOpenMode::omBinRead);
+    _m_bRes = sfFile.bOpen(csFilePath, CxStdioFile::omBinRead);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     LONG liFileSize = sfFile.liGetSize();
@@ -171,7 +171,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
     {
         CxStdioFile sfFileIn;
 
-        _m_bRes = sfFileIn.bOpen(csFilePathIn, CxStdioFile::CxOpenMode::omRead);
+        _m_bRes = sfFileIn.bOpen(csFilePathIn, CxStdioFile::omRead);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileIn.bReadAll(&usIn, BUFF_SIZE);
@@ -184,7 +184,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
     {
         CxStdioFile sfFileOut;
 
-        _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::CxOpenMode::omCreateReadWrite);
+        _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::omCreateReadWrite);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileOut.bWriteAll(usOut, BUFF_SIZE);
@@ -222,10 +222,10 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
     CxStdioFile sfFileIn;
     CxStdioFile sfFileOut;
 
-    _m_bRes = sfFileIn.bOpen(csFilePathIn,   CxStdioFile::CxOpenMode::omBinRead);
+    _m_bRes = sfFileIn.bOpen(csFilePathIn,   CxStdioFile::omBinRead);
     /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::CxOpenMode::omBinWrite);
+    _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::omBinWrite);
     /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
@@ -377,7 +377,7 @@ CxBlowfish::cmGetFileCryptStatus(const tString &csFilePath, const uString &cusSt
     //?????? ?????? N ??????
     CxStdioFile sfFile;
 
-    _m_bRes = sfFile.bOpen(csFilePath, CxStdioFile::CxOpenMode::omBinRead);
+    _m_bRes = sfFile.bOpen(csFilePath, CxStdioFile::omBinRead);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, CxBlowfish::cmUnknown);
 
     //???????? ?????? ??? ?????
