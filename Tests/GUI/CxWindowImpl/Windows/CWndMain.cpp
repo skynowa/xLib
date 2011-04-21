@@ -141,10 +141,10 @@ VOID CWndMain::vOnCreate(WPARAM wParam, LPARAM lParam) {
 		_m_bRes = m_tabTab1.bCreateRes(IDC_tabTab1, hGetHandle());
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 
-		_m_bRes = m_tabTab1.bInsertTab(IDD_WND_SHEET1, _T("Sheet1"), 0, 0);
+		_m_bRes = m_tabTab1.bInsertTab(IDD_WND_SHEET1, xT("Sheet1"), 0, 0);
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 
-		_m_bRes = m_tabTab1.bInsertTab(IDD_WND_SHEET2, _T("Sheet2"), 1, 0);
+		_m_bRes = m_tabTab1.bInsertTab(IDD_WND_SHEET2, xT("Sheet2"), 1, 0);
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 
 		_m_bRes = m_tabTab1.bShowTab(0, TRUE);
@@ -278,7 +278,7 @@ VOID CWndMain::vBtnExit_OnClick(CxButton *) {
 		_m_bRes = m_btnButton1.bSetViewStyle(CxButton::vsText);  
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);
 
-		_m_bRes = m_btnButton1.bSetText(_T("wwwwwwwwwwwwwwwwwwwwwww"));
+		_m_bRes = m_btnButton1.bSetText(xT("wwwwwwwwwwwwwwwwwwwwwww"));
 		/*DEBUG*/xASSERT(FALSE != _m_bRes);	
 
 

@@ -42,12 +42,10 @@ CxStdioFile::~CxStdioFile() {
 }
 //---------------------------------------------------------------------------
 
-
 /****************************************************************************
 *    public: open, get
 *
 *****************************************************************************/
-
 
 //---------------------------------------------------------------------------
 //DONE: bIsValid (validating handle)
@@ -55,7 +53,7 @@ BOOL
 CxStdioFile::bIsValid() const {
     /*DEBUG*/
 
-    _m_bRes = static_cast<BOOL>( FALSE != bIsValid() );
+    _m_bRes = static_cast<BOOL>( NULL != _m_pFile );
 
     return _m_bRes;
 }
@@ -121,7 +119,6 @@ CxStdioFile::sGetPath() const {
     return _m_sFilePath;
 }
 //---------------------------------------------------------------------------
-
 
 /****************************************************************************
 * public: read / write
@@ -358,7 +355,6 @@ CxStdioFile::bUngetChar(TCHAR cChar) {
 }
 //---------------------------------------------------------------------------
 
-
 /****************************************************************************
 *   public: Formatted input/output
 *
@@ -400,7 +396,6 @@ CxStdioFile::iFprintfV(LPCTSTR pcszFormat, va_list arg) const {
 }
 //---------------------------------------------------------------------------
 
-
 /****************************************************************************
 *    public: ...
 *
@@ -423,19 +418,19 @@ CxStdioFile::bSetVBuff(LPSTR pszBuff, EBufferingMode bmMode, std::size_t uiSize)
 }
 //---------------------------------------------------------------------------
 //TODO: bSetMode (Sets the file translation mode)
-//////BOOL
-//CxStdioFile::bSetMode(ETranslationMode tmMode) {
-//    INT iRes = etError;
-//
-//    iRes = /*BC++_setmode*/setmode(_iGetHandle(), tmMode);
-//    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
-//
-//    return TRUE;
-//////}
+BOOL
+CxStdioFile::bSetMode(ETranslationMode tmMode) {
+    INT iRes = etError;
+
+    iRes = /*BC++_setmode*/setmode(_iGetHandle(), tmMode);
+    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+
+    return TRUE;
+}
 //---------------------------------------------------------------------------
 //DONE: bSetPosition (REFilePosition stream position indicator)
 BOOL
-CxStdioFile::bSetPosition(LONG lOffset, EPointerPosition fpPos/* = fpBegin*/) const {
+CxStdioFile::bSetPosition(LONG lOffset, EPointerPosition fpPos) const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
     INT iRet = ppError;
@@ -511,7 +506,6 @@ CxStdioFile::bLocking(ELockingMode lmMode, LONG liBytes) {
 #endif
 //---------------------------------------------------------------------------
 
-
 /****************************************************************************
 *    closing
 *
@@ -548,7 +542,6 @@ CxStdioFile::bClose() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
 
 /****************************************************************************
 *    public, static
@@ -1174,7 +1167,6 @@ CxStdioFile::bWriteFile(const tString &csFilePath, const uString &cusStr) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
 
 /****************************************************************************
 *    private

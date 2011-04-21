@@ -41,7 +41,7 @@ class CxTcpClientSocket : public CxSocket {
 
 /*
 
-tString sStr = _T("Some string!!!");
+tString sStr = xT("Some string!!!");
 ::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(tString::value_type), 0);
 
 sizeof(tString::value_type)

@@ -21,7 +21,7 @@
 #define xBEGIN_MSG_MAP(_CXClass)         LRESULT _CXClass::lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam) {    
 
 #define xMSG(_msg, _func)                if ((_msg) == uiMsg) {                                                \
-                                            /*LOG*/_m_tlLog.bWrite(_T("xMSG:  %i, %i"), wParam, lParam);    \
+                                            /*LOG*/_m_tlLog.bWrite(xT("xMSG:  %i, %i"), wParam, lParam);    \
                                                                                                             \
                                             (_func)(wParam, lParam);                                        \
                                                                                                             \
@@ -29,7 +29,7 @@
                                         }
 
 #define xCMD(_id, _func)                if ((WM_COMMAND == uiMsg) && (LOWORD(wParam) == (_id))) {            \
-                                            /*LOG*/_m_tlLog.bWrite(_T("xCMD:  %i, %i"), wParam, lParam);    \
+                                            /*LOG*/_m_tlLog.bWrite(xT("xCMD:  %i, %i"), wParam, lParam);    \
                                                                                                             \
                                             (_func)(LOWORD(wParam), lParam);                                \
                                                                                                             \

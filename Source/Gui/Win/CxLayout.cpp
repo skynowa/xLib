@@ -24,7 +24,7 @@ CxLayout::CxLayout() {
 
     //-------------------------------------
     //переопределяем параметры окна
-    _m_sClassName = xCXLAYOUT_CONTROL_CLASS + tString(_T("_")) + CxString::sCreateGUID();
+    _m_sClassName = xCXLAYOUT_CONTROL_CLASS + tString(xT("_")) + CxString::sCreateGUID();
     _m_ulStyle    = xCXLAYOUT_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx  = xCXLAYOUT_DEFAULT_WINDOW_STYLE_EX;
     ////_m_ulStyle   = WS_CHILD | WS_TABSTOP | WS_CAPTION;

@@ -45,7 +45,7 @@ CWorkThread::~CWorkThread() {
 //---------------------------------------------------------------------------
 //TODO: - uiOnRun
 UINT CWorkThread::uiOnRun(VOID *pData) { 
-	/*LOG*/_m_clLog.bWrite(_T("Start thread: #%i\n"), m_uiIndex); 
+	/*LOG*/_m_clLog.bWrite(xT("Start thread: #%i\n"), m_uiIndex); 
 	
 	UINT uiRes = 0;
 	BOOL bRes  = FALSE;
@@ -60,11 +60,11 @@ UINT CWorkThread::uiOnRun(VOID *pData) {
 		xCHECK_DO(FALSE == bRes, break);
 		
 
-		/*LOG*/_m_clLog.bWrite(_T("%i: %s\n"), i, pvecsThis->at(i).c_str()); 
+		/*LOG*/_m_clLog.bWrite(xT("%i: %s\n"), i, pvecsThis->at(i).c_str()); 
 		bSleep(500);
 	}	
 
-	/*LOG*///_m_clLog.bWrite(_T("End thread: #%i\n"), m_uiIndex); 
+	/*LOG*///_m_clLog.bWrite(xT("End thread: #%i\n"), m_uiIndex); 
 
 	return uiRes;
 }

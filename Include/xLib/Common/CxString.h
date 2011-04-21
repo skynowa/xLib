@@ -43,7 +43,7 @@ class CxString : public CxNonCopyable {
         ////    std::basic_stringstream<CharT> ssStream;
         ////    ssStream << std::setbase(iBase) << std::showbase << std::uppercase;
 
-        ////    copy(csStr.begin(), csStr.end(), std::ostream_iterator<INT, CharT>(ssStream, _T(" ")/*csSep.at(0)*/));
+        ////    copy(csStr.begin(), csStr.end(), std::ostream_iterator<INT, CharT>(ssStream, xT(" ")/*csSep.at(0)*/));
         ////
         ////    return ssStream.str();
         ////}

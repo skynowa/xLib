@@ -257,8 +257,8 @@ DWORD dwSize = MAX_PATH;
 TCHAR tchApplicationPath[ MAX_PATH ] = { 0 };
 HRESULT hr = AssocQueryString( 0,
 ASSOCSTR_EXECUTABLE,
-_T( ".mp3" ),
-_T( "open" ),
+xT( ".mp3" ),
+xT( "open" ),
 tchApplicationPath,
 &dwSize );
 

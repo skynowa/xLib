@@ -49,7 +49,7 @@ CWorkThread::~CWorkThread() {
 //---------------------------------------------------------------------------
 //TODO: - uiOnRun
 UINT CWorkThread::uiOnRun(VOID *pData) { 
-	/*LOG*///_m_clLog.bWrite(_T("uiOnRun start: #%i"), m_uiIndex); 
+	/*LOG*///_m_clLog.bWrite(xT("uiOnRun start: #%i"), m_uiIndex); 
 	
 	UINT uiRes = 0;
 	BOOL bRes  = FALSE;
@@ -64,8 +64,8 @@ UINT CWorkThread::uiOnRun(VOID *pData) {
 	////	xCHECK_DO(TRUE == bRes, break);
 	////	
 
-	////	/*LOG*///_m_clLog.bWrite(_T("Thread #%i  %i: %s"), m_uiIndex, i, pvecsThis->at(i).c_str()); 
-	////	/*LOG*///_m_clLog.bWrite(_T("*")); 
+	////	/*LOG*///_m_clLog.bWrite(xT("Thread #%i  %i: %s"), m_uiIndex, i, pvecsThis->at(i).c_str()); 
+	////	/*LOG*///_m_clLog.bWrite(xT("*")); 
 	////	bSleep(300);
 	////}	
 
@@ -82,7 +82,7 @@ UINT CWorkThread::uiOnRun(VOID *pData) {
 				break;
 			}
 			
-			/*LOG*/_m_clLog.bWrite(_T("Thread #%i  %i: %s"), m_uiIndex, g_uiLinesCount, pvecsThis->at(g_uiLinesCount).c_str()); 
+			/*LOG*/_m_clLog.bWrite(xT("Thread #%i  %i: %s"), m_uiIndex, g_uiLinesCount, pvecsThis->at(g_uiLinesCount).c_str()); 
 
 			++ g_uiLinesCount;
 		}
@@ -91,7 +91,7 @@ UINT CWorkThread::uiOnRun(VOID *pData) {
 	}
 	
 
-	/*LOG*///_m_clLog.bWrite(_T("uiOnRun stop: #%i"), m_uiIndex); 
+	/*LOG*///_m_clLog.bWrite(xT("uiOnRun stop: #%i"), m_uiIndex); 
 
 	return uiRes;
 }
@@ -103,7 +103,7 @@ VOID CWorkThread::vOnEnter() {
 //---------------------------------------------------------------------------
 //TODO: - vOnExit
 VOID CWorkThread::vOnExit() {        
-	//::OutputDebugString(_T("vOnExit (virtual)\n"));
+	//::OutputDebugString(xT("vOnExit (virtual)\n"));
 }
 //---------------------------------------------------------------------------
 

@@ -48,7 +48,7 @@ using namespace std;
 #define CHECK_ADO_CONNECTION() \
    if (!theApp.m_connection.IsCreated() || !theApp.m_connection.IsOpen()) \
       { \
-      AfxMessageBox (_T("DB was not loaded"), MB_ICONINFORMATION); \
+      AfxMessageBox (xT("DB was not loaded"), MB_ICONINFORMATION); \
       return; \
       }
 

@@ -37,7 +37,7 @@ CxAutoCriticalSection::CxAutoCriticalSection(CxCriticalSection &csCS) :
 ////        BOOL bRes = FALSE;
 ////
 ////        while (FALSE == _m_csCS.bTryEnter()) {
-////            ::OutputDebugString(_T("bTryEnter is FALSE\n"));
+////            ::OutputDebugString(xT("bTryEnter is FALSE\n"));
 ////            
 ////            //::Sleep(ulTimeout); 
 ////            BOOL bRes = _m_slSleeper.bSleep(ulTimeout);
