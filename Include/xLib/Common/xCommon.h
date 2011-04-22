@@ -60,6 +60,23 @@
     #error xLib: unsupported architectures
 #endif
 //---------------------------------------------------------------------------
+//TODO: Compilers
+#if defined(__MINGW32__)
+    #define xCOMPILER_MINGW32
+#endif
+
+#if defined(_MSC_VER) || defined(_MSC_FULL_VER) || defined(_MSC_BUILD)
+    #define xCOMPILER_MS
+#endif
+
+#if defined(__BORLANDC__) || defined(__CODEGEARC__)
+    #define xCOMPILER_CODEGEAR
+#endif
+
+#if defined(__GNUC__)
+    #define xCOMPILER_GNUC
+#endif
+//---------------------------------------------------------------------------
 //C library
 #include <stdio.h>
 #include <stdlib.h>

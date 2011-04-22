@@ -147,7 +147,7 @@ class CxString : public CxNonCopyable {
                 ossRes << cValueT;
 
                 sRes.assign( ossRes.str() );
-            } catch (tostringstream::failure &e) {
+            } catch (tostringstream::failure e) {
                 sRes.clear();
             } catch (...) {
                 sRes.clear();
@@ -169,7 +169,7 @@ class CxString : public CxNonCopyable {
 
                 issStream.exceptions(tistringstream::failbit | tistringstream::badbit);
                 issStream >> ResT;
-            } catch (tistringstream::failure &e) {
+            } catch (tistringstream::failure e) {
                 return T();
             } catch (...) {
                 return T();
