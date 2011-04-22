@@ -418,15 +418,24 @@ CxStdioFile::bSetVBuff(LPSTR pszBuff, EBufferingMode bmMode, std::size_t uiSize)
 }
 //---------------------------------------------------------------------------
 //TODO: bSetMode (Sets the file translation mode)
+#if defined(xOS_WIN)
 BOOL
 CxStdioFile::bSetMode(ETranslationMode tmMode) {
     INT iRes = etError;
 
-    iRes = /*BC++_setmode*/setmode(_iGetHandle(), tmMode);
-    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+    #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
+        iRes = setmode(_iGetHandle(), tmMode);
+        /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+    #elif defined(xCOMPILER_CODEGEAR)
+        iRes = _setmode(_iGetHandle(), tmMode);
+        /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+    #endif
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //---------------------------------------------------------------------------
 //DONE: bSetPosition (REFilePosition stream position indicator)
 BOOL
@@ -478,32 +487,43 @@ CxStdioFile::liGetSize() const {
 }
 //---------------------------------------------------------------------------
 //DONE: bChsize(Changes the file size)
-#if defined(xOS_WIN)
 BOOL
 CxStdioFile::bChsize(LONG liSize) {
     /*DEBUG*/// n/a
 
     INT iRes = etError;
 
-    iRes = /*BC++ _chsize*/chsize(_iGetHandle(), liSize);
+#if defined(xOS_WIN)
+    #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
+        iRes = chsize(_iGetHandle(), liSize);
+        /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
+    #elif defined(xCOMPILER_CODEGEAR)
+        iRes = _chsize(_iGetHandle(), liSize);
+        /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
+    #endif
+#elif defined(xOS_LINUX)
+    iRes = ftruncate(_iGetHandle(), static_cast<off_t>( liSize ));
     /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
+#endif
 
     return TRUE;
 }
-#endif
 //---------------------------------------------------------------------------
 //DONE: bLocking (Locks or unlocks bytes of a file)
-#if defined(xOS_WIN)
 BOOL
 CxStdioFile::bLocking(ELockingMode lmMode, LONG liBytes) {
     INT iRes = etError;
 
+#if defined(xOS_WIN)
     iRes = _locking(_iGetHandle(), lmMode, liBytes);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+#elif defined(xOS_LINUX)
+    iRes = lockf(_iGetHandle(), lmMode, static_cast<off_t>( liBytes ));
+    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+#endif
 
     return FALSE;
 }
-#endif
 //---------------------------------------------------------------------------
 
 /****************************************************************************

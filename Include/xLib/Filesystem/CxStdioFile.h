@@ -9,8 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef    xLib_Fso_CxStdioFileH
-#define    xLib_Fso_CxStdioFileH
+#ifndef xLib_Filesystem_CxStdioFileH
+#define xLib_Filesystem_CxStdioFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
@@ -51,22 +51,16 @@ class CxStdioFile : public CxNonCopyable {
             omBinOpenReadAppend    //"ab+"
         };
 
-        //File attribute
-        ////enum EAttributes {
-        ////    faInvalid  = - 1,           /*?*/
-        ////    faNormal   =  _A_NORMAL,    /* Normal file - No read/write restrictions */
-        ////    faReadOnly =  _A_RDONLY,    /* Read only file */
-        ////    faHidden   =  _A_HIDDEN,    /* Hidden file */
-        ////    faSystem   =  _A_SYSTEM,    /* System file */
-        ////    faSubDir   =  _A_SUBDIR,    /* Subdirectory */
-        ////    faArchive  =  _A_ARCH ,     /* Archive file */
-        ////};
-
         //Translation mode
+    #if defined(xOS_WIN)
         enum ETranslationMode {
-            tmText   = _O_TEXT,          /* file mode is text (translated) */
-            tmBinary = _O_BINARY         /* file mode is binary (untranslated) */
+            tmText   = O_TEXT,          /* file mode is text (translated) */
+            tmBinary = O_BINARY         /* file mode is binary (untranslated) */
         };
+    #elif defined(xOS_LINUX)
+        //TODO: xOS_LINUX
+
+    #endif
 
         //Access mode
         enum EAccessMode {
@@ -91,14 +85,19 @@ class CxStdioFile : public CxNonCopyable {
             bmNo   = _IONBF
         };
 
-        #if defined(xOS_WIN)
         //Locking action to perform
         enum ELockingMode {
-            lmTryLock = LK_LOCK,        //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second. If, after 10 attempts, the bytes cannot be locked, the constant returns an error.
-            lmLock    = LK_NBLCK,       //Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
-            lmUnlock  = LK_UNLCK        //Unlocks the specified bytes, which must have been previously locked.
+            #if defined(xOS_WIN)
+                lmTryLock = LK_LOCK,    //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second.
+                lmLock    = LK_NBLCK,   //Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
+                lmUnlock  = LK_UNLCK    //Unlocks the specified bytes, which must have been previously locked.
+            #elif defined(xOS_LINUX)
+                lmLock    = F_LOCK,     //Set an exclusive lock on the specified section of the file
+                lmTlock   = F_TLOCK,    //Same as F_LOCK but the call never blocks and returns an error instead if the file is already locked
+                lmUlock   = F_ULOCK,    //Unlock the indicated section of the file.  This may cause a locked section to be split into two locked sections
+                lmTest    = F_TEST      //Test the lock: return 0 if the specified section is unlocked or locked by this process; return -1, set errno to EAGAIN
+            #endif
         };
-        #endif
 
         //Permission mode
         enum EPermissionMode {
@@ -128,83 +127,82 @@ class CxStdioFile : public CxNonCopyable {
 
 
         //constructors, destructor
-                           CxStdioFile  ();
-        virtual           ~CxStdioFile  ();
+                         CxStdioFile  ();
+        virtual         ~CxStdioFile  ();
 
         //open, get
-        BOOL               bIsValid     () const;
-        BOOL               bOpen        (const tString &csFilePath, const EOpenMode omMode);
-        BOOL               bReopen      (const tString &csFilePath, const EOpenMode omMode);
-        BOOL               bAttach      (FILE *pflFile);
-        FILE              *pGet         () const;
-        tString            sGetPath     () const;
+        BOOL             bIsValid     () const;
+        BOOL             bOpen        (const tString &csFilePath, const EOpenMode omMode);
+        BOOL             bReopen      (const tString &csFilePath, const EOpenMode omMode);
+        BOOL             bAttach      (FILE *pflFile);
+        FILE            *pGet         () const;
+        tString          sGetPath     () const;
 
         //read, write
-        std::size_t        uiRead       (LPVOID pvBuf,         std::size_t uiCount) const;
-        std::size_t        uiWrite      (const LPVOID pcvBuff, std::size_t uiCount) const;
+        size_t           uiRead       (LPVOID pvBuf,         std::size_t uiCount) const;
+        size_t           uiWrite      (const LPVOID pcvBuff, std::size_t uiCount) const;
 
-        BOOL               bReadAll     (LPVOID pvBuff,        std::size_t uiBuffSize, std::size_t uiBlockSize) const;
-        BOOL               bWriteAll    (const LPVOID pcvBuf,  std::size_t uiBuffSize, std::size_t uiBlockSize) const;
+        BOOL             bReadAll     (LPVOID pvBuff,        std::size_t uiBuffSize, std::size_t uiBlockSize) const;
+        BOOL             bWriteAll    (const LPVOID pcvBuf,  std::size_t uiBuffSize, std::size_t uiBlockSize) const;
 
-        BOOL               bReadAll     (uString *psBuff,       std::size_t uiBlockSize) const;
-        BOOL               bWriteAll    (const uString &csBuff, std::size_t uiBlockSize) const;
+        BOOL             bReadAll     (uString *psBuff,       std::size_t uiBlockSize) const;
+        BOOL             bWriteAll    (const uString &csBuff, std::size_t uiBlockSize) const;
 
-        BOOL               bReadAll     (tString *psBuff,       std::size_t uiBlockSize) const;
-        BOOL               bWriteAll    (const tString &csBuff, std::size_t uiBlockSize) const;
+        BOOL             bReadAll     (tString *psBuff,       std::size_t uiBlockSize) const;
+        BOOL             bWriteAll    (const tString &csBuff, std::size_t uiBlockSize) const;
 
-        BOOL               bReadLine    (LPTSTR pszStr, std::size_t uiMaxSize) const;
-        BOOL               bWriteLine   (const tString &csStr) const;
-        BOOL               bWriteString (const tString &csStr) const;
+        BOOL             bReadLine    (LPTSTR pszStr, std::size_t uiMaxSize) const;
+        BOOL             bWriteLine   (const tString &csStr) const;
+        BOOL             bWriteString (const tString &csStr) const;
 
-        TCHAR              cReadChar    ();
-        BOOL               bWriteChar   (TCHAR cChar);
-        BOOL               bUngetChar   (TCHAR cChar);
+        TCHAR            cReadChar    ();
+        BOOL             bWriteChar   (TCHAR cChar);
+        BOOL             bUngetChar   (TCHAR cChar);
 
         //formatting write
-        INT                iFprintf     (LPCTSTR pcszFormat, ...) const;
-        INT                iFprintfV    (LPCTSTR pcszFormat, va_list arg) const;
+        INT              iFprintf     (LPCTSTR pcszFormat, ...) const;
+        INT              iFprintfV    (LPCTSTR pcszFormat, va_list arg) const;
 
         //other
-        #if defined(xOS_WIN)
-        BOOL               bLocking     (ELockingMode lmMode, LONG liBytes);
-        #endif
+        BOOL             bLocking     (ELockingMode lmMode, LONG liBytes);
+        BOOL             bSetPosition (LONG lOffset, EPointerPosition fpPos) const;
+        LONG             liGetPosition() const;
 
-        BOOL               bSetPosition (LONG lOffset, EPointerPosition fpPos) const;
-        LONG               liGetPosition() const;
+        BOOL             bSetVBuff    (LPSTR pszBuff, EBufferingMode bmMode, std::size_t uiSize);
 
-        BOOL               bSetVBuff    (LPSTR pszBuff, EBufferingMode bmMode, std::size_t uiSize);
-        BOOL               bSetMode     (ETranslationMode tmMode);
+    #if defined(xOS_WIN)
+        BOOL             bSetMode     (ETranslationMode tmMode);
+    #elif defined(xOS_LINUX)
+        //TODO: xOS_LINUX
+    #endif
 
-        LONG               liGetSize    () const;
-
-        #if defined(xOS_WIN)
-        BOOL               bChsize      (LONG liSize);
-        #endif
+        LONG             liGetSize    () const;
+        BOOL             bChsize      (LONG liSize);
 
         //error handling
-        BOOL               bIsEof       () const;
-        BOOL               bIsError     () const;
-        BOOL               bClearErr    () const;
+        BOOL             bIsEof       () const;
+        BOOL             bIsError     () const;
+        BOOL             bClearErr    () const;
 
         //closing
-        BOOL               bFlush       () const;
-        BOOL               bClose       ();
+        BOOL             bFlush       () const;
+        BOOL             bClose       ();
 
         //static
-        static BOOL        bIsFile      (const tString &csFilePath);
-        static BOOL        bIsExists    (const tString &csFilePath);
-        static BOOL        bAccess      (const tString &csFilePath, EAccessMode amMode);
-        static BOOL        bChmod       (const tString &csFilePath, EPermissionMode pmMode);
-        static BOOL        bDelete      (const tString &csFilePath);
-        static BOOL        bUnlink      (const tString &csFilePath);
-        static BOOL        bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);
-        static BOOL        bMove        (const tString &csFilePath,     const tString &csDirPath);
-        static BOOL        bCopy        (const tString &csFromFilePath, const tString &csToFilePath);
-        static tString     sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
-        static ULONGLONG   ullLines     (const tString &csFilePath);
+        static BOOL      bIsFile      (const tString &csFilePath);
+        static BOOL      bIsExists    (const tString &csFilePath);
+        static BOOL      bAccess      (const tString &csFilePath, EAccessMode amMode);
+        static BOOL      bChmod       (const tString &csFilePath, EPermissionMode pmMode);
+        static BOOL      bDelete      (const tString &csFilePath);
+        static BOOL      bUnlink      (const tString &csFilePath);
+        static BOOL      bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);
+        static BOOL      bMove        (const tString &csFilePath,     const tString &csDirPath);
+        static BOOL      bCopy        (const tString &csFromFilePath, const tString &csToFilePath);
+        static tString   sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
+        static ULONGLONG ullLines     (const tString &csFilePath);
 
         //Macros
-        //FILENAME_MAX    Maximum length of file names (constant)
+        //FILENAME_MAX   Maximum length of file names (constant)
         //TMP_MAX        Number of temporary files (constant)
 
         /****************************************************************************
@@ -212,30 +210,30 @@ class CxStdioFile : public CxNonCopyable {
         *
         *****************************************************************************/
 
-        static LONG        liGetSize    (const tString &csFilePath);
+        static LONG      liGetSize    (const tString &csFilePath);
 
-        static BOOL        bReadFile    (const tString &csFilePath, std::vector<tString> *pvecsVector);
-        static BOOL        bWriteFile   (const tString &csFilePath, const std::vector<tString> *pcvecsVector);
+        static BOOL      bReadFile    (const tString &csFilePath, std::vector<tString> *pvecsVector);
+        static BOOL      bWriteFile   (const tString &csFilePath, const std::vector<tString> *pcvecsVector);
 
-        static BOOL        bReadFileEx  (const tString &csFilePath, std::vector<tString> *pvecsFile);
-        static BOOL        bReadFile    (const tString &csFilePath, std::vector<TCHAR>   *pvecchFile);
+        static BOOL      bReadFileEx  (const tString &csFilePath, std::vector<tString> *pvecsFile);
+        static BOOL      bReadFile    (const tString &csFilePath, std::vector<TCHAR>   *pvecchFile);
 
-        static BOOL        bReadFile    (const tString &csFilePath, const tString &csDelimiter, std::map<tString, tString> *pmapsFile);
-        static BOOL        bReadFile    (const tString &csFilePath, tString *psStr);
+        static BOOL      bReadFile    (const tString &csFilePath, const tString &csDelimiter, std::map<tString, tString> *pmapsFile);
+        static BOOL      bReadFile    (const tString &csFilePath, tString *psStr);
 
-        static BOOL        bReadFile    (const tString &csFilePath, uString *pusStr);
-        static BOOL        bWriteFile   (const tString &csFilePath, const uString &cusStr);
+        static BOOL      bReadFile    (const tString &csFilePath, uString *pusStr);
+        static BOOL      bWriteFile   (const tString &csFilePath, const uString &cusStr);
 
     private:
-        mutable BOOL       _m_bRes;
-        FILE              *_m_pFile;
-        tString            _m_sFilePath;
+        mutable BOOL     _m_bRes;
+        FILE            *_m_pFile;
+        tString          _m_sFilePath;
 
-        INT                _iGetHandle  ();
-        static tString     _sGetOpenMode(const EOpenMode omMode);
+        INT              _iGetHandle  ();
+        static tString   _sGetOpenMode(const EOpenMode omMode);
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Fso_CxStdioFileH
+#endif    //xLib_Filesystem_CxStdioFileH
 /*
 #include <stdio.h>
 #include <stdlib.h>
