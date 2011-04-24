@@ -30,7 +30,6 @@ CxCgi::CxCgi(const size_t cuiMaxSize) :
     Cookies    (*this),
     Formdata   (*this, cuiMaxSize)
 {
-
 }
 //---------------------------------------------------------------------------
 //DONE: CxCgi (destructor)
@@ -976,7 +975,7 @@ CxCgiFormData::_bInit() {
             break;
 
         default: {
-                /*DEBUG*/xASSERT_RET(FALSE, FALSE);
+                /////*DEBUG*/xASSERT_RET(FALSE, FALSE);
             }
             break;
     }

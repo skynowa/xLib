@@ -23,22 +23,23 @@
 ////#define _WIN32_WINNT_LONGHORN  0x0600    //
 ////#define _WIN32_WINNT_WIN7      0x0601    //Windows 7
 
-#define xWINVER                  WINVER
+#define xWINVER      WINVER
 
-#define xWIN32_NT4              0x0400    //Windows NT 4.0
-#define xWIN32_2K                0x0500    //Windows 2000
-#define xWIN32_XP               0x0501    //Windows Server 2003, Windows XP
-#define xWIN32_S03             0x0502    //Windows Server 2003 with SP1, Windows XP with SP2
-#define xWIN32_VISTA            0x0600    //Windows Vista, Windows Server 2008
-#define xWIN32_7                 0x0601    //Windows 7, Windows Server 2008 R2
+#define xWIN32_NT4   0x0400    //Windows NT 4.0
+#define xWIN32_2K    0x0500    //Windows 2000
+#define xWIN32_XP    0x0501    //Windows Server 2003, Windows XP
+#define xWIN32_S03   0x0502    //Windows Server 2003 with SP1, Windows XP with SP2
+#define xWIN32_VISTA 0x0600    //Windows Vista, Windows Server 2008
+#define xWIN32_7     0x0601    //Windows 7, Windows Server 2008 R2
 //---------------------------------------------------------------------------
 //Remove pointless warning messages
-#if defined(_MSC_VER) || defined(__MINGW32__)
+#if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
     ////#pragma warning (disable : 4511)    //copy operator could not be generated
     ////#pragma warning (disable : 4512)    //assignment operator could not be generated
     ////#pragma warning (disable : 4702)    //unreachable code (bugs in Microsoft's STL)
     ////#pragma warning (disable : 4786)    //identifier was truncated
     #pragma warning (disable : 4996)        //function or variable may be unsafe (deprecated)
+    #pragma warning (disable : 4355)        //'this' : used in base member initializer list
 
     #ifndef _CRT_SECURE_NO_WARNINGS
         #define _CRT_SECURE_NO_WARNINGS     //eliminate deprecation warnings for VS2005
@@ -66,7 +67,7 @@
 
 #endif // _MSC_VER || __MINGW32__
 
-#if defined(__BORLANDC__) || defined(__CODEGEARC__)
+#if defined(xCOMPILER_CODEGEAR)
     #pragma option -w-8027                //function not expanded inline
     #pragma option -w-8057                //parameter is never used
     #pragma option -w-8058                //cannot create pre-compiled header: initialized data in header
@@ -75,10 +76,9 @@
     #pragma option -w-8008                 //Condition is always true
 
     #define xD2S(s)     tString((s).c_str())
-    #define xD2AS(s)     tString((s).t_str())
+    #define xD2AS(s)    tString((s).t_str())
     #define xS2D(s)     String((s).c_str())
     #define xD2WD(s)    WideString((s))
-
 
     //xTRY_BOOL
     #define xTRY_BOOL    \
@@ -220,4 +220,3 @@
 #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_Win_xCommon_WinH
-

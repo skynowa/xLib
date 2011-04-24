@@ -212,22 +212,22 @@ CxSystemInfo::sFormatOsType(EOsType otOsType) {
 
 #if defined(xOS_WIN)
     switch (otOsType) {
-        case otWindows3:                   { sRes = xT("Windows 3.1");                }    break;
+        case otWindows3:                { sRes = xT("Windows 3.1");                }    break;
         case otWindows95:               { sRes = xT("Windows 95");                 }    break;
         case otWindows98:               { sRes = xT("Windows 98");                 }    break;
         case otWindowsNT:               { sRes = xT("Windows NT 4.0");             }    break;
-        case otWindows2000:               { sRes = xT("Windows 2000");               }    break;
+        case otWindows2000:             { sRes = xT("Windows 2000");               }    break;
         case otWindowsXP:               { sRes = xT("Windows XP");                 }    break;
         case otWindowsXPProx64Edition:  { sRes = xT("Windows XP Pro x64 Edition"); }    break;
         case otWindowsServer2003:       { sRes = xT("Windows Server 2003");        }    break;
         case otWindowsHomeServer:       { sRes = xT("Windows Home Server");        }    break;
-        case otWindowsServer2003R2:       { sRes = xT("Windows Server 2003 R2");     }    break;
-        case otWindowsVista:               { sRes = xT("Windows Vista");              }    break;
+        case otWindowsServer2003R2:     { sRes = xT("Windows Server 2003 R2");     }    break;
+        case otWindowsVista:            { sRes = xT("Windows Vista");              }    break;
         case otWindowsServer2008:       { sRes = xT("Windows Server 2008");        }    break;
-        case otWindowsServer2008R2:       { sRes = xT("Windows Server 2008 R2");     }    break;
-        case otWindows7:                   { sRes = xT("Windows 7");                  }    break;
+        case otWindowsServer2008R2:     { sRes = xT("Windows Server 2008 R2");     }    break;
+        case otWindows7:                { sRes = xT("Windows 7");                  }    break;
 
-        default:                          { sRes = xT("Unknown Windows OS");         }    break;
+        default:                        { sRes = xT("Unknown Windows OS");         }    break;
     }
 #elif defined(xOS_LINUX)
     //Linux user-exm-5 2.6.35-27-generic #48-Ubuntu SMP Tue Feb 22 20:25:29 UTC 2011 i686 GNU/Linux

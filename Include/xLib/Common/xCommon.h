@@ -60,7 +60,7 @@
     #error xLib: unsupported architectures
 #endif
 //---------------------------------------------------------------------------
-//TODO: Compilers
+//DONE: Compilers
 #if defined(__MINGW32__)
     #define xCOMPILER_MINGW32
 #endif

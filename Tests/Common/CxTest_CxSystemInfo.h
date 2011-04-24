@@ -61,45 +61,27 @@ CxTest_CxSystemInfo::bUnit() {
 	//sFormatOsType
 	{
         #if defined(xOS_WIN)
-        //#define xWIN32_NT4       	   0x0400	//Windows NT 4.0
-        //#define xWIN32_2K     	   0x0500	//Windows 2000
-        //#define xWIN32_XP    	       0x0501	//Windows Server 2003, Windows XP
-        //#define xWIN32_S03      	   0x0502	//Windows Server 2003 with SP1, Windows XP with SP2
-        //#define xWIN32_WIN6     	   0x0600	//
-        //#define xWIN32_VISTA     	   0x0600	//Windows Vista, Windows Server 2008
-        //#define xWIN32_S08      	   0x0600	//
-        //#define xWIN32_LONGHORN  	   0x0600	//
-        //#define xWIN32_7      	   0x0601	//Windows 7
-
-        m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otWindowsNT);
-        xASSERT(xT("Win NT 4.0") == m_sRes);
-
-        m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otWindows2000);
-        xASSERT(xT("Win 2000") == m_sRes);
-
-        m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otWindowsXP);
-        xASSERT(xT("Win Server 2003, Win XP") == m_sRes);
-
-        m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otWindowsServer2003);
-        xASSERT(xT("Win Server 2003 SP1, Win XP SP2") == m_sRes);
-
-        //m_sRes = CxSystemInfo::sFormatOsType(xWIN32_WIN6);
-        //xASSERT(xT("Windows Vista, Windows Server 2008") == m_sRes);
-
-        m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otWindowsVista);
-        xASSERT(xT("Win Vista, Win Server 2008") == m_sRes);
-
-        //m_sRes = CxSystemInfo::sFormatOsType(xWIN32_S08);
-        //xASSERT(xT("Windows Vista, Windows Server 2008") == m_sRes);
-
-        //m_sRes = CxSystemInfo::sFormatOsType(xWIN32_LONGHORN);
-        //xASSERT(xT("Windows Vista, Windows Server 2008") == m_sRes);
-
-        m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otWindowsServer2008R2);
-        xASSERT(xT("Win 7, Win Server 2008 R2") == m_sRes);
-        #elif defined(xOS_LINUX)
-        m_sRes = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
-        xASSERT(false == m_sRes.empty());
+        std::map<CxSystemInfo::EOsType, tString> mapData;
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows3,               xT("Windows 3.1")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows95,              xT("Windows 95")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows98,              xT("Windows 98")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsNT,              xT("Windows NT 4.0")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows2000,            xT("Windows 2000")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsXP,              xT("Windows XP")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsXPProx64Edition, xT("Windows XP Pro x64 Edition")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsServer2003,      xT("Windows Server 2003")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsHomeServer,      xT("Windows Home Server")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsServer2003R2,    xT("Windows Server 2003 R2")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsVista,           xT("Windows Vista")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsServer2008,      xT("Windows Server 2008")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsServer2008R2,    xT("Windows Server 2008 R2")) );
+        mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows7,               xT("Windows 7")) );
+                
+        std::map<CxSystemInfo::EOsType, tString>::const_iterator it;
+        for (it = mapData.begin(); it != mapData.end(); ++ it) {
+            m_sRes = CxSystemInfo::sFormatOsType((*it).first);
+            xASSERT((*it).second == m_sRes);
+        }    
         #endif
 	}
 
