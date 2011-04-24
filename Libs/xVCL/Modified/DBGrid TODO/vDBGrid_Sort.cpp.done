@@ -1,0 +1,78 @@
+/**********************************************************************
+*	vDBGrid_Sort - сортировка строк в DBGrid
+*
+***********************************************************************/
+
+
+#include "uMain.h"
+//---------------------------------------------------------------------------
+//TODO: vDBGrid_Sort (сортировка строк в DBGrid)
+BOOL bDBGrid_Sort(TDBGrid *pdbgrdDBGrid, const String &csTableName, TColumn *pColumn) {
+    /*DEBUG*/xASSERT_RET(NULL  != pdbgrdDBGrid,          FALSE);
+	/*DEBUG*/xASSERT_RET(false == csTableName.IsEmpty(), FALSE);
+	/*DEBUG*/xASSERT_RET(NULL  != pColumn,               FALSE);
+
+	//некоторые поле не сортируются
+	INT iRes = pColumn->Field->DataType;
+	switch (iRes) {
+		case ftBlob:	{return FALSE;}		break;
+		default:        {/*пропуск*/  }  	break;
+	}
+
+	static INT s_iPriorClick  = 0;  		//по какой колонке мы кликали прошлый раз
+	static INT s_iCountClicks = 1;  		//сколько раз мы кликали по одной и той же колонке
+	String     sSortDirection = xT("ASC");  //направление сортировки
+
+    //если мы кликаем по той же колонке больше 2-х раз
+    if (s_iPriorClick == pColumn->Index) {   //ShowMessage("==");
+        ++ s_iCountClicks;
+
+        if (0 != (s_iCountClicks % 2)) {
+			sSortDirection = xT("ASC");
+		} else {
+			sSortDirection = xT("DESC");
+		}
+	}
+
+	//смена колонки (или 1-я колонка по которой кликнули)
+	if (s_iPriorClick != pColumn->Index) {    //ShowMessage("!=");
+		sSortDirection = xT("ASC");
+        s_iCountClicks = 1;
+    }
+
+    //выборка с сортировкой по sSortDirection
+	TADOQuery *pqryADOQuery = static_cast<TADOQuery *>( pdbgrdDBGrid->DataSource->DataSet );
+	/*DEBUG*/xASSERT_RET(NULL  != pqryADOQuery, FALSE);
+
+	if (true == pqryADOQuery->Active) {
+		pqryADOQuery->DisableControls();
+        try {
+			//--String sSqlStr = xT("SELECT * FROM ") + csTableName + xT(" ORDER BY ") + pColumn->FieldName + xT(" ") + sSortDirection;
+
+			//если есть фрагмент [ ORDER BY ...] - удаление от начала фрагмента и до конца строки
+
+			//sBasicSqlStr
+			String sBasicSqlStr = pqryADOQuery->SQL->Text;
+			int    iOrderByPos  = sBasicSqlStr.UpperCase().Pos(xT(" ORDER BY "));
+			xCHECK_DO(0 != iOrderByPos, sBasicSqlStr = sBasicSqlStr.SubString(1, iOrderByPos));
+
+			//sOrderBySqlStr
+			String sOrderBySqlStr = xT(" ORDER BY ") + pColumn->FieldName + xT(" ") + sSortDirection;
+
+			pqryADOQuery->Close();
+			pqryADOQuery->SQL->Text = sBasicSqlStr + sOrderBySqlStr;
+			pqryADOQuery->Open();
+
+			////ADOCommand1->CommandText = sSqlStr;
+            ////ADOCommand1->Execute();
+        }
+        __finally {
+			pqryADOQuery->EnableControls(); 
+        }
+    }
+
+    s_iPriorClick = pColumn->Index;
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------

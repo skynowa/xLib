@@ -1,0 +1,196 @@
+PKCS11# Cryptoki класс     
+
+PKICryptoki.h
+ 
+
+//---------------------------------------------------------------------------
+
+#ifndef PKICryptokiH
+#define PKICryptokiH
+
+#include <list>
+#include <openssl/dso.h>
+#include <rsaref/cryptoki.h>
+#include "PKIContainer.h"
+//---------------------------------------------------------------------------
+//! PKI_Cryptoki
+class PKI_Cryptoki : public PKI_Container {
+friend class PKI_Token;
+friend class PKI_Object;
+friend class PKI_Key;
+protected:
+    /** initializes the Cryptoki library. */
+    CK_RV                       Initialize(
+        CK_VOID_PTR             pInitArgs       //! either has the value NULL_PTR or points to a CK_C_INITIALIZE_ARGS structure containing information on how the library shold deal with multi-threaded access
+    );
+    /** is called to indicate that an application is finished with the Cryptoki library. */
+    CK_RV                       Finalize(
+        CK_VOID_PTR             pReserved       //! the parameter is reserved for future versions
+    );
+    /** obtains a pointer to the Cryptoki library's list of function pointers. */
+    CK_RV                       GetFunctionList(
+        CK_FUNCTION_LIST_PTR_PTR    ppFunctionList  //! points to a value which will receive a pointer to the library's CK_FUNCTION_LIST structure
+    );
+public: 
+    /** returns general information about Cryptoki. */
+    CK_RV                       GetInfo(
+        CK_INFO_PTR             pInfo           //! points to the location that receives the information
+    );
+    /** is used to obtain a list of slots in the system. */
+    CK_RV                       GetSlotList(
+        CK_SLOT_ID_PTR          pSlotList
+        , CK_ULONG_PTR          pulCount
+    );
+    /** obtains information about a particular slot in the system. */
+    CK_RV                       GetSlotInfo(
+        CK_SLOT_ID              slotID          //! is the ID of the slot
+        , CK_SLOT_INFO_PTR      pInfo           //! points to the location that receives the slot information
+    );
+    /** is used to obtain a list of token in the system. */
+    CK_RV                       GetTokenList(
+        CK_SLOT_ID_PTR          pTokenList
+        , CK_ULONG_PTR          pulCount
+    );
+    /** obtains information about a particular token in the system. */
+    CK_RV                       GetTokenInfo(
+        CK_SLOT_ID              slotID          //! is the ID of the token's slot
+        , CK_TOKEN_INFO_PTR     pInfo           //! points to the location that receives the token information
+    );
+    /** waits for a slot event, such as token insertion or token removal, to occur. */
+    CK_RV                       WaitForSlotEvent(
+        CK_FLAGS                flags       //! determines whether or not call blocks
+        , CK_SLOT_ID_PTR        pSlot       //! pointes to a location which will receive the ID of the slot that the event occurred in
+        , CK_VOID_PTR           pReserved   //! is reserved for future version
+    );
+public:
+    CK_RV                       LoadCryptokiLibrary(
+        const char*             pLibraryName
+    );
+    CK_RV                       FreeCryptokiLibrary(
+        void
+    );
+public:
+    PKI_Cryptoki(const char* pLibraryName = NULL);
+    ~PKI_Cryptoki();
+private:
+    DSO*                        hCryptoki;
+    CK_FUNCTION_LIST_PTR        pFunctionList;
+};
+//---------------------------------------------------------------------------
+#endif
+
+
+PKICryptoki.cpp
+
+ 
+
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include <vector>
+#include "PKICryptoki.h"
+//---------------------------------------------------------------------------
+PKI_Cryptoki::PKI_Cryptoki(const char* pLibraryName)
+    : PKI_Container(NULL), hCryptoki(NULL), pFunctionList(NULL)
+{
+    LoadCryptokiLibrary(pLibraryName);
+}
+//---------------------------------------------------------------------------
+PKI_Cryptoki::~PKI_Cryptoki()
+{
+    FreeCryptokiLibrary();
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::LoadCryptokiLibrary(const char* pLibraryName)
+{
+    CK_RV                       rv;
+    CK_C_GetFunctionList        C_GetFunctionList;
+
+    FreeCryptokiLibrary();
+
+    hCryptoki = DSO_load(NULL, pLibraryName, NULL, 0);
+    if(NULL == hCryptoki) {
+        return CKR_VENDOR_DEFINED | CKR_CRYPTOKI_NOT_INITIALIZED;
+    }
+
+    C_GetFunctionList
+        = (CK_C_GetFunctionList)DSO_bind_func(hCryptoki, "C_GetFunctionList");
+    if(NULL == C_GetFunctionList) {
+        FreeCryptokiLibrary();
+        return CKR_VENDOR_DEFINED | CKR_FUNCTION_NOT_PARALLEL;
+    }
+    
+    if(CKR_OK != (rv = C_GetFunctionList(&pFunctionList))) {
+        return rv;
+    }
+    
+    return pFunctionList->C_Initialize(NULL);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::FreeCryptokiLibrary(void)
+{
+    CK_RV                       rv = CKR_OK;
+
+    if(NULL != pFunctionList) {
+        rv = pFunctionList->C_Finalize(NULL);
+        pFunctionList = NULL;
+    }
+    if(NULL != hCryptoki) {
+        DSO_free(hCryptoki);
+        hCryptoki = NULL;
+    }
+
+    return rv;
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::Initialize(CK_VOID_PTR pInitArgs)
+{
+    return pFunctionList->C_Initialize(pInitArgs);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::Finalize(CK_VOID_PTR pReserved)
+{
+    return pFunctionList->C_Finalize(pReserved);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::GetFunctionList(CK_FUNCTION_LIST_PTR_PTR ppFunctionList)
+{
+    return pFunctionList->C_GetFunctionList(ppFunctionList);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::GetInfo(CK_INFO_PTR pInfo)
+{
+    return pFunctionList->C_GetInfo(pInfo);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::GetSlotList(CK_SLOT_ID_PTR pSlotList, CK_ULONG_PTR pulCount)
+{
+    return pFunctionList->C_GetSlotList(FALSE, pSlotList, pulCount);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::GetSlotInfo(CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo)
+{
+    return pFunctionList->C_GetSlotInfo(slotID, pInfo);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::GetTokenList(CK_SLOT_ID_PTR pTokenList, CK_ULONG_PTR pulCount)
+{
+    return pFunctionList->C_GetSlotList(TRUE, pTokenList, pulCount);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::GetTokenInfo(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo)
+{
+    return pFunctionList->C_GetTokenInfo(slotID, pInfo);
+}
+//---------------------------------------------------------------------------
+CK_RV PKI_Cryptoki::WaitForSlotEvent(CK_FLAGS flags
+    , CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pReserved)
+{
+    return pFunctionList->C_WaitForSlotEvent(flags, pSlot, pReserved);
+}
+//---------------------------------------------------------------------------
+
+
+
+Trackback: http://tb.blog.csdn.net/TrackBack.aspx?PostId=26872

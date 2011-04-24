@@ -1,0 +1,35 @@
+/****************************************************************************
+* Unit name:   bDBGrid_ExcelExport
+* Description: export to MS Excel
+* File name:   bDBGrid_ExcelExport.h
+* Compilers:   C++ Builder 2010 
+* String type: Ansi, Unicode
+* Libraries:   WinAPI, Stl, XLib
+* Author:      Alca
+* E-mail:      dr.web.agent@gmail.com
+* Created:     23.11.2010 16:11:03
+* Version:     1.0.0.0 Debug
+*
+*****************************************************************************/
+
+
+#ifndef xVCL_bDBGrid_ExcelExportH
+#define xVCL_bDBGrid_ExcelExportH
+//---------------------------------------------------------------------------
+#include <xVCL/xCommon.h>
+#include <JvDBUltimGrid.hpp>
+#include <xVCL/Ole/CxExcel.h>
+//---------------------------------------------------------------------------
+#define xSPECIAL_FOR_SAVITSKIY 1	//it must remove from working code
+//---------------------------------------------------------------------------
+//TODO: bDBGrid_ExcelExport (export from DBGrid to MS Excel)
+BOOL bDBGrid_ExcelExport(
+	TJvDBUltimGrid *dbgrdGrid, 
+	BOOL            bIsSilent,
+	BOOL            bIsPortraitOrientation,
+	BOOL            bIsLineNumbering, 
+	INT             iFontSize,
+	BOOL            bIsPrintPreview
+);
+//---------------------------------------------------------------------------
+#endif	//xVCL_bDBGrid_ExcelExportH
