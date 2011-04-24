@@ -1,0 +1,35 @@
+/**********************************************************************
+*	bDBGrid_LineNumbering -
+*
+***********************************************************************/
+
+
+#include <ADODB.hpp>
+#include <DB.hpp>
+#include <DBGrids.hpp>
+
+//---------------------------------------------------------------------------
+//TODO: bDBGrid_LineNumbering 
+BOOL bDBGrid_LineNumbering(TDBGrid *pDBGrid, const TRect &Rect, const String &csColumnTitleCaption, TColumn *pColumn) {
+	/*DEBUG*/xASSERT_RET(NULL != pDBGrid,                         FALSE);
+	/*DEBUG*/// Rect - n/a
+	/*DEBUG*/xASSERT_RET(false == csColumnTitleCaption.IsEmpty(), FALSE);
+	/*DEBUG*/xASSERT_RET(NULL  != pColumn,                        FALSE);
+
+	xCHECK_RET(0 > pDBGrid->DataSource->DataSet->RecNo, TRUE);
+
+	if (csColumnTitleCaption == pColumn->Title->Caption) {
+		INT iLineNo = pDBGrid->DataSource->DataSet->RecNo;
+
+		////pDBGrid->Canvas->Brush->Color = clYellow;
+		////pDBGrid->Canvas->Font->Color  = clBlack;
+		////pDBGrid->Canvas->TextOut(Rect.Left + 2, Rect.Top, IntToStr(iLineNo));
+		pDBGrid->Canvas->TextOut(Rect.Width() / 4 + 2, Rect.Top, IntToStr(iLineNo));
+		
+		//TODO: запоминание номера строки
+		
+	}
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------

@@ -1,0 +1,28 @@
+/****************************************************************************
+* Class name:  bAdoQuery_Update
+* Description: update records
+* File name:   bAdoQuery_Update.h
+* Compilers:   C++ Builder 2010
+* String type: Ansi, Unicode
+* Libraries:   WinAPI, Stl, XLib
+* Author:      Alca
+* E-mail:      dr.web.agent@gmail.com
+* Created:     10.12.2010 10:50:48
+* Version:     1.0.0.0 Debug
+*
+*****************************************************************************/
+
+
+#ifndef xVCL_bAdoQuery_UpdateH
+#define xVCL_bAdoQuery_UpdateH
+//---------------------------------------------------------------------------
+#include <xVCL/xCommon.h>
+//---------------------------------------------------------------------------
+//TODO: bAdoQuery_Update ()
+BOOL bAdoQuery_Update(
+	TADOQuery *pAQ
+);
+//---------------------------------------------------------------------------
+#endif	//xVCL_bAdoQuery_UpdateH
+
+

@@ -1,0 +1,33 @@
+/****************************************************************************
+* Class name:  bAdoQuery_Update
+* Description: update records
+* File name:   bAdoQuery_Update.cpp
+* Compilers:   C++ Builder 2010
+* String type: Ansi, Unicode
+* Libraries:   WinAPI, Stl, XLib
+* Author:      Alca
+* E-mail:      dr.web.agent@gmail.com
+* Created:     10.12.2010 10:50:48
+* Version:     1.0.0.0 Debug
+*
+*****************************************************************************/
+
+
+#include "bAdoQuery_Update.h"
+
+
+//---------------------------------------------------------------------------
+//TODO: - bAdoQuery_Update (COMMENTS)
+BOOL bAdoQuery_Update(TADOQuery *pAQ) {
+	/*DEBUG*/xASSERT_RET(NULL != pAQ, FALSE);
+
+	TBookmark bmSavePlace = pAQ->GetBookmark();
+
+	pAQ->Requery();
+
+	pAQ->GotoBookmark(bmSavePlace);
+	pAQ->FreeBookmark(bmSavePlace);	
+
+	return TRUE;
+}
+//---------------------------------------------------------------------------
