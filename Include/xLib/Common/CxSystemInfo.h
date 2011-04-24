@@ -25,16 +25,16 @@ class CxSystemInfo : public CxNonCopyable {
             otWindows95,                //
             otWindows98,                //
             otWindowsNT,                //
-            otWindows2000,                //5.0
+            otWindows2000,              //5.0
             otWindowsXP,                //5.1
-            otWindowsXPProx64Edition,    //5.2
+            otWindowsXPProx64Edition,   //5.2
             otWindowsServer2003,        //5.2
             otWindowsHomeServer,        //5.2
-            otWindowsServer2003R2,        //5.2
-            otWindowsVista,                //6.0
+            otWindowsServer2003R2,      //5.2
+            otWindowsVista,             //6.0
             otWindowsServer2008,        //6.0
-            otWindowsServer2008R2,        //6.1
-            otWindows7,                    //6.1
+            otWindowsServer2008R2,      //6.1
+            otWindows7,                 //6.1
 
             //nix
             otLinux,

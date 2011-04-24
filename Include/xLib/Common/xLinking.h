@@ -11,7 +11,7 @@
 #ifndef xLib_Common_xLinkingH
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
-#if defined(xIS_AUTO_LINCKAGE) && defined (_MSC_VER) && !defined(_LIB)
+#if defined(xIS_AUTO_LINCKAGE) && defined (xCOMPILER_MS) && !defined(_LIB)
     #if defined(NDEBUG)
         //release
         #if defined(UNICODE) || defined(_UNICODE)

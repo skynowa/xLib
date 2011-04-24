@@ -77,7 +77,7 @@ CxStdioFile::bOpen(const tString &csFilePath, const EOpenMode omMode) {
 //DONE: bReopen (reopen with different file or mode)
 BOOL
 CxStdioFile::bReopen(const tString &csFilePath, const EOpenMode omMode) {
-    /*DEBUG*/xASSERT_RET(FALSE == bIsValid(),                       FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),                       FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsValidName(csFilePath), FALSE);
     /*DEBUG*/// omMode - n/a
@@ -96,7 +96,7 @@ CxStdioFile::bAttach(FILE *pflFile) {
     /*DEBUG*/// _m_pFile - n/a
     /*DEBUG*/// pflFile  - n/a
 
-    xCHECK_DO(FALSE != bIsValid(), bClose());
+    xCHECK_DO(TRUE == bIsValid(), bClose());
 
     _m_pFile = pflFile;
 

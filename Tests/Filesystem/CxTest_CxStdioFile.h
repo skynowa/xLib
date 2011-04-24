@@ -108,7 +108,7 @@ CxTest_CxStdioFile::bUnit() {
         xASSERT(FALSE != m_bRes);
 
         m_bRes = _F.bIsValid();
-        xASSERT(FALSE == m_bRes);
+        xASSERT(FALSE != m_bRes);
     }
 
     //-------------------------------------

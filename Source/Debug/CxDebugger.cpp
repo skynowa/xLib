@@ -81,9 +81,9 @@ CxDebugger::bBreak() {
     /*DEBUG*/// n/a
 
 #if defined(xOS_WIN)
-    #if defined(_MSC_VER)
+    #if defined(xCOMPILER_MS)
         _asm {int 3}
-    #elif defined(__MINGW32__)
+    #elif defined(xCOMPILER_MINGW32)
         asm("int 3");
     #else
         abort();
