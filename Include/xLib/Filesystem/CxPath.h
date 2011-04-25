@@ -15,7 +15,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxPath : public CxNonCopyable {
-    public:    
+    public:
         static tString sGetExe      ();
         static tString sGetExeDir   ();
         #if defined(xOS_WIN)
@@ -28,11 +28,11 @@ class CxPath : public CxNonCopyable {
         static tString sGetExt      (const tString &csFilePath);
 
         #if defined(xOS_WIN)
-           static tString sSetDrive    (const tString &csFilePath, const tString &csDrivePath);
+        static tString sSetDrive    (const tString &csFilePath, const tString &csDrivePath);
         #endif
-        static tString sSetDir      (const tString &csFilePath, const tString &csDirPath); 
+        static tString sSetDir      (const tString &csFilePath, const tString &csDirPath);
         static tString sSetFullName (const tString &csFilePath, const tString &csFullName);
-        static tString sSetName     (const tString &csFilePath, const tString &csName); 
+        static tString sSetName     (const tString &csFilePath, const tString &csName);
         static tString sSetExt      (const tString &csFilePath, const tString &csExt);
 
         static tString sRemoveExt   (const tString &csFilePath);
@@ -40,7 +40,7 @@ class CxPath : public CxNonCopyable {
 
         //normalize
         static BOOL    bIsValidName (const tString &csFilePath);
-        
+
         static tString sToWin       (const tString &csFilePath, BOOL bIsSlashAtEnd);
         static tString sToNix       (const tString &csFilePath, BOOL bIsSlashAtEnd);
         static tString sToCurrentOs (const tString &csFilePath, BOOL bIsSlashAtEnd);    //TODO: make test
@@ -52,9 +52,9 @@ class CxPath : public CxNonCopyable {
         static tString sSlashAppend (const tString &csDirPath);
         static tString sSlashRemove (const tString &csDirPath);
 
-    private:       
+    private:
                        CxPath       ();
-        virtual        ~CxPath       ();
+        virtual       ~CxPath       ();
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Fso_CxPathH

@@ -39,7 +39,7 @@ class CxProfiler : public CxNonCopyable {
 
     private:
         BOOL          _m_bRes;
-        EMode         _m_pmModeNow;
+        const EMode   _m_pmModeNow;
         BOOL          _m_bIsStarted;
         CxFileLog     _flLog;
 

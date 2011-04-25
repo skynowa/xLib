@@ -98,7 +98,7 @@ CxProfiler::bStart() {
                     timeval tv = {0};
                     gettimeofday(&tv, NULL);
 
-                    _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) / 1000000.0;
+                    _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
                 }
                 break;
         #endif
