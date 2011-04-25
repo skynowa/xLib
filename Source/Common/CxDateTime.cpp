@@ -15,7 +15,7 @@
 
 
 /****************************************************************************
-*    public: constructors, destructor    
+*    public: constructors, destructor
 *
 *****************************************************************************/
 
@@ -35,7 +35,7 @@ CxDateTime::CxDateTime() :
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-//TODO: CxDateTime (constructor)
+//DONE: CxDateTime (constructor)
 CxDateTime::CxDateTime(const tString &csDT, EFormatType ftFormat) :
     _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
@@ -73,7 +73,7 @@ CxDateTime::CxDateTime(const CxDateTime &cdtDT) :
 {
     /*DEBUG*/
 
-    _m_bRes = bSet(cdtDT._m_usYear, cdtDT._m_usMonth,  cdtDT._m_usDay, 
+    _m_bRes = bSet(cdtDT._m_usYear, cdtDT._m_usMonth,  cdtDT._m_usDay,
                    cdtDT._m_usHour, cdtDT._m_usMinute, cdtDT._m_usSecond, cdtDT._m_usMillisecond);
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
@@ -130,7 +130,7 @@ CxDateTime::CxDateTime(USHORT usYear, USHORT usMonth, USHORT usDay) :
 
     _m_bRes = bSet(usYear, usMonth, usDay, 0, 0, 0, 0);
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
-} 
+}
 //---------------------------------------------------------------------------
 //DONE: CxDateTime (constructor)
 CxDateTime::CxDateTime(USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond) :
@@ -151,14 +151,14 @@ CxDateTime::CxDateTime(USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHou
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxDateTime (destructor)
-CxDateTime::~CxDateTime() { 
+CxDateTime::~CxDateTime() {
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*    public: comparison operators    
+*    public: comparison operators
 *
 *****************************************************************************/
 
@@ -240,7 +240,7 @@ CxDateTime::operator = (const CxDateTime &cdtDT) {
 }
 //--------------------------------------------------------------------------
 //DONE: operator = ()
-#ifdef __BORLANDC__
+#ifdef xCOMPILER_CODEGEAR
 const CxDateTime &
 CxDateTime::operator = (const TDateTime &cdtDT) {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), *this);
@@ -256,7 +256,7 @@ CxDateTime::operator = (const TDateTime &cdtDT) {
 
     cdtDT.DecodeDate(&usYear, &usMonth, &usDay);
     /*DEBUG*/// n/a
-    
+
     cdtDT.DecodeTime(&usHour, &usMinute, &usSecond, &usMillisecond);
     /*DEBUG*/// n/a
 
@@ -304,7 +304,7 @@ CxDateTime::operator += (const CxDateTime &cdtDT) {
     /*DEBUG*/
 
     _m_ullDateTimeInMSec += cdtDT._m_ullDateTimeInMSec;
-    
+
     _m_bRes = bSet(_m_ullDateTimeInMSec);
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return *this);
 
@@ -328,7 +328,7 @@ CxDateTime::operator -= (const CxDateTime &cdtDT) {
 
 
 /****************************************************************************
-*    public: 
+*    public:
 *
 *****************************************************************************/
 
@@ -358,7 +358,7 @@ CxDateTime::usGetDayOfWeek() const {
 
     USHORT usRes      = 0;
     tm     tmTimeInfo = {0};
-    
+
     tmTimeInfo.tm_year = _m_usYear  - 1900;
     tmTimeInfo.tm_mon  = _m_usMonth - 1;
     tmTimeInfo.tm_mday = _m_usDay;
@@ -513,20 +513,20 @@ CxDateTime::sFormat(EFormatType ftFormat) const {
                         sGetWeekDayStr(usGetDayOfWeek(), TRUE).c_str(), _m_usDay, CxDateTime::sGetMonthStr(_m_usMonth, TRUE).c_str(), _m_usYear, _m_usHour, _m_usMinute, _m_usSecond);
             }
             break;
-        
+
         default: {
                 /*DEBUG*/xASSERT_RET(FALSE, tString());
             }
             break;
     }
-    
+
     return sRes;
 }
 //--------------------------------------------------------------------------
 
 
 /****************************************************************************
-*    public: static    
+*    public: static
 *
 *****************************************************************************/
 
@@ -643,12 +643,12 @@ CxDateTime::i64FiletimeToInt64(const FILETIME &cftTime) {
 //--------------------------------------------------------------------------
 //DONE: usDaysInMonth
 /*static*/
-USHORT 
+USHORT
 CxDateTime::usDaysInMonth(USHORT usYear, USHORT usMonth) {
     /*DEBUG*/
 
     xCHECK_RET(2 == usMonth && bIsLeapYear(usYear), 29);
-        
+
     const CxArray<USHORT, 13> causMonthsDays = {{/*31*/0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}};
 
     USHORT usRes = 0;
@@ -674,7 +674,7 @@ CxDateTime::bIsLeapYear(USHORT usYear) {
 *
 *****************************************************************************/
 
-//--------------------------------------------------------------------------- 
+//---------------------------------------------------------------------------
 //DONE: sGetZodiacSign (sign of the zodiac by date)
 /*
 NOTE: signs of the zodiac
@@ -707,46 +707,46 @@ CxDateTime::sGetZodiacSign(USHORT usMonth, USHORT usDay) {
     xCHECK_RET(usMonth == 3 && usDay >= 21,  xT("Овен"));
     xCHECK_RET(usMonth == 4 && usDay <= 20,  xT("Овен"));
 
-    //Телец    |  U+2649  |  21 апреля   — 21 мая     
+    //Телец    |  U+2649  |  21 апреля   — 21 мая
     xCHECK_RET(usMonth == 4 && usDay >= 21,  xT("Телец"));
     xCHECK_RET(usMonth == 5 && usDay <= 21,  xT("Телец"));
 
-    //Близнецы |  U+264A  |  22 мая      — 21 июня     
+    //Близнецы |  U+264A  |  22 мая      — 21 июня
     xCHECK_RET(usMonth == 5 && usDay >= 22,  xT("Близнецы"));
     xCHECK_RET(usMonth == 6 && usDay <= 21,  xT("Близнецы"));
 
-    //Рак        |  U+264B  |  22 июня     — 23 июля     
+    //Рак        |  U+264B  |  22 июня     — 23 июля
     xCHECK_RET(usMonth == 6 && usDay >= 22,  xT("Рак"));
     xCHECK_RET(usMonth == 7 && usDay <= 23,  xT("Рак"));
 
-    //Лев        |  U+264С  |  24 июля     — 23 августа  
+    //Лев        |  U+264С  |  24 июля     — 23 августа
     xCHECK_RET(usMonth == 7 && usDay >= 24,  xT("Лев"));
     xCHECK_RET(usMonth == 8 && usDay <= 23,  xT("Лев"));
 
-    //Дева        |  U+264D  |  24 августа  — 23 сентября 
+    //Дева        |  U+264D  |  24 августа  — 23 сентября
     xCHECK_RET(usMonth == 8 && usDay >= 24,  xT("Дева"));
     xCHECK_RET(usMonth == 9 && usDay <= 23,  xT("Дева"));
 
-    //Весы        |  U+264E  |  24 сентября — 23 октября  
+    //Весы        |  U+264E  |  24 сентября — 23 октября
     xCHECK_RET(usMonth == 9 && usDay >= 24,  xT("Весы"));
     xCHECK_RET(usMonth == 10 && usDay <= 23, xT("Весы"));
 
-    //Скорпион |  U+264F  |  24 октября  — 22 ноября   
+    //Скорпион |  U+264F  |  24 октября  — 22 ноября
     xCHECK_RET(usMonth == 10 && usDay >= 24, xT("Скорпион"));
     xCHECK_RET(usMonth == 11 && usDay <= 22, xT("Скорпион"));
 
-    //Стрелец  |  U+2650  |  23 ноября   — 21 декабря  
+    //Стрелец  |  U+2650  |  23 ноября   — 21 декабря
     xCHECK_RET(usMonth == 11 && usDay >= 23, xT("Стрелец"));
     xCHECK_RET(usMonth == 12 && usDay <= 21, xT("Стрелец"));
-    //Козерог  |  U+2651  |  22 декабря  — 20 января   
+    //Козерог  |  U+2651  |  22 декабря  — 20 января
     xCHECK_RET(usMonth == 12 && usDay >= 22, xT("Козерог"));
     xCHECK_RET(usMonth == 1 && usDay <= 20,  xT("Козерог"));
 
-    //Водолей  |  U+2652  |  21 января   — 19 февраля  
+    //Водолей  |  U+2652  |  21 января   — 19 февраля
     xCHECK_RET(usMonth == 1 && usDay >= 21,  xT("Водолей"));
     xCHECK_RET(usMonth == 2 && usDay <= 19,  xT("Водолей"));
 
-    //Рыбы        |  U+2653  |  20 февраля  — 20 марта    
+    //Рыбы        |  U+2653  |  20 февраля  — 20 марта
     xCHECK_RET(usMonth == 2 && usDay >= 20,  xT("Рыбы"));
     xCHECK_RET(usMonth == 3 && usDay <= 20,  xT("Рыбы"));
 
@@ -756,7 +756,7 @@ CxDateTime::sGetZodiacSign(USHORT usMonth, USHORT usDay) {
 }
 //---------------------------------------------------------------------------
 //DONE: sGetMonthStr ()
-/*static*/ 
+/*static*/
 tString
 CxDateTime::sGetMonthStr(USHORT usMonth, BOOL bIsShortName) {
     /*DEBUG*/// usMonth      - n/a
@@ -764,28 +764,28 @@ CxDateTime::sGetMonthStr(USHORT usMonth, BOOL bIsShortName) {
 
     xCHECK_DO(12 < usMonth, usMonth = 12);
     xCHECK_DO(1 > usMonth,  usMonth = 1);
-    
+
     tString sRes;
 
     if (FALSE == bIsShortName) {
         //monthes numbering: 1-12
         const CxArray<tString, 12> casLongMonths = {{
-            xT("January"), 
-            xT("February"), 
-            xT("March"),    
-            xT("April"),    
-            xT("May"),      
-            xT("June"),     
-            xT("July"),     
-            xT("August"),   
+            xT("January"),
+            xT("February"),
+            xT("March"),
+            xT("April"),
+            xT("May"),
+            xT("June"),
+            xT("July"),
+            xT("August"),
             xT("September"),
-            xT("October"),   
-            xT("November"), 
+            xT("October"),
+            xT("November"),
             xT("December")
         }};
-        
+
         sRes = casLongMonths[usMonth - 1];
-    } 
+    }
     else {
         //monthes numbering: 1-12
         const CxArray<tString, 12> casShortMonths = {{
@@ -800,9 +800,9 @@ CxDateTime::sGetMonthStr(USHORT usMonth, BOOL bIsShortName) {
             xT("Sep"),
             xT("Oct"),
             xT("Nov"),
-            xT("Dec") 
+            xT("Dec")
         }};
-    
+
         sRes = casShortMonths[usMonth - 1];
     }
 
@@ -817,20 +817,20 @@ CxDateTime::usGetMonthNum(const tString &csMonth, BOOL bIsShortName) {
 
     //monthes numbering: 1-12
     const CxArray<tString, 12> casLongMonths = {{
-        xT("January"), 
-        xT("February"), 
-        xT("March"),   
-        xT("April"),   
-        xT("May"),   
-        xT("June"),     
-        xT("July"),     
-        xT("August"),   
-        xT("September"), 
-        xT("October"),  
-        xT("November"),  
+        xT("January"),
+        xT("February"),
+        xT("March"),
+        xT("April"),
+        xT("May"),
+        xT("June"),
+        xT("July"),
+        xT("August"),
+        xT("September"),
+        xT("October"),
+        xT("November"),
         xT("December")
     }};
-    
+
     //monthes numbering: 1-12
     const CxArray<tString, 12> casShortMonths = {{
         xT("Jan"),
@@ -856,7 +856,7 @@ CxDateTime::usGetMonthNum(const tString &csMonth, BOOL bIsShortName) {
 }
 //---------------------------------------------------------------------------
 //DONE: sGetWeekDayStr ()
-/*static*/ 
+/*static*/
 tString
 CxDateTime::sGetWeekDayStr(USHORT usDay, BOOL bIsShortName) {
     /*DEBUG*/// usDay       - n/a
@@ -866,19 +866,19 @@ CxDateTime::sGetWeekDayStr(USHORT usDay, BOOL bIsShortName) {
     xCHECK_DO(0 > usDay, usDay = 0);
 
     tString sRes;
-    
+
     if (FALSE == bIsShortName) {
         //days numbering: 0-6
         const CxArray<tString, 7> casLongDays = {{
-            xT("Sunday"), 
-            xT("Monday"),    
-            xT("Tuesday"),   
-            xT("Wednesday"), 
-            xT("Thursday"),  
-            xT("Friday"),    
-            xT("Saturday"),  
+            xT("Sunday"),
+            xT("Monday"),
+            xT("Tuesday"),
+            xT("Wednesday"),
+            xT("Thursday"),
+            xT("Friday"),
+            xT("Saturday"),
         }};
-    
+
         sRes = casLongDays[usDay];
     } else {
         //days numbering: 0-6
@@ -891,10 +891,10 @@ CxDateTime::sGetWeekDayStr(USHORT usDay, BOOL bIsShortName) {
             xT("Fri"),
             xT("Sat")
         }};
-    
-        sRes = casShortDays[usDay];        
+
+        sRes = casShortDays[usDay];
     }
-    
+
     return sRes;
 }
 //---------------------------------------------------------------------------
@@ -906,15 +906,15 @@ CxDateTime::usGetWeekDayNum(const tString &csDay, BOOL bIsShortName) {
 
     //days numbering: 0-6
     const CxArray<tString, 7> casLongDays = {{
-        xT("Sunday"),    
-        xT("Monday"),   
-        xT("Tuesday"),  
-        xT("Wednesday"), 
-        xT("Thursday"),  
-        xT("Friday"),    
+        xT("Sunday"),
+        xT("Monday"),
+        xT("Tuesday"),
+        xT("Wednesday"),
+        xT("Thursday"),
+        xT("Friday"),
         xT("Saturday")
     }};
-    
+
     //days numbering: 0-6
     const CxArray<tString, 7> casShortDays = {{
         xT("Sun"),
@@ -923,7 +923,7 @@ CxDateTime::usGetWeekDayNum(const tString &csDay, BOOL bIsShortName) {
         xT("Wed"),
         xT("Thu"),
         xT("Fri"),
-        xT("Sat") 
+        xT("Sat")
     }};
 
     for (size_t i = 0; i < casLongDays.size(); ++ i) {
@@ -937,7 +937,7 @@ CxDateTime::usGetWeekDayNum(const tString &csDay, BOOL bIsShortName) {
 
 
 /****************************************************************************
-*    private    
+*    private
 *
 *****************************************************************************/
 
@@ -992,7 +992,7 @@ CxDateTime::_bParse(const tString &csDT, EFormatType ftFormat, CxDateTime *pdtDT
                 (*pdtDT)._m_usMinute = CxString::lexical_cast<USHORT>( vecsDates.at(5) );   //05(5)
                 (*pdtDT)._m_usSecond = CxString::lexical_cast<USHORT>( vecsDates.at(6) );   //49(6)
 
-                #if xTEMP_DISABLED 
+                #if xTEMP_DISABLED
                     xTRACE(xT("-----------------------------------"));
                     xTRACE(xFUNCTION);
                     xTRACEV(xT("_m_usDay:    %i"), (*pdtDT)._m_usDay);
@@ -1003,8 +1003,8 @@ CxDateTime::_bParse(const tString &csDT, EFormatType ftFormat, CxDateTime *pdtDT
                     xTRACEV(xT("_m_usSecond: %i"), (*pdtDT)._m_usSecond);
                     xTRACE(xT("-----------------------------------"));
                 #endif
-                
-                
+
+
             }
             break;
 
@@ -1023,7 +1023,7 @@ How to convert local system time to UTC or GMT.
 
 May 28th
 
-Posted by Jijo Raj in Codeproject 
+Posted by Jijo Raj in Codeproject
 
 2 comments
 
