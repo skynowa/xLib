@@ -1,6 +1,12 @@
+#dirs and files for ignoring
+
 !Backups
 _Resbin
 FAQ
 Temp
 TODO.txt
 xLib.zip
+Contrib/Eclipse (win)/Debug/
+Contrib/Eclipse (win)/Release/
+Contrib/Eclipse (linux)/Debug/
+Contrib/Eclipse (linux)/Release/

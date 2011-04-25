@@ -22,19 +22,15 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxProfiler (constructor)
-CxProfiler::CxProfiler(const tString &csLogFilePath, EMode pmMode) :
+CxProfiler::CxProfiler(const tString &csLogFilePath, const EMode pmMode) :
     _m_bRes      (FALSE),
     _m_pmModeNow (pmMode),
     _m_bIsStarted(FALSE),
     _flLog       (csLogFilePath, CxFileLog::lsDefaultSize)
 {
     /*DEBUG*/xASSERT_DO(false == csLogFilePath.empty(), return);
-#if defined(xOS_WIN)
-    /*DEBUG*/xASSERT_DO(pmTickCount == pmMode || pmPerformanceCount == pmMode || pmThreadTimes == pmMode || pmClock == pmMode || pmTime == pmMode, return);
-#elif defined(xOS_LINUX)
-    /*DEBUG*/xASSERT_DO(pmGetTimeOfDay == pmMode || pmClock == pmMode || pmTime == pmMode, return);
-#endif
-    
+    /*DEBUG*/// pmMode - n/a
+
     _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
@@ -49,10 +45,10 @@ CxProfiler::~CxProfiler() {
 BOOL
 CxProfiler::bStart() {
     /*DEBUG*/xASSERT_RET(FALSE == _m_bIsStarted, FALSE);
-    
+
     _m_bRes = _bResetData();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-    
+
 #if defined(xOS_WIN)
     _m_bRes = ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
     /*DEBUG*/xASSERT(FALSE != _m_bRes);
@@ -60,7 +56,7 @@ CxProfiler::bStart() {
     ::Sleep(100);
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
-#endif    
+#endif
 
     switch (_m_pmModeNow) {
         case pmClock: {
@@ -99,14 +95,14 @@ CxProfiler::bStart() {
 
         #elif defined(xOS_LINUX)
             case pmGetTimeOfDay: {
-                    struct timeval tv = {0};
+                    timeval tv = {0};
                     gettimeofday(&tv, NULL);
 
                     _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) / 1000000.0;
                 }
                 break;
         #endif
-        
+
         default: {
                 /*DEBUG*/xASSERT_MSG_RET(FALSE, xT("Unknown mode"), FALSE);
             }
@@ -124,13 +120,13 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bIsStarted, FALSE);
 
     tString sTimeString = xT("0:00:00:000");
-    
+
     switch (_m_pmModeNow) {
         case pmClock: {
                 _m_ctClocksStop = std::clock();
                 /*DEBUG*/xASSERT_RET(- 1 != _m_ctClocksStop, FALSE);
 
-                sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / (CLOCKS_PER_SEC / 1000) ).sFormat(CxDateTime::ftTime);
+                sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / (CLOCKS_PER_SEC * 0.001) ).sFormat(CxDateTime::ftTime);
             }
             break;
 
@@ -138,7 +134,6 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
                 _m_dtTimesStop = CxDateTime::dtGetCurrent();
                 /*DEBUG*/// n/a
 
-                //--/*DEBUG*/xASSERT_MSG(_m_dtTimesStop >= _m_dtTimesStart, CxString::sFormat(xT("_m_dtTimesStop: %s, _m_dtTimesStart: %s"), _m_dtTimesStop.sFormat(CxDateTime::ftDateTime).c_str(), _m_dtTimesStart.sFormat(CxDateTime::ftDateTime).c_str()));
                 sTimeString = (_m_dtTimesStop - _m_dtTimesStart).sFormat(CxDateTime::ftTime);
             }
             break;
@@ -170,10 +165,10 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
 
         #elif defined(xOS_LINUX)
             case pmGetTimeOfDay: {
-                    struct timeval tv = {0};
+                    timeval tv = {0};
                     gettimeofday(&tv, NULL);
 
-                    _m_dMicrosecStop = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) / 1000000.0;
+                    _m_dMicrosecStop = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
 
                     sTimeString = CxString::sFormat(xT("%.6lf (sec)"), _m_dMicrosecStop - _m_dMicrosecStart);
                 }
@@ -196,7 +191,7 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
     sRes = CxString::sFormatV(pcszComment, palArgs);
 
     va_end(palArgs);
-    
+
     //-------------------------------------
     //write to log
     _m_bRes = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRes.c_str());
@@ -220,7 +215,7 @@ CxProfiler::bPulse(LPCTSTR pcszComment, ...) {
     sRes = CxString::sFormatV(pcszComment, palArgs);
 
     va_end(palArgs);
-    
+
     //-------------------------------------
     //stop, start
     _m_bRes = bStop(sRes.c_str());
@@ -235,7 +230,7 @@ CxProfiler::bPulse(LPCTSTR pcszComment, ...) {
 
 
 /****************************************************************************
-*    private    
+*    private
 *
 *****************************************************************************/
 
@@ -251,14 +246,14 @@ CxProfiler::_bResetData() {
 #endif
 
     _m_bIsStarted                       = FALSE;
-    
+
     //pmClock
     xSTRUCT_ZERO(_m_ctClocksStart);
     xSTRUCT_ZERO(_m_ctClocksStop);
 
     //pmTime
-    //_m_dtTimesStart - n/a
-    //_m_dtTimesStop  - n/a
+    _m_dtTimesStart                     = 0ULL;
+    _m_dtTimesStop                      = 0ULL;
 
 #if defined(xOS_WIN)
     //pmGetTickCount
@@ -293,54 +288,3 @@ CxProfiler::_bResetData() {
     return TRUE;
 }
 //--------------------------------------------------------------------------
-
-
-/*
-#include <time.h>
-...
-...
-time_t startTime;
-startTime = time(NULL);
-// do some long process...
-time_t stopTime;
-stopTime = time(NULL);
-time_t elapsedTime = stopTime - startTime;
-printf("The number elapsed seconds is %ld",elapsedTime);
-...
-*/
-
-/*
-__int64 GetCPUClock()
-{
-    __int64 res;
-    __asm
-    {
-        rdtsc
-        mov dword ptr res, eax
-        mov dword ptr res+4, edx
-    }
-    return res;
-}
-
-__int64 g_FuncTime = 0; //���� ����� �������� ��������� ����� ���������� F.
-
-BOOL F()
-{
-    __int64 Time = GetCPUClock();
-    ///...
-    __int64 Difference = GetCPUClock() - Time;
-    g_FuncTime += Difference;
-}
-
-
-#include <stdio.h>
-INT main()
-{
-
-    __int64 Time = GetCPUClock();
-    //����� ����
-    __int64 Difference = GetCPUClock() - Time;
-
-    printf("%f\n", (double)Difference);
-}
-*/

@@ -16,32 +16,30 @@
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Common/CxDateTime.h>
 //---------------------------------------------------------------------------
-//TODO: CxProfiler
 class CxProfiler : public CxNonCopyable {
     public:
-        //Perfomance mode
         enum EMode {
-            pmClock,            //std::clock (msec)
-            pmTime,                //xLib::CxDateTime
+            pmClock,                //std::clock (msec)
+            pmTime,                 //xLib::CxDateTime
         #if defined(xOS_WIN)
-            pmTickCount,        //::GetTickCount (msec)
-            pmPerformanceCount,    //::QueryPerformanceFrequency (msec)
-            pmThreadTimes,        //::GetThreadTimes (msec)
+            pmTickCount,            //::GetTickCount (msec)
+            pmPerformanceCount,     //::QueryPerformanceFrequency (msec)
+            pmThreadTimes,          //::GetThreadTimes (msec)
         #elif defined(xOS_LINUX)
-            pmGetTimeOfDay      //gettimeofday (microsec)
+            pmGetTimeOfDay          //gettimeofday (microsec)
         #endif
         };
-        
-                      CxProfiler(const tString &csLogFilePath, EMode pmMode); //TODO: csFileName + iPerfomMode
+
+                      CxProfiler(const tString &csLogFilePath, const EMode pmMode); //TODO: csFileName + iPerfomMode
         virtual      ~CxProfiler();
 
-        BOOL          bStart   ();
-        BOOL          bStop    (LPCTSTR pcszComment, ...);
-        BOOL          bPulse   (LPCTSTR pcszComment, ...);   
+        BOOL          bStart    ();
+        BOOL          bStop     (LPCTSTR pcszComment, ...);
+        BOOL          bPulse    (LPCTSTR pcszComment, ...);
 
     private:
         BOOL          _m_bRes;
-        EMode          _m_pmModeNow;         
+        EMode         _m_pmModeNow;
         BOOL          _m_bIsStarted;
         CxFileLog     _flLog;
 
@@ -120,8 +118,6 @@ double time_in_seconds() {
   clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tp);
   return tp.tv_sec + .000000001 * tp.tv_nsec;
 }
-
-
 
 #endif
 */

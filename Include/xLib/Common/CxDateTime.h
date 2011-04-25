@@ -33,9 +33,9 @@ class CxDateTime {
         /*explicit*/       CxDateTime          (const CxDateTime &cdtDT);
         explicit           CxDateTime          (ULONGLONG ullMilliseconds);
                            CxDateTime          (USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond);
-                           CxDateTime          (USHORT usYear, USHORT usMonth, USHORT usDay); 
+                           CxDateTime          (USHORT usYear, USHORT usMonth, USHORT usDay);
                            CxDateTime          (USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond);
-        virtual              ~CxDateTime          (); 
+        virtual           ~CxDateTime          ();
 
         //comparison operators
         BOOL               operator ==         (const CxDateTime &cdtDT) const;
@@ -47,7 +47,7 @@ class CxDateTime {
 
         //assignment operators
         const CxDateTime  &operator =          (const CxDateTime &cdtDT);
-    #ifdef __BORLANDC__
+    #ifdef xCOMPILER_CODEGEAR
         const CxDateTime  &operator =          (const TDateTime  &cdtDT);
     #endif
         const CxDateTime  &operator =          (ULONGLONG ullMillisecond);
@@ -72,13 +72,13 @@ class CxDateTime {
 
         //formating
         tString            sFormat             (EFormatType ftFormat) const;
-        
+
         //static
         static BOOL        bIsValid            (USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMillisecond);
         static BOOL        bIsValid            (const CxDateTime &cdtDT); //TODO: tests
                BOOL        bIsValid            () const; //TODO: tests
 
-        static CxDateTime  dtGetCurrent        (); 
+        static CxDateTime  dtGetCurrent        ();
         static USHORT      usDaysInMonth       (USHORT usYear, USHORT usMonth);
         static BOOL        bIsLeapYear         (USHORT usYear);
     #if defined(xOS_WIN)
@@ -126,9 +126,9 @@ GMT работает с летнем/зимнем временем, поэтом
 //---------------------------------------------------------------------------
 __int64 i64DateTimeToSeconds(const TDateTime &dtDateTime) {
     WORD wYear, wMonth, wDay, wHour, wMin, wSec, wMSec;
-    
+
     DecodeTime(dtDateTime, wHour, wMin, wSec, wMSec);
-    
+
     return (wHour * 60 * 60) + (wMin * 60) + (wSec);
 }
 //---------------------------------------------------------------------------
@@ -174,7 +174,7 @@ typedef struct _SYSTEMTIME {
 //GetTimeFormatEx
 //GetDateFormat
 
- 
+
 /////__time64_t         _m_time;    /*__int64*/
 
 /*
