@@ -20,7 +20,7 @@ class CxString : public CxNonCopyable {
         //---------------------------------------------------------------------------
         //EColor - comsole colors
         enum EAttribute {
-            atAllOff = 0, atBold = 1, atUnderscore = 4, atBlink = 5, atReverse = 7, atConcealed  = 8,
+            atAllOff = 0, atBold = 1, atUnderscore = 4, atBlink = 5, atReverse = 7, atConcealed  = 8
         };
 
         enum EForeground {

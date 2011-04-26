@@ -32,7 +32,6 @@ CxFileLog::CxFileLog() :
 {
     /*DEBUG*/xASSERT_DO(lsLimitSize > lsDefaultMaxSize, return);
 
-    //�� ������ ���� (��� �����)
     _m_sLogPath = CxPath::sSetExt(CxPath::sGetExe(), xT("exe.log"));
 }
 //---------------------------------------------------------------------------
@@ -46,12 +45,9 @@ CxFileLog::CxFileLog(const tString &csFilePath, ULONG ulMaxFileSizeMb) :
     /*DEBUG*/xASSERT_DO(lsLimitSize > ulMaxFileSizeMb,    return);
     /*DEBUG*/xASSERT_DO(lsLimitSize > lsDefaultMaxSize,   return);
 
-    //��� ����� - �� �������� "\"
     if (tString::npos == csFilePath.find(CxConst::xSLASH)) {
-        //�� ������ ���� (��� �����)
         _m_sLogPath = CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath/* + ".log"*/;
     } else {
-        //������ ����
         _m_sLogPath = csFilePath;
     }
 }
@@ -94,7 +90,7 @@ CxFileLog::bWrite(LPCTSTR pcszFormat, ...) {
     bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omAppend);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    sfFile.iFprintf(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
+    sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
 
     return TRUE;
 }
@@ -122,7 +118,7 @@ CxFileLog::bClear() {
     bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omWrite);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    sfFile.iFprintf(xT(""));
+    sfFile.iWrite(CxConst::xSTR_EMPTY.c_str());
 
     return TRUE;
 }

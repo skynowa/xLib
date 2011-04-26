@@ -256,7 +256,7 @@ CxTest_CxStdioFile::bUnit() {
     //-------------------------------------
     //iFprintf
     {
-        INT iResFprintf = F.iFprintf(xT("%s"), xT("xxx"));
+        INT iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
         xASSERT(0 < iResFprintf);
     }
 
