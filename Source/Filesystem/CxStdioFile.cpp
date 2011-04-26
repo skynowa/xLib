@@ -898,12 +898,10 @@ BOOL
 CxStdioFile::bIsEof() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    BOOL bRes = FALSE;
-
-    bRes = static_cast<BOOL>( feof(_m_pFile) );
+    _m_bRes = static_cast<BOOL>( feof(_m_pFile) );
     /*DEBUG*/// n/a
 
-    return bRes;
+    return _m_bRes;
 }
 //---------------------------------------------------------------------------
 //DONE: bIsError (check error indicator)
@@ -911,12 +909,10 @@ BOOL
 CxStdioFile::bIsError() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    BOOL bRes = FALSE;
-
-    bRes = static_cast<BOOL>( ferror(_m_pFile) );
+    _m_bRes = static_cast<BOOL>( ferror(_m_pFile) );
     /*DEBUG*/// n/a
 
-    return bRes;
+    return _m_bRes;
 }
 //---------------------------------------------------------------------------
 //DONE: bClearErr (clear error indicators)

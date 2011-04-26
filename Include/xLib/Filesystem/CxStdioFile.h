@@ -217,7 +217,7 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bWriteFile   (const tString &csFilePath, const uString &cusStr);
 
     private:
-        BOOL             _m_bRes;
+        mutable BOOL     _m_bRes;
         FILE            *_m_pFile;
         tString          _m_sFilePath;
 
