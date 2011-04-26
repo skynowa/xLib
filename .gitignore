@@ -1,12 +1,35 @@
-#dirs and files for ignoring
+### dirs and files for ignoring ###
 
+### dirs ###
 !Backups
 _Resbin
 FAQ
 Temp
-TODO.txt
-xLib.zip
+
+### C++Builder 2010 ###
+Contrib/C++Builder 2010/Debug/
+Contrib/C++Builder 2010/Release/
+
+### Eclipse ###
 Contrib/Eclipse (win)/Debug/
 Contrib/Eclipse (win)/Release/
 Contrib/Eclipse (linux)/Debug/
 Contrib/Eclipse (linux)/Release/
+
+### VC++ 2008 ###
+Contrib/VC++ 2008/Debug/
+Contrib/VC++ 2008/Release/
+Contrib/VC++ 2008/*.ncb
+Contrib/VC++ 2008/*.suo
+Contrib/VC++ 2008/*.user
+
+### VC++ 2010 ###
+Contrib/VC++ 2010/Debug/
+Contrib/VC++ 2010/Release/
+Contrib/VC++ 2010/*.ncb
+Contrib/VC++ 2010/*.suo
+Contrib/VC++ 2010/*.user
+
+### files ###
+TODO.txt
+xLib.zip
