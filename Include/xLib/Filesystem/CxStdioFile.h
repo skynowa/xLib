@@ -54,8 +54,8 @@ class CxStdioFile : public CxNonCopyable {
         //Translation mode
     #if defined(xOS_WIN)
         enum ETranslationMode {
-            tmText   = O_TEXT,          /* file mode is text (translated) */
-            tmBinary = O_BINARY         /* file mode is binary (untranslated) */
+            tmText   = O_TEXT,
+            tmBinary = O_BINARY
         };
     #elif defined(xOS_LINUX)
         //TODO: xOS_LINUX
@@ -64,10 +64,10 @@ class CxStdioFile : public CxNonCopyable {
 
         //Access mode
         enum EAccessMode {
-            amExistence = 0,    //Existence only
-            amWrite     = 2,    //Write permission
-            amRead      = 4,    //Read permission
-            amReadWrite = 6     //Read and write permission
+            amExistence = 0,
+            amWrite     = 2,
+            amRead      = 4,
+            amReadWrite = 6
         };
 
         //file position data for the given stream
@@ -102,26 +102,26 @@ class CxStdioFile : public CxNonCopyable {
         //Permission mode
         enum EPermissionMode {
             #if defined(xOS_WIN)
-                pmRead             = _S_IREAD,                  //read permitted
-                pmWrite            = _S_IWRITE,                 //write permitted
-                pmReadWrite        = (_S_IREAD | _S_IWRITE)     //read and write
+                pmRead             = _S_IREAD,
+                pmWrite            = _S_IWRITE,
+                pmReadWrite        = (_S_IREAD | _S_IWRITE)
             #elif defined(xOS_LINUX)
-                pmSetUserId        = S_ISUID,                   //set-user-ID
-                pmSetGroupId       = S_ISGID,                   //set-group-ID
-                pmStickyBit        = S_ISVTX,                   //sticky bit
+                pmSetUserId        = S_ISUID,
+                pmSetGroupId       = S_ISGID,
+                pmStickyBit        = S_ISVTX,
 
-                pmRead             = S_IRUSR,                   //read by owner
-                pmWrite            = S_IWUSR,                   //write by owner
-                pmReadWrite        = (S_IRUSR | S_IWUSR),       //read and write by owner
-                pmExecSearch       = S_IXUSR,                   //execute/search by owner
+                pmRead             = S_IRUSR,
+                pmWrite            = S_IWUSR,
+                pmReadWrite        = (S_IRUSR | S_IWUSR),
+                pmExecSearch       = S_IXUSR,
 
-                pmReadGroup        = S_IRGRP,                   //read by group
-                pmWriteGroup       = S_IWGRP,                   //write by group
-                pmExecSearchGroup  = S_IXGRP,                   //execute/search by group
+                pmGroupRead        = S_IRGRP,
+                pmGroupWrite       = S_IWGRP,
+                pmGroupExecSearch  = S_IXGRP,
 
-                pmReadOthers       = S_IROTH,                   //read by others
-                pmWriteOthers      = S_IWOTH,                   //write by others
-                pmExecSearchOthers = S_IXOTH                    //execute/search by others
+                pmOthersRead       = S_IROTH,
+                pmOthersWrite      = S_IWOTH,
+                pmOthersExecSearch = S_IXOTH
             #endif
         };
 
@@ -139,19 +139,19 @@ class CxStdioFile : public CxNonCopyable {
         tString          sGetPath     () const;
 
         //read, write
-        size_t           uiRead       (LPVOID pvBuf,         std::size_t uiCount) const;
-        size_t           uiWrite      (const LPVOID pcvBuff, std::size_t uiCount) const;
+        size_t           uiRead       (LPVOID pvBuf,         const size_t cuiCount) const;
+        size_t           uiWrite      (const LPVOID pcvBuff, const size_t cuiCount) const;
 
-        BOOL             bReadAll     (LPVOID pvBuff,        std::size_t uiBuffSize, std::size_t uiBlockSize) const;
-        BOOL             bWriteAll    (const LPVOID pcvBuf,  std::size_t uiBuffSize, std::size_t uiBlockSize) const;
+        BOOL             bReadAll     (LPVOID pvBuff,        const size_t cuiBuffSize, const size_t uiBlockSize) const;
+        BOOL             bWriteAll    (const LPVOID pcvBuf,  const size_t cuiBuffSize, const size_t uiBlockSize) const;
 
-        BOOL             bReadAll     (uString *psBuff,       std::size_t uiBlockSize) const;
-        BOOL             bWriteAll    (const uString &csBuff, std::size_t uiBlockSize) const;
+        BOOL             bReadAll     (uString *psBuff,       const size_t cuiBlockSize) const;
+        BOOL             bWriteAll    (const uString &csBuff, size_t uiBlockSize) const;
 
-        BOOL             bReadAll     (tString *psBuff,       std::size_t uiBlockSize) const;
-        BOOL             bWriteAll    (const tString &csBuff, std::size_t uiBlockSize) const;
+        BOOL             bReadAll     (tString *psBuff,       const size_t cuiBlockSize) const;
+        BOOL             bWriteAll    (const tString &csBuff, size_t uiBlockSize) const;
 
-        BOOL             bReadLine    (LPTSTR pszStr, std::size_t uiMaxSize) const;
+        BOOL             bReadLine    (LPTSTR pszStr, const size_t cuiMaxCount) const;
         BOOL             bWriteLine   (const tString &csStr) const;
         BOOL             bWriteString (const tString &csStr) const;
 
@@ -160,18 +160,18 @@ class CxStdioFile : public CxNonCopyable {
         BOOL             bUngetChar   (TCHAR cChar);
 
         //formatting write
-        INT              iFprintf     (LPCTSTR pcszFormat, ...) const;
-        INT              iFprintfV    (LPCTSTR pcszFormat, va_list arg) const;
+        INT              iWrite       (LPCTSTR pcszFormat, ...) const;
+        INT              iWriteV      (LPCTSTR pcszFormat, va_list arg) const;
 
         //other
-        BOOL             bLocking     (ELockingMode lmMode, LONG liBytes);
-        BOOL             bSetPosition (LONG lOffset, EPointerPosition fpPos) const;
+        BOOL             bLocking     (const ELockingMode clmMode, LONG liBytes);
+        BOOL             bSetPosition (LONG lOffset, const EPointerPosition cfpPos) const;
         LONG             liGetPosition() const;
 
-        BOOL             bSetVBuff    (LPSTR pszBuff, EBufferingMode bmMode, std::size_t uiSize);
+        BOOL             bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, size_t uiSize);
 
     #if defined(xOS_WIN)
-        BOOL             bSetMode     (ETranslationMode tmMode);
+        BOOL             bSetMode     (const ETranslationMode tmMode);
     #elif defined(xOS_LINUX)
         //TODO: xOS_LINUX
     #endif
@@ -191,8 +191,8 @@ class CxStdioFile : public CxNonCopyable {
         //static
         static BOOL      bIsFile      (const tString &csFilePath);
         static BOOL      bIsExists    (const tString &csFilePath);
-        static BOOL      bAccess      (const tString &csFilePath, EAccessMode amMode);
-        static BOOL      bChmod       (const tString &csFilePath, EPermissionMode pmMode);
+        static BOOL      bAccess      (const tString &csFilePath, const EAccessMode camMode);
+        static BOOL      bChmod       (const tString &csFilePath, const EPermissionMode cpmMode);
         static BOOL      bDelete      (const tString &csFilePath);
         static BOOL      bUnlink      (const tString &csFilePath);
         static BOOL      bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);
@@ -201,15 +201,7 @@ class CxStdioFile : public CxNonCopyable {
         static tString   sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
         static ULONGLONG ullLines     (const tString &csFilePath);
 
-        //Macros
-        //FILENAME_MAX   Maximum length of file names (constant)
-        //TMP_MAX        Number of temporary files (constant)
-
-        /****************************************************************************
-        * static (all not tested)
-        *
-        *****************************************************************************/
-
+        //static (all not tested)
         static LONG      liGetSize    (const tString &csFilePath);
 
         static BOOL      bReadFile    (const tString &csFilePath, std::vector<tString> *pvecsVector);
@@ -225,7 +217,7 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bWriteFile   (const tString &csFilePath, const uString &cusStr);
 
     private:
-        mutable BOOL     _m_bRes;
+        BOOL             _m_bRes;
         FILE            *_m_pFile;
         tString          _m_sFilePath;
 
