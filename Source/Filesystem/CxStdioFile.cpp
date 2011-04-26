@@ -16,7 +16,7 @@
 
 #if defined(xOS_WIN)
     #include <xLib/Common/CxLocale.h>
-    #include <xLib/Filesystem/CxFileAttribute.h>
+    #include <xLib/Filesystem/Win/CxFileAttribute.h>
 #endif
 
 
@@ -640,7 +640,7 @@ CxStdioFile::bChmod(const tString &csFilePath, const EPermissionMode cpmMode) {
     INT iRes = etError;
 
 #if defined(xOS_WIN)
-    iRes = _tchmod(csFilePath.c_str(), pmMode);
+    iRes = _tchmod(csFilePath.c_str(), cpmMode);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
     iRes = chmod(csFilePath.c_str(), static_cast<mode_t>(cpmMode));
