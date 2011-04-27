@@ -25,21 +25,21 @@ class CxTest : public CxNonCopyable {
         TCHAR                           m_chRes;
         bool                            m_blRes;
         BOOL                            m_bRes;
-        INT                                m_iRes;
-        SHORT                            m_siRes;
-        USHORT                            m_usiRes;
+        INT                             m_iRes;
+        SHORT                           m_siRes;
+        USHORT                          m_usiRes;
         UINT                            m_uiRes;
         LONG                            m_liRes;
-        ULONG                            m_ulRes;
+        ULONG                           m_ulRes;
         LONGLONG                        m_llRes;
-        ULONGLONG                        m_ullRes;
+        ULONGLONG                       m_ullRes;
         FLOAT                           m_fRes;
-        double                            m_dRes;
-        tString                            m_sRes;
-        uString                            m_usRes;
+        double                          m_dRes;
+        tString                         m_sRes;
+        uString                         m_usRes;
         std::vector<TCHAR>              m_vecchRes;
         std::vector<tString>            m_vecsRes;
-        std::map<tString, tString>        m_mapsRes;
+        std::map<tString, tString>      m_mapsRes;
         std::multimap<tString, tString> m_mmsRes;
 
     #if defined(xOS_WIN)
@@ -49,27 +49,24 @@ class CxTest : public CxNonCopyable {
 
     #endif
 
-
                                         CxTest         ();
         virtual                        ~CxTest         ()/* = 0*/;
 
-//        BOOL                            bAdd           (const CxTest *);
-//        BOOL                            bRemove        (const CxTest *);
+//      BOOL                            bAdd           (const CxTest *);
+//      BOOL                            bRemove        (const CxTest *);
 
         BOOL                            bRun           (ULONGLONG ullLoops /*0 - infinite*/);
-        virtual BOOL                    bUnit           () = 0;
+        virtual BOOL                    bUnit          () = 0;
         BOOL                            bCreateWorkDir (const tString &csDirName);
         tString                         sGetWorkDirPath();
 
         tString                         sGetName       ();
         BOOL                            bSetName       (const tString &csTestName);
 
-
         //TODO: not enough RAM
         //TODO: not enough HDD
         //TODO: busy CPU
         //TODO: какждый макрос завернуть в try-catch
-
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxTestH

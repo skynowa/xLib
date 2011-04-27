@@ -94,8 +94,8 @@ class CxStdioFile : public CxNonCopyable {
             #elif defined(xOS_LINUX)
                 lmLock    = F_LOCK,     //Set an exclusive lock on the specified section of the file
                 lmTlock   = F_TLOCK,    //Same as F_LOCK but the call never blocks and returns an error instead if the file is already locked
-                lmUlock   = F_ULOCK,    //Unlock the indicated section of the file.  This may cause a locked section to be split into two locked sections
-                lmTest    = F_TEST      //Test the lock: return 0 if the specified section is unlocked or locked by this process; return -1, set errno to EAGAIN
+                lmTryLock = F_TEST,     //Test the lock: return 0 if the specified section is unlocked or locked by this process; return -1, set errno to EAGAIN
+                lmUnlock  = F_ULOCK     //Unlock the indicated section of the file.  This may cause a locked section to be split into two locked sections
             #endif
         };
 
@@ -182,7 +182,7 @@ class CxStdioFile : public CxNonCopyable {
         //error handling
         BOOL             bIsEof       () const;
         BOOL             bIsError     () const;
-        BOOL             bClearErr    () const;
+        BOOL             bErrorClear  () const;
 
         //closing
         BOOL             bFlush       () const;
@@ -194,10 +194,11 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bAccess      (const tString &csFilePath, const EAccessMode camMode);
         static BOOL      bChmod       (const tString &csFilePath, const EPermissionMode cpmMode);
         static BOOL      bDelete      (const tString &csFilePath);
+        static BOOL      bWipe        (const tString &csFilePath, const size_t cuiPasses);
         static BOOL      bUnlink      (const tString &csFilePath);
         static BOOL      bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);
         static BOOL      bMove        (const tString &csFilePath,     const tString &csDirPath);
-        static BOOL      bCopy        (const tString &csFromFilePath, const tString &csToFilePath);
+        static BOOL      bCopy        (const tString &csFilePathFrom, const tString &csFilePathTo);
         static tString   sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
         static ULONGLONG ullLines     (const tString &csFilePath);
 

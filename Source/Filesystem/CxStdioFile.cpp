@@ -134,7 +134,7 @@ CxStdioFile::uiRead(LPVOID pvBuff, const size_t cuiCount) const {
     size_t uiRes = 0;
 
     uiRes = fread(pvBuff, 1, cuiCount, _m_pFile);
-    /*DEBUG*/xASSERT_RET(cuiCount >= uiRes, 0);
+    /*DEBUG*/xASSERT_RET(cuiCount >= uiRes, uiRes);
 
     return uiRes;
 }
@@ -148,7 +148,7 @@ CxStdioFile::uiWrite(const LPVOID pcvBuf, const size_t cuiCount) const {
     size_t uiRes = 0;
 
     uiRes = fwrite(pcvBuf, 1, cuiCount, _m_pFile);
-    /*DEBUG*/xASSERT_RET(cuiCount == uiRes, 0);
+    /*DEBUG*/xASSERT_RET(cuiCount == uiRes, uiRes);
 
     return uiRes;
 }
@@ -572,7 +572,7 @@ CxStdioFile::bClose() {
 /*static*/
 BOOL
 CxStdioFile::bIsFile(const tString &csFilePath) {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/// csFilePath - n/a
 
     BOOL bRes = FALSE;
 
@@ -590,7 +590,7 @@ CxStdioFile::bIsFile(const tString &csFilePath) {
     struct stat stInfo = {0};
 
     INT iRes = stat/*lstat*/(csFilePath.c_str(), &stInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    xCHECK_RET(- 1 == iRes, FALSE);
 
     bRes = static_cast<BOOL>( S_ISREG(stInfo.st_mode) );
     xCHECK_RET(FALSE == bRes, FALSE);
@@ -604,6 +604,7 @@ CxStdioFile::bIsFile(const tString &csFilePath) {
 BOOL
 CxStdioFile::bIsExists(const tString &csFilePath) {
     /*DEBUG*/// csFilePath - n/a
+    xCHECK_RET(FALSE == bIsFile(csFilePath), FALSE);
 
     INT iRes       = etError;
     INT iLastError = 0;
@@ -667,6 +668,18 @@ CxStdioFile::bDelete(const tString &csFilePath) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//TODO: bWipe (wipe)
+/*static*/
+BOOL
+CxStdioFile::bWipe(const tString &csFilePath, const size_t cuiPasses) {
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/// cuiPasses - n/a
+
+    xNOT_IMPLEMENTED_RET(FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 //DONE: bUnlink (deleting)
 /*static*/
 BOOL
@@ -696,119 +709,54 @@ CxStdioFile::bRename(const tString &csOldFilePath, const tString &csNewFilePath)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bCopy (coping)
+//DONE: bCopy (copy)
 //TODO: FilePath -> DirPath
 /*static*/
 BOOL
-CxStdioFile::bCopy(const tString &csFromFilePath, const tString &csToFilePath) {
-    /*DEBUG*/xASSERT_RET(false == csFromFilePath.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(false == csToFilePath.empty(),   FALSE);
+CxStdioFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo) {
+    /*DEBUG*/xASSERT_RET(false == csFilePathFrom.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePathTo.empty(),   FALSE);
 
-    BOOL        bRes     = FALSE;
-    size_t uiReaded = 0;
-    size_t uiWrited = 0;
-    uString     sBuff;
+    BOOL bRes      = FALSE;
+    BOOL bIsCopyOk = TRUE;
 
-    CxStdioFile stdfFile;
+    {
+        //--------------------------------------------------
+        //open files
+        CxStdioFile sfFrom;
 
-    //-------------------------------------
-    //read from source
-    bRes = stdfFile.bOpen(csFromFilePath.c_str(), omBinRead);
-    xCHECK_RET(FALSE == bRes, FALSE);
+        bRes = sfFrom.bOpen(csFilePathFrom, omBinRead);
+        xCHECK_RET(FALSE == bRes, FALSE);
 
-    sBuff.resize(stdfFile.liGetSize());
+        CxStdioFile sfTo;
 
-    uiReaded = stdfFile.uiRead(&sBuff.at(0), sBuff.size());
-    xCHECK_RET(sBuff.size() != uiReaded, FALSE);
+        bRes = sfTo.bOpen(csFilePathTo, omBinWrite);
+        xCHECK_RET(FALSE == bRes, FALSE);
 
-    bRes = stdfFile.bClose();
-    xCHECK_RET(FALSE == bRes, FALSE);
+        //--------------------------------------------------
+        //copy files
+        const size_t cuiBuffSize         = 1024;
+        UCHAR        ucBuff[cuiBuffSize] = {0};
 
-    //-------------------------------------
-    //write to destination
-    bRes = stdfFile.bOpen(csToFilePath.c_str(), omBinWrite);
-    xCHECK_RET(FALSE == bRes, FALSE);
+        for ( ; ; ) {
+            const size_t uiReaded  = sfFrom.uiRead(ucBuff, cuiBuffSize);
+            xCHECK_DO(0 >= uiReaded, break);
 
-    uiWrited = stdfFile.uiWrite(&sBuff[0], sBuff.size());
-    if (sBuff.size() != uiWrited) {
-        //coping faile - delete out-file
-        stdfFile.bClose();
-        CxStdioFile::bDelete(csToFilePath);
-
-        return FALSE;
+            const size_t uiWritten = sfTo.uiWrite(ucBuff, uiReaded);
+            xCHECK_DO(uiReaded != uiWritten, bIsCopyOk = FALSE; break);
+        }
     }
+
+    //--------------------------------------------------
+    //if copy fail - delete out file
+    xCHECK_DO(bIsCopyOk == FALSE, CxStdioFile::bDelete(csFilePathTo); return FALSE);
+
+    //--------------------------------------------------
+    //test for size, maybe CRC
+    xCHECK_DO(CxStdioFile::liGetSize(csFilePathFrom) != CxStdioFile::liGetSize(csFilePathTo), CxStdioFile::bDelete(csFilePathTo); return FALSE);
 
     return TRUE;
 }
-/*
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
-void pHelp(char *me) {
-  fprintf(stdout, "Usage: %s <srcfile> <destfile>\n", me);
-  exit(0);
-}
-
-int main(int argc, char *argv[]) {
-  int inF, ouF;
-  char line[512];
-  int bytes;
-
-  if(argc < 3)
-    pHelp(argv[0]);
-
-  if((inF = open(argv[1], O_RDONLY)) == -1) {
-    perror("open");
-    exit(-1);
-  }
-
-  if((ouF = open(argv[2], O_WRONLY | O_CREAT)) == -1) {
-    perror("open");
-    exit(-1);
-  }
-
-  while ((bytes = read(inF, line, sizeof(line))) > 0) {
-    write(ouF, line, bytes);
-  }
-
-  close(inF);
-  close(ouF);
-}
-*/
-
-
-/*
-#include <fstream>
-#include <string>
-#include <stdexcept>
-
-void copy_file(const std::string& src, const std::string& dst) {
-   std::ifstream in(src.c_str(), std::ios::binary);
-   if ( !in ) {
-      throw std::runtime_error("can`t open file: " + src);
-   }
-   std::ofstream out(dst.c_str(), std::ios::binary|std::ios::trunc);
-   if ( !out ) {
-      throw std::runtime_error("can`t create file: " + dst);
-   }
-   out << in.rdbuf();
-}
-*/
-
-
-/*
-int main(int argc, const char** argv)  {
-   try {
-      copy_file("infile.dat", "outfile.dat");
-   } catch (const std::exception& e) {
-      std::cout << e.what() << std::endl;
-   }
-
-   return 0;
-}
-*/
 //---------------------------------------------------------------------------
 //DONE: bMove (movement)
 /*static*/
@@ -819,9 +767,7 @@ CxStdioFile::bMove(const tString &csFilePath, const tString &csDirPath) {
 
     BOOL bRes = FALSE;
 
-    tString sFileName = CxPath::sGetFullName(csFilePath);
-
-    bRes = bRename(csFilePath, csDirPath + CxConst::xSLASH + sFileName);
+    bRes = bRename(csFilePath, csDirPath + CxConst::xSLASH + CxPath::sGetFullName(csFilePath));
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -915,9 +861,9 @@ CxStdioFile::bIsError() const {
     return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bClearErr (clear error indicators)
+//DONE: bErrorClear (clear error indicators)
 BOOL
-CxStdioFile::bClearErr() const {
+CxStdioFile::bErrorClear() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
     clearerr(_m_pFile);

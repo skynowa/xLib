@@ -29,26 +29,12 @@ class CxTest_CxStdioFile : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//iFprintfV
-void
-Test_iFprintfV(LPCTSTR pcszFormat, ...) {
-    va_list args = NULL;
-
-    va_start(args, pcszFormat);
-    ////INT iRes = F.iFprintfV(pcszFormat, args);
-    va_end(args);
-}
-//---------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------
-//TODO: + CxTest_CxStdioFile
+//DONE: CxTest_CxStdioFile
 CxTest_CxStdioFile::CxTest_CxStdioFile() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxStdioFile
+//DONE: ~CxTest_CxStdioFile
 CxTest_CxStdioFile::~CxTest_CxStdioFile() {
 
 }
@@ -57,7 +43,7 @@ CxTest_CxStdioFile::~CxTest_CxStdioFile() {
 /*virtual*/
 BOOL
 CxTest_CxStdioFile::bUnit() {
-    const tString csStr         = xT("=Cоздаем новый проэкт MFC AppWizard(EXE)=");
+    const tString csStr         = xT("=New test string bl-bla-bla=");
     const tString csFilePath    = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
     const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
     const tString csEofStr      = xT("\r\n\r\n");
@@ -103,12 +89,22 @@ CxTest_CxStdioFile::bUnit() {
     //--------------------------------------------------
     //bAttach
     {
-        CxStdioFile _F;
-        m_bRes = _F.bAttach(stdout);
-        xASSERT(FALSE != m_bRes);
+        #if xTEMP_DISABLED
+            CxStdioFile _F;
 
-        m_bRes = _F.bIsValid();
-        xASSERT(FALSE != m_bRes);
+            m_bRes = _F.bAttach(stdout);
+            xASSERT(FALSE != m_bRes);
+
+            m_bRes = _F.bIsValid();
+            xASSERT(FALSE != m_bRes);
+        #endif
+    }
+
+    //--------------------------------------------------
+    //pGet
+    {
+        FILE *pFile = F.pGet();
+        xASSERT(NULL != pFile);
     }
 
     //-------------------------------------
@@ -118,12 +114,6 @@ CxTest_CxStdioFile::bUnit() {
         xASSERT(csFilePath == m_sRes);
     }
 
-    //--------------------------------------------------
-    //pGet
-    {
-        FILE *pFile = F.pGet();
-        xASSERT(NULL != pFile);
-    }
 
     /****************************************************************************
     *	read, write
@@ -142,6 +132,13 @@ CxTest_CxStdioFile::bUnit() {
     {
         size_t uiR = F.uiRead(&sBuffRead.at(0), sBuffRead.size());
         xUNUSED(uiR);
+    }
+
+    //-------------------------------------
+    //bReadAll, bWriteAll
+    {
+        //TODO: BOOL bReadAll     (LPVOID pvBuff,        const size_t cuiBuffSize, const size_t uiBlockSize) const;
+        //TODO: BOOL bWriteAll    (const LPVOID pcvBuf,  const size_t cuiBuffSize, const size_t uiBlockSize) const;
     }
 
     //-------------------------------------
@@ -254,16 +251,29 @@ CxTest_CxStdioFile::bUnit() {
     *****************************************************************************/
 
     //-------------------------------------
-    //iFprintf
+    //iWrite
     {
         INT iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
         xASSERT(0 < iResFprintf);
     }
 
     //-------------------------------------
-    //iFprintfV
+    //iWriteV
     {
-        Test_iFprintfV(xT("%s"), xT("zzz"));
+        struct SWriter {
+            static void
+            DoV(const CxStdioFile &csfFile, LPCTSTR pcszFormat, ...) {
+                va_list args = NULL;
+                va_start(args, pcszFormat);
+
+                INT iRes = csfFile.iWriteV(pcszFormat, args);
+                xASSERT(CxStdioFile::etError != iRes);
+
+                va_end(args);
+            };
+        };
+
+        SWriter::DoV(F, xT("%s"), xT("zzz"));
     }
 
 
@@ -275,11 +285,11 @@ CxTest_CxStdioFile::bUnit() {
     //-------------------------------------
     //bLocking
     {
-        ////m_bRes = F.bLocking(CxStdioFile::lmLock, 10);
-        ////xASSERT(FALSE == m_bRes);
+        m_bRes = F.bLocking(CxStdioFile::lmLock, 10);
+        xASSERT(FALSE == m_bRes);
 
-        ////m_bRes = F.bLocking(CxStdioFile::lmUnlock, 10);
-        ////xASSERT(FALSE == m_bRes);
+        m_bRes = F.bLocking(CxStdioFile::lmUnlock, 10);
+        xASSERT(FALSE == m_bRes);
     }
 
     //-------------------------------------
@@ -306,8 +316,8 @@ CxTest_CxStdioFile::bUnit() {
     //-------------------------------------
     //bChsize
     {
-        ////m_bRes = F.bChsize(0);
-        ////xASSERT(FALSE != m_bRes);
+        m_bRes = F.bChsize(0);
+        xASSERT(FALSE != m_bRes);
     }
 
     //-------------------------------------
@@ -320,15 +330,23 @@ CxTest_CxStdioFile::bUnit() {
     //-------------------------------------
     //bSetMode
     {
-        ////m_bRes = F.bSetMode(CxStdioFile::tmBinary);
-        ////xASSERT(FALSE != m_bRes);
+        #if defined(xOS_WIN)
+            m_bRes = F.bSetMode(CxStdioFile::tmBinary);
+            xASSERT(FALSE != m_bRes);
+        #elif defined(xOS_LINUX)
+            //TODO: xOS_LINUX
+        #endif
     }
 
     //-------------------------------------
     //bSetMode
     {
-        ////m_bRes = F.bSetMode(CxStdioFile::tmText);
-        ////xASSERT(FALSE != m_bRes);
+        #if defined(xOS_WIN)
+            m_bRes = F.bSetMode(CxStdioFile::tmText);
+            xASSERT(FALSE != m_bRes);
+        #elif defined(xOS_LINUX)
+            //TODO: xOS_LINUX
+        #endif
     }
 
 
@@ -352,9 +370,9 @@ CxTest_CxStdioFile::bUnit() {
     }
 
     //-------------------------------------
-    //bClearErr
+    //bErrorClear
     {
-        m_bRes = F.bClearErr();
+        m_bRes = F.bErrorClear();
         xASSERT(FALSE != m_bRes);
     }
 
@@ -390,11 +408,33 @@ CxTest_CxStdioFile::bUnit() {
     *
     *****************************************************************************/
 
+    //--------------------------------------------------
+    //bIsFile
+    {
+        m_bRes = CxStdioFile::bIsFile(csFilePath);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxStdioFile::bIsFile(xT(""));
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = CxStdioFile::bIsFile(sGetWorkDirPath());
+        xASSERT(FALSE == m_bRes);
+    }
+
     //-------------------------------------
     //bIsExists
     {
         m_bRes = CxStdioFile::bIsExists(csFilePath);
         xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxStdioFile::bIsExists(csFilePath + xT("wrong_path"));
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = CxStdioFile::bIsExists(xT(""));
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = CxStdioFile::bIsExists(sGetWorkDirPath());
+        xASSERT(FALSE == m_bRes);
     }
 
     //-------------------------------------
@@ -456,18 +496,49 @@ CxTest_CxStdioFile::bUnit() {
     //-------------------------------------
     //bReadFile, bWriteFile (uString)
     {
-////        m_bRes = CxStdioFile::bReadFile(csFilePath, &m_usRes);
-//        xASSERT_MSG(FALSE != m_bRes, csFilePath.c_str());
-//
-//        m_bRes = CxStdioFile::bWriteFile(csNewFilePath, m_usRes);
-////        xASSERT(FALSE != m_bRes);
+        #if xTEMP_DISABLED
+            m_bRes = CxStdioFile::bReadFile(csFilePath, &m_usRes);
+            xASSERT_MSG(FALSE != m_bRes, csFilePath.c_str());
+
+            m_bRes = CxStdioFile::bWriteFile(csNewFilePath, m_usRes);
+            xASSERT(FALSE != m_bRes);
+        #endif
+    }
+
+    //-------------------------------------
+    //bCopy
+    {
+        CxStdioFile   _F;
+        const tString sFilePathFrom = sGetWorkDirPath() + CxConst::xSLASH + xT("test_copy.txt");
+        const tString sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
+
+        m_bRes = _F.bOpen(sFilePathFrom, CxStdioFile::omBinCreateReadWrite);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = _F.bChsize(1024 * 1024 * 5);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = _F.bClose();
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxStdioFile::bCopy(sFilePathFrom, sFilePathTo);
+        xASSERT(FALSE != m_bRes);
+    }
+
+    //-------------------------------------
+    //bMove
+    {
+        m_bRes = CxStdioFile::bMove(csNewFilePath, sGetWorkDirPath());
+        xASSERT(FALSE != m_bRes);
     }
 
     //-------------------------------------
     //bUnlink
     {
-        ////m_bRes = CxStdioFile::bUnlink(csNewFilePath);
-        ////xASSERT(FALSE != m_bRes);
+        #if xTEMP_DISABLED
+            m_bRes = CxStdioFile::bUnlink(csNewFilePath);
+            xASSERT(FALSE != m_bRes);
+        #endif
     }
 
     //-------------------------------------
@@ -478,17 +549,12 @@ CxTest_CxStdioFile::bUnit() {
     }
 
     //-------------------------------------
-    //bMove
+    //TODO: bWipe
     {
-        ////m_bRes = CxStdioFile::bMove(xT("C:\\Текстовый документ.txt"), xT("C:\\My"));
-        ////xASSERT(FALSE != m_bRes);
-    }
-
-    //-------------------------------------
-    //bCopy
-    {
-        ////m_bRes = CxStdioFile::bCopy(xT("C:\\Текстовый документ.txt"), xT("D:\\Текстовый документ.txt"));
-        ////xASSERT(FALSE != m_bRes);
+        #if xTEMP_DISABLED
+            m_bRes = CxStdioFile::bWipe(csNewFilePath, 10);
+            xASSERT(FALSE != m_bRes);
+        #endif
     }
 
     return TRUE;
