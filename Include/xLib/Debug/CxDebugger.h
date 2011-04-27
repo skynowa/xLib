@@ -34,7 +34,7 @@ class CxDebugger : public CxNonCopyable {
         static BOOL  _ms_bIsEnabled;
 
                      CxDebugger   ();
-        virtual        ~CxDebugger   ();
+        virtual     ~CxDebugger   ();
 
         static BOOL  bMsgboxPlain (const CxReport &crpReport);
         static BOOL  bMsgboxRtf   (const CxReport &crpReport);

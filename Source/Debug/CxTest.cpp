@@ -70,18 +70,18 @@ CxTest::bRun(ULONGLONG ullLoops) {
 
     const ULONGLONG ullInfiniteLoops = 0;
 
-    try    {
+    try {
         if (ullInfiniteLoops == ullLoops) {
             //infinite
             for ( ;  ; ) {
                 _m_bRes = bUnit();
-                /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
             }
         } else {
             //in some loops
             for (ULONGLONG i = 0; i < ullLoops; ++ i) {
                 _m_bRes = bUnit();
-                /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
             }
         }
     }

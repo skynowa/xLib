@@ -112,7 +112,7 @@
 //---------------------------------------------------------------------------
 INT
 _tmain(INT argc, TCHAR *argv[]) {
-    tcout << "Content-type: text/html\n\n" << tendl;
+    ////tcout << "Content-type: text/html\n\n" << tendl;
 
     #if xTEMP_DISABLED
         //fprintf(stdout, "Content-type: text/html\n");
@@ -123,7 +123,7 @@ _tmain(INT argc, TCHAR *argv[]) {
     #endif
 
 
-    #if xTEMP_DISABLED
+    #if xTEMP_ENABLED
         xTRACEV(xT("\n\n*** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE);
         xTRACE(xT("Start all tests..."));
     #endif
@@ -202,7 +202,9 @@ _tmain(INT argc, TCHAR *argv[]) {
         //Net
         vecpvTests.push_back( new CxTest_CxCookiePv0 );
         vecpvTests.push_back( new CxTest_CxCookiePv1 );
-        vecpvTests.push_back( new CxTest_CxCgi );
+        #if xTEMP_DISABLED
+            vecpvTests.push_back( new CxTest_CxCgi );
+        #endif
         vecpvTests.push_back( new CxTest_CxSocketInit );
         vecpvTests.push_back( new CxTest_CxDnsClient );
         ////vecpvTests.push_back( new CxTest_CxTcpClientSocket );
@@ -253,12 +255,12 @@ _tmain(INT argc, TCHAR *argv[]) {
     //run all tests
     for (ULONGLONG i = 0; i < ullTimesForAll; ++ i) {
         for (std::vector<CxTest *>::iterator it = vecpvTests.begin(); it != vecpvTests.end(); ++ it) {
-            xTRACEV("Test (%s) begin.", (*it)->sGetName().c_str());
+            //xTRACEV("Test (%s) begin.", (*it)->sGetName().c_str());
 
             bRes = (*it)->bRun(ullTimesForSingle);
             xASSERT_MSG_RET(FALSE != bRes, ( xT("Test (") + (*it)->sGetName() + xT(") not complete") ).c_str(), FALSE);
 
-            xTRACEV("Test (%s) end.\n", (*it)->sGetName().c_str());
+            //xTRACEV("Test (%s) end.\n", (*it)->sGetName().c_str());
         }
     }
 
