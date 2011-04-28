@@ -539,10 +539,10 @@ CxFile::bReplace(const tString &csOldFileName, const tString &csNewFilePath, con
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: - bSecureDelete
+//TODO: - bWipe
 /*static*/
 BOOL
-CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
+CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
     /*DEBUG*/// csFilePath - n/a
     /*DEBUG*/// iPasses    - n/a
 
@@ -607,7 +607,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
         }
 
         //-------------------------------------
-        //����� (���� ��������/�����������/���������� ��������� � ������ ��������)
+        //random filedate (���� ��������/�����������/���������� ��������� � ������ ��������)
         {
             //-------------------------------------
             //���� ��������
@@ -640,7 +640,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
         }
 
         //-------------------------------------
-        //��������
+        //truncate to zero
         {
             ulFilePointer = flFile.ulSetPosition(0, ppBegin);
             /*DEBUG*/xASSERT_RET(INVALID_SET_FILE_POINTER != ulFilePointer, FALSE);
@@ -651,7 +651,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
     }
 
     //-------------------------------------
-    //�������������� �������� ���� (����� ����������� ��������� ��� ����� ����� ��� MAX_PATH)
+    //random file name (����� ����������� ��������� ��� ����� ����� ��� MAX_PATH)
     {
         tString sRandomFileName;
         sRandomFileName = CxString::sCreateGuid();
@@ -664,7 +664,7 @@ CxFile::bSecureDelete(const tString &csFilePath, UINT uiPasses) {
     }
 
     //-------------------------------------
-    //������� ����
+    //delete file
     {
         bRes = CxFile::bDelete(sFilePathOut);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);

@@ -83,10 +83,10 @@
 
 
 //Crypt
-////#include "Crypt/CxTest_CxBase64.h"
+#include "Crypt/CxTest_CxBase64.h"
 #include "Crypt/CxTest_CxCrc32.h"
 #include "Crypt/CxTest_CxRandom.h"
-////#include "Crypt/CxTest_CxBlowfish.h"
+#include "Crypt/CxTest_CxBlowfish.h"
 
 //Db
 #include "Db/CxTest_CxConnectionString.h"
@@ -221,8 +221,10 @@ _tmain(INT argc, TCHAR *argv[]) {
 
         //--------------------------------------------------
         //Crypt
+        #if xTEMP_DISABLED
         vecpvTests.push_back( new CxTest_CxCrc32 );
-        ////vecpvTests.push_back( new CxTest_CxBlowfish );
+        vecpvTests.push_back( new CxTest_CxBlowfish );
+        #endif
 
         //--------------------------------------------------
         //Db

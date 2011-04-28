@@ -29,12 +29,10 @@
 //---------------------------------------------------------------------------
 class CxStdioFile : public CxNonCopyable {
     public:
-        //error type
         enum EErrorType {
             etError = EOF
         };
 
-        //Open mode
         enum EOpenMode {
             omRead,                //"r"
             omWrite,               //"w"
@@ -51,7 +49,6 @@ class CxStdioFile : public CxNonCopyable {
             omBinOpenReadAppend    //"ab+"
         };
 
-        //Translation mode
     #if defined(xOS_WIN)
         enum ETranslationMode {
             tmText   = O_TEXT,
@@ -62,7 +59,6 @@ class CxStdioFile : public CxNonCopyable {
 
     #endif
 
-        //Access mode
         enum EAccessMode {
             amExistence = 0,
             amWrite     = 2,
@@ -70,7 +66,6 @@ class CxStdioFile : public CxNonCopyable {
             amReadWrite = 6
         };
 
-        //file position data for the given stream
         enum EPointerPosition {
             ppBegin = SEEK_SET,
             ppCurr  = SEEK_CUR,
@@ -78,14 +73,12 @@ class CxStdioFile : public CxNonCopyable {
             ppError = - 1L
         };
 
-        //mode for file buffering
         enum EBufferingMode {
             bmFull = _IOFBF,
             bmLine = _IOLBF,
             bmNo   = _IONBF
         };
 
-        //Locking action to perform
         enum ELockingMode {
             #if defined(xOS_WIN)
                 lmTryLock = LK_LOCK,    //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second.
@@ -99,7 +92,6 @@ class CxStdioFile : public CxNonCopyable {
             #endif
         };
 
-        //Permission mode
         enum EPermissionMode {
             #if defined(xOS_WIN)
                 pmRead             = _S_IREAD,
@@ -139,45 +131,38 @@ class CxStdioFile : public CxNonCopyable {
         tString          sGetPath     () const;
 
         //read, write
-        size_t           uiRead       (LPVOID pvBuf,         const size_t cuiCount) const;
+        size_t           uiRead       (LPVOID pvBuff,         const size_t cuiCount) const;
         size_t           uiWrite      (const LPVOID pcvBuff, const size_t cuiCount) const;
-
-        BOOL             bReadAll     (LPVOID pvBuff,        const size_t cuiBuffSize, const size_t uiBlockSize) const;
-        BOOL             bWriteAll    (const LPVOID pcvBuf,  const size_t cuiBuffSize, const size_t uiBlockSize) const;
-
-        BOOL             bReadAll     (uString *psBuff,       const size_t cuiBlockSize) const;
-        BOOL             bWriteAll    (const uString &csBuff, size_t uiBlockSize) const;
-
-        BOOL             bReadAll     (tString *psBuff,       const size_t cuiBlockSize) const;
-        BOOL             bWriteAll    (const tString &csBuff, size_t uiBlockSize) const;
-
-        BOOL             bReadLine    (LPTSTR pszStr, const size_t cuiMaxCount) const;
-        BOOL             bWriteLine   (const tString &csStr) const;
-        BOOL             bWriteString (const tString &csStr) const;
-
-        TCHAR            cReadChar    ();
-        BOOL             bWriteChar   (TCHAR cChar);
-        BOOL             bUngetChar   (TCHAR cChar);
-
-        //formatting write
+        BOOL             bRead        (uString *psBuff) const;
+        BOOL             bWrite       (const uString &csBuff) const;
         INT              iWrite       (LPCTSTR pcszFormat, ...) const;
         INT              iWriteV      (LPCTSTR pcszFormat, va_list arg) const;
 
+        BOOL             bReadLine    (tString *psStr, const size_t cuiMaxCount) const;
+        BOOL             bWriteLine   (const tString &csStr) const;
+        BOOL             bWriteString (const tString &csStr) const;
+
+        TCHAR            cReadChar    () const;
+        BOOL             bWriteChar   (TCHAR cChar) const;
+        BOOL             bUngetChar   (TCHAR cChar) const;
+
+        BOOL             bClear       () const;
+
         //other
         BOOL             bLocking     (const ELockingMode clmMode, LONG liBytes);
-        BOOL             bSetPosition (LONG lOffset, const EPointerPosition cfpPos) const;
+        BOOL             bSetPosition (LONG lOffset, const EPointerPosition cppPos) const;
         LONG             liGetPosition() const;
 
-        BOOL             bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, size_t uiSize);
+        BOOL             bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, size_t uiSize) const;
 
     #if defined(xOS_WIN)
-        BOOL             bSetMode     (const ETranslationMode tmMode);
+        BOOL             bSetMode     (const ETranslationMode tmMode) const;
     #elif defined(xOS_LINUX)
         //TODO: xOS_LINUX
     #endif
 
         LONG             liGetSize    () const;
-        BOOL             bChsize      (LONG liSize);
+        BOOL             bResize      (const LONG cliSize) const;
 
         //error handling
         BOOL             bIsEof       () const;
@@ -200,7 +185,7 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bMove        (const tString &csFilePath,     const tString &csDirPath);
         static BOOL      bCopy        (const tString &csFilePathFrom, const tString &csFilePathTo);
         static tString   sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
-        static ULONGLONG ullLines     (const tString &csFilePath);
+        static ULONGLONG ullGetLines  (const tString &csFilePath);
 
         //static (all not tested)
         static LONG      liGetSize    (const tString &csFilePath);
@@ -222,7 +207,7 @@ class CxStdioFile : public CxNonCopyable {
         FILE            *_m_pFile;
         tString          _m_sFilePath;
 
-        INT              _iGetHandle  ();
+        INT              _iGetHandle  () const;
         static tString   _sGetOpenMode(const EOpenMode omMode);
 };
 //---------------------------------------------------------------------------

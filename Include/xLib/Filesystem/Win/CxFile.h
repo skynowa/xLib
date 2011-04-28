@@ -106,7 +106,7 @@ class CxFile : public CxNonCopyable {
         static BOOL      bCopy               (const tString &csFilePathFrom, const tString &csFilePathTo);
         static BOOL      bCopy               (const tString &csFilePathFrom, const tString &csFilePathTo, BOOL bFailIfExists);
         static BOOL      bReplace            (const tString &csOldFileName, const tString &csNewFilePath, const tString &csBackupFilePath);
-        static BOOL      bSecureDelete       (const tString &csFilePath, UINT uiPasses); /*-*/
+        static BOOL      bWipe               (const tString &csFilePath, UINT uiPasses); /*-*/
         ////static BOOL      bCutFromEnd         (const tString &csFilePath, LONG lDistanceToCut);
         ////static BOOL      bCutFromEnd         (FILE *pFile, ULONG ulDistanceToCut);
         ////static BOOL      bCheckSignature     (LPCTSTR pcszBuff, LPCTSTR pcszSignature, INT iSignatureSize);
