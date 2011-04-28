@@ -54,12 +54,17 @@ class CxMacros : CxNonCopyable {
         #define xBUFF_FREE(pvBuff)    { if (NULL != pvBuff) { free(pvBuff); pvBuff = NULL;} }
 
         #define xS2US(s)              uString( (s).begin(),  (s).begin()  + (s).size()  )
-        #define xUS2S(us)              tString( (us).begin(), (us).begin() + (us).size() )
+        #define xUS2S(us)             tString( (us).begin(), (us).begin() + (us).size() )
 
         #define xS2TS(s)              tString( (s).begin(),  (s).begin()  + (s).size()  )
-        #define xTS2S(ts)              std::string( (ts).begin(), (ts).begin() + (ts).size() )
+        #define xTS2S(ts)             std::string( (ts).begin(), (ts).begin() + (ts).size() )
 
-        #define xRANDOMIZE()           ( srand( (UINT)::GetTickCount() ) )
+    #if defined(xOS_WIN)
+        #define xRANDOMIZE()          ( srand( (UINT)::GetTickCount() ) )
+    #elif defined(xOS_LINUX)
+        #define xRANDOMIZE()          ( srand( (UINT)time(NULL) ) )
+    #endif
+
         #define xRANDOM(x)            ( rand() % x )
 
         #define xFCLOSE(f)            { if (NULL != (f)) { fclose(f); f = NULL; } }
@@ -74,8 +79,8 @@ class CxMacros : CxNonCopyable {
         #define xENUM_DEC(type, obj)  { obj = static_cast<type>( static_cast<INT>(obj) - 1 ); }
 
         //temprary enable/disable code
-        #define xTEMP_ENABLED          1
-        #define xTEMP_DISABLED         0
+        #define xTEMP_ENABLED         1
+        #define xTEMP_DISABLED        0
 
 
         //TODO: xMax

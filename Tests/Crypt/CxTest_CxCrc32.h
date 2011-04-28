@@ -56,7 +56,7 @@ BOOL CxTest_CxCrc32::bUnit() {
         usFileContent.resize(1024);
 
         flFile.bOpen(sFilePath, CxStdioFile::omCreateReadWrite);
-        flFile.bWriteAll(usFileContent, 1);
+        //////////////////////////////flFile.bWriteAll(usFileContent, 1);
     }
 
 	//-------------------------------------

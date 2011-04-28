@@ -174,7 +174,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
         _m_bRes = sfFileIn.bOpen(csFilePathIn, CxStdioFile::omRead);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-        _m_bRes = sfFileIn.bReadAll(&usIn, BUFF_SIZE);
+        _m_bRes = sfFileIn.bRead(&usIn);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     }
 
@@ -187,7 +187,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
         _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::omCreateReadWrite);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-        _m_bRes = sfFileOut.bWriteAll(usOut, BUFF_SIZE);
+        _m_bRes = sfFileOut.bWrite(usOut);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     }
 
