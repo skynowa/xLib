@@ -255,7 +255,7 @@ CxGz::_liUncompress(INT iFileIn, INT iFileOut, char *pszPre, size_t uiPreLen, of
         GZSTATE_INIT,
         GZSTATE_READ,
         GZSTATE_CRC,
-        GZSTATE_LEN,
+        GZSTATE_LEN
     };
 
     z_stream  z            = {0};
