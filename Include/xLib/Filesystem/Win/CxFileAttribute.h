@@ -17,21 +17,32 @@
 class CxFileAttribute : public CxNonCopyable {
     public:
         enum EAttribute {
-            faInvalid           = INVALID_FILE_ATTRIBUTES,
-            faReadOnly          = FILE_ATTRIBUTE_READONLY,
-            faHidden            = FILE_ATTRIBUTE_HIDDEN,
-            faSystem            = FILE_ATTRIBUTE_SYSTEM,
-            faDirectory         = FILE_ATTRIBUTE_DIRECTORY,
-            faArchive           = FILE_ATTRIBUTE_ARCHIVE,
-            faDevice            = FILE_ATTRIBUTE_DEVICE,
-            faNormal            = FILE_ATTRIBUTE_NORMAL,
-            faTemporary         = FILE_ATTRIBUTE_TEMPORARY,
-            faSparseFile        = FILE_ATTRIBUTE_SPARSE_FILE,
-            faReparsePoint      = FILE_ATTRIBUTE_REPARSE_POINT,
-            faCompressed        = FILE_ATTRIBUTE_COMPRESSED,
-            faOffline           = FILE_ATTRIBUTE_OFFLINE,
-            faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
-            faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
+            #if defined(xOS_WIN)
+                faInvalid           = INVALID_FILE_ATTRIBUTES,
+                faReadOnly          = FILE_ATTRIBUTE_READONLY,
+                faHidden            = FILE_ATTRIBUTE_HIDDEN,
+                faSystem            = FILE_ATTRIBUTE_SYSTEM,
+                faDirectory         = FILE_ATTRIBUTE_DIRECTORY,
+                faArchive           = FILE_ATTRIBUTE_ARCHIVE,
+                faDevice            = FILE_ATTRIBUTE_DEVICE,
+                faNormal            = FILE_ATTRIBUTE_NORMAL,
+                faTemporary         = FILE_ATTRIBUTE_TEMPORARY,
+                faSparseFile        = FILE_ATTRIBUTE_SPARSE_FILE,
+                faReparsePoint      = FILE_ATTRIBUTE_REPARSE_POINT,
+                faCompressed        = FILE_ATTRIBUTE_COMPRESSED,
+                faOffline           = FILE_ATTRIBUTE_OFFLINE,
+                faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
+                faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
+            #elif defined(xOS_LINUX)
+                faInvalid           = - 1,
+                faSocket            = S_IFSOCK,
+                faSymbolicLink      = S_IFLNK,
+                faRegularFile       = S_IFREG,
+                faBlockDevice       = S_IFBLK,
+                faDirectory         = S_IFDIR,
+                faCharacterDevice   = S_IFCHR,
+                faFifo              = S_IFIFO
+            #endif
         };
 
         static EAttribute atGet          (const tString &csFilePath);

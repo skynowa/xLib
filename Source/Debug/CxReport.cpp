@@ -58,12 +58,12 @@ CxReport::CxReport(
     _bInitVars(crtType, csExp, ulLastError, csFile, ulLine, csFunc, csDate, csTime, csComment.c_str());
 
     switch (crtType) {
-        case rtMsgboxPlain:     { _bInitPlain(); }    break;
-        case rtMsgboxRtf:     { _bInitRtf();   }    break;
-        case rtStdoutPlain:     { _bInitPlain(); }    break;
-        case rtStdoutHtml:     { _bInitHtml();  }    break;
+        case rtMsgboxPlain:  { _bInitPlain(); }    break;
+        case rtMsgboxRtf:    { _bInitRtf();   }    break;
+        case rtStdoutPlain:  { _bInitPlain(); }    break;
+        case rtStdoutHtml:   { _bInitHtml();  }    break;
         case rtLoggingPlain: { _bInitPlain(); }    break;
-        case rtLoggingHtml:     { _bInitHtml();  }    break;
+        case rtLoggingHtml:  { _bInitHtml();  }    break;
 
         default:             { _bInitPlain(); }    break;
     }
