@@ -68,16 +68,16 @@ CxCrc32::ulCalcFile(const tString &csFilePath) {
 
     uString usFile;
 
-    BOOL bRes = CxStdioFile::bReadFile(csFilePath, &usFile);
+    BOOL bRes = CxStdioFile::bBinRead(csFilePath, &usFile);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     if (true == usFile.empty()) {
         ulRes = 0;
     } else {
-        ulRes = ulCalc(&usFile.at(0), usFile.size());    
+        ulRes = ulCalc(&usFile.at(0), usFile.size());
     }
 
-    return ulRes; 
+    return ulRes;
 }
 //---------------------------------------------------------------------------
 //DONE: ulCalcFast
@@ -189,16 +189,16 @@ CxCrc32::ulCalcFileFast(const tString &csFilePath) {
 
     uString usFile;
 
-    BOOL bRes = CxStdioFile::bReadFile(csFilePath, &usFile);
+    BOOL bRes = CxStdioFile::bBinRead(csFilePath, &usFile);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     if (true == usFile.empty()) {
         ulRes = 0;
     } else {
-        ulRes = ulCalcFast(&usFile.at(0), usFile.size());    
+        ulRes = ulCalcFast(&usFile.at(0), usFile.size());
     }
 
-    return ulRes; 
+    return ulRes;
 }
 //---------------------------------------------------------------------------
 //DONE: sFormatHex (format Crc32 like "0AADDEA0")
@@ -206,7 +206,7 @@ CxCrc32::ulCalcFileFast(const tString &csFilePath) {
 tString
 CxCrc32::sFormatHex(ULONG ulCrc32) {
     /*DEBUG*/
-    
+
     tString      sRes;
     const size_t uiCrc32Size = 8;
 
@@ -219,6 +219,6 @@ CxCrc32::sFormatHex(ULONG ulCrc32) {
     }
     /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), tString());
 
-    return sRes; 
+    return sRes;
 }
 //---------------------------------------------------------------------------

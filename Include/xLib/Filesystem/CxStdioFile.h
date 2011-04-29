@@ -55,8 +55,7 @@ class CxStdioFile : public CxNonCopyable {
             tmBinary = O_BINARY
         };
     #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
-
+        //TODO: ETranslationMode
     #endif
 
         enum EAccessMode {
@@ -81,14 +80,14 @@ class CxStdioFile : public CxNonCopyable {
 
         enum ELockingMode {
             #if defined(xOS_WIN)
-                lmTryLock = LK_LOCK,    //Locks the specified bytes. If the bytes cannot be locked, the program immediately tries again after 1 second.
-                lmLock    = LK_NBLCK,   //Locks the specified bytes. If the bytes cannot be locked, the constant returns an error.
-                lmUnlock  = LK_UNLCK    //Unlocks the specified bytes, which must have been previously locked.
+                lmLock    = LK_NBLCK,
+                lmTryLock = LK_LOCK,
+                lmUnlock  = LK_UNLCK
             #elif defined(xOS_LINUX)
-                lmLock    = F_LOCK,     //Set an exclusive lock on the specified section of the file
-                lmTlock   = F_TLOCK,    //Same as F_LOCK but the call never blocks and returns an error instead if the file is already locked
-                lmTryLock = F_TEST,     //Test the lock: return 0 if the specified section is unlocked or locked by this process; return -1, set errno to EAGAIN
-                lmUnlock  = F_ULOCK     //Unlock the indicated section of the file.  This may cause a locked section to be split into two locked sections
+                lmLock    = F_LOCK,
+                lmTlock   = F_TLOCK,
+                lmTryLock = F_TEST,
+                lmUnlock  = F_ULOCK
             #endif
         };
 
@@ -158,7 +157,7 @@ class CxStdioFile : public CxNonCopyable {
     #if defined(xOS_WIN)
         BOOL             bSetMode     (const ETranslationMode tmMode) const;
     #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
+        //TODO: bSetMode
     #endif
 
         LONG             liGetSize    () const;
@@ -183,24 +182,23 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bUnlink      (const tString &csFilePath);
         static BOOL      bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);
         static BOOL      bMove        (const tString &csFilePath,     const tString &csDirPath);
-        static BOOL      bCopy        (const tString &csFilePathFrom, const tString &csFilePathTo);
+        static BOOL      bCopy        (const tString &csFilePathFrom, const tString &csFilePathTo, BOOL bFailIfExists);
         static tString   sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
+        static LONG      liGetSize    (const tString &csFilePath);
         static ULONGLONG ullGetLines  (const tString &csFilePath);
 
-        //static (all not tested)
-        static LONG      liGetSize    (const tString &csFilePath);
+        //text
+        static BOOL      bTextRead    (const tString &csFilePath, tString *psStr);
+        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csStr);
 
-        static BOOL      bReadFile    (const tString &csFilePath, std::vector<tString> *pvecsVector);
-        static BOOL      bWriteFile   (const tString &csFilePath, const std::vector<tString> *pcvecsVector);
+        static BOOL      bTextRead    (const tString &csFilePath, std::vector<tString> *pvecsContent);
+        static BOOL      bTextWrite   (const tString &csFilePath, const std::vector<tString> &cvecsContent);
 
-        static BOOL      bReadFileEx  (const tString &csFilePath, std::vector<tString> *pvecsFile);
-        static BOOL      bReadFile    (const tString &csFilePath, std::vector<TCHAR>   *pvecchFile);
+        static BOOL      bTextRead    (const tString &csFilePath, const tString &csDelimiter, std::map<tString, tString> *pmapsFile);
 
-        static BOOL      bReadFile    (const tString &csFilePath, const tString &csDelimiter, std::map<tString, tString> *pmapsFile);
-        static BOOL      bReadFile    (const tString &csFilePath, tString *psStr);
-
-        static BOOL      bReadFile    (const tString &csFilePath, uString *pusStr);
-        static BOOL      bWriteFile   (const tString &csFilePath, const uString &cusStr);
+        //binary
+        static BOOL      bBinRead     (const tString &csFilePath, uString *pusStr);
+        static BOOL      bBinWrite    (const tString &csFilePath, const uString &cusStr);
 
     private:
         mutable BOOL     _m_bRes;
@@ -211,129 +209,4 @@ class CxStdioFile : public CxNonCopyable {
         static tString   _sGetOpenMode(const EOpenMode omMode);
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Filesystem_CxStdioFileH
-/*
-#include <stdio.h>
-#include <stdlib.h>
-
-#define BUFSIZE 256
-
-int main(int argc, char *argv[]) {
-    FILE *in, *out;
-    char buf[BUFSIZE];
-    size_t bt = 0;
-    if((in = fopen(argv[1], "r")) == NULL) {
-        perror("fopen in");
-        exit(1);
-    }
-    if((out = fopen(argv[2], "w")) == NULL) {
-        perror("fopen out");
-        exit(1);
-    }
-    while(!feof(in)) {
-        bt = fread(buf, sizeof(char), BUFSIZE, in);
-        if(ferror(in)) {
-            printf("fread error");
-            exit(1);
-        }
-        fwrite(buf, sizeof(char), bt, out);
-        if(ferror(out)) {
-            printf("fwrite error");
-            exit(1);
-        }
-    }
-    return 0;
-}
-*/
-
-/*
-"r"        Open a file for reading. The file must exist.
-"w"        Create an empty file for writing. If a file with the same name already exists its content is erased and the file is treated as a new empty file.
-"a"        Append to a file. Writing operations append data at the end of the file. The file is created if it does not exist.
-"r+"    Open a file for update both reading and writing. The file must exist.
-"w+"    Create an empty file for both reading and writing. If a file with the same name already exists its content is erased and the file is treated as a new empty file.
-"a+"    Open a file for reading and appending. All writing operations are performed at the end of the file, protecting the previous content to be overwritten. You can re
-*/
-
-
-
-
-/*
-//setlocale(LC_NUMERIC, "");
-//setlocale(LC_ALL, ".ACP" );
-//setlocale(LC_ALL,"Russian");
-*/
-
-
-//TODO: std::ifsStream - �� ������ ������� �����
-
-
-
-//_get_osfhandle()
-
-
-
-/*
-Dump memory buffer to hex text
-
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
-void dmpbuf(FILE *stream, const unsigned char* buffer, unsigned int length)
-{
-    const int N = 16;           // define maximum number of bytes of each line
-    int i, nRead, addr = 0;
-    char s[N * 3 + 1];          // string buffer
-    char tmpbuf[32];            // temp buffer
-
-    fprintf(stream, "\n");
-    fprintf(stream, " ADDRESS | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F |      ASSCII     \n");
-    fprintf(stream, "-----------------------------------------------------------------------------\n");
-
-    while (length > 0) {
-        // calculate number of bytes to output this line
-        nRead = (length > N) ? N : length;
-        length -= nRead;
-
-        // output address
-        fprintf(stream, "%08X | ", addr);
-
-        // output hex contents
-        s[0] = '\0';
-        for (i = 0; i < nRead; i++) {
-            sprintf(tmpbuf, "%02X ", buffer[addr+i]);
-            strcat(s, tmpbuf);
-        }
-        fprintf(stream, "%s", s);
-
-        // output alignment
-        for (i = 0; i < N - nRead; i++) {
-            fprintf(stream, "%3s", " ");
-        }
-        fprintf(stream, "| ");
-
-        // output ascii characters
-        for (i = 0; i < nRead; i++) {
-            s[i] = isprint(buffer[addr+i]) ? buffer[addr+i] : '.';
-        }
-        s[i] = '\0';
-        fprintf(stream, "%s", s);
-        fprintf(stream, "\n");
-
-        addr += nRead;
-    }
-}
-
-int main()
-{
-    unsigned char buffer[253];
-
-    for (int i = 0; i < sizeof(buffer); i++) {
-        buffer[i] = i;
-    }
-
-    dmpbuf(stdout, buffer, sizeof(buffer));
-    return 0;
-}
-*/
+#endif  //xLib_Filesystem_CxStdioFileH

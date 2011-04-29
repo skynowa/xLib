@@ -16,8 +16,8 @@
 #include "openssl/blowfish.h"
 //---------------------------------------------------------------------------
 class CxBlowfish : public CxNonCopyable {
-    private:   
-        enum { 
+    private:
+        enum {
             MAX_KEY_SIZE = 56, //max key size 448 bit (56 byte)
             IVEC_SIZE    = 8
         };
@@ -31,14 +31,14 @@ class CxBlowfish : public CxNonCopyable {
         enum ECryptMode {
             cmUnknown = - 1,
             cmEncrypt = BF_ENCRYPT,
-            cmDecrypt = BF_DECRYPT,
+            cmDecrypt = BF_DECRYPT
         };
 
                       CxBlowfish          ();
         virtual      ~CxBlowfish          ();
-                     
+
         BOOL          bSetKey             (UCHAR *pucKey, INT iKeySize);
-        BOOL          bSetKey             (const uString &cusKey); 
+        BOOL          bSetKey             (const uString &cusKey);
         BOOL          bSetKey             (const tString &csKey);
         BOOL          bSetFileKey         (const tString &csFilePath);
         static size_t uiGetMaxKeySize     ();
@@ -46,7 +46,7 @@ class CxBlowfish : public CxNonCopyable {
         //cfb64
         BOOL          bEncryptCfb64          (UCHAR *pucIn, UCHAR *pucOut, LONG liInSize, INT *piNum, ECryptMode cmMode);
         BOOL          bEncryptCfb64          (const uString &cusIn, uString *pusOut, ECryptMode cmMode);
-        BOOL          bEncryptFileCfb64   (const tString &csFilePathIn, const tString &csFilePathOut, ECryptMode cmMode); 
+        BOOL          bEncryptFileCfb64   (const tString &csFilePathIn, const tString &csFilePathOut, ECryptMode cmMode);
 
         //
         BOOL          bEncryptFileCfb64   (const tString &csFilePathIn, const tString &csFilePathOut, const uString &cusStamp, ECryptMode cmCryptMode);
