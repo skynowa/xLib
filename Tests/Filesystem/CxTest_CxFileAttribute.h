@@ -94,7 +94,7 @@ CxTest_CxFileAttribute::bUnit() {
     //bModify
     {
         #if defined(xOS_WIN)
-            const CxFileAttribute::EAttribute cfaRemoveValue = atValue;
+            const CxFileAttribute::EAttribute cfaRemoveValue = cfaValue;
             const CxFileAttribute::EAttribute cfaAddValue    = CxFileAttribute::faHidden;
         #elif defined(xOS_LINUX)
             const CxFileAttribute::EAttribute cfaRemoveValue = cfaValue;

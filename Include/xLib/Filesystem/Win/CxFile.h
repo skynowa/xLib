@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/Win/CxHandle.h>
-#include <xLib/Filesystem/Win/CxFileAttribute.h>
+#include <xLib/Filesystem/CxFileAttribute.h>
 //---------------------------------------------------------------------------
 class CxFile : public CxNonCopyable {
     public:

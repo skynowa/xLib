@@ -15,7 +15,7 @@
 #include <xLib/Filesystem/CxStdioFile.h>
 
 #if defined(xOS_WIN)
-    #include <xLib/Filesystem/Win/CxFileAttribute.h>
+    #include <xLib/Filesystem/CxFileAttribute.h>
 #endif
 
 

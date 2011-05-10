@@ -18,8 +18,8 @@
 //---------------------------------------------------------------------------
 #include <xVCL/xCommon.h>
 #include <xLib/Common/xCommon.h>
-#include <xLib/GDI+/Win/CxGdiplus.h>
-#include <xLib/GDI+/Win/CxImage.h>
+#include <xLib/Gui/Win/GDI+/CxGdiplus.h>
+#include <xLib/Gui/Win/GDI+/CxImage.h>
 //---------------------------------------------------------------------------
 class CxGdipImage : public TGraphicControl {
 	__published:
