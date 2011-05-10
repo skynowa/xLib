@@ -159,7 +159,7 @@ CxDecrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, 
         _m_bRes = sfFileRaw.bOpen(csInFilePath, CxStdioFile::omBinRead);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-        _m_bRes = sfFileRaw.bReadAll(&usEncryptedData, 1024);
+        _m_bRes = sfFileRaw.bRead(&usEncryptedData);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     }        
     
@@ -203,7 +203,7 @@ CxDecrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, 
         _m_bRes = sfFileDecrypt.bOpen(csOutFilePath, CxStdioFile::omBinWrite);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-        _m_bRes = sfFileDecrypt.bWriteAll(usDecryptedData, 1024);
+        _m_bRes = sfFileDecrypt.bWrite(usDecryptedData);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     }
 

@@ -231,13 +231,6 @@
 				<File
 					RelativePath="..\..\Source\Crypt\CxCrc32.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\Include\xLib\Crypt\CxCrc32.h"
@@ -399,6 +392,22 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\Source\Filesystem\CxFileAttribute.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\Include\xLib\Filesystem\CxFileAttribute.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\Source\Filesystem\CxIni.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\Include\xLib\Filesystem\CxIni.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\Source\Filesystem\CxMemoryIni.cpp"
 					>
 				</File>
@@ -439,14 +448,6 @@
 					</File>
 					<File
 						RelativePath="..\..\Include\xLib\Filesystem\Win\CxFile.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Filesystem\Win\CxFileAttribute.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Filesystem\Win\CxFileAttribute.h"
 						>
 					</File>
 					<File
@@ -665,13 +666,6 @@
 				<File
 					RelativePath="..\..\Source\Net\CxHttpClient.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\Include\xLib\Net\CxHttpClient.h"
@@ -835,13 +829,6 @@
 				<File
 					RelativePath="..\..\Source\Net\CxTcpClientSocket.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\Include\xLib\Net\CxTcpClientSocket.h"
@@ -857,13 +844,6 @@
 				<File
 					RelativePath="..\..\Source\Net\CxTcpServerSocket.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\Include\xLib\Net\CxTcpServerSocket.h"

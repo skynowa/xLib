@@ -64,7 +64,7 @@ class CxString : public CxNonCopyable {
         tString
         lexical_cast(const T &cValueT, const INT iBase) {
             //cValueT - n/a
-            xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
+            ////xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
 
             tString sRes;
 
@@ -113,7 +113,7 @@ class CxString : public CxNonCopyable {
         T
         lexical_cast(const tString &csStr, const INT iBase) {
             //csStr - n/a
-            xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
+            ////xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
 
             T ResT;
 

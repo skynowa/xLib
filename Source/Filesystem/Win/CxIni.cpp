@@ -291,7 +291,7 @@ CxIni::usKeyReadBin(const tString &csSection, const tString &csKey, const uStrin
     tString sHexStr = sKeyReadString(csSection, csKey, tString(cusDefaultValue.begin(), cusDefaultValue.end()));
 
     //sHexStr -> usRes
-    usRes = CxString::sFromBase<uString/*UCHAR*/>(sHexStr, 16);
+    usRes = CxString::lexical_cast<uString/*UCHAR*/>(sHexStr, 16);
 
     return usRes;
 }
@@ -305,7 +305,7 @@ CxIni::bKeyWriteBin(const tString &csSection, const tString &csKey, const uStrin
     /*DEBUG*///cusValue  - n/a
 
     //cusValue (uString) -> sHexStr (tString)
-    tString sHexStr = CxString::sToBase(cusValue, 16);
+    tString sHexStr = CxString::lexical_cast(cusValue, 16);
 
     return bKeyWriteString(csSection, csKey, sHexStr);
 }

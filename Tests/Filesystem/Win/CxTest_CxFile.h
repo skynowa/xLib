@@ -186,7 +186,7 @@ BOOL CxTest_CxFile::bUnit() {
 	//////m_bRes = CxFile::bDelete(csNewFilePath);
 	//////xASSERT(FALSE != m_bRes);
 
-	m_bRes = CxFile::bSecureDelete(csNewFilePath, 1);
+	m_bRes = CxFile::bWipe(csNewFilePath, 1);
 	xASSERT(FALSE != m_bRes);
 
 	//-------------------------------------

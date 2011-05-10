@@ -8,8 +8,8 @@
 #define xVCL_OLE_CxAccessH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Fso/CxPath.h>
-#include <xLib/Fso/Win/CxFile.h>
+#include <xLib/Filesystem/CxPath.h>
+#include <xLib/Filesystem/Win/CxFile.h>
 
 #include <xVCL/xCommon.h>
 #include <ComObj.hpp>   //OLE
