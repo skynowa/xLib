@@ -44,72 +44,12 @@ CxTest_CxString::~CxTest_CxString() {
 BOOL
 CxTest_CxString::bUnit() {
     /****************************************************************************
-    *    ������ <--> �����
+    *    convertation
     *
     *****************************************************************************/
 
-
-    //////std::string str = "41 42 43";
-    //////std::istringstream iss(str);
-    //////std::vector<int> vi;
-
-    //////iss >> std::hex;
-    //////std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(vi));
-
-    //////tcout << (TCHAR)vi.at(0) << std::endl;
-    //////tcout << (TCHAR)vi.at(1) << std::endl;
-    //////tcout << (TCHAR)vi.at(2) << std::endl;
-
-    {
-        //INT iBases[] = {8, 10, 16};
-
-        //for (INT i = 0; i < xARRAY_SIZE(iBases); ++ i) {
-        //  const tString sRes = xT("ABC");
-
-        //  tString sHexStr = CxString::sStrToBase(sRes, iBases[i]);
-        //  tcout << sHexStr << std::endl;
-
-        //  tString sStdStr = CxString::sBaseToStr(sHexStr, iBases[i]);
-        //  tcout << sStdStr << std::endl;
-        //
-        //  xASSERT(sRes == sStdStr);
-        //}
-    }
-
     //-------------------------------------
-    //sToBase, sFromBase
-    {
-        const INT iBases[] = {8, 10, 16};
-
-        //tString
-        for (size_t i = 0; i < xARRAY_SIZE(iBases); ++ i) {
-            const tString sRes = xT("ABC");
-
-            tString sHexStr = CxString::sToBase(sRes, iBases[i]);
-            //xTRACE(sHexStr);
-
-            tString sStdStr = CxString::sFromBase<tString>(sHexStr, iBases[i]);
-            //xTRACE(sStdStr);
-
-            xASSERT(sRes == sStdStr);
-        }
-
-        //uString
-        for (size_t i = 0; i < xARRAY_SIZE(iBases); ++ i) {
-            const uString usRes(10, 'A');
-
-            tString sHexStr = CxString::sToBase(usRes, iBases[i]);
-            //xTRACE(sHexStr);
-
-            uString usStdStr = CxString::sFromBase<uString>(sHexStr, iBases[i]);
-            //xTRACE( tString(usStdStr.begin(), usStdStr.end()) );
-
-            xASSERT(usRes == usStdStr);
-        }
-    }
-
-    //-------------------------------------
-    //lexical_cast
+    //lexical_cast (to string)
     {
         m_sRes = CxString::lexical_cast(1);
         xASSERT(xT("1") == m_sRes);
@@ -133,9 +73,8 @@ CxTest_CxString::bUnit() {
         xASSERT(xT("0") == m_sRes);
     }
 
-
     //-------------------------------------
-    //lexical_cast
+    //lexical_cast (from string)
     {
         m_sRes = CxString::lexical_cast<tString>(xT("String"));
         xASSERT(xT("String") == m_sRes);
@@ -162,6 +101,98 @@ CxTest_CxString::bUnit() {
         ////xASSERT_MSG(0U == m_uiRes, CxString::lexical_cast<size_t>( m_uiRes ));
     }
 
+    //-------------------------------------
+    //lexical_cast (to string by base)
+    {
+        ////m_sRes = CxString::sIntToStr(1033, 2);
+        ////xASSERT(xT("10000001001") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033, 8);
+        xASSERT(xT("2011") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033, 10);
+        xASSERT(xT("1033") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033, 16);
+        xASSERT(xT("409") == m_sRes);
+    }
+    {
+        ////m_sRes = CxString::sIntToStr(1033L, 2);
+        ////xASSERT(xT("10000001001") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033L, 8);
+        xASSERT(xT("2011") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033L, 10);
+        xASSERT(xT("1033") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033L, 16);
+        xASSERT(xT("409") == m_sRes);
+    }
+    {
+        ////m_sRes = CxString::sIntToStr(1033UL, 2);
+        ////xASSERT(xT("10000001001") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033UL, 8);
+        xASSERT(xT("2011") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033UL, 10);
+        xASSERT(xT("1033") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033UL, 16);
+        xASSERT(xT("409") == m_sRes);
+    }
+    {
+        ////m_sRes = CxString::sIntToStr(1033LL, 2);
+        ////xASSERT(xT("10000001001") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033LL, 8);
+        xASSERT(xT("2011") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033LL, 10);
+        xASSERT(xT("1033") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033LL, 16);
+        xASSERT(xT("409") == m_sRes);
+    }
+    {
+        ////m_sRes = CxString::sIntToStr(1033ULL, 2);
+        ////xASSERT(xT("10000001001") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033ULL, 8);
+        xASSERT(xT("2011") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033ULL, 10);
+        xASSERT(xT("1033") == m_sRes);
+
+        m_sRes = CxString::lexical_cast(1033ULL, 16);
+        xASSERT(xT("409") == m_sRes);
+    }
+
+    //-------------------------------------
+    //lexical_cast (from, to string by base)
+    {
+        const INT caiBases[] = {8, 10, 16};
+
+        const tString casData[] = {
+                xT("01234567890ABC"),
+                xT("01234567890"),
+                xT("ABCDEF"),
+                xT("ABCDEF01234567890ABC"),
+                xT("01234AA567890ABC")
+        };
+
+        for (size_t b = 0; b < xARRAY_SIZE(caiBases); ++ b) {
+            for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
+                const tString sRes    = casData[i];
+
+                const tString sHexStr = CxString::lexical_cast(sRes, caiBases[b]);
+                const tString sStdStr = CxString::lexical_cast<tString>(sHexStr, caiBases[b]);
+
+                xASSERT(sRes == sStdStr);
+            }
+        }
+    }
 
     //-------------------------------------
     //bBoolToStr
@@ -172,7 +203,6 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::sBoolToStr(FALSE);
         xASSERT(xT("FALSE") == m_sRes);
     }
-
 
     //-------------------------------------
     //bStrToBool
@@ -244,6 +274,7 @@ CxTest_CxString::bUnit() {
             xASSERT(sStr3 == sStr4);
         }
     }
+
     //-------------------------------------
     //sTrimChars
     {
@@ -264,7 +295,6 @@ CxTest_CxString::bUnit() {
             xASSERT(sStr3 == sStr4);
         }
     }
-
 
     //-------------------------------------
     //sTrimSpace
@@ -287,7 +317,8 @@ CxTest_CxString::bUnit() {
             xASSERT(sStr3 == sStr4);
         }
     }
-    ///-------------------------------------
+
+    //-------------------------------------
     //sRemoveEol
     {
         #if defined(xOS_WIN)
@@ -367,9 +398,6 @@ CxTest_CxString::bUnit() {
     //-------------------------------------
     //sRemoveAll
     {
-        ////CxPerform P(xT("___Test1.test"), CxPerform::pmGetTickCount);
-        ////P.bStart();
-
         m_sRes = CxString::sRemoveAll(xT(" one test string "), xT(" "));
         xASSERT(xT("oneteststring") == m_sRes);
 
@@ -387,8 +415,6 @@ CxTest_CxString::bUnit() {
 
         m_sRes = CxString::sRemoveAll(xT("one test stringg"),  xT("string"));
         xASSERT(xT("one test g") == m_sRes);
-
-        ////P.bStop(xT(""));
     }
 
     //-------------------------------------
@@ -419,7 +445,7 @@ CxTest_CxString::bUnit() {
         vecsRes.push_back(xT(""));
 
         m_sRes = CxString::sJoin(vecsRes, xT("-"));
-        xASSERT(xT("-111--222-333--") == m_sRes);  //������ ��������� �����������
+        xASSERT(xT("-111--222-333--") == m_sRes);
     }
 
     //-------------------------------------
@@ -548,15 +574,6 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::sCut(sForCut);
         xASSERT(xT("0123456789") == m_sRes);
     }
-
-
-    //-------------------------------------
-    //bStrToFile
-    //m_bRes = CxString::bStrToFile(const tString &csStr, const tString &csFilePath);
-
-    //-------------------------------------
-    //bStrFromFile
-    //m_bRes = CxString::bStrFromFile(const tString &csStr, const tString &csFilePath);
 
     //-------------------------------------
     //sToLowerCase
@@ -715,27 +732,40 @@ CxTest_CxString::bUnit() {
     }
 
     //-------------------------------------
-    //cMakeUpperCase
-    //g_chChar = cMakeUpperCase(CHAR ch);  //non-Unicode characters only
-
-    //-------------------------------------
-    //cMakeLowerCase
-    //g_chChar = cMakeLowerCase(CHAR ch);  //non-Unicode characters only
-
-
-    //-------------------------------------
     //bCompareNoCase
     {
-        m_bRes = CxString::bCompareNoCase(xT(""),     xT(""));                  xASSERT(FALSE != m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("xxx"),  xT("XXX"));                   xASSERT(FALSE != m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("111"),  xT("111"));                   xASSERT(FALSE != m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("eee"),  xT("EeE"));                   xASSERT(FALSE != m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("WWW"),  xT("wwW"));                   xASSERT(FALSE != m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("ccc"),  xT("���"));                   xASSERT(FALSE == m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("���"),  xT("����"));              xASSERT(FALSE == m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("����"), xT("���"));                   xASSERT(FALSE == m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("���"),  xT("����"));              xASSERT(FALSE == m_bRes);
-        m_bRes = CxString::bCompareNoCase(xT("����"), xT("���"));                   xASSERT(FALSE == m_bRes);
+        m_bRes = CxString::bCompareNoCase(xT(""),     xT(""));
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("xxx"),  xT("XXX"));
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("111"),  xT("111"));
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("eee"),  xT("EeE"));
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("WWW"),  xT("wwW"));
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("ccc"),  xT("���"));
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("���"),  xT("����"));
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("����"), xT("���"));
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("���"),  xT("����"));
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("����"), xT("���"));
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = CxString::bCompareNoCase(xT("dddd"), xT("d"));
+        xASSERT(FALSE == m_bRes);
     }
 
 
@@ -855,80 +885,6 @@ CxTest_CxString::bUnit() {
 ////        std::cout << sRes << std::endl;
     }
 
-
-    /****************************************************************************
-    *    <stdlib.h>
-    *
-    *****************************************************************************/
-
-    //-------------------------------------
-    //sIntToStr
-    {
-//        m_sRes = CxString::sIntToStr(1033, 2);
-//        xASSERT_EQUAL(xT("10000001001"), m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033, 8);
-//        xASSERT_EQUAL(xT("2011"), m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033, 10);
-//        xASSERT_EQUAL(xT("1033"), m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033, 16);
-//        xASSERT_EQUAL(xT("409"), m_sRes);
-    }
-    {
-//        m_sRes = CxString::sIntToStr(1033L, 2);
-//        xASSERT(xT("10000001001") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033L, 8);
-//        xASSERT(xT("2011") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033L, 10);
-//        xASSERT(xT("1033") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033L, 16);
-//        xASSERT(xT("409") == m_sRes);
-    }
-    {
-//        m_sRes = CxString::sIntToStr(1033UL, 2);
-//        xASSERT(xT("10000001001") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033UL, 8);
-//        xASSERT(xT("2011") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033UL, 10);
-//        xASSERT(xT("1033") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033UL, 16);
-//        xASSERT(xT("409") == m_sRes);
-    }
-    {
-//        m_sRes = CxString::sIntToStr(1033LL, 2);
-//        xASSERT(xT("10000001001") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033LL, 8);
-//        xASSERT(xT("2011") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033LL, 10);
-//        xASSERT(xT("1033") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033LL, 16);
-//        xASSERT(xT("409") == m_sRes);
-    }
-    {
-//        m_sRes = CxString::sIntToStr(1033ULL, 2);
-//        xASSERT(xT("10000001001") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033ULL, 8);
-//        xASSERT(xT("2011") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033ULL, 10);
-//        xASSERT(xT("1033") == m_sRes);
-//
-//        m_sRes = CxString::sIntToStr(1033ULL, 16);
-//        xASSERT(xT("409") == m_sRes);
-    }
-
     /****************************************************************************
     *    memory
     *
@@ -998,33 +954,6 @@ CxTest_CxString::bUnit() {
         m_bRes = CxString::bIsRepeated(xT("000000000111111111"));
         xASSERT(FALSE == m_bRes);
     }
-
-    //-------------------------------------
-    //ulCountDigits
-    {
-        /*      m_ulRes = ulCountDigits(0);
-        xASSERT(0 == m_ulRes);
-
-        m_ulRes = ulCountDigits(1);
-        xASSERT(1 == m_ulRes);
-
-        m_ulRes = ulCountDigits(10);
-        xASSERT(2 == m_ulRes);
-
-        m_ulRes = ulCountDigits(123);
-        xASSERT(3 == m_ulRes);
-
-        m_ulRes = ulCountDigits(4444);
-        xASSERT(4 == m_ulRes);
-
-        m_ulRes = ulCountDigits(50080);
-        xASSERT(5 == m_ulRes);  */
-    }
-
-
-    //-------------------------------------
-    //sSizeToStr
-    //m_sRes = sSizeToStr(ULONG dwSize);
 
     //-------------------------------------
     //vStdVectorPrintT

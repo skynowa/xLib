@@ -34,105 +34,6 @@ class CxString : public CxNonCopyable {
         };
 
         //---------------------------------------------------------------------------
-        //UCHAR -> TCHAR_HEX
-        ////template<class CharT>
-        ////static tString sStrToBase(const std::basic_string<CharT> &csStr, INT iBase)    {
-        ////    /*DEBUG*/xASSERT_RET(false == csStr.empty(),                   FALSE);
-        ////    /*DEBUG*/xASSERT_RET(8 == iBase || 10 == iBase || 16 == iBase, FALSE);
-        ////
-        ////    std::basic_stringstream<CharT> ssStream;
-        ////    ssStream << std::setbase(iBase) << std::showbase << std::uppercase;
-
-        ////    copy(csStr.begin(), csStr.end(), std::ostream_iterator<INT, CharT>(ssStream, xT(" ")/*csSep.at(0)*/));
-        ////
-        ////    return ssStream.str();
-        ////}
-
-
-        ////template<class CharT>
-        ////static std::basic_string<CharT> sBaseToStr(const std::basic_string<CharT> &csStr, INT iBase) {
-        ////    /*DEBUG*/xASSERT_RET(false == csStr.empty(),                   FALSE);
-        ////    /*DEBUG*/xASSERT_RET(8 == iBase || 10 == iBase || 16 == iBase, FALSE);
-        ////
-        ////    std::basic_string<CharT> sResT;
-
-        ////    tistringstream issStream(csStr);
-        ////    issStream >> std::setbase(iBase);
-
-        ////    std::copy(std::istream_iterator<INT>(issStream), std::istream_iterator<INT>(), std::back_inserter(sResT));
-
-        ////    return sResT;
-        ////};
-
-        //---------------------------------------------------------------------------
-        /*
-        std::string str("i am string");
-        std::vector<unsigned char> data;//i am array
-        std::copy(str.begin(), str.end(), std::back_inserter(data));
-        */
-
-        ////std::string str = "10 11 b";
-        ////std::istringstream iss(str);
-        ////std::vector<int> vi;
-
-        ////iss >> std::hex;
-        ////std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(vi));
-
-        //-------------------------------------
-        //tString -> tString_Base
-        template<class CharT>
-        static
-        tString
-        sToBase(const std::basic_string<CharT> &csStr, INT iBase)    {
-            ////xCHECK_RET(true == csStr.empty(),                    tString());
-            ////xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
-
-            tostringstream ssStream;
-            ssStream << std::setbase(iBase) << std::showbase << std::uppercase;
-
-            tString sRes(csStr.begin(), csStr.end());
-
-            copy(sRes.begin(), sRes.end(), std::ostream_iterator<INT, TCHAR>( ssStream, xT(" ") ));
-
-            return ssStream.str();
-        }
-
-        //-------------------------------------
-        //tString_Base -> tString
-        template<class StringT/*CharT*/>
-        static
-        StringT/*std::basic_string<CharT>*/
-        sFromBase(const tString &csStr, INT iBase) {
-            ////xCHECK_RET(true == csStr.empty(),                    StringT());
-            ////xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, StringT());
-
-            tistringstream issStream(csStr);
-            issStream >> std::setbase(iBase);
-
-            return StringT/*std::basic_string<CharT>*/(
-                        std::istream_iterator<INT, TCHAR>(issStream),
-                        std::istream_iterator<INT, TCHAR>()
-                   );
-        }
-
-        //---------------------------------------------------------------------------
-        static
-        tString
-        __sIntToStr(INT iValue, INT iBase) {
-            // iValue
-            ////xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
-
-            tostringstream ssRes;
-
-            ssRes << std::setbase(iBase) << std::uppercase << iValue;   ssRes.flush();
-
-            return ssRes.str();
-        }
-
-
-
-
-        //---------------------------------------------------------------------------
         //type -> tString
         template<class T>
         static
@@ -146,7 +47,34 @@ class CxString : public CxNonCopyable {
                 ossRes.exceptions(tostringstream::failbit | tostringstream::badbit);
                 ossRes << cValueT;
 
-                sRes.assign( ossRes.str() );
+                sRes.assign(ossRes.str());
+            } catch (tostringstream::failure e) {
+                sRes.clear();
+            } catch (...) {
+                sRes.clear();
+            }
+
+            return sRes;
+        }
+
+        //---------------------------------------------------------------------------
+        //type -> tString by base
+        template<class T>
+        static
+        tString
+        lexical_cast(const T &cValueT, const INT iBase) {
+            //cValueT - n/a
+            xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
+
+            tString sRes;
+
+            try {
+                tostringstream ossRes;
+
+                ossRes.exceptions(tostringstream::failbit | tostringstream::badbit);
+                ossRes << std::setbase(iBase) << std::uppercase << cValueT;  //std::showbase
+
+                sRes.assign(ossRes.str());
             } catch (tostringstream::failure e) {
                 sRes.clear();
             } catch (...) {
@@ -169,6 +97,31 @@ class CxString : public CxNonCopyable {
 
                 issStream.exceptions(tistringstream::failbit | tistringstream::badbit);
                 issStream >> ResT;
+            } catch (tistringstream::failure e) {
+                return T();
+            } catch (...) {
+                return T();
+            }
+
+            return ResT;
+        }
+
+        //---------------------------------------------------------------------------
+        //tString by base -> type
+        template<class T>
+        static
+        T
+        lexical_cast(const tString &csStr, const INT iBase) {
+            //csStr - n/a
+            xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
+
+            T ResT;
+
+            try {
+                tistringstream issStream(csStr);
+
+                issStream.exceptions(tistringstream::failbit | tistringstream::badbit);
+                issStream >> std::setbase(iBase) >> ResT;
             } catch (tistringstream::failure e) {
                 return T();
             } catch (...) {
@@ -203,7 +156,6 @@ class CxString : public CxNonCopyable {
         static tString      sToUpperCase     (const tString &csStr, size_t uiLength);
 
         static tString      sFormat          (LPCTSTR pcszFormat, ...);
-        static std::string  sFormatA         (LPCSTR  pcszFormat, ...);
         static tString      sFormatV         (LPCTSTR pcszFormat, va_list palArgs);
         static tString      sMinimize        (const tString &csStr, const size_t cuiMaxLen);
 
@@ -219,11 +171,11 @@ class CxString : public CxNonCopyable {
         *
         *****************************************************************************/
 
-        static tString        sTranslitLatToRus(const tString &csStr);
+        static tString      sTranslitLatToRus(const tString &csStr);
         static tString      sFormatBytes     (double dBytes);
         static tString      sFormatBytes     (ULONGLONG ullBytes);
         static tString      sFormatPercentage(ULONGLONG ullMaxValue, ULONGLONG ullCurrValue);
-        static tString        sFormatNixTerminal(const tString &csText, EForeground fgForeground, BOOL bIsBold, BOOL bIsUnderline, EBackground bgBackground, BOOL bIsBlink);
+        static tString      sFormatNixTerminal(const tString &csText, EForeground fgForeground, BOOL bIsBold, BOOL bIsUnderline, EBackground bgBackground, BOOL bIsBlink);
 
         static std::wstring sStrToWStr       (const std::string  &csStr,  UINT uiCodePage);
         static std::string  sWStrToStr       (const std::wstring &cwsStr, UINT uiCodePage);
@@ -232,21 +184,6 @@ class CxString : public CxNonCopyable {
 
         static std::string  asCharToOemBuff  (const tString     &csSrc);
         static tString      sOemToCharBuff   (const std::string &csSrc);
-
-
-
-        /****************************************************************************
-        *    <stdlib.h>
-        *
-        *****************************************************************************/
-
-        //TODO: <stdlib.h>
-        //http://www.jb.man.ac.uk/~slowe/cpp/itoa.html
-//        static tString      sIntToStr        (INT       iValue,    INT iRadix);
-//        static tString      sIntToStr        (LONG      liValue,   INT iRadix);
-//        static tString      sIntToStr        (ULONG     ulValue,   INT iRadix);
-//        static tString      sIntToStr        (LONGLONG  i64Value,  INT iRadix);
-//        static tString      sIntToStr        (ULONGLONG ui64Value, INT iRadix);
 
 
         /****************************************************************************

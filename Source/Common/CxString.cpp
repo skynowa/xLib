@@ -403,34 +403,6 @@ CxString::sFormat(LPCTSTR pcszFormat, ...) {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatA (ANSI-версия)
-/*static*/
-std::string
-CxString::sFormatA(LPCSTR pcszFormat, ...) {
-    /*DEBUG*/// n/a
-    xCHECK_RET(NULL == pcszFormat, std::string());
-
-    std::string sBuff(128, '\0');
-    INT         iWrittenSize = - 1;
-
-    va_list palArgs = NULL;
-    va_start(palArgs, pcszFormat);
-
-    for ( ;; ) {
-        //если win32 то используем _vsnprintf (для C++Builder - vsnprintf)
-        iWrittenSize = vsnprintf(&sBuff[0], sBuff.size(), pcszFormat, palArgs);    //error - 1
-        xCHECK_DO(iWrittenSize > - 1 && iWrittenSize < static_cast<INT>(sBuff.size()), break);    //!может быть урезан буфер!
-
-        sBuff.resize(sBuff.size() * 2);
-    }
-
-    va_end(palArgs);
-
-    sBuff.resize(iWrittenSize);
-
-    return sBuff;
-}
-//---------------------------------------------------------------------------
 //DONE: sFormatV
 /*static*/
 tString
@@ -477,7 +449,7 @@ CxString::sMinimize(const tString &csStr, const size_t cuiMaxLen) {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sCreateGuid (генерация GUID)
+//DONE: sCreateGuid (generate GUID)
 /*static*/
 tString
 CxString::sCreateGuid() {
@@ -502,7 +474,8 @@ CxString::sCreateGuid() {
     );
     /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
 #elif defined(xOS_LINUX)
-    //TODO: (xOS_LINUX)
+    //TODO: (sCreateGuid)
+    //#include <uuid/uuid.h>
     xNOT_IMPLEMENTED_RET(tString());
 #endif
 
@@ -702,7 +675,7 @@ CxString::sStrToWStr(const std::string &csStr, UINT uiCodePage) {
     iSize = ::MultiByteToWideChar(uiCodePage, 0, csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::wstring());
 #elif defined(xOS_LINUX)
-    //TODO: (xOS_LINUX)
+    //TODO: (sStrToWStr)
     xNOT_IMPLEMENTED_RET(std::wstring());
 #endif
 
@@ -726,7 +699,7 @@ CxString::sWStrToStr(const std::wstring &cwsStr, UINT uiCodePage) {
     iSize = ::WideCharToMultiByte(uiCodePage, 0, cwsStr.c_str(), - 1, static_cast<LPSTR>(&asRes.at(0)), iSize, NULL, NULL);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::string());
 #elif defined(xOS_LINUX)
-    //TODO: (xOS_LINUX)
+    //TODO: (sWStrToStr)
     xNOT_IMPLEMENTED_RET(std::string());
 #endif
 
@@ -782,7 +755,7 @@ CxString::sOemToCharBuff(const std::string &csSrc) {
     bRes = ::OemToCharBuff(csSrc.c_str(), &sDst.at(0), sDst.size());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
 #elif defined(xOS_LINUX)
-    //TODO: (xOS_LINUX)
+    //TODO: (sOemToCharBuff)
     xNOT_IMPLEMENTED_RET(tString());
 #endif
 
@@ -792,101 +765,7 @@ CxString::sOemToCharBuff(const std::string &csSrc) {
 
 
 /****************************************************************************
-*    <stdlib.h>
-*
-*****************************************************************************/
-
-////---------------------------------------------------------------------------
-////TODO: - sIntToStr (INT)
-///*static*/
-//tString
-//CxString::sIntToStr(INT iValue, INT iRadix) {
-//    /*DEBUG*/// ulValue - n/a
-//    /*DEBUG*/xASSERT_RET(2 <= iRadix && iRadix <= 36, tString());
-//
-//    tString sRes;
-//
-//    TCHAR szBuff[32 + 1] = {0};        //up to 33 bytes
-//
-//    sRes = _itot(iValue, szBuff, iRadix);
-//    /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
-//
-//    return sRes;
-//}
-////---------------------------------------------------------------------------
-////TODO: - sIntToStr (LONG)
-///*static*/
-//tString
-//CxString::sIntToStr(LONG liValue, INT iRadix) {
-//    /*DEBUG*/// ulValue - n/a
-//    /*DEBUG*/xASSERT_RET(2 <= iRadix && iRadix <= 36, tString());
-//
-//    tString sRes;
-//
-//    TCHAR szBuff[32 + 1] = {0};        //up to 33 bytes
-//
-//    sRes = _ltot(liValue, szBuff, iRadix);
-//    /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
-//
-//    return sRes;
-//}
-////---------------------------------------------------------------------------
-////DONE: sIntToStr (ULONG)
-///*static*/
-//tString
-//CxString::sIntToStr(ULONG ulValue, INT iRadix) {
-//    /*DEBUG*/// ulValue - n/a
-//    /*DEBUG*/xASSERT_RET(2 <= iRadix && iRadix <= 36, tString());
-//
-//    tString sRes;
-//
-//    TCHAR szBuff[32 + 1] = {0};        //up to 33 bytes
-//
-//    sRes = _ultot(ulValue, szBuff, iRadix);
-//    /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
-//
-//    return sRes;
-//}
-////---------------------------------------------------------------------------
-////TODO: - sIntToStr (LONGLONG)
-///*static*/
-//tString
-//CxString::sIntToStr(LONGLONG i64Value, INT iRadix) {
-//    /*DEBUG*/// ulValue - n/a
-//    /*DEBUG*/xASSERT_RET(2 <= iRadix && iRadix <= 36, tString());
-//
-//    tString sRes;
-//
-//    TCHAR szBuff[64 + 1] = {0};        //up to 65 bytes
-//
-//    sRes = _i64tot(i64Value, szBuff, iRadix);
-//    /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
-//
-//    return sRes;
-//}
-////---------------------------------------------------------------------------
-////TODO: - sIntToStr (ULONGLONG)
-///*static*/
-//tString
-//CxString::sIntToStr(ULONGLONG ui64Value, INT iRadix) {
-//    /*DEBUG*/// ulValue - n/a
-//    /*DEBUG*/xASSERT_RET(2 <= iRadix && iRadix <= 36, tString());
-//
-//    tString sRes;
-//
-//    TCHAR szBuff[64 + 1] = {0};        //up to 65 bytes
-//
-//    sRes = _ui64tulli64Value, szBuff, iRadix);
-//    /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
-//
-//    return sRes;
-//}
-////---------------------------------------------------------------------------
-
-
-
-/****************************************************************************
-*    другие
+*    other
 *
 *****************************************************************************/
 
