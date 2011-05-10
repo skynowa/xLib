@@ -130,7 +130,7 @@ class CxStdioFile : public CxNonCopyable {
         tString          sGetPath     () const;
 
         //read, write
-        size_t           uiRead       (LPVOID pvBuff,         const size_t cuiCount) const;
+        size_t           uiRead       (LPVOID pvBuff,        const size_t cuiCount) const;
         size_t           uiWrite      (const LPVOID pcvBuff, const size_t cuiCount) const;
         BOOL             bRead        (uString *psBuff) const;
         BOOL             bWrite       (const uString &csBuff) const;

@@ -23,7 +23,7 @@
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE: CxIni (����������� - ���� � ���������� Exe)
+//DONE:: CxIni (constructor, exe-file path)
 CxIni::CxIni() :
     _m_bRes     (FALSE),
     _m_sFilePath()
@@ -34,7 +34,7 @@ CxIni::CxIni() :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: CxIni (����������� - ���� � �������� ����������)
+//DONE:: CxIni (constructor, file path)
 CxIni::CxIni(const tString &csFilePath) :
     _m_bRes     (FALSE),
     _m_sFilePath()
@@ -46,44 +46,34 @@ CxIni::CxIni(const tString &csFilePath) :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: ~CxIni (����������)
+//DONE:: ~CxIni (destructor)
 /*virtual*/
 CxIni::~CxIni() {
     _m_bRes = bFlush();
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: bCreateDefault (�������� ����� ��-���������)
-#if xTEMP_DISABLED
-    BOOL
-    CxIni::bCreateDefault(const tString &csContent) {
-        /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
-        /*DEBUG*/// csContent - n/a;
+//TODO:: bCreateDefault (�������� ����� ��-���������)
+BOOL
+CxIni::bCreateDefault(const tString &csContent) {
+    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
+    /*DEBUG*/// csContent - n/a;
 
-    #if defined(xOS_WIN)
-        //TODO: xOS_WIN
-        //�������� �����
-        _m_bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    _m_bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-        //�������� �����
-        CxStdioFile sfFile;
+    CxStdioFile sfFile;
 
-        _m_bRes = sfFile.bOpen(_m_sFilePath, CxStdioFile::omCreateReadWrite);
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    _m_bRes = sfFile.bOpen(_m_sFilePath, CxStdioFile::omCreateReadWrite);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-        INT iRes = sfFile.iWrite(csContent.c_str());
-        /*DEBUG*/xASSERT_RET(CxStdioFile::etError != iRes, FALSE);
-    #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
-        xNOT_IMPLEMENTED_RET(FALSE);
-    #endif
+    INT iRes = sfFile.iWrite(csContent.c_str());
+    /*DEBUG*/xASSERT_RET(CxStdioFile::etError != iRes, FALSE);
 
-        return TRUE;
-    }
-#endif
+    return TRUE;
+}
 //-------------------------------------------------------------------------
-//DONE: sGetPath (��������� ���� � �����)
+//TODO:: sGetPath (��������� ���� � �����)
 tString
 CxIni::sGetPath() {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), tString());
@@ -91,7 +81,7 @@ CxIni::sGetPath() {
     return _m_sFilePath;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetPath (��������� ���� � ����)
+//TODO:: bSetPath (��������� ���� � ����)
 BOOL
 CxIni::bSetPath(const tString &csFilePath) {
     /*DEBUG*///_m_sFilePath - n/a
@@ -105,48 +95,26 @@ CxIni::bSetPath(const tString &csFilePath) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bFlush (����� ����������� � ����)
+//TODO:: bFlush (����� ����������� � ����)
 BOOL
 CxIni::bFlush() {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
 
-#if defined(xOS_WIN)
-    //TODO: xOS_WIN
-    _m_bRes = ::WritePrivateProfileString(NULL, NULL, NULL, _m_sFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE == _m_bRes, FALSE);
-#elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
-    xNOT_IMPLEMENTED_RET(FALSE);
-#endif
+    //TODO: write TIni to _m_sFilePath
+
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear (������� �����)
-#if xTEMP_DISABLED
-    BOOL
-    CxIni::bClear() {
-        /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
+//TODO:: bClear (������� �����)
+BOOL
+CxIni::bClear() {
+    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
 
-        #if defined(xOS_WIN)
-            //TODO: xOS_WIN
-            std::vector<tString> vecsNames;
+    //TODO: clear _m_sFilePath
 
-            _m_bRes = bSectionsReadNames(&vecsNames);
-            /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-
-            for (std::size_t i = 0; i < vecsNames.size(); ++ i) {
-                _m_bRes = bSectionDelete(vecsNames.at(i));
-                /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-            }
-        #elif defined(xOS_LINUX)
-            //TODO: xOS_LINUX
-            xNOT_IMPLEMENTED_RET(FALSE);
-        #endif
-
-        return TRUE;
-    }
-#endif
+    return TRUE;
+}
 //---------------------------------------------------------------------------
 
 
@@ -156,7 +124,7 @@ CxIni::bFlush() {
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE: bKeyIsExists (������������� ������)
+//TODO:: bKeyIsExists (������������� ������)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyIsExists(const tString &csSection, const tString &csKey) {
@@ -182,7 +150,7 @@ CxIni::bFlush() {
     }
 #endif
 //---------------------------------------------------------------------------
-//DONE: iKeyReadInt (������ INT)
+//TODO:: iKeyReadInt (������ INT)
 #if xTEMP_DISABLED
     INT
     CxIni::iKeyReadInt(const tString &csSection, const tString &csKey, LONG iDefaultValue) {
@@ -195,7 +163,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteInt (������ INT)
+//TODO:: bKeyWriteInt (������ INT)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyWriteInt(const tString &csSection, const tString &csKey, LONG iValue) {
@@ -208,7 +176,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: dKeyReadFloat (������ FLOAT)
+//TODO:: dKeyReadFloat (������ FLOAT)
 #if xTEMP_DISABLED
     double
     CxIni::dKeyReadFloat(const tString &csSection, const tString &csKey, double dDefaultValue) {
@@ -221,7 +189,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteFloat (������ FLOAT)
+//TODO:: bKeyWriteFloat (������ FLOAT)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyWriteFloat(const tString &csSection, const tString &csKey, double dValue) {
@@ -234,7 +202,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: bKeyReadBool (������ BOOL)
+//TODO:: bKeyReadBool (������ BOOL)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyReadBool(const tString &csSection, const tString &csKey, BOOL bDefaultValue) {
@@ -259,7 +227,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteBool (������ BOOL)
+//TODO:: bKeyWriteBool (������ BOOL)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyWriteBool(const tString &csSection, const tString &csKey, BOOL bValue) {
@@ -276,7 +244,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: sKeyReadString (������ tString)
+//TODO:: sKeyReadString (������ tString)
 #if xTEMP_DISABLED
     tString
     CxIni::sKeyReadString(const tString &csSection, const tString &csKey, const tString &csDefaultValue) {
@@ -315,7 +283,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteString (������ tString)
+//TODO:: bKeyWriteString (������ tString)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyWriteString(const tString &csSection, const tString &csKey, const tString &csValue) {
@@ -337,7 +305,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: usKeyReadBin (������ uString)
+//TODO:: usKeyReadBin (������ uString)
 #if xTEMP_DISABLED
     uString
     CxIni::usKeyReadBin(const tString &csSection, const tString &csKey, const uString &cusDefaultValue) {
@@ -363,7 +331,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteBin (������ uString)
+//TODO:: bKeyWriteBin (������ uString)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyWriteBin(const tString &csSection, const tString &csKey, const uString &cusValue) {
@@ -385,7 +353,7 @@ CxIni::bFlush() {
     }
 #endif
 //-------------------------------------------------------------------------
-//DONE: bKeyClear (������� �����)
+//TODO:: bKeyClear (������� �����)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyClear(const tString &csSection, const tString &csKey) {
@@ -397,7 +365,7 @@ CxIni::bFlush() {
     }
 #endif
 //---------------------------------------------------------------------------
-//DONE: bKeyDelete (�������� �����)
+//TODO:: bKeyDelete (�������� �����)
 #if xTEMP_DISABLED
     BOOL
     CxIni::bKeyDelete(const tString &csSection, const tString &csKey) {
