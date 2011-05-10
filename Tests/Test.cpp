@@ -45,12 +45,13 @@
 #include "Filesystem/CxTest_CxStdioFile.h"
 #include "Filesystem/CxTest_CxDll.h"
 #include "Filesystem/CxTest_CxFileAttribute.h"
+#include "Filesystem/CxTest_CxIni.h"
+#include "Filesystem/CxTest_CxMemoryIni.h"
 
 #if defined(xOS_WIN)
-    #include "Filesystem/CxTest_CxDrive.h"
-    #include "Filesystem/CxTest_CxFile.h"
-    #include "Filesystem/CxTest_CxIni.h"
-    #include "Filesystem/CxTest_CxMemoryIni.h"
+    #include "Filesystem/Win/CxTest_CxDrive.h"
+    #include "Filesystem/Win/CxTest_CxFile.h"
+    #include "Filesystem/Win/CxTest_CxIni.h"
 #elif defined(xOS_LINUX)
 
 #endif

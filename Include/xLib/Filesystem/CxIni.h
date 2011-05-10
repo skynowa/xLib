@@ -48,19 +48,13 @@ class CxIni : public CxNonCopyable {
         BOOL             bKeyClear         (const tString &csSection, const tString &csKey);
         BOOL             bKeyDelete        (const tString &csSection, const tString &csKey);
 
-        //section
-        BOOL             bSectionIsExists  (const tString &csSection);
-        BOOL             bSectionRead      (const tString &csSection, std::map<tString, tString> *pmapsContent);
-        BOOL             bSectionWrite     (const tString &csSection, const std::map<tString, tString> &mapsContent);
-        BOOL             bSectionsReadNames(std::vector<tString> *pvecsNames);
-        BOOL             bSectionClear     (const tString &csSection);
-        BOOL             bSectionDelete    (const tString &csSection);
-
-        //function ValueExists(const Section, Ident: string): Boolean;
-
     private:
+        typedef std::multimap<tString, tString> TIni;
+
         BOOL             _m_bRes;
         tString          _m_sFilePath;
+
+        TIni             _m_mmsIni;
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Fso_CxIniH
