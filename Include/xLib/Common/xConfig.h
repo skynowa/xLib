@@ -12,7 +12,7 @@
 #define xLib_Common_xConfigH
 //---------------------------------------------------------------------------
 #define xLIB_VERSION xT("1.0.000")
-#define xLIB_AUTHOR  xT("Sky Nova")
+#define xLIB_AUTHOR  xT("Skynowa")
 #define xLIB_DATE    xT(__DATE__)
 
 
