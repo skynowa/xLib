@@ -13,10 +13,10 @@
 *****************************************************************************/
 
 
-#include <XVCL/Classes/Gui/CxGdipImage.h>
+#include <xVCL/Gui/CxGdipImage.h>
 
 #include <Ole2.h>
-#include <XVCL/Units/Graphics/TColorConverter.cpp> 
+#include <xVCL/Units/Graphics/TColorConverter.cpp>
 
 
 /****************************************************************************

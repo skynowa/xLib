@@ -17,7 +17,7 @@
 #define CxXVCL_Classes_Db_DBGdipImageH
 //---------------------------------------------------------------------------
 #include <xVCL/xCommon.h>
-#include <xVCL/Classes/Gui/CxGdipImage.h>
+#include <xVCL/Gui/CxGdipImage.h>
 #include <ADODB.hpp>
 #include <DB.hpp>
 #include <Dialogs.hpp>

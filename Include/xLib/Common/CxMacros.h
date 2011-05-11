@@ -187,6 +187,15 @@ class CxMacros : CxNonCopyable {
         #endif
 
         #define xSTD_CIN(s)         { tcin  >> (s) >> tendl; }
+        
+        
+        #define xRELEASE(p)          { if (NULL != (p)) {p->Release (); p = NULL;} } 
+
+        #define xKEYDOWN(vk_code)    ((::GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
+        #define xKEYUP(vk_code)      ((::GetAsyncKeyState(vk_code) & 0x8000) ? 0 : 1) 
+
+        #define xGET_X_LPARAM(lp)    ( (INT)(SHORT)LOWORD(lp) )
+        #define xGET_Y_LPARAM(lp)    ( (INT)(SHORT)HIWORD(lp) )
 
     private:
                 CxMacros();
