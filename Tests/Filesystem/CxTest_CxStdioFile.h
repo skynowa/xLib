@@ -805,6 +805,7 @@ CxTest_CxStdioFile::bUnit() {
         static BOOL      bTextWrite   (const tString &csFilePath, const std::vector<tString> &cvecsContent);
 
         static BOOL      bTextRead    (const tString &csFilePath, const tString &csDelimiter, std::map<tString, tString> *pmapsFile);
+        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csSeparator, const std::map<tString, tString> &cmapsFile);
     #endif
 
 

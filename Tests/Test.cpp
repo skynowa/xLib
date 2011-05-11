@@ -127,7 +127,7 @@ _tmain(INT argc, TCHAR *argv[]) {
 
     #if xTEMP_ENABLED
         xTRACEV(xT("\n\n*** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE);
-        xTRACE(xT("Start all tests..."));
+        xTRACE(xT("Start all tests...\n\n"));
     #endif
 
     //--------------------------------------------------
@@ -180,12 +180,13 @@ _tmain(INT argc, TCHAR *argv[]) {
         vecpvTests.push_back( new CxTest_CxEnvironment );
         vecpvTests.push_back( new CxTest_CxDll );
         vecpvTests.push_back( new CxTest_CxFileAttribute );
+        vecpvTests.push_back( new CxTest_CxIni );
+        vecpvTests.push_back( new CxTest_CxMemoryIni );
 
         #if defined(xOS_WIN)
         vecpvTests.push_back( new CxTest_CxDrive );
         vecpvTests.push_back( new CxTest_CxFile );
         vecpvTests.push_back( new CxTest_CxIni );
-        vecpvTests.push_back( new CxTest_CxMemoryIni );
         #elif defined(xOS_LINUX)
 
         #endif
@@ -260,12 +261,12 @@ _tmain(INT argc, TCHAR *argv[]) {
     //run all tests
     for (ULONGLONG i = 0; i < ullTimesForAll; ++ i) {
         for (std::vector<CxTest *>::iterator it = vecpvTests.begin(); it != vecpvTests.end(); ++ it) {
-            //xTRACEV("Test (%s) begin.", (*it)->sGetName().c_str());
+            xTRACEV("Test (%s) begin.", (*it)->sGetName().c_str());
 
             bRes = (*it)->bRun(ullTimesForSingle);
             xASSERT_MSG_RET(FALSE != bRes, ( xT("Test (") + (*it)->sGetName() + xT(") not complete") ).c_str(), FALSE);
 
-            //xTRACEV("Test (%s) end.\n", (*it)->sGetName().c_str());
+            xTRACEV("Test (%s) end.\n", (*it)->sGetName().c_str());
         }
     }
 

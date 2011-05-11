@@ -21,13 +21,13 @@
 
 //---------------------------------------------------------------------------
 //DONE: sGetCurrent (get current)
-/*static*/ 
+/*static*/
 tString
 CxLocale::sGetCurrent() {
     /*DEBUG*/// n/a
-    
+
     tString sRes;
-    
+
 #if defined(xOS_WIN)
     INT  iRes = - 1;
     LCID lcId   = 0;
@@ -43,57 +43,53 @@ CxLocale::sGetCurrent() {
     iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(0 != iRes, tString());
 
-    sRes.assign(sRes.c_str());    //delete from end '\0'
+    sRes.assign(sRes, iRes);    //delete from end '\0'
 #elif defined(xOS_LINUX)
-    const TCHAR  *pszLocale = NULL;
+    const TCHAR *pcszLocale = NULL;
 
-    pszLocale = _tsetlocale(LC_ALL, NULL);
-    /*DEBUG*/xASSERT_RET(NULL != pszLocale, tString());
+    pcszLocale = _tsetlocale(LC_ALL, NULL);
+    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, tString());
 
-    sRes.assign(pszLocale);
+    sRes.assign(pcszLocale);
 #endif
-    
+
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetCurrent (set current)
-/*static*/ 
+//DONE: bSetCurrent (set current)
+/*static*/
 BOOL
 CxLocale::bSetCurrent(const tString &csLocale) {
-    /*DEBUG*/xASSERT_RET(false == csLocale.empty(), FALSE);
+    /*DEBUG*/// csLocale - n/a
 
-    LPCTSTR pcszLocale = NULL;
+    LPCTSTR pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
 
-    pcszLocale = _tsetlocale(LC_ALL, csLocale.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, FALSE);
- 
+#if defined(xOS_WIN)
+    BOOL bRes = FALSE;
+
+    bRes = ::SetLocaleInfo(static_cast<LCID>( pcszLocale ), LC_ALL, 0);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+#elif defined(xOS_LINUX)
+    LPCTSTR pcszRes = NULL;
+
+    pcszRes = _tsetlocale(LC_ALL, pcszLocale);
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, FALSE);
+#endif
+
     return TRUE;
-
-/*
-    _tsetlocale(LC_ALL, csLocale.c_str());
-*/
- 
-    //-------------------------------------
-    //2
-    ////BOOL bRes = FALSE;
-
-    ////bRes = ::SetLocaleInfo((LCID)csLocale.c_str(), LC_ALL,  0);
-    /////*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-
-    ////return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bSetDefault (set default)
-/*static*/ 
+/*static*/
 BOOL
 CxLocale::bSetDefault() {
     /*DEBUG*/// n/a
 
     BOOL bRes = FALSE;
-    
+
     bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-   
+
    return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -116,22 +112,3 @@ CxLocale::~CxLocale() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-
-
-
-
-
-
-
-//int GetLocaleInfo(
-//                  __in   LCID Locale,
-//                  __in   LCTYPE LCType,
-//                  __out  LPTSTR lpLCData,
-//                  __in   int cchData
-//                  );
-
-//BOOL SetLocaleInfo(
-//                   __in  LCID Locale,
-//                   __in  LCTYPE LCType,
-//                   __in  LPCTSTR lpLCData
-//                   );

@@ -83,6 +83,7 @@ CxTest_CxLocale::bUnit() {
     //bSetCurrent (don't change current locale)
     {
         m_bRes = CxLocale::bSetCurrent(sCurrLocale);
+        xASSERT(FALSE != m_bRes);
     }
 
     return TRUE;

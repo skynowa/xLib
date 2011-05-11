@@ -142,17 +142,17 @@ class CxStdioFile : public CxNonCopyable {
         BOOL             bWriteString (const tString &csStr) const;
 
         TCHAR            cReadChar    () const;
-        BOOL             bWriteChar   (TCHAR cChar) const;
-        BOOL             bUngetChar   (TCHAR cChar) const;
+        BOOL             bWriteChar   (const TCHAR ccChar) const;
+        BOOL             bUngetChar   (const TCHAR ccChar) const;
 
         BOOL             bClear       () const;
 
         //other
-        BOOL             bLocking     (const ELockingMode clmMode, LONG liBytes);
-        BOOL             bSetPosition (LONG lOffset, const EPointerPosition cppPos) const;
+        BOOL             bLocking     (const ELockingMode clmMode, const LONG cliBytes);
+        BOOL             bSetPosition (const LONG clOffset, const EPointerPosition cppPos) const;
         LONG             liGetPosition() const;
 
-        BOOL             bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, size_t uiSize) const;
+        BOOL             bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
 
     #if defined(xOS_WIN)
         BOOL             bSetMode     (const ETranslationMode tmMode) const;
@@ -182,7 +182,7 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bUnlink      (const tString &csFilePath);
         static BOOL      bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);
         static BOOL      bMove        (const tString &csFilePath,     const tString &csDirPath);
-        static BOOL      bCopy        (const tString &csFilePathFrom, const tString &csFilePathTo, BOOL bFailIfExists);
+        static BOOL      bCopy        (const tString &csFilePathFrom, const tString &csFilePathTo, const BOOL cbFailIfExists);
         static tString   sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
         static LONG      liGetSize    (const tString &csFilePath);
         static ULONGLONG ullGetLines  (const tString &csFilePath);
@@ -194,7 +194,8 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bTextRead    (const tString &csFilePath, std::vector<tString> *pvecsContent);
         static BOOL      bTextWrite   (const tString &csFilePath, const std::vector<tString> &cvecsContent);
 
-        static BOOL      bTextRead    (const tString &csFilePath, const tString &csDelimiter, std::map<tString, tString> *pmapsFile);
+        static BOOL      bTextRead    (const tString &csFilePath, const tString &csSeparator, std::multimap<tString, tString> *pmapsFile);
+        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csSeparator, const std::multimap<tString, tString> &cmapsFile);
 
         //binary
         static BOOL      bBinRead     (const tString &csFilePath, uString *pusStr);
