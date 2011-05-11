@@ -403,7 +403,7 @@ CxStdioFile::bLocking(
     INT iRes = etError;
 
 #if defined(xOS_WIN)
-    iRes = _locking(_iGetHandle(), clmMode, liBytes);
+    iRes = _locking(_iGetHandle(), clmMode, cliBytes);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
     iRes = lockf(_iGetHandle(), clmMode, static_cast<off_t>( cliBytes ));

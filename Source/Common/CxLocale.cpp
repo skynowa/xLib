@@ -43,7 +43,7 @@ CxLocale::sGetCurrent() {
     iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(0 != iRes, tString());
 
-    sRes.assign(sRes, iRes);    //delete from end '\0'
+    sRes.assign(sRes.c_str(), iRes);    //delete from end '\0'
 #elif defined(xOS_LINUX)
     const TCHAR *pcszLocale = NULL;
 
@@ -67,7 +67,7 @@ CxLocale::bSetCurrent(const tString &csLocale) {
 #if defined(xOS_WIN)
     BOOL bRes = FALSE;
 
-    bRes = ::SetLocaleInfo(static_cast<LCID>( pcszLocale ), LC_ALL, 0);
+    bRes = ::SetLocaleInfo((LCID)pcszLocale, LC_ALL, 0);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     LPCTSTR pcszRes = NULL;

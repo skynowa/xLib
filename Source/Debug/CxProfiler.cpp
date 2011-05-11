@@ -126,7 +126,7 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
                 _m_ctClocksStop = std::clock();
                 /*DEBUG*/xASSERT_RET(- 1 != _m_ctClocksStop, FALSE);
 
-                sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / (CLOCKS_PER_SEC * 0.001) ).sFormat(CxDateTime::ftTime);
+                sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / (CLOCKS_PER_SEC / 1000) ).sFormat(CxDateTime::ftTime);
             }
             break;
 
