@@ -81,6 +81,7 @@ class CxMacros : CxNonCopyable {
         //temprary enable/disable code
         #define xTEMP_ENABLED         1
         #define xTEMP_DISABLED        0
+        #define xTODO                 0
 
 
         //TODO: xMax
@@ -177,15 +178,15 @@ class CxMacros : CxNonCopyable {
 
         //TODO
         #if defined(xOS_WIN)
-        #   define xTODO(text)     { message(__FILE__ "(" xSTRINGIZE(__LINE__) ") [" xFUNCTION "]: warning TODO: [" xFUNCTION "] " ## text) }
-        #   define xTODO_IMPL      { xTODO("Implement " xFUNCTION " function!") }
+        #   define xTODO_TASK(text) { message(__FILE__ "(" xSTRINGIZE(__LINE__) ") [" xFUNCTION "]: warning TODO: [" xFUNCTION "] " ## text) }
+        #   define xTODO_IMPL       { xTODO("Implement " xFUNCTION " function!") }
         #elif defined(xOS_LINUX)
-        #   define xPRAGMA(s)      { _Pragma (#s) }
-        #   define xTODO(s)        { xPRAGMA( message(" TODO: "s) ) }
-        #   define xNOT_IMPL(s)    { xPRAGMA( message(" Not implemented: "s) ) }
+        #   define xPRAGMA(s)       { _Pragma (#s) }
+        #   define xTODO_TASK(s)    { xPRAGMA( message(" TODO: "s) ) }
+        #   define xNOT_IMPL(s)     { xPRAGMA( message(" Not implemented: "s) ) }
         #endif
 
-        #define xSTD_CIN(s)        { tcin  >> (s) >> tendl; }
+        #define xSTD_CIN(s)         { tcin  >> (s) >> tendl; }
 
     private:
                 CxMacros();

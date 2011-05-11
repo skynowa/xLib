@@ -21,7 +21,11 @@
 //TODO: bIsExists (is exists)
 /*static*/
 BOOL
-CxFileAttribute::bIsExists(const tString &csFilePath, const EAttribute cfaValue) {
+CxFileAttribute::bIsExists(
+    const tString    &csFilePath,
+    const EAttribute  cfaValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cfaValue
 
@@ -37,7 +41,10 @@ CxFileAttribute::bIsExists(const tString &csFilePath, const EAttribute cfaValue)
 //DONE: atGet (get)
 /*static*/
 CxFileAttribute::EAttribute
-CxFileAttribute::atGet(const tString &csFilePath) {
+CxFileAttribute::atGet(
+    const tString &csFilePath
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), faInvalid);
 
     EAttribute faRes = faInvalid;
@@ -60,7 +67,11 @@ CxFileAttribute::atGet(const tString &csFilePath) {
 //DONE: bSet (set)
 /*static*/
 BOOL
-CxFileAttribute::bSet(const tString &csFilePath, const EAttribute cfaValue) {
+CxFileAttribute::bSet(
+    const tString    &csFilePath,
+    const EAttribute  cfaValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cfaValue
 
@@ -78,7 +89,11 @@ CxFileAttribute::bSet(const tString &csFilePath, const EAttribute cfaValue) {
 //DONE: bAdd (add)
 /*static*/
 BOOL
-CxFileAttribute::bAdd(const tString &csFilePath, const EAttribute cfaValue) {
+CxFileAttribute::bAdd(
+    const tString    &csFilePath,
+    const EAttribute  cfaValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cfaValue
 
@@ -88,7 +103,11 @@ CxFileAttribute::bAdd(const tString &csFilePath, const EAttribute cfaValue) {
 //DONE: bRemove (remove)
 /*static*/
 BOOL
-CxFileAttribute::bRemove(const tString &csFilePath, const EAttribute cfaValue)  {
+CxFileAttribute::bRemove(
+    const tString    &csFilePath,
+    const EAttribute  cfaValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cfaValue
 
@@ -98,7 +117,12 @@ CxFileAttribute::bRemove(const tString &csFilePath, const EAttribute cfaValue)  
 //DONE: bModify (modify)
 /*static*/
 BOOL
-CxFileAttribute::bModify(const tString &csFilePath, const EAttribute cfaRemoveValue, const EAttribute cfaAddValue) {
+CxFileAttribute::bModify(
+    const tString    &csFilePath,
+    const EAttribute  cfaRemoveValue,
+    const EAttribute  cfaAddValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cfaRemoveValue
     /*DEBUG*/// cfaAddValue
@@ -109,8 +133,6 @@ CxFileAttribute::bModify(const tString &csFilePath, const EAttribute cfaRemoveVa
     EAttribute cfaValue = atGet(csFilePath);
 
     //change bits:
-    //  cfaValue &= ~ulRemoveValue;
-    //  cfaValue |= ulAddValue;
     cfaValue = static_cast<EAttribute>( static_cast<ULONG>(cfaValue) & ~cfaRemoveValue );
     cfaValue = static_cast<EAttribute>( static_cast<ULONG>(cfaValue) |  cfaAddValue    );
 
@@ -121,22 +143,25 @@ CxFileAttribute::bModify(const tString &csFilePath, const EAttribute cfaRemoveVa
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bClear (clear)
+//DONE: bClear (clear)
 /*static*/
 BOOL
-CxFileAttribute::bClear(const tString &csFilePath) {
+CxFileAttribute::bClear(
+    const tString &csFilePath
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
 #if defined(xOS_WIN)
     EAttribute cfaValue = faNormal;
 #elif defined(xOS_LINUX)
-    //TODO: bClear
     EAttribute cfaValue = static_cast<EAttribute>( 0 );
 #endif
 
     return bSet(csFilePath, cfaValue);
 }
 //---------------------------------------------------------------------------
+
 
 /****************************************************************************
 *    private
@@ -150,6 +175,7 @@ CxFileAttribute::CxFileAttribute() {
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxFileAttribute (comment)
+/*virtual*/
 CxFileAttribute::~CxFileAttribute() {
 
 }

@@ -24,37 +24,57 @@ class CxIni : public CxNonCopyable {
         BOOL             bCreateDefault    (const tString &csContent);
         tString          sGetPath          ();
         BOOL             bSetPath          (const tString &csFilePath);
-        BOOL             bFlush            ();
+
         BOOL             bClear            ();
 
         //key
-        BOOL             bKeyIsExists      (const tString &csSection, const tString &csKey);
+        BOOL             bKeyIsExists      (const tString &csKey);
 
-        INT              iKeyReadInt       (const tString &csSection, const tString &csKey, LONG   iDefaultValue);
-        BOOL             bKeyWriteInt      (const tString &csSection, const tString &csKey, LONG   iValue);
+        tString          sKeyReadString    (const tString &csKey, const tString &csDefaultValue);
+        BOOL             bKeyWriteString   (const tString &csKey, const tString &csValue);
 
-        double           dKeyReadFloat     (const tString &csSection, const tString &csKey, double dDefaultValue);
-        BOOL             bKeyWriteFloat    (const tString &csSection, const tString &csKey, double dValue);
+        INT              iKeyReadInt       (const tString &csKey, const LONG     ciDefaultValue);
+        BOOL             bKeyWriteInt      (const tString &csKey, const LONG     ciValue);
 
-        BOOL             bKeyReadBool      (const tString &csSection, const tString &csKey, BOOL   bDefaultValue);
-        BOOL             bKeyWriteBool     (const tString &csSection, const tString &csKey, BOOL   bValue);
+        double           dKeyReadFloat     (const tString &csKey, const double   cdDefaultValue);
+        BOOL             bKeyWriteFloat    (const tString &csKey, const double   cdValue);
 
-        tString          sKeyReadString    (const tString &csSection, const tString &csKey, const tString &csDefaultValue);
-        BOOL             bKeyWriteString   (const tString &csSection, const tString &csKey, const tString &csValue);
+        BOOL             bKeyReadBool      (const tString &csKey, const BOOL     cbDefaultValue);
+        BOOL             bKeyWriteBool     (const tString &csKey, const BOOL     cbValue);
 
-        uString          usKeyReadBin      (const tString &csSection, const tString &csKey, const uString &cusDefaultValue);
-        BOOL             bKeyWriteBin      (const tString &csSection, const tString &csKey, const uString &cusValue);
-
-        BOOL             bKeyClear         (const tString &csSection, const tString &csKey);
-        BOOL             bKeyDelete        (const tString &csSection, const tString &csKey);
+        uString          usKeyReadBin      (const tString &csKey, const uString &cusDefaultValue);
+        BOOL             bKeyWriteBin      (const tString &csKey, const uString &cusValue);
 
     private:
         typedef std::multimap<tString, tString> TIni;
 
         BOOL             _m_bRes;
         tString          _m_sFilePath;
-
         TIni             _m_mmsIni;
+
+        BOOL             _bRead           (const tString &csKey, const tString &csDefaultValue, tString *psValue);
+        BOOL             _bWrite          (const tString &csKey, const tString &csValue);
+
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Fso_CxIniH
+
+
+
+
+
+#if xTODO
+    BOOL             bKeyClear         (const tString &csKey);
+    BOOL             bKeyDelete        (const tString &csKey);
+#endif
+
+/*
+Что такое ini?
+ini это текстовй файл такого вида :
+; комментарий
+variable = "content_variable" ; так публикуется ключ
+
+[section] ; так публикуется секция
+; ве ключи заносятся в текущюю секцию до следующего объявления другой секции
+variable1 = "content_variable1"
+*/

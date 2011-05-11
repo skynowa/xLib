@@ -61,15 +61,11 @@ CxTest_CxFileAttribute::bUnit() {
     }
 
     //--------------------------------------------------
-    //bSet
+    //bSet, atGet
     {
         m_bRes = CxFileAttribute::bSet(csFilePath, cfaValue);
         xASSERT(FALSE != m_bRes);
-    }
 
-    //--------------------------------------------------
-    //atGet
-    {
         CxFileAttribute::EAttribute faRes;
 
         faRes = CxFileAttribute::atGet(csFilePath);
@@ -79,15 +75,37 @@ CxTest_CxFileAttribute::bUnit() {
     //--------------------------------------------------
     //bAdd
     {
+        m_bRes = CxFileAttribute::bClear(csFilePath);
+        xASSERT(FALSE != m_bRes);
+
         m_bRes = CxFileAttribute::bAdd(csFilePath, cfaValue);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxFileAttribute::bIsExists(csFilePath, cfaValue);
         xASSERT(FALSE != m_bRes);
     }
 
     //--------------------------------------------------
     //bRemove
     {
+        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faHidden;
+
+        m_bRes = CxFileAttribute::bClear(csFilePath);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxFileAttribute::bAdd(csFilePath, faAttr);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxFileAttribute::bAdd(csFilePath, cfaValue);
+        xASSERT(FALSE != m_bRes);
+
         m_bRes = CxFileAttribute::bRemove(csFilePath, cfaValue);
         xASSERT(FALSE != m_bRes);
+
+        #if xTODO
+            CxFileAttribute::EAttribute faRes = CxFileAttribute::atGet(csFilePath);
+            xASSERT(faAttr == faRes);
+        #endif
     }
 
     //--------------------------------------------------
@@ -121,7 +139,7 @@ CxTest_CxFileAttribute::bUnit() {
         CxFileAttribute::EAttribute faRes;
 
         faRes = CxFileAttribute::atGet(csFilePath);
-        //xTRACEV("faRes: %i", faRes);
+        xTRACEV("faRes: %lld", faRes);
         #if defined(xOS_WIN)
             xASSERT(CxFileAttribute::faNormal == faRes);
         #elif defined(xOS_LINUX)
