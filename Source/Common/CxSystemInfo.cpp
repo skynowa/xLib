@@ -205,7 +205,10 @@ CxSystemInfo::oaGetOsArchitecture() {
 //DONE: sFormatOsType ()
 /*static*/
 tString
-CxSystemInfo::sFormatOsType(EOsType otOsType) {
+CxSystemInfo::sFormatOsType(
+    const EOsType otOsType
+)
+{
     /*DEBUG*/// otOsType - n/a
 
     tString sRes;
@@ -230,25 +233,12 @@ CxSystemInfo::sFormatOsType(EOsType otOsType) {
         default:                        { sRes = xT("Unknown Windows OS");         }    break;
     }
 #elif defined(xOS_LINUX)
-    //Linux user-exm-5 2.6.35-27-generic #48-Ubuntu SMP Tue Feb 22 20:25:29 UTC 2011 i686 GNU/Linux
-
-    /*struct utsname {
-        sysname    char[65];  // "Linux"
-        nodename   char[65];  // "user-exm-5"
-        release    char[65];  // "2.6.35-24-generic"
-        version    char[65];  // "#42-Ubuntu SMP Thu Dec 2 01:41:57 UTC 2010"
-        machine    char[65];  // "i686"
-        domainname char[65];  // "(none)"
-    };*/
-
     utsname unKernelInfo= {{0}};
 
     INT iRes = uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, xT("Linux"));
 
     sRes.assign( CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine) );
-
-    //out:  Linux 2.6.35-27-generic (#48-Ubuntu SMP Tue Feb 22 20:25:29 UTC 2011) i686
 #endif
 
     return sRes;
@@ -290,9 +280,11 @@ CxSystemInfo::bIsUserAnAdmin() {
     /*DEBUG*/
 
 #if defined(xOS_WIN)
-    ////BOOL bRes = IsUserAnAdmin();
-    /////*DEBUG*/// n/a
-    ////xCHECK_RET(FALSE == bRes, FALSE);
+    #if xTEMP_DISABLED
+        BOOL bRes = IsUserAnAdmin();
+        /*DEBUG*/// n/a
+        xCHECK_RET(FALSE == bRes, FALSE);
+    #endif
 
     HMODULE hMod = ::GetModuleHandle(xT("kernel32.dll"));
     /*DEBUG*/xASSERT_RET(NULL != hMod, FALSE);
@@ -364,10 +356,12 @@ CxSystemInfo::ulGetNumOfCPUs() {
 #elif defined(xOS_LINUX)
     //--------------------------------------------------
     //1-st version
-    ////INT iNumberOfProcessors = get_nprocs();
-    /////*DEBUG*/xASSERT_RET(0 < iNumberOfProcessors, 0);
+    #if xTEMP_DISABLED
+        INT iNumberOfProcessors = get_nprocs();
+        /*DEBUG*/xASSERT_RET(0 < iNumberOfProcessors, 0);
 
-    ////ulRes = static_cast<ULONG>( iNumberOfProcessors );
+        ulRes = static_cast<ULONG>( iNumberOfProcessors );
+    #endif
 
     //--------------------------------------------------
     //2-nd version
@@ -428,7 +422,7 @@ CxSystemInfo::bIsUnicodeOS()  {
     return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - iGetCpuSpeed (calculates the CPU speed in MHz)
+//TODO: iGetCpuSpeed (calculates the CPU speed in MHz)
 /*static*/
 INT
 CxSystemInfo::iGetCpuSpeed() {
@@ -437,35 +431,37 @@ CxSystemInfo::iGetCpuSpeed() {
     INT iRes = - 1;
 
 #if defined(xOS_WIN)
-    //TODO: xOS_WIN
-//    //TODO: CxCycle
-//    class CxCycle {
-//        public:
-//            static /*inline*/ unsigned __int64 ullGetCount();
-//    };
-//    unsigned __int64 CxCycle::ullGetCount() {
-//            UINT uiTimeHigh = 0;
-//            UINT uiTimeLow  = 0;
-//
-//            __asm {
-//                rdtsc
-//                mov uiTimeHigh, edx;
-//                mov uiTimeLow,  eax;
-//            }
-//
-//            return ((unsigned __int64)uiTimeHigh << 32) + (unsigned __int64)uiTimeLow;
-//    };
-//
-//
-//    const ULONGLONG ullStartCycle = CxCycle::ullGetCount();
-//
-//    ::Sleep(1000);
-//
-//    iRes = static_cast<INT>( (CxCycle::ullGetCount() - ullStartCycle) / 1000000 );
+    //TODO: iGetCpuSpeed
+    #if xTODO
+        //TODO: CxCycle
+        class CxCycle {
+            public:
+                static /*inline*/ unsigned __int64 ullGetCount();
+        };
+        unsigned __int64 CxCycle::ullGetCount() {
+                UINT uiTimeHigh = 0;
+                UINT uiTimeLow  = 0;
+
+                __asm {
+                    rdtsc
+                    mov uiTimeHigh, edx;
+                    mov uiTimeLow,  eax;
+                }
+
+                return ((unsigned __int64)uiTimeHigh << 32) + (unsigned __int64)uiTimeLow;
+        };
+
+
+        const ULONGLONG ullStartCycle = CxCycle::ullGetCount();
+
+        ::Sleep(1000);
+
+        iRes = static_cast<INT>( (CxCycle::ullGetCount() - ullStartCycle) / 1000000 );
+    #endif
 
     xNOT_IMPLEMENTED_RET(- 1);
 #elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
+    //TODO: iGetCpuSpeed
     xNOT_IMPLEMENTED_RET(- 1);
 #endif
 

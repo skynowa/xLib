@@ -1154,13 +1154,13 @@ CxStdioFile::bTextWrite(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: bTextRead (read text to std::map)
+//DONE: bTextRead (read text to std::map)
 /*static*/
 BOOL
 CxStdioFile::bTextRead(
-    const tString                   &csFilePath,
-    const tString                   &csSeparator,
-    std::multimap<tString, tString> *pmapsFile
+    const tString              &csFilePath,
+    const tString              &csSeparator,
+    std::map<tString, tString> *pmapsFile
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
@@ -1176,9 +1176,9 @@ CxStdioFile::bTextRead(
     /*DEBUG*/xASSERT_RET(ifsStream.is_open(), FALSE);
     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    FALSE);
 
-    std::multimap<tString, tString> mapsRes;
-    tString                         sLine;
-    std::vector<tString>            vecsLine;
+    std::map<tString, tString> mapsRes;
+    tString                    sLine;
+    std::vector<tString>       vecsLine;
 
     for (size_t i = 0; !ifsStream.eof();  ++ i) {
         std::getline(ifsStream, sLine);
@@ -1195,16 +1195,18 @@ CxStdioFile::bTextRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bTextWrite (write text from std::map)
+//DONE: bTextWrite (write text from std::map)
 /*static*/
 BOOL
 CxStdioFile::bTextWrite(
-    const tString                         &csFilePath,
-    const tString                         &csSeparator,
-    const std::multimap<tString, tString> &cmapsFile
+    const tString                    &csFilePath,
+    const tString                    &csSeparator,
+    const std::map<tString, tString> &cmapsFile
 )
 {
-    /*DEBUG*/
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),  FALSE);
+    /*DEBUG*/xASSERT_RET(false == csSeparator.empty(), FALSE);
+    /*DEBUG*/// cmapsFile - n/a
 
     BOOL bRes = FALSE;
 
@@ -1213,7 +1215,7 @@ CxStdioFile::bTextWrite(
     bRes = stdFile.bOpen(csFilePath, CxStdioFile::omWrite);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    std::multimap<tString, tString>::const_iterator it;
+    std::map<tString, tString>::const_iterator it;
     for (it = cmapsFile.begin(); it != cmapsFile.end(); ++ it) {
         bRes = stdFile.bWriteLine((*it).first + csSeparator + (*it).second);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -1307,7 +1309,7 @@ CxStdioFile::_sGetOpenMode(
     const EOpenMode omMode
 )
 {
-    /*DEBUG*/
+    /*DEBUG*/// omMode - n/a
 
     tString sRes;
 

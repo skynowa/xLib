@@ -139,7 +139,7 @@ CxTest_CxFileAttribute::bUnit() {
         CxFileAttribute::EAttribute faRes;
 
         faRes = CxFileAttribute::atGet(csFilePath);
-        xTRACEV("faRes: %lld", faRes);
+        //xTRACEV("faRes: %lld", faRes);
         #if defined(xOS_WIN)
             xASSERT(CxFileAttribute::faNormal == faRes);
         #elif defined(xOS_LINUX)

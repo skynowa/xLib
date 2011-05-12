@@ -53,7 +53,7 @@ class CxSystemInfo : public CxNonCopyable {
 
         static EOsType         osGetOS            ();
         static EOsArchitecture oaGetOsArchitecture();
-        static tString         sFormatOsType      (EOsType otOsType);
+        static tString         sFormatOsType      (const EOsType otOsType);
         static tString         sGetComputerName   ();
         static BOOL            bIsUserAnAdmin     ();
         static tString         sGetUserName       ();

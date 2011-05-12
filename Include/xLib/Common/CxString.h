@@ -39,6 +39,8 @@ class CxString : public CxNonCopyable {
         static
         tString
         lexical_cast(const T &cValueT) {
+            //cValueT - n/a
+
             tString sRes;
 
             try {
@@ -62,9 +64,9 @@ class CxString : public CxNonCopyable {
         template<class T>
         static
         tString
-        lexical_cast(const T &cValueT, const INT iBase) {
+        lexical_cast(const T &cValueT, const INT ciBase) {
             //cValueT - n/a
-            ////xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
+            //ciBase  - n/a
 
             tString sRes;
 
@@ -72,7 +74,7 @@ class CxString : public CxNonCopyable {
                 tostringstream ossRes;
 
                 ossRes.exceptions(tostringstream::failbit | tostringstream::badbit);
-                ossRes << std::setbase(iBase) << std::uppercase << cValueT;  //std::showbase
+                ossRes << std::setbase(ciBase) << std::uppercase << cValueT;  //std::showbase
 
                 sRes.assign(ossRes.str());
             } catch (tostringstream::failure e) {
@@ -90,6 +92,8 @@ class CxString : public CxNonCopyable {
         static
         T
         lexical_cast(const tString &csStr) {
+            //csStr - n/a
+
             T ResT;
 
             try {
@@ -107,13 +111,13 @@ class CxString : public CxNonCopyable {
         }
 
         //---------------------------------------------------------------------------
-        //tString by base -> type
+        //tString by base (8, 10, 16) -> type
         template<class T>
         static
         T
-        lexical_cast(const tString &csStr, const INT iBase) {
-            //csStr - n/a
-            ////xCHECK_RET(8 != iBase && 10 != iBase && 16 != iBase, tString());
+        lexical_cast(const tString &csStr, const INT ciBase) {
+            //csStr  - n/a
+            //ciBase - n/a
 
             T ResT;
 
@@ -121,7 +125,7 @@ class CxString : public CxNonCopyable {
                 tistringstream issStream(csStr);
 
                 issStream.exceptions(tistringstream::failbit | tistringstream::badbit);
-                issStream >> std::setbase(iBase) >> ResT;
+                issStream >> std::setbase(ciBase) >> ResT;
             } catch (tistringstream::failure e) {
                 return T();
             } catch (...) {

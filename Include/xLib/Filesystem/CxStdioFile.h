@@ -194,8 +194,8 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bTextRead    (const tString &csFilePath, std::vector<tString> *pvecsContent);
         static BOOL      bTextWrite   (const tString &csFilePath, const std::vector<tString> &cvecsContent);
 
-        static BOOL      bTextRead    (const tString &csFilePath, const tString &csSeparator, std::multimap<tString, tString> *pmapsFile);
-        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csSeparator, const std::multimap<tString, tString> &cmapsFile);
+        static BOOL      bTextRead    (const tString &csFilePath, const tString &csSeparator, std::map<tString, tString> *pmapsFile);
+        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csSeparator, const std::map<tString, tString> &cmapsFile);
 
         //binary
         static BOOL      bBinRead     (const tString &csFilePath, uString *pusStr);
