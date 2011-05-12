@@ -167,7 +167,6 @@ typedef std::basic_fstream<TCHAR, std::char_traits<TCHAR> >                     
 
 typedef double DOUBLE;
 //---------------------------------------------------------------------------
-//Automatically include the xLib namespace, define xNO_USING_NAMESPACE to skip this step
 namespace NxLib {}
 #ifndef xNO_USING_NAMESPACE
     using namespace NxLib;

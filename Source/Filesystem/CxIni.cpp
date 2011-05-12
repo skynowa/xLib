@@ -23,44 +23,52 @@
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE:: CxIni (constructor, exe-file path)
+//DONE: CxIni (constructor, exe-file path)
 CxIni::CxIni() :
-    _m_bRes     (FALSE),
-    _m_sFilePath(),
-    _m_mmsIni   ()
+    _m_csSeparator (CxConst::xEQUAL),
+    _m_csIniFileExt(xT("ini")),
+    _m_bRes        (FALSE),
+    _m_sFilePath   (),
+    _m_mmsIni      ()
 {
-    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(), return);
+    /*DEBUG*/xASSERT_DO(false == _m_csSeparator.empty(),  return);
+    /*DEBUG*/xASSERT_DO(false == _m_csIniFileExt.empty(), return);
+    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(),    return);
 
-    _m_bRes = bSetPath(CxPath::sSetExt( CxPath::sGetExe(), xT("ini") ));
+    _m_bRes = bSetPath(CxPath::sSetExt( CxPath::sGetExe(), _m_csIniFileExt ));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE:: CxIni (constructor, file path)
+//DONE: CxIni (constructor, file path)
 CxIni::CxIni(
     const tString &csFilePath
 ) :
-    _m_bRes     (FALSE),
-    _m_sFilePath(),
-    _m_mmsIni   ()
+    _m_csSeparator (CxConst::xEQUAL),
+    _m_csIniFileExt(xT("ini")),
+    _m_bRes        (FALSE),
+    _m_sFilePath   (),
+    _m_mmsIni      ()
 {
-    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(), return);
-    /*DEBUG*/xASSERT_DO(false == csFilePath.empty(),   return);
+    /*DEBUG*/xASSERT_DO(false == _m_csSeparator.empty(),  return);
+    /*DEBUG*/xASSERT_DO(false == _m_csIniFileExt.empty(), return);
+    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(),    return);
+    /*DEBUG*/xASSERT_DO(false == csFilePath.empty(),      return);
 
-    _m_bRes = bSetPath(csFilePath);
+    _m_bRes = bSetPath(CxPath::sSetExt( csFilePath, _m_csIniFileExt ));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE:: ~CxIni (destructor)
+//DONE: ~CxIni (destructor)
 /*virtual*/
 CxIni::~CxIni() {
 
 }
 //-------------------------------------------------------------------------
-//DONE:: bCreateDefault (create default file)
+//DONE: bCreateDefault (create default file)
 BOOL
 CxIni::bCreateDefault(
     const tString &csContent
-)
+) const
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/// csContent - n/a;
@@ -76,15 +84,15 @@ CxIni::bCreateDefault(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-//DONE:: sGetPath (get file path)
+//DONE: sGetPath (get file path)
 tString
-CxIni::sGetPath() {
+CxIni::sGetPath() const {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), tString());
 
     return _m_sFilePath;
 }
 //---------------------------------------------------------------------------
-//DONE:: bSetPath (set file path)
+//DONE: bSetPath (set file path)
 BOOL
 CxIni::bSetPath(const tString &csFilePath) {
     /*DEBUG*///_m_sFilePath - n/a
@@ -98,7 +106,26 @@ CxIni::bSetPath(const tString &csFilePath) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE:: bClear (clear content)
+//DONE: cmapsGet (get innner TIni, may be used with bFlush)
+NxLib::TIni &
+CxIni::cmapsGet() {
+    /*DEBUG*/
+
+    return _m_mmsIni;
+}
+//---------------------------------------------------------------------------
+//DONE: bFlush (flush)
+BOOL
+CxIni::bFlush() const {
+    /*DEBUG*/
+
+    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_mmsIni);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bClear (clear content)
 BOOL
 CxIni::bClear() {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
@@ -114,6 +141,21 @@ CxIni::bClear() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//DONE: bDelete (delete)
+BOOL
+CxIni::bDelete() {
+    /*DEBUG*/
+
+    //file
+    _m_bRes = CxStdioFile::bDelete(_m_sFilePath);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+
+    //TIni
+    _m_mmsIni.clear();
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************
@@ -122,17 +164,17 @@ CxIni::bClear() {
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE:: bKeyIsExists (is exists)
+//DONE: bKeyIsExists (is exists)
 BOOL
 CxIni::bKeyIsExists(
     const tString &csKey
-)
+) const
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
 
-    TIni mmsIni;
+    NxLib::TIni mmsIni;
 
-    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, CxConst::xEQUAL, &mmsIni);
+    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &mmsIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     xCHECK_RET(mmsIni.end() == mmsIni.find(csKey), FALSE);
@@ -176,49 +218,49 @@ CxIni::bKeyWriteString(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: iKeyReadInt (read INT)
-INT
+//DONE: iKeyReadInt (read INT)
+LONG
 CxIni::iKeyReadInt(
     const tString &csKey,
-    const LONG     ciDefaultValue
+    const LONG     cliDefaultValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0);
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///iDefaultValue - n/a
 
-    return CxString::lexical_cast<LONG>( sKeyReadString(csKey, CxString::lexical_cast(ciDefaultValue)) );
+    return CxString::lexical_cast<LONG>( sKeyReadString(csKey, CxString::lexical_cast(cliDefaultValue)) );
 }
 //-------------------------------------------------------------------------
-//TODO: bKeyWriteInt (write INT)
+//DONE: bKeyWriteInt (write INT)
 BOOL
 CxIni::bKeyWriteInt(
     const tString &csKey,
-    const LONG     ciValue
+    const LONG     cliValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*///csKey     - n/a
     /*DEBUG*///iValue    - n/a
 
-    return bKeyWriteString(csKey, CxString::lexical_cast(ciValue));
+    return bKeyWriteString(csKey, CxString::lexical_cast(cliValue));
 }
 //-------------------------------------------------------------------------
-//TODO: dKeyReadFloat (read FLOAT)
-double
+//DONE: dKeyReadFloat (read FLOAT)
+DOUBLE
 CxIni::dKeyReadFloat(
     const tString &csKey,
-    const double   cdDefaultValue
+    const DOUBLE   cdDefaultValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0.0);
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///dDefaultValue - n/a
 
-    return CxString::lexical_cast<double>( sKeyReadString(csKey, CxString::lexical_cast(cdDefaultValue)) );
+    return CxString::lexical_cast<DOUBLE>( sKeyReadString(csKey, CxString::lexical_cast(cdDefaultValue)) );
 }
 //-------------------------------------------------------------------------
-//TODO: bKeyWriteFloat (write FLOAT)
+//DONE: bKeyWriteFloat (write FLOAT)
 BOOL
 CxIni::bKeyWriteFloat(
     const tString &csKey,
@@ -232,7 +274,7 @@ CxIni::bKeyWriteFloat(
     return bKeyWriteString(csKey, CxString::lexical_cast(cdValue));
 }
 //-------------------------------------------------------------------------
-//TODO: bKeyReadBool (read BOOL)
+//DONE: bKeyReadBool (read BOOL)
 BOOL
 CxIni::bKeyReadBool(
     const tString &csKey,
@@ -258,7 +300,7 @@ CxIni::bKeyReadBool(
     return bRes;
 }
 //-------------------------------------------------------------------------
-//TODO: bKeyWriteBool (write BOOL)
+//DONE: bKeyWriteBool (write BOOL)
 BOOL
 CxIni::bKeyWriteBool(
     const tString &csKey,
@@ -276,7 +318,7 @@ CxIni::bKeyWriteBool(
     return bKeyWriteString(csKey, sValue);
 }
 //---------------------------------------------------------------------------
-//TODO: usKeyReadBin (write uString)
+//DONE: usKeyReadBin (write uString)
 uString
 CxIni::usKeyReadBin(
     const tString &csKey,
@@ -287,19 +329,17 @@ CxIni::usKeyReadBin(
     /*DEBUG*///csKey          - n/a
     /*DEBUG*///cusDefaultValue - n/a
 
-    uString usRes;
+    tString sRes;
 
     tString sHexStr = sKeyReadString(csKey, tString(cusDefaultValue.begin(), cusDefaultValue.end()));
 
     //sHexStr -> usRes
-    #if xTODO
-        usRes = CxString::lexical_cast<uString/*UCHAR*/>(sHexStr, 16);
-    #endif
+    sRes = CxString::lexical_cast<tString>(sHexStr, 16);
 
-    return usRes;
+    return uString(sRes.begin(), sRes.end());
 }
 //-------------------------------------------------------------------------
-//TODO: bKeyWriteBin (read uString)
+//DONE: bKeyWriteBin (read uString)
 BOOL
 CxIni::bKeyWriteBin(
     const tString &csKey,
@@ -313,13 +353,49 @@ CxIni::bKeyWriteBin(
     //cusValue (uString) -> sHexStr (tString)
     tString sHexStr;
 
-    #if xTODO
-        sHexStr = CxString::lexical_cast(cusValue, 16);
-    #endif
+    sHexStr = CxString::lexical_cast( tString(cusValue.begin(), cusValue.end()), 16);
 
     return bKeyWriteString(csKey, sHexStr);
 }
 //-------------------------------------------------------------------------
+//DONE: bKeyClear (clear value)
+BOOL
+CxIni::bKeyClear(
+    const tString &csKey
+)
+{
+    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
+
+    return bKeyWriteString(csKey, tString());
+}
+//---------------------------------------------------------------------------
+//DONE: bKeyDelete (delete key and value)
+BOOL
+CxIni::bKeyDelete(
+   const tString &csKey
+)
+{
+    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
+
+    //read from file
+    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_mmsIni);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+
+    xCHECK_RET(_m_mmsIni.end() == _m_mmsIni.find(csKey), TRUE);
+
+    //delete from TIni
+    _m_mmsIni.erase(csKey);
+
+    //write to file
+    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_mmsIni);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+
 
 /****************************************************************************
 *    private
@@ -340,11 +416,11 @@ CxIni::_bRead(
     /*DEBUG*/xASSERT_RET(NULL != psValue, FALSE);
 
     //read from file
-    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, CxConst::xEQUAL, &_m_mmsIni);
+    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_mmsIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //read to TIni
-    TIni::iterator it = _m_mmsIni.find(csKey);
+    NxLib::TIni::iterator it = _m_mmsIni.find(csKey);
     if (_m_mmsIni.end() == it) {
         _m_bRes = _bWrite(csKey, csDefaultValue);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -357,7 +433,7 @@ CxIni::_bRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE:: _bWrite (flush to TIni, file)
+//DONE: _bWrite (flush to TIni, file)
 BOOL
 CxIni::_bWrite(
     const tString &csKey,
@@ -369,7 +445,7 @@ CxIni::_bWrite(
     /*DEBUG*/// csValue - n/a
 
     //write to TIni
-    TIni::iterator it = _m_mmsIni.find(csKey);
+    NxLib::TIni::iterator it = _m_mmsIni.find(csKey);
     if (_m_mmsIni.end() == it) {
         _m_mmsIni.insert( std::pair<tString, tString>(csKey, csValue) );
     } else {
@@ -377,64 +453,9 @@ CxIni::_bWrite(
     }
 
     //write to file
-    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, CxConst::xEQUAL, _m_mmsIni);
+    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_mmsIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------------------
-//TODO: bKeyClear (������� �����)
-#if xTODO
-    BOOL
-    CxIni::bKeyClear(const tString &csKey) {
-        /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
-        /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
-        /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
-
-        return bKeyWriteString(csSection, csKey, tString());
-    }
-#endif
-//---------------------------------------------------------------------------
-//TODO: bKeyDelete (�������� �����)
-#if xTODO
-    BOOL
-    CxIni::bKeyDelete(const tString &csKey) {
-        /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
-        /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
-        /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
-
-    #if defined(xOS_WIN)
-        //TODO: xOS_WIN
-        _m_bRes = ::WritePrivateProfileString(csSection.c_str(), csKey.c_str(), NULL, _m_sFilePath.c_str());
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-    #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
-        xNOT_IMPLEMENTED_RET(FALSE);
-    #endif
-
-        return TRUE;
-    }
-#endif
-//---------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-

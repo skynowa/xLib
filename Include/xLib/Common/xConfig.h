@@ -15,6 +15,9 @@
 #define xLIB_AUTHOR  xT("Skynowa")
 #define xLIB_DATE    xT(__DATE__)
 
+//automatically include the NxLib namespace, define xNO_USING_NAMESPACE to skip this step
+#define xNO_USING_NAMESPACE      1
+
 
 //log mode (only one mode can be activated)
 //#define xDEBUG_MODE_MSGBOX_PLAIN     1
