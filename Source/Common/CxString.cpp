@@ -25,16 +25,19 @@
 //DONE: sBoolToStr
 /*static*/
 tString
-CxString::sBoolToStr(BOOL bBool) {
+CxString::sBoolToStr(const BOOL cbBool) {
     /*DEBUG*/// bBool - n/a
 
-    return (FALSE == bBool) ? xT("FALSE") : xT("TRUE");
+    return (FALSE == cbBool) ? xT("FALSE") : xT("TRUE");
 }
 //---------------------------------------------------------------------------
 //DONE: bStrToBool
 /*static*/
 BOOL
-CxString::bStrToBool(const tString &csStr) {
+CxString::bStrToBool(
+    const tString &csStr
+)
+{
     /*DEBUG*/// n/a
 
     xCHECK_RET(FALSE != bCompareNoCase(xT("TRUE"),  csStr), TRUE);
@@ -46,7 +49,11 @@ CxString::bStrToBool(const tString &csStr) {
 //DONE: sTrimLeftChars
 /*static*/
 tString
-CxString::sTrimLeftChars(const tString &csStr, const tString &csChars) {
+CxString::sTrimLeftChars(
+    const tString &csStr,
+    const tString &csChars
+)
+{
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
@@ -59,7 +66,11 @@ CxString::sTrimLeftChars(const tString &csStr, const tString &csChars) {
 //DONE: sTrimRightChars
 /*static*/
 tString
-CxString::sTrimRightChars(const tString &csStr, const tString &csChars) {
+CxString::sTrimRightChars(
+    const tString &csStr,
+    const tString &csChars
+)
+{
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
@@ -72,7 +83,11 @@ CxString::sTrimRightChars(const tString &csStr, const tString &csChars) {
 //DONE: sTrimChars
 /*static*/
 tString
-CxString::sTrimChars(const tString &csStr, const tString &csChars) {
+CxString::sTrimChars(
+    const tString &csStr,
+    const tString &csChars
+)
+{
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
@@ -88,7 +103,10 @@ CxString::sTrimChars(const tString &csStr, const tString &csChars) {
 //DONE: sTrimSpace
 /*static*/
 tString
-CxString::sTrimSpace(const tString &csStr) {
+CxString::sTrimSpace(
+    const tString &csStr
+)
+{
     /*DEBUG*/// csStr - n/a
 
     return sTrimChars(csStr, CxConst::xWHITE_SPACES);
@@ -97,7 +115,10 @@ CxString::sTrimSpace(const tString &csStr) {
 //DONE: sRemoveEol
 /*static*/
 tString
-CxString::sRemoveEol(const tString &csStr) {
+CxString::sRemoveEol(
+    const tString &csStr
+)
+{
     /*DEBUG*/// csStr - n/a
 
     return sTrimRightChars(csStr, CxConst::xEOL);
@@ -106,7 +127,12 @@ CxString::sRemoveEol(const tString &csStr) {
 //DONE: sReplaceAll
 /*static*/
 tString
-CxString::sReplaceAll(const tString &csStr, const tString &csOldStr, const tString &csNewStr) {
+CxString::sReplaceAll(
+    const tString &csStr,
+    const tString &csOldStr,
+    const tString &csNewStr
+)
+{
     /*DEBUG*/// csStr    - n/a
     /*DEBUG*/// csOldStr - n/a
     /*DEBUG*/// csNewStr - n/a
@@ -134,18 +160,27 @@ CxString::sReplaceAll(const tString &csStr, const tString &csOldStr, const tStri
 //DONE: sReplaceAll
 /*static*/
 tString
-CxString::sReplaceAll(const tString &csStr, TCHAR chOldStr, TCHAR chNewStr) {
+CxString::sReplaceAll(
+    const tString &csStr,
+    const TCHAR    cchOldStr,
+    const TCHAR    cchNewStr
+)
+{
     /*DEBUG*/// csStr    - n/a
-    /*DEBUG*/// chOldStr - n/a
-    /*DEBUG*/// chNewStr - n/a
+    /*DEBUG*/// cchOldStr - n/a
+    /*DEBUG*/// cchNewStr - n/a
 
-    return sReplaceAll(csStr, tString(1, chOldStr), tString(1, chNewStr));
+    return sReplaceAll(csStr, tString(1, cchOldStr), tString(1, cchNewStr));
 }
 //---------------------------------------------------------------------------
 //DONE: sRemoveAll
 /*static*/
 tString
-CxString::sRemoveAll(const tString &csStr, const tString &csRemoveStr) {
+CxString::sRemoveAll(
+    const tString &csStr,
+    const tString &csRemoveStr
+)
+{
     /*DEBUG*/// csStr      - n/a
     /*DEBUG*/// csRemoveStr - n/a
 
@@ -155,7 +190,12 @@ CxString::sRemoveAll(const tString &csStr, const tString &csRemoveStr) {
 //DONE: разбивает строку на фрагменты по символу-разделителю, возвращая массив строк (vector)
 /*static*/
 BOOL
-CxString::bSplit(const tString &csStr, const tString &csSep, std::vector<tString> *pvecsOut) {
+CxString::bSplit(
+    const tString        &csStr,
+    const tString        &csSep,
+    std::vector<tString> *pvecsOut
+)
+{
     /*DEBUG*/// csStr    - n/a
     /*DEBUG*/// csSep    - n/a
     /*DEBUG*/// pvecsOut - n/a
@@ -184,7 +224,11 @@ CxString::bSplit(const tString &csStr, const tString &csSep, std::vector<tString
 //DONE: sJoin ("склеивает" строки вектора символом-разделителем)
 /*static*/
 tString
-CxString::sJoin(const std::vector<tString> &cvecsVec, const tString &csSep) {
+CxString::sJoin(
+    const std::vector<tString> &cvecsVec,
+    const tString              &csSep
+)
+{
     /*DEBUG*/// cvecsVec - n/a
     /*DEBUG*/// csSep    - n/a
 
@@ -201,17 +245,26 @@ CxString::sJoin(const std::vector<tString> &cvecsVec, const tString &csSep) {
 //DONE: sJoin ("склеивает" строки вектора символом-разделителем)
 /*static*/
 tString
-CxString::sJoin(const std::vector<tString> &cvecsVec, TCHAR chSep) {
+CxString::sJoin(
+    const std::vector<tString> &cvecsVec,
+    const TCHAR                 cchSep
+)
+{
     /*DEBUG*/// cvecsVec - n/a
     /*DEBUG*/// csSep    - n/a
 
-    return sJoin(cvecsVec, tString(1, chSep));
+    return sJoin(cvecsVec, tString(1, cchSep));
 }
 //---------------------------------------------------------------------------
 //DONE: sCut
 /*static*/
 tString
-CxString::sCut(const tString &csStr, const tString &csLeftSep, const tString &csRightSep) {
+CxString::sCut(
+    const tString &csStr,
+    const tString &csLeftSep,
+    const tString &csRightSep
+)
+{
     /*DEBUG*/// csStr      - n/a
     /*DEBUG*/// csLeftSep  - n/a
     /*DEBUG*/// csRightSep - n/a
@@ -234,7 +287,12 @@ CxString::sCut(const tString &csStr, const tString &csLeftSep, const tString &cs
 //DONE: sCut
 /*static*/
 tString
-CxString::sCut(const tString &csStr, std::size_t uiStartPos /*= 0*/, std::size_t uiEndPos /*= std::string:npos*/) {
+CxString::sCut(
+    const tString &csStr,
+    const size_t  cuiStartPos /*= 0*/,
+    const size_t  cuiEndPos   /*= tString:npos*/
+)
+{
     /*
     + Если indexA = indexB, возвращается пустая строка
     + Если indexB не указан, substring возвращает символы до конца строки
@@ -244,18 +302,21 @@ CxString::sCut(const tString &csStr, std::size_t uiStartPos /*= 0*/, std::size_t
     - Если строка не найдена, вызов возвращает -1
     */
 
-    xCHECK_RET(true       == csStr.empty(), tString());
-    xCHECK_RET(uiStartPos >  uiEndPos,      tString());
+    xCHECK_RET(true        == csStr.empty(), tString());
+    xCHECK_RET(cuiStartPos >  cuiEndPos,     tString());
 
-    std::size_t uiSize = ( (std::string::npos == uiEndPos) ? (csStr.size()) : (uiEndPos) ) - uiStartPos/* + 1*/;
+    std::size_t uiSize = ( (std::string::npos == cuiEndPos) ? (csStr.size()) : (cuiEndPos) ) - cuiStartPos/* + 1*/;
 
-    return csStr.substr(uiStartPos, uiSize);
+    return csStr.substr(cuiStartPos, uiSize);
 }
 //---------------------------------------------------------------------------
 //DONE: sToLowerCase (convert to lowcase)
 /*static*/
 tString
-CxString::sToLowerCase(const tString &csStr) {
+CxString::sToLowerCase(
+    const tString &csStr
+)
+{
     /*DEBUG*/// n/a
 
     return sToLowerCase(csStr, csStr.size());
@@ -264,7 +325,10 @@ CxString::sToLowerCase(const tString &csStr) {
 //DONE: sToUpperCase (convert to uppercase)
 /*static*/
 tString
-CxString::sToUpperCase(const tString &csStr) {
+CxString::sToUpperCase(
+    const tString &csStr
+)
+{
     /*DEBUG*/// n/a
 
     return sToUpperCase(csStr, csStr.size());
@@ -273,8 +337,13 @@ CxString::sToUpperCase(const tString &csStr) {
 //DONE: sToLowerCase
 /*static*/
 tString
-CxString::sToLowerCase(const tString &csStr, size_t uiLength) {
+CxString::sToLowerCase(
+    const tString &csStr,
+    size_t         uiLength
+)
+{
     /*DEBUG*/// n/a
+
     xCHECK_RET(true == csStr.empty(), tString());
     xCHECK_DO (csStr.size() < uiLength, uiLength = csStr.size());
 
@@ -294,8 +363,13 @@ CxString::sToLowerCase(const tString &csStr, size_t uiLength) {
 //DONE: sToUpperCase
 /*static*/
 tString
-CxString::sToUpperCase(const tString &csStr, size_t uiLength) {
+CxString::sToUpperCase(
+    const tString &csStr,
+    size_t         uiLength
+)
+{
     /*DEBUG*/// n/a
+
     xCHECK_RET(true == csStr.empty(), tString());
     xCHECK_DO (csStr.size() < uiLength, uiLength = csStr.size());
 
@@ -315,7 +389,11 @@ CxString::sToUpperCase(const tString &csStr, size_t uiLength) {
 //DONE: bCompareNoCase (Compares two character strings. The comparison is not case-sensitive.)
 /*static*/
 BOOL
-CxString::bCompareNoCase(const tString &csStr1, const tString &csStr2) {
+CxString::bCompareNoCase(
+    const tString &csStr1,
+    const tString &csStr2
+)
+{
     /*DEBUG*/// csStr1 - n/a
     /*DEBUG*/// csStr2 - n/a
     xCHECK_RET(csStr1.size() != csStr2.size(), FALSE);
@@ -387,7 +465,11 @@ CxString::pvMemoryZeroSecure(
 //DONE: sFormat
 /*static*/
 tString
-CxString::sFormat(LPCTSTR pcszFormat, ...) {
+CxString::sFormat(
+    LPCTSTR pcszFormat,
+    ...
+)
+{
     /*DEBUG*/// n/a
     xCHECK_RET(NULL == pcszFormat, tString());
 
@@ -406,7 +488,11 @@ CxString::sFormat(LPCTSTR pcszFormat, ...) {
 //DONE: sFormatV
 /*static*/
 tString
-CxString::sFormatV(LPCTSTR pcszFormat, va_list palArgs) {
+CxString::sFormatV(
+    LPCTSTR pcszFormat,
+    va_list palArgs
+)
+{
     /*DEBUG*/// n/a
     xCHECK_RET(NULL == pcszFormat, tString());
 
@@ -429,7 +515,11 @@ CxString::sFormatV(LPCTSTR pcszFormat, va_list palArgs) {
 //DONE: sMinimize
 /*static*/
 tString
-CxString::sMinimize(const tString &csStr, const size_t cuiMaxLen) {
+CxString::sMinimize(
+    const tString &csStr,
+    const size_t   cuiMaxLen
+)
+{
     /*DEBUG*/// n/a
     xCHECK_RET(true      == csStr.empty(), tString());
     xCHECK_RET(0         == cuiMaxLen,     tString());
@@ -484,7 +574,10 @@ CxString::sCreateGuid() {
 //---------------------------------------------------------------------------
 //DONE: bIsRepeated
 /*static*/
-BOOL CxString::bIsRepeated(const tString &csStr) {
+BOOL CxString::bIsRepeated(
+    const tString &csStr
+)
+{
     /*DEBUG*/// n/a
 
     return static_cast<BOOL>( tString::npos == csStr.find_first_not_of(csStr.at(0)) );
@@ -501,7 +594,10 @@ BOOL CxString::bIsRepeated(const tString &csStr) {
 //DONE: sTranslitLatToRus
 /*static*/
 tString
-CxString::sTranslitLatToRus(const tString &csStr) {
+CxString::sTranslitLatToRus(
+    const tString &csStr
+)
+{
     /*DEBUG*/// n/a
     xCHECK_RET(true == csStr.empty(), tString());
 
@@ -545,7 +641,10 @@ CxString::sTranslitLatToRus(const tString &csStr) {
 //DONE: sFormatBytes (форматирование байтов в Bits, Bytes, KB, MB, GB)
 /*static*/
 tString
-CxString::sFormatBytes(DOUBLE dBytes) {
+CxString::sFormatBytes(
+    const DOUBLE cdBytes
+)
+{
     /*DEBUG*/// dBytes - n/a
 
     tString sRes = xT("Uknown");
@@ -556,23 +655,23 @@ CxString::sFormatBytes(DOUBLE dBytes) {
     const ULONGLONG cullKB   = 1024ULL;
     const ULONGLONG cullByte = 1ULL;
 
-    if (     static_cast<ULONGLONG>(dBytes) / cullTB   > 0ULL) {
-        sRes = sFormat(xT("%.2f TB"),      dBytes / static_cast<DOUBLE>(cullTB));
+    if (     static_cast<ULONGLONG>(cdBytes) / cullTB   > 0ULL) {
+        sRes = sFormat(xT("%.2f TB"),      cdBytes / static_cast<DOUBLE>(cullTB));
     }
-    else if (static_cast<ULONGLONG>(dBytes) / cullGB   > 0ULL) {
-        sRes = sFormat(xT("%.2f GB"),      dBytes / static_cast<DOUBLE>(cullGB));
+    else if (static_cast<ULONGLONG>(cdBytes) / cullGB   > 0ULL) {
+        sRes = sFormat(xT("%.2f GB"),      cdBytes / static_cast<DOUBLE>(cullGB));
     }
-    else if (static_cast<ULONGLONG>(dBytes) / cullMB   > 0ULL) {
-        sRes = sFormat(xT("%.2f MB"),      dBytes / static_cast<DOUBLE>(cullMB));
+    else if (static_cast<ULONGLONG>(cdBytes) / cullMB   > 0ULL) {
+        sRes = sFormat(xT("%.2f MB"),      cdBytes / static_cast<DOUBLE>(cullMB));
     }
-    else if (static_cast<ULONGLONG>(dBytes) / cullKB   > 0ULL) {
-        sRes = sFormat(xT("%.2f KB"),      dBytes / static_cast<DOUBLE>(cullKB));
+    else if (static_cast<ULONGLONG>(cdBytes) / cullKB   > 0ULL) {
+        sRes = sFormat(xT("%.2f KB"),      cdBytes / static_cast<DOUBLE>(cullKB));
     }
-    else if (static_cast<ULONGLONG>(dBytes) / cullByte > 0ULL) {
-        sRes = sFormat(xT("%.2f Byte(s)"), dBytes / static_cast<DOUBLE>(cullByte));
+    else if (static_cast<ULONGLONG>(cdBytes) / cullByte > 0ULL) {
+        sRes = sFormat(xT("%.2f Byte(s)"), cdBytes / static_cast<DOUBLE>(cullByte));
     }
     else {
-        sRes = sFormat(xT("%.2f Bit(s)"),  dBytes);
+        sRes = sFormat(xT("%.2f Bit(s)"),  cdBytes);
     }
 
     return sRes;
@@ -581,7 +680,10 @@ CxString::sFormatBytes(DOUBLE dBytes) {
 //DONE: sFormatBytes (форматирование байтов в Bits, Bytes, KB, MB, GB)
 /*static*/
 tString
-CxString::sFormatBytes(ULONGLONG ullBytes) {
+CxString::sFormatBytes(
+    const ULONGLONG cullBytes
+)
+{
     /*DEBUG*/// ulBytes - n/a
 
     tString sRes = xT("Uknown");
@@ -592,23 +694,23 @@ CxString::sFormatBytes(ULONGLONG ullBytes) {
     const ULONGLONG cullKB   = 1024ULL;
     const ULONGLONG cullByte = 1ULL;
 
-    if (     ullBytes / cullTB   > 0ULL) {
-        sRes = sFormat(xT("%.2f TB"),      static_cast<DOUBLE>(ullBytes) / static_cast<DOUBLE>(cullTB));
+    if (     cullBytes / cullTB   > 0ULL) {
+        sRes = sFormat(xT("%.2f TB"),      static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullTB));
     }
-    else if (ullBytes / cullGB   > 0ULL) {
-        sRes = sFormat(xT("%.2f GB"),      static_cast<DOUBLE>(ullBytes) / static_cast<DOUBLE>(cullGB));
+    else if (cullBytes / cullGB   > 0ULL) {
+        sRes = sFormat(xT("%.2f GB"),      static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullGB));
     }
-    else if (ullBytes / cullMB   > 0ULL) {
-        sRes = sFormat(xT("%.2f MB"),      static_cast<DOUBLE>(ullBytes) / static_cast<DOUBLE>(cullMB));
+    else if (cullBytes / cullMB   > 0ULL) {
+        sRes = sFormat(xT("%.2f MB"),      static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullMB));
     }
-    else if (ullBytes / cullKB   > 0ULL) {
-        sRes = sFormat(xT("%.2f KB"),      static_cast<DOUBLE>(ullBytes) / static_cast<DOUBLE>(cullKB));
+    else if (cullBytes / cullKB   > 0ULL) {
+        sRes = sFormat(xT("%.2f KB"),      static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullKB));
     }
-    else if (ullBytes / cullByte > 0ULL) {
-        sRes = sFormat(xT("%.2f Byte(s)"), static_cast<DOUBLE>(ullBytes) / static_cast<DOUBLE>(cullByte));
+    else if (cullBytes / cullByte > 0ULL) {
+        sRes = sFormat(xT("%.2f Byte(s)"), static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullByte));
     }
     else {
-        sRes = sFormat(xT("%.2f Bit(s)"),  static_cast<DOUBLE>(ullBytes));
+        sRes = sFormat(xT("%.2f Bit(s)"),  static_cast<DOUBLE>(cullBytes));
     }
 
     return sRes;
@@ -617,7 +719,11 @@ CxString::sFormatBytes(ULONGLONG ullBytes) {
 //DONE: sFormatPercentage (formatting percentage)
 /*static*/
 tString
-CxString::sFormatPercentage(ULONGLONG ullMaxValue, ULONGLONG ullCurrValue) {
+CxString::sFormatPercentage(
+    ULONGLONG ullMaxValue,
+    ULONGLONG ullCurrValue
+)
+{
     /*DEBUG*/// ullMaxValue  - n/a
     /*DEBUG*/// ullCurrValue - n/a
     xCHECK_RET(0 == ullMaxValue, xT("0%"));    //devision by zero
@@ -635,12 +741,13 @@ CxString::sFormatPercentage(ULONGLONG ullMaxValue, ULONGLONG ullCurrValue) {
 /*static*/
 tString
 CxString::sFormatNixTerminal(
-        const tString &csText,
-        EForeground    fgForeground,
-        BOOL           bIsBold,
-        BOOL           bIsUnderline,
-        EBackground    bgBackground,
-        BOOL           bIsBlink)
+    const tString &csText,
+    EForeground    fgForeground,
+    BOOL           bIsBold,
+    BOOL           bIsUnderline,
+    EBackground    bgBackground,
+    BOOL           bIsBlink
+)
 {
     /*DEBUG*/// n/a
 
@@ -658,21 +765,25 @@ CxString::sFormatNixTerminal(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sStrToWStr (convert std::string to std::wstring)
+//DONE: sStrToWStr (std::string in std::wstring)
 /*static*/
 std::wstring
-CxString::sStrToWStr(const std::string &csStr, UINT uiCodePage) {
+CxString::sStrToWStr(
+    const std::string &csStr,
+    const UINT         cuiCodePage
+)
+{
     /*DEBUG*/// csStr - n/a
     /*DEBUG*/// uiCodePage - n/a
 
     std::wstring wsRes;
 
 #if defined(xOS_WIN)
-    INT iSize = ::MultiByteToWideChar(uiCodePage, 0, csStr.c_str(), - 1, NULL, 0);
+    INT iSize = ::MultiByteToWideChar(cuiCodePage, 0, csStr.c_str(), - 1, NULL, 0);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::wstring());
 
     wsRes.resize(iSize - 1);    //без '\0'
-    iSize = ::MultiByteToWideChar(uiCodePage, 0, csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
+    iSize = ::MultiByteToWideChar(cuiCodePage, 0, csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::wstring());
 #elif defined(xOS_LINUX)
     //TODO: (sStrToWStr)
@@ -682,21 +793,25 @@ CxString::sStrToWStr(const std::string &csStr, UINT uiCodePage) {
     return wsRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sWStrToStr (преобразование std::wstring в std::string)
+//DONE: sWStrToStr (std::wstring in std::string)
 /*static*/
 std::string
-CxString::sWStrToStr(const std::wstring &cwsStr, UINT uiCodePage) {
+CxString::sWStrToStr(
+    const std::wstring &cwsStr,
+    const UINT          cuiCodePage
+)
+{
     /*DEBUG*/// cwsStr - n/a
     /*DEBUG*/// uiCodePage - n/a
 
     std::string asRes;
 
 #if defined(xOS_WIN)
-    INT iSize = ::WideCharToMultiByte(uiCodePage, 0, cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
+    INT iSize = ::WideCharToMultiByte(cuiCodePage, 0, cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::string());
 
     asRes.resize(iSize - 1);    //без '\0'
-    iSize = ::WideCharToMultiByte(uiCodePage, 0, cwsStr.c_str(), - 1, static_cast<LPSTR>(&asRes.at(0)), iSize, NULL, NULL);
+    iSize = ::WideCharToMultiByte(cuiCodePage, 0, cwsStr.c_str(), - 1, static_cast<LPSTR>(&asRes.at(0)), iSize, NULL, NULL);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::string());
 #elif defined(xOS_LINUX)
     //TODO: (sWStrToStr)
@@ -706,10 +821,15 @@ CxString::sWStrToStr(const std::wstring &cwsStr, UINT uiCodePage) {
     return asRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sConvertCodePage (конвертирование кодировок
+//DONE: sConvertCodePage (convert codepage)
 /*static*/
 std::string
-CxString::sConvertCodePage(const std::string &csSource, UINT uiCodePageSource, UINT uiCodePageDest) {
+CxString::sConvertCodePage(
+    const std::string &csSource,
+    const UINT         cuiCodePageSource,
+    const UINT         cuiCodePageDest
+)
+{
 //    /*DEBUG*/xASSERT_RET(false == csSource.empty(), std::string());        //FIX: csStr    - n/a
 //    /*DEBUG*/// uiCodePageSource
 //    /*DEBUG*/// uiCodePageDest
@@ -717,13 +837,16 @@ CxString::sConvertCodePage(const std::string &csSource, UINT uiCodePageSource, U
     //CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
     //1251  (WIN)  <-> 20866  (KOI-8r)
 
-    return sWStrToStr(sStrToWStr(csSource, uiCodePageSource), uiCodePageDest);
+    return sWStrToStr(sStrToWStr(csSource, cuiCodePageSource), cuiCodePageDest);
 }
 //---------------------------------------------------------------------------
-//TODO: - asCharToOemBuff
+//TODO: asCharToOemBuff
 /*static*/
 std::string
-CxString::asCharToOemBuff(const tString &csSrc) {
+CxString::asCharToOemBuff(
+    const tString &csSrc
+)
+{
     std::string asDst;
 
 #if defined(xOS_WIN)
@@ -741,10 +864,13 @@ CxString::asCharToOemBuff(const tString &csSrc) {
     return asDst;
 }
 //---------------------------------------------------------------------------
-//TODO: - sOemToCharBuff
+//TODO: sOemToCharBuff
 /*static*/
 tString
-CxString::sOemToCharBuff(const std::string &csSrc) {
+CxString::sOemToCharBuff(
+        const std::string &csSrc
+)
+{
     tString sDst;
 
 #if defined(xOS_WIN)

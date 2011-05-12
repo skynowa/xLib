@@ -46,7 +46,6 @@
 #include "Filesystem/CxTest_CxDll.h"
 #include "Filesystem/CxTest_CxFileAttribute.h"
 #include "Filesystem/CxTest_CxIni.h"
-#include "Filesystem/CxTest_CxMemoryIni.h"
 
 #if defined(xOS_WIN)
     #include "Filesystem/Win/CxTest_CxDrive.h"
@@ -181,7 +180,6 @@ _tmain(INT argc, TCHAR *argv[]) {
         vecpvTests.push_back( new CxTest_CxDll );
         vecpvTests.push_back( new CxTest_CxFileAttribute );
         vecpvTests.push_back( new CxTest_CxIni );
-        vecpvTests.push_back( new CxTest_CxMemoryIni );
 
         #if defined(xOS_WIN)
         vecpvTests.push_back( new CxTest_CxDrive );

@@ -135,7 +135,7 @@ class CxString : public CxNonCopyable {
             return ResT;
         }
 
-        static tString      sBoolToStr       (BOOL bBool);
+        static tString      sBoolToStr       (const BOOL cbBool);
         static BOOL         bStrToBool       (const tString &csStr);
 
         static tString      sTrimLeftChars   (const tString &csStr, const tString &csChars);
@@ -145,14 +145,14 @@ class CxString : public CxNonCopyable {
         static tString      sRemoveEol       (const tString &csStr);
 
         static tString      sReplaceAll      (const tString &csStr, const tString &csOldStr, const tString &csNewStr);
-        static tString      sReplaceAll      (const tString &csStr, TCHAR cOldStr, TCHAR cNewStr);
+        static tString      sReplaceAll      (const tString &csStr, const TCHAR ccOldStr, const TCHAR ccNewStr);
         static tString      sRemoveAll       (const tString &csStr, const tString &csRemoveStr);
 
         static BOOL         bSplit           (const tString &csStr, const tString &csSep, std::vector<tString> *vecsOut);
-        static tString      sJoin            (const std::vector<tString> &cvecsVec, TCHAR chSep);
+        static tString      sJoin            (const std::vector<tString> &cvecsVec, const TCHAR cchSep);
         static tString      sJoin            (const std::vector<tString> &cvecsVec, const tString &csSep);
         static tString      sCut             (const tString &csStr, const tString &csLeftSep, const tString &csRightSep);
-        static tString      sCut             (const tString &csStr, std::size_t uiStartPos = 0, std::size_t uiEndPos = std::string::npos);
+        static tString      sCut             (const tString &csStr, const size_t cuiStartPos = 0, const size_t cuiEndPos = tString::npos);
 
         static tString      sToLowerCase     (const tString &csStr);
         static tString      sToUpperCase     (const tString &csStr);
@@ -176,15 +176,15 @@ class CxString : public CxNonCopyable {
         *****************************************************************************/
 
         static tString      sTranslitLatToRus(const tString &csStr);
-        static tString      sFormatBytes     (double dBytes);
-        static tString      sFormatBytes     (ULONGLONG ullBytes);
+        static tString      sFormatBytes     (const DOUBLE cdBytes);
+        static tString      sFormatBytes     (const ULONGLONG cullBytes);
         static tString      sFormatPercentage(ULONGLONG ullMaxValue, ULONGLONG ullCurrValue);
         static tString      sFormatNixTerminal(const tString &csText, EForeground fgForeground, BOOL bIsBold, BOOL bIsUnderline, EBackground bgBackground, BOOL bIsBlink);
 
-        static std::wstring sStrToWStr       (const std::string  &csStr,  UINT uiCodePage);
-        static std::string  sWStrToStr       (const std::wstring &cwsStr, UINT uiCodePage);
+        static std::wstring sStrToWStr       (const std::string  &csStr,  const UINT cuiCodePage);
+        static std::string  sWStrToStr       (const std::wstring &cwsStr, const UINT cuiCodePage);
 
-        static std::string  sConvertCodePage (const std::string &csSource, UINT uiCodePageSource, UINT uiCodePageDest);
+        static std::string  sConvertCodePage (const std::string &csSource, const UINT cuiCodePageSource, const UINT cuiCodePageDest);
 
         static std::string  asCharToOemBuff  (const tString     &csSrc);
         static tString      sOemToCharBuff   (const std::string &csSrc);
