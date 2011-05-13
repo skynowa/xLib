@@ -139,7 +139,6 @@ class CxStdioFile : public CxNonCopyable {
 
         BOOL             bReadLine    (tString *psStr, const size_t cuiMaxCount) const;
         BOOL             bWriteLine   (const tString &csStr) const;
-        BOOL             bWriteString (const tString &csStr) const;
 
         TCHAR            cReadChar    () const;
         BOOL             bWriteChar   (const TCHAR ccChar) const;
@@ -153,6 +152,9 @@ class CxStdioFile : public CxNonCopyable {
         LONG             liGetPosition() const;
 
         BOOL             bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
+
+        BOOL             bGetTime     (time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
+        BOOL             bSetTime     (const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
 
     #if defined(xOS_WIN)
         BOOL             bSetMode     (const ETranslationMode tmMode) const;
@@ -177,6 +179,7 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bIsExists    (const tString &csFilePath);
         static BOOL      bAccess      (const tString &csFilePath, const EAccessMode camMode);
         static BOOL      bChmod       (const tString &csFilePath, const EPermissionMode cpmMode);
+        static BOOL      bClear       (const tString &csFilePath);
         static BOOL      bDelete      (const tString &csFilePath);
         static BOOL      bWipe        (const tString &csFilePath, const size_t cuiPasses);
         static BOOL      bUnlink      (const tString &csFilePath);
@@ -188,18 +191,18 @@ class CxStdioFile : public CxNonCopyable {
         static ULONGLONG ullGetLines  (const tString &csFilePath);
 
         //text
-        static BOOL      bTextRead    (const tString &csFilePath, tString *psStr);
-        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csStr);
+        static BOOL      bTextRead    (const tString &csFilePath, tString *psContent);
+        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csContent);
 
         static BOOL      bTextRead    (const tString &csFilePath, std::vector<tString> *pvecsContent);
         static BOOL      bTextWrite   (const tString &csFilePath, const std::vector<tString> &cvecsContent);
 
-        static BOOL      bTextRead    (const tString &csFilePath, const tString &csSeparator, std::map<tString, tString> *pmapsFile);
-        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csSeparator, const std::map<tString, tString> &cmapsFile);
+        static BOOL      bTextRead    (const tString &csFilePath, const tString &csSeparator, std::map<tString, tString> *pmsContent);
+        static BOOL      bTextWrite   (const tString &csFilePath, const tString &csSeparator, const std::map<tString, tString> &cmsContent);
 
         //binary
-        static BOOL      bBinRead     (const tString &csFilePath, uString *pusStr);
-        static BOOL      bBinWrite    (const tString &csFilePath, const uString &cusStr);
+        static BOOL      bBinRead     (const tString &csFilePath, uString *pusContent);
+        static BOOL      bBinWrite    (const tString &csFilePath, const uString &cusContent);
 
     private:
         mutable BOOL     _m_bRes;

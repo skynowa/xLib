@@ -9,8 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Fso_CxFileH
-#define xLib_Fso_CxFileH
+#ifndef xLib_Filesystem_Win_CxFileH
+#define xLib_Filesystem_Win_CxFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/Win/CxHandle.h>
@@ -18,55 +18,49 @@
 //---------------------------------------------------------------------------
 class CxFile : public CxNonCopyable {
     public:
-        //generic rights
         enum EGenericRights {
-            grAll     = GENERIC_ALL,                //Read, write, and execute access
-            grExecute = GENERIC_EXECUTE,            //Execute access
-            grRead    = GENERIC_READ,                //Read access
-            grWrite   = GENERIC_WRITE                //Write access
+            grAll     = GENERIC_ALL,
+            grExecute = GENERIC_EXECUTE,
+            grRead    = GENERIC_READ,
+            grWrite   = GENERIC_WRITE
         };
 
-        //share modes
         enum EShareMode {
-            smDenyAll = 0,                            //Prevents other processes from opening a file or device if they request delete, read, or write access.
-            smDelete  = FILE_SHARE_DELETE,            //Enables subsequent open operations on a file or device to request delete access.
-            smRead    = FILE_SHARE_READ,            //Enables subsequent open operations on a file or device to request read access.
-            smWrite   = FILE_SHARE_WRITE            //Enables subsequent open operations on a file or device to request write access.
+            smDenyAll = 0,
+            smDelete  = FILE_SHARE_DELETE,
+            smRead    = FILE_SHARE_READ,
+            smWrite   = FILE_SHARE_WRITE
         };
 
-        //Creation flags
         enum ECreationFlags {
-            cfCreateAlways  = CREATE_ALWAYS,        //Creates a new file, always.
-            cfCreateNew     = CREATE_NEW,            //Creates a new file, only if it does not already exist.
-            cfOpenAlways    = OPEN_ALWAYS,            //Opens a file, always.
-            cfOpenExisting  = OPEN_EXISTING,        //Opens a file or device, only if it exists.
-            cfTruncExisting = TRUNCATE_EXISTING,    //Opens a file and truncates it so that its size is zero bytes, only if it exists.
+            cfCreateAlways  = CREATE_ALWAYS,
+            cfCreateNew     = CREATE_NEW,
+            cfOpenAlways    = OPEN_ALWAYS,
+            cfOpenExisting  = OPEN_EXISTING,
+            cfTruncExisting = TRUNCATE_EXISTING,
         };
 
-        //file position data for the given stream
         enum EPointerPosition {
             ppBegin = FILE_BEGIN,
             ppCurr  = FILE_CURRENT,
-            ppEnd   = FILE_END,
+            ppEnd   = FILE_END
         };
 
-        //file types
         enum EType {
-            ftChar    = FILE_TYPE_CHAR,                //character file, typically an LPT device or a console.
-            ftDisk    = FILE_TYPE_DISK,                 //disk file.
-            ftPipe    = FILE_TYPE_PIPE,             //socket, a named pipe, or an anonymous pipe.
-            ftRemote  = FILE_TYPE_REMOTE,           //Unused.
-            ftUnknown = FILE_TYPE_UNKNOWN            //unknown, or the function failed.
+            ftChar    = FILE_TYPE_CHAR,
+            ftDisk    = FILE_TYPE_DISK,
+            ftPipe    = FILE_TYPE_PIPE,
+            ftRemote  = FILE_TYPE_REMOTE,
+            ftUnknown = FILE_TYPE_UNKNOWN
         };
 
-        //file type
         enum ETypeEx {
             fteUnknown = 0,
             fteFile    = 1,
             fteDir     = 2
         };
 
-        CxHandle m_hHandle;
+        CxHandle         m_hHandle;
 
 
                          CxFile              ();
@@ -101,15 +95,12 @@ class CxFile : public CxNonCopyable {
         static LONGLONG  llGetSize           (const tString &csFilePath);
 
         static BOOL      bDelete             (const tString &csFilePath);
-        static BOOL      bMove               (const tString &csFilePathIn, const tString &csFilePathOut); //����, �������
+        static BOOL      bMove               (const tString &csFilePathIn, const tString &csFilePathOut);
         static tString   sCreateTempName     (const tString &csPrefix);
         static BOOL      bCopy               (const tString &csFilePathFrom, const tString &csFilePathTo);
         static BOOL      bCopy               (const tString &csFilePathFrom, const tString &csFilePathTo, BOOL bFailIfExists);
         static BOOL      bReplace            (const tString &csOldFileName, const tString &csNewFilePath, const tString &csBackupFilePath);
-        static BOOL      bWipe               (const tString &csFilePath, UINT uiPasses); /*-*/
-        ////static BOOL      bCutFromEnd         (const tString &csFilePath, LONG lDistanceToCut);
-        ////static BOOL      bCutFromEnd         (FILE *pFile, ULONG ulDistanceToCut);
-        ////static BOOL      bCheckSignature     (LPCTSTR pcszBuff, LPCTSTR pcszSignature, INT iSignatureSize);
+        static BOOL      bWipe               (const tString &csFilePath, UINT uiPasses);
         static BOOL      bSetRandomDate      (const tString &csFilePath);
         static ULONGLONG ullGetCompressedSize(const tString &csFilePath);
 
@@ -119,11 +110,11 @@ class CxFile : public CxNonCopyable {
         *
         *****************************************************************************/
 
-        static BOOL         bSetAttrUncompressed(const tString &csFilePath);
-        static BOOL         bSetAttrCompressed  (const tString &csFilePath, BOOL bCompress);
+        static BOOL      bSetAttrUncompressed(const tString &csFilePath);
+        static BOOL      bSetAttrCompressed  (const tString &csFilePath, BOOL bCompress);
 
-        static tString     sReadText            (const tString &csFilePath);
-        static bool         bWriteText           (const tString &csFilePath, const tString &csText);
+        static tString   sReadText           (const tString &csFilePath);
+        static bool      bWriteText          (const tString &csFilePath, const tString &csText);
 
         //other
         static BOOL      bBackup             (const tString &csFilePath, const tString &csDestDirPath, BOOL bMakeDaily /*,INT bBackupLimit*/);
@@ -134,4 +125,4 @@ class CxFile : public CxNonCopyable {
         static BOOL      _ms_bRes;
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Fso_CxFileH
+#endif //xLib_Filesystem_Win_CxFileH
