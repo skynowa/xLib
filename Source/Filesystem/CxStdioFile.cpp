@@ -312,23 +312,6 @@ CxStdioFile::bWriteLine(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bWriteString (write string)
-BOOL
-CxStdioFile::bWriteString(
-    const tString &csStr
-) const
-{
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
-
-    INT iRes = etError;
-
-    iRes = _fputts(csStr.c_str(), pGet());
-    /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
-    /*DEBUG*/xASSERT_RET(EOF < iRes,      FALSE);
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
 //TODO: cReadChar (get character)
 TCHAR
 CxStdioFile::cReadChar() const {
@@ -443,7 +426,52 @@ CxStdioFile::liGetPosition() const {
     return liRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetVBuff (Change stream buffering)
+//DONE: bGetTime (get time)
+BOOL
+CxStdioFile::bGetTime(
+    time_t *pftCreate, time_t *pftAccess, time_t *pftModified
+)
+{
+    /*DEBUG*/// pftCreate - n/a
+    /*DEBUG*/// pftAccess - n/a
+    /*DEBUG*/// pftModified - n/a
+
+    struct stat stInfo = {0};
+
+    INT iRes = stat(sGetPath().c_str(), &stInfo);
+    /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
+
+    xCHECK_DO(NULL != pftCreate,   *pftCreate   = stInfo.st_ctime);
+    xCHECK_DO(NULL != pftAccess,   *pftAccess   = stInfo.st_atime);
+    xCHECK_DO(NULL != pftModified, *pftModified = stInfo.st_mtime);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: bSetTime (set time)
+BOOL
+CxStdioFile::bSetTime(
+    const time_t &ctmCreate,
+    const time_t &ctmAccess,
+    const time_t &ctmModified
+)
+{
+    /*DEBUG*/// ctmCreate   - n/a
+    /*DEBUG*/// ctmAccess   - n/a
+    /*DEBUG*/// ctmModified - n/a
+
+    utimbuf tbTimes;
+
+    tbTimes.actime  = ctmAccess;
+    tbTimes.modtime = ctmModified;
+
+    INT iRes = utime(sGetPath().c_str(), &tbTimes);
+    /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bSetVBuff (Change stream buffering)
 BOOL
 CxStdioFile::bSetVBuff(
     LPSTR                pszBuff,
@@ -451,9 +479,9 @@ CxStdioFile::bSetVBuff(
     const size_t         cuiSize
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),               FALSE);
     /*DEBUG*/// pszBuff - n/a
-    /////*DEBUG*/xASSERT_RET(2 < uiSize && uiSize < INT_MAX, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
+    /*DEBUG*/// cuiSize - n/a
 
     INT iRes = etError;
 
@@ -490,7 +518,7 @@ CxStdioFile::bSetMode(
 //NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
 LONG
 CxStdioFile::liGetSize() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), ppError);
 
     LONG liStreamSize    = ppError;
     LONG liCurrStreamPos = ppError;
@@ -719,6 +747,27 @@ CxStdioFile::bChmod(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//DONE: bClear ()
+/*static*/
+BOOL
+CxStdioFile::bClear(
+    const tString &csFilePath
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+
+    BOOL        bRes = FALSE;
+    CxStdioFile sfFile;
+
+    bRes = sfFile.bOpen(csFilePath, CxStdioFile::omWrite);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    bRes = sfFile.bClear();
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 //DONE: bDelete (deleting)
 /*static*/
 BOOL
@@ -727,6 +776,8 @@ CxStdioFile::bDelete(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+
+    xCHECK_RET(FALSE == bIsExists(csFilePath), TRUE);
 
     BOOL bRes = FALSE;
     INT  iRes = etError;
@@ -750,6 +801,8 @@ CxStdioFile::bWipe(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cuiPasses - n/a
+
+    xCHECK_RET(FALSE == bIsExists(csFilePath), TRUE);
 
     BOOL bRes = FALSE;
 
@@ -1043,61 +1096,64 @@ CxStdioFile::ullGetLines(
     return ullRes;
 }
 //--------------------------------------------------------------------------
-//TODO: - bTextRead ()
+//DONE: bTextRead (read to tString)
 /*static*/
 BOOL
 CxStdioFile::bTextRead(
     const tString &csFilePath,
-    tString       *psStr
+    tString       *psContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != psStr,              FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != psContent,          FALSE);
 
-    tifstream ifsStream(csFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(ifsStream,           FALSE);
-    /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   FALSE);
-    /*DEBUG*/xASSERT_RET(ifsStream.good(),    FALSE);
-    /*DEBUG*/xASSERT_RET(ifsStream.is_open(), FALSE);
-    /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    FALSE);
+    BOOL        bRes = FALSE;
+    CxStdioFile sfFile;
+    tString     sRes;
 
-    tString sLine;
+    bRes = sfFile.bOpen(csFilePath, CxStdioFile::omBinRead);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    (*psStr).clear();
-    for (; !ifsStream.eof(); ) {
-        std::getline(ifsStream, sLine);
-        (*psStr).append(sLine);
-        (*psStr).append(CxConst::xEOL);
-    }
+    LONG liFileSize = sfFile.liGetSize();
+    /*DEBUG*/xASSERT_RET(ppError != liFileSize, FALSE);
+
+    xCHECK_DO(0 == liFileSize, (*psContent).clear(); return TRUE);
+
+    sRes.resize(liFileSize);
+
+    size_t uiReadLen = sfFile.uiRead((LPVOID)&sRes.at(0), sRes.size());
+    /*DEBUG*/xASSERT_RET(sRes.size() == uiReadLen, FALSE);
+
+    //out
+    std::swap((*psContent), sRes);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bTextWrite ()
+//DONE: bTextWrite (write tString)
 /*static*/
 BOOL
 CxStdioFile::bTextWrite(
     const tString &csFilePath,
-    const tString &csStr
+    const tString &csContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/// csStr - n/a
+    /*DEBUG*/// csContent - n/a
 
     BOOL        bRes = FALSE;
     CxStdioFile sfFile;
-    size_t      uiWriteLen = - 1;
 
-    bRes = sfFile.bOpen(csFilePath, CxStdioFile::omWrite);
+    bRes = sfFile.bOpen(csFilePath, omBinWrite);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    uiWriteLen = sfFile.uiWrite((LPVOID)&csStr.at(0), csStr.size());
-    /*DEBUG*/xASSERT_RET(csStr.size() == uiWriteLen, FALSE);
+    size_t uiWriteLen = sfFile.uiWrite((LPVOID)&csContent.at(0), csContent.size());
+    /*DEBUG*/xASSERT_RET(csContent.size() == uiWriteLen, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bTextRead
+//DONE: bTextRead (read to std::vector)
 /*static*/
 BOOL
 CxStdioFile::bTextRead(
@@ -1109,25 +1165,23 @@ CxStdioFile::bTextRead(
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pvecsContent,          FALSE);
 
-    tifstream ifsStream(csFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(ifsStream,           FALSE);
-    /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   FALSE);
-    /*DEBUG*/xASSERT_RET(ifsStream.good(),    FALSE);
-    /*DEBUG*/xASSERT_RET(ifsStream.is_open(), FALSE);
-    /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    FALSE);
+    BOOL                 bRes = FALSE;
+    std::vector<tString> vecsRes;
+    tString              sFileContent;
 
-    tString sLine;
+    bRes = CxStdioFile::bTextRead(csFilePath, &sFileContent);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    (*pvecsContent).clear();
-    for (size_t i = 0; !ifsStream.eof();  ++ i) {
-        std::getline(ifsStream, sLine);
-        (*pvecsContent).push_back(sLine);
-    }
+    bRes = CxString::bSplit(sFileContent, CxConst::xNL, &vecsRes);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    //out
+    std::swap((*pvecsContent), vecsRes);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTextWrite (write std::vector to file)
+//DONE: bTextWrite (write std::vector)
 /*static*/
 BOOL
 CxStdioFile::bTextWrite(
@@ -1136,20 +1190,15 @@ CxStdioFile::bTextWrite(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/// cvecsFileContent - n/a
+    /*DEBUG*/// cvecsContent - n/a
 
-    BOOL bRes = FALSE;
+    BOOL    bRes = FALSE;
+    tString sFileContent;
 
-    CxStdioFile stdFile;
+    sFileContent = CxString::sJoin(cvecsContent, CxConst::xNL);
 
-    bRes = stdFile.bOpen(csFilePath, CxStdioFile::omWrite);
+    bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-
-    std::vector<tString>::const_iterator it;
-    for (it = cvecsContent.begin(); it < cvecsContent.end(); ++ it) {
-        bRes = stdFile.bWriteLine(*it);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    }
 
     return TRUE;
 }
@@ -1160,12 +1209,12 @@ BOOL
 CxStdioFile::bTextRead(
     const tString              &csFilePath,
     const tString              &csSeparator,
-    std::map<tString, tString> *pmapsFile
+    std::map<tString, tString> *pmsContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pmapsFile,             FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pmsContent,          FALSE);
 
     BOOL bRes = FALSE;
 
@@ -1190,7 +1239,30 @@ CxStdioFile::bTextRead(
     }
 
     //out
-    (*pmapsFile).swap(mapsRes);
+    (*pmsContent).swap(mapsRes);
+
+
+#if xTODO
+    BOOL                       bRes = FALSE;
+    std::map<tString, tString> mapsRes;
+    std::vector<tString>       vecsRes;
+
+    bRes = CxStdioFile::bTextRead(csFilePath, &vecsRes);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    std::vector<tString>::const_iterator it;
+    for (it = vecsRes.begin(); it != vecsRes.end(); ++ it) {
+        std::vector<tString> vecsLine;
+
+        bRes = CxString::bSplit(vecsRes.at(0), csSeparator, &vecsLine);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+        mapsRes.insert( std::pair<tString, tString>(vecsLine.at(0), vecsLine.at(1)) );
+    }
+
+    //out
+    std::swap((*pmsContent), mapsRes);
+#endif
 
     return TRUE;
 }
@@ -1201,7 +1273,7 @@ BOOL
 CxStdioFile::bTextWrite(
     const tString                    &csFilePath,
     const tString                    &csSeparator,
-    const std::map<tString, tString> &cmapsFile
+    const std::map<tString, tString> &cmsContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),  FALSE);
@@ -1216,10 +1288,29 @@ CxStdioFile::bTextWrite(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     std::map<tString, tString>::const_iterator it;
-    for (it = cmapsFile.begin(); it != cmapsFile.end(); ++ it) {
+    for (it = cmsContent.begin(); it != cmsContent.end(); ++ it) {
         bRes = stdFile.bWriteLine((*it).first + csSeparator + (*it).second);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
+
+
+#if xTODO
+    BOOL    bRes = FALSE;
+    tString sRes;
+
+    std::map<tString, tString>::const_iterator it;
+    for (it = cmsContent.begin(); it != cmsContent.end(); ++ it) {
+        sRes.append((*it).first);
+        sRes.append(csSeparator);
+        sRes.append((*it).second);
+        sRes.append(CxConst::xNL);
+
+        xCHECK_DO(it != cmsContent.end(), sRes.append(CxConst::xNL));
+    }
+
+    bRes = CxStdioFile::bTextWrite(csFilePath, sRes);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+#endif
 
     return TRUE;
 }
@@ -1229,32 +1320,34 @@ CxStdioFile::bTextWrite(
 BOOL
 CxStdioFile::bBinRead(
     const tString &csFilePath,
-    uString       *pusStr
+    uString       *pusContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pusStr,             FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pusContent,         FALSE);
 
-    BOOL        bRes       = FALSE;
+    BOOL        bRes = FALSE;
     CxStdioFile sfFile;
-    LONG        liFileSize = - 1;
-    size_t      uiReadLen  = 0;
+    uString     usRes;
 
-    (*pusStr).clear();
-
-    bRes = sfFile.bOpen(csFilePath, omBinRead);
+    bRes = sfFile.bOpen(csFilePath, CxStdioFile::omBinRead);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    liFileSize = sfFile.liGetSize();
-    /*DEBUG*/xASSERT_RET(- 1 < liFileSize, FALSE);
+    LONG liFileSize = sfFile.liGetSize();
+    /*DEBUG*/xASSERT_RET(ppError != liFileSize, FALSE);
 
-    (*pusStr).resize(liFileSize);
-    xCHECK_RET(0 == liFileSize, TRUE);
+    xCHECK_DO(0 == liFileSize, (*pusContent).clear(); return TRUE);
 
-    uiReadLen = sfFile.uiRead(&(*pusStr).at(0), (*pusStr).size());
-    /*DEBUG*/xASSERT_RET(static_cast<size_t>( liFileSize ) == uiReadLen, FALSE);
+    usRes.resize(liFileSize);
+
+    size_t uiReadLen = sfFile.uiRead((LPVOID)&usRes.at(0), usRes.size());
+    /*DEBUG*/xASSERT_RET(usRes.size() == uiReadLen, FALSE);
+
+    //out
+    std::swap((*pusContent), usRes);
 
     return TRUE;
+
 }
 //---------------------------------------------------------------------------
 //DONE: bBinWrite (write binary data)
@@ -1262,21 +1355,20 @@ CxStdioFile::bBinRead(
 BOOL
 CxStdioFile::bBinWrite(
     const tString &csFilePath,
-    const uString &cusStr
+    const uString &cusContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/// cusStr - n/a
+    /*DEBUG*/// cusContent - n/a
 
-    BOOL        bRes       = FALSE;
+    BOOL        bRes = FALSE;
     CxStdioFile sfFile;
-    size_t      uiWriteLen = 0;
 
     bRes = sfFile.bOpen(csFilePath, omBinWrite);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    uiWriteLen = sfFile.uiWrite((LPVOID)&cusStr.at(0), cusStr.size());
-    /*DEBUG*/xASSERT_RET(cusStr.size() == uiWriteLen, FALSE);
+    size_t uiWriteLen = sfFile.uiWrite((LPVOID)&cusContent.at(0), cusContent.size());
+    /*DEBUG*/xASSERT_RET(cusContent.size() == uiWriteLen, FALSE);
 
     return TRUE;
 }

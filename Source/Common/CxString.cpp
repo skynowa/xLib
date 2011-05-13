@@ -236,7 +236,8 @@ CxString::sJoin(
 
     for (std::vector<tString>::const_iterator it = cvecsVec.begin(); it != cvecsVec.end(); ++ it) {
         sRes.append(*it);
-        sRes.append(csSep);
+
+        xCHECK_DO(it < cvecsVec.end() - 1, sRes.append(csSep));
     }
 
     return sRes;

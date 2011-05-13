@@ -25,17 +25,17 @@
 //-------------------------------------------------------------------------
 //DONE: CxIni (constructor, exe-file path)
 CxIni::CxIni() :
-    _m_csSeparator (CxConst::xEQUAL),
-    _m_csIniFileExt(xT("ini")),
-    _m_bRes        (FALSE),
-    _m_sFilePath   (),
-    _m_mmsIni      ()
+    _m_csSeparator(CxConst::xEQUAL),
+    _m_csFileExt  (xT("ini")),
+    _m_bRes       (FALSE),
+    _m_sFilePath  (),
+    _m_msIni      ()
 {
-    /*DEBUG*/xASSERT_DO(false == _m_csSeparator.empty(),  return);
-    /*DEBUG*/xASSERT_DO(false == _m_csIniFileExt.empty(), return);
-    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(),    return);
+    /*DEBUG*/xASSERT_DO(false == _m_csSeparator.empty(), return);
+    /*DEBUG*/xASSERT_DO(false == _m_csFileExt.empty(),   return);
+    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(),   return);
 
-    _m_bRes = bSetPath(CxPath::sSetExt( CxPath::sGetExe(), _m_csIniFileExt ));
+    _m_bRes = bSetPath(CxPath::sSetExt( CxPath::sGetExe(), _m_csFileExt ));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
@@ -43,18 +43,18 @@ CxIni::CxIni() :
 CxIni::CxIni(
     const tString &csFilePath
 ) :
-    _m_csSeparator (CxConst::xEQUAL),
-    _m_csIniFileExt(xT("ini")),
-    _m_bRes        (FALSE),
-    _m_sFilePath   (),
-    _m_mmsIni      ()
+    _m_csSeparator(CxConst::xEQUAL),
+    _m_csFileExt  (xT("ini")),
+    _m_bRes       (FALSE),
+    _m_sFilePath  (),
+    _m_msIni      ()
 {
-    /*DEBUG*/xASSERT_DO(false == _m_csSeparator.empty(),  return);
-    /*DEBUG*/xASSERT_DO(false == _m_csIniFileExt.empty(), return);
-    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(),    return);
-    /*DEBUG*/xASSERT_DO(false == csFilePath.empty(),      return);
+    /*DEBUG*/xASSERT_DO(false == _m_csSeparator.empty(), return);
+    /*DEBUG*/xASSERT_DO(false == _m_csFileExt.empty(),   return);
+    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(),   return);
+    /*DEBUG*/xASSERT_DO(false == csFilePath.empty(),     return);
 
-    _m_bRes = bSetPath(CxPath::sSetExt( csFilePath, _m_csIniFileExt ));
+    _m_bRes = bSetPath(CxPath::sSetExt( csFilePath, _m_csFileExt ));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
@@ -73,13 +73,8 @@ CxIni::bCreateDefault(
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/// csContent - n/a;
 
-    CxStdioFile sfFile;
-
-    _m_bRes = sfFile.bOpen(_m_sFilePath, CxStdioFile::omCreateReadWrite);
+    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, csContent);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-
-    size_t uiRes = sfFile.uiWrite((LPVOID)csContent.data(), csContent.size());
-    /*DEBUG*/xASSERT_RET(csContent.size() == uiRes, FALSE);
 
     return TRUE;
 }
@@ -111,7 +106,7 @@ NxLib::TIni &
 CxIni::cmapsGet() {
     /*DEBUG*/
 
-    return _m_mmsIni;
+    return _m_msIni;
 }
 //---------------------------------------------------------------------------
 //DONE: bFlush (flush)
@@ -119,7 +114,7 @@ BOOL
 CxIni::bFlush() const {
     /*DEBUG*/
 
-    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_mmsIni);
+    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -128,14 +123,9 @@ CxIni::bFlush() const {
 //DONE: bClear (clear content)
 BOOL
 CxIni::bClear() {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
+    /*DEBUG*/
 
-    CxStdioFile sfFile;
-
-    _m_bRes = sfFile.bOpen(_m_sFilePath, CxStdioFile::omCreateReadWrite);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-
-    _m_bRes = sfFile.bClear();
+    _m_bRes = CxStdioFile::bClear(_m_sFilePath);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -151,7 +141,7 @@ CxIni::bDelete() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //TIni
-    _m_mmsIni.clear();
+    _m_msIni.clear();
 
     return TRUE;
 }
@@ -380,16 +370,16 @@ CxIni::bKeyDelete(
     /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
 
     //read from file
-    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_mmsIni);
+    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    xCHECK_RET(_m_mmsIni.end() == _m_mmsIni.find(csKey), TRUE);
+    xCHECK_RET(_m_msIni.end() == _m_msIni.find(csKey), TRUE);
 
     //delete from TIni
-    _m_mmsIni.erase(csKey);
+    _m_msIni.erase(csKey);
 
     //write to file
-    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_mmsIni);
+    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -416,12 +406,12 @@ CxIni::_bRead(
     /*DEBUG*/xASSERT_RET(NULL != psValue, FALSE);
 
     //read from file
-    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_mmsIni);
+    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //read to TIni
-    NxLib::TIni::iterator it = _m_mmsIni.find(csKey);
-    if (_m_mmsIni.end() == it) {
+    NxLib::TIni::iterator it = _m_msIni.find(csKey);
+    if (_m_msIni.end() == it) {
         _m_bRes = _bWrite(csKey, csDefaultValue);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -445,15 +435,15 @@ CxIni::_bWrite(
     /*DEBUG*/// csValue - n/a
 
     //write to TIni
-    NxLib::TIni::iterator it = _m_mmsIni.find(csKey);
-    if (_m_mmsIni.end() == it) {
-        _m_mmsIni.insert( std::pair<tString, tString>(csKey, csValue) );
+    NxLib::TIni::iterator it = _m_msIni.find(csKey);
+    if (_m_msIni.end() == it) {
+        _m_msIni.insert( std::pair<tString, tString>(csKey, csValue) );
     } else {
         (*it).second = csValue;
     }
 
     //write to file
-    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_mmsIni);
+    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;

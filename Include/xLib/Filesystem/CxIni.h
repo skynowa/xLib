@@ -57,11 +57,11 @@ class CxIni : public CxNonCopyable {
 
     private:
         const tString    _m_csSeparator;    //separator between key and value
-        const tString    _m_csIniFileExt;   //ini-file extension
+        const tString    _m_csFileExt;      //ini-file extension
 
         mutable BOOL     _m_bRes;
         tString          _m_sFilePath;      //file path to ini-file
-        NxLib::TIni      _m_mmsIni;         //std::multimap of keys and values
+        NxLib::TIni      _m_msIni;          //std::map of keys and values
 
         BOOL             _bRead         (const tString &csKey, const tString &csDefaultValue, tString *psValue);
         BOOL             _bWrite        (const tString &csKey, const tString &csValue);

@@ -437,15 +437,13 @@ CxTest_CxString::bUnit() {
     //sJoin
     {
         std::vector<tString> vecsRes;
-        vecsRes.push_back(xT(""));
         vecsRes.push_back(xT("111"));
         vecsRes.push_back(xT(""));
         vecsRes.push_back(xT("222"));
         vecsRes.push_back(xT("333"));
-        vecsRes.push_back(xT(""));
 
         m_sRes = CxString::sJoin(vecsRes, xT("-"));
-        xASSERT(xT("-111--222-333--") == m_sRes);
+        xASSERT(xT("111--222-333") == m_sRes);
     }
 
     //-------------------------------------

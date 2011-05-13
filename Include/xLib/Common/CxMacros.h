@@ -82,7 +82,7 @@ class CxMacros : CxNonCopyable {
         #define xTEMP_ENABLED         1
         #define xTEMP_DISABLED        0
         #define xTODO                 0
-        #define xCAN_BE_REMOVED       0
+        #define xCAN_REMOVE           0
 
 
         //TODO: xMax

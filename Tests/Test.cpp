@@ -1,5 +1,5 @@
 /****************************************************************************
-*
+*   tests for xLib
 *
 *****************************************************************************/
 
@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-//Other
+//Common
 #include "Common/CxTest_CxMacros.h"
 #include "Common/CxTest_CxArray.h"
 #include "Common/CxTest_CxChar.h"
@@ -50,15 +50,15 @@
 #if defined(xOS_WIN)
     #include "Filesystem/Win/CxTest_CxDrive.h"
     #include "Filesystem/Win/CxTest_CxFile.h"
-////    #include "Filesystem/Win/CxTest_CxIni.h"
+    #include "Filesystem/Win/CxTest_CxIni.h"
 #elif defined(xOS_LINUX)
 
 #endif
 
-//GDI+
+//Gui
 #if defined(xOS_WIN)
-    //#include "GDI+/CxTest_CxGdiplus.h"
-    //#include "GDI+/CxTest_CxImage.h"
+    #include "GDI+/CxTest_CxGdiplus.h"
+    #include "GDI+/CxTest_CxImage.h"
 #endif
 
 //Log
@@ -82,7 +82,6 @@
     #include "Compress/CxTest_CxGz.h"
 #endif
 
-
 //Crypt
 #include "Crypt/CxTest_CxBase64.h"
 #include "Crypt/CxTest_CxCrc32.h"
@@ -96,7 +95,7 @@
 //Sync
 #include "Sync/CxTest_CxProcess.h"
 #if defined(xOS_WIN)
-    /////#include "Sync/CxTest_CxThread.h"
+    #include "Sync/CxTest_CxThread.h"
 #elif defined(xOS_LINUX)
 
 #endif
@@ -106,7 +105,7 @@
 
 //PKCS11
 #if defined(xOS_WIN)
-    ////#include "PKCS11/CxTest_CxPkcs11.h"
+    #include "PKCS11/CxTest_CxPkcs11.h"
 #elif defined(xOS_LINUX)
 
 #endif
@@ -141,7 +140,7 @@ _tmain(INT argc, TCHAR *argv[]) {
 
     #if xTEMP_ENABLED
         //--------------------------------------------------
-        //Other
+        //Common
         vecpvTests.push_back( new CxTest_CxMacros );
         vecpvTests.push_back( new CxTest_CxArray );
         vecpvTests.push_back( new CxTest_CxChar );
@@ -184,16 +183,16 @@ _tmain(INT argc, TCHAR *argv[]) {
         #if defined(xOS_WIN)
         vecpvTests.push_back( new CxTest_CxDrive );
         vecpvTests.push_back( new CxTest_CxFile );
-        ////vecpvTests.push_back( new CxTest_CxIni );
+        vecpvTests.push_back( new CxTest_CxIni );
         #elif defined(xOS_LINUX)
 
         #endif
 
         //--------------------------------------------------
-        //GDI+
+        //Gui
         #if defined(xOS_WIN)
-        //vecpvTests.push_back( new CxTest_CxGdiplus );
-        //vecpvTests.push_back( new CxTest_CxImage );
+        vecpvTests.push_back( new CxTest_CxGdiplus );
+        vecpvTests.push_back( new CxTest_CxImage );
         #endif
 
         //--------------------------------------------------
@@ -237,7 +236,7 @@ _tmain(INT argc, TCHAR *argv[]) {
         //Sync
         vecpvTests.push_back( new CxTest_CxProcess );
         #if defined(xOS_WIN)
-        ////vecpvTests.push_back( new CxTest_CxThread );
+        vecpvTests.push_back( new CxTest_CxThread );
         #elif defined(xOS_LINUX)
 
         #endif
@@ -249,7 +248,7 @@ _tmain(INT argc, TCHAR *argv[]) {
         //--------------------------------------------------
         //PKCS11
         #if defined(xOS_WIN)
-        ////vecpvTests.push_back( new CxTest_CxPkcs11 );
+        vecpvTests.push_back( new CxTest_CxPkcs11 );
         #elif defined(xOS_LINUX)
 
         #endif
@@ -280,5 +279,3 @@ _tmain(INT argc, TCHAR *argv[]) {
 }
 //---------------------------------------------------------------------------
 #endif //xLib_UnitTestH
-
-
