@@ -317,7 +317,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
     //-------------------------------------
     //??????????? File.txt.tmp -> File.txt
 #if defined(xOS_WIN)
-    _m_bRes = CxFile::bSecureDelete(csFilePathIn, 1);
+    _m_bRes = CxFile::bWipe(csFilePathIn, 1);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 #elif defined(xOS_LINUX)
     _m_bRes = CxStdioFile::bDelete(csFilePathIn);

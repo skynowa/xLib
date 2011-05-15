@@ -57,8 +57,8 @@
 
 //Gui
 #if defined(xOS_WIN)
-    #include "GDI+/CxTest_CxGdiplus.h"
-    #include "GDI+/CxTest_CxImage.h"
+    #include "GUI/GDI+/CxTest_CxGdiplus.h"
+    #include "GUI/GDI+/CxTest_CxImage.h"
 #endif
 
 //Log
@@ -121,7 +121,6 @@ _tmain(INT argc, TCHAR *argv[]) {
 
         return EXIT_SUCCESS;
     #endif
-
 
     #if xTEMP_ENABLED
         xTRACEV(xT("\n\n*** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE);

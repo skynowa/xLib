@@ -17,7 +17,6 @@
 //---------------------------------------------------------------------------
 class CxImage : public CxNonCopyable {
     public:
-        //encoder type
         enum EEncoderType {
             etBmp  = 0, 
             etJpeg = 1, 

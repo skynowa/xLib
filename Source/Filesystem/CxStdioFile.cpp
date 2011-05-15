@@ -460,6 +460,11 @@ CxStdioFile::bSetTime(
     /*DEBUG*/// ctmAccess   - n/a
     /*DEBUG*/// ctmModified - n/a
 
+#if defined(xOS_WIN)
+    //TODO: bSetTime
+
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
     utimbuf tbTimes;
 
     tbTimes.actime  = ctmAccess;
@@ -467,6 +472,7 @@ CxStdioFile::bSetTime(
 
     INT iRes = utime(sGetPath().c_str(), &tbTimes);
     /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
+#endif
 
     return TRUE;
 }

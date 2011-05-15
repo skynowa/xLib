@@ -17,7 +17,6 @@
 //---------------------------------------------------------------------------
 class CxMsgBoxT : public CxNonCopyable  {
     public:
-        //EModalResult -
         enum EModalResult {
             mrAbort  = IDABORT,
             mrRetry  = IDRETRY,

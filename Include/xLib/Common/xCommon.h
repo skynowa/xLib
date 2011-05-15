@@ -108,20 +108,20 @@
 #include <stdexcept>
 
 //POSIX
-#include <fcntl.h>              //File opening, locking and other operations.
-#include <sys/stat.h>           //File information (stat et al.).
-#include <sys/types.h>          //Various data types used elsewhere.
+#include <fcntl.h>              
+#include <sys/stat.h>           
+#include <sys/types.h>        
 //---------------------------------------------------------------------------
 #if defined(UNICODE) || defined(_UNICODE)
     #define xTEXT(x)                         L##x
-    #define xT(x)                             xTEXT(x)
+    #define xT(x)                            xTEXT(x)
 
     typedef wchar_t                          TCHAR;
     typedef wchar_t *                        LPTSTR;
     typedef const wchar_t *                  LPCTSTR;
 
     #define tcin                             std::wcin
-    #define tcout                             std::wcout
+    #define tcout                            std::wcout
     #define tcerr                            std::wcerr
     #define tclog                            std::wclog
     #define tendl                            std::endl

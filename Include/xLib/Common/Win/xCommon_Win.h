@@ -13,16 +13,6 @@
 #define xLib_Common_Win_xCommon_WinH
 //---------------------------------------------------------------------------
 //win version
-////#define _WIN32_WINNT_NT4       0x0400    //Windows NT 4.0
-////#define _WIN32_WINNT_WIN2K     0x0500    //Windows 2000
-////#define _WIN32_WINNT_WINXP     0x0501    //Windows Server 2003, Windows XP
-////#define _WIN32_WINNT_WS03      0x0502    //Windows Server 2003 with SP1, Windows XP with SP2
-////#define _WIN32_WINNT_WIN6      0x0600    //
-////#define _WIN32_WINNT_VISTA     0x0600    //Windows Vista
-////#define _WIN32_WINNT_WS08      0x0600    //Windows Server 2008
-////#define _WIN32_WINNT_LONGHORN  0x0600    //
-////#define _WIN32_WINNT_WIN7      0x0601    //Windows 7
-
 #define xWINVER      WINVER
 
 #define xWIN32_NT4   0x0400    //Windows NT 4.0
@@ -144,7 +134,7 @@
                 }    \
                 return vRes;
 
-#endif //__BORLANDC__
+#endif //xCOMPILER_CODEGEAR
 //---------------------------------------------------------------------------
 //OBM_ (#include <winuser.h>)
 #define OEMRESOURCE
@@ -158,63 +148,52 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 ////#include <Wspiapi.h>
-#pragma comment(lib, "WS2_32.Lib")
 
 #include <windows.h>
 #include <tchar.h>
 #include <windowsx.h>
 #include <winuser.h>
-////#include <registry.hpp>
 #include <Objbase.h>
 ////#include <shellapi.h>
+////#include <registry.hpp>
 //---------------------------------------------------------------------------
 //For compilers lacking Win64 support
-////#ifndef  GetWindowLongPtr
-////    #define GetWindowLongPtr   GetWindowLong
-////    #define SetWindowLongPtr   SetWindowLong
-////    #define GWLP_WNDPROC       GWL_WNDPROC
-////    #define GWLP_HINSTANCE     GWL_HINSTANCE
-////    #define GWLP_ID            GWL_ID
-////    #define GWLP_USERDATA      GWL_USERDATA
-////    #define DWLP_DLGPROC       DWL_DLGPROC
-////    #define DWLP_MSGRESULT     DWL_MSGRESULT
-////    #define DWLP_USER          DWL_USER
-////    #define DWORD_PTR          DWORD
-////    #define LONG_PTR           LONG
-////    #define ULONG_PTR          LONG
-////#endif
-////    #ifndef GetClassLongPtr
-////    #define GetClassLongPtr    GetClassLong
-////    #define SetClassLongPtr    SetClassLong
-////    #define GCLP_HBRBACKGROUND GCL_HBRBACKGROUND
-////    #define GCLP_HCURSOR       GCL_HCURSOR
-////    #define GCLP_HICON         GCL_HICON
-////    #define GCLP_HICONSM       GCL_HICONSM
-////    #define GCLP_HMODULE       GCL_HMODULE
-////    #define GCLP_MENUNAME      GCL_MENUNAME
-////    #define GCLP_WNDPROC       GCL_WNDPROC
-////#endif
+#if xTEMP_DISABLED
+    #ifndef  GetWindowLongPtr
+        #define GetWindowLongPtr   GetWindowLong
+        #define SetWindowLongPtr   SetWindowLong
+        #define GWLP_WNDPROC       GWL_WNDPROC
+        #define GWLP_HINSTANCE     GWL_HINSTANCE
+        #define GWLP_ID            GWL_ID
+        #define GWLP_USERDATA      GWL_USERDATA
+        #define DWLP_DLGPROC       DWL_DLGPROC
+        #define DWLP_MSGRESULT     DWL_MSGRESULT
+        #define DWLP_USER          DWL_USER
+        #define DWORD_PTR          DWORD
+        #define LONG_PTR           LONG
+        #define ULONG_PTR          LONG
+    #endif
+        #ifndef GetClassLongPtr
+        #define GetClassLongPtr    GetClassLong
+        #define SetClassLongPtr    SetClassLong
+        #define GCLP_HBRBACKGROUND GCL_HBRBACKGROUND
+        #define GCLP_HCURSOR       GCL_HCURSOR
+        #define GCLP_HICON         GCL_HICON
+        #define GCLP_HICONSM       GCL_HICONSM
+        #define GCLP_HMODULE       GCL_HMODULE
+        #define GCLP_MENUNAME      GCL_MENUNAME
+        #define GCLP_WNDPROC       GCL_WNDPROC
+    #endif
+#endif
 
 //Strict
 #if !defined(STRICT)
     #define STRICT 1
 #endif
 
-
 //For Visual Studio 6 (without an updated platform SDK) and Dev-C++
 #ifndef OPENFILENAME_SIZE_VERSION_400
     #define OPENFILENAME_SIZE_VERSION_400 sizeof(OPENFILENAME)
-#endif
-
-//disable min/max macros:
-#ifdef min
-    #undef min
-#endif
-#ifdef max
-    #undef max
-#endif 
-#ifndef NOMINMAX
-#  define NOMINMAX
 #endif
 //---------------------------------------------------------------------------
 #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>

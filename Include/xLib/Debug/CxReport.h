@@ -137,7 +137,7 @@ CxReport::CxReport(
     ossStream.exceptions(tostringstream::eofbit | tostringstream::failbit | tostringstream::badbit);
 
 
-    size_t uiAlignWidth = std::max(csExp1.size(), csExp2.size());
+    size_t uiAlignWidth = CxMacros::xMax(csExp1.size(), csExp2.size());
 
     ossStream << xT("\"") << std::left << std::setw(uiAlignWidth) << csExp1 << xT("\"") << xT(": ") << cVarT1 << xT("\n")
               << xT("                 ")
