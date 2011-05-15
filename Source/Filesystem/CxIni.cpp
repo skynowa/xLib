@@ -324,7 +324,7 @@ CxIni::usKeyReadBin(
     tString sHexStr = sKeyReadString(csKey, tString(cusDefaultValue.begin(), cusDefaultValue.end()));
 
     //sHexStr -> usRes
-    sRes = CxString::lexical_cast<tString>(sHexStr, 16);
+    sRes = CxString::lexical_cast(sHexStr, 16);
 
     return uString(sRes.begin(), sRes.end());
 }

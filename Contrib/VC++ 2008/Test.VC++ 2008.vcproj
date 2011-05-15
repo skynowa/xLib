@@ -209,7 +209,6 @@
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -221,7 +220,6 @@
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCustomBuildTool"
@@ -259,7 +257,6 @@
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
-							ExcludedFromBuild="true"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -271,7 +268,6 @@
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
-							ExcludedFromBuild="true"
 							>
 							<Tool
 								Name="VCCustomBuildTool"
@@ -402,34 +398,17 @@
 				<File
 					RelativePath="..\..\Source\Filesystem\CxIni.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\Include\xLib\Filesystem\CxIni.h"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCustomBuildTool"
 						/>
 					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\Source\Filesystem\CxMemoryIni.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxMemoryIni.h"
-					>
 				</File>
 				<File
 					RelativePath="..\..\Source\Filesystem\CxPath.cpp"
@@ -531,21 +510,12 @@
 							<File
 								RelativePath="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp"
 								>
-								<FileConfiguration
-									Name="Debug|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h"
 								>
 								<FileConfiguration
 									Name="Debug|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -555,21 +525,12 @@
 							<File
 								RelativePath="..\..\Source\Gui\Win\GDI+\CxImage.cpp"
 								>
-								<FileConfiguration
-									Name="Debug|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h"
 								>
 								<FileConfiguration
 									Name="Debug|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"

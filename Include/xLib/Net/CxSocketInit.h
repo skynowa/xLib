@@ -13,6 +13,12 @@
 #define xLib_Net_CxSocketInitH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+
+#if defined(xOS_WIN)
+    #pragma comment(lib, "WS2_32.Lib")
+#elif defined(xOS_LINUX)
+    // n/a
+#endif
 //---------------------------------------------------------------------------
 class CxSocketInit : public CxNonCopyable {
     public:

@@ -43,7 +43,12 @@ BOOL CxImage::bLoad(const tString &csFilePath) {
 
     xCHECK_DO(TRUE == bIsLoaded(), bDestroy());
 
-    _m_pimgImage = Gdiplus::Image::FromFile(/*T2CW(szFile)*/ csFilePath.c_str());
+#if defined(UNICODE) || defined(_UNICODE)
+    _m_pimgImage = Gdiplus::Image::FromFile(csFilePath.c_str());
+#else
+    _m_pimgImage = Gdiplus::Image::FromFile(std::wstring(csFilePath.begin(), csFilePath.end()).c_str());
+#endif   
+    
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,                         FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
@@ -84,8 +89,12 @@ BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
     // Save the altered image.
     CLSID cidClsid = {0};
     _bGetEncoderClsid(sEncoderType, &cidClsid);
-    
+
+#if defined(UNICODE) || defined(_UNICODE)
     _m_stRes = _m_pimgImage->Save(csFilePath.c_str(), &cidClsid, NULL);
+#else
+    _m_stRes = _m_pimgImage->Save(std::wstring(csFilePath.begin(), csFilePath.end()).c_str(), &cidClsid, NULL);
+#endif  
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes,                      FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
@@ -100,10 +109,10 @@ BOOL CxImage::bSave(IStream *pisStream, EEncoderType etType) {
 
     tString sEncoderType;
     switch (etType) {
-        case etBmp:        { sEncoderType = xT("image/bmp");  }    break;
+        case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
-        case etGif:         { sEncoderType = xT("image/gif");  }    break;
-        case etTiff:     { sEncoderType = xT("image/tiff"); }    break;
+        case etGif:     { sEncoderType = xT("image/gif");  }    break;
+        case etTiff:    { sEncoderType = xT("image/tiff"); }    break;
         case etPng:         { sEncoderType = xT("image/png");  }    break;
 
         default:        { sEncoderType = xT("image/jpeg"); }     break;
@@ -287,7 +296,11 @@ BOOL CxImage::_bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid) {
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
     for (UINT j = 0; j < uiNum; ++ j) {
-        if (csFormat == pImageCodecInfo.pGetPtr()[j].MimeType) {    
+#if defined(UNICODE) || defined(_UNICODE)
+    if (csFormat == pImageCodecInfo.pGetPtr()[j].MimeType) { 
+#else
+    if (std::wstring(csFormat.begin(), csFormat.end()) == pImageCodecInfo.pGetPtr()[j].MimeType) { 
+#endif  
             *pcidClsid = pImageCodecInfo.pGetPtr()[j].Clsid;
             
             return TRUE /*j*/;  

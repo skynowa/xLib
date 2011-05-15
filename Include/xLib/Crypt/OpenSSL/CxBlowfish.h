@@ -13,7 +13,14 @@
 #define xLib_Crypt_OpenSSL_CxBlowfishH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include "openssl/blowfish.h"
+#include <openssl/blowfish.h>
+
+#if defined(xOS_WIN)
+    //#pragma comment(lib, "libeay32.lib")
+    #pragma comment(lib, "libeay32MTd.lib")
+#elif defined(xOS_LINUX)
+    // n/a
+#endif
 //---------------------------------------------------------------------------
 class CxBlowfish : public CxNonCopyable {
     private:

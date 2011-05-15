@@ -15,7 +15,7 @@
 
 #include <xVCL/Archive/CxZCompression.h>
 
-#include <xLib/Fso/CxFile.h>
+#include <xLib/Filesystem/Win/CxFile.h>
 
 
 /****************************************************************************

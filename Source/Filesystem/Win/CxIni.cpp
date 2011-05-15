@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 * Class name:  CxIni
 * Description: ini
 * File name:   CxIni.cpp
@@ -286,14 +286,14 @@ CxIni::usKeyReadBin(const tString &csSection, const tString &csKey, const uStrin
     /*DEBUG*///csKey          - n/a
     /*DEBUG*///cusDefaultValue - n/a
 
-    uString usRes;
+	tString sRes;
 
     tString sHexStr = sKeyReadString(csSection, csKey, tString(cusDefaultValue.begin(), cusDefaultValue.end()));
 
     //sHexStr -> usRes
-    usRes = CxString::lexical_cast<uString/*UCHAR*/>(sHexStr, 16);
+	sRes = CxString::lexical_cast(sHexStr, 16);
 
-    return usRes;
+    return uString(sRes.begin(), sRes.end());
 }
 //-------------------------------------------------------------------------
 //DONE: bKeyWriteBin (������ uString)
@@ -305,7 +305,7 @@ CxIni::bKeyWriteBin(const tString &csSection, const tString &csKey, const uStrin
     /*DEBUG*///cusValue  - n/a
 
     //cusValue (uString) -> sHexStr (tString)
-    tString sHexStr = CxString::lexical_cast(cusValue, 16);
+    tString sHexStr = CxString::lexical_cast(tString(cusValue.begin(), cusValue.end()), 16);
 
     return bKeyWriteString(csSection, csKey, sHexStr);
 }
