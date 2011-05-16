@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxPin ()
+//TODO: CxPin ()
 CxPin::CxPin(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -30,12 +30,12 @@ CxPin::CxPin(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxPin ()
+//TODO: ~CxPin ()
 CxPin::~CxPin() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bInitToken (initializes a token)
+//TODO: bInitToken (initializes a token)
 BOOL
 CxPin::bInitToken(
     CK_SLOT_ID      slotID,    /* ID of the token's slot */
@@ -52,7 +52,7 @@ CxPin::bInitToken(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bInitPIN (initializes the normal user's PIN)
+//TODO: bInitPIN (initializes the normal user's PIN)
 BOOL
 CxPin::bInitPIN(
     CK_UTF8CHAR_PTR   pPin,      /* the normal user's PIN */
@@ -67,7 +67,7 @@ CxPin::bInitPIN(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetPIN (modifies the PIN of the user who is logged in)
+//TODO: bSetPIN (modifies the PIN of the user who is logged in)
 BOOL
 CxPin::bSetPIN(
     CK_UTF8CHAR_PTR   pOldPin,   /* the old PIN */

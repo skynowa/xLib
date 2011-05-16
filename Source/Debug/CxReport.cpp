@@ -207,7 +207,7 @@ CxReport::ulGetLastError() const {
     return _m_ulLastError;
 }
 //---------------------------------------------------------------------------
-//TODO: - sGetLastErrorStr (get formatting last error)
+//TODO: sGetLastErrorStr (get formatting last error)
 const tString &
 CxReport::sGetLastErrorStr() const {
     /*DEBUG*/

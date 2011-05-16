@@ -21,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxEncrypt ()
+//TODO: CxEncrypt ()
 CxEncrypt::CxEncrypt(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -31,12 +31,12 @@ CxEncrypt::CxEncrypt(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxEncrypt ()
+//TODO: ~CxEncrypt ()
 CxEncrypt::~CxEncrypt() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bInit (initializes an encryption operation)
+//TODO: bInit (initializes an encryption operation)
 BOOL
 CxEncrypt::bInit(
     CK_MECHANISM_PTR  pMechanism,  /* the encryption mechanism */
@@ -51,7 +51,7 @@ CxEncrypt::bInit(
     return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: - bMake (encrypts single-part data)
+//TODO: bMake (encrypts single-part data)
 BOOL
 CxEncrypt::bMake(
     CK_BYTE_PTR       pData,               /* the plaintext data */
@@ -68,7 +68,7 @@ CxEncrypt::bMake(
     return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: - bUpdate (continues a multiple-part encryption operation)
+//TODO: bUpdate (continues a multiple-part encryption operation)
 BOOL
 CxEncrypt::bUpdate(
     CK_BYTE_PTR       pPart,              /* the plaintext data */
@@ -85,7 +85,7 @@ CxEncrypt::bUpdate(
     return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: - bFinal (finishes a multiple-part encryption operation)
+//TODO: bFinal (finishes a multiple-part encryption operation)
 BOOL
 CxEncrypt::bFinal(
     CK_BYTE_PTR       pLastEncryptedPart,      /* last c-text */
@@ -109,7 +109,7 @@ CxEncrypt::bFinal(
 
 
 //---------------------------------------------------------------------------
-//TODO: - bMakeFile ()
+//TODO: bMakeFile ()
 BOOL
 CxEncrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey) {
     /*DEBUG*/xASSERT_RET(false == csInFilePath.empty(),  FALSE);

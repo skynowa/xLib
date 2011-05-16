@@ -21,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxImage (�����������)
+//TODO: CxImage (�����������)
 CxImage::CxImage() :
     _m_stRes    (Gdiplus::GenericError),
     _m_pimgImage(NULL)
@@ -29,14 +29,14 @@ CxImage::CxImage() :
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxImage (����������)
+//TODO: ~CxImage (����������)
 CxImage::~CxImage() {
     /*DEBUG*/
 
     bDestroy();
 }
 //---------------------------------------------------------------------------
-//TODO: - bLoad (�������� �� �����)
+//TODO: bLoad (�������� �� �����)
 BOOL CxImage::bLoad(const tString &csFilePath) {
     /*DEBUG*/// _m_pimgImage - n/a 
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -55,7 +55,7 @@ BOOL CxImage::bLoad(const tString &csFilePath) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bLoad (�������� �� ������)
+//TODO: bLoad (�������� �� ������)
 BOOL CxImage::bLoad(IStream *pisStream) {
     /*DEBUG*/// _m_pimgImage - n/a 
     /*DEBUG*/xASSERT_RET(NULL != pisStream, FALSE);
@@ -69,7 +69,7 @@ BOOL CxImage::bLoad(IStream *pisStream) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSave (���������� � ����)
+//TODO: bSave (���������� � ����)
 BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,        FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -101,7 +101,7 @@ BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSave (���������� � �����)
+//TODO: bSave (���������� � �����)
 BOOL CxImage::bSave(IStream *pisStream, EEncoderType etType) {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pisStream,    FALSE);
@@ -130,7 +130,7 @@ BOOL CxImage::bSave(IStream *pisStream, EEncoderType etType) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bDraw (���������)
+//TODO: bDraw (���������)
 BOOL CxImage::bDraw(HDC hDC, const RECT &crcRect) {
     xCHECK_RET(FALSE == bIsLoaded(), TRUE);
 
@@ -148,7 +148,7 @@ BOOL CxImage::bDraw(HDC hDC, const RECT &crcRect) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bDraw (���������)
+//TODO: bDraw (���������)
 BOOL CxImage::bDraw(HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight) {
     xCHECK_RET(FALSE == bIsLoaded(), TRUE);
 
@@ -168,7 +168,7 @@ BOOL CxImage::bDraw(HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bClear (�������)
+//TODO: bClear (�������)
 /*
 VOID Example_Clear(HDC hdc) {
     Graphics graphics(hdc);
@@ -192,7 +192,7 @@ BOOL CxImage::bClear(HDC hDC, Gdiplus::Color clBackGround) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bDestroy (����������)
+//TODO: bDestroy (����������)
 BOOL CxImage::bDestroy() {
     /*DEBUG*/// _m_pimgImage - n/a
 
@@ -202,35 +202,35 @@ BOOL CxImage::bDestroy() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bIsLoaded ()
+//TODO: bIsLoaded ()
 BOOL CxImage::bIsLoaded() {
     /*DEBUG*/// n/a
 
     return NULL != _m_pimgImage;
 }
 //---------------------------------------------------------------------------
-//TODO: - uiGetWidth ()
+//TODO: uiGetWidth ()
 UINT CxImage::uiGetWidth() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
 
     return _m_pimgImage->GetWidth();
 }
 //---------------------------------------------------------------------------
-//TODO: - uiGetHeight ()
+//TODO: uiGetHeight ()
 UINT CxImage::uiGetHeight() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
 
     return _m_pimgImage->GetHeight();
 }
 //---------------------------------------------------------------------------
-//TODO: - stGetLastStatus ()
+//TODO: stGetLastStatus ()
 Gdiplus::Status CxImage::stGetLastStatus() {
     /*DEBUG*/// _m_pimgImage - n/a
     
     return _m_pimgImage->GetLastStatus();
 }
 //---------------------------------------------------------------------------
-//TODO: - sGetLastStatus ()
+//TODO: sGetLastStatus ()
 tString CxImage::sGetLastStatus(Gdiplus::Status stCode) {
     /*DEBUG*/// _m_pimgImage - n/a
     
@@ -275,7 +275,7 @@ tString CxImage::sGetLastStatus(Gdiplus::Status stCode) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - _bGetEncoderClsid (��������� CLSID ������)
+//TODO: _bGetEncoderClsid (��������� CLSID ������)
 BOOL CxImage::_bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid) {
     /*DEBUG*/// _m_pimgImage - n/a 
     /*DEBUG*/xASSERT_RET(false == csFormat.empty(), FALSE);

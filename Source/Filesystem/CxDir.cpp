@@ -187,7 +187,7 @@ CxDir::bSetCurrent(const tString &csDirPath) {
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: - sGetTempPath (get path to system var %Temp%)
+//TODO: sGetTempPath (get path to system var %Temp%)
 /*static*/
 tString 
 CxDir::sGetTempPath() {
@@ -269,7 +269,7 @@ CxDir::bCreateForce(const tString &csDirPath) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bCopy (copy)
+//TODO: bCopy (copy)
 /*static*/
 BOOL 
 CxDir::bCopy(const tString &csFromDirPath, const tString &csToDirPath, BOOL bFailIfExists) {
@@ -290,7 +290,7 @@ CxDir::bCopy(const tString &csFromDirPath, const tString &csToDirPath, BOOL bFai
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bMove (move)
+//TODO: bMove (move)
 /*static*/
 BOOL 
 CxDir::bMove(const tString &csInDirPath, const tString &csOutDirPath) {
@@ -428,7 +428,7 @@ CxDir::bDeleteForce(const tString &csDirPath) {
     return bRes;  /*TRUE*/
 }
 //--------------------------------------------------------------------------
-//TODO: - bFindFiles (search files)
+//TODO: bFindFiles (search files)
 //NOTE: need empty pvecsDirPathes param,
 //      http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
 /*static*/

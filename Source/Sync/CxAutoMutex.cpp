@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxAutoMutex ()
+//TODO: CxAutoMutex ()
 CxAutoMutex::CxAutoMutex(CxMutex &mtMutex) : 
     _m_mtMutex(mtMutex) 
 {
@@ -28,7 +28,7 @@ CxAutoMutex::CxAutoMutex(CxMutex &mtMutex) :
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxAutoMutex ()
+//TODO: ~CxAutoMutex ()
 CxAutoMutex::~CxAutoMutex() {
     BOOL bRes = FALSE;
 

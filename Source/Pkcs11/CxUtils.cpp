@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-//TODO: + CxUtils::sErrorStr (get error string by code, SDK 4.53)
+//TODO: CxUtils::sErrorStr (get error string by code, SDK 4.53)
 /*static*/ 
 tString
 CxUtils::sErrorStr(CK_RV ulCode) {
@@ -27,7 +27,7 @@ CxUtils::sErrorStr(CK_RV ulCode) {
     tString sRes;
 
     switch (ulCode) {
-        case CKR_OK:                                sRes.assign(xT("CKR_OK"));
+        case CKR_OK:                               sRes.assign(xT("CKR_OK"));
         case CKR_CANCEL:                           sRes.assign(xT("CKR_CANCEL"));
         case CKR_HOST_MEMORY:                      sRes.assign(xT("CKR_HOST_MEMORY"));
         case CKR_SLOT_ID_INVALID:                  sRes.assign(xT("CKR_SLOT_ID_INVALID"));
@@ -138,12 +138,12 @@ CxUtils::sErrorStr(CK_RV ulCode) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxUtils ()
+//TODO: CxUtils ()
 CxUtils::CxUtils() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxUtils ()
+//TODO: ~CxUtils ()
 CxUtils::~CxUtils() {
 
 }

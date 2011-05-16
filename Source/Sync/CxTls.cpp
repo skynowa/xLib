@@ -18,19 +18,19 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxTls (конструктор)
+//TODO: CxTls (конструктор)
 CxTls::CxTls() :
     _m_ulIndex(TLS_OUT_OF_INDEXES)
 {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxTls (деструктор)
+//TODO: ~CxTls (деструктор)
 CxTls::~CxTls() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bAlloc (Allocates a thread local storage (TLS) index)
+//TODO: bAlloc (Allocates a thread local storage (TLS) index)
 BOOL
 CxTls::bAlloc() {
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES == _m_ulIndex, FALSE);
@@ -45,7 +45,7 @@ CxTls::bAlloc() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bFree (Releases a thread local storage (TLS) index, making it available for reuse)
+//TODO: bFree (Releases a thread local storage (TLS) index, making it available for reuse)
 BOOL
 CxTls::bFree() {
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_ulIndex, FALSE);
@@ -58,7 +58,7 @@ CxTls::bFree() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - pGetValue (Retrieves the value in the calling thread's thread local storage (TLS) slot for the specified TLS index)
+//TODO: pGetValue (Retrieves the value in the calling thread's thread local storage (TLS) slot for the specified TLS index)
 VOID *
 CxTls::pvGetValue() {
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_ulIndex, FALSE);
@@ -72,7 +72,7 @@ CxTls::pvGetValue() {
     return pvRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetValue (Stores a value in the calling thread's thread local storage (TLS) slot for the specified TLS index)
+//TODO: bSetValue (Stores a value in the calling thread's thread local storage (TLS) slot for the specified TLS index)
 BOOL
 CxTls::bSetValue(VOID *pvValue) {
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_ulIndex, FALSE);

@@ -465,7 +465,7 @@ CxDrive::bSetVolumeMountPoint(const tString &csVolumeMountPoint, const tString &
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: - bIsValidDriveLetter ()
+//TODO: bIsValidDriveLetter ()
 /*static*/
 BOOL
 CxDrive::bIsValidDriveLetter(TCHAR szDriveLetter) {

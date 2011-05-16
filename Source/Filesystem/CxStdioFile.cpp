@@ -11,6 +11,7 @@
 
 #include <xLib/Filesystem/CxStdioFile.h>
 
+#include <xLib/Common/CxLocale.h>
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
@@ -18,7 +19,7 @@
 #include <xLib/Crypt/CxCrc32.h>
 
 #if defined(xOS_WIN)
-    #include <xLib/Common/CxLocale.h>
+    #include <xLib/Filesystem/Win/CxFile.h>
 #endif
 
 
@@ -1121,7 +1122,27 @@ CxStdioFile::bSetTime(
     /*DEBUG*/// ctmModified - n/a
 
 #if defined(xOS_WIN)
-    //TODO: bSetTime
+    BOOL     bRes     = FALSE;
+    
+    FILETIME ftCreate = {0};
+    bRes = CxDateTime::bUnixTimeToFileTime(ctmCreate, &ftCreate);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    FILETIME ftAccess = {0};
+    bRes = CxDateTime::bUnixTimeToFileTime(ctmAccess, &ftAccess);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+        
+    FILETIME ftModified = {0};
+    bRes = CxDateTime::bUnixTimeToFileTime(ctmModified, &ftModified);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    
+    CxFile flFile;
+    
+    bRes = flFile.bOpen(csFilePath, CxFile::grRead,  CxFile::smRead, CxFile::cfOpenExisting, CxFileAttribute::faNormal); 
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    
+    bRes = flFile.bSetTime(&ftCreate, &ftAccess, &ftModified);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
 #elif defined(xOS_LINUX)
     utimbuf tbTimes;

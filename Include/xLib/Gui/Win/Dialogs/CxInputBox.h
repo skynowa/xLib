@@ -44,7 +44,7 @@ class CxInputBox : public CxNonCopyable {
         HWND                    _m_hEdtText;
 
         //---------------------------------------------------------------------------
-        //TODO: - ms_pWndProc (������)
+        //TODO: ms_pWndProc (������)
         static LRESULT CALLBACK _ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
 };
 //---------------------------------------------------------------------------

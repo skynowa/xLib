@@ -39,7 +39,7 @@ CxTest_CxStdioFile::~CxTest_CxStdioFile() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxStdioFile::bUnit() {
@@ -253,16 +253,16 @@ CxTest_CxStdioFile::bUnit() {
 
         m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
         xASSERT(FALSE != m_bRes);
-
         m_chRes = F.cReadChar();
         xASSERT(chChar == m_chRes);
 
+        m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
+        xASSERT(FALSE != m_bRes);
         m_bRes = F.bWriteChar(chChar);
         xASSERT(FALSE != m_bRes);
 
         m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
         xASSERT(FALSE != m_bRes);
-
         m_bRes = F.bUngetChar(chChar);
         xASSERT(FALSE != m_bRes);
     }

@@ -21,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxDecrypt ()
+//TODO: CxDecrypt ()
 CxDecrypt::CxDecrypt(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -31,12 +31,12 @@ CxDecrypt::CxDecrypt(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxDecrypt ()
+//TODO: ~CxDecrypt ()
 CxDecrypt::~CxDecrypt() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bInit (initializes a decryption operation)
+//TODO: bInit (initializes a decryption operation)
 BOOL
 CxDecrypt::bInit(
     CK_MECHANISM_PTR  pMechanism,  /* the decryption mechanism */
@@ -51,7 +51,7 @@ CxDecrypt::bInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bMake (decrypts encrypted data in a single part)
+//TODO: bMake (decrypts encrypted data in a single part)
 BOOL
 CxDecrypt::bMake(
     CK_BYTE_PTR       pEncryptedData,     /* ciphertext */
@@ -68,7 +68,7 @@ CxDecrypt::bMake(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bUpdate (continues a multiple-part decryption operation)
+//TODO: bUpdate (continues a multiple-part decryption operation)
 BOOL
 CxDecrypt::bUpdate(
     CK_BYTE_PTR       pEncryptedPart,      /* encrypted data */
@@ -85,7 +85,7 @@ CxDecrypt::bUpdate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bFinal (finishes a multiple-part decryption operation)    
+//TODO: bFinal (finishes a multiple-part decryption operation)    
 BOOL
 CxDecrypt::bFinal(
     CK_BYTE_PTR       pLastPart,      /* gets plaintext */
@@ -100,7 +100,7 @@ CxDecrypt::bFinal(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bDigestUpdate (continues a multiple-part decryption and digesting operation)
+//TODO: bDigestUpdate (continues a multiple-part decryption and digesting operation)
 BOOL
 CxDecrypt::bDigestUpdate(
     CK_BYTE_PTR       pEncryptedPart,      /* ciphertext */
@@ -117,7 +117,7 @@ CxDecrypt::bDigestUpdate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bVerifyUpdate (continues a multiple-part decryption and verify operation)
+//TODO: bVerifyUpdate (continues a multiple-part decryption and verify operation)
 BOOL
 CxDecrypt::bVerifyUpdate(
     CK_BYTE_PTR       pEncryptedPart,      /* ciphertext */
@@ -141,7 +141,7 @@ CxDecrypt::bVerifyUpdate(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - bMakeFile ()
+//TODO: bMakeFile ()
 BOOL
 CxDecrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey) {
     /*DEBUG*/xASSERT_RET(false == csInFilePath.empty(),  FALSE);

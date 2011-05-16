@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxInfo ()
+//TODO: CxInfo ()
 CxInfo::CxInfo(const CxPkcs11 &cPkcs11) :
     _m_bRes (FALSE),
     _m_ulRes(!CKR_OK),
@@ -29,12 +29,12 @@ CxInfo::CxInfo(const CxPkcs11 &cPkcs11) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxInfo ()
+//TODO: ~CxInfo ()
 CxInfo::~CxInfo() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bGet (returns general information about Cryptoki)
+//TODO: bGet (returns general information about Cryptoki)
 BOOL
 CxInfo::bGet(
     CK_INFO_PTR pInfo  /* location that receives information */
@@ -48,7 +48,7 @@ CxInfo::bGet(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetToken (obtains information about a particular token in the system)
+//TODO: bGetToken (obtains information about a particular token in the system)
 BOOL
 CxInfo::bGetToken(
     CK_SLOT_ID        slotID,  /* ID of the token's slot */

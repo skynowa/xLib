@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxFunction ()
+//TODO: CxFunction ()
 CxFunction::CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -30,12 +30,12 @@ CxFunction::CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxFunction ()
+//TODO: ~CxFunction ()
 CxFunction::~CxFunction() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetList (returns the function list)
+//TODO: bGetList (returns the function list)
 BOOL
 CxFunction::bGetList(
     CK_FUNCTION_LIST_PTR_PTR ppFunctionList  /* receives pointer to function list */
@@ -49,7 +49,7 @@ CxFunction::bGetList(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetStatus (is a legacy function; it obtains an updated status of a function running in parallel with an application)
+//TODO: bGetStatus (is a legacy function; it obtains an updated status of a function running in parallel with an application)
 BOOL
 CxFunction::bGetStatus() {
     /*DEBUG*/
@@ -60,7 +60,7 @@ CxFunction::bGetStatus() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bCancel (is a legacy function; it cancels a function running in parallel)
+//TODO: bCancel (is a legacy function; it cancels a function running in parallel)
 BOOL
 CxFunction::bCancel() {
     /*DEBUG*/
@@ -71,7 +71,7 @@ CxFunction::bCancel() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetListEx (� SDK 4.53 ���� ������� ���)
+//TODO: bGetListEx (� SDK 4.53 ���� ������� ���)
 BOOL
 CxFunction::bGetListEx() {
     /*DEBUG*/

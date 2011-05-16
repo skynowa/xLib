@@ -20,7 +20,7 @@ using namespace Gdiplus;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxGdiplus (comment)
+//TODO: CxGdiplus (comment)
 CxGdiplus::CxGdiplus() : 
     _m_pulToken(0)
 {
@@ -30,7 +30,7 @@ CxGdiplus::CxGdiplus() :
     /*DEBUG*/xASSERT_DO(Gdiplus::Ok == stRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxGdiplus (comment)
+//TODO: ~CxGdiplus (comment)
 CxGdiplus::~CxGdiplus() {
     Gdiplus::GdiplusShutdown(_m_pulToken);    
     /*DEBUG*/// n/a

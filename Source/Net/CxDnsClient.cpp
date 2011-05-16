@@ -93,7 +93,7 @@ CxDnsClient::bGetHostNameByAddr(const tString &csHostAddr, CxSocket::EAddressFam
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetLocalHostName ()
+//TODO: bGetLocalHostName ()
 /*static*/
 BOOL
 CxDnsClient::bGetLocalHostName(tString *psHostName) {
@@ -116,7 +116,7 @@ CxDnsClient::bGetLocalHostName(tString *psHostName) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetNameInfo ()
+//TODO: bGetNameInfo ()
 /*static*/
 BOOL
 CxDnsClient::bGetNameInfo(CxSocket::EAddressFamily afFamily, const tString &csHostAddr, USHORT usPort) {
@@ -150,7 +150,7 @@ CxDnsClient::bGetNameInfo(CxSocket::EAddressFamily afFamily, const tString &csHo
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetHostAddrInfo ()
+//TODO: bGetHostAddrInfo ()
 /*static*/
 BOOL
 CxDnsClient::bGetHostAddrInfo(const tString &csHostName, const tString &csPort, const ADDRINFOT *pHints, ADDRINFOT **ppResult) {
@@ -170,7 +170,7 @@ CxDnsClient::bGetHostAddrInfo(const tString &csHostName, const tString &csPort, 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetProtocolByName ()
+//TODO: bGetProtocolByName ()
 /*static*/
 BOOL
 CxDnsClient::bGetProtocolByName(const tString &csProtocolName, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiNumber) {
@@ -217,7 +217,7 @@ CxDnsClient::bGetProtocolByName(const tString &csProtocolName, tString *psName, 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetProtocolByNumber ()
+//TODO: bGetProtocolByNumber ()
 /*static*/
 BOOL
 CxDnsClient::bGetProtocolByNumber(SHORT siNumber, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiNumber) {
@@ -261,7 +261,7 @@ CxDnsClient::bGetProtocolByNumber(SHORT siNumber, tString *psName, std::vector<t
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetServiceByName ()
+//TODO: bGetServiceByName ()
 /*static*/
 BOOL
 CxDnsClient::bGetServiceByName(const tString &csServiceName, const tString &csProtocolName,
@@ -322,7 +322,7 @@ CxDnsClient::bGetServiceByName(const tString &csServiceName, const tString &csPr
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetServiceByPort ()
+//TODO: bGetServiceByPort ()
 /*static*/
 BOOL
 CxDnsClient::bGetServiceByPort(SHORT siPort, const tString &csProtocolName,
@@ -390,12 +390,12 @@ BOOL CxDnsClient::_ms_bRes = FALSE;
 INT  CxDnsClient::_ms_iRes = - 1;
 
 //---------------------------------------------------------------------------
-//TODO: - CxDnsClient (constructor)
+//TODO: CxDnsClient (constructor)
 CxDnsClient::CxDnsClient() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxDnsClient (destructor)
+//TODO: ~CxDnsClient (destructor)
 /*virtual*/
 CxDnsClient::~CxDnsClient() {
 

@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - ulGet (Retrieves the calling thread's last-error code value)
+//TODO: ulGet (Retrieves the calling thread's last-error code value)
 /*static*/
 ULONG
 CxLastError::ulGet() {
@@ -39,7 +39,7 @@ CxLastError::ulGet() {
     return ulCode;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSet (Sets the last-error code for the calling thread)
+//TODO: bSet (Sets the last-error code for the calling thread)
 /*static*/
 BOOL
 CxLastError::bSet(ULONG ulCode) {
@@ -55,7 +55,7 @@ CxLastError::bSet(ULONG ulCode) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bReset (set last-error code to 0)
+//TODO: bReset (set last-error code to 0)
 /*static*/
 BOOL
 CxLastError::bReset() {
@@ -66,7 +66,7 @@ CxLastError::bReset() {
     return bSet(culCodeSuccess);
 }
 //---------------------------------------------------------------------------
-//TODO: - sFormat (get last error as string)
+//TODO: sFormat (get last error as string)
 /*static*/
 tString
 CxLastError::sFormat(ULONG ulCode) {
@@ -127,13 +127,13 @@ CxLastError::sFormat(ULONG ulCode) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxLastError (constructor)
+//TODO: CxLastError (constructor)
 CxLastError::CxLastError() {
     /*DEBUG*/// n/a
 
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxLastError (destructor)
+//TODO: ~CxLastError (destructor)
 /*virtual*/
 CxLastError::~CxLastError() {
     /*DEBUG*/// n/a

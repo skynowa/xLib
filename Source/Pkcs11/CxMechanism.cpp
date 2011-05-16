@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxMechanism ()
+//TODO: CxMechanism ()
 CxMechanism::CxMechanism(const CxPkcs11 &cPkcs11) :
     _m_bRes (FALSE),
     _m_ulRes(!CKR_OK),
@@ -29,12 +29,12 @@ CxMechanism::CxMechanism(const CxPkcs11 &cPkcs11) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxMechanism ()
+//TODO: ~CxMechanism ()
 CxMechanism::~CxMechanism() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetInfo (obtains information about a particular mechanism possibly supported by a token)
+//TODO: bGetInfo (obtains information about a particular mechanism possibly supported by a token)
 BOOL
 CxMechanism::bGetInfo(
     CK_SLOT_ID            slotID,  /* ID of the token's slot */
@@ -50,7 +50,7 @@ CxMechanism::bGetInfo(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetList (obtains a list of mechanism types supported by a token)
+//TODO: bGetList (obtains a list of mechanism types supported by a token)
 BOOL
 CxMechanism::bGetList(
     CK_SLOT_ID            slotID,          /* ID of token's slot */

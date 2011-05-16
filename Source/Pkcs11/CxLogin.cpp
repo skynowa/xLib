@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxLogin (const CxPkcs11 &cPkcs11)
+//TODO: CxLogin (const CxPkcs11 &cPkcs11)
 CxLogin::CxLogin(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -31,12 +31,12 @@ CxLogin::CxLogin(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     /*DEBUG*/xASSERT_DO(NULL != _m_hSession, return);
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxLogin ()
+//TODO: ~CxLogin ()
 CxLogin::~CxLogin() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bLogin (logs a user into a token)
+//TODO: bLogin (logs a user into a token)
 BOOL
 CxLogin::bLogin(
     CK_USER_TYPE      userType,  /* the user type */
@@ -58,7 +58,7 @@ CxLogin::bLogin(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bLogout (logs a user out from a token)
+//TODO: bLogout (logs a user out from a token)
 BOOL
 CxLogin::bLogout() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);

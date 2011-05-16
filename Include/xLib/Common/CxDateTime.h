@@ -83,6 +83,7 @@ class CxDateTime {
         static BOOL        bIsLeapYear         (USHORT usYear);
     #if defined(xOS_WIN)
         static LONGLONG    i64FiletimeToInt64  (const FILETIME &cftTime);
+        static BOOL        bUnixTimeToFileTime (const time_t ctmUnixTime, FILETIME *pftFileTime);
     #endif
 
         //other
