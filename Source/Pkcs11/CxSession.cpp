@@ -21,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxSession ()
+//TODO: CxSession ()
 CxSession::CxSession(const CxPkcs11 &cPkcs11) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -32,12 +32,12 @@ CxSession::CxSession(const CxPkcs11 &cPkcs11) :
     /*DEBUG*/xASSERT_DO(NULL == _m_hSession, return);
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxSession ()
+//TODO: ~CxSession ()
 CxSession::~CxSession() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - CxSession (gets a handle)
+//TODO: CxSession (gets a handle)
 CK_SESSION_HANDLE
 CxSession::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    NULL);
@@ -46,7 +46,7 @@ CxSession::hGetHandle() const {
     return _m_hSession;
 }
 //---------------------------------------------------------------------------
-//TODO: - bOpen (opens a session between an application and a token)
+//TODO: bOpen (opens a session between an application and a token)
 BOOL
 CxSession::bOpen(
         CK_SLOT_ID  slotID,        /* the slot's ID */
@@ -64,7 +64,7 @@ CxSession::bOpen(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetInfo (obtains information about the session)
+//TODO: bGetInfo (obtains information about the session)
 BOOL
 CxSession::bGetInfo(
       CK_SESSION_INFO_PTR pInfo      /* receives session info */
@@ -79,7 +79,7 @@ CxSession::bGetInfo(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetOperationState (restores the state of the cryptographic operation in a session)
+//TODO: bSetOperationState (restores the state of the cryptographic operation in a session)
 BOOL
 CxSession::bSetOperationState(
     CK_BYTE_PTR      pOperationState,      /* holds state */
@@ -97,7 +97,7 @@ CxSession::bSetOperationState(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetOperationState (obtains the state of the cryptographic operation in a session)
+//TODO: bGetOperationState (obtains the state of the cryptographic operation in a session)
 BOOL
 CxSession::bGetOperationState(
     CK_BYTE_PTR  pOperationState,      /* gets state */
@@ -113,7 +113,7 @@ CxSession::bGetOperationState(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bClose (closes a session between an application and a token)
+//TODO: bClose (closes a session between an application and a token)
 BOOL
 CxSession::bClose() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -128,7 +128,7 @@ CxSession::bClose() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bCloseAll (closes all sessions with a token)
+//TODO: bCloseAll (closes all sessions with a token)
 BOOL
 CxSession::bCloseAll(
       CK_SLOT_ID slotID  /* the token's slot */

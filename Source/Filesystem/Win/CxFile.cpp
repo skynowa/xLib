@@ -957,7 +957,7 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
     //-------------------------------------
     //check for a valid backup
     xCHECK_RET(FALSE                 != bIsExists(sBackupFilePath), FALSE);
-    xCHECK_RET(liGetSize(csFilePath) == liGetSize(sBackupFilePath), FALSE);
+    xCHECK_RET(llGetSize(csFilePath) == llGetSize(sBackupFilePath), FALSE);
 
     return TRUE;
 }

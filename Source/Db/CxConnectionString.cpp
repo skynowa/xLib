@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: -  sMSJetOleDb40 (Microsoft.Jet.OLEDB.4.0)
+//TODO:  sMSJetOleDb40 (Microsoft.Jet.OLEDB.4.0)
 /*static*/
 tString CxConnectionString::sMSJetOleDb40(const tString &csDataSource, const tString &csUserId, const tString &csPassword, const tString &csDatabasePassword) {
     /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(csDataSource).empty(), tString());
@@ -63,12 +63,12 @@ tString CxConnectionString::sMSJetOleDb40(const tString &csDataSource, const tSt
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxConnectionString (comment)
+//TODO: CxConnectionString (comment)
 CxConnectionString::CxConnectionString() {
     
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxConnectionString (comment)
+//TODO: ~CxConnectionString (comment)
 /*virtual*/
 CxConnectionString::~CxConnectionString() {
     

@@ -214,7 +214,7 @@ CxThread::bExit(ULONG ulTimeout) {
     /*_m_bIsSleeping*/    xCHECK_DO(TRUE == bIsSleeping(), bSleeperWakeUp());    //если поток спит             (bSleep) - будим
                                                                             //если ожидает чего-то
     //-------------------------------------
-    //TODO: - waiting oneself
+    //TODO: waiting oneself
     //--bRes = bWait(ulTimeout);
     //--/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
@@ -242,7 +242,7 @@ CxThread::bKill(ULONG ulTimeout) {
     }
 
     //-------------------------------------
-    //TODO: - waiting oneself
+    //TODO: waiting oneself
     //--bRes = bWait(ulTimeout);
     //--/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
@@ -602,7 +602,7 @@ CxThread::bSetIdealCPU(ULONG ulIdealCPU) const {
     ulRes = ::SetThreadIdealProcessor(_m_hThread.m_hHandle, ulIdealCPU);
     /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, FALSE);
 
-    //TODO: - xASSERT_RET
+    //TODO: xASSERT_RET
     ///*DEBUG*/xASSERT_RET(ulIdealCPU != ulRes, FALSE);
 
     return TRUE;
@@ -752,7 +752,7 @@ CxThread::vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback)
     //_m_bFlag_OnEnter  = TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - vDetachHandler_OnEnter ()
+//TODO: vDetachHandler_OnEnter ()
 ////VOID vDetachHandler_OnEnter(CxThread *pthSender) {
 ////    //_m_bFlag_OnEnter         = FALSE;
 ////    _m_Callback_OnEnter.p_this = NULL;
@@ -765,7 +765,7 @@ CxThread::vAttachHandler_OnExit(SClosureT<VOID(CxThread *pthSender)> vCallback) 
     //_m_bFlag_OnExit    = TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - vDetachHandler_OnExit ()
+//TODO: vDetachHandler_OnExit ()
 ////VOID vDetachHandler_OnExit(CxThread *pthSender) {
 ////    //_m_bFlag_OnExit         = FALSE;
 ////    _m_Callback_OnExit.p_this = NULL;

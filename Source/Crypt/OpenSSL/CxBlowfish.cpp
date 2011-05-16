@@ -202,7 +202,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - bEncryptFileCfb64 (COMMENTS)
+//TODO: bEncryptFileCfb64 (COMMENTS)
 BOOL
 CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFilePathOut, const uString &cusStamp, ECryptMode cmCryptMode) {
     /*DEBUG*/
@@ -348,7 +348,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - cmGetFileCryptStatus (????? ?????????)
+//TODO: cmGetFileCryptStatus (????? ?????????)
 CxBlowfish::ECryptMode
 CxBlowfish::cmGetFileCryptStatus(const tString &csFilePath, const uString &cusStamp) {
     /*DEBUG*/

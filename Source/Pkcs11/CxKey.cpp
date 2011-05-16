@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxKey ()
+//TODO: CxKey ()
 CxKey::CxKey(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -30,12 +30,12 @@ CxKey::CxKey(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxKey ()
+//TODO: ~CxKey ()
 CxKey::~CxKey() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bGenerate (generates a secret key, creating a new key object)
+//TODO: bGenerate (generates a secret key, creating a new key object)
 BOOL
 CxKey::bGenerate(
     CK_MECHANISM_PTR     pMechanism,  /* key generation mech. */
@@ -52,7 +52,7 @@ CxKey::bGenerate(
     return TRUE;
 }  
 //---------------------------------------------------------------------------
-//TODO: - bGeneratePair (generates a public-key/private-key pair, creating new key objects)      
+//TODO: bGeneratePair (generates a public-key/private-key pair, creating new key objects)      
 BOOL
 CxKey::bGeneratePair(
     CK_MECHANISM_PTR     pMechanism,                  /* key-gen mech. */
@@ -72,7 +72,7 @@ CxKey::bGeneratePair(
     return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: - bDerive (derives a key from a base key, creating a new key object)
+//TODO: bDerive (derives a key from a base key, creating a new key object)
 BOOL
 CxKey::bDerive(
     CK_MECHANISM_PTR     pMechanism,        /* key deriv. mech. */
@@ -90,7 +90,7 @@ CxKey::bDerive(
     return TRUE;
 }  
 //---------------------------------------------------------------------------
-//TODO: - bWrap (wraps (i.e., encrypts) a key)
+//TODO: bWrap (wraps (i.e., encrypts) a key)
 BOOL
 CxKey::bWrap(
     CK_MECHANISM_PTR  pMechanism,      /* the wrapping mechanism */
@@ -108,7 +108,7 @@ CxKey::bWrap(
     return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: - bUnwrap (unwraps (decrypts) a wrapped key, creating a new key object)
+//TODO: bUnwrap (unwraps (decrypts) a wrapped key, creating a new key object)
 BOOL
 CxKey::bUnwrap(
     CK_MECHANISM_PTR     pMechanism,        /* unwrapping mech. */
@@ -128,7 +128,7 @@ CxKey::bUnwrap(
     return TRUE;
 } 
 //--------------------------------------------------------------------------- 
-//TODO: - bSeedRandom (mixes additional seed material into the token's random number generator)
+//TODO: bSeedRandom (mixes additional seed material into the token's random number generator)
 BOOL
 CxKey::bSeedRandom(
     CK_BYTE_PTR       pSeed,     /* the seed material */
@@ -143,7 +143,7 @@ CxKey::bSeedRandom(
     return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: - bGenerateRandom (generates random data)
+//TODO: bGenerateRandom (generates random data)
 BOOL
 CxKey::bGenerateRandom(
     CK_BYTE_PTR       pRandomData,  /* receives the random data */

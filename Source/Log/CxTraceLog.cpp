@@ -34,7 +34,7 @@ CxTraceLog::~CxTraceLog() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetEnabled ()
+//TODO: bSetEnabled ()
 BOOL
 CxTraceLog::bSetEnabled(BOOL bFlag) {
     /*DEBUG*/// bFlag - n/a 

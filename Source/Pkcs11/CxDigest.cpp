@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxDigest ()
+//TODO: CxDigest ()
 CxDigest::CxDigest(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -30,12 +30,12 @@ CxDigest::CxDigest(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxDigest ()
+//TODO: ~CxDigest ()
 CxDigest::~CxDigest() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bMake (digests data in a single part)
+//TODO: bMake (digests data in a single part)
 BOOL
 CxDigest::bMake(
     CK_BYTE_PTR       pData,        /* data to be digested */
@@ -52,7 +52,7 @@ CxDigest::bMake(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bEncryptUpdate (continues a multiple-part digesting and encryption operation)
+//TODO: bEncryptUpdate (continues a multiple-part digesting and encryption operation)
 BOOL
 CxDigest::bEncryptUpdate(
     CK_BYTE_PTR       pPart,               /* the plaintext data */
@@ -68,7 +68,7 @@ CxDigest::bEncryptUpdate(
     return TRUE;
 }    
 //---------------------------------------------------------------------------
-//TODO: - bFinal (finishes a multiple-part message-digesting operation)
+//TODO: bFinal (finishes a multiple-part message-digesting operation)
 BOOL
 CxDigest::bFinal(
     CK_BYTE_PTR       pDigest,      /* gets the message digest */
@@ -83,7 +83,7 @@ CxDigest::bFinal(
     return TRUE;
 }    
 //---------------------------------------------------------------------------
-//TODO: - bInit (initializes a message-digesting operation)
+//TODO: bInit (initializes a message-digesting operation)
 BOOL
 CxDigest::bInit(
     CK_MECHANISM_PTR  pMechanism  /* the digesting mechanism */
@@ -97,7 +97,7 @@ CxDigest::bInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bKey (continues a multi-part message-digesting operation, by digesting the value of a secret key as part of the data already digested)
+//TODO: bKey (continues a multi-part message-digesting operation, by digesting the value of a secret key as part of the data already digested)
 BOOL
 CxDigest::bKey(
     CK_OBJECT_HANDLE  hKey       /* secret key to digest */
@@ -111,7 +111,7 @@ CxDigest::bKey(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bUpdate (continues a multiple-part message-digesting operation)
+//TODO: bUpdate (continues a multiple-part message-digesting operation)
 BOOL
 CxDigest::bUpdate(
     CK_BYTE_PTR       pPart,     /* data to be digested */

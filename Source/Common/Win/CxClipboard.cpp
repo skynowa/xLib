@@ -178,7 +178,7 @@ CxClipboard::bClear() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bIsHasFormat ()
+//TODO: bIsHasFormat ()
 BOOL CxClipboard::bIsHasFormat(EFormat fmFormat) {
     /*DEBUG*///
 
@@ -188,7 +188,7 @@ BOOL CxClipboard::bIsHasFormat(EFormat fmFormat) {
     return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - bRegisterFormat ()
+//TODO: bRegisterFormat ()
 BOOL 
 CxClipboard::bRegisterFormat(const tString csText, EFormat *pfmFormat) {
     /*DEBUG*/// csText

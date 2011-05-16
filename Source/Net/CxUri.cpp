@@ -53,7 +53,7 @@ CxUri::~CxUri() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - sGetUri
+//TODO: sGetUri
 /*
 URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
 
@@ -128,7 +128,7 @@ BOOL CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority,
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - sGetScheme
+//TODO: sGetScheme
 std::string CxUri::sGetScheme() const {
     return sEncodeComponent(_m_sScheme);
 }
@@ -410,7 +410,7 @@ const std::string CxUri::ILLEGAL           = "%<>{}|\\\"^`";
 
 
 //---------------------------------------------------------------------------
-//TODO: - bParse (������ URI)
+//TODO: bParse (������ URI)
 /*
 URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
 
@@ -555,7 +555,7 @@ BOOL CxUri::_bParse(const std::string &csUri) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - _bNormilize ()
+//TODO: _bNormilize ()
 BOOL CxUri::_bNormilize(const std::string &csUri) {
     ////BOOL bRes = FALSE;
 
@@ -566,7 +566,7 @@ BOOL CxUri::_bNormilize(const std::string &csUri) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - _usGetDefaultPort ()
+//TODO: _usGetDefaultPort ()
 USHORT CxUri::_usGetDefaultPort() const {
     if (       "ftp"    == _m_sScheme) {
         return 21;
@@ -589,7 +589,7 @@ USHORT CxUri::_usGetDefaultPort() const {
     }
 }
 //---------------------------------------------------------------------------
-//TODO: - _bIsDefaultPort ()
+//TODO: _bIsDefaultPort ()
 BOOL CxUri::_bIsDefaultPort() const {
     return static_cast<BOOL>( _m_usPort == _usGetDefaultPort() );
 }

@@ -117,7 +117,7 @@ CxProcess::bTerminate(ULONG ulPid) {
 
 
 //---------------------------------------------------------------------------
-//TODO: - bExec (execute a file)
+//TODO: bExec (execute a file)
 //http://www-theorie.physik.unizh.ch/~dpotter/howto/daemonize
 /*static*/
 BOOL
@@ -182,12 +182,12 @@ CxProcess::bExec(const tString &csFilePath, LPCTSTR pcszCmdLine, ...) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxProcess (construcor)
+//TODO: CxProcess (construcor)
 CxProcess::CxProcess() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxProcess (destructor)
+//TODO: ~CxProcess (destructor)
 /*virtual*/
 CxProcess::~CxProcess() {
 

@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxConsole 
+//TODO: CxConsole 
 CxConsole::CxConsole() : 
     _m_bRes   (FALSE),
     _m_hWnd   (NULL),
@@ -42,13 +42,13 @@ CxConsole::CxConsole() :
     //_m_hMenu - n/a
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxConsole
+//TODO: ~CxConsole
 CxConsole::~CxConsole() {
     _m_hMenu = NULL; 
     _m_hWnd  = NULL; 
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetTextColor
+//TODO: bSetTextColor
 BOOL CxConsole::bSetTextColor(UINT uiColor) {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -60,7 +60,7 @@ BOOL CxConsole::bSetTextColor(UINT uiColor) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bEnableClose
+//TODO: bEnableClose
 BOOL CxConsole::bEnableClose(BOOL bFlag) {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -81,7 +81,7 @@ BOOL CxConsole::bEnableClose(BOOL bFlag) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - sGetTitle
+//TODO: sGetTitle
 tString CxConsole::sGetTitle() {
     /*DEBUG*///_m_hWnd - n/a
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  tString());
@@ -97,7 +97,7 @@ tString CxConsole::sGetTitle() {
     return tString(szBuff, ulTitleSize);
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetTitle
+//TODO: bSetTitle
 BOOL CxConsole::bSetTitle(const tString &csTitle) {
     /*DEBUG*///_m_hWnd - n/a
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -109,7 +109,7 @@ BOOL CxConsole::bSetTitle(const tString &csTitle) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetFullScreen
+//TODO: bSetFullScreen
 BOOL CxConsole::bSetFullScreen() {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -140,7 +140,7 @@ BOOL CxConsole::bSetFullScreen() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bClear
+//TODO: bClear
 BOOL CxConsole::bClear() {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -179,7 +179,7 @@ BOOL CxConsole::bClear() {
 
 
 //---------------------------------------------------------------------------
-//TODO: - sRead ()
+//TODO: sRead ()
 tString CxConsole::sRead() {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               tString());
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  tString());
@@ -196,7 +196,7 @@ tString CxConsole::sRead() {
     return tString(szBuff, ulRead - 2);    //������ "\r\n"
 }
 //---------------------------------------------------------------------------
-//TODO: - bWrite ()
+//TODO: bWrite ()
 BOOL CxConsole::bWrite(const tString &csStr) {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -211,7 +211,7 @@ BOOL CxConsole::bWrite(const tString &csStr) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bWriteLine
+//TODO: bWriteLine
 BOOL CxConsole::bWriteLine(const tString &csStr) {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -223,7 +223,7 @@ BOOL CxConsole::bWriteLine(const tString &csStr) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bWriteErrLine
+//TODO: bWriteErrLine
 BOOL CxConsole::bWriteErrLine(const tString &csStr) {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -238,7 +238,7 @@ BOOL CxConsole::bWriteErrLine(const tString &csStr) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bCenterWindow
+//TODO: bCenterWindow
 BOOL CxConsole::bCenterWindow() {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
@@ -309,7 +309,7 @@ BOOL CxConsole::bPrompt(const tString &csPrompt, tString *psAnswer) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - hGetWndHandle
+//TODO: hGetWndHandle
 HWND CxConsole::hGetWndHandle() {
     /*DEBUG*/
 
@@ -344,7 +344,7 @@ HWND CxConsole::hGetWndHandle() {
     return hRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - hGetMenuHandle
+//TODO: hGetMenuHandle
 HMENU CxConsole::hGetMenuHandle(BOOL bRevert) {
     /*DEBUG*/
     

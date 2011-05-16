@@ -21,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxObject ()
+//TODO: CxObject ()
 CxObject::CxObject(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -35,12 +35,12 @@ CxObject::CxObject(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
 
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxObject ()
+//TODO: ~CxObject ()
 CxObject::~CxObject() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - CxObject (gets a handle)
+//TODO: CxObject (gets a handle)
 CK_OBJECT_HANDLE
 CxObject::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    NULL);
@@ -50,7 +50,7 @@ CxObject::hGetHandle() const {
     return _m_hObject;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetHandle (assign object as a handle)
+//TODO: bSetHandle (assign object as a handle)
 BOOL
 CxObject::bSetHandle(CK_OBJECT_HANDLE hHandle) {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -62,7 +62,7 @@ CxObject::bSetHandle(CK_OBJECT_HANDLE hHandle) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bCreate (creates a new object)
+//TODO: bCreate (creates a new object)
 BOOL
 CxObject::bCreate(
     CK_ATTRIBUTE_PTR  pTemplate,   /* the object's template */
@@ -79,7 +79,7 @@ CxObject::bCreate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetSize (gets the size of an object in bytes)    
+//TODO: bGetSize (gets the size of an object in bytes)    
 BOOL
 CxObject::bGetSize(
     CK_ULONG_PTR      pulSize    /* receives size of object */
@@ -95,7 +95,7 @@ CxObject::bGetSize(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bCopy (copies an object, creating a new object for the copy)
+//TODO: bCopy (copies an object, creating a new object for the copy)
 BOOL
 CxObject::bCopy(
     CK_ATTRIBUTE_PTR     pTemplate,   /* template for new object */
@@ -113,7 +113,7 @@ CxObject::bCopy(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: + bFind (search for token and session objects that match a template, obtaining additional object handles)
+//TODO: bFind (search for token and session objects that match a template, obtaining additional object handles)
 BOOL
 CxObject::bFind(
     CK_ATTRIBUTE_PTR               pTemplate,              /* attribute values to match */
@@ -155,7 +155,7 @@ CxObject::bFind(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bGetAttributeValue (obtains the value of one or more object attributes)
+//TODO: bGetAttributeValue (obtains the value of one or more object attributes)
 BOOL CxObject::bGetAttributeValue(
                                   CK_ATTRIBUTE_PTR  pTemplate,  /* specifies attrs; gets vals */
                                   CK_ULONG          ulCount     /* attributes in template */
@@ -171,7 +171,7 @@ BOOL CxObject::bGetAttributeValue(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetAttributeValue (modifies the value of one or more object attributes)
+//TODO: bSetAttributeValue (modifies the value of one or more object attributes)
 BOOL
 CxObject::bSetAttributeValue(
                                   CK_ATTRIBUTE_PTR  pTemplate,  /* specifies attrs and values */
@@ -188,7 +188,7 @@ CxObject::bSetAttributeValue(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bDestroy (destroys an object)
+//TODO: bDestroy (destroys an object)
 BOOL
 CxObject::bDestroy() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -203,7 +203,7 @@ CxObject::bDestroy() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetData
+//TODO: bGetData
 BOOL
 CxObject::bGetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString &cusDataLabel, uString *pusData) {
     /*DEBUG*/
@@ -288,7 +288,7 @@ CxObject::bGetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: + bGetData
+//TODO: bGetData
 BOOL
 CxObject::bGetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, std::vector<uString> *pusDataLabel, std::vector<uString> *pusDataValue) {
     /*DEBUG*/// ulSlotId - n/a
@@ -493,7 +493,7 @@ CxObject::bSetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
 *****************************************************************************/
 
 //////////---------------------------------------------------------------------------
-//////////TODO: - bFindInit (initializes a search for token and session objects that match a template)
+//////////TODO: bFindInit (initializes a search for token and session objects that match a template)
 ////////BOOL CxObject::bFindInit(
 ////////                         CK_ATTRIBUTE_PTR  pTemplate,  /* attribute values to match */
 ////////                         CK_ULONG          ulCount     /* attrs in search template */
@@ -509,7 +509,7 @@ CxObject::bSetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
 ////////    return TRUE;
 ////////}
 //////////---------------------------------------------------------------------------
-//////////TODO: - bFind (continues a search for token and session objects that match a template, obtaining additional object handles)
+//////////TODO: bFind (continues a search for token and session objects that match a template, obtaining additional object handles)
 ////////BOOL CxObject::bFind(
 ////////                     CK_OBJECT_HANDLE_PTR phObject,          /* gets obj. handles */
 ////////                     CK_ULONG             ulMaxObjectCount,  /* max handles to get */
@@ -527,7 +527,7 @@ CxObject::bSetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
 ////////    return TRUE;
 ////////}
 //////////---------------------------------------------------------------------------
-//////////TODO: - bFindFinal (finishes a search for token and session objects)
+//////////TODO: bFindFinal (finishes a search for token and session objects)
 ////////BOOL CxObject::bFindFinal() {
 ////////    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
 ////////    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);

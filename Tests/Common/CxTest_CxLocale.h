@@ -29,12 +29,12 @@ class CxTest_CxLocale : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxLocale (constructor)
+//TODO: CxTest_CxLocale (constructor)
 CxTest_CxLocale::CxTest_CxLocale() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxLocale (destructor)
+//TODO: ~CxTest_CxLocale (destructor)
 CxTest_CxLocale::~CxTest_CxLocale() {
 
 }

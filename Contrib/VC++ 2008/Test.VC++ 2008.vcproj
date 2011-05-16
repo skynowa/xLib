@@ -207,13 +207,6 @@
 				<File
 					RelativePath="..\..\Source\Crypt\CxBase64.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\Include\xLib\Crypt\CxBase64.h"
@@ -255,13 +248,6 @@
 					<File
 						RelativePath="..\..\Source\Crypt\OpenSSL\CxBlowfish.cpp"
 						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h"
@@ -450,7 +436,6 @@
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
-							ExcludedFromBuild="true"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -462,7 +447,6 @@
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
-							ExcludedFromBuild="true"
 							>
 							<Tool
 								Name="VCCustomBuildTool"

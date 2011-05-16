@@ -50,12 +50,12 @@ ULONG CxAppSettings::m_ulDbEmptySize      = xARRAY_SIZE(CxAppSettings::m_ucDbEmp
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxAppSettings (comment)
+//TODO: CxAppSettings (comment)
 CxAppSettings::CxAppSettings() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxAppSettings (comment)
+//TODO: ~CxAppSettings (comment)
 /*virtual*/
 CxAppSettings::~CxAppSettings() {
 

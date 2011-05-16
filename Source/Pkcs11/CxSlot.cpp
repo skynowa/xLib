@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxSlot ()
+//TODO: CxSlot ()
 CxSlot::CxSlot(const CxPkcs11 &cPkcs11) :
     _m_bRes (FALSE),
     _m_ulRes(!CKR_OK),
@@ -29,12 +29,12 @@ CxSlot::CxSlot(const CxPkcs11 &cPkcs11) :
     /*DEBUG*/xASSERT_DO(NULL != _m_pFunc, return);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxSlot ()
+//TODO: ~CxSlot ()
 CxSlot::~CxSlot() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetList (btains a list of slots in the system)
+//TODO: bGetList (btains a list of slots in the system)
 ////BOOL CxSlot::bGetList(
 ////    CK_BBOOL       bTokenPresent,  /* only slots with tokens? */
 ////    CK_SLOT_ID_PTR pSlotList,      /* receives array of slot IDs */
@@ -67,7 +67,7 @@ CxSlot::bGetList(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bGetInfo (obtains information about a particular slot in the system)
+//TODO: bGetInfo (obtains information about a particular slot in the system)
 BOOL
 CxSlot::bGetInfo(
     CK_SLOT_ID       slotID,  /* the ID of the slot */
@@ -84,7 +84,7 @@ CxSlot::bGetInfo(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: + bWaitForEvent (waits for a slot event (token insertion, removal, etc.) to occur)
+//TODO: bWaitForEvent (waits for a slot event (token insertion, removal, etc.) to occur)
 CxSlot::ENotification
 CxSlot::nfWaitForEvent(
     CK_FLAGS       flags,     /* blocking/nonblocking flag */

@@ -61,11 +61,11 @@ CxThreadPool<TaskT>::~CxThreadPool() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - bCreateGroup (создание)
+//TODO: bCreateGroup (создание)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bCreateGroup(UINT uiStackSize, const TFuncPtr fpFuncPtr, VOID *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks) {
-    /*DEBUG*/xASSERT_RET(0    <= uiStackSize,       FALSE);    //TODO: - MaxValue
+    /*DEBUG*/xASSERT_RET(0    <= uiStackSize,       FALSE);    //TODO: MaxValue
     /*DEBUG*/xASSERT_RET(NULL == fpFuncPtr,         FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pvParam,           FALSE);
     /*DEBUG*/xASSERT_RET(0    <  uiNumTasks,        FALSE);
@@ -91,7 +91,7 @@ CxThreadPool<TaskT>::bCreateGroup(UINT uiStackSize, const TFuncPtr fpFuncPtr, VO
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bResumeGroup (возобновление)
+//TODO: bResumeGroup (возобновление)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bResumeGroup() {
@@ -122,7 +122,7 @@ CxThreadPool<TaskT>::bResumeGroup() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bPauseGroup (приостановка)
+//TODO: bPauseGroup (приостановка)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bPauseGroup() {
@@ -153,7 +153,7 @@ CxThreadPool<TaskT>::bPauseGroup() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bExitGroup (выход)
+//TODO: bExitGroup (выход)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bExitGroup(ULONG ulTimeout) {
@@ -184,7 +184,7 @@ CxThreadPool<TaskT>::bExitGroup(ULONG ulTimeout) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - uiKillGroup (уничтожеие)
+//TODO: uiKillGroup (уничтожеие)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bKillGroup(ULONG ulTimeout) {
@@ -215,7 +215,7 @@ CxThreadPool<TaskT>::bKillGroup(ULONG ulTimeout) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bWaitGroup (ожидание завершени€)
+//TODO: bWaitGroup (ожидание завершени€)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bWaitGroup(ULONG ulTimeout) {
@@ -254,7 +254,7 @@ CxThreadPool<TaskT>::bWaitGroup(ULONG ulTimeout) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - uiGetMaxTasks (кол-во одновременно работающих заданий)
+//TODO: uiGetMaxTasks (кол-во одновременно работающих заданий)
 template<class TaskT>
 UINT 
 CxThreadPool<TaskT>::uiGetMaxTasks() const {
@@ -263,7 +263,7 @@ CxThreadPool<TaskT>::uiGetMaxTasks() const {
     return _m_uiMaxRunningTasks;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetMaxTasks (установка кол-ва одновременно работающих заданий)
+//TODO: bSetMaxTasks (установка кол-ва одновременно работающих заданий)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bSetMaxTasks(UINT uiNum)  {
@@ -324,7 +324,7 @@ CxThreadPool<TaskT>::bSetMaxTasks(UINT uiNum)  {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - uiGetNumTasks (всего заданий)
+//TODO: uiGetNumTasks (всего заданий)
 template<class TaskT>
 UINT 
 CxThreadPool<TaskT>::uiGetNumTasks() const {
@@ -333,7 +333,7 @@ CxThreadPool<TaskT>::uiGetNumTasks() const {
     return _m_uiNumTasks;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetNumTasks (установка кол-ва заданий)
+//TODO: bSetNumTasks (установка кол-ва заданий)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bSetNumTasks(UINT uiNum) {
@@ -344,7 +344,7 @@ CxThreadPool<TaskT>::bSetNumTasks(UINT uiNum) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bIsEmpty (пуст ли пул)
+//TODO: bIsEmpty (пуст ли пул)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bIsEmpty() const {
@@ -360,7 +360,7 @@ CxThreadPool<TaskT>::bIsEmpty() const {
     return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - bIsFull (заполнен ли пул)
+//TODO: bIsFull (заполнен ли пул)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::bIsFull() const {
@@ -378,7 +378,7 @@ CxThreadPool<TaskT>::bIsFull() const {
     return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - uiSize (кол-во заданий в пуле)
+//TODO: uiSize (кол-во заданий в пуле)
 template<class TaskT>
 UINT 
 CxThreadPool<TaskT>::uiGetSize() const {
@@ -402,7 +402,7 @@ CxThreadPool<TaskT>::uiGetSize() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - uiOnRun (рабоч€€ функци€)
+//TODO: uiOnRun (рабоч€€ функци€)
 template<class TaskT>
 UINT 
 CxThreadPool<TaskT>::uiOnRun(VOID *pvParam) { 
@@ -474,7 +474,7 @@ CxThreadPool<TaskT>::uiOnRun(VOID *pvParam) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - bPopTask (если очередь пуста, то потоки, вызвавшие этот метод, будут находитьс€ в ожидании... )
+//TODO: bPopTask (если очередь пуста, то потоки, вызвавшие этот метод, будут находитьс€ в ожидании... )
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::_bAddTask(CxThread *pvItem) { 
@@ -508,7 +508,7 @@ CxThreadPool<TaskT>::_bAddTask(CxThread *pvItem) {
     return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: - bPushTask (добавл€ем элемент в очередь, увеличиваем счетчик семафора на 1)
+//TODO: bPushTask (добавл€ем элемент в очередь, увеличиваем счетчик семафора на 1)
 template<class TaskT>
 BOOL 
 CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) { 
@@ -542,7 +542,7 @@ CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) {
     return TRUE;
 } 
 //---------------------------------------------------------------------------
-//TODO: - _vOnEnterTask (начало рабочей функции)
+//TODO: _vOnEnterTask (начало рабочей функции)
 template<class TaskT>
 VOID 
 CxThreadPool<TaskT>::_vOnEnterTask(CxThread *pthSender)  {
@@ -555,7 +555,7 @@ CxThreadPool<TaskT>::_vOnEnterTask(CxThread *pthSender)  {
     /*LOG*///_m_clLog.bWrite(xT("_vOnEnterTask: #%i"), pthTask->m_uiIndex);
 }
 //---------------------------------------------------------------------------
-//TODO: - _vOnExitTask (конец рабочей функции)
+//TODO: _vOnExitTask (конец рабочей функции)
 template<class TaskT>
 VOID 
 CxThreadPool<TaskT>::_vOnExitTask(CxThread *pthSender)  {

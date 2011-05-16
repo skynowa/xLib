@@ -27,7 +27,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: -  bFindExecutable ()
+//TODO:  bFindExecutable ()
 /*static*/
 tString CxShell::bFindExecutable(const tString csFileName, const tString csFindDirPath) {
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(), tString());
@@ -42,7 +42,7 @@ tString CxShell::bFindExecutable(const tString csFileName, const tString csFindD
     return tString(szRes);
 }
 //---------------------------------------------------------------------------
-//TODO: -  bExecute ()
+//TODO:  bExecute ()
 /*static*/
 BOOL CxShell::bExecute(HWND hOwner, EOperation opOperation, const tString &csFilePath, const tString &csParams, const tString &csDir, EShowFlag sfShowCmd) {
     /*DEBUG*/// hOwner      - n/a
@@ -74,7 +74,7 @@ BOOL CxShell::bExecute(HWND hOwner, EOperation opOperation, const tString &csFil
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: -  bExecuteEx ()
+//TODO:  bExecuteEx ()
 /*static*/
 BOOL CxShell::bExecuteEx(SHELLEXECUTEINFO *peiInfo) {
     /*DEBUG*/xASSERT_RET(FALSE != peiInfo, FALSE);
@@ -85,7 +85,7 @@ BOOL CxShell::bExecuteEx(SHELLEXECUTEINFO *peiInfo) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bExecuteHttp ()
+//TODO: bExecuteHttp ()
 /*static*/
 BOOL CxShell::bExecuteHttp(const tString &csUrl) {
     /*DEBUG*/// csUrl - n/a
@@ -100,7 +100,7 @@ BOOL CxShell::bExecuteHttp(const tString &csUrl) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bExecuteFtp ()
+//TODO: bExecuteFtp ()
 /*static*/
 BOOL CxShell::bExecuteFtp(const tString &csUrl) {
     /*DEBUG*/// csUrl - n/a
@@ -115,7 +115,7 @@ BOOL CxShell::bExecuteFtp(const tString &csUrl) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bExecuteEmail ()
+//TODO: bExecuteEmail ()
 /*static*/
 BOOL CxShell::bExecuteEmail(const tString &csToEmail, const tString &csSubject, const tString &csBody) {
     /*DEBUG*/// csToEmail - n/a
@@ -147,7 +147,7 @@ BOOL CxShell::bExecuteEmail(const tString &csToEmail, const tString &csSubject, 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - sGetSpecialFolderLocation ()
+//TODO: sGetSpecialFolderLocation ()
 /*static*/
 tString CxShell::sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken) {
     /*DEBUG*/// sfDir  - n/a
@@ -220,12 +220,12 @@ CxShell::bCreateShortcut(const tString &csFilePath, const tString &csShortCutPat
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxShell (comment)
+//TODO: CxShell (comment)
 CxShell::CxShell() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxShell (comment)
+//TODO: ~CxShell (comment)
 CxShell::~CxShell() {
     //code
 }

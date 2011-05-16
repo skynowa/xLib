@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxSign ()
+//TODO: CxSign ()
 CxSign::CxSign(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -30,12 +30,12 @@ CxSign::CxSign(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxSign ()
+//TODO: ~CxSign ()
 CxSign::~CxSign() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bInit (initializes a signature (private key encryption) operation, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
+//TODO: bInit (initializes a signature (private key encryption) operation, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bInit(
     CK_MECHANISM_PTR  pMechanism,  /* the signature mechanism */
@@ -50,7 +50,7 @@ CxSign::bInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bMake (signs (encrypts with private key) data in a single part, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
+//TODO: bMake (signs (encrypts with private key) data in a single part, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bMake(
     CK_BYTE_PTR       pData,           /* the data to sign */
@@ -67,7 +67,7 @@ CxSign::bMake(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bUpdate (continues a multiple-part signature operation,where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
+//TODO: bUpdate (continues a multiple-part signature operation,where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bUpdate(
     CK_BYTE_PTR       pPart,     /* the data to sign */
@@ -82,7 +82,7 @@ CxSign::bUpdate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bEncryptUpdate (continues a multiple-part signing and encryption operation)
+//TODO: bEncryptUpdate (continues a multiple-part signing and encryption operation)
 BOOL
 CxSign::bEncryptUpdate(
     CK_BYTE_PTR       pPart,               /* the plaintext data */
@@ -99,7 +99,7 @@ CxSign::bEncryptUpdate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bFinal (finishes a multiple-part signature operation, returning the signature)
+//TODO: bFinal (finishes a multiple-part signature operation, returning the signature)
 BOOL
 CxSign::bFinal(
     CK_BYTE_PTR       pSignature,      /* gets the signature */
@@ -114,7 +114,7 @@ CxSign::bFinal(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bRecoverInit (initializes a signature operation, where the data can be recovered from the signature)
+//TODO: bRecoverInit (initializes a signature operation, where the data can be recovered from the signature)
 BOOL
 CxSign::bRecoverInit(
     CK_MECHANISM_PTR  pMechanism, /* the signature mechanism */
@@ -129,7 +129,7 @@ CxSign::bRecoverInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bRecover (signs data in a single operation, where the data can be recovered from the signature)
+//TODO: bRecover (signs data in a single operation, where the data can be recovered from the signature)
 BOOL
 CxSign::bRecover(
     CK_BYTE_PTR       pData,           /* the data to sign */

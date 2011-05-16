@@ -267,7 +267,7 @@ CxDateTime::operator = (const TDateTime &cdtDT) {
 }
 #endif
 //---------------------------------------------------------------------------
-//TODO: - operator = ()
+//TODO: operator = ()
 const CxDateTime &
 CxDateTime::operator = (ULONGLONG ullMillisecond) {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), *this);
@@ -640,6 +640,26 @@ CxDateTime::i64FiletimeToInt64(const FILETIME &cftTime) {
     return Int64ShllMod32(cftTime.dwHighDateTime, 32) | cftTime.dwLowDateTime;
 }
 #endif
+//--------------------------------------------------------------------------
+//DONE: bUnixTimeToFileTime (convert UNIX time_t to Win32 FILETIME)
+/*static*/ 
+BOOL        
+CxDateTime::bUnixTimeToFileTime(
+    const time_t  ctmUnixTime, 
+    FILETIME     *pftFileTime
+)
+{
+    /*DEBUG*/// ctmTime - n/a
+    /*DEBUG*/xASSERT_RET(NULL != pftFileTime, FALSE);
+
+    LONGLONG llRes = 0LL;
+
+    llRes = Int32x32To64(ctmUnixTime, 10000000) + 116444736000000000;
+    pftFileTime->dwLowDateTime  = static_cast<ULONG>( llRes );
+    pftFileTime->dwHighDateTime = llRes >> 32;
+
+    return TRUE;
+} 
 //--------------------------------------------------------------------------
 //DONE: usDaysInMonth
 /*static*/

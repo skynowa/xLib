@@ -517,11 +517,29 @@ BOOL CxTest_CxDateTime::bUnit() {
     //-------------------------------------
     //i64FiletimeToInt64
     {
-    #if defined(xOS_WIN)
-        ///////////////////////////m_ullRes =  CxDateTime::i64FiletimeToInt64(FILETIME ftTime);
-    #elif defined(xOS_LINUX)
-
-    #endif
+        #if defined(xOS_WIN)
+            const FILETIME cftTime = {100, 200};
+            
+            m_ullRes = CxDateTime::i64FiletimeToInt64(cftTime);
+            #if xTODO
+                xASSERT_EQUAL( == m_ullRes);
+            #endif
+        #elif defined(xOS_LINUX)
+            // n/a
+        #endif
+    }
+    
+    //-------------------------------------
+    //bUnixTimeToFileTime
+    {
+        #if defined(xOS_WIN)
+            const time_t ctmUnixTime = 1000; 
+            FILETIME     ftFileTime  = {0};
+            
+            m_bRes = CxDateTime::bUnixTimeToFileTime(ctmUnixTime, &ftFileTime);
+        #elif defined(xOS_LINUX)
+            // n/a
+        #endif
     }
 
 

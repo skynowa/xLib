@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxVerify ()
+//TODO: CxVerify ()
 CxVerify::CxVerify(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
@@ -30,12 +30,12 @@ CxVerify::CxVerify(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxVerify ()
+//TODO: ~CxVerify ()
 CxVerify::~CxVerify() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - bInit (initializes a verification operation, where the signature is an appendix to the data, and plaintext cannot cannot be recovered from the signature (e.g. DSA))
+//TODO: bInit (initializes a verification operation, where the signature is an appendix to the data, and plaintext cannot cannot be recovered from the signature (e.g. DSA))
 BOOL
 CxVerify::bInit(
     CK_MECHANISM_PTR  pMechanism,  /* the verification mechanism */
@@ -50,7 +50,7 @@ CxVerify::bInit(
     return TRUE;
 }    
 //---------------------------------------------------------------------------
-//TODO: - bMake (verifies a signature in a single-part operation,  where the signature is an appendix to the data, and plaintext cannot be recovered from the signature)
+//TODO: bMake (verifies a signature in a single-part operation,  where the signature is an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxVerify::bMake(
     CK_BYTE_PTR       pData,          /* signed data */
@@ -67,7 +67,7 @@ CxVerify::bMake(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bFinal (finishes a multiple-part verification operation, checking the signature)
+//TODO: bFinal (finishes a multiple-part verification operation, checking the signature)
 BOOL
 CxVerify::bFinal(
     CK_BYTE_PTR       pSignature,     /* signature to verify */
@@ -82,7 +82,7 @@ CxVerify::bFinal(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bRecoverInit (initializes a signature verification operation, where the data is recovered from the signature)
+//TODO: bRecoverInit (initializes a signature verification operation, where the data is recovered from the signature)
 BOOL
 CxVerify::bRecoverInit(
     CK_MECHANISM_PTR  pMechanism,  /* the verification mechanism */
@@ -97,7 +97,7 @@ CxVerify::bRecoverInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bVerifyRecover (verifies a signature in a single-part operation, where the data is recovered from the signature)
+//TODO: bVerifyRecover (verifies a signature in a single-part operation, where the data is recovered from the signature)
 BOOL
 CxVerify::bRecover(
     CK_BYTE_PTR       pSignature,      /* signature to verify */
@@ -114,7 +114,7 @@ CxVerify::bRecover(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bVerifyUpdate (continues a multiple-part verification operation, where the signature is an appendix to the data, and plaintext cannot be recovered from the signature)
+//TODO: bVerifyUpdate (continues a multiple-part verification operation, where the signature is an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxVerify::bUpdate(
     CK_BYTE_PTR       pPart,     /* signed data */

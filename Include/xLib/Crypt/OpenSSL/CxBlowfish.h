@@ -16,8 +16,7 @@
 #include <openssl/blowfish.h>
 
 #if defined(xOS_WIN)
-    //#pragma comment(lib, "libeay32.lib")
-    #pragma comment(lib, "libeay32MTd.lib")
+    #pragma comment(lib, "libeay32.lib")
 #elif defined(xOS_LINUX)
     // n/a
 #endif
@@ -34,7 +33,6 @@ class CxBlowfish : public CxNonCopyable {
         UCHAR         _m_ucIvec[IVEC_SIZE];
 
     public:
-        //crypt mode
         enum ECryptMode {
             cmUnknown = - 1,
             cmEncrypt = BF_ENCRYPT,
@@ -51,8 +49,8 @@ class CxBlowfish : public CxNonCopyable {
         static size_t uiGetMaxKeySize     ();
 
         //cfb64
-        BOOL          bEncryptCfb64          (UCHAR *pucIn, UCHAR *pucOut, LONG liInSize, INT *piNum, ECryptMode cmMode);
-        BOOL          bEncryptCfb64          (const uString &cusIn, uString *pusOut, ECryptMode cmMode);
+        BOOL          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, LONG liInSize, INT *piNum, ECryptMode cmMode);
+        BOOL          bEncryptCfb64       (const uString &cusIn, uString *pusOut, ECryptMode cmMode);
         BOOL          bEncryptFileCfb64   (const tString &csFilePathIn, const tString &csFilePathOut, ECryptMode cmMode);
 
         //

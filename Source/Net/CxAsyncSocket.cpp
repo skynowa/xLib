@@ -13,14 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//TODO: - CxAsyncSocket (comment)
+//TODO: CxAsyncSocket (comment)
 CxAsyncSocket::CxAsyncSocket() : 
     _m_bRes(FALSE)
  {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxAsyncSocket (comment)
+//TODO: ~CxAsyncSocket (comment)
 /*virtual*/
 CxAsyncSocket::~CxAsyncSocket() {
     //code

@@ -56,7 +56,7 @@ CxPath::sGetExe() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - sGetExeDir (dir path to exe)
+//TODO: sGetExeDir (dir path to exe)
 /*static*/
 tString
 CxPath::sGetExeDir() {
@@ -374,7 +374,7 @@ CxPath::sSetValidName(const tString &csFileName) {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//TODO: - sToWin (convert slashes to Windows-like)
+//TODO: sToWin (convert slashes to Windows-like)
 /*static*/
 tString
 CxPath::sToWin(const tString &csFilePath, BOOL bIsSlashAtEnd) {
@@ -394,7 +394,7 @@ CxPath::sToWin(const tString &csFilePath, BOOL bIsSlashAtEnd) {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//TODO: - sToNix (convert slashes to Nix-like)
+//TODO: sToNix (convert slashes to Nix-like)
 /*static*/
 tString
 CxPath::sToNix(const tString &csFilePath, BOOL bIsSlashAtEnd) {
@@ -414,7 +414,7 @@ CxPath::sToNix(const tString &csFilePath, BOOL bIsSlashAtEnd) {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//TODO: - sToCurrentOs (convert slashes to current OS-like)
+//TODO: sToCurrentOs (convert slashes to current OS-like)
 /*static*/
 tString
 CxPath::sToCurrentOs(const tString &csFilePath, BOOL bIsSlashAtEnd) {
@@ -434,7 +434,7 @@ CxPath::sToCurrentOs(const tString &csFilePath, BOOL bIsSlashAtEnd) {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//TODO: - sMinimizeName
+//TODO: sMinimizeName
 /*static*/
 tString
 CxPath::sMinimizeName(const tString &csFileName, const std::size_t cuiMaxSize) {
@@ -466,7 +466,7 @@ CxPath::sMinimizeName(const tString &csFileName, const std::size_t cuiMaxSize) {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - sMinimize
+//TODO: sMinimize
 /*static*/
 tString
 CxPath::sMinimize(const tString &csFilePath, const size_t cuiMaxSize) {
