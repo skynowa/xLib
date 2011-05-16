@@ -146,8 +146,7 @@ class CxStdioFile : public CxNonCopyable {
         BOOL             bClear       () const;
 
         //times
-        BOOL             bGetTime     (time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
-        BOOL             bSetTime     (const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
+
 
         //other
         BOOL             bLocking     (const ELockingMode clmMode, const LONG cliBytes);
@@ -191,6 +190,8 @@ class CxStdioFile : public CxNonCopyable {
         static tString   sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
         static LONG      liGetSize    (const tString &csFilePath);
         static ULONGLONG ullGetLines  (const tString &csFilePath);
+        static BOOL      bGetTime     (const tString &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
+        static BOOL      bSetTime     (const tString &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
 
         //text
         static BOOL      bTextRead    (const tString &csFilePath, tString *psContent);

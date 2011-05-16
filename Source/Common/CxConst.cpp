@@ -47,7 +47,7 @@ const tString      CxConst::xCOLON            (xT(":"));
 const std::string  CxConst::xWIN_SLASH_A      ("\\");
 const std::wstring CxConst::xWIN_SLASH_W      (L"\\");
 const tString      CxConst::xWIN_SLASH        (xT("\\"));
- 
+
 //xNIX_SLASH  (nix backslash)
 const std::string  CxConst::xNIX_SLASH_A      ("/");
 const std::wstring CxConst::xNIX_SLASH_W      (L"/");
@@ -136,7 +136,7 @@ const std::wstring CxConst::xBS_W             (L"\b");
 const tString      CxConst::xBS               (xT("\b"));
 
 //xFF (formfeed)
-const std::string  CxConst::xFF_A                ("\f");
+const std::string  CxConst::xFF_A             ("\f");
 const std::wstring CxConst::xFF_W             (L"\f");
 const tString      CxConst::xFF               (xT("\f"));
 
