@@ -930,7 +930,8 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
     bRes = CxDir::bIsExists(csDestDirPath);
     xCHECK_DO(FALSE == bRes, CxDir::bCreateForce(csDestDirPath));
 
-    //���� + �����
+    //-------------------------------------
+    //format file full name
     CxDateTime dtDT;
 
     tString sBackupFilePath =
@@ -942,19 +943,21 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
     xCHECK_RET(TRUE == bRes, TRUE);
 
     //-------------------------------------
-    //���������� �� ����� �� �����
-    LONGLONG llFileSie = 0;
-    llFileSie = CxFile::llGetSize(csFilePath);
-
+    //check for enough space
     ULONGLONG ullTotalFreeBytes = 0;
-    _ms_bRes = CxDrive::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
+    bRes = CxDrive::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
 
-    xCHECK_DO((ULONGLONG)llFileSie > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("������������ ����� �� �����"), xT("��������� �����������"), MB_OK); return TRUE);
+    xCHECK_DO((ULONGLONG)CxFile::llGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return TRUE);
 
     //-------------------------------------
-    //�����������
-    bRes = bCopy(csFilePath.c_str(), sBackupFilePath.c_str(), TRUE);
+    //copy
+    bRes = bCopy(csFilePath, sBackupFilePath, TRUE);
     xCHECK_RET(FALSE == bRes, FALSE);
+
+    //-------------------------------------
+    //check for a valid backup
+    xCHECK_RET(FALSE                 != bIsExists(sBackupFilePath), FALSE);
+    xCHECK_RET(liGetSize(csFilePath) == liGetSize(sBackupFilePath), FALSE);
 
     return TRUE;
 }

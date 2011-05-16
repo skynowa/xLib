@@ -26,10 +26,3 @@ class CxLocale : public CxNonCopyable {
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxLocaleH
-
-
-
-//-------------------------------------
-////_tsetlocale(LC_ALL, NULL);
-////setlocale(LC_ALL, "Russian"); 
-//////_tsetlocale(LC_ALL, xT(""));

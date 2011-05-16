@@ -20,25 +20,20 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCrc32
-CxCrc32::CxCrc32() {
-
-}
-//---------------------------------------------------------------------------
-//DONE: ~CxCrc32
-CxCrc32::~CxCrc32() {
-
-}
-//---------------------------------------------------------------------------
 //DONE: ulCalc
 /*static*/
 ULONG
-CxCrc32::ulCalc(UCHAR *pucBuff, ULONG ulSize) {
+CxCrc32::ulCalc(
+    UCHAR       *pucBuff,
+    const ULONG  culSize
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != pucBuff, 0);
-    /*DEBUG*/xASSERT_RET(0    <  ulSize,  0);
+    /*DEBUG*/xASSERT_RET(0    <  culSize, 0);
 
     ULONG crc            = 0;
     ULONG crc_table[256] = {0};
+    ULONG ulSize         = culSize;
 
     for (INT i = 0; i < 256; ++ i) {
         crc = i;
@@ -61,7 +56,10 @@ CxCrc32::ulCalc(UCHAR *pucBuff, ULONG ulSize) {
 //DONE: ulCalcFile
 /*static*/
 ULONG
-CxCrc32::ulCalcFile(const tString &csFilePath) {
+CxCrc32::ulCalcFile(
+    const tString &csFilePath
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
     ULONG ulRes = - 1;
@@ -83,11 +81,15 @@ CxCrc32::ulCalcFile(const tString &csFilePath) {
 //DONE: ulCalcFast
 /*static*/
 ULONG
-CxCrc32::ulCalcFast(UCHAR *pucBuff, ULONG ulSize) {
-    /*DEBUG*/xASSERT_RET(NULL != pucBuff, 0);
-    /*DEBUG*/xASSERT_RET(0    <  ulSize,  0);
+CxCrc32::ulCalcFast(
+    UCHAR       *pucBuff,
+    const ULONG  culSize
+)
+{
+    /*DEBUG*/xASSERT_RET(NULL != pucBuff,  0);
+    /*DEBUG*/xASSERT_RET(0    <  culSize,  0);
 
-    ULONG crc = 0;
+    ULONG crc            = 0;
     ULONG crc_table[256] = {
         0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
         0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
@@ -169,6 +171,7 @@ CxCrc32::ulCalcFast(UCHAR *pucBuff, ULONG ulSize) {
         0xB3667A2E, 0xC4614AB8, 0x5D681B02, 0x2A6F2B94,
         0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D
     };
+    ULONG ulSize = culSize;
 
     crc = 0xFFFFFFFFUL;
 
@@ -182,7 +185,10 @@ CxCrc32::ulCalcFast(UCHAR *pucBuff, ULONG ulSize) {
 //DONE: ulCalcFileFast
 /*static*/
 ULONG
-CxCrc32::ulCalcFileFast(const tString &csFilePath) {
+CxCrc32::ulCalcFileFast(
+    const tString &csFilePath
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
     ULONG ulRes = - 1;
@@ -204,13 +210,16 @@ CxCrc32::ulCalcFileFast(const tString &csFilePath) {
 //DONE: sFormatHex (format Crc32 like "0AADDEA0")
 /*static*/
 tString
-CxCrc32::sFormatHex(ULONG ulCrc32) {
+CxCrc32::sFormatHex(
+    const ULONG culCrc32
+)
+{
     /*DEBUG*/
 
     tString      sRes;
     const size_t uiCrc32Size = 8;
 
-    sRes = CxString::sFormat(xT("%X"), ulCrc32);    //0AADDEA0
+    sRes = CxString::sFormat(xT("%X"), culCrc32);    //0AADDEA0
 
     //����� �� �������������� ���� � ������ Crc32
     size_t uiAdditionalZeros = uiCrc32Size - sRes.size();
@@ -220,5 +229,24 @@ CxCrc32::sFormatHex(ULONG ulCrc32) {
     /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), tString());
 
     return sRes;
+}
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    private
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+//DONE: CxCrc32
+CxCrc32::CxCrc32() {
+
+}
+//---------------------------------------------------------------------------
+//DONE: ~CxCrc32
+/*virtual*/
+CxCrc32::~CxCrc32() {
+
 }
 //---------------------------------------------------------------------------

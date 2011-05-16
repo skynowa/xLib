@@ -15,6 +15,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
+#include <xLib/Crypt/CxCrc32.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Common/CxLocale.h>
@@ -50,14 +51,6 @@ CxStdioFile::~CxStdioFile() {
 *
 *****************************************************************************/
 
-//---------------------------------------------------------------------------
-//DONE: bIsValid (validating handle)
-BOOL
-CxStdioFile::bIsValid() const {
-    /*DEBUG*/
-
-    return static_cast<BOOL>( NULL != _m_pFile );
-}
 //---------------------------------------------------------------------------
 //DONE: bOpen (open)
 BOOL
@@ -371,6 +364,65 @@ CxStdioFile::bClear() const {
 
 
 /****************************************************************************
+*   public: times
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+//DONE: bGetTime (get time)
+BOOL
+CxStdioFile::bGetTime(
+    time_t *pftCreate, time_t *pftAccess, time_t *pftModified
+)
+{
+    /*DEBUG*/// pftCreate - n/a
+    /*DEBUG*/// pftAccess - n/a
+    /*DEBUG*/// pftModified - n/a
+
+    struct stat stInfo = {0};
+
+    INT iRes = stat(sGetPath().c_str(), &stInfo);
+    /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
+
+    xCHECK_DO(NULL != pftCreate,   *pftCreate   = stInfo.st_ctime);
+    xCHECK_DO(NULL != pftAccess,   *pftAccess   = stInfo.st_atime);
+    xCHECK_DO(NULL != pftModified, *pftModified = stInfo.st_mtime);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: bSetTime (set time)
+BOOL
+CxStdioFile::bSetTime(
+    const time_t &ctmCreate,
+    const time_t &ctmAccess,
+    const time_t &ctmModified
+)
+{
+    /*DEBUG*/// ctmCreate   - n/a
+    /*DEBUG*/// ctmAccess   - n/a
+    /*DEBUG*/// ctmModified - n/a
+
+#if defined(xOS_WIN)
+    //TODO: bSetTime
+
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+    utimbuf tbTimes;
+
+    tbTimes.actime  = ctmAccess;
+    tbTimes.modtime = ctmModified;
+
+    INT iRes = utime(sGetPath().c_str(), &tbTimes);
+    /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
 *    public: other
 *
 *****************************************************************************/
@@ -424,57 +476,6 @@ CxStdioFile::liGetPosition() const {
     /*DEBUG*/xASSERT_RET(ppError != liRes, ppError);
 
     return liRes;
-}
-//---------------------------------------------------------------------------
-//DONE: bGetTime (get time)
-BOOL
-CxStdioFile::bGetTime(
-    time_t *pftCreate, time_t *pftAccess, time_t *pftModified
-)
-{
-    /*DEBUG*/// pftCreate - n/a
-    /*DEBUG*/// pftAccess - n/a
-    /*DEBUG*/// pftModified - n/a
-
-    struct stat stInfo = {0};
-
-    INT iRes = stat(sGetPath().c_str(), &stInfo);
-    /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
-
-    xCHECK_DO(NULL != pftCreate,   *pftCreate   = stInfo.st_ctime);
-    xCHECK_DO(NULL != pftAccess,   *pftAccess   = stInfo.st_atime);
-    xCHECK_DO(NULL != pftModified, *pftModified = stInfo.st_mtime);
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//TODO: bSetTime (set time)
-BOOL
-CxStdioFile::bSetTime(
-    const time_t &ctmCreate,
-    const time_t &ctmAccess,
-    const time_t &ctmModified
-)
-{
-    /*DEBUG*/// ctmCreate   - n/a
-    /*DEBUG*/// ctmAccess   - n/a
-    /*DEBUG*/// ctmModified - n/a
-
-#if defined(xOS_WIN)
-    //TODO: bSetTime
-
-#elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
-    utimbuf tbTimes;
-
-    tbTimes.actime  = ctmAccess;
-    tbTimes.modtime = ctmModified;
-
-    INT iRes = utime(sGetPath().c_str(), &tbTimes);
-    /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
-#endif
-
-    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bSetVBuff (Change stream buffering)
@@ -577,6 +578,33 @@ CxStdioFile::bResize(
 *
 *****************************************************************************/
 
+//---------------------------------------------------------------------------
+//DONE: bIsValid (validating handle)
+BOOL
+CxStdioFile::bIsValid() const {
+    /*DEBUG*/
+
+    return static_cast<BOOL>( NULL != _m_pFile );
+}
+//---------------------------------------------------------------------------
+//DONE: bIsOpen (is open)
+BOOL
+CxStdioFile::bIsOpen() const {
+    /*DEBUG*/// n/a
+
+    return bIsValid();
+}
+//---------------------------------------------------------------------------
+//DONE: bIsEmpty (is empty)
+BOOL
+CxStdioFile::bIsEmpty() const {
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
+
+    LONG liFileSize = liGetSize();
+    /*DEBUG*/xASSERT_RET(etError != liFileSize, TRUE);
+
+    return static_cast<BOOL>( 0 == liFileSize);
+}
 //---------------------------------------------------------------------------
 //DONE: bIsEof (check end of file indicator)
 BOOL
@@ -1375,6 +1403,70 @@ CxStdioFile::bBinWrite(
 
     size_t uiWriteLen = sfFile.uiWrite((LPVOID)&cusContent.at(0), cusContent.size());
     /*DEBUG*/xASSERT_RET(cusContent.size() == uiWriteLen, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*	public: other
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+//TODO: bBackup (backup)
+/*static*/
+BOOL
+CxStdioFile::bBackup(
+        const tString &csFilePath,
+        const tString &csDestDirPath,
+        const BOOL     cbMakeDaily
+        /*INT bBackupLimit*/
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), FALSE);
+
+    BOOL bRes = FALSE;
+
+    bRes = bIsExists(csFilePath);
+    xCHECK_RET(FALSE == bRes, FALSE);
+
+    bRes = CxDir::bIsExists(csDestDirPath);
+    xCHECK_DO(FALSE == bRes, CxDir::bCreateForce(csDestDirPath));
+
+    //-------------------------------------
+    //format file full name
+    CxDateTime dtDT;
+
+    tString sBackupFilePath =
+        CxPath::sSlashAppend(csDestDirPath) +
+        CxPath::sGetFullName(csFilePath)    +
+        xT(".bak [") + CxString::sReplaceAll((TRUE == cbMakeDaily) ? (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDate)) : (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDateTime)), xT(":"), xT("-")) + xT("]");
+
+    bRes = bIsExists(sBackupFilePath);
+    xCHECK_RET(TRUE == bRes, TRUE);
+
+    //-------------------------------------
+    //TODO: check for enough space
+    #if xTODO
+        ULONGLONG ullTotalFreeBytes = 0;
+        bRes = CxDrive::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
+
+        xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return TRUE);
+    #endif
+
+    //-------------------------------------
+    //copy
+    bRes = bCopy(csFilePath, sBackupFilePath, TRUE);
+    xCHECK_RET(FALSE == bRes, FALSE);
+
+    //-------------------------------------
+    //check for a valid backup
+    /*DEBUG*/xASSERT_RET(TRUE                                == bIsExists(sBackupFilePath),               FALSE);
+    /*DEBUG*/xASSERT_RET(liGetSize(csFilePath)               == liGetSize(sBackupFilePath),               FALSE);
+    /*DEBUG*/xASSERT_RET(CxCrc32::ulCalcFileFast(csFilePath) == CxCrc32::ulCalcFileFast(sBackupFilePath), FALSE);
 
     return TRUE;
 }
