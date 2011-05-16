@@ -29,34 +29,33 @@ class CxTest_CxCrc32 : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxCrc32 (comment)
+//DONE: CxTest_CxCrc32 (comment)
 CxTest_CxCrc32::CxTest_CxCrc32() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxCrc32 (comment)
+//DONE: ~CxTest_CxCrc32 (comment)
 CxTest_CxCrc32::~CxTest_CxCrc32() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL CxTest_CxCrc32::bUnit() {
 	/*DEBUG*/
 
-	tString sFilePath;
+	const tString csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
 
     //-------------------------------------
     //Prepare
     {
     	CxStdioFile flFile;
-        uString     usFileContent;
 
-        sFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");
-        usFileContent.resize(1024);
+        m_bRes = flFile.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
+        xASSERT(FALSE != m_bRes);
 
-        flFile.bOpen(sFilePath, CxStdioFile::omCreateReadWrite);
-        //////////////////////////////flFile.bWriteAll(usFileContent, 1);
+        m_bRes = flFile.bResize(1333);
+        xASSERT(FALSE != m_bRes);
     }
 
 	//-------------------------------------
@@ -68,12 +67,12 @@ BOOL CxTest_CxCrc32::bUnit() {
 	//-------------------------------------
 	//ulCalcFile, sFormatHex
 	{
-		m_ulRes = CxCrc32::ulCalcFile(sFilePath);
+		m_ulRes = CxCrc32::ulCalcFile(csFilePath);
 		xASSERT(0 < m_ulRes);
 	    //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        //xTRACE(m_sRes);
+        xASSERT(false == m_sRes.empty());
 	}
 
 	//-------------------------------------
@@ -85,12 +84,12 @@ BOOL CxTest_CxCrc32::bUnit() {
 	//------------------------------------
 	//ulCalcFileFast, sFormatHex
 	{
-	    m_ulRes = CxCrc32::ulCalcFileFast(sFilePath);
+	    m_ulRes = CxCrc32::ulCalcFileFast(csFilePath);
         xASSERT(0 < m_ulRes);
         //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        //xTRACE(m_sRes);
+        xASSERT(false == m_sRes.empty());
 	}
 
 	return TRUE;

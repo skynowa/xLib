@@ -122,7 +122,6 @@ class CxStdioFile : public CxNonCopyable {
         virtual         ~CxStdioFile  ();
 
         //open, get
-        BOOL             bIsValid     () const;
         BOOL             bOpen        (const tString &csFilePath, const EOpenMode omMode);
         BOOL             bReopen      (const tString &csFilePath, const EOpenMode omMode);
         BOOL             bAttach      (FILE *pflFile);
@@ -146,15 +145,15 @@ class CxStdioFile : public CxNonCopyable {
 
         BOOL             bClear       () const;
 
+        //times
+        BOOL             bGetTime     (time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
+        BOOL             bSetTime     (const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
+
         //other
         BOOL             bLocking     (const ELockingMode clmMode, const LONG cliBytes);
         BOOL             bSetPosition (const LONG clOffset, const EPointerPosition cppPos) const;
         LONG             liGetPosition() const;
-
         BOOL             bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
-
-        BOOL             bGetTime     (time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
-        BOOL             bSetTime     (const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
 
     #if defined(xOS_WIN)
         BOOL             bSetMode     (const ETranslationMode tmMode) const;
@@ -166,6 +165,9 @@ class CxStdioFile : public CxNonCopyable {
         BOOL             bResize      (const LONG cliSize) const;
 
         //error handling
+        BOOL             bIsValid     () const;
+        BOOL             bIsOpen      () const;
+        BOOL             bIsEmpty     () const;
         BOOL             bIsEof       () const;
         BOOL             bIsError     () const;
         BOOL             bErrorClear  () const;
@@ -203,6 +205,9 @@ class CxStdioFile : public CxNonCopyable {
         //binary
         static BOOL      bBinRead     (const tString &csFilePath, uString *pusContent);
         static BOOL      bBinWrite    (const tString &csFilePath, const uString &cusContent);
+
+        //other
+        static BOOL      bBackup      (const tString &csFilePath, const tString &csDestDirPath, const BOOL cbMakeDaily /*,INT bBackupLimit*/);
 
     private:
         mutable BOOL     _m_bRes;

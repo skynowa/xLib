@@ -16,17 +16,17 @@
 //---------------------------------------------------------------------------
 class CxCrc32 : public CxNonCopyable {
     public:
-        static ULONG   ulCalc        (UCHAR *pucBuff, ULONG ulSize);
+        static ULONG   ulCalc        (UCHAR *pucBuff, const ULONG culSize);
         static ULONG   ulCalcFile    (const tString &csFilePath);
-        
-        static ULONG   ulCalcFast    (UCHAR *pucBuff, ULONG ulSize);
+
+        static ULONG   ulCalcFast    (UCHAR *pucBuff, const ULONG culSize);
         static ULONG   ulCalcFileFast(const tString &csFilePath);
 
-        static tString sFormatHex    (ULONG ulCrc32);   
+        static tString sFormatHex    (const ULONG culCrc32);
 
     private:
                        CxCrc32       ();
         virtual       ~CxCrc32       ();
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Crypt_CxCrc32H
+#endif //xLib_Crypt_CxCrc32H

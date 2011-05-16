@@ -51,24 +51,6 @@ CxTest_CxStdioFile::bUnit() {
     *
     *****************************************************************************/
 
-    //--------------------------------------------------
-    //bIsValid
-    {
-        CxStdioFile F;
-
-        m_bRes = F.bIsValid();
-        xASSERT(FALSE == m_bRes);
-
-        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
-        xASSERT(FALSE != m_bRes);
-
-        m_bRes = F.bIsValid();
-        xASSERT(FALSE != m_bRes);
-
-        m_bRes = F.bClose();
-        xASSERT(FALSE != m_bRes);
-    }
-
     //-------------------------------------
     //bOpen
     {
@@ -459,6 +441,69 @@ CxTest_CxStdioFile::bUnit() {
     *
     *****************************************************************************/
 
+    //--------------------------------------------------
+    //bIsValid
+    {
+        CxStdioFile F;
+
+        m_bRes = F.bIsValid();
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bIsValid();
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bClose();
+        xASSERT(FALSE != m_bRes);
+    }
+
+    //--------------------------------------------------
+    //bIsOpen
+    {
+        CxStdioFile F;
+
+        m_bRes = F.bIsOpen();
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bIsOpen();
+        xASSERT(TRUE == m_bRes);
+
+        m_bRes = F.bClose();
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bIsOpen();
+        xASSERT(FALSE == m_bRes);
+    }
+
+    //--------------------------------------------------
+    //bIsEmpty
+    {
+        CxStdioFile F;
+
+        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bIsEmpty();
+        xASSERT(TRUE == m_bRes);
+
+        m_iRes = F.iWrite(xT("%s"), xT("xxasdfascefaweo4i57y2390450c1mxr,-1345rt3458854hbvx"));
+        xASSERT(0 < m_iRes);
+
+        m_bRes = F.bIsEmpty();
+        xASSERT(FALSE == m_bRes);
+
+        m_bRes = F.bClear();
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bIsEmpty();
+        xASSERT(TRUE == m_bRes);
+    }
+
     //-------------------------------------
     //bIsEof
     {
@@ -838,6 +883,33 @@ CxTest_CxStdioFile::bUnit() {
         xASSERT(FALSE != m_bRes);
 
         xASSERT(usFileContent == usStr);
+    }
+
+    /****************************************************************************
+    *	other
+    *
+    *****************************************************************************/
+
+    //--------------------------------------------------
+    //bBackup
+    {
+        const LONG cliFileSize = 100;
+
+        {
+            CxStdioFile F;
+
+            m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinCreateReadWrite);
+            xASSERT(FALSE != m_bRes);
+
+            m_bRes = F.bResize(cliFileSize);
+            xASSERT(FALSE != m_bRes);
+        }
+
+        m_bRes = CxStdioFile::bBackup(csFilePath, sGetWorkDirPath() + CxConst::xSLASH + xT("./Backup_dir"), TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxStdioFile::bBackup(csFilePath, sGetWorkDirPath() + CxConst::xSLASH + xT("./Backup_dir"), FALSE);
+        xASSERT(FALSE != m_bRes);
     }
 
     return TRUE;
