@@ -122,7 +122,9 @@ CxStdioFile::pGet() const {
 //DONE: sGetPath (get file path)
 tString
 CxStdioFile::sGetPath() const {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), tString());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),              tString());
+    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(),    tString());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsExists(_m_sFilePath), tString());
 
     return _m_sFilePath;
 }
@@ -359,65 +361,6 @@ CxStdioFile::bClear() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
     return bResize(0L);
-}
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*   public: times
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-//DONE: bGetTime (get time)
-BOOL
-CxStdioFile::bGetTime(
-    time_t *pftCreate, time_t *pftAccess, time_t *pftModified
-)
-{
-    /*DEBUG*/// pftCreate - n/a
-    /*DEBUG*/// pftAccess - n/a
-    /*DEBUG*/// pftModified - n/a
-
-    struct stat stInfo = {0};
-
-    INT iRes = stat(sGetPath().c_str(), &stInfo);
-    /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
-
-    xCHECK_DO(NULL != pftCreate,   *pftCreate   = stInfo.st_ctime);
-    xCHECK_DO(NULL != pftAccess,   *pftAccess   = stInfo.st_atime);
-    xCHECK_DO(NULL != pftModified, *pftModified = stInfo.st_mtime);
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//TODO: bSetTime (set time)
-BOOL
-CxStdioFile::bSetTime(
-    const time_t &ctmCreate,
-    const time_t &ctmAccess,
-    const time_t &ctmModified
-)
-{
-    /*DEBUG*/// ctmCreate   - n/a
-    /*DEBUG*/// ctmAccess   - n/a
-    /*DEBUG*/// ctmModified - n/a
-
-#if defined(xOS_WIN)
-    //TODO: bSetTime
-
-#elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
-    utimbuf tbTimes;
-
-    tbTimes.actime  = ctmAccess;
-    tbTimes.modtime = ctmModified;
-
-    INT iRes = utime(sGetPath().c_str(), &tbTimes);
-    /*DEBUG*/xASSERT_RET(- 1 == iRes, FALSE);
-#endif
-
-    return TRUE;
 }
 //---------------------------------------------------------------------------
 
@@ -907,10 +850,16 @@ CxStdioFile::bWipe(
             bRes = sfFile.bResize(0L);
             /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
         }
-
-        //--------------------------------------------------
-        //TODO: random filetime
     }
+
+    //--------------------------------------------------
+    //reset filetime
+    const time_t ctmCreate   = 0;
+    const time_t ctmAccess   = 0;
+    const time_t ctmModified = 0;
+
+    bRes = bSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //--------------------------------------------------
     //random file name
@@ -1129,6 +1078,71 @@ CxStdioFile::ullGetLines(
 
     return ullRes;
 }
+//---------------------------------------------------------------------------
+//DONE: bGetTime (get time)
+/*static*/
+BOOL
+CxStdioFile::bGetTime(
+    const tString &csFilePath,
+    time_t        *ptmCreate,
+    time_t        *ptmAccess,
+    time_t        *ptmModified
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/// pftCreate - n/a
+    /*DEBUG*/// pftAccess - n/a
+    /*DEBUG*/// pftModified - n/a
+
+    struct stat stInfo = {0};
+
+    INT iRes = stat(csFilePath.c_str(), &stInfo);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+
+    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = stInfo.st_atime);
+    xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: bSetTime (set time)
+/*static */
+BOOL
+CxStdioFile::bSetTime(
+    const tString &csFilePath,
+    const time_t  &ctmCreate,
+    const time_t  &ctmAccess,
+    const time_t  &ctmModified
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/// ctmCreate   - n/a
+    /*DEBUG*/// ctmAccess   - n/a
+    /*DEBUG*/// ctmModified - n/a
+
+#if defined(xOS_WIN)
+    //TODO: bSetTime
+
+#elif defined(xOS_LINUX)
+    utimbuf tbTimes;
+
+    tbTimes.actime  = ctmAccess;
+    tbTimes.modtime = ctmModified;
+
+    INT iRes = utime(csFilePath.c_str(), &tbTimes);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*	public: text
+*
+*****************************************************************************/
+
 //--------------------------------------------------------------------------
 //DONE: bTextRead (read to tString)
 /*static*/
@@ -1348,6 +1362,14 @@ CxStdioFile::bTextWrite(
 
     return TRUE;
 }
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*	public: bin
+*
+*****************************************************************************/
+
 //---------------------------------------------------------------------------
 //DONE: bBinRead (read binary data)
 /*static*/

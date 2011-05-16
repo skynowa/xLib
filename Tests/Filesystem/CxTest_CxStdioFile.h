@@ -281,6 +281,35 @@ CxTest_CxStdioFile::bUnit() {
 
 
     /****************************************************************************
+    *	times
+    *
+    *****************************************************************************/
+
+    //--------------------------------------------------
+    //bGetTime, bSetTime
+    {
+        const time_t ctmCreate   = 10;
+        const time_t ctmAccess   = 20;
+        const time_t ctmModified = 30;
+
+        m_bRes = CxStdioFile::bSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
+        xASSERT(FALSE != m_bRes);
+
+        time_t tmCreate   = 0;
+        time_t tmAccess   = 0;
+        time_t tmModified = 0;
+
+        m_bRes = CxStdioFile::bGetTime(csFilePath, &tmCreate, &tmAccess, &tmModified);
+        xASSERT(FALSE       != m_bRes);
+        #if xTODO
+            xASSERT(ctmCreate   == tmCreate);
+        #endif
+        xASSERT(ctmAccess   == tmAccess);
+        xASSERT(ctmModified == tmModified);
+    }
+
+
+    /****************************************************************************
     *	formatted input/output
     *
     *****************************************************************************/

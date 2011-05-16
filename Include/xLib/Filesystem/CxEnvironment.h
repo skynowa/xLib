@@ -9,42 +9,25 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Fso_CxEnvironmentH
-#define xLib_Fso_CxEnvironmentH
+#ifndef xLib_Filesystem_CxEnvironmentH
+#define xLib_Filesystem_CxEnvironmentH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxEnvironment : public CxNonCopyable {
     public:
         static BOOL    bIsExists          (const tString &csVarName);
-           static tString sGetVar              (const tString &csVarName);
-        static BOOL    bSetVar              (const tString &csVarName, const tString &csValue);
+        static tString sGetVar            (const tString &csVarName);
+        static BOOL    bSetVar            (const tString &csVarName, const tString &csValue);
         static BOOL    bDeleteVar         (const tString &csVarName);
-        static BOOL    bGetValues         (std::vector<tString> *pvecsValues);
+        static BOOL    bGetValues         (std::vector<tString> *pvsValues);
         static tString sExpandStrings     (const tString &csvVar);
         static tString sGetCommandLine    ();
-        static BOOL    bGetCommandLineArgs(std::vector<tString> *pvecsArgs);
+        static BOOL    bGetCommandLineArgs(std::vector<tString> *pvsArgs);
 
     private:
                        CxEnvironment      ();
         virtual       ~CxEnvironment      ();
 };
 //---------------------------------------------------------------------------
-#endif //xLib_Fso_CxEnvironmentH
-
-
-/*
-    Linux (printenv)
-*/
-
-/*
-size_t
-CxCgi::ulGetEnvironStringCount() {
-    size_t uiRes = 0;
-
-  for (size_t i = 0; _environ[i]; i ++) {
-      ++ uiRes;
-  }
-
-    return uiRes;
-}*/
+#endif //xLib_Filesystem_CxEnvironmentH
