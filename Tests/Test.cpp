@@ -127,8 +127,8 @@ _tmain(INT argc, TCHAR *argv[]) {
 
     //--------------------------------------------------
     //settings
-    const ULONGLONG cullTimesForAll    = 10000000;
-    const ULONGLONG cullTimesForSingle = 10;
+    const ULONGLONG cullTimesForAll    = 1;
+    const ULONGLONG cullTimesForSingle = 1;
 
     BOOL bRes = FALSE;
 

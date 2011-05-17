@@ -1138,7 +1138,7 @@ CxStdioFile::bSetTime(
 
     CxFile flFile;
 
-    bRes = flFile.bOpen(csFilePath, CxFile::grRead, CxFile::smRead, CxFile::cfOpenExisting, CxFileAttribute::faNormal);
+    bRes = flFile.bOpen(csFilePath, CxFile::grWrite, CxFile::smWrite, CxFile::cfOpenExisting, CxFileAttribute::faNormal);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     bRes = flFile.bSetTime(ftCreate, ftAccess, ftModified);

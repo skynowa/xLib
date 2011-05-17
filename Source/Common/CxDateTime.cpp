@@ -285,7 +285,7 @@ CxDateTime::operator = (
 }
 //--------------------------------------------------------------------------
 //DONE: operator = ()
-#if (xOS_WIN && xCOMPILER_CODEGEAR)
+#if defined(xOS_WIN) && defined(xCOMPILER_CODEGEAR)
 const CxDateTime &
 CxDateTime::operator = (
     const TDateTime &cdtDT
@@ -756,11 +756,24 @@ CxDateTime::bUnixTimeToFileTime(
     /*DEBUG*/// ctmTime - n/a
     /*DEBUG*/xASSERT_RET(NULL != pftFileTime, FALSE);
 
-    LONGLONG llRes = 0LL;
+    ////////LONGLONG llRes = 0LL;
 
-    llRes = Int32x32To64(ctmUnixTime, 10000000) + 116444736000000000;
-    pftFileTime->dwLowDateTime  = static_cast<ULONG>( llRes );
-    pftFileTime->dwHighDateTime = llRes >> 32;
+    ////////llRes = Int32x32To64(ctmUnixTime, 10000000) + 116444736000000000;
+    ////////pftFileTime->dwLowDateTime  = static_cast<ULONG>( llRes );
+    ////////pftFileTime->dwHighDateTime = llRes >> 32;
+    
+    
+
+
+    LARGE_INTEGER li = {0}; 
+    time_t tmUnixTime = ctmUnixTime;
+       
+    tmUnixTime *= 10000000;
+    li.QuadPart = ctmUnixTime;
+    
+    pftFileTime->dwLowDateTime  = li.LowPart;
+    pftFileTime->dwHighDateTime = li.HighPart;
+
 
     return TRUE;
 }

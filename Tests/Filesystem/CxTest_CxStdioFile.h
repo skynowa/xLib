@@ -299,9 +299,9 @@ CxTest_CxStdioFile::bUnit() {
     //--------------------------------------------------
     //bGetTime, bSetTime
     {
-        const time_t ctmCreate   = 10;
-        const time_t ctmAccess   = 20;
-        const time_t ctmModified = 30;
+        const time_t ctmCreate   = 1000000;
+        const time_t ctmAccess   = 2000000;
+        const time_t ctmModified = 3000000;
 
         m_bRes = CxStdioFile::bSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
         xASSERT(FALSE != m_bRes);

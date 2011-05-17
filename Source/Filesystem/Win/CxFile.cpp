@@ -299,10 +299,10 @@ CxFile::bGetTime(FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified
 //---------------------------------------------------------------------------
 //TODO: bSetTime
 BOOL
-CxFile::bSetTime(const FILETIME &cpftCreate, const FILETIME &cftAccess, const FILETIME &cftModified) {
+CxFile::bSetTime(const FILETIME &cftCreate, const FILETIME &cftAccess, const FILETIME &cftModified) {
     /*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
 
-    _m_bRes = ::SetFileTime(m_hHandle, &pftCreate, &pftAccess, &pftModified);
+    _m_bRes = ::SetFileTime(m_hHandle, &cftCreate, &cftAccess, &cftModified);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -636,7 +636,7 @@ CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
 
             //-------------------------------------
             //������ ��������
-            bRes = flFile.bSetTime(&ftCreationTime, &ftLastAccessTime, &ftLastWriteTime);
+            bRes = flFile.bSetTime(ftCreationTime, ftLastAccessTime, ftLastWriteTime);
             /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
         }
 

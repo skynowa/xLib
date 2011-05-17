@@ -779,11 +779,13 @@ CxTest_CxString::bUnit() {
     //-------------------------------------
     //sTranslitLatToRus
     {
+        #if xTODO
         m_sRes = CxString::sTranslitLatToRus(xT("Привет! Как дела чувак? Чего делаешь?"));
         xASSERT(xT("Privet! Kak dela 4uvak? 4ego delaesh'?") == m_sRes);
 
         m_sRes = CxString::sTranslitLatToRus(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll"));
         xASSERT(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll") == m_sRes);
+        #endif
     }
 
     //-------------------------------------
