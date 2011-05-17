@@ -54,6 +54,9 @@ CxTest_CxFileAttribute::bUnit() {
     //--------------------------------------------------
     //prepare
     {
+        m_bRes = CxStdioFile::bDelete(csFilePath);
+        xASSERT_MSG(FALSE != m_bRes, csFilePath);
+
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);

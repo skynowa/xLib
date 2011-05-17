@@ -1123,7 +1123,7 @@ CxStdioFile::bSetTime(
 
 #if defined(xOS_WIN)
     BOOL     bRes     = FALSE;
-    
+
     FILETIME ftCreate = {0};
     bRes = CxDateTime::bUnixTimeToFileTime(ctmCreate, &ftCreate);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -1131,17 +1131,17 @@ CxStdioFile::bSetTime(
     FILETIME ftAccess = {0};
     bRes = CxDateTime::bUnixTimeToFileTime(ctmAccess, &ftAccess);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-        
+
     FILETIME ftModified = {0};
     bRes = CxDateTime::bUnixTimeToFileTime(ctmModified, &ftModified);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    
+
     CxFile flFile;
-    
-    bRes = flFile.bOpen(csFilePath, CxFile::grRead,  CxFile::smRead, CxFile::cfOpenExisting, CxFileAttribute::faNormal); 
+
+    bRes = flFile.bOpen(csFilePath, CxFile::grRead, CxFile::smRead, CxFile::cfOpenExisting, CxFileAttribute::faNormal);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    
-    bRes = flFile.bSetTime(&ftCreate, &ftAccess, &ftModified);
+
+    bRes = flFile.bSetTime(ftCreate, ftAccess, ftModified);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
 #elif defined(xOS_LINUX)

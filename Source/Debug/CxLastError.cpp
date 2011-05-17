@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: ulGet (Retrieves the calling thread's last-error code value)
+//DONE: ulGet (Retrieves the calling thread's last-error code value)
 /*static*/
 ULONG
 CxLastError::ulGet() {
@@ -39,23 +39,26 @@ CxLastError::ulGet() {
     return ulCode;
 }
 //---------------------------------------------------------------------------
-//TODO: bSet (Sets the last-error code for the calling thread)
+//DONE: bSet (Sets the last-error code for the calling thread)
 /*static*/
 BOOL
-CxLastError::bSet(ULONG ulCode) {
+CxLastError::bSet(
+    const ULONG culCode
+)
+{
     /*DEBUG*/// ulCode - n/a
 
 #if defined(xOS_WIN)
-    (VOID)::SetLastError(ulCode);
+    (VOID)::SetLastError(culCode);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    errno = static_cast<INT>( ulCode );
+    errno = static_cast<INT>( culCode );
 #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bReset (set last-error code to 0)
+//DONE: bReset (set last-error code to 0)
 /*static*/
 BOOL
 CxLastError::bReset() {
@@ -66,10 +69,13 @@ CxLastError::bReset() {
     return bSet(culCodeSuccess);
 }
 //---------------------------------------------------------------------------
-//TODO: sFormat (get last error as string)
+//DONE: sFormat (get last error as string)
 /*static*/
 tString
-CxLastError::sFormat(ULONG ulCode) {
+CxLastError::sFormat(
+    const ULONG culCode
+)
+{
     /*DEBUG*/// ulCode - n/a
 
     tString sRes;
@@ -82,15 +88,15 @@ CxLastError::sFormat(ULONG ulCode) {
     ulRes = ::FormatMessage(
                     FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                     NULL,
-                    ulCode,
-                    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),  // lang by default
+                    culCode,
+                    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
                     reinterpret_cast<LPTSTR>( &pvBuff ),
                     0,
                     NULL
     );
 
     //317 - "Не удается найти текст сообщения с номером 0x%1 в файле сообщений %2."
-    xCHECK_RET(317 == ulGet(), xT("Unknown error"));     
+    xCHECK_RET(317 == ulGet(), xT("Unknown error"));
     /*DEBUG*/xASSERT_RET(0 != ulRes, tString());
 
     sRes = CxString::sRemoveEol(tString(static_cast<LPCTSTR>(pvBuff), ulRes));
@@ -98,22 +104,7 @@ CxLastError::sFormat(ULONG ulCode) {
     hRes = ::LocalFree(pvBuff);
     /*DEBUG*/xASSERT_RET(NULL == hRes, tString());
 #elif defined(xOS_LINUX)
-    //not thread safe - not thread safe
-    {
-        sRes.assign( strerror( static_cast<INT>(ulCode) ) );
-    }
-
-    //strerror_r - thread safe
-    {
-        ////INT iRes = - 1;
-
-        ////sRes.resize(256);
-
-        ////iRes = strerror_r(static_cast<INT>(ulCode), &sRes.at(0), sRes.size());
-        /////*DEBUG*/xASSERT_RET(- 1 != iRes, tString());
-
-        ////sRes.assign(sRes.c_str());
-    }
+    sRes.assign( strerror( static_cast<INT>(culCode) ) );
 #endif
 
     return sRes;
@@ -127,13 +118,13 @@ CxLastError::sFormat(ULONG ulCode) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxLastError (constructor)
+//DONE: CxLastError (constructor)
 CxLastError::CxLastError() {
     /*DEBUG*/// n/a
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxLastError (destructor)
+//DONE: ~CxLastError (destructor)
 /*virtual*/
 CxLastError::~CxLastError() {
     /*DEBUG*/// n/a

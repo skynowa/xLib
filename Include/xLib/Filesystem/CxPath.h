@@ -9,8 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Fso_CxPathH
-#define xLib_Fso_CxPathH
+#ifndef xLib_Filesystem_CxPathH
+#define xLib_Filesystem_CxPathH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
@@ -57,22 +57,11 @@ class CxPath : public CxNonCopyable {
         virtual       ~CxPath       ();
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Fso_CxPathH
+#endif //xLib_Filesystem_CxPathH
 
-//static tString sGetRelativePath     (const tString &csFilePath); /*-*/
-//
-/*
-//---------------------------------------------------------------------------
-//TODO:   convert path separators to forward slashes
-void convert_path_separators(tString &s) {
-    for (tString::iterator itr = s.begin(); itr != s.end(); ++ itr) {
-        if (*itr == xT('\\') || *itr == xT('!')) {
-            *itr = xT('/');
-        }
-    }
-}
-//---------------------------------------------------------------------------
-*/
-/*ExpandUNCFileName    ���������� ������ ��� ����� �� ������� �����.*/
-/*ExtractShortPathName    ������������ ������� ��� ����� � ������ DOS.*/
-/*ProcessPath    ��������� �� ������� ����� ����� ��� �����, ��� �������� � ��� �����.*/
+
+//static tString sGetRelativePath     (const tString &csFilePath);
+
+/*ExpandUNCFileName*/
+/*ExtractShortPathName*/
+/*ProcessPath*/

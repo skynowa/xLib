@@ -9,8 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Fso_CxDllH 
-#define xLib_Fso_CxDllH
+#ifndef xLib_Filesystem_CxDllH
+#define xLib_Filesystem_CxDllH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
@@ -34,7 +34,7 @@ class CxDll : public CxNonCopyable {
         BOOL     bFree           ();
 };
 //---------------------------------------------------------------------------
-#endif //xLib_Fso_CxDllH
+#endif //xLib_Filesystem_CxDllH
 
 /*
 FARPROC is defined something like:

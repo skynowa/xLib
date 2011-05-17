@@ -30,6 +30,15 @@ class CxDebugger : public CxNonCopyable {
 
         //MessageBeep
 
+        template<class T>
+        static VOID  vStdVectorPrintT  (const std::vector<T> &cvecT);
+
+        template<class T1, class T2>
+        static VOID  vStdMapPrintT     (const std::map<T1, T2> &cmapT);
+
+        template<class T1, class T2>
+        static VOID  vStdMultiMapPrintT(const std::multimap<T1, T2> &cmmapT);
+
     private:
         static BOOL  _ms_bIsEnabled;
 
@@ -46,8 +55,9 @@ class CxDebugger : public CxNonCopyable {
         static BOOL  bLoggingHtml (const CxReport &crpReport);
 };
 //---------------------------------------------------------------------------
+#include <Debug/CxDebugger.inl>
+//---------------------------------------------------------------------------
 #endif    //xLib_Debug_CxDebuggerH
-
 
 
 //http://www.csharp-examples.net/string-format-datetime/

@@ -9,35 +9,34 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Fso_CxDriveH
-#define xLib_Fso_CxDriveH
+#ifndef xLib_Filesystem_Win_CxDriveH
+#define xLib_Filesystem_Win_CxDriveH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxDrive : public CxNonCopyable {
     public:
-        //���� ������
-        typedef enum {
-            dtUnknown   = DRIVE_UNKNOWN,        //The drive type cannot be determined
-            dtNoRoot    = DRIVE_NO_ROOT_DIR,    //The root path is invalid
-            dtRemovable = DRIVE_REMOVABLE,        //The drive has removable media
-            dtFixed     = DRIVE_FIXED,            //The drive has fixed media
-            dtRemote    = DRIVE_REMOTE,            //The drive is a remote (network) drive
-            dtCdRom     = DRIVE_CDROM,            //The drive is a CD-ROM drive
-            dtRam       = DRIVE_RAMDISK         //The drive is a RAM disk
-        } EType;    
+        enum EType {
+            dtUnknown   = DRIVE_UNKNOWN,
+            dtNoRoot    = DRIVE_NO_ROOT_DIR,
+            dtRemovable = DRIVE_REMOVABLE,
+            dtFixed     = DRIVE_FIXED,
+            dtRemote    = DRIVE_REMOTE,
+            dtCdRom     = DRIVE_CDROM,
+            dtRam       = DRIVE_RAMDISK
+        };
 
         //static BOOL    bIsExists   (const tString &csDirPath);
-        static BOOL    bIsReady                            (const tString &csDrivePath); 
-        static BOOL    bIsEmpty                            (const tString &csDrivePath); 
-        static BOOL    bGetFreeSpace                    (const tString &csDirPath, ULONGLONG *pullFreeBytesAvailable, ULONGLONG *pullTotalBytes, ULONGLONG *pullTotalFreeBytes); 
-        static BOOL    bDefineDosDevice                    (ULONG ulFlags, const tString &csDeviceName, const tString &csTargetPath);    
+        static BOOL    bIsReady                         (const tString &csDrivePath);
+        static BOOL    bIsEmpty                         (const tString &csDrivePath);
+        static BOOL    bGetFreeSpace                    (const tString &csDirPath, ULONGLONG *pullFreeBytesAvailable, ULONGLONG *pullTotalBytes, ULONGLONG *pullTotalFreeBytes);
+        static BOOL    bDefineDosDevice                 (ULONG ulFlags, const tString &csDeviceName, const tString &csTargetPath);
         static BOOL    bDeleteVolumeMountPoint          (const tString &csVolumeMountPoint);
         static HANDLE  hFindFirstVolume                 (tString *psVolumeName);
         static HANDLE  hFindFirstVolumeMountPoint       (const tString &csRootPathName, tString *psVolumeMountPoint);
-        static tString sFindNextVolume                    (HANDLE hFindVolume);
+        static tString sFindNextVolume                  (HANDLE hFindVolume);
         static BOOL    bFindNextVolumeMountPoint        (HANDLE hFindVolumeMountPoint, tString *psVolumeMountPoint);
-        static BOOL    bFindVolumeClose                    (HANDLE hFindVolume);
+        static BOOL    bFindVolumeClose                 (HANDLE hFindVolume);
         static BOOL    bFindVolumeMountPointClose       (HANDLE hFindVolumeMountPoint);
         static EType   dtGetType                        (const tString &csDrivePath);
         static BOOL    bGetLogicalDrives                (std::vector<tString> *vecsDrives);
@@ -59,8 +58,8 @@ class CxDrive : public CxNonCopyable {
 
 
     private:
-                       CxDrive                            ();
-                      ~CxDrive                            ();
+                       CxDrive                          ();
+        virtual       ~CxDrive                          ();
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Fso_CxDriveH
+#endif //xLib_Filesystem_Win_CxDriveH

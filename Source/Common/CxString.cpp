@@ -25,7 +25,10 @@
 //DONE: sBoolToStr
 /*static*/
 tString
-CxString::sBoolToStr(const BOOL cbBool) {
+CxString::sBoolToStr(
+    const BOOL cbBool
+)
+{
     /*DEBUG*/// bBool - n/a
 
     return (FALSE == cbBool) ? xT("FALSE") : xT("TRUE");
@@ -143,7 +146,7 @@ CxString::sReplaceAll(
     tString sRes;
     sRes.assign(csStr);
 
-    std::size_t uiPos = 0;
+    size_t uiPos = 0;
 
     for ( ;; ) {
         uiPos = sRes.find(csOldStr, uiPos);
@@ -193,7 +196,7 @@ BOOL
 CxString::bSplit(
     const tString        &csStr,
     const tString        &csSep,
-    std::vector<tString> *pvecsOut
+    std::vector<tString> *pvsOut
 )
 {
     /*DEBUG*/// csStr    - n/a
@@ -202,21 +205,24 @@ CxString::bSplit(
 
     xCHECK_RET(true == csStr.empty(), TRUE);
     xCHECK_RET(true == csSep.empty(), TRUE);
-    xCHECK_RET(NULL == pvecsOut,      FALSE);
+    xCHECK_RET(NULL == pvsOut,        FALSE);
 
-    std::size_t uiPrevPos = 0;     //start of string
-    std::size_t uiPos     = 0;
+    std::vector<tString> vsRes;
+    size_t               uiPrevPos = 0;     //start of string
+    size_t               uiPos     = 0;
 
-    (*pvecsOut).clear();
     for ( ; ; ) {
         uiPos = csStr.find(csSep, uiPrevPos);
         xCHECK_DO(tString::npos == uiPos, break);
 
-        (*pvecsOut).push_back(csStr.substr(uiPrevPos, uiPos - uiPrevPos));
+        vsRes.push_back(csStr.substr(uiPrevPos, uiPos - uiPrevPos));
 
         uiPrevPos = uiPos + csSep.size();
     }
-    (*pvecsOut).push_back( csStr.substr(uiPrevPos, csStr.size() - uiPrevPos) );
+    vsRes.push_back( csStr.substr(uiPrevPos, csStr.size() - uiPrevPos) );
+
+    //out
+    std::swap(*pvsOut, vsRes);
 
     return TRUE;
 }
@@ -225,7 +231,7 @@ CxString::bSplit(
 /*static*/
 tString
 CxString::sJoin(
-    const std::vector<tString> &cvecsVec,
+    const std::vector<tString> &cvsVec,
     const tString              &csSep
 )
 {
@@ -234,10 +240,10 @@ CxString::sJoin(
 
     tString sRes;
 
-    for (std::vector<tString>::const_iterator it = cvecsVec.begin(); it != cvecsVec.end(); ++ it) {
+    for (std::vector<tString>::const_iterator it = cvsVec.begin(); it != cvsVec.end(); ++ it) {
         sRes.append(*it);
 
-        xCHECK_DO(it < cvecsVec.end() - 1, sRes.append(csSep));
+        xCHECK_DO(it < cvsVec.end() - 1, sRes.append(csSep));
     }
 
     return sRes;
@@ -247,14 +253,14 @@ CxString::sJoin(
 /*static*/
 tString
 CxString::sJoin(
-    const std::vector<tString> &cvecsVec,
+    const std::vector<tString> &cvsVec,
     const TCHAR                 cchSep
 )
 {
     /*DEBUG*/// cvecsVec - n/a
     /*DEBUG*/// csSep    - n/a
 
-    return sJoin(cvecsVec, tString(1, cchSep));
+    return sJoin(cvsVec, tString(1, cchSep));
 }
 //---------------------------------------------------------------------------
 //DONE: sCut
@@ -270,8 +276,8 @@ CxString::sCut(
     /*DEBUG*/// csLeftSep  - n/a
     /*DEBUG*/// csRightSep - n/a
 
-    std::size_t uiStartDelimPos = 0;
-    std::size_t uiStopDelimPos  = 0;
+    size_t uiStartDelimPos = 0;
+    size_t uiStopDelimPos  = 0;
 
     uiStartDelimPos = csStr.find(csLeftSep);
     xCHECK_RET(tString::npos == uiStartDelimPos, tString());
@@ -306,7 +312,7 @@ CxString::sCut(
     xCHECK_RET(true        == csStr.empty(), tString());
     xCHECK_RET(cuiStartPos >  cuiEndPos,     tString());
 
-    std::size_t uiSize = ( (std::string::npos == cuiEndPos) ? (csStr.size()) : (cuiEndPos) ) - cuiStartPos/* + 1*/;
+    size_t uiSize = ( (std::string::npos == cuiEndPos) ? (csStr.size()) : (cuiEndPos) ) - cuiStartPos/* + 1*/;
 
     return csStr.substr(cuiStartPos, uiSize);
 }
@@ -522,8 +528,8 @@ CxString::sMinimize(
 )
 {
     /*DEBUG*/// n/a
-    xCHECK_RET(true      == csStr.empty(), tString());
-    xCHECK_RET(0         == cuiMaxLen,     tString());
+    xCHECK_RET(true == csStr.empty(), tString());
+    xCHECK_RET(0    == cuiMaxLen,     tString());
 
     tString sRes;
 
@@ -632,7 +638,7 @@ CxString::sTranslitLatToRus(
     tString sRes;
     sRes.assign(csStr);
 
-    for (std::size_t i = 0; i < xARRAY_SIZE(csDict); ++ i) {
+    for (size_t i = 0; i < xARRAY_SIZE(csDict); ++ i) {
         sRes.assign( sReplaceAll(sRes, csDict[i][0], csDict[i][1]) );
     }
 
@@ -858,7 +864,7 @@ CxString::asCharToOemBuff(
     bRes = ::CharToOemBuff(csSrc.c_str(), &asDst.at(0), asDst.size());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string());
 #elif defined(xOS_LINUX)
-    //TODO: (xOS_LINUX)
+    //TODO: (asCharToOemBuff)
     xNOT_IMPLEMENTED_RET(std::string());
 #endif
 
@@ -869,7 +875,7 @@ CxString::asCharToOemBuff(
 /*static*/
 tString
 CxString::sOemToCharBuff(
-        const std::string &csSrc
+    const std::string &csSrc
 )
 {
     tString sDst;

@@ -22,8 +22,8 @@
 #define xWIN32_VISTA 0x0600    //Windows Vista, Windows Server 2008
 #define xWIN32_7     0x0601    //Windows 7, Windows Server 2008 R2
 //---------------------------------------------------------------------------
-//Remove pointless warning messages
-#if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
+#if (xCOMPILER_MINGW32 || xCOMPILER_MS)
+    //Remove pointless warning messages
     ////#pragma warning (disable : 4511)    //copy operator could not be generated
     ////#pragma warning (disable : 4512)    //assignment operator could not be generated
     ////#pragma warning (disable : 4702)    //unreachable code (bugs in Microsoft's STL)
@@ -41,99 +41,29 @@
         #define _WIN32_WINNT 0x0600
     #endif
 
-    #ifdef WINVER
+    #if WINVER
         #undef  WINVER
         #define WINVER 0x0600
     #else
         #define WINVER 0x0600
     #endif
 
-    #ifdef _WIN32_WINNT
+    #if _WIN32_WINNT
         #undef  _WIN32_WINNT
         #define _WIN32_WINNT 0x0600
     #else
         #define _WIN32_WINNT 0x0600
     #endif
 
-#endif // _MSC_VER || __MINGW32__
+#endif //xCOMPILER_MINGW32 || xCOMPILER_MS
 
-#if defined(xCOMPILER_CODEGEAR)
-    #pragma option -w-8027                //function not expanded inline
-    #pragma option -w-8057                //parameter is never used
-    #pragma option -w-8058                //cannot create pre-compiled header: initialized data in header
-    #pragma option -w-8004                 //is assigned a value that is never used
-    #pragma option -w-8022                 //hides virtual function 'Image::Clone()'
-    #pragma option -w-8008                 //Condition is always true
-
-    #define xD2S(s)     tString((s).c_str())
-    #define xD2AS(s)    tString((s).t_str())
-    #define xS2D(s)     String((s).c_str())
-    #define xD2WD(s)    WideString((s))
-
-    //xTRY_BOOL
-    #define xTRY_BOOL    \
-                BOOL bRes = FALSE;  \
-                try    {                \
-                    {
-
-    #define xCATCH_BOOL_RET    \
-                    }    \
-                    bRes = TRUE;    \
-                } \
-                catch (Exception &e) {    \
-                    xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
-                }                             \
-                catch (std::exception e) {   \
-                    std::string asWhat = e.what();    \
-                    xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
-                }    \
-                catch (...) {    \
-                    xASSERT_MSG(FALSE, xT("Uknown error"));    \
-                }    \
-                return bRes;
-
-    //xTRY_LONG
-    #define xTRY_LONG(ret_error_value)    LONG liRes = ret_error_value;  \
-                try    {                \
-                    {                \
-                        liRes =         \
-
-    #define xCATCH_LONG_RET    \
-                    }    \
-                }    \
-                catch (Exception &e) {    \
-                    xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
-                }    \
-                catch (std::exception e) {    \
-                    std::string asWhat = e.what();    \
-                    xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
-                }    \
-                catch (...) {    \
-                    xASSERT_MSG(FALSE, xT("Uknown error"));    \
-                }    \
-                return liRes;
-
-    //xTRY_VARIANT
-    #define xTRY_VARIANT(ret_error_value)    Variant vRes = ret_error_value;  \
-                try    {                \
-                    {                \
-                        vRes =         \
-
-    #define xCATCH_VARIANT_RET    \
-                    }    \
-                }    \
-                catch (Exception &e) {    \
-                    xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
-                }    \
-                catch (std::exception e) {    \
-                    std::string asWhat = e.what();    \
-                    xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
-                }    \
-                catch (...) {    \
-                    xASSERT_MSG(FALSE, xT("Uknown error"));    \
-                }    \
-                return vRes;
-
+#if (xCOMPILER_CODEGEAR)
+    #pragma option -w-8027  //function not expanded inline
+    #pragma option -w-8057  //parameter is never used
+    #pragma option -w-8058  //cannot create pre-compiled header: initialized data in header
+    #pragma option -w-8004  //is assigned a value that is never used
+    #pragma option -w-8022  //hides virtual function 'Image::Clone()'
+    #pragma option -w-8008  //Condition is always true
 #endif //xCOMPILER_CODEGEAR
 //---------------------------------------------------------------------------
 //OBM_ (#include <winuser.h>)
@@ -154,11 +84,14 @@
 #include <windowsx.h>
 #include <winuser.h>
 #include <Objbase.h>
-////#include <shellapi.h>
-////#include <registry.hpp>
+
+#if (xOS_WIN && xCOMPILER_CODEGEAR)
+    #include <vcl.h>
+    #include <registry.hpp>
+#endif
 //---------------------------------------------------------------------------
 //For compilers lacking Win64 support
-#if xTEMP_DISABLED
+#if xTODO
     #ifndef  GetWindowLongPtr
         #define GetWindowLongPtr   GetWindowLong
         #define SetWindowLongPtr   SetWindowLong
@@ -191,7 +124,7 @@
     #define STRICT 1
 #endif
 
-//For Visual Studio 6 (without an updated platform SDK) and Dev-C++
+//for Visual Studio 6 (without an updated platform SDK) and Dev-C++
 #ifndef OPENFILENAME_SIZE_VERSION_400
     #define OPENFILENAME_SIZE_VERSION_400 sizeof(OPENFILENAME)
 #endif

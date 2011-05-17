@@ -9,8 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Fso_CxIniH
-#define xLib_Fso_CxIniH
+#ifndef xLib_Filesystem_Win_CxIniH
+#define xLib_Filesystem_Win_CxIniH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
@@ -63,4 +63,4 @@ class CxIni : public CxNonCopyable {
         tString          _m_sFilePath;
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Fso_CxIniH
+#endif //xLib_Filesystem_Win_CxIniH

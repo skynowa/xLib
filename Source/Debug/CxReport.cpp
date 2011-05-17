@@ -28,9 +28,9 @@
 CxReport::CxReport(
         const EType   &crtType,
         const tString &csExp,
-        ULONG          ulLastError,
+        const ULONG    culLastError,
         const tString &csFile,
-        ULONG          ulLine,
+        const ULONG    culLine,
         const tString &csFunc,
         const tString &csDate,
         const tString &csTime,
@@ -55,7 +55,7 @@ CxReport::CxReport(
 {
     /*DEBUG*/
 
-    _bInitVars(crtType, csExp, ulLastError, csFile, ulLine, csFunc, csDate, csTime, csComment.c_str());
+    _bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csComment.c_str());
 
     switch (crtType) {
         case rtMsgboxPlain:  { _bInitPlain(); }    break;
@@ -73,9 +73,9 @@ CxReport::CxReport(
 CxReport::CxReport(
         const EType   &crtType,
         const tString &csExp,
-        ULONG          ulLastError,
+        const ULONG    culLastError,
         const tString &csFile,
-        ULONG          ulLine,
+        const ULONG    culLine,
         const tString &csFunc,
         const tString &csDate,
         const tString &csTime,
@@ -108,7 +108,7 @@ CxReport::CxReport(
     sComment = CxString::sFormatV(pcszComment, palArgs);
     va_end(palArgs);
 
-    _bInitVars(crtType, csExp, ulLastError, csFile, ulLine, csFunc, csDate, csTime, sComment.c_str());
+    _bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment.c_str());
 
     switch (crtType) {
         case rtMsgboxPlain:  { _bInitPlain(); }  break;
@@ -269,9 +269,9 @@ BOOL
 CxReport::_bInitVars(
     const EType   &crtType,
     const tString &csExp,
-    ULONG          ulLastError,
+    const ULONG    culLastError,
     const tString &csFile,
-    ULONG          ulLine,
+    const ULONG    culLine,
     const tString &csFunc,
     const tString &csDate,
     const tString &csTime,
@@ -286,11 +286,11 @@ CxReport::_bInitVars(
     _m_ulThreadId      = 0;  //TODO: ulThreadId
 
     _m_sSourceFile     = csFile;
-    _m_ulSourceLine    = ulLine;
+    _m_ulSourceLine    = culLine;
     _m_sFunctionName   = csFunc;
     _m_sExpression     = csExp;
-    _m_ulLastError     = ulLastError;
-    _m_sLastErrorStr   = CxString::sFormat(xT("%u - \"%s\""), ulLastError, CxLastError::sFormat(ulLastError).c_str());
+    _m_ulLastError     = culLastError;
+    _m_sLastErrorStr   = CxString::sFormat(xT("%u - \"%s\""), culLastError, CxLastError::sFormat(culLastError).c_str());
 
     _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
     _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());

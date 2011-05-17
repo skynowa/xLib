@@ -103,7 +103,7 @@ class CxMacros : CxNonCopyable {
         }
 
         //TODO: xClamp
-        #if xTEMP_DISABLED
+        #if xTODO
             template <class T>
             static inline
             const
@@ -197,6 +197,80 @@ class CxMacros : CxNonCopyable {
 
         #define xGET_X_LPARAM(lp)    ( (INT)(SHORT)LOWORD(lp) )
         #define xGET_Y_LPARAM(lp)    ( (INT)(SHORT)HIWORD(lp) )
+
+
+        #if (xCOMPILER_CODEGEAR)
+            #define xD2S(s)   tString((s).c_str())
+            #define xD2AS(s)  tString((s).t_str())
+            #define xS2D(s)   String((s).c_str())
+            #define xD2WD(s)  WideString((s))
+
+            //xTRY_BOOL
+            #define xTRY_BOOL    \
+                        BOOL bRes = FALSE;  \
+                        try    {                \
+                            {
+
+            #define xCATCH_BOOL_RET    \
+                            }    \
+                            bRes = TRUE;    \
+                        } \
+                        catch (Exception &e) {    \
+                            xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
+                        }                             \
+                        catch (std::exception e) {   \
+                            std::string asWhat = e.what();    \
+                            xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
+                        }    \
+                        catch (...) {    \
+                            xASSERT_MSG(FALSE, xT("Uknown error"));    \
+                        }    \
+                        return bRes;
+
+            //xTRY_LONG
+            #define xTRY_LONG(ret_error_value)    LONG liRes = ret_error_value;  \
+                        try    {                \
+                            {                \
+                                liRes =         \
+
+            #define xCATCH_LONG_RET    \
+                            }    \
+                        }    \
+                        catch (Exception &e) {    \
+                            xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
+                        }    \
+                        catch (std::exception e) {    \
+                            std::string asWhat = e.what();    \
+                            xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
+                        }    \
+                        catch (...) {    \
+                            xASSERT_MSG(FALSE, xT("Uknown error"));    \
+                        }    \
+                        return liRes;
+
+            //xTRY_VARIANT
+            #define xTRY_VARIANT(ret_error_value)    Variant vRes = ret_error_value;  \
+                        try    {                \
+                            {                \
+                                vRes =         \
+
+            #define xCATCH_VARIANT_RET    \
+                            }    \
+                        }    \
+                        catch (Exception &e) {    \
+                            xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
+                        }    \
+                        catch (std::exception e) {    \
+                            std::string asWhat = e.what();    \
+                            xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
+                        }    \
+                        catch (...) {    \
+                            xASSERT_MSG(FALSE, xT("Uknown error"));    \
+                        }    \
+                        return vRes;
+
+        #endif //xCOMPILER_CODEGEAR
+
 
     private:
                 CxMacros();

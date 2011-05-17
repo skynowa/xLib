@@ -18,10 +18,10 @@
 //---------------------------------------------------------------------------
 class CxTest_CxStdioFile : public CxTest {
 	public:
-		CxTest_CxStdioFile();
-		virtual     ~CxTest_CxStdioFile();
+		         CxTest_CxStdioFile();
+		virtual ~CxTest_CxStdioFile();
 
-		virtual     BOOL bUnit();
+		virtual  BOOL bUnit();
 
 	private:
 };
@@ -44,6 +44,17 @@ CxTest_CxStdioFile::~CxTest_CxStdioFile() {
 BOOL
 CxTest_CxStdioFile::bUnit() {
     const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+
+
+    /****************************************************************************
+    *	prepare
+    *
+    *****************************************************************************/
+
+    {
+        m_bRes = CxStdioFile::bDelete(csFilePath);
+        xASSERT(FALSE != m_bRes);
+    }
 
 
     /****************************************************************************

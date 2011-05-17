@@ -44,36 +44,37 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-////#define _POSIX_SOURCE 1
+#if xTODO
+    #define _POSIX_SOURCE 1
+#endif
 
 #if !defined(BOOL)
     typedef enum { FALSE = 0, TRUE = 1 } BOOL;
 #endif
 
-    typedef void                   VOID;
-    typedef void *                 LPVOID;
+typedef void                   VOID;
+typedef void *                 LPVOID;
 
-    typedef int                    INT;
-    typedef short int              SHORT;
-    typedef long int               LONG;
-    typedef long long int          LONGLONG;
+typedef int                    INT;
+typedef short int              SHORT;
+typedef long int               LONG;
+typedef long long int          LONGLONG;
 
-    typedef unsigned int           UINT;
-    typedef unsigned short int     USHORT;
-    typedef unsigned long int      ULONG;
-    typedef unsigned long long int ULONGLONG;
+typedef unsigned int           UINT;
+typedef unsigned short int     USHORT;
+typedef unsigned long int      ULONG;
+typedef unsigned long long int ULONGLONG;
 
-    typedef float                  FLOAT;
-    typedef double                 DOUBLE;
+typedef float                  FLOAT;
+typedef double                 DOUBLE;
 
-    typedef char                   CHAR;
-    typedef unsigned char          UCHAR;
+typedef char                   CHAR;
+typedef unsigned char          UCHAR;
 
 //---------------------------------------------------------------------------
-#if defined(UNICODE) || defined(_UNICODE)
+#if (xUNICODE)
     #error xLib: unicode unsupported for Linux
 
-    //UNICODE
     #define _tmain      wmain
     #define _ftprintf   fwprintf
     #define _tasctime   _wasctime
@@ -103,25 +104,17 @@
     #define _fgetts     fgetws
     #define _tcslen     wcslen
     #define _tchmod     _wchmod
-
-    #define _itot       _itow
-    #define _ltot       _ltow
-    #define _ultot      _ultow
-    #define _i64tot     _i64toa
-    #define _ui64tot    _ui64tow
-
     #define _totlower   towlower
     #define _totupper   towupper
 
     typedef addrinfo    ADDRINFOT;
 #else
-    //ANSI
     #define _tmain      main
     #define _ftprintf   fprintf
     #define _tasctime   asctime
     #define _tfopen     fopen
     #define _tsetlocale setlocale
-    #define _vsntprintf vsnprintf   //_vsnprintf
+    #define _vsntprintf vsnprintf
     #define _tfreopen   freopen
     #define _tperror    perror
     #define _vstprintf  vsprintf
@@ -145,18 +138,11 @@
     #define _fgetts     fgets
     #define _tcslen     strlen
     #define _tchmod     chmod
-
-//    #define _itot       itoa
-//    #define _ltot       ltoa
-//    #define _ultot      ultoa
-//    #define _i64tot     _i64tow
-//    #define _ui64tot    _ui64toa
-
     #define _totlower   tolower
     #define _totupper   toupper
 
     typedef addrinfo    ADDRINFOT;
-#endif  /*_UNICODE*/
+#endif //xUNICODE
 //----------------------------------------------------------------------------------------------------
-#endif /*xLib_Common_Linux_xCommon_LinuxH*/
+#endif //xLib_Common_Linux_xCommon_LinuxH
 //----------------------------------------------------------------------------------------------------

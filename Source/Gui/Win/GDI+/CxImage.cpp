@@ -16,8 +16,8 @@
 ////using namespace Gdiplus;
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
@@ -38,17 +38,17 @@ CxImage::~CxImage() {
 //---------------------------------------------------------------------------
 //TODO: bLoad (�������� �� �����)
 BOOL CxImage::bLoad(const tString &csFilePath) {
-    /*DEBUG*/// _m_pimgImage - n/a 
+    /*DEBUG*/// _m_pimgImage - n/a
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
     xCHECK_DO(TRUE == bIsLoaded(), bDestroy());
 
-#if defined(UNICODE) || defined(_UNICODE)
+#if (xUNICODE)
     _m_pimgImage = Gdiplus::Image::FromFile(csFilePath.c_str());
 #else
     _m_pimgImage = Gdiplus::Image::FromFile(std::wstring(csFilePath.begin(), csFilePath.end()).c_str());
-#endif   
-    
+#endif
+
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,                         FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
@@ -57,14 +57,14 @@ BOOL CxImage::bLoad(const tString &csFilePath) {
 //---------------------------------------------------------------------------
 //TODO: bLoad (�������� �� ������)
 BOOL CxImage::bLoad(IStream *pisStream) {
-    /*DEBUG*/// _m_pimgImage - n/a 
+    /*DEBUG*/// _m_pimgImage - n/a
     /*DEBUG*/xASSERT_RET(NULL != pisStream, FALSE);
 
     xCHECK_DO(TRUE == bIsLoaded(), bDestroy());
 
     _m_pimgImage = Gdiplus::Image::FromStream(pisStream);
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,                         FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE); 
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
     return TRUE;
 }
@@ -74,7 +74,7 @@ BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,        FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// etType - n/a
-    
+
     tString sEncoderType;
     switch (etType) {
         case etBmp:        { sEncoderType = xT("image/bmp");  }    break;
@@ -82,19 +82,19 @@ BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
         case etGif:         { sEncoderType = xT("image/gif");  }    break;
         case etTiff:     { sEncoderType = xT("image/tiff"); }    break;
         case etPng:         { sEncoderType = xT("image/png");  }    break;
-        
-        default:        { sEncoderType = xT("image/jpeg"); }     break; 
+
+        default:        { sEncoderType = xT("image/jpeg"); }     break;
     }
 
     // Save the altered image.
     CLSID cidClsid = {0};
     _bGetEncoderClsid(sEncoderType, &cidClsid);
 
-#if defined(UNICODE) || defined(_UNICODE)
+#if (xUNICODE)
     _m_stRes = _m_pimgImage->Save(csFilePath.c_str(), &cidClsid, NULL);
 #else
     _m_stRes = _m_pimgImage->Save(std::wstring(csFilePath.begin(), csFilePath.end()).c_str(), &cidClsid, NULL);
-#endif  
+#endif
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes,                      FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
@@ -141,7 +141,7 @@ BOOL CxImage::bDraw(HDC hDC, const RECT &crcRect) {
     Gdiplus::Graphics grGraphics(hDC);
     Gdiplus::Rect     rcRect    (crcRect.left, crcRect.top, crcRect.right, crcRect.bottom);
 
-    _m_stRes = grGraphics.DrawImage(_m_pimgImage, rcRect);           
+    _m_stRes = grGraphics.DrawImage(_m_pimgImage, rcRect);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
@@ -160,10 +160,10 @@ BOOL CxImage::bDraw(HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight) {
 
     _m_stRes = grGraphics.DrawImage(_m_pimgImage, iLeft, iTop, iWidth, iHeight);
     Gdiplus::Status stCode = _m_pimgImage->GetLastStatus();
- 
+
     /*DEBUG*/xASSERT_MSG_RET(Gdiplus::Ok == stCode, sGetLastStatus(stCode).c_str(), FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, FALSE);
-    
+
 
     return TRUE;
 }
@@ -180,7 +180,7 @@ VOID Example_Clear(HDC hdc) {
     graphics.Clear(blueColor);
 }
 */
-BOOL CxImage::bClear(HDC hDC, Gdiplus::Color clBackGround) { 
+BOOL CxImage::bClear(HDC hDC, Gdiplus::Color clBackGround) {
     /*DEBUG*/// _m_pimgImage - n/a
 
     Gdiplus::Graphics grGraphics(hDC);
@@ -226,14 +226,14 @@ UINT CxImage::uiGetHeight() {
 //TODO: stGetLastStatus ()
 Gdiplus::Status CxImage::stGetLastStatus() {
     /*DEBUG*/// _m_pimgImage - n/a
-    
+
     return _m_pimgImage->GetLastStatus();
 }
 //---------------------------------------------------------------------------
 //TODO: sGetLastStatus ()
 tString CxImage::sGetLastStatus(Gdiplus::Status stCode) {
     /*DEBUG*/// _m_pimgImage - n/a
-    
+
     tString sRes;
 
     switch (stCode) {
@@ -277,7 +277,7 @@ tString CxImage::sGetLastStatus(Gdiplus::Status stCode) {
 //---------------------------------------------------------------------------
 //TODO: _bGetEncoderClsid (��������� CLSID ������)
 BOOL CxImage::_bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid) {
-    /*DEBUG*/// _m_pimgImage - n/a 
+    /*DEBUG*/// _m_pimgImage - n/a
     /*DEBUG*/xASSERT_RET(false == csFormat.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pcidClsid,         FALSE);
 
@@ -296,15 +296,15 @@ BOOL CxImage::_bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid) {
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
     for (UINT j = 0; j < uiNum; ++ j) {
-#if defined(UNICODE) || defined(_UNICODE)
-    if (csFormat == pImageCodecInfo.pGetPtr()[j].MimeType) { 
+#if (xUNICODE)
+    if (csFormat == pImageCodecInfo.pGetPtr()[j].MimeType) {
 #else
-    if (std::wstring(csFormat.begin(), csFormat.end()) == pImageCodecInfo.pGetPtr()[j].MimeType) { 
-#endif  
+    if (std::wstring(csFormat.begin(), csFormat.end()) == pImageCodecInfo.pGetPtr()[j].MimeType) {
+#endif
             *pcidClsid = pImageCodecInfo.pGetPtr()[j].Clsid;
-            
-            return TRUE /*j*/;  
-        }    
+
+            return TRUE /*j*/;
+        }
     }
 
     return FALSE;
