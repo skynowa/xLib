@@ -551,6 +551,7 @@ BOOL CxTest_CxDateTime::bUnit() {
     //-------------------------------------
     //sGetZodiacSign
     {
+    #if xTODO
         /*
         -----------------------------------------------------
         |  Знак     |  Символ  |  Западная астрология       |
@@ -581,6 +582,7 @@ BOOL CxTest_CxDateTime::bUnit() {
             tString sStr2 = sTestData[i][2];
             xASSERT(sStr1 == sStr2);
         }
+    #endif
     }
 
     //-------------------------------------

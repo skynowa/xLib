@@ -43,7 +43,7 @@ class CxDateTime {
 
         //assignment operators
         const CxDateTime  &operator =          (const CxDateTime &cdtDT);
-    #if (xOS_WIN && xCOMPILER_CODEGEAR)
+    #if defined(xOS_WIN) && defined(xCOMPILER_CODEGEAR)
         const CxDateTime  &operator =          (const TDateTime  &cdtDT);
     #endif
         const CxDateTime  &operator =          (const ULONGLONG cullMillisecond);
@@ -89,7 +89,7 @@ class CxDateTime {
         static tString     sGetWeekDayStr      (USHORT usDay, const BOOL cbIsShortName);
         static USHORT      usGetWeekDayNum     (const tString &csDay, const BOOL cbIsShortName);
 
-       private:
+    private:
         BOOL               _m_bRes;
 
         //datetime msec member

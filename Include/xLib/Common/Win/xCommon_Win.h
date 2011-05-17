@@ -22,7 +22,7 @@
 #define xWIN32_VISTA 0x0600    //Windows Vista, Windows Server 2008
 #define xWIN32_7     0x0601    //Windows 7, Windows Server 2008 R2
 //---------------------------------------------------------------------------
-#if (xCOMPILER_MINGW32 || xCOMPILER_MS)
+#if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
     //Remove pointless warning messages
     ////#pragma warning (disable : 4511)    //copy operator could not be generated
     ////#pragma warning (disable : 4512)    //assignment operator could not be generated
@@ -57,7 +57,7 @@
 
 #endif //xCOMPILER_MINGW32 || xCOMPILER_MS
 
-#if (xCOMPILER_CODEGEAR)
+#if defined(xCOMPILER_CODEGEAR)
     #pragma option -w-8027  //function not expanded inline
     #pragma option -w-8057  //parameter is never used
     #pragma option -w-8058  //cannot create pre-compiled header: initialized data in header
@@ -85,7 +85,7 @@
 #include <winuser.h>
 #include <Objbase.h>
 
-#if (xOS_WIN && xCOMPILER_CODEGEAR)
+#if defined(xOS_WIN) && defined(xCOMPILER_CODEGEAR)
     #include <vcl.h>
     #include <registry.hpp>
 #endif
