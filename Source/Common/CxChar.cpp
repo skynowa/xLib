@@ -14,158 +14,196 @@
 
 /****************************************************************************
 *    public
-*                                                                            
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bIsAlphaNum (Check if character is alphanumeric)
+//DONE: bIsAlphaNum (Check if character is alphanumeric)
 /*static*/
 BOOL
-CxChar::bIsAlphaNum(INT iChar) {
+CxChar::bIsAlphaNum(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isalnum(iChar) );
+    return static_cast<BOOL>( isalnum(ciChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: bIsAlpha (Check if character is alphabetic)
+//DONE: bIsAlpha (Check if character is alphabetic)
 /*static*/
 BOOL
-CxChar::bIsAlpha(INT iChar) {
+CxChar::bIsAlpha(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( iswalpha(iChar) );
+    return static_cast<BOOL>( iswalpha(ciChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: bIsControl (Check if character is a control character)
+//DONE: bIsControl (Check if character is a control character)
 /*static*/
 BOOL
-CxChar::bIsControl(INT iChar) {
+CxChar::bIsControl(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( iscntrl(iChar) );
+    return static_cast<BOOL>( iscntrl(ciChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: bIsDigitDec (Check if character is decimal digit)
+//DONE: bIsDigitDec (Check if character is decimal digit)
 /*static*/
 BOOL
-CxChar::bIsDigitDec(INT iChar) {
+CxChar::bIsDigitDec(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isdigit(iChar) );
+    return static_cast<BOOL>( isdigit(ciChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: bIsDigitHex (Check if character is hexadecimal digit)
+//DONE: bIsDigitHex (Check if character is hexadecimal digit)
 /*static*/
 BOOL
-CxChar::bIsDigitHex(INT iChar) {
+CxChar::bIsDigitHex(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isxdigit(iChar) );
-    /*DEBUG*/// n/a
-
-}
-//---------------------------------------------------------------------------
-//TODO: bIsGraph (Check if character has graphical representation)
-/*static*/
-BOOL
-CxChar::bIsGraph(INT iChar) {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( isgraph(iChar) );
+    return static_cast<BOOL>( isxdigit(ciChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: bIsPrint (Check if character is printable)
+//DONE: bIsGraph (Check if character has graphical representation)
 /*static*/
 BOOL
-CxChar::bIsPrint(INT iChar) {
+CxChar::bIsGraph(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isprint(iChar) );
+    return static_cast<BOOL>( isgraph(ciChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: bIsPunct (Check if character is a punctuation character)
+//DONE: bIsPrint (Check if character is printable)
 /*static*/
 BOOL
-CxChar::bIsPunct(INT iChar) {
+CxChar::bIsPrint(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( ispunct(iChar) );
-}
-//---------------------------------------------------------------------------
-//TODO: bIsSpace (Check if character is a white-space)
-/*static*/
-BOOL
-CxChar::bIsSpace(INT iChar) {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( isspace(iChar) );
+    return static_cast<BOOL>( isprint(ciChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: bIsLower (Check if character is lowercase letter)
+//DONE: bIsPunct (Check if character is a punctuation character)
 /*static*/
 BOOL
-CxChar::bIsLower(INT iChar) {
+CxChar::bIsPunct(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( islower(iChar) );
+    return static_cast<BOOL>( ispunct(ciChar) );
 }
 //---------------------------------------------------------------------------
-//TODO: bIsUpper (Check if character is uppercase letter)
+//DONE: bIsSpace (Check if character is a white-space)
 /*static*/
 BOOL
-CxChar::bIsUpper(INT iChar) {
+CxChar::bIsSpace(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isupper(iChar) );
+    return static_cast<BOOL>( isspace(ciChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: chToLower (Convert uppercase letter to lowercase)
+//DONE: bIsLower (Check if character is lowercase letter)
 /*static*/
-CHAR
-CxChar::chToLower(INT iChar) {
+BOOL
+CxChar::bIsLower(
+    const INT ciChar
+)
+{
+    /*DEBUG*/// n/a
+
+    return static_cast<BOOL>( islower(ciChar) );
+}
+//---------------------------------------------------------------------------
+//DONE: bIsUpper (Check if character is uppercase letter)
+/*static*/
+BOOL
+CxChar::bIsUpper(
+    const INT ciChar
+)
+{
+    /*DEBUG*/// n/a
+
+    return static_cast<BOOL>( isupper(ciChar) );
+    /*DEBUG*/// n/a
+}
+//---------------------------------------------------------------------------
+//DONE: chToLower (Convert uppercase letter to lowercase)
+/*static*/
+TCHAR
+CxChar::chToLower(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
     //TODO: unicode
-    return tolower(iChar);
+    return tolower(ciChar);
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: chToUpper (Convert lowercase letter to uppercase)
+//DONE: chToUpper (Convert lowercase letter to uppercase)
 /*static*/
-CHAR
-CxChar::chToUpper(INT iChar) {
+TCHAR
+CxChar::chToUpper(
+    const INT ciChar
+)
+{
     /*DEBUG*/// n/a
 
     //TODO: unicode
-    return toupper(iChar);
+    return toupper(ciChar);
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*    private                                                         
-*                                                                            
+*    private
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxChar (comment)
-/*virtual*/
+//DONE: CxChar (constructor)
 CxChar::CxChar() :
     _m_bRes(FALSE)
 {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxChar (comment)
+//DONE: ~CxChar (destructor)
+/*virtual*/
 CxChar::~CxChar() {
     /*DEBUG*/// n/a
 }

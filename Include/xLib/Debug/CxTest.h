@@ -50,12 +50,12 @@ class CxTest : public CxNonCopyable {
     #endif
 
                                         CxTest         ();
-        virtual                        ~CxTest         ()/* = 0*/;
+        virtual                        ~CxTest         () = 0;
 
 //      BOOL                            bAdd           (const CxTest *);
 //      BOOL                            bRemove        (const CxTest *);
 
-        BOOL                            bRun           (ULONGLONG ullLoops /*0 - infinite*/);
+        BOOL                            bRun           (const ULONGLONG cullLoops /*0 - infinite*/);
         virtual BOOL                    bUnit          () = 0;
         BOOL                            bCreateWorkDir (const tString &csDirName);
         tString                         sGetWorkDirPath();

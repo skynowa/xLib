@@ -65,13 +65,18 @@ CxTest::~CxTest() /* = 0*/ {
 //---------------------------------------------------------------------------
 //DONE: bRun (run in some loops)
 BOOL
-CxTest::bRun(ULONGLONG ullLoops) {
+CxTest::bRun(
+    const ULONGLONG cullLoops
+)
+{
     /*DEBUG*/
+
+    //xTRACEV("Test (%s) begin.", sGetName().c_str());
 
     const ULONGLONG ullInfiniteLoops = 0;
 
     try {
-        if (ullInfiniteLoops == ullLoops) {
+        if (ullInfiniteLoops == cullLoops) {
             //infinite
             for ( ;  ; ) {
                 _m_bRes = bUnit();
@@ -79,7 +84,7 @@ CxTest::bRun(ULONGLONG ullLoops) {
             }
         } else {
             //in some loops
-            for (ULONGLONG i = 0; i < ullLoops; ++ i) {
+            for (ULONGLONG i = 0; i < cullLoops; ++ i) {
                 _m_bRes = bUnit();
                 /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
             }
@@ -96,6 +101,8 @@ CxTest::bRun(ULONGLONG ullLoops) {
         /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": Unknown test error"), FALSE);
     }
 
+    //xTRACEV("Test (%s) end.\n", sGetName().c_str());
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -105,33 +112,38 @@ BOOL
 CxTest::bUnit() /*= 0*/  {
     /*DEBUG*/// n/a
 
-    //////-------------------------------------
-    //////[FUNCTION_NAME]
-    ////{
-    ////    const tString sTestData[][2] = {
-    ////        {xT("TEST_STRING_1"),         xT("MUST_BE_1")},
-    ////        {xT("TEST_STRING_2"),         xT("MUST_BE_2")},
-    ////        {xT("TEST_STRING_3"),         xT("MUST_BE_3")},
-    ////        {xT("TEST_STRING_4"),         xT("MUST_BE_4")}
-    ////    };
+    #if xTEMP_DISABLED
+        //-------------------------------------
+        //[FUNCTION_NAME]
+        {
+            const tString sTestData[][2] = {
+                {xT("TEST_STRING_1"),         xT("MUST_BE_1")},
+                {xT("TEST_STRING_2"),         xT("MUST_BE_2")},
+                {xT("TEST_STRING_3"),         xT("MUST_BE_3")},
+                {xT("TEST_STRING_4"),         xT("MUST_BE_4")}
+            };
 
-    ////    for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-    ////        ////tString sStr1 = [FUNCTION_NAME](sTestData[i][0]);
-    ////        ////tString sStr2 = [FUNCTION_NAME](sTestData[i][1]);
-    ////        ////xASSERT(sStr1 == sStr2);
+            for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+                tString sStr1 = [FUNCTION_NAME](sTestData[i][0]);
+                tString sStr2 = [FUNCTION_NAME](sTestData[i][1]);
+                xASSERT_EQUAL(sStr1 == sStr2);
 
-    ////        ////tString sStr3 = [FUNCTION_NAME](sTestData[i][0]);
-    ////        ////tString sStr4 = sTestData[i][1];
-    ////        ////xASSERT(sStr3 == sStr4);
-    ////    }
-    ////}
+                tString sStr3 = [FUNCTION_NAME](sTestData[i][0]);
+                tString sStr4 = sTestData[i][1];
+                xASSERT_EQUAL(sStr3 == sStr4);
+            }
+        }
+    #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bCreateWorkDir (create work dir)
 BOOL
-CxTest::bCreateWorkDir(const tString &csDirName) {
+CxTest::bCreateWorkDir(
+    const tString &csDirName
+)
+{
     /*DEBUG*/// n/a
 
     if (true == csDirName.empty()) {
@@ -164,7 +176,10 @@ CxTest::sGetName() {
 //---------------------------------------------------------------------------
 //DONE: bSetName ()
 BOOL
-CxTest::bSetName(const tString &csTestName) {
+CxTest::bSetName(
+    const tString &csTestName
+)
+{
     /*DEBUG*/
 
     _m_sName = csTestName;

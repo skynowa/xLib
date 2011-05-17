@@ -122,153 +122,144 @@ _tmain(INT argc, TCHAR *argv[]) {
         return EXIT_SUCCESS;
     #endif
 
-    #if xTEMP_ENABLED
-        xTRACEV(xT("\n\n*** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE);
-        xTRACE(xT("Start all tests...\n\n"));
-    #endif
+    xTRACEV(xT("\n\n*** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE);
+    xTRACE(xT("Start all tests...\n\n"));
 
     //--------------------------------------------------
     //settings
-    const ULONGLONG ullTimesForAll    = 1;    //number of tests for all units
-    const ULONGLONG ullTimesForSingle = 1;    //number of tests for a unit
+    const ULONGLONG cullTimesForAll    = 10000000;
+    const ULONGLONG cullTimesForSingle = 10;
 
     BOOL bRes = FALSE;
 
-    std::vector<CxTest *> vecpvTests;
+    std::vector<CxTest *> vptTests;
+
+    //--------------------------------------------------
+    //Common
+    vptTests.push_back( new CxTest_CxMacros );
+    vptTests.push_back( new CxTest_CxArray );
+    vptTests.push_back( new CxTest_CxChar );
+    vptTests.push_back( new CxTest_CxLocale );
+    vptTests.push_back( new CxTest_CxString );
+    vptTests.push_back( new CxTest_CxDateTime );
+    vptTests.push_back( new CxTest_CxFunctorT );
+    vptTests.push_back( new CxTest_CxSystemInfo );
+    vptTests.push_back( new CxTest_CxException );
+
+    #if defined(xOS_WIN)
+    vptTests.push_back( new CxTest_CxClipboard );
+    vptTests.push_back( new CxTest_CxCom );
+    vptTests.push_back( new CxTest_CxHandleT );
+    vptTests.push_back( new CxTest_CxShell );
+    vptTests.push_back( new CxTest_CxComPort );
+    ////vptTests.push_back( new CxTest_CxConsole );
+    #elif defined(xOS_LINUX)
+
+    #endif
+
+    //--------------------------------------------------
+    //Debug
+    vptTests.push_back( new CxTest_CxLastError );
+    ////vptTests.push_back( new CxTest_CxDebugger );
+    vptTests.push_back( new CxTest_CxReport );
+    vptTests.push_back( new CxTest_CxProfiler );
+    vptTests.push_back( new CxTest_CxAutoProfiler );
+
+    //--------------------------------------------------
+    //Filesystem
+    vptTests.push_back( new CxTest_CxPath );
+    vptTests.push_back( new CxTest_CxStdioFile );
+    vptTests.push_back( new CxTest_CxDir );
+    vptTests.push_back( new CxTest_CxEnvironment );
+    vptTests.push_back( new CxTest_CxDll );
+    vptTests.push_back( new CxTest_CxFileAttribute );
+    vptTests.push_back( new CxTest_CxIni );
+
+    #if defined(xOS_WIN)
+    vptTests.push_back( new CxTest_CxDrive );
+    vptTests.push_back( new CxTest_CxFile );
+    vptTests.push_back( new CxTest_CxIni );
+    #elif defined(xOS_LINUX)
+
+    #endif
+
+    //--------------------------------------------------
+    //Gui
+    #if defined(xOS_WIN)
+    vptTests.push_back( new CxTest_CxGdiplus );
+    vptTests.push_back( new CxTest_CxImage );
+    #endif
+
+    //--------------------------------------------------
+    //Log
 
 
-    #if xTEMP_ENABLED
-        //--------------------------------------------------
-        //Common
-        vecpvTests.push_back( new CxTest_CxMacros );
-        vecpvTests.push_back( new CxTest_CxArray );
-        vecpvTests.push_back( new CxTest_CxChar );
-        vecpvTests.push_back( new CxTest_CxLocale );
-        vecpvTests.push_back( new CxTest_CxString );
-        vecpvTests.push_back( new CxTest_CxDateTime );
-        vecpvTests.push_back( new CxTest_CxFunctorT );
-        vecpvTests.push_back( new CxTest_CxSystemInfo );
-        vecpvTests.push_back( new CxTest_CxException );
+    //--------------------------------------------------
+    //Net
+    vptTests.push_back( new CxTest_CxCookiePv0 );
+    vptTests.push_back( new CxTest_CxCookiePv1 );
+    #if xTEMP_DISABLED
+        vptTests.push_back( new CxTest_CxCgi );
+    #endif
+    vptTests.push_back( new CxTest_CxSocketInit );
+    vptTests.push_back( new CxTest_CxDnsClient );
+    ////vptTests.push_back( new CxTest_CxTcpClientSocket );
+    ////vptTests.push_back( new CxTest_CxTcpServerSocket );
+    vptTests.push_back( new CxTest_CxHttpClient );
 
-        #if defined(xOS_WIN)
-        vecpvTests.push_back( new CxTest_CxClipboard );
-        vecpvTests.push_back( new CxTest_CxCom );
-        vecpvTests.push_back( new CxTest_CxHandleT );
-        vecpvTests.push_back( new CxTest_CxShell );
-        vecpvTests.push_back( new CxTest_CxComPort );
-        ////vecpvTests.push_back( new CxTest_CxConsole );
-        #elif defined(xOS_LINUX)
+    //--------------------------------------------------
+    //Compress
+    #if defined(xOS_WIN)
 
-        #endif
+    #elif defined(xOS_LINUX)
+    vptTests.push_back( new CxTest_CxGz );
+    #endif
 
-        //--------------------------------------------------
-        //Debug
-        vecpvTests.push_back( new CxTest_CxLastError );
-        ////vecpvTests.push_back( new CxTest_CxDebugger );
-        vecpvTests.push_back( new CxTest_CxReport );
-        vecpvTests.push_back( new CxTest_CxProfiler );
-        vecpvTests.push_back( new CxTest_CxAutoProfiler );
+    //--------------------------------------------------
+    //Crypt
+    #if xTODO
+        vptTests.push_back( new CxTest_CxCrc32 );
+        vptTests.push_back( new CxTest_CxBlowfish );
+    #endif
 
-        //--------------------------------------------------
-        //Filesystem
-        vecpvTests.push_back( new CxTest_CxPath );
-        vecpvTests.push_back( new CxTest_CxStdioFile );
-        vecpvTests.push_back( new CxTest_CxDir );
-        vecpvTests.push_back( new CxTest_CxEnvironment );
-        vecpvTests.push_back( new CxTest_CxDll );
-        vecpvTests.push_back( new CxTest_CxFileAttribute );
-        vecpvTests.push_back( new CxTest_CxIni );
+    //--------------------------------------------------
+    //Db
+    vptTests.push_back( new CxTest_CxConnectionString );
+    vptTests.push_back( new CxTest_CxMySql );
 
-        #if defined(xOS_WIN)
-        vecpvTests.push_back( new CxTest_CxDrive );
-        vecpvTests.push_back( new CxTest_CxFile );
-        vecpvTests.push_back( new CxTest_CxIni );
-        #elif defined(xOS_LINUX)
+    //--------------------------------------------------
+    //Sync
+    vptTests.push_back( new CxTest_CxProcess );
+    #if defined(xOS_WIN)
+    vptTests.push_back( new CxTest_CxThread );
+    #elif defined(xOS_LINUX)
 
-        #endif
+    #endif
 
-        //--------------------------------------------------
-        //Gui
-        #if defined(xOS_WIN)
-        vecpvTests.push_back( new CxTest_CxGdiplus );
-        vecpvTests.push_back( new CxTest_CxImage );
-        #endif
+    //--------------------------------------------------
+    //Patterns
+    vptTests.push_back( new CxTest_CxSingleton );
 
-        //--------------------------------------------------
-        //Log
+    //--------------------------------------------------
+    //PKCS11
+    #if defined(xOS_WIN)
+    vptTests.push_back( new CxTest_CxPkcs11 );
+    #elif defined(xOS_LINUX)
 
-
-        //--------------------------------------------------
-        //Net
-        vecpvTests.push_back( new CxTest_CxCookiePv0 );
-        vecpvTests.push_back( new CxTest_CxCookiePv1 );
-        #if xTEMP_DISABLED
-            vecpvTests.push_back( new CxTest_CxCgi );
-        #endif
-        vecpvTests.push_back( new CxTest_CxSocketInit );
-        vecpvTests.push_back( new CxTest_CxDnsClient );
-        ////vecpvTests.push_back( new CxTest_CxTcpClientSocket );
-        ////vecpvTests.push_back( new CxTest_CxTcpServerSocket );
-        vecpvTests.push_back( new CxTest_CxHttpClient );
-
-        //--------------------------------------------------
-        //Compress
-        #if defined(xOS_WIN)
-
-        #elif defined(xOS_LINUX)
-        vecpvTests.push_back( new CxTest_CxGz );
-        #endif
-
-        //--------------------------------------------------
-        //Crypt
-        #if xTODO
-            vecpvTests.push_back( new CxTest_CxCrc32 );
-            vecpvTests.push_back( new CxTest_CxBlowfish );
-        #endif
-
-        //--------------------------------------------------
-        //Db
-        vecpvTests.push_back( new CxTest_CxConnectionString );
-        vecpvTests.push_back( new CxTest_CxMySql );
-
-        //--------------------------------------------------
-        //Sync
-        vecpvTests.push_back( new CxTest_CxProcess );
-        #if defined(xOS_WIN)
-        vecpvTests.push_back( new CxTest_CxThread );
-        #elif defined(xOS_LINUX)
-
-        #endif
-
-        //--------------------------------------------------
-        //Patterns
-        vecpvTests.push_back( new CxTest_CxSingleton );
-
-        //--------------------------------------------------
-        //PKCS11
-        #if defined(xOS_WIN)
-        vecpvTests.push_back( new CxTest_CxPkcs11 );
-        #elif defined(xOS_LINUX)
-
-        #endif
     #endif
 
     //--------------------------------------------------
     //run all tests
-    for (ULONGLONG i = 0; i < ullTimesForAll; ++ i) {
-        for (std::vector<CxTest *>::iterator it = vecpvTests.begin(); it != vecpvTests.end(); ++ it) {
-            //xTRACEV("Test (%s) begin.", (*it)->sGetName().c_str());
-
-            bRes = (*it)->bRun(ullTimesForSingle);
+    for (ULONGLONG i = 0; i < cullTimesForAll; ++ i) {
+        for (std::vector<CxTest *>::iterator it = vptTests.begin(); it != vptTests.end(); ++ it) {
+            bRes = (*it)->bRun(cullTimesForSingle);
             xASSERT_MSG_RET(FALSE != bRes, ( xT("Test (") + (*it)->sGetName() + xT(") not complete") ).c_str(), FALSE);
-
-            //xTRACEV("Test (%s) end.\n", (*it)->sGetName().c_str());
         }
     }
 
     //--------------------------------------------------
     //free memory
-    for (std::vector<CxTest *>::iterator it = vecpvTests.begin(); it != vecpvTests.end(); ++ it) {
+    for (std::vector<CxTest *>::iterator it = vptTests.begin(); it != vptTests.end(); ++ it) {
         /*CxMacros::*/xPTR_DELETE(*it);
     }
 

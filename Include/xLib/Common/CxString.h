@@ -33,107 +33,17 @@ class CxString : public CxNonCopyable {
             bgBlack_ = 100, bgRed_ = 101, bgGreen_ = 102, bgYellow_ = 103, bgBlue_ = 104, bgMagenta_ = 105, bgCyan_ = 106, bgWhite_ = 107
         };
 
-        //---------------------------------------------------------------------------
-        //type -> tString
         template<class T>
-        static
-        tString
-        lexical_cast(const T &cValueT) {
-            //cValueT - n/a
+        static  tString     lexical_cast     (const T &cValueT);
 
-            tString sRes;
-
-            try {
-                tostringstream ossRes;
-
-                ossRes.exceptions(tostringstream::failbit | tostringstream::badbit);
-                ossRes << cValueT;
-
-                sRes.assign(ossRes.str());
-            } catch (tostringstream::failure e) {
-                sRes.clear();
-            } catch (...) {
-                sRes.clear();
-            }
-
-            return sRes;
-        }
-
-        //---------------------------------------------------------------------------
-        //type -> tString by base
         template<class T>
-        static
-        tString
-        lexical_cast(const T &cValueT, const INT ciBase) {
-            //cValueT - n/a
-            //ciBase  - n/a
+        static  tString     lexical_cast     (const T &cValueT, const INT ciBase);
 
-            tString sRes;
-
-            try {
-                tostringstream ossRes;
-
-                ossRes.exceptions(tostringstream::failbit | tostringstream::badbit);
-                ossRes << std::setbase(ciBase) << std::uppercase << cValueT;  //std::showbase
-
-                sRes.assign(ossRes.str());
-            } catch (tostringstream::failure e) {
-                sRes.clear();
-            } catch (...) {
-                sRes.clear();
-            }
-
-            return sRes;
-        }
-
-        //---------------------------------------------------------------------------
-        //tString -> type
         template<class T>
-        static
-        T
-        lexical_cast(const tString &csStr) {
-            //csStr - n/a
+        static T            lexical_cast     (const tString &csStr);
 
-            T ResT;
-
-            try {
-                tistringstream issStream(csStr);
-
-                issStream.exceptions(tistringstream::failbit | tistringstream::badbit);
-                issStream >> ResT;
-            } catch (tistringstream::failure e) {
-                return T();
-            } catch (...) {
-                return T();
-            }
-
-            return ResT;
-        }
-
-        //---------------------------------------------------------------------------
-        //tString by base (8, 10, 16) -> type
         template<class T>
-        static
-        T
-        lexical_cast(const tString &csStr, const INT ciBase) {
-            //csStr  - n/a
-            //ciBase - n/a
-
-            T ResT;
-
-            try {
-                tistringstream issStream(csStr);
-
-                issStream.exceptions(tistringstream::failbit | tistringstream::badbit);
-                issStream >> std::setbase(ciBase) >> ResT;
-            } catch (tistringstream::failure e) {
-                return T();
-            } catch (...) {
-                return T();
-            }
-
-            return ResT;
-        }
+        static T            lexical_cast     (const tString &csStr, const INT ciBase);
 
         static tString      sBoolToStr       (const BOOL cbBool);
         static BOOL         bStrToBool       (const tString &csStr);
@@ -148,9 +58,9 @@ class CxString : public CxNonCopyable {
         static tString      sReplaceAll      (const tString &csStr, const TCHAR ccOldStr, const TCHAR ccNewStr);
         static tString      sRemoveAll       (const tString &csStr, const tString &csRemoveStr);
 
-        static BOOL         bSplit           (const tString &csStr, const tString &csSep, std::vector<tString> *vecsOut);
-        static tString      sJoin            (const std::vector<tString> &cvecsVec, const TCHAR cchSep);
-        static tString      sJoin            (const std::vector<tString> &cvecsVec, const tString &csSep);
+        static BOOL         bSplit           (const tString &csStr, const tString &csSep, std::vector<tString> *pvsOut);
+        static tString      sJoin            (const std::vector<tString> &cvsVec, const TCHAR cchSep);
+        static tString      sJoin            (const std::vector<tString> &cvsVec, const tString &csSep);
         static tString      sCut             (const tString &csStr, const tString &csLeftSep, const tString &csRightSep);
         static tString      sCut             (const tString &csStr, const size_t cuiStartPos = 0, const size_t cuiEndPos = tString::npos);
 
@@ -206,71 +116,12 @@ class CxString : public CxNonCopyable {
         static tString      sCreateGuid      ();
         static BOOL         bIsRepeated      (const tString &csStr);
 
-        //---------------------------------------------------------------------------
-        //DONE: vStdVectorPrintT (printing std::vector to std::out)
-        template<class T>
-        static
-        VOID
-        vStdVectorPrintT(const std::vector<T> &cvecT) {
-            tcout << tendl;
-            tcout << xT("std::vector (") << cvecT.size() << (" elements):") << tendl;
-            tcout << tendl;
-
-            typename std::vector<T>::const_iterator it;
-            size_t                                  i = 0;
-            for (it = cvecT.begin(), i = 0; it != cvecT.end(); ++ it, ++ i) {
-                tcout << xT("Value[") << i << xT("]: ") << (*it) << tendl;
-            }
-
-            tcout << tendl;
-            tcout << tendl;
-        }
-
-        //---------------------------------------------------------------------------
-        //DONE: vStdMultiMapPrintT (printing std::map to std::out)
-        template<class T1, class T2>
-        static
-        VOID
-        vStdMapPrintT(const std::map<T1, T2> &cmapT) {
-            tcout << tendl;
-            tcout << xT("std::map (") << cmapT.size() << (" elements):") << tendl;
-            tcout << tendl;
-
-            typename std::map<T1, T2>::const_iterator it;
-            for (it = cmapT.begin(); it != cmapT.end(); ++ it) {
-                tcout << xT("Key: ")   << (*it).first  << xT("\t\t")
-                      << xT("Value: ") << (*it).second << tendl;
-            }
-
-            tcout << tendl;
-            tcout << tendl;
-        }
-
-        //---------------------------------------------------------------------------
-        //DONE: vStdMultiMapPrintT (printing std::multimap to std::out)
-        template<class T1, class T2>
-        static
-        VOID
-        vStdMultiMapPrintT(const std::multimap<T1, T2> &cmmapT) {
-            tcout << tendl;
-            tcout << xT("std::multimap (") << cmmapT.size() << (" elements):") << tendl;
-            tcout << tendl;
-
-            typename std::multimap<T1, T2>::const_iterator it;
-            for (it = cmmapT.begin(); it != cmmapT.end(); ++ it) {
-                tcout << xT("Key: ")   << (*it).first  << xT("\t\t")
-                      << xT("Value: ") << (*it).second << tendl;
-            }
-
-            tcout << tendl;
-            tcout << tendl;
-        }
-        //---------------------------------------------------------------------------
-
     private:
                  CxString();
         virtual ~CxString();
 };
+//---------------------------------------------------------------------------
+#include <Common/CxString.inl>
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxStringH
 

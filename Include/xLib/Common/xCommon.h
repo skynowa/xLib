@@ -11,71 +11,76 @@
 #ifndef xLib_Common_xCommonH
 #define xLib_Common_xCommonH
 //---------------------------------------------------------------------------
-#include <xLib/Common/xConfig.h>
-
-
 #ifndef __cplusplus
     #error xLib: require C++ compilation (use a .cpp suffix)
 #endif
 
+#include <xLib/Common/xConfig.h>
+
 
 /****************************************************************************
-*    Predefined xLib macros
+*    Predefined macros
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: OS family (http://predef.sourceforge.net/preos.html)
-#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
+#if (_WIN32 || _WIN64 || __WIN32__ || __TOS_WIN__ || __WINDOWS__)
     #define xOS_WIN
-    ////#pragma message("  --- xLib: xOS_WIN ---")
-#elif defined(linux) || defined(__linux)
+    //#pragma message("  --- xLib: xOS_WIN ---")
+#elif (linux || __linux)
     #define xOS_LINUX
-    ////#pragma message("  --- xLib: xOS_LINUX ---")
-#elif defined(__FreeBSD__)
+    //#pragma message("  --- xLib: xOS_LINUX ---")
+#elif (__FreeBSD__)
     #define xOS_FREEBSD
-    #pragma message("  --- xLib: xOS_FREEBSD ---")
-    ////#error xLib: xOS_FREEBSD
+    //#pragma message("  --- xLib: xOS_FREEBSD ---")
+    #error xLib: xOS_FREEBSD
 #else
     #define xOS_UNSUPPORTED
-    #pragma message("  --- xLib: xOS_UNSUPPORTED ---")
+    //#pragma message("  --- xLib: xOS_UNSUPPORTED ---")
     #error xLib: unsupported OS
 #endif
 //---------------------------------------------------------------------------
 //DONE: OS architecture (http://predef.sourceforge.net/preos.html)
-#if defined(i386)    || defined(__i386__) || defined(__i486__) || defined(__i586__)      || defined(__i686__) || defined(__i386)  || \
-    defined(_M_IX86) || defined(__X86__)  || defined(_X86_)    || defined(__THW_INTEL__) || defined(__I86__)  || defined(__I86__) || defined(__INTEL__)
-
+#if (i386 || __i386__ || __i486__ || __i586__ || __i686__ || __i386 || _M_IX86 || __X86__ || _X86_ || __THW_INTEL__ || __I86__ || __I86__ || __INTEL__)
     #define xARCHITECTURE_32BIT
-    ////#pragma message("  --- xLib: xARCHITECTURE_32BIT ---")
-#elif defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || \
-      defined(__ia64__)  || defined(_IA64)   || defined(__IA64__)   || defined(__ia64)   || defined(_M_IA64)
-
+    //#pragma message("  --- xLib: xARCHITECTURE_32BIT ---")
+#elif (__amd64__ || __amd64 || __x86_64__ || __x86_64 || _M_X64 || __ia64__  || _IA64 || __IA64__ || __ia64 || _M_IA64 )
     #define xARCHITECTURE_64BIT
-    ////#pragma message("  --- xLib: xARCHITECTURE_64BIT ---")
+    //#pragma message("  --- xLib: xARCHITECTURE_64BIT ---")
 #else
     #define xARCHITECTURE_UNSUPPORTED
-
-    #pragma message("  --- xLib: xARCHITECTURE_UNSUPPORTED ---")
+    //#pragma message("  --- xLib: xARCHITECTURE_UNSUPPORTED ---")
     #error xLib: unsupported architectures
 #endif
 //---------------------------------------------------------------------------
 //DONE: Compilers
-#if defined(__MINGW32__)
+#if   (__MINGW32__)
     #define xCOMPILER_MINGW32
-#endif
-
-#if defined(_MSC_VER) || defined(_MSC_FULL_VER) || defined(_MSC_BUILD)
+    //#pragma message("  --- xLib: xCOMPILER_MINGW32 ---")
+#elif (_MSC_VER || _MSC_FULL_VER || _MSC_BUILD)
     #define xCOMPILER_MS
-#endif
-
-#if defined(__BORLANDC__) || defined(__CODEGEARC__)
+    //#pragma message("  --- xLib: xCOMPILER_MS ---")
+#elif (__BORLANDC__ || __CODEGEARC__)
     #define xCOMPILER_CODEGEAR
-#endif
-
-#if defined(__GNUC__)
+    //#pragma message("  --- xLib: xCOMPILER_CODEGEAR ---")
+#elif (__GNUC__)
     #define xCOMPILER_GNUC
+    //#pragma message("  --- xLib: xCOMPILER_GNUC ---")
+#else
+    #define xCOMPILER_UNSUPPORTED
+    //#pragma message("  --- xLib: xCOMPILER_UNSUPPORTED ---")
+    #error xLib: unsupported compiler
 #endif
+//---------------------------------------------------------------------------
+//DONE: unicode, ansi
+#if (UNICODE || _UNICODE)
+    #define xUNICODE
+    //#pragma message("  --- xLib: xUNICODE ---")
+#else
+    #define xANSI
+    //#pragma message("  --- xLib: xANSI ---")
+#endif //UNICODE || _UNICODE
 //---------------------------------------------------------------------------
 //C library
 #include <stdio.h>
@@ -88,7 +93,8 @@
 #include <time.h>
 #include <stddef.h>
 #include <math.h>
-#if defined(xIS_STL_ASSERTING)
+
+#if (xIS_STL_ASSERTING)
     #include <assert.h>
 #endif
 
@@ -108,11 +114,11 @@
 #include <stdexcept>
 
 //POSIX
-#include <fcntl.h>              
-#include <sys/stat.h>           
-#include <sys/types.h>        
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 //---------------------------------------------------------------------------
-#if defined(UNICODE) || defined(_UNICODE)
+#if (xUNICODE)
     #define xTEXT(x)                         L##x
     #define xT(x)                            xTEXT(x)
 
@@ -127,11 +133,9 @@
     #define tendl                            std::endl
 
     #define _ttmpnam                         _wtmpnam
-
-    ////#pragma message("  --- xLib: xUNICODE ---")
 #else
     #define xTEXT(x)                         x
-    #define xT(x)                             xTEXT(x)
+    #define xT(x)                            xTEXT(x)
 
     typedef char                             TCHAR;
     typedef char *                           LPTSTR;
@@ -146,26 +150,24 @@
     #define tendl                            std::endl
 
     #define _ttmpnam                         tmpnam
+#endif //xUNICODE
 
-    ////#pragma message("  --- xLib: xANSI ---")
-#endif  /*_UNICODE*/
+typedef double DOUBLE;
 
-typedef std::basic_string<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                         tString;
+typedef std::basic_string<TCHAR,         std::char_traits<TCHAR>,         std::allocator<TCHAR> >         tString;
 typedef std::basic_string<unsigned char, std::char_traits<unsigned char>, std::allocator<unsigned char> > uString;
 
-typedef std::basic_istream<TCHAR, std::char_traits<TCHAR> >                                               tistream;
-typedef std::basic_ostream<TCHAR, std::char_traits<TCHAR> >                                               tostream;
+typedef std::basic_istream <TCHAR, std::char_traits<TCHAR> >                                              tistream;
+typedef std::basic_ostream <TCHAR, std::char_traits<TCHAR> >                                              tostream;
 typedef std::basic_iostream<TCHAR, std::char_traits<TCHAR> >                                              tiostream;
 
 typedef std::basic_istringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tistringstream;
 typedef std::basic_ostringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tostringstream;
-typedef std::basic_stringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                   tstringstream;
+typedef std::basic_stringstream <TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tstringstream;
 
 typedef std::basic_ifstream<TCHAR, std::char_traits<TCHAR> >                                              tifstream;
 typedef std::basic_ofstream<TCHAR, std::char_traits<TCHAR> >                                              tofstream;
-typedef std::basic_fstream<TCHAR, std::char_traits<TCHAR> >                                               tfstream;
-
-typedef double DOUBLE;
+typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                                              tfstream;
 //---------------------------------------------------------------------------
 namespace NxLib {}
 #ifndef xNO_USING_NAMESPACE

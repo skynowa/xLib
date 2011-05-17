@@ -16,22 +16,22 @@
 //---------------------------------------------------------------------------
 class CxChar : public CxNonCopyable {
     public:
-        static BOOL  bIsAlphaNum(INT iChar);
-        static BOOL  bIsAlpha   (INT iChar);
-        static BOOL  bIsControl (INT iChar);
-        static BOOL  bIsDigitDec(INT iChar);
-        static BOOL  bIsDigitHex(INT iChar);
+        static BOOL  bIsAlphaNum(const INT ciChar);
+        static BOOL  bIsAlpha   (const INT ciChar);
+        static BOOL  bIsControl (const INT ciChar);
+        static BOOL  bIsDigitDec(const INT ciChar);
+        static BOOL  bIsDigitHex(const INT ciChar);
 
-        static BOOL  bIsGraph   (INT iChar);
-        static BOOL  bIsPrint   (INT iChar);
-        static BOOL  bIsPunct   (INT iChar);
-        static BOOL  bIsSpace   (INT iChar);
+        static BOOL  bIsGraph   (const INT ciChar);
+        static BOOL  bIsPrint   (const INT ciChar);
+        static BOOL  bIsPunct   (const INT ciChar);
+        static BOOL  bIsSpace   (const INT ciChar);
 
-        static BOOL  bIsLower   (INT iChar);
-        static BOOL  bIsUpper   (INT iChar);
+        static BOOL  bIsLower   (const INT ciChar);
+        static BOOL  bIsUpper   (const INT ciChar);
 
-        static CHAR  chToLower  (INT iChar);
-        static CHAR  chToUpper  (INT iChar);
+        static TCHAR chToLower  (const INT ciChar);
+        static TCHAR chToUpper  (const INT ciChar);
 
     private:
         BOOL         _m_bRes;

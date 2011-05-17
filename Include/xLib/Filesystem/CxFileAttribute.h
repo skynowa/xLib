@@ -9,8 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Fso_CxFileAttributeH
-#define xLib_Fso_CxFileAttributeH
+#ifndef xLib_Filesystem_CxFileAttributeH
+#define xLib_Filesystem_CxFileAttributeH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
@@ -70,4 +70,4 @@ class CxFileAttribute : public CxNonCopyable {
         virtual          ~CxFileAttribute();
 };
 //---------------------------------------------------------------------------
-#endif //xLib_Fso_CxFileAttributeH
+#endif //xLib_Filesystem_CxFileAttributeH

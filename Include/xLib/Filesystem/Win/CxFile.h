@@ -87,7 +87,7 @@ class CxFile : public CxNonCopyable {
         BOOL             bSetSize            (ULONG ulSize);
         ULONG            ulGetType           ();
         BOOL             bGetTime            (FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified);
-        BOOL             bSetTime            (FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified);
+        BOOL             bSetTime            (const FILETIME &cftCreate, const FILETIME &cftAccess, const FILETIME &cftModified);
 
         static BOOL      bIsExists           (const tString &csFilePath);
         static tString   sIsExists           (const tString &csFilePath);

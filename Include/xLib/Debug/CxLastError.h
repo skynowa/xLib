@@ -17,9 +17,9 @@
 class CxLastError : public CxNonCopyable  {
     public:
         static ULONG   ulGet      ();
-        static BOOL    bSet       (ULONG ulCode);
+        static BOOL    bSet       (const ULONG culCode);
         static BOOL    bReset     ();
-        static tString sFormat    (ULONG ulCode);
+        static tString sFormat    (const ULONG culCode);
 
         /*
         GetErrorMode
