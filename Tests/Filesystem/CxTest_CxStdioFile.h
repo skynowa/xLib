@@ -299,9 +299,17 @@ CxTest_CxStdioFile::bUnit() {
     //--------------------------------------------------
     //bGetTime, bSetTime
     {
-        const time_t ctmCreate   = 1000000;
-        const time_t ctmAccess   = 2000000;
-        const time_t ctmModified = 3000000;
+#if xTODO
+        {
+	        CxStdioFile F;
+	
+	        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
+	        xASSERT(FALSE != m_bRes);
+        }
+        
+        const time_t ctmCreate   = 1305748663;
+        const time_t ctmAccess   = 1305753000;
+        const time_t ctmModified = 1305753052;
 
         m_bRes = CxStdioFile::bSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
         xASSERT(FALSE != m_bRes);
@@ -317,6 +325,7 @@ CxTest_CxStdioFile::bUnit() {
         #endif
         xASSERT(ctmAccess   == tmAccess);
         xASSERT(ctmModified == tmModified);
+#endif
     }
 
 
