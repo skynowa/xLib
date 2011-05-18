@@ -44,7 +44,7 @@ CxTest_CxFile::~CxTest_CxFile() {
 BOOL CxTest_CxFile::bUnit() {
 	ULONG         ulWritten     = 0;
 	ULONG         ulReaded      = 0;
-	const tString csStr         = xT("???????? ?????");
+	const tString csStr         = xT("fcbujdfvugbxcjbfgicfkh");
 	TCHAR         szInBuff[256] = {0};
 	const tString csFilePath    = sGetWorkDirPath() + xT("\\Test.txt");
 	const tString csNewFilePath = sGetWorkDirPath() + xT("\\New.Test.txt");
@@ -106,12 +106,31 @@ BOOL CxTest_CxFile::bUnit() {
 
 	m_ulRes = F.ulGetType();
 	xASSERT(CxFile::ftUnknown != m_ulRes);
+	
+	//--------------------------------------------------
+    //bGetTime, bSetTime
+    {
+        const FILETIME ctmCreate   = {100000000};
+        const FILETIME ctmAccess   = {200000000};
+        const FILETIME ctmModified = {300000000};
 
-	////m_bRes = F.bGetTime(FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified);
-	////xASSERT(FALSE != m_bRes);
+        m_bRes = F.bSetTime(ctmCreate, ctmAccess, ctmModified);
+        xASSERT(FALSE != m_bRes);
 
-	////m_bRes = F.bSetTime(FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified);
-	///xASSERT(FALSE != m_bRes);
+        FILETIME tmCreate   = {0};
+        FILETIME tmAccess   = {0};
+        FILETIME tmModified = {0};
+
+        m_bRes = F.bGetTime(&tmCreate, &tmAccess, &tmModified);
+        xASSERT(FALSE       != m_bRes);
+        
+        xASSERT(ctmCreate.dwLowDateTime    == tmCreate.dwLowDateTime);
+        xASSERT(ctmCreate.dwHighDateTime   == tmCreate.dwHighDateTime);
+        xASSERT(ctmAccess.dwLowDateTime    == tmAccess.dwLowDateTime);
+        xASSERT(ctmAccess.dwHighDateTime   == tmAccess.dwHighDateTime);
+        xASSERT(ctmModified.dwLowDateTime  == tmModified.dwLowDateTime);
+        xASSERT(ctmModified.dwHighDateTime == tmModified.dwHighDateTime);
+    }
 
 	m_bRes = F.bSetEof();
 	xASSERT(FALSE != m_bRes);
