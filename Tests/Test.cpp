@@ -31,6 +31,23 @@
 
 #endif
 
+//Compress
+#if defined(xOS_WIN)
+
+#elif defined(xOS_LINUX)
+    #include "Compress/CxTest_CxGz.h"
+#endif
+
+//Crypt
+#include "Crypt/CxTest_CxBase64.h"
+#include "Crypt/CxTest_CxCrc32.h"
+#include "Crypt/CxTest_CxRandom.h"
+#include "Crypt/CxTest_CxBlowfish.h"
+
+//Db
+#include "Db/CxTest_CxConnectionString.h"
+#include "Db/CxTest_CxMySql.h"
+
 //Debug
 #include "Debug/CxTest_CxLastError.h"
 #include "Debug/CxTest_CxReport.h"
@@ -55,14 +72,7 @@
 
 #endif
 
-//Gui
-#if defined(xOS_WIN)
-    #include "GUI/GDI+/CxTest_CxGdiplus.h"
-    #include "GUI/GDI+/CxTest_CxImage.h"
-#endif
-
 //Log
-
 
 //Net
 #include "Net/CxTest_CxCookiePv0.h"
@@ -75,37 +85,36 @@
 #include "Net/CxTest_CxTcpServerSocket.h"
 #include "Net/CxTest_CxHttpClient.h"
 
-//Compress
-#if defined(xOS_WIN)
-
-#elif defined(xOS_LINUX)
-    #include "Compress/CxTest_CxGz.h"
-#endif
-
-//Crypt
-#include "Crypt/CxTest_CxBase64.h"
-#include "Crypt/CxTest_CxCrc32.h"
-#include "Crypt/CxTest_CxRandom.h"
-#include "Crypt/CxTest_CxBlowfish.h"
-
-//Db
-#include "Db/CxTest_CxConnectionString.h"
-#include "Db/CxTest_CxMySql.h"
-
-//Sync
-#include "Sync/CxTest_CxProcess.h"
-#if defined(xOS_WIN)
-    #include "Sync/CxTest_CxThread.h"
-#elif defined(xOS_LINUX)
-
-#endif
-
 //Patterns
 #include "Patterns/CxTest_CxSingleton.h"
 
 //PKCS11
 #if defined(xOS_WIN)
     #include "PKCS11/CxTest_CxPkcs11.h"
+#elif defined(xOS_LINUX)
+
+#endif
+
+//Sync
+#include "Sync/CxTest_CxProcess.h"
+
+#if defined(xOS_WIN)
+    #include "Sync/CxTest_CxThread.h"
+#elif defined(xOS_LINUX)
+
+#endif
+
+//Gui
+#if defined(xOS_WIN)
+    #include "GUI/GDI+/CxTest_CxGdiplus.h"
+    #include "GUI/GDI+/CxTest_CxImage.h"
+#endif
+
+//Units
+#include "Sync/CxTest_CxProcess.h"
+
+#if defined(xOS_WIN)
+    //TODO: test Units
 #elif defined(xOS_LINUX)
 
 #endif
@@ -123,7 +132,7 @@ _tmain(INT argc, TCHAR *argv[]) {
     #endif
 
     xTRACEV(xT("\n\n*** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE);
-    xTRACE(xT("Start all tests...\n\n"));
+    xTRACE(xT("Start all tests...\n"));
 
     //--------------------------------------------------
     //settings
@@ -158,6 +167,26 @@ _tmain(INT argc, TCHAR *argv[]) {
     #endif
 
     //--------------------------------------------------
+    //Compress
+    #if defined(xOS_WIN)
+
+    #elif defined(xOS_LINUX)
+    vptTests.push_back( new CxTest_CxGz );
+    #endif
+
+    //--------------------------------------------------
+    //Crypt
+    #if xTODO
+        vptTests.push_back( new CxTest_CxCrc32 );
+        vptTests.push_back( new CxTest_CxBlowfish );
+    #endif
+
+    //--------------------------------------------------
+    //Db
+    vptTests.push_back( new CxTest_CxConnectionString );
+    vptTests.push_back( new CxTest_CxMySql );
+
+    //--------------------------------------------------
     //Debug
     vptTests.push_back( new CxTest_CxLastError );
     ////vptTests.push_back( new CxTest_CxDebugger );
@@ -184,15 +213,7 @@ _tmain(INT argc, TCHAR *argv[]) {
     #endif
 
     //--------------------------------------------------
-    //Gui
-    #if defined(xOS_WIN)
-    vptTests.push_back( new CxTest_CxGdiplus );
-    vptTests.push_back( new CxTest_CxImage );
-    #endif
-
-    //--------------------------------------------------
     //Log
-
 
     //--------------------------------------------------
     //Net
@@ -208,24 +229,16 @@ _tmain(INT argc, TCHAR *argv[]) {
     vptTests.push_back( new CxTest_CxHttpClient );
 
     //--------------------------------------------------
-    //Compress
+    //Patterns
+    vptTests.push_back( new CxTest_CxSingleton );
+
+    //--------------------------------------------------
+    //PKCS11
     #if defined(xOS_WIN)
-
+    vptTests.push_back( new CxTest_CxPkcs11 );
     #elif defined(xOS_LINUX)
-    vptTests.push_back( new CxTest_CxGz );
-    #endif
 
-    //--------------------------------------------------
-    //Crypt
-    #if xTODO
-        vptTests.push_back( new CxTest_CxCrc32 );
-        vptTests.push_back( new CxTest_CxBlowfish );
     #endif
-
-    //--------------------------------------------------
-    //Db
-    vptTests.push_back( new CxTest_CxConnectionString );
-    vptTests.push_back( new CxTest_CxMySql );
 
     //--------------------------------------------------
     //Sync
@@ -237,13 +250,16 @@ _tmain(INT argc, TCHAR *argv[]) {
     #endif
 
     //--------------------------------------------------
-    //Patterns
-    vptTests.push_back( new CxTest_CxSingleton );
+    //Gui
+    #if defined(xOS_WIN)
+    vptTests.push_back( new CxTest_CxGdiplus );
+    vptTests.push_back( new CxTest_CxImage );
+    #endif
 
     //--------------------------------------------------
-    //PKCS11
+    //Units
     #if defined(xOS_WIN)
-    vptTests.push_back( new CxTest_CxPkcs11 );
+        //TODO: test Units
     #elif defined(xOS_LINUX)
 
     #endif

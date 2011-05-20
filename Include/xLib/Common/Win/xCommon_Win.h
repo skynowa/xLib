@@ -34,6 +34,7 @@
     #ifndef _CRT_SECURE_NO_WARNINGS
         #define _CRT_SECURE_NO_WARNINGS     //eliminate deprecation warnings for VS2005
     #endif
+
     ////#define _SECURE_SCL 0
 
     //Required for VS 2008 (fails on XP and Win2000 without this fix)
@@ -73,7 +74,8 @@
     #define WIN32_LEAN_AND_MEAN
 #endif
 
-#define _WINSOCKAPI_        //Prevent winsock.h #include's
+//Prevent winsock.h #include's
+#define _WINSOCKAPI_
 
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -85,14 +87,14 @@
 #include <winuser.h>
 #include <Objbase.h>
 
-#if defined(xOS_WIN) && defined(xCOMPILER_CODEGEAR)
+#if defined(xCOMPILER_CODEGEAR)
     #include <vcl.h>
     #include <registry.hpp>
 #endif
 //---------------------------------------------------------------------------
 //For compilers lacking Win64 support
 #if xTODO
-    #ifndef  GetWindowLongPtr
+    #if !defined(GetWindowLongPtr)
         #define GetWindowLongPtr   GetWindowLong
         #define SetWindowLongPtr   SetWindowLong
         #define GWLP_WNDPROC       GWL_WNDPROC
@@ -125,7 +127,7 @@
 #endif
 
 //for Visual Studio 6 (without an updated platform SDK) and Dev-C++
-#ifndef OPENFILENAME_SIZE_VERSION_400
+#if !defined(OPENFILENAME_SIZE_VERSION_400)
     #define OPENFILENAME_SIZE_VERSION_400 sizeof(OPENFILENAME)
 #endif
 //---------------------------------------------------------------------------
