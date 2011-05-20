@@ -51,8 +51,11 @@
     #define _SECURE_SCL              0
     //#define NOMINMAX
 #elif defined(xOS_LINUX)
-
+    #if xTODO
+        #define _POSIX_SOURCE 1
+    #endif
 #endif
+
 
 //auto linkage
 //#define xIS_AUTO_LINCKAGE          1

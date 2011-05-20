@@ -138,11 +138,13 @@
     #define xTRACE(msg)                                     { CxDebugger::bTrace(msg);                                        }
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
     #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(tString(xFUNCTION) + xT(": ") + tString(s)); }
+    #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %i (file: %s, function: %s, line: %i)"), __COUNTER__, __FILE__, xFUNCTION, __LINE__); }
 #else
     #define xTRACEV(format, ...)                            { /* n/a */ }
     #define xTRACE(msg)                                     { /* n/a */ }
     #define xTRACE_FUNC                                     { /* n/a */ }
     #define xTRACE_FUNC_MSG(s)                              { /* n/a */ }
+    #define xTRACE_POINT                                    { /* n/a */ }
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_xDebugH
@@ -239,6 +241,3 @@
 ////    p->Release();
 ////#endif
 ////}
-
-
-    //

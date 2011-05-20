@@ -11,10 +11,10 @@
 #ifndef xLib_Common_xLinkingH
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
-#if defined(xIS_AUTO_LINCKAGE) && defined (xCOMPILER_MS) && !defined(_LIB)
+#if defined(xIS_AUTO_LINCKAGE) && defined(xOS_WIN) && defined(xCOMPILER_MS) && !defined(_LIB)
     #if defined(NDEBUG)
         //release
-        #if defined(UNICODE) || defined(_UNICODE)
+        #if defined(xUNICODE)
             ////#pragma message("  --- xLib: unicode, release ---")
             #pragma comment(lib, "xLibW_Release.lib")
         #else
@@ -23,15 +23,15 @@
         #endif
     #else
         //debug
-        #if defined(UNICODE) || defined(_UNICODE)
+        #if defined(xUNICODE)
             ////#pragma message("  --- xLib: unicode, debug ---")
             #pragma comment(lib, "xLibW_Debug.lib")
         #else
             ////#pragma message("  --- xLib: ansi, debug ---")
             #pragma comment(lib, "xLibA_Debug.lib")
         #endif
-    #endif    
-#endif    //_LIB
+    #endif
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_xLinkingH
 
