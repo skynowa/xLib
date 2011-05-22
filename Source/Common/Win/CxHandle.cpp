@@ -267,7 +267,7 @@ BOOL
 CxHandle::bSetFlagInherit(BOOL bFlagInherit) {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    return bSetInformation(HANDLE_FLAG_INHERIT, (bFlagInherit) ? HANDLE_FLAG_INHERIT : 0);;
+    return bSetInformation(HANDLE_FLAG_INHERIT, (bFlagInherit) ? HANDLE_FLAG_INHERIT : 0);
 }
 //---------------------------------------------------------------------------
 //DONE: bSetFlagProtectFromClose ()

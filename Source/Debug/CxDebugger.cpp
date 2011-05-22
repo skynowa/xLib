@@ -15,6 +15,7 @@
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Sync/CxProcess.h>
+#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxRtf.h>

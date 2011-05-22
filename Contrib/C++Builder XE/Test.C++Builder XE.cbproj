@@ -1,0 +1,668 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{8801D978-1434-4544-8AD6-15C54B3DE9D0}</ProjectGuid>
+			<ProjectVersion>12.3</ProjectVersion>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Platform>Win32</Platform>
+			<AppType>Console</AppType>
+			<FrameworkType>None</FrameworkType>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<OutputExt>exe</OutputExt>
+			<LinkPackageStatics>rtl.lib;vcl.lib</LinkPackageStatics>
+			<ILINK_LibraryPath>..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Common\;..\..\Tests\;D:\xLib\Tests\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<PackageImports>vcl.bpi;rtl.bpi;bcbie.bpi;vclx.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;svnui.bpi;svn.bpi;bdertl.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vclimg.bpi;vcldb.bpi;dbrtl.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;vclib.bpi;ibxpress.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;inet.bpi;intrawebdb_110_150.bpi;Intraweb_110_150.bpi;vclie.bpi;websnap.bpi;webdsnap.bpi;inetdb.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DataSnapIndy10ServerTransport.bpi;DataSnapProviderClient.bpi;DbxClientDriver.bpi;DataSnapClient.bpi;dbxcds.bpi;DataSnapServer.bpi;AzureCloud.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;DBXFirebirdDriver.bpi;DBXSybaseASEDriver.bpi;DBXSybaseASADriver.bpi;DBXOracleDriver.bpi;DBXMSSQLDriver.bpi;DBXInformixDriver.bpi;DBXDb2Driver.bpi;CodeSiteExpressVcl.bpi;Rave90VCL.bpi</PackageImports>
+			<NoVCL>true</NoVCL>
+			<Multithreaded>true</Multithreaded>
+			<IncludePath>..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Common\;..\..\Tests\;D:\xLib\Tests\;$(IncludePath)</IncludePath>
+			<AllPackageLibs>rtl.lib;vcl.lib</AllPackageLibs>
+			<ProjectType>CppConsoleApplication</ProjectType>
+			<_TCHARMapping>wchar_t</_TCHARMapping>
+			<DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE</DCC_UnitAlias>
+			<DynamicRTL>true</DynamicRTL>
+			<IntermediateOutputDir>.\$(Config)\$(Platform)</IntermediateOutputDir>
+			<FinalOutputDir>.\$(Config)\$(Platform)</FinalOutputDir>
+			<BCC_wpar>false</BCC_wpar>
+			<BCC_OptimizeForSpeed>true</BCC_OptimizeForSpeed>
+			<BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
+			<ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<_TCHARMapping>char</_TCHARMapping>
+			<BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
+			<BCC_DisableOptimizations>true</BCC_DisableOptimizations>
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+			<Defines>_DEBUG;$(Defines)</Defines>
+			<BCC_InlineFunctionExpansion>false</BCC_InlineFunctionExpansion>
+			<BCC_UseRegisterVariables>None</BCC_UseRegisterVariables>
+			<DCC_Define>DEBUG</DCC_Define>
+			<BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
+			<TASM_DisplaySourceLines>true</TASM_DisplaySourceLines>
+			<BCC_StackFrames>true</BCC_StackFrames>
+			<ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
+			<TASM_Debugging>Full</TASM_Debugging>
+			<BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
+			<ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<Defines>NDEBUG;$(Defines)</Defines>
+			<TASM_Debugging>None</TASM_Debugging>
+		</PropertyGroup>
+		<ItemGroup>
+			<None Include="..\..\Include\xLib\Common\CxAppSettings.h">
+				<BuildOrder>1</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxArray.h">
+				<BuildOrder>2</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxAutoBuffer.h">
+				<BuildOrder>3</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxAutoMallocT.h">
+				<BuildOrder>4</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxChar.h">
+				<BuildOrder>5</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxConst.h">
+				<BuildOrder>6</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxDateTime.h">
+				<BuildOrder>7</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxException.h">
+				<BuildOrder>8</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxFunctorT.h">
+				<BuildOrder>9</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxLocale.h">
+				<BuildOrder>10</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxMacros.h">
+				<BuildOrder>11</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxNonAssignable.h">
+				<BuildOrder>12</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxNonCopyable.h">
+				<BuildOrder>13</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxString.h">
+				<BuildOrder>14</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxSystemInfo.h">
+				<BuildOrder>15</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\DbEmpty.db.zip.txt"/>
+			<None Include="..\..\Include\xLib\Common\xClosure.h">
+				<BuildOrder>17</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xClosureImpl.h">
+				<BuildOrder>18</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xCommon.h">
+				<BuildOrder>19</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xConfig.h">
+				<BuildOrder>20</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xDefines.h">
+				<BuildOrder>21</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xLinking.h">
+				<BuildOrder>22</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xTypes.h">
+				<BuildOrder>23</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\CxBase64.h">
+				<BuildOrder>24</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\CxCrc32.h">
+				<BuildOrder>25</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\CxRandom.h">
+				<BuildOrder>26</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Db\CxConnectionString.h">
+				<BuildOrder>27</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Db\CxMySql.h">
+				<BuildOrder>28</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxAutoProfiler.h">
+				<BuildOrder>29</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxDebugger.h">
+				<BuildOrder>30</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxLastError.h">
+				<BuildOrder>31</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxProfiler.h">
+				<BuildOrder>32</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxReport.h">
+				<BuildOrder>33</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxTest.h">
+				<BuildOrder>34</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\xDebug.h">
+				<BuildOrder>35</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxDir.h">
+				<BuildOrder>36</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxDll.h">
+				<BuildOrder>37</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxEnvironment.h">
+				<BuildOrder>38</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxFileAttribute.h">
+				<BuildOrder>39</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxIni.h">
+				<BuildOrder>40</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxPath.h">
+				<BuildOrder>41</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxStdioFile.h">
+				<BuildOrder>42</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Log\CxConsoleLog.h">
+				<BuildOrder>43</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Log\CxDbLog.h">
+				<BuildOrder>44</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Log\CxFileLog.h">
+				<BuildOrder>45</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Log\CxTraceLog.h">
+				<BuildOrder>46</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Log\xLog.h">
+				<BuildOrder>47</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxAsyncSocket.h">
+				<BuildOrder>48</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxCgi.h">
+				<BuildOrder>49</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxCookiePv0.h">
+				<BuildOrder>50</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxCookiePv1.h">
+				<BuildOrder>51</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxDnsClient.h">
+				<BuildOrder>52</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxHttpClient.h">
+				<BuildOrder>53</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxMimeBody.h">
+				<BuildOrder>54</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxMimeHeader.h">
+				<BuildOrder>55</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxMimeMessage.h">
+				<BuildOrder>56</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxPop3.h">
+				<BuildOrder>57</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxQueryList.h">
+				<BuildOrder>58</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxSmtp.h">
+				<BuildOrder>59</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxSocket.h">
+				<BuildOrder>60</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxSocketInit.h">
+				<BuildOrder>61</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxTcpClientSocket.h">
+				<BuildOrder>62</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxTcpServerSocket.h">
+				<BuildOrder>63</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxUri.h">
+				<BuildOrder>64</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Patterns\CxSingleton.h">
+				<BuildOrder>65</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\All.h">
+				<BuildOrder>66</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Common.h">
+				<BuildOrder>67</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxDecrypt.h">
+				<BuildOrder>68</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxDigest.h">
+				<BuildOrder>69</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxEncrypt.h">
+				<BuildOrder>70</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxFunction.h">
+				<BuildOrder>71</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxInfo.h">
+				<BuildOrder>72</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxKey.h">
+				<BuildOrder>73</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxLogin.h">
+				<BuildOrder>74</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxMechanism.h">
+				<BuildOrder>75</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxObject.h">
+				<BuildOrder>76</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxPin.h">
+				<BuildOrder>77</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxPkcs11.h">
+				<BuildOrder>78</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxSession.h">
+				<BuildOrder>79</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxSign.h">
+				<BuildOrder>80</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxSlot.h">
+				<BuildOrder>81</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxUtils.h">
+				<BuildOrder>82</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\CxVerify.h">
+				<BuildOrder>83</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxAtomicLongInt.h">
+				<BuildOrder>84</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxAutoCriticalSection.h">
+				<BuildOrder>85</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxAutoMutex.h">
+				<BuildOrder>86</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxCompletionPort.h">
+				<BuildOrder>87</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxCriticalSection.h">
+				<BuildOrder>88</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxEvent.h">
+				<BuildOrder>89</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxMutex.h">
+				<BuildOrder>90</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxProcess.h">
+				<BuildOrder>91</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxSemaphore.h">
+				<BuildOrder>92</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxSleeper.h">
+				<BuildOrder>93</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxThread.h">
+				<BuildOrder>94</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxThreadPool.h">
+				<BuildOrder>95</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxTls.h">
+				<BuildOrder>96</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxWaitableTimer.h">
+				<BuildOrder>97</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Units\sGetEan13BarCode.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>98</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Common\CxAppSettings.cpp">
+				<BuildOrder>99</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Common\CxArray.inl"/>
+			<CppCompile Include="..\..\Source\Common\CxChar.cpp">
+				<BuildOrder>101</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxConst.cpp">
+				<BuildOrder>102</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxDateTime.cpp">
+				<BuildOrder>103</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxException.cpp">
+				<BuildOrder>104</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Common\CxFunctorT.inl"/>
+			<CppCompile Include="..\..\Source\Common\CxLocale.cpp">
+				<BuildOrder>106</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxString.cpp">
+				<BuildOrder>107</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Common\CxString.inl"/>
+			<CppCompile Include="..\..\Source\Common\CxSystemInfo.cpp">
+				<BuildOrder>109</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Common\DbEmpty.db.zip.txt"/>
+			<None Include="..\..\Source\Crypt\CxBase64.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>111</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Crypt\CxCrc32.cpp">
+				<BuildOrder>112</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\CxRandom.cpp">
+				<BuildOrder>113</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Db\CxConnectionString.cpp">
+				<BuildOrder>114</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Db\CxMySql.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>115</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Debug\CxAutoProfiler.cpp">
+				<BuildOrder>116</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Debug\CxDebugger.cpp">
+				<BuildOrder>117</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Debug\CxDebugger.inl"/>
+			<CppCompile Include="..\..\Source\Debug\CxLastError.cpp">
+				<BuildOrder>119</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Debug\CxProfiler.cpp">
+				<BuildOrder>120</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Debug\CxReport.cpp">
+				<BuildOrder>121</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Debug\CxReport.inl"/>
+			<CppCompile Include="..\..\Source\Debug\CxTest.cpp">
+				<BuildOrder>123</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxDir.cpp">
+				<BuildOrder>124</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxDll.cpp">
+				<BuildOrder>125</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxEnvironment.cpp">
+				<BuildOrder>126</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxFileAttribute.cpp">
+				<BuildOrder>127</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxIni.cpp">
+				<BuildOrder>128</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxPath.cpp">
+				<BuildOrder>129</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxStdioFile.cpp">
+				<BuildOrder>130</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Log\CxConsoleLog.cpp">
+				<BuildOrder>131</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Log\CxDbLog.cpp">
+				<BuildOrder>132</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Log\CxFileLog.cpp">
+				<BuildOrder>133</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Log\CxTraceLog.cpp">
+				<BuildOrder>134</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxAsyncSocket.cpp">
+				<BuildOrder>135</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxCgi.cpp">
+				<BuildOrder>136</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxCookiePv0.cpp">
+				<BuildOrder>137</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxCookiePv1.cpp">
+				<BuildOrder>138</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxDnsClient.cpp">
+				<BuildOrder>139</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxHttpClient.cpp">
+				<BuildOrder>140</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Net\CxMimeBody.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>141</BuildOrder>
+			</None>
+			<None Include="..\..\Source\Net\CxMimeHeader.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>142</BuildOrder>
+			</None>
+			<None Include="..\..\Source\Net\CxMimeMessage.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>143</BuildOrder>
+			</None>
+			<None Include="..\..\Source\Net\CxPop3.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>144</BuildOrder>
+			</None>
+			<None Include="..\..\Source\Net\CxSmtp.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>145</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Net\CxSocket.cpp">
+				<BuildOrder>146</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxSocketInit.cpp">
+				<BuildOrder>147</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxTcpClientSocket.cpp">
+				<BuildOrder>148</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxTcpServerSocket.cpp">
+				<BuildOrder>149</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxUri.cpp">
+				<BuildOrder>150</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Patterns\CxSingleton.cpp">
+				<BuildOrder>151</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxDecrypt.cpp">
+				<BuildOrder>152</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxDigest.cpp">
+				<BuildOrder>153</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxEncrypt.cpp">
+				<BuildOrder>154</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxFunction.cpp">
+				<BuildOrder>155</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxInfo.cpp">
+				<BuildOrder>156</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxKey.cpp">
+				<BuildOrder>157</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxLogin.cpp">
+				<BuildOrder>158</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxMechanism.cpp">
+				<BuildOrder>159</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxObject.cpp">
+				<BuildOrder>160</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxPin.cpp">
+				<BuildOrder>161</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxPkcs11.cpp">
+				<BuildOrder>162</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxSession.cpp">
+				<BuildOrder>163</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxSign.cpp">
+				<BuildOrder>164</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxSlot.cpp">
+				<BuildOrder>165</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxUtils.cpp">
+				<BuildOrder>166</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\CxVerify.cpp">
+				<BuildOrder>167</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxAtomicLongInt.cpp">
+				<BuildOrder>168</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxAutoCriticalSection.cpp">
+				<BuildOrder>169</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxAutoMutex.cpp">
+				<BuildOrder>170</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxCompletionPort.cpp">
+				<BuildOrder>171</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxCriticalSection.cpp">
+				<BuildOrder>172</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxEvent.cpp">
+				<BuildOrder>173</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxMutex.cpp">
+				<BuildOrder>174</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxProcess.cpp">
+				<BuildOrder>175</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxSemaphore.cpp">
+				<BuildOrder>176</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxSharedMemory.cpp">
+				<BuildOrder>177</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxSleeper.cpp">
+				<BuildOrder>178</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxThread.cpp">
+				<BuildOrder>179</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Sync\CxThreadPool.inl"/>
+			<CppCompile Include="..\..\Source\Sync\CxTls.cpp">
+				<BuildOrder>181</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp">
+				<BuildOrder>182</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Test.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')" Project="$(BDS)\Bin\CodeGear.Cpp.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+		<ProjectExtensions>
+			<Borland.Personality>CPlusPlusBuilder.Personality.12</Borland.Personality>
+			<Borland.ProjectType>CppConsoleApplication</Borland.ProjectType>
+			<BorlandProject>
+				<CPlusPlusBuilder.Personality>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1049</VersionInfo>
+						<VersionInfo Name="CodePage">1251</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<ProjectProperties>
+						<ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
+						<ProjectProperties Name="ManagePaths">True</ProjectProperties>
+						<ProjectProperties Name="VerifyPackages">True</ProjectProperties>
+					</ProjectProperties>
+				</CPlusPlusBuilder.Personality>
+				<Platforms>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

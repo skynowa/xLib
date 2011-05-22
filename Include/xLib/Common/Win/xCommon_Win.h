@@ -24,12 +24,9 @@
 //---------------------------------------------------------------------------
 #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
     //Remove pointless warning messages
-    ////#pragma warning (disable : 4511)    //copy operator could not be generated
-    ////#pragma warning (disable : 4512)    //assignment operator could not be generated
-    ////#pragma warning (disable : 4702)    //unreachable code (bugs in Microsoft's STL)
-    ////#pragma warning (disable : 4786)    //identifier was truncated
     #pragma warning (disable : 4996)        //function or variable may be unsafe (deprecated)
     #pragma warning (disable : 4355)        //'this' : used in base member initializer list
+    #pragma warning (disable : 4101)        //'e' : unreferenced local variable
 
     #ifndef _CRT_SECURE_NO_WARNINGS
         #define _CRT_SECURE_NO_WARNINGS     //eliminate deprecation warnings for VS2005
@@ -79,7 +76,6 @@
 
 #include <winsock2.h>
 #include <ws2tcpip.h>
-////#include <Wspiapi.h>
 
 #include <windows.h>
 #include <tchar.h>
@@ -130,7 +126,5 @@
 #if !defined(OPENFILENAME_SIZE_VERSION_400)
     #define OPENFILENAME_SIZE_VERSION_400 sizeof(OPENFILENAME)
 #endif
-//---------------------------------------------------------------------------
-#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_Win_xCommon_WinH

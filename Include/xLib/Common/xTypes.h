@@ -11,6 +11,8 @@
 #ifndef xLib_Common_xTypesH
 #define xLib_Common_xTypesH
 //---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+//---------------------------------------------------------------------------
 #if defined(xUNICODE)
     #define xTEXT(x)                         L##x
     #define xT(x)                            xTEXT(x)

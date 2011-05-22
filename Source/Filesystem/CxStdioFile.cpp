@@ -382,7 +382,7 @@ CxStdioFile::bLocking(
     INT iRes = etError;
 
 #if defined(xOS_WIN)
-    iRes = _locking(_iGetHandle(), clmMode, cliBytes);
+    iRes = locking(_iGetHandle(), clmMode, cliBytes);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
     iRes = lockf(_iGetHandle(), clmMode, static_cast<off_t>( cliBytes ));
@@ -455,7 +455,7 @@ CxStdioFile::bSetMode(
         iRes = setmode(_iGetHandle(), ctmMode);
         /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
     #elif defined(xCOMPILER_CODEGEAR)
-        iRes = _setmode(_iGetHandle(), ctmMode);
+        iRes = setmode(_iGetHandle(), ctmMode);
         /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
     #endif
 
@@ -503,7 +503,7 @@ CxStdioFile::bResize(
         iRes = chsize(_iGetHandle(), cliSize);
         /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
     #elif defined(xCOMPILER_CODEGEAR)
-        iRes = _chsize(_iGetHandle(), cliSize);
+        iRes = chsize(_iGetHandle(), cliSize);
         /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
     #endif
 #elif defined(xOS_LINUX)

@@ -159,7 +159,7 @@ class CxMacros : CxNonCopyable {
         }
 
         //pointers
-        #if defined xARCHITECTURE_64BIT
+        #if defined(xARCHITECTURE_64BIT)
             inline ULONGLONG           xPtr2Val(const void * const x)    { return (unsigned long long)( x ); }
             inline VOID               *xVal2Ptr(unsigned long long x)    { return (void *)( x ); }
 
@@ -199,7 +199,7 @@ class CxMacros : CxNonCopyable {
         #define xGET_Y_LPARAM(lp)    ( (INT)(SHORT)HIWORD(lp) )
 
 
-        #if (xCOMPILER_CODEGEAR)
+        #if defined(xCOMPILER_CODEGEAR)
             #define xD2S(s)   tString((s).c_str())
             #define xD2AS(s)  tString((s).t_str())
             #define xS2D(s)   String((s).c_str())

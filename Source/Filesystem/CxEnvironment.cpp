@@ -328,8 +328,8 @@ CxEnvironment::bGetCommandLineArgs(
     std::vector<tString> vsArgs;
 
 #if defined(xOS_WIN)
-    extern int        __argc;   //count of cmd line args
-    extern char    ** __argv;   //pointer to table of cmd line args
+	////extern int        __argc;   //count of cmd line args
+    ////extern char    ** __argv;   //pointer to table of cmd line args
     extern wchar_t ** __wargv;  //pointer to table of wide cmd line args
 
     #if defined(UNICODE) || defined(_UNICODE)

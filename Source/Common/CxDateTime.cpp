@@ -677,7 +677,7 @@ CxDateTime::bIsValid(
 {
     /*DEBUG*/
 
-    return bIsValid(cdtDT._m_usYear, cdtDT._m_usMonth, cdtDT._m_usDay, cdtDT._m_usHour, cdtDT._m_usMinute, cdtDT._m_usSecond, cdtDT._m_usMillisecond);;
+    return bIsValid(cdtDT._m_usYear, cdtDT._m_usMonth, cdtDT._m_usDay, cdtDT._m_usHour, cdtDT._m_usMinute, cdtDT._m_usSecond, cdtDT._m_usMillisecond);
 }
 //---------------------------------------------------------------------------
 //DONE: bIsValid ()
@@ -765,7 +765,7 @@ CxDateTime::bUnixTimeToFileTime(
     
 
 
-    LARGE_INTEGER li = {0}; 
+    LARGE_INTEGER li = {{0}}; 
     time_t tmUnixTime = ctmUnixTime;
        
     tmUnixTime *= 10000000;

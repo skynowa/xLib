@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 * Class name:  CxTest_CxDateTime
 * Description: testing CxDateTime
 * File name:   CxTest_CxDateTime.h

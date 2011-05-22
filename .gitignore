@@ -10,6 +10,13 @@ Temp
 Contrib/C++Builder 2010/Debug/
 Contrib/C++Builder 2010/Release/
 
+### C++Builder XE ###
+Contrib/C++Builder XE/Debug/
+Contrib/C++Builder XE/Release/
+Contrib/C++Builder XE/*.~dsk
+Contrib/C++Builder XE/*.local
+Contrib/C++Builder XE/*.dsk
+
 ### Eclipse ###
 Contrib/Eclipse (win)/Debug/
 Contrib/Eclipse (win)/Release/
@@ -31,5 +38,5 @@ Contrib/VC++ 2010/*.suo
 Contrib/VC++ 2010/*.user
 
 ### files ###
-TODO.txt
+/TODO.txt
 xLib.zip

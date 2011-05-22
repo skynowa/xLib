@@ -56,7 +56,7 @@ class CxMsgBoxT : public CxNonCopyable  {
         static
         EModalResult
         iShow(TextT Text) {
-            return static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(Text).c_str(), xT(""), MB_OK) );
+            return static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(Text).c_str(), tString(), MB_OK) );
         }
 
     private:

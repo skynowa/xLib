@@ -12,6 +12,7 @@
 #include <xLib/Pkcs11/CxLogin.h>
 
 #include <xLib/Pkcs11/CxUtils.h>
+#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 
 
 /****************************************************************************
@@ -50,7 +51,7 @@ CxLogin::bLogin(
     _m_ulRes = _m_pFunc->C_Login(_m_hSession, userType, pPin, ulPinLen);
     xCHECK_DO(
         CKR_PIN_INCORRECT == _m_ulRes, 
-        CxMsgBoxT::iShow(xT("������ ��������������"), xT("Pkcs11"), MB_OK + MB_ICONSTOP);
+        CxMsgBoxT::iShow(xT("Pin is incorrect"), xT("Pkcs11"), MB_OK + MB_ICONSTOP);
         return FALSE
     );
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
