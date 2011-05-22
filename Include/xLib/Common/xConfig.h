@@ -49,7 +49,6 @@
     #define WIN32_LEAN_AND_MEAN
     #define _CRT_SECURE_NO_WARNINGS  1
     #define _SECURE_SCL              0
-    //#define NOMINMAX
 #elif defined(xOS_LINUX)
     #if xTODO
         #define _POSIX_SOURCE 1

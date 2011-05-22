@@ -29,7 +29,7 @@ CxString::lexical_cast(
         ossRes << cValueT;
 
         sRes.assign(ossRes.str());
-    } catch (tostringstream::failure e) {
+    } catch (tostringstream::failure &e) {
         sRes.clear();
     } catch (...) {
         sRes.clear();
@@ -59,7 +59,7 @@ CxString::lexical_cast(
         ossRes << std::setbase(ciBase) << std::uppercase << cValueT;  //std::showbase
 
         sRes.assign(ossRes.str());
-    } catch (tostringstream::failure e) {
+    } catch (tostringstream::failure &e) {
         sRes.clear();
     } catch (...) {
         sRes.clear();
@@ -85,7 +85,7 @@ CxString::lexical_cast(
 
         issStream.exceptions(tistringstream::failbit | tistringstream::badbit);
         issStream >> ResT;
-    } catch (tistringstream::failure e) {
+    } catch (tistringstream::failure &e) {
         return T();
     } catch (...) {
         return T();
@@ -113,7 +113,7 @@ CxString::lexical_cast(
 
         issStream.exceptions(tistringstream::failbit | tistringstream::badbit);
         issStream >> std::setbase(ciBase) >> ResT;
-    } catch (tistringstream::failure e) {
+    } catch (tistringstream::failure &e) {
         return T();
     } catch (...) {
         return T();

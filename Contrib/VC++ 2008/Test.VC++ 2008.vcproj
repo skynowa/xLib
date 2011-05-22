@@ -434,13 +434,6 @@
 					<File
 						RelativePath="..\..\Source\Filesystem\Win\CxIni.cpp"
 						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\Include\xLib\Filesystem\Win\CxIni.h"
@@ -471,18 +464,46 @@
 						<File
 							RelativePath="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp"
 							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\Include\xLib\Gui\Win\Dialogs\CxInputBox.h"
 							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h"
 							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxT.h"
 							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 					</Filter>
 					<Filter
@@ -494,6 +515,13 @@
 							<File
 								RelativePath="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp"
 								>
+								<FileConfiguration
+									Name="Debug|Win32"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h"
@@ -509,6 +537,13 @@
 							<File
 								RelativePath="..\..\Source\Gui\Win\GDI+\CxImage.cpp"
 								>
+								<FileConfiguration
+									Name="Debug|Win32"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h"
@@ -1210,7 +1245,15 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\Include\xLib\Common\xDefines.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\Include\xLib\Common\xLinking.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\Include\xLib\Common\xTypes.h"
 					>
 				</File>
 				<Filter

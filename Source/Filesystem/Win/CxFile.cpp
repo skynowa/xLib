@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 * Class name:  CxFile
 * Description: file
 * File name:   CxFile.cpp
@@ -15,6 +15,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/Win/CxDrive.h>
 #include <xLib/Filesystem/CxDir.h>
+#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 
 #if defined(xOS_WIN)
     #include <fstream>
@@ -956,8 +957,8 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
 
     //-------------------------------------
     //check for a valid backup
-    xCHECK_RET(FALSE                 != bIsExists(sBackupFilePath), FALSE);
-    xCHECK_RET(llGetSize(csFilePath) == llGetSize(sBackupFilePath), FALSE);
+    xCHECK_RET(FALSE                 == bIsExists(sBackupFilePath), FALSE);
+    xCHECK_RET(llGetSize(csFilePath) != llGetSize(sBackupFilePath), FALSE);
 
     return TRUE;
 }

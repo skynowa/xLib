@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 * Class name:  CxImage
 * Description: GDI+ image
 * File name:   CxImage.cpp
@@ -43,7 +43,7 @@ BOOL CxImage::bLoad(const tString &csFilePath) {
 
     xCHECK_DO(TRUE == bIsLoaded(), bDestroy());
 
-#if (xUNICODE)
+#if defined(xUNICODE)
     _m_pimgImage = Gdiplus::Image::FromFile(csFilePath.c_str());
 #else
     _m_pimgImage = Gdiplus::Image::FromFile(std::wstring(csFilePath.begin(), csFilePath.end()).c_str());
@@ -90,7 +90,7 @@ BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
     CLSID cidClsid = {0};
     _bGetEncoderClsid(sEncoderType, &cidClsid);
 
-#if (xUNICODE)
+#if defined(xUNICODE)
     _m_stRes = _m_pimgImage->Save(csFilePath.c_str(), &cidClsid, NULL);
 #else
     _m_stRes = _m_pimgImage->Save(std::wstring(csFilePath.begin(), csFilePath.end()).c_str(), &cidClsid, NULL);
@@ -296,7 +296,7 @@ BOOL CxImage::_bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid) {
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
     for (UINT j = 0; j < uiNum; ++ j) {
-#if (xUNICODE)
+#if defined(xUNICODE)
     if (csFormat == pImageCodecInfo.pGetPtr()[j].MimeType) {
 #else
     if (std::wstring(csFormat.begin(), csFormat.end()) == pImageCodecInfo.pGetPtr()[j].MimeType) {

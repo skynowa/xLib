@@ -12,6 +12,7 @@
 #include <xLib/Sync/CxThread.h>
 
 #include <xLib/Common//CxSystemInfo.h>
+#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 
 #ifndef _MT
 #    define _MT
