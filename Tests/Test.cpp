@@ -106,8 +106,8 @@
 
 //Gui
 #if defined(xOS_WIN)
-    #include "GUI/GDI+/CxTest_CxGdiplus.h"
-    #include "GUI/GDI+/CxTest_CxImage.h"
+    #include "Gui/GDI+/CxTest_CxGdiplus.h"
+    #include "Gui/GDI+/CxTest_CxImage.h"
 #endif
 
 //Units
