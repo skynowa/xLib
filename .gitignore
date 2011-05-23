@@ -9,6 +9,9 @@ Temp
 ### C++Builder 2010 ###
 Contrib/C++Builder 2010/Debug/
 Contrib/C++Builder 2010/Release/
+Contrib/C++Builder 2010/*.~dsk
+Contrib/C++Builder 2010/*.local
+Contrib/C++Builder 2010/*.dsk
 
 ### C++Builder XE ###
 Contrib/C++Builder XE/Debug/

@@ -464,13 +464,6 @@
 						<File
 							RelativePath="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp"
 							>
-							<FileConfiguration
-								Name="Debug|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\Include\xLib\Gui\Win\Dialogs\CxInputBox.h"
@@ -515,13 +508,6 @@
 							<File
 								RelativePath="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp"
 								>
-								<FileConfiguration
-									Name="Debug|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h"
@@ -537,13 +523,6 @@
 							<File
 								RelativePath="..\..\Source\Gui\Win\GDI+\CxImage.cpp"
 								>
-								<FileConfiguration
-									Name="Debug|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h"

@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  xLinking
-* Description: linking static library
+* Description: linkage static library
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     02.12.2010 11:47:23
@@ -11,7 +11,7 @@
 #ifndef xLib_Common_xLinkingH
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
-#if defined(xIS_AUTO_LINCKAGE) && defined(xOS_WIN) && defined(xCOMPILER_MS) && !defined(_LIB)
+#if defined(xIS_AUTO_LINKING) && defined(xOS_WIN) && defined(xCOMPILER_MS) && !defined(_LIB)
     #if defined(NDEBUG)
         //release
         #if defined(xUNICODE)
