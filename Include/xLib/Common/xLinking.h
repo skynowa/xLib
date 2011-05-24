@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  xLinking
-* Description: linkage static library
+* Description: linking static library
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     02.12.2010 11:47:23
