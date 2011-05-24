@@ -124,8 +124,12 @@
     #error xLib: incorrect debug mode
 #endif
 //-------------------------------------------------------------------------
-#define xCHECK_RET(expr, return_expr)                       { if ((expr)) {return (return_expr);} }
-#define xCHECK_DO(expr, do_instructions)                    { if ((expr)) {do_instructions;}      }
+#define xCHECK_RET(expr, return_expr)                       { if ((expr)) { return (return_expr);                     } }
+#define xCHECK_DO(expr, do_instructions)                    { if ((expr)) { do_instructions;                          } }
+#define xCHECK_MSG(expr, comment)                           { if ((expr)) { xSTD_COUT(comment);                       } }
+#define xCHECK_MSG_RET(expr, comment, return_expr)          { if ((expr)) { xSTD_COUT(comment); return (return_expr); } }
+#define xCHECK_MSG_DO(expr, comment, do_instructions)       { if ((expr)) { xSTD_COUT(comment); do_instructions;      } }
+
 
 #define xASSERT_STATIC(expr)                                { switch (0) {case 0: case (expr):;}  }
 #define xNOT_IMPLEMENTED_RET(return_expr)                   { xASSERT_MSG_RET(FALSE, xT("Not implemented"), (return_expr)); }
