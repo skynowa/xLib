@@ -188,6 +188,7 @@ class CxMacros : CxNonCopyable {
         #endif
 
         #define xSTD_CIN(s)         { tcin  >> (s) >> tendl; }
+        #define xSTD_COUT(s)        { tcout << (s) << tendl; }
 
 
         #define xRELEASE(p)          { if (NULL != (p)) {p->Release (); p = NULL;} }
