@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Test.Eclipse.Linux</name>
+	<name>xLib_static_lib</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -9,10 +9,6 @@
 			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
 			<triggers>clean,full,incremental,</triggers>
 			<arguments>
-				<dictionary>
-					<key>?children?</key>
-					<value>?name?=outputEntries\|?children?=?name?=entry\\\\\\\|\\\|?name?=entry\\\\\\\|\\\|\||</value>
-				</dictionary>
 				<dictionary>
 					<key>?name?</key>
 					<value></value>
@@ -35,7 +31,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/Test.Eclipse.Linux/Debug}</value>
+					<value>${workspace_loc:/xLib_static_lib/Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
@@ -86,35 +82,14 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Include</name>
+			<type>2</type>
+			<location>/home/user/Libs/xLib/Include</location>
+		</link>
+		<link>
 			<name>Source</name>
 			<type>2</type>
 			<location>/home/user/Libs/xLib/Source</location>
 		</link>
-		<link>
-			<name>TODO.txt</name>
-			<type>1</type>
-			<location>/home/user/Libs/xLib/TODO.txt</location>
-		</link>
-		<link>
-			<name>Test.cpp</name>
-			<type>1</type>
-			<location>/home/user/Libs/xLib/Tests/Test.cpp</location>
-		</link>
-		<link>
-			<name>Tests</name>
-			<type>2</type>
-			<location>/home/user/Libs/xLib/Tests</location>
-		</link>
-		<link>
-			<name>xLib</name>
-			<type>2</type>
-			<location>/home/user/Libs/xLib/Include/xLib</location>
-		</link>
 	</linkedResources>
-	<variableList>
-		<variable>
-			<name>xLib</name>
-			<value>file:/home/user/Libs/xLib</value>
-		</variable>
-	</variableList>
 </projectDescription>

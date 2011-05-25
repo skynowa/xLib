@@ -20,9 +20,10 @@ class CxProcess : public CxNonCopyable {
         static ULONG ulGetCurrId      ();
         static ULONG ulGetCurrParentId();
 
+        static BOOL  bExec            (const tString &csFilePath, LPCTSTR pcszCmdLine, ...);
         static BOOL  bExit            (ULONG ulPid, UINT uiExitCode);
         static BOOL  bTerminate       (ULONG ulPid);
-        static BOOL  bExec            (const tString &csFilePath, LPCTSTR pcszCmdLine, ...);
+
         //wait
 
     private:
