@@ -23,7 +23,6 @@
 *
 *****************************************************************************/
 
-
 //---------------------------------------------------------------------------
 //DONE: ulGetCurrId (process ID of the calling process)
 /*static*/
@@ -74,54 +73,15 @@ CxProcess::ulGetCurrParentId() {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bExit (Ends the calling process and all its threads)
-/*static*/
-BOOL
-CxProcess::bExit(ULONG ulPid, UINT uiExitCode) {
-    /*DEBUG*/// uiExitCode - n/a
-
-#if defined(xOS_WIN)
-    ::ExitProcess(uiExitCode);
-    /*DEBUG*/// n/a
-#elif defined(xOS_LINUX)
-    exit(static_cast<INT>( uiExitCode ));
-    /*DEBUG*/// n/a
-#endif
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//DONE: bTerminate (kills the calling process and all of its threads)
-/*static*/
-BOOL
-CxProcess::bTerminate(ULONG ulPid) {
-    /*DEBUG*/// uiExitCode - n/a
-
-#if defined(xOS_WIN)
-    CxHandle hProcess;
-
-    hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, ulPid);
-    /*DEBUG*/xASSERT_RET(NULL != hProcess, FALSE);
-
-    BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
-    INT iRes = kill(static_cast<pid_t>( ulPid ), SIGKILL);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-#endif
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------
 //TODO: bExec (execute a file)
 //http://www-theorie.physik.unizh.ch/~dpotter/howto/daemonize
 /*static*/
 BOOL
-CxProcess::bExec(const tString &csFilePath, LPCTSTR pcszCmdLine, ...) {
+CxProcess::bExec(
+    const tString &csFilePath,
+    LPCTSTR        pcszCmdLine, ...
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        FALSE);
 
@@ -174,6 +134,52 @@ CxProcess::bExec(const tString &csFilePath, LPCTSTR pcszCmdLine, ...) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//DONE: bExit (Ends the calling process and all its threads)
+/*static*/
+BOOL
+CxProcess::bExit(
+        ULONG ulPid,
+        UINT uiExitCode
+)
+{
+    /*DEBUG*/// uiExitCode - n/a
+
+#if defined(xOS_WIN)
+    ::ExitProcess(uiExitCode);
+    /*DEBUG*/// n/a
+#elif defined(xOS_LINUX)
+    exit(static_cast<INT>( uiExitCode ));
+    /*DEBUG*/// n/a
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bTerminate (kills the calling process and all of its threads)
+/*static*/
+BOOL
+CxProcess::bTerminate(
+    ULONG ulPid
+)
+{
+    /*DEBUG*/// uiExitCode - n/a
+
+#if defined(xOS_WIN)
+    CxHandle hProcess;
+
+    hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, ulPid);
+    /*DEBUG*/xASSERT_RET(NULL != hProcess, FALSE);
+
+    BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+#elif defined(xOS_LINUX)
+    INT iRes = kill(static_cast<pid_t>( ulPid ), SIGKILL);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************
@@ -182,12 +188,12 @@ CxProcess::bExec(const tString &csFilePath, LPCTSTR pcszCmdLine, ...) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxProcess (construcor)
+//DONE: CxProcess (construcor)
 CxProcess::CxProcess() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxProcess (destructor)
+//DONE: ~CxProcess (destructor)
 /*virtual*/
 CxProcess::~CxProcess() {
 

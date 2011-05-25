@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:
-* Description: файл ресурсов (синтаксис С++)
+* Description: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ++)
 * File name:   Resource.xrc
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -9,10 +9,10 @@
 *****************************************************************************/
 
 
-#ifndef XLib_Gui_ResourceXrcH
-#define XLib_Gui_ResourceXrcH
+#ifndef xLib_Gui_ResourceXrcH
+#define xLib_Gui_ResourceXrcH
 
-#include <xLib/GUI/Resource.xrc.h>
+#include <xLib/Gui/Resource.xrc.h>
 #include <tchar.h>
 
 /****************************************************************************
@@ -67,4 +67,4 @@ _bInitControl(IDD_WND_DIALOG,      xT("About Dialog"),    100,   200,   300, 200
 _bInitControl(IDD_WND_SHEET1,      xT("Layout1"),    100,   200,   300, 200, 0, 0);
 _bInitControl(IDD_WND_SHEET2,      xT("Layout2"),    100,   200,   300, 200, 0, 0);
 //---------------------------------------------------------------------------
-#endif //XLib_Gui_ResourceXrcH
+#endif //xLib_Gui_ResourceXrcH
