@@ -13,49 +13,42 @@
 
 
 /****************************************************************************
-*    public, static                                                         
-*                                                                            
+*    public, static
+*
 *****************************************************************************/
 
-tString     CxAppSettings::m_sAppTitle    = xT("");
-tString     CxAppSettings::m_sAppDir      = xT("");
-tString     CxAppSettings::m_sDbDir       = xT("");
-tString     CxAppSettings::m_sDbBackupDir = xT("");
-tString     CxAppSettings::m_sDbFilePath  = xT("");
-tString     CxAppSettings::m_sPass        = xT("");
-tString     CxAppSettings::m_sPassDefault = xT("");
+tString     CxAppSettings::m_sAppTitle     = xT("");
+tString     CxAppSettings::m_sAppDir       = xT("");
+tString     CxAppSettings::m_sDbDir        = xT("");
+tString     CxAppSettings::m_sDbBackupDir  = xT("");
+tString     CxAppSettings::m_sDbFilePath   = xT("");
+tString     CxAppSettings::m_sPass         = xT("");
+tString     CxAppSettings::m_sPassDefault  = xT("");
 
-const UCHAR CxAppSettings::m_ucDbEmpty[]  = {        
+const UCHAR CxAppSettings::m_ucDbEmpty[]   = {
     #include "DbEmpty.db.zip.txt"
 };
-ULONG CxAppSettings::m_ulDbEmptySize      = xARRAY_SIZE(CxAppSettings::m_ucDbEmpty);
+ULONG       CxAppSettings::m_ulDbEmptySize = xARRAY_SIZE(CxAppSettings::m_ucDbEmpty);
 
 
 /****************************************************************************
-*    public                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
-
-//---------------------------------------------------------------------------
-
-
-
-
-
 
 
 /****************************************************************************
-*    private                                                         
-*                                                                            
+*    private
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxAppSettings (comment)
+//DONE: CxAppSettings
 CxAppSettings::CxAppSettings() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxAppSettings (comment)
+//DONE: ~CxAppSettings
 /*virtual*/
 CxAppSettings::~CxAppSettings() {
 

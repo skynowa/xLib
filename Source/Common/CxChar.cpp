@@ -22,12 +22,12 @@
 /*static*/
 BOOL
 CxChar::bIsAlphaNum(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isalnum(ciChar) );
+    return static_cast<BOOL>( isalnum(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -35,12 +35,12 @@ CxChar::bIsAlphaNum(
 /*static*/
 BOOL
 CxChar::bIsAlpha(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( iswalpha(ciChar) );
+    return static_cast<BOOL>( iswalpha(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -48,12 +48,12 @@ CxChar::bIsAlpha(
 /*static*/
 BOOL
 CxChar::bIsControl(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( iscntrl(ciChar) );
+    return static_cast<BOOL>( iscntrl(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -61,12 +61,12 @@ CxChar::bIsControl(
 /*static*/
 BOOL
 CxChar::bIsDigitDec(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isdigit(ciChar) );
+    return static_cast<BOOL>( isdigit(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -74,12 +74,12 @@ CxChar::bIsDigitDec(
 /*static*/
 BOOL
 CxChar::bIsDigitHex(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isxdigit(ciChar) );
+    return static_cast<BOOL>( isxdigit(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -87,12 +87,12 @@ CxChar::bIsDigitHex(
 /*static*/
 BOOL
 CxChar::bIsGraph(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isgraph(ciChar) );
+    return static_cast<BOOL>( isgraph(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -100,12 +100,12 @@ CxChar::bIsGraph(
 /*static*/
 BOOL
 CxChar::bIsPrint(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isprint(ciChar) );
+    return static_cast<BOOL>( isprint(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -113,24 +113,24 @@ CxChar::bIsPrint(
 /*static*/
 BOOL
 CxChar::bIsPunct(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( ispunct(ciChar) );
+    return static_cast<BOOL>( ispunct(cchChar) );
 }
 //---------------------------------------------------------------------------
 //DONE: bIsSpace (Check if character is a white-space)
 /*static*/
 BOOL
 CxChar::bIsSpace(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isspace(ciChar) );
+    return static_cast<BOOL>( isspace(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -138,24 +138,24 @@ CxChar::bIsSpace(
 /*static*/
 BOOL
 CxChar::bIsLower(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( islower(ciChar) );
+    return static_cast<BOOL>( islower(cchChar) );
 }
 //---------------------------------------------------------------------------
 //DONE: bIsUpper (Check if character is uppercase letter)
 /*static*/
 BOOL
 CxChar::bIsUpper(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isupper(ciChar) );
+    return static_cast<BOOL>( isupper(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -163,13 +163,13 @@ CxChar::bIsUpper(
 /*static*/
 TCHAR
 CxChar::chToLower(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
     //TODO: unicode
-    return tolower(ciChar);
+    return tolower(cchChar);
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -177,13 +177,13 @@ CxChar::chToLower(
 /*static*/
 TCHAR
 CxChar::chToUpper(
-    const INT ciChar
+    const TCHAR cchChar
 )
 {
     /*DEBUG*/// n/a
 
     //TODO: unicode
-    return toupper(ciChar);
+    return toupper(cchChar);
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -195,14 +195,12 @@ CxChar::chToUpper(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxChar (constructor)
-CxChar::CxChar() :
-    _m_bRes(FALSE)
-{
+//DONE: CxChar
+CxChar::CxChar() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxChar (destructor)
+//DONE: ~CxChar
 /*virtual*/
 CxChar::~CxChar() {
     /*DEBUG*/// n/a

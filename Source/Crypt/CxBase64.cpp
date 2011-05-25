@@ -26,7 +26,10 @@
 //DONE: sEncode (encoding)
 /*static*/
 std::string
-CxBase64::sEncode(const std::string &csStr) {
+CxBase64::sEncode(
+    const std::string &csStr
+)
+{
     std::string  sRes;
     BIO         *pbioMemory    = NULL;
     BIO         *pbioBase64    = NULL;
@@ -63,12 +66,15 @@ CxBase64::sEncode(const std::string &csStr) {
 //DONE: sDecode (decoding)
 /*static*/
 std::string
-CxBase64::sDecode(const std::string &csStr) {
+CxBase64::sDecode(
+    const std::string &csStr
+)
+{
     std::string  sRes;
     BIO         *pbioMemory    = NULL;
     BIO         *pbioBase64    = NULL;
     BIO         *pbioContainer = NULL;
- 
+
 
     //create a memory buffer containing base64 encoded data
     pbioMemory = BIO_new_mem_buf((VOID *)&csStr.at(0), csStr.size());
@@ -100,12 +106,15 @@ CxBase64::sDecode(const std::string &csStr) {
 //DONE: bIsCharValid (is a valid base64 char)
 /*static*/
 BOOL
-CxBase64::bIsCharValid(INT iChar) {
+CxBase64::bIsCharValid(
+    const char cchChar
+)
+{
     /*DEBUG*/// n/a
 
     BOOL bRes = FALSE;
 
-    bRes = static_cast<BOOL>( TRUE == CxChar::bIsAlphaNum(iChar) || ('+' == iChar) || ('/' == iChar) );
+    bRes = static_cast<BOOL>( TRUE == CxChar::bIsAlphaNum(cchChar) || ('+' == cchChar) || ('/' == cchChar) );
 
     return bRes;
 }

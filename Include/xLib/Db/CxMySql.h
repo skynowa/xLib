@@ -17,11 +17,13 @@
 #if defined(xOS_WIN)
     #include <mysql.h>
     #include <errmsg.h>
-    
+
     #pragma comment(lib, "libmysql.lib")
 #elif defined(xOS_LINUX)
     #include <mysql/mysql.h>
     #include <mysql/errmsg.h>
+
+    // -lmysqlclient
 #endif
 //---------------------------------------------------------------------------
 class CxMySQLConnection : public CxNonCopyable  {

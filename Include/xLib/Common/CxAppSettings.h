@@ -12,15 +12,8 @@
 #define xLib_Common_CxAppSettingsH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#ifdef __BORLANDC__
-    #include <xVCL/xCommon.h>
-#endif
 //---------------------------------------------------------------------------
 class CxAppSettings : public CxNonCopyable {
-    private:
-                           CxAppSettings();
-        virtual           ~CxAppSettings();
-
     public:
         static tString     m_sAppTitle;
         static tString     m_sAppDir;
@@ -32,6 +25,10 @@ class CxAppSettings : public CxNonCopyable {
         static ULONG       m_ulDbEmptySize;
         static tString     m_sPass;
         static tString     m_sPassDefault;
+
+    private:
+                           CxAppSettings();
+        virtual           ~CxAppSettings();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxAppSettingsH

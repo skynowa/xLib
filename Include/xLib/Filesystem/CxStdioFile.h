@@ -14,12 +14,14 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <iostream>
-#include <ostream>
-#include <fstream>
+#if xCAN_REMOVE
+    #include <sys/types.h>
+    #include <sys/stat.h>
+    #include <fcntl.h>
+    #include <iostream>
+    #include <ostream>
+    #include <fstream>
+#endif
 
 #if defined(xOS_WIN)
     #include <sys/locking.h>
@@ -139,7 +141,7 @@ class CxStdioFile : public CxNonCopyable {
         BOOL             bReadLine    (tString *psStr, const size_t cuiMaxCount) const;
         BOOL             bWriteLine   (const tString &csStr) const;
 
-        TCHAR            cReadChar    () const;
+        TCHAR            chReadChar   () const;
         BOOL             bWriteChar   (const TCHAR ccChar) const;
         BOOL             bUngetChar   (const TCHAR ccChar) const;
 
@@ -182,6 +184,7 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bChmod       (const tString &csFilePath, const EPermissionMode cpmMode);
         static BOOL      bClear       (const tString &csFilePath);
         static BOOL      bDelete      (const tString &csFilePath);
+        static BOOL      bTryDelete   (const tString &csFilePath, const size_t cuiAttempts);
         static BOOL      bWipe        (const tString &csFilePath, const size_t cuiPasses);
         static BOOL      bUnlink      (const tString &csFilePath);
         static BOOL      bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);
