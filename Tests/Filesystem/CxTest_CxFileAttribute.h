@@ -129,7 +129,15 @@ CxTest_CxFileAttribute::bUnit() {
     //--------------------------------------------------
     //bIsExists
     {
-        m_bRes = CxFileAttribute::bIsExists(csFilePath, cfaValue);
+        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faHidden;
+
+        m_bRes = CxFileAttribute::bClear(csFilePath);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxFileAttribute::bAdd(csFilePath, faAttr);
+        xASSERT(FALSE != m_bRes);
+        
+        m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
         xASSERT(FALSE != m_bRes);
     }
 

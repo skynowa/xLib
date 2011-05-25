@@ -29,8 +29,11 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxThread (constructor)
-CxThread::CxThread(BOOL bIsPaused, BOOL bIsAutoDelete) :
+//DONE: CxThread
+CxThread::CxThread(
+    BOOL bIsPaused, 
+    BOOL bIsAutoDelete
+) :
     _m_bRes                 (FALSE),
 
     //consts
@@ -39,32 +42,32 @@ CxThread::CxThread(BOOL bIsPaused, BOOL bIsAutoDelete) :
 
     //data
     _m_hThread              (),
-    _m_ulID                    (0),
-    _m_uiExitCode            (0),
-    _m_pvParam                (NULL),
-    _m_cbIsAutoDelete        (bIsAutoDelete),
+    _m_ulID                 (0),
+    _m_uiExitCode           (0),
+    _m_pvParam              (NULL),
+    _m_cbIsAutoDelete       (bIsAutoDelete),
 
     //flags
-    _m_bIsCreated            (FALSE),
-    _m_bIsRunning            (FALSE),
+    _m_bIsCreated           (FALSE),
+    _m_bIsRunning           (FALSE),
     _m_bIsPaused            (bIsPaused/*TRUE == bIsPaused ? CREATE_SUSPENDED : 0*/),
     /*_m_bIsSleeping*/// n/a
     /*_m_bIsExited*///   n/a
 
     //
-    ///_vOnExit                (NULL),
+    ///_vOnExit             (NULL),
 
     //other
-    _m_pevStarter            (NULL),
+    _m_pevStarter           (NULL),
     _m_clLog                (FALSE),
 
     m_ulTag                 (0)
 {
-    ////this->hMainThread    = ::GetCurrentThread();
+    ////this->hMainThread   = ::GetCurrentThread();
     ////this->hMainThreadId = ::GetCurrentThreadId();
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxThread (destructor)
+//DONE: ~CxThread
 /*virtual*/
 CxThread::~CxThread() {
     /*DEBUG*/
@@ -94,7 +97,11 @@ CxThread::~CxThread() {
 //---------------------------------------------------------------------------
 //DONE: bCreate (creation)
 BOOL
-CxThread::bCreate(UINT uiStackSize, VOID *pvParam) {
+CxThread::bCreate(
+    UINT  uiStackSize, 
+    VOID *pvParam
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE == _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///uiStackSize  - n/a
     /*DEBUG*///ptfStartAddr - n/a
@@ -132,7 +139,7 @@ CxThread::bCreate(UINT uiStackSize, VOID *pvParam) {
 
     //-------------------------------------
     //_m_evPause
-    _m_bRes = _m_evPause.bCreate(NULL, TRUE/*-FALSE*/, TRUE/*FALSE*/, NULL);      //_m_bIsPaused
+    _m_bRes = _m_evPause.bCreate(NULL, FALSE, FALSE, NULL);      //_m_bIsPaused
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = _m_evExit.bCreate(NULL, FALSE, FALSE, NULL);
@@ -199,7 +206,10 @@ CxThread::bPause() {
 //---------------------------------------------------------------------------
 //DONE: bExit (exit - set flag "exit")
 BOOL
-CxThread::bExit(ULONG ulTimeout) {
+CxThread::bExit(
+    ULONG ulTimeout
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
 
@@ -224,7 +234,10 @@ CxThread::bExit(ULONG ulTimeout) {
 //---------------------------------------------------------------------------
 //DONE: bKill (killing)
 BOOL
-CxThread::bKill(ULONG ulTimeout) {
+CxThread::bKill(
+    ULONG ulTimeout
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
 
@@ -266,7 +279,10 @@ CxThread::bKill(ULONG ulTimeout) {
 //---------------------------------------------------------------------------
 //DONE: bWait (waiting)
 BOOL
-CxThread::bWait(ULONG ulTimeout) const {
+CxThread::bWait(
+    ULONG ulTimeout
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
 
@@ -325,7 +341,7 @@ BOOL
 CxThread::bIsPaused() const {
     /*DEBUG*/// _m_hThread - n/a
 
-    return !_m_evPause.bIsSignaled() && (FALSE != _m_hThread.bIsValid());
+    return (FALSE == _m_evPause.bIsSignaled()) && (FALSE != _m_hThread.bIsValid());
 }
 //---------------------------------------------------------------------------
 //DONE: bIsSleeping (is sleeping)
@@ -354,7 +370,13 @@ CxThread::bIsExited() const {
 //---------------------------------------------------------------------------
 //DONE: bPostMessage (send message from thread to window)
 BOOL
-CxThread::bPostMessage(HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const {
+CxThread::bPostMessage(
+    HWND hHwnd, 
+    UINT uiMsg, 
+    UINT uiParam1, 
+    LONG liParam2
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != ::IsWindow(hHwnd),     FALSE);
@@ -367,7 +389,13 @@ CxThread::bPostMessage(HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) con
 //---------------------------------------------------------------------------
 //DONE: bSendMessage (send message from thread to window)
 BOOL
-CxThread::bSendMessage(HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const {
+CxThread::bSendMessage(
+    HWND hHwnd, 
+    UINT uiMsg, 
+    UINT uiParam1, 
+    LONG liParam2
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != ::IsWindow(hHwnd),     FALSE);
@@ -381,7 +409,12 @@ CxThread::bSendMessage(HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) con
 //---------------------------------------------------------------------------
 //DONE: bPostThreadMessage (send message to thread)
 BOOL
-CxThread::bPostThreadMessage(UINT uiMsg, UINT uiParam1, LONG liParam2) const {
+CxThread::bPostThreadMessage(
+    UINT uiMsg, 
+    UINT uiParam1, 
+    LONG liParam2
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     _m_bRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
@@ -392,7 +425,14 @@ CxThread::bPostThreadMessage(UINT uiMsg, UINT uiParam1, LONG liParam2) const {
 //---------------------------------------------------------------------------
 //DONE: bTryPostThreadMessage (trying send message to thread)
 BOOL
-CxThread::bTryPostThreadMessage(UINT uiMsg, UINT uiParam1, LONG liParam2, ULONG ulAttemps, ULONG ulAttempTimeout) const {
+CxThread::bTryPostThreadMessage(
+    UINT  uiMsg, 
+    UINT  uiParam1, 
+    LONG  liParam2, 
+    ULONG ulAttemps, 
+    ULONG ulAttempTimeout
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     for (ULONG i = 0; i < ulAttemps; ++ i) {
@@ -407,7 +447,12 @@ CxThread::bTryPostThreadMessage(UINT uiMsg, UINT uiParam1, LONG liParam2, ULONG 
 //---------------------------------------------------------------------------
 //DONE: bMessageWaitQueue (waiting for message with params from other thread)
 BOOL
-CxThread::bMessageWaitQueue(UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const {
+CxThread::bMessageWaitQueue(
+    UINT  uiMsg, 
+    UINT *puiParam1, 
+    LONG *pliParam2
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(0     <  uiMsg,                 FALSE);
 
@@ -422,7 +467,13 @@ CxThread::bMessageWaitQueue(UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const 
 //---------------------------------------------------------------------------
 //DONE: bMessageWaitQueue (waiting for message with params from other thread)
 BOOL
-CxThread::bMessageWaitQueue(const std::vector<UINT> &cvecuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const {
+CxThread::bMessageWaitQueue(
+    const std::vector<UINT> &cvecuiMsg, 
+    UINT                    *puiMsg, 
+    UINT                    *puiParam1, 
+    LONG                    *pliParam2
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(false == cvecuiMsg.empty(),     FALSE);
 
@@ -456,7 +507,10 @@ CxThread::bMessageWaitQueue(const std::vector<UINT> &cvecuiMsg, UINT *puiMsg, UI
 //---------------------------------------------------------------------------
 //DONE: bSetPriority (seeting priority)
 BOOL
-CxThread::bSetPriority(EPriority tpPriority) const {
+CxThread::bSetPriority(
+    EPriority tpPriority
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     _m_bRes = ::SetThreadPriority(_m_hThread.m_hHandle, tpPriority);
@@ -563,7 +617,10 @@ CxThread::bIsPriorityBoost() const {
 //---------------------------------------------------------------------------
 //DONE: bSetPriorityBoost (Disables or enables the ability of the system to temporarily boost the priority of a thread)
 BOOL
-CxThread::bSetPriorityBoost(BOOL bIsEnabled) const {
+CxThread::bSetPriorityBoost(
+    BOOL bIsEnabled
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     _m_bRes = ::SetThreadPriorityBoost(_m_hThread.m_hHandle, ! bIsEnabled);
@@ -582,7 +639,10 @@ CxThread::bSetPriorityBoost(BOOL bIsEnabled) const {
 //---------------------------------------------------------------------------
 //DONE: bSetAffinityMask (Sets a processor affinity mask for the specified thread)
 BOOL
-CxThread::bSetAffinityMask(DWORD_PTR pulMask) const {
+CxThread::bSetAffinityMask(
+    DWORD_PTR pulMask
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     DWORD_PTR pulRes = 0;
@@ -595,7 +655,10 @@ CxThread::bSetAffinityMask(DWORD_PTR pulMask) const {
 //---------------------------------------------------------------------------
 //DONE: bSetIdealProcessor (Sets a preferred processor for a thread, ulIdealProcessor - this value is zero-based)
 BOOL
-CxThread::bSetIdealCPU(ULONG ulIdealCPU) const {
+CxThread::bSetIdealCPU(
+    ULONG ulIdealCPU
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     ULONG ulRes = (ULONG) - 1;
@@ -674,7 +737,10 @@ CxThread::ulGetExitCode() const {
 //---------------------------------------------------------------------------
 //DONE: bSetDebugName (Name your threads in the VC debugger thread list)
 BOOL
-CxThread::bSetDebugName(const tString &csName) const {
+CxThread::bSetDebugName(
+    const tString &csName
+) const 
+{
     /*DEBUG*/
 
     //convert to Ansi
@@ -697,7 +763,12 @@ CxThread::bSetDebugName(const tString &csName) const {
 //DONE: hOpen (Opens an existing thread object.)
 /*static*/
 HANDLE
-CxThread::hOpen(ULONG ulAccess, BOOL bInheritHandle, ULONG ulId) {
+CxThread::hOpen(
+    ULONG ulAccess, 
+    BOOL  bInheritHandle, 
+    ULONG ulId
+)
+{
     /*DEBUG*///ulAccess       - n/a
     /*DEBUG*///bInheritHandle - n/a
     /*DEBUG*/xASSERT_RET(0 < ulId, NULL);
@@ -748,7 +819,10 @@ CxThread::hGetCurrHandle() {
 //---------------------------------------------------------------------------
 //DONE: vAttachHandler_OnEnter ()
 VOID
-CxThread::vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback) {
+CxThread::vAttachHandler_OnEnter(
+    SClosureT<VOID(CxThread *pthSender)> vCallback
+)
+{
     _m_vCallback_OnEnter = vCallback;
     //_m_bFlag_OnEnter  = TRUE;
 }
@@ -761,7 +835,10 @@ CxThread::vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback)
 //---------------------------------------------------------------------------
 //DONE: vAttachHandler_OnExit ()
 VOID
-CxThread::vAttachHandler_OnExit(SClosureT<VOID(CxThread *pthSender)> vCallback) {
+CxThread::vAttachHandler_OnExit(
+    SClosureT<VOID(CxThread *pthSender)> vCallback
+)
+{
     _m_vCallback_OnExit = vCallback;
     //_m_bFlag_OnExit    = TRUE;
 }
@@ -788,7 +865,10 @@ CxThread::vAttachHandler_OnExit(SClosureT<VOID(CxThread *pthSender)> vCallback) 
 //DONE: uiOnRun (thread function)    //must override this
 /*virtual*/
 UINT
-CxThread::uiOnRun(VOID *pvParam) /* = 0*/ {
+CxThread::uiOnRun(
+    VOID *pvParam
+) /* = 0*/ 
+{
     /*DEBUG*/// n/a
     /*DEBUG*/xASSERT_RET(FALSE, 0);
 
@@ -853,7 +933,10 @@ CxThread::bYield() const {
 //---------------------------------------------------------------------------
 //DONE: bSleep (Suspends the execution of the current thread until the time-out interval elapses)
 BOOL
-CxThread::bSleep(ULONG ulTimeout) {
+CxThread::bSleep(
+    ULONG ulTimeout
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
 
@@ -935,7 +1018,10 @@ CxThread::bIsTimeToExit() {
 //DONE: _s_uiStartFunc (callback)
 /*static*/
 UINT WINAPI
-CxThread::_s_uiStartFunc(VOID *pvParam) {
+CxThread::_s_uiStartFunc(
+    VOID *pvParam
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != pvParam, 0);
 
     UINT uiRes = 0;
@@ -1066,31 +1152,34 @@ CxThread::_vSetStatesDefault() {
 //---------------------------------------------------------------------------
 //DONE: _bSetDebugNameA (Name your threads in the VC debugger thread list)
 BOOL
-CxThread::_bSetDebugNameA(const std::string &csName) const {
+CxThread::_bSetDebugNameA(
+    const std::string &csName
+) const 
+{
     /////*DEBUG*/xASSERT_RET(0    <  _m_ulID,       FALSE);
     /////*DEBUG*/xASSERT_RET(32   >  csName.size(), FALSE); //MAX_NAME_SIZE 32
 
-//    typedef struct tagTHREADNAME_INFO {
-//        DWORD  dwType;     //must be 0x1000
-//        LPCSTR szName;     //pointer to name (in user addr space)
-//        DWORD  dwThreadID; //thread ID (-1=caller thread)
-//        DWORD  dwFlags;    //reserved for future use, must be zero
-//    } THREADNAME_INFO;
-//
-//    THREADNAME_INFO tiInfo = {0};
-//    tiInfo.dwType     = 0x1000;
-//    tiInfo.szName     = csName.c_str();    ////cpszName;
-//    tiInfo.dwThreadID = ulGetId() /*- 1*/;    //_m_ulID;
-//    tiInfo.dwFlags    = 0;
-//
-//    __try {
-//        ::RaiseException(0x406D1388, 0, sizeof(tiInfo) / sizeof(DWORD), /*xreinterpret_cast*/(DWORD *)&tiInfo);
-//        /*DEBUG*/// n/a
-//    }
-//    __except (EXCEPTION_CONTINUE_EXECUTION)    {
-//        //TODO:
-//        ////////////////////////*DEBUG*/xASSERT_RET(FALSE, FALSE);
-//    }
+    typedef struct tagTHREADNAME_INFO {
+        DWORD  dwType;     //must be 0x1000
+        LPCSTR szName;     //pointer to name (in user addr space)
+        DWORD  dwThreadID; //thread ID (-1=caller thread)
+        DWORD  dwFlags;    //reserved for future use, must be zero
+    } THREADNAME_INFO;
+
+    THREADNAME_INFO tiInfo = {0};
+    tiInfo.dwType     = 0x1000;
+    tiInfo.szName     = csName.c_str();    ////cpszName;
+    tiInfo.dwThreadID = ulGetId() /*- 1*/;    //_m_ulID;
+    tiInfo.dwFlags    = 0;
+
+    __try {
+        ::RaiseException(0x406D1388, 0, sizeof(tiInfo) / sizeof(DWORD), /*xreinterpret_cast*/(DWORD *)&tiInfo);
+        /*DEBUG*/// n/a
+    }
+    __except (EXCEPTION_CONTINUE_EXECUTION)    {
+        //TODO:
+        ////////////////////////*DEBUG*/xASSERT_RET(FALSE, FALSE);
+    }
 
     return TRUE;
 }
@@ -1105,7 +1194,10 @@ CxThread::_bSetDebugNameA(const std::string &csName) const {
 //---------------------------------------------------------------------------
 //DONE: vHandler_OnEnter ()
 VOID
-CxThread::_vHandler_OnEnter(CxThread *pthSender)    {
+CxThread::_vHandler_OnEnter(
+    CxThread *pthSender
+)
+{
     //если произошел щелчкок мышки на нашей кнопке...
     //if (TRUE == _m_bFlag_OnEnter) {
     xCHECK_DO(NULL == _m_vCallback_OnEnter, return);
@@ -1115,7 +1207,10 @@ CxThread::_vHandler_OnEnter(CxThread *pthSender)    {
 //---------------------------------------------------------------------------
 //DONE: vHandler_OnExit ()
 VOID
-CxThread::_vHandler_OnExit(CxThread *pthSender) {
+CxThread::_vHandler_OnExit(
+    CxThread *pthSender
+)
+{
     //если произошел щелчкок мышки на нашей кнопке...
     //if (TRUE == _m_bFlag_OnExit) {
     xCHECK_DO(NULL == _m_vCallback_OnExit, return)

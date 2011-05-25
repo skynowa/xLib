@@ -22,13 +22,13 @@ BOOL bGetUsbInfo(const tString &csDrive, std::vector<tString> *pvecsInfo);
 //---------------------------------------------------------------------------
 //int main(int argc, char* argv[]) {
 //  BOOL                     bRes    = FALSE;
-//  std::vector<tstring> vecsRes;
+//  std::vector<tString> vecsRes;
 //
 //  bRes = bGetUsbInfo("H:\\", &vecsRes);
-//  XASSERT("\\??\\USB"                              == vecsRes.at(0));
-//  XASSERT("Vid_058f&Pid_6387"                      == vecsRes.at(1));
-//  XASSERT("3DH5R5EL"                               == vecsRes.at(2));
-//  XASSERT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}" == vecsRes.at(3));
+//  xASSERT("\\??\\USB"                              == vecsRes.at(0));
+//  xASSERT("Vid_058f&Pid_6387"                      == vecsRes.at(1));
+//  xASSERT("3DH5R5EL"                               == vecsRes.at(2));
+//  xASSERT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}" == vecsRes.at(3));
 //
 //  //assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
 //

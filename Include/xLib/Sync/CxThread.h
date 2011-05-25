@@ -21,7 +21,6 @@
 //---------------------------------------------------------------------------
 class CxThread : public CxNonCopyable {
     public:
-        //priority
         enum EPriority {
             tpPRIORITY_ERROR         = THREAD_PRIORITY_ERROR_RETURN,
             tpPRIORITY_IDLE          = THREAD_PRIORITY_IDLE,
@@ -37,36 +36,36 @@ class CxThread : public CxNonCopyable {
         mutable BOOL            _m_bRes;
 
         //constants
-        const ULONG             _m_culStillActiveTimeout;    //таймаут проверки активности
-        const ULONG             _m_culExitTimeout;            //таймаут выхода / уничтожения
+        const ULONG             _m_culStillActiveTimeout;   //таймаут проверки активности
+        const ULONG             _m_culExitTimeout;          //таймаут выхода / уничтожения
 
         //thread data
-        CxHandle                _m_hThread;                    //хендл
+        CxHandle                _m_hThread;                 //хендл
         ULONG                   _m_ulID;                    //ID
-        UINT                    _m_uiExitCode;                //код возврата
-        VOID                   *_m_pvParam;                    //параметр для раьочей функции
-        const BOOL              _m_cbIsAutoDelete;            //флаг самоудаления
+        UINT                    _m_uiExitCode;              //код возврата
+        VOID                   *_m_pvParam;                 //параметр для раьочей функции
+        const BOOL              _m_cbIsAutoDelete;          //флаг самоудаления
 
         //flags
-        BOOL                    _m_bIsCreated;                //флаг создания
-        BOOL                    _m_bIsRunning;                //флаг активности
-        BOOL                    _m_bIsPaused;                //флаг паузы
-        /*BOOL                  _m_bIsSleeping;*/// n/a        //флаг сна
-        /*BOOL                  _m_bIsExited;*///   n/a        //флаг выхода
+        BOOL                    _m_bIsCreated;              //флаг создания
+        BOOL                    _m_bIsRunning;              //флаг активности
+        BOOL                    _m_bIsPaused;               //флаг паузы
+        /*BOOL                  _m_bIsSleeping;*/// n/a     //флаг сна
+        /*BOOL                  _m_bIsExited;*///   n/a     //флаг выхода
 
         //other
-        CxEvent                 _m_evPause;                    //события для паузы
-        CxEvent                *_m_pevStarter;                //события для корректного запуска потока
-        CxSleeper                _m_slSleeper;                //слипер
-        CxEvent                 _m_evExit;                    //события для выхода
+        CxEvent                 _m_evPause;                 //события для паузы
+        CxEvent                *_m_pevStarter;              //события для корректного запуска потока
+        CxSleeper               _m_slSleeper;               //слипер
+        CxEvent                 _m_evExit;                  //события для выхода
         //HANDLE                _m_hParentHandle;
         //HANDLE                _m_hParentId;
 
-        CxTraceLog                _m_clLog;                    //лог
+        CxTraceLog                _m_clLog;                 //лог
 
         static UINT WINAPI      _s_uiStartFunc    (VOID *pvParam);
         BOOL                    _bWaitResumption  ();
-        VOID                    _vMembersClear    ();        //TODO: _vMembersClear
+        VOID                    _vMembersClear    ();       //TODO: _vMembersClear
         VOID                    _vSetStatesDefault();
         BOOL                    _bSetDebugNameA   (const std::string &csName) const;
 
@@ -146,9 +145,9 @@ class CxThread : public CxNonCopyable {
         //--virtual VOID        vOnEnter              ();
         //--virtual VOID        vOnExit               ();
 
-        BOOL                    bYield                () const;                /*static ???*/
+        BOOL                    bYield                () const;             /*static ???*/
         BOOL                    bSleep                (ULONG ulTimeout);    /*static ???*/
-        BOOL                    bSleeperWakeUp        ();                    /*static ???*/
+        BOOL                    bSleeperWakeUp        ();                   /*static ???*/
 
         BOOL                    bIsTimeToExit         ();
 };

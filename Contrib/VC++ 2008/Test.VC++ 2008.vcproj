@@ -1336,6 +1336,38 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="Units"
+				>
+				<File
+					RelativePath="..\..\Source\Units\sGetEan13BarCode.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\Include\xLib\Units\sGetEan13BarCode.h"
+					>
+				</File>
+				<Filter
+					Name="Win"
+					>
+					<File
+						RelativePath="..\..\Source\Units\Win\bDownloadURL.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\Include\xLib\Units\Win\bDownloadURL.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\Source\Units\Win\bGetUsbInfo.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\Include\xLib\Units\Win\bGetUsbInfo.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Test"

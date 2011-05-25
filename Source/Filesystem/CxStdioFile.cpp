@@ -1332,6 +1332,8 @@ CxStdioFile::bTextRead(
 
     for (size_t i = 0; !ifsStream.eof();  ++ i) {
         std::getline(ifsStream, sLine);
+        
+        sLine = CxString::sTrimRightChars(sLine, CxConst::xEOL);
 
         bRes = CxString::bSplit(sLine, csSeparator, &vecsLine);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);

@@ -9,20 +9,19 @@
 *****************************************************************************/
 
 
-#include <xLib/Units/bGetUsbInfo.h>
+#include <xLib/Units/Win/bGetUsbInfo.h>
 
 #include <winioctl.h>
 #include <setupapi.h>
 #pragma comment(lib, "setupapi")
 #include <basetyps.h>
-#include <Usbiodef.h>
 #include <cfgmgr32.h>
 #include <initguid.h>
 #include <objbase.h>
 
 #include <xLib/Common/CxAutoMallocT.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxDrive.h>
+#include <xLib/Filesystem/Win/CxDrive.h>
 //---------------------------------------------------------------------------
 BOOL
 bGetUsbInfo(
@@ -67,22 +66,22 @@ bGetUsbInfo(
 		}
 
 		////PSP_DEVICE_INTERFACE_DETAIL_DATA  pFunctionClassDeviceData = (PSP_DEVICE_INTERFACE_DETAIL_DATA)malloc(ulBytesReturned);
-		////*DEBUG*/XASSERT(NULL != pFunctionClassDeviceData);
-		CxMallocT<PSP_DEVICE_INTERFACE_DETAIL_DATA> diddDeviceInterfaceDetailData((size_t)ulBytesReturned);
-		/*DEBUG*/XASSERT(NULL != diddDeviceInterfaceDetailData.pGetPtr());
+		////*DEBUG*/xASSERT(NULL != pFunctionClassDeviceData);
+		CxAutoMallocT<PSP_DEVICE_INTERFACE_DETAIL_DATA> diddDeviceInterfaceDetailData((size_t)ulBytesReturned);
+		/*DEBUG*/xASSERT(NULL != diddDeviceInterfaceDetailData.pGetPtr());
 
 		diddDeviceInterfaceDetailData.pGetPtr()->cbSize = sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA);
 
 		bRes = ::SetupDiGetDeviceInterfaceDetail(hPnP, &didDeviceInterfaceData, diddDeviceInterfaceDetailData.pGetPtr(), ulBytesReturned, &ulBytesReturned, &ddDevinfoData);
-		/*DEBUG*/XASSERT(TRUE == bRes);
+		/*DEBUG*/xASSERT(TRUE == bRes);
 		if (FALSE == bRes) {
 			continue;
 		}
 
 		//-------------------------------------
 		//���������� ��� MountPoitName - �
-		tstring sMountPointNameFromLetter     = CxDrive::sGetVolumeNameForVolumeMountPoint(csDrive);
-		tstring sMountPointNameFromDevicePath = CxDrive::sGetVolumeNameForVolumeMountPoint(tstring(diddDeviceInterfaceDetailData.pGetPtr()->DevicePath));
+		tString sMountPointNameFromLetter     = CxDrive::sGetVolumeNameForVolumeMountPoint(csDrive);
+		tString sMountPointNameFromDevicePath = CxDrive::sGetVolumeNameForVolumeMountPoint(tString(diddDeviceInterfaceDetailData.pGetPtr()->DevicePath));
 		if (sMountPointNameFromLetter != sMountPointNameFromDevicePath) {
 			continue;
 		}
@@ -93,10 +92,10 @@ bGetUsbInfo(
 		Inst    = ddDevinfoData.DevInst;
 
 		mapiRes = ::CM_Get_Parent(&Inst, Inst, 0);
-		/*DEBUG*/////XASSERT(CR_SUCCESS == mapiRes);
+		/*DEBUG*/////xASSERT(CR_SUCCESS == mapiRes);
 
 		mapiRes = ::CM_Get_Parent(&Inst, Inst, 0);
-		/*DEBUG*/////XASSERT(CR_SUCCESS == mapiRes);
+		/*DEBUG*/////xASSERT(CR_SUCCESS == mapiRes);
 
 		::CM_Open_DevNode_Key(Inst, KEY_READ, 0, REGDISPOSITION(RegDisposition_OpenExisting), &hKey, 0);
 
@@ -109,14 +108,14 @@ bGetUsbInfo(
 			TCHAR szRes[256 + 1] = {0};
 
 			if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, xT("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
-				//--*pvecsInfo = vecsSplit(tstring(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
-				bRes = bSplit(tstring(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvecsInfo);
-				/*DEBUG*/XASSERT(TRUE == bRes);
+				//--*pvecsInfo = vecsSplit(tString(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
+				bRes = CxString::bSplit(tString(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvecsInfo);
+				/*DEBUG*/xASSERT(TRUE == bRes);
 			}
 
 			if (NULL != hKey) {
                 iRes = ::RegCloseKey(hKey);
-                /*DEBUG*/XASSERT(ERROR_SUCCESS == iRes);
+                /*DEBUG*/xASSERT(ERROR_SUCCESS == iRes);
             }
 
 			bRes = TRUE;
@@ -133,4 +132,3 @@ bGetUsbInfo(
 	return bRes;
 }
 //---------------------------------------------------------------------------
-

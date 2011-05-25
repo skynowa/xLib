@@ -787,7 +787,7 @@ CxTest_CxStdioFile::bUnit() {
     //bTryDelete
     {
         #if xTODO
-            const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+            const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
             for (size_t i = 0; i < 20; ++ i) {
                 if (i < 10) {
@@ -803,14 +803,14 @@ CxTest_CxStdioFile::bUnit() {
                     xASSERT(FALSE != m_bRes);
 
                     //try
-                    m_bRes = CxStdioFile::bTryDelete(csNewFilePath, 2000);
+                    m_bRes = CxStdioFile::bTryDelete(csFilePath, 2000);
                     xASSERT(FALSE == m_bRes);
 
                     m_bRes = F.bLocking(CxStdioFile::lmUnlock, 10);
                     xASSERT(FALSE != m_bRes);
                 } else {
                     //try
-                    m_bRes = CxStdioFile::bTryDelete(csNewFilePath, 33);
+                    m_bRes = CxStdioFile::bTryDelete(csFilePath, 33);
                     xASSERT(FALSE != m_bRes);
                 }
             }
