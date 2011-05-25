@@ -84,8 +84,7 @@
 #include <Objbase.h>
 
 #if defined(xCOMPILER_CODEGEAR)
-    #include <vcl.h>
-    #include <registry.hpp>
+    #include <xVCL/xCommon.h>
 #endif
 //---------------------------------------------------------------------------
 //For compilers lacking Win64 support

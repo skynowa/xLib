@@ -19,14 +19,14 @@
 		#pragma comment(lib, "libeay32.lib")
 	#endif
 #elif defined(xOS_LINUX)
-    // n/a
+    // -lcrypt -lssl -lcrypto
 #endif
 //---------------------------------------------------------------------------
 class CxBase64 : public CxNonCopyable {
     public:
         static std::string sEncode     (const std::string &csStr);
         static std::string sDecode     (const std::string &csStr);
-        static BOOL        bIsCharValid(INT iChar);
+        static BOOL        bIsCharValid(const char cchChar);
 
     private:
 };

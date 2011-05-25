@@ -16,26 +16,24 @@
 //---------------------------------------------------------------------------
 class CxChar : public CxNonCopyable {
     public:
-        static BOOL  bIsAlphaNum(const INT ciChar);
-        static BOOL  bIsAlpha   (const INT ciChar);
-        static BOOL  bIsControl (const INT ciChar);
-        static BOOL  bIsDigitDec(const INT ciChar);
-        static BOOL  bIsDigitHex(const INT ciChar);
+        static BOOL  bIsAlphaNum(const TCHAR cchChar);
+        static BOOL  bIsAlpha   (const TCHAR cchChar);
+        static BOOL  bIsControl (const TCHAR cchChar);
+        static BOOL  bIsDigitDec(const TCHAR cchChar);
+        static BOOL  bIsDigitHex(const TCHAR cchChar);
 
-        static BOOL  bIsGraph   (const INT ciChar);
-        static BOOL  bIsPrint   (const INT ciChar);
-        static BOOL  bIsPunct   (const INT ciChar);
-        static BOOL  bIsSpace   (const INT ciChar);
+        static BOOL  bIsGraph   (const TCHAR cchChar);
+        static BOOL  bIsPrint   (const TCHAR cchChar);
+        static BOOL  bIsPunct   (const TCHAR cchChar);
+        static BOOL  bIsSpace   (const TCHAR cchChar);
 
-        static BOOL  bIsLower   (const INT ciChar);
-        static BOOL  bIsUpper   (const INT ciChar);
+        static BOOL  bIsLower   (const TCHAR cchChar);
+        static BOOL  bIsUpper   (const TCHAR cchChar);
 
-        static TCHAR chToLower  (const INT ciChar);
-        static TCHAR chToUpper  (const INT ciChar);
+        static TCHAR chToLower  (const TCHAR cchChar);
+        static TCHAR chToUpper  (const TCHAR cchChar);
 
     private:
-        BOOL         _m_bRes;
-
                      CxChar     ();
         virtual     ~CxChar     ();
 };

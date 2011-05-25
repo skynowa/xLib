@@ -49,6 +49,12 @@ class CxMacros : CxNonCopyable {
         #define xARRAY_ZERO_DELETE(a) { if (NULL != (a)) {xBUFF_ZERO(a); delete [] a;  a = NULL;} }
         #define xARRAY_SIZE(a)        ( sizeof(a) / sizeof((a)[0]) )
 
+        #if xTODO
+            template <typename T, size_t N>
+            TCHAR (&ArraySizeHelper(T (&array)[N]))[N];
+            #define xARRAY_SIZE(a)        (sizeof(ArraySizeHelper(a)))
+        #endif
+
         #define xBUFF_ZERO(Buff)      { memset(static_cast<void *>( &Buff[0] ), 0, sizeof(Buff)); }
         #define xSTRUCT_ZERO(Buff)    { memset(static_cast<void *>( &Buff ),    0, sizeof(Buff)); }
         #define xBUFF_FREE(pvBuff)    { if (NULL != pvBuff) { free(pvBuff); pvBuff = NULL;} }

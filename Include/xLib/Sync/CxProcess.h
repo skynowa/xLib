@@ -27,8 +27,8 @@ class CxProcess : public CxNonCopyable {
         //wait
 
     private:
-                     CxProcess     ();
-        virtual     ~CxProcess     ();
+                     CxProcess        ();
+        virtual     ~CxProcess        ();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Sync_CxProcessH

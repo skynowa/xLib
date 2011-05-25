@@ -308,16 +308,15 @@ CxStdioFile::bWriteLine(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: cReadChar (get character)
+//TODO: chReadChar (get character)
 TCHAR
-CxStdioFile::cReadChar() const {
+CxStdioFile::chReadChar() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
     INT iRes = etError;
 
     iRes = _gettc(pGet());
-    /*DEBUG*/// n/a xASSERT_RET(iRes != etError, (TCHAR)etError);
-    /*DEBUG*/// n/a xASSERT_RET(EOF < iRes,      (TCHAR)etError);
+    /*DEBUG*/xASSERT_RET(EOF <= iRes, static_cast<TCHAR>(etError));
 
     return static_cast<TCHAR>(iRes);
 }
@@ -767,6 +766,39 @@ CxStdioFile::bDelete(
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 
     return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bTryDelete (try deleting)
+/*static*/
+BOOL
+CxStdioFile::bTryDelete(
+    const tString &csFilePath,
+    const size_t   cuiAttempts
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(0     <  cuiAttempts,        FALSE);
+
+    const size_t cuiMaxAttempts  = 100;  //MAGIC_NUMBER: cuiMaxAttempts
+    const size_t cuiRealAttempts = (cuiMaxAttempts < cuiAttempts) ? cuiMaxAttempts : cuiAttempts;
+
+    BOOL bRes       = FALSE;
+    BOOL bIsDeleted = FALSE;
+
+    for (size_t i = 0; i < cuiRealAttempts; ++ i) {
+        bRes = bDelete(csFilePath);
+        xCHECK_DO(TRUE == bRes, bIsDeleted = TRUE; break);
+
+        #if defined(xOS_WIN)
+            ::Sleep(static_cast<ULONG>( 0 ));
+            /*DEBUG*/// n/a
+        #elif defined(xOS_LINUX)
+            int iRes = usleep(static_cast<useconds_t>( 0 * 1000 ));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        #endif
+    }
+
+    return bIsDeleted;
 }
 //---------------------------------------------------------------------------
 //TODO: bWipe (wipe)

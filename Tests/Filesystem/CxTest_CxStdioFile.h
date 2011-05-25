@@ -250,7 +250,7 @@ CxTest_CxStdioFile::bUnit() {
     }
 
     //-------------------------------------
-    //bWriteChar, cReadChar, bUngetChar
+    //bWriteChar, chReadChar, bUngetChar
     {
         const TCHAR chChar = xT('W');
 
@@ -264,7 +264,7 @@ CxTest_CxStdioFile::bUnit() {
 
         m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
         xASSERT(FALSE != m_bRes);
-        m_chRes = F.cReadChar();
+        m_chRes = F.chReadChar();
         xASSERT(chChar == m_chRes);
 
         m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
@@ -302,11 +302,11 @@ CxTest_CxStdioFile::bUnit() {
 #if xTODO
         {
 	        CxStdioFile F;
-	
+
 	        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
 	        xASSERT(FALSE != m_bRes);
         }
-        
+
         const time_t ctmCreate   = 1305748663;
         const time_t ctmAccess   = 1305753000;
         const time_t ctmModified = 1305753052;
@@ -781,6 +781,40 @@ CxTest_CxStdioFile::bUnit() {
 
         m_bRes = CxStdioFile::bDelete(csNewFilePath);
         xASSERT(FALSE != m_bRes);
+    }
+
+    //--------------------------------------------------
+    //bTryDelete
+    {
+        #if xTODO
+            const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+
+            for (size_t i = 0; i < 20; ++ i) {
+                if (i < 10) {
+                    CxStdioFile F;
+
+                    m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
+                    xASSERT(FALSE != m_bRes);
+
+                    m_bRes = F.bResize(1024);
+                    xASSERT(FALSE != m_bRes);
+
+                    m_bRes = F.bLocking(CxStdioFile::lmLock, 10);
+                    xASSERT(FALSE != m_bRes);
+
+                    //try
+                    m_bRes = CxStdioFile::bTryDelete(csNewFilePath, 2000);
+                    xASSERT(FALSE == m_bRes);
+
+                    m_bRes = F.bLocking(CxStdioFile::lmUnlock, 10);
+                    xASSERT(FALSE != m_bRes);
+                } else {
+                    //try
+                    m_bRes = CxStdioFile::bTryDelete(csNewFilePath, 33);
+                    xASSERT(FALSE != m_bRes);
+                }
+            }
+        #endif
     }
 
     //-------------------------------------
