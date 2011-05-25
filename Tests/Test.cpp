@@ -184,7 +184,7 @@ _tmain(INT argc, TCHAR *argv[]) {
     //--------------------------------------------------
     //Db
     vptTests.push_back( new CxTest_CxConnectionString );
-    vptTests.push_back( new CxTest_CxMySql );
+    ////vptTests.push_back( new CxTest_CxMySql );
 
     //--------------------------------------------------
     //Debug
@@ -235,7 +235,7 @@ _tmain(INT argc, TCHAR *argv[]) {
     //--------------------------------------------------
     //PKCS11
     #if defined(xOS_WIN)
-    vptTests.push_back( new CxTest_CxPkcs11 );
+    ////vptTests.push_back( new CxTest_CxPkcs11 );
     #elif defined(xOS_LINUX)
 
     #endif
@@ -253,7 +253,7 @@ _tmain(INT argc, TCHAR *argv[]) {
     //Gui
     #if defined(xOS_WIN)
     vptTests.push_back( new CxTest_CxGdiplus );
-    vptTests.push_back( new CxTest_CxImage );
+    ////vptTests.push_back( new CxTest_CxImage );
     #endif
 
     //--------------------------------------------------
