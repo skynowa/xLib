@@ -6,18 +6,18 @@
 * E-mail:      skynowa@gmail.com
 * Created:     04.04.2009 6:21:18
 *
-*****************************************************************************/    
-    
-    
-#include <xLib/Net/CxTcpServerSocket.h> 
+*****************************************************************************/
 
 
-//---------------------------------------------------------------------------  
+#include <xLib/Net/CxTcpServerSocket.h>
+
+
+//---------------------------------------------------------------------------
 //DONE: CxTcpServerSocket (construcor)
-CxTcpServerSocket::CxTcpServerSocket() {   
+CxTcpServerSocket::CxTcpServerSocket() {
 
-} 
-//---------------------------------------------------------------------------  
+}
+//---------------------------------------------------------------------------
 //DONE: ~CxTcpServerSocket (destructor)
 CxTcpServerSocket::~CxTcpServerSocket() {
 
@@ -43,9 +43,9 @@ CxTcpServerSocket::bBind(USHORT usPort) {
     ////    return FALSE;
     ////}
 
-    return TRUE;   
-}   
-//--------------------------------------------------------------------------- 
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 //DONE: bListen (places a socket in a state in which it is listening for an incoming connection)
 BOOL
 CxTcpServerSocket::bListen(INT iBacklog /*= SOMAXCONN*/) {
@@ -54,9 +54,9 @@ CxTcpServerSocket::bListen(INT iBacklog /*= SOMAXCONN*/) {
     INT iRes = listen(_m_puiSocket, iBacklog);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
-    return TRUE;   
-}   
-//---------------------------------------------------------------------------  
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 //DONE: bAccept (permits an incoming connection attempt on a socket)
 BOOL
 CxTcpServerSocket::bAccept(CxTcpServerSocket *pscktAcceptSocket, tString *psFromIp) {
@@ -79,8 +79,8 @@ CxTcpServerSocket::bAccept(CxTcpServerSocket *pscktAcceptSocket, tString *psFrom
     scktClient = accept(_m_puiSocket, CxMacros::xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
     /*DEBUG*/xASSERT_RET(etInvalid != scktClient, FALSE);
 #endif
- 
-    //TODO:
+
+    //TODO: bAccept
     ////scktAcceptSocket = scktClient;
     _m_bRes = (* pscktAcceptSocket).bAssign(scktClient);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -89,8 +89,8 @@ CxTcpServerSocket::bAccept(CxTcpServerSocket *pscktAcceptSocket, tString *psFrom
     std::string asFromIp = inet_ntoa(cliaddr.sin_addr);
 
     (*psFromIp).assign(asFromIp.begin(), asFromIp.end());
-    
-    return TRUE;   
-}   
-//---------------------------------------------------------------------------  
- 
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+

@@ -36,17 +36,17 @@ typedef struct {
 } SMy, *PSMy;
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxAutoMallocT (constructor)
+//DONE: CxTest_CxAutoMallocT (constructor)
 CxTest_CxAutoMallocT::CxTest_CxAutoMallocT() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxAutoMallocT (destructor)
+//DONE: ~CxTest_CxAutoMallocT (destructor)
 CxTest_CxAutoMallocT::~CxTest_CxAutoMallocT() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAutoMallocT::bUnit() {

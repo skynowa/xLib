@@ -129,14 +129,14 @@ CxTest_CxFileAttribute::bUnit() {
     //--------------------------------------------------
     //bIsExists
     {
-        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faHidden;
+        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faRegularFile;
 
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xASSERT(FALSE != m_bRes);
 
         m_bRes = CxFileAttribute::bAdd(csFilePath, faAttr);
         xASSERT(FALSE != m_bRes);
-        
+
         m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
         xASSERT(FALSE != m_bRes);
     }
@@ -154,7 +154,7 @@ CxTest_CxFileAttribute::bUnit() {
         #if defined(xOS_WIN)
             xASSERT(CxFileAttribute::faNormal == faRes);
         #elif defined(xOS_LINUX)
-            //TODO: xOS_LINUX
+            //TODO: bClear
             //xASSERT(0 == faRes);
         #endif
     }

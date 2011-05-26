@@ -29,17 +29,17 @@ class CxTest_CxString : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxString (comment)
+//DONE: CxTest_CxString (comment)
 CxTest_CxString::CxTest_CxString() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxString (comment)
+//DONE: ~CxTest_CxString (comment)
 CxTest_CxString::~CxTest_CxString() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxString::bUnit() {
@@ -1016,7 +1016,7 @@ CxTest_CxString::bUnit() {
                 sWinStr = CxString::sConvertCodePage(sKoiStr,      20866, 1251);
                 xASSERT(csAnsiStr[i] == sWinStr);
             #elif defined(xOS_LINUX)
-                //TODO: xOS_LINUX
+                //TODO: sConvertCodePage
                 //xNOT_IMPLEMENTED_RET(RET_VALUE);
             #endif
         }
@@ -1031,7 +1031,7 @@ CxTest_CxString::bUnit() {
         sRes = CxString::asCharToOemBuff(xT("Boss, hello? "));
         xASSERT("Boss, hello? " == sRes);
         #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
+        //TODO: sCharToOemBuff
         #endif
     }
 
@@ -1044,7 +1044,7 @@ CxTest_CxString::bUnit() {
         sRes = CxString::sOemToCharBuff(("1111, hdbhjgjk hkl, jl.,kh."));
         xASSERT(xT("1111, hdbhjgjk hkl, jl.,kh.") == sRes);
         #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
+        //TODO: sOemToCharBuff
         #endif
     }
 

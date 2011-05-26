@@ -39,7 +39,7 @@ CxTest_CxStdioFile::~CxTest_CxStdioFile() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxStdioFile::bUnit() {
@@ -464,7 +464,7 @@ CxTest_CxStdioFile::bUnit() {
             m_bRes = F.bSetMode(CxStdioFile::tmBinary);
             xASSERT(FALSE != m_bRes);
         #elif defined(xOS_LINUX)
-            //TODO: xOS_LINUX
+            //TODO: bSetMode
         #endif
     }
 
@@ -480,7 +480,7 @@ CxTest_CxStdioFile::bUnit() {
             m_bRes = F.bSetMode(CxStdioFile::tmText);
             xASSERT(FALSE != m_bRes);
         #elif defined(xOS_LINUX)
-            //TODO: xOS_LINUX
+            //TODO: bSetMode
         #endif
     }
 

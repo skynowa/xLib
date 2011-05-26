@@ -279,11 +279,11 @@ CxDir::bCopy(const tString &csFromDirPath, const tString &csToDirPath, BOOL bFai
     /*DEBUG*/// bFailIfExists - n/a
 
 #if defined(xOS_WIN)
-    //TODO: xOS_WIN
+    //TODO: bCopy
     BOOL bRes = ::CopyFile(csFromDirPath.c_str(), csToDirPath.c_str(), bFailIfExists);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
+    //TODO: bCopy
     xNOT_IMPLEMENTED_RET(FALSE);
 #endif
 
@@ -315,7 +315,7 @@ CxDir::bMove(const tString &csInDirPath, const tString &csOutDirPath) {
         bRes = ::MoveFile(csInDirPath.c_str(), csOutDirPath.c_str());
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
+        //TODO: bMove
         xNOT_IMPLEMENTED_RET(FALSE);
     #endif
 

@@ -11,13 +11,12 @@
 #ifndef xLib_Common_xCommonH
 #define xLib_Common_xCommonH
 //---------------------------------------------------------------------------
-#ifndef __cplusplus
-    #error xLib: require C++ compilation (use a .cpp suffix)
-#endif
-//---------------------------------------------------------------------------
 //config
 #include <xLib/Common/xConfig.h>
 #include <xLib/Common/xDefines.h>
+
+//checks
+#include <xLib/Common/xCheks.h>
 
 //C library
 #include <stdio.h>

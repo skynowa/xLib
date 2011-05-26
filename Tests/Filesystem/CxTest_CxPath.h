@@ -29,17 +29,17 @@ class CxTest_CxPath : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxPath (constructor)
+//DONE: CxTest_CxPath (constructor)
 CxTest_CxPath::CxTest_CxPath() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxPath (destructor)
+//DONE: ~CxTest_CxPath (destructor)
 CxTest_CxPath::~CxTest_CxPath() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxPath::bUnit() {
@@ -69,7 +69,7 @@ CxTest_CxPath::bUnit() {
 	/****************************************************************************
 	*	����
 	*
-	*****************************************************************************/	
+	*****************************************************************************/
 
 	//-------------------------------------
 	//sGetExe
@@ -78,7 +78,7 @@ CxTest_CxPath::bUnit() {
         #if defined(xOS_WIN)
         xASSERT(sRes == xT("d:\\xLib\\Contrib\\VC++ 2008\\Debug\\Test.VC++ 2008.exe"));
         #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
+        //TODO: sGetExe
         #endif
     }
 
@@ -89,7 +89,7 @@ CxTest_CxPath::bUnit() {
         #if defined(xOS_WIN)
         xASSERT(sRes == xT("d:\\xLib\\Contrib\\VC++ 2008\\Debug"));
         #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
+        //TODO: sGetExeDir
         #endif
     }
 
@@ -328,7 +328,7 @@ CxTest_CxPath::bUnit() {
 			xASSERT(sStr3 == sStr4);
 		}
 	}
-	
+
 	//-------------------------------------
 	//sSetName
 	{
@@ -366,7 +366,7 @@ CxTest_CxPath::bUnit() {
 		}
 	}
 
-	
+
 	//-------------------------------------
 	//sSetExt
 	{
@@ -544,7 +544,7 @@ CxTest_CxPath::bUnit() {
 	    sRes    = CxPath::sToWin(csUnixPath, FALSE);
 		xASSERT(sRes == xT("C:\\TestDir"));
 
-		sRes    = CxPath::sToWin(csUnixPath, TRUE); 
+		sRes    = CxPath::sToWin(csUnixPath, TRUE);
 		xASSERT(sRes == xT("C:\\TestDir\\"));
 
 		sRes    = CxPath::sToWin(csWinPath, TRUE);
@@ -611,7 +611,7 @@ CxTest_CxPath::bUnit() {
 
 	//-------------------------------------
 	//TODO: sMinimizeName
-	{	
+	{
         const tString sData[][2] = {
             {xT("Name"),                   xT("Name")},
             {xT("full name"),              xT("ful~")},
@@ -642,7 +642,7 @@ CxTest_CxPath::bUnit() {
         sRes    = CxPath::sMinimize(sFilePath, 45);
         // n/a
     #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
+        //TODO: sMinimize
     #endif
 	}
 

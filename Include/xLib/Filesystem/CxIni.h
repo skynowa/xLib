@@ -4,7 +4,7 @@
 * File name:   CxIni.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
-* Created:     23.04.2009 12:10:56
+* Created:     10.05.2011
 *
 *****************************************************************************/
 

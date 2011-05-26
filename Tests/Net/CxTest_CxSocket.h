@@ -29,17 +29,17 @@ class CxTest_CxSocket : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxSocket (comment)
+//DONE: CxTest_CxSocket (comment)
 CxTest_CxSocket::CxTest_CxSocket() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxSocket (comment)
+//DONE: ~CxTest_CxSocket (comment)
 CxTest_CxSocket::~CxTest_CxSocket() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxSocket::bUnit() {
 	/*DEBUG*/

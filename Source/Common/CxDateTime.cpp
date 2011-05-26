@@ -761,16 +761,16 @@ CxDateTime::bUnixTimeToFileTime(
     ////////llRes = Int32x32To64(ctmUnixTime, 10000000) + 116444736000000000;
     ////////pftFileTime->dwLowDateTime  = static_cast<ULONG>( llRes );
     ////////pftFileTime->dwHighDateTime = llRes >> 32;
-    
-    
 
 
-    LARGE_INTEGER li = {{0}}; 
+
+
+    LARGE_INTEGER li = {{0}};
     time_t tmUnixTime = ctmUnixTime;
-       
+
     tmUnixTime *= 10000000;
     li.QuadPart = ctmUnixTime;
-    
+
     pftFileTime->dwLowDateTime  = li.LowPart;
     pftFileTime->dwHighDateTime = li.HighPart;
 
@@ -1108,7 +1108,7 @@ CxDateTime::usGetWeekDayNum(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: _bParse (parsing datetime string)
+//DONE: _bParse (parsing datetime string)
 /*static*/
 BOOL
 CxDateTime::_bParse(

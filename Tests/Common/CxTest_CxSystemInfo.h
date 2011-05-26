@@ -29,17 +29,17 @@ class CxTest_CxSystemInfo : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxSystemInfo (constructor)
+//DONE: CxTest_CxSystemInfo (constructor)
 CxTest_CxSystemInfo::CxTest_CxSystemInfo() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxSystemInfo (destructor)
+//DONE: ~CxTest_CxSystemInfo (destructor)
 CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSystemInfo::bUnit() {
@@ -76,12 +76,12 @@ CxTest_CxSystemInfo::bUnit() {
         mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsServer2008,      xT("Windows Server 2008")) );
         mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindowsServer2008R2,    xT("Windows Server 2008 R2")) );
         mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows7,               xT("Windows 7")) );
-                
+
         std::map<CxSystemInfo::EOsType, tString>::const_iterator it;
         for (it = mapData.begin(); it != mapData.end(); ++ it) {
             m_sRes = CxSystemInfo::sFormatOsType((*it).first);
             xASSERT((*it).second == m_sRes);
-        }    
+        }
         #endif
 	}
 

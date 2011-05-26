@@ -29,17 +29,17 @@ class CxTest_CxDateTime : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxDateTime (comment)
+//DONE: CxTest_CxDateTime (comment)
 CxTest_CxDateTime::CxTest_CxDateTime() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxDateTime (comment)
+//DONE: ~CxTest_CxDateTime (comment)
 CxTest_CxDateTime::~CxTest_CxDateTime() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL CxTest_CxDateTime::bUnit() {
     /****************************************************************************
@@ -492,7 +492,7 @@ BOOL CxTest_CxDateTime::bUnit() {
         //valid
         {
             ////const USHORT causValid[] = {
-            ////        //TODO:
+            ////        //TODO: bIsLeapYear
             ////};
 
             ////for (size_t i = 0; i < xARRAY_SIZE(causValid); ++ i) {
@@ -504,7 +504,7 @@ BOOL CxTest_CxDateTime::bUnit() {
         //non valid
         {
             ////const USHORT causNonValid[] = {
-            ////        //TODO:
+            ////        //TODO: bIsLeapYear
             ////};
 
             ////for (size_t i = 0; i < xARRAY_SIZE(causNonValid); ++ i) {
@@ -519,7 +519,7 @@ BOOL CxTest_CxDateTime::bUnit() {
     {
         #if defined(xOS_WIN)
             const FILETIME cftTime = {100, 200};
-            
+
             m_ullRes = CxDateTime::i64FiletimeToInt64(cftTime);
             #if xTODO
                 xASSERT_EQUAL( == m_ullRes);
@@ -528,14 +528,14 @@ BOOL CxTest_CxDateTime::bUnit() {
             // n/a
         #endif
     }
-    
+
     //-------------------------------------
     //bUnixTimeToFileTime
     {
         #if defined(xOS_WIN)
-            const time_t ctmUnixTime = 1000; 
+            const time_t ctmUnixTime = 1000;
             FILETIME     ftFileTime  = {0};
-            
+
             m_bRes = CxDateTime::bUnixTimeToFileTime(ctmUnixTime, &ftFileTime);
         #elif defined(xOS_LINUX)
             // n/a

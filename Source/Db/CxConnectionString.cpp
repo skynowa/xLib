@@ -13,19 +13,26 @@
 
 
 /****************************************************************************
-*    public                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO:  sMSJetOleDb40 (Microsoft.Jet.OLEDB.4.0)
+//DONE: sMSJetOleDb40 (Microsoft.Jet.OLEDB.4.0)
 /*static*/
-tString CxConnectionString::sMSJetOleDb40(const tString &csDataSource, const tString &csUserId, const tString &csPassword, const tString &csDatabasePassword) {
+tString
+CxConnectionString::sMSJetOleDb40(
+    const tString &csDataSource,
+    const tString &csUserId,
+    const tString &csPassword,
+    const tString &csDatabasePassword
+)
+{
     /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(csDataSource).empty(), tString());
     /*DEBUG*/// csPassword         - n/a
     /*DEBUG*/// csUserId           - n/a
     /*DEBUG*/// csDatabasePassword - n/a
-    
+
     tString sRes;
 
     sRes =
@@ -58,20 +65,20 @@ tString CxConnectionString::sMSJetOleDb40(const tString &csDataSource, const tSt
 
 
 /****************************************************************************
-*    private                                                         
-*                                                                            
+*    private
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxConnectionString (comment)
+//DONE: CxConnectionString (comment)
 CxConnectionString::CxConnectionString() {
-    
+
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxConnectionString (comment)
+//DONE: ~CxConnectionString (comment)
 /*virtual*/
 CxConnectionString::~CxConnectionString() {
-    
+
 }
 //---------------------------------------------------------------------------
 

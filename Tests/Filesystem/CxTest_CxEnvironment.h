@@ -29,17 +29,17 @@ class CxTest_CxEnvironment : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxEnvironment (constructor)
+//DONE: CxTest_CxEnvironment (constructor)
 CxTest_CxEnvironment::CxTest_CxEnvironment() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxEnvironment (destructor)
+//DONE: ~CxTest_CxEnvironment (destructor)
 CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxEnvironment::bUnit() {

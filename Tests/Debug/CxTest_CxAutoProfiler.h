@@ -29,17 +29,17 @@ class CxTest_CxAutoProfiler : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxAutoProfiler (comment)
+//DONE: CxTest_CxAutoProfiler (comment)
 CxTest_CxAutoProfiler::CxTest_CxAutoProfiler() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxAutoProfiler (comment)
+//DONE: ~CxTest_CxAutoProfiler (comment)
 CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAutoProfiler::bUnit() {

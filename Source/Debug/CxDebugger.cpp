@@ -66,7 +66,7 @@ CxDebugger::bIsPresent() {
     ////::CheckRemoteDebuggerPresent()
 #elif defined(xOS_LINUX)
     xUNUSED(bRes);
-    //TODO: xOS_LINUX
+    //TODO: bIsPresent
     ////bRes = std::getenv("xLIB_ENABLE_DEBUGGER");
     ////xCHECK_RET(FALSE == bRes, FALSE);
 #endif
@@ -215,7 +215,7 @@ CxDebugger::bMsgboxPlain(const CxReport &crpReport) {
             break;
     }
 #elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
+    //TODO: bMsgboxPlain
 #endif
 
     return TRUE;
@@ -479,7 +479,7 @@ BOOL
 CxDebugger::bLoggingHtml(const CxReport &crpReport) {
     /*DEBUG*/
 
-    //TODO:
+    //TODO: bLoggingHtml
 
     return TRUE;
 }

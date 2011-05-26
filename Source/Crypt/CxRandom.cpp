@@ -32,7 +32,7 @@ const INT CxRandom::M = RAND_MAX;
 const INT CxRandom::Q = M / A;
 const INT CxRandom::R = M % A;
 //---------------------------------------------------------------------------
-//TODO: CxRandom
+//DONE: CxRandom
 CxRandom::CxRandom(LONG liSeed) :
     _m_liSeed               (0),
     _m_dNextNextGaussian    (false),
@@ -43,13 +43,13 @@ CxRandom::CxRandom(LONG liSeed) :
     liNext();
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxRandom
+//DONE: ~CxRandom
 /*virtual*/
 CxRandom::~CxRandom() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bSetSeed
+//DONE: bSetSeed
 BOOL
 CxRandom::bSetSeed(LONG liSeed) {
     srand(liSeed);
@@ -69,31 +69,31 @@ CxRandom::bSetSeed(LONG liSeed) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: iNextInt
+//DONE: iNextInt
 INT
 CxRandom::iNextInt() {
     return static_cast<INT>( liNext() );
 }
 //---------------------------------------------------------------------------
-//TODO: iNextInt
+//DONE: iNextInt
 INT
 CxRandom::iNextInt(INT max) {
     return iNextInt() % max;
 }
 //---------------------------------------------------------------------------
-//TODO: iNextInt
+//DONE: iNextInt
 INT
 CxRandom::iNextInt(INT a, INT b) {
     return iNextInt() % (b - a) + a;
 }
 //---------------------------------------------------------------------------
-//TODO: liNextLong
+//DONE: liNextLong
 LONG
 CxRandom::liNextLong() {
     return liNext();
 }
 //---------------------------------------------------------------------------
-//TODO: bNextBoolean
+//DONE: bNextBoolean
 bool
 CxRandom::bNextBoolean() {
     return 0 == (liNext() % 2);
@@ -105,25 +105,25 @@ CxRandom::fNextFloat() {
     return static_cast<FLOAT>( iNextInt() / FLOAT(M) );
 }
 //---------------------------------------------------------------------------
-//TODO: bNextDouble
+//DONE: bNextDouble
 DOUBLE
 CxRandom::bNextDouble() {
     return static_cast<DOUBLE>( iNextInt() / DOUBLE(M) );
 }
 //---------------------------------------------------------------------------
-//TODO:
+//DONE:
 CHAR
 CxRandom::chNextChar() {
     return CHAR(('z' - 'a' + 1) * bNextDouble() + 'a');
 }
 //---------------------------------------------------------------------------
-//TODO: chNextFigure
+//DONE: chNextFigure
 CHAR
 CxRandom::chNextFigure() {
     return CHAR(('9' - '0' + 1) * bNextDouble() + '0');
 }
 //---------------------------------------------------------------------------
-//TODO: dNextGaussian
+//DONE: dNextGaussian
 DOUBLE
 CxRandom::dNextGaussian() {
     //See Knuth, ACP, Section 3.4.1 Algorithm C.
@@ -160,7 +160,7 @@ CxRandom::dNextGaussian() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: liNext
+//DONE: liNext
 LONG
 CxRandom::liNext() {
 //  INT tmp = A * (_m_liSeed % Q) - R * (_m_liSeed / Q);

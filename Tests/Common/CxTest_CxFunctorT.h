@@ -98,17 +98,17 @@ class CThread {
 };
 CThread objThread;
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxFunctorT (comment)
+//DONE: CxTest_CxFunctorT (comment)
 CxTest_CxFunctorT::CxTest_CxFunctorT() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxFunctorT (comment)
+//DONE: ~CxTest_CxFunctorT (comment)
 CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 BOOL
 CxTest_CxFunctorT::bUnit() {
     //-------------------------------------

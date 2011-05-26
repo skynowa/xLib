@@ -93,8 +93,6 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
 
     //---------------------------------------------------------------------------
     #if defined(xUNICODE)
-        #error xLib: unicode unsupported for Linux
-
         #define _tmain      wmain
         #define _ftprintf   fwprintf
         #define _tasctime   _wasctime

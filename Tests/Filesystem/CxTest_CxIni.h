@@ -39,7 +39,7 @@ CxTest_CxIni::~CxTest_CxIni() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxIni::bUnit() {

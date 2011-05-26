@@ -43,17 +43,17 @@ class CxTest_CxMySql : public CxTest {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxMySql (constructor)
+//DONE: CxTest_CxMySql (constructor)
 CxTest_CxMySql::CxTest_CxMySql() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxMySql (destructor)
+//DONE: ~CxTest_CxMySql (destructor)
 CxTest_CxMySql::~CxTest_CxMySql() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxMySql::bUnit() {

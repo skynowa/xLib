@@ -41,12 +41,12 @@ class CxPath : public CxNonCopyable {
         //normalize
         static BOOL    bIsValidName (const tString &csFilePath);
 
-        static tString sToWin       (const tString &csFilePath, BOOL bIsSlashAtEnd);
-        static tString sToNix       (const tString &csFilePath, BOOL bIsSlashAtEnd);
-        static tString sToCurrentOs (const tString &csFilePath, BOOL bIsSlashAtEnd);    //TODO: make test
+        static tString sToWin       (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
+        static tString sToNix       (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
+        static tString sToCurrentOs (const tString &csFilePath, const BOOL cbIsSlashAtEnd);    //TODO: make test
 
-        static tString sMinimizeName(const tString &csFileName, const std::size_t cuiMaxSize);
-        static tString sMinimize    (const tString &csFilePath, const std::size_t cuiMaxSize);
+        static tString sMinimizeName(const tString &csFileName, const size_t cuiMaxSize);
+        static tString sMinimize    (const tString &csFilePath, const size_t cuiMaxSize);
         static tString sSetValidName(const tString &csFileName);
 
         static tString sSlashAppend (const tString &csDirPath);
@@ -65,3 +65,23 @@ class CxPath : public CxNonCopyable {
 /*ExpandUNCFileName*/
 /*ExtractShortPathName*/
 /*ProcessPath*/
+
+/*
+ String
+   FileUtilities::GetShortPath(const String &sInPath)
+   {
+      TCHAR szModuleShort[_MAX_PATH];
+      GetShortPathName(sInPath, szModuleShort, _MAX_PATH );
+
+      return szModuleShort;
+   }
+
+   String
+   FileUtilities::GetLongPath(const String &sInPath)
+   {
+      TCHAR szLong[_MAX_PATH];
+      GetLongPathName(sInPath, szLong, _MAX_PATH );
+
+      return szLong;
+   }
+*/

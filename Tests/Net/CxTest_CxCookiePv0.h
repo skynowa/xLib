@@ -29,17 +29,17 @@ class CxTest_CxCookiePv0 : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxCookiePv0 (constructor)
+//DONE: CxTest_CxCookiePv0 (constructor)
 CxTest_CxCookiePv0::CxTest_CxCookiePv0() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxCookiePv0 (destructor)
+//DONE: ~CxTest_CxCookiePv0 (destructor)
 CxTest_CxCookiePv0::~CxTest_CxCookiePv0() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxCookiePv0::bUnit() {

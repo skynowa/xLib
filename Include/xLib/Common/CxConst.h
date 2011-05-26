@@ -16,23 +16,6 @@
 //---------------------------------------------------------------------------
 class CxConst {
     public:
-        //xFUNCTION (function name)
-        #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600))
-            #define xFUNCTION xT(__PRETTY_FUNCTION__)
-        #elif defined(__DMC__) && (__DMC__ >= 0x810)
-            #define xFUNCTION xT(__PRETTY_FUNCTION__)
-        #elif defined(__FUNCSIG__)
-            #define xFUNCTION xT(__FUNCTION__) /*xT(__FUNCSIG__)*/
-        #elif (defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 600)) || (defined(__IBMCPP__) && (__IBMCPP__ >= 500))
-            #define xFUNCTION xT(__FUNCTION__)
-        #elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x550)
-            #define xFUNCTION xT(__FUNC__)
-        #elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901)
-            #define xFUNCTION xT(__func__)
-        #else
-            #define xFUNCTION xT("<unknown function>")
-        #endif
-
         //xSTR_EMPTY (empty string)
         static const std::string  xSTR_EMPTY_A;
         static const std::wstring xSTR_EMPTY_W;
@@ -62,7 +45,7 @@ class CxConst {
         static const std::string  xWIN_SLASH_A;
         static const std::wstring xWIN_SLASH_W;
         static const tString      xWIN_SLASH;
-        //const tString    xWINNIX_SLASH     
+        //const tString    xWINNIX_SLASH
 
         //xNIX_SLASH (nix backslash)
         static const std::string  xNIX_SLASH_A;
@@ -133,7 +116,7 @@ class CxConst {
         static const std::string  xBEL_A;
         static const std::wstring xBEL_W;
         static const tString      xBEL;
-        
+
         //xBS (backspace)
         static const std::string  xBS_A;
         static const std::wstring xBS_W;
@@ -148,22 +131,17 @@ class CxConst {
         static const std::string  xQM_A;
         static const std::wstring xQM_W;
         static const tString      xQM;
-        
+
         //xSQM (single quotation mark)
         static const std::string  xSQM_A;
         static const std::wstring xSQM_W;
         static const tString      xSQM;
-        
+
         //xDQM (double quotation mark)
         static const std::string  xDQM_A;
         static const std::wstring xDQM_W;
         static const tString      xDQM;
-        
-        //xCHAR_NULL (null character)
-        ////static const CHAR         xCHAR_NULL_A;
-        ////static const WCHAR        xCHAR_NULL_W;
-        ////static const TCHAR        xCHAR_NULL;
-        
+
         //xWHITE_SPACES (white spaces)
         static const std::string  xWHITE_SPACES_A;
         static const std::wstring xWHITE_SPACES_W;
@@ -173,17 +151,34 @@ class CxConst {
         static const std::string  xEQUAL_A;
         static const std::wstring xEQUAL_W;
         static const tString      xEQUAL;
-        
+
         //xHYPHEN (hyphen)
         static const std::string  xHYPHEN_A;
         static const std::wstring xHYPHEN_W;
         static const tString      xHYPHEN;
-        
-        
+
         //xXXXXX (xxxxxxxxxxxxxxxxxxxxxx)
         ////static const std::string  xXXXXX_A;
         ////static const std::wstring xXXXXX_W;
-        ////static const tString      xXXXXX;        
+        ////static const tString      xXXXXX;
+
+        //--------------------------------------------------
+        //xFUNCTION (function name)
+        #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600))
+            #define xFUNCTION xT(__PRETTY_FUNCTION__)
+        #elif defined(__DMC__) && (__DMC__ >= 0x810)
+            #define xFUNCTION xT(__PRETTY_FUNCTION__)
+        #elif defined(__FUNCSIG__)
+            #define xFUNCTION xT(__FUNCTION__) /*xT(__FUNCSIG__)*/
+        #elif (defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 600)) || (defined(__IBMCPP__) && (__IBMCPP__ >= 500))
+            #define xFUNCTION xT(__FUNCTION__)
+        #elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x550)
+            #define xFUNCTION xT(__FUNC__)
+        #elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901)
+            #define xFUNCTION xT(__func__)
+        #else
+            #define xFUNCTION xT("<unknown function>")
+        #endif
 
     private:
                 CxConst();
