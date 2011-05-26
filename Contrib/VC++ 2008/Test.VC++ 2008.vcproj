@@ -1271,12 +1271,19 @@
 						>
 					</File>
 					<File
-						RelativePath="..\..\Source\Common\Win\CxHandle.cpp"
+						RelativePath="..\..\Include\xLib\Common\Win\CxHandle.h"
 						>
 					</File>
 					<File
-						RelativePath="..\..\Include\xLib\Common\Win\CxHandle.h"
+						RelativePath="..\..\Source\Common\Win\CxHandle.inl"
 						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\Source\Common\Win\CxShell.cpp"

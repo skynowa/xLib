@@ -62,6 +62,7 @@ Contrib/VC++ 2010/Release/
 Contrib/VC++ 2010/*.ncb
 Contrib/VC++ 2010/*.suo
 Contrib/VC++ 2010/*.user
+Contrib/VC++ 2010/*.sdf
 
 Library/VC++ 2010/Debug/
 Library/VC++ 2010/Release/

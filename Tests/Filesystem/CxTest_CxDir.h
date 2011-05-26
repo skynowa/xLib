@@ -138,10 +138,14 @@ BOOL CxTest_CxDir::bUnit() {
                 {xT(""),              xT("FALSE")},
                 {xT("/"),             xT("FALSE")},
                 {xT("\\"),            xT("FALSE")},
-                {xT("A:"),            xT("TRUE")},
-                {xT("D:"),            xT("TRUE")},
+                {xT("A:\\"),          xT("TRUE")},
+                {xT("D:\\"),          xT("TRUE")},
+                {xT("A:/"),           xT("TRUE")},
+                {xT("D:/"),           xT("TRUE")},
                 {xT("Z::"),           xT("FALSE")},
-                {xT("\\\\"),          xT("FALSE")}
+                {xT("\\\\"),          xT("FALSE")},
+                {xT("B:"),            xT("FALSE")},
+                {xT("B"),             xT("FALSE")}
             };
         #elif defined(xOS_LINUX)
             const tString sTestData[][2] = {

@@ -1,7 +1,7 @@
 ﻿/****************************************************************************
-* Class name:  CxHandle
+* Class name:  CxHandleT
 * Description: handle
-* File name:   CxHandle.h
+* File name:   CxHandleT.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     19.01.2010 14:12:26
@@ -9,48 +9,51 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Common_Win_CxHandleH
-#define xLib_Common_Win_CxHandleH
+#ifndef xLib_Common_Win_CxHandleTH
+#define xLib_Common_Win_CxHandleTH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxHandle {
-    private:
-        mutable      BOOL   _m_bRes;
-        ////const        HANDLE _m_chFailValue;
-        static const HANDLE _ms_chCurrProcessHandle;
+template<HANDLE hFailValueT>
+class CxHandleT {
+	public:
+		HANDLE        m_hHandle;
 
-    public:
-        HANDLE        m_hHandle;
+		              CxHandleT               ();
+		explicit      CxHandleT               (HANDLE hHandle);
+		explicit      CxHandleT               (const CxHandleT &hHandle);
+		virtual      ~CxHandleT               ();
 
-                      CxHandle                ();
-        explicit      CxHandle                (HANDLE hHandle);
-        explicit      CxHandle                (const CxHandle &hHandle);
-        virtual      ~CxHandle                ();
+		CxHandleT&    operator =              (HANDLE hHandle);
+		CxHandleT&    operator =              (const CxHandleT &hHandle);
+		              operator HANDLE         () const;
 
-        CxHandle&     operator =              (HANDLE hHandle);
-        CxHandle&     operator =              (const CxHandle &hHandle);
-                      operator HANDLE         () const;
+		BOOL          bIsValid                () const;
+		BOOL          bAttach                 (HANDLE hHandle);
+		HANDLE        hDetach                 ();
+		BOOL          bClose                  ();
 
-        BOOL          bIsValid                () const;
-        BOOL          bAttach                 (HANDLE hHandle);
-        HANDLE        hDetach                 ();
-        BOOL          bClose                  ();
+		ULONG         ulGetInformation        () const;
+		BOOL          bSetInformation         (ULONG ulMask, ULONG ulFlags);
+		BOOL 	      bIsFlagInherit          () const;
+		BOOL          bIsFlagProtectFromClose () const;
+		BOOL          bSetFlagInherit         (BOOL bFlagInherit);
+		BOOL          bSetFlagProtectFromClose(BOOL bFlagProtectFromClose);
+		HANDLE        hDuplicate              (HANDLE hTargetProcess, ULONG luDesiredAccess, BOOL bInheritHandle/* = FALSE*/, ULONG luOptions/* = 0*/) const;
 
-        ULONG         ulGetInformation        () const;
-        BOOL          bSetInformation         (ULONG ulMask, ULONG ulFlags);
-        BOOL          bIsFlagInherit          () const;
-        BOOL          bIsFlagProtectFromClose () const;
-        BOOL          bSetFlagInherit         (BOOL bFlagInherit);
-        BOOL          bSetFlagProtectFromClose(BOOL bFlagProtectFromClose);
-        HANDLE        hDuplicate              (HANDLE hTargetProcess, ULONG luDesiredAccess, BOOL bInheritHandle/* = FALSE*/, ULONG luOptions/* = 0*/) const;
+		//static
+		static HANDLE hGetCurrentProcess      ();
+		static BOOL   bIsValid                (HANDLE hHandle);
 
-        //static
-        static HANDLE hGetCurrentProcess      ();
-        static BOOL   bIsValid                (HANDLE hHandle);
+	private:
+		mutable BOOL  _m_bRes;
+
+		static const HANDLE _ms_chCurrProcessHandle;	//����� �������� ��������
 };
 //---------------------------------------------------------------------------
-//typedef CxHandle<NULL>                 CxHandle;
-//typedef CxHandle<INVALID_HANDLE_VALUE> CxFileHandle;
+typedef CxHandleT<NULL>                 CxHandle;
+typedef CxHandleT<INVALID_HANDLE_VALUE> CxFileHandle;
 //---------------------------------------------------------------------------
-#endif    //xLib_Common_Win_CxHandleH
+#include <Common/Win/CxHandleT.inl>
+//---------------------------------------------------------------------------
+#endif	//xLib_Common_Win_CxHandleTH

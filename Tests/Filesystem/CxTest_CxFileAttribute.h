@@ -129,7 +129,7 @@ CxTest_CxFileAttribute::bUnit() {
     //--------------------------------------------------
     //bIsExists
     {
-        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faRegularFile;
+        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faReadOnly;
 
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xASSERT(FALSE != m_bRes);

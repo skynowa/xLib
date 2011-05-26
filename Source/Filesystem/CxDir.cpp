@@ -11,6 +11,7 @@
 
 #include <xLib/Filesystem/CxDir.h>
 
+#include <xLib/Common/CxChar.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
@@ -33,21 +34,21 @@ CxDir::bIsExists(
 
     BOOL bRes = FALSE;
 
-    #if defined(xOS_WIN)
-        CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
-        /*DEBUG*/// n/a
-        xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
+#if defined(xOS_WIN)
+    CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
+    /*DEBUG*/// n/a
+    xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
 
-        bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-    #elif defined(xOS_LINUX)
-        struct stat stInfo = {0};
+    bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+#elif defined(xOS_LINUX)
+    struct stat stInfo = {0};
 
-        INT iRes = stat(csDirPath.c_str(), &stInfo);
-        /*DEBUG*/// n/a
-        xCHECK_RET(- 1 == iRes, FALSE);
+    INT iRes = stat(csDirPath.c_str(), &stInfo);
+    /*DEBUG*/// n/a
+    xCHECK_RET(- 1 == iRes, FALSE);
 
-        bRes = static_cast<BOOL>( S_ISDIR(stInfo.st_mode) );
-    #endif
+    bRes = static_cast<BOOL>( S_ISDIR(stInfo.st_mode) );
+#endif
 
 #if xTODO
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
@@ -126,7 +127,7 @@ CxDir::bIsEmpty(
     return bRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsRoot (is root)
+//DONE: bIsRoot (is root, root dir - A:\)
 /*static*/
 BOOL
 CxDir::bIsRoot(
@@ -135,14 +136,17 @@ CxDir::bIsRoot(
 {
     /*DEBUG*/// n/a
 
-    xCHECK_RET(true == csDirPath.empty(), FALSE);
-
 #if defined(xOS_WIN)
-    BOOL bRes = FALSE;
+    xCHECK_RET(3 != csDirPath.size(), FALSE);
 
-    //TODO: bIsRoot
+    BOOL bRes1 = CxChar::bIsAlpha(csDirPath.at(0));
+    BOOL bRes2 = (csDirPath.at(1) == CxConst::xCOLON.at(0));
+    BOOL bRes3 = (csDirPath.at(2) == CxConst::xWIN_SLASH.at(0) || csDirPath.at(2) == CxConst::xNIX_SLASH.at(0));
+
+    xCHECK_RET(FALSE == bRes1 || FALSE == bRes2 || FALSE == bRes3, FALSE);
 #elif defined(xOS_LINUX)
-    xCHECK_RET(CxConst::xSLASH != csDirPath, FALSE);
+    xCHECK_RET(1               == csDirPath.size(), FALSE);
+    xCHECK_RET(CxConst::xSLASH != csDirPath,        FALSE);
 #endif
 
     return TRUE;
@@ -683,7 +687,7 @@ CxDir::bFindDirs(
             //is search in subdirs ?
             xCHECK_DO(FALSE == cbIsRecurse, continue);
 
-            bRes = bFindDirs(sDirPath, cMask, bIsRecurse, pvecsDirPathes);    //recursion
+            bRes = bFindDirs(sDirPath, cMask, cbIsRecurse, pvecsDirPathes);    //recursion
             /*DEBUG*/// n/a
         }
         //files

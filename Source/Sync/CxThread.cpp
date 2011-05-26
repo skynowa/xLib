@@ -139,7 +139,7 @@ CxThread::bCreate(
 
     //-------------------------------------
     //_m_evPause
-    _m_bRes = _m_evPause.bCreate(NULL, FALSE, FALSE, NULL);      //_m_bIsPaused
+    _m_bRes = _m_evPause.bCreate(NULL, TRUE, TRUE, NULL);      //_m_bIsPaused
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = _m_evExit.bCreate(NULL, FALSE, FALSE, NULL);
