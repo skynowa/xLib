@@ -52,7 +52,7 @@ BOOL CxTest_CxCrc32::bUnit() {
     {
     	CxStdioFile flFile;
 
-        m_bRes = flFile.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
+        m_bRes = flFile.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
         xASSERT(FALSE != m_bRes);
 
         m_bRes = flFile.bResize(1333);

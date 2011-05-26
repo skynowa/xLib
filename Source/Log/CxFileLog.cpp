@@ -87,7 +87,7 @@ CxFileLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     CxStdioFile sfFile;
 
-    bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omAppend);
+    bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omAppend, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
@@ -115,7 +115,7 @@ CxFileLog::bClear() {
 
     CxStdioFile sfFile;
 
-    bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omWrite);
+    bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     sfFile.iWrite(CxConst::xSTR_EMPTY.c_str());

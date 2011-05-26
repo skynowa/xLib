@@ -6,10 +6,10 @@
 * E-mail:      skynowa@gmail.com
 * Created:     04.04.2009 6:21:18
 *
-*****************************************************************************/    
-    
-    
-#include <xLib/Net/CxSocket.h> 
+*****************************************************************************/
+
+
+#include <xLib/Net/CxSocket.h>
 
 
 /****************************************************************************
@@ -19,7 +19,7 @@
 
 //---------------------------------------------------------------------------
 ////--BOOL CxSocket::_ms_iRes = FALSE;
-//---------------------------------------------------------------------------  
+//---------------------------------------------------------------------------
 //DONE: CxSocket (constructor)
 CxSocket::CxSocket() :
     _m_bRes     (FALSE),
@@ -27,24 +27,24 @@ CxSocket::CxSocket() :
     _m_siFamily (- 1),
     _m_sIp      (),
     _m_usPort   (0)
-{   
+{
 
-} 
-//---------------------------------------------------------------------------   
+}
+//---------------------------------------------------------------------------
 //DONE: ~CxSocket (destructor)
 CxSocket::~CxSocket() {
     /*DEBUG*/// n/a
 
     xCHECK_DO(TRUE == bIsValid(), bClose());
-}   
+}
 //---------------------------------------------------------------------------
 //DONE: bAssign (assign to another socket)
-BOOL 
+BOOL
 CxSocket::bAssign(SOCKET scktSocket) {
     /*DEBUG*/// _m_puiSocket - n/a
     /*DEBUG*/// scktSocket   - n/a
 
-    _m_puiSocket = scktSocket; 
+    _m_puiSocket = scktSocket;
 
     return TRUE;
 }
@@ -56,36 +56,36 @@ CxSocket::bAssign(SOCKET scktSocket) {
 *
 *****************************************************************************/
 
-//--------------------------------------------------------------------------- 
+//---------------------------------------------------------------------------
 //DONE: operator = (operator =)
 CxSocket &
-CxSocket::operator = (SOCKET puiSocket) {   
+CxSocket::operator = (SOCKET puiSocket) {
     /*DEBUG*/// _m_puiSocket - n/a
     /*DEBUG*/// scktSocket   - n/a
 
-    _m_puiSocket = puiSocket;  
+    _m_puiSocket = puiSocket;
 
-    return *this;   
-}   
-//--------------------------------------------------------------------------- 
+    return *this;
+}
+//---------------------------------------------------------------------------
 //DONE: operator SOCKET (operator SOCKET)
-CxSocket::operator SOCKET () {   
+CxSocket::operator SOCKET () {
     /*DEBUG*/// _m_puiSocket - n/a
     /*DEBUG*/// scktSocket   - n/a
 
-    return _m_puiSocket;   
-} 
+    return _m_puiSocket;
+}
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-* 
+*
 *
 *****************************************************************************/
-  
-//--------------------------------------------------------------------------- 
+
+//---------------------------------------------------------------------------
 //TODO: bCreate (creates a socket that is bound to a specific transport service provider)
-BOOL 
+BOOL
 CxSocket::bCreate(EAddressFamily afFamily, EType tpType, EProtocol ptProtocol) {
     /*DEBUG*/xASSERT_RET(etInvalid == _m_puiSocket, FALSE);
 
@@ -94,19 +94,19 @@ CxSocket::bCreate(EAddressFamily afFamily, EType tpType, EProtocol ptProtocol) {
 
     _m_siFamily = afFamily;
 
-    return TRUE;   
-}  
-//--------------------------------------------------------------------------- 
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 //DONE: iGetSocket (get socket)
-SOCKET 
+SOCKET
 CxSocket::iGetSocket() const {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, etInvalid);
 
-    return _m_puiSocket;  
+    return _m_puiSocket;
 }
 //---------------------------------------------------------------------------
 //DONE: bIsValid (checking for validness)
-BOOL 
+BOOL
 CxSocket::bIsValid() const {
     /*DEBUG*/// n/a
 
@@ -114,8 +114,8 @@ CxSocket::bIsValid() const {
 }
 //---------------------------------------------------------------------------
 //DONE: bClose (close)
-BOOL 
-CxSocket::bClose() {        
+BOOL
+CxSocket::bClose() {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, FALSE);
 
     INT iRes = etError;
@@ -134,7 +134,7 @@ CxSocket::bClose() {
     _m_puiSocket = etInvalid;
 
     return TRUE;
-}  
+}
 //---------------------------------------------------------------------------
 
 
@@ -147,8 +147,8 @@ CxSocket::bClose() {
 //---------------------------------------------------------------------------
 //TODO: iSend (send data)
 //TODO: LINUX: ssize_t send(int sockfd, const void *buf, size_t len, int flags);
-INT 
-CxSocket::iSend(LPCTSTR pcszBuff, INT iBuffSize, INT iFlags) { 
+INT
+CxSocket::iSend(LPCTSTR pcszBuff, INT iBuffSize, INT iFlags) {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        etError);
     /*DEBUG*/xASSERT_RET(NULL      != pcszBuff,            etError);
     /*DEBUG*//////xASSERT_RET(0         <  ::lstrlen(pcszBuff), etError);
@@ -164,11 +164,11 @@ CxSocket::iSend(LPCTSTR pcszBuff, INT iBuffSize, INT iFlags) {
 #endif
 
     return iRes / sizeof(TCHAR);
-}  
+}
 //---------------------------------------------------------------------------
 //TODO: bSendAll (send data blocks)
-BOOL 
-CxSocket::bSendAll(const tString &csBuff, INT iFlags) { 
+BOOL
+CxSocket::bSendAll(const tString &csBuff, INT iFlags) {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,   FALSE);
     /*DEBUG*/xASSERT_RET(false     == csBuff.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(0         <  csBuff.size(),  FALSE);
@@ -201,14 +201,14 @@ CxSocket::bSendAll(const tString &csBuff, INT iFlags) {
             /*DEBUG*/xASSERT_RET((INT)csBuff.size() * (INT)sizeof(TCHAR) == iCurrPos, FALSE);
             break;
         }
-    } 
+    }
 
-    return TRUE;    
-} 
-//---------------------------------------------------------------------------  
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 //DONE: iRecv (recieve data)
-INT 
-CxSocket::iRecv(LPTSTR pszBuff, INT iBuffSize, INT iFlags) {  
+INT
+CxSocket::iRecv(LPTSTR pszBuff, INT iBuffSize, INT iFlags) {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, etError);
     /*DEBUG*/xASSERT_RET(NULL      != pszBuff,      etError);
     /*DEBUG*/xASSERT_RET(0          < iBuffSize,    etError);
@@ -228,20 +228,20 @@ CxSocket::iRecv(LPTSTR pszBuff, INT iBuffSize, INT iFlags) {
 #endif
 
     return iRes / sizeof(TCHAR);
-}   
-//--------------------------------------------------------------------------- 
+}
+//---------------------------------------------------------------------------
 //DONE: sRecvBytes ()
-tString 
+tString
 CxSocket::sRecvAll(INT iFlags) {
     tString      sRes;
-    
+
     const size_t cuiBuffSize             = 1024 * sizeof(TCHAR);
     TCHAR        szBuff[cuiBuffSize + 1] = {0};
 
     for (;;) {
         INT   iRes  = - 1;
         ULONG ulArg = (ULONG)FALSE;
-        
+
     #if defined(xOS_WIN)
         iRes = ioctlsocket(_m_puiSocket, FIONREAD, &ulArg);
     #elif defined(xOS_LINUX)
@@ -262,31 +262,31 @@ CxSocket::sRecvAll(INT iFlags) {
 }
 //---------------------------------------------------------------------------
 //DONE: sRecvBytes (recive data to delimiter, includs it)
-tString 
-CxSocket::sRecvAll(INT iFlags, const tString &csDelimiter) {   
+tString
+CxSocket::sRecvAll(INT iFlags, const tString &csDelimiter) {
     tString      sRes;
     const size_t cuiInSize = SOCKET_BUFF_SIZE * sizeof(TCHAR);
     tString      sIn(cuiInSize, xT('\0'));
 
     //-------------------------------------
     //read from socket by blocks, write to string
-    for (;;) {   
+    for (;;) {
         INT iRes = iRecv(&sIn.at(0), cuiInSize, iFlags);
         xCHECK_DO(etError == iRes, break);
         xCHECK_DO(0       == iRes, break);
 
         sRes.append(sIn.begin(), sIn.begin() + iRes);
-        
+
         //if delimiter was finded - break
         size_t uiDelimiterPos = sRes.find(csDelimiter);        //TODO: from unicode ???
         xCHECK_DO(tString::npos != uiDelimiterPos, break);
-    } 
-    
-    return sRes;  
-} 
+    }
+
+    return sRes;
+}
 //---------------------------------------------------------------------------
 //TODO: iSendBytes
-INT 
+INT
 CxSocket::iSendBytes(LPSTR pszBuff, INT iMessageLength) {
     INT     iRC         = 0;
     INT     iSendStatus = 0;
@@ -324,7 +324,7 @@ CxSocket::iSendBytes(LPSTR pszBuff, INT iMessageLength) {
 }
 //---------------------------------------------------------------------------
 //TODO: ReceiveNBytes
-INT 
+INT
 CxSocket::iReceiveBytes(LPSTR pszBuff, INT iStillToReceive) {
     INT     iRC               = 0;
     INT     iReceiveStatus    = 0;
@@ -365,13 +365,13 @@ CxSocket::iReceiveBytes(LPSTR pszBuff, INT iStillToReceive) {
 
 
 /****************************************************************************
-* ... 
+* ...
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: bGetPeerName (get address of the peer to which a socket is connected)
-BOOL 
+BOOL
 CxSocket::bGetPeerName(tString *psPeerAddr, USHORT *pusPeerPort) {
     /*DEBUG*///psPeerAddr  - n/a
     /*DEBUG*///pusPeerPort - n/a
@@ -398,14 +398,14 @@ CxSocket::bGetPeerName(tString *psPeerAddr, USHORT *pusPeerPort) {
     }
 
     if (NULL != pusPeerPort) {
-        *pusPeerPort = ::ntohs(sockAddr.sin_port);
+        *pusPeerPort = ntohs(sockAddr.sin_port);
     }
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bGetSocketName (get local name for a socket)
-BOOL 
+BOOL
 CxSocket::bGetSocketName(tString *psSocketAddr, USHORT *pusSocketPort) {
     /*DEBUG*///psPeerAddr  - n/a
     /*DEBUG*///pusPeerPort - n/a
@@ -432,7 +432,7 @@ CxSocket::bGetSocketName(tString *psSocketAddr, USHORT *pusSocketPort) {
     }
 
     if (NULL != pusSocketPort) {
-        *pusSocketPort = ::ntohs(sockAddr.sin_port);
+        *pusSocketPort = ntohs(sockAddr.sin_port);
     }
 
     return TRUE;
@@ -441,33 +441,33 @@ CxSocket::bGetSocketName(tString *psSocketAddr, USHORT *pusSocketPort) {
 
 
 /****************************************************************************
-* static 
+* static
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: iGetLastError (get error status for the last operation that failed)
 /*static*/
-INT 
-CxSocket::iGetLastError() { 
+INT
+CxSocket::iGetLastError() {
     /*DEBUG*/// n/a
 
 #if defined(xOS_WIN)
-    return ::WSAGetLastError(); 
+    return ::WSAGetLastError();
 #elif defined(xOS_LINUX)
     return errno;
-#endif     
-}   
+#endif
+}
 //---------------------------------------------------------------------------
 //DONE: iSelect (determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O.)
 /*static*/
-INT 
+INT
 CxSocket::iSelect(INT nfds, fd_set *pReadfds, fd_set *pWritefds, fd_set *pExceptfds, timeval *tvTimeout) {
     /*DEBUG*/// nfds
     /*DEBUG*/// pReadfds
     /*DEBUG*/// pWritefds
     /*DEBUG*/// pExceptfds
-     
+
      INT iRes = select(nfds, pReadfds, pWritefds, pExceptfds, tvTimeout);
      /*DEBUG*/xASSERT_RET(etError != iRes, etError);
      /*DEBUG*/xASSERT_RET(0       != iRes, 0);  //zero if the time limit expired
@@ -487,10 +487,10 @@ CxSocket::iSelect(INT nfds, fd_set *pReadfds, fd_set *pWritefds, fd_set *pExcept
 
 
 /*
-INT 
+INT
 CxSocket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending, SOCKET *pSocketForExceptions) {
     int nSocketsReady = 0;
-    
+
     fd_set FdSetReceive;    FD_ZERO(&FdSetReceive);
     fd_set FdSetSend;       FD_ZERO(&FdSetSend);
     fd_set FdSetError;      FD_ZERO(&FdSetError);

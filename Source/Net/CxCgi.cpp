@@ -960,7 +960,7 @@ CxCgiFormData::_bInit() {
                 CxStdioFile sfFile;
                 tString     sBuff;
 
-                bRes = sfFile.bAttach(stdin);
+                bRes = sfFile.bOpen(stdin);
                 /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
                 sBuff.resize(uiPostSize);
