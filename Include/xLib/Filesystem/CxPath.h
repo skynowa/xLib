@@ -60,6 +60,25 @@ class CxPath : public CxNonCopyable {
 #endif //xLib_Filesystem_CxPathH
 
 
+/*
+void File_ShrinkName(char *pDestFileName, char *pSrcFileName, int maxlen)
+{
+  int srclen = strlen(pSrcFileName);
+  if( srclen<maxlen )
+    strcpy(pDestFileName, pSrcFileName);  // It fits!
+  else
+  {
+    strncpy(pDestFileName, pSrcFileName, maxlen/2);
+    if(maxlen&1)  //even or uneven?
+      pDestFileName[maxlen/2-1] = 0;
+    else
+      pDestFileName[maxlen/2-2] = 0;
+    strcat(pDestFileName, "...");
+    strcat(pDestFileName, &pSrcFileName[strlen(pSrcFileName)-maxlen/2+1]);
+  }
+}
+*/
+
 //static tString sGetRelativePath     (const tString &csFilePath);
 
 /*ExpandUNCFileName*/

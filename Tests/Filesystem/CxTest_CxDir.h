@@ -128,12 +128,45 @@ BOOL CxTest_CxDir::bUnit() {
 		xASSERT(FALSE == m_bRes);
 	}
 
+    //--------------------------------------------------
+    //bIsRoot
+    {
+
+        #if defined(xOS_WIN)
+            const tString sTestData[][2] = {
+                {xT("TEST_STRING_1"), xT("FALSE")},
+                {xT(""),              xT("FALSE")},
+                {xT("/"),             xT("FALSE")},
+                {xT("\\"),            xT("FALSE")},
+                {xT("A:"),            xT("TRUE")},
+                {xT("D:"),            xT("TRUE")},
+                {xT("Z::"),           xT("FALSE")},
+                {xT("\\\\"),          xT("FALSE")}
+            };
+        #elif defined(xOS_LINUX)
+            const tString sTestData[][2] = {
+                {xT("TEST_STRING_1"), xT("FALSE")},
+                {xT(""),              xT("FALSE")},
+                {xT("/"),             xT("TRUE")},
+                {xT("\\"),            xT("FALSE")},
+                {xT("A:"),            xT("FALSE")},
+                {xT("D:/"),           xT("FALSE")}
+            };
+        #endif
+
+        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+            BOOL bRes1 = CxDir::bIsRoot(sTestData[i][0]);
+            BOOL bRes2 = CxString::bStrToBool(sTestData[i][1]);
+            xASSERT(bRes1 == bRes2);
+        }
+    }
+
 	//-------------------------------------
 	//bSetCurrent
-
+    {
 		m_sRes = CxDir::sGetCurrent();
 		xASSERT(false == m_sRes.empty());
-	{
+
 		m_bRes = CxDir::bSetCurrent( sGetWorkDirPath() );
 		xASSERT(FALSE != m_bRes);
 
@@ -239,7 +272,7 @@ BOOL CxTest_CxDir::bUnit() {
         for (size_t i = 0; i < xARRAY_SIZE(g_sFilePathes); ++ i) {
             CxStdioFile sfFile;
 
-            m_bRes = sfFile.bOpen(g_sFilePathes[i], CxStdioFile::omWrite);
+            m_bRes = sfFile.bOpen(g_sFilePathes[i], CxStdioFile::omWrite, TRUE);
             xASSERT(FALSE != m_bRes);
         }
 

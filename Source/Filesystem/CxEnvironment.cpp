@@ -275,7 +275,7 @@ CxEnvironment::sGetCommandLine() {
     std::size_t  uiBytes                 = 0;
     size_t       uiOffset                = 0;
 
-    BOOL bRes = sfFile.bOpen(xT("/proc/self/cmdline"), CxStdioFile::omRead);
+    BOOL bRes = sfFile.bOpen(xT("/proc/self/cmdline"), CxStdioFile::omRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
 
     for (;;) {

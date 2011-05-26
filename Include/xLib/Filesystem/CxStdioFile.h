@@ -124,9 +124,9 @@ class CxStdioFile : public CxNonCopyable {
         virtual         ~CxStdioFile  ();
 
         //open, get
-        BOOL             bOpen        (const tString &csFilePath, const EOpenMode omMode);
-        BOOL             bReopen      (const tString &csFilePath, const EOpenMode omMode);
-        BOOL             bAttach      (FILE *pflFile);
+        BOOL             bOpen        (const tString &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
+        BOOL             bReopen      (const tString &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
+        BOOL             bOpen        (FILE *pflFile);
         FILE            *pGet         () const;
         tString          sGetPath     () const;
 

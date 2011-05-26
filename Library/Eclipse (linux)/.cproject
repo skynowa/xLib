@@ -14,20 +14,23 @@
 				</externalSettings>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.debug.615833227" name="Debug" parent="cdt.managedbuild.config.gnu.lib.debug">
+				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.VCErrorParser" id="cdt.managedbuild.config.gnu.lib.debug.615833227" name="Debug" parent="cdt.managedbuild.config.gnu.lib.debug">
 					<folderInfo id="cdt.managedbuild.config.gnu.lib.debug.615833227." name="/" resourcePath="">
-						<toolChain id="cdt.managedbuild.toolchain.gnu.lib.debug.913291294" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.lib.debug">
-							<targetPlatform id="cdt.managedbuild.target.gnu.platform.lib.debug.336394328" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.lib.debug"/>
-							<builder buildPath="${workspace_loc:/xLib_static_lib/Debug}" id="cdt.managedbuild.target.gnu.builder.lib.debug.801437440" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.lib.debug"/>
-							<tool id="cdt.managedbuild.tool.gnu.archiver.lib.debug.1480136121" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.lib.debug"/>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1305194659" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug">
+						<toolChain errorParsers="" id="cdt.managedbuild.toolchain.gnu.lib.debug.913291294" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.lib.debug">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="cdt.managedbuild.target.gnu.platform.lib.debug.336394328" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.lib.debug"/>
+							<builder autoBuildTarget="all" buildPath="${workspace_loc:/xLib_static_lib/Debug}" cleanBuildTarget="clean" enableAutoBuild="false" enableCleanBuild="true" enabledIncrementalBuild="true" errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.CWDLocator" id="cdt.managedbuild.target.gnu.builder.lib.debug.801437440" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" parallelBuildOn="false" parallelizationNumber="1" superClass="cdt.managedbuild.target.gnu.builder.lib.debug"/>
+							<tool errorParsers="" id="cdt.managedbuild.tool.gnu.archiver.lib.debug.1480136121" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.lib.debug"/>
+							<tool errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1305194659" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug">
 								<option id="gnu.cpp.compiler.lib.debug.option.optimization.level.936893315" name="Optimization Level" superClass="gnu.cpp.compiler.lib.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.lib.debug.option.debugging.level.1802168720" name="Debug Level" superClass="gnu.cpp.compiler.lib.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.2059117887" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
@@ -36,24 +39,19 @@
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.305863534" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.compiler.lib.debug.1563488595" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.lib.debug">
+							<tool errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="cdt.managedbuild.tool.gnu.c.compiler.lib.debug.1563488595" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.lib.debug">
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.lib.debug.option.optimization.level.670724346" name="Optimization Level" superClass="gnu.c.compiler.lib.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.lib.debug.option.debugging.level.584492585" name="Debug Level" superClass="gnu.c.compiler.lib.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.531921925" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.1247464078" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1620115153" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base"/>
-							<tool id="cdt.managedbuild.tool.gnu.assembler.lib.debug.144267771" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.lib.debug">
+							<tool errorParsers="org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.tool.gnu.assembler.lib.debug.144267771" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.lib.debug">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.87427391" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.615833227.1228452682" name="CxThreadPool.inl" rcbsApplicability="disable" resourcePath="Source/Sync/CxThreadPool.inl" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.615833227.1460306510" name="CxProcess.cpp" rcbsApplicability="disable" resourcePath="Source/Sync/CxProcess.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1305194659.1629817169">
-						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1305194659.1629817169" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1305194659">
-							<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.374120193" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-						</tool>
-					</fileInfo>
 					<sourceEntries>
 						<entry excluding="Include/xLib/Gui/Win/Resource.xrc.cpp|Source/Units/Win|Source/Filesystem/Win|Source/Db/Win|Source/Common/Win|Source/Gui/Win/CxWndsContainer.cpp|Source/Gui/Win/CxWindowImpl.cpp|Source/Gui/Win/CxWindow.cpp|Source/Gui/Win/CxWaitCursor.cpp|Source/Gui/Win/CxToolBar.cpp|Source/Gui/Win/CxTab.cpp|Source/Gui/Win/CxStyle.cpp|Source/Gui/Win/CxStatusBar.cpp|Source/Gui/Win/CxStatic.cpp|Source/Gui/Win/CxRichEdit.cpp|Source/Gui/Win/CxResources.cpp|Source/Gui/Win/CxRebar.cpp|Source/Gui/Win/CxRadioButton.cpp|Source/Gui/Win/CxPushButton.cpp|Source/Gui/Win/CxProgressBar.cpp|Source/Gui/Win/CxPicture.cpp|Source/Gui/Win/CxOwnerDrawButton.cpp|Source/Gui/Win/CxListView.cpp|Source/Gui/Win/CxListBox.cpp|Source/Gui/Win/CxLayout.cpp|Source/Gui/Win/CxImageList.cpp|Source/Gui/Win/CxIcon.cpp|Source/Gui/Win/CxHotKey.cpp|Source/Gui/Win/CxGroupBox.cpp|Source/Gui/Win/CxFont.cpp|Source/Gui/Win/CxEdit.cpp|Source/Gui/Win/CxDialog.cpp|Source/Gui/Win/CxDC.cpp|Source/Gui/Win/CxComboBox.cpp|Source/Gui/Win/CxCheckBox.cpp|Source/Gui/Win/CxButtonBase.cpp|Source/Gui/Win/CxButton.cpp|Source/Gui/Win/CxApplication.cpp|Source/Gui/Win/GDI+|Source/Gui/Win/Dialogs|Source/Log/CxTraceLog.cpp|Source/Log/CxFileLog.cpp|Source/Log/CxDbLog.cpp|Source/Log/CxConsoleLog.cpp|Source/Log/Win/CxWndLog.cpp|Source/Log/Win/CxEventLog.cpp|Source/Net/CxSmtp.cpp|Source/Net/CxPop3.cpp|Source/Net/CxMimeMessage.cpp|Source/Net/CxMimeHeader.cpp|Source/Net/CxMimeBody.cpp|Source/Pkcs11/CxVerify.cpp|Source/Pkcs11/CxUtils.cpp|Source/Pkcs11/CxSlot.cpp|Source/Pkcs11/CxSign.cpp|Source/Pkcs11/CxSession.cpp|Source/Pkcs11/CxPkcs11.cpp|Source/Pkcs11/CxPin.cpp|Source/Pkcs11/CxObject.cpp|Source/Pkcs11/CxMechanism.cpp|Source/Pkcs11/CxLogin.cpp|Source/Pkcs11/CxKey.cpp|Source/Pkcs11/CxInfo.cpp|Source/Pkcs11/CxFunction.cpp|Source/Pkcs11/CxEncrypt.cpp|Source/Pkcs11/CxDigest.cpp|Source/Pkcs11/CxDecrypt.cpp|Source/Sync/CxThreadPool.inl|Source/Sync/CxWaitableTimer.cpp|Source/Sync/CxTls.cpp|Source/Sync/CxThread.cpp|Source/Sync/CxSleeper.cpp|Source/Sync/CxSharedMemory.cpp|Source/Sync/CxSemaphore.cpp|Source/Sync/CxMutex.cpp|Source/Sync/CxEvent.cpp|Source/Sync/CxCriticalSection.cpp|Source/Sync/CxCompletionPort.cpp|Source/Sync/CxAutoMutex.cpp|Source/Sync/CxAutoCriticalSection.cpp|Source/Sync/CxAtomicLongInt.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
@@ -570,6 +568,7 @@
 				</externalSettings>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
@@ -580,8 +579,8 @@
 				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.release.1137612410" name="Release" parent="cdt.managedbuild.config.gnu.lib.release">
 					<folderInfo id="cdt.managedbuild.config.gnu.lib.release.1137612410." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.lib.release.1266628772" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.lib.release">
-							<targetPlatform id="cdt.managedbuild.target.gnu.platform.lib.release.972976033" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.lib.release"/>
-							<builder buildPath="${workspace_loc:/xLib_static_lib/Release}" id="cdt.managedbuild.target.gnu.builder.lib.release.1353877403" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.lib.release"/>
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="cdt.managedbuild.target.gnu.platform.lib.release.972976033" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.lib.release"/>
+							<builder autoBuildTarget="all" buildPath="${workspace_loc:/xLib_static_lib/Release}" cleanBuildTarget="clean" enableAutoBuild="false" enableCleanBuild="true" enabledIncrementalBuild="true" id="cdt.managedbuild.target.gnu.builder.lib.release.1353877403" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" parallelizationNumber="1" superClass="cdt.managedbuild.target.gnu.builder.lib.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.lib.release.820675456" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.lib.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.lib.release.774504005" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.lib.release">
 								<option id="gnu.cpp.compiler.lib.release.option.optimization.level.725188704" name="Optimization Level" superClass="gnu.cpp.compiler.lib.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
@@ -605,9 +604,6 @@
 						</toolChain>
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.1137612410.1364707888" name="CxThreadPool.inl" rcbsApplicability="disable" resourcePath="Source/Sync/CxThreadPool.inl" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.1137612410.107534431" name="CxProcess.cpp" rcbsApplicability="disable" resourcePath="Source/Sync/CxProcess.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.lib.release.774504005.227918279">
-						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.lib.release.774504005.227918279" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.lib.release.774504005"/>
-					</fileInfo>
 					<sourceEntries>
 						<entry excluding="Include/xLib/Gui/Win/Resource.xrc.cpp|Source/Units/Win|Source/Filesystem/Win|Source/Db/Win|Source/Common/Win|Source/Gui/Win/CxWndsContainer.cpp|Source/Gui/Win/CxWindowImpl.cpp|Source/Gui/Win/CxWindow.cpp|Source/Gui/Win/CxWaitCursor.cpp|Source/Gui/Win/CxToolBar.cpp|Source/Gui/Win/CxTab.cpp|Source/Gui/Win/CxStyle.cpp|Source/Gui/Win/CxStatusBar.cpp|Source/Gui/Win/CxStatic.cpp|Source/Gui/Win/CxRichEdit.cpp|Source/Gui/Win/CxResources.cpp|Source/Gui/Win/CxRebar.cpp|Source/Gui/Win/CxRadioButton.cpp|Source/Gui/Win/CxPushButton.cpp|Source/Gui/Win/CxProgressBar.cpp|Source/Gui/Win/CxPicture.cpp|Source/Gui/Win/CxOwnerDrawButton.cpp|Source/Gui/Win/CxListView.cpp|Source/Gui/Win/CxListBox.cpp|Source/Gui/Win/CxLayout.cpp|Source/Gui/Win/CxImageList.cpp|Source/Gui/Win/CxIcon.cpp|Source/Gui/Win/CxHotKey.cpp|Source/Gui/Win/CxGroupBox.cpp|Source/Gui/Win/CxFont.cpp|Source/Gui/Win/CxEdit.cpp|Source/Gui/Win/CxDialog.cpp|Source/Gui/Win/CxDC.cpp|Source/Gui/Win/CxComboBox.cpp|Source/Gui/Win/CxCheckBox.cpp|Source/Gui/Win/CxButtonBase.cpp|Source/Gui/Win/CxButton.cpp|Source/Gui/Win/CxApplication.cpp|Source/Gui/Win/GDI+|Source/Gui/Win/Dialogs|Source/Log/CxTraceLog.cpp|Source/Log/CxFileLog.cpp|Source/Log/CxDbLog.cpp|Source/Log/CxConsoleLog.cpp|Source/Log/Win/CxWndLog.cpp|Source/Log/Win/CxEventLog.cpp|Source/Net/CxSmtp.cpp|Source/Net/CxPop3.cpp|Source/Net/CxMimeMessage.cpp|Source/Net/CxMimeHeader.cpp|Source/Net/CxMimeBody.cpp|Source/Pkcs11/CxVerify.cpp|Source/Pkcs11/CxUtils.cpp|Source/Pkcs11/CxSlot.cpp|Source/Pkcs11/CxSign.cpp|Source/Pkcs11/CxSession.cpp|Source/Pkcs11/CxPkcs11.cpp|Source/Pkcs11/CxPin.cpp|Source/Pkcs11/CxObject.cpp|Source/Pkcs11/CxMechanism.cpp|Source/Pkcs11/CxLogin.cpp|Source/Pkcs11/CxKey.cpp|Source/Pkcs11/CxInfo.cpp|Source/Pkcs11/CxFunction.cpp|Source/Pkcs11/CxEncrypt.cpp|Source/Pkcs11/CxDigest.cpp|Source/Pkcs11/CxDecrypt.cpp|Source/Sync/CxThreadPool.inl|Source/Sync/CxWaitableTimer.cpp|Source/Sync/CxTls.cpp|Source/Sync/CxThread.cpp|Source/Sync/CxSleeper.cpp|Source/Sync/CxSharedMemory.cpp|Source/Sync/CxSemaphore.cpp|Source/Sync/CxMutex.cpp|Source/Sync/CxEvent.cpp|Source/Sync/CxCriticalSection.cpp|Source/Sync/CxCompletionPort.cpp|Source/Sync/CxAutoMutex.cpp|Source/Sync/CxAutoCriticalSection.cpp|Source/Sync/CxAtomicLongInt.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
