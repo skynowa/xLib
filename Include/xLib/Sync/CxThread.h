@@ -40,7 +40,7 @@ class CxThread : public CxNonCopyable {
         const ULONG             _m_culExitTimeout;          //таймаут выхода / уничтожения
 
         //thread data
-        CxHandle                _m_hThread;                 //хендл
+        CxHandleT<NULL>         _m_hThread;                 //хендл
         ULONG                   _m_ulID;                    //ID
         UINT                    _m_uiExitCode;              //код возврата
         VOID                   *_m_pvParam;                 //параметр для раьочей функции
