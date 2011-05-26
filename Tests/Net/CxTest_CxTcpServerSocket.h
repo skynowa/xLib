@@ -32,17 +32,17 @@ class CxTest_CxTcpServerSocket : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxTcpServerSocket (comment)
+//DONE: CxTest_CxTcpServerSocket (comment)
 CxTest_CxTcpServerSocket::CxTest_CxTcpServerSocket() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxTcpServerSocket (comment)
+//DONE: ~CxTest_CxTcpServerSocket (comment)
 CxTest_CxTcpServerSocket::~CxTest_CxTcpServerSocket() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL CxTest_CxTcpServerSocket::bUnit() {
 	/*DEBUG*/

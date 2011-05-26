@@ -29,17 +29,17 @@ class CxTest_CxMacros : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxMacros (constructor)
+//DONE: CxTest_CxMacros (constructor)
 CxTest_CxMacros::CxTest_CxMacros() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxMacros (destructor)
+//DONE: ~CxTest_CxMacros (destructor)
 CxTest_CxMacros::~CxTest_CxMacros() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit (unit test)
+//TODO: DONE (unit test)
 /*virtual*/
 BOOL
 CxTest_CxMacros::bUnit() {

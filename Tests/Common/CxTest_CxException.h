@@ -29,17 +29,17 @@ class CxTest_CxException : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxException (constructor)
+//DONE: CxTest_CxException (constructor)
 CxTest_CxException::CxTest_CxException() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxException (destructor)
+//DONE: ~CxTest_CxException (destructor)
 CxTest_CxException::~CxTest_CxException() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxException::bUnit() {

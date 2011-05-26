@@ -29,17 +29,17 @@ class CxTest_CxBlowfish : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxBlowfish (constructor)
+//DONE: CxTest_CxBlowfish (constructor)
 CxTest_CxBlowfish::CxTest_CxBlowfish() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxBlowfish (destructor)
+//DONE: ~CxTest_CxBlowfish (destructor)
 CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxBlowfish::bUnit() {

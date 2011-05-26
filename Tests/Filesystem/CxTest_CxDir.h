@@ -30,17 +30,17 @@ class CxTest_CxDir : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxDir (comment)
+//DONE: CxTest_CxDir (comment)
 CxTest_CxDir::CxTest_CxDir() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxDir (comment)
+//DONE: ~CxTest_CxDir (comment)
 CxTest_CxDir::~CxTest_CxDir() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL CxTest_CxDir::bUnit() {
     const tString csTempScanDirPath = sGetWorkDirPath() + CxConst::xSLASH + xT("Scan");

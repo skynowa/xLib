@@ -184,7 +184,7 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bChmod       (const tString &csFilePath, const EPermissionMode cpmMode);
         static BOOL      bClear       (const tString &csFilePath);
         static BOOL      bDelete      (const tString &csFilePath);
-        static BOOL      bTryDelete   (const tString &csFilePath, const size_t cuiAttempts);
+        static BOOL      bTryDelete   (const tString &csFilePath, const size_t cuiAttempts, const ULONG culTimeoutMsec);
         static BOOL      bWipe        (const tString &csFilePath, const size_t cuiPasses);
         static BOOL      bUnlink      (const tString &csFilePath);
         static BOOL      bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);

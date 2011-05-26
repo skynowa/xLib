@@ -29,17 +29,17 @@ class CxTest_CxConnectionString : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxConnectionString (comment)
+//DONE: CxTest_CxConnectionString (comment)
 CxTest_CxConnectionString::CxTest_CxConnectionString() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxConnectionString (comment)
+//DONE: ~CxTest_CxConnectionString (comment)
 CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxConnectionString::bUnit() {
 	/*DEBUG*/

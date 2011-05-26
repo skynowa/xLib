@@ -29,17 +29,17 @@ class CxTest_CxDll : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxDll (constructor)
+//DONE: CxTest_CxDll (constructor)
 CxTest_CxDll::CxTest_CxDll() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxDll (destructor)
+//DONE: ~CxTest_CxDll (destructor)
 CxTest_CxDll::~CxTest_CxDll() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxDll::bUnit() {

@@ -29,17 +29,17 @@ class CxTest_CxGz : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxGz (constructor)
+//DONE: CxTest_CxGz (constructor)
 CxTest_CxGz::CxTest_CxGz() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxGz (destructor)
+//DONE: ~CxTest_CxGz (destructor)
 CxTest_CxGz::~CxTest_CxGz() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxGz::bUnit() {

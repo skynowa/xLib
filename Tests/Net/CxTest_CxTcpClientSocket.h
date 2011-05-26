@@ -31,17 +31,17 @@ class CxTest_CxTcpClientSocket : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxTcpClientSocket (comment)
+//DONE: CxTest_CxTcpClientSocket (comment)
 CxTest_CxTcpClientSocket::CxTest_CxTcpClientSocket() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxTcpClientSocket (comment)
+//DONE: ~CxTest_CxTcpClientSocket (comment)
 CxTest_CxTcpClientSocket::~CxTest_CxTcpClientSocket() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL CxTest_CxTcpClientSocket::bUnit() {
 	CxSocket::EAddressFamily afAf           = CxSocket::afInet;

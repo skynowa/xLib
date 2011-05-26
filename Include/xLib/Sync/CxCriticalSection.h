@@ -30,7 +30,7 @@ class CxCriticalSection : public CxNonCopyable {
     #if defined(xOS_WIN)
         CRITICAL_SECTION  _m_CS;
     #elif defined(xOS_LINUX)
-        //TODO:
+        //TODO: CxCriticalSection
     #endif
 };
 //---------------------------------------------------------------------------

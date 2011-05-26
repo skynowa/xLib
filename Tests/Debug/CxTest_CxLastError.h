@@ -29,17 +29,17 @@ class CxTest_CxLastError : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxLastError (constructor)
+//DONE: CxTest_CxLastError (constructor)
 CxTest_CxLastError::CxTest_CxLastError() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxLastError (destructor)
+//DONE: ~CxTest_CxLastError (destructor)
 CxTest_CxLastError::~CxTest_CxLastError() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxLastError::bUnit() {

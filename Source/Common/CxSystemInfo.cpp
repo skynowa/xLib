@@ -134,7 +134,7 @@ CxSystemInfo::oaGetOsArchitecture() {
     EOsArchitecture oaRes = oaUnknown;
 
 #if defined(xOS_WIN)
-    //TODO: xOS_WIN
+    //TODO: oaGetOsArchitecture
     //http://www.tek-tips.com/viewthread.cfm?qid=1573774&page=6
 
 
@@ -415,7 +415,7 @@ CxSystemInfo::bIsUnicodeOS()  {
 
     bRes = (0 != ::GetVersionExW(&oviInfo));
 #elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
+    //TODO: bIsUnicodeOS
     bRes = TRUE;
 #endif
 

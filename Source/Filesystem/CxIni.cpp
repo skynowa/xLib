@@ -5,7 +5,7 @@
 * Libraries:   WinAPI, Stl
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
-* Created:     23.04.2009 12:10:56
+* Created:     10.05.2011
 *
 *****************************************************************************/
 
@@ -89,7 +89,10 @@ CxIni::sGetPath() const {
 //---------------------------------------------------------------------------
 //DONE: bSetPath (set file path)
 BOOL
-CxIni::bSetPath(const tString &csFilePath) {
+CxIni::bSetPath(
+    const tString &csFilePath
+)
+{
     /*DEBUG*///_m_sFilePath - n/a
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 

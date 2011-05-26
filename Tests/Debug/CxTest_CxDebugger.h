@@ -29,12 +29,12 @@ class CxTest_CxDebugger : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxDebugger (constructor)
+//DONE: CxTest_CxDebugger (constructor)
 CxTest_CxDebugger::CxTest_CxDebugger() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxDebugger (destructor)
+//DONE: ~CxTest_CxDebugger (destructor)
 CxTest_CxDebugger::~CxTest_CxDebugger() {
 
 }
@@ -75,7 +75,7 @@ BOOL bNotImplemented() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxDebugger::bUnit() {

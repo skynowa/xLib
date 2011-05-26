@@ -29,17 +29,17 @@ class CxTest_CxReport : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxReport (constructor)
+//DONE: CxTest_CxReport (constructor)
 CxTest_CxReport::CxTest_CxReport() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxReport (destructor)
+//DONE: ~CxTest_CxReport (destructor)
 CxTest_CxReport::~CxTest_CxReport() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxReport::bUnit() {

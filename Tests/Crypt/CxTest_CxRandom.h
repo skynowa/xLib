@@ -29,17 +29,17 @@ class CxTest_CxRandom : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxRandom (constructor)
+//DONE: CxTest_CxRandom (constructor)
 CxTest_CxRandom::CxTest_CxRandom() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxRandom (destructor)
+//DONE: ~CxTest_CxRandom (destructor)
 CxTest_CxRandom::~CxTest_CxRandom() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxRandom::bUnit() {

@@ -296,12 +296,12 @@ CxUri::sUnescape(const std::string &csUri) {
 
     std::string sRes;
 
-    //TODO:
+    //TODO: sUnescape
 
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO:
+//TODO: sEncodeComponent
 //void URI::encode(const std::string& str, const std::string& reserved, std::string& encodedStr)
 /*static*/ std::string CxUri::sEncodeComponent(const std::string &csUri) {
     std::string sRes;
@@ -338,7 +338,7 @@ CxUri::sUnescape(const std::string &csUri) {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO:
+//TODO: sDecodeComponent
 //void URI::decode(const std::string& str, std::string& decodedStr)
 /*static*/ std::string CxUri::sDecodeComponent(const std::string &csUri) {
     std::string sRes;

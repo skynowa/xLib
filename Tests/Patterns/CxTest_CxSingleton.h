@@ -45,17 +45,17 @@ class CLogger {
 };
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxSingleton (comment)
+//DONE: CxTest_CxSingleton (comment)
 CxTest_CxSingleton::CxTest_CxSingleton() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxSingleton (comment)
+//DONE: ~CxTest_CxSingleton (comment)
 CxTest_CxSingleton::~CxTest_CxSingleton() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSingleton::bUnit() {

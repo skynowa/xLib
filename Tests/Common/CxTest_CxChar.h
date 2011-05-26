@@ -29,17 +29,17 @@ class CxTest_CxChar : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxChar (constructor)
+//DONE: CxTest_CxChar (constructor)
 CxTest_CxChar::CxTest_CxChar() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxChar (destructor)
+//DONE: ~CxTest_CxChar (destructor)
 CxTest_CxChar::~CxTest_CxChar() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxChar::bUnit() {

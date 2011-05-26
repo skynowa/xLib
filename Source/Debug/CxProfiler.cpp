@@ -55,7 +55,7 @@ CxProfiler::bStart() {
 
     ::Sleep(100);
 #elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
+    //TODO: bStart
 #endif
 
     switch (_m_pmModeNow) {
@@ -242,7 +242,7 @@ CxProfiler::_bResetData() {
     _m_bRes = ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_NORMAL);
     /*DEBUG*/xASSERT(FALSE != _m_bRes);
 #elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
+    //TODO: _bResetData
 #endif
 
     _m_bIsStarted                       = FALSE;

@@ -155,11 +155,6 @@ const std::string  CxConst::xDQM_A            ("\"");
 const std::wstring CxConst::xDQM_W            (L"\"");
 const tString      CxConst::xDQM              (xT("\""));
 
-//xCHAR_NULL (null character)
-////const CHAR         CxConst::xCHAR_NULL_A      ('\0');
-////const WCHAR        CxConst::xCHAR_NULL_W      (L'\0');
-////const TCHAR        CxConst::xCHAR_NULL        (xT('\0'));
-
 //xSPACES (spaces)
 const std::string  CxConst::xWHITE_SPACES_A   (CxConst::xCR_A + CxConst::xSPACE_A + CxConst::xHT_A + CxConst::xNL_A + CxConst::xVT_A + CxConst::xFF_A);
 const std::wstring CxConst::xWHITE_SPACES_W   (CxConst::xCR_W + CxConst::xSPACE_W + CxConst::xHT_W + CxConst::xNL_W + CxConst::xVT_W + CxConst::xFF_W);
@@ -175,15 +170,10 @@ const std::string  CxConst::xHYPHEN_A         ("-");
 const std::wstring CxConst::xHYPHEN_W         (L"-");
 const tString      CxConst::xHYPHEN           (xT("-"));
 
-
 //xXXXXX (xxxxxxxxxxxxxxxxxxxxxx)
 ////const std::string  CxConst::xXXXXX_A          ("XXXXX");
 ////const std::wstring CxConst::xXXXXX_W          (L"XXXXX");
 ////const tString      CxConst::xXXXXX            (xT("XXXXX"));
-
-
-
-
 
 //---------------------------------------------------------------------------
 ////const tString xOPEN_BRACKET          ("{");

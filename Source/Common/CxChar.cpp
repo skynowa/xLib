@@ -168,7 +168,7 @@ CxChar::chToLower(
 {
     /*DEBUG*/// n/a
 
-    //TODO: unicode
+    //TODO: chToLower unicode
     return tolower(cchChar);
     /*DEBUG*/// n/a
 }
@@ -182,7 +182,7 @@ CxChar::chToUpper(
 {
     /*DEBUG*/// n/a
 
-    //TODO: unicode
+    //TODO: chToUpper unicode
     return toupper(cchChar);
     /*DEBUG*/// n/a
 }

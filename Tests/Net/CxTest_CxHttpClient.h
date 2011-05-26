@@ -29,17 +29,17 @@ class CxTest_CxHttpClient : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: CxTest_CxHttpClient (constructor)
+//DONE: CxTest_CxHttpClient (constructor)
 CxTest_CxHttpClient::CxTest_CxHttpClient() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxTest_CxHttpClient (destructor)
+//DONE: ~CxTest_CxHttpClient (destructor)
 CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxHttpClient::bUnit() {

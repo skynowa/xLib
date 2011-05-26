@@ -29,17 +29,17 @@ class CxTest_CxDnsClient : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxDnsClient (comment)
+//DONE: CxTest_CxDnsClient (comment)
 CxTest_CxDnsClient::CxTest_CxDnsClient() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxDnsClient (comment)
+//DONE: ~CxTest_CxDnsClient (comment)
 CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL CxTest_CxDnsClient::bUnit() {
 	//-------------------------------------

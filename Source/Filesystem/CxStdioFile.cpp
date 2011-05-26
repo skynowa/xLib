@@ -773,7 +773,8 @@ CxStdioFile::bDelete(
 BOOL
 CxStdioFile::bTryDelete(
     const tString &csFilePath,
-    const size_t   cuiAttempts
+    const size_t   cuiAttempts,
+    const ULONG    culTimeoutMsec
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -790,10 +791,10 @@ CxStdioFile::bTryDelete(
         xCHECK_DO(TRUE == bRes, bIsDeleted = TRUE; break);
 
         #if defined(xOS_WIN)
-            ::Sleep(static_cast<ULONG>( 0 ));
+            ::Sleep(culTimeoutMsec);
             /*DEBUG*/// n/a
         #elif defined(xOS_LINUX)
-            int iRes = usleep(static_cast<useconds_t>( 0 * 1000 ));
+            int iRes = usleep(static_cast<useconds_t>( culTimeoutMsec * 1000 ));
             /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
         #endif
     }
@@ -1332,7 +1333,7 @@ CxStdioFile::bTextRead(
 
     for (size_t i = 0; !ifsStream.eof();  ++ i) {
         std::getline(ifsStream, sLine);
-        
+
         sLine = CxString::sTrimRightChars(sLine, CxConst::xEOL);
 
         bRes = CxString::bSplit(sLine, csSeparator, &vecsLine);

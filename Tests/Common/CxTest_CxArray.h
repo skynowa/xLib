@@ -29,17 +29,17 @@ class CxTest_CxArray : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxArray (constructor)
+//DONE: CxTest_CxArray (constructor)
 CxTest_CxArray::CxTest_CxArray() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxArray (destructor)
+//DONE: ~CxTest_CxArray (destructor)
 CxTest_CxArray::~CxTest_CxArray() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxArray::bUnit() {

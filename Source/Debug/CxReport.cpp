@@ -283,7 +283,7 @@ CxReport::_bInitVars(
 
     _m_sProgram        = CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
-    _m_ulThreadId      = 0;  //TODO: ulThreadId
+    _m_ulThreadId      = 0;  //TODO: CxReport::ulThreadId
 
     _m_sSourceFile     = csFile;
     _m_ulSourceLine    = culLine;

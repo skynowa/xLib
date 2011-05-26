@@ -29,17 +29,17 @@ class CxTest_CxCgi : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxCgi (constructor)
+//DONE: CxTest_CxCgi (constructor)
 CxTest_CxCgi::CxTest_CxCgi() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxCgi (destructor)
+//DONE: ~CxTest_CxCgi (destructor)
 CxTest_CxCgi::~CxTest_CxCgi() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxCgi::bUnit() {
