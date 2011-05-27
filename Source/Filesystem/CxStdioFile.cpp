@@ -642,7 +642,7 @@ CxStdioFile::bClose() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsFile (check for file)
+//TODO: bIsFile (check for file)
 /*static*/
 BOOL
 CxStdioFile::bIsFile(
@@ -654,10 +654,6 @@ CxStdioFile::bIsFile(
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    //TODO: bIsFile
-    ////bRes = CxFileAttribute::bIsExists(csFilePath, /*! CxFileAttribute::faDirectory*/);
-    ////xCHECK_RET(FALSE == bRes, FALSE);
-
     DWORD dwAttr = ::GetFileAttributes(csFilePath.c_str());
 
     bRes = (dwAttr != INVALID_FILE_ATTRIBUTES) &&
@@ -671,6 +667,14 @@ CxStdioFile::bIsFile(
 
     bRes = static_cast<BOOL>( S_ISREG(stInfo.st_mode) );
     xCHECK_RET(FALSE == bRes, FALSE);
+
+    #if xTODO
+        CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
+        /*DEBUG*/// n/a
+        xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
+
+        bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
+    #endif
 #endif
 
     return TRUE;
@@ -838,8 +842,10 @@ CxStdioFile::bWipe(
 
         //--------------------------------------------------
         //set normal file attributes
+        #if defined(xOS_WIN)
         bRes = CxFileAttribute::bSet(csFilePath, CxFileAttribute::faNormal);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+        #endif
 
         //--------------------------------------------------
         //open
@@ -1004,6 +1010,7 @@ CxStdioFile::bCopy(
     //--------------------------------------------------
     //fail if exists
     xCHECK_RET(TRUE == cbFailIfExists && TRUE == CxStdioFile::bIsExists(csFilePathTo), FALSE);
+    //TODO: check filesize
 
     {
         //--------------------------------------------------
@@ -1275,12 +1282,12 @@ CxStdioFile::bTextWrite(
 BOOL
 CxStdioFile::bTextRead(
     const tString        &csFilePath,
-    std::vector<tString> *pvecsContent
+    std::vector<tString> *pvsContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pvecsContent,          FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsContent,            FALSE);
 
     BOOL                 bRes = FALSE;
     std::vector<tString> vecsRes;
@@ -1293,7 +1300,7 @@ CxStdioFile::bTextRead(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //out
-    std::swap((*pvecsContent), vecsRes);
+    std::swap((*pvsContent), vecsRes);
 
     return TRUE;
 }
@@ -1303,7 +1310,7 @@ CxStdioFile::bTextRead(
 BOOL
 CxStdioFile::bTextWrite(
     const tString              &csFilePath,
-    const std::vector<tString> &cvecsContent
+    const std::vector<tString> &cvsContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -1312,7 +1319,7 @@ CxStdioFile::bTextWrite(
     BOOL    bRes = FALSE;
     tString sFileContent;
 
-    sFileContent = CxString::sJoin(cvecsContent, CxConst::xNL);
+    sFileContent = CxString::sJoin(cvsContent, CxConst::xNL);
 
     bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);

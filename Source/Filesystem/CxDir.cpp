@@ -34,29 +34,29 @@ CxDir::bIsExists(
 
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
+#if xDEPRECIATE
+    #if defined(xOS_WIN)
+        CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
+        /*DEBUG*/// n/a
+        xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
+
+        bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+    #elif defined(xOS_LINUX)
+        struct stat stInfo = {0};
+
+        INT iRes = stat(csDirPath.c_str(), &stInfo);
+        /*DEBUG*/// n/a
+        xCHECK_RET(- 1 == iRes, FALSE);
+
+        bRes = static_cast<BOOL>( S_ISDIR(stInfo.st_mode) );
+    #endif
+#endif
+
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
     /*DEBUG*/// n/a
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
 
     bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-#elif defined(xOS_LINUX)
-    struct stat stInfo = {0};
-
-    INT iRes = stat(csDirPath.c_str(), &stInfo);
-    /*DEBUG*/// n/a
-    xCHECK_RET(- 1 == iRes, FALSE);
-
-    bRes = static_cast<BOOL>( S_ISDIR(stInfo.st_mode) );
-#endif
-
-#if xTODO
-    CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
-    /*DEBUG*/// n/a
-    xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
-
-    bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-#endif
 
     return bRes;
 }
@@ -145,8 +145,7 @@ CxDir::bIsRoot(
 
     xCHECK_RET(FALSE == bRes1 || FALSE == bRes2 || FALSE == bRes3, FALSE);
 #elif defined(xOS_LINUX)
-    xCHECK_RET(1               == csDirPath.size(), FALSE);
-    xCHECK_RET(CxConst::xSLASH != csDirPath,        FALSE);
+    xCHECK_RET(CxConst::xSLASH != csDirPath, FALSE);
 #endif
 
     return TRUE;
@@ -163,23 +162,28 @@ CxDir::bIsDir(
 
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
+#if xDEPRECIATE
+    #if defined(xOS_WIN)
+        bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+        xCHECK_RET(FALSE == bRes, FALSE);
+
+        /*
+        DWORD dw = GetFileAttributes(pathname);
+        return dw != INVALID_FILE_ATTRIBUTES && (dw & FILE_ATTRIBUTE_DIRECTORY);
+        */
+    #elif defined(xOS_LINUX)
+        struct stat stInfo = {0};
+
+        INT iRes = stat/*lstat*/(csDirPath.c_str(), &stInfo);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+
+        bRes = static_cast<BOOL>( S_ISDIR(stInfo.st_mode) );
+        xCHECK_RET(FALSE == bRes, FALSE);
+    #endif
+#endif
+
     bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
     xCHECK_RET(FALSE == bRes, FALSE);
-
-    /*
-    DWORD dw = GetFileAttributes(pathname);
-    return dw != INVALID_FILE_ATTRIBUTES && (dw & FILE_ATTRIBUTE_DIRECTORY);
-    */
-#elif defined(xOS_LINUX)
-    struct stat stInfo = {0};
-
-    INT iRes = stat/*lstat*/(csDirPath.c_str(), &stInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-
-    bRes = static_cast<BOOL>( S_ISDIR(stInfo.st_mode) );
-    xCHECK_RET(FALSE == bRes, FALSE);
-#endif
 
     return TRUE;
 }
@@ -204,8 +208,8 @@ CxDir::sGetCurrent() {
     TCHAR szBuff[PATH_MAX + 1] = {0};
 
     char *pszRes = getcwd(szBuff, PATH_MAX);
-    /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
-    /*DEBUG*///xASSERT_RET(szBuff == pszRes, tString());    //??
+    /*DEBUG*/xASSERT_RET(NULL   != pszRes, tString());
+    /*DEBUG*/xASSERT_RET(szBuff == pszRes, tString());
 
     sRes.assign(pszRes);
 #endif
@@ -233,10 +237,10 @@ CxDir::bSetCurrent(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: sGetTempPath (get path to system var %Temp%)
+//DONE: sGetTemp (get path to system var %Temp%)
 /*static*/
 tString
-CxDir::sGetTempPath() {
+CxDir::sGetTemp() {
     /*DEBUG*/// n/a
 
     tString sRes;
@@ -250,13 +254,6 @@ CxDir::sGetTempPath() {
 
     sRes.assign(szRes, ulRes);
 #elif defined(xOS_LINUX)
-    /*
-    TMPDIR переменной среды
-    Значение макроса P_tmpdir
-
-    Если все не удается, попробуйте использовать каталог /tmp.
-    */
-
     sRes.assign(xT(P_tmpdir));
 #endif
 
@@ -321,64 +318,94 @@ CxDir::bCreateForce(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bCopy (copy)
+//DONE: bCopy (copy)
 /*static*/
 BOOL
 CxDir::bCopy(
-    const tString &csFromDirPath,
-    const tString &csToDirPath,
+    const tString &csDirPathFrom,
+    const tString &csDirPathTo,
     const BOOL     cbFailIfExists
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFromDirPath.empty(),    FALSE);
-    /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFromDirPath), FALSE);
-    /*DEBUG*/xASSERT_RET(false == csToDirPath.empty(),      FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPathFrom.empty(),    FALSE);
+    /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csDirPathFrom), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPathTo.empty(),      FALSE);
     /*DEBUG*/// cbFailIfExists - n/a
 
+    BOOL bRes = FALSE;
+
 #if defined(xOS_WIN)
-    //TODO: bCopy
-    BOOL bRes = ::CopyFile(csFromDirPath.c_str(), csToDirPath.c_str(), cbFailIfExists);
+        //-------------------------------------
+    //sets attr "normal"
+    bRes = bIsExists(csDirPathTo);
+    if (TRUE == bRes) {
+        bRes = CxFileAttribute::bSet(csDirPathTo, CxFileAttribute::faNormal);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    }
+
+    bRes = CxFileAttribute::bSet(csDirPathFrom, CxFileAttribute::faNormal);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    bRes = ::CopyFile(csFromDirPath.c_str(), csToDirPath.c_str(), cbFailIfExists);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    //TODO: bCopy
-    xNOT_IMPLEMENTED_RET(FALSE);
+    std::vector<tString> vsFilePathes;
+
+    //--------------------------------------------------
+    //get lists of files
+    vsFilePathes.clear();
+    bRes = bFindFiles(csDirPathFrom, CxConst::xMASK_ALL, TRUE, &vsFilePathes);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    //--------------------------------------------------
+    //copy
+    for (std::vector<tString>::const_reverse_iterator it = vsFilePathes.rbegin();
+        it != vsFilePathes.rend() && false == vsFilePathes.empty();
+        ++ it)
+    {
+        tString sFilePathTo = *it;
+
+        size_t uiPosBegin = sFilePathTo.find(csDirPathFrom);
+        /*DEBUG*/xASSERT_RET(tString::npos != uiPosBegin, FALSE);
+
+        sFilePathTo.replace(uiPosBegin, uiPosBegin + csDirPathFrom.size(), csDirPathTo);
+
+        bRes = bCreateForce(CxPath::sGetDir(sFilePathTo));
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+        bRes = CxStdioFile::bCopy(*it, sFilePathTo, cbFailIfExists);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    }
+
+
+    //rollback
+
 #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bMove (move)
+//DONE: bMove (move)
 /*static*/
 BOOL
 CxDir::bMove(
-    const tString &csInDirPath,
-    const tString &csOutDirPath
+    const tString &csDirPathFrom,
+    const tString &csDirPathTo,
+    const BOOL     cbFailIfExists
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csInDirPath.empty(),    FALSE);
-    /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csInDirPath), FALSE);
-    /*DEBUG*/xASSERT_RET(false == csOutDirPath.empty(),   FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPathFrom.empty(),    FALSE);
+    /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csDirPathFrom), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPathTo.empty(),   FALSE);
+    /*DEBUG*/// cbFailIfExists - n/a
 
-#if defined(xOS_WIN)
-    //-------------------------------------
-    //sets attr "normal"
-    BOOL bRes = bIsExists(csOutDirPath);
-    if (TRUE == bRes) {
-        bRes = CxFileAttribute::bSet(csOutDirPath, CxFileAttribute::faNormal);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    }
+    BOOL bRes = FALSE;
 
-    bRes = CxFileAttribute::bSet(csInDirPath, CxFileAttribute::faNormal);
+    bRes = bCopy(csDirPathFrom, csDirPathTo, cbFailIfExists);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    //-------------------------------------
-    //move
-    bRes = ::MoveFile(csInDirPath.c_str(), csOutDirPath.c_str());
+    bRes = bDeleteForce(csDirPathFrom);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
-    //TODO: bMove
-    xNOT_IMPLEMENTED_RET(FALSE);
-#endif
 
     return TRUE;
 }
@@ -404,8 +431,6 @@ CxDir::bDelete(
     bRes = ::RemoveDirectory(csDirPath.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    //TODO: bRes = CxFileAttribute::bSet(csDirPath, CxFileAttribute::faNormal);
-
     INT iRes = rmdir(csDirPath.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
@@ -499,7 +524,7 @@ CxDir::bDeleteForce(
 }
 //--------------------------------------------------------------------------
 //TODO: bFindFiles (search files)
-//NOTE: need empty pvecsDirPathes param,
+//NOTE: need empty pvsDirPathes param,
 //      http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
 /*static*/
 BOOL
@@ -507,17 +532,17 @@ CxDir::bFindFiles(
     const tString        &csDirPath,
     const tString        &cMask,
     const BOOL            cbIsRecurse,
-    std::vector<tString> *pvecsFilePathes
+    std::vector<tString> *pvsFilePathes
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == cMask.empty(),     FALSE);
     /*DEBUG*/// cbIsRecurse - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pvecsFilePathes,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pvsFilePathes,    FALSE);
 
     BOOL bRes = FALSE;
 
-    ////--(*pvecsFilePathes).clear();
+    ////--(*pvsFilePathes).clear();
 
 #if defined(xOS_WIN)
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
@@ -547,7 +572,7 @@ CxDir::bFindFiles(
                 sPart    = fdData.cFileName;
                 sTmpPath = CxPath::sSetFullName(sTmpPath, sPart);
 
-                bRes = bFindFiles(sTmpPath, sFileFullName, TRUE, pvecsFilePathes);
+                bRes = bFindFiles(sTmpPath, sFileFullName, TRUE, pvsFilePathes);
                 /*DEBUG*/// n/a
             }
             while (FALSE != ::FindNextFile(hFile, &fdData));
@@ -569,7 +594,7 @@ CxDir::bFindFiles(
         sPart    = fdData.cFileName;
         sTmpPath = CxPath::sSetFullName(sFilePath/*sTmpPath*/, sPart);
 
-        (*pvecsFilePathes).push_back(sTmpPath);
+        (*pvsFilePathes).push_back(sTmpPath);
     }
     while (FALSE != ::FindNextFile(hFile, &fdData));
 
@@ -600,14 +625,14 @@ CxDir::bFindFiles(
                 //is search in subdirs ?
                 xCHECK_DO(FALSE == cbIsRecurse, continue);
 
-                bRes = bFindFiles(sDirPath, cMask, cbIsRecurse, pvecsFilePathes); //recursion
+                bRes = bFindFiles(sDirPath, cMask, cbIsRecurse, pvsFilePathes); //recursion
                 /*DEBUG*/// n/a
             }
             //TODO: files
             else if (DT_REG == pdrEntry->d_type) {
                 tString sFilePath = csDirPath + CxConst::xSLASH + tString(pdrEntry->d_name);
 
-                (*pvecsFilePathes).push_back(sFilePath);
+                (*pvsFilePathes).push_back(sFilePath);
             }
         }
         while ( NULL != (pdrEntry = readdir(pDir)) );
@@ -618,52 +643,54 @@ CxDir::bFindFiles(
 
     //-------------------------------------
     //FIX: files (!!!! krivo napisano !!!!)
-//    if (TRUE != cbIsRecurse) {
-//        DIR    *pDir     = NULL;
-//        dirent *pdrEntry = {0};
-//
-//        pDir = opendir(csDirPath.c_str());
-//        /*DEBUG*/xASSERT_RET(NULL != pDir, FALSE);
-//
-//        pdrEntry = readdir(pDir);
-//        xCHECK_RET(NULL == pdrEntry, FALSE);
-//
-//        do {
-//            //skipping dirs
-//            xCHECK_DO(DT_DIR == pdrEntry->d_type, continue);
-//
-//            tString sFilePath = csDirPath + CxConst::xSLASH + pdrEntry->d_name;
-//
-//            (*pvecsFilePathes).push_back(sFilePath);
-//        }
-//        while ( NULL != (pdrEntry = readdir(pDir)) );
-//
-//        INT iRes = closedir(pDir); pDir = NULL;
-//        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-//    }
+    #if xTODO
+        if (TRUE != cbIsRecurse) {
+            DIR    *pDir     = NULL;
+            dirent *pdrEntry = {0};
+
+            pDir = opendir(csDirPath.c_str());
+            /*DEBUG*/xASSERT_RET(NULL != pDir, FALSE);
+
+            pdrEntry = readdir(pDir);
+            xCHECK_RET(NULL == pdrEntry, FALSE);
+
+            do {
+                //skipping dirs
+                xCHECK_DO(DT_DIR == pdrEntry->d_type, continue);
+
+                tString sFilePath = csDirPath + CxConst::xSLASH + pdrEntry->d_name;
+
+                (*pvsFilePathes).push_back(sFilePath);
+            }
+            while ( NULL != (pdrEntry = readdir(pDir)) );
+
+            INT iRes = closedir(pDir); pDir = NULL;
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        }
+    #endif
 #endif
 
     return TRUE;
 }
 //--------------------------------------------------------------------------
 //DONE: bFindDirs (search subdirs)
-//NOTE: need empty pvecsDirPathes param
+//NOTE: need empty pvsDirPathes param
 /*static*/
 BOOL
 CxDir::bFindDirs(
     const tString        &csDirPath,
     const tString        &cMask,
     const BOOL            cbIsRecurse,
-    std::vector<tString> *pvecsDirPathes
+    std::vector<tString> *pvsDirPathes
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
     /*DEBUG*/// cbIsRecurse - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pvecsDirPathes,     FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pvsDirPathes,     FALSE);
 
     BOOL bRes = FALSE;
 
-    ////--(*pvecsDirPathes).clear();
+    ////--(*pvsDirPathes).clear();
 
 #if defined(xOS_WIN)
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
@@ -682,12 +709,12 @@ CxDir::bFindDirs(
 
             tString sDirPath = csDirPath + CxConst::xWIN_SLASH + tString(fdData.cFileName);
 
-            (*pvecsDirPathes).push_back(sDirPath);
+            (*pvsDirPathes).push_back(sDirPath);
 
             //is search in subdirs ?
             xCHECK_DO(FALSE == cbIsRecurse, continue);
 
-            bRes = bFindDirs(sDirPath, cMask, cbIsRecurse, pvecsDirPathes);    //recursion
+            bRes = bFindDirs(sDirPath, cMask, cbIsRecurse, pvsDirPathes);    //recursion
             /*DEBUG*/// n/a
         }
         //files
@@ -718,12 +745,12 @@ CxDir::bFindDirs(
 
             tString sDirPath = csDirPath + CxConst::xSLASH + tString(pdrEntry->d_name);
 
-            (*pvecsDirPathes).push_back(sDirPath);
+            (*pvsDirPathes).push_back(sDirPath);
 
             //is search in subdirs ?
             xCHECK_DO(FALSE == cbIsRecurse, continue);
 
-            bRes = bFindDirs(sDirPath, cMask, cbIsRecurse, pvecsDirPathes); //recursion
+            bRes = bFindDirs(sDirPath, cMask, cbIsRecurse, pvsDirPathes); //recursion
             /*DEBUG*/// n/a
         }
         //TODO: files
@@ -759,200 +786,3 @@ CxDir::~CxDir() {
 
 }
 //---------------------------------------------------------------------------
-
-
-
-
-/*
-  bool
-   FileUtilities::CopyDirectory(String sFrom, String sTo)
-   {
-      if (!FileUtilities::Exists(sTo))
-      {
-         if( !CreateDirectory(sTo))
-         {
-            String sMessage;
-            sMessage.Format("Source: FileUtilities::CopyDirectory, Code: HM4234, Description: CreateDirectory %s failed. See previous error.", sTo);
-            Logger::Instance()->LogError(sMessage);
-
-            return false;
-         }
-      }
-
-      if (sFrom.Right(1) != "\\")
-         sFrom += "\\";
-      if (sTo.Right(1) != "\\")
-         sTo += "\\";
-
-      String sWildCard = sFrom + "*.*";
-
-      // Locate first match
-      WIN32_FIND_DATA ffData;
-      HANDLE hFileFound = FindFirstFile(sWildCard, &ffData);
-
-      if (hFileFound == INVALID_HANDLE_VALUE)
-      {
-         String sMessage;
-         sMessage.Format("Source: FileUtilities::CopyDirectory, Code: HM4233, Description: Find first file with wildcard %s failed. Error: %d.", sWildCard, GetLastError());
-         Logger::Instance()->LogError(sMessage);
-
-         return false;
-      }
-
-      while (hFileFound && FindNextFile(hFileFound, &ffData))
-      {
-         String sOldFullPath = sFrom + ffData.cFileName;
-         String sNewFullPath = sTo + ffData.cFileName;
-
-         if (ffData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY )
-         {
-            if( (_tcscmp(ffData.cFileName, xT(".")) != 0) &&
-               (_tcscmp(ffData.cFileName, xT("..")) != 0) )
-            {
-               if( !CopyDirectory(sOldFullPath, sNewFullPath) )
-                  return false;
-            }
-
-         }
-         else
-         {
-            if (FileUtilities::Exists(sNewFullPath))
-            {
-               // File already exists
-               continue;
-            }
-
-            if (CopyFile(sOldFullPath, sNewFullPath, TRUE))
-            {
-               // We have copied the file successfully
-               continue;
-            }
-
-            // We failed to copy the file. Check if the file no
-            // longer exists
-            if (!FileUtilities::Exists(sOldFullPath))
-               continue;
-
-            // The file exists , but we were not able to copy it.
-            String sMessage;
-            sMessage.Format("Source: FileUtilities::CopyDirectory, Code: HM4232, Description: Copy of file from %s to %s failed. Error: %d", sOldFullPath, sNewFullPath, GetLastError());
-            Logger::Instance()->LogError(sMessage);
-
-            return false;
-         }
-      }
-
-      FindClose(hFileFound);
-
-      return true;
-   }
-
-   bool
-   FileUtilities::DeleteDirectory(const String &sDirName)
-   {
-      char szSource[MAX_PATH + 2] = "";
-      _tcsncpy_s(szSource, MAX_PATH + 2, sDirName, MAX_PATH);
-
-      SHFILEOPSTRUCT fs;
-      ::memset(&fs, 0, sizeof(SHFILEOPSTRUCT));
-
-      fs.pFrom = szSource;
-      fs.wFunc = FO_DELETE;
-      fs.fFlags |= (FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_SILENT |FOF_NOERRORUI);
-
-      if (::SHFileOperation(&fs) != 0)
-         return false;
-
-      return true;
-   }
-
-   bool
-   FileUtilities::DeleteFilesInDirectory(const String &sDirName)
-   {
-      String sDir = sDirName;
-      if (sDir.Right(1) != "\\")
-         sDir += "\\";
-
-      WIN32_FIND_DATA ffData;
-      HANDLE hFileFound = FindFirstFile(sDir + "*.*", &ffData);
-
-      if (hFileFound == INVALID_HANDLE_VALUE)
-         return TRUE;
-
-      while (hFileFound && FindNextFile(hFileFound, &ffData))
-      {
-         if (!(ffData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-         {
-            String sFileName = sDir + ffData.cFileName;
-            FileUtilities::DeleteFile(sFileName);
-         }
-      }
-
-      FindClose(hFileFound);
-
-      return true;
-   }
-
-   bool
-   FileUtilities::DeleteDirectoriesInDirectory(const String &sDirName, const std::set<String> vecExcludes)
-   {
-      String sDir = sDirName;
-      if (sDir.Right(1) != "\\")
-         sDir += "\\";
-
-      WIN32_FIND_DATA ffData;
-      HANDLE hFileFound = FindFirstFile(sDir + "*.*", &ffData);
-
-      if (hFileFound == INVALID_HANDLE_VALUE)
-         return TRUE;
-
-      while (hFileFound && FindNextFile(hFileFound, &ffData))
-      {
-         if (ffData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-         {
-            if( (_tcscmp(ffData.cFileName, xT(".")) != 0) &&
-               (_tcscmp(ffData.cFileName, xT("..")) != 0) )
-            {
-               if (vecExcludes.find(ffData.cFileName) == vecExcludes.end())
-               {
-                  String sFileName = sDir + ffData.cFileName;
-                  FileUtilities::DeleteDirectory(sFileName);
-               }
-            }
-         }
-      }
-
-      FindClose(hFileFound);
-
-      return true;
-   }
-
-   bool
-   FileUtilities::_CreateDirectoryRecursive(const String &sDirName)
-   {
-      if (FileUtilities::Exists(sDirName))
-         return true;
-
-      int iLength = sDirName.GetLength();
-      for (int i = 3; i < iLength; i++)
-      {
-         char c = sDirName.GetAt(i);
-
-         if (c == '\\')
-         {
-            String sDirectoryName = sDirName.Mid(0, i);
-
-            if (FileUtilities::Exists(sDirectoryName))
-               continue;
-
-            if (!CreateDirectory(sDirectoryName))
-               return false;
-         }
-      }
-
-      if (!FileUtilities::Exists(sDirName))
-         return CreateDirectory(sDirName);
-
-      return true;
-   }
-*/

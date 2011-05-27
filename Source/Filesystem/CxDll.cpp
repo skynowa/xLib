@@ -49,7 +49,10 @@ CxDll::bIsLoaded() {
 //---------------------------------------------------------------------------
 //DONE: bLoad (loading)
 BOOL
-CxDll::bLoad(const tString &csDllPath) {
+CxDll::bLoad(
+    const tString &csDllPath
+)
+{
     /*DEBUG*/// n/a
     /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), FALSE);
 
@@ -69,7 +72,10 @@ CxDll::bLoad(const tString &csDllPath) {
 //---------------------------------------------------------------------------
 //DONE: fpGetProcAddress (get address of an exported function or variable )
 VOID * /*FARPROC*/
-CxDll::fpGetProcAddress(const tString &csProcName) {
+CxDll::fpGetProcAddress(
+    const tString &csProcName
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);
 
     VOID *fpRes = NULL;
@@ -106,8 +112,8 @@ CxDll::bFree() {
     INT iRes = dlclose(_m_hDLL);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #endif
-    
-    _m_hDLL = NULL;    
+
+    _m_hDLL = NULL;
 
     return TRUE;
 }
