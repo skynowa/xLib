@@ -332,7 +332,7 @@ CxEnvironment::bGetCommandLineArgs(
     ////extern char    ** __argv;   //pointer to table of cmd line args
     extern wchar_t ** __wargv;  //pointer to table of wide cmd line args
 
-    #if defined(UNICODE) || defined(_UNICODE)
+    #if defined(xUNICODE)
         TCHAR **targv = __wargv;
     #else
         TCHAR **targv = __argv;

@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bIsExists (is exists)
+//DONE: bIsExists (is exists)
 /*static*/
 BOOL
 CxFileAttribute::bIsExists(
@@ -30,10 +30,12 @@ CxFileAttribute::bIsExists(
     /*DEBUG*/// cfaValue
 
 #if xTEMP_DISABLED
-    xCHECK_RET((atGet(csFilePath) & BS_TYPEMASK) == cfaValue, TRUE);
+    #if defined(xOS_WIN)
+        xCHECK_RET((atGet(csFilePath) & BS_TYPEMASK) == cfaValue, TRUE);
+    #endif
 #endif
 
-    xCHECK_RET(atGet(csFilePath) & cfaValue, TRUE);
+    xCHECK_RET(cfaValue == (atGet(csFilePath) & cfaValue), TRUE);
 
     return FALSE;
 }
@@ -45,7 +47,7 @@ CxFileAttribute::atGet(
     const tString &csFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), faInvalid);
+    /*DEBUG*/// csFilePath - n/a
 
     EAttribute faRes = faInvalid;
 
@@ -56,9 +58,12 @@ CxFileAttribute::atGet(
     struct stat stInfo = {0};
 
     INT iRes = stat(csFilePath.c_str(), &stInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, faInvalid);
-
-    faRes = static_cast<EAttribute>( stInfo.st_mode & S_IFMT );
+    /*DEBUG*/// n/a
+    if (- 1 == iRes) {
+        faRes = faInvalid;
+    } else {
+        faRes = static_cast<EAttribute>( stInfo.st_mode & S_IFMT);
+    }
 #endif
 
     return faRes;
@@ -155,7 +160,7 @@ CxFileAttribute::bClear(
 #if defined(xOS_WIN)
     EAttribute cfaValue = faNormal;
 #elif defined(xOS_LINUX)
-    EAttribute cfaValue = static_cast<EAttribute>( 0 );
+    EAttribute cfaValue = faEmpty;
 #endif
 
     return bSet(csFilePath, cfaValue);

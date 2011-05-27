@@ -22,18 +22,18 @@ class CxDir : public CxNonCopyable {
         static BOOL    bIsDir      (const tString &csDirPath);
         static tString sGetCurrent ();
         static BOOL    bSetCurrent (const tString &csDirPath);
-        static tString sGetTempPath();
+        static tString sGetTemp    ();
         static BOOL    bCreate     (const tString &csDirPath);
         static BOOL    bCreateForce(const tString &csDirPath);
-        static BOOL    bCopy       (const tString &csFromDirPath, const tString &csToDirPath, const BOOL cbFailIfExists);
-        static BOOL    bMove       (const tString &csInDirPath,   const tString &csOutDirPath);
+        static BOOL    bCopy       (const tString &csDirPathFrom, const tString &csDirPathTo, const BOOL cbFailIfExists);
+        static BOOL    bMove       (const tString &csDirPathFrom, const tString &csDirPathTo, const BOOL cbFailIfExists);
 
         static BOOL    bDelete     (const tString &csDirPath);
         static BOOL    bClearForce (const tString &csDirPath);
         static BOOL    bDeleteForce(const tString &csDirPath);
 
-        static BOOL    bFindFiles  (const tString &csDirPath, const tString &cMask, const BOOL cbIsRecurse, std::vector<tString> *pvecsFilePathes);
-        static BOOL    bFindDirs   (const tString &csDirPath, const tString &cMask, const BOOL cbIsRecurse, std::vector<tString> *pvecsDirPathes);
+        static BOOL    bFindFiles  (const tString &csDirPath, const tString &cMask, const BOOL cbIsRecurse, std::vector<tString> *pvsFilePathes);
+        static BOOL    bFindDirs   (const tString &csDirPath, const tString &cMask, const BOOL cbIsRecurse, std::vector<tString> *pvsDirPathes);
 
     private:
                        CxDir       ();

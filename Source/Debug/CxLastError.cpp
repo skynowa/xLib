@@ -118,13 +118,13 @@ CxLastError::sFormat(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxLastError (constructor)
+//DONE: CxLastError
 CxLastError::CxLastError() {
     /*DEBUG*/// n/a
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxLastError (destructor)
+//DONE: ~CxLastError
 /*virtual*/
 CxLastError::~CxLastError() {
     /*DEBUG*/// n/a

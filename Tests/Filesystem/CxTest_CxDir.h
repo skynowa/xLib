@@ -131,7 +131,6 @@ BOOL CxTest_CxDir::bUnit() {
     //--------------------------------------------------
     //bIsRoot
     {
-
         #if defined(xOS_WIN)
             const tString sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("FALSE")},
@@ -161,7 +160,7 @@ BOOL CxTest_CxDir::bUnit() {
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             BOOL bRes1 = CxDir::bIsRoot(sTestData[i][0]);
             BOOL bRes2 = CxString::bStrToBool(sTestData[i][1]);
-            xASSERT(bRes1 == bRes2);
+            xASSERT_MSG(bRes1 == bRes2, sTestData[i][0] + xT("==") + sTestData[i][1]);
         }
     }
 
@@ -188,7 +187,7 @@ BOOL CxTest_CxDir::bUnit() {
 	//-------------------------------------
 	//sGetTempPath
 	{
-		m_sRes = CxDir::sGetTempPath();
+		m_sRes = CxDir::sGetTemp();
         #if defined(xOS_WIN)
         xASSERT(xT("C:\\Temp\\") == m_sRes);
         #elif defined(xOS_LINUX)
@@ -204,17 +203,70 @@ BOOL CxTest_CxDir::bUnit() {
 	}
 
 	//-------------------------------------
-	//
-	//bMove
-	{
+    //bCopy
+    {
+        //-------------------------------------
+        //prepare for csTempScanDirPath (create dirs)
+        const tString csDirSource = sGetWorkDirPath() + CxConst::xSLASH + xT("Source");
+        const tString csDirDest   = sGetWorkDirPath() + CxConst::xSLASH + xT("Dest");
 
-	}
+        const tString sDirPathes[] =
+        {
+            csDirSource,
+            csDirSource + CxConst::xSLASH + xT("AA"),
+            csDirSource + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("AAA")
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
+            m_bRes = CxDir::bCreateForce(sDirPathes[i]);
+            xASSERT(FALSE != m_bRes);
+        }
+
+        //-------------------------------------
+        //bCopy
+        m_bRes = CxDir::bCopy(csDirSource, csDirDest, TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxDir::bDelete(csDirDest);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxDir::bCopy(csDirSource, csDirDest, FALSE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxDir::bDeleteForce(csDirDest);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxDir::bDeleteForce(csDirSource);
+        xASSERT(FALSE != m_bRes);
+    }
 
 	//-------------------------------------
-	//
-	//bCopy
+	//bMove
 	{
+        //-------------------------------------
+        //prepare for csTempScanDirPath (create dirs)
+        const tString csDirSource = sGetWorkDirPath() + CxConst::xSLASH + xT("Source");
+        const tString csDirDest   = sGetWorkDirPath() + CxConst::xSLASH + xT("Dest");
 
+        const tString sDirPathes[] =
+        {
+            csDirSource,
+            csDirSource + CxConst::xSLASH + xT("dd"),
+            csDirSource + CxConst::xSLASH + xT("XX") + CxConst::xSLASH + xT("111")
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
+            m_bRes = CxDir::bCreateForce(sDirPathes[i]);
+            xASSERT(FALSE != m_bRes);
+        }
+
+        //-------------------------------------
+        //bMove
+        m_bRes = CxDir::bMove(csDirSource, csDirDest, TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxDir::bDelete(csDirDest);
+        xASSERT(FALSE != m_bRes);
 	}
 
     //-------------------------------------
@@ -222,7 +274,7 @@ BOOL CxTest_CxDir::bUnit() {
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
-        const tString g_sDirPathes[] =
+        const tString sDirPathes[] =
         {
             csTempScanDirPath + CxConst::xSLASH + xT("A"),
             csTempScanDirPath + CxConst::xSLASH + xT("B"),
@@ -230,8 +282,8 @@ BOOL CxTest_CxDir::bUnit() {
             csTempScanDirPath + CxConst::xSLASH + xT("A") + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("AAA")
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(g_sDirPathes); ++ i) {
-            m_bRes = CxDir::bCreateForce(g_sDirPathes[i]);
+        for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
+            m_bRes = CxDir::bCreateForce(sDirPathes[i]);
             xASSERT(FALSE != m_bRes);
         }
 
@@ -254,7 +306,7 @@ BOOL CxTest_CxDir::bUnit() {
             xASSERT(FALSE != m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
-            xASSERT(xARRAY_SIZE(g_sDirPathes) == m_vecsRes.size());
+            xASSERT(xARRAY_SIZE(sDirPathes) == m_vecsRes.size());
         }
     }
 

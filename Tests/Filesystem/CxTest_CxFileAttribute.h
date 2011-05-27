@@ -61,6 +61,12 @@ CxTest_CxFileAttribute::bUnit() {
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
         xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bClose();
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxStdioFile::bIsExists(csFilePath);
+        xASSERT(FALSE != m_bRes);
     }
 
     //--------------------------------------------------
@@ -91,23 +97,57 @@ CxTest_CxFileAttribute::bUnit() {
     //--------------------------------------------------
     //bRemove
     {
-        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faHidden;
+        #if defined(xOS_WIN)
+            CxFileAttribute::EAttribute faAttr  = CxFileAttribute::faHidden;
+            CxFileAttribute::EAttribute faValue = CxFileAttribute::faReadOnly;
 
-        m_bRes = CxFileAttribute::bClear(csFilePath);
-        xASSERT(FALSE != m_bRes);
+            m_bRes = CxFileAttribute::bClear(csFilePath);
+            xASSERT(FALSE != m_bRes);
 
-        m_bRes = CxFileAttribute::bAdd(csFilePath, faAttr);
-        xASSERT(FALSE != m_bRes);
+            m_bRes = CxFileAttribute::bAdd(csFilePath, faAttr);
+            xASSERT(FALSE != m_bRes);
 
-        m_bRes = CxFileAttribute::bAdd(csFilePath, cfaValue);
-        xASSERT(FALSE != m_bRes);
+            m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
+            xASSERT(FALSE != m_bRes);
 
-        m_bRes = CxFileAttribute::bRemove(csFilePath, cfaValue);
-        xASSERT(FALSE != m_bRes);
+            m_bRes = CxFileAttribute::bAdd(csFilePath, faValue);
+            xASSERT(FALSE != m_bRes);
 
-        #if xTODO
+            m_bRes = CxFileAttribute::bIsExists(csFilePath, faValue);
+            xASSERT(FALSE != m_bRes);
+
+            //remove
+            m_bRes = CxFileAttribute::bRemove(csFilePath, faValue);
+            xASSERT(FALSE != m_bRes);
+
+            m_bRes = CxFileAttribute::bIsExists(csFilePath, faValue);
+            xASSERT(FALSE == m_bRes);
+
+            m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
+            xASSERT(FALSE != m_bRes);
+
             CxFileAttribute::EAttribute faRes = CxFileAttribute::atGet(csFilePath);
             xASSERT(faAttr == faRes);
+        #elif defined(xOS_LINUX)
+            //file
+            {
+                m_bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
+                xASSERT(FALSE != m_bRes);
+
+                m_bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
+                xASSERT(FALSE != m_bRes);
+            }
+
+            //dir
+            {
+                const tString csDirPath = sGetWorkDirPath();
+
+                m_bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+                xASSERT(FALSE != m_bRes);
+
+                m_bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+                xASSERT(FALSE != m_bRes);
+            }
         #endif
     }
 
@@ -129,7 +169,7 @@ CxTest_CxFileAttribute::bUnit() {
     //--------------------------------------------------
     //bIsExists
     {
-        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faReadOnly;
+        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faSymbolicLink;
 
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xASSERT(FALSE != m_bRes);
@@ -152,10 +192,9 @@ CxTest_CxFileAttribute::bUnit() {
         faRes = CxFileAttribute::atGet(csFilePath);
         //xTRACEV("faRes: %lld", faRes);
         #if defined(xOS_WIN)
-            xASSERT(CxFileAttribute::faNormal == faRes);
+            xASSERT(CxFileAttribute::faNormal  == faRes);
         #elif defined(xOS_LINUX)
-            //TODO: bClear
-            //xASSERT(0 == faRes);
+            ////xASSERT(CxFileAttribute::faInvalid == faRes);
         #endif
     }
 

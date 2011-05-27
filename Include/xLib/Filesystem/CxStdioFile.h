@@ -29,7 +29,9 @@
     #include <errno.h>
 #endif
 //---------------------------------------------------------------------------
-class CxStdioFile : public CxNonCopyable {
+class CxStdioFile :
+    public CxNonCopyable
+{
     public:
         enum EErrorType {
             etError = EOF
@@ -200,8 +202,8 @@ class CxStdioFile : public CxNonCopyable {
         static BOOL      bTextRead    (const tString &csFilePath, tString *psContent);
         static BOOL      bTextWrite   (const tString &csFilePath, const tString &csContent);
 
-        static BOOL      bTextRead    (const tString &csFilePath, std::vector<tString> *pvecsContent);
-        static BOOL      bTextWrite   (const tString &csFilePath, const std::vector<tString> &cvecsContent);
+        static BOOL      bTextRead    (const tString &csFilePath, std::vector<tString> *pvsContent);
+        static BOOL      bTextWrite   (const tString &csFilePath, const std::vector<tString> &cvsContent);
 
         static BOOL      bTextRead    (const tString &csFilePath, const tString &csSeparator, std::map<tString, tString> *pmsContent);
         static BOOL      bTextWrite   (const tString &csFilePath, const tString &csSeparator, const std::map<tString, tString> &cmsContent);

@@ -87,6 +87,7 @@ class CxMacros : CxNonCopyable {
         //temprary enable/disable code
         #define xTEMP_ENABLED         1
         #define xTEMP_DISABLED        0
+        #define xDEPRECIATE           0
         #define xTODO                 0
         #define xCAN_REMOVE           0
 
