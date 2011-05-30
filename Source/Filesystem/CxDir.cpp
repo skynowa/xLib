@@ -346,7 +346,7 @@ CxDir::bCopy(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
 #if defined(xOS_WIN)
-    bRes = ::CopyFile(csFromDirPath.c_str(), csToDirPath.c_str(), cbFailIfExists);
+    bRes = ::CopyFile(csDirPathFrom.c_str(), csDirPathTo.c_str(), cbFailIfExists);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     std::vector<tString> vsFilePathes;

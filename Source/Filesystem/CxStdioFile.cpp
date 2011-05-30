@@ -19,7 +19,9 @@
 #include <xLib/Crypt/CxCrc32.h>
 
 #if defined(xOS_WIN)
+    #include <xLib/Filesystem/Win/CxDrive.h>
     #include <xLib/Filesystem/Win/CxFile.h>
+    #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 #endif
 
 
