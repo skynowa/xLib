@@ -169,12 +169,13 @@ CxTest_CxFileAttribute::bUnit() {
     //--------------------------------------------------
     //bIsExists
     {
-        CxFileAttribute::EAttribute faAttr = CxFileAttribute::faSymbolicLink;
+        #if defined(xOS_WIN)
+            CxFileAttribute::EAttribute faAttr = CxFileAttribute::faNormal;
+        #elif defined(xOS_LINUX)
+            CxFileAttribute::EAttribute faAttr = CxFileAttribute::faRegularFile;
+        #endif
 
         m_bRes = CxFileAttribute::bClear(csFilePath);
-        xASSERT(FALSE != m_bRes);
-
-        m_bRes = CxFileAttribute::bAdd(csFilePath, faAttr);
         xASSERT(FALSE != m_bRes);
 
         m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
@@ -194,7 +195,7 @@ CxTest_CxFileAttribute::bUnit() {
         #if defined(xOS_WIN)
             xASSERT(CxFileAttribute::faNormal  == faRes);
         #elif defined(xOS_LINUX)
-            ////xASSERT(CxFileAttribute::faInvalid == faRes);
+            xASSERT(CxFileAttribute::faRegularFile == faRes);
         #endif
     }
 

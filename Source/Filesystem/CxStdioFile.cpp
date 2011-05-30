@@ -654,27 +654,44 @@ CxStdioFile::bIsFile(
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    DWORD dwAttr = ::GetFileAttributes(csFilePath.c_str());
+    #if xDEPRECIATE
+        DWORD dwAttr = ::GetFileAttributes(csFilePath.c_str());
 
-    bRes = (dwAttr != INVALID_FILE_ATTRIBUTES) &&
-           !(dwAttr & (FILE_ATTRIBUTE_DIRECTORY | FILE_ATTRIBUTE_DEVICE | FILE_ATTRIBUTE_OFFLINE | FILE_ATTRIBUTE_REPARSE_POINT));
-    xCHECK_RET(FALSE == bRes, FALSE);
-#elif defined(xOS_LINUX)
-    struct stat stInfo = {0};
-
-    INT iRes = stat/*lstat*/(csFilePath.c_str(), &stInfo);
-    xCHECK_RET(- 1 == iRes, FALSE);
-
-    bRes = static_cast<BOOL>( S_ISREG(stInfo.st_mode) );
-    xCHECK_RET(FALSE == bRes, FALSE);
-
-    #if xTODO
-        CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
-        /*DEBUG*/// n/a
-        xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
-
-        bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
+        bRes = (dwAttr != INVALID_FILE_ATTRIBUTES) &&
+               !(dwAttr & (FILE_ATTRIBUTE_DIRECTORY | FILE_ATTRIBUTE_DEVICE | FILE_ATTRIBUTE_OFFLINE | FILE_ATTRIBUTE_REPARSE_POINT));
+        xCHECK_RET(FALSE == bRes, FALSE);
     #endif
+
+    CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
+    xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
+
+    bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faDirectory);
+    xCHECK_RET(TRUE == bRes, FALSE);
+
+    bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faDevice);
+    xCHECK_RET(TRUE == bRes, FALSE);
+
+    bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faReparsePoint);
+    xCHECK_RET(TRUE == bRes, FALSE);
+
+    bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faOffline);
+    xCHECK_RET(TRUE == bRes, FALSE);
+#elif defined(xOS_LINUX)
+    #if xDEPRECIATE
+        struct stat stInfo = {0};
+
+        INT iRes = stat/*lstat*/(csFilePath.c_str(), &stInfo);
+        xCHECK_RET(- 1 == iRes, FALSE);
+
+        bRes = static_cast<BOOL>( S_ISREG(stInfo.st_mode) );
+        xCHECK_RET(FALSE == bRes, FALSE);
+    #endif
+
+    CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
+    xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
+
+    bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
+    xCHECK_RET(FALSE == bRes, FALSE);
 #endif
 
     return TRUE;
@@ -736,7 +753,7 @@ CxStdioFile::bChmod(
     iRes = _tchmod(csFilePath.c_str(), cpmMode);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
-    iRes = chmod(csFilePath.c_str(), static_cast<mode_t>(cpmMode));
+    iRes = _tchmod(csFilePath.c_str(), static_cast<mode_t>(cpmMode));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
 
@@ -842,10 +859,8 @@ CxStdioFile::bWipe(
 
         //--------------------------------------------------
         //set normal file attributes
-        #if defined(xOS_WIN)
         bRes = CxFileAttribute::bSet(csFilePath, CxFileAttribute::faNormal);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-        #endif
 
         //--------------------------------------------------
         //open
@@ -1419,7 +1434,6 @@ CxStdioFile::bTextWrite(
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
-
 #if xTODO
     BOOL    bRes = FALSE;
     tString sRes;
@@ -1549,13 +1563,15 @@ CxStdioFile::bBackup(
     xCHECK_RET(TRUE == bRes, TRUE);
 
     //-------------------------------------
-    //TODO: check for enough space
-    #if xTODO
-        ULONGLONG ullTotalFreeBytes = 0;
-        bRes = CxDrive::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
+    //check for enough space
+#if defined(xOS_WIN)
+    ULONGLONG ullTotalFreeBytes = 0;
+    bRes = CxDrive::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
 
-        xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return TRUE);
-    #endif
+    xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return TRUE);
+#elif defined(xOS_LINUX)
+    //TODO: check for enough space
+#endif
 
     //-------------------------------------
     //copy
