@@ -67,7 +67,7 @@
 #if defined(xOS_WIN)
     #include "Filesystem/Win/CxTest_CxDrive.h"
     #include "Filesystem/Win/CxTest_CxFile.h"
-    #include "Filesystem/Win/CxTest_CxIni.h"
+    ////#include "Filesystem/Win/CxTest_CxIni.h"
 #elif defined(xOS_LINUX)
 
 #endif
@@ -207,7 +207,7 @@ _tmain(INT argc, TCHAR *argv[]) {
     #if defined(xOS_WIN)
     vptTests.push_back( new CxTest_CxDrive );
     vptTests.push_back( new CxTest_CxFile );
-    vptTests.push_back( new CxTest_CxIni );
+    ////vptTests.push_back( new CxTest_CxIni );
     #elif defined(xOS_LINUX)
 
     #endif

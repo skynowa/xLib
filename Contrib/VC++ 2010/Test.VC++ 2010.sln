@@ -2,46 +2,17 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test.VC++ 2010", "Test.VC++ 2010.vcxproj", "{BD92A805-400C-4F61-B0EE-9A3605B34831}"
-	ProjectSection(ProjectDependencies) = postProject
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505} = {3A316730-27E5-405F-AC2C-A2A9D2AE2505}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xLib.StaticLib.VC++ 2010", "..\..\Library\VC++ 2010\xLib.StaticLib.VC++ 2010.vcxproj", "{3A316730-27E5-405F-AC2C-A2A9D2AE2505}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
-		xLibA_Debug|Win32 = xLibA_Debug|Win32
-		xLibA_Release|Win32 = xLibA_Release|Win32
-		xLibW_Debug|Win32 = xLibW_Debug|Win32
-		xLibW_Release|Win32 = xLibW_Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BD92A805-400C-4F61-B0EE-9A3605B34831}.Debug|Win32.ActiveCfg = Debug|Win32
 		{BD92A805-400C-4F61-B0EE-9A3605B34831}.Debug|Win32.Build.0 = Debug|Win32
 		{BD92A805-400C-4F61-B0EE-9A3605B34831}.Release|Win32.ActiveCfg = Release|Win32
 		{BD92A805-400C-4F61-B0EE-9A3605B34831}.Release|Win32.Build.0 = Release|Win32
-		{BD92A805-400C-4F61-B0EE-9A3605B34831}.xLibA_Debug|Win32.ActiveCfg = Debug|Win32
-		{BD92A805-400C-4F61-B0EE-9A3605B34831}.xLibA_Debug|Win32.Build.0 = Debug|Win32
-		{BD92A805-400C-4F61-B0EE-9A3605B34831}.xLibA_Release|Win32.ActiveCfg = Release|Win32
-		{BD92A805-400C-4F61-B0EE-9A3605B34831}.xLibA_Release|Win32.Build.0 = Release|Win32
-		{BD92A805-400C-4F61-B0EE-9A3605B34831}.xLibW_Debug|Win32.ActiveCfg = Debug|Win32
-		{BD92A805-400C-4F61-B0EE-9A3605B34831}.xLibW_Debug|Win32.Build.0 = Debug|Win32
-		{BD92A805-400C-4F61-B0EE-9A3605B34831}.xLibW_Release|Win32.ActiveCfg = Release|Win32
-		{BD92A805-400C-4F61-B0EE-9A3605B34831}.xLibW_Release|Win32.Build.0 = Release|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.Debug|Win32.ActiveCfg = Debug|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.Debug|Win32.Build.0 = Debug|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.Release|Win32.ActiveCfg = Release|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.Release|Win32.Build.0 = Release|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibA_Debug|Win32.ActiveCfg = xLibA_Debug|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibA_Debug|Win32.Build.0 = xLibA_Debug|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibA_Release|Win32.ActiveCfg = xLibA_Release|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibA_Release|Win32.Build.0 = xLibA_Release|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibW_Debug|Win32.ActiveCfg = xLibW_Debug|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibW_Debug|Win32.Build.0 = xLibW_Debug|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibW_Release|Win32.ActiveCfg = xLibW_Release|Win32
-		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibW_Release|Win32.Build.0 = xLibW_Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

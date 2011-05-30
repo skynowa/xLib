@@ -76,7 +76,7 @@ CxTest_CxPath::bUnit() {
     {
     	sRes = CxPath::sGetExe();
         #if defined(xOS_WIN)
-        xASSERT(sRes == xT("d:\\xLib\\Contrib\\VC++ 2008\\Debug\\Test.VC++ 2008.exe"));
+        xASSERT(sRes == xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug\\Test.VC++ 2010.exe"));
         #elif defined(xOS_LINUX)
         //TODO: sGetExe
         #endif
@@ -87,7 +87,7 @@ CxTest_CxPath::bUnit() {
     {
     	sRes = CxPath::sGetExeDir();
         #if defined(xOS_WIN)
-        xASSERT(sRes == xT("d:\\xLib\\Contrib\\VC++ 2008\\Debug"));
+        xASSERT(sRes == xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug"));
         #elif defined(xOS_LINUX)
         //TODO: sGetExeDir
         #endif

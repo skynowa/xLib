@@ -12,7 +12,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BD92A805-400C-4F61-B0EE-9A3605B34831}</ProjectGuid>
-    <RootNamespace>Test.VC++ 2010</RootNamespace>
+    <RootNamespace>Test.VC++ 2008</RootNamespace>
+    <ProjectName>Test.VC++ 2010</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -23,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -38,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
@@ -51,6 +52,8 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</RunCodeAnalysis>
+    <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <BuildLog>
@@ -58,7 +61,7 @@
       </Path>
     </BuildLog>
     <Midl>
-      <TypeLibraryName>.\Debug/Test.VC++ 2010.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/Test.VC++ 2008.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -75,6 +78,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <EnablePREfast>false</EnablePREfast>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -102,7 +106,7 @@
       </Path>
     </BuildLog>
     <Midl>
-      <TypeLibraryName>.\Release/Test.VC++ 2010.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release/Test.VC++ 2008.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -119,6 +123,7 @@
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <EnablePREfast>true</EnablePREfast>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -140,7 +145,255 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Test.cpp" />
+    <ClCompile Include="..\..\Source\Crypt\CxBase64.cpp" />
+    <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp" />
+    <ClCompile Include="..\..\Source\Crypt\CxRandom.cpp" />
+    <ClCompile Include="..\..\Source\Crypt\OpenSSL\CxBlowfish.cpp" />
+    <ClCompile Include="..\..\Source\Db\CxConnectionString.cpp" />
+    <ClCompile Include="..\..\Source\Db\CxMySql.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxAutoProfiler.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxDebugger.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxLastError.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxProfiler.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxReport.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxTest.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxDir.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxDll.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxEnvironment.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxFileAttribute.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxIni.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxStdioFile.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\Win\CxDrive.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\Win\CxFile.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
+    <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
+    <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp" />
+    <ClCompile Include="..\..\Source\Log\CxConsoleLog.cpp" />
+    <ClCompile Include="..\..\Source\Log\CxDbLog.cpp" />
+    <ClCompile Include="..\..\Source\Log\CxFileLog.cpp" />
+    <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp" />
+    <ClCompile Include="..\..\Source\Log\Win\CxEventLog.cpp" />
+    <ClCompile Include="..\..\Source\Log\Win\CxWndLog.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxAsyncSocket.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxCgi.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxCookiePv0.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxCookiePv1.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxDnsClient.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxHttpClient.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxMimeBody.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxMimeHeader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxMimeMessage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxPop3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxSmtp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxSocket.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxSocketInit.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxTcpClientSocket.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxTcpServerSocket.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxUri.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxDecrypt.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxDigest.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxEncrypt.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxFunction.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxInfo.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxKey.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxLogin.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxMechanism.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxObject.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxPin.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxPkcs11.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxSession.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxSign.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxSlot.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxUtils.cpp" />
+    <ClCompile Include="..\..\Source\Pkcs11\CxVerify.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxAtomicLongInt.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxAutoCriticalSection.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxAutoMutex.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxCompletionPort.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxCriticalSection.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxEvent.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxMutex.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxProcess.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxSemaphore.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxSleeper.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxThread.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxTls.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxAppSettings.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxChar.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxConst.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxDateTime.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxException.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxLocale.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxString.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxSystemInfo.cpp" />
+    <ClCompile Include="..\..\Source\Common\Win\CxClipboard.cpp" />
+    <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp" />
+    <ClCompile Include="..\..\Source\Common\Win\CxComPort.cpp" />
+    <ClCompile Include="..\..\Source\Common\Win\CxConsole.cpp" />
+    <ClCompile Include="..\..\Source\Common\Win\CxShell.cpp" />
+    <ClCompile Include="..\..\Source\Compress\Linux\CxGz.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp" />
+    <ClCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp" />
+    <ClCompile Include="..\..\Source\Units\Win\bGetUsbInfo.cpp" />
+    <ClCompile Include="..\..\Tests\Test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxBase64.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h" />
+    <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
+    <ClInclude Include="..\..\Include\xLib\Db\CxConnectionString.h" />
+    <ClInclude Include="..\..\Include\xLib\Db\CxMySql.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxAutoProfiler.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxDebugger.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxLastError.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxProfiler.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxReport.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxTest.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\xDebug.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxDir.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxDll.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxEnvironment.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxFileAttribute.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxIni.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxPath.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxStdioFile.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxDrive.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxFile.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\Win\CxIni.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxInputBox.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxT.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\CxConsoleLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\CxDbLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\CxFileLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\CxTraceLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\xLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\Win\CxEventLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\Win\CxWndLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxAsyncSocket.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxCgi.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxCookiePv0.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxCookiePv1.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxDnsClient.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxHttpClient.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeBody.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeHeader.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeMessage.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxPop3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxQueryList.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <ClInclude Include="..\..\Include\xLib\Net\CxSocket.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxSocketInit.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpClientSocket.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpServerSocket.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxUri.h" />
+    <ClInclude Include="..\..\Include\xLib\Patterns\CxSingleton.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\All.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Common.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxDecrypt.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxDigest.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxEncrypt.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxFunction.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxInfo.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxKey.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxLogin.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxMechanism.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxObject.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxPin.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxPkcs11.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxSession.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxSign.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxSlot.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxUtils.h" />
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxVerify.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxAtomicLongInt.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxAutoCriticalSection.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxAutoMutex.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxCompletionPort.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxCriticalSection.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxEvent.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxMutex.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxProcess.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxSemaphore.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxSleeper.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxThread.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxThreadPool.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxTls.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxWaitableTimer.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxAppSettings.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxAutoMallocT.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxChar.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxConst.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxDateTime.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxException.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxFunctorT.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxLocale.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxMacros.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxNonAssignable.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxNonCopyable.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxString.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxSystemInfo.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xClosure.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xClosureImpl.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xCommon.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xConfig.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xDefines.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xLinking.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xTypes.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Win\CxClipboard.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Win\CxCom.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Win\CxComPort.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Win\CxConsole.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Win\CxHandle.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Win\CxShell.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Win\xCommon_Win.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Linux.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <ClInclude Include="..\..\Include\xLib\Units\sGetEan13BarCode.h" />
+    <ClInclude Include="..\..\Include\xLib\Units\Win\bDownloadURL.h" />
+    <ClInclude Include="..\..\Include\xLib\Units\Win\bGetUsbInfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Source\Sync\CxThreadPool.inl" />
+    <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">
+      <FileType>Document</FileType>
+    </CustomBuildStep>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
