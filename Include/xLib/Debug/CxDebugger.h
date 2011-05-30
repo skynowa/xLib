@@ -24,6 +24,7 @@ class CxDebugger : public CxNonCopyable {
         static BOOL  bIsPresent   ();
         static BOOL  bBreak       ();
 
+        static BOOL  bSetLogDirPath(const tString &csDirPath);
         static BOOL  bReportMake  (const CxReport &crpReport);
         static BOOL  bTrace       (LPCTSTR pcszFormat, ...);
         static BOOL  bTrace       (const tString &csMsg);

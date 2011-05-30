@@ -138,17 +138,17 @@ CxProcess::bExec(
 /*static*/
 BOOL
 CxProcess::bExit(
-        ULONG ulPid,
-        UINT uiExitCode
+    const ULONG culPid,
+    const UINT  cuiExitCode
 )
 {
     /*DEBUG*/// uiExitCode - n/a
 
 #if defined(xOS_WIN)
-    ::ExitProcess(uiExitCode);
+    ::ExitProcess(cuiExitCode);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    exit(static_cast<INT>( uiExitCode ));
+    exit(static_cast<INT>( cuiExitCode ));
     /*DEBUG*/// n/a
 #endif
 
@@ -159,7 +159,7 @@ CxProcess::bExit(
 /*static*/
 BOOL
 CxProcess::bTerminate(
-    ULONG ulPid
+    const ULONG culPid
 )
 {
     /*DEBUG*/// uiExitCode - n/a
@@ -167,13 +167,13 @@ CxProcess::bTerminate(
 #if defined(xOS_WIN)
     CxHandle hProcess;
 
-    hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, ulPid);
+    hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, culPid);
     /*DEBUG*/xASSERT_RET(NULL != hProcess, FALSE);
 
     BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = kill(static_cast<pid_t>( ulPid ), SIGKILL);
+    INT iRes = kill(static_cast<pid_t>( culPid ), SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 

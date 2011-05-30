@@ -18,79 +18,79 @@
 #include <xLib/Debug/CxDebugger.h>
 //---------------------------------------------------------------------------
 #if defined(xDEBUG_MODE_MSGBOX_PLAIN)
-    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
-    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
 
-    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtMsgboxPlain, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtMsgboxPlain, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xASSERT_NOT_EQUAL(expr1, expr2)                 { /*TODO: xASSERT_NOT_EQUAL*/ }
     #define xASSERT_LESS(expr1, expr2)                      { /*TODO: xASSERT_LESS*/ }
     #define xASSERT_GREATER(expr1, expr2)                   { /*TODO: xASSERT_GREATER*/ }
 
 #elif defined(xDEBUG_MODE_MSGBOX_RTF)
-    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
-    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
 
-    #define xASSERT_EQUAL(expr1, expr2)                     { if ((expr1) != (expr2)) { CxReport rpReport(CxReport::rtMsgboxRtf, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xASSERT_EQUAL(expr1, expr2)                     { if ((expr1) != (expr2)) { CxReport rpReport(CxReport::rtMsgboxRtf, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xASSERT_NOT_EQUAL(expr1, expr2)                 { /*TODO: xASSERT_NOT_EQUAL*/ }
     #define xASSERT_LESS(expr1, expr2)                      { /*TODO: xASSERT_LESS*/ }
     #define xASSERT_GREATER(expr1, expr2)                   { /*TODO: xASSERT_GREATER*/ }
 
 #elif defined(xDEBUG_MODE_STDOUT_PLAIN)
-    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
-    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutPlain,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
 
-    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtStdoutPlain, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtStdoutPlain, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xASSERT_NOT_EQUAL(expr1, expr2)                 { /*TODO: xASSERT_NOT_EQUAL*/ }
     #define xASSERT_LESS(expr1, expr2)                      { /*TODO: xASSERT_LESS*/ }
     #define xASSERT_GREATER(expr1, expr2)                   { /*TODO: xASSERT_GREATER*/ }
 
 #elif defined(xDEBUG_MODE_STDOUT_HTML)
-    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
-    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtStdoutHtml,   xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
 
-    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtStdoutHtml, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtStdoutHtml, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xASSERT_NOT_EQUAL(expr1, expr2)                 { /*TODO: xASSERT_NOT_EQUAL*/ }
     #define xASSERT_LESS(expr1, expr2)                      { /*TODO: xASSERT_LESS*/ }
     #define xASSERT_GREATER(expr1, expr2)                   { /*TODO: xASSERT_GREATER*/ }
 
 #elif defined(xDEBUG_MODE_LOGGING_PLAIN)
-    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
-    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
 
-    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtLoggingPlain, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtLoggingPlain, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xASSERT_NOT_EQUAL(expr1, expr2)                 { /*TODO: xASSERT_NOT_EQUAL*/ }
     #define xASSERT_LESS(expr1, expr2)                      { /*TODO: xASSERT_LESS*/ }
     #define xASSERT_GREATER(expr1, expr2)                   { /*TODO: xASSERT_GREATER*/ }
 
 #elif defined(xDEBUG_MODE_LOGGING_HTML)
-    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
-    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport);}                       }
-    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
-    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT(expr)                                   { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_RET(expr, return_expr)                  { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_DO(expr, do_instructions)               { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); do_instructions;}      }
+    #define xASSERT_MSG(expr, comment)                      { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport);}                       }
+    #define xASSERT_MSG_RET(expr, comment, return_expr)     { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); return (return_expr);} }
+    #define xASSERT_MSG_DO(expr, comment, do_instructions)  { if (!(expr)) {CxReport rpReport(CxReport::rtLoggingHtml,  xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, comment); CxDebugger::bReportMake(rpReport); do_instructions;}      }
 
-    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtLoggingHtml, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xT(__FILE__), __LINE__, xFUNCTION, xT(__DATE__), xT(__TIME__), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xASSERT_EQUAL(expr1, expr2)                     { if ( (expr1) != (expr2) ) { CxReport rpReport(CxReport::rtLoggingHtml, expr1, expr2, xT(#expr1), xT(#expr2), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xASSERT_NOT_EQUAL(expr1, expr2)                 { /*TODO: xASSERT_NOT_EQUAL*/ }
     #define xASSERT_LESS(expr1, expr2)                      { /*TODO: xASSERT_LESS*/ }
     #define xASSERT_GREATER(expr1, expr2)                   { /*TODO: xASSERT_GREATER*/ }
@@ -138,11 +138,11 @@
 #define xAUTO_PROFILER_FUNC(file_path, mode)                CxAutoProfiler _apfFunc(file_path, mode, xFUNCTION)
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
-    #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                        }
+    #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                           }
     #define xTRACE(msg)                                     { CxDebugger::bTrace(msg);                                        }
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
     #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(tString(xFUNCTION) + xT(": ") + tString(s)); }
-    #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %i (file: %s, function: %s, line: %i)"), __COUNTER__, __FILE__, xFUNCTION, __LINE__); }
+    #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %i (file: %s, function: %s, line: %i)"), xCOUNTER, xFILE, xFUNCTION, xLINE); }
 #else
     #define xTRACEV(format, ...)                            { /* n/a */ }
     #define xTRACE(msg)                                     { /* n/a */ }
@@ -201,7 +201,7 @@
 ////         std::ostringstream s;
 ////         s << "Could not throw " << typeid(T2).name()
 ////             << " to a " << typeid(T1).name()
-////             << " at " << __FILE__ << "#" << __LINE__
+////             << " at " << xFILE << "#" << xLINE
 ////             << "!" << std::endl;
 ////         throw std::logic_error(s.str());
 ////     }
