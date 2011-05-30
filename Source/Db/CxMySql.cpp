@@ -58,15 +58,15 @@ CxMySQLConnection::bIsValid() const {
 //DONE: bOptions (set extra connect options and affect behavior)
 BOOL
 CxMySQLConnection::bOptions(
-        mysql_option  moOption,
-        const void   *cpvArg
+    mysql_option  cmoOption,
+    const void   *cpvArg
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/// moOption - n/a
     /*DEBUG*/// cpvArg   - n/a
 
-    int iRes = mysql_options(_m_pmsConnection, moOption, cpvArg);
+    int iRes = mysql_options(_m_pmsConnection, cmoOption, cpvArg);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), FALSE);
 
     return TRUE;
@@ -75,13 +75,13 @@ CxMySQLConnection::bOptions(
 //DONE: bConnect (attempts to establish a connection to a MySQL database engine running on host)
 BOOL
 CxMySQLConnection::bConnect(
-        const tString &csHost,
-        const tString &csUser,
-        const tString &csPassword,
-        const tString &csDb,
-        UINT           uiPort,
-        const tString &csUnixSocket,
-        ULONG          ulClientFlag
+    const tString &csHost,
+    const tString &csUser,
+    const tString &csPassword,
+    const tString &csDb,
+    const UINT     cuiPort,
+    const tString &csUnixSocket,
+    const ULONG    culClientFlag
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -93,7 +93,7 @@ CxMySQLConnection::bConnect(
     /*DEBUG*/// csUnixSocket - n/a
     /*DEBUG*/// ulClientFlag - n/a
 
-    MYSQL *pmsConnection = mysql_real_connect(_m_pmsConnection, csHost.c_str(), csUser.c_str(), csPassword.c_str(), csDb.c_str(), uiPort, csUnixSocket.c_str(), ulClientFlag);
+    MYSQL *pmsConnection = mysql_real_connect(_m_pmsConnection, csHost.c_str(), csUser.c_str(), csPassword.c_str(), csDb.c_str(), cuiPort, csUnixSocket.c_str(), culClientFlag);
     /*DEBUG*/xASSERT_MSG_RET(NULL             != pmsConnection, sGetLastErrorStr().c_str(), FALSE);
     /*DEBUG*/xASSERT_MSG_RET(_m_pmsConnection == pmsConnection, sGetLastErrorStr().c_str(), FALSE);
 
@@ -104,7 +104,10 @@ CxMySQLConnection::bConnect(
 //---------------------------------------------------------------------------
 //DONE: bQuery (executes the SQL statement)
 BOOL
-CxMySQLConnection::bQuery(LPCTSTR pcszSqlFormat, ...) const {
+CxMySQLConnection::bQuery(
+    LPCTSTR pcszSqlFormat, ...
+) const
+{
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),    FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pcszSqlFormat, FALSE);
 
@@ -181,12 +184,12 @@ CxMySQLConnection::sGetLastErrorStr() const {
     /*DEBUG*/// n/a
     /*DEBUG*/xASSERT_RET(NULL != cpszRes, tString());   //DONE: is real need this
 
-    UINT uiLastError = uiGetLastError();
+    const UINT cuiLastError = uiGetLastError();
 
-    if (0 == uiLastError) {
-        sRes.assign( CxString::sFormat(xT("%i - \"%s\""), uiLastError, xT("Success")) );
+    if (0 == cuiLastError) {
+        sRes.assign( CxString::sFormat(xT("%i - \"%s\""), cuiLastError, xT("Success")) );
     } else {
-        sRes.assign( CxString::sFormat(xT("%i - \"%s\""), uiLastError, cpszRes) );
+        sRes.assign( CxString::sFormat(xT("%i - \"%s\""), cuiLastError, cpszRes) );
     }
 
     return sRes;
@@ -202,23 +205,23 @@ CxMySQLConnection::sGetLastErrorStr() const {
 //---------------------------------------------------------------------------
 //DONE: CxMySQLRecordset (constructor)
 CxMySQLRecordset::CxMySQLRecordset(
-        const CxMySQLConnection &cmcConnection, //connection
-        BOOL                     bIsUseResult   //use result or store result
+    const CxMySQLConnection &cmcConnection, //connection
+    const BOOL               cbIsUseResult  //use result or store result
 ) :
-        _m_pmrResult    (NULL),
-        _m_pmcConnection(&cmcConnection)
+    _m_pcmcConnection(&cmcConnection),
+    _m_pmrResult    (NULL)
 {
-    /*DEBUG*/xASSERT_DO(FALSE == bIsValid(),                 return);
-    /*DEBUG*/xASSERT_DO(NULL  != _m_pmcConnection->pmsGet(), return);
+    /*DEBUG*/xASSERT_DO(FALSE == bIsValid(),                  return);
+    /*DEBUG*/xASSERT_DO(NULL  != _m_pcmcConnection->pmsGet(), return);
 
     MYSQL_RES *pmrResult = NULL;
 
-    if (FALSE != bIsUseResult) {
-        pmrResult = mysql_use_result  (_m_pmcConnection->pmsGet());
-        /*DEBUG*/xASSERT_MSG_DO(NULL != pmrResult, _m_pmcConnection->sGetLastErrorStr().c_str(), return);
+    if (FALSE != cbIsUseResult) {
+        pmrResult = mysql_use_result  (_m_pcmcConnection->pmsGet());
+        /*DEBUG*/xASSERT_MSG_DO(NULL != pmrResult, _m_pcmcConnection->sGetLastErrorStr().c_str(), return);
     } else {
-        pmrResult = mysql_store_result(_m_pmcConnection->pmsGet());
-        /*DEBUG*/xASSERT_MSG_DO(NULL != pmrResult, _m_pmcConnection->sGetLastErrorStr().c_str(), return);
+        pmrResult = mysql_store_result(_m_pcmcConnection->pmsGet());
+        /*DEBUG*/xASSERT_MSG_DO(NULL != pmrResult, _m_pcmcConnection->sGetLastErrorStr().c_str(), return);
     }
 
     _m_pmrResult = pmrResult;
@@ -281,69 +284,57 @@ CxMySQLRecordset::ullRowsNum() const {
 //---------------------------------------------------------------------------
 //DONE: bFetchField (The MYSQL_FIELD structure for the current column)
 BOOL
-CxMySQLRecordset::bFetchField(MYSQL_FIELD *pmfField) const {
+CxMySQLRecordset::bFetchField(
+    MYSQL_FIELD *pmfField
+) const
+{
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pmfField,   FALSE);
 
     pmfField = mysql_fetch_field(_m_pmrResult);
-    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pmcConnection->sGetLastErrorStr().c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bFetchFieldDirect (The MYSQL_FIELD structure for the specified column)
 BOOL
-CxMySQLRecordset::bFetchFieldDirect(UINT uiFieldNumber, MYSQL_FIELD *pmfField) const {
+CxMySQLRecordset::bFetchFieldDirect(
+    const UINT   cuiFieldNumber,
+    MYSQL_FIELD *pmfField
+) const
+{
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/// uiFieldNumber - n/a
     /*DEBUG*/xASSERT_RET(NULL  != pmfField,   FALSE);
 
-    pmfField = mysql_fetch_field_direct(_m_pmrResult, uiFieldNumber);
-    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pmcConnection->sGetLastErrorStr().c_str(), FALSE);
+    pmfField = mysql_fetch_field_direct(_m_pmrResult, cuiFieldNumber);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bFetchFields (An array of MYSQL_FIELD structures for all columns of a result set)
 BOOL
-CxMySQLRecordset::bFetchFields(MYSQL_FIELD *pmfField) const {
+CxMySQLRecordset::bFetchFields(
+    MYSQL_FIELD *pmfField
+) const
+{
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pmfField,   FALSE);
 
     pmfField = mysql_fetch_fields(_m_pmrResult);
-    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pmcConnection->sGetLastErrorStr().c_str(), FALSE);
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//DONE: bFetchRow (A MYSQL_ROW structure for the next row)
-BOOL
-CxMySQLRecordset::bFetchRow(MYSQL_ROW *pmrRow) const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pmrRow,     FALSE);
-
-    *pmrRow = mysql_fetch_row(_m_pmrResult);
-    /*DEBUG*/// n/a
-    xCHECK_RET(NULL == *pmrRow, FALSE);
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//DONE: bFetchLengths (An array of unsigned long integers representing the size of each column)
-BOOL
-CxMySQLRecordset::bFetchLengths(ULONG **ppulFieldLengths) const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  == *ppulFieldLengths, FALSE);
-
-    *ppulFieldLengths = mysql_fetch_lengths(_m_pmrResult);
-    /*DEBUG*/xASSERT_MSG_RET(NULL != *ppulFieldLengths, _m_pmcConnection->sGetLastErrorStr().c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //TODO: bRowFetch (fetching row)
 BOOL
-CxMySQLRecordset::bFetchRow(std::vector<tString> *pvecsRow) const {
+CxMySQLRecordset::bFetchRow(
+    std::vector<tString> *pvecsRow
+) const
+{
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pvecsRow,   FALSE);
 
@@ -355,22 +346,22 @@ CxMySQLRecordset::bFetchRow(std::vector<tString> *pvecsRow) const {
     (*pvecsRow).clear();
 
 //    //--UINT   uiFieldsNum   = mysql_num_fields   (_m_pmrResult);
-//    UINT       uiFieldsNum   = _m_pmcConnection->uiFieldCount();
+//    UINT       uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
 //    MYSQL_ROW  ppmrRow       = mysql_fetch_row    (_m_pmrResult);   //array of strings
 //    ULONG     *pulRowLengths = mysql_fetch_lengths(_m_pmrResult);   //TODO: maybe 64-bit bug
 
 
     //fields count
-    uiFieldsNum   = _m_pmcConnection->uiFieldCount();
+    uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
 
 
     //fetch row
-    bRes = bFetchRow(&mrRow);
+    bRes = _bFetchRow(&mrRow);
     xCHECK_RET(FALSE == bRes, TRUE);
 
 
     //field lengths
-    bRes = bFetchLengths(&pulFieldLengths);
+    bRes = _bFetchLengths(&pulFieldLengths);
     xASSERT(FALSE != bRes);
     xASSERT(NULL  != pulFieldLengths);
 
@@ -398,4 +389,35 @@ CxMySQLRecordset::bFetchRow(std::vector<tString> *pvecsRow) const {
 *
 *****************************************************************************/
 
+//---------------------------------------------------------------------------
+//DONE: bFetchRow (A MYSQL_ROW structure for the next row)
+BOOL
+CxMySQLRecordset::_bFetchRow(
+    MYSQL_ROW *pmrRow
+) const
+{
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pmrRow,     FALSE);
 
+    *pmrRow = mysql_fetch_row(_m_pmrResult);
+    /*DEBUG*/// n/a
+    xCHECK_RET(NULL == *pmrRow, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bFetchLengths (An array of unsigned long integers representing the size of each column)
+BOOL
+CxMySQLRecordset::_bFetchLengths(
+    ULONG **ppulFieldLengths
+) const
+{
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  == *ppulFieldLengths, FALSE);
+
+    *ppulFieldLengths = mysql_fetch_lengths(_m_pmrResult);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != *ppulFieldLengths, _m_pcmcConnection->sGetLastErrorStr().c_str(), FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------

@@ -28,46 +28,46 @@
 //---------------------------------------------------------------------------
 class CxMySQLConnection : public CxNonCopyable  {
     public:
-                     CxMySQLConnection();
-        virtual     ~CxMySQLConnection();
+                                 CxMySQLConnection();
+        virtual                 ~CxMySQLConnection();
 
-        MYSQL       *pmsGet           () const;
-        BOOL         bIsValid         () const;
-        BOOL         bOptions         (mysql_option moOption, const void *cpvArg) const;
-        BOOL         bConnect         (const tString &csHost, const tString &csUser, const tString &csPassword, const tString &csDb, UINT uiPort, const tString &csUnixSocket, ULONG ulClientFlag);
-        BOOL         bQuery           (LPCTSTR pcszSqlFormat, ...) const;
-        UINT         uiFieldCount     () const;
-        BOOL         bClose           ();
+        MYSQL                   *pmsGet           () const;
+        BOOL                     bIsValid         () const;
+        BOOL                     bOptions         (const mysql_option cmoOption, const void *cpvArg) const;
+        BOOL                     bConnect         (const tString &csHost, const tString &csUser, const tString &csPassword, const tString &csDb, const UINT cuiPort, const tString &csUnixSocket, const ULONG culClientFlag);
+        BOOL                     bQuery           (LPCTSTR pcszSqlFormat, ...) const;
+        UINT                     uiFieldCount     () const;
+        BOOL                     bClose           ();
 
         //errors
-        UINT         uiGetLastError   () const;
-        tString      sGetLastErrorStr () const;
+        UINT                     uiGetLastError   () const;
+        tString                  sGetLastErrorStr () const;
 
     private:
-        MYSQL       *_m_pmsConnection;
+        MYSQL                   *_m_pmsConnection;
 };
 //---------------------------------------------------------------------------
 class CxMySQLRecordset : public CxNonCopyable {
     public:
-                     CxMySQLRecordset (const CxMySQLConnection &cmsConnection, BOOL bIsUseResult);
-        virtual     ~CxMySQLRecordset ();
+                                 CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const BOOL cbIsUseResult);
+        virtual                 ~CxMySQLRecordset ();
 
-        MYSQL_RES   *pmrGet           () const;
-        BOOL         bIsValid         () const;
+        MYSQL_RES               *pmrGet           () const;
+        BOOL                     bIsValid         () const;
 
-        UINT         uiFieldsNum      () const;
-        my_ulonglong ullRowsNum       () const;
-        BOOL         bFetchField      (MYSQL_FIELD *pmfField) const;
-        BOOL         bFetchFieldDirect(UINT uiFieldNumber, MYSQL_FIELD *pmfField) const;
-        BOOL         bFetchFields     (MYSQL_FIELD *pmfField) const;
-        BOOL         bFetchRow        (std::vector<tString> *pvecsRow) const;
+        UINT                     uiFieldsNum      () const;
+        my_ulonglong             ullRowsNum       () const;
+        BOOL                     bFetchField      (MYSQL_FIELD *pmfField) const;
+        BOOL                     bFetchFieldDirect(const UINT cuiFieldNumber, MYSQL_FIELD *pmfField) const;
+        BOOL                     bFetchFields     (MYSQL_FIELD *pmfField) const;
+        BOOL                     bFetchRow        (std::vector<tString> *pvecsRow) const;
 
     private:
+        const CxMySQLConnection *_m_pcmcConnection;
         MYSQL_RES               *_m_pmrResult;
-        const CxMySQLConnection *_m_pmcConnection;
 
-        BOOL         bFetchLengths    (ULONG **ppulFieldLengths) const;
-        BOOL         bFetchRow        (MYSQL_ROW *pmrRow) const;
+        BOOL                     _bFetchLengths   (ULONG **ppulFieldLengths) const;
+        BOOL                     _bFetchRow       (MYSQL_ROW *pmrRow) const;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Db_CxMySqlH

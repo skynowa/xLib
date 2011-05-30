@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxLastError : public CxNonCopyable  {
+class CxLastError :
+    public CxNonCopyable
+{
     public:
         static ULONG   ulGet      ();
         static BOOL    bSet       (const ULONG culCode);

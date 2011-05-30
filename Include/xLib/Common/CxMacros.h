@@ -184,7 +184,7 @@ class CxMacros : CxNonCopyable {
         #define xSTRINGIZE(x)      xSTRINGIZE2(x)
         #define xSTR_CONCAT(x, y)  x ## y
 
-        //TODO
+        //TODO__VA_ARGS__
         #if defined(xOS_WIN)
         #   define xTODO_TASK(text) { message(__FILE__ "(" xSTRINGIZE(__LINE__) ") [" xFUNCTION "]: warning TODO: [" xFUNCTION "] " ## text) }
         #   define xTODO_IMPL       { xTODO("Implement " xFUNCTION " function!") }
@@ -279,6 +279,67 @@ class CxMacros : CxNonCopyable {
 
         #endif //xCOMPILER_CODEGEAR
 
+        //--------------------------------------------------
+        //buildin macroses
+
+        //xFILE (source file path)
+        #if defined(__FILE__)
+            #define xFILE      xT(__FILE__)
+        #else
+            #define xFILE      xT("<unknown xFILE>")
+        #endif
+
+        //xLINE (source code line)
+        #if defined(__LINE__)
+            #define xLINE      __LINE__
+        #else
+            #define xLINE      xT("<unknown xLINE>")
+        #endif
+
+        //xFUNCTION (source function name)
+        #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600))
+            #define xFUNCTION  xT(__PRETTY_FUNCTION__)
+        #elif defined(__DMC__) && (__DMC__ >= 0x810)
+            #define xFUNCTION  xT(__PRETTY_FUNCTION__)
+        #elif defined(__FUNCSIG__)
+            #define xFUNCTION  xT(__FUNCTION__) /*xT(__FUNCSIG__)*/
+        #elif (defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 600)) || (defined(__IBMCPP__) && (__IBMCPP__ >= 500))
+            #define xFUNCTION  xT(__FUNCTION__)
+        #elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x550)
+            #define xFUNCTION  xT(__FUNC__)
+        #elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901)
+            #define xFUNCTION xT(__func__)
+        #else
+            #define xFUNCTION  xT("<unknown xFUNCTION>")
+        #endif
+
+        //xDATE (current date)
+        #if defined(__DATE__)
+            #define xDATE      xT(__DATE__)
+        #else
+            #define xDATE      xT("<unknown xDATE>")
+        #endif
+
+        //xTIME (current time)
+        #if defined(__TIME__)
+            #define xTIME      xT(__TIME__)
+        #else
+            #define xTIME      xT("<unknown xTIME>")
+        #endif
+
+        //xDATETIME (current datetime)
+        #if defined(__DATE__) && defined(__TIME__)
+            #define xDATETIME  xT(__DATE__) xT(" ") xT(__TIME__)
+        #else
+            #define xDATETIME  xT("<unknown xDATETIME>")
+        #endif
+
+        //xCOUNTER (counter)
+        #if defined(__COUNTER__)
+            #define xCOUNTER   xT(__COUNTER__)
+        #else
+            #define xCOUNTER   xT("<unknown xCOUNTER>")
+        #endif
 
     private:
                 CxMacros();

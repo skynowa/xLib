@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------
 #define xLIB_VERSION xT("1.0.000")
 #define xLIB_AUTHOR  xT("Skynowa")
-#define xLIB_DATE    xT(__DATE__)
+#define xLIB_DATE    xT(xDATETIME)
 
 //automatically include the NxLib namespace, define xNO_USING_NAMESPACE to skip this step
 #define xNO_USING_NAMESPACE      1

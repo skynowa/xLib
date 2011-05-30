@@ -16,13 +16,12 @@
 //---------------------------------------------------------------------------
 class CxProcess : public CxNonCopyable {
     public:
-
         static ULONG ulGetCurrId      ();
         static ULONG ulGetCurrParentId();
 
         static BOOL  bExec            (const tString &csFilePath, LPCTSTR pcszCmdLine, ...);
-        static BOOL  bExit            (ULONG ulPid, UINT uiExitCode);
-        static BOOL  bTerminate       (ULONG ulPid);
+        static BOOL  bExit            (const ULONG culPid, const UINT cuiExitCode);
+        static BOOL  bTerminate       (const ULONG culPid);
 
         //wait
 
