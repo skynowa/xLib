@@ -118,7 +118,7 @@ CxDir::bIsEmpty(
             bRes = TRUE;    //empty
         }
     }
-    while ( NULL != (pdrEntry = readdir(pDir)) );
+    while (NULL != (pdrEntry = readdir(pDir)));
 
     INT iRes = closedir(pDir); pDir = NULL;
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
@@ -334,8 +334,7 @@ CxDir::bCopy(
 
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
-        //-------------------------------------
+    //-------------------------------------
     //sets attr "normal"
     bRes = bIsExists(csDirPathTo);
     if (TRUE == bRes) {
@@ -346,6 +345,7 @@ CxDir::bCopy(
     bRes = CxFileAttribute::bSet(csDirPathFrom, CxFileAttribute::faNormal);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
+#if defined(xOS_WIN)
     bRes = ::CopyFile(csFromDirPath.c_str(), csToDirPath.c_str(), cbFailIfExists);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
@@ -377,8 +377,8 @@ CxDir::bCopy(
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
-
-    //rollback
+    //--------------------------------------------------
+    //TODO: rollback
 
 #endif
 
@@ -424,10 +424,10 @@ CxDir::bDelete(
     bRes = bIsExists(csDirPath);
     xCHECK_RET(FALSE == bRes, TRUE);
 
-#if defined(xOS_WIN)
     bRes = CxFileAttribute::bSet(csDirPath, CxFileAttribute::faNormal);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
+#if defined(xOS_WIN)
     bRes = ::RemoveDirectory(csDirPath.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
@@ -635,7 +635,7 @@ CxDir::bFindFiles(
                 (*pvsFilePathes).push_back(sFilePath);
             }
         }
-        while ( NULL != (pdrEntry = readdir(pDir)) );
+        while (NULL != (pdrEntry = readdir(pDir)));
 
         INT iRes = closedir(pDir); pDir = NULL;
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);

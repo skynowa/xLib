@@ -17,6 +17,7 @@
 class CxFileAttribute : public CxNonCopyable {
     public:
         enum EAttribute {
+            //TODO: separate writable and readable attributes
             #if defined(xOS_WIN)
                 faInvalid           = INVALID_FILE_ATTRIBUTES,
                 faNormal            = FILE_ATTRIBUTE_NORMAL,
@@ -35,16 +36,15 @@ class CxFileAttribute : public CxNonCopyable {
                 faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
             #elif defined(xOS_LINUX)
                 faInvalid           = - 1,
-                faEmpty             = 0,
-                ////faNormal        = 0755,
-                ////faReadOnly      = 0444,
+                faNormal            = 0755,
+                faReadOnly          = 0444,
                 faDirectory         = S_IFDIR,
                 faBlockDevice       = S_IFBLK,
                 faSocket            = S_IFSOCK,
                 faSymbolicLink      = S_IFLNK,
                 faRegularFile       = S_IFREG,
                 faCharacterDevice   = S_IFCHR,
-                faFifo              = S_IFIFO
+                faFifo              = S_IFIFO,
             #endif
         };
 

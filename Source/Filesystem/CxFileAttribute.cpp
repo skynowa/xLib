@@ -62,7 +62,7 @@ CxFileAttribute::atGet(
     if (- 1 == iRes) {
         faRes = faInvalid;
     } else {
-        faRes = static_cast<EAttribute>( stInfo.st_mode & S_IFMT);
+        faRes = static_cast<EAttribute>( stInfo.st_mode & S_IFMT );
     }
 #endif
 
@@ -84,7 +84,7 @@ CxFileAttribute::bSet(
     BOOL bRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ULONG>(cfaValue));
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = chmod(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
+    INT iRes = _tchmod(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -157,13 +157,7 @@ CxFileAttribute::bClear(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
-#if defined(xOS_WIN)
-    EAttribute cfaValue = faNormal;
-#elif defined(xOS_LINUX)
-    EAttribute cfaValue = faEmpty;
-#endif
-
-    return bSet(csFilePath, cfaValue);
+    return bSet(csFilePath, faNormal);
 }
 //---------------------------------------------------------------------------
 
