@@ -222,6 +222,9 @@ BOOL CxTest_CxDir::bUnit() {
             xASSERT(FALSE != m_bRes);
         }
 
+        m_bRes = CxDir::bDeleteForce(csDirDest);
+        xASSERT(FALSE != m_bRes);
+
         //-------------------------------------
         //bCopy
         m_bRes = CxDir::bCopy(csDirSource, csDirDest, TRUE);

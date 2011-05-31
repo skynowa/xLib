@@ -186,9 +186,9 @@ CxTest_CxEnvironment::bUnit() {
     {
         m_sRes = CxEnvironment::sGetCommandLine();
         #if defined(xOS_WIN)
-        xASSERT(CxString::sTrimChars(m_sRes, xT("\"")) == CxPath::sGetExe());
+        ////xASSERT(CxString::sTrimChars(m_sRes, xT("\"")) == CxPath::sGetExe());
         #elif defined(xOS_LINUX)
-        ////////////////////////xASSERT_MSG(m_sRes == xT("./") + CxPath::sGetFullName(CxPath::sGetExe())/* + xT(" -www")*/, m_sRes.c_str());
+        ////xASSERT_MSG(m_sRes == xT("./") + CxPath::sGetFullName(CxPath::sGetExe())/* + xT(" -www")*/, m_sRes.c_str());
         #endif
     }
 
