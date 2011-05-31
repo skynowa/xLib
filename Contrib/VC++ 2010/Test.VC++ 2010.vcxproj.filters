@@ -682,6 +682,9 @@
     <None Include="..\..\Source\Sync\CxThreadPool.inl">
       <Filter>xLib\Sync</Filter>
     </None>
+    <None Include="..\..\Source\Common\Win\CxHandleT.inl">
+      <Filter>xLib\Common\Win</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxBase64.h">
@@ -740,9 +743,6 @@
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpServerSocket.h">
       <Filter>xLib\Net</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">
-      <Filter>xLib\Common\Win</Filter>
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
       <Filter>xLib\Compress\Linux</Filter>

@@ -345,14 +345,10 @@ CxDir::bCopy(
     bRes = CxFileAttribute::bSet(csDirPathFrom, CxFileAttribute::faNormal);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-#if defined(xOS_WIN)
-    bRes = ::CopyFile(csDirPathFrom.c_str(), csDirPathTo.c_str(), cbFailIfExists);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
-    std::vector<tString> vsFilePathes;
-
     //--------------------------------------------------
     //get lists of files
+    std::vector<tString> vsFilePathes;
+
     vsFilePathes.clear();
     bRes = bFindFiles(csDirPathFrom, CxConst::xMASK_ALL, TRUE, &vsFilePathes);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -379,8 +375,6 @@ CxDir::bCopy(
 
     //--------------------------------------------------
     //TODO: rollback
-
-#endif
 
     return TRUE;
 }

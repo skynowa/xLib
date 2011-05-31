@@ -390,6 +390,7 @@
     <ClInclude Include="..\..\Include\xLib\Units\Win\bGetUsbInfo.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Source\Common\Win\CxHandleT.inl" />
     <None Include="..\..\Source\Sync\CxThreadPool.inl" />
     <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">
       <FileType>Document</FileType>
