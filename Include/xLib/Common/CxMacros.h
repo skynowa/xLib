@@ -90,6 +90,7 @@ class CxMacros : CxNonCopyable {
         #define xDEPRECIATE           0
         #define xTODO                 0
         #define xCAN_REMOVE           0
+        //TODO: #define xNA(arg)              ( arg )
 
 
         //TODO: xMax
