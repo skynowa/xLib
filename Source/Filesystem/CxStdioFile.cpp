@@ -45,6 +45,8 @@ CxStdioFile::~CxStdioFile() {
 
     _m_bRes = bClose();
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+
+    xTRACE_POINT;
 }
 //---------------------------------------------------------------------------
 
