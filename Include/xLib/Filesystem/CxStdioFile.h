@@ -13,21 +13,6 @@
 #define xLib_Filesystem_CxStdioFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
-#if xCAN_REMOVE
-    #include <sys/types.h>
-    #include <sys/stat.h>
-    #include <fcntl.h>
-    #include <iostream>
-    #include <ostream>
-    #include <fstream>
-#endif
-
-#if defined(xOS_WIN)
-    #include <sys/locking.h>
-    #include <io.h>
-    #include <errno.h>
-#endif
 //---------------------------------------------------------------------------
 class CxStdioFile :
     public CxNonCopyable
@@ -221,7 +206,7 @@ class CxStdioFile :
         tString          _m_sFilePath;
 
         INT              _iGetHandle  () const;
-        static tString   _sGetOpenMode(const EOpenMode omMode);
+        static tString   _sGetOpenMode(const EOpenMode comMode);
 };
 //---------------------------------------------------------------------------
 #endif  //xLib_Filesystem_CxStdioFileH

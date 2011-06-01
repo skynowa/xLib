@@ -63,7 +63,7 @@ CxStdioFile::bOpen(
     const BOOL       cbIsUseBuffering
 )
 {
-    /*DEBUG*/xASSERT_RET(FALSE == bIsValid(),                       FALSE);
+    /*DEBUG*/// _m_pFile - n/a
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsValidName(csFilePath), FALSE);
     /*DEBUG*/// comMode - n/a
@@ -91,7 +91,7 @@ CxStdioFile::bReopen(
     const BOOL       cbIsUseBuffering
 )
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),                       FALSE);
+    /*DEBUG*/// _m_pFile - n/a
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsValidName(csFilePath), FALSE);
     /*DEBUG*/// omMode - n/a
@@ -236,8 +236,7 @@ CxStdioFile::bWrite(
 //DONE: iWrite(Write formatted output to stream)
 INT
 CxStdioFile::iWrite(
-    LPCTSTR pcszFormat,
-    ...
+    LPCTSTR pcszFormat, ...
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), etError);
@@ -600,6 +599,7 @@ CxStdioFile::bErrorClear() const {
 }
 //---------------------------------------------------------------------------
 
+
 /****************************************************************************
 *    public: closing
 *
@@ -655,18 +655,10 @@ CxStdioFile::bIsFile(
 
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
-    #if xDEPRECIATE
-        DWORD dwAttr = ::GetFileAttributes(csFilePath.c_str());
-
-        bRes = (dwAttr != INVALID_FILE_ATTRIBUTES) &&
-               !(dwAttr & (FILE_ATTRIBUTE_DIRECTORY | FILE_ATTRIBUTE_DEVICE | FILE_ATTRIBUTE_OFFLINE | FILE_ATTRIBUTE_REPARSE_POINT));
-        xCHECK_RET(FALSE == bRes, FALSE);
-    #endif
-
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
 
+#if defined(xOS_WIN)
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faDirectory);
     xCHECK_RET(TRUE == bRes, FALSE);
 
@@ -679,19 +671,6 @@ CxStdioFile::bIsFile(
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faOffline);
     xCHECK_RET(TRUE == bRes, FALSE);
 #elif defined(xOS_LINUX)
-    #if xDEPRECIATE
-        struct stat stInfo = {0};
-
-        INT iRes = stat/*lstat*/(csFilePath.c_str(), &stInfo);
-        xCHECK_RET(- 1 == iRes, FALSE);
-
-        bRes = static_cast<BOOL>( S_ISREG(stInfo.st_mode) );
-        xCHECK_RET(FALSE == bRes, FALSE);
-    #endif
-
-    CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
-    xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
-
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
     xCHECK_RET(FALSE == bRes, FALSE);
 #endif
@@ -752,10 +731,10 @@ CxStdioFile::bChmod(
     INT iRes = etError;
 
 #if defined(xOS_WIN)
-    iRes = _tchmod(csFilePath.c_str(), cpmMode);
+    iRes = _tchmod(csFilePath.c_str(), static_cast<INT>( cpmMode ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
-    iRes = _tchmod(csFilePath.c_str(), static_cast<mode_t>(cpmMode));
+    iRes = _tchmod(csFilePath.c_str(), static_cast<mode_t>( cpmMode ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
 
@@ -832,7 +811,7 @@ CxStdioFile::bTryDelete(
             ::Sleep(culTimeoutMsec);
             /*DEBUG*/// n/a
         #elif defined(xOS_LINUX)
-            int iRes = usleep(static_cast<useconds_t>( culTimeoutMsec * 1000 ));
+            INT iRes = usleep(static_cast<useconds_t>( culTimeoutMsec * 1000 ));
             /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
         #endif
     }
@@ -840,7 +819,7 @@ CxStdioFile::bTryDelete(
     return bIsDeleted;
 }
 //---------------------------------------------------------------------------
-//TODO: bWipe (wipe)
+//DONE: bWipe (wipe)
 /*static*/
 BOOL
 CxStdioFile::bWipe(
@@ -1003,7 +982,7 @@ CxStdioFile::bMove(
 
     BOOL bRes = FALSE;
 
-    bRes = bRename(csFilePath, csDirPath + CxConst::xSLASH + CxPath::sGetFullName(csFilePath));
+    bRes = bRename(csFilePath, CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath));
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -1614,14 +1593,14 @@ CxStdioFile::_iGetHandle() const {
 /*static*/
 tString
 CxStdioFile::_sGetOpenMode(
-    const EOpenMode omMode
+    const EOpenMode comMode
 )
 {
     /*DEBUG*/// omMode - n/a
 
     tString sRes;
 
-    switch (omMode) {
+    switch (comMode) {
         case omRead:                { sRes.assign( xT("r")   ); }   break;
         case omWrite:               { sRes.assign( xT("w")   ); }   break;
         case omAppend:              { sRes.assign( xT("a")   ); }   break;

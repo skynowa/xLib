@@ -69,6 +69,15 @@ CxTest_CxStdioFile::bUnit() {
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
         xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bOpen(csFilePath, CxStdioFile::omRead, TRUE);
+        xASSERT(FALSE != m_bRes);
     }
 
     //-------------------------------------
@@ -80,6 +89,15 @@ CxTest_CxStdioFile::bUnit() {
         xASSERT(FALSE != m_bRes);
 
         m_bRes = F.bReopen(csFilePath, CxStdioFile::omOpenReadWrite, TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bReopen(csFilePath, CxStdioFile::omOpenReadWrite, TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bReopen(csFilePath, CxStdioFile::omOpenReadWrite, TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bReopen(csFilePath, CxStdioFile::omWrite, TRUE);
         xASSERT(FALSE != m_bRes);
     }
 

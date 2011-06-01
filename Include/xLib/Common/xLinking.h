@@ -11,26 +11,30 @@
 #ifndef xLib_Common_xLinkingH
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
-#if defined(xIS_AUTO_LINKING) && defined(xOS_WIN) && defined(xCOMPILER_MS) && !defined(_LIB)
-    #if defined(NDEBUG)
-        //release
-        #if defined(xUNICODE)
-            ////#pragma message("  --- xLib: unicode, release ---")
-            #pragma comment(lib, "xLibW_Release.lib")
+#if defined(xOS_WIN)
+    #if !defined(_LIB) && defined(xIS_AUTO_LINKING)
+        #if defined(NDEBUG)
+            //release
+            #if defined(xUNICODE)
+                #pragma comment(lib, "xLibW_Release.lib")
+                //#pragma message("  --- xLib: unicode, release ---")
+            #else
+                #pragma comment(lib, "xLibA_Release.lib")
+                //#pragma message("  --- xLib: ansi, release ---")
+            #endif
         #else
-            ////#pragma message("  --- xLib: ansi, release ---")
-            #pragma comment(lib, "xLibA_Release.lib")
-        #endif
-    #else
-        //debug
-        #if defined(xUNICODE)
-            ////#pragma message("  --- xLib: unicode, debug ---")
-            #pragma comment(lib, "xLibW_Debug.lib")
-        #else
-            ////#pragma message("  --- xLib: ansi, debug ---")
-            #pragma comment(lib, "xLibA_Debug.lib")
+            //debug
+            #if defined(xUNICODE)
+                #pragma comment(lib, "xLibW_Debug.lib")
+                //#pragma message("  --- xLib: unicode, debug ---")
+            #else
+                #pragma comment(lib, "xLibA_Debug.lib")
+                //#pragma message("  --- xLib: ansi, debug ---")
+            #endif
         #endif
     #endif
+#elif defined(xOS_LINUX)
+    // n/a
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_xLinkingH
