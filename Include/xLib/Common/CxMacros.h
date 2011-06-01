@@ -92,7 +92,6 @@ class CxMacros : CxNonCopyable {
         #define xCAN_REMOVE           0
         //TODO: #define xNA(arg)              ( arg )
 
-
         //TODO: xMax
         //http://www.gizmosdk.com/docs/html/gizmobase/html/gz_basic_types_8h-source.html
         template <class T>

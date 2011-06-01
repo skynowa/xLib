@@ -83,6 +83,10 @@
 #include <winuser.h>
 #include <Objbase.h>
 
+#include <sys/locking.h>
+#include <io.h>
+#include <errno.h>
+
 #if defined(xCOMPILER_CODEGEAR)
     #include <xVCL/xCommon.h>
 #endif

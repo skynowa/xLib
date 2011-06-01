@@ -66,7 +66,7 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
 
 
 #if defined(xOS_WIN)
-
+    // win defines
 #elif defined(xOS_LINUX)
     #if !defined(BOOL)
         typedef enum { FALSE = 0, TRUE = 1 } BOOL;
@@ -91,7 +91,6 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
     typedef char                   CHAR;
     typedef unsigned char          UCHAR;
 
-    //---------------------------------------------------------------------------
     #if defined(xUNICODE)
         #define _tmain      wmain
         #define _ftprintf   fwprintf
