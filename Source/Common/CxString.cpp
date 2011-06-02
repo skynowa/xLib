@@ -148,7 +148,7 @@ CxString::sReplaceAll(
 
     size_t uiPos = 0;
 
-    for ( ;; ) {
+    for ( ; ; ) {
         uiPos = sRes.find(csOldStr, uiPos);
         xCHECK_DO(tString::npos == uiPos, break);
 
@@ -412,14 +412,6 @@ CxString::bCompareNoCase(
     /*DEBUG*/// n/a
     xCHECK_RET(0 != iRes, FALSE);
 #elif defined(xOS_LINUX)
-#if xTEMP_DISABLED
-    for (tString::const_iterator itA = csStr1.begin(), itB = csStr2.begin();
-         itA != csStr1.end(), itB != csStr2.end();
-         ++ itA, ++ itB)
-    {
-        xCHECK_RET(CxChar::chToLower(*itA) != CxChar::chToLower(*itB), FALSE);  //TODO: FIX IT
-    }
-#endif
     struct SCompare {
         static bool
         bNoCase(const tString::value_type &cchChar1, const tString::value_type &cchChar2) {
@@ -427,7 +419,7 @@ CxString::bCompareNoCase(
         }
     };
 
-    bool bRes = std::equal( csStr1.begin(), csStr1.end(), csStr2.begin(), SCompare::bNoCase );
+    bool bRes = std::equal(csStr1.begin(), csStr1.end(), csStr2.begin(), SCompare::bNoCase);
     xCHECK_RET(false == bRes, FALSE);
 #endif
 
@@ -473,8 +465,7 @@ CxString::pvMemoryZeroSecure(
 /*static*/
 tString
 CxString::sFormat(
-    LPCTSTR pcszFormat,
-    ...
+    LPCTSTR pcszFormat, ...
 )
 {
     /*DEBUG*/// n/a
@@ -506,7 +497,7 @@ CxString::sFormatV(
     tString sBuff(128, 0);
     INT     iWrittenSize = - 1;
 
-    for ( ;; ) {
+    for ( ; ; ) {
         //если win32 то используем _vsnprintf (для C++Builder - vsnprintf)
         iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size(), pcszFormat, palArgs);    //error - 1
         xCHECK_DO(iWrittenSize > - 1 && iWrittenSize < static_cast<INT>( sBuff.size() ), break);    //!может быть урезан буфер!
