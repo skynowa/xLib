@@ -15,8 +15,10 @@
 #include <xLib/Net/CxSocket.h>
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxTcpServerSocket : public CxSocket { 
-    public: 
+class CxTcpServerSocket :
+    public CxSocket
+{
+    public:
                     CxTcpServerSocket();
         virtual    ~CxTcpServerSocket();
 
@@ -24,9 +26,9 @@ class CxTcpServerSocket : public CxSocket {
          BOOL        bListen          (INT iBacklog /* = SOMAXCONN*/);
         BOOL        bAccept          (CxTcpServerSocket *pscktAcceptSocket, tString *psFromIp);
 
-    protected: 
+    protected:
         timeval     _m_tvTimeout;
-}; 
+};
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxTcpServerSocketH
 
@@ -42,4 +44,4 @@ Listen on the socket for a client.
 Accept a connection from a client.
 Receive and send data.
 Disconnect.
-*/ 
+*/

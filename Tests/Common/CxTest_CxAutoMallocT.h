@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxAutoMallocT.h>
 //---------------------------------------------------------------------------
-class CxTest_CxAutoMallocT : public CxTest {
+class CxTest_CxAutoMallocT :
+    public CxTest
+{
 	public:
 		CxTest_CxAutoMallocT();
 		virtual     ~CxTest_CxAutoMallocT();

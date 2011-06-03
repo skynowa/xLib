@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Crypt/CxBase64.h>
 //---------------------------------------------------------------------------
-class CxTest_CxBase64 : public CxTest {
+class CxTest_CxBase64 :
+    public CxTest
+{
 	public:
 		CxTest_CxBase64();
 		virtual     ~CxTest_CxBase64();

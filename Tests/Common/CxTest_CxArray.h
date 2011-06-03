@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxArray.h>
 //---------------------------------------------------------------------------
-class CxTest_CxArray : public CxTest {
+class CxTest_CxArray :
+    public CxTest
+{
 	public:
 		CxTest_CxArray();
 		virtual     ~CxTest_CxArray();

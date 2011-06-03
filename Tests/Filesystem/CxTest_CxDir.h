@@ -17,7 +17,9 @@
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 //---------------------------------------------------------------------------
-class CxTest_CxDir : public CxTest {
+class CxTest_CxDir :
+    public CxTest
+{
 	public:
 		CxTest_CxDir();
 		virtual     ~CxTest_CxDir();

@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxDnsClient.h>
 //---------------------------------------------------------------------------
-class CxTest_CxDnsClient : public CxTest {
+class CxTest_CxDnsClient :
+    public CxTest
+{
 	public:
 		CxTest_CxDnsClient();
 		virtual     ~CxTest_CxDnsClient();

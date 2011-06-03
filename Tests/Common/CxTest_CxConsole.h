@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/Win/CxConsole.h>
 //---------------------------------------------------------------------------
-class CxTest_CxConsole : public CxTest {
+class CxTest_CxConsole :
+    public CxTest
+{
     public:
         CxTest_CxConsole();
         virtual     ~CxTest_CxConsole();

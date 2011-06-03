@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
 //---------------------------------------------------------------------------
-class CxTest_CxFileAttribute : public CxTest {
+class CxTest_CxFileAttribute :
+    public CxTest
+{
 	public:
 		         CxTest_CxFileAttribute();
 	    virtual ~CxTest_CxFileAttribute();

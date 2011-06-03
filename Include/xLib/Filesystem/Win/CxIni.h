@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxIni : public CxNonCopyable {
+class CxIni :
+    public CxNonCopyable
+{
     public:
                          CxIni             ();
         explicit         CxIni             (const tString &csFilePath);

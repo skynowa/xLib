@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxDrive : public CxNonCopyable {
+class CxDrive :
+    public CxNonCopyable
+{
     public:
         enum EType {
             dtUnknown   = DRIVE_UNKNOWN,

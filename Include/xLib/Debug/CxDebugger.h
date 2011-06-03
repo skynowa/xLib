@@ -17,19 +17,22 @@
 #include <xLib/Debug/CxReport.h>
 //---------------------------------------------------------------------------
 class CxReport;
-class CxDebugger : public CxNonCopyable {
+
+class CxDebugger :
+    public CxNonCopyable
+{
     public:
-        static BOOL  bGetEnabled  ();
-        static BOOL  bSetEnabled  (BOOL bFlag);
-        static BOOL  bIsPresent   ();
-        static BOOL  bBreak       ();
+        static BOOL  bGetEnabled       ();
+        static BOOL  bSetEnabled       (const BOOL cbFlag);
+        static BOOL  bIsPresent        ();
+        static BOOL  bBreak            ();
 
-        static BOOL  bSetLogDirPath(const tString &csDirPath);
-        static BOOL  bReportMake  (const CxReport &crpReport);
-        static BOOL  bTrace       (LPCTSTR pcszFormat, ...);
-        static BOOL  bTrace       (const tString &csMsg);
+        static BOOL  bSetLogDirPath    (const tString &csDirPath);
+        static BOOL  bReportMake       (const CxReport &crpReport);
+        static BOOL  bTrace            (LPCTSTR pcszFormat, ...);
+        static BOOL  bTrace            (const tString &csMsg);
 
-        //MessageBeep
+        //TODO: MessageBeep
 
         template<class T>
         static VOID  vStdVectorPrintT  (const std::vector<T> &cvecT);
@@ -43,17 +46,17 @@ class CxDebugger : public CxNonCopyable {
     private:
         static BOOL  _ms_bIsEnabled;
 
-                     CxDebugger   ();
-        virtual     ~CxDebugger   ();
+                     CxDebugger        ();
+        virtual     ~CxDebugger        ();
 
-        static BOOL  bMsgboxPlain (const CxReport &crpReport);
-        static BOOL  bMsgboxRtf   (const CxReport &crpReport);
+        static BOOL  bMsgboxPlain      (const CxReport &crpReport);
+        static BOOL  bMsgboxRtf        (const CxReport &crpReport);
 
-        static BOOL  bStdoutPlain (const CxReport &crpReport);
-        static BOOL  bStdoutHtml  (const CxReport &crpReport);
+        static BOOL  bStdoutPlain      (const CxReport &crpReport);
+        static BOOL  bStdoutHtml       (const CxReport &crpReport);
 
-        static BOOL  bLoggingPlain(const CxReport &crpReport);
-        static BOOL  bLoggingHtml (const CxReport &crpReport);
+        static BOOL  bLoggingPlain     (const CxReport &crpReport);
+        static BOOL  bLoggingHtml      (const CxReport &crpReport);
 };
 //---------------------------------------------------------------------------
 #include <Debug/CxDebugger.inl>

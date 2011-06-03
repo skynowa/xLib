@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxCompletionPort.h>
 //---------------------------------------------------------------------------
-class CxTest_CxCompletionPort : public CxTest {
+class CxTest_CxCompletionPort :
+    public CxTest
+{
 	public:
 		CxTest_CxCompletionPort();
 		virtual     ~CxTest_CxCompletionPort();

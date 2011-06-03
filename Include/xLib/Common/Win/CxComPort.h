@@ -15,11 +15,13 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
-class CxCOMPort : public CxNonCopyable {
+class CxCOMPort :
+    public CxNonCopyable
+{
     public:
                      CxCOMPort       (const tString &sPortNum/* = xT("COM1")*/);
         virtual     ~CxCOMPort       ();
-        
+
         BOOL         bOpen           ();
         BOOL         bConfig         ();
         BOOL         bClearData      ();
@@ -29,11 +31,11 @@ class CxCOMPort : public CxNonCopyable {
         BOOL         bClose          ();
 
         ULONG        ulInputBuffTest ();
-        BOOL         bClearCLRDTR    (); 
-        BOOL         bClearCLRRTS    (); 
-        BOOL         bSetSETDTR      ();  
-        BOOL         bSetSETRTS      ();   
-        
+        BOOL         bClearCLRDTR    ();
+        BOOL         bClearCLRRTS    ();
+        BOOL         bSetSETDTR      ();
+        BOOL         bSetSETRTS      ();
+
     private:
         BOOL         _m_bRes;
         CxHandle     _m_hComPort;  //INVALID_HANDLE_VALUE
@@ -41,7 +43,7 @@ class CxCOMPort : public CxNonCopyable {
 
         COMMTIMEOUTS CommTimeOuts;
         DCB          dcb;
-        COMSTAT      ComState;              
+        COMSTAT      ComState;
         OVERLAPPED   Overlap;
 };
 //---------------------------------------------------------------------------

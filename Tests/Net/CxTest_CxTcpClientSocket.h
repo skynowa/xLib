@@ -16,7 +16,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
 //---------------------------------------------------------------------------
-class CxTest_CxTcpClientSocket : public CxTest {
+class CxTest_CxTcpClientSocket :
+    public CxTest
+{
 	public:
 		CxTest_CxTcpClientSocket();
 		virtual     ~CxTest_CxTcpClientSocket();

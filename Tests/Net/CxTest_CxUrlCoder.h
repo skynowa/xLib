@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxUrlCoder.h>
 //---------------------------------------------------------------------------
-class CxTest_CxUrlCoder : public CxTest {
+class CxTest_CxUrlCoder :
+    public CxTest
+{
 	public:
 		CxTest_CxUrlCoder();
 		virtual     ~CxTest_CxUrlCoder();

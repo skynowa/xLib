@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxDateTime.h>
 //---------------------------------------------------------------------------
-class CxTest_CxDateTime : public CxTest {
+class CxTest_CxDateTime :
+    public CxTest
+{
     public:
         CxTest_CxDateTime();
         virtual     ~CxTest_CxDateTime();

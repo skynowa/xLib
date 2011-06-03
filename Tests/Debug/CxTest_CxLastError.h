@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Debug/CxLastError.h>
 //---------------------------------------------------------------------------
-class CxTest_CxLastError : public CxTest {
+class CxTest_CxLastError :
+    public CxTest
+{
 	public:
 		CxTest_CxLastError();
 		virtual     ~CxTest_CxLastError();

@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxEventLog : public CxNonCopyable {
+class CxEventLog :
+    public CxNonCopyable
+{
     public:
                 CxEventLog();
        virtual ~CxEventLog();

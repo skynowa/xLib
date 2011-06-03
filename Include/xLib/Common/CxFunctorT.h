@@ -37,14 +37,14 @@ class CxFunctorT {
 /*
 class thread_adapter {
     public:
-        thread_adapter(void (*func)(void *), void *param) : 
-            _func (func), 
+        thread_adapter(void (*func)(void *), void *param) :
+            _func (func),
             _param(param)
         {
         }
 
-        void operator()() const { 
-            _func(_param); 
+        void operator()() const {
+            _func(_param);
         }
 
     private:

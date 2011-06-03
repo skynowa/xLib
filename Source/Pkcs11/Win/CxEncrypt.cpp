@@ -16,31 +16,35 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxEncrypt ()
-CxEncrypt::CxEncrypt(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
+CxEncrypt::CxEncrypt(
+    const CxPkcs11  &cPkcs11,
+    const CxSession &cSession
+) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxEncrypt ()
+/*virtual*/
 CxEncrypt::~CxEncrypt() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bInit (initializes an encryption operation)
 BOOL
 CxEncrypt::bInit(
-    CK_MECHANISM_PTR  pMechanism,  /* the encryption mechanism */
-    CK_OBJECT_HANDLE  hKey         /* handle of encryption key */
+    CK_MECHANISM_PTR pMechanism,  /* the encryption mechanism */
+    CK_OBJECT_HANDLE hKey         /* handle of encryption key */
 )
 {
     /*DEBUG*/
@@ -49,15 +53,15 @@ CxEncrypt::bInit(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
 //TODO: bMake (encrypts single-part data)
 BOOL
 CxEncrypt::bMake(
-    CK_BYTE_PTR       pData,               /* the plaintext data */
-    CK_ULONG          ulDataLen,           /* bytes of plaintext */
-    CK_BYTE_PTR       pEncryptedData,      /* gets ciphertext */
-    CK_ULONG_PTR      pulEncryptedDataLen  /* gets c-text size */
+    CK_BYTE_PTR  pData,               /* the plaintext data */
+    CK_ULONG     ulDataLen,           /* bytes of plaintext */
+    CK_BYTE_PTR  pEncryptedData,      /* gets ciphertext */
+    CK_ULONG_PTR pulEncryptedDataLen  /* gets c-text size */
 )
 {
     /*DEBUG*/
@@ -66,15 +70,15 @@ CxEncrypt::bMake(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
 //TODO: bUpdate (continues a multiple-part encryption operation)
 BOOL
 CxEncrypt::bUpdate(
-    CK_BYTE_PTR       pPart,              /* the plaintext data */
-    CK_ULONG          ulPartLen,          /* plaintext data len */
-    CK_BYTE_PTR       pEncryptedPart,     /* gets ciphertext */
-    CK_ULONG_PTR      pulEncryptedPartLen /* gets c-text size */
+    CK_BYTE_PTR  pPart,              /* the plaintext data */
+    CK_ULONG     ulPartLen,          /* plaintext data len */
+    CK_BYTE_PTR  pEncryptedPart,     /* gets ciphertext */
+    CK_ULONG_PTR pulEncryptedPartLen /* gets c-text size */
 )
 {
     /*DEBUG*/
@@ -83,13 +87,13 @@ CxEncrypt::bUpdate(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
 //TODO: bFinal (finishes a multiple-part encryption operation)
 BOOL
 CxEncrypt::bFinal(
-    CK_BYTE_PTR       pLastEncryptedPart,      /* last c-text */
-    CK_ULONG_PTR      pulLastEncryptedPartLen  /* gets last size */
+    CK_BYTE_PTR  pLastEncryptedPart,      /* last c-text */
+    CK_ULONG_PTR pulLastEncryptedPartLen  /* gets last size */
 )
 {
     /*DEBUG*/
@@ -98,20 +102,25 @@ CxEncrypt::bFinal(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*    Public utils                                                         
-*                                                                            
+*    Public utils
+*
 *****************************************************************************/
-
 
 //---------------------------------------------------------------------------
 //TODO: bMakeFile ()
 BOOL
-CxEncrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey) {
+CxEncrypt::bMakeFile(
+    const tString    &csInFilePath,
+    const tString    &csOutFilePath,
+    CK_MECHANISM_PTR  pMechanism,
+    CK_OBJECT_HANDLE  hKey
+)
+{
     /*DEBUG*/xASSERT_RET(false == csInFilePath.empty(),  FALSE);
     /*DEBUG*/xASSERT_RET(false == csOutFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pMechanism,            FALSE);
@@ -120,17 +129,17 @@ CxEncrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, 
     //-------------------------------------
     //������ ����� � �����
     uString usPlainData;        //����� ��� ����������
-    
+
     {
         CxStdioFile sfFileRaw;
-        
+
         _m_bRes = sfFileRaw.bOpen(csInFilePath, CxStdioFile::omBinRead, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileRaw.bRead(&usPlainData);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-    }    
-    
+    }
+
     //-------------------------------------
     //���������� ������
     ULONG ulPadSize  = 128 - 11;  //��� RSA 117-����.����� �����, 128-������������� ����
@@ -138,11 +147,11 @@ CxEncrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, 
     ULONG ulOffset2  = 0;
     ULONG ulResEncryptSize = 0;
 
-    ////CK_BYTE  usEncryptedData[128]  = {0}; 
+    ////CK_BYTE  usEncryptedData[128]  = {0};
     const ULONG          g_culBuffSize    = 8192 * 4;  //FIX_ME:
-    uString  usEncryptedData;    usEncryptedData.resize(g_culBuffSize);     
+    uString  usEncryptedData;    usEncryptedData.resize(g_culBuffSize);
     CK_ULONG usEncryptedDataSize = g_culBuffSize;
-        
+
     {
         size_t uiDataSize = usPlainData.size();
         for (ulOffset = 0; ulOffset < uiDataSize; ulOffset += ulPadSize) {
@@ -156,14 +165,14 @@ CxEncrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, 
 
             _m_bRes = bMake(&usPlainData[0] + ulOffset, ulPadSize, &usEncryptedData[0] + ulOffset2, &usEncryptedDataSize);
             xCHECK_RET(FALSE == _m_bRes, FALSE);
-            
+
             ulOffset2 += usEncryptedDataSize;
         }
         ulResEncryptSize = ulOffset2;
     }
     usEncryptedData.resize(ulResEncryptSize);
-    
-    
+
+
     //-------------------------------------
     //������ ����-������ � ����
     {
@@ -178,15 +187,4 @@ CxEncrypt::bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, 
 
     return TRUE;
 }
-//---------------------------------------------------------------------------
-
-        
-        
-        
-
-/****************************************************************************
-*    Private methods                                                         
-*                                                                            
-*****************************************************************************/
-
 //---------------------------------------------------------------------------

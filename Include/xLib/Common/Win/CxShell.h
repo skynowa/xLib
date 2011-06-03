@@ -17,7 +17,9 @@
 #include <shlwapi.h>
 #include <shlobj.h>
 //---------------------------------------------------------------------------
-class CxShell : public CxNonCopyable {
+class CxShell :
+    public CxNonCopyable
+{
      public:
         //operations
         enum EOperation {

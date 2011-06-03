@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxHttpClient {
+class CxHttpClient :
+    public CxNonCopyable
+{
     public:
         //status line
         class CxStatusLine;

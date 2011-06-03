@@ -13,11 +13,13 @@
 #define xLib_Common_CxNonCopyableH
 //---------------------------------------------------------------------------
 class CxNonCopyable {
+   public:
+
    protected:
               CxNonCopyable() /*throw ()*/ {}
              ~CxNonCopyable() /*throw ()*/ {}
-      
-   private: 
+
+   private:
               //--CxNonCopyable(      CxNonCopyable &);
               CxNonCopyable(const CxNonCopyable &);
 

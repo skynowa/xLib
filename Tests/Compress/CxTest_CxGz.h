@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Compress/Linux/CxGz.h>
 //---------------------------------------------------------------------------
-class CxTest_CxGz : public CxTest {
+class CxTest_CxGz :
+    public CxTest
+{
 	public:
 		CxTest_CxGz();
 		virtual     ~CxTest_CxGz();

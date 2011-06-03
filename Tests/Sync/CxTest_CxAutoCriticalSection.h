@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxAutoCriticalSection.h>
 //---------------------------------------------------------------------------
-class CxTest_CxAutoCriticalSection : public CxTest {
+class CxTest_CxAutoCriticalSection :
+    public CxTest
+{
 	public:
 		CxTest_CxAutoCriticalSection();
 		virtual     ~CxTest_CxAutoCriticalSection();

@@ -13,18 +13,18 @@
 //DONE: CxReport (constructor)
 template<class T>
 CxReport::CxReport(
-        const EType   &crtType,
-        const T       &cVarT1,
-        const T       &cVarT2,
-        const tString &csExp1,
-        const tString &csExp2,
-        const ULONG    culLastError,
-        const tString &csFile,
-        const ULONG    culLine,
-        const tString &csFunc,
-        const tString &csDate,
-        const tString &csTime,
-        const tString &csComment
+    const EType   &crtType,
+    const T       &cVarT1,
+    const T       &cVarT2,
+    const tString &csExp1,
+    const tString &csExp2,
+    const ULONG    culLastError,
+    const tString &csFile,
+    const ULONG    culLine,
+    const tString &csFunc,
+    const tString &csDate,
+    const tString &csTime,
+    const tString &csComment
 ) :
     _m_rtType         (rtUnknown),
     _m_sReport        (),

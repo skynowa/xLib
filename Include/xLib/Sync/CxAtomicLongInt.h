@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxAtomicLongInt : public CxNonCopyable {  
+class CxAtomicLongInt :
+    public CxNonCopyable
+{
     public:
                          CxAtomicLongInt();
         virtual         ~CxAtomicLongInt();
@@ -42,11 +44,11 @@ class CxAtomicLongInt : public CxNonCopyable {
 
 /*
 //Performs an atomic addition operation on the specified LONG values.
-InterlockedAdd    
+InterlockedAdd
 //Performs an atomic addition operation on the specified LONGLONG values.
 InterlockedAdd64
 //Performs an atomic addition operation on the specified LONG values. The operation is performed with acquire memory access semantics.
-InterlockedAddAcquire    
+InterlockedAddAcquire
 //Performs an atomic addition operation on the specified LONGLONG values. The operation is performed with acquire memory access semantics.
 InterlockedAddAcquire64
 //Performs an atomic addition operation on the specified LONG values. The operation is performed with release memory access semantics.

@@ -14,13 +14,17 @@
 
 /****************************************************************************
 *    public
-*                                                                            
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxAutoProfiler (constructor)
-CxAutoProfiler::CxAutoProfiler(const tString &csFilePath, CxProfiler::EMode pmMode, LPCTSTR pcszComment, ...) :
-    _m_pfProfiler(csFilePath, pmMode),
+//DONE: CxAutoProfiler
+CxAutoProfiler::CxAutoProfiler(
+    const tString           &csFilePath,
+    const CxProfiler::EMode  cpmMode,
+    LPCTSTR                  pcszComment, ...
+) :
+    _m_pfProfiler(csFilePath, cpmMode),
     _m_sComment  ()
 {
     //-------------------------------------
@@ -31,14 +35,14 @@ CxAutoProfiler::CxAutoProfiler(const tString &csFilePath, CxProfiler::EMode pmMo
     _m_sComment = CxString::sFormatV(pcszComment, palArgs);
 
     va_end(palArgs);
-    
+
     //-------------------------------------
     //start
     _m_pfProfiler.bStart();
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxAutoProfiler (destructor)
+//DONE: ~CxAutoProfiler
 /*virtual*/
 CxAutoProfiler::~CxAutoProfiler() {
     _m_pfProfiler.bStop(_m_sComment.c_str());

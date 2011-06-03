@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxSocket.h>
 //---------------------------------------------------------------------------
-class CxDnsClient : public CxNonCopyable {
+class CxDnsClient :
+    public CxNonCopyable
+{
     public:
         static BOOL bGetHostAddrByName  (const tString &csHostName, tString *psHostAddr);
         static BOOL bGetHostNameByAddr  (const tString &csHostAddr, CxSocket::EAddressFamily afFamily, tString *psHostName);

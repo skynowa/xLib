@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxSleeper.h>
 //---------------------------------------------------------------------------
-class CxTest_CxSleeper : public CxTest {
+class CxTest_CxSleeper :
+    public CxTest
+{
 	public:
 		CxTest_CxSleeper();
 		virtual     ~CxTest_CxSleeper();

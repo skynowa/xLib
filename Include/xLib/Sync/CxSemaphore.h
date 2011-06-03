@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
-class CxSemaphore : public CxNonCopyable {
+class CxSemaphore :
+    public CxNonCopyable
+{
     public:
                         CxSemaphore();
         virtual        ~CxSemaphore();

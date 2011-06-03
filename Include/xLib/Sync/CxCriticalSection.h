@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
-class CxCriticalSection : public CxNonCopyable {
+class CxCriticalSection :
+    public CxNonCopyable
+{
     public:
                           CxCriticalSection();
         explicit          CxCriticalSection(ULONG ulSpinCount);

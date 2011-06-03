@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxTls : public CxNonCopyable {
+class CxTls :
+    public CxNonCopyable
+{
     public:
                  CxTls();
         virtual ~CxTls();

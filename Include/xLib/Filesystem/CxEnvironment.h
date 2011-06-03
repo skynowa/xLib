@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxEnvironment : public CxNonCopyable {
+class CxEnvironment :
+    public CxNonCopyable
+{
     public:
         static BOOL    bIsExists          (const tString &csVarName);
         static tString sGetVar            (const tString &csVarName);

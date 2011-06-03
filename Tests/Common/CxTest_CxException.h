@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxException.h>
 //---------------------------------------------------------------------------
-class CxTest_CxException : public CxTest {
+class CxTest_CxException :
+    public CxTest
+{
     public:
         CxTest_CxException();
         virtual     ~CxTest_CxException();

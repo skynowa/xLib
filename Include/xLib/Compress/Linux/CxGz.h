@@ -41,7 +41,9 @@
 
 #define OS_CODE         3    /* Unix */
 //---------------------------------------------------------------------------
-class CxGz : public CxNonCopyable {
+class CxGz :
+    public CxNonCopyable
+{
     public:
                  CxGz         ();
         virtual ~CxGz         ();

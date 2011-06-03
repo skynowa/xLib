@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxCpuUsage : CxNonCopyable {
+class CxCpuUsage :
+    public CxNonCopyable
+{
     public:
                       CxCpuUsage ();
         virtual      ~CxCpuUsage ();

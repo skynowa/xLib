@@ -26,7 +26,9 @@
     // -lmysqlclient
 #endif
 //---------------------------------------------------------------------------
-class CxMySQLConnection : public CxNonCopyable  {
+class CxMySQLConnection :
+    public CxNonCopyable
+{
     public:
                                  CxMySQLConnection();
         virtual                 ~CxMySQLConnection();
@@ -47,7 +49,9 @@ class CxMySQLConnection : public CxNonCopyable  {
         MYSQL                   *_m_pmsConnection;
 };
 //---------------------------------------------------------------------------
-class CxMySQLRecordset : public CxNonCopyable {
+class CxMySQLRecordset :
+    public CxNonCopyable
+{
     public:
                                  CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const BOOL cbIsUseResult);
         virtual                 ~CxMySQLRecordset ();

@@ -16,7 +16,9 @@
 #include <xLib/Common/Win/CxHandle.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
 //---------------------------------------------------------------------------
-class CxFile : public CxNonCopyable {
+class CxFile :
+    public CxNonCopyable
+{
     public:
         enum EGenericRights {
             grAll     = GENERIC_ALL,

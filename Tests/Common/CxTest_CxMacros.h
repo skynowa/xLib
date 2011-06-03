@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxMacros.h>
 //---------------------------------------------------------------------------
-class CxTest_CxMacros : public CxTest {
+class CxTest_CxMacros :
+    public CxTest
+{
     public:
         CxTest_CxMacros();
         virtual     ~CxTest_CxMacros();

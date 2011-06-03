@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
-class CxSleeper : public CxNonCopyable {
+class CxSleeper :
+    public CxNonCopyable
+{
     public:
                   CxSleeper  ();
         virtual ~CxSleeper  ();
@@ -25,7 +27,7 @@ class CxSleeper : public CxNonCopyable {
         BOOL     bIsSleeping() const;
 
     private:
-        CxEvent _m_objEvent; 
+        CxEvent _m_objEvent;
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxSleeperH

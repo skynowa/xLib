@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Db/CxConnectionString.h>
 //---------------------------------------------------------------------------
-class CxTest_CxConnectionString : public CxTest {
+class CxTest_CxConnectionString :
+    public CxTest
+{
 	public:
 		CxTest_CxConnectionString();
 		virtual     ~CxTest_CxConnectionString();

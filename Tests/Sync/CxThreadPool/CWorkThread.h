@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CWorkThread
-* Description: рабочий поток
+* Description: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 * File name:   CWorkThread.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -20,7 +20,9 @@
 #include <string>
 #include <vector>
 //---------------------------------------------------------------------------
-class CWorkThread : public CxThread {
+class CWorkThread :
+    public CxThread
+{
 	public:
 		size_t       m_uiIndex;
 

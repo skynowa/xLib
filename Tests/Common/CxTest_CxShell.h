@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/Win/CxShell.h>
 //---------------------------------------------------------------------------
-class CxTest_CxShell : public CxTest {
+class CxTest_CxShell :
+    public CxTest
+{
     public:
         CxTest_CxShell();
         virtual     ~CxTest_CxShell();

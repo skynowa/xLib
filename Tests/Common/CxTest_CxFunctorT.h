@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxFunctorT.h>
 //---------------------------------------------------------------------------
-class CxTest_CxFunctorT : public CxTest {
+class CxTest_CxFunctorT :
+    public CxTest
+{
     public:
                     CxTest_CxFunctorT();
         virtual     ~CxTest_CxFunctorT();

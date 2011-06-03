@@ -15,13 +15,16 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxDigest ()
-CxDigest::CxDigest(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
+CxDigest::CxDigest(
+    const CxPkcs11  &cPkcs11,
+    const CxSession &cSession
+) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
@@ -31,6 +34,7 @@ CxDigest::CxDigest(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxDigest ()
+/*virtual*/
 CxDigest::~CxDigest() {
     //code
 }
@@ -38,10 +42,10 @@ CxDigest::~CxDigest() {
 //TODO: bMake (digests data in a single part)
 BOOL
 CxDigest::bMake(
-    CK_BYTE_PTR       pData,        /* data to be digested */
-    CK_ULONG          ulDataLen,    /* bytes of data to digest */
-    CK_BYTE_PTR       pDigest,      /* gets the message digest */
-    CK_ULONG_PTR      pulDigestLen  /* gets digest length */
+    CK_BYTE_PTR  pData,        /* data to be digested */
+    CK_ULONG     ulDataLen,    /* bytes of data to digest */
+    CK_BYTE_PTR  pDigest,      /* gets the message digest */
+    CK_ULONG_PTR pulDigestLen  /* gets digest length */
 )
 {
     /*DEBUG*/
@@ -55,10 +59,10 @@ CxDigest::bMake(
 //TODO: bEncryptUpdate (continues a multiple-part digesting and encryption operation)
 BOOL
 CxDigest::bEncryptUpdate(
-    CK_BYTE_PTR       pPart,               /* the plaintext data */
-    CK_ULONG          ulPartLen,           /* plaintext length */
-    CK_BYTE_PTR       pEncryptedPart,      /* gets ciphertext */
-    CK_ULONG_PTR      pulEncryptedPartLen  /* gets c-text length */)
+    CK_BYTE_PTR  pPart,               /* the plaintext data */
+    CK_ULONG     ulPartLen,           /* plaintext length */
+    CK_BYTE_PTR  pEncryptedPart,      /* gets ciphertext */
+    CK_ULONG_PTR pulEncryptedPartLen  /* gets c-text length */)
 {
     /*DEBUG*/
 
@@ -66,13 +70,13 @@ CxDigest::bEncryptUpdate(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-}    
+}
 //---------------------------------------------------------------------------
 //TODO: bFinal (finishes a multiple-part message-digesting operation)
 BOOL
 CxDigest::bFinal(
-    CK_BYTE_PTR       pDigest,      /* gets the message digest */
-    CK_ULONG_PTR      pulDigestLen  /* gets byte count of digest */
+    CK_BYTE_PTR  pDigest,      /* gets the message digest */
+    CK_ULONG_PTR pulDigestLen  /* gets byte count of digest */
 )
 {
     /*DEBUG*/
@@ -81,12 +85,12 @@ CxDigest::bFinal(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-}    
+}
 //---------------------------------------------------------------------------
 //TODO: bInit (initializes a message-digesting operation)
 BOOL
 CxDigest::bInit(
-    CK_MECHANISM_PTR  pMechanism  /* the digesting mechanism */
+    CK_MECHANISM_PTR pMechanism  /* the digesting mechanism */
 )
 {
     /*DEBUG*/
@@ -100,7 +104,7 @@ CxDigest::bInit(
 //TODO: bKey (continues a multi-part message-digesting operation, by digesting the value of a secret key as part of the data already digested)
 BOOL
 CxDigest::bKey(
-    CK_OBJECT_HANDLE  hKey       /* secret key to digest */
+    CK_OBJECT_HANDLE hKey       /* secret key to digest */
 )
 {
     /*DEBUG*/
@@ -114,8 +118,8 @@ CxDigest::bKey(
 //TODO: bUpdate (continues a multiple-part message-digesting operation)
 BOOL
 CxDigest::bUpdate(
-    CK_BYTE_PTR       pPart,     /* data to be digested */
-    CK_ULONG          ulPartLen  /* bytes of data to be digested */
+    CK_BYTE_PTR pPart,     /* data to be digested */
+    CK_ULONG    ulPartLen  /* bytes of data to be digested */
 )
 {
     /*DEBUG*/
@@ -125,13 +129,4 @@ CxDigest::bUpdate(
 
     return TRUE;
 }
-//---------------------------------------------------------------------------
-
-
-
-/****************************************************************************
-*    Private methods                                                         
-*                                                                            
-*****************************************************************************/
-
 //---------------------------------------------------------------------------

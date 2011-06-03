@@ -23,11 +23,11 @@ class CxLastError :
         static BOOL    bReset     ();
         static tString sFormat    (const ULONG culCode);
 
-        /*
-        GetErrorMode
-        SetErrorMode
-        SetThreadErrorMode
-        */
+        #if xTODO
+            GetErrorMode
+            SetErrorMode
+            SetThreadErrorMode
+        #endif
 
     private:
                        CxLastError();

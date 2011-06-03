@@ -16,8 +16,10 @@
 #include <xLib/Net/CxSocket.h>
 //---------------------------------------------------------------------------
 //TODO: bIsReadable repeats from CxSocket
-class CxTcpClientSocket : public CxSocket { 
-    public: 
+class CxTcpClientSocket :
+    public CxSocket
+{
+    public:
                     CxTcpClientSocket  ();
         virtual    ~CxTcpClientSocket  ();
 
@@ -32,9 +34,9 @@ class CxTcpClientSocket : public CxSocket {
 
         static BOOL bIsServerAlive     (const tString &csIp, USHORT usPort);
 
-    protected: 
+    protected:
         timeval     _m_tvTimeout;
-}; 
+};
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxTcpClientSocketH
 
@@ -58,4 +60,4 @@ Connect to the server.
 Send and receive data.
 Disconnect.
 */
- 
+

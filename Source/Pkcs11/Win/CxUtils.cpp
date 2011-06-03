@@ -14,14 +14,17 @@
 
 /****************************************************************************
 *    public
-*                                                                            
+*
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
 //TODO: CxUtils::sErrorStr (get error string by code, SDK 4.53)
-/*static*/ 
+/*static*/
 tString
-CxUtils::sErrorStr(CK_RV ulCode) {
+CxUtils::sErrorStr(
+    CK_RV ulCode
+)
+{
     /*DEBUG*/// ulCode - n/a
 
     tString sRes;
@@ -113,16 +116,16 @@ CxUtils::sErrorStr(CK_RV ulCode) {
         case CKR_MUTEX_NOT_LOCKED:                 sRes.assign(xT("CKR_MUTEX_NOT_LOCKED"));
         case CKR_FUNCTION_REJECTED:                sRes.assign(xT("CKR_FUNCTION_REJECTED"));            /*new SDK 4.53*/
         case CKR_VENDOR_DEFINED:                   sRes.assign(xT("CKR_VENDOR_DEFINED"));
-        case CKR_SAPI_OBJECT_DOES_NOT_EXIST:       sRes.assign(xT("CKR_SAPI_OBJECT_DOES_NOT_EXIST"));    /*new SDK 4.53*/
-        case CKR_SAPI_OBJECT_ALREADY_EXISTS:       sRes.assign(xT("CKR_SAPI_OBJECT_ALREADY_EXISTS"));    /*new SDK 4.53*/
-        case CKR_SAPI_NOT_SUPPORTED_BY_TOKEN:      sRes.assign(xT("CKR_SAPI_NOT_SUPPORTED_BY_TOKEN"));    /*new SDK 4.53*/
-        case CKR_SAPI_PIN_QUALITY:                 sRes.assign(xT("CKR_SAPI_PIN_QUALITY"));                /*new SDK 4.53*/
-        case CKR_SAPI_PIN_DEFAULT:                 sRes.assign(xT("CKR_SAPI_PIN_DEFAULT"));                /*new SDK 4.53*/
-        case CKR_SAPI_PIN_EXPIRATION:              sRes.assign(xT("CKR_SAPI_PIN_EXPIRATION"));            /*new SDK 4.53*/
+        case CKR_SAPI_OBJECT_DOES_NOT_EXIST:       sRes.assign(xT("CKR_SAPI_OBJECT_DOES_NOT_EXIST"));   /*new SDK 4.53*/
+        case CKR_SAPI_OBJECT_ALREADY_EXISTS:       sRes.assign(xT("CKR_SAPI_OBJECT_ALREADY_EXISTS"));   /*new SDK 4.53*/
+        case CKR_SAPI_NOT_SUPPORTED_BY_TOKEN:      sRes.assign(xT("CKR_SAPI_NOT_SUPPORTED_BY_TOKEN"));  /*new SDK 4.53*/
+        case CKR_SAPI_PIN_QUALITY:                 sRes.assign(xT("CKR_SAPI_PIN_QUALITY"));             /*new SDK 4.53*/
+        case CKR_SAPI_PIN_DEFAULT:                 sRes.assign(xT("CKR_SAPI_PIN_DEFAULT"));             /*new SDK 4.53*/
+        case CKR_SAPI_PIN_EXPIRATION:              sRes.assign(xT("CKR_SAPI_PIN_EXPIRATION"));          /*new SDK 4.53*/
         case CKR_SAPI_PIN_CHANGE_NOT_ALLOWED:      sRes.assign(xT("CKR_SAPI_PIN_CHANGE_NOT_ALLOWED"));  /*new SDK 4.53*/
-        case CKR_SAPI_CANCELLED:                    sRes.assign(xT("CKR_SAPI_CANCELLED"));                /*new SDK 4.53*/
-        case CKR_NEW_PIN_MODE:                     sRes.assign(xT("CKR_NEW_PIN_MODE"));                    /*new SDK 4.53*/
-        case CKR_NEXT_OTP:                         sRes.assign(xT("CKR_NEXT_OTP"));                        /*new SDK 4.53*/
+        case CKR_SAPI_CANCELLED:                   sRes.assign(xT("CKR_SAPI_CANCELLED"));               /*new SDK 4.53*/
+        case CKR_NEW_PIN_MODE:                     sRes.assign(xT("CKR_NEW_PIN_MODE"));                 /*new SDK 4.53*/
+        case CKR_NEXT_OTP:                         sRes.assign(xT("CKR_NEXT_OTP"));                     /*new SDK 4.53*/
 
         default:                                   sRes.assign(xT("CKR_UNKNOWN_ERROR"));
     }
@@ -144,6 +147,7 @@ CxUtils::CxUtils() {
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxUtils ()
+/*virtual*/
 CxUtils::~CxUtils() {
 
 }

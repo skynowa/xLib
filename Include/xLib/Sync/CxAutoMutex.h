@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxMutex.h>
 //---------------------------------------------------------------------------
-class CxAutoMutex : public CxNonCopyable {
+class CxAutoMutex :
+    public CxNonCopyable
+{
     public:
                  CxAutoMutex(CxMutex &mtMutex);
         virtual ~CxAutoMutex();

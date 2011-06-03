@@ -15,24 +15,28 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxPin ()
-CxPin::CxPin(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
+CxPin::CxPin(
+    const CxPkcs11  &cPkcs11,
+    const CxSession &cSession
+) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxPin ()
+/*virtual*/
 CxPin::~CxPin() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bInitToken (initializes a token)
@@ -55,8 +59,8 @@ CxPin::bInitToken(
 //TODO: bInitPIN (initializes the normal user's PIN)
 BOOL
 CxPin::bInitPIN(
-    CK_UTF8CHAR_PTR   pPin,      /* the normal user's PIN */
-    CK_ULONG          ulPinLen   /* length in bytes of the PIN */
+    CK_UTF8CHAR_PTR pPin,      /* the normal user's PIN */
+    CK_ULONG        ulPinLen   /* length in bytes of the PIN */
 )
 {
     /*DEBUG*/
@@ -70,11 +74,11 @@ CxPin::bInitPIN(
 //TODO: bSetPIN (modifies the PIN of the user who is logged in)
 BOOL
 CxPin::bSetPIN(
-    CK_UTF8CHAR_PTR   pOldPin,   /* the old PIN */
-    CK_ULONG          ulOldLen,  /* length of the old PIN */
-    CK_UTF8CHAR_PTR   pNewPin,   /* the new PIN */
-    CK_ULONG          ulNewLen   /* length of the new PIN */
-) 
+    CK_UTF8CHAR_PTR pOldPin,   /* the old PIN */
+    CK_ULONG        ulOldLen,  /* length of the old PIN */
+    CK_UTF8CHAR_PTR pNewPin,   /* the new PIN */
+    CK_ULONG        ulNewLen   /* length of the new PIN */
+)
 {
     /*DEBUG*/
 
@@ -83,14 +87,4 @@ CxPin::bSetPIN(
 
     return TRUE;
 }
-//---------------------------------------------------------------------------
-
-
-
-
-/****************************************************************************
-*    Private methods                                                         
-*                                                                            
-*****************************************************************************/
-
 //---------------------------------------------------------------------------

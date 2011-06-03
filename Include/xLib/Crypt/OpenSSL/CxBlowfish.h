@@ -21,7 +21,9 @@
     // n/a
 #endif
 //---------------------------------------------------------------------------
-class CxBlowfish : public CxNonCopyable {
+class CxBlowfish :
+    public CxNonCopyable
+{
     private:
         enum {
             MAX_KEY_SIZE = 56, //max key size 448 bit (56 byte)

@@ -23,11 +23,8 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxTest (constructor)
+//DONE: CxTest
 CxTest::CxTest() :
-    _m_bRes        (FALSE),
-    _m_sWorkDirPath(),
-    _m_sName       (),
     m_pvRes        (NULL),
     m_chRes        (0),
     m_blRes        (false),
@@ -45,18 +42,20 @@ CxTest::CxTest() :
     m_sRes         (),
     m_usRes        (),
     m_vecsRes      (),
-    m_mapsRes      ()
+    m_mapsRes      (),
 #if defined(xOS_WIN)
-    ,
     m_hRes         (INVALID_HANDLE_VALUE),
-    m_hwndRes      (NULL)
+    m_hwndRes      (NULL),
 #endif
+    _m_bRes        (FALSE),
+    _m_sWorkDirPath(),
+    _m_sName       ()
 {
     _m_bRes = bCreateWorkDir(xT("Temp for tests"));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest (destructor)
+//DONE: ~CxTest
 /*virtual*/
 CxTest::~CxTest() /* = 0*/ {
     _m_bRes = CxDir::bDeleteForce( sGetWorkDirPath() );
@@ -73,10 +72,10 @@ CxTest::bRun(
 
     //xTRACEV("Test (%s) begin.", sGetName().c_str());
 
-    const ULONGLONG ullInfiniteLoops = 0;
+    const ULONGLONG cullInfiniteLoops = 0;
 
     try {
-        if (ullInfiniteLoops == cullLoops) {
+        if (cullInfiniteLoops == cullLoops) {
             //infinite
             for ( ;  ; ) {
                 _m_bRes = bUnit();

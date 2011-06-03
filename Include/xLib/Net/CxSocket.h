@@ -18,7 +18,9 @@
     typedef INT SOCKET;
 #endif
 //---------------------------------------------------------------------------
-class CxSocket : public CxNonCopyable {
+class CxSocket :
+    public CxNonCopyable
+{
     public:
         /****************************************************************************
         *   constants

@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Units/bGetUsbInfo.h>
 //---------------------------------------------------------------------------
-class CxTest_bGetUsbInfo : public CxTest {
+class CxTest_bGetUsbInfo :
+    public CxTest
+{
 	public:
 		CxTest_bGetUsbInfo();
 		virtual     ~CxTest_bGetUsbInfo();

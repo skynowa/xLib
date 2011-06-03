@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Crypt/CxRandom.h>
 //---------------------------------------------------------------------------
-class CxTest_CxRandom : public CxTest {
+class CxTest_CxRandom :
+    public CxTest
+{
 	public:
 		CxTest_CxRandom();
 		virtual     ~CxTest_CxRandom();

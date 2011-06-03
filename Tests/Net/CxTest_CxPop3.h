@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxPop3.h>
 //---------------------------------------------------------------------------
-class CxTest_CxPop3 : public CxTest {
+class CxTest_CxPop3 :
+    public CxTest
+{
 	public:
 		CxTest_CxPop3();
 		virtual     ~CxTest_CxPop3();

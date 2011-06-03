@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxString.h>
 //---------------------------------------------------------------------------
-class CxTest_CxString : public CxTest {
+class CxTest_CxString :
+    public CxTest
+{
     public:
         CxTest_CxString();
         virtual     ~CxTest_CxString();

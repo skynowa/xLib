@@ -17,7 +17,9 @@
 #include <xLib/Common/Win/CxHandle.h>
 #include <xLib/Sync/CxProcess.h>
 //---------------------------------------------------------------------------
-class CxTest_CxHandleT : public CxTest {
+class CxTest_CxHandleT :
+    public CxTest
+{
     public:
         CxTest_CxHandleT();
         virtual     ~CxTest_CxHandleT();
