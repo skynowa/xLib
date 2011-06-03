@@ -13,7 +13,7 @@
 #define xLib_Pkcs11_CxPkcs11H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Pkcs11/Common.h>
+#include <xLib/Pkcs11/Win/Common.h>
 #include <xLib/Filesystem/CxDll.h>
 //---------------------------------------------------------------------------
 class CxPkcs11 :

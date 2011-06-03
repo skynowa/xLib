@@ -9,9 +9,9 @@
 *****************************************************************************/
 
 
-#include <xLib/Pkcs11/CxMechanism.h>
+#include <xLib/Pkcs11/Win/CxMechanism.h>
 
-#include <xLib/Pkcs11/CxUtils.h>
+#include <xLib/Pkcs11/Win/CxUtils.h>
 
 
 /****************************************************************************

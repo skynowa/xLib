@@ -9,9 +9,9 @@
 *****************************************************************************/
 
 
-#include <xLib/Pkcs11/CxLogin.h>
+#include <xLib/Pkcs11/Win/CxLogin.h>
 
-#include <xLib/Pkcs11/CxUtils.h>
+#include <xLib/Pkcs11/Win/CxUtils.h>
 #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 
 

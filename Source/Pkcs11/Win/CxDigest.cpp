@@ -9,9 +9,9 @@
 *****************************************************************************/
 
 
-#include <xLib/Pkcs11/CxDigest.h>
+#include <xLib/Pkcs11/Win/CxDigest.h>
 
-#include <xLib/Pkcs11/CxUtils.h>
+#include <xLib/Pkcs11/Win/CxUtils.h>
 
 
 /****************************************************************************

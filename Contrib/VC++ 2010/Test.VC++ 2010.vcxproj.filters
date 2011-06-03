@@ -100,6 +100,12 @@
     <Filter Include="Test">
       <UniqueIdentifier>{8818f790-5372-46bb-903b-c889aa9462e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xLib\Pkcs11\Win">
+      <UniqueIdentifier>{1a5ae9be-b8e8-40d7-9e6c-90893d20d228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xLib\Pkcs11\Win\SDK">
+      <UniqueIdentifier>{f9abee5c-5f5d-4683-9c94-5a9203e778d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Crypt\CxBase64.cpp">
@@ -243,54 +249,6 @@
     <ClCompile Include="..\..\Source\Net\CxUri.cpp">
       <Filter>xLib\Net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxDecrypt.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxDigest.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxEncrypt.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxFunction.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxInfo.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxKey.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxLogin.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxMechanism.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxObject.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxPin.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxPkcs11.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxSession.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxSign.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxSlot.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxUtils.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Pkcs11\CxVerify.cpp">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Sync\CxAtomicLongInt.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
@@ -383,6 +341,54 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Test.cpp">
       <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxDecrypt.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxDigest.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxEncrypt.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxFunction.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxInfo.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxKey.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxLogin.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxMechanism.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxObject.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxPin.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxPkcs11.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxSession.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxSign.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxSlot.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxUtils.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pkcs11\Win\CxVerify.cpp">
+      <Filter>xLib\Pkcs11\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -487,60 +493,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Patterns\CxSingleton.h">
       <Filter>xLib\Patterns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\All.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\Common.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxDecrypt.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxDigest.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxEncrypt.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxFunction.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxInfo.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxKey.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxLogin.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxMechanism.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxObject.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxPin.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxPkcs11.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxSession.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxSign.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxSlot.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxUtils.h">
-      <Filter>xLib\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Pkcs11\CxVerify.h">
-      <Filter>xLib\Pkcs11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\CxAtomicLongInt.h">
       <Filter>xLib\Sync</Filter>
@@ -677,6 +629,81 @@
     <ClInclude Include="..\..\Include\xLib\Units\Win\bGetUsbInfo.h">
       <Filter>xLib\Units\Win</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\SDK\SDK 4.53\cryptoki.h">
+      <Filter>xLib\Pkcs11\Win\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\SDK\SDK 4.53\eTPkcs11.h">
+      <Filter>xLib\Pkcs11\Win\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\SDK\SDK 4.53\eTSAPI.h">
+      <Filter>xLib\Pkcs11\Win\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\SDK\SDK 4.53\otp-pkcs11.h">
+      <Filter>xLib\Pkcs11\Win\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\SDK\SDK 4.53\pkcs11.h">
+      <Filter>xLib\Pkcs11\Win\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\SDK\SDK 4.53\pkcs11f.h">
+      <Filter>xLib\Pkcs11\Win\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\SDK\SDK 4.53\pkcs11t.h">
+      <Filter>xLib\Pkcs11\Win\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\All.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\Common.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxDecrypt.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxDigest.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxEncrypt.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxFunction.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxInfo.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxKey.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxLogin.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxMechanism.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxObject.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxPin.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxPkcs11.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxSession.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxSign.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxSlot.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxUtils.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxVerify.h">
+      <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Source\Sync\CxThreadPool.inl">
@@ -684,6 +711,9 @@
     </None>
     <None Include="..\..\Source\Common\Win\CxHandleT.inl">
       <Filter>xLib\Common\Win</Filter>
+    </None>
+    <None Include="..\..\TODO.txt">
+      <Filter>Test</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

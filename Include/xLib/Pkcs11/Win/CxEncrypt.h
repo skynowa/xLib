@@ -13,9 +13,9 @@
 #define xLib_Pkcs11_CxEncryptH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Pkcs11/Common.h>
-#include <xLib/Pkcs11/CxPkcs11.h>
-#include <xLib/Pkcs11/CxSession.h>
+#include <xLib/Pkcs11/Win/Common.h>
+#include <xLib/Pkcs11/Win/CxPkcs11.h>
+#include <xLib/Pkcs11/Win/CxSession.h>
 //---------------------------------------------------------------------------
 class CxEncrypt :
     public CxNonCopyable

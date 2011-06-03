@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Pkcs11/All.h>
+#include <xLib/Pkcs11/Win/All.h>
 //---------------------------------------------------------------------------
 class CxTest_CxPkcs11 :
     public CxTest

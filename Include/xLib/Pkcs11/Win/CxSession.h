@@ -13,8 +13,8 @@
 #define xLib_Pkcs11_CxSessionH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Pkcs11/Common.h>
-#include <xLib/Pkcs11/CxPkcs11.h>
+#include <xLib/Pkcs11/Win/Common.h>
+#include <xLib/Pkcs11/Win/CxPkcs11.h>
 //---------------------------------------------------------------------------
 class CxSession :
     public CxNonCopyable

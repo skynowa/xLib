@@ -15,7 +15,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
-class CxWndLog
+class CxWndLog :
     public CxNonCopyable
 {
     public:

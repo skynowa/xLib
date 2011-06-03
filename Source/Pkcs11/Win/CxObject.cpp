@@ -9,10 +9,10 @@
 *****************************************************************************/
 
 
-#include <xLib/Pkcs11/CxObject.h>
+#include <xLib/Pkcs11/Win/CxObject.h>
 
-#include <xLib/Pkcs11/All.h>
-#include <xLib/Pkcs11/CxUtils.h>
+#include <xLib/Pkcs11/Win/All.h>
+#include <xLib/Pkcs11/Win/CxUtils.h>
 
 
 /****************************************************************************
