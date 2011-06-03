@@ -9,9 +9,9 @@
 *****************************************************************************/
 
 
-#include <xLib/Pkcs11/CxEncrypt.h>
+#include <xLib/Pkcs11/Win/CxEncrypt.h>
 
-#include <xLib/Pkcs11/CxUtils.h>
+#include <xLib/Pkcs11/Win/CxUtils.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 
 

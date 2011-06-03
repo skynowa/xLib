@@ -9,12 +9,12 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Pkcs11_CXUtilsH
-#define xLib_Pkcs11_CXUtilsH
+#ifndef xLib_Pkcs11_CxUtilsH
+#define xLib_Pkcs11_CxUtilsH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Pkcs11/Common.h>
-#include <xLib/Pkcs11/CxPkcs11.h>
+#include <xLib/Pkcs11/Win/Common.h>
+#include <xLib/Pkcs11/Win/CxPkcs11.h>
 //---------------------------------------------------------------------------
 class CxUtils :
     public CxNonCopyable
@@ -23,8 +23,8 @@ class CxUtils :
         static tString sErrorStr(CK_RV ulCode);
 
     private:
-        virtual        CxUtils  ();
-                      ~CxUtils  ();
+                       CxUtils  ();
+        virtual       ~CxUtils  ();
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CXUtilsH
+#endif    //xLib_Pkcs11_CxUtilsH
