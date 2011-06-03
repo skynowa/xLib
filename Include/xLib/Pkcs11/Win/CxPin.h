@@ -17,18 +17,23 @@
 #include <xLib/Pkcs11/CxPkcs11.h>
 #include <xLib/Pkcs11/CxSession.h>
 //---------------------------------------------------------------------------
-class CxPin : public CxNonCopyable {
+class CxPin :
+    public CxNonCopyable
+{
     public:
-                            CxPin     (const CxPkcs11 &cPkcs11, const CxSession &cSession);
-                           ~CxPin     ();
-       
-        BOOL                bInitToken(CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);        
-        BOOL                bInitPIN  (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);        
-        BOOL                bSetPIN   (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);    
-        
+                             CxPin         (const CxPkcs11 &cPkcs11, const CxSession &cSession);
+        virtual             ~CxPin         ();
+
+        BOOL                 bInitToken    (CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);
+        BOOL                 bInitPIN      (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
+        BOOL                 bSetPIN       (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
+
         //Utils
-        ////tString sChangeUserPin  (const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
-        ////tString sChangeSOPin    (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
+        #if xTODO
+        tString              sChangeUserPin(const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
+        tString              sChangeSOPin  (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
+        #endif
+
     private:
         BOOL                 _m_bRes;
         CK_RV                _m_ulRes;

@@ -1,30 +1,34 @@
 /****************************************************************************
-* Class name:  CxLogin
-* Description: Pkcs11 login
-* File name:   CxLogin.h
+* Class name:  CxFunction
+* Description: Pkcs11 function
+* File name:   CxFunction.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:03:30
+* Created:     01.03.2010 13:14:45
 *
 *****************************************************************************/
 
 
-#ifndef xLib_Pkcs11_CxLoginH
-#define xLib_Pkcs11_CxLoginH
+#ifndef xLib_Pkcs11_CxFunctionH
+#define xLib_Pkcs11_CxFunctionH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Pkcs11/Common.h>
 #include <xLib/Pkcs11/CxPkcs11.h>
 #include <xLib/Pkcs11/CxSession.h>
 //---------------------------------------------------------------------------
-class CxLogin : public CxNonCopyable {
+class CxFunction :
+    public CxNonCopyable
+{
     public:
-                             CxLogin(const CxPkcs11 &cPkcs11, const CxSession &cSession);
-                            ~CxLogin();
-       
-           BOOL                 bLogin (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);    
-        BOOL                 bLogout();    
-          
+                             CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession);
+        virtual             ~CxFunction();
+
+        BOOL                 bGetList  (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
+        BOOL                 bGetStatus();
+        BOOL                 bCancel   ();
+        BOOL                 bGetListEx();
+
     private:
         BOOL                 _m_bRes;
         CK_RV                _m_ulRes;
@@ -33,4 +37,4 @@ class CxLogin : public CxNonCopyable {
         CK_SESSION_HANDLE    _m_hSession;
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxLoginH
+#endif    //xLib_Pkcs11_CxFunctionH

@@ -1,29 +1,31 @@
 /****************************************************************************
-* Class name:  CxMechanism
-* Description: Pkcs11 mechanism
-* File name:   CxMechanism.h
+* Class name:  CxInfo
+* Description: Pkcs11 info
+* File name:   CxInfo.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:09:28
+* Created:     01.03.2010 13:08:14
 *
 *****************************************************************************/
 
 
-#ifndef xLib_Pkcs11_CxMechanismH
-#define xLib_Pkcs11_CxMechanismH
+#ifndef xLib_Pkcs11_CxInfoH
+#define xLib_Pkcs11_CxInfoH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Pkcs11/Common.h>
 #include <xLib/Pkcs11/CxPkcs11.h>
 //---------------------------------------------------------------------------
-class CxMechanism : public CxNonCopyable {
+class CxInfo :
+    public CxNonCopyable
+{
     public:
-                             CxMechanism(const CxPkcs11 &cPkcs11);
-                            ~CxMechanism();
-       
-           BOOL                 bGetInfo   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);        
-        BOOL                 bGetList   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);    
-        
+                             CxInfo   (const CxPkcs11 &cPkcs11);
+        virtual             ~CxInfo   ();
+
+        BOOL                 bGet     (CK_INFO_PTR pInfo);
+        BOOL                 bGetToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
+
     private:
         BOOL                 _m_bRes;
         CK_RV                _m_ulRes;
@@ -31,4 +33,4 @@ class CxMechanism : public CxNonCopyable {
         CK_FUNCTION_LIST_PTR _m_pFunc;
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxMechanismH
+#endif    //xLib_Pkcs11_CxInfoH
