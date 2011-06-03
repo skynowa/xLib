@@ -20,15 +20,15 @@
 class CxDigest : public CxNonCopyable {
     public:
                              CxDigest      (const CxPkcs11 &cPkcs11, const CxSession &cSession);
-                            ~CxDigest      ();
-       
-           BOOL                 bMake           (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pDigest, CK_ULONG_PTR pulDigestLen);
+        virtual             ~CxDigest      ();
+
+        BOOL                 bMake         (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pDigest, CK_ULONG_PTR pulDigestLen);
         BOOL                 bEncryptUpdate(CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
-        BOOL                 bFinal        (CK_BYTE_PTR pDigest, CK_ULONG_PTR pulDigestLen);        
-        BOOL                 bInit           (CK_MECHANISM_PTR pMechanism);
-        BOOL                 bKey           (CK_OBJECT_HANDLE hKey);    
+        BOOL                 bFinal        (CK_BYTE_PTR pDigest, CK_ULONG_PTR pulDigestLen);
+        BOOL                 bInit         (CK_MECHANISM_PTR pMechanism);
+        BOOL                 bKey          (CK_OBJECT_HANDLE hKey);
         BOOL                 bUpdate       (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
-           
+
     private:
         BOOL                 _m_bRes;
         CK_RV                _m_ulRes;

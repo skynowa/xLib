@@ -16,12 +16,14 @@
 #include <xLib/Pkcs11/Common.h>
 #include <xLib/Pkcs11/CxPkcs11.h>
 //---------------------------------------------------------------------------
-class CxUtils : public CxNonCopyable {
+class CxUtils :
+    public CxNonCopyable
+{
     public:
         static tString sErrorStr(CK_RV ulCode);
 
     private:
-                       CxUtils  ();
+        virtual        CxUtils  ();
                       ~CxUtils  ();
 };
 //---------------------------------------------------------------------------

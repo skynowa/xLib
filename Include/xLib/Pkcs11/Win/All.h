@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  All
-* Description: все заголовочные файлы
+* Description: all Pkcs11 classes
 * File name:   All.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -21,7 +21,9 @@
 #include <xLib/Pkcs11/CxSession.h>
 #include <xLib/Pkcs11/CxLogin.h>
 #include <xLib/Pkcs11/CxInfo.h>
-////#include <xLib/Pkcs11/CxeTokenInfo.h>
+#if xTODO
+    #include <xLib/Pkcs11/CxeTokenInfo.h>
+#endif
 #include <xLib/Pkcs11/CxPin.h>
 #include <xLib/Pkcs11/CxMechanism.h>
 #include <xLib/Pkcs11/CxObject.h>

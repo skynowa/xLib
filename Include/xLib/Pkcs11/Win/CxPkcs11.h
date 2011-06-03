@@ -16,23 +16,25 @@
 #include <xLib/Pkcs11/Common.h>
 #include <xLib/Filesystem/CxDll.h>
 //---------------------------------------------------------------------------
-class CxPkcs11 : public CxNonCopyable {
+class CxPkcs11 :
+    public CxNonCopyable
+{
     public:
-                             CxPkcs11        ();
-        virtual             ~CxPkcs11        ();
-        
-        CK_FUNCTION_LIST_PTR pGetFuncList    () const;
-        
+                             CxPkcs11      ();
+        virtual             ~CxPkcs11      ();
+
+        CK_FUNCTION_LIST_PTR pGetFuncList  () const;
+
    private:
         BOOL                 _m_bRes;
         CK_RV                _m_ulRes;
 
         CK_FUNCTION_LIST_PTR _m_pFunc;
-        CxDll                 _m_dllETPkcs11;
+        CxDll                _m_dllETPkcs11;
 
-        BOOL                 _bLoadETPkcs11  ();
-        BOOL                 bInitialize     ();    
-        BOOL                 bFinalize       ();    
+        BOOL                 _bLoadETPkcs11();
+        BOOL                 bInitialize   ();
+        BOOL                 bFinalize     ();
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Pkcs11_CxPkcs11H

@@ -16,22 +16,23 @@
 #include <xLib/Pkcs11/Common.h>
 #include <xLib/Pkcs11/CxPkcs11.h>
 //---------------------------------------------------------------------------
-class CxSlot : public CxNonCopyable {
+class CxSlot :
+    public CxNonCopyable
+{
     public:
-        //���������
         enum ENotification {
             nfError,
             nfInsertion,
             nfRemoval
         };
 
-                             CxSlot          (const CxPkcs11 &cPkcs11);
-                            ~CxSlot          ();
+                             CxSlot        (const CxPkcs11 &cPkcs11);
+        virtual             ~CxSlot        ();
 
-        BOOL                 bGetList        (CK_BBOOL bTokenPresent, std::vector<CK_SLOT_ID> *pvecSlotList);    
-        BOOL                 bGetInfo        (CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo);                                    
-        ENotification        nfWaitForEvent  (CK_FLAGS flags, CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pRserved);                
-           
+        BOOL                 bGetList      (CK_BBOOL bTokenPresent, std::vector<CK_SLOT_ID> *pvecSlotList);
+        BOOL                 bGetInfo      (CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo);
+        ENotification        nfWaitForEvent(CK_FLAGS flags, CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pRserved);
+
     private:
         BOOL                 _m_bRes;
         CK_RV                _m_ulRes;
