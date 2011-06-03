@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 //---------------------------------------------------------------------------
-class CxTest_CxStdioFile : public CxTest {
+class CxTest_CxStdioFile :
+    public CxTest
+{
 	public:
 		         CxTest_CxStdioFile();
 		virtual ~CxTest_CxStdioFile();

@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
-class CxString : public CxNonCopyable {
+class CxString :
+    public CxNonCopyable
+{
     public:
         template<class T>
         static  tString     lexical_cast     (const T &cValueT);

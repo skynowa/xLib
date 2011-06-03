@@ -22,7 +22,9 @@
     // -lcrypt -lssl -lcrypto
 #endif
 //---------------------------------------------------------------------------
-class CxBase64 : public CxNonCopyable {
+class CxBase64 :
+    public CxNonCopyable
+{
     public:
         static std::string sEncode     (const std::string &csStr);
         static std::string sDecode     (const std::string &csStr);

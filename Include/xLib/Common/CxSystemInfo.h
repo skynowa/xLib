@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxSystemInfo : public CxNonCopyable {
+class CxSystemInfo :
+    public CxNonCopyable
+{
    public:
         //OS version
         enum EOsType {

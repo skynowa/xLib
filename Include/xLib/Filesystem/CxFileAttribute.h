@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxFileAttribute : public CxNonCopyable {
+class CxFileAttribute :
+    public CxNonCopyable
+{
     public:
         enum EAttribute {
             //TODO: separate writable and readable attributes

@@ -18,7 +18,9 @@ namespace NxLib {
     typedef std::map<tString, tString> TIni;
 }
 
-class CxIni : public CxNonCopyable {
+class CxIni :
+    public CxNonCopyable
+{
     public:
                          CxIni          ();
         explicit         CxIni          (const tString &csFilePath);

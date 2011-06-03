@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxChar : public CxNonCopyable {
+class CxChar :
+    public CxNonCopyable
+{
     public:
         static BOOL  bIsAlphaNum(const TCHAR cchChar);
         static BOOL  bIsAlpha   (const TCHAR cchChar);

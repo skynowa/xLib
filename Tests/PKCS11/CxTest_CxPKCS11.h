@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Pkcs11/All.h>
 //---------------------------------------------------------------------------
-class CxTest_CxPkcs11 : public CxTest {
+class CxTest_CxPkcs11 :
+    public CxTest
+{
 	public:
 		CxTest_CxPkcs11();
 		virtual     ~CxTest_CxPkcs11();

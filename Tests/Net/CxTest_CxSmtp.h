@@ -16,7 +16,9 @@
 #include <xLib/Common/Debug/CxTest.h>
 #include <xLib/Net/CxSmtp.h>
 //---------------------------------------------------------------------------
-class CxTest_CxSmtp : public CxTest {
+class CxTest_CxSmtp :
+    public CxTest
+{
 	public:
 		CxTest_CxSmtp();
 		virtual     ~CxTest_CxSmtp();

@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Debug/CxDebugger.h>
 //---------------------------------------------------------------------------
-class CxTest_CxDebugger : public CxTest {
+class CxTest_CxDebugger :
+    public CxTest
+{
 	public:
 		CxTest_CxDebugger();
 		virtual     ~CxTest_CxDebugger();

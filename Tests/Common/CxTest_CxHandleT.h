@@ -2,7 +2,7 @@
 * Class name:  CxTest_CxHandleT
 * Description: test CxHandle
 * File name:   CxTest_CxHandleT.h
-* Compilers:   Visual C++ 2010 
+* Compilers:   Visual C++ 2010
 * String type: Ansi, Unicode
 * Libraries:   WinAPI, Stl, xLib
 * Author:      Alca
@@ -21,7 +21,9 @@
 #include <xLib/Common/Win/CxHandleT.h>
 #include <xLib/Sync/CxProcess.h>
 //---------------------------------------------------------------------------
-class CxTest_CxHandleT : public CxTest {
+class CxTest_CxHandleT :
+    public CxTest
+{
     public:
         CxTest_CxHandleT();
        ~CxTest_CxHandleT();
@@ -57,7 +59,7 @@ CxTest_CxHandleT::bUnit() {
         ///CxHandle objHandle2(objHandle.m_hHandle);
     }
     {
-        ///CxHandle objHandle1(objHandle);    
+        ///CxHandle objHandle1(objHandle);
     }
 
 

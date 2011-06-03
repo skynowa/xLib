@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxTls.h>
 //---------------------------------------------------------------------------
-class CxTest_CxTls : public CxTest {
+class CxTest_CxTls :
+    public CxTest
+{
 	public:
 		CxTest_CxTls();
 		virtual     ~CxTest_CxTls();

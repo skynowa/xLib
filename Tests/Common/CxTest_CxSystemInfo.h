@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxSystemInfo.h>
 //---------------------------------------------------------------------------
-class CxTest_CxSystemInfo : public CxTest {
+class CxTest_CxSystemInfo :
+    public CxTest
+{
 	public:
 		CxTest_CxSystemInfo();
 		virtual     ~CxTest_CxSystemInfo();

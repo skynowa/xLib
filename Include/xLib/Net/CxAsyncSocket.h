@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxAsyncSocket : public CxNonCopyable {
+class CxAsyncSocket :
+    public CxNonCopyable
+{
     public:
                  CxAsyncSocket();
         virtual ~CxAsyncSocket();

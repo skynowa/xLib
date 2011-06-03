@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxAsyncSocket.h>
 //---------------------------------------------------------------------------
-class CxTest_CxAsyncSocket : public CxTest {
+class CxTest_CxAsyncSocket :
+    public CxTest
+{
 	public:
 		CxTest_CxAsyncSocket();
 		virtual     ~CxTest_CxAsyncSocket();

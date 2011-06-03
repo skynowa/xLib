@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Debug/CxProfiler.h>
 //---------------------------------------------------------------------------
-class CxTest_CxProfiler : public CxTest {
+class CxTest_CxProfiler :
+    public CxTest
+{
 	public:
 		CxTest_CxProfiler();
 		virtual     ~CxTest_CxProfiler();
@@ -44,8 +46,8 @@ CxTest_CxProfiler::~CxTest_CxProfiler() {
 BOOL
 CxTest_CxProfiler::bUnit() {
 	const CxProfiler::EMode pmPerformMode[] = {
-	        CxProfiler::pmClock,
-	        CxProfiler::pmTime,
+	        CxProfiler::pmStdClock,
+	        CxProfiler::pmDateTime,
         #if defined(xOS_WIN)
 	        CxProfiler::pmTickCount,
 	        CxProfiler::pmPerformanceCount,

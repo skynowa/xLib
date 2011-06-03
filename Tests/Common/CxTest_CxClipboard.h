@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/Win/CxClipboard.h>
 //---------------------------------------------------------------------------
-class CxTest_CxClipboard : public CxTest {
+class CxTest_CxClipboard :
+    public CxTest
+{
     public:
                     CxTest_CxClipboard();
        virtual      ~CxTest_CxClipboard();

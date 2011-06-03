@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Patterns/CxSingleton.h>
 //---------------------------------------------------------------------------
-class CxTest_CxSingleton : public CxTest {
+class CxTest_CxSingleton :
+    public CxTest
+{
 	public:
 		CxTest_CxSingleton();
 		virtual     ~CxTest_CxSingleton();

@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
-class CxWaitableTimer  : public CxNonCopyable {
+class CxWaitableTimer  :
+    public CxNonCopyable
+{
     public:
                  CxWaitableTimer();
         virtual ~CxWaitableTimer();

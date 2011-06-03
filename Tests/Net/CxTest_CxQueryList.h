@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxQueryList.h>
 //---------------------------------------------------------------------------
-class CxTest_CxQueryList : public CxTest {
+class CxTest_CxQueryList :
+    public CxTest
+{
 	public:
 		CxTest_CxQueryList();
 		virtual     ~CxTest_CxQueryList();

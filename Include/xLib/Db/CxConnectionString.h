@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxConnectionString : public CxNonCopyable {
+class CxConnectionString :
+    public CxNonCopyable
+{
     public:
         static tString sMSJetOleDb40     (const tString &csDataSource, const tString &csUserId, const tString &csPassword, const tString &csDatabasePassword);
 

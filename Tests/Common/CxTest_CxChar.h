@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxChar.h>
 //---------------------------------------------------------------------------
-class CxTest_CxChar : public CxTest {
+class CxTest_CxChar :
+    public CxTest
+{
     public:
         CxTest_CxChar();
         virtual     ~CxTest_CxChar();

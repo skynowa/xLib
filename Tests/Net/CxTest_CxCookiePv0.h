@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxCookiePv0.h>
 //---------------------------------------------------------------------------
-class CxTest_CxCookiePv0 : public CxTest {
+class CxTest_CxCookiePv0 :
+    public CxTest
+{
 	public:
 		CxTest_CxCookiePv0();
 		virtual     ~CxTest_CxCookiePv0();

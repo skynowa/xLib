@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
-class CxTest_CxEvent : public CxTest {
+class CxTest_CxEvent :
+    public CxTest
+{
 	public:
 		CxTest_CxEvent();
 		virtual     ~CxTest_CxEvent();

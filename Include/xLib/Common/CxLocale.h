@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxLocale : public CxNonCopyable {
+class CxLocale :
+    public CxNonCopyable
+{
     public:
        static tString sGetCurrent();
        static BOOL    bSetCurrent(const tString &csLocale);

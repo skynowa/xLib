@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
-class CxDbLog : public CxNonCopyable {
+class CxDbLog :
+    public CxNonCopyable
+{
     public:
                 CxDbLog();
        virtual ~CxDbLog();

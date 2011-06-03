@@ -17,7 +17,9 @@
 //---------------------------------------------------------------------------
 class CxDebugger;
 
-class CxMacros : CxNonCopyable {
+class CxMacros :
+    public CxNonCopyable
+{
     public:
         #define xPTR_DELETE(p)         { if (NULL != (p)) {delete p;     p = NULL;} }
         /*template<class T>

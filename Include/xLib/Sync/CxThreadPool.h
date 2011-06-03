@@ -25,9 +25,11 @@
 ////#include <functional>
 //---------------------------------------------------------------------------
 template<class TaskT>
-class CxThreadPool : public CxThread {
+class CxThreadPool :
+    public CxThread
+{
     private:
-        mutable BOOL              _m_bRes;  
+        mutable BOOL              _m_bRes;
 
         UINT                      _m_uiStackSize;                //������ ����� �������
         TFuncPtr                  _m_fpFuncPtr;                    //����� ������� ������� �������
@@ -35,7 +37,7 @@ class CxThreadPool : public CxThread {
 
         const BOOL                  _m_cbIsGroupPaused;            //���� ����� �������
         const BOOL                  _m_cbIsGroupAutoDelete;        //���� ������������ �������
-                            
+
         mutable CxSemaphore       _m_semSemaphore;                //�������
         std::list<TaskT *>          _m_lstpthTasks;                //�������
 

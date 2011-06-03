@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxMimeHeader
-* Description: MIME header (RFC 822) 
+* Description: MIME header (RFC 822)
 * File name:   CxMimeHeader.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -9,21 +9,23 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Net_CxMimeHeaderH 
-#define xLib_Net_CxMimeHeaderH 
+#ifndef xLib_Net_CxMimeHeaderH
+#define xLib_Net_CxMimeHeaderH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxMimeHeader : public CxNonCopyable {
+class CxMimeHeader :
+    public CxNonCopyable
+{
     public:
-                             CxMimeHeader      (); 
-                            ~CxMimeHeader      (); 
+                             CxMimeHeader      ();
+                            ~CxMimeHeader      ();
 
-        BOOL                 bParse            (const tString &csRawHeader); 
-        tString                 sGetField         (const tString &csName);  
-        size_t               uiCount           (); 
-        BOOL                 bLoadFromFile     (const tString &csRawMessageFilePath); 
-        BOOL                 bSaveToFile       (const tString &csFilePath); 
+        BOOL                 bParse            (const tString &csRawHeader);
+        tString                 sGetField         (const tString &csName);
+        size_t               uiCount           ();
+        BOOL                 bLoadFromFile     (const tString &csRawMessageFilePath);
+        BOOL                 bSaveToFile       (const tString &csFilePath);
 
         static tString         sGenerateMessageID();
 
@@ -38,25 +40,25 @@ class CxMimeHeader : public CxNonCopyable {
 
         //Delivered-To:
         //Return-Path:
-        //Received: 
-        //From: 
-        //To: 
+        //Received:
+        //From:
+        //To:
         //CC:
         //BCC:
-        //Subject: 
+        //Subject:
         //X-Priority:
-        //X-MSMail-Priority: 
-        //X-Mailer: 
+        //X-MSMail-Priority:
+        //X-Mailer:
         //X-MimeOLE:
         //Reply-To:
-        //MIME-Version: 
-        //Content-Type: 
+        //MIME-Version:
+        //Content-Type:
         //Content-Transfer-Encoding:
         //Date:
         //Message-ID:
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxMimeHeaderH 
+#endif    //xLib_Net_CxMimeHeaderH
 
 /*
 procedure TIdMessage.ClearHeader;
@@ -94,7 +96,7 @@ end;
 
 
 /*
-apTIdMessage->Flags;          
+apTIdMessage->Flags;
 apTIdMessage->IsEncoded;
 apTIdMessage->MsgId;
 apTIdMessage->Headers;

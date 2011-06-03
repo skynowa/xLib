@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxDir : public CxNonCopyable {
+class CxDir :
+    public CxNonCopyable
+{
     public:
         static BOOL    bIsExists   (const tString &csDirPath);
         static BOOL    bIsEmpty    (const tString &csDirPath, const tString &csMask = CxConst::xMASK_ALL);

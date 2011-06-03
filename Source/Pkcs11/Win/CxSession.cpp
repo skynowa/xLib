@@ -16,13 +16,15 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxSession ()
-CxSession::CxSession(const CxPkcs11 &cPkcs11) :
+CxSession::CxSession(
+    const CxPkcs11 &cPkcs11
+) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
@@ -33,6 +35,7 @@ CxSession::CxSession(const CxPkcs11 &cPkcs11) :
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxSession ()
+/*virtual*/
 CxSession::~CxSession() {
 
 }
@@ -49,11 +52,11 @@ CxSession::hGetHandle() const {
 //TODO: bOpen (opens a session between an application and a token)
 BOOL
 CxSession::bOpen(
-        CK_SLOT_ID  slotID,        /* the slot's ID */
-        CK_FLAGS    flags,         /* from CK_SESSION_INFO */
-        CK_VOID_PTR pApplication,  /* passed to callback */
-        CK_NOTIFY   Notify         /* callback function */
-) 
+    CK_SLOT_ID  slotID,        /* the slot's ID */
+    CK_FLAGS    flags,         /* from CK_SESSION_INFO */
+    CK_VOID_PTR pApplication,  /* passed to callback */
+    CK_NOTIFY   Notify         /* callback function */
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL == _m_hSession, FALSE);
@@ -67,8 +70,8 @@ CxSession::bOpen(
 //TODO: bGetInfo (obtains information about the session)
 BOOL
 CxSession::bGetInfo(
-      CK_SESSION_INFO_PTR pInfo      /* receives session info */
-) 
+    CK_SESSION_INFO_PTR pInfo      /* receives session info */
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
@@ -131,8 +134,8 @@ CxSession::bClose() {
 //TODO: bCloseAll (closes all sessions with a token)
 BOOL
 CxSession::bCloseAll(
-      CK_SLOT_ID slotID  /* the token's slot */
-) 
+    CK_SLOT_ID slotID  /* the token's slot */
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);
     /*DEBUG*/// _m_hSession - n/a
@@ -144,15 +147,4 @@ CxSession::bCloseAll(
 
     return TRUE;
 }
-//---------------------------------------------------------------------------
-
-
-
-
-
-/****************************************************************************
-*    Private methods                                                         
-*                                                                            
-*****************************************************************************/
-
 //---------------------------------------------------------------------------

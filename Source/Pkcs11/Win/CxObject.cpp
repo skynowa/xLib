@@ -16,13 +16,16 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxObject ()
-CxObject::CxObject(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
+CxObject::CxObject(
+    const CxPkcs11  &cPkcs11,
+    const CxSession &cSession
+) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
@@ -36,6 +39,7 @@ CxObject::CxObject(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxObject ()
+/*virtual*/
 CxObject::~CxObject() {
 
 }
@@ -52,12 +56,15 @@ CxObject::hGetHandle() const {
 //---------------------------------------------------------------------------
 //TODO: bSetHandle (assign object as a handle)
 BOOL
-CxObject::bSetHandle(CK_OBJECT_HANDLE hHandle) {
+CxObject::bSetHandle(
+    CK_OBJECT_HANDLE hHandle
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
     /*DEBUG*/// _m_hObject - n/a
 
-    _m_hObject = hHandle; 
+    _m_hObject = hHandle;
 
     return TRUE;
 }
@@ -65,9 +72,9 @@ CxObject::bSetHandle(CK_OBJECT_HANDLE hHandle) {
 //TODO: bCreate (creates a new object)
 BOOL
 CxObject::bCreate(
-    CK_ATTRIBUTE_PTR  pTemplate,   /* the object's template */
-    CK_ULONG          ulCount     /* attributes in template */
-) 
+    CK_ATTRIBUTE_PTR pTemplate,   /* the object's template */
+    CK_ULONG         ulCount     /* attributes in template */
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
@@ -79,11 +86,11 @@ CxObject::bCreate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetSize (gets the size of an object in bytes)    
+//TODO: bGetSize (gets the size of an object in bytes)
 BOOL
 CxObject::bGetSize(
-    CK_ULONG_PTR      pulSize    /* receives size of object */
-) 
+    CK_ULONG_PTR pulSize    /* receives size of object */
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
@@ -101,7 +108,7 @@ CxObject::bCopy(
     CK_ATTRIBUTE_PTR     pTemplate,   /* template for new object */
     CK_ULONG             ulCount,     /* attributes in template */
     CK_OBJECT_HANDLE_PTR phNewObject  /* receives handle of copy */
-) 
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
@@ -117,9 +124,9 @@ CxObject::bCopy(
 BOOL
 CxObject::bFind(
     CK_ATTRIBUTE_PTR               pTemplate,              /* attribute values to match */
-    CK_ULONG                       ulCount,                /* attrs in search template */        
+    CK_ULONG                       ulCount,                /* attrs in search template */
     std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles    /* [out] handles to objects */
-) 
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,            FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession,        FALSE);
@@ -133,7 +140,7 @@ CxObject::bFind(
     _m_ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);    // To find all attributes, set ulCount to 0.
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-    const CK_ULONG   culMaxFindedObjects        = 512;    
+    const CK_ULONG   culMaxFindedObjects        = 512;
     CK_OBJECT_HANDLE hList[culMaxFindedObjects] = {0};
     CK_ULONG         ulFound                    = 0;
 
@@ -157,9 +164,9 @@ CxObject::bFind(
 //---------------------------------------------------------------------------
 //TODO: bGetAttributeValue (obtains the value of one or more object attributes)
 BOOL CxObject::bGetAttributeValue(
-                                  CK_ATTRIBUTE_PTR  pTemplate,  /* specifies attrs; gets vals */
-                                  CK_ULONG          ulCount     /* attributes in template */
-                                  )
+    CK_ATTRIBUTE_PTR  pTemplate,  /* specifies attrs; gets vals */
+    CK_ULONG          ulCount     /* attributes in template */
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
@@ -174,9 +181,9 @@ BOOL CxObject::bGetAttributeValue(
 //TODO: bSetAttributeValue (modifies the value of one or more object attributes)
 BOOL
 CxObject::bSetAttributeValue(
-                                  CK_ATTRIBUTE_PTR  pTemplate,  /* specifies attrs and values */
-                                  CK_ULONG          ulCount     /* attributes in template */
-                                  )
+    CK_ATTRIBUTE_PTR  pTemplate,  /* specifies attrs and values */
+    CK_ULONG          ulCount     /* attributes in template */
+)
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
@@ -205,7 +212,13 @@ CxObject::bDestroy() {
 //---------------------------------------------------------------------------
 //TODO: bGetData
 BOOL
-CxObject::bGetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString &cusDataLabel, uString *pusData) {
+CxObject::bGetData(
+    CK_SLOT_ID     ulSlotId,
+    const uString &cusUserPin,
+    const uString &cusDataLabel,
+    uString       *pusData
+)
+{
     /*DEBUG*/
 
     BOOL bRes = FALSE;
@@ -273,7 +286,7 @@ CxObject::bGetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
         (*pusData) = usValue;
 
     }
-    delete [] pucValue;    
+    delete [] pucValue;
 
     //-------------------------------------
     //
@@ -290,7 +303,13 @@ CxObject::bGetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
 //--------------------------------------------------------------------------
 //TODO: bGetData
 BOOL
-CxObject::bGetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, std::vector<uString> *pusDataLabel, std::vector<uString> *pusDataValue) {
+CxObject::bGetData(
+    CK_SLOT_ID            ulSlotId,
+    const uString        &cusUserPin,
+    std::vector<uString> *pusDataLabel,
+    std::vector<uString> *pusDataValue
+)
+{
     /*DEBUG*/// ulSlotId - n/a
     /*DEBUG*/xASSERT_RET(false == cusUserPin.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pusDataLabel,       FALSE);
@@ -392,9 +411,15 @@ CxObject::bGetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, std::vector<u
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: 
+//TODO:
 BOOL
-CxObject::bSetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString &cusDataLabel, const uString &cusData) {
+CxObject::bSetData(
+    CK_SLOT_ID     ulSlotId,
+    const uString &cusUserPin,
+    const uString &cusDataLabel,
+    const uString &cusData
+)
+{
     /*DEBUG*/
 
     BOOL bRes = FALSE;
@@ -455,7 +480,7 @@ CxObject::bSetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
         CK_BBOOL        bFalse    = FALSE;
         CK_BBOOL        bTrue     = TRUE;
         uString         usApplication;
-        
+
         CK_ATTRIBUTE atrTamplate [] = {
             {CKA_CLASS,       &ocData,                            sizeof(ocData)      },
             {CKA_TOKEN,       &bTrue,                             sizeof(bTrue)       },
@@ -466,7 +491,7 @@ CxObject::bSetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
             {CKA_MODIFIABLE,  &bTrue,                             sizeof(bTrue)       }
         };
 
-        bRes = objData.bCreate(atrTamplate, xARRAY_SIZE(atrTamplate));    
+        bRes = objData.bCreate(atrTamplate, xARRAY_SIZE(atrTamplate));
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
@@ -485,57 +510,57 @@ CxObject::bSetData(CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString
 //--------------------------------------------------------------------------
 
 
-
-
 /****************************************************************************
 *    private
 *
 *****************************************************************************/
 
-//////////---------------------------------------------------------------------------
-//////////TODO: bFindInit (initializes a search for token and session objects that match a template)
-////////BOOL CxObject::bFindInit(
-////////                         CK_ATTRIBUTE_PTR  pTemplate,  /* attribute values to match */
-////////                         CK_ULONG          ulCount     /* attrs in search template */
-////////                         ) 
-////////{
-////////    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-////////    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-////////    /*DEBUG*/// _m_hObject - n/a
-////////
-////////    _m_ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
-////////    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
-////////
-////////    return TRUE;
-////////}
-//////////---------------------------------------------------------------------------
-//////////TODO: bFind (continues a search for token and session objects that match a template, obtaining additional object handles)
-////////BOOL CxObject::bFind(
-////////                     CK_OBJECT_HANDLE_PTR phObject,          /* gets obj. handles */
-////////                     CK_ULONG             ulMaxObjectCount,  /* max handles to get */
-////////                     CK_ULONG_PTR         pulObjectCount     /* actual # returned */
-////////                     ) 
-////////{
-////////    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-////////    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-////////    /*DEBUG*/// _m_hObject - n/a
-////////
-////////    _m_ulRes = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
-////////    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
-////////    /*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      FALSE);
-////////
-////////    return TRUE;
-////////}
-//////////---------------------------------------------------------------------------
-//////////TODO: bFindFinal (finishes a search for token and session objects)
-////////BOOL CxObject::bFindFinal() {
-////////    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-////////    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-////////    /*DEBUG*/// _m_hObject - n/a
-////////
-////////    _m_ulRes = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-////////    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
-////////
-////////    return TRUE;
-////////}    
-//////////---------------------------------------------------------------------------
+#if xTODO
+    //---------------------------------------------------------------------------
+    //TODO: bFindInit (initializes a search for token and session objects that match a template)
+    BOOL CxObject::bFindInit(
+        CK_ATTRIBUTE_PTR  pTemplate,  /* attribute values to match */
+        CK_ULONG          ulCount     /* attrs in search template */
+    )
+    {
+        /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+        /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+        /*DEBUG*/// _m_hObject - n/a
+
+        _m_ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
+        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+
+        return TRUE;
+    }
+    //---------------------------------------------------------------------------
+    //TODO: bFind (continues a search for token and session objects that match a template, obtaining additional object handles)
+    BOOL CxObject::bFind(
+        CK_OBJECT_HANDLE_PTR phObject,          /* gets obj. handles */
+        CK_ULONG             ulMaxObjectCount,  /* max handles to get */
+        CK_ULONG_PTR         pulObjectCount     /* actual # returned */
+    )
+    {
+        /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+        /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+        /*DEBUG*/// _m_hObject - n/a
+
+        _m_ulRes = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
+        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+        /*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      FALSE);
+
+        return TRUE;
+    }
+    //---------------------------------------------------------------------------
+    //TODO: bFindFinal (finishes a search for token and session objects)
+    BOOL CxObject::bFindFinal() {
+        /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+        /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+        /*DEBUG*/// _m_hObject - n/a
+
+        _m_ulRes = _m_pFunc->C_FindObjectsFinal(_m_hSession);
+        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+
+        return TRUE;
+    }
+    //---------------------------------------------------------------------------
+#endif

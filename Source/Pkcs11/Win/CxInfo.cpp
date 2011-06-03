@@ -15,13 +15,15 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxInfo ()
-CxInfo::CxInfo(const CxPkcs11 &cPkcs11) :
+CxInfo::CxInfo(
+    const CxPkcs11 &cPkcs11
+) :
     _m_bRes (FALSE),
     _m_ulRes(!CKR_OK),
     _m_pFunc(cPkcs11.pGetFuncList())
@@ -42,7 +44,7 @@ CxInfo::bGet(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_GetInfo(pInfo); 
+    _m_ulRes = _m_pFunc->C_GetInfo(pInfo);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
@@ -57,17 +59,9 @@ CxInfo::bGetToken(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_GetTokenInfo(slotID, pInfo); 
+    _m_ulRes = _m_pFunc->C_GetTokenInfo(slotID, pInfo);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
 }
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    Private methods                                                         
-*                                                                            
-*****************************************************************************/
-
 //---------------------------------------------------------------------------

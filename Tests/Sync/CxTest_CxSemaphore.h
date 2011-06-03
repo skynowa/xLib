@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxSemaphore.h>
 //---------------------------------------------------------------------------
-class CxTest_CxSemaphore : public CxTest {
+class CxTest_CxSemaphore :
+    public CxTest
+{
 	public:
 		CxTest_CxSemaphore();
 		virtual     ~CxTest_CxSemaphore();

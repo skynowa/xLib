@@ -24,13 +24,15 @@ Usage:
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 template<class PtrT>
-class CxAutoMallocT : public CxNonCopyable {
+class CxAutoMallocT :
+    public CxNonCopyable
+{
     public:
              CxAutoMallocT(const std::size_t cuiSize);
             ~CxAutoMallocT();
 
         PtrT pGetPtr      ();
-            
+
     private:
         PtrT _m_pDataT;
 };
@@ -56,7 +58,7 @@ CxAutoMallocT<PtrT>::~CxAutoMallocT() {
     /*DEBUG*/xASSERT_DO(NULL != _m_pDataT, return);
 
     if (NULL != _m_pDataT) {
-        free(_m_pDataT);    
+        free(_m_pDataT);
         _m_pDataT = NULL;                            //MessageBox(0, "Destructor", "", MB_OK);
     }
 }
@@ -67,7 +69,7 @@ PtrT
 CxAutoMallocT<PtrT>::pGetPtr() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pDataT, NULL);
 
-    return _m_pDataT; 
+    return _m_pDataT;
 }
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxMallocH

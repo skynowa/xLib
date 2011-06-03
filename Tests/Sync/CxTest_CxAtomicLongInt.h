@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxAtomicLongInt.h>
 //---------------------------------------------------------------------------
-class CxTest_CxAtomicLongInt : public CxTest {
+class CxTest_CxAtomicLongInt :
+    public CxTest
+{
 	public:
 		CxTest_CxAtomicLongInt();
 		virtual     ~CxTest_CxAtomicLongInt();

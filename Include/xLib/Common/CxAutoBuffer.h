@@ -4,7 +4,9 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 template<class T>
-class CxAutoBuffer : public CxNonCopyable {
+class CxAutoBuffer :
+    public CxNonCopyable
+{
     private:
         T* buffer;
 

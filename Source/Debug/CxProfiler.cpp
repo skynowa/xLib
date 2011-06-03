@@ -21,21 +21,24 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxProfiler (constructor)
-CxProfiler::CxProfiler(const tString &csLogFilePath, const EMode pmMode) :
+//DONE: CxProfiler
+CxProfiler::CxProfiler(
+    const tString &csLogFilePath,
+    const EMode    cpmMode
+) :
     _m_bRes      (FALSE),
-    _m_pmModeNow (pmMode),
+    _m_pmModeNow (cpmMode),
     _m_bIsStarted(FALSE),
     _flLog       (csLogFilePath, CxFileLog::lsDefaultSize)
 {
     /*DEBUG*/xASSERT_DO(false == csLogFilePath.empty(), return);
-    /*DEBUG*/// pmMode - n/a
+    /*DEBUG*/// cpmMode - n/a
 
     _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxProfiler (destructor)
+//DONE: ~CxProfiler
 CxProfiler::~CxProfiler() {
     _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
@@ -53,19 +56,19 @@ CxProfiler::bStart() {
     _m_bRes = ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
     /*DEBUG*/xASSERT(FALSE != _m_bRes);
 
-    ::Sleep(100);
+    ::Sleep(10);
 #elif defined(xOS_LINUX)
     //TODO: bStart
 #endif
 
     switch (_m_pmModeNow) {
-        case pmClock: {
+        case pmStdClock: {
                 _m_ctClocksStart = std::clock();
                 /*DEBUG*/xASSERT_RET(- 1 != _m_ctClocksStart, FALSE);
             }
             break;
 
-        case pmTime: {
+        case pmDateTime: {
                 _m_dtTimesStart = CxDateTime::dtGetCurrent();
                 /*DEBUG*/// n/a
             }
@@ -98,7 +101,7 @@ CxProfiler::bStart() {
                     timeval tv = {0};
                     gettimeofday(&tv, NULL);
 
-                    _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
+                    _m_dMicrosecStart = static_cast<DOUBLE>( tv.tv_sec ) + static_cast<DOUBLE>( tv.tv_usec ) * 0.000001;
                 }
                 break;
         #endif
@@ -116,13 +119,16 @@ CxProfiler::bStart() {
 //--------------------------------------------------------------------------
 //DONE: bStop (stop measurement)
 BOOL
-CxProfiler::bStop(LPCTSTR pcszComment, ...) {
+CxProfiler::bStop(
+    LPCTSTR pcszComment, ...
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_bIsStarted, FALSE);
 
     tString sTimeString = xT("0:00:00:000");
 
     switch (_m_pmModeNow) {
-        case pmClock: {
+        case pmStdClock: {
                 _m_ctClocksStop = std::clock();
                 /*DEBUG*/xASSERT_RET(- 1 != _m_ctClocksStop, FALSE);
 
@@ -130,7 +136,7 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
             }
             break;
 
-        case pmTime: {
+        case pmDateTime: {
                 _m_dtTimesStop = CxDateTime::dtGetCurrent();
                 /*DEBUG*/// n/a
 
@@ -168,7 +174,7 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
                     timeval tv = {0};
                     gettimeofday(&tv, NULL);
 
-                    _m_dMicrosecStop = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
+                    _m_dMicrosecStop = static_cast<DOUBLE>( tv.tv_sec ) + static_cast<DOUBLE>( tv.tv_usec ) * 0.000001;
 
                     sTimeString = CxString::sFormat(xT("%.6lf (sec)"), _m_dMicrosecStop - _m_dMicrosecStart);
                 }
@@ -204,7 +210,10 @@ CxProfiler::bStop(LPCTSTR pcszComment, ...) {
 //--------------------------------------------------------------------------
 //DONE: bPulse (stop, start measurement)
 BOOL
-CxProfiler::bPulse(LPCTSTR pcszComment, ...) {
+CxProfiler::bPulse(
+    LPCTSTR pcszComment, ...
+)
+{
     //-------------------------------------
     //format comment
     tString sRes;
@@ -247,11 +256,11 @@ CxProfiler::_bResetData() {
 
     _m_bIsStarted                       = FALSE;
 
-    //pmClock
+    //pmStdClock
     xSTRUCT_ZERO(_m_ctClocksStart);
     xSTRUCT_ZERO(_m_ctClocksStop);
 
-    //pmTime
+    //pmDateTime
     _m_dtTimesStart                     = 0ULL;
     _m_dtTimesStop                      = 0ULL;
 

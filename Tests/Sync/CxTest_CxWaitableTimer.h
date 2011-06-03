@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxWaitableTimer.h>
 //---------------------------------------------------------------------------
-class CxTest_CxWaitableTimer : public CxTest {
+class CxTest_CxWaitableTimer :
+    public CxTest
+{
 	public:
 		CxTest_CxWaitableTimer();
 		virtual     ~CxTest_CxWaitableTimer();

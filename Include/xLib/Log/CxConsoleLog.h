@@ -15,14 +15,16 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
-class CxConsoleLog : public CxNonCopyable {
-    public:    
+class CxConsoleLog :
+    public CxNonCopyable
+{
+    public:
                                  CxConsoleLog(BOOL bIsUseTimeStr);
         virtual                 ~CxConsoleLog();
 
-        BOOL                     bWrite      (LPCTSTR pcszFormat, ...); 
-        
-    private:        
+        BOOL                     bWrite      (LPCTSTR pcszFormat, ...);
+
+    private:
     #if defined(xOS_WIN)
         static CxCriticalSection _ms_csConsole;
     #elif defined(xOS_LINUX)

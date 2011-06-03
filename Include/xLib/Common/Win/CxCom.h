@@ -15,9 +15,11 @@
 #include <xLib/Common/xCommon.h>
 #include <Objbase.h>
 //---------------------------------------------------------------------------
-class CxCom : public CxNonCopyable {
+class CxCom :
+    public CxNonCopyable
+{
     public:
-        //concurrency model 
+        //concurrency model
         //the COINIT_APARTMENTTHREADED and COINIT_MULTITHREADED flags cannot both be set
         enum EConcurrencyModel {
             cmApartmentThreaded = COINIT_APARTMENTTHREADED,
@@ -28,11 +30,11 @@ class CxCom : public CxNonCopyable {
 
                     CxCom  (EConcurrencyModel cmCoModel/* = cmMultiThreaded*/);
         virtual    ~CxCom  ();
-        
+
         //static
         static BOOL bIsInit();
-    
-    private:    
+
+    private:
         ULONG       _m_ulConModel;
         static LONG _ms_lInitCount;
 };

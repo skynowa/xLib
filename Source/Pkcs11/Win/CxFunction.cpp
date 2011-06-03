@@ -15,13 +15,16 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxFunction ()
-CxFunction::CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
+CxFunction::CxFunction(
+    const CxPkcs11  &cPkcs11,
+    const CxSession &cSession
+) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
@@ -31,6 +34,7 @@ CxFunction::CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxFunction ()
+/*virtual*/
 CxFunction::~CxFunction() {
     //code
 }
@@ -81,15 +85,4 @@ CxFunction::bGetListEx() {
 
     return TRUE;
 }
-//---------------------------------------------------------------------------
-
-
-
-
-
-/****************************************************************************
-*    Private methods                                                         
-*                                                                            
-*****************************************************************************/
-
 //---------------------------------------------------------------------------

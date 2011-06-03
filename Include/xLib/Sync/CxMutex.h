@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
-class CxMutex : public CxNonCopyable {
+class CxMutex :
+    public CxNonCopyable
+{
     public:
                  CxMutex   ();
         virtual ~CxMutex   ();

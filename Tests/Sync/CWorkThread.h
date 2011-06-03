@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CWorkThread
-* Description: рабочий поток
+* Description: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 * File name:   CWorkThread.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -20,7 +20,9 @@
 //---------------------------------------------------------------------------
 #define WM_TEST_MSG_1  (WM_USER + 100)
 //---------------------------------------------------------------------------
-class CWorkThread : public CxThread {
+class CWorkThread :
+    public CxThread
+{
 	public:
 		size_t       m_uiIndex;
 
@@ -75,13 +77,13 @@ UINT CWorkThread::uiOnRun(VOID *pData) {
 
 	for (INT i = 0; i < /**piParam*/2; i ++, uiRes ++) {
 		//-------------------------------------
-		//не пора ли выйти или приостановиться
+		//пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		bRes = bIsTimeToExit();
 		xCHECK_DO(TRUE == bRes, break);
 
 
 		//-------------------------------------
-		//рабочий код
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		for (int i = 0; i < 2; i ++) {
 			/*LOG*/_m_clLog.bWrite(_T("*\n"));
 			::Sleep(1000);

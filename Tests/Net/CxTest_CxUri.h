@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxUri.h>
 //---------------------------------------------------------------------------
-class CxTest_CxUri : public CxTest {
+class CxTest_CxUri :
+    public CxTest
+{
 	public:
 		CxTest_CxUri();
 		virtual     ~CxTest_CxUri();

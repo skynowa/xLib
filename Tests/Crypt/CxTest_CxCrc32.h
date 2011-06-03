@@ -17,7 +17,9 @@
 #include <xLib/Crypt/CxCrc32.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 //---------------------------------------------------------------------------
-class CxTest_CxCrc32 : public CxTest {
+class CxTest_CxCrc32 :
+    public CxTest
+{
 	public:
 		CxTest_CxCrc32();
 		virtual     ~CxTest_CxCrc32();

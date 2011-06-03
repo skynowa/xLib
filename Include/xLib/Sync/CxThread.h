@@ -19,7 +19,9 @@
 #include <xLib/Sync/CxSleeper.h>
 #include <xLib/Log/xLog.h>
 //---------------------------------------------------------------------------
-class CxThread : public CxNonCopyable {
+class CxThread :
+    public CxNonCopyable
+{
     public:
         enum EPriority {
             tpPRIORITY_ERROR         = THREAD_PRIORITY_ERROR_RETURN,

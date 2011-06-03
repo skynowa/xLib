@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Db/CxMySql.h>
 //---------------------------------------------------------------------------
-class CxTest_CxMySql : public CxTest {
+class CxTest_CxMySql :
+    public CxTest
+{
 	public:
 		CxTest_CxMySql();
 		virtual     ~CxTest_CxMySql();

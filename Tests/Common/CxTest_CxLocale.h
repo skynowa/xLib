@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxLocale.h>
 //---------------------------------------------------------------------------
-class CxTest_CxLocale : public CxTest {
+class CxTest_CxLocale :
+    public CxTest
+{
     public:
         CxTest_CxLocale();
         virtual     ~CxTest_CxLocale();

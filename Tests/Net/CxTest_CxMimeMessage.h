@@ -19,7 +19,9 @@
 #include <xLib/Net/CxSmtp.h>
 #include <xLib/Net/CxMimeHeader.h>
 //---------------------------------------------------------------------------
-class CxTest_CxMimeMessage : public CxTest {
+class CxTest_CxMimeMessage :
+    public CxTest
+{
 	public:
 		CxTest_CxMimeMessage();
 		virtual     ~CxTest_CxMimeMessage();

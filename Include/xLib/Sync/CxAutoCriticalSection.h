@@ -16,7 +16,9 @@
 #include <xLib/Sync/CxCriticalSection.h>
 ////#include <xLib/Sync/CxSleeper.h>
 //---------------------------------------------------------------------------
-class CxAutoCriticalSection : public CxNonCopyable {
+class CxAutoCriticalSection :
+    public CxNonCopyable
+{
     public:
                            CxAutoCriticalSection(CxCriticalSection &csCS);
                            ////CxAutoCriticalSection(CxCriticalSection &csCS, BOOL bTry, ULONG ulTimeout = 1000);

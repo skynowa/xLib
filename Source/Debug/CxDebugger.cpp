@@ -44,10 +44,13 @@ CxDebugger::bGetEnabled() {
 //DONE: bSetEnabled (set debugging mode on/off)
 /*static*/
 BOOL
-CxDebugger::bSetEnabled(BOOL bFlag) {
+CxDebugger::bSetEnabled(
+    const BOOL cbFlag
+)
+{
     /*DEBUG*/// n/a
 
-    _ms_bIsEnabled = bFlag;
+    _ms_bIsEnabled = cbFlag;
 
     return TRUE;
 }
@@ -82,7 +85,7 @@ CxDebugger::bBreak() {
     /*DEBUG*/// n/a
 
 #if defined(xOS_WIN)
-    #if defined(xCOMPILER_MS)
+    #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
         _asm {int 3}
     #elif defined(xCOMPILER_MINGW32)
         asm("int 3");
@@ -97,10 +100,13 @@ CxDebugger::bBreak() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bReportMake ()
+//DONE: bReportMake (make report)
 /*static*/
 BOOL
-CxDebugger::bReportMake(const CxReport &crpReport) {
+CxDebugger::bReportMake(
+    const CxReport &crpReport
+)
+{
     /*DEBUG*/
 
     //-------------------------------------
@@ -126,10 +132,13 @@ CxDebugger::bReportMake(const CxReport &crpReport) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTrace (tracing)
+//DONE: bTrace (tracing to debugger, std::cout)
 /*static*/
 BOOL
-CxDebugger::bTrace(LPCTSTR pcszFormat, ...) {
+CxDebugger::bTrace(
+    LPCTSTR pcszFormat, ...
+)
+{
     /*DEBUG*/
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
@@ -152,10 +161,13 @@ CxDebugger::bTrace(LPCTSTR pcszFormat, ...) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTrace (tracing)
+//DONE: bTrace (tracing to debugger, std::cout)
 /*static*/
 BOOL
-CxDebugger::bTrace(const tString &csMsg) {
+CxDebugger::bTrace(
+    const tString &csMsg
+)
+{
     /*DEBUG*/
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
@@ -163,7 +175,6 @@ CxDebugger::bTrace(const tString &csMsg) {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-
 
 
 /****************************************************************************
@@ -186,7 +197,10 @@ CxDebugger::~CxDebugger() {
 //DONE: bMsgboxPlain (show MessageBox)
 /*static*/
 BOOL
-CxDebugger::bMsgboxPlain(const CxReport &crpReport) {
+CxDebugger::bMsgboxPlain(
+    const CxReport &crpReport
+)
+{
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
@@ -224,7 +238,10 @@ CxDebugger::bMsgboxPlain(const CxReport &crpReport) {
 //DONE: bMsgboxRtf (show MessageBox or std::out)
 /*static*/
 BOOL
-CxDebugger::bMsgboxRtf(const CxReport &crpReport) {
+CxDebugger::bMsgboxRtf(
+    const CxReport &crpReport
+)
+{
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
@@ -255,8 +272,7 @@ CxDebugger::bMsgboxRtf(const CxReport &crpReport) {
             break;
     }
 #elif defined(xOS_LINUX)
-    //commands from console
-    enum ECmd {
+    enum EConsoleCmd {
         cmAbort  = xT('a'),
         cmIgnore = xT('i'),
         cmRetry  = xT('r')
@@ -269,7 +285,7 @@ CxDebugger::bMsgboxRtf(const CxReport &crpReport) {
     tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     tcerr.flush();
 
-    ECmd cmRes = static_cast<ECmd>( tcin.get() );   tcin.ignore();
+    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
     switch (cmRes) {
         case cmAbort: {
                 tcerr << xT("Abort...\n\n");  tcerr.flush();
@@ -312,12 +328,15 @@ CxDebugger::bMsgboxRtf(const CxReport &crpReport) {
 //DONE: bStdoutPlain ()
 /*static*/
 BOOL
-CxDebugger::bStdoutPlain(const CxReport &crpReport) {
+CxDebugger::bStdoutPlain(
+    const CxReport &crpReport
+)
+{
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
     //commands from console
-    enum ECmd {
+    enum EConsoleCmd {
         cmAbort  = xT('a'),
         cmIgnore = xT('i'),
         cmRetry  = xT('r')
@@ -330,7 +349,7 @@ CxDebugger::bStdoutPlain(const CxReport &crpReport) {
     tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
     tcout.flush();
 
-    ECmd cmRes = static_cast<ECmd>( tcin.get() );   tcin.ignore();
+    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
     switch (cmRes) {
         case cmAbort: {
                 tcout << xT("Abort...\n\n");  tcout.flush();
@@ -372,12 +391,14 @@ CxDebugger::bStdoutPlain(const CxReport &crpReport) {
 //DONE: bStdoutHtml ()
 /*static*/
 BOOL
-CxDebugger::bStdoutHtml(const CxReport &crpReport) {
+CxDebugger::bStdoutHtml(
+    const CxReport &crpReport
+)
+{
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
-    //commands from console
-    enum ECmd {
+    enum EConsoleCmd {
         cmAbort  = xT('a'),
         cmIgnore = xT('i'),
         cmRetry  = xT('r')
@@ -391,7 +412,7 @@ CxDebugger::bStdoutHtml(const CxReport &crpReport) {
     tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
     tcout.flush();
 
-    ECmd cmRes = static_cast<ECmd>( tcin.get() );   tcin.ignore();
+    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
     switch (cmRes) {
         case cmAbort: {
                 tcout << xT("Abort...\n\n");  tcout.flush();
@@ -432,10 +453,13 @@ CxDebugger::bStdoutHtml(const CxReport &crpReport) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bLoggingPlain (log to file)
+//DONE: bLoggingPlain (log to file, tracing)
 /*static*/
 BOOL
-CxDebugger::bLoggingPlain(const CxReport &crpReport) {
+CxDebugger::bLoggingPlain(
+    const CxReport &crpReport
+)
+{
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
@@ -476,7 +500,10 @@ CxDebugger::bLoggingPlain(const CxReport &crpReport) {
 //TODO: bLoggingHtml ()
 /*static*/
 BOOL
-CxDebugger::bLoggingHtml(const CxReport &crpReport) {
+CxDebugger::bLoggingHtml(
+    const CxReport &crpReport
+)
+{
     /*DEBUG*/
 
     //TODO: bLoggingHtml

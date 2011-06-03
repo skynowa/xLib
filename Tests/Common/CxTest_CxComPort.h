@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/Win/CxComPort.h>
 //---------------------------------------------------------------------------
-class CxTest_CxComPort : public CxTest {
+class CxTest_CxComPort :
+    public CxTest
+{
     public:
         CxTest_CxComPort();
         virtual     ~CxTest_CxComPort();

@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxHttpClient.h>
 //---------------------------------------------------------------------------
-class CxTest_CxHttpClient : public CxTest {
+class CxTest_CxHttpClient :
+    public CxTest
+{
 	public:
 		CxTest_CxHttpClient();
 		virtual     ~CxTest_CxHttpClient();

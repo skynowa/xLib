@@ -15,13 +15,16 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxVerify ()
-CxVerify::CxVerify(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
+CxVerify::CxVerify(
+    const CxPkcs11  &cPkcs11,
+    const CxSession &cSession
+) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
@@ -31,6 +34,7 @@ CxVerify::CxVerify(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxVerify ()
+/*virtual*/
 CxVerify::~CxVerify() {
     //code
 }
@@ -38,8 +42,8 @@ CxVerify::~CxVerify() {
 //TODO: bInit (initializes a verification operation, where the signature is an appendix to the data, and plaintext cannot cannot be recovered from the signature (e.g. DSA))
 BOOL
 CxVerify::bInit(
-    CK_MECHANISM_PTR  pMechanism,  /* the verification mechanism */
-    CK_OBJECT_HANDLE  hKey         /* verification key */ 
+    CK_MECHANISM_PTR pMechanism,  /* the verification mechanism */
+    CK_OBJECT_HANDLE hKey         /* verification key */
 )
 {
     /*DEBUG*/
@@ -48,15 +52,15 @@ CxVerify::bInit(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-}    
+}
 //---------------------------------------------------------------------------
 //TODO: bMake (verifies a signature in a single-part operation,  where the signature is an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxVerify::bMake(
-    CK_BYTE_PTR       pData,          /* signed data */
-    CK_ULONG          ulDataLen,      /* length of signed data */
-    CK_BYTE_PTR       pSignature,     /* signature */
-    CK_ULONG          ulSignatureLen  /* signature length*/
+    CK_BYTE_PTR pData,          /* signed data */
+    CK_ULONG    ulDataLen,      /* length of signed data */
+    CK_BYTE_PTR pSignature,     /* signature */
+    CK_ULONG    ulSignatureLen  /* signature length*/
 )
 {
     /*DEBUG*/
@@ -70,8 +74,8 @@ CxVerify::bMake(
 //TODO: bFinal (finishes a multiple-part verification operation, checking the signature)
 BOOL
 CxVerify::bFinal(
-    CK_BYTE_PTR       pSignature,     /* signature to verify */
-    CK_ULONG          ulSignatureLen  /* signature length */
+    CK_BYTE_PTR pSignature,     /* signature to verify */
+    CK_ULONG    ulSignatureLen  /* signature length */
 )
 {
     /*DEBUG*/
@@ -85,8 +89,8 @@ CxVerify::bFinal(
 //TODO: bRecoverInit (initializes a signature verification operation, where the data is recovered from the signature)
 BOOL
 CxVerify::bRecoverInit(
-    CK_MECHANISM_PTR  pMechanism,  /* the verification mechanism */
-    CK_OBJECT_HANDLE  hKey         /* verification key */
+    CK_MECHANISM_PTR pMechanism,  /* the verification mechanism */
+    CK_OBJECT_HANDLE hKey         /* verification key */
 )
 {
     /*DEBUG*/
@@ -100,10 +104,10 @@ CxVerify::bRecoverInit(
 //TODO: bVerifyRecover (verifies a signature in a single-part operation, where the data is recovered from the signature)
 BOOL
 CxVerify::bRecover(
-    CK_BYTE_PTR       pSignature,      /* signature to verify */
-    CK_ULONG          ulSignatureLen,  /* signature length */
-    CK_BYTE_PTR       pData,           /* gets signed data */
-    CK_ULONG_PTR      pulDataLen       /* gets signed data len */
+    CK_BYTE_PTR  pSignature,      /* signature to verify */
+    CK_ULONG     ulSignatureLen,  /* signature length */
+    CK_BYTE_PTR  pData,           /* gets signed data */
+    CK_ULONG_PTR pulDataLen       /* gets signed data len */
 )
 {
     /*DEBUG*/
@@ -117,8 +121,8 @@ CxVerify::bRecover(
 //TODO: bVerifyUpdate (continues a multiple-part verification operation, where the signature is an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxVerify::bUpdate(
-    CK_BYTE_PTR       pPart,     /* signed data */
-    CK_ULONG          ulPartLen  /* length of signed data */
+    CK_BYTE_PTR pPart,     /* signed data */
+    CK_ULONG    ulPartLen  /* length of signed data */
 )
 {
     /*DEBUG*/
@@ -128,13 +132,4 @@ CxVerify::bUpdate(
 
     return TRUE;
 }
-//---------------------------------------------------------------------------
-
-
-
-/****************************************************************************
-*    Private methods                                                         
-*                                                                            
-*****************************************************************************/
-
 //---------------------------------------------------------------------------

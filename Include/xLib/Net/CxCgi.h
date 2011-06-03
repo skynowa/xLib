@@ -31,7 +31,9 @@ namespace NxCgi {
     *****************************************************************************/
 
     //---------------------------------------------------------------------------
-    class CxCgiEnvironment : public CxNonCopyable  {
+    class CxCgiEnvironment :
+        public CxNonCopyable
+    {
         public:
             enum ERequestMethod {
                 rmUknown,
@@ -126,7 +128,9 @@ namespace NxCgi {
     *****************************************************************************/
 
     //---------------------------------------------------------------------------
-    class CxCgiCookies : public CxNonCopyable  {
+    class CxCgiCookies :
+        public CxNonCopyable
+    {
         public:
             typedef std::vector<CxCookiePv0 *> TCookies;
 
@@ -157,7 +161,9 @@ namespace NxCgi {
     *****************************************************************************/
 
     //---------------------------------------------------------------------------
-    class CxCgiFormData : public CxNonCopyable  {
+    class CxCgiFormData :
+        public CxNonCopyable
+    {
         public:
                            CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize);
             virtual       ~CxCgiFormData();
@@ -181,7 +187,9 @@ namespace NxCgi {
 
 
 //---------------------------------------------------------------------------
-class CxCgi : public CxNonCopyable {
+class CxCgi :
+    public CxNonCopyable
+{
     public:
         static const size_t     MAX_DATA_SIZE_DEFAULT = 1024 * 1024;
 

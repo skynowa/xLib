@@ -16,11 +16,13 @@
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Common/CxDateTime.h>
 //---------------------------------------------------------------------------
-class CxProfiler : public CxNonCopyable {
+class CxProfiler :
+    public CxNonCopyable
+{
     public:
         enum EMode {
-            pmClock,                //std::clock (msec)
-            pmTime,                 //xLib::CxDateTime
+            pmStdClock,             //std::clock (msec)
+            pmDateTime,             //xLib::CxDateTime
         #if defined(xOS_WIN)
             pmTickCount,            //::GetTickCount (msec)
             pmPerformanceCount,     //::QueryPerformanceFrequency (msec)
@@ -30,7 +32,7 @@ class CxProfiler : public CxNonCopyable {
         #endif
         };
 
-                      CxProfiler(const tString &csLogFilePath, const EMode pmMode); //TODO: csFileName + iPerfomMode
+                      CxProfiler(const tString &csLogFilePath, const EMode cpmMode); //TODO: csFileName + iPerfomMode
         virtual      ~CxProfiler();
 
         BOOL          bStart    ();
@@ -47,7 +49,7 @@ class CxProfiler : public CxNonCopyable {
         std::clock_t  _m_ctClocksStart;
         std::clock_t  _m_ctClocksStop;
 
-        //pmTime
+        //pmDateTime
         CxDateTime    _m_dtTimesStart;
         CxDateTime    _m_dtTimesStop;
 
@@ -80,8 +82,8 @@ class CxProfiler : public CxNonCopyable {
 //---------------------------------------------------------------------------
 #endif    //xLib_Debug_CxProfilerH
 
-//http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
 
+//http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
 
 /*
 system.h:

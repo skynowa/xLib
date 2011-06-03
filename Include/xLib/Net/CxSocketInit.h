@@ -20,7 +20,9 @@
     // n/a
 #endif
 //---------------------------------------------------------------------------
-class CxSocketInit : public CxNonCopyable {
+class CxSocketInit :
+    public CxNonCopyable
+{
     public:
                   CxSocketInit(USHORT usHighVersion, USHORT usLowVersion);
         virtual  ~CxSocketInit();

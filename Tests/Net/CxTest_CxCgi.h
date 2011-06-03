@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxCgi.h>
 //---------------------------------------------------------------------------
-class CxTest_CxCgi : public CxTest {
+class CxTest_CxCgi :
+    public CxTest
+{
 	public:
 		CxTest_CxCgi();
 		virtual     ~CxTest_CxCgi();

@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxCrc32 : public CxNonCopyable {
+class CxCrc32 :
+    public CxNonCopyable
+{
     public:
         static ULONG   ulCalc        (UCHAR *pucBuff, const ULONG culSize);
         static ULONG   ulCalcFile    (const tString &csFilePath);

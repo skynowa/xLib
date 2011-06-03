@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
-class CxEvent : public CxNonCopyable {
+class CxEvent :
+    public CxNonCopyable
+{
     public:
                  CxEvent    ();
         virtual ~CxEvent    ();

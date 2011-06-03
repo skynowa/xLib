@@ -13,7 +13,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxAppSettings : public CxNonCopyable {
+class CxAppSettings :
+    public CxNonCopyable
+{
     public:
         static tString     m_sAppTitle;
         static tString     m_sAppDir;

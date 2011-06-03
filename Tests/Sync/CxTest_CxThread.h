@@ -18,7 +18,9 @@
 
 #include "CWorkThread.h"
 //---------------------------------------------------------------------------
-class CxTest_CxThread : public CxTest {
+class CxTest_CxThread :
+    public CxTest
+{
 	public:
 		CxTest_CxThread();
 		virtual     ~CxTest_CxThread();

@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxCookiePv1 : public CxNonCopyable {
+class CxCookiePv1 :
+    public CxNonCopyable
+{
     public:
         explicit         CxCookiePv1 ();
                          CxCookiePv1 (const tString &csRawCookie);

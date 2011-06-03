@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxException : public std::exception {
+class CxException :
+    public std::exception
+{
     private:
         tString             _m_sMsg;
 

@@ -15,11 +15,13 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxProfiler.h>
 //---------------------------------------------------------------------------
-class CxAutoProfiler : public CxNonCopyable {
+class CxAutoProfiler :
+    public CxNonCopyable
+{
     public:
-                   CxAutoProfiler(const tString &csFilePath, CxProfiler::EMode pmMode, LPCTSTR pcszComment, ...);
+                   CxAutoProfiler(const tString &csFilePath, const CxProfiler::EMode cpmMode, LPCTSTR pcszComment, ...);
         virtual   ~CxAutoProfiler();
-    
+
     private:
         CxProfiler _m_pfProfiler;
         tString    _m_sComment;

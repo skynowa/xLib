@@ -15,24 +15,28 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxKey ()
-CxKey::CxKey(const CxPkcs11 &cPkcs11, const CxSession &cSession) :
+CxKey::CxKey(
+    const CxPkcs11  &cPkcs11,
+    const CxSession &cSession
+) :
     _m_bRes    (FALSE),
     _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxKey ()
+/*virtual*/
 CxKey::~CxKey() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bGenerate (generates a secret key, creating a new key object)
@@ -50,9 +54,9 @@ CxKey::bGenerate(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-}  
+}
 //---------------------------------------------------------------------------
-//TODO: bGeneratePair (generates a public-key/private-key pair, creating new key objects)      
+//TODO: bGeneratePair (generates a public-key/private-key pair, creating new key objects)
 BOOL
 CxKey::bGeneratePair(
     CK_MECHANISM_PTR     pMechanism,                  /* key-gen mech. */
@@ -61,7 +65,7 @@ CxKey::bGeneratePair(
     CK_ATTRIBUTE_PTR     pPrivateKeyTemplate,         /* template for priv. key */
     CK_ULONG             ulPrivateKeyAttributeCount,  /* # priv. attrs. */
     CK_OBJECT_HANDLE_PTR phPublicKey,                 /* gets pub. key handle */
-    CK_OBJECT_HANDLE_PTR phPrivateKey    
+    CK_OBJECT_HANDLE_PTR phPrivateKey
 )
 {
     /*DEBUG*/
@@ -70,7 +74,7 @@ CxKey::bGeneratePair(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
 //TODO: bDerive (derives a key from a base key, creating a new key object)
 BOOL
@@ -79,7 +83,7 @@ CxKey::bDerive(
     CK_OBJECT_HANDLE     hBaseKey,          /* base key */
     CK_ATTRIBUTE_PTR     pTemplate,         /* new key template */
     CK_ULONG             ulAttributeCount,  /* template length */
-    CK_OBJECT_HANDLE_PTR phKey 
+    CK_OBJECT_HANDLE_PTR phKey
 )
 {
     /*DEBUG*/
@@ -88,16 +92,16 @@ CxKey::bDerive(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-}  
+}
 //---------------------------------------------------------------------------
 //TODO: bWrap (wraps (i.e., encrypts) a key)
 BOOL
 CxKey::bWrap(
-    CK_MECHANISM_PTR  pMechanism,      /* the wrapping mechanism */
-    CK_OBJECT_HANDLE  hWrappingKey,    /* wrapping key */
-    CK_OBJECT_HANDLE  hKey,            /* key to be wrapped */
-    CK_BYTE_PTR       pWrappedKey,     /* gets wrapped key */
-    CK_ULONG_PTR      pulWrappedKeyLen /* gets wrapped key size */
+    CK_MECHANISM_PTR pMechanism,      /* the wrapping mechanism */
+    CK_OBJECT_HANDLE hWrappingKey,    /* wrapping key */
+    CK_OBJECT_HANDLE hKey,            /* key to be wrapped */
+    CK_BYTE_PTR      pWrappedKey,     /* gets wrapped key */
+    CK_ULONG_PTR     pulWrappedKeyLen /* gets wrapped key size */
 )
 {
     /*DEBUG*/
@@ -106,7 +110,7 @@ CxKey::bWrap(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
 //TODO: bUnwrap (unwraps (decrypts) a wrapped key, creating a new key object)
 BOOL
@@ -117,7 +121,7 @@ CxKey::bUnwrap(
     CK_ULONG             ulWrappedKeyLen,   /* wrapped key len */
     CK_ATTRIBUTE_PTR     pTemplate,         /* new key template */
     CK_ULONG             ulAttributeCount,  /* template length */
-    CK_OBJECT_HANDLE_PTR phKey 
+    CK_OBJECT_HANDLE_PTR phKey
 )
 {
     /*DEBUG*/
@@ -126,13 +130,13 @@ CxKey::bUnwrap(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
-//--------------------------------------------------------------------------- 
+}
+//---------------------------------------------------------------------------
 //TODO: bSeedRandom (mixes additional seed material into the token's random number generator)
 BOOL
 CxKey::bSeedRandom(
-    CK_BYTE_PTR       pSeed,     /* the seed material */
-    CK_ULONG          ulSeedLen  /* length of seed material */
+    CK_BYTE_PTR pSeed,     /* the seed material */
+    CK_ULONG    ulSeedLen  /* length of seed material */
 )
 {
     /*DEBUG*/
@@ -141,13 +145,13 @@ CxKey::bSeedRandom(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
 //TODO: bGenerateRandom (generates random data)
 BOOL
 CxKey::bGenerateRandom(
-    CK_BYTE_PTR       pRandomData,  /* receives the random data */
-    CK_ULONG          ulRandomLen   /* # of bytes to generate */
+    CK_BYTE_PTR pRandomData,  /* receives the random data */
+    CK_ULONG    ulRandomLen   /* # of bytes to generate */
 )
 {
     /*DEBUG*/
@@ -156,13 +160,6 @@ CxKey::bGenerateRandom(
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    private                                                         
-*                                                                            
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
+d

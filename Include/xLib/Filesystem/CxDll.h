@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxDll : public CxNonCopyable {
+class CxDll :
+    public CxNonCopyable
+{
     private:
         BOOL     _m_bRes;
 

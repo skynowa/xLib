@@ -16,7 +16,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/Win/CxHandle.h>
 //---------------------------------------------------------------------------
-class CxCompletionPort : public CxNonCopyable  {
+class CxCompletionPort :
+    public CxNonCopyable
+{
     public:
                         CxCompletionPort();
         virtual        ~CxCompletionPort();

@@ -14,12 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxTest : public CxNonCopyable {
-    private:
-        BOOL                            _m_bRes;
-        tString                         _m_sWorkDirPath;
-        tString                         _m_sName;
-
+class CxTest :
+    public CxNonCopyable
+{
     public:
         VOID *                          m_pvRes;
         TCHAR                           m_chRes;
@@ -34,7 +31,7 @@ class CxTest : public CxNonCopyable {
         LONGLONG                        m_llRes;
         ULONGLONG                       m_ullRes;
         FLOAT                           m_fRes;
-        double                          m_dRes;
+        DOUBLE                          m_dRes;
         tString                         m_sRes;
         uString                         m_usRes;
         std::vector<TCHAR>              m_vecchRes;
@@ -52,8 +49,10 @@ class CxTest : public CxNonCopyable {
                                         CxTest         ();
         virtual                        ~CxTest         () = 0;
 
-//      BOOL                            bAdd           (const CxTest *);
-//      BOOL                            bRemove        (const CxTest *);
+        #if xTODO
+        BOOL                            bAdd           (const CxTest *);
+        BOOL                            bRemove        (const CxTest *);
+        #endif
 
         BOOL                            bRun           (const ULONGLONG cullLoops /*0 - infinite*/);
         virtual BOOL                    bUnit          () = 0;
@@ -67,6 +66,11 @@ class CxTest : public CxNonCopyable {
         //TODO: not enough HDD
         //TODO: busy CPU
         //TODO: какждый макрос завернуть в try-catch
+
+    private:
+        BOOL                            _m_bRes;
+        tString                         _m_sWorkDirPath;
+        tString                         _m_sName;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxTestH

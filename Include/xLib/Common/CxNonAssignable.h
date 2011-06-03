@@ -13,11 +13,13 @@
 #define xLib_Common_CxNonAssignableH
 //---------------------------------------------------------------------------
 class CxNonAssignable {
+   public:
+
    protected:
        CxNonAssignable() {}
       ~CxNonAssignable() {}
-      
-   private:  
+
+   private:
        const CxNonAssignable &operator = (const CxNonAssignable &);
 };
 //---------------------------------------------------------------------------

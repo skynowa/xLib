@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxClipboard : public CxNonCopyable {
+class CxClipboard :
+    public CxNonCopyable
+{
     public:
         enum EFormat {
             fmBITMAP             = CF_BITMAP,

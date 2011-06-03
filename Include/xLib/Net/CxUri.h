@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxUri : CxNonCopyable {
+class CxUri :
+    public CxNonCopyable
+{
     public:
                            CxUri            ();
         explicit           CxUri            (const std::string &csUri);

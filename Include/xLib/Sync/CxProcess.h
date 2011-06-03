@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxProcess : public CxNonCopyable {
+class CxProcess :
+    public CxNonCopyable
+{
     public:
         static ULONG ulGetCurrId      ();
         static ULONG ulGetCurrParentId();

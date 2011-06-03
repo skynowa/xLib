@@ -14,7 +14,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxPath : public CxNonCopyable {
+class CxPath :
+    public CxNonCopyable
+{
     public:
         static tString sGetExe      ();
         static tString sGetExeDir   ();

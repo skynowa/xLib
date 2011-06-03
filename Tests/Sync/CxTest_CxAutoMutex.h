@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxAutoMutex.h>
 //---------------------------------------------------------------------------
-class CxTest_CxAutoMutex : public CxTest {
+class CxTest_CxAutoMutex :
+    public CxTest
+{
 	public:
 		CxTest_CxAutoMutex();
 		virtual     ~CxTest_CxAutoMutex();
