@@ -14,6 +14,13 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+//enum { CxNullHandleTag, CxInvalidHandleTag };
+//
+//template<>
+//HANDLE CxHandleFailValue<CxNullHandleTag>   () { return NULL; }
+//template<>
+//HANDLE CxHandleFailValue<CxInvalidHandleTag>() { return INVALID_HANDLE_VALUE; } 
+//---------------------------------------------------------------------------
 template<HANDLE hFailValueT>
 class CxHandleT {
 	public:

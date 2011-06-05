@@ -13,7 +13,7 @@
 #define xLib_Coomon_Win_CxConsoleH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandle.h>
+#include <xLib/Common/Win/CxHandleT.h>
 //---------------------------------------------------------------------------
 class CxConsole :
     public CxNonCopyable

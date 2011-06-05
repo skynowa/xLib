@@ -13,7 +13,7 @@
 #define xLib_Common_Win_CxComPortH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandle.h>
+#include <xLib/Common/Win/CxHandleT.h>
 //---------------------------------------------------------------------------
 class CxCOMPort :
     public CxNonCopyable
