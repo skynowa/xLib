@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/xClosure.h>
-#include <xLib/Common/Win/CxHandle.h>
+#include <xLib/Common/Win/CxHandleT.h>
 #include <xLib/Sync/CxEvent.h>
 #include <xLib/Sync/CxSleeper.h>
 #include <xLib/Log/xLog.h>

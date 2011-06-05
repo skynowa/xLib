@@ -13,7 +13,7 @@
 #define xLib_Filesystem_Win_CxFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandle.h>
+#include <xLib/Common/Win/CxHandleT.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
 //---------------------------------------------------------------------------
 class CxFile :

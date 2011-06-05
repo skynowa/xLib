@@ -13,7 +13,7 @@
 #define xLib_Sync_CxSemaphoreH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandle.h>
+#include <xLib/Common/Win/CxHandleT.h>
 //---------------------------------------------------------------------------
 class CxSemaphore :
     public CxNonCopyable

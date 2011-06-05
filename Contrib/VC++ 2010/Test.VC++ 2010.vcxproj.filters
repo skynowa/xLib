@@ -608,9 +608,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxConsole.h">
       <Filter>xLib\Common\Win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxHandle.h">
-      <Filter>xLib\Common\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxShell.h">
       <Filter>xLib\Common\Win</Filter>
     </ClInclude>
@@ -703,6 +700,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Pkcs11\Win\CxVerify.h">
       <Filter>xLib\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\Win\CxHandleT.h">
+      <Filter>xLib\Common\Win</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

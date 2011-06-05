@@ -14,7 +14,7 @@
 #define xLib_Sync_CxCompletionPortH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandle.h>
+#include <xLib/Common/Win/CxHandleT.h>
 //---------------------------------------------------------------------------
 class CxCompletionPort :
     public CxNonCopyable
