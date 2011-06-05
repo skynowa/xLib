@@ -12,7 +12,7 @@
 #include <xLib/Sync/CxProcess.h>
 
 #if defined(xOS_WIN)
-    #include <xLib/Common/Win/CxHandle.h>
+    #include <xLib/Common/Win/CxHandleT.h>
 #elif defined(xOS_LINUX)
 
 #endif

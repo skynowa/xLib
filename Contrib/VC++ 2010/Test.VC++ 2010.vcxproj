@@ -257,6 +257,7 @@
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxBase64.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Win\CxHandleT.h" />
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
     <ClInclude Include="..\..\Include\xLib\Db\CxConnectionString.h" />
@@ -385,7 +386,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxCom.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxComPort.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxConsole.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxHandle.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxShell.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\xCommon_Win.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Linux.h" />
