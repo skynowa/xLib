@@ -682,39 +682,39 @@ CxFile::bSetRandomDate(const tString &csFilePath) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), FALSE);
 
-    //////////CxHandle<INVALID_HANDLE_VALUE> hFile;
+    CxFileHandle hFile;
 
-    //////////hFile = ::CreateFile(csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS, NULL);
-    ///////////*DEBUG*/xASSERT_RET(FALSE != hFile.bIsValid(), FALSE);
+    hFile = ::CreateFile(csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS, NULL);
+    /*DEBUG*/xASSERT_RET(FALSE != hFile.bIsValid(), FALSE);
 
-    ////////////-------------------------------------
-    ////////////���� ��������
-    //////////FILETIME ftCreationTime = {0};
-    //////////xRANDOMIZE();
-    //////////ftCreationTime.dwHighDateTime = rand();
-    //////////xRANDOMIZE();
-    //////////ftCreationTime.dwLowDateTime  = rand();
+    //-------------------------------------
+    //���� ��������
+    FILETIME ftCreationTime = {0};
+    xRANDOMIZE();
+    ftCreationTime.dwHighDateTime = rand();
+    xRANDOMIZE();
+    ftCreationTime.dwLowDateTime  = rand();
 
-    ////////////-------------------------------------
-    ////////////���� ���������� �������
-    //////////FILETIME ftLastAccessTime = {0};
-    //////////xRANDOMIZE();
-    //////////ftLastAccessTime.dwHighDateTime = rand();
-    //////////xRANDOMIZE();
-    //////////ftLastAccessTime.dwLowDateTime  = rand();
+    //-------------------------------------
+    //���� ���������� �������
+    FILETIME ftLastAccessTime = {0};
+    xRANDOMIZE();
+    ftLastAccessTime.dwHighDateTime = rand();
+    xRANDOMIZE();
+    ftLastAccessTime.dwLowDateTime  = rand();
 
-    ////////////-------------------------------------
-    ////////////���� ���������� ���������
-    //////////FILETIME ftLastWriteTime = {0};
-    //////////xRANDOMIZE();
-    //////////ftLastWriteTime.dwHighDateTime = rand();
-    //////////xRANDOMIZE();
-    //////////ftLastWriteTime.dwLowDateTime  = rand();
+    //-------------------------------------
+    //���� ���������� ���������
+    FILETIME ftLastWriteTime = {0};
+    xRANDOMIZE();
+    ftLastWriteTime.dwHighDateTime = rand();
+    xRANDOMIZE();
+    ftLastWriteTime.dwLowDateTime  = rand();
 
-    ////////////-------------------------------------
-    ////////////������ ��������
-    //////////BOOL bRes = ::SetFileTime(hFile, &ftCreationTime, &ftLastAccessTime, &ftLastWriteTime);
-    ///////////*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    //-------------------------------------
+    //������ ��������
+    BOOL bRes = ::SetFileTime(hFile, &ftCreationTime, &ftLastAccessTime, &ftLastWriteTime);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }

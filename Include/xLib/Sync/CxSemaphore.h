@@ -32,9 +32,9 @@ class CxSemaphore :
         BOOL            bReset     (LONG liInitialCount, LONG liMaxCount);
 
     private:
-        CxHandle         _m_hSemaphore;
-        LPSECURITY_ATTRIBUTES   _m_lpsaAttributes;
-        LPCTSTR                 _m_pcszName;
+        CxHandle              _m_hSemaphore;
+        LPSECURITY_ATTRIBUTES _m_lpsaAttributes;
+        LPCTSTR               _m_pcszName;
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxSemaphoreH

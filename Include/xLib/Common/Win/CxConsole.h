@@ -41,8 +41,8 @@ class CxConsole :
         BOOL                            _m_bRes;
         HWND                            _m_hWnd;
         HMENU                           _m_hMenu;
-        CxHandle _m_hStdIn;   //INVALID_HANDLE_VALUE
-        CxHandle _m_hStdOut;  //INVALID_HANDLE_VALUE
+        CxFileHandle _m_hStdIn;   
+        CxFileHandle _m_hStdOut;  
 
         HWND                             hGetWndHandle ();
         HMENU                            hGetMenuHandle(BOOL bRevert);

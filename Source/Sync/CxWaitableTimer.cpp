@@ -61,8 +61,8 @@ CxWaitableTimer::bOpen(LPCTSTR pcszName, ULONG ulDesiredAccess, BOOL bInheritHan
 
     HANDLE hRes = NULL;
 
-    hRes = ::OpenWaitableTimer(ulDesiredAccess, bInheritHandle, pcszName);
-    /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
+    ////hRes = ::OpenWaitableTimer(ulDesiredAccess, bInheritHandle, pcszName);
+    /////*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     _m_hWaitableTimer.m_hHandle = hRes;
 

@@ -16,34 +16,40 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxHandleT ()
-template<HANDLE hFailValueT>
-CxHandleT<hFailValueT>::CxHandleT() :
-	_m_bRes  (FALSE),
-	m_hHandle(hFailValueT)
+template<EHandleValue hvTag>
+CxHandleT<hvTag>::CxHandleT() :
+	m_hHandle( FailValue::get() ),
+	_m_bRes  (FALSE)
 {
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: CxHandleT ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 /*explicit*/
-CxHandleT<hFailValueT>::CxHandleT(HANDLE hHandle) :
+CxHandleT<hvTag>::CxHandleT(
+    HANDLE hHandle
+) :
 	m_hHandle(hHandle)
 {
 	/*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: CxHandleT ()
-template<HANDLE hFailValueT>
-CxHandleT<hFailValueT>::CxHandleT(const CxHandleT &hHandle) :
-	m_hHandle(hHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS))
+template<EHandleValue hvTag>
+CxHandleT<hvTag>::CxHandleT(
+    const CxHandleT &hHandle
+) :
+	m_hHandle( FailValue::get() )
 {
 	/*DEBUG*/
+	
+	m_hHandle = hHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxHandleT ()
-template<HANDLE hFailValueT>
-CxHandleT<hFailValueT>::~CxHandleT() {
+template<EHandleValue hvTag>
+CxHandleT<hvTag>::~CxHandleT() {
 	/*DEBUG*/// n/a
 
 	_m_bRes = bClose();
@@ -59,10 +65,13 @@ CxHandleT<hFailValueT>::~CxHandleT() {
 
 //---------------------------------------------------------------------------
 //DONE: operator = ()
-template<HANDLE hFailValueT>
-CxHandleT<hFailValueT> &
-CxHandleT<hFailValueT>::operator = (HANDLE hHandle) {
-	/*DEBUG*/xASSERT_DO(FALSE == bIsValid(), hFailValueT);
+template<EHandleValue hvTag>
+CxHandleT<hvTag> &
+CxHandleT<hvTag>::operator = (
+    HANDLE hHandle
+)
+{
+	/*DEBUG*/xASSERT_DO(FALSE == bIsValid(), FailValue::get());
 	/*DEBUG*///hHandle - n/a
 
 	//Try m_Handle.Attach(other.Detach(), if you got an assertion here.
@@ -85,10 +94,13 @@ CxHandleT<hFailValueT>::operator = (HANDLE hHandle) {
 }
 //---------------------------------------------------------------------------
 //DONE: operator = ()
-template<HANDLE hFailValueT>
-CxHandleT<hFailValueT> &
-CxHandleT<hFailValueT>::operator = (const CxHandleT &hHandle) {
-	/*DEBUG*/xASSERT_DO(FALSE == bIsValid(), hFailValueT);
+template<EHandleValue hvTag>
+CxHandleT<hvTag> &
+CxHandleT<hvTag>::operator = (
+    const CxHandleT &hHandle
+)
+{
+	/*DEBUG*/xASSERT_DO(FALSE == bIsValid(), FailValue::get());
 	/*DEBUG*///CxHandleT - n/a
 
 	if (this != &hHandle) {
@@ -103,24 +115,24 @@ CxHandleT<hFailValueT>::operator = (const CxHandleT &hHandle) {
 		}
 
 		m_hHandle = hHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
-		/*DEBUG*/xASSERT_RET(hFailValueT != m_hHandle, hFailValueT);
+		/*DEBUG*/xASSERT_RET(FailValue::get() != m_hHandle, FailValue::get());
 	}
 
 	return *this;
 }
 //---------------------------------------------------------------------------
 //DONE: operator HANDLE ()
-template<HANDLE hFailValueT>
-CxHandleT<hFailValueT>::operator HANDLE() const {
+template<EHandleValue hvTag>
+CxHandleT<hvTag>::operator HANDLE() const {
 	/*DEBUG*///???
 
 	return m_hHandle;
 }
 //---------------------------------------------------------------------------
 //DONE: bIsValid ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 BOOL
-CxHandleT<hFailValueT>::bIsValid() const {
+CxHandleT<hvTag>::bIsValid() const {
 	/*DEBUG*///n/a
 
 	//0XCDCDCDCD - Created but not initialised
@@ -151,7 +163,7 @@ CxHandleT<hFailValueT>::bIsValid() const {
 	BOOL bCond4 = (reinterpret_cast<HANDLE>(4261281277UL) != m_hHandle);	//0xFDFDFDFD
 	BOOL bCond5 = (reinterpret_cast<HANDLE>(4277075694UL) != m_hHandle);	//0XFEEEFEEE
 	BOOL bCond6 = (reinterpret_cast<HANDLE>(3722304989UL) != m_hHandle);	//0XDDDDDDDD
-	BOOL bCond7 = (hFailValueT                            != m_hHandle);	//hFailValueT
+	BOOL bCond7 = (FailValue::get()          != m_hHandle);	//hFailValueT
 
 	return (TRUE == bCond1) &&
 		   (TRUE == bCond2) &&
@@ -163,9 +175,12 @@ CxHandleT<hFailValueT>::bIsValid() const {
 }
 //---------------------------------------------------------------------------
 //DONE: bAttach ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 BOOL
-CxHandleT<hFailValueT>::bAttach(HANDLE hHandle) {
+CxHandleT<hvTag>::bAttach(
+    HANDLE hHandle
+)
+{
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
 	_m_bRes = bClose();
@@ -188,14 +203,14 @@ CxHandleT<hFailValueT>::bAttach(HANDLE hHandle) {
 }
 //---------------------------------------------------------------------------
 //DONE: hDetach ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 HANDLE
-CxHandleT<hFailValueT>::hDetach() {
+CxHandleT<hvTag>::hDetach() {
 	/*DEBUG*///n/a
 
 	HANDLE hHandle = m_hHandle;
 
-	m_hHandle = hFailValueT;
+	m_hHandle = FailValue::get();
 
 	return hHandle;
 
@@ -212,16 +227,16 @@ CxHandleT<hFailValueT>::hDetach() {
 }
 //---------------------------------------------------------------------------
 //DONE: bClose ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 BOOL
-CxHandleT<hFailValueT>::bClose() {
+CxHandleT<hvTag>::bClose() {
 	/*DEBUG*/// n/a
 
 	if (FALSE != bIsValid()) {
 		_m_bRes = ::CloseHandle(m_hHandle);
 		/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-		m_hHandle = hFailValueT;
+		m_hHandle = FailValue::get();
 	}
 
 	return TRUE;
@@ -229,9 +244,9 @@ CxHandleT<hFailValueT>::bClose() {
 //---------------------------------------------------------------------------
 #if (_WIN32_WINNT >= 0x0400)
 //DONE: ulGetInformation (Retrieves certain properties of an object handle)
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 ULONG
-CxHandleT<hFailValueT>::ulGetInformation() const {
+CxHandleT<hvTag>::ulGetInformation() const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
 
 	ULONG ulFlags = 0;
@@ -244,9 +259,13 @@ CxHandleT<hFailValueT>::ulGetInformation() const {
 }
 //---------------------------------------------------------------------------
 //DONE: bSetInformation ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 BOOL
-CxHandleT<hFailValueT>::bSetInformation(ULONG ulMask, ULONG ulFlags) {
+CxHandleT<hvTag>::bSetInformation(
+    ULONG ulMask, 
+    ULONG ulFlags
+)
+{
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 	/*DEBUG*///ulMask  - n/a
 	/*DEBUG*///ulFlags - ????
@@ -258,36 +277,42 @@ CxHandleT<hFailValueT>::bSetInformation(ULONG ulMask, ULONG ulFlags) {
 }
 //---------------------------------------------------------------------------
 //DONE: bIsFlagInherit ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 BOOL
-CxHandleT<hFailValueT>::bIsFlagInherit() const {
+CxHandleT<hvTag>::bIsFlagInherit() const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
 	return 0 != (ulGetInformation() & HANDLE_FLAG_INHERIT);
 }
 //---------------------------------------------------------------------------
 //DONE: bIsFlagProtectFromClose ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 BOOL
-CxHandleT<hFailValueT>::bIsFlagProtectFromClose() const {
+CxHandleT<hvTag>::bIsFlagProtectFromClose() const {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
 	return 0 != (ulGetInformation() & HANDLE_FLAG_PROTECT_FROM_CLOSE);
 }
 //---------------------------------------------------------------------------
 //DONE: bSetFlagInherit ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 BOOL
-CxHandleT<hFailValueT>::bSetFlagInherit(BOOL bFlagInherit) {
+CxHandleT<hvTag>::bSetFlagInherit(
+	BOOL bFlagInherit
+)
+{
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
 	return bSetInformation(HANDLE_FLAG_INHERIT, (bFlagInherit) ? HANDLE_FLAG_INHERIT : 0);;
 }
 //---------------------------------------------------------------------------
 //DONE: bSetFlagProtectFromClose ()
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 BOOL
-CxHandleT<hFailValueT>::bSetFlagProtectFromClose(BOOL bFlagProtectFromClose) {
+CxHandleT<hvTag>::bSetFlagProtectFromClose(
+    BOOL bFlagProtectFromClose
+) 
+{
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
 	return bSetInformation(HANDLE_FLAG_PROTECT_FROM_CLOSE, (bFlagProtectFromClose) ? HANDLE_FLAG_PROTECT_FROM_CLOSE : 0);
@@ -295,15 +320,21 @@ CxHandleT<hFailValueT>::bSetFlagProtectFromClose(BOOL bFlagProtectFromClose) {
 #endif // (_WIN32_WINNT >= 0x0400)
 //---------------------------------------------------------------------------
 //DONE: hDuplicate (Duplicates an object handle)
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 HANDLE
-CxHandleT<hFailValueT>::hDuplicate(HANDLE hTargetProcess, ULONG ulDesiredAccess, BOOL bInheritHandle/* = FALSE*/, ULONG ulOptions/* = 0*/) const {
-	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), hFailValueT);
+CxHandleT<hvTag>::hDuplicate(
+	HANDLE hTargetProcess, 
+	ULONG  ulDesiredAccess, 
+	BOOL   bInheritHandle/* = FALSE*/, 
+	ULONG  ulOptions/* = 0*/
+) const 
+{
+	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FailValue::get());
 
-	HANDLE hRes = hFailValueT;
+	HANDLE hRes = FailValue::get();
 
 	_m_bRes = ::DuplicateHandle(hGetCurrentProcess(), m_hHandle, hTargetProcess, &hRes, ulDesiredAccess, bInheritHandle, ulOptions);
-	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, hFailValueT);
+	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FailValue::get());
 
 	return hRes;
 }
@@ -317,32 +348,35 @@ CxHandleT<hFailValueT>::hDuplicate(HANDLE hTargetProcess, ULONG ulDesiredAccess,
 
 //---------------------------------------------------------------------------
 //DONE: static
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 const HANDLE
-CxHandleT<hFailValueT>::_ms_chCurrProcessHandle = (HANDLE) - 1;
+CxHandleT<hvTag>::_ms_chCurrProcessHandle = (HANDLE) - 1;
 //---------------------------------------------------------------------------
 //DONE: hGetCurrent (Retrieves a pseudo handle for the current process)
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 /*static*/
 HANDLE
-CxHandleT<hFailValueT>::hGetCurrentProcess() {
+CxHandleT<hvTag>::hGetCurrentProcess() {
 	/*DEBUG*///n/a
 
-	HANDLE hRes = hFailValueT;
+	HANDLE hRes = FailValue::get();
 
 	hRes = ::GetCurrentProcess();
-	/*DEBUG*/xASSERT_RET(_ms_chCurrProcessHandle == hRes, hFailValueT);
+	/*DEBUG*/xASSERT_RET(_ms_chCurrProcessHandle == hRes, FailValue::get());
 
 	return hRes;
 }
 //---------------------------------------------------------------------------
 //DONE: bIsValid (�������� ���������� ������)
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 /*static*/
 BOOL
-CxHandleT<hFailValueT>::bIsValid(HANDLE hHandle) {
+CxHandleT<hvTag>::bIsValid(
+	HANDLE hHandle
+)
+{
 	/*DEBUG*/// n/a
 
-	return hFailValueT != hHandle;
+	return FailValue::get() != hHandle;
 }
 //---------------------------------------------------------------------------

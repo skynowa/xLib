@@ -62,7 +62,7 @@ class CxFile :
             fteDir     = 2
         };
 
-        CxHandle         m_hHandle;
+        CxFileHandle     m_hHandle;
 
 
                          CxFile              ();
