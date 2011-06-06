@@ -14,14 +14,25 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-//enum { CxNullHandleTag, CxInvalidHandleTag };
-//
-//template<>
-//HANDLE CxHandleFailValue<CxNullHandleTag>   () { return NULL; }
-//template<>
-//HANDLE CxHandleFailValue<CxInvalidHandleTag>() { return INVALID_HANDLE_VALUE; } 
+enum EHandleValue { 
+    hvNull, 
+    hvInvalid 
+};
+
+template<EHandleValue hvTag>
+struct CxHandleFailValue;
+
+template<>
+struct CxHandleFailValue<hvNull> {
+    static HANDLE get () { return NULL; }
+};
+
+template<>
+struct CxHandleFailValue<hvInvalid> {
+    static HANDLE get () { return INVALID_HANDLE_VALUE; } 
+};
 //---------------------------------------------------------------------------
-template<HANDLE hFailValueT>
+template<EHandleValue hvTag>
 class CxHandleT {
 	public:
 		HANDLE        m_hHandle;
@@ -53,13 +64,15 @@ class CxHandleT {
 		static BOOL   bIsValid                (HANDLE hHandle);
 
 	private:
-		mutable BOOL  _m_bRes;
+        typedef CxHandleFailValue<hvTag>  FailValue;
 
-		static const HANDLE _ms_chCurrProcessHandle;	//����� �������� ��������
+		mutable BOOL  _m_bRes;
+		
+		static const HANDLE _ms_chCurrProcessHandle;
 };
 //---------------------------------------------------------------------------
-typedef CxHandleT<NULL>                 CxHandle;
-typedef CxHandleT<INVALID_HANDLE_VALUE> CxFileHandle;
+typedef CxHandleT<hvNull>    CxHandle;
+typedef CxHandleT<hvInvalid> CxFileHandle;
 //---------------------------------------------------------------------------
 #include <Common/Win/CxHandleT.inl>
 //---------------------------------------------------------------------------

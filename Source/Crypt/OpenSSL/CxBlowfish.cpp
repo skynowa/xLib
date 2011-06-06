@@ -16,11 +16,6 @@
 #include <xLib/Debug/CxProfiler.h>
 #include <xLib/Crypt/CxCrc32.h>
 
-#if defined(xOS_WIN)
-    #include <xLib/Filesystem/Win/CxFile.h>
-#elif defined(xOS_LINUX)
-
-#endif
 
 /****************************************************************************
 *    public
@@ -316,13 +311,8 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
 
     //-------------------------------------
     //??????????? File.txt.tmp -> File.txt
-#if defined(xOS_WIN)
-    _m_bRes = CxFile::bWipe(csFilePathIn, 1);
+    _m_bRes = CxStdioFile::bWipe(csFilePathIn, 1);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-#elif defined(xOS_LINUX)
-    _m_bRes = CxStdioFile::bDelete(csFilePathIn);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-#endif
 
     //-------------------------------------
     //????????? ?????????? ??? ???. ?????

@@ -19,7 +19,7 @@ class CxSleeper :
     public CxNonCopyable
 {
     public:
-                  CxSleeper  ();
+                 CxSleeper  ();
         virtual ~CxSleeper  ();
 
         BOOL     bSleep     (ULONG ulTimeout) const;
@@ -27,7 +27,7 @@ class CxSleeper :
         BOOL     bIsSleeping() const;
 
     private:
-        CxEvent _m_objEvent;
+        CxEvent  _m_objEvent;
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxSleeperH

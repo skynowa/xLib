@@ -25,8 +25,8 @@ class CxTest_CxHandleT :
     public CxTest
 {
     public:
-        CxTest_CxHandleT();
-       ~CxTest_CxHandleT();
+                 CxTest_CxHandleT();
+        virtual ~CxTest_CxHandleT();
 
         virtual BOOL bUnit();
 
@@ -50,7 +50,7 @@ CxTest_CxHandleT::~CxTest_CxHandleT() {
 /*virtual*/
 BOOL
 CxTest_CxHandleT::bUnit() {
-    CxHandleT<(VOID *)NULL> objHandle;
+    CxHandleT<hvNull> objHandle;
 
     //objHandle = CxHandle::hGetCurrentProcess();
     objHandle = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, CxProcess::ulGetCurrId());
@@ -108,10 +108,10 @@ CxTest_CxHandleT::bUnit() {
 
     //-------------------------------------
     //static
-    m_bRes = CxHandleT<(VOID *)NULL>::bIsValid(CxHandle::hGetCurrentProcess());
+    m_bRes = CxHandleT<hvNull>::bIsValid(CxHandle::hGetCurrentProcess());
     xASSERT(FALSE != m_bRes);
 
-    m_bRes = CxHandleT<INVALID_HANDLE_VALUE>::bIsValid(CxHandle::hGetCurrentProcess());
+    m_bRes = CxHandleT<hvInvalid>::bIsValid(CxHandle::hGetCurrentProcess());
     xASSERT(FALSE == m_bRes);
 
     return TRUE;

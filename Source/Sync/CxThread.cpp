@@ -1177,8 +1177,7 @@ CxThread::_bSetDebugNameA(
         /*DEBUG*/// n/a
     }
     __except (EXCEPTION_CONTINUE_EXECUTION)    {
-        //TODO:
-        ////////////////////////*DEBUG*/xASSERT_RET(FALSE, FALSE);
+        //n/a
     }
 
     return TRUE;

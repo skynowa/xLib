@@ -38,7 +38,7 @@ class CxCOMPort :
 
     private:
         BOOL         _m_bRes;
-        CxHandle     _m_hComPort;  //INVALID_HANDLE_VALUE
+        CxFileHandle _m_hComPort; 
         tString      _m_sPortNum;
 
         COMMTIMEOUTS CommTimeOuts;
