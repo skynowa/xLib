@@ -111,7 +111,7 @@ CxTest_CxEnvironment::bUnit() {
             {xT("ENV_TEST_3"), xT("value3")},   //custom
             {xT("ENV_TEST_4"), xT("value4")},   //custom
 
-            {xT("USER"),  xT("user")},
+            {xT("USER"),  xT("sergey")},
             {xT("SHELL"), xT("/bin/bash")}
         };
     #endif
@@ -147,16 +147,16 @@ CxTest_CxEnvironment::bUnit() {
             {xT("ttt%ENV_TEST_3%"), xT("tttvalue3")},   //custom
             {xT("rrr%ENV_TEST_4%rrr"), xT("rrrvalue4rrr")},   //custom
 
-            {xT("User = %USER%"),                     xT("User = user")},
+            {xT("User = %USER%"),                     xT("User = sergey")},
             {xT("Shell = %SHELL%"),                   xT("Shell = /bin/bash")},
-            {xT("User = %USER%, Shell = %SHELL%"),    xT("User = user, Shell = /bin/bash")},
+            {xT("User = %USER%, Shell = %SHELL%"),    xT("User = sergey, Shell = /bin/bash")},
             {xT("Home = %HOME%"),                     xT("Home = /home/user")},
-            {xT("...User = %USER%"),                  xT("...User = user")},
+            {xT("...User = %USER%"),                  xT("...User = sergey")},
             {xT("Shell = %SHELL%..."),                xT("Shell = /bin/bash...")},
-            {xT("+++User = %USER%, Shell = %SHELL%"), xT("+++User = user, Shell = /bin/bash")},
+            {xT("+++User = %USER%, Shell = %SHELL%"), xT("+++User = sergey, Shell = /bin/bash")},
             {xT("Home =   %HOME%"),                   xT("Home =   /home/user")},
             {xT("Home =   %HOME%"),                   xT("Home =   /home/user")},
-            {xT("User = %USER%, Shell = %SHELL%, Home = %HOME%"), xT("User = user, Shell = /bin/bash, Home = /home/user")},
+            {xT("User = %USER%, Shell = %SHELL%, Home = %HOME%"), xT("User = sergey, Shell = /bin/bash, Home = /home/user")},
         };
     #endif
 

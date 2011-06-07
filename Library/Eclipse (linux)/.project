@@ -84,17 +84,17 @@
 		<link>
 			<name>Include</name>
 			<type>2</type>
-			<location>/home/user/Libs/xLib/Include</location>
+			<location>/home/sergey/Libs/xLib/Include</location>
 		</link>
 		<link>
 			<name>Source</name>
 			<type>2</type>
-			<location>/home/user/Libs/xLib/Source</location>
+			<location>/home/sergey/Libs/xLib/Source</location>
 		</link>
 		<link>
 			<name>TODO.txt</name>
 			<type>1</type>
-			<location>/home/user/Libs/xLib/TODO.txt</location>
+			<location>/home/sergey/Libs/xLib/TODO.txt</location>
 		</link>
 	</linkedResources>
 </projectDescription>

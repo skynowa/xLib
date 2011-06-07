@@ -20,7 +20,7 @@
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxRtf.h>
 #elif defined(xOS_LINUX)
-
+    #include <linux/kd.h>   //bBeep
 #endif
 
 
@@ -29,7 +29,8 @@
 *
 *****************************************************************************/
 
-BOOL CxDebugger::_ms_bIsEnabled = TRUE;
+BOOL    CxDebugger::_ms_bIsEnabled = TRUE;
+tString CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
 //DONE: bGetEnabled (is debugging enabled)
@@ -100,6 +101,29 @@ CxDebugger::bBreak() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//DONE: bSetLogPath (set log file path)
+/*static*/
+BOOL
+CxDebugger::bSetLogPath(
+    const tString &csFilePath
+)
+{
+    /*DEBUG*/
+
+    _ms_sLogPath = csFilePath;
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: sGetLogPath (get log file path)
+/*static*/
+tString
+CxDebugger::sGetLogPath() {
+    /*DEBUG*/
+
+    return _ms_sLogPath;
+}
+//---------------------------------------------------------------------------
 //DONE: bReportMake (make report)
 /*static*/
 BOOL
@@ -115,14 +139,14 @@ CxDebugger::bReportMake(
 
     INT iRes = crpReport.rtGetType();
     switch (iRes) {
-        case CxReport::rtMsgboxPlain:  { bMsgboxPlain (crpReport); } break;
-        case CxReport::rtMsgboxRtf:    { bMsgboxRtf   (crpReport); } break;
-        case CxReport::rtStdoutPlain:  { bStdoutPlain (crpReport); } break;
-        case CxReport::rtStdoutHtml:   { bStdoutHtml  (crpReport); } break;
-        case CxReport::rtLoggingPlain: { bLoggingPlain(crpReport); } break;
-        case CxReport::rtLoggingHtml:  { bLoggingHtml (crpReport); } break;
+        case CxReport::rtMsgboxPlain:  { _bMsgboxPlain (crpReport); } break;
+        case CxReport::rtMsgboxRtf:    { _bMsgboxRtf   (crpReport); } break;
+        case CxReport::rtStdoutPlain:  { _bStdoutPlain (crpReport); } break;
+        case CxReport::rtStdoutHtml:   { _bStdoutHtml  (crpReport); } break;
+        case CxReport::rtLoggingPlain: { _bLoggingPlain(crpReport); } break;
+        case CxReport::rtLoggingHtml:  { _bLoggingHtml (crpReport); } break;
 
-        default:                       { bStdoutPlain (crpReport); } break;
+        default:                       { _bStdoutPlain (crpReport); } break;
     }
 
     //-------------------------------------
@@ -175,6 +199,66 @@ CxDebugger::bTrace(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
+//TODO: bBeep (play sound)
+/*static*/
+BOOL
+CxDebugger::bBeep(
+    const ULONG culFrequency,
+    const ULONG culDuration
+) {
+    /*DEBUG*/
+
+#if defined(xOS_WIN)
+    BOOL bRes = FALSE;
+
+    bRes = ::Beep(culFrequency, culDuration);
+    xCHECK_RET(FALSE == bRes, FALSE);
+#elif defined(xOS_LINUX)
+    #if xCAN_REMOVE
+        A couple of tests to run.
+
+        When you are in Terminal try "Ctrl+G".
+        Do you get a beep?
+
+        If you type this into the command line
+        echo -e "\a"
+        Do you get a beep
+    #endif
+
+    #if xTEMP_DISABLED
+        FILE *pTty = NULL;
+
+        pTty = fopen ("/dev/console", "w");
+        if (NULL == pTty) {
+            fprintf (stderr, "Cannot write to /dev/console! (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
+
+            return FALSE;
+        }
+
+        const char cchEsc = 27;
+
+        fprintf(tty, "%c[10;%ld]%c[11;%ld]\a", cchEsc, culFrequency, cchEsc, culDuration);
+    #endif
+
+    INT iFd = - 1;
+
+    iFd = open("/dev/tty10", O_RDONLY);
+    if (- 1 ==  iFd) {
+        fprintf (stderr, "Cannot write to /dev/tty10 (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
+
+        return FALSE;
+    }
+
+    INT iRes = ioctl(iFd, KDMKTONE, (culDuration << 16) + ( 1193180 / culFrequency));
+    if (- 1 == iRes) {
+        fprintf (stderr, "error ioctl (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
+        return FALSE;
+    }
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************
@@ -194,10 +278,10 @@ CxDebugger::~CxDebugger() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bMsgboxPlain (show MessageBox)
+//DONE: _bMsgboxPlain (show MessageBox)
 /*static*/
 BOOL
-CxDebugger::bMsgboxPlain(
+CxDebugger::_bMsgboxPlain(
     const CxReport &crpReport
 )
 {
@@ -235,10 +319,10 @@ CxDebugger::bMsgboxPlain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bMsgboxRtf (show MessageBox or std::out)
+//DONE: _bMsgboxRtf (show MessageBox or std::out)
 /*static*/
 BOOL
-CxDebugger::bMsgboxRtf(
+CxDebugger::_bMsgboxRtf(
     const CxReport &crpReport
 )
 {
@@ -325,10 +409,10 @@ CxDebugger::bMsgboxRtf(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bStdoutPlain ()
+//DONE: _bStdoutPlain ()
 /*static*/
 BOOL
-CxDebugger::bStdoutPlain(
+CxDebugger::_bStdoutPlain(
     const CxReport &crpReport
 )
 {
@@ -388,10 +472,10 @@ CxDebugger::bStdoutPlain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bStdoutHtml ()
+//DONE: _bStdoutHtml ()
 /*static*/
 BOOL
-CxDebugger::bStdoutHtml(
+CxDebugger::_bStdoutHtml(
     const CxReport &crpReport
 )
 {
@@ -453,10 +537,10 @@ CxDebugger::bStdoutHtml(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bLoggingPlain (log to file, tracing)
+//DONE: _bLoggingPlain (log to file, tracing)
 /*static*/
 BOOL
-CxDebugger::bLoggingPlain(
+CxDebugger::_bLoggingPlain(
     const CxReport &crpReport
 )
 {
@@ -467,8 +551,18 @@ CxDebugger::bLoggingPlain(
         _tsetlocale(LC_ALL, xT(""));
     #endif
 
-    tString sFilePath = CxPath::sSetExt(CxPath::sGetExe(), xT("debug"));
+    //--------------------------------------------------
+    //get log file path
+    tString sFilePath;
 
+    if (true == _ms_sLogPath.empty()) {
+        sFilePath = CxPath::sSetExt(CxPath::sGetExe(), xT("debug"));
+    } else {
+        sFilePath = sGetLogPath();
+    }
+
+    //--------------------------------------------------
+    //write to file
     FILE *pFile = _tfopen(sFilePath.c_str(), xT("ab"));
     xCHECK_RET(NULL == pFile, FALSE);
 
@@ -487,7 +581,7 @@ CxDebugger::bLoggingPlain(
         //tracing
         bTrace(csMsg.data());
 
-        //in file
+        //to file
         _ftprintf(pFile, xT("%s"), csMsg.data());
     }
     catch (...) {}
@@ -497,10 +591,10 @@ CxDebugger::bLoggingPlain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bLoggingHtml ()
+//TODO: _bLoggingHtml ()
 /*static*/
 BOOL
-CxDebugger::bLoggingHtml(
+CxDebugger::_bLoggingHtml(
     const CxReport &crpReport
 )
 {

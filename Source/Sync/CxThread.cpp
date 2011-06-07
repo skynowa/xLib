@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxThread
 CxThread::CxThread(
-    BOOL bIsPaused, 
+    BOOL bIsPaused,
     BOOL bIsAutoDelete
 ) :
     _m_bRes                 (FALSE),
@@ -98,7 +98,7 @@ CxThread::~CxThread() {
 //DONE: bCreate (creation)
 BOOL
 CxThread::bCreate(
-    UINT  uiStackSize, 
+    UINT  uiStackSize,
     VOID *pvParam
 )
 {
@@ -281,7 +281,7 @@ CxThread::bKill(
 BOOL
 CxThread::bWait(
     ULONG ulTimeout
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
@@ -371,11 +371,11 @@ CxThread::bIsExited() const {
 //DONE: bPostMessage (send message from thread to window)
 BOOL
 CxThread::bPostMessage(
-    HWND hHwnd, 
-    UINT uiMsg, 
-    UINT uiParam1, 
+    HWND hHwnd,
+    UINT uiMsg,
+    UINT uiParam1,
     LONG liParam2
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 FALSE);
@@ -390,11 +390,11 @@ CxThread::bPostMessage(
 //DONE: bSendMessage (send message from thread to window)
 BOOL
 CxThread::bSendMessage(
-    HWND hHwnd, 
-    UINT uiMsg, 
-    UINT uiParam1, 
+    HWND hHwnd,
+    UINT uiMsg,
+    UINT uiParam1,
     LONG liParam2
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 FALSE);
@@ -410,10 +410,10 @@ CxThread::bSendMessage(
 //DONE: bPostThreadMessage (send message to thread)
 BOOL
 CxThread::bPostThreadMessage(
-    UINT uiMsg, 
-    UINT uiParam1, 
+    UINT uiMsg,
+    UINT uiParam1,
     LONG liParam2
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
@@ -426,12 +426,12 @@ CxThread::bPostThreadMessage(
 //DONE: bTryPostThreadMessage (trying send message to thread)
 BOOL
 CxThread::bTryPostThreadMessage(
-    UINT  uiMsg, 
-    UINT  uiParam1, 
-    LONG  liParam2, 
-    ULONG ulAttemps, 
+    UINT  uiMsg,
+    UINT  uiParam1,
+    LONG  liParam2,
+    ULONG ulAttemps,
     ULONG ulAttempTimeout
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
@@ -448,10 +448,10 @@ CxThread::bTryPostThreadMessage(
 //DONE: bMessageWaitQueue (waiting for message with params from other thread)
 BOOL
 CxThread::bMessageWaitQueue(
-    UINT  uiMsg, 
-    UINT *puiParam1, 
+    UINT  uiMsg,
+    UINT *puiParam1,
     LONG *pliParam2
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(0     <  uiMsg,                 FALSE);
@@ -468,11 +468,11 @@ CxThread::bMessageWaitQueue(
 //DONE: bMessageWaitQueue (waiting for message with params from other thread)
 BOOL
 CxThread::bMessageWaitQueue(
-    const std::vector<UINT> &cvecuiMsg, 
-    UINT                    *puiMsg, 
-    UINT                    *puiParam1, 
+    const std::vector<UINT> &cvecuiMsg,
+    UINT                    *puiMsg,
+    UINT                    *puiParam1,
     LONG                    *pliParam2
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(false == cvecuiMsg.empty(),     FALSE);
@@ -509,7 +509,7 @@ CxThread::bMessageWaitQueue(
 BOOL
 CxThread::bSetPriority(
     EPriority tpPriority
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
@@ -619,7 +619,7 @@ CxThread::bIsPriorityBoost() const {
 BOOL
 CxThread::bSetPriorityBoost(
     BOOL bIsEnabled
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
@@ -641,7 +641,7 @@ CxThread::bSetPriorityBoost(
 BOOL
 CxThread::bSetAffinityMask(
     DWORD_PTR pulMask
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
@@ -657,7 +657,7 @@ CxThread::bSetAffinityMask(
 BOOL
 CxThread::bSetIdealCPU(
     ULONG ulIdealCPU
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
@@ -739,7 +739,7 @@ CxThread::ulGetExitCode() const {
 BOOL
 CxThread::bSetDebugName(
     const tString &csName
-) const 
+) const
 {
     /*DEBUG*/
 
@@ -764,8 +764,8 @@ CxThread::bSetDebugName(
 /*static*/
 HANDLE
 CxThread::hOpen(
-    ULONG ulAccess, 
-    BOOL  bInheritHandle, 
+    ULONG ulAccess,
+    BOOL  bInheritHandle,
     ULONG ulId
 )
 {
@@ -867,7 +867,7 @@ CxThread::vAttachHandler_OnExit(
 UINT
 CxThread::uiOnRun(
     VOID *pvParam
-) /* = 0*/ 
+) /* = 0*/
 {
     /*DEBUG*/// n/a
     /*DEBUG*/xASSERT_RET(FALSE, 0);
@@ -1150,33 +1150,37 @@ CxThread::_vSetStatesDefault() {
     /*_m_bIsExited*///   n/a
 }
 //---------------------------------------------------------------------------
-//DONE: _bSetDebugNameA (Name your threads in the VC debugger thread list)
+//DONE: _bSetDebugName (Name your threads in the VC debugger thread list)
 BOOL
-CxThread::_bSetDebugNameA(
-    const std::string &csName
-) const 
+CxThread::_bSetDebugName(
+    const tString &csName
+) const
 {
     /////*DEBUG*/xASSERT_RET(0    <  _m_ulID,       FALSE);
     /////*DEBUG*/xASSERT_RET(32   >  csName.size(), FALSE); //MAX_NAME_SIZE 32
 
-    typedef struct tagTHREADNAME_INFO {
-        DWORD  dwType;     //must be 0x1000
-        LPCSTR szName;     //pointer to name (in user addr space)
-        DWORD  dwThreadID; //thread ID (-1=caller thread)
-        DWORD  dwFlags;    //reserved for future use, must be zero
-    } THREADNAME_INFO;
+    const DWORD MS_VC_EXCEPTION = 0x406D1388;
 
-    THREADNAME_INFO tiInfo = {0};
+    #pragma pack(push,8)
+    struct tagTHREADNAME_INFO {
+        DWORD  dwType;      //must be 0x1000
+        LPCSTR szName;      //pointer to name (in user addr space)
+        DWORD  dwThreadID;  //thread ID (-1 = caller thread)
+        DWORD  dwFlags;     //reserved for future use, must be zero
+    };
+    #pragma pack(pop)
+
+    tagTHREADNAME_INFO tiInfo = {0};
     tiInfo.dwType     = 0x1000;
-    tiInfo.szName     = csName.c_str();    ////cpszName;
-    tiInfo.dwThreadID = ulGetId() /*- 1*/;    //_m_ulID;
+    tiInfo.szName     = std::string(csName.begin(), csName.end()).c_str();
+    tiInfo.dwThreadID = ulGetId();
     tiInfo.dwFlags    = 0;
 
     __try {
-        ::RaiseException(0x406D1388, 0, sizeof(tiInfo) / sizeof(DWORD), /*xreinterpret_cast*/(DWORD *)&tiInfo);
+        ::RaiseException(MS_VC_EXCEPTION, 0, sizeof(tiInfo) / sizeof(ULONG_PTR), (ULONG_PTR *)&tiInfo);
         /*DEBUG*/// n/a
     }
-    __except (EXCEPTION_CONTINUE_EXECUTION)    {
+    __except (EXCEPTION_EXECUTE_HANDLER) {
         //n/a
     }
 
