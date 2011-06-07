@@ -69,7 +69,7 @@ class CxThread :
         BOOL                    _bWaitResumption  ();
         VOID                    _vMembersClear    ();       //TODO: _vMembersClear
         VOID                    _vSetStatesDefault();
-        BOOL                    _bSetDebugNameA   (const std::string &csName) const;
+        BOOL                    _bSetDebugName    (const tString &csName) const;
 
         //callbacks
         SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnEnter;

@@ -41,8 +41,8 @@ class CxConsole :
         BOOL                            _m_bRes;
         HWND                            _m_hWnd;
         HMENU                           _m_hMenu;
-        CxFileHandle _m_hStdIn;   
-        CxFileHandle _m_hStdOut;  
+        CxFileHandle _m_hStdIn;
+        CxFileHandle _m_hStdOut;
 
         HWND                             hGetWndHandle ();
         HMENU                            hGetMenuHandle(BOOL bRevert);
@@ -50,3 +50,6 @@ class CxConsole :
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Coomon_Win_CxConsoleH
+
+
+//http://lifeforce4.wordpress.com/

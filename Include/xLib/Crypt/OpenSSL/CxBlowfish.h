@@ -18,7 +18,7 @@
 #if defined(xOS_WIN)
     #pragma comment(lib, "libeay32.lib")
 #elif defined(xOS_LINUX)
-    // n/a
+    // -lssl
 #endif
 //---------------------------------------------------------------------------
 class CxBlowfish :
