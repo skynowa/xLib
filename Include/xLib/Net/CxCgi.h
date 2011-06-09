@@ -203,6 +203,7 @@ class CxCgi :
         tString                 sGetDump       () const;
 
         static BOOL             bRedirect      (const tString &csUrl);
+        static BOOL             bPageShow      (const tString &csFilePath);
 
         //encoding, decoding
         static BOOL             bUriEncode     (const tString &csUri, const tString &csReserved, tString *psEncodedStr);
