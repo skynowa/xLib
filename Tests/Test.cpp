@@ -125,7 +125,6 @@ _tmain(INT argc, TCHAR *argv[]) {
 
     CxDebugger::bBeep(250, 250);
 
-
     #if xTEMP_DISABLED
         //fprintf(stdout, "Content-type: text/html\n");
         //tcout << xT("##################") << tendl;

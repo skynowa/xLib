@@ -354,6 +354,33 @@ CxTest_CxStdioFile::bUnit() {
     *
     *****************************************************************************/
 
+    //--------------------------------------------------
+    //bRead
+    {
+        const tString csTestContent = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
+
+        {
+            CxStdioFile F;
+
+            m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
+            xASSERT(FALSE != m_bRes);
+
+            INT iResFprintf = F.iWrite(csTestContent.c_str());
+            xASSERT(0 < iResFprintf);
+        }
+
+        tString sContent;
+
+        CxStdioFile F;
+
+        m_bRes = F.bOpen(csFilePath, CxStdioFile::omRead, TRUE);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = F.bRead(&sContent);
+        xASSERT(FALSE         != m_bRes);
+        xASSERT(csTestContent == sContent);
+    }
+
     //-------------------------------------
     //iWrite
     {

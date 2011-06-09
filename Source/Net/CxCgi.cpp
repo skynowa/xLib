@@ -74,6 +74,25 @@ CxCgi::bRedirect(const tString &csUrl) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//DONE: bPageShow (show file)
+/*static*/
+BOOL
+CxCgi::bPageShow(
+    const tString &csFilePath
+)
+{
+    BOOL bRes = FALSE;
+
+    tString sFileContent;
+
+    bRes = CxStdioFile::bTextRead(csFilePath, &sFileContent);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    tcout << sFileContent << tendl;
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************

@@ -233,6 +233,31 @@ CxStdioFile::bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//DONE: bRead (read to tString)
+BOOL
+CxStdioFile::bRead(
+    tString *psBuff
+) const
+{
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != psBuff,     FALSE);
+
+    size_t uiRes      = 0;
+    LONG   liFileSize = 0;
+
+    liFileSize = liGetSize();
+    /*DEBUG*/xASSERT_RET(ppError != liFileSize, FALSE);
+
+    (*psBuff).clear();
+    (*psBuff).resize(liFileSize);
+    xCHECK_RET(0 == liFileSize, TRUE);
+
+    uiRes = fread(&(*psBuff).at(0), sizeof(tString::value_type), (*psBuff).size(), pGet());
+    /*DEBUG*/xASSERT_RET((*psBuff).size() == uiRes, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 //DONE: iWrite(Write formatted output to stream)
 INT
 CxStdioFile::iWrite(
