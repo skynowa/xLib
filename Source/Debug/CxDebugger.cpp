@@ -200,6 +200,9 @@ CxDebugger::bTrace(
 }
 //---------------------------------------------------------------------------
 //TODO: bBeep (play sound)
+#include <stdio.h>
+#include <unistd.h>
+
 /*static*/
 BOOL
 CxDebugger::bBeep(
@@ -214,17 +217,6 @@ CxDebugger::bBeep(
     bRes = ::Beep(culFrequency, culDuration);
     xCHECK_RET(FALSE == bRes, FALSE);
 #elif defined(xOS_LINUX)
-    #if xCAN_REMOVE
-        A couple of tests to run.
-
-        When you are in Terminal try "Ctrl+G".
-        Do you get a beep?
-
-        If you type this into the command line
-        echo -e "\a"
-        Do you get a beep
-    #endif
-
     #if xTEMP_DISABLED
         FILE *pTty = NULL;
 
@@ -237,23 +229,43 @@ CxDebugger::bBeep(
 
         const char cchEsc = 27;
 
-        fprintf(tty, "%c[10;%ld]%c[11;%ld]\a", cchEsc, culFrequency, cchEsc, culDuration);
+        fprintf(pTty, "%c[10;%ld]%c[11;%ld]\a", cchEsc, culFrequency, cchEsc, culDuration);
+        fflush(pTty);
     #endif
 
-    INT iFd = - 1;
+    #if xTEMP_DISABLED
+        INT iFd = - 1;
 
-    iFd = open("/dev/tty10", O_RDONLY);
-    if (- 1 ==  iFd) {
-        fprintf (stderr, "Cannot write to /dev/tty10 (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
+        iFd = open("/dev/tty10", O_RDONLY);
+        if (- 1 ==  iFd) {
+            fprintf (stderr, "Cannot write to /dev/tty10 (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
 
-        return FALSE;
-    }
+            return FALSE;
+        }
 
-    INT iRes = ioctl(iFd, KDMKTONE, (culDuration << 16) + ( 1193180 / culFrequency));
-    if (- 1 == iRes) {
-        fprintf (stderr, "error ioctl (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
-        return FALSE;
-    }
+        INT iRes = ioctl(iFd, KDMKTONE, (culFrequency << 16) + ( 1193180 / culDuration));
+        if (- 1 == iRes) {
+            fprintf (stderr, "error ioctl (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
+            return FALSE;
+        }
+    #endif
+
+    #if xTEMP_DISABLED
+        int fd = open("/dev/console", O_WRONLY);
+        /*DEBUG*/xASSERT_RET(- 1 != fd, FALSE);
+
+        int iRes = ioctl(fd, KIOCSOUND, (int)(1193180/culFrequency));
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+
+        usleep(1000 * culDuration);
+
+        iRes = ioctl(fd, KIOCSOUND, 0);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+
+        close(fd);
+    #endif
+
+    system("xkbbell");
 #endif
 
     return TRUE;

@@ -434,6 +434,40 @@ CxDir::bDelete(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//DONE: bTryDelete (try deleting, max 100 attempts)
+/*static*/
+BOOL
+CxDir::bTryDelete(
+    const tString &csDirPath,
+    const size_t   cuiAttempts,
+    const ULONG    culTimeoutMsec
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(0     <  cuiAttempts,       FALSE);
+
+    const size_t cuiMaxAttempts  = 100;  //MAGIC_NUMBER: cuiMaxAttempts
+    const size_t cuiRealAttempts = (cuiMaxAttempts < cuiAttempts) ? cuiMaxAttempts : cuiAttempts;
+
+    BOOL bRes       = FALSE;
+    BOOL bIsDeleted = FALSE;
+
+    for (size_t i = 0; i < cuiRealAttempts; ++ i) {
+        bRes = bDelete(csDirPath);
+        xCHECK_DO(TRUE == bRes, bIsDeleted = TRUE; break);
+
+        #if defined(xOS_WIN)
+            ::Sleep(culTimeoutMsec);
+            /*DEBUG*/// n/a
+        #elif defined(xOS_LINUX)
+            INT iRes = usleep(static_cast<useconds_t>( culTimeoutMsec * 1000 ));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        #endif
+    }
+
+    return bIsDeleted;
+}
+//---------------------------------------------------------------------------
 //DONE: bClearForce (detetion all content of dir)
 /*static*/
 BOOL

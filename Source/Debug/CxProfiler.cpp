@@ -23,15 +23,15 @@
 //---------------------------------------------------------------------------
 //DONE: CxProfiler
 CxProfiler::CxProfiler(
-    const tString &csLogFilePath,
+    const tString &csLogPath,
     const EMode    cpmMode
 ) :
     _m_bRes      (FALSE),
     _m_pmModeNow (cpmMode),
     _m_bIsStarted(FALSE),
-    _flLog       (csLogFilePath, CxFileLog::lsDefaultSize)
+    _flLog       (csLogPath, CxFileLog::lsDefaultSize)
 {
-    /*DEBUG*/xASSERT_DO(false == csLogFilePath.empty(), return);
+    /*DEBUG*/xASSERT_DO(false == csLogPath.empty(), return);
     /*DEBUG*/// cpmMode - n/a
 
     _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
@@ -42,6 +42,30 @@ CxProfiler::CxProfiler(
 CxProfiler::~CxProfiler() {
     _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+}
+//---------------------------------------------------------------------------
+//TODO: bSetLogPath (set log path)
+//TODO: test
+BOOL
+CxProfiler::bSetLogPath(
+    const tString &csLogPath
+)
+{
+    /*DEBUG*/
+
+    _m_bRes = _flLog.bSetLogPath(csLogPath);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: sGetLogPath (get log path)
+//TODO: test
+const tString &
+CxProfiler::sGetLogPath() const {
+    /*DEBUG*/
+
+    return _m_sLogPath;
 }
 //--------------------------------------------------------------------------
 //DONE: bStart (start measurement)

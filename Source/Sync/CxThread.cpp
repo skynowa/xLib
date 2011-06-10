@@ -11,15 +11,20 @@
 
 #include <xLib/Sync/CxThread.h>
 
-#include <xLib/Common//CxSystemInfo.h>
-#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
+#include <xLib/Common/CxSystemInfo.h>
 
-#ifndef _MT
-#    define _MT
+#if defined(xOS_WIN)
+    #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
+#elif defined(xOS_LINUX)
+
+#endif
+
+#if !defined(_MT)
+    #define _MT
 #endif
 
 #if defined(_MT) || defined(_DLL)
-#    include <process.h>
+    #include <process.h>
 #endif
 
 
@@ -119,7 +124,7 @@ CxThread::bCreate(
     _m_bRes = _m_pevStarter->bCreate(NULL, FALSE, FALSE, NULL);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-#ifdef _MT
+#if defined(_MT)
     hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, uiStackSize, _s_uiStartFunc, this, 0, (UINT *)&_m_ulID) );
 #else
     hRes = ::CreateThread(NULL, uiStackSize, xreinterpret_cast<LPTHREAD_START_ROUTINE>(_s_uiStartFunc), this, 0, &_m_ulID);

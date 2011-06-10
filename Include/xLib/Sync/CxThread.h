@@ -38,32 +38,32 @@ class CxThread :
         mutable BOOL            _m_bRes;
 
         //constants
-        const ULONG             _m_culStillActiveTimeout;   //таймаут проверки активности
-        const ULONG             _m_culExitTimeout;          //таймаут выхода / уничтожения
+        const ULONG             _m_culStillActiveTimeout;
+        const ULONG             _m_culExitTimeout;
 
         //thread data
-        CxHandle                _m_hThread;                 //хендл
-        ULONG                   _m_ulID;                    //ID
-        UINT                    _m_uiExitCode;              //код возврата
-        VOID                   *_m_pvParam;                 //параметр для раьочей функции
-        const BOOL              _m_cbIsAutoDelete;          //флаг самоудаления
+        CxHandle                _m_hThread;
+        ULONG                   _m_ulID;
+        UINT                    _m_uiExitCode;
+        VOID                   *_m_pvParam;
+        const BOOL              _m_cbIsAutoDelete;
 
         //flags
-        BOOL                    _m_bIsCreated;              //флаг создания
-        BOOL                    _m_bIsRunning;              //флаг активности
-        BOOL                    _m_bIsPaused;               //флаг паузы
-        /*BOOL                  _m_bIsSleeping;*/// n/a     //флаг сна
-        /*BOOL                  _m_bIsExited;*///   n/a     //флаг выхода
+        BOOL                    _m_bIsCreated;
+        BOOL                    _m_bIsRunning;
+        BOOL                    _m_bIsPaused;
+        /*BOOL                  _m_bIsSleeping;*/// n/a
+        /*BOOL                  _m_bIsExited;*///   n/a
 
         //other
-        CxEvent                 _m_evPause;                 //события для паузы
-        CxEvent                *_m_pevStarter;              //события для корректного запуска потока
-        CxSleeper               _m_slSleeper;               //слипер
-        CxEvent                 _m_evExit;                  //события для выхода
+        CxEvent                 _m_evPause;
+        CxEvent                *_m_pevStarter;
+        CxSleeper               _m_slSleeper;
+        CxEvent                 _m_evExit;
         //HANDLE                _m_hParentHandle;
         //HANDLE                _m_hParentId;
 
-        CxTraceLog                _m_clLog;                 //лог
+        CxTraceLog                _m_clLog;
 
         static UINT WINAPI      _s_uiStartFunc    (VOID *pvParam);
         BOOL                    _bWaitResumption  ();

@@ -19,6 +19,7 @@ class CxLastError :
 {
     public:
         static ULONG   ulGet      ();
+        static tString sGet       ();
         static BOOL    bSet       (const ULONG culCode);
         static BOOL    bReset     ();
         static tString sFormat    (const ULONG culCode);
