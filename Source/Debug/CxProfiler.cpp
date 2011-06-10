@@ -22,6 +22,11 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxProfiler
+CxProfiler::CxProfiler() {
+    /*DEBUG*/
+}
+//---------------------------------------------------------------------------
+//DONE: CxProfiler
 CxProfiler::CxProfiler(
     const tString &csLogPath,
     const EMode    cpmMode
@@ -45,7 +50,7 @@ CxProfiler::~CxProfiler() {
 }
 //---------------------------------------------------------------------------
 //TODO: bSetLogPath (set log path)
-//TODO: test
+//TODO: test bSetLogPath
 BOOL
 CxProfiler::bSetLogPath(
     const tString &csLogPath
@@ -53,14 +58,14 @@ CxProfiler::bSetLogPath(
 {
     /*DEBUG*/
 
-    _m_bRes = _flLog.bSetLogPath(csLogPath);
+    _m_bRes = _flLog.bSetFilePath(csLogPath);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetLogPath (get log path)
-//TODO: test
+//TODO: test sGetLogPath
 const tString &
 CxProfiler::sGetLogPath() const {
     /*DEBUG*/
