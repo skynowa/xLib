@@ -15,7 +15,12 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 #include <xLib/Sync/CxProcess.h>
-////#include <xLib/Sync/CxAutoCriticalSection.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Sync/CxAutoCriticalSection.h>
+#elif defined(xOS_LINUX)
+
+#endif
 
 
 /****************************************************************************
@@ -24,42 +29,81 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxFileLog (constructor)
+//DONE: CxFileLog
 CxFileLog::CxFileLog() :
-    _m_sLogPath       (),
+    _m_sFilePath       (),
     _m_ulMaxFileSizeMb(lsDefaultMaxSize)
-////    _m_csFile         ()
+#if defined(xOS_WIN)
+    ,
+    _m_csFile         ()
+#elif defined(xOS_LINUX)
+    //TODO: CxCriticalSection
+#endif
 {
     /*DEBUG*/xASSERT_DO(lsLimitSize > lsDefaultMaxSize, return);
 
-    _m_sLogPath = CxPath::sSetExt(CxPath::sGetExe(), xT("exe.log"));
+    bSetFilePath( CxPath::sSetExt(CxPath::sGetExe(), xT("exe.log")) );
 }
 //---------------------------------------------------------------------------
-//DONE: CxFileLog (constructor)
-CxFileLog::CxFileLog(const tString &csFilePath, ULONG ulMaxFileSizeMb) :
-    _m_sLogPath       (),
-    _m_ulMaxFileSizeMb(ulMaxFileSizeMb)////,
-    ////_m_csFile         ()
+//DONE: CxFileLog
+CxFileLog::CxFileLog(
+    const tString &csFilePath,
+    const ULONG    culMaxFileSizeMb
+) :
+    _m_sFilePath      (),
+    _m_ulMaxFileSizeMb(culMaxFileSizeMb)
+#if defined(xOS_WIN)
+    ,
+    _m_csFile         ()
+#elif defined(xOS_LINUX)
+    //TODO: CxCriticalSection
+#endif
 {
     /*DEBUG*/xASSERT_DO(false      == csFilePath.empty(), return);
-    /*DEBUG*/xASSERT_DO(lsLimitSize > ulMaxFileSizeMb,    return);
+    /*DEBUG*/xASSERT_DO(lsLimitSize > culMaxFileSizeMb,   return);
     /*DEBUG*/xASSERT_DO(lsLimitSize > lsDefaultMaxSize,   return);
 
     if (tString::npos == csFilePath.find(CxConst::xSLASH)) {
-        _m_sLogPath = CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath/* + ".log"*/;
+        bSetFilePath( CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath/* + ".log"*/ );
     } else {
-        _m_sLogPath = csFilePath;
+        bSetFilePath( csFilePath );
     }
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxFileLog (destructor)
+//DONE: ~CxFileLog
 CxFileLog::~CxFileLog() {
 
 }
 //---------------------------------------------------------------------------
+//TODO: bSetFilePath (set log path)
+//TODO: test bSetFilePath
+BOOL
+CxFileLog::bSetFilePath(
+    const tString &csFilePath
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+
+    _m_sFilePath.assign(csFilePath);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: sGetFilePath (get log path)
+//TODO: test sGetFilePath
+const tString &
+CxFileLog::sGetFilePath() const {
+    /*DEBUG*/
+
+    return _m_sFilePath;
+}
+//---------------------------------------------------------------------------
 //DONE: bWrite (write)
 BOOL
-CxFileLog::bWrite(LPCTSTR pcszFormat, ...) {
+CxFileLog::bWrite(
+    LPCTSTR pcszFormat, ...
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
 
     BOOL bRes = FALSE;
@@ -83,11 +127,15 @@ CxFileLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     //-------------------------------------
     //write to file
-    /////*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+#if defined(xOS_WIN)
+    /*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+#elif defined(xOS_LINUX)
+    //TODO: lock
+#endif
 
     CxStdioFile sfFile;
 
-    bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omAppend, TRUE);
+    bRes = sfFile.bOpen(sGetFilePath(), CxStdioFile::omAppend, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
@@ -100,7 +148,7 @@ BOOL
 CxFileLog::bOpen() {
     BOOL bRes = FALSE;
 
-    bRes = CxProcess::bExec(_m_sLogPath, xT(""));
+    bRes = CxProcess::bExec(sGetFilePath(), xT(""));
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -111,14 +159,14 @@ BOOL
 CxFileLog::bClear() {
     BOOL bRes = FALSE;
 
-    /////*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+#if defined(xOS_WIN)
+    /*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+#elif defined(xOS_LINUX)
+    //TODO: lock
+#endif
 
-    CxStdioFile sfFile;
-
-    bRes = sfFile.bOpen(_m_sLogPath, CxStdioFile::omWrite, TRUE);
+    bRes = CxStdioFile::bClear(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-
-    sfFile.iWrite(CxConst::xSTR_EMPTY.c_str());
 
     return TRUE;
 }
@@ -128,15 +176,18 @@ BOOL
 CxFileLog::bDelete() {
     BOOL bRes = FALSE;
 
-    /////*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+#if defined(xOS_WIN)
+    /*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+#elif defined(xOS_LINUX)
+    //TODO: lock
+#endif
 
-    bRes = CxStdioFile::bDelete(_m_sLogPath);
+    bRes = CxStdioFile::bDelete(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
 
 
 /****************************************************************************
@@ -150,17 +201,21 @@ BOOL
 CxFileLog::_bDeleteIfFull() {
     BOOL bRes = FALSE;
 
-    /////*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+#if defined(xOS_WIN)
+    /*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+#elif defined(xOS_LINUX)
+    //TODO: lock
+#endif
 
-    bRes = CxStdioFile::bIsExists(_m_sLogPath);
+    bRes = CxStdioFile::bIsExists(sGetFilePath());
     xCHECK_RET(FALSE == bRes, TRUE);
 
-    LONG liSize = CxStdioFile::liGetSize(_m_sLogPath);
+    LONG liSize = CxStdioFile::liGetSize(sGetFilePath());
 
     //-------------------------------------
     //delete log, if it is full
     if (static_cast<ULONG>(liSize / 1000000) >= _m_ulMaxFileSizeMb) {
-        bRes = CxStdioFile::bDelete(_m_sLogPath);
+        bRes = CxStdioFile::bDelete(sGetFilePath());
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 

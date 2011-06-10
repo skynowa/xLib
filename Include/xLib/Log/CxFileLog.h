@@ -25,21 +25,29 @@ class CxFileLog :
             lsLimitSize      = 500
         };
 
-                          CxFileLog    ();
-                          CxFileLog    (const tString &csFilePath, ULONG ulMaxFileSizeMb);
-        virtual          ~CxFileLog    ();
+                         CxFileLog     ();
+                         CxFileLog     (const tString &csFilePath, const ULONG culMaxFileSizeMb);
+        virtual         ~CxFileLog     ();
 
-        BOOL              bWrite       (LPCTSTR pcszFormat, ...);
-        BOOL              bOpen        ();
-        BOOL              bClear       ();
-        BOOL              bDelete      ();
+        BOOL             bSetFilePath  (const tString &csFilePath);
+        const tString &  sGetFilePath  () const;
+
+        BOOL             bWrite        (LPCTSTR pcszFormat, ...);
+        BOOL             bOpen         ();
+        BOOL             bClear        ();
+        BOOL             bDelete       ();
 
     private:
-        tString           _m_sLogPath;
-        ULONG             _m_ulMaxFileSizeMb;
-        ////CxCriticalSection _m_csFile;    //TODO: Mutex
+        tString          _m_sFilePath;
+        ULONG            _m_ulMaxFileSizeMb;
 
-        BOOL              _bDeleteIfFull();
+        #if defined(xOS_WIN)
+            CxCriticalSection _m_csFile;    //TODO: Mutex
+        #elif defined(xOS_LINUX)
+            //TODO: CxCriticalSection
+        #endif
+
+        BOOL             _bDeleteIfFull();
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxFileLogH

@@ -32,6 +32,7 @@ class CxProfiler :
         #endif
         };
 
+                        CxProfiler ();
                         CxProfiler (const tString &csLogPath, const EMode cpmMode); //TODO: csFileName + iPerfomMode
         virtual        ~CxProfiler ();
 
