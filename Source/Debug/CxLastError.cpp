@@ -58,6 +58,15 @@ CxLastError::bSet(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//DONE: sGet (get as string)
+/*static*/
+tString
+CxLastError::sGet() {
+    /*DEBUG*/
+
+    return sFormat(ulGet());
+}
+//---------------------------------------------------------------------------
 //DONE: bReset (set last-error code to 0)
 /*static*/
 BOOL
@@ -80,6 +89,8 @@ CxLastError::sFormat(
 
     tString sRes;
 
+    sRes.append( CxString::sFormat(xT("%u - "), culCode) );
+
 #if defined(xOS_WIN)
     ULONG   ulRes  = 0;
     LPVOID  pvBuff = NULL;
@@ -99,12 +110,12 @@ CxLastError::sFormat(
     xCHECK_RET(317 == ulGet(), xT("Unknown error"));
     /*DEBUG*/xASSERT_RET(0 != ulRes, tString());
 
-    sRes = CxString::sRemoveEol(tString(static_cast<LPCTSTR>(pvBuff), ulRes));
+    sRes.append( CxString::sRemoveEol(tString(static_cast<LPCTSTR>(pvBuff), ulRes)) );
 
     hRes = ::LocalFree(pvBuff);
     /*DEBUG*/xASSERT_RET(NULL == hRes, tString());
 #elif defined(xOS_LINUX)
-    sRes.assign( strerror( static_cast<INT>(culCode) ) );
+    sRes.append( strerror( static_cast<INT>(culCode) ) );
 #endif
 
     return sRes;

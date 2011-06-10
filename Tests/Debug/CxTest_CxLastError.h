@@ -62,6 +62,21 @@ CxTest_CxLastError::bUnit() {
     }
 
     //-------------------------------------
+    //ulGet
+    {
+        #if defined(xOS_WIN)
+        const size_t cuiMaxErrors = 17000;  /*0...15999*/;
+        #elif defined(xOS_LINUX)
+        const size_t cuiMaxErrors = 200;    /*0...132*/
+        #endif
+
+        for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
+            tString sError = CxLastError::sGet();
+            xASSERT(false == sError.empty());
+        }
+    }
+
+    //-------------------------------------
     //bSet
     {
         #if defined(xOS_WIN)
@@ -75,7 +90,6 @@ CxTest_CxLastError::bUnit() {
             xASSERT(FALSE != m_bRes);
         }
     }
-
 
     //-------------------------------------
     //bReset

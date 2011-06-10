@@ -32,52 +32,56 @@ class CxProfiler :
         #endif
         };
 
-                      CxProfiler(const tString &csLogFilePath, const EMode cpmMode); //TODO: csFileName + iPerfomMode
-        virtual      ~CxProfiler();
+                        CxProfiler (const tString &csLogPath, const EMode cpmMode); //TODO: csFileName + iPerfomMode
+        virtual        ~CxProfiler ();
 
-        BOOL          bStart    ();
-        BOOL          bStop     (LPCTSTR pcszComment, ...);
-        BOOL          bPulse    (LPCTSTR pcszComment, ...);
+        BOOL            bSetLogPath(const tString &csLogPath);
+        const tString & sGetLogPath() const;
+
+        BOOL            bStart     ();
+        BOOL            bStop      (LPCTSTR pcszComment, ...);
+        BOOL            bPulse     (LPCTSTR pcszComment, ...);
 
     private:
-        BOOL          _m_bRes;
-        const EMode   _m_pmModeNow;
-        BOOL          _m_bIsStarted;
-        CxFileLog     _flLog;
+        BOOL            _m_bRes;
+        const EMode     _m_pmModeNow;
+        tString         _m_sLogPath;
+        BOOL            _m_bIsStarted;
+        CxFileLog       _flLog;
 
         //pmClock
-        std::clock_t  _m_ctClocksStart;
-        std::clock_t  _m_ctClocksStop;
+        std::clock_t    _m_ctClocksStart;
+        std::clock_t    _m_ctClocksStop;
 
         //pmDateTime
-        CxDateTime    _m_dtTimesStart;
-        CxDateTime    _m_dtTimesStop;
+        CxDateTime      _m_dtTimesStart;
+        CxDateTime      _m_dtTimesStop;
 
     #if defined(xOS_WIN)
         //pmTickCount
-        ULONG         _m_ulTicksStart;
-        ULONG         _m_ulTicksStop;
+        ULONG           _m_ulTicksStart;
+        ULONG           _m_ulTicksStop;
 
         //pmPerformanceCount
-        LARGE_INTEGER _m_liCountersPerfFreq;    //Ticks per second
-        LARGE_INTEGER _m_liCountersStart;
-        LARGE_INTEGER _m_liCountersStop;
+        LARGE_INTEGER   _m_liCountersPerfFreq;    //Ticks per second
+        LARGE_INTEGER   _m_liCountersStart;
+        LARGE_INTEGER   _m_liCountersStop;
 
         //pmThreadTimes
-        FILETIME      _m_lpCreationTime;
-        FILETIME      _m_lpExitTime;
-        FILETIME      _m_lpKernelTimeStart;
-        FILETIME      _m_lpUserTimeStart;
-        FILETIME      _m_lpKernelTimeStop;
-        FILETIME      _m_lpUserTimeStop;
+        FILETIME        _m_lpCreationTime;
+        FILETIME        _m_lpExitTime;
+        FILETIME        _m_lpKernelTimeStart;
+        FILETIME        _m_lpUserTimeStart;
+        FILETIME        _m_lpKernelTimeStop;
+        FILETIME        _m_lpUserTimeStop;
     #elif defined(xOS_LINUX)
 
         //pmGetTimeOfDay
-        DOUBLE        _m_dMicrosecStart;
-        DOUBLE        _m_dMicrosecStop;
+        DOUBLE          _m_dMicrosecStart;
+        DOUBLE          _m_dMicrosecStop;
     #endif
 
-        BOOL          _bResetData();
+        BOOL            _bResetData();
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Debug_CxProfilerH

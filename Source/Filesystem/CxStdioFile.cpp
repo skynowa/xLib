@@ -669,7 +669,7 @@ CxStdioFile::bClose() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bIsFile (check for file)
+//DONE: bIsFile (check for file)
 /*static*/
 BOOL
 CxStdioFile::bIsFile(
@@ -810,7 +810,7 @@ CxStdioFile::bDelete(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTryDelete (try deleting)
+//DONE: bTryDelete (try deleting, max 100 attempts)
 /*static*/
 BOOL
 CxStdioFile::bTryDelete(

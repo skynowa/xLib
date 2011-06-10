@@ -126,9 +126,9 @@ const std::wstring CxConst::xSPACE_W          (L" ");
 const tString      CxConst::xSPACE            (xT(" "));
 
 //xBEL (alert)
-const std::string  CxConst::xBEL_A            ("\a");
-const std::wstring CxConst::xBEL_W            (L"\a");
-const tString      CxConst::xBEL              (xT("\a"));
+const std::string  CxConst::xBELL_A           ("\a");
+const std::wstring CxConst::xBELL_W           (L"\a");
+const tString      CxConst::xBELL             (xT("\a"));
 
 //xBS (backspace)
 const std::string  CxConst::xBS_A             ("\b");

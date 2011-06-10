@@ -112,10 +112,10 @@ class CxConst {
         static const std::wstring xSPACE_W;
         static const tString      xSPACE;
 
-        //xBEL (alert)
-        static const std::string  xBEL_A;
-        static const std::wstring xBEL_W;
-        static const tString      xBEL;
+        //xBELL (alert)
+        static const std::string  xBELL_A;
+        static const std::wstring xBELL_W;
+        static const tString      xBELL;
 
         //xBS (backspace)
         static const std::string  xBS_A;

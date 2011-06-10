@@ -31,6 +31,7 @@ class CxDir :
         static BOOL    bMove       (const tString &csDirPathFrom, const tString &csDirPathTo, const BOOL cbFailIfExists);
 
         static BOOL    bDelete     (const tString &csDirPath);
+        static BOOL    bTryDelete  (const tString &csDirPath, const size_t cuiAttempts, const ULONG culTimeoutMsec);
         static BOOL    bClearForce (const tString &csDirPath);
         static BOOL    bDeleteForce(const tString &csDirPath);
 

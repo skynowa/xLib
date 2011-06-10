@@ -318,8 +318,8 @@ BOOL CxTest_CxDir::bUnit() {
     //-------------------------------------
     //bFindFiles
     {
-        ////-------------------------------------
-        ////prepare for csTempScanDirPath (create files)
+        //-------------------------------------
+        //prepare for csTempScanDirPath (create files)
         const tString g_sFilePathes[] =
         {
             csTempScanDirPath + CxConst::xSLASH + xT("File_1"),
@@ -367,12 +367,22 @@ BOOL CxTest_CxDir::bUnit() {
 		xASSERT(FALSE != m_bRes);
 	}
 
-	//-------------------------------------
-	//bDelete
-	{
-		m_bRes = CxDir::bDelete(csDirPath2);
-		xASSERT(FALSE != m_bRes);
-	}
+    //-------------------------------------
+    //bDelete
+    {
+        m_bRes = CxDir::bDelete(csDirPath2);
+        xASSERT(FALSE != m_bRes);
+    }
+
+    //-------------------------------------
+    //bTryDelete
+    {
+        m_bRes = CxDir::bCreateForce(csDirPath2);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxDir::bTryDelete(csDirPath2, 10, 5);
+        xASSERT(FALSE != m_bRes);
+    }
 
 	//-------------------------------------
 	//bDeleteForce
