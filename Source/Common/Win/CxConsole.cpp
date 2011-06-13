@@ -30,11 +30,11 @@ CxConsole::CxConsole() :
 {
     _m_hStdIn  = ::GetStdHandle(STD_INPUT_HANDLE);
     /*DEBUG*/xASSERT_DO(FALSE != _m_hStdIn.bIsValid(), return);
-    /*DEBUG*/xASSERT_DO(NULL  != _m_hStdIn.m_hHandle,  return);
+    /*DEBUG*/xASSERT_DO(NULL  != _m_hStdIn.hGet(),     return);
 
     _m_hStdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
     /*DEBUG*/xASSERT_DO(FALSE != _m_hStdOut.bIsValid(), return);
-    /*DEBUG*/xASSERT_DO(NULL  != _m_hStdOut.m_hHandle,  return);
+    /*DEBUG*/xASSERT_DO(NULL  != _m_hStdOut.hGet(),     return);
 
     _m_hWnd = hGetWndHandle();
     /*DEBUG*/xASSERT_DO(NULL != _m_hWnd, return);

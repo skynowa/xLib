@@ -121,7 +121,7 @@ CxThread::bCreate(
     _m_pevStarter = new CxEvent();
     /*DEBUG*/xASSERT_RET(NULL != _m_pevStarter, FALSE);
 
-    _m_bRes = _m_pevStarter->bCreate(NULL, FALSE, FALSE, NULL);
+    _m_bRes = _m_pevStarter->bCreate(NULL, TRUE, TRUE, NULL);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
 #if defined(_MT)
@@ -139,12 +139,12 @@ CxThread::bCreate(
     /*DEBUG*/xASSERT_RET(NULL != hRes,    FALSE);
     /*DEBUG*/xASSERT_RET(0    <  _m_ulID, FALSE);
 
-    _m_hThread.m_hHandle = hRes;
+    _m_hThread.bSet(hRes);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     //-------------------------------------
     //_m_evPause
-    _m_bRes = _m_evPause.bCreate(NULL, TRUE, TRUE, NULL);      //_m_bIsPaused
+    _m_bRes = _m_evPause.bCreate(NULL, FALSE, FALSE, NULL);      //_m_bIsPaused
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = _m_evExit.bCreate(NULL, FALSE, FALSE, NULL);
@@ -193,7 +193,7 @@ CxThread::bResume() {
 //DONE: bPause (pause)
 BOOL
 CxThread::bPause() {
-    /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_hThread.bIsValid(), CxString::lexical_cast(_m_hThread.m_hHandle).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_hThread.bIsValid(), CxString::lexical_cast(_m_hThread.hGet()).c_str(), FALSE);
 
     _m_bRes = _m_evPause.bReset();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -249,7 +249,7 @@ CxThread::bKill(
     ULONG ulRes = 0;
 
     _m_uiExitCode = 0;
-    _m_bRes = ::TerminateThread(_m_hThread.m_hHandle, _m_uiExitCode);
+    _m_bRes = ::TerminateThread(_m_hThread.hGet(), _m_uiExitCode);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     for (;;) {
@@ -299,7 +299,7 @@ CxThread::bWait(
     xCHECK_RET(CxThread::ulGetCurrId() == _m_ulID, TRUE);        //TODO: ?????
 
     ULONG ulRes = WAIT_FAILED;
-    ulRes = ::WaitForSingleObject(_m_hThread.m_hHandle, ulTimeout);
+    ulRes = ::WaitForSingleObject(_m_hThread.hGet(), ulTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
 
     return TRUE;
@@ -327,14 +327,14 @@ CxThread::bIsRunning() const {
     /*DEBUG*/// _m_hThread - n/a
 
     ULONG ulRes = 0;
-    ::GetExitCodeThread(_m_hThread.m_hHandle, &ulRes);
+    ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
     /*DEBUG*/// n/a
 
-    BOOL bCond1 = ( FALSE         != _m_hThread.bIsValid()                          );
-    BOOL bCond2 = ( 0L            <  _m_ulID                                        );
-    BOOL bCond3 = ( TRUE          == _m_bIsRunning                                  );
-    BOOL bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.m_hHandle, 0) );
-    BOOL bCond5 = ( STILL_ACTIVE  == ulRes                                          );
+    BOOL bCond1 = ( FALSE         != _m_hThread.bIsValid()                       );
+    BOOL bCond2 = ( 0L            <  _m_ulID                                     );
+    BOOL bCond3 = ( TRUE          == _m_bIsRunning                               );
+    BOOL bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0) );
+    BOOL bCond5 = ( STILL_ACTIVE  == ulRes                                       );
 
     _m_bRes = bCond1 && bCond2 && bCond3 && bCond4 && bCond5;
 
@@ -518,7 +518,7 @@ CxThread::bSetPriority(
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    _m_bRes = ::SetThreadPriority(_m_hThread.m_hHandle, tpPriority);
+    _m_bRes = ::SetThreadPriority(_m_hThread.hGet(), tpPriority);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -531,7 +531,7 @@ CxThread::tpGetPriority() const {
 
     CxThread::EPriority tpRes = tpPRIORITY_ERROR;
 
-    tpRes = static_cast<EPriority>(::GetThreadPriority(_m_hThread.m_hHandle));
+    tpRes = static_cast<EPriority>(::GetThreadPriority(_m_hThread.hGet()));
     /*DEBUG*/xASSERT_RET(tpPRIORITY_ERROR != tpRes, tpPRIORITY_ERROR);
 
     return tpRes;
@@ -544,13 +544,13 @@ CxThread::sGetPriorityString() const {
 
     INT iRes = tpGetPriority();
     switch (iRes) {
-        case tpPRIORITY_IDLE:            return xT("Idle");
-        case tpPRIORITY_LOWEST:            return xT("Lowest");
-        case tpPRIORITY_BELOW_NORMAL:    return xT("Below normal");
-        case tpPRIORITY_NORMAL:            return xT("Normal");
-        case tpPRIORITY_ABOVE_NORMAL:    return xT("Above normal");
+        case tpPRIORITY_IDLE:           return xT("Idle");
+        case tpPRIORITY_LOWEST:         return xT("Lowest");
+        case tpPRIORITY_BELOW_NORMAL:   return xT("Below normal");
+        case tpPRIORITY_NORMAL:         return xT("Normal");
+        case tpPRIORITY_ABOVE_NORMAL:   return xT("Above normal");
         case tpPRIORITY_HIGHEST:        return xT("Highest");
-        case tpPRIORITY_TIME_CRITICAL:    return xT("Time critical");
+        case tpPRIORITY_TIME_CRITICAL:	return xT("Time critical");
     }
 
     return xT("N/A");
@@ -566,15 +566,15 @@ CxThread::bPriorityUp() const {
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpPRIORITY_IDLE:             tpiNewLevel = tpPRIORITY_LOWEST;        break;
-        case tpPRIORITY_LOWEST:         tpiNewLevel = tpPRIORITY_BELOW_NORMAL;    break;
-        case tpPRIORITY_BELOW_NORMAL:     tpiNewLevel = tpPRIORITY_NORMAL;        break;
-        case tpPRIORITY_NORMAL:         tpiNewLevel = tpPRIORITY_ABOVE_NORMAL;    break;
-        case tpPRIORITY_ABOVE_NORMAL:     tpiNewLevel = tpPRIORITY_HIGHEST;        break;
-        case tpPRIORITY_HIGHEST:         tpiNewLevel = tpPRIORITY_TIME_CRITICAL;    break;
-        case tpPRIORITY_TIME_CRITICAL:    return TRUE;                            break;
+        case tpPRIORITY_IDLE:           tpiNewLevel = tpPRIORITY_LOWEST;        break;
+        case tpPRIORITY_LOWEST:         tpiNewLevel = tpPRIORITY_BELOW_NORMAL;  break;
+        case tpPRIORITY_BELOW_NORMAL:   tpiNewLevel = tpPRIORITY_NORMAL;        break;
+        case tpPRIORITY_NORMAL:         tpiNewLevel = tpPRIORITY_ABOVE_NORMAL;	break;
+        case tpPRIORITY_ABOVE_NORMAL:   tpiNewLevel = tpPRIORITY_HIGHEST;       break;
+        case tpPRIORITY_HIGHEST:        tpiNewLevel = tpPRIORITY_TIME_CRITICAL; break;
+        case tpPRIORITY_TIME_CRITICAL:	return TRUE;                            break;
 
-        default:            /*xASSERT*/xASSERT_RET(FALSE, tpPRIORITY_NORMAL);    break;
+        default:            /*xASSERT*/xASSERT_RET(FALSE, tpPRIORITY_NORMAL);   break;
     }
 
     return bSetPriority(tpiNewLevel);
@@ -590,15 +590,15 @@ CxThread::bPriorityDown() const {
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpPRIORITY_IDLE:             return TRUE;                            break;
-        case tpPRIORITY_LOWEST:         tpiNewLevel = tpPRIORITY_IDLE;            break;
-        case tpPRIORITY_BELOW_NORMAL:     tpiNewLevel = tpPRIORITY_LOWEST;        break;
-        case tpPRIORITY_NORMAL:         tpiNewLevel = tpPRIORITY_BELOW_NORMAL;    break;
-        case tpPRIORITY_ABOVE_NORMAL:     tpiNewLevel = tpPRIORITY_NORMAL;        break;
-        case tpPRIORITY_HIGHEST:         tpiNewLevel = tpPRIORITY_ABOVE_NORMAL;    break;
-        case tpPRIORITY_TIME_CRITICAL:    tpiNewLevel = tpPRIORITY_HIGHEST;        break;
+        case tpPRIORITY_IDLE:           return TRUE;                            break;
+        case tpPRIORITY_LOWEST:         tpiNewLevel = tpPRIORITY_IDLE;          break;
+        case tpPRIORITY_BELOW_NORMAL:   tpiNewLevel = tpPRIORITY_LOWEST;        break;
+        case tpPRIORITY_NORMAL:         tpiNewLevel = tpPRIORITY_BELOW_NORMAL;	break;
+        case tpPRIORITY_ABOVE_NORMAL:   tpiNewLevel = tpPRIORITY_NORMAL;        break;
+        case tpPRIORITY_HIGHEST:        tpiNewLevel = tpPRIORITY_ABOVE_NORMAL;  break;
+        case tpPRIORITY_TIME_CRITICAL:	tpiNewLevel = tpPRIORITY_HIGHEST;       break;
 
-        default:            /*xASSERT*/xASSERT_RET(FALSE, tpPRIORITY_NORMAL);    break;
+        default:            /*xASSERT*/xASSERT_RET(FALSE, tpPRIORITY_NORMAL);   break;
     }
 
     return bSetPriority(tpiNewLevel);
@@ -611,7 +611,7 @@ CxThread::bIsPriorityBoost() const {
 
     BOOL bDisablePriorityBoost = TRUE;
 
-    _m_bRes = ::GetThreadPriorityBoost(_m_hThread.m_hHandle, &bDisablePriorityBoost);
+    _m_bRes = ::GetThreadPriorityBoost(_m_hThread.hGet(), &bDisablePriorityBoost);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //bDisablePriorityBoost == TRUE  - dynamic boosting is disabled
@@ -628,7 +628,7 @@ CxThread::bSetPriorityBoost(
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    _m_bRes = ::SetThreadPriorityBoost(_m_hThread.m_hHandle, ! bIsEnabled);
+    _m_bRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! bIsEnabled);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -652,7 +652,7 @@ CxThread::bSetAffinityMask(
 
     DWORD_PTR pulRes = 0;
 
-    pulRes = ::SetThreadAffinityMask(_m_hThread.m_hHandle, pulMask);    //ERROR_INVALID_PARAMETER
+    pulRes = ::SetThreadAffinityMask(_m_hThread.hGet(), pulMask);    //ERROR_INVALID_PARAMETER
     /*DEBUG*/xASSERT_RET(0 != pulRes, FALSE);
 
     return TRUE;
@@ -668,7 +668,7 @@ CxThread::bSetIdealCPU(
 
     ULONG ulRes = (ULONG) - 1;
 
-    ulRes = ::SetThreadIdealProcessor(_m_hThread.m_hHandle, ulIdealCPU);
+    ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), ulIdealCPU);
     /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, FALSE);
 
     //TODO: xASSERT_RET
@@ -684,7 +684,7 @@ CxThread::ulGetIdealCPU() const {
 
     ULONG ulRes = (ULONG) - 1;
 
-    ulRes = ::SetThreadIdealProcessor(_m_hThread.m_hHandle, MAXIMUM_PROCESSORS);
+    ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), MAXIMUM_PROCESSORS);
     /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, FALSE);
 
     return ulRes;
@@ -716,7 +716,7 @@ HANDLE
 CxThread::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), NULL);
 
-    return _m_hThread.m_hHandle;
+    return _m_hThread.hGet();
 }
 //---------------------------------------------------------------------------
 //DONE: ulGetId (get id)
@@ -734,7 +734,7 @@ CxThread::ulGetExitCode() const {
 
     ULONG ulRes = 0;
 
-    _m_bRes = ::GetExitCodeThread(_m_hThread.m_hHandle, &ulRes);
+    _m_bRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, ulRes);
 
     return ulRes;
@@ -1155,10 +1155,10 @@ CxThread::_vSetStatesDefault() {
     /*_m_bIsExited*///   n/a
 }
 //---------------------------------------------------------------------------
-//DONE: _bSetDebugName (Name your threads in the VC debugger thread list)
+//DONE: _bSetDebugNameA (Name your threads in the VC debugger thread list)
 BOOL
-CxThread::_bSetDebugName(
-    const tString &csName
+CxThread::_bSetDebugNameA(
+    const std::string &csName
 ) const
 {
     /////*DEBUG*/xASSERT_RET(0    <  _m_ulID,       FALSE);
@@ -1177,7 +1177,7 @@ CxThread::_bSetDebugName(
 
     tagTHREADNAME_INFO tiInfo = {0};
     tiInfo.dwType     = 0x1000;
-    tiInfo.szName     = std::string(csName.begin(), csName.end()).c_str();
+    tiInfo.szName     = csName.c_str();
     tiInfo.dwThreadID = ulGetId();
     tiInfo.dwFlags    = 0;
 

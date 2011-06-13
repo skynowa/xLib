@@ -36,7 +36,7 @@ HANDLE
 CxSemaphore::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), NULL);
 
-    return _m_hSemaphore.m_hHandle;
+    return _m_hSemaphore.hGet();
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate (Creates or opens a named or unnamed semaphore object)
@@ -52,7 +52,7 @@ CxSemaphore::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, LONG liInitialCount, 
     hRes = ::CreateSemaphore(lpsaAttributes, liInitialCount, liMaxCount, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-    _m_hSemaphore.m_hHandle = hRes;
+    _m_hSemaphore.bSet(hRes);
     _m_lpsaAttributes       = lpsaAttributes;
     _m_pcszName             = pcszName;
 
@@ -71,7 +71,7 @@ CxSemaphore::bOpen(ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
     hRes = ::OpenSemaphore(ulAccess, bInheritHandle, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-    _m_hSemaphore.m_hHandle = hRes;
+    _m_hSemaphore.bSet(hRes);
     
     return TRUE;
 }
@@ -85,7 +85,7 @@ CxSemaphore::bRelease(LONG liReleaseCount, LONG *pliOldCount) const {
 
     BOOL bRes = FALSE;
     
-    bRes = ::ReleaseSemaphore(_m_hSemaphore.m_hHandle, liReleaseCount, pliOldCount);
+    bRes = ::ReleaseSemaphore(_m_hSemaphore.hGet(), liReleaseCount, pliOldCount);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -99,7 +99,7 @@ CxSemaphore::bWait(ULONG ulTimeout) const {
 
     ULONG ulRes = WAIT_FAILED;
 
-    ulRes = ::WaitForSingleObject(_m_hSemaphore.m_hHandle, ulTimeout); 
+    ulRes = ::WaitForSingleObject(_m_hSemaphore.hGet(), ulTimeout); 
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
 
     return TRUE;

@@ -22,8 +22,16 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxProfiler
-CxProfiler::CxProfiler() {
-    /*DEBUG*/
+CxProfiler::CxProfiler() :
+    _m_bRes      (FALSE),
+    _m_pmModeNow (pmStdClock),
+    _m_bIsStarted(FALSE),
+    _flLog       (xT(""), CxFileLog::lsDefaultSize)
+{
+    /*DEBUG*/// cpmMode - n/a
+
+    _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
+    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: CxProfiler

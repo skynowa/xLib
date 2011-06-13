@@ -14,59 +14,63 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-enum EHandleValue { 
-    hvNull, 
-    hvInvalid 
-};
-
-template<EHandleValue hvTag>
-struct CxHandleFailValue;
-
-template<>
-struct CxHandleFailValue<hvNull> {
-    static HANDLE get () { return NULL; }
-};
-
-template<>
-struct CxHandleFailValue<hvInvalid> {
-    static HANDLE get () { return INVALID_HANDLE_VALUE; } 
-};
+namespace { 
+	enum EHandleValue { 
+		hvNull, 
+		hvInvalid 
+	};
+	
+	template<EHandleValue hvTag>
+	struct CxHandleFailValue;
+	
+	template<>
+	struct CxHandleFailValue<hvNull> {
+		static HANDLE get () { return NULL; }
+	};
+	
+	template<>
+	struct CxHandleFailValue<hvInvalid> {
+		static HANDLE get () { return INVALID_HANDLE_VALUE; } 
+	};
+}
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
 class CxHandleT {
 	public:
-		HANDLE        m_hHandle;
+        typedef CxHandleFailValue<hvTag>  FailValue;
+    
+		                    CxHandleT               ();
+		explicit            CxHandleT               (const HANDLE chHandle);
+		explicit            CxHandleT               (const CxHandleT &chHandle);
+		virtual            ~CxHandleT               ();
 
-		              CxHandleT               ();
-		explicit      CxHandleT               (HANDLE hHandle);
-		explicit      CxHandleT               (const CxHandleT &hHandle);
-		virtual      ~CxHandleT               ();
+		CxHandleT&          operator =              (const HANDLE chHandle);
+		CxHandleT&          operator =              (const CxHandleT &chHandle);
+		                    operator HANDLE         () const;
 
-		CxHandleT&    operator =              (HANDLE hHandle);
-		CxHandleT&    operator =              (const CxHandleT &hHandle);
-		              operator HANDLE         () const;
+		HANDLE              hGet                    () const;
+		BOOL                bSet                    (const HANDLE chHandle);
+		              
+		BOOL                bIsValid                () const;
+		BOOL                bAttach                 (const HANDLE chHandle);
+		HANDLE              hDetach                 ();
+		BOOL                bClose                  ();
 
-		BOOL          bIsValid                () const;
-		BOOL          bAttach                 (HANDLE hHandle);
-		HANDLE        hDetach                 ();
-		BOOL          bClose                  ();
-
-		ULONG         ulGetInformation        () const;
-		BOOL          bSetInformation         (ULONG ulMask, ULONG ulFlags);
-		BOOL 	      bIsFlagInherit          () const;
-		BOOL          bIsFlagProtectFromClose () const;
-		BOOL          bSetFlagInherit         (BOOL bFlagInherit);
-		BOOL          bSetFlagProtectFromClose(BOOL bFlagProtectFromClose);
-		HANDLE        hDuplicate              (HANDLE hTargetProcess, ULONG luDesiredAccess, BOOL bInheritHandle/* = FALSE*/, ULONG luOptions/* = 0*/) const;
+		ULONG               ulGetInformation        () const;
+		BOOL                bSetInformation         (const ULONG culMask, const ULONG culFlags);
+		BOOL 	            bIsFlagInherit          () const;
+		BOOL                bIsFlagProtectFromClose () const;
+		BOOL                bSetFlagInherit         (const BOOL cbFlagInherit);
+		BOOL                bSetFlagProtectFromClose(const BOOL cbFlagProtectFromClose);
+		HANDLE              hDuplicate              (const HANDLE chTargetProcess, const ULONG cluDesiredAccess, const BOOL cbInheritHandle/* = FALSE*/, const ULONG cluOptions/* = 0*/) const;
 
 		//static
-		static HANDLE hGetCurrentProcess      ();
-		static BOOL   bIsValid                (HANDLE hHandle);
+		static HANDLE       hGetCurrentProcess      ();
+		static BOOL         bIsValid                (const HANDLE chHandle);
 
 	private:
-        typedef CxHandleFailValue<hvTag>  FailValue;
-
-		mutable BOOL  _m_bRes;
+		mutable BOOL        _m_bRes;
+		HANDLE              _m_hHandle;
 		
 		static const HANDLE _ms_chCurrProcessHandle;
 };

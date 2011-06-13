@@ -36,7 +36,7 @@ HANDLE
 CxWaitableTimer::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), NULL);
 
-    return _m_hWaitableTimer.m_hHandle;
+    return _m_hWaitableTimer.hGet();
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate ()
@@ -49,7 +49,7 @@ CxWaitableTimer::bCreate(BOOL bManualReset, LPCTSTR pcszName, LPSECURITY_ATTRIBU
     hRes = ::CreateWaitableTimer(lpTimerAttributes, bManualReset, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-    _m_hWaitableTimer.m_hHandle = hRes;
+    _m_hWaitableTimer.bSet(hRes);
 
     return TRUE;
 }
@@ -61,10 +61,10 @@ CxWaitableTimer::bOpen(LPCTSTR pcszName, ULONG ulDesiredAccess, BOOL bInheritHan
 
     HANDLE hRes = NULL;
 
-    ////hRes = ::OpenWaitableTimer(ulDesiredAccess, bInheritHandle, pcszName);
+    //TODO: hRes = ::OpenWaitableTimer(ulDesiredAccess, bInheritHandle, pcszName);
     /////*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-    _m_hWaitableTimer.m_hHandle = hRes;
+    _m_hWaitableTimer.bSet(hRes);
 
     return TRUE;
 }
@@ -76,7 +76,7 @@ CxWaitableTimer::bCancel() const {
 
     BOOL bRes = FALSE;
 
-    bRes = ::CancelWaitableTimer(_m_hWaitableTimer.m_hHandle);
+    bRes = ::CancelWaitableTimer(_m_hWaitableTimer.hGet());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -98,7 +98,7 @@ CxWaitableTimer::bSet(LONGLONG i64DueTime, LONG liPeriod, PTIMERAPCROUTINE pfnCo
     LARGE_INTEGER liDueTime = {{0}};
     liDueTime.QuadPart = i64DueTime;
 
-    bRes = ::SetWaitableTimer(_m_hWaitableTimer.m_hHandle, &liDueTime, liPeriod, pfnCompletionRoutine, pvArgToCompletionRoutine, bResume);
+    bRes = ::SetWaitableTimer(_m_hWaitableTimer.hGet(), &liDueTime, liPeriod, pfnCompletionRoutine, pvArgToCompletionRoutine, bResume);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -111,7 +111,7 @@ CxWaitableTimer::bWait(ULONG ulTimeout) const {
 
     ULONG ulRes = WAIT_FAILED;
 
-    ulRes = ::WaitForSingleObject(_m_hWaitableTimer.m_hHandle, ulTimeout);
+    ulRes = ::WaitForSingleObject(_m_hWaitableTimer.hGet(), ulTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
 
     return TRUE;

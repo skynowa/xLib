@@ -35,7 +35,7 @@ HANDLE
 CxMutex::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), NULL);
 
-    return _m_hMutex.m_hHandle;
+    return _m_hMutex.hGet();
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate ()
@@ -51,7 +51,7 @@ CxMutex::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bInitialOwner, LPCTS
     hRes = ::CreateMutex(lpsaAttributes, bInitialOwner, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-    _m_hMutex.m_hHandle = hRes;
+    _m_hMutex.bSet(hRes);
 
     return TRUE;
 }
@@ -69,7 +69,7 @@ CxMutex::bOpen(ULONG dwAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
     hRes = ::OpenMutex(dwAccess, bInheritHandle, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-    _m_hMutex.m_hHandle = hRes;
+    _m_hMutex.bSet(hRes);
 
     return TRUE;
 }
@@ -81,7 +81,7 @@ CxMutex::bRelease() const {
 
     BOOL bRes = FALSE;
 
-    bRes = ::ReleaseMutex(_m_hMutex.m_hHandle);
+    bRes = ::ReleaseMutex(_m_hMutex.hGet());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -95,7 +95,7 @@ CxMutex::bWait(ULONG ulTimeout) const {
 
     ULONG ulRes = WAIT_FAILED;
 
-    ulRes = ::WaitForSingleObject(_m_hMutex.m_hHandle, ulTimeout); 
+    ulRes = ::WaitForSingleObject(_m_hMutex.hGet(), ulTimeout); 
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRes, FALSE);
     /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRes, FALSE);
 

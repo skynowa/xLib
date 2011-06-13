@@ -63,7 +63,7 @@ CxStdioFile::bOpen(
     const BOOL       cbIsUseBuffering
 )
 {
-    /*DEBUG*/// _m_pFile - n/a
+    /*DEBUG*/xASSERT_RET(FALSE == bIsValid(),                       FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsValidName(csFilePath), FALSE);
     /*DEBUG*/// comMode - n/a
@@ -422,7 +422,7 @@ CxStdioFile::bLocking(
     INT iRes = etError;
 
 #if defined(xOS_WIN)
-    iRes = locking(_iGetHandle(), clmMode, cliBytes);
+    iRes = _locking(_iGetHandle(), clmMode, cliBytes);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
     iRes = lockf(_iGetHandle(), clmMode, static_cast<off_t>( cliBytes ));
