@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------
 BOOL
 bGetUsbInfo(
-    const                 tString &csDrive,
+    const tString        &csDrive,
     std::vector<tString> *pvecsInfo
 )
 {

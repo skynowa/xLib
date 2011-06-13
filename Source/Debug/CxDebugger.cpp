@@ -200,9 +200,6 @@ CxDebugger::bTrace(
 }
 //---------------------------------------------------------------------------
 //TODO: bBeep (play sound)
-#include <stdio.h>
-#include <unistd.h>
-
 /*static*/
 BOOL
 CxDebugger::bBeep(

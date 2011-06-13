@@ -35,12 +35,17 @@ HANDLE
 CxEvent::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), NULL);
     
-    return _m_hEvent.m_hHandle;
+    return _m_hEvent.hGet();
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate (Creates or opens a named or unnamed event object)
 BOOL 
-CxEvent::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bManualReset, BOOL bInitialState, LPCTSTR pcszName) {
+CxEvent::bCreate(
+    LPSECURITY_ATTRIBUTES lpsaAttributes, 
+    BOOL                  bManualReset, 
+    BOOL                  bInitialState, 
+    LPCTSTR               pcszName
+) {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
 
@@ -50,14 +55,18 @@ CxEvent::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bManualReset, BOOL b
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     ////--_m_hEvent = hRes;
-    _m_hEvent.m_hHandle = hRes; 
+    _m_hEvent.bSet(hRes); 
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bOpen (Opens an existing named event object)
 BOOL 
-CxEvent::bOpen(ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
+CxEvent::bOpen(
+    ULONG   ulAccess, 
+    BOOL    bInheritHandle, 
+    LPCTSTR pcszName
+) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);        
     /*DEBUG*/
     
@@ -68,7 +77,7 @@ CxEvent::bOpen(ULONG ulAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     ////--_m_hEvent = hRes;
-    _m_hEvent.m_hHandle = hRes; 
+    _m_hEvent.bSet(hRes); 
 
     return TRUE;
 }
@@ -81,7 +90,7 @@ CxEvent::bPulse() const {
     
     BOOL bRes = FALSE;
 
-    bRes = ::PulseEvent(_m_hEvent.m_hHandle);
+    bRes = ::PulseEvent(_m_hEvent.hGet());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -95,7 +104,7 @@ CxEvent::bReset() const {
 
     BOOL bRes = FALSE;
 
-    bRes = ::ResetEvent(_m_hEvent.m_hHandle);
+    bRes = ::ResetEvent(_m_hEvent.hGet());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -109,7 +118,7 @@ CxEvent::bSet() const {
 
     BOOL bRes = FALSE;
 
-    bRes = ::SetEvent(_m_hEvent.m_hHandle);
+    bRes = ::SetEvent(_m_hEvent.hGet());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -117,7 +126,10 @@ CxEvent::bSet() const {
 //---------------------------------------------------------------------------
 //DONE: bWait (Waits until the specified event is in the signaled state or the time-out interval elapses)
 BOOL 
-CxEvent::bWait(ULONG ulTimeout) const {
+CxEvent::bWait(
+    ULONG ulTimeout
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);        
     /*DEBUG*/// n/a
 
@@ -126,7 +138,7 @@ CxEvent::bWait(ULONG ulTimeout) const {
     //WAIT_ABANDONED  Объект мьютекс стал свободен из-за отказа от него 
     //WAIT_FAILED     Произошла ошибка
 
-    ULONG ulRes = ::WaitForSingleObject(_m_hEvent.m_hHandle, ulTimeout); 
+    ULONG ulRes = ::WaitForSingleObject(_m_hEvent.hGet(), ulTimeout); 
     /*DEBUG*/// n/a
 
     return (WAIT_OBJECT_0 == ulRes);
@@ -137,7 +149,7 @@ BOOL
 CxEvent::bIsSignaled() const {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = ::WaitForSingleObject(_m_hEvent.m_hHandle, 0);  
+    ULONG ulRes = ::WaitForSingleObject(_m_hEvent.hGet(), 0);  
     /*DEBUG*/// n/a
 
     return (FALSE != _m_hEvent.bIsValid()) && (WAIT_OBJECT_0 == ulRes);

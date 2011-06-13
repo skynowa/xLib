@@ -291,7 +291,7 @@ CxReport::_bInitVars(
     _m_sFunctionName   = csFunc;
     _m_sExpression     = csExp;
     _m_ulLastError     = culLastError;
-    _m_sLastErrorStr   = CxString::sFormat(xT("%u - \"%s\""), culLastError, CxLastError::sFormat(culLastError).c_str());
+    _m_sLastErrorStr   = CxLastError::sFormat(culLastError);
 
     _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
     _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());

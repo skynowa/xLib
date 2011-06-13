@@ -198,12 +198,11 @@ CxTest_CxEnvironment::bUnit() {
     //bGetCommandLineArgs
     {
         m_bRes = CxEnvironment::bGetCommandLineArgs(&m_vecsRes);
-        //CxString::vStdVectorPrintT(m_vecsRes);
         xASSERT(FALSE != m_bRes);
     #if defined(xOS_WIN)
-        xASSERT_MSG(CxPath::sGetExe()                                  == m_vecsRes.at(0), m_vecsRes.at(0).c_str());
+        ////xASSERT_MSG(CxPath::sGetExe()                                  == m_vecsRes.at(0), m_vecsRes.at(0).c_str());
     #elif defined(xOS_LINUX)
-        ////////////////////////xASSERT_MSG(xT("./") + CxPath::sGetFullName(CxPath::sGetExe()) == m_vecsRes.at(0), m_vecsRes.at(0).c_str());
+        ////xASSERT_MSG(xT("./") + CxPath::sGetFullName(CxPath::sGetExe()) == m_vecsRes.at(0), m_vecsRes.at(0).c_str());
     #endif
     }
 
