@@ -16,7 +16,9 @@
 #include <xLib/Debug/CxTest.h>
 //#include <xLib/CxTemplate.h>
 //---------------------------------------------------------------------------
-class CxTest_CxTemplate : public CxTest {
+class CxTest_CxTemplate : 
+    public CxTest 
+{
 	public:
 		         CxTest_CxTemplate();
 	    virtual ~CxTest_CxTemplate();
@@ -29,12 +31,12 @@ class CxTest_CxTemplate : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxTemplate (constructor)
+//DONE: CxTest_CxTemplate
 CxTest_CxTemplate::CxTest_CxTemplate() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxTemplate (destructor)
+//DONE: ~CxTest_CxTemplate
 CxTest_CxTemplate::~CxTest_CxTemplate() {
 
 }

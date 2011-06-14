@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxProfiler
-* Description: code profiling
+* Description: code profiling (msec)
 * File name:   CxProfiler.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -21,19 +21,18 @@ class CxProfiler :
 {
     public:
         enum EMode {
-            pmStdClock,             //std::clock (msec)
-            pmDateTime,             //xLib::CxDateTime
+            pmStdClock,
+            pmDateTime,
         #if defined(xOS_WIN)
-            pmTickCount,            //::GetTickCount (msec)
-            pmPerformanceCount,     //::QueryPerformanceFrequency (msec)
-            pmThreadTimes,          //::GetThreadTimes (msec)
+            pmTickCount,
+            pmPerformanceCount,
+            pmThreadTimes,
         #elif defined(xOS_LINUX)
-            pmGetTimeOfDay          //gettimeofday (microsec)
+            pmGetTimeOfDay
         #endif
         };
 
-                        CxProfiler ();
-                        CxProfiler (const tString &csLogPath, const EMode cpmMode); //TODO: csFileName + iPerfomMode
+                        CxProfiler (const EMode cpmMode);
         virtual        ~CxProfiler ();
 
         BOOL            bSetLogPath(const tString &csLogPath);
@@ -46,7 +45,6 @@ class CxProfiler :
     private:
         BOOL            _m_bRes;
         const EMode     _m_pmModeNow;
-        tString         _m_sLogPath;
         BOOL            _m_bIsStarted;
         CxFileLog       _flLog;
 
@@ -75,8 +73,8 @@ class CxProfiler :
         FILETIME        _m_lpUserTimeStart;
         FILETIME        _m_lpKernelTimeStop;
         FILETIME        _m_lpUserTimeStop;
-    #elif defined(xOS_LINUX)
 
+    #elif defined(xOS_LINUX)
         //pmGetTimeOfDay
         DOUBLE          _m_dMicrosecStart;
         DOUBLE          _m_dMicrosecStop;
@@ -85,7 +83,7 @@ class CxProfiler :
         BOOL            _bResetData();
 };
 //---------------------------------------------------------------------------
-#endif    //xLib_Debug_CxProfilerH
+#endif //xLib_Debug_CxProfilerH
 
 
 //http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
@@ -103,9 +101,9 @@ system_posix.cpp:
 #include <sys/time.h>
 
 double time_in_seconds() {
-  struct timeval tp;
-  gettimeofday(&tp,0);
-  return tp.tv_sec+.000001*tp.tv_usec;
+    struct timeval tp;
+    gettimeofday(&tp,0);
+    return tp.tv_sec+.000001*tp.tv_usec;
 }
 
 

@@ -73,6 +73,7 @@
 #endif
 
 //Log
+#include "Log/CxTest_CxFileLog.h"
 
 //Net
 #include "Net/CxTest_CxCookiePv0.h"
@@ -216,6 +217,7 @@ _tmain(INT argc, TCHAR *argv[]) {
 
     //--------------------------------------------------
     //Log
+    vptTests.push_back( new CxTest_CxFileLog );
 
     //--------------------------------------------------
     //Net

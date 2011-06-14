@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxProfiler
-* Description: code profiling
+* Description: code profiling (msec)
 * File name:   CxProfiler.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -22,33 +22,16 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxProfiler
-CxProfiler::CxProfiler() :
-    _m_bRes      (FALSE),
-    _m_pmModeNow (pmStdClock),
-    _m_bIsStarted(FALSE),
-    _flLog       (xT(""), CxFileLog::lsDefaultSize)
-{
-    /*DEBUG*/// cpmMode - n/a
-
-    _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
-}
-//---------------------------------------------------------------------------
-//DONE: CxProfiler
 CxProfiler::CxProfiler(
-    const tString &csLogPath,
-    const EMode    cpmMode
+    const EMode cpmMode
 ) :
     _m_bRes      (FALSE),
     _m_pmModeNow (cpmMode),
     _m_bIsStarted(FALSE),
-    _flLog       (csLogPath, CxFileLog::lsDefaultSize)
+    _flLog       (CxFileLog::lsDefaultSize)
 {
-    /*DEBUG*/xASSERT_DO(false == csLogPath.empty(), return);
-    /*DEBUG*/// cpmMode - n/a
-
-    _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    _bResetData();
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxProfiler
@@ -57,8 +40,7 @@ CxProfiler::~CxProfiler() {
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: bSetLogPath (set log path)
-//TODO: test bSetLogPath
+//DONE: bSetLogPath (set log path)
 BOOL
 CxProfiler::bSetLogPath(
     const tString &csLogPath
@@ -73,12 +55,11 @@ CxProfiler::bSetLogPath(
 }
 //---------------------------------------------------------------------------
 //DONE: sGetLogPath (get log path)
-//TODO: test sGetLogPath
 const tString &
 CxProfiler::sGetLogPath() const {
     /*DEBUG*/
 
-    return _m_sLogPath;
+    return _flLog.sGetFilePath();
 }
 //--------------------------------------------------------------------------
 //DONE: bStart (start measurement)

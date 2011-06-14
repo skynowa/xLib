@@ -77,8 +77,10 @@ CxStdioFile::bOpen(
     //buffering
     if (FALSE == cbIsUseBuffering) {
         _m_bRes = bSetVBuff(NULL, bmNo, 0);
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    } else {
+        _m_bRes = bSetVBuff(NULL, bmFull, BUFSIZ);
     }
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -105,8 +107,10 @@ CxStdioFile::bReopen(
     //buffering
     if (FALSE == cbIsUseBuffering) {
         _m_bRes = bSetVBuff(NULL, bmNo, 0);
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    } else {
+        _m_bRes = bSetVBuff(NULL, bmFull, BUFSIZ);
     }
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }

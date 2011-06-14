@@ -14,10 +14,9 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxStdioFile.h>
-#include <xLib/Sync/CxProcess.h>
 
 #if defined(xOS_WIN)
-    #include <xLib/Sync/CxAutoCriticalSection.h>
+    #include <xLib/Sync/CxAutoMutex.h>
 #elif defined(xOS_LINUX)
 
 #endif
@@ -28,46 +27,24 @@
 *
 *****************************************************************************/
 
-//---------------------------------------------------------------------------
-//DONE: CxFileLog
-CxFileLog::CxFileLog() :
-    _m_sFilePath       (),
-    _m_ulMaxFileSizeMb(lsDefaultMaxSize)
-#if defined(xOS_WIN)
-    ,
-    _m_csFile         ()
-#elif defined(xOS_LINUX)
-    //TODO: CxCriticalSection
-#endif
-{
-    /*DEBUG*/xASSERT_DO(lsLimitSize > lsDefaultMaxSize, return);
 
-    bSetFilePath( CxPath::sSetExt(CxPath::sGetExe(), xT("exe.log")) );
-}
 //---------------------------------------------------------------------------
 //DONE: CxFileLog
 CxFileLog::CxFileLog(
-    const tString &csFilePath,
-    const ULONG    culMaxFileSizeMb
+    const ULONG culMaxFileSizeBytes
 ) :
     _m_sFilePath      (),
-    _m_ulMaxFileSizeMb(culMaxFileSizeMb)
+    _m_ulMaxFileSizeBytes(culMaxFileSizeBytes)
 #if defined(xOS_WIN)
     ,
-    _m_csFile         ()
+    _m_mtFile         ()
 #elif defined(xOS_LINUX)
-    //TODO: CxCriticalSection
+    //TODO: CxMutex
 #endif
 {
-    /*DEBUG*/xASSERT_DO(false      == csFilePath.empty(), return);
-    /*DEBUG*/xASSERT_DO(lsLimitSize > culMaxFileSizeMb,   return);
-    /*DEBUG*/xASSERT_DO(lsLimitSize > lsDefaultMaxSize,   return);
-
-    if (tString::npos == csFilePath.find(CxConst::xSLASH)) {
-        bSetFilePath( CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath/* + ".log"*/ );
-    } else {
-        bSetFilePath( csFilePath );
-    }
+    /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(), return);
+    /*DEBUG*/xASSERT_DO(lsLimitSize >  culMaxFileSizeBytes,     return);
+    /*DEBUG*/xASSERT_DO(lsLimitSize >  lsDefaultMaxSize,     return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxFileLog
@@ -75,8 +52,7 @@ CxFileLog::~CxFileLog() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bSetFilePath (set log path)
-//TODO: test bSetFilePath
+//DONE: bSetFilePath (set log path)
 BOOL
 CxFileLog::bSetFilePath(
     const tString &csFilePath
@@ -84,13 +60,16 @@ CxFileLog::bSetFilePath(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
-    _m_sFilePath.assign(csFilePath);
+    if (tString::npos == csFilePath.find(CxConst::xSLASH)) {
+        _m_sFilePath.assign( CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath);
+    } else {
+        _m_sFilePath.assign( csFilePath );
+    }
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetFilePath (get log path)
-//TODO: test sGetFilePath
 const tString &
 CxFileLog::sGetFilePath() const {
     /*DEBUG*/
@@ -128,28 +107,18 @@ CxFileLog::bWrite(
     //-------------------------------------
     //write to file
 #if defined(xOS_WIN)
-    /*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+    /*LOCK*/CxAutoMutex SL(_m_mtFile);
 #elif defined(xOS_LINUX)
     //TODO: lock
 #endif
 
     CxStdioFile sfFile;
 
-    bRes = sfFile.bOpen(sGetFilePath(), CxStdioFile::omAppend, TRUE);
+    bRes = sfFile.bOpen(sGetFilePath(), CxStdioFile::omAppend, FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//DONE: bOpen (execute)
-BOOL
-CxFileLog::bOpen() {
-    BOOL bRes = FALSE;
-
-    bRes = CxProcess::bExec(sGetFilePath(), xT(""));
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    INT iRes = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
+    /*DEBUG*/xASSERT_RET(iRes != CxStdioFile::etError, FALSE);
 
     return TRUE;
 }
@@ -160,7 +129,7 @@ CxFileLog::bClear() {
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    /*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+    /*LOCK*/CxAutoMutex SL(_m_mtFile);
 #elif defined(xOS_LINUX)
     //TODO: lock
 #endif
@@ -177,7 +146,7 @@ CxFileLog::bDelete() {
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    /*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+    /*LOCK*/CxAutoMutex SL(_m_mtFile);
 #elif defined(xOS_LINUX)
     //TODO: lock
 #endif
@@ -202,7 +171,7 @@ CxFileLog::_bDeleteIfFull() {
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    /*LOCK*/CxAutoCriticalSection SL(_m_csFile);
+    /*LOCK*/CxAutoMutex SL(_m_mtFile);
 #elif defined(xOS_LINUX)
     //TODO: lock
 #endif
@@ -210,14 +179,14 @@ CxFileLog::_bDeleteIfFull() {
     bRes = CxStdioFile::bIsExists(sGetFilePath());
     xCHECK_RET(FALSE == bRes, TRUE);
 
-    LONG liSize = CxStdioFile::liGetSize(sGetFilePath());
-
     //-------------------------------------
-    //delete log, if it is full
-    if (static_cast<ULONG>(liSize / 1000000) >= _m_ulMaxFileSizeMb) {
-        bRes = CxStdioFile::bDelete(sGetFilePath());
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    }
+    //delete log, if full
+    ULONG ulSize = static_cast<ULONG>(  CxStdioFile::liGetSize(sGetFilePath()) );
+
+    xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, TRUE);
+
+    bRes = CxStdioFile::bDelete(sGetFilePath());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
