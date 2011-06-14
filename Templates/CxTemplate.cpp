@@ -18,12 +18,12 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxTemplate (constructor)
+//TODO: CxTemplate
 CxTemplate::CxTemplate() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxTemplate (destructor)
+//TODO: ~CxTemplate
 /*virtual*/
 CxTemplate::~CxTemplate() {
 

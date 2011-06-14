@@ -13,38 +13,41 @@
 #define xLib_Log_CxFileLogH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Sync/CxCriticalSection.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Sync/CxMutex.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 class CxFileLog :
     public CxNonCopyable
 {
     public:
         enum ELogSizes {
-            lsDefaultSize    = 20,
-            lsDefaultMaxSize = 200,
-            lsLimitSize      = 500
+            lsDefaultSize    = 20  * 1024 * 1024,
+            lsDefaultMaxSize = 200 * 1024 * 1024,
+            lsLimitSize      = 500 * 1024 * 1024
         };
 
-                         CxFileLog     ();
-                         CxFileLog     (const tString &csFilePath, const ULONG culMaxFileSizeMb);
-        virtual         ~CxFileLog     ();
+                         CxFileLog   (const ULONG culMaxFileSizeBytes);
+        virtual         ~CxFileLog   ();
 
-        BOOL             bSetFilePath  (const tString &csFilePath);
-        const tString &  sGetFilePath  () const;
+        BOOL             bSetFilePath(const tString &csFilePath);
+        const tString &  sGetFilePath() const;
 
-        BOOL             bWrite        (LPCTSTR pcszFormat, ...);
-        BOOL             bOpen         ();
-        BOOL             bClear        ();
-        BOOL             bDelete       ();
+        BOOL             bWrite      (LPCTSTR pcszFormat, ...);
+        BOOL             bClear      ();
+        BOOL             bDelete     ();
 
     private:
         tString          _m_sFilePath;
-        ULONG            _m_ulMaxFileSizeMb;
+        ULONG            _m_ulMaxFileSizeBytes;
 
         #if defined(xOS_WIN)
-            CxCriticalSection _m_csFile;    //TODO: Mutex
+            CxMutex      _m_mtFile;
         #elif defined(xOS_LINUX)
-            //TODO: CxCriticalSection
+            //TODO: CxMutex
         #endif
 
         BOOL             _bDeleteIfFull();

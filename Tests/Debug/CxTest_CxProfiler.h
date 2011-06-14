@@ -58,23 +58,32 @@ CxTest_CxProfiler::bUnit() {
 	};
 
 	for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
-		CxProfiler pfP(sGetWorkDirPath() + CxConst::xSLASH + xT("___Log.log"), pmPerformMode[i]);
+		const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("___Log.log");
+
+		CxProfiler pfP(pmPerformMode[i]);
+
+		m_bRes = pfP.bSetLogPath(csFilePath);
+		xASSERT(FALSE != m_bRes);
+
+		m_sRes = pfP.sGetLogPath();
+		xASSERT_EQUAL(csFilePath, m_sRes);
 
 		pfP.bStart();
+		xASSERT(FALSE != m_bRes);
 
-		////for (int i = 0; i < 100; i ++) {
-		for (int i = 0; i < 1000/*00*/; ++ i) {
-			for (int i = 0; i < 1000/*00*/; ++ i) {
-				int x = 0;
+		for (size_t i = 0; i < 1000; ++ i) {
+			for (size_t j = 0; j < 1000; ++ j) {
+				size_t x = 0;
 
-				x++; --x;
+				x++; --x; x = x / 3;
 			}
+
+			pfP.bPulse(xT("Variable i: %zu"), i);
+			xASSERT(FALSE != m_bRes);
 		}
-			////::Sleep(2000);
-			////pfP.bPulse(i);
-		////}
 
 		pfP.bStop(xT(""));
+	    xASSERT(FALSE != m_bRes);
 	}
 
     return TRUE;

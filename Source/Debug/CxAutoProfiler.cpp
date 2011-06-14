@@ -24,7 +24,7 @@ CxAutoProfiler::CxAutoProfiler(
     const CxProfiler::EMode  cpmMode,
     LPCTSTR                  pcszComment, ...
 ) :
-    _m_pfProfiler(csFilePath, cpmMode),
+    _m_pfProfiler(cpmMode),
     _m_sComment  ()
 {
     //-------------------------------------
@@ -38,6 +38,9 @@ CxAutoProfiler::CxAutoProfiler(
 
     //-------------------------------------
     //start
+    _m_pfProfiler.bSetLogPath(csFilePath);
+    /*DEBUG*/
+
     _m_pfProfiler.bStart();
     /*DEBUG*/// n/a
 }
