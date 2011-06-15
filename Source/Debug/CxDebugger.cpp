@@ -21,6 +21,7 @@
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxRtf.h>
 #elif defined(xOS_LINUX)
     #include <linux/kd.h>   //bBeep
+    #include <X11/Xlib.h>   //bBeep -lX11
 #endif
 
 
@@ -203,8 +204,8 @@ CxDebugger::bTrace(
 /*static*/
 BOOL
 CxDebugger::bBeep(
-    const ULONG culFrequency,
-    const ULONG culDuration
+    const ULONG culFrequency /*= 800*/,
+    const ULONG culDuration  /*= 100*/
 ) {
     /*DEBUG*/
 
@@ -214,55 +215,31 @@ CxDebugger::bBeep(
     bRes = ::Beep(culFrequency, culDuration);
     xCHECK_RET(FALSE == bRes, FALSE);
 #elif defined(xOS_LINUX)
-    #if xTEMP_DISABLED
-        FILE *pTty = NULL;
+    INT iRes = - 1;
 
-        pTty = fopen ("/dev/console", "w");
-        if (NULL == pTty) {
-            fprintf (stderr, "Cannot write to /dev/console! (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
-
-            return FALSE;
-        }
-
-        const char cchEsc = 27;
-
-        fprintf(pTty, "%c[10;%ld]%c[11;%ld]\a", cchEsc, culFrequency, cchEsc, culDuration);
-        fflush(pTty);
+    #if 1
+        iRes = system("xkbbell");
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
 
     #if xTEMP_DISABLED
-        INT iFd = - 1;
+        Display *display = XOpenDisplay(NULL);
+        /*DEBUG*/xASSERT_RET(NULL != display, FALSE);
 
-        iFd = open("/dev/tty10", O_RDONLY);
-        if (- 1 ==  iFd) {
-            fprintf (stderr, "Cannot write to /dev/tty10 (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
+        XKeyboardControl xkc;
+        xkc.bell_percent  = 10;
+        xkc.bell_pitch    = culFrequency;   /* Hz 800 */
+        xkc.bell_duration = culDuration;    /* ms 100 */
 
-            return FALSE;
-        }
-
-        INT iRes = ioctl(iFd, KDMKTONE, (culFrequency << 16) + ( 1193180 / culDuration));
-        if (- 1 == iRes) {
-            fprintf (stderr, "error ioctl (%s)\n", CxLastError::sFormat( CxLastError::ulGet() ).c_str() );
-            return FALSE;
-        }
-    #endif
-
-    #if xTEMP_DISABLED
-        int fd = open("/dev/console", O_WRONLY);
-        /*DEBUG*/xASSERT_RET(- 1 != fd, FALSE);
-
-        int iRes = ioctl(fd, KIOCSOUND, (int)(1193180/culFrequency));
+        iRes = XChangeKeyboardControl(display, KBBellPercent | KBBellPitch | KBBellDuration, &xkc);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-        usleep(1000 * culDuration);
-
-        iRes = ioctl(fd, KIOCSOUND, 0);
+        iRes = XBell(display, 0);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-        close(fd);
+        iRes = XCloseDisplay(display);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
-
-    system("xkbbell");
 #endif
 
     return TRUE;

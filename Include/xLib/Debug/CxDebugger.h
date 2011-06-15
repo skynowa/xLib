@@ -32,7 +32,7 @@ class CxDebugger :
         static BOOL    bReportMake       (const CxReport &crpReport);
         static BOOL    bTrace            (LPCTSTR pcszFormat, ...);
         static BOOL    bTrace            (const tString &csMsg);
-        static BOOL    bBeep             (const ULONG culFrequency, const ULONG culDuration);
+        static BOOL    bBeep             (const ULONG culFrequency = 800, const ULONG culDuration = 100);
 
         template<class T>
         static VOID    vStdVectorPrintT  (const std::vector<T> &cvecT);

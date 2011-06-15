@@ -87,6 +87,11 @@
 			<locationURI>$%7BxLib%7D/Source</locationURI>
 		</link>
 		<link>
+			<name>TODO.txt</name>
+			<type>1</type>
+			<locationURI>$%7BxLib%7D/TODO.txt</locationURI>
+		</link>
+		<link>
 			<name>Test.cpp</name>
 			<type>1</type>
 			<location>/home/sergey/Libs/xLib/Tests/Test.cpp</location>
