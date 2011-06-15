@@ -82,6 +82,13 @@ BOOL bNotImplemented() {
 BOOL
 CxTest_CxDebugger::bUnit() {
     //--------------------------------------------------
+    //bBeep
+    {
+        m_bRes = CxDebugger::bBeep();
+        xASSERT(FALSE != m_bRes);
+    }
+
+    //--------------------------------------------------
     //xASSERT
     {
         m_bRes = bAssert();
