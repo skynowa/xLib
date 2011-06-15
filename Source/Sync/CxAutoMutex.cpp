@@ -18,17 +18,22 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxAutoMutex ()
-CxAutoMutex::CxAutoMutex(CxMutex &mtMutex) : 
+//DONE: CxAutoMutex ()
+CxAutoMutex::CxAutoMutex(
+    CxMutex &mtMutex
+) : 
     _m_mtMutex(mtMutex) 
 {
     BOOL bRes = FALSE;
+
+    bRes = _m_mtMutex.bCreate(NULL, FALSE, NULL);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 
     bRes = _m_mtMutex.bWait(INFINITE);
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxAutoMutex ()
+//DONE: ~CxAutoMutex ()
 CxAutoMutex::~CxAutoMutex() {
     BOOL bRes = FALSE;
 

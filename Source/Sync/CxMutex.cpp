@@ -23,9 +23,11 @@
 CxMutex::CxMutex() :
     _m_hMutex()
 {
+    /*DEBUG*/xASSERT_DO(FALSE == _m_hMutex.bIsValid(), return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxMutex ()
+/*virtual*/
 CxMutex::~CxMutex() {
     /*DEBUG*/xASSERT(FALSE != _m_hMutex.bIsValid());
 }
@@ -40,7 +42,12 @@ CxMutex::hGetHandle() const {
 //---------------------------------------------------------------------------
 //DONE: bCreate ()
 BOOL 
-CxMutex::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bInitialOwner, LPCTSTR pcszName) {
+CxMutex::bCreate(
+    const LPSECURITY_ATTRIBUTES lpcsaAttributes, 
+    const BOOL                  cbInitialOwner, 
+    LPCTSTR                     pcszName
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE == _m_hMutex.bIsValid(), FALSE);
     /*DEBUG*///lpsaAttributes - n/a
     /*DEBUG*///bInitialOwner  - n/a
@@ -48,7 +55,7 @@ CxMutex::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bInitialOwner, LPCTS
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateMutex(lpsaAttributes, bInitialOwner, pcszName);
+    hRes = ::CreateMutex(lpcsaAttributes, cbInitialOwner, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     _m_hMutex.bSet(hRes);
@@ -58,15 +65,20 @@ CxMutex::bCreate(LPSECURITY_ATTRIBUTES lpsaAttributes, BOOL bInitialOwner, LPCTS
 //---------------------------------------------------------------------------
 //DONE: bOpen ()
 BOOL 
-CxMutex::bOpen(ULONG dwAccess, BOOL bInheritHandle, LPCTSTR pcszName) {
+CxMutex::bOpen(
+    const ULONG culAccess, 
+    const BOOL  cbInheritHandle, 
+    LPCTSTR     pcszName
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);
-    /*DEBUG*///dwAccess       - n/a
+    /*DEBUG*///culAccess      - n/a
     /*DEBUG*///bInheritHandle - n/a
     /*DEBUG*///pcszName       - n/a
 
     HANDLE hRes = NULL;
 
-    hRes = ::OpenMutex(dwAccess, bInheritHandle, pcszName);
+    hRes = ::OpenMutex(culAccess, cbInheritHandle, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     _m_hMutex.bSet(hRes);
@@ -89,13 +101,16 @@ CxMutex::bRelease() const {
 //---------------------------------------------------------------------------
 //DONE: bWait ()
 BOOL 
-CxMutex::bWait(ULONG ulTimeout) const {
+CxMutex::bWait(
+    const ULONG culTimeout
+) const 
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);
-    /*DEBUG*///ulTimeout - n/a
+    /*DEBUG*///culTimeout - n/a
 
     ULONG ulRes = WAIT_FAILED;
 
-    ulRes = ::WaitForSingleObject(_m_hMutex.hGet(), ulTimeout); 
+    ulRes = ::WaitForSingleObject(_m_hMutex.hGet(), culTimeout); 
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRes, FALSE);
     /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRes, FALSE);
 

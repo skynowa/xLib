@@ -13,7 +13,6 @@
 #define xLib_Log_xLogH
 //---------------------------------------------------------------------------
 #include <xLib/Log/CxConsoleLog.h>
-#include <xLib/Log/CxDbLog.h>
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Log/CxTraceLog.h>
 

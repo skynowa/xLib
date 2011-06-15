@@ -36,18 +36,19 @@ CxFileLog::CxFileLog(
     _m_sFilePath      (),
     _m_ulMaxFileSizeBytes(culMaxFileSizeBytes)
 #if defined(xOS_WIN)
-    ,
-    _m_mtFile         ()
+//    ,
+//    _m_mtFile         ()
 #elif defined(xOS_LINUX)
     //TODO: CxMutex
 #endif
 {
     /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(), return);
-    /*DEBUG*/xASSERT_DO(lsLimitSize >  culMaxFileSizeBytes,     return);
+    /*DEBUG*/xASSERT_DO(lsLimitSize >  culMaxFileSizeBytes,  return);
     /*DEBUG*/xASSERT_DO(lsLimitSize >  lsDefaultMaxSize,     return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxFileLog
+/*virtual*/
 CxFileLog::~CxFileLog() {
 
 }
@@ -107,7 +108,7 @@ CxFileLog::bWrite(
     //-------------------------------------
     //write to file
 #if defined(xOS_WIN)
-    /*LOCK*/CxAutoMutex SL(_m_mtFile);
+//    /*LOCK*/CxAutoMutex SL(_m_mtFile);
 #elif defined(xOS_LINUX)
     //TODO: lock
 #endif
@@ -129,7 +130,7 @@ CxFileLog::bClear() {
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    /*LOCK*/CxAutoMutex SL(_m_mtFile);
+//    /*LOCK*/CxAutoMutex SL(_m_mtFile);
 #elif defined(xOS_LINUX)
     //TODO: lock
 #endif
@@ -146,7 +147,7 @@ CxFileLog::bDelete() {
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    /*LOCK*/CxAutoMutex SL(_m_mtFile);
+//    /*LOCK*/CxAutoMutex SL(_m_mtFile);
 #elif defined(xOS_LINUX)
     //TODO: lock
 #endif
@@ -171,7 +172,7 @@ CxFileLog::_bDeleteIfFull() {
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    /*LOCK*/CxAutoMutex SL(_m_mtFile);
+//    /*LOCK*/CxAutoMutex SL(_m_mtFile);
 #elif defined(xOS_LINUX)
     //TODO: lock
 #endif

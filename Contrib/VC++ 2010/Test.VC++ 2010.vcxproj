@@ -173,7 +173,6 @@
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp" />
     <ClCompile Include="..\..\Source\Log\CxConsoleLog.cpp" />
-    <ClCompile Include="..\..\Source\Log\CxDbLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxFileLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp" />
     <ClCompile Include="..\..\Source\Log\Win\CxEventLog.cpp" />
@@ -287,7 +286,6 @@
     <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxConsoleLog.h" />
-    <ClInclude Include="..\..\Include\xLib\Log\CxDbLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxFileLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxTraceLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\xLog.h" />
