@@ -186,9 +186,6 @@
     <ClCompile Include="..\..\Source\Log\CxConsoleLog.cpp">
       <Filter>xLib\Log</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Log\CxDbLog.cpp">
-      <Filter>xLib\Log</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Log\CxFileLog.cpp">
       <Filter>xLib\Log</Filter>
     </ClCompile>
@@ -447,9 +444,6 @@
       <Filter>xLib\Filesystem\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\CxConsoleLog.h">
-      <Filter>xLib\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Log\CxDbLog.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\CxFileLog.h">

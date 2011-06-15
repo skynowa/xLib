@@ -383,10 +383,11 @@ HANDLE
 CxHandleT<hvTag>::hGetCurrentProcess() {
 	/*DEBUG*///n/a
 
-	HANDLE hRes = FailValue::get();
+	HANDLE hRes = NULL;
 
 	hRes = ::GetCurrentProcess();
-	/*DEBUG*/xASSERT_RET(_ms_chCurrProcessHandle == hRes, FailValue::get());
+    ////hRes = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, CxProcess::ulGetCurrId());
+    /*DEBUG*/xASSERT_RET(_ms_chCurrProcessHandle == hRes, NULL);
 
 	return hRes;
 }

@@ -44,11 +44,11 @@ class CxFileLog :
         tString          _m_sFilePath;
         ULONG            _m_ulMaxFileSizeBytes;
 
-        #if defined(xOS_WIN)
-            CxMutex      _m_mtFile;
-        #elif defined(xOS_LINUX)
-            //TODO: CxMutex
-        #endif
+    #if defined(xOS_WIN)
+        ////CxMutex          _m_mtFile;
+    #elif defined(xOS_LINUX)
+        //TODO: CxMutex
+    #endif
 
         BOOL             _bDeleteIfFull();
 };
