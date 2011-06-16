@@ -31,17 +31,17 @@ class CxTest_CxWaitableTimer :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxWaitableTimer (constructor)
+//DONE: CxTest_CxWaitableTimer (constructor)
 CxTest_CxWaitableTimer::CxTest_CxWaitableTimer() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxWaitableTimer (destructor)
+//DONE: ~CxTest_CxWaitableTimer (destructor)
 CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxWaitableTimer::bUnit() {

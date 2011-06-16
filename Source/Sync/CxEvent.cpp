@@ -33,7 +33,7 @@ CxEvent::~CxEvent() {
 //DONE: hGetHandle (A handle to the event object)
 HANDLE 
 CxEvent::hGetHandle() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), NULL);
+    /*DEBUG*/// n/a
     
     return _m_hEvent.hGet();
 }

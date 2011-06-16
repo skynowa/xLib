@@ -44,17 +44,17 @@ class CxTest_CxGdiplus : public CxTest {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxGdiplus (comment)
+//DONE: CxTest_CxGdiplus (comment)
 CxTest_CxGdiplus::CxTest_CxGdiplus() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxGdiplus (comment)
+//DONE: ~CxTest_CxGdiplus (comment)
 CxTest_CxGdiplus::~CxTest_CxGdiplus() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxGdiplus::bUnit() {
 	/*DEBUG*/

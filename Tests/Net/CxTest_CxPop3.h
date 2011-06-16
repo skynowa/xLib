@@ -31,17 +31,17 @@ class CxTest_CxPop3 :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxPop3 (constructor)
+//DONE: CxTest_CxPop3 (constructor)
 CxTest_CxPop3::CxTest_CxPop3() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxPop3 (destructor)
+//DONE: ~CxTest_CxPop3 (destructor)
 CxTest_CxPop3::~CxTest_CxPop3() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxPop3::bUnit() {

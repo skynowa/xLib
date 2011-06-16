@@ -30,17 +30,17 @@ class CxTest_CxEvent :
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxEvent (constructor)
+//DONE: CxTest_CxEvent (constructor)
 CxTest_CxEvent::CxTest_CxEvent() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxEvent (destructor)
+//DONE: ~CxTest_CxEvent (destructor)
 CxTest_CxEvent::~CxTest_CxEvent() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxEvent::bUnit() {
@@ -49,73 +49,165 @@ CxTest_CxEvent::bUnit() {
 	{
 		CxEvent objEvent;
 
-		g_bRes = objEvent.bCreate(0, TRUE, FALSE, NULL);
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//hGetHandle
+		{
+			m_hRes = objEvent.hGetHandle();
+	        xASSERT(NULL == m_hRes);
+		}
+		
+		//-------------------------------------
+		//bCreate
+		{
+			m_bRes = objEvent.bCreate(0, TRUE, FALSE, NULL);
+			xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bIsSignaled();
-		xASSERT(FALSE == g_bRes);
+		//-------------------------------------
+		//bIsSignaled
+		{
+			m_bRes = objEvent.bIsSignaled();
+			xASSERT(FALSE == m_bRes);
+		}
 
-		g_hRes = objEvent.hGetHandle();
-		xASSERT(NULL != g_hRes);
+		//-------------------------------------
+		//hGetHandle
+		{
+			m_hRes = objEvent.hGetHandle();
+			xASSERT(NULL != m_hRes);
+		}
 
-		////g_bRes = objEvent.bOpen(0, FALSE, NULL);
-		////xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bOpen
+		{
+			////m_bRes = objEvent.bOpen(0, FALSE, NULL);
+			////xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bPulse();
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bPulse
+		{
+			m_bRes = objEvent.bPulse();
+			xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bReset();
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bReset
+		{
+			m_bRes = objEvent.bReset();
+			xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bIsSignaled();
-		xASSERT(FALSE == g_bRes);
+		//-------------------------------------
+		//bIsSignaled
+		{
+			m_bRes = objEvent.bIsSignaled();
+			xASSERT(FALSE == m_bRes);
+		}
 
-		g_bRes = objEvent.bSet();
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bSet
+		{
+			m_bRes = objEvent.bSet();
+			xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bIsSignaled();
-		xASSERT(TRUE == g_bRes);
+		//-------------------------------------
+		//bIsSignaled
+		{
+			m_bRes = objEvent.bIsSignaled();
+			xASSERT(TRUE == m_bRes);
+		}
 
-		g_bRes = objEvent.bWait(5000);
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bWait
+		{
+			m_bRes = objEvent.bWait(5000);
+			xASSERT(FALSE != m_bRes);
+		}
 	}
+	
 	//-------------------------------------
 	//bManualReset == FALSE
 	{
 		CxEvent objEvent;
 
-		g_bRes = objEvent.bCreate(0, FALSE, TRUE, _T("XLib_CxEvent_25_01_2010"));
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bCreate
+		{
+			m_bRes = objEvent.bCreate(0, FALSE, TRUE, _T("XLib_CxEvent_25_01_2010"));
+			xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bIsSignaled();
-		xASSERT(TRUE == g_bRes);
+		//-------------------------------------
+		//bIsSignaled
+		{
+			m_bRes = objEvent.bIsSignaled();
+			xASSERT(TRUE == m_bRes);
+		}
 
-		g_hRes = objEvent.hGetHandle();
-		xASSERT(NULL != g_hRes);
+		//-------------------------------------
+		//hGetHandle
+		{
+			m_hRes = objEvent.hGetHandle();
+			xASSERT(NULL != m_hRes);
+		}
 
-		////g_bRes = objEvent.bOpen(0, FALSE, _T("XLib_CxEvent_25_01_2010"));
-		////xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bOpen
+		{
+			////m_bRes = objEvent.bOpen(0, FALSE, _T("XLib_CxEvent_25_01_2010"));
+			////xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bPulse();
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bPulse
+		{
+			m_bRes = objEvent.bPulse();
+			xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bReset();
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bReset
+		{
+			m_bRes = objEvent.bReset();
+			xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bIsSignaled();
-		xASSERT(FALSE == g_bRes);
+		//-------------------------------------
+		//bIsSignaled
+		{
+			m_bRes = objEvent.bIsSignaled();
+			xASSERT(FALSE == m_bRes);
+		}
 
-		g_bRes = objEvent.bSet();
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bSet
+		{
+			m_bRes = objEvent.bSet();
+			xASSERT(FALSE != m_bRes);
+		}
 
-		g_bRes = objEvent.bIsSignaled();
-		xASSERT(TRUE == g_bRes);
+		//-------------------------------------
+		//bIsSignaled
+		{
+			m_bRes = objEvent.bIsSignaled();
+			xASSERT(TRUE == m_bRes);
+		}
 
-		g_bRes = objEvent.bSet();
-		xASSERT(FALSE != g_bRes)
+		//-------------------------------------
+		//bSet
+		{
+			m_bRes = objEvent.bSet();
+			xASSERT(FALSE != m_bRes)
+		}
 
-		g_bRes = objEvent.bWait(5000);
-		xASSERT(FALSE != g_bRes);
+		//-------------------------------------
+		//bWait
+		{
+			m_bRes = objEvent.bWait(5000);
+			xASSERT(FALSE != m_bRes);
+		}
 	}
 
     return TRUE;

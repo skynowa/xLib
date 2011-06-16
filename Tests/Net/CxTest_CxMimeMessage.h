@@ -34,17 +34,17 @@ class CxTest_CxMimeMessage :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxMimeMessage (constructor)
+//DONE: CxTest_CxMimeMessage (constructor)
 CxTest_CxMimeMessage::CxTest_CxMimeMessage() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxMimeMessage (destructor)
+//DONE: ~CxTest_CxMimeMessage (destructor)
 CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxMimeMessage::bUnit() {

@@ -31,17 +31,17 @@ class CxTest_CxSmtp :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxSmtp (constructor)
+//DONE: CxTest_CxSmtp (constructor)
 CxTest_CxSmtp::CxTest_CxSmtp() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxSmtp (destructor)
+//DONE: ~CxTest_CxSmtp (destructor)
 CxTest_CxSmtp::~CxTest_CxSmtp() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSmtp::bUnit() {

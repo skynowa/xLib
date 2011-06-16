@@ -336,7 +336,11 @@ CxPath::bIsValid(
     xCHECK_RET(TRUE == bRes, FALSE);
 
     //check for size
+#if defined(xOS_WIN)
+    bRes = static_cast<BOOL>( MAX_PATH < csFilePath.size() );
+#elif defined(xOS_LINUX)
     bRes = static_cast<BOOL>( PATH_MAX < csFilePath.size() );
+#endif
     xCHECK_RET(TRUE == bRes, FALSE);
 
     return TRUE;

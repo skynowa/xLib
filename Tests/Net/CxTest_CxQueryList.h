@@ -31,17 +31,17 @@ class CxTest_CxQueryList :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxQueryList (constructor)
+//DONE: CxTest_CxQueryList (constructor)
 CxTest_CxQueryList::CxTest_CxQueryList() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxQueryList (destructor)
+//DONE: ~CxTest_CxQueryList (destructor)
 CxTest_CxQueryList::~CxTest_CxQueryList() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxQueryList::bUnit() {

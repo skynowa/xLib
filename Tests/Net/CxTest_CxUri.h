@@ -31,17 +31,17 @@ class CxTest_CxUri :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxUri (constructor)
+//DONE: CxTest_CxUri (constructor)
 CxTest_CxUri::CxTest_CxUri() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxUri (destructor)
+//DONE: ~CxTest_CxUri (destructor)
 CxTest_CxUri::~CxTest_CxUri() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxUri::bUnit() {

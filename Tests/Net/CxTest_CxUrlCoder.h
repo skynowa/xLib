@@ -31,17 +31,17 @@ class CxTest_CxUrlCoder :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxUrlCoder (constructor)
+//DONE: CxTest_CxUrlCoder (constructor)
 CxTest_CxUrlCoder::CxTest_CxUrlCoder() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxUrlCoder (destructor)
+//DONE: ~CxTest_CxUrlCoder (destructor)
 CxTest_CxUrlCoder::~CxTest_CxUrlCoder() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxUrlCoder::bUnit() {

@@ -31,17 +31,17 @@ class CxTest_bGetUsbInfo :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_bGetUsbInfo (constructor)
+//DONE: CxTest_bGetUsbInfo (constructor)
 CxTest_bGetUsbInfo::CxTest_bGetUsbInfo() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_bGetUsbInfo (destructor)
+//DONE: ~CxTest_bGetUsbInfo (destructor)
 CxTest_bGetUsbInfo::~CxTest_bGetUsbInfo() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_bGetUsbInfo::bUnit() {

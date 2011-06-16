@@ -238,7 +238,7 @@ CxDrive::dtGetType(const tString &csDrivePath) {
 /*static*/
 BOOL
 CxDrive::bGetLogicalDrives(std::vector<tString> *pvsDrives) {
-    /*DEBUG*/xASSERT_RET(NULL != pvecsDrives, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pvsDrives, FALSE);
 
     ULONG ulDrives = 0;        //bGetLogicalDrives +++++++++
 

@@ -31,17 +31,17 @@ class CxTest_CxCompletionPort :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxCompletionPort (comment)
+//DONE: CxTest_CxCompletionPort (comment)
 CxTest_CxCompletionPort::CxTest_CxCompletionPort() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxCompletionPort (comment)
+//DONE: ~CxTest_CxCompletionPort (comment)
 CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxCompletionPort::bUnit() {
 	/*DEBUG*/

@@ -51,17 +51,17 @@ unsigned __stdcall vTest( void* pArguments ) {
 	return 0;
 }
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxSemaphore (constructor)
+//DONE: CxTest_CxSemaphore (constructor)
 CxTest_CxSemaphore::CxTest_CxSemaphore() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxSemaphore (destructor)
+//DONE: ~CxTest_CxSemaphore (destructor)
 CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSemaphore::bUnit() {

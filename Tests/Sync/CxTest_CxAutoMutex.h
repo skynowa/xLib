@@ -29,27 +29,29 @@ class CxTest_CxAutoMutex :
 };
 //---------------------------------------------------------------------------
 
+
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxAutoMutex (constructor)
+//DONE: CxTest_CxAutoMutex (constructor)
 CxTest_CxAutoMutex::CxTest_CxAutoMutex() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxAutoMutex (destructor)
+//DONE: ~CxTest_CxAutoMutex (destructor)
 CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAutoMutex::bUnit() {
 	//-------------------------------------
-	//CxMutexScopeLock()
+	//CxAutoMutex
 	{
-		//CxMutexScopeLock objCxMutexScopeLock());
-	}
+    	CxMutex mtMutex;
 
+		CxAutoMutex objAutoMutex(mtMutex);
+	}
 
     return TRUE;
 }

@@ -29,17 +29,17 @@ class CxTest_CxFile : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxFile (comment)
+//DONE: CxTest_CxFile (comment)
 CxTest_CxFile::CxTest_CxFile() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxFile (comment)
+//DONE: ~CxTest_CxFile (comment)
 CxTest_CxFile::~CxTest_CxFile() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL CxTest_CxFile::bUnit() {
 	ULONG         ulWritten     = 0;

@@ -31,17 +31,17 @@ class CxTest_CxConsole :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxConsole (comment)
+//DONE: CxTest_CxConsole (comment)
 CxTest_CxConsole::CxTest_CxConsole() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxConsole (comment)
+//DONE: ~CxTest_CxConsole (comment)
 CxTest_CxConsole::~CxTest_CxConsole() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxConsole::bUnit() {
     /*DEBUG*/

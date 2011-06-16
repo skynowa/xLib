@@ -347,6 +347,7 @@ CxThread::bIsPaused() const {
     /*DEBUG*/// _m_hThread - n/a
 
     return (FALSE == _m_evPause.bIsSignaled()) && (FALSE != _m_hThread.bIsValid());
+    ////return !_m_evPause.bIsSignaled() && (FALSE != _m_hThread.bIsValid());
 }
 //---------------------------------------------------------------------------
 //DONE: bIsSleeping (is sleeping)

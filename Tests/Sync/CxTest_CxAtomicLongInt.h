@@ -31,17 +31,17 @@ class CxTest_CxAtomicLongInt :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxAtomicLongInt (constructor)
+//DONE: CxTest_CxAtomicLongInt (constructor)
 CxTest_CxAtomicLongInt::CxTest_CxAtomicLongInt() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxAtomicLongInt (destructor)
+//DONE: ~CxTest_CxAtomicLongInt (destructor)
 CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAtomicLongInt::bUnit() {

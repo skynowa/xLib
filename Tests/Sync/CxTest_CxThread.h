@@ -33,17 +33,17 @@ class CxTest_CxThread :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxThread (constructor)
+//DONE: CxTest_CxThread (constructor)
 CxTest_CxThread::CxTest_CxThread() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxThread (destructor)
+//DONE: ~CxTest_CxThread (destructor)
 CxTest_CxThread::~CxTest_CxThread() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxThread::bUnit() {
@@ -76,7 +76,7 @@ CxTest_CxThread::bUnit() {
 		////LOG("bIsRunning()");
 
 		m_bRes = pthT->bIsPaused();
-		xASSERT(TRUE == m_bRes);
+		xASSERT(FALSE != m_bRes);
 		////LOG("bIsPaused()");
 
 		//////m_bRes = pthT->bIsSleeping();

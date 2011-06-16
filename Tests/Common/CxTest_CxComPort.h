@@ -31,17 +31,17 @@ class CxTest_CxComPort :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxComPort (comment)
+//DONE: CxTest_CxComPort (comment)
 CxTest_CxComPort::CxTest_CxComPort() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxComPort (comment)
+//DONE: ~CxTest_CxComPort (comment)
 CxTest_CxComPort::~CxTest_CxComPort() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxComPort::bUnit() {
     /*DEBUG*/

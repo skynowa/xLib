@@ -31,17 +31,17 @@ class CxTest_CxPkcs11 :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxPkcs11 (comment)
+//DONE: CxTest_CxPkcs11 (comment)
 CxTest_CxPkcs11::CxTest_CxPkcs11() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxPkcs11 (comment)
+//DONE: ~CxTest_CxPkcs11 (comment)
 CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxPkcs11::bUnit() {

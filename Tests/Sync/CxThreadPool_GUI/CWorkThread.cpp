@@ -25,7 +25,7 @@ volatile size_t   g_uiLinesCount = 0;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CWorkThread
+//TODO: CWorkThread
 CWorkThread::CWorkThread(BOOL bIsPaused, BOOL bAutoDelete) :
 	CxThread    (bIsPaused, bAutoDelete),
 	_m_clLog    (FALSE),
@@ -33,7 +33,7 @@ CWorkThread::CWorkThread(BOOL bIsPaused, BOOL bAutoDelete) :
 {
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CWorkThread
+//TODO: ~CWorkThread
 CWorkThread::~CWorkThread() {
 
 }
@@ -47,7 +47,7 @@ CWorkThread::~CWorkThread() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - uiOnRun
+//TODO: uiOnRun
 UINT CWorkThread::uiOnRun(VOID *pData) { 
 	/*LOG*///_m_clLog.bWrite(xT("uiOnRun start: #%i"), m_uiIndex); 
 	
@@ -96,12 +96,12 @@ UINT CWorkThread::uiOnRun(VOID *pData) {
 	return uiRes;
 }
 //---------------------------------------------------------------------------
-//TODO: - vOnEnter
+//TODO: vOnEnter
 VOID CWorkThread::vOnEnter() {
 	//LOG("vOnEnter");
 }
 //---------------------------------------------------------------------------
-//TODO: - vOnExit
+//TODO: vOnExit
 VOID CWorkThread::vOnExit() {        
 	//::OutputDebugString(xT("vOnExit (virtual)\n"));
 }
