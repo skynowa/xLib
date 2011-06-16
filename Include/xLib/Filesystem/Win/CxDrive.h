@@ -41,8 +41,8 @@ class CxDrive :
         static BOOL    bFindVolumeClose                 (HANDLE hFindVolume);
         static BOOL    bFindVolumeMountPointClose       (HANDLE hFindVolumeMountPoint);
         static EType   dtGetType                        (const tString &csDrivePath);
-        static BOOL    bGetLogicalDrives                (std::vector<tString> *vecsDrives);
-        static BOOL    bGetLogicalDrives                (std::vector<tString> *vecsDrives, EType dtDriveType);
+        static BOOL    bGetLogicalDrives                (std::vector<tString> *pvsDrives);
+        static BOOL    bGetLogicalDrives                (std::vector<tString> *pvsDrives, const EType cdtDriveType);
         static tString sGetLogicalStrings               ();
         static BOOL    bGetInfo                         (const tString &csDrivePath,
                                                          tString       *psVolumeName,

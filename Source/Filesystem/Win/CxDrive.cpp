@@ -237,7 +237,7 @@ CxDrive::dtGetType(const tString &csDrivePath) {
 //DONE:  bGetLogicalDrives (������ ���� ��������� ������)
 /*static*/
 BOOL
-CxDrive::bGetLogicalDrives(std::vector<tString> *pvecsDrives) {
+CxDrive::bGetLogicalDrives(std::vector<tString> *pvsDrives) {
     /*DEBUG*/xASSERT_RET(NULL != pvecsDrives, FALSE);
 
     ULONG ulDrives = 0;        //bGetLogicalDrives +++++++++
@@ -245,7 +245,7 @@ CxDrive::bGetLogicalDrives(std::vector<tString> *pvecsDrives) {
     ulDrives = ::GetLogicalDrives();
     /*DEBUG*/xASSERT_RET(0 != ulDrives, FALSE);
 
-    pvecsDrives->clear();
+    pvsDrives->clear();
     for (INT i = 0; i < 26; ++ i) {
         if (1 == ((ulDrives >> i) & 0x00000001)) {
             tString sDrivePath;
@@ -253,25 +253,32 @@ CxDrive::bGetLogicalDrives(std::vector<tString> *pvecsDrives) {
             sDrivePath.push_back(static_cast<TCHAR>(65 + i));
             sDrivePath.append(CxConst::xDRIVE_SEP);
 
-            pvecsDrives->push_back(sDrivePath);
+            pvsDrives->push_back(sDrivePath);
         }
     }
 
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE:  bGetLogicalDrives (������ ���� ��������� ������ �� ����)
+//TODO:  bGetLogicalDrives (������ ���� ��������� ������ �� ����)
 /*static*/
 BOOL
-CxDrive::bGetLogicalDrives(std::vector<tString> *vecsDrives, EType dtDriveType) {
-    /*DEBUG*/xASSERT_RET(NULL != vecsDrives, FALSE);
+CxDrive::bGetLogicalDrives(
+    std::vector<tString> *pvsDrives,
+    const EType           cdtDriveType
+)
+{
+    /*DEBUG*/xASSERT_RET(NULL != pvsDrives, FALSE);
 
-    ULONG ulDrives = 0;
+    BOOL                 bRes = FALSE;
+    std::vector<tString> vsRes;
+
+#if defined(xOS_WIN)
+    ULONG                ulDrives = 0;
 
     ulDrives = ::GetLogicalDrives();
     /*DEBUG*/xASSERT_RET(0 != ulDrives, FALSE);
 
-    vecsDrives->clear();
     for (INT i = 0; i < 26; ++ i) {
         if (1 == ((ulDrives >> i) & 0x00000001)) {
             tString sDrivePath;
@@ -279,11 +286,20 @@ CxDrive::bGetLogicalDrives(std::vector<tString> *vecsDrives, EType dtDriveType) 
             sDrivePath.push_back(static_cast<TCHAR>(65 + i));
             sDrivePath.append(CxConst::xDRIVE_SEP);
 
-            xCHECK_DO(dtDriveType != CxDrive::dtGetType(sDrivePath), continue);
+            xCHECK_DO(cdtDriveType != CxDrive::dtGetType(sDrivePath), continue);
 
-            vecsDrives->push_back(sDrivePath);
+            vsRes.push_back(sDrivePath);
         }
     }
+#elif defined(xOS_LINUX)
+    bRes = CxDir::bFindDirs(xT("/"), CxConst::xMASK_ALL, FALSE, &vsRes);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    //TODO: filter by cdtDriveType
+#endif
+
+    //out
+    std::swap(vsRes, *pvsDrives);
 
     return TRUE;
 }

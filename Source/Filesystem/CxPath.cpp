@@ -320,10 +320,32 @@ CxPath::sRemoveExtIf(
     return csFilePath.substr(0, uiDotPos);
 }
 //---------------------------------------------------------------------------
-//DONE: bIsValidName (file name validation)
+//TODO: bIsValid ()
 /*static*/
 BOOL
-CxPath::bIsValidName(
+CxPath::bIsValid(
+    const tString &csFilePath
+)
+{
+    /*DEBUG*/// csFileName - n/a
+
+    BOOL bRes = FALSE;
+
+    //is empty
+    bRes = static_cast<BOOL>( csFilePath.empty() );
+    xCHECK_RET(TRUE == bRes, FALSE);
+
+    //check for size
+    bRes = static_cast<BOOL>( PATH_MAX < csFilePath.size() );
+    xCHECK_RET(TRUE == bRes, FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: bIsNameValid (file name validation)
+/*static*/
+BOOL
+CxPath::bIsNameValid(
     const tString &csFilePath
 )
 {

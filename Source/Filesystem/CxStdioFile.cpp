@@ -65,7 +65,7 @@ CxStdioFile::bOpen(
 {
     /*DEBUG*/xASSERT_RET(FALSE == bIsValid(),                       FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),               FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsValidName(csFilePath), FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsNameValid(csFilePath), FALSE);
     /*DEBUG*/// comMode - n/a
 
     FILE *pFile = _tfopen(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());
@@ -95,7 +95,7 @@ CxStdioFile::bReopen(
 {
     /*DEBUG*/// _m_pFile - n/a
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),               FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsValidName(csFilePath), FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsNameValid(csFilePath), FALSE);
     /*DEBUG*/// omMode - n/a
 
     FILE *pFile = _tfreopen(csFilePath.c_str(), _sGetOpenMode(comMode).c_str(), _m_pFile);

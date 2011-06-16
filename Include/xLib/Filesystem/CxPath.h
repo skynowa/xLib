@@ -41,7 +41,8 @@ class CxPath :
         static tString sRemoveExtIf (const tString &csFilePath, const tString &csExt);
 
         //normalize
-        static BOOL    bIsValidName (const tString &csFilePath);
+        static BOOL    bIsValid     (const tString &csFilePath);
+        static BOOL    bIsNameValid (const tString &csFilePath);
 
         static tString sToWin       (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
         static tString sToNix       (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
