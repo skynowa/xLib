@@ -7,7 +7,7 @@
 #include "CWndMain.h"
 
 //---------------------------------------------------------------------------
-//TODO: - bTest_CXClass ()
+//TODO: bTest_CXClass ()
 BOOL CWndMain::bTest_CXClass(CXClass &xObj, INT iID, CXWindow *pwndParent) {
 	/*DEBUG*/// cpbPB - n/a
 	/*DEBUG*/xASSERT_RET(0    < iID,         FALSE);

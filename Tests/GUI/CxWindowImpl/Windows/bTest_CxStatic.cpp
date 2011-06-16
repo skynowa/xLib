@@ -7,7 +7,7 @@
 #include "CWndMain.h"
 
 //---------------------------------------------------------------------------
-//TODO: - bTest_CxStatic ()
+//TODO: bTest_CxStatic ()
 BOOL CWndMain::bTest_CxStatic(CxStatic &xObj, INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/// cpbPB - n/a
 	/*DEBUG*/xASSERT_RET(0    < iID,         FALSE);

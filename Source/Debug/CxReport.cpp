@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 * Class name:  CxReport
 * Description: debug message
 * File name:   CxReport.cpp
@@ -298,7 +298,7 @@ CxReport::_bInitVars(
     _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     _m_sOsArchitecture = _sGetOsArchitecture();
 
-    _m_sComment        = (true == csComment.empty()) ? CxConst::xHYPHEN : csComment.data();
+    _m_sComment        = (true == csComment.empty()) ? CxConst::xHYPHEN : tString(csComment.data());
 
     return TRUE;
 }

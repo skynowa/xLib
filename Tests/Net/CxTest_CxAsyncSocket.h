@@ -31,17 +31,17 @@ class CxTest_CxAsyncSocket :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxAsyncSocket (comment)
+//DONE: CxTest_CxAsyncSocket (comment)
 CxTest_CxAsyncSocket::CxTest_CxAsyncSocket() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxAsyncSocket (comment)
+//DONE: ~CxTest_CxAsyncSocket (comment)
 CxTest_CxAsyncSocket::~CxTest_CxAsyncSocket() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxAsyncSocket::bUnit() {
 	/*DEBUG*/

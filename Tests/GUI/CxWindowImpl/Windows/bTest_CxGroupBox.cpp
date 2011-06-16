@@ -7,7 +7,7 @@
 #include "CWndMain.h"
 
 //---------------------------------------------------------------------------
-//TODO: - bTest_CxGroupBox ()
+//TODO: bTest_CxGroupBox ()
 BOOL CWndMain::bTest_CxGroupBox(CxGroupBox &xObj, INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/// cpbPB - n/a
 	/*DEBUG*/xASSERT_RET(0    < iID,         FALSE);

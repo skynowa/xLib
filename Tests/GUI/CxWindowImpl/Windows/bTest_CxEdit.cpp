@@ -7,7 +7,7 @@
 #include "CWndMain.h"
 
 //---------------------------------------------------------------------------
-//TODO: - bTest_CxEdit ()
+//TODO: bTest_CxEdit ()
 BOOL CWndMain::bTest_CxEdit(CxEdit &xObj, INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/// cpbPB - n/a
 	/*DEBUG*/xASSERT_RET(0    < iID,         FALSE);

@@ -7,7 +7,7 @@
 #include "CWndMain.h"
 
 //---------------------------------------------------------------------------
-//TODO: - bTest_CxPicture ()
+//TODO: bTest_CxPicture ()
 BOOL CWndMain::bTest_CxPicture(CxPicture &xObj, INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/// cpbPB - n/a
 	/*DEBUG*/xASSERT_RET(0    < iID,         FALSE);

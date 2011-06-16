@@ -31,17 +31,17 @@ class CxTest_CxTls :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxTls (constructor)
+//DONE: CxTest_CxTls (constructor)
 CxTest_CxTls::CxTest_CxTls() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxTls (destructor)
+//DONE: ~CxTest_CxTls (destructor)
 CxTest_CxTls::~CxTest_CxTls() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxTls::bUnit() {

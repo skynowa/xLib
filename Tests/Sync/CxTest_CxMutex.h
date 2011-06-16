@@ -31,17 +31,17 @@ class CxTest_CxMutex :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxMutex (constructor)
+//DONE: CxTest_CxMutex (constructor)
 CxTest_CxMutex::CxTest_CxMutex() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxMutex (destructor)
+//DONE: ~CxTest_CxMutex (destructor)
 CxTest_CxMutex::~CxTest_CxMutex() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxMutex::bUnit() {
@@ -54,7 +54,7 @@ CxTest_CxMutex::bUnit() {
 	//hGetHandle
 	{
 		m_hRes = mtMutex.hGetHandle();
-        xASSERT(NULL != m_hRes);
+        xASSERT(NULL == m_hRes);
 	}
 	
 	//-------------------------------------

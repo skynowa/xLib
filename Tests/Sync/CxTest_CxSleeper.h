@@ -31,17 +31,17 @@ class CxTest_CxSleeper :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxSleeper (constructor)
+//DONE: CxTest_CxSleeper (constructor)
 CxTest_CxSleeper::CxTest_CxSleeper() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxSleeper (destructor)
+//DONE: ~CxTest_CxSleeper (destructor)
 CxTest_CxSleeper::~CxTest_CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSleeper::bUnit() {

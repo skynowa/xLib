@@ -31,17 +31,17 @@ class CxTest_CxCriticalSection :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxCriticalSection (constructor)
+//DONE: CxTest_CxCriticalSection (constructor)
 CxTest_CxCriticalSection::CxTest_CxCriticalSection() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxCriticalSection (destructor)
+//DONE: ~CxTest_CxCriticalSection (destructor)
 CxTest_CxCriticalSection::~CxTest_CxCriticalSection() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxCriticalSection::bUnit() {

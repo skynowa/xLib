@@ -29,6 +29,7 @@
 #include <time.h>
 #include <stddef.h>
 #include <math.h>
+#include <limits.h>
 
 #if defined(xIS_STL_ASSERTING)
     #include <assert.h>

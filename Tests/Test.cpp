@@ -101,7 +101,9 @@
 
 #if defined(xOS_WIN)
     #include "Sync/CxTest_CxThread.h"
+	#include "Sync/CxTest_CxEvent.h"
     #include "Sync/CxTest_CxMutex.h"
+    #include "Sync/CxTest_CxAutoMutex.h"
 #elif defined(xOS_LINUX)
 
 #endif
@@ -256,7 +258,9 @@ _tmain(
     vptTests.push_back( new CxTest_CxProcess );
     #if defined(xOS_WIN)
     vptTests.push_back( new CxTest_CxThread );
+    vptTests.push_back( new CxTest_CxEvent );
     vptTests.push_back( new CxTest_CxMutex );
+    vptTests.push_back( new CxTest_CxAutoMutex );
     #elif defined(xOS_LINUX)
 
     #endif

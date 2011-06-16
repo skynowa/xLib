@@ -29,17 +29,17 @@ class CxTest_CxIni : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxIni (constructor)
+//DONE: CxTest_CxIni (constructor)
 CxTest_CxIni::CxTest_CxIni() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxIni (destructor)
+//DONE: ~CxTest_CxIni (destructor)
 CxTest_CxIni::~CxTest_CxIni() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxIni::bUnit() {

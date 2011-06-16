@@ -7,7 +7,7 @@
 #include "CWndMain.h"
 
 //---------------------------------------------------------------------------
-//TODO: - bTest_CxOwnerDrawButton ()
+//TODO: bTest_CxOwnerDrawButton ()
 BOOL CWndMain::bTest_CxOwnerDrawButton(CxOwnerDrawButton &xObj, INT iID, CxWindow *pwndParent) {
 	/*DEBUG*/// cpbPB - n/a
 	/*DEBUG*/xASSERT_RET(0    < iID,         FALSE);

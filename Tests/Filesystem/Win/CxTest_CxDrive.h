@@ -29,17 +29,17 @@ class CxTest_CxDrive : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxDrive (constructor)
+//DONE: CxTest_CxDrive (constructor)
 CxTest_CxDrive::CxTest_CxDrive() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxDrive (destructor)
+//DONE: ~CxTest_CxDrive (destructor)
 CxTest_CxDrive::~CxTest_CxDrive() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxDrive::bUnit() {

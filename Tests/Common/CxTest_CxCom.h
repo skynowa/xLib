@@ -31,17 +31,17 @@ class CxTest_CxCom :
 
 
 //---------------------------------------------------------------------------
-//TODO: - CxTest_CxCom (comment)
+//TODO: CxTest_CxCom (comment)
 CxTest_CxCom::CxTest_CxCom() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxTest_CxCom (comment)
+//TODO: ~CxTest_CxCom (comment)
 CxTest_CxCom::~CxTest_CxCom() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxCom::bUnit() {
     /*DEBUG*/

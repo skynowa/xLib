@@ -46,17 +46,17 @@ class CxTest_CxImage : public CxTest {
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxImage (comment)
+//DONE: CxTest_CxImage (comment)
 CxTest_CxImage::CxTest_CxImage() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxImage (comment)
+//DONE: ~CxTest_CxImage (comment)
 CxTest_CxImage::~CxTest_CxImage() {
 	//code
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxImage::bUnit() {
 	/*DEBUG*/

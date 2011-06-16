@@ -30,7 +30,7 @@ CxConsoleLog g_clLog;
 //---------------------------------------------------------------------------
 ////CxThreadPool<CWorkThread> *thpTP = NULL;
 //////---------------------------------------------------------------------------
-//////TODO: - uiOnRun
+//////TODO: uiOnRun
 ////class CTest {
 ////	public:
 ////		UINT        m_uiIndex;

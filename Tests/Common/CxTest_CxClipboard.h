@@ -31,17 +31,17 @@ class CxTest_CxClipboard :
 
 
 //---------------------------------------------------------------------------
-//TODO: + CxTest_CxClipboard (comment)
+//DONE: CxTest_CxClipboard (comment)
 CxTest_CxClipboard::CxTest_CxClipboard() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: + ~CxTest_CxClipboard (comment)
+//DONE: ~CxTest_CxClipboard (comment)
 CxTest_CxClipboard::~CxTest_CxClipboard() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bUnit ()
+//TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxClipboard::bUnit() {
     CxClipboard cbCB;

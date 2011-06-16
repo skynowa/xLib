@@ -35,7 +35,7 @@ CxMutex::~CxMutex() {
 //DONE: hGetHandle ()
 HANDLE 
 CxMutex::hGetHandle() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), NULL);
+    /*DEBUG*/// n/a
 
     return _m_hMutex.hGet();
 }
