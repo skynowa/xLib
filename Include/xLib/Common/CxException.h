@@ -16,22 +16,25 @@
 //---------------------------------------------------------------------------
 class CxException :
     public std::exception
+
 {
-    private:
-        tString             _m_sMsg;
-
     public:
-                            CxException ();
-        virtual            ~CxException () throw();
+                           CxException  ();
+        virtual           ~CxException  () throw();
 
-        virtual const char *what        () const throw();
+        virtual const char* what() const throw();
+        tString            sGetClassName() const throw();
+        const tString &    sGetWhat     () const throw();
+        const tString      sGetReport   ();
 
         template<class T>
-        CxException &       operator << (const T &cValueT) {
-            _m_sMsg.assign( CxString::lexical_cast(cValueT) );
+        CxException &      operator <<  (const T &cValueT);
 
-            return *this;
-        }
+    private:
+        tString            _m_sMsg;
+
 };
+//---------------------------------------------------------------------------
+#include <Common/CxException.inl>
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxExceptionH
