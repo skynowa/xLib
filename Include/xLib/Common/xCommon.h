@@ -36,6 +36,7 @@
 #endif
 
 //stl
+#include <typeinfo>
 #include <string>
 #include <sstream>
 #include <iostream>

@@ -152,7 +152,7 @@ _tmain(
     std::vector<CxTest *> vptTests;
 
 	vptTests.push_back( new CxTest_CxFileLog );
-	
+
     //--------------------------------------------------
     //Common
     vptTests.push_back( new CxTest_CxMacros );
