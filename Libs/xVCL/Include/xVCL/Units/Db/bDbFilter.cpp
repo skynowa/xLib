@@ -8,6 +8,8 @@
 #pragma hdrstop
 
 //#include "uMain.h"
+#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
+
 //---------------------------------------------------------------------------
 //TODO: фильтр
 BOOL bDbFilter(
@@ -85,7 +87,7 @@ BOOL bDbFilter(
 	//ORDER BY
 	sSqlStr += xT(" ") + csSqlStrOrderBy + xT(";");
 	
-	//iMsgBox(xD2S(sSqlStr));
+	CxMsgBoxT::iShow(xD2S(sSqlStr));
 
 	//-------------------------------------
 	//выполнить запрос

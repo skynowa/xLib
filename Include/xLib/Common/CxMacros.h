@@ -66,7 +66,7 @@ class CxMacros :
 
         #define xS2TS(s)              tString( (s).begin(),  (s).begin()  + (s).size()  )
         #define xTS2S(ts)             std::string( (ts).begin(), (ts).begin() + (ts).size() )
-
+            
     #if defined(xOS_WIN)
         #define xRANDOMIZE()          ( srand( (UINT)::GetTickCount() ) )
     #elif defined(xOS_LINUX)

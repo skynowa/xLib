@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 * Class name:  CxException
 * Description: exception
 * File name:   CxException.cpp
@@ -35,7 +35,9 @@ CxException::~CxException() throw() {
 const char*
 CxException::what() const throw() {
 
-    return _m_sMsg.c_str();
+	std::string sRes = xTS2S(_m_sMsg);
+
+	return sRes.c_str();
 }
 //---------------------------------------------------------------------------
 //DONE: sGetClassName ()
@@ -43,7 +45,9 @@ tString
 CxException::sGetClassName() const throw() {
     /*DEBUG*/
 
-    return typeid(*this).name();
+	std::string sRes = typeid(*this).name();
+
+	return xS2TS(sRes);
 }
 //---------------------------------------------------------------------------
 //DONE: sGetWhat ()
