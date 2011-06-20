@@ -14,21 +14,16 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxException :
-    public std::exception
-
-{
+class CxException {
     public:
                            CxException  ();
-        virtual           ~CxException  () throw();
+        virtual           ~CxException  ();
 
-        virtual const char* what() const throw();
-        tString            sGetClassName() const throw();
-        const tString &    sGetWhat     () const throw();
-        const tString      sGetReport   ();
+        const tString &    sGetWhat     () const;
+        tString            sGetReport   ();
 
         template<class T>
-        CxException &      operator <<  (const T &cValueT);
+        CxException &      operator <<  (const T &cMessageT);
 
     private:
         tString            _m_sMsg;
@@ -36,5 +31,20 @@ class CxException :
 };
 //---------------------------------------------------------------------------
 #include <Common/CxException.inl>
+//---------------------------------------------------------------------------
+#define xTRY try
+
+#define xCATCH_ALL \
+    catch (const CxException &e) { \
+        /*DEBUG*/xASSERT_MSG_RET(FALSE, e.sGetWhat(), FALSE); \
+    } \
+    catch (const std::exception &cexE) { \
+        std::string asMsg = cexE.what(); \
+                                         \
+        /*DEBUG*/xASSERT_MSG_RET(FALSE, xS2TS(asMsg), FALSE); \
+    } \
+    catch (...) { \
+        /*DEBUG*/xASSERT_MSG_RET(FALSE, xT("unknown error"), FALSE); \
+    }
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxExceptionH

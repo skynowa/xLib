@@ -27,32 +27,13 @@ CxException::CxException() :
 //---------------------------------------------------------------------------
 //DONE: ~CxException
 /*virtual*/
-CxException::~CxException() throw() {
+CxException::~CxException() {
     /*DEBUG*/// n/a
-}
-//---------------------------------------------------------------------------
-/*virtual*/
-const char*
-CxException::what() const throw() {
-
-	std::string sRes = xTS2S(_m_sMsg);
-
-	return sRes.c_str();
-}
-//---------------------------------------------------------------------------
-//DONE: sGetClassName ()
-tString
-CxException::sGetClassName() const throw() {
-    /*DEBUG*/
-
-	std::string sRes = typeid(*this).name();
-
-	return xS2TS(sRes);
 }
 //---------------------------------------------------------------------------
 //DONE: sGetWhat ()
 const tString &
-CxException::sGetWhat() const throw() {
+CxException::sGetWhat() const {
     /*DEBUG*/
 
     return _m_sMsg;

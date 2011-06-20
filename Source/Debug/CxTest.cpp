@@ -75,10 +75,6 @@ CxTest::bRun(
     const ULONGLONG cullInfiniteLoops = 0;
 
     try {
-        tString sStr;   sStr.at(0);
-
-        //throw CxException() << "xxxxxx";
-
         if (cullInfiniteLoops == cullLoops) {
             //infinite
             for ( ;  ; ) {
@@ -93,20 +89,14 @@ CxTest::bRun(
             }
         }
     }
-    catch (const std::exception &cexException) {
-        std::string asRes = cexException.what();
-
-        tString sMsg = tString(asRes.begin(), asRes.end());
-
-        /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + sMsg, FALSE);
+    catch (const CxException &e) {
+        /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + e.sGetWhat(), FALSE);
     }
-//    catch (const CxException &cexException) {
-//        std::string asRes = cexException.what();
-//
-//        tString sMsg = tString(asRes.begin(), asRes.end());
-//
-//        /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + sMsg, FALSE);
-//    }
+    catch (const std::exception &cexE) {
+        std::string asMsg = cexE.what();
+
+        /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + xS2TS(asMsg), FALSE);
+    }
     catch (...) {
         /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": Unknown test error"), FALSE);
     }

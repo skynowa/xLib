@@ -53,7 +53,7 @@ CxTest_CxException::bUnit() {
         }
         catch (CxException &e) {
             xASSERT(tString() == e.sGetWhat());
-            //xTRACEV( xT("sGetName: %s, sGetWhat: %s"), e.sGetName().c_str(), e.sGetWhat().c_str() );
+            xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
         catch (...) {
             xTRACE(xT("CxException unknown error"));
@@ -76,51 +76,52 @@ CxTest_CxException::bUnit() {
             }
             catch (CxException &e) {
                 xASSERT( sTestData[i][1] == e.sGetWhat() );
-                //xTRACEV( xT("sGetName: %s, sGetWhat: %s"), e.sGetName().c_str(), e.sGetWhat().c_str() );
+                xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
             }
             catch (...) {
-                xTRACE(xT("CxException unknown error"));
+                xTRACE(xT("std::exception unknown error"));
             }
         }
     }
 
     //--------------------------------------------------
-    //CxException(), sGetWhat, e.sGetName
+    //catch CxException
     {
         try {
-            //tString sStr; sStr.at(0);
-            //throw CxException() << "xxxxxx";
+            throw CxException() << "CxException_test_exception";
         }
-
-    #if xTEMP_DISABLED
-        catch (std::exception &e) {
-            xASSERT(tString() == e.sGetWhat());
-            xTRACEV( xT("sGetName: %s, sGetWhat: %s"), e.sGetName().c_str(), e.sGetWhat().c_str() );
-        }
-    #endif
-
         catch (CxException &e) {
-            xTRACEV( xT("sGetWhat: %s, sGetClassName: %s"), e.sGetWhat().c_str(), e.sGetClassName().c_str() );
+            xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
-
-    #if 1
-        catch (std::exception &e) {
-            xTRACEV( xT("std::what: %s"), e.what() );
-        }
-    #endif
-
-    #if xTEMP_DISABLED
-        catch (CxException &e) {
-            xTRACEV( xT("sGetWhat: %s, sGetClassName: %s"), e.sGetWhat().c_str(), e.sGetClassName().c_str() );
-        }
-    #endif
-
         catch (...) {
-            xTRACE(xT("CxException unknown error"));
+            xTRACE(xT("std::exception unknown error"));
         }
     }
 
-    return TRUE;
+    //--------------------------------------------------
+    //catch std::exception
+    {
+        try {
+            tString sStr; sStr.at(0);
+        }
+        catch (std::exception &e) {
+            xTRACEV( xT("std::what: %s"), e.what() );
+        }
+        catch (...) {
+            xTRACE(xT("std::exception unknown error"));
+        }
+    }
+
+    //--------------------------------------------------
+    //
+    #if xTODO
+        xTRY {
+            tString sStr; sStr.at(0);
+        }
+        xCATCH_ALL;
+
+        return TRUE;
+    #endif
 }
 //---------------------------------------------------------------------------
 #endif //CxTest_CxExceptionH

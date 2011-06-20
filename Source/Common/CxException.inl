@@ -19,10 +19,10 @@
 template<class T>
 CxException &
 CxException::operator << (
-    const T &cValueT
+    const T &cMessageT
 )
 {
-    _m_sMsg.assign( CxString::lexical_cast(cValueT) );
+    _m_sMsg.assign( CxString::lexical_cast(cMessageT) );
 
     return *this;
 }
