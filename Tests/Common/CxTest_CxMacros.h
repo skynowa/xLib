@@ -146,6 +146,74 @@ CxTest_CxMacros::bUnit() {
         //xASSERT();
     }
 
+    //-------------------------------------
+    //xAsTString
+    {
+        //1
+        {
+            const TCHAR *pcszBuff = xT("xxxxx");
+
+            m_sRes = CxMacros::sAsTString(pcszBuff);
+            xASSERT(pcszBuff == m_sRes);
+        }
+
+        //2
+        {
+            const TCHAR *pcszBuff = xT("1236cnqwieru872692*qwer8lkl;l<l;hoihljkhlwcruqw");
+
+            m_sRes = CxMacros::sAsTString(pcszBuff);
+            xASSERT(pcszBuff == m_sRes);
+        }
+
+        //3
+        {
+            const TCHAR *pcszBuff = xT("/n/n/n/n/n/n/n/t/t/t/t/t/t");
+
+            m_sRes = CxMacros::sAsTString(pcszBuff);
+            xASSERT(pcszBuff == m_sRes);
+        }
+
+        //4
+        {
+            const TCHAR *pcszBuff = xT("");
+
+            m_sRes = CxMacros::sAsTString(pcszBuff);
+            xASSERT(pcszBuff == m_sRes);
+        }
+
+        //5
+        {
+            const TCHAR *pcszBuff = NULL;
+
+            m_sRes = CxMacros::sAsTString(pcszBuff);
+            xASSERT(tString() == m_sRes);
+        }
+
+        //6
+        {
+            const TCHAR *pcszBuff;
+
+            m_sRes = CxMacros::sAsTString(pcszBuff);
+            xASSERT(tString() == m_sRes);
+        }
+
+        //7
+        {
+            const TCHAR cszBuff[] = xT("sdjkrtfwo34892vnm3,9rfx12j304y81-34m8905-");
+
+            m_sRes = CxMacros::sAsTString(cszBuff);
+            xASSERT(tString(cszBuff) == m_sRes);
+        }
+
+        //8
+        {
+            const TCHAR cszBuff[] = {0};
+
+            m_sRes = CxMacros::sAsTString(cszBuff);
+            xASSERT(tString(cszBuff) == m_sRes);
+        }
+    }
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
