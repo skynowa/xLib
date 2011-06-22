@@ -53,10 +53,10 @@ CxTest_CxException::bUnit() {
         }
         catch (CxException &e) {
             xASSERT(tString() == e.sGetWhat());
-            xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
+            //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
         catch (...) {
-            xTRACE(xT("CxException unknown error"));
+            //xTRACE(xT("CxException unknown error"));
         }
     }
 
@@ -76,10 +76,10 @@ CxTest_CxException::bUnit() {
             }
             catch (CxException &e) {
                 xASSERT( sTestData[i][1] == e.sGetWhat() );
-                xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
+                //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
             }
             catch (...) {
-                xTRACE(xT("std::exception unknown error"));
+                //xTRACE(xT("std::exception unknown error"));
             }
         }
     }
@@ -91,10 +91,10 @@ CxTest_CxException::bUnit() {
             throw CxException() << "CxException_test_exception";
         }
         catch (CxException &e) {
-            xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
+            //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
         catch (...) {
-            xTRACE(xT("std::exception unknown error"));
+            //xTRACE(xT("std::exception unknown error"));
         }
     }
 
@@ -105,10 +105,10 @@ CxTest_CxException::bUnit() {
             tString sStr; sStr.at(0);
         }
         catch (std::exception &e) {
-            xTRACEV( xT("std::what: %s"), e.what() );
+            //xTRACEV( xT("std::what: %s"), e.what() );
         }
         catch (...) {
-            xTRACE(xT("std::exception unknown error"));
+            //xTRACE(xT("std::exception unknown error"));
         }
     }
 
@@ -122,6 +122,8 @@ CxTest_CxException::bUnit() {
 
         return TRUE;
     #endif
+
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 #endif //CxTest_CxExceptionH

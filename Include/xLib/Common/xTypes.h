@@ -47,8 +47,6 @@
     #define _ttmpnam                         tmpnam
 #endif //xUNICODE
 
-typedef double DOUBLE;
-
 typedef std::basic_string<TCHAR,         std::char_traits<TCHAR>,         std::allocator<TCHAR> >         tString;
 typedef std::basic_string<unsigned char, std::char_traits<unsigned char>, std::allocator<unsigned char> > uString;
 
@@ -86,9 +84,9 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
 #endif
 
 
-
 #if defined(xOS_WIN)
-    // win defines
+    typedef double DOUBLE;
+    typedef float  FLOAT;
 #elif defined(xOS_LINUX)
     #if !defined(BOOL)
         typedef enum { FALSE = 0, TRUE = 1 } BOOL;

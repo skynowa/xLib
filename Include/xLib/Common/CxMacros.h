@@ -66,7 +66,7 @@ class CxMacros :
 
         #define xS2TS(s)              tString( (s).begin(),  (s).begin()  + (s).size()  )
         #define xTS2S(ts)             std::string( (ts).begin(), (ts).begin() + (ts).size() )
-            
+
     #if defined(xOS_WIN)
         #define xRANDOMIZE()          ( srand( (UINT)::GetTickCount() ) )
     #elif defined(xOS_LINUX)
@@ -169,14 +169,14 @@ class CxMacros :
 
         //pointers
         #if defined(xARCHITECTURE_64BIT)
-            inline ULONGLONG           xPtr2Val(const void * const x)    { return (unsigned long long)( x ); }
-            inline VOID               *xVal2Ptr(unsigned long long x)    { return (void *)( x ); }
+            static inline ULONGLONG           xPtr2Val(const void * const x)    { return (unsigned long long)( x ); }
+            static inline VOID               *xVal2Ptr(unsigned long long x)    { return (void *)( x ); }
 
             typedef unsigned long long xMemSize;
             typedef long long          xMemOffset;
         #else
-            inline  unsigned long      xPtr2Val(const void * const x)    { return (unsigned long)( x ); }
-            inline  void              *xVal2Ptr(unsigned long x)         { return (void *)( x ); }
+            static inline  unsigned long      xPtr2Val(const void * const x)    { return (unsigned long)( x ); }
+            static inline  void              *xVal2Ptr(unsigned long x)         { return (void *)( x ); }
 
             typedef unsigned long      xMemSize;
             typedef unsigned long      xMemOffset;
@@ -185,6 +185,13 @@ class CxMacros :
         #define xSTRINGIZE2(x)     #x
         #define xSTRINGIZE(x)      xSTRINGIZE2(x)
         #define xSTR_CONCAT(x, y)  x ## y
+
+        template <class T>
+        static inline
+        tString
+        sAsTString(const T &x) {
+            return (NULL != x) ? (tString(x)) : (tString());
+        }
 
         //TODO__VA_ARGS__
         #if defined(xOS_WIN)

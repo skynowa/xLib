@@ -19,9 +19,9 @@
 
 //---------------------------------------------------------------------------
 //xSTR_EMPTY (empty string)
-const std::string  CxConst::xSTR_EMPTY_A      ("");
-const std::wstring CxConst::xSTR_EMPTY_W      (L"");
-const tString      CxConst::xSTR_EMPTY        (xT(""));
+const std::string  CxConst::xSTR_EMPTY_A      ;
+const std::wstring CxConst::xSTR_EMPTY_W      ;
+const tString      CxConst::xSTR_EMPTY        ;
 
 //xCR (carriage return)
 const std::string  CxConst::xCR_A             ("\r");

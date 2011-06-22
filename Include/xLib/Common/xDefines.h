@@ -66,5 +66,11 @@
     #define xANSI
     //#pragma message("  --- xLib: xANSI ---")
 #endif
+
+//---------------------------------------------------------------------------
+//DONE: inline
+#if !defined(xCOMPILER_MS)
+    #define __forceinline  inline
+#endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xDefinesH
