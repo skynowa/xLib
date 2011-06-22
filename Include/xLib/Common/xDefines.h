@@ -60,7 +60,7 @@
 //---------------------------------------------------------------------------
 //DONE: unicode, ansi
 #if defined(UNICODE) || defined(_UNICODE)
-    #define xUNICODE
+	#define xUNICODE
     //#pragma message("  --- xLib: xUNICODE ---")
 #else
     #define xANSI
@@ -69,8 +69,8 @@
 
 //---------------------------------------------------------------------------
 //DONE: inline
-#if !defined(xCOMPILER_MS)
-    #define __forceinline  inline
+#if !defined(xCOMPILER_MS) && !defined(xCOMPILER_CODEGEAR)
+	#define __forceinline  inline
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xDefinesH

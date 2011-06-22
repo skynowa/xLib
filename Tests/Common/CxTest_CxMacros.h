@@ -189,14 +189,6 @@ CxTest_CxMacros::bUnit() {
             xASSERT(tString() == m_sRes);
         }
 
-        //6
-        {
-            const TCHAR *pcszBuff;
-
-            m_sRes = CxMacros::sAsTString(pcszBuff);
-            xASSERT(tString() == m_sRes);
-        }
-
         //7
         {
             const TCHAR cszBuff[] = xT("sdjkrtfwo34892vnm3,9rfx12j304y81-34m8905-");
