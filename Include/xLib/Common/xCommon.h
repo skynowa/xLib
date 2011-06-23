@@ -35,6 +35,11 @@
     #include <assert.h>
 #endif
 
+#if defined(xUNICODE)
+    #include <wchar.h>
+    #include <wctype.h>
+#endif
+
 //stl
 #include <typeinfo>
 #include <string>

@@ -28,6 +28,7 @@
     #define tendl                            std::endl
 
     #define _ttmpnam                         _wtmpnam
+    #define TEOF                             WEOF
 #else
     #define xTEXT(x)                         x
     #define xT(x)                            xTEXT(x)
@@ -45,6 +46,7 @@
     #define tendl                            std::endl
 
     #define _ttmpnam                         tmpnam
+    #define TEOF                             EOF
 #endif //xUNICODE
 
 typedef std::basic_string<TCHAR,         std::char_traits<TCHAR>,         std::allocator<TCHAR> >         tString;
