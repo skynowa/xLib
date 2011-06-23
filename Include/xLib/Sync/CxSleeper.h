@@ -22,7 +22,7 @@ class CxSleeper :
                  CxSleeper  ();
         virtual ~CxSleeper  ();
 
-        BOOL     bSleep     (ULONG ulTimeout) const;
+        BOOL     bSleep     (const ULONG culTimeout) const;
         BOOL     bWakeUp    () const;
         BOOL     bIsSleeping() const;
 

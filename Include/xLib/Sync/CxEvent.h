@@ -22,13 +22,13 @@ class CxEvent :
                  CxEvent    ();
         virtual ~CxEvent    ();
 
-        HANDLE   hGetHandle () const ;
-        BOOL     bCreate    (PSECURITY_ATTRIBUTES lpsaAttributes, BOOL bManualReset, BOOL bInitialState, LPCTSTR pcszName);
-        BOOL     bOpen      (ULONG ulAccess, BOOL bInheritHandle, LPCTSTR lpcszName);
+        HANDLE   hGetHandle () const;
+        BOOL     bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const BOOL cbManualReset, const BOOL cbInitialState, const tString &csName);
+        BOOL     bOpen      (const ULONG culAccess, BOOL cbInheritHandle, const tString &csName);
         BOOL     bPulse     () const;
         BOOL     bReset     () const;
         BOOL     bSet       () const;
-        BOOL     bWait      (ULONG ulTimeout) const;
+        BOOL     bWait      (const ULONG culTimeout) const;
 
         BOOL     bIsSignaled() const;
         //BOOL   bIsExists  () const;

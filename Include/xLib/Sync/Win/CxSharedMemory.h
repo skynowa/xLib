@@ -20,6 +20,8 @@ class CxSharedMemory :
     public:
                  CxSharedMemory();
         virtual ~CxSharedMemory();
+
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxSharedMemoryH

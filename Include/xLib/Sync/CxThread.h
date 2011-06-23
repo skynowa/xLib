@@ -63,7 +63,7 @@ class CxThread :
         //HANDLE                _m_hParentHandle;
         //HANDLE                _m_hParentId;
 
-        CxTraceLog                _m_clLog;
+        CxTraceLog              _m_clLog;
 
         static UINT WINAPI      _s_uiStartFunc    (VOID *pvParam);
         BOOL                    _bWaitResumption  ();
@@ -84,16 +84,16 @@ class CxThread :
     public:
         volatile LONG           m_ulTag;
 
-                                CxThread              (BOOL bIsPaused, BOOL bAutoDelete);
+                                CxThread              (const BOOL cbIsPaused, const BOOL cbAutoDelete);
         virtual                ~CxThread              () = 0;
 
         //actions
-        BOOL                    bCreate               (UINT uiStackSize, VOID *pvParam);
+        BOOL                    bCreate               (const UINT cuiStackSize, VOID *pvParam);
         BOOL                    bResume               ();
         BOOL                    bPause                ();
-        BOOL                    bExit                 (ULONG ulTimeout);
-        BOOL                    bKill                 (ULONG ulTimeout);
-        BOOL                    bWait                 (ULONG ulTimeout) const;
+        BOOL                    bExit                 (const ULONG culTimeout);
+        BOOL                    bKill                 (const ULONG culTimeout);
+        BOOL                    bWait                 (const ULONG culTimeout) const;
 
         //flags
         BOOL                    bIsCreated            () const;
@@ -111,17 +111,17 @@ class CxThread :
         BOOL                    bMessageWaitQueue     (const std::vector<UINT> &cvecuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
 
         //priority
-        BOOL                    bSetPriority          (EPriority tpPriority) const;
+        BOOL                    bSetPriority          (const EPriority ctpPriority) const;
         EPriority               tpGetPriority         () const;
         tString                 sGetPriorityString    () const;
         BOOL                    bPriorityUp           () const;
         BOOL                    bPriorityDown         () const;
         BOOL                    bIsPriorityBoost      () const;
-        BOOL                    bSetPriorityBoost     (BOOL bIsEnabled) const;
+        BOOL                    bSetPriorityBoost     (const BOOL cbIsEnabled) const;
 
         //CPU
         BOOL                    bSetAffinityMask      (DWORD_PTR pulMask) const;
-        BOOL                    bSetIdealCPU          (ULONG ulIdealCPU) const;
+        BOOL                    bSetIdealCPU          (const ULONG culIdealCPU) const;
         ULONG                   ulGetIdealCPU         () const;
         ULONG                   ulGetCPUCount         () const;    /*static ???*/
 
@@ -133,7 +133,7 @@ class CxThread :
         //GetThreadLocale
 
         //static
-        static HANDLE           hOpen                 (ULONG ulAccess, BOOL bInheritHandle, ULONG ulId);
+        static HANDLE           hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
         static ULONG            ulGetCurrId           ();
         static HANDLE           hGetCurrHandle        ();
 
@@ -147,9 +147,9 @@ class CxThread :
         //--virtual VOID        vOnEnter              ();
         //--virtual VOID        vOnExit               ();
 
-        BOOL                    bYield                () const;             /*static ???*/
-        BOOL                    bSleep                (ULONG ulTimeout);    /*static ???*/
-        BOOL                    bSleeperWakeUp        ();                   /*static ???*/
+        BOOL                    bYield                () const;                    /*static ???*/
+        BOOL                    bSleep                (const ULONG culTimeout);    /*static ???*/
+        BOOL                    bSleeperWakeUp        ();                          /*static ???*/
 
         BOOL                    bIsTimeToExit         ();
 };
@@ -246,6 +246,4 @@ unsigned short int __fastcall usCountProcessThreads() {
     return usCountThreads;
 }
 //---------------------------------------------------------------------------
-
-
 */
