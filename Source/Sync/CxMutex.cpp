@@ -14,26 +14,26 @@
 
 
 /****************************************************************************
-*    public                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxMutex ()
+//DONE: CxMutex
 CxMutex::CxMutex() :
     _m_hMutex()
 {
     /*DEBUG*/xASSERT_DO(FALSE == _m_hMutex.bIsValid(), return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxMutex ()
+//DONE: ~CxMutex
 /*virtual*/
 CxMutex::~CxMutex() {
     /*DEBUG*/xASSERT(FALSE != _m_hMutex.bIsValid());
 }
 //---------------------------------------------------------------------------
 //DONE: hGetHandle ()
-HANDLE 
+HANDLE
 CxMutex::hGetHandle() const {
     /*DEBUG*/// n/a
 
@@ -41,11 +41,11 @@ CxMutex::hGetHandle() const {
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate ()
-BOOL 
+BOOL
 CxMutex::bCreate(
-    const LPSECURITY_ATTRIBUTES lpcsaAttributes, 
-    const BOOL                  cbInitialOwner, 
-    LPCTSTR                     pcszName
+    const LPSECURITY_ATTRIBUTES  pcsaAttributes,
+    const BOOL                   cbInitialOwner,
+    const tString               &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hMutex.bIsValid(), FALSE);
@@ -55,7 +55,7 @@ CxMutex::bCreate(
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateMutex(lpcsaAttributes, cbInitialOwner, pcszName);
+    hRes = ::CreateMutex(pcsaAttributes, cbInitialOwner, csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     _m_hMutex.bSet(hRes);
@@ -64,11 +64,11 @@ CxMutex::bCreate(
 }
 //---------------------------------------------------------------------------
 //DONE: bOpen ()
-BOOL 
+BOOL
 CxMutex::bOpen(
-    const ULONG culAccess, 
-    const BOOL  cbInheritHandle, 
-    LPCTSTR     pcszName
+    const ULONG    culAccess,
+    const BOOL     cbInheritHandle,
+    const tString &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);
@@ -78,7 +78,7 @@ CxMutex::bOpen(
 
     HANDLE hRes = NULL;
 
-    hRes = ::OpenMutex(culAccess, cbInheritHandle, pcszName);
+    hRes = ::OpenMutex(culAccess, cbInheritHandle, csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     _m_hMutex.bSet(hRes);
@@ -87,7 +87,7 @@ CxMutex::bOpen(
 }
 //---------------------------------------------------------------------------
 //DONE: bRelease ()
-BOOL 
+BOOL
 CxMutex::bRelease() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);
 
@@ -100,17 +100,17 @@ CxMutex::bRelease() const {
 }
 //---------------------------------------------------------------------------
 //DONE: bWait ()
-BOOL 
+BOOL
 CxMutex::bWait(
     const ULONG culTimeout
-) const 
+) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);
     /*DEBUG*///culTimeout - n/a
 
     ULONG ulRes = WAIT_FAILED;
 
-    ulRes = ::WaitForSingleObject(_m_hMutex.hGet(), culTimeout); 
+    ulRes = ::WaitForSingleObject(_m_hMutex.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRes, FALSE);
     /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRes, FALSE);
 

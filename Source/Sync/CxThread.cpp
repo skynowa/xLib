@@ -15,16 +15,16 @@
 
 #if defined(xOS_WIN)
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
+
+    #if !defined(_MT)
+        #define _MT
+    #endif
+
+    #if defined(_MT) || defined(_DLL)
+        #include <process.h>
+    #endif
 #elif defined(xOS_LINUX)
-
-#endif
-
-#if !defined(_MT)
-    #define _MT
-#endif
-
-#if defined(_MT) || defined(_DLL)
-    #include <process.h>
+    #include <pthread.h>    //lib: -pthread
 #endif
 
 
@@ -36,8 +36,8 @@
 //---------------------------------------------------------------------------
 //DONE: CxThread
 CxThread::CxThread(
-    BOOL bIsPaused,
-    BOOL bIsAutoDelete
+    const BOOL cbIsPaused,
+    const BOOL cbIsAutoDelete
 ) :
     _m_bRes                 (FALSE),
 
@@ -50,12 +50,12 @@ CxThread::CxThread(
     _m_ulID                 (0),
     _m_uiExitCode           (0),
     _m_pvParam              (NULL),
-    _m_cbIsAutoDelete       (bIsAutoDelete),
+    _m_cbIsAutoDelete       (cbIsAutoDelete),
 
     //flags
     _m_bIsCreated           (FALSE),
     _m_bIsRunning           (FALSE),
-    _m_bIsPaused            (bIsPaused/*TRUE == bIsPaused ? CREATE_SUSPENDED : 0*/),
+    _m_bIsPaused            (cbIsPaused/*TRUE == bIsPaused ? CREATE_SUSPENDED : 0*/),
     /*_m_bIsSleeping*/// n/a
     /*_m_bIsExited*///   n/a
 
@@ -103,8 +103,8 @@ CxThread::~CxThread() {
 //DONE: bCreate (creation)
 BOOL
 CxThread::bCreate(
-    UINT  uiStackSize,
-    VOID *pvParam
+    const UINT  cuiStackSize,
+    VOID       *pvParam
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hThread.bIsValid(), FALSE);
@@ -125,9 +125,9 @@ CxThread::bCreate(
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
 #if defined(_MT)
-    hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, uiStackSize, _s_uiStartFunc, this, 0, (UINT *)&_m_ulID) );
+    hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, cuiStackSize, _s_uiStartFunc, this, 0, (UINT *)&_m_ulID) );
 #else
-    hRes = ::CreateThread(NULL, uiStackSize, xreinterpret_cast<LPTHREAD_START_ROUTINE>(_s_uiStartFunc), this, 0, &_m_ulID);
+    hRes = ::CreateThread(NULL, cuiStackSize, xreinterpret_cast<LPTHREAD_START_ROUTINE>(_s_uiStartFunc), this, 0, &_m_ulID);
 #endif
 
     //-------------------------------------
@@ -212,7 +212,7 @@ CxThread::bPause() {
 //DONE: bExit (exit - set flag "exit")
 BOOL
 CxThread::bExit(
-    ULONG ulTimeout
+    const ULONG culTimeout
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
@@ -240,7 +240,7 @@ CxThread::bExit(
 //DONE: bKill (killing)
 BOOL
 CxThread::bKill(
-    ULONG ulTimeout
+    const ULONG culTimeout
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
@@ -252,7 +252,7 @@ CxThread::bKill(
     _m_bRes = ::TerminateThread(_m_hThread.hGet(), _m_uiExitCode);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    for (;;) {
+    for ( ; ; ) {
         ulRes = ulGetExitCode();
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
@@ -262,7 +262,7 @@ CxThread::bKill(
 
     //-------------------------------------
     //TODO: waiting oneself
-    //--bRes = bWait(ulTimeout);
+    //--bRes = bWait(culTimeout);
     //--/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //-------------------------------------
@@ -285,7 +285,7 @@ CxThread::bKill(
 //DONE: bWait (waiting)
 BOOL
 CxThread::bWait(
-    ULONG ulTimeout
+    const ULONG culTimeout
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
@@ -299,7 +299,7 @@ CxThread::bWait(
     xCHECK_RET(CxThread::ulGetCurrId() == _m_ulID, TRUE);        //TODO: ?????
 
     ULONG ulRes = WAIT_FAILED;
-    ulRes = ::WaitForSingleObject(_m_hThread.hGet(), ulTimeout);
+    ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
 
     return TRUE;
@@ -514,12 +514,12 @@ CxThread::bMessageWaitQueue(
 //DONE: bSetPriority (seeting priority)
 BOOL
 CxThread::bSetPriority(
-    EPriority tpPriority
+    const EPriority ctpPriority
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    _m_bRes = ::SetThreadPriority(_m_hThread.hGet(), tpPriority);
+    _m_bRes = ::SetThreadPriority(_m_hThread.hGet(), ctpPriority);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -624,12 +624,12 @@ CxThread::bIsPriorityBoost() const {
 //DONE: bSetPriorityBoost (Disables or enables the ability of the system to temporarily boost the priority of a thread)
 BOOL
 CxThread::bSetPriorityBoost(
-    BOOL bIsEnabled
+    const BOOL cbIsEnabled
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    _m_bRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! bIsEnabled);
+    _m_bRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! cbIsEnabled);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -662,14 +662,14 @@ CxThread::bSetAffinityMask(
 //DONE: bSetIdealProcessor (Sets a preferred processor for a thread, ulIdealProcessor - this value is zero-based)
 BOOL
 CxThread::bSetIdealCPU(
-    ULONG ulIdealCPU
+    const ULONG culIdealCPU
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     ULONG ulRes = (ULONG) - 1;
 
-    ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), ulIdealCPU);
+    ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), culIdealCPU);
     /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, FALSE);
 
     //TODO: xASSERT_RET
@@ -749,10 +749,7 @@ CxThread::bSetDebugName(
 {
     /*DEBUG*/
 
-    //convert to Ansi
-    std::string asName(csName.begin(), csName.end());
-
-    _m_bRes = _bSetDebugNameA(asName);
+    _m_bRes = _bSetDebugNameA( xT2S(asName) );
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -770,9 +767,9 @@ CxThread::bSetDebugName(
 /*static*/
 HANDLE
 CxThread::hOpen(
-    ULONG ulAccess,
-    BOOL  bInheritHandle,
-    ULONG ulId
+    const ULONG culAccess,
+    const BOOL  cbInheritHandle,
+    const ULONG culId
 )
 {
     /*DEBUG*///ulAccess       - n/a
@@ -781,7 +778,7 @@ CxThread::hOpen(
 
     HANDLE hRes = NULL;
 
-    hRes = ::OpenThread(ulAccess, bInheritHandle, ulId);
+    hRes = ::OpenThread(culAccess, cbInheritHandle, culId);
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
 
     return hRes;
@@ -940,7 +937,7 @@ CxThread::bYield() const {
 //DONE: bSleep (Suspends the execution of the current thread until the time-out interval elapses)
 BOOL
 CxThread::bSleep(
-    ULONG ulTimeout
+    const ULONG culTimeout
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
@@ -954,7 +951,7 @@ CxThread::bSleep(
     /*_m_bIsSleeping*///  n/a
     /*_m_bIsExited*///    n/a
 
-    _m_bRes = _m_slSleeper.bSleep(ulTimeout);
+    _m_bRes = _m_slSleeper.bSleep(culTimeout);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------

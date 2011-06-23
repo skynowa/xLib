@@ -18,76 +18,76 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxEvent (конструктор)
+//DONE: CxEvent (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 CxEvent::CxEvent() :
     _m_hEvent()
 {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxEvent (деструктор)
+//DONE: ~CxEvent (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 CxEvent::~CxEvent() {
 
 }
 //---------------------------------------------------------------------------
 //DONE: hGetHandle (A handle to the event object)
-HANDLE 
+HANDLE
 CxEvent::hGetHandle() const {
     /*DEBUG*/// n/a
-    
+
     return _m_hEvent.hGet();
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate (Creates or opens a named or unnamed event object)
-BOOL 
+BOOL
 CxEvent::bCreate(
-    LPSECURITY_ATTRIBUTES lpsaAttributes, 
-    BOOL                  bManualReset, 
-    BOOL                  bInitialState, 
-    LPCTSTR               pcszName
+    const LPSECURITY_ATTRIBUTES  pcsaAttributes,
+    const BOOL                   cbManualReset,
+    const BOOL                   cbInitialState,
+    const tString               &csName
 ) {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateEvent(lpsaAttributes, bManualReset, bInitialState, pcszName);
+    hRes = ::CreateEvent(pcsaAttributes, cbManualReset, cbInitialState, csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     ////--_m_hEvent = hRes;
-    _m_hEvent.bSet(hRes); 
+    _m_hEvent.bSet(hRes);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bOpen (Opens an existing named event object)
-BOOL 
+BOOL
 CxEvent::bOpen(
-    ULONG   ulAccess, 
-    BOOL    bInheritHandle, 
-    LPCTSTR pcszName
+    const ULONG    culAccess,
+    const BOOL     cbInheritHandle,
+    const tString &csName
 ) {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);        
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
-    
+
     HANDLE hRes = NULL;
 
     /*EVENT_MODIFY_STATE, EVENT_ALL_ACCESS, EVENT_MODIFY_STATE*/
-    hRes = ::OpenEvent(ulAccess, bInheritHandle, pcszName);
+    hRes = ::OpenEvent(culAccess, cbInheritHandle, csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     ////--_m_hEvent = hRes;
-    _m_hEvent.bSet(hRes); 
+    _m_hEvent.bSet(hRes);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bPulse (Sets the specified event object to the signaled state and then resets it to the nonsignaled state after releasing the appropriate number of waiting threads)
-BOOL 
+BOOL
 CxEvent::bPulse() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);        
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
-    
+
     BOOL bRes = FALSE;
 
     bRes = ::PulseEvent(_m_hEvent.hGet());
@@ -97,9 +97,9 @@ CxEvent::bPulse() const {
 }
 //---------------------------------------------------------------------------
 //DONE: bReset (Sets the specified event object to the nonsignaled state)
-BOOL 
+BOOL
 CxEvent::bReset() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);        
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
 
     BOOL bRes = FALSE;
@@ -110,10 +110,10 @@ CxEvent::bReset() const {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSet (Sets the specified event object to the signaled state) 
-BOOL 
+//DONE: bSet (Sets the specified event object to the signaled state)
+BOOL
 CxEvent::bSet() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);        
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
 
     BOOL bRes = FALSE;
@@ -125,31 +125,26 @@ CxEvent::bSet() const {
 }
 //---------------------------------------------------------------------------
 //DONE: bWait (Waits until the specified event is in the signaled state or the time-out interval elapses)
-BOOL 
+BOOL
 CxEvent::bWait(
-    ULONG ulTimeout
-) const 
+    const ULONG culTimeout
+) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);        
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/// n/a
 
-    //WAIT_OBJECT_0   Объект перешёл в состояние свободного 
-    //WAIT_TIMEOUT    Объект  не  перешёл  в  состояние  свободного  за указанный период времени 
-    //WAIT_ABANDONED  Объект мьютекс стал свободен из-за отказа от него 
-    //WAIT_FAILED     Произошла ошибка
-
-    ULONG ulRes = ::WaitForSingleObject(_m_hEvent.hGet(), ulTimeout); 
+    ULONG ulRes = ::WaitForSingleObject(_m_hEvent.hGet(), culTimeout);
     /*DEBUG*/// n/a
 
     return (WAIT_OBJECT_0 == ulRes);
 }
 //---------------------------------------------------------------------------
-//DONE: bIsSignaled (проверка состояния)
-BOOL 
+//DONE: bIsSignaled (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+BOOL
 CxEvent::bIsSignaled() const {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = ::WaitForSingleObject(_m_hEvent.hGet(), 0);  
+    ULONG ulRes = ::WaitForSingleObject(_m_hEvent.hGet(), 0);
     /*DEBUG*/// n/a
 
     return (FALSE != _m_hEvent.bIsValid()) && (WAIT_OBJECT_0 == ulRes);

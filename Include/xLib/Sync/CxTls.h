@@ -18,8 +18,8 @@ class CxTls :
     public CxNonCopyable
 {
     public:
-                 CxTls();
-        virtual ~CxTls();
+                 CxTls     ();
+        virtual ~CxTls     ();
 
         BOOL     bAlloc    ();
         BOOL     bFree     ();

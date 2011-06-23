@@ -23,11 +23,11 @@ class CxWaitableTimer  :
         virtual ~CxWaitableTimer();
 
         HANDLE   hGetHandle     () const;
-        BOOL     bCreate        (BOOL bManualReset, LPCTSTR pcszName/* = NULL*/, LPSECURITY_ATTRIBUTES lpTimerAttributes/* = NULL*/);
-        BOOL     bOpen          (LPCTSTR pcszName, ULONG ulDesiredAccess = TIMER_ALL_ACCESS, BOOL bInheritHandle = FALSE);
+        BOOL     bCreate        (const BOOL cbManualReset, const tString &csName/* = NULL*/, const LPSECURITY_ATTRIBUTES pcsaTimerAttributes/* = NULL*/);
+        BOOL     bOpen          (const tString &csName, const ULONG culDesiredAccess = TIMER_ALL_ACCESS, const BOOL cbInheritHandle = FALSE);
         BOOL     bCancel        () const;
-        BOOL     bSet           (LONGLONG i64DueTime/*milliseconds*/, LONG liPeriod = 0, PTIMERAPCROUTINE pfnCompletionRoutine = NULL, LPVOID pvArgToCompletionRoutine = NULL, BOOL bResume = FALSE) const;
-        BOOL     bWait          (ULONG ulTimeout) const;
+        BOOL     bSet           (const LONGLONG cllDueTime/*milliseconds*/, const LONG cliPeriod = 0, PTIMERAPCROUTINE pfnCompletionRoutine = NULL, LPVOID pvArgToCompletionRoutine = NULL, const BOOL cbResume = FALSE) const;
+        BOOL     bWait          (const ULONG ulTimeout) const;
 
     private:
         CxHandle _m_hWaitableTimer;

@@ -17,6 +17,12 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Sync/CxProcess.h>
 
+#if defined(xOS_WIN)
+
+#elif defined(xOS_LINUX)
+    #include <pthread.h>
+#endif
+
 
 /****************************************************************************
 *    public
@@ -284,7 +290,13 @@ CxReport::_bInitVars(
 
     _m_sProgram        = CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
-    _m_ulThreadId      = 0;  //TODO: CxReport::ulThreadId
+
+//TODO: move to CxThread
+#if defined(xOS_WIN)
+    _m_ulThreadId      = ::GetCurrentThreadId();
+#elif defined(xOS_LINUX)
+    _m_ulThreadId      = static_cast<ULONG>( pthread_self() );
+#endif
 
     _m_sSourceFile     = csFile;
     _m_ulSourceLine    = culLine;

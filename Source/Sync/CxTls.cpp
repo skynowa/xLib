@@ -18,19 +18,19 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxTls (конструктор)
+//DONE: CxTls
 CxTls::CxTls() :
     _m_ulIndex(TLS_OUT_OF_INDEXES)
 {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxTls (деструктор)
+//TODO: ~CxTls
 CxTls::~CxTls() {
     //code
 }
 //---------------------------------------------------------------------------
-//TODO: bAlloc (Allocates a thread local storage (TLS) index)
+//DONE: bAlloc (Allocates a thread local storage (TLS) index)
 BOOL
 CxTls::bAlloc() {
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES == _m_ulIndex, FALSE);
@@ -74,7 +74,10 @@ CxTls::pvGetValue() {
 //---------------------------------------------------------------------------
 //TODO: bSetValue (Stores a value in the calling thread's thread local storage (TLS) slot for the specified TLS index)
 BOOL
-CxTls::bSetValue(VOID *pvValue) {
+CxTls::bSetValue(
+    VOID *pvValue
+)
+{
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_ulIndex, FALSE);
     /*DEBUG*/xASSERT_RET(NULL               != pvValue,    FALSE);
 

@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxSleeper (конструктор)
+//DONE: CxSleeper
 CxSleeper::CxSleeper() :
     _m_objEvent()
 {
@@ -28,25 +28,28 @@ CxSleeper::CxSleeper() :
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxSleeper (деструктор)
+//DONE: ~CxSleeper
 CxSleeper::~CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bSleep (засыпание)
+//DONE: bSleep (sleep)
 BOOL
-CxSleeper::bSleep(ULONG ulTimeout) const {
+CxSleeper::bSleep(
+    const ULONG culTimeout
+) const
+{
     /*DEBUG*/// n/a
 
     ULONG ulRes = 0;
 
-    ulRes = ::WaitForSingleObject(_m_objEvent.hGetHandle(), ulTimeout);
+    ulRes = ::WaitForSingleObject(_m_objEvent.hGetHandle(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_FAILED != ulRes || WAIT_OBJECT_0 == ulRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bWakeUp (сброс засыпания)
+//DONE: bWakeUp (wakeup)
 BOOL
 CxSleeper::bWakeUp() const {
     /*DEBUG*/// n/a
@@ -59,7 +62,7 @@ CxSleeper::bWakeUp() const {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsSleeping (спим ли)
+//DONE: bIsSleeping (check for sleeping)
 BOOL
 CxSleeper::bIsSleeping() const {
     /*DEBUG*/// n/a

@@ -20,12 +20,12 @@ class CxCriticalSection :
 {
     public:
                           CxCriticalSection();
-        explicit          CxCriticalSection(ULONG ulSpinCount);
+        explicit          CxCriticalSection(const ULONG culSpinCount);
                          ~CxCriticalSection();
 
         VOID              vEnter           ();
         VOID              vLeave           ();
-        ULONG             ulSetSpinCount   (ULONG ulSpinCount);
+        ULONG             ulSetSpinCount   (const ULONG culSpinCount);
         BOOL              bTryEnter        ();
 
     private:

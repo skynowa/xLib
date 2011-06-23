@@ -23,8 +23,8 @@ class CxMutex :
         virtual ~CxMutex   ();
 
         HANDLE   hGetHandle() const;
-        BOOL     bCreate   (const LPSECURITY_ATTRIBUTES lpcsaAttributes, const BOOL cbInitialOwner, LPCTSTR pcszName);
-        BOOL     bOpen     (const ULONG culAccess, const BOOL cbInheritHandle, LPCTSTR pcszName);
+        BOOL     bCreate   (const LPSECURITY_ATTRIBUTES pcsaAttributes, const BOOL cbInitialOwner, const tString &csName);
+        BOOL     bOpen     (const ULONG culAccess, const BOOL cbInheritHandle, const tString &csName);
         BOOL     bRelease  () const;
         BOOL     bWait     (const ULONG culTimeout) const;
 
