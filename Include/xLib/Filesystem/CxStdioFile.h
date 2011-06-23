@@ -19,7 +19,7 @@ class CxStdioFile :
 {
     public:
         enum EErrorType {
-            etError = EOF
+            etError = TEOF
         };
 
         enum EOpenMode {
