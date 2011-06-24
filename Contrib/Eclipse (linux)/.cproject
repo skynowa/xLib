@@ -42,6 +42,7 @@
 							<tool errorParsers="org.eclipse.cdt.core.GLDErrorParser" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1597269174" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.182261201" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ssl"/>
+									<listOptionValue builtIn="false" value="GeoIP"/>
 									<listOptionValue builtIn="false" value="X11"/>
 									<listOptionValue builtIn="false" value="mysqlclient"/>
 								</option>
@@ -1308,7 +1309,7 @@
 						</scannerInfoProvider>
 					</profile>
 				</scannerConfigBuildInfo>
-				<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.release.97526128;cdt.managedbuild.config.gnu.exe.release.97526128.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.364452935;cdt.managedbuild.tool.gnu.cpp.compiler.input.819250370">
+				<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1548278989;cdt.managedbuild.config.gnu.exe.debug.1548278989.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.2053145900;cdt.managedbuild.tool.gnu.cpp.compiler.input.1975544400">
 					<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 					<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 						<buildOutputProvider>
@@ -1474,7 +1475,7 @@
 						</scannerInfoProvider>
 					</profile>
 				</scannerConfigBuildInfo>
-				<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1548278989;cdt.managedbuild.config.gnu.exe.debug.1548278989.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.2053145900;cdt.managedbuild.tool.gnu.cpp.compiler.input.1975544400">
+				<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.release.97526128;cdt.managedbuild.config.gnu.exe.release.97526128.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.364452935;cdt.managedbuild.tool.gnu.cpp.compiler.input.819250370">
 					<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 					<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 						<buildOutputProvider>
@@ -1595,6 +1596,12 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.1654774059" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.1553085814" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
+								<option id="gnu.cpp.link.option.libs.2031755472" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="ssl"/>
+									<listOptionValue builtIn="false" value="mysqlclient"/>
+									<listOptionValue builtIn="false" value="X11"/>
+									<listOptionValue builtIn="false" value="GeoIP"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.2115921818" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -2858,7 +2865,7 @@
 						</scannerInfoProvider>
 					</profile>
 				</scannerConfigBuildInfo>
-				<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.release.97526128;cdt.managedbuild.config.gnu.exe.release.97526128.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.364452935;cdt.managedbuild.tool.gnu.cpp.compiler.input.819250370">
+				<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1548278989;cdt.managedbuild.config.gnu.exe.debug.1548278989.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.2053145900;cdt.managedbuild.tool.gnu.cpp.compiler.input.1975544400">
 					<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 					<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 						<buildOutputProvider>
@@ -3024,7 +3031,7 @@
 						</scannerInfoProvider>
 					</profile>
 				</scannerConfigBuildInfo>
-				<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1548278989;cdt.managedbuild.config.gnu.exe.debug.1548278989.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.2053145900;cdt.managedbuild.tool.gnu.cpp.compiler.input.1975544400">
+				<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.release.97526128;cdt.managedbuild.config.gnu.exe.release.97526128.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.364452935;cdt.managedbuild.tool.gnu.cpp.compiler.input.819250370">
 					<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 					<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 						<buildOutputProvider>
