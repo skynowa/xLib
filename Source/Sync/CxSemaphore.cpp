@@ -22,7 +22,7 @@
 CxSemaphore::CxSemaphore() :
     _m_hSemaphore    (),
     _m_psaAttributes(NULL),
-    _m_pcszName      (NULL)
+    _m_sName        ()
 {
 }
 //---------------------------------------------------------------------------

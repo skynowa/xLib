@@ -749,7 +749,7 @@ CxThread::bSetDebugName(
 {
     /*DEBUG*/
 
-    _m_bRes = _bSetDebugNameA( xT2S(asName) );
+    _m_bRes = _bSetDebugNameA( xS2TS(csName) );
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -774,7 +774,7 @@ CxThread::hOpen(
 {
     /*DEBUG*///ulAccess       - n/a
     /*DEBUG*///bInheritHandle - n/a
-    /*DEBUG*/xASSERT_RET(0 < ulId, NULL);
+    /*DEBUG*/xASSERT_RET(0 < culId, NULL);
 
     HANDLE hRes = NULL;
 
