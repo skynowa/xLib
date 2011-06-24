@@ -46,7 +46,7 @@ class CxFileAttribute :
                 faSymbolicLink      = S_IFLNK,
                 faRegularFile       = S_IFREG,
                 faCharacterDevice   = S_IFCHR,
-                faFifo              = S_IFIFO,
+                faFifo              = S_IFIFO
             #endif
         };
 
