@@ -75,7 +75,7 @@ CxGeoIp::sGetCountryCodeByAddress(
     tString sRes;
 
     sRes = CxMacros::sAsTString( GeoIP_country_code_by_addr(_m_pgiGeoIp, csAddress.c_str()) );
-    /*DEBUG*/// n/a
+    /*DEBUG*/xASSERT_RET(2 == sRes.size(), tString());
 
     return sRes;
 }
@@ -92,7 +92,7 @@ CxGeoIp::sGetCountryCode3ByAddress(
     tString sRes;
 
     sRes = CxMacros::sAsTString( GeoIP_country_code3_by_addr(_m_pgiGeoIp, csAddress.c_str()) );
-    /*DEBUG*/// n/a
+    /*DEBUG*/xASSERT_RET(3 == sRes.size(), tString());
 
     return sRes;
 }
