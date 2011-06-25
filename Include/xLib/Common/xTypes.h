@@ -86,9 +86,11 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
 #endif
 
 
+    typedef float                  FLOAT;
+    typedef double                 DOUBLE;
+
 #if defined(xOS_WIN)
-    typedef double DOUBLE;
-    typedef float  FLOAT;
+
 #elif defined(xOS_LINUX)
     #if !defined(BOOL)
         typedef enum { FALSE = 0, TRUE = 1 } BOOL;
@@ -106,9 +108,6 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
     typedef unsigned short int     USHORT;
     typedef unsigned long int      ULONG;
     typedef unsigned long long int ULONGLONG;
-
-    typedef float                  FLOAT;
-    typedef double                 DOUBLE;
 
     typedef char                   CHAR;
     typedef unsigned char          UCHAR;
@@ -143,9 +142,23 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         #define _fgetts     fgetws
         #define _tcslen     wcslen
         #define _tchmod     _wchmod
+
+        //chars
+        #define _istalnum   iswalnum
+        #define _istalpha   iswalpha
+        #define _istcntrl   iswcntrl
+        #define _istdigit   iswdigit
+        #define _istxdigit  iswxdigit
+        #define _istgraph   iswgraph
+        #define _istprint   iswprint
+        #define _istpunct   iswpunct
+        #define _istspace   iswspace
+        #define _istlower   iswlower
+        #define _istupper   iswupper
         #define _totlower   towlower
         #define _totupper   towupper
 
+        //sockets
         typedef addrinfo    ADDRINFOT;
     #else
         #define _tmain      main
@@ -177,9 +190,23 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         #define _fgetts     fgets
         #define _tcslen     strlen
         #define _tchmod     chmod
+
+        //chars
+        #define _istalnum   isalnum
+        #define _istalpha   isalpha
+        #define _istcntrl   iscntrl
+        #define _istdigit   isdigit
+        #define _istxdigit  isxdigit
+        #define _istgraph   isgraph
+        #define _istprint   isprint
+        #define _istpunct   ispunct
+        #define _istspace   isspace
+        #define _istlower   islower
+        #define _istupper   isupper
         #define _totlower   tolower
         #define _totupper   toupper
 
+        //sockets
         typedef addrinfo    ADDRINFOT;
     #endif //xUNICODE
 #endif

@@ -27,7 +27,7 @@ CxChar::bIsAlphaNum(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isalnum(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istalnum(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -40,7 +40,7 @@ CxChar::bIsAlpha(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( iswalpha(static_cast<wint_t>( cchChar )) );
+    return static_cast<BOOL>( _istalpha(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -53,7 +53,7 @@ CxChar::bIsControl(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( iscntrl(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istcntrl(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -66,7 +66,7 @@ CxChar::bIsDigitDec(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isdigit(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istdigit(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -79,7 +79,7 @@ CxChar::bIsDigitHex(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isxdigit(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istxdigit(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -92,7 +92,7 @@ CxChar::bIsGraph(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isgraph(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istgraph(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -105,7 +105,7 @@ CxChar::bIsPrint(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isprint(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istprint(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -118,7 +118,7 @@ CxChar::bIsPunct(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( ispunct(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istpunct(cchChar) );
 }
 //---------------------------------------------------------------------------
 //DONE: bIsSpace (Check if character is a white-space)
@@ -130,7 +130,7 @@ CxChar::bIsSpace(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isspace(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istspace(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -143,7 +143,7 @@ CxChar::bIsLower(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( islower(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istlower(cchChar) );
 }
 //---------------------------------------------------------------------------
 //DONE: bIsUpper (Check if character is uppercase letter)
@@ -155,7 +155,7 @@ CxChar::bIsUpper(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( isupper(static_cast<INT>( cchChar )) );
+    return static_cast<BOOL>( _istupper(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -168,8 +168,7 @@ CxChar::chToLower(
 {
     /*DEBUG*/// n/a
 
-    //TODO: chToLower unicode
-    return tolower(cchChar);
+    return _totlower(cchChar);
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -182,8 +181,7 @@ CxChar::chToUpper(
 {
     /*DEBUG*/// n/a
 
-    //TODO: chToUpper unicode
-    return toupper(cchChar);
+    return _totupper(cchChar);
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------

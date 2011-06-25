@@ -14,43 +14,41 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-namespace { 
-	enum EHandleValue { 
-		hvNull, 
-		hvInvalid 
+namespace {
+	enum EHandleValue {
+		hvNull,
+		hvInvalid
 	};
-	
+
 	template<EHandleValue hvTag>
 	struct CxHandleFailValue;
-	
+
 	template<>
 	struct CxHandleFailValue<hvNull> {
 		static HANDLE get () { return NULL; }
 	};
-	
+
 	template<>
 	struct CxHandleFailValue<hvInvalid> {
-		static HANDLE get () { return INVALID_HANDLE_VALUE; } 
+		static HANDLE get () { return INVALID_HANDLE_VALUE; }
 	};
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
 class CxHandleT {
 	public:
-        typedef CxHandleFailValue<hvTag>  FailValue;
-    
 		                    CxHandleT               ();
 		explicit            CxHandleT               (const HANDLE chHandle);
 		explicit            CxHandleT               (const CxHandleT &chHandle);
 		virtual            ~CxHandleT               ();
 
-		CxHandleT&          operator =              (const HANDLE chHandle);
-		CxHandleT&          operator =              (const CxHandleT &chHandle);
+		CxHandleT &         operator =              (const HANDLE chHandle);
+		CxHandleT &         operator =              (const CxHandleT &chHandle);
 		                    operator HANDLE         () const;
 
 		HANDLE              hGet                    () const;
 		BOOL                bSet                    (const HANDLE chHandle);
-		              
+
 		BOOL                bIsValid                () const;
 		BOOL                bAttach                 (const HANDLE chHandle);
 		HANDLE              hDetach                 ();
@@ -69,9 +67,11 @@ class CxHandleT {
 		static BOOL         bIsValid                (const HANDLE chHandle);
 
 	private:
+	    typedef CxHandleFailValue<hvTag>  FailValue;
+
 		mutable BOOL        _m_bRes;
 		HANDLE              _m_hHandle;
-		
+
 		static const HANDLE _ms_chCurrProcessHandle;
 };
 //---------------------------------------------------------------------------

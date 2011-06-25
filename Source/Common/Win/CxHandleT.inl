@@ -18,7 +18,7 @@
 //DONE: CxHandleT ()
 template<EHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT() :
-	_m_bRes   (FALSE), 
+	_m_bRes   (FALSE),
     _m_hHandle( FailValue::get() )
 {
 	/*DEBUG*/// n/a
@@ -30,7 +30,7 @@ template<EHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT(
     const HANDLE chHandle
 ) :
-    _m_bRes   (FALSE), 
+    _m_bRes   (FALSE),
 	_m_hHandle(chHandle)
 {
 	/*DEBUG*/// n/a
@@ -42,11 +42,11 @@ template<EHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT(
     const CxHandleT &chHandle
 ) :
-    _m_bRes   (FALSE), 
+    _m_bRes   (FALSE),
 	_m_hHandle( FailValue::get() )
 {
 	/*DEBUG*/
-	
+
 	_m_hHandle = chHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
 }
 //---------------------------------------------------------------------------
@@ -134,24 +134,24 @@ CxHandleT<hvTag>::operator HANDLE() const {
 //---------------------------------------------------------------------------
 //TODO: ()
 template<EHandleValue hvTag>
-HANDLE        
+HANDLE
 CxHandleT<hvTag>::hGet() const {
 	/*DEBUG*/
-	
+
 	return _m_hHandle;
 }
 //---------------------------------------------------------------------------
 //TODO: ()
 template<EHandleValue hvTag>
-BOOL        
+BOOL
 CxHandleT<hvTag>::bSet(
     const HANDLE chHandle
-) 
+)
 {
 	/*DEBUG*/
-	
+
 	_m_hHandle = chHandle;
-	
+
 	return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -189,7 +189,7 @@ CxHandleT<hvTag>::bIsValid() const {
 	BOOL bCond4 = (reinterpret_cast<HANDLE>(4261281277UL) != _m_hHandle);	//0xFDFDFDFD
 	BOOL bCond5 = (reinterpret_cast<HANDLE>(4277075694UL) != _m_hHandle);	//0XFEEEFEEE
 	BOOL bCond6 = (reinterpret_cast<HANDLE>(3722304989UL) != _m_hHandle);	//0XDDDDDDDD
-	BOOL bCond7 = (FailValue::get()          != _m_hHandle);	//hFailValueT
+	BOOL bCond7 = (FailValue::get()                       != _m_hHandle);	//hFailValueT
 
 	return (TRUE == bCond1) &&
 		   (TRUE == bCond2) &&
@@ -287,7 +287,7 @@ CxHandleT<hvTag>::ulGetInformation() const {
 template<EHandleValue hvTag>
 BOOL
 CxHandleT<hvTag>::bSetInformation(
-    const ULONG culMask, 
+    const ULONG culMask,
     const ULONG culFlags
 )
 {
@@ -336,7 +336,7 @@ template<EHandleValue hvTag>
 BOOL
 CxHandleT<hvTag>::bSetFlagProtectFromClose(
     const BOOL cbFlagProtectFromClose
-) 
+)
 {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
@@ -347,11 +347,11 @@ CxHandleT<hvTag>::bSetFlagProtectFromClose(
 template<EHandleValue hvTag>
 HANDLE
 CxHandleT<hvTag>::hDuplicate(
-	const HANDLE chTargetProcess, 
-	const ULONG  culDesiredAccess, 
-	const BOOL   cbInheritHandle/* = FALSE*/, 
+	const HANDLE chTargetProcess,
+	const ULONG  culDesiredAccess,
+	const BOOL   cbInheritHandle/* = FALSE*/,
 	const ULONG  culOptions/* = 0*/
-) const 
+) const
 {
 	/*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FailValue::get());
 
@@ -374,7 +374,7 @@ CxHandleT<hvTag>::hDuplicate(
 //DONE: static
 template<EHandleValue hvTag>
 const HANDLE
-CxHandleT<hvTag>::_ms_chCurrProcessHandle = (HANDLE) - 1;
+CxHandleT<hvTag>::_ms_chCurrProcessHandle = static_cast<HANDLE>( - 1 );
 //---------------------------------------------------------------------------
 //DONE: hGetCurrent (Retrieves a pseudo handle for the current process)
 template<EHandleValue hvTag>
