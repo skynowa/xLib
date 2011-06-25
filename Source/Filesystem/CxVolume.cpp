@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxDrive
-* Description: drive
-* File name:   CxDrive.cpp
+* Class name:  CxVolume
+* Description: volume
+* File name:   CxVolume.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     04.06.2009 9:25:22
@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <xLib/Filesystem/Win/CxDrive.h>
+#include <xLib/Filesystem/CxVolume.h>
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
@@ -21,57 +21,134 @@
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-//DONE:  bIsReady (���������� ���������� �����)
+//DONE:  bIsReady (is ready)
 /*static*/
 BOOL
-CxDrive::bIsReady(const tString &csDrivePath) {
-    /*DEBUG*/xASSERT_RET(false == csDrivePath.empty(), FALSE);
+CxVolume::bIsReady(
+    const tString &csVolumePath
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), FALSE);
 
-    BOOL    bRes           = FALSE;
+    BOOL    bRes        = FALSE;
+    tString sVolumePath = CxPath::sSlashAppend(csVolumePath);
+    tString sOldDirPath;
+
+#if defined(xOS_WIN)
+    tString sRes;
     UINT    uiOldErrorMode = 0;
-    tString sOldDirectory;
 
-    uiOldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS /*SEM_NOOPENFILEERRORBOX*/);
-    sOldDirectory  = CxDir::sGetCurrent();
+    uiOldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
+    /*DEBUG*/// n/a
 
-    //-------------------------------------
-    //�������� ����� �� ��������� ����
-    ULONG ulRes = ::SetCurrentDirectory(CxPath::sSlashAppend(csDrivePath).c_str());
-    if (0 == ulRes) {  // 0 - error
-        bRes = FALSE;
-    } else {
-        bRes = TRUE;
-    }
+    sOldDirPath  = CxDir::sGetCurrent();
+    /*DEBUG*/// n/a
 
-    CxDir::bSetCurrent(sOldDirectory);
+    bRes = ::SetCurrentDirectory(sVolumePath.c_str());
+    /*DEBUG*/// n/a
+
+    bRes = CxDir::bSetCurrent(sOldDirPath);
+    /*DEBUG*/// n/a
+
     ::SetErrorMode(uiOldErrorMode);
+    /*DEBUG*/// n/a
+#elif defined(xOS_LINUX)
+    sOldDirPath  = CxDir::sGetCurrent();
+    /*DEBUG*/// n/a
+
+    INT iRes = chdir(sVolumePath.c_str());
+    /*DEBUG*/// n/a
+    bRes = xAS_BOOL(- 1 != iRes);
+
+    CxDir::bSetCurrent(sOldDirPath);
+    /*DEBUG*/// n/a
+#endif
 
     return bRes;
 }
 //--------------------------------------------------------------------------
-//DONE:  bIsEmpty (���� �� ����)
+//DONE:  bIsEmpty (is empty)
 /*static*/
 BOOL
-CxDrive::bIsEmpty(const tString &csDrivePath) {
-    /*DEBUG*/xASSERT_RET(false == csDrivePath.empty(), FALSE);
+CxVolume::bIsEmpty(
+    const tString &csVolumePath
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), FALSE);
 
+#if xDEPRECIATE
     BOOL            bRes       = TRUE;
     HANDLE          hFile      = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA stFindData = {0};
 
-    hFile = ::FindFirstFile((CxPath::sSlashAppend(csDrivePath) + CxConst::xMASK_FILES_ALL).c_str(), &stFindData);
+    hFile = ::FindFirstFile((CxPath::sSlashAppend(csVolumePath) + CxConst::xMASK_FILES_ALL).c_str(), &stFindData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, TRUE);
 
     bRes = ::FindClose(hFile);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, TRUE);
+#else
+    return CxDir::bIsEmpty(csVolumePath, CxConst::xMASK_FILES_ALL);
+#endif
+}
+//--------------------------------------------------------------------------
+//DONE:  bGetFreeSpace (get free space)
+/*static*/
+BOOL
+CxVolume::bGetFreeSpace(
+    const tString &csDirPath,
+    ULONGLONG     *pullAvailable,   //for unprivileged users
+    ULONGLONG     *pullTotal,       //for unprivileged users
+    ULONGLONG     *pullFree
+)
+{
+    //--/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-    return FALSE;
+    //--------------------------------------------------
+    //if csDirPath parameter is empty, uses the root of the current volume
+    const TCHAR *pcszDirPath = NULL;
+
+    if (true == csDirPath.empty()) {
+        pcszDirPath = CxPath::sGetExe().c_str();
+    } else {
+        pcszDirPath = csDirPath.c_str();
+    }
+
+#if defined(xOS_WIN)
+    BOOL           bRes         = FALSE;
+    ULARGE_INTEGER ullAvailable = {{0}};
+    ULARGE_INTEGER ullTotal     = {{0}};
+    ULARGE_INTEGER ullFree      = {{0}};
+
+    bRes = ::GetDiskFreeSpaceEx(pcszDirPath, &pullAvailable, &ullTotal, &ullFree);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    xCHECK_DO(NULL != pullAvailable, *pullAvailable = ullAvailable.QuadPart);
+    xCHECK_DO(NULL != pullTotal,     *pullTotal     = ullTotal.QuadPart);
+    xCHECK_DO(NULL != pullFree,      *pullFree      = ullFree.QuadPart);
+#elif defined(xOS_LINUX)
+    struct statfs stfInfo = {0};
+
+    INT iRes = statfs(pcszDirPath, &stfInfo);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, pcszDirPath, FALSE);
+
+    xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * (stfInfo.f_bsize / 1024ULL));
+    xPTR_ASSIGN(pullTotal,     stfInfo.f_blocks * (stfInfo.f_bsize / 1024ULL));
+    xPTR_ASSIGN(pullFree,      stfInfo.f_bfree  * (stfInfo.f_bsize / 1024ULL));
+#endif
+
+    return TRUE;
 }
 //--------------------------------------------------------------------------
 //DONE:  bDefineDosDevice (Defines, redefines, or deletes MS-DOS device names.)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bDefineDosDevice(ULONG ulFlags, const tString &csDeviceName, const tString &csTargetPath) {
+CxVolume::bDefineDosDevice(
+    ULONG ulFlags,
+    const tString &csDeviceName,
+    const tString &csTargetPath
+)
+{
     /*DEBUG*/xASSERT_RET(false == csDeviceName.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csTargetPath.empty(), FALSE);
 
@@ -82,11 +159,18 @@ CxDrive::bDefineDosDevice(ULONG ulFlags, const tString &csDeviceName, const tStr
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  bDeleteVolumeMountPoint (Deletes a drive letter or mounted folder.)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bDeleteVolumeMountPoint(const tString &csVolumeMountPoint) {
+CxVolume::bDeleteVolumeMountPoint(
+    const tString &csVolumeMountPoint
+)
+{
     /*DEBUG*/xASSERT_RET(false == csVolumeMountPoint.empty(), FALSE);
 
     BOOL bRes = FALSE;
@@ -96,11 +180,18 @@ CxDrive::bDeleteVolumeMountPoint(const tString &csVolumeMountPoint) {
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  hFindFirstVolume (Retrieves the name of a volume on a computer)
 /*static*/
+#if defined(xOS_WIN)
 HANDLE
-CxDrive::hFindFirstVolume(tString *psVolumeName) {
+CxVolume::hFindFirstVolume(
+    tString *psVolumeName
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != psVolumeName, INVALID_HANDLE_VALUE);
 
     HANDLE hRes = INVALID_HANDLE_VALUE;
@@ -113,11 +204,19 @@ CxDrive::hFindFirstVolume(tString *psVolumeName) {
 
     return hRes;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  hFindFirstVolumeMountPoint (Retrieves the name of a mounted folder on the specified volume)
 /*static*/
+#if defined(xOS_WIN)
 HANDLE
-CxDrive::hFindFirstVolumeMountPoint(const tString &csRootPathName, tString *psVolumeMountPoint) {
+CxVolume::hFindFirstVolumeMountPoint(
+    const tString &csRootPathName,
+    tString *psVolumeMountPoint
+)
+{
     /*DEBUG*/xASSERT_RET(false == csRootPathName.empty(), INVALID_HANDLE_VALUE);
     /*DEBUG*/xASSERT_RET(NULL != psVolumeMountPoint,      INVALID_HANDLE_VALUE);
 
@@ -131,11 +230,18 @@ CxDrive::hFindFirstVolumeMountPoint(const tString &csRootPathName, tString *psVo
 
     return hRes;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  sFindNextVolume (Continues a volume search started by a call to the FindFirstVolume function.)
 /*static*/
+#if defined(xOS_WIN)
 tString
-CxDrive::sFindNextVolume(HANDLE hFindVolume) {
+CxVolume::sFindNextVolume(
+    HANDLE hFindVolume
+)
+{
     /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hFindVolume, tString());
 
     BOOL        bRes                          = FALSE;
@@ -147,11 +253,19 @@ CxDrive::sFindNextVolume(HANDLE hFindVolume) {
 
     return tString(szVolumeName);
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  bFindNextVolumeMountPoint (Continues a mounted folder search started by a call to the FindFirstVolumeMountPoint function)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bFindNextVolumeMountPoint(HANDLE hFindVolumeMountPoint, tString *psVolumeMountPoint) {
+CxVolume::bFindNextVolumeMountPoint(
+    HANDLE hFindVolumeMountPoint,
+    tString *psVolumeMountPoint
+)
+{
     /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hFindVolumeMountPoint, FALSE);
     /*DEBUG*/xASSERT_RET(NULL != psVolumeMountPoint,                    FALSE);
 
@@ -165,11 +279,18 @@ CxDrive::bFindNextVolumeMountPoint(HANDLE hFindVolumeMountPoint, tString *psVolu
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  bFindVolumeClose (Closes the specified volume search handle)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bFindVolumeClose(HANDLE hFindVolume) {
+CxVolume::bFindVolumeClose(
+    HANDLE hFindVolume
+)
+{
     /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hFindVolume, FALSE);
 
     BOOL bRes = FALSE;
@@ -179,11 +300,18 @@ CxDrive::bFindVolumeClose(HANDLE hFindVolume) {
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  bFindVolumeMountPointClose (Closes the specified mounted folder search handle)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bFindVolumeMountPointClose(HANDLE hFindVolumeMountPoint) {
+CxVolume::bFindVolumeMountPointClose(
+    HANDLE hFindVolumeMountPoint
+)
+{
     /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hFindVolumeMountPoint, FALSE);
 
     BOOL bRes = FALSE;
@@ -193,51 +321,35 @@ CxDrive::bFindVolumeMountPointClose(HANDLE hFindVolumeMountPoint) {
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
-//DONE:  bGetFreeSpace (���������� � ������� �����)
+//DONE:  dtGetType (get type)
 /*static*/
-BOOL
-CxDrive::bGetFreeSpace(const tString &csDirPath, ULONGLONG *pullFreeBytesAvailable, ULONGLONG *pullTotalBytes, ULONGLONG *pullTotalFreeBytes) {
-    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
-
-    BOOL bRes = FALSE;
-
-    ULARGE_INTEGER ullFreeBytesAvailable = {{0}};
-    ULARGE_INTEGER ullTotalBytes         = {{0}};
-    ULARGE_INTEGER ullTotalFreeBytes     = {{0}};
-
-    bRes = ::GetDiskFreeSpaceEx(csDirPath.c_str(), &ullFreeBytesAvailable, &ullTotalBytes, &ullTotalFreeBytes);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-
-    if (NULL != pullFreeBytesAvailable) {
-        *pullFreeBytesAvailable = ullFreeBytesAvailable.QuadPart;
-    }
-
-    if (NULL != pullTotalBytes) {
-        *pullTotalBytes         = ullTotalBytes.QuadPart;
-    }
-
-    if (NULL != pullTotalFreeBytes) {
-        *pullTotalFreeBytes     = ullTotalFreeBytes.QuadPart;
-    }
-
-    return TRUE;
-}
-//--------------------------------------------------------------------------
-//DONE:  dtGetType (��� �����)
-/*static*/
-CxDrive::EType
-CxDrive::dtGetType(const tString &csDrivePath) {
+#if defined(xOS_WIN)
+CxVolume::EType
+CxVolume::dtGetType(
+    const tString &csDrivePath
+)
+{
     /*DEBUG*/xASSERT_RET(false == csDrivePath.empty(), dtUnknown);
 
     return static_cast<EType>( ::GetDriveType(CxPath::sSlashAppend(csDrivePath).c_str()) );
     /*DEBUG*/// n/a
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
-//DONE:  bGetLogicalDrives (������ ���� ��������� ������)
+//DONE:  bGetLogicalDrives (get logical drives)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bGetLogicalDrives(std::vector<tString> *pvsDrives) {
+CxVolume::bGetLogicalDrives(
+    std::vector<tString> *pvsDrives
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != pvsDrives, FALSE);
 
     ULONG ulDrives = 0;        //bGetLogicalDrives +++++++++
@@ -259,11 +371,15 @@ CxDrive::bGetLogicalDrives(std::vector<tString> *pvsDrives) {
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
-//TODO:  bGetLogicalDrives (������ ���� ��������� ������ �� ����)
+//TODO:  bGetLogicalDrives (get logical drives by type)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bGetLogicalDrives(
+CxVolume::bGetLogicalDrives(
     std::vector<tString> *pvsDrives,
     const EType           cdtDriveType
 )
@@ -286,7 +402,7 @@ CxDrive::bGetLogicalDrives(
             sDrivePath.push_back(static_cast<TCHAR>(65 + i));
             sDrivePath.append(CxConst::xDRIVE_SEP);
 
-            xCHECK_DO(cdtDriveType != CxDrive::dtGetType(sDrivePath), continue);
+            xCHECK_DO(cdtDriveType != dtGetType(sDrivePath), continue);
 
             vsRes.push_back(sDrivePath);
         }
@@ -303,11 +419,15 @@ CxDrive::bGetLogicalDrives(
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  sGetLogicalStrings (Fills a buffer with strings that specify valid drives in the _tsystem.)
 /*static*/  //FIXME
+#if defined(xOS_WIN)
 tString
-CxDrive::sGetLogicalStrings() {
+CxVolume::sGetLogicalStrings() {
     tString sRes;
     ULONG   ulRes = 0;
 
@@ -321,16 +441,22 @@ CxDrive::sGetLogicalStrings() {
 
     return sRes;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
-//DONE:  bGetInfo (���������� � �����)
+//DONE:  bGetInfo (get info)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bGetInfo(const tString &csDrivePath,
-                       tString       *psVolumeName,
-                       ULONG         *pulVolumeSerialNumber,
-                       ULONG         *pulMaximumComponentLength,
-                       ULONG         *pulFileSystemFlags,
-                       tString       *psFileSystemName)
+CxVolume::bGetInfo(
+    const tString &csDrivePath,
+    tString       *psVolumeName,
+    ULONG         *pulVolumeSerialNumber,
+    ULONG         *pulMaximumComponentLength,
+    ULONG         *pulFileSystemFlags,
+    tString       *psFileSystemName
+)
 {
     /*DEBUG*/xASSERT_RET(false == csDrivePath.empty(), FALSE);
     /*DEBUG*/// psVolumeName              - n/a
@@ -376,11 +502,18 @@ CxDrive::bGetInfo(const tString &csDrivePath,
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  sGetVolumeNameForVolumeMountPoint (Retrieves a volume GUID path for the volume that is associated with the specified volume mount point (drive letter, volume GUID path, or mounted folder)
 /*static*/
+#if defined(xOS_WIN)
 tString
-CxDrive::sGetVolumeNameForVolumeMountPoint(const tString &csVolumeMountPoint) {
+CxVolume::sGetVolumeNameForVolumeMountPoint(
+    const tString &csVolumeMountPoint
+)
+{
     /*DEBUG*/xASSERT_RET(false == csVolumeMountPoint.empty(), tString());
 
     TCHAR szRes[50 + 1] = {0};
@@ -392,11 +525,18 @@ CxDrive::sGetVolumeNameForVolumeMountPoint(const tString &csVolumeMountPoint) {
 
     return tString(szRes);
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  sGetVolumePathName (Retrieves the volume mount point where the specified path is mounted.)
 /*static*/
+#if defined(xOS_WIN)
 tString
-CxDrive::sGetVolumePathName(const tString &csFileName) {
+CxVolume::sGetVolumePathName(
+    const tString &csFileName
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(), tString());
 
     BOOL        bRes                               = FALSE;
@@ -408,11 +548,18 @@ CxDrive::sGetVolumePathName(const tString &csFileName) {
 
     return tString(szVolumePathName);
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  sGetVolumePathNamesForVolumeName (Retrieves a list of drive letters and volume GUID paths for the specified volume.)
 /*static*/
+#if defined(xOS_WIN)
 tString
-CxDrive::sGetVolumePathNamesForVolumeName(const tString &csVolumeName) {
+CxVolume::sGetVolumePathNamesForVolumeName(
+    const tString &csVolumeName
+)
+{
     /*DEBUG*/xASSERT_RET(false == csVolumeName.empty(), tString());
 
 //    BOOL        bRes                           = FALSE;
@@ -432,11 +579,18 @@ CxDrive::sGetVolumePathNamesForVolumeName(const tString &csVolumeName) {
 
     return tString(sVolumePathNames, ulReturnLength);
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  sQueryDosDevice (Retrieves information about MS-DOS device names)
 /*static*/
+#if defined(xOS_WIN)
 tString
-CxDrive::sQueryDosDevice(const tString &csDeviceName) {
+CxVolume::sQueryDosDevice(
+    const tString &csDeviceName
+)
+{
     /*DEBUG*/xASSERT_RET(false == csDeviceName.empty(), tString());
 
     ULONG       ulRes                     = 0;
@@ -450,11 +604,19 @@ CxDrive::sQueryDosDevice(const tString &csDeviceName) {
 
     return tString(szTargetPath, ulRes);
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  bSetVolumeLabel (Sets the label of a file _tsystem volume.)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bSetVolumeLabel(const tString &csRootPathName, const tString &cslpVolumeName) {
+CxVolume::bSetVolumeLabel(
+    const tString &csRootPathName,
+    const tString &cslpVolumeName
+)
+{
     /*DEBUG*/xASSERT_RET(false == csRootPathName.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == cslpVolumeName.empty(), FALSE);
 
@@ -465,11 +627,19 @@ CxDrive::bSetVolumeLabel(const tString &csRootPathName, const tString &cslpVolum
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //DONE:  bSetVolumeMountPoint (Associates a volume with a drive letter or a directory on another volume.)
 /*static*/
+#if defined(xOS_WIN)
 BOOL
-CxDrive::bSetVolumeMountPoint(const tString &csVolumeMountPoint, const tString &csVolumeName) {
+CxVolume::bSetVolumeMountPoint(
+    const tString &csVolumeMountPoint,
+    const tString &csVolumeName
+)
+{
     /*DEBUG*/xASSERT_RET(false == csVolumeMountPoint.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csVolumeName.empty(),       FALSE);
 
@@ -480,19 +650,27 @@ CxDrive::bSetVolumeMountPoint(const tString &csVolumeMountPoint, const tString &
 
     return TRUE;
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //--------------------------------------------------------------------------
 //TODO: bIsValidDriveLetter ()
+#if defined(xOS_WIN)
 /*static*/
 BOOL
-CxDrive::bIsValidDriveLetter(TCHAR szDriveLetter) {
+CxVolume::bIsValidDriveLetter(
+    TCHAR szDriveLetter
+)
+{
     /*DEBUG*/// szDriveLetter - n/a
 
-    return (xT('a') <= szDriveLetter && szDriveLetter <= xT('z'))
-            ||
+    return (xT('a') <= szDriveLetter && szDriveLetter <= xT('z'))  ||
            (xT('A') <= szDriveLetter && szDriveLetter <= xT('Z'));
 }
+#elif defined(xOS_LINUX)
+    //TODO: xOS_LINUX
+#endif
 //---------------------------------------------------------------------------
-
 
 
 /****************************************************************************
@@ -501,13 +679,14 @@ CxDrive::bIsValidDriveLetter(TCHAR szDriveLetter) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE:
-CxDrive::CxDrive() {
-    //code
+//DONE: CxVolume
+CxVolume::CxVolume() {
+
 }
 //---------------------------------------------------------------------------
-//DONE:
-CxDrive::~CxDrive() {
-    //code
+//DONE: CxVolume
+/*virtual*/
+CxVolume::~CxVolume() {
+
 }
 //---------------------------------------------------------------------------

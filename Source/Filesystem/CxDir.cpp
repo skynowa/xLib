@@ -74,12 +74,12 @@ CxDir::bIsEmpty(
 
     BOOL bRes = FALSE;
 
-    //TODO: CxPath::sToCurrentOs
+    //TODO: CxPath::sToCurrentOs + CxPath::sSlashAppend
 
 #if defined(xOS_WIN)
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData   = {0};
-    tString         sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + CxConst::xMASK_ALL, FALSE );
+    tString         sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, FALSE );
 
     hFile = ::FindFirstFile(sDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, TRUE);
@@ -226,11 +226,13 @@ CxDir::bSetCurrent(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
+    tString sDirPath = CxPath::sSlashAppend(csDirPath);
+
 #if defined(xOS_WIN)
-    BOOL bRes = ::SetCurrentDirectory(csDirPath.c_str());
+    BOOL bRes = ::SetCurrentDirectory(sDirPath.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = chdir(csDirPath.c_str());
+    INT iRes = chdir(sDirPath.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 

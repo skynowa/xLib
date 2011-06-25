@@ -63,9 +63,9 @@
 #include "Filesystem/CxTest_CxDll.h"
 #include "Filesystem/CxTest_CxFileAttribute.h"
 #include "Filesystem/CxTest_CxIni.h"
+#include "Filesystem/CxTest_CxVolume.h"
 
 #if defined(xOS_WIN)
-    #include "Filesystem/Win/CxTest_CxDrive.h"
     #include "Filesystem/Win/CxTest_CxFile.h"
     ////#include "Filesystem/Win/CxTest_CxIni.h"
 #elif defined(xOS_LINUX)
@@ -214,9 +214,9 @@ _tmain(
     vptTests.push_back( new CxTest_CxDll );
     vptTests.push_back( new CxTest_CxFileAttribute );
     vptTests.push_back( new CxTest_CxIni );
+    vptTests.push_back( new CxTest_CxVolume );
 
     #if defined(xOS_WIN)
-    vptTests.push_back( new CxTest_CxDrive );
     vptTests.push_back( new CxTest_CxFile );
     ////vptTests.push_back( new CxTest_CxIni );
     #elif defined(xOS_LINUX)
