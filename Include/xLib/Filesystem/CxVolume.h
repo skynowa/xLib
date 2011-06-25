@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxDrive
-* Description: drive
-* File name:   CxDrive.h
+* Class name:  CxVolume
+* Description: volume
+* File name:   CxVolume.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     04.06.2009 9:25:22
@@ -9,15 +9,21 @@
 *****************************************************************************/
 
 
-#ifndef xLib_Filesystem_Win_CxDriveH
-#define xLib_Filesystem_Win_CxDriveH
+#ifndef xLib_Filesystem_CxVolumeH
+#define xLib_Filesystem_CxVolumeH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxDrive :
+class CxVolume :
     public CxNonCopyable
 {
     public:
+        static BOOL    bIsReady                         (const tString &csVolumePath);
+        static BOOL    bIsEmpty                         (const tString &csVolumePath);
+        static BOOL    bGetFreeSpace                    (const tString &csDirPath, ULONGLONG *pullAvailable, ULONGLONG *pullTotal, ULONGLONG *pullFree);
+
+        //GetFileSystemType
+    #if defined(xOS_WIN)
         enum EType {
             dtUnknown   = DRIVE_UNKNOWN,
             dtNoRoot    = DRIVE_NO_ROOT_DIR,
@@ -28,10 +34,6 @@ class CxDrive :
             dtRam       = DRIVE_RAMDISK
         };
 
-        //static BOOL    bIsExists   (const tString &csDirPath);
-        static BOOL    bIsReady                         (const tString &csDrivePath);
-        static BOOL    bIsEmpty                         (const tString &csDrivePath);
-        static BOOL    bGetFreeSpace                    (const tString &csDirPath, ULONGLONG *pullFreeBytesAvailable, ULONGLONG *pullTotalBytes, ULONGLONG *pullTotalFreeBytes);
         static BOOL    bDefineDosDevice                 (ULONG ulFlags, const tString &csDeviceName, const tString &csTargetPath);
         static BOOL    bDeleteVolumeMountPoint          (const tString &csVolumeMountPoint);
         static HANDLE  hFindFirstVolume                 (tString *psVolumeName);
@@ -57,11 +59,14 @@ class CxDrive :
         static BOOL    bSetVolumeLabel                  (const tString &csRootPathName, const tString &cslpVolumeName);
         static BOOL    bSetVolumeMountPoint             (const tString &csVolumeMountPoint, const tString &csVolumeName);
         static BOOL    bIsValidDriveLetter              (TCHAR szDriveLetter);
+    #elif defined(xOS_LINUX)
+
+    #endif
 
 
     private:
-                       CxDrive                          ();
-        virtual       ~CxDrive                          ();
+                       CxVolume                         ();
+        virtual       ~CxVolume                         ();
 };
 //---------------------------------------------------------------------------
-#endif //xLib_Filesystem_Win_CxDriveH
+#endif //xLib_Filesystem_CxVolumeH

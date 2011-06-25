@@ -21,7 +21,7 @@ class CxMacros :
     public CxNonCopyable
 {
     public:
-        #define xPTR_DELETE(p)         { if (NULL != (p)) {delete p;     p = NULL;} }
+        #define xPTR_DELETE(p)         { if (NULL != (p)) {delete (p);     (p) = NULL;} }
         /*template<class T>
         static inline VOID
         xPTR_DELETE(T *&a_ptr) {
@@ -38,7 +38,7 @@ class CxMacros :
                 delete p; p = NULL;
         }*/
 
-        #define xARRAY_DELETE(a)      { if (NULL != (a)) {delete [] a;  a = NULL;} }
+        #define xARRAY_DELETE(a)      { if (NULL != (a)) {delete [] (a);  (a) = NULL;} }
         /*template<class T>
         static inline VOID
         xARRAY_DELETE(T *&a_ptr) {
@@ -48,7 +48,7 @@ class CxMacros :
             }
         }*/
 
-        #define xARRAY_ZERO_DELETE(a) { if (NULL != (a)) {xBUFF_ZERO(a); delete [] a;  a = NULL;} }
+        #define xARRAY_ZERO_DELETE(a) { if (NULL != (a)) {xBUFF_ZERO(a); delete [] (a);  (a) = NULL;} }
         #define xARRAY_SIZE(a)        ( sizeof(a) / sizeof((a)[0]) )
 
         #if xTODO
@@ -57,42 +57,43 @@ class CxMacros :
             #define xARRAY_SIZE(a)        (sizeof(ArraySizeHelper(a)))
         #endif
 
-        #define xBUFF_ZERO(Buff)      { memset(static_cast<void *>( &Buff[0] ), 0, sizeof(Buff)); }
-        #define xSTRUCT_ZERO(Buff)    { memset(static_cast<void *>( &Buff ),    0, sizeof(Buff)); }
-        #define xBUFF_FREE(pvBuff)    { if (NULL != pvBuff) { free(pvBuff); pvBuff = NULL;} }
+        #define xBUFF_ZERO(Buff)        { memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
+        #define xSTRUCT_ZERO(Buff)      { memset(static_cast<void *>( &(Buff) ),    0, sizeof(Buff)); }
+        #define xBUFF_FREE(pvBuff)      { if (NULL != (pvBuff)) { free(pvBuff); (pvBuff) = NULL; }    }
+        #define xPTR_ASSIGN(ptr, value) { if (NULL != (ptr))    { *(ptr) = (value); }                 }
 
-        #define xS2US(s)              uString( (s).begin(),  (s).begin()  + (s).size()  )
-        #define xUS2S(us)             tString( (us).begin(), (us).begin() + (us).size() )
+        #define xS2US(s)                uString( (s).begin(),  (s).begin()  + (s).size()  )
+        #define xUS2S(us)               tString( (us).begin(), (us).begin() + (us).size() )
 
-        #define xS2TS(s)              tString( (s).begin(),  (s).begin()  + (s).size()  )
-        #define xTS2S(ts)             std::string( (ts).begin(), (ts).begin() + (ts).size() )
+        #define xS2TS(s)                tString( (s).begin(),  (s).begin()  + (s).size()  )
+        #define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
 
     #if defined(xOS_WIN)
-        #define xRANDOMIZE()          ( srand( (UINT)::GetTickCount() ) )
+        #define xRANDOMIZE()            ( srand( (UINT)::GetTickCount() ) )
     #elif defined(xOS_LINUX)
-        #define xRANDOMIZE()          ( srand( (UINT)time(NULL) ) )
+        #define xRANDOMIZE()            ( srand( (UINT)time(NULL) ) )
     #endif
 
-        #define xRANDOM(x)            ( rand() % x )
+        #define xRANDOM(x)              ( rand() % (x) )
 
-        #define xFCLOSE(f)            { if (NULL != (f)) { fclose(f); f = NULL; } }
+        #define xFCLOSE(f)              { if (NULL != (f)) { fclose(f); (f) = NULL; } }
 
-        #define xMAX(a, b)            ( ((a) > (b)) ? (a) : (b) )
-        #define xMIN(a, b)            ( ((a) < (b)) ? (a) : (b) )
-        #define xUNUSED(arg)          ( arg = arg )
-        #define xTO_BOOL(expr)        ( (expr) ? TRUE : FALSE )
+        #define xMAX(a, b)              ( ((a) > (b)) ? (a) : (b) )
+        #define xMIN(a, b)              ( ((a) < (b)) ? (a) : (b) )
+        #define xUNUSED(arg)            ( (arg) = (arg) )
+        #define xAS_BOOL(expr)          ( (true == (expr)) ? (TRUE) : (FALSE) )
 
         //enum
-        #define xENUM_ENC(type, obj)  { obj = static_cast<type>( static_cast<INT>(obj) + 1 ); }
-        #define xENUM_DEC(type, obj)  { obj = static_cast<type>( static_cast<INT>(obj) - 1 ); }
+        #define xENUM_ENC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) + 1 ); }
+        #define xENUM_DEC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) - 1 ); }
 
         //temprary enable/disable code
-        #define xTEMP_ENABLED         1
-        #define xTEMP_DISABLED        0
-        #define xDEPRECIATE           0
-        #define xTODO                 0
-        #define xCAN_REMOVE           0
-        //TODO: #define xNA(arg)              ( arg )
+        #define xTEMP_ENABLED           1
+        #define xTEMP_DISABLED          0
+        #define xDEPRECIATE             0
+        #define xTODO                   0
+        #define xCAN_REMOVE             0
+        //TODO: #define xNA(arg)        ( arg )
 
         //TODO: xMax
         //http://www.gizmosdk.com/docs/html/gizmobase/html/gz_basic_types_8h-source.html
@@ -193,21 +194,28 @@ class CxMacros :
             return (NULL != x) ? (tString(x)) : (tString());
         }
 
+        //TODO: tests
+        template <class T>
+        static inline
+        const TCHAR *
+        pcszAsCString(const T &x) {
+            return (true == x.empty()) ? (NULL) : (x.c_str());
+        }
+
         //TODO__VA_ARGS__
         #if defined(xOS_WIN)
         #   define xTODO_TASK(text) { message(__FILE__ "(" xSTRINGIZE(__LINE__) ") [" xFUNCTION "]: warning TODO: [" xFUNCTION "] " ## text) }
         #   define xTODO_IMPL       { xTODO("Implement " xFUNCTION " function!") }
         #elif defined(xOS_LINUX)
         #   define xPRAGMA(s)       { _Pragma (#s) }
-        #   define xTODO_TASK(s)    { xPRAGMA( message(" TODO: "s) ) }
-        #   define xNOT_IMPL(s)     { xPRAGMA( message(" Not implemented: "s) ) }
+        #   define xTODO_TASK(s)    { xPRAGMA( message(" TODO: "(s)) ) }
+        #   define xNOT_IMPL(s)     { xPRAGMA( message(" Not implemented: "(s)) ) }
         #endif
 
         #define xSTD_CIN(s)         { tcin  >> (s) >> tendl; }
         #define xSTD_COUT(s)        { tcout << (s) << tendl; }
 
-
-        #define xRELEASE(p)          { if (NULL != (p)) {p->Release (); p = NULL;} }
+        #define xRELEASE(p)          { if (NULL != (p)) {(p)->Release(); (p) = NULL;} }
 
         #define xKEYDOWN(vk_code)    ((::GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
         #define xKEYUP(vk_code)      ((::GetAsyncKeyState(vk_code) & 0x8000) ? 0 : 1)

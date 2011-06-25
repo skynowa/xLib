@@ -344,8 +344,8 @@ CxCookiePv1::bInit(const tString &csRawCookie) {
     _m_sDomain   = msCookie[xT("Domain")];
     _m_sPath     = msCookie[xT("Path")];
     _m_iMaxAge   = CxString::lexical_cast<INT>( msCookie[xT("Max-Age")] );
-    _m_bSecure   = xTO_BOOL( msCookie.end() != msCookie.find(xT("Secure")) );
-    _m_bHttpOnly = xTO_BOOL( msCookie.end() != msCookie.find(xT("HttpOnly")) );
+    _m_bSecure   = xAS_BOOL( msCookie.end() != msCookie.find(xT("Secure")) );
+    _m_bHttpOnly = xAS_BOOL( msCookie.end() != msCookie.find(xT("HttpOnly")) );
 
     return TRUE;
 }

@@ -24,6 +24,7 @@
 #include <sys/msg.h>
 #include <sys/sem.h>
 #include <sys/stat.h>
+#include <sys/vfs.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/utsname.h>
