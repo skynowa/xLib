@@ -59,7 +59,7 @@ CxTest_CxEvent::bUnit() {
 		//-------------------------------------
 		//bCreate
 		{
-			m_bRes = objEvent.bCreate(0, TRUE, FALSE, NULL);
+			m_bRes = objEvent.bCreate(0, TRUE, FALSE, xT(""));
 			xASSERT(FALSE != m_bRes);
 		}
 
@@ -135,7 +135,7 @@ CxTest_CxEvent::bUnit() {
 		//-------------------------------------
 		//bCreate
 		{
-			m_bRes = objEvent.bCreate(0, FALSE, TRUE, _T("XLib_CxEvent_25_01_2010"));
+			m_bRes = objEvent.bCreate(0, FALSE, TRUE, xT("XLib_CxEvent_25_01_2010"));
 			xASSERT(FALSE != m_bRes);
 		}
 
@@ -156,7 +156,7 @@ CxTest_CxEvent::bUnit() {
 		//-------------------------------------
 		//bOpen
 		{
-			////m_bRes = objEvent.bOpen(0, FALSE, _T("XLib_CxEvent_25_01_2010"));
+			////m_bRes = objEvent.bOpen(0, FALSE, xT("XLib_CxEvent_25_01_2010"));
 			////xASSERT(FALSE != m_bRes);
 		}
 

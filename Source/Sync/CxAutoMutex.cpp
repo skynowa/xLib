@@ -26,7 +26,7 @@ CxAutoMutex::CxAutoMutex(
 {
     BOOL bRes = FALSE;
 
-    bRes = _m_mtMutex.bCreate(NULL, FALSE, NULL);
+    bRes = _m_mtMutex.bCreate(NULL, FALSE, xT(""));
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 
     bRes = _m_mtMutex.bWait(INFINITE);

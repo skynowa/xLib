@@ -47,7 +47,7 @@ CxVolume::bIsReady(
     bRes = ::SetCurrentDirectory(sVolumePath.c_str());
     /*DEBUG*/// n/a
 
-    bRes = CxDir::bSetCurrent(sOldDirPath);
+    CxDir::bSetCurrent(sOldDirPath);
     /*DEBUG*/// n/a
 
     ::SetErrorMode(uiOldErrorMode);
@@ -105,12 +105,12 @@ CxVolume::bGetFreeSpace(
 
     //--------------------------------------------------
     //if csDirPath parameter is empty, uses the root of the current volume
-    const TCHAR *pcszDirPath = NULL;
+    tString _sDirPath;
 
     if (true == csDirPath.empty()) {
-        pcszDirPath = CxPath::sGetExe().c_str();
+        _sDirPath = CxPath::sGetExeDir().c_str();
     } else {
-        pcszDirPath = csDirPath.c_str();
+        _sDirPath = csDirPath.c_str();
     }
 
 #if defined(xOS_WIN)
@@ -119,7 +119,7 @@ CxVolume::bGetFreeSpace(
     ULARGE_INTEGER ullTotal     = {{0}};
     ULARGE_INTEGER ullFree      = {{0}};
 
-    bRes = ::GetDiskFreeSpaceEx(pcszDirPath, &pullAvailable, &ullTotal, &ullFree);
+    bRes = ::GetDiskFreeSpaceEx(_sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     xCHECK_DO(NULL != pullAvailable, *pullAvailable = ullAvailable.QuadPart);
@@ -128,8 +128,8 @@ CxVolume::bGetFreeSpace(
 #elif defined(xOS_LINUX)
     struct statfs stfInfo = {0};
 
-    INT iRes = statfs(pcszDirPath, &stfInfo);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, pcszDirPath, FALSE);
+    INT iRes = statfs(_sDirPath.c_str(), &stfInfo);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, _sDirPath, FALSE);
 
     xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * (stfInfo.f_bsize / 1024ULL));
     xPTR_ASSIGN(pullTotal,     stfInfo.f_blocks * (stfInfo.f_bsize / 1024ULL));

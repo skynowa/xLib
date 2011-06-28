@@ -19,7 +19,7 @@
 #include <xLib/Crypt/CxCrc32.h>
 
 #if defined(xOS_WIN)
-    #include <xLib/Filesystem/Win/CxDrive.h>
+    #include <xLib/Filesystem/CxVolume.h>
     #include <xLib/Filesystem/Win/CxFile.h>
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 #endif
@@ -1576,7 +1576,7 @@ CxStdioFile::bBackup(
     //check for enough space
 #if defined(xOS_WIN)
     ULONGLONG ullTotalFreeBytes = 0;
-    bRes = CxDrive::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
+    bRes = CxVolume::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
 
     xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return TRUE);
 #elif defined(xOS_LINUX)

@@ -78,8 +78,8 @@ CxTest_CxAutoProfiler::bUnit() {
 	for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
 	    xAUTO_PROFILER_FUNC(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i]);
 
-		for (size_t x = 0; x < 1000; ++ x) {
-			for (size_t y = 0; y < 2000; ++ y) {
+		for (size_t x = 0; x < 100; ++ x) {
+			for (size_t y = 0; y < 100; ++ y) {
 				size_t z = 0;
 
 				z++; --z; z = z / 13;

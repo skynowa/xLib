@@ -55,7 +55,7 @@ CxMutex::bCreate(
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateMutex(pcsaAttributes, cbInitialOwner, csName.c_str());
+    hRes = ::CreateMutex(pcsaAttributes, cbInitialOwner, CxMacros::pcszAsCString(csName));
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     _m_hMutex.bSet(hRes);

@@ -54,6 +54,8 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</RunCodeAnalysis>
     <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</RunCodeAnalysis>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;$(IncludePath)</IncludePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <BuildLog>
@@ -164,7 +166,7 @@
     <ClCompile Include="..\..\Source\Filesystem\CxIni.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxStdioFile.cpp" />
-    <ClCompile Include="..\..\Source\Filesystem\Win\CxDrive.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxVolume.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\Win\CxFile.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -182,6 +184,10 @@
     <ClCompile Include="..\..\Source\Net\CxCookiePv0.cpp" />
     <ClCompile Include="..\..\Source\Net\CxCookiePv1.cpp" />
     <ClCompile Include="..\..\Source\Net\CxDnsClient.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxGeoIp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Net\CxHttpClient.cpp" />
     <ClCompile Include="..\..\Source\Net\CxMimeBody.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -275,7 +281,7 @@
     <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxIni.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxPath.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxStdioFile.h" />
-    <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxDrive.h" />
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxVolume.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxFile.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Filesystem\Win\CxIni.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -315,6 +321,10 @@
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuildStep>
+    <ClInclude Include="..\..\Include\xLib\Net\CxGeoIp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Net\CxSocket.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxSocketInit.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpClientSocket.h" />

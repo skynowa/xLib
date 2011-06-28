@@ -35,7 +35,7 @@ class CxTest_CxThread :
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxThread (constructor)
 CxTest_CxThread::CxTest_CxThread() {
-
+    bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxThread (destructor)
@@ -50,7 +50,10 @@ CxTest_CxThread::bUnit() {
 	size_t uiI = 0;
 
 	//while (true) {
-		CWorkThread *pthT = new CWorkThread(TRUE, TRUE);
+        const BOOL cbIsPaused   = TRUE; 
+        const BOOL cbAutoDelete = TRUE;
+
+ 		CWorkThread *pthT = new CWorkThread(cbAutoDelete);
 		xASSERT(pthT != NULL);
 
 		uiI ++;
@@ -61,32 +64,29 @@ CxTest_CxThread::bUnit() {
 		//-------------------------------------
 		//�������z
 		INT iParam = 1000/*00000*/;
-		m_bRes = pthT->bCreate(0, &iParam);
+		m_bRes = pthT->bCreate(cbIsPaused, 0, &iParam);
 		xASSERT(FALSE != m_bRes);
 		////LOG("bCreate()");
+
+        m_bRes = pthT->bIsPaused();
+		xASSERT(FALSE != m_bRes);
+
+        m_bRes = pthT->bIsPaused();
+		xASSERT(FALSE != m_bRes);
 
 		//-------------------------------------
 		//����� ��������
 		m_bRes = pthT->bIsCreated();
 		xASSERT(FALSE != m_bRes);
-		////LOG("bIsCreated()");
 
 		m_bRes = pthT->bIsRunning();
 		xASSERT(FALSE != m_bRes);
-		////LOG("bIsRunning()");
 
 		m_bRes = pthT->bIsPaused();
 		xASSERT(FALSE != m_bRes);
-		////LOG("bIsPaused()");
-
-		//////m_bRes = pthT->bIsSleeping();
-		//////xASSERT(FALSE == m_bRes);
-		//////////LOG("bIsSleeping()");
 
 		m_bRes = pthT->bIsExited();
 		xASSERT(FALSE == m_bRes);
-		////LOG("bIsExited()");
-
 
 		//-------------------------------------
 		//���������
@@ -128,9 +128,7 @@ CxTest_CxThread::bUnit() {
 			m_bRes = pthT->bIsPriorityBoost();
 			xASSERT(TRUE == m_bRes);
 		}
-
-
-
+        
 		//-------------------------------------
 		//CPU
 		////m_bRes = bSetAffinityMask(DWORD_PTR pulMask);
@@ -144,7 +142,6 @@ CxTest_CxThread::bUnit() {
 
 		m_bRes = pthT->bSetIdealCPU(10);
 		xASSERT(FALSE != m_bRes);
-		////LOG("bSetIdealCPU()");
 
 		m_bRes = pthT->bSetIdealCPU(0);
 		xASSERT(FALSE != m_bRes);
@@ -152,12 +149,10 @@ CxTest_CxThread::bUnit() {
 
 		m_ulRes = pthT->ulGetIdealCPU();
 		xASSERT(0 == m_ulRes);
-		////LOG("ulGetIdealCPU()");
 
 		m_ulRes = pthT->ulGetCPUCount();
 		xASSERT(0 < m_ulRes);
-
-
+        
 		//-------------------------------------
 		//���������
 		m_hRes  = pthT->hGetHandle();
@@ -172,8 +167,7 @@ CxTest_CxThread::bUnit() {
 		m_bRes = pthT->bSetDebugName(xT("TestThreadName"));
 		xASSERT(FALSE != m_bRes);
 		////LOG("bSetDebugName()");
-
-
+        
 		//-------------------------------------
 		//static
 		////g_hRes = CxThread::hOpen(THREAD_ALL_ACCESS, FALSE, ::GetCurrentThreadId());
@@ -185,11 +179,6 @@ CxTest_CxThread::bUnit() {
 		m_hRes  = CxThread::hGetCurrHandle();
 		xASSERT(NULL !=  m_hRes);
 
-
-		m_bRes = pthT->bResume();
-		xASSERT(FALSE != m_bRes);
-		////LOG("bResume()");
-
 		m_bRes = pthT->bResume();
 		xASSERT(FALSE != m_bRes);
 		////LOG("bResume()");
@@ -197,18 +186,18 @@ CxTest_CxThread::bUnit() {
 		//-------------------------------------
 		//�����
 		for (int i = 0; i < 3; i ++) {
-			//::MessageBox(0, xT("�������������"), xT(""), MB_OK);
-
 			m_bRes = pthT->bPause();
 			xASSERT(FALSE != m_bRes);
-			////LOG("bPause()");
 
-			//::MessageBox(0, xT("�����������"), xT(""), MB_OK);
+            m_bRes = pthT->bIsPaused();
+            xASSERT(TRUE == m_bRes);
 
 			m_bRes = pthT->bResume();
 			xASSERT(FALSE != m_bRes);
-			////LOG("bResume()");
-		}
+
+            m_bRes = pthT->bIsPaused();
+            xASSERT(FALSE == m_bRes);
+        }
 
 		////m_bRes = pthT->bExit(INFINITE);
 		////xASSERT(FALSE != m_bRes);

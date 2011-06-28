@@ -48,32 +48,32 @@ CxTest_bGetUsbInfo::bUnit() {
 	//-------------------------------------
 	//bGetUsbInfo
 	{
-		const tstring        csDrive = _T("I:");
+		const tstring        csDrive = xT("I:");
 		std::vector<tstring> vecsInfo;
 
 		g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
 		XASSERT(TRUE == g_bRes);
 
-		XASSERT(_T("\\??\\USB")                              == vecsInfo.at(0));
-		XASSERT(_T("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
-		XASSERT(_T("3DH5R5EL")                               == vecsInfo.at(2));
-		XASSERT(_T("{a5dcbf10-6530-11d2-901f-00c04fb951ed}") == vecsInfo.at(3));
+		XASSERT(xT("\\??\\USB")                              == vecsInfo.at(0));
+		XASSERT(xT("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
+		XASSERT(xT("3DH5R5EL")                               == vecsInfo.at(2));
+		XASSERT(xT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}") == vecsInfo.at(3));
 
 		//assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
 		//std::cout << "sGetFlashSerialFromDrive: " << sRes.c_str() << std::endl;
 	}
 
 	{
-		////const tstring        csDrive = _T("Y:");
+		////const tstring        csDrive = xT("Y:");
 		////std::vector<tstring> vecsInfo;
 
 		////g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
 		////XASSERT(TRUE == g_bRes);
 
-		////XASSERT(_T("\\??\\USB")                              == vecsInfo.at(0));
-		////XASSERT(_T("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
-		////XASSERT(_T("3DH5R5EL")                               == vecsInfo.at(2));
-		////XASSERT(_T("{a5dcbf10-6530-11d2-901f-00c04fb951ed}") == vecsInfo.at(3));
+		////XASSERT(xT("\\??\\USB")                              == vecsInfo.at(0));
+		////XASSERT(xT("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
+		////XASSERT(xT("3DH5R5EL")                               == vecsInfo.at(2));
+		////XASSERT(xT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}") == vecsInfo.at(3));
 
 		//////assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
 		//////std::cout << "sGetFlashSerialFromDrive: " << sRes.c_str() << std::endl;

@@ -31,7 +31,6 @@ class CxEvent :
         BOOL     bWait      (const ULONG culTimeout) const;
 
         BOOL     bIsSignaled() const;
-        //BOOL   bIsExists  () const;
 
     private:
         CxHandle _m_hEvent;

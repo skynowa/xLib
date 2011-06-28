@@ -16,7 +16,6 @@
 #include <xLib/Common/xClosure.h>
 #include <xLib/Common/Win/CxHandleT.h>
 #include <xLib/Sync/CxEvent.h>
-#include <xLib/Sync/CxSleeper.h>
 #include <xLib/Log/xLog.h>
 //---------------------------------------------------------------------------
 class CxThread :
@@ -34,61 +33,14 @@ class CxThread :
             tpPRIORITY_TIME_CRITICAL = THREAD_PRIORITY_TIME_CRITICAL
         };
 
-    private:
-        mutable BOOL            _m_bRes;
-
-        //constants
-        const ULONG             _m_culStillActiveTimeout;
-        const ULONG             _m_culExitTimeout;
-
-        //thread data
-        CxHandle                _m_hThread;
-        ULONG                   _m_ulID;
-        UINT                    _m_uiExitCode;
-        VOID                   *_m_pvParam;
-        const BOOL              _m_cbIsAutoDelete;
-
-        //flags
-        BOOL                    _m_bIsCreated;
-        BOOL                    _m_bIsRunning;
-        BOOL                    _m_bIsPaused;
-        /*BOOL                  _m_bIsSleeping;*/// n/a
-        /*BOOL                  _m_bIsExited;*///   n/a
-
-        //other
-        CxEvent                 _m_evPause;
-        CxEvent                *_m_pevStarter;
-        CxSleeper               _m_slSleeper;
-        CxEvent                 _m_evExit;
-        //HANDLE                _m_hParentHandle;
-        //HANDLE                _m_hParentId;
-
-        CxTraceLog              _m_clLog;
-
-        static UINT WINAPI      _s_uiStartFunc    (VOID *pvParam);
-        BOOL                    _bWaitResumption  ();
-        VOID                    _vMembersClear    ();       //TODO: _vMembersClear
-        VOID                    _vSetStatesDefault();
-        BOOL                    _bSetDebugNameA   (const std::string &csName) const;
-
-        //callbacks
-        SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnEnter;
-        BOOL                                 _m_bFlag_OnEnter;
-
-        SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnExit;
-        BOOL                                 _m_bFlag_OnExit;
-
-        VOID                    _vHandler_OnEnter(CxThread *pthSender);
-        VOID                    _vHandler_OnExit (CxThread *pthSender);
-
     public:
         volatile LONG           m_ulTag;
 
-                                CxThread              (const BOOL cbIsPaused, const BOOL cbAutoDelete);
+                                CxThread              (const BOOL cbAutoDelete);
         virtual                ~CxThread              () = 0;
 
         //actions
-        BOOL                    bCreate               (const UINT cuiStackSize, VOID *pvParam);
+        BOOL                    bCreate               (const BOOL cbIsPaused, const UINT cuiStackSize, VOID *pvParam);
         BOOL                    bResume               ();
         BOOL                    bPause                ();
         BOOL                    bExit                 (const ULONG culTimeout);
@@ -99,7 +51,6 @@ class CxThread :
         BOOL                    bIsCreated            () const;
         BOOL                    bIsRunning            () const;
         BOOL                    bIsPaused             () const;
-        BOOL                    bIsSleeping           () const;
         BOOL                    bIsExited             () const;
 
         //messages
@@ -148,10 +99,53 @@ class CxThread :
         //--virtual VOID        vOnExit               ();
 
         BOOL                    bYield                () const;                    /*static ???*/
-        BOOL                    bSleep                (const ULONG culTimeout);    /*static ???*/
-        BOOL                    bSleeperWakeUp        ();                          /*static ???*/
 
         BOOL                    bIsTimeToExit         ();
+
+    private:
+        mutable BOOL            _m_bRes;
+
+        //constants
+        const ULONG             _m_culStillActiveTimeout;
+        const ULONG             _m_culExitTimeout;
+
+        //thread data
+        CxHandle                _m_hThread;
+        ULONG                   _m_ulID;
+        UINT                    _m_uiExitCode;
+        VOID                   *_m_pvParam;
+        const BOOL              _m_cbIsAutoDelete;
+
+        //flags
+        BOOL                    _m_bIsCreated;
+        BOOL                    _m_bIsRunning;
+        /*BOOL                  _m_bIsPaused;*/// n/a
+        /*BOOL                  _m_bIsExited;*///   n/a
+
+        //other
+        CxEvent                 _m_evPause;
+        CxEvent                *_m_pevStarter;
+        CxEvent                 _m_evExit;
+        //HANDLE                _m_hParentHandle;
+        //HANDLE                _m_hParentId;
+
+        CxTraceLog              _m_clLog;
+
+        static UINT WINAPI      _s_uiStartFunc    (VOID *pvParam);
+        BOOL                    _bWaitResumption  ();
+        VOID                    _vMembersClear    ();       //TODO: _vMembersClear
+        VOID                    _vSetStatesDefault();
+        BOOL                    _bSetDebugNameA   (const std::string &csName) const;
+
+        //callbacks
+        SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnEnter;
+        BOOL                                 _m_bFlag_OnEnter;
+
+        SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnExit;
+        BOOL                                 _m_bFlag_OnExit;
+
+        VOID                    _vHandler_OnEnter(CxThread *pthSender);
+        VOID                    _vHandler_OnExit (CxThread *pthSender);
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxThreadH

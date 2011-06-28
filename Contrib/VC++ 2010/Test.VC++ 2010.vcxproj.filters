@@ -165,9 +165,6 @@
     <ClCompile Include="..\..\Source\Filesystem\CxStdioFile.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Filesystem\Win\CxDrive.cpp">
-      <Filter>xLib\Filesystem\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Filesystem\Win\CxFile.cpp">
       <Filter>xLib\Filesystem\Win</Filter>
     </ClCompile>
@@ -387,6 +384,12 @@
     <ClCompile Include="..\..\Source\Pkcs11\Win\CxVerify.cpp">
       <Filter>xLib\Pkcs11\Win</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Filesystem\CxVolume.cpp">
+      <Filter>xLib\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxGeoIp.cpp">
+      <Filter>xLib\Net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -436,9 +439,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxStdioFile.h">
       <Filter>xLib\Filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxDrive.h">
-      <Filter>xLib\Filesystem\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxFile.h">
       <Filter>xLib\Filesystem\Win</Filter>
@@ -697,6 +697,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxHandleT.h">
       <Filter>xLib\Common\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxVolume.h">
+      <Filter>xLib\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Net\CxGeoIp.h">
+      <Filter>xLib\Net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

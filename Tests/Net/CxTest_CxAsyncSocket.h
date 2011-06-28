@@ -50,10 +50,10 @@ BOOL CxTest_CxAsyncSocket::bUnit() {
 	//////[FUNCTION_NAME]
 	////{
 	////	tString sTestData[][2] = {
-	////		{_T("TEST_STRING_1"),		 _T("MUST_BE_1")},
-	////		{_T("TEST_STRING_2"),		 _T("MUST_BE_2")},
-	////		{_T("TEST_STRING_3"),		 _T("MUST_BE_3")},
-	////		{_T("TEST_STRING_4"),		 _T("MUST_BE_4")}
+	////		{xT("TEST_STRING_1"),		 xT("MUST_BE_1")},
+	////		{xT("TEST_STRING_2"),		 xT("MUST_BE_2")},
+	////		{xT("TEST_STRING_3"),		 xT("MUST_BE_3")},
+	////		{xT("TEST_STRING_4"),		 xT("MUST_BE_4")}
 	////	};
 
 	////	for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {

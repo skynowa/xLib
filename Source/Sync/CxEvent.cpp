@@ -18,14 +18,15 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxEvent (�����������)
+//DONE: CxEvent
 CxEvent::CxEvent() :
     _m_hEvent()
 {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxEvent (����������)
+//DONE: ~CxEvent
+/*virtual*/
 CxEvent::~CxEvent() {
 
 }
@@ -51,11 +52,11 @@ CxEvent::bCreate(
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateEvent(pcsaAttributes, cbManualReset, cbInitialState, csName.c_str());
+    hRes = ::CreateEvent(pcsaAttributes, cbManualReset, cbInitialState, CxMacros::pcszAsCString(csName));
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-    ////--_m_hEvent = hRes;
     _m_hEvent.bSet(hRes);
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -72,12 +73,11 @@ CxEvent::bOpen(
 
     HANDLE hRes = NULL;
 
-    /*EVENT_MODIFY_STATE, EVENT_ALL_ACCESS, EVENT_MODIFY_STATE*/
     hRes = ::OpenEvent(culAccess, cbInheritHandle, csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
-    ////--_m_hEvent = hRes;
     _m_hEvent.bSet(hRes);
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -139,7 +139,7 @@ CxEvent::bWait(
     return (WAIT_OBJECT_0 == ulRes);
 }
 //---------------------------------------------------------------------------
-//DONE: bIsSignaled (�������� ���������)
+//DONE: bIsSignaled (is signaled)
 BOOL
 CxEvent::bIsSignaled() const {
     /*DEBUG*/// n/a
