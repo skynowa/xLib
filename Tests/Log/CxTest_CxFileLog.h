@@ -62,7 +62,7 @@ CxTest_CxFileLog::bUnit() {
     //--------------------------------------------------
     //bWrite
     {
-        for (size_t i = 0; i < 100; ++ i) {
+        for (size_t i = 0; i < 10; ++ i) {
             m_bRes = flLog.bWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
             xASSERT(FALSE != m_bRes);
             xASSERT(0L    <  CxStdioFile::liGetSize( flLog.sGetFilePath()) );

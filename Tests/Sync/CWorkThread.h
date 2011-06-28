@@ -26,7 +26,7 @@ class CWorkThread :
 	public:
 		size_t       m_uiIndex;
 
-				     CWorkThread(BOOL bIsPaused, BOOL bAutoDelete);
+				     CWorkThread(BOOL bAutoDelete);
 		virtual     ~CWorkThread();
 
 	protected:
@@ -48,8 +48,8 @@ class CWorkThread :
 
 //---------------------------------------------------------------------------
 //TODO: CWorkThread
-CWorkThread::CWorkThread(BOOL bIsPaused, BOOL bAutoDelete) :
-	CxThread (bIsPaused, bAutoDelete),
+CWorkThread::CWorkThread(BOOL bAutoDelete) :
+	CxThread (bAutoDelete),
 	m_uiIndex(0),
 	_m_clLog (FALSE)
 {
@@ -70,27 +70,22 @@ CWorkThread::~CWorkThread() {
 //---------------------------------------------------------------------------
 //TODO: uiOnRun
 UINT CWorkThread::uiOnRun(VOID *pData) {
-	/*LOG*/_m_clLog.bWrite(_T("Start thread: #%i\n"), m_uiIndex);
+	//xTRACEV(xT("Start thread: #%i\n"), m_uiIndex);
 
 	UINT uiRes = 0;
 	BOOL bRes  = FALSE;
 
-	for (INT i = 0; i < /**piParam*/2; i ++, uiRes ++) {
-		//-------------------------------------
-		//�� ���� �� ����� ��� ���������������
+	for (size_t i = 0; i < /**piParam*/10; ++ i, ++ uiRes) {
 		bRes = bIsTimeToExit();
 		xCHECK_DO(TRUE == bRes, break);
 
-
-		//-------------------------------------
-		//������� ���
-		for (int i = 0; i < 2; i ++) {
-			/*LOG*/_m_clLog.bWrite(_T("*\n"));
+		for (int i = 0; i < 20; i ++) {
+			//xTRACEV(xT("*\n"));
 			::Sleep(1000);
 		}
 	}
 
-	/*LOG*/_m_clLog.bWrite(_T("End thread: #%i\n"), m_uiIndex);
+	//xTRACEV(xT("End thread: #%i\n"), m_uiIndex);
 
 	return uiRes;
 }

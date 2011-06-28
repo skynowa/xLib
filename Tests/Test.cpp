@@ -85,7 +85,7 @@
 #include "Net/CxTest_CxTcpClientSocket.h"
 #include "Net/CxTest_CxTcpServerSocket.h"
 #include "Net/CxTest_CxHttpClient.h"
-#include "Net/CxTest_CxGeoIp.h"
+////#include "Net/CxTest_CxGeoIp.h"
 
 //Patterns
 #include "Patterns/CxTest_CxSingleton.h"
@@ -105,6 +105,7 @@
 	#include "Sync/CxTest_CxEvent.h"
     #include "Sync/CxTest_CxMutex.h"
     #include "Sync/CxTest_CxAutoMutex.h"
+    #include "Sync/CxTest_CxSleeper.h"
 #elif defined(xOS_LINUX)
 
 #endif
@@ -145,14 +146,12 @@ _tmain(
 
     //--------------------------------------------------
     //settings
-    const ULONGLONG cullTimesForAll    = 1;
-    const ULONGLONG cullTimesForSingle = 1;
+    const ULONGLONG cullTimesForAll    = 100000000;
+    const ULONGLONG cullTimesForSingle = 1000;
 
     BOOL bRes = FALSE;
 
     std::vector<CxTest *> vptTests;
-
-	vptTests.push_back( new CxTest_CxFileLog );
 
     //--------------------------------------------------
     //Common
@@ -225,9 +224,7 @@ _tmain(
 
     //--------------------------------------------------
     //Log
-	#if xTODO
-
-	#endif
+	vptTests.push_back( new CxTest_CxFileLog );
 
     //--------------------------------------------------
     //Net
@@ -241,7 +238,7 @@ _tmain(
     ////vptTests.push_back( new CxTest_CxTcpClientSocket );
     ////vptTests.push_back( new CxTest_CxTcpServerSocket );
     vptTests.push_back( new CxTest_CxHttpClient );
-    vptTests.push_back( new CxTest_CxGeoIp );
+    ////vptTests.push_back( new CxTest_CxGeoIp );
 
     //--------------------------------------------------
     //Patterns
@@ -263,6 +260,7 @@ _tmain(
     vptTests.push_back( new CxTest_CxEvent );
     vptTests.push_back( new CxTest_CxMutex );
     vptTests.push_back( new CxTest_CxAutoMutex );
+    vptTests.push_back( new CxTest_CxSleeper );
     #elif defined(xOS_LINUX)
 
     #endif

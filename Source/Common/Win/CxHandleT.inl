@@ -79,20 +79,19 @@ CxHandleT<hvTag>::operator = (
 
 	//Try m_Handle.Attach(other.Detach(), if you got an assertion here.
 
-	if (this->_m_hHandle != &chHandle) {
-		//TODO:
-		_m_bRes = bIsValid();
-		if (TRUE == _m_bRes) {
+	xCHECK_RET(this->_m_hHandle == &chHandle, *this);
 
-			_m_bRes = bClose();
-			if (FALSE == _m_bRes) {
-				/*DEBUG*/xASSERT(FALSE);
-			}
+	//TODO:
+	_m_bRes = bIsValid();
+	if (TRUE == _m_bRes) {
+    	_m_bRes = bClose();
+		if (FALSE == _m_bRes) {
+			/*DEBUG*/xASSERT(FALSE);
 		}
-
-		_m_hHandle = chHandle;
 	}
 
+	_m_hHandle = chHandle;
+	
 	return *this;
 }
 //---------------------------------------------------------------------------
@@ -106,21 +105,21 @@ CxHandleT<hvTag>::operator = (
 	/*DEBUG*/xASSERT_DO(FALSE == bIsValid(), FailValue::get());
 	/*DEBUG*///CxHandleT - n/a
 
-	if (this != &chHandle) {
-		//TODO:
-		_m_bRes = bIsValid();
-		if (TRUE == _m_bRes) {
+	xCHECK_RET(this == &chHandle, *this);
 
-			_m_bRes = bClose();
-			if (FALSE == _m_bRes) {
-				/*DEBUG*/xASSERT(FALSE);
-			}
+	//TODO:
+	_m_bRes = bIsValid();
+	if (TRUE == _m_bRes) {
+
+		_m_bRes = bClose();
+		if (FALSE == _m_bRes) {
+			/*DEBUG*/xASSERT(FALSE);
 		}
-
-		_m_hHandle = chHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
-		/*DEBUG*/xASSERT_RET(FailValue::get() != _m_hHandle, FailValue::get());
 	}
 
+	_m_hHandle = chHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
+	/*DEBUG*/xASSERT_RET(FailValue::get() != _m_hHandle, FailValue::get());
+    
 	return *this;
 }
 //---------------------------------------------------------------------------
@@ -161,43 +160,16 @@ BOOL
 CxHandleT<hvTag>::bIsValid() const {
 	/*DEBUG*///n/a
 
-	//0XCDCDCDCD - Created but not initialised
-	//0XDDDDDDDD - Deleted
-	//0XFEEEFEEE - Freed memory set by NT's heap manager
-	//0XCCCCCCCC - Uninitialized locals in VC6 when you compile w/ /GZ
-	//0XABABABAB - Memory following a block allocated by LocalAlloc()
+	BOOL bCond1 = (reinterpret_cast<HANDLE>(0xCDCDCDCD) != _m_hHandle); //Created but not initialised
+	BOOL bCond2 = (reinterpret_cast<HANDLE>(0xCCCCCCCC) != _m_hHandle);	//Uninitialized locals in VC6 when you compile w/ /GZ
+	BOOL bCond3 = (reinterpret_cast<HANDLE>(0xBAADF00D) != _m_hHandle);	//indicate an uninitialised variable
+	BOOL bCond4 = (reinterpret_cast<HANDLE>(0xFDFDFDFD) != _m_hHandle);	//No man's land (normally outside of a process)
+	BOOL bCond5 = (reinterpret_cast<HANDLE>(0xFEEEFEEE) != _m_hHandle);	//Freed memory set by NT's heap manager
+	BOOL bCond6 = (reinterpret_cast<HANDLE>(0xDDDDDDDD) != _m_hHandle);	//Deleted
+	BOOL bCond7 = (FailValue::get()                     != _m_hHandle);
 
-
-	//0xFDFDFDFD	No man's land (normally outside of a process)
-	//0xDDDDDDDD	Freed memory
-	//0xCDCDCDCD	Uninitialized (global)
-	//0xCCCCCCCC	Uninitialized locals (on the stack)
-
-	/*
-	There are a few other special codes to look out for as well -
-	values close to 0xCDCDCDCD, 0xCCCCCCCC or 0xBAADF00D indicate an uninitialised variable,
-	while values close to 0xDDDDDDDD and 0xFEEEFEEE indicate recently deleted variables.
-	If you see these in a pointer, it doesn't mean that the pointer is pointing
-	to uninitialised or deleted memory - it means that the pointer itself is uninitialised
-	or has been deleted. The other one to watch out for is 0xFDFDFDFD - it can indicate
-	that you're reading past the beginning or end of a buffer.
-	*/
-
-	BOOL bCond1 = (reinterpret_cast<HANDLE>(3452816845UL) != _m_hHandle);	//0XCDCDCDCD
-	BOOL bCond2 = (reinterpret_cast<HANDLE>(3435973836UL) != _m_hHandle);	//0xCCCCCCCC
-	BOOL bCond3 = (reinterpret_cast<HANDLE>(3131961357UL) != _m_hHandle);	//0xBAADF00D
-	BOOL bCond4 = (reinterpret_cast<HANDLE>(4261281277UL) != _m_hHandle);	//0xFDFDFDFD
-	BOOL bCond5 = (reinterpret_cast<HANDLE>(4277075694UL) != _m_hHandle);	//0XFEEEFEEE
-	BOOL bCond6 = (reinterpret_cast<HANDLE>(3722304989UL) != _m_hHandle);	//0XDDDDDDDD
-	BOOL bCond7 = (FailValue::get()                       != _m_hHandle);	//hFailValueT
-
-	return (TRUE == bCond1) &&
-		   (TRUE == bCond2) &&
-		   (TRUE == bCond3) &&
-		   (TRUE == bCond4) &&
-		   (TRUE == bCond5) &&
-		   (TRUE == bCond6) &&
-		   (TRUE == bCond7);
+	return (TRUE == bCond1) && (TRUE == bCond2) && (TRUE == bCond3) && (TRUE == bCond4) && 
+           (TRUE == bCond5) && (TRUE == bCond6) && (TRUE == bCond7);
 }
 //---------------------------------------------------------------------------
 //DONE: bAttach ()
@@ -258,13 +230,13 @@ BOOL
 CxHandleT<hvTag>::bClose() {
 	/*DEBUG*/// n/a
 
-	if (FALSE != bIsValid()) {
-		_m_bRes = ::CloseHandle(_m_hHandle);
-		/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+	xCHECK_RET(FALSE == bIsValid(), TRUE);
 
-		_m_hHandle = FailValue::get();
-	}
+	_m_bRes = ::CloseHandle(_m_hHandle);
+	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
+	_m_hHandle = FailValue::get();
+    
 	return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -374,7 +346,7 @@ CxHandleT<hvTag>::hDuplicate(
 //DONE: static
 template<EHandleValue hvTag>
 const HANDLE
-CxHandleT<hvTag>::_ms_chCurrProcessHandle = static_cast<HANDLE>( - 1 );
+CxHandleT<hvTag>::_ms_chCurrProcessHandle = (HANDLE)- 1;
 //---------------------------------------------------------------------------
 //DONE: hGetCurrent (Retrieves a pseudo handle for the current process)
 template<EHandleValue hvTag>
@@ -392,7 +364,7 @@ CxHandleT<hvTag>::hGetCurrentProcess() {
 	return hRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsValid (�������� ���������� ������)
+//DONE: bIsValid (is valid)
 template<EHandleValue hvTag>
 /*static*/
 BOOL

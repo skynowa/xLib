@@ -36,7 +36,6 @@
 //---------------------------------------------------------------------------
 //DONE: CxThread
 CxThread::CxThread(
-    const BOOL cbIsPaused,
     const BOOL cbIsAutoDelete
 ) :
     _m_bRes                 (FALSE),
@@ -55,8 +54,7 @@ CxThread::CxThread(
     //flags
     _m_bIsCreated           (FALSE),
     _m_bIsRunning           (FALSE),
-    _m_bIsPaused            (cbIsPaused/*TRUE == bIsPaused ? CREATE_SUSPENDED : 0*/),
-    /*_m_bIsSleeping*/// n/a
+    //--_m_bIsPaused            (FALSE/*TRUE == bIsPaused ? CREATE_SUSPENDED : 0*/),
     /*_m_bIsExited*///   n/a
 
     //
@@ -103,7 +101,8 @@ CxThread::~CxThread() {
 //DONE: bCreate (creation)
 BOOL
 CxThread::bCreate(
-    const UINT  cuiStackSize,
+    const BOOL cbIsPaused, 
+    const UINT cuiStackSize,
     VOID       *pvParam
 )
 {
@@ -114,14 +113,15 @@ CxThread::bCreate(
 
     HANDLE hRes = NULL;
 
-    _m_pvParam = pvParam;
+    //--_m_bIsPaused = cbIsPaused/*TRUE == bIsPaused ? CREATE_SUSPENDED : 0*/,
+    _m_pvParam   = pvParam;
 
     //-------------------------------------
     //_m_evStarter
     _m_pevStarter = new CxEvent();
     /*DEBUG*/xASSERT_RET(NULL != _m_pevStarter, FALSE);
 
-    _m_bRes = _m_pevStarter->bCreate(NULL, TRUE, TRUE, NULL);
+    _m_bRes = _m_pevStarter->bCreate(NULL, TRUE, TRUE, xT(""));
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
 #if defined(_MT)
@@ -139,15 +139,16 @@ CxThread::bCreate(
     /*DEBUG*/xASSERT_RET(NULL != hRes,    FALSE);
     /*DEBUG*/xASSERT_RET(0    <  _m_ulID, FALSE);
 
-    _m_hThread.bSet(hRes);
+    _m_bRes = _m_hThread.bSet(hRes);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     //-------------------------------------
     //_m_evPause
-    _m_bRes = _m_evPause.bCreate(NULL, FALSE, FALSE, NULL);      //_m_bIsPaused
+    _m_bRes = _m_evPause.bCreate(NULL, TRUE, TRUE, xT(""));      
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    _m_bRes = _m_evExit.bCreate(NULL, FALSE, FALSE, NULL);
+    _m_bRes = _m_evExit.bCreate(NULL, TRUE, TRUE, xT(""));
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
@@ -155,12 +156,11 @@ CxThread::bCreate(
     _m_bIsCreated = TRUE;
     _m_bIsRunning = TRUE;
     /*_m_bIsPaused*///    n/a
-    if (TRUE == _m_bIsPaused) {
+    if (TRUE == cbIsPaused) {
         //set flag - "pause"
         _m_bRes = _m_evPause.bSet();
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     }
-    /*_m_bIsSleeping*///  n/a
     /*_m_bIsExited*///    n/a
 
     //-------------------------------------
@@ -176,7 +176,7 @@ BOOL
 CxThread::bResume() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    _m_bRes = _m_evPause.bSet();
+    _m_bRes = _m_evPause.bReset();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
@@ -184,7 +184,6 @@ CxThread::bResume() {
     /*_m_bIsCreated*///   n/a
     /*_m_bIsRunning*///   n/a
     /*_m_bIsPaused*///    n/a
-    /*_m_bIsSleeping*///  n/a
     /*_m_bIsExited*///    n/a
 
     return TRUE;
@@ -195,7 +194,7 @@ BOOL
 CxThread::bPause() {
     /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_hThread.bIsValid(), CxString::lexical_cast(_m_hThread.hGet()).c_str(), FALSE);
 
-    _m_bRes = _m_evPause.bReset();
+    _m_bRes = _m_evPause.bSet();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
@@ -203,7 +202,6 @@ CxThread::bPause() {
     /*_m_bIsCreated*///   n/a
     /*_m_bIsRunning*///   n/a
     /*_m_bIsPaused*///    n/a
-    /*_m_bIsSleeping*///  n/a
     /*_m_bIsExited*///    n/a
 
     return TRUE;
@@ -227,7 +225,6 @@ CxThread::bExit(
     /*_m_bIsCreated*///  n/a
     /*_m_bIsRunning*///  n/a
     /*_m_bIsPaused*/    xCHECK_DO(TRUE == bIsPaused(),   bResume()       ); //если поток приостановленный (bPause) - возобновляем
-    /*_m_bIsSleeping*/    xCHECK_DO(TRUE == bIsSleeping(), bSleeperWakeUp());    //если поток спит             (bSleep) - будим
                                                                             //если ожидает чего-то
     //-------------------------------------
     //TODO: waiting oneself
@@ -256,8 +253,9 @@ CxThread::bKill(
         ulRes = ulGetExitCode();
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
-        _m_bRes = bSleep(_m_culStillActiveTimeout);
-        /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, break);
+        ////_m_bRes = ::Sleep(_m_culStillActiveTimeout);
+        /////*DEBUG*/xASSERT_DO(FALSE != _m_bRes, break);
+        ::Sleep(_m_culStillActiveTimeout);
     }
 
     //-------------------------------------
@@ -346,16 +344,7 @@ BOOL
 CxThread::bIsPaused() const {
     /*DEBUG*/// _m_hThread - n/a
 
-    return (FALSE == _m_evPause.bIsSignaled()) && (FALSE != _m_hThread.bIsValid());
-    ////return !_m_evPause.bIsSignaled() && (FALSE != _m_hThread.bIsValid());
-}
-//---------------------------------------------------------------------------
-//DONE: bIsSleeping (is sleeping)
-BOOL
-CxThread::bIsSleeping() const {
-    /*DEBUG*/// _m_hThread - n/a
-
-    return _m_slSleeper.bIsSleeping() && (FALSE != _m_hThread.bIsValid());
+    return _m_evPause.bIsSignaled() && (FALSE != _m_hThread.bIsValid());
 }
 //---------------------------------------------------------------------------
 //DONE: bIsExited (is set flag "exit")
@@ -363,7 +352,7 @@ BOOL
 CxThread::bIsExited() const {
     /*DEBUG*/// _m_hThread - n/a
 
-    return _m_evExit.bIsSignaled() && (FALSE != _m_hThread.bIsValid());
+    return !_m_evExit.bIsSignaled() && (FALSE != _m_hThread.bIsValid());
 }
 //---------------------------------------------------------------------------
 
@@ -934,56 +923,6 @@ CxThread::bYield() const {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSleep (Suspends the execution of the current thread until the time-out interval elapses)
-BOOL
-CxThread::bSleep(
-    const ULONG culTimeout
-)
-{
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-    /*DEBUG*///ulTimeout - n/a
-
-    //-------------------------------------
-    //flags
-    /*_m_bIsCreated*///   n/a
-    /*_m_bIsRunning*///   n/a
-    /*_m_bIsPaused*///    n/a
-    /*_m_bIsSleeping*///  n/a
-    /*_m_bIsExited*///    n/a
-
-    _m_bRes = _m_slSleeper.bSleep(culTimeout);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-
-    //-------------------------------------
-    //flags
-    /*_m_bIsCreated*///   n/a
-    /*_m_bIsRunning*///   n/a
-    /*_m_bIsPaused*///    n/a
-    /*_m_bIsSleeping*///  n/a
-    /*_m_bIsExited*///    n/a
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//DONE: bSleeperWakeUp (interrupting bSleep - wake up)
-BOOL
-CxThread::bSleeperWakeUp() {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-
-    _m_bRes = _m_slSleeper.bWakeUp();
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-
-    //-------------------------------------
-    //flags
-    /*_m_bIsCreated*///   n/a
-    /*_m_bIsRunning*///   n/a
-    /*_m_bIsPaused*///    n/a
-    /*_m_bIsSleeping*///  n/a
-    /*_m_bIsExited*///    n/a
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
 //DONE: bIsTimeToExit (is need to exit from thread)
 BOOL
 CxThread::bIsTimeToExit() {
@@ -1118,7 +1057,6 @@ CxThread::_bWaitResumption() {
     /*_m_bIsCreated*///   n/a
     /*_m_bIsRunning*///   n/a
     /*_m_bIsPaused*///    n/a
-    /*_m_bIsSleeping*///  n/a
     /*_m_bIsExited*///    n/a
 
     ulRes = ::WaitForSingleObject(_m_evPause.hGetHandle(), INFINITE);
@@ -1149,7 +1087,6 @@ CxThread::_vSetStatesDefault() {
     _m_bIsCreated  = FALSE;
     _m_bIsRunning  = FALSE;
     /*_m_bIsPaused*///   n/a
-    /*_m_bIsSleeping*/// n/a
     /*_m_bIsExited*///   n/a
 }
 //---------------------------------------------------------------------------

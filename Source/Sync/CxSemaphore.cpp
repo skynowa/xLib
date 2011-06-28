@@ -55,7 +55,7 @@ CxSemaphore::bCreate(
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateSemaphore(pcsaAttributes, cliInitialCount, cliMaxCount, csName.c_str());
+    hRes = ::CreateSemaphore(pcsaAttributes, cliInitialCount, cliMaxCount, CxMacros::pcszAsCString(csName));
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     _m_hSemaphore.bSet(hRes);

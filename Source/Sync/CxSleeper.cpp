@@ -24,7 +24,7 @@ CxSleeper::CxSleeper() :
 {
     BOOL bRes = FALSE;
 
-    bRes = _m_objEvent.bCreate(NULL, FALSE, FALSE, NULL);
+    bRes = _m_objEvent.bCreate(NULL, FALSE, FALSE, xT(""));
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------

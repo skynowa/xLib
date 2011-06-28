@@ -31,40 +31,40 @@ class CxTest_CxSleeper :
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSleeper (constructor)
+//DONE: CxTest_CxSleeper
 CxTest_CxSleeper::CxTest_CxSleeper() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSleeper (destructor)
+//DONE: ~CxTest_CxSleeper
 CxTest_CxSleeper::~CxTest_CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
+//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSleeper::bUnit() {
-	BOOL bRes = FALSE;
+	CxSleeper objSleeper;
 
-	{
-		CxSleeper objSleeper;
+    m_bRes = objSleeper.bIsSleeping();
+    xASSERT(FALSE == m_bRes);
 
-		bRes = objSleeper.bIsSleeping();
-		xASSERT(FALSE == bRes);
+	for (size_t i = 0; i < 10; ++ i) {
+        m_bRes = objSleeper.bSleep(10);
+        xASSERT(FALSE != m_bRes);
 
-		for (INT i = 0; i < 10000; i ++) {
-			std::cout << "Start sleeping....." << std::endl;
-			objSleeper.bSleep(200);
+		m_bRes = objSleeper.bIsSleeping();
+		xASSERT(FALSE == m_bRes);
 
-			bRes = objSleeper.bIsSleeping();
-			xASSERT(FALSE == bRes);
-		}
+        m_bRes = objSleeper.bIsSleeping();
+		xASSERT(FALSE == m_bRes);
 
-		std::cout << "Stop sleeping"       << std::endl;
+        #if xTODO
+            m_bRes = objSleeper.bWakeUp();
+	        //xASSERT(FALSE != m_bRes);
+        #endif
 	}
-
-	//bIsSleeping
 
     return TRUE;
 }

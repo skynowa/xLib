@@ -65,7 +65,7 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 /*virtual*/
 BOOL
 CxTest_CxSemaphore::bUnit() {
-	g_bRes = m_Semaphore.bCreate(NULL, 4, 2048, NULL);
+	g_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));
 	xASSERT(FALSE != g_bRes);
 
 	if (NULL == _beginthreadex(0, 0, &vTest, 0, NULL, NULL)) {

@@ -13,7 +13,7 @@
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/Win/CxDrive.h>
+#include <xLib/Filesystem/CxVolume.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 
@@ -946,7 +946,7 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
     //-------------------------------------
     //check for enough space
     ULONGLONG ullTotalFreeBytes = 0;
-    bRes = CxDrive::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
+    bRes = CxVolume::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
 
     xCHECK_DO((ULONGLONG)CxFile::llGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return TRUE);
 

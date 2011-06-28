@@ -21,7 +21,7 @@
 
 #include <xLib/Common/CxAutoMallocT.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/Win/CxDrive.h>
+#include <xLib/Filesystem/CxVolume.h>
 //---------------------------------------------------------------------------
 BOOL
 bGetUsbInfo(
@@ -80,8 +80,8 @@ bGetUsbInfo(
 
 		//-------------------------------------
 		//���������� ��� MountPoitName - �
-		tString sMountPointNameFromLetter     = CxDrive::sGetVolumeNameForVolumeMountPoint(csDrive);
-		tString sMountPointNameFromDevicePath = CxDrive::sGetVolumeNameForVolumeMountPoint(tString(diddDeviceInterfaceDetailData.pGetPtr()->DevicePath));
+		tString sMountPointNameFromLetter     = CxVolume::sGetVolumeNameForVolumeMountPoint(csDrive);
+		tString sMountPointNameFromDevicePath = CxVolume::sGetVolumeNameForVolumeMountPoint(tString(diddDeviceInterfaceDetailData.pGetPtr()->DevicePath));
 		if (sMountPointNameFromLetter != sMountPointNameFromDevicePath) {
 			continue;
 		}

@@ -43,13 +43,6 @@ CxTest_CxVolume::~CxTest_CxVolume() {
 /*virtual*/
 BOOL
 CxTest_CxVolume::bUnit() {
-    #if xCAN_REMOVE
-        const tString  g_csFilePath                   = xT("C:\\Test.txt");
-        const tString  g_csNewFilePath                = xT("C:\\New.Test.txt");
-        const tString  g_csBakFilePath                = xT("C:\\Test_Static.txt.bak");
-        const tString  g_csFilePathSt                 = xT("C:\\Test_Static.txt");
-    #endif
-
 	//-------------------------------------
 	//bIsReady
     {
@@ -170,7 +163,7 @@ CxTest_CxVolume::bUnit() {
             ULONGLONG ullTotal     = 0;
             ULONGLONG ullFree      = 0;
 
-            m_bRes = CxVolume::bGetFreeSpace(xT("/media/FLASH_4GB/xxx")/*CxConst::xSTR_EMPTY*/, &ullAvailable, &ullTotal, &ullFree);
+            m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
             xASSERT(FALSE != m_bRes);
             xASSERT(0     <  ullAvailable);
             xASSERT(0     <  ullTotal);
@@ -196,32 +189,40 @@ CxTest_CxVolume::bUnit() {
 
 	//-------------------------------------
 	//dtGetType
-    #if defined(xOS_WIN)
-        CxVolume::EType g_dtRes = CxVolume::dtGetType(g_csDrivePathWithoutSlash);
-    #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
-    #endif
+    {
+	    #if defined(xOS_WIN)
+	        const tString csVolumePath = xT("C:");
+	
+	        CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
+	        xASSERT(CxVolume::dtFixed == dtRes);
+	    #elif defined(xOS_LINUX)
+	        //TODO: xOS_LINUX
+	    #endif
+    }
 
 	//-------------------------------------
-	//dtGetType
-    #if defined(xOS_WIN)
-    	tString szVolumeName;
-        ULONG   ulVolumeSerialNumber     = 0;
-        ULONG   ulMaximumComponentLength = 0;
-        ULONG   ulFileSystemFlags        = 0;
-        tString sFileSystemName;
-
-        m_bRes = CxVolume::bGetInfo(
-                            g_csDrivePathWithoutSlash,
-                            &szVolumeName,
-                            &ulVolumeSerialNumber,
-                            &ulMaximumComponentLength,
-                            &ulFileSystemFlags,
-                            &sFileSystemName);
-        xASSERT(TRUE == m_bRes);
-    #elif defined(xOS_LINUX)
-        //TODO: xOS_LINUX
-    #endif
+	//bGetInfo
+    {
+	    #if defined(xOS_WIN)
+	        const tString csVolumePath = xT("C:");
+	    	tString szVolumeName;
+	        ULONG   ulVolumeSerialNumber     = 0;
+	        ULONG   ulMaximumComponentLength = 0;
+	        ULONG   ulFileSystemFlags        = 0;
+	        tString sFileSystemName;
+	
+	        m_bRes = CxVolume::bGetInfo(
+	                            csVolumePath,
+	                            &szVolumeName,
+	                            &ulVolumeSerialNumber,
+	                            &ulMaximumComponentLength,
+	                            &ulFileSystemFlags,
+	                            &sFileSystemName);
+	        xASSERT(TRUE == m_bRes);
+	    #elif defined(xOS_LINUX)
+	        //TODO: xOS_LINUX
+	    #endif
+    }
 
 	//-------------------------------------
 	//bGetLogicalDrives

@@ -70,6 +70,15 @@ CxWaitableTimer::bOpen(
     /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
 
     HANDLE hRes = NULL;
+    
+//MinGW fix   
+#if !defined(OpenWaitableTimer)
+	#if defined(xINICODE)
+		#define OpenWaitableTimer OpenWaitableTimerW
+	#else
+		#define OpenWaitableTimer OpenWaitableTimerA
+	#endif
+#endif
 
     hRes = ::OpenWaitableTimer(culDesiredAccess, cbInheritHandle, csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);

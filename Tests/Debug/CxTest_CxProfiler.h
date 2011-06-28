@@ -71,8 +71,8 @@ CxTest_CxProfiler::bUnit() {
 		pfP.bStart();
 		xASSERT(FALSE != m_bRes);
 
-		for (size_t i = 0; i < 1000; ++ i) {
-			for (size_t j = 0; j < 1000; ++ j) {
+		for (size_t i = 0; i < 10; ++ i) {
+			for (size_t j = 0; j < 10; ++ j) {
 				size_t x = 0;
 
 				x++; --x; x = x / 3;
