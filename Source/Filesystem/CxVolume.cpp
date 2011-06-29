@@ -14,6 +14,12 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
+#if defined(xOS_WIN)
+
+#elif defined(xOS_LINUX)
+    #include <sys/mount.h>
+#endif
+
 
 /****************************************************************************
 *    public
@@ -97,11 +103,14 @@ BOOL
 CxVolume::bGetFreeSpace(
     const tString &csDirPath,
     ULONGLONG     *pullAvailable,   //for unprivileged users
-    ULONGLONG     *pullTotal,       //for unprivileged users
+    ULONGLONG     *pullTotal,
     ULONGLONG     *pullFree
 )
 {
-    //--/*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
+    /*DEBUG*/// csDirPath     - n/a
+    /*DEBUG*/// pullAvailable - n/a
+    /*DEBUG*/// pullTotal     - n/a
+    /*DEBUG*/// pullFree      - n/a
 
     //--------------------------------------------------
     //if csDirPath parameter is empty, uses the root of the current volume
@@ -122,18 +131,56 @@ CxVolume::bGetFreeSpace(
     bRes = ::GetDiskFreeSpaceEx(_sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    xCHECK_DO(NULL != pullAvailable, *pullAvailable = ullAvailable.QuadPart);
-    xCHECK_DO(NULL != pullTotal,     *pullTotal     = ullTotal.QuadPart);
-    xCHECK_DO(NULL != pullFree,      *pullFree      = ullFree.QuadPart);
+    xPTR_ASSIGN(pullAvailable, ullAvailable.QuadPart);
+    xPTR_ASSIGN(pullTotal,     ullTotal.QuadPart);
+    xPTR_ASSIGN(pullFree,      ullFree.QuadPart);
 #elif defined(xOS_LINUX)
-    struct statfs stfInfo = {0};
+    struct statfs64 stfInfo = {0};
 
-    INT iRes = statfs(_sDirPath.c_str(), &stfInfo);
+    INT iRes = statfs64(_sDirPath.c_str(), &stfInfo);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, _sDirPath, FALSE);
 
-    xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * (stfInfo.f_bsize / 1024ULL));
-    xPTR_ASSIGN(pullTotal,     stfInfo.f_blocks * (stfInfo.f_bsize / 1024ULL));
-    xPTR_ASSIGN(pullFree,      stfInfo.f_bfree  * (stfInfo.f_bsize / 1024ULL));
+    xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * stfInfo.f_bsize);
+    xPTR_ASSIGN(pullTotal,     stfInfo.f_blocks * stfInfo.f_bsize);
+    xPTR_ASSIGN(pullFree,      stfInfo.f_bfree  * stfInfo.f_bsize);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//TODO: bMount ()
+/*static*/
+BOOL
+CxVolume::bMount(
+    const tString &csSourcePath,
+    const tString &csDestPath
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDestPath.empty(),   FALSE);
+
+#if defined(xOS_WIN)
+    //TODO: bMount
+    #if xTODO
+        DWORD WNetAddConnection2(
+          __in  LPNETRESOURCE lpNetResource,
+          __in  LPCTSTR lpPassword,
+          __in  LPCTSTR lpUsername,
+          __in  DWORD dwFlags
+        );
+    #endif
+#elif defined(xOS_LINUX)
+    //TODO: bMount
+
+    #if xTODO
+        const tString  csFilesytemType = xT("");
+        const ULONG    culMountFlags   = 0;
+        const VOID    *pcvData         = NULL;
+
+        INT iRes = mount(csSourcePath.c_str(), csDestPath.c_str(), csFilesytemType.c_str(), culMountFlags, pcvData);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    #endif
+
 #endif
 
     return TRUE;

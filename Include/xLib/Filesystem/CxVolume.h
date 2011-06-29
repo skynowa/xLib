@@ -21,6 +21,7 @@ class CxVolume :
         static BOOL    bIsReady                         (const tString &csVolumePath);
         static BOOL    bIsEmpty                         (const tString &csVolumePath);
         static BOOL    bGetFreeSpace                    (const tString &csDirPath, ULONGLONG *pullAvailable, ULONGLONG *pullTotal, ULONGLONG *pullFree);
+        static BOOL    bMount                           (const tString &csSourcePath, const tString &csDestPath);
 
         //GetFileSystemType
     #if defined(xOS_WIN)
@@ -62,7 +63,6 @@ class CxVolume :
     #elif defined(xOS_LINUX)
 
     #endif
-
 
     private:
                        CxVolume                         ();

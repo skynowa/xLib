@@ -146,8 +146,8 @@ _tmain(
 
     //--------------------------------------------------
     //settings
-    const ULONGLONG cullTimesForAll    = 100000000;
-    const ULONGLONG cullTimesForSingle = 1000;
+    const ULONGLONG cullTimesForAll    = 1;
+    const ULONGLONG cullTimesForSingle = 1;
 
     BOOL bRes = FALSE;
 

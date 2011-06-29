@@ -37,10 +37,12 @@ class CxRandom :
         LONG             liNextLong   ();
         bool             bNextBoolean ();
         FLOAT            fNextFloat   ();
-        double           bNextDouble  ();
+        DOUBLE           bNextDouble  ();
         CHAR             chNextChar   ();
         CHAR             chNextFigure ();
-        double           dNextGaussian();
+        DOUBLE           dNextGaussian();
+
+        static tString   sGetString   ();
 
     protected:
         LONG             liNext       ();
