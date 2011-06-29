@@ -124,6 +124,17 @@ CxTest_CxRandom::bUnit() {
         //xASSERT
     }
 
+    //--------------------------------------------------
+    //sGetString
+    {
+        const size_t cuiStrSize = 10;
+
+        for (size_t i = 0; i < 10; ++ i) {
+            m_sRes = CxRandom::sGetString(cuiStrSize);
+            //xTRACEV(xT("i: %s"), m_sRes.c_str());
+        }
+    }
+
     return TRUE;
 }
 //---------------------------------------------------------------------------

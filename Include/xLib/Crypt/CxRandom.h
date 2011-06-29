@@ -42,7 +42,7 @@ class CxRandom :
         CHAR             chNextFigure ();
         DOUBLE           dNextGaussian();
 
-        static tString   sGetString   ();
+        static tString   sGetString   (const size_t cuiSize);
 
     protected:
         LONG             liNext       ();

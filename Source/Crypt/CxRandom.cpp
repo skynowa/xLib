@@ -155,12 +155,58 @@ CxRandom::dNextGaussian() {
 //TODO: sGetString (get random string)
 /*static*/
 tString
-CxRandom::sGetString() {
+CxRandom::sGetString(
+    const size_t cuiLength
+) 
+{
     /*DEBUG*/
 
+    const BOOL cbIsLetters = TRUE; 
+    const BOOL cbIsNumbers = TRUE; 
+    const BOOL cbIsSymbols = TRUE;
+
     tString sRes;
+    tString sAllPossible; 
 
+    if (TRUE == cbIsLetters) { 
+        for (INT i = 65; i <= 90; ++ i) {
+            sAllPossible.push_back(static_cast<TCHAR>(i) );
+            sAllPossible.push_back(static_cast<TCHAR>(i + 32) ); // add a lower case letter, too!
+        }
+    } 
+    
+    if (TRUE == cbIsNumbers) { 
+        for (INT i = 48; i <= 57; ++ i) {
+            sAllPossible.push_back( static_cast<TCHAR>(i) );
+        }
+    } 
+    
+    //ASCII values are scattered)
+    if (TRUE == cbIsSymbols) { 
+        for (INT i = 33; i <= 47; ++ i) {
+            sAllPossible.push_back( static_cast<TCHAR>(i) );
+        } 
+        
+        for (INT i = 58; i <= 64; ++ i) {
+            sAllPossible.push_back( static_cast<TCHAR>(i) );
+        } 
+        
+        for (INT i = 91; i <= 96; ++ i) {
+            sAllPossible.push_back( static_cast<TCHAR>(i) );
+        } 
+        
+        for (INT i = 123; i <= 126; ++ i) {
+            sAllPossible.push_back( static_cast<TCHAR>(i) );
+        }
+    }
 
+    // get the number of characters to use (used for rand())
+    const size_t cuiPossibilitiesNum = sAllPossible.length();
+    for (size_t i = 0; i < cuiLength; ++ i) {
+        sRes += sAllPossible[ xRANDOM(cuiPossibilitiesNum) ];
+    }
+ 
+    //std::random_shuffle(sRes.begin(), sRes.end());
 
     return sRes;
 }
