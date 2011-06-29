@@ -41,8 +41,8 @@
 //Crypt
 #include "Crypt/CxTest_CxBase64.h"
 #include "Crypt/CxTest_CxCrc32.h"
-#include "Crypt/CxTest_CxRandom.h"
 #include "Crypt/CxTest_CxBlowfish.h"
+#include "Crypt/CxTest_CxRandom.h"
 
 //Db
 #include "Db/CxTest_CxConnectionString.h"
@@ -67,7 +67,7 @@
 
 #if defined(xOS_WIN)
     #include "Filesystem/Win/CxTest_CxFile.h"
-    ////#include "Filesystem/Win/CxTest_CxIni.h"
+    #include "Filesystem/Win/CxTest_CxIni.h"
 #elif defined(xOS_LINUX)
 
 #endif
@@ -190,6 +190,9 @@ _tmain(
         vptTests.push_back( new CxTest_CxCrc32 );
         vptTests.push_back( new CxTest_CxBlowfish );
     #endif
+    
+    vptTests.push_back( new CxTest_CxRandom );
+
 
     //--------------------------------------------------
     //Db
