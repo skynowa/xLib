@@ -36,8 +36,10 @@ CxProfiler::CxProfiler(
 //---------------------------------------------------------------------------
 //DONE: ~CxProfiler
 CxProfiler::~CxProfiler() {
-    _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    if (false == _flLog.sGetFilePath().empty()) {
+        _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
+        /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    }
 }
 //---------------------------------------------------------------------------
 //DONE: bSetLogPath (set log path)

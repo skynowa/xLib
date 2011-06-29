@@ -14,8 +14,7 @@
 #if defined(xOS_WIN)
 
 #elif defined(xOS_LINUX)
-    #include <dlfcn.h>
-    // LDFLAGS='-ldl' make install
+    #include <dlfcn.h>  //lib: -ldl
 #endif
 
 
@@ -25,14 +24,14 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxDll (constructor)
+//DONE: CxDll
 CxDll::CxDll() :
     _m_bRes(FALSE),
     _m_hDLL(NULL)
 {
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxDll (destructor)
+//DONE: ~CxDll
 /*virtual*/
 CxDll::~CxDll() {
     _m_bRes = bFree();
@@ -86,7 +85,7 @@ CxDll::fpGetProcAddress(
 #elif defined(xOS_LINUX)
     CHAR *pszError = NULL;
 
-    pszError = dlerror();    /* Clear any existing error */
+    pszError = dlerror();
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
 
     fpRes = dlsym(_m_hDLL, csProcName.c_str());

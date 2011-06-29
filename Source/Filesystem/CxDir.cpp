@@ -280,7 +280,7 @@ CxDir::bCreate(
     bRes = ::CreateDirectory(csDirPath.c_str(), NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = mkdir(csDirPath.c_str(), 0777);
+    INT iRes = mkdir(csDirPath.c_str(), 0755);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 

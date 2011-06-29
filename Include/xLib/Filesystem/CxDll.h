@@ -17,15 +17,6 @@
 class CxDll :
     public CxNonCopyable
 {
-    private:
-        BOOL     _m_bRes;
-
-    #if defined(xOS_WIN)
-        HMODULE  _m_hDLL;
-    #elif defined(xOS_LINUX)
-        VOID    *_m_hDLL;
-    #endif
-
     public:
                  CxDll           ();
         virtual ~CxDll           ();
@@ -34,6 +25,15 @@ class CxDll :
         BOOL     bLoad           (const tString &csDllPath);
         VOID *   fpGetProcAddress(const tString &csProcName);
         BOOL     bFree           ();
+
+    private:
+        BOOL     _m_bRes;
+
+    #if defined(xOS_WIN)
+        HMODULE  _m_hDLL;
+    #elif defined(xOS_LINUX)
+        VOID    *_m_hDLL;
+    #endif
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxDllH

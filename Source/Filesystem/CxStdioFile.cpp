@@ -1290,6 +1290,8 @@ CxStdioFile::bTextWrite(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// csContent - n/a
 
+    //TODO: if csContent.empty()
+
     BOOL        bRes = FALSE;
     CxStdioFile sfFile;
 
@@ -1340,6 +1342,8 @@ CxStdioFile::bTextWrite(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cvecsContent - n/a
+
+    //TODO: if cvecsContent.empty()
 
     BOOL    bRes = FALSE;
     tString sFileContent;
@@ -1431,6 +1435,8 @@ CxStdioFile::bTextWrite(
     /*DEBUG*/xASSERT_RET(false == csSeparator.empty(), FALSE);
     /*DEBUG*/// cmapsFile - n/a
 
+    //TODO: if cmapsFile.empty()
+
     BOOL bRes = FALSE;
 
     CxStdioFile stdFile;
@@ -1518,6 +1524,8 @@ CxStdioFile::bBinWrite(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cusContent - n/a
+
+    //TODO: if cusContent.empty()
 
     BOOL        bRes = FALSE;
     CxStdioFile sfFile;
