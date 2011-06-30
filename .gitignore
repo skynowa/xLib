@@ -29,20 +29,20 @@ Library/C++Builder XE/Debug/
 Library/C++Builder XE/Release/
 
 
-##### Eclipse (win) #####
-Contrib/Eclipse (win)/Debug/
-Contrib/Eclipse (win)/Release/
+##### G++_win #####
+Contrib/G++_win/Debug/
+Contrib/G++_win/Release/
 
-Library/Eclipse (win)/Debug/
-Library/Eclipse (win)/Release/
+Library/G++_win/Debug/
+Library/G++_win/Release/
 
 
-##### Eclipse (linux) #####
-Contrib/Eclipse (linux)/Debug/
-Contrib/Eclipse (linux)/Release/
+##### G++_linux #####
+Contrib/G++_linux/Debug/
+Contrib/G++_linux/Release/
 
-Library/Eclipse (linux)/Debug/
-Library/Eclipse (linux)/Release/
+Library/G++_linux/Debug/
+Library/G++_linux/Release/
 
 
 ##### VC++ 2008 #####

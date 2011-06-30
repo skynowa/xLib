@@ -31,7 +31,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/Eclipse (linux)/Debug}</value>
+					<value>${workspace_loc:/xLib_test/Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
@@ -84,28 +84,22 @@
 		<link>
 			<name>Source</name>
 			<type>2</type>
-			<locationURI>$%7BxLib%7D/Source</locationURI>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Source</locationURI>
 		</link>
 		<link>
 			<name>TODO.txt</name>
 			<type>1</type>
-			<locationURI>$%7BxLib%7D/TODO.txt</locationURI>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/TODO.txt</locationURI>
 		</link>
 		<link>
 			<name>Test.cpp</name>
 			<type>1</type>
-			<location>/home/sergey/Libs/xLib/Tests/Test.cpp</location>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Tests/Test.cpp</locationURI>
 		</link>
 		<link>
 			<name>xLib</name>
 			<type>2</type>
-			<locationURI>$%7BxLib%7D/Include/xLib</locationURI>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Include/xLib</locationURI>
 		</link>
 	</linkedResources>
-	<variableList>
-		<variable>
-			<name>xLib</name>
-			<value>file:/home/user/Libs/xLib</value>
-		</variable>
-	</variableList>
 </projectDescription>
