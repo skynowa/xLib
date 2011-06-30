@@ -1,5 +1,10 @@
 /****************************************************************************
-*   tests for xLib
+* Class name:
+* Description: tests for xLib
+* File name:   Test.cpp
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
+* Created:     01.01.2011
 *
 *****************************************************************************/
 
@@ -84,7 +89,7 @@
 #include "Net/CxTest_CxDnsClient.h"
 #include "Net/CxTest_CxTcpClientSocket.h"
 #include "Net/CxTest_CxTcpServerSocket.h"
-#include "Net/CxTest_CxHttpClient.h"
+////#include "Net/CxTest_CxHttpClient.h"
 ////#include "Net/CxTest_CxGeoIp.h"
 
 //Patterns
@@ -123,6 +128,13 @@
     //TODO: test Units
 #elif defined(xOS_LINUX)
 
+#endif
+
+//static libs
+#if defined(xOS_WIN)
+
+#elif defined(xOS_LINUX)
+    //-lssl -lGeoIP -lmysqlclient
 #endif
 //---------------------------------------------------------------------------
 INT
@@ -190,7 +202,7 @@ _tmain(
         vptTests.push_back( new CxTest_CxCrc32 );
         vptTests.push_back( new CxTest_CxBlowfish );
     #endif
-    
+
     vptTests.push_back( new CxTest_CxRandom );
 
 
@@ -240,7 +252,7 @@ _tmain(
     vptTests.push_back( new CxTest_CxDnsClient );
     ////vptTests.push_back( new CxTest_CxTcpClientSocket );
     ////vptTests.push_back( new CxTest_CxTcpServerSocket );
-    vptTests.push_back( new CxTest_CxHttpClient );
+    ////vptTests.push_back( new CxTest_CxHttpClient );
     ////vptTests.push_back( new CxTest_CxGeoIp );
 
     //--------------------------------------------------

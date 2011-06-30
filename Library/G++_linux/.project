@@ -84,17 +84,17 @@
 		<link>
 			<name>Include</name>
 			<type>2</type>
-			<location>/home/sergey/Libs/xLib/Include</location>
+			<locationURI>PARENT-2-PROJECT_LOC/Include</locationURI>
 		</link>
 		<link>
 			<name>Source</name>
 			<type>2</type>
-			<location>/home/sergey/Libs/xLib/Source</location>
+			<locationURI>PARENT-2-PROJECT_LOC/Source</locationURI>
 		</link>
 		<link>
 			<name>TODO.txt</name>
 			<type>1</type>
-			<location>/home/sergey/Libs/xLib/TODO.txt</location>
+			<locationURI>PARENT-2-PROJECT_LOC/TODO.txt</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
