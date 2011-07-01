@@ -13,8 +13,14 @@
 #define xLib_Sync_CxSemaphoreH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+
+#if defined(xOS_WIN)
 #include <xLib/Common/Win/CxHandleT.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxSemaphore :
     public CxNonCopyable
 {
@@ -36,5 +42,8 @@ class CxSemaphore :
         LPSECURITY_ATTRIBUTES _m_psaAttributes;
         tString               _m_sName;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxSemaphoreH

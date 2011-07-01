@@ -20,6 +20,7 @@
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxPop3 :
     public CxNonCopyable
 {
@@ -63,6 +64,9 @@ class CxPop3 :
         ULONG             _ulMailsSum         (const tString &csServerAnswer);
         ULONG             _ulMailsSize        (const tString &csServerAnswer);
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxPop3H
 

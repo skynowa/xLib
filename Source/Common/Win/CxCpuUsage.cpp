@@ -16,16 +16,16 @@
 //        The cpu usage counter is of type PERF_100NSEC_TIMER_INV
 //        which as the following calculation:
 //
-//        Element        Value 
+//        Element        Value
 //        =======        ===========
-//        X            CounterData 
-//        Y            100NsTime 
+//        X            CounterData
+//        Y            100NsTime
 //        Data Size    8 Bytes
 //        Time base    100Ns
-//        Calculation 100*(1-(X1-X0)/(Y1-Y0)) 
+//        Calculation 100*(1-(X1-X0)/(Y1-Y0))
 //
-//      where the denominator (Y) represents the total elapsed time of the 
-//      sample interval and the numerator (X) represents the time during 
+//      where the denominator (Y) represents the total elapsed time of the
+//      sample interval and the numerator (X) represents the time during
 //      the interval when the monitored components were inactive.
 //
 //
@@ -44,6 +44,7 @@
 #include <xLib/Common/Win/CxCpuUsage.h>
 
 
+#if defined(xOS_WIN)
 #include <xVCL/xCommon.h>
 #include <ATLBASE.H>    // for CRegKey use
 
@@ -66,24 +67,24 @@
 //---------------------------------------------------------------------------
 //TODO: FUNCTION_NAME (COMMENTS)
 enum EPlarform {
-    WINNT,    
-    WIN2K_XP, 
-    WIN9X, 
+    WINNT,
+    WIN2K_XP,
+    WIN9X,
     UNKNOWN
 };
 
-EPlarform 
+EPlarform
 GetPlatform() {
     OSVERSIONINFO osvi = {};
     osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-    
+
     if (!GetVersionEx(&osvi))
         return UNKNOWN;
-        
+
     switch (osvi.dwPlatformId) {
         case VER_PLATFORM_WIN32_WINDOWS:
             return WIN9X;
-            
+
         case VER_PLATFORM_WIN32_NT:
             if (4 == osvi.dwMajorVersion) {
                 return WINNT;
@@ -91,7 +92,7 @@ GetPlatform() {
                 return WIN2K_XP;
             }
     }
-    
+
     return UNKNOWN;
 }
 //---------------------------------------------------------------------------
@@ -109,7 +110,7 @@ CxCpuUsage::~CxCpuUsage() {
 }
 //---------------------------------------------------------------------------
 //TODO: FUNCTION_NAME (COMMENTS)
-BOOL 
+BOOL
 CxCpuUsage::EnablePerformaceCounters(BOOL bEnable) {
     if (GetPlatform() != WIN2K_XP)
         return TRUE;
@@ -144,13 +145,13 @@ CxCpuUsage::EnablePerformaceCounters(BOOL bEnable) {
 //    sampling.
 //  Read the comment at the beginning of this file for the formula.
 //
-INT 
+INT
 CxCpuUsage::GetCpuUsage() {
     static EPlarform Platform = GetPlatform();
 
     if (m_bFirstTime)
         EnablePerformaceCounters();
-    
+
     // Cpu usage counter is 8 byte length.
     CxPerfCounters<LONGLONG> PerfCounters;
     TCHAR/*char*/ szInstance[256] = {0};
@@ -171,13 +172,13 @@ CxCpuUsage::GetCpuUsage() {
             dwObjectIndex = SYSTEM_OBJECT_INDEX;
             dwCpuUsageIndex = TOTAL_PROCESSOR_TIME_COUNTER_INDEX;
             break;
-            
+
         case WIN2K_XP:
             dwObjectIndex = PROCESSOR_OBJECT_INDEX;
             dwCpuUsageIndex = PROCESSOR_TIME_COUNTER_INDEX;
             wcscpy(szInstance, xT("_Total"));
             break;
-            
+
         default:
             return - 1;
     }
@@ -214,10 +215,10 @@ CxCpuUsage::GetCpuUsage() {
 }
 //---------------------------------------------------------------------------
 //TODO: - FUNCTION_NAME (COMMENTS)
-INT 
+INT
 CxCpuUsage::GetCpuUsage(LPCTSTR pProcessName) {
     static EPlarform Platform = GetPlatform();
-    
+
     if (m_bFirstTime)
         EnablePerformaceCounters();
 
@@ -260,10 +261,10 @@ CxCpuUsage::GetCpuUsage(LPCTSTR pProcessName) {
 }
 //---------------------------------------------------------------------------
 //TODO: - FUNCTION_NAME (COMMENTS)
-INT 
+INT
 CxCpuUsage::GetCpuUsage(DWORD dwProcessID) {
     static EPlarform Platform = GetPlatform();
-    
+
     if (m_bFirstTime)
         EnablePerformaceCounters();
 
@@ -300,8 +301,11 @@ CxCpuUsage::GetCpuUsage(DWORD dwProcessID) {
     CpuUsage = (INT) (a*100);
     if (CpuUsage < 0)
         return 0;
-        
+
     return CpuUsage;
 }
 //---------------------------------------------------------------------------
 
+#elif defined(xOS_LINUX)
+
+#endif

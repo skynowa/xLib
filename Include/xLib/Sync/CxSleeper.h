@@ -15,19 +15,21 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
-class CxSleeper :
-    public CxNonCopyable
-{
-    public:
-                 CxSleeper  ();
-        virtual ~CxSleeper  ();
+#if xTEMP_DISABLED
+    class CxSleeper :
+        public CxNonCopyable
+    {
+        public:
+                     CxSleeper  ();
+            virtual ~CxSleeper  ();
 
-        BOOL     bSleep     (const ULONG culTimeout) const;
-        BOOL     bWakeUp    () const;
-        BOOL     bIsSleeping() const;
+            BOOL     bSleep     (const ULONG culTimeout) const;
+            BOOL     bWakeUp    () const;
+            BOOL     bIsSleeping() const;
 
-    private:
-        CxEvent  _m_objEvent;
-};
+        private:
+            CxEvent  _m_objEvent;
+    };
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxSleeperH

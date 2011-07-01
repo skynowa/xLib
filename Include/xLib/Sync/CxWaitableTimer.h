@@ -13,8 +13,14 @@
 #define xLib_Sync_CxWaitableTimerH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Common/Win/CxHandleT.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxWaitableTimer  :
     public CxNonCopyable
 {
@@ -32,5 +38,8 @@ class CxWaitableTimer  :
     private:
         CxHandle _m_hWaitableTimer;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxWaitableTimerH

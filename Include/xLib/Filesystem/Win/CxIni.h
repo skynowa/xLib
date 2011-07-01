@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxIni :
     public CxNonCopyable
 {
@@ -64,5 +65,8 @@ class CxIni :
         BOOL             _m_bRes;
         tString          _m_sFilePath;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_Win_CxIniH

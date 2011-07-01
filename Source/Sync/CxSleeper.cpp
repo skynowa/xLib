@@ -12,6 +12,7 @@
 #include <xLib/Sync/CxSleeper.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -71,3 +72,6 @@ CxSleeper::bIsSleeping() const {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

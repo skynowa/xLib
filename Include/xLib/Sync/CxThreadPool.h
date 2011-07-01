@@ -24,6 +24,7 @@
 ////#include <boost\bind.hpp>
 ////#include <functional>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 template<class TaskT>
 class CxThreadPool :
     public CxThread
@@ -86,6 +87,9 @@ class CxThreadPool :
 };
 //---------------------------------------------------------------------------
 #include <Sync/CxThreadPool.inl>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxThreadPoolH
 

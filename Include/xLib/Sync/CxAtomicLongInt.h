@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxAtomicLongInt :
     public CxNonCopyable
 {
@@ -39,6 +40,9 @@ class CxAtomicLongInt :
     private:
         LONG             _m_liValue;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAtomicLongIntH
 

@@ -13,10 +13,16 @@
 #define xLib_Common_Win_CxShellH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <shellapi.h>
-#include <shlwapi.h>
-#include <shlobj.h>
+
+#if defined(xOS_WIN)
+    #include <shellapi.h>
+    #include <shlwapi.h>
+    #include <shlobj.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxShell :
     public CxNonCopyable
 {
@@ -123,13 +129,8 @@ class CxShell :
                        CxShell           ();
         virtual       ~CxShell           ();
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_Win_CxShellH
-
-
-
-
-
-
-#include <shlobj.h>
-

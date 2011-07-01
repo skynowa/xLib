@@ -13,8 +13,14 @@
 #define xLib_Log_CxWndLogH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Sync/CxCriticalSection.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Sync/CxCriticalSection.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxWndLog :
     public CxNonCopyable
 {
@@ -33,5 +39,8 @@ class CxWndLog :
            EWindowClass             _m_eWC;
            static CxCriticalSection _ms_csListBox;  //Mutex
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif

@@ -17,6 +17,7 @@
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxSmtp :
     public CxNonCopyable
 {
@@ -45,6 +46,9 @@ class CxSmtp :
         BOOL                _bCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/
         BOOL                _bIsError   (const std::string &csText);
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif
 

@@ -12,6 +12,7 @@
 #include <xLib/Sync/CxTls.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -89,3 +90,6 @@ CxTls::bSetValue(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

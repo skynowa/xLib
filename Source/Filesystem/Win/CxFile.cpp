@@ -15,7 +15,6 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxVolume.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 
 #if defined(xOS_WIN)
     #include <fstream>
@@ -26,9 +25,13 @@
     #include <sys/stat.h>
     #include <shlobj.h>
     #include <WinIoCtl.h>
+
+    #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 #elif defined(xOS_LINUX)
 
 #endif
+
+#if defined(xOS_WIN)
 //---------------------------------------------------------------------------
 BOOL CxFile::_ms_bRes = FALSE;
 //---------------------------------------------------------------------------
@@ -1012,3 +1015,6 @@ CxFile::bExec(const tString &csFilePath, const tString &csParams) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

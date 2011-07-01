@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxMimeBody
-* Description: тело почтового письма (RFC 822)
+* Description: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (RFC 822)
 * File name:   CxMimeBody.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -10,6 +10,9 @@
 
 
 #include <xLib/Net/CxMimeBody.h>
+
+
+#if defined(xOS_WIN)
 //---------------------------------------------------------------------------
 CxMimeBody::CxMimeBody() {
     //code
@@ -19,3 +22,6 @@ CxMimeBody::~CxMimeBody() {
     //code
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxMimeHeader :
     public CxNonCopyable
 {
@@ -57,6 +58,9 @@ class CxMimeHeader :
         //Date:
         //Message-ID:
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxMimeHeaderH
 

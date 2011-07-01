@@ -4,12 +4,11 @@
 *****************************************************************************/
 
 
-#pragma once
-
 #ifndef CXAdoH
 #define CXAdoH
 
 
+#if defined(xOS_WIN)
 #import "C:/Program Files/Common Files/System/ado/msado15.dll" no_namespace rename("EOF","EoF")
 
 #include <string>
@@ -21,7 +20,7 @@ using namespace std;
 
 #define TRY_ADO() \
    try \
-      { 
+      {
 
 #define CATCH_ADO() \
       } \
@@ -87,22 +86,22 @@ class CADOConnectionException : public CADOException {
             ceUnknown, ceCantCreateConnection, ceConnectionNotExists, ceConnectionNotOpen,
             ceErrCloseConnection, ceConnectionAlreadyOpen, ceErrOpenConnection, ceErrExecuteCmd
         };
-        explicit CADOConnectionException(_errConnection ec) : 
-            m_errCode(ec), 
-            m_strMsg(""), 
-            m_bHasDescription(false) 
+        explicit CADOConnectionException(_errConnection ec) :
+            m_errCode(ec),
+            m_strMsg(""),
+            m_bHasDescription(false)
         {
         }
         explicit CADOConnectionException(const char *pStrMsg) :
-            m_errCode(ceUnknown), 
-            m_strMsg(pStrMsg), 
-            m_bHasDescription(false) 
+            m_errCode(ceUnknown),
+            m_strMsg(pStrMsg),
+            m_bHasDescription(false)
         {
         }
         CADOConnectionException(_errConnection ec, const char *pStrMsg, bool bHasDescription = false) :
-            m_errCode(ec), 
-            m_strMsg(pStrMsg), 
-            m_bHasDescription(bHasDescription) 
+            m_errCode(ec),
+            m_strMsg(pStrMsg),
+            m_bHasDescription(bHasDescription)
         {
         }
         virtual int GetCode() const {
@@ -120,20 +119,20 @@ class CADOConnectionException : public CADOException {
             }
 
             switch (m_errCode) {
-                case ceUnknown                  : return "Ошибка не имеет описания";
-                case ceCantCreateConnection     : return "Ошибка при создании объекта \"Соединение\"";
-                case ceConnectionNotExists      : return "Объект \"Соединение\" не создан";
-                case ceConnectionNotOpen        : return "Соединение не открыто";
-                case ceErrCloseConnection       : return "Ошибка при закрытии соединения";
-                case ceConnectionAlreadyOpen    : return "Соединение уже открыто";
-                case ceErrOpenConnection        : return "Ошибка при открытии соединения";
-                case ceErrExecuteCmd            : return "Ошибка при выполнении запроса";
+                case ceUnknown                  : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case ceCantCreateConnection     : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ \"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\"";
+                case ceConnectionNotExists      : return "пїЅпїЅпїЅпїЅпїЅпїЅ \"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\" пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case ceConnectionNotOpen        : return "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case ceErrCloseConnection       : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case ceConnectionAlreadyOpen    : return "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case ceErrOpenConnection        : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case ceErrExecuteCmd            : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
                 default : break;
             }
 
-            return "Неизвестная ошибка";
+            return "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
         }
-        
+
     private:
         _errConnection m_errCode;
         std::string m_strMsg;
@@ -159,21 +158,21 @@ class CADORecordsetException : public CADOException {
             reErrSafeBookmark, reErrSafeGoToBookmark
         };
         explicit CADORecordsetException(_errRecordset re) :
-            m_errCode(re), 
-            m_strMsg(""), 
-            m_bHasDescription(false) 
+            m_errCode(re),
+            m_strMsg(""),
+            m_bHasDescription(false)
         {
         }
         explicit CADORecordsetException(const char *pStrMsg) :
-            m_errCode(reUnknown), 
-            m_strMsg(pStrMsg), 
-            m_bHasDescription(false) 
+            m_errCode(reUnknown),
+            m_strMsg(pStrMsg),
+            m_bHasDescription(false)
         {
         }
         CADORecordsetException(_errRecordset re, const char *pStrMsg, bool bHasDescription = false) :
-            m_errCode(re), 
-            m_strMsg(pStrMsg), 
-            m_bHasDescription(bHasDescription) 
+            m_errCode(re),
+            m_strMsg(pStrMsg),
+            m_bHasDescription(bHasDescription)
         {
         }
         virtual int GetCode() const {
@@ -191,35 +190,35 @@ class CADORecordsetException : public CADOException {
             }
 
             switch (m_errCode) {
-                case reUnknown                  : return "Ошибка не имеет описания";
-                case reRecordsetNotCreated      : return "Объект \"Набор записей\" не создан";
-                case reRecordsetNotClosed       : return "\"Набор записей\" не закрыт";
-                case reCannotCreateCmd          : return "Ошибка при создании объекта \"Комманда\"";
-                case reCannotCreateRecordset    : return "Ошибка при создании объекта \"Набор записей\"";
-                case reRecordsetAlreadyExists   : return "Набор записей уже существует";
-                case reErrOpenRecordset         : return "Ошибка при открытии набора данных";
-                case reRecordsetNotOpen         : return "Набор записей не открыт";
-                case reErrMoveFirst             : return "Ошибка при переходе на первую запись";
-                case reErrMoveLast              : return "Ошибка при переходе на последнюю запись";
-                case reErrMoveNext              : return "Ошибка при переходе на следующую запись";
-                case reErrMovePrev              : return "Ошибка при переходе на предыдущую запись";
-                case reErrGetEoF                : return "Ошибка при определении начала набора записей";
-                case reErrGetBoF                : return "Ошибка при определении конца набора записей";
-                case reErrGetField              : return "Ошибка при получении значения поля";
-                case reErrCloseRecordset        : return "Ошибка при закрытии набора данных";
-                case reErrAddNewRecord          : return "Ошибка при добавлении новой записи";
-                case reErrUpdateRecordset       : return "Ошибка при обновлении набора записей";
-                case reErrSetField              : return "Ошибка при установке значения поля";
-                case reErrCancel                : return "Ошибка при отмене";
-                case reErrGetFieldsCount        : return "Ошибка при получении количества полей набора записей";
-                case reErrSafeBookmark          : return "Ошибка при сохранении закладки";
-                case reErrSafeGoToBookmark      : return "Ошибка при переходе на закладку";
+                case reUnknown                  : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reRecordsetNotCreated      : return "пїЅпїЅпїЅпїЅпїЅпїЅ \"пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ\" пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reRecordsetNotClosed       : return "\"пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ\" пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reCannotCreateCmd          : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ \"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\"";
+                case reCannotCreateRecordset    : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ \"пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ\"";
+                case reRecordsetAlreadyExists   : return "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrOpenRecordset         : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reRecordsetNotOpen         : return "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrMoveFirst             : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrMoveLast              : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrMoveNext              : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrMovePrev              : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrGetEoF                : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrGetBoF                : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrGetField              : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ";
+                case reErrCloseRecordset        : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrAddNewRecord          : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrUpdateRecordset       : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrSetField              : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ";
+                case reErrCancel                : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrGetFieldsCount        : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrSafeBookmark          : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+                case reErrSafeGoToBookmark      : return "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
                 default : break;
             }
 
-            return "Неизвестная ошибка";
+            return "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
         }
-        
+
     private:
         _errRecordset m_errCode;
         std::string   m_strMsg;
@@ -273,7 +272,7 @@ class CADORecordset {
         long       GetCountRecs();
         bool       IsNewRecord() const;
         bool       IsEditing() const;
-        
+
     private:
         CADOConnection *m_pConnection;
         _CommandPtr     m_pCommand;
@@ -314,7 +313,7 @@ class CADOConnection {
         void Close();
         void Destroy();
         void Execute(const char *pStrCmd);
-        
+
     private:
         CADOConnection(const CADOConnection &) {}
         void operator = (const CADOConnection &) {}
@@ -325,4 +324,7 @@ class CADOConnection {
         friend class CADORecordset;
 };
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif
 #endif

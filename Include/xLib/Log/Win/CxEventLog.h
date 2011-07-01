@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxEventLog :
     public CxNonCopyable
 {
@@ -23,6 +24,9 @@ class CxEventLog :
 
     private:
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxEventLogH
 

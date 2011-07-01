@@ -15,6 +15,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxAutoCriticalSection :
     public CxNonCopyable
 {
@@ -25,5 +26,8 @@ class CxAutoCriticalSection :
     private:
         CxCriticalSection &_m_csCS;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAutoCriticalSectionH

@@ -12,6 +12,7 @@
 #include <xLib/Sync/CxAtomicLongInt.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -19,9 +20,9 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxAtomicLongInt ()
-CxAtomicLongInt::CxAtomicLongInt() : 
-    _m_liValue(0)      
-{ 
+CxAtomicLongInt::CxAtomicLongInt() :
+    _m_liValue(0)
+{
 #if defined(xOS_WIN)
     ::InterlockedExchange(&_m_liValue, 0);
 #elif defined(xOS_LINUX)
@@ -35,7 +36,7 @@ CxAtomicLongInt::~CxAtomicLongInt() {
 }
 //---------------------------------------------------------------------------
 //DONE: operator += ()
-CxAtomicLongInt & 
+CxAtomicLongInt &
 CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
 #if defined(xOS_WIN)
     ::InterlockedExchangeAdd(&_m_liValue, cRight._m_liValue);
@@ -47,7 +48,7 @@ CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
 }
 //---------------------------------------------------------------------------
 //DONE: operator -= ()
-CxAtomicLongInt & 
+CxAtomicLongInt &
 CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
 #if defined(xOS_WIN)
     ::InterlockedExchange(&_m_liValue, _m_liValue - cRight._m_liValue);
@@ -59,7 +60,7 @@ CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
 }
 //---------------------------------------------------------------------------
 //DONE: operator = ()
-CxAtomicLongInt & 
+CxAtomicLongInt &
 CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)    {
 #if defined(xOS_WIN)
     ::InterlockedExchange(&_m_liValue, cRight._m_liValue);
@@ -71,7 +72,7 @@ CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)    {
 }
 //---------------------------------------------------------------------------
 //DONE: operator += ()
-CxAtomicLongInt & 
+CxAtomicLongInt &
 CxAtomicLongInt::operator += (const LONG cliRight) {
 #if defined(xOS_WIN)
     ::InterlockedExchangeAdd(&_m_liValue, cliRight);
@@ -83,7 +84,7 @@ CxAtomicLongInt::operator += (const LONG cliRight) {
 }
 //---------------------------------------------------------------------------
 //DONE: operator -= ()
-CxAtomicLongInt & 
+CxAtomicLongInt &
 CxAtomicLongInt::operator -= (const LONG cliRight) {
 #if defined(xOS_WIN)
     ::InterlockedExchange(&_m_liValue, _m_liValue - cliRight);
@@ -95,7 +96,7 @@ CxAtomicLongInt::operator -= (const LONG cliRight) {
 }
 //---------------------------------------------------------------------------
 //DONE: operator = ()
-CxAtomicLongInt & 
+CxAtomicLongInt &
 CxAtomicLongInt::operator = (const LONG cliRight) {
 #if defined(xOS_WIN)
     ::InterlockedExchange(&_m_liValue, cliRight);
@@ -107,25 +108,25 @@ CxAtomicLongInt::operator = (const LONG cliRight) {
 }
 //---------------------------------------------------------------------------
 //DONE: operator == ()
-BOOL 
+BOOL
 CxAtomicLongInt::operator == (const CxAtomicLongInt &cRight) const {
     return (BOOL)(_m_liValue == cRight._m_liValue);
 }
 //---------------------------------------------------------------------------
 //DONE: operator != ()
-BOOL 
+BOOL
 CxAtomicLongInt::operator != (const CxAtomicLongInt &cRight) const {
     return (BOOL)(!(_m_liValue == cRight._m_liValue));
 }
 //---------------------------------------------------------------------------
 //DONE: operator == ()
-BOOL 
+BOOL
 CxAtomicLongInt::operator == (const LONG cliRight) const {
     return (BOOL)(_m_liValue == cliRight);
 }
 //---------------------------------------------------------------------------
 //DONE: operator != ()
-BOOL 
+BOOL
 CxAtomicLongInt::operator != (const LONG cliRight) const {
     return (BOOL)( !(_m_liValue == cliRight) );
 }
@@ -137,7 +138,7 @@ CxAtomicLongInt::operator LONG () const {
 //---------------------------------------------------------------------------
 //DONE: operator BOOL ()
 CxAtomicLongInt::operator BOOL () const {
-    return _m_liValue ? TRUE : FALSE; 
+    return _m_liValue ? TRUE : FALSE;
 }
 //---------------------------------------------------------------------------
 //DONE: operator ++ ()
@@ -172,3 +173,6 @@ CxAtomicLongInt::operator -- (INT iPos) {
     return *this;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

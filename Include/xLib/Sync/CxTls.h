@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxTls :
     public CxNonCopyable
 {
@@ -29,5 +30,8 @@ class CxTls :
     private:
         ULONG    _m_ulIndex;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //CxLib_Sync_CxTlsH

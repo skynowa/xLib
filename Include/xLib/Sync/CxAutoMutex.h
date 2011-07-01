@@ -15,6 +15,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxMutex.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxAutoMutex :
     public CxNonCopyable
 {
@@ -25,5 +26,8 @@ class CxAutoMutex :
     private:
         CxMutex &_m_mtMutex;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAutoMutexH

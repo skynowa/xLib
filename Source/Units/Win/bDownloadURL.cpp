@@ -11,6 +11,7 @@
 
 #include <xLib/Units/Win/bDownloadURL.h>
 
+#if defined(xOS_WIN)
 #include <wininet.h>
 #pragma comment(lib,"wininet")
 
@@ -23,40 +24,43 @@ bDownloadURL(
     LPCTSTR pszFilePath
 )
 {
-	/*DEBUG*/xASSERT_RET(NULL != pszUrl, FALSE);
-	/*DEBUG*/xASSERT_RET(NULL != pszFilePath, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pszUrl, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pszFilePath, FALSE);
 
-	BOOL        bRes                    = FALSE;
-	HINTERNET   hSession                = NULL;
-	HINTERNET   hService                = NULL ;
-	const ULONG culBuffSize             = 8192 * 4;
-	TCHAR       szBuff[culBuffSize + 1] = {0};
-	ULONG       ulBytesRead             = 0;
+    BOOL        bRes                    = FALSE;
+    HINTERNET   hSession                = NULL;
+    HINTERNET   hService                = NULL ;
+    const ULONG culBuffSize             = 8192 * 4;
+    TCHAR       szBuff[culBuffSize + 1] = {0};
+    ULONG       ulBytesRead             = 0;
 
-	//hSession = ::InternetOpen(xT("Microsoft FireFox"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
-	hSession = ::InternetOpen(xT("Microsoft FireFox"), INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
-	/*DEBUG*/xASSERT_RET(NULL != hSession, FALSE);
+    //hSession = ::InternetOpen(xT("Microsoft FireFox"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
+    hSession = ::InternetOpen(xT("Microsoft FireFox"), INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+    /*DEBUG*/xASSERT_RET(NULL != hSession, FALSE);
 
-	hService = ::InternetOpenUrl(hSession, pszUrl, NULL, 0, INTERNET_FLAG_RELOAD | INTERNET_FLAG_DONT_CACHE, 0);
-	/*DEBUG*/xASSERT_RET(NULL != hService, FALSE);
+    hService = ::InternetOpenUrl(hSession, pszUrl, NULL, 0, INTERNET_FLAG_RELOAD | INTERNET_FLAG_DONT_CACHE, 0);
+    /*DEBUG*/xASSERT_RET(NULL != hService, FALSE);
 
 
-	FILE *pFile = _tfopen(pszFilePath, xT("wb"));
-	/*DEBUG*/xASSERT_RET(NULL != pFile, FALSE);
+    FILE *pFile = _tfopen(pszFilePath, xT("wb"));
+    /*DEBUG*/xASSERT_RET(NULL != pFile, FALSE);
 
-	while (::InternetReadFile(hService, szBuff, culBuffSize, &ulBytesRead) && ulBytesRead){
-		fwrite(szBuff, 1, ulBytesRead, pFile);
-	}
+    while (::InternetReadFile(hService, szBuff, culBuffSize, &ulBytesRead) && ulBytesRead){
+        fwrite(szBuff, 1, ulBytesRead, pFile);
+    }
 
-	fflush(pFile);
-	fclose(pFile);
+    fflush(pFile);
+    fclose(pFile);
 
-	bRes = ::InternetCloseHandle(hService);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bRes = ::InternetCloseHandle(hService);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-	bRes = ::InternetCloseHandle(hSession);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bRes = ::InternetCloseHandle(hSession);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

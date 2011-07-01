@@ -1,8 +1,9 @@
+#if defined(xOS_WIN)
 #pragma once
 
 #define TRY_ADO() \
    try \
-      { 
+      {
 
 #define CATCH_ADO() \
       } \
@@ -32,3 +33,6 @@
       AfxMessageBox (xT("DB was not loaded"), MB_ICONINFORMATION); \
       return; \
       }
+#elif defined(xOS_LINUX)
+
+#endif

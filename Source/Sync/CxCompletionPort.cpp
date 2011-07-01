@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CCompletionPort
-* Description: порт завершения
+* Description: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 * File name:   CCompletionPort.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -12,20 +12,21 @@
 #include <xLib/Sync/CxCompletionPort.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCompletionPort (конструктор)
+//DONE: CxCompletionPort (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 CxCompletionPort::CxCompletionPort() :
     _m_bRes(FALSE)
 {
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxCompletionPort (деструктор)
+//DONE: ~CxCompletionPort (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 CxCompletionPort::~CxCompletionPort() {
     /*DEBUG*/
 }
@@ -87,3 +88,6 @@ CxCompletionPort::bPostStatus(ULONG ulNumberOfBytesTransferred, ULONG_PTR ulComp
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

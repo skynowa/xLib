@@ -13,8 +13,13 @@
 #define xLib_Common_Win_CxComPortH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#if defined(xOS_WIN)
+    #include <xLib/Common/Win/CxHandleT.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxCOMPort :
     public CxNonCopyable
 {
@@ -38,7 +43,7 @@ class CxCOMPort :
 
     private:
         BOOL         _m_bRes;
-        CxFileHandle _m_hComPort; 
+        CxFileHandle _m_hComPort;
         tString      _m_sPortNum;
 
         COMMTIMEOUTS CommTimeOuts;
@@ -46,5 +51,8 @@ class CxCOMPort :
         COMSTAT      ComState;
         OVERLAPPED   Overlap;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_Win_CxComPortH

@@ -13,9 +13,15 @@
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Sync/CxAutoCriticalSection.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Sync/CxAutoCriticalSection.h>
+#elif defined(xOS_LINUX)
+
+#endif
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -76,3 +82,6 @@ CxWndLog::bWrite(HWND hWnd, LPCTSTR pcszFormat, ...) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif
