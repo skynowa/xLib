@@ -9,7 +9,7 @@
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/xLib_static_lib"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/xLib_static_lib/Debug"/>
-						<entry flags="RESOLVED" kind="libraryFile" name="xLib_static_lib"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="xLib"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -21,7 +21,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.debug.28311529" name="Debug" parent="cdt.managedbuild.config.gnu.lib.debug">
+				<configuration artifactExtension="a" artifactName="xLib" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.debug.28311529" name="Debug" parent="cdt.managedbuild.config.gnu.lib.debug">
 					<folderInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.lib.debug.1193963347" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.lib.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.lib.debug.1855464361" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.lib.debug"/>
@@ -896,7 +896,7 @@
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/xLib_static_lib"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/xLib_static_lib/Release"/>
-						<entry flags="RESOLVED" kind="libraryFile" name="xLib_static_lib"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="xLib"/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -908,7 +908,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.release.606199951" name="Release" parent="cdt.managedbuild.config.gnu.lib.release">
+				<configuration artifactExtension="a" artifactName="xLib" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.release.606199951" name="Release" parent="cdt.managedbuild.config.gnu.lib.release">
 					<folderInfo id="cdt.managedbuild.config.gnu.lib.release.606199951." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.lib.release.1605249194" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.lib.release">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.lib.release.1815136461" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.lib.release"/>
