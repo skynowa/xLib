@@ -14,8 +14,14 @@
 #define xLib_Sync_CxCompletionPortH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Common/Win/CxHandleT.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxCompletionPort :
     public CxNonCopyable
 {
@@ -32,5 +38,8 @@ class CxCompletionPort :
         BOOL     _m_bRes;
         CxHandle _m_hCP;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxCompletionPortH

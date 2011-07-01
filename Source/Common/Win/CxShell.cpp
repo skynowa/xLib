@@ -13,6 +13,7 @@
 
 #include <xLib/Common/Win/CxCom.h>
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    Static
 *
@@ -267,3 +268,6 @@ if( FAILED( hr ))
 // Failed to get the associated application.
 }
 */
+#elif defined(xOS_LINUX)
+
+#endif

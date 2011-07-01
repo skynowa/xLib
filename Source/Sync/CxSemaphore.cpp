@@ -12,6 +12,7 @@
 #include <xLib/Sync/CxSemaphore.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -166,3 +167,6 @@ CxSemaphore::bReset(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

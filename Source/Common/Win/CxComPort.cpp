@@ -9,9 +9,10 @@
 *****************************************************************************/
 
 
-#include <xLib/Common/Win/CxCOMPort.h>
+#include <xLib/Common/Win/CxComPort.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -20,9 +21,9 @@
 //---------------------------------------------------------------------------
 //TODO: CxCOMPort (�����������)
 CxCOMPort::CxCOMPort(const tString &sPortNum) :
-    _m_bRes    (FALSE), 
+    _m_bRes    (FALSE),
     _m_sPortNum(sPortNum)
-{    
+{
     /*DEBUG*/xASSERT_DO(FALSE == _m_hComPort.bIsValid(), return);
 }
 //---------------------------------------------------------------------------
@@ -42,7 +43,7 @@ BOOL CxCOMPort::bOpen() {
 
     hComPort = _m_hComPort;
 
-    return TRUE;    
+    return TRUE;
 }
 //--------------------------------------------------------------------------
 //TODO: bConfig (����������������)
@@ -58,7 +59,7 @@ BOOL CxCOMPort::bConfig() {
     dcb.fRtsControl  = RTS_CONTROL_DISABLE;    //Disable RTS (Ready To Send)
 
     COMMTIMEOUTS timeouts;
-    timeouts.ReadIntervalTimeout         = 20; 
+    timeouts.ReadIntervalTimeout         = 20;
     timeouts.ReadTotalTimeoutMultiplier  = 10;
     timeouts.ReadTotalTimeoutConstant    = 100;
     timeouts.WriteTotalTimeoutMultiplier = 10;
@@ -71,8 +72,8 @@ BOOL CxCOMPort::bConfig() {
     bClearData();
 
     ::SetCommMask(_m_hComPort, EV_DSR);
-    
-    ULONG lpEvtMask = 0;    
+
+    ULONG lpEvtMask = 0;
     ::WaitCommEvent(_m_hComPort, &lpEvtMask, NULL);
     //CTest->OnRead();
 
@@ -84,7 +85,7 @@ BOOL CxCOMPort::bClearData() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     ::PurgeComm(_m_hComPort, PURGE_RXCLEAR | PURGE_TXCLEAR); ///PurgeComm(_m_hComPort, PURGE_TXCLEAR | PURGE_RXCLEAR | PURGE_TXABORT | PURGE_RXABORT);
-    
+
     ULONG ulErrors;
     ::ClearCommError(_m_hComPort, &ulErrors, 0);
 
@@ -98,7 +99,7 @@ tString CxCOMPort::bReadData(LPTSTR pszBuff, ULONG dwNumOfBytesToRead) {
     ::Sleep(5L);
 
     DWORD dwNumOfBytesRead = 0;
-    BOOL  bRes             = ::ReadFile(_m_hComPort, pszBuff, dwNumOfBytesToRead/*cuiSendStrLen*/, &dwNumOfBytesRead, NULL); 
+    BOOL  bRes             = ::ReadFile(_m_hComPort, pszBuff, dwNumOfBytesToRead/*cuiSendStrLen*/, &dwNumOfBytesRead, NULL);
     if (FALSE == bRes) {
         return tString();
     }
@@ -112,7 +113,7 @@ tString CxCOMPort::bReadData(LPTSTR pszBuff, ULONG dwNumOfBytesToRead) {
 //TODO: iReadDataWaiting ()
 INT CxCOMPort::iReadDataWaiting() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
-    
+
     return 0;
 }
 //--------------------------------------------------------------------------
@@ -132,7 +133,7 @@ BOOL CxCOMPort::bWriteData(LPCTSTR pcszBuff, DWORD dwNumOfBytesToWrite) {
     if (FALSE == ::FlushFileBuffers(_m_hComPort)) {
         return FALSE;
     }
-    
+
     return TRUE;
 
 
@@ -146,7 +147,7 @@ BOOL CxCOMPort::bWriteData(LPCTSTR pcszBuff, DWORD dwNumOfBytesToWrite) {
     ////        bRes = false;
     ////    } else {
     ////        //Write is pending
-    ////        if (GetOverlappedResult(_m_hComPort, &osWrite, &dwWritten, TRUE) == false) {     
+    ////        if (GetOverlappedResult(_m_hComPort, &osWrite, &dwWritten, TRUE) == false) {
     ////            bRes = false;
     ////        } else {
     ////            //Write operation completed successfully.
@@ -157,7 +158,7 @@ BOOL CxCOMPort::bWriteData(LPCTSTR pcszBuff, DWORD dwNumOfBytesToWrite) {
     ////    //WriteFile completed immediately.
     ////    bRes = true;
     ////}
- //// 
+ ////
     ////return bRes;
 }
 //--------------------------------------------------------------------------
@@ -177,11 +178,11 @@ ULONG CxCOMPort::ulInputBuffTest() {
 
     ULONG    dwErrors;
     _COMSTAT csStat;
-    
+
     if (FALSE == ::ClearCommError(_m_hComPort, &dwErrors, &csStat)) {
         return FALSE;
     }
-    
+
     return csStat.cbInQue;
 }
 //-------------------------------------------------------------------------
@@ -213,3 +214,6 @@ BOOL CxCOMPort::bSetSETRTS() {
     return ::EscapeCommFunction(_m_hComPort, SETRTS);
 }
 //-------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

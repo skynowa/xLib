@@ -14,7 +14,11 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-BOOL bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
+#if defined(xOS_WIN)
+    BOOL bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Units_bDownloadURLH
 

@@ -16,6 +16,7 @@
 #include <xLib/Net/CxMimeHeader.h>
 #include <xLib/Net/CxMimeBody.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxMimeMessage :
     public CxNonCopyable
 {
@@ -29,5 +30,8 @@ class CxMimeMessage :
     private:
         tString _m_csRawMessage;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxMimeMessageH

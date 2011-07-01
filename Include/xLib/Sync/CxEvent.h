@@ -13,8 +13,14 @@
 #define xLib_Sync_CxEventH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Common/Win/CxHandleT.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxEvent :
     public CxNonCopyable
 {
@@ -35,5 +41,8 @@ class CxEvent :
     private:
         CxHandle _m_hEvent;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxEventH

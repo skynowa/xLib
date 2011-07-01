@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxSharedMemory :
     public CxNonCopyable
 {
@@ -23,5 +24,8 @@ class CxSharedMemory :
 
     private:
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //CxSharedMemoryH

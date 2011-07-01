@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxMimeHeader
-* Description: MIME header (RFC 822) 
+* Description: MIME header (RFC 822)
 * File name:   CxMimeHeader.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -14,12 +14,15 @@
 #include <xLib/Filesystem/CxStdioFile.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxLocale.h>
+
+
+#if defined(xOS_WIN)
 //---------------------------------------------------------------------------
-const tString CxMimeHeader::_ms_csAttrDelimiter = xT(":"); 
-const tString CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n"); 
-const tString CxMimeHeader::_ms_csEndOfLine     = xT("\r\n"); 
+const tString CxMimeHeader::_ms_csAttrDelimiter = xT(":");
+const tString CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n");
+const tString CxMimeHeader::_ms_csEndOfLine     = xT("\r\n");
 //---------------------------------------------------------------------------
-//DONE: CxMimeHeader  
+//DONE: CxMimeHeader
 CxMimeHeader::CxMimeHeader() :
     _m_bRes     (FALSE),
     _m_sRes     (),
@@ -62,7 +65,7 @@ BOOL CxMimeHeader::bParse(const tString &csRawHeader) {
     /*DEBUG*///TODO:
 
     //-------------------------------------
-    //���� ���� "+OK..." � ������ ������, �� ������� ��� ������ 
+    //���� ���� "+OK..." � ������ ������, �� ������� ��� ������
     if (tString::npos != vecsHeader.at(0).find(xT("+OK"))) {
         vecsHeader.erase(vecsHeader.begin() + 0);
     }
@@ -83,10 +86,10 @@ BOOL CxMimeHeader::bParse(const tString &csRawHeader) {
         }
 
         //���� 1-�� ������ ����������, �� ������ - ��� ����� ������������� ������ "���� : ��������"
-        ////if (TRUE == bIsSpaceOrTab(vecsHeader.at(i).at(0))) { 
-        if ((xT(' ') == vecsHeader.at(i).at(0)) || (xT('\t') == vecsHeader.at(i).at(0))) { 
-            //��������� � ���������� ������ ������ (������, ��� ���������� ����) ������� ������ 
-            vecsHeader.at(i - 1).append(vecsHeader.at(i));    
+        ////if (TRUE == bIsSpaceOrTab(vecsHeader.at(i).at(0))) {
+        if ((xT(' ') == vecsHeader.at(i).at(0)) || (xT('\t') == vecsHeader.at(i).at(0))) {
+            //��������� � ���������� ������ ������ (������, ��� ���������� ����) ������� ������
+            vecsHeader.at(i - 1).append(vecsHeader.at(i));
 
             //������� ������� ������ (� ��� �������, ������ �� �� ���������)
             vecsHeader.erase(vecsHeader.begin() + i);
@@ -102,11 +105,11 @@ BOOL CxMimeHeader::bParse(const tString &csRawHeader) {
     //-------------------------------------
     //std::vector -> std::map
     for (size_t i = 0; i < vecsHeader.size(); i ++) {
-        std::vector<tString> vecsLines;        
-        //--vecsLines = vecsSplit(": ", vecsHeader.at(i));    
-        _m_bRes = CxString::bSplitKeyValue(vecsHeader.at(i), _ms_csAttrDelimiter, &vecsLines);    
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,           FALSE);                
-        /*DEBUG*/xASSERT_RET(false == vecsLines.empty(), FALSE);                
+        std::vector<tString> vecsLines;
+        //--vecsLines = vecsSplit(": ", vecsHeader.at(i));
+        _m_bRes = CxString::bSplitKeyValue(vecsHeader.at(i), _ms_csAttrDelimiter, &vecsLines);
+        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,           FALSE);
+        /*DEBUG*/xASSERT_RET(false == vecsLines.empty(), FALSE);
 
         //��������� � ������ "����" � "��������"
         tString sKey   = CxString::sTrimSpace(vecsLines.at(0));
@@ -126,7 +129,7 @@ tString CxMimeHeader::sGetField(const tString &csName) {
     tString sRes;
 
     std::pair<TStringMultiMap::iterator, TStringMultiMap::iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
-    
+
     TStringMultiMap::iterator it;
     for (it = prEqualRange.first; it != prEqualRange.second; ++ it) {
         sRes = (*it).second;
@@ -144,7 +147,7 @@ std::size_t CxMimeHeader::uiCount() {
 // BOOL CxMimeHeader::bLoadFromFile(const tString &csFilePath) {
 //     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),                 FALSE);
 //     /*DEBUG*/xASSERT_RET(TRUE  == CxStdioFile::bIsExists(csFilePath), FALSE);
-// 
+//
 //     tString       sUknownEmail("Uknown@Uknown.Uknown");
 //     tString       sLine("");
 //     std::ifstream     ifsStream(csFilePath.c_str());
@@ -153,17 +156,17 @@ std::size_t CxMimeHeader::uiCount() {
 //     /*DEBUG*/xASSERT_RET(ifsStream.good(),    FALSE);
 //     /*DEBUG*/xASSERT_RET(ifsStream.is_open(), FALSE);
 //     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    FALSE);
-// 
+//
 //     ULONG ulCountBreaks = 0;
 //     for (ULONG i = 0; !ifsStream.eof();  ++ i) {
 //         std::getline(ifsStream, sLine);
-// 
+//
 //         //���� �� ������ csFrom (From:)
 //         if (tString::npos != sLine.find(csFrom + ":")) {
 //             //From: ����<test_1@localhost>
 //             return sReplaceAll(vecsSplit(_ms_csAttrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
-//         }         
-// 
+//         }
+//
 //         //������ �� "\r\n\r\n" (����� ������)
 //         if ("" == sLine) {
 //             ulCountBreaks ++;
@@ -171,21 +174,21 @@ std::size_t CxMimeHeader::uiCount() {
 //                 return "";
 //             }
 //         } else {
-//             ulCountBreaks = 0;    
+//             ulCountBreaks = 0;
 //         }
 //     }
-// 
+//
 //     return "";
-// 
+//
 //     return FALSE;
 // }
 BOOL CxMimeHeader::bLoadFromFile(const tString &csRawMessageFilePath) {
     /*DEBUG*/xASSERT_RET(false == csRawMessageFilePath.empty(),                 FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == CxStdioFile::bIsExists(csRawMessageFilePath), FALSE);
-   
+
     tString sRawHeader;
     tString sLine;
-    
+
     //-------------------------------------
     //������������� ��������� ������
     _m_bRes = CxLocale::bSetDefault();
@@ -220,7 +223,7 @@ BOOL CxMimeHeader::bLoadFromFile(const tString &csRawMessageFilePath) {
 //TODO: bSaveToFile
 BOOL CxMimeHeader::bSaveToFile(const tString &csFilePath) {
     //_m_mmsHeader
-    
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -228,10 +231,13 @@ BOOL CxMimeHeader::bSaveToFile(const tString &csFilePath) {
 /*static*/
 tString CxMimeHeader::sGenerateMessageID() {
     tString sRes;
-    
+
     sRes = CxString::sFormat(xT("%s@%s"), CxString::sCreateGUID().c_str(), CxSystemInfo::sGetComputerName().c_str());
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString()); 
+    /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
 
     return sRes;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

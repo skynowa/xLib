@@ -4,20 +4,21 @@
 *****************************************************************************/
 
 
-#include <xLib/DB/Win/CxAdo.h>
+#include <xLib/Db/Win/CxAdo.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    CADORecordset
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CADORecordset::CADORecordset() : 
-    m_pConnection(0), 
-    m_bDynamicOpen(false), 
-    m_bNewRecond(false), 
-    m_bEditing(false) 
+CADORecordset::CADORecordset() :
+    m_pConnection(0),
+    m_bDynamicOpen(false),
+    m_bNewRecond(false),
+    m_bEditing(false)
 {
 
 }
@@ -42,7 +43,7 @@ bool CADORecordset::IsOpen() const {
 //---------------------------------------------------------------------------
 void CADORecordset::SetConnection(CADOConnection *pConnection) {
     if (IsCreated() && IsOpen()) {
-        throw CADORecordsetException(CADORecordsetException::reRecordsetNotClosed); 
+        throw CADORecordsetException(CADORecordsetException::reRecordsetNotClosed);
     }
 
     m_pConnection = pConnection;
@@ -114,7 +115,7 @@ void CADORecordset::Open() {
 void CADORecordset::Close() {
     m_lstParam.clear();
     m_bNewRecond = m_bEditing = false;
-    
+
     if (!IsOpen()) {
         throw CADORecordsetException(CADORecordsetException::reRecordsetNotOpen);
     }
@@ -131,7 +132,7 @@ void CADORecordset::Close() {
 //---------------------------------------------------------------------------
 void CADORecordset::First() {
     CheckOpen();
-    
+
     try {
         m_pRecordset->MoveFirst();
     } catch (_com_error e) {
@@ -141,7 +142,7 @@ void CADORecordset::First() {
 //---------------------------------------------------------------------------
 void CADORecordset::Last() {
     CheckOpen();
-    
+
     try {
         m_pRecordset->MoveLast();
     } catch (_com_error e) {
@@ -151,7 +152,7 @@ void CADORecordset::Last() {
 //---------------------------------------------------------------------------
 void CADORecordset::Next() {
     CheckOpen();
-    
+
     try {
         m_pRecordset->MoveNext();
     } catch (_com_error e) {
@@ -161,7 +162,7 @@ void CADORecordset::Next() {
 //---------------------------------------------------------------------------
 void CADORecordset::Prev() {
     CheckOpen();
-    
+
     try {
         m_pRecordset->MovePrevious();
     } catch (_com_error e) {
@@ -171,7 +172,7 @@ void CADORecordset::Prev() {
 //---------------------------------------------------------------------------
 bool CADORecordset::IsEoF() {
     CheckOpen();
-    
+
     try {
         return !!m_pRecordset->GetEoF();
     } catch (_com_error e) {
@@ -181,7 +182,7 @@ bool CADORecordset::IsEoF() {
 //---------------------------------------------------------------------------
 bool CADORecordset::IsBoF() {
     CheckOpen();
-    
+
     try {
         return !!m_pRecordset->GetBOF();
     } catch (_com_error e) {
@@ -191,13 +192,13 @@ bool CADORecordset::IsBoF() {
 //---------------------------------------------------------------------------
 bool CADORecordset::IsEmpty() {
     CheckOpen();
-    
+
     return (IsEoF() && IsBoF());
 }
 //---------------------------------------------------------------------------
 _variant_t CADORecordset::GetField(short nNumField) {
     CheckOpen();
-    
+
     try {
         return m_pRecordset->GetFields()->GetItem((short)nNumField)->GetValue();
     } catch (_com_error e) {
@@ -213,7 +214,7 @@ void CADORecordset::CheckOpen() {
 //---------------------------------------------------------------------------
 _variant_t CADORecordset::GetField(const char *pFieldName) {
     CheckOpen();
-    
+
     try {
         return m_pRecordset->GetFields()->GetItem(_bstr_t(pFieldName))->GetValue();
     } catch (_com_error e) {
@@ -223,7 +224,7 @@ _variant_t CADORecordset::GetField(const char *pFieldName) {
 //---------------------------------------------------------------------------
 void CADORecordset::AddNew() {
     CheckOpen();
-    
+
     try {
         m_pRecordset->AddNew();
         m_bNewRecond = true;
@@ -234,7 +235,7 @@ void CADORecordset::AddNew() {
 //---------------------------------------------------------------------------
 void CADORecordset::Update() {
     CheckOpen();
-    
+
     try {
         m_pRecordset->Update();
         m_bNewRecond = m_bEditing = false;
@@ -245,7 +246,7 @@ void CADORecordset::Update() {
 //---------------------------------------------------------------------------
 void CADORecordset::Cancel() {
     CheckOpen();
-    
+
     try {
         m_pRecordset->Cancel();
         m_bNewRecond = m_bEditing = false;
@@ -256,7 +257,7 @@ void CADORecordset::Cancel() {
 //---------------------------------------------------------------------------
 void CADORecordset::SetField(short nNumField, const _variant_t &vtValue) {
     CheckOpen();
-    
+
     try {
         m_pRecordset->GetFields()->GetItem(nNumField)->PutValue(vtValue);
         m_bEditing = true;
@@ -267,7 +268,7 @@ void CADORecordset::SetField(short nNumField, const _variant_t &vtValue) {
 //---------------------------------------------------------------------------
 void CADORecordset::SetField(const char *pFieldName, const _variant_t &vtValue) {
     CheckOpen();
-    
+
     try {
         m_pRecordset->GetFields()->GetItem(_bstr_t(pFieldName))->PutValue(vtValue);
         m_bEditing = true;
@@ -318,7 +319,7 @@ int CADORecordset::GetFieldsCount() const {
 //---------------------------------------------------------------------------
 void CADORecordset::SafeBookmark() {
     CheckOpen();
-    
+
     try {
         m_vtBookmark = m_pRecordset->GetBookmark();
     } catch (_com_error &e) {
@@ -328,7 +329,7 @@ void CADORecordset::SafeBookmark() {
 //---------------------------------------------------------------------------
 void CADORecordset::GoToBookmark() {
     CheckOpen();
-    
+
     try {
         m_pRecordset->PutBookmark(m_vtBookmark);
     } catch (_com_error &e) {
@@ -338,7 +339,7 @@ void CADORecordset::GoToBookmark() {
 //---------------------------------------------------------------------------
 long CADORecordset::GetCountRecs() {
     CheckOpen();
-    
+
     if (!IsEmpty()) {
         SafeBookmark();
 
@@ -354,7 +355,7 @@ long CADORecordset::GetCountRecs() {
             GoToBookmark();
         }
     }
-    
+
     return 0;
 }
 //---------------------------------------------------------------------------
@@ -381,7 +382,7 @@ CADOConnection::CADOConnection() {
 //---------------------------------------------------------------------------
 CADOConnection::CADOConnection(const char *pStrConnection, const char *pStrUserID, const char *pStrPassword, bool bOpen) {
     SetConnectionParam(pStrConnection, pStrUserID, pStrPassword);
-    
+
     if (bOpen) {
         Open();
     }
@@ -389,7 +390,7 @@ CADOConnection::CADOConnection(const char *pStrConnection, const char *pStrUserI
 //---------------------------------------------------------------------------
 CADOConnection::CADOConnection(int nJetVer, int nJetVerEx, const char *pStrFileName, const char *pStrUserID, const char *pStrPassword, bool bOpen) {
     SetMSAccessConnectionParam(nJetVer, nJetVerEx, pStrFileName, pStrUserID, pStrPassword);
-    
+
     if (bOpen) {
         Open();
     }
@@ -400,7 +401,7 @@ CADOConnection::~CADOConnection() {
         if (IsOpen()) {
             Close();
         }
-        
+
         m_pConnection.Release();
     }
 }
@@ -490,3 +491,6 @@ void CADOConnection::Execute(const char *pStrCmd) {
     }
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

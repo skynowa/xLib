@@ -38,7 +38,7 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1154667025" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1146507876" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
-								<option id="gnu.cpp.link.option.libs.732023510" superClass="gnu.cpp.link.option.libs" valueType="libs">
+								<option id="gnu.cpp.link.option.libs.732023510" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ssl"/>
 									<listOptionValue builtIn="false" value="mysqlclient"/>
 									<listOptionValue builtIn="false" value="GeoIP"/>
@@ -54,7 +54,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="xLib/Gui/Win|Source/Units/Win|Source/Sync/CxWaitableTimer.cpp|Source/Sync/CxTls.cpp|Source/Sync/CxThread.cpp|Source/Sync/CxSleeper.cpp|Source/Sync/CxSharedMemory.cpp|Source/Sync/CxSemaphore.cpp|Source/Sync/CxMutex.cpp|Source/Sync/CxEvent.cpp|Source/Sync/CxCriticalSection.cpp|Source/Sync/CxCompletionPort.cpp|Source/Sync/CxAutoMutex.cpp|Source/Sync/CxAutoCriticalSection.cpp|Source/Sync/CxAtomicLongInt.cpp|Source/Pkcs11/Win|Source/Net/CxSmtp.cpp|Source/Net/CxPop3.cpp|Source/Net/CxMimeMessage.cpp|Source/Net/CxMimeHeader.cpp|Source/Net/CxMimeBody.cpp|Source/Net/CxHttpClient.cpp|Source/Net/Win|Source/Log/Win|Source/Gui/Win|Source/Filesystem/Win|Source/Db/Win|Source/Common/Win" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="xLib/Gui/Win|Source/Pkcs11/Win|Source/Net/CxSmtp.cpp|Source/Net/CxPop3.cpp|Source/Net/CxMimeMessage.cpp|Source/Net/CxMimeHeader.cpp|Source/Net/CxMimeBody.cpp|Source/Net/CxHttpClient.cpp|Source/Log/Win|Source/Gui/Win" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -1923,7 +1923,7 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.585998298" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.2135213760" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
-								<option id="gnu.cpp.link.option.libs.802885230" superClass="gnu.cpp.link.option.libs" valueType="libs">
+								<option id="gnu.cpp.link.option.libs.802885230" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ssl"/>
 									<listOptionValue builtIn="false" value="mysqlclient"/>
 									<listOptionValue builtIn="false" value="GeoIP"/>
@@ -1939,7 +1939,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="xLib/Gui/Win|Source/Units/Win|Source/Sync/CxWaitableTimer.cpp|Source/Sync/CxTls.cpp|Source/Sync/CxThread.cpp|Source/Sync/CxSleeper.cpp|Source/Sync/CxSharedMemory.cpp|Source/Sync/CxSemaphore.cpp|Source/Sync/CxMutex.cpp|Source/Sync/CxEvent.cpp|Source/Sync/CxCriticalSection.cpp|Source/Sync/CxCompletionPort.cpp|Source/Sync/CxAutoMutex.cpp|Source/Sync/CxAutoCriticalSection.cpp|Source/Sync/CxAtomicLongInt.cpp|Source/Pkcs11/Win|Source/Net/CxSmtp.cpp|Source/Net/CxPop3.cpp|Source/Net/CxMimeMessage.cpp|Source/Net/CxMimeHeader.cpp|Source/Net/CxMimeBody.cpp|Source/Net/CxHttpClient.cpp|Source/Net/Win|Source/Log/Win|Source/Gui/Win|Source/Filesystem/Win|Source/Db/Win|Source/Common/Win" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="xLib/Gui/Win|Source/Pkcs11/Win|Source/Net/CxSmtp.cpp|Source/Net/CxPop3.cpp|Source/Net/CxMimeMessage.cpp|Source/Net/CxMimeHeader.cpp|Source/Net/CxMimeBody.cpp|Source/Net/CxHttpClient.cpp|Source/Log/Win|Source/Gui/Win" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

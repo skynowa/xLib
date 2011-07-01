@@ -10,6 +10,7 @@
 #ifndef xLib_CxSMTPConnH
 #define xLib_CxSMTPConnH
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 //#include <atlsmtpconnection.h>
 //#include <Windns.h>
 //
@@ -22,5 +23,8 @@
 //    private:
 //        void _GetSMTPList(LPCTSTR lpszHostDomain, CSimpleArray<CString>& arrSMTP);
 //};
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------
 #endif    //xLib_CxSMTPConnH

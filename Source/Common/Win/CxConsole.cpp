@@ -14,14 +14,15 @@
 #include <xLib/Filesystem/CxStdioFile.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxConsole 
-CxConsole::CxConsole() : 
+//TODO: CxConsole
+CxConsole::CxConsole() :
     _m_bRes   (FALSE),
     _m_hWnd   (NULL),
     _m_hMenu  (NULL),
@@ -44,8 +45,8 @@ CxConsole::CxConsole() :
 //---------------------------------------------------------------------------
 //TODO: ~CxConsole
 CxConsole::~CxConsole() {
-    _m_hMenu = NULL; 
-    _m_hWnd  = NULL; 
+    _m_hMenu = NULL;
+    _m_hWnd  = NULL;
 }
 //---------------------------------------------------------------------------
 //TODO: bSetTextColor
@@ -87,9 +88,9 @@ tString CxConsole::sGetTitle() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  tString());
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), tString());
 
-    const ULONG culBuffSize             = 1024; 
+    const ULONG culBuffSize             = 1024;
     TCHAR       szBuff[culBuffSize + 1] = {0};
-    ULONG       ulTitleSize             = 0;              
+    ULONG       ulTitleSize             = 0;
 
     ulTitleSize = ::GetConsoleTitle(szBuff, culBuffSize);
     /*DEBUG*/xASSERT_RET(0 < ulTitleSize, tString());
@@ -117,7 +118,7 @@ BOOL CxConsole::bSetFullScreen() {
 
     COORD crdCoord = ::GetLargestConsoleWindowSize(_m_hStdOut);
     xCHECK_RET(crdCoord.X == 0 && crdCoord.Y == 0, FALSE);
-    
+
     crdCoord.X -= 2;
     crdCoord.Y -= 2;
 
@@ -127,10 +128,10 @@ BOOL CxConsole::bSetFullScreen() {
         crdCoord.X - 2,        //Right
         crdCoord.Y - 2        //Bottom
     };
-    
+
     _m_bRes = ::SetConsoleScreenBufferSize(_m_hStdOut, crdCoord);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,  FALSE);
-    
+
     _m_bRes = ::SetConsoleWindowInfo(_m_hStdOut, TRUE, &recSmallRec);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,  FALSE);
 
@@ -146,10 +147,10 @@ BOOL CxConsole::bClear() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
 
-    COORD                      coordScreen   = {0};        /*here's where we'll home the cursor*/ 
+    COORD                      coordScreen   = {0};        /*here's where we'll home the cursor*/
     ULONG                      cCharsWritten = 0;
-    CONSOLE_SCREEN_BUFFER_INFO csbi          = {0};        /*to get buffer info*/ 
-    ULONG                      ulConSize     = 0;        /*number of character cells in the current buffer*/ 
+    CONSOLE_SCREEN_BUFFER_INFO csbi          = {0};        /*to get buffer info*/
+    ULONG                      ulConSize     = 0;        /*number of character cells in the current buffer*/
 
     //get the number of character cells in the current buffer
     _m_bRes = ::GetConsoleScreenBufferInfo(_m_hStdOut, &csbi);
@@ -169,7 +170,7 @@ BOOL CxConsole::bClear() {
     _m_bRes = ::FillConsoleOutputAttribute(_m_hStdOut, csbi.wAttributes, ulConSize, coordScreen, &cCharsWritten);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,  FALSE);
 
-    //put the cursor at (0, 0) 
+    //put the cursor at (0, 0)
     _m_bRes = ::SetConsoleCursorPosition(_m_hStdOut, coordScreen );
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,  FALSE);
 
@@ -202,7 +203,7 @@ BOOL CxConsole::bWrite(const tString &csStr) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
 
-    ULONG ulWritten = 0;    
+    ULONG ulWritten = 0;
 
     _m_bRes = ::WriteConsole(_m_hStdOut, &csStr.at(0), csStr.size(), &ulWritten, NULL);
     /*DEBUG*/xASSERT_RET(FALSE     != _m_bRes,      FALSE);
@@ -243,7 +244,7 @@ BOOL CxConsole::bCenterWindow() {
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
-    
+
     RECT rcOrigin = {0};
     _m_bRes = ::GetWindowRect(_m_hWnd, &rcOrigin);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,  FALSE);
@@ -251,20 +252,20 @@ BOOL CxConsole::bCenterWindow() {
     RECT rcDesktop = {0};
     _m_bRes = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &rcDesktop, 0);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,  FALSE);
-    
+
     INT iDesktopX  = (rcDesktop.right  - rcDesktop.left) / 2;
     INT iDesktopY  = (rcDesktop.bottom - rcDesktop.top)  / 2;
     INT iWndWidth  = (rcOrigin.right   - rcOrigin.left);
     INT iWndHeight = (rcOrigin.bottom  - rcOrigin.top);
     INT X          = iDesktopX - iWndWidth / 2;        if (X < 0) {X = 0;}
-    
+
     _m_bRes = ::MoveWindow(_m_hWnd, X, iDesktopY - iWndHeight / 2, iWndWidth, iWndHeight, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,  FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bPrompt (���� ������) 
+//DONE: bPrompt (���� ������)
 BOOL CxConsole::bPrompt(const tString &csPrompt, tString *psAnswer) {
     /*DEBUG*/xASSERT_RET(false == csPrompt.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != psAnswer,         FALSE);
@@ -313,7 +314,7 @@ BOOL CxConsole::bPrompt(const tString &csPrompt, tString *psAnswer) {
 HWND CxConsole::hGetWndHandle() {
     /*DEBUG*/
 
-    HWND    hRes         = NULL; 
+    HWND    hRes         = NULL;
     tString sNewWndTitle;
     tString sOldWndTitle;
 
@@ -347,10 +348,13 @@ HWND CxConsole::hGetWndHandle() {
 //TODO: hGetMenuHandle
 HMENU CxConsole::hGetMenuHandle(BOOL bRevert) {
     /*DEBUG*/
-    
+
     _m_hMenu = ::GetSystemMenu(_m_hWnd, bRevert);
     /*DEBUG*/xASSERT_RET(NULL != _m_hMenu, NULL);
 
     return _m_hMenu;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

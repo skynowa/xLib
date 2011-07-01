@@ -12,6 +12,7 @@
 #include <xLib/Sync/CxCriticalSection.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -86,3 +87,6 @@ CxCriticalSection::bTryEnter() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

@@ -9,36 +9,11 @@
 ######################################################################################################
 
 
-#  BINS              = xLib_static_lib
-#  OBJS              = Test.o
-#  
-#  CXX               = g++
-#  CXXFLAGS          = -Wall -O3 -pthread -g0 -s #-g   -static
-#  
-#  INCLUDES          = -I. -I.. -I/usr/local/include -I/usr/include -I/home/sergey/Libs/xLib/Include/ -I/home/sergey/Libs/xLib/Source/
-#  LDFLAGS           = -L/usr/local/lib -L/usr/lib -L/usr/lib/mysql -L/usr/local/lib/mysql
-#  
-#  LIBS              = -lssl -lGeoIP -lmysqlclient
-#  
-#  
-#  all:             $(BINS)
-#  			@echo "\n\n---------- $@ ----------\n"
-#  				
-#  xLib_static_lib: $(OBJS)
-#  			@echo "\n\n---------- $@ ----------\n"
-#  			$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
-#  
-#  .cpp.o:
-#  			@echo "\n[$@]"
-#  			$(CXX) $(INCLUDES) $(CXXFLAGS) $? -c $<
-#  
-#  clean:		
-#  			rm -f *.d *.o $(BINS)
+PROGRAM_NAME            := xLib_static_lib.a
 
-
-root_include_dir   	:= Include/xLib
-root_source_dir    	:= Source
-source_subdirs     	:= 	.\
+ROOT_INCLUDE_DIR   	:= Include Source
+ROOT_SOURCE_DIR    	:= Source
+SOURCE_SUBDIRS     	:= 	.\
 				Units \
 				Sync \
 				Patterns \
@@ -51,36 +26,56 @@ source_subdirs     	:= 	.\
 				Crypt \
 				Compress/Linux \
 				Common
+BINARY_DIR              := Library/G++_linux/Release
+INSTALL_DIR		:= .
+PROGRAM_PATH            := ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
-compile_flags      	:= -Wall -MD -pipe
-link_flags         	:= -s -pipe
-libraries          	:= -ldl -lssl -lGeoIP -lmysqlclient
+COMPILER                := g++
+COMPILE_FLAGS      	:= -Wall -MD -pipe
+BUILD_FLAGS             := -O3 -fomit-frame-pointer -pthread -g0 -s #-g
 
-relative_include_dirs	:= $(addprefix ../../, $(root_include_dir))
-relative_source_dirs   	:= $(addprefix ../../$(root_source_dir)/, $(source_subdirs))
-objects_dirs            := $(addprefix $(root_source_dir)/, $(source_subdirs))
-objects                 := $(patsubst ../../%, %, $(wildcard $(addsuffix /*.c*, $(relative_source_dirs))))
-objects                 := $(objects:.cpp=.o)
-objects                 := $(objects:.c=.o)
+RELATIVE_INCLUDE_DIRS	:= $(addprefix ../../../, $(ROOT_INCLUDE_DIR))
+RELATIVE_SOURCE_DIRS   	:= $(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
+OBJECTS_DIRS            := $(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
+OBJECTS                 := $(patsubst ../../../%, %, $(wildcard $(addsuffix /*.c*, $(RELATIVE_SOURCE_DIRS))))
+OBJECTS                 := $(OBJECTS:.cpp=.o)
+OBJECTS                 := $(OBJECTS:.c=.o)
 
-all: 			$(program_name)
+all: 			$(PROGRAM_PATH)
 
-$(program_name):	obj_dirs $(objects)
-			g++ -o $@ $(objects) $(link_flags) $(libraries)
+$(PROGRAM_PATH):	obj_dirs $(OBJECTS)
+			ar rcs $@ $(OBJECTS)
 
-obj_dirs:	        mkdir -p $(objects_dirs)
+obj_dirs:	        
+			mkdir -p $(OBJECTS_DIRS)
 
-VPATH			:= ../../
+VPATH			:= ../../../
 
 %.o: 			%.cpp
-			g++ -o $@ -c $< $(compile_flags) $(build_flags) $(addprefix -I, $(relative_include_dirs))
+			$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS))
 
 %.o: 			%.c
-			g++ -o $@ -c $< $(compile_flags) $(build_flags) $(addprefix -I, $(relative_include_dirs))
+			$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS))
 
 .PHONY:			clean
 
-clean:
-			rm -rf bin obj
+run:		
+# 			@echo "\n******************** clean ********************"
+# 			rm -rf $(BINARY_DIR)
 
-include $(wildcard $(addsuffix /*.d, $(objects_dirs)))
+			@echo "\n******************* prepare ********************"
+			mkdir -p $(BINARY_DIR)
+
+			@echo "\n******************** compile ********************"
+			make --directory=./$(BINARY_DIR) --makefile=../../../makefile
+
+install:
+			@echo "\n******************** install ********************"
+			cp $(PROGRAM_PATH) $(INSTALL_DIR)/$(PROGRAM_NAME)
+
+clean:
+			@echo "\n******************** clean ********************"
+			rm -rf $(BINARY_DIR)
+
+
+include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))

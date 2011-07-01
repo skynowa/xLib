@@ -14,10 +14,16 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/xClosure.h>
-#include <xLib/Common/Win/CxHandleT.h>
 #include <xLib/Sync/CxEvent.h>
 #include <xLib/Log/xLog.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Common/Win/CxHandleT.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxThread :
     public CxNonCopyable
 {
@@ -147,6 +153,9 @@ class CxThread :
         VOID                    _vHandler_OnEnter(CxThread *pthSender);
         VOID                    _vHandler_OnExit (CxThread *pthSender);
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxThreadH
 

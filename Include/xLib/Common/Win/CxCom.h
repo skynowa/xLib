@@ -13,8 +13,13 @@
 #define xLib_Common_Win_CxComH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <Objbase.h>
+#if defined(xOS_WIN)
+    #include <Objbase.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxCom :
     public CxNonCopyable
 {
@@ -38,5 +43,8 @@ class CxCom :
         ULONG       _m_ulConModel;
         static LONG _ms_lInitCount;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_Win_CxComH

@@ -12,6 +12,7 @@
 #include <xLib/Sync/CxWaitableTimer.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -70,14 +71,14 @@ CxWaitableTimer::bOpen(
     /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
 
     HANDLE hRes = NULL;
-    
-//MinGW fix   
+
+//MinGW fix
 #if !defined(OpenWaitableTimer)
-	#if defined(xINICODE)
-		#define OpenWaitableTimer OpenWaitableTimerW
-	#else
-		#define OpenWaitableTimer OpenWaitableTimerA
-	#endif
+    #if defined(xINICODE)
+        #define OpenWaitableTimer OpenWaitableTimerW
+    #else
+        #define OpenWaitableTimer OpenWaitableTimerA
+    #endif
 #endif
 
     hRes = ::OpenWaitableTimer(culDesiredAccess, cbInheritHandle, csName.c_str());
@@ -147,3 +148,6 @@ CxWaitableTimer::bWait(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

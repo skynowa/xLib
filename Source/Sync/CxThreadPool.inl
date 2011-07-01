@@ -10,33 +10,34 @@
 
 
 /****************************************************************************
-*    public                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
+#if defined(xOS_WIN)
 //---------------------------------------------------------------------------
 template<class TaskT>
-CxCriticalSection CxThreadPool<TaskT>::_m_csList; 
+CxCriticalSection CxThreadPool<TaskT>::_m_csList;
 
 template<class TaskT>
-CxConsoleLog      CxThreadPool<TaskT>::_m_clLog(FALSE); 
+CxConsoleLog      CxThreadPool<TaskT>::_m_clLog(FALSE);
 //---------------------------------------------------------------------------
-//DONE: CxThreadPool (конструктор)
+//DONE: CxThreadPool (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
 CxThreadPool<TaskT>::CxThreadPool(BOOL bIsPaused,      BOOL bIsAutoDelete,
                                   BOOL bIsGroupPaused, BOOL bIsGroupAutoDelete
 ) :
     CxThread              (bIsPaused, bIsAutoDelete),
-    _m_bRes               (FALSE), 
+    _m_bRes               (FALSE),
     _m_uiStackSize        (0),
-    _m_fpFuncPtr          (0),            
-    _m_pvParam            (NULL),                
+    _m_fpFuncPtr          (0),
+    _m_pvParam            (NULL),
     _m_cbIsGroupPaused    (bIsGroupPaused),
-    _m_cbIsGroupAutoDelete(bIsGroupAutoDelete),        
+    _m_cbIsGroupAutoDelete(bIsGroupAutoDelete),
     _m_semSemaphore       (),
-    _m_lstpthTasks        (),                
+    _m_lstpthTasks        (),
     _m_uiMaxRunningTasks  (0),
-    _m_uiNumTasks         (0),                
+    _m_uiNumTasks         (0),
     _m_uiCurrTask         (0)
 {
     /*DEBUG*/
@@ -45,7 +46,7 @@ CxThreadPool<TaskT>::CxThreadPool(BOOL bIsPaused,      BOOL bIsAutoDelete,
     /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: construct"));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxThreadPool (деструктор)
+//DONE: ~CxThreadPool (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
 CxThreadPool<TaskT>::~CxThreadPool() {
     /*DEBUG*/
@@ -56,14 +57,14 @@ CxThreadPool<TaskT>::~CxThreadPool() {
 
 
 /****************************************************************************
-*    public: действия с группой                                                     
-*                                                                            
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bCreateGroup (создание)
+//TODO: bCreateGroup (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bCreateGroup(UINT uiStackSize, const TFuncPtr fpFuncPtr, VOID *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks) {
     /*DEBUG*/xASSERT_RET(0    <= uiStackSize,       FALSE);    //TODO: MaxValue
     /*DEBUG*/xASSERT_RET(NULL == fpFuncPtr,         FALSE);
@@ -76,24 +77,24 @@ CxThreadPool<TaskT>::bCreateGroup(UINT uiStackSize, const TFuncPtr fpFuncPtr, VO
     xCHECK_DO(TRUE == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: is running")); return TRUE);
 
     //-------------------------------------
-    //рабочие потоки
-    _m_uiStackSize       = uiStackSize;                
-    _m_fpFuncPtr         = fpFuncPtr;            
-    _m_pvParam           = pvParam;    
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    _m_uiStackSize       = uiStackSize;
+    _m_fpFuncPtr         = fpFuncPtr;
+    _m_pvParam           = pvParam;
     _m_uiNumTasks         = uiNumTasks;
     _m_uiMaxRunningTasks = uiMaxRunningTasks;
 
     //-------------------------------------
-    //пул
+    //пїЅпїЅпїЅ
     bRes = bCreate(0, 0, NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bResumeGroup (возобновление)
+//TODO: bResumeGroup (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bResumeGroup() {
     /*DEBUG*/
 
@@ -102,7 +103,7 @@ CxThreadPool<TaskT>::bResumeGroup() {
     xCHECK_DO(FALSE == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return TRUE);
 
     //-------------------------------------
-    //рабочие потоки
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         CxAutoCriticalSection CS(_m_csList);
 
@@ -115,16 +116,16 @@ CxThreadPool<TaskT>::bResumeGroup() {
     }
 
     //-------------------------------------
-    //пул
-    bRes = bResume();        
+    //пїЅпїЅпїЅ
+    bRes = bResume();
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bPauseGroup (приостановка)
+//TODO: bPauseGroup (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bPauseGroup() {
     /*DEBUG*/
 
@@ -133,12 +134,12 @@ CxThreadPool<TaskT>::bPauseGroup() {
     xCHECK_DO(FALSE == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return TRUE);
 
     //-------------------------------------
-    //пул
-    bRes = bPause();        
+    //пїЅпїЅпїЅ
+    bRes = bPause();
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //-------------------------------------
-    //рабочие потоки
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         CxAutoCriticalSection CS(_m_csList);
 
@@ -153,9 +154,9 @@ CxThreadPool<TaskT>::bPauseGroup() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bExitGroup (выход)
+//TODO: bExitGroup (пїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bExitGroup(ULONG ulTimeout) {
     /*DEBUG*/
 
@@ -164,12 +165,12 @@ CxThreadPool<TaskT>::bExitGroup(ULONG ulTimeout) {
     xCHECK_DO(FALSE == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return TRUE);
 
     //-------------------------------------
-    //пул
-    bRes = bExit(ulTimeout/*INFINITE*/);        
+    //пїЅпїЅпїЅ
+    bRes = bExit(ulTimeout/*INFINITE*/);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //-------------------------------------
-    //рабочие потоки
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         CxAutoCriticalSection CS(_m_csList);
 
@@ -178,15 +179,15 @@ CxThreadPool<TaskT>::bExitGroup(ULONG ulTimeout) {
 
             bRes = (*it)->bExit(ulTimeout);
             /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-        }    
+        }
     }
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: uiKillGroup (уничтожеие)
+//TODO: uiKillGroup (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bKillGroup(ULONG ulTimeout) {
     /*DEBUG*/xASSERT_RET(NULL != this, FALSE);
 
@@ -195,10 +196,10 @@ CxThreadPool<TaskT>::bKillGroup(ULONG ulTimeout) {
     xCHECK_DO(FALSE == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return TRUE);
 
     //-------------------------------------
-    //рабочие потоки
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         CxAutoCriticalSection CS(_m_csList);
-        
+
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(FALSE == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
 
@@ -208,16 +209,16 @@ CxThreadPool<TaskT>::bKillGroup(ULONG ulTimeout) {
     }
 
     //-------------------------------------
-    //пул
-    bRes = bKill(ulTimeout);        
+    //пїЅпїЅпїЅ
+    bRes = bKill(ulTimeout);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bWaitGroup (ожидание завершения)
+//TODO: bWaitGroup (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bWaitGroup(ULONG ulTimeout) {
     /*DEBUG*/
 
@@ -226,10 +227,10 @@ CxThreadPool<TaskT>::bWaitGroup(ULONG ulTimeout) {
     xCHECK_DO(FALSE == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return TRUE);
 
     //-------------------------------------
-    //рабочие потоки
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         CxAutoCriticalSection CS(_m_csList);
-    
+
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(FALSE == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
 
@@ -239,8 +240,8 @@ CxThreadPool<TaskT>::bWaitGroup(ULONG ulTimeout) {
     }
 
     //-------------------------------------
-    //пул - !ожидание самого себя!
-    //--bRes = bWait(ulTimeout);        
+    //пїЅпїЅпїЅ - !пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!
+    //--bRes = bWait(ulTimeout);
     //--xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -249,36 +250,36 @@ CxThreadPool<TaskT>::bWaitGroup(ULONG ulTimeout) {
 
 
 /****************************************************************************
-*    public:                                                         
-*                                                                            
+*    public:
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: uiGetMaxTasks (кол-во одновременно работающих заданий)
+//TODO: uiGetMaxTasks (пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-UINT 
+UINT
 CxThreadPool<TaskT>::uiGetMaxTasks() const {
     /*DEBUG*/// n/a
 
     return _m_uiMaxRunningTasks;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetMaxTasks (установка кол-ва одновременно работающих заданий)
+//TODO: bSetMaxTasks (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bSetMaxTasks(UINT uiNum)  {
     /*DEBUG*/// n/a
 
     BOOL bRes = FALSE;
 
     //-------------------------------------
-    //увеличение (Надо сделать uiNum потоков)
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ uiNum пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
     if (_m_uiMaxRunningTasks < uiNum) {
-        //сколько надо домазать к _m_uiMaxRunningTasks, чтоб было uiNum
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ _m_uiMaxRunningTasks, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ uiNum
         size_t uiTasksForInc = uiNum - _m_uiMaxRunningTasks;
 
-        bRes = _m_semSemaphore.bRelease(uiTasksForInc, NULL);  
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);    
+        bRes = _m_semSemaphore.bRelease(uiTasksForInc, NULL);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
         _m_uiMaxRunningTasks = uiNum;
 
@@ -286,8 +287,8 @@ CxThreadPool<TaskT>::bSetMaxTasks(UINT uiNum)  {
     }
 
     //-------------------------------------
-    //уменьшение (завершить кол-во заданий + уменьшить std::list)
-    if (_m_uiMaxRunningTasks > uiNum) {   
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ + пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ std::list)
+    if (_m_uiMaxRunningTasks > uiNum) {
         CxAutoCriticalSection CS(_m_csList);
 
         size_t uiCount       = 0;
@@ -296,26 +297,26 @@ CxThreadPool<TaskT>::bSetMaxTasks(UINT uiNum)  {
         for (std::list<TaskT *>::reverse_iterator it = _m_lstpthTasks.rbegin(); it != _m_lstpthTasks.rend(); ++ it)    {
             xCHECK_DO(FALSE == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
 
-            //установка флага - не освобождать семафор
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             ::InterlockedExchange(&((*it)->m_ulTag), 1);
-            
+
             bRes = (*it)->bExit(/*ulTimeout*/5000);
             /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
             ++ uiCount;
             xCHECK_DO(uiCount >= uiTasksForDec, break);
-        }    
+        }
 
         _m_uiMaxRunningTasks = uiNum;
 
         return TRUE;
     }
-    
+
     //-------------------------------------
-    //нмчего не делаем, т.к. кол-во заданий не изменилось
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if (_m_uiMaxRunningTasks == uiNum) {
         _m_uiMaxRunningTasks = uiNum;
-        
+
         return TRUE;
     }
 
@@ -324,29 +325,29 @@ CxThreadPool<TaskT>::bSetMaxTasks(UINT uiNum)  {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: uiGetNumTasks (всего заданий)
+//TODO: uiGetNumTasks (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-UINT 
+UINT
 CxThreadPool<TaskT>::uiGetNumTasks() const {
     /*DEBUG*/// n/a
 
     return _m_uiNumTasks;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetNumTasks (установка кол-ва заданий)
+//TODO: bSetNumTasks (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bSetNumTasks(UINT uiNum) {
     /*DEBUG*/// n/a
 
-    _m_uiNumTasks = uiNum;  
+    _m_uiNumTasks = uiNum;
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsEmpty (пуст ли пул)
+//TODO: bIsEmpty (пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bIsEmpty() const {
     /*DEBUG*/
 
@@ -355,41 +356,41 @@ CxThreadPool<TaskT>::bIsEmpty() const {
     CxAutoCriticalSection CS(_m_csList);
 
     bRes = _m_lstpthTasks.empty();
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsFull (заполнен ли пул)
+//TODO: bIsFull (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ)
 template<class TaskT>
-BOOL 
+BOOL
 CxThreadPool<TaskT>::bIsFull() const {
-    /*DEBUG*///xASSERT_RET(CONDITION, RET_VALUE); 
+    /*DEBUG*///xASSERT_RET(CONDITION, RET_VALUE);
 
     BOOL bRes = FALSE;
 
     CxAutoCriticalSection CS(_m_csList, TRUE);
 
-    /*DEBUG*/xASSERT_RET(_m_uiMaxRunningTasks < _m_lstpthTasks.size(), TRUE); 
+    /*DEBUG*/xASSERT_RET(_m_uiMaxRunningTasks < _m_lstpthTasks.size(), TRUE);
 
     bRes = (_m_uiMaxRunningTasks == _m_lstpthTasks.size());
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: uiSize (кол-во заданий в пуле)
+//TODO: uiSize (пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ)
 template<class TaskT>
-UINT 
+UINT
 CxThreadPool<TaskT>::uiGetSize() const {
-    /*DEBUG*///xASSERT_RET(CONDITION, RET_VALUE); 
+    /*DEBUG*///xASSERT_RET(CONDITION, RET_VALUE);
 
     UINT uiRes = 0;
 
     CxAutoCriticalSection CS(_m_csList, TRUE);
 
     uiRes = _m_lstpthTasks.size();
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return uiRes;
 }
@@ -397,65 +398,65 @@ CxThreadPool<TaskT>::uiGetSize() const {
 
 
 /****************************************************************************
-*    protected                                                       
-*                                                                            
+*    protected
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: uiOnRun (рабочяя функция)
+//TODO: uiOnRun (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-UINT 
-CxThreadPool<TaskT>::uiOnRun(VOID *pvParam) { 
+UINT
+CxThreadPool<TaskT>::uiOnRun(VOID *pvParam) {
     /*DEBUG*/
 
     UINT uiRes = 0;
     BOOL bRes  = FALSE;
 
     //-------------------------------------
-    //ставим семафор
-    bRes = _m_semSemaphore.bCreate(NULL, _m_uiMaxRunningTasks, /*_m_uiMaxRunningTasks*/2048, NULL);  
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    bRes = _m_semSemaphore.bCreate(NULL, _m_uiMaxRunningTasks, /*_m_uiMaxRunningTasks*/2048, NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, 0);
-    
+
     //-------------------------------------
-    //крутим цикл
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     /*DEBUG*/xASSERT(true == _m_lstpthTasks.empty());
-    _m_lstpthTasks.clear();  
+    _m_lstpthTasks.clear();
 
     for ( ; ; ) {
         //-------------------------------------
-        //ожидание завершения потока
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         bRes = _m_semSemaphore.bWait(INFINITE);
         /*DEBUG*/xASSERT_DO(FALSE != bRes, break);
 
         //-------------------------------------
-        //для останова (если выполнены все задания - выход)
-        xCHECK_DO(_m_uiCurrTask >= _m_uiNumTasks, break); 
+        //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ)
+        xCHECK_DO(_m_uiCurrTask >= _m_uiNumTasks, break);
         ////xCHECK_DO(TRUE == bIsEmpty(), break);
 
         //-------------------------------------
-        //не пора ли выйти или приостановиться
-        bRes = bIsTimeToExit();        
+        //пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        bRes = bIsTimeToExit();
         xCHECK_DO(TRUE == bRes, break);
-    
+
         //-------------------------------------
-        //запуск след. потока
+        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ
         bRes = _bAddTask(NULL);                                    //_m_semSemaphore.bWait(INFINITE);
         /*DEBUG*/xASSERT_DO(FALSE != bRes, break);                //continue ???
 
         ++ _m_uiCurrTask;
 
         /*LOG*/////_m_clLog.bWrite(xT("_m_uiCurrTask == %i, _m_uiNumTasks: %i\n"), _m_uiCurrTask, _m_uiNumTasks);
-    } 
+    }
 
     //-------------------------------------
-    //ждем пока завершаться дочерние потоки (ждем по одному)
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
     ////bRes = bWaitGroup(INFINITE/*5000*/);
-    /////*DEBUG*/xASSERT_RET(FALSE != bRes, 0);  
+    /////*DEBUG*/xASSERT_RET(FALSE != bRes, 0);
 
     for (; ;) {
         xCHECK_DO(TRUE == bIsEmpty(), break);
 
-        bRes = bSleep(500); 
+        bRes = bSleep(500);
         /*DEBUG*/xASSERT_DO(FALSE != bRes, break);
     }
     /*DEBUG*/xASSERT_RET(true == _m_lstpthTasks.empty(), 0);
@@ -469,49 +470,49 @@ CxThreadPool<TaskT>::uiOnRun(VOID *pvParam) {
 
 
 /****************************************************************************
-*    private                                                         
-*                                                                            
+*    private
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bPopTask (если очередь пуста, то потоки, вызвавшие этот метод, будут находиться в ожидании... )
+//TODO: bPopTask (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ... )
 template<class TaskT>
-BOOL 
-CxThreadPool<TaskT>::_bAddTask(CxThread *pvItem) { 
+BOOL
+CxThreadPool<TaskT>::_bAddTask(CxThread *pvItem) {
     /*DEBUG*/
 
     BOOL bRes = FALSE;
 
     //-------------------------------------
-    //попытка запустить следующий поток
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     try {
-            TaskT *pthTask = new TaskT(_m_cbIsGroupPaused, _m_cbIsGroupAutoDelete);        
-            /*DEBUG*/xASSERT_RET(NULL != pthTask, FALSE);    
+            TaskT *pthTask = new TaskT(_m_cbIsGroupPaused, _m_cbIsGroupAutoDelete);
+            /*DEBUG*/xASSERT_RET(NULL != pthTask, FALSE);
 
-                   pthTask->m_uiIndex = _m_uiCurrTask;    /*для отладки*/
+                   pthTask->m_uiIndex = _m_uiCurrTask;    /*пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
                    pthTask->vAttachHandler_OnEnter( xCLOSURE(this, &CxThreadPool::_vOnEnterTask) );
                    pthTask->vAttachHandler_OnExit ( xCLOSURE(this, &CxThreadPool::_vOnExitTask ) );
 
-            bRes = pthTask->bCreate(_m_uiStackSize/*0*/, _m_fpFuncPtr/*0*/, _m_pvParam/*NULL*/);        
-            /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);        
-            
-            bRes = pthTask->bResume();            
-            /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);        
+            bRes = pthTask->bCreate(_m_uiStackSize/*0*/, _m_fpFuncPtr/*0*/, _m_pvParam/*NULL*/);
+            /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+            bRes = pthTask->bResume();
+            /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
         {
             CxAutoCriticalSection CS(_m_csList);
             _m_lstpthTasks.push_back(pthTask);
         }
     } catch (...) {
-        /*DEBUG*/xASSERT_RET(FALSE, FALSE);    
+        /*DEBUG*/xASSERT_RET(FALSE, FALSE);
     }
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
-//TODO: bPushTask (добавляем элемент в очередь, увеличиваем счетчик семафора на 1)
+//TODO: bPushTask (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 1)
 template<class TaskT>
-BOOL 
-CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) { 
+BOOL
+CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) {
     BOOL bRes = FALSE;
 
     try {
@@ -520,14 +521,14 @@ CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) {
         /*DEBUG*/xASSERT_RET(FALSE != pthTask->bIsRunning(), FALSE);
 
         //-------------------------------------
-        //освобождаем _m_semSemaphore
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ _m_semSemaphore
         if (0 == pthTask->m_ulTag) {
-            bRes = _m_semSemaphore.bRelease(1, NULL); 
+            bRes = _m_semSemaphore.bRelease(1, NULL);
             /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
         }
 
         //-------------------------------------
-        //удаляем из списка указатель на поток
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         {
             CxAutoCriticalSection CS(_m_csList);
 
@@ -536,28 +537,28 @@ CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) {
 
         /*DEBUG*/xASSERT_RET(NULL != pthTask, FALSE);
     } catch (...) {
-        /*DEBUG*/xASSERT_RET(FALSE, FALSE);    
-    } 
+        /*DEBUG*/xASSERT_RET(FALSE, FALSE);
+    }
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
-//TODO: _vOnEnterTask (начало рабочей функции)
+//TODO: _vOnEnterTask (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-VOID 
+VOID
 CxThreadPool<TaskT>::_vOnEnterTask(CxThread *pthSender)  {
     /*DEBUG*/
     /*DEBUG*/xASSERT_DO(NULL  != pthSender,               return);
     /*DEBUG*/xASSERT_DO(FALSE != pthSender->bIsRunning(), return);
-    
+
     //...
 
     /*LOG*///_m_clLog.bWrite(xT("_vOnEnterTask: #%i"), pthTask->m_uiIndex);
 }
 //---------------------------------------------------------------------------
-//TODO: _vOnExitTask (конец рабочей функции)
+//TODO: _vOnExitTask (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 template<class TaskT>
-VOID 
+VOID
 CxThreadPool<TaskT>::_vOnExitTask(CxThread *pthSender)  {
     /*DEBUG*/
     /*DEBUG*/xASSERT_DO(NULL  != pthSender,               return);
@@ -571,3 +572,6 @@ CxThreadPool<TaskT>::_vOnExitTask(CxThread *pthSender)  {
     /*LOG*///_m_clLog.bWrite(xT("_vOnExitTask stop: #%i"), pthTask->m_uiIndex);
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxClipboard :
     public CxNonCopyable
 {
@@ -68,6 +69,9 @@ class CxClipboard :
         BOOL    bGetData        (EFormat fmFormat);
         BOOL    bSetData        (EFormat fmFormat, HANDLE hData);
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_Win_CxClipboardH
 

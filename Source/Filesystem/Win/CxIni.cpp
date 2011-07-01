@@ -17,6 +17,7 @@
 #include <xLib/Filesystem/CxStdioFile.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public: creation
 *
@@ -286,12 +287,12 @@ CxIni::usKeyReadBin(const tString &csSection, const tString &csKey, const uStrin
     /*DEBUG*///csKey          - n/a
     /*DEBUG*///cusDefaultValue - n/a
 
-	tString sRes;
+    tString sRes;
 
     tString sHexStr = sKeyReadString(csSection, csKey, tString(cusDefaultValue.begin(), cusDefaultValue.end()));
 
     //sHexStr -> usRes
-	sRes = CxString::lexical_cast(sHexStr, 16);
+    sRes = CxString::lexical_cast(sHexStr, 16);
 
     return uString(sRes.begin(), sRes.end());
 }
@@ -523,12 +524,6 @@ CxIni::bSectionDelete(const tString &csSection) {
     return TRUE;
 }
 //-------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
 
-
-
-
-
-
-
-
-
+#endif

@@ -14,7 +14,11 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-BOOL bGetUsbInfo(const tString &csDrive, std::vector<tString> *pvecsInfo);
+#if defined(xOS_WIN)
+    BOOL bGetUsbInfo(const tString &csDrive, std::vector<tString> *pvecsInfo);
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Units_bGetUsbInfoH
 

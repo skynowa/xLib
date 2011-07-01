@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxMutexScopeLock
-* Description: мъютекс в блоке
+* Description: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 * File name:   CxAutoMutex.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -12,17 +12,18 @@
 #include <xLib/Sync/CxAutoMutex.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
-*    public                                                           
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: CxAutoMutex ()
 CxAutoMutex::CxAutoMutex(
     CxMutex &mtMutex
-) : 
-    _m_mtMutex(mtMutex) 
+) :
+    _m_mtMutex(mtMutex)
 {
     BOOL bRes = FALSE;
 
@@ -41,3 +42,6 @@ CxAutoMutex::~CxAutoMutex() {
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

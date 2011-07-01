@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxCpuUsage :
     public CxNonCopyable
 {
@@ -32,6 +33,9 @@ class CxCpuUsage :
         LONGLONG      m_lnOldValue;
         LARGE_INTEGER m_OldPerfTime100nSec;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_Win_CxCpuUsageH
 

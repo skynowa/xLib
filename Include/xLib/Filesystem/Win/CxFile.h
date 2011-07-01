@@ -13,9 +13,15 @@
 #define xLib_Filesystem_Win_CxFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/Win/CxHandleT.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Common/Win/CxHandleT.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CxFile :
     public CxNonCopyable
 {
@@ -126,5 +132,8 @@ class CxFile :
         BOOL             _m_bRes;
         static BOOL      _ms_bRes;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_Win_CxFileH

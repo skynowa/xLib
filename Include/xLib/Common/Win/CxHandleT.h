@@ -14,70 +14,74 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 namespace {
-	enum EHandleValue {
-		hvNull,
-		hvInvalid
-	};
+    enum EHandleValue {
+        hvNull,
+        hvInvalid
+    };
 
-	template<EHandleValue hvTag>
-	struct CxHandleFailValue;
+    template<EHandleValue hvTag>
+    struct CxHandleFailValue;
 
-	template<>
-	struct CxHandleFailValue<hvNull> {
-		static HANDLE get () { return NULL; }
-	};
+    template<>
+    struct CxHandleFailValue<hvNull> {
+        static HANDLE get () { return NULL; }
+    };
 
-	template<>
-	struct CxHandleFailValue<hvInvalid> {
-		static HANDLE get () { return INVALID_HANDLE_VALUE; }
-	};
+    template<>
+    struct CxHandleFailValue<hvInvalid> {
+        static HANDLE get () { return INVALID_HANDLE_VALUE; }
+    };
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
 class CxHandleT {
-	public:
-		                    CxHandleT               ();
-		explicit            CxHandleT               (const HANDLE chHandle);
-		explicit            CxHandleT               (const CxHandleT &chHandle);
-		virtual            ~CxHandleT               ();
+    public:
+                            CxHandleT               ();
+        explicit            CxHandleT               (const HANDLE chHandle);
+        explicit            CxHandleT               (const CxHandleT &chHandle);
+        virtual            ~CxHandleT               ();
 
-		CxHandleT &         operator =              (const HANDLE chHandle);
-		CxHandleT &         operator =              (const CxHandleT &chHandle);
-		                    operator HANDLE         () const;
+        CxHandleT &         operator =              (const HANDLE chHandle);
+        CxHandleT &         operator =              (const CxHandleT &chHandle);
+                            operator HANDLE         () const;
 
-		HANDLE              hGet                    () const;
-		BOOL                bSet                    (const HANDLE chHandle);
+        HANDLE              hGet                    () const;
+        BOOL                bSet                    (const HANDLE chHandle);
 
-		BOOL                bIsValid                () const;
-		BOOL                bAttach                 (const HANDLE chHandle);
-		HANDLE              hDetach                 ();
-		BOOL                bClose                  ();
+        BOOL                bIsValid                () const;
+        BOOL                bAttach                 (const HANDLE chHandle);
+        HANDLE              hDetach                 ();
+        BOOL                bClose                  ();
 
-		ULONG               ulGetInformation        () const;
-		BOOL                bSetInformation         (const ULONG culMask, const ULONG culFlags);
-		BOOL 	            bIsFlagInherit          () const;
-		BOOL                bIsFlagProtectFromClose () const;
-		BOOL                bSetFlagInherit         (const BOOL cbFlagInherit);
-		BOOL                bSetFlagProtectFromClose(const BOOL cbFlagProtectFromClose);
-		HANDLE              hDuplicate              (const HANDLE chTargetProcess, const ULONG cluDesiredAccess, const BOOL cbInheritHandle/* = FALSE*/, const ULONG cluOptions/* = 0*/) const;
+        ULONG               ulGetInformation        () const;
+        BOOL                bSetInformation         (const ULONG culMask, const ULONG culFlags);
+        BOOL 	            bIsFlagInherit          () const;
+        BOOL                bIsFlagProtectFromClose () const;
+        BOOL                bSetFlagInherit         (const BOOL cbFlagInherit);
+        BOOL                bSetFlagProtectFromClose(const BOOL cbFlagProtectFromClose);
+        HANDLE              hDuplicate              (const HANDLE chTargetProcess, const ULONG cluDesiredAccess, const BOOL cbInheritHandle/* = FALSE*/, const ULONG cluOptions/* = 0*/) const;
 
-		//static
-		static HANDLE       hGetCurrentProcess      ();
-		static BOOL         bIsValid                (const HANDLE chHandle);
+        //static
+        static HANDLE       hGetCurrentProcess      ();
+        static BOOL         bIsValid                (const HANDLE chHandle);
 
-	private:
-	    typedef CxHandleFailValue<hvTag>  FailValue;
+    private:
+        typedef CxHandleFailValue<hvTag>  FailValue;
 
-		mutable BOOL        _m_bRes;
-		HANDLE              _m_hHandle;
+        mutable BOOL        _m_bRes;
+        HANDLE              _m_hHandle;
 
-		static const HANDLE _ms_chCurrProcessHandle;
+        static const HANDLE _ms_chCurrProcessHandle;
 };
 //---------------------------------------------------------------------------
 typedef CxHandleT<hvNull>    CxHandle;
 typedef CxHandleT<hvInvalid> CxFileHandle;
 //---------------------------------------------------------------------------
 #include <Common/Win/CxHandleT.inl>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif	//xLib_Common_Win_CxHandleTH

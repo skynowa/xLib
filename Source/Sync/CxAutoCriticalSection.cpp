@@ -12,6 +12,7 @@
 #include <xLib/Sync/CxAutoCriticalSection.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -32,3 +33,6 @@ CxAutoCriticalSection::~CxAutoCriticalSection() {
     _m_csCS.vLeave();
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

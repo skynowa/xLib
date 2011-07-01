@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxMimeMessage
-* Description: почтовое сообщение (RFC 822)
+* Description: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (RFC 822)
 * File name:   CxMimeMessage.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -10,6 +10,9 @@
 
 
 #include <xLib/Net/CxMimeMessage.h>
+
+
+#if defined(xOS_WIN)
 //---------------------------------------------------------------------------
 CxMimeMessage::CxMimeMessage() {
     //code
@@ -21,10 +24,10 @@ CxMimeMessage::~CxMimeMessage() {
 //---------------------------------------------------------------------------
 /*static*/BOOL CxMimeMessage::bParse(const tString &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body) {
     BOOL bRes = FALSE;
-    
+
     //m_Header;
     //m_Body;
-    
+
     return FALSE;
 }
 //---------------------------------------------------------------------------
@@ -40,3 +43,6 @@ CxMimeMessage::~CxMimeMessage() {
     return FALSE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

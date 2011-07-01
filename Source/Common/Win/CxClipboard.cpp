@@ -12,9 +12,10 @@
 #include <xLib/Common/Win/CxClipboard.h>
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
@@ -32,76 +33,76 @@ CxClipboard::~CxClipboard() {
 }
 //---------------------------------------------------------------------------
 //DONE: bSetOwner ()
-BOOL 
+BOOL
 CxClipboard::bSetOwner(HWND hWndOwner) {
     /*DEBUG*///
 
-    _m_hWndOwner = hWndOwner;    
+    _m_hWndOwner = hWndOwner;
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bOpen ()
-BOOL 
+BOOL
 CxClipboard::bOpen() {
     /*DEBUG*///
 
     _m_bRes = ::OpenClipboard(_m_hWndOwner);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bClose ()
-BOOL 
+BOOL
 CxClipboard::bClose() {
     /*DEBUG*///
 
     _m_bRes = ::CloseClipboard();
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bGetData ()
-BOOL 
+BOOL
 CxClipboard::bGetData(EFormat fmFormat) {
     /*DEBUG*///
 
     _m_hObject = ::GetClipboardData(static_cast<UINT>(fmFormat));
-    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE); 
+    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bSetData ()
-BOOL 
+BOOL
 CxClipboard::bSetData(EFormat fmFormat, HANDLE hData) {
     /*DEBUG*///
 
     _m_hObject = ::SetClipboardData(static_cast<UINT>(fmFormat), hData);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE); 
+    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bGetText ()
-BOOL 
+BOOL
 CxClipboard::bGetText(tString *psText) {
-    /*DEBUG*/xASSERT_RET(NULL != psText, FALSE); 
+    /*DEBUG*/xASSERT_RET(NULL != psText, FALSE);
 
     _m_bRes = bOpen();
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
 #ifdef _UNICODE
     _m_bRes = bGetData(fmUnicodeText);
 #else
     _m_bRes = bGetData(fmText);
 #endif
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     LPVOID pvData = ::GlobalLock(_m_hObject);
-    /*DEBUG*/xASSERT_RET(NULL != pvData, FALSE); 
+    /*DEBUG*/xASSERT_RET(NULL != pvData, FALSE);
 
     //TODO: resize() ???
     SIZE_T uiDataSize = ::GlobalSize(_m_hObject);
@@ -109,10 +110,10 @@ CxClipboard::bGetText(tString *psText) {
 
     uiDataSize = uiDataSize / sizeof(tString::value_type) - 1;    //'\0' - �� �����
 
-    (*psText).assign(static_cast<LPCTSTR>(pvData), uiDataSize);    
+    (*psText).assign(static_cast<LPCTSTR>(pvData), uiDataSize);
 
     _m_bRes = ::GlobalUnlock(_m_hObject);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = bClose();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -121,7 +122,7 @@ CxClipboard::bGetText(tString *psText) {
 }
 //---------------------------------------------------------------------------
 //DONE: bSetText ()
-BOOL 
+BOOL
 CxClipboard::bSetText(const tString csText) {
     /*DEBUG*/
 
@@ -129,15 +130,15 @@ CxClipboard::bSetText(const tString csText) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = bOpen();
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);  
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     ////_m_bRes = ::EmptyClipboard();
-    /////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     const SIZE_T cuiBytes = (csText.size() + 1 ) * sizeof(tString::value_type);    //'\0' - �����
-    
+
     _m_hObject = ::GlobalAlloc(GMEM_MOVEABLE | GMEM_ZEROINIT, cuiBytes);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE); 
+    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE);
 
     LPVOID pvData = ::GlobalLock(_m_hObject);
     /*DEBUG*/xASSERT_RET(NULL != pvData, FALSE);
@@ -146,14 +147,14 @@ CxClipboard::bSetText(const tString csText) {
     /*DEBUG*/// n/a
 
     _m_bRes = ::GlobalUnlock(_m_hObject);
-    /*DEBUG*/xASSERT_RET((FALSE == _m_bRes) && (NO_ERROR == ::GetLastError()), FALSE); 
+    /*DEBUG*/xASSERT_RET((FALSE == _m_bRes) && (NO_ERROR == ::GetLastError()), FALSE);
 
 #ifdef _UNICODE
     _m_bRes = bSetData(fmUnicodeText, _m_hObject);
 #else
     _m_bRes = bSetData(fmText,        _m_hObject);
 #endif
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = bClose();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -162,7 +163,7 @@ CxClipboard::bSetText(const tString csText) {
 }
 //---------------------------------------------------------------------------
 //DONE: bClear ()
-BOOL 
+BOOL
 CxClipboard::bClear() {
     /*DEBUG*///
 
@@ -170,7 +171,7 @@ CxClipboard::bClear() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = ::EmptyClipboard();
-    /*DEBUG*/xASSERT(FALSE != _m_bRes); 
+    /*DEBUG*/xASSERT(FALSE != _m_bRes);
 
     _m_bRes = bClose();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -189,7 +190,7 @@ BOOL CxClipboard::bIsHasFormat(EFormat fmFormat) {
 }
 //---------------------------------------------------------------------------
 //TODO: bRegisterFormat ()
-BOOL 
+BOOL
 CxClipboard::bRegisterFormat(const tString csText, EFormat *pfmFormat) {
     /*DEBUG*/// csText
     /*DEBUG*/xASSERT_RET(NULL != pfmFormat, FALSE);
@@ -205,8 +206,11 @@ CxClipboard::bRegisterFormat(const tString csText, EFormat *pfmFormat) {
 
 
 /****************************************************************************
-*    private                                                         
-*                                                                            
+*    private
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

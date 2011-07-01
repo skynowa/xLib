@@ -28,6 +28,7 @@
 #endif
 
 
+#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -101,7 +102,7 @@ CxThread::~CxThread() {
 //DONE: bCreate (creation)
 BOOL
 CxThread::bCreate(
-    const BOOL cbIsPaused, 
+    const BOOL cbIsPaused,
     const UINT cuiStackSize,
     VOID       *pvParam
 )
@@ -145,7 +146,7 @@ CxThread::bCreate(
 
     //-------------------------------------
     //_m_evPause
-    _m_bRes = _m_evPause.bCreate(NULL, TRUE, TRUE, xT(""));      
+    _m_bRes = _m_evPause.bCreate(NULL, TRUE, TRUE, xT(""));
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = _m_evExit.bCreate(NULL, TRUE, TRUE, xT(""));
@@ -1161,3 +1162,6 @@ CxThread::_vHandler_OnExit(
     _m_vCallback_OnExit(pthSender);
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif
