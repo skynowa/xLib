@@ -1,6 +1,6 @@
 ######################################################################################################
 # Class name:  
-# Description: make file for Linux
+# Description: make file (Linux, release)
 # File name:   makefile
 # Author:      skynowa
 # E-mail:      skynowa@gmail.com
@@ -9,7 +9,7 @@
 ######################################################################################################
 
 
-PROGRAM_NAME            := xLib_static_lib.a
+PROGRAM_NAME            := xLib.a
 
 ROOT_INCLUDE_DIR   	:= Include Source
 ROOT_SOURCE_DIR    	:= Source
@@ -41,7 +41,7 @@ OBJECTS                 := $(patsubst ../../../%, %, $(wildcard $(addsuffix /*.c
 OBJECTS                 := $(OBJECTS:.cpp=.o)
 OBJECTS                 := $(OBJECTS:.c=.o)
 
-all: 			$(PROGRAM_PATH)
+
 
 $(PROGRAM_PATH):	obj_dirs $(OBJECTS)
 			ar rcs $@ $(OBJECTS)
@@ -59,10 +59,8 @@ VPATH			:= ../../../
 
 .PHONY:			clean
 
-run:		
-# 			@echo "\n******************** clean ********************"
-# 			rm -rf $(BINARY_DIR)
 
+all:		
 			@echo "\n******************* prepare ********************"
 			mkdir -p $(BINARY_DIR)
 
@@ -71,7 +69,7 @@ run:
 
 install:
 			@echo "\n******************** install ********************"
-			cp $(PROGRAM_PATH) $(INSTALL_DIR)/$(PROGRAM_NAME)
+			cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)/$(PROGRAM_NAME)
 
 clean:
 			@echo "\n******************** clean ********************"
