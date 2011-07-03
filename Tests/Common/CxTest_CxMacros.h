@@ -77,18 +77,36 @@ CxTest_CxMacros::bUnit() {
     //-------------------------------------
     //xBUFF_ZERO
     {
-        TCHAR szBuff[256];
+        TCHAR szBuff[255 + 1];
 
         xBUFF_ZERO(szBuff);
+        xASSERT(xT('\0') == szBuff[0]);
+        xASSERT(xT('\0') == szBuff[127]);
+        xASSERT(xT('\0') == szBuff[255]);
     }
 
     //-------------------------------------
     //xARRAY_SIZE
     {
-        TCHAR szBuff[256] = {0};
+        {
+	        TCHAR szBuff[256] = {0};
+	        m_uiRes = xARRAY_SIZE(szBuff);
+	        xASSERT(256 == m_uiRes);
 
-        m_uiRes = xARRAY_SIZE(szBuff);
-        xASSERT(256 == m_uiRes);
+            INT aiBuff[256] = {0};
+	        m_uiRes = xARRAY_SIZE(aiBuff);
+	        xASSERT(256 == m_uiRes);
+
+            tString asBuff[256];
+	        m_uiRes = xARRAY_SIZE(asBuff);
+	        xASSERT(256 == m_uiRes);
+        }
+
+        //must compile-error
+        {
+	        ////TCHAR *pszBuff = NULL;
+	        ////m_uiRes = xARRAY_SIZE(pszBuff);
+        }
     }
 
     //-------------------------------------
