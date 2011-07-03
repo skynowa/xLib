@@ -96,11 +96,11 @@ CxTest_CxThread::bUnit() {
 
 		//-------------------------------------
 		//���������
-		m_bRes = pthT->bSetPriority(CxThread::tpPRIORITY_LOWEST);
+		m_bRes = pthT->bSetPriority(CxThread::tpLowest);
 		xASSERT(FALSE != m_bRes);
 
 		m_iRes = pthT->tpGetPriority();
-		xASSERT(CxThread::tpPRIORITY_LOWEST == m_iRes);
+		xASSERT(CxThread::tpLowest == m_iRes);
 
 		m_sRes = pthT->sGetPriorityString();
 		xASSERT(tString(xT("Lowest")) == m_sRes);
