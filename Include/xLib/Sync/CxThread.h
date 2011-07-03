@@ -28,18 +28,17 @@ class CxThread :
     public CxNonCopyable
 {
     public:
-        enum EPriority {
-            tpPRIORITY_ERROR         = THREAD_PRIORITY_ERROR_RETURN,
-            tpPRIORITY_IDLE          = THREAD_PRIORITY_IDLE,
-            tpPRIORITY_LOWEST        = THREAD_PRIORITY_LOWEST,
-            tpPRIORITY_BELOW_NORMAL  = THREAD_PRIORITY_BELOW_NORMAL,
-            tpPRIORITY_NORMAL        = THREAD_PRIORITY_NORMAL,
-            tpPRIORITY_ABOVE_NORMAL  = THREAD_PRIORITY_ABOVE_NORMAL,
-            tpPRIORITY_HIGHEST       = THREAD_PRIORITY_HIGHEST,
-            tpPRIORITY_TIME_CRITICAL = THREAD_PRIORITY_TIME_CRITICAL
-        };
+	    enum EPriority {
+	        tpError        = THREAD_PRIORITY_ERROR_RETURN,
+	        tpIdle         = THREAD_PRIORITY_IDLE,
+	        tpLowest       = THREAD_PRIORITY_LOWEST,
+	        tpBelowNormal  = THREAD_PRIORITY_BELOW_NORMAL,
+	        tpNormal       = THREAD_PRIORITY_NORMAL,
+	        tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
+	        tpHighest      = THREAD_PRIORITY_HIGHEST,
+	        tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
+	    };
 
-    public:
         volatile LONG           m_ulTag;
 
                                 CxThread              (const BOOL cbAutoDelete);

@@ -518,12 +518,12 @@ CxThread::bSetPriority(
 //DONE: iGetPriority (get priotity)
 CxThread::EPriority
 CxThread::tpGetPriority() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), tpPRIORITY_ERROR);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), tpError);
 
-    CxThread::EPriority tpRes = tpPRIORITY_ERROR;
+    CxThread::EPriority tpRes = tpError;
 
     tpRes = static_cast<EPriority>(::GetThreadPriority(_m_hThread.hGet()));
-    /*DEBUG*/xASSERT_RET(tpPRIORITY_ERROR != tpRes, tpPRIORITY_ERROR);
+    /*DEBUG*/xASSERT_RET(tpError != tpRes, tpError);
 
     return tpRes;
 }
@@ -535,13 +535,13 @@ CxThread::sGetPriorityString() const {
 
     INT iRes = tpGetPriority();
     switch (iRes) {
-        case tpPRIORITY_IDLE:           return xT("Idle");
-        case tpPRIORITY_LOWEST:         return xT("Lowest");
-        case tpPRIORITY_BELOW_NORMAL:   return xT("Below normal");
-        case tpPRIORITY_NORMAL:         return xT("Normal");
-        case tpPRIORITY_ABOVE_NORMAL:   return xT("Above normal");
-        case tpPRIORITY_HIGHEST:        return xT("Highest");
-        case tpPRIORITY_TIME_CRITICAL:	return xT("Time critical");
+        case tpIdle:            return xT("Idle");
+        case tpLowest:          return xT("Lowest");
+        case tpBelowNormal:     return xT("Below normal");
+        case tpNormal:          return xT("Normal");
+        case tpAboveNormal:     return xT("Above normal");
+        case tpHighest:         return xT("Highest");
+        case tpTimeCritical:    return xT("Time critical");
     }
 
     return xT("N/A");
@@ -552,20 +552,20 @@ BOOL
 CxThread::bPriorityUp() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    EPriority tpOldLevel  = tpPRIORITY_ERROR;
-    EPriority tpiNewLevel = tpPRIORITY_ERROR;
+    EPriority tpOldLevel  = tpError;
+    EPriority tpiNewLevel = tpError;
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpPRIORITY_IDLE:           tpiNewLevel = tpPRIORITY_LOWEST;        break;
-        case tpPRIORITY_LOWEST:         tpiNewLevel = tpPRIORITY_BELOW_NORMAL;  break;
-        case tpPRIORITY_BELOW_NORMAL:   tpiNewLevel = tpPRIORITY_NORMAL;        break;
-        case tpPRIORITY_NORMAL:         tpiNewLevel = tpPRIORITY_ABOVE_NORMAL;	break;
-        case tpPRIORITY_ABOVE_NORMAL:   tpiNewLevel = tpPRIORITY_HIGHEST;       break;
-        case tpPRIORITY_HIGHEST:        tpiNewLevel = tpPRIORITY_TIME_CRITICAL; break;
-        case tpPRIORITY_TIME_CRITICAL:	return TRUE;                            break;
+        case tpIdle:            tpiNewLevel = tpLowest;                 break;
+        case tpLowest:          tpiNewLevel = tpBelowNormal;            break;
+        case tpBelowNormal:     tpiNewLevel = tpNormal;                 break;
+        case tpNormal:          tpiNewLevel = tpAboveNormal;	        break;
+        case tpAboveNormal:     tpiNewLevel = tpHighest;                break;
+        case tpHighest:         tpiNewLevel = tpTimeCritical;           break;
+        case tpTimeCritical:    return TRUE;                            break;
 
-        default:            /*xASSERT*/xASSERT_RET(FALSE, tpPRIORITY_NORMAL);   break;
+        default:            /*xASSERT*/xASSERT_RET(FALSE, tpNormal);    break;
     }
 
     return bSetPriority(tpiNewLevel);
@@ -576,20 +576,20 @@ BOOL
 CxThread::bPriorityDown() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    EPriority tpOldLevel  = tpPRIORITY_ERROR;
-    EPriority tpiNewLevel = tpPRIORITY_ERROR;
+    EPriority tpOldLevel  = tpError;
+    EPriority tpiNewLevel = tpError;
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpPRIORITY_IDLE:           return TRUE;                            break;
-        case tpPRIORITY_LOWEST:         tpiNewLevel = tpPRIORITY_IDLE;          break;
-        case tpPRIORITY_BELOW_NORMAL:   tpiNewLevel = tpPRIORITY_LOWEST;        break;
-        case tpPRIORITY_NORMAL:         tpiNewLevel = tpPRIORITY_BELOW_NORMAL;	break;
-        case tpPRIORITY_ABOVE_NORMAL:   tpiNewLevel = tpPRIORITY_NORMAL;        break;
-        case tpPRIORITY_HIGHEST:        tpiNewLevel = tpPRIORITY_ABOVE_NORMAL;  break;
-        case tpPRIORITY_TIME_CRITICAL:	tpiNewLevel = tpPRIORITY_HIGHEST;       break;
+        case tpIdle:            return TRUE;                            break;
+        case tpLowest:          tpiNewLevel = tpIdle;                   break;
+        case tpBelowNormal:     tpiNewLevel = tpLowest;                 break;
+        case tpNormal:          tpiNewLevel = tpBelowNormal;	        break;
+        case tpAboveNormal:     tpiNewLevel = tpNormal;                 break;
+        case tpHighest:         tpiNewLevel = tpAboveNormal;            break;
+        case tpTimeCritical:    tpiNewLevel = tpHighest;                break;
 
-        default:            /*xASSERT*/xASSERT_RET(FALSE, tpPRIORITY_NORMAL);   break;
+        default:            /*xASSERT*/xASSERT_RET(FALSE, tpNormal);    break;
     }
 
     return bSetPriority(tpiNewLevel);
