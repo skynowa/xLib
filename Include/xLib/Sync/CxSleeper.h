@@ -15,7 +15,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
-#if xTEMP_DISABLED
+#if defined(xOS_WIN)
     class CxSleeper :
         public CxNonCopyable
     {

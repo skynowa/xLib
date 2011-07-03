@@ -38,7 +38,7 @@ class CxMacros :
                 delete p; p = NULL;
         }*/
 
-        #define xARRAY_DELETE(a)      { if (NULL != (a)) {delete [] (a);  (a) = NULL;} }
+        #define xARRAY_DELETE(a)        { if (NULL != (a)) {delete [] (a);  (a) = NULL;} }
         /*template<class T>
         static inline VOID
         xARRAY_DELETE(T *&a_ptr) {
@@ -48,13 +48,15 @@ class CxMacros :
             }
         }*/
 
-        #define xARRAY_ZERO_DELETE(a) { if (NULL != (a)) {xBUFF_ZERO(a); delete [] (a);  (a) = NULL;} }
-        #define xARRAY_SIZE(a)        ( sizeof(a) / sizeof((a)[0]) )
-
-        #if xTODO
+        #define xARRAY_ZERO_DELETE(a)   { if (NULL != (a)) {xBUFF_ZERO(a); delete [] (a);  (a) = NULL;} }
+        
+        #if xDEPRECIATE
+            #define xARRAY_SIZE(a)      ( sizeof(a) / sizeof((a)[0]) )
+        #else
             template <typename T, size_t N>
-            TCHAR (&ArraySizeHelper(T (&array)[N]))[N];
-            #define xARRAY_SIZE(a)        (sizeof(ArraySizeHelper(a)))
+            static TCHAR (&ArraySizeHelper(T (&array)[N]))[N];
+
+            #define xARRAY_SIZE(a)      (sizeof(CxMacros::ArraySizeHelper(a)))
         #endif
 
         #define xBUFF_ZERO(Buff)        { memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
