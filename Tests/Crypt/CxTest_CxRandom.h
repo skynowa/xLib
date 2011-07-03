@@ -45,6 +45,7 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 /*virtual*/
 BOOL
 CxTest_CxRandom::bUnit() {
+#if xTODO
 	CxRandom rndR;
 
     //--------------------------------------------------
@@ -123,6 +124,34 @@ CxTest_CxRandom::bUnit() {
         m_dRes = rndR.dNextGaussian();
         //xASSERT
     }
+#endif
+
+    //-------------------------------------
+    //bSetSeed, liGetInt, liGetIntEx
+    {
+        const LONG caliData[][2] = {
+            {0, 100},
+            {500, 1000},
+            {50000, 100000},
+            {-100, 0},
+            {-1000, 500},
+            {-100000, 50000}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(caliData); ++ i) {
+            const LONG cliMin = caliData[i][0]; 
+            const LONG cliMax = caliData[i][1];
+
+            m_bRes = CxRandom::bSetSeed();
+            xASSERT(FALSE != m_bRes);
+
+            m_liRes = CxRandom::liGetInt(cliMin, cliMax);
+            xASSERT(m_liRes >= cliMin && m_liRes <= cliMax);
+
+            m_liRes = CxRandom::liGetIntEx(cliMin, cliMax);
+            xASSERT(m_liRes >= cliMin && m_liRes <= cliMax);
+        }
+    }
 
     //--------------------------------------------------
     //sGetString
@@ -130,6 +159,9 @@ CxTest_CxRandom::bUnit() {
         const size_t cuiStrSize = 10;
 
         for (size_t i = 0; i < 10; ++ i) {
+            m_bRes = CxRandom::bSetSeed();
+            xASSERT(FALSE != m_bRes);
+
             m_sRes = CxRandom::sGetString(cuiStrSize);
             //xTRACEV(xT("i: %s"), m_sRes.c_str());
         }

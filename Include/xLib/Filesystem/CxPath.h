@@ -64,6 +64,14 @@ class CxPath :
 
 
 /*
+_MAX_DIR 	
+_MAX_DRIVE 	
+_MAX_EXT 	
+_MAX_FNAME 	
+_MAX_PATH 
+*/
+
+/*
 void File_ShrinkName(char *pDestFileName, char *pSrcFileName, int maxlen)
 {
   int srclen = strlen(pSrcFileName);

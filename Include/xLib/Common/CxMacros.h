@@ -70,14 +70,6 @@ class CxMacros :
         #define xS2TS(s)                tString( (s).begin(),  (s).begin()  + (s).size()  )
         #define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
 
-    #if defined(xOS_WIN)
-        #define xRANDOMIZE()            ( srand( (UINT)::GetTickCount() ) )
-    #elif defined(xOS_LINUX)
-        #define xRANDOMIZE()            ( srand( (UINT)time(NULL) ) )
-    #endif
-
-        #define xRANDOM(x)              ( rand() % (x) )
-
         #define xFCLOSE(f)              { if (NULL != (f)) { fclose(f); (f) = NULL; } }
 
         #define xMAX(a, b)              ( ((a) > (b)) ? (a) : (b) )
