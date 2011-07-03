@@ -15,6 +15,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxVolume.h>
 #include <xLib/Filesystem/CxDir.h>
+#include <xLib/Crypt/CxRandom.h>
 
 #if defined(xOS_WIN)
     #include <fstream>
@@ -590,12 +591,12 @@ CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
             llFileSize += (cllClusterSize - (llFileSize % cllClusterSize));
 
             for (UINT p = 0; p < uiPasses; ++ p) {
-                xRANDOMIZE();
+                CxRandom::bSetSeed();
 
                 for (LONG i = 0; i < llFileSize; i += cliBuffSize) {
                     //���������� ������ ��������� �������
                     for (LONGLONG j = 0; j < cliBuffSize; ++ j) {
-                        ucBuff[j] = static_cast<UCHAR>(xRANDOM(255) + 1);
+                        ucBuff[j] = static_cast<UCHAR>(CxRandom::liGetInt(0, 255) + 1);
                     }
 
                     //������ ������ � ����
@@ -617,25 +618,25 @@ CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
             //-------------------------------------
             //���� ��������
             FILETIME ftCreationTime = {0};
-            xRANDOMIZE();
+            CxRandom::bSetSeed();
             ftCreationTime.dwHighDateTime = rand();
-            xRANDOMIZE();
+            CxRandom::bSetSeed();
             ftCreationTime.dwLowDateTime  = rand();
 
             //-------------------------------------
             //���� ���������� �������
             FILETIME ftLastAccessTime = {0};
-            xRANDOMIZE();
+            CxRandom::bSetSeed();
             ftLastAccessTime.dwHighDateTime = rand();
-            xRANDOMIZE();
+            CxRandom::bSetSeed();
             ftLastAccessTime.dwLowDateTime  = rand();
 
             //-------------------------------------
             //���� ���������� ���������
             FILETIME ftLastWriteTime = {0};
-            xRANDOMIZE();
+            CxRandom::bSetSeed();
             ftLastWriteTime.dwHighDateTime = rand();
-            xRANDOMIZE();
+            CxRandom::bSetSeed();
             ftLastWriteTime.dwLowDateTime  = rand();
 
             //-------------------------------------
@@ -693,25 +694,25 @@ CxFile::bSetRandomDate(const tString &csFilePath) {
     //-------------------------------------
     //���� ��������
     FILETIME ftCreationTime = {0};
-    xRANDOMIZE();
+    CxRandom::bSetSeed();
     ftCreationTime.dwHighDateTime = rand();
-    xRANDOMIZE();
+    CxRandom::bSetSeed();
     ftCreationTime.dwLowDateTime  = rand();
 
     //-------------------------------------
     //���� ���������� �������
     FILETIME ftLastAccessTime = {0};
-    xRANDOMIZE();
+    CxRandom::bSetSeed();
     ftLastAccessTime.dwHighDateTime = rand();
-    xRANDOMIZE();
+    CxRandom::bSetSeed();
     ftLastAccessTime.dwLowDateTime  = rand();
 
     //-------------------------------------
     //���� ���������� ���������
     FILETIME ftLastWriteTime = {0};
-    xRANDOMIZE();
+    CxRandom::bSetSeed();
     ftLastWriteTime.dwHighDateTime = rand();
-    xRANDOMIZE();
+    CxRandom::bSetSeed();
     ftLastWriteTime.dwLowDateTime  = rand();
 
     //-------------------------------------

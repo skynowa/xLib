@@ -42,6 +42,9 @@ class CxRandom :
         CHAR             chNextFigure ();
         DOUBLE           dNextGaussian();
 
+        static BOOL      bSetSeed     ();
+        static LONG      liGetInt     (const LONG cliMin, const LONG cliMax);
+        static LONG      liGetIntEx   (const LONG cliMin, const LONG cliMax);
         static tString   sGetString   (const size_t cuiSize);
 
     protected:

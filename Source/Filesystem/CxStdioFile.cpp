@@ -17,6 +17,7 @@
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
 #include <xLib/Crypt/CxCrc32.h>
+#include <xLib/Crypt/CxRandom.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Filesystem/CxVolume.h>
@@ -882,9 +883,9 @@ CxStdioFile::bWipe(
             //--------------------------------------------------
             //fill by 0x55, 0xAA, random char
             for (size_t i = 0; i < cuiPasses; ++ i) {
-                xRANDOMIZE();
+                CxRandom::bSetSeed();
 
-                const UCHAR chRand  = static_cast<UCHAR>(xRANDOM(255) + 1);
+                const UCHAR chRand  = static_cast<UCHAR>(CxRandom::liGetInt(0, 255) + 1);
                 const UCHAR chChar1 = 0x55;
                 const UCHAR chChar2 = 0xAA;
 

@@ -38,7 +38,7 @@ CxEnvironment::bIsExists(
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
     /*DEBUG*/// n/a
     ULONG ulLastError = ::GetLastError();
-    xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == ulLastError, FALSE);
+    xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == ulLastError, FALSE); 
 #elif defined(xOS_LINUX)
     char *pszRes = NULL;
 

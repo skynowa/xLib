@@ -152,6 +152,70 @@ CxRandom::dNextGaussian() {
     }
 }
 //---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    public, static
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+//DONE: bSetSeed
+BOOL 
+CxRandom::bSetSeed() {
+    /*DEBUG*/// n/a
+
+    UINT uiSeed = 0;
+
+#if defined(xOS_WIN)
+    uiSeed = static_cast<UINT>( ::GetTickCount() );
+#elif defined(xOS_LINUX)
+    uiSeed = static_cast<UINT>( time(NULL) );
+#endif
+
+    srand(uiSeed);
+    /*DEBUG*/// n/a
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: liGetInt (Generates a random number between specified min/max boundaries) 
+/*static*/
+LONG 
+CxRandom::liGetInt( 
+    const LONG cliMin, 
+    const LONG cliMax 
+)
+{
+    /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0)
+
+    const LONG cliRange = cliMax - cliMin;
+    const LONG cliNum   = rand() % cliRange;
+
+    return cliNum + cliMin;
+}
+//---------------------------------------------------------------------------
+//DONE: liGetIntEx (Generates a random number between specified min/max boundaries using a vector to shuffle)
+/*static*/
+LONG 
+CxRandom::liGetIntEx(
+    const LONG cliMin, 
+    const LONG cliMax 
+)
+{
+    /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0)
+
+	std::vector<LONG> vliRes;
+
+	for (LONG i = cliMin; i < cliMax; ++ i) {
+		vliRes.push_back(i);
+    }
+
+    std::random_shuffle(vliRes.begin(), vliRes.end());
+
+	return vliRes[0];
+}
+//---------------------------------------------------------------------------
 //DONE: sGetString (get random string)
 /*static*/
 tString
@@ -201,7 +265,7 @@ CxRandom::sGetString(
 
     const size_t cuiPossibilitiesNum = sAllPossible.length();
     for (size_t i = 0; i < cuiLength; ++ i) {
-        sRes += sAllPossible[ xRANDOM(cuiPossibilitiesNum) ];
+        sRes += sAllPossible[ liGetInt(0, cuiPossibilitiesNum) ];
     }
 
     //std::random_shuffle(sRes.begin(), sRes.end());

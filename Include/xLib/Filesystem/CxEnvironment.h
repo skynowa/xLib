@@ -33,3 +33,5 @@ class CxEnvironment :
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxEnvironmentH
+
+//_MAX_ENV
