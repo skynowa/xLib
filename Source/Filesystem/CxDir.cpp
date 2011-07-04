@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 * Class name:  CxDir
 * Description: directory
 * File name:   CxDir.cpp
@@ -357,7 +357,7 @@ CxDir::bCopy(
 
     //--------------------------------------------------
     //copy
-    for (std::vector<tString>::const_reverse_iterator it = vsFilePathes.rbegin();
+    for (std::vector<tString>::reverse_iterator it = vsFilePathes.rbegin();
         it != vsFilePathes.rend() && false == vsFilePathes.empty();
         ++ it)
     {
@@ -496,7 +496,7 @@ CxDir::bClearForce(
         bRes = bFindFiles(csDirPath, CxConst::xMASK_ALL, TRUE, &vecsFilePathes);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        for (std::vector<tString>::const_reverse_iterator it = vecsFilePathes.rbegin();
+        for (std::vector<tString>::reverse_iterator it = vecsFilePathes.rbegin();
             it != vecsFilePathes.rend() && false == vecsFilePathes.empty();
             ++ it)
         {
@@ -514,7 +514,7 @@ CxDir::bClearForce(
         bRes = bFindDirs(csDirPath, CxConst::xMASK_ALL, TRUE, &vecsDirPathes);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        for (std::vector<tString>::const_reverse_iterator it = vecsDirPathes.rbegin();
+        for (std::vector<tString>::reverse_iterator it = vecsDirPathes.rbegin();
             it != vecsDirPathes.rend() && false == vecsDirPathes.empty();
             ++ it)
         {

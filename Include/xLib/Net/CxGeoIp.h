@@ -13,7 +13,10 @@
 #define xLib_Net_CxGeoIpH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <GeoIP.h>
+
+#if !defined(xOS_FREEBSD)
+    #include <GeoIP.h>
+#endif
 
 #if defined(xOS_WIN)
     #pragma comment(lib, "GeoIP.Lib")
@@ -21,10 +24,11 @@
     //-lGeoIP
 #endif
 //---------------------------------------------------------------------------
+#if !defined(xOS_FREEBSD)
 class CxGeoIp :
     public CxNonCopyable
 {
-	public:
+    public:
         enum EOption {
             opStandard    = GEOIP_STANDARD,
             opMemoryCache = GEOIP_MEMORY_CACHE,
@@ -33,20 +37,21 @@ class CxGeoIp :
             opMmapCache   = GEOIP_MMAP_CACHE
         };
 
-				      CxGeoIp                  ();
-		virtual      ~CxGeoIp                  ();
+                      CxGeoIp                  ();
+        virtual      ~CxGeoIp                  ();
 
-		BOOL          bOpen                    (const tString &csFilePath, const EOption copOption);
-		BOOL          bIsValid                 () const;
-		tString       sGetCountryCodeByAddress (const tString &csAddress) const;
-		tString       sGetCountryCode3ByAddress(const tString &csAddress) const;
+        BOOL          bOpen                    (const tString &csFilePath, const EOption copOption);
+        BOOL          bIsValid                 () const;
+        tString       sGetCountryCodeByAddress (const tString &csAddress) const;
+        tString       sGetCountryCode3ByAddress(const tString &csAddress) const;
         BOOL          bClose                   ();
 
     private:
         mutable BOOL  _m_bRes;
 
-		GeoIP        *_m_pgiGeoIp;
+        GeoIP        *_m_pgiGeoIp;
 
 };
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxGeoIpH

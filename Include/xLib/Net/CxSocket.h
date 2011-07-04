@@ -39,17 +39,36 @@ class CxSocket :
             afIrdA        = AF_IRDA,            //The Infrared Data Association (IrDA) address family
             ////TODO: G++ afBluetooth   = AF_BTH              //The Bluetooth address family
         #elif defined(xOS_LINUX)
-            afUnix        = AF_UNIX,            //Local communication
-            afLocal       = AF_LOCAL,           //Local communication
-            afInet        = AF_INET,            //IPv4 Internet protocols
-            afInet6       = AF_INET6,           //IPv6 Internet protocols
-            afIpx         = AF_IPX,             //IPX - Novell protocols
-            afNetlink     = AF_NETLINK,         //Kernel user interface device
-            afX25         = AF_X25,             //ITU-T X.25 / ISO-8208 protocol
-            afAX25        = AF_AX25,            //Amateur radio AX.25 protocol
-            afAtmpvc      = AF_ATMPVC,          //Access to raw ATM PVCs
-            afAppletalk   = AF_APPLETALK,       //Appletalk
-            afPacket      = AF_PACKET           //Low level packet interface
+            #if !defined(xOS_FREEBSD)
+                afUnix        = AF_UNIX,            //Local communication
+                afLocal       = AF_LOCAL,           //Local communication
+                afInet        = AF_INET,            //IPv4 Internet protocols
+                afInet6       = AF_INET6,           //IPv6 Internet protocols
+                afIpx         = AF_IPX,             //IPX - Novell protocols
+                afNetlink     = AF_NETLINK,         //Kernel user interface device
+                afX25         = AF_X25,             //ITU-T X.25 / ISO-8208 protocol
+                afAX25        = AF_AX25,            //Amateur radio AX.25 protocol
+                afAtmpvc      = AF_ATMPVC,          //Access to raw ATM PVCs
+                afAppletalk   = AF_APPLETALK,       //Appletalk
+                afPacket      = AF_PACKET           //Low level packet interface
+            #elif defined(xOS_FREEBSD)
+                afLocal     = PF_LOCAL,             //Host-internal protocols, formerly called PF_UNIX,
+                afUnix      = PF_UNIX,              //Host-internal protocols, deprecated, use PF_LOCAL,
+                afInet      = PF_INET,              //Internet version 4 protocols,
+                afPup       = PF_PUP,               //PUP protocols, like BSP,
+                afAppletalk = PF_APPLETALK,         //AppleTalk protocols,
+                afRoute     = PF_ROUTE,             //Internal Routing protocol,
+                afLink      = PF_LINK,              //Link layer interface,
+                afIpx       = PF_IPX,               //Novell Internet Packet eXchange protocol,
+                afRtip      = PF_RTIP,              //Help Identify RTIP packets,
+                afPip       = PF_PIP,               //Help Identify PIP packets,
+                afIsdn      = PF_ISDN,              //Integrated Services Digital Network,
+                afKey       = PF_KEY,               //Internal key-management function,
+                afInet6     = PF_INET6,             //Internet version 6 protocols,
+                afNatm      = PF_NATM,              //Native ATM access,
+                afAtm       = PF_ATM,               //ATM,
+                afNetgraph  = PF_NETGRAPH,          //Netgraph sockets
+            #endif
         #endif
         };
 
@@ -74,36 +93,65 @@ class CxSocket :
             ptIcmpv6      = IPPROTO_ICMPV6,     //The Internet Control Message Protocol Version 6 (ICMPv6)
             //ptRm          = IPPROTO_RM          //The PGM protocol for reliable multicast
         #elif defined(xOS_LINUX)
-            ptIp          = IPPROTO_IP,         //Dummy protocol for TCP
-            ptHopopts     = IPPROTO_HOPOPTS,    //IPv6 Hop-by-Hop options
-            ptIcmp        = IPPROTO_ICMP,       //Internet Control Message Protocol
-            ptIgmp        = IPPROTO_IGMP,       //Internet Group Management Protocol
-            ptIpip        = IPPROTO_IPIP,       //IPIP tunnels (older KA9Q tunnels use 94)
-            ptTcp         = IPPROTO_TCP,        //Transmission Control Protocol
-            ptEgp         = IPPROTO_EGP,        //Exterior Gateway Protocol
-            ptPup         = IPPROTO_PUP,        //PUP protocol
-            ptUdp         = IPPROTO_UDP,        //User Datagram Protocol
-            ptIdp         = IPPROTO_IDP,        //XNS IDP protocol
-            ptTp          = IPPROTO_TP,         //SO Transport Protocol Class 4
-            ptDccp        = IPPROTO_DCCP,       //Datagram Congestion Control Protocol
-            ptIpv6        = IPPROTO_IPV6,       //IPv6 header
-            ptRouting     = IPPROTO_ROUTING,    //IPv6 routing header
-            ptFragment    = IPPROTO_FRAGMENT,   //IPv6 fragmentation header
-            ptRsvp        = IPPROTO_RSVP,       //Reservation Protocol
-            ptGre         = IPPROTO_GRE,        //General Routing Encapsulation
-            ptEsp         = IPPROTO_ESP,        //encapsulating security payload
-            ptAH          = IPPROTO_AH,         //authentication header
-            ptICmpv6      = IPPROTO_ICMPV6,     //ICMPv6
-            ptNone        = IPPROTO_NONE,       //IPv6 no next header
-            ptDstopts     = IPPROTO_DSTOPTS,    //IPv6 destination options
-            ptMtp         = IPPROTO_MTP,        //Multicast Transport Protocol
-            ptEncap       = IPPROTO_ENCAP,      //Encapsulation Header
-            ptPim         = IPPROTO_PIM,        //Protocol Independent Multicast
-            ptComp        = IPPROTO_COMP,       //Compression Header Protocol
-            ptSctp        = IPPROTO_SCTP,       //Stream Control Transmission Protocol
-            ptUdplite     = IPPROTO_UDPLITE,    //UDP-Lite protocol
-            ptRaw         = IPPROTO_RAW,        //Raw IP packets
-            ptMax         = IPPROTO_MAX
+            #if !defined(xOS_FREEBSD)
+                ptIp          = IPPROTO_IP,         //Dummy protocol for TCP
+                ptHopopts     = IPPROTO_HOPOPTS,    //IPv6 Hop-by-Hop options
+                ptIcmp        = IPPROTO_ICMP,       //Internet Control Message Protocol
+                ptIgmp        = IPPROTO_IGMP,       //Internet Group Management Protocol
+                ptIpip        = IPPROTO_IPIP,       //IPIP tunnels (older KA9Q tunnels use 94)
+                ptTcp         = IPPROTO_TCP,        //Transmission Control Protocol
+                ptEgp         = IPPROTO_EGP,        //Exterior Gateway Protocol
+                ptPup         = IPPROTO_PUP,        //PUP protocol
+                ptUdp         = IPPROTO_UDP,        //User Datagram Protocol
+                ptIdp         = IPPROTO_IDP,        //XNS IDP protocol
+                ptTp          = IPPROTO_TP,         //SO Transport Protocol Class 4
+                ptDccp        = IPPROTO_DCCP,       //Datagram Congestion Control Protocol
+                ptIpv6        = IPPROTO_IPV6,       //IPv6 header
+                ptRouting     = IPPROTO_ROUTING,    //IPv6 routing header
+                ptFragment    = IPPROTO_FRAGMENT,   //IPv6 fragmentation header
+                ptRsvp        = IPPROTO_RSVP,       //Reservation Protocol
+                ptGre         = IPPROTO_GRE,        //General Routing Encapsulation
+                ptEsp         = IPPROTO_ESP,        //encapsulating security payload
+                ptAH          = IPPROTO_AH,         //authentication header
+                ptICmpv6      = IPPROTO_ICMPV6,     //ICMPv6
+                ptNone        = IPPROTO_NONE,       //IPv6 no next header
+                ptDstopts     = IPPROTO_DSTOPTS,    //IPv6 destination options
+                ptMtp         = IPPROTO_MTP,        //Multicast Transport Protocol
+                ptEncap       = IPPROTO_ENCAP,      //Encapsulation Header
+                ptPim         = IPPROTO_PIM,        //Protocol Independent Multicast
+                ptComp        = IPPROTO_COMP,       //Compression Header Protocol
+                ptSctp        = IPPROTO_SCTP,       //Stream Control Transmission Protocol
+                ptUdplite     = IPPROTO_UDPLITE,    //UDP-Lite protocol
+                ptRaw         = IPPROTO_RAW,        //Raw IP packets
+                ptMax         = IPPROTO_MAX
+            #elif defined(xOS_FREEBSD)
+                ptIp          = IPPROTO_IP,         //Dummy protocol for TCP
+                ptHopopts     = IPPROTO_HOPOPTS,    //IPv6 Hop-by-Hop options
+                ptIcmp        = IPPROTO_ICMP,       //Internet Control Message Protocol
+                ptIgmp        = IPPROTO_IGMP,       //Internet Group Management Protocol
+                ptIpip        = IPPROTO_IPIP,       //IPIP tunnels (older KA9Q tunnels use 94)
+                ptTcp         = IPPROTO_TCP,        //Transmission Control Protocol
+                ptEgp         = IPPROTO_EGP,        //Exterior Gateway Protocol
+                ptPup         = IPPROTO_PUP,        //PUP protocol
+                ptUdp         = IPPROTO_UDP,        //User Datagram Protocol
+                ptIdp         = IPPROTO_IDP,        //XNS IDP protocol
+                ptTp          = IPPROTO_TP,         //SO Transport Protocol Class 4
+                ptIpv6        = IPPROTO_IPV6,       //IPv6 header
+                ptRouting     = IPPROTO_ROUTING,    //IPv6 routing header
+                ptFragment    = IPPROTO_FRAGMENT,   //IPv6 fragmentation header
+                ptRsvp        = IPPROTO_RSVP,       //Reservation Protocol
+                ptGre         = IPPROTO_GRE,        //General Routing Encapsulation
+                ptEsp         = IPPROTO_ESP,        //encapsulating security payload
+                ptAH          = IPPROTO_AH,         //authentication header
+                ptICmpv6      = IPPROTO_ICMPV6,     //ICMPv6
+                ptNone        = IPPROTO_NONE,       //IPv6 no next header
+                ptDstopts     = IPPROTO_DSTOPTS,    //IPv6 destination options
+                ptMtp         = IPPROTO_MTP,        //Multicast Transport Protocol
+                ptEncap       = IPPROTO_ENCAP,      //Encapsulation Header
+                ptPim         = IPPROTO_PIM,        //Protocol Independent Multicast
+                ptRaw         = IPPROTO_RAW,        //Raw IP packets
+                ptMax         = IPPROTO_MAX
+            #endif
         #endif
         };
 

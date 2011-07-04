@@ -83,7 +83,7 @@ CxDll::fpGetProcAddress(
     fpRes = (VOID *)( ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str()) );
     /*DEBUG*/xASSERT_RET(NULL != fpRes, NULL);
 #elif defined(xOS_LINUX)
-    CHAR *pszError = NULL;
+    const CHAR *pszError = NULL;
 
     pszError = dlerror();
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);

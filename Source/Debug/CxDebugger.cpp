@@ -20,8 +20,10 @@
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxRtf.h>
 #elif defined(xOS_LINUX)
-    #include <linux/kd.h>   //bBeep
-    #include <X11/Xlib.h>   //bBeep -lX11
+    #if xTEMP_DISABLED
+        #include <linux/kd.h>   //bBeep
+        #include <X11/Xlib.h>   //bBeep -lX11
+    #endif
 #endif
 
 
