@@ -65,7 +65,7 @@ all:
 			mkdir -p $(BINARY_DIR)
 
 # 			@echo "\n******************** compile ********************"
-			make --directory=./$(BINARY_DIR) --makefile=../../../makefile
+			$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../makefile
 
 install:
 # 			@echo "\n******************** install ********************"
