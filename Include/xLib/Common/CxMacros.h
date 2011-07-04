@@ -49,7 +49,7 @@ class CxMacros :
         }*/
 
         #define xARRAY_ZERO_DELETE(a)   { if (NULL != (a)) {xBUFF_ZERO(a); delete [] (a);  (a) = NULL;} }
-        
+
         #if xDEPRECIATE
             #define xARRAY_SIZE(a)      ( sizeof(a) / sizeof((a)[0]) )
         #else
@@ -350,6 +350,11 @@ class CxMacros :
             #define xCOUNTER   xT(__COUNTER__)
         #else
             #define xCOUNTER   xT("<unknown xCOUNTER>")
+        #endif
+
+        //TODO: HOST_NAME_MAX
+        #if !defined(HOST_NAME_MAX)
+            #define HOST_NAME_MAX   MAXHOSTNAMELEN
         #endif
 
     private:

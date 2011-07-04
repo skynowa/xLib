@@ -158,6 +158,10 @@ CxSocket::iSend(LPCTSTR pcszBuff, INT iBuffSize, INT iFlags) {
     /*DEBUG*/xASSERT_RET(etError                        != iRes && WSAEWOULDBLOCK != iGetLastError(), etError);
     /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(TCHAR) >= iRes,                                      etError);
 #elif defined(xOS_LINUX)
+    #if !defined(MSG_NOSIGNAL)
+        #define MSG_NOSIGNAL  0x20000
+    #endif
+
     ssize_t iRes = send(_m_puiSocket, pcszBuff, iBuffSize, MSG_NOSIGNAL);
     /*DEBUG*/xASSERT_RET(etError                        != iRes, etError);
     /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(TCHAR) >= iRes, etError);

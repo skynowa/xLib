@@ -61,18 +61,18 @@ VPATH			:= ../../../
 
 
 all:		
-			@echo "\n******************* prepare ********************"
+# 			@echo "\n******************* prepare ********************"
 			mkdir -p $(BINARY_DIR)
 
-			@echo "\n******************** compile ********************"
+# 			@echo "\n******************** compile ********************"
 			make --directory=./$(BINARY_DIR) --makefile=../../../makefile
 
 install:
-			@echo "\n******************** install ********************"
+# 			@echo "\n******************** install ********************"
 			cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)/$(PROGRAM_NAME)
 
 clean:
-			@echo "\n******************** clean ********************"
+# 			@echo "\n******************** clean ********************"
 			rm -rf $(BINARY_DIR)
 
 

@@ -51,8 +51,21 @@
 						</toolChain>
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.941199747" name="CxThreadPool.inl" rcbsApplicability="disable" resourcePath="Source/Sync/CxThreadPool.inl" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.728678637" name="CxMutex.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxMutex.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.453369363" name="CxCriticalSection.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxCriticalSection.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.523261428" name="CxAutoMutex.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxAutoMutex.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.1817098265" name="CxSleeper.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxSleeper.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.1448631165" name="CxSemaphore.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxSemaphore.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.168002062" name="CxThreadPool.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxThreadPool.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.1013448568" name="CxTls.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxTls.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.2101036730" name="CxAutoCriticalSection.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxAutoCriticalSection.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.843956447" name="CxAtomicLongInt.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxAtomicLongInt.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.1215689292" name="CxThread.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxThread.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.1471824463" name="CxWaitableTimer.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxWaitableTimer.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.844953571" name="CxEvent.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxEvent.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.debug.28311529.233359293" name="CxCompletionPort.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxCompletionPort.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="Include/xLib/Sync/CxCompletionPort.h|Include/xLib/Sync/CxCriticalSection.h|Include/xLib/Sync/CxEvent.h|Include/xLib/Sync/CxAutoMutex.h|Include/xLib/Sync/CxMutex.h|Include/xLib/Sync/CxAutoCriticalSection.h|Include/xLib/Sync/CxSemaphore.h|Include/xLib/Sync/CxSleeper.h|Include/xLib/Sync/CxThread.h|Include/xLib/Sync/CxThreadPool.h|Include/xLib/Sync/CxTls.h|Include/xLib/Sync/CxWaitableTimer.h|Include/xLib/Sync/CxAtomicLongInt.h|Source/Pkcs11/Win|Source/Gui/Win|Include/xLib/Pkcs11/Win|Include/xLib/Net/Win|Include/xLib/Gui/Win" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Source/Pkcs11/Win|Source/Gui/Win|Include/xLib/Pkcs11/Win|Include/xLib/Net/Win|Include/xLib/Gui/Win" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -938,8 +951,21 @@
 						</toolChain>
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.2033822232" name="CxThreadPool.inl" rcbsApplicability="disable" resourcePath="Source/Sync/CxThreadPool.inl" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.1937542404" name="CxMutex.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxMutex.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.1872412626" name="CxCriticalSection.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxCriticalSection.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.338812496" name="CxAutoMutex.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxAutoMutex.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.844802650" name="CxSleeper.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxSleeper.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.1234463064" name="CxSemaphore.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxSemaphore.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.643213144" name="CxThreadPool.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxThreadPool.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.429791030" name="CxTls.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxTls.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.1284174616" name="CxAutoCriticalSection.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxAutoCriticalSection.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.1641366709" name="CxAtomicLongInt.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxAtomicLongInt.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.1960378044" name="CxThread.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxThread.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.1256435200" name="CxWaitableTimer.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxWaitableTimer.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.280581363" name="CxEvent.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxEvent.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.gnu.lib.release.606199951.1202116483" name="CxCompletionPort.h" rcbsApplicability="disable" resourcePath="Include/xLib/Sync/CxCompletionPort.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="Include/xLib/Sync/CxCompletionPort.h|Include/xLib/Sync/CxCriticalSection.h|Include/xLib/Sync/CxEvent.h|Include/xLib/Sync/CxAutoMutex.h|Include/xLib/Sync/CxMutex.h|Include/xLib/Sync/CxAutoCriticalSection.h|Include/xLib/Sync/CxSemaphore.h|Include/xLib/Sync/CxSleeper.h|Include/xLib/Sync/CxThread.h|Include/xLib/Sync/CxThreadPool.h|Include/xLib/Sync/CxTls.h|Include/xLib/Sync/CxWaitableTimer.h|Include/xLib/Sync/CxAtomicLongInt.h|Source/Pkcs11/Win|Source/Gui/Win|Include/xLib/Pkcs11/Win|Include/xLib/Net/Win|Include/xLib/Gui/Win" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Source/Pkcs11/Win|Source/Gui/Win|Include/xLib/Pkcs11/Win|Include/xLib/Net/Win|Include/xLib/Gui/Win" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
