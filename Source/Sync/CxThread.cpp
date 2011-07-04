@@ -774,7 +774,7 @@ CxThread::hOpen(
     return hRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetCurrId (Retrieves the thread identifier of the calling thread.)
+//DONE: ulGetCurrId (Retrieves the thread identifier of the calling thread)
 /*static*/
 ULONG
 CxThread::ulGetCurrId() {
@@ -782,8 +782,13 @@ CxThread::ulGetCurrId() {
 
     ULONG ulRes = 0;
 
+#if defined(xOS_WIN)
     ulRes = ::GetCurrentThreadId();
     /*DEBUG*/xASSERT_RET(0 < ulRes, 0);
+#elif defined(xOS_LINUX)
+    ulRes = static_cast<ULONG>( pthread_self() );
+    /*DEBUG*/xASSERT_RET(0 < ulRes, 0);
+#endif
 
     return ulRes;
 }
@@ -802,7 +807,37 @@ CxThread::hGetCurrHandle() {
     return hRes;
 }
 //---------------------------------------------------------------------------
+//DONE: bYield (уступить ресурсы другому потоку, который готов к исполнению на !текущем процессоре!)
+/*static*/
+BOOL
+CxThread::bYield() {
+    /*DEBUG*/// n/a
 
+    ::SwitchToThread();
+    /*DEBUG*/// n/a
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bSleep (sleep)
+/*static*/
+BOOL
+CxThread::bSleep(
+    const UINT cuiMsec
+) {
+    /*DEBUG*/// n/a
+
+#if defined(xOS_WIN)
+    ::Sleep(cuiMsec);
+    /*DEBUG*/// n/a
+#elif defined(xOS_LINUX)
+    INT iRes = usleep(cuiMsec * 1000U);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE); 
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 
 /****************************************************************************
 *    public: callbacks
@@ -908,21 +943,6 @@ CxThread::uiOnRun(
 *
 *****************************************************************************/
 
-//---------------------------------------------------------------------------
-//DONE: bYield (уступить ресурсы другому потоку, который готов к исполнению на !текущем процессоре!)
-BOOL
-CxThread::bYield() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-
-    ::SwitchToThread();
-    /*DEBUG*/// n/a
-
-    //-------------------------------------
-    //flags
-    //n/a
-
-    return TRUE;
-}
 //---------------------------------------------------------------------------
 //DONE: bIsTimeToExit (is need to exit from thread)
 BOOL

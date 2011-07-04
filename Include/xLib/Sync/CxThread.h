@@ -92,6 +92,8 @@ class CxThread :
         static HANDLE           hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
         static ULONG            ulGetCurrId           ();
         static HANDLE           hGetCurrHandle        ();
+        static BOOL             bYield                (); 
+        static BOOL             bSleep                (const UINT cuiMsec);                   
 
         //callbacks
         VOID                    vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback);
@@ -102,8 +104,6 @@ class CxThread :
         virtual UINT            uiOnRun               (VOID *pvParam) = 0;
         //--virtual VOID        vOnEnter              ();
         //--virtual VOID        vOnExit               ();
-
-        BOOL                    bYield                () const;                    /*static ???*/
 
         BOOL                    bIsTimeToExit         ();
 
