@@ -12,11 +12,11 @@
 #include <xLib/Common/CxSystemInfo.h>
 
 #include <xLib/Filesystem/CxEnvironment.h>
+
 #if defined(xOS_WIN)
     #include <Lmcons.h>
 #elif defined(xOS_LINUX)
     #include <sys/utsname.h>
-    #include <sys/sysinfo.h>
     #include <sched.h>
 #endif
 
@@ -294,7 +294,7 @@ CxSystemInfo::bIsUserAnAdmin() {
 #elif defined(xOS_LINUX)
     const uid_t cuiRootId = 0;
 
-    uid_t       uiUserId = - 1;
+    uid_t       uiUserId  = 0;
 
     uiUserId = getuid();
     /*DEBUG*/// n/a
@@ -354,17 +354,6 @@ CxSystemInfo::ulGetNumOfCPUs() {
 
     ulRes = siSysInfo.dwNumberOfProcessors;
 #elif defined(xOS_LINUX)
-    //--------------------------------------------------
-    //1-st version
-    #if xTEMP_DISABLED
-        INT iNumberOfProcessors = get_nprocs();
-        /*DEBUG*/xASSERT_RET(0 < iNumberOfProcessors, 0);
-
-        ulRes = static_cast<ULONG>( iNumberOfProcessors );
-    #endif
-
-    //--------------------------------------------------
-    //2-nd version
     ulRes = static_cast<ULONG>( sysconf(_SC_NPROCESSORS_ONLN) );
     /*DEBUG*/xASSERT_RET(static_cast<ULONG>( -1 ) != ulRes, 0);
 #endif
@@ -378,7 +367,7 @@ ULONG
 CxSystemInfo::ulGetCurrentCpuNum() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = - 1;
+    ULONG ulRes = static_cast<ULONG>( - 1 );
 
 #if defined(xOS_WIN)
     #if (xWINVER >= xWIN32_7)
@@ -394,8 +383,19 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         ulRes = 0;
     #endif
 #elif defined(xOS_LINUX)
-    ulRes = static_cast<ULONG>( sched_getcpu() );
-    /*DEBUG*/xASSERT_RET(static_cast<ULONG>( - 1) != ulRes, - 1);
+    #if defined(xOS_FREEBSD)
+        //TODO: ulGetCurrentCpuNum
+        /*
+        BSD Derivatives include FreeBSD, OpenBSD, NetBSD and MacOS X (Darwin).
+        Newer BSD derivative systems support the _SC_NPROCESSORS_CONF and _SC_NPROCESSORS_ONLN flags to the sysconf function.
+        The number of system processors can also be obtained using the CTL_HW and HW_NCPU flags with the sysctl function.
+        */
+
+         ulRes = 0;
+    #else
+        ulRes = static_cast<ULONG>( sched_getcpu() );
+        /*DEBUG*/xASSERT_RET(static_cast<ULONG>( - 1 ) != ulRes, static_cast<ULONG>( - 1 ));
+    #endif
 #endif
 
     return ulRes;

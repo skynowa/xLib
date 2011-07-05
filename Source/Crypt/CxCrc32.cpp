@@ -62,7 +62,7 @@ CxCrc32::ulCalcFile(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
-    ULONG ulRes = - 1;
+    ULONG ulRes = 0;
 
     uString usFile;
 
@@ -191,7 +191,7 @@ CxCrc32::ulCalcFileFast(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
-    ULONG ulRes = - 1;
+    ULONG ulRes = 0;
 
     uString usFile;
 

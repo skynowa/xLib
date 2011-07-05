@@ -50,7 +50,7 @@ CxTest_CxCookiePv1::bUnit() {
     const tString   csComment   = xT("Comment1");
     const tString   csDomain    = xT(".domain.com1");
     const tString   csPath      = xT("/1");
-    const ULONGLONG ciMaxAge    = 10 * 60 * 60;
+    const LONGLONG  ciMaxAge    = 10 * 60 * 60;
     const BOOL      cbSecure    = TRUE;
     const BOOL      cbHttpOnly  = TRUE;
     const tString   csRawCookie = CxString::sFormat(
@@ -90,7 +90,7 @@ CxTest_CxCookiePv1::bUnit() {
 
         m_bRes = ckCookiePv1.bSetMaxAge(ciMaxAge);
         xASSERT(FALSE != m_bRes);
-        m_ullRes = ckCookiePv1.iGetMaxAge();
+        m_ullRes = ckCookiePv1.liGetMaxAge();
         xASSERT(ciMaxAge == m_ullRes);
 
         m_bRes = ckCookiePv1.bSetSecure(cbSecure);
@@ -136,8 +136,8 @@ CxTest_CxCookiePv1::bUnit() {
         m_sRes = ckCookiePv1.sGetPath();
         xASSERT(csPath == m_sRes);
 
-        m_ullRes = ckCookiePv1.iGetMaxAge();
-        xASSERT(ciMaxAge == m_ullRes);
+        m_llRes = ckCookiePv1.liGetMaxAge();
+        xASSERT(ciMaxAge == m_llRes);
 
         m_bRes = ckCookiePv1.bGetSecure();
         xASSERT(cbSecure == m_bRes);

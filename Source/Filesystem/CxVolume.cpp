@@ -135,14 +135,22 @@ CxVolume::bGetFreeSpace(
     xPTR_ASSIGN(pullTotal,     ullTotal.QuadPart);
     xPTR_ASSIGN(pullFree,      ullFree.QuadPart);
 #elif defined(xOS_LINUX)
-    struct statfs64 stfInfo = {0};
+    #if defined(xOS_FREEBSD)
+        #define xSTATVFS          statvfs
+        #define xSTATVFS_F_FRSIZE f_frsize
+    #elif defined(xOS_LINUX)
+        #define xSTATVFS          statfs64
+        #define xSTATVFS_F_FRSIZE f_bsize
+    #endif
 
-    INT iRes = statfs64(_sDirPath.c_str(), &stfInfo);
+    struct xSTATVFS stfInfo = {0};
+
+    INT iRes = xSTATVFS(_sDirPath.c_str(), &stfInfo);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, _sDirPath, FALSE);
 
-    xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * stfInfo.f_bsize);
-    xPTR_ASSIGN(pullTotal,     stfInfo.f_blocks * stfInfo.f_bsize);
-    xPTR_ASSIGN(pullFree,      stfInfo.f_bfree  * stfInfo.f_bsize);
+    xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE);
+    xPTR_ASSIGN(pullTotal,     stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE);
+    xPTR_ASSIGN(pullFree,      stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE);
 #endif
 
     return TRUE;

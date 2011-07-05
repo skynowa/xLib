@@ -39,8 +39,8 @@ class CxCookiePv1 :
         const tString  & sGetPath    () const;
         BOOL             bSetPath    (const tString &csPath);
 
-        ULONGLONG        iGetMaxAge  () const;
-        BOOL             bSetMaxAge  (ULONGLONG iMaxAge);
+        LONGLONG         liGetMaxAge () const;
+        BOOL             bSetMaxAge  (LONGLONG liMaxAge);
 
         BOOL             bGetSecure  () const;
         BOOL             bSetSecure  (BOOL bFlag);
@@ -58,7 +58,7 @@ class CxCookiePv1 :
         tString          _m_sComment;
         tString          _m_sDomain;
         tString          _m_sPath;
-        ULONGLONG        _m_iMaxAge;    //in seconds
+        LONGLONG         _m_liMaxAge;    //in seconds
         BOOL             _m_bSecure;
         BOOL             _m_bHttpOnly;
 };

@@ -30,7 +30,7 @@ ULONG
 CxProcess::ulGetCurrId() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = - 1;
+    ULONG ulRes = (ULONG)- 1;
 
 #if defined(xOS_WIN)
     ulRes = ::GetCurrentProcessId();
