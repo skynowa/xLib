@@ -19,10 +19,8 @@
     #define xOS_LINUX
     //#pragma message("  --- xLib: xOS_LINUX ---")
 #elif defined(__FreeBSD__)
-    #define xOS_FREEBSD
-
-    //FreeBSD as Linux
     #define xOS_LINUX
+    #define xOS_FREEBSD
     //#pragma message("  --- xLib: xOS_FREEBSD ---")
 #else
     #error xLib: unsupported OS

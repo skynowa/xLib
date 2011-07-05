@@ -38,7 +38,7 @@ CxEnvironment::bIsExists(
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
     /*DEBUG*/// n/a
     ULONG ulLastError = ::GetLastError();
-    xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == ulLastError, FALSE); 
+    xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == ulLastError, FALSE);
 #elif defined(xOS_LINUX)
     char *pszRes = NULL;
 
@@ -126,8 +126,13 @@ CxEnvironment::bDeleteVar(
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = unsetenv(csVarName.c_str());
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    #if defined(xOS_FREEBSD)
+        unsetenv(csVarName.c_str());
+        /*DEBUG*/// n/a
+    #else
+        INT iRes = unsetenv(csVarName.c_str());
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    #endif
 #endif
 
     return TRUE;

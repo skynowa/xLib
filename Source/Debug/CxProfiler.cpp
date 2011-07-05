@@ -83,8 +83,12 @@ CxProfiler::bStart() {
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                _m_ctClocksStart = std::clock();
-                /*DEBUG*/xASSERT_RET(- 1 != _m_ctClocksStart, FALSE);
+                #if defined(xOS_FREEBSD)
+                    _m_ctClocksStart = _liGetClock();
+                #else
+                    _m_ctClocksStart = std::clock();
+                #endif
+                /*DEBUG*/xASSERT_RET(static_cast<clock_t>( - 1 ) != _m_ctClocksStart, FALSE);
             }
             break;
 
@@ -149,10 +153,32 @@ CxProfiler::bStop(
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                _m_ctClocksStop = std::clock();
-                /*DEBUG*/xASSERT_RET(- 1 != _m_ctClocksStop, FALSE);
+//                #if defined(xOS_FREEBSD)
+//                    _m_ctClocksStop = _liGetClock();
+//                    /*DEBUG*/xASSERT_RET(static_cast<clock_t>( - 1 ) != _m_ctClocksStop, FALSE);
+//
+//                    sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / 1000 ).sFormat(CxDateTime::ftTime);
+//                #else
+//                    _m_ctClocksStop = std::clock();
+//                    /*DEBUG*/xASSERT_RET(static_cast<clock_t>( - 1 ) != _m_ctClocksStop, FALSE);
+//
+//                    sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / (CLOCKS_PER_SEC / 1000) ).sFormat(CxDateTime::ftTime);
+//                #endif
 
-                sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / (CLOCKS_PER_SEC / 1000) ).sFormat(CxDateTime::ftTime);
+                std::clock_t ctClockResolution;
+
+                #if defined(xOS_FREEBSD)
+                    ctClockResolution = 1000;
+                    _m_ctClocksStop   = _liGetClock();
+
+                #else
+                    ctClockResolution = CLOCKS_PER_SEC / 1000;
+                    _m_ctClocksStop   = std::clock();
+                #endif
+
+                /*DEBUG*/xASSERT_RET(static_cast<clock_t>( - 1 ) != _m_ctClocksStop, FALSE);
+
+                sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / ctClockResolution ).sFormat(CxDateTime::ftTime);
             }
             break;
 
@@ -317,3 +343,26 @@ CxProfiler::_bResetData() {
     return TRUE;
 }
 //--------------------------------------------------------------------------
+#if defined(xOS_FREEBSD)
+//DONE: _liGetClock (determine processor time used for FreeBSD)
+//NOTE: http://bugs.vcmi.eu/view.php?id=719
+/*static*/
+std::clock_t
+CxProfiler::_liGetClock() {
+    /*DEBUG*/
+
+    std::clock_t liRes = static_cast<clock_t>( - 1 );
+
+    rusage ruUsage = {0};
+
+    INT iRes = getrusage(RUSAGE_SELF, &ruUsage);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<clock_t>( - 1 ));
+
+    liRes = static_cast<std::clock_t>(ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec) * 1000000 +
+            ruUsage.ru_utime.tv_usec + ruUsage.ru_stime.tv_usec;
+
+    return liRes;
+}
+#endif
+//---------------------------------------------------------------------------
+

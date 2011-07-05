@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 * Class name:  CxReport
 * Description: debug message
 * File name:   CxReport.cpp
@@ -295,7 +295,7 @@ CxReport::_bInitVars(
 #if defined(xOS_WIN)
     _m_ulThreadId      = ::GetCurrentThreadId();
 #elif defined(xOS_LINUX)
-    _m_ulThreadId      = static_cast<ULONG>( pthread_self() );
+    _m_ulThreadId      = (ULONG)pthread_self();
 #endif
 
     _m_sSourceFile     = csFile;

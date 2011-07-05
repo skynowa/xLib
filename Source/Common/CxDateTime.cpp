@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 * Class name:  CxDateTime
 * Description: date, time
 * File name:   CxDateTime.cpp
@@ -642,28 +642,28 @@ CxDateTime::bIsValid(
     /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<USHORT>(cusSecond),      CxString::lexical_cast(cusSecond));
     /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<USHORT>(cusMillisecond), CxString::lexical_cast(cusMillisecond));
 
-    bool bYear        = (cusYear   >= 0 && cusYear   <= 9999);
-    /*DEBUG*/xASSERT_MSG(true == bYear,        xT("usYear:   ")        + CxString::lexical_cast(cusYear));
+    BOOL bYear        = (BOOL)(cusYear   >= 0U && cusYear   <= 9999U);
+    /*DEBUG*/xASSERT_MSG(TRUE == bYear,        xT("usYear:   ")        + CxString::lexical_cast(cusYear));
 
-    bool bMonth       = (cusMonth  >= 0/*1*/ && cusMonth  <= 12);
-    /*DEBUG*/xASSERT_MSG(true == bMonth,       xT("usMonth:  ")        + CxString::lexical_cast(cusMonth));
+    BOOL bMonth       = (BOOL)(cusMonth  >= 0/*1*/ && cusMonth  <= 12);
+    /*DEBUG*/xASSERT_MSG(TRUE == bMonth,       xT("usMonth:  ")        + CxString::lexical_cast(cusMonth));
 
-    bool bDay         = true;   ////(usDay    >= 0/*1*/ && usDay    <= usDaysInMonth(usYear, usMonth));
-    /*DEBUG*/xASSERT_MSG(true == bDay,         xT("usDay:    ")        + CxString::lexical_cast(cusDay));
+    BOOL bDay         = (BOOL)TRUE;   ////(usDay    >= 0/*1*/ && usDay    <= usDaysInMonth(usYear, usMonth));
+    /*DEBUG*/xASSERT_MSG(TRUE == bDay,         xT("usDay:    ")        + CxString::lexical_cast(cusDay));
 
-    bool bHour        = (cusHour   >= 0 && cusHour   <= 23);
-    /*DEBUG*/xASSERT_MSG(true == bHour,        xT("usHour:   ")        + CxString::lexical_cast(cusHour));
+    BOOL bHour        = (BOOL)(cusHour   >= 0 && cusHour   <= 23);
+    /*DEBUG*/xASSERT_MSG(TRUE == bHour,        xT("usHour:   ")        + CxString::lexical_cast(cusHour));
 
-    bool bMinute      = (cusMinute >= 0 && cusMinute <= 59);
-    /*DEBUG*/xASSERT_MSG(true == bMinute,      xT("usMinute: ")        + CxString::lexical_cast(cusMinute));
+    BOOL bMinute      = (BOOL)(cusMinute >= 0 && cusMinute <= 59);
+    /*DEBUG*/xASSERT_MSG(TRUE == bMinute,      xT("usMinute: ")        + CxString::lexical_cast(cusMinute));
 
-    bool bSecond      = (cusSecond >= 0 && cusSecond <= 59);
-    /*DEBUG*/xASSERT_MSG(true == bSecond,      xT("usSecond: ")        + CxString::lexical_cast(cusSecond));
+    BOOL bSecond      = (BOOL)(cusSecond >= 0 && cusSecond <= 59);
+    /*DEBUG*/xASSERT_MSG(TRUE == bSecond,      xT("usSecond: ")        + CxString::lexical_cast(cusSecond));
 
-    bool bMillisecond = (cusMillisecond >= 0 && cusMillisecond   <= 999);
-    /*DEBUG*/xASSERT_MSG(true == bMillisecond, xT("usMillisecond:   ") + CxString::lexical_cast(cusMillisecond));
+    BOOL bMillisecond = (BOOL)(cusMillisecond >= 0 && cusMillisecond   <= 999);
+    /*DEBUG*/xASSERT_MSG(TRUE == bMillisecond, xT("usMillisecond:   ") + CxString::lexical_cast(cusMillisecond));
 
-    xCHECK_RET(false == (bYear && bMonth && bDay && bHour && bMinute && bSecond && bMillisecond), FALSE);
+    xCHECK_RET(FALSE == (bYear && bMonth && bDay && bHour && bMinute && bSecond && bMillisecond), FALSE);
 
     return TRUE;
 }
@@ -714,7 +714,7 @@ CxDateTime::dtGetCurrent() {
     //get datetime
     std::tm *ptmDateTime = {0};
 
-    ptmDateTime = localtime( static_cast<const time_t *>( &tvTime.tv_sec ));
+    ptmDateTime = localtime( reinterpret_cast<const time_t *>( &tvTime.tv_sec ));
     /*DEBUG*/xASSERT_RET(NULL != ptmDateTime, CxDateTime());
 
     //set datetime
@@ -1025,7 +1025,6 @@ CxDateTime::sGetWeekDayStr(
     /*DEBUG*/// cbIsShortName - n/a
 
     xCHECK_DO(6 < usDay, usDay = 6);
-    xCHECK_DO(0 > usDay, usDay = 0);
 
     tString sRes;
 

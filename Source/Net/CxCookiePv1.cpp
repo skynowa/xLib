@@ -28,7 +28,7 @@ CxCookiePv1::CxCookiePv1() :
     _m_sComment (),
     _m_sDomain  (),
     _m_sPath    (),
-    _m_iMaxAge  (- 1),
+    _m_liMaxAge (- 1),
     _m_bSecure  (FALSE),
     _m_bHttpOnly(FALSE)
 {
@@ -47,7 +47,7 @@ CxCookiePv1::CxCookiePv1(const tString &csRawCookie) :
     _m_sComment (),
     _m_sDomain  (),
     _m_sPath    (),
-    _m_iMaxAge  (- 1),
+    _m_liMaxAge (- 1),
     _m_bSecure  (FALSE),
     _m_bHttpOnly(FALSE)
 {
@@ -156,20 +156,20 @@ CxCookiePv1::bSetPath(const tString &csPath) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetMaxAge ()
-ULONGLONG
-CxCookiePv1::iGetMaxAge() const {
+//DONE: liGetMaxAge ()
+LONGLONG
+CxCookiePv1::liGetMaxAge() const {
     /*DEBUG*/
 
-    return _m_iMaxAge;
+    return _m_liMaxAge;
 }
 //---------------------------------------------------------------------------
 //DONE: bSetMaxAge ()
 BOOL
-CxCookiePv1::bSetMaxAge(ULONGLONG iMaxAge) {
+CxCookiePv1::bSetMaxAge(LONGLONG liMaxAge) {
     /*DEBUG*/
 
-    _m_iMaxAge = iMaxAge;
+    _m_liMaxAge = liMaxAge;
 
     return TRUE;
 }
@@ -242,9 +242,9 @@ CxCookiePv1::sToString() const {
         sRes.append("\"");
     }
 
-    if (_m_iMaxAge >= 0) {
+    if (_m_liMaxAge >= 0) {
         sRes.append("; Max-Age=\"");
-        sRes.append( CxString::lexical_cast(_m_iMaxAge) );
+        sRes.append( CxString::lexical_cast(_m_liMaxAge) );
         sRes.append("\"");
     }
 
@@ -271,7 +271,7 @@ CxCookiePv1::bClear() {
     _m_sComment.clear();
     _m_sDomain.clear();
     _m_sPath.clear();
-    _m_iMaxAge   = - 1;
+    _m_liMaxAge  = - 1;
     _m_bSecure   = FALSE;
     _m_bHttpOnly = FALSE;
 
@@ -343,7 +343,7 @@ CxCookiePv1::bInit(const tString &csRawCookie) {
     _m_sComment  = msCookie[xT("Comment")];
     _m_sDomain   = msCookie[xT("Domain")];
     _m_sPath     = msCookie[xT("Path")];
-    _m_iMaxAge   = CxString::lexical_cast<INT>( msCookie[xT("Max-Age")] );
+    _m_liMaxAge  = CxString::lexical_cast<LONGLONG>( msCookie[xT("Max-Age")] );
     _m_bSecure   = xAS_BOOL( msCookie.end() != msCookie.find(xT("Secure")) );
     _m_bHttpOnly = xAS_BOOL( msCookie.end() != msCookie.find(xT("HttpOnly")) );
 

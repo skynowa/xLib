@@ -13,10 +13,7 @@
 #define xLib_Net_CxGeoIpH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
-#if !defined(xOS_FREEBSD)
-    #include <GeoIP.h>
-#endif
+#include <GeoIP.h>
 
 #if defined(xOS_WIN)
     #pragma comment(lib, "GeoIP.Lib")
@@ -24,7 +21,6 @@
     //-lGeoIP
 #endif
 //---------------------------------------------------------------------------
-#if !defined(xOS_FREEBSD)
 class CxGeoIp :
     public CxNonCopyable
 {
@@ -52,6 +48,5 @@ class CxGeoIp :
         GeoIP        *_m_pgiGeoIp;
 
 };
-#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxGeoIpH
