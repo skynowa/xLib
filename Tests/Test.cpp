@@ -90,7 +90,7 @@
 #include "Net/CxTest_CxTcpClientSocket.h"
 #include "Net/CxTest_CxTcpServerSocket.h"
 ////#include "Net/CxTest_CxHttpClient.h"
-#include "Net/CxTest_CxGeoIp.h"
+////#include "Net/CxTest_CxGeoIp.h"
 
 //Patterns
 #include "Patterns/CxTest_CxSingleton.h"
@@ -253,7 +253,7 @@ _tmain(
     ////vptTests.push_back( new CxTest_CxTcpClientSocket );
     ////vptTests.push_back( new CxTest_CxTcpServerSocket );
     ////vptTests.push_back( new CxTest_CxHttpClient );
-    vptTests.push_back( new CxTest_CxGeoIp );
+    ////vptTests.push_back( new CxTest_CxGeoIp );
 
     //--------------------------------------------------
     //Patterns
