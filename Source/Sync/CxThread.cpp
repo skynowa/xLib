@@ -25,6 +25,7 @@
     #endif
 #elif defined(xOS_LINUX)
     #include <pthread.h>    //lib: -pthread
+    #include <sched.h>
 #endif
 
 
@@ -799,10 +800,19 @@ HANDLE
 CxThread::hGetCurrHandle() {
     /*DEBUG*/// n/a
 
+#if defined(xOS_WIN)
     HANDLE hRes = NULL;
 
     hRes = ::GetCurrentThread();
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
+#elif defined(xOS_LINUX)
+    #if xTODO
+        pid_t hRes = 0;
+
+        hRes = gettid();
+        /*DEBUG*/// n/a
+    #endif
+#endif
 
     return hRes;
 }
@@ -813,8 +823,13 @@ BOOL
 CxThread::bYield() {
     /*DEBUG*/// n/a
 
+#if defined(xOS_WIN)
     ::SwitchToThread();
     /*DEBUG*/// n/a
+#elif defined(xOS_LINUX)
+    INT iRes = sched_yield();
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+#endif
 
     return TRUE;
 }

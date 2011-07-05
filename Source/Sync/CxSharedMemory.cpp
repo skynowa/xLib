@@ -9,10 +9,9 @@
 *****************************************************************************/
 
 
-#include <xLib/Sync/Win/CxSharedMemory.h>
+#include <xLib/Sync/CxSharedMemory.h>
 
 
-#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
@@ -30,6 +29,3 @@ CxSharedMemory::~CxSharedMemory() {
     //code
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
-#endif

@@ -390,6 +390,9 @@
     <ClCompile Include="..\..\Source\Net\CxGeoIp.cpp">
       <Filter>xLib\Net</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Sync\CxSharedMemory.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -703,6 +706,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Net\CxGeoIp.h">
       <Filter>xLib\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Sync\CxSharedMemory.h">
+      <Filter>xLib\Sync</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
