@@ -454,7 +454,7 @@ CxSystemInfo::iGetCpuSpeed() {
 
         const ULONGLONG ullStartCycle = CxCycle::ullGetCount();
 
-        ::Sleep(1000);
+        bSleep(1000);
 
         iRes = static_cast<INT>( (CxCycle::ullGetCount() - ullStartCycle) / 1000000 );
     #endif

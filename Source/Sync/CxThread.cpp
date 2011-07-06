@@ -276,9 +276,9 @@ CxThread::bKill(
         ulRes = ulGetExitCode();
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
-        ////_m_bRes = ::Sleep(_m_culStillActiveTimeout);
+        ////_m_bRes = bSleep(_m_culStillActiveTimeout);
         /////*DEBUG*/xASSERT_DO(FALSE != _m_bRes, break);
-        ::Sleep(_m_culStillActiveTimeout);
+        bSleep(_m_culStillActiveTimeout);
     }
 
     //-------------------------------------
@@ -481,7 +481,7 @@ CxThread::bTryPostThreadMessage(
         _m_bRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
 
         xCHECK_RET(TRUE  == _m_bRes, TRUE);
-        xCHECK_DO (FALSE == _m_bRes, ::Sleep(ulAttempTimeout));
+        xCHECK_DO (FALSE == _m_bRes, bSleep(ulAttempTimeout));
     }
 
     return FALSE;
@@ -723,7 +723,7 @@ CxThread::bSetAffinityMask(
 
     DWORD_PTR pulRes = 0;
 
-    pulRes = ::SetThreadAffinityMask(_m_hThread.hGet(), pulMask);    //ERROR_INVALID_PARAMETER
+    pulRes = ::SetThreadAffinityMask(_m_hThread.hGet(), *pulMask);    //ERROR_INVALID_PARAMETER
     /*DEBUG*/xASSERT_RET(0 != pulRes, FALSE);
 
     return TRUE;
@@ -958,7 +958,7 @@ CxThread::bSleep(
     ::Sleep(cuiMsec);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    INT iRes = usleep(cuiMsec * 1000U);
+    INT iRes = usleep(static_cast<useconds_t>( cuiMsec * 1000U ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -1123,7 +1123,7 @@ CxThread::_s_uiStartFunc(
 
     //-------------------------------------
     //handle must be valid
-    //::Sleep(5);
+    //bSleep(5);
     bRes = pthThis->_m_pevStarter->bWait(/*+INFINITE*/10000);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
