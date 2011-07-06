@@ -12,6 +12,7 @@
 #include <xLib/Common/Win/CxConsole.h>
 
 #include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Sync/CxThread.h>
 
 
 #if defined(xOS_WIN)
@@ -330,7 +331,7 @@ HWND CxConsole::hGetWndHandle() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, NULL);
 
     //Ensure window title has been updated.
-    ::Sleep(50);
+    CxThread::bSleep(50);
 
     //Look for NewWindowTitle.
     hRes = ::FindWindow(NULL, sNewWndTitle.c_str());

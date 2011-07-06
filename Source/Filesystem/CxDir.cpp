@@ -15,6 +15,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
+#include <xLib/Sync/CxThread.h>
 
 
 /****************************************************************************
@@ -458,13 +459,8 @@ CxDir::bTryDelete(
         bRes = bDelete(csDirPath);
         xCHECK_DO(TRUE == bRes, bIsDeleted = TRUE; break);
 
-        #if defined(xOS_WIN)
-            ::Sleep(culTimeoutMsec);
-            /*DEBUG*/// n/a
-        #elif defined(xOS_LINUX)
-            INT iRes = usleep(static_cast<useconds_t>( culTimeoutMsec * 1000 ));
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-        #endif
+        bRes = CxThread::bSleep(culTimeoutMsec);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
     return bIsDeleted;

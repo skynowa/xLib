@@ -16,11 +16,12 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
+#include <xLib/Filesystem/CxVolume.h>
 #include <xLib/Crypt/CxCrc32.h>
 #include <xLib/Crypt/CxRandom.h>
+#include <xLib/Sync/CxThread.h>
 
 #if defined(xOS_WIN)
-    #include <xLib/Filesystem/CxVolume.h>
     #include <xLib/Filesystem/Win/CxFile.h>
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 #endif
@@ -837,13 +838,8 @@ CxStdioFile::bTryDelete(
         bRes = bDelete(csFilePath);
         xCHECK_DO(TRUE == bRes, bIsDeleted = TRUE; break);
 
-        #if defined(xOS_WIN)
-            ::Sleep(culTimeoutMsec);
-            /*DEBUG*/// n/a
-        #elif defined(xOS_LINUX)
-            INT iRes = usleep(static_cast<useconds_t>( culTimeoutMsec * 1000 ));
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-        #endif
+        bRes = CxThread::bSleep(culTimeoutMsec);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
     return bIsDeleted;

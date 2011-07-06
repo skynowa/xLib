@@ -13,6 +13,7 @@
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Sync/CxThread.h>
 
 
 /****************************************************************************
@@ -75,11 +76,11 @@ CxProfiler::bStart() {
 #if defined(xOS_WIN)
     _m_bRes = ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
     /*DEBUG*/xASSERT(FALSE != _m_bRes);
-
-    ::Sleep(10);
 #elif defined(xOS_LINUX)
     //TODO: bStart
 #endif
+
+    CxThread::bSleep(10);
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
@@ -153,18 +154,6 @@ CxProfiler::bStop(
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-//                #if defined(xOS_FREEBSD)
-//                    _m_ctClocksStop = _liGetClock();
-//                    /*DEBUG*/xASSERT_RET(static_cast<clock_t>( - 1 ) != _m_ctClocksStop, FALSE);
-//
-//                    sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / 1000 ).sFormat(CxDateTime::ftTime);
-//                #else
-//                    _m_ctClocksStop = std::clock();
-//                    /*DEBUG*/xASSERT_RET(static_cast<clock_t>( - 1 ) != _m_ctClocksStop, FALSE);
-//
-//                    sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / (CLOCKS_PER_SEC / 1000) ).sFormat(CxDateTime::ftTime);
-//                #endif
-
                 std::clock_t ctClockResolution;
 
                 #if defined(xOS_FREEBSD)

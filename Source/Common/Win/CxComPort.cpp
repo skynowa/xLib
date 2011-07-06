@@ -11,6 +11,8 @@
 
 #include <xLib/Common/Win/CxComPort.h>
 
+#include <xLib/Sync/CxThread.h>
+
 
 #if defined(xOS_WIN)
 /****************************************************************************
@@ -96,7 +98,7 @@ BOOL CxCOMPort::bClearData() {
 tString CxCOMPort::bReadData(LPTSTR pszBuff, ULONG dwNumOfBytesToRead) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
-    ::Sleep(5L);
+    CxThread::bSleep(5L);
 
     DWORD dwNumOfBytesRead = 0;
     BOOL  bRes             = ::ReadFile(_m_hComPort, pszBuff, dwNumOfBytesToRead/*cuiSendStrLen*/, &dwNumOfBytesRead, NULL);
