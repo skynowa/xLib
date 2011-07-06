@@ -90,8 +90,8 @@ CxTest_CxCookiePv1::bUnit() {
 
         m_bRes = ckCookiePv1.bSetMaxAge(ciMaxAge);
         xASSERT(FALSE != m_bRes);
-        m_ullRes = ckCookiePv1.liGetMaxAge();
-        xASSERT(ciMaxAge == m_ullRes);
+        m_llRes = ckCookiePv1.liGetMaxAge();
+        xASSERT(ciMaxAge == m_llRes);
 
         m_bRes = ckCookiePv1.bSetSecure(cbSecure);
         xASSERT(FALSE != m_bRes);

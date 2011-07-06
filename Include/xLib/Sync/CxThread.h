@@ -23,20 +23,23 @@
 
 #endif
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
 class CxThread :
     public CxNonCopyable
 {
     public:
 	    enum EPriority {
-	        tpError        = THREAD_PRIORITY_ERROR_RETURN,
-	        tpIdle         = THREAD_PRIORITY_IDLE,
-	        tpLowest       = THREAD_PRIORITY_LOWEST,
-	        tpBelowNormal  = THREAD_PRIORITY_BELOW_NORMAL,
-	        tpNormal       = THREAD_PRIORITY_NORMAL,
-	        tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
-	        tpHighest      = THREAD_PRIORITY_HIGHEST,
-	        tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
+            #if defined(xOS_WIN)
+                tpError        = THREAD_PRIORITY_ERROR_RETURN,
+                tpIdle         = THREAD_PRIORITY_IDLE,
+                tpLowest       = THREAD_PRIORITY_LOWEST,
+                tpBelowNormal  = THREAD_PRIORITY_BELOW_NORMAL,
+                tpNormal       = THREAD_PRIORITY_NORMAL,
+                tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
+                tpHighest      = THREAD_PRIORITY_HIGHEST,
+                tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
+            #elif defined(xOS_LINUX)
+                tpError        = - 1,
+            #endif
 	    };
 
         volatile LONG           m_ulTag;
@@ -58,6 +61,7 @@ class CxThread :
         BOOL                    bIsPaused             () const;
         BOOL                    bIsExited             () const;
 
+    #if defined(xOS_WIN)
         //messages
         BOOL                    bPostMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
         BOOL                    bSendMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
@@ -65,6 +69,7 @@ class CxThread :
         BOOL                    bTryPostThreadMessage (UINT uiMsg, UINT uiParam1, LONG liParam2, ULONG ulAttemps, ULONG ulAttempTimeout) const;
         BOOL                    bMessageWaitQueue     (UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const;
         BOOL                    bMessageWaitQueue     (const std::vector<UINT> &cvecuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
+    #endif
 
         //priority
         BOOL                    bSetPriority          (const EPriority ctpPriority) const;
@@ -76,24 +81,30 @@ class CxThread :
         BOOL                    bSetPriorityBoost     (const BOOL cbIsEnabled) const;
 
         //CPU
-        BOOL                    bSetAffinityMask      (DWORD_PTR pulMask) const;
+        BOOL                    bSetAffinityMask      (ULONG *pulMask) const;
         BOOL                    bSetIdealCPU          (const ULONG culIdealCPU) const;
         ULONG                   ulGetIdealCPU         () const;
         ULONG                   ulGetCPUCount         () const;    /*static ???*/
 
         //other
+    #if defined(xOS_WIN)
         HANDLE                  hGetHandle            () const;
+    #endif
         ULONG                   ulGetId               () const;
         ULONG                   ulGetExitCode         () const;
         BOOL                    bSetDebugName         (const tString &csName) const;
         //GetThreadLocale
 
         //static
+    #if defined(xOS_WIN)
         static HANDLE           hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
+    #endif
         static ULONG            ulGetCurrId           ();
+    #if defined(xOS_WIN)
         static HANDLE           hGetCurrHandle        ();
-        static BOOL             bYield                (); 
-        static BOOL             bSleep                (const UINT cuiMsec);                   
+    #endif
+        static BOOL             bYield                ();
+        static BOOL             bSleep                (const UINT cuiMsec);
 
         //callbacks
         VOID                    vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback);
@@ -115,7 +126,12 @@ class CxThread :
         const ULONG             _m_culExitTimeout;
 
         //thread data
+    #if defined(xOS_WIN)
         CxHandle                _m_hThread;
+    #elif defined(xOS_LINUX)
+
+    #endif
+
         ULONG                   _m_ulID;
         UINT                    _m_uiExitCode;
         VOID                   *_m_pvParam;
@@ -128,15 +144,19 @@ class CxThread :
         /*BOOL                  _m_bIsExited;*///   n/a
 
         //other
+    #if defined(xOS_WIN)
         CxEvent                 _m_evPause;
         CxEvent                *_m_pevStarter;
         CxEvent                 _m_evExit;
         //HANDLE                _m_hParentHandle;
         //HANDLE                _m_hParentId;
+    #endif
 
         CxTraceLog              _m_clLog;
 
-        static UINT WINAPI      _s_uiStartFunc    (VOID *pvParam);
+    #if defined(xOS_WIN)
+        static UINT __stdcall   _s_uiStartFunc    (VOID *pvParam);
+    #endif
         BOOL                    _bWaitResumption  ();
         VOID                    _vMembersClear    ();       //TODO: _vMembersClear
         VOID                    _vSetStatesDefault();
@@ -152,9 +172,6 @@ class CxThread :
         VOID                    _vHandler_OnEnter(CxThread *pthSender);
         VOID                    _vHandler_OnExit (CxThread *pthSender);
 };
-#elif defined(xOS_LINUX)
-
-#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxThreadH
 

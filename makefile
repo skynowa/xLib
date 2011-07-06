@@ -9,111 +9,137 @@
 ######################################################################################################
 
 
+##################################################
 # constants
-OS                      := $(shell uname -s)
-OS_BIT                  := $(shell getconf LONG_BIT)
+cOS				:= $(shell uname -s)
+cOS_BIT				:= $(shell getconf LONG_BIT)
+cOS_ARCH 			:= $(shell uname -m)
+cOS_INFO 			:= $(shell uname -a)
+cGCC_INFO			:= $(shell gcc -dumpversion)
+cGLIBC_INFO			:= $(shell ldd --version)
+cBINUTILS_INFO			:= n/a
 
-OS_INFO                 := \"$(shell uname -a)\"
-GCC_INFO		:= \"$(shell gcc --version)\"
-GLIBC_INFO		:= \"$(shell ldd --version)\"
-# BINUTILS_INFO		:= $(shell )
+cBUILD_TYPE_DEBUG		:= debug
+cBUILD_TYPE_RELEASE		:= release
 
+
+# OS   := $(shell uname -s)
+# ARCH := $(shell uname -m)
+# KERN := $(shell uname -r | cut -d. -f 1,2)
+# BDIR := $(OS)_$(KERN).$(ARCH)
+
+OS   := $(shell uname -s)
+ARCH := $(shell uname -m)
+KERN := $(shell uname -r | cut -d. -f 1,2)
+BDIR := $(OS)_$(KERN).$(ARCH)
+
+
+##################################################
+# Settings
+BUILD_TYPE			:= $(cBUILD_TYPE_RELEASE)
+
+
+##################################################
 # xLib
-PROGRAM_NAME            := xLib.a
+PROGRAM_NAME			:= xLib.a
 
-ROOT_INCLUDE_DIR   	:= Include Source
-ROOT_SOURCE_DIR    	:= Source
+ROOT_INCLUDE_DIR		:= Include Source
+ROOT_SOURCE_DIR			:= Source
 
-ifeq ($(OS), Linux)
-	OTHER_INCLUDE_DIR  	:=	/usr/include \
+ifeq ($(cOS), Linux)
+	OTHER_INCLUDE_DIR	:=	/usr/include \
 					/usr/local/include \
 					/usr/local/crystal_trader2.5/include
-else ifeq ($(OS), FreeBSD)
-	OTHER_INCLUDE_DIR  	:=	/usr/include \
+else ifeq ($(cOS), FreeBSD)
+	OTHER_INCLUDE_DIR	:=	/usr/include \
 					/usr/local/include \
 					/usr/local/crystal_trader/include
 else
-	OTHER_INCLUDE_DIR  	:=
+	OTHER_INCLUDE_DIR	:=
 endif
 
-SOURCE_SUBDIRS     	:= 	.\
-				Units \
-				Sync \
-				Patterns \
-				Net \
-				Log \
-				Filesystem \
-				Debug \
-				Db \
-				Crypt/OpenSSL \
-				Crypt \
-				Compress/Linux \
-				Common \
+SOURCE_SUBDIRS			:=	.\
+					Units \
+					Sync \
+					Patterns \
+					Net \
+					Log \
+					Filesystem \
+					Debug \
+					Db \
+					Crypt/OpenSSL \
+					Crypt \
+					Compress/Linux \
+					Common \
+
+BINARY_DIR			:= Library/G++_linux/Release
+INSTALL_DIR			:= .
+PROGRAM_PATH			:= ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
+
+COMPILER			:= g++
+COMPILE_FLAGS      		:= -Wall -MD -pipe
+
+ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
+	BUILD_FLAGS     	:= -O3 -fomit-frame-pointer -pthread -g0 -s -g
+else
+	BUILD_FLAGS     	:= -O3 -fomit-frame-pointer -pthread -g0 -s
+endif
 
 
-
-BINARY_DIR              := Library/G++_linux/Release
-INSTALL_DIR		:= .
-PROGRAM_PATH            := ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
-
-COMPILER                := g++
-COMPILE_FLAGS      	:= -Wall -MD -pipe
-BUILD_FLAGS             := -O3 -fomit-frame-pointer -pthread -g0 -s #-g
-
-RELATIVE_INCLUDE_DIRS	:= $(addprefix ../../../, $(ROOT_INCLUDE_DIR))
-RELATIVE_SOURCE_DIRS   	:= $(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS_DIRS            := $(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS                 := $(patsubst ../../../%, %, $(wildcard $(addsuffix /*.c*, $(RELATIVE_SOURCE_DIRS))))
-OBJECTS                 := $(OBJECTS:.cpp=.o)
-OBJECTS                 := $(OBJECTS:.c=.o)
+RELATIVE_INCLUDE_DIRS		:= $(addprefix ../../../, $(ROOT_INCLUDE_DIR))
+RELATIVE_SOURCE_DIRS		:= $(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
+OBJECTS_DIRS			:= $(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
+OBJECTS				:= $(patsubst ../../../%, %, $(wildcard $(addsuffix /*.c*, $(RELATIVE_SOURCE_DIRS))))
+OBJECTS				:= $(OBJECTS:.cpp=.o)
+OBJECTS				:= $(OBJECTS:.c=.o)
 
 
-
-$(PROGRAM_PATH):	obj_dirs $(OBJECTS)
-			ar rcs $@ $(OBJECTS)
+$(PROGRAM_PATH):		obj_dirs $(OBJECTS)
+				ar rcs $@ $(OBJECTS)
 
 obj_dirs:	        
-			mkdir -p $(OBJECTS_DIRS)
+				mkdir -p $(OBJECTS_DIRS)
 
-VPATH			:= ../../../
+VPATH				:= ../../../
 
-%.o: 			%.cpp
-			$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
+%.o: 				%.cpp
+				$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
 
-%.o: 			%.c
-			$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
+%.o: 				%.c
+				$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
 
-.PHONY:			clean
+.PHONY:				clean
 
 
-all:		
-			@echo ""
-			@echo "************************************************************"
-			@echo "* OS: " $(OS)
-			@echo "* OS_INFO: "
-			@echo "* GCC_INFO: "
-			@echo "* GLIBC_INFO: "
-			@echo "*"
-			@echo "*"
-			@echo "************************************************************"
-
-			@echo ""
-			@echo "******************* prepare ********************"
-			mkdir -p $(BINARY_DIR)
-
-			@echo ""
-			@echo "******************** compile ********************"
-			$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../makefile
+all:
+				clear
+				@echo ""
+				@echo "************************************************************"
+				@echo "* OS info:       " $(cOS_INFO)
+				@echo "* GCC info:      " $(cGCC_INFO)
+				@echo "* GLIBC info:    " #$(cGLIBC_INFO)
+				@echo "* Binutils info: " $(cBINUTILS_INFO)
+				@echo "* Build type:    " $(BUILD_TYPE)
+				@echo "*"
+				@echo "************************************************************"
+            
+				@echo ""
+				@echo "[Prepare ...]"
+				mkdir -p $(BINARY_DIR)
+            
+				@echo ""
+				@echo "[Build ...]"
+				$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../makefile
 
 install:
-			@echo ""
-			@echo "******************** install ********************"
-			cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)/$(PROGRAM_NAME)
+				@echo ""
+				@echo "[Install ...]"
+				cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)/$(PROGRAM_NAME)
 
 clean:
-			@echo ""
-			@echo "******************** clean ********************"
-			rm -rf $(BINARY_DIR)
+				@echo ""
+				@echo "[Clean ...]"
+				rm -rf $(BINARY_DIR)
 
 
 include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
