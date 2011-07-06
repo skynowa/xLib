@@ -15,6 +15,7 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxProcess.h>
 
 #if defined(xOS_WIN)
@@ -290,14 +291,7 @@ CxReport::_bInitVars(
 
     _m_sProgram        = CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
-
-//TODO: move to CxThread
-#if defined(xOS_WIN)
-    _m_ulThreadId      = ::GetCurrentThreadId();
-#elif defined(xOS_LINUX)
-    _m_ulThreadId      = (ULONG)pthread_self();
-#endif
-
+    _m_ulThreadId      = CxThread::ulGetCurrId();
     _m_sSourceFile     = csFile;
     _m_ulSourceLine    = culLine;
     _m_sFunctionName   = csFunc;

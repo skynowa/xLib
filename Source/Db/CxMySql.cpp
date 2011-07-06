@@ -66,7 +66,11 @@ CxMySQLConnection::bOptions(
     /*DEBUG*/// moOption - n/a
     /*DEBUG*/// cpvArg   - n/a
 
+#if MYSQL_VERSION_ID < 50154
+    int iRes = mysql_options(_m_pmsConnection, cmoOption, static_cast<LPCTSTR>( cpvArg ));
+#else
     int iRes = mysql_options(_m_pmsConnection, cmoOption, cpvArg);
+#endif
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), FALSE);
 
     return TRUE;
