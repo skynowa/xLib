@@ -291,7 +291,7 @@ CxReport::_bInitVars(
 
     _m_sProgram        = CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
-    _m_ulThreadId      = CxThread::ulGetCurrId();
+    _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
     _m_sSourceFile     = csFile;
     _m_ulSourceLine    = culLine;
     _m_sFunctionName   = csFunc;

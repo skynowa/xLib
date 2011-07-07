@@ -275,7 +275,7 @@ CxStdioFile::iWrite(
 
     INT iRes = etError;
 
-    va_list vlArgs = NULL;
+    va_list vlArgs;
     va_start(vlArgs, pcszFormat);
 
     iRes = _vftprintf(pGet(), pcszFormat, vlArgs);

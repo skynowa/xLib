@@ -87,7 +87,7 @@ CxProcess::bExec(
 
     tString sCmdLine;
 
-    va_list palArgs = NULL;
+    va_list palArgs;
     va_start(palArgs, pcszCmdLine);
     sCmdLine = CxString::sFormatV(pcszCmdLine, palArgs);
     va_end(palArgs);
@@ -127,7 +127,7 @@ CxProcess::bExec(
     }
     */
 
-    INT iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), NULL);
+    INT iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 

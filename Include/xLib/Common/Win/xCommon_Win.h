@@ -82,6 +82,7 @@
 #include <windowsx.h>
 #include <winuser.h>
 #include <Objbase.h>
+#include <process.h>
 
 #include <sys/locking.h>
 #include <io.h>

@@ -37,7 +37,7 @@ CxTraceLog::~CxTraceLog() {
 //TODO: bSetEnabled ()
 BOOL
 CxTraceLog::bSetEnabled(BOOL bFlag) {
-    /*DEBUG*/// bFlag - n/a 
+    /*DEBUG*/// bFlag - n/a
 
     _m_bIsEnable = bFlag;
 
@@ -48,7 +48,7 @@ CxTraceLog::bSetEnabled(BOOL bFlag) {
 BOOL
 CxTraceLog::bWrite(LPCTSTR pcszFormat, ...) {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
-    
+
     xCHECK_RET(FALSE == _m_bIsEnable, TRUE);
 
     //-------------------------------------
@@ -64,11 +64,11 @@ CxTraceLog::bWrite(LPCTSTR pcszFormat, ...) {
     //-------------------------------------
     //comment
     tString sParam;
-    va_list palArgs = NULL;
+    va_list palArgs;
 
     va_start(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);
-    va_end(palArgs);    
+    va_end(palArgs);
 
     //-------------------------------------
     //tracing

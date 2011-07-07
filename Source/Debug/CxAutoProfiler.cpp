@@ -29,7 +29,7 @@ CxAutoProfiler::CxAutoProfiler(
 {
     //-------------------------------------
     //format comment
-    va_list palArgs = NULL;
+    va_list palArgs;
     va_start(palArgs, pcszComment);
 
     _m_sComment = CxString::sFormatV(pcszComment, palArgs);

@@ -473,7 +473,7 @@ CxString::sFormat(
 
     tString sRes;
 
-    va_list palArgs = NULL;
+    va_list palArgs;
     va_start(palArgs, pcszFormat);
 
     sRes = sFormatV(pcszFormat, palArgs);

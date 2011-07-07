@@ -15,17 +15,8 @@
 
 #if defined(xOS_WIN)
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
-
-    #if !defined(_MT)
-        #define _MT
-    #endif
-
-    #if defined(_MT) || defined(_DLL)
-        #include <process.h>
-    #endif
 #elif defined(xOS_LINUX)
-    #include <pthread.h>    //lib: -pthread
-    #include <sched.h>
+
 #endif
 
 
@@ -131,11 +122,9 @@ CxThread::bCreate(
     _m_bRes = _m_pevStarter->bCreate(NULL, TRUE, TRUE, xT(""));
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-#if defined(_MT)
+    //-------------------------------------
+    //start
     hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, cuiStackSize, _s_uiStartFunc, this, 0, (UINT *)&_m_ulID) );
-#else
-    hRes = ::CreateThread(NULL, cuiStackSize, xreinterpret_cast<LPTHREAD_START_ROUTINE>(_s_uiStartFunc), this, 0, &_m_ulID);
-#endif
 
     //-------------------------------------
     //WatchDog
@@ -799,7 +788,7 @@ CxThread::ulGetCPUCount() const {
 //---------------------------------------------------------------------------
 //DONE: hGetHandle (get handle)
 #if defined(xOS_WIN)
-HANDLE
+CxThread::THandle
 CxThread::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), NULL);
 
@@ -810,7 +799,7 @@ CxThread::hGetHandle() const {
 #endif
 //---------------------------------------------------------------------------
 //DONE: ulGetId (get id)
-ULONG
+CxThread::TId
 CxThread::ulGetId() const {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0);
@@ -846,6 +835,8 @@ CxThread::bSetDebugName(
 {
     /*DEBUG*/
 
+    xCHECK_RET(FALSE == CxDebugger::bIsPresent(), TRUE);
+
     _m_bRes = _bSetDebugNameA( xS2TS(csName) );
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -862,8 +853,7 @@ CxThread::bSetDebugName(
 //---------------------------------------------------------------------------
 //DONE: hOpen (Opens an existing thread object.)
 /*static*/
-#if defined(xOS_WIN)
-HANDLE
+CxThread::THandle
 CxThread::hOpen(
     const ULONG culAccess,
     const BOOL  cbInheritHandle,
@@ -872,30 +862,35 @@ CxThread::hOpen(
 {
     /*DEBUG*///ulAccess       - n/a
     /*DEBUG*///bInheritHandle - n/a
-    /*DEBUG*/xASSERT_RET(0 < culId, NULL);
+    /*DEBUG*/xASSERT_RET(0 < culId, (THandle)NULL);
 
-    HANDLE hRes = NULL;
+#if defined(xOS_WIN)
+    THandle hRes = NULL;
 
     hRes = ::OpenThread(culAccess, cbInheritHandle, culId);
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
+#elif defined(xOS_LINUX)
+    THandle hRes = 0;
+
+    //TODO: hOpen
+#endif
 
     return hRes;
 }
-#endif
 //---------------------------------------------------------------------------
 //DONE: ulGetCurrId (Retrieves the thread identifier of the calling thread)
 /*static*/
-ULONG
+CxThread::TId
 CxThread::ulGetCurrId() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = 0;
+    TId ulRes = 0;
 
 #if defined(xOS_WIN)
     ulRes = ::GetCurrentThreadId();
     /*DEBUG*/xASSERT_RET(0 < ulRes, 0);
 #elif defined(xOS_LINUX)
-    ulRes = static_cast<ULONG>( pthread_self() );
+    ulRes = (TId)pthread_self();
     /*DEBUG*/xASSERT_RET(0 < ulRes, 0);
 #endif
 
@@ -903,31 +898,25 @@ CxThread::ulGetCurrId() {
 }
 //---------------------------------------------------------------------------
 //DONE: hGetCurrHandle (Retrieves a pseudo handle for the calling thread)
-#if defined(xOS_WIN)
 /*static*/
-HANDLE
+CxThread::THandle
 CxThread::hGetCurrHandle() {
     /*DEBUG*/// n/a
 
 #if defined(xOS_WIN)
-    HANDLE hRes = NULL;
+    THandle hRes = NULL;
 
     hRes = ::GetCurrentThread();
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
 #elif defined(xOS_LINUX)
-    #if xTODO
-        pid_t hRes = 0;
+    THandle hRes = 0;
 
-        hRes = gettid();
-        /*DEBUG*/// n/a
-    #endif
+    hRes = pthread_self();
+    /*DEBUG*/xASSERT_RET(0 < hRes, 0);
 #endif
 
     return hRes;
 }
-#elif defined(xOS_LINUX)
-
-#endif
 //---------------------------------------------------------------------------
 //DONE: bYield (уступить ресурсы другому потоку, который готов к исполнению на !текущем процессоре!)
 /*static*/
@@ -1253,6 +1242,8 @@ CxThread::_bSetDebugNameA(
     /////*DEBUG*/xASSERT_RET(0    <  _m_ulID,       FALSE);
     /////*DEBUG*/xASSERT_RET(32   >  csName.size(), FALSE); //MAX_NAME_SIZE 32
 
+    xCHECK_RET(FALSE == CxDebugger::bIsPresent(), TRUE);
+
 #if defined(xOS_WIN)
     const DWORD MS_VC_EXCEPTION = 0x406D1388;
 
@@ -1278,11 +1269,14 @@ CxThread::_bSetDebugNameA(
     __except (EXCEPTION_EXECUTE_HANDLER) {
         //n/a
     }
+#elif defined(xOS_FREEBSD)
+    (VOID)pthread_set_name_np(ulGetId(), csName.c_str());
+#elif defined(xOS_LINUX)
+    INT iRes = prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+#endif
 
     return TRUE;
-#elif defined(xOS_LINUX)
-    return FALSE;
-#endif
 }
 //---------------------------------------------------------------------------
 

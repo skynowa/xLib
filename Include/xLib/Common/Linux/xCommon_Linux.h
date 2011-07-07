@@ -35,13 +35,19 @@
 #include <sys/wait.h>
 #include <sys/uio.h>
 
+//threads
+#include <pthread.h>    //lib: -pthread
+#include <sched.h>
+
 #if defined(xOS_FREEBSD)
+    #include <pthread_np.h>
     #include <sys/param.h>
     #include <sys/mount.h>
     #include <sys/statvfs.h>
     #include <sys/resource.h>
 #else
     #include <sys/vfs.h>
+    #include <sys/prctl.h>
 #endif
 
 //socket

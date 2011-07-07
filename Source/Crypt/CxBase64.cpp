@@ -51,6 +51,7 @@ CxBase64::sEncode(
 
     INT iWrited = BIO_write(pbioContainer, &csStr.at(0), csStr.size());    BIO_flush(pbioContainer);
     /*DEBUG*/xASSERT_RET(0 < iWrited, std::string());
+    xUNUSED(iWrited);
 
     LONG liRes = BIO_get_mem_ptr(pbioContainer, &pbmBuffMemory);
     /*DEBUG*/xASSERT_RET(0 < liRes, std::string());
