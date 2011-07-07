@@ -171,7 +171,7 @@ CxDebugger::bTrace(
 
     tString sRes;
 
-    va_list palArgs = NULL;
+    va_list palArgs;
     va_start(palArgs, pcszFormat);
     sRes = CxString::sFormatV(pcszFormat, palArgs);
     va_end(palArgs);

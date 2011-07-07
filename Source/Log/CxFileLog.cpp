@@ -99,7 +99,7 @@ CxFileLog::bWrite(
     //-------------------------------------
     //comment
     tString sParam;
-    va_list palArgs = NULL;
+    va_list palArgs;
 
     va_start(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);

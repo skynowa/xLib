@@ -226,7 +226,7 @@ CxProfiler::bStop(
     //format comment
     tString sRes;
 
-    va_list palArgs = NULL;
+    va_list palArgs;
     va_start(palArgs, pcszComment);
 
     sRes = CxString::sFormatV(pcszComment, palArgs);
@@ -253,7 +253,7 @@ CxProfiler::bPulse(
     //format comment
     tString sRes;
 
-    va_list palArgs = NULL;
+    va_list palArgs;
     va_start(palArgs, pcszComment);
 
     sRes = CxString::sFormatV(pcszComment, palArgs);
@@ -342,7 +342,7 @@ CxProfiler::_liGetClock() {
 
     std::clock_t liRes = static_cast<clock_t>( - 1 );
 
-    rusage ruUsage = {0};
+    rusage ruUsage = {{0}};
 
     INT iRes = getrusage(RUSAGE_SELF, &ruUsage);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<clock_t>( - 1 ));

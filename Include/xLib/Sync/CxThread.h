@@ -42,6 +42,14 @@ class CxThread :
             #endif
 	    };
 
+    #if defined(OS_WIN)
+        typedef HANDLE    THandle;
+        typedef DWORD     TId;
+    #elif defined(xOS_LINUX)
+        typedef pthread_t THandle;
+        typedef pthread_t TId;
+    #endif
+
         volatile LONG           m_ulTag;
 
                                 CxThread              (const BOOL cbAutoDelete);
@@ -87,22 +95,15 @@ class CxThread :
         ULONG                   ulGetCPUCount         () const;    /*static ???*/
 
         //other
-    #if defined(xOS_WIN)
-        HANDLE                  hGetHandle            () const;
-    #endif
-        ULONG                   ulGetId               () const;
+        THandle                 hGetHandle            () const;
+        TId                     ulGetId               () const;
         ULONG                   ulGetExitCode         () const;
         BOOL                    bSetDebugName         (const tString &csName) const;
-        //GetThreadLocale
 
         //static
-    #if defined(xOS_WIN)
-        static HANDLE           hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
-    #endif
-        static ULONG            ulGetCurrId           ();
-    #if defined(xOS_WIN)
-        static HANDLE           hGetCurrHandle        ();
-    #endif
+        static THandle          hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
+        static TId              ulGetCurrId           ();
+        static THandle          hGetCurrHandle        ();
         static BOOL             bYield                ();
         static BOOL             bSleep                (const UINT cuiMsec);
 
@@ -132,7 +133,7 @@ class CxThread :
 
     #endif
 
-        ULONG                   _m_ulID;
+        TId                     _m_ulID;
         UINT                    _m_uiExitCode;
         VOID                   *_m_pvParam;
         const BOOL              _m_cbIsAutoDelete;

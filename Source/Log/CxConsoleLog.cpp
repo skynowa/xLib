@@ -23,8 +23,8 @@
 
 
 /****************************************************************************
-*    public                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
@@ -39,7 +39,7 @@
 CxConsoleLog::CxConsoleLog(BOOL bIsUseTimeStr) :
     _m_bIsUseTimeStr(bIsUseTimeStr)
 {
-    
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxConsoleLog (destructor)
@@ -65,11 +65,11 @@ CxConsoleLog::bWrite(LPCTSTR pcszFormat, ...) {
     //-------------------------------------
     //comment
     tString sParam;
-    va_list palArgs = NULL;
+    va_list palArgs;
 
     va_start(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);
-    va_end(palArgs);    
+    va_end(palArgs);
 
     //-------------------------------------
     //write
@@ -81,7 +81,7 @@ CxConsoleLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     ////--CxStdioFile::iPrintf(xT("%s%s\n"), sTime.c_str(), sParam.c_str());
 
-    tcout << sTime << sParam << tendl; 
+    tcout << sTime << sParam << tendl;
 
     return TRUE;
 }
