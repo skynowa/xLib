@@ -947,8 +947,43 @@ CxThread::bSleep(
     ::Sleep(cuiMsec);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    INT iRes = usleep(static_cast<useconds_t>( cuiMsec * 1000U ));
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    #if xTEMP_DISABLED
+        timespec timeout0 = {0};
+        timespec timeout1 = {0};
+
+        timespec *tmp = NULL;
+        timespec *t0  = &timeout0;
+        timespec *t1  = &timeout1;
+
+        t0->tv_sec  = cuiMsec / 1000;
+        t0->tv_nsec = (cuiMsec % 1000) * (1000 * 1000);
+
+        while ((- 1 == nanosleep(t0, t1)) && (EINTR == errno)) {
+            tmp = t0;
+            t0  = t1;
+            t1  = tmp;
+        }
+    #endif
+
+    INT      iRes        = - 1;
+    timespec tsSleep     = {0}; 
+    timespec tsRemain    = {0};
+    ULONG    duration_ms = cuiMsec;
+
+    // Contains the portion of duration_ms >= 1 sec.
+    tsSleep.tv_sec = duration_ms / 1000;
+    duration_ms -= tsSleep.tv_sec * 1000;
+
+    // Contains the portion of duration_ms < 1 sec.
+    tsSleep.tv_nsec = duration_ms * 1000 * 1000;  // nanoseconds.
+
+    for ( ; ; ) {
+        iRes = nanosleep(&tsSleep, &tsRemain)
+        xCHECK_DO(0 == iRes && 0 == errno, break);
+        
+        tsSleep = tsRemain;
+    }
+    /*DEBUG*/xASSERT_RET(0 == iRes && 0 == CxLastError::ulGet(), FALSE);
 #endif
 
     return TRUE;

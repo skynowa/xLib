@@ -42,7 +42,7 @@ class CxThread :
             #endif
 	    };
 
-    #if defined(OS_WIN)
+    #if defined(xOS_WIN)
         typedef HANDLE    THandle;
         typedef DWORD     TId;
     #elif defined(xOS_LINUX)
