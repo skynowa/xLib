@@ -104,9 +104,9 @@
 
 //Sync
 #include "Sync/CxTest_CxProcess.h"
+#include "Sync/CxTest_CxThread.h"
 
 #if defined(xOS_WIN)
-    #include "Sync/CxTest_CxThread.h"
 	#include "Sync/CxTest_CxEvent.h"
     #include "Sync/CxTest_CxMutex.h"
     #include "Sync/CxTest_CxAutoMutex.h"
@@ -158,7 +158,7 @@ _tmain(
 
     //--------------------------------------------------
     //settings
-    const ULONGLONG cullTimesForAll    = 1;
+    const ULONGLONG cullTimesForAll    = 1000000;
     const ULONGLONG cullTimesForSingle = 1;
 
     BOOL bRes = FALSE;
@@ -270,8 +270,9 @@ _tmain(
     //--------------------------------------------------
     //Sync
     vptTests.push_back( new CxTest_CxProcess );
-    #if defined(xOS_WIN)
     vptTests.push_back( new CxTest_CxThread );
+
+    #if defined(xOS_WIN)
     vptTests.push_back( new CxTest_CxEvent );
     vptTests.push_back( new CxTest_CxMutex );
     vptTests.push_back( new CxTest_CxAutoMutex );
