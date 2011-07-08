@@ -947,7 +947,7 @@ CxThread::bSleep(
     ::Sleep(cuiMsec);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    #if xTEMP_DISABLED
+    #if 0
         timespec timeout0 = {0};
         timespec timeout1 = {0};
 
@@ -958,32 +958,30 @@ CxThread::bSleep(
         t0->tv_sec  = cuiMsec / 1000;
         t0->tv_nsec = (cuiMsec % 1000) * (1000 * 1000);
 
-        while ((- 1 == nanosleep(t0, t1)) && (EINTR == errno)) {
+        while ((- 1 == nanosleep(t0, t1)) && (EINTR == CxLastError::ulGet())) {
             tmp = t0;
             t0  = t1;
             t1  = tmp;
         }
     #endif
 
-    INT      iRes        = - 1;
-    timespec tsSleep     = {0}; 
-    timespec tsRemain    = {0};
-    ULONG    duration_ms = cuiMsec;
+    INT      iRes     = - 1;
+    timespec tsSleep  = {0};
+    timespec tsRemain = {0};
 
-    // Contains the portion of duration_ms >= 1 sec.
-    tsSleep.tv_sec = duration_ms / 1000;
-    duration_ms -= tsSleep.tv_sec * 1000;
+    tsSleep.tv_sec  = cuiMsec / 1000;
+    tsSleep.tv_nsec = (cuiMsec % 1000) * (1000 * 1000);
 
-    // Contains the portion of duration_ms < 1 sec.
-    tsSleep.tv_nsec = duration_ms * 1000 * 1000;  // nanoseconds.
+//    while (- 1 == nanosleep(&tsSleep, &tsRemain) && EINTR == CxLastError::ulGet()) {
+//        tsSleep = tsRemain;
+//    }
 
     for ( ; ; ) {
-        iRes = nanosleep(&tsSleep, &tsRemain)
-        xCHECK_DO(0 == iRes && 0 == errno, break);
-        
+        iRes = nanosleep(&tsSleep, &tsRemain);
+        xCHECK_DO(!(- 1 == iRes && EINTR == CxLastError::ulGet()), break);
+
         tsSleep = tsRemain;
     }
-    /*DEBUG*/xASSERT_RET(0 == iRes && 0 == CxLastError::ulGet(), FALSE);
 #endif
 
     return TRUE;

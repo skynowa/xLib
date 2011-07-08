@@ -34,22 +34,14 @@ BIN_TYPE                := $(cBIN_TYPE_LIB)
 
 ##################################################
 # xLib
-PROGRAM_NAME			:= xLib.a
+PROGRAM_NAME			:= libxlib.a
 
 ROOT_INCLUDE_DIR		:= Include Source
 ROOT_SOURCE_DIR			:= Source
 
-ifeq ($(cOS), Linux)
-	OTHER_INCLUDE_DIR	:=	/usr/include \
+OTHER_INCLUDE_DIR		:=	/usr/include \
 							/usr/local/include \
 							/usr/local/crystal_trader2.5/include
-else ifeq ($(cOS), FreeBSD)
-	OTHER_INCLUDE_DIR	:=	/usr/include \
-							/usr/local/include \
-							/usr/local/crystal_trader/include
-else
-	OTHER_INCLUDE_DIR	:= 
-endif
 
 SOURCE_SUBDIRS			:=	.\
 							Units \
@@ -66,7 +58,7 @@ SOURCE_SUBDIRS			:=	.\
 							Common \
 
 BINARY_DIR				:= Library/G++_linux/Release
-INSTALL_DIR				:= .
+INSTALL_DIR				:= /usr/local/crystal_trader2.5/lib/xLib
 PROGRAM_PATH			:= ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
 COMPILER				:= g++
@@ -76,10 +68,12 @@ LINK_FLAGS              := -s -pipe
 LIBRARIES               := -ldl -lmysqlclient -lm -lpthread -lcrypt -lz -lssl -lGeoIP
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-	BUILD_FLAGS     	:= -O0 -pthread -g3 -g
+BUILD_FLAGS     		:= -O0 -pthread -g3 -g
 else
-	BUILD_FLAGS     	:= -O3 -pthread -fomit-frame-pointer -g0
+BUILD_FLAGS     		:= -O3 -pthread -fomit-frame-pointer -g0
 endif
+
+PARANOID_FLAGS			:= -pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 -Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion -Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits -Wbad-function-cast -Wc++-compat -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wlogical-op -Waggregate-return -Wstrict-prototypes -Wold-style-declaration -Wold-style-definition -Wmissing-prototypes  -Wmissing-declarations  -Wmissing-field-initializers -Wmissing-format-attribute -Wpacked -Wpadded -Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla -Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
 
 
 RELATIVE_INCLUDE_DIRS	:= $(addprefix ../../../, $(ROOT_INCLUDE_DIR))
@@ -135,15 +129,12 @@ all:
 						@echo "[Build ...]"
 						$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../makefile
 						@echo ""
-
-						@echo "[Finish ...]"
-						@echo ""
-
-install:
+						
 						@echo "[Install ...]"
-						cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)/$(PROGRAM_NAME)
+						mkdir -p $(INSTALL_DIR)
+						cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
 						@echo ""
-					
+
 						@echo "[Finish ...]"
 						@echo ""
 
