@@ -105,7 +105,7 @@ class CxThread :
         static TId              ulGetCurrId           ();
         static THandle          hGetCurrHandle        ();
         static BOOL             bYield                ();
-        static BOOL             bSleep                (const UINT cuiMsec);
+        static BOOL             bSleep                (const ULONG culMsec);
 
         //callbacks
         VOID                    vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback);
