@@ -256,22 +256,29 @@ CxTest_CxThread::bUnit() {
     //--------------------------------------------------
     //bSleep
     {
-        const UINT cuiMsec = 3;
+        const ULONG caulData[] = {
+            0, 
+            1,
+            (std::numeric_limits<ULONG>::min)(),
+            //(std::numeric_limits<ULONG>::max)()
+        };
 
-        CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
-
-        m_bRes = CxThread::bSleep(cuiMsec);
-        xASSERT(FALSE != m_bRes);
-
-        CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
-
-        xASSERT(dtTime2.ullToMilliseconds() - dtTime1.ullToMilliseconds() >= cuiMsec);
-
-        //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
+        for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
+	        const UINT cuiMsec = caulData[i];
+	
+	        CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
+	
+	        m_bRes = CxThread::bSleep(cuiMsec);
+	        xASSERT(FALSE != m_bRes);
+	
+	        CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
+	
+	        xASSERT(dtTime2.ullToMilliseconds() >= dtTime1.ullToMilliseconds());
+	        //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
+        }
     }
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 #endif //CxTest_CxThreadH
-

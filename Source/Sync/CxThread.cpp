@@ -939,45 +939,24 @@ CxThread::bYield() {
 /*static*/
 BOOL
 CxThread::bSleep(
-    const UINT cuiMsec
+    const ULONG culMsec
 ) {
     /*DEBUG*/// n/a
 
 #if defined(xOS_WIN)
-    ::Sleep(cuiMsec);
+    ::Sleep(culMsec);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    #if 0
-        timespec timeout0 = {0};
-        timespec timeout1 = {0};
-
-        timespec *tmp = NULL;
-        timespec *t0  = &timeout0;
-        timespec *t1  = &timeout1;
-
-        t0->tv_sec  = cuiMsec / 1000;
-        t0->tv_nsec = (cuiMsec % 1000) * (1000 * 1000);
-
-        while ((- 1 == nanosleep(t0, t1)) && (EINTR == CxLastError::ulGet())) {
-            tmp = t0;
-            t0  = t1;
-            t1  = tmp;
-        }
-    #endif
-
     INT      iRes     = - 1;
     timespec tsSleep  = {0};
     timespec tsRemain = {0};
 
-    tsSleep.tv_sec  = cuiMsec / 1000;
-    tsSleep.tv_nsec = (cuiMsec % 1000) * (1000 * 1000);
-
-//    while (- 1 == nanosleep(&tsSleep, &tsRemain) && EINTR == CxLastError::ulGet()) {
-//        tsSleep = tsRemain;
-//    }
+    tsSleep.tv_sec  = culMsec / 1000;
+    tsSleep.tv_nsec = (culMsec % 1000) * (1000 * 1000);
 
     for ( ; ; ) {
         iRes = nanosleep(&tsSleep, &tsRemain);
+        /*DEBUG*/// n/a
         xCHECK_DO(!(- 1 == iRes && EINTR == CxLastError::ulGet()), break);
 
         tsSleep = tsRemain;
@@ -1278,30 +1257,36 @@ CxThread::_bSetDebugNameA(
     xCHECK_RET(FALSE == CxDebugger::bIsPresent(), TRUE);
 
 #if defined(xOS_WIN)
-    const DWORD MS_VC_EXCEPTION = 0x406D1388;
-
-    #pragma pack(push,8)
-    struct tagTHREADNAME_INFO {
-        DWORD  dwType;      //must be 0x1000
-        LPCSTR szName;      //pointer to name (in user addr space)
-        DWORD  dwThreadID;  //thread ID (-1 = caller thread)
-        DWORD  dwFlags;     //reserved for future use, must be zero
-    };
-    #pragma pack(pop)
-
-    tagTHREADNAME_INFO tiInfo = {0};
-    tiInfo.dwType     = 0x1000;
-    tiInfo.szName     = csName.c_str();
-    tiInfo.dwThreadID = ulGetId();
-    tiInfo.dwFlags    = 0;
-
-    __try {
-        ::RaiseException(MS_VC_EXCEPTION, 0, sizeof(tiInfo) / sizeof(ULONG_PTR), (ULONG_PTR *)&tiInfo);
-        /*DEBUG*/// n/a
-    }
-    __except (EXCEPTION_EXECUTE_HANDLER) {
-        //n/a
-    }
+	#if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
+		const DWORD MS_VC_EXCEPTION = 0x406D1388;
+		
+		#pragma pack(push,8)
+		struct tagTHREADNAME_INFO {
+			DWORD  dwType;      //must be 0x1000
+			LPCSTR szName;      //pointer to name (in user addr space)
+			DWORD  dwThreadID;  //thread ID (-1 = caller thread)
+			DWORD  dwFlags;     //reserved for future use, must be zero
+		};
+		#pragma pack(pop)
+		
+		tagTHREADNAME_INFO tiInfo = {0};
+		tiInfo.dwType     = 0x1000;
+		tiInfo.szName     = csName.c_str();
+		tiInfo.dwThreadID = ulGetId();
+		tiInfo.dwFlags    = 0;
+		
+		__try {
+			::RaiseException(MS_VC_EXCEPTION, 0, sizeof(tiInfo) / sizeof(ULONG_PTR), (ULONG_PTR *)&tiInfo);
+			/*DEBUG*/// n/a
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER) {
+			//n/a
+		}
+	#elif defined(xCOMPILER_MINGW32)
+		//TODO: _bSetDebugNameA
+	#else
+		//TODO: 
+	#endif
 #elif defined(xOS_FREEBSD)
     (VOID)pthread_set_name_np(ulGetId(), csName.c_str());
 #elif defined(xOS_LINUX)

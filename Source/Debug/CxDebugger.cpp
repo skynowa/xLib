@@ -92,7 +92,7 @@ CxDebugger::bBreak() {
     #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
         _asm {int 3}
     #elif defined(xCOMPILER_MINGW32)
-        asm("int 3");
+       asm("int $3");
     #else
         abort();
     #endif
