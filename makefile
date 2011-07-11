@@ -23,25 +23,35 @@ cBUILD_TYPE_DEBUG		:= debug
 cBUILD_TYPE_RELEASE		:= release
 
 cBIN_TYPE_LIB			:= static library
-cBIN_TYPE_TEST			:= test	#TODO: not implemented
+cBIN_TYPE_TESTS			:= tests
+
+cDESCRIPTION 			:= C++ class library
 
 
 ##################################################
 # Settings
 BUILD_TYPE				:= $(cBUILD_TYPE_RELEASE)
-BIN_TYPE                := $(cBIN_TYPE_LIB)
+BIN_TYPE                := $(cBIN_TYPE_TESTS)
 
 
 ##################################################
 # xLib
-PROGRAM_NAME			:= libxlib.a
+ifeq ($(BIN_TYPE), $(cBIN_TYPE_LIB))
+PROGRAM_PREFIX			:= lib
+PROGRAM_EXT  			:= .a
+else						
+PROGRAM_PREFIX			:=
+PROGRAM_EXT  			:=
+endif
+
+PROGRAM_NAME			:= $(PROGRAM_PREFIX)xlib$(PROGRAM_EXT)
 
 ROOT_INCLUDE_DIR		:= Include Source
 ROOT_SOURCE_DIR			:= Source
 
-OTHER_INCLUDE_DIR		:=	/usr/include \
+OTHER_INCLUDE_DIR		:=	/usr/local/crystal_trader2.5/include \
 							/usr/local/include \
-							/usr/local/crystal_trader2.5/include
+							/usr/include
 
 SOURCE_SUBDIRS			:=	.\
 							Units \
@@ -55,17 +65,34 @@ SOURCE_SUBDIRS			:=	.\
 							Crypt/OpenSSL \
 							Crypt \
 							Compress/Linux \
-							Common \
+							Common
+							
+LIB_DIRS           		:= 	/usr/local/crystal_trader2.5/lib \
+							/usr/local/crystal_trader2.5/lib/mysql \
+							/usr/local/lib \
+							/usr/lib \
+							/usr/local/lib/mysql \
+							/usr/lib/mysql
 
+ifeq ($(BIN_TYPE), $(cBIN_TYPE_LIB))
 BINARY_DIR				:= Library/G++_linux/Release
+else						
+BINARY_DIR				:= Contrib/G++_linux/Release
+endif
+
 INSTALL_DIR				:= /usr/local/crystal_trader2.5/lib/xLib
 PROGRAM_PATH			:= ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
-COMPILER				:= g++
-ARCHIVER                := ar
+COMPILER				:= $(CXX)
+ARCHIVER                := $(AR)
 COMPILE_FLAGS      		:= -Wall -MD -pipe
 LINK_FLAGS              := -s -pipe
-LIBRARIES               := -ldl -lmysqlclient -lm -lpthread -lcrypt -lz -lssl -lGeoIP
+
+ifeq ($(cOS), $(Linux))
+LIBRARIES               := -lpthread -ldl -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
+else
+LIBRARIES               := -pthread  -lc  -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
+endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 BUILD_FLAGS     		:= -O0 -pthread -g3 -g
@@ -74,7 +101,6 @@ BUILD_FLAGS     		:= -O3 -pthread -fomit-frame-pointer -g0
 endif
 
 PARANOID_FLAGS			:= -pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 -Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion -Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits -Wbad-function-cast -Wc++-compat -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wlogical-op -Waggregate-return -Wstrict-prototypes -Wold-style-declaration -Wold-style-definition -Wmissing-prototypes  -Wmissing-declarations  -Wmissing-field-initializers -Wmissing-format-attribute -Wpacked -Wpadded -Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla -Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
-
 
 RELATIVE_INCLUDE_DIRS	:= $(addprefix ../../../, $(ROOT_INCLUDE_DIR))
 RELATIVE_SOURCE_DIRS	:= $(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
@@ -88,7 +114,7 @@ $(PROGRAM_PATH):		obj_dirs $(OBJECTS)
 						$(ARCHIVER) rc $@ $(OBJECTS)
 else						
 $(PROGRAM_PATH): 		obj_dirs $(OBJECTS)
-						$(COMPILER) -o $@ $(OBJECTS) $(LINK_FLAGS) $(LIBRARIES)		
+						$(COMPILER) -o $@ $(OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBRARIES) 		
 endif
 
 obj_dirs:	        
@@ -104,7 +130,6 @@ VPATH					:= ../../../
 
 .PHONY:					clean
 
-
 all:
 						clear	
 						
@@ -115,8 +140,8 @@ all:
 						@echo "* GLIBC info:      " #$(cGLIBC_INFO)
 						@echo "* Binutils info:   " $(cBINUTILS_INFO)
 						@echo "*"
-						@echo "* Program name:    " $(PROGRAM_NAME)							
-						@echo "* Bin type:        " $(cBIN_TYPE_LIB)						
+						@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
+						@echo "* Bin type:        " $(BIN_TYPE)						
 						@echo "* Build type:      " $(BUILD_TYPE)
 						@echo "*"
 						@echo "************************************************************"
@@ -130,13 +155,14 @@ all:
 						$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../makefile
 						@echo ""
 						
+						@echo "[Finish ...]"
+						@echo ""
+						
+install:				
 						@echo "[Install ...]"
 						mkdir -p $(INSTALL_DIR)
 						cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
-						@echo ""
-
-						@echo "[Finish ...]"
-						@echo ""
+						@echo ""						
 
 clean:
 						@echo "[Clean ...]"
@@ -144,7 +170,6 @@ clean:
 						
 						@echo "[Finish ...]"
 						@echo ""
-
 
 include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
 

@@ -399,7 +399,7 @@ CxTest_CxStdioFile::bUnit() {
         struct SWriter {
             static void
             DoV(const CxStdioFile &csfFile, LPCTSTR pcszFormat, ...) {
-                va_list args = NULL;
+                va_list args;
                 va_start(args, pcszFormat);
 
                 INT iRes = csfFile.iWriteV(pcszFormat, args);

@@ -95,7 +95,7 @@ BOOL CxTest_CxTcpClientSocket::bUnit() {
 	//bGetPeerName
 	{
 		tString sIp;
-		USHORT  usPort = - 1;
+		USHORT  usPort = 0;
 
 		m_bRes = objSocket.bGetPeerName(&sIp, &usPort);
 		xASSERT(FALSE != m_bRes);
@@ -105,7 +105,7 @@ BOOL CxTest_CxTcpClientSocket::bUnit() {
 	//bGetSocketName
 	{
 		tString sIp;
-		USHORT  usPort = - 1;
+		USHORT  usPort = 0;
 
 		m_bRes = objSocket.bGetSocketName(&sIp, &usPort);
 		xASSERT(FALSE != m_bRes);

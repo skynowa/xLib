@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 * Class name:  CxTest_CxDateTime
 * Description: testing CxDateTime
 * File name:   CxTest_CxDateTime.h
@@ -591,7 +591,7 @@ BOOL CxTest_CxDateTime::bUnit() {
     //sGetMonthStr
     {
         //bIsShortName = FALSE
-        m_sRes = CxDateTime::sGetMonthStr(- 1, FALSE);
+        m_sRes = CxDateTime::sGetMonthStr((USHORT)- 1, FALSE);
         xASSERT(xT("December") == m_sRes);
         m_sRes = CxDateTime::sGetMonthStr(0, FALSE);
         xASSERT(xT("January") == m_sRes);
@@ -623,7 +623,7 @@ BOOL CxTest_CxDateTime::bUnit() {
         xASSERT(xT("December") == m_sRes);
 
         //bIsShortName = TRUE
-        m_sRes = CxDateTime::sGetMonthStr(- 1, TRUE);
+        m_sRes = CxDateTime::sGetMonthStr((USHORT)- 1, TRUE);
         xASSERT(xT("Dec") == m_sRes);
         m_sRes = CxDateTime::sGetMonthStr(0, TRUE);
         xASSERT(xT("Jan") == m_sRes);
