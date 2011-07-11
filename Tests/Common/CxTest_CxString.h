@@ -915,7 +915,7 @@ CxTest_CxString::bUnit() {
 
         //2
         {
-            const size_t cauiSizes[] = {- 10, 0, 10, 100000000};
+            const size_t cauiSizes[] = {1, 0, 10, 100000000};
 
             for (size_t i = 0; i < xARRAY_SIZE(cauiSizes); ++ i) {
                 m_pvRes = CxString::pvMemoryZeroSecure(NULL, cauiSizes[i]);

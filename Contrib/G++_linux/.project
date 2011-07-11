@@ -92,11 +92,6 @@
 			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/TODO.txt</locationURI>
 		</link>
 		<link>
-			<name>Test.cpp</name>
-			<type>1</type>
-			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Tests/Test.cpp</locationURI>
-		</link>
-		<link>
 			<name>xLib</name>
 			<type>2</type>
 			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Include/xLib</locationURI>

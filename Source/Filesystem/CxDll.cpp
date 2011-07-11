@@ -14,7 +14,7 @@
 #if defined(xOS_WIN)
 
 #elif defined(xOS_LINUX)
-    #include <dlfcn.h>  //lib: -ldl
+    #include <dlfcn.h>  //lib: -ldl, -lc (FreeBSD)
 #endif
 
 
