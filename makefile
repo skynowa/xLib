@@ -54,18 +54,18 @@ OTHER_INCLUDE_DIR		:=	/usr/local/crystal_trader2.5/include \
 							/usr/include
 
 SOURCE_SUBDIRS			:=	.\
-							Units \
-							Sync \
-							Patterns \
-							Net \
-							Log \
-							Filesystem \
+							Common \
+							Compress/Linux \
+							Crypt \
+							Crypt/OpenSSL \
 							Debug \
 							Db \
-							Crypt/OpenSSL \
-							Crypt \
-							Compress/Linux \
-							Common
+							Filesystem \
+							Log \
+							Net \
+							Patterns \
+							Sync \
+							Units
 							
 LIB_DIRS           		:= 	/usr/local/crystal_trader2.5/lib \
 							/usr/local/crystal_trader2.5/lib/mysql \

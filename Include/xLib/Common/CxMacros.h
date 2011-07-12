@@ -347,15 +347,18 @@ class CxMacros :
 
         //xCOUNTER (counter)
         #if defined(__COUNTER__)
-            #define xCOUNTER   xT(__COUNTER__)
+            #define xCOUNTER   __COUNTER__
         #else
-            #define xCOUNTER   xT("<unknown xCOUNTER>")
+            #define xCOUNTER   0
         #endif
 
         //TODO: HOST_NAME_MAX
         #if !defined(HOST_NAME_MAX)
             #define HOST_NAME_MAX   MAXHOSTNAMELEN
         #endif
+
+        #define xPATH_MAX       (CxPath::uiGetMaxSize())
+        #define xNAME_MAX       (CxPath::uiGetNameMaxSize())
 
     private:
                 CxMacros();

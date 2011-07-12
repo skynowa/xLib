@@ -11,6 +11,8 @@
 
 #include <xLib/Filesystem/CxPath.h>
 
+#include <xLib/Filesystem/CxStdioFile.h>
+
 
 /****************************************************************************
 *    public
@@ -19,35 +21,91 @@
 
 //---------------------------------------------------------------------------
 //DONE: sGetExe (full path to exe)
+//NOTE: http://www.cplusplus.com/forum/general/11104/
+//      http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
+//      http://libsylph.sourceforge.net/wiki/Full_path_to_binary
+//      http://h21007.www2.hp.com/portal/site/dspp/menuitem.863c3e4cbcdc3f3515b49c108973a801?ciid=88086d6e1de021106d6e1de02110275d6e10RCRD
+
 /*static*/
 tString
 CxPath::sGetExe() {
     tString sRes;
 
 #if defined(xOS_WIN)
-    sRes.resize(MAX_PATH);
+    sRes.resize(xPATH_MAX);
 
     ULONG ulStored = ::GetModuleFileName(NULL, &sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
 
     sRes.resize(ulStored);
 #elif defined(xOS_LINUX)
-    //http://www.cplusplus.com/forum/general/11104/
+    #if defined(xOS_FREEBSD)
+        #if defined(KERN_PROC_PATHNAME)
+            sRes.resize(xPATH_MAX);
 
-    sRes.resize(PATH_MAX);
+            INT aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
-    INT iReaded = - 1;
+            size_t uiResSize = sRes.size() * sizeof(tString::value_type);
 
-    for ( ; ; ) {
-        iReaded = readlink(xT("/proc/self/exe"), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
-        /*DEBUG*/xASSERT_RET(0 <= iReaded, tString());
+            INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, tString());
 
-        xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
+            sRes.resize(uiResSize);
+        #else
+            sRes = tString();
+        #endif
+    #else
+        sRes.resize(xPATH_MAX);
 
-        sRes.resize(sRes.size() * 2);
-    }
+        INT iReaded = - 1;
 
-    sRes.resize(iReaded);
+        for ( ; ; ) {
+            iReaded = readlink(xT("/proc/self/exe"), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
+            /*DEBUG*/xASSERT_RET(- 1 != iReaded, tString());
+
+            xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
+
+            sRes.resize(sRes.size() * 2);
+        }
+
+        sRes.resize(iReaded);
+    #endif
+
+    /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 tString());
+    /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), tString());
+#endif
+
+    return sRes;
+}
+//---------------------------------------------------------------------------
+//TODO: sGetDll (full path to Dll)
+/*static*/
+tString
+CxPath::sGetDll() {
+    /*DEBUG*/
+
+    tString sRes;
+
+#if defined(xOS_WIN)
+    #if xTODO
+        MEMORY_BASIC_INFORMATION mbi;
+        VirtualQuery(&symbol,&mbi,sizeof(mbi));
+        HMODULE mod = mbi.AllocationBase;
+
+        LPTSTR buf = new TCHAR[255];
+        GetModuleFileName(mod,buf,255);
+        Array<uchar> arr(strlen(buf));
+        for(idx_t i = 0; i < strlen(buf);i++) {
+            arr[i] = buf[i];
+        }
+        String fullpath = arr;
+    #endif
+#elif defined(xOS_LINUX)
+    #if xTODO
+        Dl_info info;
+        dladdr(&symbol,&info);
+        String fullpath = info.dli_filename;
+    #endif
 #endif
 
     return sRes;
@@ -657,6 +715,99 @@ CxPath::sSlashRemove(
     return CxString::sTrimRightChars(csDirPath, CxConst::xSLASH);
 }
 //--------------------------------------------------------------------------
+//DONE: uiGetMaxSize (get max path length in symbols)
+/*static*/
+size_t
+CxPath::uiGetMaxSize() {
+    /*DEBUG*/
+
+    size_t uiRes = 0;
+
+    #if defined(xOS_WIN)
+        #if defined(MAX_PATH)
+            uiRes = MAX_PATH;
+        #else
+            #error xLib: not defined MAX_PATH
+
+            const cuiDefaultSize = 260;
+
+            uiRes = cuiDefaultSize;
+        #endif
+    #elif defined(xOS_LINUX)
+        #if defined(PATH_MAX)
+            uiRes = PATH_MAX;
+        #else
+            const ULONG culSavedError = 0;
+            LONG        liRes         = - 1;
+            ULONG       ulLastError   = 0;
+
+            CxLastError::bSet(culSavedError);
+
+            liRes       = ::pathconf("/", _PC_PATH_MAX);
+            ulLastError = CxLastError::ulGet();
+            /*DEBUG*/xASSERT_RET(- 1 == liRes && 0 != culSavedError, 0);
+
+            if (- 1 == liRes && culSavedError == ulLastError) {
+                //system does not have a limit for the requested resource
+                const cuiDefaultSize = 1024;
+
+                uiRes = cuiDefaultSize;
+            } else {
+                //relative root
+                uiRes = static_cast<std::size_t>(liRes + 1);
+            }
+        #endif
+    #endif
+
+    return uiRes;
+}
+//---------------------------------------------------------------------------
+//DONE: uiGetNameMaxSize (get max name length in symbols)
+/*static*/
+size_t
+CxPath::uiGetNameMaxSize() {
+    /*DEBUG*/
+
+    size_t uiRes = 0;
+
+    #if defined(xOS_WIN)
+        #if defined(MAX_NAME)
+            uiRes = MAX_NAME;
+        #else
+            #error xLib: not defined MAX_NAME
+
+            const cuiDefaultSize = 256;
+
+            uiRes = cuiDefaultSize;
+        #endif
+    #elif defined(xOS_LINUX)
+        #if defined(NAME_MAX)
+            uiRes = NAME_MAX;
+        #else
+            const ULONG culSavedError = 0;
+            LONG        liRes         = - 1;
+            ULONG       ulLastError   = 0;
+
+            CxLastError::bSet(culSavedError);
+
+            liRes       = ::pathconf("/", _PC_NAME_MAX);
+            ulLastError = CxLastError::ulGet();
+            /*DEBUG*/xASSERT_RET(- 1 == liRes && 0 != culSavedError, 0);
+
+            if (- 1 == liRes && culSavedError == ulLastError) {
+                //system does not have a limit for the requested resource
+                const cuiDefaultSize = 1024;
+
+                uiRes = cuiDefaultSize;
+            } else {
+                uiRes = static_cast<std::size_t>(liRes);
+            }
+        #endif
+    #endif
+
+    return uiRes;
+}
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************

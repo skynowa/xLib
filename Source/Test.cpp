@@ -145,6 +145,8 @@ _tmain(
 {
     ////tcout << "Content-type: text/html\n\n" << tendl;
 
+    xTRACEV("CxEnvironment::sGetVar(\"PWD\"): %s", argv[0]);
+
     #if xTEMP_DISABLED
         //fprintf(stdout, "Content-type: text/html\n");
         //tcout << xT("##################") << tendl;
@@ -164,7 +166,7 @@ _tmain(
     BOOL bRes = FALSE;
 
     std::vector<CxTest *> vptTests;
-
+xTRACE_POINT;
 
         //--------------------------------------------------
         //Common
@@ -298,7 +300,7 @@ _tmain(
 
         #endif
     #endif
-
+xTRACE_POINT;
     //--------------------------------------------------
     //run all tests
     for (ULONGLONG i = 0; i < cullTimesForAll; ++ i) {
@@ -307,7 +309,7 @@ _tmain(
             xASSERT_MSG_RET(FALSE != bRes, ( xT("Test (") + (*it)->sGetName() + xT(") not complete") ).c_str(), FALSE);
         }
     }
-
+xTRACE_POINT;
     //--------------------------------------------------
     //free memory
     for (std::vector<CxTest *>::iterator it = vptTests.begin(); it != vptTests.end(); ++ it) {

@@ -18,57 +18,62 @@ class CxPath :
     public CxNonCopyable
 {
     public:
-        static tString sGetExe      ();
-        static tString sGetExeDir   ();
-        #if defined(xOS_WIN)
-        static tString sGetDrive    (const tString &csFilePath);
-        #endif
-        static tString sGetDir      (const tString &csFilePath);
-        static tString sGetDirName  (const tString &csFilePath);
-        static tString sGetFullName (const tString &csFilePath);
-        static tString sGetName     (const tString &csFilePath);
-        static tString sGetExt      (const tString &csFilePath);
+        static tString sGetExe         ();
+        static tString sGetExeDir      ();
+        static tString sGetDll         ();
 
         #if defined(xOS_WIN)
-        static tString sSetDrive    (const tString &csFilePath, const tString &csDrivePath);
+        static tString sGetDrive       (const tString &csFilePath);
         #endif
-        static tString sSetDir      (const tString &csFilePath, const tString &csDirPath);
-        static tString sSetFullName (const tString &csFilePath, const tString &csFullName);
-        static tString sSetName     (const tString &csFilePath, const tString &csName);
-        static tString sSetExt      (const tString &csFilePath, const tString &csExt);
+        static tString sGetDir         (const tString &csFilePath);
+        static tString sGetDirName     (const tString &csFilePath);
+        static tString sGetFullName    (const tString &csFilePath);
+        static tString sGetName        (const tString &csFilePath);
+        static tString sGetExt         (const tString &csFilePath);
 
-        static tString sRemoveExt   (const tString &csFilePath);
-        static tString sRemoveExtIf (const tString &csFilePath, const tString &csExt);
+        #if defined(xOS_WIN)
+        static tString sSetDrive       (const tString &csFilePath, const tString &csDrivePath);
+        #endif
+        static tString sSetDir         (const tString &csFilePath, const tString &csDirPath);
+        static tString sSetFullName    (const tString &csFilePath, const tString &csFullName);
+        static tString sSetName        (const tString &csFilePath, const tString &csName);
+        static tString sSetExt         (const tString &csFilePath, const tString &csExt);
+
+        static tString sRemoveExt      (const tString &csFilePath);
+        static tString sRemoveExtIf    (const tString &csFilePath, const tString &csExt);
 
         //normalize
-        static BOOL    bIsValid     (const tString &csFilePath);
-        static BOOL    bIsNameValid (const tString &csFilePath);
+        static BOOL    bIsValid        (const tString &csFilePath);
+        static BOOL    bIsNameValid    (const tString &csFilePath);
 
-        static tString sToWin       (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
-        static tString sToNix       (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
-        static tString sToCurrentOs (const tString &csFilePath, const BOOL cbIsSlashAtEnd);    //TODO: make test
+        static tString sToWin          (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
+        static tString sToNix          (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
+        static tString sToCurrentOs    (const tString &csFilePath, const BOOL cbIsSlashAtEnd);    //TODO: make test
 
-        static tString sMinimizeName(const tString &csFileName, const size_t cuiMaxSize);
-        static tString sMinimize    (const tString &csFilePath, const size_t cuiMaxSize);
-        static tString sSetValidName(const tString &csFileName);
+        static tString sMinimizeName   (const tString &csFileName, const size_t cuiMaxSize);
+        static tString sMinimize       (const tString &csFilePath, const size_t cuiMaxSize);
+        static tString sSetValidName   (const tString &csFileName);
 
-        static tString sSlashAppend (const tString &csDirPath);
-        static tString sSlashRemove (const tString &csDirPath);
+        static tString sSlashAppend    (const tString &csDirPath);
+        static tString sSlashRemove    (const tString &csDirPath);
+
+        static size_t  uiGetMaxSize    ();
+        static size_t  uiGetNameMaxSize();
 
     private:
-                       CxPath       ();
-        virtual       ~CxPath       ();
+                       CxPath          ();
+        virtual       ~CxPath          ();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxPathH
 
 
 /*
-_MAX_DIR 	
-_MAX_DRIVE 	
-_MAX_EXT 	
-_MAX_FNAME 	
-_MAX_PATH 
+_MAX_DIR
+_MAX_DRIVE
+_MAX_EXT
+_MAX_FNAME
+_MAX_PATH
 */
 
 /*
