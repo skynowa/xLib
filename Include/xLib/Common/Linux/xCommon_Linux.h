@@ -40,11 +40,13 @@
 #include <sched.h>
 
 #if defined(xOS_FREEBSD)
+    #include <osreldate.h>
     #include <pthread_np.h>
     #include <sys/param.h>
     #include <sys/mount.h>
     #include <sys/statvfs.h>
     #include <sys/resource.h>
+    #include <sys/sysctl.h>
 #else
     #include <sys/vfs.h>
     #include <sys/prctl.h>

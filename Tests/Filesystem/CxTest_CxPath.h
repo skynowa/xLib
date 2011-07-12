@@ -84,6 +84,15 @@ CxTest_CxPath::bUnit() {
         #endif
     }
 
+    //-------------------------------------
+    //sGetDll
+    {
+        sRes = CxPath::sGetDll();
+        #if xTODO
+            xASSERT(false == sRes.empty());
+        #endif
+    }
+
 	//-------------------------------------
 	//sGetExeDir
     {
@@ -711,6 +720,20 @@ CxTest_CxPath::bUnit() {
             xASSERT_MSG(sStr3 == sStr3, (sStr3 + xT(" == ") + sStr4).c_str());
         }
 	}
+
+    //--------------------------------------------------
+    //uiGetMaxSize
+    {
+    	m_uiRes = CxPath::uiGetMaxSize();
+    	xASSERT(0 < m_uiRes);
+    }
+
+    //--------------------------------------------------
+    //uiGetNameMaxSize
+    {
+        m_uiRes = CxPath::uiGetNameMaxSize();
+        xASSERT(0 < m_uiRes);
+    }
 
     return TRUE;
 }

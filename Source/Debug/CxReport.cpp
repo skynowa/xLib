@@ -18,12 +18,6 @@
 #include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxProcess.h>
 
-#if defined(xOS_WIN)
-
-#elif defined(xOS_LINUX)
-    #include <pthread.h>
-#endif
-
 
 /****************************************************************************
 *    public
@@ -289,7 +283,7 @@ CxReport::_bInitVars(
 
     _m_rtType          = crtType;
 
-    _m_sProgram        = CxPath::sGetExe();
+    _m_sProgram        = xT("");    //CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
     _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
     _m_sSourceFile     = csFile;

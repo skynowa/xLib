@@ -147,9 +147,17 @@ CxTest::bCreateWorkDir(
     /*DEBUG*/// n/a
 
     if (true == csDirName.empty()) {
-        _m_sWorkDirPath = CxEnvironment::sGetVar(xT("tmp"));    //tmp - linux (printenv), temp - windows
+        _m_sWorkDirPath = CxDir::sGetTemp();
     } else {
+        xTRACE_POINT;
+
+        xTRACEV("csDirName:  %s", csDirName.c_str());
+        xTRACEV("xSLASH:     %s", CxConst::xSLASH.c_str());
+        xTRACEV("sGetExeDir: %s", CxPath::sGetExeDir().c_str());
+
         _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + csDirName;
+
+            xTRACE_POINT;
 
         _m_bRes = CxDir::bCreateForce(_m_sWorkDirPath);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);

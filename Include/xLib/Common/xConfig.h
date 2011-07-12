@@ -47,6 +47,7 @@
 
 #if defined(xOS_WIN)
     #define WIN32_LEAN_AND_MEAN
+    #define VC_EXTRALEAN
     #define _CRT_SECURE_NO_WARNINGS  1
     #define _SECURE_SCL              0
 #elif defined(xOS_LINUX)

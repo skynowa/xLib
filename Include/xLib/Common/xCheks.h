@@ -20,5 +20,10 @@
 #if defined(xUNICODE) && (defined(xOS_LINUX) || defined(xOS_FREEBSD))
     #error xLib: unicode unsupported for Linux and FreeBSD
 #endif
+
+//TODO: P_tmpdir (cross)
+//TODO: MAX_PATH (windows)
+//TODO: MAX_NAME (windows)
+
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xCheksH
