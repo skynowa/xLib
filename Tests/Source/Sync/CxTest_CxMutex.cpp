@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxMutex.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxMutex (constructor)
 CxTest_CxMutex::CxTest_CxMutex() {
@@ -24,53 +27,57 @@ CxTest_CxMutex::~CxTest_CxMutex() {
 /*virtual*/
 BOOL
 CxTest_CxMutex::bUnit() {
-	const tString csName = CxString::sCreateGuid();
-	
-	
-	CxMutex mtMutex;
+#if defined(xOS_WIN)
+    const tString csName = CxString::sCreateGuid();
 
-	//-------------------------------------
-	//hGetHandle
-	{
-		m_hRes = mtMutex.hGetHandle();
+
+    CxMutex mtMutex;
+
+    //-------------------------------------
+    //hGetHandle
+    {
+        m_hRes = mtMutex.hGetHandle();
         xASSERT(NULL == m_hRes);
-	}
-	
-	//-------------------------------------
-	//bCreate
-	{
-		const LPSECURITY_ATTRIBUTES lpcsaAttributes = NULL; 
-		const BOOL                  cbInitialOwner  = FALSE;
+    }
 
-		m_bRes = mtMutex.bCreate(lpcsaAttributes, cbInitialOwner, csName.c_str());
-		xASSERT(FALSE != m_bRes);
-	}
-	
-	//-------------------------------------
-	//bOpen
-	{
-		const ULONG culAccess       = MUTEX_ALL_ACCESS; 
-		const BOOL  cbInheritHandle = FALSE; 
-		
-		m_bRes = mtMutex.bOpen(culAccess, cbInheritHandle,  csName.c_str());
-		xASSERT(FALSE != m_bRes);
-	}
+    //-------------------------------------
+    //bCreate
+    {
+        const LPSECURITY_ATTRIBUTES lpcsaAttributes = NULL;
+        const BOOL                  cbInitialOwner  = FALSE;
 
-	//-------------------------------------
-	//bWait
-	{
-		const ULONG culTimeout = 1000;
-		
-		m_bRes = mtMutex.bWait(culTimeout);
-		xASSERT(FALSE != m_bRes);
-	}
-    	
-	//-------------------------------------
-	//bRelease
-	{
-		m_bRes = mtMutex.bRelease();
-		xASSERT(FALSE != m_bRes);
-	}
+        m_bRes = mtMutex.bCreate(lpcsaAttributes, cbInitialOwner, csName.c_str());
+        xASSERT(FALSE != m_bRes);
+    }
+
+    //-------------------------------------
+    //bOpen
+    {
+        const ULONG culAccess       = MUTEX_ALL_ACCESS;
+        const BOOL  cbInheritHandle = FALSE;
+
+        m_bRes = mtMutex.bOpen(culAccess, cbInheritHandle,  csName.c_str());
+        xASSERT(FALSE != m_bRes);
+    }
+
+    //-------------------------------------
+    //bWait
+    {
+        const ULONG culTimeout = 1000;
+
+        m_bRes = mtMutex.bWait(culTimeout);
+        xASSERT(FALSE != m_bRes);
+    }
+
+    //-------------------------------------
+    //bRelease
+    {
+        m_bRes = mtMutex.bRelease();
+        xASSERT(FALSE != m_bRes);
+    }
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }

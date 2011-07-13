@@ -14,13 +14,13 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Units/bGetUsbInfo.h>
+#include <xLib/Units/Win/bGetUsbInfo.h>
 //---------------------------------------------------------------------------
 class CxTest_bGetUsbInfo :
     public CxTest
 {
 	public:
-		CxTest_bGetUsbInfo();
+                     CxTest_bGetUsbInfo();
 		virtual     ~CxTest_bGetUsbInfo();
 
 	    virtual BOOL bUnit();

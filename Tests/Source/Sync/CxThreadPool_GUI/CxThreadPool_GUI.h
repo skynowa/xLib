@@ -1,6 +1,7 @@
 #ifndef CxThreadPool_GUIH
 #define CxThreadPool_GUIH
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 #include "resource.h"
 
 #include <windows.h>
@@ -25,5 +26,8 @@
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 #include <xLib/Log/CxWndLog.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif // CxThreadPool_GUIH

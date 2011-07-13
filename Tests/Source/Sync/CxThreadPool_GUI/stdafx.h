@@ -3,6 +3,7 @@
 // are changed infrequently
 //
 
+#if defined(xOS_WIN)
 #pragma once
 
 #include "targetver.h"
@@ -19,3 +20,6 @@
 
 
 // TODO: reference additional headers your program requires here
+#elif defined(xOS_LINUX)
+
+#endif

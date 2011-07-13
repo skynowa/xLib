@@ -15,23 +15,23 @@
 #include <xLib/Common/xCommon.h>
 
 //Common
-#include "../Tests/Common/CxTest_CxMacros.h"
-#include "../Tests/Common/CxTest_CxArray.h"
-#include "../Tests/Common/CxTest_CxChar.h"
-#include "../Tests/Common/CxTest_CxLocale.h"
-#include "../Tests/Common/CxTest_CxString.h"
-#include "../Tests/Common/CxTest_CxDateTime.h"
-#include "../Tests/Common/CxTest_CxFunctorT.h"
-#include "../Tests/Common/CxTest_CxSystemInfo.h"
-#include "../Tests/Common/CxTest_CxAutoMallocT.h"
-#include "../Tests/Common/CxTest_CxException.h"
+#include "../Include/Common/CxTest_CxMacros.h"
+#include "../Include/Common/CxTest_CxArray.h"
+#include "../Include/Common/CxTest_CxChar.h"
+#include "../Include/Common/CxTest_CxLocale.h"
+#include "../Include/Common/CxTest_CxString.h"
+#include "../Include/Common/CxTest_CxDateTime.h"
+#include "../Include/Common/CxTest_CxFunctorT.h"
+#include "../Include/Common/CxTest_CxSystemInfo.h"
+#include "../Include/Common/CxTest_CxAutoMallocT.h"
+#include "../Include/Common/CxTest_CxException.h"
 #if defined(xOS_WIN)
-    #include "../Tests/Common/CxTest_CxClipboard.h"
-    #include "../Tests/Common/CxTest_CxCom.h"
-    #include "../Tests/Common/CxTest_CxHandleT.h"
-    #include "../Tests/Common/CxTest_CxShell.h"
-    #include "../Tests/Common/CxTest_CxComPort.h"
-    #include "../Tests/Common/CxTest_CxConsole.h"
+    #include "../Include/Common/CxTest_CxClipboard.h"
+    #include "../Include/Common/CxTest_CxCom.h"
+    #include "../Include/Common/CxTest_CxHandleT.h"
+    #include "../Include/Common/CxTest_CxShell.h"
+    #include "../Include/Common/CxTest_CxComPort.h"
+    #include "../Include/Common/CxTest_CxConsole.h"
 #elif defined(xOS_LINUX)
 
 #endif
@@ -40,89 +40,89 @@
 #if defined(xOS_WIN)
 
 #elif defined(xOS_LINUX)
-    #include "../Tests/Compress/CxTest_CxGz.h"
+    #include "../Include/Compress/CxTest_CxGz.h"
 #endif
 
 //Crypt
-#include "../Tests/Crypt/CxTest_CxBase64.h"
-#include "../Tests/Crypt/CxTest_CxCrc32.h"
-#include "../Tests/Crypt/CxTest_CxBlowfish.h"
-#include "../Tests/Crypt/CxTest_CxRandom.h"
+#include "../Include/Crypt/CxTest_CxBase64.h"
+#include "../Include/Crypt/CxTest_CxCrc32.h"
+#include "../Include/Crypt/CxTest_CxBlowfish.h"
+#include "../Include/Crypt/CxTest_CxRandom.h"
 
 //Db
-#include "../Tests/Db/CxTest_CxConnectionString.h"
-#include "../Tests/Db/CxTest_CxMySql.h"
+#include "../Include/Db/CxTest_CxConnectionString.h"
+#include "../Include/Db/CxTest_CxMySql.h"
 
 //Debug
-#include "../Tests/Debug/CxTest_CxLastError.h"
-#include "../Tests/Debug/CxTest_CxReport.h"
-#include "../Tests/Debug/CxTest_CxDebugger.h"
-#include "../Tests/Debug/CxTest_CxProfiler.h"
-#include "../Tests/Debug/CxTest_CxAutoProfiler.h"
+#include "../Include/Debug/CxTest_CxLastError.h"
+#include "../Include/Debug/CxTest_CxReport.h"
+#include "../Include/Debug/CxTest_CxDebugger.h"
+#include "../Include/Debug/CxTest_CxProfiler.h"
+#include "../Include/Debug/CxTest_CxAutoProfiler.h"
 
 //Filesystem
-#include "../Tests/Filesystem/CxTest_CxPath.h"
-#include "../Tests/Filesystem/CxTest_CxDir.h"
-#include "../Tests/Filesystem/CxTest_CxEnvironment.h"
-#include "../Tests/Filesystem/CxTest_CxStdioFile.h"
-#include "../Tests/Filesystem/CxTest_CxDll.h"
-#include "../Tests/Filesystem/CxTest_CxFileAttribute.h"
-#include "../Tests/Filesystem/CxTest_CxIni.h"
-#include "../Tests/Filesystem/CxTest_CxVolume.h"
+#include "../Include/Filesystem/CxTest_CxPath.h"
+#include "../Include/Filesystem/CxTest_CxDir.h"
+#include "../Include/Filesystem/CxTest_CxEnvironment.h"
+#include "../Include/Filesystem/CxTest_CxStdioFile.h"
+#include "../Include/Filesystem/CxTest_CxDll.h"
+#include "../Include/Filesystem/CxTest_CxFileAttribute.h"
+#include "../Include/Filesystem/CxTest_CxIni.h"
+#include "../Include/Filesystem/CxTest_CxVolume.h"
 
 #if defined(xOS_WIN)
-    #include "../Tests/Filesystem/Win/CxTest_CxFile.h"
-    #include "../Tests/Filesystem/Win/CxTest_CxIni.h"
+    #include "../Include/Filesystem/Win/CxTest_CxFile.h"
+    #include "../Include/Filesystem/Win/CxTest_CxIni.h"
 #elif defined(xOS_LINUX)
 
 #endif
 
 //Log
-#include "../Tests/Log/CxTest_CxFileLog.h"
+#include "../Include/Log/CxTest_CxFileLog.h"
 
 //Net
-#include "../Tests/Net/CxTest_CxCookiePv0.h"
-#include "../Tests/Net/CxTest_CxCookiePv1.h"
-#include "../Tests/Net/CxTest_CxCgi.h"
-#include "../Tests/Net/CxTest_CxSocketInit.h"
-#include "../Tests/Net/CxTest_CxSocket.h"
-#include "../Tests/Net/CxTest_CxDnsClient.h"
-#include "../Tests/Net/CxTest_CxTcpClientSocket.h"
-#include "../Tests/Net/CxTest_CxTcpServerSocket.h"
-////#include "../Tests/Net/CxTest_CxHttpClient.h"
-////#include "../Tests/Net/CxTest_CxGeoIp.h"
+#include "../Include/Net/CxTest_CxCookiePv0.h"
+#include "../Include/Net/CxTest_CxCookiePv1.h"
+#include "../Include/Net/CxTest_CxCgi.h"
+#include "../Include/Net/CxTest_CxSocketInit.h"
+#include "../Include/Net/CxTest_CxSocket.h"
+#include "../Include/Net/CxTest_CxDnsClient.h"
+#include "../Include/Net/CxTest_CxTcpClientSocket.h"
+#include "../Include/Net/CxTest_CxTcpServerSocket.h"
+////#include "../Include/Net/CxTest_CxHttpClient.h"
+////#include "../Include/Net/CxTest_CxGeoIp.h"
 
 //Patterns
-#include "../Tests/Patterns/CxTest_CxSingleton.h"
+#include "../Include/Patterns/CxTest_CxSingleton.h"
 
 //PKCS11
 #if defined(xOS_WIN)
-    #include "../Tests/PKCS11/CxTest_CxPkcs11.h"
+    #include "../Include/PKCS11/CxTest_CxPkcs11.h"
 #elif defined(xOS_LINUX)
 
 #endif
 
 //Sync
-#include "../Tests/Sync/CxTest_CxProcess.h"
-#include "../Tests/Sync/CxTest_CxThread.h"
+#include "../Include/Sync/CxTest_CxProcess.h"
+#include "../Include/Sync/CxTest_CxThread.h"
 
 #if defined(xOS_WIN)
-	#include "../Tests/Sync/CxTest_CxEvent.h"
-    #include "../Tests/Sync/CxTest_CxMutex.h"
-    #include "../Tests/Sync/CxTest_CxAutoMutex.h"
-    #include "../Tests/Sync/CxTest_CxSleeper.h"
+        #include "../Include/Sync/CxTest_CxEvent.h"
+    #include "../Include/Sync/CxTest_CxMutex.h"
+    #include "../Include/Sync/CxTest_CxAutoMutex.h"
+    #include "../Include/Sync/CxTest_CxSleeper.h"
 #elif defined(xOS_LINUX)
 
 #endif
 
 //Gui
 #if defined(xOS_WIN)
-    #include "../Tests/Gui/GDI+/CxTest_CxGdiplus.h"
-    #include "../Tests/Gui/GDI+/CxTest_CxImage.h"
+    #include "../Include/Gui/GDI+/CxTest_CxGdiplus.h"
+    #include "../Include/Gui/GDI+/CxTest_CxImage.h"
 #endif
 
 //Units
-#include "../Tests/Sync/CxTest_CxProcess.h"
+#include "../Include/Sync/CxTest_CxProcess.h"
 
 #if defined(xOS_WIN)
     //TODO: test Units

@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxComPort.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxComPort (comment)
 CxTest_CxComPort::CxTest_CxComPort() {
@@ -24,27 +27,6 @@ CxTest_CxComPort::~CxTest_CxComPort() {
 /*virtual*/
 BOOL CxTest_CxComPort::bUnit() {
     /*DEBUG*/
-
-    //////-------------------------------------
-    //////[FUNCTION_NAME]
-    ////{
-    ////    tString sTestData[][2] = {
-    ////        {xT("TEST_STRING_1"),         xT("MUST_BE_1")},
-    ////        {xT("TEST_STRING_2"),         xT("MUST_BE_2")},
-    ////        {xT("TEST_STRING_3"),         xT("MUST_BE_3")},
-    ////        {xT("TEST_STRING_4"),         xT("MUST_BE_4")}
-    ////    };
-
-    ////    for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-    ////        ////tString sStr1 = [FUNCTION_NAME](sTestData[i][0]);
-    ////        ////tString sStr2 = [FUNCTION_NAME](sTestData[i][1]);
-    ////        ////XASSERT(sStr1 == sStr2);
-
-    ////        ////tString sStr3 = [FUNCTION_NAME](sTestData[i][0]);
-    ////        ////tString sStr4 = sTestData[i][1];
-    ////        ////XASSERT(sStr3 == sStr4);
-    ////    }
-    ////}
 
     return TRUE;
 }

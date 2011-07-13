@@ -1,54 +1,58 @@
+#if defined(xOS_WIN)
 
 BOOL ProcessHELO()
 {
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ProcessRCPT()
 {
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ProcessMAIL()
 {
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ProcessRSET()
 {
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ProcessNOOP()
 {
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ProcessQUIT()
 {
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ProcessDATA()
 {
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ProcessNotImplemented(BOOL bParam=FALSE)
 {
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ProcessLine(char *buf, int len)
 {
 
-	return TRUE;
+    return TRUE;
 }
+#elif defined(xOS_LINUX)
+
+#endif

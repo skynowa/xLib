@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxProcess.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxProcess (constructor)
 CxTest_CxProcess::CxTest_CxProcess() {

@@ -9,39 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef CxTest_CxGdiplusH
-#define CxTest_CxGdiplusH
-//---------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
-#include <xLib/Gui/Win/GDI+/CxGdiplus.h>
-//---------------------------------------------------------------------------
-class CxTest_CxGdiplus : public CxTest {
-	public:
-		CxTest_CxGdiplus();
-		virtual     ~CxTest_CxGdiplus();
+#include <GUI/GDI+/CxTest_CxGdiplus.h>
 
-		virtual     BOOL bUnit();
-
-	private:
-};
-//---------------------------------------------------------------------------
-#endif //CxTest_CxGdiplusH
-
-
-/****************************************************************************
-* Class name:  CxTest_CxGdiplus
-* Description: test CxGdiplus
-* File name:   CxTest_CxGdiplus.cpp
-
-
-
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-
-*
-*****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxGdiplus (comment)

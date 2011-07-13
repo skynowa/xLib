@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Debug/CxTest_CxDebugger.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxDebugger (constructor)
 CxTest_CxDebugger::CxTest_CxDebugger() {

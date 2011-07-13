@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxMacros.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxMacros (constructor)
 CxTest_CxMacros::CxTest_CxMacros() {

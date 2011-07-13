@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxSleeper.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxSleeper
 CxTest_CxSleeper::CxTest_CxSleeper() {
@@ -24,26 +27,30 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 /*virtual*/
 BOOL
 CxTest_CxSleeper::bUnit() {
-	CxSleeper objSleeper;
+#if defined(xOS_WIN)
+    CxSleeper objSleeper;
 
     m_bRes = objSleeper.bIsSleeping();
     xASSERT(FALSE == m_bRes);
 
-	for (size_t i = 0; i < 10; ++ i) {
+    for (size_t i = 0; i < 10; ++ i) {
         m_bRes = objSleeper.bSleep(10);
         xASSERT(FALSE != m_bRes);
 
-		m_bRes = objSleeper.bIsSleeping();
-		xASSERT(FALSE == m_bRes);
+        m_bRes = objSleeper.bIsSleeping();
+        xASSERT(FALSE == m_bRes);
 
         m_bRes = objSleeper.bIsSleeping();
-		xASSERT(FALSE == m_bRes);
+        xASSERT(FALSE == m_bRes);
 
         #if xTODO
             m_bRes = objSleeper.bWakeUp();
-	        //xASSERT(FALSE != m_bRes);
+            //xASSERT(FALSE != m_bRes);
         #endif
-	}
+    }
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }

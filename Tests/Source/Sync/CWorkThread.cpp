@@ -15,6 +15,8 @@
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 #include <xLib/Log/CxFileLog.h>
+
+#if defined(xOS_WIN)
 //---------------------------------------------------------------------------
 #define WM_TEST_MSG_1  (WM_USER + 100)
 //---------------------------------------------------------------------------
@@ -28,9 +30,9 @@
 //---------------------------------------------------------------------------
 //TODO: CWorkThread
 CWorkThread::CWorkThread(BOOL bAutoDelete) :
-	CxThread (bAutoDelete),
-	m_uiIndex(0),
-	_m_clLog (FALSE)
+    CxThread (bAutoDelete),
+    m_uiIndex(0),
+    _m_clLog (FALSE)
 {
 }
 //---------------------------------------------------------------------------
@@ -53,40 +55,43 @@ CWorkThread::uiOnRun(
     VOID *pData
 )
 {
-	//xTRACEV(xT("Start thread: #%i\n"), m_uiIndex);
+    //xTRACEV(xT("Start thread: #%i\n"), m_uiIndex);
 
-	UINT uiRes = 0;
-	BOOL bRes  = FALSE;
+    UINT uiRes = 0;
+    BOOL bRes  = FALSE;
 
-	for (size_t i = 0; i < /**piParam*/10; ++ i, ++ uiRes) {
-		bRes = bIsTimeToExit();
-		xCHECK_DO(TRUE == bRes, break);
+    for (size_t i = 0; i < /**piParam*/10; ++ i, ++ uiRes) {
+        bRes = bIsTimeToExit();
+        xCHECK_DO(TRUE == bRes, break);
 
-		for (int i = 0; i < 20; i ++) {
-			//xTRACEV(xT("*\n"));
-			::Sleep(1000);
-		}
-	}
+        for (int i = 0; i < 20; i ++) {
+            //xTRACEV(xT("*\n"));
+            ::Sleep(1000);
+        }
+    }
 
-	//xTRACEV(xT("End thread: #%i\n"), m_uiIndex);
+    //xTRACEV(xT("End thread: #%i\n"), m_uiIndex);
 
-	return uiRes;
+    return uiRes;
 }
 //---------------------------------------------------------------------------
 //TODO: vOnEnter
 VOID
 CWorkThread::vOnEnter() {
-	//LOG("vOnEnter");
+    //LOG("vOnEnter");
 }
 //---------------------------------------------------------------------------
 //TODO: vOnExit
 VOID
 CWorkThread::vOnExit() {
-	//LOG("vOnExit");
+    //LOG("vOnExit");
 
-	BOOL bRes = FALSE;
+    BOOL bRes = FALSE;
 
-	////bRes = thpTP->bPushTask(NULL);	//if (TRUE == bRes)		//bRelease
-	/////*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    ////bRes = thpTP->bPushTask(NULL);	//if (TRUE == bRes)		//bRelease
+    /////*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

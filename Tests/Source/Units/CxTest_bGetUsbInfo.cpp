@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <xLib/Tests/Include/Units/CxTest_bGetUsbInfo.h>
+#include <Units/CxTest_bGetUsbInfo.h>
 
 
 //---------------------------------------------------------------------------
@@ -27,40 +27,43 @@ CxTest_bGetUsbInfo::~CxTest_bGetUsbInfo() {
 /*virtual*/
 BOOL
 CxTest_bGetUsbInfo::bUnit() {
-	//-------------------------------------
-	//bGetUsbInfo
-	{
-		const tstring        csDrive = xT("I:");
-		std::vector<tstring> vecsInfo;
+#if defined(xOS_WIN)
+    //-------------------------------------
+    //bGetUsbInfo
+    {
+        const tstring        csDrive = xT("I:");
+        std::vector<tstring> vecsInfo;
 
-		g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
-		XASSERT(TRUE == g_bRes);
+        g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
+        xASSERT(TRUE == g_bRes);
 
-		XASSERT(xT("\\??\\USB")                              == vecsInfo.at(0));
-		XASSERT(xT("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
-		XASSERT(xT("3DH5R5EL")                               == vecsInfo.at(2));
-		XASSERT(xT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}") == vecsInfo.at(3));
+        xASSERT(xT("\\??\\USB")                              == vecsInfo.at(0));
+        xASSERT(xT("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
+        xASSERT(xT("3DH5R5EL")                               == vecsInfo.at(2));
+        xASSERT(xT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}") == vecsInfo.at(3));
 
-		//assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
-		//std::cout << "sGetFlashSerialFromDrive: " << sRes.c_str() << std::endl;
-	}
+        //assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
+        //std::cout << "sGetFlashSerialFromDrive: " << sRes.c_str() << std::endl;
+    }
 
-	{
-		////const tstring        csDrive = xT("Y:");
-		////std::vector<tstring> vecsInfo;
+    {
+        ////const tstring        csDrive = xT("Y:");
+        ////std::vector<tstring> vecsInfo;
 
-		////g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
-		////XASSERT(TRUE == g_bRes);
+        ////g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
+        ////XASSERT(TRUE == g_bRes);
 
-		////XASSERT(xT("\\??\\USB")                              == vecsInfo.at(0));
-		////XASSERT(xT("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
-		////XASSERT(xT("3DH5R5EL")                               == vecsInfo.at(2));
-		////XASSERT(xT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}") == vecsInfo.at(3));
+        ////XASSERT(xT("\\??\\USB")                              == vecsInfo.at(0));
+        ////XASSERT(xT("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
+        ////XASSERT(xT("3DH5R5EL")                               == vecsInfo.at(2));
+        ////XASSERT(xT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}") == vecsInfo.at(3));
 
-		//////assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
-		//////std::cout << "sGetFlashSerialFromDrive: " << sRes.c_str() << std::endl;
-	}
+        //////assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
+        //////std::cout << "sGetFlashSerialFromDrive: " << sRes.c_str() << std::endl;
+    }
+#elif defined(xOS_LINUX)
 
+#endif
 
     return TRUE;
 }

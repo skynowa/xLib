@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Crypt/CxTest_CxBlowfish.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxBlowfish (constructor)
 CxTest_CxBlowfish::CxTest_CxBlowfish() {

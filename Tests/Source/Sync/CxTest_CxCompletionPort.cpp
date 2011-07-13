@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxCompletionPort.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxCompletionPort (comment)
 CxTest_CxCompletionPort::CxTest_CxCompletionPort() {
@@ -22,7 +25,8 @@ CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL CxTest_CxCompletionPort::bUnit() {
+BOOL
+CxTest_CxCompletionPort::bUnit() {
 	/*DEBUG*/
 
 	//////-------------------------------------

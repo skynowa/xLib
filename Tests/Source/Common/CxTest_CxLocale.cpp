@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxLocale.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxLocale (constructor)
 CxTest_CxLocale::CxTest_CxLocale() {

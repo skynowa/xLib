@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Debug/CxTest_CxAutoProfiler.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAutoProfiler (comment)
 CxTest_CxAutoProfiler::CxTest_CxAutoProfiler() {

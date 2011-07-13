@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CWorkThread
-* Description: рабочий поток
+* Description: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 * File name:   CWorkThread.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -9,9 +9,9 @@
 *****************************************************************************/
 
 
+#if defined(xOS_WIN)
 #include "CWorkThread.h"
 
-#include <xLib/CxString.h>
 #include <xLib/Sync/CxThreadPool.h>
 //---------------------------------------------------------------------------
 CxCriticalSection g_csCounter;
@@ -20,16 +20,16 @@ volatile size_t   g_uiLinesCount = 0;
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CWorkThread
 CWorkThread::CWorkThread(BOOL bIsPaused, BOOL bAutoDelete) :
-	CxThread    (bIsPaused, bAutoDelete),
-	_m_clLog    (FALSE),
-	m_uiIndex   (0)
+    CxThread    (bIsPaused, bAutoDelete),
+    _m_clLog    (FALSE),
+    m_uiIndex   (0)
 {
 }
 //---------------------------------------------------------------------------
@@ -42,75 +42,78 @@ CWorkThread::~CWorkThread() {
 
 
 /****************************************************************************
-*    Protected methods                                                       
-*                                                                            
+*    Protected methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: uiOnRun
-UINT CWorkThread::uiOnRun(VOID *pData) { 
-	/*LOG*///_m_clLog.bWrite(xT("uiOnRun start: #%i"), m_uiIndex); 
-	
-	UINT uiRes = 0;
-	BOOL bRes  = FALSE;
+UINT CWorkThread::uiOnRun(VOID *pData) {
+    /*LOG*///_m_clLog.bWrite(xT("uiOnRun start: #%i"), m_uiIndex);
 
-	std::vector<tString> *pvecsThis = static_cast<std::vector<tString> *>(pData);
-	/*DEBUG*/xASSERT_RET(NULL != pvecsThis, 0);
+    UINT uiRes = 0;
+    BOOL bRes  = FALSE;
 
-	////for (UINT i = 0; i < pvecsThis->size(); i ++, uiRes ++) {
-	////	//-------------------------------------
-	////	//не пора ли выйти или приостановиться
-	////	bRes = bIsTimeToExit();
-	////	xCHECK_DO(TRUE == bRes, break);
-	////	
+    std::vector<tString> *pvecsThis = static_cast<std::vector<tString> *>(pData);
+    /*DEBUG*/xASSERT_RET(NULL != pvecsThis, 0);
 
-	////	/*LOG*///_m_clLog.bWrite(xT("Thread #%i  %i: %s"), m_uiIndex, i, pvecsThis->at(i).c_str()); 
-	////	/*LOG*///_m_clLog.bWrite(xT("*")); 
-	////	bSleep(300);
-	////}	
+    ////for (UINT i = 0; i < pvecsThis->size(); i ++, uiRes ++) {
+    ////	//-------------------------------------
+    ////	//пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    ////	bRes = bIsTimeToExit();
+    ////	xCHECK_DO(TRUE == bRes, break);
+    ////
 
-	for (; ;) {
-		//-------------------------------------
-		//не пора ли выйти или приостановиться
-		bRes = bIsTimeToExit();
-		xCHECK_DO(TRUE == bRes, break);
+    ////	/*LOG*///_m_clLog.bWrite(xT("Thread #%i  %i: %s"), m_uiIndex, i, pvecsThis->at(i).c_str());
+    ////	/*LOG*///_m_clLog.bWrite(xT("*"));
+    ////	bSleep(300);
+    ////}
 
-		{
-			CxAutoCriticalSection CS(g_csCounter);
+    for (; ;) {
+        //-------------------------------------
+        //пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        bRes = bIsTimeToExit();
+        xCHECK_DO(TRUE == bRes, break);
 
-			if (g_uiLinesCount >= /*pvecsThis->size()*/100) {
-				break;
-			}
-			
-			/*LOG*/_m_clLog.bWrite(xT("Thread #%i  %i: %s"), m_uiIndex, g_uiLinesCount, pvecsThis->at(g_uiLinesCount).c_str()); 
+        {
+            CxAutoCriticalSection CS(g_csCounter);
 
-			++ g_uiLinesCount;
-		}
+            if (g_uiLinesCount >= /*pvecsThis->size()*/100) {
+                break;
+            }
 
-		bSleep(1000);
-	}
-	
+            /*LOG*/_m_clLog.bWrite(xT("Thread #%i  %i: %s"), m_uiIndex, g_uiLinesCount, pvecsThis->at(g_uiLinesCount).c_str());
 
-	/*LOG*///_m_clLog.bWrite(xT("uiOnRun stop: #%i"), m_uiIndex); 
+            ++ g_uiLinesCount;
+        }
 
-	return uiRes;
+        bSleep(1000);
+    }
+
+
+    /*LOG*///_m_clLog.bWrite(xT("uiOnRun stop: #%i"), m_uiIndex);
+
+    return uiRes;
 }
 //---------------------------------------------------------------------------
 //TODO: vOnEnter
 VOID CWorkThread::vOnEnter() {
-	//LOG("vOnEnter");
+    //LOG("vOnEnter");
 }
 //---------------------------------------------------------------------------
 //TODO: vOnExit
-VOID CWorkThread::vOnExit() {        
-	//::OutputDebugString(xT("vOnExit (virtual)\n"));
+VOID CWorkThread::vOnExit() {
+    //::OutputDebugString(xT("vOnExit (virtual)\n"));
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*    Private methods                                                         
-*                                                                            
+*    Private methods
+*
 *****************************************************************************/
 
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------

@@ -12,6 +12,7 @@
 #ifndef xLib_GdiPlus_CxGdiplusH
 #define xLib_GdiPlus_CxGdiplusH
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 #include <xLib/Common/xCommon.h>
 #include <GDIPlus.h>
 
@@ -24,5 +25,8 @@ class CxGdiplus : public CxNonCopyable {
     private:
         ULONG_PTR _m_pulToken;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_GdiPlus_CxGdiplusH

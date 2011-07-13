@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Net/CxTest_CxHttpClient.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxHttpClient (constructor)
 CxTest_CxHttpClient::CxTest_CxHttpClient() {

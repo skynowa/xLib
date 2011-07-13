@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxDateTime.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxDateTime (comment)
 CxTest_CxDateTime::CxTest_CxDateTime() {

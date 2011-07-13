@@ -12,8 +12,8 @@
 #ifndef CxTest_CxSmtpH
 #define CxTest_CxSmtpH
 //---------------------------------------------------------------------------
-#include <xLib/xCommon.h>
-#include <xLib/Common/Debug/CxTest.h>
+#include <xLib/Common/xCommon.h>
+#include <xLib/Debug/CxTest.h>
 #include <xLib/Net/CxSmtp.h>
 //---------------------------------------------------------------------------
 class CxTest_CxSmtp :

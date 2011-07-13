@@ -12,19 +12,20 @@
 #ifndef xLib_GdiPlus_CxImageH
 #define xLib_GdiPlus_CxImageH
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 #include <xLib/Common/xCommon.h>
 #include <GDIPlus.h>
 //---------------------------------------------------------------------------
 class CxImage : public CxNonCopyable {
     public:
         enum EEncoderType {
-            etBmp  = 0, 
-            etJpeg = 1, 
-            etGif  = 2, 
-            etTiff = 3, 
+            etBmp  = 0,
+            etJpeg = 1,
+            etGif  = 2,
+            etTiff = 3,
             etPng  = 4
         };
-        
+
                         CxImage   ();
                        ~CxImage   ();
 
@@ -39,7 +40,7 @@ class CxImage : public CxNonCopyable {
         BOOL            bIsLoaded ();
 
         UINT            uiGetWidth ();
-        UINT            uiGetHeight();    
+        UINT            uiGetHeight();
 
         Gdiplus::Status stGetLastStatus();
         tString         sGetLastStatus (Gdiplus::Status stCode);
@@ -50,5 +51,8 @@ class CxImage : public CxNonCopyable {
 
         BOOL            _bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid);
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_GdiPlus_CxImageH

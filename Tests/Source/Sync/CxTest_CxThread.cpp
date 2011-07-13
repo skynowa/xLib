@@ -9,6 +9,10 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxThread.h>
+#include <xLib/Common/CxDateTime.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxThread (constructor)
 CxTest_CxThread::CxTest_CxThread() {
@@ -232,7 +236,7 @@ CxTest_CxThread::bUnit() {
     //bSleep
     {
         const ULONG caulData[] = {
-            0, 
+            0,
             1,
             (std::numeric_limits<ULONG>::min)(),
             //(std::numeric_limits<ULONG>::max)()
@@ -240,14 +244,14 @@ CxTest_CxThread::bUnit() {
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
 	        const UINT cuiMsec = caulData[i];
-	
+
 	        CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
-	
+
 	        m_bRes = CxThread::bSleep(cuiMsec);
 	        xASSERT(FALSE != m_bRes);
-	
+
 	        CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
-	
+
 	        xASSERT(dtTime2.ullToMilliseconds() >= dtTime1.ullToMilliseconds());
 	        //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
         }

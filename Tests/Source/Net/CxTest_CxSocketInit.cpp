@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Net/CxTest_CxSocketInit.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxSocketInit (comment)
 CxTest_CxSocketInit::CxTest_CxSocketInit() {

@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxException.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxException (constructor)
 CxTest_CxException::CxTest_CxException() {

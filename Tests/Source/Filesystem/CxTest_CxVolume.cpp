@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Filesystem/CxTest_CxVolume.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxVolume (constructor)
 CxTest_CxVolume::CxTest_CxVolume() {
@@ -173,7 +176,7 @@ CxTest_CxVolume::bUnit() {
     {
 	    #if defined(xOS_WIN)
 	        const tString csVolumePath = xT("C:");
-	
+
 	        CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
 	        xASSERT(CxVolume::dtFixed == dtRes);
 	    #elif defined(xOS_LINUX)
@@ -191,7 +194,7 @@ CxTest_CxVolume::bUnit() {
 	        ULONG   ulMaximumComponentLength = 0;
 	        ULONG   ulFileSystemFlags        = 0;
 	        tString sFileSystemName;
-	
+
 	        m_bRes = CxVolume::bGetInfo(
 	                            csVolumePath,
 	                            &szVolumeName,

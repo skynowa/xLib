@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxCriticalSection.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxCriticalSection (constructor)
 CxTest_CxCriticalSection::CxTest_CxCriticalSection() {
@@ -24,42 +27,45 @@ CxTest_CxCriticalSection::~CxTest_CxCriticalSection() {
 /*virtual*/
 BOOL
 CxTest_CxCriticalSection::bUnit() {
-	//-------------------------------------
-	//
-	{
-		CxCriticalSection objCriticalSection;
+#if defined(xOS_WIN)
+    //-------------------------------------
+    //
+    {
+        CxCriticalSection objCriticalSection;
 
-		objCriticalSection.vEnter();
-		//xASSERT - not need
+        objCriticalSection.vEnter();
+        //xASSERT - not need
 
-		objCriticalSection.vLeave();
-		//xASSERT - not need
+        objCriticalSection.vLeave();
+        //xASSERT - not need
 
-		g_ulRes = objCriticalSection.ulSetSpinCount(10000);
-		xASSERT(0 <= g_ulRes);
+        g_ulRes = objCriticalSection.ulSetSpinCount(10000);
+        xASSERT(0 <= g_ulRes);
 
-		g_bRes = objCriticalSection.bTryEnter();
-		xASSERT(FALSE != g_bRes);
-	}
+        g_bRes = objCriticalSection.bTryEnter();
+        xASSERT(FALSE != g_bRes);
+    }
 
-	//-------------------------------------
-	//
-	{
-		CxCriticalSection objCriticalSection(1000);
+    //-------------------------------------
+    //
+    {
+        CxCriticalSection objCriticalSection(1000);
 
-		objCriticalSection.vEnter();
-		//xASSERT - not need
+        objCriticalSection.vEnter();
+        //xASSERT - not need
 
-		objCriticalSection.vLeave();
-		//xASSERT - not need
+        objCriticalSection.vLeave();
+        //xASSERT - not need
 
-		g_ulRes = objCriticalSection.ulSetSpinCount(10000);
-		xASSERT(0 <= g_ulRes);
+        g_ulRes = objCriticalSection.ulSetSpinCount(10000);
+        xASSERT(0 <= g_ulRes);
 
-		g_bRes = objCriticalSection.bTryEnter();
-		xASSERT(FALSE != g_bRes);
-	}
+        g_bRes = objCriticalSection.bTryEnter();
+        xASSERT(FALSE != g_bRes);
+    }
+#elif defined(xOS_LINUX)
 
+#endif
 
     return TRUE;
 }

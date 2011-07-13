@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Db/CxTest_CxConnectionString.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxConnectionString (comment)
 CxTest_CxConnectionString::CxTest_CxConnectionString() {

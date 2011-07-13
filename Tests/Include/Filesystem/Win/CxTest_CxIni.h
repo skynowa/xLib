@@ -9,6 +9,7 @@
 *****************************************************************************/
 
 
+#if defined(xOS_WIN)
 #ifndef CxTest_CxIniH
 #define CxTest_CxIniH
 //---------------------------------------------------------------------------
@@ -17,13 +18,16 @@
 #include <xLib/Filesystem/Win/CxIni.h>
 //---------------------------------------------------------------------------
 class CxTest_CxIni : public CxTest {
-	public:
-		CxTest_CxIni();
-		virtual     ~CxTest_CxIni();
+    public:
+        CxTest_CxIni();
+        virtual     ~CxTest_CxIni();
 
-	    virtual BOOL bUnit();
+        virtual BOOL bUnit();
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxIniH
+#elif defined(xOS_LINUX)
+
+#endif

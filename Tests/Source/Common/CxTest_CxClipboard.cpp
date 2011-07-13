@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxClipboard.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxClipboard (comment)
 CxTest_CxClipboard::CxTest_CxClipboard() {
@@ -23,6 +26,7 @@ CxTest_CxClipboard::~CxTest_CxClipboard() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL CxTest_CxClipboard::bUnit() {
+#if defined(xOS_WIN)
     CxClipboard cbCB;
 
     const tString csText = xT("Simple text");
@@ -94,6 +98,9 @@ BOOL CxTest_CxClipboard::bUnit() {
         ////m_bRes = cbCB.bClose();
         ////xASSERT(FALSE != m_bRes);
     }
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }

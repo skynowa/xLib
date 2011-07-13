@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxAtomicLongInt.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAtomicLongInt (constructor)
 CxTest_CxAtomicLongInt::CxTest_CxAtomicLongInt() {
@@ -24,52 +27,56 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 /*virtual*/
 BOOL
 CxTest_CxAtomicLongInt::bUnit() {
-	LONG iRes = 0;
+#if defined(xOS_WIN)
+    LONG iRes = 0;
 
-	CxAtomicLongInt alAL_1;
-	CxAtomicLongInt alAL_2;
+    CxAtomicLongInt alAL_1;
+    CxAtomicLongInt alAL_2;
 
-	alAL_1 = 1;
-	alAL_2 = 2;
+    alAL_1 = 1;
+    alAL_2 = 2;
 
-	alAL_1 += alAL_2;
-	/*DEBUG*/xASSERT(alAL_1 == 3L);
+    alAL_1 += alAL_2;
+    /*DEBUG*/xASSERT(alAL_1 == 3L);
 
-	alAL_1 -= alAL_2;
-	/*DEBUG*/xASSERT(alAL_1 == 1L);
+    alAL_1 -= alAL_2;
+    /*DEBUG*/xASSERT(alAL_1 == 1L);
 
-	alAL_1  = alAL_2;
-	/*DEBUG*/xASSERT(alAL_1 == 2L);
+    alAL_1  = alAL_2;
+    /*DEBUG*/xASSERT(alAL_1 == 2L);
 
-	alAL_1 += 10;
-	/*DEBUG*/xASSERT(alAL_1 == 12L);
+    alAL_1 += 10;
+    /*DEBUG*/xASSERT(alAL_1 == 12L);
 
-	alAL_1 -= 10;
-	/*DEBUG*/xASSERT(alAL_1 == 2L);
+    alAL_1 -= 10;
+    /*DEBUG*/xASSERT(alAL_1 == 2L);
 
-	alAL_1  = 10;
-	/*DEBUG*/xASSERT(alAL_1 == 10L);
-
-
-	iRes = alAL_1;
+    alAL_1  = 10;
+    /*DEBUG*/xASSERT(alAL_1 == 10L);
 
 
+    iRes = alAL_1;
 
 
-	//CxAtomicLongInt& operator +=   (const CxAtomicLongInt &cRight);
-	//CxAtomicLongInt& operator -=   (const CxAtomicLongInt &cRight);
-	//CxAtomicLongInt& operator =    (const CxAtomicLongInt &cRight);
-	//CxAtomicLongInt& operator +=   (const LONG cliRight);
-	//CxAtomicLongInt& operator -=   (const LONG cliRight);
-	//CxAtomicLongInt& operator =    (const LONG cliRight);
-	//BOOL             operator ==   (const CxAtomicLongInt &cRight);
-	//BOOL             operator !=   (const CxAtomicLongInt &cRight);
-	//BOOL             operator ==   (const LONG cliRight);
-	//BOOL             operator !=   (const LONG cliRight);
-	//operator LONG ();
-	//operator BOOL ();
-	//CxAtomicLongInt& operator ++   (INT iPos);
-	//CxAtomicLongInt& operator --   (INT iPos);
+
+
+    //CxAtomicLongInt& operator +=   (const CxAtomicLongInt &cRight);
+    //CxAtomicLongInt& operator -=   (const CxAtomicLongInt &cRight);
+    //CxAtomicLongInt& operator =    (const CxAtomicLongInt &cRight);
+    //CxAtomicLongInt& operator +=   (const LONG cliRight);
+    //CxAtomicLongInt& operator -=   (const LONG cliRight);
+    //CxAtomicLongInt& operator =    (const LONG cliRight);
+    //BOOL             operator ==   (const CxAtomicLongInt &cRight);
+    //BOOL             operator !=   (const CxAtomicLongInt &cRight);
+    //BOOL             operator ==   (const LONG cliRight);
+    //BOOL             operator !=   (const LONG cliRight);
+    //operator LONG ();
+    //operator BOOL ();
+    //CxAtomicLongInt& operator ++   (INT iPos);
+    //CxAtomicLongInt& operator --   (INT iPos);
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }

@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxTls.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxTls (constructor)
 CxTest_CxTls::CxTest_CxTls() {
@@ -27,9 +30,9 @@ CxTest_CxTls::bUnit() {
 	//-------------------------------------
 	//[FUNCTION_NAME]
 	{
-		CxTls objTls;
-
-
+        #if xTODO
+            CxTls objTls;
+        #endif
 
 		tString sTestData[][2] = {
 				{xT("TEST_STRING_1"),		 xT("MUST_BE_1")},

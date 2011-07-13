@@ -14,7 +14,12 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Pkcs11/Win/All.h>
+
+#if defined(xOS_WIN)
+    #include <xLib/Pkcs11/Win/All.h>
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 class CxTest_CxPkcs11 :
     public CxTest

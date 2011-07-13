@@ -9,6 +9,7 @@
 *****************************************************************************/
 
 
+#if defined(xOS_WIN)
 #include <xLib/Gui/Win/GDI+/CxImage.h>
 
 #include <xLib/Common/CxAutoMallocT.h>
@@ -310,3 +311,6 @@ BOOL CxImage::_bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid) {
     return FALSE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

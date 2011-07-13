@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Net/CxTest_CxDnsClient.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxDnsClient (comment)
 CxTest_CxDnsClient::CxTest_CxDnsClient() {
@@ -22,7 +25,8 @@ CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL CxTest_CxDnsClient::bUnit() {
+BOOL
+CxTest_CxDnsClient::bUnit() {
 	//-------------------------------------
 	//CxSocketInit
 	CxSocketInit siInit(2, 2);

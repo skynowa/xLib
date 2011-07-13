@@ -1,3 +1,4 @@
+#if defined(xOS_WIN)
 #ifndef CMyDialogH
 #define CMyDialogH
 //---------------------------------------------------------------------------
@@ -7,25 +8,28 @@
 #include <xLib/Gui/CxResources.h>
 //---------------------------------------------------------------------------
 class  CWndDialog : public CxWindowImpl {
-	public:
-		////CxButton   m_CxButton3;
-		////CxButton   m_CxButton4;
-		
-				    CWndDialog    ();
-				  ~ CWndDialog    ();
-		
-		////xDECLARE_MSG_MAP();
+    public:
+        ////CxButton   m_CxButton3;
+        ////CxButton   m_CxButton4;
 
-		/*virtual*/ VOID vOnCreate	 (WPARAM wParam, LPARAM lParam);
-		/*virtual*/ VOID vOnPaint     (WPARAM wParam, LPARAM lParam);
-		/*virtual*/ VOID vOnCommand   (WPARAM wParam, LPARAM lParam);
-		/*virtual*/ VOID vOnNotify    (WPARAM wParam, LPARAM lParam);
-		/*virtual*/ VOID vOnSize      (WPARAM wParam, LPARAM lParam);
-		/*virtual*/ VOID vOnClose     (WPARAM wParam, LPARAM lParam);
-		/*virtual*/ VOID vOnDestroy   (WPARAM wParam, LPARAM lParam);
+                    CWndDialog    ();
+                  ~ CWndDialog    ();
 
-	private:
+        ////xDECLARE_MSG_MAP();
+
+        /*virtual*/ VOID vOnCreate	 (WPARAM wParam, LPARAM lParam);
+        /*virtual*/ VOID vOnPaint     (WPARAM wParam, LPARAM lParam);
+        /*virtual*/ VOID vOnCommand   (WPARAM wParam, LPARAM lParam);
+        /*virtual*/ VOID vOnNotify    (WPARAM wParam, LPARAM lParam);
+        /*virtual*/ VOID vOnSize      (WPARAM wParam, LPARAM lParam);
+        /*virtual*/ VOID vOnClose     (WPARAM wParam, LPARAM lParam);
+        /*virtual*/ VOID vOnDestroy   (WPARAM wParam, LPARAM lParam);
+
+    private:
 
 };
 //---------------------------------------------------------------------------
+#endif
+#elif defined(xOS_LINUX)
+
 #endif

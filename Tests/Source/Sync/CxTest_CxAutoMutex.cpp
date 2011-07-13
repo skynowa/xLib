@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxAutoMutex.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAutoMutex (constructor)
 CxTest_CxAutoMutex::CxTest_CxAutoMutex() {
@@ -24,13 +27,17 @@ CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 /*virtual*/
 BOOL
 CxTest_CxAutoMutex::bUnit() {
-	//-------------------------------------
-	//CxAutoMutex
-	{
-    	CxMutex mtMutex;
+    #if defined(xOS_WIN)
+    	//-------------------------------------
+        //CxAutoMutex
+        {
+            CxMutex mtMutex;
 
-		CxAutoMutex objAutoMutex(mtMutex);
-	}
+            CxAutoMutex objAutoMutex(mtMutex);
+        }
+    #elif defined(xOS_LINUX)
+
+    #endif
 
     return TRUE;
 }

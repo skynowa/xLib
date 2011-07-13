@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Filesystem/CxTest_CxStdioFile.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxStdioFile
 CxTest_CxStdioFile::CxTest_CxStdioFile() {

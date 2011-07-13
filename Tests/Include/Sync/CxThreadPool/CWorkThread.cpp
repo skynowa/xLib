@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CWorkThread
-* Description: рабочий поток
+* Description: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 * File name:   CWorkThread.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -9,6 +9,7 @@
 *****************************************************************************/
 
 
+#if defined(xOS_WIN)
 #include "CWorkThread.h"
 
 #include <xLib/CxString.h>
@@ -17,15 +18,15 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CWorkThread
 CWorkThread::CWorkThread(BOOL bIsPaused, BOOL bAutoDelete, BOOL bIsUsingCOM) :
-	CxThread (bIsPaused, bAutoDelete, bIsUsingCOM),
-	m_uiIndex(0)
+    CxThread (bIsPaused, bAutoDelete, bIsUsingCOM),
+    m_uiIndex(0)
 {
 }
 //---------------------------------------------------------------------------
@@ -38,52 +39,55 @@ CWorkThread::~CWorkThread() {
 
 
 /****************************************************************************
-*    Protected methods                                                       
-*                                                                            
+*    Protected methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: uiOnRun
-UINT CWorkThread::uiOnRun(VOID *pData) { 
-	/*LOG*/_m_clLog.bWrite(xT("Start thread: #%i\n"), m_uiIndex); 
-	
-	UINT uiRes = 0;
-	BOOL bRes  = FALSE;
+UINT CWorkThread::uiOnRun(VOID *pData) {
+    /*LOG*/_m_clLog.bWrite(xT("Start thread: #%i\n"), m_uiIndex);
 
-	std::vector<tString> *pvecsThis = static_cast<std::vector<tString> *>(pData);
-	/*DEBUG*/xASSERT_RET(NULL != pvecsThis, 0);
+    UINT uiRes = 0;
+    BOOL bRes  = FALSE;
 
-	for (UINT i = 0; i < pvecsThis->size(); i ++, uiRes ++) {
-		//-------------------------------------
-		//не пора ли выйти или приостановиться
-		bRes = bIsTimeToExit();
-		xCHECK_DO(FALSE == bRes, break);
-		
+    std::vector<tString> *pvecsThis = static_cast<std::vector<tString> *>(pData);
+    /*DEBUG*/xASSERT_RET(NULL != pvecsThis, 0);
 
-		/*LOG*/_m_clLog.bWrite(xT("%i: %s\n"), i, pvecsThis->at(i).c_str()); 
-		bSleep(500);
-	}	
+    for (UINT i = 0; i < pvecsThis->size(); i ++, uiRes ++) {
+        //-------------------------------------
+        //пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        bRes = bIsTimeToExit();
+        xCHECK_DO(FALSE == bRes, break);
 
-	/*LOG*///_m_clLog.bWrite(xT("End thread: #%i\n"), m_uiIndex); 
 
-	return uiRes;
+        /*LOG*/_m_clLog.bWrite(xT("%i: %s\n"), i, pvecsThis->at(i).c_str());
+        bSleep(500);
+    }
+
+    /*LOG*///_m_clLog.bWrite(xT("End thread: #%i\n"), m_uiIndex);
+
+    return uiRes;
 }
 //---------------------------------------------------------------------------
 //TODO: vOnEnter
 VOID CWorkThread::vOnEnter() {
-	//LOG("vOnEnter");
+    //LOG("vOnEnter");
 }
 //---------------------------------------------------------------------------
 //TODO: vOnExit
-VOID CWorkThread::vOnExit() {        
-	//LOG("vOnExit");
+VOID CWorkThread::vOnExit() {
+    //LOG("vOnExit");
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*    Private methods                                                         
-*                                                                            
+*    Private methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

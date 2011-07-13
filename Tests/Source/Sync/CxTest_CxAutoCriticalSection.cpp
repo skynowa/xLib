@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxAutoCriticalSection.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAutoCriticalSection (constructor)
 CxTest_CxAutoCriticalSection::CxTest_CxAutoCriticalSection() {
