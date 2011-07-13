@@ -15,9 +15,6 @@
 #include <xLib/Common/xConfig.h>
 #include <xLib/Common/xDefines.h>
 
-//checks
-#include <xLib/Common/xCheks.h>
-
 //C library
 #include <stdio.h>
 #include <stdlib.h>
@@ -72,6 +69,9 @@ namespace NxLib {}
 #elif defined(xOS_LINUX)
     #include <xLib/Common/Linux/xCommon_Linux.h>
 #endif
+
+//checks
+#include <xLib/Common/xCheks.h>
 
 #include <xLib/Common/xTypes.h>
 #include <xLib/Common/xLinking.h>

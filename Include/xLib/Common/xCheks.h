@@ -17,13 +17,33 @@
 #endif
 
 //check for supporting unicode
-#if defined(xUNICODE) && (defined(xOS_LINUX) || defined(xOS_FREEBSD))
-    #error xLib: unicode unsupported for Linux and FreeBSD
+#if defined(xOS_LINUX)
+    #if defined(xUNICODE)
+        #error xLib: unicode unsupported for Linux and FreeBSD
+    #endif
+
+    #if !defined(P_tmpdir)
+        #error xLib: P_tmpdir not defined
+    #endif
 #endif
 
-//TODO: P_tmpdir (cross)
-//TODO: MAX_PATH (windows)
-//TODO: MAX_NAME (windows)
+//--------------------------------------------------
+//Linux
+#if defined(xOS_LINUX)
+
+#endif
+
+//--------------------------------------------------
+//Win
+#if defined(xOS_WIN)
+    #if !defined(MAX_PATH)
+        #error xLib: MAX_PATH not defined
+    #endif
+
+    #if !defined(MAX_NAME)
+        #error xLib: MAX_NAME not defined
+    #endif
+#endif
 
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xCheksH

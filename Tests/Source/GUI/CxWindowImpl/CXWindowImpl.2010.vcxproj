@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug (ansi)|Win32">
+      <Configuration>Debug (ansi)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug (unicode)|Win32">
+      <Configuration>Debug (unicode)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (ansi)|Win32">
+      <Configuration>Release (ansi)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (unicode)|Win32">
+      <Configuration>Release (unicode)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E74641CE-2A93-41A8-BEBD-B3EADD35ACA6}</ProjectGuid>
+    <RootNamespace>CXWindowImpl</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>CXWindowImpl.2010</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30128.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'">Debug (unicode)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'">Debug (ansi)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'">Debug (unicode)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'">Debug (ansi)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'">Release (unicode)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'">Release (ansi)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'">Release (unicode)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'">Release (ansi)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'">
+    <BuildLog>
+      <Path>
+      </Path>
+    </BuildLog>
+    <PreBuildEvent>
+      <Command>copy  "Resource.xrc.h"       $(XLib)\Include\XLib\GUI\Resource.xrc.h
+copy  "Resource.xrc.cpp"    $(XLib)\Include\XLib\GUI\Resource.xrc.cpp
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>
+      </ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'">
+    <BuildLog>
+      <Path>
+      </Path>
+    </BuildLog>
+    <PreBuildEvent>
+      <Command>copy  "Resource.xrc.h"       $(XLib)\Include\XLib\GUI\Resource.xrc.h
+copy  "Resource.xrc.cpp"    $(XLib)\Include\XLib\GUI\Resource.xrc.cpp
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>
+      </ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'">
+    <BuildLog>
+      <Path>
+      </Path>
+    </BuildLog>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy  "Resource.xrc.h"       $(XLib)\Include\XLib\GUI\Resource.xrc.h
+copy  "Resource.xrc.cpp"    $(XLib)\Include\XLib\GUI\Resource.xrc.cpp
+</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'">
+    <BuildLog>
+      <Path>
+      </Path>
+    </BuildLog>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy  "Resource.xrc.h"       $(XLib)\Include\XLib\GUI\Resource.xrc.h
+copy  "Resource.xrc.cpp"    $(XLib)\Include\XLib\GUI\Resource.xrc.cpp
+</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Include\XLib\Closure.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\ClosureImpl.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXFont.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\Resource.xrc.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Common.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\CXString.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Log\CXTraceLog.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Debug\CXAssert.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Fso\CXPath.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\Common.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXApplication.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXButton.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXCheckBox.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXComboBox.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXDialog.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXEdit.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXGroupBox.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXListBox.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXListView.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXProgressBar.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXRadioButton.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXRebar.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXResources.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXRichEdit.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXStatic.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXStatusBar.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXTab.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXToolBar.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXWindow.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\CXWindowImpl.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\GUI\XMessageMap.h" />
+    <ClInclude Include="CWndDialog.h" />
+    <ClInclude Include="CWndMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Include\XLib\GUI\Resource.xrc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (unicode)|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (ansi)|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\CXString.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXFont.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Log\CXTraceLog.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Debug\CXAssert.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Fso\CXPath.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXApplication.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXButton.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXCheckBox.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXComboBox.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXDialog.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXEdit.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXGroupBox.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXListBox.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXListView.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXProgressBar.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXRadioButton.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXRebar.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXResources.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXRichEdit.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXStatic.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXStatusBar.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXTab.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXToolBar.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXWindow.cpp" />
+    <ClCompile Include="..\..\..\..\Source\GUI\CXWindowImpl.cpp" />
+    <ClCompile Include="CWndDialog.cpp" />
+    <ClCompile Include="CWndMain.cpp" />
+    <ClCompile Include="Main.cpp">
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release (unicode)|Win32'">false</WholeProgramOptimization>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release (ansi)|Win32'">false</WholeProgramOptimization>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
