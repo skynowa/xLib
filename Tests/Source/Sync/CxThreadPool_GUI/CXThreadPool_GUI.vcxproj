@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{26CDBFD7-0554-4F66-973D-C94F1B3C1A90}</ProjectGuid>
+    <RootNamespace>CXThreadPool_GUI</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30128.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\XLib\Include;D:\XLib\Source;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\XLib\Source;$(VCInstallDir)atlmfc\src\mfc;$(VCInstallDir)atlmfc\src\mfcm;$(VCInstallDir)atlmfc\src\atl;$(VCInstallDir)crt\src</SourcePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CWorkThread.cpp" />
+    <ClCompile Include="CXThreadPool_GUI.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Fso\CXPath.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Fso\CXStdioFile.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Sync\CXCriticalSection.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Sync\CXCriticalSectionLocker.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Sync\CXEvent.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Sync\CXMutex.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Sync\CXMutexLocker.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Sync\CXSemaphore.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Sync\CXSleeper.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Sync\CXThread.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Debug\CXAssert.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Debug\CXPerform.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Log\CXConsoleLog.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Log\CXFileLog.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Log\CXTraceLog.cpp" />
+    <ClCompile Include="..\..\..\..\Source\CXCOM.cpp" />
+    <ClCompile Include="..\..\..\..\Source\CXLocale.cpp" />
+    <ClCompile Include="..\..\..\..\Source\CXString.cpp" />
+    <ClCompile Include="..\..\..\..\Source\CXSystemInfo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CWorkThread.h" />
+    <ClInclude Include="CXThreadPool_GUI.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Fso\CXPath.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Fso\CXStdioFile.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXCriticalSection.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXCriticalSectionLocker.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXEvent.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXMutex.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXMutexLocker.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXSemaphore.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXSleeper.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXThread.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Sync\CXThreadPool.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Debug\CXAssert.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Debug\CXPerform.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Log\CXConsoleLog.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Log\CXFileLog.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Log\CXTraceLog.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\Common.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\CXCOM.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\CXHandleT.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\CXLocale.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\CXString.h" />
+    <ClInclude Include="..\..\..\..\Include\XLib\CXSystemInfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CXThreadPool_GUI.ico" />
+    <None Include="small.ico" />
+    <None Include="..\..\..\..\Source\Sync\CXThreadPool.inl" />
+    <None Include="..\..\..\..\Source\CXHandleT.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CXThreadPool_GUI.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

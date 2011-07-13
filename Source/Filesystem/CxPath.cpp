@@ -40,38 +40,81 @@ CxPath::sGetExe() {
     sRes.resize(ulStored);
 #elif defined(xOS_LINUX)
     #if defined(xOS_FREEBSD)
-        #if defined(KERN_PROC_PATHNAME)
-            sRes.resize(xPATH_MAX);
+//        #if defined(KERN_PROC_PATHNAME)
+//            sRes.resize(xPATH_MAX);
+//
+//            INT aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+//
+//            size_t uiResSize = sRes.size() * sizeof(tString::value_type);
+//
+//            INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
+//            /*DEBUG*/xASSERT_RET(- 1 != iRes, tString());
+//
+//            sRes.resize(uiResSize);
+//        #else
+//            BOOL bRes                = FALSE;
+//            const tString csProcFile = xT("/proc/curproc/file");
+//
+//            bRes = CxStdioFile::bIsExists(csProcFile);
+//            if (TRUE == bRes) {
+//                sRes.resize(xPATH_MAX);
+//
+//                INT iReaded = - 1;
+//
+//                for ( ; ; ) {
+//                    iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
+//                    /*DEBUG*/xASSERT_RET(- 1 != iReaded, tString());
+//
+//                    xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
+//
+//                    sRes.resize(sRes.size() * 2);
+//                }
+//
+//                sRes.resize(iReaded);
+//
+//            } else {
+//                sRes = tString();
+//            }
+//        #endif
 
-            INT aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+        #if xTEMP_DISABLED
+            const char *pcszRes = NULL;
 
-            size_t uiResSize = sRes.size() * sizeof(tString::value_type);
+            pcszRes = getprogname();
+            /*DEBUG*/xASSERT_RET(NULL != pcszRes, tString());
 
-            INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, tString());
+            char szRealPath[PATH_MAX + 1] = {0};
 
-            sRes.resize(uiResSize);
-        #else
-            sRes = tString();
+            char *pszRes = realpath(pcszRes, szRealPath);
+            xASSERT(NULL != pszRes);
+
+            sRes.assign(szRealPath);
         #endif
     #else
-        sRes.resize(xPATH_MAX);
+        BOOL          bRes       = FALSE;
+        const tString csProcFile = xT("/proc/self/exe");
 
-        INT iReaded = - 1;
+        bRes = CxStdioFile::bIsExists(csProcFile);
+        if (TRUE == bRes) {
+            sRes.resize(xPATH_MAX);
 
-        for ( ; ; ) {
-            iReaded = readlink(xT("/proc/self/exe"), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
-            /*DEBUG*/xASSERT_RET(- 1 != iReaded, tString());
+            INT iReaded = - 1;
 
-            xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
+            for ( ; ; ) {
+                iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
+                /*DEBUG*/xASSERT_RET(- 1 != iReaded, tString());
 
-            sRes.resize(sRes.size() * 2);
+                xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
+
+                sRes.resize(sRes.size() * 2);
+            }
+
+            sRes.resize(iReaded);
         }
-
-        sRes.resize(iReaded);
     #endif
 
     /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 tString());
+    xTRACEV("sRes: [%s]", sRes.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), tString());
 #endif
 
@@ -200,10 +243,10 @@ CxPath::sGetName(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
-    /*DEBUG*/// n/a //--xASSERT_RET(tString::npos != uiSlashPos, tString());
+    /*DEBUG*/// n/a
 
     size_t uiDotPos = csFilePath.rfind(CxConst::xDOT, csFilePath.size());
-    /*DEBUG*/// n/a //--xASSERT_RET(tString::npos != uiDotPos, tString());
+    /*DEBUG*/// n/a
 
     return CxString::sCut(csFilePath, uiSlashPos + CxConst::xSLASH.size(), uiDotPos);
 }
@@ -394,11 +437,7 @@ CxPath::bIsValid(
     xCHECK_RET(TRUE == bRes, FALSE);
 
     //check for size
-#if defined(xOS_WIN)
-    bRes = static_cast<BOOL>( MAX_PATH < csFilePath.size() );
-#elif defined(xOS_LINUX)
-    bRes = static_cast<BOOL>( PATH_MAX < csFilePath.size() );
-#endif
+    bRes = static_cast<BOOL>( xPATH_MAX < csFilePath.size() );
     xCHECK_RET(TRUE == bRes, FALSE);
 
     return TRUE;
@@ -430,8 +469,6 @@ CxPath::bIsNameValid(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
-
 
 
 //---------------------------------------------------------------------------
@@ -727,8 +764,6 @@ CxPath::uiGetMaxSize() {
         #if defined(MAX_PATH)
             uiRes = MAX_PATH;
         #else
-            #error xLib: not defined MAX_PATH
-
             const cuiDefaultSize = 260;
 
             uiRes = cuiDefaultSize;
@@ -774,8 +809,6 @@ CxPath::uiGetNameMaxSize() {
         #if defined(MAX_NAME)
             uiRes = MAX_NAME;
         #else
-            #error xLib: not defined MAX_NAME
-
             const cuiDefaultSize = 256;
 
             uiRes = cuiDefaultSize;

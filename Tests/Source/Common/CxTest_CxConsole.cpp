@@ -1,0 +1,52 @@
+/****************************************************************************
+* Class name:  CxTest_CxConsole
+* Description: test CxConsole
+* File name:   CxTest_CxConsole.h
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
+* Created:     14.04.2010 11:03:19
+*
+*****************************************************************************/
+
+
+//---------------------------------------------------------------------------
+class CxTest_CxConsole :
+    public CxTest
+{
+    public:
+        CxTest_CxConsole();
+        virtual     ~CxTest_CxConsole();
+
+        virtual     BOOL bUnit();
+
+    private:
+};
+//---------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------
+//DONE: CxTest_CxConsole (comment)
+CxTest_CxConsole::CxTest_CxConsole() {
+    bSetName(xT(xFUNCTION));
+}
+//---------------------------------------------------------------------------
+//DONE: ~CxTest_CxConsole (comment)
+CxTest_CxConsole::~CxTest_CxConsole() {
+
+}
+//---------------------------------------------------------------------------
+//TODO: bUnit ()
+/*virtual*/
+BOOL CxTest_CxConsole::bUnit() {
+    /*DEBUG*/
+
+    CxConsole cnConsole;
+
+    //////Console.vSetTextColor(0xa);
+    //////Console.bEnableClose(true);
+    //////cout << "111111111111111111111111111111111111111";
+    //////Console.bClearScreen();
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
