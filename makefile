@@ -31,7 +31,7 @@ cDESCRIPTION 			:= C++ class library
 ##################################################
 # Settings
 BUILD_TYPE				:= $(cBUILD_TYPE_RELEASE)
-BIN_TYPE                := $(cBIN_TYPE_TESTS)
+BIN_TYPE                := $(cBIN_TYPE_LIB)
 
 
 ##################################################
@@ -46,26 +46,26 @@ endif
 
 PROGRAM_NAME			:= $(PROGRAM_PREFIX)xlib$(PROGRAM_EXT)
 
-ROOT_INCLUDE_DIR		:= Include Source
-ROOT_SOURCE_DIR			:= Source
+ROOT_INCLUDE_DIR		:= Include Source	#Tests/Include
+ROOT_SOURCE_DIR			:= Source			#Tests/Source
 
 OTHER_INCLUDE_DIR		:=	/usr/local/crystal_trader2.5/include \
 							/usr/local/include \
 							/usr/include
 
 SOURCE_SUBDIRS			:=	.\
-							Common \
-							Compress/Linux \
-							Crypt \
-							Crypt/OpenSSL \
+							Units \
+							Sync \
+							Patterns \
+							Net \
+							Log \
+							Filesystem \
 							Debug \
 							Db \
-							Filesystem \
-							Log \
-							Net \
-							Patterns \
-							Sync \
-							Units
+							Crypt/OpenSSL \
+							Crypt \
+							Compress/Linux \
+							Common
 							
 LIB_DIRS           		:= 	/usr/local/crystal_trader2.5/lib \
 							/usr/local/crystal_trader2.5/lib/mysql \
@@ -85,7 +85,7 @@ PROGRAM_PATH			:= ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
 COMPILER				:= $(CXX)
 ARCHIVER                := $(AR)
-COMPILE_FLAGS      		:= -Wall -MD -pipe
+COMPILE_FLAGS      		:= -Wall -MD
 LINK_FLAGS              := -s -pipe
 
 ifeq ($(cOS), $(Linux))

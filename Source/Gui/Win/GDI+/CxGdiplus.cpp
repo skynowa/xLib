@@ -9,19 +9,20 @@
 *****************************************************************************/
 
 
+#if defined(xOS_WIN)
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 
 using namespace Gdiplus;
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: CxGdiplus (comment)
-CxGdiplus::CxGdiplus() : 
+CxGdiplus::CxGdiplus() :
     _m_pulToken(0)
 {
     Gdiplus::GdiplusStartupInput siStartupInput;
@@ -32,9 +33,12 @@ CxGdiplus::CxGdiplus() :
 //---------------------------------------------------------------------------
 //TODO: ~CxGdiplus (comment)
 CxGdiplus::~CxGdiplus() {
-    Gdiplus::GdiplusShutdown(_m_pulToken);    
+    Gdiplus::GdiplusShutdown(_m_pulToken);
     /*DEBUG*/// n/a
 
     _m_pulToken = NULL;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

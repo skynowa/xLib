@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Debug/CxTest_CxReport.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxReport (constructor)
 CxTest_CxReport::CxTest_CxReport() {

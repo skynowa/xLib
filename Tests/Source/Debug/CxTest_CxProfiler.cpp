@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Debug/CxTest_CxProfiler.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxProfiler (constructor)
 CxTest_CxProfiler::CxTest_CxProfiler() {

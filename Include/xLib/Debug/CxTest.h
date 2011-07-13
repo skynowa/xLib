@@ -13,6 +13,11 @@
 #define xLib_Debug_CxTestH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+
+#include <xLib/Filesystem/CxStdioFile.h>    //TODO: include all xLib headers
+#include <xLib/Net/CxSocketInit.h>
+#include <xLib/Net/CxDnsClient.h>
+#include <xLib/Filesystem/CxPath.h>
 //---------------------------------------------------------------------------
 class CxTest :
     public CxNonCopyable

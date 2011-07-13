@@ -9,19 +9,7 @@
 *****************************************************************************/
 
 
-//---------------------------------------------------------------------------
-class CxTest_CxConsole :
-    public CxTest
-{
-    public:
-        CxTest_CxConsole();
-        virtual     ~CxTest_CxConsole();
-
-        virtual     BOOL bUnit();
-
-    private:
-};
-//---------------------------------------------------------------------------
+#include <Common/CxTest_CxConsole.h>
 
 
 //---------------------------------------------------------------------------
@@ -40,7 +28,9 @@ CxTest_CxConsole::~CxTest_CxConsole() {
 BOOL CxTest_CxConsole::bUnit() {
     /*DEBUG*/
 
-    CxConsole cnConsole;
+    #if xTODO
+        CxConsole cnConsole;
+    #endif
 
     //////Console.vSetTextColor(0xa);
     //////Console.bEnableClose(true);

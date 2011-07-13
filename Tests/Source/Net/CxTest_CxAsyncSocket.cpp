@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Net/CxTest_CxAsyncSocket.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAsyncSocket (comment)
 CxTest_CxAsyncSocket::CxTest_CxAsyncSocket() {

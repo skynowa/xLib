@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxShell.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxShell (comment)
 CxTest_CxShell::CxTest_CxShell() {
@@ -22,9 +25,11 @@ CxTest_CxShell::~CxTest_CxShell() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL CxTest_CxShell::bUnit() {
+BOOL
+CxTest_CxShell::bUnit() {
     /*DEBUG*/
 
+#if defined(xOS_WIN)
     //-------------------------------------
     //bFindExecutable
     {
@@ -69,6 +74,9 @@ BOOL CxTest_CxShell::bUnit() {
         m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
         xASSERT(xT("C:\\WINDOWS\\Fonts") == m_sRes);
     #endif //xWIN32_2K
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }

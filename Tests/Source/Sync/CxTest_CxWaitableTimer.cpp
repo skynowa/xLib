@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Sync/CxTest_CxWaitableTimer.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxWaitableTimer (constructor)
 CxTest_CxWaitableTimer::CxTest_CxWaitableTimer() {
@@ -24,42 +27,46 @@ CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 /*virtual*/
 BOOL
 CxTest_CxWaitableTimer::bUnit() {
-	BOOL bRes = FALSE;
+#if defined(xOS_WIN)
+    BOOL bRes = FALSE;
 
-	CxWaitableTimer WT;
+    CxWaitableTimer WT;
 
-	//-------------------------------------
-	//создаем
-	bRes = WT.bCreate(FALSE, NULL, xT(""));
-	if (FALSE == bRes) {
-		printf("CreateWaitableTimer failed (%d)\n", GetLastError());
-		return 1;
-	}
-	printf("CreateWaitableTimer success (%d)\n", GetLastError());
+    //-------------------------------------
+    //создаем
+    bRes = WT.bCreate(FALSE, NULL, xT(""));
+    if (FALSE == bRes) {
+        printf("CreateWaitableTimer failed (%d)\n", GetLastError());
+        return 1;
+    }
+    printf("CreateWaitableTimer success (%d)\n", GetLastError());
 
-	//-------------------------------------
-	//Устанавливаем
-	WT.bSet(/*-30000000LL*/0, 2000, NULL, NULL, 0);
-	if (FALSE == bRes) {
-		printf("SetWaitableTimer failed (%d)\n", GetLastError());
-		return 2;
-	}
-	printf("SetWaitableTimer success (%d)\n", GetLastError());
+    //-------------------------------------
+    //Устанавливаем
+    WT.bSet(/*-30000000LL*/0, 2000, NULL, NULL, 0);
+    if (FALSE == bRes) {
+        printf("SetWaitableTimer failed (%d)\n", GetLastError());
+        return 2;
+    }
+    printf("SetWaitableTimer success (%d)\n", GetLastError());
 
 
-	while (true) {
-		//-------------------------------------
-		//ждем
-		BOOL bRes = WT.bWait(INFINITE);
-		printf("ulWait success (%d)\n", GetLastError());
+    while (true) {
+        //-------------------------------------
+        //ждем
+        BOOL bRes = WT.bWait(INFINITE);
+        printf("ulWait success (%d)\n", GetLastError());
 
-		if (FALSE == bRes) {
-			printf("ulWait failed (%d)\n", GetLastError());
-		} else {
-			printf("Timer was signaled.\n");
-		}
+        if (FALSE == bRes) {
+            printf("ulWait failed (%d)\n", GetLastError());
+        } else {
+            printf("Timer was signaled.\n");
+        }
 
-	}
+    }
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }

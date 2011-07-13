@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Debug/CxTest_CxLastError.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxLastError (constructor)
 CxTest_CxLastError::CxTest_CxLastError() {

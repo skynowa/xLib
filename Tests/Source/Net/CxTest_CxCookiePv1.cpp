@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Net/CxTest_CxCookiePv1.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxCookiePv1 (constructor)
 CxTest_CxCookiePv1::CxTest_CxCookiePv1() {

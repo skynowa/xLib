@@ -1,15 +1,16 @@
+#if defined(xOS_WIN)
 #include <xLib/Gui/CXDialog.h>
 
 #include "CWndDialog.h"
 //---------------------------------------------------------------------------
 //TODO:
-CWndDialog::CWndDialog() { 
-	LOG();
+CWndDialog::CWndDialog() {
+    LOG();
 }
 //---------------------------------------------------------------------------
 //TODO:
 CWndDialog::~CWndDialog() {
-	LOG();
+    LOG();
 }
 //---------------------------------------------------------------------------
 //TODO:
@@ -19,44 +20,47 @@ CWndDialog::~CWndDialog() {
 ////xEND_MSG_MAP(CxWindowImpl)
 //---------------------------------------------------------------------------
 //TODO:
-/*virtual*/ 
+/*virtual*/
 VOID CWndDialog::vOnCreate(WPARAM wParam, LPARAM lParam) {
-	CxWindowImpl::vOnCreate(wParam, lParam);
+    CxWindowImpl::vOnCreate(wParam, lParam);
 }
 //---------------------------------------------------------------------------
 //TODO:
 /*virtual*/
 VOID CWndDialog::vOnPaint(WPARAM wParam, LPARAM lParam) {
-	CxWindowImpl::vOnPaint(wParam, lParam);
+    CxWindowImpl::vOnPaint(wParam, lParam);
 }
 //---------------------------------------------------------------------------
 //TODO:
-/*virtual*/ 
+/*virtual*/
 VOID CWndDialog::vOnCommand(WPARAM wParam, LPARAM lParam) {
-	CxWindowImpl::vOnCommand(wParam, lParam);
+    CxWindowImpl::vOnCommand(wParam, lParam);
 }
 //---------------------------------------------------------------------------
 //TODO:
-/*virtual*/ 
+/*virtual*/
 VOID CWndDialog::vOnNotify(WPARAM wParam, LPARAM lParam) {
-	CxWindowImpl::vOnNotify(wParam, lParam);
+    CxWindowImpl::vOnNotify(wParam, lParam);
 }
 //---------------------------------------------------------------------------
 //TODO:
-/*virtual*/ 
+/*virtual*/
 VOID CWndDialog::vOnSize(WPARAM wParam, LPARAM lParam) {
-	CxWindowImpl::vOnSize(wParam, lParam);
+    CxWindowImpl::vOnSize(wParam, lParam);
 }
 //---------------------------------------------------------------------------
 //TODO:
-/*virtual*/ 
+/*virtual*/
 VOID CWndDialog::vOnClose(WPARAM wParam, LPARAM lParam) {
-	return CxWindowImpl::vOnClose(wParam, lParam);
+    return CxWindowImpl::vOnClose(wParam, lParam);
 }
 //---------------------------------------------------------------------------
 //TODO:
-/*virtual*/ 
+/*virtual*/
 VOID CWndDialog::vOnDestroy(WPARAM wParam, LPARAM lParam) {
-	return CxWindowImpl::vOnDestroy(wParam, lParam);
+    return CxWindowImpl::vOnDestroy(wParam, lParam);
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

@@ -9,6 +9,10 @@
 *****************************************************************************/
 
 
+#if defined(xOS_WIN)
+#include <Filesystem/Win/CxTest_CxIni.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxIni (constructor)
 CxTest_CxIni::CxTest_CxIni() {
@@ -24,6 +28,7 @@ CxTest_CxIni::~CxTest_CxIni() {
 /*virtual*/
 BOOL
 CxTest_CxIni::bUnit() {
+#if defined(xOS_WIN)
     const tString csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
 
     const tString csKey1   = xT("a");
@@ -256,7 +261,13 @@ CxTest_CxIni::bUnit() {
         xASSERT(FALSE != m_bRes);
         xASSERT(CxStdioFile::bIsExists( iniIni.sGetPath() ) == FALSE);
     }
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Filesystem/CxTest_CxEnvironment.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxEnvironment (constructor)
 CxTest_CxEnvironment::CxTest_CxEnvironment() {

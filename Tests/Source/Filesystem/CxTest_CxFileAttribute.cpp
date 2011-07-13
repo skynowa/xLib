@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Filesystem/CxTest_CxFileAttribute.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxFileAttribute (constructor)
 CxTest_CxFileAttribute::CxTest_CxFileAttribute() {

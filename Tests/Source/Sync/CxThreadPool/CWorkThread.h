@@ -12,30 +12,32 @@
 #ifndef CWorkThreadH
 #define CWorkThreadH
 //---------------------------------------------------------------------------
-#include <xLib/xCommon.h>
+#include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxThread.h>
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 #include <xLib/Log/CxFileLog.h>
-#include <string>
-#include <vector>
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 class CWorkThread :
     public CxThread
 {
-	public:
-		size_t       m_uiIndex;
+    public:
+        size_t       m_uiIndex;
 
-				     CWorkThread(BOOL bIsPaused, BOOL bAutoDelete, BOOL bIsUsingCOM);
-		virtual     ~CWorkThread();
+                     CWorkThread(BOOL bIsPaused, BOOL bAutoDelete, BOOL bIsUsingCOM);
+        virtual     ~CWorkThread();
 
-	protected:
-		virtual UINT uiOnRun    (VOID *pData);	/*overload*/
-		virtual VOID vOnEnter   ();			    /*overload*/
-		virtual VOID vOnExit    ();			    /*overload*/
+    protected:
+        virtual UINT uiOnRun    (VOID *pData);	/*overload*/
+        virtual VOID vOnEnter   ();			    /*overload*/
+        virtual VOID vOnExit    ();			    /*overload*/
 
-	private:
-		CxConsoleLog _m_clLog;
+    private:
+        CxConsoleLog _m_clLog;
 };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif	//CWorkThreadH

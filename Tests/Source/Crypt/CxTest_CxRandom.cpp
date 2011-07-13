@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Crypt/CxTest_CxRandom.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxRandom (constructor)
 CxTest_CxRandom::CxTest_CxRandom() {
@@ -118,7 +121,7 @@ CxTest_CxRandom::bUnit() {
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caliData); ++ i) {
-            const LONG cliMin = caliData[i][0]; 
+            const LONG cliMin = caliData[i][0];
             const LONG cliMax = caliData[i][1];
 
             m_bRes = CxRandom::bSetSeed();

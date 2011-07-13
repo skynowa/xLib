@@ -28,23 +28,4 @@ class CxTest_CxSingleton :
 	private:
 };
 //---------------------------------------------------------------------------
-
-
-//-------------------------------------
-//class CLogger
-class CLogger {
-    public:
-             CLogger() {
-                 //xSTD_COUT_FUNC;
-             };
-            ~CLogger() {
-                //xSTD_COUT_FUNC;
-            };
-
-       VOID  vOpen  () { /*xSTD_COUT_FUNC;*/ };
-       VOID  vWrite () { /*xSTD_COUT_FUNC;*/ };
-       VOID  vClose () { /*xSTD_COUT_FUNC;*/ };
-};
-
-//---------------------------------------------------------------------------
 #endif //CxTest_CxSingletonH

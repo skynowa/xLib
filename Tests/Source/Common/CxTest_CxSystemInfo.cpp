@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxSystemInfo.h>
+
+
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxSystemInfo (constructor)
 CxTest_CxSystemInfo::CxTest_CxSystemInfo() {

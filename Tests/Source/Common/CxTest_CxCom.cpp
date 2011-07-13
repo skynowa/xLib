@@ -9,6 +9,9 @@
 *****************************************************************************/
 
 
+#include <Common/CxTest_CxCom.h>
+
+
 //---------------------------------------------------------------------------
 //TODO: CxTest_CxCom (comment)
 CxTest_CxCom::CxTest_CxCom() {
@@ -25,6 +28,7 @@ CxTest_CxCom::~CxTest_CxCom() {
 BOOL CxTest_CxCom::bUnit() {
     /*DEBUG*/
 
+#if defined(xOS_WIN)
     //-------------------------------------
     //bIsInit
     {
@@ -38,6 +42,9 @@ BOOL CxTest_CxCom::bUnit() {
         m_bRes = CxCom::bIsInit();
         xASSERT(FALSE == m_bRes);
     }
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }
