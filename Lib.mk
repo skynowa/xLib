@@ -31,7 +31,8 @@ cDESCRIPTION 			:= C++ class library
 ##################################################
 # Settings
 BUILD_TYPE				:= $(cBUILD_TYPE_RELEASE)
-BIN_TYPE                := $(cBIN_TYPE_LIB)
+#BIN_TYPE                := $(cBIN_TYPE_LIB)
+BIN_TYPE                := $(cBIN_TYPE_TESTS)
 
 
 ##################################################
@@ -85,10 +86,10 @@ PROGRAM_PATH			:= ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
 COMPILER				:= $(CXX)
 ARCHIVER                := $(AR)
-COMPILE_FLAGS      		:= -Wall -MD
+COMPILE_FLAGS      		:= -Wall -MD -pipe
 LINK_FLAGS              := -s -pipe
 
-ifeq ($(cOS), $(Linux))
+ifeq ($(cOS), Linux)
 LIBRARIES               := -lpthread -ldl -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
 else
 LIBRARIES               := -pthread  -lc  -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
