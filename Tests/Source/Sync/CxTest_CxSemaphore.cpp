@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <Sync/CxTest_CxSemaphore.h>
+#include <Test/Sync/CxTest_CxSemaphore.h>
 
 
 #if defined(xOS_WIN)

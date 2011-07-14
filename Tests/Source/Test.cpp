@@ -117,8 +117,8 @@
 
 //Gui
 #if defined(xOS_WIN)
-    #include "../Include/Gui/GDI+/CxTest_CxGdiplus.h"
-    #include "../Include/Gui/GDI+/CxTest_CxImage.h"
+    ////#include "../Include/Gui/GDI+/CxTest_CxGdiplus.h"
+    ////#include "../Include/Gui/GDI+/CxTest_CxImage.h"
 #endif
 
 //Units
@@ -150,6 +150,7 @@ _tmain(
 
 
     {
+#if xTEMP_DISABLED
         xTRACEV("argv[0]: %s", argv[0]);
 
         char szRealPath[PATH_MAX + 1] = {0};
@@ -160,6 +161,7 @@ _tmain(
         xTRACEV("Real path: %s\n", szRealPath);
 
         //return 0;
+#endif
     }
 
     {

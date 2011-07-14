@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <Sync/CxTest_CxAutoCriticalSection.h>
+#include <Test/Sync/CxTest_CxAutoCriticalSection.h>
 
 
 //---------------------------------------------------------------------------

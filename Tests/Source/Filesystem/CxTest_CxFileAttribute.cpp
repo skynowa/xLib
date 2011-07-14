@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <Filesystem/CxTest_CxFileAttribute.h>
+#include <Test/Filesystem/CxTest_CxFileAttribute.h>
 
 
 //---------------------------------------------------------------------------
