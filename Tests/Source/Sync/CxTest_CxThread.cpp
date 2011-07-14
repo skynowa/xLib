@@ -9,7 +9,8 @@
 *****************************************************************************/
 
 
-#include <Sync/CxTest_CxThread.h>
+#include <Test/Sync/CxTest_CxThread.h>
+
 #include <xLib/Common/CxDateTime.h>
 
 

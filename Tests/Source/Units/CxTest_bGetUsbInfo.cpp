@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <Units/CxTest_bGetUsbInfo.h>
+#include <Test/Units/CxTest_bGetUsbInfo.h>
 
 
 //---------------------------------------------------------------------------
@@ -31,8 +31,8 @@ CxTest_bGetUsbInfo::bUnit() {
     //-------------------------------------
     //bGetUsbInfo
     {
-        const tstring        csDrive = xT("I:");
-        std::vector<tstring> vecsInfo;
+        const tString        csDrive = xT("I:");
+        std::vector<tString> vecsInfo;
 
         g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
         xASSERT(TRUE == g_bRes);
@@ -47,8 +47,8 @@ CxTest_bGetUsbInfo::bUnit() {
     }
 
     {
-        ////const tstring        csDrive = xT("Y:");
-        ////std::vector<tstring> vecsInfo;
+        ////const tString        csDrive = xT("Y:");
+        ////std::vector<tString> vecsInfo;
 
         ////g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
         ////XASSERT(TRUE == g_bRes);

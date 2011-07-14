@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <Net/CxTest_CxTcpServerSocket.h>
+#include <Test/Net/CxTest_CxTcpServerSocket.h>
 
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Net/CxDnsClient.h>

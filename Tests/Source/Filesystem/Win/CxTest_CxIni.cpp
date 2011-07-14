@@ -10,7 +10,7 @@
 
 
 #if defined(xOS_WIN)
-#include <Filesystem/Win/CxTest_CxIni.h>
+#include <Test/Filesystem/Win/CxTest_CxIni.h>
 
 
 //---------------------------------------------------------------------------

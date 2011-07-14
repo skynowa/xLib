@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <Patterns/CxTest_CxSingleton.h>
+#include <Test/Patterns/CxTest_CxSingleton.h>
 
 
 //-------------------------------------
