@@ -77,18 +77,8 @@ CxPath::sGetExe() {
 //            }
 //        #endif
 
-        #if xTEMP_DISABLED
-            const char *pcszRes = NULL;
+        #if 1
 
-            pcszRes = getprogname();
-            /*DEBUG*/xASSERT_RET(NULL != pcszRes, tString());
-
-            char szRealPath[PATH_MAX + 1] = {0};
-
-            char *pszRes = realpath(pcszRes, szRealPath);
-            xASSERT(NULL != pszRes);
-
-            sRes.assign(szRealPath);
         #endif
     #else
         BOOL          bRes       = FALSE;
@@ -113,8 +103,8 @@ CxPath::sGetExe() {
         }
     #endif
 
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 tString());
     xTRACEV("sRes: [%s]", sRes.c_str());
+    /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 tString());
     /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), tString());
 #endif
 

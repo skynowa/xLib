@@ -20,7 +20,7 @@ class CxTest_CxSemaphore :
     public CxTest
 {
 	public:
-		CxTest_CxSemaphore();
+                     CxTest_CxSemaphore();
 		virtual     ~CxTest_CxSemaphore();
 
 	    virtual BOOL bUnit();

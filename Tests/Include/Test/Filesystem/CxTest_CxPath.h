@@ -20,8 +20,8 @@ class CxTest_CxPath :
     public CxTest
 {
 	public:
-		         CxTest_CxPath();
-	    virtual ~CxTest_CxPath();
+		             CxTest_CxPath();
+	    virtual     ~CxTest_CxPath();
 
 	    virtual BOOL bUnit();
 

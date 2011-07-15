@@ -274,48 +274,71 @@ CxEnvironment::sGetCommandLine() {
 
     sRes.assign( CxString::sTrimSpace(sRes) );
 #elif defined(xOS_LINUX)
-    CxStdioFile  sfFile;
-    const size_t cuiBuffSize             = 1024 * 2;    //TODO: must be enough space for store data
-    TCHAR        szBuff[cuiBuffSize + 1] = {0};
-    std::size_t  uiBytes                 = 0;
-    size_t       uiOffset                = 0;
+    #if xDEPRECIATE
+        CxStdioFile  sfFile;
+        const size_t cuiBuffSize             = 1024 * 2;    //TODO: must be enough space for store data
+        TCHAR        szBuff[cuiBuffSize + 1] = {0};
+        std::size_t  uiBytes                 = 0;
+        size_t       uiOffset                = 0;
 
-    BOOL bRes = sfFile.bOpen(xT("/proc/self/cmdline"), CxStdioFile::omRead, TRUE);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
+        BOOL bRes = sfFile.bOpen(xT("/proc/self/cmdline"), CxStdioFile::omRead, TRUE);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
 
-    for (;;) {
-        uiBytes = sfFile.uiRead(szBuff + uiOffset, cuiBuffSize - uiOffset);
-        xCHECK_DO(0 >= uiBytes, break);
+        for ( ;; ) {
+            uiBytes = sfFile.uiRead(szBuff + uiOffset, cuiBuffSize - uiOffset);
+            xCHECK_DO(0 >= uiBytes, break);
 
-        char *pszCurrPtr = szBuff;
+            char *pszCurrPtr = szBuff;
 
-        for (size_t i = 0; i < uiBytes; ++ i) {
-            xCHECK_DO(xT('\0') != szBuff[i], continue);
+            for (size_t i = 0; i < uiBytes; ++ i) {
+                xCHECK_DO(xT('\0') != szBuff[i], continue);
 
-            sRes.append(pszCurrPtr);
-            sRes.append(CxConst::xSPACE);   //xTRACEV(xT("%s"), sRes.c_str());
+                sRes.append(pszCurrPtr);
+                sRes.append(CxConst::xSPACE);   //xTRACEV(xT("%s"), sRes.c_str());
 
-            if (i + 1 < uiBytes) {
-                pszCurrPtr = szBuff + i + 1;
-            } else {
-                pszCurrPtr = NULL;
+                if (i + 1 < uiBytes) {
+                    pszCurrPtr = szBuff + i + 1;
+                } else {
+                    pszCurrPtr = NULL;
+                }
+            }
+
+            if (NULL != pszCurrPtr)  {
+                uiBytes  = 0;
+                uiOffset = szBuff - pszCurrPtr + cuiBuffSize + 1;
+
+                while (pszCurrPtr != szBuff + cuiBuffSize) {
+                    szBuff[uiBytes ++] = *pszCurrPtr ++;
+                }
+
+                szBuff[uiBytes] = xT('\0');
             }
         }
 
-        if (NULL != pszCurrPtr)  {
-            uiBytes  = 0;
-            uiOffset = szBuff - pszCurrPtr + cuiBuffSize + 1;
+        sRes.assign( CxString::sTrimSpace(sRes) );
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
+    #endif
 
-            while (pszCurrPtr != szBuff + cuiBuffSize) {
-                szBuff[uiBytes ++] = *pszCurrPtr ++;
-            }
+    #if xTEMP_DISABLED
+        #if defined(xUNICODE)
+            extern int        __argc;
+            extern wchar_t ** __wargv;
 
-            szBuff[uiBytes] = xT('\0');
+            TCHAR **targv = __wargv;
+        #else
+            extern int        __argc;
+            extern char    ** __argv;
+
+            TCHAR **targv = __argv;
+        #endif  /*_UNICODE*/
+
+        /*DEBUG*/xASSERT_RET(NULL != targv, tString());
+
+        for (TCHAR **pszVar = targv; NULL != *pszVar; ++ pszVar) {
+            sRes.append(*pszVar);
+            sRes.append(CxConst::xSPACE);
         }
-    }
-
-    sRes.assign( CxString::sTrimSpace(sRes) );
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
+    #endif
 #endif
 
     return sRes;
@@ -345,7 +368,7 @@ CxEnvironment::bGetCommandLineArgs(
 
     /*DEBUG*/xASSERT_RET(NULL != targv, FALSE);
 
-    for (TCHAR **pszVar = targv; *pszVar; ++ pszVar) {
+    for (TCHAR **pszVar = targv; NULL != *pszVar; ++ pszVar) {
         vsArgs.push_back(*pszVar);
     }
 #elif defined(xOS_LINUX)

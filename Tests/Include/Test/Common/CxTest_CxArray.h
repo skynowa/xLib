@@ -20,7 +20,7 @@ class CxTest_CxArray :
     public CxTest
 {
 	public:
-		CxTest_CxArray();
+                     CxTest_CxArray();
 		virtual     ~CxTest_CxArray();
 
 	    virtual BOOL bUnit();

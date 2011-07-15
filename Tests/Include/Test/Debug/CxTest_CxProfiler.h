@@ -20,7 +20,7 @@ class CxTest_CxProfiler :
     public CxTest
 {
 	public:
-		CxTest_CxProfiler();
+                     CxTest_CxProfiler();
 		virtual     ~CxTest_CxProfiler();
 
 	    virtual BOOL bUnit();

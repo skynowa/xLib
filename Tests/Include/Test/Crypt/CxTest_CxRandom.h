@@ -20,7 +20,7 @@ class CxTest_CxRandom :
     public CxTest
 {
 	public:
-		CxTest_CxRandom();
+                     CxTest_CxRandom();
 		virtual     ~CxTest_CxRandom();
 
 	    virtual BOOL bUnit();

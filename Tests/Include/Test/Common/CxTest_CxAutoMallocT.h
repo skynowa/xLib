@@ -20,7 +20,7 @@ class CxTest_CxAutoMallocT :
     public CxTest
 {
 	public:
-		CxTest_CxAutoMallocT();
+                     CxTest_CxAutoMallocT();
 		virtual     ~CxTest_CxAutoMallocT();
 
 	    virtual BOOL bUnit();

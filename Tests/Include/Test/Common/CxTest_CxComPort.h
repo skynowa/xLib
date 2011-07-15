@@ -20,10 +20,10 @@ class CxTest_CxComPort :
     public CxTest
 {
     public:
-        CxTest_CxComPort();
+                     CxTest_CxComPort();
         virtual     ~CxTest_CxComPort();
 
-        virtual     BOOL bUnit();
+        virtual BOOL bUnit();
 
     private:
 };

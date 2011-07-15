@@ -13,8 +13,8 @@
 *****************************************************************************/
 
 
-#ifndef CxHandleT_CxHandleH
-#define CxHandleT_CxHandleH
+#ifndef CxHandleT_CxHandleTH
+#define CxHandleT_CxHandleTH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
@@ -24,12 +24,12 @@ class CxTest_CxHandleT :
     public CxTest
 {
     public:
-                 CxTest_CxHandleT();
-        virtual ~CxTest_CxHandleT();
+                     CxTest_CxHandleT();
+        virtual     ~CxTest_CxHandleT();
 
         virtual BOOL bUnit();
 
     private:
 };
 //---------------------------------------------------------------------------
-#endif //CxHandleT_CxHandleH
+#endif //CxHandleT_CxHandleTH

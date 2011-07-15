@@ -20,8 +20,8 @@ class CxTest_CxIni :
     public CxTest
 {
 	public:
-		         CxTest_CxIni();
-	    virtual ~CxTest_CxIni();
+		              CxTest_CxIni();
+	    virtual      ~CxTest_CxIni();
 
 	    virtual  BOOL bUnit();
 

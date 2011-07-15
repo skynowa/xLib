@@ -20,10 +20,10 @@ class CxTest_CxTcpServerSocket :
     public CxTest
 {
 	public:
-		CxTest_CxTcpServerSocket();
+                     CxTest_CxTcpServerSocket();
 		virtual     ~CxTest_CxTcpServerSocket();
 
-		virtual     BOOL bUnit();
+		virtual BOOL bUnit();
 
 	private:
 };

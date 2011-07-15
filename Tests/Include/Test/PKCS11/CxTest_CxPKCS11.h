@@ -25,10 +25,10 @@ class CxTest_CxPkcs11 :
     public CxTest
 {
 	public:
-		CxTest_CxPkcs11();
+                     CxTest_CxPkcs11();
 		virtual     ~CxTest_CxPkcs11();
 
-		virtual     BOOL bUnit();
+		virtual BOOL bUnit();
 
 	private:
 };

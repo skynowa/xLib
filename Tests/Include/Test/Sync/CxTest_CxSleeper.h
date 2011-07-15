@@ -20,7 +20,7 @@ class CxTest_CxSleeper :
     public CxTest
 {
 	public:
-		CxTest_CxSleeper();
+                     CxTest_CxSleeper();
 		virtual     ~CxTest_CxSleeper();
 
 	    virtual BOOL bUnit();

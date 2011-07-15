@@ -20,7 +20,7 @@ class CxTest_CxSystemInfo :
     public CxTest
 {
 	public:
-		CxTest_CxSystemInfo();
+                     CxTest_CxSystemInfo();
 		virtual     ~CxTest_CxSystemInfo();
 
 	    virtual BOOL bUnit();

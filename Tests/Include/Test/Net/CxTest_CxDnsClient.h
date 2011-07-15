@@ -19,10 +19,10 @@ class CxTest_CxDnsClient :
     public CxTest
 {
 	public:
-		CxTest_CxDnsClient();
+                     CxTest_CxDnsClient();
 		virtual     ~CxTest_CxDnsClient();
 
-		virtual     BOOL bUnit();
+		virtual BOOL bUnit();
 
 	private:
 };

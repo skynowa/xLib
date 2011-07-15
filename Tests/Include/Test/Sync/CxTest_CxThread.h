@@ -24,7 +24,7 @@ class CxTest_CxThread :
     public CxTest
 {
 	public:
-		CxTest_CxThread();
+                     CxTest_CxThread();
 		virtual     ~CxTest_CxThread();
 
 	    virtual BOOL bUnit();

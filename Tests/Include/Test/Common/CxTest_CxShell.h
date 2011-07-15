@@ -20,10 +20,10 @@ class CxTest_CxShell :
     public CxTest
 {
     public:
-        CxTest_CxShell();
+                     CxTest_CxShell();
         virtual     ~CxTest_CxShell();
 
-        virtual     BOOL bUnit();
+        virtual BOOL bUnit();
 
     private:
 };

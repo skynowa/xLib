@@ -20,7 +20,7 @@ class CxTest_CxTls :
     public CxTest
 {
 	public:
-		CxTest_CxTls();
+                     CxTest_CxTls();
 		virtual     ~CxTest_CxTls();
 
 	    virtual BOOL bUnit();

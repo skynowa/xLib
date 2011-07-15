@@ -10,8 +10,8 @@
 
 
 #if defined(xOS_WIN)
-#ifndef CxTest_CxIniH
-#define CxTest_CxIniH
+#ifndef CxTest_Win_CxIniH
+#define CxTest_Win_CxIniH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
@@ -19,7 +19,7 @@
 //---------------------------------------------------------------------------
 class CxTest_CxIni : public CxTest {
     public:
-        CxTest_CxIni();
+                     CxTest_CxIni();
         virtual     ~CxTest_CxIni();
 
         virtual BOOL bUnit();
@@ -27,7 +27,7 @@ class CxTest_CxIni : public CxTest {
     private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxIniH
+#endif //CxTest_Win_CxIniH
 #elif defined(xOS_LINUX)
 
 #endif
