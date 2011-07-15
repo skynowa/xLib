@@ -9,8 +9,8 @@
 *****************************************************************************/
 
 
-#ifndef CxTest_CxFunctorH
-#define CxTest_CxFunctorH
+#ifndef CxTest_CxFunctorTH
+#define CxTest_CxFunctorTH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
@@ -20,12 +20,12 @@ class CxTest_CxFunctorT :
     public CxTest
 {
     public:
-                    CxTest_CxFunctorT();
+                     CxTest_CxFunctorT();
         virtual     ~CxTest_CxFunctorT();
 
-        virtual     BOOL bUnit();
+        virtual BOOL bUnit();
 
     private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxFunctorH
+#endif //CxTest_CxFunctorTH

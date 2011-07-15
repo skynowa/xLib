@@ -20,7 +20,7 @@ class CxTest_CxBlowfish :
     public CxTest
 {
 	public:
-		CxTest_CxBlowfish();
+                     CxTest_CxBlowfish();
 		virtual     ~CxTest_CxBlowfish();
 
 	    virtual BOOL bUnit();

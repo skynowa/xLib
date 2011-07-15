@@ -150,7 +150,7 @@ _tmain(
 
 
     {
-#if xTEMP_DISABLED
+#if 1
         xTRACEV("argv[0]: %s", argv[0]);
 
         char szRealPath[PATH_MAX + 1] = {0};
@@ -158,12 +158,17 @@ _tmain(
         char *pszRes = realpath(argv[0], szRealPath);
         xASSERT(NULL != pszRes);
 
-        xTRACEV("Real path: %s\n", szRealPath);
+        tString sRes = tString(pszRes);
 
-        //return 0;
+        xTRACEV("Real path: %s\n", sRes.c_str());
+
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 0);
+        /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), 0);
+
+        return 0;
 #endif
     }
-
+extern char *__progname;
     {
         xTRACEV("CxPath::sGetExe(): %s\n", CxPath::sGetExe().c_str());
     }

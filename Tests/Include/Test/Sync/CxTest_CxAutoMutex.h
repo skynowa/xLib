@@ -20,7 +20,7 @@ class CxTest_CxAutoMutex :
     public CxTest
 {
 	public:
-		CxTest_CxAutoMutex();
+                     CxTest_CxAutoMutex();
 		virtual     ~CxTest_CxAutoMutex();
 
 	    virtual BOOL bUnit();

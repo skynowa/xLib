@@ -20,10 +20,10 @@ class CxTest_CxFileAttribute :
     public CxTest
 {
 	public:
-		         CxTest_CxFileAttribute();
-	    virtual ~CxTest_CxFileAttribute();
+		               CxTest_CxFileAttribute();
+	    virtual       ~CxTest_CxFileAttribute();
 
-	    virtual  BOOL bUnit();
+	    virtual  BOOL  bUnit();
 
 	private:
 };

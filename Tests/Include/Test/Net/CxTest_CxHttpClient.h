@@ -20,7 +20,7 @@ class CxTest_CxHttpClient :
     public CxTest
 {
 	public:
-		CxTest_CxHttpClient();
+                     CxTest_CxHttpClient();
 		virtual     ~CxTest_CxHttpClient();
 
 	    virtual BOOL bUnit();

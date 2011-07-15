@@ -20,10 +20,10 @@ class CxTest_CxDateTime :
     public CxTest
 {
     public:
-        CxTest_CxDateTime();
+                     CxTest_CxDateTime();
         virtual     ~CxTest_CxDateTime();
 
-        virtual     BOOL bUnit();
+        virtual BOOL bUnit();
 
     private:
 };

@@ -20,10 +20,10 @@ class CxTest_CxClipboard :
     public CxTest
 {
     public:
-                    CxTest_CxClipboard();
+                     CxTest_CxClipboard();
        virtual      ~CxTest_CxClipboard();
 
-       virtual BOOL bUnit             ();
+       virtual BOOL  bUnit             ();
 
     private:
 };

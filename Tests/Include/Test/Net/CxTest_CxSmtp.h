@@ -20,7 +20,7 @@ class CxTest_CxSmtp :
     public CxTest
 {
 	public:
-		CxTest_CxSmtp();
+                     CxTest_CxSmtp();
 		virtual     ~CxTest_CxSmtp();
 
 	    virtual BOOL bUnit();

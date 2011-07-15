@@ -20,7 +20,7 @@ class CxTest_CxAtomicLongInt :
     public CxTest
 {
 	public:
-		CxTest_CxAtomicLongInt();
+                     CxTest_CxAtomicLongInt();
 		virtual     ~CxTest_CxAtomicLongInt();
 
 	    virtual BOOL bUnit();

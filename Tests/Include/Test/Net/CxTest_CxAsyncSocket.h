@@ -20,10 +20,10 @@ class CxTest_CxAsyncSocket :
     public CxTest
 {
 	public:
-		CxTest_CxAsyncSocket();
+                     CxTest_CxAsyncSocket();
 		virtual     ~CxTest_CxAsyncSocket();
 
-	   /*virtual*/ BOOL bUnit();
+	    virtual BOOL bUnit();
 
 	private:
 };

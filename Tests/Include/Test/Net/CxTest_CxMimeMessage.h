@@ -23,7 +23,7 @@ class CxTest_CxMimeMessage :
     public CxTest
 {
 	public:
-		CxTest_CxMimeMessage();
+                     CxTest_CxMimeMessage();
 		virtual     ~CxTest_CxMimeMessage();
 
 	    virtual BOOL bUnit();

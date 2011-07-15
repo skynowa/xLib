@@ -16,12 +16,14 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Filesystem/Win/CxFile.h>
 //---------------------------------------------------------------------------
-class CxTest_CxFile : public CxTest {
+class CxTest_CxFile :
+    public CxTest
+{
 	public:
-		CxTest_CxFile();
+		             CxTest_CxFile();
 		virtual     ~CxTest_CxFile();
 
-		virtual     BOOL bUnit();
+		virtual BOOL bUnit();
 
 	private:
 };

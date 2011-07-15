@@ -20,10 +20,10 @@ class CxTest_CxTcpClientSocket :
     public CxTest
 {
 	public:
-		CxTest_CxTcpClientSocket();
-		virtual     ~CxTest_CxTcpClientSocket();
+                     CxTest_CxTcpClientSocket();
+        virtual     ~CxTest_CxTcpClientSocket();
 
-	   virtual     BOOL bUnit();
+        virtual BOOL bUnit();
 
 	private:
 };

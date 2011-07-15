@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------
 class CxTest_CxVolume : public CxTest {
 	public:
-		CxTest_CxVolume();
+		             CxTest_CxVolume();
 		virtual     ~CxTest_CxVolume();
 
 	    virtual BOOL bUnit();

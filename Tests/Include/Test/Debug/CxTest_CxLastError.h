@@ -20,7 +20,7 @@ class CxTest_CxLastError :
     public CxTest
 {
 	public:
-		CxTest_CxLastError();
+                     CxTest_CxLastError();
 		virtual     ~CxTest_CxLastError();
 
 	    virtual BOOL bUnit();

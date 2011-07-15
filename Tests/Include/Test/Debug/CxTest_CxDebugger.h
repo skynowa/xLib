@@ -20,7 +20,7 @@ class CxTest_CxDebugger :
     public CxTest
 {
 	public:
-		CxTest_CxDebugger();
+                     CxTest_CxDebugger();
 		virtual     ~CxTest_CxDebugger();
 
 	    virtual BOOL bUnit();

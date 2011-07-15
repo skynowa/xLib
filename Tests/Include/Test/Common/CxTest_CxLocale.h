@@ -20,7 +20,7 @@ class CxTest_CxLocale :
     public CxTest
 {
     public:
-        CxTest_CxLocale();
+                     CxTest_CxLocale();
         virtual     ~CxTest_CxLocale();
 
         virtual BOOL bUnit();

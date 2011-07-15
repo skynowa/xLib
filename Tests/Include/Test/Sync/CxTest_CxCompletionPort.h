@@ -20,7 +20,7 @@ class CxTest_CxCompletionPort :
     public CxTest
 {
 	public:
-		CxTest_CxCompletionPort();
+                     CxTest_CxCompletionPort();
 		virtual     ~CxTest_CxCompletionPort();
 
 		virtual     BOOL bUnit();

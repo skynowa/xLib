@@ -20,7 +20,7 @@ class CxTest_CxUri :
     public CxTest
 {
 	public:
-		CxTest_CxUri();
+                     CxTest_CxUri();
 		virtual     ~CxTest_CxUri();
 
 	    virtual BOOL bUnit();

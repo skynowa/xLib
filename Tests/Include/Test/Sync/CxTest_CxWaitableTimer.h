@@ -20,7 +20,7 @@ class CxTest_CxWaitableTimer :
     public CxTest
 {
 	public:
-		CxTest_CxWaitableTimer();
+                     CxTest_CxWaitableTimer();
 		virtual     ~CxTest_CxWaitableTimer();
 
 	    virtual BOOL bUnit();
