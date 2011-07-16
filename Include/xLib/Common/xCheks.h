@@ -40,8 +40,8 @@
         #error xLib: MAX_PATH not defined
     #endif
 
-    #if !defined(MAX_NAME)
-        #error xLib: MAX_NAME not defined
+    #if !defined(FILENAME_MAX)
+        #error xLib: FILENAME_MAX not defined
     #endif
 #endif
 

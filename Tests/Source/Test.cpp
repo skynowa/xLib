@@ -72,7 +72,7 @@
 
 #if defined(xOS_WIN)
     #include <Test/Filesystem/Win/CxTest_CxFile.h>
-    #include <Test/Filesystem/Win/CxTest_CxIni.h>
+    ////#include <Test/Filesystem/Win/CxTest_CxIni.h>
 #elif defined(xOS_LINUX)
 
 #endif
@@ -150,10 +150,10 @@ _tmain(
 
 
     {
-#if 1
+#if 0 && defined(xOS_FREEBSD) 
         xTRACEV("argv[0]: %s", argv[0]);
 
-        char szRealPath[PATH_MAX + 1] = {0};
+        char szRealPath[xPATH_MAX + 1] = {0};
 
         char *pszRes = realpath(argv[0], szRealPath);
         xASSERT(NULL != pszRes);

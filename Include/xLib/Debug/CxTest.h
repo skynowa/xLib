@@ -18,6 +18,8 @@
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Filesystem/CxDir.h>
+#include <xLib/Filesystem/CxStdioFile.h>
 //---------------------------------------------------------------------------
 class CxTest :
     public CxNonCopyable

@@ -82,7 +82,7 @@ CxPath::sGetExe() {
         #endif
     #else
         BOOL          bRes       = FALSE;
-        const tString csProcFile = xT("/proc/self/exe");
+        const tString csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
 
         bRes = CxStdioFile::bIsExists(csProcFile);
         if (TRUE == bRes) {
@@ -250,7 +250,7 @@ CxPath::sGetExt(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
-    size_t uiDotPos   = csFilePath.rfind(CxConst::xDOT, csFilePath.size());
+    size_t uiDotPos = csFilePath.rfind(CxConst::xDOT, csFilePath.size());
     /*DEBUG*/// n/a
     xCHECK_RET(tString::npos == uiDotPos, tString());
 
@@ -451,7 +451,7 @@ CxPath::bIsNameValid(
     xCHECK_RET(TRUE == bRes, FALSE);
 
     //check for name size
-    bRes = static_cast<BOOL>( FILENAME_MAX < csFileName.size() );
+    bRes = static_cast<BOOL>( xNAME_MAX < csFileName.size() );
     xCHECK_RET(TRUE == bRes, FALSE);
 
     //cm. sSetValidName
@@ -796,10 +796,10 @@ CxPath::uiGetNameMaxSize() {
     size_t uiRes = 0;
 
     #if defined(xOS_WIN)
-        #if defined(MAX_NAME)
-            uiRes = MAX_NAME;
+        #if defined(FILENAME_MAX)
+            uiRes = FILENAME_MAX;
         #else
-            const cuiDefaultSize = 256;
+            const cuiDefaultSize = 260;
 
             uiRes = cuiDefaultSize;
         #endif

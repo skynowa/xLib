@@ -34,7 +34,7 @@ CxTest_CxWaitableTimer::bUnit() {
 
     //-------------------------------------
     //создаем
-    bRes = WT.bCreate(FALSE, NULL, xT(""));
+    bRes = WT.bCreate(FALSE, xT(""), NULL);
     if (FALSE == bRes) {
         printf("CreateWaitableTimer failed (%d)\n", GetLastError());
         return 1;

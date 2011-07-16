@@ -17,7 +17,9 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Filesystem/Win/CxIni.h>
 //---------------------------------------------------------------------------
-class CxTest_CxIni : public CxTest {
+class CxTest_CxIni: 
+    public CxTest 
+{
     public:
                      CxTest_CxIni();
         virtual     ~CxTest_CxIni();

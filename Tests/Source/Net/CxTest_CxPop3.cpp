@@ -73,48 +73,48 @@ CxTest_CxPop3::bUnit() {
 
     //-------------------------------------
     //bCreate
-    g_bRes = objPop3.bCreate(csUser, csPass, csServer, cusPort);
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bCreate(csUser, csPass, csServer, cusPort);
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bConnect
-    g_bRes = objPop3.bConnect();
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bConnect();
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bLogin
-    g_bRes = objPop3.bLogin();
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bLogin();
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bStat
-    g_bRes = objPop3.bStat(ulSum, ulSize);
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bStat(ulSum, ulSize);
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bList
-    ////g_bRes = objPop3.bList(veculList);
-    ////xASSERT(TRUE == g_bRes);
+    ////m_bRes = objPop3.bList(veculList);
+    ////xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bListAt
-    ////g_bRes = objPop3.bListAt(ulIndex);
-    ////xASSERT(TRUE == g_bRes);
+    ////m_bRes = objPop3.bListAt(ulIndex);
+    ////xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bNoop
-    g_bRes = objPop3.bNoop();
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bNoop();
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bDelete
-    g_bRes = objPop3.bDelete(ulMsgID);
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bDelete(ulMsgID);
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bRset
-    g_bRes = objPop3.bRset();
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bRset();
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bTop
@@ -128,23 +128,23 @@ CxTest_CxPop3::bUnit() {
         //////CxMimeHeader
         ////CxMimeHeader objHeader;
 
-        ////g_bRes = objPop3.bTop(iNum, 0, /*ref*/sRawHeader);
-        ////xASSERT(TRUE == g_bRes);
+        ////m_bRes = objPop3.bTop(iNum, 0, /*ref*/sRawHeader);
+        ////xASSERT(TRUE == m_bRes);
         /////*LOG*/printf("bTop %i\n", i);
 
-        ////g_bRes = objHeader.bParse(sRawHeader);
-        ////xASSERT(TRUE == g_bRes);
+        ////m_bRes = objHeader.bParse(sRawHeader);
+        ////xASSERT(TRUE == m_bRes);
 
-        ////g_sRes = objHeader.sGetField(xT("Message-Id"));
-        ////xASSERT(FALSE == g_sRes.empty());
+        ////m_sRes = objHeader.sGetField(xT("Message-Id"));
+        ////xASSERT(FALSE == m_sRes.empty());
 
 
         //////-------------------------------------
         //////CxMimeBody
         ////////CxMimeBody objBody;
 
-        //////g_bRes = m_Body.bParse(sRawMessage);
-        //////xASSERT(TRUE == g_bRes);
+        //////m_bRes = m_Body.bParse(sRawMessage);
+        //////xASSERT(TRUE == m_bRes);
     }
 
     //-------------------------------------
@@ -152,8 +152,8 @@ CxTest_CxPop3::bUnit() {
     for (ULONG i = 1; i <= ulSum; i ++) {
         CxDir::bCreateForce(csDirPath);
 
-        g_bRes = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::lexical_cast(i) + xT(".eml"));
-        xASSERT(TRUE == g_bRes);
+        m_bRes = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::lexical_cast(i) + xT(".eml"));
+        xASSERT(TRUE == m_bRes);
 
         /*LOG*/printf("bRetriveRaw %i\n", i);
     }
@@ -163,16 +163,16 @@ CxTest_CxPop3::bUnit() {
     for (ULONG i = 1; i <= ulSum; i ++) {
         CxMimeHeader mhMimeHeader;
 
-        g_bRes = objPop3.bRetrieveHeader(iNum, mhMimeHeader);
-        xASSERT(TRUE == g_bRes);
+        m_bRes = objPop3.bRetrieveHeader(iNum, mhMimeHeader);
+        xASSERT(TRUE == m_bRes);
 
         /*LOG*/printf("bRetrieveHeader %i\n", i);
     }
 
     //-------------------------------------
     //bDisconnect
-    g_bRes = objPop3.bDisconnect();
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bDisconnect();
+    xASSERT(TRUE == m_bRes);
 #elif defined(xOS_LINUX)
 
 #endif

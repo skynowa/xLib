@@ -110,5 +110,5 @@ class CxThreadPool :
 /*
 ����� ������������ ������ ������:
 
-g_bRes = thpTP->bCreateGroup(0, (UINT (WINAPI *)(VOID *))&CTest::s_uiThreadFunc, NULL);
+m_bRes = thpTP->bCreateGroup(0, (UINT (WINAPI *)(VOID *))&CTest::s_uiThreadFunc, NULL);
 */

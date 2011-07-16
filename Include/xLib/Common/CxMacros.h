@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
+#include <xLib/Filesystem/CxPath.h>
 //---------------------------------------------------------------------------
 class CxDebugger;
 
