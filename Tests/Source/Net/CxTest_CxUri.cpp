@@ -31,218 +31,218 @@ CxTest_CxUri::bUnit() {
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret#nose");
 
-        g_sRes  = objUri.sGetUri();
-        xASSERT("foo://userinfo@example.com:8042/over/there?name=ferret#nose" == g_sRes);
+        m_sRes  = objUri.sGetUri();
+        xASSERT("foo://userinfo@example.com:8042/over/there?name=ferret#nose" == m_sRes);
 
-        g_sRes  = objUri.sGetScheme();
-        xASSERT("foo" == g_sRes);
+        m_sRes  = objUri.sGetScheme();
+        xASSERT("foo" == m_sRes);
 
-        g_sRes  = objUri.sGetAuthority();
-        xASSERT("//userinfo@example.com:8042" == g_sRes);
+        m_sRes  = objUri.sGetAuthority();
+        xASSERT("//userinfo@example.com:8042" == m_sRes);
 
-        g_sRes  = objUri.sGetUserInfo();
-        xASSERT("userinfo" == g_sRes);
+        m_sRes  = objUri.sGetUserInfo();
+        xASSERT("userinfo" == m_sRes);
 
-        g_sRes  = objUri.sGetHost();
-        xASSERT("example.com" == g_sRes);
+        m_sRes  = objUri.sGetHost();
+        xASSERT("example.com" == m_sRes);
 
-        g_usRes = objUri.usGetPort();
-        xASSERT(8042 == g_usRes);
+        m_usiRes = objUri.usGetPort();
+        xASSERT(8042 == m_usiRes);
 
-        g_sRes  = objUri.sGetPath();
-        xASSERT("/over/there" == g_sRes);
+        m_sRes  = objUri.sGetPath();
+        xASSERT("/over/there" == m_sRes);
 
-        g_sRes  = objUri.sGetQuery();
-        xASSERT("name=ferret" == g_sRes);
+        m_sRes  = objUri.sGetQuery();
+        xASSERT("name=ferret" == m_sRes);
 
-        g_sRes  = objUri.sGetFragment();
-        xASSERT("nose" == g_sRes);
+        m_sRes  = objUri.sGetFragment();
+        xASSERT("nose" == m_sRes);
     }
 
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret");
 
-        g_sRes  = objUri.sGetUri();
-        xASSERT("foo://userinfo@example.com:8042/over/there?name=ferret" == g_sRes);
+        m_sRes  = objUri.sGetUri();
+        xASSERT("foo://userinfo@example.com:8042/over/there?name=ferret" == m_sRes);
 
-        g_sRes  = objUri.sGetScheme();
-        xASSERT("foo" == g_sRes);
+        m_sRes  = objUri.sGetScheme();
+        xASSERT("foo" == m_sRes);
 
-        g_sRes  = objUri.sGetAuthority();
-        xASSERT("//userinfo@example.com:8042" == g_sRes);
+        m_sRes  = objUri.sGetAuthority();
+        xASSERT("//userinfo@example.com:8042" == m_sRes);
 
-        g_sRes  = objUri.sGetUserInfo();
-        xASSERT("userinfo" == g_sRes);
+        m_sRes  = objUri.sGetUserInfo();
+        xASSERT("userinfo" == m_sRes);
 
-        g_sRes  = objUri.sGetHost();
-        xASSERT("example.com" == g_sRes);
+        m_sRes  = objUri.sGetHost();
+        xASSERT("example.com" == m_sRes);
 
-        g_usRes = objUri.usGetPort();
-        xASSERT(8042 == g_usRes);
+        m_usiRes = objUri.usGetPort();
+        xASSERT(8042 == m_usiRes);
 
-        g_sRes  = objUri.sGetPath();
-        xASSERT("/over/there" == g_sRes);
+        m_sRes  = objUri.sGetPath();
+        xASSERT("/over/there" == m_sRes);
 
-        g_sRes  = objUri.sGetQuery();
-        xASSERT("name=ferret" == g_sRes);
+        m_sRes  = objUri.sGetQuery();
+        xASSERT("name=ferret" == m_sRes);
 
-        g_sRes  = objUri.sGetFragment();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetFragment();
+        xASSERT("" == m_sRes);
     }
 
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there");
 
-        g_sRes  = objUri.sGetUri();
-        xASSERT("foo://userinfo@example.com:8042/over/there" == g_sRes);
+        m_sRes  = objUri.sGetUri();
+        xASSERT("foo://userinfo@example.com:8042/over/there" == m_sRes);
 
-        g_sRes  = objUri.sGetScheme();
-        xASSERT("foo" == g_sRes);
+        m_sRes  = objUri.sGetScheme();
+        xASSERT("foo" == m_sRes);
 
-        g_sRes  = objUri.sGetAuthority();
-        xASSERT("//userinfo@example.com:8042" == g_sRes);
+        m_sRes  = objUri.sGetAuthority();
+        xASSERT("//userinfo@example.com:8042" == m_sRes);
 
-        g_sRes  = objUri.sGetUserInfo();
-        xASSERT("userinfo" == g_sRes);
+        m_sRes  = objUri.sGetUserInfo();
+        xASSERT("userinfo" == m_sRes);
 
-        g_sRes  = objUri.sGetHost();
-        xASSERT("example.com" == g_sRes);
+        m_sRes  = objUri.sGetHost();
+        xASSERT("example.com" == m_sRes);
 
-        g_usRes = objUri.usGetPort();
-        xASSERT(8042 == g_usRes);
+        m_usiRes = objUri.usGetPort();
+        xASSERT(8042 == m_usiRes);
 
-        g_sRes  = objUri.sGetPath();
-        xASSERT("/over/there" == g_sRes);
+        m_sRes  = objUri.sGetPath();
+        xASSERT("/over/there" == m_sRes);
 
-        g_sRes  = objUri.sGetQuery();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetQuery();
+        xASSERT("" == m_sRes);
 
-        g_sRes  = objUri.sGetFragment();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetFragment();
+        xASSERT("" == m_sRes);
     }
 
     {
         CxUri objUri("foo://userinfo@example.com:8042");
 
-        g_sRes  = objUri.sGetUri();
-        xASSERT("foo://userinfo@example.com:8042" == g_sRes);
+        m_sRes  = objUri.sGetUri();
+        xASSERT("foo://userinfo@example.com:8042" == m_sRes);
 
-        g_sRes  = objUri.sGetScheme();
-        xASSERT("foo" == g_sRes);
+        m_sRes  = objUri.sGetScheme();
+        xASSERT("foo" == m_sRes);
 
-        g_sRes  = objUri.sGetAuthority();
-        xASSERT("//userinfo@example.com:8042" == g_sRes);
+        m_sRes  = objUri.sGetAuthority();
+        xASSERT("//userinfo@example.com:8042" == m_sRes);
 
-        g_sRes  = objUri.sGetUserInfo();
-        xASSERT("userinfo" == g_sRes);
+        m_sRes  = objUri.sGetUserInfo();
+        xASSERT("userinfo" == m_sRes);
 
-        g_sRes  = objUri.sGetHost();
-        xASSERT("example.com" == g_sRes);
+        m_sRes  = objUri.sGetHost();
+        xASSERT("example.com" == m_sRes);
 
-        g_usRes = objUri.usGetPort();
-        xASSERT(8042 == g_usRes);
+        m_usiRes = objUri.usGetPort();
+        xASSERT(8042 == m_usiRes);
 
-        g_sRes  = objUri.sGetPath();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetPath();
+        xASSERT("" == m_sRes);
 
-        g_sRes  = objUri.sGetQuery();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetQuery();
+        xASSERT("" == m_sRes);
 
-        g_sRes  = objUri.sGetFragment();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetFragment();
+        xASSERT("" == m_sRes);
     }
 
     {
         CxUri objUri("foo://userinfo@example.com");
 
-        g_sRes  = objUri.sGetUri();
-        xASSERT("foo://userinfo@example.com" == g_sRes);
+        m_sRes  = objUri.sGetUri();
+        xASSERT("foo://userinfo@example.com" == m_sRes);
 
-        g_sRes  = objUri.sGetScheme();
-        xASSERT("foo" == g_sRes);
+        m_sRes  = objUri.sGetScheme();
+        xASSERT("foo" == m_sRes);
 
-        g_sRes  = objUri.sGetAuthority();
-        xASSERT("//userinfo@example.com" == g_sRes);
+        m_sRes  = objUri.sGetAuthority();
+        xASSERT("//userinfo@example.com" == m_sRes);
 
-        g_sRes  = objUri.sGetUserInfo();
-        xASSERT("userinfo" == g_sRes);
+        m_sRes  = objUri.sGetUserInfo();
+        xASSERT("userinfo" == m_sRes);
 
-        g_sRes  = objUri.sGetHost();
-        xASSERT("example.com" == g_sRes);
+        m_sRes  = objUri.sGetHost();
+        xASSERT("example.com" == m_sRes);
 
-        g_usRes = objUri.usGetPort();
-        xASSERT(0 == g_usRes);
+        m_usiRes = objUri.usGetPort();
+        xASSERT(0 == m_usiRes);
 
-        g_sRes  = objUri.sGetPath();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetPath();
+        xASSERT("" == m_sRes);
 
-        g_sRes  = objUri.sGetQuery();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetQuery();
+        xASSERT("" == m_sRes);
 
-        g_sRes  = objUri.sGetFragment();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetFragment();
+        xASSERT("" == m_sRes);
     }
 
     {
         CxUri objUri("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c");
 
-        g_sRes  = objUri.sGetUri();
-        xASSERT("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c" == g_sRes);
+        m_sRes  = objUri.sGetUri();
+        xASSERT("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c" == m_sRes);
 
-        g_sRes  = objUri.sGetScheme();
-        xASSERT("http" == g_sRes);
+        m_sRes  = objUri.sGetScheme();
+        xASSERT("http" == m_sRes);
 
-        g_sRes  = objUri.sGetAuthority();
-        xASSERT("//weather.yahoo.com" == g_sRes);
+        m_sRes  = objUri.sGetAuthority();
+        xASSERT("//weather.yahoo.com" == m_sRes);
 
-        g_sRes  = objUri.sGetUserInfo();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetUserInfo();
+        xASSERT("" == m_sRes);
 
-        g_sRes  = objUri.sGetHost();
-        xASSERT("weather.yahoo.com" == g_sRes);
+        m_sRes  = objUri.sGetHost();
+        xASSERT("weather.yahoo.com" == m_sRes);
 
-        g_usRes = objUri.usGetPort();
-        xASSERT(80 == g_usRes);
+        m_usiRes = objUri.usGetPort();
+        xASSERT(80 == m_usiRes);
 
-        g_sRes  = objUri.sGetPath();
-        xASSERT("/ukraine/kiev-city-municipality/kiev-924938/" == g_sRes);
+        m_sRes  = objUri.sGetPath();
+        xASSERT("/ukraine/kiev-city-municipality/kiev-924938/" == m_sRes);
 
-        g_sRes  = objUri.sGetQuery();
-        xASSERT("unit=c" == g_sRes);
+        m_sRes  = objUri.sGetQuery();
+        xASSERT("unit=c" == m_sRes);
 
-        g_sRes  = objUri.sGetFragment();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetFragment();
+        xASSERT("" == m_sRes);
     }
 
     {
         CxUri objUri("http://dn1.berloga.net/83841/zombie_baseball_2.swf");
 
-        g_sRes  = objUri.sGetUri();
-        xASSERT("http://dn1.berloga.net/83841/zombie_baseball_2.swf" == g_sRes);
+        m_sRes  = objUri.sGetUri();
+        xASSERT("http://dn1.berloga.net/83841/zombie_baseball_2.swf" == m_sRes);
 
-        g_sRes  = objUri.sGetScheme();
-        xASSERT("http" == g_sRes);
+        m_sRes  = objUri.sGetScheme();
+        xASSERT("http" == m_sRes);
 
-        g_sRes  = objUri.sGetAuthority();
-        xASSERT("//dn1.berloga.net" == g_sRes);
+        m_sRes  = objUri.sGetAuthority();
+        xASSERT("//dn1.berloga.net" == m_sRes);
 
-        g_sRes  = objUri.sGetUserInfo();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetUserInfo();
+        xASSERT("" == m_sRes);
 
-        g_sRes  = objUri.sGetHost();
-        xASSERT("dn1.berloga.net" == g_sRes);
+        m_sRes  = objUri.sGetHost();
+        xASSERT("dn1.berloga.net" == m_sRes);
 
-        g_usRes = objUri.usGetPort();
-        xASSERT(80 == g_usRes);
+        m_usiRes = objUri.usGetPort();
+        xASSERT(80 == m_usiRes);
 
-        g_sRes  = objUri.sGetPath();
-        xASSERT("/83841/zombie_baseball_2.swf" == g_sRes);
+        m_sRes  = objUri.sGetPath();
+        xASSERT("/83841/zombie_baseball_2.swf" == m_sRes);
 
-        g_sRes  = objUri.sGetQuery();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetQuery();
+        xASSERT("" == m_sRes);
 
-        g_sRes  = objUri.sGetFragment();
-        xASSERT("" == g_sRes);
+        m_sRes  = objUri.sGetFragment();
+        xASSERT("" == m_sRes);
     }
 
 
@@ -257,10 +257,10 @@ CxTest_CxUri::bUnit() {
         };
 
         for (int i = 0; i < xARRAY_SIZE(sUri); i ++) {
-            g_sRes = CxUri::sEncodeComponent(sUri[i]);
-            g_sRes = CxUri::sDecodeComponent(g_sRes);
+            m_sRes = CxUri::sEncodeComponent(sUri[i]);
+            m_sRes = CxUri::sDecodeComponent(m_sRes);
 
-            xASSERT(sUri[i] == g_sRes);
+            xASSERT(sUri[i] == m_sRes);
         }
     }
 #elif defined(xOS_LINUX)

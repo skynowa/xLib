@@ -34,8 +34,8 @@ CxTest_bGetUsbInfo::bUnit() {
         const tString        csDrive = xT("I:");
         std::vector<tString> vecsInfo;
 
-        g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
-        xASSERT(TRUE == g_bRes);
+        m_bRes = bGetUsbInfo(csDrive, &vecsInfo);
+        xASSERT(TRUE == m_bRes);
 
         xASSERT(xT("\\??\\USB")                              == vecsInfo.at(0));
         xASSERT(xT("Vid_058f&Pid_6387")                      == vecsInfo.at(1));
@@ -50,8 +50,8 @@ CxTest_bGetUsbInfo::bUnit() {
         ////const tString        csDrive = xT("Y:");
         ////std::vector<tString> vecsInfo;
 
-        ////g_bRes = bGetUsbInfo(csDrive, &vecsInfo);
-        ////XASSERT(TRUE == g_bRes);
+        ////m_bRes = bGetUsbInfo(csDrive, &vecsInfo);
+        ////XASSERT(TRUE == m_bRes);
 
         ////XASSERT(xT("\\??\\USB")                              == vecsInfo.at(0));
         ////XASSERT(xT("Vid_058f&Pid_6387")                      == vecsInfo.at(1));

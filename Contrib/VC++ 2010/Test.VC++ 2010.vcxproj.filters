@@ -106,6 +106,48 @@
     <Filter Include="xLib\Pkcs11\Win\SDK">
       <UniqueIdentifier>{f9abee5c-5f5d-4683-9c94-5a9203e778d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test\Common">
+      <UniqueIdentifier>{56e6e316-b95d-437d-a0c1-d0c59bcbd090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Compress">
+      <UniqueIdentifier>{4363a1e5-84d2-409c-afc2-d99d7e8d7f5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Crypt">
+      <UniqueIdentifier>{96743506-b7a5-48d3-9f63-09acb786370a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Db">
+      <UniqueIdentifier>{3aebb3e5-9a5c-4776-9d3e-875f69a6b1bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Debug">
+      <UniqueIdentifier>{c4b9a406-2c56-4a14-8336-8345c2c89e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Filesystem">
+      <UniqueIdentifier>{fdc122c7-0ac9-454d-a7e3-89bc4b46b6dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Gui">
+      <UniqueIdentifier>{fd5c48a9-1e2a-4d43-a012-4c4d4dbd2cfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Log">
+      <UniqueIdentifier>{b0742454-303d-460b-9192-2e0f8404ad5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Net">
+      <UniqueIdentifier>{e88b4aa2-e82d-4bce-82ef-8a1c829ec59c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Pkcs11">
+      <UniqueIdentifier>{cba7a5ec-c45d-4da1-8ff7-7e80bc8213f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Sync">
+      <UniqueIdentifier>{a35b4a94-8ae1-4c98-bbc2-2e55faf46777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Units">
+      <UniqueIdentifier>{86633802-35b4-470d-a454-3c3e59e3bf3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Patterns">
+      <UniqueIdentifier>{3d08b3ea-a519-4c05-90bb-2b68361972f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Filesystem\Win">
+      <UniqueIdentifier>{97fb30c2-d064-4143-a262-7cc253d23568}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Crypt\CxBase64.cpp">
@@ -333,9 +375,6 @@
     <ClCompile Include="..\..\Source\Units\Win\bGetUsbInfo.cpp">
       <Filter>xLib\Units\Win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Test.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Pkcs11\Win\CxDecrypt.cpp">
       <Filter>xLib\Pkcs11\Win</Filter>
     </ClCompile>
@@ -392,6 +431,219 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Sync\CxSharedMemory.cpp">
       <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Units\CxTest_bGetUsbInfo.cpp">
+      <Filter>Test\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CWorkThread.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoCriticalSection.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCompletionPort.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCriticalSection.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxEvent.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxMutex.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxProcess.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxSemaphore.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxSleeper.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxThread.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxTls.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\PKCS11\CxTest_CxPKCS11.cpp">
+      <Filter>Test\Pkcs11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp">
+      <Filter>Test\Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxAsyncSocket.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCgi.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCookiePv1.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxDnsClient.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxGeoIp.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxPop3.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocket.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpClientSocket.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpServerSocket.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxUri.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp">
+      <Filter>Test\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDir.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxEnvironment.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxStdioFile.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp">
+      <Filter>Test\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp">
+      <Filter>Test\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp">
+      <Filter>Test\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp">
+      <Filter>Test\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxReport.cpp">
+      <Filter>Test\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp">
+      <Filter>Test\Db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
+      <Filter>Test\Db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp">
+      <Filter>Test\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp">
+      <Filter>Test\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp">
+      <Filter>Test\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxRandom.cpp">
+      <Filter>Test\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Compress\CxTest_CxGz.cpp">
+      <Filter>Test\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxArray.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxAutoMallocT.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxChar.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxClipboard.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxCom.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxComPort.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxDateTime.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxException.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxLocale.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxMacros.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxShell.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxString.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxFile.cpp">
+      <Filter>Test\Filesystem\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp">
+      <Filter>Test\Filesystem\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -709,6 +961,216 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\CxSharedMemory.h">
       <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxClipboard.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxCom.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxComPort.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxException.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxMacros.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxShell.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxString.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Units\CxTest_bGetUsbInfo.h">
+      <Filter>Test\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CWorkThread.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoCriticalSection.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCompletionPort.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCriticalSection.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxProcess.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxSleeper.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxThread.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxTls.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\PKCS11\CxTest_CxPKCS11.h">
+      <Filter>Test\Pkcs11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h">
+      <Filter>Test\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxAsyncSocket.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCgi.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxGeoIp.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxPop3.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocket.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClientSocket.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpServerSocket.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxUri.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h">
+      <Filter>Test\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDir.h">
+      <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h">
+      <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxEnvironment.h">
+      <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxFileAttribute.h">
+      <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h">
+      <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxStdioFile.h">
+      <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h">
+      <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h">
+      <Filter>Test\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h">
+      <Filter>Test\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h">
+      <Filter>Test\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h">
+      <Filter>Test\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxReport.h">
+      <Filter>Test\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h">
+      <Filter>Test\Db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h">
+      <Filter>Test\Db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h">
+      <Filter>Test\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h">
+      <Filter>Test\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h">
+      <Filter>Test\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h">
+      <Filter>Test\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Compress\CxTest_CxGz.h">
+      <Filter>Test\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h">
+      <Filter>Test\Filesystem\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxFile.h">
+      <Filter>Test\Filesystem\Win</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@
 
 #if defined(xOS_WIN)
 //---------------------------------------------------------------------------
-BOOL g_bRes = FALSE;
+BOOL m_bRes = FALSE;
 CxSemaphore m_Semaphore;
 //---------------------------------------------------------------------------
 unsigned __stdcall vTest( void* pArguments ) {
@@ -48,8 +48,8 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 /*virtual*/
 BOOL
 CxTest_CxSemaphore::bUnit() {
-    g_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));
-    xASSERT(FALSE != g_bRes);
+    m_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));
+    xASSERT(FALSE != m_bRes);
 
     if (NULL == _beginthreadex(0, 0, &vTest, 0, NULL, NULL)) {
         std::cout << "Error begin thread " << std::endl;
@@ -61,8 +61,8 @@ CxTest_CxSemaphore::bUnit() {
         ::Sleep(2000);
 
         for (int x = 0; x < 2; x ++) {
-            g_bRes = m_Semaphore.bRelease(1, NULL);
-            xASSERT(FALSE != g_bRes);
+            m_bRes = m_Semaphore.bRelease(1, NULL);
+            xASSERT(FALSE != m_bRes);
         }
     }
 

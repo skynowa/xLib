@@ -101,30 +101,30 @@ CxTest_CxMimeMessage::bUnit() {
     //-------------------------------------
     //sGenerateMessageID
     {
-        g_sRes = CxMimeHeader::sGenerateMessageID();
-        xASSERT(false == g_sRes.empty());
+        m_sRes = CxMimeHeader::sGenerateMessageID();
+        xASSERT(false == m_sRes.empty());
     }
 
 
     //-------------------------------------
     //bCreate
-    g_bRes = objPop3.bCreate(csUser, csPass, csServer, usPort);
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bCreate(csUser, csPass, csServer, usPort);
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bConnect
-    g_bRes = objPop3.bConnect();
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bConnect();
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bLogin
-    g_bRes = objPop3.bLogin();
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bLogin();
+    xASSERT(TRUE == m_bRes);
 
     //-------------------------------------
     //bStat
-    g_bRes = objPop3.bStat(ulSum, ulSize);
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bStat(ulSum, ulSize);
+    xASSERT(TRUE == m_bRes);
     /*LOG*/printf("Mails %i\n", ulSum);
 
     //-------------------------------------
@@ -140,38 +140,38 @@ CxTest_CxMimeMessage::bUnit() {
         //CxMimeHeader
         CxMimeHeader objHeader;
 
-        g_bRes = objPop3.bTop(i, 0, /*ref*/sRawHeader);
-        xASSERT(TRUE == g_bRes);
+        m_bRes = objPop3.bTop(i, 0, /*ref*/sRawHeader);
+        xASSERT(TRUE == m_bRes);
 
         //-------------------------------------
         //bParse
-        g_bRes = objHeader.bParse(sRawHeader);
-        xASSERT(TRUE == g_bRes);
+        m_bRes = objHeader.bParse(sRawHeader);
+        xASSERT(TRUE == m_bRes);
 
         //-------------------------------------
         //sGetField
-        ////g_sRes = objHeader.sGetField("Message-Id");
-        ////xASSERT(false == g_sRes.empty());
+        ////m_sRes = objHeader.sGetField("Message-Id");
+        ////xASSERT(false == m_sRes.empty());
 
-        ////g_sRes = objHeader.sGetField("fRom");
-        ////xASSERT(false == g_sRes.empty());
-        ////xASSERT("\"Admin@localhost\" <Admin@localhost>" == g_sRes);
+        ////m_sRes = objHeader.sGetField("fRom");
+        ////xASSERT(false == m_sRes.empty());
+        ////xASSERT("\"Admin@localhost\" <Admin@localhost>" == m_sRes);
 
-        ////g_sRes = objHeader.sGetField("X-MailType");
-        ////xASSERT(false         == g_sRes.empty());
-        ////xASSERT("Mail bomber" == g_sRes);
+        ////m_sRes = objHeader.sGetField("X-MailType");
+        ////xASSERT(false         == m_sRes.empty());
+        ////xASSERT("Mail bomber" == m_sRes);
 
-        ////g_sRes = objHeader.sGetField("To");
-        ////xASSERT(false              == g_sRes.empty());
-        ////xASSERT("test_1@localhost" == g_sRes);
+        ////m_sRes = objHeader.sGetField("To");
+        ////xASSERT(false              == m_sRes.empty());
+        ////xASSERT("test_1@localhost" == m_sRes);
 
-        ////g_sRes = objHeader.sGetField("Subject");
-        ////xASSERT(false              == g_sRes.empty());
-        ////xASSERT("=?KOI8-R?B?8uXs4A==?=" == g_sRes);
+        ////m_sRes = objHeader.sGetField("Subject");
+        ////xASSERT(false              == m_sRes.empty());
+        ////xASSERT("=?KOI8-R?B?8uXs4A==?=" == m_sRes);
 
-        ////g_sRes = objHeader.sGetField("Return-Path");
-        ////xASSERT(false               == g_sRes.empty());
-        ////xASSERT("<Admin@localhost>" == g_sRes);
+        ////m_sRes = objHeader.sGetField("Return-Path");
+        ////xASSERT(false               == m_sRes.empty());
+        ////xASSERT("<Admin@localhost>" == m_sRes);
 
         /*LOG*/printf("bTop %i\n", i);
     }
@@ -183,41 +183,41 @@ CxTest_CxMimeMessage::bUnit() {
 
         //-------------------------------------
         //bRetrieveHeader
-        g_bRes = objPop3.bRetrieveHeader(y, objHeader);
-        xASSERT(TRUE == g_bRes);
+        m_bRes = objPop3.bRetrieveHeader(y, objHeader);
+        xASSERT(TRUE == m_bRes);
 
         //-------------------------------------
         //sGetField
-        ////g_sRes = objHeader.sGetField("Message-Id");
-        ////xASSERT(false == g_sRes.empty());
+        ////m_sRes = objHeader.sGetField("Message-Id");
+        ////xASSERT(false == m_sRes.empty());
 
-        ////g_sRes = objHeader.sGetField("fRom");
-        ////xASSERT(false == g_sRes.empty());
-        ////xASSERT("\"Admin@localhost\" <Admin@localhost>" == g_sRes);
+        ////m_sRes = objHeader.sGetField("fRom");
+        ////xASSERT(false == m_sRes.empty());
+        ////xASSERT("\"Admin@localhost\" <Admin@localhost>" == m_sRes);
 
-        ////g_sRes = objHeader.sGetField("X-MailType");
-        ////xASSERT(false         == g_sRes.empty());
-        ////xASSERT("Mail bomber" == g_sRes);
+        ////m_sRes = objHeader.sGetField("X-MailType");
+        ////xASSERT(false         == m_sRes.empty());
+        ////xASSERT("Mail bomber" == m_sRes);
 
-        ////g_sRes = objHeader.sGetField("To");
-        ////xASSERT(false              == g_sRes.empty());
-        ////xASSERT("test_1@localhost" == g_sRes);
+        ////m_sRes = objHeader.sGetField("To");
+        ////xASSERT(false              == m_sRes.empty());
+        ////xASSERT("test_1@localhost" == m_sRes);
 
-        ////g_sRes = objHeader.sGetField("Subject");
-        ////xASSERT(false              == g_sRes.empty());
-        ////xASSERT("=?KOI8-R?B?8uXs4A==?=" == g_sRes);
+        ////m_sRes = objHeader.sGetField("Subject");
+        ////xASSERT(false              == m_sRes.empty());
+        ////xASSERT("=?KOI8-R?B?8uXs4A==?=" == m_sRes);
 
-        ////g_sRes = objHeader.sGetField("Return-Path");
-        ////xASSERT(false               == g_sRes.empty());
-        ////xASSERT("<Admin@localhost>" == g_sRes);
+        ////m_sRes = objHeader.sGetField("Return-Path");
+        ////xASSERT(false               == m_sRes.empty());
+        ////xASSERT("<Admin@localhost>" == m_sRes);
 
         /*LOG*/printf("bRetrieveHeader %i\n", y);
     }
 
     //-------------------------------------
     //bDisconnect
-    g_bRes = objPop3.bDisconnect();
-    xASSERT(TRUE == g_bRes);
+    m_bRes = objPop3.bDisconnect();
+    xASSERT(TRUE == m_bRes);
 #elif defined(xOS_LINUX)
 
 #endif

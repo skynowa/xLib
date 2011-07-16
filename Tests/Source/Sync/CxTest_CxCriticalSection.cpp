@@ -39,11 +39,11 @@ CxTest_CxCriticalSection::bUnit() {
         objCriticalSection.vLeave();
         //xASSERT - not need
 
-        g_ulRes = objCriticalSection.ulSetSpinCount(10000);
-        xASSERT(0 <= g_ulRes);
+        m_ulRes = objCriticalSection.ulSetSpinCount(10000);
+        xASSERT(0 <= m_ulRes);
 
-        g_bRes = objCriticalSection.bTryEnter();
-        xASSERT(FALSE != g_bRes);
+        m_bRes = objCriticalSection.bTryEnter();
+        xASSERT(FALSE != m_bRes);
     }
 
     //-------------------------------------
@@ -57,11 +57,11 @@ CxTest_CxCriticalSection::bUnit() {
         objCriticalSection.vLeave();
         //xASSERT - not need
 
-        g_ulRes = objCriticalSection.ulSetSpinCount(10000);
-        xASSERT(0 <= g_ulRes);
+        m_ulRes = objCriticalSection.ulSetSpinCount(10000);
+        xASSERT(0 <= m_ulRes);
 
-        g_bRes = objCriticalSection.bTryEnter();
-        xASSERT(FALSE != g_bRes);
+        m_bRes = objCriticalSection.bTryEnter();
+        xASSERT(FALSE != m_bRes);
     }
 #elif defined(xOS_LINUX)
 

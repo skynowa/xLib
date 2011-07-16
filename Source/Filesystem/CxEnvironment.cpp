@@ -33,12 +33,11 @@ CxEnvironment::bIsExists(
     tString sRes;
     ULONG   ulStored = 0;
 
-    sRes.resize(MAX_PATH);
+    sRes.resize(xPATH_MAX);
 
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
     /*DEBUG*/// n/a
-    ULONG ulLastError = ::GetLastError();
-    xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == ulLastError, FALSE);
+    xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), FALSE);
 #elif defined(xOS_LINUX)
     char *pszRes = NULL;
 
@@ -66,7 +65,7 @@ CxEnvironment::sGetVar(
 #if defined(xOS_WIN)
     ULONG ulStored = 0;
 
-    sRes.resize(MAX_PATH);
+    sRes.resize(xPATH_MAX);
 
     //not including the terminating null character
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
@@ -104,7 +103,7 @@ CxEnvironment::bSetVar(
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = setenv(csVarName.c_str(), csValue.c_str(), TRUE);
+    INT iRes = std::setenv(csVarName.c_str(), csValue.c_str(), TRUE);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -127,10 +126,10 @@ CxEnvironment::bDeleteVar(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     #if defined(xOS_FREEBSD)
-        unsetenv(csVarName.c_str());
+        std::unsetenv(csVarName.c_str());
         /*DEBUG*/// n/a
     #else
-        INT iRes = unsetenv(csVarName.c_str());
+        INT iRes = std::unsetenv(csVarName.c_str());
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
 #endif
@@ -196,7 +195,7 @@ CxEnvironment::sExpandStrings(
 #if defined(xOS_WIN)
     ULONG ulStored = FALSE;
 
-    sRes.resize(MAX_PATH);
+    sRes.resize(xPATH_MAX);
 
     ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
@@ -280,8 +279,9 @@ CxEnvironment::sGetCommandLine() {
         TCHAR        szBuff[cuiBuffSize + 1] = {0};
         std::size_t  uiBytes                 = 0;
         size_t       uiOffset                = 0;
+        tString      sProcPath               = CxString::sFormat(xT("/proc/%ld/cmdline"), CxProcess::ulGetCurrId());
 
-        BOOL bRes = sfFile.bOpen(xT("/proc/self/cmdline"), CxStdioFile::omRead, TRUE);
+        BOOL bRes = sfFile.bOpen(sProcPath, CxStdioFile::omRead, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
 
         for ( ;; ) {

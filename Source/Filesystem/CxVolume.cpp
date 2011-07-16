@@ -252,7 +252,7 @@ CxVolume::hFindFirstVolume(
     HANDLE hRes = INVALID_HANDLE_VALUE;
 
     psVolumeName->clear();
-    psVolumeName->resize(MAX_PATH);
+    psVolumeName->resize(xPATH_MAX);
 
     hRes = ::FindFirstVolume(&(*psVolumeName)[0], psVolumeName->size());
     /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hRes, INVALID_HANDLE_VALUE);
@@ -278,7 +278,7 @@ CxVolume::hFindFirstVolumeMountPoint(
     HANDLE hRes = INVALID_HANDLE_VALUE;
 
     (*psVolumeMountPoint).clear();
-    (*psVolumeMountPoint).resize(MAX_PATH);
+    (*psVolumeMountPoint).resize(xPATH_MAX);
 
     hRes = ::FindFirstVolumeMountPoint(const_cast<LPTSTR>( csRootPathName.c_str() ), &(*psVolumeMountPoint).at(0), (*psVolumeMountPoint).size());
     /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hRes, INVALID_HANDLE_VALUE);
@@ -327,7 +327,7 @@ CxVolume::bFindNextVolumeMountPoint(
     BOOL bRes = FALSE;
 
     psVolumeMountPoint->clear();
-    psVolumeMountPoint->resize(MAX_PATH);
+    psVolumeMountPoint->resize(xPATH_MAX);
 
     bRes = ::FindNextVolumeMountPoint(hFindVolumeMountPoint, &(*psVolumeMountPoint)[0], psVolumeMountPoint->size());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -524,12 +524,12 @@ CxVolume::bGetInfo(
 
     if (NULL != psVolumeName) {
         (*psVolumeName).clear();
-        (*psVolumeName).resize(MAX_PATH + 1);
+        (*psVolumeName).resize(xPATH_MAX + 1);
     }
 
     if (NULL != psFileSystemName) {
         (*psFileSystemName).clear();
-        (*psFileSystemName).resize(MAX_PATH + 1);
+        (*psFileSystemName).resize(xPATH_MAX + 1);
     }
 
     //
@@ -574,7 +574,7 @@ CxVolume::sGetVolumeNameForVolumeMountPoint(
     TCHAR szRes[50 + 1] = {0};
     BOOL  bRes          = FALSE;
 
-    bRes = ::GetVolumeNameForVolumeMountPoint(CxPath::sSlashAppend(csVolumeMountPoint).c_str(), &szRes[0], MAX_PATH);
+    bRes = ::GetVolumeNameForVolumeMountPoint(CxPath::sSlashAppend(csVolumeMountPoint).c_str(), &szRes[0], xPATH_MAX);
     /*DEBUG*/////xASSERT_RET(FALSE != bRes, tString());
     xCHECK_RET(FALSE == bRes, tString());
 
@@ -618,7 +618,7 @@ CxVolume::sGetVolumePathNamesForVolumeName(
     /*DEBUG*/xASSERT_RET(false == csVolumeName.empty(), tString());
 
 //    BOOL        bRes                           = FALSE;
-    const ULONG culBuffSize                    = MAX_PATH;
+    const ULONG culBuffSize                    = xPATH_MAX;
     tString     sVolumePathNames(culBuffSize, 0);
     ULONG       ulReturnLength                 = 0;
 //    ULONG       ulLastError                    = 0;
