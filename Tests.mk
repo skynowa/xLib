@@ -114,7 +114,7 @@ LINK_FLAGS			:= -pthread -s -static -pipe
 ifeq ($(cOS), Linux)
 LIBRARIES               	:= -ldl -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP
 else
-LIBRARIES               	:= -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP
+LIBRARIES               	:= -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP	# -lc only with out -static
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))

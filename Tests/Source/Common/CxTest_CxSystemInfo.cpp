@@ -92,21 +92,14 @@ CxTest_CxSystemInfo::bUnit() {
     {
         m_sRes = CxSystemInfo::sGetComputerName();
         xASSERT(false == m_sRes.empty());
+        xTRACEV(xT("\tCxSystemInfo::sGetComputerName(): %s"), m_sRes.c_str());
     }
 
     //--------------------------------------------------
     //bIsUserAnAdmin
     {
         m_bRes = CxSystemInfo::bIsUserAnAdmin();
-        #if defined(xOS_WIN)
-            xASSERT(TRUE == m_bRes);
-        #elif defined(xOS_LINUX)
-            #if defined(xOS_FREEBSD)
-                xASSERT(TRUE == m_bRes);
-            #else
-                xASSERT(FALSE == m_bRes);
-            #endif
-        #endif
+        xTRACEV(xT("\tCxSystemInfo::bIsUserAnAdmin(): %s"), CxString::sBoolToStr(m_bRes).c_str());
     }
 
     //-------------------------------------
@@ -114,6 +107,7 @@ CxTest_CxSystemInfo::bUnit() {
     {
         m_sRes = CxSystemInfo::sGetUserName();
         xASSERT(false == m_sRes.empty());
+        xTRACEV(xT("\tCxSystemInfo::sGetUserName(): %s"), m_sRes.c_str());
     }
 
     //-------------------------------------

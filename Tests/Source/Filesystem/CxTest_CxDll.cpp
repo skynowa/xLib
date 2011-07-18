@@ -33,8 +33,11 @@ CxTest_CxDll::bUnit() {
         };
     #elif defined(xOS_LINUX)
         #if defined(xOS_FREEBSD)
-            const tString sData[][2] = {
-                {xT("/lib/libm.so.3"), xT("cos")},
+			//if -static CxDll::bLoad don't load any 'so'-libraries
+			return TRUE;
+
+			const tString sData[][2] = {
+                {xT("libm.so"), xT("cos")},
             };
         #else
             const tString sData[][2] = {
@@ -51,6 +54,8 @@ CxTest_CxDll::bUnit() {
 
         //-------------------------------------
         //bLoad
+        xTRACEV(xT("sData[i][0]: %s"), sData[i][0].c_str());
+
         m_bRes = objDll.bLoad(sData[i][0]);
         xASSERT(FALSE != m_bRes);
 
