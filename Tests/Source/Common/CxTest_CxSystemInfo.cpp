@@ -90,9 +90,13 @@ CxTest_CxSystemInfo::bUnit() {
     {
         m_bRes = CxSystemInfo::bIsUserAnAdmin();
         #if defined(xOS_WIN)
-        xASSERT(TRUE == m_bRes);
+            xASSERT(TRUE == m_bRes);
         #elif defined(xOS_LINUX)
-        xASSERT(FALSE == m_bRes);
+            #if defined(xOS_FREEBSD)
+                xASSERT(TRUE == m_bRes);
+            #else
+                xASSERT(FALSE == m_bRes);
+            #endif
         #endif
     }
 
@@ -100,29 +104,23 @@ CxTest_CxSystemInfo::bUnit() {
     //sGetUserName
     {
         m_sRes = CxSystemInfo::sGetUserName();
-        #if defined(xOS_WIN)
         xASSERT(false == m_sRes.empty());
-        #elif defined(xOS_LINUX)
-        xASSERT_EQUAL(tString(xT("sergey")), m_sRes);
-        #endif
     }
 
 	//-------------------------------------
 	//ulGetNumOfCPUs
 	{
 		m_ulRes = CxSystemInfo::ulGetNumOfCPUs();
-        #if defined(xOS_WIN)
-        xASSERT(4 == m_ulRes);
-        #elif defined(xOS_LINUX)
-        xASSERT(2 == m_ulRes);
-        #endif
+		xTRACEV(xT("CxSystemInfo::ulGetNumOfCPUs: %ld"), m_ulRes);
+        xASSERT(0 < m_ulRes);
 	}
 
 	//-------------------------------------
 	//ulGetCurrentCpuNum
 	{
 		m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
-		//xTRACEV(xT("m_ulRes: %i"), (INT)m_ulRes);
+		xTRACEV(xT("CxSystemInfo::ulGetCurrentCpuNum: %ld"), m_ulRes);
+		xASSERT(static_cast<ULONG>( - 1 ) != m_ulRes);
 		xASSERT(0 <= m_ulRes && CxSystemInfo::ulGetNumOfCPUs() > m_ulRes);
 	}
 

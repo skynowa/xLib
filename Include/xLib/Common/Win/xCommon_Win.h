@@ -83,6 +83,7 @@
 #include <winuser.h>
 #include <Objbase.h>
 #include <process.h>
+#include <Lmcons.h>
 
 #include <sys/locking.h>
 #include <io.h>

@@ -13,12 +13,6 @@
 
 #include <xLib/Filesystem/CxEnvironment.h>
 
-#if defined(xOS_WIN)
-    #include <Lmcons.h>
-#elif defined(xOS_LINUX)
-    #include <sys/utsname.h>
-    #include <sched.h>
-#endif
 
 /****************************************************************************
 *    public
@@ -167,8 +161,8 @@ CxSystemInfo::oaGetOsArchitecture() {
     utsname unKernelInfo= {{0}};
 
     INT iRes = uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1   != iRes, oaUnknown);
-    /*DEBUG*/xASSERT_RET(0 != tString(unKernelInfo.machine).size(), oaUnknown);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes,                                 oaUnknown);
+    /*DEBUG*/xASSERT_RET(0   != tString(unKernelInfo.machine).size(), oaUnknown);
 
     //32-bit checks
     if      (TRUE == CxString::bCompareNoCase(xT("i386"), unKernelInfo.machine)) {
@@ -338,7 +332,7 @@ CxSystemInfo::sGetUserName() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetNumOfCPUs ()
+//DONE: ulGetNumOfCPUs (get num of CPUs)
 /*static*/
 ULONG
 CxSystemInfo::ulGetNumOfCPUs() {
@@ -354,8 +348,18 @@ CxSystemInfo::ulGetNumOfCPUs() {
 
     ulRes = siSysInfo.dwNumberOfProcessors;
 #elif defined(xOS_LINUX)
-    ulRes = static_cast<ULONG>( sysconf(_SC_NPROCESSORS_ONLN) );
-    /*DEBUG*/xASSERT_RET(static_cast<ULONG>( -1 ) != ulRes, 0);
+    #if defined(xOS_FREEBSD)
+        INT    aiMib[]   = {CTL_HW, HW_NCPU};
+        size_t uiResSize = sizeof(ulRes);
+
+        INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRes, &uiResSize, NULL, 0);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0);
+    #else
+        LONG liRes = sysconf(_SC_NPROCESSORS_ONLN);
+        /*DEBUG*/xASSERT_RET(- 1 != liRes, 0);
+
+        ulRes = static_cast<ULONG>( liRes );
+    #endif
 #endif
 
     return ulRes;
@@ -385,16 +389,12 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 #elif defined(xOS_LINUX)
     #if defined(xOS_FREEBSD)
         //TODO: ulGetCurrentCpuNum
-        /*
-        BSD Derivatives include FreeBSD, OpenBSD, NetBSD and MacOS X (Darwin).
-        Newer BSD derivative systems support the _SC_NPROCESSORS_CONF and _SC_NPROCESSORS_ONLN flags to the sysconf function.
-        The number of system processors can also be obtained using the CTL_HW and HW_NCPU flags with the sysctl function.
-        */
-
-         ulRes = 0;
+        ulRes = 0;
     #else
-        ulRes = static_cast<ULONG>( sched_getcpu() );
-        /*DEBUG*/xASSERT_RET(static_cast<ULONG>( - 1 ) != ulRes, static_cast<ULONG>( - 1 ));
+        INT iRes = sched_getcpu();
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
+
+        ulRes = static_cast<ULONG>( iRes );
     #endif
 #endif
 

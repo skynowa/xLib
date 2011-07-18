@@ -24,10 +24,16 @@ class CxEnvironment :
         static BOOL    bDeleteVar         (const tString &csVarName);
         static BOOL    bGetValues         (std::vector<tString> *pvsValues);
         static tString sExpandStrings     (const tString &csvVar);
+
         static tString sGetCommandLine    ();
         static BOOL    bGetCommandLineArgs(std::vector<tString> *pvsArgs);
+        static BOOL    bSetCommandLineArgs(const INT ciArgsCount, TCHAR *pcaszArgs[]);
 
     private:
+        //command line args
+        static size_t  m_uiCommandLineArgsCount;
+        static TCHAR **m_aszCommandLineArgs;
+
                        CxEnvironment      ();
         virtual       ~CxEnvironment      ();
 };

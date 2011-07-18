@@ -1,0 +1,85 @@
+/****************************************************************************
+* Class name:  CxTestManager
+* Description:
+* File name:   CxTestManager.h
+* Author:      skynowa
+* E-mail:      skynowa@gmail.com
+* Created:     18.07.2011
+*
+*****************************************************************************/
+
+
+#include <xLib/Debug/CxTestManager.h>
+
+
+/****************************************************************************
+*   public
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+//DONE: CxTestManager
+CxTestManager::CxTestManager(
+    const BOOL cbIsUseTracing
+) :
+    _m_bRes             (FALSE),
+    _m_cbIsUseTracing   (cbIsUseTracing),
+    _m_ullTimesForAll   (0ULL),
+    _m_ullTimesForSingle(0ULL),
+    _m_ctnTests         ()
+{
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager:  *** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE));
+}
+//---------------------------------------------------------------------------
+//DONE: ~CxTestManager
+/*virtual*/
+CxTestManager::~CxTestManager() {
+    for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
+        /*CxMacros::*/xPTR_DELETE(*it);
+    }
+
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager:  all tests deleted.\n")));
+}
+//---------------------------------------------------------------------------
+//DONE: bAdd (new CxTest)
+BOOL
+CxTestManager::bAdd(
+    CxTest *pvtTest
+)
+{
+    /*DEBUG*/
+    /*DEBUG*/xASSERT_RET(NULL != pvtTest, FALSE)
+
+    _m_ctnTests.push_back( pvtTest );
+
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  added test %s"), pvtTest->sGetName().c_str()));
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bRun (run tests)
+BOOL
+CxTestManager::bRun(
+    const ULONGLONG cullTimesForAll,
+    const ULONGLONG cullTimesForSingle
+)
+{
+    /*DEBUG*/
+
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager:  start all tests...")));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  module path: %s"), CxPath::sGetExe().c_str()));
+
+    for (ULONGLONG i = 0; i < cullTimesForAll; ++ i) {
+        for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
+            xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  run test %s"), (*it)->sGetName().c_str()));
+
+            BOOL bRes = (*it)->bRun(cullTimesForSingle);
+            xASSERT_MSG_RET(FALSE != bRes, ( xT("CxTestManager:  test (") + (*it)->sGetName() + xT(") not complete") ).c_str(), FALSE);
+        }
+    }
+
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager:  all tests successful done.")));
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------

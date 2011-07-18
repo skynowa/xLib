@@ -98,6 +98,7 @@ CxEnvironment::bSetVar(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
+    /*DEBUG*/// csValue - n/a
 
 #if defined(xOS_WIN)
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
@@ -181,7 +182,7 @@ CxEnvironment::bGetValues(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: sExpandStrings
+//DONE: sExpandStrings (expands strings by separator "%")
 /*static*/
 tString
 CxEnvironment::sExpandStrings(
@@ -257,7 +258,18 @@ CxEnvironment::sExpandStrings(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sGetCommandLine (Retrieves the command-line string for the current process)
+
+/****************************************************************************
+*	command line args
+*
+*****************************************************************************/
+
+//--------------------------------------------------------------------------
+//DONE: vars (like __argc, __argv, __wargv)
+size_t  CxEnvironment::m_uiCommandLineArgsCount = 0;
+TCHAR **CxEnvironment::m_aszCommandLineArgs     = NULL;
+//--------------------------------------------------------------------------
+//DONE: sGetCommandLine (get command-line string for the current process)
 /*static*/
 tString
 CxEnvironment::sGetCommandLine() {
@@ -269,9 +281,7 @@ CxEnvironment::sGetCommandLine() {
     LPTSTR pszRes = ::GetCommandLine();
     /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
 
-    sRes.assign(pszRes);
-
-    sRes.assign( CxString::sTrimSpace(sRes) );
+    sRes.assign( CxString::sTrimSpace(pszRes) );
 #elif defined(xOS_LINUX)
     #if xDEPRECIATE
         CxStdioFile  sfFile;
@@ -317,27 +327,12 @@ CxEnvironment::sGetCommandLine() {
 
         sRes.assign( CxString::sTrimSpace(sRes) );
         /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
-    #endif
-
-    #if 1
-        #if defined(xUNICODE)
-            extern int        __argc;
-            extern wchar_t ** __wargv;
-
-            TCHAR **targv = __wargv;
-        #else
-            extern int        __argc;
-            extern char    ** __argv;
-
-            TCHAR **targv = __argv;
-        #endif  /*_UNICODE*/
-
-        /*DEBUG*/xASSERT_RET(NULL != targv, tString());
-
-        for (TCHAR **pszVar = targv; NULL != *pszVar; ++ pszVar) {
+    #else
+        for (TCHAR **pszVar = m_aszCommandLineArgs; NULL != *pszVar; ++ pszVar) {
             sRes.append(*pszVar);
             sRes.append(CxConst::xSPACE);
         }
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
     #endif
 #endif
 
@@ -355,31 +350,31 @@ CxEnvironment::bGetCommandLineArgs(
 
     std::vector<tString> vsArgs;
 
-#if defined(xOS_WIN)
-	////extern int        __argc;   //count of cmd line args
-    ////extern char    ** __argv;   //pointer to table of cmd line args
-    extern wchar_t ** __wargv;  //pointer to table of wide cmd line args
-
-    #if defined(xUNICODE)
-        TCHAR **targv = __wargv;
-    #else
-        TCHAR **targv = __argv;
-    #endif  /*_UNICODE*/
-
-    /*DEBUG*/xASSERT_RET(NULL != targv, FALSE);
-
-    for (TCHAR **pszVar = targv; NULL != *pszVar; ++ pszVar) {
+    for (TCHAR **pszVar = m_aszCommandLineArgs; NULL != *pszVar; ++ pszVar) {
         vsArgs.push_back(*pszVar);
     }
-#elif defined(xOS_LINUX)
-    BOOL bRes = FALSE;
-
-    bRes = CxString::bSplit(sGetCommandLine(), CxConst::xSPACE, &vsArgs);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#endif
+    /*DEBUG*/xASSERT_RET(false         == vsArgs.empty(),           FALSE);
+    /*DEBUG*/xASSERT_RET(vsArgs.size() == m_uiCommandLineArgsCount, FALSE);
 
     //out
     std::swap(*pvsArgs, vsArgs);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bSetCommandLineArgs (set commandline arguments)
+/*static*/
+BOOL
+CxEnvironment::bSetCommandLineArgs(
+    const INT  ciArgsCount,
+    TCHAR     *pcaszArgs[]
+)
+{
+    /*DEBUG*/xASSERT_RET(0    < ciArgsCount, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pcaszArgs,  FALSE);
+
+    m_uiCommandLineArgsCount = static_cast<size_t>( ciArgsCount );
+    m_aszCommandLineArgs     = pcaszArgs;
 
     return TRUE;
 }

@@ -27,8 +27,8 @@ CxTest_CxGz::~CxTest_CxGz() {
 /*virtual*/
 BOOL
 CxTest_CxGz::bUnit() {
-    CxGz gzGz;
-
+//    CxGz gzGz;
+//
 //    INT   iFileIn,
 //    INT   iFileOut,
 //    const tString csOriginName = xT("OriginName");
