@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Test.Eclipse.Linux</name>
+	<name>Test_G++_FreeBSD</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -18,24 +18,16 @@
 					<value>true</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.autoBuildTarget</key>
-					<value>all</value>
-				</dictionary>
-				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildArguments</key>
 					<value></value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildCommand</key>
-					<value>gmake</value>
+					<value>make</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/xLib_test/Debug}</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
-					<value>clean</value>
+					<value>${workspace_loc:/Test_G++_FreeBSD/Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.contents</key>
@@ -54,22 +46,17 @@
 					<value>true</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.fullBuildTarget</key>
-					<value>all</value>
-				</dictionary>
-				<dictionary>
 					<key>org.eclipse.cdt.make.core.stopOnError</key>
 					<value>true</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.useDefaultBuildCmd</key>
-					<value>false</value>
+					<value>true</value>
 				</dictionary>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
-			<triggers>full,incremental,</triggers>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -82,24 +69,19 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Source</name>
+			<name>Include</name>
 			<type>2</type>
-			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Source</locationURI>
+			<location>/usr/home/alca/Coding/C++/xLib/Include</location>
 		</link>
 		<link>
-			<name>TODO.txt</name>
-			<type>1</type>
-			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/TODO.txt</locationURI>
+			<name>Source</name>
+			<type>2</type>
+			<location>/usr/home/alca/Coding/C++/xLib/Source</location>
 		</link>
 		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<location>/usr/home/sergey/Libs/xLib/Tests</location>
-		</link>
-		<link>
-			<name>xLib</name>
-			<type>2</type>
-			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Include/xLib</locationURI>
+			<location>/usr/home/alca/Coding/C++/xLib/Tests</location>
 		</link>
 	</linkedResources>
 </projectDescription>

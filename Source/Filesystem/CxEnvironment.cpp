@@ -41,7 +41,7 @@ CxEnvironment::bIsExists(
 #elif defined(xOS_LINUX)
     char *pszRes = NULL;
 
-    pszRes = std::getenv(csVarName.c_str());
+    pszRes = getenv(csVarName.c_str());
     /*DEBUG*/// n/a
     xCHECK_RET(NULL == pszRes, FALSE);
 #endif
@@ -80,7 +80,7 @@ CxEnvironment::sGetVar(
 #elif defined(xOS_LINUX)
     char *pszRes = NULL;
 
-    pszRes = std::getenv(csVarName.c_str());
+    pszRes = getenv(csVarName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
 
     sRes.assign(pszRes);
@@ -103,7 +103,7 @@ CxEnvironment::bSetVar(
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = std::setenv(csVarName.c_str(), csValue.c_str(), TRUE);
+    INT iRes = setenv(csVarName.c_str(), csValue.c_str(), TRUE);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -126,10 +126,10 @@ CxEnvironment::bDeleteVar(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     #if defined(xOS_FREEBSD)
-        std::unsetenv(csVarName.c_str());
+        unsetenv(csVarName.c_str());
         /*DEBUG*/// n/a
     #else
-        INT iRes = std::unsetenv(csVarName.c_str());
+        INT iRes = unsetenv(csVarName.c_str());
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
 #endif
@@ -319,7 +319,7 @@ CxEnvironment::sGetCommandLine() {
         /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
     #endif
 
-    #if xTEMP_DISABLED
+    #if 1
         #if defined(xUNICODE)
             extern int        __argc;
             extern wchar_t ** __wargv;
