@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//TODO: CxTest_CxCom (comment)
+//TODO: CxTest_CxCom
 CxTest_CxCom::CxTest_CxCom() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxTest_CxCom (comment)
+//TODO: ~CxTest_CxCom
 CxTest_CxCom::~CxTest_CxCom() {
 
 }

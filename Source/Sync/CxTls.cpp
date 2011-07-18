@@ -23,12 +23,12 @@
 CxTls::CxTls() :
     _m_ulIndex(TLS_OUT_OF_INDEXES)
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxTls
 CxTls::~CxTls() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //DONE: bAlloc (Allocates a thread local storage (TLS) index)

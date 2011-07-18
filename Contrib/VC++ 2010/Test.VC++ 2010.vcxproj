@@ -161,6 +161,7 @@
     <ClCompile Include="..\..\Source\Debug\CxProfiler.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxReport.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxTest.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxDir.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxDll.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxEnvironment.cpp" />
@@ -295,14 +296,13 @@
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxEnvironment.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxIni.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxStdioFile.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxFile.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp" />
     <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxAsyncSocket.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCgi.cpp" />
@@ -357,6 +357,13 @@
     <ClCompile Include="..\..\Tests\Source\Units\CxTest_bGetUsbInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Include\xLib\Common\CxArray.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxAutoBuffer.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xTracing.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h" />
+    <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
+    <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h" />
@@ -392,14 +399,13 @@
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxEnvironment.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxFileAttribute.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxIni.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxStdioFile.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxFile.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxAsyncSocket.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCgi.h" />
@@ -597,6 +603,7 @@
     <ClInclude Include="..\..\Include\xLib\Units\Win\bGetUsbInfo.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Source\Common\CxArray.inl" />
     <None Include="..\..\Source\Common\Win\CxHandleT.inl" />
     <None Include="..\..\Source\Sync\CxThreadPool.inl" />
     <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">

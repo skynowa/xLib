@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxCrc32 (comment)
+//DONE: CxTest_CxCrc32
 CxTest_CxCrc32::CxTest_CxCrc32() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxCrc32 (comment)
+//DONE: ~CxTest_CxCrc32
 CxTest_CxCrc32::~CxTest_CxCrc32() {
 
 }

@@ -13,14 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxCompletionPort (comment)
+//DONE: CxTest_CxCompletionPort
 CxTest_CxCompletionPort::CxTest_CxCompletionPort() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxCompletionPort (comment)
+//DONE: ~CxTest_CxCompletionPort
 CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
-	//code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bUnit ()

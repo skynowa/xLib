@@ -15,14 +15,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxTcpClientSocket (comment)
+//DONE: CxTest_CxTcpClientSocket
 CxTest_CxTcpClientSocket::CxTest_CxTcpClientSocket() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxTcpClientSocket (comment)
+//DONE: ~CxTest_CxTcpClientSocket
 CxTest_CxTcpClientSocket::~CxTest_CxTcpClientSocket() {
-	//code
+
 }
 //---------------------------------------------------------------------------
 //DONE: bUnit ()

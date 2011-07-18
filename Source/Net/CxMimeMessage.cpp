@@ -15,11 +15,11 @@
 #if defined(xOS_WIN)
 //---------------------------------------------------------------------------
 CxMimeMessage::CxMimeMessage() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 CxMimeMessage::~CxMimeMessage() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 /*static*/BOOL CxMimeMessage::bParse(const tString &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body) {

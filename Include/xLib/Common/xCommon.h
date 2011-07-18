@@ -15,6 +15,9 @@
 #include <xLib/Common/xConfig.h>
 #include <xLib/Common/xDefines.h>
 
+//tracing
+#include <xLib/Common/xTracing.h>
+
 //C library
 #include <stdio.h>
 #include <stdlib.h>

@@ -15,7 +15,9 @@
 #include <xLib/Gui/Win/xCommon.h>
 #include <xLib/Common/CxString.h>
 //---------------------------------------------------------------------------
-class CxMsgBoxT : public CxNonCopyable  {
+class CxMsgBoxT : 
+    public CxNonCopyable 
+{
     public:
         enum EModalResult {
             mrAbort  = IDABORT,

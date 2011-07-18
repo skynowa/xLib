@@ -16,14 +16,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxTcpServerSocket (comment)
+//DONE: CxTest_CxTcpServerSocket
 CxTest_CxTcpServerSocket::CxTest_CxTcpServerSocket() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxTcpServerSocket (comment)
+//DONE: ~CxTest_CxTcpServerSocket
 CxTest_CxTcpServerSocket::~CxTest_CxTcpServerSocket() {
-	//code
+
 }
 //---------------------------------------------------------------------------
 //DONE: bUnit ()

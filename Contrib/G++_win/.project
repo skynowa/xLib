@@ -91,11 +91,6 @@
 			<location>D:/xLib/TODO.txt</location>
 		</link>
 		<link>
-			<name>Test.cpp</name>
-			<type>1</type>
-			<location>D:/xLib/Tests/Test.cpp</location>
-		</link>
-		<link>
 			<name>Tests</name>
 			<type>2</type>
 			<location>D:/xLib/Tests</location>

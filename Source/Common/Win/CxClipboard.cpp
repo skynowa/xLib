@@ -19,7 +19,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxClipboard (comment)
+//DONE: CxClipboard
 CxClipboard::CxClipboard() :
     _m_bRes     (FALSE),
     _m_hObject  (NULL),
@@ -27,7 +27,8 @@ CxClipboard::CxClipboard() :
 {
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxClipboard (comment)
+//DONE: ~CxClipboard
+/*virtual*/
 CxClipboard::~CxClipboard() {
     /*DEBUG*///
 }

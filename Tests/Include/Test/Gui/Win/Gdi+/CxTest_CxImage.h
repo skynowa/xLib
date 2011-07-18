@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxComPort
-* Description: test CxComPort
-* File name:   CxTest_CxComPort.h
+* Class name:  CxTest_CxImage
+* Description: test CxImage
+* File name:   CxTest_CxImage.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,25 +9,24 @@
 *****************************************************************************/
 
 
-#include <Test/Common/CxTest_CxComPort.h>
-
-
+#ifndef CxTest_CxImageH
+#define CxTest_CxImageH
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxComPort
-CxTest_CxComPort::CxTest_CxComPort() {
-    bSetName(xT(xFUNCTION));
-}
+#include <xLib/Common/xCommon.h>
+#include <xLib/Debug/CxTest.h>
+#include <xLib/Gui/Win/GDI+/CxGdiplus.h>
+#include <xLib/Gui/Win/GDI+/CxImage.h>
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxComPort
-CxTest_CxComPort::~CxTest_CxComPort() {
+class CxTest_CxImage : 
+    public CxTest 
+{
+	public:
+                     CxTest_CxImage();
+		virtual     ~CxTest_CxImage();
 
-}
-//---------------------------------------------------------------------------
-//TODO: bUnit ()
-/*virtual*/
-BOOL CxTest_CxComPort::bUnit() {
-    /*DEBUG*/
+		virtual BOOL bUnit();
 
-    return TRUE;
-}
+	private:
+};
 //---------------------------------------------------------------------------
+#endif //CxTest_CxImageH

@@ -108,7 +108,7 @@
 #include <Test/Sync/CxTest_CxThread.h>
 
 #if defined(xOS_WIN)
-        #include <Test/Sync/CxTest_CxEvent.h>
+    #include <Test/Sync/CxTest_CxEvent.h>
     #include <Test/Sync/CxTest_CxMutex.h>
     #include <Test/Sync/CxTest_CxAutoMutex.h>
     #include <Test/Sync/CxTest_CxSleeper.h>
@@ -118,8 +118,8 @@
 
 //Gui
 #if defined(xOS_WIN)
-    ////#include <Test/Gui/GDI+/CxTest_CxGdiplus.h>
-    ////#include <Test/Gui/GDI+/CxTest_CxImage.h>
+    #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
+    #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
 #endif
 
 //Units
@@ -228,7 +228,7 @@ _tmain(
     bRes = tmManager.bAdd( new CxTest_CxFileAttribute );
     bRes = tmManager.bAdd( new CxTest_CxIni );
     bRes = tmManager.bAdd( new CxTest_CxVolume );
-#if xTEMP_DISABLED
+#if 1
     #if defined(xOS_WIN)
     bRes = tmManager.bAdd( new CxTest_CxFile );
     ////bRes = tmManager.bAdd( new CxTest_CxIni );
@@ -284,7 +284,7 @@ _tmain(
     //Gui
     #if defined(xOS_WIN)
     bRes = tmManager.bAdd( new CxTest_CxGdiplus );
-    ////bRes = tmManager.bAdd( new CxTest_CxImage );
+    bRes = tmManager.bAdd( new CxTest_CxImage );
     #endif
 
     //--------------------------------------------------

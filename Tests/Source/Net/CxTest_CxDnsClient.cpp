@@ -13,14 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxDnsClient (comment)
+//DONE: CxTest_CxDnsClient
 CxTest_CxDnsClient::CxTest_CxDnsClient() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxDnsClient (comment)
+//DONE: ~CxTest_CxDnsClient
 CxTest_CxDnsClient::~CxTest_CxDnsClient() {
-	//code
+
 }
 //---------------------------------------------------------------------------
 //DONE: bUnit ()

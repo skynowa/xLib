@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAutoProfiler (comment)
+//DONE: CxTest_CxAutoProfiler
 CxTest_CxAutoProfiler::CxTest_CxAutoProfiler() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAutoProfiler (comment)
+//DONE: ~CxTest_CxAutoProfiler
 CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 
 }

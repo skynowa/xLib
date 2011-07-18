@@ -31,13 +31,13 @@ CxDecrypt::CxDecrypt(
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxDecrypt
 /*virtual*/
 CxDecrypt::~CxDecrypt() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bInit (initializes a decryption operation)

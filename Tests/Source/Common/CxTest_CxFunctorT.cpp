@@ -82,12 +82,12 @@ class CThread {
 };
 CThread objThread;
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxFunctorT (comment)
+//DONE: CxTest_CxFunctorT
 CxTest_CxFunctorT::CxTest_CxFunctorT() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxFunctorT (comment)
+//DONE: ~CxTest_CxFunctorT
 CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 
 }

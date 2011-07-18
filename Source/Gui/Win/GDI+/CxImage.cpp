@@ -9,7 +9,6 @@
 *****************************************************************************/
 
 
-#if defined(xOS_WIN)
 #include <xLib/Gui/Win/GDI+/CxImage.h>
 
 #include <xLib/Common/CxAutoMallocT.h>
@@ -17,12 +16,12 @@
 ////using namespace Gdiplus;
 
 /****************************************************************************
-*    Public methods
+*    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxImage (�����������)
+//TODO: CxImage
 CxImage::CxImage() :
     _m_stRes    (Gdiplus::GenericError),
     _m_pimgImage(NULL)
@@ -30,15 +29,20 @@ CxImage::CxImage() :
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxImage (����������)
+//TODO: ~CxImage
+/*virtual*/
 CxImage::~CxImage() {
     /*DEBUG*/
 
     bDestroy();
 }
 //---------------------------------------------------------------------------
-//TODO: bLoad (�������� �� �����)
-BOOL CxImage::bLoad(const tString &csFilePath) {
+//TODO: bLoad ()
+BOOL 
+CxImage::bLoad(
+    const tString &csFilePath
+)
+{
     /*DEBUG*/// _m_pimgImage - n/a
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
@@ -50,14 +54,18 @@ BOOL CxImage::bLoad(const tString &csFilePath) {
     _m_pimgImage = Gdiplus::Image::FromFile(std::wstring(csFilePath.begin(), csFilePath.end()).c_str());
 #endif
 
-    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,                         FALSE);
+    /*DEBUG*/xASSERT_RET(NULL        != _m_pimgImage,                  FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bLoad (�������� �� ������)
-BOOL CxImage::bLoad(IStream *pisStream) {
+//TODO: bLoad ()
+BOOL 
+CxImage::bLoad(
+    IStream *pisStream
+)
+{
     /*DEBUG*/// _m_pimgImage - n/a
     /*DEBUG*/xASSERT_RET(NULL != pisStream, FALSE);
 
@@ -70,8 +78,13 @@ BOOL CxImage::bLoad(IStream *pisStream) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSave (���������� � ����)
-BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
+//TODO: bSave ()
+BOOL 
+CxImage::bSave(
+    const tString &csFilePath, 
+    EEncoderType etType
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,        FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// etType - n/a
@@ -87,7 +100,7 @@ BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
         default:        { sEncoderType = xT("image/jpeg"); }     break;
     }
 
-    // Save the altered image.
+    //Save the altered image.
     CLSID cidClsid = {0};
     _bGetEncoderClsid(sEncoderType, &cidClsid);
 
@@ -102,8 +115,13 @@ BOOL CxImage::bSave(const tString &csFilePath, EEncoderType etType) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSave (���������� � �����)
-BOOL CxImage::bSave(IStream *pisStream, EEncoderType etType) {
+//TODO: bSave ()
+BOOL 
+CxImage::bSave(
+    IStream *pisStream, 
+    EEncoderType etType
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pisStream,    FALSE);
     /*DEBUG*/// etType - n/a
@@ -114,7 +132,7 @@ BOOL CxImage::bSave(IStream *pisStream, EEncoderType etType) {
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
         case etGif:     { sEncoderType = xT("image/gif");  }    break;
         case etTiff:    { sEncoderType = xT("image/tiff"); }    break;
-        case etPng:         { sEncoderType = xT("image/png");  }    break;
+        case etPng:     { sEncoderType = xT("image/png");  }    break;
 
         default:        { sEncoderType = xT("image/jpeg"); }     break;
     }
@@ -131,8 +149,13 @@ BOOL CxImage::bSave(IStream *pisStream, EEncoderType etType) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bDraw (���������)
-BOOL CxImage::bDraw(HDC hDC, const RECT &crcRect) {
+//TODO: bDraw ()
+BOOL 
+CxImage::bDraw(
+    HDC         hDC, 
+    const RECT &crcRect
+)
+{
     xCHECK_RET(FALSE == bIsLoaded(), TRUE);
 
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, FALSE);
@@ -149,8 +172,16 @@ BOOL CxImage::bDraw(HDC hDC, const RECT &crcRect) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bDraw (���������)
-BOOL CxImage::bDraw(HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight) {
+//TODO: bDraw ()
+BOOL 
+CxImage::bDraw(
+    HDC hDC, 
+    INT iLeft, 
+    INT iTop, 
+    INT iWidth, 
+    INT iHeight
+)
+{
     xCHECK_RET(FALSE == bIsLoaded(), TRUE);
 
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, FALSE);
@@ -169,9 +200,13 @@ BOOL CxImage::bDraw(HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bClear (�������)
+//TODO: bClear ()
 /*
-VOID Example_Clear(HDC hdc) {
+VOID 
+Example_Clear(
+    HDC hdc
+)
+{
     Graphics graphics(hdc);
 
     // Create a Color object.
@@ -181,7 +216,12 @@ VOID Example_Clear(HDC hdc) {
     graphics.Clear(blueColor);
 }
 */
-BOOL CxImage::bClear(HDC hDC, Gdiplus::Color clBackGround) {
+BOOL 
+CxImage::bClear(
+    HDC            hDC, 
+    Gdiplus::Color clBackGround
+)
+{
     /*DEBUG*/// _m_pimgImage - n/a
 
     Gdiplus::Graphics grGraphics(hDC);
@@ -193,8 +233,9 @@ BOOL CxImage::bClear(HDC hDC, Gdiplus::Color clBackGround) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bDestroy (����������)
-BOOL CxImage::bDestroy() {
+//TODO: bDestroy ()
+BOOL 
+CxImage::bDestroy() {
     /*DEBUG*/// _m_pimgImage - n/a
 
     /*CxMacros::*/xPTR_DELETE(_m_pimgImage);
@@ -204,53 +245,61 @@ BOOL CxImage::bDestroy() {
 }
 //---------------------------------------------------------------------------
 //TODO: bIsLoaded ()
-BOOL CxImage::bIsLoaded() {
+BOOL 
+CxImage::bIsLoaded() {
     /*DEBUG*/// n/a
 
     return NULL != _m_pimgImage;
 }
 //---------------------------------------------------------------------------
 //TODO: uiGetWidth ()
-UINT CxImage::uiGetWidth() {
+UINT 
+CxImage::uiGetWidth() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
 
     return _m_pimgImage->GetWidth();
 }
 //---------------------------------------------------------------------------
 //TODO: uiGetHeight ()
-UINT CxImage::uiGetHeight() {
+UINT 
+CxImage::uiGetHeight() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
 
     return _m_pimgImage->GetHeight();
 }
 //---------------------------------------------------------------------------
 //TODO: stGetLastStatus ()
-Gdiplus::Status CxImage::stGetLastStatus() {
+Gdiplus::Status 
+CxImage::stGetLastStatus() {
     /*DEBUG*/// _m_pimgImage - n/a
 
     return _m_pimgImage->GetLastStatus();
 }
 //---------------------------------------------------------------------------
 //TODO: sGetLastStatus ()
-tString CxImage::sGetLastStatus(Gdiplus::Status stCode) {
+tString 
+CxImage::sGetLastStatus(
+    Gdiplus::Status stCode
+)
+{
     /*DEBUG*/// _m_pimgImage - n/a
 
     tString sRes;
 
     switch (stCode) {
         case Gdiplus::Ok:                        { sRes = xT("Ok");                         }    break;
-        case Gdiplus::GenericError:              { sRes = xT("GenericError");                 }    break;
-        case Gdiplus::InvalidParameter:          { sRes = xT("InvalidParameter");             }    break;
-        case Gdiplus::OutOfMemory:               { sRes = xT("OutOfMemory");                 }    break;
-        case Gdiplus::ObjectBusy:                { sRes = xT("ObjectBusy");                    }    break;
+        case Gdiplus::GenericError:              { sRes = xT("GenericError");               }    break;
+        case Gdiplus::InvalidParameter:          { sRes = xT("InvalidParameter");           }    break;
+        case Gdiplus::OutOfMemory:               { sRes = xT("OutOfMemory");                }    break;
+        case Gdiplus::ObjectBusy:                { sRes = xT("ObjectBusy");                 }    break;
         case Gdiplus::InsufficientBuffer:        { sRes = xT("InsufficientBuffer");         }    break;
         case Gdiplus::NotImplemented:            { sRes = xT("NotImplemented");             }    break;
         case Gdiplus::Win32Error:                { sRes = xT("Win32Error");                 }    break;
         case Gdiplus::WrongState:                { sRes = xT("WrongState");                 }    break;
-        case Gdiplus::Aborted:                   { sRes = xT("Aborted");                     }    break;
-        case Gdiplus::FileNotFound:              { sRes = xT("FileNotFound");                 }    break;
-        case Gdiplus::ValueOverflow:             { sRes = xT("ValueOverflow");                 }    break;
-        case Gdiplus::AccessDenied:              { sRes = xT("AccessDenied");                 }    break;
+        case Gdiplus::Aborted:                   { sRes = xT("Aborted");                    }    break;
+        case Gdiplus::FileNotFound:              { sRes = xT("FileNotFound");               }    break;
+        case Gdiplus::ValueOverflow:             { sRes = xT("ValueOverflow");              }    break;
+        case Gdiplus::AccessDenied:              { sRes = xT("AccessDenied");               }    break;
         case Gdiplus::UnknownImageFormat:        { sRes = xT("UnknownImageFormat");         }    break;
         case Gdiplus::FontFamilyNotFound:        { sRes = xT("FontFamilyNotFound");         }    break;
         case Gdiplus::FontStyleNotFound:         { sRes = xT("FontStyleNotFound");          }    break;
@@ -259,7 +308,10 @@ tString CxImage::sGetLastStatus(Gdiplus::Status stCode) {
         case Gdiplus::GdiplusNotInitialized:     { sRes = xT("GdiplusNotInitialized");      }    break;
         case Gdiplus::PropertyNotFound:          { sRes = xT("PropertyNotFound");           }    break;
         case Gdiplus::PropertyNotSupported:      { sRes = xT("PropertyNotSupported");       }    break;
-        ////BC++: case Gdiplus::ProfileNotFound:           { sRes = xT("ProfileNotFound");            }    break;
+
+    #if defined(xCOMPILER_CODEGEAR)
+        case Gdiplus::ProfileNotFound:           { sRes = xT("ProfileNotFound");            }    break;
+    #endif
 
         default:                                 { sRes = xT("Unknown");                    }    break;
     }
@@ -269,15 +321,19 @@ tString CxImage::sGetLastStatus(Gdiplus::Status stCode) {
 //---------------------------------------------------------------------------
 
 
-
 /****************************************************************************
 *    private
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: _bGetEncoderClsid (��������� CLSID ������)
-BOOL CxImage::_bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid) {
+//TODO: _bGetEncoderClsid ()
+BOOL 
+CxImage::_bGetEncoderClsid(
+    const tString &csFormat, 
+    CLSID         *pcidClsid
+)
+{
     /*DEBUG*/// _m_pimgImage - n/a
     /*DEBUG*/xASSERT_RET(false == csFormat.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pcidClsid,         FALSE);
@@ -311,6 +367,3 @@ BOOL CxImage::_bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid) {
     return FALSE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
-#endif

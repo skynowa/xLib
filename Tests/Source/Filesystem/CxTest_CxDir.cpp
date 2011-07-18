@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxDir (comment)
+//DONE: CxTest_CxDir
 CxTest_CxDir::CxTest_CxDir() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxDir (comment)
+//DONE: ~CxTest_CxDir
 CxTest_CxDir::~CxTest_CxDir() {
 
 }

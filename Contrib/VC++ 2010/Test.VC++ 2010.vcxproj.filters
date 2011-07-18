@@ -148,6 +148,12 @@
     <Filter Include="Test\Filesystem\Win">
       <UniqueIdentifier>{97fb30c2-d064-4143-a262-7cc253d23568}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test\Gui\Win">
+      <UniqueIdentifier>{1838b8c7-e8b4-4ae8-abe1-72d26f790f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Gui\Win\Gdi+">
+      <UniqueIdentifier>{9760a4cd-7ccc-42b6-ae57-106c75499433}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Crypt\CxBase64.cpp">
@@ -215,12 +221,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp">
-      <Filter>xLib\Gui\Win\GDI+\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp">
-      <Filter>xLib\Gui\Win\GDI+\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Log\CxConsoleLog.cpp">
       <Filter>xLib\Log</Filter>
@@ -642,8 +642,23 @@
     <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxFile.cpp">
       <Filter>Test\Filesystem\Win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp">
-      <Filter>Test\Filesystem\Win</Filter>
+    <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp">
+      <Filter>xLib\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxIni.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp">
+      <Filter>xLib\Gui\Win\GDI+\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp">
+      <Filter>xLib\Gui\Win\GDI+\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp">
+      <Filter>Test\Gui\Win\Gdi+</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp">
+      <Filter>Test\Gui\Win\Gdi+</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1166,11 +1181,38 @@
     <ClInclude Include="..\..\Tests\Include\Test\Compress\CxTest_CxGz.h">
       <Filter>Test\Compress</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h">
-      <Filter>Test\Filesystem\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxFile.h">
       <Filter>Test\Filesystem\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h">
+      <Filter>xLib\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxIni.h">
+      <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h">
+      <Filter>xLib\Gui\Win\GDI+\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h">
+      <Filter>xLib\Gui\Win\GDI+\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h">
+      <Filter>Test\Gui\Win\Gdi+</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h">
+      <Filter>Test\Gui\Win\Gdi+</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\xTracing.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\xCheks.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\CxArray.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\CxAutoBuffer.h">
+      <Filter>xLib\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1182,6 +1224,9 @@
     </None>
     <None Include="..\..\TODO.txt">
       <Filter>Test</Filter>
+    </None>
+    <None Include="..\..\Source\Common\CxArray.inl">
+      <Filter>xLib\Common</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1208,12 +1253,6 @@
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxT.h">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h">
-      <Filter>xLib\Gui\Win\GDI+\Win</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h">
-      <Filter>xLib\Gui\Win\GDI+\Win</Filter>
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxHttpClient.h">
       <Filter>xLib\Net</Filter>

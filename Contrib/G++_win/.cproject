@@ -66,8 +66,6 @@
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.642560400" name="CxPop3.h" rcbsApplicability="disable" resourcePath="Include/Net/CxPop3.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.1399140347" name="CxTcpServerSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxTcpServerSocket.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.703975957" name="CxMimeMessage.h" rcbsApplicability="disable" resourcePath="Include/Net/CxMimeMessage.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.1846594167" name="CxSMTPConn.h" rcbsApplicability="disable" resourcePath="Include/Net/Win/CxSMTPConn.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.1789708408" name="CxQueryList.h" rcbsApplicability="disable" resourcePath="Include/Net/CxQueryList.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.364807675" name="CxDnsClient.h" rcbsApplicability="disable" resourcePath="Include/Net/CxDnsClient.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.763678035" name="CxAsyncSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxAsyncSocket.h" toolsToInvoke=""/>
 					<sourceEntries>
@@ -135,8 +133,6 @@
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1195476245" name="CxPop3.h" rcbsApplicability="disable" resourcePath="Include/Net/CxPop3.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.680528102" name="CxTcpServerSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxTcpServerSocket.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1326617785" name="CxMimeMessage.h" rcbsApplicability="disable" resourcePath="Include/Net/CxMimeMessage.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1711938769" name="CxSMTPConn.h" rcbsApplicability="disable" resourcePath="Include/Net/Win/CxSMTPConn.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.498500413" name="CxQueryList.h" rcbsApplicability="disable" resourcePath="Include/Net/CxQueryList.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.7799946" name="CxDnsClient.h" rcbsApplicability="disable" resourcePath="Include/Net/CxDnsClient.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1656127581" name="CxAsyncSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxAsyncSocket.h" toolsToInvoke=""/>
 					<sourceEntries>

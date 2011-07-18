@@ -30,13 +30,13 @@ CxDigest::CxDigest(
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxDigest ()
 /*virtual*/
 CxDigest::~CxDigest() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bMake (digests data in a single part)
