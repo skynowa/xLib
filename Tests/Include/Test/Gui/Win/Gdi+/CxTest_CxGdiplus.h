@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxComPort
-* Description: test CxComPort
-* File name:   CxTest_CxComPort.h
+* Class name:  CxTest_CxGdiplus
+* Description: test CxGdiplus
+* File name:   CxTest_CxGdiplus.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,25 +9,23 @@
 *****************************************************************************/
 
 
-#include <Test/Common/CxTest_CxComPort.h>
-
-
+#ifndef CxTest_CxGdiplusH
+#define CxTest_CxGdiplusH
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxComPort
-CxTest_CxComPort::CxTest_CxComPort() {
-    bSetName(xT(xFUNCTION));
-}
+#include <xLib/Common/xCommon.h>
+#include <xLib/Debug/CxTest.h>
+#include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxComPort
-CxTest_CxComPort::~CxTest_CxComPort() {
+class CxTest_CxGdiplus : 
+    public CxTest 
+{
+	public:
+                     CxTest_CxGdiplus();
+		virtual     ~CxTest_CxGdiplus();
 
-}
-//---------------------------------------------------------------------------
-//TODO: bUnit ()
-/*virtual*/
-BOOL CxTest_CxComPort::bUnit() {
-    /*DEBUG*/
+		virtual BOOL bUnit();
 
-    return TRUE;
-}
+	private:
+};
 //---------------------------------------------------------------------------
+#endif //CxTest_CxGdiplusH

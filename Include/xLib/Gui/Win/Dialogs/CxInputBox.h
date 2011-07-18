@@ -20,7 +20,9 @@
 #define ID_btnOK        IDOK
 #define ID_btnCancel    IDCANCEL
 //---------------------------------------------------------------------------
-class CxInputBox : public CxNonCopyable {
+class CxInputBox : 
+    public CxNonCopyable 
+{
     public:
         //
         enum EModalResult {
@@ -29,7 +31,7 @@ class CxInputBox : public CxNonCopyable {
         };
 
                                 CxInputBox  ();
-        virtual                   ~CxInputBox  ();
+        virtual                ~CxInputBox  ();
 
         EModalResult            mrShowModal (const tString &csCaption, const tString &csPrompt, const tString &csText);
         tString                 sGetText    ();
@@ -44,7 +46,7 @@ class CxInputBox : public CxNonCopyable {
         HWND                    _m_hEdtText;
 
         //---------------------------------------------------------------------------
-        //TODO: ms_pWndProc (������)
+        //TODO: ms_pWndProc
         static LRESULT CALLBACK _ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
 };
 //---------------------------------------------------------------------------

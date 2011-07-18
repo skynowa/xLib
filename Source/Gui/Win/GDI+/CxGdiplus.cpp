@@ -9,19 +9,18 @@
 *****************************************************************************/
 
 
-#if defined(xOS_WIN)
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 
 using namespace Gdiplus;
 
 
 /****************************************************************************
-*    Public methods
+*    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxGdiplus (comment)
+//DONE: CxGdiplus
 CxGdiplus::CxGdiplus() :
     _m_pulToken(0)
 {
@@ -31,7 +30,8 @@ CxGdiplus::CxGdiplus() :
     /*DEBUG*/xASSERT_DO(Gdiplus::Ok == stRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxGdiplus (comment)
+//DONE: ~CxGdiplus
+/*virtual*/
 CxGdiplus::~CxGdiplus() {
     Gdiplus::GdiplusShutdown(_m_pulToken);
     /*DEBUG*/// n/a
@@ -39,6 +39,3 @@ CxGdiplus::~CxGdiplus() {
     _m_pulToken = NULL;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
-#endif

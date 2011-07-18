@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxDateTime (comment)
+//DONE: CxTest_CxDateTime
 CxTest_CxDateTime::CxTest_CxDateTime() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxDateTime (comment)
+//DONE: ~CxTest_CxDateTime
 CxTest_CxDateTime::~CxTest_CxDateTime() {
 
 }

@@ -70,18 +70,14 @@ CxConnectionString::sMSJetOleDb40(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxConnectionString (comment)
+//DONE: CxConnectionString
 CxConnectionString::CxConnectionString() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxConnectionString (comment)
+//DONE: ~CxConnectionString
 /*virtual*/
 CxConnectionString::~CxConnectionString() {
 
 }
 //---------------------------------------------------------------------------
-
-
-
-

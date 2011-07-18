@@ -29,12 +29,12 @@ class CLogger {
 };
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSingleton (comment)
+//DONE: CxTest_CxSingleton
 CxTest_CxSingleton::CxTest_CxSingleton() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSingleton (comment)
+//DONE: ~CxTest_CxSingleton
 CxTest_CxSingleton::~CxTest_CxSingleton() {
 
 }

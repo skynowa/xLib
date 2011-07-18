@@ -30,13 +30,13 @@ CxFunction::CxFunction(
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxFunction ()
 /*virtual*/
 CxFunction::~CxFunction() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bGetList (returns the function list)

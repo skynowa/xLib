@@ -168,12 +168,12 @@ CxFileAttribute::bClear(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxFileAttribute (comment)
+//DONE: CxFileAttribute
 CxFileAttribute::CxFileAttribute() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxFileAttribute (comment)
+//DONE: ~CxFileAttribute
 /*virtual*/
 CxFileAttribute::~CxFileAttribute() {
 

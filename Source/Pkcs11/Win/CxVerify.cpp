@@ -30,13 +30,13 @@ CxVerify::CxVerify(
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxVerify ()
 /*virtual*/
 CxVerify::~CxVerify() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bInit (initializes a verification operation, where the signature is an appendix to the data, and plaintext cannot cannot be recovered from the signature (e.g. DSA))

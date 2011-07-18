@@ -12,11 +12,12 @@
 #ifndef xLib_GdiPlus_CxImageH
 #define xLib_GdiPlus_CxImageH
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
 #include <xLib/Common/xCommon.h>
 #include <GDIPlus.h>
 //---------------------------------------------------------------------------
-class CxImage : public CxNonCopyable {
+class CxImage : 
+    public CxNonCopyable 
+{
     public:
         enum EEncoderType {
             etBmp  = 0,
@@ -27,7 +28,7 @@ class CxImage : public CxNonCopyable {
         };
 
                         CxImage   ();
-                       ~CxImage   ();
+        virtual        ~CxImage   ();
 
         BOOL            bLoad     (const tString &csFilePath);
         BOOL            bLoad     (IStream *pisStream);
@@ -51,8 +52,5 @@ class CxImage : public CxNonCopyable {
 
         BOOL            _bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid);
 };
-#elif defined(xOS_LINUX)
-
-#endif
 //---------------------------------------------------------------------------
 #endif //xLib_GdiPlus_CxImageH

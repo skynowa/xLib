@@ -13,14 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSocket (comment)
+//DONE: CxTest_CxSocket
 CxTest_CxSocket::CxTest_CxSocket() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSocket (comment)
+//DONE: ~CxTest_CxSocket
 CxTest_CxSocket::~CxTest_CxSocket() {
-	//code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bUnit ()

@@ -28,12 +28,12 @@ CxInfo::CxInfo(
     _m_ulRes(!CKR_OK),
     _m_pFunc(cPkcs11.pGetFuncList())
 {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxInfo ()
 CxInfo::~CxInfo() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 //TODO: bGet (returns general information about Cryptoki)

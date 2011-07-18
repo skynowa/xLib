@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxFile (comment)
+//DONE: CxTest_CxFile
 CxTest_CxFile::CxTest_CxFile() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxFile (comment)
+//DONE: ~CxTest_CxFile
 CxTest_CxFile::~CxTest_CxFile() {
 
 }

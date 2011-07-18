@@ -35,7 +35,7 @@ CxInputBox::~CxInputBox() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: iShowModal (�����������)
+//DONE: iShowModal ()
 CxInputBox::EModalResult 
 CxInputBox::mrShowModal(const tString &csCaption, const tString &csPrompt, const tString &csText) {
     /*DEBUG*/// csCaption - n/a

@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxPkcs11 (comment)
+//DONE: CxTest_CxPkcs11
 CxTest_CxPkcs11::CxTest_CxPkcs11() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxPkcs11 (comment)
+//DONE: ~CxTest_CxPkcs11
 CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 
 }

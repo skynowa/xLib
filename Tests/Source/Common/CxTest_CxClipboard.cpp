@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxClipboard (comment)
+//DONE: CxTest_CxClipboard
 CxTest_CxClipboard::CxTest_CxClipboard() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxClipboard (comment)
+//DONE: ~CxTest_CxClipboard
 CxTest_CxClipboard::~CxTest_CxClipboard() {
 
 }

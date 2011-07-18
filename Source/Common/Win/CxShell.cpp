@@ -221,14 +221,15 @@ CxShell::bCreateShortcut(const tString &csFilePath, const tString &csShortCutPat
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxShell (comment)
+//TODO: CxShell
 CxShell::CxShell() {
-    //code
+
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxShell (comment)
+//TODO: ~CxShell
+/*virtual*/
 CxShell::~CxShell() {
-    //code
+
 }
 //---------------------------------------------------------------------------
 
