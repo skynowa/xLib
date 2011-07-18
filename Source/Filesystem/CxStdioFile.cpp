@@ -1557,7 +1557,7 @@ CxStdioFile::bBinWrite(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: sBackup (backup)
+//DONE: sBackup (backup)
 /*static*/
 tString
 CxStdioFile::sBackup(
@@ -1592,14 +1592,20 @@ CxStdioFile::sBackup(
 
     //-------------------------------------
     //check for enough space
-    ULONGLONG ullTotalFreeBytes = 0;
-    bRes = CxVolume::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
-    xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup")); return tString());
+    ULONGLONG ullTotalFreeBytes = 0ULL;
+    bRes = CxVolume::bGetFreeSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
+    xCHECK_RET(FALSE == bRes, tString());
+
+    if (static_cast<ULONGLONG>( liGetSize(csFilePath) ) > ullTotalFreeBytes) {
+    	////TODO: CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"));
+
+    	return tString();
+    }
 
     //-------------------------------------
     //copy
     bRes = bCopy(csFilePath, sBackupFilePath, TRUE);
-    xCHECK_RET(FALSE == bRes, FALSE);
+    xCHECK_RET(FALSE == bRes, tString());
 
     //-------------------------------------
     //check for a valid backup
