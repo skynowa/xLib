@@ -150,10 +150,10 @@ _tmain(
 
 
     {
-#if 0 && defined(xOS_FREEBSD) 
+#if 1 && defined(xOS_FREEBSD) 
         xTRACEV("argv[0]: %s", argv[0]);
 
-        char szRealPath[xPATH_MAX + 1] = {0};
+        char szRealPath[PATH_MAX + 1] = {0};
 
         char *pszRes = realpath(argv[0], szRealPath);
         xASSERT(NULL != pszRes);
@@ -165,7 +165,7 @@ _tmain(
         /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 0);
         /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), 0);
 
-        return 0;
+        //return 0;
 #endif
     }
 extern char *__progname;
