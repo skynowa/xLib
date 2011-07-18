@@ -117,9 +117,9 @@ CxVolume::bGetFreeSpace(
     tString _sDirPath;
 
     if (true == csDirPath.empty()) {
-        _sDirPath = CxPath::sGetExeDir().c_str();
+        _sDirPath = CxPath::sGetExeDir();
     } else {
-        _sDirPath = csDirPath.c_str();
+        _sDirPath = csDirPath;
     }
 
 #if defined(xOS_WIN)

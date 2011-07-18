@@ -53,7 +53,7 @@
 
 //Db
 #include <Test/Db/CxTest_CxConnectionString.h>
-#include <Test/Db/CxTest_CxMySql.h>
+////#include <Test/Db/CxTest_CxMySql.h>
 
 //Debug
 #include <Test/Debug/CxTest_CxLastError.h>
@@ -96,7 +96,7 @@
 #if defined(xOS_WIN)
 
 #elif defined(xOS_LINUX)
-    #include <Test/Net/CxTest_CxGeoIp.h>
+    ////#include <Test/Net/CxTest_CxGeoIp.h>
 #endif
 
 //Patterns
@@ -155,7 +155,7 @@ _tmain(
         tcout << "Content-type: text/html\n\n" << tendl;
         tcout << "<pre>\n\n" << tendl;
     #endif
-    
+
     //--------------------------------------------------
     //options (default)
     BOOL      bIsUseTracing = TRUE;
