@@ -175,6 +175,7 @@ const tString      CxConst::xHYPHEN           (xT("-"));
 ////const std::wstring CxConst::xXXXXX_W          (L"XXXXX");
 ////const tString      CxConst::xXXXXX            (xT("XXXXX"));
 
+
 //---------------------------------------------------------------------------
 ////const tString xOPEN_BRACKET          ("{");
 ////const tString xCLOSE_BRACKET          ("}");

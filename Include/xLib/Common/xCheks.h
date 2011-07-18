@@ -27,6 +27,8 @@
     #endif
 #endif
 
+//TODO: for debug mode
+
 //--------------------------------------------------
 //Linux
 #if defined(xOS_LINUX)

@@ -94,7 +94,7 @@
 		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<location>/usr/home/sergey/Libs/xLib/Tests</location>
+			<location>/home/sergey/Libs/xLib/Tests</location>
 		</link>
 		<link>
 			<name>xLib</name>

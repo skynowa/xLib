@@ -51,6 +51,7 @@ endif
 PROGRAM_EXT  				:=
 PROGRAM_NAME				:= $(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_BUILD_TYPE_MARKER)$(PROGRAM_EXT)
 PROGRAM_PATH				:= $(PROGRAM_NAME)
+PROGRAM_SIZE				:= $(stat --printf="%s" $(PROGRAM_NAME))
 
 PATH_PREFIX                 := ../../../
 VPATH 						:= $(PATH_PREFIX)
@@ -84,7 +85,7 @@ SOURCE_SUBDIRS				:= .\
 						
 TESTS_SOURCE_SUBDIRS		:= .\
 								Common \
-								Compress/Linux \
+								Compress \
 								Crypt \
 								Crypt/OpenSSL \
 								Debug \
@@ -154,6 +155,7 @@ OBJ_DIRS:
 							@echo "* Binutils info:   " $(cBINUTILS_INFO)
 							@echo "*"
 							@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
+							@echo "* File size:       " $(PROGRAM_SIZE)
 							@echo "* Build type:      " $(BUILD_TYPE)
 							@echo "*"
 							@echo "************************************************************"

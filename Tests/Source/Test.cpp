@@ -13,6 +13,7 @@
 #define xLib_UnitTestH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Debug/CxTestManager.h>
 
 //Common
 #include <Test/Common/CxTest_CxMacros.h>
@@ -143,206 +144,159 @@ _tmain(
     TCHAR *argv[]
 )
 {
-    ////tcout << "Content-type: text/html\n\n" << tendl;
-
-    ////extern int        __argc;   //count of cmd line args
-    ////extern char    ** __argv;   //pointer to table of cmd line args
-
-
     {
-#if 1 && defined(xOS_FREEBSD) 
-        xTRACEV("argv[0]: %s", argv[0]);
-
-        char szRealPath[PATH_MAX + 1] = {0};
-
-        char *pszRes = realpath(argv[0], szRealPath);
-        xASSERT(NULL != pszRes);
-
-        tString sRes = tString(pszRes);
-
-        xTRACEV("Real path: %s\n", sRes.c_str());
-
-        /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 0);
-        /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), 0);
-
-        //return 0;
-#endif
-    }
-extern char *__progname;
-    {
-        xTRACEV("CxPath::sGetExe(): %s\n", CxPath::sGetExe().c_str());
+        BOOL bRes = CxEnvironment::bSetCommandLineArgs(argc, argv);
+        xASSERT(FALSE != bRes);
     }
 
     #if xTEMP_DISABLED
-        //fprintf(stdout, "Content-type: text/html\n");
-        //tcout << xT("##################") << tendl;
-        fprintf(stdout, "Location: %s\n\n", "http://www.yandex.ru/");
-
-        return EXIT_SUCCESS;
+        //tcout << "Content-type: text/html\n\n" << tendl;
+        //tcout << "<pre>\n\n" << tendl;
     #endif
-
-    xTRACEV(xT("\n\n*** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE);
-    xTRACE(xT("Start all tests...\n"));
 
     //--------------------------------------------------
     //settings
     const ULONGLONG cullTimesForAll    = 1;
     const ULONGLONG cullTimesForSingle = 1;
 
+
     BOOL bRes = FALSE;
 
-    std::vector<CxTest *> vptTests;
-xTRACE_POINT;
+    CxTestManager tmManager(TRUE);
 
-        //--------------------------------------------------
-        //Common
-        vptTests.push_back( new CxTest_CxMacros );
-    #if xTEMP_DISABLED
-        vptTests.push_back( new CxTest_CxArray );
-        vptTests.push_back( new CxTest_CxChar );
-        vptTests.push_back( new CxTest_CxLocale );
-        vptTests.push_back( new CxTest_CxString );
-        vptTests.push_back( new CxTest_CxDateTime );
-        vptTests.push_back( new CxTest_CxFunctorT );
-        vptTests.push_back( new CxTest_CxSystemInfo );
-        vptTests.push_back( new CxTest_CxException );
+    //--------------------------------------------------
+    //Common
+    bRes = tmManager.bAdd( new CxTest_CxMacros );
+    bRes = tmManager.bAdd( new CxTest_CxArray );
+    bRes = tmManager.bAdd( new CxTest_CxChar );
+    bRes = tmManager.bAdd( new CxTest_CxLocale );
+    bRes = tmManager.bAdd( new CxTest_CxString );
+    bRes = tmManager.bAdd( new CxTest_CxDateTime );
+    bRes = tmManager.bAdd( new CxTest_CxFunctorT );
+    bRes = tmManager.bAdd( new CxTest_CxSystemInfo );
+    bRes = tmManager.bAdd( new CxTest_CxException );
 
-        #if defined(xOS_WIN)
-        vptTests.push_back( new CxTest_CxClipboard );
-        vptTests.push_back( new CxTest_CxCom );
-        vptTests.push_back( new CxTest_CxHandleT );
-        vptTests.push_back( new CxTest_CxShell );
-        vptTests.push_back( new CxTest_CxComPort );
-        ////vptTests.push_back( new CxTest_CxConsole );
-        #elif defined(xOS_LINUX)
+    #if defined(xOS_WIN)
+    bRes = tmManager.bAdd( new CxTest_CxClipboard );
+    bRes = tmManager.bAdd( new CxTest_CxCom );
+    bRes = tmManager.bAdd( new CxTest_CxHandleT );
+    bRes = tmManager.bAdd( new CxTest_CxShell );
+    bRes = tmManager.bAdd( new CxTest_CxComPort );
+    ////bRes = tmManager.bAdd( new CxTest_CxConsole );
+    #elif defined(xOS_LINUX)
 
-        #endif
-
-        //--------------------------------------------------
-        //Compress
-        #if defined(xOS_WIN)
-
-        #elif defined(xOS_LINUX)
-        vptTests.push_back( new CxTest_CxGz );
-        #endif
-
-        //--------------------------------------------------
-        //Crypt
-        #if xTODO
-            vptTests.push_back( new CxTest_CxCrc32 );
-            vptTests.push_back( new CxTest_CxBlowfish );
-        #endif
-
-        vptTests.push_back( new CxTest_CxRandom );
-
-
-        //--------------------------------------------------
-        //Db
-        vptTests.push_back( new CxTest_CxConnectionString );
-        ////vptTests.push_back( new CxTest_CxMySql );
-
-        //--------------------------------------------------
-        //Debug
-        vptTests.push_back( new CxTest_CxLastError );
-        ////vptTests.push_back( new CxTest_CxDebugger );
-        vptTests.push_back( new CxTest_CxReport );
-        vptTests.push_back( new CxTest_CxProfiler );
-        vptTests.push_back( new CxTest_CxAutoProfiler );
-
-        //--------------------------------------------------
-        //Filesystem
-        vptTests.push_back( new CxTest_CxPath );
-        vptTests.push_back( new CxTest_CxStdioFile );
-        vptTests.push_back( new CxTest_CxDir );
-        vptTests.push_back( new CxTest_CxEnvironment );
-        vptTests.push_back( new CxTest_CxDll );
-        vptTests.push_back( new CxTest_CxFileAttribute );
-        vptTests.push_back( new CxTest_CxIni );
-        vptTests.push_back( new CxTest_CxVolume );
-
-        #if defined(xOS_WIN)
-        vptTests.push_back( new CxTest_CxFile );
-        ////vptTests.push_back( new CxTest_CxIni );
-        #elif defined(xOS_LINUX)
-
-        #endif
-
-        //--------------------------------------------------
-        //Log
-        vptTests.push_back( new CxTest_CxFileLog );
-
-        //--------------------------------------------------
-        //Net
-        vptTests.push_back( new CxTest_CxCookiePv0 );
-        vptTests.push_back( new CxTest_CxCookiePv1 );
-        #if xTEMP_DISABLED
-            vptTests.push_back( new CxTest_CxCgi );
-        #endif
-        vptTests.push_back( new CxTest_CxSocketInit );
-        vptTests.push_back( new CxTest_CxDnsClient );
-        ////vptTests.push_back( new CxTest_CxTcpClientSocket );
-        ////vptTests.push_back( new CxTest_CxTcpServerSocket );
-        ////vptTests.push_back( new CxTest_CxHttpClient );
-        ////vptTests.push_back( new CxTest_CxGeoIp );
-
-        //--------------------------------------------------
-        //Patterns
-        vptTests.push_back( new CxTest_CxSingleton );
-
-        //--------------------------------------------------
-        //PKCS11
-        #if defined(xOS_WIN)
-        ////vptTests.push_back( new CxTest_CxPkcs11 );
-        #elif defined(xOS_LINUX)
-
-        #endif
-
-        //--------------------------------------------------
-        //Sync
-        vptTests.push_back( new CxTest_CxProcess );
-        vptTests.push_back( new CxTest_CxThread );
-
-        #if defined(xOS_WIN)
-        vptTests.push_back( new CxTest_CxEvent );
-        vptTests.push_back( new CxTest_CxMutex );
-        vptTests.push_back( new CxTest_CxAutoMutex );
-        vptTests.push_back( new CxTest_CxSleeper );
-        #elif defined(xOS_LINUX)
-
-        #endif
-
-        //--------------------------------------------------
-        //Gui
-        #if defined(xOS_WIN)
-        vptTests.push_back( new CxTest_CxGdiplus );
-        ////vptTests.push_back( new CxTest_CxImage );
-        #endif
-
-        //--------------------------------------------------
-        //Units
-        #if defined(xOS_WIN)
-            //TODO: test Units
-        #elif defined(xOS_LINUX)
-
-        #endif
     #endif
-xTRACE_POINT;
-    //--------------------------------------------------
-    //run all tests
-    for (ULONGLONG i = 0; i < cullTimesForAll; ++ i) {
-        for (std::vector<CxTest *>::iterator it = vptTests.begin(); it != vptTests.end(); ++ it) {
-            bRes = (*it)->bRun(cullTimesForSingle);
-            xASSERT_MSG_RET(FALSE != bRes, ( xT("Test (") + (*it)->sGetName() + xT(") not complete") ).c_str(), FALSE);
-        }
-    }
-xTRACE_POINT;
-    //--------------------------------------------------
-    //free memory
-    for (std::vector<CxTest *>::iterator it = vptTests.begin(); it != vptTests.end(); ++ it) {
-        /*CxMacros::*/xPTR_DELETE(*it);
-    }
 
-    xTRACE(xT("All tests successful done.\n\n"));
+    //--------------------------------------------------
+    //Compress
+    #if defined(xOS_WIN)
+
+    #elif defined(xOS_LINUX)
+    bRes = tmManager.bAdd( new CxTest_CxGz );
+    #endif
+
+    //--------------------------------------------------
+    //Crypt
+    #if xTODO
+        bRes = tmManager.bAdd( new CxTest_CxCrc32 );
+        bRes = tmManager.bAdd( new CxTest_CxBlowfish );
+    #endif
+
+    bRes = tmManager.bAdd( new CxTest_CxRandom );
+
+
+    //--------------------------------------------------
+    //Db
+    bRes = tmManager.bAdd( new CxTest_CxConnectionString );
+    ////bRes = tmManager.bAdd( new CxTest_CxMySql );
+
+    //--------------------------------------------------
+    //Debug
+    bRes = tmManager.bAdd( new CxTest_CxLastError );
+    ////bRes = tmManager.bAdd( new CxTest_CxDebugger );
+    bRes = tmManager.bAdd( new CxTest_CxReport );
+    bRes = tmManager.bAdd( new CxTest_CxProfiler );
+    bRes = tmManager.bAdd( new CxTest_CxAutoProfiler );
+
+    //--------------------------------------------------
+    //Filesystem
+    bRes = tmManager.bAdd( new CxTest_CxPath );
+    bRes = tmManager.bAdd( new CxTest_CxStdioFile );
+    bRes = tmManager.bAdd( new CxTest_CxDir );
+    bRes = tmManager.bAdd( new CxTest_CxEnvironment );
+    bRes = tmManager.bAdd( new CxTest_CxDll );
+    bRes = tmManager.bAdd( new CxTest_CxFileAttribute );
+    bRes = tmManager.bAdd( new CxTest_CxIni );
+    bRes = tmManager.bAdd( new CxTest_CxVolume );
+#if xTEMP_DISABLED
+    #if defined(xOS_WIN)
+    bRes = tmManager.bAdd( new CxTest_CxFile );
+    ////bRes = tmManager.bAdd( new CxTest_CxIni );
+    #elif defined(xOS_LINUX)
+
+    #endif
+
+    //--------------------------------------------------
+    //Log
+    bRes = tmManager.bAdd( new CxTest_CxFileLog );
+
+    //--------------------------------------------------
+    //Net
+    bRes = tmManager.bAdd( new CxTest_CxCookiePv0 );
+    bRes = tmManager.bAdd( new CxTest_CxCookiePv1 );
+    #if xTEMP_DISABLED
+        bRes = tmManager.bAdd( new CxTest_CxCgi );
+    #endif
+    bRes = tmManager.bAdd( new CxTest_CxSocketInit );
+    bRes = tmManager.bAdd( new CxTest_CxDnsClient );
+    ////bRes = tmManager.bAdd( new CxTest_CxTcpClientSocket );
+    ////bRes = tmManager.bAdd( new CxTest_CxTcpServerSocket );
+    ////bRes = tmManager.bAdd( new CxTest_CxHttpClient );
+    ////bRes = tmManager.bAdd( new CxTest_CxGeoIp );
+
+    //--------------------------------------------------
+    //Patterns
+    bRes = tmManager.bAdd( new CxTest_CxSingleton );
+
+    //--------------------------------------------------
+    //PKCS11
+    #if defined(xOS_WIN)
+    ////bRes = tmManager.bAdd( new CxTest_CxPkcs11 );
+    #elif defined(xOS_LINUX)
+
+    #endif
+
+    //--------------------------------------------------
+    //Sync
+    bRes = tmManager.bAdd( new CxTest_CxProcess );
+    bRes = tmManager.bAdd( new CxTest_CxThread );
+
+    #if defined(xOS_WIN)
+    bRes = tmManager.bAdd( new CxTest_CxEvent );
+    bRes = tmManager.bAdd( new CxTest_CxMutex );
+    bRes = tmManager.bAdd( new CxTest_CxAutoMutex );
+    bRes = tmManager.bAdd( new CxTest_CxSleeper );
+    #elif defined(xOS_LINUX)
+
+    #endif
+
+    //--------------------------------------------------
+    //Gui
+    #if defined(xOS_WIN)
+    bRes = tmManager.bAdd( new CxTest_CxGdiplus );
+    ////bRes = tmManager.bAdd( new CxTest_CxImage );
+    #endif
+
+    //--------------------------------------------------
+    //Units
+    #if defined(xOS_WIN)
+        //TODO: test Units
+    #elif defined(xOS_LINUX)
+
+    #endif
+#endif
+
+    bRes = tmManager.bRun(cullTimesForAll, cullTimesForSingle);
 
     return 0;
 }

@@ -9,7 +9,6 @@
 *****************************************************************************/
 
 
-#if defined(xOS_WIN)
 #include <Test/Filesystem/CxTest_CxIni.h>
 
 
@@ -28,7 +27,6 @@ CxTest_CxIni::~CxTest_CxIni() {
 /*virtual*/
 BOOL
 CxTest_CxIni::bUnit() {
-#if defined(xOS_WIN)
     const tString csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
 
     const tString csKey1   = xT("a");
@@ -261,13 +259,7 @@ CxTest_CxIni::bUnit() {
         xASSERT(FALSE != m_bRes);
         xASSERT(CxStdioFile::bIsExists( iniIni.sGetPath() ) == FALSE);
     }
-#elif defined(xOS_LINUX)
-
-#endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
-#endif

@@ -12,6 +12,8 @@
 #include <xLib/Filesystem/CxPath.h>
 
 #include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/Sync/CxProcess.h>
 
 
 /****************************************************************************
@@ -31,82 +33,98 @@ tString
 CxPath::sGetExe() {
     tString sRes;
 
-#if defined(xOS_WIN)
-    sRes.resize(xPATH_MAX);
+    #if defined(xOS_WIN)
+        sRes.resize(xPATH_MAX);
 
-    ULONG ulStored = ::GetModuleFileName(NULL, &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
+        ULONG ulStored = ::GetModuleFileName(NULL, &sRes.at(0), sRes.size());
+        /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
 
-    sRes.resize(ulStored);
-#elif defined(xOS_LINUX)
-    #if defined(xOS_FREEBSD)
-//        #if defined(KERN_PROC_PATHNAME)
-//            sRes.resize(xPATH_MAX);
-//
-//            INT aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
-//
-//            size_t uiResSize = sRes.size() * sizeof(tString::value_type);
-//
-//            INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
-//            /*DEBUG*/xASSERT_RET(- 1 != iRes, tString());
-//
-//            sRes.resize(uiResSize);
-//        #else
-//            BOOL bRes                = FALSE;
-//            const tString csProcFile = xT("/proc/curproc/file");
-//
-//            bRes = CxStdioFile::bIsExists(csProcFile);
-//            if (TRUE == bRes) {
-//                sRes.resize(xPATH_MAX);
-//
-//                INT iReaded = - 1;
-//
-//                for ( ; ; ) {
-//                    iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
-//                    /*DEBUG*/xASSERT_RET(- 1 != iReaded, tString());
-//
-//                    xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
-//
-//                    sRes.resize(sRes.size() * 2);
-//                }
-//
-//                sRes.resize(iReaded);
-//
-//            } else {
-//                sRes = tString();
-//            }
-//        #endif
+        sRes.resize(ulStored);
+    #elif defined(xOS_LINUX)
+        #if xDEPRECIATE
+            #if defined(xOS_FREEBSD)
+                #if defined(KERN_PROC_PATHNAME)
+                    sRes.resize(xPATH_MAX);
 
-        #if 1
+                    INT aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
+                    size_t uiResSize = sRes.size() * sizeof(tString::value_type);
+
+                    INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
+                    /*DEBUG*/xASSERT_RET(- 1 != iRes, tString());
+
+                    sRes.resize(uiResSize);
+                #else
+                    BOOL bRes                = FALSE;
+                    const tString csProcFile = xT("/proc/curproc/file");
+
+                    bRes = CxStdioFile::bIsExists(csProcFile);
+                    if (TRUE == bRes) {
+                        sRes.resize(xPATH_MAX);
+
+                        INT iReaded = - 1;
+
+                        for ( ; ; ) {
+                            iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
+                            /*DEBUG*/xASSERT_RET(- 1 != iReaded, tString());
+
+                            xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
+
+                            sRes.resize(sRes.size() * 2);
+                        }
+
+                        sRes.resize(iReaded);
+
+                    } else {
+                        sRes = tString();
+                    }
+                #endif
+
+                #if 1
+
+                #endif
+            #else
+                BOOL          bRes       = FALSE;
+                const tString csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
+
+                bRes = CxStdioFile::bIsExists(csProcFile);
+                if (TRUE == bRes) {
+                    sRes.resize(xPATH_MAX);
+
+                    INT iReaded = - 1;
+
+                    for ( ; ; ) {
+                        iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
+                        /*DEBUG*/xASSERT_RET(- 1 != iReaded, tString());
+
+                        xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
+
+                        sRes.resize(sRes.size() * 2);
+                    }
+
+                    sRes.resize(iReaded);
+                }
+            #endif
+        #else   //xDEPRECIATE
+            std::vector<tString> vsArgs;
+
+            BOOL bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
+            /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
+
+            tString sAbsolutePath;
+
+            sAbsolutePath.resize(xPATH_MAX);
+
+            char *pszRes = realpath(&vsArgs.at(0).at(0), &sAbsolutePath.at(0));
+            /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
+
+            sRes.assign(pszRes);
         #endif
-    #else
-        BOOL          bRes       = FALSE;
-        const tString csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
-
-        bRes = CxStdioFile::bIsExists(csProcFile);
-        if (TRUE == bRes) {
-            sRes.resize(xPATH_MAX);
-
-            INT iReaded = - 1;
-
-            for ( ; ; ) {
-                iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(tString::value_type));
-                /*DEBUG*/xASSERT_RET(- 1 != iReaded, tString());
-
-                xCHECK_DO(sRes.size() * sizeof(tString::value_type) > static_cast<size_t>( iReaded ), break);
-
-                sRes.resize(sRes.size() * 2);
-            }
-
-            sRes.resize(iReaded);
-        }
     #endif
 
-    xTRACEV("sRes: [%s]", sRes.c_str());
+    //xTRACEV("    CxPath::sGetExe::sRes: [%s]", sRes.c_str());
     /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 tString());
     /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), tString());
-#endif
 
     return sRes;
 }
@@ -480,7 +498,7 @@ CxPath::sSetValidName(
 
     //-------------------------------------
     //check for name size
-    xCHECK_RET(FILENAME_MAX <= sRes.size(), tString());
+    xCHECK_RET(xNAME_MAX <= sRes.size(), tString());
 
 #if defined(xOS_WIN)
     //-------------------------------------
