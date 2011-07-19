@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxDateTime (constructor)
+//DONE: CxDateTime
 CxDateTime::CxDateTime() :
     _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
@@ -35,7 +35,7 @@ CxDateTime::CxDateTime() :
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-//DONE: CxDateTime (constructor)
+//DONE: CxDateTime
 CxDateTime::CxDateTime(
     const tString     &csDT,
     const EFormatType  cftFormat
@@ -62,7 +62,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: CxDateTime (constructor)
+//DONE: CxDateTime
 CxDateTime::CxDateTime(
     const CxDateTime &cdtDT
 ) :
@@ -83,7 +83,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: CxDateTime (constructor)
+//DONE: CxDateTime
 CxDateTime::CxDateTime(
     const ULONGLONG cullMilliseconds
 ) :
@@ -103,7 +103,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: CxDateTime (constructor)
+//DONE: CxDateTime
 CxDateTime::CxDateTime(
     const USHORT cusHour,
     const USHORT cusMinute,
@@ -126,7 +126,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: CxDateTime (constructor)
+//DONE: CxDateTime
 CxDateTime::CxDateTime(
     const USHORT cusYear,
     const USHORT cusMonth,
@@ -148,7 +148,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: CxDateTime (constructor)
+//DONE: CxDateTime
 CxDateTime::CxDateTime(
     const USHORT usYear,
     const USHORT usMonth,
@@ -174,7 +174,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxDateTime (destructor)
+//DONE: ~CxDateTime
 CxDateTime::~CxDateTime() {
     /*DEBUG*/
 }

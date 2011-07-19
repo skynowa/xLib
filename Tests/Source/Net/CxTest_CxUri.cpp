@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxUri (constructor)
+//DONE: CxTest_CxUri
 CxTest_CxUri::CxTest_CxUri() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxUri (destructor)
+//DONE: ~CxTest_CxUri
 CxTest_CxUri::~CxTest_CxUri() {
 
 }

@@ -24,7 +24,7 @@ using namespace NxCgi;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCgi (constructor)
+//DONE: CxCgi
 CxCgi::CxCgi(const size_t cuiMaxSize) :
     Environment(*this),
     Cookies    (*this),
@@ -32,7 +32,7 @@ CxCgi::CxCgi(const size_t cuiMaxSize) :
 {
 }
 //---------------------------------------------------------------------------
-//DONE: CxCgi (destructor)
+//DONE: CxCgi
 /*virtual*/
 CxCgi::~CxCgi() {
 

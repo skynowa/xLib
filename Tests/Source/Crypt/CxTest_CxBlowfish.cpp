@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxBlowfish (constructor)
+//DONE: CxTest_CxBlowfish
 CxTest_CxBlowfish::CxTest_CxBlowfish() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxBlowfish (destructor)
+//DONE: ~CxTest_CxBlowfish
 CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 
 }

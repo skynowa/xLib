@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxFileAttribute (constructor)
+//DONE: CxTest_CxFileAttribute
 CxTest_CxFileAttribute::CxTest_CxFileAttribute() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxFileAttribute (destructor)
+//DONE: ~CxTest_CxFileAttribute
 CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 
 }

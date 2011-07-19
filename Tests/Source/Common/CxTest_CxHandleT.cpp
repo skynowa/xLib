@@ -19,12 +19,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxHandleT (constructor)
+//DONE: CxTest_CxHandleT
 CxTest_CxHandleT::CxTest_CxHandleT() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxHandleT (destructor)
+//DONE: ~CxTest_CxHandleT
 CxTest_CxHandleT::~CxTest_CxHandleT() {
 
 }

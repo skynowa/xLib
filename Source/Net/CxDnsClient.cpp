@@ -21,7 +21,11 @@
 //DONE: bGetHostAddrByName
 /*static*/
 BOOL
-CxDnsClient::bGetHostAddrByName(const tString &csHostName, tString *psHostAddr) {
+CxDnsClient::bGetHostAddrByName(
+    const tString &csHostName,
+    tString       *psHostAddr
+)
+{
     /*DEBUG*/xASSERT_RET(false == csHostName.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != psHostAddr,         FALSE);
 
@@ -50,7 +54,12 @@ CxDnsClient::bGetHostAddrByName(const tString &csHostName, tString *psHostAddr) 
 //DONE: bGetHostNameByAddr
 /*static*/
 BOOL
-CxDnsClient::bGetHostNameByAddr(const tString &csHostAddr, CxSocket::EAddressFamily afFamily, tString *psHostName) {
+CxDnsClient::bGetHostNameByAddr(
+    const tString            &csHostAddr,
+    CxSocket::EAddressFamily  afFamily,
+    tString                  *psHostName
+)
+{
     /*DEBUG*/xASSERT_RET(false == csHostAddr.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != psHostName,         FALSE);
 
@@ -96,7 +105,10 @@ CxDnsClient::bGetHostNameByAddr(const tString &csHostAddr, CxSocket::EAddressFam
 //DONE: bGetLocalHostName ()
 /*static*/
 BOOL
-CxDnsClient::bGetLocalHostName(tString *psHostName) {
+CxDnsClient::bGetLocalHostName(
+    tString *psHostName
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != psHostName, FALSE);
 
 #if defined(xOS_WIN)
@@ -119,7 +131,12 @@ CxDnsClient::bGetLocalHostName(tString *psHostName) {
 //DONE: bGetNameInfo ()
 /*static*/
 BOOL
-CxDnsClient::bGetNameInfo(CxSocket::EAddressFamily afFamily, const tString &csHostAddr, USHORT usPort) {
+CxDnsClient::bGetNameInfo(
+    CxSocket::EAddressFamily  afFamily,
+    const tString            &csHostAddr,
+    USHORT                    usPort
+)
+{
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
@@ -150,10 +167,17 @@ CxDnsClient::bGetNameInfo(CxSocket::EAddressFamily afFamily, const tString &csHo
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetHostAddrInfo ()
+//TODO: bGetHostAddrInfo ()
+//NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
 /*static*/
 BOOL
-CxDnsClient::bGetHostAddrInfo(const tString &csHostName, const tString &csPort, const ADDRINFOT *pHints, ADDRINFOT **ppResult) {
+CxDnsClient::bGetHostAddrInfo(
+    const tString    &csHostName,
+    const tString    &csPort,
+    const ADDRINFOT  *pHints,
+    ADDRINFOT       **ppResult
+)
+{
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
@@ -163,8 +187,8 @@ CxDnsClient::bGetHostAddrInfo(const tString &csHostName, const tString &csPort, 
     _ms_iRes = ::GetAddrInfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
     /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
 #elif defined(xOS_LINUX)
-    _ms_iRes = getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
-    /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
+    _ms_iRes =   getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
+    /*DEBUG*/xASSERT_MSG_RET(0 == _ms_iRes, CxString::lexical_cast(_ms_iRes), FALSE);
 #endif
 
     return TRUE;
@@ -173,7 +197,13 @@ CxDnsClient::bGetHostAddrInfo(const tString &csHostName, const tString &csPort, 
 //DONE: bGetProtocolByName ()
 /*static*/
 BOOL
-CxDnsClient::bGetProtocolByName(const tString &csProtocolName, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiNumber) {
+CxDnsClient::bGetProtocolByName(
+    const tString        &csProtocolName,
+    tString              *psName,
+    std::vector<tString> *pvecsAliases,
+    SHORT                *psiNumber
+)
+{
     /*DEBUG*/xASSERT_RET(false == csProtocolName.empty(), FALSE);
     /*DEBUG*///psName       - n/a
     /*DEBUG*///pvecsAliases - n/a
@@ -220,7 +250,13 @@ CxDnsClient::bGetProtocolByName(const tString &csProtocolName, tString *psName, 
 //DONE: bGetProtocolByNumber ()
 /*static*/
 BOOL
-CxDnsClient::bGetProtocolByNumber(SHORT siNumber, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiNumber) {
+CxDnsClient::bGetProtocolByNumber(
+    SHORT                 siNumber,
+    tString              *psName,
+    std::vector<tString> *pvecsAliases,
+    SHORT                *psiNumber
+)
+{
     /*DEBUG*///siNum        - n/a
     /*DEBUG*///psName       - n/a
     /*DEBUG*///pvecsAliases - n/a
@@ -264,8 +300,13 @@ CxDnsClient::bGetProtocolByNumber(SHORT siNumber, tString *psName, std::vector<t
 //DONE: bGetServiceByName ()
 /*static*/
 BOOL
-CxDnsClient::bGetServiceByName(const tString &csServiceName, const tString &csProtocolName,
-                               tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiPort,  tString *psProtocolName
+CxDnsClient::bGetServiceByName(
+    const tString        &csServiceName,
+    const tString        &csProtocolName,
+    tString              *psName,
+    std::vector<tString> *pvecsAliases,
+    SHORT                *psiPort,
+    tString              *psProtocolName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csServiceName.empty(), FALSE);
@@ -281,9 +322,6 @@ CxDnsClient::bGetServiceByName(const tString &csServiceName, const tString &csPr
 
     servent *psvInfo = ::getservbyname(asServiceName.c_str(), asProtocolName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != psvInfo, FALSE);
-
-
-
 
     //-------------------------------------
     //psName
@@ -325,8 +363,14 @@ CxDnsClient::bGetServiceByName(const tString &csServiceName, const tString &csPr
 //DONE: bGetServiceByPort ()
 /*static*/
 BOOL
-CxDnsClient::bGetServiceByPort(SHORT siPort, const tString &csProtocolName,
-                               tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiPort,  tString *psProtocolName)
+CxDnsClient::bGetServiceByPort(
+    SHORT                 siPort,
+    const tString        &csProtocolName,
+    tString              *psName,
+    std::vector<tString> *pvecsAliases,
+    SHORT                *psiPort,
+    tString              *psProtocolName
+)
 {
     /*DEBUG*///TODO: siPort
     /*DEBUG*/xASSERT_RET(false == csProtocolName.empty(), FALSE);

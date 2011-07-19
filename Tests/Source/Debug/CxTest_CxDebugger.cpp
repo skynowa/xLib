@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxDebugger (constructor)
+//DONE: CxTest_CxDebugger
 CxTest_CxDebugger::CxTest_CxDebugger() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxDebugger (destructor)
+//DONE: ~CxTest_CxDebugger
 CxTest_CxDebugger::~CxTest_CxDebugger() {
 
 }

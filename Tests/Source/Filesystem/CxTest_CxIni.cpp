@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxIni (constructor)
+//DONE: CxTest_CxIni
 CxTest_CxIni::CxTest_CxIni() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxIni (destructor)
+//DONE: ~CxTest_CxIni
 CxTest_CxIni::~CxTest_CxIni() {
 
 }

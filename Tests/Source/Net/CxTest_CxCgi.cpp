@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxCgi (constructor)
+//DONE: CxTest_CxCgi
 CxTest_CxCgi::CxTest_CxCgi() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxCgi (destructor)
+//DONE: ~CxTest_CxCgi
 CxTest_CxCgi::~CxTest_CxCgi() {
 
 }

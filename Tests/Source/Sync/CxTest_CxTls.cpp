@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxTls (constructor)
+//DONE: CxTest_CxTls
 CxTest_CxTls::CxTest_CxTls() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxTls (destructor)
+//DONE: ~CxTest_CxTls
 CxTest_CxTls::~CxTest_CxTls() {
 
 }

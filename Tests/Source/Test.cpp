@@ -204,7 +204,6 @@ _tmain(
 
     bRes = tmManager.bAdd( new CxTest_CxRandom );
 
-
     //--------------------------------------------------
     //Db
     bRes = tmManager.bAdd( new CxTest_CxConnectionString );
@@ -224,7 +223,7 @@ _tmain(
     bRes = tmManager.bAdd( new CxTest_CxStdioFile );
     bRes = tmManager.bAdd( new CxTest_CxDir );
     bRes = tmManager.bAdd( new CxTest_CxEnvironment );
-    bRes = tmManager.bAdd( new CxTest_CxDll );
+    ////bRes = tmManager.bAdd( new CxTest_CxDll );
     bRes = tmManager.bAdd( new CxTest_CxFileAttribute );
     bRes = tmManager.bAdd( new CxTest_CxIni );
     bRes = tmManager.bAdd( new CxTest_CxVolume );

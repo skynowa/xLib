@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------
 ////--BOOL CxSocket::_ms_iRes = FALSE;
 //---------------------------------------------------------------------------
-//DONE: CxSocket (constructor)
+//DONE: CxSocket
 CxSocket::CxSocket() :
     _m_bRes     (FALSE),
     _m_puiSocket(etInvalid),
@@ -31,7 +31,7 @@ CxSocket::CxSocket() :
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxSocket (destructor)
+//DONE: ~CxSocket
 CxSocket::~CxSocket() {
     /*DEBUG*/// n/a
 

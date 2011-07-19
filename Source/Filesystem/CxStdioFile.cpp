@@ -33,7 +33,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxStdioFile (constructor)
+//DONE: CxStdioFile
 CxStdioFile::CxStdioFile() :
     _m_bRes     (FALSE),
     _m_pFile    (NULL),
@@ -41,7 +41,7 @@ CxStdioFile::CxStdioFile() :
 {
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxStdioFile (destructor)
+//DONE: ~CxStdioFile
 CxStdioFile::~CxStdioFile() {
     /*DEBUG*/// n/a
 

@@ -10,7 +10,7 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxReport (constructor)
+//DONE: CxReport
 template<class T>
 CxReport::CxReport(
     const EType   &crtType,

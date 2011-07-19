@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxVolume (constructor)
+//DONE: CxTest_CxVolume
 CxTest_CxVolume::CxTest_CxVolume() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxVolume (destructor)
+//DONE: ~CxTest_CxVolume
 CxTest_CxVolume::~CxTest_CxVolume() {
 
 }

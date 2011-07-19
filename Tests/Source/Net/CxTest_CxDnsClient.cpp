@@ -83,7 +83,7 @@ CxTest_CxDnsClient::bUnit() {
 	//bGetHostAddrInfo
 	{
 		tString sHostName = xT("www.google.ru");
-		tString sPort     = xT("80");
+		tString sPort     = xT("http");
 
 		////ADDRINFOT aiHints  = {0};
 		ADDRINFOT *paiList = NULL;

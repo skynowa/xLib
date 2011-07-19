@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSystemInfo (constructor)
+//DONE: CxTest_CxSystemInfo
 CxTest_CxSystemInfo::CxTest_CxSystemInfo() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSystemInfo (destructor)
+//DONE: ~CxTest_CxSystemInfo
 CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 
 }

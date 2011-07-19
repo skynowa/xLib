@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxDll (constructor)
+//DONE: CxTest_CxDll
 CxTest_CxDll::CxTest_CxDll() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxDll (destructor)
+//DONE: ~CxTest_CxDll
 CxTest_CxDll::~CxTest_CxDll() {
 
 }
@@ -27,15 +27,21 @@ CxTest_CxDll::~CxTest_CxDll() {
 /*virtual*/
 BOOL
 CxTest_CxDll::bUnit() {
-#if defined(xOS_WIN)
-    const tString sData[][2] = {
-        {xT("kernel32.dll"), xT("Beep")},
-    };
-#elif defined(xOS_LINUX)
-    const tString sData[][2] = {
-        {xT("libm.so"), xT("cos")},
-    };
-#endif
+    #if defined(xOS_WIN)
+        const tString sData[][2] = {
+            {xT("kernel32.dll"), xT("Beep")},
+        };
+    #elif defined(xOS_LINUX)
+        #if defined(xOS_FREEBSD)
+            const tString sData[][2] = {
+                {xT("/lib/libm.so.3"), xT("cos")},
+            };
+        #else
+            const tString sData[][2] = {
+                {xT("libm.so"), xT("cos")},
+            };
+        #endif
+    #endif
 
     for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
         CxDll objDll;
@@ -74,8 +80,7 @@ CxTest_CxDll::bUnit() {
 
         pCosine = (pDllFunc)fpRes;
         DOUBLE m_dRes = pCosine(2.0);
-        xUNUSED(m_dRes);
-        ////xSTD_COUT(m_dRes);
+        xTRACEV(xT("pCosine(2.0): %f"), m_dRes);
     #endif
 
         //-------------------------------------

@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxMySql (constructor)
+//DONE: CxTest_CxMySql
 CxTest_CxMySql::CxTest_CxMySql() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxMySql (destructor)
+//DONE: ~CxTest_CxMySql
 CxTest_CxMySql::~CxTest_CxMySql() {
 
 }

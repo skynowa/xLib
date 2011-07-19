@@ -6,10 +6,10 @@
 * E-mail:      skynowa@gmail.com
 * Created:     04.04.2009 6:21:18
 *
-*****************************************************************************/    
-    
-    
-#include <xLib/Net/CxTcpClientSocket.h> 
+*****************************************************************************/
+
+
+#include <xLib/Net/CxTcpClientSocket.h>
 
 
 /****************************************************************************
@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxTcpClientSocket (constructor)
+//DONE: CxTcpClientSocket
 /*virtual*/
 CxTcpClientSocket::CxTcpClientSocket() :
     _m_tvTimeout()
@@ -27,7 +27,7 @@ CxTcpClientSocket::CxTcpClientSocket() :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTcpClientSocket (destructor)
+//DONE: ~CxTcpClientSocket
 CxTcpClientSocket::~CxTcpClientSocket() {
 
 }
@@ -159,7 +159,7 @@ CxTcpClientSocket::bSetTimeout(LONG liSec, LONG liMicroSec) {
     _m_tvTimeout.tv_usec = liMicroSec;
 
     return TRUE;
-} 
+}
 //---------------------------------------------------------------------------
 
 
@@ -168,7 +168,7 @@ CxTcpClientSocket::bSetTimeout(LONG liSec, LONG liMicroSec) {
 *
 *****************************************************************************/
 
-//--------------------------------------------------------------------------- 
+//---------------------------------------------------------------------------
 //DONE: bIsServerAlive (is sever socket available)
 /*static*/
 BOOL
@@ -205,4 +205,4 @@ CxTcpClientSocket::bIsServerAlive(const tString &csIp, USHORT usPort) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
- 
+

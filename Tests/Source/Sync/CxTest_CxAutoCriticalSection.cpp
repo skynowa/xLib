@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAutoCriticalSection (constructor)
+//DONE: CxTest_CxAutoCriticalSection
 CxTest_CxAutoCriticalSection::CxTest_CxAutoCriticalSection() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAutoCriticalSection (destructor)
+//DONE: ~CxTest_CxAutoCriticalSection
 CxTest_CxAutoCriticalSection::~CxTest_CxAutoCriticalSection() {
 
 }

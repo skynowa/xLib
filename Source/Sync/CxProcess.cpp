@@ -188,12 +188,12 @@ CxProcess::bTerminate(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxProcess (construcor)
+//DONE: CxProcess
 CxProcess::CxProcess() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxProcess (destructor)
+//DONE: ~CxProcess
 /*virtual*/
 CxProcess::~CxProcess() {
 

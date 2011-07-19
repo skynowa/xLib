@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSmtp (constructor)
+//DONE: CxTest_CxSmtp
 CxTest_CxSmtp::CxTest_CxSmtp() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSmtp (destructor)
+//DONE: ~CxTest_CxSmtp
 CxTest_CxSmtp::~CxTest_CxSmtp() {
 
 }

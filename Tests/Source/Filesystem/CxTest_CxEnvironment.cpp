@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxEnvironment (constructor)
+//DONE: CxTest_CxEnvironment
 CxTest_CxEnvironment::CxTest_CxEnvironment() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxEnvironment (destructor)
+//DONE: ~CxTest_CxEnvironment
 CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 
 }
@@ -31,10 +31,10 @@ CxTest_CxEnvironment::bUnit() {
     //bSetVar
     {
         const tString sData[][2] = {
-            {xT("ENV_TEST_1"), xT("value1")},   //custom
-            {xT("ENV_TEST_2"), xT("value2")},   //custom
-            {xT("ENV_TEST_3"), xT("value3")},   //custom
-            {xT("ENV_TEST_4"), xT("value4")}    //custom
+            {xT("ENV_TEST_1"), xT("value1")},
+            {xT("ENV_TEST_2"), xT("value2")},
+            {xT("ENV_TEST_3"), xT("value3")},
+            {xT("ENV_TEST_4"), xT("value4")}
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
@@ -48,10 +48,10 @@ CxTest_CxEnvironment::bUnit() {
     {
     #if defined(xOS_WIN)
         const tString sData[][2] = {
-            {xT("ENV_TEST_1"), xT("TRUE")},   //custom
-            {xT("ENV_TEST_2"), xT("TRUE")},   //custom
-            {xT("ENV_TEST_3"), xT("TRUE")},   //custom
-            {xT("ENV_TEST_4"), xT("TRUE")},   //custom
+            {xT("ENV_TEST_1"), xT("TRUE")},
+            {xT("ENV_TEST_2"), xT("TRUE")},
+            {xT("ENV_TEST_3"), xT("TRUE")},
+            {xT("ENV_TEST_4"), xT("TRUE")},
 
             {xT("OS"),         xT("TRUE") },
             {xT("XXXL"),       xT("FALSE")},
@@ -59,14 +59,10 @@ CxTest_CxEnvironment::bUnit() {
         };
     #elif defined(xOS_LINUX)
         const tString sData[][2] = {
-            {xT("ENV_TEST_1"), xT("TRUE")},   //custom
-            {xT("ENV_TEST_2"), xT("TRUE")},   //custom
-            {xT("ENV_TEST_3"), xT("TRUE")},   //custom
-            {xT("ENV_TEST_4"), xT("TRUE")},   //custom
-
-            ////{xT("USER"), xT("TRUE") },
-            ////{xT("TERM"), xT("TRUE") },
-            ////{xT("SHELL"), xT("TRUE")}
+            {xT("ENV_TEST_1"), xT("TRUE")},
+            {xT("ENV_TEST_2"), xT("TRUE")},
+            {xT("ENV_TEST_3"), xT("TRUE")},
+            {xT("ENV_TEST_4"), xT("TRUE")},
         };
     #endif
 
@@ -81,20 +77,19 @@ CxTest_CxEnvironment::bUnit() {
     {
     #if defined(xOS_WIN)
         const tString sData[][2] = {
-            {xT("ENV_TEST_1"), xT("value1")},   //custom
-            {xT("ENV_TEST_2"), xT("value2")},   //custom
-            {xT("ENV_TEST_3"), xT("value3")},   //custom
-            {xT("ENV_TEST_4"), xT("value4")},   //custom
+            {xT("ENV_TEST_1"), xT("value1")},
+            {xT("ENV_TEST_2"), xT("value2")},
+            {xT("ENV_TEST_3"), xT("value3")},
+            {xT("ENV_TEST_4"), xT("value4")},
         };
     #elif defined(xOS_LINUX)
         const tString sData[][2] = {
-            {xT("ENV_TEST_1"), xT("value1")},   //custom
-            {xT("ENV_TEST_2"), xT("value2")},   //custom
-            {xT("ENV_TEST_3"), xT("value3")},   //custom
-            {xT("ENV_TEST_4"), xT("value4")},   //custom
+            {xT("ENV_TEST_1"), xT("value1")},
+            {xT("ENV_TEST_2"), xT("value2")},
+            {xT("ENV_TEST_3"), xT("value3")},
+            {xT("ENV_TEST_4"), xT("value4")},
 
-            {xT("USER"),  xT("sergey")},
-            {xT("SHELL"), xT("/bin/bash")}
+            {xT("TERM"),  xT("xterm")},
         };
     #endif
 
@@ -110,6 +105,7 @@ CxTest_CxEnvironment::bUnit() {
     {
         m_bRes = CxEnvironment::bGetValues(&m_vecsRes);
         xASSERT(FALSE != m_bRes);
+        xASSERT(false == m_vecsRes.empty());
 
         ////CxString::vStdVectorPrintT(m_vecsRes);
     }
@@ -124,21 +120,11 @@ CxTest_CxEnvironment::bUnit() {
         };
     #elif defined(xOS_LINUX)
         const tString sData[][2] = {
-            {xT("111%ENV_TEST_1%"), xT("111value1")},   //custom
-            {xT("%ENV_TEST_2%111"), xT("value2111")},   //custom
-            {xT("ttt%ENV_TEST_3%"), xT("tttvalue3")},   //custom
-            {xT("rrr%ENV_TEST_4%rrr"), xT("rrrvalue4rrr")},   //custom
-
-            {xT("User = %USER%"),                     xT("User = sergey")},
-            {xT("Shell = %SHELL%"),                   xT("Shell = /bin/bash")},
-            {xT("User = %USER%, Shell = %SHELL%"),    xT("User = sergey, Shell = /bin/bash")},
-            {xT("Home = %HOME%"),                     xT("Home = /home/user")},
-            {xT("...User = %USER%"),                  xT("...User = sergey")},
-            {xT("Shell = %SHELL%..."),                xT("Shell = /bin/bash...")},
-            {xT("+++User = %USER%, Shell = %SHELL%"), xT("+++User = sergey, Shell = /bin/bash")},
-            {xT("Home =   %HOME%"),                   xT("Home =   /home/user")},
-            {xT("Home =   %HOME%"),                   xT("Home =   /home/user")},
-            {xT("User = %USER%, Shell = %SHELL%, Home = %HOME%"), xT("User = sergey, Shell = /bin/bash, Home = /home/user")},
+            {xT("111%ENV_TEST_1%"),    xT("111value1")},
+            {xT("%ENV_TEST_2%111"),    xT("value2111")},
+            {xT("ttt%ENV_TEST_3%"),    xT("tttvalue3")},
+            {xT("rrr%ENV_TEST_4%rrr"), xT("rrrvalue4rrr")},
+            {xT("TERM =   %TERM%  "),  xT("TERM =   xterm  ")}
         };
     #endif
 
@@ -153,10 +139,10 @@ CxTest_CxEnvironment::bUnit() {
     //bDeleteVar
     {
         const tString sData[][2] = {
-            {xT("ENV_TEST_1"), xT("value1")},   //custom
-            {xT("ENV_TEST_2"), xT("value2")},   //custom
-            {xT("ENV_TEST_3"), xT("value3")},   //custom
-            {xT("ENV_TEST_4"), xT("value4")}    //custom
+            {xT("ENV_TEST_1"), xT("value1")},
+            {xT("ENV_TEST_2"), xT("value2")},
+            {xT("ENV_TEST_3"), xT("value3")},
+            {xT("ENV_TEST_4"), xT("value4")}
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
@@ -169,11 +155,8 @@ CxTest_CxEnvironment::bUnit() {
     //sGetCommandLine
     {
         m_sRes = CxEnvironment::sGetCommandLine();
-        #if defined(xOS_WIN)
-        ////xASSERT(CxString::sTrimChars(m_sRes, xT("\"")) == CxPath::sGetExe());
-        #elif defined(xOS_LINUX)
-        ////xASSERT_MSG(m_sRes == xT("./") + CxPath::sGetFullName(CxPath::sGetExe())/* + xT(" -www")*/, m_sRes.c_str());
-        #endif
+        xTRACEV(xT("CxEnvironment::sGetCommandLine(): %s"), m_sRes.c_str());
+        xASSERT(false == m_sRes.empty());
     }
 
     //-------------------------------------
@@ -181,11 +164,7 @@ CxTest_CxEnvironment::bUnit() {
     {
         m_bRes = CxEnvironment::bGetCommandLineArgs(&m_vecsRes);
         xASSERT(FALSE != m_bRes);
-    #if defined(xOS_WIN)
-        ////xASSERT_MSG(CxPath::sGetExe()                                  == m_vecsRes.at(0), m_vecsRes.at(0).c_str());
-    #elif defined(xOS_LINUX)
-        ////xASSERT_MSG(xT("./") + CxPath::sGetFullName(CxPath::sGetExe()) == m_vecsRes.at(0), m_vecsRes.at(0).c_str());
-    #endif
+        xASSERT(false == m_vecsRes.empty());
     }
 
     return TRUE;

@@ -476,13 +476,13 @@ CxSystemInfo::iGetCpuSpeed() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxSystemInfo (construcor)
+//DONE: CxSystemInfo
 /*virtual*/
 CxSystemInfo::CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxSystemInfo (destructor)
+//DONE: ~CxSystemInfo
 CxSystemInfo::~CxSystemInfo(){
 
 }
