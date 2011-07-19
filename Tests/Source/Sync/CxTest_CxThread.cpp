@@ -236,29 +236,29 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
-            m_bRes = bSetAffinityMask(DWORD_PTR pulMask);
+            m_bRes = bSetCpuAffinity(DWORD_PTR pulMask);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
     //--------------------------------------------------
-    //bSetIdealCpu, ulGetIdealCpu
+    //bSetCpuIdeal, ulGetCpuIdeal
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_ENV_WIN)
-            m_bRes = pthT->bSetIdealCpu(0);
+            m_bRes = pthT->bSetCpuIdeal(0);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
-            m_ulRes = pthT->ulGetIdealCpu();
+            m_ulRes = pthT->ulGetCpuIdeal();
             xASSERT_LESS_EQ(0UL, m_ulRes);
 
-            m_bRes = pthT->bSetIdealCpu(10);
+            m_bRes = pthT->bSetCpuIdeal(10);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
-            m_bRes = pthT->bSetIdealCpu(0);
+            m_bRes = pthT->bSetCpuIdeal(0);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
-            m_ulRes = pthT->ulGetIdealCpu();
+            m_ulRes = pthT->ulGetCpuIdeal();
             xASSERT_EQ(0UL, m_ulRes);
         #elif defined(xOS_ENV_UNIX)
 
@@ -289,8 +289,8 @@ CxTest_CxThread::bUnit(
     //ulGetId
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_ulRes = pthT->ulGetId();
-        xASSERT_NOT_EQ(0UL, m_ulRes);
+        CxThread::TxId idRes = pthT->ulGetId();
+        xASSERT_NOT_EQ(0UL, (ULONG)idRes);
     }
 
     //--------------------------------------------------
@@ -366,7 +366,7 @@ CxTest_CxThread::bUnit(
             const INT ciProcCount = 2;
 
             for (INT i = 0; i < ciProcCount; ++ i) {
-                m_bRes = CxThread::bSetAffinityMask(i);
+                m_bRes = CxThread::bSetCpuAffinity(i);
                 xASSERT_NOT_EQ(FALSE, m_bRes);
             }
         #endif

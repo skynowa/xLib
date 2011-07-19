@@ -38,7 +38,7 @@
 <listOptionValue builtIn="false" value="pthread"/>
 <listOptionValue builtIn="false" value="crypto"/>
 </option>
-<option id="gnu.cpp.link.option.paths.1363871646" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+<option id="gnu.cpp.link.option.paths.1363871646" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 <listOptionValue builtIn="false" value="/usr/local/lib"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1848135018" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -46,17 +46,6 @@
 <additionalInput kind="additionalinput" paths="$(LIBS)"/>
 </inputType>
 </tool>
-</toolChain>
-</folderInfo>
-<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.2036932259.706493623" name="/" resourcePath="Source/Compress">
-<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.645869246" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug" unusedChildren="">
-<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
-<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1275536962" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1327821279">
-<option id="gnu.cpp.compiler.option.optimization.level.1624993810" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
-<option id="gnu.cpp.compiler.option.debugging.level.428193853" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
-<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1199417435" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-</tool>
-<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.997988467" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1540578207"/>
 </toolChain>
 </folderInfo>
 <fileInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.2036932259.22143931" name="CxMySql.h" rcbsApplicability="disable" resourcePath="Include/xLib/Db/CxMySql.h" toolsToInvoke=""/>
@@ -69,17 +58,6 @@
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1255949665" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.2085783413" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1540578207"/>
-</toolChain>
-</folderInfo>
-<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.2036932259.1120882666" name="/" resourcePath="Include/xLib/Compress/Linux">
-<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.1109178255" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug" unusedChildren="">
-<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
-<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1532469476" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1327821279">
-<option id="gnu.cpp.compiler.option.optimization.level.1022283339" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
-<option id="gnu.cpp.compiler.option.debugging.level.1375365257" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
-<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1298433444" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-</tool>
-<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.678845914" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1540578207"/>
 </toolChain>
 </folderInfo>
 <fileInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.2036932259.571930611" name="CxGeoIp.h" rcbsApplicability="disable" resourcePath="Include/xLib/Net/CxGeoIp.h" toolsToInvoke=""/>
@@ -958,7 +936,7 @@
 <listOptionValue builtIn="false" value="pthread"/>
 <listOptionValue builtIn="false" value="crypto"/>
 </option>
-<option id="gnu.cpp.link.option.paths.1695536587" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+<option id="gnu.cpp.link.option.paths.1695536587" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 <listOptionValue builtIn="false" value="/usr/local/lib"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1167242832" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -966,17 +944,6 @@
 <additionalInput kind="additionalinput" paths="$(LIBS)"/>
 </inputType>
 </tool>
-</toolChain>
-</folderInfo>
-<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.release.879011104.1583071499" name="/" resourcePath="Source/Compress">
-<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.release.1368996386" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.release" unusedChildren="">
-<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
-<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1596703288" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1888120292">
-<option id="gnu.cpp.compiler.option.optimization.level.251322751" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
-<option id="gnu.cpp.compiler.option.debugging.level.48527620" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
-<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.733816978" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-</tool>
-<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.1520180602" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1281176865"/>
 </toolChain>
 </folderInfo>
 <fileInfo id="cdt.managedbuild.config.gnu.cross.exe.release.879011104.1161356271" name="CxMySql.h" rcbsApplicability="disable" resourcePath="Include/xLib/Db/CxMySql.h" toolsToInvoke=""/>
@@ -989,17 +956,6 @@
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.431156878" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.2075549554" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1281176865"/>
-</toolChain>
-</folderInfo>
-<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.release.879011104.1572401237" name="/" resourcePath="Include/xLib/Compress/Linux">
-<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.release.1403214895" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.release" unusedChildren="">
-<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
-<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1971411325" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1888120292">
-<option id="gnu.cpp.compiler.option.optimization.level.1510796100" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
-<option id="gnu.cpp.compiler.option.debugging.level.16095550" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
-<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1114138620" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-</tool>
-<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.382833909" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1281176865"/>
 </toolChain>
 </folderInfo>
 <fileInfo id="cdt.managedbuild.config.gnu.cross.exe.release.879011104.1861113754" name="CxGeoIp.h" rcbsApplicability="disable" resourcePath="Include/xLib/Net/CxGeoIp.h" toolsToInvoke=""/>
