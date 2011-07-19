@@ -29,8 +29,8 @@ CxTest_CxCurrentThread::bUnit(
     //ulGetCurrId
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_ulRes = CxCurrentThread::ulGetId();
-        xASSERT_LESS(0UL, m_ulRes);
+        CxThread::TxId idRes = CxCurrentThread::ulGetId();
+        xASSERT_LESS(0UL, (ULONG)idRes);
     }
 
     //--------------------------------------------------

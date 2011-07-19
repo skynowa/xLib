@@ -74,7 +74,7 @@ CxStdError::sFormat(
     #else
         CHAR szBuff[64 + 1] = {0};
 
-        INT iRes = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        INT iRes = strerror_r(static_cast<INT>( ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRes, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(&szBuff[0]);

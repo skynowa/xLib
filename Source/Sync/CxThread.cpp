@@ -119,7 +119,7 @@ CxThread::bCreate(
 #elif defined(xOS_ENV_UNIX)
     INT            iRes = - 1;
     TxId           ulId;
-    pthread_attr_t paAttributes = {{0}};
+    pthread_attr_t paAttributes; // n/a - {{0}}
 
     iRes = pthread_attr_init(&paAttributes);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
@@ -740,7 +740,7 @@ CxThread::bSetPriorityBoost(
 
 //---------------------------------------------------------------------------
 BOOL
-CxThread::bSetAffinityMask(
+CxThread::bSetCpuAffinity(
     const INT ciProcNum
 ) const
 {
@@ -755,20 +755,28 @@ CxThread::bSetAffinityMask(
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
     /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    cpu_set_t csCpuSet; CPU_ZERO(&csCpuSet);
+	#if defined(xOS_LINUX)
+		cpu_set_t csCpuSet; CPU_ZERO(&csCpuSet);
 
-    CPU_SET(ciProcNum, &csCpuSet);
-    /*DEBUG*/// n/a
+		(VOID)CPU_SET(ciProcNum, &csCpuSet);
 
-    INT iRes = sched_setaffinity(ulGetId(), sizeof(csCpuSet), &csCpuSet);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
+		INT iRes = sched_setaffinity(ulGetId(), sizeof(csCpuSet), &csCpuSet);
+		/*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
+	#elif defined(xOS_FREEBSD)
+		cpuset_t csCpuSet; CPU_ZERO(&csCpuSet);
+
+		(VOID)CPU_SET(ciProcNum, &csCpuSet);
+
+		INT iRes = cpuset_setaffinity(CPU_LEVEL_WHICH, CPU_WHICH_TID, reinterpret_cast<id_t>( ulGetId() ), sizeof(csCpuSet), &csCpuSet);
+		/*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
+	#endif
 #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL
-CxThread::bSetIdealCpu(
+CxThread::bSetCpuIdeal(
     const ULONG culIdealCpu    ///< value is zero-based
 ) const
 {
@@ -790,7 +798,7 @@ CxThread::bSetIdealCpu(
 }
 //---------------------------------------------------------------------------
 ULONG
-CxThread::ulGetIdealCpu() const {
+CxThread::ulGetCpuIdeal() const {
 #if defined(xOS_ENV_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0);
 #elif defined(xOS_ENV_UNIX)
