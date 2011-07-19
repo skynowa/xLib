@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxProfiler (constructor)
+//DONE: CxTest_CxProfiler
 CxTest_CxProfiler::CxTest_CxProfiler() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxProfiler (destructor)
+//DONE: ~CxTest_CxProfiler
 CxTest_CxProfiler::~CxTest_CxProfiler() {
 
 }

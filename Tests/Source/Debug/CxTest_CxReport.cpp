@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxReport (constructor)
+//DONE: CxTest_CxReport
 CxTest_CxReport::CxTest_CxReport() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxReport (destructor)
+//DONE: ~CxTest_CxReport
 CxTest_CxReport::~CxTest_CxReport() {
 
 }

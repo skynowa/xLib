@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxRandom (constructor)
+//DONE: CxTest_CxRandom
 CxTest_CxRandom::CxTest_CxRandom() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxRandom (destructor)
+//DONE: ~CxTest_CxRandom
 CxTest_CxRandom::~CxTest_CxRandom() {
 
 }

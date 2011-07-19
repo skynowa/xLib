@@ -20,12 +20,12 @@ typedef struct {
 } SMy, *PSMy;
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAutoMallocT (constructor)
+//DONE: CxTest_CxAutoMallocT
 CxTest_CxAutoMallocT::CxTest_CxAutoMallocT() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAutoMallocT (destructor)
+//DONE: ~CxTest_CxAutoMallocT
 CxTest_CxAutoMallocT::~CxTest_CxAutoMallocT() {
 
 }

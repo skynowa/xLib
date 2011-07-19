@@ -25,7 +25,8 @@ CxTest_CxDir::~CxTest_CxDir() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL CxTest_CxDir::bUnit() {
+BOOL
+CxTest_CxDir::bUnit() {
     const tString csTempScanDirPath = sGetWorkDirPath() + CxConst::xSLASH + xT("Scan");
     const tString csMask            = xT("*.txt");
 
@@ -171,11 +172,8 @@ BOOL CxTest_CxDir::bUnit() {
 	//sGetTempPath
 	{
 		m_sRes = CxDir::sGetTemp();
-        #if defined(xOS_WIN)
-        xASSERT(xT("C:\\Temp\\") == m_sRes);
-        #elif defined(xOS_LINUX)
-        xASSERT(xT("/tmp") == m_sRes);
-        #endif
+		xTRACEV(xT("CxDir::sGetTemp(): %s"), m_sRes.c_str());
+        xASSERT(false == m_sRes.empty());
 	}
 
 	//-------------------------------------

@@ -37,7 +37,7 @@ class CxDnsClient :
         static BOOL _ms_bRes;
         static INT  _ms_iRes;
 
-                     CxDnsClient         ();
+                    CxDnsClient         ();
         virtual    ~CxDnsClient         ();
 };
 //---------------------------------------------------------------------------

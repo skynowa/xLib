@@ -15,12 +15,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxThread (constructor)
+//DONE: CxTest_CxThread
 CxTest_CxThread::CxTest_CxThread() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxThread (destructor)
+//DONE: ~CxTest_CxThread
 CxTest_CxThread::~CxTest_CxThread() {
 
 }

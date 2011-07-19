@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxMimeMessage (constructor)
+//DONE: CxTest_CxMimeMessage
 CxTest_CxMimeMessage::CxTest_CxMimeMessage() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxMimeMessage (destructor)
+//DONE: ~CxTest_CxMimeMessage
 CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 
 }

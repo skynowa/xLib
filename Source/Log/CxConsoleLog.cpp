@@ -35,14 +35,14 @@
 
 #endif
 //---------------------------------------------------------------------------
-//DONE: CxConsoleLog (constructor)
+//DONE: CxConsoleLog
 CxConsoleLog::CxConsoleLog(BOOL bIsUseTimeStr) :
     _m_bIsUseTimeStr(bIsUseTimeStr)
 {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxConsoleLog (destructor)
+//DONE: ~CxConsoleLog
 CxConsoleLog::~CxConsoleLog() {
 
 }

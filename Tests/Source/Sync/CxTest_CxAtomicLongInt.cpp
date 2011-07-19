@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAtomicLongInt (constructor)
+//DONE: CxTest_CxAtomicLongInt
 CxTest_CxAtomicLongInt::CxTest_CxAtomicLongInt() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAtomicLongInt (destructor)
+//DONE: ~CxTest_CxAtomicLongInt
 CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 
 }

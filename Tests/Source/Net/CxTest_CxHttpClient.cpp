@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxHttpClient (constructor)
+//DONE: CxTest_CxHttpClient
 CxTest_CxHttpClient::CxTest_CxHttpClient() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxHttpClient (destructor)
+//DONE: ~CxTest_CxHttpClient
 CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 
 }

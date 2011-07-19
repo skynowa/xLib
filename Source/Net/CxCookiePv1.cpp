@@ -21,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCookiePv1 (constructor)
+//DONE: CxCookiePv1
 CxCookiePv1::CxCookiePv1() :
     _m_sName    (),
     _m_sValue   (),
@@ -40,7 +40,7 @@ CxCookiePv1::CxCookiePv1() :
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: CxCookiePv1 (constructor)
+//DONE: CxCookiePv1
 CxCookiePv1::CxCookiePv1(const tString &csRawCookie) :
     _m_sName    (),
     _m_sValue   (),
@@ -59,7 +59,7 @@ CxCookiePv1::CxCookiePv1(const tString &csRawCookie) :
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxCookiePv1 (destructor)
+//DONE: ~CxCookiePv1
 /*virtual*/
 CxCookiePv1::~CxCookiePv1() {
     /*DEBUG*/

@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxMutex (constructor)
+//DONE: CxTest_CxMutex
 CxTest_CxMutex::CxTest_CxMutex() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxMutex (destructor)
+//DONE: ~CxTest_CxMutex
 CxTest_CxMutex::~CxTest_CxMutex() {
 
 }

@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxPop3 (constructor)
+//DONE: CxTest_CxPop3
 CxTest_CxPop3::CxTest_CxPop3() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxPop3 (destructor)
+//DONE: ~CxTest_CxPop3
 CxTest_CxPop3::~CxTest_CxPop3() {
 
 }

@@ -38,6 +38,7 @@ class CxReport : public CxNonCopyable  {
         const tString &  sGetProgram        () const;
         ULONG            ulGetProcessId     () const;
         ULONG            ulGetThreadId      () const;
+        const tString &  sGetFileSize      () const;
         const tString &  sGetSourceFile     () const;
         ULONG            ulGetSourceLine    () const;
         const tString &  sGetFunctionName   () const;
@@ -58,6 +59,7 @@ class CxReport : public CxNonCopyable  {
         tString          _m_sProgram;
         ULONG            _m_ulProcessId;
         ULONG            _m_ulThreadId;
+        tString          _m_sFileSize;
 
         //source
         tString          _m_sSourceFile;

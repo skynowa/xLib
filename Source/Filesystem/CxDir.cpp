@@ -35,24 +35,6 @@ CxDir::bIsExists(
 
     BOOL bRes = FALSE;
 
-#if xDEPRECIATE
-    #if defined(xOS_WIN)
-        CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
-        /*DEBUG*/// n/a
-        xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
-
-        bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-    #elif defined(xOS_LINUX)
-        struct stat stInfo = {0};
-
-        INT iRes = stat(csDirPath.c_str(), &stInfo);
-        /*DEBUG*/// n/a
-        xCHECK_RET(- 1 == iRes, FALSE);
-
-        bRes = static_cast<BOOL>( S_ISDIR(stInfo.st_mode) );
-    #endif
-#endif
-
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
     /*DEBUG*/// n/a
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
@@ -163,26 +145,6 @@ CxDir::bIsDir(
 
     BOOL bRes = FALSE;
 
-#if xDEPRECIATE
-    #if defined(xOS_WIN)
-        bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-        xCHECK_RET(FALSE == bRes, FALSE);
-
-        /*
-        DWORD dw = GetFileAttributes(pathname);
-        return dw != INVALID_FILE_ATTRIBUTES && (dw & FILE_ATTRIBUTE_DIRECTORY);
-        */
-    #elif defined(xOS_LINUX)
-        struct stat stInfo = {0};
-
-        INT iRes = stat/*lstat*/(csDirPath.c_str(), &stInfo);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-
-        bRes = static_cast<BOOL>( S_ISDIR(stInfo.st_mode) );
-        xCHECK_RET(FALSE == bRes, FALSE);
-    #endif
-#endif
-
     bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
     xCHECK_RET(FALSE == bRes, FALSE);
 
@@ -259,6 +221,8 @@ CxDir::sGetTemp() {
 #elif defined(xOS_LINUX)
     sRes.assign(xT(P_tmpdir));
 #endif
+
+    /*DEBUG*/xASSERT_RET(TRUE == bIsExists(sRes), tString());
 
     return sRes;
 }

@@ -30,14 +30,14 @@
 //---------------------------------------------------------------------------
 CxCriticalSection CxWndLog::_ms_csListBox;
 //---------------------------------------------------------------------------
-//DONE: CxWndLog (constructor)
+//DONE: CxWndLog
 CxWndLog::CxWndLog(EWindowClass wcWC) :
     _m_eWC (wcWC)
 {
     /*DEBUG*/xASSERT_DO(wcListBox == _m_eWC, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxWndLog (destructor)
+//DONE: ~CxWndLog
 CxWndLog::~CxWndLog() {
 
 }

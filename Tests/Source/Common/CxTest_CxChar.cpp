@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxChar (constructor)
+//DONE: CxTest_CxChar
 CxTest_CxChar::CxTest_CxChar() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxChar (destructor)
+//DONE: ~CxTest_CxChar
 CxTest_CxChar::~CxTest_CxChar() {
 
 }

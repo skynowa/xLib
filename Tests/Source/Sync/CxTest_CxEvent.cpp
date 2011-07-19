@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxEvent (constructor)
+//DONE: CxTest_CxEvent
 CxTest_CxEvent::CxTest_CxEvent() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxEvent (destructor)
+//DONE: ~CxTest_CxEvent
 CxTest_CxEvent::~CxTest_CxEvent() {
 
 }

@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxBase64 (constructor)
+//DONE: CxTest_CxBase64
 CxTest_CxBase64::CxTest_CxBase64() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxBase64 (destructor)
+//DONE: ~CxTest_CxBase64
 CxTest_CxBase64::~CxTest_CxBase64() {
 
 }

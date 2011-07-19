@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_bGetUsbInfo (constructor)
+//DONE: CxTest_bGetUsbInfo
 CxTest_bGetUsbInfo::CxTest_bGetUsbInfo() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_bGetUsbInfo (destructor)
+//DONE: ~CxTest_bGetUsbInfo
 CxTest_bGetUsbInfo::~CxTest_bGetUsbInfo() {
 
 }

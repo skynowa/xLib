@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxMySQLConnection (constructor)
+//DONE: CxMySQLConnection
 CxMySQLConnection::CxMySQLConnection() :
     _m_pmsConnection(NULL)
 {
@@ -30,7 +30,7 @@ CxMySQLConnection::CxMySQLConnection() :
     _m_pmsConnection = _pmsConnection;
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxMySQLConnection (destructor)
+//DONE: ~CxMySQLConnection
 /*virtual*/
 CxMySQLConnection::~CxMySQLConnection() {
     /*DEBUG*/
@@ -207,7 +207,7 @@ CxMySQLConnection::sGetLastErrorStr() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxMySQLRecordset (constructor)
+//DONE: CxMySQLRecordset
 CxMySQLRecordset::CxMySQLRecordset(
     const CxMySQLConnection &cmcConnection, //connection
     const BOOL               cbIsUseResult  //use result or store result
@@ -231,7 +231,7 @@ CxMySQLRecordset::CxMySQLRecordset(
     _m_pmrResult = pmrResult;
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxMySQLRecordset (destructor)
+//DONE: ~CxMySQLRecordset
 /*virtual*/
 CxMySQLRecordset::~CxMySQLRecordset() {
     /*DEBUG*/// _m_pmrResult - n/a

@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxPath (constructor)
+//DONE: CxTest_CxPath
 CxTest_CxPath::CxTest_CxPath() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxPath (destructor)
+//DONE: ~CxTest_CxPath
 CxTest_CxPath::~CxTest_CxPath() {
 
 }

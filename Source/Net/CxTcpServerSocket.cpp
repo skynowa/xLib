@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTcpServerSocket (construcor)
+//DONE: CxTcpServerSocket
 CxTcpServerSocket::CxTcpServerSocket() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTcpServerSocket (destructor)
+//DONE: ~CxTcpServerSocket
 CxTcpServerSocket::~CxTcpServerSocket() {
 
 }

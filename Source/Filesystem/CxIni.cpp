@@ -23,7 +23,7 @@
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE: CxIni (constructor, exe-file path)
+//DONE: CxIni (exe-file path)
 CxIni::CxIni() :
     _m_csSeparator(CxConst::xEQUAL),
     _m_csFileExt  (xT("ini")),
@@ -39,7 +39,7 @@ CxIni::CxIni() :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: CxIni (constructor, file path)
+//DONE: CxIni (file path)
 CxIni::CxIni(
     const tString &csFilePath
 ) :
@@ -58,7 +58,7 @@ CxIni::CxIni(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: ~CxIni (destructor)
+//DONE: ~CxIni
 /*virtual*/
 CxIni::~CxIni() {
 

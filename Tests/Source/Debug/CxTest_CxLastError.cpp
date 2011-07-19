@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxLastError (constructor)
+//DONE: CxTest_CxLastError
 CxTest_CxLastError::CxTest_CxLastError() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxLastError (destructor)
+//DONE: ~CxTest_CxLastError
 CxTest_CxLastError::~CxTest_CxLastError() {
 
 }

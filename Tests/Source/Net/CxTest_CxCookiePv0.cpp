@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxCookiePv0 (constructor)
+//DONE: CxTest_CxCookiePv0
 CxTest_CxCookiePv0::CxTest_CxCookiePv0() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxCookiePv0 (destructor)
+//DONE: ~CxTest_CxCookiePv0
 CxTest_CxCookiePv0::~CxTest_CxCookiePv0() {
 
 }

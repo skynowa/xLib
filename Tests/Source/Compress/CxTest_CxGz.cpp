@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxGz (constructor)
+//DONE: CxTest_CxGz
 CxTest_CxGz::CxTest_CxGz() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxGz (destructor)
+//DONE: ~CxTest_CxGz
 CxTest_CxGz::~CxTest_CxGz() {
 
 }
@@ -27,22 +27,19 @@ CxTest_CxGz::~CxTest_CxGz() {
 /*virtual*/
 BOOL
 CxTest_CxGz::bUnit() {
-//    CxGz gzGz;
-//
-//    INT   iFileIn,
-//    INT   iFileOut,
-//    const tString csOriginName = xT("OriginName");
-//
-//    m_bRes = gzGz.bCompress(INT iFileIn, INT iFileOut, const tString &csOriginName);
-//    xASSERT(FALSE != m_bRes);
-//
-//
-//
-//
-//
-//
-//    m_bRes = gzGz.bUncompress(INT iFileIn, INT iFileOut);
-//    xASSERT(FALSE != m_bRes);
+    CxGz gzGz;
+
+    #if xTODO
+        INT   iFileIn,
+        INT   iFileOut,
+        const tString csOriginName = xT("OriginName");
+
+        m_bRes = gzGz.bCompress(INT iFileIn, INT iFileOut, const tString &csOriginName);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = gzGz.bUncompress(INT iFileIn, INT iFileOut);
+        xASSERT(FALSE != m_bRes);
+    #endif
 
     return TRUE;
 }

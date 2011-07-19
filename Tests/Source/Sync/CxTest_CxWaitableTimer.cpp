@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxWaitableTimer (constructor)
+//DONE: CxTest_CxWaitableTimer
 CxTest_CxWaitableTimer::CxTest_CxWaitableTimer() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxWaitableTimer (destructor)
+//DONE: ~CxTest_CxWaitableTimer
 CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 
 }

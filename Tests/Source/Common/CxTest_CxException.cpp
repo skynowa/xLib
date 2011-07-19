@@ -13,12 +13,12 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxException (constructor)
+//DONE: CxTest_CxException
 CxTest_CxException::CxTest_CxException() {
     bSetName(xT(xFUNCTION));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxException (destructor)
+//DONE: ~CxTest_CxException
 CxTest_CxException::~CxTest_CxException() {
 
 }

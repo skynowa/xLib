@@ -34,12 +34,12 @@ unsigned __stdcall vTest( void* pArguments ) {
     return 0;
 }
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSemaphore (constructor)
+//DONE: CxTest_CxSemaphore
 CxTest_CxSemaphore::CxTest_CxSemaphore() {
     bSetName(xFUNCTION);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSemaphore (destructor)
+//DONE: ~CxTest_CxSemaphore
 CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 
 }

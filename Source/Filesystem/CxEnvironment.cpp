@@ -387,12 +387,12 @@ CxEnvironment::bSetCommandLineArgs(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxEnvironment (constructor)
+//DONE: CxEnvironment
 CxEnvironment::CxEnvironment() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxEnvironment (dectructor)
+//DONE: ~CxEnvironment
 /*virtual*/
 CxEnvironment::~CxEnvironment() {
 

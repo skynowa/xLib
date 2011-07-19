@@ -18,7 +18,6 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <grp.h>
-#include <pthread.h>
 #include <pwd.h>
 #include <tar.h>
 #include <termios.h>
@@ -27,7 +26,6 @@
 #include <signal.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
-#include <sys/sem.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <sys/types.h>
@@ -35,9 +33,13 @@
 #include <sys/wait.h>
 #include <sys/uio.h>
 
-//threads
+//thread
 #include <pthread.h>    //lib: -pthread
 #include <sched.h>
+#include <sys/sem.h>
+
+//dll
+#include <dlfcn.h>      //lib: -ldl, -lc (FreeBSD)
 
 #if defined(xOS_FREEBSD)
     #include <osreldate.h>
