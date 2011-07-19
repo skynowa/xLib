@@ -38,7 +38,7 @@ CxTls::pvGetValue() const {
     pvRes = ::TlsGetValue(_m_indIndex);
     /*DEBUG*/xASSERT_RET(NULL != pvRes, NULL);
 #elif defined(xOS_ENV_UNIX)
-    /*DEBUG*/xASSERT_RET(0U < _m_indIndex, NULL);
+    /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, NULL);
 
     pvRes = pthread_getspecific(_m_indIndex);
     /*DEBUG*/xASSERT_RET(NULL != pvRes, NULL);
@@ -60,7 +60,7 @@ CxTls::bSetValue(
     BOOL bRes = ::TlsSetValue(_m_indIndex, pvValue);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    /*DEBUG*/xASSERT_RET(0U < _m_indIndex, FALSE);
+    /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, FALSE);
 
     INT iRes = pthread_setspecific(_m_indIndex, pvValue);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
@@ -108,7 +108,7 @@ CxTls::_bFree() {
 
     _m_indIndex = TLS_OUT_OF_INDEXES;
 #elif defined(xOS_ENV_UNIX)
-    /*DEBUG*/xASSERT_RET(0U < _m_indIndex, FALSE);
+    /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, FALSE);
 
     INT iRes = pthread_key_delete(_m_indIndex);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);

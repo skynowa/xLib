@@ -755,8 +755,13 @@ CxThread::bSetCpuAffinity(
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
     /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    cpu_set_t csCpuSet; CPU_ZERO(&csCpuSet);
+	#if defined(xOS_FREEBSD)
+		cpuset_t  csCpuSet;
+	#else
+		cpu_set_t csCpuSet;
+	#endif
 
+	CPU_ZERO(&csCpuSet);
     (VOID)CPU_SET(ciProcNum, &csCpuSet);
 
     INT iRes = pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
