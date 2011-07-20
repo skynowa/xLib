@@ -173,7 +173,7 @@ _tmain(
     bRes = tmManager.bAdd(new CxTest_CxString);
     bRes = tmManager.bAdd(new CxTest_CxDateTime);
     bRes = tmManager.bAdd(new CxTest_CxFunctorT);
-    ////bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
+    bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
     bRes = tmManager.bAdd(new CxTest_CxException);
 
     #if defined(xOS_WIN)

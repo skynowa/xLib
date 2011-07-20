@@ -12,8 +12,9 @@
 #ifndef xLib_GdiPlus_CxImageH
 #define xLib_GdiPlus_CxImageH
 //---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+
 #if defined(xOS_WIN)
-    #include <xLib/Common/xCommon.h>
     #include <GDIPlus.h>
     //---------------------------------------------------------------------------
     class CxImage :

@@ -227,6 +227,31 @@ CxTest_CxPath::bUnit() {
         }
     }
 
+    //-------------------------------------
+    //sGetStandartExt
+    {
+	    m_sRes = CxPath::sGetStandartExt(CxPath::seExe);
+        #if defined(xOS_WIN)
+            xASSERT(xT("exe") == m_sRes);
+        #elif defined(xOS_LINUX)
+            xASSERT(xT("")    == m_sRes);
+        #endif
+
+        m_sRes = CxPath::sGetStandartExt(CxPath::seDll);
+        #if defined(xOS_WIN)
+            xASSERT(xT("dll") == m_sRes);
+        #elif defined(xOS_LINUX)
+            xASSERT(xT("so")  == m_sRes);
+        #endif
+
+        m_sRes = CxPath::sGetStandartExt(CxPath::seLib);
+        #if defined(xOS_WIN)
+            xASSERT(xT("lib") == m_sRes);
+        #elif defined(xOS_LINUX)
+            xASSERT(xT("a")   == m_sRes);
+        #endif
+    }
+
 	//-------------------------------------
 	//sSetDrive
 	{

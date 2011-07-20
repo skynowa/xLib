@@ -42,14 +42,14 @@ CxTestManager::~CxTestManager() {
 }
 //---------------------------------------------------------------------------
 //DONE: bAdd (new CxTest)
-#if defined(xOS_LINUX) && (defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32))
+#if defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32)
     #include <cxxabi.h> //abi::__cxa_demangle
 #endif
 
 BOOL
 CxTestManager::bAdd(
     CxTest        *pvtTest,
-    const tString &csTestName /* = CxConst::xSTR_EMPTY*/
+    const tString &csTestName /*= CxConst::xSTR_EMPTY*/
 )
 {
     /*DEBUG*/
@@ -58,11 +58,18 @@ CxTestManager::bAdd(
     //TODO: sClassName must move to CxObject
     tString sClassName;
     if (csTestName == CxConst::xSTR_EMPTY) {
-        #if defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32)
+        #if defined(xCOMPILER_GNUC)
             INT  iStatus      = - 1;
             char *pszRealName = NULL;
 
             pszRealName = abi::__cxa_demangle(typeid(*pvtTest).name(), 0, 0, &iStatus);
+            sClassName  = (NULL != pszRealName) ? (pszRealName) : xT("<unknown test name>");
+            xBUFF_FREE(pszRealName);
+		#elif defined(xCOMPILER_MINGW32)     
+            INT  iStatus      = - 1;
+            char *pszRealName = NULL;
+
+            pszRealName = __cxxabiv1::__cxa_demangle(typeid(*pvtTest).name(), 0, 0, &iStatus);
             sClassName  = (NULL != pszRealName) ? (pszRealName) : xT("<unknown test name>");
             xBUFF_FREE(pszRealName);
         #else

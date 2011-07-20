@@ -12,8 +12,9 @@
 #ifndef xLib_GdiPlus_CxGdiplusH
 #define xLib_GdiPlus_CxGdiplusH
 //---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+
 #if defined(xOS_WIN)
-    #include <xLib/Common/xCommon.h>
     #include <GDIPlus.h>
 
     #pragma comment (lib, "Gdiplus.lib")
