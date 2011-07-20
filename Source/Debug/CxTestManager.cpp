@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxTestManager
-* Description:
+* Description: manage tests (CxTest)
 * File name:   CxTestManager.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -42,15 +42,40 @@ CxTestManager::~CxTestManager() {
 }
 //---------------------------------------------------------------------------
 //DONE: bAdd (new CxTest)
+#if defined(xOS_LINUX) && (defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32))
+    #include <cxxabi.h> //abi::__cxa_demangle
+#endif
+
 BOOL
 CxTestManager::bAdd(
-    CxTest *pvtTest
+    CxTest        *pvtTest,
+    const tString &csTestName /* = CxConst::xSTR_EMPTY*/
 )
 {
     /*DEBUG*/
     /*DEBUG*/xASSERT_RET(NULL != pvtTest, FALSE)
 
-    _m_ctnTests.push_back( pvtTest );
+    //TODO: sClassName must move to CxObject
+    tString sClassName;
+    if (csTestName == CxConst::xSTR_EMPTY) {
+        #if defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32)
+            INT  iStatus      = - 1;
+            char *pszRealName = NULL;
+
+            pszRealName = abi::__cxa_demangle(typeid(*pvtTest).name(), 0, 0, &iStatus);
+            sClassName  = (NULL != pszRealName) ? (pszRealName) : xT("<unknown test name>");
+            xBUFF_FREE(pszRealName);
+        #else
+            sClassName.assign(typeid(*pvtTest).name());
+        #endif
+    } else {
+        sClassName.assign(csTestName);
+    }
+
+    pvtTest->bSetName(sClassName);
+    /*DEBUG*/// n/a
+
+    _m_ctnTests.push_back(pvtTest);
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  added test %s"), pvtTest->sGetName().c_str()));
 
@@ -66,15 +91,19 @@ CxTestManager::bRun(
 {
     /*DEBUG*/
 
+    BOOL bRes = FALSE;
+
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager:  start all tests...")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  module path: %s"), CxPath::sGetExe().c_str()));
 
     for (ULONGLONG i = 0; i < cullTimesForAll; ++ i) {
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  run test %s"), (*it)->sGetName().c_str()));
-
-            BOOL bRes = (*it)->bRun(cullTimesForSingle);
-            xASSERT_MSG_RET(FALSE != bRes, ( xT("CxTestManager:  test (") + (*it)->sGetName() + xT(") not complete") ).c_str(), FALSE);
+xTRACE_POINT;
+            bRes = (*it)->bRun(cullTimesForSingle);
+xTRACE_POINT;
+            xASSERT_MSG_RET(FALSE != bRes, CxString::sFormat(xT("CxTestManager:  test (%s) not complete"), (*it)->sGetName().c_str()), FALSE);
+xTRACE_POINT;
         }
     }
 

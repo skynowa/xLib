@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxFile
 CxTest_CxFile::CxTest_CxFile() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxFile
@@ -25,7 +25,8 @@ CxTest_CxFile::~CxTest_CxFile() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL CxTest_CxFile::bUnit() {
+BOOL 
+CxTest_CxFile::bUnit() {
 #if defined(xOS_WIN)
     ULONG         ulWritten     = 0;
     ULONG         ulReaded      = 0;

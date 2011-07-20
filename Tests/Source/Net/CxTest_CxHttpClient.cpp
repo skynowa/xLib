@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxHttpClient
 CxTest_CxHttpClient::CxTest_CxHttpClient() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxHttpClient
@@ -28,8 +28,6 @@ CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 BOOL
 CxTest_CxHttpClient::bUnit() {
     CxHttpClient hcHttpClient;
-
-
 
     return TRUE;
 }

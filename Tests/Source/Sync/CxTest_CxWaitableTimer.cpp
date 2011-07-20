@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxWaitableTimer
 CxTest_CxWaitableTimer::CxTest_CxWaitableTimer() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxWaitableTimer

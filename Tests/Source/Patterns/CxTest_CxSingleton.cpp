@@ -16,12 +16,12 @@
 //class CLogger
 class CLogger {
     public:
-             CLogger() {
-                 //xSTD_COUT_FUNC;
-             };
-            ~CLogger() {
-                //xSTD_COUT_FUNC;
-            };
+        CLogger() {
+            //xSTD_COUT_FUNC;
+        };
+        ~CLogger() {
+            //xSTD_COUT_FUNC;
+        };
 
        VOID  vOpen  () { /*xSTD_COUT_FUNC;*/ };
        VOID  vWrite () { /*xSTD_COUT_FUNC;*/ };
@@ -31,7 +31,7 @@ class CLogger {
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxSingleton
 CxTest_CxSingleton::CxTest_CxSingleton() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxSingleton

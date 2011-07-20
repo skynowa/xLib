@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAsyncSocket
 CxTest_CxAsyncSocket::CxTest_CxAsyncSocket() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxAsyncSocket
@@ -25,7 +25,8 @@ CxTest_CxAsyncSocket::~CxTest_CxAsyncSocket() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL CxTest_CxAsyncSocket::bUnit() {
+BOOL 
+CxTest_CxAsyncSocket::bUnit() {
 	/*DEBUG*/
 
 	return TRUE;

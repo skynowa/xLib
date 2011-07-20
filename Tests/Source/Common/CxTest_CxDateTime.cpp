@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxDateTime
 CxTest_CxDateTime::CxTest_CxDateTime() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxDateTime
@@ -25,7 +25,8 @@ CxTest_CxDateTime::~CxTest_CxDateTime() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL CxTest_CxDateTime::bUnit() {
+BOOL 
+CxTest_CxDateTime::bUnit() {
     /****************************************************************************
     *   public: constructors, destructor
     *

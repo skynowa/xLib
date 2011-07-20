@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxReport
 CxTest_CxReport::CxTest_CxReport() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxReport
@@ -44,7 +44,6 @@ CxTest_CxReport::bUnit() {
         m_sRes = rpReport.sGetReport();
         //xTRACE(m_sRes);
     }
-
 
     return TRUE;
 }

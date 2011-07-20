@@ -67,7 +67,7 @@ class CxTest :
         tString                         sGetWorkDirPath();
 
         tString                         sGetName       ();
-        BOOL                            bSetName       (const tString &csTestName);
+        virtual BOOL                            bSetName       (const tString &csTestName);
 
         //TODO: not enough RAM
         //TODO: not enough HDD

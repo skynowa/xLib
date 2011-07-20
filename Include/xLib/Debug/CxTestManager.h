@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxTestManager
-* Description:
+* Description: manage tests (CxTest)
 * File name:   CxTestManager.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -22,7 +22,7 @@ class CxTestManager :
 				   CxTestManager       (const BOOL cbIsUseTracing);
 		virtual   ~CxTestManager       ();
 
-        BOOL       bAdd                (CxTest *pvtTest);
+        BOOL       bAdd                (CxTest *pvtTest, const tString &csTestName = CxConst::xSTR_EMPTY);
         BOOL       bRun                (const ULONGLONG cullTimesForAll, const ULONGLONG  ullTimesForSingle);
 
     private:

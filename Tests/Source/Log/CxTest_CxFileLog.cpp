@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxFileLog
 CxTest_CxFileLog::CxTest_CxFileLog() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxFileLog

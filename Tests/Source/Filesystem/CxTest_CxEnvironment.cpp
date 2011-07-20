@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxEnvironment
 CxTest_CxEnvironment::CxTest_CxEnvironment() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxEnvironment
@@ -155,7 +155,7 @@ CxTest_CxEnvironment::bUnit() {
     //sGetCommandLine
     {
         m_sRes = CxEnvironment::sGetCommandLine();
-        xTRACEV(xT("CxEnvironment::sGetCommandLine(): %s"), m_sRes.c_str());
+        xTRACEV(xT("    CxEnvironment::sGetCommandLine(): %s"), m_sRes.c_str());
         xASSERT(false == m_sRes.empty());
     }
 

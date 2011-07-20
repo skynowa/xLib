@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxTcpClientSocket
 CxTest_CxTcpClientSocket::CxTest_CxTcpClientSocket() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxTcpClientSocket
@@ -27,7 +27,8 @@ CxTest_CxTcpClientSocket::~CxTest_CxTcpClientSocket() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL CxTest_CxTcpClientSocket::bUnit() {
+BOOL 
+CxTest_CxTcpClientSocket::bUnit() {
 	CxSocket::EAddressFamily afAf           = CxSocket::afInet;
 	CxSocket::EType          tpType         = CxSocket::tpStream;
 	CxSocket::EProtocol      ptProtocol     = CxSocket::ptIp;

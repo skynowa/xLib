@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxTcpServerSocket
 CxTest_CxTcpServerSocket::CxTest_CxTcpServerSocket() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxTcpServerSocket
@@ -28,7 +28,8 @@ CxTest_CxTcpServerSocket::~CxTest_CxTcpServerSocket() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL CxTest_CxTcpServerSocket::bUnit() {
+BOOL 
+CxTest_CxTcpServerSocket::bUnit() {
 	/*DEBUG*/
 
 	CxSocket::EAddressFamily afAf       = CxSocket::afInet;

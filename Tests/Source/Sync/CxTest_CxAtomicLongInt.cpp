@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAtomicLongInt
 CxTest_CxAtomicLongInt::CxTest_CxAtomicLongInt() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxAtomicLongInt

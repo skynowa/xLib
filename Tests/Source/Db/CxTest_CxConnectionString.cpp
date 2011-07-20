@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxConnectionString
 CxTest_CxConnectionString::CxTest_CxConnectionString() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxConnectionString
@@ -26,7 +26,8 @@ CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL CxTest_CxConnectionString::bUnit() {
+BOOL 
+CxTest_CxConnectionString::bUnit() {
 	/*DEBUG*/
 
 	return TRUE;

@@ -22,7 +22,7 @@ typedef struct {
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAutoMallocT
 CxTest_CxAutoMallocT::CxTest_CxAutoMallocT() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxAutoMallocT

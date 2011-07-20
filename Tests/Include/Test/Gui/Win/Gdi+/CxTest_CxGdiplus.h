@@ -12,20 +12,24 @@
 #ifndef CxTest_CxGdiplusH
 #define CxTest_CxGdiplusH
 //---------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
-#include <xLib/Gui/Win/GDI+/CxGdiplus.h>
-//---------------------------------------------------------------------------
-class CxTest_CxGdiplus : 
-    public CxTest 
-{
-	public:
-                     CxTest_CxGdiplus();
-		virtual     ~CxTest_CxGdiplus();
+#if defined(xOS_WIN)
+    #include <xLib/Common/xCommon.h>
+    #include <xLib/Debug/CxTest.h>
+    #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
+    //---------------------------------------------------------------------------
+    class CxTest_CxGdiplus :
+        public CxTest
+    {
+        public:
+                         CxTest_CxGdiplus();
+            virtual     ~CxTest_CxGdiplus();
 
-		virtual BOOL bUnit();
+            virtual BOOL bUnit();
 
-	private:
-};
+        private:
+    };
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //CxTest_CxGdiplusH

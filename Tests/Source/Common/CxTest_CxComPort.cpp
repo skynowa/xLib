@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxComPort
 CxTest_CxComPort::CxTest_CxComPort() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxComPort
@@ -25,7 +25,8 @@ CxTest_CxComPort::~CxTest_CxComPort() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL CxTest_CxComPort::bUnit() {
+BOOL 
+CxTest_CxComPort::bUnit() {
     /*DEBUG*/
 
     return TRUE;

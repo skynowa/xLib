@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxDir
 CxTest_CxDir::CxTest_CxDir() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxDir
@@ -172,7 +172,7 @@ CxTest_CxDir::bUnit() {
 	//sGetTempPath
 	{
 		m_sRes = CxDir::sGetTemp();
-		xTRACEV(xT("CxDir::sGetTemp(): %s"), m_sRes.c_str());
+		xTRACEV(xT("    CxDir::sGetTemp(): %s"), m_sRes.c_str());
         xASSERT(false == m_sRes.empty());
 	}
 

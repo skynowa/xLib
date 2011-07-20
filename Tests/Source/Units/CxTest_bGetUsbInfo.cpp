@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_bGetUsbInfo
 CxTest_bGetUsbInfo::CxTest_bGetUsbInfo() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_bGetUsbInfo
