@@ -443,7 +443,7 @@ CxReport::_bInitRtf() {
         xT("CxReport"),
         xT("Program:"),         sGetProgram().data(),
         xT("File:"),            sGetSourceFile().data(),
-        xT("Line:"),            ulGetSourceLine,
+        xT("Line:"),            ulGetSourceLine(),
         xT("Function:"),        sGetFunctionName().data(),
         xT("Expression:"),      sGetExpression().data(),
         xT("LastError:"),       sGetLastErrorStr().data(),

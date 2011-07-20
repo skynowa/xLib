@@ -18,6 +18,12 @@ class CxPath :
     public CxNonCopyable
 {
     public:
+        enum EStandartExt {
+            seExe,
+            seDll,
+            seLib
+        };
+
         static tString sGetExe         ();
         static tString sGetExeDir      ();
         static tString sGetDll         ();
@@ -30,6 +36,7 @@ class CxPath :
         static tString sGetFullName    (const tString &csFilePath);
         static tString sGetName        (const tString &csFilePath);
         static tString sGetExt         (const tString &csFilePath);
+        static tString sGetStandartExt (const EStandartExt cseFileExt);
 
         #if defined(xOS_WIN)
         static tString sSetDrive       (const tString &csFilePath, const tString &csDrivePath);

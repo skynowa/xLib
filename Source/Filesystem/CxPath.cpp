@@ -281,8 +281,30 @@ CxPath::sGetExt(
     return csFilePath.substr(uiDotPos + CxConst::xDOT.size());
 }
 //--------------------------------------------------------------------------
+//DONE: sGetStandartExt (get standart extension)
+/*static*/
+tString
+CxPath::sGetStandartExt(
+    const EStandartExt cseFileExt
+)
+{
+    tString sRes;
 
+	switch (cseFileExt) {
+    #if defined(xOS_WIN)
+        case seExe:	{ sRes = xT("exe");    }   break;
+	    case seDll:	{ sRes = xT("dll");    }   break;
+	    case seLib:	{ sRes = xT("lib");    }   break;
+    #elif defined(xOS_LINUX)
+        case seExe:	{ sRes = xT("");       }   break;
+	    case seDll:	{ sRes = xT("so");     }   break;
+	    case seLib:	{ sRes = xT("a");      }   break;
+    #endif
+    	default:    { sRes = xT("");       }   break;
+    }
 
+    return sRes;
+} 
 //---------------------------------------------------------------------------
 //DONE: sSetDrive ()
 #if defined(xOS_WIN)

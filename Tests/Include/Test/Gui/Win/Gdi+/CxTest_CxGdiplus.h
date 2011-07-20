@@ -12,8 +12,9 @@
 #ifndef CxTest_CxGdiplusH
 #define CxTest_CxGdiplusH
 //---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+
 #if defined(xOS_WIN)
-    #include <xLib/Common/xCommon.h>
     #include <xLib/Debug/CxTest.h>
     #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
     //---------------------------------------------------------------------------
