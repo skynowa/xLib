@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxCrc32
 CxTest_CxCrc32::CxTest_CxCrc32() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxCrc32
@@ -25,7 +25,8 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL CxTest_CxCrc32::bUnit() {
+BOOL 
+CxTest_CxCrc32::bUnit() {
 	/*DEBUG*/
 
 	const tString csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;

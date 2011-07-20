@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxConsole
 CxTest_CxConsole::CxTest_CxConsole() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxConsole
@@ -25,7 +25,8 @@ CxTest_CxConsole::~CxTest_CxConsole() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL CxTest_CxConsole::bUnit() {
+BOOL 
+CxTest_CxConsole::bUnit() {
     /*DEBUG*/
 
     #if xTODO

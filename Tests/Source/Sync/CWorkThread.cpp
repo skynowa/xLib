@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CWorkThread
-* Description: ������� �����
+* Description: work thread
 * File name:   CWorkThread.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -9,18 +9,18 @@
 *****************************************************************************/
 
 
-//---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxThread.h>
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 #include <xLib/Log/CxFileLog.h>
 
-#if defined(xOS_WIN)
+
 //---------------------------------------------------------------------------
 #define WM_TEST_MSG_1  (WM_USER + 100)
 //---------------------------------------------------------------------------
 
+#if defined(xOS_WIN)
 
 /****************************************************************************
 *    public
@@ -28,15 +28,17 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CWorkThread
-CWorkThread::CWorkThread(BOOL bAutoDelete) :
-    CxThread (bAutoDelete),
+//DONE: CWorkThread
+CWorkThread::CWorkThread(
+    const BOOL cbAutoDelete
+) :
+    CxThread (cbAutoDelete),
     m_uiIndex(0),
     _m_clLog (FALSE)
 {
 }
 //---------------------------------------------------------------------------
-//TODO: ~CWorkThread
+//DONE: ~CWorkThread
 CWorkThread::~CWorkThread() {
 
 }
@@ -49,7 +51,7 @@ CWorkThread::~CWorkThread() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: uiOnRun
+//DONE: uiOnRun
 UINT
 CWorkThread::uiOnRun(
     VOID *pData
@@ -59,6 +61,10 @@ CWorkThread::uiOnRun(
 
     UINT uiRes = 0;
     BOOL bRes  = FALSE;
+
+    //bIsCurrent
+    bRes = pthT->bIsCurrent();
+    xASSERT(FALSE != m_bRes);
 
     for (size_t i = 0; i < /**piParam*/10; ++ i, ++ uiRes) {
         bRes = bIsTimeToExit();
@@ -75,13 +81,13 @@ CWorkThread::uiOnRun(
     return uiRes;
 }
 //---------------------------------------------------------------------------
-//TODO: vOnEnter
+//DONE: vOnEnter
 VOID
 CWorkThread::vOnEnter() {
     //LOG("vOnEnter");
 }
 //---------------------------------------------------------------------------
-//TODO: vOnExit
+//DONE: vOnExit
 VOID
 CWorkThread::vOnExit() {
     //LOG("vOnExit");

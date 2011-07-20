@@ -294,7 +294,7 @@ CxReport::_bInitVars(
 
     _m_rtType          = crtType;
 
-    _m_sProgram        = CxPath::sGetExe();
+    _m_sProgram        = "";    //CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
     _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
     _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxStdioFile::liGetSize(CxPath::sGetExe())) );

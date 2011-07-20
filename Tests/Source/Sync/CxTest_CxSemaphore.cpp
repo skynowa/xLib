@@ -17,7 +17,8 @@
 BOOL m_bRes = FALSE;
 CxSemaphore m_Semaphore;
 //---------------------------------------------------------------------------
-unsigned __stdcall vTest( void* pArguments ) {
+unsigned __stdcall 
+vTest( void* pArguments ) {
     BOOL bRes = FALSE;
 
     /*LOG*/std::cout << "Start" << std::endl;
@@ -36,7 +37,7 @@ unsigned __stdcall vTest( void* pArguments ) {
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxSemaphore
 CxTest_CxSemaphore::CxTest_CxSemaphore() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxSemaphore

@@ -810,6 +810,14 @@ CxThread::ulGetId() const {
     return _m_ulID;
 }
 //---------------------------------------------------------------------------
+//DONE: bIsCurrent (is current)
+BOOL
+CxThread::bIsCurrent() const {
+    /*DEBUG*/
+
+    return bIsCurrent( ulGetCurrId() );
+}
+//---------------------------------------------------------------------------
 //DONE: bGetExitCode (Retrieves the termination status of the specified thread)
 ULONG
 CxThread::ulGetExitCode() const {
@@ -895,6 +903,27 @@ CxThread::ulGetCurrId() {
 #endif
 
     return ulRes;
+}
+//---------------------------------------------------------------------------
+//DONE: bIsCurrent (is current id)
+/*static*/
+BOOL
+CxThread::bIsCurrent(
+    const TId culId
+)
+{
+    /*DEBUG*/
+
+    BOOL bRes = FALSE;
+
+#if defined(xOS_WIN)
+    bRes = static_cast<BOOL>( ulGetCurrId() == culId );
+#elif defined(xOS_LINUX)
+    //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
+    bRes = static_cast<BOOL>( pthread_equal(ulGetCurrId(), culId) );
+#endif
+
+    return bRes;
 }
 //---------------------------------------------------------------------------
 //DONE: hGetCurrHandle (Retrieves a pseudo handle for the calling thread)
@@ -1259,7 +1288,7 @@ CxThread::_bSetDebugNameA(
 #if defined(xOS_WIN)
 	#if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
 		const DWORD MS_VC_EXCEPTION = 0x406D1388;
-		
+
 		#pragma pack(push,8)
 		struct tagTHREADNAME_INFO {
 			DWORD  dwType;      //must be 0x1000
@@ -1268,13 +1297,13 @@ CxThread::_bSetDebugNameA(
 			DWORD  dwFlags;     //reserved for future use, must be zero
 		};
 		#pragma pack(pop)
-		
+
 		tagTHREADNAME_INFO tiInfo = {0};
 		tiInfo.dwType     = 0x1000;
 		tiInfo.szName     = csName.c_str();
 		tiInfo.dwThreadID = ulGetId();
 		tiInfo.dwFlags    = 0;
-		
+
 		__try {
 			::RaiseException(MS_VC_EXCEPTION, 0, sizeof(tiInfo) / sizeof(ULONG_PTR), (ULONG_PTR *)&tiInfo);
 			/*DEBUG*/// n/a
@@ -1285,7 +1314,7 @@ CxThread::_bSetDebugNameA(
 	#elif defined(xCOMPILER_MINGW32)
 		//TODO: _bSetDebugNameA
 	#else
-		//TODO: 
+		//TODO:
 	#endif
 #elif defined(xOS_FREEBSD)
     (VOID)pthread_set_name_np(ulGetId(), csName.c_str());

@@ -69,39 +69,45 @@ CxTest::bRun(
 )
 {
     /*DEBUG*/
-
-    //xTRACEV("Test (%s) begin.", sGetName().c_str());
-
+xTRACE_POINT;
     const ULONGLONG cullInfiniteLoops = 0;
 
     try {
         if (cullInfiniteLoops == cullLoops) {
+xTRACE_POINT;
             //infinite
             for ( ;  ; ) {
                 _m_bRes = bUnit();
                 /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
             }
+xTRACE_POINT;
         } else {
+xTRACE_POINT;
             //in some loops
             for (ULONGLONG i = 0; i < cullLoops; ++ i) {
+            xTRACE_POINT;
                 _m_bRes = bUnit();
+            xTRACE_POINT;
                 /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
+            xTRACE_POINT;
             }
         }
     }
     catch (const CxException &e) {
+xTRACE_POINT;
         /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + e.sGetWhat(), FALSE);
     }
     catch (const std::exception &cexE) {
+xTRACE_POINT;
         std::string asMsg = cexE.what();
 
         /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + xS2TS(asMsg), FALSE);
     }
     catch (...) {
+xTRACE_POINT;
         /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": Unknown test error"), FALSE);
     }
-
-    //xTRACEV("Test (%s) end.\n", sGetName().c_str());
+xTRACE_POINT;
 
     return TRUE;
 }

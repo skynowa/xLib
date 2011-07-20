@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAutoCriticalSection
 CxTest_CxAutoCriticalSection::CxTest_CxAutoCriticalSection() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxAutoCriticalSection

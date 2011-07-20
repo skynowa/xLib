@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //TODO: CxTest_CxCom
 CxTest_CxCom::CxTest_CxCom() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxTest_CxCom
@@ -25,7 +25,8 @@ CxTest_CxCom::~CxTest_CxCom() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL CxTest_CxCom::bUnit() {
+BOOL 
+CxTest_CxCom::bUnit() {
     /*DEBUG*/
 
 #if defined(xOS_WIN)

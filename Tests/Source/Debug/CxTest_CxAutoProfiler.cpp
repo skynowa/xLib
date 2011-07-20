@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAutoProfiler
 CxTest_CxAutoProfiler::CxTest_CxAutoProfiler() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxAutoProfiler

@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CWorkThread
-* Description: ������� �����
+* Description: work thread
 * File name:   CWorkThread.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -18,22 +18,19 @@
 #include <xLib/Log/CxTraceLog.h>
 #include <xLib/Log/CxFileLog.h>
 //---------------------------------------------------------------------------
-#define WM_TEST_MSG_1  (WM_USER + 100)
-//---------------------------------------------------------------------------
 class CWorkThread :
     public CxThread
 {
 	public:
 		size_t       m_uiIndex;
 
-				     CWorkThread(BOOL bAutoDelete);
+				     CWorkThread(const BOOL cbAutoDelete);
 		virtual     ~CWorkThread();
 
 	protected:
-		virtual UINT uiOnRun    (VOID *pData);	/*overload*/
-		virtual VOID vOnEnter   ();			    /*overload*/
-		virtual VOID vOnExit    ();			    /*overload*/
-
+		virtual UINT uiOnRun    (VOID *pData);
+		virtual VOID vOnEnter   ();
+		virtual VOID vOnExit    ();
 
 	private:
 		CxConsoleLog _m_clLog;

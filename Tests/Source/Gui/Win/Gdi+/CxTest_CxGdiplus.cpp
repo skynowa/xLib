@@ -12,25 +12,29 @@
 #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
 
 
-//---------------------------------------------------------------------------
-//DONE: CxTest_CxGdiplus
-CxTest_CxGdiplus::CxTest_CxGdiplus() {
-    bSetName(xFUNCTION);
-}
-//---------------------------------------------------------------------------
-//DONE: ~CxTest_CxGdiplus
-CxTest_CxGdiplus::~CxTest_CxGdiplus() {
+#if defined(xOS_WIN)
+    //---------------------------------------------------------------------------
+    //DONE: CxTest_CxGdiplus
+    CxTest_CxGdiplus::CxTest_CxGdiplus() {
 
-}
-//---------------------------------------------------------------------------
-//DONE: bUnit ()
-/*virtual*/
-BOOL 
-CxTest_CxGdiplus::bUnit() {
-	/*DEBUG*/
+    }
+    //---------------------------------------------------------------------------
+    //DONE: ~CxTest_CxGdiplus
+    CxTest_CxGdiplus::~CxTest_CxGdiplus() {
 
-    CxGdiplus gpGdiPlus;
+    }
+    //---------------------------------------------------------------------------
+    //DONE: bUnit ()
+    /*virtual*/
+    BOOL
+    CxTest_CxGdiplus::bUnit() {
+        /*DEBUG*/
 
-	return TRUE;
-}
-//---------------------------------------------------------------------------
+        CxGdiplus gpGdiPlus;
+
+        return TRUE;
+    }
+    //---------------------------------------------------------------------------
+#elif defined(xOS_LINUX)
+
+#endif

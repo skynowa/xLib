@@ -183,7 +183,7 @@ CxDebugger::bTrace(
     // n/a
 #endif
 
-    tcout << sRes << tendl;  tcout.flush();
+    tcout << sRes << tendl;
 
     return TRUE;
 }

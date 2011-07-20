@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxThread
 CxTest_CxThread::CxTest_CxThread() {
-    bSetName(xFUNCTION);
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxThread
@@ -144,6 +144,10 @@ CxTest_CxThread::bUnit() {
             m_ulRes = pthT->ulGetId();
             xASSERT(0 < m_ulRes);
 
+            //bIsCurrent
+            m_bRes = pthT->bIsCurrent();
+            xASSERT(FALSE == m_bRes);
+
             m_ulRes = pthT->ulGetExitCode();
             xASSERT(0 <= m_ulRes);
 
@@ -217,6 +221,35 @@ CxTest_CxThread::bUnit() {
     {
         CxThread::TId idRes = CxThread::ulGetCurrId();
         xASSERT(0 < idRes);
+    }
+
+    //--------------------------------------------------
+    //bIsCurrent
+    {
+        CxThread::TId aulData[5][2] = {{0}};
+
+        aulData[0][0] = (CxThread::TId)CxThread::ulGetCurrId();
+        aulData[0][1] = (CxThread::TId)TRUE;
+
+        aulData[1][0] = (CxThread::TId)((ULONG)CxThread::ulGetCurrId() - 1);
+        aulData[1][1] = (CxThread::TId)FALSE;
+
+        aulData[2][0] = (CxThread::TId)0;
+        aulData[2][1] = (CxThread::TId)FALSE;
+
+        aulData[3][0] = (CxThread::TId) - 1;
+        aulData[3][1] = (CxThread::TId)FALSE;
+
+        aulData[4][0] = (CxThread::TId)- 1;
+        aulData[4][1] = (CxThread::TId)FALSE;
+
+        for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
+            const CxThread::TId culId = aulData[i][0];
+            const BOOL          cbRes = (BOOL)(ULONG)aulData[i][1];
+
+            m_bRes = CxThread::bIsCurrent(culId);
+            xASSERT(cbRes == m_bRes);
+        }
     }
 
     //--------------------------------------------------

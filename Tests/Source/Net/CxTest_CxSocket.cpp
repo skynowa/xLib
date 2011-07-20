@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxSocket
 CxTest_CxSocket::CxTest_CxSocket() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxSocket
@@ -25,7 +25,8 @@ CxTest_CxSocket::~CxTest_CxSocket() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL CxTest_CxSocket::bUnit() {
+BOOL 
+CxTest_CxSocket::bUnit() {
 	/*DEBUG*/
 
 	return TRUE;

@@ -21,7 +21,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxHandleT
 CxTest_CxHandleT::CxTest_CxHandleT() {
-    bSetName(xT(xFUNCTION));
+
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTest_CxHandleT
