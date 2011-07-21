@@ -494,12 +494,17 @@ CxString::sFormatV(
     /*DEBUG*/// n/a
     xCHECK_RET(NULL == pcszFormat, tString());
 
-    tString sBuff(128, 0);
+    tString sBuff;
     INT     iWrittenSize = - 1;
 
+    sBuff.resize(128);
+
     for ( ; ; ) {
+        std::cout << "sBuff.size():  " << sBuff.size() << std::endl;
         //если win32 то используем _vsnprintf (для C++Builder - vsnprintf)
-        iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size(), pcszFormat, palArgs);    //error - 1
+        iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size() - 1, pcszFormat, palArgs);    //error - 1
+        std::cout << "iWrittenSize:  " << iWrittenSize << std::endl;
+
         xCHECK_DO(iWrittenSize > - 1 && iWrittenSize < static_cast<INT>( sBuff.size() ), break);    //!может быть урезан буфер!
 
         sBuff.resize(sBuff.size() * 2);

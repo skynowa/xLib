@@ -459,10 +459,10 @@ CxSystemInfo::iGetCpuSpeed() {
         iRes = static_cast<INT>( (CxCycle::ullGetCount() - ullStartCycle) / 1000000 );
     #endif
 
-    xNOT_IMPLEMENTED_RET(- 1);
+    iRes = - 1;
 #elif defined(xOS_LINUX)
     //TODO: iGetCpuSpeed
-    xNOT_IMPLEMENTED_RET(- 1);
+    iRes = - 1;
 #endif
 
     return iRes;

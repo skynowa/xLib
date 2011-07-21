@@ -305,7 +305,7 @@ class CxMacros :
         #if defined(__LINE__)
             #define xLINE      __LINE__
         #else
-            #define xLINE      xT("<unknown xLINE>")
+            #define xLINE      0
         #endif
 
         //xFUNCTION (source function name)
@@ -314,7 +314,7 @@ class CxMacros :
         #elif defined(__DMC__) && (__DMC__ >= 0x810)
             #define xFUNCTION  xT(__PRETTY_FUNCTION__)
         #elif defined(__FUNCSIG__)
-            #define xFUNCTION  xT(__FUNCTION__) /*xT(__FUNCSIG__)*/
+            #define xFUNCTION  xT(__FUNCSIG__)
         #elif (defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 600)) || (defined(__IBMCPP__) && (__IBMCPP__ >= 500))
             #define xFUNCTION  xT(__FUNCTION__)
         #elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x550)

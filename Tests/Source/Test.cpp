@@ -159,7 +159,6 @@ _tmain(
     const ULONGLONG cullTimesForAll    = 1;
     const ULONGLONG cullTimesForSingle = 1;
 
-
     BOOL bRes = FALSE;
 
     CxTestManager tmManager(TRUE);

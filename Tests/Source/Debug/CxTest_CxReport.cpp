@@ -30,21 +30,45 @@ CxTest_CxReport::bUnit() {
     //--------------------------------------------------
     //CxReport
     {
-        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xT(__FILE__), __LINE__,  xT(xFUNCTION),  xT(__DATE__), xT(__TIME__), xT("Simple comment: %s"), xT("comment"));
+std::cout << 0 << std::endl;
+        tString f  = xFILE;
+        tString fu = xFUNCTION;
+        ULONG   l  = xLINE;
+        tString d  = xDATE;
+        tString t  = xTIME;
 
+        std::cout << f  << std::endl;
+        std::cout << fu << std::endl;
+        std::cout << l  << std::endl;
+        std::cout << d  << std::endl;
+        std::cout << t  << std::endl;
+
+        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), f, l, fu, d, t, xT("Simple comment: %s"), xT("comment"));
+std::cout << 1 << std::endl;
         m_sRes = rpReport.sGetReport();
         //xTRACE(m_sRes);
     }
-
+std::cout << 2 << std::endl;
     //--------------------------------------------------
     //CxReport
     {
-        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xT(__FILE__), __LINE__,  xT(xFUNCTION),  xT(__DATE__), xT(__TIME__), tString(xT("Simple comment")));
+        tString f  = xFILE;
+        tString fu = xFUNCTION;
+        ULONG   l  = xLINE;
+        tString d  = xDATE;
+        tString t  = xTIME;
 
+        std::cout << f  << std::endl;
+        std::cout << fu << std::endl;
+        std::cout << l  << std::endl;
+        std::cout << d  << std::endl;
+        std::cout << t  << std::endl;
+        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), f, l, fu, d, t, tString(xT("Simple comment")));
+std::cout << 3 << std::endl;
         m_sRes = rpReport.sGetReport();
         //xTRACE(m_sRes);
     }
-
+std::cout << 4 << std::endl;
     return TRUE;
 }
 //---------------------------------------------------------------------------

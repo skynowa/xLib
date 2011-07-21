@@ -58,18 +58,19 @@ CxTestManager::bAdd(
     //TODO: sClassName must move to CxObject
     tString sClassName;
     if (csTestName == CxConst::xSTR_EMPTY) {
-        #if defined(xCOMPILER_GNUC)
+        #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_GNUC)
+            #if defined(xCOMPILER_MINGW32)
+                #define xNS_ABI abi
+            #elif defined(xCOMPILER_GNUC)
+                #define xNS_ABI abi
+            #else
+                #error xLib: abi namespace
+            #endif
+
             INT  iStatus      = - 1;
             char *pszRealName = NULL;
 
-            pszRealName = abi::__cxa_demangle(typeid(*pvtTest).name(), 0, 0, &iStatus);
-            sClassName  = (NULL != pszRealName) ? (pszRealName) : xT("<unknown test name>");
-            xBUFF_FREE(pszRealName);
-		#elif defined(xCOMPILER_MINGW32)     
-            INT  iStatus      = - 1;
-            char *pszRealName = NULL;
-
-            pszRealName = __cxxabiv1::__cxa_demangle(typeid(*pvtTest).name(), 0, 0, &iStatus);
+            pszRealName = xNS_ABI::__cxa_demangle(typeid(*pvtTest).name(), 0, 0, &iStatus);
             sClassName  = (NULL != pszRealName) ? (pszRealName) : xT("<unknown test name>");
             xBUFF_FREE(pszRealName);
         #else
