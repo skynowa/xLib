@@ -165,16 +165,16 @@ CxTest::bCreateWorkDir(
 }
 //---------------------------------------------------------------------------
 //DONE: sGetWorkDirPath (get work dir path)
-tString
-CxTest::sGetWorkDirPath() {
+const tString &
+CxTest::sGetWorkDirPath() const {
     /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetName ()
-tString
-CxTest::sGetName() {
+const tString &
+CxTest::sGetName() const {
     /*DEBUG*/
 
     return _m_sName;

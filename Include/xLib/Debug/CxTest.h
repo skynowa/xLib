@@ -56,18 +56,13 @@ class CxTest :
                                         CxTest         ();
         virtual                        ~CxTest         () = 0;
 
-        #if xTODO
-        BOOL                            bAdd           (const CxTest *);
-        BOOL                            bRemove        (const CxTest *);
-        #endif
-
         BOOL                            bRun           (const ULONGLONG cullLoops /*0 - infinite*/);
         virtual BOOL                    bUnit          () = 0;
         BOOL                            bCreateWorkDir (const tString &csDirName);
-        tString                         sGetWorkDirPath();
+        const tString &                 sGetWorkDirPath() const;
 
-        tString                         sGetName       ();
-        virtual BOOL                            bSetName       (const tString &csTestName);
+        const tString &                 sGetName       () const;
+        BOOL                            bSetName       (const tString &csTestName);
 
         //TODO: not enough RAM
         //TODO: not enough HDD

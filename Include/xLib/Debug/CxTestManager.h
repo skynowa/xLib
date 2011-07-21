@@ -19,11 +19,11 @@ class CxTestManager :
     public CxNonCopyable
 {
 	public:
-				   CxTestManager       (const BOOL cbIsUseTracing);
-		virtual   ~CxTestManager       ();
+				   CxTestManager(const BOOL cbIsUseTracing);
+		virtual   ~CxTestManager();
 
-        BOOL       bAdd                (CxTest *pvtTest, const tString &csTestName = CxConst::xSTR_EMPTY);
-        BOOL       bRun                (const ULONGLONG cullTimesForAll, const ULONGLONG  ullTimesForSingle);
+        BOOL       bAdd         (CxTest *pvtTest, const tString &csTestName = CxConst::xSTR_EMPTY);
+        BOOL       bRun         (const ULONGLONG cullTimesForAll, const ULONGLONG  ullTimesForSingle);
 
     private:
         typedef std::vector<CxTest *> TContainer;

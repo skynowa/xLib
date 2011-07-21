@@ -294,24 +294,46 @@ CxReport::_bInitVars(
 
     _m_rtType          = crtType;
 
-    _m_sProgram        = "";    //CxPath::sGetExe();
-    _m_ulProcessId     = CxProcess::ulGetCurrId();
-    _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
-    _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxStdioFile::liGetSize(CxPath::sGetExe())) );
+    #if xDEPRECIATE
+        _m_sProgram        = CxPath::sGetExe();
+        _m_ulProcessId     = CxProcess::ulGetCurrId();
+        _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
+        _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxStdioFile::liGetSize(CxPath::sGetExe())) );
 
-    _m_sSourceFile     = csFile;
-    _m_ulSourceLine    = culLine;
-    _m_sFunctionName   = csFunc;
-    _m_sExpression     = csExp;
-    _m_ulLastError     = culLastError;
-    _m_sLastErrorStr   = CxLastError::sFormat(culLastError);
+        _m_sSourceFile     = csFile;
+        _m_ulSourceLine    = culLine;
+        _m_sFunctionName   = csFunc;
+        _m_sExpression     = csExp;
+        _m_ulLastError     = culLastError;
+        _m_sLastErrorStr   = CxLastError::sFormat(culLastError);
 
-    _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
-    _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
-    _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
-    _m_sOsArchitecture = _sGetOsArchitecture();
+        _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
+        _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
+        _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
+        _m_sOsArchitecture = _sGetOsArchitecture();
 
-    _m_sComment        = (true == csComment.empty()) ? CxConst::xHYPHEN : tString(csComment.data());
+        _m_sComment        = (true == csComment.empty()) ? CxConst::xHYPHEN : tString(csComment.c_str());
+    #else
+        _m_sProgram        = "";
+        _m_ulProcessId     = 0;
+        _m_ulThreadId      = 0;
+        _m_sFileSize       = "";
+
+        _m_sSourceFile     = "";
+        _m_ulSourceLine    = 0;
+        _m_sFunctionName   = "";
+        _m_sExpression     = "";
+        _m_ulLastError     = 0;
+        _m_sLastErrorStr   = "";
+
+        _m_sCurrentDate    = "";
+        _m_sBuildDate      = "";
+        _m_sOsVersion      = "";
+        _m_sOsArchitecture = "";
+
+        _m_sComment        = "";
+    #endif
+
 
     return TRUE;
 }
@@ -345,23 +367,23 @@ CxReport::_bInitPlain() {
         xT("%s%s"),       //Comment
 
         xT("CxReport         "),
-        xT("Program:         "), sGetProgram().data(),
+        xT("Program:         "), sGetProgram().c_str(),
         xT("Process id:      "), ulGetProcessId(),
         xT("Thread id:       "), ulGetThreadId(),
-        xT("File size:       "), sGetFileSize().data(),
+        xT("File size:       "), sGetFileSize().c_str(),
 
-        xT("Source file:     "), sGetSourceFile().data(),
+        xT("Source file:     "), sGetSourceFile().c_str(),
         xT("Source line:     "), ulGetSourceLine(),
-        xT("Function name:   "), sGetFunctionName().data(),
-        xT("Expression:      "), sGetExpression().data(),
-        xT("Last error:      "), sGetLastErrorStr().data(),
+        xT("Function name:   "), sGetFunctionName().c_str(),
+        xT("Expression:      "), sGetExpression().c_str(),
+        xT("Last error:      "), sGetLastErrorStr().c_str(),
 
-        xT("Current date:    "), sGetCurrentDate().data(),
-        xT("Build date:      "), sGetBuildDate().data(),
-        xT("OS version:      "), sGetOsVersion().data(),
-        xT("OS architecture: "), sGetOsArchitecture().data(),
+        xT("Current date:    "), sGetCurrentDate().c_str(),
+        xT("Build date:      "), sGetBuildDate().c_str(),
+        xT("OS version:      "), sGetOsVersion().c_str(),
+        xT("OS architecture: "), sGetOsArchitecture().c_str(),
 
-        xT("Comment:         "), sGetComment().data());
+        xT("Comment:         "), sGetComment().c_str());
 
     return TRUE;
 }
@@ -397,23 +419,23 @@ CxReport::_bInitHtml() {
         xT("</pre>"),
 
         xT("CxReport         "),
-        xT("Program:         "), sGetProgram().data(),
+        xT("Program:         "), sGetProgram().c_str(),
         xT("Process id:      "), ulGetProcessId(),
         xT("Thread id:       "), ulGetThreadId(),
-        xT("File size:       "), sGetFileSize().data(),
+        xT("File size:       "), sGetFileSize().c_str(),
 
-        xT("Source file:     "), sGetSourceFile().data(),
+        xT("Source file:     "), sGetSourceFile().c_str(),
         xT("Source line:     "), ulGetSourceLine(),
-        xT("Function name:   "), sGetFunctionName().data(),
-        xT("Expression:      "), sGetExpression().data(),
-        xT("Last error:      "), sGetLastErrorStr().data(),
+        xT("Function name:   "), sGetFunctionName().c_str(),
+        xT("Expression:      "), sGetExpression().c_str(),
+        xT("Last error:      "), sGetLastErrorStr().c_str(),
 
-        xT("Current date:    "), sGetCurrentDate().data(),
-        xT("Build date:      "), sGetBuildDate().data(),
-        xT("OS version:      "), sGetOsVersion().data(),
-        xT("OS architecture: "), sGetOsArchitecture().data(),
+        xT("Current date:    "), sGetCurrentDate().c_str(),
+        xT("Build date:      "), sGetBuildDate().c_str(),
+        xT("OS version:      "), sGetOsVersion().c_str(),
+        xT("OS architecture: "), sGetOsArchitecture().c_str(),
 
-        xT("Comment:         "), sGetComment().data());
+        xT("Comment:         "), sGetComment().c_str());
 
     return TRUE;
 }
@@ -441,16 +463,16 @@ CxReport::_bInitRtf() {
         xT("}"),
 
         xT("CxReport"),
-        xT("Program:"),         sGetProgram().data(),
-        xT("File:"),            sGetSourceFile().data(),
+        xT("Program:"),         sGetProgram().c_str(),
+        xT("File:"),            sGetSourceFile().c_str(),
         xT("Line:"),            ulGetSourceLine(),
-        xT("Function:"),        sGetFunctionName().data(),
-        xT("Expression:"),      sGetExpression().data(),
-        xT("LastError:"),       sGetLastErrorStr().data(),
-        xT("Build date:"),      sGetBuildDate().data(),
-        xT("OS version:"),      sGetOsVersion().data(),
-        xT("OS architecture:"), sGetOsArchitecture().data(),
-        xT("Comment:"),         sGetComment().data()
+        xT("Function:"),        sGetFunctionName().c_str(),
+        xT("Expression:"),      sGetExpression().c_str(),
+        xT("LastError:"),       sGetLastErrorStr().c_str(),
+        xT("Build date:"),      sGetBuildDate().c_str(),
+        xT("OS version:"),      sGetOsVersion().c_str(),
+        xT("OS architecture:"), sGetOsArchitecture().c_str(),
+        xT("Comment:"),         sGetComment().c_str()
     );
 #elif defined(xOS_LINUX)
     _m_sReport = CxString::sFormat(
@@ -480,23 +502,23 @@ CxReport::_bInitRtf() {
         xT("#  "),
 
         xT("#  CxReport         "),
-        xT("#  Program:         "), sGetProgram().data(),
+        xT("#  Program:         "), sGetProgram().c_str(),
         xT("#  Process id:      "), ulGetProcessId(),
         xT("#  Thread id:       "), ulGetThreadId(),
-        xT("#  File size:       "), sGetFileSize().data(),
+        xT("#  File size:       "), sGetFileSize().c_str(),
 
-        xT("#  Source file:     "), CxString::sFormatNixTerminal( sGetSourceFile(),                          CxString::fgWhite,   TRUE, FALSE, CxString::bgBlack, FALSE ).data(),
-        xT("#  Source line:     "), CxString::sFormatNixTerminal( CxString::lexical_cast(ulGetSourceLine()), CxString::fgMagenta, TRUE, TRUE,  CxString::bgBlack, FALSE ).data(),
-        xT("#  Function name:   "), CxString::sFormatNixTerminal( sGetFunctionName(),                        CxString::fgCyan,    TRUE, FALSE, CxString::bgBlack, FALSE ).data(),
-        xT("#  Expression:      "), CxString::sFormatNixTerminal( sGetExpression(),                          CxString::fgYellow,  TRUE, FALSE, CxString::bgBlack, FALSE ).data(),
-        xT("#  Last error:      "), CxString::sFormatNixTerminal( sGetLastErrorStr(),                        CxString::fgRed,     TRUE, FALSE, CxString::bgBlack, FALSE ).data(),
+        xT("#  Source file:     "), CxString::sFormatNixTerminal( sGetSourceFile(),                          CxString::fgWhite,   TRUE, FALSE, CxString::bgBlack, FALSE ).c_str(),
+        xT("#  Source line:     "), CxString::sFormatNixTerminal( CxString::lexical_cast(ulGetSourceLine()), CxString::fgMagenta, TRUE, TRUE,  CxString::bgBlack, FALSE ).c_str(),
+        xT("#  Function name:   "), CxString::sFormatNixTerminal( sGetFunctionName(),                        CxString::fgCyan,    TRUE, FALSE, CxString::bgBlack, FALSE ).c_str(),
+        xT("#  Expression:      "), CxString::sFormatNixTerminal( sGetExpression(),                          CxString::fgYellow,  TRUE, FALSE, CxString::bgBlack, FALSE ).c_str(),
+        xT("#  Last error:      "), CxString::sFormatNixTerminal( sGetLastErrorStr(),                        CxString::fgRed,     TRUE, FALSE, CxString::bgBlack, FALSE ).c_str(),
 
-        xT("#  Current date:    "), sGetCurrentDate().data(),
-        xT("#  Build date:      "), sGetBuildDate().data(),
-        xT("#  OS version:      "), sGetOsVersion().data(),
-        xT("#  OS architecture: "), sGetOsArchitecture().data(),
+        xT("#  Current date:    "), sGetCurrentDate().c_str(),
+        xT("#  Build date:      "), sGetBuildDate().c_str(),
+        xT("#  OS version:      "), sGetOsVersion().c_str(),
+        xT("#  OS architecture: "), sGetOsArchitecture().c_str(),
 
-        xT("#  Comment:         "), CxString::sFormatNixTerminal( sGetComment(),                             CxString::fgYellow_, FALSE, FALSE, CxString::bgBlue,  FALSE ).data()
+        xT("#  Comment:         "), CxString::sFormatNixTerminal( sGetComment(),                             CxString::fgYellow_, FALSE, FALSE, CxString::bgBlue,  FALSE ).c_str()
     );
 #endif
 
