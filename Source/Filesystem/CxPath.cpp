@@ -514,7 +514,7 @@ CxPath::bIsAbsolute(
 
 #if defined(xOS_WIN)
     xCHECK_RET(CxConst::xWIN_SLASH.at(0) == csFilePath.at(0) || (CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == csFilePath.at(1)), TRUE);
-#elif
+#else
 
 #endif
 

@@ -42,19 +42,7 @@ class CxSocket :
 				afBluetooth   = AF_BTH
 			#endif
         #elif defined(xOS_LINUX)
-            #if !defined(xOS_FREEBSD)
-                afUnix        = AF_UNIX,
-                afLocal       = AF_LOCAL,
-                afInet        = AF_INET,
-                afInet6       = AF_INET6,
-                afIpx         = AF_IPX,
-                afNetlink     = AF_NETLINK,
-                afX25         = AF_X25,
-                afAX25        = AF_AX25,
-                afAtmpvc      = AF_ATMPVC,
-                afAppletalk   = AF_APPLETALK,
-                afPacket      = AF_PACKET
-            #elif defined(xOS_FREEBSD)
+            #if defined(xOS_FREEBSD)
                 afLocal     = PF_LOCAL,
                 afUnix      = PF_UNIX,
                 afInet      = PF_INET,
@@ -71,6 +59,18 @@ class CxSocket :
                 afNatm      = PF_NATM,
                 afAtm       = PF_ATM,
                 afNetgraph  = PF_NETGRAPH,
+            #else
+                afUnix        = AF_UNIX,
+                afLocal       = AF_LOCAL,
+                afInet        = AF_INET,
+                afInet6       = AF_INET6,
+                afIpx         = AF_IPX,
+                afNetlink     = AF_NETLINK,
+                afX25         = AF_X25,
+                afAX25        = AF_AX25,
+                afAtmpvc      = AF_ATMPVC,
+                afAppletalk   = AF_APPLETALK,
+                afPacket      = AF_PACKET
             #endif
         #endif
         };
@@ -123,7 +123,7 @@ class CxSocket :
                 ptPim         = IPPROTO_PIM,
                 ptRaw         = IPPROTO_RAW,
                 ptMax         = IPPROTO_MAX
-            #elif
+            #else
                 ptIp          = IPPROTO_IP,
                 ptHopopts     = IPPROTO_HOPOPTS,
                 ptIcmp        = IPPROTO_ICMP,

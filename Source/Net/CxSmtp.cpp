@@ -189,9 +189,9 @@ BOOL CxSmtp::bRset() {
 //---------------------------------------------------------------------------
 //DONE: bSendRaw
 BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, const std::string &sTo) {
-    /*DEBUG*/xASSERT_RET(INVALID_SOCKET != _m_scktSocket, FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE == sFrom.empty(),         FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE == sTo.empty(),             FALSE);
+    /*DEBUG*/xASSERT_RET(CxSocket::etInvalid != _m_scktSocket, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE               == sFrom.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE               == sTo.empty(),   FALSE);
 
     BOOL              bRes      = FALSE;
     std::string       sRes      = "";
@@ -239,9 +239,9 @@ BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, c
 //---------------------------------------------------------------------------
 //DONE: bSend
 BOOL CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const std::string &sTo) {
-    /*DEBUG*/xASSERT_RET(INVALID_SOCKET != _m_scktSocket, FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE == sFrom.empty(),          FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE == sTo.empty(),              FALSE);
+    /*DEBUG*/xASSERT_RET(CxSocket::etInvalid != _m_scktSocket, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE               == sFrom.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE               == sTo.empty(),   FALSE);
 
     BOOL              bRes      = FALSE;
     std::string       sRes      = "";
@@ -348,7 +348,7 @@ BOOL CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelim
 BOOL CxSmtp::_bIsError(const std::string &csText) {
     /*DEBUG*/xASSERT_RET(FALSE == csText.empty(), TRUE);
 
-    BOOL bRes = !(
+    BOOL bRes = (BOOL)!(
             !memcmp(csText.c_str(), "334", 3) ||    //334 VXNlcm5hbWU6
             !memcmp(csText.c_str(), "235", 3) ||    //235 2.0.0 Authentication successful
             !memcmp(csText.c_str(), "220", 3) ||    //220 Sergey Kerio MailServer 6.7.0 patch 1 ESMTP ready
