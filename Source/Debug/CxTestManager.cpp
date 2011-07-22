@@ -99,11 +99,9 @@ CxTestManager::bRun(
     for (ULONGLONG i = 0; i < cullTimesForAll; ++ i) {
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  run test %s"), (*it)->sGetName().c_str()));
-xTRACE_POINT;
+
             bRes = (*it)->bRun(cullTimesForSingle);
-xTRACE_POINT;
             xASSERT_MSG_RET(FALSE != bRes, CxString::sFormat(xT("CxTestManager:  test (%s) not complete"), (*it)->sGetName().c_str()), FALSE);
-xTRACE_POINT;
         }
     }
 

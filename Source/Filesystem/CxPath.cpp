@@ -110,7 +110,8 @@ CxPath::sGetExe() {
             std::vector<tString> vsArgs;
 
             BOOL bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
-            /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
+            /*DEBUG*/xASSERT_RET(FALSE != bRes,                              tString());
+            /*DEBUG*/xASSERT_RET(FALSE == CxPath::bIsAbsolute(vsArgs.at(0)), tString())
 
             tString sAbsolutePath;
 
@@ -123,7 +124,6 @@ CxPath::sGetExe() {
         #endif
     #endif
 
-    //xTRACEV("    CxPath::sGetExe::sRes: [%s]", sRes.c_str());
     /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 tString());
     /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), tString());
 
@@ -507,13 +507,12 @@ CxPath::bIsAbsolute(
     const tString &csFilePath
 )
 {
-    xCHECK_RET(true == csFilePath.empty(), FALSE);
-
-    //Unix like or Windows
-    xCHECK_RET(CxConst::xNIX_SLASH.at(0) == csFilePath.at(0), TRUE);
+    xCHECK_RET(true                  == csFilePath.empty(), FALSE);
+    xCHECK_RET(CxConst::xSLASH.at(0) == csFilePath.at(0),   TRUE);
 
 #if defined(xOS_WIN)
-    xCHECK_RET(CxConst::xWIN_SLASH.at(0) == csFilePath.at(0) || (CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == csFilePath.at(1)), TRUE);
+    xCHECK_RET(1 == csFilePath.size(),                                                          FALSE);
+    xCHECK_RET(CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == csFilePath.at(1), TRUE);
 #else
 
 #endif

@@ -52,7 +52,7 @@ class CxMacros :
         #define xARRAY_ZERO_DELETE(a)   { if (NULL != (a)) {xBUFF_ZERO(a); delete [] (a);  (a) = NULL;} }
 
         template <class T, const size_t N>
-        static 
+        static
         TCHAR (&Util_ArraySize(const T (&array)[N]))[N];
 
         #define xARRAY_SIZE(a)          ( sizeof(CxMacros::Util_ArraySize(a)) )
@@ -365,6 +365,19 @@ class CxMacros :
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxMacrosH
 
+
+/*
+Here’s another one
+// this:
+#define foreach( x, y, z ) for( vector<##x##>::iterator y = z.begin(); y != z.end(); ++y )
+
+// turns:
+foreach( string, iter, infoVector )
+// ( foreach string iter in infoVector )
+
+// into:
+for(vector<string>::iterator iter = infoVector.begin(); iter != infoVector.end(); ++iter)
+*/
 
 /*
 template <class T>

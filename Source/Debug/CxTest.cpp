@@ -69,7 +69,6 @@ CxTest::bRun(
 )
 {
     /*DEBUG*/
-xTRACE_POINT;
     const ULONGLONG cullInfiniteLoops = 0;
 
     try {
@@ -80,32 +79,24 @@ xTRACE_POINT;
                 /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
             }
 		} else {
-xTRACE_POINT;
             //in some loops
             for (ULONGLONG i = 0; i < cullLoops; ++ i) {
-            xTRACE_POINT;
                 _m_bRes = bUnit();
-            xTRACE_POINT;
                 /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
-            xTRACE_POINT;
             }
         }
     }
     catch (const CxException &e) {
-xTRACE_POINT;
         /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + e.sGetWhat(), FALSE);
     }
     catch (const std::exception &cexE) {
-xTRACE_POINT;
         std::string asMsg = cexE.what();
 
         /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + xS2TS(asMsg), FALSE);
     }
     catch (...) {
-xTRACE_POINT;
         /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": Unknown test error"), FALSE);
     }
-xTRACE_POINT;
 
     return TRUE;
 }
@@ -120,21 +111,15 @@ CxTest::bUnit() /*= 0*/ {
         //-------------------------------------
         //[FUNCTION_NAME]
         {
-            const tString sTestData[][2] = {
-                {xT("TEST_STRING_1"),         xT("MUST_BE_1")},
-                {xT("TEST_STRING_2"),         xT("MUST_BE_2")},
-                {xT("TEST_STRING_3"),         xT("MUST_BE_3")},
-                {xT("TEST_STRING_4"),         xT("MUST_BE_4")}
+            const tString casData[][2] = {
+                {xT("TEST_STRING_1"),   xT("MUST_BE_1")},
+                {xT("TEST_STRING_2"),   xT("MUST_BE_2")},
+                {xT("TEST_STRING_3"),   xT("MUST_BE_3")},
+                {xT("TEST_STRING_4"),   xT("MUST_BE_4")}
             };
 
-            for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-                tString sStr1 = [FUNCTION_NAME](sTestData[i][0]);
-                tString sStr2 = [FUNCTION_NAME](sTestData[i][1]);
-                xASSERT_EQUAL(sStr1 == sStr2);
+            for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
 
-                tString sStr3 = [FUNCTION_NAME](sTestData[i][0]);
-                tString sStr4 = sTestData[i][1];
-                xASSERT_EQUAL(sStr3 == sStr4);
             }
         }
     #endif

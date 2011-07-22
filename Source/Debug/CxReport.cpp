@@ -60,6 +60,7 @@ CxReport::CxReport(
     /*DEBUG*/
 
     _bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csComment.c_str());
+    /*DEBUG*/// n/a
 
     switch (crtType) {
         case rtMsgboxPlain:  { _bInitPlain(); }    break;
@@ -113,6 +114,7 @@ CxReport::CxReport(
     va_end(palArgs);
 
     _bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment.c_str());
+    /*DEBUG*/// n/a
 
     switch (crtType) {
         case rtMsgboxPlain:  { _bInitPlain(); }  break;
@@ -294,7 +296,7 @@ CxReport::_bInitVars(
 
     _m_rtType          = crtType;
 
-    #if xDEPRECIATE
+    #if 0
         _m_sProgram        = CxPath::sGetExe();
         _m_ulProcessId     = CxProcess::ulGetCurrId();
         _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
@@ -310,7 +312,7 @@ CxReport::_bInitVars(
         _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
         _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
         _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
-        _m_sOsArchitecture = _sGetOsArchitecture();
+        _m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
         _m_sComment        = (true == csComment.empty()) ? CxConst::xHYPHEN : tString(csComment.c_str());
     #else
@@ -334,7 +336,6 @@ CxReport::_bInitVars(
         _m_sComment        = "";
     #endif
 
-
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -346,13 +347,13 @@ CxReport::_bInitPlain() {
         xT("\n")
 
         xT("%s%s\n")      //Program
-        xT("%s%u\n")      //Process id
-        xT("%s%u\n")      //Thread id
+        xT("%s%li\n")     //Process id
+        xT("%s%li\n")     //Thread id
         xT("%s%s\n")      //file size
         xT("\n")
 
         xT("%s%s\n")      //Source file
-        xT("%s%u\n")      //Source line
+        xT("%s%li\n")     //Source line
         xT("%s%s\n")      //Function name
         xT("%s%s\n")      //Expression
         xT("%s%s\n")      //Last error
@@ -397,13 +398,13 @@ CxReport::_bInitHtml() {
         xT("\n")
 
         xT("<b>%s</b>%s\n")      //Program
-        xT("<b>%s</b>%u\n")      //Process id
-        xT("<b>%s</b>%u\n")      //Thread id
+        xT("<b>%s</b>%li\n")     //Process id
+        xT("<b>%s</b>%li\n")     //Thread id
         xT("<b>%s</b>%s\n")      //file size
         xT("\n")
 
         xT("<b>%s</b>%s\n")      //Source file
-        xT("<b>%s</b>%u\n")      //Source line
+        xT("<b>%s</b>%li\n")     //Source line
         xT("<b>%s</b>%s\n")      //Function name
         xT("<b>%s</b>%s\n")      //Expression
         xT("<b>%s</b>%s\n")      //Last error
@@ -452,7 +453,7 @@ CxReport::_bInitRtf() {
         xT("\\par")
         xT("\\b %s\\b0   \\lang1033\\f1           \\cf1\\lang1049\\f0 %s\\cf2\\par")
         xT("\\cf0\\b %s\\b0   \\lang1033\\f1                   \\cf1\\lang1049\\f0 %s\\cf2\\par")
-        xT("\\cf0\\b %s\\b0   \\lang1033\\f1                  \\cf1\\lang1049\\f0 %u\\cf0\\par")
+        xT("\\cf0\\b %s\\b0   \\lang1033\\f1                  \\cf1\\lang1049\\f0 %li\\cf0\\par")
         xT("\\b %s\\b0  \\lang1033\\f1          \\lang1049\\f0  \\lang1033\\f1  \\cf3\\lang1049\\f0 %s\\cf0\\par")
         xT("\\b %s\\b0          \\cf2 %s\\cf0\\par")
         xT("\\b %s\\lang1033\\b0\\f1             \\cf2\\lang1049\\f0 %s\\cf0\\par")
@@ -480,8 +481,8 @@ CxReport::_bInitRtf() {
         xT("#  \n")
 
         xT("%s%s\n")      //Program
-        xT("%s%u\n")      //Process id
-        xT("%s%u\n")      //Thread id
+        xT("%s%li\n")     //Process id
+        xT("%s%li\n")     //Thread id
         xT("%s%s\n")      //file size
         xT("#  \n")
 
@@ -523,23 +524,5 @@ CxReport::_bInitRtf() {
 #endif
 
     return TRUE;
-}
-//---------------------------------------------------------------------------
-//DONE: _sGetOsArchitecture (get OS architecture)
-tString
-CxReport::_sGetOsArchitecture() {
-    /*DEBUG*/// n/a
-
-    tString sRes;
-
-    switch (CxSystemInfo::oaGetOsArchitecture()) {
-        case CxSystemInfo::oa32bit:     sRes = xT("32-bit");    break;
-        case CxSystemInfo::oa64bit:     sRes = xT("64-bit");    break;
-        case CxSystemInfo::oaUnknown:   sRes = xT("Unknown");   break;
-
-        default:                        sRes = xT("Unknown");   break;
-    }
-
-    return sRes;
 }
 //---------------------------------------------------------------------------

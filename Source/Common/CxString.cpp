@@ -495,22 +495,25 @@ CxString::sFormatV(
     xCHECK_RET(NULL == pcszFormat, tString());
 
     tString sBuff;
-    INT     iWrittenSize = - 1;
+    size_t  uiWrittenSize = static_cast<size_t>( - 1 );
 
     sBuff.resize(128);
 
     for ( ; ; ) {
-        std::cout << "sBuff.size():  " << sBuff.size() << std::endl;
-        //если win32 то используем _vsnprintf (для C++Builder - vsnprintf)
-        iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size() - 1, pcszFormat, palArgs);    //error - 1
-        std::cout << "iWrittenSize:  " << iWrittenSize << std::endl;
+        va_list _palArgs;
+        va_copy(_palArgs, palArgs);
 
-        xCHECK_DO(iWrittenSize > - 1 && iWrittenSize < static_cast<INT>( sBuff.size() ), break);    //!может быть урезан буфер!
+        {
+            uiWrittenSize = static_cast<size_t>( _vsntprintf(&sBuff.at(0), sBuff.size() - 1, pcszFormat, _palArgs) );
+            xCHECK_DO(uiWrittenSize != static_cast<size_t>( - 1 ) && uiWrittenSize < sBuff.size(), break);    //FIX: downcast
 
-        sBuff.resize(sBuff.size() * 2);
+            sBuff.resize(sBuff.size() * 2);
+        }
+
+        va_end(_palArgs);
     }
 
-    sBuff.resize(iWrittenSize);
+    sBuff.resize(uiWrittenSize);
 
     return sBuff;
 }
@@ -689,7 +692,7 @@ CxString::sFormatBytes(
 {
     /*DEBUG*/// ulBytes - n/a
 
-    tString sRes = xT("Uknown");
+    tString sRes = xT("<uknown>");
 
     const ULONGLONG cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
     const ULONGLONG cullGB   = 1024ULL * 1024ULL * 1024ULL;

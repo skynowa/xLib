@@ -18,7 +18,6 @@ class CxSystemInfo :
     public CxNonCopyable
 {
    public:
-        //OS version
         enum EOsType {
             otUnknown,
 
@@ -38,15 +37,14 @@ class CxSystemInfo :
             otWindowsServer2008R2,      //6.1
             otWindows7,                 //6.1
 
-            //nix
+            //Linux
             otLinux,
 
-            //FreeBSD
+            //BSD
             otFreeBSD
         };
 
-        //OS architecture
-        enum EOsArchitecture {
+        enum EOsArch {
             oaUnknown,
             oa32bit,
             oa64bit
@@ -54,15 +52,18 @@ class CxSystemInfo :
 
 
         static EOsType         osGetOS            ();
-        static EOsArchitecture oaGetOsArchitecture();
         static tString         sFormatOsType      (const EOsType otOsType);
+
+        static EOsArch         oaGetOsArch        ();
+        static tString         sFormatOsArch      (const EOsArch oaOsArch);
+
         static tString         sGetComputerName   ();
         static BOOL            bIsUserAnAdmin     ();
         static tString         sGetUserName       ();
         static ULONG           ulGetNumOfCPUs     ();
         static ULONG           ulGetCurrentCpuNum ();
         static BOOL            bIsUnicodeOS       ();
-        static INT             iGetCpuSpeed       ();
+        static ULONGLONG       ullGetCpuSpeed     ();
 
    private:
                                CxSystemInfo       ();

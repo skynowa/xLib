@@ -31,11 +31,12 @@ CxReport::CxReport(
     _m_sProgram       (),
     _m_ulProcessId    (0),
     _m_ulThreadId     (0),
+    _m_sFileSize      (),
     _m_sSourceFile    (),
     _m_ulSourceLine   (0),
     _m_sFunctionName  (),
     _m_sExpression    (),
-    _m_ulLastError    (),
+    _m_ulLastError    (0),
     _m_sLastErrorStr  (),
     _m_sCurrentDate   (),
     _m_sBuildDate     (),
@@ -51,27 +52,28 @@ CxReport::CxReport(
     //sComment
     tString sComment;
 
-    tostringstream ossStream;
-    ossStream.exceptions(tostringstream::eofbit | tostringstream::failbit | tostringstream::badbit);
+    {
+        tostringstream ossStream;
+        ossStream.exceptions(tostringstream::eofbit | tostringstream::failbit | tostringstream::badbit);
 
 
-    size_t uiAlignWidth = CxMacros::xMax(csExp1.size(), csExp2.size());
+        size_t uiAlignWidth = CxMacros::xMax(csExp1.size(), csExp2.size());
 
-    ossStream << xT("\"") << std::left << std::setw(uiAlignWidth) << csExp1 << xT("\"") << xT(": ") << cVarT1 << xT("\n")
-              << xT("                 ")
-              << xT("\"") << std::left << std::setw(uiAlignWidth) << csExp2 << xT("\"") << xT(": ") << cVarT2;
+        ossStream << xT("\"") << std::left << std::setw(uiAlignWidth) << csExp1 << xT("\"") << xT(": ") << cVarT1 << xT("\n")
+                  << xT("                 ")
+                  << xT("\"") << std::left << std::setw(uiAlignWidth) << csExp2 << xT("\"") << xT(": ") << cVarT2;
 
-    if (false == _m_sComment .empty()) {
-        ossStream << xT("\n                 ")
-                  << xT("  (") << _m_sComment << xT(")");
+        if (false == _m_sComment.empty()) {
+            ossStream << xT("\n                 ")
+                      << xT("  (") << _m_sComment << xT(")");
+        }
+
+        sComment = ossStream.str();
     }
 
-    sComment = ossStream.str();
-
-    //init vars
     _bInitVars(crtType, sExp, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment);
+    /*DEBUG*/// n/a
 
-    //init report
     switch (crtType) {
         case rtMsgboxPlain:  { _bInitPlain(); } break;
         case rtMsgboxRtf:    { _bInitRtf();   } break;
