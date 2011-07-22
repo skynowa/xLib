@@ -74,14 +74,12 @@ xTRACE_POINT;
 
     try {
         if (cullInfiniteLoops == cullLoops) {
-xTRACE_POINT;
             //infinite
             for ( ;  ; ) {
                 _m_bRes = bUnit();
                 /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
             }
-xTRACE_POINT;
-        } else {
+		} else {
 xTRACE_POINT;
             //in some loops
             for (ULONGLONG i = 0; i < cullLoops; ++ i) {
@@ -115,7 +113,7 @@ xTRACE_POINT;
 //DONE: bUnit (unit)
 /*virtual*/
 BOOL
-CxTest::bUnit() /*= 0*/  {
+CxTest::bUnit() /*= 0*/ {
     /*DEBUG*/// n/a
 
     #if xTODO
@@ -129,7 +127,7 @@ CxTest::bUnit() /*= 0*/  {
                 {xT("TEST_STRING_4"),         xT("MUST_BE_4")}
             };
 
-            for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+            for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
                 tString sStr1 = [FUNCTION_NAME](sTestData[i][0]);
                 tString sStr2 = [FUNCTION_NAME](sTestData[i][1]);
                 xASSERT_EQUAL(sStr1 == sStr2);
@@ -142,6 +140,14 @@ CxTest::bUnit() /*= 0*/  {
     #endif
 
     return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: sGetWorkDirPath (get work dir path)
+const tString &
+CxTest::sGetWorkDirPath() const {
+    /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
+
+    return _m_sWorkDirPath;
 }
 //---------------------------------------------------------------------------
 //DONE: bCreateWorkDir (create work dir)
@@ -162,14 +168,6 @@ CxTest::bCreateWorkDir(
     }
 
     return TRUE;
-}
-//---------------------------------------------------------------------------
-//DONE: sGetWorkDirPath (get work dir path)
-const tString &
-CxTest::sGetWorkDirPath() const {
-    /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
-
-    return _m_sWorkDirPath;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetName ()

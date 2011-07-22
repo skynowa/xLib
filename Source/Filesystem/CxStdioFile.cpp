@@ -428,8 +428,14 @@ CxStdioFile::bLocking(
     INT iRes = etError;
 
 #if defined(xOS_WIN)
-    iRes = _locking(_iGetHandle(), clmMode, cliBytes);
-    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+	#if defined(xCOMPILER_CODEGEAR)
+		#define xLocking locking
+	#else
+		#define xLocking _locking
+	#endif
+
+	iRes = xLocking(_iGetHandle(), clmMode, cliBytes);
+	/*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
     iRes = lockf(_iGetHandle(), clmMode, static_cast<off_t>( cliBytes ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);

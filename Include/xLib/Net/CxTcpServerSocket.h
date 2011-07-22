@@ -23,7 +23,7 @@ class CxTcpServerSocket :
         virtual    ~CxTcpServerSocket();
 
         BOOL        bBind            (USHORT usPort);
-         BOOL        bListen          (INT iBacklog /* = SOMAXCONN*/);
+        BOOL        bListen          (INT iBacklog /* = SOMAXCONN*/);
         BOOL        bAccept          (CxTcpServerSocket *pscktAcceptSocket, tString *psFromIp);
 
     protected:

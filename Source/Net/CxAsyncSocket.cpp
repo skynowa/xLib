@@ -14,7 +14,7 @@
 
 //---------------------------------------------------------------------------
 //TODO: CxAsyncSocket
-CxAsyncSocket::CxAsyncSocket() : 
+CxAsyncSocket::CxAsyncSocket() :
     _m_bRes(FALSE)
 {
 

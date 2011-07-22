@@ -14,7 +14,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
 class CxMimeHeader :
     public CxNonCopyable
 {
@@ -23,12 +22,12 @@ class CxMimeHeader :
                             ~CxMimeHeader      ();
 
         BOOL                 bParse            (const tString &csRawHeader);
-        tString                 sGetField         (const tString &csName);
+		tString              sGetField         (const tString &csName);
         size_t               uiCount           ();
         BOOL                 bLoadFromFile     (const tString &csRawMessageFilePath);
         BOOL                 bSaveToFile       (const tString &csFilePath);
 
-        static tString         sGenerateMessageID();
+        static tString       sGenerateMessageID();
 
     private:
         static const tString _ms_csAttrDelimiter;
@@ -37,7 +36,7 @@ class CxMimeHeader :
 
         BOOL                 _m_bRes;
         tString              _m_sRes;
-        TStringMultiMap      _m_mmsHeader;
+        std::multimap<tString, tString> _m_mmsHeader;
 
         //Delivered-To:
         //Return-Path:
@@ -58,9 +57,6 @@ class CxMimeHeader :
         //Date:
         //Message-ID:
 };
-#elif defined(xOS_LINUX)
-
-#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxMimeHeaderH
 

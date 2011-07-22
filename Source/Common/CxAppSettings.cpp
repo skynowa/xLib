@@ -28,7 +28,7 @@ tString     CxAppSettings::m_sPassDefault  = xT("");
 const UCHAR CxAppSettings::m_ucDbEmpty[]   = {
     #include "DbEmpty.db.zip.txt"
 };
-ULONG       CxAppSettings::m_ulDbEmptySize = xARRAY_SIZE(CxAppSettings::m_ucDbEmpty);
+size_t      CxAppSettings::m_uiDbEmptySize = xARRAY_SIZE(CxAppSettings::m_ucDbEmpty);
 
 
 /****************************************************************************

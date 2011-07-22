@@ -13,7 +13,10 @@
 
 #if defined(xOS_WIN)
 #include <wininet.h>
-#pragma comment(lib,"wininet")
+
+#if defined(xCOMPILER_MS)
+	#pragma comment(lib,"wininet")
+#endif
 
 
 //---------------------------------------------------------------------------

@@ -17,10 +17,10 @@
 #include <xLib/Filesystem/CxStdioFile.h>
 #include <xLib/Log/CxTraceLog.h>
 #include <xLib/Log/CxConsoleLog.h>
+#include <xLib/Net/CxDnsClient.h>
 //---------------------------------------------------------------------------
 
 
-#if defined(xOS_WIN)
 /****************************************************************************
 *    Public methods
 *
@@ -71,14 +71,14 @@ BOOL CxSmtp::bConnect() {
 
     //-------------------------------------
     //������� �����
-    bRes = _m_scktSocket.bCreate(AF_INET, SOCK_STREAM, 0);
+    bRes = _m_scktSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
     xCHECK_RET(FALSE == bRes, FALSE);
 
     //-------------------------------------
     //������ �����
-    std::string sIpAddr = "";
+    std::string sIpAddr;
 
-    bRes = CxTcpClientSocket::bDnsParse(_m_sServer, /*ref*/sIpAddr);
+    bRes = CxDnsClient::bGetHostAddrByName(_m_sServer, &sIpAddr);
     xCHECK_RET(FALSE == bRes, FALSE);
 
     //-------------------------------------
@@ -226,7 +226,7 @@ BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, c
     //DONE: ������ �� ����� � ����� ����� � �����
     std::string sText = "";
 
-    bRes = CxStdioFile::bReadFile(csFilePath, /*ref*/sText);
+    bRes = CxStdioFile::bTextRead(csFilePath, &sText);
     xCHECK_RET(FALSE == bRes, FALSE);
 
     //-------------------------------------
@@ -360,6 +360,3 @@ BOOL CxSmtp::_bIsError(const std::string &csText) {
     return bRes;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
-#endif

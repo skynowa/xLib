@@ -52,6 +52,7 @@ class CxPath :
         //normalize
         static BOOL    bIsValid        (const tString &csFilePath);
         static BOOL    bIsNameValid    (const tString &csFilePath);
+        static BOOL    bIsAbsolute     (const tString &csFilePath);
 
         static tString sToWin          (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
         static tString sToNix          (const tString &csFilePath, const BOOL cbIsSlashAtEnd);

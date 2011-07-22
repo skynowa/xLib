@@ -51,14 +51,11 @@ class CxMacros :
 
         #define xARRAY_ZERO_DELETE(a)   { if (NULL != (a)) {xBUFF_ZERO(a); delete [] (a);  (a) = NULL;} }
 
-        #if xDEPRECIATE
-            #define xARRAY_SIZE(a)      ( sizeof(a) / sizeof((a)[0]) )
-        #else
-            template <typename T, size_t N>
-            static TCHAR (&ArraySizeHelper(T (&array)[N]))[N];
+        template <class T, const size_t N>
+        static 
+        TCHAR (&Util_ArraySize(const T (&array)[N]))[N];
 
-            #define xARRAY_SIZE(a)      (sizeof(CxMacros::ArraySizeHelper(a)))
-        #endif
+        #define xARRAY_SIZE(a)          ( sizeof(CxMacros::Util_ArraySize(a)) )
 
         #define xBUFF_ZERO(Buff)        { memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
         #define xSTRUCT_ZERO(Buff)      { memset(static_cast<void *>( &(Buff) ),    0, sizeof(Buff)); }
@@ -83,7 +80,7 @@ class CxMacros :
         #define xENUM_DEC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) - 1 ); }
 
         //temprary enable/disable code
-        #define xTEMP_ENABLED           1
+        #define xTEMP_ENABLED           0
         #define xTEMP_DISABLED          0
         #define xDEPRECIATE             0
         #define xTODO                   0

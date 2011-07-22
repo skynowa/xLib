@@ -32,13 +32,13 @@ CxHttpClient::bHead(const std::string &csUrl, std::string *psResponse) {
     std::string sStartLine;
     std::string sHeader;
     std::string sBody;
-    
+
     sStartLine = "HEAD /83841/zombie_baseball_2.swf HTTP/1.1"         + CxConst::xCRNL;
-        
+
     sHeader    = "Host: dn1.berloga.net"                              + CxConst::xCRNL +
                  "Accept: text/html, */*"                             + CxConst::xCRNL +
                  "Accept-Encoding: identity"                          + CxConst::xCRNL +
-                 "User-Agent: Mozilla/3.0 (compatible; Indy Library)" + CxConst::xCRNL + CxConst::xCRNL;    
+                 "User-Agent: Mozilla/3.0 (compatible; Indy Library)" + CxConst::xCRNL + CxConst::xCRNL;
 
     sBody      = "";
 

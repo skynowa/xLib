@@ -16,7 +16,7 @@
 #include <GeoIP.h>
 
 #if defined(xOS_WIN)
-    #pragma comment(lib, "GeoIP.Lib")
+    #pragma comment(lib, "GeoIP.lib")
 #elif defined(xOS_LINUX)
     //-lGeoIP
 #endif

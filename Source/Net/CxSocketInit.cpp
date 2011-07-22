@@ -13,26 +13,30 @@
 
 
 /****************************************************************************
-*    public                                                          
-*                                                                            
+*    public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: CxSocketInit (init winsock DLL)
-CxSocketInit::CxSocketInit(USHORT usMajorVersion, USHORT usMinorVersion) {
+CxSocketInit::CxSocketInit(
+    const USHORT cusMajorVersion,
+    const USHORT cusMinorVersion
+)
+{
 #if defined(xOS_WIN)
     WSADATA wdData = {0};
 
-    INT iRes = ::WSAStartup(MAKEWORD(usMajorVersion, usMinorVersion), &wdData);
+    INT iRes = ::WSAStartup(MAKEWORD(cusMajorVersion, cusMinorVersion), &wdData);
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
 
     //Confirm that the WinSock DLL supports some version
-    if (HIBYTE(wdData.wVersion) != usMinorVersion || LOBYTE(wdData.wVersion) != usMajorVersion) {
+    if (HIBYTE(wdData.wVersion) != cusMinorVersion || LOBYTE(wdData.wVersion) != cusMajorVersion) {
         iRes = ::WSACleanup();
         /*DEBUG*/xASSERT_DO(0 == iRes, return);
 
         /*DEBUG*/xASSERT_DO(FALSE,     return);
-    } 
+    }
 #elif defined(xOS_LINUX)
     // n/a
 #endif

@@ -1269,9 +1269,6 @@
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxPop3.h">
       <Filter>xLib\Net</Filter>
     </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxQueryList.h">
-      <Filter>xLib\Net</Filter>
-    </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h">
       <Filter>xLib\Net</Filter>
     </CustomBuildStep>
