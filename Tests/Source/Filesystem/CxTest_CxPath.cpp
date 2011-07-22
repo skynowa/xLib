@@ -409,8 +409,6 @@ CxTest_CxPath::bUnit() {
 		}
 	}
 
-
-
 	//-------------------------------------
 	//sRemoveExt
     {
@@ -434,6 +432,68 @@ CxTest_CxPath::bUnit() {
             tString sStr1 = CxPath::sRemoveExt(sData[i][0]);
             tString sStr2 = sData[i][1];
             xASSERT_MSG(sStr1 == sStr2, (sStr1 + xT(" == ") + sStr2).c_str());
+        }
+    }
+
+    //--------------------------------------------------
+    //bIsValid
+    {
+        //TODO: bIsValid
+    }
+
+    //--------------------------------------------------
+    //bIsNameValid
+    {
+        //TODO: bIsNameValid
+    }
+
+    //--------------------------------------------------
+    //bIsAbsolute
+    {
+        //must TRUE
+        {
+            const tString casData[] = {
+                #if defined(xOS_WIN)
+                    xT("TEST_STRING_1"),
+                    xT("TEST_STRING_2"),
+                    xT("TEST_STRING_3"),
+                    xT("TEST_STRING_4")
+                #elif defined(xOS_LINUX)
+                    xT("/"),
+                    xT("/home/user/"),
+                    xT("/home/user/Downloads/n3242.pdf"),
+                    xT("/home/user/Downloads/Open source/cexception/vendor/unity/rakefile_helper.rb")
+                #endif
+            };
+
+            for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
+                m_bRes = CxPath::bIsAbsolute(casData[i]);
+                xASSERT(FALSE != m_bRes);
+            }
+        }
+
+        //must FALSE
+        {
+            const tString casData[] = {
+                #if defined(xOS_WIN)
+                    xT("TEST_STRING_1"),
+                    xT("TEST_STRING_2"),
+                    xT("TEST_STRING_3"),
+                    xT("TEST_STRING_4")
+                #elif defined(xOS_LINUX)
+                    xT("../../../Source/Debug/CxTest.cpp"),
+                    xT("../../../Source/Filesystem/CxPath"),
+                    xT("CxTest_CxPath.cpp"),
+                    xT("Tests/Source/Common/CxTest_CxSystemInfo.cpp"),
+                    xT("p"),
+                    xT("1"),
+                #endif
+            };
+
+            for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
+                m_bRes = CxPath::bIsAbsolute(casData[i]);
+                xASSERT(FALSE == m_bRes);
+            }
         }
     }
 

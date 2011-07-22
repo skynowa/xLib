@@ -83,29 +83,5 @@ namespace NxLib {}
 
 //checks
 #include <xLib/Common/xCheks.h>
-
-#if !defined(__FILE__)
-    #error xLib: __FILE__ not defined
-#endif
-
-#if !defined(__LINE__)
-    #error xLib: __LINE__ not defined
-#endif
-
-#if !defined(xFUNCTION)
-    #error xLib: xFUNCTION not defined
-#endif
-
-#if !defined(__DATE__)
-    #error xLib: __DATE__ not defined
-#endif
-
-#if !defined(__TIME__)
-    #error xLib: __TIME__ not defined
-#endif
-
-//#if !defined(__COUNTER__)
-//    #error xLib: COUNTER not defined
-//#endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xCommonH

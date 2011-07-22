@@ -648,6 +648,8 @@ CxTest_CxString::bUnit() {
     //-------------------------------------
     //sFormat
     {
+        tString sData;
+
         m_sRes = CxString::sFormat(xT("qqqq-wwww [%i]"), 1000);
         xASSERT(m_sRes == xT("qqqq-wwww [1000]"));
 
@@ -664,8 +666,6 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::sFormat(xT("qqqq-wwww [%i]"), -1000);
         xASSERT(m_sRes == xT("qqqq-wwww [-1000]"));
 
-
-
         m_sRes = CxString::sFormat(xT("Characters: %c %c"), xT('a'), 65);
         xASSERT(m_sRes == xT("Characters: a A"));
 
@@ -681,26 +681,30 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::sFormat(xT("Some different radixes: %d %x %o %#x %#o"), 100, 100, 100, 100, 100);
         xASSERT(m_sRes == xT("Some different radixes: 100 64 144 0x64 0144"));
 
-
-        #if defined(xOS_WIN)
+    #if defined(xOS_WIN)
         m_sRes = CxString::sFormat(xT("floats: %4.2f %+.0e %E"), 3.1416, 3.1416, 3.1416);
         xASSERT(m_sRes == xT("floats: 3,14 +3e+000 3,141600E+000"));
-        #elif defined(xOS_LINUX)
+    #elif defined(xOS_LINUX)
         m_sRes = CxString::sFormat(xT("floats: %4.2f %+.0e %E"), 3.1416, 3.1416, 3.1416);
         ////xASSERT(m_sRes == xT("floats: 3,14 +3e+000 3,141600E+000"));
-        #endif
+    #endif
 
         m_sRes = CxString::sFormat(xT("Width trick: %*d"), 5, 10);
         xASSERT(m_sRes == xT("Width trick:    10"));
 
-        m_sRes = CxString::sFormat(xT("%s"), xT("A string"));
-        xASSERT(m_sRes == xT("A string"));
+        sData = xT("0A string2344565600");
+        m_sRes = CxString::sFormat(xT("%s"), sData.c_str());
+        xASSERT(m_sRes == sData);
+
+        sData = xT("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+        m_sRes = CxString::sFormat("%s", sData.c_str());
+        assert(sData == m_sRes);
     }
 
     //-------------------------------------
     //sFormatV
     {
-        ////m_sRes = sFormatV(LPCSTR pcszFormat, va_list palArgs);
+        //TODO: sFormatV
     }
 
     //-------------------------------------
@@ -858,15 +862,15 @@ CxTest_CxString::bUnit() {
     //--------------------------------------------------
     //sFormatNixTerminal
     {
-////        for (int i = 0; i <= 120; ++ i) {
-//            tString sRes = sColorStr(xT("Linux Console Color"), (EForeground)i, FALSE, FALSE, bgBlack, FALSE);
-//
-//            std::cout<< xT("Color: ") << i << xT(" ") << sRes << std::endl;
-//        }
-//
-//        tString sRes = CxString::sFormatNixTerminal(xT("Linux Console Color"), CxString::fgYellow_, TRUE, FALSE, CxString::bgBlue_, FALSE);
-//
-////        std::cout << sRes << std::endl;
+    #if xTODO
+        for (int i = 0; i <= 120; ++ i) {
+            tString sRes = sColorStr(xT("Linux Console Color"), (EForeground)i, FALSE, FALSE, bgBlack, FALSE);
+            std::cout<< xT("Color: ") << i << xT(" ") << sRes << std::endl;
+        }
+
+        tString sRes = CxString::sFormatNixTerminal(xT("Linux Console Color"), CxString::fgYellow_, TRUE, FALSE, CxString::bgBlue_, FALSE);
+        std::cout << sRes << std::endl;
+    #endif
     }
 
     /****************************************************************************

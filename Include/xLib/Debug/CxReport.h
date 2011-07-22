@@ -82,8 +82,6 @@ class CxReport : public CxNonCopyable  {
         BOOL             _bInitPlain        ();
         BOOL             _bInitHtml         ();
         BOOL             _bInitRtf          ();
-
-        tString          _sGetOsArchitecture();
 };
 //---------------------------------------------------------------------------
 #include <Debug/CxReport.inl>

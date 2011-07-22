@@ -26,45 +26,10 @@ CxSystemInfo::EOsType
 CxSystemInfo::osGetOS() {
     /*DEBUG*/// n/a
 
+    EOsType otRes = otUnknown;
+
 #if defined(xOS_WIN)
     BOOL bRes = FALSE;
-
-    /*
-    struct _OSVERSIONINFOW {
-        DWORD dwOSVersionInfoSize;
-        DWORD dwMajorVersion;
-        DWORD dwMinorVersion;
-        DWORD dwBuildNumber;
-        DWORD dwPlatformId;
-        WCHAR  szCSDVersion[ 128 ];     // Maintenance string for PSS usage
-    }
-    */
-
-    /*
-    Operating system                    Version number        Other
-    -------------------------------------------------------------------------------------------
-    Windows 7                            6.1    OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION
-    Windows Server 2008 R2                6.1       OSVERSIONINFOEX.wProductType != VER_NT_WORKSTATION
-    Windows Server 2008                    6.0       OSVERSIONINFOEX.wProductType != VER_NT_WORKSTATION
-    Windows Vista                        6.0       OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION
-    Windows Server 2003 R2                5.2       GetSystemMetrics(SM_SERVERR2) != 0
-    Windows Home Server                    5.2       OSVERSIONINFOEX.wSuiteMask & VER_SUITE_WH_SERVER
-    Windows Server 2003                    5.2       GetSystemMetrics(SM_SERVERR2) == 0
-    Windows XP Professional x64 Edition    5.2    (OSVERSIONINFOEX.wProductType == VER_NT_WORKSTATION) && (SYSTEM_INFO.wProcessorArchitecture==PROCESSOR_ARCHITECTURE_AMD64)
-    Windows XP                            5.1       Not applicable
-    Windows 2000                        5.0       Not applicable
-
-
-    Windows NT    3.10
-    Windows 98    4.10
-    Windows 95    4.0
-    1    30
-    1    25
-    1    20
-    1    15
-    1    10
-    Win32s    1    0
-    */
 
     OSVERSIONINFO ovVer = {0};
 
@@ -73,59 +38,112 @@ CxSystemInfo::osGetOS() {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, otUnknown);
 
     switch (ovVer.dwPlatformId) {
-        case VER_PLATFORM_WIN32s:
-            {
-                return otWindows3;
+        case VER_PLATFORM_WIN32s: {
+                otRes = otWindows3;
             }
             break;
 
-        case VER_PLATFORM_WIN32_WINDOWS:
-            {
-                xCHECK_RET(0  == ovVer.dwMinorVersion, otWindows95);
-                xCHECK_RET(10 == ovVer.dwMinorVersion, otWindows98);
-                xCHECK_RET(90 == ovVer.dwMinorVersion, otWindows98);
+        case VER_PLATFORM_WIN32_WINDOWS: {
+                xCHECK_DO(0  == ovVer.dwMinorVersion, otRes = otWindows95);
+                xCHECK_DO(10 == ovVer.dwMinorVersion, otRes = otWindows98);
+                xCHECK_DO(90 == ovVer.dwMinorVersion, otRes = otWindows98);
             }
             break;
 
-        case VER_PLATFORM_WIN32_NT:
-            {
-                xCHECK_RET(ovVer.dwMajorVersion <= 4,                              otWindowsNT);
-                xCHECK_RET(5 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otWindows2000);
-                xCHECK_RET(5 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otWindowsXP);
-                xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsXPProx64Edition);
-                xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsServer2003);
-                xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsHomeServer);
-                xCHECK_RET(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otWindowsServer2003R2);
-                xCHECK_RET(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otWindowsVista);
-                xCHECK_RET(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otWindowsServer2008);
-                xCHECK_RET(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otWindowsServer2008R2);
-                xCHECK_RET(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otWindows7);
+        case VER_PLATFORM_WIN32_NT: {
+                xCHECK_DO(ovVer.dwMajorVersion <= 4,                              otRes = otWindowsNT);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindows2000);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsXP);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsXPProx64Edition);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsHomeServer);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsVista);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsServer2008);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindows7);
 
                 //for unknown windows/newest windows version
-                return otUnknown;
+                otRes = otUnknown;
             }
             break;
 
-        default:
-            {
-                return otUnknown;
+        default: {
+                otRes = otUnknown;
             }
             break;
     }
 
-    return otUnknown;
+    otRes = otUnknown;
 #elif defined(xOS_LINUX)
-    return otLinux;
+    utsname unKernelInfo= {{0}};
+
+    INT iRes = uname(&unKernelInfo);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, otUnknown);
+
+    if      (TRUE == CxString::bCompareNoCase(xT("Linux"), unKernelInfo.sysname)) {
+        otRes = otLinux;
+    }
+    else if (TRUE == CxString::bCompareNoCase(xT("FreeBSD"), unKernelInfo.sysname)) {
+        otRes = otFreeBSD;
+    }
+    else {
+        otRes = otUnknown;
+    }
 #endif
+
+    return otRes;
 }
 //---------------------------------------------------------------------------
-//DONE: oaGetOsArchitecture (get OS architecture)
+//DONE: sFormatOsType (format OS type)
 /*static*/
-CxSystemInfo::EOsArchitecture
-CxSystemInfo::oaGetOsArchitecture() {
+tString
+CxSystemInfo::sFormatOsType(
+    const EOsType otOsType
+)
+{
+    /*DEBUG*/// otOsType - n/a
+
+    tString sRes;
+
+#if defined(xOS_WIN)
+    switch (otOsType) {
+        case otWindows3:                { sRes = xT("Windows 3.1");                }    break;
+        case otWindows95:               { sRes = xT("Windows 95");                 }    break;
+        case otWindows98:               { sRes = xT("Windows 98");                 }    break;
+        case otWindowsNT:               { sRes = xT("Windows NT 4.0");             }    break;
+        case otWindows2000:             { sRes = xT("Windows 2000");               }    break;
+        case otWindowsXP:               { sRes = xT("Windows XP");                 }    break;
+        case otWindowsXPProx64Edition:  { sRes = xT("Windows XP Pro x64 Edition"); }    break;
+        case otWindowsServer2003:       { sRes = xT("Windows Server 2003");        }    break;
+        case otWindowsHomeServer:       { sRes = xT("Windows Home Server");        }    break;
+        case otWindowsServer2003R2:     { sRes = xT("Windows Server 2003 R2");     }    break;
+        case otWindowsVista:            { sRes = xT("Windows Vista");              }    break;
+        case otWindowsServer2008:       { sRes = xT("Windows Server 2008");        }    break;
+        case otWindowsServer2008R2:     { sRes = xT("Windows Server 2008 R2");     }    break;
+        case otWindows7:                { sRes = xT("Windows 7");                  }    break;
+
+        default:                        { sRes = xT("<unknown>");                  }    break;
+    }
+#elif defined(xOS_LINUX)
+    utsname unKernelInfo= {{0}};
+
+    INT iRes = uname(&unKernelInfo);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, tString());
+
+    sRes.assign( CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine) );
+#endif
+
+    return sRes;
+}
+//---------------------------------------------------------------------------
+//DONE: oaGetOsArch (get OS architecture)
+/*static*/
+CxSystemInfo::EOsArch
+CxSystemInfo::oaGetOsArch() {
     /*DEBUG*/// n/a
 
-    EOsArchitecture oaRes = oaUnknown;
+    EOsArch oaRes = oaUnknown;
 
 #if defined(xOS_WIN)
     //TODO: oaGetOsArchitecture
@@ -185,10 +203,12 @@ CxSystemInfo::oaGetOsArchitecture() {
     else if (TRUE == CxString::bCompareNoCase(xT("ia64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
+    else if (TRUE == CxString::bCompareNoCase(xT("amd64"), unKernelInfo.machine)) {
+        oaRes = oa64bit;
+    }
 
-    //error
+    //unknown
     else {
-        /*DEBUG*/xASSERT_MSG_RET(FALSE, unKernelInfo.machine, oaUnknown);
         oaRes = oaUnknown;
     }
 #endif
@@ -196,44 +216,24 @@ CxSystemInfo::oaGetOsArchitecture() {
     return oaRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatOsType ()
+//DONE: sFormatOsArch (format get OS architecture)
 /*static*/
 tString
-CxSystemInfo::sFormatOsType(
-    const EOsType otOsType
+CxSystemInfo::sFormatOsArch(
+    const EOsArch oaOsArch
 )
 {
-    /*DEBUG*/// otOsType - n/a
+    /*DEBUG*/// n/a
 
     tString sRes;
 
-#if defined(xOS_WIN)
-    switch (otOsType) {
-        case otWindows3:                { sRes = xT("Windows 3.1");                }    break;
-        case otWindows95:               { sRes = xT("Windows 95");                 }    break;
-        case otWindows98:               { sRes = xT("Windows 98");                 }    break;
-        case otWindowsNT:               { sRes = xT("Windows NT 4.0");             }    break;
-        case otWindows2000:             { sRes = xT("Windows 2000");               }    break;
-        case otWindowsXP:               { sRes = xT("Windows XP");                 }    break;
-        case otWindowsXPProx64Edition:  { sRes = xT("Windows XP Pro x64 Edition"); }    break;
-        case otWindowsServer2003:       { sRes = xT("Windows Server 2003");        }    break;
-        case otWindowsHomeServer:       { sRes = xT("Windows Home Server");        }    break;
-        case otWindowsServer2003R2:     { sRes = xT("Windows Server 2003 R2");     }    break;
-        case otWindowsVista:            { sRes = xT("Windows Vista");              }    break;
-        case otWindowsServer2008:       { sRes = xT("Windows Server 2008");        }    break;
-        case otWindowsServer2008R2:     { sRes = xT("Windows Server 2008 R2");     }    break;
-        case otWindows7:                { sRes = xT("Windows 7");                  }    break;
+    switch (oaOsArch) {
+        case CxSystemInfo::oa32bit:     sRes = xT("32-bit");    break;
+        case CxSystemInfo::oa64bit:     sRes = xT("64-bit");    break;
+        case CxSystemInfo::oaUnknown:   sRes = xT("<unknown>"); break;
 
-        default:                        { sRes = xT("Unknown Windows OS");         }    break;
+        default:                        sRes = xT("<unknown>"); break;
     }
-#elif defined(xOS_LINUX)
-    utsname unKernelInfo= {{0}};
-
-    INT iRes = uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, xT("Linux"));
-
-    sRes.assign( CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine) );
-#endif
 
     return sRes;
 }
@@ -422,16 +422,16 @@ CxSystemInfo::bIsUnicodeOS()  {
     return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: iGetCpuSpeed (calculates the CPU speed in MHz)
+//TODO: ullGetCpuSpeed (calculates the CPU speed in MHz)
 /*static*/
-INT
-CxSystemInfo::iGetCpuSpeed() {
+ULONGLONG
+CxSystemInfo::ullGetCpuSpeed() {
     /*DEBUG*/// n/a
 
-    INT iRes = - 1;
+    ULONGLONG ullRes = 0;
 
 #if defined(xOS_WIN)
-    //TODO: iGetCpuSpeed
+    //TODO: ullGetCpuSpeed
     #if xTODO
         //TODO: CxCycle
         class CxCycle {
@@ -456,16 +456,16 @@ CxSystemInfo::iGetCpuSpeed() {
 
         bSleep(1000);
 
-        iRes = static_cast<INT>( (CxCycle::ullGetCount() - ullStartCycle) / 1000000 );
+        ullRes = (CxCycle::ullGetCount() - ullStartCycle) / 1000000;
     #endif
 
-    iRes = - 1;
+    ullRes = 0;
 #elif defined(xOS_LINUX)
     //TODO: iGetCpuSpeed
-    iRes = - 1;
+    ullRes = 0;
 #endif
 
-    return iRes;
+    return ullRes;
 }
 //---------------------------------------------------------------------------
 

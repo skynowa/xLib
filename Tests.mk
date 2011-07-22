@@ -108,19 +108,19 @@ LIB_DIRS           			:= 	/usr/local/crystal_trader2.5/lib \
 								/usr/local/lib/mysql \
 								/usr/lib/mysql								
 								
-COMPILE_FLAGS				:= -static -MD -pipe -Wall
-LINK_FLAGS					:= -s -pipe
+COMPILE_FLAGS				:= -MD -pipe -Wall
+LINK_FLAGS					:= -pthread -static -s -pipe
 
 ifeq ($(cOS), Linux)
-LIBRARIES               	:= -lpthread -ldl -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP
+LIBRARIES               	:= -ldl -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP
 else
-LIBRARIES               	:= -pthread  -lc  -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP
+LIBRARIES               	:= -lc  -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-BUILD_FLAGS     			:= -O0 -pthread -g3 -g
+BUILD_FLAGS     			:= -O0 -g3 -g
 else
-BUILD_FLAGS     			:= -O3 -pthread -fomit-frame-pointer -g0
+BUILD_FLAGS     			:= -O3 -fomit-frame-pointer -g0
 endif
 
 RELATIVE_INCLUDE_DIRS		:= $(addprefix $(PATH_PREFIX), $(ROOT_INCLUDE_DIR))
