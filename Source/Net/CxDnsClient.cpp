@@ -83,7 +83,7 @@ CxDnsClient::bGetHostNameByAddr(
             break;
 
         default: {
-                in_addr iaAddr = {{{0}}};
+                in_addr iaAddr;
 
                 iaAddr.s_addr = ::inet_addr(casHostAddr.c_str());
                 /*DEBUG*/xASSERT_RET(iaAddr.s_addr != INADDR_NONE, FALSE);

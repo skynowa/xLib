@@ -14,39 +14,40 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xUNICODE)
-    #define xTEXT(x)                         L##x
-    #define xT(x)                            xTEXT(x)
+//    #define xTEXT(x)      L##x
+//    #define xT(x)         xTEXT(x)
+    #define xT(x)           L##x
 
-    typedef wchar_t                          TCHAR;
-    typedef wchar_t *                        LPTSTR;
-    typedef const wchar_t *                  LPCTSTR;
+    typedef wchar_t         TCHAR;
+    typedef wchar_t *       LPTSTR;
+    typedef const wchar_t * LPCTSTR;
 
-    #define tcin                             std::wcin
-    #define tcout                            std::wcout
-    #define tcerr                            std::wcerr
-    #define tclog                            std::wclog
-    #define tendl                            std::endl
+    #define tcin            std::wcin
+    #define tcout           std::wcout
+    #define tcerr           std::wcerr
+    #define tclog           std::wclog
+    #define tendl           std::endl
 
-    #define _ttmpnam                         _wtmpnam
-    #define TEOF                             WEOF
+    #define _ttmpnam        _wtmpnam
+    #define TEOF            WEOF
 #else
-    #define xTEXT(x)                         x
-    #define xT(x)                            xTEXT(x)
+    #define xTEXT(x)        x
+    #define xT(x)           xTEXT(x)
 
-    typedef char                             TCHAR;
-    typedef char *                           LPTSTR;
-    typedef const char *                     LPCTSTR;
-    typedef char *                           LPSTR;   //ansi
-    typedef const char *                     LPCSTR;  //ansi
+    typedef char            TCHAR;
+    typedef char *          LPTSTR;
+    typedef const char *    LPCTSTR;
+    typedef char *          LPSTR;   //ansi
+    typedef const char *    LPCSTR;  //ansi
 
-    #define tcin                             std::cin
-    #define tcout                            std::cout
-    #define tcerr                            std::cerr
-    #define tclog                            std::clog
-    #define tendl                            std::endl
+    #define tcin            std::cin
+    #define tcout           std::cout
+    #define tcerr           std::cerr
+    #define tclog           std::clog
+    #define tendl           std::endl
 
-    #define _ttmpnam                         tmpnam
-    #define TEOF                             EOF
+    #define _ttmpnam        tmpnam
+    #define TEOF            EOF
 #endif //xUNICODE
 
 typedef std::basic_string<TCHAR,         std::char_traits<TCHAR>,         std::allocator<TCHAR> >         tString;
@@ -90,7 +91,7 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
     typedef double                 DOUBLE;
 
 #if defined(xOS_WIN)
-	#if defined(xCOMPILER_MINGW32) && defined(xUNICODE) 
+	#if defined(xCOMPILER_MINGW32) && defined(xUNICODE)
 		//sockets
 		typedef addrinfo           ADDRINFOT;
 	#else
