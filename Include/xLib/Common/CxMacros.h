@@ -80,7 +80,7 @@ class CxMacros :
         #define xENUM_DEC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) - 1 ); }
 
         //temprary enable/disable code
-        #define xTEMP_ENABLED           0
+        #define xTEMP_ENABLED           1
         #define xTEMP_DISABLED          0
         #define xDEPRECIATE             0
         #define xTODO                   0
