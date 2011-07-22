@@ -17,11 +17,15 @@
 ///#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 #include <commctrl.h>
-#pragma comment(lib, "comctl32.lib")
+#if defined(xCOMPILER_MS)
+	#pragma comment(lib, "comctl32.lib")
+#endif
 
 
 //#include <Uxtheme.h>
-//#pragma comment(lib, "UxTheme.lib")
+#if defined(xCOMPILER_MS)
+	//#pragma comment(lib, "UxTheme.lib")
+#endif
 
 #include <richedit.h>
 

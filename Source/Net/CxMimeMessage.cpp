@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 * Class name:  CxMimeMessage
 * Description: �������� ��������� (RFC 822)
 * File name:   CxMimeMessage.cpp
@@ -12,37 +12,48 @@
 #include <xLib/Net/CxMimeMessage.h>
 
 
-#if defined(xOS_WIN)
 //---------------------------------------------------------------------------
 CxMimeMessage::CxMimeMessage() {
 
 }
 //---------------------------------------------------------------------------
+/*virtual*/
 CxMimeMessage::~CxMimeMessage() {
 
 }
 //---------------------------------------------------------------------------
-/*static*/BOOL CxMimeMessage::bParse(const tString &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body) {
-    BOOL bRes = FALSE;
-
+/*static*/
+BOOL
+CxMimeMessage::bParse(
+	const tString &csRawMessage,
+	CxMimeHeader  &Header,
+	CxMimeBody    &Body
+)
+{
     //m_Header;
     //m_Body;
 
     return FALSE;
 }
 //---------------------------------------------------------------------------
-/*static*/BOOL    bLoadFromRawFile(const tString &csFilePath) {
-    BOOL bRes = FALSE;
+/*static*/
+BOOL
+CxMimeMessage::bLoadFromRawFile(
+	const tString &csFilePath
+)
+{
 
     return FALSE;
 }
 //---------------------------------------------------------------------------
-/*static*/BOOL bSaveToRawFile  (const tString &csFilePath) {
-    BOOL bRes = FALSE;
+/*static*/
+BOOL
+CxMimeMessage::bSaveToRawFile(
+	const tString &csFilePath
+)
+{
 
     return FALSE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
 
-#endif

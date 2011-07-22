@@ -11,6 +11,7 @@
 
 #include <xLib/Filesystem/CxPath.h>
 
+#include <xLib/Common/CxChar.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Sync/CxProcess.h>
@@ -304,7 +305,7 @@ CxPath::sGetStandartExt(
     }
 
     return sRes;
-} 
+}
 //---------------------------------------------------------------------------
 //DONE: sSetDrive ()
 #if defined(xOS_WIN)
@@ -499,8 +500,26 @@ CxPath::bIsNameValid(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+//TODO: bIsAbsolute (is absolute)
+/*static*/
+BOOL
+CxPath::bIsAbsolute(
+    const tString &csFilePath
+)
+{
+    xCHECK_RET(true == csFilePath.empty(), FALSE);
 
+    //Unix like or Windows
+    xCHECK_RET(CxConst::xNIX_SLASH.at(0) == csFilePath.at(0), TRUE);
 
+#if defined(xOS_WIN)
+    xCHECK_RET(CxConst::xWIN_SLASH.at(0) == csFilePath.at(0) || (CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == csFilePath.at(1)), TRUE);
+#elif
+
+#endif
+
+    return FALSE;
+}
 //---------------------------------------------------------------------------
 //DONE: sSetValidName
 /*static*/

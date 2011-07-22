@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 * Class name:  CxPop3
 * Description: POP3
 * File name:   CxPop3.cpp
@@ -14,7 +14,6 @@
 #include <xLib/Filesystem/CxStdioFile.h>
 
 
-#if defined(xOS_WIN)
 /****************************************************************************
 *    private
 *
@@ -320,11 +319,12 @@ BOOL CxPop3::bRetriveRaw(INT iNum, const tString &csDirPath, const tString &csFi
     //��������� ���� �� ����
     CxStdioFile stdFile;
 
-    _m_bRes = stdFile.bOpen((csDirPath + "\\" + csFileName).c_str(), "wb");
+	_m_bRes = stdFile.bOpen(csDirPath + "\\" + csFileName, CxStdioFile::omBinWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     size_t uiWriteSize = stdFile.uiWrite(&_m_sRes[0], _m_sRes.size());
     /*DEBUG*///???
+    xUNUSED(uiWriteSize);
 
     return TRUE;
 }
@@ -375,7 +375,7 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const tString &csDirPath, const tStr
     if (false == csDirPath.empty()) {
         CxStdioFile stdfOriginal;
 
-        _m_bRes = stdfOriginal.bOpen((csDirPath + "\\" + csFileName).c_str(), "wb");
+		_m_bRes = stdfOriginal.bOpen(csDirPath + "\\" + csFileName, CxStdioFile::omBinWrite, TRUE);
         xCHECK_RET(FALSE == _m_bRes, FALSE);
 
         size_t uiOriginalWriteSize = stdfOriginal.uiWrite(&_m_sRes[0], _m_sRes.size());
@@ -387,7 +387,7 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const tString &csDirPath, const tStr
     if (false == csBackupDirPath.empty()) {
         CxStdioFile stdfBackup;
 
-        _m_bRes = stdfBackup.bOpen((csBackupDirPath + "\\" + csFileName).c_str(), "wb");
+        _m_bRes = stdfBackup.bOpen(csBackupDirPath + "\\" + csFileName, CxStdioFile::omBinWrite, TRUE);
         xCHECK_RET(FALSE == _m_bRes, FALSE);
 
         size_t uiBackupWriteSize = stdfBackup.uiWrite(&_m_sRes[0], _m_sRes.size());
@@ -560,6 +560,3 @@ BOOL CxPop3::_bIsError(const tString &csText) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
-#endif

@@ -24,9 +24,11 @@
 //---------------------------------------------------------------------------
 #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
     //Remove pointless warning messages
-    #pragma warning (disable : 4996)        //function or variable may be unsafe (deprecated)
-    #pragma warning (disable : 4355)        //'this' : used in base member initializer list
-    #pragma warning (disable : 4101)        //'e' : unreferenced local variable
+	#if defined(xCOMPILER_MS)
+		#pragma warning (disable : 4996)        //function or variable may be unsafe (deprecated)
+		#pragma warning (disable : 4355)        //'this' : used in base member initializer list
+		#pragma warning (disable : 4101)        //'e' : unreferenced local variable
+	#endif
 
     #ifndef _CRT_SECURE_NO_WARNINGS
         #define _CRT_SECURE_NO_WARNINGS     //eliminate deprecation warnings for VS2005

@@ -90,7 +90,13 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
     typedef double                 DOUBLE;
 
 #if defined(xOS_WIN)
-
+	#if defined(xCOMPILER_MINGW32) && defined(xUNICODE) 
+		//sockets
+		typedef addrinfo           ADDRINFOT;
+	#else
+		 //sockets
+		typedef addrinfo           ADDRINFOT;
+	#endif //xUNICODE
 #elif defined(xOS_LINUX)
     #if !defined(BOOL)
         typedef enum { FALSE = 0, TRUE = 1 } BOOL;

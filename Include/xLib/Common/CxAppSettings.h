@@ -24,7 +24,7 @@ class CxAppSettings :
         static tString     m_sDbFilePath;
 
         static const UCHAR m_ucDbEmpty[];
-        static ULONG       m_ulDbEmptySize;
+        static size_t      m_uiDbEmptySize;
         static tString     m_sPass;
         static tString     m_sPassDefault;
 

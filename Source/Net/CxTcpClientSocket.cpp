@@ -36,7 +36,7 @@ CxTcpClientSocket::~CxTcpClientSocket() {
 BOOL
 CxTcpClientSocket::bIsReadable() {
     timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
-    fd_set  fds       = {{0}};  FD_ZERO(&fds);
+    fd_set  fds;        FD_ZERO(&fds);
 
     FD_SET(_m_puiSocket, &fds);
 
@@ -50,7 +50,7 @@ CxTcpClientSocket::bIsReadable() {
 BOOL
 CxTcpClientSocket::bIsWritable() {
     timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
-    fd_set  fds       = {{0}};  FD_ZERO(&fds);
+    fd_set  fds;        FD_ZERO(&fds);
 
     FD_SET(_m_puiSocket, &fds);
 

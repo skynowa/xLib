@@ -102,7 +102,7 @@ CxCgi::bPageShow(
 
 namespace {
     static const tString URI_ILLEGAL   = xT("%<>{}|\\\"^`");
-    static const tString ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
+    ////static const tString ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
 }
 //---------------------------------------------------------------------------
 //TODO: bUriEncode ()

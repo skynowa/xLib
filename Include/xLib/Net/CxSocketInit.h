@@ -15,7 +15,9 @@
 #include <xLib/Common/xCommon.h>
 
 #if defined(xOS_WIN)
-    #pragma comment(lib, "WS2_32.Lib")
+	#if defined(xCOMPILER_MS)
+		#pragma comment(lib, "WS2_32.Lib")
+	#endif
 #elif defined(xOS_LINUX)
     // n/a
 #endif
@@ -24,7 +26,7 @@ class CxSocketInit :
     public CxNonCopyable
 {
     public:
-                  CxSocketInit(USHORT usHighVersion, USHORT usLowVersion);
+                  CxSocketInit(const USHORT cusHighVersion, const USHORT cusLowVersion);
         virtual  ~CxSocketInit();
 
     private:

@@ -16,7 +16,9 @@
 #include <openssl/blowfish.h>
 
 #if defined(xOS_WIN)
-    #pragma comment(lib, "libeay32.lib")
+	#if defined(xCOMPILER_MS)
+		#pragma comment(lib, "libeay32.lib")
+	#endif
 #elif defined(xOS_LINUX)
     // -lssl
 #endif

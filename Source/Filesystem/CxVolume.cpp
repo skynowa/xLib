@@ -441,7 +441,6 @@ CxVolume::bGetLogicalDrives(
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsDrives, FALSE);
 
-    BOOL                 bRes = FALSE;
     std::vector<tString> vsRes;
 
 #if defined(xOS_WIN)
@@ -463,7 +462,7 @@ CxVolume::bGetLogicalDrives(
         }
     }
 #elif defined(xOS_LINUX)
-    bRes = CxDir::bFindDirs(xT("/"), CxConst::xMASK_ALL, FALSE, &vsRes);
+    BOOL bRes = CxDir::bFindDirs(xT("/"), CxConst::xMASK_ALL, FALSE, &vsRes);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //TODO: filter by cdtDriveType

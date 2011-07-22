@@ -73,9 +73,6 @@ namespace NxLib {}
     #include <xLib/Common/Linux/xCommon_Linux.h>
 #endif
 
-//checks
-#include <xLib/Common/xCheks.h>
-
 #include <xLib/Common/xTypes.h>
 #include <xLib/Common/xLinking.h>
 #include <xLib/Common/CxMacros.h>
@@ -84,6 +81,8 @@ namespace NxLib {}
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Common/CxString.h>
 
+//checks
+#include <xLib/Common/xCheks.h>
 
 #if !defined(__FILE__)
     #error xLib: __FILE__ not defined

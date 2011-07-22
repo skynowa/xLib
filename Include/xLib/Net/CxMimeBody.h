@@ -14,17 +14,15 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
-class CxMimeBody {
+class CxMimeBody :
+	public CxNonCopyable
+{
     public:
-                        CxMimeBody();
-                       ~CxMimeBody();
+                CxMimeBody();
+	   virtual ~CxMimeBody();
 
     private:
-        TStringMultiMap _m_mmsBody;
+        std::multimap<tString, tString> _m_mmsBody;
 };
-#elif defined(xOS_LINUX)
-
-#endif
 //---------------------------------------------------------------------------
 #endif
