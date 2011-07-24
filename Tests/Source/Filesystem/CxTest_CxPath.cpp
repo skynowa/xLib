@@ -454,10 +454,10 @@ CxTest_CxPath::bUnit() {
         {
             const tString casData[] = {
                 #if defined(xOS_WIN)
-                    xT("TEST_STRING_1"),
-                    xT("TEST_STRING_2"),
-                    xT("TEST_STRING_3"),
-                    xT("TEST_STRING_4")
+                    xT("C:\\"),
+                    xT("D:\\Downloads\\XXL\\I_am_a_Champion_-_coach_speech_[RUS_subtitles].flv"),
+                    xT("C://Windows//calc.exe"),
+                    xT("\\KASPER")
                 #elif defined(xOS_LINUX)
                     xT("/"),
                     xT("/home/user/"),
@@ -476,10 +476,12 @@ CxTest_CxPath::bUnit() {
         {
             const tString casData[] = {
                 #if defined(xOS_WIN)
-                    xT("TEST_STRING_1"),
-                    xT("TEST_STRING_2"),
-                    xT("TEST_STRING_3"),
-                    xT("TEST_STRING_4")
+                    xT("../../../Source/Debug/CxTest.cpp"),
+                    xT("../../../Source/Filesystem/CxPath"),
+                    xT("CxTest_CxPath.cpp"),
+                    xT("Tests/Source/Common/CxTest_CxSystemInfo.cpp"),
+                    xT("p"),
+                    xT("1"),
                 #elif defined(xOS_LINUX)
                     xT("../../../Source/Debug/CxTest.cpp"),
                     xT("../../../Source/Filesystem/CxPath"),

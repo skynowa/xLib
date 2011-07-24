@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------
 #define xLIB_VERSION xT("1.0.000")
 #define xLIB_AUTHOR  xT("Skynowa")
-#define xLIB_DATE    xT(xDATETIME)
+#define xLIB_DATE    xDATETIME
 
 //automatically include the NxLib namespace, define xNO_USING_NAMESPACE to skip this step
 #define xNO_USING_NAMESPACE      1
@@ -46,18 +46,6 @@
 
 //Automatically include the xLib namespace, define xNO_USING_NAMESPACE to skip this step
 #define xNO_USING_NAMESPACE      1
-
-
-#if defined(xOS_WIN)
-    #define VC_EXTRALEAN
-    #define WIN32_LEAN_AND_MEAN
-    #define _CRT_SECURE_NO_WARNINGS  1
-    #define _SECURE_SCL              0
-#elif defined(xOS_LINUX)
-    #if xTODO
-        #define _POSIX_SOURCE 1
-    #endif
-#endif
 
 
 //auto linkage

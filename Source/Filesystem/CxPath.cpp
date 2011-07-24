@@ -500,7 +500,7 @@ CxPath::bIsNameValid(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsAbsolute (is absolute)
+//DONE: bIsAbsolute (is absolute)
 /*static*/
 BOOL
 CxPath::bIsAbsolute(

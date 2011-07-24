@@ -358,6 +358,23 @@ class CxMacros :
         #define xPATH_MAX       (CxPath::uiGetMaxSize())
         #define xNAME_MAX       (CxPath::uiGetNameMaxSize())
 
+        //var args
+        #if defined(xOS_WIN)
+            #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
+                #if !defined(va_copy)
+                    #define va_copy(dst, src)   ((dst) = (src))
+                #else
+                    #error xLib: va_copy must not be defined 
+                #endif
+            #else
+
+            #endif
+
+        #elif defined(xOS_LINUX)
+
+        #endif
+
+
     private:
                 CxMacros();
                ~CxMacros();
