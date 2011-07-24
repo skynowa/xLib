@@ -28,9 +28,9 @@ class CxPath :
         static tString sGetExeDir      ();
         static tString sGetDll         ();
 
-        #if defined(xOS_WIN)
+    #if defined(xOS_WIN)
         static tString sGetDrive       (const tString &csFilePath);
-        #endif
+    #endif
         static tString sGetDir         (const tString &csFilePath);
         static tString sGetDirName     (const tString &csFilePath);
         static tString sGetFullName    (const tString &csFilePath);
@@ -38,9 +38,9 @@ class CxPath :
         static tString sGetExt         (const tString &csFilePath);
         static tString sGetStandartExt (const EStandartExt cseFileExt);
 
-        #if defined(xOS_WIN)
+    #if defined(xOS_WIN)
         static tString sSetDrive       (const tString &csFilePath, const tString &csDrivePath);
-        #endif
+    #endif
         static tString sSetDir         (const tString &csFilePath, const tString &csDirPath);
         static tString sSetFullName    (const tString &csFilePath, const tString &csFullName);
         static tString sSetName        (const tString &csFilePath, const tString &csName);

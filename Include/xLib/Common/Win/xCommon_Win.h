@@ -14,30 +14,36 @@
 //---------------------------------------------------------------------------
 //win version
 #define xWINVER      WINVER
-
 #define xWIN32_NT4   0x0400    //Windows NT 4.0
 #define xWIN32_2K    0x0500    //Windows 2000
 #define xWIN32_XP    0x0501    //Windows Server 2003, Windows XP
 #define xWIN32_S03   0x0502    //Windows Server 2003 with SP1, Windows XP with SP2
 #define xWIN32_VISTA 0x0600    //Windows Vista, Windows Server 2008
 #define xWIN32_7     0x0601    //Windows 7, Windows Server 2008 R2
-//---------------------------------------------------------------------------
-#if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
-    //Remove pointless warning messages
-	#if defined(xCOMPILER_MS)
-		#pragma warning (disable : 4996)        //function or variable may be unsafe (deprecated)
-		#pragma warning (disable : 4355)        //'this' : used in base member initializer list
-		#pragma warning (disable : 4101)        //'e' : unreferenced local variable
-	#endif
 
-    #ifndef _CRT_SECURE_NO_WARNINGS
-        #define _CRT_SECURE_NO_WARNINGS     //eliminate deprecation warnings for VS2005
+
+//xCOMPILER_MS
+#if defined(xCOMPILER_MS)
+	#pragma warning (disable : 4996)    //function or variable may be unsafe (deprecated)
+	#pragma warning (disable : 4355)    //'this' : used in base member initializer list
+	#pragma warning (disable : 4101)    //'e' : unreferenced local variable
+
+    #define VC_EXTRALEAN
+
+    #if !defined(WIN32_LEAN_AND_MEAN)
+        #define WIN32_LEAN_AND_MEAN
     #endif
 
-    ////#define _SECURE_SCL 0
+    ////#define _CRT_SECURE_NO_WARNINGS 
+    ////#define _SCL_SECURE_NO_WARNINGS 
+    ////#define _SECURE_SCL
+
+    #if !defined(STRICT)
+        #define STRICT 1
+    #endif
 
     //Required for VS 2008 (fails on XP and Win2000 without this fix)
-    #ifndef _WIN32_WINNT
+    #if !defined(_WIN32_WINNT)
         #define _WIN32_WINNT 0x0600
     #endif
 
@@ -55,8 +61,19 @@
         #define _WIN32_WINNT 0x0600
     #endif
 
-#endif //xCOMPILER_MINGW32 || xCOMPILER_MS
+    //OBM_ (#include <winuser.h>)
+    #define OEMRESOURCE
 
+    //Prevent winsock.h #include's
+    #define _WINSOCKAPI_
+#endif
+
+//xCOMPILER_MINGW32
+#if defined(xCOMPILER_MINGW32)
+
+#endif
+
+//xCOMPILER_CODEGEAR
 #if defined(xCOMPILER_CODEGEAR)
     #pragma option -w-8027  //function not expanded inline
     #pragma option -w-8057  //parameter is never used
@@ -64,18 +81,8 @@
     #pragma option -w-8004  //is assigned a value that is never used
     #pragma option -w-8022  //hides virtual function 'Image::Clone()'
     #pragma option -w-8008  //Condition is always true
-#endif //xCOMPILER_CODEGEAR
-//---------------------------------------------------------------------------
-//OBM_ (#include <winuser.h>)
-#define OEMRESOURCE
-
-#ifndef WIN32_LEAN_AND_MEAN
-    #define WIN32_LEAN_AND_MEAN
 #endif
-
-//Prevent winsock.h #include's
-#define _WINSOCKAPI_
-
+//---------------------------------------------------------------------------
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
@@ -93,45 +100,6 @@
 
 #if defined(xCOMPILER_CODEGEAR)
     #include <xVCL/xCommon.h>
-#endif
-//---------------------------------------------------------------------------
-//For compilers lacking Win64 support
-#if xTODO
-    #if !defined(GetWindowLongPtr)
-        #define GetWindowLongPtr   GetWindowLong
-        #define SetWindowLongPtr   SetWindowLong
-        #define GWLP_WNDPROC       GWL_WNDPROC
-        #define GWLP_HINSTANCE     GWL_HINSTANCE
-        #define GWLP_ID            GWL_ID
-        #define GWLP_USERDATA      GWL_USERDATA
-        #define DWLP_DLGPROC       DWL_DLGPROC
-        #define DWLP_MSGRESULT     DWL_MSGRESULT
-        #define DWLP_USER          DWL_USER
-        #define DWORD_PTR          DWORD
-        #define LONG_PTR           LONG
-        #define ULONG_PTR          LONG
-    #endif
-        #ifndef GetClassLongPtr
-        #define GetClassLongPtr    GetClassLong
-        #define SetClassLongPtr    SetClassLong
-        #define GCLP_HBRBACKGROUND GCL_HBRBACKGROUND
-        #define GCLP_HCURSOR       GCL_HCURSOR
-        #define GCLP_HICON         GCL_HICON
-        #define GCLP_HICONSM       GCL_HICONSM
-        #define GCLP_HMODULE       GCL_HMODULE
-        #define GCLP_MENUNAME      GCL_MENUNAME
-        #define GCLP_WNDPROC       GCL_WNDPROC
-    #endif
-#endif
-
-//Strict
-#if !defined(STRICT)
-    #define STRICT 1
-#endif
-
-//for Visual Studio 6 (without an updated platform SDK) and Dev-C++
-#if !defined(OPENFILENAME_SIZE_VERSION_400)
-    #define OPENFILENAME_SIZE_VERSION_400 sizeof(OPENFILENAME)
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_Win_xCommon_WinH

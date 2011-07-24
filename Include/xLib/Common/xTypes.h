@@ -14,9 +14,8 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xUNICODE)
-//    #define xTEXT(x)      L##x
-//    #define xT(x)         xTEXT(x)
-    #define xT(x)           L##x
+    #define xTEXT(x)        L##x
+    #define xT(x)           xTEXT(x)
 
     typedef wchar_t         TCHAR;
     typedef wchar_t *       LPTSTR;
@@ -93,9 +92,6 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
 #if defined(xOS_WIN)
 	#if defined(xCOMPILER_MINGW32) && defined(xUNICODE)
 		//sockets
-		typedef addrinfo           ADDRINFOT;
-	#else
-		 //sockets
 		typedef addrinfo           ADDRINFOT;
 	#endif //xUNICODE
 #elif defined(xOS_LINUX)
@@ -216,6 +212,36 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         //sockets
         typedef addrinfo    ADDRINFOT;
     #endif //xUNICODE
+    
+
+    //For compilers lacking Win64 support
+    #if 0 && defined(xOS_WIN)
+        #if !defined(GetWindowLongPtr)
+            #define GetWindowLongPtr   GetWindowLong
+            #define SetWindowLongPtr   SetWindowLong
+            #define GWLP_WNDPROC       GWL_WNDPROC
+            #define GWLP_HINSTANCE     GWL_HINSTANCE
+            #define GWLP_ID            GWL_ID
+            #define GWLP_USERDATA      GWL_USERDATA
+            #define DWLP_DLGPROC       DWL_DLGPROC
+            #define DWLP_MSGRESULT     DWL_MSGRESULT
+            #define DWLP_USER          DWL_USER
+            #define DWORD_PTR          DWORD
+            #define LONG_PTR           LONG
+            #define ULONG_PTR          LONG
+        #endif
+            #ifndef GetClassLongPtr
+            #define GetClassLongPtr    GetClassLong
+            #define SetClassLongPtr    SetClassLong
+            #define GCLP_HBRBACKGROUND GCL_HBRBACKGROUND
+            #define GCLP_HCURSOR       GCL_HCURSOR
+            #define GCLP_HICON         GCL_HICON
+            #define GCLP_HICONSM       GCL_HICONSM
+            #define GCLP_HMODULE       GCL_HMODULE
+            #define GCLP_MENUNAME      GCL_MENUNAME
+            #define GCLP_WNDPROC       GCL_WNDPROC
+        #endif
+    #endif
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xTypesH

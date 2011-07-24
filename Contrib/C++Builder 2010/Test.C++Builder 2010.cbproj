@@ -32,8 +32,8 @@
 			<Multithreaded>true</Multithreaded>
 			<DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
 			<DynamicRTL>true</DynamicRTL>
-			<IncludePath>..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\PKCS11\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Compress\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\PKCS11\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Tests\Include\Test\Compress\;..\..\Tests\Include\Test\Common\;..\..\Tests\Source\;..\..\Tests\Common\;..\..\Tests\Units\;..\..\Tests\Sync\;..\..\Tests\PKCS11\;..\..\Tests\Patterns\;..\..\Tests\Net\;..\..\Tests\Filesystem\;..\..\Tests\Debug\;..\..\Tests\Db\;..\..\Tests\Crypt\;..\..\Tests\Compress\;..\..\Source\Patterns\;..\..\Source\Filesystem\;..\..\Include\xLib\Filesystem\;..\..\Tests\;..\..\Source\GDI+\Win\;..\..\Include\xLib\GDI+\Win\;..\..\Include\xLib\Common\Win\;..\..\Include\xLib\Common\Linux\;..\..\Source\Common\Win\;..\..\Source\Fso\Win\;..\..\Include\xLib\Fso\Win\;..\..\Source\Common\;..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Fso\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Compress\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Fso\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Compress\;..\;Source\Db\;Include\XLib\Db\;Source\Patterns\;Include\XLib\Patterns\;Source\Sync\;Include\XLib\Sync\;Source\Net\;Include\XLib\Net\;Source\GDI+\;Include\XLib\GDI+\;Source\Log\;Include\XLib\Log\;Source\Debug\;Include\XLib\Debug\;Source\Fso\;Include\XLib\Fso\;Include\XLib\;Source\;C:\;$(CG_BOOST_ROOT)\boost\tr1\tr1;$(BDS)\include;$(BDS)\include\dinkumware;$(BDS)\include\vcl;$(CG_BOOST_ROOT);$(IncludePath)</IncludePath>
-			<ILINK_LibraryPath>..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\PKCS11\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Compress\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\PKCS11\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Tests\Include\Test\Compress\;..\..\Tests\Include\Test\Common\;..\..\Tests\Source\;..\..\Tests\Common\;..\..\Tests\Units\;..\..\Tests\Sync\;..\..\Tests\PKCS11\;..\..\Tests\Patterns\;..\..\Tests\Net\;..\..\Tests\Filesystem\;..\..\Tests\Debug\;..\..\Tests\Db\;..\..\Tests\Crypt\;..\..\Tests\Compress\;..\..\Source\Patterns\;..\..\Source\Filesystem\;..\..\Include\xLib\Filesystem\;..\..\Tests\;..\..\Source\GDI+\Win\;..\..\Include\xLib\GDI+\Win\;..\..\Include\xLib\Common\Win\;..\..\Include\xLib\Common\Linux\;..\..\Source\Common\Win\;..\..\Source\Fso\Win\;..\..\Include\xLib\Fso\Win\;..\..\Source\Common\;..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Fso\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Compress\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Fso\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Compress\;..\;Source\Db\;Include\XLib\Db\;Source\Patterns\;Include\XLib\Patterns\;Source\Sync\;Include\XLib\Sync\;Source\Net\;Include\XLib\Net\;Source\GDI+\;Include\XLib\GDI+\;Source\Log\;Include\XLib\Log\;Source\Debug\;Include\XLib\Debug\;Source\Fso\;Include\XLib\Fso\;Include\XLib\;Source\;C:\;$(BDS)\lib;$(BDS)\lib\obj;$(BDS)\lib\psdk;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<IncludePath>..\..\Include\xLib\Pkcs11\Win\;..\..\Source\Pkcs11\Win\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\PKCS11\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Compress\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\PKCS11\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Tests\Include\Test\Compress\;..\..\Tests\Include\Test\Common\;..\..\Tests\Source\;..\..\Tests\Common\;..\..\Tests\Units\;..\..\Tests\Sync\;..\..\Tests\PKCS11\;..\..\Tests\Patterns\;..\..\Tests\Net\;..\..\Tests\Filesystem\;..\..\Tests\Debug\;..\..\Tests\Db\;..\..\Tests\Crypt\;..\..\Tests\Compress\;..\..\Source\Patterns\;..\..\Source\Filesystem\;..\..\Include\xLib\Filesystem\;..\..\Tests\;..\..\Source\GDI+\Win\;..\..\Include\xLib\GDI+\Win\;..\..\Include\xLib\Common\Win\;..\..\Include\xLib\Common\Linux\;..\..\Source\Common\Win\;..\..\Source\Fso\Win\;..\..\Include\xLib\Fso\Win\;..\..\Source\Common\;..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Fso\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Compress\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Fso\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Compress\;..\;Source\Db\;Include\XLib\Db\;Source\Patterns\;Include\XLib\Patterns\;Source\Sync\;Include\XLib\Sync\;Source\Net\;Include\XLib\Net\;Source\GDI+\;Include\XLib\GDI+\;Source\Log\;Include\XLib\Log\;Source\Debug\;Include\XLib\Debug\;Source\Fso\;Include\XLib\Fso\;Include\XLib\;Source\;C:\;$(CG_BOOST_ROOT)\boost\tr1\tr1;$(BDS)\include;$(BDS)\include\dinkumware;$(BDS)\include\vcl;$(CG_BOOST_ROOT);$(IncludePath)</IncludePath>
+			<ILINK_LibraryPath>..\..\Include\xLib\Pkcs11\Win\;..\..\Source\Pkcs11\Win\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\PKCS11\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Compress\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\PKCS11\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Tests\Include\Test\Compress\;..\..\Tests\Include\Test\Common\;..\..\Tests\Source\;..\..\Tests\Common\;..\..\Tests\Units\;..\..\Tests\Sync\;..\..\Tests\PKCS11\;..\..\Tests\Patterns\;..\..\Tests\Net\;..\..\Tests\Filesystem\;..\..\Tests\Debug\;..\..\Tests\Db\;..\..\Tests\Crypt\;..\..\Tests\Compress\;..\..\Source\Patterns\;..\..\Source\Filesystem\;..\..\Include\xLib\Filesystem\;..\..\Tests\;..\..\Source\GDI+\Win\;..\..\Include\xLib\GDI+\Win\;..\..\Include\xLib\Common\Win\;..\..\Include\xLib\Common\Linux\;..\..\Source\Common\Win\;..\..\Source\Fso\Win\;..\..\Include\xLib\Fso\Win\;..\..\Source\Common\;..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Fso\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Compress\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Fso\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Compress\;..\;Source\Db\;Include\XLib\Db\;Source\Patterns\;Include\XLib\Patterns\;Source\Sync\;Include\XLib\Sync\;Source\Net\;Include\XLib\Net\;Source\GDI+\;Include\XLib\GDI+\;Source\Log\;Include\XLib\Log\;Source\Debug\;Include\XLib\Debug\;Source\Fso\;Include\XLib\Fso\;Include\XLib\;Source\;C:\;$(BDS)\lib;$(BDS)\lib\obj;$(BDS)\lib\psdk;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<BCC_wpar>false</BCC_wpar>
 			<BCC_OptimizeForSpeed>true</BCC_OptimizeForSpeed>
 			<BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
@@ -66,619 +66,11 @@
 			<ILINK_TranslatedLibraryPath>$(BDS)\lib\$(LANGDIR)\release;$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
 		</PropertyGroup>
 		<ItemGroup>
-			<None Include="..\..\Source\Common\CxString.inl"/>
-			<None Include="..\..\Source\Common\CxFunctorT.inl"/>
-			<CppCompile Include="..\..\Source\Crypt\CxBase64.cpp">
-				<BuildOrder>110</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Common\CxSystemInfo.cpp">
-				<BuildOrder>108</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Source\Common\DbEmpty.db.zip.txt"/>
-			<CppCompile Include="..\..\Source\Common\CxLocale.cpp">
-				<BuildOrder>105</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Log\CxTraceLog.h">
-				<BuildOrder>22</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Log\CxConsoleLog.h">
-				<BuildOrder>19</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Log\CxFileLog.h">
-				<BuildOrder>21</BuildOrder>
-			</None>
-			<CppCompile Include="..\..\Source\Common\CxString.cpp">
-				<BuildOrder>106</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Common\CxChar.cpp">
-				<BuildOrder>100</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Common\CxConst.cpp">
-				<BuildOrder>101</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Crypt\CxCrc32.cpp">
-				<BuildOrder>111</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Source\Debug\CxReport.inl"/>
-			<CppCompile Include="..\..\Source\Debug\CxTest.cpp">
-				<BuildOrder>122</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Common\CxDateTime.cpp">
-				<BuildOrder>102</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Common\CxAppSettings.cpp">
-				<BuildOrder>98</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Common\CxException.cpp">
-				<BuildOrder>103</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Common\xTypes.h">
-				<BuildOrder>97</BuildOrder>
-			</None>
-			<None Include="..\..\Source\Common\CxArray.inl"/>
-			<None Include="..\..\Include\xLib\Common\xLinking.h">
-				<BuildOrder>96</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Filesystem\CxIni.h">
-				<BuildOrder>16</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Db\CxConnectionString.h">
-				<BuildOrder>3</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Crypt\CxBase64.h">
-				<BuildOrder>0</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Debug\CxDebugger.h">
-				<BuildOrder>6</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Db\CxMySql.h">
-				<BuildOrder>4</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Debug\CxAutoProfiler.h">
-				<BuildOrder>5</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Crypt\CxCrc32.h">
-				<BuildOrder>1</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Filesystem\CxDll.h">
-				<BuildOrder>13</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Filesystem\CxEnvironment.h">
-				<BuildOrder>14</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Filesystem\CxDir.h">
-				<BuildOrder>12</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Crypt\CxRandom.h">
-				<BuildOrder>2</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Debug\CxLastError.h">
-				<BuildOrder>7</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxDnsClient.h">
-				<BuildOrder>28</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxHttpClient.h">
-				<BuildOrder>29</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Log\xLog.h">
-				<BuildOrder>23</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Filesystem\CxPath.h">
-				<BuildOrder>17</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Filesystem\CxStdioFile.h">
-				<BuildOrder>18</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxMimeBody.h">
-				<BuildOrder>30</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxCookiePv0.h">
-				<BuildOrder>26</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Filesystem\CxFileAttribute.h">
-				<BuildOrder>15</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxCgi.h">
-				<BuildOrder>25</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxCookiePv1.h">
-				<BuildOrder>27</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxAsyncSocket.h">
-				<BuildOrder>24</BuildOrder>
-			</None>
-			<CppCompile Include="..\..\Source\Debug\CxReport.cpp">
-				<BuildOrder>120</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Common\CxSystemInfo.h">
-				<BuildOrder>89</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\DbEmpty.db.zip.txt"/>
-			<None Include="..\..\Include\xLib\Common\CxString.h">
-				<BuildOrder>88</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\xConfig.h">
-				<BuildOrder>94</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\xClosure.h">
-				<BuildOrder>91</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxChar.h">
-				<BuildOrder>79</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxMutex.h">
-				<BuildOrder>66</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxCompletionPort.h">
-				<BuildOrder>63</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxSleeper.h">
-				<BuildOrder>69</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxProcess.h">
-				<BuildOrder>67</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxSemaphore.h">
-				<BuildOrder>68</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxNonAssignable.h">
-				<BuildOrder>86</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxFunctorT.h">
-				<BuildOrder>83</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxMacros.h">
-				<BuildOrder>85</BuildOrder>
-			</None>
-			<CppCompile Include="..\..\Tests\Source\Test.cpp">
-				<BuildOrder>181</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Common\CxLocale.h">
-				<BuildOrder>84</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxConst.h">
-				<BuildOrder>80</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\xClosureImpl.h">
-				<BuildOrder>92</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\xCommon.h">
-				<BuildOrder>93</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxNonCopyable.h">
-				<BuildOrder>87</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxDateTime.h">
-				<BuildOrder>81</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxException.h">
-				<BuildOrder>82</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxCriticalSection.h">
-				<BuildOrder>64</BuildOrder>
-			</None>
-			<CppCompile Include="..\..\Source\Crypt\CxRandom.cpp">
-				<BuildOrder>112</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Db\CxConnectionString.cpp">
-				<BuildOrder>113</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Debug\CxAutoProfiler.cpp">
-				<BuildOrder>115</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Source\Debug\CxDebugger.inl"/>
-			<CppCompile Include="..\..\Source\Debug\CxLastError.cpp">
-				<BuildOrder>118</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Db\CxMySql.cpp">
-				<BuildOrder>114</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Filesystem\CxFileAttribute.cpp">
-				<BuildOrder>126</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Filesystem\CxDir.cpp">
-				<BuildOrder>123</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Filesystem\CxEnvironment.cpp">
-				<BuildOrder>125</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Debug\CxProfiler.cpp">
-				<BuildOrder>119</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Filesystem\CxDll.cpp">
-				<BuildOrder>124</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Common\CxAutoBuffer.h">
-				<BuildOrder>77</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxAutoMallocT.h">
-				<BuildOrder>78</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxArray.h">
-				<BuildOrder>76</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxEvent.h">
-				<BuildOrder>65</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxThread.h">
-				<BuildOrder>70</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\CxAppSettings.h">
-				<BuildOrder>75</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Common\xDefines.h">
-				<BuildOrder>95</BuildOrder>
-			</None>
-			<CppCompile Include="..\..\Source\Debug\CxDebugger.cpp">
-				<BuildOrder>116</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Sync\CxWaitableTimer.h">
-				<BuildOrder>73</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxThreadPool.h">
-				<BuildOrder>71</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxTls.h">
-				<BuildOrder>72</BuildOrder>
-			</None>
-			<CppCompile Include="..\..\Source\Net\CxCgi.cpp">
-				<BuildOrder>135</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxMimeBody.cpp">
-				<BuildOrder>140</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Log\CxConsoleLog.cpp">
-				<BuildOrder>130</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Filesystem\CxPath.cpp">
-				<BuildOrder>128</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Filesystem\CxStdioFile.cpp">
-				<BuildOrder>129</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxMimeHeader.cpp">
-				<BuildOrder>141</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxCookiePv1.cpp">
-				<BuildOrder>137</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxDnsClient.cpp">
-				<BuildOrder>138</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxCookiePv0.cpp">
-				<BuildOrder>136</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxMimeMessage.cpp">
-				<BuildOrder>142</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxHttpClient.cpp">
-				<BuildOrder>139</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxDigest.cpp">
-				<BuildOrder>152</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxEncrypt.cpp">
-				<BuildOrder>153</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxInfo.cpp">
-				<BuildOrder>155</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxLogin.cpp">
-				<BuildOrder>157</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxMechanism.cpp">
-				<BuildOrder>158</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxFunction.cpp">
-				<BuildOrder>154</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxAsyncSocket.cpp">
-				<BuildOrder>134</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Log\CxTraceLog.cpp">
-				<BuildOrder>133</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxPop3.cpp">
-				<BuildOrder>143</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Log\CxFileLog.cpp">
-				<BuildOrder>132</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxObject.cpp">
-				<BuildOrder>159</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxAtomicLongInt.cpp">
-				<BuildOrder>167</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxEvent.cpp">
-				<BuildOrder>172</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxSession.cpp">
-				<BuildOrder>162</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxPin.cpp">
-				<BuildOrder>160</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxPkcs11.cpp">
-				<BuildOrder>161</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxMutex.cpp">
-				<BuildOrder>173</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxAutoMutex.cpp">
-				<BuildOrder>169</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxCompletionPort.cpp">
-				<BuildOrder>170</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxAutoCriticalSection.cpp">
-				<BuildOrder>168</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxProcess.cpp">
-				<BuildOrder>174</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxCriticalSection.cpp">
-				<BuildOrder>171</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxSharedMemory.cpp">
-				<BuildOrder>176</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxSleeper.cpp">
-				<BuildOrder>177</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Source\Sync\CxThreadPool.inl"/>
-			<CppCompile Include="..\..\Source\Sync\CxTls.cpp">
-				<BuildOrder>180</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp">
-				<BuildOrder>181</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxThread.cpp">
-				<BuildOrder>178</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxVerify.cpp">
-				<BuildOrder>166</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxSign.cpp">
-				<BuildOrder>163</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxUtils.cpp">
-				<BuildOrder>165</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Sync\CxSemaphore.cpp">
-				<BuildOrder>175</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxSlot.cpp">
-				<BuildOrder>164</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxKey.cpp">
-				<BuildOrder>156</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Sync\CxAutoCriticalSection.h">
-				<BuildOrder>61</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxAutoMutex.h">
-				<BuildOrder>62</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Sync\CxAtomicLongInt.h">
-				<BuildOrder>60</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxLogin.h">
-				<BuildOrder>50</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxSession.h">
-				<BuildOrder>55</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxVerify.h">
-				<BuildOrder>59</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxFunction.h">
-				<BuildOrder>47</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxSocket.h">
-				<BuildOrder>36</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxUtils.h">
-				<BuildOrder>58</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxSign.h">
-				<BuildOrder>56</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxSlot.h">
-				<BuildOrder>57</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Debug\CxTest.h">
-				<BuildOrder>10</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxMimeHeader.h">
-				<BuildOrder>31</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Debug\CxReport.h">
-				<BuildOrder>9</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Debug\xDebug.h">
-				<BuildOrder>11</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Debug\CxProfiler.h">
-				<BuildOrder>8</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxObject.h">
-				<BuildOrder>52</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxInfo.h">
-				<BuildOrder>48</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxKey.h">
-				<BuildOrder>49</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxMechanism.h">
-				<BuildOrder>51</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxPin.h">
-				<BuildOrder>53</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxPkcs11.h">
-				<BuildOrder>54</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxSocketInit.h">
-				<BuildOrder>37</BuildOrder>
-			</None>
-			<CppCompile Include="..\..\Source\Net\CxTcpServerSocket.cpp">
-				<BuildOrder>148</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxUri.cpp">
-				<BuildOrder>149</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Filesystem\CxIni.cpp">
-				<BuildOrder>127</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Patterns\CxSingleton.h">
-				<BuildOrder>41</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\All.h">
-				<BuildOrder>42</BuildOrder>
-			</None>
-			<CppCompile Include="..\..\Source\Patterns\CxSingleton.cpp">
-				<BuildOrder>150</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxSocketInit.cpp">
-				<BuildOrder>146</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Pkcs11\CxDecrypt.cpp">
-				<BuildOrder>151</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxSocket.cpp">
-				<BuildOrder>145</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxTcpClientSocket.cpp">
-				<BuildOrder>147</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxSmtp.cpp">
-				<BuildOrder>144</BuildOrder>
-			</CppCompile>
-			<None Include="..\..\Include\xLib\Net\CxPop3.h">
-				<BuildOrder>33</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxQueryList.h">
-				<BuildOrder>34</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxMimeMessage.h">
-				<BuildOrder>32</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxTcpClientSocket.h">
-				<BuildOrder>38</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxSmtp.h">
-				<BuildOrder>35</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxTcpServerSocket.h">
-				<BuildOrder>39</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\Common.h">
-				<BuildOrder>43</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Net\CxUri.h">
-				<BuildOrder>40</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxEncrypt.h">
-				<BuildOrder>46</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxDecrypt.h">
-				<BuildOrder>44</BuildOrder>
-			</None>
-			<None Include="..\..\Include\xLib\Pkcs11\CxDigest.h">
-				<BuildOrder>45</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h">
-				<BuildOrder>182</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h">
-				<BuildOrder>183</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h">
-				<BuildOrder>184</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxClipboard.h">
-				<BuildOrder>185</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxCom.h">
-				<BuildOrder>186</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxComPort.h">
-				<BuildOrder>187</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h">
-				<BuildOrder>188</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h">
-				<BuildOrder>189</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxException.h">
-				<BuildOrder>190</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h">
-				<BuildOrder>191</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h">
-				<BuildOrder>192</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h">
-				<BuildOrder>193</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxMacros.h">
-				<BuildOrder>194</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxShell.h">
-				<BuildOrder>195</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxString.h">
-				<BuildOrder>196</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h">
-				<BuildOrder>197</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Compress\CxTest_CxGz.h">
-				<BuildOrder>198</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h">
-				<BuildOrder>199</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h">
-				<BuildOrder>200</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h">
-				<BuildOrder>201</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h">
-				<BuildOrder>202</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h">
-				<BuildOrder>203</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h">
-				<BuildOrder>204</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h">
-				<BuildOrder>205</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h">
-				<BuildOrder>206</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h">
-				<BuildOrder>207</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h">
-				<BuildOrder>208</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxReport.h">
-				<BuildOrder>209</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDir.h">
-				<BuildOrder>210</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h">
-				<BuildOrder>211</BuildOrder>
+			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxIni.h">
+				<BuildOrder>214</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h">
+				<BuildOrder>215</BuildOrder>
 			</None>
 			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxEnvironment.h">
 				<BuildOrder>212</BuildOrder>
@@ -686,20 +78,8 @@
 			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxFileAttribute.h">
 				<BuildOrder>213</BuildOrder>
 			</None>
-			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxIni.h">
-				<BuildOrder>214</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h">
-				<BuildOrder>215</BuildOrder>
-			</None>
 			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxStdioFile.h">
 				<BuildOrder>216</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h">
-				<BuildOrder>217</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h">
-				<BuildOrder>218</BuildOrder>
 			</None>
 			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxAsyncSocket.h">
 				<BuildOrder>219</BuildOrder>
@@ -707,44 +87,44 @@
 			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxCgi.h">
 				<BuildOrder>220</BuildOrder>
 			</None>
+			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h">
+				<BuildOrder>217</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h">
+				<BuildOrder>218</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h">
+				<BuildOrder>211</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h">
+				<BuildOrder>204</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h">
+				<BuildOrder>205</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h">
+				<BuildOrder>202</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h">
+				<BuildOrder>203</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h">
+				<BuildOrder>206</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxReport.h">
+				<BuildOrder>209</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDir.h">
+				<BuildOrder>210</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h">
+				<BuildOrder>207</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h">
+				<BuildOrder>208</BuildOrder>
+			</None>
 			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h">
 				<BuildOrder>221</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h">
-				<BuildOrder>222</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h">
-				<BuildOrder>223</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxGeoIp.h">
-				<BuildOrder>224</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
-				<BuildOrder>225</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
-				<BuildOrder>226</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxPop3.h">
-				<BuildOrder>227</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h">
-				<BuildOrder>228</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxSocket.h">
-				<BuildOrder>229</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h">
-				<BuildOrder>230</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClientSocket.h">
-				<BuildOrder>231</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpServerSocket.h">
-				<BuildOrder>232</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxUri.h">
-				<BuildOrder>233</BuildOrder>
 			</None>
 			<None Include="..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h">
 				<BuildOrder>234</BuildOrder>
@@ -752,14 +132,14 @@
 			<None Include="..\..\Tests\Include\Test\PKCS11\CxTest_CxPKCS11.h">
 				<BuildOrder>235</BuildOrder>
 			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpServerSocket.h">
+				<BuildOrder>232</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxUri.h">
+				<BuildOrder>233</BuildOrder>
+			</None>
 			<None Include="..\..\Tests\Include\Test\Sync\CWorkThread.h">
 				<BuildOrder>236</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h">
-				<BuildOrder>237</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoCriticalSection.h">
-				<BuildOrder>238</BuildOrder>
 			</None>
 			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h">
 				<BuildOrder>239</BuildOrder>
@@ -767,157 +147,152 @@
 			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxCompletionPort.h">
 				<BuildOrder>240</BuildOrder>
 			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h">
+				<BuildOrder>237</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoCriticalSection.h">
+				<BuildOrder>238</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClientSocket.h">
+				<BuildOrder>231</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxGeoIp.h">
+				<BuildOrder>224</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
+				<BuildOrder>225</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h">
+				<BuildOrder>222</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h">
+				<BuildOrder>223</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
+				<BuildOrder>226</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxSocket.h">
+				<BuildOrder>229</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h">
+				<BuildOrder>230</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxPop3.h">
+				<BuildOrder>227</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h">
+				<BuildOrder>228</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h">
+				<BuildOrder>201</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxTcpClientSocket.h">
+				<BuildOrder>38</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxSmtp.h">
+				<BuildOrder>35</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxQueryList.h">
+				<BuildOrder>34</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxMimeMessage.h">
+				<BuildOrder>32</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxTcpServerSocket.h">
+				<BuildOrder>39</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxUri.h">
+				<BuildOrder>40</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxPop3.h">
+				<BuildOrder>33</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Patterns\CxSingleton.cpp">
+				<BuildOrder>150</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxIni.cpp">
+				<BuildOrder>127</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Patterns\CxSingleton.h">
+				<BuildOrder>41</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Net\CxSocketInit.cpp">
+				<BuildOrder>146</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxTcpClientSocket.cpp">
+				<BuildOrder>147</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxSmtp.cpp">
+				<BuildOrder>144</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxSocket.cpp">
+				<BuildOrder>145</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxMacros.h">
+				<BuildOrder>194</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxShell.h">
+				<BuildOrder>195</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h">
+				<BuildOrder>192</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h">
+				<BuildOrder>193</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxString.h">
+				<BuildOrder>196</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h">
+				<BuildOrder>199</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h">
+				<BuildOrder>200</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h">
+				<BuildOrder>197</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Compress\CxTest_CxGz.h">
+				<BuildOrder>198</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h">
+				<BuildOrder>191</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h">
+				<BuildOrder>184</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxClipboard.h">
+				<BuildOrder>185</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h">
+				<BuildOrder>182</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h">
+				<BuildOrder>183</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxCom.h">
+				<BuildOrder>186</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h">
+				<BuildOrder>189</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxException.h">
+				<BuildOrder>190</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxComPort.h">
+				<BuildOrder>187</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h">
+				<BuildOrder>188</BuildOrder>
+			</None>
 			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxCriticalSection.h">
 				<BuildOrder>241</BuildOrder>
 			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h">
-				<BuildOrder>242</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h">
-				<BuildOrder>243</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxProcess.h">
-				<BuildOrder>244</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h">
-				<BuildOrder>245</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxSleeper.h">
-				<BuildOrder>246</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxThread.h">
-				<BuildOrder>247</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxTls.h">
-				<BuildOrder>248</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h">
-				<BuildOrder>249</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Include\Test\Units\CxTest_bGetUsbInfo.h">
-				<BuildOrder>250</BuildOrder>
-			</None>
-			<None Include="..\..\Tests\Source\_TestData\GeoIP.dat"/>
-			<RcItem Include="..\..\Tests\Source\_TestData\Pic.bmp">
-				<ResourceType>Bitmap</ResourceType>
-				<ResourceId>Bitmap_1</ResourceId>
-			</RcItem>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxArray.cpp">
-				<BuildOrder>253</BuildOrder>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxGeoIp.cpp">
+				<BuildOrder>295</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxAutoMallocT.cpp">
-				<BuildOrder>254</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxChar.cpp">
-				<BuildOrder>255</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxClipboard.cpp">
-				<BuildOrder>256</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxCom.cpp">
-				<BuildOrder>257</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxComPort.cpp">
-				<BuildOrder>258</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp">
-				<BuildOrder>259</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxDateTime.cpp">
-				<BuildOrder>260</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxException.cpp">
-				<BuildOrder>261</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp">
-				<BuildOrder>262</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp">
-				<BuildOrder>263</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxLocale.cpp">
-				<BuildOrder>264</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxMacros.cpp">
-				<BuildOrder>265</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxShell.cpp">
-				<BuildOrder>266</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxString.cpp">
-				<BuildOrder>267</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp">
-				<BuildOrder>268</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp">
-				<BuildOrder>270</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp">
-				<BuildOrder>271</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp">
-				<BuildOrder>272</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxRandom.cpp">
-				<BuildOrder>273</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp">
-				<BuildOrder>274</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
-				<BuildOrder>275</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp">
-				<BuildOrder>276</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp">
-				<BuildOrder>277</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp">
-				<BuildOrder>278</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp">
-				<BuildOrder>279</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxReport.cpp">
-				<BuildOrder>280</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDir.cpp">
-				<BuildOrder>281</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp">
-				<BuildOrder>282</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxEnvironment.cpp">
-				<BuildOrder>283</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp">
-				<BuildOrder>284</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxIni.cpp">
-				<BuildOrder>285</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp">
-				<BuildOrder>286</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxStdioFile.cpp">
-				<BuildOrder>287</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp">
-				<BuildOrder>288</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp">
-				<BuildOrder>289</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxAsyncSocket.cpp">
-				<BuildOrder>290</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxCgi.cpp">
-				<BuildOrder>291</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp">
-				<BuildOrder>292</BuildOrder>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
+				<BuildOrder>296</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxCookiePv1.cpp">
 				<BuildOrder>293</BuildOrder>
@@ -925,20 +300,8 @@
 			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxDnsClient.cpp">
 				<BuildOrder>294</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxGeoIp.cpp">
-				<BuildOrder>295</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
-				<BuildOrder>296</BuildOrder>
-			</CppCompile>
 			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp">
 				<BuildOrder>297</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxPop3.cpp">
-				<BuildOrder>298</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp">
-				<BuildOrder>299</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxSocket.cpp">
 				<BuildOrder>300</BuildOrder>
@@ -946,44 +309,44 @@
 			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp">
 				<BuildOrder>301</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxPop3.cpp">
+				<BuildOrder>298</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp">
+				<BuildOrder>299</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp">
+				<BuildOrder>292</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxIni.cpp">
+				<BuildOrder>285</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp">
+				<BuildOrder>286</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxEnvironment.cpp">
+				<BuildOrder>283</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp">
+				<BuildOrder>284</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxStdioFile.cpp">
+				<BuildOrder>287</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxAsyncSocket.cpp">
+				<BuildOrder>290</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxCgi.cpp">
+				<BuildOrder>291</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp">
+				<BuildOrder>288</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp">
+				<BuildOrder>289</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpClientSocket.cpp">
 				<BuildOrder>302</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpServerSocket.cpp">
-				<BuildOrder>303</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxUri.cpp">
-				<BuildOrder>304</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp">
-				<BuildOrder>305</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\PKCS11\CxTest_CxPKCS11.cpp">
-				<BuildOrder>306</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CWorkThread.cpp">
-				<BuildOrder>307</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp">
-				<BuildOrder>308</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoCriticalSection.cpp">
-				<BuildOrder>309</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp">
-				<BuildOrder>310</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxCompletionPort.cpp">
-				<BuildOrder>311</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxCriticalSection.cpp">
-				<BuildOrder>312</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxEvent.cpp">
-				<BuildOrder>313</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxMutex.cpp">
-				<BuildOrder>314</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxProcess.cpp">
 				<BuildOrder>315</BuildOrder>
@@ -991,14 +354,14 @@
 			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxSemaphore.cpp">
 				<BuildOrder>316</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxEvent.cpp">
+				<BuildOrder>313</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxMutex.cpp">
+				<BuildOrder>314</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxSleeper.cpp">
 				<BuildOrder>317</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxThread.cpp">
-				<BuildOrder>318</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxTls.cpp">
-				<BuildOrder>319</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp">
 				<BuildOrder>320</BuildOrder>
@@ -1006,6 +369,643 @@
 			<CppCompile Include="..\..\Tests\Source\Units\CxTest_bGetUsbInfo.cpp">
 				<BuildOrder>321</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxThread.cpp">
+				<BuildOrder>318</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxTls.cpp">
+				<BuildOrder>319</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxCriticalSection.cpp">
+				<BuildOrder>312</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp">
+				<BuildOrder>305</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\PKCS11\CxTest_CxPKCS11.cpp">
+				<BuildOrder>306</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpServerSocket.cpp">
+				<BuildOrder>303</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxUri.cpp">
+				<BuildOrder>304</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CWorkThread.cpp">
+				<BuildOrder>307</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp">
+				<BuildOrder>310</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxCompletionPort.cpp">
+				<BuildOrder>311</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp">
+				<BuildOrder>308</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoCriticalSection.cpp">
+				<BuildOrder>309</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp">
+				<BuildOrder>282</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxAutoMallocT.cpp">
+				<BuildOrder>254</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxChar.cpp">
+				<BuildOrder>255</BuildOrder>
+			</CppCompile>
+			<RcItem Include="..\..\Tests\Source\_TestData\Pic.bmp">
+				<ResourceType>Bitmap</ResourceType>
+				<ResourceId>Bitmap_1</ResourceId>
+			</RcItem>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxArray.cpp">
+				<BuildOrder>253</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxClipboard.cpp">
+				<BuildOrder>256</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp">
+				<BuildOrder>259</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxDateTime.cpp">
+				<BuildOrder>260</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxCom.cpp">
+				<BuildOrder>257</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxComPort.cpp">
+				<BuildOrder>258</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Tests\Source\_TestData\GeoIP.dat"/>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxProcess.h">
+				<BuildOrder>244</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h">
+				<BuildOrder>245</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h">
+				<BuildOrder>242</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h">
+				<BuildOrder>243</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxSleeper.h">
+				<BuildOrder>246</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h">
+				<BuildOrder>249</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Units\CxTest_bGetUsbInfo.h">
+				<BuildOrder>250</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxThread.h">
+				<BuildOrder>247</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Sync\CxTest_CxTls.h">
+				<BuildOrder>248</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxException.cpp">
+				<BuildOrder>261</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
+				<BuildOrder>275</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp">
+				<BuildOrder>276</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxRandom.cpp">
+				<BuildOrder>273</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp">
+				<BuildOrder>274</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp">
+				<BuildOrder>277</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxReport.cpp">
+				<BuildOrder>280</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDir.cpp">
+				<BuildOrder>281</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp">
+				<BuildOrder>278</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp">
+				<BuildOrder>279</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp">
+				<BuildOrder>272</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxLocale.cpp">
+				<BuildOrder>264</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxMacros.cpp">
+				<BuildOrder>265</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp">
+				<BuildOrder>262</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp">
+				<BuildOrder>263</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxShell.cpp">
+				<BuildOrder>266</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp">
+				<BuildOrder>270</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp">
+				<BuildOrder>271</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxString.cpp">
+				<BuildOrder>267</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp">
+				<BuildOrder>268</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxUri.cpp">
+				<BuildOrder>149</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Sync\CxCompletionPort.h">
+				<BuildOrder>63</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxSleeper.h">
+				<BuildOrder>69</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxChar.h">
+				<BuildOrder>79</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxMutex.h">
+				<BuildOrder>66</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxProcess.h">
+				<BuildOrder>67</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxFunctorT.h">
+				<BuildOrder>83</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxMacros.h">
+				<BuildOrder>85</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxSemaphore.h">
+				<BuildOrder>68</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxNonAssignable.h">
+				<BuildOrder>86</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xClosure.h">
+				<BuildOrder>91</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxCookiePv1.h">
+				<BuildOrder>27</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxAsyncSocket.h">
+				<BuildOrder>24</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxFileAttribute.h">
+				<BuildOrder>15</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxCgi.h">
+				<BuildOrder>25</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Debug\CxReport.cpp">
+				<BuildOrder>120</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Common\CxString.h">
+				<BuildOrder>88</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xConfig.h">
+				<BuildOrder>94</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxSystemInfo.h">
+				<BuildOrder>89</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\DbEmpty.db.zip.txt"/>
+			<CppCompile Include="..\..\Tests\Source\Test.cpp">
+				<BuildOrder>181</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Debug\CxLastError.cpp">
+				<BuildOrder>118</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Db\CxMySql.cpp">
+				<BuildOrder>114</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Debug\CxAutoProfiler.cpp">
+				<BuildOrder>115</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Debug\CxDebugger.inl"/>
+			<CppCompile Include="..\..\Source\Filesystem\CxFileAttribute.cpp">
+				<BuildOrder>126</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Debug\CxProfiler.cpp">
+				<BuildOrder>119</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxDll.cpp">
+				<BuildOrder>124</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxDir.cpp">
+				<BuildOrder>123</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxEnvironment.cpp">
+				<BuildOrder>125</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Db\CxConnectionString.cpp">
+				<BuildOrder>113</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Common\xClosureImpl.h">
+				<BuildOrder>92</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xCommon.h">
+				<BuildOrder>93</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxLocale.h">
+				<BuildOrder>84</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxConst.h">
+				<BuildOrder>80</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxNonCopyable.h">
+				<BuildOrder>87</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxCriticalSection.h">
+				<BuildOrder>64</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Crypt\CxRandom.cpp">
+				<BuildOrder>112</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Common\CxDateTime.h">
+				<BuildOrder>81</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxException.h">
+				<BuildOrder>82</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxCookiePv0.h">
+				<BuildOrder>26</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Crypt\CxCrc32.cpp">
+				<BuildOrder>111</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Debug\CxReport.inl"/>
+			<CppCompile Include="..\..\Source\Common\CxChar.cpp">
+				<BuildOrder>100</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxConst.cpp">
+				<BuildOrder>101</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Debug\CxTest.cpp">
+				<BuildOrder>122</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxException.cpp">
+				<BuildOrder>103</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Common\xTypes.h">
+				<BuildOrder>97</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Common\CxDateTime.cpp">
+				<BuildOrder>102</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxAppSettings.cpp">
+				<BuildOrder>98</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxString.cpp">
+				<BuildOrder>106</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\CxBase64.cpp">
+				<BuildOrder>110</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\CxSystemInfo.cpp">
+				<BuildOrder>108</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Common\CxString.inl"/>
+			<None Include="..\..\Source\Common\CxFunctorT.inl"/>
+			<None Include="..\..\Source\Common\DbEmpty.db.zip.txt"/>
+			<None Include="..\..\Include\xLib\Log\CxConsoleLog.h">
+				<BuildOrder>19</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Log\CxFileLog.h">
+				<BuildOrder>21</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Common\CxLocale.cpp">
+				<BuildOrder>105</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Log\CxTraceLog.h">
+				<BuildOrder>22</BuildOrder>
+			</None>
+			<None Include="..\..\Source\Common\CxArray.inl"/>
+			<None Include="..\..\Include\xLib\Debug\CxLastError.h">
+				<BuildOrder>7</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxDnsClient.h">
+				<BuildOrder>28</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxDir.h">
+				<BuildOrder>12</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\CxRandom.h">
+				<BuildOrder>2</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxHttpClient.h">
+				<BuildOrder>29</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxStdioFile.h">
+				<BuildOrder>18</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxMimeBody.h">
+				<BuildOrder>30</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Log\xLog.h">
+				<BuildOrder>23</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxPath.h">
+				<BuildOrder>17</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxEnvironment.h">
+				<BuildOrder>14</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Db\CxConnectionString.h">
+				<BuildOrder>3</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\CxBase64.h">
+				<BuildOrder>0</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xLinking.h">
+				<BuildOrder>96</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxIni.h">
+				<BuildOrder>16</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxDebugger.h">
+				<BuildOrder>6</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\CxCrc32.h">
+				<BuildOrder>1</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Filesystem\CxDll.h">
+				<BuildOrder>13</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Db\CxMySql.h">
+				<BuildOrder>4</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxAutoProfiler.h">
+				<BuildOrder>5</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxAutoBuffer.h">
+				<BuildOrder>77</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Sync\CxSemaphore.cpp">
+				<BuildOrder>175</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Sync\CxAtomicLongInt.h">
+				<BuildOrder>60</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxAutoCriticalSection.h">
+				<BuildOrder>61</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxAutoMutex.h">
+				<BuildOrder>62</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Sync\CxCriticalSection.cpp">
+				<BuildOrder>171</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxSharedMemory.cpp">
+				<BuildOrder>176</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxAutoCriticalSection.cpp">
+				<BuildOrder>168</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxProcess.cpp">
+				<BuildOrder>174</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxSleeper.cpp">
+				<BuildOrder>177</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp">
+				<BuildOrder>181</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxThread.cpp">
+				<BuildOrder>178</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Source\Sync\CxThreadPool.inl"/>
+			<CppCompile Include="..\..\Source\Sync\CxTls.cpp">
+				<BuildOrder>180</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Debug\CxProfiler.h">
+				<BuildOrder>8</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxSocketInit.h">
+				<BuildOrder>37</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Net\CxTcpServerSocket.cpp">
+				<BuildOrder>148</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Debug\xDebug.h">
+				<BuildOrder>11</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxSocket.h">
+				<BuildOrder>36</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Net\CxMimeHeader.h">
+				<BuildOrder>31</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxReport.h">
+				<BuildOrder>9</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Debug\CxTest.h">
+				<BuildOrder>10</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Sync\CxCompletionPort.cpp">
+				<BuildOrder>170</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Log\CxConsoleLog.cpp">
+				<BuildOrder>130</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxPath.cpp">
+				<BuildOrder>128</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxCgi.cpp">
+				<BuildOrder>135</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxMimeBody.cpp">
+				<BuildOrder>140</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\CxStdioFile.cpp">
+				<BuildOrder>129</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxDnsClient.cpp">
+				<BuildOrder>138</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxCookiePv0.cpp">
+				<BuildOrder>136</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxMimeHeader.cpp">
+				<BuildOrder>141</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxCookiePv1.cpp">
+				<BuildOrder>137</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Sync\CxTls.h">
+				<BuildOrder>72</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxEvent.h">
+				<BuildOrder>65</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxThread.h">
+				<BuildOrder>70</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxAutoMallocT.h">
+				<BuildOrder>78</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxArray.h">
+				<BuildOrder>76</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\CxAppSettings.h">
+				<BuildOrder>75</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxWaitableTimer.h">
+				<BuildOrder>73</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Sync\CxThreadPool.h">
+				<BuildOrder>71</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\xDefines.h">
+				<BuildOrder>95</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Debug\CxDebugger.cpp">
+				<BuildOrder>116</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxMimeMessage.cpp">
+				<BuildOrder>142</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxAtomicLongInt.cpp">
+				<BuildOrder>167</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxEvent.cpp">
+				<BuildOrder>172</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Log\CxFileLog.cpp">
+				<BuildOrder>132</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxMutex.cpp">
+				<BuildOrder>173</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\CxAutoMutex.cpp">
+				<BuildOrder>169</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxPop3.cpp">
+				<BuildOrder>143</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxHttpClient.cpp">
+				<BuildOrder>139</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Net\CxAsyncSocket.cpp">
+				<BuildOrder>134</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Log\CxTraceLog.cpp">
+				<BuildOrder>133</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxDigest.cpp">
+				<BuildOrder>303</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxEncrypt.cpp">
+				<BuildOrder>304</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxFunction.cpp">
+				<BuildOrder>305</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxInfo.cpp">
+				<BuildOrder>306</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxKey.cpp">
+				<BuildOrder>307</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxLogin.cpp">
+				<BuildOrder>308</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxMechanism.cpp">
+				<BuildOrder>309</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxObject.cpp">
+				<BuildOrder>310</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxPin.cpp">
+				<BuildOrder>311</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxPkcs11.cpp">
+				<BuildOrder>312</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxSession.cpp">
+				<BuildOrder>313</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxSign.cpp">
+				<BuildOrder>314</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxSlot.cpp">
+				<BuildOrder>315</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxUtils.cpp">
+				<BuildOrder>316</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxVerify.cpp">
+				<BuildOrder>317</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Pkcs11\Win\CxDecrypt.cpp">
+				<BuildOrder>318</BuildOrder>
+			</CppCompile>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\All.h">
+				<BuildOrder>301</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\Common.h">
+				<BuildOrder>302</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxDecrypt.h">
+				<BuildOrder>303</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxDigest.h">
+				<BuildOrder>304</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxEncrypt.h">
+				<BuildOrder>305</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxFunction.h">
+				<BuildOrder>306</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxInfo.h">
+				<BuildOrder>307</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxKey.h">
+				<BuildOrder>308</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxLogin.h">
+				<BuildOrder>309</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxMechanism.h">
+				<BuildOrder>310</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxObject.h">
+				<BuildOrder>311</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxPin.h">
+				<BuildOrder>312</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxPkcs11.h">
+				<BuildOrder>313</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxSession.h">
+				<BuildOrder>314</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxSign.h">
+				<BuildOrder>315</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxSlot.h">
+				<BuildOrder>316</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxUtils.h">
+				<BuildOrder>317</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Pkcs11\Win\CxVerify.h">
+				<BuildOrder>318</BuildOrder>
+			</None>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

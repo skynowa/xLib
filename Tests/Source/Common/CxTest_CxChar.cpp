@@ -32,10 +32,10 @@ CxTest_CxChar::bUnit() {
     {
         //TRUE
         {
-            const tString sDataTrue  = xT("sefasdf3456SDRFGW2345f235vdfs3e45v234624uhethQWER23141scvf@#$");
+            const tString sDataTrue  = xT("sefasdf3456SDRFGW2345f235vdfs3e45v234624uhethQWER23141scvf");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsAlphaNum(sDataTrue.at(0));
+                m_bRes = CxChar::bIsAlphaNum(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
@@ -45,7 +45,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataFalse = xT(" !@$#%^%*&*(&*()*)+_=-) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsAlphaNum(sDataFalse.at(0));
+                m_bRes = CxChar::bIsAlphaNum(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -59,7 +59,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsAlpha(sDataTrue.at(0));
+                m_bRes = CxChar::bIsAlpha(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
@@ -69,7 +69,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataFalse = xT(" !@$#%^%*1234567890-=&*(&*()*)+_) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsAlpha(sDataFalse.at(0));
+                m_bRes = CxChar::bIsAlpha(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -80,10 +80,10 @@ CxTest_CxChar::bUnit() {
     {
         //TRUE
         {
-            const tString sDataTrue  = xT("\t\n\a\t\r\n\v\b\f\?");
+            const tString sDataTrue  = xT("\t\n\a\t\r\n\v\b\f");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsControl(sDataTrue.at(0));
+                m_bRes = CxChar::bIsControl(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
@@ -93,7 +93,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataFalse = xT(" !@$#%^%*wert12345wecrtwe67WERTWE890-=&*(&*(wetf)*)+_) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsControl(sDataFalse.at(0));
+                m_bRes = CxChar::bIsControl(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -107,7 +107,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT("0123456789");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsDigitDec(sDataTrue.at(0));
+                m_bRes = CxChar::bIsDigitDec(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
@@ -117,7 +117,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataFalse = xT(" !@$#%^%*wertwecrtweWERTWE-=&*(&*(wetf)*)+_) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsDigitDec(sDataFalse.at(0));
+                m_bRes = CxChar::bIsDigitDec(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -131,17 +131,17 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT("0123456789abcdefABCDEF");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsDigitHex(sDataTrue.at(0));
+                m_bRes = CxChar::bIsDigitHex(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
 
         //FALSE
         {
-            const tString sDataFalse = xT(" !@$#%^%*wertwecrtweWERTWE-=&*(&*(wetf)*)+_) /*-+{}?><< :\"||");
+            const tString sDataFalse = xT(" !@$#%^%*wrtwrtwWRTW-=&*(&*(wt)*)+_) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsDigitHex(sDataFalse.at(0));
+                m_bRes = CxChar::bIsDigitHex(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -155,17 +155,17 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT("1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsGraph(sDataTrue.at(0));
+                m_bRes = CxChar::bIsGraph(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
 
         //FALSE
         {
-            const tString sDataFalse = xT("\t\n\a\t\r\n\v\b\f\? ");
+            const tString sDataFalse = xT("\t\n\a\t\r\n\v\b\f ");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsGraph(sDataFalse.at(0));
+                m_bRes = CxChar::bIsGraph(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -179,17 +179,17 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT(" 1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsPrint(sDataTrue.at(0));
+                m_bRes = CxChar::bIsPrint(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
 
         //FALSE
         {
-            const tString sDataFalse = xT("\t\n\a\t\r\n\v\b\f\?");
+            const tString sDataFalse = xT("\t\n\a\t\r\n\v\b\f");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsPrint(sDataFalse.at(0));
+                m_bRes = CxChar::bIsPrint(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -203,17 +203,17 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT("!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsPunct(sDataTrue.at(0));
+                m_bRes = CxChar::bIsPunct(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
 
         //FALSE
         {
-            const tString sDataFalse = xT(" qwcrqwerWETYRBTY125235645656fgderKUIOPMTYjcxz\t\n\a\t\r\n\v\b\f\?");
+            const tString sDataFalse = xT(" qwcrqwerWETYRBTY125235645656fgderKUIOPMTYjcxz\t\n\a\t\r\n\v\b\f");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsPunct(sDataFalse.at(0));
+                m_bRes = CxChar::bIsPunct(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -227,7 +227,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT(" \t\n\v\f\r");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsSpace(sDataTrue.at(0));
+                m_bRes = CxChar::bIsSpace(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
@@ -237,7 +237,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataFalse = xT("qwcrqwerWETYRBTY125235645656fgderKUIOPMTYjcxz!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsSpace(sDataFalse.at(0));
+                m_bRes = CxChar::bIsSpace(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -251,7 +251,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT("abcdefghijklmnopqrstuvwxyz");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsLower(sDataTrue.at(0));
+                m_bRes = CxChar::bIsLower(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
@@ -261,7 +261,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataFalse = xT("WETYRBTY125235645656FGDERKUIOPMTY!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsLower(sDataFalse.at(0));
+                m_bRes = CxChar::bIsLower(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -275,7 +275,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataTrue  = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRes = CxChar::bIsUpper(sDataTrue.at(0));
+                m_bRes = CxChar::bIsUpper(sDataTrue.at(i));
                 xASSERT(FALSE != m_bRes);
             }
         }
@@ -285,7 +285,7 @@ CxTest_CxChar::bUnit() {
             const tString sDataFalse = xT("wetyrbty125235645656fgderkuiopmty!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRes = CxChar::bIsUpper(sDataFalse.at(0));
+                m_bRes = CxChar::bIsUpper(sDataFalse.at(i));
                 xASSERT(FALSE == m_bRes);
             }
         }
@@ -298,8 +298,8 @@ CxTest_CxChar::bUnit() {
         const tString sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
 
         for (size_t i = 0; i < sDataUpper.size(); ++ i) {
-            m_chRes = CxChar::chToLower(sDataUpper.at(0));
-            xASSERT(sDataLow.at(0) == m_chRes);
+            m_chRes = CxChar::chToLower(sDataUpper.at(i));
+            xASSERT(sDataLow.at(i) == m_chRes);
         }
     }
 
@@ -310,8 +310,8 @@ CxTest_CxChar::bUnit() {
         const tString sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
         for (size_t i = 0; i < sDataLow.size(); ++ i) {
-            m_chRes = CxChar::chToUpper(sDataLow.at(0));
-            xASSERT(sDataUpper.at(0) == m_chRes);
+            m_chRes = CxChar::chToUpper(sDataLow.at(i));
+            xASSERT(sDataUpper.at(i) == m_chRes);
         }
     }
 

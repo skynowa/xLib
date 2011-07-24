@@ -44,24 +44,24 @@ CxSystemInfo::osGetOS() {
             break;
 
         case VER_PLATFORM_WIN32_WINDOWS: {
-                xCHECK_DO(0  == ovVer.dwMinorVersion, otRes = otWindows95);
-                xCHECK_DO(10 == ovVer.dwMinorVersion, otRes = otWindows98);
-                xCHECK_DO(90 == ovVer.dwMinorVersion, otRes = otWindows98);
+                xCHECK_DO(0  == ovVer.dwMinorVersion, otRes = otWindows95; break);
+                xCHECK_DO(10 == ovVer.dwMinorVersion, otRes = otWindows98; break);
+                xCHECK_DO(90 == ovVer.dwMinorVersion, otRes = otWindows98; break);
             }
             break;
 
         case VER_PLATFORM_WIN32_NT: {
-                xCHECK_DO(ovVer.dwMajorVersion <= 4,                              otRes = otWindowsNT);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindows2000);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsXP);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsXPProx64Edition);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsHomeServer);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsVista);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsServer2008);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindows7);
+                xCHECK_DO(ovVer.dwMajorVersion <= 4,                              otRes = otWindowsNT; break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindows2000; break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsXP; break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsXPProx64Edition; break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003; break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsHomeServer; break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2; break);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsVista; break);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsServer2008; break);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2; break);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindows7; break);
 
                 //for unknown windows/newest windows version
                 otRes = otUnknown;
@@ -74,7 +74,6 @@ CxSystemInfo::osGetOS() {
             break;
     }
 
-    otRes = otUnknown;
 #elif defined(xOS_LINUX)
     utsname unKernelInfo= {{0}};
 
