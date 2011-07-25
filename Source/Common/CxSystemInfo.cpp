@@ -125,6 +125,7 @@ CxSystemInfo::sFormatOsType(
         default:                        { sRes = xT("<unknown>");                  }    break;
     }
 #elif defined(xOS_LINUX)
+    //TODO: sFormatOsType
     utsname unKernelInfo= {{0}};
 
     INT iRes = uname(&unKernelInfo);
