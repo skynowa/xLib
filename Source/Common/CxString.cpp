@@ -485,38 +485,71 @@ CxString::sFormat(
 //---------------------------------------------------------------------------
 //DONE: sFormatV
 /*static*/
-tString
-CxString::sFormatV(
-    LPCTSTR pcszFormat,
-    va_list palArgs
-)
-{
-    /*DEBUG*/// n/a
-    xCHECK_RET(NULL == pcszFormat, tString());
+#if xDEPRECIATE
+    tString
+    CxString::sFormatV(
+        LPCTSTR pcszFormat,
+        va_list palArgs
+    )
+    {
+        /*DEBUG*/// n/a
+        xCHECK_RET(NULL == pcszFormat, tString());
 
-    tString sBuff;
-    size_t  uiWrittenSize = static_cast<size_t>( - 1 );
+        tString sBuff;
+        size_t  uiWrittenSize = static_cast<size_t>( - 1 );
 
-    sBuff.resize(128);
+        sBuff.resize(128);
 
-    for ( ; ; ) {
-        va_list _palArgs;
-        va_copy(_palArgs, palArgs);
+        for ( ; ; ) {
+            va_list _palArgs;
+            va_copy(_palArgs, palArgs);
 
-        {
-            uiWrittenSize = static_cast<size_t>( _vsntprintf(&sBuff.at(0), sBuff.size() - 1, pcszFormat, _palArgs) );
-            xCHECK_DO(uiWrittenSize != static_cast<size_t>( - 1 ) && uiWrittenSize < sBuff.size(), break);    //FIX: downcast
+            {
+                uiWrittenSize = static_cast<size_t>( _vsntprintf(&sBuff.at(0), sBuff.size() - 1, pcszFormat, _palArgs) );
+                xCHECK_DO(uiWrittenSize != static_cast<size_t>( - 1 ) && uiWrittenSize < sBuff.size(), break);    //FIX: downcast
 
-            sBuff.resize(sBuff.size() * 2);
+                sBuff.resize(sBuff.size() * 2);
+            }
+
+            va_end(_palArgs);
         }
 
-        va_end(_palArgs);
+        sBuff.resize(uiWrittenSize);
+
+        return sBuff;
     }
+#else
+    tString
+    CxString::sFormatV(
+        LPCTSTR pcszFormat,
+        va_list palArgs
+    )
+    {
+        /*DEBUG*/// n/a
+        xCHECK_RET(NULL == pcszFormat, tString());
 
-    sBuff.resize(uiWrittenSize);
+        tString sBuff(128, 0);
+        INT     iWrittenSize = - 1;
 
-    return sBuff;
-}
+        for ( ; ; ) {
+            va_list _palArgs;
+            va_copy(_palArgs, palArgs);
+
+            {
+                iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size() - 1, pcszFormat, _palArgs);
+                xCHECK_DO(iWrittenSize > - 1 && iWrittenSize < static_cast<INT>( sBuff.size() ), break);    //FIX: downcast
+
+                sBuff.resize(sBuff.size() * 2);
+            }
+
+            va_end(_palArgs);
+        }
+
+        sBuff.resize(iWrittenSize);
+
+        return sBuff;
+    }
+#endif
 //---------------------------------------------------------------------------
 //DONE: sMinimize
 /*static*/

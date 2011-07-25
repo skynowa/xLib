@@ -1,7 +1,7 @@
 ######################################################################################################
 # Class name:  
 # Description: make file (static library, Linux, release)
-# File name:   makefile
+# File name:   Lib.mk
 # Author:      skynowa
 # E-mail:      skynowa@gmail.com
 # Created:     30.06.2011
@@ -11,12 +11,12 @@
 
 ##################################################
 # constants
-cOS						:= $(shell uname -s)
-cOS_BIT					:= $(shell getconf LONG_BIT)
-cOS_ARCH 				:= $(shell gcc -dumpmachine) #$(shell uname -m)
-cOS_INFO 				:= $(shell uname -a)
-cGCC_INFO				:= $(shell gcc -dumpversion) 
-cGLIBC_INFO				:= ##$(shell ldd --version)	#TODO: not implemented
+cOS				:= $(shell uname -s)
+cOS_BIT				:= $(shell getconf LONG_BIT)
+cOS_ARCH 			:= $(shell gcc -dumpmachine) #$(shell uname -m)
+cOS_INFO 			:= $(shell uname -a)
+cGCC_INFO			:= $(shell gcc -dumpversion) 
+cGLIBC_INFO			:= ##$(shell ldd --version)	#TODO: not implemented
 cBINUTILS_INFO			:= n/a
 
 cBUILD_TYPE_DEBUG		:= debug
@@ -30,9 +30,8 @@ cDESCRIPTION 			:= C++ class library
 
 ##################################################
 # Settings
-BUILD_TYPE				:= $(cBUILD_TYPE_RELEASE)
-#BIN_TYPE                := $(cBIN_TYPE_LIB)
-BIN_TYPE                := $(cBIN_TYPE_TESTS)
+BUILD_TYPE			:= $(cBUILD_TYPE_RELEASE)
+BIN_TYPE			:= $(cBIN_TYPE_LIB)
 
 
 ##################################################
@@ -40,7 +39,7 @@ BIN_TYPE                := $(cBIN_TYPE_TESTS)
 ifeq ($(BIN_TYPE), $(cBIN_TYPE_LIB))
 PROGRAM_PREFIX			:= lib
 PROGRAM_EXT  			:= .a
-else						
+else
 PROGRAM_PREFIX			:=
 PROGRAM_EXT  			:=
 endif
@@ -51,48 +50,43 @@ ROOT_INCLUDE_DIR		:= Include Source
 ROOT_SOURCE_DIR			:= Source
 
 OTHER_INCLUDE_DIR		:=	/usr/local/crystal_trader2.5/include \
-							/usr/local/include \
-							/usr/include
+					/usr/local/include \
+					/usr/include
 
 SOURCE_SUBDIRS			:=	.\
-							Common \
-							Compress/Linux \
-							Crypt \
-							Crypt/OpenSSL \
-							Debug \
-							Db \
-							Filesystem \
-							Log \
-							Net \
-							Patterns \
-							Sync \
-							Units
-							
+					Common \
+					Compress/Linux \
+					Crypt \
+					Crypt/OpenSSL \
+					Debug \
+					Db \
+					Filesystem \
+					Log \
+					Net \
+					Patterns \
+					Sync \
+					Units
+
 LIB_DIRS           		:= 	/usr/local/crystal_trader2.5/lib \
-							/usr/local/crystal_trader2.5/lib/mysql \
-							/usr/local/lib \
-							/usr/lib \
-							/usr/local/lib/mysql \
-							/usr/lib/mysql
+					/usr/local/crystal_trader2.5/lib/mysql \
+					/usr/local/lib \
+					/usr/lib \
+					/usr/local/lib/mysql \
+					/usr/lib/mysql
 
-ifeq ($(BIN_TYPE), $(cBIN_TYPE_LIB))
-BINARY_DIR				:= Library/G++_linux/Release
-else						
-BINARY_DIR				:= Contrib/G++_linux/Release
-endif
-
-INSTALL_DIR				:= /usr/local/crystal_trader2.5/lib/xLib
+BINARY_DIR			:= Library/G++_linux/Release
+INSTALL_DIR			:= /usr/local/crystal_trader2.5/lib/xLib
 PROGRAM_PATH			:= ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
-COMPILER				:= $(CXX)
-ARCHIVER                := $(AR)
+COMPILER			:= $(CXX)
+ARCHIVER                	:= $(AR)
 COMPILE_FLAGS      		:= -Wall -MD -pipe
-LINK_FLAGS              := -s -pipe
+LINK_FLAGS              	:= -s -pipe
 
 ifeq ($(cOS), Linux)
-LIBRARIES               := -lpthread -ldl -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
+LIBRARIES			:= -lpthread -ldl -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
 else
-LIBRARIES               := -pthread  -lc  -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
+LIBRARIES			:= -pthread  -lc  -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
@@ -103,74 +97,69 @@ endif
 
 PARANOID_FLAGS			:= -pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 -Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion -Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits -Wbad-function-cast -Wc++-compat -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wlogical-op -Waggregate-return -Wstrict-prototypes -Wold-style-declaration -Wold-style-definition -Wmissing-prototypes  -Wmissing-declarations  -Wmissing-field-initializers -Wmissing-format-attribute -Wpacked -Wpadded -Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla -Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
 
-RELATIVE_INCLUDE_DIRS	:= $(addprefix ../../../, $(ROOT_INCLUDE_DIR))
-RELATIVE_SOURCE_DIRS	:= $(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
+RELATIVE_INCLUDE_DIRS		:= $(addprefix ../../../, $(ROOT_INCLUDE_DIR))
+RELATIVE_SOURCE_DIRS		:= $(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
 OBJECTS_DIRS			:= $(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS					:= $(patsubst ../../../%, %, $(wildcard $(addsuffix /*.c*, $(RELATIVE_SOURCE_DIRS))))
-OBJECTS					:= $(OBJECTS:.cpp=.o)
-OBJECTS					:= $(OBJECTS:.c=.o)
+OBJECTS				:= $(patsubst ../../../%, %, $(wildcard $(addsuffix /*.c*, $(RELATIVE_SOURCE_DIRS))))
+OBJECTS				:= $(OBJECTS:.cpp=.o)
+OBJECTS				:= $(OBJECTS:.c=.o)
 
-ifeq ($(BIN_TYPE), $(cBIN_TYPE_LIB))
 $(PROGRAM_PATH):		obj_dirs $(OBJECTS)
-						$(ARCHIVER) rc $@ $(OBJECTS)
-else						
-$(PROGRAM_PATH): 		obj_dirs $(OBJECTS)
-						$(COMPILER) -o $@ $(OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBRARIES) 		
-endif
+				$(ARCHIVER) rc $@ $(OBJECTS)
 
 obj_dirs:	        
-						mkdir -p $(OBJECTS_DIRS)
+				mkdir -p $(OBJECTS_DIRS)
 
-VPATH					:= ../../../
+VPATH				:= ../../../
 
-%.o: 					%.cpp
-						$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
+%.o: 				%.cpp
+				$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
 
-%.o: 					%.c
-						$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
+%.o: 				%.c
+				$(COMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
 
-.PHONY:					clean
+.PHONY:				clean
 
 all:
-						clear	
-						
-						@echo "************************************************************"
-						@echo "* OS info:         " $(cOS_INFO)
-						@echo "* OS architecture: " $(cOS_BIT)
-						@echo "* GCC info:        " $(cGCC_INFO)
-						@echo "* GLIBC info:      " #$(cGLIBC_INFO)
-						@echo "* Binutils info:   " $(cBINUTILS_INFO)
-						@echo "*"
-						@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
-						@echo "* Bin type:        " $(BIN_TYPE)						
-						@echo "* Build type:      " $(BUILD_TYPE)
-						@echo "*"
-						@echo "************************************************************"
-						@echo ""
+				clear
 
-						@echo "[Prepare ...]"
-						mkdir -p $(BINARY_DIR)
-						@echo ""
+				@echo "************************************************************"
+				@echo "* OS info:         " $(cOS_INFO)
+				@echo "* OS architecture: " $(cOS_BIT)
+				@echo "* GCC info:        " $(cGCC_INFO)
+				@echo "* GLIBC info:      " #$(cGLIBC_INFO)
+				@echo "* Binutils info:   " $(cBINUTILS_INFO)
+				@echo "*"
+				@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
+				@echo "* Bin type:        " $(BIN_TYPE)						
+				@echo "* Build type:      " $(BUILD_TYPE)
+				@echo "*"
+				@echo "************************************************************"
+				@echo ""
 
-						@echo "[Build ...]"
-						$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../makefile
-						@echo ""
-						
-						@echo "[Finish ...]"
-						@echo ""
+				@echo "[Prepare ...]"
+				mkdir -p $(BINARY_DIR)
+				@echo ""
+
+				@echo "[Build ...]"
+				$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../Lib.mk
+				@echo ""
+
+				@echo "[Finish ...]"
+				@echo ""
 						
 install:				
-						@echo "[Install ...]"
-						mkdir -p $(INSTALL_DIR)
-						cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
-						@echo ""						
+				@echo "[Install ...]"
+				mkdir -p $(INSTALL_DIR)
+				cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
+				@echo ""
 
 clean:
-						@echo "[Clean ...]"
-						rm -rf $(BINARY_DIR)
-						
-						@echo "[Finish ...]"
-						@echo ""
+				@echo "[Clean ...]"
+				rm -rf $(BINARY_DIR)
+
+				@echo "[Finish ...]"
+				@echo ""
 
 include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
 
