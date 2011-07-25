@@ -108,8 +108,8 @@ LIB_DIRS           			:= 	/usr/local/crystal_trader2.5/lib \
 								/usr/local/lib/mysql \
 								/usr/lib/mysql								
 								
-COMPILE_FLAGS				:= -MD -pipe -Wall
-LINK_FLAGS					:= -pthread -static -s -pipe
+COMPILE_FLAGS				:= -pipe -Wall
+LINK_FLAGS					:= -pthread -s -pipe -static
 
 ifeq ($(cOS), Linux)
 LIBRARIES               	:= -ldl -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP
