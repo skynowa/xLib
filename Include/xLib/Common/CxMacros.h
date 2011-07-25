@@ -362,7 +362,7 @@ class CxMacros :
         #if defined(xOS_WIN)
             #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
                 #if !defined(va_copy)
-                    #define va_copy(dst, src)   ((dst) = (src))
+                    #define va_copy(dest, src)   ( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
                 #else
                     #error xLib: va_copy must not be defined 
                 #endif
