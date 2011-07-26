@@ -391,10 +391,19 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         //TODO: ulGetCurrentCpuNum
         ulRes = 0;
     #else
-        INT iRes = sched_getcpu();
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
+        ULONG ulCpu = 0;
 
-        ulRes = static_cast<ULONG>( iRes );
+        #if defined(SYS_getcpu)
+            INT iRes = syscall(SYS_getcpu, &ulCpu, NULL, NULL);
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
+
+            ulRes = ulCpu;
+        #else
+            INT iRes = sched_getcpu();
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
+
+            ulRes = static_cast<ULONG>( iRes );
+        #endif
     #endif
 #endif
 

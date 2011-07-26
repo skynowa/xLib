@@ -140,6 +140,8 @@ _tmain(
     TCHAR *argv[]
 )
 {
+    tcout << 0 << tendl;
+
     {
         BOOL bRes = CxEnvironment::bSetCommandLineArgs(argc, argv);
         xASSERT(FALSE != bRes);

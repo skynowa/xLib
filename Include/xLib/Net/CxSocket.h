@@ -135,7 +135,7 @@ class CxSocket :
                 ptUdp         = IPPROTO_UDP,
                 ptIdp         = IPPROTO_IDP,
                 ptTp          = IPPROTO_TP,
-                ptDccp        = IPPROTO_DCCP,
+                ////ptDccp        = IPPROTO_DCCP,
                 ptIpv6        = IPPROTO_IPV6,
                 ptRouting     = IPPROTO_ROUTING,
                 ptFragment    = IPPROTO_FRAGMENT,
@@ -151,7 +151,7 @@ class CxSocket :
                 ptPim         = IPPROTO_PIM,
                 ptComp        = IPPROTO_COMP,
                 ptSctp        = IPPROTO_SCTP,
-                ptUdplite     = IPPROTO_UDPLITE,
+                ////ptUdplite     = IPPROTO_UDPLITE,
                 ptRaw         = IPPROTO_RAW,
                 ptMax         = IPPROTO_MAX
             #endif

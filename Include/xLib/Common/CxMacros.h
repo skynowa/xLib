@@ -204,9 +204,6 @@ class CxMacros :
         #   define xNOT_IMPL(s)     { xPRAGMA( message(" Not implemented: "(s)) ) }
         #endif
 
-        #define xSTD_CIN(s)         { tcin  >> (s) >> tendl; }
-        #define xSTD_COUT(s)        { tcout << (s) << tendl; }
-
         #define xRELEASE(p)          { if (NULL != (p)) {(p)->Release(); (p) = NULL;} }
 
         #define xKEYDOWN(vk_code)    ((::GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
@@ -364,7 +361,7 @@ class CxMacros :
                 #if !defined(va_copy)
                     #define va_copy(dest, src)   ( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
                 #else
-                    #error xLib: va_copy must not be defined 
+                    #error xLib: va_copy must not be defined
                 #endif
             #else
 

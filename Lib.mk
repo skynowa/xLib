@@ -75,24 +75,19 @@ LIB_DIRS           		:= 	/usr/local/crystal_trader2.5/lib \
 					/usr/lib/mysql
 
 BINARY_DIR			:= Library/G++_linux/Release
+INSTALL_INCLUDE_DIR		:= /usr/local/crystal_trader2.5/include/xLib
 INSTALL_DIR			:= /usr/local/crystal_trader2.5/lib/xLib
 PROGRAM_PATH			:= ../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
 COMPILER			:= $(CXX)
 ARCHIVER                	:= $(AR)
-COMPILE_FLAGS      		:= -Wall -MD -pipe
-LINK_FLAGS              	:= -s -pipe
-
-ifeq ($(cOS), Linux)
-LIBRARIES			:= -lpthread -ldl -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
-else
-LIBRARIES			:= -pthread  -lc  -lmysqlclient -lm -lcrypt -lz -lssl -lGeoIP
-endif
+COMPILE_FLAGS      		:= -Wall -pipe
+LINK_FLAGS              	:= -pthread -s -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-BUILD_FLAGS     		:= -O0 -pthread -g3 -g
+BUILD_FLAGS     		:= -O0 -g3 -g
 else
-BUILD_FLAGS     		:= -O3 -pthread -fomit-frame-pointer -g0
+BUILD_FLAGS     		:= -O3 -g0
 endif
 
 PARANOID_FLAGS			:= -pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 -Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion -Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits -Wbad-function-cast -Wc++-compat -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wlogical-op -Waggregate-return -Wstrict-prototypes -Wold-style-declaration -Wold-style-definition -Wmissing-prototypes  -Wmissing-declarations  -Wmissing-field-initializers -Wmissing-format-attribute -Wpacked -Wpadded -Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla -Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
@@ -151,7 +146,10 @@ all:
 install:				
 				@echo "[Install ...]"
 				mkdir -p $(INSTALL_DIR)
-				cp ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
+				cp    ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
+
+				mkdir -p $(INSTALL_INCLUDE_DIR)
+				cp -r ./$(ROOT_INCLUDE_DIR) $(INSTALL_INCLUDE_DIR)
 				@echo ""
 
 clean:
