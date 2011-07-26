@@ -109,9 +109,9 @@ CxReport::CxReport(
     tString sComment;
     va_list palArgs;
 
-    va_start(palArgs, pcszComment);
+    xVA_START(palArgs, pcszComment);
     sComment = CxString::sFormatV(pcszComment, palArgs);
-    va_end(palArgs);
+    xVA_END(palArgs);
 
     _bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment.c_str());
     /*DEBUG*/// n/a

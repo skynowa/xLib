@@ -118,9 +118,9 @@ CxMySQLConnection::bQuery(
     tString csSqlQuery;
     va_list palArgs;
 
-    va_start(palArgs, pcszSqlFormat);
+    xVA_START(palArgs, pcszSqlFormat);
     csSqlQuery = CxString::sFormatV(pcszSqlFormat, palArgs);
-    va_end(palArgs);
+    xVA_END(palArgs);
 
     INT iRes = mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ULONG>( csSqlQuery.size() * sizeof(tString::value_type) ));
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), FALSE);

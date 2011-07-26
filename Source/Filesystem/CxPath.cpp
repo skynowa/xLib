@@ -663,6 +663,48 @@ CxPath::sToCurrentOs(
     return sRes;
 }
 //--------------------------------------------------------------------------
+//DONE: sGetFull (get full path of the specified file)
+/*static*/
+tString 
+CxPath::sGetFull(
+    const tString &csFilePath
+)
+{
+    /*DEBUG*/  
+
+    tString sRes;
+
+#if defined(xOS_WIN)
+    ULONG   ulRes = 0;
+    tString sBuff;
+
+    ulRes = ::GetFullPathName(&csFilePath.at(0), 0, NULL, NULL);
+    /*DEBUG*/xASSERT_RET(0 != ulRes, tString());
+
+    sBuff.resize(ulRes);
+
+    ulRes = ::GetFullPathName(&csFilePath.at(0), sBuff.size(), &sBuff.at(0), NULL);
+    /*DEBUG*/xASSERT_RET(0 != ulRes, tString());
+
+    sBuff.resize(ulRes);
+
+    sRes.assign(sBuff);
+#elif defined(xOS_LINUX)
+    tString sBuff;
+
+    sBuff.resize(xPATH_MAX);
+
+    char *pszRes = realpath(&csFilePath.at(0), &sBuff.at(0));
+    /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
+
+    sRes.assign(pszRes);
+#endif
+
+    /*DEBUG*/xASSERT_RET(FALSE != bIsAbsolute(sRes), tString());
+
+    return sRes;        
+}
+//--------------------------------------------------------------------------
 //DONE: sMinimizeName
 /*static*/
 tString

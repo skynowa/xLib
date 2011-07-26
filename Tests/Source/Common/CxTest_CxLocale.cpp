@@ -28,14 +28,10 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 BOOL
 CxTest_CxLocale::bUnit() {
     //-------------------------------------
-    //sGetCurrent (don't change current locale)
-    tString sCurrLocale;
-
+    //sGetCurrent
     {
         m_sRes = CxLocale::sGetCurrent();
-        xASSERT_MSG(xT("C") == m_sRes, m_sRes.c_str());
-
-        sCurrLocale = m_sRes; //(don't change current locale)
+        xASSERT(false == m_sRes.empty());
     }
 
     //-------------------------------------
@@ -46,17 +42,16 @@ CxTest_CxLocale::bUnit() {
     }
 
     //-------------------------------------
-    //bSetCurrent
+    //bSetDefault
     {
         m_bRes = CxLocale::bSetDefault();
         xASSERT(FALSE != m_bRes);
-        //xTRACE(xT("Должен быть русский текст"));
     }
 
     //-------------------------------------
-    //bSetCurrent (don't change current locale)
+    //bSetCurrent
     {
-        m_bRes = CxLocale::bSetCurrent(sCurrLocale);
+        m_bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
         xASSERT(FALSE != m_bRes);
     }
 

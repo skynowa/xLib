@@ -276,12 +276,12 @@ CxStdioFile::iWrite(
     INT iRes = etError;
 
     va_list vlArgs;
-    va_start(vlArgs, pcszFormat);
+    xVA_START(vlArgs, pcszFormat);
 
     iRes = _vftprintf(pGet(), pcszFormat, vlArgs);
     /*DEBUG*/xASSERT_RET(etError < iRes, etError);
 
-    va_end(vlArgs);
+    xVA_END(vlArgs);
 
     return iRes;
 }

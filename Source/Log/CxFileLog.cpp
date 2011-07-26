@@ -101,9 +101,9 @@ CxFileLog::bWrite(
     tString sParam;
     va_list palArgs;
 
-    va_start(palArgs, pcszFormat);
+    xVA_START(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);
-    va_end(palArgs);
+    xVA_END(palArgs);
 
     //-------------------------------------
     //write to file
