@@ -88,9 +88,9 @@ CxProcess::bExec(
     tString sCmdLine;
 
     va_list palArgs;
-    va_start(palArgs, pcszCmdLine);
+    xVA_START(palArgs, pcszCmdLine);
     sCmdLine = CxString::sFormatV(pcszCmdLine, palArgs);
-    va_end(palArgs);
+    xVA_END(palArgs);
 
 #if defined(xOS_WIN)
     BOOL bRes = FALSE;

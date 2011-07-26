@@ -66,9 +66,9 @@ CxTraceLog::bWrite(LPCTSTR pcszFormat, ...) {
     tString sParam;
     va_list palArgs;
 
-    va_start(palArgs, pcszFormat);
+    xVA_START(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);
-    va_end(palArgs);
+    xVA_END(palArgs);
 
     //-------------------------------------
     //tracing

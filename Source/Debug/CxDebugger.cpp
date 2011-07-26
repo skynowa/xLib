@@ -172,9 +172,9 @@ CxDebugger::bTrace(
     tString sRes;
 
     va_list palArgs;
-    va_start(palArgs, pcszFormat);
+    xVA_START(palArgs, pcszFormat); 
     sRes = CxString::sFormatV(pcszFormat, palArgs);
-    va_end(palArgs);
+    xVA_END(palArgs);
 
 #if defined(xOS_WIN)
     ::OutputDebugString(sRes.c_str());

@@ -356,21 +356,19 @@ class CxMacros :
         #define xNAME_MAX       (CxPath::uiGetNameMaxSize())
 
         //var args
-        #if defined(xOS_WIN)
-            #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
-                #if !defined(va_copy)
-                    #define va_copy(dest, src)   ( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
-                #else
-                    #error xLib: va_copy must not be defined
-                #endif
-            #else
-
-            #endif
-
-        #elif defined(xOS_LINUX)
-
+        #if defined(va_start)
+            #define xVA_START(val, fmt) va_start(val, fmt)
         #endif
 
+        #if defined(va_copy)
+            #define xVA_COPY(dest, src) ( va_copy(dest, src) )
+        #else
+            #define xVA_COPY(dest, src) ( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
+        #endif
+
+        #if defined(va_end)
+            #define xVA_END(val)        va_end(val)
+        #endif
 
     private:
                 CxMacros();

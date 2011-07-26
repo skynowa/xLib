@@ -227,11 +227,11 @@ CxProfiler::bStop(
     tString sRes;
 
     va_list palArgs;
-    va_start(palArgs, pcszComment);
+    xVA_START(palArgs, pcszComment);
 
     sRes = CxString::sFormatV(pcszComment, palArgs);
 
-    va_end(palArgs);
+    xVA_END(palArgs);
 
     //-------------------------------------
     //write to log
@@ -254,11 +254,11 @@ CxProfiler::bPulse(
     tString sRes;
 
     va_list palArgs;
-    va_start(palArgs, pcszComment);
+    xVA_START(palArgs, pcszComment);
 
     sRes = CxString::sFormatV(pcszComment, palArgs);
 
-    va_end(palArgs);
+    xVA_END(palArgs);
 
     //-------------------------------------
     //stop, start

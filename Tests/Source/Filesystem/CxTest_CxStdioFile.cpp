@@ -382,12 +382,12 @@ CxTest_CxStdioFile::bUnit() {
             static void
             DoV(const CxStdioFile &csfFile, LPCTSTR pcszFormat, ...) {
                 va_list args;
-                va_start(args, pcszFormat);
+                xVA_START(args, pcszFormat);
 
                 INT iRes = csfFile.iWriteV(pcszFormat, args);
                 xASSERT(CxStdioFile::etError != iRes);
 
-                va_end(args);
+                xVA_END(args);
             };
         };
 

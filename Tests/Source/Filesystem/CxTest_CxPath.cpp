@@ -11,6 +11,8 @@
 
 #include <Test/Filesystem/CxTest_CxPath.h>
 
+#include <xLib/Filesystem/CxEnvironment.h>
+
 
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxPath
@@ -687,6 +689,17 @@ CxTest_CxPath::bUnit() {
         sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
         xASSERT(sRes == xT("/home/user/Soft/TestDir"));
     #endif
+    }
+
+    //-------------------------------------
+    //sGetFull
+    {
+        std::vector<tString> vsArgs;
+
+        CxEnvironment::bGetCommandLineArgs(&vsArgs);
+
+	    sRes = CxPath::sGetFull(vsArgs.at(0));
+        xASSERT(false == sRes.empty());
     }
 
 	//-------------------------------------
