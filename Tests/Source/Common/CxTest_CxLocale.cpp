@@ -33,11 +33,7 @@ CxTest_CxLocale::bUnit() {
 
     {
         m_sRes = CxLocale::sGetCurrent();
-    #if defined(xOS_WIN)
-        xASSERT_MSG(xT("Russian") == m_sRes, m_sRes.c_str());
-    #elif defined(xOS_LINUX)
         xASSERT_MSG(xT("C") == m_sRes, m_sRes.c_str());
-    #endif
 
         sCurrLocale = m_sRes; //(don't change current locale)
     }
@@ -45,14 +41,8 @@ CxTest_CxLocale::bUnit() {
     //-------------------------------------
     //bSetCurrent
     {
-    #if defined(xOS_WIN)
-        m_bRes = CxLocale::bSetCurrent(xT("English"));
+        m_bRes = CxLocale::bSetCurrent( CxLocale::sGetCurrent() );
         xASSERT(FALSE != m_bRes);
-        //xTRACE(xT("Не должен быть русский текст"));
-    #elif defined(xOS_LINUX)
-        m_bRes = CxLocale::bSetCurrent(xT("ru_RU.UTF-8"));
-        xASSERT(FALSE != m_bRes);
-    #endif
     }
 
     //-------------------------------------

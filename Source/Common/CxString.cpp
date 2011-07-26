@@ -528,7 +528,7 @@ CxString::sFormat(
         /*DEBUG*/// n/a
         xCHECK_RET(NULL == pcszFormat, tString());
 
-        tString sBuff(128, 0);
+        tString sBuff(64, 0);
         INT     iWrittenSize = - 1;
 
         for ( ; ; ) {

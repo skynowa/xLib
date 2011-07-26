@@ -32,6 +32,7 @@
 #include <sys/utsname.h>
 #include <sys/wait.h>
 #include <sys/uio.h>
+#include <sys/syscall.h>
 
 //thread
 #include <pthread.h>    //lib: -pthread
