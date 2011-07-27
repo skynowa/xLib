@@ -134,18 +134,22 @@
 
 #endif
 //---------------------------------------------------------------------------
+/*
+Usage:
+    xlib_r is_tracing times_for_all times_for_unit
+        - xlib_r            (binary file path)
+        - is_tracing        (is tracing)
+        - times_for_all     (times for all tests)
+        - times_for_unit    (times for unit test)
+*/
+
 INT
 _tmain(
-    INT    argc,
-    TCHAR *argv[]
+    INT    iArgCount,
+    TCHAR *paszArgs[]
 )
 {
-    tcout << 0 << tendl;
-
-    {
-        BOOL bRes = CxEnvironment::bSetCommandLineArgs(argc, argv);
-        xASSERT(FALSE != bRes);
-    }
+    BOOL bRes = FALSE;
 
     #if xTEMP_DISABLED
         tcout << "Content-type: text/html\n\n" << tendl;
@@ -153,28 +157,44 @@ _tmain(
     #endif
 
     //--------------------------------------------------
-    //settings
-    const ULONGLONG cullTimesForAll    = 1;
-    const ULONGLONG cullTimesForSingle = 1;
+    //set commandline args for xLib
+    {
+        bRes = CxEnvironment::bSetCommandLineArgs(iArgCount, paszArgs);
+        xASSERT(FALSE != bRes);
+    }
 
+    //--------------------------------------------------
+    //options
+    BOOL      bIsUseTracing   = TRUE;
+    ULONGLONG ullTimesForAll  = 1;
+    ULONGLONG ullTimesForUnit = 1;
 
-    BOOL bRes = FALSE;
+    if (4 == iArgCount) {
+        std::vector<tString> vsArgs;
 
-    CxTestManager tmManager(TRUE);
+        bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
+        xASSERT(FALSE != bRes);
 
-#if 1
-    //Common
-    bRes = tmManager.bAdd(new CxTest_CxMacros);
-    bRes = tmManager.bAdd(new CxTest_CxArray);
+        bIsUseTracing   = static_cast<BOOL>( CxString::lexical_cast<INT>( vsArgs.at(1) ) );
+        ullTimesForAll  = CxString::lexical_cast<ULONGLONG>( vsArgs.at(2) );
+        ullTimesForUnit = CxString::lexical_cast<ULONGLONG>( vsArgs.at(3) );
+    }
 
+    //--------------------------------------------------
+    //start
+    {
+        CxTestManager tmManager(bIsUseTracing);
 
-    bRes = tmManager.bAdd(new CxTest_CxChar);
-    bRes = tmManager.bAdd(new CxTest_CxLocale);
-    bRes = tmManager.bAdd(new CxTest_CxString);
-    bRes = tmManager.bAdd(new CxTest_CxDateTime);
-    bRes = tmManager.bAdd(new CxTest_CxFunctorT);
-    bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
-    bRes = tmManager.bAdd(new CxTest_CxException);
+        //Common
+        bRes = tmManager.bAdd(new CxTest_CxMacros);
+        bRes = tmManager.bAdd(new CxTest_CxArray);
+        bRes = tmManager.bAdd(new CxTest_CxChar);
+        bRes = tmManager.bAdd(new CxTest_CxLocale);
+        bRes = tmManager.bAdd(new CxTest_CxString);
+        bRes = tmManager.bAdd(new CxTest_CxDateTime);
+        bRes = tmManager.bAdd(new CxTest_CxFunctorT);
+        bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
+        bRes = tmManager.bAdd(new CxTest_CxException);
 
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxClipboard);
@@ -188,11 +208,11 @@ _tmain(
     #endif
 
         //Compress
-        #if defined(xOS_WIN)
+    #if defined(xOS_WIN)
 
-        #elif defined(xOS_LINUX)
+    #elif defined(xOS_LINUX)
         bRes = tmManager.bAdd(new CxTest_CxGz);
-        #endif
+    #endif
 
         //Crypt
         ////bRes = tmManager.bAdd(new CxTest_CxCrc32);
@@ -276,9 +296,9 @@ _tmain(
     #elif defined(xOS_LINUX)
 
     #endif
-#endif
 
-    bRes = tmManager.bRun(cullTimesForAll, cullTimesForSingle);
+        bRes = tmManager.bRun(ullTimesForAll, ullTimesForUnit);
+    }
 
     return 0;
 }

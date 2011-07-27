@@ -82,6 +82,9 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         #define xPR_I64x  xT("llx")
     #else
         #define xPR_SIZET xT("z")
+        #define xPR_I64d  xT("lld")
+        #define xPR_I64u  xT("llu")
+        #define xPR_I64x  xT("llx")
     #endif
 #endif
 
@@ -212,7 +215,7 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         //sockets
         typedef addrinfo    ADDRINFOT;
     #endif //xUNICODE
-    
+
 
     //For compilers lacking Win64 support
     #if 0 && defined(xOS_WIN)
