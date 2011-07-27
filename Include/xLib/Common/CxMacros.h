@@ -363,7 +363,7 @@ class CxMacros :
         #if defined(va_copy)
             #define xVA_COPY(dest, src) ( va_copy(dest, src) )
         #else
-            #define xVA_COPY(dest, src) ( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
+            #define xVA_COPY(dest, src) ( (dest) = (src) )  //( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
         #endif
 
         #if defined(va_end)
@@ -378,7 +378,10 @@ class CxMacros :
                 #define xPR_I64u  xT("I64u")
                 #define xPR_I64x  xT("I64x")
             #else
-                #define xPR_SIZET xT("")
+                #define xPR_SIZET xT("u")
+                #define xPR_I64d  xT("lld")
+                #define xPR_I64u  xT("llu")
+                #define xPR_I64x  xT("llx")
             #endif
         #elif defined(xOS_LINUX)
             #ifdef xARCHITECTURE_64BIT
