@@ -64,31 +64,6 @@ typedef std::basic_ifstream<TCHAR, std::char_traits<TCHAR> >                    
 typedef std::basic_ofstream<TCHAR, std::char_traits<TCHAR> >                                              tofstream;
 typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                                              tfstream;
 
-//qualifiers
-#if defined(xOS_WIN)
-    #ifdef xARCHITECTURE_64BIT
-        #define xPR_SIZET xT("I")
-        #define xPR_I64d  xT("I64d")
-        #define xPR_I64u  xT("I64u")
-        #define xPR_I64x  xT("I64x")
-    #else
-        #define xPR_SIZET xT("")
-    #endif
-#elif defined(xOS_LINUX)
-    #ifdef xARCHITECTURE_64BIT
-        #define xPR_SIZET xT("z")
-        #define xPR_I64d  xT("lld")
-        #define xPR_I64u  xT("llu")
-        #define xPR_I64x  xT("llx")
-    #else
-        #define xPR_SIZET xT("z")
-        #define xPR_I64d  xT("lld")
-        #define xPR_I64u  xT("llu")
-        #define xPR_I64x  xT("llx")
-    #endif
-#endif
-
-
     typedef float                  FLOAT;
     typedef double                 DOUBLE;
 

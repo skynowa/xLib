@@ -143,23 +143,23 @@ $(PROGRAM_PATH): 		OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS)
 				$(cCOMPILER) -o $@ $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBRARIES)
 
 OBJ_DIRS:
-				clear
-				
-				@echo "************************************************************"
-				@echo "* Description:     " $(cDESCRIPTION)
-				@echo "*"
-				@echo "* OS info:         " $(cOS_INFO)
-				@echo "* OS architecture: " $(cOS_BIT)
-				@echo "* GCC info:        " $(cGCC_INFO)
-				@echo "* GLIBC info:      " $(cGLIBC_INFO)
-				@echo "* Binutils info:   " $(cBINUTILS_INFO)
-				@echo "*"
-				@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
-				@echo "* File size:       " $(PROGRAM_SIZE)
-				@echo "* Build type:      " $(BUILD_TYPE)
-				@echo "*"
-				@echo "************************************************************"
-				@echo ""
+#				clear
+#				
+#				@echo "************************************************************"
+#				@echo "* Description:     " $(cDESCRIPTION)
+#				@echo "*"
+#				@echo "* OS info:         " $(cOS_INFO)
+#				@echo "* OS architecture: " $(cOS_BIT)
+#				@echo "* GCC info:        " $(cGCC_INFO)
+#				@echo "* GLIBC info:      " $(cGLIBC_INFO)
+#				@echo "* Binutils info:   " $(cBINUTILS_INFO)
+#				@echo "*"
+#				@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
+#				@echo "* File size:       " $(PROGRAM_SIZE)
+#				@echo "* Build type:      " $(BUILD_TYPE)
+#				@echo "*"
+#				@echo "************************************************************"
+#				@echo ""
 
 				mkdir -p $(OBJECTS_DIRS) $(TESTS_OBJECTS_DIRS)
 
@@ -172,10 +172,10 @@ OBJ_DIRS:
 .PHONY: 			clean
 
 install:				
-				@echo "[Install ...]"
+#				@echo "[Install ...]"
 				mkdir -p $(INSTALL_DIR)
 				cp $(BINARY_DIR)/$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_EXT) $(INSTALL_DIR)
-				@echo ""
+#				@echo ""
 	
 clean:
 				rm -rf $(BINARY_DIR)
