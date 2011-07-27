@@ -22,13 +22,12 @@
 CxTestManager::CxTestManager(
     const BOOL cbIsUseTracing
 ) :
-    _m_bRes             (FALSE),
-    _m_cbIsUseTracing   (cbIsUseTracing),
-    _m_ullTimesForAll   (0ULL),
-    _m_ullTimesForSingle(0ULL),
-    _m_ctnTests         ()
+    _m_bRes          (FALSE),
+    _m_cbIsUseTracing(cbIsUseTracing),
+    _m_ctnTests      ()
 {
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager:  *** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxTestManager
@@ -38,7 +37,8 @@ CxTestManager::~CxTestManager() {
         /*CxMacros::*/xPTR_DELETE(*it);
     }
 
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager:  all tests deleted.\n")));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager:  all tests deleted.")));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------
 //DONE: bAdd (new CxTest)
@@ -86,26 +86,29 @@ CxTestManager::bAdd(
 BOOL
 CxTestManager::bRun(
     const ULONGLONG cullTimesForAll,
-    const ULONGLONG cullTimesForSingle
+    const ULONGLONG cullTimesForUnit
 )
 {
     /*DEBUG*/
 
     BOOL bRes = FALSE;
 
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager:  start all tests...")));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager:  start all tests...")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  module path: %s"), CxPath::sGetExe().c_str()));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  times for all: %") xPR_I64u xT(" times for unit: %") xPR_I64u xT("\n"), cullTimesForAll, cullTimesForUnit));
 
     for (ULONGLONG i = 0; i < cullTimesForAll; ++ i) {
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager:  run test %s"), (*it)->sGetName().c_str()));
 
-            bRes = (*it)->bRun(cullTimesForSingle);
+            bRes = (*it)->bRun(cullTimesForUnit);
             xASSERT_MSG_RET(FALSE != bRes, CxString::sFormat(xT("CxTestManager:  test (%s) not complete"), (*it)->sGetName().c_str()), FALSE);
         }
     }
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager:  all tests successful done.")));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 
     return TRUE;
 }

@@ -23,15 +23,13 @@ class CxTestManager :
 		virtual   ~CxTestManager();
 
         BOOL       bAdd         (CxTest *pvtTest, const tString &csTestName = CxConst::xSTR_EMPTY);
-        BOOL       bRun         (const ULONGLONG cullTimesForAll, const ULONGLONG  ullTimesForSingle);
+        BOOL       bRun         (const ULONGLONG cullTimesForAll, const ULONGLONG cullTimesForUnit);
 
     private:
         typedef std::vector<CxTest *> TContainer;
 
         BOOL       _m_bRes;
         const BOOL _m_cbIsUseTracing;
-        ULONGLONG  _m_ullTimesForAll;
-        ULONGLONG  _m_ullTimesForSingle;
         TContainer _m_ctnTests;
 };
 //---------------------------------------------------------------------------

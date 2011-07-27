@@ -137,8 +137,8 @@
 #define xAUTO_PROFILER(file_path, mode, comment, ...)       CxAutoProfiler _apfPerfom(file_path, mode, comment, __VA_ARGS__)
 #define xAUTO_PROFILER_FUNC(file_path, mode)                CxAutoProfiler _apfFunc(file_path, mode, xFUNCTION)
 
-#define xSTD_CIN(s)                                         { tcin  >> (s) >> tendl; }
-#define xSTD_COUT(s)                                        { tcout << (s) << tendl; }
+#define xSTD_CIN(s)                                         { tcin  >> s >> tendl; }
+#define xSTD_COUT(s)                                        { tcout << s << tendl; }
 #define xSTD_TRACE_POINT                                    { tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << tendl; }
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
