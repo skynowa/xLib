@@ -533,11 +533,11 @@ CxString::sFormat(
         //calc size
         {
             va_list _palArgs;
-            xVA_COPY(_palArgs, palArgs);
-            iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
+            xVA_START(_palArgs, palArgs);
+            iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size() - 1, pcszFormat, _palArgs);
             xVA_END(_palArgs);
 
-            ///*DEBUG*/assert(- 1 < iWrittenSize);
+            /*DEBUG*/assert(- 1 < iWrittenSize);
             xCHECK_RET(0 >  iWrittenSize, tString());
             xCHECK_RET(0 == iWrittenSize, sBuff);
         }
@@ -548,12 +548,12 @@ CxString::sFormat(
             sBuff.resize(iWrittenSize + 1);
 
             va_list _palArgs;
-            xVA_COPY(_palArgs, palArgs);
+            xVA_START(_palArgs, palArgs);
             iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
             xVA_END(_palArgs);
 
-            ///*DEBUG*/assert(- 1          <  iWrittenSize);
-            ///*DEBUG*/assert(sBuff.size() == static_cast<size_t>( iWrittenSize ) + 1);
+            /*DEBUG*/assert(- 1          <  iWrittenSize);
+            /*DEBUG*/assert(sBuff.size() == static_cast<size_t>( iWrittenSize ) + 1);
             xCHECK_RET(0             >  iWrittenSize,                           tString());
             xCHECK_RET(sBuff.size() != static_cast<size_t>( iWrittenSize ) + 1, tString());
         }
