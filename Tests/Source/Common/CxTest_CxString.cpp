@@ -88,9 +88,6 @@ CxTest_CxString::bUnit() {
     //-------------------------------------
     //lexical_cast (to string by base)
     {
-        ////m_sRes = CxString::sIntToStr(1033, 2);
-        ////xASSERT(xT("10000001001") == m_sRes);
-
         m_sRes = CxString::lexical_cast(1033, 8);
         xASSERT(xT("2011") == m_sRes);
 
@@ -306,17 +303,17 @@ CxTest_CxString::bUnit() {
     //sRemoveEol
     {
         #if defined(xOS_WIN)
-        const tString sTestData[][2] = {
-            {xT("TEST_STRING_1"), xT("TEST_STRING_1\r\n")},
-            {xT("TEST_STRING_1"), xT("TEST_STRING_1\r")},
-            {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")}
-        };
+            const tString sTestData[][2] = {
+                {xT("TEST_STRING_1"), xT("TEST_STRING_1\r\n")},
+                {xT("TEST_STRING_1"), xT("TEST_STRING_1\r")},
+                {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")}
+            };
         #elif defined(xOS_LINUX)
-        const tString sTestData[][2] = {
-            {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")},
-            {xT("TEST_STRING_1"), xT("TEST_STRING_1\n\n")},
-            {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")}
-        };
+            const tString sTestData[][2] = {
+                {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")},
+                {xT("TEST_STRING_1"), xT("TEST_STRING_1\n\n")},
+                {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")}
+            };
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
@@ -428,11 +425,23 @@ CxTest_CxString::bUnit() {
     }
 
     //-------------------------------------
+    //sJoin
+    {
+        std::vector<tString> vecsRes;
+        vecsRes.push_back(xT("111"));
+        vecsRes.push_back(xT(""));
+        vecsRes.push_back(xT("222"));
+        vecsRes.push_back(xT("333"));
+
+        m_sRes = CxString::sJoin(vecsRes, xT('-'));
+        xASSERT(xT("111--222-333") == m_sRes);
+    }
+
+    //-------------------------------------
     //sCut
     {
         tString sForCut;
 
-        //���� ������
         sForCut = xT("To: =?windows-1251?B?x+Di4+7w7uTt//8=?= <_Alca@meta.ua_>");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
         xASSERT(xT("_Alca@meta.ua_") == m_sRes);
@@ -465,8 +474,6 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
         xASSERT(xT("") == m_sRes);
 
-
-        //������
         sForCut = xT("To: =?windows-1251?B?x+Di4+7w7uTt//8=?= <<_Alca@meta.ua_>>");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
         xASSERT(xT("_Alca@meta.ua_") == m_sRes);
@@ -506,7 +513,6 @@ CxTest_CxString::bUnit() {
         tString sForCut = xT("0123456789");
 
 
-        //��� ���������
         m_sRes = CxString::sCut(sForCut, 0, 1);
         xASSERT(xT("0") == m_sRes);
 
@@ -528,8 +534,6 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::sCut(xT(""), 1, 2);
         xASSERT(xT("") == m_sRes);
 
-
-        //���� ��������
         m_sRes = CxString::sCut(sForCut, 0);
         xASSERT(xT("0123456789") == m_sRes);
 
@@ -542,14 +546,9 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::sCut(sForCut, 10);
         xASSERT(xT("") == m_sRes);
 
-        //m_sRes = CxString::sCut(sForCut, - 1);
-        //xASSERT(xT("") == m_sRes);
-
         m_sRes = CxString::sCut(xT(""), 1);
         xASSERT(xT("") == m_sRes);
 
-
-        //��� ����������
         m_sRes = CxString::sCut(sForCut);
         xASSERT(xT("0123456789") == m_sRes);
     }
@@ -690,7 +689,7 @@ CxTest_CxString::bUnit() {
 
         //various string size
         {
-            for (size_t i = 1; i < 1024 * 10; ++ i) {
+            for (size_t i = 1; i < 1024 * 4; ++ i) {
                 tString sData(i, xT('s'));
 
                 tString m_sRes = CxString::sFormat(xT("%s"), sData.c_str());
@@ -721,6 +720,7 @@ CxTest_CxString::bUnit() {
     //-------------------------------------
     //bCompareNoCase
     {
+        //must TRUE
         m_bRes = CxString::bCompareNoCase(xT(""),     xT(""));
         xASSERT(FALSE != m_bRes);
 
@@ -736,19 +736,20 @@ CxTest_CxString::bUnit() {
         m_bRes = CxString::bCompareNoCase(xT("WWW"),  xT("wwW"));
         xASSERT(FALSE != m_bRes);
 
-        m_bRes = CxString::bCompareNoCase(xT("ccc"),  xT("���"));
+        //maust FALSE
+        m_bRes = CxString::bCompareNoCase(xT("ccc"),  xT("CCCz"));
         xASSERT(FALSE == m_bRes);
 
-        m_bRes = CxString::bCompareNoCase(xT("���"),  xT("����"));
+        m_bRes = CxString::bCompareNoCase(xT("!!!!!"),  xT("@@@@@@"));
         xASSERT(FALSE == m_bRes);
 
-        m_bRes = CxString::bCompareNoCase(xT("����"), xT("���"));
+        m_bRes = CxString::bCompareNoCase(xT("$$$$$"), xT("sdfgsdg"));
         xASSERT(FALSE == m_bRes);
 
-        m_bRes = CxString::bCompareNoCase(xT("���"),  xT("����"));
+        m_bRes = CxString::bCompareNoCase(xT("&&&&&"),  xT("&&&&&????"));
         xASSERT(FALSE == m_bRes);
 
-        m_bRes = CxString::bCompareNoCase(xT("����"), xT("���"));
+        m_bRes = CxString::bCompareNoCase(xT("_+#$^%^&*^&*("), xT("@#$%TY(J^HGYT"));
         xASSERT(FALSE == m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("dddd"), xT("d"));
@@ -769,11 +770,11 @@ CxTest_CxString::bUnit() {
     //sTranslitLatToRus
     {
         #if xTODO
-        m_sRes = CxString::sTranslitLatToRus(xT(""));
-        xASSERT(xT("") == m_sRes);
+            m_sRes = CxString::sTranslitLatToRus(xT(""));
+            xASSERT(xT("") == m_sRes);
 
-        m_sRes = CxString::sTranslitLatToRus(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll"));
-        xASSERT(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll") == m_sRes);
+            m_sRes = CxString::sTranslitLatToRus(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll"));
+            xASSERT(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll") == m_sRes);
         #endif
     }
 
@@ -921,10 +922,10 @@ CxTest_CxString::bUnit() {
     //sCreateGuid
     {
         #if defined(xOS_WIN)
-        m_sRes = CxString::sCreateGuid();
-        xASSERT(false == m_sRes.empty());
+            m_sRes = CxString::sCreateGuid();
+            xASSERT(false == m_sRes.empty());
         #elif defined(xOS_LINUX)
-        ////xASSERT(true == m_sRes.empty());
+            ////xASSERT(true == m_sRes.empty());
         #endif
     }
 
@@ -944,33 +945,9 @@ CxTest_CxString::bUnit() {
         xASSERT(FALSE == m_bRes);
     }
 
-    //-------------------------------------
-    //vStdVectorPrintT
-    {
-        m_vecsRes.push_back(xT("qqqq"));
-        m_vecsRes.push_back(xT("wwww"));
-        m_vecsRes.push_back(xT("eeee"));
-        m_vecsRes.push_back(xT("rrrr"));
-        m_vecsRes.push_back(xT("tttt"));
-
-        ////CxString::vStdVectorPrintT(m_vecsRes);
-    }
-
-    //-------------------------------------
-    //vStdMultiMapPrintT
-    {
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key2"), xT("Value2")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key3"), xT("Value3")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key4"), xT("Value4")) );
-
-        ////CxString::vStdMultiMapPrintT(m_mmsRes);
-    }
-
 
     /****************************************************************************
-    *   �������������
+    *   formating
     *
     *****************************************************************************/
 

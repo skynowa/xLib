@@ -118,46 +118,46 @@ VPATH				:= ../../../
 all:
 				clear
 
-				@echo "************************************************************"
-				@echo "* OS info:         " $(cOS_INFO)
-				@echo "* OS architecture: " $(cOS_BIT)
-				@echo "* GCC info:        " $(cGCC_INFO)
-				@echo "* GLIBC info:      " #$(cGLIBC_INFO)
-				@echo "* Binutils info:   " $(cBINUTILS_INFO)
-				@echo "*"
-				@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
-				@echo "* Bin type:        " $(BIN_TYPE)						
-				@echo "* Build type:      " $(BUILD_TYPE)
-				@echo "*"
-				@echo "************************************************************"
-				@echo ""
+#				@echo "************************************************************"
+#				@echo "* OS info:         " $(cOS_INFO)
+#				@echo "* OS architecture: " $(cOS_BIT)
+#				@echo "* GCC info:        " $(cGCC_INFO)
+#				@echo "* GLIBC info:      " #$(cGLIBC_INFO)
+#				@echo "* Binutils info:   " $(cBINUTILS_INFO)
+#				@echo "*"
+#				@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
+#				@echo "* Bin type:        " $(BIN_TYPE)						
+#				@echo "* Build type:      " $(BUILD_TYPE)
+#				@echo "*"
+#				@echo "************************************************************"
+#				@echo ""
 
-				@echo "[Prepare ...]"
+#				@echo "[Prepare ...]"
 				mkdir -p $(BINARY_DIR)
-				@echo ""
+#				@echo ""
 
-				@echo "[Build ...]"
+#				@echo "[Build ...]"
 				$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../Lib.mk
-				@echo ""
+#				@echo ""
 
-				@echo "[Finish ...]"
-				@echo ""
+#				@echo "[Finish ...]"
+#				@echo ""
 						
 install:				
-				@echo "[Install ...]"
+#				@echo "[Install ...]"
 				mkdir -p $(INSTALL_DIR)
 				cp    ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
 
 				mkdir -p $(INSTALL_INCLUDE_DIR)
 				cp -r ./$(ROOT_INCLUDE_DIR) $(INSTALL_INCLUDE_DIR)
-				@echo ""
+#				@echo ""
 
 clean:
-				@echo "[Clean ...]"
+#				@echo "[Clean ...]"
 				rm -rf $(BINARY_DIR)
 
-				@echo "[Finish ...]"
-				@echo ""
+#				@echo "[Finish ...]"
+#				@echo ""
 
 include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
 

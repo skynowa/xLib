@@ -23,42 +23,42 @@ CxTest_CxDebugger::~CxTest_CxDebugger() {
 
 }
 //----------------------------------------------------------------------------------------------------
-BOOL 
+BOOL
 bAssert() {
     xASSERT(FALSE);
 
     return TRUE;
 }
 //----------------------------------------------------------------------------------------------------
-BOOL 
+BOOL
 bAssert_Msg() {
     xASSERT_MSG(FALSE, xT("simple note"));
 
     return TRUE;
 }
 //----------------------------------------------------------------------------------------------------
-BOOL 
+BOOL
 bAssert_Do() {
     xASSERT_DO(FALSE, tcout << xT("simple job") << tendl);
 
     return TRUE;
 }
 //----------------------------------------------------------------------------------------------------
-BOOL 
+BOOL
 bAssert_Ret() {
     xASSERT_RET(FALSE, FALSE);
 
     return TRUE;
 }
 //----------------------------------------------------------------------------------------------------
-BOOL 
+BOOL
 bAssert_Msg_Ret() {
     xASSERT_MSG_RET(FALSE, xT("simple note"), FALSE);
 
     return TRUE;
 }
 //----------------------------------------------------------------------------------------------------
-BOOL 
+BOOL
 bNotImplemented() {
     xNOT_IMPLEMENTED_RET(FALSE);
 
@@ -116,6 +116,30 @@ CxTest_CxDebugger::bUnit() {
     //xNOT_IMPLEMENTED_RET
     {
         bNotImplemented();
+    }
+
+        //-------------------------------------
+    //vStdVectorPrintT
+    {
+        m_vecsRes.push_back(xT("qqqq"));
+        m_vecsRes.push_back(xT("wwww"));
+        m_vecsRes.push_back(xT("eeee"));
+        m_vecsRes.push_back(xT("rrrr"));
+        m_vecsRes.push_back(xT("tttt"));
+
+        ////CxDebugger::vStdVectorPrintT(m_vecsRes);
+    }
+
+    //-------------------------------------
+    //vStdMultiMapPrintT
+    {
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key2"), xT("Value2")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key3"), xT("Value3")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key4"), xT("Value4")) );
+
+        ////CxDebugger::vStdMultiMapPrintT(m_mmsRes);
     }
 
     return TRUE;
