@@ -64,11 +64,6 @@ class CxTest :
         const tString &                 sGetName       () const;
         BOOL                            bSetName       (const tString &csTestName);
 
-        //TODO: not enough RAM
-        //TODO: not enough HDD
-        //TODO: busy CPU
-        //TODO: какждый макрос завернуть в try-catch
-
     private:
         BOOL                            _m_bRes;
         tString                         _m_sWorkDirPath;

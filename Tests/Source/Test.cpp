@@ -134,15 +134,6 @@
 
 #endif
 //---------------------------------------------------------------------------
-/*
-Usage:
-    xlib_r is_tracing times_for_all times_for_unit
-        - xlib_r            (binary file path)
-        - is_tracing        (is tracing)
-        - times_for_all     (times for all tests)
-        - times_for_unit    (times for unit test)
-*/
-
 INT
 _tmain(
     INT    iArgCount,
@@ -165,19 +156,38 @@ _tmain(
 
     //--------------------------------------------------
     //options
-    BOOL      bIsUseTracing   = TRUE;
-    ULONGLONG ullTimesForAll  = 1;
-    ULONGLONG ullTimesForUnit = 1;
+    BOOL      bIsUseTracing = TRUE;
+    ULONGLONG ullAllLoops   = 1;
+    ULONGLONG ullUnitLoops  = 1;
 
-    if (4 == iArgCount) {
+    {
         std::vector<tString> vsArgs;
 
         bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
         xASSERT(FALSE != bRes);
 
-        bIsUseTracing   = static_cast<BOOL>( CxString::lexical_cast<INT>( vsArgs.at(1) ) );
-        ullTimesForAll  = CxString::lexical_cast<ULONGLONG>( vsArgs.at(2) );
-        ullTimesForUnit = CxString::lexical_cast<ULONGLONG>( vsArgs.at(3) );
+        //usage
+        if (2 == iArgCount) {
+            bRes = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
+            if (TRUE == bRes) {
+                tcout << "\nUsage: xlib_r is_tracing all_loops unit_loops\n"
+                         "  - xlib_r     (binary file path)\n"
+                         "  - is_tracing (is tracing)\n"
+                         "  - all_loops  (loops for all tests)\n"
+                         "  - unit_loops (loops for unit test)\n" << tendl;
+            } else {
+                tcout << "\nUnknown switches\n" << tendl;
+            }
+
+            return TRUE;
+        }
+
+        //loops number
+        if (4 == iArgCount) {
+            bIsUseTracing = static_cast<BOOL>( CxString::lexical_cast<INT>( vsArgs.at(1) ) );
+            ullAllLoops   = CxString::lexical_cast<ULONGLONG>( vsArgs.at(2) );
+            ullUnitLoops  = CxString::lexical_cast<ULONGLONG>( vsArgs.at(3) );
+        }
     }
 
     //--------------------------------------------------
@@ -297,7 +307,7 @@ _tmain(
 
     #endif
 
-        bRes = tmManager.bRun(ullTimesForAll, ullTimesForUnit);
+        bRes = tmManager.bRun(ullAllLoops, ullUnitLoops);
     }
 
     return 0;
