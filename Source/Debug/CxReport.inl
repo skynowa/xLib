@@ -18,6 +18,7 @@ CxReport::CxReport(
     const T       &cVarT2,
     const tString &csExp1,
     const tString &csExp2,
+    const tString &csExprSign,
     const ULONG    culLastError,
     const tString &csFile,
     const ULONG    culLine,
@@ -46,8 +47,8 @@ CxReport::CxReport(
 {
     /*DEBUG*/
 
-    //sExp
-    tString sExp = csExp1 + xT(" == ") + csExp2;
+    //sExpr
+    tString sExpr = csExp1 + CxConst::xSPACE + csExprSign + CxConst::xSPACE + csExp2;
 
     //sComment
     tString sComment;
@@ -71,7 +72,7 @@ CxReport::CxReport(
         sComment = ossStream.str();
     }
 
-    _bInitVars(crtType, sExp, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment);
+    _bInitVars(crtType, sExpr, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment);
     /*DEBUG*/// n/a
 
     switch (crtType) {

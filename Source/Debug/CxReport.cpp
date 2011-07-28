@@ -296,45 +296,45 @@ CxReport::_bInitVars(
 
     _m_rtType          = crtType;
 
-    #if 1
-        _m_sProgram        = CxPath::sGetExe();
-        _m_ulProcessId     = CxProcess::ulGetCurrId();
-        _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
-        _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxStdioFile::liGetSize(CxPath::sGetExe())) );
+#if 1
+    _m_sProgram        = CxPath::sGetExe();
+    _m_ulProcessId     = CxProcess::ulGetCurrId();
+    _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
+    _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxStdioFile::liGetSize(CxPath::sGetExe())) );
 
-        _m_sSourceFile     = csFile;
-        _m_ulSourceLine    = culLine;
-        _m_sFunctionName   = csFunc;
-        _m_sExpression     = csExp;
-        _m_ulLastError     = culLastError;
-        _m_sLastErrorStr   = CxLastError::sFormat(culLastError);
+    _m_sSourceFile     = csFile;
+    _m_ulSourceLine    = culLine;
+    _m_sFunctionName   = csFunc;
+    _m_sExpression     = csExp;
+    _m_ulLastError     = culLastError;
+    _m_sLastErrorStr   = CxLastError::sFormat(culLastError);
 
-        _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
-        _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
-        _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
-        _m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
+    _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
+    _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
+    _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
+    _m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
-        _m_sComment        = (true == csComment.empty()) ? CxConst::xHYPHEN : tString(csComment.c_str());
-    #else
-        _m_sProgram        = "";
-        _m_ulProcessId     = 0;
-        _m_ulThreadId      = 0;
-        _m_sFileSize       = "";
+    _m_sComment        = (true == csComment.empty()) ? CxConst::xHYPHEN : tString(csComment.c_str());
+#else
+    _m_sProgram        = "";
+    _m_ulProcessId     = 0;
+    _m_ulThreadId      = 0;
+    _m_sFileSize       = "";
 
-        _m_sSourceFile     = "";
-        _m_ulSourceLine    = 0;
-        _m_sFunctionName   = "";
-        _m_sExpression     = "";
-        _m_ulLastError     = 0;
-        _m_sLastErrorStr   = "";
+    _m_sSourceFile     = "";
+    _m_ulSourceLine    = 0;
+    _m_sFunctionName   = "";
+    _m_sExpression     = "";
+    _m_ulLastError     = 0;
+    _m_sLastErrorStr   = "";
 
-        _m_sCurrentDate    = "";
-        _m_sBuildDate      = "";
-        _m_sOsVersion      = "";
-        _m_sOsArchitecture = "";
+    _m_sCurrentDate    = "";
+    _m_sBuildDate      = "";
+    _m_sOsVersion      = "";
+    _m_sOsArchitecture = "";
 
-        _m_sComment        = "";
-    #endif
+    _m_sComment        = "";
+#endif
 
     return TRUE;
 }

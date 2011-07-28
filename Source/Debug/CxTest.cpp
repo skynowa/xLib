@@ -42,7 +42,7 @@ CxTest::CxTest() :
     m_sRes         (),
     m_usRes        (),
     m_vecsRes      (),
-    m_mapsRes      (),
+    m_msRes      (),
 #if defined(xOS_WIN)
     m_hRes         (INVALID_HANDLE_VALUE),
     m_hwndRes      (NULL),
