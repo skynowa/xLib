@@ -116,7 +116,7 @@ VPATH				:= ../../../
 .PHONY:				clean
 
 all:
-				clear
+#				clear
 
 #				@echo "************************************************************"
 #				@echo "* OS info:         " $(cOS_INFO)

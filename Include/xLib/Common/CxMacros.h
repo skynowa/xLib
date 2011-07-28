@@ -357,17 +357,19 @@ class CxMacros :
 
         //var args
         #if defined(va_start)
-            #define xVA_START(val, fmt) va_start(val, fmt)
+            #define xVA_START(val, fmt) ( va_start(val, fmt) )
         #endif
 
         #if defined(va_copy)
             #define xVA_COPY(dest, src) ( va_copy(dest, src) )
+        #elif defined(__va_copy)
+            #define xVA_COPY(dest, src) ( __va_copy(dest, src) )
         #else
-            #define xVA_COPY(dest, src) ( (dest) = (src) )  //( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
+            #define xVA_COPY(dest, src) ( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
         #endif
 
         #if defined(va_end)
-            #define xVA_END(val)        va_end(val)
+            #define xVA_END(val)        ( va_end(val) )
         #endif
 
         //qualifiers
