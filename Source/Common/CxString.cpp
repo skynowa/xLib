@@ -485,7 +485,7 @@ CxString::sFormat(
 //---------------------------------------------------------------------------
 //DONE: sFormatV
 /*static*/
-#if xDEPRECIATE
+#if 1
     tString
     CxString::sFormatV(
         LPCTSTR pcszFormat,

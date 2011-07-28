@@ -235,7 +235,7 @@ _tmain(
 
         //Debug
         bRes = tmManager.bAdd(new CxTest_CxLastError);
-        ////bRes = tmManager.bAdd(new CxTest_CxDebugger);
+        bRes = tmManager.bAdd(new CxTest_CxDebugger);
         bRes = tmManager.bAdd(new CxTest_CxReport);
         bRes = tmManager.bAdd(new CxTest_CxProfiler);
         bRes = tmManager.bAdd(new CxTest_CxAutoProfiler);

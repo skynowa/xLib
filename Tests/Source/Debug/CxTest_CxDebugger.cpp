@@ -22,103 +22,110 @@ CxTest_CxDebugger::CxTest_CxDebugger() {
 CxTest_CxDebugger::~CxTest_CxDebugger() {
 
 }
-//----------------------------------------------------------------------------------------------------
-BOOL
-bAssert() {
-    xASSERT(FALSE);
-
-    return TRUE;
-}
-//----------------------------------------------------------------------------------------------------
-BOOL
-bAssert_Msg() {
-    xASSERT_MSG(FALSE, xT("simple note"));
-
-    return TRUE;
-}
-//----------------------------------------------------------------------------------------------------
-BOOL
-bAssert_Do() {
-    xASSERT_DO(FALSE, tcout << xT("simple job") << tendl);
-
-    return TRUE;
-}
-//----------------------------------------------------------------------------------------------------
-BOOL
-bAssert_Ret() {
-    xASSERT_RET(FALSE, FALSE);
-
-    return TRUE;
-}
-//----------------------------------------------------------------------------------------------------
-BOOL
-bAssert_Msg_Ret() {
-    xASSERT_MSG_RET(FALSE, xT("simple note"), FALSE);
-
-    return TRUE;
-}
-//----------------------------------------------------------------------------------------------------
-BOOL
-bNotImplemented() {
-    xNOT_IMPLEMENTED_RET(FALSE);
-
-    return TRUE;
-}
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxDebugger::bUnit() {
-    //--------------------------------------------------
+    //-------------------------------------
+    //bGetEnabled, bGetEnabled
+    {
+        const BOOL cbTrue  = TRUE;
+        const BOOL cbFalse = FALSE;
+
+        m_bRes = CxDebugger::bGetEnabled();
+        xASSERT(cbTrue == m_bRes);
+
+        m_bRes = CxDebugger::bSetEnabled(cbFalse);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxDebugger::bGetEnabled();
+        xASSERT(cbFalse == m_bRes);
+
+        m_bRes = CxDebugger::bSetEnabled(cbTrue);
+        xASSERT(FALSE != m_bRes);
+
+        m_bRes = CxDebugger::bGetEnabled();
+        xASSERT(cbTrue == m_bRes);
+    }
+
+    //-------------------------------------
+    //bIsPresent
+    {
+        //TODO: bIsPresent
+    }
+
+    //-------------------------------------
+    //bBreak
+    {
+        //TODO: bBreak
+    }
+
+    //-------------------------------------
+    //bSetLogPath, sGetLogPath
+    {
+        const tString csFilePath = xT("");
+        
+        m_sRes = CxDebugger::sGetLogPath();
+        xASSERT(true == m_sRes.empty());
+
+        m_bRes = CxDebugger::bSetLogPath(csFilePath);
+        xASSERT(FALSE != m_bRes);
+
+        m_sRes = CxDebugger::sGetLogPath();
+        xASSERT(csFilePath == m_sRes);
+
+        m_bRes = CxDebugger::bSetLogPath(xT(""));
+        xASSERT(FALSE != m_bRes);
+
+        m_sRes = CxDebugger::sGetLogPath();
+        xASSERT(true == m_sRes.empty());
+    }
+
+    //-------------------------------------
+    //bReportMake
+    {
+        const CxReport::EType crtType[] = {
+            CxReport::rtMsgboxPlain,
+            CxReport::rtMsgboxRtf,
+            CxReport::rtStdoutPlain,
+            CxReport::rtStdoutHtml,
+            CxReport::rtLoggingPlain,
+            CxReport::rtLoggingHtml
+        };
+
+        for (size_t i = 0; i < 100; ++ i) {
+	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));
+	
+	        ////m_bRes = CxDebugger::bReportMake(rpReport);
+            ////xASSERT(FALSE != m_bRes);
+        }
+    }
+
+    //-------------------------------------
+    //bTrace
+    {
+        for (size_t i = 0;  i < 10; ++ i) {
+            CxDebugger::bTrace(xT("CxDebugger: %"xPR_SIZET), i);
+        }
+    }
+
+    //-------------------------------------
+    //bTrace
+    {
+        for (size_t i = 0;  i < 10; ++ i) {
+            CxDebugger::bTrace(CxString::lexical_cast(i));
+        }
+    }
+
+    //-------------------------------------
     //bBeep
     {
         m_bRes = CxDebugger::bBeep();
         xASSERT(FALSE != m_bRes);
     }
 
-    //--------------------------------------------------
-    //xASSERT
-    {
-        m_bRes = bAssert();
-    }
-
-    //--------------------------------------------------
-    //xASSERT_MSG
-    {
-        m_bRes = bAssert_Msg();
-    }
-
-    //--------------------------------------------------
-    //xASSERT_DO
-    {
-        m_bRes = bAssert_Do();
-    }
-
-    //--------------------------------------------------
-    //xASSERT_RET
-    {
-        m_bRes = bAssert_Ret();
-    }
-
-    //--------------------------------------------------
-    //xASSERT_MSG_RET
-    {
-        m_bRes = bAssert_Msg_Ret();
-    }
-
-    //--------------------------------------------------
-    //bTrace
-    for (size_t i = 0;  i < 10; ++ i) {
-        CxDebugger::bTrace(xT("CxDebugger: %zu"), i);
-    }
-
-    //--------------------------------------------------
-    //xNOT_IMPLEMENTED_RET
-    {
-        bNotImplemented();
-    }
-
-        //-------------------------------------
+    //-------------------------------------
     //vStdVectorPrintT
     {
         m_vecsRes.push_back(xT("qqqq"));
@@ -131,16 +138,191 @@ CxTest_CxDebugger::bUnit() {
     }
 
     //-------------------------------------
+    //vStdMapPrintT
+    {
+        m_msRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
+        m_msRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
+        m_msRes.insert( std::pair<tString, tString>(xT("Key2"), xT("Value2")) );
+        m_msRes.insert( std::pair<tString, tString>(xT("Key3"), xT("Value3")) );
+        m_msRes.insert( std::pair<tString, tString>(xT("Key4"), xT("Value4")) );
+
+        ////CxDebugger::vStdMapPrintT(m_msRes);
+    }
+
+    //-------------------------------------
     //vStdMultiMapPrintT
     {
         m_mmsRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
         m_mmsRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
         m_mmsRes.insert( std::pair<tString, tString>(xT("Key2"), xT("Value2")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key3"), xT("Value3")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key4"), xT("Value4")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
 
         ////CxDebugger::vStdMultiMapPrintT(m_mmsRes);
     }
+
+    //--------------------------------------------------
+    //xNOT_IMPLEMENTED_RET
+    {
+        //TODO: xNOT_IMPLEMENTED_RET
+    }
+    
+    //--------------------------------------------------
+    //xASSERT
+    {
+        tString sVar1 = xT("xxx");
+        tString sVar2 = xT("xxx");
+        xASSERT(sVar1 == sVar2);
+    }
+
+    //--------------------------------------------------
+    //xASSERT_RET
+    {
+        tString sVar1 = xT("xxx");
+        tString sVar2 = xT("xxx");
+        xASSERT_RET(sVar1 == sVar2, FALSE);
+    }
+
+    //--------------------------------------------------
+    //xASSERT_DO
+    {
+        tString sVar1 = xT("xxx");
+        tString sVar2 = xT("xxx");
+        xASSERT_DO(sVar1 == sVar2, sVar1.clear());
+    }
+
+    //--------------------------------------------------
+    //xASSERT_MSG
+    {
+        tString sVar1 = xT("xxx");
+        tString sVar2 = xT("xxx");
+        xASSERT_MSG(sVar1 == sVar2, xT("Simple message"));
+    }
+
+    //--------------------------------------------------
+    //xASSERT_MSG_RET
+    {
+        tString sVar1 = xT("xxx");
+        tString sVar2 = xT("xxx");
+        xASSERT_MSG_RET(sVar1 == sVar2, xT("Simple message"), FALSE);
+    }
+
+    //--------------------------------------------------
+    //xASSERT_MSG_DO
+    {
+        tString sVar1 = xT("xxx");
+        tString sVar2 = xT("xxx");
+        xASSERT_MSG_DO(sVar1 == sVar2, xT("Simple message"), sVar1.swap(sVar2));
+    }
+
+    //--------------------------------------------------
+    //
+
+    //with INT
+    {
+	    {
+		    INT iVar1 = 1;
+		    INT iVar2 = 1;
+		    xASSERT_EQUAL(iVar1, iVar2);
+	    }
+	
+	    {
+		    INT iVar1 = 0;
+		    INT iVar2 = 1;
+		    xASSERT_NOT_EQUAL(iVar1, iVar2);
+	    }
+	
+	    {
+		    INT iVar1 = 1;
+		    INT iVar2 = 122;
+		    xASSERT_LESS(iVar1, iVar2);
+	    }
+	
+	    {
+		    INT iVar1 = 110;
+		    INT iVar2 = 10;
+		    xASSERT_GREATER(iVar1, iVar2);
+	    }
+	
+	    {
+		    INT iVar1 = 50;
+		    INT iVar2 = 122;
+		    xASSERT_LESS_EQUAL(iVar1, iVar2);
+
+            INT iVar3 = 200;
+		    INT iVar4 = 200;
+		    xASSERT_LESS_EQUAL(iVar3, iVar4);
+	    }
+	
+	    {
+		    INT iVar1 = 500;
+		    INT iVar2 = 147;
+		    xASSERT_GREATER_EQUAL(iVar1, iVar2);
+
+            INT iVar3 = 77777;
+		    INT iVar4 = 77777;
+		    xASSERT_GREATER_EQUAL(iVar3, iVar4);
+	    }
+    }
+
+    //--------------------------------------------------
+    //
+
+    //with tString
+    {
+	    {
+		    tString sVar1 = xT("aaa");
+		    tString sVar2 = xT("aaa");
+		    xASSERT_EQUAL(sVar1, sVar2);
+	    }
+	
+	    {
+		    tString sVar1 = xT("bbb");
+		    tString sVar2 = xT("BBB");
+		    xASSERT_NOT_EQUAL(sVar1, sVar2);
+	    }
+	
+	    {
+		    tString sVar1 = xT("aaa");
+		    tString sVar2 = xT("ccc");
+		    xASSERT_LESS(sVar1, sVar2);
+	    }
+	
+	    {
+		    tString sVar1 = xT("bbb");
+		    tString sVar2 = xT("aaa");
+		    xASSERT_GREATER(sVar1, sVar2);
+	    }
+	
+	    {
+		    tString sVar1 = xT("aaa");
+		    tString sVar2 = xT("aaa");
+		    xASSERT_LESS_EQUAL(sVar1, sVar2);
+
+            tString sVar3 = xT("aaa");
+		    tString sVar4 = xT("ggg");
+		    xASSERT_LESS_EQUAL(sVar3, sVar4);
+	    }
+	
+	    {
+		    tString sVar1 = xT("aaa");
+		    tString sVar2 = xT("aaa");
+		    xASSERT_GREATER_EQUAL(sVar1, sVar2);
+
+            tString sVar3 = xT("hhhh");
+		    tString sVar4 = xT("aaa");
+		    xASSERT_GREATER_EQUAL(sVar3, sVar4);
+	    }
+    }
+          
+    #if xTODO
+        xASSERT_EQUAL        (expr1, expr2);
+        xASSERT_NOT_EQUAL    (expr1, expr2);
+        xASSERT_LESS         (expr1, expr2);
+        xASSERT_GREATER      (expr1, expr2);
+        xASSERT_LESS_EQUAL   (expr1, expr2);
+        xASSERT_GREATER_EQUAL(expr1, expr2);
+    #endif
 
     return TRUE;
 }
