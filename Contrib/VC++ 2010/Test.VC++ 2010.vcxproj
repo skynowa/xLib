@@ -586,6 +586,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Source\Common\CxArray.inl" />
+    <None Include="..\..\Source\Common\CxString.inl" />
     <None Include="..\..\Source\Common\Win\CxHandleT.inl" />
     <None Include="..\..\Source\Debug\CxReport.inl" />
     <None Include="..\..\Source\Sync\CxThreadPool.inl" />
