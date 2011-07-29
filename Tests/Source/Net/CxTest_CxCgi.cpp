@@ -32,8 +32,8 @@ CxTest_CxCgi::bUnit() {
     {
         const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
-        tString sFileContent =
-                xT("<html>")
+        const tString sFileContent =
+                xT("\t<html>")
                 xT("<head></head>")
                 xT("<body>")
                 xT("<pre>")
@@ -43,10 +43,10 @@ CxTest_CxCgi::bUnit() {
                 xT("</html>");
 
         m_bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
-        /*DEBUG*/xASSERT_RET(FALSE != m_bRes, FALSE);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxCgi::bPageShow(csFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -54,7 +54,7 @@ CxTest_CxCgi::bUnit() {
     {
         #if xTEMP_DISABLED
             CxCgi::bRedirect(xT("http://yandex.ru/"));
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         #endif
     }
 
@@ -65,9 +65,8 @@ CxTest_CxCgi::bUnit() {
     #endif
 
 
-    #if xTEMP_ENABLED
     {
-        tcout << xT("<pre>");
+        //tcout << xT("<pre>");
 
         CxCgi cgCgi(CxCgi::MAX_DATA_SIZE_DEFAULT);
 
@@ -75,100 +74,100 @@ CxTest_CxCgi::bUnit() {
         //CxCgi::CxCgiEnvironment
         {
             m_sRes = cgCgi.Environment.sGetAuthType();
-            xTRACEV(xT("cgCgi.Environment.sGetAuthType(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetAuthType(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetContentLength();
-            xTRACEV(xT("cgCgi.Environment.sGetContentLength(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetContentLength(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetContentType();
-            xTRACEV(xT("cgCgi.Environment.sGetContentType(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetContentType(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetDocumentRoot();
-            xTRACEV(xT("cgCgi.Environment.sGetDocumentRoot(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetDocumentRoot(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetGatewayInterface();
-            xTRACEV(xT("cgCgi.Environment.sGetGatewayInterface(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetGatewayInterface(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetHttpAccept();
-            xTRACEV(xT("cgCgi.Environment.sGetHttpAccept(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetHttpAccept(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetHttpCookie();
-            xTRACEV(xT("cgCgi.Environment.sGetHttpCookie(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetHttpCookie(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetHttpPragma();
-            xTRACEV(xT("cgCgi.Environment.sGetHttpPragma(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetHttpPragma(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetHttpUserAgent();
-            xTRACEV(xT("cgCgi.Environment.sGetHttpUserAgent(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetHttpUserAgent(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetPathInfo();
-            xTRACEV(xT("cgCgi.Environment.sGetPathInfo(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetPathInfo(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetPathTranslated();
-            xTRACEV(xT("cgCgi.Environment.sGetPathTranslated(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetPathTranslated(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetQueryString();
-            xTRACEV(xT("cgCgi.Environment.sGetQueryString(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetQueryString(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetRemoteAddr();
-            xTRACEV(xT("cgCgi.Environment.sGetRemoteAddr(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetRemoteAddr(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetRemoteHost();
-            xTRACEV(xT("cgCgi.Environment.sGetRemoteHost(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetRemoteHost(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetRemoteIdent();
-            xTRACEV(xT("cgCgi.Environment.sGetRemoteIdent(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetRemoteIdent(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetRemotePort();
-            xTRACEV(xT("cgCgi.Environment.sGetRemotePort(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetRemotePort(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetRemoteUser();
-            xTRACEV(xT("cgCgi.Environment.sGetRemoteUser(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetRemoteUser(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetRequestMethod();
-            xTRACEV(xT("cgCgi.Environment.sGetRequestMethod(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetRequestMethod(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetRequestUri();
-            xTRACEV(xT("cgCgi.Environment.sGetRequestUri(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetRequestUri(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetScriptFilename();
-            xTRACEV(xT("cgCgi.Environment.sGetScriptFilename(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetScriptFilename(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetScriptName();
-            xTRACEV(xT("cgCgi.Environment.sGetScriptName(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetScriptName(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetServerAdmin();
-            xTRACEV(xT("cgCgi.Environment.sGetServerAdmin(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetServerAdmin(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetServerName();
-            xTRACEV(xT("cgCgi.Environment.sGetServerName(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetServerName(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetServerPort();
-            xTRACEV(xT("cgCgi.Environment.sGetServerPort(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetServerPort(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetServerProtocol();
-            xTRACEV(xT("cgCgi.Environment.sGetServerProtocol(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetServerProtocol(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetServerSoftware();
-            xTRACEV(xT("cgCgi.Environment.sGetServerSoftware(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetServerSoftware(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetHttpReferer();
-            xTRACEV(xT("cgCgi.Environment.sGetHttpReferer(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetHttpReferer(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetHttpHost();
-            xTRACEV(xT("cgCgi.Environment.sGetHttpHost(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetHttpHost(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetHttpAcceptLanguage();
-            xTRACEV(xT("cgCgi.Environment.sGetHttpAcceptLanguage(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetHttpAcceptLanguage(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Environment.sGetCountryCode();
-            xTRACEV(xT("cgCgi.Environment.sGetCountryCode(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetCountryCode(): %s"), m_sRes.c_str());
 
             m_iRes = static_cast<INT>( cgCgi.Environment.rmGetRequestMethod() );
-            xTRACEV(xT("cgCgi.Environment.rmGetRequestMethod(): %i"), m_iRes);
+            //xTRACEV(xT("cgCgi.Environment.rmGetRequestMethod(): %i"), m_iRes);
 
             m_sRes = cgCgi.Environment.sGetDump();
-            xTRACEV(xT("cgCgi.Environment.sGetDump(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Environment.sGetDump(): %s"), m_sRes.c_str());
         }
 
         //--------------------------------------------------
@@ -179,20 +178,20 @@ CxTest_CxCgi::bUnit() {
             //sGetDump
             {
                 m_sRes = cgCgi.Cookies.sGetDump();
-                xTRACEV(xT("cgCgi.Cookies.sGetDump(): %s"), m_sRes.c_str());
+                //xTRACEV(xT("cgCgi.Cookies.sGetDump(): %s"), m_sRes.c_str());
             }
 
             //operator[]
             {
                 m_sRes = cgCgi.Cookies[xT("ValueA")];
-                xTRACEV(xT("cgCgi.Cookies[xT(\"ValueA\")]= %s"), m_sRes.c_str());
+                //xTRACEV(xT("cgCgi.Cookies[xT(\"ValueA\")]= %s"), m_sRes.c_str());
 
                 m_sRes = cgCgi.Cookies[xT("Valuea")];
-                xTRACEV(xT("cgCgi.Cookies[xT(\"Valuea\")]= %s"), m_sRes.c_str());
+                //xTRACEV(xT("cgCgi.Cookies[xT(\"Valuea\")]= %s"), m_sRes.c_str());
 
                 if (false == cgCgi.Cookies.Items.empty()) {
                     m_sRes = cgCgi.Cookies.Items.at(0)->sGetValue();
-                    xTRACEV(xT("cgCgi.Cookies.Items.at(0)->sGetValue() = %s"), m_sRes.c_str());
+                    //xTRACEV(xT("cgCgi.Cookies.Items.at(0)->sGetValue() = %s"), m_sRes.c_str());
                 }
             }
         }
@@ -202,23 +201,22 @@ CxTest_CxCgi::bUnit() {
         {
 
             m_sRes = cgCgi.Formdata.sGetRawData();
-            xTRACEV(xT("cgCgi.Formdata.sGetRawData(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Formdata.sGetRawData(): %s"), m_sRes.c_str());
 
             m_sRes = cgCgi.Formdata.sGetDump();
-            xTRACEV(xT("cgCgi.Formdata.sGetDump(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.Formdata.sGetDump(): %s"), m_sRes.c_str());
         }
 
         //--------------------------------------------------
         //sGetDump
         {
             m_sRes = cgCgi.sGetDump();
-            xTRACEV(xT("cgCgi.sGetDump(): %s"), m_sRes.c_str());
+            //xTRACEV(xT("cgCgi.sGetDump(): %s"), m_sRes.c_str());
         }
 
-        tcout << xT("</pre>");
-        tcout << tendl;
+        //tcout << xT("</pre>");
+        //tcout << tendl;
     }
-    #endif
 
     //-------------------------------------
     //bUriEncode, bUriDecode
@@ -282,69 +280,3 @@ CxTest_CxCgi::bUnit() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
-
-
-//  tString sQueryStr =
-//          xT("");
-//
-//  CxCgi cgCgi;
-//
-//  cgCgi.bInitQuery(sQueryStr);
-//
-//
-//
-//  /****************************************************************************
-//  *   Query
-//  *
-//  *****************************************************************************/
-//
-//  //MessageBox(0, objCgi.sGetQueryParamByName("inpLogin").c_str(),  "sGetQueryParamByName()", MB_OK);
-//  //MessageBox(0, objCgi.sGetQueryParamByName("inpPin").c_str(),    "sGetQueryParamByName()", MB_OK);
-//  //MessageBox(0, objCgi.sGetQueryParamByName("inpId").c_str(),     "sGetQueryParamByName()", MB_OK);
-//  //MessageBox(0, objCgi.sGetQueryParamByName("inpServId").c_str(), "sGetQueryParamByName()", MB_OK);
-//  //MessageBox(0, objCgi.sGetQueryParamByName("btnSubmit").c_str(), "sGetQueryParamByName()", MB_OK);
-//  //unsigned long int ulQueryCount = objCgi.ulGetQueryParamCount();
-//  bool bRes1 = objCgi.bIsPostQuery();
-//  bool bRes2 = objCgi.bIsGetQuery();
-//
-//
-//  /****************************************************************************
-//  *   Environ
-//  *
-//  *****************************************************************************/
-//
-//  ////MessageBox(0, objCgi.sGetEnvironStringByName("OS").c_str(), "sGetEnvironItemByName()", MB_OK);
-//  ////unsigned long int ulEnvironCount = objCgi.ulGetEnvironStringCount();
-//  ////MessageBox(0, objCgi.sGetEnvironStrings().c_str(), "sGetEnvironStrings()", MB_OK);
-//
-//
-//  /****************************************************************************
-//  *   Coockie
-//  *
-//  *****************************************************************************/
-//
-//  //std::string sCoockie = "username=Serg; IP=127.0.0.1; Url=localhost";
-//  ////std::string sCoockie = "username=Serg";
-//  ////MessageBox(0, objCgi.sGetCookieValueByName("username").c_str(), "sGetCookieValueByName", MB_OK);
-//  ////unsigned long int ulCookieCount = objCgi.ulGetCookieCount();
-//  ////objCgi.bSetCookie("Pass", "1111", "Thu, 01-Jan-70 00:00:01 GMT", "\\", "Serg", true);
-//  ////objCgi.bDeleteCookie("Pass");
-//
-//
-//  /****************************************************************************
-//  *   Log
-//  *
-//  *****************************************************************************/
-//
-//  //objCgi.vLog("xxxxxxx");
-//
-//
-//  /****************************************************************************
-//  *   Other
-//  *
-//  *****************************************************************************/
-//
-//  ////objCgi.bRedirect("http://127.0.0.1");
-//  ////objCgi.bRedirectToReferer();
-

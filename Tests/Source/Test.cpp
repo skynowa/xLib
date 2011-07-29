@@ -140,6 +140,11 @@ _tmain(
     TCHAR *paszArgs[]
 )
 {
+//    INT iRes1 = 0;
+//    INT iRes2 = 1;
+//
+//    xASSERT_EQUAL(iRes1, iRes2);
+
     BOOL bRes = FALSE;
 
     #if xTEMP_DISABLED
@@ -245,7 +250,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxStdioFile);
         bRes = tmManager.bAdd(new CxTest_CxDir);
         bRes = tmManager.bAdd(new CxTest_CxEnvironment);
-        ////bRes = tmManager.bAdd(new CxTest_CxDll);
+        bRes = tmManager.bAdd(new CxTest_CxDll);
         bRes = tmManager.bAdd(new CxTest_CxFileAttribute);
         bRes = tmManager.bAdd(new CxTest_CxIni);
         bRes = tmManager.bAdd(new CxTest_CxVolume);
@@ -263,13 +268,13 @@ _tmain(
         //Net
         bRes = tmManager.bAdd(new CxTest_CxCookiePv0);
         bRes = tmManager.bAdd(new CxTest_CxCookiePv1);
-        ////bRes = tmManager.bAdd(new CxTest_CxCgi);
+        bRes = tmManager.bAdd(new CxTest_CxCgi);
         bRes = tmManager.bAdd(new CxTest_CxSocketInit);
         bRes = tmManager.bAdd(new CxTest_CxDnsClient);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+        bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);

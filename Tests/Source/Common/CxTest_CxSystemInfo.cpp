@@ -120,7 +120,7 @@ CxTest_CxSystemInfo::bUnit() {
     //ulGetNumOfCPUs
     {
         m_ulRes = CxSystemInfo::ulGetNumOfCPUs();
-        xTRACEV(xT("    CxSystemInfo::ulGetNumOfCPUs: %li"), m_ulRes);
+        xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCPUs: %li"), m_ulRes);
         xASSERT(0 < m_ulRes);
     }
 
@@ -128,7 +128,7 @@ CxTest_CxSystemInfo::bUnit() {
     //ulGetCurrentCpuNum
     {
         m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
-        xTRACEV(xT("    CxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
+        xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
         xASSERT(static_cast<ULONG>( - 1 ) != m_ulRes);
         xASSERT(0 <= m_ulRes && CxSystemInfo::ulGetNumOfCPUs() > m_ulRes);
     }

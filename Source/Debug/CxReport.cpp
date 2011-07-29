@@ -314,26 +314,26 @@ CxReport::_bInitVars(
     _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     _m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
-    _m_sComment        = (true == csComment.empty()) ? CxConst::xHYPHEN : tString(csComment.c_str());
+    _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #else
-    _m_sProgram        = "";
+    _m_sProgram        = xT("");
     _m_ulProcessId     = 0;
     _m_ulThreadId      = 0;
-    _m_sFileSize       = "";
+    _m_sFileSize       = xT("");
 
-    _m_sSourceFile     = "";
+    _m_sSourceFile     = xT("");
     _m_ulSourceLine    = 0;
-    _m_sFunctionName   = "";
-    _m_sExpression     = "";
+    _m_sFunctionName   = xT("");
+    _m_sExpression     = xT("");
     _m_ulLastError     = 0;
-    _m_sLastErrorStr   = "";
+    _m_sLastErrorStr   = xT("");
 
-    _m_sCurrentDate    = "";
-    _m_sBuildDate      = "";
-    _m_sOsVersion      = "";
-    _m_sOsArchitecture = "";
+    _m_sCurrentDate    = xT("");
+    _m_sBuildDate      = xT("");
+    _m_sOsVersion      = xT("");
+    _m_sOsArchitecture = xT("");
 
-    _m_sComment        = "";
+    _m_sComment        = xT("");
 #endif
 
     return TRUE;

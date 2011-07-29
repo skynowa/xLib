@@ -27,12 +27,10 @@ class CxEnvironment :
 
         static tString sGetCommandLine    ();
         static BOOL    bGetCommandLineArgs(std::vector<tString> *pvsArgs);
-        static BOOL    bSetCommandLineArgs(const INT ciArgsCount, TCHAR *pcaszArgs[]);
+        static BOOL    bSetCommandLineArgs(const INT ciArgsCount, TCHAR *paszArgs[]);
 
     private:
-        //command line args
-        static size_t  m_uiCommandLineArgsCount;
-        static TCHAR **m_aszCommandLineArgs;
+        static std::vector<tString> _m_vsCommandLineArgs;
 
                        CxEnvironment      ();
         virtual       ~CxEnvironment      ();

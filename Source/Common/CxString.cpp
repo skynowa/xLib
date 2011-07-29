@@ -504,7 +504,7 @@ CxString::sFormat(
 
             {
                 iWrittenSize = _vsntprintf(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
-                xCHECK_DO(iWrittenSize > - 1 && static_cast<size_t>( iWrittenSize ) <= sBuff.size(), break);
+                xCHECK_DO(iWrittenSize > - 1 && static_cast<size_t>( iWrittenSize ) < sBuff.size(), break);
 
                 sBuff.resize(sBuff.size() * 2);
             }

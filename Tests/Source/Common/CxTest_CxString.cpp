@@ -693,10 +693,10 @@ CxTest_CxString::bUnit() {
                 tString sData(i, xT('s'));
 
                 tString m_sRes = CxString::sFormat(xT("%s"), sData.c_str());
-                ////xSTD_COUT("sData (" << sData.size() << ") = " << sData << "\nm_sRes (" << m_sRes.size() << ") = " << m_sRes);
+                //xSTD_COUT("sData (" << sData.size() << ") = " << sData << "\nm_sRes (" << m_sRes.size() << ") = " << m_sRes);
 
-                assert(m_sRes.size() == sData.size());
-                assert(m_sRes        == sData);
+                xASSERT_EQUAL(m_sRes.size(), sData.size());
+                xASSERT_EQUAL(m_sRes,        sData);
             }
         }
     }

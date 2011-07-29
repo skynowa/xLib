@@ -391,9 +391,9 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         //TODO: ulGetCurrentCpuNum
         ulRes = 0;
     #else
-        ULONG ulCpu = 0;
-
         #if defined(SYS_getcpu)
+            ULONG ulCpu = 0;
+
             INT iRes = syscall(SYS_getcpu, &ulCpu, NULL, NULL);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
 
