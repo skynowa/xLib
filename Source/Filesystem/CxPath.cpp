@@ -80,10 +80,6 @@ CxPath::sGetExe() {
                         sRes = tString();
                     }
                 #endif
-
-                #if 1
-
-                #endif
             #else
                 BOOL          bRes       = FALSE;
                 const tString csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
@@ -114,14 +110,18 @@ CxPath::sGetExe() {
             /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),                    tString());
             /*DEBUG*/xASSERT_RET(FALSE == CxPath::bIsAbsolute(vsArgs.at(0)), tString());
 
-            tString sAbsolutePath;
+            #if xDEPRECIATE
+                tString sAbsolutePath;
 
-            sAbsolutePath.resize(xPATH_MAX);
+                sAbsolutePath.resize(xPATH_MAX);
 
-            char *pszRes = realpath(&vsArgs.at(0).at(0), &sAbsolutePath.at(0));
-            /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
+                char *pszRes = realpath(&vsArgs.at(0).at(0), &sAbsolutePath.at(0));
+                /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
 
-            sRes.assign(pszRes);
+                sRes.assign(pszRes);
+            #else
+                sRes.assign( sGetFull(vsArgs.at(0)) );
+            #endif
         #endif
     #endif
 

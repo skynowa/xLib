@@ -1231,6 +1231,9 @@
     <None Include="..\..\Source\Debug\CxReport.inl">
       <Filter>xLib\Debug</Filter>
     </None>
+    <None Include="..\..\Source\Common\CxString.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxBase64.h">

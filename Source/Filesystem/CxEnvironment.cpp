@@ -277,7 +277,7 @@ CxEnvironment::sGetCommandLine() {
     tString sRes;
 
 #if defined(xOS_WIN)
-    LPTCSTR pcszRes = ::GetCommandLine();
+    LPCTSTR pcszRes = ::GetCommandLine();
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, tString());
 
     sRes.assign( CxString::sTrimSpace(pcszRes) );
