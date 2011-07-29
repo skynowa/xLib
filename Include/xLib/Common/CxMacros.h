@@ -72,7 +72,7 @@ class CxMacros :
 
         #define xMAX(a, b)              ( ((a) > (b)) ? (a) : (b) )
         #define xMIN(a, b)              ( ((a) < (b)) ? (a) : (b) )
-        #define xUNUSED(arg)            ( (arg) = (arg) )
+        #define xUNUSED(arg)            ( (void)(arg) ) //( (arg) = (arg) )
         #define xAS_BOOL(expr)          ( (true == (expr)) ? (TRUE) : (FALSE) )
 
         //enum
@@ -403,12 +403,12 @@ class CxMacros :
             #endif
         #elif defined(xOS_LINUX)
             #ifdef xARCHITECTURE_64BIT
-                #define xPR_SIZET xT("z")
+                #define xPR_SIZET xT("zu")
                 #define xPR_I64d  xT("lld")
                 #define xPR_I64u  xT("llu")
                 #define xPR_I64x  xT("llx")
             #else
-                #define xPR_SIZET xT("z")
+                #define xPR_SIZET xT("zu")
                 #define xPR_I64d  xT("lld")
                 #define xPR_I64u  xT("llu")
                 #define xPR_I64x  xT("llx")

@@ -111,7 +111,8 @@ CxPath::sGetExe() {
 
             BOOL bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
             /*DEBUG*/xASSERT_RET(FALSE != bRes,                              tString());
-            /*DEBUG*/xASSERT_RET(FALSE == CxPath::bIsAbsolute(vsArgs.at(0)), tString())
+            /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),                    tString());
+            /*DEBUG*/xASSERT_RET(FALSE == CxPath::bIsAbsolute(vsArgs.at(0)), tString());
 
             tString sAbsolutePath;
 
@@ -665,12 +666,12 @@ CxPath::sToCurrentOs(
 //--------------------------------------------------------------------------
 //DONE: sGetFull (get full path of the specified file)
 /*static*/
-tString 
+tString
 CxPath::sGetFull(
     const tString &csFilePath
 )
 {
-    /*DEBUG*/  
+    /*DEBUG*/
 
     tString sRes;
 
@@ -702,7 +703,7 @@ CxPath::sGetFull(
 
     /*DEBUG*/xASSERT_RET(FALSE != bIsAbsolute(sRes), tString());
 
-    return sRes;        
+    return sRes;
 }
 //--------------------------------------------------------------------------
 //DONE: sMinimizeName

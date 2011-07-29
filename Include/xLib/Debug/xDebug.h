@@ -32,7 +32,6 @@
     #define xASSERT_LESS_EQUAL(expr1, expr2)                { if ( !((expr1) <= (expr2)) )  { CxReport rpReport(CxReport::rtMsgboxPlain, expr1, expr2, xT(#expr1), xT(#expr2), xT("<="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xASSERT_GREATER_EQUAL(expr1, expr2)             { if ( !((expr1) >= (expr2)) )  { CxReport rpReport(CxReport::rtMsgboxPlain, expr1, expr2, xT(#expr1), xT(#expr2), xT(">="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); } }
 
-
 #elif defined(xDEBUG_MODE_MSGBOX_RTF)
     #define xASSERT(expr)                                   { if ( !(expr) )                { CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport);}                       }
     #define xASSERT_RET(expr, return_expr)                  { if ( !(expr) )                { CxReport rpReport(CxReport::rtMsgboxRtf,    xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }

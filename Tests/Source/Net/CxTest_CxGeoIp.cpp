@@ -27,7 +27,7 @@ CxTest_CxGeoIp::~CxTest_CxGeoIp() {
 /*virtual*/
 BOOL
 CxTest_CxGeoIp::bUnit() {
-    const tString csFilePath = xT("../../../Tests/_TestData/GeoIP.dat");
+    const tString csFilePath = xT("../../../Tests/Source/_TestData/GeoIP.dat");
 
     const CxGeoIp::EOption copOption[] = {
         CxGeoIp::opStandard,

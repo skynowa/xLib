@@ -266,9 +266,7 @@ CxEnvironment::sExpandStrings(
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-//DONE: vars (like __argc, __argv, __wargv)
-size_t  CxEnvironment::m_uiCommandLineArgsCount = 0;
-TCHAR **CxEnvironment::m_aszCommandLineArgs     = NULL;
+/*static*/ std::vector<tString> CxEnvironment::_m_vsCommandLineArgs;
 //--------------------------------------------------------------------------
 //DONE: sGetCommandLine (get command-line string for the current process)
 /*static*/
@@ -279,62 +277,12 @@ CxEnvironment::sGetCommandLine() {
     tString sRes;
 
 #if defined(xOS_WIN)
-    LPTSTR pszRes = ::GetCommandLine();
-    /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
+    LPTCSTR pcszRes = ::GetCommandLine();
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, tString());
 
-    sRes.assign( CxString::sTrimSpace(pszRes) );
+    sRes.assign( CxString::sTrimSpace(pcszRes) );
 #elif defined(xOS_LINUX)
-    #if xDEPRECIATE
-        CxStdioFile  sfFile;
-        const size_t cuiBuffSize             = 1024 * 2;    //TODO: must be enough space for store data
-        TCHAR        szBuff[cuiBuffSize + 1] = {0};
-        std::size_t  uiBytes                 = 0;
-        size_t       uiOffset                = 0;
-        tString      sProcPath               = CxString::sFormat(xT("/proc/%ld/cmdline"), CxProcess::ulGetCurrId());
-
-        BOOL bRes = sfFile.bOpen(sProcPath, CxStdioFile::omRead, TRUE);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
-
-        for ( ;; ) {
-            uiBytes = sfFile.uiRead(szBuff + uiOffset, cuiBuffSize - uiOffset);
-            xCHECK_DO(0 >= uiBytes, break);
-
-            char *pszCurrPtr = szBuff;
-
-            for (size_t i = 0; i < uiBytes; ++ i) {
-                xCHECK_DO(xT('\0') != szBuff[i], continue);
-
-                sRes.append(pszCurrPtr);
-                sRes.append(CxConst::xSPACE);   //xTRACEV(xT("%s"), sRes.c_str());
-
-                if (i + 1 < uiBytes) {
-                    pszCurrPtr = szBuff + i + 1;
-                } else {
-                    pszCurrPtr = NULL;
-                }
-            }
-
-            if (NULL != pszCurrPtr)  {
-                uiBytes  = 0;
-                uiOffset = szBuff - pszCurrPtr + cuiBuffSize + 1;
-
-                while (pszCurrPtr != szBuff + cuiBuffSize) {
-                    szBuff[uiBytes ++] = *pszCurrPtr ++;
-                }
-
-                szBuff[uiBytes] = xT('\0');
-            }
-        }
-
-        sRes.assign( CxString::sTrimSpace(sRes) );
-        /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
-    #else
-        for (TCHAR **pszVar = m_aszCommandLineArgs; NULL != *pszVar; ++ pszVar) {
-            sRes.append(*pszVar);
-            sRes.append(CxConst::xSPACE);
-        }
-        /*DEBUG*/xASSERT_RET(false == sRes.empty(), tString());
-    #endif
+    sRes.assign( CxString::sJoin(_m_vsCommandLineArgs, CxConst::xSPACE) );
 #endif
 
     return sRes;
@@ -349,16 +297,9 @@ CxEnvironment::bGetCommandLineArgs(
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsArgs, FALSE);
 
-    std::vector<tString> vsArgs;
+    xCHECK_DO(true == _m_vsCommandLineArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
 
-    for (TCHAR **pszVar = m_aszCommandLineArgs; NULL != *pszVar; ++ pszVar) {
-        vsArgs.push_back(*pszVar);
-    }
-    /*DEBUG*/xASSERT_RET(false         == vsArgs.empty(),           FALSE);
-    /*DEBUG*/xASSERT_RET(vsArgs.size() == m_uiCommandLineArgsCount, FALSE);
-
-    //out
-    std::swap(*pvsArgs, vsArgs);
+    (*pvsArgs).assign(_m_vsCommandLineArgs.begin(), _m_vsCommandLineArgs.end());
 
     return TRUE;
 }
@@ -368,14 +309,26 @@ CxEnvironment::bGetCommandLineArgs(
 BOOL
 CxEnvironment::bSetCommandLineArgs(
     const INT  ciArgsCount,
-    TCHAR     *pcaszArgs[]
+    TCHAR     *paszArgs[]
 )
 {
-    /*DEBUG*/xASSERT_RET(0    < ciArgsCount, FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != pcaszArgs,  FALSE);
+    /*DEBUG*/// n/a (because we'll have a recursion)
+    /*DEBUG*/// n/a (because we'll have a recursion)
 
-    m_uiCommandLineArgsCount = static_cast<size_t>( ciArgsCount );
-    m_aszCommandLineArgs     = pcaszArgs;
+    const TCHAR  **pcaszCommandLineArgs     = const_cast<const TCHAR **>(paszArgs);
+    const size_t   m_uiCommandLineArgsCount = ciArgsCount;
+
+    std::vector<tString> vsArgs;
+
+    for (const TCHAR **pszVar = pcaszCommandLineArgs; (NULL != pcaszCommandLineArgs) && (NULL != *pszVar); ++ pszVar) {
+        vsArgs.push_back(*pszVar);
+    }
+    /*DEBUG*/xASSERT_RET(vsArgs.size() == m_uiCommandLineArgsCount, FALSE);
+
+    //out
+    std::swap(_m_vsCommandLineArgs, vsArgs);
+
+    xCHECK_DO(true == _m_vsCommandLineArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
 
     return TRUE;
 }

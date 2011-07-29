@@ -27,6 +27,7 @@ CxTest_CxDebugger::~CxTest_CxDebugger() {
 /*virtual*/
 BOOL
 CxTest_CxDebugger::bUnit() {
+
     //-------------------------------------
     //bGetEnabled, bGetEnabled
     {
@@ -65,7 +66,7 @@ CxTest_CxDebugger::bUnit() {
     //bSetLogPath, sGetLogPath
     {
         const tString csFilePath = xT("");
-        
+
         m_sRes = CxDebugger::sGetLogPath();
         xASSERT(true == m_sRes.empty());
 
@@ -96,7 +97,7 @@ CxTest_CxDebugger::bUnit() {
 
         for (size_t i = 0; i < 100; ++ i) {
 	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));
-	
+
 	        ////m_bRes = CxDebugger::bReportMake(rpReport);
             ////xASSERT(FALSE != m_bRes);
         }
@@ -106,7 +107,7 @@ CxTest_CxDebugger::bUnit() {
     //bTrace
     {
         for (size_t i = 0;  i < 10; ++ i) {
-            CxDebugger::bTrace(xT("CxDebugger: %"xPR_SIZET), i);
+            CxDebugger::bTrace(xT("\tCxDebugger: %")xPR_SIZET, i);
         }
     }
 
@@ -114,7 +115,7 @@ CxTest_CxDebugger::bUnit() {
     //bTrace
     {
         for (size_t i = 0;  i < 10; ++ i) {
-            CxDebugger::bTrace(CxString::lexical_cast(i));
+            CxDebugger::bTrace(xT("\t") + CxString::lexical_cast(i));
         }
     }
 
@@ -166,7 +167,7 @@ CxTest_CxDebugger::bUnit() {
     {
         //TODO: xNOT_IMPLEMENTED_RET
     }
-    
+
     //--------------------------------------------------
     //xASSERT
     {
@@ -216,7 +217,7 @@ CxTest_CxDebugger::bUnit() {
     }
 
     //--------------------------------------------------
-    //
+    //like xASSERT_EQUAL macroses
 
     //with INT
     {
@@ -225,25 +226,25 @@ CxTest_CxDebugger::bUnit() {
 		    INT iVar2 = 1;
 		    xASSERT_EQUAL(iVar1, iVar2);
 	    }
-	
+
 	    {
 		    INT iVar1 = 0;
 		    INT iVar2 = 1;
 		    xASSERT_NOT_EQUAL(iVar1, iVar2);
 	    }
-	
+
 	    {
 		    INT iVar1 = 1;
 		    INT iVar2 = 122;
 		    xASSERT_LESS(iVar1, iVar2);
 	    }
-	
+
 	    {
 		    INT iVar1 = 110;
 		    INT iVar2 = 10;
 		    xASSERT_GREATER(iVar1, iVar2);
 	    }
-	
+
 	    {
 		    INT iVar1 = 50;
 		    INT iVar2 = 122;
@@ -253,7 +254,7 @@ CxTest_CxDebugger::bUnit() {
 		    INT iVar4 = 200;
 		    xASSERT_LESS_EQUAL(iVar3, iVar4);
 	    }
-	
+
 	    {
 		    INT iVar1 = 500;
 		    INT iVar2 = 147;
@@ -266,7 +267,7 @@ CxTest_CxDebugger::bUnit() {
     }
 
     //--------------------------------------------------
-    //
+    //like xASSERT_EQUAL macroses
 
     //with tString
     {
@@ -275,25 +276,25 @@ CxTest_CxDebugger::bUnit() {
 		    tString sVar2 = xT("aaa");
 		    xASSERT_EQUAL(sVar1, sVar2);
 	    }
-	
+
 	    {
 		    tString sVar1 = xT("bbb");
 		    tString sVar2 = xT("BBB");
 		    xASSERT_NOT_EQUAL(sVar1, sVar2);
 	    }
-	
+
 	    {
 		    tString sVar1 = xT("aaa");
 		    tString sVar2 = xT("ccc");
 		    xASSERT_LESS(sVar1, sVar2);
 	    }
-	
+
 	    {
 		    tString sVar1 = xT("bbb");
 		    tString sVar2 = xT("aaa");
 		    xASSERT_GREATER(sVar1, sVar2);
 	    }
-	
+
 	    {
 		    tString sVar1 = xT("aaa");
 		    tString sVar2 = xT("aaa");
@@ -303,7 +304,7 @@ CxTest_CxDebugger::bUnit() {
 		    tString sVar4 = xT("ggg");
 		    xASSERT_LESS_EQUAL(sVar3, sVar4);
 	    }
-	
+
 	    {
 		    tString sVar1 = xT("aaa");
 		    tString sVar2 = xT("aaa");
@@ -314,15 +315,6 @@ CxTest_CxDebugger::bUnit() {
 		    xASSERT_GREATER_EQUAL(sVar3, sVar4);
 	    }
     }
-          
-    #if xTODO
-        xASSERT_EQUAL        (expr1, expr2);
-        xASSERT_NOT_EQUAL    (expr1, expr2);
-        xASSERT_LESS         (expr1, expr2);
-        xASSERT_GREATER      (expr1, expr2);
-        xASSERT_LESS_EQUAL   (expr1, expr2);
-        xASSERT_GREATER_EQUAL(expr1, expr2);
-    #endif
 
     return TRUE;
 }

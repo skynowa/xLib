@@ -16,8 +16,8 @@ CxReport::CxReport(
     const EType   &crtType,
     const T       &cVarT1,
     const T       &cVarT2,
-    const tString &csExp1,
-    const tString &csExp2,
+    const tString &csExpr1,
+    const tString &csExpr2,
     const tString &csExprSign,
     const ULONG    culLastError,
     const tString &csFile,
@@ -48,7 +48,7 @@ CxReport::CxReport(
     /*DEBUG*/
 
     //sExpr
-    tString sExpr = csExp1 + CxConst::xSPACE + csExprSign + CxConst::xSPACE + csExp2;
+    tString sExpr = csExpr1 + xT(" ") + csExprSign + xT(" ") + csExpr2;
 
     //sComment
     tString sComment;
@@ -57,19 +57,19 @@ CxReport::CxReport(
         tostringstream ossStream;
         ossStream.exceptions(tostringstream::eofbit | tostringstream::failbit | tostringstream::badbit);
 
+        size_t uiAlignWidth = CxMacros::xMax(csExpr1.size(), csExpr2.size());
 
-        size_t uiAlignWidth = CxMacros::xMax(csExp1.size(), csExp2.size());
-
-        ossStream << xT("\"") << std::left << std::setw(uiAlignWidth) << csExp1 << xT("\"") << xT(": ") << cVarT1 << xT("\n")
-                  << xT("                 ")
-                  << xT("\"") << std::left << std::setw(uiAlignWidth) << csExp2 << xT("\"") << xT(": ") << cVarT2;
+        ossStream << std::left << std::setw(uiAlignWidth) << csExpr1 << xT(": ") << cVarT1 << xT("\n")
+                  << xT("                    ")
+                  << std::left << std::setw(uiAlignWidth) << csExpr2 << xT(": ") << cVarT2;
 
         if (false == _m_sComment.empty()) {
-            ossStream << xT("\n                 ")
+            ossStream << xT("\n                    ")
                       << xT("  (") << _m_sComment << xT(")");
         }
 
-        sComment = ossStream.str();
+
+        sComment.assign( ossStream.str() );
     }
 
     _bInitVars(crtType, sExpr, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment);
