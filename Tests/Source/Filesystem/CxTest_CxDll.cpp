@@ -54,8 +54,6 @@ CxTest_CxDll::bUnit() {
 
         //-------------------------------------
         //bLoad
-        xTRACEV(xT("sData[i][0]: %s"), sData[i][0].c_str());
-
         m_bRes = objDll.bLoad(sData[i][0]);
         xASSERT(FALSE != m_bRes);
 

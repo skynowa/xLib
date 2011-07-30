@@ -845,7 +845,7 @@ CxThread::bSetDebugName(
 
     xCHECK_RET(FALSE == CxDebugger::bIsPresent(), TRUE);
 
-    _m_bRes = _bSetDebugNameA( xS2TS(csName) );
+    _m_bRes = _bSetDebugNameA( xTS2S(csName) );
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;

@@ -24,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -149,6 +149,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Common\CxType.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxBase64.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxRandom.cpp" />
@@ -268,6 +269,7 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxShell.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxString.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxType.cpp" />
     <ClCompile Include="..\..\Tests\Source\Compress\CxTest_CxGz.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -350,6 +352,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Common\CxArray.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxAutoBuffer.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xTracing.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h" />
@@ -371,6 +374,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxShell.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxString.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxType.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Compress\CxTest_CxGz.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -587,6 +591,7 @@
   <ItemGroup>
     <None Include="..\..\Source\Common\CxArray.inl" />
     <None Include="..\..\Source\Common\CxString.inl" />
+    <None Include="..\..\Source\Common\CxType.inl" />
     <None Include="..\..\Source\Common\Win\CxHandleT.inl" />
     <None Include="..\..\Source\Debug\CxReport.inl" />
     <None Include="..\..\Source\Sync\CxThreadPool.inl" />

@@ -31,7 +31,8 @@ class CxReport :
 
                          CxReport           (const EType &crtType, const tString &csExp, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, const tString &csComment);
                          CxReport           (const EType &crtType, const tString &csExp, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, LPCTSTR pcszComment, ...);
-        template<class T>CxReport           (const EType &crtType, const T &cVatT1, const T &cVatT2, const tString &csExpr1, const tString &csExpr2, const tString &csExprSign, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, const tString &csComment);
+                         template<class T>
+                         CxReport           (const EType &crtType, const T &cVatT1, const T &cVatT2, const tString &csExpr1, const tString &csExpr2, const tString &csExprSign, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, const tString &csComment);
 
         virtual         ~CxReport           ();
 

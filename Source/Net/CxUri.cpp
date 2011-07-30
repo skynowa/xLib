@@ -328,7 +328,7 @@ CxUri::sUnescape(const std::string &csUri) {
         */
         else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::string::npos /*|| reserved.find(c) != std::string::npos*/) {
             //� -> %FF
-            sRes += CxString::sFormat("%%%02X", (UINT)(UCHAR)c);
+            sRes += CxString::sFormat(xT("%%%02X"), (UINT)(UCHAR)c);
         }
         else {
             sRes += c;

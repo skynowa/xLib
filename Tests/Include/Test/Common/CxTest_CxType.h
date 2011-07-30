@@ -1,28 +1,31 @@
 /****************************************************************************
-* Class name:  CxObject
-* Description: 
-* File name:   CxObject.h
+* Class name:  CxTest_CxType
+* Description: test CxType
+* File name:   CxType.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
-* Created:     29.07.2011
+* Created:     30.07.2011
 *
 *****************************************************************************/
 
 
-#ifndef xLib_Common_CxObjectH
-#define xLib_Common_CxObjectH
+#ifndef CxTest_CxTypeH
+#define CxTest_CxTypeH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Debug/CxTest.h>
+#include <xLib/Common/CxType.h>
 //---------------------------------------------------------------------------
-class CxObject : 
-    public CxNonCopyable 
+class CxTest_CxType : 
+    public CxTest 
 {
 	public:
-				 CxObject();
-		virtual ~CxObject();
-        
-    private:
-      
+		              CxTest_CxType();
+	    virtual      ~CxTest_CxType();
+
+	    virtual BOOL  bUnit();
+
+	private:
 };
 //---------------------------------------------------------------------------
-#endif //xLib_Common_CxObjectH
+#endif //CxTest_CxTypeH
