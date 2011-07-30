@@ -26,6 +26,7 @@
 #include <Test/Common/CxTest_CxSystemInfo.h>
 #include <Test/Common/CxTest_CxAutoMallocT.h>
 #include <Test/Common/CxTest_CxException.h>
+#include <Test/Common/CxTest_CxType.h>
 #if defined(xOS_WIN)
     #include <Test/Common/CxTest_CxClipboard.h>
     #include <Test/Common/CxTest_CxCom.h>
@@ -210,9 +211,10 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxFunctorT);
         bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
         bRes = tmManager.bAdd(new CxTest_CxException);
+        bRes = tmManager.bAdd(new CxTest_CxType);
 
     #if defined(xOS_WIN)
-        bRes = tmManager.bAdd(new CxTest_CxClipboard);
+        ////bRes = tmManager.bAdd(new CxTest_CxClipboard);
         bRes = tmManager.bAdd(new CxTest_CxCom);
         bRes = tmManager.bAdd(new CxTest_CxHandleT);
         bRes = tmManager.bAdd(new CxTest_CxShell);

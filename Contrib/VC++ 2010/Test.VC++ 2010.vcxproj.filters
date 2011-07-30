@@ -660,6 +660,12 @@
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp">
       <Filter>Test\Gui\Win\Gdi+</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Common\CxType.cpp">
+      <Filter>xLib\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxType.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1214,6 +1220,12 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxAutoBuffer.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\CxType.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxType.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Source\Sync\CxThreadPool.inl">
@@ -1232,6 +1244,9 @@
       <Filter>xLib\Debug</Filter>
     </None>
     <None Include="..\..\Source\Common\CxString.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
+    <None Include="..\..\Source\Common\CxType.inl">
       <Filter>xLib\Common</Filter>
     </None>
   </ItemGroup>

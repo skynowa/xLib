@@ -309,10 +309,6 @@ CxImage::sGetLastStatus(
         case Gdiplus::PropertyNotFound:          { sRes = xT("PropertyNotFound");           }    break;
         case Gdiplus::PropertyNotSupported:      { sRes = xT("PropertyNotSupported");       }    break;
 
-    #if defined(xCOMPILER_CODEGEAR)
-        case Gdiplus::ProfileNotFound:           { sRes = xT("ProfileNotFound");            }    break;
-    #endif
-
         default:                                 { sRes = xT("Unknown");                    }    break;
     }
 
