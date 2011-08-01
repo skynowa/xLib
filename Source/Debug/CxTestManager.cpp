@@ -39,7 +39,7 @@ CxTestManager::~CxTestManager() {
         /*CxMacros::*/xPTR_DELETE(*it);
     }
 
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests deleted.")));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests destructed.")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------

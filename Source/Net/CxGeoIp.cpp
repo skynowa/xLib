@@ -12,6 +12,7 @@
 #include <xLib/Net/CxGeoIp.h>
 
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Filesystem/CxDir.h>
 
 
 /****************************************************************************
@@ -48,7 +49,7 @@ CxGeoIp::bOpen(
     /*DEBUG*/// copOption - n/a
 
     GeoIP *pgiGeoIP = GeoIP_open(csFilePath.c_str(), copOption);
-    /*DEBUG*/xASSERT_RET(NULL != pgiGeoIP, FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != pgiGeoIP, csFilePath, FALSE);
 
     _m_pgiGeoIp = pgiGeoIP;
 

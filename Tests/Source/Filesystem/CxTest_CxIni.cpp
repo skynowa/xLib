@@ -61,47 +61,47 @@ CxTest_CxIni::bUnit() {
     //bCreateDefault
     {
         m_bRes = iniIni.bCreateDefault(csContent);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //--------------------------------------------------
     //sGetPath
     {
         m_sRes = iniIni.sGetPath();
-        xASSERT(csFilePath == m_sRes);
+        xASSERT_EQUAL(csFilePath, m_sRes);
     }
 
     //--------------------------------------------------
     //bSetPath
     {
         m_bRes = iniIni.bSetPath(csFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_sRes = iniIni.sGetPath();
-        xASSERT(csFilePath == m_sRes);
+        xASSERT_EQUAL(csFilePath, m_sRes);
     }
 
     //--------------------------------------------------
     //cmapsGet, bFlush
     {
         NxLib::TIni &riniIni = iniIni.cmapsGet();
-        xASSERT(true == riniIni.empty());
+        xASSERT_EQUAL(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
         riniIni[csKey2] = csValue2;
         riniIni[csKey3] = csValue3;
 
         m_bRes = iniIni.bFlush();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_sRes = iniIni.sKeyReadString(csKey1, tString());
-        xASSERT(csValue1 == m_sRes);
+        xASSERT_EQUAL(csValue1, m_sRes);
 
         m_sRes = iniIni.sKeyReadString(csKey2, tString());
-        xASSERT(csValue2 == m_sRes);
+        xASSERT_EQUAL(csValue2, m_sRes);
 
         m_sRes = iniIni.sKeyReadString(csKey3, tString());
-        xASSERT(csValue3 == m_sRes);
+        xASSERT_EQUAL(csValue3, m_sRes);
     }
 
     //--------------------------------------------------
@@ -119,11 +119,11 @@ CxTest_CxIni::bUnit() {
                 std::vector<tString> vecsPair;
 
                 m_bRes = CxString::bSplit(vecsPairs.at(i), CxConst::xEQUAL, &vecsPair);
-                xASSERT(FALSE != m_bRes);
-                xASSERT(false == vecsPair.empty());
+                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_EQUAL(false, vecsPair.empty());
 
                 m_bRes = iniIni.bKeyIsExists( vecsPair.at(0) );
-                xASSERT(FALSE != m_bRes);
+                xASSERT_EQUAL(TRUE, m_bRes);
             }
         }
 
@@ -141,10 +141,10 @@ CxTest_CxIni::bUnit() {
                 std::vector<tString> vecsPair;
 
                 m_bRes = CxString::bSplit(vecsPairs.at(i), CxConst::xEQUAL, &vecsPair);
-                xASSERT(FALSE != m_bRes);
+                xASSERT_EQUAL(TRUE, m_bRes);
 
                 m_bRes = iniIni.bKeyIsExists( vecsPair.at(0) );
-                xASSERT(FALSE == m_bRes);
+                xASSERT_EQUAL(FALSE, m_bRes);
             }
         }
     }
@@ -157,10 +157,10 @@ CxTest_CxIni::bUnit() {
             const tString csStr = csValue1;
 
             m_bRes = iniIni.bKeyWriteString(csKey1, csStr);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_sRes = iniIni.sKeyReadString(csKey1, tString());
-            xASSERT(csStr == m_sRes);
+            xASSERT_EQUAL(csStr, m_sRes);
         }
 
         //fail
@@ -168,10 +168,10 @@ CxTest_CxIni::bUnit() {
             const tString csStr = xT("sssssssssssss");
 
             m_bRes = iniIni.bKeyWriteString(csKey1, csStr);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_sRes = iniIni.sKeyReadString(csKey1, tString());
-            xASSERT(csStr == m_sRes);
+            xASSERT_EQUAL(csStr, m_sRes);
         }
     }
 
@@ -181,10 +181,10 @@ CxTest_CxIni::bUnit() {
         const LONG cliValue = 10L;
 
         m_bRes  = iniIni.bKeyWriteInt(csKey1, cliValue);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_liRes = iniIni.iKeyReadInt(csKey1, 0L);
-        xASSERT(cliValue == m_liRes);
+        xASSERT_EQUAL(cliValue, m_liRes);
     }
 
     //--------------------------------------------------
@@ -193,10 +193,10 @@ CxTest_CxIni::bUnit() {
         const DOUBLE cdValue = 777.0f;
 
         m_bRes  = iniIni.bKeyWriteFloat(csKey1, cdValue);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_dRes = iniIni.dKeyReadFloat(csKey1, 0.0f);
-        xASSERT(cdValue == m_dRes);
+        xASSERT_EQUAL(cdValue, m_dRes);
     }
 
     //--------------------------------------------------
@@ -205,10 +205,10 @@ CxTest_CxIni::bUnit() {
         const BOOL cbValue = FALSE;
 
         m_bRes  = iniIni.bKeyWriteBool(csKey1, cbValue);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = iniIni.bKeyReadBool(csKey1, TRUE);
-        xASSERT(cbValue == m_bRes);
+        xASSERT_EQUAL(cbValue, m_bRes);
     }
 
     //--------------------------------------------------
@@ -218,46 +218,46 @@ CxTest_CxIni::bUnit() {
         const uString cusDefaultValue(10, 'd');
 
         m_bRes  = iniIni.bKeyWriteBin(csKey1, cusValue);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_usRes = iniIni.usKeyReadBin(csKey1, cusDefaultValue);
-        xASSERT(cusValue == m_usRes);
+        xASSERT_EQUAL(cusValue, m_usRes);
     }
 
     //--------------------------------------------------
     //bKeyClear
     {
         m_bRes = iniIni.bKeyClear(csKey3);
-        xASSERT(FALSE != m_bRes);
-        xASSERT(FALSE != iniIni.bKeyIsExists(csKey3));
+        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_EQUAL(TRUE, iniIni.bKeyIsExists(csKey3));
 
         m_sRes = iniIni.sKeyReadString(csKey3, xT("fasrfsefrtg"));
-        xASSERT(tString() == m_sRes);
+        xASSERT_EQUAL(tString(), m_sRes);
     }
 
     //--------------------------------------------------
     //bKeyDelete
     {
-        xASSERT(FALSE != iniIni.bKeyIsExists(csKey3));
+        xASSERT_EQUAL(TRUE, iniIni.bKeyIsExists(csKey3));
         m_bRes = iniIni.bKeyDelete(csKey3);
-        xASSERT(FALSE != m_bRes);
-        xASSERT(FALSE == iniIni.bKeyIsExists(csKey3));
+        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_EQUAL(FALSE, iniIni.bKeyIsExists(csKey3));
     }
 
     //--------------------------------------------------
     //bClear
     {
         m_bRes = iniIni.bClear();
-        xASSERT(FALSE != m_bRes);
-        xASSERT(CxStdioFile::liGetSize( iniIni.sGetPath() ) == 0);
+        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_EQUAL(0, CxStdioFile::liGetSize( iniIni.sGetPath() ));
     }
 
     //--------------------------------------------------
     //bDelete
     {
         m_bRes = iniIni.bDelete();
-        xASSERT(FALSE != m_bRes);
-        xASSERT(CxStdioFile::bIsExists( iniIni.sGetPath() ) == FALSE);
+        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_EQUAL(FALSE, CxStdioFile::bIsExists( iniIni.sGetPath() ));
     }
 
     return TRUE;

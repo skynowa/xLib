@@ -27,7 +27,7 @@ CxTest_CxGeoIp::~CxTest_CxGeoIp() {
 /*virtual*/
 BOOL
 CxTest_CxGeoIp::bUnit() {
-    const tString csFilePath = xT("../../../Tests/Source/_TestData/GeoIP.dat");
+    const tString csFilePath = xT("./Tests/Source/_TestData/GeoIP.dat");
 
     const CxGeoIp::EOption copOption[] = {
         CxGeoIp::opStandard,
@@ -46,7 +46,7 @@ CxTest_CxGeoIp::bUnit() {
             CxGeoIp giGeoIp;
 
             m_bRes = giGeoIp.bOpen(csFilePath, copOption[i]);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
     }
 
@@ -57,13 +57,13 @@ CxTest_CxGeoIp::bUnit() {
             CxGeoIp giGeoIp;
 
             m_bRes = giGeoIp.bIsValid();
-            xASSERT(FALSE == m_bRes);
+            xASSERT_EQUAL(FALSE, m_bRes);
 
             m_bRes = giGeoIp.bOpen(csFilePath, copOption[i]);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = giGeoIp.bIsValid();
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
     }
 
@@ -92,7 +92,7 @@ CxTest_CxGeoIp::bUnit() {
                 CxGeoIp giGeoIp;
 
                 m_bRes = giGeoIp.bOpen(csFilePath, copOption[i]);
-                xASSERT(FALSE != m_bRes);
+                xASSERT_EQUAL(TRUE, m_bRes);
 
                 m_sRes = giGeoIp.sGetCountryCodeByAddress(csAddress);
                 xASSERT(csMustCode2 == m_sRes);
@@ -110,10 +110,10 @@ CxTest_CxGeoIp::bUnit() {
             CxGeoIp giGeoIp;
 
             m_bRes = giGeoIp.bOpen(csFilePath, copOption[i]);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = giGeoIp.bClose();
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
     }
 

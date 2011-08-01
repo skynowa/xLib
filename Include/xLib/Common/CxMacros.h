@@ -72,7 +72,23 @@ class CxMacros :
 
         #define xMAX(a, b)              ( ((a) > (b)) ? (a) : (b) )
         #define xMIN(a, b)              ( ((a) < (b)) ? (a) : (b) )
-        #define xUNUSED(arg)            ( (void)(arg) ) //( (arg) = (arg) )
+
+
+        //xUNUSED
+        #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL)
+            ( (void)(arg) )
+        #elif defined(xCOMPILER_CODEGEAR)
+            ( (void)(arg) )
+        #elif defined(xCOMPILER_GNUC)
+            #define xUNUSED(a)          { (void)( (a) = ((TRUE) ? (a) : (a)) ); }
+        #else
+            ( (void)(arg) )
+
+            //#define xUNUSED(arg)            ( (arg) = (arg) )   //( (void)(arg) )
+            //#define xUNUSED(a)              do { (a) = (a); } while (&(a) < (typeof(a) *)0);
+            //#define xUNUSED(a)              do { (a) = (TRUE) ? (a) : (a); } while (&(a) < (typeof(a) *)0);
+        #endif
+
         #define xAS_BOOL(expr)          ( (true == (expr)) ? (TRUE) : (FALSE) )
 
         //enum

@@ -31,14 +31,14 @@ CxTest_CxProcess::bUnit() {
     //ulGetCurrId
     {
         m_ulRes = CxProcess::ulGetCurrId();
-        xASSERT(0 <= m_ulRes);
+        xASSERT_LESS_EQUAL(0, m_ulRes);
     }
 
     //--------------------------------------------------
     //ulGetCurrParentId
     {
         m_ulRes = CxProcess::ulGetCurrParentId();
-        xASSERT(0 <= m_ulRes);
+        xASSERT_LESS_EQUAL(0, m_ulRes);
     }
 
     //--------------------------------------------------
@@ -53,21 +53,21 @@ CxTest_CxProcess::bUnit() {
     #endif
 
         ////m_bRes = CxProcess::bExec(csFilePath, csCmdLine.c_str(), 0);
-        ////xASSERT(FALSE != m_bRes);
+        ////xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //--------------------------------------------------
     //bExit
     {
         ////m_bRes = CxProcess::bExit(CxProcess::ulGetCurrParentId(), 0);
-        ////xASSERT(FALSE != m_bRes);
+        ////xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //--------------------------------------------------
     //bTerminate
     {
         //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
-        //xASSERT(FALSE != m_bRes);
+        //xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     return TRUE;
