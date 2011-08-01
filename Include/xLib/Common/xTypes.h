@@ -68,7 +68,7 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
     typedef double                 DOUBLE;
 
 #if defined(xOS_WIN)
-	#if defined(xCOMPILER_MINGW32) && defined(xUNICODE)
+	#if defined(xCOMPILER_MINGW32)
 		//sockets
 		typedef addrinfo           ADDRINFOT;
 	#endif //xUNICODE

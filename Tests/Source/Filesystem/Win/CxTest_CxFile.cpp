@@ -42,40 +42,40 @@ CxTest_CxFile::bUnit() {
     //????
     CxFile F;
 
-    m_bRes = F.bCreate(csFilePath, CxFile::grRead | CxFile::grWrite,  CxFile::smRead | CxFile::smWrite, CxFile::cfCreateAlways, CxFileAttribute::faNormal); xASSERT_EQUAL(TRUE, m_bRes);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    m_bRes = F.bCreate(csFilePath, CxFile::grRead | CxFile::grWrite,  CxFile::smRead | CxFile::smWrite, CxFile::cfCreateAlways, CxFileAttribute::faNormal); xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
-    m_bRes = F.bOpen(csFilePath, CxFile::grRead | CxFile::grWrite,  CxFile::smRead | CxFile::smWrite, CxFile::cfOpenExisting, CxFileAttribute::faNormal); xASSERT_EQUAL(TRUE, m_bRes);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    m_bRes = F.bOpen(csFilePath, CxFile::grRead | CxFile::grWrite,  CxFile::smRead | CxFile::smWrite, CxFile::cfOpenExisting, CxFileAttribute::faNormal); xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bIsOpen();
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     ////m_bRes = F.bAttach(hTest);
-    ////xASSERT_EQUAL(TRUE, m_bRes);
+    ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     ////hRes = F.bDetach();
-    ////xASSERT_EQUAL(TRUE, m_bRes);
+    ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bWrite(csStr.c_str(), csStr.size());
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bWrite(csStr.c_str(), csStr.size(), &ulWritten);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bRead(&szInBuff[0], xARRAY_SIZE(szInBuff) - 1);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bRead(&szInBuff[0], xARRAY_SIZE(szInBuff) - 1, &ulReaded);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_ulRes = F.ulSetPosition(10, CxFile::ppBegin);
     m_ulRes = F.ulGetPosition();
     m_bRes = F.bLock(10, 2);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bUnlock(10, 2);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_llRes = F.llGetSize();
     xASSERT(FALSE != m_llRes);
@@ -93,14 +93,14 @@ CxTest_CxFile::bUnit() {
         const FILETIME ctmModified = {300000000};
 
         m_bRes = F.bSetTime(ctmCreate, ctmAccess, ctmModified);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         FILETIME tmCreate   = {0};
         FILETIME tmAccess   = {0};
         FILETIME tmModified = {0};
 
         m_bRes = F.bGetTime(&tmCreate, &tmAccess, &tmModified);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         xASSERT_EQUAL(ctmCreate.dwLowDateTime,    tmCreate.dwLowDateTime);
         xASSERT_EQUAL(ctmCreate.dwHighDateTime,   tmCreate.dwHighDateTime);
@@ -111,13 +111,13 @@ CxTest_CxFile::bUnit() {
     }
 
     m_bRes = F.bSetEof();
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bFlush();
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bClose();
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 
     /****************************************************************************
@@ -138,13 +138,13 @@ CxTest_CxFile::bUnit() {
         xASSERT_EQUAL(FALSE, m_bRes);
 
         ////m_bRes = CxFile::bIsExists(xT("C:\\pagefile.sys"));
-        ////xASSERT_EQUAL(TRUE, m_bRes);
+        ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxFile::bIsExists(xT("C:\\{DB5B11E9-28B8-4336-A275-82A0259F48F9}"));
         xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxFile::bIsExists(csFilePathSt);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //sIsExists
@@ -154,65 +154,65 @@ CxTest_CxFile::bUnit() {
     }
 
     m_bRes = CxFile::bMove(csFilePathSt, csNewFilePath); /*????, ???????*/
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_sRes = CxFile::sCreateTempName(xT("Prefix"));
     xASSERT_EQUAL(false, m_sRes.empty());
 
     m_bRes = CxFile::bCopy(csNewFilePath, csFilePathSt);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = CxFile::bCopy(csFilePathSt,  csNewFilePath, FALSE);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = CxFile::bReplace(csNewFilePath, csFilePathSt, csBakFilePath);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     ////m_bRes = CxFile::bCutFromEnd(csNewFilePath, 10);
-    ////xASSERT_EQUAL(TRUE, m_bRes);
+    ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     ////m_bRes = CxFile::bCutFromEnd(FILE *pFile, ULONG ulDistanceToCut);
-    ////xASSERT_EQUAL(TRUE, m_bRes);
+    ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     ////m_bRes = CxFile::bCheckSignature(TCHAR *pszBuff, TCHAR *pszSignature, INT iSignatureSize);
-    ////xASSERT_EQUAL(TRUE, m_bRes);
+    ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = CxFile::bSetRandomDate(csNewFilePath);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     //////m_bRes = CxFile::bDelete(csNewFilePath);
-    //////xASSERT_EQUAL(TRUE, m_bRes);
+    //////xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = CxFile::bWipe(csNewFilePath, 1);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     //-------------------------------------
     //????????
     /*??????? ??? ?????*/
     m_bRes = F.bCreate(csFilePathSt, CxFile::grRead | CxFile::grWrite,  CxFile::smRead | CxFile::smWrite, CxFile::cfCreateAlways, CxFileAttribute::faNormal);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = F.bClose();
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_ulRes = CxFileAttribute::atGet(csFilePathSt);
-    xASSERT_NOT_EQUAL(0, m_ulRes);
+    xASSERT_NOT_EQUAL(0UL, m_ulRes);
 
     //bSetAttr
     m_bRes = CxFileAttribute::bSet(csFilePathSt, CxFileAttribute::faReadOnly);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = CxFileAttribute::bSet(csFilePathSt, CxFileAttribute::faNormal);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_bRes = CxFile::bSetAttrCompressed(csFilePathSt, TRUE);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_ullRes = CxFile::ullGetCompressedSize(csFilePathSt);
     xASSERT(INVALID_FILE_SIZE != m_ullRes);
 
     m_bRes = CxFile::bSetAttrUncompressed(csFilePathSt);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     //-------------------------------------
     //other
@@ -223,7 +223,7 @@ CxTest_CxFile::bUnit() {
         CxFile F;
 
         m_bRes = F.bCreate(csTmpDirPath + CxConst::xWIN_SLASH + xT("Test.txt"), CxFile::grRead | CxFile::grWrite,  CxFile::smRead | CxFile::smWrite, CxFile::cfCreateAlways, CxFileAttribute::faNormal);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //TODO: bCreateShortcut

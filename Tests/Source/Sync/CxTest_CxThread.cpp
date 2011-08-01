@@ -48,25 +48,25 @@ CxTest_CxThread::bUnit() {
             //�������z
             INT iParam = 1000/*00000*/;
             m_bRes = pthT->bCreate(cbIsPaused, 0, &iParam);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
             ////LOG("bCreate()");
 
             m_bRes = pthT->bIsPaused();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = pthT->bIsPaused();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             //-------------------------------------
             //����� ��������
             m_bRes = pthT->bIsCreated();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = pthT->bIsRunning();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = pthT->bIsPaused();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = pthT->bIsExited();
             xASSERT_EQUAL(FALSE, m_bRes);
@@ -80,7 +80,7 @@ CxTest_CxThread::bUnit() {
             //-------------------------------------
             //���������
             m_bRes = pthT->bSetPriority(CxThread::tpLowest);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
             xASSERT_EQUAL(CxThread::tpLowest, m_iRes);
@@ -89,45 +89,45 @@ CxTest_CxThread::bUnit() {
             xASSERT_EQUAL(tString(xT("Lowest")), m_sRes);
 
             m_bRes = pthT->bPriorityUp();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = pthT->bPriorityDown();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = pthT->bIsPriorityBoost();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             {
                 m_bRes = pthT->bSetPriorityBoost(FALSE);
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
                 m_bRes = pthT->bIsPriorityBoost();
                 xASSERT_EQUAL(FALSE, m_bRes);
             }
             {
                 m_bRes = pthT->bSetPriorityBoost(TRUE);
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
                 m_bRes = pthT->bIsPriorityBoost();
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
             }
 
             //-------------------------------------
             //CPU
             ////m_bRes = bSetAffinityMask(DWORD_PTR pulMask);
-            ////xASSERT_EQUAL(TRUE, m_bRes);
+            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = pthT->bSetIdealCPU(0);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_ulRes = pthT->ulGetIdealCPU();
             xASSERT_LESS_EQUAL(0, m_ulRes);
 
             m_bRes = pthT->bSetIdealCPU(10);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = pthT->bSetIdealCPU(0);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
             ////LOG("bSetIdealCPU()");
 
             m_ulRes = pthT->ulGetIdealCPU();
@@ -152,7 +152,7 @@ CxTest_CxThread::bUnit() {
             xASSERT_LESS_EQUAL(0, m_ulRes);
 
             m_bRes = pthT->bSetDebugName(xT("TestThreadName"));
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
             ////LOG("bSetDebugName()");
 
             //-------------------------------------
@@ -167,27 +167,27 @@ CxTest_CxThread::bUnit() {
             xASSERT_EQUAL(NULL !=  m_hRes);
 
             m_bRes = pthT->bResume();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
             ////LOG("bResume()");
 
             //-------------------------------------
             //�����
             for (int i = 0; i < 3; i ++) {
                 m_bRes = pthT->bPause();
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
                 m_bRes = pthT->bIsPaused();
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
                 m_bRes = pthT->bResume();
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
                 m_bRes = pthT->bIsPaused();
                 xASSERT_EQUAL(FALSE, m_bRes);
             }
 
             ////m_bRes = pthT->bExit(INFINITE);
-            ////xASSERT_EQUAL(TRUE, m_bRes);
+            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
             ////////LOG("bExit()");
 
             ////g_uiRes = pthT->uiKill(INFINITE);
@@ -195,7 +195,7 @@ CxTest_CxThread::bUnit() {
             ////////////LOG("uiKill()");
 
             ////m_bRes = pthT->bWait(INFINITE);
-            ////xASSERT_EQUAL(TRUE, m_bRes);
+            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
             ////////LOG("bWait(INFINITE)");
 
             ULONG ulRes = pthT->ulGetExitCode();
@@ -220,7 +220,7 @@ CxTest_CxThread::bUnit() {
     //ulGetCurrId
     {
         CxThread::TId idRes = CxThread::ulGetCurrId();
-        xASSERT_LESS(0, idRes);
+        xASSERT_LESS((ULONG)0, (ULONG)idRes);
     }
 
     //--------------------------------------------------
@@ -256,14 +256,14 @@ CxTest_CxThread::bUnit() {
     //hGetCurrHandle
     {
         CxThread::THandle hRes = CxThread::hGetCurrHandle();
-        xASSERT_LESS(0, hRes);
+        xASSERT_LESS((ULONG)0, (ULONG)hRes);
     }
 
     //--------------------------------------------------
     //bYield
     {
         m_bRes = CxThread::bYield();
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -282,7 +282,7 @@ CxTest_CxThread::bUnit() {
 	        CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
 
 	        m_bRes = CxThread::bSleep(cuiMsec);
-	        xASSERT_EQUAL(TRUE, m_bRes);
+	        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	        CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
 

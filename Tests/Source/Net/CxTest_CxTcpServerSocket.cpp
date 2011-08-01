@@ -50,27 +50,27 @@ CxTest_CxTcpServerSocket::bUnit() {
 	//-------------------------------------
 	//bCreate
 	m_bRes = objListenSocket.bCreate(afAf, tpType, ptProtocol);
-	xASSERT_EQUAL(TRUE, m_bRes);
+	xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bGetHostAddrByName
 	m_bRes = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-	xASSERT_EQUAL(TRUE, m_bRes);
+	xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bConnect
 	m_bRes = objListenSocket.bBind(usPort);
-	xASSERT_EQUAL(TRUE, m_bRes);
+	xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bListen
 	m_bRes = objListenSocket.bListen(SOMAXCONN);
-	xASSERT_EQUAL(TRUE, m_bRes);
+	xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bAccept
 	m_bRes = objListenSocket.bAccept(&objClientSocket, &sIp);
-	xASSERT_EQUAL(TRUE, m_bRes);
+	xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	for (; ;) {
 		//-------------------------------------
@@ -84,7 +84,7 @@ CxTest_CxTcpServerSocket::bUnit() {
 	//-------------------------------------
 	//bClose
 	m_bRes = objClientSocket.bClose();
-	xASSERT_EQUAL(TRUE, m_bRes);
+	xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	//-------------------------------------
 	//iSend
@@ -94,12 +94,12 @@ CxTest_CxTcpServerSocket::bUnit() {
 	//-------------------------------------
 	//bClose
 	m_bRes = objListenSocket.bClose();
-	xASSERT_EQUAL(TRUE, m_bRes);
+	xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	//-------------------------------------
 	//iGetLastError
 	m_iRes = CxTcpServerSocket::iGetLastError();
-	//xASSERT_EQUAL(TRUE, m_bRes);
+	//xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	return TRUE;
 }

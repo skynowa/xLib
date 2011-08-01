@@ -35,7 +35,7 @@ CxTest_CxSleeper::bUnit() {
 
     for (size_t i = 0; i < 10; ++ i) {
         m_bRes = objSleeper.bSleep(10);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = objSleeper.bIsSleeping();
         xASSERT_EQUAL(FALSE, m_bRes);
@@ -45,7 +45,7 @@ CxTest_CxSleeper::bUnit() {
 
         #if xTODO
             m_bRes = objSleeper.bWakeUp();
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
         #endif
     }
 #elif defined(xOS_LINUX)

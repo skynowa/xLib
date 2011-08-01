@@ -28,6 +28,7 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 BOOL
 CxTest_CxAtomicLongInt::bUnit() {
 #if defined(xOS_WIN)
+#if xTEMP_DISABLED
     LONG iRes = 0;
 
     CxAtomicLongInt alAL_1;
@@ -56,6 +57,7 @@ CxTest_CxAtomicLongInt::bUnit() {
 
 
     iRes = alAL_1;
+#endif
 
 
 

@@ -46,42 +46,42 @@ CxTest_CxCookiePv1::bUnit() {
         CxCookiePv1 ckCookiePv1;
 
         m_bRes = ckCookiePv1.bSetName(csName);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_sRes = ckCookiePv1.sGetName();
         xASSERT_EQUAL(csName, m_sRes);
 
         m_bRes = ckCookiePv1.bSetValue(csValue);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_sRes = ckCookiePv1.sGetValue();
         xASSERT_EQUAL(csValue, m_sRes);
 
         m_bRes = ckCookiePv1.bSetComment(csComment);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_sRes = ckCookiePv1.sGetComment();
         xASSERT_EQUAL(csComment, m_sRes);
 
         m_bRes = ckCookiePv1.bSetDomain(csDomain);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_sRes = ckCookiePv1.sGetDomain();
         xASSERT_EQUAL(csDomain, m_sRes);
 
         m_bRes = ckCookiePv1.bSetPath(csPath);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_sRes = ckCookiePv1.sGetPath();
         xASSERT_EQUAL(csPath, m_sRes);
 
         m_bRes = ckCookiePv1.bSetMaxAge(ciMaxAge);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_llRes = ckCookiePv1.liGetMaxAge();
         xASSERT_EQUAL(ciMaxAge, m_llRes);
 
         m_bRes = ckCookiePv1.bSetSecure(cbSecure);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_bRes = ckCookiePv1.bGetSecure();
         xASSERT_EQUAL(cbSecure, m_bRes);
 
         m_bRes = ckCookiePv1.bSetHttpOnly(cbHttpOnly);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_bRes = ckCookiePv1.bGetHttpOnly();
         xASSERT_EQUAL(cbHttpOnly, m_bRes);
 
@@ -95,7 +95,7 @@ CxTest_CxCookiePv1::bUnit() {
         }
 
         m_bRes = ckCookiePv1.bClear();
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -131,7 +131,7 @@ CxTest_CxCookiePv1::bUnit() {
         xASSERT_EQUAL(csRawCookie, m_sRes);
 
         m_bRes = ckCookiePv1.bClear();
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     return TRUE;

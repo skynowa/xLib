@@ -41,10 +41,10 @@ CxTest_CxVolume::bUnit() {
             #endif
 
             m_bRes = CxVolume::bIsReady(g_csVolumePathWithSlash);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_bRes = CxVolume::bIsReady(g_csVolumeePathWithoutSlash);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
         }
 
         //FALSE
@@ -80,10 +80,10 @@ CxTest_CxVolume::bUnit() {
                 #endif
 
                 m_bRes = CxVolume::bIsEmpty(g_csVolumePathWithSlash);
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
                 m_bRes = CxVolume::bIsEmpty(g_csVolumeePathWithoutSlash);
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
             #endif
         }
 
@@ -124,10 +124,10 @@ CxTest_CxVolume::bUnit() {
             ULONGLONG ullFree      = 0;
 
             m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
-            xASSERT_EQUAL(TRUE, m_bRes);
-            xASSERT_LESS(0, ullAvailable);
-            xASSERT_LESS(0, ullTotal);
-            xASSERT_LESS(0, ullFree);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_LESS(0ULL, ullAvailable);
+            xASSERT_LESS(0ULL, ullTotal);
+            xASSERT_LESS(0ULL, ullFree);
         }
 
         {
@@ -136,10 +136,10 @@ CxTest_CxVolume::bUnit() {
             ULONGLONG ullFree      = 0;
 
             m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, NULL, NULL, NULL);
-            xASSERT_EQUAL(TRUE, m_bRes);
-            xASSERT_EQUAL(0, ullAvailable);
-            xASSERT_EQUAL(0, ullTotal);
-            xASSERT_EQUAL(0, ullFree);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_EQUAL(0ULL, ullAvailable);
+            xASSERT_EQUAL(0ULL, ullTotal);
+            xASSERT_EQUAL(0ULL, ullFree);
         }
 
         {
@@ -148,10 +148,10 @@ CxTest_CxVolume::bUnit() {
             ULONGLONG ullFree      = 0;
 
             m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
-            xASSERT_EQUAL(TRUE, m_bRes);
-            xASSERT_LESS(0, ullAvailable);
-            xASSERT_LESS(0, ullTotal);
-            xASSERT_LESS(0, ullFree);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_LESS(0ULL, ullAvailable);
+            xASSERT_LESS(0ULL, ullTotal);
+            xASSERT_LESS(0ULL, ullFree);
 
             //xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
         }
@@ -162,10 +162,10 @@ CxTest_CxVolume::bUnit() {
             ULONGLONG ullFree      = 0;
 
             m_bRes = CxVolume::bGetFreeSpace(CxConst::xSTR_EMPTY, &ullAvailable, &ullTotal, &ullFree);
-            xASSERT_EQUAL(TRUE, m_bRes);
-            xASSERT_LESS(0, ullAvailable);
-            xASSERT_LESS(0, ullTotal);
-            xASSERT_LESS(0, ullFree);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_LESS(0ULL, ullAvailable);
+            xASSERT_LESS(0ULL, ullTotal);
+            xASSERT_LESS(0ULL, ullFree);
 
             //xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
         }
@@ -202,7 +202,7 @@ CxTest_CxVolume::bUnit() {
 	                            &ulMaximumComponentLength,
 	                            &ulFileSystemFlags,
 	                            &sFileSystemName);
-	        xASSERT_EQUAL(TRUE, m_bRes);
+	        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	    #elif defined(xOS_LINUX)
 	        //TODO: xOS_LINUX
 	    #endif
@@ -215,7 +215,7 @@ CxTest_CxVolume::bUnit() {
             std::vector<tString> vecsDrives;
 
             m_bRes = CxVolume::bGetLogicalDrives(&vecsDrives);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
         #elif defined(xOS_LINUX)
             //TODO: xOS_LINUX
         #endif
@@ -228,7 +228,7 @@ CxTest_CxVolume::bUnit() {
             std::vector<tString> vecsDrives;
 
             m_bRes = CxVolume::bGetLogicalDrives(&vecsDrives, CxVolume::dtFixed);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
         #elif defined(xOS_LINUX)
             //TODO: xOS_LINUX
         #endif

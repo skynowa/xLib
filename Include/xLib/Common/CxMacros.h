@@ -76,13 +76,13 @@ class CxMacros :
 
         //xUNUSED
         #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL)
-            ( (void)(arg) )
+            #define xUNUSED(arg)          ( (void)(arg) )
         #elif defined(xCOMPILER_CODEGEAR)
-            ( (void)(arg) )
+            #define xUNUSED(arg)          ( (void)(arg) )
         #elif defined(xCOMPILER_GNUC)
-            #define xUNUSED(a)          { (void)( (a) = ((TRUE) ? (a) : (a)) ); }
+            #define xUNUSED(arg)          { (void)( (arg) = ((TRUE) ? (arg) : (arg)) ); }
         #else
-            ( (void)(arg) )
+            #define xUNUSED(arg)          ( (void)(arg) )
 
             //#define xUNUSED(arg)            ( (arg) = (arg) )   //( (void)(arg) )
             //#define xUNUSED(a)              do { (a) = (a); } while (&(a) < (typeof(a) *)0);
