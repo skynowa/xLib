@@ -37,7 +37,7 @@ CxTest_CxStdioFile::bUnit() {
 
     {
         m_bRes = CxStdioFile::bDelete(csFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
 
@@ -52,16 +52,16 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         ////m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        ////xASSERT(FALSE != m_bRes);
+        ////xASSERT_EQUAL(TRUE, m_bRes);
 
         ////m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        ////xASSERT(FALSE != m_bRes);
+        ////xASSERT_EQUAL(TRUE, m_bRes);
 
         ////m_bRes = F.bOpen(csFilePath, CxStdioFile::omRead, TRUE);
-        ////xASSERT(FALSE != m_bRes);
+        ////xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -70,19 +70,19 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bReopen(csFilePath, CxStdioFile::omOpenReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bReopen(csFilePath, CxStdioFile::omOpenReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bReopen(csFilePath, CxStdioFile::omOpenReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bReopen(csFilePath, CxStdioFile::omWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -92,10 +92,10 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile _F;
 
             m_bRes = _F.bAttach(stdout);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = _F.bIsValid();
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         #endif
     }
 
@@ -105,10 +105,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         FILE *pFile = F.pGet();
-        xASSERT(NULL != pFile);
+        xASSERT_NOT_EQUAL(NULL, pFile);
     }
 
     //-------------------------------------
@@ -117,10 +117,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_sRes = F.sGetPath();
-        xASSERT(csFilePath == m_sRes);
+        xASSERT_EQUAL(csFilePath, m_sRes);
     }
 
 
@@ -140,7 +140,7 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinCreateReadWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             F.uiWrite(&sBuffWrite.at(0), sBuffWrite.size());
         }
@@ -150,7 +150,7 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinRead, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             F.uiRead(&sBuffRead.at(0), sBuffWrite.size());
         }
@@ -172,10 +172,10 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = F.bWrite(sContent);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
 
         //-------------------------------------
@@ -184,10 +184,10 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinRead, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = F.bRead(&sText1);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
 
         //-------------------------------------
@@ -196,10 +196,10 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxStdioFile::omBinWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = F.bWrite(sText1);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
 
         //-------------------------------------
@@ -208,13 +208,13 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinRead, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = F.bRead(&sText2);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
-            xASSERT(sText1.size() == sText2.size());
-            xASSERT(sText1        == sText2);
+            xASSERT_EQUAL(sText1.size(), sText2.size());
+            xASSERT_EQUAL(sText1,        sText2);
         }
     }
 
@@ -229,10 +229,10 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = F.bWriteLine(sBuffWrite);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
 
         //bReadLine
@@ -240,10 +240,10 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omRead, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = F.bReadLine(&sBuffRead, sBuffWrite.size());
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
 
         //assert
@@ -259,25 +259,25 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bWriteChar(chChar);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
         m_chRes = F.chReadChar();
-        xASSERT(chChar == m_chRes);
+        xASSERT_EQUAL(chChar, m_chRes);
 
         m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
         m_bRes = F.bWriteChar(chChar);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
         m_bRes = F.bUngetChar(chChar);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -286,10 +286,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bClear();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
 
@@ -306,7 +306,7 @@ CxTest_CxStdioFile::bUnit() {
 	        CxStdioFile F;
 
 	        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite);
-	        xASSERT(FALSE != m_bRes);
+	        xASSERT_EQUAL(TRUE, m_bRes);
         }
 
         const time_t ctmCreate   = 1305748663;
@@ -314,19 +314,19 @@ CxTest_CxStdioFile::bUnit() {
         const time_t ctmModified = 1305753052;
 
         m_bRes = CxStdioFile::bSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         time_t tmCreate   = 0;
         time_t tmAccess   = 0;
         time_t tmModified = 0;
 
         m_bRes = CxStdioFile::bGetTime(csFilePath, &tmCreate, &tmAccess, &tmModified);
-        xASSERT(FALSE       != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
         #if xTODO
-            xASSERT(ctmCreate   == tmCreate);
+            xASSERT_EQUAL(ctmCreate, tmCreate);
         #endif
-        xASSERT(ctmAccess   == tmAccess);
-        xASSERT(ctmModified == tmModified);
+        xASSERT_EQUAL(ctmAccess,   tmAccess);
+        xASSERT_EQUAL(ctmModified, tmModified);
 #endif
     }
 
@@ -345,10 +345,10 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             INT iResFprintf = F.iWrite(csTestContent.c_str());
-            xASSERT(0 < iResFprintf);
+            xASSERT_LESS(0, iResFprintf);
         }
 
         tString sContent;
@@ -356,11 +356,11 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omRead, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bRead(&sContent);
-        xASSERT(FALSE         != m_bRes);
-        xASSERT(csTestContent == sContent);
+        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_EQUAL(csTestContent, sContent);
     }
 
     //-------------------------------------
@@ -369,10 +369,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         INT iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
-        xASSERT(0 < iResFprintf);
+        xASSERT_LESS(0, iResFprintf);
     }
 
     //-------------------------------------
@@ -385,7 +385,7 @@ CxTest_CxStdioFile::bUnit() {
                 xVA_START(args, pcszFormat);
 
                 INT iRes = csfFile.iWriteV(pcszFormat, args);
-                xASSERT(CxStdioFile::etError != iRes);
+                xASSERT_NOT_EQUAL((INT)CxStdioFile::etError, iRes);
 
                 xVA_END(args);
             };
@@ -394,7 +394,7 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         SWriter::DoV(F, xT("%s"), xT("zzz"));
     }
@@ -411,16 +411,16 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bResize(1024);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bLocking(CxStdioFile::lmLock, 10);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bLocking(CxStdioFile::lmUnlock, 10);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -429,13 +429,13 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bSetPosition(0, CxStdioFile::ppBegin);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         LONG liRes = F.liGetPosition();
-        xASSERT(0 == liRes);
+        xASSERT_EQUAL(0, liRes);
     }
 
     //-------------------------------------
@@ -446,13 +446,13 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bResize(culNewSize);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         LONG liSize = F.liGetSize();
-        xASSERT(culNewSize == liSize);
+        xASSERT_EQUAL(culNewSize, liSize);
     }
 
     //-------------------------------------
@@ -461,10 +461,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bResize(0);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -475,10 +475,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bSetVBuff(&sBuffRead.at(0), CxStdioFile::bmFull, sBuffRead.size() * 2);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -487,11 +487,11 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         #if defined(xOS_WIN)
             m_bRes = F.bSetMode(CxStdioFile::tmBinary);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         #elif defined(xOS_LINUX)
             //TODO: bSetMode
         #endif
@@ -503,11 +503,11 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         #if defined(xOS_WIN)
             m_bRes = F.bSetMode(CxStdioFile::tmText);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         #elif defined(xOS_LINUX)
             //TODO: bSetMode
         #endif
@@ -525,16 +525,16 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bIsValid();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsValid();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bClose();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -543,19 +543,19 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bIsOpen();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsOpen();
-        xASSERT(TRUE == m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bClose();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsOpen();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -564,22 +564,22 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsEmpty();
-        xASSERT(TRUE == m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_iRes = F.iWrite(xT("%s"), xT("xxasdfascefaweo4i57y2390450c1mxr,-1345rt3458854hbvx"));
-        xASSERT(0 < m_iRes);
+        xASSERT_LESS(0, m_iRes);
 
         m_bRes = F.bIsEmpty();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = F.bClear();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsEmpty();
-        xASSERT(TRUE == m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -588,10 +588,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsEof();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -600,10 +600,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsError();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -612,10 +612,10 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bErrorClear();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
 
@@ -630,13 +630,13 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bFlush();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsValid();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -645,13 +645,13 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bClose();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bIsValid();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     }
 
 
@@ -664,43 +664,43 @@ CxTest_CxStdioFile::bUnit() {
     //bIsFile
     {
         m_bRes = CxStdioFile::bIsFile(csFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bIsFile(xT(""));
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxStdioFile::bIsFile(sGetWorkDirPath());
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bIsExists
     {
         m_bRes = CxStdioFile::bIsExists(csFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bIsExists(csFilePath + xT("wrong_path"));
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxStdioFile::bIsExists(xT(""));
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxStdioFile::bIsExists(sGetWorkDirPath());
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bAccess
     {
         m_bRes = CxStdioFile::bAccess(csFilePath, CxStdioFile::amExistence);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
     //bChmod
     {
         m_bRes = CxStdioFile::bChmod(csFilePath, CxStdioFile::pmReadWrite);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -709,7 +709,7 @@ CxTest_CxStdioFile::bUnit() {
         const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bRename(csFilePath, csNewFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -717,9 +717,9 @@ CxTest_CxStdioFile::bUnit() {
     {
         tString sTemp = CxStdioFile::sCreateTemp(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"));
         //xTRACEV(xT("sTemp: %s"), sTemp.c_str());
-        xASSERT(false                  == sTemp.empty());
-        ////xASSERT(CxPath::sGetDir(sTemp) == sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"));
-        ////xASSERT(TRUE                   == CxStdioFile::bIsExists(sTemp));
+        xASSERT_EQUAL(false,                      sTemp.empty());
+        ////xASSERT_EQUAL(CxPath::sGetDir(sTemp), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"));
+        ////xASSERT_EQUAL(TRUE,                   CxStdioFile::bIsExists(sTemp));
     }
 
     //--------------------------------------------------
@@ -730,15 +730,15 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         for (size_t i = 0; i < cullLinesNum; ++ i) {
             m_bRes = F.bWriteLine( CxString::lexical_cast(i) );
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
 
         m_bRes = F.bClose();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         ULONGLONG ullLinesNum = CxStdioFile::ullGetLines(csFilePath);
 
@@ -754,23 +754,23 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(sFilePathFrom, CxStdioFile::omBinCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bResize(1024 * 1024 * 5);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = F.bClose();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
 
         m_bRes = CxStdioFile::bCopy(sFilePathFrom, sFilePathTo, FALSE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bIsExists(sFilePathTo);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bCopy(sFilePathFrom, sFilePathTo, TRUE);
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -779,7 +779,7 @@ CxTest_CxStdioFile::bUnit() {
         const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bMove(csNewFilePath, sGetWorkDirPath());
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -787,7 +787,7 @@ CxTest_CxStdioFile::bUnit() {
     {
         #if xTEMP_DISABLED
             m_bRes = CxStdioFile::bUnlink(csNewFilePath);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         #endif
     }
 
@@ -797,7 +797,7 @@ CxTest_CxStdioFile::bUnit() {
         const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bClear(csNewFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------
@@ -806,10 +806,10 @@ CxTest_CxStdioFile::bUnit() {
         const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bDelete(csNewFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bDelete(csNewFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -823,24 +823,24 @@ CxTest_CxStdioFile::bUnit() {
                     CxStdioFile F;
 
                     m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-                    xASSERT(FALSE != m_bRes);
+                    xASSERT_EQUAL(TRUE, m_bRes);
 
                     m_bRes = F.bResize(1024);
-                    xASSERT(FALSE != m_bRes);
+                    xASSERT_EQUAL(TRUE, m_bRes);
 
                     m_bRes = F.bLocking(CxStdioFile::lmLock, 10);
-                    xASSERT(FALSE != m_bRes);
+                    xASSERT_EQUAL(TRUE, m_bRes);
 
                     //try
                     m_bRes = CxStdioFile::bTryDelete(csFilePath, 2000);
-                    xASSERT(FALSE == m_bRes);
+                    xASSERT_EQUAL(FALSE, m_bRes);
 
                     m_bRes = F.bLocking(CxStdioFile::lmUnlock, 10);
-                    xASSERT(FALSE != m_bRes);
+                    xASSERT_EQUAL(TRUE, m_bRes);
                 } else {
                     //try
                     m_bRes = CxStdioFile::bTryDelete(csFilePath, 33);
-                    xASSERT(FALSE != m_bRes);
+                    xASSERT_EQUAL(TRUE, m_bRes);
                 }
             }
         #endif
@@ -852,19 +852,19 @@ CxTest_CxStdioFile::bUnit() {
         CxStdioFile F;
 
         m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_iRes = F.iWrite(xT("0123456789"));
-        xASSERT(FALSE != m_iRes);
+        xASSERT_EQUAL(TRUE, m_iRes);
 
         m_bRes = F.bClose();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bWipe(csFilePath, 10);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bWipe(csFilePath, 10);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     /****************************************************************************
@@ -881,26 +881,26 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             for (size_t i = 0; i < 100; ++ i) {
                 m_bRes = F.bWriteLine(xT("asducfgnoawifgumoaeriuatgmoi"));
-                xASSERT(FALSE != m_bRes);
+                xASSERT_EQUAL(TRUE, m_bRes);
             }
         }
 
         m_bRes = CxStdioFile::bTextRead(csFilePath, &sFileContent);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         tString sStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, &sStr);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         xASSERT_EQUAL(sFileContent.size(), sStr.size());
-        xASSERT(sFileContent == sStr);
+        xASSERT_EQUAL(sFileContent, sStr);
     }
 
     //--------------------------------------------------
@@ -912,26 +912,26 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             for (size_t i = 0; i < 100; ++ i) {
                 m_bRes = F.bWriteLine(xT("asducfgnoawifgumoaeriuatgmoi"));
-                xASSERT(FALSE != m_bRes);
+                xASSERT_EQUAL(TRUE, m_bRes);
             }
         }
 
         m_bRes = CxStdioFile::bTextRead(csFilePath, &vecsFileContent);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bTextWrite(csFilePath, vecsFileContent);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         std::vector<tString> vecsStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, &vecsStr);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         xASSERT_EQUAL(vecsFileContent.size(), vecsStr.size());
-        xASSERT(vecsFileContent == vecsStr);
+        xASSERT_EQUAL(vecsFileContent, vecsStr);
     }
 
     //--------------------------------------------------
@@ -944,26 +944,26 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             for (size_t i = 0; i < 100; ++ i) {
                 m_bRes = F.bWriteLine(xT("asducfgnoawifg") + csSeparator + xT("umoaeriuatgmoi"));
-                xASSERT(FALSE != m_bRes);
+                xASSERT_EQUAL(TRUE, m_bRes);
             }
         }
 
         m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &cmapsFileContent);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bTextWrite(csFilePath, csSeparator, cmapsFileContent);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         std::map<tString, tString> mapsStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &mapsStr);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         xASSERT_EQUAL(cmapsFileContent.size(), mapsStr.size());
-        xASSERT(cmapsFileContent == mapsStr);
+        xASSERT_EQUAL(cmapsFileContent, mapsStr);
     }
 
     //-------------------------------------
@@ -975,26 +975,26 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinCreateReadWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_iRes = F.iWrite(xT("0123456789"));
-            xASSERT(0 < m_iRes);
+            xASSERT_LESS(0, m_iRes);
 
             m_bRes = F.bResize(1024 * 50);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_iRes = F.iWrite(xT("0123456789"));
-            xASSERT(0 < m_iRes);
+            xASSERT_LESS(0, m_iRes);
         }
 
         m_bRes = CxStdioFile::bBinWrite(csFilePath, usFileContent);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         uString usStr;
         m_bRes = CxStdioFile::bBinRead(csFilePath, &usStr);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
-        xASSERT(usFileContent == usStr);
+        xASSERT_EQUAL(usFileContent, usStr);
     }
 
     /****************************************************************************
@@ -1011,17 +1011,17 @@ CxTest_CxStdioFile::bUnit() {
             CxStdioFile F;
 
             m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinCreateReadWrite, TRUE);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
 
             m_bRes = F.bResize(cliFileSize);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
 
         m_bRes = CxStdioFile::bBackup(csFilePath, sGetWorkDirPath() + CxConst::xSLASH + xT("./Backup_dir"), TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxStdioFile::bBackup(csFilePath, sGetWorkDirPath() + CxConst::xSLASH + xT("./Backup_dir"), FALSE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     return TRUE;

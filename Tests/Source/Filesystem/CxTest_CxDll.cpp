@@ -50,24 +50,24 @@ CxTest_CxDll::bUnit() {
         CxDll objDll;
 
         m_bRes = objDll.bIsLoaded();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         //-------------------------------------
         //bLoad
         m_bRes = objDll.bLoad(sData[i][0]);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
     	//-------------------------------------
     	//fpGetProcAddress
     	/*FARPROC**/VOID *fpRes = NULL;
 
     	fpRes = objDll.fpGetProcAddress(sData[i][1]);
-    	xASSERT(NULL != fpRes);
+    	xASSERT_NOT_EQUAL(NULL, fpRes);
 
     #if defined(xOS_WIN)
         typedef VOID (__stdcall *pDllFunc)(ULONG, ULONG);
@@ -83,18 +83,20 @@ CxTest_CxDll::bUnit() {
 
         pCosine = (pDllFunc)fpRes;
         DOUBLE m_dRes = pCosine(2.0);
-        xTRACEV(xT("pCosine(2.0): %f"), m_dRes);
+        xUNUSED(m_dRes);
+        //xASSERT_EQUAL(-0.416147, m_dRes);
+        //xTRACEV(xT("\tpCosine(2.0): %f"), m_dRes);
     #endif
 
         //-------------------------------------
         //bFree
         m_bRes = objDll.bFree();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     } //for
 
     return TRUE;

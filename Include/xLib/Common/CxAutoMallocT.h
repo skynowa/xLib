@@ -42,14 +42,16 @@ class CxAutoMallocT :
 //---------------------------------------------------------------------------
 //DONE: CxAutoMallocT
 template<class PtrT>
-CxAutoMallocT<PtrT>::CxAutoMallocT(const std::size_t cuiSize) :
+CxAutoMallocT<PtrT>::CxAutoMallocT(
+    const std::size_t cuiSize
+) :
     _m_pDataT(NULL)
 {
     /*DEBUG*/xASSERT_DO(NULL == _m_pDataT, return);
     /*DEBUG*/// cuiSize - n/a
 
     _m_pDataT = static_cast<PtrT>( malloc(cuiSize) );
-    /*DEBUG*/xASSERT(NULL != _m_pDataT);        //MessageBox(0, "Constructor", "", MB_OK);
+    /*DEBUG*/xASSERT(NULL != _m_pDataT);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxAutoMallocT
@@ -59,7 +61,7 @@ CxAutoMallocT<PtrT>::~CxAutoMallocT() {
 
     if (NULL != _m_pDataT) {
         free(_m_pDataT);
-        _m_pDataT = NULL;                            //MessageBox(0, "Destructor", "", MB_OK);
+        _m_pDataT = NULL;
     }
 }
 //---------------------------------------------------------------------------

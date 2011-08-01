@@ -31,21 +31,21 @@ CxTest_CxSleeper::bUnit() {
     CxSleeper objSleeper;
 
     m_bRes = objSleeper.bIsSleeping();
-    xASSERT(FALSE == m_bRes);
+    xASSERT_EQUAL(FALSE, m_bRes);
 
     for (size_t i = 0; i < 10; ++ i) {
         m_bRes = objSleeper.bSleep(10);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = objSleeper.bIsSleeping();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = objSleeper.bIsSleeping();
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         #if xTODO
             m_bRes = objSleeper.bWakeUp();
-            //xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         #endif
     }
 #elif defined(xOS_LINUX)

@@ -38,8 +38,8 @@ CxTest_CxLastError::bUnit() {
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             ULONG ulCode = CxLastError::ulGet();
-            xASSERT(0 == CxLastError::ulGet());
-            xASSERT(0 <= ulCode);
+            xASSERT_EQUAL(0, CxLastError::ulGet());
+            xASSERT_LESS_EQUAL(0, ulCode);
         }
     }
 
@@ -54,7 +54,7 @@ CxTest_CxLastError::bUnit() {
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             tString sError = CxLastError::sGet();
-            xASSERT(false == sError.empty());
+            xASSERT_EQUAL(false, sError.empty());
         }
     }
 
@@ -69,7 +69,7 @@ CxTest_CxLastError::bUnit() {
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-            xASSERT(FALSE != m_bRes);
+            xASSERT_EQUAL(TRUE, m_bRes);
         }
     }
 
@@ -84,12 +84,12 @@ CxTest_CxLastError::bUnit() {
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-			xASSERT(FALSE != m_bRes);
+			xASSERT_EQUAL(TRUE, m_bRes);
 
 			m_bRes = CxLastError::bReset();
-			xASSERT(FALSE != m_bRes);
+			xASSERT_EQUAL(TRUE, m_bRes);
 
-			xASSERT(0UL == CxLastError::ulGet());
+			xASSERT_EQUAL(0UL, CxLastError::ulGet());
         }
     }
 
@@ -97,19 +97,19 @@ CxTest_CxLastError::bUnit() {
     //sFormat
     {
         m_sRes = CxLastError::sFormat(0);
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
 
         m_sRes = CxLastError::sFormat(1);
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
 
         m_sRes = CxLastError::sFormat(2);
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
 
         m_sRes = CxLastError::sFormat(3);
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
 
         m_sRes = CxLastError::sFormat(4);
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
     }
 
     return TRUE;

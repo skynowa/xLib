@@ -38,13 +38,13 @@ CxTest_CxDebugger::bUnit() {
         xASSERT(cbTrue == m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbFalse);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
         xASSERT(cbFalse == m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbTrue);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
         xASSERT(cbTrue == m_bRes);
@@ -71,13 +71,13 @@ CxTest_CxDebugger::bUnit() {
         xASSERT(true == m_sRes.empty());
 
         m_bRes = CxDebugger::bSetLogPath(csFilePath);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
         xASSERT(csFilePath == m_sRes);
 
         m_bRes = CxDebugger::bSetLogPath(xT(""));
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
         xASSERT(true == m_sRes.empty());
@@ -99,7 +99,7 @@ CxTest_CxDebugger::bUnit() {
 	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));
 
 	        ////m_bRes = CxDebugger::bReportMake(rpReport);
-            ////xASSERT(FALSE != m_bRes);
+            ////xASSERT_EQUAL(TRUE, m_bRes);
         }
     }
 
@@ -123,7 +123,7 @@ CxTest_CxDebugger::bUnit() {
     //bBeep
     {
         m_bRes = CxDebugger::bBeep();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 
     //-------------------------------------

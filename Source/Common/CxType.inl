@@ -15,8 +15,8 @@
 
 
 /****************************************************************************
-*   public                                                          
-*                                                                            
+*   public
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
@@ -26,7 +26,7 @@ template<class T>
 tString
 CxType::sGetRawName(
     const T &cObjectT
-) 
+)
 {
     /*DEBUG*/// n/a
 
@@ -47,7 +47,7 @@ template<class T>
 tString
 CxType::sGetName(
     const T &cObjectT
-) 
+)
 {
     /*DEBUG*/// n/a
 
@@ -78,18 +78,18 @@ template<class T1, class T2>
 /*static*/
 BOOL
 CxType::bIsEquals(
-    const T1 &cObjectT1, 
+    const T1 &cObjectT1,
     const T2 &cObjectT2
-) 
+)
 {
     /*DEBUG*/// n/a
 
-    return sGetRawName(cObjectT1) == sGetRawName(cObjectT2);
+    return static_cast<BOOL>( sGetRawName(cObjectT1) == sGetRawName(cObjectT2) );
 }
 //---------------------------------------------------------------------------
 
 
 /****************************************************************************
-*    private                                                         
-*                                                                            
+*    private
+*
 *****************************************************************************/

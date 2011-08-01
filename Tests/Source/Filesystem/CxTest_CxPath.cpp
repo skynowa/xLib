@@ -62,9 +62,9 @@ CxTest_CxPath::bUnit() {
     {
     	sRes = CxPath::sGetExe();
         #if defined(xOS_WIN)
-        xASSERT(sRes == xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug\\Test.VC++ 2010.exe"));
+            xASSERT_EQUAL(sRes, xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug\\Test.VC++ 2010.exe"));
         #elif defined(xOS_LINUX)
-        //TODO: sGetExe
+            //TODO: sGetExe
         #endif
     }
 
@@ -73,7 +73,7 @@ CxTest_CxPath::bUnit() {
     {
         sRes = CxPath::sGetDll();
         #if xTODO
-            xASSERT(false == sRes.empty());
+            xASSERT_EQUAL(false, sRes.empty());
         #endif
     }
 
@@ -82,9 +82,9 @@ CxTest_CxPath::bUnit() {
     {
     	sRes = CxPath::sGetExeDir();
         #if defined(xOS_WIN)
-        xASSERT(sRes == xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug"));
+            xASSERT_EQUAL(sRes, xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug"));
         #elif defined(xOS_LINUX)
-        //TODO: sGetExeDir
+            //TODO: sGetExeDir
         #endif
     }
 
@@ -93,7 +93,7 @@ CxTest_CxPath::bUnit() {
     {
         #if defined(xOS_WIN)
         sRes    = CxPath::sGetDrive(csFilePath);
-        xASSERT(sRes == xT("C:"));
+        xASSERT_EQUAL(sRes, xT("C:"));
         #endif
     }
 
@@ -101,25 +101,25 @@ CxTest_CxPath::bUnit() {
     //sGetDir
     {
         #if defined(xOS_WIN)
-        const tString sData[][2] = {
-            {xT("C:\\Test111\\Test.txt"),                            xT("C:\\Test111")},
-            {xT("C:\\Test.txt"),                                     xT("C:")},
-            {xT("Test.txt"),                                         xT("")},
-            {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++")}
-        };
+            const tString sData[][2] = {
+                {xT("C:\\Test111\\Test.txt"),                            xT("C:\\Test111")},
+                {xT("C:\\Test.txt"),                                     xT("C:")},
+                {xT("Test.txt"),                                         xT("")},
+                {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++")}
+            };
         #elif defined(xOS_LINUX)
-        const tString sData[][2] = {
-            {xT("/home/user/Soft/eclipse/Test.txt"),           xT("/home/user/Soft/eclipse")},
-            {xT("/home/Test.txt"),                             xT("/home")},
-            {xT("Test.txt"),                                   xT("")},
-            {xT("/home/user/Soft/eclipse/pLaunchProject.exe"), xT("/home/user/Soft/eclipse")}
-        };
+            const tString sData[][2] = {
+                {xT("/home/user/Soft/eclipse/Test.txt"),           xT("/home/user/Soft/eclipse")},
+                {xT("/home/Test.txt"),                             xT("/home")},
+                {xT("Test.txt"),                                   xT("")},
+                {xT("/home/user/Soft/eclipse/pLaunchProject.exe"), xT("/home/user/Soft/eclipse")}
+            };
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sGetDir(sData[i][0]);
             tString sStr2 = sData[i][1];
-            xASSERT(sStr1 == sStr2);
+            xASSERT_EQUAL(sStr1, sStr2);
         }
     }
 
@@ -127,25 +127,25 @@ CxTest_CxPath::bUnit() {
     //sGetDirName
     {
         #if defined(xOS_WIN)
-        const tString sData[][2] = {
-            {xT("C:\\Test111\\Test.txt"),                            xT("Test111")},
-            {xT("C:\\Test.txt"),                                     xT("C:")},
-            {xT("Test.txt"),                                         xT("")},
-            {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("Borland C++")}
-        };
+            const tString sData[][2] = {
+                {xT("C:\\Test111\\Test.txt"),                            xT("Test111")},
+                {xT("C:\\Test.txt"),                                     xT("C:")},
+                {xT("Test.txt"),                                         xT("")},
+                {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("Borland C++")}
+            };
         #elif defined(xOS_LINUX)
-        const tString sData[][2] = {
-            {xT("/home/user/Soft/eclipse/Test.txt"),           xT("eclipse")},
-            {xT("/home/Test.txt"),                             xT("home")},
-            {xT("Test.txt"),                                   xT("")},
-            {xT("/home/user/Soft/eclipse/pLaunchProject.exe"), xT("eclipse")}
-        };
+            const tString sData[][2] = {
+                {xT("/home/user/Soft/eclipse/Test.txt"),           xT("eclipse")},
+                {xT("/home/Test.txt"),                             xT("home")},
+                {xT("Test.txt"),                                   xT("")},
+                {xT("/home/user/Soft/eclipse/pLaunchProject.exe"), xT("eclipse")}
+            };
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sGetDirName(sData[i][0]);
             tString sStr2 = sData[i][1];
-            xASSERT(sStr1 == sStr2);
+            xASSERT_EQUAL(sStr1, sStr2);
         }
     }
 
@@ -153,25 +153,25 @@ CxTest_CxPath::bUnit() {
 	//sGetFullName
     {
         #if defined(xOS_WIN)
-        const tString sData[][2] = {
-            {xT("C:\\Test111\\Test.txt"),                            xT("Test.txt")},
-            {xT("C:\\Test"),                                         xT("Test")},
-            {xT("Test.txt"),                                         xT("Test.txt")},
-            {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("pLaunchProject.exe")}
-        };
+            const tString sData[][2] = {
+                {xT("C:\\Test111\\Test.txt"),                            xT("Test.txt")},
+                {xT("C:\\Test"),                                         xT("Test")},
+                {xT("Test.txt"),                                         xT("Test.txt")},
+                {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("pLaunchProject.exe")}
+            };
         #elif defined(xOS_LINUX)
-        const tString sData[][2] = {
-            {xT("/home/Test111/Test.txt"),                           xT("Test.txt")},
-            {xT("/home/Test"),                                       xT("Test")},
-            {xT("Test.txt"),                                         xT("Test.txt")},
-            {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("pLaunchProject.exe")}
-        };
+            const tString sData[][2] = {
+                {xT("/home/Test111/Test.txt"),                           xT("Test.txt")},
+                {xT("/home/Test"),                                       xT("Test")},
+                {xT("Test.txt"),                                         xT("Test.txt")},
+                {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("pLaunchProject.exe")}
+            };
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sGetFullName(sData[i][0]);
             tString sStr2 = sData[i][1];
-            xASSERT(sStr1 == sStr2);
+            xASSERT_EQUAL(sStr1, sStr2);
         }
     }
 
@@ -179,25 +179,25 @@ CxTest_CxPath::bUnit() {
 	//sGetName
     {
         #if defined(xOS_WIN)
-        const tString sData[][2] = {
-            {xT("C:\\Test111\\Test.txt"),                            xT("Test")},
-            {xT("C:\\Test"),                                         xT("Test")},
-            {xT("Test.txt"),                                         xT("Test")},
-            {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("pLaunchProject")}
-        };
+            const tString sData[][2] = {
+                {xT("C:\\Test111\\Test.txt"),                            xT("Test")},
+                {xT("C:\\Test"),                                         xT("Test")},
+                {xT("Test.txt"),                                         xT("Test")},
+                {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("pLaunchProject")}
+            };
         #elif defined(xOS_LINUX)
-        const tString sData[][2] = {
-            {xT("/home/Test111/Test.txt"),                           xT("Test")},
-            {xT("/home/Test"),                                       xT("Test")},
-            {xT("Test.txt"),                                         xT("Test")},
-            {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("pLaunchProject")}
-        };
+            const tString sData[][2] = {
+                {xT("/home/Test111/Test.txt"),                           xT("Test")},
+                {xT("/home/Test"),                                       xT("Test")},
+                {xT("Test.txt"),                                         xT("Test")},
+                {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("pLaunchProject")}
+            };
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sGetName(sData[i][0]);
             tString sStr2 = sData[i][1];
-            xASSERT(sStr1 == sStr2);
+            xASSERT_EQUAL(sStr1, sStr2);
         }
     }
 
@@ -205,27 +205,27 @@ CxTest_CxPath::bUnit() {
 	//sGetExt
     {
         #if defined(xOS_WIN)
-        const tString sData[][2] = {
-            {xT("C:\\Test111\\Test.txt"),                            xT("txt")},
-            {xT("C:\\Test"),                                         xT("")},
-            {xT("Test.txt"),                                         xT("txt")},
-            {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("exe")},
-            {xT("D:\\My projects\\Borlan.d C++\\pLaunchProject"),    xT("")},
-        };
+            const tString sData[][2] = {
+                {xT("C:\\Test111\\Test.txt"),                            xT("txt")},
+                {xT("C:\\Test"),                                         xT("")},
+                {xT("Test.txt"),                                         xT("txt")},
+                {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("exe")},
+                {xT("D:\\My projects\\Borlan.d C++\\pLaunchProject"),    xT("")},
+            };
         #elif defined(xOS_LINUX)
-        const tString sData[][2] = {
-            {xT("/home/Test111/Test.txt"),                           xT("txt")},
-            {xT("/home/Test"),                                       xT("")},
-            {xT("Test.txt"),                                         xT("txt")},
-            {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("exe")},
-            {xT("/home/My projects/Borlan.d C++/pLaunchProject"),    xT("")}
-        };
+            const tString sData[][2] = {
+                {xT("/home/Test111/Test.txt"),                           xT("txt")},
+                {xT("/home/Test"),                                       xT("")},
+                {xT("Test.txt"),                                         xT("txt")},
+                {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("exe")},
+                {xT("/home/My projects/Borlan.d C++/pLaunchProject"),    xT("")}
+            };
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sGetExt(sData[i][0]);
             tString sStr2 = sData[i][1];
-            xASSERT_MSG(sStr1 == sStr2, (sStr2 + xT(" == ") + sStr1).c_str() );
+            xASSERT_EQUAL(sStr1, sStr2);
         }
     }
 
@@ -234,23 +234,23 @@ CxTest_CxPath::bUnit() {
     {
 	    m_sRes = CxPath::sGetStandartExt(CxPath::seExe);
         #if defined(xOS_WIN)
-            xASSERT(xT("exe") == m_sRes);
+            xASSERT_EQUAL(xT("exe"), m_sRes);
         #elif defined(xOS_LINUX)
-            xASSERT(xT("")    == m_sRes);
+            xASSERT_EQUAL(xT(""), m_sRes);
         #endif
 
         m_sRes = CxPath::sGetStandartExt(CxPath::seDll);
         #if defined(xOS_WIN)
-            xASSERT(xT("dll") == m_sRes);
+            xASSERT_EQUAL(xT("dll"), m_sRes);
         #elif defined(xOS_LINUX)
-            xASSERT(xT("so")  == m_sRes);
+            xASSERT_EQUAL(xT("so"), m_sRes);
         #endif
 
         m_sRes = CxPath::sGetStandartExt(CxPath::seLib);
         #if defined(xOS_WIN)
-            xASSERT(xT("lib") == m_sRes);
+            xASSERT_EQUAL(xT("lib"), m_sRes);
         #elif defined(xOS_LINUX)
-            xASSERT(xT("a")   == m_sRes);
+            xASSERT_EQUAL(xT("a"), m_sRes);
         #endif
     }
 
@@ -258,23 +258,23 @@ CxTest_CxPath::bUnit() {
 	//sSetDrive
 	{
         #if defined(xOS_WIN)
-        const tString sData[][3] = {
-            {xT("C:\\Test.doc"),                  xT("F:"),	xT("F:\\Test.doc")},
-            {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),	xT("T:\\okoval@winnerauto.ua.info")},
-            ////{xT("TEST_STRING_3.doc"),             xT("R:"),	xT("")},
-            {xT("D:\\Test.config"),               xT("A:"),	xT("A:\\Test.config")},
-            ////{xT("TEST_STRING_3.f"),               xT("B:"),	xT("")}
-        };
+            const tString sData[][3] = {
+                {xT("C:\\Test.doc"),                  xT("F:"),	xT("F:\\Test.doc")},
+                {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),	xT("T:\\okoval@winnerauto.ua.info")},
+                ////{xT("TEST_STRING_3.doc"),             xT("R:"),	xT("")},
+                {xT("D:\\Test.config"),               xT("A:"),	xT("A:\\Test.config")},
+                ////{xT("TEST_STRING_3.f"),               xT("B:"),	xT("")}
+            };
 
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            tString sStr1 = CxPath::sSetDrive(sData[i][0], sData[i][1]);
-            tString sStr2 = CxPath::sSetDrive(sData[i][2], sData[i][1]);
-            xASSERT(sStr1 == sStr2);
+            for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
+                tString sStr1 = CxPath::sSetDrive(sData[i][0], sData[i][1]);
+                tString sStr2 = CxPath::sSetDrive(sData[i][2], sData[i][1]);
+                xASSERT_EQUAL(sStr1, sStr2);
 
-            tString sStr3 = CxPath::sSetDrive(sData[i][0], sData[i][1]);
-            tString sStr4 = sData[i][2];
-            xASSERT(sStr3 == sStr4);
-        }
+                tString sStr3 = CxPath::sSetDrive(sData[i][0], sData[i][1]);
+                tString sStr4 = sData[i][2];
+                xASSERT_EQUAL(sStr3, sStr4);
+            }
         #endif
 	}
 
@@ -307,11 +307,11 @@ CxTest_CxPath::bUnit() {
 		for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
 			//tString sStr1 = CxPath::sSetDir(sData[i][0], sData[i][1]);
 			//tString sStr2 = CxPath::sSetDir(sData[i][2], sData[i][1]);
-			//xASSERT_MSG(sStr1 == sStr2, (sStr1 + xT(" == ") + sStr2).c_str());
+			//xASSERT_EQUAL(sStr1, sStr2);
 
 			tString sStr3 = CxPath::sSetDir(sData[i][0], sData[i][1]);
 			tString sStr4 = sData[i][2];
-			xASSERT_MSG(sStr3 == sStr4, (sStr3 + xT(" == ") + sStr4).c_str());
+			xASSERT_EQUAL(sStr3, sStr4);
 		}
 	}
 
@@ -319,33 +319,33 @@ CxTest_CxPath::bUnit() {
 	//sSetFullName
 	{
         #if defined(xOS_WIN)
-        const tString sData[][3] = {
-            /*FilePath*/						  /*NewFileName*/   /*MustBe*/
-            {xT("C:\\Test.doc"),                  xT("aaaa.xls"),	xT("C:\\aaaa.xls")},
-            {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty.fdm"),	xT("Z:\\qwerty.fdm")},
-            ////{xT("TEST_STRING_3.doc"),         xT("xxxxxx.c"),	xT("xxxxxx.c")},
-            {xT("D:\\Test.config"),               xT("r.txt"),		xT("D:\\r.txt")},
-            ////{xT("TEST_STRING_3.f"),           xT("fff.qq"),		xT("fff.qq")}
-        };
+            const tString sData[][3] = {
+                /*FilePath*/						  /*NewFileName*/   /*MustBe*/
+                {xT("C:\\Test.doc"),                  xT("aaaa.xls"),	xT("C:\\aaaa.xls")},
+                {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty.fdm"),	xT("Z:\\qwerty.fdm")},
+                ////{xT("TEST_STRING_3.doc"),         xT("xxxxxx.c"),	xT("xxxxxx.c")},
+                {xT("D:\\Test.config"),               xT("r.txt"),		xT("D:\\r.txt")},
+                ////{xT("TEST_STRING_3.f"),           xT("fff.qq"),		xT("fff.qq")}
+            };
         #elif defined(xOS_LINUX)
-        const tString sData[][3] = {
-            /*FilePath*/                            /*NewFileName*/   /*MustBe*/
-            {xT("/home/Test.doc"),                  xT("aaaa.xls"),   xT("/home/aaaa.xls")},
-            {xT("/home/okoval@winnerauto.ua.info"), xT("qwerty.fdm"), xT("/home/qwerty.fdm")},
-            ////{xT("TEST_STRING_3.doc"),           xT("xxxxxx.c"),   xT("xxxxxx.c")},
-            {xT("/home/Test.config"),               xT("r.txt"),      xT("/home/r.txt")},
-            ////{xT("TEST_STRING_3.f"),             xT("fff.qq"),     xT("fff.qq")}
-        };
+            const tString sData[][3] = {
+                /*FilePath*/                            /*NewFileName*/   /*MustBe*/
+                {xT("/home/Test.doc"),                  xT("aaaa.xls"),   xT("/home/aaaa.xls")},
+                {xT("/home/okoval@winnerauto.ua.info"), xT("qwerty.fdm"), xT("/home/qwerty.fdm")},
+                ////{xT("TEST_STRING_3.doc"),           xT("xxxxxx.c"),   xT("xxxxxx.c")},
+                {xT("/home/Test.config"),               xT("r.txt"),      xT("/home/r.txt")},
+                ////{xT("TEST_STRING_3.f"),             xT("fff.qq"),     xT("fff.qq")}
+            };
         #endif
 
 		for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
 			tString sStr1 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
 			tString sStr2 = CxPath::sSetFullName(sData[i][2], sData[i][1]);
-			xASSERT(sStr1 == sStr2);
+			xASSERT_EQUAL(sStr1, sStr2);
 
 			tString sStr3 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
 			tString sStr4 = sData[i][2];
-			xASSERT(sStr3 == sStr4);
+			xASSERT_EQUAL(sStr3, sStr4);
 		}
 	}
 
@@ -378,11 +378,11 @@ CxTest_CxPath::bUnit() {
 		for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
 			tString sStr1 = CxPath::sSetName(sData[i][0], sData[i][1]);
 			tString sStr2 = CxPath::sSetName(sData[i][2], sData[i][1]);
-			xASSERT(sStr1 == sStr2);
+			xASSERT_EQUAL(sStr1, sStr2);
 
 			tString sStr3 = CxPath::sSetName(sData[i][0], sData[i][1]);
 			tString sStr4 = sData[i][2];
-			xASSERT(sStr3 == sStr4);
+			xASSERT_EQUAL(sStr3, sStr4);
 		}
 	}
 
@@ -403,37 +403,37 @@ CxTest_CxPath::bUnit() {
 		for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
 			tString sStr1 = CxPath::sSetExt(sData[i][0], sData[i][1]);
 			tString sStr2 = CxPath::sSetExt(sData[i][2], sData[i][1]);
-			xASSERT(sStr1 == sStr2);
+			xASSERT_EQUAL(sStr1, sStr2);
 
 			tString sStr3 = CxPath::sSetExt(sData[i][0], sData[i][1]);
 			tString sStr4 = sData[i][2];
-			xASSERT(sStr3 == sStr4);
+			xASSERT_EQUAL(sStr3, sStr4);
 		}
 	}
 
 	//-------------------------------------
 	//sRemoveExt
     {
-    #if defined(xOS_WIN)
-        const tString sData[][2] = {
-            {xT("C:\\Test.111\\Test.txt"),                            xT("C:\\Test.111\\Test")},
-            {xT("C:\\Test"),                                         xT("C:\\Test")},
-            {xT("Test.txt"),                                         xT("Test")},
-            {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++\\pLaunchProject")}
-        };
-    #elif defined(xOS_LINUX)
-        const tString sData[][2] = {
-            {xT("/home/Test.111/Test.txt"),                           xT("/home/Test.111/Test")},
-            {xT("/home/Test"),                                       xT("/home/Test")},
-            {xT("Test.txt"),                                         xT("Test")},
-            {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("/home/My projects/Borland C++/pLaunchProject")}
-        };
-    #endif
+        #if defined(xOS_WIN)
+            const tString sData[][2] = {
+                {xT("C:\\Test.111\\Test.txt"),                           xT("C:\\Test.111\\Test")},
+                {xT("C:\\Test"),                                         xT("C:\\Test")},
+                {xT("Test.txt"),                                         xT("Test")},
+                {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++\\pLaunchProject")}
+            };
+        #elif defined(xOS_LINUX)
+            const tString sData[][2] = {
+                {xT("/home/Test.111/Test.txt"),                          xT("/home/Test.111/Test")},
+                {xT("/home/Test"),                                       xT("/home/Test")},
+                {xT("Test.txt"),                                         xT("Test")},
+                {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("/home/My projects/Borland C++/pLaunchProject")}
+            };
+        #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sRemoveExt(sData[i][0]);
             tString sStr2 = sData[i][1];
-            xASSERT_MSG(sStr1 == sStr2, (sStr1 + xT(" == ") + sStr2).c_str());
+            xASSERT_EQUAL(sStr1, sStr2);
         }
     }
 
@@ -470,7 +470,7 @@ CxTest_CxPath::bUnit() {
 
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
                 m_bRes = CxPath::bIsAbsolute(casData[i]);
-                xASSERT(FALSE != m_bRes);
+                xASSERT_EQUAL(TRUE, m_bRes);
             }
         }
 
@@ -496,7 +496,7 @@ CxTest_CxPath::bUnit() {
 
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
                 m_bRes = CxPath::bIsAbsolute(casData[i]);
-                xASSERT(FALSE == m_bRes);
+                xASSERT_EQUAL(FALSE, m_bRes);
             }
         }
     }
@@ -609,11 +609,11 @@ CxTest_CxPath::bUnit() {
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             tString sStr1 = CxPath::sSetValidName(sTestData[i][0]);
             tString sStr2 = CxPath::sSetValidName(sTestData[i][1]);
-            xASSERT(sStr1 == sStr2);
+            xASSERT_EQUAL(sStr1, sStr2);
 
             tString sStr3 = CxPath::sSetValidName(sTestData[i][0]);
             tString sStr4 = sTestData[i][1];
-            xASSERT(sStr3 == sStr4);
+            xASSERT_EQUAL(sStr3, sStr4);
         }
 	}
 
@@ -624,16 +624,16 @@ CxTest_CxPath::bUnit() {
 	    const tString csWinPath  = xT("C:\\TestDir");
 
 	    sRes    = CxPath::sToWin(csUnixPath, FALSE);
-		xASSERT(sRes == xT("C:\\TestDir"));
+		xASSERT_EQUAL(sRes, xT("C:\\TestDir"));
 
 		sRes    = CxPath::sToWin(csUnixPath, TRUE);
-		xASSERT(sRes == xT("C:\\TestDir\\"));
+		xASSERT_EQUAL(sRes, xT("C:\\TestDir\\"));
 
 		sRes    = CxPath::sToWin(csWinPath, TRUE);
-		xASSERT(sRes == xT("C:\\TestDir\\"));
+		xASSERT_EQUAL(sRes, xT("C:\\TestDir\\"));
 
 		sRes    = CxPath::sToWin(csWinPath, FALSE);
-		xASSERT(sRes == xT("C:\\TestDir"));
+		xASSERT_EQUAL(sRes, xT("C:\\TestDir"));
 	}
 
 	//-------------------------------------
@@ -643,52 +643,52 @@ CxTest_CxPath::bUnit() {
         const tString csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
 		sRes    = CxPath::sToNix(csUnixPath,  FALSE);
-		xASSERT(sRes == xT("/home/user/Soft/TestDir"));
+		xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir"));
 
 		sRes    = CxPath::sToNix(csUnixPath,  TRUE);
-		xASSERT(sRes == xT("/home/user/Soft/TestDir/"));
+		xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir/"));
 
 		sRes    = CxPath::sToNix(csWinPath,  TRUE);
-		xASSERT(sRes == xT("/home/user/Soft/TestDir/"));
+		xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir/"));
 
 		sRes    = CxPath::sToNix(csWinPath,  FALSE);
-		xASSERT(sRes == xT("/home/user/Soft/TestDir"));
+		xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir"));
 	}
 
 	//--------------------------------------------------
     //sToCurrentOs
     {
-    #if defined(xOS_WIN)
-        const tString csUnixPath = xT("C:/TestDir");
-        const tString csWinPath  = xT("C:\\TestDir");
+        #if defined(xOS_WIN)
+            const tString csUnixPath = xT("C:/TestDir");
+            const tString csWinPath  = xT("C:\\TestDir");
 
-        sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
-        xASSERT(sRes == xT("C:\\TestDir"));
+            sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
+            xASSERT_EQUAL(sRes, xT("C:\\TestDir"));
 
-        sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
-        xASSERT(sRes == xT("C:\\TestDir\\"));
+            sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
+            xASSERT_EQUAL(sRes, xT("C:\\TestDir\\"));
 
-        sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
-        xASSERT(sRes == xT("C:\\TestDir\\"));
+            sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
+            xASSERT_EQUAL(sRes, xT("C:\\TestDir\\"));
 
-        sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
-        xASSERT(sRes == xT("C:\\TestDir"));
-    #elif defined(xOS_LINUX)
-        const tString csUnixPath = xT("/home/user/Soft/TestDir");
-        const tString csWinPath  = xT("\\home\\user\\Soft\\TestDir");
+            sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
+            xASSERT_EQUAL(sRes, xT("C:\\TestDir"));
+        #elif defined(xOS_LINUX)
+            const tString csUnixPath = xT("/home/user/Soft/TestDir");
+            const tString csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
-        sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
-        xASSERT(sRes == xT("/home/user/Soft/TestDir"));
+            sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
+            xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir"));
 
-        sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
-        xASSERT(sRes == xT("/home/user/Soft/TestDir/"));
+            sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
+            xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir/"));
 
-        sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
-        xASSERT(sRes == xT("/home/user/Soft/TestDir/"));
+            sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
+            xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir/"));
 
-        sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
-        xASSERT(sRes == xT("/home/user/Soft/TestDir"));
-    #endif
+            sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
+            xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir"));
+        #endif
     }
 
     //-------------------------------------
@@ -699,7 +699,7 @@ CxTest_CxPath::bUnit() {
         CxEnvironment::bGetCommandLineArgs(&vsArgs);
 
 	    sRes = CxPath::sGetFull(vsArgs.at(0));
-        xASSERT(false == sRes.empty());
+        xASSERT_EQUAL(false, sRes.empty());
     }
 
 	//-------------------------------------
@@ -720,86 +720,86 @@ CxTest_CxPath::bUnit() {
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sMinimizeName(sData[i][0], 4);
             tString sStr2 = sData[i][1];
-            xASSERT_MSG(sStr1 == sStr2, (sStr1 + xT(" == ") + sStr2).c_str());
+            xASSERT_EQUAL(sStr1, sStr2);
         }
 	}
 
 	//-------------------------------------
 	//sMinimize
 	{
-    #if defined(xOS_WIN)
-        sRes    = CxPath::sMinimize(csFilePath, 4);
-        // n/a
+        #if defined(xOS_WIN)
+            sRes    = CxPath::sMinimize(csFilePath, 4);
+            // n/a
 
-        tString sFilePath = xT("D:/xVCL/Include\\xVCL/Units/Gui/vSpeedButton_LoadDrives.cpp");
-        sRes    = CxPath::sMinimize(sFilePath, 45);
-        // n/a
-    #elif defined(xOS_LINUX)
-        //TODO: sMinimize
-    #endif
+            tString sFilePath = xT("D:/xVCL/Include\\xVCL/Units/Gui/vSpeedButton_LoadDrives.cpp");
+            sRes    = CxPath::sMinimize(sFilePath, 45);
+            // n/a
+        #elif defined(xOS_LINUX)
+            //TODO: sMinimize
+        #endif
 	}
 
 	//-------------------------------------
 	//sSlashAppend
 	{
-    #if defined(xOS_WIN)
-        const tString sData[][3] = {
-            {xT("C:\\Test.doc"),                  xT("C:\\Test.doc\\")},
-            {xT("Z:\\okoval@winnerauto.ua.info"), xT("Z:\\okoval@winnerauto.ua.info\\")},
-            {xT("TEST_STRING_3.doc\\"),           xT("TEST_STRING_3.doc\\")},
-            {xT("D:\\Test.config"),               xT("D:\\Test.config\\")},
-            {xT("TEST_STRING_3.f\\"),             xT("TEST_STRING_3.f\\")}
-        };
-    #elif defined(xOS_LINUX)
-        const tString sData[][3] = {
-            {xT("/home/Test.doc"),                  xT("/home/Test.doc/")},
-            {xT("/home/okoval@winnerauto.ua.info"), xT("/home/okoval@winnerauto.ua.info/")},
-            {xT("TEST_STRING_3.doc//"),             xT("TEST_STRING_3.doc/")},
-            {xT("/home/Test.config"),               xT("/home/Test.config/")},
-            {xT("TEST_STRING_3.f/"),                xT("TEST_STRING_3.f/")}
-        };
-    #endif
+        #if defined(xOS_WIN)
+            const tString sData[][3] = {
+                {xT("C:\\Test.doc"),                  xT("C:\\Test.doc\\")},
+                {xT("Z:\\okoval@winnerauto.ua.info"), xT("Z:\\okoval@winnerauto.ua.info\\")},
+                {xT("TEST_STRING_3.doc\\"),           xT("TEST_STRING_3.doc\\")},
+                {xT("D:\\Test.config"),               xT("D:\\Test.config\\")},
+                {xT("TEST_STRING_3.f\\"),             xT("TEST_STRING_3.f\\")}
+            };
+        #elif defined(xOS_LINUX)
+            const tString sData[][3] = {
+                {xT("/home/Test.doc"),                  xT("/home/Test.doc/")},
+                {xT("/home/okoval@winnerauto.ua.info"), xT("/home/okoval@winnerauto.ua.info/")},
+                {xT("TEST_STRING_3.doc//"),             xT("TEST_STRING_3.doc/")},
+                {xT("/home/Test.config"),               xT("/home/Test.config/")},
+                {xT("TEST_STRING_3.f/"),                xT("TEST_STRING_3.f/")}
+            };
+        #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sSlashAppend(sData[i][0]);
             tString sStr2 = CxPath::sSlashAppend(sData[i][1]);
-            xASSERT_MSG(sStr1 == sStr2, (sStr1 + xT(" == ") + sStr2).c_str());
+            xASSERT_EQUAL(sStr1, sStr2);
 
             tString sStr3 = CxPath::sSlashAppend(sData[i][0]);
             tString sStr4 = sData[i][1];
-            xASSERT_MSG(sStr3 == sStr3, (sStr3 + xT(" == ") + sStr4).c_str());
+            xASSERT_EQUAL(sStr3, sStr3);
         }
 	}
 
 	//-------------------------------------
 	//sSlashRemove
 	{
-    #if defined(xOS_WIN)
-        const tString sData[][3] = {
-            {xT("C:\\Test.doc"),                  xT("C:\\Test.doc")},
-            {xT("Z:\\okoval@winnerauto.ua.info"), xT("Z:\\okoval@winnerauto.ua.info")},
-            {xT("TEST_STRING_3.doc\\"),           xT("TEST_STRING_3.doc")},
-            {xT("D:\\Test.config"),               xT("D:\\Test.config")},
-            {xT("TEST_STRING_3.f\\"),             xT("TEST_STRING_3.f")}
-        };
-    #elif defined(xOS_LINUX)
-        const tString sData[][3] = {
-            {xT("/home/Test.doc"),                  xT("/home/Test.doc")},
-            {xT("/home/okoval@winnerauto.ua.info"), xT("/home/okoval@winnerauto.ua.info")},
-            {xT("TEST_STRING_3.doc//"),             xT("TEST_STRING_3.doc")},
-            {xT("/home/Test.config"),               xT("/home/Test.config")},
-            {xT("TEST_STRING_3.f/"),                xT("TEST_STRING_3.f")}
-        };
-    #endif
+        #if defined(xOS_WIN)
+            const tString sData[][3] = {
+                {xT("C:\\Test.doc"),                  xT("C:\\Test.doc")},
+                {xT("Z:\\okoval@winnerauto.ua.info"), xT("Z:\\okoval@winnerauto.ua.info")},
+                {xT("TEST_STRING_3.doc\\"),           xT("TEST_STRING_3.doc")},
+                {xT("D:\\Test.config"),               xT("D:\\Test.config")},
+                {xT("TEST_STRING_3.f\\"),             xT("TEST_STRING_3.f")}
+            };
+        #elif defined(xOS_LINUX)
+            const tString sData[][3] = {
+                {xT("/home/Test.doc"),                  xT("/home/Test.doc")},
+                {xT("/home/okoval@winnerauto.ua.info"), xT("/home/okoval@winnerauto.ua.info")},
+                {xT("TEST_STRING_3.doc//"),             xT("TEST_STRING_3.doc")},
+                {xT("/home/Test.config"),               xT("/home/Test.config")},
+                {xT("TEST_STRING_3.f/"),                xT("TEST_STRING_3.f")}
+            };
+        #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxPath::sSlashRemove(sData[i][0]);
             tString sStr2 = CxPath::sSlashRemove(sData[i][1]);
-            xASSERT_MSG(sStr1 == sStr2, (sStr1 + xT(" == ") + sStr2).c_str());
+            xASSERT_EQUAL(sStr1, sStr2);
 
             tString sStr3 = CxPath::sSlashRemove(sData[i][0]);
             tString sStr4 = sData[i][1];
-            xASSERT_MSG(sStr3 == sStr3, (sStr3 + xT(" == ") + sStr4).c_str());
+            xASSERT_EQUAL(sStr3, sStr3);
         }
 	}
 
@@ -807,14 +807,14 @@ CxTest_CxPath::bUnit() {
     //uiGetMaxSize
     {
     	m_uiRes = CxPath::uiGetMaxSize();
-    	xASSERT(0 < m_uiRes);
+    	xASSERT_LESS(0, m_uiRes);
     }
 
     //--------------------------------------------------
     //uiGetNameMaxSize
     {
         m_uiRes = CxPath::uiGetNameMaxSize();
-        xASSERT(0 < m_uiRes);
+        xASSERT_LESS(0, m_uiRes);
     }
 
     return TRUE;

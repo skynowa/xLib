@@ -49,9 +49,9 @@ CxBase64::sEncode(
     pbioContainer = BIO_push(pbioBase64, pbioMemory);
     /*DEBUG*/// n/a
 
-    INT iWrited = BIO_write(pbioContainer, &csStr.at(0), csStr.size());    BIO_flush(pbioContainer);
-    /*DEBUG*/xASSERT_RET(0 < iWrited, std::string());
-    xUNUSED(iWrited);
+    INT iWritten = BIO_write(pbioContainer, &csStr.at(0), csStr.size());    BIO_flush(pbioContainer);
+    /*DEBUG*/xASSERT_RET(0                                <  iWritten, std::string());
+    /*DEBUG*/xASSERT_RET(static_cast<INT>( csStr.size() ) == iWritten, std::string());
 
     LONG liRes = BIO_get_mem_ptr(pbioContainer, &pbmBuffMemory);
     /*DEBUG*/xASSERT_RET(0 < liRes, std::string());
@@ -60,6 +60,9 @@ CxBase64::sEncode(
 
     BIO_free_all(pbioContainer);
     /*DEBUG*/// n/a
+
+    //remove warning: "value computed is not used"
+    iWritten = 0;
 
     return sRes;
 }
@@ -115,7 +118,7 @@ CxBase64::bIsCharValid(
 
     BOOL bRes = FALSE;
 
-    bRes = static_cast<BOOL>( TRUE == CxChar::bIsAlphaNum(cchChar) || ('+' == cchChar) || ('/' == cchChar) );
+    bRes = static_cast<BOOL>( (FALSE != CxChar::bIsAlphaNum(cchChar)) || ('+' == cchChar) || ('/' == cchChar) );
 
     return bRes;
 }

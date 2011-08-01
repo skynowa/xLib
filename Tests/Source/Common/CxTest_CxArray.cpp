@@ -36,7 +36,7 @@ CxTest_CxArray::bUnit() {
     //operator[]
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
-            xASSERT(i == aszArray[i]);
+            xASSERT_EQUAL(i, aszArray[i]);
         }
     }
 
@@ -44,7 +44,7 @@ CxTest_CxArray::bUnit() {
     //at
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
-            xASSERT(i == aszArray.at(i) );
+            xASSERT_EQUAL(i, aszArray.at(i));
         }
     }
 
@@ -52,14 +52,14 @@ CxTest_CxArray::bUnit() {
     //uiGetSize
     {
         m_uiRes = aszArray.size();
-        xASSERT(cuiArraySize == m_uiRes);
+        xASSERT_EQUAL(cuiArraySize, m_uiRes);
     }
 
     //--------------------------------------------------
     //bClear
     {
         /*m_bRes =*/ aszArray.clear();
-        ////xASSERT(FALSE != m_bRes);
+        ////xASSERT_EQUAL(TRUE, m_bRes);
     }
 
 

@@ -27,7 +27,7 @@ CxTest_CxTcpClientSocket::~CxTest_CxTcpClientSocket() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL 
+BOOL
 CxTest_CxTcpClientSocket::bUnit() {
 	CxSocket::EAddressFamily afAf           = CxSocket::afInet;
 	CxSocket::EType          tpType         = CxSocket::tpStream;
@@ -47,32 +47,32 @@ CxTest_CxTcpClientSocket::bUnit() {
 	//-------------------------------------
 	//bCreate
 	m_bRes = objSocket.bCreate(afAf, tpType, ptProtocol);
-	xASSERT(FALSE != m_bRes);
+	xASSERT_EQUAL(TRUE, m_bRes);
 
 	//-------------------------------------
 	//bIsServerAlive
 	////m_bRes = objSocket.bIsServerAlive(sIp, usPort);
-	////xASSERT(FALSE != m_bRes);
+	////xASSERT_EQUAL(TRUE, m_bRes);
 
 	//-------------------------------------
 	//bDnsParse
 	m_bRes = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-	xASSERT(FALSE != m_bRes);
+	xASSERT_EQUAL(TRUE, m_bRes);
 
 	//-------------------------------------
 	//bConnect
 	m_bRes = objSocket.bConnect(sIp, usPort);
-	xASSERT(FALSE != m_bRes);
+	xASSERT_EQUAL(TRUE, m_bRes);
 
 	//-------------------------------------
 	//bIsReadable
 	m_bRes = objSocket.bIsReadable();
-	xASSERT(FALSE == m_bRes);
+	xASSERT_EQUAL(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bIsWritable
 	m_bRes = objSocket.bIsWritable();
-	xASSERT(FALSE != m_bRes);
+	xASSERT_EQUAL(TRUE, m_bRes);
 
 	//-------------------------------------
 	//bGetPeerName
@@ -81,7 +81,7 @@ CxTest_CxTcpClientSocket::bUnit() {
 		USHORT  usPort = 0;
 
 		m_bRes = objSocket.bGetPeerName(&sIp, &usPort);
-		xASSERT(FALSE != m_bRes);
+		xASSERT_EQUAL(TRUE, m_bRes);
 	}
 
 	//-------------------------------------
@@ -91,13 +91,13 @@ CxTest_CxTcpClientSocket::bUnit() {
 		USHORT  usPort = 0;
 
 		m_bRes = objSocket.bGetSocketName(&sIp, &usPort);
-		xASSERT(FALSE != m_bRes);
+		xASSERT_EQUAL(TRUE, m_bRes);
 	}
 
 	//-------------------------------------
 	//bIsReadible
 	////m_bRes = objSocket.bIsReadable();
-	////xASSERT(FALSE != m_bRes);
+	////xASSERT_EQUAL(TRUE, m_bRes);
 
 	for (; ;) {
 		tString sText;
@@ -110,23 +110,23 @@ CxTest_CxTcpClientSocket::bUnit() {
 		//-------------------------------------
 		//iSend
 		m_iRes = objSocket.iSend(sText.c_str(), sText.size(), 0);
-		xASSERT(CxTcpClientSocket::etError != m_iRes);
+		xASSERT_NOT_EQUAL((INT)CxTcpClientSocket::etError, m_iRes);
 	}
 
 	//-------------------------------------
 	//iRecv
 	////m_iRes = objSocket.iRecv(&szRecvBuff[0], ARRAYSIZE(szRecvBuff), 0);
-	////xASSERT(CxTcpClientSocket::etError != m_iRes);
+	////xASSERT_NOT_EQUAL(CxTcpClientSocket::etError, m_iRes);
 
 	//-------------------------------------
 	//bClose
 	m_bRes = objSocket.bClose();
-	xASSERT(FALSE != m_bRes);
+	xASSERT_EQUAL(TRUE, m_bRes);
 
 	//-------------------------------------
 	//iGetLastError
 	m_iRes = CxTcpClientSocket::iGetLastError();
-	//xASSERT(FALSE != m_bRes);
+	//xASSERT_EQUAL(TRUE, m_bRes);
 
 	return TRUE;
 }

@@ -45,7 +45,7 @@ CxTest_CxPkcs11::bUnit() {
     //	uString       usData      = xS2US(csData);
 
     //	m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
-    //	xASSERT(FALSE != m_bRes);
+    //	xASSERT_EQUAL(TRUE, m_bRes);
     //}
 
     //-------------------------------------
@@ -56,7 +56,7 @@ CxTest_CxPkcs11::bUnit() {
     //	uString       usData;
 
     //	m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
-    //	xASSERT(FALSE != m_bRes);
+    //	xASSERT_EQUAL(TRUE, m_bRes);
     //}
 
     //-------------------------------------
@@ -68,7 +68,7 @@ CxTest_CxPkcs11::bUnit() {
         uString       usData      = xS2US(csData);
 
         m_bRes = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_EQUAL(TRUE, m_bRes);
     }
 #elif defined(xOS_LINUX)
 

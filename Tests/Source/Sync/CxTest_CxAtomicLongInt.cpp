@@ -37,22 +37,22 @@ CxTest_CxAtomicLongInt::bUnit() {
     alAL_2 = 2;
 
     alAL_1 += alAL_2;
-    /*DEBUG*/xASSERT(alAL_1 == 3L);
+    /*DEBUG*/xASSERT_EQUAL(alAL_1, 3L);
 
     alAL_1 -= alAL_2;
-    /*DEBUG*/xASSERT(alAL_1 == 1L);
+    /*DEBUG*/xASSERT_EQUAL(alAL_1, 1L);
 
     alAL_1  = alAL_2;
-    /*DEBUG*/xASSERT(alAL_1 == 2L);
+    /*DEBUG*/xASSERT_EQUAL(alAL_1, 2L);
 
     alAL_1 += 10;
-    /*DEBUG*/xASSERT(alAL_1 == 12L);
+    /*DEBUG*/xASSERT_EQUAL(alAL_1, 12L);
 
     alAL_1 -= 10;
-    /*DEBUG*/xASSERT(alAL_1 == 2L);
+    /*DEBUG*/xASSERT_EQUAL(alAL_1, 2L);
 
     alAL_1  = 10;
-    /*DEBUG*/xASSERT(alAL_1 == 10L);
+    /*DEBUG*/xASSERT_EQUAL(alAL_1, 10L);
 
 
     iRes = alAL_1;

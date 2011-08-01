@@ -210,6 +210,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxDateTime);
         bRes = tmManager.bAdd(new CxTest_CxFunctorT);
         bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
+        bRes = tmManager.bAdd(new CxTest_CxAutoMallocT);
         bRes = tmManager.bAdd(new CxTest_CxException);
         bRes = tmManager.bAdd(new CxTest_CxType);
 
@@ -232,7 +233,9 @@ _tmain(
     #endif
 
         //Crypt
-        ////bRes = tmManager.bAdd(new CxTest_CxCrc32);
+        bRes = tmManager.bAdd(new CxTest_CxCrc32);
+        bRes = tmManager.bAdd(new CxTest_CxBase64);
+        bRes = tmManager.bAdd(new CxTest_CxCrc32);
         ////bRes = tmManager.bAdd(new CxTest_CxBlowfish);
         bRes = tmManager.bAdd(new CxTest_CxRandom);
 
@@ -276,7 +279,7 @@ _tmain(
         ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+        bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);

@@ -172,7 +172,7 @@ CxDebugger::bTrace(
     tString sRes;
 
     va_list palArgs;
-    xVA_START(palArgs, pcszFormat); 
+    xVA_START(palArgs, pcszFormat);
     sRes = CxString::sFormatV(pcszFormat, palArgs);
     xVA_END(palArgs);
 
@@ -219,7 +219,9 @@ CxDebugger::bBeep(
 #elif defined(xOS_LINUX)
     INT iRes = - 1;
 
-    #if 1
+    #if defined(xOS_FREEBSD)
+        //TODO: bBeep
+    #else
         iRes = system("xkbbell");
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif

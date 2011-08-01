@@ -18,7 +18,6 @@ typedef struct {
     INT x;
     INT y;
 } SMy, *PSMy;
-
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxAutoMallocT
 CxTest_CxAutoMallocT::CxTest_CxAutoMallocT() {
@@ -34,8 +33,6 @@ CxTest_CxAutoMallocT::~CxTest_CxAutoMallocT() {
 /*virtual*/
 BOOL
 CxTest_CxAutoMallocT::bUnit() {
-
-
     //-------------------------------------
 	//CxAutoMallocT
 	{
