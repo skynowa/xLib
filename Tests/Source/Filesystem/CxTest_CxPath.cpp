@@ -62,7 +62,7 @@ CxTest_CxPath::bUnit() {
     {
     	sRes = CxPath::sGetExe();
         #if defined(xOS_WIN)
-            xASSERT_EQUAL(sRes, xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug\\Test.VC++ 2010.exe"));
+            xASSERT_EQUAL(sRes, tString(xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug\\Test.VC++ 2010.exe")));
         #elif defined(xOS_LINUX)
             //TODO: sGetExe
         #endif
@@ -82,7 +82,7 @@ CxTest_CxPath::bUnit() {
     {
     	sRes = CxPath::sGetExeDir();
         #if defined(xOS_WIN)
-            xASSERT_EQUAL(sRes, xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug"));
+            xASSERT_EQUAL(sRes, tString(xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug")));
         #elif defined(xOS_LINUX)
             //TODO: sGetExeDir
         #endif
@@ -93,7 +93,7 @@ CxTest_CxPath::bUnit() {
     {
         #if defined(xOS_WIN)
         sRes    = CxPath::sGetDrive(csFilePath);
-        xASSERT_EQUAL(sRes, xT("C:"));
+        xASSERT_EQUAL(sRes, tString(xT("C:")));
         #endif
     }
 
@@ -234,23 +234,23 @@ CxTest_CxPath::bUnit() {
     {
 	    m_sRes = CxPath::sGetStandartExt(CxPath::seExe);
         #if defined(xOS_WIN)
-            xASSERT_EQUAL(xT("exe"), m_sRes);
+            xASSERT_EQUAL(tString(xT("exe")), m_sRes);
         #elif defined(xOS_LINUX)
-            xASSERT_EQUAL(xT(""), m_sRes);
+            xASSERT_EQUAL(tString(xT("")), m_sRes);
         #endif
 
         m_sRes = CxPath::sGetStandartExt(CxPath::seDll);
         #if defined(xOS_WIN)
-            xASSERT_EQUAL(xT("dll"), m_sRes);
+            xASSERT_EQUAL(tString(xT("dll")), m_sRes);
         #elif defined(xOS_LINUX)
-            xASSERT_EQUAL(xT("so"), m_sRes);
+            xASSERT_EQUAL(tString(xT("so")), m_sRes);
         #endif
 
         m_sRes = CxPath::sGetStandartExt(CxPath::seLib);
         #if defined(xOS_WIN)
-            xASSERT_EQUAL(xT("lib"), m_sRes);
+            xASSERT_EQUAL(tString(xT("lib")), m_sRes);
         #elif defined(xOS_LINUX)
-            xASSERT_EQUAL(xT("a"), m_sRes);
+            xASSERT_EQUAL(tString(xT("a")), m_sRes);
         #endif
     }
 
@@ -470,7 +470,7 @@ CxTest_CxPath::bUnit() {
 
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
                 m_bRes = CxPath::bIsAbsolute(casData[i]);
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
             }
         }
 
@@ -624,16 +624,16 @@ CxTest_CxPath::bUnit() {
 	    const tString csWinPath  = xT("C:\\TestDir");
 
 	    sRes    = CxPath::sToWin(csUnixPath, FALSE);
-		xASSERT_EQUAL(sRes, xT("C:\\TestDir"));
+		xASSERT_EQUAL(sRes, tString(xT("C:\\TestDir")));
 
 		sRes    = CxPath::sToWin(csUnixPath, TRUE);
-		xASSERT_EQUAL(sRes, xT("C:\\TestDir\\"));
+		xASSERT_EQUAL(sRes, tString(xT("C:\\TestDir\\")));
 
 		sRes    = CxPath::sToWin(csWinPath, TRUE);
-		xASSERT_EQUAL(sRes, xT("C:\\TestDir\\"));
+		xASSERT_EQUAL(sRes, tString(xT("C:\\TestDir\\")));
 
 		sRes    = CxPath::sToWin(csWinPath, FALSE);
-		xASSERT_EQUAL(sRes, xT("C:\\TestDir"));
+		xASSERT_EQUAL(sRes, tString(xT("C:\\TestDir")));
 	}
 
 	//-------------------------------------
@@ -643,16 +643,16 @@ CxTest_CxPath::bUnit() {
         const tString csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
 		sRes    = CxPath::sToNix(csUnixPath,  FALSE);
-		xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir"));
+		xASSERT_EQUAL(sRes, tString(xT("/home/user/Soft/TestDir")));
 
 		sRes    = CxPath::sToNix(csUnixPath,  TRUE);
-		xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir/"));
+		xASSERT_EQUAL(sRes, tString(xT("/home/user/Soft/TestDir/")));
 
 		sRes    = CxPath::sToNix(csWinPath,  TRUE);
-		xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir/"));
+		xASSERT_EQUAL(sRes, tString(xT("/home/user/Soft/TestDir/")));
 
 		sRes    = CxPath::sToNix(csWinPath,  FALSE);
-		xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir"));
+		xASSERT_EQUAL(sRes, tString(xT("/home/user/Soft/TestDir")));
 	}
 
 	//--------------------------------------------------
@@ -663,16 +663,16 @@ CxTest_CxPath::bUnit() {
             const tString csWinPath  = xT("C:\\TestDir");
 
             sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
-            xASSERT_EQUAL(sRes, xT("C:\\TestDir"));
+            xASSERT_EQUAL(sRes, tString(xT("C:\\TestDir")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
-            xASSERT_EQUAL(sRes, xT("C:\\TestDir\\"));
+            xASSERT_EQUAL(sRes, tString(xT("C:\\TestDir\\")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
-            xASSERT_EQUAL(sRes, xT("C:\\TestDir\\"));
+            xASSERT_EQUAL(sRes, tString(xT("C:\\TestDir\\")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
-            xASSERT_EQUAL(sRes, xT("C:\\TestDir"));
+            xASSERT_EQUAL(sRes, tString(xT("C:\\TestDir")));
         #elif defined(xOS_LINUX)
             const tString csUnixPath = xT("/home/user/Soft/TestDir");
             const tString csWinPath  = xT("\\home\\user\\Soft\\TestDir");
@@ -807,14 +807,14 @@ CxTest_CxPath::bUnit() {
     //uiGetMaxSize
     {
     	m_uiRes = CxPath::uiGetMaxSize();
-    	xASSERT_LESS(0, m_uiRes);
+    	xASSERT_LESS(0U, m_uiRes);
     }
 
     //--------------------------------------------------
     //uiGetNameMaxSize
     {
         m_uiRes = CxPath::uiGetNameMaxSize();
-        xASSERT_LESS(0, m_uiRes);
+        xASSERT_LESS(0U, m_uiRes);
     }
 
     return TRUE;

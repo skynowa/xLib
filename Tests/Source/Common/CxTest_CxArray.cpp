@@ -59,7 +59,7 @@ CxTest_CxArray::bUnit() {
     //bClear
     {
         /*m_bRes =*/ aszArray.clear();
-        ////xASSERT_EQUAL(TRUE, m_bRes);
+        ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
 

@@ -86,12 +86,12 @@ CxTest_CxBase64::bUnit() {
             for (size_t i = 0; i < csValidChars.size(); ++ i) {
                 m_bRes = CxBase64::bIsCharValid(csValidChars.at(i));
                 //xTRACEV(xT("csValidChars.at(i): %c"), csValidChars.at(i));
-                xASSERT_EQUAL(TRUE, m_bRes);
+                xASSERT_NOT_EQUAL(FALSE, m_bRes);
             }
         }
 
         {
-            const std::string csNonValidChars = "–!\"в„–;%:?*()_¦**";
+            const std::string csNonValidChars = "!@#$%^&*()_|:?";
 
             for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
                 m_bRes = CxBase64::bIsCharValid(csNonValidChars.at(i));

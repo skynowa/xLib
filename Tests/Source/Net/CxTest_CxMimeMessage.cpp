@@ -109,22 +109,22 @@ CxTest_CxMimeMessage::bUnit() {
     //-------------------------------------
     //bCreate
     m_bRes = objPop3.bCreate(csUser, csPass, csServer, usPort);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     //-------------------------------------
     //bConnect
     m_bRes = objPop3.bConnect();
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     //-------------------------------------
     //bLogin
     m_bRes = objPop3.bLogin();
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     //-------------------------------------
     //bStat
     m_bRes = objPop3.bStat(ulSum, ulSize);
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
     /*LOG*/printf("Mails %i\n", ulSum);
 
     //-------------------------------------
@@ -141,12 +141,12 @@ CxTest_CxMimeMessage::bUnit() {
         CxMimeHeader objHeader;
 
         m_bRes = objPop3.bTop(i, 0, /*ref*/sRawHeader);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         //-------------------------------------
         //bParse
         m_bRes = objHeader.bParse(sRawHeader);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         //-------------------------------------
         //sGetField
@@ -184,7 +184,7 @@ CxTest_CxMimeMessage::bUnit() {
         //-------------------------------------
         //bRetrieveHeader
         m_bRes = objPop3.bRetrieveHeader(y, objHeader);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         //-------------------------------------
         //sGetField
@@ -217,7 +217,7 @@ CxTest_CxMimeMessage::bUnit() {
     //-------------------------------------
     //bDisconnect
     m_bRes = objPop3.bDisconnect();
-    xASSERT_EQUAL(TRUE, m_bRes);
+    xASSERT_NOT_EQUAL(FALSE, m_bRes);
 #elif defined(xOS_LINUX)
 
 #endif

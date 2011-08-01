@@ -55,10 +55,10 @@ CxTest_CxDir::bUnit() {
 
 	{
 		m_bRes = CxDir::bDeleteForce(csRootTestDirPath);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		m_bRes = CxDir::bCreateForce(csDirPath);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 
 	/****************************************************************************
@@ -70,21 +70,21 @@ CxTest_CxDir::bUnit() {
 	//bCreate
     {
     	m_bRes = CxDir::bCreate(csDirPath2);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bIsDir
     {
         m_bRes = CxDir::bIsDir(csDirPath2);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
 	//-------------------------------------
 	//bIsExists
 	{
 		m_bRes = CxDir::bIsExists(csDirPath);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		m_bRes = CxDir::bIsExists(xT("y:"));
 		xASSERT_EQUAL(FALSE, m_bRes);
@@ -106,7 +106,7 @@ CxTest_CxDir::bUnit() {
 		xASSERT_EQUAL(FALSE, m_bRes);
 
 		m_bRes = CxDir::bIsEmpty(csDirPath2, CxConst::xMASK_ALL);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		m_bRes = CxDir::bIsEmpty(sGetWorkDirPath(), CxConst::xMASK_ALL);
 		xASSERT_EQUAL(FALSE, m_bRes);
@@ -152,13 +152,13 @@ CxTest_CxDir::bUnit() {
 	//bSetCurrent
     {
 		m_sRes = CxDir::sGetCurrent();
-		xASSERT_EQUAL(true, m_sRes.empty());
+		xASSERT_EQUAL(false, m_sRes.empty());
 
 		m_bRes = CxDir::bSetCurrent( sGetWorkDirPath() );
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 	    m_bRes = CxDir::bSetCurrent(m_sRes);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 
 	//-------------------------------------
@@ -173,14 +173,14 @@ CxTest_CxDir::bUnit() {
 	{
 		m_sRes = CxDir::sGetTemp();
 		xTRACEV(xT("\tCxDir::sGetTemp(): %s"), m_sRes.c_str());
-        xASSERT_EQUAL(true, m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
 	}
 
 	//-------------------------------------
 	//bCreateForce
 	{
 		m_bRes = CxDir::bCreateForce(csDirPath);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 
 	//-------------------------------------
@@ -200,28 +200,28 @@ CxTest_CxDir::bUnit() {
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
             m_bRes = CxDir::bCreateForce(sDirPathes[i]);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
         }
 
         m_bRes = CxDir::bDeleteForce(csDirDest);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         //-------------------------------------
         //bCopy
         m_bRes = CxDir::bCopy(csDirSource, csDirDest, TRUE);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxDir::bDelete(csDirDest);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxDir::bCopy(csDirSource, csDirDest, FALSE);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxDir::bDeleteForce(csDirDest);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxDir::bDeleteForce(csDirSource);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
 	//-------------------------------------
@@ -241,16 +241,16 @@ CxTest_CxDir::bUnit() {
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
             m_bRes = CxDir::bCreateForce(sDirPathes[i]);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bMove
         m_bRes = CxDir::bMove(csDirSource, csDirDest, TRUE);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxDir::bDelete(csDirDest);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 
     //-------------------------------------
@@ -268,7 +268,7 @@ CxTest_CxDir::bUnit() {
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
             m_bRes = CxDir::bCreateForce(sDirPathes[i]);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
         }
 
         //-------------------------------------
@@ -276,7 +276,7 @@ CxTest_CxDir::bUnit() {
         {
             m_vecsRes.clear();
             m_bRes = CxDir::bFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, FALSE, &m_vecsRes);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
             xASSERT(2 == m_vecsRes.size());
@@ -287,7 +287,7 @@ CxTest_CxDir::bUnit() {
         {
             m_vecsRes.clear();
             m_bRes = CxDir::bFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, TRUE, &m_vecsRes);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
             xASSERT(xARRAY_SIZE(sDirPathes) == m_vecsRes.size());
@@ -313,7 +313,7 @@ CxTest_CxDir::bUnit() {
             CxStdioFile sfFile;
 
             m_bRes = sfFile.bOpen(g_sFilePathes[i], CxStdioFile::omWrite, TRUE);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
         }
 
         //-------------------------------------
@@ -321,7 +321,7 @@ CxTest_CxDir::bUnit() {
         {
             m_vecsRes.clear();
             m_bRes = CxDir::bFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, FALSE, &m_vecsRes);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
             xASSERT(2 == m_vecsRes.size());
@@ -332,7 +332,7 @@ CxTest_CxDir::bUnit() {
         {
             m_vecsRes.clear();
             m_bRes = CxDir::bFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, TRUE, &m_vecsRes);
-            xASSERT_EQUAL(TRUE, m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
             xASSERT(xARRAY_SIZE(g_sFilePathes) == m_vecsRes.size());
@@ -343,34 +343,34 @@ CxTest_CxDir::bUnit() {
 	//bClearForce
 	{
 		m_bRes = CxDir::bClearForce(csDirPath);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 
     //-------------------------------------
     //bDelete
     {
         m_bRes = CxDir::bDelete(csDirPath2);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bTryDelete
     {
         m_bRes = CxDir::bCreateForce(csDirPath2);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxDir::bTryDelete(csDirPath2, 10, 5);
-        xASSERT_EQUAL(TRUE, m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
 	//-------------------------------------
 	//bDeleteForce
 	{
 		m_bRes = CxDir::bCreate(csDirPath);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		m_bRes = CxDir::bDeleteForce(csRootTestDirPath);
-		xASSERT_EQUAL(TRUE, m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 
 	return TRUE;
