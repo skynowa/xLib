@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxIni
-* Description: test CxIni
-* File name:   CxIni.h
+* Class name:  CxTest_CxLocalStorage
+* Description: test CxLocalStorage
+* File name:   CxLocalStorage.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:
@@ -9,23 +9,23 @@
 *****************************************************************************/
 
 
-#ifndef CxTest_CxIniH
-#define CxTest_CxIniH
+#ifndef CxTest_CxLocalStorageH
+#define CxTest_CxLocalStorageH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Filesystem/CxIni.h>
+#include <xLib/Filesystem/CxLocalStorage.h>
 //---------------------------------------------------------------------------
-class CxTest_CxIni :
+class CxTest_CxLocalStorage :
     public CxTest
 {
 	public:
-		              CxTest_CxIni();
-	    virtual      ~CxTest_CxIni();
+		              CxTest_CxLocalStorage();
+	    virtual      ~CxTest_CxLocalStorage();
 
 	    virtual  BOOL bUnit();
 
 	private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxIniH
+#endif //CxTest_CxLocalStorageH

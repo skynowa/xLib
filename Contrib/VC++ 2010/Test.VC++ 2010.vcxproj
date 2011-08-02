@@ -167,15 +167,12 @@
     <ClCompile Include="..\..\Source\Filesystem\CxDll.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxEnvironment.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxFileAttribute.cpp" />
-    <ClCompile Include="..\..\Source\Filesystem\CxIni.cpp" />
+    <ClCompile Include="..\..\Source\Filesystem\CxLocalStorage.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxStdioFile.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxVolume.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\Win\CxFile.cpp" />
-    <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp" />
@@ -289,11 +286,12 @@
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxEnvironment.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxIni.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxLocalStorage.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxStdioFile.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxFile.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp" />
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp" />
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp" />
     <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp" />
@@ -306,22 +304,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxPop3.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxPop3.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocket.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpClientSocket.cpp" />
@@ -394,11 +380,12 @@
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxEnvironment.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxFileAttribute.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxIni.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxLocalStorage.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxStdioFile.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxFile.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h" />
@@ -411,22 +398,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxPop3.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxPop3.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocket.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClientSocket.h" />
@@ -470,15 +445,12 @@
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxDll.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxEnvironment.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxFileAttribute.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxIni.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxLocalStorage.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxPath.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxStdioFile.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxVolume.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxFile.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\Win\CxIni.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\Win\CxIni.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxInputBox.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxT.h" />

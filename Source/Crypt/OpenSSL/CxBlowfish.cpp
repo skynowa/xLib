@@ -166,7 +166,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
     {
         CxStdioFile sfFileIn;
 
-        _m_bRes = sfFileIn.bOpen(csFilePathIn, CxStdioFile::omRead, TRUE);
+        _m_bRes = sfFileIn.bOpen(csFilePathIn, CxStdioFile::omBinRead, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileIn.bRead(&usIn);
@@ -179,7 +179,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
     {
         CxStdioFile sfFileOut;
 
-        _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::omCreateReadWrite, TRUE);
+        _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::omBinCreateReadWrite, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileOut.bWrite(usOut);
@@ -282,7 +282,7 @@ CxBlowfish::bEncryptFileCfb64(const tString &csFilePathIn, const tString &csFile
     uString usOut;
     usOut.resize(BUFF_SIZE);
 
-    for (;;) {
+    for ( ; ; ) {
         INT iNum = 0;
 
         size_t uiInSize = sfFileIn.uiRead(&usIn.at(0), usIn.size());
@@ -361,7 +361,7 @@ CxBlowfish::cmGetFileCryptStatus(const tString &csFilePath, const uString &cusSt
     xCHECK_RET(0 == liFileSize, CxBlowfish::cmDecrypt);
 
     //?????? ????? ??????, ????? ??????? ??????, ???? ?????? - ???????
-    xCHECK_RET (cusStamp.size() >= (size_t)liFileSize, CxBlowfish::cmDecrypt);
+    xCHECK_RET(cusStamp.size() >= (size_t)liFileSize, CxBlowfish::cmDecrypt);
 
     //-------------------------------------
     //?????? ?????? N ??????

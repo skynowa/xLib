@@ -204,9 +204,6 @@
     <ClCompile Include="..\..\Source\Filesystem\CxFileAttribute.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Filesystem\CxIni.cpp">
-      <Filter>xLib\Filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
@@ -645,9 +642,6 @@
     <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp">
       <Filter>xLib\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxIni.cpp">
-      <Filter>Test\Filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp">
       <Filter>xLib\Gui\Win\GDI+\Win</Filter>
     </ClCompile>
@@ -665,6 +659,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxType.cpp">
       <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Filesystem\CxLocalStorage.cpp">
+      <Filter>xLib\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp">
+      <Filter>Test\Filesystem\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxLocalStorage.cpp">
+      <Filter>Test\Filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1193,9 +1196,6 @@
     <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h">
       <Filter>xLib\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxIni.h">
-      <Filter>Test\Filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h">
       <Filter>xLib\Gui\Win\GDI+\Win</Filter>
     </ClInclude>
@@ -1225,6 +1225,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxType.h">
       <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h">
+      <Filter>Test\Filesystem\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxLocalStorage.h">
+      <Filter>Test\Filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1259,9 +1265,6 @@
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h">
       <Filter>xLib\Crypt\OpenSSL</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxIni.h">
-      <Filter>xLib\Filesystem</Filter>
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Filesystem\Win\CxIni.h">
       <Filter>xLib\Filesystem\Win</Filter>
@@ -1301,6 +1304,9 @@
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
       <Filter>xLib\Compress\Linux</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxLocalStorage.h">
+      <Filter>xLib\Filesystem</Filter>
     </CustomBuildStep>
   </ItemGroup>
 </Project>

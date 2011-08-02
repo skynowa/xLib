@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxIni
-* Description: test CxIni
-* File name:   CxIni.h
+* Class name:  CxTest_CxLocalStorage
+* Description: test CxLocalStorage
+* File name:   CxLocalStorage.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:
@@ -9,24 +9,24 @@
 *****************************************************************************/
 
 
-#include <Test/Filesystem/CxTest_CxIni.h>
+#include <Test/Filesystem/CxTest_CxLocalStorage.h>
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxIni
-CxTest_CxIni::CxTest_CxIni() {
+//DONE: CxTest_CxLocalStorage
+CxTest_CxLocalStorage::CxTest_CxLocalStorage() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxIni
-CxTest_CxIni::~CxTest_CxIni() {
+//DONE: ~CxTest_CxLocalStorage
+CxTest_CxLocalStorage::~CxTest_CxLocalStorage() {
 
 }
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxIni::bUnit() {
+CxTest_CxLocalStorage::bUnit() {
     const tString csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
 
     const tString csKey1   = xT("a");
@@ -43,14 +43,14 @@ CxTest_CxIni::bUnit() {
                               csKey3 + CxConst::xEQUAL + csValue3 + CxConst::xNL;
 
     //--------------------------------------------------
-    //CxIni()
+    //CxLocalStorage()
     {
-        CxIni iniIni;
+        CxLocalStorage iniIni;
     }
 
     //--------------------------------------------------
-    //CxIni(csFilePath)
-    CxIni iniIni(csFilePath);
+    //CxLocalStorage(csFilePath)
+    CxLocalStorage iniIni(csFilePath);
 
     /****************************************************************************
     *	creation
@@ -84,7 +84,7 @@ CxTest_CxIni::bUnit() {
     //--------------------------------------------------
     //cmapsGet, bFlush
     {
-        NxLib::TIni &riniIni = iniIni.cmapsGet();
+        NxLib::TLocalStorage &riniIni = iniIni.cmapsGet();
         xASSERT_EQUAL(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;

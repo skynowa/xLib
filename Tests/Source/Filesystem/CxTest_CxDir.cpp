@@ -279,7 +279,7 @@ CxTest_CxDir::bUnit() {
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
-            xASSERT(2 == m_vecsRes.size());
+            xASSERT_EQUAL((size_t)2, m_vecsRes.size());
         }
 
         //-------------------------------------
@@ -290,7 +290,7 @@ CxTest_CxDir::bUnit() {
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
-            xASSERT(xARRAY_SIZE(sDirPathes) == m_vecsRes.size());
+            xASSERT_EQUAL(xARRAY_SIZE(sDirPathes), m_vecsRes.size());
         }
     }
 
@@ -324,7 +324,7 @@ CxTest_CxDir::bUnit() {
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
-            xASSERT(2 == m_vecsRes.size());
+            xASSERT_EQUAL((size_t)2, m_vecsRes.size());
         }
 
         //-------------------------------------
@@ -335,7 +335,7 @@ CxTest_CxDir::bUnit() {
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
             //CxString::vStdVectorPrintT(m_vecsRes);
 
-            xASSERT(xARRAY_SIZE(g_sFilePathes) == m_vecsRes.size());
+            xASSERT_EQUAL(xARRAY_SIZE(g_sFilePathes), m_vecsRes.size());
         }
     }
 

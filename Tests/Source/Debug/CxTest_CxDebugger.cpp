@@ -35,19 +35,19 @@ CxTest_CxDebugger::bUnit() {
         const BOOL cbFalse = FALSE;
 
         m_bRes = CxDebugger::bGetEnabled();
-        xASSERT(cbTrue == m_bRes);
+        xASSERT_EQUAL(cbTrue, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbFalse);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
-        xASSERT(cbFalse == m_bRes);
+        xASSERT_EQUAL(cbFalse, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbTrue);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
-        xASSERT(cbTrue == m_bRes);
+        xASSERT_EQUAL(cbTrue, m_bRes);
     }
 
     //-------------------------------------
@@ -68,19 +68,19 @@ CxTest_CxDebugger::bUnit() {
         const tString csFilePath = xT("");
 
         m_sRes = CxDebugger::sGetLogPath();
-        xASSERT(true == m_sRes.empty());
+        xASSERT_EQUAL(true, m_sRes.empty());
 
         m_bRes = CxDebugger::bSetLogPath(csFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
-        xASSERT(csFilePath == m_sRes);
+        xASSERT_EQUAL(csFilePath, m_sRes);
 
         m_bRes = CxDebugger::bSetLogPath(xT(""));
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
-        xASSERT(true == m_sRes.empty());
+        xASSERT_EQUAL(true, m_sRes.empty());
     }
 
     //-------------------------------------
@@ -106,17 +106,15 @@ CxTest_CxDebugger::bUnit() {
     //-------------------------------------
     //bTrace
     {
-        for (size_t i = 0;  i < 10; ++ i) {
-            CxDebugger::bTrace(xT("\tCxDebugger: %")xPR_SIZET, i);
-        }
+        CxDebugger::bTrace(xT("\tCxDebugger: %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bTrace
     {
-        for (size_t i = 0;  i < 10; ++ i) {
-            CxDebugger::bTrace(xT("\t") + CxString::lexical_cast(i));
-        }
+        CxDebugger::bTrace(xT("\tCxDebugger: ") + CxRandom::sGetString(CxRandom::liGetIntEx(0, 20)));
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------

@@ -74,7 +74,7 @@ CxTest_CxBlowfish::bUnit() {
 
 		//prepare
         {
-            m_bRes = CxStdioFile::bTextWrite(sFilePlain, xT("text"));
+            m_bRes = CxStdioFile::bTextWrite(sFilePlain, xT("text_text"));
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
         }
 
