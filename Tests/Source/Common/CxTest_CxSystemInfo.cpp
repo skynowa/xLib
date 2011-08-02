@@ -34,12 +34,12 @@ CxTest_CxSystemInfo::bUnit() {
 
         otType = CxSystemInfo::osGetOS();
         #if defined(xOS_WIN)
-            xASSERT(CxSystemInfo::otWindowsXP == otType);
+            xASSERT_EQUAL(CxSystemInfo::otWindowsXP, otType);
         #elif defined(xOS_LINUX)
             #if defined(xOS_FREEBSD)
-                xASSERT(CxSystemInfo::otFreeBSD == otType);
+                xASSERT_EQUAL(CxSystemInfo::otFreeBSD, otType);
             #else
-                xASSERT(CxSystemInfo::otLinux == otType);
+                xASSERT_EQUAL(CxSystemInfo::otLinux, otType);
             #endif
         #endif
     }
@@ -49,6 +49,7 @@ CxTest_CxSystemInfo::bUnit() {
     {
         #if defined(xOS_WIN)
             std::map<CxSystemInfo::EOsType, tString> mapData;
+
             mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows3,               xT("Windows 3.1")) );
             mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows95,              xT("Windows 95")) );
             mapData.insert( std::pair<CxSystemInfo::EOsType, tString>(CxSystemInfo::otWindows98,              xT("Windows 98")) );
@@ -67,14 +68,14 @@ CxTest_CxSystemInfo::bUnit() {
             std::map<CxSystemInfo::EOsType, tString>::const_iterator it;
             for (it = mapData.begin(); it != mapData.end(); ++ it) {
                 m_sRes = CxSystemInfo::sFormatOsType((*it).first);
-                xASSERT((*it).second == m_sRes);
+                xASSERT_EQUAL((*it).second, m_sRes);
             }
         #elif defined(xOS_LINUX)
             m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otLinux);
-            xASSERT(false == m_sRes.empty());
+            xASSERT_EQUAL(false, m_sRes.empty());
 
             m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otFreeBSD);
-            xASSERT(false == m_sRes.empty());
+            xASSERT_EQUAL(false, m_sRes.empty());
         #endif
     }
 
@@ -84,14 +85,14 @@ CxTest_CxSystemInfo::bUnit() {
         CxSystemInfo::EOsArch oaRes = CxSystemInfo::oaUnknown;
 
         oaRes = CxSystemInfo::oaGetOsArch();
-        xASSERT(CxSystemInfo::oaUnknown != oaRes);
+        xASSERT_NOT_EQUAL(CxSystemInfo::oaUnknown, oaRes);
     }
 
     //-------------------------------------
     //sGetComputerName
     {
         m_sRes = CxSystemInfo::sGetComputerName();
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
         xTRACEV(xT("\tCxSystemInfo::sGetComputerName(): %s"), m_sRes.c_str());
     }
 
@@ -106,7 +107,7 @@ CxTest_CxSystemInfo::bUnit() {
     //sGetUserName
     {
         m_sRes = CxSystemInfo::sGetUserName();
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
         xTRACEV(xT("\tCxSystemInfo::sGetUserName(): %s"), m_sRes.c_str());
     }
 
@@ -115,7 +116,7 @@ CxTest_CxSystemInfo::bUnit() {
     {
         m_ulRes = CxSystemInfo::ulGetNumOfCPUs();
         xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCPUs: %li"), m_ulRes);
-        xASSERT(0 < m_ulRes);
+        xASSERT_LESS(0UL, m_ulRes);
     }
 
     //-------------------------------------
@@ -123,22 +124,22 @@ CxTest_CxSystemInfo::bUnit() {
     {
         m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
         xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
-        xASSERT(static_cast<ULONG>( - 1 ) != m_ulRes);
-        xASSERT(0 <= m_ulRes && CxSystemInfo::ulGetNumOfCPUs() > m_ulRes);
+        xASSERT_NOT_EQUAL(static_cast<ULONG>( - 1 ), m_ulRes);
+        xASSERT_EQUAL(true, 0 <= m_ulRes && CxSystemInfo::ulGetNumOfCPUs() > m_ulRes);
     }
 
     //-------------------------------------
     //bIsUnicodeOS - Vista
     {
         m_bRes = CxSystemInfo::bIsUnicodeOS();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
     //TODO: ullGetCpuSpeed
     {
         ////m_iRes = CxSystemInfo::ullGetCpuSpeed();
-        ////xASSERT( == m_iRes);
+        ////xASSERT_LESS(0, m_iRes);
     }
 
     return TRUE;

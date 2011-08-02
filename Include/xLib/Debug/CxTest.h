@@ -33,6 +33,7 @@ class CxTest :
         SHORT                           m_siRes;
         USHORT                          m_usiRes;
         UINT                            m_uiRes;
+        size_t                          m_stRes;
         LONG                            m_liRes;
         ULONG                           m_ulRes;
         LONGLONG                        m_llRes;

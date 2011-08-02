@@ -51,8 +51,8 @@ CxTest_CxArray::bUnit() {
     //--------------------------------------------------
     //uiGetSize
     {
-        m_uiRes = aszArray.size();
-        xASSERT_EQUAL(cuiArraySize, m_uiRes);
+        m_stRes = aszArray.size();
+        xASSERT_EQUAL(cuiArraySize, m_stRes);
     }
 
     //--------------------------------------------------

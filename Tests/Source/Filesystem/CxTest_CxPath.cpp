@@ -678,16 +678,16 @@ CxTest_CxPath::bUnit() {
             const tString csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
             sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
-            xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir"));
+            xASSERT_EQUAL(sRes, tString(xT("/home/user/Soft/TestDir")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
-            xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir/"));
+            xASSERT_EQUAL(sRes, tString(xT("/home/user/Soft/TestDir/")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  TRUE);
-            xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir/"));
+            xASSERT_EQUAL(sRes, tString(xT("/home/user/Soft/TestDir/")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  FALSE);
-            xASSERT_EQUAL(sRes, xT("/home/user/Soft/TestDir"));
+            xASSERT_EQUAL(sRes, tString(xT("/home/user/Soft/TestDir")));
         #endif
     }
 

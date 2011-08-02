@@ -217,12 +217,10 @@ CxDebugger::bBeep(
     bRes = ::Beep(culFrequency, culDuration);
     xCHECK_RET(FALSE == bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = - 1;
-
     #if defined(xOS_FREEBSD)
         //TODO: bBeep
     #else
-        iRes = system("xkbbell");
+        INT iRes = _tsystem(xT("xkbbell"));
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
 

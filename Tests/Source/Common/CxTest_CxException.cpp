@@ -34,7 +34,7 @@ CxTest_CxException::bUnit() {
             throw CxException();
         }
         catch (CxException &e) {
-            xASSERT(tString() == e.sGetWhat());
+            xASSERT_EQUAL(tString(), e.sGetWhat());
             //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
         catch (...) {
@@ -57,7 +57,7 @@ CxTest_CxException::bUnit() {
                 throw CxException() << sTestData[i][0].c_str();
             }
             catch (CxException &e) {
-                xASSERT( sTestData[i][1] == e.sGetWhat() );
+                xASSERT_EQUAL(sTestData[i][1], e.sGetWhat());
                 //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
             }
             catch (...) {
@@ -84,7 +84,9 @@ CxTest_CxException::bUnit() {
     //catch std::exception
     {
         try {
-            tString sStr; sStr.at(0);
+            tString sStr;
+
+            sStr.at(0);
         }
         catch (std::exception &e) {
             //xTRACEV( xT("std::what: %s"), e.what() );
@@ -98,7 +100,9 @@ CxTest_CxException::bUnit() {
     //
     #if xTODO
         xTRY {
-            tString sStr; sStr.at(0);
+            tString sStr;
+
+            sStr.at(0);
         }
         xCATCH_ALL;
 

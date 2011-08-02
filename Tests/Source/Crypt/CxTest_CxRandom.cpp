@@ -27,49 +27,48 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 /*virtual*/
 BOOL
 CxTest_CxRandom::bUnit() {
-#if xTODO
 	CxRandom rndR;
 
     //--------------------------------------------------
     //bSetSeed
     {
-        m_bRes = rndR.bSetSeed( static_cast<ULONG>(time(NULL)) );
-        xASSERT(FALSE != m_bRes);
+        m_bRes = rndR.bSetSeed( static_cast<ULONG>( time(NULL) ) );
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
     //iNextInt
     {
         m_iRes = rndR.iNextInt();
-        xASSERT(0 < m_iRes);
+        xASSERT_LESS(0, m_iRes);
     }
 
     //--------------------------------------------------
     //iNextInt
     {
         m_iRes = rndR.iNextInt(100);
-        xASSERT(0 < m_iRes);
+        xASSERT_LESS(0, m_iRes);
     }
 
     //--------------------------------------------------
     //iNextInt
     {
         m_iRes = rndR.iNextInt(100, 200);
-        xASSERT(100 <= m_iRes && 200 >= m_iRes);
+        xASSERT_EQUAL(true, 100 <= m_iRes && 200 >= m_iRes);
     }
 
     //--------------------------------------------------
     //liNextLong
     {
         m_liRes = rndR.liNextLong();
-        xASSERT(0 < m_liRes);
+        xASSERT_LESS(0L, m_liRes);
     }
 
     //--------------------------------------------------
     //bNextBoolean
     {
         m_blRes = rndR.bNextBoolean();
-        xASSERT(true == m_blRes || false == m_blRes);
+        xASSERT_EQUAL(true, true == m_blRes || false == m_blRes);
     }
 
     //--------------------------------------------------
@@ -106,7 +105,6 @@ CxTest_CxRandom::bUnit() {
         m_dRes = rndR.dNextGaussian();
         //xASSERT
     }
-#endif
 
     //-------------------------------------
     //bSetSeed, liGetInt, liGetIntEx
@@ -125,13 +123,13 @@ CxTest_CxRandom::bUnit() {
             const LONG cliMax = caliData[i][1];
 
             m_bRes = CxRandom::bSetSeed();
-            xASSERT(FALSE != m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_liRes = CxRandom::liGetInt(cliMin, cliMax);
-            xASSERT(m_liRes >= cliMin && m_liRes <= cliMax);
+            xASSERT_EQUAL(true, m_liRes >= cliMin && m_liRes <= cliMax);
 
             m_liRes = CxRandom::liGetIntEx(cliMin, cliMax);
-            xASSERT(m_liRes >= cliMin && m_liRes <= cliMax);
+            xASSERT_EQUAL(true, m_liRes >= cliMin && m_liRes <= cliMax);
         }
     }
 
@@ -142,7 +140,7 @@ CxTest_CxRandom::bUnit() {
 
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = CxRandom::bSetSeed();
-            xASSERT(FALSE != m_bRes);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_sRes = CxRandom::sGetString(cuiStrSize);
             //xTRACEV(xT("i: %s"), m_sRes.c_str());

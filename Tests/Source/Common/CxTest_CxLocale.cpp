@@ -31,28 +31,28 @@ CxTest_CxLocale::bUnit() {
     //sGetCurrent
     {
         m_sRes = CxLocale::sGetCurrent();
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
     }
 
     //-------------------------------------
     //bSetCurrent
     {
         m_bRes = CxLocale::bSetCurrent( CxLocale::sGetCurrent() );
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bSetDefault
     {
         m_bRes = CxLocale::bSetDefault();
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bSetCurrent
     {
         m_bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     return TRUE;

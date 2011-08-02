@@ -75,3 +75,5 @@ xLib.zip
 copy.sh
 copy.pl
 Build_VMs.pl
+RunTests_Linux.sh
+RunTests_FreeBSD.sh
