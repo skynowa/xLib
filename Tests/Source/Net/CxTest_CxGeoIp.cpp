@@ -95,10 +95,10 @@ CxTest_CxGeoIp::bUnit() {
                 xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
                 m_sRes = giGeoIp.sGetCountryCodeByAddress(csAddress);
-                xASSERT(csMustCode2 == m_sRes);
+                xASSERT_EQUAL(csMustCode2, m_sRes);
 
                 m_sRes = giGeoIp.sGetCountryCode3ByAddress(csAddress);
-                xASSERT(csMustCode3 == m_sRes);
+                xASSERT_EQUAL(csMustCode3, m_sRes);
             }
         }
     }

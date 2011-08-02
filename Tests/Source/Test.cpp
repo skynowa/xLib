@@ -69,7 +69,7 @@
 #include <Test/Filesystem/CxTest_CxStdioFile.h>
 #include <Test/Filesystem/CxTest_CxDll.h>
 #include <Test/Filesystem/CxTest_CxFileAttribute.h>
-#include <Test/Filesystem/CxTest_CxIni.h>
+#include <Test/Filesystem/CxTest_CxLocalStorage.h>
 #include <Test/Filesystem/CxTest_CxVolume.h>
 
 #if defined(xOS_WIN)
@@ -253,7 +253,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxEnvironment);
         bRes = tmManager.bAdd(new CxTest_CxDll);
         bRes = tmManager.bAdd(new CxTest_CxFileAttribute);
-        bRes = tmManager.bAdd(new CxTest_CxIni);
+        bRes = tmManager.bAdd(new CxTest_CxLocalStorage);
         bRes = tmManager.bAdd(new CxTest_CxVolume);
 
     #if defined(xOS_WIN)
@@ -275,14 +275,14 @@ _tmain(
         ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
         bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+        ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);
 
         //PKCS11
     #if defined(xOS_WIN)
-        bRes = tmManager.bAdd(new CxTest_CxPkcs11);
+        ////bRes = tmManager.bAdd(new CxTest_CxPkcs11);
     #elif defined(xOS_LINUX)
 
     #endif

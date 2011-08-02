@@ -20,6 +20,7 @@
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 #include <xLib/Net/CxDnsClient.h>
+#include <xLib/Crypt//CxRandom.h>
 //---------------------------------------------------------------------------
 class CxTest :
     public CxNonCopyable

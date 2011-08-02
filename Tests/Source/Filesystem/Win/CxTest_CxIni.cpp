@@ -9,7 +9,6 @@
 *****************************************************************************/
 
 
-#if defined(xOS_WIN)
 #include <Test/Filesystem/Win/CxTest_CxIni.h>
 
 
@@ -137,13 +136,13 @@ CxTest_CxIni::bUnit() {
             xASSERT_EQUAL(TRUE, m_bRes);
 
             m_sRes = objIni.sKeyReadString(xT("Section_String_1"), xT("Key_1"), xT(""));
-            xASSERT_EQUAL(xT("Begin_Value_1_Value_1_Value_1_Value_End"), m_sRes);
+            xASSERT_EQUAL(tString(xT("Begin_Value_1_Value_1_Value_1_Value_End")), m_sRes);
 
             m_bRes = objIni.bKeyWriteString(xT("Section_String_2"), xT("Key_1"), xT("Value_1"));
             xASSERT_EQUAL(TRUE, m_bRes);
 
             m_sRes = objIni.sKeyReadString(xT("Section_String_2"), xT("Key_1"), xT(""));
-            xASSERT_EQUAL(xT("Value_1"), m_sRes);
+            xASSERT_EQUAL(tString(xT("Value_1")), m_sRes);
         }
 
         //-------------------------------------
@@ -159,13 +158,13 @@ CxTest_CxIni::bUnit() {
             xASSERT_EQUAL(TRUE, m_bRes);
 
             usRes = objIni.usKeyReadBin(xT("Section_Bin_1"), xT("Key_1"), uString());
-            xASSERT_EQUAL(usValue_1, usRes);
+            xASSERT(usValue_1 == usRes);
 
             m_bRes = objIni.bKeyWriteBin(xT("Section_Bin_2"), xT("Key_1"), usValue_2);
             xASSERT_EQUAL(TRUE, m_bRes);
 
             usRes = objIni.usKeyReadBin(xT("Section_Bin_2"), xT("Key_1"), uString());
-            xASSERT_EQUAL(usValue_2, usRes);
+            xASSERT(usValue_2 == usRes);
         }
 
         //-------------------------------------
@@ -281,6 +280,3 @@ CxTest_CxIni::bUnit() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
-#endif

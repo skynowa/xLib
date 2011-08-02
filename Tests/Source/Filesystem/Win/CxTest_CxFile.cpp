@@ -78,7 +78,7 @@ CxTest_CxFile::bUnit() {
     xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_llRes = F.llGetSize();
-    xASSERT(FALSE != m_llRes);
+    xASSERT_NOT_EQUAL(0LL, m_llRes);
 
     ////	BOOL CxFile::bSetSize(ULONG ulSize) {
 
@@ -209,7 +209,7 @@ CxTest_CxFile::bUnit() {
     xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
     m_ullRes = CxFile::ullGetCompressedSize(csFilePathSt);
-    xASSERT(INVALID_FILE_SIZE != m_ullRes);
+    xASSERT_NOT_EQUAL((ULONGLONG)INVALID_FILE_SIZE, m_ullRes);
 
     m_bRes = CxFile::bSetAttrUncompressed(csFilePathSt);
     xASSERT_NOT_EQUAL(FALSE, m_bRes);
