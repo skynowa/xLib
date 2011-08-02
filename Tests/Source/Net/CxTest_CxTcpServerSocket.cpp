@@ -38,7 +38,7 @@ CxTest_CxTcpServerSocket::bUnit() {
 
 	const tString     csDomain        = xT("127.0.0.1");
 	tString           sIp             = xT("");
-	USHORT            usPort          = 6666;
+	USHORT            usPort          = 80;
 
 	tString           sSendBuff       = xT("TEST_STRING");
 	TCHAR             szRecvBuff[1024 * sizeof(TCHAR)]  = {0};

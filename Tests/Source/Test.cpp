@@ -74,7 +74,7 @@
 
 #if defined(xOS_WIN)
     #include <Test/Filesystem/Win/CxTest_CxFile.h>
-    ////#include <Test/Filesystem/Win/CxTest_CxIni.h>
+    #include <Test/Filesystem/Win/CxTest_CxIni.h>
 #elif defined(xOS_LINUX)
 
 #endif
@@ -141,11 +141,6 @@ _tmain(
     TCHAR *paszArgs[]
 )
 {
-//    INT iRes1 = 0;
-//    INT iRes2 = 1;
-//
-//    xASSERT_EQUAL(iRes1, iRes2);
-
     BOOL bRes = FALSE;
 
     #if xTEMP_DISABLED
@@ -153,11 +148,12 @@ _tmain(
         tcout << "<pre>\n\n" << tendl;
     #endif
 
+
     //--------------------------------------------------
     //set commandline args for xLib
     {
         bRes = CxEnvironment::bSetCommandLineArgs(iArgCount, paszArgs);
-        xASSERT(FALSE != bRes);
+        xASSERT_NOT_EQUAL(FALSE, bRes);
     }
 
     //--------------------------------------------------
@@ -170,7 +166,7 @@ _tmain(
         std::vector<tString> vsArgs;
 
         bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
-        xASSERT(FALSE != bRes);
+        xASSERT_NOT_EQUAL(FALSE, bRes);
 
         //usage
         if (2 == iArgCount) {
@@ -215,12 +211,12 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxType);
 
     #if defined(xOS_WIN)
-        ////bRes = tmManager.bAdd(new CxTest_CxClipboard);
+        bRes = tmManager.bAdd(new CxTest_CxClipboard);
         bRes = tmManager.bAdd(new CxTest_CxCom);
         bRes = tmManager.bAdd(new CxTest_CxHandleT);
         bRes = tmManager.bAdd(new CxTest_CxShell);
         bRes = tmManager.bAdd(new CxTest_CxComPort);
-        ////bRes = tmManager.bAdd(new CxTest_CxConsole);
+        bRes = tmManager.bAdd(new CxTest_CxConsole);
     #elif defined(xOS_LINUX)
 
     #endif
@@ -236,7 +232,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxCrc32);
         bRes = tmManager.bAdd(new CxTest_CxBase64);
         bRes = tmManager.bAdd(new CxTest_CxCrc32);
-        ////bRes = tmManager.bAdd(new CxTest_CxBlowfish);
+        bRes = tmManager.bAdd(new CxTest_CxBlowfish);
         bRes = tmManager.bAdd(new CxTest_CxRandom);
 
         //Db
@@ -262,7 +258,7 @@ _tmain(
 
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxFile);
-        ////bRes = tmManager.bAdd(new CxTest_CxIni);
+        bRes = tmManager.bAdd(new CxTest_CxIni);
     #elif defined(xOS_LINUX)
 
     #endif
@@ -278,15 +274,15 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxDnsClient);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
-        ////bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+        bRes = tmManager.bAdd(new CxTest_CxHttpClient);
+        bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);
 
         //PKCS11
     #if defined(xOS_WIN)
-        ////bRes = tmManager.bAdd(new CxTest_CxPkcs11);
+        bRes = tmManager.bAdd(new CxTest_CxPkcs11);
     #elif defined(xOS_LINUX)
 
     #endif

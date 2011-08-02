@@ -214,7 +214,7 @@ CxTest_CxStdioFile::bUnit() {
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             xASSERT_EQUAL(usText1.size(), usText2.size());
-            xASSERT(usText1 ==  usText2);
+            xASSERT(usText1 == usText2);
         }
     }
 
@@ -855,7 +855,7 @@ CxTest_CxStdioFile::bUnit() {
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_iRes = F.iWrite(xT("0123456789"));
-        xASSERT_NOT_EQUAL(FALSE, m_iRes);
+        xASSERT_NOT_EQUAL(static_cast<INT>( CxStdioFile::etError ), m_iRes);
 
         m_bRes = F.bClose();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);

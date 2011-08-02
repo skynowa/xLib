@@ -33,6 +33,7 @@ CxTest::CxTest() :
     m_siRes        (0),
     m_usiRes       (0),
     m_uiRes        (0),
+    m_stRes        (0),
     m_liRes        (0L),
     m_ulRes        (0),
     m_llRes        (0LL),

@@ -401,14 +401,14 @@ CxTest_CxString::bUnit() {
         std::vector<tString> vecsText;
 
         m_bRes = CxString::bSplit(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vecsText);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxString::bSplit(xT("Key+"), xT("+"), &vecsText);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         vecsText.clear();
         m_bRes = CxString::bSplit(xT(""), xT("+"), &vecsText);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -722,19 +722,19 @@ CxTest_CxString::bUnit() {
     {
         //must TRUE
         m_bRes = CxString::bCompareNoCase(xT(""),     xT(""));
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("xxx"),  xT("XXX"));
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("111"),  xT("111"));
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("eee"),  xT("EeE"));
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("WWW"),  xT("wwW"));
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         //maust FALSE
         m_bRes = CxString::bCompareNoCase(xT("ccc"),  xT("CCCz"));
@@ -933,16 +933,16 @@ CxTest_CxString::bUnit() {
     //bIsRepeated
     {
         m_bRes = CxString::bIsRepeated(xT("yyyyyyyyyyyy"));
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxString::bIsRepeated(xT("111111111111"));
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxString::bIsRepeated(xT("uuuuuiuuuuuuuuuuuu"));
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
 
         m_bRes = CxString::bIsRepeated(xT("000000000111111111"));
-        xASSERT(FALSE == m_bRes);
+        xASSERT_EQUAL(FALSE, m_bRes);
     }
 
 

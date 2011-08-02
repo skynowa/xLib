@@ -894,7 +894,7 @@ CxStdioFile::bWipe(
                 //chRand
                 {
                     bRes = sfFile.bSetPosition(0, ppBegin);
-                    xASSERT(FALSE != bRes);
+                    /*DEBUG*/xASSERT(FALSE != bRes);
 
                     for (LONG i = 0; i < liSize; ++ i) {
                         size_t uiRes = fwrite(&chRand, 1, sizeof(chRand), sfFile.pGet());
@@ -905,7 +905,7 @@ CxStdioFile::bWipe(
                 //chChar1
                 {
                     bRes = sfFile.bSetPosition(0, ppBegin);
-                    xASSERT(FALSE != bRes);
+                    /*DEBUG*/xASSERT(FALSE != bRes);
 
                     for (LONG i = 0; i < liSize; ++ i) {
                         size_t uiRes = fwrite(&chChar1, 1, sizeof(chChar1), sfFile.pGet());
@@ -916,7 +916,7 @@ CxStdioFile::bWipe(
                 //chChar2
                 {
                     bRes = sfFile.bSetPosition(0, ppBegin);
-                    xASSERT(FALSE != bRes);
+                    /*DEBUG*/xASSERT(FALSE != bRes);
 
                     for (LONG i = 0; i < liSize; ++ i) {
                         size_t uiRes = fwrite(&chChar2, 1, sizeof(chChar2), sfFile.pGet());

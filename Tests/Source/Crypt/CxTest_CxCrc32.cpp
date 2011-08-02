@@ -25,7 +25,7 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 /*virtual*/
-BOOL 
+BOOL
 CxTest_CxCrc32::bUnit() {
 	/*DEBUG*/
 
@@ -37,10 +37,10 @@ CxTest_CxCrc32::bUnit() {
     	CxStdioFile flFile;
 
         m_bRes = flFile.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         m_bRes = flFile.bResize(1333);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
 	//-------------------------------------
@@ -53,11 +53,11 @@ CxTest_CxCrc32::bUnit() {
 	//ulCalcFile, sFormatHex
 	{
 		m_ulRes = CxCrc32::ulCalcFile(csFilePath);
-		xASSERT(0 < m_ulRes);
+		xASSERT_LESS(0UL, m_ulRes);
 	    //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
 	}
 
 	//-------------------------------------
@@ -70,11 +70,11 @@ CxTest_CxCrc32::bUnit() {
 	//ulCalcFileFast, sFormatHex
 	{
 	    m_ulRes = CxCrc32::ulCalcFileFast(csFilePath);
-        xASSERT(0 < m_ulRes);
+        xASSERT_LESS(0UL, m_ulRes);
         //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xASSERT(false == m_sRes.empty());
+        xASSERT_EQUAL(false, m_sRes.empty());
 	}
 
 	return TRUE;

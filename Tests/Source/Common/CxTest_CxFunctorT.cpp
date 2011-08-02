@@ -105,7 +105,7 @@ CxTest_CxFunctorT::bUnit() {
         xASSERT(NULL != pbF);
 
         m_bRes = (*pbF)(a);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         delete pbF;
     }
@@ -120,7 +120,7 @@ CxTest_CxFunctorT::bUnit() {
         xASSERT(NULL != pbF);
 
         m_bRes = pbF->Execute(a);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         delete pbF;
     }
@@ -133,7 +133,7 @@ CxTest_CxFunctorT::bUnit() {
         CxFunctorT<B, BOOL, A> bF(&b, &B::methodB);
 
         m_bRes = bF(a);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -145,7 +145,7 @@ CxTest_CxFunctorT::bUnit() {
         CxFunctorT<B, BOOL, A> bF(&b, &B::methodB);
 
         m_bRes = bF.Execute(a);
-        xASSERT(FALSE != m_bRes);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
 
@@ -155,7 +155,7 @@ CxTest_CxFunctorT::bUnit() {
         CxFunctorT<CParam, tString, VOID *> bF(&objParam, &CParam::sSetName);
 
         m_sRes = bF.Execute(0);
-        xASSERT(xT("Class_C") == m_sRes);
+        xASSERT_EQUAL(tString(xT("Class_C")), m_sRes);
     }
 
     return TRUE;

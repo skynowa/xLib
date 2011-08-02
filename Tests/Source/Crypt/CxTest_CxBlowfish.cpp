@@ -51,13 +51,13 @@ CxTest_CxBlowfish::bUnit() {
 			uString sDecrypted;
 
 			m_bRes = BF.bSetKey(sKey);
-			xASSERT(FALSE != m_bRes);
+			xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 			m_bRes = BF.bEncryptCfb64(usPlain[i], &sEncrypted, CxBlowfish::cmEncrypt);
-			xASSERT(FALSE != m_bRes);
+			xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 			m_bRes = BF.bEncryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
-			xASSERT(FALSE != m_bRes);
+			xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 			xASSERT(usPlain[i] == sDecrypted);
 		}
@@ -72,14 +72,21 @@ CxTest_CxBlowfish::bUnit() {
 		tString sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
 		tString sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
+		//prepare
+        {
+            m_bRes = CxStdioFile::bTextWrite(sFilePlain, xT("text"));
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        }
+
+		//test
 		m_bRes = BF.bSetKey(sKey);
-		xASSERT(FALSE != m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		m_bRes = BF.bEncryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
-		xASSERT(FALSE != m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
-		xASSERT(FALSE != m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 
 	//-------------------------------------
@@ -96,16 +103,16 @@ CxTest_CxBlowfish::bUnit() {
 		tString sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
 		m_bRes = BF.bSetKey(sKey);
-		xASSERT(FALSE != m_bRes);
+		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		cmRes = BF.cmGetFileCryptStatus(sFilePlain, usStamp);
-		xASSERT(CxBlowfish::cmDecrypt == cmRes);
+		xASSERT_EQUAL(CxBlowfish::cmDecrypt, cmRes);
 
 //		m_bRes = BF.bEncryptFileCfb64(sFilePlain,     sFileEncrypted, usStamp);
-//		xASSERT(FALSE != m_bRes);
+//		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 //
 //		m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, usStamp);
-//		xASSERT(FALSE != m_bRes);
+//		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 
 
