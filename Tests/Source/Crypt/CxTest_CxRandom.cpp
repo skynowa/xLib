@@ -27,84 +27,86 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 /*virtual*/
 BOOL
 CxTest_CxRandom::bUnit() {
-	CxRandom rndR;
+    #if xTODO
+        CxRandom rndR;
 
-    //--------------------------------------------------
-    //bSetSeed
-    {
-        m_bRes = rndR.bSetSeed( static_cast<ULONG>( time(NULL) ) );
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    }
+        //--------------------------------------------------
+        //bSetSeed
+        {
+            m_bRes = rndR.bSetSeed( static_cast<ULONG>( time(NULL) ) );
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        }
 
-    //--------------------------------------------------
-    //iNextInt
-    {
-        m_iRes = rndR.iNextInt();
-        xASSERT_LESS(0, m_iRes);
-    }
+        //--------------------------------------------------
+        //iNextInt
+        {
+            m_iRes = rndR.iNextInt();
+            xASSERT_LESS(0, m_iRes);
+        }
 
-    //--------------------------------------------------
-    //iNextInt
-    {
-        m_iRes = rndR.iNextInt(100);
-        xASSERT_LESS(0, m_iRes);
-    }
+        //--------------------------------------------------
+        //iNextInt
+        {
+            m_iRes = rndR.iNextInt(100);
+            xASSERT_LESS_EQUAL(0, m_iRes);
+        }
 
-    //--------------------------------------------------
-    //iNextInt
-    {
-        m_iRes = rndR.iNextInt(100, 200);
-        xASSERT_EQUAL(true, 100 <= m_iRes && 200 >= m_iRes);
-    }
+        //--------------------------------------------------
+        //iNextInt
+        {
+            m_iRes = rndR.iNextInt(100, 200);
+            xASSERT_EQUAL(true, 100 <= m_iRes && 200 >= m_iRes);
+        }
 
-    //--------------------------------------------------
-    //liNextLong
-    {
-        m_liRes = rndR.liNextLong();
-        xASSERT_LESS(0L, m_liRes);
-    }
+        //--------------------------------------------------
+        //liNextLong
+        {
+            m_liRes = rndR.liNextLong();
+            xASSERT_LESS(0L, m_liRes);
+        }
 
-    //--------------------------------------------------
-    //bNextBoolean
-    {
-        m_blRes = rndR.bNextBoolean();
-        xASSERT_EQUAL(true, true == m_blRes || false == m_blRes);
-    }
+        //--------------------------------------------------
+        //bNextBoolean
+        {
+            m_blRes = rndR.bNextBoolean();
+            xASSERT_EQUAL(true, true == m_blRes || false == m_blRes);
+        }
 
-    //--------------------------------------------------
-    //fNextFloat
-    {
-        m_fRes = rndR.fNextFloat();
-        //xASSERT
-    }
+        //--------------------------------------------------
+        //fNextFloat
+        {
+            m_fRes = rndR.fNextFloat();
+            //xASSERT
+        }
 
-    //--------------------------------------------------
-    //bNextDouble
-    {
-        m_dRes = rndR.bNextDouble();
-        //xASSERT
-    }
+        //--------------------------------------------------
+        //bNextDouble
+        {
+            m_dRes = rndR.bNextDouble();
+            //xASSERT
+        }
 
-    //--------------------------------------------------
-    //chNextChar
-    {
-        m_chRes = rndR.chNextChar();
-        //xASSERT
-    }
+        //--------------------------------------------------
+        //chNextChar
+        {
+            m_chRes = rndR.chNextChar();
+            //xASSERT
+        }
 
-    //--------------------------------------------------
-    //chNextFigure
-    {
-        m_chRes = rndR.chNextFigure();
-        //xASSERT
-    }
+        //--------------------------------------------------
+        //chNextFigure
+        {
+            m_chRes = rndR.chNextFigure();
+            //xASSERT
+        }
 
-    //--------------------------------------------------
-    //dNextGaussian
-    {
-        m_dRes = rndR.dNextGaussian();
-        //xASSERT
-    }
+        //--------------------------------------------------
+        //dNextGaussian
+        {
+            m_dRes = rndR.dNextGaussian();
+            //xASSERT
+        }
+    #endif
 
     //-------------------------------------
     //bSetSeed, liGetInt, liGetIntEx
@@ -143,7 +145,8 @@ CxTest_CxRandom::bUnit() {
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
             m_sRes = CxRandom::sGetString(cuiStrSize);
-            //xTRACEV(xT("i: %s"), m_sRes.c_str());
+            xASSERT_EQUAL(cuiStrSize, m_sRes.size());
+            //xTRACEV(xT("\ti: %s"), m_sRes.c_str());
         }
     }
 

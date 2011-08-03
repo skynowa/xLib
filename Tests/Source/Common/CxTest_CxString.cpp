@@ -687,7 +687,7 @@ CxTest_CxString::bUnit() {
 
         //various string size
         {
-            for (size_t i = 1; i < 1024 * 4; ++ i) {
+            for (size_t i = 1; i < 1024 * 2; ++ i) {
                 tString sData(i, xT('s'));
 
                 tString m_sRes = CxString::sFormat(xT("%s"), sData.c_str());

@@ -161,7 +161,7 @@ CxRandom::dNextGaussian() {
 
 //---------------------------------------------------------------------------
 //DONE: bSetSeed
-BOOL 
+BOOL
 CxRandom::bSetSeed() {
     /*DEBUG*/// n/a
 
@@ -179,28 +179,33 @@ CxRandom::bSetSeed() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: liGetInt (Generates a random number between specified min/max boundaries) 
+//DONE: liGetInt (Generates a random number between specified min/max boundaries)
 /*static*/
-LONG 
-CxRandom::liGetInt( 
-    const LONG cliMin, 
-    const LONG cliMax 
+LONG
+CxRandom::liGetInt(
+    const LONG cliMin,
+    const LONG cliMax
 )
 {
-    /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0)
+    /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0L);
 
-    const LONG cliRange = cliMax - cliMin;
-    const LONG cliNum   = rand() % cliRange;
+    LONG liRes = 0;
 
-    return cliNum + cliMin;
+#if 1
+    liRes   = (rand() % (cliMax - cliMin))  + cliMin;
+#else
+    liRes   = (rand() * (DOUBLE)(cliMax - cliMin) / RAND_MAX) + cliMin;
+#endif
+
+    return liRes;
 }
 //---------------------------------------------------------------------------
 //DONE: liGetIntEx (Generates a random number between specified min/max boundaries using a vector to shuffle)
 /*static*/
-LONG 
+LONG
 CxRandom::liGetIntEx(
-    const LONG cliMin, 
-    const LONG cliMax 
+    const LONG cliMin,
+    const LONG cliMax
 )
 {
     /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0)
@@ -211,9 +216,11 @@ CxRandom::liGetIntEx(
 		vliRes.push_back(i);
     }
 
+    /*DEBUG*/xASSERT_RET(false == vliRes.empty(), 0L);
+
     std::random_shuffle(vliRes.begin(), vliRes.end());
 
-	return vliRes[0];
+	return vliRes.at(0);
 }
 //---------------------------------------------------------------------------
 //DONE: sGetString (get random string)
@@ -225,6 +232,8 @@ CxRandom::sGetString(
 {
     /*DEBUG*/
 
+    xCHECK_RET(0 == cuiLength, tString());
+
     const BOOL cbIsLetters      = TRUE;
     const BOOL cbIsNumbers      = TRUE;
     const BOOL cbIsAsciiSymbols = TRUE;
@@ -234,8 +243,8 @@ CxRandom::sGetString(
 
     if (TRUE == cbIsLetters) {
         for (INT i = 65; i <= 90; ++ i) {
-            sAllPossible.push_back(static_cast<TCHAR>(i) );         //upper case
-            sAllPossible.push_back(static_cast<TCHAR>(i + 32) );    //lower case
+            sAllPossible.push_back( static_cast<TCHAR>(i) );         //upper case
+            sAllPossible.push_back( static_cast<TCHAR>(i + 32) );    //lower case
         }
     }
 
@@ -265,10 +274,8 @@ CxRandom::sGetString(
 
     const size_t cuiPossibilitiesNum = sAllPossible.length();
     for (size_t i = 0; i < cuiLength; ++ i) {
-        sRes += sAllPossible[ liGetInt(0, cuiPossibilitiesNum) ];
+        sRes.push_back( sAllPossible.at( liGetInt(0, cuiPossibilitiesNum) ) );
     }
-
-    //std::random_shuffle(sRes.begin(), sRes.end());
 
     return sRes;
 }

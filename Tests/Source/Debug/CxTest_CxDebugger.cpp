@@ -106,14 +106,19 @@ CxTest_CxDebugger::bUnit() {
     //-------------------------------------
     //bTrace
     {
-        CxDebugger::bTrace(xT("\tCxDebugger: %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
+        CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bTrace
     {
-        CxDebugger::bTrace(xT("\tCxDebugger: ") + CxRandom::sGetString(CxRandom::liGetIntEx(0, 20)));
+        #if 0
+            CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(1, 20) ).c_str());
+        #else
+            CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), xT("qwerty"));
+        #endif
+
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 

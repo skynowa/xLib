@@ -50,11 +50,11 @@ CxTest_CxProfiler::bUnit() {
 		m_sRes = pfP.sGetLogPath();
 		xASSERT_EQUAL(csFilePath, m_sRes);
 
-		pfP.bStart();
+		m_bRes = pfP.bStart();
 		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		for (size_t i = 0; i < 10; ++ i) {
-			for (size_t j = 0; j < 10; ++ j) {
+			for (size_t j = 0; j < 2; ++ j) {
 				size_t x = 0;
 
 				x++; --x; x = x / 3;
