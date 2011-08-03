@@ -220,8 +220,10 @@ CxDebugger::bBeep(
     #if defined(xOS_FREEBSD)
         //TODO: bBeep
     #else
-        INT iRes = _tsystem(xT("xkbbell"));
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        #if xTODO
+            INT iRes = _tsystem(xT("xkbbell"));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        #endif
     #endif
 
     #if xTEMP_DISABLED
