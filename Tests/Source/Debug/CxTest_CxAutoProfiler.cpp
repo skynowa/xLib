@@ -45,7 +45,7 @@ CxTest_CxAutoProfiler::bUnit() {
 		for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
 			CxAutoProfiler _apfAP(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i], xT("%i"), 777);
 
-			for (size_t x = 0; x < 10; ++ x) {
+			for (size_t x = 0; x < 2; ++ x) {
 				for (size_t y = 0; y < 2; ++ y) {
 					size_t z = 0;
 
@@ -60,7 +60,7 @@ CxTest_CxAutoProfiler::bUnit() {
 	for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
 	    xAUTO_PROFILER_FUNC(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i]);
 
-		for (size_t x = 0; x < 10; ++ x) {
+		for (size_t x = 0; x < 2; ++ x) {
 			for (size_t y = 0; y < 2; ++ y) {
 				size_t z = 0;
 
