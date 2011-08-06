@@ -23,7 +23,7 @@ class CxTest_CxProcess :
                      CxTest_CxProcess();
 		virtual     ~CxTest_CxProcess();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

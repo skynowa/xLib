@@ -23,7 +23,7 @@ class CxTest_CxAutoMallocT :
                      CxTest_CxAutoMallocT();
 		virtual     ~CxTest_CxAutoMallocT();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

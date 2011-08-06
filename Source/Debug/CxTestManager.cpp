@@ -67,7 +67,8 @@ CxTestManager::bAdd(
 BOOL
 CxTestManager::bRun(
     const ULONGLONG cullAllLoops,
-    const ULONGLONG cullUnitLoops
+    const ULONGLONG cullUnitLoops,
+    const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
@@ -79,11 +80,11 @@ CxTestManager::bRun(
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::sGetExe().c_str()));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(" unit loops: %") xPR_I64u xT(" unit number: %") xPR_SIZET xT("\n"), cullAllLoops, cullUnitLoops, _m_ctnTests.size()));
 
-    for (ULONGLONG i = 0; i < cullAllLoops; ++ i) {
+    for (ULONGLONG i = 0ULL; i < cullAllLoops; ++ i) {
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 
-            bRes = (*it)->bRun(cullUnitLoops);
+            bRes = (*it)->bRun(cullUnitLoops, cullBlockLoops);
             xASSERT_MSG_RET(FALSE != bRes, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()), FALSE);
         }
     }

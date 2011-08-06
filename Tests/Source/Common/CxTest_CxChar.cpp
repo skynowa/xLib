@@ -26,9 +26,13 @@ CxTest_CxChar::~CxTest_CxChar() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxChar::bUnit() {
+CxTest_CxChar::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //--------------------------------------------------
     //bIsAlphaNum
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -53,6 +57,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsAlpha
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -77,6 +82,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsControl
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -101,6 +107,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsDigitDec
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -125,6 +132,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsDigitHex
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -149,6 +157,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsGraph
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -173,6 +182,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsPrint
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -199,6 +209,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsPunct
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -223,6 +234,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsSpace
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -247,6 +259,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsLower
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -271,6 +284,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //bIsUpper
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
         {
@@ -295,6 +309,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //chToLower
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         const tString sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
@@ -307,6 +322,7 @@ CxTest_CxChar::bUnit() {
 
     //--------------------------------------------------
     //chToUpper
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
         const tString sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");

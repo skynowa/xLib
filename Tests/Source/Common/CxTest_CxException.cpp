@@ -26,9 +26,13 @@ CxTest_CxException::~CxTest_CxException() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxException::bUnit() {
+CxTest_CxException::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //--------------------------------------------------
     //CxException(), sGetWhat, e.sGetName
+    xTEST_BLOCK(cullBlockLoops)
     {
         try {
             throw CxException();
@@ -44,6 +48,7 @@ CxTest_CxException::bUnit() {
 
     //--------------------------------------------------
     //CxException(tString), what
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("TEST_STRING_1")},
@@ -68,6 +73,7 @@ CxTest_CxException::bUnit() {
 
     //--------------------------------------------------
     //catch CxException
+    xTEST_BLOCK(cullBlockLoops)
     {
         try {
             throw CxException() << "CxException_test_exception";
@@ -82,6 +88,7 @@ CxTest_CxException::bUnit() {
 
     //--------------------------------------------------
     //catch std::exception
+    xTEST_BLOCK(cullBlockLoops)
     {
         try {
             tString sStr;
@@ -98,16 +105,18 @@ CxTest_CxException::bUnit() {
 
     //--------------------------------------------------
     //
-    #if xTODO
-        xTRY {
-            tString sStr;
+    xTEST_BLOCK(cullBlockLoops) {
+        #if xTODO
+            xTRY {
+                tString sStr;
 
-            sStr.at(0);
-        }
-        xCATCH_ALL;
+                sStr.at(0);
+            }
+            xCATCH_ALL;
 
-        return TRUE;
-    #endif
+            return TRUE;
+        #endif
+    }
 
     return TRUE;
 }

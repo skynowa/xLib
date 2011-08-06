@@ -24,7 +24,7 @@ class CxTest_CxDir :
                      CxTest_CxDir();
 		virtual     ~CxTest_CxDir();
 
-		virtual BOOL bUnit();
+		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

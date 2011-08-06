@@ -26,7 +26,10 @@ CxTest_CxSmtp::~CxTest_CxSmtp() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxSmtp::bUnit() {
+CxTest_CxSmtp::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     //-------------------------------------
     //IPNET

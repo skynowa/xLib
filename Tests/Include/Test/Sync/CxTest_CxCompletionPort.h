@@ -23,7 +23,7 @@ class CxTest_CxCompletionPort :
                      CxTest_CxCompletionPort();
 		virtual     ~CxTest_CxCompletionPort();
 
-		virtual     BOOL bUnit();
+		virtual     BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

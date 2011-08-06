@@ -22,7 +22,7 @@ class CxTest_CxDnsClient :
                      CxTest_CxDnsClient();
 		virtual     ~CxTest_CxDnsClient();
 
-		virtual BOOL bUnit();
+		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

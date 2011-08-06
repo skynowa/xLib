@@ -32,7 +32,7 @@ CxTest::CxTest() :
     m_iRes         (- 1),
     m_siRes        (0),
     m_usiRes       (0),
-    m_uiRes        (0),
+    m_uiRes        (0U),
     m_stRes        (0),
     m_liRes        (0L),
     m_ulRes        (0),
@@ -43,7 +43,7 @@ CxTest::CxTest() :
     m_sRes         (),
     m_usRes        (),
     m_vecsRes      (),
-    m_msRes      (),
+    m_msRes        (),
 #if defined(xOS_WIN)
     m_hRes         (INVALID_HANDLE_VALUE),
     m_hwndRes      (NULL),
@@ -66,25 +66,16 @@ CxTest::~CxTest() /* = 0*/ {
 //DONE: bRun (run in some loops)
 BOOL
 CxTest::bRun(
-    const ULONGLONG cullLoops
+    const ULONGLONG cullUnitLoops,
+    const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
-    const ULONGLONG cullInfiniteLoops = 0;
 
     try {
-        if (cullInfiniteLoops == cullLoops) {
-            //infinite
-            for ( ;  ; ) {
-                _m_bRes = bUnit();
-                /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
-            }
-		} else {
-            //in some loops
-            for (ULONGLONG i = 0; i < cullLoops; ++ i) {
-                _m_bRes = bUnit();
-                /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
-            }
+        for (ULONGLONG i = 0ULL; i < cullUnitLoops; ++ i) {
+            _m_bRes = bUnit(cullBlockLoops);
+            /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
         }
     }
     catch (const CxException &e) {
@@ -105,18 +96,22 @@ CxTest::bRun(
 //DONE: bUnit (unit)
 /*virtual*/
 BOOL
-CxTest::bUnit() /*= 0*/ {
+CxTest::bUnit(
+    const ULONGLONG cullBlockLoops
+) /*= 0*/ 
+{
     /*DEBUG*/// n/a
 
     #if xTODO
         //-------------------------------------
         //[FUNCTION_NAME]
+        xTEST_BLOCK(cullBlockLoops)
         {
             const tString casData[][2] = {
-                {xT("TEST_STRING_1"),   xT("MUST_BE_1")},
-                {xT("TEST_STRING_2"),   xT("MUST_BE_2")},
-                {xT("TEST_STRING_3"),   xT("MUST_BE_3")},
-                {xT("TEST_STRING_4"),   xT("MUST_BE_4")}
+                {xT("TEST_STRING_1"), xT("MUST_BE_1")},
+                {xT("TEST_STRING_2"), xT("MUST_BE_2")},
+                {xT("TEST_STRING_3"), xT("MUST_BE_3")},
+                {xT("TEST_STRING_4"), xT("MUST_BE_4")}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {

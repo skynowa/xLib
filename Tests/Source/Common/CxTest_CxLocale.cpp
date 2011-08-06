@@ -26,9 +26,13 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxLocale::bUnit() {
+CxTest_CxLocale::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //-------------------------------------
     //sGetCurrent
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxLocale::sGetCurrent();
         xASSERT_EQUAL(false, m_sRes.empty());
@@ -36,6 +40,7 @@ CxTest_CxLocale::bUnit() {
 
     //-------------------------------------
     //bSetCurrent
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetCurrent( CxLocale::sGetCurrent() );
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -43,6 +48,7 @@ CxTest_CxLocale::bUnit() {
 
     //-------------------------------------
     //bSetDefault
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetDefault();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -50,6 +56,7 @@ CxTest_CxLocale::bUnit() {
 
     //-------------------------------------
     //bSetCurrent
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
         xASSERT_NOT_EQUAL(FALSE, m_bRes);

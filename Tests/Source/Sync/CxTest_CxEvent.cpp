@@ -26,7 +26,10 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxEvent::bUnit() {
+CxTest_CxEvent::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     //-------------------------------------
     //bManualReset == TRUE

@@ -26,8 +26,12 @@ CxTest_CxUri::~CxTest_CxUri() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxUri::bUnit() {
+CxTest_CxUri::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret#nose");
 
@@ -59,6 +63,7 @@ CxTest_CxUri::bUnit() {
         xASSERT_EQUAL(std::string("nose"), m_sRes);
     }
 
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret");
 
@@ -90,6 +95,7 @@ CxTest_CxUri::bUnit() {
         xASSERT_EQUAL(std::string(), m_sRes);
     }
 
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there");
 
@@ -121,6 +127,7 @@ CxTest_CxUri::bUnit() {
         xASSERT_EQUAL(std::string(), m_sRes);
     }
 
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042");
 
@@ -152,6 +159,7 @@ CxTest_CxUri::bUnit() {
         xASSERT_EQUAL(std::string(), m_sRes);
     }
 
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxUri objUri("foo://userinfo@example.com");
 
@@ -183,6 +191,7 @@ CxTest_CxUri::bUnit() {
         xASSERT_EQUAL(std::string(), m_sRes);
     }
 
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxUri objUri("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c");
 
@@ -214,6 +223,7 @@ CxTest_CxUri::bUnit() {
         xASSERT_EQUAL(std::string(), m_sRes);
     }
 
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxUri objUri("http://dn1.berloga.net/83841/zombie_baseball_2.swf");
 
@@ -245,9 +255,9 @@ CxTest_CxUri::bUnit() {
         xASSERT_EQUAL(std::string(), m_sRes);
     }
 
-
     //-------------------------------------
     //sEncode, sDecode
+    xTEST_BLOCK(cullBlockLoops)
     {
         const std::string sUri[] = {
             "http://dn1.berloga.net/83841/Ч�ЧњпїЅ_Ч¤ЧђЧ™Ч›Чђ.swf",

@@ -23,7 +23,7 @@ class CxTest_CxMutex :
                      CxTest_CxMutex();
 		virtual     ~CxTest_CxMutex();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

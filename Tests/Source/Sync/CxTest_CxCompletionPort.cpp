@@ -26,7 +26,10 @@ CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxCompletionPort::bUnit() {
+CxTest_CxCompletionPort::bUnit(    
+    const ULONGLONG cullBlockLoops
+)
+{
 	/*DEBUG*/
 
 	return TRUE;

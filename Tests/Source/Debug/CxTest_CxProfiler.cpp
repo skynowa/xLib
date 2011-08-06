@@ -26,7 +26,10 @@ CxTest_CxProfiler::~CxTest_CxProfiler() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxProfiler::bUnit() {
+CxTest_CxProfiler::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	const CxProfiler::EMode pmPerformMode[] = {
 	        CxProfiler::pmStdClock,
 	        CxProfiler::pmDateTime,

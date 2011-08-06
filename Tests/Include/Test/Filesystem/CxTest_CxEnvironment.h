@@ -23,7 +23,7 @@ class CxTest_CxEnvironment :
                      CxTest_CxEnvironment();
 		virtual     ~CxTest_CxEnvironment();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

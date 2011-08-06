@@ -32,7 +32,10 @@ CxTest_CxHandleT::~CxTest_CxHandleT() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxHandleT::bUnit() {
+CxTest_CxHandleT::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     //-------------------------------------
     //CxHandleT

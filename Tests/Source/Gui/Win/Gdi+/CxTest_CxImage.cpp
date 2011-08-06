@@ -27,7 +27,10 @@
     //TODO: bUnit ()
     /*virtual*/
     BOOL
-    CxTest_CxImage::bUnit() {
+    CxTest_CxImage::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
         /*DEBUG*/
 
         const tString csInFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Pic.bmp");

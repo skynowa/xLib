@@ -26,7 +26,10 @@ CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxWaitableTimer::bUnit() {
+CxTest_CxWaitableTimer::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     BOOL bRes = FALSE;
 

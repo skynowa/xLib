@@ -26,9 +26,13 @@ CxTest_CxLastError::~CxTest_CxLastError() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxLastError::bUnit() {
+CxTest_CxLastError::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //-------------------------------------
     //ulGet
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
         const size_t cuiMaxErrors = 17000;  /*0...15999*/;
@@ -45,6 +49,7 @@ CxTest_CxLastError::bUnit() {
 
     //-------------------------------------
     //ulGet
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
         const size_t cuiMaxErrors = 17000;  /*0...15999*/;
@@ -60,6 +65,7 @@ CxTest_CxLastError::bUnit() {
 
     //-------------------------------------
     //bSet
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
         const size_t cuiMaxErrors = 17000;  /*0...15999*/;
@@ -75,6 +81,7 @@ CxTest_CxLastError::bUnit() {
 
     //-------------------------------------
     //bReset
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
         const size_t cuiMaxErrors = 17000;  /*0...15999*/;
@@ -95,6 +102,7 @@ CxTest_CxLastError::bUnit() {
 
     //-------------------------------------
     //sFormat
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxLastError::sFormat(0);
         xASSERT_EQUAL(false, m_sRes.empty());

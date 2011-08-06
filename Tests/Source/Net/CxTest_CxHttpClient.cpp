@@ -26,8 +26,14 @@ CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxHttpClient::bUnit() {
-    CxHttpClient hcHttpClient;
+CxTest_CxHttpClient::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxHttpClient hcHttpClient;
+    }
 
     return TRUE;
 }

@@ -26,10 +26,14 @@ CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxAutoMutex::bUnit() {
+CxTest_CxAutoMutex::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     #if defined(xOS_WIN)
     	//-------------------------------------
         //CxAutoMutex
+        xTEST_BLOCK(cullBlockLoops)
         {
             CxMutex mtMutex;
 

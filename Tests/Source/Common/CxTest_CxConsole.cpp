@@ -26,7 +26,10 @@ CxTest_CxConsole::~CxTest_CxConsole() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL 
-CxTest_CxConsole::bUnit() {
+CxTest_CxConsole::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     /*DEBUG*/
 
     #if xTODO

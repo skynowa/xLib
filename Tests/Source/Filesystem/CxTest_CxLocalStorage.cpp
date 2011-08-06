@@ -26,7 +26,10 @@ CxTest_CxLocalStorage::~CxTest_CxLocalStorage() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxLocalStorage::bUnit() {
+CxTest_CxLocalStorage::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     const tString csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
 
     const tString csKey1   = xT("a");
@@ -44,6 +47,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //CxLocalStorage()
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxLocalStorage iniIni;
     }
@@ -59,6 +63,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //bCreateDefault
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bCreateDefault(csContent);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -66,6 +71,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //sGetPath
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = iniIni.sGetPath();
         xASSERT_EQUAL(csFilePath, m_sRes);
@@ -73,6 +79,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //bSetPath
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bSetPath(csFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -83,6 +90,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //cmapsGet, bFlush
+    xTEST_BLOCK(cullBlockLoops)
     {
         NxLib::TLocalStorage &riniIni = iniIni.cmapsGet();
         xASSERT_EQUAL(true, riniIni.empty());
@@ -102,11 +110,27 @@ CxTest_CxLocalStorage::bUnit() {
 
         m_sRes = iniIni.sKeyReadString(csKey3, tString());
         xASSERT_EQUAL(csValue3, m_sRes);
+
+        iniIni.cmapsGet().clear();
+
+        m_bRes = iniIni.bFlush();
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
     //bKeyIsExists
+    xTEST_BLOCK(cullBlockLoops)
     {
+        NxLib::TLocalStorage &riniIni = iniIni.cmapsGet();
+        xASSERT_EQUAL(true, riniIni.empty());
+
+        riniIni[csKey1] = csValue1;
+        riniIni[csKey2] = csValue2;
+        riniIni[csKey3] = csValue3;
+
+        m_bRes = iniIni.bFlush();
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
         //success
         {
             std::vector<tString> vecsPairs;
@@ -147,10 +171,16 @@ CxTest_CxLocalStorage::bUnit() {
                 xASSERT_EQUAL(FALSE, m_bRes);
             }
         }
+
+        iniIni.cmapsGet().clear();
+
+        m_bRes = iniIni.bFlush();
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
     //bKeyWriteString, sKeyReadString
+    xTEST_BLOCK(cullBlockLoops)
     {
         //success
         {
@@ -177,6 +207,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //iKeyReadInt, bKeyWriteInt
+    xTEST_BLOCK(cullBlockLoops)
     {
         const LONG cliValue = 10L;
 
@@ -189,6 +220,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //dKeyReadFloat, bKeyWriteFloat
+    xTEST_BLOCK(cullBlockLoops)
     {
         const DOUBLE cdValue = 777.0f;
 
@@ -201,6 +233,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //bKeyReadBool, bKeyWriteBool
+    xTEST_BLOCK(cullBlockLoops)
     {
         const BOOL cbValue = FALSE;
 
@@ -213,6 +246,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //usKeyReadBin, bKeyWriteBin
+    xTEST_BLOCK(cullBlockLoops)
     {
         const uString cusValue(10, 'z');
         const uString cusDefaultValue(10, 'd');
@@ -228,6 +262,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //bKeyClear
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bKeyClear(csKey3);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -239,15 +274,23 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //bKeyDelete
+    xTEST_BLOCK(cullBlockLoops)
     {
-        xASSERT_NOT_EQUAL(FALSE, iniIni.bKeyIsExists(csKey3));
-        m_bRes = iniIni.bKeyDelete(csKey3);
+        const tString csKey   = xT("Key");
+        const tString csValue = xT("");
+
+        m_bRes = iniIni.bKeyWriteString(csKey, csValue);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_EQUAL(FALSE, iniIni.bKeyIsExists(csKey3));
+        xASSERT_NOT_EQUAL(FALSE, iniIni.bKeyIsExists(csKey));
+
+        m_bRes = iniIni.bKeyDelete(csKey);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_EQUAL(FALSE, iniIni.bKeyIsExists(csKey));
     }
 
     //--------------------------------------------------
     //bClear
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bClear();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -256,6 +299,7 @@ CxTest_CxLocalStorage::bUnit() {
 
     //--------------------------------------------------
     //bDelete
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bDelete();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);

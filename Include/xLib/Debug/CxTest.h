@@ -22,6 +22,8 @@
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Crypt//CxRandom.h>
 //---------------------------------------------------------------------------
+#define xTEST_BLOCK(uiLoops)  /*xTRACE_POINT;*/ for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
+//---------------------------------------------------------------------------
 class CxTest :
     public CxNonCopyable
 {
@@ -58,8 +60,8 @@ class CxTest :
                                         CxTest         ();
         virtual                        ~CxTest         () = 0;
 
-        BOOL                            bRun           (const ULONGLONG cullLoops /*0 - infinite*/);
-        virtual BOOL                    bUnit          () = 0;
+        BOOL                            bRun           (const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
+        virtual BOOL                    bUnit          (const ULONGLONG cullBlockLoops) = 0;
         BOOL                            bCreateWorkDir (const tString &csDirName);
         const tString &                 sGetWorkDirPath() const;
 

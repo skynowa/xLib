@@ -23,7 +23,7 @@ class CxTest_CxConsole :
                      CxTest_CxConsole();
         virtual     ~CxTest_CxConsole();
 
-        virtual BOOL bUnit();
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

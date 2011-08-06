@@ -29,7 +29,10 @@ CxTest_CxTcpServerSocket::~CxTest_CxTcpServerSocket() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxTcpServerSocket::bUnit() {
+CxTest_CxTcpServerSocket::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	/*DEBUG*/
 
 	CxSocket::EAddressFamily afAf       = CxSocket::afInet;

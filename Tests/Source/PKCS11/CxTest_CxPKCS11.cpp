@@ -26,7 +26,10 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxPkcs11::bUnit() {
+CxTest_CxPkcs11::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     CxPkcs11 objPkcs11;
     CxSlot   objSlot(objPkcs11);
@@ -38,7 +41,8 @@ CxTest_CxPkcs11::bUnit() {
 
     //-------------------------------------
     //bSetData
-    //{
+    xTEST_BLOCK(cullBlockLoops)
+    {
     //	const tString csUserPin   = xT("1111");
     //	const tString csDataLabel = xT("Label_Id");
     //	const tString csData      = xT("1203456789");
@@ -46,21 +50,23 @@ CxTest_CxPkcs11::bUnit() {
 
     //	m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
     //	xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    //}
+    }
 
     //-------------------------------------
     //bGetData
-    //{
+    xTEST_BLOCK(cullBlockLoops)
+    {
     //	const tString csUserPin   = xT("1111");
     //	const tString csDataLabel = xT("Label_Id");
     //	uString       usData;
 
     //	m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
     //	xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    //}
+    }
 
     //-------------------------------------
     //
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString csUserPin   = xT("1111");
         const tString csDataLabel = xT("Key1.tkey");

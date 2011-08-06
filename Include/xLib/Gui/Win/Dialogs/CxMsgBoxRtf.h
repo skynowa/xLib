@@ -52,7 +52,7 @@ namespace CxMsgBoxRtf {
     const INT ciLeft           = 150;
     const INT ciTop            = 100;
     const INT ciWidth          = 270;    //250
-    const INT ciHeight         = 130;
+    const INT ciHeight         = 170;
 
     const INT ciBtnWidth       = 75;
     const INT ciBtnHeight      = 25;
@@ -90,7 +90,7 @@ namespace CxMsgBoxRtf {
                             xCXRICHEDIT10_CONTROL_CLASS /*xT("RICHEDIT")*/,
                             xT(""),
                             WS_CHILD | WS_VISIBLE | ES_LEFT | ES_MULTILINE | ES_WANTRETURN | ES_READONLY,
-                            90, 8, 420/*400*/, 200,
+                            90, 8, 420, 280,
                             hParent,
                             (HMENU)ID_redtText,
                             g_hInst,
@@ -113,7 +113,7 @@ namespace CxMsgBoxRtf {
                             xCXBUTTON_CONTROL_CLASS,
                             xT("Abort"),
                             WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                            ciBtnLeftMargin, 216, ciBtnWidth, ciBtnHeight,
+                            ciBtnLeftMargin, 296, ciBtnWidth, ciBtnHeight,
                             hParent,
                             (HMENU)ID_btnAbort,
                             g_hInst,
@@ -127,7 +127,7 @@ namespace CxMsgBoxRtf {
                             xCXBUTTON_CONTROL_CLASS,
                             xT("Break"),
                             WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                            ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 1, 216, ciBtnWidth, ciBtnHeight,
+                            ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 1, 296, ciBtnWidth, ciBtnHeight,
                             hParent,
                             (HMENU)ID_btnRetry,
                             g_hInst,
@@ -141,7 +141,7 @@ namespace CxMsgBoxRtf {
                             xCXBUTTON_CONTROL_CLASS,
                             xT("Ignore"),
                             WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                            ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 2, 216, ciBtnWidth, ciBtnHeight,
+                            ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 2, 296, ciBtnWidth, ciBtnHeight,
                             hParent,
                             (HMENU)ID_btnIgnore,
                             g_hInst,
@@ -155,7 +155,7 @@ namespace CxMsgBoxRtf {
                             xCXBUTTON_CONTROL_CLASS,
                             xT("Copy"),
                             WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                            ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 3, 216, ciBtnWidth, ciBtnHeight,
+                            ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 3, 296, ciBtnWidth, ciBtnHeight,
                             hParent,
                             (HMENU)ID_btnCopyToClip,
                             g_hInst,
@@ -169,7 +169,7 @@ namespace CxMsgBoxRtf {
                             xCXBUTTON_CONTROL_CLASS,
                             xT("Report"),
                             WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                            ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 4, 216, ciBtnWidth, ciBtnHeight,
+                            ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 4, 296, ciBtnWidth, ciBtnHeight,
                             hParent,
                             (HMENU)ID_btnSendReport,
                             g_hInst,

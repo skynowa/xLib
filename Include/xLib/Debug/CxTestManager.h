@@ -23,12 +23,13 @@ class CxTestManager :
 		virtual   ~CxTestManager();
 
         BOOL       bAdd         (CxTest *pvtTest, const tString &csTestName = CxConst::xSTR_EMPTY);
-        BOOL       bRun         (const ULONGLONG cullAllLoops, const ULONGLONG cullUnitLoops);
+        BOOL       bRun         (const ULONGLONG cullAllLoops, const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
 
         //TODO: not enough RAM
         //TODO: not enough HDD
         //TODO: busy CPU
-        //TODO: какждый макрос завернуть в try-catch
+        //TODO: every macros wrapped by try-catch
+
     private:
         typedef std::vector<CxTest *> TContainer;
 

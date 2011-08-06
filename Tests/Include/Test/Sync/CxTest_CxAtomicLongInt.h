@@ -23,7 +23,7 @@ class CxTest_CxAtomicLongInt :
                      CxTest_CxAtomicLongInt();
 		virtual     ~CxTest_CxAtomicLongInt();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

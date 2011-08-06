@@ -26,7 +26,10 @@ CxTest_CxPop3::~CxTest_CxPop3() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxPop3::bUnit() {
+CxTest_CxPop3::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     //-------------------------------------
     //

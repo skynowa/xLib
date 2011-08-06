@@ -28,7 +28,10 @@ CxTest_CxTcpClientSocket::~CxTest_CxTcpClientSocket() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxTcpClientSocket::bUnit() {
+CxTest_CxTcpClientSocket::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	CxSocket::EAddressFamily afAf           = CxSocket::afInet;
 	CxSocket::EType          tpType         = CxSocket::tpStream;
 	CxSocket::EProtocol      ptProtocol     = CxSocket::ptIp;

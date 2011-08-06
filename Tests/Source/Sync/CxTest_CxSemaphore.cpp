@@ -48,7 +48,10 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxSemaphore::bUnit() {
+CxTest_CxSemaphore::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     m_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));
     xASSERT_NOT_EQUAL(FALSE, m_bRes);
 

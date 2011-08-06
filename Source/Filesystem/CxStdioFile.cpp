@@ -1269,7 +1269,7 @@ CxStdioFile::bTextRead(
     LONG liFileSize = sfFile.liGetSize();
     /*DEBUG*/xASSERT_RET(ppError != liFileSize, FALSE);
 
-    xCHECK_DO(0 == liFileSize, (*psContent).clear(); return TRUE);
+    xCHECK_DO(0L == liFileSize, (*psContent).clear(); return TRUE);
 
     sRes.resize(liFileSize);
 
@@ -1300,6 +1300,8 @@ CxStdioFile::bTextWrite(
 
     bRes = sfFile.bOpen(csFilePath, omBinWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    xCHECK_RET(true == csContent.empty(), TRUE);
 
     size_t uiWriteLen = sfFile.uiWrite((LPVOID)&csContent.at(0), csContent.size());
     /*DEBUG*/xASSERT_RET(csContent.size() == uiWriteLen, FALSE);
@@ -1370,7 +1372,10 @@ CxStdioFile::bTextRead(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pmsContent,          FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pmsContent,            FALSE);
+
+    //if file empty
+    xCHECK_DO(0L == liGetSize(csFilePath), (*pmsContent).swap(std::map<tString, tString>()); return TRUE);
 
     BOOL bRes = FALSE;
 
@@ -1535,6 +1540,8 @@ CxStdioFile::bBinWrite(
 
     bRes = sfFile.bOpen(csFilePath, omBinWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    xCHECK_RET(true == cusContent.empty(), TRUE);
 
     size_t uiWriteLen = sfFile.uiWrite((LPVOID)&cusContent.at(0), cusContent.size());
     /*DEBUG*/xASSERT_RET(cusContent.size() == uiWriteLen, FALSE);

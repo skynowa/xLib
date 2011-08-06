@@ -26,7 +26,10 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxMySql::bUnit() {
+CxTest_CxMySql::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     tString csHost       = xT("127.0.0.1");
     tString csUser       = xT("root");
     tString csPassword   = xT("root");

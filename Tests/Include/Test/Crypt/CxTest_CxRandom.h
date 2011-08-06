@@ -23,7 +23,7 @@ class CxTest_CxRandom :
                      CxTest_CxRandom();
 		virtual     ~CxTest_CxRandom();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

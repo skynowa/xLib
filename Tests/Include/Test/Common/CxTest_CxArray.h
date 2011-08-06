@@ -23,7 +23,7 @@ class CxTest_CxArray :
                      CxTest_CxArray();
 		virtual     ~CxTest_CxArray();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

@@ -26,7 +26,10 @@ CxTest_CxGz::~CxTest_CxGz() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxGz::bUnit() {
+CxTest_CxGz::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     CxGz gzGz;
 
     #if xTODO

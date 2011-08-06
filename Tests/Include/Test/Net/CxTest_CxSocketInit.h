@@ -23,7 +23,7 @@ class CxTest_CxSocketInit :
                      CxTest_CxSocketInit();
 		virtual     ~CxTest_CxSocketInit();
 
-		virtual BOOL bUnit();
+		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

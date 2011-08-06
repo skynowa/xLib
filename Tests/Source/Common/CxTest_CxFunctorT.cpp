@@ -94,9 +94,13 @@ CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 //---------------------------------------------------------------------------
 //DONE: bUnit ()
 BOOL
-CxTest_CxFunctorT::bUnit() {
+CxTest_CxFunctorT::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //-------------------------------------
     //operator ()
+    xTEST_BLOCK(cullBlockLoops)
     {
         A a;
         B b;
@@ -112,6 +116,7 @@ CxTest_CxFunctorT::bUnit() {
 
     //-------------------------------------
     //Execute
+    xTEST_BLOCK(cullBlockLoops)
     {
         A a;
         B b;
@@ -127,6 +132,7 @@ CxTest_CxFunctorT::bUnit() {
 
     //-------------------------------------
     //operator ()
+    xTEST_BLOCK(cullBlockLoops)
     {
         A a;
         B b;
@@ -138,6 +144,7 @@ CxTest_CxFunctorT::bUnit() {
 
     //-------------------------------------
     //Execute
+    xTEST_BLOCK(cullBlockLoops)
     {
         A a;
         B b;
@@ -151,6 +158,7 @@ CxTest_CxFunctorT::bUnit() {
 
     //-------------------------------------
     //Execute
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxFunctorT<CParam, tString, VOID *> bF(&objParam, &CParam::sSetName);
 

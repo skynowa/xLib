@@ -26,9 +26,13 @@ CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxEnvironment::bUnit() {
+CxTest_CxEnvironment::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //-------------------------------------
     //bSetVar
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
@@ -45,6 +49,7 @@ CxTest_CxEnvironment::bUnit() {
 
     //-------------------------------------
     //bIsExists
+    xTEST_BLOCK(cullBlockLoops)
     {
     #if defined(xOS_WIN)
         const tString sData[][2] = {
@@ -74,6 +79,7 @@ CxTest_CxEnvironment::bUnit() {
 
     //-------------------------------------
     //sGetVar
+    xTEST_BLOCK(cullBlockLoops)
     {
     #if defined(xOS_WIN)
         const tString sData[][2] = {
@@ -102,6 +108,7 @@ CxTest_CxEnvironment::bUnit() {
 
     //-------------------------------------
     //bGetValues
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxEnvironment::bGetValues(&m_vecsRes);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -112,6 +119,7 @@ CxTest_CxEnvironment::bUnit() {
 
 	//-------------------------------------
 	//sExpandStrings
+    xTEST_BLOCK(cullBlockLoops)
     {
     #if defined(xOS_WIN)
         const tString sData[][2] = {
@@ -137,6 +145,7 @@ CxTest_CxEnvironment::bUnit() {
 
     //-------------------------------------
     //bDeleteVar
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
@@ -153,6 +162,7 @@ CxTest_CxEnvironment::bUnit() {
 
     //-------------------------------------
     //sGetCommandLine
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxEnvironment::sGetCommandLine();
         xTRACEV(xT("\tCxEnvironment::sGetCommandLine(): %s"), m_sRes.c_str());
@@ -161,6 +171,7 @@ CxTest_CxEnvironment::bUnit() {
 
     //-------------------------------------
     //bGetCommandLineArgs
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxEnvironment::bGetCommandLineArgs(&m_vecsRes);
         xASSERT_NOT_EQUAL(FALSE,  m_bRes);

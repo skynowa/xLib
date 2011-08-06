@@ -26,7 +26,10 @@ CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxFileAttribute::bUnit() {
+CxTest_CxFileAttribute::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
     #if defined(xOS_WIN)
@@ -55,6 +58,7 @@ CxTest_CxFileAttribute::bUnit() {
 
     //--------------------------------------------------
     //bSet, atGet
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bSet(csFilePath, cfaValue);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -67,6 +71,7 @@ CxTest_CxFileAttribute::bUnit() {
 
     //--------------------------------------------------
     //bAdd
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -80,6 +85,7 @@ CxTest_CxFileAttribute::bUnit() {
 
     //--------------------------------------------------
     //bRemove
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
             CxFileAttribute::EAttribute faAttr  = CxFileAttribute::faHidden;
@@ -137,6 +143,7 @@ CxTest_CxFileAttribute::bUnit() {
 
     //--------------------------------------------------
     //bModify
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
             const CxFileAttribute::EAttribute cfaRemoveValue = cfaValue;
@@ -152,6 +159,7 @@ CxTest_CxFileAttribute::bUnit() {
 
     //--------------------------------------------------
     //bIsExists
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
             CxFileAttribute::EAttribute faAttr = CxFileAttribute::faNormal;
@@ -168,6 +176,7 @@ CxTest_CxFileAttribute::bUnit() {
 
     //--------------------------------------------------
     //bClear
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);

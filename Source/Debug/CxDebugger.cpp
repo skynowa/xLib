@@ -212,10 +212,12 @@ CxDebugger::bBeep(
     /*DEBUG*/
 
 #if defined(xOS_WIN)
-    BOOL bRes = FALSE;
+    #if xTODO
+        BOOL bRes = FALSE;
 
-    bRes = ::Beep(culFrequency, culDuration);
-    xCHECK_RET(FALSE == bRes, FALSE);
+        bRes = ::Beep(culFrequency, culDuration);
+        xCHECK_RET(FALSE == bRes, FALSE);
+    #endif
 #elif defined(xOS_LINUX)
     #if defined(xOS_FREEBSD)
         //TODO: bBeep

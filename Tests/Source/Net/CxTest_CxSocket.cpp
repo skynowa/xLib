@@ -26,7 +26,10 @@ CxTest_CxSocket::~CxTest_CxSocket() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL 
-CxTest_CxSocket::bUnit() {
+CxTest_CxSocket::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	/*DEBUG*/
 
 	return TRUE;

@@ -26,9 +26,13 @@ CxTest_CxReport::~CxTest_CxReport() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxReport::bUnit() {
+CxTest_CxReport::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //--------------------------------------------------
     //CxReport
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT("Simple comment: %s"), xT("comment"));
         m_sRes = rpReport.sGetReport();
@@ -37,6 +41,7 @@ CxTest_CxReport::bUnit() {
 
     //--------------------------------------------------
     //CxReport
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, tString(xT("Simple comment")));
         m_sRes = rpReport.sGetReport();

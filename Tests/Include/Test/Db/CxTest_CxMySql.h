@@ -23,7 +23,7 @@ class CxTest_CxMySql :
                      CxTest_CxMySql();
 		virtual     ~CxTest_CxMySql();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };
