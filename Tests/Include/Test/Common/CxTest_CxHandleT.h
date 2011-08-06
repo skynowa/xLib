@@ -27,7 +27,7 @@ class CxTest_CxHandleT :
                      CxTest_CxHandleT();
         virtual     ~CxTest_CxHandleT();
 
-        virtual BOOL bUnit();
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

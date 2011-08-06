@@ -26,7 +26,10 @@ CxTest_CxIni::~CxTest_CxIni() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxIni::bUnit() {
+CxTest_CxIni::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     #define TEST_DEF_CONSTRUCTOR 1
 
@@ -41,6 +44,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bCreateDefault
+        xTEST_BLOCK(cullBlockLoops)
         {
             tString sContent;
             sContent.append(xT("[DEFAULT_SECTION]\n"));
@@ -59,17 +63,19 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //sGetPath
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_sRes = objIni.sGetPath();
-        #ifdef TEST_DEF_CONSTRUCTOR
-            xASSERT_EQUAL(CxPath::sSetExt( CxPath::sGetExe(), xT("ini") ), m_sRes);
-        #else
-            xASSERT_EQUAL(csIniPath, m_sRes);
-        #endif
+            #ifdef TEST_DEF_CONSTRUCTOR
+                xASSERT_EQUAL(CxPath::sSetExt( CxPath::sGetExe(), xT("ini") ), m_sRes);
+            #else
+                xASSERT_EQUAL(csIniPath, m_sRes);
+            #endif
         }
 
         //-------------------------------------
         //bSetPath
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bSetPath(csIniPath);
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -83,6 +89,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //iKeyReadInt, bKeyWriteInt
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bKeyWriteInt(xT("Section_Int_1"), xT("Key_1"), 1);
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -99,6 +106,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //dKeyReadFloat, bKeyWriteFloat
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bKeyWriteFloat(xT("Section_Double_1"), xT("Key_1"), 1.1f);
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -115,6 +123,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bKeyReadBool, bKeyWriteBool
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bKeyWriteBool(xT("Section_Bool_1"), xT("Key_1"), TRUE);
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -131,6 +140,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //sKeyReadString, bKeyWriteString
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bKeyWriteString(xT("Section_String_1"), xT("Key_1"), xT("Begin_Value_1_Value_1_Value_1_Value_End"));
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -147,6 +157,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //sReadBin, bKeyWriteBin
+        xTEST_BLOCK(cullBlockLoops)
         {
             uString usRes;
 
@@ -169,6 +180,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bKeyClear
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bKeyClear(xT("Section_Bin_2"), xT("Key_1"));
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -176,6 +188,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bKeyDelete
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bKeyDelete(xT("Section_Bin_2"), xT("Key_1"));
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -183,6 +196,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bKeyIsExists
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bKeyIsExists(xT("Section_Bin_1"), xT("Key_1"));
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -195,7 +209,6 @@ CxTest_CxIni::bUnit() {
         }
 
 
-
         /****************************************************************************
         *	секции
         *
@@ -203,6 +216,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bSectionRead, bSectionWrite
+        xTEST_BLOCK(cullBlockLoops)
         {
              std::map<tString, tString> mapsContent;
              mapsContent[xT("qqq")] = xT("111");
@@ -219,6 +233,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bSectionClear
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bSectionClear(xT("Section_Section_1"));
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -226,6 +241,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bSectionIsExists
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bSectionIsExists(xT("Section_Bin_1"));
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -236,6 +252,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bSectionDelete
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bSectionDelete(xT("Section_Section_1"));
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -243,6 +260,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bSectionsReadNames
+        xTEST_BLOCK(cullBlockLoops)
         {
             std::vector<tString> vecsNames;
 
@@ -252,6 +270,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bFlush
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bFlush();
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -259,6 +278,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bClear
+        xTEST_BLOCK(cullBlockLoops)
         {
             m_bRes = objIni.bClear();
             xASSERT_EQUAL(TRUE, m_bRes);
@@ -266,6 +286,7 @@ CxTest_CxIni::bUnit() {
 
         //-------------------------------------
         //bSectionsReadNames
+        xTEST_BLOCK(cullBlockLoops)
         {
             std::vector<tString> vecsNames;
 

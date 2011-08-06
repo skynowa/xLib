@@ -26,9 +26,13 @@ CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxSystemInfo::bUnit() {
+CxTest_CxSystemInfo::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //--------------------------------------------------
     //osGetOS
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxSystemInfo::EOsType otType = CxSystemInfo::otUnknown;
 
@@ -46,6 +50,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //-------------------------------------
     //sFormatOsType
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
             std::map<CxSystemInfo::EOsType, tString> mapData;
@@ -81,6 +86,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //--------------------------------------------------
     //oaGetOsArchitecture
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxSystemInfo::EOsArch oaRes = CxSystemInfo::oaUnknown;
 
@@ -90,6 +96,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //-------------------------------------
     //sGetComputerName
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxSystemInfo::sGetComputerName();
         xASSERT_EQUAL(false, m_sRes.empty());
@@ -98,6 +105,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //--------------------------------------------------
     //bIsUserAnAdmin
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxSystemInfo::bIsUserAnAdmin();
         xTRACEV(xT("\tCxSystemInfo::bIsUserAnAdmin(): %s"), CxString::sBoolToStr(m_bRes).c_str());
@@ -105,6 +113,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //-------------------------------------
     //sGetUserName
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxSystemInfo::sGetUserName();
         xASSERT_EQUAL(false, m_sRes.empty());
@@ -113,6 +122,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //-------------------------------------
     //ulGetNumOfCPUs
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_ulRes = CxSystemInfo::ulGetNumOfCPUs();
         xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCPUs: %li"), m_ulRes);
@@ -121,6 +131,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //-------------------------------------
     //ulGetCurrentCpuNum
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
         xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
@@ -130,6 +141,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //-------------------------------------
     //bIsUnicodeOS - Vista
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxSystemInfo::bIsUnicodeOS();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -137,6 +149,7 @@ CxTest_CxSystemInfo::bUnit() {
 
     //--------------------------------------------------
     //TODO: ullGetCpuSpeed
+    xTEST_BLOCK(cullBlockLoops)
     {
         ////m_iRes = CxSystemInfo::ullGetCpuSpeed();
         ////xASSERT_LESS(0, m_iRes);

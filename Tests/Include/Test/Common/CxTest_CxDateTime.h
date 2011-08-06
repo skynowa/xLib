@@ -23,7 +23,7 @@ class CxTest_CxDateTime :
                      CxTest_CxDateTime();
         virtual     ~CxTest_CxDateTime();
 
-        virtual BOOL bUnit();
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

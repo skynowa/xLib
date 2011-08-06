@@ -26,7 +26,10 @@ CxTest_CxClipboard::~CxTest_CxClipboard() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxClipboard::bUnit() {
+CxTest_CxClipboard::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     CxClipboard cbCB;
 

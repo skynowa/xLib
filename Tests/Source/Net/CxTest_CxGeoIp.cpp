@@ -26,7 +26,10 @@ CxTest_CxGeoIp::~CxTest_CxGeoIp() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxGeoIp::bUnit() {
+CxTest_CxGeoIp::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     const tString csFilePath = xT("./Tests/Source/_TestData/GeoIP.dat");
 
     const CxGeoIp::EOption copOption[] = {
@@ -41,6 +44,7 @@ CxTest_CxGeoIp::bUnit() {
 
     //--------------------------------------------------
     //bOpen
+    xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;
@@ -52,6 +56,7 @@ CxTest_CxGeoIp::bUnit() {
 
     //--------------------------------------------------
     //bIsValid
+    xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;
@@ -69,6 +74,7 @@ CxTest_CxGeoIp::bUnit() {
 
     //--------------------------------------------------
     //sGetCountryCodeByAddress, sGetCountryCode3ByAddress
+    xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             const tString sTestData[][3] = {
@@ -105,6 +111,7 @@ CxTest_CxGeoIp::bUnit() {
 
     //--------------------------------------------------
     //bClose
+    xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;

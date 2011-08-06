@@ -26,15 +26,20 @@ CxTest_CxAutoCriticalSection::~CxTest_CxAutoCriticalSection() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxAutoCriticalSection::bUnit() {
+CxTest_CxAutoCriticalSection::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	//-------------------------------------
 	//
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		////CxAutoCriticalSection objCxCriticalSectionLocker;
 	}
 
 	//-------------------------------------
 	//
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		////CxAutoCriticalSection objCxCriticalSectionLocker(10000);
 	}

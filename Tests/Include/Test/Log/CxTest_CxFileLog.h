@@ -23,7 +23,7 @@ class CxTest_CxFileLog :
 		              CxTest_CxFileLog();
 	    virtual      ~CxTest_CxFileLog();
 
-	    virtual  BOOL bUnit();
+	    virtual  BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

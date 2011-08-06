@@ -26,11 +26,15 @@ CxTest_CxSocketInit::~CxTest_CxSocketInit() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL 
-CxTest_CxSocketInit::bUnit() {
+CxTest_CxSocketInit::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	/*DEBUG*/
 
 	//-------------------------------------
 	//CxSocketInit
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		CxSocketInit siInit10(1, 0);
 		CxSocketInit siInit11(1, 1);

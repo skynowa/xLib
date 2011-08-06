@@ -23,7 +23,7 @@ class CxTest_CxBlowfish :
                      CxTest_CxBlowfish();
 		virtual     ~CxTest_CxBlowfish();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

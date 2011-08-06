@@ -26,9 +26,13 @@ CxTest_CxType::~CxTest_CxType() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxType::bUnit() {
+CxTest_CxType::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //-------------------------------------
     //sGetName
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sObject;
 
@@ -38,6 +42,7 @@ CxTest_CxType::bUnit() {
 
     //-------------------------------------
     //sGetRawName
+    xTEST_BLOCK(cullBlockLoops)
     {
 	    tString sObject;
 
@@ -47,6 +52,7 @@ CxTest_CxType::bUnit() {
 
     //-------------------------------------
     //bIsEquals
+    xTEST_BLOCK(cullBlockLoops)
     {
  	    std::string  sObject1;
         std::wstring sObject2;

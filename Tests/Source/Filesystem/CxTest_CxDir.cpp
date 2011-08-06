@@ -26,7 +26,10 @@ CxTest_CxDir::~CxTest_CxDir() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxDir::bUnit() {
+CxTest_CxDir::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     const tString csTempScanDirPath = sGetWorkDirPath() + CxConst::xSLASH + xT("Scan");
     const tString csMask            = xT("*.txt");
 
@@ -68,6 +71,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//bCreate
+    xTEST_BLOCK(cullBlockLoops)
     {
     	m_bRes = CxDir::bCreate(csDirPath2);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -75,6 +79,7 @@ CxTest_CxDir::bUnit() {
 
     //-------------------------------------
     //bIsDir
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxDir::bIsDir(csDirPath2);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -82,6 +87,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//bIsExists
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		m_bRes = CxDir::bIsExists(csDirPath);
 		xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -101,6 +107,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//bIsEmpty
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		m_bRes = CxDir::bIsEmpty(csDirPath, CxConst::xMASK_ALL);
 		xASSERT_EQUAL(FALSE, m_bRes);
@@ -114,6 +121,7 @@ CxTest_CxDir::bUnit() {
 
     //--------------------------------------------------
     //bIsRoot
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
             const tString sTestData[][2] = {
@@ -150,6 +158,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//bSetCurrent
+    xTEST_BLOCK(cullBlockLoops)
     {
 		m_sRes = CxDir::sGetCurrent();
 		xASSERT_EQUAL(false, m_sRes.empty());
@@ -163,6 +172,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//sGetCurrent
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		tString sRes = CxDir::sGetCurrent();
 		xASSERT_EQUAL(m_sRes, sRes);
@@ -170,6 +180,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//sGetTempPath
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		m_sRes = CxDir::sGetTemp();
 		xTRACEV(xT("\tCxDir::sGetTemp(): %s"), m_sRes.c_str());
@@ -178,6 +189,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//bCreateForce
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		m_bRes = CxDir::bCreateForce(csDirPath);
 		xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -185,6 +197,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
     //bCopy
+    xTEST_BLOCK(cullBlockLoops)
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
@@ -226,6 +239,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//bMove
+    xTEST_BLOCK(cullBlockLoops)
 	{
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
@@ -255,6 +269,7 @@ CxTest_CxDir::bUnit() {
 
     //-------------------------------------
     //bFindDirs
+    xTEST_BLOCK(cullBlockLoops)
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
@@ -296,6 +311,7 @@ CxTest_CxDir::bUnit() {
 
     //-------------------------------------
     //bFindFiles
+    xTEST_BLOCK(cullBlockLoops)
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create files)
@@ -341,6 +357,7 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//bClearForce
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		m_bRes = CxDir::bClearForce(csDirPath);
 		xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -348,6 +365,7 @@ CxTest_CxDir::bUnit() {
 
     //-------------------------------------
     //bDelete
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxDir::bDelete(csDirPath2);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -355,6 +373,7 @@ CxTest_CxDir::bUnit() {
 
     //-------------------------------------
     //bTryDelete
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxDir::bCreateForce(csDirPath2);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -365,11 +384,12 @@ CxTest_CxDir::bUnit() {
 
 	//-------------------------------------
 	//bDeleteForce
+    xTEST_BLOCK(cullBlockLoops)
 	{
-		m_bRes = CxDir::bCreate(csDirPath);
+		m_bRes = CxDir::bCreateForce(csDirPath);
 		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
-		m_bRes = CxDir::bDeleteForce(csRootTestDirPath);
+		m_bRes = CxDir::bDeleteForce(csDirPath);
 		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 	}
 

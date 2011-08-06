@@ -23,7 +23,7 @@ class CxTest_CxAutoProfiler :
                      CxTest_CxAutoProfiler();
 		virtual     ~CxTest_CxAutoProfiler();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

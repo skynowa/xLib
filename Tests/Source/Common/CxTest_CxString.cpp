@@ -26,7 +26,10 @@ CxTest_CxString::~CxTest_CxString() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxString::bUnit() {
+CxTest_CxString::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     /****************************************************************************
     *    convertation
     *
@@ -34,6 +37,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //lexical_cast (to string)
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::lexical_cast(1);
         xASSERT_EQUAL(tString(xT("1")), m_sRes);
@@ -59,6 +63,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //lexical_cast (from string)
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::lexical_cast<tString>(xT("String"));
         xASSERT_EQUAL(tString(xT("String")), m_sRes);
@@ -87,6 +92,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //lexical_cast (to string by base)
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::lexical_cast(1033, 8);
         xASSERT_EQUAL(tString(xT("2011")), m_sRes);
@@ -97,6 +103,8 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::lexical_cast(1033, 16);
         xASSERT_EQUAL(tString(xT("409")), m_sRes);
     }
+    
+    xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033L, 2);
         ////xASSERT_EQUAL(tString(xT("10000001001")), m_sRes);
@@ -110,6 +118,8 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::lexical_cast(1033L, 16);
         xASSERT_EQUAL(tString(xT("409")), m_sRes);
     }
+    
+    xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033UL, 2);
         ////xASSERT_EQUAL(tString(xT("10000001001")), m_sRes);
@@ -123,6 +133,8 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::lexical_cast(1033UL, 16);
         xASSERT_EQUAL(tString(xT("409")), m_sRes);
     }
+    
+    xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033LL, 2);
         ////xASSERT_EQUAL(xT("10000001001") == m_sRes);
@@ -136,6 +148,8 @@ CxTest_CxString::bUnit() {
         m_sRes = CxString::lexical_cast(1033LL, 16);
         xASSERT_EQUAL(tString(xT("409")), m_sRes);
     }
+    
+    xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033ULL, 2);
         ////xASSERT_EQUAL(tString(xT("10000001001")), m_sRes);
@@ -152,6 +166,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //lexical_cast (from, to string by base)
+    xTEST_BLOCK(cullBlockLoops)
     {
         const INT caiBases[] = {8, 10, 16};
 
@@ -177,6 +192,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //bBoolToStr
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sBoolToStr(TRUE);
         xASSERT_EQUAL(tString(xT("TRUE")), m_sRes);
@@ -187,6 +203,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //bStrToBool
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxString::bStrToBool(xT("true"));
         xASSERT_EQUAL(TRUE, m_bRes);
@@ -215,6 +232,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sTrimLeftChars
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sTestData[][2] = {
             {xT("TEST_STRIN#G_1"),       xT("TEST_STRIN#G_1")},
@@ -236,6 +254,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sTrimRightChars
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sTestData[][2] = {
             {xT("#TEST_STRING_1"),       xT("#TEST_STRING_1")},
@@ -258,6 +277,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sTrimChars
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("+-#####TEST_STRING_1+-")},
@@ -279,6 +299,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sTrimSpace
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sTestData[][2] = {
             {xT("TEST_STRING_1"),  xT("           TEST_STRING_1")},
@@ -301,6 +322,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sRemoveEol
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
             const tString sTestData[][2] = {
@@ -329,6 +351,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sReplaceAll
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sReplaceAll(xT("aTaaaEaST_aSTaRINaaGaa_1a"), xT("a"), xT(""));
         xASSERT_EQUAL(tString(xT("TEST_STRING_1")), m_sRes);
@@ -360,6 +383,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sReplaceAll
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sReplaceAll(xT(" one test string "), xT(" "), xT("_"));
         xASSERT_EQUAL(m_sRes, tString(xT("_one_test_string_")));
@@ -373,6 +397,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sRemoveAll
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sRemoveAll(xT(" one test string "), xT(" "));
         xASSERT_EQUAL(tString(xT("oneteststring")), m_sRes);
@@ -395,6 +420,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //bSplit
+    xTEST_BLOCK(cullBlockLoops)
     {
         std::vector<tString> vecsText;
 
@@ -411,6 +437,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sJoin
+    xTEST_BLOCK(cullBlockLoops)
     {
         std::vector<tString> vecsRes;
         vecsRes.push_back(xT("111"));
@@ -424,6 +451,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sJoin
+    xTEST_BLOCK(cullBlockLoops)
     {
         std::vector<tString> vecsRes;
         vecsRes.push_back(xT("111"));
@@ -437,6 +465,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sCut
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sForCut;
 
@@ -507,6 +536,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sCut
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sForCut = xT("0123456789");
 
@@ -553,6 +583,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sToLowerCase
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sTestData[][2] = {
             {xT("test_string_1"),       xT("TEST_string_1")},
@@ -574,6 +605,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sToUpperCase
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sTestData[][2] = {
             {xT("TEST_STRING_1_A"),       xT("TEST_string_1_a")},
@@ -595,6 +627,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sToLowerCase
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sTestData[][2] = {
             {xT("test_string_1_a"), xT("test_string_1_A")},
@@ -616,6 +649,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sToUpperCase
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sTestData[][2] = {
             {xT("TEST_STRING_1_A"), xT("tEST_string_1_A")},
@@ -637,6 +671,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sFormat
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sData;
 
@@ -701,12 +736,14 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sFormatV
+    xTEST_BLOCK(cullBlockLoops)
     {
         //TODO: sFormatV
     }
 
     //-------------------------------------
     //sMinimize
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sMinimize(xT("55555wwwww"), 5);
         xASSERT_EQUAL(tString(xT("55...")), m_sRes);
@@ -717,6 +754,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //bCompareNoCase
+    xTEST_BLOCK(cullBlockLoops)
     {
         //must TRUE
         m_bRes = CxString::bCompareNoCase(xT(""),     xT(""));
@@ -762,10 +800,13 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sDecodeWinKoi
-    //m_sRes = sDecodeWinKoi(INT iFrom, INT iTo, const tString &sOldStr);
+    xTEST_BLOCK(cullBlockLoops) {
+        //m_sRes = sDecodeWinKoi(INT iFrom, INT iTo, const tString &sOldStr);
+    }
 
     //-------------------------------------
     //sTranslitLatToRus
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
             m_sRes = CxString::sTranslitLatToRus(xT(""));
@@ -778,18 +819,25 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //bCharToWide
-    //m_bRes = CxString::bCharToWide(const CHAR *pszSrc, WCHAR *pwszDest, INT iDestSize);
+    xTEST_BLOCK(cullBlockLoops) {
+        //m_bRes = CxString::bCharToWide(const CHAR *pszSrc, WCHAR *pwszDest, INT iDestSize);
+    }
 
     //-------------------------------------
     //sStrToRtf
-    //m_sRes = CxString::sStrToRtf(tString sStr);
+    xTEST_BLOCK(cullBlockLoops) {
+        //m_sRes = CxString::sStrToRtf(tString sStr);
+    }
 
     //-------------------------------------
     //sRtfToStr
-    //m_sRes = CxString::sRtfToStr(tString sStr);
+    xTEST_BLOCK(cullBlockLoops) {
+        //m_sRes = CxString::sRtfToStr(tString sStr);
+    }
 
     //-------------------------------------
     //sBytesToStr
+    xTEST_BLOCK(cullBlockLoops)
     {
         const float cafFloats[] = {
             0.00001f,
@@ -823,8 +871,10 @@ CxTest_CxString::bUnit() {
             //xTRACE(m_sRes);
         }
     }
+    
     //-------------------------------------
     //sBytesToStr(ULONGLONG )
+    xTEST_BLOCK(cullBlockLoops)
     {
         const ULONGLONG caullULongLong[] = {
             0ULL,
@@ -854,13 +904,15 @@ CxTest_CxString::bUnit() {
         }
     }
 
-    //TODO: CxString::sFormatPercent(ULONGLONG ullMaxValue, ULONGLONG ullCurrValue) {
+    //TODO: CxString::sFormatPercent(ULONGLONG ullMaxValue, ULONGLONG ullCurrValue)
+    xTEST_BLOCK(cullBlockLoops)
     {
 
     }
 
     //--------------------------------------------------
     //sFormatNixTerminal
+    xTEST_BLOCK(cullBlockLoops)
     {
     #if xTODO
         for (int i = 0; i <= 120; ++ i) {
@@ -880,6 +932,7 @@ CxTest_CxString::bUnit() {
 
     //--------------------------------------------------
     //pvMemoryZeroSecure
+    xTEST_BLOCK(cullBlockLoops)
     {
         //1
         {
@@ -918,6 +971,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sCreateGuid
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
             m_sRes = CxString::sCreateGuid();
@@ -929,6 +983,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //bIsRepeated
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxString::bIsRepeated(xT("yyyyyyyyyyyy"));
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -951,6 +1006,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sConvertCodePage
+    xTEST_BLOCK(cullBlockLoops)
     {
         const std::string csAnsiStr[] = {
             "gnhjfgyhj ghj...",
@@ -988,6 +1044,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sCharToOemBuff
+    xTEST_BLOCK(cullBlockLoops)
     {
         std::string sRes;
 
@@ -1001,6 +1058,7 @@ CxTest_CxString::bUnit() {
 
     //-------------------------------------
     //sOemToCharBuff
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sRes;
 

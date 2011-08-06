@@ -26,9 +26,13 @@ CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxBlowfish::bUnit() {
+CxTest_CxBlowfish::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	//-------------------------------------
 	//bEncryptCfb64
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		const uString usPlain[] = {
 			uString(1,  'a'),
@@ -65,6 +69,7 @@ CxTest_CxBlowfish::bUnit() {
 
 	//-------------------------------------
 	//bEncryptFileCfb64
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		CxBlowfish BF;
 		tString sKey           = xT("888888888");
@@ -91,6 +96,7 @@ CxTest_CxBlowfish::bUnit() {
 
 	//-------------------------------------
 	//bEncryptFileCfb64 (with stamp)
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		CxBlowfish BF;
 

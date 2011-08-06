@@ -26,10 +26,14 @@ CxTest_CxCriticalSection::~CxTest_CxCriticalSection() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxCriticalSection::bUnit() {
+CxTest_CxCriticalSection::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     //-------------------------------------
     //
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxCriticalSection objCriticalSection;
 
@@ -48,6 +52,7 @@ CxTest_CxCriticalSection::bUnit() {
 
     //-------------------------------------
     //
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxCriticalSection objCriticalSection(1000);
 

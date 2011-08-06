@@ -27,10 +27,16 @@
     //DONE: bUnit ()
     /*virtual*/
     BOOL
-    CxTest_CxGdiplus::bUnit() {
+    CxTest_CxGdiplus::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
         /*DEBUG*/
 
-        CxGdiplus gpGdiPlus;
+        xTEST_BLOCK(cullBlockLoops)
+        {
+            CxGdiplus gpGdiPlus;
+        }
 
         return TRUE;
     }

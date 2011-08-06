@@ -28,7 +28,10 @@ CxTest_CxThread::~CxTest_CxThread() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxThread::bUnit() {
+CxTest_CxThread::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     #if xTODO
         size_t uiI = 0;
 

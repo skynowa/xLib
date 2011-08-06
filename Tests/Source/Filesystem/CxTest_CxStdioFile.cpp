@@ -26,9 +26,10 @@ CxTest_CxStdioFile::~CxTest_CxStdioFile() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxStdioFile::bUnit() {
-xTRACE_POINT;
-
+CxTest_CxStdioFile::bUnit(
+    const ULONGLONG cullBlockLoops
+) 
+{
     const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
 
@@ -37,10 +38,11 @@ xTRACE_POINT;
     *
     *****************************************************************************/
 
+    xTEST_BLOCK(cullBlockLoops) 
     {
         m_bRes = CxStdioFile::bDelete(csFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
 
     /****************************************************************************
@@ -50,6 +52,7 @@ xTRACE_POINT;
 
     //-------------------------------------
     //bOpen
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -64,10 +67,11 @@ xTRACE_POINT;
 
         ////m_bRes = F.bOpen(csFilePath, CxStdioFile::omRead, TRUE);
         ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bReopen
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -85,10 +89,11 @@ xTRACE_POINT;
 
         m_bRes = F.bReopen(csFilePath, CxStdioFile::omWrite, TRUE);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //--------------------------------------------------
     //bAttach
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if xTEMP_DISABLED
             CxStdioFile _F;
@@ -99,10 +104,11 @@ xTRACE_POINT;
             m_bRes = _F.bIsValid();
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
         #endif
-    } xTRACE_POINT;
+    }
 
     //--------------------------------------------------
     //pGet
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -111,10 +117,11 @@ xTRACE_POINT;
 
         FILE *pFile = F.pGet();
         xASSERT(NULL != pFile);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //sGetPath
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -123,7 +130,7 @@ xTRACE_POINT;
 
         m_sRes = F.sGetPath();
         xASSERT_EQUAL(csFilePath, m_sRes);
-    } xTRACE_POINT;
+    }
 
 
     /****************************************************************************
@@ -133,6 +140,7 @@ xTRACE_POINT;
 
     //-------------------------------------
     //uiWrite, uiRead
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sBuffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
         tString sBuffRead  = xT("");       sBuffRead.resize(sBuffWrite.size());
@@ -158,10 +166,11 @@ xTRACE_POINT;
         }
 
         xASSERT_EQUAL(sBuffWrite, sBuffRead);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bRead, bWrite
+    xTEST_BLOCK(cullBlockLoops)
     {
         const uString sContent(138699, 5);
 
@@ -218,10 +227,11 @@ xTRACE_POINT;
             xASSERT_EQUAL(usText1.size(), usText2.size());
             xASSERT(usText1 == usText2);
         }
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bWriteLine, bReadLine
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sBuffWrite = xT("<test1><test2><test3><...>");
         tString sBuffRead  = xT("");
@@ -251,10 +261,11 @@ xTRACE_POINT;
         //assert
         xASSERT_EQUAL(sBuffWrite.size(), sBuffRead.size());
         xASSERT_EQUAL(sBuffWrite,        sBuffRead);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bWriteChar, chReadChar, bUngetChar
+    xTEST_BLOCK(cullBlockLoops)
     {
         const TCHAR chChar = xT('W');
 
@@ -280,10 +291,11 @@ xTRACE_POINT;
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
         m_bRes = F.bUngetChar(chChar);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //--------------------------------------------------
     //bClear
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -292,7 +304,7 @@ xTRACE_POINT;
 
         m_bRes = F.bClear();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
 
     /****************************************************************************
@@ -302,6 +314,7 @@ xTRACE_POINT;
 
     //--------------------------------------------------
     //bGetTime, bSetTime
+    xTEST_BLOCK(cullBlockLoops)
     {
 #if xTODO
         {
@@ -330,7 +343,7 @@ xTRACE_POINT;
         xASSERT_EQUAL(ctmAccess,   tmAccess);
         xASSERT_EQUAL(ctmModified, tmModified);
 #endif
-    } xTRACE_POINT;
+    }
 
 
     /****************************************************************************
@@ -340,6 +353,7 @@ xTRACE_POINT;
 
     //--------------------------------------------------
     //bRead
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString csTestContent = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
 
@@ -366,10 +380,11 @@ xTRACE_POINT;
         }
 
         xASSERT_EQUAL(csTestContent, sContent);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //iWrite
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -378,10 +393,11 @@ xTRACE_POINT;
 
         INT iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
         xASSERT_LESS(0, iResFprintf);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //iWriteV
+    xTEST_BLOCK(cullBlockLoops)
     {
         struct SWriter {
             static void
@@ -402,7 +418,7 @@ xTRACE_POINT;
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         SWriter::DoV(F, xT("%s"), xT("zzz"));
-    } xTRACE_POINT;
+    }
 
 
     /****************************************************************************
@@ -412,6 +428,7 @@ xTRACE_POINT;
 
     //-------------------------------------
     //bLocking
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -426,10 +443,11 @@ xTRACE_POINT;
 
         m_bRes = F.bLocking(CxStdioFile::lmUnlock, 10);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bSetPosition, liGetPosition
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -441,10 +459,11 @@ xTRACE_POINT;
 
         LONG liRes = F.liGetPosition();
         xASSERT_EQUAL(0L, liRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //liGetSize
+    xTEST_BLOCK(cullBlockLoops)
     {
         const LONG culNewSize = 1024;
 
@@ -458,10 +477,11 @@ xTRACE_POINT;
 
         LONG liSize = F.liGetSize();
         xASSERT_EQUAL(culNewSize, liSize);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bResize
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -470,10 +490,11 @@ xTRACE_POINT;
 
         m_bRes = F.bResize(0);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bSetVBuff
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sBuffRead;       sBuffRead.resize(1024);
 
@@ -484,10 +505,11 @@ xTRACE_POINT;
 
         m_bRes = F.bSetVBuff(&sBuffRead.at(0), CxStdioFile::bmFull, sBuffRead.size() * 2);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bSetMode
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -500,10 +522,11 @@ xTRACE_POINT;
         #elif defined(xOS_LINUX)
             //TODO: bSetMode
         #endif
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bSetMode
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -516,7 +539,7 @@ xTRACE_POINT;
         #elif defined(xOS_LINUX)
             //TODO: bSetMode
         #endif
-    } xTRACE_POINT;
+    }
 
 
     /****************************************************************************
@@ -526,6 +549,7 @@ xTRACE_POINT;
 
     //--------------------------------------------------
     //bIsValid
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -540,10 +564,11 @@ xTRACE_POINT;
 
         m_bRes = F.bClose();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //--------------------------------------------------
     //bIsOpen
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -561,10 +586,11 @@ xTRACE_POINT;
 
         m_bRes = F.bIsOpen();
         xASSERT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //--------------------------------------------------
     //bIsEmpty
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -585,10 +611,11 @@ xTRACE_POINT;
 
         m_bRes = F.bIsEmpty();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bIsEof
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -597,10 +624,11 @@ xTRACE_POINT;
 
         m_bRes = F.bIsEof();
         xASSERT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bIsError
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -609,10 +637,11 @@ xTRACE_POINT;
 
         m_bRes = F.bIsError();
         xASSERT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bErrorClear
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -621,7 +650,7 @@ xTRACE_POINT;
 
         m_bRes = F.bErrorClear();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
 
     /****************************************************************************
@@ -631,6 +660,7 @@ xTRACE_POINT;
 
     //-------------------------------------
     //bFlush
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -642,10 +672,11 @@ xTRACE_POINT;
 
         m_bRes = F.bIsValid();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bClose
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxStdioFile F;
 
@@ -657,7 +688,7 @@ xTRACE_POINT;
 
         m_bRes = F.bIsValid();
         xASSERT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
 
     /****************************************************************************
@@ -667,6 +698,7 @@ xTRACE_POINT;
 
     //--------------------------------------------------
     //bIsFile
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxStdioFile::bIsFile(csFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -676,10 +708,11 @@ xTRACE_POINT;
 
         m_bRes = CxStdioFile::bIsFile(sGetWorkDirPath());
         xASSERT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bIsExists
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxStdioFile::bIsExists(csFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -692,46 +725,60 @@ xTRACE_POINT;
 
         m_bRes = CxStdioFile::bIsExists(sGetWorkDirPath());
         xASSERT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bAccess
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxStdioFile::bAccess(csFilePath, CxStdioFile::amExistence);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bChmod
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxStdioFile::bChmod(csFilePath, CxStdioFile::pmReadWrite);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bRename
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
+        m_bRes = CxStdioFile::bTextWrite(csFilePath, xT("Simple text"));
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        m_bRes = CxStdioFile::bDelete(csNewFilePath);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
         m_bRes = CxStdioFile::bRename(csFilePath, csNewFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+
+        m_bRes = CxStdioFile::bDelete(csNewFilePath);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    }
 
     //-------------------------------------
     //sCreateTempFileName
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sTemp = CxStdioFile::sCreateTemp(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"));
-        //xTRACEV(xT("sTemp: %s"), sTemp.c_str());
+        xTRACEV(xT("\tsTemp: %s"), sTemp.c_str());
         xASSERT_EQUAL(false,                      sTemp.empty());
         ////xASSERT_EQUAL(CxPath::sGetDir(sTemp), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"));
         ////xASSERT_NOT_EQUAL(FALSE,                   CxStdioFile::bIsExists(sTemp));
 
         m_bRes = CxStdioFile::bDelete(sTemp);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //--------------------------------------------------
     //ullGetLines
+    xTEST_BLOCK(cullBlockLoops)
     {
         const ULONGLONG cullLinesNum = 33;
 
@@ -749,10 +796,11 @@ xTRACE_POINT;
 
         ULONGLONG ullLinesNum = CxStdioFile::ullGetLines(csFilePath);
         xASSERT_EQUAL(cullLinesNum, ullLinesNum);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bCopy
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString sFilePathFrom = sGetWorkDirPath() + CxConst::xSLASH + xT("test_copy.txt");
         const tString sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
@@ -775,19 +823,27 @@ xTRACE_POINT;
 
         m_bRes = CxStdioFile::bCopy(sFilePathFrom, sFilePathTo, TRUE);
         xASSERT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bMove
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
+        m_bRes = CxStdioFile::bTextWrite(csNewFilePath, xT("Simple text"));
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        m_bRes = CxStdioFile::bDelete(sGetWorkDirPath() + CxConst::xSLASH + csNewFilePath);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
         m_bRes = CxStdioFile::bMove(csNewFilePath, sGetWorkDirPath());
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bUnlink
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if xTEMP_DISABLED
             m_bRes = CxStdioFile::bUnlink(csNewFilePath);
@@ -797,15 +853,17 @@ xTRACE_POINT;
 
     //--------------------------------------------------
     //bClear
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bClear(csNewFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bDelete
+    xTEST_BLOCK(cullBlockLoops)
     {
         const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
@@ -814,10 +872,11 @@ xTRACE_POINT;
 
         m_bRes = CxStdioFile::bDelete(csNewFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     //--------------------------------------------------
     //bTryDelete
+    xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
             const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
@@ -848,10 +907,11 @@ xTRACE_POINT;
                 }
             }
         #endif
-    } xTRACE_POINT;
+    }
 
     //-------------------------------------
     //bWipe
+    xTEST_BLOCK(cullBlockLoops)
     {
         {
             CxStdioFile F;
@@ -868,7 +928,7 @@ xTRACE_POINT;
 
         m_bRes = CxStdioFile::bWipe(csFilePath, 10);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-    } xTRACE_POINT;
+    }
 
     /****************************************************************************
     *	static: utils
@@ -877,6 +937,7 @@ xTRACE_POINT;
 
     //-------------------------------------
     //bTextRead, bTextWrite (tString)
+    xTEST_BLOCK(cullBlockLoops)
     {
         tString sFileContent;
 
@@ -904,10 +965,37 @@ xTRACE_POINT;
 
         xASSERT_EQUAL(sFileContent.size(), sStr.size());
         xASSERT_EQUAL(sFileContent, sStr);
-    } xTRACE_POINT;
+    }
+
+    //empty content
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        tString sFileContent;
+
+        {
+            CxStdioFile F;
+
+            m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        }
+
+        m_bRes = CxStdioFile::bTextRead(csFilePath, &sFileContent);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        m_bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        tString sStr;
+        m_bRes = CxStdioFile::bTextRead(csFilePath, &sStr);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        xASSERT_EQUAL(sFileContent.size(), sStr.size());
+        xASSERT_EQUAL(sFileContent, sStr);
+    }
 
     //--------------------------------------------------
     //bTextRead, bTextWrite (std::vector)
+    xTEST_BLOCK(cullBlockLoops)
     {
         std::vector<tString> vecsFileContent;
 
@@ -935,10 +1023,37 @@ xTRACE_POINT;
 
         xASSERT_EQUAL(vecsFileContent.size(), vecsStr.size());
         xASSERT(vecsFileContent == vecsStr);
-    } xTRACE_POINT;
+    }
+
+    //empty content
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        std::vector<tString> vecsFileContent;
+
+        {
+            CxStdioFile F;
+
+            m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        }
+
+        m_bRes = CxStdioFile::bTextRead(csFilePath, &vecsFileContent);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        m_bRes = CxStdioFile::bTextWrite(csFilePath, vecsFileContent);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        std::vector<tString> vecsStr;
+        m_bRes = CxStdioFile::bTextRead(csFilePath, &vecsStr);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        xASSERT_EQUAL(vecsFileContent.size(), vecsStr.size());
+        xASSERT(vecsFileContent == vecsStr);
+    }
 
     //--------------------------------------------------
     //bTextRead, bTextWrite (std::vector)
+    xTEST_BLOCK(cullBlockLoops)
     {
         std::map<tString, tString> cmapsFileContent;
         const tString              csSeparator = CxConst::xEQUAL;
@@ -967,10 +1082,38 @@ xTRACE_POINT;
 
         xASSERT_EQUAL(cmapsFileContent.size(), mapsStr.size());
         xASSERT(cmapsFileContent == mapsStr);
-    } xTRACE_POINT;
+    }
+
+    //empty content
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        std::map<tString, tString> cmapsFileContent;
+        const tString              csSeparator = CxConst::xEQUAL;
+
+        {
+            CxStdioFile F;
+
+            m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        }
+
+        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &cmapsFileContent);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        m_bRes = CxStdioFile::bTextWrite(csFilePath, csSeparator, cmapsFileContent);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        std::map<tString, tString> mapsStr;
+        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &mapsStr);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        xASSERT_EQUAL(cmapsFileContent.size(), mapsStr.size());
+        xASSERT(cmapsFileContent == mapsStr);
+    }
 
     //-------------------------------------
     //binary
+    xTEST_BLOCK(cullBlockLoops)
     {
         uString usFileContent;   usFileContent.resize(1024 * 5);
 
@@ -998,7 +1141,29 @@ xTRACE_POINT;
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
         xASSERT(usFileContent == usStr);
-    } xTRACE_POINT;
+    }
+
+    //empty content
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        uString usFileContent;
+
+        {
+            CxStdioFile F;
+
+            m_bRes = F.bOpen(csFilePath, CxStdioFile::omBinCreateReadWrite, TRUE);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        }
+
+        m_bRes = CxStdioFile::bBinWrite(csFilePath, usFileContent);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        uString usStr;
+        m_bRes = CxStdioFile::bBinRead(csFilePath, &usStr);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        xASSERT(usFileContent == usStr);
+    }
 
     /****************************************************************************
     *	other
@@ -1007,6 +1172,7 @@ xTRACE_POINT;
 
     //--------------------------------------------------
     //bBackup
+    xTEST_BLOCK(cullBlockLoops)
     {
         const LONG cliFileSize = 100;
 
@@ -1030,7 +1196,7 @@ xTRACE_POINT;
             m_bRes = CxDir::bDeleteForce(sGetWorkDirPath() + CxConst::xSLASH + xT("./Backup_dir"));
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
         #endif
-    } xTRACE_POINT;
+    }
 
     return TRUE;
 }

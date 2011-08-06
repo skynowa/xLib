@@ -25,7 +25,7 @@
                          CxTest_CxGdiplus();
             virtual     ~CxTest_CxGdiplus();
 
-            virtual BOOL bUnit();
+            virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
         private:
     };

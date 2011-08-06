@@ -26,7 +26,10 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxAtomicLongInt::bUnit() {
+CxTest_CxAtomicLongInt::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
 #if xTEMP_DISABLED
     LONG iRes = 0;

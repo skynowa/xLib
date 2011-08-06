@@ -26,7 +26,10 @@ CxTest_CxTls::~CxTest_CxTls() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxTls::bUnit() {
+CxTest_CxTls::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 
     //TODO: bUnit
 

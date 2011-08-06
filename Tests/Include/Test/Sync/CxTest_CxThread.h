@@ -27,7 +27,7 @@ class CxTest_CxThread :
                      CxTest_CxThread();
 		virtual     ~CxTest_CxThread();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

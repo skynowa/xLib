@@ -26,9 +26,13 @@ CxTest_CxMacros::~CxTest_CxMacros() {
 //TODO: DONE (unit test)
 /*virtual*/
 BOOL
-CxTest_CxMacros::bUnit() {
+CxTest_CxMacros::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //-------------------------------------
     //xPTR_DELETE
+    xTEST_BLOCK(cullBlockLoops)
     {
         INT *pPtr = new INT();
         xASSERT(NULL != pPtr);
@@ -38,6 +42,7 @@ CxTest_CxMacros::bUnit() {
     }
     //-------------------------------------
     //xARRAY_DELETE
+    xTEST_BLOCK(cullBlockLoops)
     {
         INT *pPtr = new INT[5];
         xASSERT(NULL != pPtr);
@@ -48,6 +53,7 @@ CxTest_CxMacros::bUnit() {
 
     //-------------------------------------
     //xARRAY_ZERO_DELETE
+    xTEST_BLOCK(cullBlockLoops)
     {
         INT *pPtr = new INT[5];
         xASSERT(NULL != pPtr);
@@ -58,6 +64,7 @@ CxTest_CxMacros::bUnit() {
 
     //-------------------------------------
     //xBUFF_ZERO
+    xTEST_BLOCK(cullBlockLoops)
     {
         TCHAR szBuff[255 + 1];
 
@@ -70,6 +77,7 @@ CxTest_CxMacros::bUnit() {
 
     //-------------------------------------
     //xARRAY_SIZE
+    xTEST_BLOCK(cullBlockLoops)
     {
         {
             TCHAR szBuff[256] = {0};
@@ -94,6 +102,7 @@ CxTest_CxMacros::bUnit() {
 
     //-------------------------------------
     //xMAX
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_uiRes = xMAX(0, 1);
         xASSERT_EQUAL(1U, m_uiRes);
@@ -101,12 +110,14 @@ CxTest_CxMacros::bUnit() {
 
     //-------------------------------------
     //xMIN
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_uiRes = xMIN(5, 8);
         xASSERT_EQUAL(5U, m_uiRes);
     }
     //-------------------------------------
     //xUNUSED
+    xTEST_BLOCK(cullBlockLoops)
     {
         size_t uiArg = 0;
 
@@ -115,26 +126,31 @@ CxTest_CxMacros::bUnit() {
 
     //-------------------------------------
     //xS2US
+    xTEST_BLOCK(cullBlockLoops)
     {
     }
 
     //-------------------------------------
     //xUS2S
+    xTEST_BLOCK(cullBlockLoops)
     {
     }
 
     //-------------------------------------
     //xS2TS
+    xTEST_BLOCK(cullBlockLoops)
     {
     }
 
     //-------------------------------------
     //xTS2S
+    xTEST_BLOCK(cullBlockLoops)
     {
     }
 
     //-------------------------------------
     //xAsTString
+    xTEST_BLOCK(cullBlockLoops)
     {
         //1
         {
@@ -195,6 +211,7 @@ CxTest_CxMacros::bUnit() {
 
     //-------------------------------------
     //qualifiers
+    xTEST_BLOCK(cullBlockLoops)
     {
         //xPR_SIZET
         {

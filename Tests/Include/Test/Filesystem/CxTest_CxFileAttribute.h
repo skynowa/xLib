@@ -23,7 +23,7 @@ class CxTest_CxFileAttribute :
 		               CxTest_CxFileAttribute();
 	    virtual       ~CxTest_CxFileAttribute();
 
-	    virtual  BOOL  bUnit();
+	    virtual  BOOL  bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

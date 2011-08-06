@@ -24,7 +24,7 @@ class CxTest_CxCrc32 :
                      CxTest_CxCrc32();
 		virtual     ~CxTest_CxCrc32();
 
-		virtual BOOL bUnit();
+		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

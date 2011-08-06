@@ -23,7 +23,7 @@ class CxTest_CxBase64 :
                      CxTest_CxBase64();
 		virtual     ~CxTest_CxBase64();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

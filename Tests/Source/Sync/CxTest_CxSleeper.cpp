@@ -26,14 +26,20 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxSleeper::bUnit() {
+CxTest_CxSleeper::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     CxSleeper objSleeper;
 
-    m_bRes = objSleeper.bIsSleeping();
-    xASSERT_EQUAL(FALSE, m_bRes);
+    xTEST_BLOCK(cullBlockLoops) 
+    {
+        m_bRes = objSleeper.bIsSleeping();
+        xASSERT_EQUAL(FALSE, m_bRes);
+    }
 
-    for (size_t i = 0; i < 10; ++ i) {
+    for (size_t i = 0; i < 4; ++ i) {
         m_bRes = objSleeper.bSleep(10);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 

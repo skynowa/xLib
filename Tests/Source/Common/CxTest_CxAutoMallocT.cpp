@@ -32,9 +32,13 @@ CxTest_CxAutoMallocT::~CxTest_CxAutoMallocT() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxAutoMallocT::bUnit() {
+CxTest_CxAutoMallocT::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     //-------------------------------------
 	//CxAutoMallocT
+    xTEST_BLOCK(cullBlockLoops)
 	{
 	    CxAutoMallocT<PSMy> stM(sizeof(SMy));
 	}

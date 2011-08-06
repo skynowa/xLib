@@ -26,7 +26,10 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxAutoProfiler::bUnit() {
+CxTest_CxAutoProfiler::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	const CxProfiler::EMode pmPerformMode[] = {
 	        CxProfiler::pmStdClock,
 	        CxProfiler::pmDateTime,
@@ -41,6 +44,7 @@ CxTest_CxAutoProfiler::bUnit() {
 
 	//-------------------------------------
 	//CxAutoProfiler
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
 			CxAutoProfiler _apfAP(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i], xT("%i"), 777);
@@ -57,17 +61,19 @@ CxTest_CxAutoProfiler::bUnit() {
 
 	//-------------------------------------
 	//xAUTO_PERFORM_FUNC
-	for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
-	    xAUTO_PROFILER_FUNC(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i]);
+    xTEST_BLOCK(cullBlockLoops) {
+        for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
+            xAUTO_PROFILER_FUNC(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i]);
 
-		for (size_t x = 0; x < 2; ++ x) {
-			for (size_t y = 0; y < 2; ++ y) {
-				size_t z = 0;
+            for (size_t x = 0; x < 2; ++ x) {
+                for (size_t y = 0; y < 2; ++ y) {
+                    size_t z = 0;
 
-				z++; --z; z = z / 13;
-			}
-		}
-	}
+                    z++; --z; z = z / 13;
+                }
+            }
+        }
+    }
 
 	return TRUE;
 }

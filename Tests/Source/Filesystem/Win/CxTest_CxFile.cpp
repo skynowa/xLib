@@ -26,7 +26,10 @@ CxTest_CxFile::~CxTest_CxFile() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxFile::bUnit() {
+CxTest_CxFile::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     ULONG         ulWritten     = 0;
     ULONG         ulReaded      = 0;
@@ -87,6 +90,7 @@ CxTest_CxFile::bUnit() {
 
     //--------------------------------------------------
     //bGetTime, bSetTime
+    xTEST_BLOCK(cullBlockLoops)
     {
         const FILETIME ctmCreate   = {100000000};
         const FILETIME ctmAccess   = {200000000};
@@ -130,6 +134,7 @@ CxTest_CxFile::bUnit() {
     m_bRes = F.bClose();
 
     //bIsExists
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFile::bIsExists(xT("C:"));
         xASSERT_EQUAL(FALSE, m_bRes);
@@ -148,6 +153,7 @@ CxTest_CxFile::bUnit() {
     }
 
     //sIsExists
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxFile::sIsExists(csFilePathSt);
         xASSERT_EQUAL(sGetWorkDirPath() + xT("\\Test_Static (1).txt"), m_sRes);
@@ -217,6 +223,7 @@ CxTest_CxFile::bUnit() {
     //-------------------------------------
     //other
     //TODO: bBackupFile
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxDir::bCreateForce(csTmpDirPath);
 

@@ -27,7 +27,10 @@ CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL 
-CxTest_CxConnectionString::bUnit() {
+CxTest_CxConnectionString::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	/*DEBUG*/
 
 	return TRUE;

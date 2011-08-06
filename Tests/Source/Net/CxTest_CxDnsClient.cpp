@@ -26,7 +26,10 @@ CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxDnsClient::bUnit() {
+CxTest_CxDnsClient::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	//-------------------------------------
 	//CxSocketInit
 	CxSocketInit siInit(2, 2);

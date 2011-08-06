@@ -26,7 +26,10 @@ CxTest_CxMutex::~CxTest_CxMutex() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxMutex::bUnit() {
+CxTest_CxMutex::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     const tString csName = CxString::sCreateGuid();
 

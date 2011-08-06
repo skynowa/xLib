@@ -26,7 +26,10 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxRandom::bUnit() {
+CxTest_CxRandom::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     #if xTODO
         CxRandom rndR;
 
@@ -110,6 +113,7 @@ CxTest_CxRandom::bUnit() {
 
     //-------------------------------------
     //bSetSeed, liGetInt, liGetIntEx
+    xTEST_BLOCK(cullBlockLoops)
     {
         const LONG caliData[][2] = {
             {0, 100},
@@ -137,6 +141,7 @@ CxTest_CxRandom::bUnit() {
 
     //--------------------------------------------------
     //sGetString
+    xTEST_BLOCK(cullBlockLoops)
     {
         const size_t cuiStrSize = 10;
 

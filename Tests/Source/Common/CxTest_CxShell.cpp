@@ -26,12 +26,16 @@ CxTest_CxShell::~CxTest_CxShell() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxShell::bUnit() {
+CxTest_CxShell::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     /*DEBUG*/
 
 #if defined(xOS_WIN)
     //-------------------------------------
     //bFindExecutable
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxShell::bFindExecutable(xT("win.ini"), xT("C:"));
         xASSERT_EQUAL(false, m_sRes.empty());
@@ -39,6 +43,7 @@ CxTest_CxShell::bUnit() {
 
     //-------------------------------------
     //bExecuteEx
+    xTEST_BLOCK(cullBlockLoops)
     {
         //SHELLEXECUTEINFO eiExecInfo = {0};
         //m_bRes = CxShell::bExecuteEx(&eiExecInfo);
@@ -46,34 +51,40 @@ CxTest_CxShell::bUnit() {
 
     //-------------------------------------
     //bExecute
+    xTEST_BLOCK(cullBlockLoops)
     {
         //m_bRes = CxShell::bExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, INT iShowCmd);
     }
 
     //-------------------------------------
     //bExecuteHttp
+    xTEST_BLOCK(cullBlockLoops)
     {
         ////m_bRes = CxShell::bExecuteHttp(xT(" http://www.google.ru/ "));
     }
 
     //-------------------------------------
     //bExecuteFtp
+    xTEST_BLOCK(cullBlockLoops)
     {
         ////m_bRes = CxShell::bExecuteFtp(xT(" ftp://ftp.drweb.com/ "));
     }
 
     //-------------------------------------
     //bExecuteEmail
+    xTEST_BLOCK(cullBlockLoops)
     {
         ////m_bRes = CxShell::bExecuteEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
     }
 
     //-------------------------------------
     //sGetSpecialDirPath
-    #if (xWINVER >= xWIN32_2K)
-        m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
-        xASSERT_EQUAL(tString(xT("C:\\WINDOWS\\Fonts")), m_sRes);
-    #endif //xWIN32_2K
+    xTEST_BLOCK(cullBlockLoops) {
+        #if (xWINVER >= xWIN32_2K)
+            m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
+            xASSERT_EQUAL(tString(xT("C:\\WINDOWS\\Fonts")), m_sRes);
+        #endif //xWIN32_2K
+    }
 #elif defined(xOS_LINUX)
 
 #endif

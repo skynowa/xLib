@@ -26,13 +26,17 @@ CxTest_CxFileLog::~CxTest_CxFileLog() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxFileLog::bUnit() {
+CxTest_CxFileLog::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.log");
 
     CxFileLog flLog(1);
 
     //--------------------------------------------------
     //bSetFilePath, sGetFilePath
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = flLog.bSetFilePath(csFilePath);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -43,6 +47,7 @@ CxTest_CxFileLog::bUnit() {
 
     //--------------------------------------------------
     //bWrite
+    xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = flLog.bWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
@@ -53,6 +58,7 @@ CxTest_CxFileLog::bUnit() {
 
     //--------------------------------------------------
     //bClear
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = flLog.bClear();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
@@ -61,6 +67,7 @@ CxTest_CxFileLog::bUnit() {
 
     //--------------------------------------------------
     //bDelete
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = flLog.bDelete();
         xASSERT_NOT_EQUAL(FALSE, m_bRes);

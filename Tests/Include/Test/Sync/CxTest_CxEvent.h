@@ -23,7 +23,7 @@ class CxTest_CxEvent :
                      CxTest_CxEvent();
 		virtual     ~CxTest_CxEvent();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

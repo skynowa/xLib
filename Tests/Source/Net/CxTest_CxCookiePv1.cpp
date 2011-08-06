@@ -26,7 +26,10 @@ CxTest_CxCookiePv1::~CxTest_CxCookiePv1() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxCookiePv1::bUnit() {
+CxTest_CxCookiePv1::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     const tString   csName      = xT("Name1");
     const tString   csValue     = xT("Value1");
     const tString   csComment   = xT("Comment1");
@@ -42,6 +45,7 @@ CxTest_CxCookiePv1::bUnit() {
 
     //--------------------------------------------------
     //CxCookiePv1()
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxCookiePv1 ckCookiePv1;
 
@@ -100,6 +104,7 @@ CxTest_CxCookiePv1::bUnit() {
 
     //--------------------------------------------------
     //CxCookiePv1(const tString &);
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxCookiePv1 ckCookiePv1(csRawCookie);
 

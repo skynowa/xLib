@@ -26,7 +26,10 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxMimeMessage::bUnit() {
+CxTest_CxMimeMessage::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 #if defined(xOS_WIN)
     CxPop3 objPop3;
 

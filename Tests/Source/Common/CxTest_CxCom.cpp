@@ -26,12 +26,16 @@ CxTest_CxCom::~CxTest_CxCom() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxCom::bUnit() {
+CxTest_CxCom::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     /*DEBUG*/
 
 #if defined(xOS_WIN)
     //-------------------------------------
     //bIsInit
+    xTEST_BLOCK(cullBlockLoops)
     {
         {
             CxCom cmCom(CxCom::cmMultiThreaded);

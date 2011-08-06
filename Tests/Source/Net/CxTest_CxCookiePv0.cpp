@@ -26,7 +26,10 @@ CxTest_CxCookiePv0::~CxTest_CxCookiePv0() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxCookiePv0::bUnit() {
+CxTest_CxCookiePv0::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     const tString csName      = xT("Name0");
     const tString csValue     = xT("Value0");
     const tString csDomain    = xT(".domain.com0");
@@ -41,6 +44,7 @@ CxTest_CxCookiePv0::bUnit() {
 
     //--------------------------------------------------
     //CxCookiePv0()
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxCookiePv0 ckCookiePv0;
 
@@ -93,7 +97,8 @@ CxTest_CxCookiePv0::bUnit() {
     }
 
     //--------------------------------------------------
-    //CxCookiePv0(const tString &);
+    //CxCookiePv0(const tString &)
+    xTEST_BLOCK(cullBlockLoops)
     {
         CxCookiePv0 ckCookiePv0(csRawCookie);
 

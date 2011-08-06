@@ -26,7 +26,10 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxCrc32::bUnit() {
+CxTest_CxCrc32::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 	/*DEBUG*/
 
 	const tString csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
@@ -45,12 +48,14 @@ CxTest_CxCrc32::bUnit() {
 
 	//-------------------------------------
 	//ulCalc
+    xTEST_BLOCK(cullBlockLoops)
 	{
 
 	}
 
 	//-------------------------------------
 	//ulCalcFile, sFormatHex
+    xTEST_BLOCK(cullBlockLoops)
 	{
 		m_ulRes = CxCrc32::ulCalcFile(csFilePath);
 		xASSERT_LESS(0UL, m_ulRes);
@@ -62,12 +67,14 @@ CxTest_CxCrc32::bUnit() {
 
 	//-------------------------------------
 	//ulCalcFast
+    xTEST_BLOCK(cullBlockLoops)
 	{
 
 	}
 
 	//------------------------------------
 	//ulCalcFileFast, sFormatHex
+    xTEST_BLOCK(cullBlockLoops)
 	{
 	    m_ulRes = CxCrc32::ulCalcFileFast(csFilePath);
         xASSERT_LESS(0UL, m_ulRes);

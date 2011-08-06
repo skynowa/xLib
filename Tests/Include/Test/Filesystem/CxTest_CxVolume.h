@@ -21,7 +21,7 @@ class CxTest_CxVolume : public CxTest {
 		             CxTest_CxVolume();
 		virtual     ~CxTest_CxVolume();
 
-	    virtual BOOL bUnit();
+	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };

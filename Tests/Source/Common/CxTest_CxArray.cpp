@@ -26,7 +26,10 @@ CxTest_CxArray::~CxTest_CxArray() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxArray::bUnit() {
+CxTest_CxArray::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     const size_t cuiArraySize = 5;
 
 
@@ -34,6 +37,7 @@ CxTest_CxArray::bUnit() {
 
     //--------------------------------------------------
     //operator[]
+    xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
             xASSERT_EQUAL(i, aszArray[i]);
@@ -42,6 +46,7 @@ CxTest_CxArray::bUnit() {
 
     //--------------------------------------------------
     //at
+    xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
             xASSERT_EQUAL(i, aszArray.at(i));
@@ -50,6 +55,7 @@ CxTest_CxArray::bUnit() {
 
     //--------------------------------------------------
     //uiGetSize
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_stRes = aszArray.size();
         xASSERT_EQUAL(cuiArraySize, m_stRes);
@@ -57,15 +63,16 @@ CxTest_CxArray::bUnit() {
 
     //--------------------------------------------------
     //bClear
+    xTEST_BLOCK(cullBlockLoops)
     {
         /*m_bRes =*/ aszArray.clear();
         ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
-
-    NxArray::make_array<tString>( xT("0"),  xT("1") );
-    NxArray::make_array<tString>( xT("0"),  xT("1"),  xT("2") );
-
+    xTEST_BLOCK(cullBlockLoops) {
+        NxArray::make_array<tString>( xT("0"),  xT("1") );
+        NxArray::make_array<tString>( xT("0"),  xT("1"),  xT("2") );
+    }
 
     return TRUE;
 }

@@ -26,7 +26,10 @@ CxTest_CxDll::~CxTest_CxDll() {
 //DONE: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxDll::bUnit() {
+CxTest_CxDll::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     #if defined(xOS_WIN)
         const tString sData[][2] = {
             {xT("kernel32.dll"), xT("Beep")},
@@ -75,7 +78,7 @@ CxTest_CxDll::bUnit() {
         pDllFunc pLoadBeepFunc = NULL;
 
         pLoadBeepFunc = (pDllFunc)fpRes;
-        pLoadBeepFunc(200, 200);
+        pLoadBeepFunc(1, 1);
     #elif defined(xOS_LINUX)
         typedef DOUBLE (*pDllFunc)(DOUBLE);
 

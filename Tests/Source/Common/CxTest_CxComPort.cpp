@@ -26,7 +26,10 @@ CxTest_CxComPort::~CxTest_CxComPort() {
 //TODO: bUnit ()
 /*virtual*/
 BOOL 
-CxTest_CxComPort::bUnit() {
+CxTest_CxComPort::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
     /*DEBUG*/
 
     return TRUE;
