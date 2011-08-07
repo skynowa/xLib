@@ -132,13 +132,11 @@ CxLastError::sFormat(
 //DONE: CxLastError
 CxLastError::CxLastError() {
     /*DEBUG*/// n/a
-
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxLastError
 /*virtual*/
 CxLastError::~CxLastError() {
     /*DEBUG*/// n/a
-
 }
 //---------------------------------------------------------------------------
