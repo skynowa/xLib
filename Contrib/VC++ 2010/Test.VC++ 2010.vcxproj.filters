@@ -1255,6 +1255,12 @@
     <None Include="..\..\Source\Common\CxType.inl">
       <Filter>xLib\Common</Filter>
     </None>
+    <None Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxRtf.inl">
+      <Filter>xLib\Gui\Win\Dialogs</Filter>
+    </None>
+    <None Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxT.inl">
+      <Filter>xLib\Gui\Win\Dialogs</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxBase64.h">

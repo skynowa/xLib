@@ -16,7 +16,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #define ID_staPrompt    101
-#define ID_edtText         102
+#define ID_edtText      102
 #define ID_btnOK        IDOK
 #define ID_btnCancel    IDCANCEL
 //---------------------------------------------------------------------------
@@ -24,7 +24,6 @@ class CxInputBox :
     public CxNonCopyable 
 {
     public:
-        //
         enum EModalResult {
             mrOk,
             mrCancel

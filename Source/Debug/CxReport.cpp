@@ -4,7 +4,7 @@
 * File name:   CxReport.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
-* Created:     1 лют. 2011 13:58:33
+* Created:     01.02.2011
 *
 *****************************************************************************/
 
@@ -368,6 +368,7 @@ CxReport::_bInitPlain() {
         xT("%s%s"),       //Comment
 
         xT("CxReport         "),
+
         xT("Program:         "), sGetProgram().c_str(),
         xT("Process id:      "), ulGetProcessId(),
         xT("Thread id:       "), ulGetThreadId(),
@@ -447,33 +448,48 @@ CxReport::_bInitRtf() {
 #if defined(xOS_WIN)
     //TODO: _bInitRtf (add some data)
     _m_sReport = CxString::sFormat(
-        xT("{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fswiss\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f1\\fswiss\\fcharset0 Arial;}}")
-        xT("{\\colortbl ;\\red0\\green0\\blue0;\\red255\\green0\\blue0;\\red0\\green0\\blue255;}")
-        xT("{\\*\\generator Msftedit 5.41.15.1515;}\\viewkind4\\uc1\\pard\\ul\\b\\f0\\fs20 %s\\ulnone\\b0\\par")
-        xT("\\par")
-        xT("\\b %s\\b0   \\lang1033\\f1           \\cf1\\lang1049\\f0 %s\\cf2\\par")
-        xT("\\cf0\\b %s\\b0   \\lang1033\\f1                   \\cf1\\lang1049\\f0 %s\\cf2\\par")
-        xT("\\cf0\\b %s\\b0   \\lang1033\\f1                  \\cf1\\lang1049\\f0 %li\\cf0\\par")
-        xT("\\b %s\\b0  \\lang1033\\f1          \\lang1049\\f0  \\lang1033\\f1  \\cf3\\lang1049\\f0 %s\\cf0\\par")
-        xT("\\b %s\\b0          \\cf2 %s\\cf0\\par")
-        xT("\\b %s\\lang1033\\b0\\f1             \\cf2\\lang1049\\f0 %s\\cf0\\par")
-        xT("\\b %s\\lang1033\\b0\\f1           \\cf1\\lang1049\\f0 %s\\cf0\\par")
-        xT("\\b %s\\lang1033\\b0\\f1          \\cf1\\lang1049\\f0 %s\\cf0\\par")
-        xT("\\b %s\\lang1033\\b0\\f1  \\cf1\\lang1049\\f0 %s\\cf0\\par")
-        xT("\\b %s\\b0  \\lang1033\\f1           \\cf1 %s\\lang1049\\f0\\par")
+        xT("{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}{\\f1\\fnil DejaVu Sans Mono;}{\\f2\\fswiss\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f3\\fswiss\\fprq2\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f4\\fswiss\\fprq2\\fcharset0 Arial;}}")
+        xT("{\\colortbl ;\\red255\\green0\\blue0;\\red0\\green0\\blue0;\\red255\\green0\\blue255;\\red0\\green255\\blue255;\\red255\\green255\\blue0;}")
+        xT("\\viewkind4\\uc1\\pard\\lang1033\\ul\\b\\f0\\fs20 %s\\cf1\\lang1049\\ulnone\\b0\\f1\\fs16\\par")
+        xT("\\cf0\\b\\f2\\fs20\\par")
+        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f0  \\cf2 %s\\cf1\\lang1049\\f2\\par")
+        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4   \\f0 %li\\cf1\\lang1049\\f2\\par")
+        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4   \\f0 %li\\cf1\\lang1049\\f2\\par")
+        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4     \\f0 %s\\par")
+        xT("\\cf1\\lang1049\\f2\\par")
+        xT("\\cf0\\b %s\\b0   \\lang1033\\f0   \\b %s\\cf1\\lang1049\\b0\\f2\\par")
+        xT("\\cf0\\b %s\\b0   \\lang1033\\f0  \\cf3\\b\\f4 %li\\lang1049\\f3\\par")
+        xT("\\cf0\\f2 %s\\lang1033\\f0 \\cf4\\f4 %s\\lang1049\\f3\\par")
+        xT("\\cf0\\f2 %s\\b0   \\lang1033\\f0  \\cf5\\b\\f4 %s\\cf0\\lang1049\\b0\\f2\\par")
+        xT("\\b %s\\lang1033\\b0\\f0      \\cf1\\b\\f4 %s\\b0\\par")
+        xT("\\cf0\\lang1049\\f2\\par")
+        xT("\\b %s\\lang1033\\b0\\f0    %s\\lang1049\\f2\\par")
+        xT("\\b %s\\lang1033\\b0\\f0     %s\\lang1049\\f2\\par")
+        xT("\\b %s\\lang1033\\b0\\f0    %s\\lang1049\\f2\\par")
+        xT("\\b %s\\lang1033\\f0  \\b0 %s\\par")
+        xT("\\lang1049\\f2\\par")
+        xT("\\b %s\\b0  \\lang1033\\f0   %s\\lang1049\\f2\\par")
         xT("}"),
 
-        xT("CxReport"),
-        xT("Program:"),         sGetProgram().c_str(),
-        xT("File:"),            sGetSourceFile().c_str(),
-        xT("Line:"),            ulGetSourceLine(),
-        xT("Function:"),        sGetFunctionName().c_str(),
-        xT("Expression:"),      sGetExpression().c_str(),
-        xT("LastError:"),       sGetLastErrorStr().c_str(),
-        xT("Build date:"),      sGetBuildDate().c_str(),
-        xT("OS version:"),      sGetOsVersion().c_str(),
-        xT("OS architecture:"), sGetOsArchitecture().c_str(),
-        xT("Comment:"),         sGetComment().c_str()
+        xT("CxReport "),
+
+        xT("Program:         "), sGetProgram().c_str(),
+        xT("Process id:      "), ulGetProcessId(),
+        xT("Thread id:       "), ulGetThreadId(),
+        xT("File size:       "), sGetFileSize().c_str(),
+
+        xT("Source file:     "), sGetSourceFile().c_str(),
+        xT("Source line:     "), ulGetSourceLine(),
+        xT("Function name:   "), sGetFunctionName().c_str(),
+        xT("Expression:      "), sGetExpression().c_str(),
+        xT("Last error:      "), sGetLastErrorStr().c_str(),
+
+        xT("Current date:    "), sGetCurrentDate().c_str(),
+        xT("Build date:      "), sGetBuildDate().c_str(),
+        xT("OS version:      "), sGetOsVersion().c_str(),
+        xT("OS architecture: "), sGetOsArchitecture().c_str(),
+
+        xT("Comment:         "), sGetComment().c_str()
     );
 #elif defined(xOS_LINUX)
     _m_sReport = CxString::sFormat(
@@ -503,6 +519,7 @@ CxReport::_bInitRtf() {
         xT("#  "),
 
         xT("#  CxReport         "),
+
         xT("#  Program:         "), sGetProgram().c_str(),
         xT("#  Process id:      "), ulGetProcessId(),
         xT("#  Thread id:       "), ulGetThreadId(),

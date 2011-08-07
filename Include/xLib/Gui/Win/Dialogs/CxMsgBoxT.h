@@ -13,7 +13,6 @@
 #define xLib_Gui_CxMsgBoxTH
 //---------------------------------------------------------------------------
 #include <xLib/Gui/Win/xCommon.h>
-#include <xLib/Common/CxString.h>
 //---------------------------------------------------------------------------
 class CxMsgBoxT : 
     public CxNonCopyable 
@@ -25,45 +24,23 @@ class CxMsgBoxT :
             mrIgnore = IDIGNORE,
         };
 
-        //---------------------------------------------------------------------------
-        //DONE: iShow
         template <typename TextT, typename TitleT>
-        static
-        EModalResult
-        iShow(HWND hWnd, TextT Text, TitleT Title, UINT uiType) {
-            return static_cast<EModalResult>( ::MessageBox(hWnd, CxString::lexical_cast(Text).c_str(), CxString::lexical_cast(Title).c_str(), uiType) );
-        }
+        static EModalResult iShow(const HWND chWnd, const TextT &cText, const TitleT &cTitle, const UINT cuiType);
 
-        //---------------------------------------------------------------------------
-        //DONE: iShow
         template <typename TextT, typename TitleT>
-        static
-        EModalResult
-        iShow(TextT Text, TitleT Title, UINT uiType) {
-            return static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(Text).c_str(), CxString::lexical_cast(Title).c_str(), uiType) );
-        }
+        static EModalResult iShow(const TextT &cText, const TitleT &cTitle, const UINT cuiType);
 
-        //---------------------------------------------------------------------------
-        //DONE: iShow
         template <typename TextT, typename TitleT>
-        static
-        EModalResult
-        iShow(TextT Text, TitleT Title) {
-            return static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(Text).c_str(), CxString::lexical_cast(Title).c_str(), MB_OK) );
-        }
+        static EModalResult iShow(const TextT &cText, const TitleT &cTitle);
 
-        //---------------------------------------------------------------------------
-        //DONE: iShow
         template <typename TextT>
-        static
-        EModalResult
-        iShow(TextT Text) {
-			return static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(Text).c_str(), tString().c_str(), MB_OK) );
-        }
+        static EModalResult iShow(const TextT &cText);
 
-    private:
-                 CxMsgBoxT();
-        virtual ~CxMsgBoxT();
+     private:
+                 CxMsgBoxT() {};
+        virtual ~CxMsgBoxT() {};
 };
+//---------------------------------------------------------------------------
+#include <Gui/Win/Dialogs/CxMsgBoxT.inl>
 //---------------------------------------------------------------------------
 #endif    //xLib_Gui_CxMsgBoxTH

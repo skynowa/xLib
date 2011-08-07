@@ -1375,7 +1375,7 @@ CxStdioFile::bTextRead(
     /*DEBUG*/xASSERT_RET(NULL  != pmsContent,            FALSE);
 
     //if file empty
-    xCHECK_DO(0L == liGetSize(csFilePath), (*pmsContent).swap(std::map<tString, tString>()); return TRUE);
+    xCHECK_DO(0L == liGetSize(csFilePath), (*pmsContent).clear(); return TRUE);
 
     BOOL bRes = FALSE;
 

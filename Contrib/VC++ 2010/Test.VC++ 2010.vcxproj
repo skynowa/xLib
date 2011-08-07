@@ -566,6 +566,8 @@
     <None Include="..\..\Source\Common\CxType.inl" />
     <None Include="..\..\Source\Common\Win\CxHandleT.inl" />
     <None Include="..\..\Source\Debug\CxReport.inl" />
+    <None Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
+    <None Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\Source\Sync\CxThreadPool.inl" />
     <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">
       <FileType>Document</FileType>

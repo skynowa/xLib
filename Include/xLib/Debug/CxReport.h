@@ -4,7 +4,7 @@
 * File name:   CxReport.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
-* Created:     1 лют. 2011 13:58:33
+* Created:     01.02.2011
 *
 *****************************************************************************/
 
