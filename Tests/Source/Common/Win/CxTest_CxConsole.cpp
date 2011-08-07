@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxComPort
-* Description: test CxComPort
-* File name:   CxTest_CxComPort.h
+* Class name:  CxTest_CxConsole
+* Description: test CxConsole
+* File name:   CxTest_CxConsole.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,28 +9,37 @@
 *****************************************************************************/
 
 
-#include <Test/Common/CxTest_CxComPort.h>
+#include <Test/Common/Win/CxTest_CxConsole.h>
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxComPort
-CxTest_CxComPort::CxTest_CxComPort() {
+//DONE: CxTest_CxConsole
+CxTest_CxConsole::CxTest_CxConsole() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxComPort
-CxTest_CxComPort::~CxTest_CxComPort() {
+//DONE: ~CxTest_CxConsole
+CxTest_CxConsole::~CxTest_CxConsole() {
 
 }
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
 BOOL 
-CxTest_CxComPort::bUnit(
+CxTest_CxConsole::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
+
+    #if xTODO
+        CxConsole cnConsole;
+    #endif
+
+    //////Console.vSetTextColor(0xa);
+    //////Console.bEnableClose(true);
+    //////cout << "111111111111111111111111111111111111111";
+    //////Console.bClearScreen();
 
     return TRUE;
 }

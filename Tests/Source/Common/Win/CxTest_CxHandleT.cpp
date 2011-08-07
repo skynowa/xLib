@@ -13,7 +13,7 @@
 *****************************************************************************/
 
 
-#include <Test/Common/CxTest_CxHandleT.h>
+#include <Test/Common/Win/CxTest_CxHandleT.h>
 
 #include <xLib/Sync/CxProcess.h>
 
