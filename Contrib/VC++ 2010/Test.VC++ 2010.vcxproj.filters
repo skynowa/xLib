@@ -154,6 +154,18 @@
     <Filter Include="Test\Gui\Win\Gdi+">
       <UniqueIdentifier>{9760a4cd-7ccc-42b6-ae57-106c75499433}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test\Common\Win">
+      <UniqueIdentifier>{e62c7241-b993-40fa-bf6c-80dad98ef5b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Compress\Linux">
+      <UniqueIdentifier>{a6448b76-bb32-44fd-a796-95655343e67f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Units\Win">
+      <UniqueIdentifier>{554701ed-ecd7-49f7-84b7-f2866f1fedcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Pkcs11\Win">
+      <UniqueIdentifier>{755d3131-1f7b-402b-b9ca-5108f3d4b800}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Crypt\CxBase64.cpp">
@@ -432,9 +444,6 @@
     <ClCompile Include="..\..\Tests\Source\Test.cpp">
       <Filter>Test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Units\CxTest_bGetUsbInfo.cpp">
-      <Filter>Test\Units</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Sync\CWorkThread.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
@@ -476,9 +485,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp">
       <Filter>Test\Sync</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\PKCS11\CxTest_CxPKCS11.cpp">
-      <Filter>Test\Pkcs11</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp">
       <Filter>Test\Patterns</Filter>
@@ -585,9 +591,6 @@
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxRandom.cpp">
       <Filter>Test\Crypt</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Compress\CxTest_CxGz.cpp">
-      <Filter>Test\Compress</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxArray.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
@@ -595,18 +598,6 @@
       <Filter>Test\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxChar.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxClipboard.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxCom.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxComPort.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxDateTime.cpp">
@@ -618,16 +609,7 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxLocale.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxMacros.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxShell.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxString.cpp">
@@ -668,6 +650,36 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxLocalStorage.cpp">
       <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp">
+      <Filter>Test\Common\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxComPort.cpp">
+      <Filter>Test\Common\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxConsole.cpp">
+      <Filter>Test\Common\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxHandleT.cpp">
+      <Filter>Test\Common\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxShell.cpp">
+      <Filter>Test\Common\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxClipboard.cpp">
+      <Filter>Test\Common\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Compress\Linux\CxTest_CxGz.cpp">
+      <Filter>Test\Compress\Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp">
+      <Filter>Test\Units\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxLocale.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Pkcs11\Win\CxTest_CxPkcs11.cpp">
+      <Filter>Test\Pkcs11\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -995,18 +1007,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxClipboard.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxCom.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxComPort.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
@@ -1016,16 +1016,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxMacros.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxShell.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxString.h">
@@ -1033,9 +1024,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h">
       <Filter>Test\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Units\CxTest_bGetUsbInfo.h">
-      <Filter>Test\Units</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CWorkThread.h">
       <Filter>Test\Sync</Filter>
@@ -1078,9 +1066,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h">
       <Filter>Test\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\PKCS11\CxTest_CxPKCS11.h">
-      <Filter>Test\Pkcs11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h">
       <Filter>Test\Patterns</Filter>
@@ -1187,9 +1172,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h">
       <Filter>Test\Crypt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Compress\CxTest_CxGz.h">
-      <Filter>Test\Compress</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxFile.h">
       <Filter>Test\Filesystem\Win</Filter>
     </ClInclude>
@@ -1231,6 +1213,33 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxLocalStorage.h">
       <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxClipboard.h">
+      <Filter>Test\Common\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h">
+      <Filter>Test\Common\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxConsole.h">
+      <Filter>Test\Common\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxHandleT.h">
+      <Filter>Test\Common\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxShell.h">
+      <Filter>Test\Common\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Compress\Linux\CxTest_CxGz.h">
+      <Filter>Test\Compress\Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Units\Win\CxTest_bGetUsbInfo.h">
+      <Filter>Test\Units\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Pkcs11\Win\CxTest_CxPkcs11.h">
+      <Filter>Test\Pkcs11\Win</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

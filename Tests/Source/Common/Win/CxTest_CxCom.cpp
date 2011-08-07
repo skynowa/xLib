@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxConsole
-* Description: test CxConsole
-* File name:   CxTest_CxConsole.h
+* Class name:  CxTest_CxCom
+* Description: test CxCom
+* File name:   CxTest_CxCom.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,37 +9,47 @@
 *****************************************************************************/
 
 
-#include <Test/Common/CxTest_CxConsole.h>
+#include <Test/Common/Win/CxTest_CxCom.h>
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxConsole
-CxTest_CxConsole::CxTest_CxConsole() {
+//TODO: CxTest_CxCom
+CxTest_CxCom::CxTest_CxCom() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxConsole
-CxTest_CxConsole::~CxTest_CxConsole() {
+//TODO: ~CxTest_CxCom
+CxTest_CxCom::~CxTest_CxCom() {
 
 }
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL 
-CxTest_CxConsole::bUnit(
+BOOL
+CxTest_CxCom::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
 
-    #if xTODO
-        CxConsole cnConsole;
-    #endif
+#if defined(xOS_WIN)
+    //-------------------------------------
+    //bIsInit
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        {
+            CxCom cmCom(CxCom::cmMultiThreaded);
 
-    //////Console.vSetTextColor(0xa);
-    //////Console.bEnableClose(true);
-    //////cout << "111111111111111111111111111111111111111";
-    //////Console.bClearScreen();
+            m_bRes = CxCom::bIsInit();
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        }
+
+        m_bRes = CxCom::bIsInit();
+        xASSERT_EQUAL(FALSE, m_bRes);
+    }
+#elif defined(xOS_LINUX)
+
+#endif
 
     return TRUE;
 }

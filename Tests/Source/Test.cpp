@@ -28,12 +28,12 @@
 #include <Test/Common/CxTest_CxException.h>
 #include <Test/Common/CxTest_CxType.h>
 #if defined(xOS_WIN)
-    #include <Test/Common/CxTest_CxClipboard.h>
-    #include <Test/Common/CxTest_CxCom.h>
-    #include <Test/Common/CxTest_CxHandleT.h>
-    #include <Test/Common/CxTest_CxShell.h>
-    #include <Test/Common/CxTest_CxComPort.h>
-    #include <Test/Common/CxTest_CxConsole.h>
+    #include <Test/Common/Win/CxTest_CxClipboard.h>
+    #include <Test/Common/Win/CxTest_CxCom.h>
+    #include <Test/Common/Win/CxTest_CxHandleT.h>
+    #include <Test/Common/Win/CxTest_CxShell.h>
+    #include <Test/Common/Win/CxTest_CxComPort.h>
+    #include <Test/Common/Win/CxTest_CxConsole.h>
 #elif defined(xOS_LINUX)
 
 #endif
@@ -42,7 +42,7 @@
 #if defined(xOS_WIN)
 
 #elif defined(xOS_LINUX)
-    #include <Test/Compress/CxTest_CxGz.h>
+    #include <Test/Compress/Linux/CxTest_CxGz.h>
 #endif
 
 //Crypt
@@ -102,9 +102,9 @@
 //Patterns
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
-//PKCS11
+//Pkcs11
 #if defined(xOS_WIN)
-    #include <Test/PKCS11/CxTest_CxPkcs11.h>
+    #include <Test/Pkcs11/Win/CxTest_CxPkcs11.h>
 #elif defined(xOS_LINUX)
 
 #endif
@@ -283,7 +283,7 @@ _tmain(
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);
 
-        //PKCS11
+        //Pkcs11
     #if defined(xOS_WIN)
         ////bRes = tmManager.bAdd(new CxTest_CxPkcs11);
     #elif defined(xOS_LINUX)

@@ -51,11 +51,22 @@ class CxMacros :
 
         #define xARRAY_ZERO_DELETE(a)   { if (NULL != (a)) {xBUFF_ZERO(a); delete [] (a);  (a) = NULL;} }
 
+    #if defined(xDEPRECIATE)
         template <class T, const size_t N>
         static
         TCHAR (&Util_ArraySize(const T (&array)[N]))[N];
 
         #define xARRAY_SIZE(a)          ( sizeof(CxMacros::Util_ArraySize(a)) )
+    #else
+        template <typename ArrT, size_t ArrS>
+        static
+        inline std::size_t sizeof_array(ArrT const (&)[ArrS])
+        {
+            return ArrS;
+        }
+
+        #define xARRAY_SIZE(a)          ( CxMacros::sizeof_array(a) )
+    #endif
 
         #define xBUFF_ZERO(Buff)        { memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
         #define xSTRUCT_ZERO(Buff)      { memset(static_cast<void *>( &(Buff) ),    0, sizeof(Buff)); }
