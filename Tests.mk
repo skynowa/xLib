@@ -85,7 +85,7 @@ SOURCE_SUBDIRS			:= 	.\
 
 TESTS_SOURCE_SUBDIRS		:= 	.\
 					Common \
-					Compress \
+					Compress/Linux \
 					Crypt \
 					Crypt/OpenSSL \
 					Debug \
