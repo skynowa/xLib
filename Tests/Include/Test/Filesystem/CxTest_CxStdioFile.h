@@ -20,12 +20,13 @@ class CxTest_CxStdioFile :
     public CxTest
 {
 	public:
-		         CxTest_CxStdioFile();
-		virtual ~CxTest_CxStdioFile();
+		               CxTest_CxStdioFile();
+		virtual       ~CxTest_CxStdioFile();
 
-		virtual  BOOL bUnit(const ULONGLONG cullBlockLoops);
+		virtual  BOOL  bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
+
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxStdioFileH
