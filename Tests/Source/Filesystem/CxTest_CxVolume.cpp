@@ -221,9 +221,9 @@ CxTest_CxVolume::bUnit(
     xTEST_BLOCK(cullBlockLoops)
 	{
         #if defined(xOS_WIN)
-            std::vector<tString> vecsDrives;
+            std::vector<tString> vsDrives;
 
-            m_bRes = CxVolume::bGetLogicalDrives(&vecsDrives);
+            m_bRes = CxVolume::bGetLogicalDrives(&vsDrives);
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
         #elif defined(xOS_LINUX)
             //TODO: xOS_LINUX
@@ -235,9 +235,9 @@ CxTest_CxVolume::bUnit(
     xTEST_BLOCK(cullBlockLoops)
 	{
         #if defined(xOS_WIN)
-            std::vector<tString> vecsDrives;
+            std::vector<tString> vsDrives;
 
-            m_bRes = CxVolume::bGetLogicalDrives(&vecsDrives, CxVolume::dtFixed);
+            m_bRes = CxVolume::bGetLogicalDrives(&vsDrives, CxVolume::dtFixed);
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
         #elif defined(xOS_LINUX)
             //TODO: xOS_LINUX
@@ -330,9 +330,9 @@ CxTest_CxVolume::bUnit(
 
 	//-------------------------------------
 	//sQueryDosDevice
-    xTEST_BLOCK(cullBlockLoops) 
+    xTEST_BLOCK(cullBlockLoops)
     {
-    
+
     }
 
 	//-------------------------------------

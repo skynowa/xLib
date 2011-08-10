@@ -42,7 +42,7 @@ CxTest::CxTest() :
     m_dRes         (0.0f),
     m_sRes         (),
     m_usRes        (),
-    m_vecsRes      (),
+    m_vsRes        (),
     m_msRes        (),
 #if defined(xOS_WIN)
     m_hRes         (INVALID_HANDLE_VALUE),
@@ -98,7 +98,7 @@ CxTest::bRun(
 BOOL
 CxTest::bUnit(
     const ULONGLONG cullBlockLoops
-) /*= 0*/ 
+) /*= 0*/
 {
     /*DEBUG*/// n/a
 

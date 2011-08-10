@@ -99,11 +99,11 @@ CxTest_CxSmtp::bUnit(
     //-------------------------------------
     //bSendRaw
 #if xTODO
-    g_vecsRes = CxDir::vecsListFiles(csDirPath, "*.eml");
-    for (size_t i = 0; i < g_vecsRes.size(); i ++) {
-        m_bRes = objSmtp.bSendRaw(csDirPath + "\\" + g_vecsRes.at(i), csFrom, csTo);
+    g_vsRes = CxDir::vsListFiles(csDirPath, "*.eml");
+    for (size_t i = 0; i < g_vsRes.size(); i ++) {
+        m_bRes = objSmtp.bSendRaw(csDirPath + "\\" + g_vsRes.at(i), csFrom, csTo);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        /*LOG*///printf("Send msg %s\n", g_vecsRes.at(i).c_str());
+        /*LOG*///printf("Send msg %s\n", g_vsRes.at(i).c_str());
     }
 #endif
 

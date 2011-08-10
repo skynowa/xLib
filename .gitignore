@@ -72,8 +72,7 @@ Library/VC++ 2010/Release/
 ##### files #####
 TODO.txt
 xLib.zip
-copy.sh
-copy.pl
+Copy_VMs.sh
 Build_VMs.pl
 RunTests_Linux.sh
 RunTests_FreeBSD.sh

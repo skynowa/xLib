@@ -289,23 +289,23 @@ CxTest_CxDir::bUnit(
         //-------------------------------------
         //bFindDirs
         {
-            m_vecsRes.clear();
-            m_bRes = CxDir::bFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, FALSE, &m_vecsRes);
+            m_vsRes.clear();
+            m_bRes = CxDir::bFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, FALSE, &m_vsRes);
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
-            //CxString::vStdVectorPrintT(m_vecsRes);
+            //CxString::vStdVectorPrintT(m_vsRes);
 
-            xASSERT_EQUAL((size_t)2, m_vecsRes.size());
+            xASSERT_EQUAL((size_t)2, m_vsRes.size());
         }
 
         //-------------------------------------
         //bFindDirs
         {
-            m_vecsRes.clear();
-            m_bRes = CxDir::bFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, TRUE, &m_vecsRes);
+            m_vsRes.clear();
+            m_bRes = CxDir::bFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, TRUE, &m_vsRes);
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
-            //CxString::vStdVectorPrintT(m_vecsRes);
+            //CxString::vStdVectorPrintT(m_vsRes);
 
-            xASSERT_EQUAL(xARRAY_SIZE(sDirPathes), m_vecsRes.size());
+            xASSERT_EQUAL(xARRAY_SIZE(sDirPathes), m_vsRes.size());
         }
     }
 
@@ -335,23 +335,23 @@ CxTest_CxDir::bUnit(
         //-------------------------------------
         //bFindFiles
         {
-            m_vecsRes.clear();
-            m_bRes = CxDir::bFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, FALSE, &m_vecsRes);
+            m_vsRes.clear();
+            m_bRes = CxDir::bFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, FALSE, &m_vsRes);
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
-            //CxString::vStdVectorPrintT(m_vecsRes);
+            //CxString::vStdVectorPrintT(m_vsRes);
 
-            xASSERT_EQUAL((size_t)2, m_vecsRes.size());
+            xASSERT_EQUAL((size_t)2, m_vsRes.size());
         }
 
         //-------------------------------------
         //bFindFiles
         {
-            m_vecsRes.clear();
-            m_bRes = CxDir::bFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, TRUE, &m_vecsRes);
+            m_vsRes.clear();
+            m_bRes = CxDir::bFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, TRUE, &m_vsRes);
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
-            //CxString::vStdVectorPrintT(m_vecsRes);
+            //CxString::vStdVectorPrintT(m_vsRes);
 
-            xASSERT_EQUAL(xARRAY_SIZE(g_sFilePathes), m_vecsRes.size());
+            xASSERT_EQUAL(xARRAY_SIZE(g_sFilePathes), m_vsRes.size());
         }
     }
 

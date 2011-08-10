@@ -133,41 +133,41 @@ CxTest_CxLocalStorage::bUnit(
 
         //success
         {
-            std::vector<tString> vecsPairs;
+            std::vector<tString> vsPairs;
 
-            vecsPairs.push_back(csKey1 + CxConst::xEQUAL + csValue1);
-            vecsPairs.push_back(csKey2 + CxConst::xEQUAL + csValue2);
-            vecsPairs.push_back(csKey3 + CxConst::xEQUAL + csValue3);
+            vsPairs.push_back(csKey1 + CxConst::xEQUAL + csValue1);
+            vsPairs.push_back(csKey2 + CxConst::xEQUAL + csValue2);
+            vsPairs.push_back(csKey3 + CxConst::xEQUAL + csValue3);
 
-            for (size_t i = 0; i < vecsPairs.size(); ++ i) {
-                std::vector<tString> vecsPair;
+            for (size_t i = 0; i < vsPairs.size(); ++ i) {
+                std::vector<tString> vsPair;
 
-                m_bRes = CxString::bSplit(vecsPairs.at(i), CxConst::xEQUAL, &vecsPair);
+                m_bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
                 xASSERT_NOT_EQUAL(FALSE, m_bRes);
-                xASSERT_EQUAL(false, vecsPair.empty());
+                xASSERT_EQUAL(false, vsPair.empty());
 
-                m_bRes = iniIni.bKeyIsExists( vecsPair.at(0) );
+                m_bRes = iniIni.bKeyIsExists( vsPair.at(0) );
                 xASSERT_NOT_EQUAL(FALSE, m_bRes);
             }
         }
 
         //fail
         {
-            std::vector<tString> vecsPairs;
+            std::vector<tString> vsPairs;
 
-            vecsPairs.push_back(xT("not_existance_key"));
-            vecsPairs.push_back(xT("s<erfsenot_existance_key56eb54"));
-            vecsPairs.push_back(xT("not_exist456745g67ance_key"));
-            vecsPairs.push_back(xT("563yb675dfgv4g67"));
-            vecsPairs.push_back(xT("not_exi5g675467stance_key"));
+            vsPairs.push_back(xT("not_existance_key"));
+            vsPairs.push_back(xT("s<erfsenot_existance_key56eb54"));
+            vsPairs.push_back(xT("not_exist456745g67ance_key"));
+            vsPairs.push_back(xT("563yb675dfgv4g67"));
+            vsPairs.push_back(xT("not_exi5g675467stance_key"));
 
-            for (size_t i = 0; i < vecsPairs.size(); ++ i) {
-                std::vector<tString> vecsPair;
+            for (size_t i = 0; i < vsPairs.size(); ++ i) {
+                std::vector<tString> vsPair;
 
-                m_bRes = CxString::bSplit(vecsPairs.at(i), CxConst::xEQUAL, &vecsPair);
+                m_bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
                 xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
-                m_bRes = iniIni.bKeyIsExists( vecsPair.at(0) );
+                m_bRes = iniIni.bKeyIsExists( vsPair.at(0) );
                 xASSERT_EQUAL(FALSE, m_bRes);
             }
         }

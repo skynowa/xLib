@@ -144,13 +144,13 @@ CxTest_CxDebugger::bUnit(
     //vStdVectorPrintT
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_vecsRes.push_back(xT("qqqq"));
-        m_vecsRes.push_back(xT("wwww"));
-        m_vecsRes.push_back(xT("eeee"));
-        m_vecsRes.push_back(xT("rrrr"));
-        m_vecsRes.push_back(xT("tttt"));
+        m_vsRes.push_back(xT("qqqq"));
+        m_vsRes.push_back(xT("wwww"));
+        m_vsRes.push_back(xT("eeee"));
+        m_vsRes.push_back(xT("rrrr"));
+        m_vsRes.push_back(xT("tttt"));
 
-        ////CxDebugger::vStdVectorPrintT(m_vecsRes);
+        ////CxDebugger::vStdVectorPrintT(m_vsRes);
     }
 
     //-------------------------------------
@@ -251,7 +251,7 @@ CxTest_CxDebugger::bUnit(
 		    INT iVar2 = 1;
 		    xASSERT_EQUAL(iVar1, iVar2);
 	    }
-        
+
         xTEST_BLOCK(cullBlockLoops)
 	    {
 		    INT iVar1 = 0;

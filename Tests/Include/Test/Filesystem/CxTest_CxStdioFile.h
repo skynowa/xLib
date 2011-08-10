@@ -26,6 +26,7 @@ class CxTest_CxStdioFile :
 		virtual  BOOL  bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
+	    BOOL           bUnit1(const ULONGLONG cullBlockLoops);
 
 };
 //---------------------------------------------------------------------------
