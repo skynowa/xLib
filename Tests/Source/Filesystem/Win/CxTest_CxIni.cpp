@@ -262,9 +262,9 @@ CxTest_CxIni::bUnit(
         //bSectionsReadNames
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::vector<tString> vecsNames;
+            std::vector<tString> vsNames;
 
-            m_bRes = objIni.bSectionsReadNames(&vecsNames);
+            m_bRes = objIni.bSectionsReadNames(&vsNames);
             xASSERT_EQUAL(TRUE, m_bRes);
         }
 
@@ -288,9 +288,9 @@ CxTest_CxIni::bUnit(
         //bSectionsReadNames
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::vector<tString> vecsNames;
+            std::vector<tString> vsNames;
 
-            m_bRes = objIni.bSectionsReadNames(&vecsNames);
+            m_bRes = objIni.bSectionsReadNames(&vsNames);
             xASSERT_EQUAL(TRUE, m_bRes);
         }
     }

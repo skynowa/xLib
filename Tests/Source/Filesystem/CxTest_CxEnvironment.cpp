@@ -110,11 +110,11 @@ CxTest_CxEnvironment::bUnit(
     //bGetValues
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = CxEnvironment::bGetValues(&m_vecsRes);
+        m_bRes = CxEnvironment::bGetValues(&m_vsRes);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_EQUAL(false, m_vecsRes.empty());
+        xASSERT_EQUAL(false, m_vsRes.empty());
 
-        ////CxString::vStdVectorPrintT(m_vecsRes);
+        ////CxString::vStdVectorPrintT(m_vsRes);
     }
 
 	//-------------------------------------
@@ -173,9 +173,9 @@ CxTest_CxEnvironment::bUnit(
     //bGetCommandLineArgs
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = CxEnvironment::bGetCommandLineArgs(&m_vecsRes);
+        m_bRes = CxEnvironment::bGetCommandLineArgs(&m_vsRes);
         xASSERT_NOT_EQUAL(FALSE,  m_bRes);
-        xASSERT_EQUAL(false, m_vecsRes.empty());
+        xASSERT_EQUAL(false, m_vsRes.empty());
     }
 
     return TRUE;

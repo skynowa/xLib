@@ -46,7 +46,7 @@ class CxTest :
         tString                         m_sRes;
         uString                         m_usRes;
         std::vector<TCHAR>              m_vecchRes;
-        std::vector<tString>            m_vecsRes;
+        std::vector<tString>            m_vsRes;
         std::map<tString, tString>      m_msRes;
         std::multimap<tString, tString> m_mmsRes;
 

@@ -235,13 +235,13 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bFetchRow
     {
-        std::vector<tString> vecsRow;
+        std::vector<tString> vsRow;
 
         for (my_ulonglong i = 0; i < recRec.ullRowsNum(); ++ i) {
-            m_bRes = recRec.bFetchRow(&vecsRow);
+            m_bRes = recRec.bFetchRow(&vsRow);
             xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
-            //CxString::vStdVectorPrintT(vecsRow);
+            //CxString::vStdVectorPrintT(vsRow);
         }
     }
 

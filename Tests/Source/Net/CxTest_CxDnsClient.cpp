@@ -128,16 +128,16 @@ CxTest_CxDnsClient::bUnit(
 
 		for (size_t i = 0; i < xARRAY_SIZE(cszProtocolNames); ++ i) {
 			tString              sName;
-			std::vector<tString> vecsAliases;
+			std::vector<tString> vsAliases;
 			SHORT                siNumber = - 1;
 
-			m_bRes = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vecsAliases, &siNumber);
+			m_bRes = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
 			xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 			//tcout << xT("[bGetProtocolByName]: ")             << tendl;
 			//tcout << xT("	sName:    ") << sName             << tendl;
-			for (size_t i = 0; i < vecsAliases.size(); ++ i) {
-			//tcout << xT("	sAlias:   ") << vecsAliases.at(i) << tendl;
+			for (size_t i = 0; i < vsAliases.size(); ++ i) {
+			//tcout << xT("	sAlias:   ") << vsAliases.at(i) << tendl;
 			}
 			//tcout << xT("	siNumber: ") << siNumber          << tendl;
 			//tcout << xT("	--------------------")            << tendl;
@@ -154,16 +154,16 @@ CxTest_CxDnsClient::bUnit(
 
 		for (size_t i = 0; i < xARRAY_SIZE(ciProtocolNumbers); ++ i) {
 			tString              sName;
-			std::vector<tString> vecsAliases;
+			std::vector<tString> vsAliases;
 			SHORT                siNumber = - 1;
 
-			m_bRes = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vecsAliases, &siNumber);
+			m_bRes = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
 			xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 			//tcout << xT("[bGetProtocolByNumber]: ")           << tendl;
 			//tcout << xT("	sName:    ") << sName             << tendl;;
-			for (size_t i = 0; i < vecsAliases.size(); ++ i) {
-			//tcout << xT("	sAlias:   ") << vecsAliases.at(i) << tendl;
+			for (size_t i = 0; i < vsAliases.size(); ++ i) {
+			//tcout << xT("	sAlias:   ") << vsAliases.at(i) << tendl;
 			}
 			//tcout << xT("	siNumber: ") << siNumber          << tendl;
 			//tcout << xT("	--------------------")            << tendl;
@@ -177,17 +177,17 @@ CxTest_CxDnsClient::bUnit(
 		tString              csServiceName  = xT("http");
 		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
 		tString              sName;
-		std::vector<tString> vecsAliases;
+		std::vector<tString> vsAliases;
 		SHORT                siPort;
 		tString              sProtocolName;
 
-		m_bRes = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vecsAliases, &siPort, &sProtocolName);
+		m_bRes = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		//tcout << xT("[bGetServiceByName]: ")                   << tendl;
 		//tcout << xT("	sName:         ") << sName             << tendl;
-		for (size_t i = 0; i < vecsAliases.size(); ++ i) {
-		//tcout << xT("	sAlias:        ") << vecsAliases.at(i) << tendl;
+		for (size_t i = 0; i < vsAliases.size(); ++ i) {
+		//tcout << xT("	sAlias:        ") << vsAliases.at(i) << tendl;
 		}
 		//tcout << xT("	siPort:        ") << siPort            << tendl;
 		//tcout << xT("	sProtocolName: ") << sProtocolName     << tendl;
@@ -202,17 +202,17 @@ CxTest_CxDnsClient::bUnit(
 		SHORT                csiPort  = 20480;
 		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
 		tString              sName;
-		std::vector<tString> vecsAliases;
+		std::vector<tString> vsAliases;
 		SHORT                siPort = - 1;
 		tString              sProtocolName;
 
-		m_bRes = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vecsAliases, &siPort, &sProtocolName);
+		m_bRes = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 		xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
 		//tcout << xT("[bGetServiceByPort]: ") << tendl;
 		//tcout << xT("	sName:         ") << sName << tendl;
-		for (size_t i = 0; i < vecsAliases.size(); ++ i) {
-		//tcout << xT("	sAlias:        ") << vecsAliases.at(i) << tendl;
+		for (size_t i = 0; i < vsAliases.size(); ++ i) {
+		//tcout << xT("	sAlias:        ") << vsAliases.at(i) << tendl;
 		}
 		//tcout << xT("	siPort:        ") << siPort            << tendl;
 		//tcout << xT("	sProtocolName: ") << sProtocolName     << tendl;
