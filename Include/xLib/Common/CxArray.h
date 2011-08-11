@@ -21,13 +21,13 @@ class CxArray {
     public:
         //--------------------------------------------------
         //types
-        typedef TypeT          value_type;
-        typedef TypeT         *iterator;
-        typedef const TypeT   *const_iterator;
-        typedef TypeT         &reference;
-        typedef const TypeT   &const_reference;
-        typedef std::size_t    size_type;
-        typedef std::ptrdiff_t difference_type;
+        typedef TypeT           value_type;
+        typedef TypeT         * iterator;
+        typedef const TypeT   * const_iterator;
+        typedef TypeT         & reference;
+        typedef const TypeT   & const_reference;
+        typedef std::size_t     size_type;
+        typedef std::ptrdiff_t  difference_type;
 
         //--------------------------------------------------
         //iterators
@@ -227,45 +227,45 @@ class CxArray {
 namespace NxArray {
     //comparisons
     template<class T, std::size_t N>
-    bool 
+    bool
     operator == (const CxArray<T,N> &x, const CxArray<T,N> &y) {
         return std::equal(x.begin(), x.end(), y.begin());
     }
-    
+
     template<class T, std::size_t N>
-    bool 
+    bool
     operator < (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return std::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
     }
-    
+
     template<class T, std::size_t N>
-    bool 
+    bool
     operator != (const CxArray<T, N> &x, const CxArray<T,N> &y) {
         return !(x == y);
     }
-    
+
     template<class T, std::size_t N>
-    bool 
+    bool
     operator > (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return y < x;
     }
-    
+
     template<class T, std::size_t N>
-    bool 
+    bool
     operator <= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return !(y < x);
     }
-    
+
     template<class T, std::size_t N>
-    bool 
+    bool
     operator >= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return !(x < y);
     }
-    
+
     //global swap()
     template<class T, std::size_t N>
-    inline 
-    void 
+    inline
+    void
     swap (CxArray<T, N > &x, CxArray<T, N> &y) {
         x.swap(y);
     }

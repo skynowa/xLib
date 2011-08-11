@@ -361,7 +361,7 @@ CxDebugger::_bMsgboxRtf(
     tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     tcerr.flush();
 
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
+    EConsoleCmd cmRes = cmIgnore;    ////static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
     switch (cmRes) {
         case cmAbort: {
                 tcerr << xT("Abort...\n\n");  tcerr.flush();

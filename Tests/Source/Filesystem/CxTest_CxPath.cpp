@@ -717,14 +717,14 @@ CxTest_CxPath::bUnit(
     }
 
     //-------------------------------------
-    //sGetFull
+    //sGetAbsolute
     xTEST_BLOCK(cullBlockLoops)
     {
         std::vector<tString> vsArgs;
 
         CxEnvironment::bGetCommandLineArgs(&vsArgs);
 
-	    sRes = CxPath::sGetFull(vsArgs.at(0));
+	    sRes = CxPath::sGetAbsolute(vsArgs.at(0));
         xASSERT_EQUAL(false, sRes.empty());
     }
 

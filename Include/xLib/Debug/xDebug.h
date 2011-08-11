@@ -158,7 +158,7 @@
 #define xSTD_TRACE_POINT                                    { tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << tendl; }
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
-    #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                           }
+    #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                        }
     #define xTRACE(msg)                                     { CxDebugger::bTrace(msg);                                        }
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
     #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(tString(xFUNCTION) + xT(": ") + tString(s)); }
@@ -172,96 +172,3 @@
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_xDebugH
-
-
-
-// msgbox http://www.metalshell.com/source_code/90/Using_the_Dialog_Library.html
-
-
-////Debug checked casts
-////
-////If you want maximum safety, you should always use dynamic_cast. However, if you feel you must optimize away those costs, use this version of checked_cast. It will ASSERT on a bad cast in Debug builds, but not do the slightly more expensive dynamic_cast in Release builds.
-////
-////// checked_cast - Uses fast static_cast in Release build,
-////// but checks cast with an ASSERT in Debug.
-//////
-////// Typical usage:
-//////   class Foo { /* ... */  };
-//////   class Bar : public Foo { /* ... */  };
-//////   Foo * pFoo = new Bar;
-//////   Bar * pBar = checked_cast<Bar *>(pFoo);
-////
-////template <class TypeTo, class TypeFrom>
-////TypeTo checked_cast(TypeFrom p)
-////{
-////    ASSERT(dynamic_cast<TypeTo>(p));
-////    return static_cast<TypeTo>(p);
-////}
-
-/* ASSERT_CAST */
-////template <class T, class U>
-////inline T ASSERT_CAST(U u){
-////#ifdef NDEBUG
-////     T t = dynamic_cast<T>(u);
-////     if (u && !t) throw std::bad_cast();
-////     return t;
-////#else
-////     return static_cast<T>(u);
-////#endif
-////
-////
-////#include <sstream>
-////#include <string>
-////#include <exception>
-////
-//// template <typename T1, typename T2>
-//// inline T1 throwing_cast(T2 t2) {
-////     T1 t = dynamic_cast<T1>(t2);
-////     if (!t) {
-////         std::ostringstream s;
-////         s << "Could not throw " << typeid(T2).name()
-////             << " to a " << typeid(T1).name()
-////             << " at " << xFILE << "#" << xLINE
-////             << "!" << std::endl;
-////         throw std::logic_error(s.str());
-////     }
-////     return t;
-//// }
-////}
-//---------------------------------------------------------------------------
-//TODO: checked_cast (debug checked casts)
-// NOTE:
-//        If you want maximum safety, you should always use dynamic_cast.
-//        However, if you feel you must optimize away those costs,
-//        use this version of checked_cast.
-//        It will ASSERT on a bad cast in Debug builds,
-//        but not do the slightly more expensive dynamic_cast in Release builds.
-//
-//        checked_cast - Uses fast static_cast in Release build,
-//        but checks cast with an ASSERT in Debug.
-//
-// Usage:
-//        class Foo { /* ... */  };
-//        class Bar : public Foo { /* ... */  };
-//        Foo * pFoo = new Bar;
-//        Bar * pBar = checked_cast<Bar *>(pFoo);
-
-////template <class TypeTo, class TypeFrom>
-////TypeTo checked_cast(TypeFrom p) {
-////    ASSERT(dynamic_cast<TypeTo>(p));
-////    return static_cast<TypeTo>(p);
-////}
-//---------------------------------------------------------------------------
-//DONE: VERIFY_COM_INTERFACE (verify validity of COM object)
-// Note:
-//        Verify that a pointer to a COM object is still valid
-// Usage:
-//        VERIFY_COM_INTERFACE(pFoo);
-
-////template<class Q>
-////void VERIFY_COM_INTERFACE (Q *p) {
-////#ifdef DEBUG
-////    p->AddRef();
-////    p->Release();
-////#endif
-////}

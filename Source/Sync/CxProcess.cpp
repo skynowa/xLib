@@ -107,25 +107,25 @@ CxProcess::bExec(
     bRes = ::CloseHandle(piInfo.hProcess);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    /*
-    int execute(const char *command) {
-        pid_t cpid;
+    #if xTEMP_DISABLED
+        int execute(const char *command) {
+            pid_t cpid;
 
-        cpid = fork();
+            cpid = fork();
 
-        switch (cpid) {
-            case -1:
-                perror("fork");
-                break;
+            switch (cpid) {
+                case -1:
+                    perror("fork");
+                    break;
 
-            case 0:
-                execl("/etc/init.d/test", "test", command, NULL); //this is the child
-                _exit (EXIT_FAILURE);
+                case 0:
+                    execl("/etc/init.d/test", "test", command, NULL); //this is the child
+                    _exit (EXIT_FAILURE);
 
-            default:
-                waitpid(cpid, NULL, 0);
-    }
-    */
+                default:
+                    waitpid(cpid, NULL, 0);
+        }
+    #endif
 
     INT iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);

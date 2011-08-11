@@ -57,7 +57,7 @@ class CxPath :
         static tString sToWin          (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
         static tString sToNix          (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
         static tString sToCurrentOs    (const tString &csFilePath, const BOOL cbIsSlashAtEnd);    //TODO: make test
-        static tString sGetFull        (const tString &csFilePath); 
+        static tString sGetAbsolute    (const tString &csFilePath);
 
         static tString sMinimizeName   (const tString &csFileName, const size_t cuiMaxSize);
         static tString sMinimize       (const tString &csFilePath, const size_t cuiMaxSize);
