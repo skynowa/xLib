@@ -17,15 +17,15 @@
 *
 *****************************************************************************/
 
-tString     CxAppSettings::m_sAppTitle     = xT("");
-tString     CxAppSettings::m_sAppDir       = xT("");
-tString     CxAppSettings::m_sDbDir        = xT("");
-tString     CxAppSettings::m_sDbBackupDir  = xT("");
-tString     CxAppSettings::m_sDbFilePath   = xT("");
-tString     CxAppSettings::m_sPass         = xT("");
-tString     CxAppSettings::m_sPassDefault  = xT("");
+tString     CxAppSettings::m_sAppTitle;
+tString     CxAppSettings::m_sAppDir;
+tString     CxAppSettings::m_sDbDir;
+tString     CxAppSettings::m_sDbBackupDir;
+tString     CxAppSettings::m_sDbFilePath;
+tString     CxAppSettings::m_sPass;
+tString     CxAppSettings::m_sPassDefault;
 
-const UCHAR CxAppSettings::m_ucDbEmpty[]   = {
+const UCHAR CxAppSettings::m_ucDbEmpty[] = {
     #include "DbEmpty.db.zip.txt"
 };
 size_t      CxAppSettings::m_uiDbEmptySize = xARRAY_SIZE(CxAppSettings::m_ucDbEmpty);

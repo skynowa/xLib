@@ -645,22 +645,22 @@ CxDateTime::bIsValid(
     bool bYear        = (/*cusYear   >= 0U && */cusYear   <= 9999U);
     /*DEBUG*/xASSERT_MSG(true == bYear,        xT("usYear:   ")        + CxString::lexical_cast(cusYear));
 
-    bool bMonth       = (/*cusMonth  >= 0 /1/ &&*/ cusMonth  <= 12);
+    bool bMonth       = (/*cusMonth  >= 0 /1/ &&*/ cusMonth  <= 12U);
     /*DEBUG*/xASSERT_MSG(true == bMonth,       xT("usMonth:  ")        + CxString::lexical_cast(cusMonth));
 
     bool bDay         = true;   ////(usDay    >= 0/*1*/ && usDay    <= usDaysInMonth(usYear, usMonth));
     /*DEBUG*/xASSERT_MSG(true == bDay,         xT("usDay:    ")        + CxString::lexical_cast(cusDay));
 
-    bool bHour        = (/*cusHour   >= 0 &&*/ cusHour   <= 23);
+    bool bHour        = (/*cusHour   >= 0 &&*/ cusHour   <= 23U);
     /*DEBUG*/xASSERT_MSG(true == bHour,        xT("usHour:   ")        + CxString::lexical_cast(cusHour));
 
-    bool bMinute      = (/*cusMinute >= 0 &&*/ cusMinute <= 59);
+    bool bMinute      = (/*cusMinute >= 0 &&*/ cusMinute <= 59U);
     /*DEBUG*/xASSERT_MSG(true == bMinute,      xT("usMinute: ")        + CxString::lexical_cast(cusMinute));
 
-    bool bSecond      = (/*cusSecond >= 0 &&*/ cusSecond <= 59);
+    bool bSecond      = (/*cusSecond >= 0 &&*/ cusSecond <= 59U);
     /*DEBUG*/xASSERT_MSG(true == bSecond,      xT("usSecond: ")        + CxString::lexical_cast(cusSecond));
 
-    bool bMillisecond = (/*cusMillisecond >= 0 &&*/ cusMillisecond   <= 999);
+    bool bMillisecond = (/*cusMillisecond >= 0 &&*/ cusMillisecond   <= 999U);
     /*DEBUG*/xASSERT_MSG(true == bMillisecond, xT("usMillisecond:   ") + CxString::lexical_cast(cusMillisecond));
 
     xCHECK_RET(false == (bYear && bMonth && bDay && bHour && bMinute && bSecond && bMillisecond), FALSE);
@@ -718,13 +718,13 @@ CxDateTime::dtGetCurrent() {
     /*DEBUG*/xASSERT_RET(NULL != ptmDateTime, CxDateTime());
 
     //set datetime
-    USHORT usYear        = ptmDateTime->tm_year + 1900;
-    USHORT usMonth       = ptmDateTime->tm_mon  + 1;
+    USHORT usYear        = ptmDateTime->tm_year + 1900U;
+    USHORT usMonth       = ptmDateTime->tm_mon  + 1U;
     USHORT usDay         = ptmDateTime->tm_mday;
     USHORT usHour        = ptmDateTime->tm_hour;
     USHORT usMinute      = ptmDateTime->tm_min;
     USHORT usSecond      = ptmDateTime->tm_sec;
-    USHORT usMillisecond = static_cast<USHORT>( tvTime.tv_usec / 1000 );
+    USHORT usMillisecond = static_cast<USHORT>( tvTime.tv_usec * 0.001 );
 
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond), CxDateTime());
 
@@ -756,14 +756,13 @@ CxDateTime::bUnixTimeToFileTime(
     /*DEBUG*/// ctmTime - n/a
     /*DEBUG*/xASSERT_RET(NULL != pftFileTime, FALSE);
 
-    ////////LONGLONG llRes = 0LL;
+    #if xTEMP_DISABLED
+        LONGLONG llRes = 0LL;
 
-    ////////llRes = Int32x32To64(ctmUnixTime, 10000000) + 116444736000000000;
-    ////////pftFileTime->dwLowDateTime  = static_cast<ULONG>( llRes );
-    ////////pftFileTime->dwHighDateTime = llRes >> 32;
-
-
-
+        llRes = Int32x32To64(ctmUnixTime, 10000000) + 116444736000000000;
+        pftFileTime->dwLowDateTime  = static_cast<ULONG>( llRes );
+        pftFileTime->dwHighDateTime = llRes >> 32;
+    #endif
 
     LARGE_INTEGER li = {{0}};
     time_t tmUnixTime = ctmUnixTime;
@@ -773,7 +772,6 @@ CxDateTime::bUnixTimeToFileTime(
 
     pftFileTime->dwLowDateTime  = li.LowPart;
     pftFileTime->dwHighDateTime = li.HighPart;
-
 
     return TRUE;
 }
@@ -1171,8 +1169,6 @@ CxDateTime::_bParse(
                     xTRACEV(xT("_m_usSecond: %i"), (*pdtDT)._m_usSecond);
                     xTRACE(xT("-----------------------------------"));
                 #endif
-
-
             }
             break;
 
@@ -1185,52 +1181,3 @@ CxDateTime::_bParse(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
-/*
-How to convert local system time to UTC or GMT.
-
-May 28th
-
-Posted by Jijo Raj in Codeproject
-
-2 comments
-
-
-In Messengers did you notice that the time stamp will be expressed in UTC or GMT. UTC stands for Universal Coordinated Time and GMT stands for Greenwich Mean Time and both are same. Since the users engaged in chat can be from across world, this one is really helpful to understand the real time. If they are expressed in local time, it can result in confusion.
-
-For instance, User1 says – “Login to chat by 13:00″. It can be his local time and 13:00 for user2 might be a different time according to his timezone. And think what will happen?  UTC or GMT is very much useful if you communicate about time across world. But how can you convert your local system time to UTC or GMT?
-
-
-First you’ve to get your timezone information by calling – GetTimeZoneInformation(). Then get the local time by calling – GetSystemTime() and translate it to UMT or GMT by calling – TzSpecificLocalTimeToSystemTime(). See the sample code snippet below.
-// Get the local system time.
-SYSTEMTIME LocalTime = { 0 };
-GetSystemTime( &LocalTime );
-
-// Get the timezone info.
-TIME_ZONE_INFORMATION TimeZoneInfo;
-GetTimeZoneInformation( &TimeZoneInfo );
-
-// Convert local time to UTC.
-SYSTEMTIME GmtTime = { 0 };
-TzSpecificLocalTimeToSystemTime( &TimeZoneInfo,
-&LocalTime,
-&GmtTime );
-
-// GMT = LocalTime + TimeZoneInfo.Bias
-// TimeZoneInfo.Bias is the difference between local time
-// and GMT in minutes.
-
-// Local time expressed in terms of GMT bias.
-float TimeZoneDifference = -( float(TimeZoneInfo.Bias) / 60 );
-CString csLocalTimeInGmt;
-csLocalTimeInGmt.Format( xT("%ld:%ld:%ld + %2.1f Hrs"),
-GmtTime.wHour,
-GmtTime.wMinute,
-GmtTime.wSecond,
-TimeZoneDifference );
-
-
-Use SystemTimeToTzSpecificLocalTime() to convert UTC or GMT time back to your local timezone. You can also use UTC or GMT while logging messages. Anyway it all depends upto your needs.
-*/
-
-

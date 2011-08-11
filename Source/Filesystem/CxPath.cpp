@@ -120,7 +120,7 @@ CxPath::sGetExe() {
 
                 sRes.assign(pszRes);
             #else
-                sRes.assign( sGetFull(vsArgs.at(0)) );
+                sRes.assign( sGetAbsolute(vsArgs.at(0)) );
             #endif
         #endif
     #endif
@@ -664,10 +664,10 @@ CxPath::sToCurrentOs(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sGetFull (get full path of the specified file)
+//DONE: sGetAbsolute (get absolute path of the specified file)
 /*static*/
 tString
-CxPath::sGetFull(
+CxPath::sGetAbsolute(
     const tString &csFilePath
 )
 {

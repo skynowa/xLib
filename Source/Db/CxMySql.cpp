@@ -184,16 +184,15 @@ CxMySQLConnection::sGetLastErrorStr() const {
 
     tString sRes;
 
-    const char *cpszRes = mysql_error(_m_pmsConnection);
-    /*DEBUG*/// n/a
-    /*DEBUG*/xASSERT_RET(NULL != cpszRes, tString());   //DONE: is real need this
-
     const UINT cuiLastError = uiGetLastError();
+    const char *cpszRes     = mysql_error(_m_pmsConnection);
+    /*DEBUG*/// n/a
+    /*DEBUG*/xASSERT_RET(NULL != cpszRes, tString());
 
     if (0 == cuiLastError) {
-        sRes.assign( CxString::sFormat(xT("%i - \"%s\""), cuiLastError, xT("Success")) );
+        sRes.assign( CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success")) );
     } else {
-        sRes.assign( CxString::sFormat(xT("%i - \"%s\""), cuiLastError, cpszRes) );
+        sRes.assign( CxString::sFormat(xT("%u - \"%s\""), cuiLastError, cpszRes) );
     }
 
     return sRes;

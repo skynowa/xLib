@@ -93,9 +93,7 @@ CxTest_CxEnvironment::bUnit(
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")},
-
-            {xT("TERM"),  xT("xterm")},
+            {xT("ENV_TEST_4"), xT("value4")}
         };
     #endif
 
@@ -131,8 +129,7 @@ CxTest_CxEnvironment::bUnit(
             {xT("111%ENV_TEST_1%"),    xT("111value1")},
             {xT("%ENV_TEST_2%111"),    xT("value2111")},
             {xT("ttt%ENV_TEST_3%"),    xT("tttvalue3")},
-            {xT("rrr%ENV_TEST_4%rrr"), xT("rrrvalue4rrr")},
-            {xT("TERM =   %TERM%  "),  xT("TERM =   xterm  ")}
+            {xT("rrr%ENV_TEST_4%rrr"), xT("rrrvalue4rrr")}
         };
     #endif
 

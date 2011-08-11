@@ -274,11 +274,11 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxCookiePv1);
         bRes = tmManager.bAdd(new CxTest_CxCgi);
         bRes = tmManager.bAdd(new CxTest_CxSocketInit);
-        bRes = tmManager.bAdd(new CxTest_CxDnsClient);
+        ////bRes = tmManager.bAdd(new CxTest_CxDnsClient);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
         bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+        ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);
@@ -319,7 +319,7 @@ _tmain(
         bRes = tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 //---------------------------------------------------------------------------
 #endif //xLib_UnitTestH
