@@ -64,10 +64,8 @@ CxReport::CxReport(
                   << std::left << std::setw(uiAlignWidth) << csExpr2 << xT(": ") << cVarT2;
 
         if (false == _m_sComment.empty()) {
-            ossStream << xT("\n                    ")
-                      << xT("  (") << _m_sComment << xT(")");
+            ossStream << xT("\n                      (")  << _m_sComment << xT(")");
         }
-
 
         sComment.assign( ossStream.str() );
     }
