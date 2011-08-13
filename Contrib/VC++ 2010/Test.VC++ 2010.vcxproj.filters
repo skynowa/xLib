@@ -681,6 +681,9 @@
     <ClCompile Include="..\..\Tests\Source\Pkcs11\Win\CxTest_CxPkcs11.cpp">
       <Filter>Test\Pkcs11\Win</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxT.cpp">
+      <Filter>xLib\Gui\Win\Dialogs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
