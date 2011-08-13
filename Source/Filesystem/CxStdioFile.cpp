@@ -1561,10 +1561,10 @@ CxStdioFile::bBinWrite(
 /*static*/
 tString
 CxStdioFile::sBackup(
-        const tString &csFilePath,
-        const tString &csDestDirPath,
-        const BOOL     cbMakeDaily
-        /*INT bBackupLimit*/
+    const tString &csFilePath,
+    const tString &csDestDirPath,
+    const BOOL     cbMakeDaily
+    /*INT bBackupLimit*/
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    tString());
@@ -1594,7 +1594,7 @@ CxStdioFile::sBackup(
     //check for enough space
     ULONGLONG ullTotalFreeBytes = 0;
     bRes = CxVolume::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
-    xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return tString());
+    xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup")); return tString());
 
     //-------------------------------------
     //copy
