@@ -141,21 +141,21 @@ _tmain(
     TCHAR *paszArgs[]
 )
 {
+    //--------------------------------------------------
+    //set commandline args for xLib
+    {
+        BOOL bRes = CxEnvironment::bSetCommandLineArgs(iArgCount, paszArgs);
+        xASSERT_NOT_EQUAL(FALSE, bRes);
+    }
+
+
     BOOL bRes = FALSE;
 
     #if xTEMP_DISABLED
         tcout << "Content-type: text/html\n\n" << tendl;
         tcout << "<pre>\n\n" << tendl;
     #endif
-
-
-    //--------------------------------------------------
-    //set commandline args for xLib
-    {
-        bRes = CxEnvironment::bSetCommandLineArgs(iArgCount, paszArgs);
-        xASSERT_NOT_EQUAL(FALSE, bRes);
-    }
-
+    
     //--------------------------------------------------
     //options (default)
     BOOL      bIsUseTracing = TRUE;

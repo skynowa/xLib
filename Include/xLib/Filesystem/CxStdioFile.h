@@ -201,7 +201,7 @@ class CxStdioFile :
         static BOOL      bBinWrite    (const tString &csFilePath, const uString &cusContent);
 
         //other
-        static BOOL      bBackup      (const tString &csFilePath, const tString &csDestDirPath, const BOOL cbMakeDaily /*,INT bBackupLimit*/);
+        static tString   sBackup      (const tString &csFilePath, const tString &csDestDirPath, const BOOL cbMakeDaily /*,INT bBackupLimit*/);
 
     private:
         mutable BOOL     _m_bRes;
