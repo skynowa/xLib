@@ -599,7 +599,7 @@ CxStdioFile::bIsEmpty() const {
     LONG liFileSize = liGetSize();
     /*DEBUG*/xASSERT_RET(etError != liFileSize, TRUE);
 
-    return static_cast<BOOL>( 0 == liFileSize);
+    return static_cast<BOOL>( 0L == liFileSize);
 }
 //---------------------------------------------------------------------------
 //DONE: bIsEof (check end of file indicator)
@@ -1557,23 +1557,23 @@ CxStdioFile::bBinWrite(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bBackup (backup)
+//TODO: sBackup (backup)
 /*static*/
-BOOL
-CxStdioFile::bBackup(
+tString
+CxStdioFile::sBackup(
         const tString &csFilePath,
         const tString &csDestDirPath,
         const BOOL     cbMakeDaily
         /*INT bBackupLimit*/
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
-    /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    tString());
+    /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), tString());
 
     BOOL bRes = FALSE;
 
     bRes = bIsExists(csFilePath);
-    xCHECK_RET(FALSE == bRes, FALSE);
+    xCHECK_RET(FALSE == bRes, tString());
 
     bRes = CxDir::bIsExists(csDestDirPath);
     xCHECK_DO(FALSE == bRes, CxDir::bCreateForce(csDestDirPath));
@@ -1588,18 +1588,13 @@ CxStdioFile::bBackup(
         xT(".bak [") + CxString::sReplaceAll((TRUE == cbMakeDaily) ? (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDate)) : (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDateTime)), xT(":"), xT("-")) + xT("]");
 
     bRes = bIsExists(sBackupFilePath);
-    xCHECK_RET(TRUE == bRes, TRUE);
+    xCHECK_RET(TRUE == bRes, sBackupFilePath);
 
     //-------------------------------------
     //check for enough space
-#if defined(xOS_WIN)
     ULONGLONG ullTotalFreeBytes = 0;
     bRes = CxVolume::bGetFreeSpace(CxPath::sGetDrive(csDestDirPath), NULL, NULL, &ullTotalFreeBytes);
-
-    xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return TRUE);
-#elif defined(xOS_LINUX)
-    //TODO: check for enough space
-#endif
+    xCHECK_DO((ULONGLONG)liGetSize(csFilePath) > ullTotalFreeBytes, CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"), MB_OK); return tString());
 
     //-------------------------------------
     //copy
@@ -1608,11 +1603,11 @@ CxStdioFile::bBackup(
 
     //-------------------------------------
     //check for a valid backup
-    /*DEBUG*/xASSERT_RET(TRUE                                == bIsExists(sBackupFilePath),               FALSE);
-    /*DEBUG*/xASSERT_RET(liGetSize(csFilePath)               == liGetSize(sBackupFilePath),               FALSE);
-    /*DEBUG*/xASSERT_RET(CxCrc32::ulCalcFileFast(csFilePath) == CxCrc32::ulCalcFileFast(sBackupFilePath), FALSE);
+    /*DEBUG*/xASSERT_RET(TRUE                                == bIsExists(sBackupFilePath),               tString());
+    /*DEBUG*/xASSERT_RET(liGetSize(csFilePath)               == liGetSize(sBackupFilePath),               tString());
+    /*DEBUG*/xASSERT_RET(CxCrc32::ulCalcFileFast(csFilePath) == CxCrc32::ulCalcFileFast(sBackupFilePath), tString());
 
-    return TRUE;
+    return sBackupFilePath;
 }
 //---------------------------------------------------------------------------
 
