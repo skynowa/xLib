@@ -45,9 +45,6 @@ class CxMsgBoxT :
         static EModalResult iShow       (const TextT &cText);
 
     private:
-    #if defined(xOS_WIN)
-        static EModalResult mrMessageBox(const tString &csText, const tString &csTitle, const UINT cuiType);
-    #endif
 
                             CxMsgBoxT   ();
         virtual            ~CxMsgBoxT   ();

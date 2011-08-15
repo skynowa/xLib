@@ -27,13 +27,14 @@
 #include <Test/Common/CxTest_CxAutoMallocT.h>
 #include <Test/Common/CxTest_CxException.h>
 #include <Test/Common/CxTest_CxType.h>
+#include <Test/Common/CxTest_CxConsole.h>
+
 #if defined(xOS_WIN)
     #include <Test/Common/Win/CxTest_CxClipboard.h>
     #include <Test/Common/Win/CxTest_CxCom.h>
     #include <Test/Common/Win/CxTest_CxHandleT.h>
     #include <Test/Common/Win/CxTest_CxShell.h>
     #include <Test/Common/Win/CxTest_CxComPort.h>
-    #include <Test/Common/Win/CxTest_CxConsole.h>
 #elif defined(xOS_LINUX)
 
 #endif

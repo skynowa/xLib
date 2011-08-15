@@ -9,7 +9,7 @@
 *****************************************************************************/
 
 
-#include <Test/Common/Win/CxTest_CxConsole.h>
+#include <Test/Common/CxTest_CxConsole.h>
 
 
 //---------------------------------------------------------------------------
@@ -32,14 +32,15 @@ CxTest_CxConsole::bUnit(
 {
     /*DEBUG*/
 
-    #if xTODO
-        CxConsole cnConsole;
-    #endif
+    CxConsole cnConsole;
 
-    //////Console.vSetTextColor(0xa);
-    //////Console.bEnableClose(true);
-    //////cout << "111111111111111111111111111111111111111";
-    //////Console.bClearScreen();
+    CxConsole::EModalResult mrRes = cnConsole.iMsgBox(xT("Text"), xT("Title"), 0U);
+
+#if xTODO
+    cnConsole.bSetTextColor(0xa);
+    cnConsole.bEnableClose(true);
+    cnConsole.bClear();
+#endif
 
     return TRUE;
 }

@@ -366,9 +366,6 @@
     <ClCompile Include="..\..\Source\Common\Win\CxComPort.cpp">
       <Filter>xLib\Common\Win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Common\Win\CxConsole.cpp">
-      <Filter>xLib\Common\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Win\CxShell.cpp">
       <Filter>xLib\Common\Win</Filter>
     </ClCompile>
@@ -657,9 +654,6 @@
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxComPort.cpp">
       <Filter>Test\Common\Win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxConsole.cpp">
-      <Filter>Test\Common\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxHandleT.cpp">
       <Filter>Test\Common\Win</Filter>
     </ClCompile>
@@ -683,6 +677,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxT.cpp">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\CxConsole.cpp">
+      <Filter>xLib\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp">
+      <Filter>Test\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -891,9 +891,6 @@
       <Filter>xLib\Common\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxComPort.h">
-      <Filter>xLib\Common\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxConsole.h">
       <Filter>xLib\Common\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxShell.h">
@@ -1223,9 +1220,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h">
       <Filter>Test\Common\Win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxConsole.h">
-      <Filter>Test\Common\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxHandleT.h">
       <Filter>Test\Common\Win</Filter>
     </ClInclude>
@@ -1243,6 +1237,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Pkcs11\Win\CxTest_CxPkcs11.h">
       <Filter>Test\Pkcs11\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxComPort.h">
+      <Filter>Test\Common\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h">
+      <Filter>Test\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
