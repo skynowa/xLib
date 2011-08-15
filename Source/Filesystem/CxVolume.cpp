@@ -181,7 +181,7 @@ CxVolume::bMount(
     //TODO: bMount
 
     #if xTODO
-        const tString  csFilesytemType = xT("");
+        const tString  csFilesytemType;
         const ULONG    culMountFlags   = 0;
         const VOID    *pcvData         = NULL;
 

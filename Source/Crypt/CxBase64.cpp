@@ -62,7 +62,7 @@ CxBase64::sEncode(
     /*DEBUG*/// n/a
 
     //remove warning: "value computed is not used"
-    iWritten = 0;
+    iWritten = iWritten - iWritten;
 
     return sRes;
 }
