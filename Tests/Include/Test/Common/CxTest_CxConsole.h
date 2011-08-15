@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Common/Win/CxConsole.h>
+#include <xLib/Common/CxConsole.h>
 //---------------------------------------------------------------------------
 class CxTest_CxConsole :
     public CxTest

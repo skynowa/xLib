@@ -10,6 +10,7 @@
 
 
 #include <xLib/Common/CxString.h>
+#include <xLib/Common/CxConsole.h>
 
 
 /****************************************************************************
@@ -53,7 +54,7 @@ CxMsgBoxT::iShow(
 #if defined(xOS_WIN)
     mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), CxString::lexical_cast(cTitle).c_str(), cuiType) );
 #elif defined(xOS_LINUX)
-    mrRes = mrMessageBox(CxString::lexical_cast(cText), CxString::lexical_cast(cTitle), cuiType);
+    mrRes = CxConsole::iMsgBox(CxString::lexical_cast(cText), CxString::lexical_cast(cTitle), cuiType);
 #endif
 
     return mrRes;
@@ -73,7 +74,7 @@ CxMsgBoxT::iShow(
 #if defined(xOS_WIN)
     mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), CxString::lexical_cast(cTitle).c_str(), MB_OK) );
 #elif defined(xOS_LINUX)
-    mrRes = mrMessageBox(CxString::lexical_cast(cText), CxString::lexical_cast(cTitle), 0U);
+    mrRes = CxConsole::iMsgBox((CxString::lexical_cast(cText), CxString::lexical_cast(cTitle), 0U);
 #endif
 
     return mrRes;
@@ -92,7 +93,7 @@ CxMsgBoxT::iShow(
 #if defined(xOS_WIN)
 	mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), tString().c_str(), MB_OK) );
 #elif defined(xOS_LINUX)
-    mrRes = mrMessageBox(CxString::lexical_cast(cText), CxConst::xSTR_EMPTY, 0U);
+    mrRes = CxConsole::iMsgBox((CxString::lexical_cast(cText), CxConst::xSTR_EMPTY, 0U);
 #endif
 
     return mrRes;
