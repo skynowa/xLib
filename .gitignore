@@ -1,0 +1,74 @@
+##### Dirs and files for ignoring #####
+
+
+##### dirs #####
+
+
+##### C++Builder 2010 #####
+Contrib/C++Builder 2010/Debug/
+Contrib/C++Builder 2010/Release/
+Contrib/C++Builder 2010/*.~dsk
+Contrib/C++Builder 2010/*.local
+Contrib/C++Builder 2010/*.dsk
+
+Library/C++Builder 2010/Debug/
+Library/C++Builder 2010/Release/
+
+
+##### C++Builder XE #####
+Contrib/C++Builder XE/Debug/
+Contrib/C++Builder XE/Release/
+Contrib/C++Builder XE/*.~dsk
+Contrib/C++Builder XE/*.local
+Contrib/C++Builder XE/*.dsk
+
+Library/C++Builder XE/Debug/
+Library/C++Builder XE/Release/
+
+
+##### G++_win #####
+Contrib/G++_win/Debug/
+Contrib/G++_win/Release/
+
+Library/G++_win/Debug/
+Library/G++_win/Release/
+
+
+##### G++_linux #####
+Contrib/G++_linux/Debug/
+Contrib/G++_linux/Release/
+
+Library/G++_linux/Debug/
+Library/G++_linux/Release/
+
+
+##### VC++ 2008 #####
+Contrib/VC++ 2008/Debug/
+Contrib/VC++ 2008/Release/
+Contrib/VC++ 2008/*.ncb
+Contrib/VC++ 2008/*.suo
+Contrib/VC++ 2008/*.user
+
+Library/VC++ 2008/Debug/
+Library/VC++ 2008/Release/
+
+
+##### VC++ 2010 #####
+Contrib/VC++ 2010/Debug/
+Contrib/VC++ 2010/Release/
+Contrib/VC++ 2010/*.ncb
+Contrib/VC++ 2010/*.suo
+Contrib/VC++ 2010/*.user
+Contrib/VC++ 2010/*.sdf
+Contrib/VC++ 2010/*.opensdf
+
+Library/VC++ 2010/Debug/
+Library/VC++ 2010/Release/
+
+
+##### files #####
+TODO.txt
+Copy_VMs.sh
+Build_VMs.pl
+RunTests_Linux.sh
+RunTests_FreeBSD.sh
