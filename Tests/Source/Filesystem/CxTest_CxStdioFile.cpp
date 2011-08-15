@@ -1198,11 +1198,11 @@ CxTest_CxStdioFile::bUnit1(
         }
 
         for (size_t i = 0; i < 10; ++ i) {
-            m_sRes = CxStdioFile::sBackup(csFilePath, sGetWorkDirPath() + CxConst::xSLASH + xT("./Backup_dir"), TRUE);
-            xASSERT_NOT_EQUAL(false, m_sRes.empty());
+            m_sRes = CxStdioFile::sBackup(csFilePath, sGetWorkDirPath() + CxConst::xSLASH + xT("Backup_dir"), TRUE);
+            xASSERT_EQUAL(false, m_sRes.empty());
         }
 
-        m_bRes = CxDir::bDeleteForce(sGetWorkDirPath() + CxConst::xSLASH + xT("./Backup_dir"));
+        m_bRes = CxDir::bDeleteForce(sGetWorkDirPath() + CxConst::xSLASH + xT("Backup_dir"));
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
     }
 
