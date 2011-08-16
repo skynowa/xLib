@@ -104,7 +104,7 @@ CxTest_CxConsole::bUnit(
     //iMsgBox
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEMP_DISABLED
+        #if 0
             const tString csText  = xT("iMsgBox_text");
             const tString csTitle = xT("iMsgBox_title");
             const UINT    cuiType = 0U;
@@ -121,7 +121,7 @@ CxTest_CxConsole::bUnit(
     //bPrompt
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
+        #if 0
             const tString csPrompt    = xT("bPrompt_simple_prompt");
             const BOOL    cbIsVisible = TRUE;
             tString       sAnswer     = xT("sAnswer_bla-bla-bla");
@@ -138,7 +138,7 @@ CxTest_CxConsole::bUnit(
     //bPause
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEMP_DISABLED
+        #if 0
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bPause();
@@ -160,7 +160,7 @@ CxTest_CxConsole::bUnit(
     //sGetTitle
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
+        #if 1
             tString csTitle = xT("Title1");
 
 
@@ -186,7 +186,7 @@ CxTest_CxConsole::bUnit(
         m_bRes = cnConsole.bSetTitle(csTitle);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
-        #if xTODO
+        #if 1
             m_sRes = cnConsole.sGetTitle();
             xASSERT_EQUAL(m_sRes, csTitle);
         #endif
@@ -196,7 +196,7 @@ CxTest_CxConsole::bUnit(
     //bCenterWindow
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
+        #if 0
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bCenterWindow();
@@ -208,7 +208,7 @@ CxTest_CxConsole::bUnit(
     //bSetFullScreen
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
+        #if 0
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetFullScreen();
@@ -220,7 +220,7 @@ CxTest_CxConsole::bUnit(
     //bEnableClose
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
+        #if 0
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bEnableClose(FALSE);

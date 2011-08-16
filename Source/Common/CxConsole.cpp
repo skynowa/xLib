@@ -43,7 +43,7 @@ CxConsole::CxConsole()
     /*DEBUG*/xASSERT_DO(FALSE != _m_hStdOut.bIsValid(), return);
     /*DEBUG*/xASSERT_DO(NULL  != _m_hStdOut.hGet(),     return);
 
-    _m_hWnd = hGetWndHandle();
+    _m_hWnd = _hGetWndHandle();
     /*DEBUG*/xASSERT_DO(NULL != _m_hWnd, return);
 
     //_m_hMenu - n/a
@@ -54,7 +54,11 @@ CxConsole::CxConsole()
 //---------------------------------------------------------------------------
 //DONE: ~CxConsole
 CxConsole::~CxConsole() {
+    _m_hStdIn.hDetach();
+    /*DEBUG*/// n/a
 
+    _m_hStdOut.hDetach();
+    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 //DONE: bSetTextColor (set text color)
@@ -105,7 +109,7 @@ CxConsole::sRead() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), tString());
 
     ULONG       ulRead                  = 0;
-    const ULONG culBuffSize             = 1024 * 64;
+    const ULONG culBuffSize             = 1024 * 4;
     TCHAR       szBuff[culBuffSize + 1] = {0};
 
     BOOL bRes = ::ReadConsole(_m_hStdIn, &szBuff[0], culBuffSize, &ulRead, NULL);
@@ -131,19 +135,16 @@ CxConsole::bWrite(
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
 
-    ULONG ulWritten = 0;
+    ULONG ulWritten = 0UL;
 
     BOOL bRes = ::WriteConsole(_m_hStdOut, &csStr.at(0), csStr.size(), &ulWritten, NULL);
     /*DEBUG*/xASSERT_RET(FALSE     != bRes,         FALSE);
     /*DEBUG*/xASSERT_RET(ulWritten == csStr.size(), FALSE);
-
-    bRes = ::FlushConsoleInputBuffer(_m_hStdOut);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     tcout << csStr;
+#endif
 
     tcout.flush();
-#endif
 
     return TRUE;
 }
@@ -151,7 +152,7 @@ CxConsole::bWrite(
 //TODO: bWriteLine (write line)
 BOOL
 CxConsole::bWriteLine(
-    const tString &csStr
+    const tString &csStr /* = xT("")*/
 )
 {
 #if defined(xOS_WIN)
@@ -208,20 +209,20 @@ CxConsole::iMsgBox(
         cmRetry  = xT('r')
     };
 
-    tcout << xT("\n################################################################################\n");
-    tcout << xT("#  ") << csTitle << xT("\n");
-    tcout << xT("#\n");
-    tcout << xT("#  ") << csText  << xT("\n");
-    tcout << xT("#");
-    tcout << xT("\n################################################################################\n");
-    tcout << xT("\n");
-    tcout << CxString::sFormat(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry);
-    tcout.flush();
+    bWriteLine();
+    bWriteLine(xT("################################################################################"));
+    bWriteLine(xT("#  ") + csTitle);
+    bWriteLine(xT("#"));
+    bWriteLine(xT("#  ") + csText);
+    bWriteLine(xT("#"));
+    bWriteLine(xT("################################################################################"));
+    bWriteLine();
+    bWrite(CxString::sFormat(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry));
 
     EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
     switch (cmRes) {
         case cmAbort:  { mrRes = mrAbort;  bWriteLine(xT("Abort..."));  } break;
-        case cmIgnore: { mrRes = mrIgnore; bWriteLine(xT("Ognore...")); } break;
+        case cmIgnore: { mrRes = mrIgnore; bWriteLine(xT("Ignore...")); } break;
         case cmRetry:  { mrRes = mrRetry;  bWriteLine(xT("Retry..."));  } break;
 
         default:       { mrRes = mrRetry;  bWriteLine(xT("Retry..."));  } break;
@@ -248,7 +249,7 @@ CxConsole::bPrompt(
         while (true) {
             const TCHAR chLetter = static_cast<TCHAR>( tcin.get() );   tcin.ignore();
 
-            //asteriks
+            //asterisks
             xCHECK_DO(TRUE == cbIsVisible, bWrite(xT("*")));
 
             //ENTER
@@ -355,16 +356,18 @@ CxConsole::bEnableClose(
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
 
-    if (FALSE == cbFlag) {
-        _m_hMenu = hGetMenuHandle(FALSE);
-        /*DEBUG*/xASSERT_RET(NULL != _m_hMenu, FALSE);
+    _m_hMenu = _hGetMenuHandle(FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hMenu, FALSE);
 
+    if (FALSE == cbFlag) {
         xCHECK_RET(FALSE == ::DeleteMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND), FALSE);
     } else {
-        _m_hMenu = hGetMenuHandle(TRUE);
-        /*DEBUG*/xASSERT_RET(NULL != _m_hMenu, FALSE);
-
         xCHECK_RET(FALSE == ::AppendMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND, xT("")), FALSE);
+
+        BOOL bRes = EnableMenuItem(_hGetMenuHandle(FALSE), SC_CLOSE, MF_ENABLED);
+        /*DEBUG*/xASSERT_RET(TRUE != bRes,  FALSE);
+
+        ::SetWindowPos(_hGetWndHandle(), NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
     }
 #elif defined(xOS_LINUX)
     //TODO: bEnableClose
@@ -500,11 +503,11 @@ CxConsole::bCenterWindow() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: hGetWndHandle
+//DONE: _hGetWndHandle
 #if defined(xOS_WIN)
 
 HWND
-CxConsole::hGetWndHandle() {
+CxConsole::_hGetWndHandle() {
     /*DEBUG*/
 
     HWND    hRes         = NULL;
@@ -539,18 +542,19 @@ CxConsole::hGetWndHandle() {
 
 #endif
 //---------------------------------------------------------------------------
-//DONE: hGetMenuHandle
+//DONE: _hGetMenuHandle
 #if defined(xOS_WIN)
 
 HMENU
-CxConsole::hGetMenuHandle(
+CxConsole::_hGetMenuHandle(
     const BOOL cbRevert
 )
 {
     /*DEBUG*/
 
     _m_hMenu = ::GetSystemMenu(_m_hWnd, cbRevert);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hMenu, NULL);
+    /*DEBUG*/if (FALSE == cbRevert) { xASSERT_RET(NULL != _m_hMenu, NULL); }
+    /*DEBUG*/if (TRUE  == cbRevert) { xASSERT_RET(NULL == _m_hMenu, NULL); }
 
     return _m_hMenu;
 }

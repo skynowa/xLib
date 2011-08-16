@@ -51,7 +51,7 @@ class CxConsole :
         tString      bSetTextColor (const tString &csText, const EForeground cfgForeground, const BOOL cbIsBold, const BOOL cbIsUnderline, const EBackground cbgBackground, const BOOL cbIsBlink);
         tString      sRead         ();
         BOOL         bWrite        (const tString &csStr);
-        BOOL         bWriteLine    (const tString &csStr);
+        BOOL         bWriteLine    (const tString &csStr = xT(""));
         BOOL         bWriteErrLine (const tString &csStr);
         EModalResult iMsgBox       (const tString &csText, const tString &csTitle, const UINT cuiType);
         BOOL         bPrompt       (const tString &csPrompt, const BOOL cbIsVisible, tString *psAnswer);
@@ -71,8 +71,8 @@ class CxConsole :
         CxFileHandle _m_hStdIn;
         CxFileHandle _m_hStdOut;
 
-        HWND         hGetWndHandle ();
-        HMENU        hGetMenuHandle(const BOOL cbRevert);
+        HWND         _hGetWndHandle ();
+        HMENU        _hGetMenuHandle(const BOOL cbRevert);
     #elif defined(xOS_LINUX)
 
     #endif
