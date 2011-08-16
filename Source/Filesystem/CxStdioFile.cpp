@@ -1163,7 +1163,7 @@ CxStdioFile::ullGetLines(
     return ullRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetTime (get time)
+//TODO:: bGetTime (get time)
 /*static*/
 BOOL
 CxStdioFile::bGetTime(
@@ -1174,8 +1174,8 @@ CxStdioFile::bGetTime(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/// pftCreate - n/a
-    /*DEBUG*/// pftAccess - n/a
+    /*DEBUG*/// pftCreate   - n/a
+    /*DEBUG*/// pftAccess   - n/a
     /*DEBUG*/// pftModified - n/a
 
     struct stat stInfo = {0};
@@ -1183,8 +1183,11 @@ CxStdioFile::bGetTime(
     INT iRes = stat(csFilePath.c_str(), &stInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = stInfo.st_atime);
-    xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime);
+#if xTODO
+    xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = stInfo.st_ctim);  //status change
+#endif
+    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = stInfo.st_atime); //access
+    xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime); //modification
 
     return TRUE;
 }

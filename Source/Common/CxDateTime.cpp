@@ -719,7 +719,7 @@ CxDateTime::dtGetCurrent() {
 
     //set datetime
     USHORT usYear        = ptmDateTime->tm_year + 1900U;
-    USHORT usMonth       = ptmDateTime->tm_mon  + 1U;
+    USHORT usMonth       = ptmDateTime->tm_mon  + 1U;   //TODO: +1U ???
     USHORT usDay         = ptmDateTime->tm_mday;
     USHORT usHour        = ptmDateTime->tm_hour;
     USHORT usMinute      = ptmDateTime->tm_min;

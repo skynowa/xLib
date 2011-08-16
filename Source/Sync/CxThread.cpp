@@ -947,6 +947,21 @@ CxThread::hGetCurrHandle() {
     return hRes;
 }
 //---------------------------------------------------------------------------
+//TODO: bSetPriority (set priority)
+/*static*/
+BOOL
+CxThread::bSetPriority(
+    const THandle   chHandle,
+    const EPriority ctpPriority
+)
+{
+    /*DEBUG*/
+
+    xNOT_IMPLEMENTED_RET(FALSE);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 //DONE: bYield (уступить ресурсы другому потоку, который готов к исполнению на !текущем процессоре!)
 /*static*/
 BOOL

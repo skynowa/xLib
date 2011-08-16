@@ -788,35 +788,6 @@ CxString::sFormatPercentage(
     return sRes.append(xT("%"));
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatNixTerminal (format Linux terminal colors)
-//NOTE: http://lifeforce4.wordpress.com/
-/*static*/
-tString
-CxString::sFormatNixTerminal(
-    const tString &csText,
-    EForeground    fgForeground,
-    BOOL           bIsBold,
-    BOOL           bIsUnderline,
-    EBackground    bgBackground,
-    BOOL           bIsBlink
-)
-{
-    /*DEBUG*/// n/a
-
-    tString sRes;
-
-    xCHECK_DO(TRUE == bIsUnderline, sRes += CxString::sFormat(xT("\033[%im"), atUnderscore));
-    xCHECK_DO(TRUE == bIsBlink,     sRes += CxString::sFormat(xT("\033[%im"), atBlink)     );
-    xCHECK_DO(TRUE == bIsBold,      sRes += CxString::sFormat(xT("\033[%im"), atBold)      );
-
-    sRes += CxString::sFormat(xT("\033[%im"), bgBackground);
-    sRes += CxString::sFormat(xT("\033[%im"), fgForeground);
-    sRes += csText;
-    sRes += xT("\033[0;0m");
-
-    return sRes;
-}
-//---------------------------------------------------------------------------
 //DONE: sStrToWStr (std::string in std::wstring)
 /*static*/
 std::wstring

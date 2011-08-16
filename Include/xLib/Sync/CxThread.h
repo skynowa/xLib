@@ -38,7 +38,14 @@ class CxThread :
                 tpHighest      = THREAD_PRIORITY_HIGHEST,
                 tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
             #elif defined(xOS_LINUX)
-                tpError        = - 1
+                tpError        = - 1,
+                tpIdle,
+                tpLowest,
+                tpBelowNormal,
+                tpNormal,
+                tpAboveNormal,
+                tpHighest,
+                tpTimeCritical
             #endif
 	    };
 
@@ -106,6 +113,7 @@ class CxThread :
         static TId              ulGetCurrId           ();
         static BOOL             bIsCurrent            (const TId culId);
         static THandle          hGetCurrHandle        ();
+        static BOOL             bSetPriority          (const THandle chHandle, const EPriority ctpPriority);
         static BOOL             bYield                ();
         static BOOL             bSleep                (const ULONG culMsec);
 

@@ -25,22 +25,211 @@ CxTest_CxConsole::~CxTest_CxConsole() {
 //---------------------------------------------------------------------------
 //TODO: bUnit ()
 /*virtual*/
-BOOL 
+BOOL
 CxTest_CxConsole::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    /*DEBUG*/
+    //--------------------------------------------------
+    //bSetTextColor
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTODO
+            CxConsole cnConsole;
 
-    CxConsole cnConsole;
+            const tString     csText;
+            const EForeground cfgForeground;
+            const BOOL        cbIsBold;
+            const BOOL        cbIsUnderline;
+            const EBackground cbgBackground;
+            const BOOL        cbIsBlink;
 
-    CxConsole::EModalResult mrRes = cnConsole.iMsgBox(xT("Text"), xT("Title"), 0U);
+            m_sRes = cnConsole.bSetTextColor(csText, cfgForeground, cbIsBold, cbIsUnderline, cbgBackground, cbIsBlink);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        #endif
+    }
 
-#if xTODO
-    cnConsole.bSetTextColor(0xa);
-    cnConsole.bEnableClose(true);
-    cnConsole.bClear();
-#endif
+    //--------------------------------------------------
+    //sRead
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTODO
+            CxConsole cnConsole;
+
+            m_sRes = cnConsole.sRead();
+            // n/a
+        #endif
+    }
+
+    //--------------------------------------------------
+    //bWrite
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        const tString csStr = xT("\tConsole_test_string");
+
+
+        CxConsole cnConsole;
+
+        m_bRes = cnConsole.bWrite(csStr);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //bWriteLine
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        const tString csStr = xT("\tConsole_test_line");
+
+
+        CxConsole cnConsole;
+
+        m_bRes = cnConsole.bWriteLine(csStr);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //bWriteErrLine
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        const tString csStr = xT("\tConsole_test_error");
+
+
+        CxConsole cnConsole;
+
+        m_bRes = cnConsole.bWriteLine(csStr);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //iMsgBox
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTEMP_DISABLED
+            const tString csText  = xT("iMsgBox_text");
+            const tString csTitle = xT("iMsgBox_title");
+            const UINT    cuiType = 0U;
+
+
+            CxConsole cnConsole;
+
+            CxConsole::EModalResult mrRes = cnConsole.iMsgBox(csText, csTitle, cuiType);
+            xUNUSED(mrRes);
+        #endif
+    }
+
+    //--------------------------------------------------
+    //bPrompt
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTODO
+            const tString csPrompt    = xT("bPrompt_simple_prompt");
+            const BOOL    cbIsVisible = TRUE;
+            tString       sAnswer     = xT("sAnswer_bla-bla-bla");
+
+
+            CxConsole cnConsole;
+
+            m_bRes = cnConsole.bPrompt(csPrompt, cbIsVisible, &sAnswer);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        #endif
+    }
+
+    //--------------------------------------------------
+    //bPause
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTEMP_DISABLED
+            CxConsole cnConsole;
+
+            m_bRes = cnConsole.bPause();
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        #endif
+    }
+
+    //--------------------------------------------------
+    //bClear
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxConsole cnConsole;
+
+        m_bRes = cnConsole.bClear();
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //sGetTitle
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTODO
+            tString csTitle = xT("Title1");
+
+
+            CxConsole cnConsole;
+
+            m_bRes = cnConsole.bSetTitle(csTitle);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+            m_sRes = cnConsole.sGetTitle();
+            xASSERT_EQUAL(m_sRes, csTitle);
+        #endif
+    }
+
+    //--------------------------------------------------
+    //bSetTitle
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        const tString csTitle = xT("Title1");
+
+
+        CxConsole cnConsole;
+
+        m_bRes = cnConsole.bSetTitle(csTitle);
+        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+        #if xTODO
+            m_sRes = cnConsole.sGetTitle();
+            xASSERT_EQUAL(m_sRes, csTitle);
+        #endif
+    }
+
+    //--------------------------------------------------
+    //bCenterWindow
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTODO
+            CxConsole cnConsole;
+
+            m_bRes = cnConsole.bCenterWindow();
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        #endif
+    }
+
+    //--------------------------------------------------
+    //bSetFullScreen
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTODO
+            CxConsole cnConsole;
+
+            m_bRes = cnConsole.bSetFullScreen();
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        #endif
+    }
+
+    //--------------------------------------------------
+    //bEnableClose
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTODO
+            CxConsole cnConsole;
+
+            m_bRes = cnConsole.bEnableClose(FALSE);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+
+            m_bRes = cnConsole.bEnableClose(TRUE);
+            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        #endif
+    }
 
     return TRUE;
 }

@@ -33,13 +33,29 @@ class CxConsole :
                      CxConsole     ();
         virtual     ~CxConsole     ();
 
-        BOOL         bSetTextColor (const UINT cuiColor);
+        //EColor - comsole colors
+        enum EAttribute {
+            atAllOff = 0, atBold = 1, atUnderscore = 4, atBlink = 5, atReverse = 7, atConcealed  = 8
+        };
+
+        enum EForeground {
+            fgBlack  = 30, fgRed  = 31, fgGreen  = 32, fgYellow  = 33, fgBlue  = 34, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37,
+            fgBlack_ = 90, fgRed_ = 91, fgGreen_ = 92, fgYellow_ = 93, fgBlue_ = 94, fgMagenta_ = 95, fgCyan_ = 96, fgWhite_ = 97
+        };
+
+        enum EBackground {
+            bgBlack  = 40,  bgRed  = 41,  bgGreen  = 42,  bgYellow  = 43,  bgBlue  = 44,  bgMagenta  = 45,  bgCyan  = 46,  bgWhite  = 47,
+            bgBlack_ = 100, bgRed_ = 101, bgGreen_ = 102, bgYellow_ = 103, bgBlue_ = 104, bgMagenta_ = 105, bgCyan_ = 106, bgWhite_ = 107
+        };
+
+        tString      bSetTextColor (const tString &csText, const EForeground cfgForeground, const BOOL cbIsBold, const BOOL cbIsUnderline, const EBackground cbgBackground, const BOOL cbIsBlink);
         tString      sRead         ();
         BOOL         bWrite        (const tString &csStr);
         BOOL         bWriteLine    (const tString &csStr);
         BOOL         bWriteErrLine (const tString &csStr);
         EModalResult iMsgBox       (const tString &csText, const tString &csTitle, const UINT cuiType);
-        BOOL         bPrompt       (const tString &csPrompt, tString *psAnswer);
+        BOOL         bPrompt       (const tString &csPrompt, const BOOL cbIsVisible, tString *psAnswer);
+        BOOL         bPause        ();
         BOOL         bClear        ();
 
         tString      sGetTitle     ();
@@ -63,3 +79,53 @@ class CxConsole :
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxConsoleH
+
+
+#if xTODO
+    #ifdef __unix__
+        #include <curses.h>
+    #elif __WIN32__ || _MSC_VER
+        #include <conio.h>
+    #endif
+
+    inline void
+    CtsConsole::promptPassword(char* const pwdBuffer, bool visible) {
+    #if __WIN32__ || _MSC_VER
+        bool     passwordEntered = false;
+        char     ch;
+        size_t   idx = 0;
+        while (passwordEntered == false) {
+            ch = _getch();
+            if (visible) {
+                printf("*");
+            }
+            if (ch == 0x0D) {
+                passwordEntered = true;
+                printf("\n");
+            }
+            pwdBuffer[idx++] = ch;
+        }
+        pwdBuffer[idx] = '\0';
+    #elif __unix__
+
+        #define CTS_KEYCODE_ENTER   10
+
+        initscr();             /* start curses mode */
+        cbreak();
+        keypad(stdscr, TRUE);  /* enable keyboard mapping */
+        noecho();              /* turn off echoing */
+
+        int key = 0;
+        int idx = 0;
+        for (;;) {
+          key = getch();
+          if (key == CTS_KEYCODE_ENTER)  {
+              endwin();
+              break;
+          }
+          pwdBuffer[idx++] = key;
+        }
+        pwdBuffer[idx] = '\0';
+    #endif
+    };
+#endif
