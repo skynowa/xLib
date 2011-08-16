@@ -122,7 +122,7 @@ CxProfiler::bStart() {
                 break;
 
             case pmThreadTimes: {
-                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrHandle, &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
+                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
                     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
                 }
                 break;
@@ -158,7 +158,7 @@ CxProfiler::bStop(
                     _m_ctClocksStop   = _liGetClock();
 
                 #else
-                    ctClockResolution = CLOCKS_PER_SEC * 0.0001;
+                    ctClockResolution = CLOCKS_PER_SEC / 1000;
                     _m_ctClocksStop   = std::clock();
                 #endif
 
@@ -204,7 +204,7 @@ CxProfiler::bStop(
                 break;
 
             case pmThreadTimes: {
-                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrHandle, &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
+                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
                     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
                     sTimeString = CxDateTime((CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStop) - CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStart)) / 10000).sFormat(CxDateTime::ftTime);
@@ -381,8 +381,8 @@ CxProfiler::gettimeofday(
 
         //converting file time to unix epoch
         ullRes -= DELTA_EPOCH_IN_MICROSECS;
-        tv->tv_sec  = static_cast<time_t>( ullRes / 1000000UL );
-        tv->tv_usec = static_cast<time_t>( ullRes % 1000000UL );
+        tv->tv_sec  = static_cast<long>( ullRes / 1000000UL );
+        tv->tv_usec = static_cast<long>( ullRes % 1000000UL );
     }
 
     if (NULL != tz) {

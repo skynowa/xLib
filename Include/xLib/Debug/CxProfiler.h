@@ -15,6 +15,9 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Common/CxDateTime.h>
+
+
+
 //---------------------------------------------------------------------------
 class CxProfiler :
     public CxNonCopyable
@@ -86,6 +89,12 @@ class CxProfiler :
     #endif
 
     #if defined(xOS_WIN)
+        //for gettimeofday
+        struct timezone {
+            INT  tz_minuteswest;    //minutes W of Greenwich
+            INT  tz_dsttime;        //type of dst correction
+        };
+
         static INT          gettimeofday(struct timeval *tv, struct timezone *tz);
     #endif
 };

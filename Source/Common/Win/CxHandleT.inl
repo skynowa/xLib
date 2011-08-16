@@ -188,17 +188,6 @@ CxHandleT<hvTag>::bAttach(
     _m_hHandle = chHandle;
 
     return TRUE;
-
-    /*
-    BOOL CxFile::bAttach(HANDLE hHandle) {
-        //n/a
-
-        _m_bRes  = bClose();
-        _m_hFile = hHandle;
-
-        return TRUE;
-    }
-    */
 }
 //---------------------------------------------------------------------------
 //DONE: hDetach ()
@@ -212,17 +201,6 @@ CxHandleT<hvTag>::hDetach() {
     _m_hHandle = FailValue::get();
 
     return hHandle;
-
-    /*
-    HANDLE CxFile::bDetach() {
-        //n/a
-
-        HANDLE hFile = _m_hFile;
-        _m_hFile = INVALID_HANDLE_VALUE;
-
-        return hFile;
-    }
-    */
 }
 //---------------------------------------------------------------------------
 //DONE: bClose ()
