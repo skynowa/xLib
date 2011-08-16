@@ -23,12 +23,12 @@ class CxProfiler :
         enum EMode {
             pmStdClock,
             pmDateTime,
+            pmGetTimeOfDay
         #if defined(xOS_WIN)
+            ,
             pmTickCount,
             pmPerformanceCount,
-            pmThreadTimes,
-        #elif defined(xOS_LINUX)
-            pmGetTimeOfDay
+            pmThreadTimes
         #endif
         };
 
@@ -56,6 +56,10 @@ class CxProfiler :
         CxDateTime          _m_dtTimesStart;
         CxDateTime          _m_dtTimesStop;
 
+        //pmGetTimeOfDay
+        DOUBLE              _m_dMicrosecStart;
+        DOUBLE              _m_dMicrosecStop;
+
     #if defined(xOS_WIN)
         //pmTickCount
         ULONG               _m_ulTicksStart;
@@ -73,17 +77,16 @@ class CxProfiler :
         FILETIME            _m_lpUserTimeStart;
         FILETIME            _m_lpKernelTimeStop;
         FILETIME            _m_lpUserTimeStop;
-
-    #elif defined(xOS_LINUX)
-        //pmGetTimeOfDay
-        DOUBLE              _m_dMicrosecStart;
-        DOUBLE              _m_dMicrosecStop;
     #endif
 
         BOOL                _bResetData();
 
     #if defined(xOS_FREEBSD)
         static std::clock_t _liGetClock();
+    #endif
+
+    #if defined(xOS_WIN)
+        static INT          gettimeofday(struct timeval *tv, struct timezone *tz);
     #endif
 };
 //---------------------------------------------------------------------------
@@ -92,41 +95,41 @@ class CxProfiler :
 
 //http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
 
-/*
-system.h:
-#ifndef SYSTEM_H_INCLUDED
-#define SYSTEM_H_INCLUDED
+#if xTODO
+    //system.h:
+    #ifndef SYSTEM_H_INCLUDED
+    #define SYSTEM_H_INCLUDED
 
-double time_in_seconds();
-
-
-system_posix.cpp:
-#include "system.h"
-#include <sys/time.h>
-
-double time_in_seconds() {
-    struct timeval tp;
-    gettimeofday(&tp,0);
-    return tp.tv_sec+.000001*tp.tv_usec;
-}
+    double time_in_seconds();
 
 
-system_standard.cpp:
-#include "system.h"
-#include <ctime>
+    //system_posix.cpp:
+    #include "system.h"
+    #include <sys/time.h>
 
-double time_in_seconds() {
-  return std::clock()/(double)CLOCKS_PER_SEC;
-}
+    double time_in_seconds() {
+        struct timeval tp;
+        gettimeofday(&tp,0);
+        return tp.tv_sec+.000001*tp.tv_usec;
+    }
 
 
-#include <time.h>
+    //system_standard.cpp:
+    #include "system.h"
+    #include <ctime>
 
-double time_in_seconds() {
-  struct timespec tp;
-  clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tp);
-  return tp.tv_sec + .000000001 * tp.tv_nsec;
-}
+    double time_in_seconds() {
+      return std::clock()/(double)CLOCKS_PER_SEC;
+    }
 
+
+    #include <time.h>
+
+    double time_in_seconds() {
+      struct timespec tp;
+      clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tp);
+      return tp.tv_sec + .000000001 * tp.tv_nsec;
+    }
+
+    #endif
 #endif
-*/

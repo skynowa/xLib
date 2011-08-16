@@ -213,6 +213,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxAutoMallocT);
         bRes = tmManager.bAdd(new CxTest_CxException);
         bRes = tmManager.bAdd(new CxTest_CxType);
+        bRes = tmManager.bAdd(new CxTest_CxConsole);
 
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxClipboard);
@@ -220,7 +221,6 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxHandleT);
         bRes = tmManager.bAdd(new CxTest_CxShell);
         bRes = tmManager.bAdd(new CxTest_CxComPort);
-        bRes = tmManager.bAdd(new CxTest_CxConsole);
     #elif defined(xOS_LINUX)
 
     #endif

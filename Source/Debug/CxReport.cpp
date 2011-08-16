@@ -15,6 +15,7 @@
 #include <xLib/Common/CxString.h>
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Common/CxSystemInfo.h>
+#include <xLib/Common/CxConsole.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxStdioFile.h>
 #include <xLib/Sync/CxThread.h>
@@ -525,18 +526,18 @@ CxReport::_bInitRtf() {
         xT("#  Thread id:       "), ulGetThreadId(),
         xT("#  File size:       "), sGetFileSize().c_str(),
 
-        xT("#  Source file:     "), CxString::sFormatNixTerminal( sGetSourceFile(),                          CxString::fgWhite,   TRUE, FALSE, CxString::bgBlack, FALSE ).c_str(),
-        xT("#  Source line:     "), CxString::sFormatNixTerminal( CxString::lexical_cast(ulGetSourceLine()), CxString::fgMagenta, TRUE, TRUE,  CxString::bgBlack, FALSE ).c_str(),
-        xT("#  Function name:   "), CxString::sFormatNixTerminal( sGetFunctionName(),                        CxString::fgCyan,    TRUE, FALSE, CxString::bgBlack, FALSE ).c_str(),
-        xT("#  Expression:      "), CxString::sFormatNixTerminal( sGetExpression(),                          CxString::fgYellow,  TRUE, FALSE, CxString::bgBlack, FALSE ).c_str(),
-        xT("#  Last error:      "), CxString::sFormatNixTerminal( sGetLastErrorStr(),                        CxString::fgRed,     TRUE, FALSE, CxString::bgBlack, FALSE ).c_str(),
+        xT("#  Source file:     "), CxConsole().bSetTextColor( sGetSourceFile(),                          CxConsole::fgWhite,   TRUE, FALSE, CxConsole::bgBlack, FALSE ).c_str(),
+        xT("#  Source line:     "), CxConsole().bSetTextColor( CxString::lexical_cast(ulGetSourceLine()), CxConsole::fgMagenta, TRUE, TRUE,  CxConsole::bgBlack, FALSE ).c_str(),
+        xT("#  Function name:   "), CxConsole().bSetTextColor( sGetFunctionName(),                        CxConsole::fgCyan,    TRUE, FALSE, CxConsole::bgBlack, FALSE ).c_str(),
+        xT("#  Expression:      "), CxConsole().bSetTextColor( sGetExpression(),                          CxConsole::fgYellow,  TRUE, FALSE, CxConsole::bgBlack, FALSE ).c_str(),
+        xT("#  Last error:      "), CxConsole().bSetTextColor( sGetLastErrorStr(),                        CxConsole::fgRed,     TRUE, FALSE, CxConsole::bgBlack, FALSE ).c_str(),
 
         xT("#  Current date:    "), sGetCurrentDate().c_str(),
         xT("#  Build date:      "), sGetBuildDate().c_str(),
         xT("#  OS version:      "), sGetOsVersion().c_str(),
         xT("#  OS architecture: "), sGetOsArchitecture().c_str(),
 
-        xT("#  Comment:         "), CxString::sFormatNixTerminal( sGetComment(),                             CxString::fgYellow_, FALSE, FALSE, CxString::bgBlue,  FALSE ).c_str()
+        xT("#  Comment:         "), CxConsole().bSetTextColor( sGetComment(),                             CxConsole::fgYellow_, FALSE, FALSE, CxConsole::bgBlue,  FALSE ).c_str()
     );
 #endif
 

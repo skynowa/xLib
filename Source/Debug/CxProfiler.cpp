@@ -73,14 +73,12 @@ CxProfiler::bStart() {
     _m_bRes = _bResetData();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-#if defined(xOS_WIN)
-    _m_bRes = ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
-    /*DEBUG*/xASSERT(FALSE != _m_bRes);
-#elif defined(xOS_LINUX)
-    //TODO: bStart
-#endif
+    #if xTODO
+        _m_bRes = CxThread::bSetPriority(CxThread::ulGetCurrId(), CxThread::tpTimeCritical);
+        /*DEBUG*/xASSERT(FALSE != _m_bRes);
+    #endif
 
-    CxThread::bSleep(10);
+    CxThread::bSleep(10UL);
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
@@ -96,6 +94,14 @@ CxProfiler::bStart() {
         case pmDateTime: {
                 _m_dtTimesStart = CxDateTime::dtGetCurrent();
                 /*DEBUG*/// n/a
+            }
+            break;
+
+        case pmGetTimeOfDay: {
+                timeval tv = {0};
+                gettimeofday(&tv, NULL);
+
+                _m_dMicrosecStart = static_cast<DOUBLE>( tv.tv_sec ) + static_cast<DOUBLE>( tv.tv_usec ) * 0.000001;
             }
             break;
 
@@ -116,17 +122,8 @@ CxProfiler::bStart() {
                 break;
 
             case pmThreadTimes: {
-                    _m_bRes = ::GetThreadTimes(::GetCurrentThread(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
+                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrHandle, &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
                     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-                }
-                break;
-
-        #elif defined(xOS_LINUX)
-            case pmGetTimeOfDay: {
-                    timeval tv = {0};
-                    gettimeofday(&tv, NULL);
-
-                    _m_dMicrosecStart = static_cast<DOUBLE>( tv.tv_sec ) + static_cast<DOUBLE>( tv.tv_usec ) * 0.000001;
                 }
                 break;
         #endif
@@ -161,7 +158,7 @@ CxProfiler::bStop(
                     _m_ctClocksStop   = _liGetClock();
 
                 #else
-                    ctClockResolution = CLOCKS_PER_SEC / 1000;
+                    ctClockResolution = CLOCKS_PER_SEC * 0.0001;
                     _m_ctClocksStop   = std::clock();
                 #endif
 
@@ -176,6 +173,16 @@ CxProfiler::bStop(
                 /*DEBUG*/// n/a
 
                 sTimeString = (_m_dtTimesStop - _m_dtTimesStart).sFormat(CxDateTime::ftTime);
+            }
+            break;
+
+        case pmGetTimeOfDay: {
+                timeval tv = {0};
+                gettimeofday(&tv, NULL);
+
+                _m_dMicrosecStop = static_cast<DOUBLE>( tv.tv_sec ) + static_cast<DOUBLE>( tv.tv_usec ) * 0.000001;
+
+                sTimeString = CxString::sFormat(xT("%.6lf (sec)"), _m_dMicrosecStop - _m_dMicrosecStart);
             }
             break;
 
@@ -197,21 +204,10 @@ CxProfiler::bStop(
                 break;
 
             case pmThreadTimes: {
-                    _m_bRes = ::GetThreadTimes(::GetCurrentThread(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
+                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrHandle, &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
                     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
                     sTimeString = CxDateTime((CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStop) - CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStart)) / 10000).sFormat(CxDateTime::ftTime);
-                }
-                break;
-
-        #elif defined(xOS_LINUX)
-            case pmGetTimeOfDay: {
-                    timeval tv = {0};
-                    gettimeofday(&tv, NULL);
-
-                    _m_dMicrosecStop = static_cast<DOUBLE>( tv.tv_sec ) + static_cast<DOUBLE>( tv.tv_usec ) * 0.000001;
-
-                    sTimeString = CxString::sFormat(xT("%.6lf (sec)"), _m_dMicrosecStop - _m_dMicrosecStart);
                 }
                 break;
         #endif
@@ -282,12 +278,10 @@ CxProfiler::bPulse(
 //DONE: _bResetData (reset all class data)
 BOOL
 CxProfiler::_bResetData() {
-#if defined(xOS_WIN)
-    _m_bRes = ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_NORMAL);
-    /*DEBUG*/xASSERT(FALSE != _m_bRes);
-#elif defined(xOS_LINUX)
-    //TODO: _bResetData
-#endif
+    #if xTODO
+        _m_bRes = CxThread::bSetPriority(CxThread::ulGetCurrId(), CxThread::tpNormal);
+        /*DEBUG*/xASSERT(FALSE != _m_bRes);
+    #endif
 
     _m_bIsStarted                       = FALSE;
 
@@ -299,34 +293,35 @@ CxProfiler::_bResetData() {
     _m_dtTimesStart                     = 0ULL;
     _m_dtTimesStop                      = 0ULL;
 
+    //pmGetTimeOfDay
+    _m_dMicrosecStart                   = 0.0f;
+    _m_dMicrosecStop                    = 0.0f;
+
 #if defined(xOS_WIN)
     //pmGetTickCount
-    _m_ulTicksStart                     = 0;
-    _m_ulTicksStop                      = 0;
+    _m_ulTicksStart                     = 0UL;
+    _m_ulTicksStop                      = 0UL;
 
     //pmPerformanceCount
-    _m_liCountersPerfFreq.QuadPart      = 0;
-    _m_liCountersStart.QuadPart         = 0;
-    _m_liCountersStop.QuadPart          = 0;
+    _m_liCountersPerfFreq.QuadPart      = 0L;
+    _m_liCountersStart.QuadPart         = 0L;
+    _m_liCountersStop.QuadPart          = 0L;
 
     //pmThreadTimes
-    _m_lpCreationTime.dwLowDateTime     = 0;
-    _m_lpCreationTime.dwHighDateTime    = 0;
-    _m_lpExitTime.dwLowDateTime         = 0;
-    _m_lpExitTime.dwHighDateTime        = 0;
-    _m_lpKernelTimeStart.dwLowDateTime  = 0;
-    _m_lpKernelTimeStart.dwHighDateTime = 0;
-    _m_lpUserTimeStart.dwLowDateTime    = 0;
-    _m_lpUserTimeStart.dwHighDateTime   = 0;
-    _m_lpKernelTimeStop.dwLowDateTime   = 0;
-    _m_lpKernelTimeStop.dwHighDateTime  = 0;
-    _m_lpUserTimeStop.dwLowDateTime     = 0;
-    _m_lpUserTimeStop.dwHighDateTime    = 0;
+    _m_lpCreationTime.dwLowDateTime     = 0UL;
+    _m_lpCreationTime.dwHighDateTime    = 0UL;
+    _m_lpExitTime.dwLowDateTime         = 0UL;
+    _m_lpExitTime.dwHighDateTime        = 0UL;
+    _m_lpKernelTimeStart.dwLowDateTime  = 0UL;
+    _m_lpKernelTimeStart.dwHighDateTime = 0UL;
+    _m_lpUserTimeStart.dwLowDateTime    = 0UL;
+    _m_lpUserTimeStart.dwHighDateTime   = 0UL;
+    _m_lpKernelTimeStop.dwLowDateTime   = 0UL;
+    _m_lpKernelTimeStop.dwHighDateTime  = 0UL;
+    _m_lpUserTimeStop.dwLowDateTime     = 0UL;
+    _m_lpUserTimeStop.dwHighDateTime    = 0UL;
 #elif defined(xOS_LINUX)
 
-    //pmGetTimeOfDay
-    _m_dMicrosecStart                   = 0.0;
-    _m_dMicrosecStop                    = 0.0;
 #endif
 
     return TRUE;
@@ -354,4 +349,54 @@ CxProfiler::_liGetClock() {
 }
 #endif
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 
+//DONE: gettimeofday (like unix gettimeofday)
+/*static*/
+INT
+CxProfiler::gettimeofday(
+    struct timeval  *tv,
+    struct timezone *tz
+)
+{
+#if defined(xCOMPILER_MS) || defined(_MSC_EXTENSIONS)
+    ULONGLONG DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
+#else
+    ULONGLONG DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
+#endif
+
+    FILETIME   ftTime  = {0};
+    ULONGLONG  ullRes  = 0ULL;
+    static INT iTzFlag = 0;
+
+    if (NULL != tv) {
+        ::GetSystemTimeAsFileTime(&ftTime);
+
+        ullRes |= ftTime.dwHighDateTime;
+        ullRes <<= 32;
+        ullRes |= ftTime.dwLowDateTime;
+
+        //convert into microseconds
+        ullRes /= 10ULL;
+
+        //converting file time to unix epoch
+        ullRes -= DELTA_EPOCH_IN_MICROSECS;
+        tv->tv_sec  = static_cast<time_t>( ullRes / 1000000UL );
+        tv->tv_usec = static_cast<time_t>( ullRes % 1000000UL );
+    }
+
+    if (NULL != tz) {
+        if (!iTzFlag) {
+            _tzset();
+            ++ iTzFlag;
+        }
+
+        tz->tz_minuteswest = _timezone / 60;
+        tz->tz_dsttime     = _daylight;
+    }
+
+    return 0;
+}
+
+#endif
+//---------------------------------------------------------------------------

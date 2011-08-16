@@ -13,6 +13,9 @@
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Common/CxSystemInfo.h>
+#include <xLib/Common/CxConsole.h>
+
+
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Sync/CxProcess.h>
 
@@ -354,9 +357,9 @@ CxDebugger::_bMsgboxRtf(
         cmRetry  = xT('r')
     };
 
-    tcerr << CxString::sFormatNixTerminal( xT("\n####################################################################################################\n"), CxString::fgWhite, TRUE, FALSE, CxString::bgBlack, FALSE );
+    tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, TRUE, FALSE, CxConsole::bgBlack, FALSE );
     tcerr << crpReport.sGetReport();
-    tcerr << CxString::sFormatNixTerminal( xT("\n####################################################################################################\n"), CxString::fgWhite, TRUE, FALSE, CxString::bgBlack, FALSE );
+    tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, TRUE, FALSE, CxConsole::bgBlack, FALSE );
     tcerr << xT("\n");
     tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     tcerr.flush();

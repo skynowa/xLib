@@ -61,9 +61,6 @@ CxBase64::sEncode(
     BIO_free_all(pbioContainer);
     /*DEBUG*/// n/a
 
-    //remove warning: "value computed is not used"
-    iWritten = iWritten - iWritten;
-
     return sRes;
 }
 //----------------------------------------------------------------------------------------------------

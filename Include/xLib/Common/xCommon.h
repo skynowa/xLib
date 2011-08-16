@@ -80,6 +80,7 @@ namespace NxLib {}
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Common/CxString.h>
+#include <xLib/Common/CxConsole.h>
 
 //checks
 #include <xLib/Common/xCheks.h>
