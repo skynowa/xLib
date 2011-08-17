@@ -42,8 +42,8 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             ULONG ulCode = CxLastError::ulGet();
-            xASSERT_EQUAL(0UL, CxLastError::ulGet());
-            xASSERT_LESS_EQUAL(0UL, ulCode);
+            xASSERT_EQ(0UL, CxLastError::ulGet());
+            xASSERT_LESS_EQ(0UL, ulCode);
         }
     }
 
@@ -59,7 +59,7 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             tString sError = CxLastError::sGet();
-            xASSERT_EQUAL(false, sError.empty());
+            xASSERT_EQ(false, sError.empty());
         }
     }
 
@@ -75,7 +75,7 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
 
@@ -91,12 +91,12 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-			xASSERT_NOT_EQUAL(FALSE, m_bRes);
+			xASSERT_NOT_EQ(FALSE, m_bRes);
 
 			m_bRes = CxLastError::bReset();
-			xASSERT_NOT_EQUAL(FALSE, m_bRes);
+			xASSERT_NOT_EQ(FALSE, m_bRes);
 
-			xASSERT_EQUAL(0UL, CxLastError::ulGet());
+			xASSERT_EQ(0UL, CxLastError::ulGet());
         }
     }
 
@@ -105,19 +105,19 @@ CxTest_CxLastError::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxLastError::sFormat(0);
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
 
         m_sRes = CxLastError::sFormat(1);
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
 
         m_sRes = CxLastError::sFormat(2);
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
 
         m_sRes = CxLastError::sFormat(3);
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
 
         m_sRes = CxLastError::sFormat(4);
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
     }
 
     return TRUE;

@@ -21,7 +21,7 @@
 
 //log mode (only one mode can be activated)
 //#define xDEBUG_MODE_MSGBOX_PLAIN     1
-#define xDEBUG_MODE_MSGBOX_RTF       1
+#define xDEBUG_MODE_MSGBOX_FORMATED       1
 
 //#define xDEBUG_MODE_STDOUT_PLAIN     1
 //#define xDEBUG_MODE_STDOUT_HTML      1

@@ -38,10 +38,10 @@ CxTest_CxGz::bUnit(
         const tString csOriginName = xT("OriginName");
 
         m_bRes = gzGz.bCompress(INT iFileIn, INT iFileOut, const tString &csOriginName);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = gzGz.bUncompress(INT iFileIn, INT iFileOut);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     #endif
 
     return TRUE;

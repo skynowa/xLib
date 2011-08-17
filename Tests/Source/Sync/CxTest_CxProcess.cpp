@@ -35,7 +35,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_ulRes = CxProcess::ulGetCurrId();
-        xASSERT_LESS_EQUAL(0UL, m_ulRes);
+        xASSERT_LESS_EQ(0UL, m_ulRes);
     }
 
     //--------------------------------------------------
@@ -43,7 +43,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_ulRes = CxProcess::ulGetCurrParentId();
-        xASSERT_LESS_EQUAL(0UL, m_ulRes);
+        xASSERT_LESS_EQ(0UL, m_ulRes);
     }
 
     //--------------------------------------------------
@@ -59,7 +59,7 @@ CxTest_CxProcess::bUnit(
         #endif
 
         ////m_bRes = CxProcess::bExec(csFilePath, csCmdLine.c_str(), 0);
-        ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        ////xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -67,7 +67,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_bRes = CxProcess::bExit(CxProcess::ulGetCurrParentId(), 0);
-        ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        ////xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -75,7 +75,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
-        //xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        //xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     return TRUE;

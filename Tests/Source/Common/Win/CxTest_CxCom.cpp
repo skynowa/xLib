@@ -41,11 +41,11 @@ CxTest_CxCom::bUnit(
             CxCom cmCom(CxCom::cmMultiThreaded);
 
             m_bRes = CxCom::bIsInit();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         m_bRes = CxCom::bIsInit();
-        xASSERT_EQUAL(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, m_bRes);
     }
 #elif defined(xOS_LINUX)
 

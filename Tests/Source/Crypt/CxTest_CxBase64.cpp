@@ -50,7 +50,7 @@ CxTest_CxBase64::bUnit(
 
 			std::string sEncoded = CxBase64::sEncode(sSource);
 			std::string sDecoded = CxBase64::sDecode(sEncoded);
-			xASSERT_EQUAL(sSource, sDecoded);
+			xASSERT_EQ(sSource, sDecoded);
 		}
 	}
 
@@ -74,11 +74,11 @@ CxTest_CxBase64::bUnit(
 
             const std::string csEncoded = CxBase64::sEncode(csSource);
             //xTRACEV("csEncoded: %s (%zu), csMustBe (%zu)", csEncoded.c_str(), csEncoded.size(), csMustBe.size());
-            xASSERT_EQUAL(csMustBe, csEncoded);
+            xASSERT_EQ(csMustBe, csEncoded);
 
             const std::string csDecoded = CxBase64::sDecode(csEncoded);
             //xTRACEV("csEncoded: %s (%zu), csSource (%zu)", csDecoded.c_str(), csDecoded.size(), csSource.size());
-            xASSERT_EQUAL(csSource, csDecoded);
+            xASSERT_EQ(csSource, csDecoded);
         }
 	}
 
@@ -92,7 +92,7 @@ CxTest_CxBase64::bUnit(
             for (size_t i = 0; i < csValidChars.size(); ++ i) {
                 m_bRes = CxBase64::bIsCharValid(csValidChars.at(i));
                 //xTRACEV(xT("csValidChars.at(i): %c"), csValidChars.at(i));
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
             }
         }
 
@@ -102,7 +102,7 @@ CxTest_CxBase64::bUnit(
             for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
                 m_bRes = CxBase64::bIsCharValid(csNonValidChars.at(i));
                 //xTRACEV(xT("csNonValidChars.at(i): %c"), csNonValidChars.at(i));
-                xASSERT_EQUAL(FALSE, m_bRes);
+                xASSERT_EQ(FALSE, m_bRes);
             }
         }
     }

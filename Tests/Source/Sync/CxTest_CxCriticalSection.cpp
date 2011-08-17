@@ -44,10 +44,10 @@ CxTest_CxCriticalSection::bUnit(
         //xASSERT - not need
 
         m_ulRes = objCriticalSection.ulSetSpinCount(10000);
-        xASSERT_LESS_EQUAL(0UL, m_ulRes);
+        xASSERT_LESS_EQ(0UL, m_ulRes);
 
         m_bRes = objCriticalSection.bTryEnter();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -63,10 +63,10 @@ CxTest_CxCriticalSection::bUnit(
         //xASSERT - not need
 
         m_ulRes = objCriticalSection.ulSetSpinCount(10000);
-        xASSERT_LESS_EQUAL(0UL, m_ulRes);
+        xASSERT_LESS_EQ(0UL, m_ulRes);
 
         m_bRes = objCriticalSection.bTryEnter();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 #elif defined(xOS_LINUX)
 

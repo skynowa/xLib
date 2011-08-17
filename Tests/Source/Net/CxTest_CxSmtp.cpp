@@ -79,22 +79,22 @@ CxTest_CxSmtp::bUnit(
     //-------------------------------------
     //bCreate
     m_bRes = objSmtp.bCreate(csUser, csPass, csServer, usPort);
-    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 
     //-------------------------------------
     //bConnect
     m_bRes = objSmtp.bConnect();
-    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 
     //-------------------------------------
     //bLogin
     ////m_bRes = objSmtp.bLogin();
-    ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    ////xASSERT_NOT_EQ(FALSE, m_bRes);
 
     //-------------------------------------
     //bSend
     m_bRes = objSmtp.bSend(csText, csFrom, csTo);
-    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 
     //-------------------------------------
     //bSendRaw
@@ -102,7 +102,7 @@ CxTest_CxSmtp::bUnit(
     g_vsRes = CxDir::vsListFiles(csDirPath, "*.eml");
     for (size_t i = 0; i < g_vsRes.size(); i ++) {
         m_bRes = objSmtp.bSendRaw(csDirPath + "\\" + g_vsRes.at(i), csFrom, csTo);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
         /*LOG*///printf("Send msg %s\n", g_vsRes.at(i).c_str());
     }
 #endif
@@ -110,17 +110,17 @@ CxTest_CxSmtp::bUnit(
     //-------------------------------------
     //bNoop
     m_bRes = objSmtp.bNoop();
-    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 
     //-------------------------------------
     //bRset
     m_bRes = objSmtp.bRset();
-    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 
     //-------------------------------------
     //bDisconnect
     m_bRes = objSmtp.bDisconnect();
-    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 #elif defined(xOS_LINUX)
 
 #endif

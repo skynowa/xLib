@@ -47,14 +47,14 @@ CxTest_CxEvent::bUnit(
         //bCreate
         {
             m_bRes = objEvent.bCreate(0, TRUE, FALSE, xT(""));
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bIsSignaled
         {
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQUAL(FALSE, m_bRes);
+            xASSERT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
@@ -68,49 +68,49 @@ CxTest_CxEvent::bUnit(
         //bOpen
         {
             ////m_bRes = objEvent.bOpen(0, FALSE, NULL);
-            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            ////xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bPulse
         {
             m_bRes = objEvent.bPulse();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bReset
         {
             m_bRes = objEvent.bReset();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bIsSignaled
         {
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQUAL(FALSE, m_bRes);
+            xASSERT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bSet
         {
             m_bRes = objEvent.bSet();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bIsSignaled
         {
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bWait
         {
             m_bRes = objEvent.bWait(5000);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
 
@@ -123,14 +123,14 @@ CxTest_CxEvent::bUnit(
         //bCreate
         {
             m_bRes = objEvent.bCreate(0, FALSE, TRUE, xT("XLib_CxEvent_25_01_2010"));
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bIsSignaled
         {
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
@@ -144,21 +144,21 @@ CxTest_CxEvent::bUnit(
         //bOpen
         {
             ////m_bRes = objEvent.bOpen(0, FALSE, xT("XLib_CxEvent_25_01_2010"));
-            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            ////xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bPulse
         {
             m_bRes = objEvent.bPulse();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bReset
         {
             m_bRes = objEvent.bReset();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
@@ -172,28 +172,28 @@ CxTest_CxEvent::bUnit(
         //bSet
         {
             m_bRes = objEvent.bSet();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bIsSignaled
         {
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //-------------------------------------
         //bSet
         {
             m_bRes = objEvent.bSet();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes)
+            xASSERT_NOT_EQ(FALSE, m_bRes)
         }
 
         //-------------------------------------
         //bWait
         {
             m_bRes = objEvent.bWait(5000);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
 #elif defined(xOS_LINUX)

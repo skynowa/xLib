@@ -74,14 +74,14 @@ CxReport::CxReport(
     /*DEBUG*/// n/a
 
     switch (crtType) {
-        case rtMsgboxPlain:  { _bInitPlain(); } break;
-        case rtMsgboxRtf:    { _bInitRtf();   } break;
-        case rtStdoutPlain:  { _bInitPlain(); } break;
-        case rtStdoutHtml:   { _bInitHtml();  } break;
-        case rtLoggingPlain: { _bInitPlain(); } break;
-        case rtLoggingHtml:  { _bInitHtml();  } break;
+        case rtMsgboxPlain:     { _bInitPlain();    } break;
+        case rtMsgboxFormated:  { _bInitFormated(); } break;
+        case rtStdoutPlain:     { _bInitPlain();    } break;
+        case rtStdoutHtml:      { _bInitHtml();     } break;
+        case rtLoggingPlain:    { _bInitPlain();    } break;
+        case rtLoggingHtml:     { _bInitHtml();     } break;
 
-        default:             { _bInitPlain(); } break;
+        default:                { _bInitPlain();    } break;
     }
 }
 //---------------------------------------------------------------------------

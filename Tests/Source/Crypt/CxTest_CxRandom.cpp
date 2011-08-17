@@ -37,7 +37,7 @@ CxTest_CxRandom::bUnit(
         //bSetSeed
         {
             m_bRes = rndR.bSetSeed( static_cast<ULONG>( time(NULL) ) );
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
         //--------------------------------------------------
@@ -51,14 +51,14 @@ CxTest_CxRandom::bUnit(
         //iNextInt
         {
             m_iRes = rndR.iNextInt(100);
-            xASSERT_LESS_EQUAL(0, m_iRes);
+            xASSERT_LESS_EQ(0, m_iRes);
         }
 
         //--------------------------------------------------
         //iNextInt
         {
             m_iRes = rndR.iNextInt(100, 200);
-            xASSERT_EQUAL(true, 100 <= m_iRes && 200 >= m_iRes);
+            xASSERT_EQ(true, 100 <= m_iRes && 200 >= m_iRes);
         }
 
         //--------------------------------------------------
@@ -72,7 +72,7 @@ CxTest_CxRandom::bUnit(
         //bNextBoolean
         {
             m_blRes = rndR.bNextBoolean();
-            xASSERT_EQUAL(true, true == m_blRes || false == m_blRes);
+            xASSERT_EQ(true, true == m_blRes || false == m_blRes);
         }
 
         //--------------------------------------------------
@@ -129,13 +129,13 @@ CxTest_CxRandom::bUnit(
             const LONG cliMax = caliData[i][1];
 
             m_bRes = CxRandom::bSetSeed();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_liRes = CxRandom::liGetInt(cliMin, cliMax);
-            xASSERT_EQUAL(true, m_liRes >= cliMin && m_liRes <= cliMax);
+            xASSERT_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
 
             m_liRes = CxRandom::liGetIntEx(cliMin, cliMax);
-            xASSERT_EQUAL(true, m_liRes >= cliMin && m_liRes <= cliMax);
+            xASSERT_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
         }
     }
 
@@ -147,10 +147,10 @@ CxTest_CxRandom::bUnit(
 
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = CxRandom::bSetSeed();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_sRes = CxRandom::sGetString(cuiStrSize);
-            xASSERT_EQUAL(cuiStrSize, m_sRes.size());
+            xASSERT_EQ(cuiStrSize, m_sRes.size());
             //xTRACEV(xT("\ti: %s"), m_sRes.c_str());
         }
     }

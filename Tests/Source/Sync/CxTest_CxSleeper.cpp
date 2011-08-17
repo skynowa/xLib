@@ -36,22 +36,22 @@ CxTest_CxSleeper::bUnit(
     xTEST_BLOCK(cullBlockLoops) 
     {
         m_bRes = objSleeper.bIsSleeping();
-        xASSERT_EQUAL(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, m_bRes);
     }
 
     for (size_t i = 0; i < 4; ++ i) {
         m_bRes = objSleeper.bSleep(10);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = objSleeper.bIsSleeping();
-        xASSERT_EQUAL(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, m_bRes);
 
         m_bRes = objSleeper.bIsSleeping();
-        xASSERT_EQUAL(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, m_bRes);
 
         #if xTODO
             m_bRes = objSleeper.bWakeUp();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 #elif defined(xOS_LINUX)
