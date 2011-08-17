@@ -107,28 +107,26 @@ CxProcess::bExec(
     bRes = ::CloseHandle(piInfo.hProcess);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    #if xTEMP_DISABLED
-        int execute(const char *command) {
-            pid_t cpid;
+    #if xDEPRECIATE
+        INT iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    #else
+        pid_t pid = fork();
+        /*DEBUG*/xASSERT_RET(- 1 == pid, FALSE);
 
-            cpid = fork();
+        if (0 == pid) {
+            //TODO: csFilePath is executable
 
-            switch (cpid) {
-                case -1:
-                    perror("fork");
-                    break;
+            INT iRes = execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-                case 0:
-                    execl("/etc/init.d/test", "test", command, NULL); //this is the child
-                    _exit (EXIT_FAILURE);
+            _exit(0);  /* Note that we do not use exit() */
 
-                default:
-                    waitpid(cpid, NULL, 0);
+            return TRUE;
+        } else {
+            return TRUE;
         }
     #endif
-
-    INT iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
     return TRUE;

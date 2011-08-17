@@ -47,18 +47,18 @@ CxConsole::CxConsole()
     /*DEBUG*/xASSERT_DO(NULL != _m_hWnd, return);
 
     //_m_hMenu - n/a
-#elif defined(xOS_LINUX)
-
 #endif
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxConsole
 CxConsole::~CxConsole() {
+#if defined(xOS_WIN)
     _m_hStdIn.hDetach();
     /*DEBUG*/// n/a
 
     _m_hStdOut.hDetach();
     /*DEBUG*/// n/a
+#endif
 }
 //---------------------------------------------------------------------------
 //DONE: bSetTextColor (set text color)
@@ -160,8 +160,6 @@ CxConsole::bWriteLine(
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
-#elif defined(xOS_LINUX)
-
 #endif
 
     BOOL bRes = bWrite(csStr + CxConst::xNL);
@@ -180,8 +178,6 @@ CxConsole::bWriteErrLine(
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
-#elif defined(xOS_LINUX)
-
 #endif
 
     BOOL bRes = bWriteLine(xT("Error: ") + csStr);

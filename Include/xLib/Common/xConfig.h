@@ -40,12 +40,9 @@
 //is stl assert enable
 #define xIS_STL_ASSERTING        1
 
+
 //is compile time tracing
 //#define xIS_COMPILE_TIME_TRACING  1
-
-
-//Automatically include the xLib namespace, define xNO_USING_NAMESPACE to skip this step
-#define xNO_USING_NAMESPACE      1
 
 
 //auto linkage

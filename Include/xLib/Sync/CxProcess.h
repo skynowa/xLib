@@ -33,7 +33,3 @@ class CxProcess :
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Sync_CxProcessH
-
-
-//http://www.yolinux.com/TUTORIALS/ForkExecProcesses.html
-
