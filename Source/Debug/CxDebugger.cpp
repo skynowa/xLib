@@ -262,12 +262,12 @@ CxDebugger::bBeep(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxDebugger ()
+//DONE: CxDebugger
 CxDebugger::CxDebugger() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxDebugger ()
+//DONE: ~CxDebugger
 /*virtual*/
 CxDebugger::~CxDebugger() {
 
@@ -309,12 +309,13 @@ CxDebugger::_bMsgboxPlain(
     }
 #elif defined(xOS_LINUX)
     //TODO: bMsgboxPlain
+    return FALSE;
 #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bMsgboxRtf (show MessageBox or std::out)
+//DONE: _bMsgboxRtf (show MessageBox or std::cerr)
 /*static*/
 BOOL
 CxDebugger::_bMsgboxRtf(
@@ -364,8 +365,8 @@ CxDebugger::_bMsgboxRtf(
     tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     tcerr.flush();
 
-    ////EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
-    EConsoleCmd cmRes = cmIgnore;
+    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
+    ////EConsoleCmd cmRes = cmIgnore;
     switch (cmRes) {
         case cmAbort: {
                 tcerr << xT("Abort...\n\n");  tcerr.flush();
@@ -405,7 +406,7 @@ CxDebugger::_bMsgboxRtf(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bStdoutPlain ()
+//DONE: _bStdoutPlain (show plain report in std::cout)
 /*static*/
 BOOL
 CxDebugger::_bStdoutPlain(
@@ -415,7 +416,6 @@ CxDebugger::_bStdoutPlain(
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
-    //commands from console
     enum EConsoleCmd {
         cmAbort  = xT('a'),
         cmIgnore = xT('i'),
@@ -468,7 +468,7 @@ CxDebugger::_bStdoutPlain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bStdoutHtml ()
+//DONE: _bStdoutHtml (show html report in std::cout)
 /*static*/
 BOOL
 CxDebugger::_bStdoutHtml(
@@ -533,7 +533,7 @@ CxDebugger::_bStdoutHtml(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bLoggingPlain (log to file, tracing)
+//DONE: _bLoggingPlain (log to file)
 /*static*/
 BOOL
 CxDebugger::_bLoggingPlain(
@@ -551,7 +551,7 @@ CxDebugger::_bLoggingPlain(
     //get log file path
     tString sFilePath;
 
-    if (true == _ms_sLogPath.empty()) {
+    if (true == sGetLogPath().empty()) {
         sFilePath = CxPath::sSetExt(CxPath::sGetExe(), xT("debug"));
     } else {
         sFilePath = sGetLogPath();
@@ -563,21 +563,14 @@ CxDebugger::_bLoggingPlain(
     xCHECK_RET(NULL == pFile, FALSE);
 
     try {
-        //formating
         const tString csMsg = CxString::sFormat(
             xT("\n")
             xT("####################################################################################################\n")
-            xT("[%s]\n")
-            xT("\n")
-            xT("%s\n"),
-            CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime).c_str(),
+            xT("%s\n")
+            xT("####################################################################################################\n"),
             crpReport.sGetReport().c_str()
         );
 
-        //tracing
-        bTrace(csMsg.data());
-
-        //to file
         _ftprintf(pFile, xT("%s"), csMsg.data());
     }
     catch (...) {}
@@ -587,7 +580,7 @@ CxDebugger::_bLoggingPlain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: _bLoggingHtml ()
+//TODO: _bLoggingHtml (log html report)
 /*static*/
 BOOL
 CxDebugger::_bLoggingHtml(

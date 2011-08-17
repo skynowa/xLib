@@ -160,7 +160,7 @@ CxTest_CxConsole::bUnit(
     //sGetTitle
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 1
+        #if 1 && defined(OS_WIN)
             tString csTitle = xT("Title1");
 
 
@@ -186,7 +186,7 @@ CxTest_CxConsole::bUnit(
         m_bRes = cnConsole.bSetTitle(csTitle);
         xASSERT_NOT_EQUAL(FALSE, m_bRes);
 
-        #if 1
+        #if 1 && defined(OS_WIN)
             m_sRes = cnConsole.sGetTitle();
             xASSERT_EQUAL(m_sRes, csTitle);
         #endif
@@ -196,7 +196,7 @@ CxTest_CxConsole::bUnit(
     //bCenterWindow
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 0
+        #if 1 && defined(OS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bCenterWindow();
@@ -208,7 +208,7 @@ CxTest_CxConsole::bUnit(
     //bSetFullScreen
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 0
+        #if 1 && defined(OS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetFullScreen();
@@ -220,7 +220,7 @@ CxTest_CxConsole::bUnit(
     //bEnableClose
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 0
+        #if 1 && defined(OS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bEnableClose(FALSE);
