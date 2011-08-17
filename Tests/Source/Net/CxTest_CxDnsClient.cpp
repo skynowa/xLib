@@ -41,7 +41,7 @@ CxTest_CxDnsClient::bUnit(
 		tString sHostAddr = xT("");
 
 		m_bRes = CxDnsClient::bGetHostAddrByName(sHostName, &sHostAddr);
-		xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		//tcout << xT("[bGetHostAddrByName]: ") << sHostAddr << tendl;
 	}
@@ -53,7 +53,7 @@ CxTest_CxDnsClient::bUnit(
 		tString sHostAddr = xT("127.0.0.1");
 
 		m_bRes = CxDnsClient::bGetHostNameByAddr(sHostAddr, CxSocket::afInet, &sHostName);
-		xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		//tcout << xT("[bGetHostNameByAddr]: ") << sHostName << tendl;
 	}
@@ -64,7 +64,7 @@ CxTest_CxDnsClient::bUnit(
 		tString sLocalHostName = xT("");
 
 		m_bRes = CxDnsClient::bGetLocalHostName(&sLocalHostName);
-		xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		//tcout << xT("[bGetLocalHostName]: ") << sLocalHostName << tendl;
 	}
@@ -77,7 +77,7 @@ CxTest_CxDnsClient::bUnit(
 		////USHORT                      usPort    = 27015;
 
 		////m_bRes = CxDnsClient::bGetNameInfo(afFamily, sHostAddr, usPort);
-		////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		////xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		//////xSTD_COUT(xT("[bGetNameInfo]: ") << sLocalHostName);
 	}
@@ -92,7 +92,7 @@ CxTest_CxDnsClient::bUnit(
 		ADDRINFOT *paiList = NULL;
 
 		m_bRes = CxDnsClient::bGetHostAddrInfo(sHostName, sPort, NULL, &paiList);
-		xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		///xSTD_COUT(xT("[bGetLocalHostName]: ") << sLocalHostName);
 
@@ -132,7 +132,7 @@ CxTest_CxDnsClient::bUnit(
 			SHORT                siNumber = - 1;
 
 			m_bRes = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
-			xASSERT_NOT_EQUAL(FALSE, m_bRes);
+			xASSERT_NOT_EQ(FALSE, m_bRes);
 
 			//tcout << xT("[bGetProtocolByName]: ")             << tendl;
 			//tcout << xT("	sName:    ") << sName             << tendl;
@@ -158,7 +158,7 @@ CxTest_CxDnsClient::bUnit(
 			SHORT                siNumber = - 1;
 
 			m_bRes = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
-			xASSERT_NOT_EQUAL(FALSE, m_bRes);
+			xASSERT_NOT_EQ(FALSE, m_bRes);
 
 			//tcout << xT("[bGetProtocolByNumber]: ")           << tendl;
 			//tcout << xT("	sName:    ") << sName             << tendl;;
@@ -182,7 +182,7 @@ CxTest_CxDnsClient::bUnit(
 		tString              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
-		xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		//tcout << xT("[bGetServiceByName]: ")                   << tendl;
 		//tcout << xT("	sName:         ") << sName             << tendl;
@@ -207,7 +207,7 @@ CxTest_CxDnsClient::bUnit(
 		tString              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
-		xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		//tcout << xT("[bGetServiceByPort]: ") << tendl;
 		//tcout << xT("	sName:         ") << sName << tendl;

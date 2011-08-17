@@ -22,7 +22,7 @@ class CxReport :
         enum EType {
             rtUnknown,
             rtMsgboxPlain,
-            rtMsgboxRtf,
+            rtMsgboxFormated,
             rtStdoutPlain,
             rtStdoutHtml,
             rtLoggingPlain,
@@ -84,7 +84,7 @@ class CxReport :
         BOOL             _bInitVars         (const EType &crtType, const tString &csExp, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, const tString &csComment);
         BOOL             _bInitPlain        ();
         BOOL             _bInitHtml         ();
-        BOOL             _bInitRtf          ();
+        BOOL             _bInitFormated     ();
 };
 //---------------------------------------------------------------------------
 #include <Debug/CxReport.inl>

@@ -39,12 +39,12 @@
 //DONE: Compilers
 #if   defined(__MINGW32__)
     #define xCOMPILER_MINGW32
+#elif defined(__INTEL_COMPILER) || defined(__ICC) || defined(__ECC) || defined(__ICL)
+    #define xCOMPILER_INTEL
 #elif defined(_MSC_VER) || defined(_MSC_FULL_VER) || defined(_MSC_BUILD)
     #define xCOMPILER_MS
 #elif defined(__BORLANDC__) || defined(__CODEGEARC__)
     #define xCOMPILER_CODEGEAR
-#elif defined(__INTEL_COMPILER) || defined(__ICC) || defined(__ECC) || defined(__ICL)
-    #define xCOMPILER_INTEL
 #elif defined(__GNUC__)
     #define xCOMPILER_GNUC
 #else

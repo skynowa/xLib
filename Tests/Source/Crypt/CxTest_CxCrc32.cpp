@@ -40,10 +40,10 @@ CxTest_CxCrc32::bUnit(
     	CxStdioFile flFile;
 
         m_bRes = flFile.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = flFile.bResize(1333);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
 	//-------------------------------------
@@ -62,7 +62,7 @@ CxTest_CxCrc32::bUnit(
 	    //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
 	}
 
 	//-------------------------------------
@@ -81,7 +81,7 @@ CxTest_CxCrc32::bUnit(
         //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
 	}
 
 	return TRUE;

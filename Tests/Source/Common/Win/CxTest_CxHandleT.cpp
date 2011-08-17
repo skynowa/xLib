@@ -45,14 +45,14 @@ CxTest_CxHandleT::bUnit(
     //CxHandleT(const HANDLE chHandle)
     {
         m_bRes = objHandle.bIsValid();
-        xASSERT_EQUAL(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, m_bRes);
 
         m_bRes = objHandle.bSet( CxHandle::hGetCurrentProcess() );
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = objHandle.bIsValid();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_EQUAL(CxHandle::hGetCurrentProcess(), objHandle.hGet());
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_EQ(CxHandle::hGetCurrentProcess(), objHandle.hGet());
     }
 
     //-------------------------------------
@@ -83,28 +83,28 @@ CxTest_CxHandleT::bUnit(
     //hGet, bSet
     {
         m_hRes = objHandle.hGet();
-        xASSERT_EQUAL(CxHandle::hGetCurrentProcess(), m_hRes);
+        xASSERT_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
 
         HANDLE chHandle;
 
         m_bRes = objHandle.bSet(NULL);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_hRes = objHandle.hGet();
         xASSERT(NULL == m_hRes);
 
         m_bRes = objHandle.bSet(CxHandle::hGetCurrentProcess());
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_hRes = objHandle.hGet();
-        xASSERT_EQUAL(CxHandle::hGetCurrentProcess(), m_hRes);
+        xASSERT_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
     }
 
     //-------------------------------------
     //bIsValid
     {
         m_bRes = objHandle.bIsValid();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -112,7 +112,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bSetInformation(7, HANDLE_FLAG_INHERIT);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -121,7 +121,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_ulRes = objHandle.ulGetInformation();
-            xASSERT_EQUAL(HANDLE_FLAG_INHERIT, m_ulRes);
+            xASSERT_EQ(HANDLE_FLAG_INHERIT, m_ulRes);
         #endif
     }
 
@@ -130,7 +130,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bSetFlagInherit(TRUE);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -139,7 +139,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bIsFlagInherit();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -148,7 +148,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bSetFlagProtectFromClose(FALSE);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -157,7 +157,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bIsFlagProtectFromClose();
-            xASSERT_EQUAL(FALSE, m_bRes);
+            xASSERT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -184,7 +184,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bAttach(CxHandle::hGetCurrentProcess());
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -193,7 +193,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bClose();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -201,19 +201,19 @@ CxTest_CxHandleT::bUnit(
     //bIsValid
     {
         m_bRes = CxHandleT<hvNull>::bIsValid(CxHandle::hGetCurrentProcess());
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bIsValid
     {
         m_bRes = CxHandleT<hvInvalid>::bIsValid(CxHandle::hGetCurrentProcess());
-        xASSERT_EQUAL(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, m_bRes);
     }
 
     //detach handle
     m_bRes = objHandle.bSet(NULL);
-    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 #elif defined(xOS_LINUX)
 
 #endif

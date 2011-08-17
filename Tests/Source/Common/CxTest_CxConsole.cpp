@@ -45,7 +45,7 @@ CxTest_CxConsole::bUnit(
             const BOOL        cbIsBlink;
 
             m_sRes = cnConsole.bSetTextColor(csText, cfgForeground, cbIsBold, cbIsUnderline, cbgBackground, cbIsBlink);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -71,7 +71,7 @@ CxTest_CxConsole::bUnit(
         CxConsole cnConsole;
 
         m_bRes = cnConsole.bWrite(csStr);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -84,7 +84,7 @@ CxTest_CxConsole::bUnit(
         CxConsole cnConsole;
 
         m_bRes = cnConsole.bWriteLine(csStr);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -97,7 +97,7 @@ CxTest_CxConsole::bUnit(
         CxConsole cnConsole;
 
         m_bRes = cnConsole.bWriteLine(csStr);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -130,7 +130,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bPrompt(csPrompt, cbIsVisible, &sAnswer);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -142,7 +142,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bPause();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -150,27 +150,29 @@ CxTest_CxConsole::bUnit(
     //bClear
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxConsole cnConsole;
+        #if xTEMP_DISABLED
+            CxConsole cnConsole;
 
-        m_bRes = cnConsole.bClear();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            m_bRes = cnConsole.bClear();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #endif
     }
 
     //--------------------------------------------------
     //sGetTitle
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 1 && defined(OS_WIN)
+        #if 1 && defined(xOS_WIN)
             tString csTitle = xT("Title1");
 
 
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetTitle(csTitle);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_sRes = cnConsole.sGetTitle();
-            xASSERT_EQUAL(m_sRes, csTitle);
+            xASSERT_EQ(m_sRes, csTitle);
         #endif
     }
 
@@ -184,11 +186,11 @@ CxTest_CxConsole::bUnit(
         CxConsole cnConsole;
 
         m_bRes = cnConsole.bSetTitle(csTitle);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        #if 1 && defined(OS_WIN)
+        #if 1 && defined(xOS_WIN)
             m_sRes = cnConsole.sGetTitle();
-            xASSERT_EQUAL(m_sRes, csTitle);
+            xASSERT_EQ(m_sRes, csTitle);
         #endif
     }
 
@@ -196,11 +198,11 @@ CxTest_CxConsole::bUnit(
     //bCenterWindow
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 1 && defined(OS_WIN)
+        #if xTEMP_DISABLED && defined(xOS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bCenterWindow();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -208,11 +210,11 @@ CxTest_CxConsole::bUnit(
     //bSetFullScreen
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 1 && defined(OS_WIN)
+        #if xTEMP_DISABLED && defined(xOS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetFullScreen();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -220,14 +222,14 @@ CxTest_CxConsole::bUnit(
     //bEnableClose
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 1 && defined(OS_WIN)
+        #if 1 && defined(xOS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bEnableClose(FALSE);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = cnConsole.bEnableClose(TRUE);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
 

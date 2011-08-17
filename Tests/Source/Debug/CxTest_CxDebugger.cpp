@@ -39,19 +39,19 @@ CxTest_CxDebugger::bUnit(
         const BOOL cbFalse = FALSE;
 
         m_bRes = CxDebugger::bGetEnabled();
-        xASSERT_EQUAL(cbTrue, m_bRes);
+        xASSERT_EQ(cbTrue, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbFalse);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
-        xASSERT_EQUAL(cbFalse, m_bRes);
+        xASSERT_EQ(cbFalse, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbTrue);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
-        xASSERT_EQUAL(cbTrue, m_bRes);
+        xASSERT_EQ(cbTrue, m_bRes);
     }
 
     //-------------------------------------
@@ -75,19 +75,19 @@ CxTest_CxDebugger::bUnit(
         const tString csFilePath = xT("");
 
         m_sRes = CxDebugger::sGetLogPath();
-        xASSERT_EQUAL(true, m_sRes.empty());
+        xASSERT_EQ(true, m_sRes.empty());
 
         m_bRes = CxDebugger::bSetLogPath(csFilePath);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
-        xASSERT_EQUAL(csFilePath, m_sRes);
+        xASSERT_EQ(csFilePath, m_sRes);
 
         m_bRes = CxDebugger::bSetLogPath(xT(""));
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
-        xASSERT_EQUAL(true, m_sRes.empty());
+        xASSERT_EQ(true, m_sRes.empty());
     }
 
     //-------------------------------------
@@ -96,7 +96,7 @@ CxTest_CxDebugger::bUnit(
     {
         const CxReport::EType crtType[] = {
             CxReport::rtMsgboxPlain,
-            CxReport::rtMsgboxRtf,
+            CxReport::rtMsgboxFormated,
             CxReport::rtStdoutPlain,
             CxReport::rtStdoutHtml,
             CxReport::rtLoggingPlain,
@@ -107,7 +107,7 @@ CxTest_CxDebugger::bUnit(
 	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));
 
 	        ////m_bRes = CxDebugger::bReportMake(rpReport);
-            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            ////xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
 
@@ -116,7 +116,7 @@ CxTest_CxDebugger::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -129,7 +129,7 @@ CxTest_CxDebugger::bUnit(
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), xT("qwerty"));
         #endif
 
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -137,7 +137,7 @@ CxTest_CxDebugger::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxDebugger::bBeep();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -241,7 +241,7 @@ CxTest_CxDebugger::bUnit(
     }
 
     //--------------------------------------------------
-    //like xASSERT_EQUAL macroses
+    //like xASSERT_EQ macroses
 
     //with INT
     {
@@ -249,14 +249,14 @@ CxTest_CxDebugger::bUnit(
 	    {
 		    INT iVar1 = 1;
 		    INT iVar2 = 1;
-		    xASSERT_EQUAL(iVar1, iVar2);
+		    xASSERT_EQ(iVar1, iVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
 		    INT iVar1 = 0;
 		    INT iVar2 = 1;
-		    xASSERT_NOT_EQUAL(iVar1, iVar2);
+		    xASSERT_NOT_EQ(iVar1, iVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
@@ -277,27 +277,27 @@ CxTest_CxDebugger::bUnit(
 	    {
 		    INT iVar1 = 50;
 		    INT iVar2 = 122;
-		    xASSERT_LESS_EQUAL(iVar1, iVar2);
+		    xASSERT_LESS_EQ(iVar1, iVar2);
 
             INT iVar3 = 200;
 		    INT iVar4 = 200;
-		    xASSERT_LESS_EQUAL(iVar3, iVar4);
+		    xASSERT_LESS_EQ(iVar3, iVar4);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
 		    INT iVar1 = 500;
 		    INT iVar2 = 147;
-		    xASSERT_GREATER_EQUAL(iVar1, iVar2);
+		    xASSERT_GREATER_EQ(iVar1, iVar2);
 
             INT iVar3 = 77777;
 		    INT iVar4 = 77777;
-		    xASSERT_GREATER_EQUAL(iVar3, iVar4);
+		    xASSERT_GREATER_EQ(iVar3, iVar4);
 	    }
     }
 
     //--------------------------------------------------
-    //like xASSERT_EQUAL macroses
+    //like xASSERT_EQ macroses
 
     //with tString
     {
@@ -305,14 +305,14 @@ CxTest_CxDebugger::bUnit(
 	    {
 		    tString sVar1 = xT("aaa");
 		    tString sVar2 = xT("aaa");
-		    xASSERT_EQUAL(sVar1, sVar2);
+		    xASSERT_EQ(sVar1, sVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
 		    tString sVar1 = xT("bbb");
 		    tString sVar2 = xT("BBB");
-		    xASSERT_NOT_EQUAL(sVar1, sVar2);
+		    xASSERT_NOT_EQ(sVar1, sVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
@@ -333,22 +333,22 @@ CxTest_CxDebugger::bUnit(
 	    {
 		    tString sVar1 = xT("aaa");
 		    tString sVar2 = xT("aaa");
-		    xASSERT_LESS_EQUAL(sVar1, sVar2);
+		    xASSERT_LESS_EQ(sVar1, sVar2);
 
             tString sVar3 = xT("aaa");
 		    tString sVar4 = xT("ggg");
-		    xASSERT_LESS_EQUAL(sVar3, sVar4);
+		    xASSERT_LESS_EQ(sVar3, sVar4);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
 		    tString sVar1 = xT("aaa");
 		    tString sVar2 = xT("aaa");
-		    xASSERT_GREATER_EQUAL(sVar1, sVar2);
+		    xASSERT_GREATER_EQ(sVar1, sVar2);
 
             tString sVar3 = xT("hhhh");
 		    tString sVar4 = xT("aaa");
-		    xASSERT_GREATER_EQUAL(sVar3, sVar4);
+		    xASSERT_GREATER_EQ(sVar3, sVar4);
 	    }
     }
 

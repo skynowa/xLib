@@ -146,7 +146,7 @@ _tmain(
     //set commandline args for xLib
     {
         BOOL bRes = CxEnvironment::bSetCommandLineArgs(iArgCount, paszArgs);
-        xASSERT_NOT_EQUAL(FALSE, bRes);
+        xASSERT_NOT_EQ(FALSE, bRes);
     }
 
 
@@ -168,7 +168,7 @@ _tmain(
         std::vector<tString> vsArgs;
 
         bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
-        xASSERT_NOT_EQUAL(FALSE, bRes);
+        xASSERT_NOT_EQ(FALSE, bRes);
 
         //usage
         if (2 == iArgCount) {

@@ -51,7 +51,7 @@ class CxDebugger :
         virtual       ~CxDebugger        ();
 
         static BOOL    _bMsgboxPlain     (const CxReport &crpReport);
-        static BOOL    _bMsgboxRtf       (const CxReport &crpReport);
+        static BOOL    _bMsgboxFormated  (const CxReport &crpReport);
 
         static BOOL    _bStdoutPlain     (const CxReport &crpReport);
         static BOOL    _bStdoutHtml      (const CxReport &crpReport);
@@ -63,32 +63,3 @@ class CxDebugger :
 #include <Debug/CxDebugger.inl>
 //---------------------------------------------------------------------------
 #endif    //xLib_Debug_CxDebuggerH
-
-
-/*
-#include  <io.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <windows.h>
-
-BOOL create_console(void)
-{
-  FreeConsole();
-  if (AllocConsole())
-  {
-    int hCrt = _open_osfhandle((long) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
-    *stdout = *(::_fdopen(hCrt, "w"));
-    ::setvbuf(stdout, NULL, _IONBF, 0);
-    *stderr = *(::_fdopen(hCrt, "w"));
-    ::setvbuf(stderr, NULL, _IONBF, 0);
-    return TRUE;
-  }
-  return FALSE;
-}
-
-usage:
-
-#ifdef DEBUG
-  create_console();
-#endif // DEBUG
-*/

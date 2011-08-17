@@ -38,12 +38,12 @@ CxTest_CxSystemInfo::bUnit(
 
         otType = CxSystemInfo::osGetOS();
         #if defined(xOS_WIN)
-            xASSERT_EQUAL(CxSystemInfo::otWindowsXP, otType);
+            xASSERT_EQ(CxSystemInfo::otWindowsXP, otType);
         #elif defined(xOS_LINUX)
             #if defined(xOS_FREEBSD)
-                xASSERT_EQUAL(CxSystemInfo::otFreeBSD, otType);
+                xASSERT_EQ(CxSystemInfo::otFreeBSD, otType);
             #else
-                xASSERT_EQUAL(CxSystemInfo::otLinux, otType);
+                xASSERT_EQ(CxSystemInfo::otLinux, otType);
             #endif
         #endif
     }
@@ -73,14 +73,14 @@ CxTest_CxSystemInfo::bUnit(
             std::map<CxSystemInfo::EOsType, tString>::const_iterator it;
             for (it = mapData.begin(); it != mapData.end(); ++ it) {
                 m_sRes = CxSystemInfo::sFormatOsType((*it).first);
-                xASSERT_EQUAL((*it).second, m_sRes);
+                xASSERT_EQ((*it).second, m_sRes);
             }
         #elif defined(xOS_LINUX)
             m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otLinux);
-            xASSERT_EQUAL(false, m_sRes.empty());
+            xASSERT_EQ(false, m_sRes.empty());
 
             m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otFreeBSD);
-            xASSERT_EQUAL(false, m_sRes.empty());
+            xASSERT_EQ(false, m_sRes.empty());
         #endif
     }
 
@@ -91,7 +91,7 @@ CxTest_CxSystemInfo::bUnit(
         CxSystemInfo::EOsArch oaRes = CxSystemInfo::oaUnknown;
 
         oaRes = CxSystemInfo::oaGetOsArch();
-        xASSERT_NOT_EQUAL(CxSystemInfo::oaUnknown, oaRes);
+        xASSERT_NOT_EQ(CxSystemInfo::oaUnknown, oaRes);
     }
 
     //-------------------------------------
@@ -99,7 +99,7 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxSystemInfo::sGetComputerName();
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
         xTRACEV(xT("\tCxSystemInfo::sGetComputerName(): %s"), m_sRes.c_str());
     }
 
@@ -116,7 +116,7 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxSystemInfo::sGetUserName();
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
         xTRACEV(xT("\tCxSystemInfo::sGetUserName(): %s"), m_sRes.c_str());
     }
 
@@ -135,8 +135,8 @@ CxTest_CxSystemInfo::bUnit(
     {
         m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
         xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
-        xASSERT_NOT_EQUAL(static_cast<ULONG>( - 1 ), m_ulRes);
-        xASSERT_EQUAL(true, 0 <= m_ulRes && CxSystemInfo::ulGetNumOfCPUs() > m_ulRes);
+        xASSERT_NOT_EQ(static_cast<ULONG>( - 1 ), m_ulRes);
+        xASSERT_EQ(true, 0 <= m_ulRes && CxSystemInfo::ulGetNumOfCPUs() > m_ulRes);
     }
 
     //-------------------------------------
@@ -144,7 +144,7 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxSystemInfo::bIsUnicodeOS();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------

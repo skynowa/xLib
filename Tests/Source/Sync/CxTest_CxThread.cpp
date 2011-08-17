@@ -40,7 +40,7 @@ CxTest_CxThread::bUnit(
             const BOOL cbAutoDelete = TRUE;
 
             CWorkThread *pthT = new CWorkThread(cbAutoDelete);
-            xASSERT_NOT_EQUAL(NULL, pthT);
+            xASSERT_NOT_EQ(NULL, pthT);
 
             uiI ++;
 
@@ -51,28 +51,28 @@ CxTest_CxThread::bUnit(
             //�������z
             INT iParam = 1000/*00000*/;
             m_bRes = pthT->bCreate(cbIsPaused, 0, &iParam);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
             ////LOG("bCreate()");
 
             m_bRes = pthT->bIsPaused();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bIsPaused();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             //-------------------------------------
             //����� ��������
             m_bRes = pthT->bIsCreated();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bIsRunning();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bIsPaused();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bIsExited();
-            xASSERT_EQUAL(FALSE, m_bRes);
+            xASSERT_EQ(FALSE, m_bRes);
 
             //-------------------------------------
             //���������
@@ -83,58 +83,58 @@ CxTest_CxThread::bUnit(
             //-------------------------------------
             //���������
             m_bRes = pthT->bSetPriority(CxThread::tpLowest);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
-            xASSERT_EQUAL(CxThread::tpLowest, m_iRes);
+            xASSERT_EQ(CxThread::tpLowest, m_iRes);
 
             m_sRes = pthT->sGetPriorityString();
-            xASSERT_EQUAL(tString(xT("Lowest")), m_sRes);
+            xASSERT_EQ(tString(xT("Lowest")), m_sRes);
 
             m_bRes = pthT->bPriorityUp();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bPriorityDown();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bIsPriorityBoost();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             {
                 m_bRes = pthT->bSetPriorityBoost(FALSE);
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
 
                 m_bRes = pthT->bIsPriorityBoost();
-                xASSERT_EQUAL(FALSE, m_bRes);
+                xASSERT_EQ(FALSE, m_bRes);
             }
             {
                 m_bRes = pthT->bSetPriorityBoost(TRUE);
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
 
                 m_bRes = pthT->bIsPriorityBoost();
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
             }
 
             //-------------------------------------
             //CPU
             ////m_bRes = bSetAffinityMask(DWORD_PTR pulMask);
-            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            ////xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bSetIdealCPU(0);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_ulRes = pthT->ulGetIdealCPU();
-            xASSERT_LESS_EQUAL(0, m_ulRes);
+            xASSERT_LESS_EQ(0, m_ulRes);
 
             m_bRes = pthT->bSetIdealCPU(10);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bSetIdealCPU(0);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
             ////LOG("bSetIdealCPU()");
 
             m_ulRes = pthT->ulGetIdealCPU();
-            xASSERT_EQUAL(0, m_ulRes);
+            xASSERT_EQ(0, m_ulRes);
 
             m_ulRes = pthT->ulGetCPUCount();
             xASSERT_LESS(0 < m_ulRes);
@@ -142,63 +142,63 @@ CxTest_CxThread::bUnit(
             //-------------------------------------
             //���������
             m_hRes  = pthT->hGetHandle();
-            xASSERT_NOT_EQUAL(NULL, m_hRes);
+            xASSERT_NOT_EQ(NULL, m_hRes);
 
             m_ulRes = pthT->ulGetId();
             xASSERT_LESS(0, m_ulRes);
 
             //bIsCurrent
             m_bRes = pthT->bIsCurrent();
-            xASSERT_EQUAL(FALSE, m_bRes);
+            xASSERT_EQ(FALSE, m_bRes);
 
             m_ulRes = pthT->ulGetExitCode();
-            xASSERT_LESS_EQUAL(0, m_ulRes);
+            xASSERT_LESS_EQ(0, m_ulRes);
 
             m_bRes = pthT->bSetDebugName(xT("TestThreadName"));
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
             ////LOG("bSetDebugName()");
 
             //-------------------------------------
             //static
             ////g_hRes = CxThread::hOpen(THREAD_ALL_ACCESS, FALSE, ::GetCurrentThreadId());
-            ////xASSERT_EQUAL(NULL != g_hRes);
+            ////xASSERT_EQ(NULL != g_hRes);
 
             m_ulRes = CxThread::ulGetCurrId();
-            xASSERT_EQUAL(0 < m_ulRes);
+            xASSERT_EQ(0 < m_ulRes);
 
             m_hRes  = CxThread::hGetCurrHandle();
-            xASSERT_EQUAL(NULL !=  m_hRes);
+            xASSERT_EQ(NULL !=  m_hRes);
 
             m_bRes = pthT->bResume();
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
             ////LOG("bResume()");
 
             //-------------------------------------
             //�����
             for (int i = 0; i < 3; i ++) {
                 m_bRes = pthT->bPause();
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
 
                 m_bRes = pthT->bIsPaused();
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
 
                 m_bRes = pthT->bResume();
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
 
                 m_bRes = pthT->bIsPaused();
-                xASSERT_EQUAL(FALSE, m_bRes);
+                xASSERT_EQ(FALSE, m_bRes);
             }
 
             ////m_bRes = pthT->bExit(INFINITE);
-            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            ////xASSERT_NOT_EQ(FALSE, m_bRes);
             ////////LOG("bExit()");
 
             ////g_uiRes = pthT->uiKill(INFINITE);
-            ////xASSERT_EQUAL(0, g_uiRes);
+            ////xASSERT_EQ(0, g_uiRes);
             ////////////LOG("uiKill()");
 
             ////m_bRes = pthT->bWait(INFINITE);
-            ////xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            ////xASSERT_NOT_EQ(FALSE, m_bRes);
             ////////LOG("bWait(INFINITE)");
 
             ULONG ulRes = pthT->ulGetExitCode();
@@ -251,7 +251,7 @@ CxTest_CxThread::bUnit(
             const BOOL          cbRes = (BOOL)(ULONG)aulData[i][1];
 
             m_bRes = CxThread::bIsCurrent(culId);
-            xASSERT_EQUAL(cbRes, m_bRes);
+            xASSERT_EQ(cbRes, m_bRes);
         }
     }
 
@@ -266,7 +266,7 @@ CxTest_CxThread::bUnit(
     //bYield
     {
         m_bRes = CxThread::bYield();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -285,11 +285,11 @@ CxTest_CxThread::bUnit(
 	        CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
 
 	        m_bRes = CxThread::bSleep(cuiMsec);
-	        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	        xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	        CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
 
-	        xASSERT_GREATER_EQUAL(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
+	        xASSERT_GREATER_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
 	        //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
         }
     }

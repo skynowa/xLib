@@ -145,14 +145,14 @@ CxDebugger::bReportMake(
 
     INT iRes = crpReport.rtGetType();
     switch (iRes) {
-        case CxReport::rtMsgboxPlain:  { _bMsgboxPlain (crpReport); } break;
-        case CxReport::rtMsgboxRtf:    { _bMsgboxRtf   (crpReport); } break;
-        case CxReport::rtStdoutPlain:  { _bStdoutPlain (crpReport); } break;
-        case CxReport::rtStdoutHtml:   { _bStdoutHtml  (crpReport); } break;
-        case CxReport::rtLoggingPlain: { _bLoggingPlain(crpReport); } break;
-        case CxReport::rtLoggingHtml:  { _bLoggingHtml (crpReport); } break;
+        case CxReport::rtMsgboxPlain:  { _bMsgboxPlain   (crpReport); } break;
+        case CxReport::rtMsgboxFormated:    { _bMsgboxFormated(crpReport); } break;
+        case CxReport::rtStdoutPlain:  { _bStdoutPlain   (crpReport); } break;
+        case CxReport::rtStdoutHtml:   { _bStdoutHtml    (crpReport); } break;
+        case CxReport::rtLoggingPlain: { _bLoggingPlain  (crpReport); } break;
+        case CxReport::rtLoggingHtml:  { _bLoggingHtml   (crpReport); } break;
 
-        default:                       { _bStdoutPlain (crpReport); } break;
+        default:                       { _bStdoutPlain   (crpReport); } break;
     }
 
     //-------------------------------------
@@ -315,10 +315,10 @@ CxDebugger::_bMsgboxPlain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bMsgboxRtf (show MessageBox or std::cerr)
+//DONE: _bMsgboxFormated (show MessageBox or std::cerr)
 /*static*/
 BOOL
-CxDebugger::_bMsgboxRtf(
+CxDebugger::_bMsgboxFormated(
     const CxReport &crpReport
 )
 {

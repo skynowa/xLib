@@ -36,31 +36,31 @@ CxTest_CxUri::bUnit(
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret#nose");
 
         m_sRes  = objUri.sGetUri();
-        xASSERT_EQUAL(std::string("foo://userinfo@example.com:8042/over/there?name=ferret#nose"), m_sRes);
+        xASSERT_EQ(std::string("foo://userinfo@example.com:8042/over/there?name=ferret#nose"), m_sRes);
 
         m_sRes  = objUri.sGetScheme();
-        xASSERT_EQUAL(std::string("foo"), m_sRes);
+        xASSERT_EQ(std::string("foo"), m_sRes);
 
         m_sRes  = objUri.sGetAuthority();
-        xASSERT_EQUAL(std::string("//userinfo@example.com:8042"), m_sRes);
+        xASSERT_EQ(std::string("//userinfo@example.com:8042"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xASSERT_EQUAL(std::string("userinfo"), m_sRes);
+        xASSERT_EQ(std::string("userinfo"), m_sRes);
 
         m_sRes  = objUri.sGetHost();
-        xASSERT_EQUAL(std::string("example.com"), m_sRes);
+        xASSERT_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xASSERT_EQUAL((USHORT)8042u, m_usiRes);
+        xASSERT_EQ((USHORT)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xASSERT_EQUAL(std::string("/over/there"), m_sRes);
+        xASSERT_EQ(std::string("/over/there"), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xASSERT_EQUAL(std::string("name=ferret"), m_sRes);
+        xASSERT_EQ(std::string("name=ferret"), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xASSERT_EQUAL(std::string("nose"), m_sRes);
+        xASSERT_EQ(std::string("nose"), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
@@ -68,31 +68,31 @@ CxTest_CxUri::bUnit(
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret");
 
         m_sRes  = objUri.sGetUri();
-        xASSERT_EQUAL(std::string("foo://userinfo@example.com:8042/over/there?name=ferret"), m_sRes);
+        xASSERT_EQ(std::string("foo://userinfo@example.com:8042/over/there?name=ferret"), m_sRes);
 
         m_sRes  = objUri.sGetScheme();
-        xASSERT_EQUAL(std::string("foo"), m_sRes);
+        xASSERT_EQ(std::string("foo"), m_sRes);
 
         m_sRes  = objUri.sGetAuthority();
-        xASSERT_EQUAL(std::string("//userinfo@example.com:8042"), m_sRes);
+        xASSERT_EQ(std::string("//userinfo@example.com:8042"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xASSERT_EQUAL(std::string("userinfo"), m_sRes);
+        xASSERT_EQ(std::string("userinfo"), m_sRes);
 
         m_sRes  = objUri.sGetHost();
-        xASSERT_EQUAL(std::string("example.com"), m_sRes);
+        xASSERT_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xASSERT_EQUAL((USHORT)8042u, m_usiRes);
+        xASSERT_EQ((USHORT)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xASSERT_EQUAL(std::string("/over/there"), m_sRes);
+        xASSERT_EQ(std::string("/over/there"), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xASSERT_EQUAL(std::string("name=ferret"), m_sRes);
+        xASSERT_EQ(std::string("name=ferret"), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
@@ -100,31 +100,31 @@ CxTest_CxUri::bUnit(
         CxUri objUri("foo://userinfo@example.com:8042/over/there");
 
         m_sRes  = objUri.sGetUri();
-        xASSERT_EQUAL(std::string("foo://userinfo@example.com:8042/over/there"), m_sRes);
+        xASSERT_EQ(std::string("foo://userinfo@example.com:8042/over/there"), m_sRes);
 
         m_sRes  = objUri.sGetScheme();
-        xASSERT_EQUAL(std::string("foo"), m_sRes);
+        xASSERT_EQ(std::string("foo"), m_sRes);
 
         m_sRes  = objUri.sGetAuthority();
-        xASSERT_EQUAL(std::string("//userinfo@example.com:8042"), m_sRes);
+        xASSERT_EQ(std::string("//userinfo@example.com:8042"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xASSERT_EQUAL(std::string("userinfo"), m_sRes);
+        xASSERT_EQ(std::string("userinfo"), m_sRes);
 
         m_sRes  = objUri.sGetHost();
-        xASSERT_EQUAL(std::string("example.com"), m_sRes);
+        xASSERT_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xASSERT_EQUAL((USHORT)8042u, m_usiRes);
+        xASSERT_EQ((USHORT)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xASSERT_EQUAL(std::string("/over/there"), m_sRes);
+        xASSERT_EQ(std::string("/over/there"), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
@@ -132,31 +132,31 @@ CxTest_CxUri::bUnit(
         CxUri objUri("foo://userinfo@example.com:8042");
 
         m_sRes  = objUri.sGetUri();
-        xASSERT_EQUAL(std::string("foo://userinfo@example.com:8042"), m_sRes);
+        xASSERT_EQ(std::string("foo://userinfo@example.com:8042"), m_sRes);
 
         m_sRes  = objUri.sGetScheme();
-        xASSERT_EQUAL(std::string("foo"), m_sRes);
+        xASSERT_EQ(std::string("foo"), m_sRes);
 
         m_sRes  = objUri.sGetAuthority();
-        xASSERT_EQUAL(std::string("//userinfo@example.com:8042"), m_sRes);
+        xASSERT_EQ(std::string("//userinfo@example.com:8042"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xASSERT_EQUAL(std::string("userinfo"), m_sRes);
+        xASSERT_EQ(std::string("userinfo"), m_sRes);
 
         m_sRes  = objUri.sGetHost();
-        xASSERT_EQUAL(std::string("example.com"), m_sRes);
+        xASSERT_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xASSERT_EQUAL((USHORT)8042u, m_usiRes);
+        xASSERT_EQ((USHORT)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
@@ -164,31 +164,31 @@ CxTest_CxUri::bUnit(
         CxUri objUri("foo://userinfo@example.com");
 
         m_sRes  = objUri.sGetUri();
-        xASSERT_EQUAL(std::string("foo://userinfo@example.com"), m_sRes);
+        xASSERT_EQ(std::string("foo://userinfo@example.com"), m_sRes);
 
         m_sRes  = objUri.sGetScheme();
-        xASSERT_EQUAL(std::string("foo"), m_sRes);
+        xASSERT_EQ(std::string("foo"), m_sRes);
 
         m_sRes  = objUri.sGetAuthority();
-        xASSERT_EQUAL(std::string("//userinfo@example.com"), m_sRes);
+        xASSERT_EQ(std::string("//userinfo@example.com"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xASSERT_EQUAL(std::string("userinfo"), m_sRes);
+        xASSERT_EQ(std::string("userinfo"), m_sRes);
 
         m_sRes  = objUri.sGetHost();
-        xASSERT_EQUAL(std::string("example.com"), m_sRes);
+        xASSERT_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xASSERT_EQUAL((USHORT)0, m_usiRes);
+        xASSERT_EQ((USHORT)0, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
@@ -196,31 +196,31 @@ CxTest_CxUri::bUnit(
         CxUri objUri("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c");
 
         m_sRes  = objUri.sGetUri();
-        xASSERT_EQUAL(std::string("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c"), m_sRes);
+        xASSERT_EQ(std::string("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c"), m_sRes);
 
         m_sRes  = objUri.sGetScheme();
-        xASSERT_EQUAL(std::string("http"), m_sRes);
+        xASSERT_EQ(std::string("http"), m_sRes);
 
         m_sRes  = objUri.sGetAuthority();
-        xASSERT_EQUAL(std::string("//weather.yahoo.com"), m_sRes);
+        xASSERT_EQ(std::string("//weather.yahoo.com"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetHost();
-        xASSERT_EQUAL(std::string("weather.yahoo.com"), m_sRes);
+        xASSERT_EQ(std::string("weather.yahoo.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xASSERT_EQUAL((USHORT)80u, m_usiRes);
+        xASSERT_EQ((USHORT)80u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xASSERT_EQUAL(std::string("/ukraine/kiev-city-municipality/kiev-924938/"), m_sRes);
+        xASSERT_EQ(std::string("/ukraine/kiev-city-municipality/kiev-924938/"), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xASSERT_EQUAL(std::string("unit=c"), m_sRes);
+        xASSERT_EQ(std::string("unit=c"), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
@@ -228,31 +228,31 @@ CxTest_CxUri::bUnit(
         CxUri objUri("http://dn1.berloga.net/83841/zombie_baseball_2.swf");
 
         m_sRes  = objUri.sGetUri();
-        xASSERT_EQUAL(std::string("http://dn1.berloga.net/83841/zombie_baseball_2.swf"), m_sRes);
+        xASSERT_EQ(std::string("http://dn1.berloga.net/83841/zombie_baseball_2.swf"), m_sRes);
 
         m_sRes  = objUri.sGetScheme();
-        xASSERT_EQUAL(std::string("http"), m_sRes);
+        xASSERT_EQ(std::string("http"), m_sRes);
 
         m_sRes  = objUri.sGetAuthority();
-        xASSERT_EQUAL(std::string("//dn1.berloga.net"), m_sRes);
+        xASSERT_EQ(std::string("//dn1.berloga.net"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetHost();
-        xASSERT_EQUAL(std::string("dn1.berloga.net"), m_sRes);
+        xASSERT_EQ(std::string("dn1.berloga.net"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xASSERT_EQUAL((USHORT)80u, m_usiRes);
+        xASSERT_EQ((USHORT)80u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xASSERT_EQUAL(std::string("/83841/zombie_baseball_2.swf"), m_sRes);
+        xASSERT_EQ(std::string("/83841/zombie_baseball_2.swf"), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xASSERT_EQUAL(std::string(), m_sRes);
+        xASSERT_EQ(std::string(), m_sRes);
     }
 
     //-------------------------------------
@@ -270,7 +270,7 @@ CxTest_CxUri::bUnit(
             m_sRes = CxUri::sEncodeComponent(sUri[i]);
             m_sRes = CxUri::sDecodeComponent(m_sRes);
 
-            xASSERT_EQUAL(sUri[i], m_sRes);
+            xASSERT_EQ(sUri[i], m_sRes);
         }
     }
 #elif defined(xOS_LINUX)

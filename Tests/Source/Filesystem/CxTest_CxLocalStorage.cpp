@@ -66,7 +66,7 @@ CxTest_CxLocalStorage::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bCreateDefault(csContent);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -74,7 +74,7 @@ CxTest_CxLocalStorage::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = iniIni.sGetPath();
-        xASSERT_EQUAL(csFilePath, m_sRes);
+        xASSERT_EQ(csFilePath, m_sRes);
     }
 
     //--------------------------------------------------
@@ -82,10 +82,10 @@ CxTest_CxLocalStorage::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bSetPath(csFilePath);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_sRes = iniIni.sGetPath();
-        xASSERT_EQUAL(csFilePath, m_sRes);
+        xASSERT_EQ(csFilePath, m_sRes);
     }
 
     //--------------------------------------------------
@@ -93,28 +93,28 @@ CxTest_CxLocalStorage::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         NxLib::TLocalStorage &riniIni = iniIni.cmapsGet();
-        xASSERT_EQUAL(true, riniIni.empty());
+        xASSERT_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
         riniIni[csKey2] = csValue2;
         riniIni[csKey3] = csValue3;
 
         m_bRes = iniIni.bFlush();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_sRes = iniIni.sKeyReadString(csKey1, tString());
-        xASSERT_EQUAL(csValue1, m_sRes);
+        xASSERT_EQ(csValue1, m_sRes);
 
         m_sRes = iniIni.sKeyReadString(csKey2, tString());
-        xASSERT_EQUAL(csValue2, m_sRes);
+        xASSERT_EQ(csValue2, m_sRes);
 
         m_sRes = iniIni.sKeyReadString(csKey3, tString());
-        xASSERT_EQUAL(csValue3, m_sRes);
+        xASSERT_EQ(csValue3, m_sRes);
 
         iniIni.cmapsGet().clear();
 
         m_bRes = iniIni.bFlush();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -122,14 +122,14 @@ CxTest_CxLocalStorage::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         NxLib::TLocalStorage &riniIni = iniIni.cmapsGet();
-        xASSERT_EQUAL(true, riniIni.empty());
+        xASSERT_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
         riniIni[csKey2] = csValue2;
         riniIni[csKey3] = csValue3;
 
         m_bRes = iniIni.bFlush();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         //success
         {
@@ -143,11 +143,11 @@ CxTest_CxLocalStorage::bUnit(
                 std::vector<tString> vsPair;
 
                 m_bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
-                xASSERT_EQUAL(false, vsPair.empty());
+                xASSERT_NOT_EQ(FALSE, m_bRes);
+                xASSERT_EQ(false, vsPair.empty());
 
                 m_bRes = iniIni.bKeyIsExists( vsPair.at(0) );
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
             }
         }
 
@@ -165,17 +165,17 @@ CxTest_CxLocalStorage::bUnit(
                 std::vector<tString> vsPair;
 
                 m_bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
-                xASSERT_NOT_EQUAL(FALSE, m_bRes);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
 
                 m_bRes = iniIni.bKeyIsExists( vsPair.at(0) );
-                xASSERT_EQUAL(FALSE, m_bRes);
+                xASSERT_EQ(FALSE, m_bRes);
             }
         }
 
         iniIni.cmapsGet().clear();
 
         m_bRes = iniIni.bFlush();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -187,10 +187,10 @@ CxTest_CxLocalStorage::bUnit(
             const tString csStr = csValue1;
 
             m_bRes = iniIni.bKeyWriteString(csKey1, csStr);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_sRes = iniIni.sKeyReadString(csKey1, tString());
-            xASSERT_EQUAL(csStr, m_sRes);
+            xASSERT_EQ(csStr, m_sRes);
         }
 
         //fail
@@ -198,10 +198,10 @@ CxTest_CxLocalStorage::bUnit(
             const tString csStr = xT("sssssssssssss");
 
             m_bRes = iniIni.bKeyWriteString(csKey1, csStr);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_sRes = iniIni.sKeyReadString(csKey1, tString());
-            xASSERT_EQUAL(csStr, m_sRes);
+            xASSERT_EQ(csStr, m_sRes);
         }
     }
 
@@ -212,10 +212,10 @@ CxTest_CxLocalStorage::bUnit(
         const LONG cliValue = 10L;
 
         m_bRes  = iniIni.bKeyWriteInt(csKey1, cliValue);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_liRes = iniIni.iKeyReadInt(csKey1, 0L);
-        xASSERT_EQUAL(cliValue, m_liRes);
+        xASSERT_EQ(cliValue, m_liRes);
     }
 
     //--------------------------------------------------
@@ -225,10 +225,10 @@ CxTest_CxLocalStorage::bUnit(
         const DOUBLE cdValue = 777.0f;
 
         m_bRes  = iniIni.bKeyWriteFloat(csKey1, cdValue);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_dRes = iniIni.dKeyReadFloat(csKey1, 0.0f);
-        xASSERT_EQUAL(cdValue, m_dRes);
+        xASSERT_EQ(cdValue, m_dRes);
     }
 
     //--------------------------------------------------
@@ -238,10 +238,10 @@ CxTest_CxLocalStorage::bUnit(
         const BOOL cbValue = FALSE;
 
         m_bRes  = iniIni.bKeyWriteBool(csKey1, cbValue);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = iniIni.bKeyReadBool(csKey1, TRUE);
-        xASSERT_EQUAL(cbValue, m_bRes);
+        xASSERT_EQ(cbValue, m_bRes);
     }
 
     //--------------------------------------------------
@@ -252,11 +252,11 @@ CxTest_CxLocalStorage::bUnit(
         const uString cusDefaultValue(10, 'd');
 
         m_bRes  = iniIni.bKeyWriteBin(csKey1, cusValue);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_usRes = iniIni.usKeyReadBin(csKey1, cusDefaultValue);
 #if xTODO
-        xASSERT_EQUAL(cusValue, m_usRes);
+        xASSERT_EQ(cusValue, m_usRes);
 #endif
     }
 
@@ -265,11 +265,11 @@ CxTest_CxLocalStorage::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bKeyClear(csKey3);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_NOT_EQUAL(FALSE, iniIni.bKeyIsExists(csKey3));
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, iniIni.bKeyIsExists(csKey3));
 
         m_sRes = iniIni.sKeyReadString(csKey3, xT("fasrfsefrtg"));
-        xASSERT_EQUAL(tString(), m_sRes);
+        xASSERT_EQ(tString(), m_sRes);
     }
 
     //--------------------------------------------------
@@ -280,12 +280,12 @@ CxTest_CxLocalStorage::bUnit(
         const tString csValue = xT("");
 
         m_bRes = iniIni.bKeyWriteString(csKey, csValue);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_NOT_EQUAL(FALSE, iniIni.bKeyIsExists(csKey));
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, iniIni.bKeyIsExists(csKey));
 
         m_bRes = iniIni.bKeyDelete(csKey);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_EQUAL(FALSE, iniIni.bKeyIsExists(csKey));
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, iniIni.bKeyIsExists(csKey));
     }
 
     //--------------------------------------------------
@@ -293,8 +293,8 @@ CxTest_CxLocalStorage::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bClear();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_EQUAL(0L, CxStdioFile::liGetSize( iniIni.sGetPath() ));
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_EQ(0L, CxStdioFile::liGetSize( iniIni.sGetPath() ));
     }
 
     //--------------------------------------------------
@@ -302,8 +302,8 @@ CxTest_CxLocalStorage::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = iniIni.bDelete();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_EQUAL(FALSE, CxStdioFile::bIsExists( iniIni.sGetPath() ));
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, CxStdioFile::bIsExists( iniIni.sGetPath() ));
     }
 
     return TRUE;

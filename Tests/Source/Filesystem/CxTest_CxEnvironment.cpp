@@ -43,7 +43,7 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             m_bRes = CxEnvironment::bSetVar(sData[i][0], sData[i][1]);
-            xASSERT_NOT_EQUAL(FALSE, m_bRes);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
 
@@ -73,7 +73,7 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             BOOL bStr1 = CxEnvironment::bIsExists(sData[i][0]);
-            xASSERT_EQUAL((sData[i][1] == xT("FALSE") ? FALSE : TRUE), bStr1);
+            xASSERT_EQ((sData[i][1] == xT("FALSE") ? FALSE : TRUE), bStr1);
         }
     }
 
@@ -100,7 +100,7 @@ CxTest_CxEnvironment::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxEnvironment::sGetVar(sData[i][0]);
             tString sStr2 = sData[i][1];
-            xASSERT_EQUAL(sStr1, sStr2);
+            xASSERT_EQ(sStr1, sStr2);
         }
     }
 
@@ -109,8 +109,8 @@ CxTest_CxEnvironment::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxEnvironment::bGetValues(&m_vsRes);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
-        xASSERT_EQUAL(false, m_vsRes.empty());
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_EQ(false, m_vsRes.empty());
 
         ////CxString::vStdVectorPrintT(m_vsRes);
     }
@@ -136,7 +136,7 @@ CxTest_CxEnvironment::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             tString sStr1 = CxEnvironment::sExpandStrings(sData[i][0]);
             tString sStr2 = sData[i][1];
-            xASSERT_EQUAL(sStr1, sStr2);
+            xASSERT_EQ(sStr1, sStr2);
         }
     }
 
@@ -153,7 +153,7 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             BOOL bStr1 = CxEnvironment::bDeleteVar(sData[i][0]);
-            xASSERT_NOT_EQUAL(FALSE, bStr1);
+            xASSERT_NOT_EQ(FALSE, bStr1);
         }
     }
 
@@ -163,7 +163,7 @@ CxTest_CxEnvironment::bUnit(
     {
         m_sRes = CxEnvironment::sGetCommandLine();
         xTRACEV(xT("\tCxEnvironment::sGetCommandLine(): %s"), m_sRes.c_str());
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
     }
 
     //-------------------------------------
@@ -171,8 +171,8 @@ CxTest_CxEnvironment::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxEnvironment::bGetCommandLineArgs(&m_vsRes);
-        xASSERT_NOT_EQUAL(FALSE,  m_bRes);
-        xASSERT_EQUAL(false, m_vsRes.empty());
+        xASSERT_NOT_EQ(FALSE,  m_bRes);
+        xASSERT_EQ(false, m_vsRes.empty());
     }
 
     return TRUE;

@@ -50,7 +50,7 @@ CxTest_CxMutex::bUnit(
         const BOOL                  cbInitialOwner  = FALSE;
 
         m_bRes = mtMutex.bCreate(lpcsaAttributes, cbInitialOwner, csName.c_str());
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -60,7 +60,7 @@ CxTest_CxMutex::bUnit(
         const BOOL  cbInheritHandle = FALSE;
 
         m_bRes = mtMutex.bOpen(culAccess, cbInheritHandle,  csName.c_str());
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -69,14 +69,14 @@ CxTest_CxMutex::bUnit(
         const ULONG culTimeout = 1000;
 
         m_bRes = mtMutex.bWait(culTimeout);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bRelease
     {
         m_bRes = mtMutex.bRelease();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 #elif defined(xOS_LINUX)
 

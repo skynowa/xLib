@@ -48,13 +48,13 @@ CxTest_CxProfiler::bUnit(
 		CxProfiler pfP(pmPerformMode[i]);
 
 		m_bRes = pfP.bSetLogPath(csFilePath);
-		xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		m_sRes = pfP.sGetLogPath();
-		xASSERT_EQUAL(csFilePath, m_sRes);
+		xASSERT_EQ(csFilePath, m_sRes);
 
 		m_bRes = pfP.bStart();
-		xASSERT_NOT_EQUAL(FALSE, m_bRes);
+		xASSERT_NOT_EQ(FALSE, m_bRes);
 
 		for (size_t i = 0; i < 10; ++ i) {
 			for (size_t j = 0; j < 2; ++ j) {
@@ -64,11 +64,11 @@ CxTest_CxProfiler::bUnit(
 			}
 
 			pfP.bPulse(xT("Variable i: %zu"), i);
-			xASSERT_NOT_EQUAL(FALSE, m_bRes);
+			xASSERT_NOT_EQ(FALSE, m_bRes);
 		}
 
 		pfP.bStop(xT(""));
-	    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	    xASSERT_NOT_EQ(FALSE, m_bRes);
 	}
 
     return TRUE;

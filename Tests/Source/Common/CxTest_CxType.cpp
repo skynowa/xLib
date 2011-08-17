@@ -37,7 +37,7 @@ CxTest_CxType::bUnit(
         tString sObject;
 
 	    m_sRes = CxType::sGetName(sObject);
-        xASSERT_EQUAL(false, m_sRes.empty());
+        xASSERT_EQ(false, m_sRes.empty());
     }
 
     //-------------------------------------
@@ -47,7 +47,7 @@ CxTest_CxType::bUnit(
 	    tString sObject;
 
         m_sRes = CxType::sGetRawName(sObject);
-        xASSERT_EQUAL(false, m_sRes.empty())
+        xASSERT_EQ(false, m_sRes.empty())
     }
 
     //-------------------------------------
@@ -58,7 +58,7 @@ CxTest_CxType::bUnit(
         std::wstring sObject2;
 
 	    m_bRes = CxType::bIsEquals(sObject1, sObject2);
-        xASSERT_EQUAL(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, m_bRes);
     }
 
     return TRUE;

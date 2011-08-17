@@ -49,51 +49,51 @@ CxTest_CxCookiePv0::bUnit(
         CxCookiePv0 ckCookiePv0;
 
         m_bRes = ckCookiePv0.bSetName(csName);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
         m_sRes = ckCookiePv0.sGetName();
-        xASSERT_EQUAL(csName, m_sRes);
+        xASSERT_EQ(csName, m_sRes);
 
         m_bRes = ckCookiePv0.bSetValue(csValue);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
         m_sRes = ckCookiePv0.sGetValue();
-        xASSERT_EQUAL(csValue, m_sRes);
+        xASSERT_EQ(csValue, m_sRes);
 
         m_bRes = ckCookiePv0.bSetDomain(csDomain);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
         m_sRes = ckCookiePv0.sGetDomain();
-        xASSERT_EQUAL(csDomain, m_sRes);
+        xASSERT_EQ(csDomain, m_sRes);
 
         m_bRes = ckCookiePv0.bSetPath(csPath);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
         m_sRes = ckCookiePv0.sGetPath();
-        xASSERT_EQUAL(csPath, m_sRes);
+        xASSERT_EQ(csPath, m_sRes);
 
         m_bRes = ckCookiePv0.bSetExpires(csExpires);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
         m_sRes = ckCookiePv0.sGetExpires();
-        xASSERT_EQUAL(csExpires, m_sRes);
+        xASSERT_EQ(csExpires, m_sRes);
 
         m_bRes = ckCookiePv0.bSetSecure(cbSecure);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
         m_bRes = ckCookiePv0.bGetSecure();
-        xASSERT_EQUAL(cbSecure, m_bRes);
+        xASSERT_EQ(cbSecure, m_bRes);
 
         m_bRes = ckCookiePv0.bSetHttpOnly(cbHttpOnly);
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
         m_bRes = ckCookiePv0.bGetHttpOnly();
-        xASSERT_EQUAL(cbHttpOnly, m_bRes);
+        xASSERT_EQ(cbHttpOnly, m_bRes);
 
         m_sRes = ckCookiePv0.sToString();
-        xASSERT_EQUAL(csRawCookie, m_sRes);
+        xASSERT_EQ(csRawCookie, m_sRes);
 
         {
             CxCookiePv0 _ckCookiePv0(ckCookiePv0.sToString());
-            xASSERT_EQUAL(_ckCookiePv0.sToString(), csRawCookie);
-            xASSERT_EQUAL(ckCookiePv0.sToString() , _ckCookiePv0.sToString());
+            xASSERT_EQ(_ckCookiePv0.sToString(), csRawCookie);
+            xASSERT_EQ(ckCookiePv0.sToString() , _ckCookiePv0.sToString());
         }
 
         m_bRes = ckCookiePv0.bClear();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -103,31 +103,31 @@ CxTest_CxCookiePv0::bUnit(
         CxCookiePv0 ckCookiePv0(csRawCookie);
 
         m_sRes = ckCookiePv0.sGetName();
-        xASSERT_EQUAL(csName, m_sRes);
+        xASSERT_EQ(csName, m_sRes);
 
         m_sRes = ckCookiePv0.sGetValue();
-        xASSERT_EQUAL(csValue, m_sRes);
+        xASSERT_EQ(csValue, m_sRes);
 
         m_sRes = ckCookiePv0.sGetDomain();
-        xASSERT_EQUAL(csDomain, m_sRes);
+        xASSERT_EQ(csDomain, m_sRes);
 
         m_sRes = ckCookiePv0.sGetPath();
-        xASSERT_EQUAL(csPath, m_sRes);
+        xASSERT_EQ(csPath, m_sRes);
 
         m_sRes = ckCookiePv0.sGetExpires();
-        xASSERT_EQUAL(csExpires, m_sRes);
+        xASSERT_EQ(csExpires, m_sRes);
 
         m_bRes = ckCookiePv0.bGetSecure();
-        xASSERT_EQUAL(cbSecure, m_bRes);
+        xASSERT_EQ(cbSecure, m_bRes);
 
         m_bRes = ckCookiePv0.bGetHttpOnly();
-        xASSERT_EQUAL(cbHttpOnly, m_bRes);
+        xASSERT_EQ(cbHttpOnly, m_bRes);
 
         m_sRes = ckCookiePv0.sToString();
-        xASSERT_EQUAL(csRawCookie, m_sRes);
+        xASSERT_EQ(csRawCookie, m_sRes);
 
         m_bRes = ckCookiePv0.bClear();
-        xASSERT_NOT_EQUAL(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     return TRUE;

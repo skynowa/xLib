@@ -64,7 +64,7 @@ CWorkThread::uiOnRun(
 
     //bIsCurrent
     bRes = pthT->bIsCurrent();
-    xASSERT_NOT_EQUAL(FALSE, m_bRes);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 
     for (size_t i = 0; i < /**piParam*/10; ++ i, ++ uiRes) {
         bRes = bIsTimeToExit();

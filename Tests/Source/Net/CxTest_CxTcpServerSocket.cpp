@@ -53,33 +53,33 @@ CxTest_CxTcpServerSocket::bUnit(
 	//-------------------------------------
 	//bCreate
 	m_bRes = objListenSocket.bCreate(afAf, tpType, ptProtocol);
-	xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bGetHostAddrByName
 	m_bRes = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-	xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bConnect
 	m_bRes = objListenSocket.bBind(usPort);
-	xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bListen
 	m_bRes = objListenSocket.bListen(SOMAXCONN);
-	xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bAccept
 	m_bRes = objListenSocket.bAccept(&objClientSocket, &sIp);
-	xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	for (; ;) {
 		//-------------------------------------
 		//iRecv
 		m_iRes = objClientSocket.iRecv(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
-		xASSERT_NOT_EQUAL((INT)CxTcpServerSocket::etError, m_iRes);
+		xASSERT_NOT_EQ((INT)CxTcpServerSocket::etError, m_iRes);
 
 		tcout << tString(szRecvBuff, m_iRes) << std::endl;
 	}
@@ -87,22 +87,22 @@ CxTest_CxTcpServerSocket::bUnit(
 	//-------------------------------------
 	//bClose
 	m_bRes = objClientSocket.bClose();
-	xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	//-------------------------------------
 	//iSend
 	////m_iRes = objSocket.iSend(sSendBuff.c_str(), sSendBuff.size(), 0);
-	////xASSERT_NOT_EQUAL(CxTcpServerSocket::etError, m_iRes);
+	////xASSERT_NOT_EQ(CxTcpServerSocket::etError, m_iRes);
 
 	//-------------------------------------
 	//bClose
 	m_bRes = objListenSocket.bClose();
-	xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	//-------------------------------------
 	//iGetLastError
 	m_iRes = CxTcpServerSocket::iGetLastError();
-	//xASSERT_NOT_EQUAL(FALSE, m_bRes);
+	//xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	return TRUE;
 }
