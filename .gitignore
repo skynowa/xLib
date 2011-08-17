@@ -68,7 +68,3 @@ Library/VC++ 2010/Release/
 
 ##### files #####
 TODO.txt
-Copy_VMs.sh
-Build_VMs.pl
-RunTests_Linux.sh
-RunTests_FreeBSD.sh
