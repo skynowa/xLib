@@ -320,8 +320,6 @@ _tmain(
         bRes = tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
     }
 
-    CxProcess::bExec(xT("/home/sergey/Libs/xLib/Contrib/G++_linux/Release/xlib_r.debug"), xT(""));
-
     return EXIT_SUCCESS;
 }
 //---------------------------------------------------------------------------
