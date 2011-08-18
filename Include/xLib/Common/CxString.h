@@ -15,6 +15,25 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
+//overload operators << for std::basic_ostream
+namespace std {
+    template<class Traits>
+    inline basic_ostream<TCHAR, Traits> &
+    operator << (basic_ostream<TCHAR, Traits> &osOut, const uString &cusValue);
+
+    template<class Traits, class T>
+    inline basic_ostream<TCHAR, Traits> &
+    operator << (basic_ostream<TCHAR, Traits> &osOut, const vector<T> &cvValueT);
+
+    template<class Traits, class T1, class T2>
+    inline basic_ostream<TCHAR, Traits> &
+    operator << (basic_ostream<TCHAR, Traits> &osOut, const map<T1, T2> &cmValueT);
+
+    template<class Traits, class T1, class T2>
+    inline basic_ostream<TCHAR, Traits> &
+    operator << (basic_ostream<TCHAR, Traits> &osOut, const multimap<T1, T2> &cmmValueT);
+}
+//---------------------------------------------------------------------------
 class CxString :
     public CxNonCopyable
 {

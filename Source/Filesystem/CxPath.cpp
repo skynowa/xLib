@@ -106,22 +106,11 @@ CxPath::sGetExe() {
             std::vector<tString> vsArgs;
 
             BOOL bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
-            /*DEBUG*/xASSERT_RET(FALSE != bRes,                              tString());
-            /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),                    tString());
-            /*DEBUG*/xASSERT_RET(FALSE == CxPath::bIsAbsolute(vsArgs.at(0)), tString());
+            /*DEBUG*/xASSERT_RET(FALSE != bRes,                      tString());
+            /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            tString());
+            /*DEBUG*/xASSERT_RET(FALSE == bIsAbsolute(vsArgs.at(0)), tString());
 
-            #if xDEPRECIATE
-                tString sAbsolutePath;
-
-                sAbsolutePath.resize(xPATH_MAX);
-
-                char *pszRes = realpath(&vsArgs.at(0).at(0), &sAbsolutePath.at(0));
-                /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
-
-                sRes.assign(pszRes);
-            #else
-                sRes.assign( sGetAbsolute(vsArgs.at(0)) );
-            #endif
+            sRes.assign( sGetAbsolute(vsArgs.at(0)) );
         #endif
     #endif
 
@@ -173,6 +162,7 @@ CxPath::sGetExeDir() {
 //---------------------------------------------------------------------------
 //DONE: sGetDrive (get drive)
 #if defined(xOS_WIN)
+
 /*static*/
 tString
 CxPath::sGetDrive(
@@ -187,6 +177,7 @@ CxPath::sGetDrive(
 
     return csFilePath.substr(0, uiDriveDelimPos + CxConst::xDRIVE_SEP.size());
 }
+
 #endif
 //--------------------------------------------------------------------------
 //DONE: sGetDir (dir path, without a trailing backslash '\')
@@ -199,7 +190,6 @@ CxPath::sGetDir(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
-    /*DEBUG*/// n/a
     xCHECK_RET(tString::npos == uiSlashPos, tString());
 
     return csFilePath.substr(0, uiSlashPos);
@@ -215,11 +205,9 @@ CxPath::sGetDirName(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
     size_t uiSlashPos2 = csFilePath.rfind(CxConst::xSLASH);
-    /*DEBUG*/// n/a
     xCHECK_RET(tString::npos == uiSlashPos2, tString());
 
     size_t uiSlashPos1 = csFilePath.rfind(CxConst::xSLASH, uiSlashPos2 - 1);
-    /*DEBUG*/// n/a
     if (tString::npos == uiSlashPos1) {
         return csFilePath.substr(0, uiSlashPos2);
     } else {
@@ -237,7 +225,6 @@ CxPath::sGetFullName(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
-    /*DEBUG*/// n/a
     xCHECK_RET(tString::npos == uiSlashPos, csFilePath);
 
     return csFilePath.substr(uiSlashPos + CxConst::xSLASH.size(), csFilePath.size());
@@ -253,10 +240,7 @@ CxPath::sGetName(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
-    /*DEBUG*/// n/a
-
-    size_t uiDotPos = csFilePath.rfind(CxConst::xDOT, csFilePath.size());
-    /*DEBUG*/// n/a
+    size_t uiDotPos   = csFilePath.rfind(CxConst::xDOT,   csFilePath.size());
 
     return CxString::sCut(csFilePath, uiSlashPos + CxConst::xSLASH.size(), uiDotPos);
 }
@@ -270,13 +254,10 @@ CxPath::sGetExt(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
-    size_t uiDotPos = csFilePath.rfind(CxConst::xDOT, csFilePath.size());
-    /*DEBUG*/// n/a
+    size_t uiDotPos   = csFilePath.rfind(CxConst::xDOT,   csFilePath.size());
     xCHECK_RET(tString::npos == uiDotPos, tString());
 
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
-    /*DEBUG*/// n/a
-
     //if dot after slash - extension not exists
     xCHECK_RET(uiDotPos < uiSlashPos && tString::npos != uiSlashPos, tString());
 
@@ -294,15 +275,15 @@ CxPath::sGetStandartExt(
 
 	switch (cseFileExt) {
     #if defined(xOS_WIN)
-        case seExe:	{ sRes = xT("exe");    }   break;
-	    case seDll:	{ sRes = xT("dll");    }   break;
-	    case seLib:	{ sRes = xT("lib");    }   break;
+        case seExe:	{ sRes = xT("exe"); }   break;
+	    case seDll:	{ sRes = xT("dll"); }   break;
+	    case seLib:	{ sRes = xT("lib"); }   break;
     #elif defined(xOS_LINUX)
-        case seExe:	{ sRes = xT("");       }   break;
-	    case seDll:	{ sRes = xT("so");     }   break;
-	    case seLib:	{ sRes = xT("a");      }   break;
+        case seExe:	{ sRes = xT("");    }   break;
+	    case seDll:	{ sRes = xT("so");  }   break;
+	    case seLib:	{ sRes = xT("a");   }   break;
     #endif
-    	default:    { sRes = xT("");       }   break;
+    	default:    { sRes = xT("");    }   break;
     }
 
     return sRes;
@@ -429,7 +410,6 @@ CxPath::sRemoveExt(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
 
     size_t uiDotPos = csFilePath.rfind(CxConst::xDOT);
-    /*DEBUG*/// n/a
 
     return csFilePath.substr(0, uiDotPos);
 }
@@ -515,7 +495,7 @@ CxPath::bIsAbsolute(
     xCHECK_RET(1 == csFilePath.size(),                                                          FALSE);
     xCHECK_RET(CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == csFilePath.at(1), TRUE);
 #else
-
+    // n/a
 #endif
 
     return FALSE;
@@ -695,7 +675,7 @@ CxPath::sGetAbsolute(
 
     sBuff.resize(xPATH_MAX);
 
-    char *pszRes = realpath(&csFilePath.at(0), &sBuff.at(0));
+    TCHAR *pszRes = realpath(&csFilePath.at(0), &sBuff.at(0));
     /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
 
     sRes.assign(pszRes);
@@ -714,9 +694,8 @@ CxPath::sMinimizeName(
     const size_t   cuiMaxSize
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFileName.empty(),          tString());
-    /*DEBUG*///xASSERT_RET(false == sGetExt(csFileName).empty(), tString());
-    /*DEBUG*/xASSERT_RET(0 < cuiMaxSize,                       tString());
+    /*DEBUG*/xASSERT_RET(false == csFileName.empty(), tString());
+    /*DEBUG*/xASSERT_RET(0 < cuiMaxSize,              tString());
 
     tString sRes;
 
@@ -751,7 +730,7 @@ CxPath::sMinimize(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
-    /*DEBUG*/xASSERT_RET(0 < cuiMaxSize,              tString());
+    /*DEBUG*/xASSERT_RET(0     <  cuiMaxSize,         tString());
 
     tString sRes;
 

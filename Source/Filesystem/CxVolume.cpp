@@ -82,19 +82,7 @@ CxVolume::bIsEmpty(
 {
     /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), FALSE);
 
-#if xDEPRECIATE
-    BOOL            bRes       = TRUE;
-    HANDLE          hFile      = INVALID_HANDLE_VALUE;
-    WIN32_FIND_DATA stFindData = {0};
-
-    hFile = ::FindFirstFile((CxPath::sSlashAppend(csVolumePath) + CxConst::xMASK_FILES_ALL).c_str(), &stFindData);
-    xCHECK_RET(INVALID_HANDLE_VALUE == hFile, TRUE);
-
-    bRes = ::FindClose(hFile);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, TRUE);
-#else
     return CxDir::bIsEmpty(csVolumePath, CxConst::xMASK_FILES_ALL);
-#endif
 }
 //--------------------------------------------------------------------------
 //DONE:  bGetFreeSpace (get free space)

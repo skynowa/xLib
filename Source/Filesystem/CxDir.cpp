@@ -158,21 +158,18 @@ CxDir::sGetCurrent() {
     /*DEBUG*/// n/a
 
     tString sRes;
+    tString sBuff(xPATH_MAX + 1, 0);
 
 #if defined(xOS_WIN)
-    TCHAR szBuff[MAX_PATH + 1] = {0};
+    ULONG ulRes = ::GetCurrentDirectory(xPATH_MAX, &sBuff[0]);
+    /*DEBUG*/xASSERT_RET(0     != ulRes,    tString());
+    /*DEBUG*/xASSERT_RET(ulRes <  MAX_PATH, tString());
 
-    ULONG ulRes = ::GetCurrentDirectory(MAX_PATH, szBuff);
-    /*DEBUG*/xASSERT_RET(0 != ulRes,       tString());
-    /*DEBUG*/xASSERT_RET(ulRes < MAX_PATH, tString());
-
-    sRes.assign(szBuff, ulRes);
+    sRes.assign(sBuff, 0, ulRes);
 #elif defined(xOS_LINUX)
-    TCHAR szBuff[PATH_MAX + 1] = {0};
-
-    char *pszRes = getcwd(szBuff, PATH_MAX);
-    /*DEBUG*/xASSERT_RET(NULL   != pszRes, tString());
-    /*DEBUG*/xASSERT_RET(szBuff == pszRes, tString());
+    TCHAR *pszRes = getcwd(&sBuff[0], xPATH_MAX);
+    /*DEBUG*/xASSERT_RET(NULL         != pszRes, tString());
+    /*DEBUG*/xASSERT_RET(&sBuff.at(0) == pszRes, tString());
 
     sRes.assign(pszRes);
 #endif
@@ -211,13 +208,13 @@ CxDir::sGetTemp() {
     tString sRes;
 
 #if defined(xOS_WIN)
-    TCHAR szRes[MAX_PATH + 1] = {0};
+    tString sBuff(xPATH_MAX + 1, 0);
 
-    ULONG ulRes = ::GetTempPath(MAX_PATH, szRes);
-    /*DEBUG*/xASSERT_RET(0     != ulRes,    tString());
-    /*DEBUG*/xASSERT_RET(ulRes <  MAX_PATH, tString());
+    ULONG ulRes = ::GetTempPath(xPATH_MAX, &sBuff[0]);
+    /*DEBUG*/xASSERT_RET(0     != ulRes,     tString());
+    /*DEBUG*/xASSERT_RET(ulRes <  xPATH_MAX, tString());
 
-    sRes.assign(szRes, ulRes);
+    sRes.assign(sBuff, 0, ulRes);
 #elif defined(xOS_LINUX)
     sRes.assign(xT(P_tmpdir));
 #endif
@@ -263,17 +260,17 @@ CxDir::bCreateForce(
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
     BOOL                 bRes = FALSE;
-    std::vector<tString> vecsPathParts;
+    std::vector<tString> vsPathParts;
     tString              sBuildPath;
 
     //-------------------------------------
     //split csDirPath into parts
-    bRes = CxString::bSplit( CxPath::sToCurrentOs(csDirPath, FALSE), CxConst::xSLASH, &vecsPathParts );
+    bRes = CxString::bSplit( CxPath::sToCurrentOs(csDirPath, FALSE), CxConst::xSLASH, &vsPathParts );
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //-------------------------------------
     //create dirs by steps
-    for (std::vector<tString>::const_iterator it = vecsPathParts.begin(); it != vecsPathParts.end(); ++ it){
+    for (std::vector<tString>::const_iterator it = vsPathParts.begin(); it != vsPathParts.end(); ++ it){
         sBuildPath.append(*it).append(CxConst::xSLASH);
 
         bRes = bCreate(sBuildPath);
@@ -357,7 +354,7 @@ CxDir::bMove(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPathFrom.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csDirPathFrom), FALSE);
-    /*DEBUG*/xASSERT_RET(false == csDirPathTo.empty(),   FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDirPathTo.empty(),      FALSE);
     /*DEBUG*/// cbFailIfExists - n/a
 
     BOOL bRes = FALSE;
@@ -450,14 +447,14 @@ CxDir::bClearForce(
     //-------------------------------------
     //delete files
     {
-        std::vector<tString> vecsFilePathes;
+        std::vector<tString> vsFilePathes;
 
-        vecsFilePathes.clear();
-        bRes = bFindFiles(csDirPath, CxConst::xMASK_ALL, TRUE, &vecsFilePathes);
+        vsFilePathes.clear();
+        bRes = bFindFiles(csDirPath, CxConst::xMASK_ALL, TRUE, &vsFilePathes);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        for (std::vector<tString>::reverse_iterator it = vecsFilePathes.rbegin();
-            it != vecsFilePathes.rend() && false == vecsFilePathes.empty();
+        for (std::vector<tString>::reverse_iterator it = vsFilePathes.rbegin();
+            it != vsFilePathes.rend() && false == vsFilePathes.empty();
             ++ it)
         {
             bRes = CxStdioFile::bDelete(*it);
@@ -468,14 +465,14 @@ CxDir::bClearForce(
     //-------------------------------------
     //delete subdirs
     {
-        std::vector<tString> vecsDirPathes;
+        std::vector<tString> vsDirPathes;
 
-        vecsDirPathes.clear();
-        bRes = bFindDirs(csDirPath, CxConst::xMASK_ALL, TRUE, &vecsDirPathes);
+        vsDirPathes.clear();
+        bRes = bFindDirs(csDirPath, CxConst::xMASK_ALL, TRUE, &vsDirPathes);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        for (std::vector<tString>::reverse_iterator it = vecsDirPathes.rbegin();
-            it != vecsDirPathes.rend() && false == vecsDirPathes.empty();
+        for (std::vector<tString>::reverse_iterator it = vsDirPathes.rbegin();
+            it != vsDirPathes.rend() && false == vsDirPathes.empty();
             ++ it)
         {
             bRes = bDelete(*it);
@@ -528,7 +525,7 @@ CxDir::bFindFiles(
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == cMask.empty(),     FALSE);
     /*DEBUG*/// cbIsRecurse - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pvsFilePathes,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsFilePathes,     FALSE);
 
     BOOL bRes = FALSE;
 
@@ -676,7 +673,7 @@ CxDir::bFindDirs(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
     /*DEBUG*/// cbIsRecurse - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pvsDirPathes,     FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsDirPathes,      FALSE);
 
     BOOL bRes = FALSE;
 

@@ -9,11 +9,117 @@
 *****************************************************************************/
 
 
+/****************************************************************************
+*	overload operator << for std::basic_ostream
+*
+*****************************************************************************/
+
+namespace std {
+
+//---------------------------------------------------------------------------
+//DONE: operator << for uString
+template<class Traits>
+inline basic_ostream<TCHAR, Traits> &
+operator << (
+    basic_ostream<TCHAR, Traits> &osOut,
+    const uString                &cusValue
+)
+{
+    tString sRes;
+
+    sRes.assign( cusValue.begin(), cusValue.end() );
+
+    osOut << sRes.data() << std::flush;
+
+    return osOut;
+}
+//---------------------------------------------------------------------------
+//DONE: operator << for std::vector
+template<class Traits, class T>
+inline basic_ostream<TCHAR, Traits> &
+operator << (
+    basic_ostream<TCHAR, Traits> &osOut,
+    const vector<T>              &cvValueT
+)
+{
+    osOut << tendl;
+    osOut << xT("std::vector (") << cvValueT.size() << (" elements):") << tendl;
+    osOut << tendl;
+
+    typename vector<T>::const_iterator it;
+    size_t                             i = 0;
+    for (it = cvValueT.begin(), i = 0; it != cvValueT.end(); ++ it, ++ i) {
+        osOut << xT("Value[") << i << xT("]: ") << (*it) << tendl;
+    }
+
+    osOut << tendl;
+    osOut << tendl;
+
+    return osOut;
+}
+//---------------------------------------------------------------------------
+//DONE: operator << for std::map
+template<class Traits, class T1, class T2>
+inline basic_ostream<TCHAR, Traits> &
+operator << (
+    basic_ostream<TCHAR, Traits> &osOut,
+    const map<T1, T2>            &cmValueT
+)
+{
+    osOut << tendl;
+    osOut << xT("std::map (") << cmValueT.size() << (" elements):") << tendl;
+    osOut << tendl;
+
+    typename map<T1, T2>::const_iterator it;
+    for (it = cmValueT.begin(); it != cmValueT.end(); ++ it) {
+        osOut << xT("Key: ")   << (*it).first  << xT("\t\t")
+              << xT("Value: ") << (*it).second << tendl;
+    }
+
+    osOut << tendl;
+    osOut << tendl;
+
+    return osOut;
+}
+//---------------------------------------------------------------------------
+//DONE: operator << for std::multimap
+template<class Traits, class T1, class T2>
+inline basic_ostream<TCHAR, Traits> &
+operator << (
+    basic_ostream<TCHAR, Traits> &osOut,
+    const multimap<T1, T2>       &cmmValueT
+)
+{
+    osOut << tendl;
+    osOut << xT("std::multimap (") << cmmValueT.size() << (" elements):") << tendl;
+    osOut << tendl;
+
+    typename multimap<T1, T2>::const_iterator it;
+    for (it = cmmValueT.begin(); it != cmmValueT.end(); ++ it) {
+        osOut << xT("Key: ")   << (*it).first  << xT("\t\t")
+              << xT("Value: ") << (*it).second << tendl;
+    }
+
+    osOut << tendl;
+    osOut << tendl;
+
+    return osOut;
+}
+//---------------------------------------------------------------------------
+
+} //namespace std
+
+
+/****************************************************************************
+*   lexical_cast
+*
+*****************************************************************************/
+
 //---------------------------------------------------------------------------
 //type -> tString
 template<class T>
 /*static*/
-tString
+inline tString
 CxString::lexical_cast(
     const T &cValueT
 )
@@ -41,7 +147,7 @@ CxString::lexical_cast(
 //type -> tString by base
 template<class T>
 /*static*/
-tString
+inline tString
 CxString::lexical_cast(
     const T   &cValueT,
     const INT  ciBase
@@ -71,7 +177,7 @@ CxString::lexical_cast(
 //tString -> type
 template<class T>
 /*static*/
-T
+inline T
 CxString::lexical_cast(
     const tString &csStr
 )
@@ -97,7 +203,7 @@ CxString::lexical_cast(
 //tString by base (8, 10, 16) -> type
 template<class T>
 /*static*/
-T
+inline T
 CxString::lexical_cast(
     const tString &csStr,
     const INT      ciBase

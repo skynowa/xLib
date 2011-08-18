@@ -34,15 +34,6 @@ class CxDebugger :
         static BOOL    bTrace            (const tString &csMsg);
         static BOOL    bBeep             (const ULONG culFrequency = 800, const ULONG culDuration = 100);
 
-        template<class T>
-        static VOID    vStdVectorPrintT  (const std::vector<T> &cvecT);
-
-        template<class T1, class T2>
-        static VOID    vStdMapPrintT     (const std::map<T1, T2> &cmapT);
-
-        template<class T1, class T2>
-        static VOID    vStdMultiMapPrintT(const std::multimap<T1, T2> &cmmapT);
-
     private:
         static BOOL    _ms_bIsEnabled;
         static tString _ms_sLogPath;
@@ -59,7 +50,5 @@ class CxDebugger :
         static BOOL    _bLoggingPlain    (const CxReport &crpReport);
         static BOOL    _bLoggingHtml     (const CxReport &crpReport);
 };
-//---------------------------------------------------------------------------
-#include <Debug/CxDebugger.inl>
 //---------------------------------------------------------------------------
 #endif    //xLib_Debug_CxDebuggerH
