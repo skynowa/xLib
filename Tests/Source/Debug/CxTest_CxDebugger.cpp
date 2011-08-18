@@ -140,45 +140,6 @@ CxTest_CxDebugger::bUnit(
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
-    //-------------------------------------
-    //vStdVectorPrintT
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        m_vsRes.push_back(xT("qqqq"));
-        m_vsRes.push_back(xT("wwww"));
-        m_vsRes.push_back(xT("eeee"));
-        m_vsRes.push_back(xT("rrrr"));
-        m_vsRes.push_back(xT("tttt"));
-
-        ////CxDebugger::vStdVectorPrintT(m_vsRes);
-    }
-
-    //-------------------------------------
-    //vStdMapPrintT
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        m_msRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
-        m_msRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
-        m_msRes.insert( std::pair<tString, tString>(xT("Key2"), xT("Value2")) );
-        m_msRes.insert( std::pair<tString, tString>(xT("Key3"), xT("Value3")) );
-        m_msRes.insert( std::pair<tString, tString>(xT("Key4"), xT("Value4")) );
-
-        ////CxDebugger::vStdMapPrintT(m_msRes);
-    }
-
-    //-------------------------------------
-    //vStdMultiMapPrintT
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key2"), xT("Value2")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
-        m_mmsRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
-
-        ////CxDebugger::vStdMultiMapPrintT(m_mmsRes);
-    }
-
     //--------------------------------------------------
     //xNOT_IMPLEMENTED_RET
     xTEST_BLOCK(cullBlockLoops)

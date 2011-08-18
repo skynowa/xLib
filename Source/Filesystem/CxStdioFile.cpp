@@ -169,7 +169,7 @@ CxStdioFile::uiRead(
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
-    /*DEBUG*/xASSERT_RET(NULL != pvBuff,      0);
+    /*DEBUG*/xASSERT_RET(NULL  != pvBuff,     0);
 
     size_t uiRes = 0;
 
@@ -1325,17 +1325,17 @@ CxStdioFile::bTextRead(
     /*DEBUG*/xASSERT_RET(NULL  != pvsContent,            FALSE);
 
     BOOL                 bRes = FALSE;
-    std::vector<tString> vecsRes;
+    std::vector<tString> vsRes;
     tString              sFileContent;
 
     bRes = CxStdioFile::bTextRead(csFilePath, &sFileContent);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    bRes = CxString::bSplit(sFileContent, CxConst::xNL, &vecsRes);
+    bRes = CxString::bSplit(sFileContent, CxConst::xNL, &vsRes);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //out
-    std::swap((*pvsContent), vecsRes);
+    std::swap((*pvsContent), vsRes);
 
     return TRUE;
 }
@@ -1349,9 +1349,9 @@ CxStdioFile::bTextWrite(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/// cvecsContent - n/a
+    /*DEBUG*/// cvsContent - n/a
 
-    //TODO: if cvecsContent.empty()
+    //TODO: if cvsContent.empty()
 
     BOOL    bRes = FALSE;
     tString sFileContent;
@@ -1389,45 +1389,45 @@ CxStdioFile::bTextRead(
     /*DEBUG*/xASSERT_RET(ifsStream.is_open(), FALSE);
     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    FALSE);
 
-    std::map<tString, tString> mapsRes;
+    std::map<tString, tString> msRes;
     tString                    sLine;
-    std::vector<tString>       vecsLine;
+    std::vector<tString>       vsLine;
 
     for (size_t i = 0; !ifsStream.eof();  ++ i) {
         std::getline(ifsStream, sLine);
 
         sLine = CxString::sTrimRightChars(sLine, CxConst::xEOL);
 
-        bRes = CxString::bSplit(sLine, csSeparator, &vecsLine);
+        bRes = CxString::bSplit(sLine, csSeparator, &vsLine);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        mapsRes.insert( std::pair<tString, tString>(vecsLine.at(0), vecsLine.at(1)) );
+        msRes.insert( std::pair<tString, tString>(vsLine.at(0), vsLine.at(1)) );
     }
 
     //out
-    (*pmsContent).swap(mapsRes);
+    (*pmsContent).swap(msRes);
 
 
 #if xTODO
     BOOL                       bRes = FALSE;
-    std::map<tString, tString> mapsRes;
-    std::vector<tString>       vecsRes;
+    std::map<tString, tString> msRes;
+    std::vector<tString>       vsRes;
 
-    bRes = CxStdioFile::bTextRead(csFilePath, &vecsRes);
+    bRes = CxStdioFile::bTextRead(csFilePath, &vsRes);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     std::vector<tString>::const_iterator it;
-    for (it = vecsRes.begin(); it != vecsRes.end(); ++ it) {
-        std::vector<tString> vecsLine;
+    for (it = vsRes.begin(); it != vsRes.end(); ++ it) {
+        std::vector<tString> vsLine;
 
-        bRes = CxString::bSplit(vecsRes.at(0), csSeparator, &vecsLine);
+        bRes = CxString::bSplit(vsRes.at(0), csSeparator, &vsLine);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        mapsRes.insert( std::pair<tString, tString>(vecsLine.at(0), vecsLine.at(1)) );
+        msRes.insert( std::pair<tString, tString>(vsLine.at(0), vsLine.at(1)) );
     }
 
     //out
-    std::swap((*pmsContent), mapsRes);
+    std::swap((*pmsContent), msRes);
 #endif
 
     return TRUE;
@@ -1444,9 +1444,9 @@ CxStdioFile::bTextWrite(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),  FALSE);
     /*DEBUG*/xASSERT_RET(false == csSeparator.empty(), FALSE);
-    /*DEBUG*/// cmapsFile - n/a
+    /*DEBUG*/// cmsFile - n/a
 
-    //TODO: if cmapsFile.empty()
+    //TODO: if cmsFile.empty()
 
     BOOL bRes = FALSE;
 
@@ -1634,7 +1634,7 @@ CxStdioFile::_iGetHandle() const {
 
     INT iRes = etError;
 
-    iRes = fileno/*_fileno*/(pGet());
+    iRes = fileno(pGet());
     /*DEBUG*/xASSERT_RET(etError != iRes, etError);
 
     return iRes;

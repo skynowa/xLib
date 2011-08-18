@@ -120,7 +120,7 @@ CxProcess::bExec(
             INT iRes = execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
             /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-            _exit(0);  /* Note that we do not use exit() */
+            _exit(EXIT_SUCCESS);  /* Note that we do not use exit() */
 
             return TRUE;
         } else {

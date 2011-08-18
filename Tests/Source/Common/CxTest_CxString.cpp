@@ -23,6 +23,10 @@ CxTest_CxString::~CxTest_CxString() {
 
 }
 //---------------------------------------------------------------------------
+
+UCHAR RandomNumber () { return (UCHAR)(rand()%100); }
+
+
 //DONE: bUnit ()
 /*virtual*/
 BOOL
@@ -34,6 +38,82 @@ CxTest_CxString::bUnit(
     *    convertation
     *
     *****************************************************************************/
+
+    //--------------------------------------------------
+    //operator << for uString
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        for (size_t i = 0; i < 10; ++ i) {
+            uString usStr;
+
+            usStr.resize( (size_t)CxRandom::liGetInt(1, 64) );
+            std::fill_n(usStr.begin(), usStr.size(), static_cast<uString::value_type>( CxRandom::liGetInt(1, 255) ));
+
+            tString sVal1 = tString(usStr.begin(), usStr.end());
+
+            tostringstream osOut;   osOut << usStr;
+            tString sVal2 = osOut.str();
+
+            xASSERT_EQ(sVal1, sVal2);
+        }
+    }
+
+    //--------------------------------------------------
+    //operator << for std::vector
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        m_vsRes.clear();
+
+        m_vsRes.push_back(xT("Value0"));
+        m_vsRes.push_back(xT("Value1"));
+        m_vsRes.push_back(xT("Value2"));
+        m_vsRes.push_back(xT("Value3"));
+        m_vsRes.push_back(xT("Value4"));
+
+        tostringstream osOut;   osOut << m_vsRes;
+        //xTRACEV(xT("\toperator << for std::vector: %s"), osOut.str().c_str());
+        xASSERT_EQ(false, osOut.str().empty());
+
+        m_vsRes.clear();
+    }
+
+    //--------------------------------------------------
+    //operator << for std::map
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        m_msRes.clear();
+
+        m_msRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
+        m_msRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
+        m_msRes.insert( std::pair<tString, tString>(xT("Key2"), xT("Value2")) );
+        m_msRes.insert( std::pair<tString, tString>(xT("Key3"), xT("Value3")) );
+        m_msRes.insert( std::pair<tString, tString>(xT("Key4"), xT("Value4")) );
+
+        tostringstream osOut;   osOut << m_msRes;
+        //xTRACEV(xT("\toperator << for std::map: %s"), osOut.str().c_str());
+        xASSERT_EQ(false, osOut.str().empty());
+
+        m_msRes.clear();
+    }
+
+    //--------------------------------------------------
+    //operator << for std::multimap
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        m_mmsRes.clear();
+
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key2"), xT("Value2")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key0"), xT("Value0")) );
+        m_mmsRes.insert( std::pair<tString, tString>(xT("Key1"), xT("Value1")) );
+
+        tostringstream osOut;   osOut << m_mmsRes;
+        //xTRACEV(xT("\toperator << for std::multimap: %s"), osOut.str().c_str());
+        xASSERT_EQ(false, osOut.str().empty());
+
+        m_mmsRes.clear();
+    }
 
     //-------------------------------------
     //lexical_cast (to string)
@@ -103,7 +183,7 @@ CxTest_CxString::bUnit(
         m_sRes = CxString::lexical_cast(1033, 16);
         xASSERT_EQ(tString(xT("409")), m_sRes);
     }
-    
+
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033L, 2);
@@ -118,7 +198,7 @@ CxTest_CxString::bUnit(
         m_sRes = CxString::lexical_cast(1033L, 16);
         xASSERT_EQ(tString(xT("409")), m_sRes);
     }
-    
+
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033UL, 2);
@@ -133,7 +213,7 @@ CxTest_CxString::bUnit(
         m_sRes = CxString::lexical_cast(1033UL, 16);
         xASSERT_EQ(tString(xT("409")), m_sRes);
     }
-    
+
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033LL, 2);
@@ -148,7 +228,7 @@ CxTest_CxString::bUnit(
         m_sRes = CxString::lexical_cast(1033LL, 16);
         xASSERT_EQ(tString(xT("409")), m_sRes);
     }
-    
+
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033ULL, 2);
@@ -871,7 +951,7 @@ CxTest_CxString::bUnit(
             //xTRACE(m_sRes);
         }
     }
-    
+
     //-------------------------------------
     //sBytesToStr(ULONGLONG )
     xTEST_BLOCK(cullBlockLoops)
