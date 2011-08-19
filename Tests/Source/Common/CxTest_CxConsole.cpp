@@ -186,17 +186,19 @@ CxTest_CxConsole::bUnit(
     //bSetTitle
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csTitle = xT("Title1");
+        #if xTEST_IGNORE
+            const tString csTitle = xT("Title1");
 
 
-        CxConsole cnConsole;
+            CxConsole cnConsole;
 
-        m_bRes = cnConsole.bSetTitle(csTitle);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = cnConsole.bSetTitle(csTitle);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        #if 1 && defined(xOS_WIN)
-            m_sRes = cnConsole.sGetTitle();
-            xASSERT_EQ(m_sRes, csTitle);
+            #if 1 && defined(xOS_WIN)
+                m_sRes = cnConsole.sGetTitle();
+                xASSERT_EQ(m_sRes, csTitle);
+            #endif
         #endif
     }
 

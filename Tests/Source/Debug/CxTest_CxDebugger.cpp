@@ -125,7 +125,7 @@ CxTest_CxDebugger::bUnit(
     //bTrace
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEST_IGNORE || 1
+        #if xTEST_IGNORE || 0
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
         #endif
 

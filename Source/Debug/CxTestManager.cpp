@@ -86,6 +86,8 @@ CxTestManager::bRun(
 
             bRes = (*it)->bRun(cullUnitLoops, cullBlockLoops);
             xASSERT_MSG_RET(FALSE != bRes, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()), FALSE);
+
+            //xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("...Ok")));
         }
     }
 
