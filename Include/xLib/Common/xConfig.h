@@ -48,5 +48,9 @@
 //auto linkage
 //#define xIS_AUTO_LINKING          1
 
+
+//for tests private data
+//#define xTEST_PRIVATE_METHODS  1
+
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xConfigH
