@@ -50,7 +50,7 @@
 
 
 //for tests private data
-//#define xTEST_PRIVATE_METHODS  1
+#define xTEST_PRIVATE_METHODS  1
 
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xConfigH

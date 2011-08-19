@@ -12,8 +12,6 @@
 #ifndef xLib_UnitTestH
 #define xLib_UnitTestH
 //---------------------------------------------------------------------------
-#define xTEST_PRIVATE_METHODS  1
-//---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTestManager.h>
 
