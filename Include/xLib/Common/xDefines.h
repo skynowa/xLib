@@ -57,11 +57,5 @@
 #else
     #define xANSI
 #endif
-
-//---------------------------------------------------------------------------
-//DONE: inline
-#if !defined(xCOMPILER_MS) && !defined(xCOMPILER_CODEGEAR)
-	#define __forceinline  inline
-#endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xDefinesH

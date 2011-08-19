@@ -680,6 +680,9 @@ CxTest_CxStdioFile::bUnit(
     m_bRes = bUnit1(cullBlockLoops);
     xASSERT_NOT_EQ(FALSE, m_bRes);
 
+    //bUnitePrivate
+    m_bRes = bUnitePrivate(cullBlockLoops);
+    xASSERT_NOT_EQ(FALSE, m_bRes);
 
     return TRUE;
 }
@@ -1210,6 +1213,82 @@ CxTest_CxStdioFile::bUnit1(
 
         m_bRes = CxDir::bDeleteForce(sGetWorkDirPath() + CxConst::xSLASH + xT("Backup_dir"));
         xASSERT_NOT_EQ(FALSE, m_bRes);
+    }
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+//DONE: bUnitePrivate ()
+BOOL
+CxTest_CxStdioFile::bUnitePrivate(
+    const ULONGLONG cullBlockLoops
+)
+{
+    /*DEBUG*/
+
+    const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+
+
+    //--------------------------------------------------
+    //_iGetHandle
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxStdioFile sfFile;
+
+        m_bRes = sfFile.bOpen(csFilePath, CxStdioFile::omRead, TRUE);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+
+        m_iRes = CxStdioFile::_iGetHandle( sfFile.pGet() );
+        xASSERT_NOT_EQ((INT)CxStdioFile::etError, m_iRes);
+    }
+
+    //--------------------------------------------------
+    //_pfGetHandle
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        const CxStdioFile::EOpenMode comMode = CxStdioFile::omRead;
+
+
+        CxStdioFile sfFile;
+
+        m_bRes = sfFile.bOpen(csFilePath, comMode, TRUE);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+
+        m_iRes = CxStdioFile::_iGetHandle(sfFile.pGet());
+        xASSERT_NOT_EQ((INT)CxStdioFile::etError, m_iRes);
+
+        FILE *pfFile = CxStdioFile::_pfGetHandle(m_iRes, comMode);
+        xASSERT_PTR(pfFile);
+    }
+
+    //--------------------------------------------------
+    //_sGetOpenMode
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        std::vector< std::pair<CxStdioFile::EOpenMode, tString> > vpData;
+
+        vpData.push_back( std::make_pair(CxStdioFile::omRead,               xT("r")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omWrite,              xT("w")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omAppend,             xT("a")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omOpenReadWrite,      xT("r+")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omCreateReadWrite,    xT("w+")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omOpenReadAppend,     xT("a+")) );
+
+        vpData.push_back( std::make_pair(CxStdioFile::omBinRead,            xT("rb")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omBinWrite,           xT("wb")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omBinAppend,          xT("ab")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omBinOpenReadWrite,   xT("rb+")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omBinCreateReadWrite, xT("wb+")) );
+        vpData.push_back( std::make_pair(CxStdioFile::omBinOpenReadAppend,  xT("ab+")) );
+
+
+        for (size_t i = 0; i < vpData.size(); ++ i) {
+            CxStdioFile::EOpenMode omRes = vpData.at(i).first;
+            tString                sRes  = vpData.at(i).second;
+
+            m_sRes = CxStdioFile::_sGetOpenMode(omRes);
+            xASSERT_EQ(sRes, m_sRes);
+        }
     }
 
     return TRUE;

@@ -434,10 +434,10 @@ CxStdioFile::bLocking(
 		#define xLocking _locking
 	#endif
 
-	iRes = xLocking(_iGetHandle(), clmMode, cliBytes);
+	iRes = xLocking(_iGetHandle(pGet()), clmMode, cliBytes);
 	/*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
-    iRes = lockf(_iGetHandle(), clmMode, static_cast<off_t>( cliBytes ));
+    iRes = lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
 
@@ -504,10 +504,10 @@ CxStdioFile::bSetMode(
     INT iRes = etError;
 
     #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
-        iRes = setmode(_iGetHandle(), ctmMode);
+        iRes = setmode(_iGetHandle(pGet()), ctmMode);
         /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
     #elif defined(xCOMPILER_CODEGEAR)
-        iRes = setmode(_iGetHandle(), ctmMode);
+        iRes = setmode(_iGetHandle(pGet()), ctmMode);
         /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
     #endif
 
@@ -552,14 +552,14 @@ CxStdioFile::bResize(
 
 #if defined(xOS_WIN)
     #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
-        iRes = chsize(_iGetHandle(), cliSize);
+        iRes = chsize(_iGetHandle(pGet()), cliSize);
         /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
     #elif defined(xCOMPILER_CODEGEAR)
-        iRes = chsize(_iGetHandle(), cliSize);
+        iRes = chsize(_iGetHandle(pGet()), cliSize);
         /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
     #endif
 #elif defined(xOS_LINUX)
-    iRes = ftruncate(_iGetHandle(), static_cast<off_t>( cliSize ));
+    iRes = ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cliSize ));
     /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
 #endif
 
@@ -674,6 +674,7 @@ CxStdioFile::bClose() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
 
 /****************************************************************************
 *    public, static
@@ -1648,16 +1649,39 @@ CxStdioFile::sBackup(
 
 //---------------------------------------------------------------------------
 //DONE: _iGetHandle (Gets the file descriptor associated with a stream)
+/*static*/
 INT
-CxStdioFile::_iGetHandle() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), etError);
+CxStdioFile::_iGetHandle(
+    FILE *pfFile
+)
+{
+    /*DEBUG*/xASSERT_RET(NULL != pfFile, etError);
 
     INT iRes = etError;
 
-    iRes = fileno(pGet());
+    iRes = fileno(pfFile);
     /*DEBUG*/xASSERT_RET(etError != iRes, etError);
 
     return iRes;
+}
+//---------------------------------------------------------------------------
+//DONE: _pfGetHandle (get stream by handle)
+/*static*/
+FILE *
+CxStdioFile::_pfGetHandle(
+    INT             iFileHandle,
+    const EOpenMode omMode
+)
+{
+    /*DEBUG*/
+    /*DEBUG*/
+
+    FILE *pfRes = NULL;
+
+    pfRes = fdopen(iFileHandle, _sGetOpenMode(omMode).c_str());
+    /*DEBUG*/xASSERT_RET(NULL != pfRes, NULL);
+
+    return pfRes;
 }
 //---------------------------------------------------------------------------
 //DONE: _sGetOpenMode (get open mode as string, by default use "r")

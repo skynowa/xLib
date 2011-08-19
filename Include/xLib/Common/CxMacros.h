@@ -16,6 +16,16 @@
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Filesystem/CxPath.h>
 //---------------------------------------------------------------------------
+//DONE: tests private methods
+#if defined(xTEST_PRIVATE_METHODS)
+     #define private public
+#endif
+
+//DONE: inline
+#if !defined(xCOMPILER_MS) && !defined(xCOMPILER_CODEGEAR)
+    #define __forceinline  inline
+#endif
+
 class CxDebugger;
 
 class CxMacros :
@@ -51,22 +61,12 @@ class CxMacros :
 
         #define xARRAY_ZERO_DELETE(a)   { if (NULL != (a)) {xBUFF_ZERO(a); delete [] (a);  (a) = NULL;} }
 
-    #if defined(xDEPRECIATE)
-        template <class T, const size_t N>
-        static
-        TCHAR (&Util_ArraySize(const T (&array)[N]))[N];
-
-        #define xARRAY_SIZE(a)          ( sizeof(CxMacros::Util_ArraySize(a)) )
-    #else
         template <typename ArrT, size_t ArrS>
-        static
-        inline std::size_t sizeof_array(ArrT const (&)[ArrS])
-        {
+        static inline size_t
+        uiCountOf(ArrT const (&)[ArrS]) {
             return ArrS;
         }
-
-        #define xARRAY_SIZE(a)          ( CxMacros::sizeof_array(a) )
-    #endif
+        #define xARRAY_SIZE(a)          ( CxMacros::uiCountOf(a) )
 
         #define xBUFF_ZERO(Buff)        { memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
         #define xSTRUCT_ZERO(Buff)      { memset(static_cast<void *>( &(Buff) ),    0, sizeof(Buff)); }
@@ -119,16 +119,14 @@ class CxMacros :
         //TODO: xMax
         //http://www.gizmosdk.com/docs/html/gizmobase/html/gz_basic_types_8h-source.html
         template <class T>
-        static inline
-        const T &
+        static inline const T &
         xMax(const T& x , const T& y) {
             return x > y ? x : y;
         }
 
         //TODO: xMin
         template <class T>
-        static inline
-        const T &
+        static inline const T &
         xMin(const T& x , const T& y) {
             return x < y ? x : y;
         }
@@ -136,9 +134,7 @@ class CxMacros :
         //TODO: xClamp
         #if xTODO
             template <class T>
-            static inline
-            const
-            T &
+            static inline const T &
             xClamp(const T& x , const T &min = (T) - 1, const T &max = (T)1 ) {
                 return x < max ? x > min ? x : min : max;
             }
@@ -146,8 +142,7 @@ class CxMacros :
 
         //TODO: xSwap
         template <class T>
-        static inline
-        void
+        static inline void
         xSwap(T& a, T& b ) {
             T temp = a; a = b; b = temp;
         }
@@ -170,16 +165,14 @@ class CxMacros :
 
         //TODO: numeric_limits_check
         template <class T>
-        static inline
-        bool
+        static inline bool
         numeric_limits_check(const T& x) {
             return ((std::numeric_limits<T>::min)() <= x) && ((std::numeric_limits<T>::max)() >= x);
         }
 
         //DONE: xreinterpret_cast (allows any pointer to be converted into any other pointer type)
         template <class ToT, class FromT>
-        static inline
-        ToT
+        static inline ToT
         xreinterpret_cast(FromT p) {
             void *pvVoidCast = static_cast<void *>(p);
             /////*DEBUG*/xASSERT(NULL != pvVoidCast);
@@ -209,16 +202,14 @@ class CxMacros :
         #define xSTR_CONCAT(x, y)  x ## y
 
         template <class T>
-        static inline
-        tString
+        static inline tString
         sAsTString(const T &x) {
             return (NULL != x) ? (tString(x)) : (tString());
         }
 
         //TODO: tests
         template <class T>
-        static inline
-        const TCHAR *
+        static inline const TCHAR *
         pcszAsCString(const T &x) {
             return (true == x.empty()) ? (NULL) : (x.c_str());
         }

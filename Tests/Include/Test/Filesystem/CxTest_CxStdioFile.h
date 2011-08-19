@@ -23,10 +23,11 @@ class CxTest_CxStdioFile :
 		               CxTest_CxStdioFile();
 		virtual       ~CxTest_CxStdioFile();
 
-		virtual  BOOL  bUnit(const ULONGLONG cullBlockLoops);
+		virtual  BOOL  bUnit        (const ULONGLONG cullBlockLoops);
 
 	private:
-	    BOOL           bUnit1(const ULONGLONG cullBlockLoops);
+        BOOL           bUnit1       (const ULONGLONG cullBlockLoops);
+        BOOL           bUnitePrivate(const ULONGLONG cullBlockLoops);
 
 };
 //---------------------------------------------------------------------------
