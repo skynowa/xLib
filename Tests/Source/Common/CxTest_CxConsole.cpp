@@ -53,7 +53,7 @@ CxTest_CxConsole::bUnit(
     //sRead
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
+        #if xTEST_IGNORE
             CxConsole cnConsole;
 
             m_sRes = cnConsole.sRead();
@@ -65,46 +65,52 @@ CxTest_CxConsole::bUnit(
     //bWrite
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csStr = xT("\tConsole_test_string");
+        #if xTEST_IGNORE
+            const tString csStr = xT("\tConsole_test_string");
 
 
-        CxConsole cnConsole;
+            CxConsole cnConsole;
 
-        m_bRes = cnConsole.bWrite(csStr);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = cnConsole.bWrite(csStr);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #endif
     }
 
     //--------------------------------------------------
     //bWriteLine
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csStr = xT("\tConsole_test_line");
+        #if xTEST_IGNORE
+            const tString csStr = xT("\tConsole_test_line");
 
 
-        CxConsole cnConsole;
+            CxConsole cnConsole;
 
-        m_bRes = cnConsole.bWriteLine(csStr);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = cnConsole.bWriteLine(csStr);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #endif
     }
 
     //--------------------------------------------------
     //bWriteErrLine
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csStr = xT("\tConsole_test_error");
+        #if xTEST_IGNORE
+            const tString csStr = xT("\tConsole_test_error");
 
 
-        CxConsole cnConsole;
+            CxConsole cnConsole;
 
-        m_bRes = cnConsole.bWriteLine(csStr);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = cnConsole.bWriteLine(csStr);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #endif
     }
 
     //--------------------------------------------------
     //iMsgBox
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 0
+        #if xTEST_IGNORE
             const tString csText  = xT("iMsgBox_text");
             const tString csTitle = xT("iMsgBox_title");
             const UINT    cuiType = 0U;
@@ -121,7 +127,7 @@ CxTest_CxConsole::bUnit(
     //bPrompt
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 0
+        #if xTEST_IGNORE
             const tString csPrompt    = xT("bPrompt_simple_prompt");
             const BOOL    cbIsVisible = TRUE;
             tString       sAnswer     = xT("sAnswer_bla-bla-bla");
@@ -138,7 +144,7 @@ CxTest_CxConsole::bUnit(
     //bPause
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 0
+        #if xTEST_IGNORE
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bPause();
@@ -150,7 +156,7 @@ CxTest_CxConsole::bUnit(
     //bClear
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEMP_DISABLED
+        #if xTEST_IGNORE
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bClear();
@@ -198,7 +204,7 @@ CxTest_CxConsole::bUnit(
     //bCenterWindow
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEMP_DISABLED && defined(xOS_WIN)
+        #if xTEST_IGNORE && defined(xOS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bCenterWindow();
@@ -210,7 +216,7 @@ CxTest_CxConsole::bUnit(
     //bSetFullScreen
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEMP_DISABLED && defined(xOS_WIN)
+        #if xTEST_IGNORE && defined(xOS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetFullScreen();

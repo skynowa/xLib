@@ -180,11 +180,14 @@ class CxStdioFile :
         static BOOL      bRename      (const tString &csOldFilePath,  const tString &csNewFilePath);
         static BOOL      bMove        (const tString &csFilePath,     const tString &csDirPath);
         static BOOL      bCopy        (const tString &csFilePathFrom, const tString &csFilePathTo, const BOOL cbFailIfExists);
-        static tString   sCreateTemp  (const tString &csFilePath, const tString &csDirPath);
         static LONG      liGetSize    (const tString &csFilePath);
         static ULONGLONG ullGetLines  (const tString &csFilePath);
         static BOOL      bGetTime     (const tString &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
         static BOOL      bSetTime     (const tString &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
+
+        //temporary
+        static tString   sTempCreate  (const tString &csFilePath, const tString &csDirPath, INT *piFileHandle);
+        static BOOL      bTempClose   (INT *piFileHandle);
 
         //text
         static BOOL      bTextRead    (const tString &csFilePath, tString *psContent);

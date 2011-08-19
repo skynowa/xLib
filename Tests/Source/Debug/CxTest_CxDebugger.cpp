@@ -106,8 +106,8 @@ CxTest_CxDebugger::bUnit(
         for (size_t i = 0; i < 100; ++ i) {
 	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));
 
-	        ////m_bRes = CxDebugger::bReportMake(rpReport);
-            ////xASSERT_NOT_EQ(FALSE, m_bRes);
+	        //m_bRes = CxDebugger::bReportMake(rpReport);
+            //xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
 
@@ -115,18 +115,18 @@ CxTest_CxDebugger::bUnit(
     //bTrace
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        #if xTEST_IGNORE
+            CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #endif
     }
 
     //-------------------------------------
     //bTrace
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 0
-            CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(1, 20) ).c_str());
-        #else
-            CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), xT("qwerty"));
+        #if xTEST_IGNORE || 1
+            CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
         #endif
 
         xASSERT_NOT_EQ(FALSE, m_bRes);

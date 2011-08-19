@@ -183,7 +183,9 @@ CxTest_CxDir::bUnit(
     xTEST_BLOCK(cullBlockLoops)
 	{
 		m_sRes = CxDir::sGetTemp();
-		xTRACEV(xT("\tCxDir::sGetTemp(): %s"), m_sRes.c_str());
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxDir::sGetTemp(): %s"), m_sRes.c_str());
+        #endif
         xASSERT_EQ(false, m_sRes.empty());
 	}
 

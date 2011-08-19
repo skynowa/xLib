@@ -100,7 +100,9 @@ CxTest_CxSystemInfo::bUnit(
     {
         m_sRes = CxSystemInfo::sGetComputerName();
         xASSERT_EQ(false, m_sRes.empty());
-        xTRACEV(xT("\tCxSystemInfo::sGetComputerName(): %s"), m_sRes.c_str());
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxSystemInfo::sGetComputerName(): %s"), m_sRes.c_str());
+        #endif
     }
 
     //--------------------------------------------------
@@ -108,7 +110,9 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxSystemInfo::bIsUserAnAdmin();
-        xTRACEV(xT("\tCxSystemInfo::bIsUserAnAdmin(): %s"), CxString::sBoolToStr(m_bRes).c_str());
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxSystemInfo::bIsUserAnAdmin(): %s"), CxString::sBoolToStr(m_bRes).c_str());
+        #endif
     }
 
     //-------------------------------------
@@ -117,7 +121,9 @@ CxTest_CxSystemInfo::bUnit(
     {
         m_sRes = CxSystemInfo::sGetUserName();
         xASSERT_EQ(false, m_sRes.empty());
-        xTRACEV(xT("\tCxSystemInfo::sGetUserName(): %s"), m_sRes.c_str());
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxSystemInfo::sGetUserName(): %s"), m_sRes.c_str());
+        #endif
     }
 
     //-------------------------------------
@@ -125,7 +131,9 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_ulRes = CxSystemInfo::ulGetNumOfCPUs();
-        xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCPUs: %li"), m_ulRes);
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCPUs: %li"), m_ulRes);
+        #endif
         xASSERT_LESS(0UL, m_ulRes);
     }
 
@@ -134,7 +142,9 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
-        xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
+        #endif
         xASSERT_NOT_EQ(static_cast<ULONG>( - 1 ), m_ulRes);
         xASSERT_EQ(true, 0 <= m_ulRes && CxSystemInfo::ulGetNumOfCPUs() > m_ulRes);
     }

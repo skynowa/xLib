@@ -702,7 +702,7 @@ CxTest_CxStdioFile::bUnit1(
 
     const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
-        /****************************************************************************
+    /****************************************************************************
     *   static
     *
     *****************************************************************************/
@@ -774,13 +774,20 @@ CxTest_CxStdioFile::bUnit1(
     }
 
     //-------------------------------------
-    //sCreateTempFileName
+    //sTempCreate, bTempClose
     xTEST_BLOCK(cullBlockLoops)
     {
-        tString sTempFilePath = CxStdioFile::sCreateTemp(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"));
-        xTRACEV(xT("\tsTemp: %s"), sTempFilePath.c_str());
+        INT iFileHandle = - 1;
+
+        tString sTempFilePath = CxStdioFile::sTempCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &iFileHandle);
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tsTemp: %s"), sTempFilePath.c_str());
+        #endif
         xASSERT_EQ(false, sTempFilePath.empty());
-        ////TODO: xASSERT_NOT_EQ(FALSE, CxStdioFile::bIsExists(sTempFilePath));
+        xASSERT_NOT_EQ(FALSE, CxStdioFile::bIsExists(sTempFilePath));
+
+        m_bRes = CxStdioFile::bTempClose(&iFileHandle);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = CxStdioFile::bDelete(sTempFilePath);
         xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -791,7 +798,6 @@ CxTest_CxStdioFile::bUnit1(
     xTEST_BLOCK(cullBlockLoops)
     {
         const ULONGLONG cullLinesNum = 17;
-
         {
             CxStdioFile F;
 
