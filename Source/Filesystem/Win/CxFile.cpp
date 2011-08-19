@@ -469,6 +469,7 @@ CxFile::bMove(const tString &csFilePathIn, const tString &csFilePathOut) {
 }
 //--------------------------------------------------------------------------
 //TODO: sCreateTempName
+//NOTE: http://www.breakingrobots.net/blog/2006/02/24.html
 /*static*/
 tString
 CxFile::sCreateTempName(const tString &csExt) {    //csDirPath - ��� �����

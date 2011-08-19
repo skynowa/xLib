@@ -112,6 +112,8 @@ class CxMacros :
         #define xDEPRECIATE             0
         #define xTODO                   0
         #define xCAN_REMOVE             0
+        #define xTEMP_OFF               0
+        #define xTEST_IGNORE            0   //ignore test code
         //TODO: #define xNA(arg)        ( arg )
 
         //TODO: xMax

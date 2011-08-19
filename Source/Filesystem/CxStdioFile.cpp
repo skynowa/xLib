@@ -1077,45 +1077,6 @@ CxStdioFile::bCopy(
 
     return TRUE;
 }
-//---------------------------------------------------------------------------
-//DONE: sCreateTemp (create temporary file)
-/*static*/
-tString
-CxStdioFile::sCreateTemp(
-    const tString &csFilePath,
-    const tString &csDirPath
-)
-{
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
-    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  tString());
-
-    tString sRes;
-    BOOL    bRes = FALSE;
-
-    bRes = CxDir::bCreateForce(csDirPath);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
-
-#if defined(xOS_WIN)
-    TCHAR  szRes[L_tmpnam] = {0};
-    TCHAR *pszRes          = NULL;
-
-    pszRes = _ttmpnam(szRes);
-    /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
-
-    sRes.assign(szRes);
-#elif defined(xOS_LINUX)
-    const tString csTemplate = xT("XXXXXX");
-
-    sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csTemplate;
-
-    INT iFile = - 1;
-
-    iFile = _tmkstemp(&sRes.at(0));
-    /*DEBUG*/xASSERT_RET(- 1 != iFile, tString());
-#endif
-
-    return sRes;
-}
 //--------------------------------------------------------------------------
 //DONE: liGetSize (size)
 /*static*/
@@ -1243,6 +1204,65 @@ CxStdioFile::bSetTime(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*   public: temporary
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+//DONE: sTempCreate (create temporary file, open it)
+/*static*/
+tString
+CxStdioFile::sTempCreate(
+    const tString &csFilePath,
+    const tString &csDirPath,
+    INT           *piFileHandle
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  tString());
+    /*DEBUG*/xASSERT_RET(NULL  != piFileHandle,       tString());
+
+    const tString csFileNameTemplate = xT("XXXXXX");
+
+
+    tString sRes;
+
+    BOOL bRes = CxDir::bCreateForce(csDirPath);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
+
+    sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
+
+    INT iFile = _tmkstemp(&sRes.at(0));
+    /*DEBUG*/xASSERT_RET(- 1 != iFile, tString());
+
+    //out
+    xPTR_ASSIGN(piFileHandle, iFile);
+
+    return sRes;
+}
+//---------------------------------------------------------------------------
+//DONE: bTempClose (close temporary file)
+/*static*/
+BOOL
+CxStdioFile::bTempClose(
+    INT *piFileHandle
+)
+{
+    /*DEBUG*/xASSERT_RET(NULL != piFileHandle, FALSE);
+
+    if (- 1 != *piFileHandle) {
+        INT iRes = close(*piFileHandle);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    }
+
+    *piFileHandle = - 1;
+
+    return TRUE;
+}
+//--------------------------------------------------------------------------
 
 
 /****************************************************************************

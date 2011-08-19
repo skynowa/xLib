@@ -162,7 +162,9 @@ CxTest_CxEnvironment::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxEnvironment::sGetCommandLine();
-        xTRACEV(xT("\tCxEnvironment::sGetCommandLine(): %s"), m_sRes.c_str());
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxEnvironment::sGetCommandLine(): %s"), m_sRes.c_str());
+        #endif
         xASSERT_EQ(false, m_sRes.empty());
     }
 

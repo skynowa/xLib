@@ -34,23 +34,25 @@ CxTest_CxCgi::bUnit(
     //bPageShow
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+        #if xTEST_IGNORE
+            const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
-        const tString sFileContent =
-                xT("\t<html>")
-                xT("<head></head>")
-                xT("<body>")
-                xT("<pre>")
-                xT("test HTML page")
-                xT("</pre>")
-                xT("</body>")
-                xT("</html>");
+            const tString sFileContent =
+                    xT("\t<html>")
+                    xT("<head></head>")
+                    xT("<body>")
+                    xT("<pre>")
+                    xT("test HTML page")
+                    xT("</pre>")
+                    xT("</body>")
+                    xT("</html>");
 
-        m_bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = CxCgi::bPageShow(csFilePath);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = CxCgi::bPageShow(csFilePath);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #endif
     }
 
     //--------------------------------------------------
