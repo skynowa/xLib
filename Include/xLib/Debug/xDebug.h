@@ -166,7 +166,7 @@
     #define xTRACE(msg)                                     { CxDebugger::bTrace(msg);                                        }
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
     #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(tString(xFUNCTION) + xT(": ") + tString(s)); }
-    #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %li (file: %s, function: %s, line: %li)"), xCOUNTER, xFILE, xFUNCTION, xLINE); }
+    #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %li (file: %s, function: %s, last error: %s, line: %li)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
     #define xSTD_TRACE_POINT                                { tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << tendl; }
 #else
     #define xTRACEV(format, ...)                            { /* n/a */ }

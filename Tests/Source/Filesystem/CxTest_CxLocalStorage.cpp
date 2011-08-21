@@ -89,10 +89,10 @@ CxTest_CxLocalStorage::bUnit(
     }
 
     //--------------------------------------------------
-    //cmapsGet, bFlush
+    //cmsGet, bFlush
     xTEST_BLOCK(cullBlockLoops)
     {
-        NxLib::TLocalStorage &riniIni = iniIni.cmapsGet();
+        NxLib::TLocalStorage &riniIni = iniIni.cmsGet();
         xASSERT_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
@@ -111,7 +111,7 @@ CxTest_CxLocalStorage::bUnit(
         m_sRes = iniIni.sKeyReadString(csKey3, tString());
         xASSERT_EQ(csValue3, m_sRes);
 
-        iniIni.cmapsGet().clear();
+        iniIni.cmsGet().clear();
 
         m_bRes = iniIni.bFlush();
         xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -121,7 +121,7 @@ CxTest_CxLocalStorage::bUnit(
     //bKeyIsExists
     xTEST_BLOCK(cullBlockLoops)
     {
-        NxLib::TLocalStorage &riniIni = iniIni.cmapsGet();
+        NxLib::TLocalStorage &riniIni = iniIni.cmsGet();
         xASSERT_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
@@ -172,7 +172,7 @@ CxTest_CxLocalStorage::bUnit(
             }
         }
 
-        iniIni.cmapsGet().clear();
+        iniIni.cmsGet().clear();
 
         m_bRes = iniIni.bFlush();
         xASSERT_NOT_EQ(FALSE, m_bRes);

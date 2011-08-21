@@ -53,9 +53,9 @@ class CxIni :
 
         //section
         BOOL             bSectionIsExists  (const tString &csSection);
-        BOOL             bSectionRead      (const tString &csSection, std::map<tString, tString> *pmapsContent);
-        BOOL             bSectionWrite     (const tString &csSection, const std::map<tString, tString> &mapsContent);
-        BOOL             bSectionsReadNames(std::vector<tString> *pvecsNames);
+        BOOL             bSectionRead      (const tString &csSection, std::map<tString, tString> *pmsContent);
+        BOOL             bSectionWrite     (const tString &csSection, const std::map<tString, tString> &msContent);
+        BOOL             bSectionsReadNames(std::vector<tString> *pvsNames);
         BOOL             bSectionClear     (const tString &csSection);
         BOOL             bSectionDelete    (const tString &csSection);
 

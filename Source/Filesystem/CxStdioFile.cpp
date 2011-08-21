@@ -885,7 +885,7 @@ CxStdioFile::bWipe(
         if (0L < liSize) {
             //--------------------------------------------------
             //fill by 0x55, 0xAA, random char
-            for (size_t i = 0; i < cuiPasses; ++ i) {
+            for (size_t p = 0; p < cuiPasses; ++ p) {
                 CxRandom::bSetSeed();
 
                 const UCHAR chRand  = static_cast<UCHAR>(CxRandom::liGetInt(0, 255) + 1);
@@ -1236,8 +1236,21 @@ CxStdioFile::sTempCreate(
 
     sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
+#if defined(xOS_WIN)
+    sRes.resize( sRes.size() + 1);
+
+    errno_t iError = _tmktemp_s(&sRes.at(0), sRes.size() + 1);
+    /*DEBUG*/xASSERT_RET(0 == iError, tString());
+
+    FILE *pfFile = _tfopen(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
+    /*DEBUG*/xASSERT_RET(NULL != pfFile, tString());
+
+    INT iFile = _iGetHandle(pfFile);
+    /*DEBUG*/xASSERT_RET(- 1 != iFile, tString());
+#elif defined(xOS_LINUX)
     INT iFile = _tmkstemp(&sRes.at(0));
     /*DEBUG*/xASSERT_RET(- 1 != iFile, tString());
+#endif
 
     //out
     xPTR_ASSIGN(piFileHandle, iFile);
@@ -1252,14 +1265,14 @@ CxStdioFile::bTempClose(
     INT *piFileHandle
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != piFileHandle, FALSE);
+    /////*DEBUG*/xASSERT_RET(NULL != piFileHandle, FALSE);
 
-    if (- 1 != *piFileHandle) {
-        INT iRes = close(*piFileHandle);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-    }
+    ////if (- 1 != *piFileHandle) {
+    ////    INT iRes = close(*piFileHandle);
+    ////    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    ////}
 
-    *piFileHandle = - 1;
+    ////*piFileHandle = - 1;
 
     return TRUE;
 }
@@ -1678,7 +1691,7 @@ CxStdioFile::_pfGetHandle(
 
     FILE *pfRes = NULL;
 
-    pfRes = fdopen(iFileHandle, _sGetOpenMode(omMode).c_str());
+    pfRes = _tfdopen(iFileHandle, _sGetOpenMode(omMode).c_str());
     /*DEBUG*/xASSERT_RET(NULL != pfRes, NULL);
 
     return pfRes;

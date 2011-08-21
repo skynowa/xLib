@@ -15,7 +15,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
-    BOOL bGetUsbInfo(const tString &csDrive, std::vector<tString> *pvecsInfo);
+    BOOL bGetUsbInfo(const tString &csDrive, std::vector<tString> *pvsInfo);
 #elif defined(xOS_LINUX)
 
 #endif
@@ -26,13 +26,13 @@
 //---------------------------------------------------------------------------
 //int main(int argc, char* argv[]) {
 //  BOOL                     bRes    = FALSE;
-//  std::vector<tString> vecsRes;
+//  std::vector<tString> vsRes;
 //
-//  bRes = bGetUsbInfo("H:\\", &vecsRes);
-//  xASSERT("\\??\\USB"                              == vecsRes.at(0));
-//  xASSERT("Vid_058f&Pid_6387"                      == vecsRes.at(1));
-//  xASSERT("3DH5R5EL"                               == vecsRes.at(2));
-//  xASSERT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}" == vecsRes.at(3));
+//  bRes = bGetUsbInfo("H:\\", &vsRes);
+//  xASSERT("\\??\\USB"                              == vsRes.at(0));
+//  xASSERT("Vid_058f&Pid_6387"                      == vsRes.at(1));
+//  xASSERT("3DH5R5EL"                               == vsRes.at(2));
+//  xASSERT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}" == vsRes.at(3));
 //
 //  //assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
 //

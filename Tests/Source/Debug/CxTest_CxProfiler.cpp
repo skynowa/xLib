@@ -56,14 +56,14 @@ CxTest_CxProfiler::bUnit(
 		m_bRes = pfP.bStart();
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 
-		for (size_t i = 0; i < 10; ++ i) {
+		for (size_t y = 0; y < 10; ++ y) {
 			for (size_t j = 0; j < 2; ++ j) {
 				size_t x = 0;
 
 				x++; --x; x = x / 3;
 			}
 
-			pfP.bPulse(xT("Variable i: %zu"), i);
+			pfP.bPulse(xT("Variable i: %zu"), y);
 			xASSERT_NOT_EQ(FALSE, m_bRes);
 		}
 

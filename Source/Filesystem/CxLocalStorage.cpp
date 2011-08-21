@@ -104,9 +104,9 @@ CxLocalStorage::bSetPath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: cmapsGet (get innner TLocalStorage, may be used with bFlush)
+//DONE: cmsGet (get innner TLocalStorage, may be used with bFlush)
 NxLib::TLocalStorage &
-CxLocalStorage::cmapsGet() {
+CxLocalStorage::cmsGet() {
     /*DEBUG*/
 
     return _m_msIni;

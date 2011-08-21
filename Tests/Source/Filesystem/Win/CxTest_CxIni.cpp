@@ -218,16 +218,16 @@ CxTest_CxIni::bUnit(
         //bSectionRead, bSectionWrite
         xTEST_BLOCK(cullBlockLoops)
         {
-             std::map<tString, tString> mapsContent;
-             mapsContent[xT("qqq")] = xT("111");
-             mapsContent[xT("www")] = xT("222");
-             mapsContent[xT("eee")] = xT("333");
+             std::map<tString, tString> msContent;
+             msContent[xT("qqq")] = xT("111");
+             msContent[xT("www")] = xT("222");
+             msContent[xT("eee")] = xT("333");
 
 
-             m_bRes = objIni.bSectionWrite(xT("Section_Section_1"), mapsContent);
+             m_bRes = objIni.bSectionWrite(xT("Section_Section_1"), msContent);
              xASSERT_EQ(TRUE, m_bRes);
 
-             m_bRes = objIni.bSectionRead(xT("Section_Section_1"), &mapsContent);
+             m_bRes = objIni.bSectionRead(xT("Section_Section_1"), &msContent);
              xASSERT_EQ(TRUE, m_bRes);
         }
 

@@ -860,13 +860,13 @@ CxCgiCookies::_bInit() {
 
     BOOL                 bRes           = FALSE;
     tString              sRawCookies    = _m_ccgCgi.Environment.sGetHttpCookie();
-    std::vector<tString> vecsRawCookies;
+    std::vector<tString> vsRawCookies;
     TCookies             vecckCookies;
 
-    bRes = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vecsRawCookies);
+    bRes = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    for (std::vector<tString>::const_iterator it = vecsRawCookies.begin(); it != vecsRawCookies.end(); ++ it) {
+    for (std::vector<tString>::const_iterator it = vsRawCookies.begin(); it != vsRawCookies.end(); ++ it) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
         /*DEBUG*/xASSERT_RET(NULL != pckItem, FALSE);
 

@@ -374,28 +374,25 @@ CxObject::bGetData(
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        /////
-        ULONG  ulLabelLen      = atrTamplate[0].ulValueLen;
-        UCHAR *pucLabel       = new UCHAR[ulLabelLen];
-        atrTamplate[0].pValue = pucLabel;
+        uString usLabel;
+        uString usValue;
 
-        ULONG  ulValueLen     = atrTamplate[1].ulValueLen;
-        UCHAR *pucValue          = new UCHAR[ulValueLen];
-        atrTamplate[1].pValue = pucValue;
+        {
+	        ULONG ulLabelLen      = atrTamplate[0].ulValueLen;
+	        usLabel.resize(ulLabelLen);
+	        atrTamplate[0].pValue = &usLabel.at(0);
+	
+	        ULONG ulValueLen      = atrTamplate[1].ulValueLen;
+	        usValue.resize(ulValueLen);
+	        atrTamplate[1].pValue = &usValue.at(0);
+        }
 
-        ////
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
         xASSERT_RET(FALSE != bRes, FALSE);
 
         //���������
-        uString usLabel = uString(pucLabel, ulLabelLen);
         pusDataLabel->push_back(usLabel);
-
-        uString usValue = uString(pucValue, ulValueLen);
         pusDataValue->push_back(usValue);
-
-        delete [] pucLabel;
-        delete [] pucValue;
     }
 
     //-------------------------------------

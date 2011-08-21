@@ -145,14 +145,14 @@ CxDebugger::bReportMake(
 
     INT iRes = crpReport.rtGetType();
     switch (iRes) {
-        case CxReport::rtMsgboxPlain:  { _bMsgboxPlain   (crpReport); } break;
-        case CxReport::rtMsgboxFormated:    { _bMsgboxFormated(crpReport); } break;
-        case CxReport::rtStdoutPlain:  { _bStdoutPlain   (crpReport); } break;
-        case CxReport::rtStdoutHtml:   { _bStdoutHtml    (crpReport); } break;
-        case CxReport::rtLoggingPlain: { _bLoggingPlain  (crpReport); } break;
-        case CxReport::rtLoggingHtml:  { _bLoggingHtml   (crpReport); } break;
+        case CxReport::rtMsgboxPlain:    { _bMsgboxPlain   (crpReport); } break;
+        case CxReport::rtMsgboxFormated: { _bMsgboxFormated(crpReport); } break;
+        case CxReport::rtStdoutPlain:    { _bStdoutPlain   (crpReport); } break;
+        case CxReport::rtStdoutHtml:     { _bStdoutHtml    (crpReport); } break;
+        case CxReport::rtLoggingPlain:   { _bLoggingPlain  (crpReport); } break;
+        case CxReport::rtLoggingHtml:    { _bLoggingHtml   (crpReport); } break;
 
-        default:                       { _bStdoutPlain   (crpReport); } break;
+        default:                         { _bStdoutPlain   (crpReport); } break;
     }
 
     //-------------------------------------
