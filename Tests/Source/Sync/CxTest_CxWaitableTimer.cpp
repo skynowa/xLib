@@ -57,7 +57,7 @@ CxTest_CxWaitableTimer::bUnit(
     while (true) {
         //-------------------------------------
         //ждем
-        BOOL bRes = WT.bWait(INFINITE);
+        bRes = WT.bWait(INFINITE);
         printf("ulWait success (%d)\n", GetLastError());
 
         if (FALSE == bRes) {

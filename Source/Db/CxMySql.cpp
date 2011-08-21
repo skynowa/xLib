@@ -335,18 +335,18 @@ CxMySQLRecordset::bFetchFields(
 //TODO: bRowFetch (fetching row)
 BOOL
 CxMySQLRecordset::bFetchRow(
-    std::vector<tString> *pvecsRow
+    std::vector<tString> *pvsRow
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pvecsRow,   FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsRow,   FALSE);
 
     BOOL       bRes            = FALSE;
     UINT       uiFieldsNum     = 0;
     MYSQL_ROW  mrRow           = NULL;
     ULONG     *pulFieldLengths = NULL;
 
-    (*pvecsRow).clear();
+    (*pvsRow).clear();
 
 //    //--UINT   uiFieldsNum   = mysql_num_fields   (_m_pmrResult);
 //    UINT       uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
@@ -366,7 +366,7 @@ CxMySQLRecordset::bFetchRow(
     //field lengths
     bRes = _bFetchLengths(&pulFieldLengths);
     xASSERT(FALSE != bRes);
-    xASSERT(NULL  != pulFieldLengths);
+    xASSERT(NULL  != *pulFieldLengths);
 
 
     //push to std::vector
@@ -379,7 +379,7 @@ CxMySQLRecordset::bFetchRow(
             sField = tString(mrRow[i], pulFieldLengths[i]);
         }
 
-        (*pvecsRow).push_back(sField);
+        (*pvsRow).push_back(sField);
     }
 
     return TRUE;

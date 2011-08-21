@@ -32,7 +32,7 @@ CxTest_CxDll::bUnit(
 {
     #if defined(xOS_WIN)
         const tString sData[][2] = {
-            {xT("kernel32.dll"), xT("Beep")},
+            {xT("kernel32.dll"), xT("Beep")}
         };
     #elif defined(xOS_LINUX)
         #if defined(xOS_FREEBSD)
@@ -40,11 +40,11 @@ CxTest_CxDll::bUnit(
 			return TRUE;
 
 			const tString sData[][2] = {
-                {xT("libm.so"), xT("cos")},
+                {xT("libm.so"), xT("cos")}
             };
         #else
             const tString sData[][2] = {
-                {xT("libm.so"), xT("cos")},
+                {xT("libm.so"), xT("cos")}
             };
         #endif
     #endif

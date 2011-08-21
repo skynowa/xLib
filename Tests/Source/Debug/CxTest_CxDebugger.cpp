@@ -103,7 +103,7 @@ CxTest_CxDebugger::bUnit(
             CxReport::rtLoggingHtml
         };
 
-        for (size_t i = 0; i < 100; ++ i) {
+        for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {
 	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));
 
 	        //m_bRes = CxDebugger::bReportMake(rpReport);

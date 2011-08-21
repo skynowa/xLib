@@ -30,7 +30,7 @@ class CxLocalStorage :
         BOOL                   bCreateDefault (const tString &csContent) const;
         tString                sGetPath       () const;
         BOOL                   bSetPath       (const tString &csFilePath);
-        NxLib::TLocalStorage & cmapsGet       ();
+        NxLib::TLocalStorage & cmsGet         ();
 
         BOOL                   bFlush         () const;
         BOOL                   bClear         ();

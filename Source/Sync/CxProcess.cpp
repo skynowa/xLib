@@ -58,10 +58,13 @@ CxProcess::ulGetCurrParentId() {
     ULONG     ulSize = 0;
     LONG (WINAPI *NtQueryInformationProcess)(HANDLE ProcessHandle, ULONG ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
 
-    *(FARPROC *)&NtQueryInformationProcess = ::GetProcAddress(::LoadLibraryA("NTDLL.DLL"), "NtQueryInformationProcess");
+    HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
+    /*DEBUG*/xASSERT_RET(NULL != hModule, culInvalidId);
+
+    *(FARPROC *)&NtQueryInformationProcess = ::GetProcAddress(hModule, "NtQueryInformationProcess");
     /*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
 
-    BOOL bRes = ( NtQueryInformationProcess(::GetCurrentProcess(), 0, &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi) );
+    BOOL bRes = ( NtQueryInformationProcess(CxHandleT<hvNull>::hGetCurrentProcess(), 0, &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi) );
     /*DEBUG*/xASSERT_RET(FALSE != bRes, culInvalidId);
 
     ulRes = pbi[5];

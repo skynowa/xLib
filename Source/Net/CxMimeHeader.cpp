@@ -65,23 +65,23 @@ CxMimeHeader::bParse(
 
     */
 
-    std::vector<tString> vecsHeader;
-    _m_bRes = CxString::bSplit(csRawHeader, _ms_csEndOfLine, &vecsHeader);
+    std::vector<tString> vsHeader;
+    _m_bRes = CxString::bSplit(csRawHeader, _ms_csEndOfLine, &vsHeader);
     /*DEBUG*///TODO:
 
     //-------------------------------------
     //???? ???? "+OK..." ? ?????? ??????, ?? ??????? ??? ??????
-    if (tString::npos != vecsHeader.at(0).find(xT("+OK"))) {
-        vecsHeader.erase(vecsHeader.begin() + 0);
+    if (tString::npos != vsHeader.at(0).find(xT("+OK"))) {
+        vsHeader.erase(vsHeader.begin() + 0);
     }
 
     //-------------------------------------
     //????????????? ?????? -> ? ????????????
-    for (size_t i = 0; i < vecsHeader.size(); i ++) {
+    for (size_t i = 0; i < vsHeader.size(); i ++) {
         //???? ?????? ?????? ??? "."
-        if ((true == vecsHeader.at(i).empty()) || (xT(".") == vecsHeader.at(i))) {      /*Trim*/
+        if ((true == vsHeader.at(i).empty()) || (xT(".") == vsHeader.at(i))) {      /*Trim*/
             //??????? ??????? ??????
-            vecsHeader.erase(vecsHeader.begin() + i);
+            vsHeader.erase(vsHeader.begin() + i);
 
             //??????? 1-? ?????? - ????????? ?????? ?? 1
             -- i;
@@ -91,13 +91,13 @@ CxMimeHeader::bParse(
         }
 
         //???? 1-?? ?????? ??????????, ?? ?????? - ??? ????? ????????????? ?????? "???? : ????????"
-        ////if (TRUE == bIsSpaceOrTab(vecsHeader.at(i).at(0))) {
-        if ((xT(' ') == vecsHeader.at(i).at(0)) || (xT('\t') == vecsHeader.at(i).at(0))) {
+        ////if (TRUE == bIsSpaceOrTab(vsHeader.at(i).at(0))) {
+        if ((xT(' ') == vsHeader.at(i).at(0)) || (xT('\t') == vsHeader.at(i).at(0))) {
             //????????? ? ?????????? ?????? ?????? (??????, ??? ?????????? ????) ??????? ??????
-            vecsHeader.at(i - 1).append(vecsHeader.at(i));
+            vsHeader.at(i - 1).append(vsHeader.at(i));
 
             //??????? ??????? ?????? (? ??? ???????, ?????? ?? ?? ?????????)
-            vecsHeader.erase(vecsHeader.begin() + i);
+            vsHeader.erase(vsHeader.begin() + i);
 
             //??????? 1-? ?????? - ????????? ?????? ?? 1
             -- i;
@@ -109,16 +109,16 @@ CxMimeHeader::bParse(
 
     //-------------------------------------
     //std::vector -> std::map
-    for (size_t i = 0; i < vecsHeader.size(); i ++) {
-        std::vector<tString> vecsLines;
-        //--vecsLines = vecsSplit(": ", vecsHeader.at(i));
-        _m_bRes = CxString::bSplitKeyValue(vecsHeader.at(i), _ms_csAttrDelimiter, &vecsLines);
+    for (size_t i = 0; i < vsHeader.size(); i ++) {
+        std::vector<tString> vsLines;
+        //--vsLines = vsSplit(": ", vsHeader.at(i));
+        _m_bRes = CxString::bSplitKeyValue(vsHeader.at(i), _ms_csAttrDelimiter, &vsLines);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,           FALSE);
-        /*DEBUG*/xASSERT_RET(false == vecsLines.empty(), FALSE);
+        /*DEBUG*/xASSERT_RET(false == vsLines.empty(), FALSE);
 
         //????????? ? ?????? "????" ? "????????"
-        tString sKey   = CxString::sTrimSpace(vecsLines.at(0));
-        tString sValue = CxString::sTrimSpace(vecsLines.at(1));
+        tString sKey   = CxString::sTrimSpace(vsLines.at(0));
+        tString sValue = CxString::sTrimSpace(vsLines.at(1));
 
         _m_mmsHeader.insert(std::pair<tString, tString>(sKey, sValue));
     }
@@ -177,7 +177,7 @@ CxMimeHeader::uiCount() {
 		 //���� �� ������ csFrom (From:)
 		 if (tString::npos != sLine.find(csFrom + ":")) {
 			 //From: ����<test_1@localhost>
-			 return sReplaceAll(vecsSplit(_ms_csAttrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
+			 return sReplaceAll(vsSplit(_ms_csAttrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
 		 }
 
 		 //������ �� "\r\n\r\n" (����� ������)

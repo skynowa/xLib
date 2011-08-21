@@ -35,22 +35,22 @@ CxTest_CxPath::bUnit(
 	//-------------------------------------
 	//vars
 	tString       sRes          = xT("");
-	std::vector<tString> vecsRes;
+	std::vector<tString> vsRes;
 
     #if defined(xOS_WIN)
-    const tString csFilePath    = xT("C:\\Test.txt");
-    const tString csNewFilePath = xT("C:\\New.Test.txt");
-    const tString csBakFilePath = xT("C:\\Test_Static.txt.bak");
-    const tString csFilePathSt  = xT("C:\\Test_Static.txt");
-    const tString csFileName    = xT("TestName");
-    const tString csFileExt     = xT("doc");
+        const tString csFilePath    = xT("C:\\Test.txt");
+        const tString csNewFilePath = xT("C:\\New.Test.txt");
+        const tString csBakFilePath = xT("C:\\Test_Static.txt.bak");
+        const tString csFilePathSt  = xT("C:\\Test_Static.txt");
+        const tString csFileName    = xT("TestName");
+        const tString csFileExt     = xT("doc");
     #elif defined(xOS_LINUX)
-    const tString csFilePath    = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
-    const tString csNewFilePath = xT("/home/user/Soft/New.Test.txt");
-    const tString csBakFilePath = xT("/home/user/Soft/Test_Static.txt.bak");
-    const tString csFilePathSt  = xT("/home/user/Soft/Test_Static.txt");
-    const tString csFileName    = xT("TestName");
-    const tString csFileExt     = xT("doc");
+        const tString csFilePath    = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
+        const tString csNewFilePath = xT("/home/user/Soft/New.Test.txt");
+        const tString csBakFilePath = xT("/home/user/Soft/Test_Static.txt.bak");
+        const tString csFilePathSt  = xT("/home/user/Soft/Test_Static.txt");
+        const tString csFileName    = xT("TestName");
+        const tString csFileExt     = xT("doc");
     #endif
 
 

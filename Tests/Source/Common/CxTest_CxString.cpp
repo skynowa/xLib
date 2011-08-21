@@ -502,16 +502,16 @@ CxTest_CxString::bUnit(
     //bSplit
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector<tString> vecsText;
+        std::vector<tString> vsText;
 
-        m_bRes = CxString::bSplit(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vecsText);
+        m_bRes = CxString::bSplit(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vsText);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = CxString::bSplit(xT("Key+"), xT("+"), &vecsText);
+        m_bRes = CxString::bSplit(xT("Key+"), xT("+"), &vsText);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        vecsText.clear();
-        m_bRes = CxString::bSplit(xT(""), xT("+"), &vecsText);
+        vsText.clear();
+        m_bRes = CxString::bSplit(xT(""), xT("+"), &vsText);
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
@@ -519,13 +519,13 @@ CxTest_CxString::bUnit(
     //sJoin
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector<tString> vecsRes;
-        vecsRes.push_back(xT("111"));
-        vecsRes.push_back(xT(""));
-        vecsRes.push_back(xT("222"));
-        vecsRes.push_back(xT("333"));
+        std::vector<tString> vsRes;
+        vsRes.push_back(xT("111"));
+        vsRes.push_back(xT(""));
+        vsRes.push_back(xT("222"));
+        vsRes.push_back(xT("333"));
 
-        m_sRes = CxString::sJoin(vecsRes, xT("-"));
+        m_sRes = CxString::sJoin(vsRes, xT("-"));
         xASSERT_EQ(tString(xT("111--222-333")), m_sRes);
     }
 
@@ -533,13 +533,13 @@ CxTest_CxString::bUnit(
     //sJoin
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector<tString> vecsRes;
-        vecsRes.push_back(xT("111"));
-        vecsRes.push_back(xT(""));
-        vecsRes.push_back(xT("222"));
-        vecsRes.push_back(xT("333"));
+        std::vector<tString> vsRes;
+        vsRes.push_back(xT("111"));
+        vsRes.push_back(xT(""));
+        vsRes.push_back(xT("222"));
+        vsRes.push_back(xT("333"));
 
-        m_sRes = CxString::sJoin(vecsRes, xT('-'));
+        m_sRes = CxString::sJoin(vsRes, xT('-'));
         xASSERT_EQ(tString(xT("111--222-333")), m_sRes);
     }
 
@@ -803,13 +803,13 @@ CxTest_CxString::bUnit(
         //various string size
         {
             for (size_t i = 1; i < 1024 * 2; ++ i) {
-                tString sData(i, xT('s'));
+                tString _sData(i, xT('s'));
 
-                tString m_sRes = CxString::sFormat(xT("%s"), sData.c_str());
-                //xSTD_COUT("sData (" << sData.size() << ") = " << sData << "\nm_sRes (" << m_sRes.size() << ") = " << m_sRes);
+                tString m_sRes = CxString::sFormat(xT("%s"), _sData.c_str());
+                //xSTD_COUT("_sData (" << _sData.size() << ") = " << _sData << "\nm_sRes (" << m_sRes.size() << ") = " << m_sRes);
 
-                xASSERT_EQ(m_sRes.size(), sData.size());
-                xASSERT_EQ(m_sRes,        sData);
+                xASSERT_EQ(m_sRes.size(), _sData.size());
+                xASSERT_EQ(m_sRes,        _sData);
             }
         }
     }

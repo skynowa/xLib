@@ -27,11 +27,11 @@
 BOOL
 bGetUsbInfo(
     const tString        &csDrive,
-    std::vector<tString> *pvecsInfo
+    std::vector<tString> *pvsInfo
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDrive.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pvecsInfo,       FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsInfo,         FALSE);
 
     BOOL                     bRes                   = FALSE;
     INT                      mapiRes                = CR_FAILURE;
@@ -39,7 +39,6 @@ bGetUsbInfo(
     HDEVINFO                 hPnP                   = INVALID_HANDLE_VALUE;
     SP_DEVINFO_DATA          ddDevinfoData          = {0};
     SP_DEVICE_INTERFACE_DATA didDeviceInterfaceData = {0};
-    ULONG                    ulMemberIndex          = 0L;
     ULONG                    ulBytesReturned        = 0L;
     DEVINST                  Inst                   = {0};
     HKEY                     hKey                   = NULL;;
@@ -109,8 +108,8 @@ bGetUsbInfo(
             TCHAR szRes[256 + 1] = {0};
 
             if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, xT("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
-                //--*pvecsInfo = vecsSplit(tString(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
-                bRes = CxString::bSplit(tString(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvecsInfo);
+                //--*pvsInfo = vsSplit(tString(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
+                bRes = CxString::bSplit(tString(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvsInfo);
                 /*DEBUG*/xASSERT(TRUE == bRes);
             }
 

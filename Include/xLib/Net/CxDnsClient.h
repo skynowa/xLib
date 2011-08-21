@@ -26,12 +26,12 @@ class CxDnsClient :
         static BOOL bGetHostAddrInfo    (const tString &csHostName, const tString &csPort, const ADDRINFOT *pHints, ADDRINFOT **ppResult);
 
         //TODO: protocol
-        static BOOL bGetProtocolByName  (const tString &csProtocolName, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiNumber);
-        static BOOL bGetProtocolByNumber(SHORT siNumber, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiNum);
+        static BOOL bGetProtocolByName  (const tString &csProtocolName, tString *psName, std::vector<tString> *pvsAliases, SHORT *psiNumber);
+        static BOOL bGetProtocolByNumber(SHORT siNumber, tString *psName, std::vector<tString> *pvsAliases, SHORT *psiNum);
 
         //TODO: service
-        static BOOL bGetServiceByName   (const tString &csServiceName, const tString &csProtocolName, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiPort,  tString *psProtocolName);
-        static BOOL bGetServiceByPort   (SHORT siPort, const tString &csProtocolName, tString *psName, std::vector<tString> *pvecsAliases, SHORT *psiPort,  tString *psProtocolName);
+        static BOOL bGetServiceByName   (const tString &csServiceName, const tString &csProtocolName, tString *psName, std::vector<tString> *pvsAliases, SHORT *psiPort,  tString *psProtocolName);
+        static BOOL bGetServiceByPort   (SHORT siPort, const tString &csProtocolName, tString *psName, std::vector<tString> *pvsAliases, SHORT *psiPort,  tString *psProtocolName);
 
     private:
         static BOOL _ms_bRes;

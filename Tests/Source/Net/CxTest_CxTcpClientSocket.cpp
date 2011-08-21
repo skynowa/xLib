@@ -80,20 +80,20 @@ CxTest_CxTcpClientSocket::bUnit(
 	//-------------------------------------
 	//bGetPeerName
 	{
-		tString sIp;
-		USHORT  usPort = 0;
+		tString _sIp;
+		USHORT  _usPort = 0;
 
-		m_bRes = objSocket.bGetPeerName(&sIp, &usPort);
+		m_bRes = objSocket.bGetPeerName(&_sIp, &_usPort);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 	}
 
 	//-------------------------------------
 	//bGetSocketName
 	{
-		tString sIp;
-		USHORT  usPort = 0;
+		tString _sIp;
+		USHORT  _usPort = 0;
 
-		m_bRes = objSocket.bGetSocketName(&sIp, &usPort);
+		m_bRes = objSocket.bGetSocketName(&_sIp, &_usPort);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 	}
 

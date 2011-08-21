@@ -211,9 +211,9 @@ class CxStdioFile :
         FILE            *_m_pFile;
         tString          _m_sFilePath;
 
-        static INT       _iGetHandle  (FILE *pfFile);                               //TODO: tests _iGetHandle
-        static FILE *    _pfGetHandle (INT iFileHandle, const EOpenMode omMode);    //TODO: tests _pfGetHandle
-        static tString   _sGetOpenMode(const EOpenMode comMode);                    //TODO: tests _sGetOpenMode
+        static INT       _iGetHandle  (FILE *pfFile);
+        static FILE *    _pfGetHandle (INT iFileHandle, const EOpenMode omMode);
+        static tString   _sGetOpenMode(const EOpenMode comMode);
 };
 //---------------------------------------------------------------------------
 #endif  //xLib_Filesystem_CxStdioFileH

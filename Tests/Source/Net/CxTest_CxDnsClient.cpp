@@ -136,8 +136,8 @@ CxTest_CxDnsClient::bUnit(
 
 			//tcout << xT("[bGetProtocolByName]: ")             << tendl;
 			//tcout << xT("	sName:    ") << sName             << tendl;
-			for (size_t i = 0; i < vsAliases.size(); ++ i) {
-			//tcout << xT("	sAlias:   ") << vsAliases.at(i) << tendl;
+			for (size_t j = 0; j < vsAliases.size(); ++ j) {
+			//tcout << xT("	sAlias:   ") << vsAliases.at(j) << tendl;
 			}
 			//tcout << xT("	siNumber: ") << siNumber          << tendl;
 			//tcout << xT("	--------------------")            << tendl;
@@ -162,8 +162,8 @@ CxTest_CxDnsClient::bUnit(
 
 			//tcout << xT("[bGetProtocolByNumber]: ")           << tendl;
 			//tcout << xT("	sName:    ") << sName             << tendl;;
-			for (size_t i = 0; i < vsAliases.size(); ++ i) {
-			//tcout << xT("	sAlias:   ") << vsAliases.at(i) << tendl;
+			for (size_t j = 0; j < vsAliases.size(); ++ j) {
+			//tcout << xT("	sAlias:   ") << vsAliases.at(j) << tendl;
 			}
 			//tcout << xT("	siNumber: ") << siNumber          << tendl;
 			//tcout << xT("	--------------------")            << tendl;

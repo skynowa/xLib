@@ -561,7 +561,7 @@ CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
     ULONG          ulFilePointer       = INVALID_SET_FILE_POINTER;
     const LONGLONG cllClusterSize      = 32 * 1024;
     LONGLONG       llFileSize          = 0;
-    const LONG     cliBuffSize            = 32 * 1024;
+    const LONG     cliBuffSize         = 1024;
     UCHAR          ucBuff[cliBuffSize] = {0};
     tString        sFilePathOut;
 

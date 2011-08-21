@@ -227,9 +227,9 @@ CxTest_CxFile::bUnit(
     {
         CxDir::bCreateForce(csTmpDirPath);
 
-        CxFile F;
+        CxFile _F;
 
-        m_bRes = F.bCreate(csTmpDirPath + CxConst::xWIN_SLASH + xT("Test.txt"), CxFile::grRead | CxFile::grWrite,  CxFile::smRead | CxFile::smWrite, CxFile::cfCreateAlways, CxFileAttribute::faNormal);
+        m_bRes = _F.bCreate(csTmpDirPath + CxConst::xWIN_SLASH + xT("Test.txt"), CxFile::grRead | CxFile::grWrite,  CxFile::smRead | CxFile::smWrite, CxFile::cfCreateAlways, CxFileAttribute::faNormal);
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 

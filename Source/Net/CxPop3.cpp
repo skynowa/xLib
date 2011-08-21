@@ -485,12 +485,12 @@ ULONG CxPop3::_ulMailsSum(const tString &csServerAnswer) {
     //+OK 2 1141841
     ULONG   ulSum = 0;
     tString sSum;
-    std::vector<tString> vecsRes;
+    std::vector<tString> vsRes;
 
-    _m_bRes = CxString::bSplit(csServerAnswer, " ", &vecsRes);
+    _m_bRes = CxString::bSplit(csServerAnswer, " ", &vsRes);
     /*DEBUG*///TODO:
 
-    sSum  = vecsRes.at(1);
+    sSum  = vsRes.at(1);
     ulSum = atol(sSum.c_str());        //!!! ul -> l
 
     return ulSum;
@@ -503,12 +503,12 @@ ULONG CxPop3::_ulMailsSize(const tString &csServerAnswer) {
     //+OK 2 1141841
     ULONG   ulSize = 0;
     tString sSize;
-    std::vector<tString> vecsRes;
+    std::vector<tString> vsRes;
 
-    _m_bRes = CxString::bSplit(csServerAnswer, " ", &vecsRes);
+    _m_bRes = CxString::bSplit(csServerAnswer, " ", &vsRes);
     /*DEBUG*///TODO:
 
-    sSize  = vecsRes.at(2);
+    sSize  = vsRes.at(2);
     ulSize = atol(sSize.c_str());    //!!! ul+\r\n -> l
 
     return ulSize;

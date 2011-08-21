@@ -786,6 +786,7 @@ CxTest_CxStdioFile::bUnit1(
         #if xTEST_IGNORE
             xTRACEV(xT("\tsTemp: %s"), sTempFilePath.c_str());
         #endif
+
         xASSERT_EQ(false, sTempFilePath.empty());
         xASSERT_NOT_EQ(FALSE, CxStdioFile::bIsExists(sTempFilePath));
 
@@ -1074,7 +1075,7 @@ CxTest_CxStdioFile::bUnit1(
     //bTextRead, bTextWrite (std::vector)
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::map<tString, tString> cmapsFileContent;
+        std::map<tString, tString> cmsFileContent;
         const tString              csSeparator = CxConst::xEQUAL;
 
         {
@@ -1089,24 +1090,24 @@ CxTest_CxStdioFile::bUnit1(
             }
         }
 
-        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &cmapsFileContent);
+        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &cmsFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = CxStdioFile::bTextWrite(csFilePath, csSeparator, cmapsFileContent);
+        m_bRes = CxStdioFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        std::map<tString, tString> mapsStr;
-        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &mapsStr);
+        std::map<tString, tString> msStr;
+        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &msStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        xASSERT_EQ(cmapsFileContent.size(), mapsStr.size());
-        xASSERT(cmapsFileContent == mapsStr);
+        xASSERT_EQ(cmsFileContent.size(), msStr.size());
+        xASSERT(cmsFileContent == msStr);
     }
 
     //empty content
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::map<tString, tString> cmapsFileContent;
+        std::map<tString, tString> cmsFileContent;
         const tString              csSeparator = CxConst::xEQUAL;
 
         {
@@ -1116,18 +1117,18 @@ CxTest_CxStdioFile::bUnit1(
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
-        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &cmapsFileContent);
+        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &cmsFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = CxStdioFile::bTextWrite(csFilePath, csSeparator, cmapsFileContent);
+        m_bRes = CxStdioFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        std::map<tString, tString> mapsStr;
-        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &mapsStr);
+        std::map<tString, tString> msStr;
+        m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &msStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        xASSERT_EQ(cmapsFileContent.size(), mapsStr.size());
-        xASSERT(cmapsFileContent == mapsStr);
+        xASSERT_EQ(cmsFileContent.size(), msStr.size());
+        xASSERT(cmsFileContent == msStr);
     }
 
     //-------------------------------------
@@ -1248,16 +1249,15 @@ CxTest_CxStdioFile::bUnitePrivate(
     {
         const CxStdioFile::EOpenMode comMode = CxStdioFile::omRead;
 
-
         CxStdioFile sfFile;
 
         m_bRes = sfFile.bOpen(csFilePath, comMode, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_iRes = CxStdioFile::_iGetHandle(sfFile.pGet());
-        xASSERT_NOT_EQ((INT)CxStdioFile::etError, m_iRes);
+        INT iFile = CxStdioFile::_iGetHandle(sfFile.pGet());
+        xASSERT_NOT_EQ((INT)CxStdioFile::etError, iFile);
 
-        FILE *pfFile = CxStdioFile::_pfGetHandle(m_iRes, comMode);
+        FILE *pfFile = CxStdioFile::_pfGetHandle(iFile, comMode);
         xASSERT_PTR(pfFile);
     }
 
@@ -1280,7 +1280,6 @@ CxTest_CxStdioFile::bUnitePrivate(
         vpData.push_back( std::make_pair(CxStdioFile::omBinOpenReadWrite,   xT("rb+")) );
         vpData.push_back( std::make_pair(CxStdioFile::omBinCreateReadWrite, xT("wb+")) );
         vpData.push_back( std::make_pair(CxStdioFile::omBinOpenReadAppend,  xT("ab+")) );
-
 
         for (size_t i = 0; i < vpData.size(); ++ i) {
             CxStdioFile::EOpenMode omRes = vpData.at(i).first;

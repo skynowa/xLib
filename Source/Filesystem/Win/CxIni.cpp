@@ -114,13 +114,13 @@ BOOL
 CxIni::bClear() {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
 
-    std::vector<tString> vecsNames;
+    std::vector<tString> vsNames;
 
-    _m_bRes = bSectionsReadNames(&vecsNames);
+    _m_bRes = bSectionsReadNames(&vsNames);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    for (std::size_t i = 0; i < vecsNames.size(); ++ i) {
-        _m_bRes = bSectionDelete(vecsNames.at(i));
+    for (std::size_t i = 0; i < vsNames.size(); ++ i) {
+        _m_bRes = bSectionDelete(vsNames.at(i));
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     }
 
@@ -141,12 +141,12 @@ CxIni::bKeyIsExists(const tString &csSection, const tString &csKey) {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
 
-    std::map<tString, tString> mapsContent;
+    std::map<tString, tString> msContent;
 
-    _m_bRes = bSectionRead(csSection, &mapsContent);
+    _m_bRes = bSectionRead(csSection, &msContent);
     xASSERT(FALSE != _m_bRes);
 
-    if (mapsContent.end() == mapsContent.find(csKey)) {
+    if (msContent.end() == msContent.find(csKey)) {
         return FALSE;
     } else {
         return TRUE;
@@ -361,10 +361,10 @@ CxIni::bSectionIsExists(const tString &csSection) {
 //---------------------------------------------------------------------------
 //DONE: bSectionRead (������ ������)
 BOOL
-CxIni::bSectionRead(const tString &csSection, std::map<tString, tString> *pmapsContent) {
+CxIni::bSectionRead(const tString &csSection, std::map<tString, tString> *pmsContent) {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pmapsContent,         FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pmsContent,         FALSE);
 
     tString           sBuff;
     const std::size_t cuiSectionSize = 32 * 4;
@@ -388,9 +388,9 @@ CxIni::bSectionRead(const tString &csSection, std::map<tString, tString> *pmapsC
 
     //-------------------------------------
     //���������� std::vector
-    std::vector<tString> vecsContent;
+    std::vector<tString> vsContent;
 
-    vecsContent.clear();
+    vsContent.clear();
 
     sBuff = CxString::sReplaceAll(sBuff, xT('\0'), CxConst::xNL.at(0));
     /*DEBUG*/
@@ -399,10 +399,10 @@ CxIni::bSectionRead(const tString &csSection, std::map<tString, tString> *pmapsC
     /*DEBUG*/
 
     if (tString::npos != sBuff.find(CxConst::xNL)) {
-        _m_bRes = CxString::bSplit(sBuff, CxConst::xNL, &vecsContent);
+        _m_bRes = CxString::bSplit(sBuff, CxConst::xNL, &vsContent);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     } else {
-        vecsContent.push_back(sBuff);
+        vsContent.push_back(sBuff);
     }
 
     //-------------------------------------
@@ -412,16 +412,16 @@ CxIni::bSectionRead(const tString &csSection, std::map<tString, tString> *pmapsC
     www=222
     eee=333
     */
-    (*pmapsContent).clear();
+    (*pmsContent).clear();
 
-    std::vector<tString> vecsKeyValue;
+    std::vector<tString> vsKeyValue;
     std::pair<std::map<tString, tString>::iterator, bool> itRet;
 
-    for (std::vector<tString>::const_iterator it = vecsContent.begin(); it != vecsContent.end(); ++ it) {
-        _m_bRes = CxString::bSplit(*it, xT("="), &vecsKeyValue);
+    for (std::vector<tString>::const_iterator it = vsContent.begin(); it != vsContent.end(); ++ it) {
+        _m_bRes = CxString::bSplit(*it, xT("="), &vsKeyValue);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-        itRet = (*pmapsContent).insert( std::pair<tString, tString>(vecsKeyValue.at(0), vecsKeyValue.at(1)) );
+        itRet = (*pmsContent).insert( std::pair<tString, tString>(vsKeyValue.at(0), vsKeyValue.at(1)) );
         /*DEBUG*/xASSERT_RET(false != itRet.second, FALSE);        //element 'z' already existed
     }
 
@@ -430,17 +430,17 @@ CxIni::bSectionRead(const tString &csSection, std::map<tString, tString> *pmapsC
 //---------------------------------------------------------------------------
 //DONE: bSectionWrite (������ ������)
 BOOL
-CxIni::bSectionWrite(const tString &csSection, const std::map<tString, tString> &mapsContent) {
+CxIni::bSectionWrite(const tString &csSection, const std::map<tString, tString> &msContent) {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
-    /*DEBUG*/// vecsContent - n/a
+    /*DEBUG*/// vsContent - n/a
 
     tString sContent;
 
     //-------------------------------------
     //������ std::map
-    for (std::map<tString, tString>::const_iterator it = mapsContent.begin();
-        it != mapsContent.end();
+    for (std::map<tString, tString>::const_iterator it = msContent.begin();
+        it != msContent.end();
         ++ it)
     {
         sContent.append((*it).first);
@@ -459,9 +459,9 @@ CxIni::bSectionWrite(const tString &csSection, const std::map<tString, tString> 
 //-------------------------------------------------------------------------
 //DONE: bSectionsReadNames (������ ���� ���� ������)
 BOOL
-CxIni::bSectionsReadNames(std::vector<tString> *pvecsNames) {
+CxIni::bSectionsReadNames(std::vector<tString> *pvsNames) {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pvecsNames,           FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsNames,           FALSE);
 
     tString           sBuff;
     const std::size_t cuiSectionsNamesSize = 32 * 8;
@@ -486,7 +486,7 @@ CxIni::bSectionsReadNames(std::vector<tString> *pvecsNames) {
     //-------------------------------------
     //���������� std::vector
     sBuff.resize(ulRes);
-    (*pvecsNames).clear();
+    (*pvsNames).clear();
 
     sBuff = CxString::sReplaceAll(sBuff, xT('\0'), CxConst::xNL.at(0));
     /*DEBUG*/
@@ -494,7 +494,7 @@ CxIni::bSectionsReadNames(std::vector<tString> *pvecsNames) {
     sBuff = CxString::sTrimRightChars(sBuff, CxConst::xNL);
     /*DEBUG*/
 
-    _m_bRes = CxString::bSplit(sBuff, CxConst::xNL, pvecsNames);
+    _m_bRes = CxString::bSplit(sBuff, CxConst::xNL, pvsNames);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;

@@ -680,11 +680,11 @@ CxDir::bFindDirs(
     ////--(*pvsDirPathes).clear();
 
 #if defined(xOS_WIN)
-    HANDLE          hFile    = INVALID_HANDLE_VALUE;
-    WIN32_FIND_DATA fdData   = {0};
-    tString         sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, FALSE );
+    HANDLE          hFile        = INVALID_HANDLE_VALUE;
+    WIN32_FIND_DATA fdData       = {0};
+    tString         sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, FALSE );
 
-    hFile = ::FindFirstFile(sDirPath.c_str(), &fdData);
+    hFile = ::FindFirstFile(sRootDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, FALSE);
 
     do {

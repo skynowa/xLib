@@ -216,7 +216,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxConsole);
 
     #if defined(xOS_WIN)
-        bRes = tmManager.bAdd(new CxTest_CxClipboard);
+        ////bRes = tmManager.bAdd(new CxTest_CxClipboard);
         bRes = tmManager.bAdd(new CxTest_CxCom);
         bRes = tmManager.bAdd(new CxTest_CxHandleT);
         bRes = tmManager.bAdd(new CxTest_CxShell);

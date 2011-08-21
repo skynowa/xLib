@@ -33,7 +33,7 @@ bDownloadURL(
     BOOL        bRes                    = FALSE;
     HINTERNET   hSession                = NULL;
     HINTERNET   hService                = NULL ;
-    const ULONG culBuffSize             = 8192 * 4;
+    const ULONG culBuffSize             = 1024;
     TCHAR       szBuff[culBuffSize + 1] = {0};
     ULONG       ulBytesRead             = 0;
 
@@ -52,7 +52,6 @@ bDownloadURL(
         fwrite(szBuff, 1, ulBytesRead, pFile);
     }
 
-    fflush(pFile);
     fclose(pFile);
 
     bRes = ::InternetCloseHandle(hService);

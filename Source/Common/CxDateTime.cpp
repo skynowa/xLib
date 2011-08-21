@@ -1143,20 +1143,20 @@ CxDateTime::_bParse(
                 sDT.assign( CxString::sReplaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE) );
 
                 //split by separator " "
-                std::vector<tString> vecsDates;
+                std::vector<tString> vsDates;
 
-                bRes = CxString::bSplit(sDT, CxConst::xSPACE, &vecsDates);
+                bRes = CxString::bSplit(sDT, CxConst::xSPACE, &vsDates);
                 /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-                //CxString::vStdVectorPrintT(vecsDates);
+                //CxString::vStdVectorPrintT(vsDates);
 
-                //                   = CxString::lexical_cast<USHORT>( vecsDates.at(0) );   //Wed(0),
-                (*pdtDT)._m_usDay    = CxString::lexical_cast<USHORT>( vecsDates.at(1) );   //23(1)
-                (*pdtDT)._m_usMonth  = usGetMonthNum(vecsDates.at(2), TRUE);                //Mar(2)
-                (*pdtDT)._m_usYear   = CxString::lexical_cast<USHORT>( vecsDates.at(3) );   //2011(3)
-                (*pdtDT)._m_usHour   = CxString::lexical_cast<USHORT>( vecsDates.at(4) );   //15(4)
-                (*pdtDT)._m_usMinute = CxString::lexical_cast<USHORT>( vecsDates.at(5) );   //05(5)
-                (*pdtDT)._m_usSecond = CxString::lexical_cast<USHORT>( vecsDates.at(6) );   //49(6)
+                //                   = CxString::lexical_cast<USHORT>( vsDates.at(0) );   //Wed(0),
+                (*pdtDT)._m_usDay    = CxString::lexical_cast<USHORT>( vsDates.at(1) );   //23(1)
+                (*pdtDT)._m_usMonth  = usGetMonthNum(vsDates.at(2), TRUE);                //Mar(2)
+                (*pdtDT)._m_usYear   = CxString::lexical_cast<USHORT>( vsDates.at(3) );   //2011(3)
+                (*pdtDT)._m_usHour   = CxString::lexical_cast<USHORT>( vsDates.at(4) );   //15(4)
+                (*pdtDT)._m_usMinute = CxString::lexical_cast<USHORT>( vsDates.at(5) );   //05(5)
+                (*pdtDT)._m_usSecond = CxString::lexical_cast<USHORT>( vsDates.at(6) );   //49(6)
 
                 #if xTEMP_DISABLED
                     xTRACE(xT("-----------------------------------"));

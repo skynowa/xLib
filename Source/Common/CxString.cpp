@@ -201,7 +201,7 @@ CxString::bSplit(
 {
     /*DEBUG*/// csStr    - n/a
     /*DEBUG*/// csSep    - n/a
-    /*DEBUG*/// pvecsOut - n/a
+    /*DEBUG*/// pvsOut - n/a
 
     xCHECK_RET(true == csStr.empty(), TRUE);
     xCHECK_RET(true == csSep.empty(), TRUE);
@@ -235,7 +235,7 @@ CxString::sJoin(
     const tString              &csSep
 )
 {
-    /*DEBUG*/// cvecsVec - n/a
+    /*DEBUG*/// cvsVec - n/a
     /*DEBUG*/// csSep    - n/a
 
     tString sRes;
@@ -257,7 +257,7 @@ CxString::sJoin(
     const TCHAR                 cchSep
 )
 {
-    /*DEBUG*/// cvecsVec - n/a
+    /*DEBUG*/// cvsVec - n/a
     /*DEBUG*/// csSep    - n/a
 
     return sJoin(cvsVec, tString(1, cchSep));

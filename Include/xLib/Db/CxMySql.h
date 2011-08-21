@@ -64,7 +64,7 @@ class CxMySQLRecordset :
         BOOL                     bFetchField      (MYSQL_FIELD *pmfField) const;
         BOOL                     bFetchFieldDirect(const UINT cuiFieldNumber, MYSQL_FIELD *pmfField) const;
         BOOL                     bFetchFields     (MYSQL_FIELD *pmfField) const;
-        BOOL                     bFetchRow        (std::vector<tString> *pvecsRow) const;
+        BOOL                     bFetchRow        (std::vector<tString> *pvsRow) const;
 
     private:
         const CxMySQLConnection *_m_pcmcConnection;

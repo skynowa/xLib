@@ -313,20 +313,20 @@ CxCookiePv1::bInit(const tString &csRawCookie) {
     sCookie.assign( CxString::sRemoveAll(sCookie, CxConst::xDQM) );
 
     //split into pairs (name1=value1; name2=value2; nameN=valueN)
-    std::vector<tString> vecsPairs;
+    std::vector<tString> vsPairs;
 
-    bRes = CxString::bSplit(sCookie, CxConst::xSEMICOLON, &vecsPairs);
+    bRes = CxString::bSplit(sCookie, CxConst::xSEMICOLON, &vsPairs);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    for (size_t i = 0; i < vecsPairs.size(); ++ i) {
+    for (size_t i = 0; i < vsPairs.size(); ++ i) {
         //split into name, value (name=value)
-        std::vector<tString> vecsTemp;
+        std::vector<tString> vsTemp;
 
-        bRes = CxString::bSplit(vecsPairs.at(i), CxConst::xEQUAL, &vecsTemp);
+        bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        tString sCookieName  = CxString::sTrimSpace(vecsTemp.at(0));
-        tString sCookieValue = ( (1 == vecsTemp.size()) ? tString() : vecsTemp.at(1) );
+        tString sCookieName  = CxString::sTrimSpace(vsTemp.at(0));
+        tString sCookieValue = ( (1 == vsTemp.size()) ? tString() : vsTemp.at(1) );
 
         if (0 == i) {
             //1-st pair is "Name=Value"

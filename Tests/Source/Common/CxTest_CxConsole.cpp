@@ -230,7 +230,7 @@ CxTest_CxConsole::bUnit(
     //bEnableClose
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 1 && defined(xOS_WIN)
+        #if 0 && defined(xOS_WIN)
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bEnableClose(FALSE);
