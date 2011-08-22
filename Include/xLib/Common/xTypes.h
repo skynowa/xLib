@@ -98,6 +98,7 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         #define _ftprintf   fwprintf
         #define _tasctime   _wasctime
         #define _tfopen     _wfopen
+        #define _tfdopen    _wfdopen
         #define _tsetlocale _wsetlocale
         #define _vsntprintf _vsnwprintf
         #define _tfreopen   _wfreopen
@@ -123,6 +124,7 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         #define _fgetts     fgetws
         #define _tcslen     wcslen
         #define _tchmod     _wchmod
+        #define _tstat      _wstat
 
         //chars
         #define _istalnum   iswalnum
@@ -146,6 +148,7 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         #define _ftprintf   fprintf
         #define _tasctime   asctime
         #define _tfopen     fopen
+        #define _tfdopen    fdopen
         #define _tsetlocale setlocale
         #define _vsntprintf vsnprintf
         #define _tfreopen   freopen
@@ -171,6 +174,7 @@ typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                    
         #define _fgetts     fgets
         #define _tcslen     strlen
         #define _tchmod     chmod
+        #define _tstat      stat
 
         //chars
         #define _istalnum   isalnum

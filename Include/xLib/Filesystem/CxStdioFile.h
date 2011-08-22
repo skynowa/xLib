@@ -186,8 +186,8 @@ class CxStdioFile :
         static BOOL      bSetTime     (const tString &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
 
         //temporary
-        static tString   sTempCreate  (const tString &csFilePath, const tString &csDirPath, INT *piFileHandle);
-        static BOOL      bTempClose   (INT *piFileHandle);
+        static tString   sTempCreate  (const tString &csFilePath, const tString &csDirPath, FILE **pfFileHandle);
+        static BOOL      bTempClose   (FILE **pfFileHandle);
 
         //text
         static BOOL      bTextRead    (const tString &csFilePath, tString *psContent);

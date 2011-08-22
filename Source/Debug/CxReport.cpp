@@ -297,7 +297,7 @@ CxReport::_bInitVars(
 
     _m_rtType          = crtType;
 
-#if 0
+#if 1
     _m_sProgram        = CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
     _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
@@ -318,23 +318,23 @@ CxReport::_bInitVars(
     _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #else
     _m_sProgram        = xT("");
-    _m_ulProcessId     = 0;
-    _m_ulThreadId      = 0;
+    _m_ulProcessId     = CxProcess::ulGetCurrId();
+    _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
     _m_sFileSize       = xT("");
 
-    _m_sSourceFile     = xT("");
-    _m_ulSourceLine    = 0;
-    _m_sFunctionName   = xT("");
-    _m_sExpression     = xT("");
-    _m_ulLastError     = 0;
-    _m_sLastErrorStr   = xT("");
+    _m_sSourceFile     = csFile;
+    _m_ulSourceLine    = culLine;
+    _m_sFunctionName   = csFunc;
+    _m_sExpression     = csExp;
+    _m_ulLastError     = culLastError;
+    _m_sLastErrorStr   = CxLastError::sFormat(culLastError);
 
     _m_sCurrentDate    = xT("");
     _m_sBuildDate      = xT("");
     _m_sOsVersion      = xT("");
     _m_sOsArchitecture = xT("");
 
-    _m_sComment        = xT("");
+    _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #endif
 
     return TRUE;

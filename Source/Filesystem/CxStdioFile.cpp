@@ -1142,7 +1142,7 @@ CxStdioFile::bGetTime(
 
     struct stat stInfo = {0};
 
-    INT iRes = stat(csFilePath.c_str(), &stInfo);
+    INT iRes = _tstat(csFilePath.c_str(), &stInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
 #if xTODO
@@ -1219,12 +1219,12 @@ tString
 CxStdioFile::sTempCreate(
     const tString &csFilePath,
     const tString &csDirPath,
-    INT           *piFileHandle
+    FILE          **pfFileHandle
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  tString());
-    /*DEBUG*/xASSERT_RET(NULL  != piFileHandle,       tString());
+    /*DEBUG*/xASSERT_RET(NULL  == *pfFileHandle,      tString());
 
     const tString csFileNameTemplate = xT("XXXXXX");
 
@@ -1244,16 +1244,16 @@ CxStdioFile::sTempCreate(
 
     FILE *pfFile = _tfopen(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
     /*DEBUG*/xASSERT_RET(NULL != pfFile, tString());
-
-    INT iFile = _iGetHandle(pfFile);
-    /*DEBUG*/xASSERT_RET(- 1 != iFile, tString());
 #elif defined(xOS_LINUX)
     INT iFile = _tmkstemp(&sRes.at(0));
     /*DEBUG*/xASSERT_RET(- 1 != iFile, tString());
+
+    FILE *pfFile = _tfdopen(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
+    /*DEBUG*/xASSERT_RET(NULL != pfFile, tString());
 #endif
 
     //out
-    xPTR_ASSIGN(piFileHandle, iFile);
+    *pfFileHandle = pfFile;
 
     return sRes;
 }
@@ -1262,17 +1262,17 @@ CxStdioFile::sTempCreate(
 /*static*/
 BOOL
 CxStdioFile::bTempClose(
-    INT *piFileHandle
+    FILE **pfFileHandle
 )
 {
-    /////*DEBUG*/xASSERT_RET(NULL != piFileHandle, FALSE);
+    /*DEBUG*/// n/a
 
-    ////if (- 1 != *piFileHandle) {
-    ////    INT iRes = close(*piFileHandle);
-    ////    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-    ////}
+    if (NULL != *pfFileHandle) {
+        INT iRes = fclose(*pfFileHandle);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    }
 
-    ////*piFileHandle = - 1;
+    pfFileHandle = NULL;
 
     return TRUE;
 }
