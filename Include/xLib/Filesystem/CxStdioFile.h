@@ -14,6 +14,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+/// \class CxStdioFile
+/// \brief file implementation
 class CxStdioFile :
     public CxNonCopyable
 {
@@ -23,19 +25,19 @@ class CxStdioFile :
         };
 
         enum EOpenMode {
-            omRead,                //"r"
-            omWrite,               //"w"
-            omAppend,              //"a"
-            omOpenReadWrite,       //"r+"
-            omCreateReadWrite,     //"w+"
-            omOpenReadAppend,      //"a+"
+            omRead,                ///< "r"
+            omWrite,               ///< "w"
+            omAppend,              ///< "a"
+            omOpenReadWrite,       ///< "r+"
+            omCreateReadWrite,     ///< "w+"
+            omOpenReadAppend,      ///< "a+"
 
-            omBinRead,             //"rb"
-            omBinWrite,            //"wb"
-            omBinAppend,           //"ab"
-            omBinOpenReadWrite,    //"rb+"
-            omBinCreateReadWrite,  //"wb+"
-            omBinOpenReadAppend    //"ab+"
+            omBinRead,             ///< "rb"
+            omBinWrite,            ///< "wb"
+            omBinAppend,           ///< "ab"
+            omBinOpenReadWrite,    ///< "rb+"
+            omBinCreateReadWrite,  ///< "wb+"
+            omBinOpenReadAppend    ///< "ab+"
         };
 
     #if defined(xOS_WIN)
@@ -111,6 +113,11 @@ class CxStdioFile :
         virtual         ~CxStdioFile  ();
 
         //open, get
+        /// \brief          Open file
+        /// \param[in]      csFilePath       file path
+        /// \param[in]      omMode           open mode
+        /// \param[in]      cbIsUseBuffering is used buffering
+        /// \return         boolean value
         BOOL             bOpen        (const tString &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
         BOOL             bReopen      (const tString &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
         BOOL             bOpen        (FILE *pflFile);

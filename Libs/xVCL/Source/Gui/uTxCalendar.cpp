@@ -116,15 +116,15 @@ int __fastcall TxCalendar::DaysPerCurrMonth() {
 
 	iRes = DaysPerMonth(usYear, usMonth);
 
-	///ShowMessage(iRes);
+	//ShowMessage(iRes);
 
     return iRes;
 }
 //---------------------------------------------------------------------------
 //TODO: UpdateCalendar
 void __fastcall TxCalendar::UpdateCalendar() {
-	USHORT    AYear   = 0; 
-	USHORT    AMonth  = 0; 
+	USHORT    AYear   = 0;
+	USHORT    AMonth  = 0;
 	USHORT    ADay    = 0;
 	TDateTime FirstDate;
 
@@ -144,7 +144,7 @@ void __fastcall TxCalendar::UpdateCalendar() {
     FUpdating = false;
 }
 //---------------------------------------------------------------------------
-//TODO:	bIsCurrCalendarDate 
+//TODO:	bIsCurrCalendarDate
 bool __fastcall TxCalendar::bIsCurrCalendarDate(TDate dtBegin) {
     //число текущего года, месяца
 	USHORT usCalendarYear  = 0;
@@ -166,7 +166,7 @@ bool __fastcall TxCalendar::bIsCurrCalendarDate(TDate dtBegin) {
 	return true;
 }
 //---------------------------------------------------------------------------
-//TODO: bSelectRange 
+//TODO: bSelectRange
 bool __fastcall TxCalendar::bSelectRange(TDate dtBegin, int iSize, TColor clColor, int *piRemainDays) {
 	/*DEBUG*/
 
@@ -223,8 +223,8 @@ void __fastcall TxCalendar::Change() {
 //---------------------------------------------------------------------------
 //TODO: ChangeMonth (Given a value of 1 or -1, moves to Next or Prev month accordingly)
 void __fastcall TxCalendar::ChangeMonth(int Delta) {
-	USHORT    AYear   = 0; 
-	USHORT    AMonth  = 0; 
+	USHORT    AYear   = 0;
+	USHORT    AMonth  = 0;
 	USHORT    ADay    = 0;
 	TDateTime NewDate;
 	int       iCurDay = 0;
@@ -251,7 +251,7 @@ void __fastcall TxCalendar::ChangeMonth(int Delta) {
 	CalendarDate = EncodeDate(AYear, AMonth, ADay);
 }
 //---------------------------------------------------------------------------
-//TODO: Click 
+//TODO: Click
 void __fastcall TxCalendar::Click() {
 	System::String sCellText;
 
@@ -272,16 +272,16 @@ void __fastcall TxCalendar::DrawCell(int ACol, int ARow, const TRect &ARect, TGr
 
 	if (0 != ARow && false == sCellText.IsEmpty()) {
 		//непустые ячейки
-		USHORT iCalendarYear  = 0; 
+		USHORT iCalendarYear  = 0;
 		USHORT iCalendarMonth = 0;
 		USHORT iCalendarDay   = 0;
 		DecodeDate(CalendarDate, iCalendarYear, iCalendarMonth, iCalendarDay);
-		
-		USHORT iNowYear   = 0; 
-		USHORT iNowMonth  = 0; 
+
+		USHORT iNowYear   = 0;
+		USHORT iNowMonth  = 0;
 		USHORT iNowDay    = 0;
 		DecodeDate(Now(), iNowYear, iNowMonth, iNowDay);
-		
+
 		if (iCalendarYear == iNowYear && iCalendarMonth == iNowMonth && sCellText == IntToStr(iNowDay)) {
 			//выделение текущего дня
 			Canvas->Brush->Color = clBlue;
@@ -291,14 +291,14 @@ void __fastcall TxCalendar::DrawCell(int ACol, int ARow, const TRect &ARect, TGr
 		    //непустые ячейки
 			Canvas->Brush->Color = StrToInt(_m_pslCellData->Strings[ StrToInt(sCellText) ]);
 			Canvas->Font->Color  = clBlack;
-			Canvas->Font->Style  = TFontStyles() << fsBold;		
+			Canvas->Font->Style  = TFontStyles() << fsBold;
 		}
 	} else {
-		//пустые ячейки 
+		//пустые ячейки
 		Canvas->Brush->Color = clBtnFace;
-		Canvas->Font->Color  = clBlack;	
+		Canvas->Font->Color  = clBlack;
 		Canvas->Font->Style  = TFontStyles() >> fsBold;
-	}	
+	}
 
 	//отрисовка ячейки
 	Canvas->TextRect(
@@ -367,8 +367,8 @@ System::String __fastcall TxCalendar::GetCellText(int ACol, int ARow) {
 //---------------------------------------------------------------------------
 //TODO: GetDateElement
 int __fastcall TxCalendar::GetDateElement(int iIndex) {
-	USHORT AYear  = 0; 
-	USHORT AMonth = 0; 
+	USHORT AYear  = 0;
+	USHORT AMonth = 0;
 	USHORT ADay   = 0;
 	int    iRes   = - 1;
 
@@ -394,14 +394,14 @@ void __fastcall TxCalendar::SetCalendarDate(TDateTime Value) {
 //---------------------------------------------------------------------------
 //TODO: SetDateElement
 void __fastcall TxCalendar::SetDateElement(int Index, int Value) {
-	USHORT AYear   = 0; 
-	USHORT AMonth  = 0; 
+	USHORT AYear   = 0;
+	USHORT AMonth  = 0;
 	USHORT ADay    = 0;
 	bool   bUpdate = false;
 
 	if (Value > 0) {
 		DecodeDate(FDate, AYear, AMonth, ADay);
-		
+
 		switch(Index) {
 			case 1:
 				if (AYear != Value) {

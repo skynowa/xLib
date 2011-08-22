@@ -1,6 +1,6 @@
 /**********************************************************************
-*	Класс  CxAccess (CxAccess.cpp)  
-*	
+*	пїЅпїЅпїЅпїЅпїЅ  CxAccess (CxAccess.cpp)
+*
 ***********************************************************************/
 
 
@@ -8,8 +8,8 @@
 
 
 /**********************************************************************
-*	public  
-*	
+*	public
+*
 ***********************************************************************/
 
 //---------------------------------------------------------------------------
@@ -18,15 +18,15 @@ CxAccess::CxAccess() :
 	_m_bRes(FALSE),
 	_m_vRes(Unassigned)
 {
-  ///Provider=Microsoft.Jet.OLEDB.3.51;
+  ////Provider=Microsoft.Jet.OLEDB.3.51;
 }
 //---------------------------------------------------------------------------
 //TODO: ~CxAccess
 CxAccess::~CxAccess() {
-	_m_vRes.Clear();  _m_vRes = Unassigned;	
+	_m_vRes.Clear();  _m_vRes = Unassigned;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsMdbFile (файл в MDB-формате?)
+//TODO: bIsMdbFile (пїЅпїЅпїЅпїЅ пїЅ MDB-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ?)
 BOOL CxAccess::bIsMdbFile(const String &csFilePath) {
 	/*DEBUG*/xASSERT_RET(FALSE == csFilePath.IsEmpty(), FALSE);
 
@@ -38,25 +38,25 @@ BOOL CxAccess::bIsMdbFile(const String &csFilePath) {
 		INT              iBytesRead            = 0;
 
 		//-------------------------------------
-		//читаем первые ciSignatureLen символов в буфер
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ciSignatureLen пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 		iFileHandle = FileOpen(csFilePath, fmOpenRead | fmShareDenyNone);
 		/*DEBUG*/xASSERT_RET(0 < iFileHandle, FALSE);
 
 		CHAR szBuffer[ciSignatureLen] = {0};
-        	
+
 		iBytesRead = FileRead(iFileHandle, &szBuffer[0], ciSignatureLen);
 		FileClose(iFileHandle);
 		/*DEBUG*/xASSERT_RET(ciSignatureLen == iBytesRead, FALSE);
 
 		//-------------------------------------
-		//читаем с 4 до 19 позиции в String
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 4 пїЅпїЅ 19 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ String
 		AnsiString sSignature;
 		for (INT i = 4; i < iBytesRead; ++ i) {
 			sSignature += szBuffer[i];
 		}
 
 		//-------------------------------------
-		//проверяем какой Accees
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Accees
 		xCHECK_RET(csMdb97_2003Signature == sSignature, TRUE);
 		xCHECK_RET(csMdb2007Signature    == sSignature, TRUE);
 
@@ -66,7 +66,7 @@ BOOL CxAccess::bIsMdbFile(const String &csFilePath) {
 	}
 }
 //---------------------------------------------------------------------------
-//TODO: bIsOleAppInstalled (установлено ли приложение)
+//TODO: bIsOleAppInstalled (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxAccess::bIsOleAppInstalled(const String &csApplicationString) {
 	/*DEBUG*/xASSERT_RET(FALSE == csApplicationString.IsEmpty(), FALSE);
 
@@ -87,7 +87,7 @@ BOOL CxAccess::bIsOleAppInstalled(const String &csApplicationString) {
 	return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bCreateResMdb (ресурсы: создать MDB)
+//TODO: bCreateResMdb (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ MDB)
 BOOL CxAccess::bCreateResMdb(const String &csFilePath, const String &csResource) {
 	/*DEBUG*/xASSERT_RET(FALSE == csFilePath.IsEmpty(), FALSE);
 	/*DEBUG*/xASSERT_RET(FALSE == csResource.IsEmpty(), FALSE);
@@ -108,7 +108,7 @@ BOOL CxAccess::bCreateResMdb(const String &csFilePath, const String &csResource)
 	return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bCreateAdoMdb (ADOX: создать MDB)
+//TODO: bCreateAdoMdb (ADOX: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ MDB)
 BOOL CxAccess::bCreateAdoMdb(const String &csMdbFilePath) {
 	/*DEBUG*/xASSERT_RET(FALSE == csMdbFilePath.IsEmpty(), FALSE);
 
@@ -134,7 +134,7 @@ BOOL CxAccess::bCreateAdoMdb(const String &csMdbFilePath) {
 	return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bCompactMdb (JRO: сжать MDB)
+//TODO: bCompactMdb (JRO: пїЅпїЅпїЅпїЅпїЅ MDB)
 BOOL CxAccess::bCompactMdb(const String &csMdbFilePath, const String &csPass1, const String &csPass2) {
 	/*DEBUG*/xASSERT_RET(FALSE == csMdbFilePath.IsEmpty(), FALSE);
 	/*DEBUG*/// csPass1 - n/a
@@ -142,15 +142,15 @@ BOOL CxAccess::bCompactMdb(const String &csMdbFilePath, const String &csPass1, c
 
 	xCHECK_RET(false == bIsOleAppInstalled("JRO.JetEngine"), FALSE);
 
-	Variant vJRO = Unassigned; 
+	Variant vJRO = Unassigned;
 	try {
 		//-------------------------------------
-		//бэкап
+		//пїЅпїЅпїЅпїЅпїЅ
 		////_m_bRes = CxFile::bBackup(xD2S(csMdbFilePath), CxPath::sGetExeDir() + xT("/Backup"), FALSE);
 		/////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
 		//-------------------------------------
-		//сжатие
+		//пїЅпїЅпїЅпїЅпїЅпїЅ
 		tString    sTmpFilePath = CxPath::sSetExt(xD2S(csMdbFilePath), xT("tmp"));
 
 		WideString sProviderIn  = "Provider="                      "Microsoft.Jet.OLEDB.4.0;"
@@ -168,12 +168,12 @@ BOOL CxAccess::bCompactMdb(const String &csMdbFilePath, const String &csPass1, c
 		/*DEBUG*/xASSERT_RET(false == _m_vRes.IsNull(), FALSE);
 
         //-------------------------------------
-		//удаление источника
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		_m_bRes = CxFile::bDelete(xD2S(csMdbFilePath));
 		/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         //-------------------------------------
-		//переименовывание *.tmp в *.xdb
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ *.tmp пїЅ *.xdb
         _m_bRes = CxFile::bMove(sTmpFilePath, xD2S(csMdbFilePath));
 		/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -189,7 +189,7 @@ BOOL CxAccess::bCompactMdb(const String &csMdbFilePath, const String &csPass1, c
     return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetADOVersion (версия ADO)
+//TODO: sGetADOVersion (пїЅпїЅпїЅпїЅпїЅпїЅ ADO)
 String CxAccess::sGetADOVersion() {
 	String sRes;
 
@@ -224,7 +224,7 @@ const
 var
  Access: Variant;
 begin
-// Открываем Access
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Access
 try
   Access:=GetActiveOleObject('Access.Application');
 except
@@ -258,21 +258,21 @@ end;
 */
 //---------------------------------------------------------------------------
 /*
-Как можно открыть отчёт (в режиме Print Preview а также Print Direct) в MS Access 
+пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Print Preview пїЅ пїЅпїЅпїЅпїЅпїЅ Print Direct) пїЅ MS Access
 
 
 
-	От: Святой Петр
-Кому: Всем на Земле
-Дата Октябрь, 1999 от рождества Христова
-Тема: Не помирать!
-Для ускорения регистрационного процесса у врат Рая, мы стали использовать Microsoft Access, после чего у нас начались серьeзные проблемы. А посему, пожалуйста, не помирайте пока! 
+	пїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+пїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 1999 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+пїЅпїЅпїЅпїЅ: пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!
+пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Microsoft Access, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅeпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!
 
 
 var
   Access: Variant;
 begin
-  // Открываем Access
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Access
   try
     Access := GetActiveOleObject('Access.Application');
   except
@@ -280,35 +280,35 @@ begin
   end;
   Access.Visible := True;
 
-  // Открываем базу данных
-  // Второй параметр указывает - будет ли база открыта в Exclusive режиме
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Exclusive пїЅпїЅпїЅпїЅпїЅпїЅ
   Access.OpenCurrentDatabase('C:\My Documents\Books.mdb', True);
 
-  // открываем отч?т
-  {Значение второго пораметра может быть одним из следующих
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ?пїЅ
+  {пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   acViewDesign, acViewNormal, or acViewPreview. acViewNormal,
-  которые устанавливаются по умолчанию, для печати отч?та.
-  Если Вы не используете библиотеку типов, то можете определить
-  эти значения следующими:
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ?пїЅпїЅ.
+  пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
 
   const
   acViewNormal = $00000000;
   acViewDesign = $00000001;
   acViewPreview = $00000002;
 
-  Третий параметр - это имя очереди для текущей базы данных.
-  Четв?ртый параметр - это строка для SQL-евского WHERE -
-  то есть строка SQL, минус WHERE.}
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  пїЅпїЅпїЅпїЅ?пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ SQL-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ WHERE -
+  пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ SQL, пїЅпїЅпїЅпїЅпїЅ WHERE.}
 
   Access.DoCmd.OpenReport('Titles by Author', acViewPreview, EmptyParam,
     EmptyParam);
 
   < ... >
 
-  // Закрываем базу данных
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
   Access.CloseCurrentDatabase;
 
-  // Закрываем Access
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Access
   {const
   acQuitPrompt = $00000000;
   acQuitSaveAll = $00000001;

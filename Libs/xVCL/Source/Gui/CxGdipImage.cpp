@@ -1,6 +1,6 @@
-/****************************************************************************
+    /****************************************************************************
 * Class name:  CxGdipImage
-* Description: GDI+ картинка
+* Description: GDI+ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 * File name:   CxGdipImage.cpp
 * Compilers:   C++ Builder 2010
 * String type: Ansi, Unicode
@@ -20,12 +20,12 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxGdipImage (конструктор)
+//TODO: CxGdipImage (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 __fastcall CxGdipImage::CxGdipImage(Classes::TComponent *pAOwner) :
 	TGraphicControl(pAOwner),
 	_m_bRes        (FALSE),
@@ -37,13 +37,13 @@ __fastcall CxGdipImage::CxGdipImage(Classes::TComponent *pAOwner) :
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxGdipImage (деструктор)
+//TODO: ~CxGdipImage (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 /*virtual*/
 __fastcall CxGdipImage::~CxGdipImage() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetMargin (отступы) 
+//TODO: - bSetMargin (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxGdipImage::bSetMargin(LONG liMargin) {
 	/*DEBUG*/// _m_imgImage - n/a
 	/*DEBUG*/// liMargin    - n/a
@@ -55,7 +55,7 @@ BOOL CxGdipImage::bSetMargin(LONG liMargin) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: - bSetText (текст) 
+//TODO: - bSetText (пїЅпїЅпїЅпїЅпїЅ)
 BOOL CxGdipImage::bSetText(const String &csText) {
 	/*DEBUG*/// _m_imgImage - n/a
 	/*DEBUG*/// csText    - n/a
@@ -68,9 +68,9 @@ BOOL CxGdipImage::bSetText(const String &csText) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bLoadFromFile (загрузка из файла)
+//TODO: bLoadFromFile (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 BOOL CxGdipImage::bLoadFromFile(const String &csFilePath) {
-	/*DEBUG*/// _m_imgImage 
+	/*DEBUG*/// _m_imgImage
 	/*DEBUG*/xASSERT_RET(false == csFilePath.IsEmpty(), FALSE);
 
 	_m_bRes = _m_imgImage.bLoad(xD2S(csFilePath));
@@ -84,13 +84,13 @@ BOOL CxGdipImage::bLoadFromFile(const String &csFilePath) {
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bLoadFromStream (загрузка из потока)
+//TODO: bLoadFromStream (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxGdipImage::bLoadFromStream(TMemoryStream *pmsStream) {
 	/*DEBUG*/// _m_imgImage
 	/*DEBUG*/xASSERT_RET(NULL != pmsStream, FALSE);
 
 	IStream *pisStream = NULL;
-	
+
 	//TMemoryStream -> IStream
 	_m_bRes = _bMemoryStreamToIStream(pmsStream, &pisStream);
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes,   FALSE);
@@ -138,7 +138,7 @@ BOOL CxGdipImage::bSaveToStream(TMemoryStream *pmsStream, EEncoderType etType) {
 
 
 
-	
+
 
 	_m_bRes = _m_imgImage.bSave(pisStream, static_cast<CxImage::EEncoderType>(etType)); 	//FIXME: CxImage::etPng
 	/*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -184,12 +184,12 @@ BOOL CxGdipImage::bAssign(CxGdipImage *pgdipImage) {
 BOOL CxGdipImage::bRedraw(BOOL bErase) {
 	/*DEBUG*/// _m_imgImage
 
-	///Paint();
+	////Paint();
 	/*DEBUG*/// n/a
 
     RECT rcClient = {0};
 
-    _m_bRes = ::GetClientRect(Parent->Handle, &rcClient); 
+    _m_bRes = ::GetClientRect(Parent->Handle, &rcClient);
     xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = ::InvalidateRect(Parent->Handle, &rcClient, bErase);
@@ -211,7 +211,7 @@ BOOL CxGdipImage::bClear() {
 		////BYTE ucRed, ucGreen, ucBlue;
 
 		////vTColorToRGB(clBtnFace, &ucRed, &ucGreen, &ucBlue);
-		
+
 		////_m_bRes = _m_imgImage.bClear(hDc, /*Gdiplus::Color(255, 0, 0, 255)*/ Gdiplus::Color(255, ucRed, ucGreen, ucBlue));
 		/////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 	}
@@ -249,14 +249,14 @@ BOOL CxGdipImage::bDestroy() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: Paint (отрисовка CxImage)
+//TODO: Paint (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CxImage)
 /*virtual*/
 void __fastcall CxGdipImage::Paint() {
 	/*DEBUG*/// _m_imgImage - n/a
 
 
 	//-------------------------------------
-	//вывод текста
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (TRUE == _m_bClear && false == _m_sText.IsEmpty()) {
 		HDC hDc = ::GetDC(Parent->Handle);
 		/*DEBUG*/xASSERT_DO(NULL != hDc, return);
@@ -264,54 +264,54 @@ void __fastcall CxGdipImage::Paint() {
 		{
 			Gdiplus::Status stRes;
 
-			//Создаем контекст рисования и устанавливаем пиксельную систему координат
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Gdiplus::Graphics grfGraphics(hDc);
 			grfGraphics.SetPageUnit(Gdiplus::UnitPixel);
 
-			//шрифт
+			//пїЅпїЅпїЅпїЅпїЅ
 			Gdiplus::Font fntFont(Font->Name.c_str(), Font->Size + 10, Gdiplus::FontStyleBold);
 
 			//rcBounds
 			RECT rcParent = {0};
-			_m_bRes = ::GetClientRect(Parent->Handle, &rcParent); 
+			_m_bRes = ::GetClientRect(Parent->Handle, &rcParent);
 			/*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 
 			Gdiplus::RectF rcBounds(rcParent.left, rcParent.top, rcParent.right, rcParent.bottom);
 
-			//формат
+			//пїЅпїЅпїЅпїЅпїЅпїЅ
 			Gdiplus::StringFormat fmtFormat;
 			fmtFormat.SetAlignment    (Gdiplus::StringAlignmentCenter);
 			fmtFormat.SetLineAlignment(Gdiplus::StringAlignmentCenter);
 
-			//Создаем кисть с градиентом на все окно и полупрозрачностью
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Gdiplus::LinearGradientBrush brsBrush(rcBounds,
 											      Gdiplus::Color(255, 0, 0, 0),
 											      Gdiplus::Color(255, 0, 0, 0),
 											      Gdiplus::LinearGradientModeBackwardDiagonal);
 
 
-			//Выводим текст приветствия, длина -1 означает, что строка заканчивается нулем
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ -1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			//TCHAR -> wide
 			stRes = grfGraphics.DrawString(_m_sText.c_str(), -1, &fntFont, rcBounds, &fmtFormat, &brsBrush);
-			/*DEBUG*/xASSERT_DO(Gdiplus::Ok == stRes, return); 
+			/*DEBUG*/xASSERT_DO(Gdiplus::Ok == stRes, return);
 
 
-			//Загружаем фоновое изображение и растягиваем его на все окно
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			//--Image bg(L"BACKGRND.gif");
 			//--grfGraphics.DrawImage(&bg, rcBounds);
 		}
-		
+
 		INT iRes = ::ReleaseDC(Parent->Handle, hDc);
 		/*DEBUG*/xASSERT_DO(0 != iRes, return);
 	}
 
 
 
-	
-		
+
+
 
 	//-------------------------------------
-	//вывод картинки
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	xCHECK_DO(FALSE == _m_imgImage.bIsLoaded(), return);
 	xCHECK_DO(TRUE == _m_bClear,                return);
 
@@ -320,7 +320,7 @@ void __fastcall CxGdipImage::Paint() {
 
 	{
 		RECT rcParent = {0};
-		_m_bRes = ::GetClientRect(Parent->Handle, &rcParent); 
+		_m_bRes = ::GetClientRect(Parent->Handle, &rcParent);
 		/*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 
 		const LONG  liParentWidth  = rcParent.right  - rcParent.left;
@@ -328,7 +328,7 @@ void __fastcall CxGdipImage::Paint() {
 		const FLOAT fRatio         = static_cast<FLOAT>(liParentHeight)            / static_cast<FLOAT>(liParentWidth);
 		const FLOAT fImgRatio      = static_cast<FLOAT>(_m_imgImage.uiGetHeight()) / static_cast<FLOAT>(_m_imgImage.uiGetWidth());
 
-		LONG liLeft, liTop, liWidth, liHeight;	//[SPEED] - убрана инициализация переменных
+		LONG liLeft, liTop, liWidth, liHeight;	//[SPEED] - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		if (fImgRatio > fRatio) {
 			liWidth  = liParentHeight / fImgRatio;
@@ -340,12 +340,12 @@ void __fastcall CxGdipImage::Paint() {
 			liWidth  = liParentWidth;
 			liHeight = liParentWidth * fImgRatio;
 			liTop    = (liParentHeight - liHeight) / 2;
-		}		
+		}
 
-		_m_imgImage.bDraw(hDc, 
-			liLeft   + _m_liMargin, 
-			liTop    + _m_liMargin, 
-			liWidth  - _m_liMargin * 2, 
+		_m_imgImage.bDraw(hDc,
+			liLeft   + _m_liMargin,
+			liTop    + _m_liMargin,
+			liWidth  - _m_liMargin * 2,
 			liHeight - _m_liMargin * 2
 		);
 	}
@@ -359,7 +359,7 @@ void __fastcall CxGdipImage::Paint() {
 void __fastcall CxGdipImage::OnResize() {
 	/*DEBUG*/// _m_imgImage - n/a
 	//xCHECK_DO(FALSE == _m_imgImage.bIsLoaded(), return);
-	
+
 	ShowMessage(_T("xxxxx"));
 
 }
@@ -373,11 +373,11 @@ void __fastcall CxGdipImage::OnResize() {
 
 //---------------------------------------------------------------------------
 //TODO: _bMemoryStreamToIStream (TMemoryStream -> IStream)
-//INFO: сделать pisStream->Release(), когда pisStream уже не нужен
+//INFO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ pisStream->Release(), пїЅпїЅпїЅпїЅпїЅ pisStream пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 BOOL CxGdipImage::_bMemoryStreamToIStream(TMemoryStream *pmsStream, IStream **ppisStream) {
 	/*DEBUG*/// _m_imgImage
 	/*DEBUG*/xASSERT_RET(NULL != pmsStream,   FALSE);
-	/*DEBUG*/xASSERT_RET(NULL == *ppisStream, FALSE); 
+	/*DEBUG*/xASSERT_RET(NULL == *ppisStream, FALSE);
 
 	HGLOBAL hGlobal = NULL;
 
@@ -403,9 +403,9 @@ BOOL CxGdipImage::_bMemoryStreamToIStream(TMemoryStream *pmsStream, IStream **pp
 	if (i64MemoryStreamSize != i64BytesRead) {
 		hGlobal = ::GlobalFree(hGlobal);
 		/*DEBUG*/xASSERT_RET(NULL == hGlobal, FALSE);
-		
+
 		return FALSE;
-	} 
+	}
 
 	//create IStream* from global memory
 	HRESULT hRes = ::CreateStreamOnHGlobal(hGlobal, TRUE, ppisStream);
@@ -415,33 +415,33 @@ BOOL CxGdipImage::_bMemoryStreamToIStream(TMemoryStream *pmsStream, IStream **pp
 }
 //---------------------------------------------------------------------------
 //TODO: _bIStreamToMemoryStream (IStream -> TMemoryStream)
-//INFO: сделать pisStream->Release(), когда pisStream уже не нужен
+//INFO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ pisStream->Release(), пїЅпїЅпїЅпїЅпїЅ pisStream пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 BOOL CxGdipImage::_bIStreamToMemoryStream(IStream *pisStream, TMemoryStream **ppmsStream) {
 	/*DEBUG*/// _m_imgImage
-	/*DEBUG*/xASSERT_RET(NULL !=  pisStream,  FALSE); 
+	/*DEBUG*/xASSERT_RET(NULL !=  pisStream,  FALSE);
 	/*DEBUG*/xASSERT_RET(NULL !=  ppmsStream, FALSE);
 	/*DEBUG*/xASSERT_RET(NULL != *ppmsStream, FALSE);
 
 	HRESULT hRes = 0;
 
 	//-------------------------------------
-	//устанока размера потока ppmsStream
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ppmsStream
 	STATSTG   stStat = {0};
 	ULONGLONG ulSize = 0;
 
 	hRes = pisStream->Stat(&stStat, 0);
 	/*DEBUG*/xASSERT_RET(S_OK == hRes, FALSE);
-	
+
 	ulSize = stStat.cbSize.QuadPart;
-	
+
 	(*ppmsStream)->SetSize((int)ulSize);
 	/*DEBUG*/// n/a
-	
+
 	//-------------------------------------
-	//чтение в поток
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	hRes = pisStream->Seek(LARGE_INTEGER(), STREAM_SEEK_SET, NULL);
 	/*DEBUG*/xASSERT_RET(S_OK   == hRes, FALSE);
-	
+
 	ULONG ulReaded = 0;
 	hRes = pisStream->Read((*ppmsStream)->Memory, ulSize, &ulReaded);
 	/*DEBUG*/xASSERT_RET(S_OK   == hRes,                FALSE);
