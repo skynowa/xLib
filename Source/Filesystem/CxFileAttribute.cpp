@@ -57,7 +57,7 @@ CxFileAttribute::atGet(
 #elif defined(xOS_LINUX)
     struct stat stInfo = {0};
 
-    INT iRes = stat(csFilePath.c_str(), &stInfo);
+    INT iRes = _tstat(csFilePath.c_str(), &stInfo);
     /*DEBUG*/// n/a
     if (- 1 == iRes) {
         faRes = faInvalid;

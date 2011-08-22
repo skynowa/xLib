@@ -780,21 +780,23 @@ CxTest_CxStdioFile::bUnit1(
     //sTempCreate, bTempClose
     xTEST_BLOCK(cullBlockLoops)
     {
-        INT iFileHandle = - 1;
+        #if 1
+            FILE *pfFileHandle = NULL;
 
-        tString sTempFilePath = CxStdioFile::sTempCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &iFileHandle);
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tsTemp: %s"), sTempFilePath.c_str());
+            tString sTempFilePath = CxStdioFile::sTempCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &pfFileHandle);
+            #if xTEST_IGNORE
+                xTRACEV(xT("\tsTemp: %s"), sTempFilePath.c_str());
+            #endif
+
+            xASSERT_EQ(false, sTempFilePath.empty());
+            xASSERT_NOT_EQ(FALSE, CxStdioFile::bIsExists(sTempFilePath));
+
+            m_bRes = CxStdioFile::bTempClose(&pfFileHandle);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+
+            m_bRes = CxStdioFile::bDelete(sTempFilePath);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
-
-        xASSERT_EQ(false, sTempFilePath.empty());
-        xASSERT_NOT_EQ(FALSE, CxStdioFile::bIsExists(sTempFilePath));
-
-        m_bRes = CxStdioFile::bTempClose(&iFileHandle);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
-
-        m_bRes = CxStdioFile::bDelete(sTempFilePath);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
