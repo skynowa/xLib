@@ -160,6 +160,12 @@
 
 #define xAUTO_PROFILER(file_path, mode, comment, ...)       CxAutoProfiler _apfPerfom(file_path, mode, comment, __VA_ARGS__)
 #define xAUTO_PROFILER_FUNC(file_path, mode)                CxAutoProfiler _apfFunc(file_path, mode, xFUNCTION)
+
+#if xTEST_BLOCK_WITH_TRACE_POINT
+    #define xTEST_BLOCK(uiLoops)                            xTRACE_POINT; for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
+#else
+    #define xTEST_BLOCK(uiLoops)                                          for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
+#endif
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
     #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                        }

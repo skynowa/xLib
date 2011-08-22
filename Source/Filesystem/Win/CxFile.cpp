@@ -833,7 +833,7 @@ CxFile::bWriteText(const tString &csFilePath, const tString &csText) {
 //--------------------------------------------------------------------------
 /*static*/
 tString
-CxFile::sReadText(const tString &csFilePath) {    ///char -> BYTE
+CxFile::sReadText(const tString &csFilePath) {    ////char -> BYTE
     /*
     tString xstr;
     std::ifstream xfile("inputfile.txt", std::ios::binary);

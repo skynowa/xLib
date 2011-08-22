@@ -1142,7 +1142,7 @@ CxStdioFile::bGetTime(
 
     struct stat stInfo = {0};
 
-    INT iRes = _tstat(csFilePath.c_str(), &stInfo);
+    INT iRes = /*_t*/stat(csFilePath.c_str(), &stInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
 #if xTODO
