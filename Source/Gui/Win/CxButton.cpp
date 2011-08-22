@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxButton
-* Description: работа с кнопкой
+* Description: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 * File name:   CxButton.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -26,9 +26,9 @@ CxButton::CxButton() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXBUTTON_CONTROL_CLASS;
-    _m_ulStyle        = xCXBUTTON_DEFAULT_WINDOW_STYLE;    
+    _m_ulStyle        = xCXBUTTON_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXBUTTON_DEFAULT_WINDOW_STYLE_EX;
 
     _m_iLeft          = 0;
@@ -39,7 +39,7 @@ CxButton::CxButton() {
     _m_bIsControl     = TRUE;
 
     //-------------------------------------
-    //внутр.
+    //пїЅпїЅпїЅпїЅпїЅ.
     _m_vsViewStyle    = vsText;
 }
 //---------------------------------------------------------------------------
@@ -58,16 +58,16 @@ BOOL CxButton::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, 
-                                CxResources::sGetText  (iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName,
+                                CxResources::sGetText  (iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //////-------------------------------------
-    //////переопределяем поля класса
+    //////пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     ////_m_pwndParent = pwndParent;
 
     return TRUE;
@@ -76,7 +76,7 @@ BOOL CxButton::bCreateRes(INT iID, CxWindow *pwndParent) {
 
 
 /****************************************************************************
-*    сообщения
+*    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -98,10 +98,10 @@ BOOL CxButton::bSetViewStyle(EViewStyle vsViewStyle) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes = m_stStyle.bModify(_m_vsViewStyle, vsViewStyle);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_vsViewStyle = vsViewStyle;
-    
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -110,7 +110,7 @@ BOOL CxButton::bSetImage(EImageType itImageType, HANDLE hImage) {
     HANDLE hRes = NULL;
 
     //hRes = (HANDLE)( pSendMessage(BM_SETIMAGE, (WPARAM)itImageType, (LPARAM)hImage) );
-    ///*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
+    ////*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
 
     (HANDLE)pSendMessage(BM_SETIMAGE, static_cast<WPARAM>(itImageType), reinterpret_cast<LPARAM>(/*(HICON)*/hImage));
     /*DEBUG*/// n/a
@@ -128,7 +128,7 @@ BOOL CxButton::bSetImage(EImageType itImageType, HANDLE hImage) {
 
 
 /****************************************************************************
-*    события
+*    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -140,7 +140,7 @@ VOID CxButton::vSet_OnClick(SClosureT<VOID(CxButton *pbtnSender)> vCallback) {
 //---------------------------------------------------------------------------
 //DONE: _vHandler_OnClick ()
 VOID CxButton::_vHandler_OnClick(CxButton *pbtnSender)    {
-    xCHECK_DO(NULL == _m_vCallback_OnClick, return); 
+    xCHECK_DO(NULL == _m_vCallback_OnClick, return);
 
     _m_vCallback_OnClick(pbtnSender);
 }
@@ -156,7 +156,7 @@ VOID CxButton::vSet_OnDbClick(SClosureT<VOID(CxButton *pbtnSender)> vCallback) {
 //---------------------------------------------------------------------------
 //DONE: _vHandler_OnClick ()
 VOID CxButton::_vHandler_OnDbClick(CxButton *pbtnSender) {
-    xCHECK_DO(NULL == _m_vCallback_OnDbClick, return); 
+    xCHECK_DO(NULL == _m_vCallback_OnDbClick, return);
 
     _m_vCallback_OnDbClick(pbtnSender);
 }
@@ -172,7 +172,7 @@ VOID CxButton::vSet_OnKillFocus(SClosureT<VOID(CxButton *pbtnSender)> vCallback)
 //---------------------------------------------------------------------------
 //DONE: _vHandler_OnKillFocus()
 VOID CxButton::_vHandler_OnKillFocus(CxButton *pbtnSender)    {
-    xCHECK_DO(NULL == _m_vCallback_OnKillFocus, return); 
+    xCHECK_DO(NULL == _m_vCallback_OnKillFocus, return);
 
     _m_vCallback_OnKillFocus(pbtnSender);
 }
@@ -188,7 +188,7 @@ VOID CxButton::vSet_OnSetFocus(SClosureT<VOID(CxButton *pbtnSender)> vCallback) 
 //---------------------------------------------------------------------------
 //DONE: _vHandler_OnSetFocus ()
 VOID CxButton::_vHandler_OnSetFocus(CxButton *pbtnSender)    {
-    xCHECK_DO(NULL == _m_vCallback_OnSetFocus, return); 
+    xCHECK_DO(NULL == _m_vCallback_OnSetFocus, return);
 
     _m_vCallback_OnSetFocus(pbtnSender);
 }

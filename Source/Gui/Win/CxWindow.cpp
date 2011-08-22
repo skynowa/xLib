@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxWindow
-* Description: Класс root для всех дочерних окон 
+* Description: пїЅпїЅпїЅпїЅпїЅ root пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 * File name:   CxWindow.cpp
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -15,7 +15,7 @@
 #include <xLib/GUI/CxWindowImpl.h>
 
 //---------------------------------------------------------------------------
-CxTraceLog CxWindow::_m_tlLog(FALSE);           
+CxTraceLog CxWindow::_m_tlLog(FALSE);
 //---------------------------------------------------------------------------
 
 
@@ -32,7 +32,7 @@ CxWindow::CxWindow() :
     _m_hWnd      (NULL),
     _m_iID       (0),
     _m_sClassName(),
-    _m_hParentWnd(NULL),        
+    _m_hParentWnd(NULL),
     _m_sText     (),
     _m_iLeft     (CW_USEDEFAULT),
     _m_iTop      (CW_USEDEFAULT),
@@ -55,7 +55,7 @@ CxWindow::~CxWindow() {
 //---------------------------------------------------------------------------
 //DONE: lpProcessMsg
 /*virtual*/
-LRESULT CxWindow::lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam) {    
+LRESULT CxWindow::lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam) {
     /*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), NULL);
 
     return ::DefWindowProc(_m_hWnd, uiMsg, wParam, lParam);
@@ -69,10 +69,10 @@ BOOL CxWindow::bIsWindow() const {
 }
 //---------------------------------------------------------------------------
 //DONE: hGetHandle
-HWND CxWindow::hGetHandle() const { 
+HWND CxWindow::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), NULL);
 
-    return _m_hWnd; 
+    return _m_hWnd;
 }
 //---------------------------------------------------------------------------
 //DONE: hSetHandle
@@ -98,7 +98,7 @@ BOOL CxWindow::bSetID(INT iID) {
     /*DEBUG*/xASSERT_RET(0     <  iID,         FALSE);
 
     liSetWindowLong(GWL_ID, iID);
-    
+
     _m_iID = iID;
 
     return TRUE;
@@ -111,7 +111,7 @@ tString CxWindow::sGetClassName() const {
     return _m_sClassName;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetClassName 
+//DONE: bSetClassName
 BOOL CxWindow::bSetClassName(const tString &csClassName) {
     /*DEBUG*/xASSERT_RET(FALSE != bIsWindow(),         FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != csClassName.empty(), FALSE);
@@ -148,14 +148,14 @@ BOOL CxWindow::bSetText(const tString &csText) {
 
     _m_bRes = ::SetWindowText(_m_hWnd, csText.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-    
+
     _m_sText = csText;
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate
-BOOL CxWindow::bCreate(INT iID, HWND hParent, const tString &csClassName, const tString &csText, 
+BOOL CxWindow::bCreate(INT iID, HWND hParent, const tString &csClassName, const tString &csText,
                        INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx, LPVOID lpParam)
 {
     /*DEBUG*/xASSERT_RET(FALSE == bIsWindow(),         FALSE);
@@ -169,73 +169,73 @@ BOOL CxWindow::bCreate(INT iID, HWND hParent, const tString &csClassName, const 
 
     HWND hWnd = NULL;
 
-    hWnd = ::CreateWindowEx(_m_ulStyleEx | ulStyleEx, 
-                            csClassName.c_str(), 
-                            csText.c_str(), 
-                            _m_ulStyle | ulStyle, 
-                            iLeft, iTop, iWidth, iHeight, 
-                            hParent, 
-                            (tString::npos != csClassName.find(xCXWINDOW_CONTROL_CLASS)) ? static_cast<HMENU>(NULL) : reinterpret_cast<HMENU>(iID),    /*окно - NULL, контрол - iID*/ 
-                            CxApplication::hGetInstance(), 
+    hWnd = ::CreateWindowEx(_m_ulStyleEx | ulStyleEx,
+                            csClassName.c_str(),
+                            csText.c_str(),
+                            _m_ulStyle | ulStyle,
+                            iLeft, iTop, iWidth, iHeight,
+                            hParent,
+                            (tString::npos != csClassName.find(xCXWINDOW_CONTROL_CLASS)) ? static_cast<HMENU>(NULL) : reinterpret_cast<HMENU>(iID),    /*пїЅпїЅпїЅпїЅ - NULL, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - iID*/
+                            CxApplication::hGetInstance(),
                             lpParam);
     /*DEBUG*/xASSERT_RET(NULL != hWnd, FALSE);
-    /*DEBUG*/xCHECK_DO(FALSE == _m_bIsControl, xASSERT_RET(::GetDlgCtrlID(hWnd) == 0,   FALSE));    //окно
-    /*DEBUG*/xCHECK_DO(TRUE  == _m_bIsControl, xASSERT_RET(::GetDlgCtrlID(hWnd) == iID, FALSE));    //контрол
+    /*DEBUG*/xCHECK_DO(FALSE == _m_bIsControl, xASSERT_RET(::GetDlgCtrlID(hWnd) == 0,   FALSE));    //пїЅпїЅпїЅпїЅ
+    /*DEBUG*/xCHECK_DO(TRUE  == _m_bIsControl, xASSERT_RET(::GetDlgCtrlID(hWnd) == iID, FALSE));    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     //-------------------------------------
-    //переопределяем поля класса
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     _m_hWnd       = hWnd;
     _m_iID        = iID;
     _m_sClassName = _m_sClassName;
-    _m_hParentWnd =    hParent;    
+    _m_hParentWnd =    hParent;
     _m_sText      = csText;
     _m_iLeft      = iLeft;
     _m_iTop       = iTop;
-    _m_iWidth     = iWidth; 
+    _m_iWidth     = iWidth;
     _m_iHeight    = iHeight;
     _m_ulStyle    = _m_ulStyle   | ulStyle;
-    _m_ulStyleEx  = _m_ulStyleEx | ulStyleEx;    
+    _m_ulStyleEx  = _m_ulStyleEx | ulStyleEx;
     ////_m_iMenu  = iMenu;
-    
+
     //-------------------------------------
-    //дефолтный шрифт
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     _m_bRes = m_fnFont.bCreateDefault();
     xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_bRes = m_fnFont.bSet( hGetHandle() );
     xASSERT_RET(FALSE != _m_bRes, FALSE);
-    
-    //-------------------------------------
-    //стиль
-    m_stStyle.bSetOwner(_m_hWnd);   //!!!!!!!!!!!!!!!!!!!!!
 
-    return TRUE; 
+    //-------------------------------------
+    //пїЅпїЅпїЅпїЅпїЅ
+    m_stStyle.bSetOwner(_m_hWnd);   ////!!!!!!!!!!!!!!!!!!!!!
+
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate
-BOOL CxWindow::bCreate(INT iID, CxWindow *pwndParent, const tString &csClassName, const tString &csText, 
+BOOL CxWindow::bCreate(INT iID, CxWindow *pwndParent, const tString &csClassName, const tString &csText,
                        INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx, LPVOID lpParam)
 {
     /*DEBUG*/
-    
+
     HWND hParent = (NULL == pwndParent) ? NULL : pwndParent->hGetHandle();
-    
+
     _m_bRes = CxWindow::bCreate(iID, hParent, csClassName, csText, iLeft, iTop, iWidth, iHeight, ulStyle, ulStyleEx, lpParam);
-                         
+
     xCHECK_RET(NULL == pwndParent, TRUE);
 
     //-------------------------------------
-    //добавление дочернего окна в контеймер
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     CxWindowImpl *pParent = reinterpret_cast<CxWindowImpl *>(pwndParent);
     /*DEBUG*/xASSERT_RET(NULL != pParent, FALSE);
 
     pParent->m_vecpContainer.bAdd(this);
-    
+
     //-------------------------------------
-    //переопределяем поля класса
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     _m_pwndParent = pwndParent;
-                             
-    return TRUE; 
+
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bShow
@@ -272,10 +272,10 @@ BOOL CxWindow::bMove(INT iLeft, INT iTop, INT iWidth, INT iHeight) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
-    //переопределяем поля класса
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     _m_iLeft      = iLeft;
     _m_iTop       = iTop;
-    _m_iWidth     = iWidth; 
+    _m_iWidth     = iWidth;
     _m_iHeight    = iHeight;
 
     return TRUE;
@@ -335,7 +335,7 @@ BOOL CxWindow::bSetPos(INT iLeft, INT iTop, INT iWidth, INT iHeight, UINT uiFlag
     _m_bRes = ::SetWindowPos(_m_hWnd, NULL, iLeft, iTop, iWidth, iHeight, uiFlags);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    return TRUE;    
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bEnable
@@ -398,7 +398,7 @@ BOOL CxWindow::bClose() {
 
 
 /****************************************************************************
-*    посылка сообщений
+*    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -426,7 +426,7 @@ BOOL CxWindow::bPostMessage(UINT uiMsg, WPARAM wParam, LPARAM lParam) const {
 
 
 /****************************************************************************
-*    Остальные
+*    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -448,7 +448,7 @@ LONG CxWindow::liSetWindowLong(INT iIndex, LONG liNewLong) {
     LONG liRes = ::SetWindowLong(_m_hWnd, iIndex, liNewLong);
     /*DEBUG*/xASSERT_RET(0 != liRes, 0);
 
-    return liRes; 
+    return liRes;
 }
 //---------------------------------------------------------------------------
 
@@ -499,7 +499,7 @@ LRESULT CxWindow::_s_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lPara
         ////case WM_INITDIALOG:
         ////    {
         ////        ::SetWindowLong(hWnd, GWL_USERDATA, (LONG)lParam);
-        ////        pWnd = (CxWindow *)lParam;                                        //получим указатель на класс
+        ////        pWnd = (CxWindow *)lParam;                                        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         ////        /*DEBUG*/xASSERT(NULL != pWnd);
         ////        pWnd->_m_hWnd = hWnd;
         ////    }
@@ -509,9 +509,9 @@ LRESULT CxWindow::_s_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lPara
             {
                 LONG liNewLong = 0;
 
-                liNewLong = reinterpret_cast<LONG>  ( ( reinterpret_cast<LPCREATESTRUCT>(lParam) )->lpCreateParams ); 
+                liNewLong = reinterpret_cast<LONG>  ( ( reinterpret_cast<LPCREATESTRUCT>(lParam) )->lpCreateParams );
                 /*DEBUG*/xASSERT_RET(0 != liNewLong, NULL);
-                
+
                 ::SetWindowLong(hWnd, GWL_USERDATA, liNewLong);
                 /*DEBUG*///xASSERT(0 != liRes);
 
@@ -529,7 +529,7 @@ LRESULT CxWindow::_s_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lPara
         default:
             {
                 //retrieve associated Window instance
-                pwndThis = reinterpret_cast<CxWindow *>( ::GetWindowLong(hWnd, GWL_USERDATA) ); 
+                pwndThis = reinterpret_cast<CxWindow *>( ::GetWindowLong(hWnd, GWL_USERDATA) );
                 /*DEBUG*/// n/a
             }
             break;
@@ -562,7 +562,7 @@ BOOL CxWindow::_bInitCommonControls(ULONG ulFlags) {
 //---------------------------------------------------------------------------
 //DONE: _bRegisterClassEx
 /*static*/
-BOOL CxWindow::_bRegisterClass(const WNDCLASSEX *cpwcWndClassEx) {        
+BOOL CxWindow::_bRegisterClass(const WNDCLASSEX *cpwcWndClassEx) {
     /*DEBUG*/xASSERT_RET(NULL != cpwcWndClassEx, FALSE);
 
     BOOL bRes = FALSE;
@@ -575,7 +575,7 @@ BOOL CxWindow::_bRegisterClass(const WNDCLASSEX *cpwcWndClassEx) {
 //---------------------------------------------------------------------------
 //DONE: _bRegisterClassEx
 /*static*/
-BOOL CxWindow::_bUnregisterClass(const tString &csClassName) {        
+BOOL CxWindow::_bUnregisterClass(const tString &csClassName) {
     /*DEBUG*///xASSERT_RET(false != csClassName.empty(), FALSE);
 
     BOOL bRes = FALSE;

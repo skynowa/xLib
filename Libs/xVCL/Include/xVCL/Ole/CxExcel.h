@@ -31,16 +31,16 @@ class CxExcel : public CxNonCopyable {
 		Variant  _m_vCell;
 
     public:
-		//состояния окна
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		enum EWindowState {
-			wsMinimized = - 4140, 
+			wsMinimized = - 4140,
 			wsMaximized = - 4137,
 			wsNormal    = - 4143
 		};
 
-		//ориентация листа
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		enum EPageOrientation {
-			poPortrait  = 1, 
+			poPortrait  = 1,
 			poLandscape = 2
 		};
 
@@ -52,21 +52,21 @@ class CxExcel : public CxNonCopyable {
         BOOL 	 bCreate            	  ();
         BOOL 	 bVisible           	  (BOOL bVisible);
 		BOOL 	 bActiveWindowZoom  	  (INT iPercent);
-        BOOL 	 bActiveWindowDisplayHeadings(BOOL bVisible);  
-        BOOL 	 bDisplayFullScreen 	  (BOOL bFlag);                         
-        BOOL 	 bWindowState       	  (EWindowState wsState);                         			
-        BOOL 	 bWindowDimensions  	  (double dWidth, double dHeight, double dLeft, double dTop);	
+        BOOL 	 bActiveWindowDisplayHeadings(BOOL bVisible);
+        BOOL 	 bDisplayFullScreen 	  (BOOL bFlag);
+        BOOL 	 bWindowState       	  (EWindowState wsState);
+        BOOL 	 bWindowDimensions  	  (double dWidth, double dHeight, double dLeft, double dTop);
         BOOL     bDisplayAlerts     	  (BOOL bFlag);
 		BOOL     bEnableEvents            (BOOL bFlag);
 		BOOL 	 bQuit              	  ();
 
 		//---------------------------------------------------------------------------
 		//Workbooks
-		BOOL     bWorkbooksOpen     	  (const String &csFilePath);				
-		BOOL     bWorkbooksAdd      	  ();				
-		LONG     liWorkbooksCount   	  ();				
-		Variant  vWorkbooksItem   	      (LONG liIndex);	 
-		BOOL     bWorkbooksClose      	  ();				
+		BOOL     bWorkbooksOpen     	  (const String &csFilePath);
+		BOOL     bWorkbooksAdd      	  ();
+		LONG     liWorkbooksCount   	  ();
+		Variant  vWorkbooksItem   	      (LONG liIndex);
+		BOOL     bWorkbooksClose      	  ();
 
 		//---------------------------------------------------------------------------
 		//Workbook
@@ -80,8 +80,8 @@ class CxExcel : public CxNonCopyable {
 
 		//---------------------------------------------------------------------------
 		//Worksheets
-		
-		//методы
+
+		//пїЅпїЅпїЅпїЅпїЅпїЅ
 		BOOL     bWorksheetsAdd           (LONG liBookIndex);
 		BOOL     bWorksheetsCopy          (LONG liBookIndex);
 		BOOL 	 bWorksheetsMove          (LONG liBookIndex);
@@ -90,7 +90,7 @@ class CxExcel : public CxNonCopyable {
 		BOOL 	 bWorksheetsPrintPreview  (LONG liBookIndex);
 		BOOL     bWorksheetsPrintOut      (LONG liBookIndex);
 
-		//свойства
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		LONG     bWorksheetsCount		  (LONG liBookIndex);
 		Variant  vWorksheetsItem		  (LONG liBookIndex, LONG liIndex);
 		BOOL     bWorksheetsSetVisible    (LONG liBookIndex, BOOL bFlag);
@@ -98,8 +98,8 @@ class CxExcel : public CxNonCopyable {
 		//---------------------------------------------------------------------------
 		//Worksheet
 
-		//методы
-		BOOL     bSheetActivate			  (LONG liBookIndex, LONG liIndex);				
+		//пїЅпїЅпїЅпїЅпїЅпїЅ
+		BOOL     bSheetActivate			  (LONG liBookIndex, LONG liIndex);
 		BOOL     bSheetCalculate		  (LONG liBookIndex, LONG liIndex);
 		BOOL     bSheetCopy				  (LONG liBookIndex, LONG liIndex);
 		BOOL     bSheetDelete			  (LONG liBookIndex, LONG liIndex);
@@ -114,19 +114,19 @@ class CxExcel : public CxNonCopyable {
 		BOOL     bSheetSelect			  (LONG liBookIndex, LONG liIndex);
 		BOOL     bSheetSetupOrientation   (LONG liBookIndex, LONG liIndex, EPageOrientation poOrientation);
 		BOOL     bSheetSetupPrintTitleRows(LONG liBookIndex, LONG liIndex, const String &csRow);
- 
-		//свойства
+
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		//Columns        //Range
 		//Rows				//Range
-		Variant  vSheetGetCell			  (LONG liBookIndex, LONG liIndex, INT iRow, INT iColumn); 
-		String   sSheetGetCell			  (LONG liBookIndex, LONG liIndex, INT iRow, INT iColumn); 
+		Variant  vSheetGetCell			  (LONG liBookIndex, LONG liIndex, INT iRow, INT iColumn);
+		String   sSheetGetCell			  (LONG liBookIndex, LONG liIndex, INT iRow, INT iColumn);
 		BOOL     bSheetSetCell			  (LONG liBookIndex, LONG liIndex, INT iRow, INT iColumn, const String &csValue);
 		BOOL     bSheetSetCell            (LONG liBookIndex, LONG liIndex, INT iRow, INT iColumn, const String &csValue, INT iCellWidth, INT iCellHeight, BOOL bIsHorizAlign, BOOL bIsVertAlign, BOOL bIsWrapText, INT iFontSize/*TFont *Font*/, BOOL bIsBold, INT iBoxStyle, BOOL bIsLeft, BOOL bIsTop, BOOL bIsRight, BOOL bIsBottom);
 		BOOL     bSheetSetCells			  (LONG liBookIndex, LONG liIndex, INT iRowBegin, INT iColumnBegin, INT iRowEnd, INT iColumnEnd, const Variant &cvValueArray, INT iCellWidth, INT iCellHeight, BOOL bIsHorizAlign, BOOL bIsVertAlign, BOOL bIsWrapText, INT iFontSize/*TFont *Font*/, BOOL bIsBold, INT iBoxStyle/*= 1*/, BOOL bIsLeft, BOOL bIsTop, BOOL bIsRight, BOOL bIsBottom);
-		
-		///Range		
+
+		//Range
 		////LONG     bSheetIndex
-		String   sSheetGetName			  (LONG liBookIndex, LONG liIndex); 
+		String   sSheetGetName			  (LONG liBookIndex, LONG liIndex);
 		BOOL     bSheetSetName			  (LONG liBookIndex, LONG liIndex, const String &csName);
 		////BOOL     bSetVisible
 
@@ -139,10 +139,10 @@ class CxExcel : public CxNonCopyable {
 		//Cell
         String   sGetCell           	  (INT iRow, INT iColumn);
 		BOOL     bSetCell           	  (INT iRow, INT iColumn, const String &csStr);
-		
+
 		//---------------------------------------------------------------------------
 		//
-        BOOL 	 bAutoFitColumn     	  (const String &csColumnRange);        
+        BOOL 	 bAutoFitColumn     	  (const String &csColumnRange);
         BOOL 	 bSmallScroll       	  ();
 		BOOL     bSetColumnNumberFormat   (LONG liBookIndex, LONG liSheetIndex, LONG liColumnIndex, const String &csNumberFormat);
         //BOOL   bCellColor         	  ();
@@ -156,13 +156,13 @@ class CxExcel : public CxNonCopyable {
 
 
 /*
-Установка свойства. 
-vVarApp.OlePropertySet("имя", значение);  
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+vVarApp.OlePropertySet("пїЅпїЅпїЅ", пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ);
 
-Чтение значения свойства. 
-переменная = app.OlePropertyGet("имя"); 
+пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = app.OlePropertyGet("пїЅпїЅпїЅ");
 
-Вызов метода: 
-vVarApp.OleProcedure("имя",список параметров метода);
+пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:
+vVarApp.OleProcedure("пїЅпїЅпїЅ",пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ);
 
 */

@@ -1123,14 +1123,14 @@ CxThread::bIsTimeToExit() {
 
     //-------------------------------------
     //exit
-    ///bSleep(1);
+    ////bSleep(1);
 
     _m_bRes = bIsExited();
     xCHECK_RET(FALSE != _m_bRes, TRUE);
 
     //-------------------------------------
     //pause / resume
-    ///bSleep(1);
+    ////bSleep(1);
 
     _m_bRes = bIsPaused();
     xCHECK_RET(FALSE != _m_bRes, (BOOL)!_bWaitResumption());

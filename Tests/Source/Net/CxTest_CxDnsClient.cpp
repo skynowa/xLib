@@ -79,7 +79,7 @@ CxTest_CxDnsClient::bUnit(
 		////m_bRes = CxDnsClient::bGetNameInfo(afFamily, sHostAddr, usPort);
 		////xASSERT_NOT_EQ(FALSE, m_bRes);
 
-		//////xSTD_COUT(xT("[bGetNameInfo]: ") << sLocalHostName);
+		//xSTD_COUT(xT("[bGetNameInfo]: ") << sLocalHostName);
 	}
 
 	//-------------------------------------
@@ -94,7 +94,7 @@ CxTest_CxDnsClient::bUnit(
 		m_bRes = CxDnsClient::bGetHostAddrInfo(sHostName, sPort, NULL, &paiList);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 
-		///xSTD_COUT(xT("[bGetLocalHostName]: ") << sLocalHostName);
+		//xSTD_COUT(xT("[bGetLocalHostName]: ") << sLocalHostName);
 
 
 		{

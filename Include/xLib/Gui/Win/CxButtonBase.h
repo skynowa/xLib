@@ -1,6 +1,6 @@
 /****************************************************************************
 * Class name:  CxButtonBase
-* Description: работа с кнопкой
+* Description: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 * File name:   CxButtonBase.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -18,9 +18,9 @@
 class CxButtonBase : public CxWindow {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        //выравнивание текста
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         enum ETextAligment {
             taLeft    = BS_LEFT,
             taTop     = BS_TOP,
@@ -29,14 +29,14 @@ class CxButtonBase : public CxWindow {
             taHCenter = BS_CENTER,
             taVCenter = BS_VCENTER
         };
-                
+
                  CxButtonBase    ();
         virtual ~CxButtonBase    () = 0;
 
-        ///BOOL bCreateRes       (INT iID, CxWindow *pwndParent);
+        ////BOOL bCreateRes       (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         BOOL     bSetAlignment   (ETextAligment taTextAligment);
         BOOL     bSetNotify      (BOOL bFlag);
         BOOL     bSetFlat        (BOOL bFlag);
@@ -44,7 +44,7 @@ class CxButtonBase : public CxWindow {
         BOOL     bClick          ();
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         VOID     vSet_OnClick    (SClosureT<VOID(CxButtonBase *pbtnSender)> vCallback);
         VOID     vSet_OnDbClick  (SClosureT<VOID(CxButtonBase *pbtnSender)> vCallback);
         VOID     vSet_OnKillFocus(SClosureT<VOID(CxButtonBase *pbtnSender)> vCallback);
@@ -57,7 +57,7 @@ class CxButtonBase : public CxWindow {
         virtual VOID vOnSetFocus () { _vHandler_OnSetFocus (this); }
 
 
-        //callback методы
+        //callback пїЅпїЅпїЅпїЅпїЅпїЅ
         SClosureT<VOID(CxButtonBase *pthSender)> _m_vCallback_OnClick;
         VOID                                     _vHandler_OnClick(CxButtonBase *pthSender);
 
