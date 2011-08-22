@@ -45,7 +45,7 @@ CxTest_CxThread::bUnit(
             uiI ++;
 
             pthT->m_uiIndex = uiI;
-            ///pthT->vOnExit2  = vOnExitHandle;
+            ////pthT->vOnExit2  = vOnExitHandle;
 
             //-------------------------------------
             //�������z
@@ -78,7 +78,7 @@ CxTest_CxThread::bUnit(
             //���������
             ////m_bRes = pthT->bPostMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
             ////m_bRes = pthT->bSendMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
-            ///m_bRes = pthT->bPostThreadMessage(WM_TEST_MSG_1, 0, 0);
+            ////m_bRes = pthT->bPostThreadMessage(WM_TEST_MSG_1, 0, 0);
 
             //-------------------------------------
             //���������

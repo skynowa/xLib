@@ -86,7 +86,7 @@ BOOL CxCOMPort::bConfig() {
 BOOL CxCOMPort::bClearData() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
-    ::PurgeComm(_m_hComPort, PURGE_RXCLEAR | PURGE_TXCLEAR); ///PurgeComm(_m_hComPort, PURGE_TXCLEAR | PURGE_RXCLEAR | PURGE_TXABORT | PURGE_RXABORT);
+    ::PurgeComm(_m_hComPort, PURGE_RXCLEAR | PURGE_TXCLEAR); ////PurgeComm(_m_hComPort, PURGE_TXCLEAR | PURGE_RXCLEAR | PURGE_TXABORT | PURGE_RXABORT);
 
     ULONG ulErrors;
     ::ClearCommError(_m_hComPort, &ulErrors, 0);
@@ -139,29 +139,31 @@ BOOL CxCOMPort::bWriteData(LPCTSTR pcszBuff, DWORD dwNumOfBytesToWrite) {
     return TRUE;
 
 
-    ////OVERLAPPED osWrite   = {0};
-    ////DWORD      dwWritten = 0;
-    ////bool       bRes      = false;
+#if xTODO
+    OVERLAPPED osWrite   = {0};
+    DWORD      dwWritten = 0;
+    bool       bRes      = false;
 
-    //////Issue write
-    ////if (!WriteFile(_m_hComPort, lpBuf, dwToWrite, &dwWritten, NULL)) {
-    ////    if (GetLastError() != ERROR_IO_PENDING) {  //WriteFile failed, but it isn't delayed. Report error and abort.
-    ////        bRes = false;
-    ////    } else {
-    ////        //Write is pending
-    ////        if (GetOverlappedResult(_m_hComPort, &osWrite, &dwWritten, TRUE) == false) {
-    ////            bRes = false;
-    ////        } else {
-    ////            //Write operation completed successfully.
-    ////            bRes = true;
-    ////        }
-    ////    }
-    ////} else {
-    ////    //WriteFile completed immediately.
-    ////    bRes = true;
-    ////}
- ////
-    ////return bRes;
+    //Issue write
+    if (!WriteFile(_m_hComPort, lpBuf, dwToWrite, &dwWritten, NULL)) {
+        if (GetLastError() != ERROR_IO_PENDING) {  //WriteFile failed, but it isn't delayed. Report error and abort.
+            bRes = false;
+        } else {
+            //Write is pending
+            if (GetOverlappedResult(_m_hComPort, &osWrite, &dwWritten, TRUE) == false) {
+                bRes = false;
+            } else {
+                //Write operation completed successfully.
+                bRes = true;
+            }
+        }
+    } else {
+        //WriteFile completed immediately.
+        bRes = true;
+    }
+    
+    return bRes;
+#endif
 }
 //--------------------------------------------------------------------------
 //TODO: bClose (��������)

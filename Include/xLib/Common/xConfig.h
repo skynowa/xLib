@@ -15,11 +15,11 @@
 #define xLIB_AUTHOR  xT("Skynowa")
 #define xLIB_DATE    xDATETIME
 
-//automatically include the NxLib namespace, define xNO_USING_NAMESPACE to skip this step
+///automatically include the NxLib namespace, define xNO_USING_NAMESPACE to skip this step
 #define xNO_USING_NAMESPACE      1
 
 
-//log mode (only one mode can be activated)
+///log mode (only one mode can be activated)
 //#define xDEBUG_MODE_MSGBOX_PLAIN     1
 //#define xDEBUG_MODE_MSGBOX_FORMATED       1
 
@@ -32,25 +32,27 @@
 //#define xDEBUG_MODE_NOLOGGING        1
 //#define xDEBUG_MODE_NO               1
 
-
-//trace mode
+ 
+///trace mode
 #define xDEBUG_MODE_TRACE        1
 
 
-//is stl assert enable
+///is stl assert enable
 #define xIS_STL_ASSERTING        1
 
 
-//is compile time tracing
+///is compile time tracing
 //#define xIS_COMPILE_TIME_TRACING  1
 
 
-//auto linkage
+///auto linkage
 //#define xIS_AUTO_LINKING          1
 
 
-//for tests private data
+///for tests private data
 #define xTEST_PRIVATE_METHODS  1
 
+///test block uses with trace point
+//#define xTEST_BLOCK_WITH_TRACE_POINT
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xConfigH

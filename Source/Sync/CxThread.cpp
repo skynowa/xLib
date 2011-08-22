@@ -736,7 +736,7 @@ CxThread::bSetIdealCPU(
     /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, FALSE);
 
     //TODO: xASSERT_RET
-    ///*DEBUG*/xASSERT_RET(ulIdealCPU != ulRes, FALSE);
+    ////*DEBUG*/xASSERT_RET(ulIdealCPU != ulRes, FALSE);
 #elif defined(xOS_LINUX)
     return FALSE;
 #endif

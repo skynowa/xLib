@@ -22,8 +22,6 @@
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Crypt/CxRandom.h>
 //---------------------------------------------------------------------------
-#define xTEST_BLOCK(uiLoops)  /*xTRACE_POINT;*/ for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
-//---------------------------------------------------------------------------
 class CxTest :
     public CxNonCopyable
 {
