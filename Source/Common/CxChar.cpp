@@ -18,7 +18,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsAlphaNum (Check if character is alphanumeric)
 /*static*/
 BOOL
 CxChar::bIsAlphaNum(
@@ -31,7 +30,6 @@ CxChar::bIsAlphaNum(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: bIsAlpha (Check if character is alphabetic)
 /*static*/
 BOOL
 CxChar::bIsAlpha(
@@ -44,7 +42,6 @@ CxChar::bIsAlpha(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: bIsControl (Check if character is a control character)
 /*static*/
 BOOL
 CxChar::bIsControl(
@@ -57,7 +54,6 @@ CxChar::bIsControl(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: bIsDigitDec (Check if character is decimal digit)
 /*static*/
 BOOL
 CxChar::bIsDigitDec(
@@ -70,7 +66,6 @@ CxChar::bIsDigitDec(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: bIsDigitHex (Check if character is hexadecimal digit)
 /*static*/
 BOOL
 CxChar::bIsDigitHex(
@@ -83,7 +78,6 @@ CxChar::bIsDigitHex(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: bIsGraph (Check if character has graphical representation)
 /*static*/
 BOOL
 CxChar::bIsGraph(
@@ -96,7 +90,6 @@ CxChar::bIsGraph(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: bIsPrint (Check if character is printable)
 /*static*/
 BOOL
 CxChar::bIsPrint(
@@ -109,7 +102,6 @@ CxChar::bIsPrint(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: bIsPunct (Check if character is a punctuation character)
 /*static*/
 BOOL
 CxChar::bIsPunct(
@@ -121,7 +113,6 @@ CxChar::bIsPunct(
     return static_cast<BOOL>( _istpunct(cchChar) );
 }
 //---------------------------------------------------------------------------
-//DONE: bIsSpace (Check if character is a white-space)
 /*static*/
 BOOL
 CxChar::bIsSpace(
@@ -134,7 +125,6 @@ CxChar::bIsSpace(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: bIsLower (Check if character is lowercase letter)
 /*static*/
 BOOL
 CxChar::bIsLower(
@@ -146,7 +136,6 @@ CxChar::bIsLower(
     return static_cast<BOOL>( _istlower(cchChar) );
 }
 //---------------------------------------------------------------------------
-//DONE: bIsUpper (Check if character is uppercase letter)
 /*static*/
 BOOL
 CxChar::bIsUpper(
@@ -159,7 +148,6 @@ CxChar::bIsUpper(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: chToLower (Convert uppercase letter to lowercase)
 /*static*/
 TCHAR
 CxChar::chToLower(
@@ -172,7 +160,6 @@ CxChar::chToLower(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: chToUpper (Convert lowercase letter to uppercase)
 /*static*/
 TCHAR
 CxChar::chToUpper(
@@ -193,12 +180,10 @@ CxChar::chToUpper(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxChar
 CxChar::CxChar() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxChar
 /*virtual*/
 CxChar::~CxChar() {
     /*DEBUG*/// n/a

@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxPkcs11 ()
 CxPkcs11::CxPkcs11() :
     _m_bRes       (FALSE),
     _m_ulRes      (!CKR_OK),
@@ -37,7 +36,6 @@ CxPkcs11::CxPkcs11() :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxPkcs11 ()
 /*virtual*/
 CxPkcs11::~CxPkcs11() {
     /*DEBUG*/
@@ -46,7 +44,6 @@ CxPkcs11::~CxPkcs11() {
     /*DEBUG*/xCHECK_DO(FALSE == _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//TODO: pGetFuncList (get pointer to functions list)
 CK_FUNCTION_LIST_PTR
 CxPkcs11::pGetFuncList() const {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, NULL);
@@ -62,7 +59,6 @@ CxPkcs11::pGetFuncList() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: _bLoadETPkcs11 (load eTPkcs11.dll, init PKCS#11)
 BOOL
 CxPkcs11::_bLoadETPkcs11() {
     /*DEBUG*/
@@ -82,7 +78,6 @@ CxPkcs11::_bLoadETPkcs11() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bInitialize ()
 BOOL
 CxPkcs11::bInitialize() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);
@@ -93,7 +88,6 @@ CxPkcs11::bInitialize() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bFinalize ()
 BOOL
 CxPkcs11::bFinalize() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);

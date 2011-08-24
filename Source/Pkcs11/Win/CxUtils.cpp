@@ -18,18 +18,17 @@
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-//TODO: CxUtils::sErrorStr (get error string by code, SDK 4.53)
 /*static*/
 tString
 CxUtils::sErrorStr(
-    CK_RV ulCode
+    const CK_RV culCode
 )
 {
-    /*DEBUG*/// ulCode - n/a
+    /*DEBUG*/// culCode - n/a
 
     tString sRes;
 
-    switch (ulCode) {
+    switch (culCode) {
         case CKR_OK:                               sRes.assign(xT("CKR_OK"));
         case CKR_CANCEL:                           sRes.assign(xT("CKR_CANCEL"));
         case CKR_HOST_MEMORY:                      sRes.assign(xT("CKR_HOST_MEMORY"));
@@ -141,13 +140,11 @@ CxUtils::sErrorStr(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxUtils ()
 /*virtual*/
 CxUtils::CxUtils() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxUtils ()
 /*virtual*/
 CxUtils::~CxUtils() {
 

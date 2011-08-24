@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxPin ()
 CxPin::CxPin(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
@@ -33,19 +32,17 @@ CxPin::CxPin(
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxPin ()
 /*virtual*/
 CxPin::~CxPin() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bInitToken (initializes a token)
 BOOL
 CxPin::bInitToken(
-    CK_SLOT_ID      slotID,    /* ID of the token's slot */
-    CK_UTF8CHAR_PTR pPin,      /* the SO's initial PIN */
-    CK_ULONG        ulPinLen,  /* length in bytes of the PIN */
-    CK_UTF8CHAR_PTR pLabel     /* 32-byte token label (blank padded) */
+    CK_SLOT_ID      slotID,    ///< ID of the token's slot
+    CK_UTF8CHAR_PTR pPin,      ///< the SO's initial PIN
+    CK_ULONG        ulPinLen,  ///< length in bytes of the PIN
+    CK_UTF8CHAR_PTR pLabel     ///< 32-byte token label (blank padded)
 )
 {
     /*DEBUG*/
@@ -56,11 +53,10 @@ CxPin::bInitToken(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bInitPIN (initializes the normal user's PIN)
 BOOL
 CxPin::bInitPIN(
-    CK_UTF8CHAR_PTR pPin,      /* the normal user's PIN */
-    CK_ULONG        ulPinLen   /* length in bytes of the PIN */
+    CK_UTF8CHAR_PTR pPin,      ///< the normal user's PIN
+    CK_ULONG        ulPinLen   ///< length in bytes of the PIN
 )
 {
     /*DEBUG*/
@@ -71,13 +67,12 @@ CxPin::bInitPIN(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetPIN (modifies the PIN of the user who is logged in)
 BOOL
 CxPin::bSetPIN(
-    CK_UTF8CHAR_PTR pOldPin,   /* the old PIN */
-    CK_ULONG        ulOldLen,  /* length of the old PIN */
-    CK_UTF8CHAR_PTR pNewPin,   /* the new PIN */
-    CK_ULONG        ulNewLen   /* length of the new PIN */
+    CK_UTF8CHAR_PTR pOldPin,   ///< the old PIN
+    CK_ULONG        ulOldLen,  ///< length of the old PIN
+    CK_UTF8CHAR_PTR pNewPin,   ///< the new PIN
+    CK_ULONG        ulNewLen   ///< length of the new PIN
 )
 {
     /*DEBUG*/

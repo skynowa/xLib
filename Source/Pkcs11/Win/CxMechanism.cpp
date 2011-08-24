@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxMechanism ()
 CxMechanism::CxMechanism(
     const CxPkcs11 &cPkcs11
 ) :
@@ -31,18 +30,16 @@ CxMechanism::CxMechanism(
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxMechanism ()
 /*virtual*/
 CxMechanism::~CxMechanism() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bGetInfo (obtains information about a particular mechanism possibly supported by a token)
 BOOL
 CxMechanism::bGetInfo(
-    CK_SLOT_ID            slotID,  /* ID of the token's slot */
-    CK_MECHANISM_TYPE     type,    /* type of mechanism */
-    CK_MECHANISM_INFO_PTR pInfo    /* receives mechanism info */
+    CK_SLOT_ID            slotID,  ///< ID of the token's slot
+    CK_MECHANISM_TYPE     type,    ///< type of mechanism
+    CK_MECHANISM_INFO_PTR pInfo    ///< receives mechanism info
 )
 {
     /*DEBUG*/
@@ -53,12 +50,11 @@ CxMechanism::bGetInfo(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetList (obtains a list of mechanism types supported by a token)
 BOOL
 CxMechanism::bGetList(
-    CK_SLOT_ID            slotID,          /* ID of token's slot */
-    CK_MECHANISM_TYPE_PTR pMechanismList,  /* gets mech. array */
-    CK_ULONG_PTR          pulCount         /* gets # of mechs. */
+    CK_SLOT_ID            slotID,          ///< ID of token's slot
+    CK_MECHANISM_TYPE_PTR pMechanismList,  ///< gets mech. array
+    CK_ULONG_PTR          pulCount         ///< gets # of mechs.
 )
 {
     /*DEBUG*/

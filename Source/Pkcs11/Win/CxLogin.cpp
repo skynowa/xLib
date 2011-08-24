@@ -21,7 +21,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxLogin (const CxPkcs11 &cPkcs11)
 CxLogin::CxLogin(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
@@ -35,18 +34,16 @@ CxLogin::CxLogin(
     /*DEBUG*/xASSERT_DO(NULL != _m_hSession, return);
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxLogin ()
 /*virtual*/
 CxLogin::~CxLogin() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bLogin (logs a user into a token)
 BOOL
 CxLogin::bLogin(
-    CK_USER_TYPE    userType,  /* the user type */
-    CK_UTF8CHAR_PTR pPin,      /* the user's PIN */
-    CK_ULONG        ulPinLen   /* the length of the PIN */
+    CK_USER_TYPE    userType,  ///< user type
+    CK_UTF8CHAR_PTR pPin,      ///< user's PIN
+    CK_ULONG        ulPinLen   ///< length of the PIN
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -63,7 +60,6 @@ CxLogin::bLogin(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bLogout (logs a user out from a token)
 BOOL
 CxLogin::bLogout() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);

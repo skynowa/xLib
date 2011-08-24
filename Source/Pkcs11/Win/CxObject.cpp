@@ -21,7 +21,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxObject ()
 CxObject::CxObject(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
@@ -38,13 +37,11 @@ CxObject::CxObject(
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxObject ()
 /*virtual*/
 CxObject::~CxObject() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: CxObject (gets a handle)
 CK_OBJECT_HANDLE
 CxObject::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    NULL);
@@ -54,7 +51,6 @@ CxObject::hGetHandle() const {
     return _m_hObject;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetHandle (assign object as a handle)
 BOOL
 CxObject::bSetHandle(
     CK_OBJECT_HANDLE hHandle
@@ -69,11 +65,10 @@ CxObject::bSetHandle(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bCreate (creates a new object)
 BOOL
 CxObject::bCreate(
-    CK_ATTRIBUTE_PTR pTemplate,   /* the object's template */
-    CK_ULONG         ulCount     /* attributes in template */
+    CK_ATTRIBUTE_PTR pTemplate,	///< the object's template
+    CK_ULONG         ulCount    ///< attributes in template
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -86,10 +81,9 @@ CxObject::bCreate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetSize (gets the size of an object in bytes)
 BOOL
 CxObject::bGetSize(
-    CK_ULONG_PTR pulSize    /* receives size of object */
+    CK_ULONG_PTR pulSize	///< receives size of object
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -102,12 +96,11 @@ CxObject::bGetSize(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bCopy (copies an object, creating a new object for the copy)
 BOOL
 CxObject::bCopy(
-    CK_ATTRIBUTE_PTR     pTemplate,   /* template for new object */
-    CK_ULONG             ulCount,     /* attributes in template */
-    CK_OBJECT_HANDLE_PTR phNewObject  /* receives handle of copy */
+    CK_ATTRIBUTE_PTR     pTemplate,   ///< template for new object
+    CK_ULONG             ulCount,     ///< attributes in template
+    CK_OBJECT_HANDLE_PTR phNewObject  ///< receives handle of copy
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -120,16 +113,15 @@ CxObject::bCopy(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: bFind (search for token and session objects that match a template, obtaining additional object handles)
 BOOL
 CxObject::bFind(
-    CK_ATTRIBUTE_PTR               pTemplate,              /* attribute values to match */
-    CK_ULONG                       ulCount,                /* attrs in search template */
-    std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles    /* [out] handles to objects */
+    CK_ATTRIBUTE_PTR               pTemplate,           ///< attribute values to match
+    CK_ULONG                       ulCount,             ///< attrs in search template
+    std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles	///< [out] handles to objects
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,            FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession,        FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,          FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hSession,       FALSE);
     /*DEBUG*/// _m_hObject - n/a
     /*DEBUG*/xASSERT_RET(NULL != pTemplate,         FALSE);
     /*DEBUG*/// ulCount    - n/a
@@ -162,10 +154,9 @@ CxObject::bFind(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetAttributeValue (obtains the value of one or more object attributes)
 BOOL CxObject::bGetAttributeValue(
-    CK_ATTRIBUTE_PTR  pTemplate,  /* specifies attrs; gets vals */
-    CK_ULONG          ulCount     /* attributes in template */
+    CK_ATTRIBUTE_PTR  pTemplate,  ///< specifies attrs; gets vals
+    CK_ULONG          ulCount     ///< attributes in template
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -178,11 +169,10 @@ BOOL CxObject::bGetAttributeValue(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetAttributeValue (modifies the value of one or more object attributes)
 BOOL
 CxObject::bSetAttributeValue(
-    CK_ATTRIBUTE_PTR  pTemplate,  /* specifies attrs and values */
-    CK_ULONG          ulCount     /* attributes in template */
+    CK_ATTRIBUTE_PTR  pTemplate,  ///< specifies attrs and values
+    CK_ULONG          ulCount     ///< attributes in template
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -195,7 +185,6 @@ CxObject::bSetAttributeValue(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bDestroy (destroys an object)
 BOOL
 CxObject::bDestroy() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -210,7 +199,6 @@ CxObject::bDestroy() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetData
 BOOL
 CxObject::bGetData(
     CK_SLOT_ID     ulSlotId,
@@ -301,7 +289,6 @@ CxObject::bGetData(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO: bGetData
 BOOL
 CxObject::bGetData(
     CK_SLOT_ID            ulSlotId,
@@ -381,7 +368,7 @@ CxObject::bGetData(
 	        ULONG ulLabelLen      = atrTamplate[0].ulValueLen;
 	        usLabel.resize(ulLabelLen);
 	        atrTamplate[0].pValue = &usLabel.at(0);
-	
+
 	        ULONG ulValueLen      = atrTamplate[1].ulValueLen;
 	        usValue.resize(ulValueLen);
 	        atrTamplate[1].pValue = &usValue.at(0);
@@ -408,7 +395,6 @@ CxObject::bGetData(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//TODO:
 BOOL
 CxObject::bSetData(
     CK_SLOT_ID     ulSlotId,
@@ -513,51 +499,48 @@ CxObject::bSetData(
 *****************************************************************************/
 
 #if xTODO
-    //---------------------------------------------------------------------------
-    //TODO: bFindInit (initializes a search for token and session objects that match a template)
-    BOOL CxObject::bFindInit(
-        CK_ATTRIBUTE_PTR  pTemplate,  /* attribute values to match */
-        CK_ULONG          ulCount     /* attrs in search template */
-    )
-    {
-        /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-        /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-        /*DEBUG*/// _m_hObject - n/a
+//---------------------------------------------------------------------------
+BOOL CxObject::bFindInit(
+	CK_ATTRIBUTE_PTR  pTemplate,  ///< attribute values to match
+	CK_ULONG          ulCount     ///< attrs in search template
+)
+{
+	/*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+	/*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+	/*DEBUG*/// _m_hObject - n/a
 
-        _m_ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
-        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+	_m_ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
+	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-        return TRUE;
-    }
-    //---------------------------------------------------------------------------
-    //TODO: bFind (continues a search for token and session objects that match a template, obtaining additional object handles)
-    BOOL CxObject::bFind(
-        CK_OBJECT_HANDLE_PTR phObject,          /* gets obj. handles */
-        CK_ULONG             ulMaxObjectCount,  /* max handles to get */
-        CK_ULONG_PTR         pulObjectCount     /* actual # returned */
-    )
-    {
-        /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-        /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-        /*DEBUG*/// _m_hObject - n/a
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL CxObject::bFind(
+	CK_OBJECT_HANDLE_PTR phObject,          ///< gets obj. handles
+	CK_ULONG             ulMaxObjectCount,  ///< max handles to get
+	CK_ULONG_PTR         pulObjectCount     ///< actual # returned
+)
+{
+	/*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+	/*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+	/*DEBUG*/// _m_hObject - n/a
 
-        _m_ulRes = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
-        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
-        /*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      FALSE);
+	_m_ulRes = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
+	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+	/*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      FALSE);
 
-        return TRUE;
-    }
-    //---------------------------------------------------------------------------
-    //TODO: bFindFinal (finishes a search for token and session objects)
-    BOOL CxObject::bFindFinal() {
-        /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-        /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-        /*DEBUG*/// _m_hObject - n/a
+	return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL CxObject::bFindFinal() {
+	/*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+	/*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+	/*DEBUG*/// _m_hObject - n/a
 
-        _m_ulRes = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+	_m_ulRes = _m_pFunc->C_FindObjectsFinal(_m_hSession);
+	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-        return TRUE;
-    }
-    //---------------------------------------------------------------------------
+	return TRUE;
+}
+//---------------------------------------------------------------------------
 #endif

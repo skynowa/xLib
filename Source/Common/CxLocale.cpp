@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sGetCurrent (get current)
 /*static*/
 tString
 CxLocale::sGetCurrent() {
@@ -56,10 +55,12 @@ CxLocale::sGetCurrent() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetCurrent (set current)
 /*static*/
 BOOL
-CxLocale::bSetCurrent(const tString &csLocale) {
+CxLocale::bSetCurrent(
+    const tString &csLocale
+)
+{
     /*DEBUG*/// csLocale - n/a
 
     LPCTSTR pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
@@ -72,7 +73,6 @@ CxLocale::bSetCurrent(const tString &csLocale) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetDefault (set default)
 /*static*/
 BOOL
 CxLocale::bSetDefault() {
@@ -94,12 +94,10 @@ CxLocale::bSetDefault() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxLocale
 CxLocale::CxLocale() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxLocale
 /*virtual*/
 CxLocale::~CxLocale() {
     /*DEBUG*/// n/a

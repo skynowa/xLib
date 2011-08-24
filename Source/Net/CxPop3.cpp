@@ -145,7 +145,7 @@ BOOL CxPop3::bStat(ULONG &ulSum, ULONG &ulSize) {
     _m_bRes = _bCommand(sStatCmd, "\r\n", &_m_sRes);
     xCHECK_RET(FALSE == _m_bRes, FALSE);
 
-    ulSum  = _ulMailsSum (_m_sRes);    //???????????????????????????
+    ulSum  = _ulMailsSum (_m_sRes);
     ulSize = _ulMailsSize(_m_sRes);
 
 #ifdef _DEBUG
@@ -491,7 +491,7 @@ ULONG CxPop3::_ulMailsSum(const tString &csServerAnswer) {
     /*DEBUG*///TODO:
 
     sSum  = vsRes.at(1);
-    ulSum = atol(sSum.c_str());        //!!! ul -> l
+    ulSum = atol(sSum.c_str());        // ul -> l
 
     return ulSum;
 }
@@ -509,7 +509,7 @@ ULONG CxPop3::_ulMailsSize(const tString &csServerAnswer) {
     /*DEBUG*///TODO:
 
     sSize  = vsRes.at(2);
-    ulSize = atol(sSize.c_str());    //!!! ul+\r\n -> l
+    ulSize = atol(sSize.c_str());    // ul+\r\n -> l
 
     return ulSize;
 }

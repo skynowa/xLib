@@ -31,7 +31,7 @@
 #include <math.h>
 #include <limits.h>
 
-#if defined(xIS_STL_ASSERTING)
+#if xIS_STL_ASSERTING
     #include <assert.h>
 #endif
 
@@ -62,8 +62,8 @@
 #include <sys/types.h>
 
 //xLib
-namespace NxLib {}
-#ifndef xNO_USING_NAMESPACE
+namespace NxLib { }
+#if xUSING_NAMESPACE
     using namespace NxLib;
 #endif
 

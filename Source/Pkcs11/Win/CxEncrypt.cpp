@@ -21,7 +21,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxEncrypt ()
 CxEncrypt::CxEncrypt(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
@@ -34,17 +33,15 @@ CxEncrypt::CxEncrypt(
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxEncrypt ()
 /*virtual*/
 CxEncrypt::~CxEncrypt() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bInit (initializes an encryption operation)
 BOOL
 CxEncrypt::bInit(
-    CK_MECHANISM_PTR pMechanism,  /* the encryption mechanism */
-    CK_OBJECT_HANDLE hKey         /* handle of encryption key */
+    CK_MECHANISM_PTR pMechanism,  ///< the encryption mechanism
+    CK_OBJECT_HANDLE hKey         ///< handle of encryption key
 )
 {
     /*DEBUG*/
@@ -55,13 +52,12 @@ CxEncrypt::bInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bMake (encrypts single-part data)
 BOOL
 CxEncrypt::bMake(
-    CK_BYTE_PTR  pData,               /* the plaintext data */
-    CK_ULONG     ulDataLen,           /* bytes of plaintext */
-    CK_BYTE_PTR  pEncryptedData,      /* gets ciphertext */
-    CK_ULONG_PTR pulEncryptedDataLen  /* gets c-text size */
+    CK_BYTE_PTR  pData,               ///< the plaintext data
+    CK_ULONG     ulDataLen,           ///< bytes of plaintext
+    CK_BYTE_PTR  pEncryptedData,      ///< gets ciphertext
+    CK_ULONG_PTR pulEncryptedDataLen  ///< gets c-text size
 )
 {
     /*DEBUG*/
@@ -72,13 +68,12 @@ CxEncrypt::bMake(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bUpdate (continues a multiple-part encryption operation)
 BOOL
 CxEncrypt::bUpdate(
-    CK_BYTE_PTR  pPart,              /* the plaintext data */
-    CK_ULONG     ulPartLen,          /* plaintext data len */
-    CK_BYTE_PTR  pEncryptedPart,     /* gets ciphertext */
-    CK_ULONG_PTR pulEncryptedPartLen /* gets c-text size */
+    CK_BYTE_PTR  pPart,              ///< the plaintext data
+    CK_ULONG     ulPartLen,          ///< plaintext data len
+    CK_BYTE_PTR  pEncryptedPart,     ///< gets ciphertext
+    CK_ULONG_PTR pulEncryptedPartLen ///< gets c-text size
 )
 {
     /*DEBUG*/
@@ -89,11 +84,10 @@ CxEncrypt::bUpdate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bFinal (finishes a multiple-part encryption operation)
 BOOL
 CxEncrypt::bFinal(
-    CK_BYTE_PTR  pLastEncryptedPart,      /* last c-text */
-    CK_ULONG_PTR pulLastEncryptedPartLen  /* gets last size */
+    CK_BYTE_PTR  pLastEncryptedPart,      ///< last c-text
+    CK_ULONG_PTR pulLastEncryptedPartLen  ///< gets last size
 )
 {
     /*DEBUG*/
@@ -112,7 +106,6 @@ CxEncrypt::bFinal(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bMakeFile ()
 BOOL
 CxEncrypt::bMakeFile(
     const tString    &csInFilePath,

@@ -19,12 +19,17 @@ class CxLocale :
 {
     public:
        static tString sGetCurrent();
+       	   ///< get current
        static BOOL    bSetCurrent(const tString &csLocale);
+   	   	   ///< set current
        static BOOL    bSetDefault();
+   	   	   ///< set default
 
     private:
                       CxLocale   ();
+           ///< constructor
        virtual       ~CxLocale   ();
+   	   	   ///< destructor
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxLocaleH

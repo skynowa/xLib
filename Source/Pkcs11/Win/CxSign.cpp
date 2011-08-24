@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxSign ()
 CxSign::CxSign(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
@@ -33,17 +32,15 @@ CxSign::CxSign(
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxSign ()
 /*virtual*/
 CxSign::~CxSign() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bInit (initializes a signature (private key encryption) operation, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bInit(
-    CK_MECHANISM_PTR pMechanism,  /* the signature mechanism */
-    CK_OBJECT_HANDLE hKey         /* handle of signature key */
+    CK_MECHANISM_PTR pMechanism,  ///< the signature mechanism
+    CK_OBJECT_HANDLE hKey         ///< handle of signature key
 )
 {
     /*DEBUG*/
@@ -54,13 +51,12 @@ CxSign::bInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bMake (signs (encrypts with private key) data in a single part, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bMake(
-    CK_BYTE_PTR  pData,           /* the data to sign */
-    CK_ULONG     ulDataLen,       /* count of bytes to sign */
-    CK_BYTE_PTR  pSignature,      /* gets the signature */
-    CK_ULONG_PTR pulSignatureLen  /* gets signature length */
+    CK_BYTE_PTR  pData,           ///< the data to sign
+    CK_ULONG     ulDataLen,       ///< count of bytes to sign
+    CK_BYTE_PTR  pSignature,      ///< gets the signature
+    CK_ULONG_PTR pulSignatureLen  ///< gets signature length
 )
 {
     /*DEBUG*/
@@ -71,11 +67,10 @@ CxSign::bMake(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bUpdate (continues a multiple-part signature operation,where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature)
 BOOL
 CxSign::bUpdate(
-    CK_BYTE_PTR pPart,     /* the data to sign */
-    CK_ULONG    ulPartLen  /* count of bytes to sign */
+    CK_BYTE_PTR pPart,     ///< the data to sign
+    CK_ULONG    ulPartLen  ///< count of bytes to sign
 )
 {
     /*DEBUG*/
@@ -86,13 +81,12 @@ CxSign::bUpdate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bEncryptUpdate (continues a multiple-part signing and encryption operation)
 BOOL
 CxSign::bEncryptUpdate(
-    CK_BYTE_PTR  pPart,               /* the plaintext data */
-    CK_ULONG     ulPartLen,           /* plaintext length */
-    CK_BYTE_PTR  pEncryptedPart,      /* gets ciphertext */
-    CK_ULONG_PTR pulEncryptedPartLen  /* gets c-text length */
+    CK_BYTE_PTR  pPart,               ///< the plaintext data
+    CK_ULONG     ulPartLen,           ///< plaintext length
+    CK_BYTE_PTR  pEncryptedPart,      ///< gets ciphertext
+    CK_ULONG_PTR pulEncryptedPartLen  ///< gets c-text length
 )
 {
     /*DEBUG*/
@@ -103,11 +97,10 @@ CxSign::bEncryptUpdate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bFinal (finishes a multiple-part signature operation, returning the signature)
 BOOL
 CxSign::bFinal(
-    CK_BYTE_PTR  pSignature,      /* gets the signature */
-    CK_ULONG_PTR pulSignatureLen  /* gets signature length */
+    CK_BYTE_PTR  pSignature,      ///< gets the signature
+    CK_ULONG_PTR pulSignatureLen  ///< gets signature length
 )
 {
     /*DEBUG*/
@@ -118,11 +111,10 @@ CxSign::bFinal(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bRecoverInit (initializes a signature operation, where the data can be recovered from the signature)
 BOOL
 CxSign::bRecoverInit(
-    CK_MECHANISM_PTR pMechanism, /* the signature mechanism */
-    CK_OBJECT_HANDLE hKey        /* handle of the signature key */
+    CK_MECHANISM_PTR pMechanism, ///< the signature mechanism
+    CK_OBJECT_HANDLE hKey        ///< handle of the signature key
 )
 {
     /*DEBUG*/
@@ -133,13 +125,12 @@ CxSign::bRecoverInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bRecover (signs data in a single operation, where the data can be recovered from the signature)
 BOOL
 CxSign::bRecover(
-    CK_BYTE_PTR  pData,           /* the data to sign */
-    CK_ULONG     ulDataLen,       /* count of bytes to sign */
-    CK_BYTE_PTR  pSignature,      /* gets the signature */
-    CK_ULONG_PTR pulSignatureLen  /* gets signature length */
+    CK_BYTE_PTR  pData,           ///< the data to sign
+    CK_ULONG     ulDataLen,       ///< count of bytes to sign
+    CK_BYTE_PTR  pSignature,      ///< gets the signature
+    CK_ULONG_PTR pulSignatureLen  ///< gets signature length
 )
 {
     /*DEBUG*/

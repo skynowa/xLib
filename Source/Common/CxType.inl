@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sGetRawName
 template<class T>
 /*static*/
 tString
@@ -41,7 +40,6 @@ CxType::sGetRawName(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetName
 template<class T>
 /*static*/
 tString
@@ -73,7 +71,6 @@ CxType::sGetName(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsEqual
 template<class T1, class T2>
 /*static*/
 BOOL

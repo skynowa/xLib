@@ -16,15 +16,15 @@ class CxNonCopyable {
    public:
 
    protected:
-              CxNonCopyable() /*throw ()*/ {}
-             ~CxNonCopyable() /*throw ()*/ {}
-
+              CxNonCopyable() { }
+              	  ///< constructor
+             ~CxNonCopyable() { }
+         	  	  ///< dectructor
    private:
-              //--CxNonCopyable(      CxNonCopyable &);
               CxNonCopyable(const CxNonCopyable &);
-
-              //--CxNonCopyable &operator = (      CxNonCopyable &);
+          	  	  ///< constructor
         const CxNonCopyable &operator = (const CxNonCopyable &);
+    	  	  	  ///< operator =
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxNonCopyableH

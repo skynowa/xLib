@@ -14,14 +14,12 @@
 #include <xLib/Pkcs11/Win/CxUtils.h>
 
 
-
 /****************************************************************************
 *    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxSession ()
 CxSession::CxSession(
     const CxPkcs11 &cPkcs11
 ) :
@@ -34,13 +32,11 @@ CxSession::CxSession(
     /*DEBUG*/xASSERT_DO(NULL == _m_hSession, return);
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxSession ()
 /*virtual*/
 CxSession::~CxSession() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: CxSession (gets a handle)
 CK_SESSION_HANDLE
 CxSession::hGetHandle() const {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    NULL);
@@ -49,13 +45,12 @@ CxSession::hGetHandle() const {
     return _m_hSession;
 }
 //---------------------------------------------------------------------------
-//TODO: bOpen (opens a session between an application and a token)
 BOOL
 CxSession::bOpen(
-    CK_SLOT_ID  slotID,        /* the slot's ID */
-    CK_FLAGS    flags,         /* from CK_SESSION_INFO */
-    CK_VOID_PTR pApplication,  /* passed to callback */
-    CK_NOTIFY   Notify         /* callback function */
+    CK_SLOT_ID  slotID,        ///< the slot's ID
+    CK_FLAGS    flags,         ///< from CK_SESSION_INFO
+    CK_VOID_PTR pApplication,  ///< passed to callback
+    CK_NOTIFY   Notify         ///< callback function
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -67,10 +62,9 @@ CxSession::bOpen(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetInfo (obtains information about the session)
 BOOL
 CxSession::bGetInfo(
-    CK_SESSION_INFO_PTR pInfo      /* receives session info */
+    CK_SESSION_INFO_PTR pInfo      ///< receives session info
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -82,13 +76,12 @@ CxSession::bGetInfo(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetOperationState (restores the state of the cryptographic operation in a session)
 BOOL
 CxSession::bSetOperationState(
-    CK_BYTE_PTR      pOperationState,      /* holds state */
-    CK_ULONG         ulOperationStateLen,  /* holds state length */
-    CK_OBJECT_HANDLE hEncryptionKey,       /* en/decryption key */
-    CK_OBJECT_HANDLE hAuthenticationKey    /* sign/verify key */
+    CK_BYTE_PTR      pOperationState,      ///< holds state
+    CK_ULONG         ulOperationStateLen,  ///< holds state length
+    CK_OBJECT_HANDLE hEncryptionKey,       ///< en/decryption key
+    CK_OBJECT_HANDLE hAuthenticationKey    ///< sign/verify key
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -100,11 +93,10 @@ CxSession::bSetOperationState(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetOperationState (obtains the state of the cryptographic operation in a session)
 BOOL
 CxSession::bGetOperationState(
-    CK_BYTE_PTR  pOperationState,      /* gets state */
-    CK_ULONG_PTR pulOperationStateLen  /* gets state length */
+    CK_BYTE_PTR  pOperationState,      ///< gets state
+    CK_ULONG_PTR pulOperationStateLen  ///< gets state length
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,   FALSE);
@@ -116,7 +108,6 @@ CxSession::bGetOperationState(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bClose (closes a session between an application and a token)
 BOOL
 CxSession::bClose() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -131,10 +122,9 @@ CxSession::bClose() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bCloseAll (closes all sessions with a token)
 BOOL
 CxSession::bCloseAll(
-    CK_SLOT_ID slotID  /* the token's slot */
+    CK_SLOT_ID slotID  ///< the token's slot
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);
