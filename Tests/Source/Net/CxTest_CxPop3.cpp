@@ -158,7 +158,7 @@ CxTest_CxPop3::bUnit(
         m_bRes = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::lexical_cast(i) + xT(".eml"));
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        /*LOG*/printf("bRetriveRaw %i\n", i);
+        /*LOG*/printf("bRetriveRaw %li\n", i);
     }
 
     //-------------------------------------
@@ -169,7 +169,7 @@ CxTest_CxPop3::bUnit(
         m_bRes = objPop3.bRetrieveHeader(iNum, mhMimeHeader);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        /*LOG*/printf("bRetrieveHeader %i\n", i);
+        /*LOG*/printf("bRetrieveHeader %li\n", i);
     }
 
     //-------------------------------------

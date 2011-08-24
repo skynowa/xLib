@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxSlot ()
 CxSlot::CxSlot(
     const CxPkcs11 &cPkcs11
 ) :
@@ -31,22 +30,23 @@ CxSlot::CxSlot(
     /*DEBUG*/xASSERT_DO(NULL != _m_pFunc, return);
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxSlot ()
 /*virtual*/
 CxSlot::~CxSlot() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bGetList (btains a list of slots in the system)
-////BOOL CxSlot::bGetList(
-////    CK_BBOOL       bTokenPresent,  /* only slots with tokens? */
-////    CK_SLOT_ID_PTR pSlotList,      /* receives array of slot IDs */
-////    CK_ULONG_PTR   pulCount        /* receives number of slots */
-////)
+#if xTEMP_DISABLED
+	BOOL CxSlot::bGetList(
+		CK_BBOOL       bTokenPresent,  ///< only slots with tokens?
+		CK_SLOT_ID_PTR pSlotList,      ///< receives array of slot IDs
+		CK_ULONG_PTR   pulCount        ///< receives number of slots
+	)
+#endif
+
 BOOL
 CxSlot::bGetList(
-    CK_BBOOL                 bTokenPresent,        /* only slots with tokens? */
-    std::vector<CK_SLOT_ID> *pvecSlotList       /* receives array of slot IDs */
+    CK_BBOOL                 bTokenPresent,     ///< only slots with tokens?
+    std::vector<CK_SLOT_ID> *pvecSlotList       ///< receives array of slot IDs
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,     FALSE);
@@ -70,11 +70,10 @@ CxSlot::bGetList(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetInfo (obtains information about a particular slot in the system)
 BOOL
 CxSlot::bGetInfo(
-    CK_SLOT_ID       slotID,  /* the ID of the slot */
-    CK_SLOT_INFO_PTR pInfo    /* receives the slot information */
+    CK_SLOT_ID       slotID,  ///< the ID of the slot
+    CK_SLOT_INFO_PTR pInfo    ///< receives the slot information
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);
@@ -87,12 +86,11 @@ CxSlot::bGetInfo(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bWaitForEvent (waits for a slot event (token insertion, removal, etc.) to occur)
 CxSlot::ENotification
 CxSlot::nfWaitForEvent(
-    CK_FLAGS       flags,     /* blocking/nonblocking flag */
-    CK_SLOT_ID_PTR pSlot,      /* location that receives the slot ID */
-    CK_VOID_PTR    pRserved   /* reserved.  Should be NULL_PTR */
+    CK_FLAGS       flags,     ///< blocking/nonblocking flag
+    CK_SLOT_ID_PTR pSlot,     ///< location that receives the slot ID
+    CK_VOID_PTR    pRserved   ///< reserved.  Should be NULL_PTR
 )
 {
     /*DEBUG*/xASSERT_RET(NULL     != _m_pFunc, nfError);

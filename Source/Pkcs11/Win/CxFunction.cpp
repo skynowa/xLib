@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxFunction ()
 CxFunction::CxFunction(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
@@ -33,16 +32,14 @@ CxFunction::CxFunction(
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxFunction ()
 /*virtual*/
 CxFunction::~CxFunction() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bGetList (returns the function list)
 BOOL
 CxFunction::bGetList(
-    CK_FUNCTION_LIST_PTR_PTR ppFunctionList  /* receives pointer to function list */
+    CK_FUNCTION_LIST_PTR_PTR ppFunctionList  ///< receives pointer to function list
 )
 {
     /*DEBUG*/
@@ -53,7 +50,6 @@ CxFunction::bGetList(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetStatus (is a legacy function; it obtains an updated status of a function running in parallel with an application)
 BOOL
 CxFunction::bGetStatus() {
     /*DEBUG*/
@@ -64,7 +60,6 @@ CxFunction::bGetStatus() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bCancel (is a legacy function; it cancels a function running in parallel)
 BOOL
 CxFunction::bCancel() {
     /*DEBUG*/
@@ -75,13 +70,14 @@ CxFunction::bCancel() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetListEx (� SDK 4.53 ���� ������� ���)
 BOOL
 CxFunction::bGetListEx() {
     /*DEBUG*/
 
-    ////_m_ulRes = _m_pFunc->ETC_GetFunctionListEx();
-    /////*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+	#if xTODO
+		_m_ulRes = _m_pFunc->ETC_GetFunctionListEx();
+		/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+	#endif
 
     return TRUE;
 }

@@ -20,11 +20,14 @@ class CxUtils :
     public CxNonCopyable
 {
     public:
-        static tString sErrorStr(CK_RV ulCode);
+        static tString sErrorStr(const CK_RV culCode);
+        	///< get error string by code, SDK 4.53
 
     private:
                        CxUtils  ();
+            ///< constructor
         virtual       ~CxUtils  ();
+        	///< destructor
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Pkcs11_CxUtilsH

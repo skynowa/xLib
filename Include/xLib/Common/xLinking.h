@@ -12,7 +12,7 @@
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
-    #if !defined(_LIB) && defined(xIS_AUTO_LINKING)
+    #if !defined(_LIB) && xIS_AUTO_LINKING
         #if defined(NDEBUG)
             //release
             #if defined(xUNICODE)

@@ -21,16 +21,23 @@ class CxInfo :
 {
     public:
                              CxInfo   (const CxPkcs11 &cPkcs11);
+            ///< constructor
         virtual             ~CxInfo   ();
+        	///< destructor
 
         BOOL                 bGet     (CK_INFO_PTR pInfo);
+        	///< returns general information about Cryptoki
         BOOL                 bGetToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
+        	///< obtains information about a particular token in the system
 
     private:
         BOOL                 _m_bRes;
+        	///< for private use
         CK_RV                _m_ulRes;
+        	///< for private use
 
         CK_FUNCTION_LIST_PTR _m_pFunc;
+        	///< pointer to dll's function list
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Pkcs11_CxInfoH

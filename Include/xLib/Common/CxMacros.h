@@ -17,7 +17,7 @@
 #include <xLib/Filesystem/CxPath.h>
 //---------------------------------------------------------------------------
 //DONE: tests private methods
-#if defined(xTEST_PRIVATE_METHODS)
+#if xTEST_PRIVATE_METHODS
      #define private public
 #endif
 

@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxInfo ()
 CxInfo::CxInfo(
     const CxPkcs11 &cPkcs11
 ) :
@@ -31,15 +30,13 @@ CxInfo::CxInfo(
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxInfo ()
 CxInfo::~CxInfo() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bGet (returns general information about Cryptoki)
 BOOL
 CxInfo::bGet(
-    CK_INFO_PTR pInfo  /* location that receives information */
+    CK_INFO_PTR pInfo  ///< location that receives information
 )
 {
     /*DEBUG*/
@@ -50,11 +47,10 @@ CxInfo::bGet(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetToken (obtains information about a particular token in the system)
 BOOL
 CxInfo::bGetToken(
-    CK_SLOT_ID        slotID,  /* ID of the token's slot */
-    CK_TOKEN_INFO_PTR pInfo    /* receives the token information */
+    CK_SLOT_ID        slotID,  ///< ID of the token's slot
+    CK_TOKEN_INFO_PTR pInfo    ///< receives the token information
 )
 {
     /*DEBUG*/

@@ -11,9 +11,9 @@
 #ifndef xLib_Common_xTracingH
 #define xLib_Common_xTracingH
 //---------------------------------------------------------------------------
-#if defined(xIS_COMPILE_TIME_TRACING)
+#if xIS_COMPILE_TIME_TRACING
     //--------------------------------------------------
-    //DONE: OS family
+    //OS family
     #if defined(xOS_WIN)
         #pragma message("xLib: xOS_WIN")
     #elif defined(xOS_LINUX)
@@ -25,7 +25,7 @@
     #endif
 
     //--------------------------------------------------
-    //DONE: OS architecture
+    //OS architecture
     #if defined(xARCHITECTURE_32BIT)
         #pragma message("xLib: xARCHITECTURE_32BIT")
     #elif defined(xARCHITECTURE_64BIT)
@@ -35,7 +35,7 @@
     #endif
 
     //--------------------------------------------------
-    //DONE: Compilers
+    //Compilers
     #if defined(xCOMPILER_MINGW32)
         #pragma message("xLib: xCOMPILER_MINGW32")
     #elif defined(xCOMPILER_MS)
@@ -51,7 +51,7 @@
     #endif
 
     //--------------------------------------------------
-    //DONE: unicode, ansi
+    //unicode, ansi
     #if defined(xUNICODE)
         #pragma message("xLib: xUNICODE")
     #else
