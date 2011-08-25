@@ -18,12 +18,17 @@ template <class ClassT, typename ReturnT, typename ParamT>
 class CxFunctorT {
     public:
         typedef  ReturnT   (ClassT::*Method)(ParamT);
+            ///< return type
 
                  CxFunctorT(ClassT *pObject, Method method);
+            ///< constructor
         virtual ~CxFunctorT();
+            ///< destructor
 
         ReturnT  operator()(ParamT Param);
+            ///< operator ()
         ReturnT  Execute   (ParamT Param);
+            ///< execute operator ()
 
     private:
         ClassT  *_m_pObject;
@@ -34,25 +39,24 @@ class CxFunctorT {
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxFunctorH
 
-/*
-class thread_adapter {
-    public:
-        thread_adapter(void (*func)(void *), void *param) :
-            _func (func),
-            _param(param)
-        {
-        }
 
-        void operator()() const {
-            _func(_param);
-        }
+#if xTODO
+    class thread_adapter {
+        public:
+            thread_adapter(void (*func)(void *), void *param) :
+                _func (func),
+                _param(param)
+            {
+            }
 
-    private:
-        void (*_func)(void *);
-        void *_param;
-};
-*/
+            void operator()() const {
+                _func(_param);
+            }
 
-/*
-http://habrahabr.ru/blogs/cpp/111680/
-*/
+        private:
+            void (*_func)(void *);
+            void *_param;
+    };
+
+    //http://habrahabr.ru/blogs/cpp/111680/
+#endif

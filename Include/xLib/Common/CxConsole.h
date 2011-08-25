@@ -1,12 +1,9 @@
-/****************************************************************************
-* Class name:  CxConsole
-* Description: console
-* File name:   CxConsole.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     09.09.2010 10:06:20
-*
-*****************************************************************************/
+/**
+ * \file   CxConsole.h
+ * \brief  console
+ * \author skynowa <skynowa@gmail.com>
+ * \date   09.09.2010
+ */
 
 
 #ifndef xLib_Common_CxConsoleH
@@ -29,50 +26,71 @@ class CxConsole :
             mrIgnore = 5,
             mrRetry  = 4
         };
+            ///< modal result
 
                      CxConsole     ();
+            ///< constructor
         virtual     ~CxConsole     ();
+            ///< destructor
 
-        //EColor - comsole colors
         enum EAttribute {
             atAllOff = 0, atBold = 1, atUnderscore = 4, atBlink = 5, atReverse = 7, atConcealed  = 8
         };
+            ///< attribute
 
         enum EForeground {
             fgBlack  = 30, fgRed  = 31, fgGreen  = 32, fgYellow  = 33, fgBlue  = 34, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37,
             fgBlack_ = 90, fgRed_ = 91, fgGreen_ = 92, fgYellow_ = 93, fgBlue_ = 94, fgMagenta_ = 95, fgCyan_ = 96, fgWhite_ = 97
         };
+            ///< foreground color
 
         enum EBackground {
             bgBlack  = 40,  bgRed  = 41,  bgGreen  = 42,  bgYellow  = 43,  bgBlue  = 44,  bgMagenta  = 45,  bgCyan  = 46,  bgWhite  = 47,
             bgBlack_ = 100, bgRed_ = 101, bgGreen_ = 102, bgYellow_ = 103, bgBlue_ = 104, bgMagenta_ = 105, bgCyan_ = 106, bgWhite_ = 107
         };
+            ///< background color
 
         tString      bSetTextColor (const tString &csText, const EForeground cfgForeground, const BOOL cbIsBold, const BOOL cbIsUnderline, const EBackground cbgBackground, const BOOL cbIsBlink);
+            ///< set text color
         tString      sRead         ();
+            ///< read
         BOOL         bWrite        (const tString &csStr);
+            ///< write
         BOOL         bWriteLine    (const tString &csStr = xT(""));
+            ///< write line
         BOOL         bWriteErrLine (const tString &csStr);
+            ///< write error message
         EModalResult iMsgBox       (const tString &csText, const tString &csTitle, const UINT cuiType);
+            ///< show console message dialog
         BOOL         bPrompt       (const tString &csPrompt, const BOOL cbIsVisible, tString *psAnswer);
+            ///< show console prompt dialog
         BOOL         bPause        ();
+            ///< pause
         BOOL         bClear        ();
+            ///< clear
 
         tString      sGetTitle     ();
+            ///< get title string
         BOOL         bSetTitle     (const tString &csTitle);
+            ///< set title string
         BOOL         bCenterWindow ();
+            ///< allign to center
         BOOL         bSetFullScreen();
+            ///< set full screen
         BOOL         bEnableClose  (const BOOL cbFlag);
+            ///< enable close button
 
     private:
     #if defined(xOS_WIN)
-        HWND         _m_hWnd;
-        HMENU        _m_hMenu;
-        CxFileHandle _m_hStdIn;
-        CxFileHandle _m_hStdOut;
+        HWND         _m_hWnd;       ///< console window handle
+        HMENU        _m_hMenu;      ///< console menu handle
+        CxFileHandle _m_hStdIn;     ///< standart input handle
+        CxFileHandle _m_hStdOut;    ///< standart output handle
 
         HWND         _hGetWndHandle ();
+            ///< get console window handle
         HMENU        _hGetMenuHandle(const BOOL cbRevert);
+            ///< get console menu handle
     #elif defined(xOS_LINUX)
 
     #endif
@@ -80,13 +98,14 @@ class CxConsole :
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxConsoleH
 
+
 #if xTODO
     #include <io.h>
     #include <fcntl.h>
     #include <stdio.h>
     #include <windows.h>
 
-    BOOL 
+    BOOL
     create_console() {
       FreeConsole();
       if (AllocConsole()) {

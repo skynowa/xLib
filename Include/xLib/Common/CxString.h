@@ -20,18 +20,22 @@ namespace std {
     template<class Traits>
     inline basic_ostream<TCHAR, Traits> &
     operator << (basic_ostream<TCHAR, Traits> &osOut, const uString &cusValue);
+        ///< overload operators << for std::ustring
 
     template<class Traits, class T>
     inline basic_ostream<TCHAR, Traits> &
     operator << (basic_ostream<TCHAR, Traits> &osOut, const vector<T> &cvValueT);
+        ///< overload operators << for std::vector
 
     template<class Traits, class T1, class T2>
     inline basic_ostream<TCHAR, Traits> &
     operator << (basic_ostream<TCHAR, Traits> &osOut, const map<T1, T2> &cmValueT);
+        ///< overload operators << for std::map
 
     template<class Traits, class T1, class T2>
     inline basic_ostream<TCHAR, Traits> &
     operator << (basic_ostream<TCHAR, Traits> &osOut, const multimap<T1, T2> &cmmValueT);
+        ///< overload operators << for std::multimap
 }
 //---------------------------------------------------------------------------
 class CxString :

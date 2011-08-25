@@ -49,20 +49,20 @@
     #define TEOF            EOF
 #endif //xUNICODE
 
-typedef std::basic_string<TCHAR,         std::char_traits<TCHAR>,         std::allocator<TCHAR> >         tString;
-typedef std::basic_string<unsigned char, std::char_traits<unsigned char>, std::allocator<unsigned char> > uString;
+    typedef std::basic_string<TCHAR,         std::char_traits<TCHAR>,         std::allocator<TCHAR> >         tString;
+    typedef std::basic_string<unsigned char, std::char_traits<unsigned char>, std::allocator<unsigned char> > uString;
 
-typedef std::basic_istream <TCHAR, std::char_traits<TCHAR> >                                              tistream;
-typedef std::basic_ostream <TCHAR, std::char_traits<TCHAR> >                                              tostream;
-typedef std::basic_iostream<TCHAR, std::char_traits<TCHAR> >                                              tiostream;
+    typedef std::basic_istream <TCHAR, std::char_traits<TCHAR> >                                              tistream;
+    typedef std::basic_ostream <TCHAR, std::char_traits<TCHAR> >                                              tostream;
+    typedef std::basic_iostream<TCHAR, std::char_traits<TCHAR> >                                              tiostream;
 
-typedef std::basic_istringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tistringstream;
-typedef std::basic_ostringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tostringstream;
-typedef std::basic_stringstream <TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tstringstream;
+    typedef std::basic_istringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tistringstream;
+    typedef std::basic_ostringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tostringstream;
+    typedef std::basic_stringstream <TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tstringstream;
 
-typedef std::basic_ifstream<TCHAR, std::char_traits<TCHAR> >                                              tifstream;
-typedef std::basic_ofstream<TCHAR, std::char_traits<TCHAR> >                                              tofstream;
-typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                                              tfstream;
+    typedef std::basic_ifstream<TCHAR, std::char_traits<TCHAR> >                                              tifstream;
+    typedef std::basic_ofstream<TCHAR, std::char_traits<TCHAR> >                                              tofstream;
+    typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                                              tfstream;
 
     typedef float                  FLOAT;
     typedef double                 DOUBLE;

@@ -1,11 +1,21 @@
-/****************************************************************************
-* Class name:  CxCommon
-* Description: common header for xLib
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.12.2010 23:24:26
-*
-*****************************************************************************/
+/**
+ * \file   xCommon.h
+ * \brief  common header for xLib
+ * \author skynowa <skynowa@gmail.com>
+ * \date   01.02.2011
+ */
+
+/**
+ * \mainpage
+ *
+ * This library is cross-platform and can be compiled and used on
+ * Linux, BSD and Windows
+ *
+ * \author   skynowa@gmail.com
+ * \date     2008 - 2011
+ * \section  Samples
+ * \ref      Units
+ */
 
 
 #ifndef xLib_Common_xCommonH
