@@ -1,11 +1,7 @@
-/****************************************************************************
-* Class name:  xCheks
-* Description: cheks for xLib
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     26.05.2011
-*
-*****************************************************************************/
+/**
+ * \file  xCheks.h
+ * \brief cheks for xLib
+ */
 
 
 #ifndef xLib_Common_xCheksH

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxLocalStorage
-* Description: ini
-* File name:   CxLocalStorage.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     10.05.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxLocalStorage.h
+ * \brief local storage
+ */
 
 
 #ifndef xLib_Filesystem_CxLocalStorageH
@@ -15,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 namespace NxLib {
-    typedef std::map<tString, tString> TLocalStorage;
+    typedef std::map<std::tstring, std::tstring> TLocalStorage;
 }
 
 class CxLocalStorage :
@@ -23,13 +18,13 @@ class CxLocalStorage :
 {
     public:
                                CxLocalStorage ();
-        explicit               CxLocalStorage (const tString &csFilePath);
+        explicit               CxLocalStorage (const std::tstring &csFilePath);
         virtual               ~CxLocalStorage ();
 
         //creation
-        BOOL                   bCreateDefault (const tString &csContent) const;
-        tString                sGetPath       () const;
-        BOOL                   bSetPath       (const tString &csFilePath);
+        BOOL                   bCreateDefault (const std::tstring &csContent) const;
+        std::tstring                sGetPath       () const;
+        BOOL                   bSetPath       (const std::tstring &csFilePath);
         NxLib::TLocalStorage & cmsGet         ();
 
         BOOL                   bFlush         () const;
@@ -37,36 +32,36 @@ class CxLocalStorage :
         BOOL                   bDelete        ();
 
         //key
-        BOOL                   bKeyIsExists   (const tString &csKey) const;
+        BOOL                   bKeyIsExists   (const std::tstring &csKey) const;
 
-        tString                sKeyReadString (const tString &csKey, const tString &csDefaultValue);
-        BOOL                   bKeyWriteString(const tString &csKey, const tString &csValue);
+        std::tstring                sKeyReadString (const std::tstring &csKey, const std::tstring &csDefaultValue);
+        BOOL                   bKeyWriteString(const std::tstring &csKey, const std::tstring &csValue);
 
-        LONG                   iKeyReadInt    (const tString &csKey, const LONG     cliDefaultValue);
-        BOOL                   bKeyWriteInt   (const tString &csKey, const LONG     cliValue);
+        LONG                   iKeyReadInt    (const std::tstring &csKey, const LONG     cliDefaultValue);
+        BOOL                   bKeyWriteInt   (const std::tstring &csKey, const LONG     cliValue);
 
-        DOUBLE                 dKeyReadFloat  (const tString &csKey, const DOUBLE   cdDefaultValue);
-        BOOL                   bKeyWriteFloat (const tString &csKey, const DOUBLE   cdValue);
+        DOUBLE                 dKeyReadFloat  (const std::tstring &csKey, const DOUBLE   cdDefaultValue);
+        BOOL                   bKeyWriteFloat (const std::tstring &csKey, const DOUBLE   cdValue);
 
-        BOOL                   bKeyReadBool   (const tString &csKey, const BOOL     cbDefaultValue);
-        BOOL                   bKeyWriteBool  (const tString &csKey, const BOOL     cbValue);
+        BOOL                   bKeyReadBool   (const std::tstring &csKey, const BOOL     cbDefaultValue);
+        BOOL                   bKeyWriteBool  (const std::tstring &csKey, const BOOL     cbValue);
 
-        uString                usKeyReadBin   (const tString &csKey, const uString &cusDefaultValue);
-        BOOL                   bKeyWriteBin   (const tString &csKey, const uString &cusValue);
+        std::ustring                usKeyReadBin   (const std::tstring &csKey, const std::ustring &cusDefaultValue);
+        BOOL                   bKeyWriteBin   (const std::tstring &csKey, const std::ustring &cusValue);
 
-        BOOL                   bKeyClear      (const tString &csKey);
-        BOOL                   bKeyDelete     (const tString &csKey);
+        BOOL                   bKeyClear      (const std::tstring &csKey);
+        BOOL                   bKeyDelete     (const std::tstring &csKey);
 
     private:
-        const tString          _m_csSeparator;    //separator between key and value
-        const tString          _m_csFileExt;      //ini-file extension
+        const std::tstring          _m_csSeparator;    //separator between key and value
+        const std::tstring          _m_csFileExt;      //ini-file extension
 
         mutable BOOL           _m_bRes;
-        tString                _m_sFilePath;      //file path to ini-file
+        std::tstring                _m_sFilePath;      //file path to ini-file
         NxLib::TLocalStorage   _m_msIni;          //std::map of keys and values
 
-        BOOL                   _bRead         (const tString &csKey, const tString &csDefaultValue, tString *psValue);
-        BOOL                   _bWrite        (const tString &csKey, const tString &csValue);
+        BOOL                   _bRead         (const std::tstring &csKey, const std::tstring &csDefaultValue, std::tstring *psValue);
+        BOOL                   _bWrite        (const std::tstring &csKey, const std::tstring &csValue);
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxLocalStorageH

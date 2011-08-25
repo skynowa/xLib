@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxType
-* Description: type info
-* File name:   CxType.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     29.07.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxType.h
+ * \brief type info
+ */
 
 
 #ifndef xLib_Common_CxTypeH
@@ -19,11 +14,11 @@ class CxType :
 {
 	public:
         template<class T>
-        static tString  sGetName   (const T &cObjectT);
+        static std::tstring  sGetName   (const T &cObjectT);
         	///< get name
 
         template<class T>
-        static tString  sGetRawName(const T &cObjectT);
+        static std::tstring  sGetRawName(const T &cObjectT);
     		///< get raw name
 
         template<class T1, class T2>

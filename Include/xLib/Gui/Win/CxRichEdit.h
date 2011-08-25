@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxRichEdit
-* Description: 
-* File name:   CxRichEdit.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.07.2009 12:28:52
-*
-*****************************************************************************/
+/**
+ * \file  CxRichEdit.h
+ * \brief rich edit
+ */
 
 
 #ifndef XLib_Gui_CxRichEdit10H
@@ -30,7 +25,7 @@ class CxRichEdit: public CxWindow {
             stMultiChar   = SEL_MULTICHAR,    //More than one character of text
             stMultiObject = SEL_MULTIOBJECT    //More than one COM object
         };
-        
+
         //операции
         enum EOptionOperation {
             ooSET = ECOOP_SET,            //Sets the options to those specified by lParam.
@@ -38,7 +33,7 @@ class CxRichEdit: public CxWindow {
             ooAND = ECOOP_AND,            //Retains only those current options that are also specified by lParam.
             ooXOR = ECOOP_XOR            //Logically exclusive OR the current options with those specified by lParam.
         };
-        
+
         //значения для операций
         enum EOptionValue {
             ovAUTOWORDSELECTION = ECO_AUTOWORDSELECTION,    //Automatic selection of word on double-click
@@ -50,7 +45,7 @@ class CxRichEdit: public CxWindow {
             ovSELECTIONBAR      = ECO_SELECTIONBAR,            //Same as ES_SELECTIONBAR style
             ovVERTICAL          = ECO_VERTICAL                //Same as ES_VERTICAL style. Available in Asian-language versions only
         };
-        
+
         //значения для IME-операций
         enum EImeOptionValue {
             ivCloseStatusWindow = IMF_CLOSESTATUSWINDOW,    //Closes the IME status window when the control receives the input focus.
@@ -62,18 +57,18 @@ class CxRichEdit: public CxWindow {
             ivForceRemember     = IMF_FORCEREMEMBER,        //Restores the previous IME status when the control receives the input focus
             ivMultiPleedIt      = IMF_MULTIPLEEDIT            //Specifies that the composition string will not be canceled or determined by focus changes
         };
-        
+
         //опции языка
         enum ELangOption {
             loAutoFont            = IMF_AUTOFONT,            //If this flag is set, the control automatically changes fonts when the user explicitly changes to a different keyboard layout.
             loAutoFontSizeAdjust  = IMF_AUTOFONTSIZEADJUST,    //Font-bound font sizes are scaled from insertion point size according to a script
-            loAutoKeyBoard        = IMF_AUTOKEYBOARD,        //If this flag is set, the control automatically changes the keyboard layout when the user explicitly changes to a different font, or when the user explicitly changes the insertion point to a new location in the text. 
+            loAutoKeyBoard        = IMF_AUTOKEYBOARD,        //If this flag is set, the control automatically changes the keyboard layout when the user explicitly changes to a different font, or when the user explicitly changes the insertion point to a new location in the text.
             loDualFont            = IMF_DUALFONT,            //Sets the control to dual-font mode
             loImeAlwaysSendNotify = IMF_IMEALWAYSSENDNOTIFY,//Controls how Rich Edit notifies the client during IME composition
             loImeCancelComplete   = IMF_IMECANCELCOMPLETE,    //This flag determines how the control uses the composition string of an IME if the user cancels it. If this flag is set, the control discards the composition string. If this flag is not set, the control uses the composition string as the result string.
             loUiFonts             = IMF_UIFONTS                //Use UI default fonts. This option is turned off by default.
         };
-        
+
         //опции типографии
         enum ETypographyOption {
             toAdvancedTypography = TO_ADVANCEDTYPOGRAPHY,    //Advanced typography (special line breaking and line formatting) is turned on
@@ -101,7 +96,7 @@ class CxRichEdit: public CxWindow {
             stCtFallowSmartTag   = SES_CTFALLOWSMARTTAG,    //Windows XP SP1: Allows TSF SmartTag tips
             stCtFallowProofing   = SES_CTFALLOWPROOFING        //Windows XP SP1: Allows TSF proofing tips
         };
-            
+
         //текстовые режимы
         enum ETextMode {
             tmPLAINTEXT         = TM_PLAINTEXT,
@@ -109,19 +104,19 @@ class CxRichEdit: public CxWindow {
             tmSINGLELEVELUNDO   = TM_SINGLELEVELUNDO,
             tmMULTILEVELUNDO    = TM_MULTILEVELUNDO,
             tmSINGLECODEPAGE    = TM_SINGLECODEPAGE,
-            tmMULTICODEPAGE     = TM_MULTICODEPAGE 
+            tmMULTICODEPAGE     = TM_MULTICODEPAGE
         };
-        
+
         //Параметры поиска
         enum EFindParams {
-            fpDown             = FR_DOWN,     
-            fpMatchAlefhamza = FR_MATCHALEFHAMZA, 
-            fpMatchCase         = FR_MATCHCASE, 
-            fpMatchDiac         = FR_MATCHDIAC, 
-            fpMAtchKashida     = FR_MATCHKASHIDA, 
+            fpDown             = FR_DOWN,
+            fpMatchAlefhamza = FR_MATCHALEFHAMZA,
+            fpMatchCase         = FR_MATCHCASE,
+            fpMatchDiac         = FR_MATCHDIAC,
+            fpMAtchKashida     = FR_MATCHKASHIDA,
             fpWholeWord         = FR_WHOLEWORD
         };
-            
+
         //find operation
         enum EFindOperation {
             foClassify      = WB_CLASSIFY,            //Returns the character class and word-break flags of the character at the specified position
@@ -132,12 +127,12 @@ class CxRichEdit: public CxWindow {
             foMoveWordRight = WB_MOVEWORDRIGHT,        //Finds the next character that begins a word after the specified position
             foRight         = WB_RIGHT,                //Finds the next character that begins a word after the specified position
             foRightBreak    = WB_RIGHTBREAK            //Finds the next end-of-word delimiter after the specified position
-        };            
-        
+        };
+
         //IME mode bias значение
         enum EImeBiasMode {
             ibmPlauralClause = IMF_SMODE_PLAURALCLAUSE,    //Sets the IME mode bias to Name
-            ibmNone             = IMF_SMODE_NONE            //No bias        
+            ibmNone             = IMF_SMODE_NONE            //No bias
         };
 
         //CTF mode bias значение
@@ -155,8 +150,8 @@ class CxRichEdit: public CxWindow {
             cbmHalfWidthKatakana     = CTFMODEBIAS_HALFWIDTHKATAKANA,        //The bias is to half-width katakana strings
             cbmFullWidthAlphaNumeric = CTFMODEBIAS_FULLWIDTHALPHANUMERIC,    //The bias is to full-width alphanumeric characters
             cbmHalfWidthAlphaNumeric = CTFMODEBIAS_HALFWIDTHALPHANUMERIC    //The bias is to half-width alphanumeric characters
-        };    
-        
+        };
+
         //current IME mode
         enum EImeCompMode {
             icmNotOpen    = ICM_NOTOPEN,    //IME is not open
@@ -165,7 +160,7 @@ class CxRichEdit: public CxWindow {
             icmLevel2_5      = ICM_LEVEL2_5,    //Level 2.5
             icmLevel2_Sui = ICM_LEVEL2_SUI    //Special UI
         };
-        
+
         //IME property type
         enum EImePropertyType {
             iptProperty      = IGP_PROPERTY,        //Property information
@@ -176,17 +171,17 @@ class CxRichEdit: public CxWindow {
             iptSelect        = IGP_SELECT,            //Selection inheritance capabilities
             iptGetImeVersion = IGP_GETIMEVERSION    //Retrieves the system version number for which the specified IME was created
         };
-        
+
         //word wrap mode
         enum EWordWrapMode {
-            wbmWordWrap  = WBF_WORDWRAP,            //Enables Asian-specific word wrap operations, such as kinsoku in Japanese. 
+            wbmWordWrap  = WBF_WORDWRAP,            //Enables Asian-specific word wrap operations, such as kinsoku in Japanese.
             wbmWordBreak = WBF_WORDBREAK,            //Enables English word-breaking operations in Japanese and Chinese. Enables Hangeul word-breaking operation.
             wbmOverflow  = WBF_OVERFLOW,            //Recognizes overflow punctuation. (Not currently supported.)
             wbmLevel1    = WBF_LEVEL1,                //Sets the Level 1 punctuation table as the default.
             wbmLevel2    = WBF_LEVEL2,                //Sets the Level 2 punctuation table as the default.
             wbmCustom    = WBF_CUSTOM                //Sets the application-defined punctuation table
         };
-        
+
         //Character formatting
         enum ECharFormat {
             cfAll            = SCF_ALL,                //Applies the formatting to all text in the control
@@ -197,8 +192,8 @@ class CxRichEdit: public CxWindow {
             cfDefault         = SCF_DEFAULT,            //RichEdit 4.1: Sets the default font for the control
             cfNoKbUpdate     = SCF_NOKBUPDATE,        //RichEdit 4.1: Prevents keyboard switching to match the font
             cfUseUiRules     = SCF_USEUIRULES,        //RichEdit 4.1: Used with SCF_SELECTION. Indicates that format came from a toolbar or other UI tool
-        };    
-        
+        };
+
         //формат потока
         enum EStreamFormat {
             sfRtf       = SF_RTF,        //RTF
@@ -214,7 +209,7 @@ class CxRichEdit: public CxWindow {
             sffUnicode     = SF_UNICODE,        //Microsoft Rich Edit 2.0 and later: Indicates Unicode text. You can combine this flag with the SF_TEXT flag.
             sffUseCodePage = SF_USECODEPAGE,    //Rich Edit 3.0 and later: Generates UTF-8 RTF as well as text using other code pages. The code page is set in the high word of wParam. For example, for UTF-8 RTF, set wParam to (CP_UTF8 << 16) | SF_USECODEPAGE | SF_RTF.
         };
-        
+
         //The punctuation type
         enum EPunctuationType {
             ptLEADING   = PC_LEADING,    //Leading punctuation characters
@@ -222,7 +217,7 @@ class CxRichEdit: public CxWindow {
             ptDELIMITER = PC_DELIMITER,    //Delimiter
             ptOVERFLOW    = PC_OVERFLOW,    //Not supported
         };
-        
+
         //event mask
         enum EEventMask {
             emNone            = ENM_NONE,                //
@@ -242,7 +237,7 @@ class CxRichEdit: public CxWindow {
             emSelChange       = ENM_SELCHANGE,            //Sends EN_SELCHANGE notifications
             emUpdate          = ENM_UPDATE                //Sends EN_UPDATE notifications
         };
-        
+
         //Text layout
         enum ETextLayout {
             tlEpr_0   = EPR_0,        //Text flows from left to right and from top to bottom.
@@ -250,18 +245,18 @@ class CxRichEdit: public CxWindow {
             tlEpr_180 = EPR_180,    //Reserved.
             tlEpr_270 = EPR_270        //Reserved.
         };
-        
-        
+
+
                  CxRichEdit              ();
                 ~CxRichEdit              ();
-        
+
         BOOL     bCreateRes              (INT iID, CxWindow *pwndParent);
 
 
         //-------------------------------------
         //сообщения
 
-        //Selection    
+        //Selection
         #if (xWINVER >= xWIN32_2K)
             BOOL bGetSel(LONG *pliMin, LONG *pliMax);
         #endif //xWIN32_2K
@@ -279,7 +274,7 @@ class CxRichEdit: public CxWindow {
         #endif //xWIN32_2K
 
 
-        //Clip operations    
+        //Clip operations
         #if (xWINVER >= xWIN32_2K)
             BOOL bCanPaste(INT iClipboardFormat /*0 - any format*/);
         #endif //xWIN32_2K
@@ -309,7 +304,7 @@ class CxRichEdit: public CxWindow {
         #endif //xWIN32_2K
 
 
-        //Options    
+        //Options
         #if (xWINVER >= xWIN32_2K)
             EOptionValue ovGetOptions();
         #endif //xWIN32_2K
@@ -317,7 +312,7 @@ class CxRichEdit: public CxWindow {
         #if (xWINVER >= xWIN32_2K)
             BOOL bSetOptions(EOptionOperation ooOperation, EOptionValue ovValue);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bGetBidiOptions(UINT *puiSize, USHORT *pusMask, USHORT *pusEffects);
         #endif //xWIN32_2K
@@ -333,7 +328,7 @@ class CxRichEdit: public CxWindow {
         #if (xWINVER >= xWIN32_2K)
             BOOL bSetLangOptions(ELangOption loOption);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             ETypographyOption toGetTypographyOptions();
         #endif //xWIN32_2K
@@ -343,7 +338,7 @@ class CxRichEdit: public CxWindow {
         #endif //xWIN32_2K
 
 
-        //Scroll    
+        //Scroll
         #if (xWINVER >= xWIN32_2K)
             BOOL bGetScrollPos(LONG *pliX, LONG *pliY);
         #endif //xWIN32_2K
@@ -357,55 +352,55 @@ class CxRichEdit: public CxWindow {
         #endif //xWIN32_2K
 
 
-        //Style    
+        //Style
         #if (xWINVER >= xWIN32_2K)
             EEditStyle stGetEditStyle();
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bSetEditStyle(EEditStyle stStyle, EEditStyle stMask);
         #endif //xWIN32_2K
 
-        
-        //Text    
+
+        //Text
         #if (xWINVER >= xWIN32_2K)
             tString sGetTextEx(ULONG ulFlags, UINT uiCodePage, LPCSTR pcszDefaultChar, BOOL *pbUsedDefChar);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             tString sGetSelText();
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bSetTextEx(const tString &csStr, ULONG ulFlags, UINT uiCodePage);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             ULONG ulGetTextLengthEx(ULONG ulFlags, UINT uiCodePage);
-        #endif //xWIN32_2K        
-        
+        #endif //xWIN32_2K
+
         #if (xWINVER >= xWIN32_2K)
             tString sGetTextRange(LONG liMin, LONG liMax);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             ETextMode tmGetTextMode();
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bSetTextMode(ETextMode tmMode);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bLimitText(LONG iChars);
         #endif //xWIN32_2K
-        
 
-        //Find    
+
+        //Find
         #if (xWINVER >= xWIN32_2K)
             BOOL bFindText(const tString &csText, LONG liMin, LONG liMax, EFindParams fpParams, LONG *pliFoundMin);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bFindTextEx(const tString &csText, LONG liMin, LONG liMax, EFindParams fpParams, LONG *pliFoundMin, LONG *pliFoundMax);
         #endif //xWIN32_2K
@@ -413,25 +408,25 @@ class CxRichEdit: public CxWindow {
         #if (xWINVER >= xWIN32_2K)
             LONG liFindWordBreak(EFindOperation foOperation, LONG liPos);
         #endif //xWIN32_2K
-        
 
-        //IME    
+
+        //IME
         #if (xWINVER >= xWIN32_S03)
             BOOL bIsIme();
         #endif //xWIN32_S03
-        
+
         #if (xWINVER >= xWIN32_2K)
             EImeOptionValue ivGetImeOptions();
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bSetImeOptions(EOptionOperation ooOperation, EImeOptionValue ioValue);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_SO3)
             EImeBiasMode ibmGetImeModeBias();
         #endif //xWIN32_SO3
-        
+
         #if (xWINVER >= xWIN32_SO3)
             BOOL bSetImeModeBias(EImeBiasMode ibmMode);
         #endif //xWIN32_SO3
@@ -451,23 +446,23 @@ class CxRichEdit: public CxWindow {
         #if (xWINVER >= xWIN32_SO3)
             BOOL bSetCtfOpenStatus(BOOL bFlag);
         #endif //xWIN32_SO3
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bGetImeColor(COMPCOLOR *pccColor[4]);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             BOOL bSetImeColor(COLORREF crText, COLORREF crBackground, ULONG ulEffects);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
             EImeCompMode icmGetImeCompMode();
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_SO3)
             tString sGetImeCompText(ULONG ulFlags);
         #endif //xWIN32_SO3
-        
+
         #if (xWINVER >= xWIN32_SO3)
             INT iGetImeProperty(EImePropertyType iptType);
         #endif //xWIN32_SO3
@@ -476,23 +471,23 @@ class CxRichEdit: public CxWindow {
         BOOL bGetReconversion();
         #endif //xWIN32_2K
 
-        //WORD    
+        //WORD
         #if (xWINVER >= xWIN32_2K)
             EWordWrapMode wbmGetWordWrapMode();
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
         BOOL bSetWordWrapMode(EWordWrapMode wbmMode);
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
         INT iGetWordBreakProcEx();
         #endif //xWIN32_2K
-        
+
         #if (xWINVER >= xWIN32_2K)
         INT iSetWordBreakProcEx(INT *piProcEx /*NULL - default procedure*/);
         #endif //xWIN32_2K
-        
+
 
         //Format
         #if (xWINVER >= xWIN32_2K)
@@ -532,7 +527,7 @@ class CxRichEdit: public CxWindow {
         #endif //xWIN32_2K
 
 
-        //Stream    
+        //Stream
         #if (xWINVER >= xWIN32_2K)
             LONG liStreamIn(EStreamFormat sfFormat, EStreamFormatFlag sffFlags, EDITSTREAM *pesStream);
         #endif //xWIN32_2K
@@ -542,7 +537,7 @@ class CxRichEdit: public CxWindow {
         #endif //xWIN32_2K
 
 
-        //Punctuation    
+        //Punctuation
         #if (xWINVER >= xWIN32_2K)
             BOOL bGetPunctuation(EPunctuationType ptType, tString *psStr);
         #endif //xWIN32_2K
@@ -562,7 +557,7 @@ class CxRichEdit: public CxWindow {
         #endif //xWIN32_2K
 
 
-        //Zoom    
+        //Zoom
         #if (xWINVER >= xWIN32_2K)
             BOOL bGetZoom(INT *piNumerator, INT *piDenominator);
         #endif //xWIN32_2K
@@ -589,7 +584,7 @@ class CxRichEdit: public CxWindow {
         #endif //xWIN32_SO3
 
 
-        //Page rotate 
+        //Page rotate
         #if (xWINVER >= xWIN32_SO3)
             BOOL bSetPageRotate(ETextLayout tlLayout);
         #endif //xWIN32_SO3
@@ -600,7 +595,7 @@ class CxRichEdit: public CxWindow {
 
 
 
-        //Other    
+        //Other
         #if (xWINVER >= xWIN32_2K)
             BOOL bRequestResize();
         #endif //xWIN32_2K
@@ -640,7 +635,7 @@ class CxRichEdit: public CxWindow {
         #if (xWINVER >= xWIN32_2K)
             BOOL bDisplayBand(RECT rcDevice);
         #endif //xWIN32_2K
-    
+
         #if (xWINVER >= xWIN32_2K)
             LONG liGetLineFromChar(LONG liCharIndex);
         #endif //xWIN32_2K

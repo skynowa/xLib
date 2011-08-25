@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTls
-* Description: thread local storage
-* File name:   CxTls.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     18.01.2010 14:42:20
-*
-*****************************************************************************/
+/**
+ * \file  CxTls.cpp
+ * \brief thread local storage
+ */
 
 
 #include <xLib/Sync/CxTls.h>

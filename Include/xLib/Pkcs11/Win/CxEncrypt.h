@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEncrypt
-* Description: Pkcs11 encrypr
-* File name:   CxEncrypt.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:10:51
-*
-*****************************************************************************/
+/**
+ * \file  CxEncrypt.h
+ * \brief Pkcs11 encrypt
+ */
 
 
 #ifndef xLib_Pkcs11_CxEncryptH
@@ -36,7 +31,7 @@ class CxEncrypt :
         	///< finishes a multiple-part encryption operation
 
         //Utils
-        BOOL                 bMakeFile(const tString &csInFilePath, const tString &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        BOOL                 bMakeFile(const std::tstring &csInFilePath, const std::tstring &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         	///< make file
 
     private:

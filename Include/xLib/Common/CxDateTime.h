@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDateTime
-* Description: date, time
-* File name:   CxDateTime.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     12.06.2009 15:37:34
-*
-*****************************************************************************/
+/**
+ * \file  CxDateTime.h
+ * \brief date, time
+ */
 
 
 #ifndef xLib_Common_CxDateTimeH
@@ -27,7 +22,7 @@ class CxDateTime {
         //constructors, destructor
                            CxDateTime          ();
             ///< constructor
-        explicit           CxDateTime          (const tString &csDT, const EFormatType cftFormat);
+        explicit           CxDateTime          (const std::tstring &csDT, const EFormatType cftFormat);
             ///< constructor
         /*explicit*/       CxDateTime          (const CxDateTime &cdtDT);
             ///< constructor
@@ -96,7 +91,7 @@ class CxDateTime {
         #endif
 
         //formating
-        tString            sFormat             (const EFormatType cftFormat) const;
+        std::tstring            sFormat             (const EFormatType cftFormat) const;
             ///< formating
 
         //static
@@ -121,15 +116,15 @@ class CxDateTime {
     #endif
 
         //other
-        static tString     sGetZodiacSign      (const USHORT cusMonth, const USHORT cusDay);
+        static std::tstring     sGetZodiacSign      (const USHORT cusMonth, const USHORT cusDay);
             ///< sign of the zodiac by date
-        static tString     sGetMonthStr        (USHORT usMonth, const BOOL cbIsShortName);
+        static std::tstring     sGetMonthStr        (USHORT usMonth, const BOOL cbIsShortName);
             ///< get month string
-        static USHORT      usGetMonthNum       (const tString &csMonth, const BOOL cbIsShortName);
+        static USHORT      usGetMonthNum       (const std::tstring &csMonth, const BOOL cbIsShortName);
             ///< get month number by string
-        static tString     sGetWeekDayStr      (USHORT usDay, const BOOL cbIsShortName);
+        static std::tstring     sGetWeekDayStr      (USHORT usDay, const BOOL cbIsShortName);
             ///< get week day string
-        static USHORT      usGetWeekDayNum     (const tString &csDay, const BOOL cbIsShortName);
+        static USHORT      usGetWeekDayNum     (const std::tstring &csDay, const BOOL cbIsShortName);
             ///< get week day number by string
 
     private:
@@ -157,7 +152,7 @@ class CxDateTime {
 
         ULONGLONG          _ullToMilliseconds  () const;
             ///< convert to milliseconds
-        static BOOL        _bParse             (const tString &csDT, const EFormatType cftFormat, CxDateTime *pdtDT);
+        static BOOL        _bParse             (const std::tstring &csDT, const EFormatType cftFormat, CxDateTime *pdtDT);
             ///< parsing datetime string
 };
 //---------------------------------------------------------------------------

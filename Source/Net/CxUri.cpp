@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxUri
-* Description: URI
-* File name:   CxUri.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     17.11.2009 12:41:10
-*
-*****************************************************************************/
+/**
+ * \file  CxUri.cpp
+ * \brief URI
+ */
 
 
 #include <xLib/Net/CxUri.h>

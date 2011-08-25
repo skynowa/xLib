@@ -37,8 +37,8 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetHostAddrByName
 	{
-		tString sHostName = xT("msdn.microsoft.com");
-		tString sHostAddr = xT("");
+		std::tstring sHostName = xT("msdn.microsoft.com");
+		std::tstring sHostAddr = xT("");
 
 		m_bRes = CxDnsClient::bGetHostAddrByName(sHostName, &sHostAddr);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -49,8 +49,8 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetHostNameByAddr
 	{
-		tString sHostName = xT("");
-		tString sHostAddr = xT("127.0.0.1");
+		std::tstring sHostName = xT("");
+		std::tstring sHostAddr = xT("127.0.0.1");
 
 		m_bRes = CxDnsClient::bGetHostNameByAddr(sHostAddr, CxSocket::afInet, &sHostName);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -61,7 +61,7 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetLocalHostName
 	{
-		tString sLocalHostName = xT("");
+		std::tstring sLocalHostName = xT("");
 
 		m_bRes = CxDnsClient::bGetLocalHostName(&sLocalHostName);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -73,7 +73,7 @@ CxTest_CxDnsClient::bUnit(
 	//bGetNameInfo
 	{
 		////CxDnsClient::EAddressFamily afFamily  = CxDnsClient::afInet;
-		////tString                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
+		////std::tstring                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
 		////USHORT                      usPort    = 27015;
 
 		////m_bRes = CxDnsClient::bGetNameInfo(afFamily, sHostAddr, usPort);
@@ -85,8 +85,8 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetHostAddrInfo
 	{
-		tString sHostName = xT("www.google.ru");
-		tString sPort     = xT("http");
+		std::tstring sHostName = xT("www.google.ru");
+		std::tstring sPort     = xT("http");
 
 		////ADDRINFOT aiHints  = {0};
 		ADDRINFOT *paiList = NULL;
@@ -127,8 +127,8 @@ CxTest_CxDnsClient::bUnit(
 		};
 
 		for (size_t i = 0; i < xARRAY_SIZE(cszProtocolNames); ++ i) {
-			tString              sName;
-			std::vector<tString> vsAliases;
+			std::tstring              sName;
+			std::vector<std::tstring> vsAliases;
 			SHORT                siNumber = - 1;
 
 			m_bRes = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
@@ -153,8 +153,8 @@ CxTest_CxDnsClient::bUnit(
 		};
 
 		for (size_t i = 0; i < xARRAY_SIZE(ciProtocolNumbers); ++ i) {
-			tString              sName;
-			std::vector<tString> vsAliases;
+			std::tstring              sName;
+			std::vector<std::tstring> vsAliases;
 			SHORT                siNumber = - 1;
 
 			m_bRes = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
@@ -174,12 +174,12 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetServiceByName
 	{
-		tString              csServiceName  = xT("http");
+		std::tstring              csServiceName  = xT("http");
 		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
-		tString              sName;
-		std::vector<tString> vsAliases;
+		std::tstring              sName;
+		std::vector<std::tstring> vsAliases;
 		SHORT                siPort;
-		tString              sProtocolName;
+		std::tstring              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -201,10 +201,10 @@ CxTest_CxDnsClient::bUnit(
 	{
 		SHORT                csiPort  = 20480;
 		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
-		tString              sName;
-		std::vector<tString> vsAliases;
+		std::tstring              sName;
+		std::vector<std::tstring> vsAliases;
 		SHORT                siPort = - 1;
-		tString              sProtocolName;
+		std::tstring              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 		xASSERT_NOT_EQ(FALSE, m_bRes);

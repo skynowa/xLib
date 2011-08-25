@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxProfiler
-* Description: code profiling (msec)
-* File name:   CxProfiler.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     07.04.2009 16:59:44
-*
-*****************************************************************************/
+/**
+ * \file  CxProfiler.h
+ * \brief code profiling (msec)
+ */
 
 
 #ifndef xLib_Debug_CxProfilerH
@@ -35,8 +30,8 @@ class CxProfiler :
                             CxProfiler (const EMode cpmMode);
         virtual            ~CxProfiler ();
 
-        BOOL                bSetLogPath(const tString &csLogPath);
-        const tString &     sGetLogPath() const;
+        BOOL                bSetLogPath(const std::tstring &csLogPath);
+        const std::tstring &     sGetLogPath() const;
 
         BOOL                bStart     ();
         BOOL                bStop      (LPCTSTR pcszComment, ...);

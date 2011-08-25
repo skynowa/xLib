@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxFunction
-* Description: Pkcs11 function
-* File name:   CxFunction.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:14:45
-*
-*****************************************************************************/
+/**
+ * \file  CxFunction.h
+ * \brief Pkcs11 function
+ */
 
 
 #ifndef xLib_Pkcs11_CxFunctionH

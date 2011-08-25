@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxProgressBar
-* Description: индикатор выполнения
-* File name:   CxProgressBar.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.07.2009 11:05:22
-*
-*****************************************************************************/
+/**
+ * \file  CxProgressBar.cpp
+ * \brief progress bar
+ */
 
 
 #include <xLib/Gui/CxProgressBar.h>
@@ -34,7 +29,7 @@ CxProgressBar::CxProgressBar() {
     _m_iHeight        = xCXPROGRESSBAR_DEFAULT_HEIGHT;
 
     _m_bIsControl     = TRUE;
-    
+
     //TODO: _bInitCommonControls
     _bInitCommonControls(ICC_PROGRESS_CLASS);
 
@@ -53,9 +48,9 @@ BOOL CxProgressBar::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -68,7 +63,7 @@ BOOL CxProgressBar::bSetViewStyle(EViewStyle vsViewStyle) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes = m_stStyle.bModify(_m_vsViewStyle, vsViewStyle);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     _m_vsViewStyle = vsViewStyle;
 
@@ -89,7 +84,7 @@ UINT CxProgressBar::uiGetPos() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     return xSNDMSG(UINT, PBM_GETPOS, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
@@ -106,7 +101,7 @@ BOOL CxProgressBar::bSetPos(UINT uiPos) {
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
 //TODO: - bSetDeltaPos    (Advances the current position of a progress bar by a specified increment and redraws the bar to reflect the new position)
-#if (xWINVER >= xWIN32_2K)  
+#if (xWINVER >= xWIN32_2K)
 BOOL CxProgressBar::bSetDeltaPos(INT iDelta) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
@@ -135,14 +130,14 @@ BOOL CxProgressBar::bSetState(EState stState) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     xSNDMSG(EState, PBM_SETSTATE, stState, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
 #endif //xWIN32_VISTA
 //---------------------------------------------------------------------------
 //TODO: - crGetBarColor (Gets the color of the progress bar)
-#if (xWINVER >= xWIN32_VISTA)  
+#if (xWINVER >= xWIN32_VISTA)
 COLORREF CxProgressBar::crGetBarColor() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
@@ -164,12 +159,12 @@ BOOL CxProgressBar::bSetBarColor(COLORREF crColor /*= CLR_DEFAULT*/) {
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
 //TODO: - crGetBkColor (Gets the background color of the progress bar)
-#if (xWINVER >= xWIN32_VISTA)  
+#if (xWINVER >= xWIN32_VISTA)
 COLORREF CxProgressBar::crGetBkColor() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     return xSNDMSG(COLORREF, PBM_GETBKCOLOR, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_VISTA
 //---------------------------------------------------------------------------
@@ -193,7 +188,7 @@ BOOL CxProgressBar::bGetRange(INT *piMin, INT *piMax) {
     PBRANGE pbrRange = {0};
 
     xSNDMSG(INT, PBM_GETRANGE, TRUE, &pbrRange);
-    /*DEBUG*/ 
+    /*DEBUG*/
 
     if (NULL != piMin) {
         *piMin = pbrRange.iLow;
@@ -222,7 +217,7 @@ BOOL CxProgressBar::bSetRange(USHORT usMin, USHORT usMax) {    //FIX: USHORT usM
 //TODO: - bSetRange32 (Sets the range of a progress bar control to a 32-bit value)
 #if (xWINVER >= xWIN32_2K)
 BOOL CxProgressBar::bSetRange32(INT iMin, INT iMax) {  //FIX: INT iMin, INT iMax
-    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE); 
+    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     xSNDMSG(INT, PBM_SETRANGE32, iMin, iMax);
     /*DEBUG*/// n/a
@@ -237,7 +232,7 @@ UINT CxProgressBar::uiGetStep() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     return xSNDMSG(UINT, PBM_GETSTEP, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_VISTA
 //---------------------------------------------------------------------------
@@ -247,7 +242,7 @@ BOOL CxProgressBar::bSetStep(UINT uiStep) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     xSNDMSG(UINT, PBM_SETSTEP, uiStep, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -271,7 +266,7 @@ BOOL CxProgressBar::bSetMarquee(BOOL bIsOn, ULONG ulMilliSeconds) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes = xSNDMSG(BOOL, PBM_SETMARQUEE, bIsOn, ulMilliSeconds);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }

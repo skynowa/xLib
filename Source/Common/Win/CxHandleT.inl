@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxHandle
-* Description: handle
-* File name:   CxHandle.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.01.2010 14:12:26
-*
-*****************************************************************************/
+/**
+ * \file  CxHandleT.inl
+ * \brief handle
+ */
 
 
 #if defined(xOS_WIN)

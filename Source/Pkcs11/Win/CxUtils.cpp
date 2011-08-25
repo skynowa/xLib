@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxUtils
-* Description: Pkcs11 utils
-* File name:   CxUtils.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:15:59
-*
-*****************************************************************************/
+/**
+ * \file  CxUtils.cpp
+ * \brief Pkcs11 utils
+ */
 
 
 #include <xLib/Pkcs11/Win/CxUtils.h>
@@ -19,14 +14,14 @@
 
 //--------------------------------------------------------------------------
 /*static*/
-tString
+std::tstring
 CxUtils::sErrorStr(
     const CK_RV culCode
 )
 {
     /*DEBUG*/// culCode - n/a
 
-    tString sRes;
+    std::tstring sRes;
 
     switch (culCode) {
         case CKR_OK:                               sRes.assign(xT("CKR_OK"));

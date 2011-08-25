@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxReport
-* Description: debug message
-* File name:   CxReport.inl
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     17.05.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxReport.inl
+ * \brief debug report
+ */
 
 
 //---------------------------------------------------------------------------
@@ -16,16 +11,16 @@ CxReport::CxReport(
     const EType   &crtType,
     const T       &cVarT1,
     const T       &cVarT2,
-    const tString &csExpr1,
-    const tString &csExpr2,
-    const tString &csExprSign,
+    const std::tstring &csExpr1,
+    const std::tstring &csExpr2,
+    const std::tstring &csExprSign,
     const ULONG    culLastError,
-    const tString &csFile,
+    const std::tstring &csFile,
     const ULONG    culLine,
-    const tString &csFunc,
-    const tString &csDate,
-    const tString &csTime,
-    const tString &csComment
+    const std::tstring &csFunc,
+    const std::tstring &csDate,
+    const std::tstring &csTime,
+    const std::tstring &csComment
 ) :
     _m_rtType         (rtUnknown),
     _m_sReport        (),
@@ -48,14 +43,14 @@ CxReport::CxReport(
     /*DEBUG*/
 
     //sExpr
-    tString sExpr = csExpr1 + xT(" ") + csExprSign + xT(" ") + csExpr2;
+    std::tstring sExpr = csExpr1 + xT(" ") + csExprSign + xT(" ") + csExpr2;
 
     //sComment
-    tString sComment;
+    std::tstring sComment;
 
     {
-        tostringstream ossStream;
-        ossStream.exceptions(tostringstream::eofbit | tostringstream::failbit | tostringstream::badbit);
+        std::tostringstream ossStream;
+        ossStream.exceptions(std::tostringstream::eofbit | std::tostringstream::failbit | std::tostringstream::badbit);
 
         size_t uiAlignWidth = CxMacros::xMax(csExpr1.size(), csExpr2.size());
 

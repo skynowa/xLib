@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDll
-* Description: dynamic linking loader
-* File name:   CxDll.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.11.2009 23:39:28
-*
-*****************************************************************************/
+/**
+ * \file  CxDll.cpp
+ * \brief dynamic linking loader
+ */
 
 
 #include <xLib/Filesystem/CxDll.h>
@@ -43,7 +38,7 @@ CxDll::bIsLoaded() {
 //DONE: bLoad (loading)
 BOOL
 CxDll::bLoad(
-    const tString &csDllPath
+    const std::tstring &csDllPath
 )
 {
     /*DEBUG*/// n/a
@@ -66,7 +61,7 @@ CxDll::bLoad(
 //DONE: fpGetProcAddress (get address of an exported function or variable )
 VOID * /*FARPROC*/
 CxDll::fpGetProcAddress(
-    const tString &csProcName
+    const std::tstring &csProcName
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);

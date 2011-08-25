@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  All
-* Description: all Pkcs11 classes
-* File name:   All.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 12:56:53
-*
-*****************************************************************************/
+/**
+ * \file  All.h
+ * \brief all Pkcs11 classes
+ */
 
 
 #ifndef xLib_Pkcs11_AllH

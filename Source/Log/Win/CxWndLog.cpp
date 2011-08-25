@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxWndLog
-* Description: windows logging
-* File name:   CxWndLog.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.06.2009 17:44:10
-*
-*****************************************************************************/
+/**
+ * \file  CxWndLog.cpp
+ * \brief windows logging
+ */
 
 
 #include <xLib/Log/Win/CxWndLog.h>
@@ -50,12 +45,12 @@ CxWndLog::bWrite(HWND hWnd, LPCTSTR pcszFormat, ...) {
 
     //-------------------------------------
     //time
-    tString sTime;
+    std::tstring sTime;
     sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment
-    tString sParam;
+    std::tstring sParam;
     va_list palArgs = NULL;
 
     xVA_START(palArgs, pcszFormat);

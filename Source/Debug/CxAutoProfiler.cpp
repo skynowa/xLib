@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxAutoProfiler
-* Description: auto code profiling
-* File name:   CxAutoProfiler.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     05.07.2010 16:27:50
-*
-*****************************************************************************/
+/**
+ * \file  CxAutoProfiler.cpp
+ * \brief auto code profiling
+ */
 
 
 #include <xLib/Debug/CxAutoProfiler.h>
@@ -20,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxAutoProfiler
 CxAutoProfiler::CxAutoProfiler(
-    const tString           &csFilePath,
+    const std::tstring           &csFilePath,
     const CxProfiler::EMode  cpmMode,
     LPCTSTR                  pcszComment, ...
 ) :

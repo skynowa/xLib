@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMutex
-* Description: mutex
-* File name:   CxMutex.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2009 18:48:30
-*
-*****************************************************************************/
+/**
+ * \file  CxMutex.h
+ * \brief mutex
+ */
 
 
 #ifndef xLib_Sync_CxMutexH
@@ -29,8 +24,8 @@ class CxMutex :
         virtual ~CxMutex   ();
 
         HANDLE   hGetHandle() const;
-        BOOL     bCreate   (const LPSECURITY_ATTRIBUTES pcsaAttributes, const BOOL cbInitialOwner, const tString &csName);
-        BOOL     bOpen     (const ULONG culAccess, const BOOL cbInheritHandle, const tString &csName);
+        BOOL     bCreate   (const LPSECURITY_ATTRIBUTES pcsaAttributes, const BOOL cbInitialOwner, const std::tstring &csName);
+        BOOL     bOpen     (const ULONG culAccess, const BOOL cbInheritHandle, const std::tstring &csName);
         BOOL     bRelease  () const;
         BOOL     bWait     (const ULONG culTimeout) const;
 

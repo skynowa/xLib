@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxHttpClient
-* Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
-* File name:   CxHttpClient.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     16.11.2009 14:43:15
-*
-*****************************************************************************/
+/**
+ * \file  CxHttpClient.cpp
+ * \brief protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
+ */
 
 
 #include <xLib/Net/CxHttpClient.h>  //65536

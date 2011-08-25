@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxWaitCursor
-* Description: wait cursor
-* File name:   CxWaitCursor.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.06.2009 19:08:17
-*
-*****************************************************************************/
+/**
+ * \file  CxWaitCursor.h
+ * \brief wait cursor
+ */
 
 
 #ifndef xLib_Gui_CxWaitCursorH
@@ -20,7 +15,7 @@ class CxWaitCursor : public CxNonCopyable {
                ~CxWaitCursor();
 
         BOOL    bRestore    ();
-        
+
     private:
         HCURSOR _m_hCursor;
 };

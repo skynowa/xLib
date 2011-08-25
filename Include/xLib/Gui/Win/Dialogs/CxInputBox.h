@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxInputBox
-* Description: input box
-* File name:   CxInputBox.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     22.10.2010 13:53:30
-*
-*****************************************************************************/
-
+/**
+ * \file  CxInputBox.h
+ * \brief input box
+ */
 
 
 #ifndef xLib_Gui_CxInputBoxH
@@ -20,8 +14,8 @@
 #define ID_btnOK        IDOK
 #define ID_btnCancel    IDCANCEL
 //---------------------------------------------------------------------------
-class CxInputBox : 
-    public CxNonCopyable 
+class CxInputBox :
+    public CxNonCopyable
 {
     public:
         enum EModalResult {
@@ -32,12 +26,12 @@ class CxInputBox :
                                 CxInputBox  ();
         virtual                ~CxInputBox  ();
 
-        EModalResult            mrShowModal (const tString &csCaption, const tString &csPrompt, const tString &csText);
-        tString                 sGetText    ();
+        EModalResult            mrShowModal (const std::tstring &csCaption, const std::tstring &csPrompt, const std::tstring &csText);
+        std::tstring                 sGetText    ();
 
     private:
         BOOL                    _m_bRes;
-        tString                 _m_sText;
+        std::tstring                 _m_sText;
         HWND                    _m_hWndMain;
         HWND                    _m_hBtnOk;
         HWND                    _m_hBtnCancel;

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEncrypt
-* Description: Pkcs11 encrypt
-* File name:   CxEncrypt.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:10:51
-*
-*****************************************************************************/
+/**
+ * \file  CxEncrypt.cpp
+ * \brief Pkcs11 encrypt
+ */
 
 
 #include <xLib/Pkcs11/Win/CxEncrypt.h>
@@ -108,8 +103,8 @@ CxEncrypt::bFinal(
 //---------------------------------------------------------------------------
 BOOL
 CxEncrypt::bMakeFile(
-    const tString    &csInFilePath,
-    const tString    &csOutFilePath,
+    const std::tstring    &csInFilePath,
+    const std::tstring    &csOutFilePath,
     CK_MECHANISM_PTR  pMechanism,
     CK_OBJECT_HANDLE  hKey
 )
@@ -121,7 +116,7 @@ CxEncrypt::bMakeFile(
 
     //-------------------------------------
     //������ ����� � �����
-    uString usPlainData;        //����� ��� ����������
+    std::ustring usPlainData;        //����� ��� ����������
 
     {
         CxStdioFile sfFileRaw;
@@ -142,7 +137,7 @@ CxEncrypt::bMakeFile(
 
     ////CK_BYTE  usEncryptedData[128]  = {0};
     const ULONG          g_culBuffSize    = 8192 * 4;  //FIX_ME:
-    uString  usEncryptedData;    usEncryptedData.resize(g_culBuffSize);
+    std::ustring  usEncryptedData;    usEncryptedData.resize(g_culBuffSize);
     CK_ULONG usEncryptedDataSize = g_culBuffSize;
 
     {

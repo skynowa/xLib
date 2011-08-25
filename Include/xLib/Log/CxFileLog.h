@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxFileLog
-* Description: logging to file
-* File name:   CxFileLog.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.06.2009 17:40:37
-*
-*****************************************************************************/
+/**
+ * \file  CxFileLog.h
+ * \brief logging to file
+ */
 
 
 #ifndef xLib_Log_CxFileLogH
@@ -33,15 +28,15 @@ class CxFileLog :
                          CxFileLog   (const ULONG culMaxFileSizeBytes);
         virtual         ~CxFileLog   ();
 
-        BOOL             bSetFilePath(const tString &csFilePath);
-        const tString &  sGetFilePath() const;
+        BOOL             bSetFilePath(const std::tstring &csFilePath);
+        const std::tstring &  sGetFilePath() const;
 
         BOOL             bWrite      (LPCTSTR pcszFormat, ...);
         BOOL             bClear      ();
         BOOL             bDelete     ();
 
     private:
-        tString          _m_sFilePath;
+        std::tstring          _m_sFilePath;
         ULONG            _m_ulMaxFileSizeBytes;
 
     #if defined(xOS_WIN)

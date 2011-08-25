@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxGdiplus
-* Description: GDI+
-* File name:   CxGdiplus.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.05.2010 15:58:39
-*
-*****************************************************************************/
+/**
+ * \file  CxGdiplus.cpp
+ * \brief GDI+
+ */
 
 
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>

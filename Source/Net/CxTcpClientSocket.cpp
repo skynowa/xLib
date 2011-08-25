@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTcpClientSocket
-* Description: client socket
-* File name:   CxTcpClientSocket.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.04.2009 6:21:18
-*
-*****************************************************************************/
+/**
+ * \file  CxTcpClientSocket.cpp
+ * \brief client socket
+ */
 
 
 #include <xLib/Net/CxTcpClientSocket.h>
@@ -62,7 +57,7 @@ CxTcpClientSocket::bIsWritable() {
 //---------------------------------------------------------------------------
 //DONE: bConnect (connecting)
 BOOL
-CxTcpClientSocket::bConnect(const tString &csIp, USHORT usPort) {
+CxTcpClientSocket::bConnect(const std::tstring &csIp, USHORT usPort) {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        FALSE);
     /*DEBUG*/xASSERT_RET(false     == csIp.empty(),        FALSE);
     /*DEBUG*/xASSERT_RET((65535 > usPort) && (0 < usPort), FALSE);
@@ -172,7 +167,7 @@ CxTcpClientSocket::bSetTimeout(LONG liSec, LONG liMicroSec) {
 //DONE: bIsServerAlive (is sever socket available)
 /*static*/
 BOOL
-CxTcpClientSocket::bIsServerAlive(const tString &csIp, USHORT usPort) {
+CxTcpClientSocket::bIsServerAlive(const std::tstring &csIp, USHORT usPort) {
     /*DEBUG*/xASSERT_RET(false == csIp.empty(),            FALSE);
     /*DEBUG*/xASSERT_RET((65535 > usPort) && (0 < usPort), FALSE);
 

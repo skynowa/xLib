@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxButton
-* Description: работа с кнопкой
-* File name:   CxButton.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:11:14
-*
-*****************************************************************************/
+/**
+ * \file  CxButton.h
+ * \brief button
+ */
 
 
 #ifndef XLib_Gui_CxButtonH
@@ -27,15 +22,15 @@ class CxButton : public CxButtonBase {
             vsBitmap   = BS_BITMAP,
             vsIcon     = BS_ICON
         };
-        
+
         //тип изображения
         enum EImageType {
             itBitmap   = IMAGE_BITMAP,
             itIcon       = IMAGE_ICON,
             itCursor   = IMAGE_CURSOR,
             itMetaFile = IMAGE_ENHMETAFILE
-        };    
-                
+        };
+
                  CxButton        ();
         virtual ~CxButton        ();
 
@@ -43,7 +38,7 @@ class CxButton : public CxButtonBase {
 
         //-------------------------------------
         //сообщения
-        BOOL     bSetViewStyle   (EViewStyle vsViewStyle);    
+        BOOL     bSetViewStyle   (EViewStyle vsViewStyle);
         BOOL     bSetImage       (EImageType itImageType, HANDLE hImage);
 
         //-------------------------------------

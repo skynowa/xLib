@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMsgBoxT
-* Description: message box
-* File name:   CxMsgBoxT.inl
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.04.2009 10:24:49
-*
-*****************************************************************************/
+/**
+ * \file  CxMsgBoxT.inl
+ * \brief message box
+ */
 
 
 #include <xLib/Common/CxString.h>
@@ -25,9 +20,9 @@ template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::EModalResult
 CxMsgBoxT::iShow(
-    const HWND    chWnd, 
-    const TextT  &cText, 
-    const TitleT &cTitle, 
+    const HWND    chWnd,
+    const TextT  &cText,
+    const TitleT &cTitle,
     const UINT    cuiType
 )
 {
@@ -44,8 +39,8 @@ template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::EModalResult
 CxMsgBoxT::iShow(
-    const TextT  &cText, 
-    const TitleT &cTitle, 
+    const TextT  &cText,
+    const TitleT &cTitle,
     const UINT    cuiType
 )
 {
@@ -65,7 +60,7 @@ template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::EModalResult
 CxMsgBoxT::iShow(
-    const TextT  &cText, 
+    const TextT  &cText,
     const TitleT &cTitle
 )
 {
@@ -91,7 +86,7 @@ CxMsgBoxT::iShow(
     EModalResult mrRes = mrAbort;
 
 #if defined(xOS_WIN)
-	mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), tString().c_str(), MB_OK) );
+	mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), std::tstring().c_str(), MB_OK) );
 #elif defined(xOS_LINUX)
     mrRes = CxConsole::iMsgBox((CxString::lexical_cast(cText), CxConst::xSTR_EMPTY, 0U);
 #endif

@@ -1,12 +1,7 @@
-﻿/****************************************************************************
-* Class name:  xCommon_Win
-* Description: Windows common header for xLib
-* File name:   xCommon_Win.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.12.2010 23:25:16
-*
-*****************************************************************************/
+﻿/**
+ * \file  xCommon_Win.h
+ * \brief Windows common header for xLib
+ */
 
 
 #ifndef xLib_Common_Win_xCommon_WinH
@@ -34,8 +29,8 @@
         #define WIN32_LEAN_AND_MEAN
     #endif
 
-    ////#define _CRT_SECURE_NO_WARNINGS 
-    ////#define _SCL_SECURE_NO_WARNINGS 
+    ////#define _CRT_SECURE_NO_WARNINGS
+    ////#define _SCL_SECURE_NO_WARNINGS
     ////#define _SECURE_SCL
 
     #if !defined(STRICT)

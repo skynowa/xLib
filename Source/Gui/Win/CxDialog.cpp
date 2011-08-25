@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CXDialog
-* Description: работа с окнами
-* File name:   CXDialog.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:10:17
-*
-*****************************************************************************/
+/**
+ * \file  CxDialog.cpp
+ * \brief dialog
+ */
 
 
 #include <xLib/Gui/CXDialog.h>
@@ -21,9 +16,9 @@ CXDialog::CXDialog() :
     _m_hParentWnd = NULL;
 }
 //---------------------------------------------------------------------------
-CXDialog::CXDialog(SHORT TemplID, SHORT siIconID, HWND hParentWnd) : 
+CXDialog::CXDialog(SHORT TemplID, SHORT siIconID, HWND hParentWnd) :
     _m_siTemplID(TemplID),
-    _m_siIconID (siIconID)    
+    _m_siIconID (siIconID)
 {
     _m_hParentWnd = hParentWnd;
 }
@@ -39,8 +34,8 @@ xBEGIN_MSG_MAP(CXDialog)
     xMSG(WM_COMMAND,    OnCommand);
     xMSG(WM_NOTIFY,     OnNotify);
     xMSG(WM_SIZE,       OnSize);
-    xMSG(WM_CLOSE,      OnClose);    
-    xMSG(WM_DESTROY,    OnDestroy);  
+    xMSG(WM_CLOSE,      OnClose);
+    xMSG(WM_DESTROY,    OnDestroy);
 xEND_MSG_MAP_NOPARENT
 //---------------------------------------------------------------------------
 INT CXDialog::CreateModal() {
@@ -72,27 +67,27 @@ INT CXDialog::OnInitial(WPARAM wParam, LPARAM lParam) {        /*virtual*/
     return FALSE;
 }
 //---------------------------------------------------------------------------
-VOID CXDialog::OnPaint(WPARAM wParam, LPARAM lParam) {        /*virtual*/ 
+VOID CXDialog::OnPaint(WPARAM wParam, LPARAM lParam) {        /*virtual*/
 
 }
 //---------------------------------------------------------------------------
-VOID CXDialog::OnCommand(WPARAM wParam, LPARAM lParam) {    /*virtual*/ 
+VOID CXDialog::OnCommand(WPARAM wParam, LPARAM lParam) {    /*virtual*/
 
 }
 //---------------------------------------------------------------------------
-VOID CXDialog::OnNotify(WPARAM wParam, LPARAM lParam) {        /*virtual*/ 
+VOID CXDialog::OnNotify(WPARAM wParam, LPARAM lParam) {        /*virtual*/
 
 }
 //---------------------------------------------------------------------------
-VOID CXDialog::OnSize(WPARAM wParam, LPARAM lParam) {        /*virtual*/ 
+VOID CXDialog::OnSize(WPARAM wParam, LPARAM lParam) {        /*virtual*/
 
 }
 //---------------------------------------------------------------------------
-VOID CXDialog::OnClose(WPARAM wParam, LPARAM lParam) {        /*virtual*/ 
+VOID CXDialog::OnClose(WPARAM wParam, LPARAM lParam) {        /*virtual*/
 
 }
 //---------------------------------------------------------------------------
-VOID CXDialog::OnDestroy(WPARAM wParam, LPARAM lParam) {    /*virtual*/ 
+VOID CXDialog::OnDestroy(WPARAM wParam, LPARAM lParam) {    /*virtual*/
 
 }
 //---------------------------------------------------------------------------

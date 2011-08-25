@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxRichEdit
-* Description: 
-* File name:   CxRichEdit.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.07.2009 12:28:52
-*
-*****************************************************************************/
-
+/**
+ * \file  CxRichEdit.cpp
+ * \brief rich edit
+ */
 
 
 #include <xLib/Gui/CxRichEdit.h>
@@ -19,13 +13,13 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxRichEdit 
+//TODO: - CxRichEdit
 CxRichEdit::CxRichEdit() {
     LOG();
-    
+
     _m_bRes = _m_dlDll.bLoad(xT("RICHED32.DLL"));        //FIX: + Msftedit.dll
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
-    
+
     //-------------------------------------
     //переопределяем параметры окна
     _m_sClassName     = xCXRICHEDIT20_CONTROL_CLASS;
@@ -50,9 +44,9 @@ BOOL CxRichEdit::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -97,7 +91,7 @@ BOOL CxRichEdit::bSetSel(LONG liMin, LONG liMax) {
     CHARRANGE chrRange = {liMin, liMax};
 
     liRes = xSNDMSG(LONG, EM_EXSETSEL, 0, &chrRange);
-    /*DEBUG*/xASSERT_RET(liMax - liMin == liRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(liMax - liMin == liRes, FALSE);
 
     return TRUE;
 }
@@ -121,7 +115,7 @@ CxRichEdit::ESelectionType CxRichEdit::stGetSelectionType() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, stEmpty);
 
     return xSNDMSG(ESelectionType, EM_SELECTIONTYPE, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
@@ -131,7 +125,7 @@ CxRichEdit::ESelectionType CxRichEdit::stGetSelectionType() {
 *    public: сообщения, Clip operations
 *
 *****************************************************************************/
-    
+
 //---------------------------------------------------------------------------
 //TODO: - METHOD_NAME (The EM_CANPASTE message determines whether a rich edit control can paste a specified clipboard format)
 #if (xWINVER >= xWIN32_2K)
@@ -161,7 +155,7 @@ BOOL CxRichEdit::bPasteSpecial(INT iClipboardFormat, ULONG ulAspect, ULONG ulPar
     REPASTESPECIAL rpsRepasteSpecial = {ulAspect, ulParam};
 
     _m_bRes = xSNDMSG(BOOL, EM_PASTESPECIAL, iClipboardFormat, &rpsRepasteSpecial);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -173,7 +167,7 @@ BOOL CxRichEdit::bRedo() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes = xSNDMSG(BOOL, EM_REDO, 0, 0);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -187,7 +181,7 @@ BOOL CxRichEdit::bSetUndoLimit(INT iNum) {
     INT iRes = 0;
 
     iRes = xSNDMSG(INT, EM_SETUNDOLIMIT, iNum, 0);
-    /*DEBUG*/xASSERT_RET(iNum == iRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(iNum == iRes, FALSE);
 
     return TRUE;
 }
@@ -199,9 +193,9 @@ UNDONAMEID CxRichEdit::uidGetRedoName() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, UID_UNKNOWN);
 
     UNDONAMEID uidEnumeration = UID_UNKNOWN;
-    
+
     uidEnumeration = xSNDMSG(UNDONAMEID, EM_GETREDONAME, 0, 0);
-    /*DEBUG*/xASSERT_RET(UID_UNKNOWN != uidEnumeration, UID_UNKNOWN); 
+    /*DEBUG*/xASSERT_RET(UID_UNKNOWN != uidEnumeration, UID_UNKNOWN);
 
     return uidEnumeration;
 }
@@ -216,7 +210,7 @@ UNDONAMEID CxRichEdit::uidGetUndoName() {
     UNDONAMEID uidEnumeration = UID_UNKNOWN;
 
     uidEnumeration = xSNDMSG(UNDONAMEID, EM_GETUNDONAME, 0, 0);
-    /*DEBUG*/xASSERT_RET(UID_UNKNOWN != uidEnumeration, UID_UNKNOWN); 
+    /*DEBUG*/xASSERT_RET(UID_UNKNOWN != uidEnumeration, UID_UNKNOWN);
 
     return uidEnumeration;
 }
@@ -237,7 +231,7 @@ CxRichEdit::EOptionValue CxRichEdit::ovGetOptions() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, static_cast<EOptionValue>(0));
 
     return xSNDMSG(EOptionValue, EM_GETOPTIONS, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
@@ -257,12 +251,12 @@ BOOL CxRichEdit::bSetOptions(EOptionOperation ooOperation, EOptionValue ovValue)
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bGetBidiOptions(UINT *puiSize, USHORT *pusMask, USHORT *pusEffects) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-        
+
     BIDIOPTIONS boOptions = {0};
 
     xSNDMSG(VOID, EM_GETBIDIOPTIONS, 0, &boOptions);
     /*DEBUG*/// n/a
-    
+
     xCHECK_DO(NULL != puiSize,    *puiSize    = boOptions.cbSize);
     xCHECK_DO(NULL != pusMask,    *pusMask    = boOptions.wMask);
     xCHECK_DO(NULL != pusEffects, *pusEffects = boOptions.wEffects);
@@ -279,7 +273,7 @@ BOOL CxRichEdit::bSetBidiOptions(UINT uiSize, USHORT usMask, USHORT usEffects) {
     BIDIOPTIONS boOptions = {uiSize, usMask, usEffects};
 
     xSNDMSG(VOID, EM_SETBIDIOPTIONS, 0, &boOptions);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -303,7 +297,7 @@ BOOL CxRichEdit::bSetLangOptions(ELangOption loOption) {
     INT iRes = - 1;
 
     iRes = xSNDMSG(INT, EM_SETLANGOPTIONS, 0, loOption);
-    /*DEBUG*/xASSERT_RET(1 == iRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(1 == iRes, FALSE);
 
     return TRUE;
 }
@@ -323,9 +317,9 @@ CxRichEdit::ETypographyOption CxRichEdit::toGetTypographyOptions() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetTypographyOptions(ETypographyOption toOptions, ULONG ulMask) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     _m_bRes = xSNDMSG(BOOL, EM_SETTYPOGRAPHYOPTIONS, toOptions, ulMask);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -345,12 +339,12 @@ BOOL CxRichEdit::bGetScrollPos(LONG *pliX, LONG *pliY) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     INT iRes = - 1;
-    
+
     POINT ptPos = {0, 0};
 
     iRes = xSNDMSG(INT, EM_GETSCROLLPOS, 0, &ptPos);
-    /*DEBUG*/xASSERT_RET(1 == iRes, FALSE); 
-    
+    /*DEBUG*/xASSERT_RET(1 == iRes, FALSE);
+
     xCHECK_DO(NULL != pliX, *pliX = ptPos.x);
     xCHECK_DO(NULL != pliY, *pliY = ptPos.y);
 
@@ -368,7 +362,7 @@ BOOL CxRichEdit::bSetScrollPos(LONG liX, LONG liY) {
     POINT ptPos = {liX, liY};
 
     iRes = xSNDMSG(INT, EM_SETSCROLLPOS, 0, &ptPos);
-    /*DEBUG*/xASSERT_RET(1 == iRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(1 == iRes, FALSE);
 
     return TRUE;
 }
@@ -411,7 +405,7 @@ CxRichEdit::EEditStyle CxRichEdit::stGetEditStyle() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetEditStyle(EEditStyle stStyle, EEditStyle stMask) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     xSNDMSG(EEditStyle, EM_SETEDITSTYLE, stStyle, stMask);
     /*DEBUG*/// n/a
 
@@ -431,14 +425,14 @@ BOOL CxRichEdit::bSetEditStyle(EEditStyle stStyle, EEditStyle stMask) {
 #if (xWINVER >= xWIN32_2K)
 tString CxRichEdit::sGetTextEx(ULONG ulFlags, UINT uiCodePage, LPCSTR pcszDefaultChar, BOOL *pbUsedDefChar) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, tString());
-    
+
     tString sRes;
     sRes.resize(ulGetTextLengthEx(ulFlags, uiCodePage));
-    
+
     GETTEXTEX gtText = {sRes.size(), ulFlags, uiCodePage, pcszDefaultChar, pbUsedDefChar};
 
     ULONG ulRes = xSNDMSG(ULONG, EM_GETTEXTEX, &ulRes, &sRes.at(0));
-    /*DEBUG*/xASSERT_RET(sRes.size() == ulRes, tString()); 
+    /*DEBUG*/xASSERT_RET(sRes.size() == ulRes, tString());
 
     return sRes;
 }
@@ -453,10 +447,10 @@ tString CxRichEdit::sGetSelText() {
     sRes.resize(256/*ulGetTextLengthEx(ulFlags, uiCodePage)*/);        //FIX: string size
 
     ULONG ulRes = xSNDMSG(ULONG, EM_GETSELTEXT, 0, &sRes.at(0));
-    /*DEBUG*/xASSERT_RET(sRes.size() == ulRes, tString()); 
+    /*DEBUG*/xASSERT_RET(sRes.size() == ulRes, tString());
 
     sRes.resize(ulRes);
-    
+
     return sRes;
 }
 #endif //xWIN32_2K
@@ -465,13 +459,13 @@ tString CxRichEdit::sGetSelText() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetTextEx(const tString &csStr, ULONG ulFlags, UINT uiCodePage) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     INT iRes = - 1;
-    
+
     SETTEXTEX stText = {ulFlags, uiCodePage};
 
     iRes = xSNDMSG(INT, EM_SETTEXTEX, &stText, csStr.c_str());
-    /*DEBUG*/xASSERT_RET( iRes, FALSE); 
+    /*DEBUG*/xASSERT_RET( iRes, FALSE);
 
     return TRUE;
 }
@@ -481,13 +475,13 @@ BOOL CxRichEdit::bSetTextEx(const tString &csStr, ULONG ulFlags, UINT uiCodePage
 #if (xWINVER >= xWIN32_2K)
 ULONG CxRichEdit::ulGetTextLengthEx(ULONG ulFlags, UINT uiCodePage) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, 0);
-    
+
     ULONG ulRes = 0;
-    
+
     GETTEXTLENGTHEX tlLength = {ulFlags, uiCodePage};
 
     ulRes = xSNDMSG(ULONG, EM_GETTEXTLENGTHEX, &tlLength, 0);
-    /*DEBUG*/xASSERT_RET(E_INVALIDARG != ulRes, 0); 
+    /*DEBUG*/xASSERT_RET(E_INVALIDARG != ulRes, 0);
 
     return ulRes;
 }
@@ -497,18 +491,18 @@ ULONG CxRichEdit::ulGetTextLengthEx(ULONG ulFlags, UINT uiCodePage) {
 #if (xWINVER >= xWIN32_2K)
 tString CxRichEdit::sGetTextRange(LONG liMin, LONG liMax) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, tString());
-    
+
     tString sRes;
     sRes.resize(liMax - liMin + 1);        //+ terminating null character
-    
+
     CHARRANGE crRange = {liMin, liMax};
     TEXTRANGE trRange = {crRange, &sRes.at(0)};
 
     ULONG ulRes = xSNDMSG(ULONG, EM_GETTEXTRANGE, 0, &trRange);
-    /*DEBUG*/xASSERT_RET(sRes.size() - 1 == ulRes, tString()); 
+    /*DEBUG*/xASSERT_RET(sRes.size() - 1 == ulRes, tString());
 
     sRes.resize(ulRes);
-    
+
     return sRes;
 }
 #endif //xWIN32_2K
@@ -517,9 +511,9 @@ tString CxRichEdit::sGetTextRange(LONG liMin, LONG liMax) {
 #if (xWINVER >= xWIN32_2K)
 CxRichEdit::ETextMode CxRichEdit::tmGetTextMode() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, static_cast<ETextMode>(0));
-    
+
     return xSNDMSG(ETextMode, EM_GETTEXTMODE, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
@@ -527,9 +521,9 @@ CxRichEdit::ETextMode CxRichEdit::tmGetTextMode() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetTextMode(ETextMode tmMode) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     _m_bRes = xSNDMSG(BOOL, EM_SETTEXTMODE, tmMode, 0);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -559,21 +553,21 @@ BOOL CxRichEdit::bLimitText(LONG iChars) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bFindText(const tString &csText, LONG liMin, LONG liMax, EFindParams fpParams, LONG *pliFoundMin) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     INT iRes = - 1;
 
     CHARRANGE crRange = {liMin, liMax};
     FINDTEXT  ftText  = {crRange, csText.c_str()};
-    
+
 #if defined(UNICODE) || defined(_UNICODE)
     iRes = xSNDMSG(INT, EM_FINDTEXTW, fpParams, &ftText);
 #else
     iRes = xSNDMSG(INT, EM_FINDTEXT,  fpParams, &ftText);
-#endif // UNICODE 
+#endif // UNICODE
 
     /*DEBUG*/// n/a
-    xCHECK_RET(- 1 == iRes, FALSE); 
-    
+    xCHECK_RET(- 1 == iRes, FALSE);
+
     //-------------------------------------
     //текст найден
     xCHECK_DO(NULL != pliFoundMin, *pliFoundMin = iRes);
@@ -586,29 +580,29 @@ BOOL CxRichEdit::bFindText(const tString &csText, LONG liMin, LONG liMax, EFindP
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bFindTextEx(const tString &csText, LONG liMin, LONG liMax, EFindParams fpParams, LONG *pliFoundMin, LONG *pliFoundMax) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, - 1);
-    
+
     INT iRes = - 1;
 
     CHARRANGE  crRange    = {liMin, liMax};
     CHARRANGE  crRangeOut = {0};
     FINDTEXTEX ftTextEx   = {crRange, csText.c_str(), crRangeOut};
-    
+
 #if defined(UNICODE) || defined(_UNICODE)
     iRes = xSNDMSG(INT, EM_FINDTEXTEXW, fpParams, &ftTextEx);
 #else
     iRes = xSNDMSG(INT, EM_FINDTEXTEX,  fpParams, &ftTextEx);
-#endif // UNICODE 
-    
+#endif // UNICODE
+
     /*DEBUG*/// n/a
-    xCHECK_RET(- 1 == iRes,             FALSE); 
-    xCHECK_RET(- 1 == crRangeOut.cpMin, FALSE); 
-    xCHECK_RET(- 1 == crRangeOut.cpMax, FALSE); 
-    /*DEBUG*/xASSERT_RET(crRangeOut.cpMin == iRes, FALSE); 
-    
+    xCHECK_RET(- 1 == iRes,             FALSE);
+    xCHECK_RET(- 1 == crRangeOut.cpMin, FALSE);
+    xCHECK_RET(- 1 == crRangeOut.cpMax, FALSE);
+    /*DEBUG*/xASSERT_RET(crRangeOut.cpMin == iRes, FALSE);
+
     //-------------------------------------
     //текст найден
     xCHECK_DO(NULL != pliFoundMin, *pliFoundMin = crRangeOut.cpMin);
-    xCHECK_DO(NULL != pliFoundMax, *pliFoundMax = crRangeOut.cpMax); 
+    xCHECK_DO(NULL != pliFoundMax, *pliFoundMax = crRangeOut.cpMax);
 
     return TRUE;
 }
@@ -623,7 +617,7 @@ LONG CxRichEdit::liFindWordBreak(EFindOperation foOperation, LONG liPos) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, - 1);
 
     return xSNDMSG(LONG, EM_FINDWORDBREAK, foOperation, liPos);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
@@ -639,9 +633,9 @@ LONG CxRichEdit::liFindWordBreak(EFindOperation foOperation, LONG liPos) {
 #if (xWINVER >= xWIN32_S03)
 BOOL CxRichEdit::bIsIme() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     return xSNDMSG(BOOL, EM_ISIME, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_S03
 //---------------------------------------------------------------------------
@@ -659,9 +653,9 @@ CxRichEdit::EImeOptionValue CxRichEdit::ivGetImeOptions() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetImeOptions(EOptionOperation ooOperation, EImeOptionValue ioValue) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     _m_bRes = xSNDMSG(BOOL, EM_SETIMEOPTIONS, ooOperation, ioValue);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -671,9 +665,9 @@ BOOL CxRichEdit::bSetImeOptions(EOptionOperation ooOperation, EImeOptionValue io
 #if (xWINVER >= xWIN32_SO3)
 CxRichEdit::EImeBiasMode CxRichEdit::ibmGetImeModeBias() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, static_cast<EImeBiasMode>(0));
-    
+
     return xSNDMSG(EImeBiasMode, EM_GETIMEMODEBIAS, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_SO3
 //---------------------------------------------------------------------------
@@ -683,21 +677,21 @@ BOOL CxRichEdit::bSetImeModeBias(EImeBiasMode ibmMode) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     EImeBiasMode ibmRes;
-    
+
     ibmRes = xSNDMSG(EImeBiasMode, EM_SETIMEMODEBIAS, ibmMode, ibmMode);
-    /*DEBUG*/xASSERT_RET(ibmMode == ibmRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(ibmMode == ibmRes, FALSE);
 
     return TRUE;
 }
 #endif //xWIN32_SO3
 //---------------------------------------------------------------------------
-//TODO: - cbmGetCtfModeBias (An application sends a EM_GETCTFMODEBIAS message to get the Text Services Framework mode bias values for a Rich Edit control) 
+//TODO: - cbmGetCtfModeBias (An application sends a EM_GETCTFMODEBIAS message to get the Text Services Framework mode bias values for a Rich Edit control)
 #if (xWINVER >= xWIN32_SO3)
 CxRichEdit::ECtfBiasMode CxRichEdit::cbmGetCtfModeBias() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, cbmDefault);
-    
+
     return xSNDMSG(ECtfBiasMode, EM_GETCTFMODEBIAS, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_SO3
 //---------------------------------------------------------------------------
@@ -705,11 +699,11 @@ CxRichEdit::ECtfBiasMode CxRichEdit::cbmGetCtfModeBias() {
 #if (xWINVER >= xWIN32_SO3)
 BOOL CxRichEdit::bSetCtfModeBias(ECtfBiasMode cbmMode) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     ECtfBiasMode cbmRes = cbmDefault;
 
     cbmRes = xSNDMSG(ECtfBiasMode, EM_SETCTFMODEBIAS, cbmMode, 0);
-    /*DEBUG*/xASSERT_RET(cbmMode == cbmRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(cbmMode == cbmRes, FALSE);
 
     return TRUE;
 }
@@ -721,7 +715,7 @@ BOOL CxRichEdit::bGetCtfOpenStatus() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     return xSNDMSG(BOOL, EM_GETCTFOPENSTATUS, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_SO3
 //---------------------------------------------------------------------------
@@ -729,9 +723,9 @@ BOOL CxRichEdit::bGetCtfOpenStatus() {
 #if (xWINVER >= xWIN32_SO3)
 BOOL CxRichEdit::bSetCtfOpenStatus(BOOL bFlag) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     _m_bRes = xSNDMSG(BOOL, EM_SETCTFOPENSTATUS, bFlag, 0);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -741,9 +735,9 @@ BOOL CxRichEdit::bSetCtfOpenStatus(BOOL bFlag) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bGetImeColor(COMPCOLOR *pccColor[4]) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     _m_bRes = xSNDMSG(BOOL, EM_GETIMECOLOR, 0, pccColor);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -753,11 +747,11 @@ BOOL CxRichEdit::bGetImeColor(COMPCOLOR *pccColor[4]) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetImeColor(COLORREF crText, COLORREF crBackground, ULONG ulEffects) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     COMPCOLOR ccColor = {crText, crBackground, ulEffects};
 
     _m_bRes = xSNDMSG(BOOL, EM_SETIMECOLOR, 0, &ccColor);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -769,7 +763,7 @@ CxRichEdit::EImeCompMode CxRichEdit::icmGetImeCompMode() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, static_cast<EImeCompMode>(- 1));
 
     return xSNDMSG(EImeCompMode, EM_GETIMECOMPMODE, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
@@ -777,16 +771,16 @@ CxRichEdit::EImeCompMode CxRichEdit::icmGetImeCompMode() {
 #if (xWINVER >= xWIN32_SO3)
 tString CxRichEdit::sGetImeCompText(ULONG ulFlags) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, tString());
-    
+
     tString sRes;
-    
+
     sRes.resize(256);    //FIX: str size
-    
+
     IMECOMPTEXT ictText = {sRes.size(), ulFlags};
 
     LONG liRes = xSNDMSG(LONG, EM_GETIMECOMPTEXT, &ictText, &sRes.at(0));
-    /*DEBUG*///FIX: xASSERT_RET(sRes.size() == liRes, tString()); 
-    
+    /*DEBUG*///FIX: xASSERT_RET(sRes.size() == liRes, tString());
+
     sRes.resize(liRes);
 
     return sRes;
@@ -809,7 +803,7 @@ BOOL CxRichEdit::bGetReconversion() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     xSNDMSG(INT, EM_RECONVERSION, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -827,7 +821,7 @@ BOOL CxRichEdit::bGetReconversion() {
 #if (xWINVER >= xWIN32_2K)
 CxRichEdit::EWordWrapMode CxRichEdit::wbmGetWordWrapMode() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, static_cast<EWordWrapMode>(0));
-    
+
     return xSNDMSG(EWordWrapMode, EM_GETWORDWRAPMODE, 0, 0);
     /*DEBUG*/// n/a
 }
@@ -837,7 +831,7 @@ CxRichEdit::EWordWrapMode CxRichEdit::wbmGetWordWrapMode() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetWordWrapMode(EWordWrapMode wbmMode) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     xSNDMSG(EWordWrapMode, EM_SETWORDWRAPMODE, wbmMode, 0);
     /*DEBUG*/// n/a
 
@@ -849,11 +843,11 @@ BOOL CxRichEdit::bSetWordWrapMode(EWordWrapMode wbmMode) {
 #if (xWINVER >= xWIN32_2K)
 INT CxRichEdit::iGetWordBreakProcEx() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, NULL);
-    
+
     INT iRes = NULL;
 
     iRes = xSNDMSG(INT, EM_GETWORDBREAKPROCEX, 0, 0);
-    /*DEBUG*/xASSERT_RET(NULL != iRes, NULL); 
+    /*DEBUG*/xASSERT_RET(NULL != iRes, NULL);
 
     return iRes;
 }
@@ -863,7 +857,7 @@ INT CxRichEdit::iGetWordBreakProcEx() {
 #if (xWINVER >= xWIN32_2K)
 INT CxRichEdit::iSetWordBreakProcEx(INT *piProcEx /*NULL - default procedure*/) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, NULL);
-    
+
     return xSNDMSG(INT, EM_SETWORDBREAKPROCEX, 0, piProcEx);
     /*DEBUG*/// n/a
 }
@@ -881,11 +875,11 @@ INT CxRichEdit::iSetWordBreakProcEx(INT *piProcEx /*NULL - default procedure*/) 
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bGetParaFormat(PARAFORMAT *ppfFormat, ULONG *pulMask) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     ULONG ulMask = 0;
 
     ulMask = xSNDMSG(ULONG, EM_GETPARAFORMAT, 0, ppfFormat);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     xCHECK_DO(NULL != pulMask, *pulMask = ulMask);
 
@@ -897,13 +891,13 @@ BOOL CxRichEdit::bGetParaFormat(PARAFORMAT *ppfFormat, ULONG *pulMask) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bGetParaFormat_20(PARAFORMAT2 *ppfFormat20, ULONG *pulMask) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     ULONG ulMask = 0;
 
     ulMask = xSNDMSG(ULONG, EM_GETPARAFORMAT, 0, ppfFormat20);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
-    xCHECK_DO(NULL != pulMask, *pulMask = ulMask); 
+    xCHECK_DO(NULL != pulMask, *pulMask = ulMask);
 
     return TRUE;
 }
@@ -913,11 +907,11 @@ BOOL CxRichEdit::bGetParaFormat_20(PARAFORMAT2 *ppfFormat20, ULONG *pulMask) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetParaFormat(const PARAFORMAT *pcpfFormat) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     ////(*pcpfFormat).cbSize = sizeof(PARAFORMAT);
 
     _m_bRes = xSNDMSG(BOOL, EM_SETPARAFORMAT, 0, pcpfFormat);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -927,11 +921,11 @@ BOOL CxRichEdit::bSetParaFormat(const PARAFORMAT *pcpfFormat) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetParaFormat_20(const PARAFORMAT2 *pcpfFormat20) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     ////(*pcpfFormat).cbSize = sizeof(PARAFORMAT2);
 
     _m_bRes = xSNDMSG(BOOL, EM_SETPARAFORMAT, 0, pcpfFormat20);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -977,7 +971,7 @@ BOOL CxRichEdit::bSetCharFormat(ECharFormat cfFormat, CHARFORMAT *pcfFormat) {
     (*pcfFormat).cbSize = sizeof(CHARFORMAT);
 
     _m_bRes = xSNDMSG(BOOL, EM_SETCHARFORMAT, cfFormat, pcfFormat);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -991,7 +985,7 @@ BOOL CxRichEdit::bSetCharFormat_20(ECharFormat cfFormat, CHARFORMAT2 *pcfFormat2
     ////(*pcfFormat).cbSize = sizeof(CHARFORMAT2);
 
     _m_bRes = xSNDMSG(BOOL, EM_SETCHARFORMAT, cfFormat, pcfFormat20);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1036,7 +1030,7 @@ LONG CxRichEdit::liStreamOut(EStreamFormat sfFormat, EStreamFormatFlag sffFlags,
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, 0);
 
     return xSNDMSG(LONG, EM_STREAMOUT, sfFormat | sffFlags, pesStream);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
@@ -1056,7 +1050,7 @@ BOOL CxRichEdit::bGetPunctuation(EPunctuationType ptType, tString *psStr) {
     PUNCTUATION pntPunct = {0, 0};
 
     _m_bRes = xSNDMSG(BOOL, EM_GETPUNCTUATION, ptType, &pntPunct);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     xCHECK_DO(NULL != psStr, (*psStr).assign(pntPunct.szPunctuation, pntPunct.iSize));
 
@@ -1068,11 +1062,11 @@ BOOL CxRichEdit::bGetPunctuation(EPunctuationType ptType, tString *psStr) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetPunctuation(EPunctuationType ptType, const tString &csStr) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     PUNCTUATION pntPunct = {csStr.size(), const_cast<LPSTR>( &csStr.at(0) )};    //FIX: const_cast
 
     _m_bRes = xSNDMSG(BOOL, EM_SETPUNCTUATION, ptType, &pntPunct);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1094,7 +1088,7 @@ BOOL CxRichEdit::bGetAutoUrlDetect() {
     INT iRes = - 1;
 
     iRes = xSNDMSG(INT, EM_GETAUTOURLDETECT, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     _m_bRes = (0 == iRes) ? FALSE : TRUE;
 
@@ -1106,11 +1100,11 @@ BOOL CxRichEdit::bGetAutoUrlDetect() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetAutoUrlDetect(BOOL bFlag) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     INT iRes = - 1;
 
     iRes = xSNDMSG(INT, EM_AUTOURLDETECT, bFlag, 0);
-    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 
     return TRUE;
 }
@@ -1128,7 +1122,7 @@ BOOL CxRichEdit::bSetAutoUrlDetect(BOOL bFlag) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bGetZoom(INT *piNumerator, INT *piDenominator) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     xCHECK_RET(NULL == piNumerator || NULL == piDenominator, FALSE);
 
     _m_bRes = xSNDMSG(BOOL, EM_GETZOOM, piNumerator, piDenominator);
@@ -1142,9 +1136,9 @@ BOOL CxRichEdit::bGetZoom(INT *piNumerator, INT *piDenominator) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetZoom(INT iNumerator, INT iDenominator) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     _m_bRes = xSNDMSG(BOOL, EM_SETZOOM, iNumerator, iDenominator);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1162,7 +1156,7 @@ BOOL CxRichEdit::bSetZoom(INT iNumerator, INT iDenominator) {
 #if (xWINVER >= xWIN32_2K)
 CxRichEdit::EEventMask CxRichEdit::emGetEventMask() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, emNone);
-    
+
     return xSNDMSG(EEventMask, EM_GETEVENTMASK, 0, 0);
     /*DEBUG*/// n/a
 }
@@ -1192,9 +1186,9 @@ BOOL CxRichEdit::bSetEventMask(EEventMask emMask) {
 #if (xWINVER >= xWIN32_SO3)
 BOOL CxRichEdit::bGetHyphenateInfo(HYPHENATEINFO *phiInfo) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     xSNDMSG(VOID, EM_GETHYPHENATEINFO, phiInfo, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -1204,7 +1198,7 @@ BOOL CxRichEdit::bGetHyphenateInfo(HYPHENATEINFO *phiInfo) {
 #if (xWINVER >= xWIN32_SO3)
 BOOL CxRichEdit::bSetHyphenateInfo(const HYPHENATEINFO *cphiInfo) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     xSNDMSG(VOID, EM_SETHYPHENATEINFO, cphiInfo, 0);
     /*DEBUG*/// n/a
 
@@ -1224,11 +1218,11 @@ BOOL CxRichEdit::bSetHyphenateInfo(const HYPHENATEINFO *cphiInfo) {
 #if (xWINVER >= xWIN32_SO3)
 BOOL CxRichEdit::bSetPageRotate(ETextLayout tlLayout) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     ETextLayout tlRes = tlEpr_0;
 
     tlRes = xSNDMSG(ETextLayout, EM_SETPAGEROTATE, tlLayout, 0);
-    /*DEBUG*/xASSERT_RET(tlLayout == tlRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(tlLayout == tlRes, FALSE);
 
     return TRUE;
 }
@@ -1238,7 +1232,7 @@ BOOL CxRichEdit::bSetPageRotate(ETextLayout tlLayout) {
 #if (xWINVER >= xWIN32_SO3)
 CxRichEdit::ETextLayout CxRichEdit::tlGetPageRotate() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, tlEpr_0);
-    
+
     return xSNDMSG(ETextLayout, EM_GETPAGEROTATE, 0, 0);
     /*DEBUG*/// n/a
 }
@@ -1258,7 +1252,7 @@ BOOL CxRichEdit::bRequestResize() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     xSNDMSG(VOID, EM_REQUESTRESIZE, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -1268,7 +1262,7 @@ BOOL CxRichEdit::bRequestResize() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetBkgndColor(BOOL bUseDefault, COLORREF crColor) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     xSNDMSG(COLORREF, EM_SETBKGNDCOLOR, bUseDefault, crColor);
     /*DEBUG*/// n/a
 
@@ -1284,11 +1278,11 @@ BOOL CxRichEdit::bSetFontSize(INT iSize) {
 
     xCHECK_DO(iSize < - 1637, iSize = - 1637);
     xCHECK_DO(iSize > 1638,   iSize = 1638);
-    
+
     INT iRes = - 1;
 
     _m_bRes = xSNDMSG(BOOL, EM_SETFONTSIZE, iSize, 0);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1300,7 +1294,7 @@ BOOL CxRichEdit::bSetOleCallback(IUnknown *pIRichEditOleCallback) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes = xSNDMSG(BOOL, EM_SETOLECALLBACK, 0, pIRichEditOleCallback);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1310,9 +1304,9 @@ BOOL CxRichEdit::bSetOleCallback(IUnknown *pIRichEditOleCallback) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bSetPalette(HANDLE hPalette) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     xSNDMSG(VOID, EM_SETPALETTE, hPalette, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -1324,7 +1318,7 @@ BOOL CxRichEdit::bSetTargetDevice(HDC hDevice, LONG liLineWidth) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes = xSNDMSG(BOOL, EM_SETTARGETDEVICE, hDevice, liLineWidth);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1336,7 +1330,7 @@ BOOL CxRichEdit::bStopGroupTyping() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes = xSNDMSG(BOOL, EM_STOPGROUPTYPING, 0, 0);
-    /*DEBUG*/xASSERT_RET(0 == _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(0 == _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1346,9 +1340,9 @@ BOOL CxRichEdit::bStopGroupTyping() {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bGetOleInterface(IUnknown *pIRichEditOle) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     _m_bRes = xSNDMSG(BOOL, EM_GETOLEINTERFACE, 0, pIRichEditOle);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1358,9 +1352,9 @@ BOOL CxRichEdit::bGetOleInterface(IUnknown *pIRichEditOle) {
 #if (xWINVER >= xWIN32_2K)
 BOOL CxRichEdit::bDisplayBand(RECT rcDevice) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    
+
     _m_bRes = xSNDMSG(BOOL, EM_DISPLAYBAND, 0, &rcDevice);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -1374,7 +1368,7 @@ LONG CxRichEdit::liGetLineFromChar(LONG liCharIndex) {
     LONG liRes = - 1;
 
     liRes = xSNDMSG(LONG, EM_EXLINEFROMCHAR, 0, liCharIndex);
-    /*DEBUG*/xASSERT_RET(- 1 < liRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(- 1 < liRes, FALSE);
 
     return TRUE;
 }
@@ -1393,53 +1387,53 @@ LONG CxRichEdit::liGetLineFromChar(LONG liCharIndex) {
 ////---------------------------------------------------------------------------
 ////BOOL CxRichEdit::CanUndo() const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (BOOL)::SendMessage(_m_hWnd, EM_CANUNDO, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////INT CxRichEdit::GetLineCount() const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (INT)::SendMessage(_m_hWnd, EM_GETLINECOUNT, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////BOOL CxRichEdit::GetModify() const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (BOOL)::SendMessage(_m_hWnd, EM_GETMODIFY, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::SetModify(BOOL bModified) {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, EM_SETMODIFY, bModified, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::GetRect(LPRECT lpRect) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, EM_GETRECT, 0, (LPARAM)lpRect);
 ////}
 //////---------------------------------------------------------------------------
 ////POINT CxRichEdit::GetCharPos(LONG lChar) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    POINT pt;
 ////    ::SendMessage(_m_hWnd, EM_POSFROMCHAR, (WPARAM) &pt, (LPARAM)lChar);
-////    
+////
 ////    return pt;
 ////}
 //////---------------------------------------------------------------------------
 ////// NOTE: first word in lpszBuffer must contain the size of the buffer!
 ////INT CxRichEdit::GetLine(INT nIndex, LPTSTR lpszBuffer) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (INT)::SendMessage(_m_hWnd, EM_GETLINE, nIndex, (LPARAM)lpszBuffer);
 ////}
 //////---------------------------------------------------------------------------
 ////INT CxRichEdit::GetLine(INT nIndex, LPTSTR lpszBuffer, INT nMaxLength) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    *(LPINT)lpszBuffer = nMaxLength;
 ////
 ////    return (INT)::SendMessage(_m_hWnd, EM_GETLINE, nIndex, (LPARAM)lpszBuffer);
@@ -1447,7 +1441,7 @@ LONG CxRichEdit::liGetLineFromChar(LONG liCharIndex) {
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::GetSel(LONG &nStartChar, LONG &nEndChar) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    CHARRANGE cr = {0};
 ////    ::SendMessage(_m_hWnd, EM_EXGETSEL, 0, (LPARAM) &cr);
 ////    nStartChar = cr.cpMin;
@@ -1456,29 +1450,29 @@ LONG CxRichEdit::liGetLineFromChar(LONG liCharIndex) {
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::GetSel(CHARRANGE &cr) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, EM_EXGETSEL, 0, (LPARAM) &cr);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::LimitText(LONG nChars) {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, EM_EXLIMITTEXT, 0, nChars);
 ////}
 //////---------------------------------------------------------------------------
 ////LONG CxRichEdit::LineFromChar(LONG nIndex) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (LONG)::SendMessage(_m_hWnd, EM_EXLINEFROMCHAR, 0, nIndex);
 ////}
 //////---------------------------------------------------------------------------
 ////INT CxRichEdit::SetSel(LONG nStartChar, LONG nEndChar) {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    CHARRANGE cr = {0};
 ////    cr.cpMin = nStartChar;
 ////    cr.cpMax = nEndChar;
-////    
+////
 ////    return (INT)::SendMessage(_m_hWnd, EM_EXSETSEL, 0, (LPARAM) &cr);
 ////}
 //////---------------------------------------------------------------------------
@@ -1489,37 +1483,37 @@ LONG CxRichEdit::liGetLineFromChar(LONG liCharIndex) {
 //////---------------------------------------------------------------------------
 ////DWORD CxRichEdit::GetDefaultCharFormat(CHARFORMAT &cf) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    cf.cbSize = sizeof(CHARFORMAT);
-////    
+////
 ////    return (DWORD)::SendMessage(_m_hWnd, EM_GETCHARFORMAT, 0, (LPARAM) &cf);
 ////}
 //////---------------------------------------------------------------------------
 ////DWORD CxRichEdit::GetSelectionCharFormat(CHARFORMAT &cf) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    cf.cbSize = sizeof(CHARFORMAT);
-////    
+////
 ////    return (DWORD)::SendMessage(_m_hWnd, EM_GETCHARFORMAT, 1, (LPARAM) &cf);
 ////}
 //////---------------------------------------------------------------------------
 ////LONG CxRichEdit::GetEventMask() const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (LONG)::SendMessage(_m_hWnd, EM_GETEVENTMASK, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////LONG CxRichEdit::GetLimitText() const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (LONG)::SendMessage(_m_hWnd, EM_GETLIMITTEXT, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////DWORD CxRichEdit::GetParaFormat(PARAFORMAT &pf) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    pf.cbSize = sizeof(PARAFORMAT);
-////    
+////
 ////    return (DWORD)::SendMessage(_m_hWnd, EM_GETPARAFORMAT, 0, (LPARAM) &pf);
 ////}
 //////---------------------------------------------------------------------------
@@ -1527,76 +1521,76 @@ LONG CxRichEdit::liGetLineFromChar(LONG liCharIndex) {
 ////LONG CxRichEdit::GetSelText(LPSTR lpBuf) const {
 ////
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (LONG)::SendMessage(_m_hWnd, EM_GETSELTEXT, 0, (LPARAM)lpBuf);
 ////}
 //////---------------------------------------------------------------------------
 ////LONG CxRichEdit::GetTextLength() const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (LONG)::SendMessage(_m_hWnd, WM_GETTEXTLENGTH, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////BOOL CxRichEdit::SetReadOnly(BOOL bReadOnly) {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (BOOL)::SendMessage(_m_hWnd, EM_SETREADONLY, bReadOnly, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////INT CxRichEdit::GetFirstVisibleLine() const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (INT)::SendMessage(_m_hWnd, EM_GETFIRSTVISIBLELINE, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////// Operations
 ////VOID CxRichEdit::EmptyUndoBuffer() {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, EM_EMPTYUNDOBUFFER, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////INT CxRichEdit::LineIndex(INT nLine) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (INT)::SendMessage(_m_hWnd, EM_LINEINDEX, nLine, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////INT CxRichEdit::LineLength(INT nLine) const {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (INT)::SendMessage(_m_hWnd, EM_LINELENGTH, nLine, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////BOOL CxRichEdit::LineScroll(INT nLines, INT nChars) {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (BOOL)::SendMessage(_m_hWnd, EM_LINESCROLL, nChars, nLines);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::ReplaceSel(LPCTSTR lpszNewText, BOOL bCanUndo) {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, EM_REPLACESEL, (WPARAM)bCanUndo, (LPARAM)lpszNewText);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::SetRect(LPCRECT lpRect) {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, EM_SETRECT, 0, (LPARAM)lpRect);
 ////}
 //////---------------------------------------------------------------------------
 ////// Additional operations
 ////VOID CxRichEdit::ScrollCaret() {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, EM_SCROLLCARET, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////INT CxRichEdit::InsertText(LONG nInsertAfterChar, LPCTSTR lpstrText, BOOL bCanUndo) {
 ////    INT nRet = SetSel(nInsertAfterChar, nInsertAfterChar);
 ////    ReplaceSel(lpstrText, bCanUndo);
-////    
+////
 ////    return nRet;
 ////}
 //////---------------------------------------------------------------------------
@@ -1607,31 +1601,31 @@ LONG CxRichEdit::liGetLineFromChar(LONG liCharIndex) {
 ////// Clipboard operations
 ////BOOL CxRichEdit::Undo() {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    return (BOOL)::SendMessage(_m_hWnd, EM_UNDO, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::Clear() {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, WM_CLEAR, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::Copy() {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, WM_COPY, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::Cut() {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, WM_CUT, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
 ////VOID CxRichEdit::Paste() {
 ////    /*DEBUG*/xASSERT(::IsWindow(_m_hWnd));
-////    
+////
 ////    ::SendMessage(_m_hWnd, WM_PASTE, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------

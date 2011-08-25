@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxWindowImpl
-* Description: работа с окнами
-* File name:   CxWindowImpl.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:10:17
-*
-*****************************************************************************/
-
+/**
+ * \file  CxWindowImpl.cpp
+ * \brief windows
+ */
 
 
 #include <xLib/Gui/CxWindowImpl.h>
@@ -52,36 +46,36 @@ CxWindowImpl::~CxWindowImpl() {
 }
 //---------------------------------------------------------------------------
 //TODO: - bCreate
-BOOL CxWindowImpl::bCreate(INT iID, HWND hParent, const tString &csText, 
-                            INT iLeft, INT iTop, INT iWidth, INT iHeight, 
+BOOL CxWindowImpl::bCreate(INT iID, HWND hParent, const tString &csText,
+                            INT iLeft, INT iTop, INT iWidth, INT iHeight,
                             ULONG ulStyle, ULONG ulExStyle)
 {
     //-------------------------------------
     //регистрируем класс окна
     WNDCLASSEX wcex = {0};
 
-    wcex.cbSize         = sizeof(WNDCLASSEX);                                                                        //размер структуры в байтах 
-    wcex.style            = CS_HREDRAW | CS_VREDRAW;                                                                    //стиль класса окна 
-    wcex.lpfnWndProc    = xreinterpret_cast<WNDPROC>(_s_pWndProc);                                                    //указатель на функцию окна 
-    wcex.cbClsExtra        = 0;                                                                                        //дополнительная память в байтах для класса окна  
-    wcex.cbWndExtra        = 0;                                                                                        //дополнительная память в байтах для каждого окна этого класса 
-    wcex.hInstance        = CxApplication::hGetInstance();                                                            //дескриптор экземпляра приложения 
-    wcex.hIcon            = ::LoadIcon(CxApplication::hGetInstance(), static_cast<LPCTSTR>(NULL)/*siIconID*/);        //дескриптор пиктограммы приложения 
-    wcex.hCursor        = ::LoadCursor(NULL, IDC_ARROW);                                                            //дескриптор курсора приложения 
+    wcex.cbSize         = sizeof(WNDCLASSEX);                                                                        //размер структуры в байтах
+    wcex.style            = CS_HREDRAW | CS_VREDRAW;                                                                    //стиль класса окна
+    wcex.lpfnWndProc    = xreinterpret_cast<WNDPROC>(_s_pWndProc);                                                    //указатель на функцию окна
+    wcex.cbClsExtra        = 0;                                                                                        //дополнительная память в байтах для класса окна
+    wcex.cbWndExtra        = 0;                                                                                        //дополнительная память в байтах для каждого окна этого класса
+    wcex.hInstance        = CxApplication::hGetInstance();                                                            //дескриптор экземпляра приложения
+    wcex.hIcon            = ::LoadIcon(CxApplication::hGetInstance(), static_cast<LPCTSTR>(NULL)/*siIconID*/);        //дескриптор пиктограммы приложения
+    wcex.hCursor        = ::LoadCursor(NULL, IDC_ARROW);                                                            //дескриптор курсора приложения
     wcex.hbrBackground    = reinterpret_cast<HBRUSH>( (COLOR_WINDOW + reinterpret_cast<HBRUSH>(3)/*siBGColor*/) );    //дескриптор кисти для закраски фона окна
-    wcex.lpszMenuName    = reinterpret_cast<LPCTSTR>(iID);                                                            //указатель на строку  с именем меню окна 
-    wcex.lpszClassName    = _m_sClassName.c_str();                                                                    //указатель на строку  с именем класса окна 
-    wcex.hIconSm        = ::LoadIcon(CxApplication::hGetInstance(), static_cast<LPCTSTR>(0)/*siIconSmID*/);            //дескриптор малой пиктограммы 
+    wcex.lpszMenuName    = reinterpret_cast<LPCTSTR>(iID);                                                            //указатель на строку  с именем меню окна
+    wcex.lpszClassName    = _m_sClassName.c_str();                                                                    //указатель на строку  с именем класса окна
+    wcex.hIconSm        = ::LoadIcon(CxApplication::hGetInstance(), static_cast<LPCTSTR>(0)/*siIconSmID*/);            //дескриптор малой пиктограммы
 
     _m_bRes = _bRegisterClass(&wcex);
     xCHECK_RET(FALSE == _m_bRes, FALSE);
 
     //-------------------------------------
     //создаем окно
-    _m_bRes = CxWindow::bCreate(iID, hParent, _m_sClassName, csText, 
+    _m_bRes = CxWindow::bCreate(iID, hParent, _m_sClassName, csText,
                              iLeft, iTop, iWidth, iHeight,
-                             _m_ulStyle | ulStyle, 
-                             /*WS_EX_CLIENTEDGE | WS_EX_APPWINDOW*/_m_ulStyleEx | ulExStyle, 
+                             _m_ulStyle | ulStyle,
+                             /*WS_EX_CLIENTEDGE | WS_EX_APPWINDOW*/_m_ulStyleEx | ulExStyle,
                              (LPVOID)this);
     xCHECK_RET(FALSE == _m_bRes, FALSE);
 
@@ -96,15 +90,15 @@ BOOL CxWindowImpl::bCreate(INT iID, HWND hParent, const tString &csText,
 }
 //---------------------------------------------------------------------------
 //TODO: - bCreateRes
-BOOL CxWindowImpl::bCreateRes(INT iID, HWND hParent) { 
+BOOL CxWindowImpl::bCreateRes(INT iID, HWND hParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
     /*DEBUG*///xASSERT_RET(NULL != hParent, FALSE);
 
-    _m_bRes = CxWindowImpl::bCreate(iID, hParent, 
-                                    CxResources::sGetText    (iID), 
-                                    CxResources::iGetLeft    (iID), CxResources::iGetTop   (iID), 
-                                    CxResources::iGetWidth   (iID), CxResources::iGetHeight(iID), 
-                                    CxResources::ulGetStyle  (iID), 
+    _m_bRes = CxWindowImpl::bCreate(iID, hParent,
+                                    CxResources::sGetText    (iID),
+                                    CxResources::iGetLeft    (iID), CxResources::iGetTop   (iID),
+                                    CxResources::iGetWidth   (iID), CxResources::iGetHeight(iID),
+                                    CxResources::ulGetStyle  (iID),
                                     CxResources::ulGetStyleEx(iID));
     xCHECK_RET(FALSE == _m_bRes, FALSE);
 
@@ -115,7 +109,7 @@ BOOL CxWindowImpl::bCreateRes(INT iID, HWND hParent) {
 BOOL CxWindowImpl::bShowModal() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, NULL);
 
-    MSG msgMsg = {0};   
+    MSG msgMsg = {0};
 
     _m_bRes = bShow(SW_SHOW);
     xCHECK_RET(FALSE == _m_bRes, FALSE);
@@ -147,14 +141,14 @@ BOOL CxWindowImpl::bShowModal() {
 //---------------------------------------------------------------------------
 //TODO: Карта сообщений
 xBEGIN_MSG_MAP(CxWindowImpl)
-    ////xMSG(WM_CREATE,  vOnCreate)    
+    ////xMSG(WM_CREATE,  vOnCreate)
     ////xMSG(WM_PAINT,   vOnPaint);
     ////xMSG(WM_COMMAND, vOnCommand);
     ////xMSG(WM_NOTIFY,  vOnNotify);
     ////xMSG(WM_SIZE,    vOnSize);
-    ////xMSG(WM_CLOSE,   vOnClose); 
+    ////xMSG(WM_CLOSE,   vOnClose);
     ////xMSG(WM_DESTROY, vOnDestroy);
-    
+
     xMSG(WM_NULL                        , vOnNull)
     xMSG(WM_CREATE                      , vOnCreate)
     xMSG(WM_DESTROY                     , vOnDestroy)
@@ -182,7 +176,7 @@ xBEGIN_MSG_MAP(CxWindowImpl)
     xMSG(WM_SYSCOLORCHANGE              , vOnSysColorChange)
     xMSG(WM_SHOWWINDOW                  , vOnShowWindow)
     xMSG(WM_WININICHANGE                , vOnWininiChange)
-    
+
 #if(WINVER >= 0x0400)
     xMSG(WM_SETTINGCHANGE               , vOnSettingChange)
 #endif /* WINVER >= 0x0400 */
@@ -212,7 +206,7 @@ xBEGIN_MSG_MAP(CxWindowImpl)
     xMSG(WM_GETHOTKEY                   , vOnGetHotKey)
     xMSG(WM_QUERYDRAGICON               , vOnQueryDragIcon)
     xMSG(WM_COMPAREITEM                 , vOnCompareItem)
-    
+
 #if(WINVER >= 0x0500)
 #ifndef _WIN32_WCE
     xMSG(WM_GETOBJECT                   , vOnGetObject)
@@ -226,7 +220,7 @@ xBEGIN_MSG_MAP(CxWindowImpl)
     xMSG(WM_POWER                       , vOnPower)
     xMSG(WM_COPYDATA                    , vOnCopyData)
     xMSG(WM_CANCELJOURNAL               , vOnCancelJournal)
-    
+
 #if(WINVER >= 0x0400)
     xMSG(WM_NOTIFY                      , vOnNotify)
     xMSG(WM_INPUTLANGCHANGEREQUEST      , vOnInputLangChangeRequest)
@@ -250,7 +244,7 @@ xBEGIN_MSG_MAP(CxWindowImpl)
     ////xMSG(WM_NCPAINT                     , vOnNcPaint)
     ////xMSG(WM_NCACTIVATE                  , vOnNcActivate)
     xMSG(WM_GETDLGCODE                  , vOnGetDlgCode)
-    
+
 #ifndef _WIN32_WCE
     xMSG(WM_SYNCPAINT                   , vOnSyncPaint)
 #endif
@@ -289,7 +283,7 @@ xBEGIN_MSG_MAP(CxWindowImpl)
     ////xMSG(WM_SYSKEYUP                    , vOnSysKeyUp)
     ////xMSG(WM_SYSCHAR                     , vOnSysChar)
     ////xMSG(WM_SYSDEADCHAR                 , vOnSysDeadChar)
-    
+
 #if(_WIN32_WINNT >= 0x0501)
     xMSG(WM_UNICHAR                     , vOnUniChar)
     xMSG(WM_KEYLAST                     , vOnKeyLast)
@@ -315,7 +309,7 @@ xBEGIN_MSG_MAP(CxWindowImpl)
     xMSG(WM_MENUSELECT                  , vOnMenuSelect)
     xMSG(WM_MENUCHAR                    , vOnMenuChar)
     xMSG(WM_ENTERIDLE                   , vOnEnterIdle)
-    
+
 #if(WINVER >= 0x0500)
 #ifndef _WIN32_WCE
     xMSG(WM_MENURBUTTONUP               , vOnMenuRButtonUp)
@@ -353,7 +347,7 @@ xBEGIN_MSG_MAP(CxWindowImpl)
     xMSG(WM_MBUTTONDOWN                 , vOnMButtonDown)
     xMSG(WM_MBUTTONUP                   , vOnMButtonUp)
     xMSG(WM_MBUTTONDBLCLK               , vOnMButtonDblClk)
-    
+
 #if (_WIN32_WINNT >= 0x0400) || (_WIN32_WINDOWS > 0x0400)
     xMSG(WM_MOUSEWHEEL                  , vOnMouseWheel)
 #endif
@@ -368,7 +362,7 @@ xBEGIN_MSG_MAP(CxWindowImpl)
     xMSG(WM_MOUSEHWHEEL                 , vOnMouseHWheel)
 #endif
 
-    xMSG(WM_MOUSELAST                   , vOnMouseLast) 
+    xMSG(WM_MOUSELAST                   , vOnMouseLast)
     xMSG(WM_PARENTNOTIFY                , vOnParentNotify)
     xMSG(WM_ENTERMENULOOP               , vOnEnterMenuLoop)
     xMSG(WM_EXITMENULOOP                , vOnExitMenuLoop)
@@ -504,22 +498,22 @@ xBEGIN_MSG_MAP(CxWindowImpl)
 xEND_MSG_MAP(CxWindow)
 //---------------------------------------------------------------------------
 //TODO: - vOnNull
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNull                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCreate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCreate                       (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDestroy
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDestroy                      (WPARAM wParam, LPARAM lParam) {
     LOG();
-        
+
     _m_bIsDestroyed = TRUE;
 
     if (NULL == _m_hParentWnd) {    //TODO: а если у главного окна есть родитель?
@@ -535,7 +529,7 @@ VOID CxWindowImpl::vOnDestroy                      (WPARAM wParam, LPARAM lParam
     _m_bRes = ::EnableWindow(_m_hParentWnd, TRUE);
     /*DEBUG*///--xASSERT_DO(FALSE != _m_bRes, return);
 
-    hRes = ::SetActiveWindow(_m_hParentWnd); 
+    hRes = ::SetActiveWindow(_m_hParentWnd);
     /*DEBUG*///--xASSERT_DO(NULL != hRes, return);
 
     _m_bRes = ::UpdateWindow(_m_hParentWnd);
@@ -546,70 +540,70 @@ VOID CxWindowImpl::vOnDestroy                      (WPARAM wParam, LPARAM lParam
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMove
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMove                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSize
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSize                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnActivate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnActivate                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSetFocus
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSetFocus                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnKillFocus
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnKillFocus                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnEnable
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnEnable                       (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSetreDraw
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSetreDraw                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSetText
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSetText                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnGetText
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetText                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnGetTextlength
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetTextlength                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPaint
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPaint                        (WPARAM wParam, LPARAM lParam) {
     //LOG();
-    
+
     PAINTSTRUCT ps  = {0};
     HDC         hdc = NULL;
 
@@ -619,7 +613,7 @@ VOID CxWindowImpl::vOnPaint                        (WPARAM wParam, LPARAM lParam
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnClose
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnClose                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 
@@ -630,19 +624,19 @@ VOID CxWindowImpl::vOnClose                        (WPARAM wParam, LPARAM lParam
 #ifndef _WIN32_WCE
 //---------------------------------------------------------------------------
 //TODO: - vOnQueryEndSession
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnQueryEndSession              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnQueryOpen
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnQueryOpen                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnEndSession
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnEndSession                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -651,31 +645,31 @@ VOID CxWindowImpl::vOnEndSession                   (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnQuit
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnQuit                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnEraseBkGnd
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnEraseBkGnd                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSysColorChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSysColorChange               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnShowWindow
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnShowWindow                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnWininiChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnWininiChange                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -684,7 +678,7 @@ VOID CxWindowImpl::vOnWininiChange                 (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnSettingChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSettingChange                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -693,161 +687,161 @@ VOID CxWindowImpl::vOnSettingChange                (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnDevModeChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDevModeChange                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnActivateApp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnActivateApp                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnFontChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnFontChange                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnTimeChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnTimeChange                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCancelMode
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCancelMode                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSetCursor
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSetCursor                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMouseActivate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMouseActivate                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnChildActivate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnChildActivate                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnQueueSync
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnQueueSync                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnGetMinMaxInfo
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetMinMaxInfo                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPaintIcon
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPaintIcon                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnIconEraseBkGnd
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnIconEraseBkGnd               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNextDlgCtl
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNextDlgCtl                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSpoolerStatus
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSpoolerStatus                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDrawItem
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDrawItem                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMeasureItem
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMeasureItem                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDeleteItem
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDeleteItem                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnVKeyToItem
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnVKeyToItem                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnXXXXXXXXX
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCharToItem                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSetFont
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSetFont                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnGetFont
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetFont                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSetHotKey
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSetHotKey                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnGetHotKey
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetHotKey                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnQueryDragIcon
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnQueryDragIcon                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCompareItem
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCompareItem                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
-    
+
 #if(WINVER >= 0x0500)
 #ifndef _WIN32_WCE
 //---------------------------------------------------------------------------
 //TODO: - vOnGetObject
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetObject                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -857,43 +851,43 @@ VOID CxWindowImpl::vOnGetObject                    (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnCompacting
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCompacting                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCommNotify
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCommNotify                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }  /* no longer suported */
 //---------------------------------------------------------------------------
 //TODO: - vOnWindowPosChanging
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnWindowPosChanging            (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnWindowPosChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnWindowPosChanged             (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPower
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPower                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCopyData
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCopyData                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCancelJournal
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCancelJournal                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -902,79 +896,79 @@ VOID CxWindowImpl::vOnCancelJournal                (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnNotify
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNotify                       (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnInputLangChangeRequest
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnInputLangChangeRequest       (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnInputLangChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnInputLangChange              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnTCard
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnTCard                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnHelp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnHelp                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnUserChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnUserChanged                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNotifyFormat
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNotifyFormat                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnContextMenu
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnContextMenu                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnStyleChanging
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnStyleChanging                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnStyleChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnStyleChanged                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDisplayChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDisplayChange                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnGetIcon
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetIcon                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSetIcon
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSetIcon                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -983,51 +977,51 @@ VOID CxWindowImpl::vOnSetIcon                      (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnNcCreate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcCreate                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcDestroy
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcDestroy                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcCalcSize
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcCalcSize                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcHitTest
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcHitTest                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcPaint
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcPaint                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcActivate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcActivate                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnGetDlgCode
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetDlgCode                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
-    
+
 #ifndef _WIN32_WCE
 //---------------------------------------------------------------------------
 //TODO: - vOnSyncPaint
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSyncPaint                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1036,61 +1030,61 @@ VOID CxWindowImpl::vOnSyncPaint                    (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnNcMouseMove
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcMouseMove                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcLButtonDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcLButtonDown               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcLButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcLButtonUp                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcLButtonDblClk
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcLButtonDblClk              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcRButtonDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcRButtonDown                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcRButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcRButtonUp                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcRButtonDblClk
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcRButtonDblClk              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcMButtonDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcMButtonDown                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcMButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcMButtonUp                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcMButtonDblClk
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcMButtonDblClk              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1099,19 +1093,19 @@ VOID CxWindowImpl::vOnNcMButtonDblClk              (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0500)
 //---------------------------------------------------------------------------
 //TODO: - vOnNCxButtonDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNCxButtonDown                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNCxButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNCxButtonUp                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNCxButtonDblClk
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNCxButtonDblClk              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1121,7 +1115,7 @@ VOID CxWindowImpl::vOnNCxButtonDblClk              (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0501)
 //---------------------------------------------------------------------------
 //TODO: - vOnInputDeviceChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnInputDeviceChange            (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1131,7 +1125,7 @@ VOID CxWindowImpl::vOnInputDeviceChange            (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0501)
 //---------------------------------------------------------------------------
 //TODO: - vOnInput
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnInput                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1140,55 +1134,55 @@ VOID CxWindowImpl::vOnInput                        (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnKeyFirst
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnKeyFirst                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnKeyDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnKeyDown                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnKeyUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnKeyUp                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnChar
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnChar                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDeadChar
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDeadChar                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSysKeyDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSysKeyDown                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSysKeyUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSysKeyUp                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSysChar
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSysChar                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSysDeadChar
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSysDeadChar                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1197,20 +1191,20 @@ VOID CxWindowImpl::vOnSysDeadChar                  (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0501)
 //---------------------------------------------------------------------------
 //TODO: - vOnUniChar
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnUniChar                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnKeyLast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnKeyLast                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 #else
 //---------------------------------------------------------------------------
 //TODO: - vOnKeyLast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnKeyLast                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1220,25 +1214,25 @@ VOID CxWindowImpl::vOnKeyLast                      (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnImeStartComposition
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeStartComposition          (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeEndComposition
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeEndComposition            (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeComposition
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeComposition               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeKeyLast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeKeyLast                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1247,18 +1241,18 @@ VOID CxWindowImpl::vOnImeKeyLast                   (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnInitdialog
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnInitdialog                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCommand
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCommand                      (WPARAM wParam, LPARAM lParam) {
     LOG();
-        
+
     for (UINT i = 0; i < m_vecpContainer.uiGetSize(); ++ i) {
-        INT iId1 = LOWORD(wParam);    
+        INT iId1 = LOWORD(wParam);
         INT iId2 = m_vecpContainer.pwndGet(i)->iGetID();
 
         if (iId1 != iId2) {
@@ -1279,7 +1273,7 @@ VOID CxWindowImpl::vOnCommand                      (WPARAM wParam, LPARAM lParam
         }
 
         //-------------------------------------
-        //уведомления для CxButton, CxGroupBox, CxCheckBox, CxRadioButton 
+        //уведомления для CxButton, CxGroupBox, CxCheckBox, CxRadioButton
         if (xCXBUTTON_CONTROL_CLASS == m_vecpContainer.pwndGet(i)->sGetClassName()) {
             switch (HIWORD(wParam))    {
                 case BN_CLICKED:    m_vecpContainer.pwndGet(i)->vOnClick    ();    break;
@@ -1294,55 +1288,55 @@ VOID CxWindowImpl::vOnCommand                      (WPARAM wParam, LPARAM lParam
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSysCommand
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSysCommand                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnTimer
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnTimer                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnHScroll
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnHScroll                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnVScroll
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnVScroll                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnInitMenu
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnInitMenu                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnInitMenuPopup
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnInitMenuPopup                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMenuSelect
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMenuSelect                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMenuChar
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMenuChar                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnEnterIdle
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnEnterIdle                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1352,31 +1346,31 @@ VOID CxWindowImpl::vOnEnterIdle                    (WPARAM wParam, LPARAM lParam
 #ifndef _WIN32_WCE
 //---------------------------------------------------------------------------
 //TODO: - vOnMenuRButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMenuRButtonUp                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMenuDrag
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMenuDrag                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMenuGetObject
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMenuGetObject                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnUnInitMenuPopup
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnUnInitMenuPopup              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMenuCommand
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMenuCommand                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1386,19 +1380,19 @@ VOID CxWindowImpl::vOnMenuCommand                  (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0500)
 //---------------------------------------------------------------------------
 //TODO: - vOnChangeUiState
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnChangeUiState                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnUpdateUiState
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnUpdateUiState                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnQueryUiState
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnQueryUiState                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1411,109 +1405,109 @@ VOID CxWindowImpl::vOnQueryUiState                 (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnCtlColorMsgBox
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCtlColorMsgBox               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCtlColorEdit
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCtlColorEdit                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCtlColorListbox
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCtlColorListbox              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCtlColorBtn
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCtlColorBtn                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCtlColorDlg
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCtlColorDlg                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCtlColorScrollBar
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCtlColorScrollBar            (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCtlColorStatic
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCtlColorStatic               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMouseFirst
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMouseFirst                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMouseMove
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMouseMove                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnLButtonDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnLButtonDown                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnLButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnLButtonUp                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnLButtonDblClk
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnLButtonDblClk                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnRButtonDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnRButtonDown                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnRButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnRButtonUp                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnRButtonDblClk
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnRButtonDblClk                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMButtonDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMButtonDown                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMButtonUp                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMButtonDblClk
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMButtonDblClk                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1522,7 +1516,7 @@ VOID CxWindowImpl::vOnMButtonDblClk                (WPARAM wParam, LPARAM lParam
 #if (_WIN32_WINNT >= 0x0400) || (_WIN32_WINDOWS > 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnMouseWheel
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMouseWheel                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1532,19 +1526,19 @@ VOID CxWindowImpl::vOnMouseWheel                   (WPARAM wParam, LPARAM lParam
 #if (_WIN32_WINNT >= 0x0500)
 //---------------------------------------------------------------------------
 //TODO: - vOnXButtonDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnXButtonDown                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnXButtonUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnXButtonUp                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnXButtonDblClk
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnXButtonDblClk                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1554,7 +1548,7 @@ VOID CxWindowImpl::vOnXButtonDblClk                (WPARAM wParam, LPARAM lParam
 #if (_WIN32_WINNT >= 0x0600)
 //---------------------------------------------------------------------------
 //TODO: - vOnMouseHWheel
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMouseHWheel                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1563,25 +1557,25 @@ VOID CxWindowImpl::vOnMouseHWheel                  (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnMouseLast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMouseLast                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnParentNotify
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnParentNotify                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnEnterMenuLoop
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnEnterMenuLoop                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnExitMenuLoop
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnExitMenuLoop                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1590,25 +1584,25 @@ VOID CxWindowImpl::vOnExitMenuLoop                 (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnNextMenu
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNextMenu                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSizing
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSizing                       (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCaptureChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCaptureChanged               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMoving
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMoving                       (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1618,7 +1612,7 @@ VOID CxWindowImpl::vOnMoving                       (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnPowerBroadcast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPowerBroadcast               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1628,7 +1622,7 @@ VOID CxWindowImpl::vOnPowerBroadcast               (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnDeviceChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDeviceChange                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1637,91 +1631,91 @@ VOID CxWindowImpl::vOnDeviceChange                 (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiCreate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiCreate                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiDestroy
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiDestroy                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiActivate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiActivate                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiRestore
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiRestore                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiNext
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiNext                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiMaximize
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiMaximize                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiTile
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiTile                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiCascade
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiCascade                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiIconArrange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiIconArrange               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiGetActive
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiGetActive                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiSetMenu
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiSetMenu                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnEnterSizeMove
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnEnterSizeMove                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnExitSizeMove
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnExitSizeMove                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDropFiles
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDropFiles                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMdiRefreshMenu
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMdiRefreshMenu               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1730,37 +1724,37 @@ VOID CxWindowImpl::vOnMdiRefreshMenu               (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnImeSetContext
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeSetContext                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeNotify
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeNotify                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeControl
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeControl                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeCompositionFull
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeCompositionFull           (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeSelect
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeSelect                    (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeChar
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeChar                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1770,7 +1764,7 @@ VOID CxWindowImpl::vOnImeChar                      (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0500)
 //---------------------------------------------------------------------------
 //TODO: - vOnImeRequest
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeRequest                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1780,13 +1774,13 @@ VOID CxWindowImpl::vOnImeRequest                   (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnImeKeyDown
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeKeyDown                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnImeKeyUp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnImeKeyUp                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1796,13 +1790,13 @@ VOID CxWindowImpl::vOnImeKeyUp                     (WPARAM wParam, LPARAM lParam
 #if((_WIN32_WINNT >= 0x0400) || (WINVER >= 0x0500))
 //---------------------------------------------------------------------------
 //TODO: - vOnMouseHover
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMouseHover                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnMouseLeave
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnMouseLeave                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1812,13 +1806,13 @@ VOID CxWindowImpl::vOnMouseLeave                   (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0500)
 //---------------------------------------------------------------------------
 //TODO: - vOnNcMouseHover
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcMouseHover                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnNcMouseLeave
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnNcMouseLeave                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1828,19 +1822,19 @@ VOID CxWindowImpl::vOnNcMouseLeave                 (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0501)
 //---------------------------------------------------------------------------
 //TODO: - vOnWtsSessionChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnWtsSessionChange             (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnTabletFirst
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnTabletFirst                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnTabletLast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnTabletLast                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1849,115 +1843,115 @@ VOID CxWindowImpl::vOnTabletLast                   (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnCut
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCut                          (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnCopy
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnCopy                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPaste
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPaste                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnClear
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnClear                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnUndo
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnUndo                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnRenderFormat
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnRenderFormat                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnRenderAllFormats
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnRenderAllFormats             (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDestroyClipboard
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDestroyClipboard             (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDrawClipboard
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDrawClipboard                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPaintClipboard
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPaintClipboard               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnVScrollClipboard
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnVScrollClipboard             (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnSizeClipboard
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnSizeClipboard                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnAskCBFormatName
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnAskCBFormatName              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnChangeCBChain
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnChangeCBChain                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnHScrollClipboard
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnHScrollClipboard             (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnQueryNewPalette
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnQueryNewPalette              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPaletteIsChanging
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPaletteIsChanging            (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPaletteChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPaletteChanged               (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnHotKey
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnHotKey                       (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1966,13 +1960,13 @@ VOID CxWindowImpl::vOnHotKey                       (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnPrint
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPrint                        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPrintClient
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPrintClient                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1982,7 +1976,7 @@ VOID CxWindowImpl::vOnPrintClient                  (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0500)
 //---------------------------------------------------------------------------
 //TODO: - vOnAppCommand
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnAppCommand                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -1992,7 +1986,7 @@ VOID CxWindowImpl::vOnAppCommand                   (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0501)
 //---------------------------------------------------------------------------
 //TODO: - vOnThemeChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnThemeChanged                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -2002,7 +1996,7 @@ VOID CxWindowImpl::vOnThemeChanged                 (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0501)
 //---------------------------------------------------------------------------
 //TODO: - vOnClipboardUpdate
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnClipboardUpdate              (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -2012,25 +2006,25 @@ VOID CxWindowImpl::vOnClipboardUpdate              (WPARAM wParam, LPARAM lParam
 #if(_WIN32_WINNT >= 0x0600)
 //---------------------------------------------------------------------------
 //TODO: - vOnDwmCompositionChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDwmCompositionChanged        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDwmNcRenderingChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDwmNcRenderingChanged        (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDwmColorizationColorChanged
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDwmColorizationColorChanged  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnDwmWindowMaximizedChange
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnDwmWindowMaximizedChange     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -2040,7 +2034,7 @@ VOID CxWindowImpl::vOnDwmWindowMaximizedChange     (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0600)
 //---------------------------------------------------------------------------
 //TODO: - vOnGetTitleBarInfoEx
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnGetTitleBarInfoEx            (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -2050,25 +2044,25 @@ VOID CxWindowImpl::vOnGetTitleBarInfoEx            (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnHandHeldFirst
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnHandHeldFirst                (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnHandHeldFast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnHandHeldFast                 (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnAfxFirst
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnAfxFirst                     (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnAfxLast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnAfxLast                      (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -2077,13 +2071,13 @@ VOID CxWindowImpl::vOnAfxLast                      (WPARAM wParam, LPARAM lParam
 
 //---------------------------------------------------------------------------
 //TODO: - vOnPenWinFirst
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPenWinFirst                  (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
 //---------------------------------------------------------------------------
 //TODO: - vOnPenWinLast
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnPenWinLast                   (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -2092,7 +2086,7 @@ VOID CxWindowImpl::vOnPenWinLast                   (WPARAM wParam, LPARAM lParam
 #if(WINVER >= 0x0400)
 //---------------------------------------------------------------------------
 //TODO: - vOnApp
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnApp                          (WPARAM wParam, LPARAM lParam) {
     LOG();
 }
@@ -2106,7 +2100,7 @@ VOID CxWindowImpl::vOnApp                          (WPARAM wParam, LPARAM lParam
  *
  * Private Window Messages Start Here:
  */
-/*virtual*/ 
+/*virtual*/
 VOID CxWindowImpl::vOnUser                         (WPARAM wParam, LPARAM lParam) {
     LOG();
 }

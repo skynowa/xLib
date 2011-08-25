@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMsgBoxT
-* Description: message box
-* File name:   CxMsgBoxT.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.04.2009 10:24:49
-*
-*****************************************************************************/
+/**
+ * \file  CxMsgBoxT.h
+ * \brief message box
+ */
 
 
 #ifndef xLib_Gui_CxMsgBoxTH
@@ -14,8 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/Win/xCommon.h>
 //---------------------------------------------------------------------------
-class CxMsgBoxT : 
-    public CxNonCopyable 
+class CxMsgBoxT :
+    public CxNonCopyable
 {
     public:
         enum EModalResult {

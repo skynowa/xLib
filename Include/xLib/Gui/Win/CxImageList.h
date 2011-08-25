@@ -1,16 +1,11 @@
-/****************************************************************************
-* Class name:  CxImageList
-* Description: список картинок
-* File name:   CxImageList.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.07.2009 12:58:27
-*
-*****************************************************************************/
+/**
+ * \file  CxImageList.h
+ * \brief image list
+ */
 
 
 #ifndef XLib_Gui_CxImageListH
-#define XLib_Gui_CxImageListH       
+#define XLib_Gui_CxImageListH
 //---------------------------------------------------------------------------
 #include <xLib/Gui/xCommon.h>
 //---------------------------------------------------------------------------
@@ -21,17 +16,17 @@ class CxImageList : public CxNonCopyable {
 
         CxImageList();
         ~CxImageList();
-        
+
         //COM
         #if (xWINVER >= xWIN32_VISTA)
             HRESULT    lpCoCreateInstance (const IUnknown *pcunkOuter, REFIID riId, VOID **ppvParam);
         #endif //xWIN32_VISTA
-        
+
         #if (xWINVER >= xWIN32_VISTA)
             HRESULT    lpQueryInterface   (REFIID riId, VOID **ppvParam);
         #endif //xWIN32_VISTA
 
-        
+
         //создание/разрушение
         #if (xWINVER >= xWIN32_31)
             HIMAGELIST hCreate            (INT iWidth, INT iHeight, UINT uiFlags, INT iSize, INT iGrow);
@@ -42,8 +37,8 @@ class CxImageList : public CxNonCopyable {
         #if (xWINVER >= xWIN32_31)
             BOOL       bDestroy           ();
         #endif //xWIN32_31
-        
-        
+
+
         //действия
         #if (xWINVER >= xWIN32_31)
             INT        iAdd               (HBITMAP hBitmap, HBITMAP hBitmapMask);
@@ -63,8 +58,8 @@ class CxImageList : public CxNonCopyable {
         #if (xWINVER >= xWIN32_31)
             HIMAGELIST hMerge             (INT iIndex1, HIMAGELIST hImageList2, INT iIndex2, INT iLeft, INT iTop);
         #endif //xWIN32_31
-        
-        
+
+
         //чтение/запись
         #if (xWINVER >= xWIN32_31)
             HIMAGELIST hRead              (LPSTREAM pStream);
@@ -78,18 +73,18 @@ class CxImageList : public CxNonCopyable {
         #if (xWINVER >= xWIN32_VISTA)
             HRESULT    lpWriteEx          (ULONG ulFlags, LPSTREAM pStream);
         #endif //xWIN32_VISTA
-        
-        
+
+
         //перетаскивание
         #if (xWINVER >= xWIN32_31)
             BOOL       bBeginDrag         (INT iIndex, INT iLeft, INT iTop);
         #endif //xWIN32_31
         #if (xWINVER >= xWIN32_31)
             BOOL       bDragEnter         (HWND hwndLock, INT iLeft, INT iTop);
-        #endif //xWIN32_31        
+        #endif //xWIN32_31
         #if (xWINVER >= xWIN32_31)
             BOOL       bDragMove          (INT iLeft, INT iTop);
-        #endif //xWIN32_31        
+        #endif //xWIN32_31
         #if (xWINVER >= xWIN32_31)
             BOOL       bDragShowNolock    (BOOL bFlag);
         #endif //xWIN32_31
@@ -101,11 +96,11 @@ class CxImageList : public CxNonCopyable {
         #endif //xWIN32_95
         #if (xWINVER >= xWIN32_31)
             BOOL       bDragLeave         (HWND hwndLock);
-        #endif //xWIN32_31        
+        #endif //xWIN32_31
         #if (xWINVER >= xWIN32_31)
             BOOL       bEndDrag           ();
         #endif //xWIN32_31
-        
+
 
         //рисование
         #if (xWINVER >= xWIN32_31)
@@ -117,8 +112,8 @@ class CxImageList : public CxNonCopyable {
         #if (xWINVER >= xWIN32_31)
             BOOL       bDrawIndirect      (IMAGELISTDRAWPARAMS *pimldpImageListDrawParams);
         #endif //xWIN32_31
-        
-        
+
+
         //Bitmap/Icon
         #if (xWINVER >= xWIN32_31)
             HIMAGELIST hLoadImage         (HINSTANCE hInstance, LPCTSTR pcszImage, INT iWidth, INT iGrow, COLORREF crMask, UINT uiType, UINT uiFlags);
@@ -137,7 +132,7 @@ class CxImageList : public CxNonCopyable {
         #endif //xWIN32_31
         #if (xWINVER >= xWIN32_31)
             HICON      hGetIcon           (INT iIndex, UINT uiFlags);
-        #endif //xWIN32_31    
+        #endif //xWIN32_31
         #if (xWINVER >= xWIN32_31)
             INT        iReplaceIcon       (INT iIndex, HICON hIcon);
         #endif //xWIN32_31
@@ -148,7 +143,7 @@ class CxImageList : public CxNonCopyable {
             BOOL       bSetIconSize       (INT iWidth, INT iHeight);
         #endif //xWIN32_31
 
-        
+
         //цвет
         #if (xWINVER >= xWIN32_31)
             COLORREF   crGetBkColor       ();

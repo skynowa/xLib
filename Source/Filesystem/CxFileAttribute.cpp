@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxFileAttribute
-* Description: file attribute
-* File name:   CxFileAttribute.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.04.2010 13:37:54
-*
-*****************************************************************************/
+/**
+ * \file  CxFileAttribute.cpp
+ * \brief file attributes
+ */
 
 
 #include <xLib/Filesystem/CxFileAttribute.h>
@@ -22,7 +17,7 @@
 /*static*/
 BOOL
 CxFileAttribute::bIsExists(
-    const tString    &csFilePath,
+    const std::tstring    &csFilePath,
     const EAttribute  cfaValue
 )
 {
@@ -44,7 +39,7 @@ CxFileAttribute::bIsExists(
 /*static*/
 CxFileAttribute::EAttribute
 CxFileAttribute::atGet(
-    const tString &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/// csFilePath - n/a
@@ -73,7 +68,7 @@ CxFileAttribute::atGet(
 /*static*/
 BOOL
 CxFileAttribute::bSet(
-    const tString    &csFilePath,
+    const std::tstring    &csFilePath,
     const EAttribute  cfaValue
 )
 {
@@ -95,7 +90,7 @@ CxFileAttribute::bSet(
 /*static*/
 BOOL
 CxFileAttribute::bAdd(
-    const tString    &csFilePath,
+    const std::tstring    &csFilePath,
     const EAttribute  cfaValue
 )
 {
@@ -109,7 +104,7 @@ CxFileAttribute::bAdd(
 /*static*/
 BOOL
 CxFileAttribute::bRemove(
-    const tString    &csFilePath,
+    const std::tstring    &csFilePath,
     const EAttribute  cfaValue
 )
 {
@@ -123,7 +118,7 @@ CxFileAttribute::bRemove(
 /*static*/
 BOOL
 CxFileAttribute::bModify(
-    const tString    &csFilePath,
+    const std::tstring    &csFilePath,
     const EAttribute  cfaRemoveValue,
     const EAttribute  cfaAddValue
 )
@@ -152,7 +147,7 @@ CxFileAttribute::bModify(
 /*static*/
 BOOL
 CxFileAttribute::bClear(
-    const tString &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMechanism
-* Description: Pkcs11 mechanism
-* File name:   CxMechanism.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:09:28
-*
-*****************************************************************************/
+/**
+ * \file  CxMechanism.cpp
+ * \brief Pkcs11 mechanism
+ */
 
 
 #include <xLib/Pkcs11/Win/CxMechanism.h>

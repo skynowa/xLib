@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxPushButton
-* Description: 
-* File name:   CxPushButton.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.07.2009 21:38:38
-*
-*****************************************************************************/
+/**
+ * \file  CxPushButton.h
+ * \brief push button
+ */
 
 
 #ifndef XLib_Gui_CxPushButtonH
@@ -24,9 +19,9 @@ class CxPushButton: public CxButtonBase {
         enum ECheckState {
             csUknown     = - 1,
             csChecked     = BST_CHECKED,
-            csUnchecked     = BST_UNCHECKED,    
-        };    
-        
+            csUnchecked     = BST_UNCHECKED,
+        };
+
         //стиль (изображение/текст)
         enum EViewStyle {
             vsText   = BS_TEXT,
@@ -41,19 +36,19 @@ class CxPushButton: public CxButtonBase {
             itCursor   = IMAGE_CURSOR,
             itMetaFile = IMAGE_ENHMETAFILE
         };
-        
+
                     CxPushButton (BOOL bRadioButtonLike);
         virtual    ~CxPushButton ();
-            
+
         BOOL        bCreateRes   (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
         //сообщения
-        BOOL        bSetViewStyle(EViewStyle vsViewStyle);    
+        BOOL        bSetViewStyle(EViewStyle vsViewStyle);
         BOOL        bSetImage    (EImageType itImageType, HANDLE hImage);
-        
-        ECheckState csGetState   ();                            
-        BOOL        bSetState    (CxPushButton::ECheckState csCheckState);    
+
+        ECheckState csGetState   ();
+        BOOL        bSetState    (CxPushButton::ECheckState csCheckState);
 
         //-------------------------------------
         //события

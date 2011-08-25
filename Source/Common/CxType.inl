@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxType
-* Description: type info
-* File name:   CxType.inl
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     29.07.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxType.inl
+ * \brief type info
+ */
 
 
 #if defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32)
@@ -22,14 +17,14 @@
 //---------------------------------------------------------------------------
 template<class T>
 /*static*/
-tString
+std::tstring
 CxType::sGetRawName(
     const T &cObjectT
 )
 {
     /*DEBUG*/// n/a
 
-    tString sRes;
+    std::tstring sRes;
 
     std::string asClassName;
 
@@ -42,14 +37,14 @@ CxType::sGetRawName(
 //---------------------------------------------------------------------------
 template<class T>
 /*static*/
-tString
+std::tstring
 CxType::sGetName(
     const T &cObjectT
 )
 {
     /*DEBUG*/// n/a
 
-    tString sRes;
+    std::tstring sRes;
 
     std::string asClassName;
 

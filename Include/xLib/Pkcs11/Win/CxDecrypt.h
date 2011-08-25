@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDecrypt
-* Description: Pkcs11 decrypt
-* File name:   CxDecrypt.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:11:10
-*
-*****************************************************************************/
+/**
+ * \file  CxDecrypt.h
+ * \brief Pkcs11 decrypt
+ */
 
 
 #ifndef xLib_Pkcs11_CxDecryptH
@@ -41,7 +36,7 @@ class CxDecrypt :
     		///< continues a multiple-part decryption and verify operation
 
         //Utils
-        BOOL                 bMakeFile    (const tString &csInFilePath, const tString &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        BOOL                 bMakeFile    (const std::tstring &csInFilePath, const std::tstring &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
     		///< make file
 
     private:

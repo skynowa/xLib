@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxWaitableTimer
-* Description: waitable timer
-* File name:   CxWaitableTimer.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.05.2009 17:07:46
-*
-*****************************************************************************/
+/**
+ * \file  CxWaitableTimer.cpp
+ * \brief waitable timer
+ */
 
 
 #include <xLib/Sync/CxWaitableTimer.h>
@@ -44,7 +39,7 @@ CxWaitableTimer::hGetHandle() const {
 BOOL
 CxWaitableTimer::bCreate(
     const BOOL                   bManualReset,
-    const tString               &csName,
+    const std::tstring               &csName,
     const LPSECURITY_ATTRIBUTES  pcsaTimerAttributes
 )
 {
@@ -63,7 +58,7 @@ CxWaitableTimer::bCreate(
 //DONE: bOpen ()
 BOOL
 CxWaitableTimer::bOpen(
-    const tString &csName,
+    const std::tstring &csName,
     const ULONG    culDesiredAccess,
     const BOOL     cbInheritHandle
 )

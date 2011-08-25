@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxListBox
-* Description: 
-* File name:   CxListBox.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.07.2009 22:59:33
-*
-*****************************************************************************/
+/**
+ * \file  CxListBox.h
+ * \brief list box
+ */
 
 
 #ifndef XLib_Gui_CxListBoxH

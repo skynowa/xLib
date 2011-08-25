@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  xCommon_Linux.h
-* Description: Linux common header for xLib
-* File name:   xCommon_Linux.h.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.12.2010 23:26:11
-*
-*****************************************************************************/
+/**
+ * \file  xCommon_Linux.h
+ * \brief Linux common header for xLib
+ */
 
 
 //----------------------------------------------------------------------------------------------------

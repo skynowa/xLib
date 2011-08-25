@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDebugger
-* Description: debugger
-* File name:   CxDebugger.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.11.2009 16:39:23
-*
-*****************************************************************************/
+/**
+ * \file  CxDebugger.cpp
+ * \brief debugger
+ */
 
 
 #include <xLib/Debug/CxDebugger.h>
@@ -36,7 +31,7 @@
 *****************************************************************************/
 
 BOOL    CxDebugger::_ms_bIsEnabled = TRUE;
-tString CxDebugger::_ms_sLogPath;
+std::tstring CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
 //DONE: bGetEnabled (is debugging enabled)
@@ -111,7 +106,7 @@ CxDebugger::bBreak() {
 /*static*/
 BOOL
 CxDebugger::bSetLogPath(
-    const tString &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/
@@ -123,7 +118,7 @@ CxDebugger::bSetLogPath(
 //---------------------------------------------------------------------------
 //DONE: sGetLogPath (get log file path)
 /*static*/
-tString
+std::tstring
 CxDebugger::sGetLogPath() {
     /*DEBUG*/
 
@@ -172,7 +167,7 @@ CxDebugger::bTrace(
     /*DEBUG*/
     /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
-    tString sRes;
+    std::tstring sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszFormat);
@@ -195,7 +190,7 @@ CxDebugger::bTrace(
 /*static*/
 BOOL
 CxDebugger::bTrace(
-    const tString &csMsg
+    const std::tstring &csMsg
 )
 {
     /*DEBUG*/
@@ -549,7 +544,7 @@ CxDebugger::_bLoggingPlain(
 
     //--------------------------------------------------
     //get log file path
-    tString sFilePath;
+    std::tstring sFilePath;
 
     if (true == sGetLogPath().empty()) {
         sFilePath = CxPath::sSetExt(CxPath::sGetExe(), xT("debug"));
@@ -563,7 +558,7 @@ CxDebugger::_bLoggingPlain(
     xCHECK_RET(NULL == pFile, FALSE);
 
     try {
-        const tString csMsg = CxString::sFormat(
+        const std::tstring csMsg = CxString::sFormat(
             xT("\n")
             xT("####################################################################################################\n")
             xT("%s\n")

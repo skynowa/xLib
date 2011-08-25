@@ -1,12 +1,7 @@
-﻿/****************************************************************************
-* Class name:  CxImage
-* Description: GDI+ image
-* File name:   CxImage.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.05.2010 17:10:16
-*
-*****************************************************************************/
+﻿/**
+ * \file  CxImage.cpp
+ * \brief GDI+ image
+ */
 
 
 #include <xLib/Gui/Win/GDI+/CxImage.h>
@@ -38,9 +33,9 @@ CxImage::~CxImage() {
 }
 //---------------------------------------------------------------------------
 //TODO: bLoad ()
-BOOL 
+BOOL
 CxImage::bLoad(
-    const tString &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
@@ -61,7 +56,7 @@ CxImage::bLoad(
 }
 //---------------------------------------------------------------------------
 //TODO: bLoad ()
-BOOL 
+BOOL
 CxImage::bLoad(
     IStream *pisStream
 )
@@ -79,9 +74,9 @@ CxImage::bLoad(
 }
 //---------------------------------------------------------------------------
 //TODO: bSave ()
-BOOL 
+BOOL
 CxImage::bSave(
-    const tString &csFilePath, 
+    const std::tstring &csFilePath,
     EEncoderType etType
 )
 {
@@ -89,7 +84,7 @@ CxImage::bSave(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// etType - n/a
 
-    tString sEncoderType;
+    std::tstring sEncoderType;
     switch (etType) {
         case etBmp:        { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
@@ -116,9 +111,9 @@ CxImage::bSave(
 }
 //---------------------------------------------------------------------------
 //TODO: bSave ()
-BOOL 
+BOOL
 CxImage::bSave(
-    IStream *pisStream, 
+    IStream *pisStream,
     EEncoderType etType
 )
 {
@@ -126,7 +121,7 @@ CxImage::bSave(
     /*DEBUG*/xASSERT_RET(NULL != pisStream,    FALSE);
     /*DEBUG*/// etType - n/a
 
-    tString sEncoderType;
+    std::tstring sEncoderType;
     switch (etType) {
         case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
@@ -150,9 +145,9 @@ CxImage::bSave(
 }
 //---------------------------------------------------------------------------
 //TODO: bDraw ()
-BOOL 
+BOOL
 CxImage::bDraw(
-    HDC         hDC, 
+    HDC         hDC,
     const RECT &crcRect
 )
 {
@@ -173,12 +168,12 @@ CxImage::bDraw(
 }
 //---------------------------------------------------------------------------
 //TODO: bDraw ()
-BOOL 
+BOOL
 CxImage::bDraw(
-    HDC hDC, 
-    INT iLeft, 
-    INT iTop, 
-    INT iWidth, 
+    HDC hDC,
+    INT iLeft,
+    INT iTop,
+    INT iWidth,
     INT iHeight
 )
 {
@@ -202,7 +197,7 @@ CxImage::bDraw(
 //---------------------------------------------------------------------------
 //TODO: bClear ()
 /*
-VOID 
+VOID
 Example_Clear(
     HDC hdc
 )
@@ -216,9 +211,9 @@ Example_Clear(
     graphics.Clear(blueColor);
 }
 */
-BOOL 
+BOOL
 CxImage::bClear(
-    HDC            hDC, 
+    HDC            hDC,
     Gdiplus::Color clBackGround
 )
 {
@@ -234,7 +229,7 @@ CxImage::bClear(
 }
 //---------------------------------------------------------------------------
 //TODO: bDestroy ()
-BOOL 
+BOOL
 CxImage::bDestroy() {
     /*DEBUG*/// _m_pimgImage - n/a
 
@@ -245,7 +240,7 @@ CxImage::bDestroy() {
 }
 //---------------------------------------------------------------------------
 //TODO: bIsLoaded ()
-BOOL 
+BOOL
 CxImage::bIsLoaded() {
     /*DEBUG*/// n/a
 
@@ -253,7 +248,7 @@ CxImage::bIsLoaded() {
 }
 //---------------------------------------------------------------------------
 //TODO: uiGetWidth ()
-UINT 
+UINT
 CxImage::uiGetWidth() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
 
@@ -261,7 +256,7 @@ CxImage::uiGetWidth() {
 }
 //---------------------------------------------------------------------------
 //TODO: uiGetHeight ()
-UINT 
+UINT
 CxImage::uiGetHeight() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
 
@@ -269,7 +264,7 @@ CxImage::uiGetHeight() {
 }
 //---------------------------------------------------------------------------
 //TODO: stGetLastStatus ()
-Gdiplus::Status 
+Gdiplus::Status
 CxImage::stGetLastStatus() {
     /*DEBUG*/// _m_pimgImage - n/a
 
@@ -277,14 +272,14 @@ CxImage::stGetLastStatus() {
 }
 //---------------------------------------------------------------------------
 //TODO: sGetLastStatus ()
-tString 
+std::tstring
 CxImage::sGetLastStatus(
     Gdiplus::Status stCode
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
 
-    tString sRes;
+    std::tstring sRes;
 
     switch (stCode) {
         case Gdiplus::Ok:                        { sRes = xT("Ok");                         }    break;
@@ -324,9 +319,9 @@ CxImage::sGetLastStatus(
 
 //---------------------------------------------------------------------------
 //TODO: _bGetEncoderClsid ()
-BOOL 
+BOOL
 CxImage::_bGetEncoderClsid(
-    const tString &csFormat, 
+    const std::tstring &csFormat,
     CLSID         *pcidClsid
 )
 {

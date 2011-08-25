@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCpuUsage
-* Description: cpu usage
-* File name:   CxCpuUsage.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     07.02.2011 21:57:45
-*
-*****************************************************************************/
+/**
+ * \file  CxCpuUsage.h
+ * \brief cpu usage
+ */
 
 
 #ifndef xLib_Common_Win_CxCpuUsageH

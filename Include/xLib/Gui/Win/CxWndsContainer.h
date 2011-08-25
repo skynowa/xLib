@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxWndsContainer
-* Description: контейнер для окон
-* File name:   CxWndsContainer.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     16.03.2010 15:42:54
-*
-*****************************************************************************/
+/**
+ * \file  CxWndsContainer.h
+ * \brief windows container
+ */
 
 
 #ifndef XLib_Gui_CxWndsContainerH

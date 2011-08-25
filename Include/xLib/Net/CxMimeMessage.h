@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMimeMessage
-* Description: MIME message (RFC 822)
-* File name:   CxMimeMessage.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.07.2009 19:09:16
-*
-*****************************************************************************/
+/**
+ * \file  CxMimeMessage.h
+ * \brief MIME message (RFC 822)
+ */
 
 
 #ifndef xLib_Net_CxMimeMessageH
@@ -23,12 +18,12 @@ class CxMimeMessage :
 					 CxMimeMessage   ();
 		virtual	   	~CxMimeMessage   ();
 
-		static BOOL  bParse          (const tString &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
-		static BOOL  bLoadFromRawFile(const tString &csFilePath);       //csFilePath - raw msg
-		static BOOL  bSaveToRawFile  (const tString &csFilePath);       //csFilePath - raw msg
+		static BOOL  bParse          (const std::tstring &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
+		static BOOL  bLoadFromRawFile(const std::tstring &csFilePath);       //csFilePath - raw msg
+		static BOOL  bSaveToRawFile  (const std::tstring &csFilePath);       //csFilePath - raw msg
 
     private:
-        tString      _m_csRawMessage;
+        std::tstring      _m_csRawMessage;
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxMimeMessageH

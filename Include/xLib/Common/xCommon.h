@@ -1,8 +1,6 @@
 /**
- * \file   xCommon.h
- * \brief  common header for xLib
- * \author skynowa <skynowa@gmail.com>
- * \date   01.02.2011
+ * \file  xCommon.h
+ * \brief common header for xLib
  */
 
 /**
@@ -11,10 +9,10 @@
  * This library is cross-platform and can be compiled and used on
  * Linux, BSD and Windows
  *
- * \author   skynowa@gmail.com
- * \date     2008 - 2011
- * \section  Samples
- * \ref      Units
+ * \author  skynowa@gmail.com
+ * \date    2008 - 2011
+ * \section Samples
+ * \ref     Units
  */
 
 

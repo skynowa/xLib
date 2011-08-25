@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxOwnerDrawButton
-* Description: 
-* File name:   CxOwnerDrawButton.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.07.2009 21:38:38
-*
-*****************************************************************************/
+/**
+ * \file  CxOwnerDrawButton.h
+ * \brief owner draw button
+ */
 
 
 #ifndef XLib_Gui_CxOwnerDrawButtonH
@@ -22,7 +17,7 @@ class CxOwnerDrawButton: public CxButtonBase {
 
                  CxOwnerDrawButton();
         virtual ~CxOwnerDrawButton();
-            
+
         BOOL     bCreateRes       (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------

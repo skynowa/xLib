@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxPerfCounters
-* Description: cpu usage
-* File name:   CxPerfCounters.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     07.02.2011 21:57:45
-*
-*****************************************************************************/
+/**
+ * \file  CxPerfCounters.h
+ * \brief cpu usage
+ */
 
 
 #ifndef xLib_Common_Win_CxPerfCountersH

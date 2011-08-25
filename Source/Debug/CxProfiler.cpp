@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxProfiler
-* Description: code profiling (msec)
-* File name:   CxProfiler.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     07.04.2009 16:59:44
-*
-*****************************************************************************/
+/**
+ * \file  CxProfiler.cpp
+ * \brief code profiling (msec)
+ */
 
 
 #include <xLib/Debug/CxProfiler.h>
@@ -46,7 +41,7 @@ CxProfiler::~CxProfiler() {
 //DONE: bSetLogPath (set log path)
 BOOL
 CxProfiler::bSetLogPath(
-    const tString &csLogPath
+    const std::tstring &csLogPath
 )
 {
     /*DEBUG*/
@@ -58,7 +53,7 @@ CxProfiler::bSetLogPath(
 }
 //---------------------------------------------------------------------------
 //DONE: sGetLogPath (get log path)
-const tString &
+const std::tstring &
 CxProfiler::sGetLogPath() const {
     /*DEBUG*/
 
@@ -147,7 +142,7 @@ CxProfiler::bStop(
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bIsStarted, FALSE);
 
-    tString sTimeString = xT("0:00:00:000");
+    std::tstring sTimeString = xT("0:00:00:000");
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
@@ -220,7 +215,7 @@ CxProfiler::bStop(
 
     //-------------------------------------
     //format comment
-    tString sRes;
+    std::tstring sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszComment);
@@ -247,7 +242,7 @@ CxProfiler::bPulse(
 {
     //-------------------------------------
     //format comment
-    tString sRes;
+    std::tstring sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszComment);

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxFileLog
-* Description: logging to file
-* File name:   CxFileLog.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.06.2009 17:40:37
-*
-*****************************************************************************/
+/**
+ * \file  CxFileLog.cpp
+ * \brief logging to file
+ */
 
 
 #include <xLib/Log/CxFileLog.h>
@@ -56,12 +51,12 @@ CxFileLog::~CxFileLog() {
 //DONE: bSetFilePath (set log path)
 BOOL
 CxFileLog::bSetFilePath(
-    const tString &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
-    if (tString::npos == csFilePath.find(CxConst::xSLASH)) {
+    if (std::tstring::npos == csFilePath.find(CxConst::xSLASH)) {
         _m_sFilePath.assign( CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath);
     } else {
         _m_sFilePath.assign( csFilePath );
@@ -71,7 +66,7 @@ CxFileLog::bSetFilePath(
 }
 //---------------------------------------------------------------------------
 //DONE: sGetFilePath (get log path)
-const tString &
+const std::tstring &
 CxFileLog::sGetFilePath() const {
     /*DEBUG*/
 
@@ -93,12 +88,12 @@ CxFileLog::bWrite(
 
     //-------------------------------------
     //time
-    tString sTime;
+    std::tstring sTime;
     sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment
-    tString sParam;
+    std::tstring sParam;
     va_list palArgs;
 
     xVA_START(palArgs, pcszFormat);

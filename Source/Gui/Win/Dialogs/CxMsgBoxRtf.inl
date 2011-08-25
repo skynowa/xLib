@@ -1,12 +1,7 @@
-﻿/****************************************************************************
-* Class name:  CxMsgBoxRtf
-* Description: RTF message box
-* File name:   CxMsgBoxRtf.inl
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     08.05.2009 12:38:09
-*
-*****************************************************************************/
+﻿/**
+ * \file  CxMsgBoxRtf.inl
+ * \brief RTF message box
+ */
 
 
 #include <richedit.h>
@@ -16,8 +11,8 @@
 namespace CxMsgBoxRtf {
 //---------------------------------------------------------------------------
 EModalResult g_mrRes          = mrNone;
-tString      g_sTitle;
-tString      g_sMessage;
+std::tstring      g_sTitle;
+std::tstring      g_sMessage;
 
 const INT    ID_staImg        = 200;
 const INT    ID_redtText      = 201;
@@ -40,7 +35,7 @@ HWND         g_hBtnSendReport = NULL;
 
 const INT    ciLeft           = 350;
 const INT    ciTop            = 200;
-const INT    ciWidth          = 270;   
+const INT    ciWidth          = 270;
 const INT    ciHeight         = 190;
 
 const INT    ciBtnWidth       = 75;
@@ -48,14 +43,14 @@ const INT    ciBtnHeight      = 25;
 const INT    ciBtnShift       = 100;
 const INT    ciRichEdtShift   = 68;
 
-const INT    ciBtnLeftMargin  = 90;   
+const INT    ciBtnLeftMargin  = 90;
 const INT    ciBtnSpace       = 8;
 //---------------------------------------------------------------------------
 //DONE: bCreateContent
 BOOL
 bCreateContent(
     HWND hParent
-) 
+)
 {
     g_hFont = (HFONT)::SendMessage(g_hMainWnd, WM_GETFONT, 0, 0);
 
@@ -173,9 +168,9 @@ bCreateContent(
 //DONE: DialogProc
 INT_PTR CALLBACK
 DialogProc(
-    HWND   hDlg, 
-    UINT   uiMsg, 
-    WPARAM wParam, 
+    HWND   hDlg,
+    UINT   uiMsg,
+    WPARAM wParam,
     LPARAM lParam
 )
 {
@@ -238,9 +233,9 @@ DialogProc(
 //DONE: iShow
 EModalResult
 iShow(
-    HWND           hwndOwner, 
-    const tString &csMessage, 
-    const tString &csTiltle
+    HWND           hwndOwner,
+    const std::tstring &csMessage,
+    const std::tstring &csTiltle
 )
 {
     HMODULE           hmRichEdtDll = NULL;

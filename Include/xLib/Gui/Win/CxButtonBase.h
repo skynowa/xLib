@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxButtonBase
-* Description: ������ � �������
-* File name:   CxButtonBase.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:11:14
-*
-*****************************************************************************/
+/**
+ * \file  CxButtonBase.h
+ * \brief base class for buttons
+ */
 
 
 #ifndef XLib_Gui_CxButtonBaseH

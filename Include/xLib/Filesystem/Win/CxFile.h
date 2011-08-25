@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxFile
-* Description: file
-* File name:   CxFile.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     03.06.2009 16:30:15
-*
-*****************************************************************************/
+/**
+ * \file  CxFile.h
+ * \brief file
+ */
 
 
 #ifndef xLib_Filesystem_Win_CxFileH
@@ -74,9 +69,9 @@ class CxFile :
                          CxFile              ();
         virtual         ~CxFile              ();
 
-        BOOL             bCreate             (const tString &csFilePath, ULONG ulAccess/* = grWrite*/, ULONG ulShareMode/* = smDenyAll*/, ULONG ulFlags/* = cfCreateAlways*/, CxFileAttribute::EAttribute atAttributes/* = faNormal*/);
-        BOOL             bTryOpen            (const tString &csFilePath, ULONG ulAccess/* = grRead*/,  ULONG ulShareMode/* = smRead*/,    ULONG ulFlags/* = cfOpenExisting*/, CxFileAttribute::EAttribute atAttributes/* = faNormal*/);
-        BOOL             bOpen               (const tString &csFilePath, ULONG ulAccess/* = grRead*/,  ULONG ulShareMode/* = smRead*/,    ULONG ulFlags/* = cfOpenExisting*/, CxFileAttribute::EAttribute atAttributes/* = faNormal*/);
+        BOOL             bCreate             (const std::tstring &csFilePath, ULONG ulAccess/* = grWrite*/, ULONG ulShareMode/* = smDenyAll*/, ULONG ulFlags/* = cfCreateAlways*/, CxFileAttribute::EAttribute atAttributes/* = faNormal*/);
+        BOOL             bTryOpen            (const std::tstring &csFilePath, ULONG ulAccess/* = grRead*/,  ULONG ulShareMode/* = smRead*/,    ULONG ulFlags/* = cfOpenExisting*/, CxFileAttribute::EAttribute atAttributes/* = faNormal*/);
+        BOOL             bOpen               (const std::tstring &csFilePath, ULONG ulAccess/* = grRead*/,  ULONG ulShareMode/* = smRead*/,    ULONG ulFlags/* = cfOpenExisting*/, CxFileAttribute::EAttribute atAttributes/* = faNormal*/);
         BOOL             bClose              ();
         BOOL             bIsOpen             ();
         BOOL             bIsEmpty            ();
@@ -97,20 +92,20 @@ class CxFile :
         BOOL             bGetTime            (FILETIME *pftCreate, FILETIME *pftAccess, FILETIME *pftModified);
         BOOL             bSetTime            (const FILETIME &cftCreate, const FILETIME &cftAccess, const FILETIME &cftModified);
 
-        static BOOL      bIsExists           (const tString &csFilePath);
-        static tString   sIsExists           (const tString &csFilePath);
-        static ETypeEx   tpGetTypeEx         (const tString &csFilePath);
-        static LONGLONG  llGetSize           (const tString &csFilePath);
+        static BOOL      bIsExists           (const std::tstring &csFilePath);
+        static std::tstring   sIsExists           (const std::tstring &csFilePath);
+        static ETypeEx   tpGetTypeEx         (const std::tstring &csFilePath);
+        static LONGLONG  llGetSize           (const std::tstring &csFilePath);
 
-        static BOOL      bDelete             (const tString &csFilePath);
-        static BOOL      bMove               (const tString &csFilePathIn, const tString &csFilePathOut);
-        static tString   sCreateTempName     (const tString &csPrefix);
-        static BOOL      bCopy               (const tString &csFilePathFrom, const tString &csFilePathTo);
-        static BOOL      bCopy               (const tString &csFilePathFrom, const tString &csFilePathTo, BOOL bFailIfExists);
-        static BOOL      bReplace            (const tString &csOldFileName, const tString &csNewFilePath, const tString &csBackupFilePath);
-        static BOOL      bWipe               (const tString &csFilePath, UINT uiPasses);
-        static BOOL      bSetRandomDate      (const tString &csFilePath);
-        static ULONGLONG ullGetCompressedSize(const tString &csFilePath);
+        static BOOL      bDelete             (const std::tstring &csFilePath);
+        static BOOL      bMove               (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut);
+        static std::tstring   sCreateTempName     (const std::tstring &csPrefix);
+        static BOOL      bCopy               (const std::tstring &csFilePathFrom, const std::tstring &csFilePathTo);
+        static BOOL      bCopy               (const std::tstring &csFilePathFrom, const std::tstring &csFilePathTo, BOOL bFailIfExists);
+        static BOOL      bReplace            (const std::tstring &csOldFileName, const std::tstring &csNewFilePath, const std::tstring &csBackupFilePath);
+        static BOOL      bWipe               (const std::tstring &csFilePath, UINT uiPasses);
+        static BOOL      bSetRandomDate      (const std::tstring &csFilePath);
+        static ULONGLONG ullGetCompressedSize(const std::tstring &csFilePath);
 
 
         /****************************************************************************
@@ -118,15 +113,15 @@ class CxFile :
         *
         *****************************************************************************/
 
-        static BOOL      bSetAttrUncompressed(const tString &csFilePath);
-        static BOOL      bSetAttrCompressed  (const tString &csFilePath, BOOL bCompress);
+        static BOOL      bSetAttrUncompressed(const std::tstring &csFilePath);
+        static BOOL      bSetAttrCompressed  (const std::tstring &csFilePath, BOOL bCompress);
 
-        static tString   sReadText           (const tString &csFilePath);
-        static bool      bWriteText          (const tString &csFilePath, const tString &csText);
+        static std::tstring   sReadText           (const std::tstring &csFilePath);
+        static bool      bWriteText          (const std::tstring &csFilePath, const std::tstring &csText);
 
         //other
-        static BOOL      bBackup             (const tString &csFilePath, const tString &csDestDirPath, BOOL bMakeDaily /*,INT bBackupLimit*/);
-        static BOOL      bExec               (const tString &csFilePath, const tString &csParams);
+        static BOOL      bBackup             (const std::tstring &csFilePath, const std::tstring &csDestDirPath, BOOL bMakeDaily /*,INT bBackupLimit*/);
+        static BOOL      bExec               (const std::tstring &csFilePath, const std::tstring &csParams);
 
     private:
         BOOL             _m_bRes;

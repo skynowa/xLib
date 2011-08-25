@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxPkcs11
-* Description: Aladdin eToken, PKCS #11
-* File name:   CxPkcs11.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.02.2010 13:31:54
-*
-*****************************************************************************/
+/**
+ * \file  CxPkcs11.cpp
+ * \brief Aladdin eToken, PKCS #11
+ */
 
 
 #include <xLib/Pkcs11/Win/CxPkcs11.h>

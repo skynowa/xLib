@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxFile
-* Description: file
-* File name:   CxFile.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     03.06.2009 16:30:15
-*
-*****************************************************************************/
+/**
+ * \file  CxFile.cpp
+ * \brief file
+ */
 
 
 #include <xLib/Filesystem/Win/CxFile.h>
@@ -51,7 +46,7 @@ CxFile::~CxFile() {
 //---------------------------------------------------------------------------
 //TODO: bCreate
 BOOL
-CxFile::bCreate(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
+CxFile::bCreate(const std::tstring &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
     return bOpen(csFilePath, ulAccess, ulShareMode, ulFlags, atAttributes);
@@ -59,7 +54,7 @@ CxFile::bCreate(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, UL
 //---------------------------------------------------------------------------
 //TODO: bTryOpen
 BOOL
-CxFile::bTryOpen(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
+CxFile::bTryOpen(const std::tstring &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
     m_hHandle = ::CreateFile(csFilePath.c_str(), ulAccess, ulShareMode, NULL, ulFlags, static_cast<ULONG>(atAttributes), NULL);
@@ -73,7 +68,7 @@ CxFile::bTryOpen(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, U
 //---------------------------------------------------------------------------
 //TODO: bOpen
 BOOL
-CxFile::bOpen(const tString &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
+CxFile::bOpen(const std::tstring &csFilePath, ULONG ulAccess, ULONG ulShareMode, ULONG ulFlags, CxFileAttribute::EAttribute atAttributes) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
     _m_bRes = bClose();
@@ -325,7 +320,7 @@ CxFile::bSetTime(const FILETIME &cftCreate, const FILETIME &cftAccess, const FIL
 //TODO: bIsExists
 /*static*/
 BOOL
-CxFile::bIsExists(const tString &csFilePath) {
+CxFile::bIsExists(const std::tstring &csFilePath) {
     ///////////*DEBUG*/xASSERT_RET(!::IsBadStringPtr(csFilePath.c_str(), MAX_PATH), FALSE);
     //////////
     //////////ULONG ulErrMode = ::SetErrorMode(SEM_FAILCRITICALERRORS);
@@ -351,17 +346,17 @@ CxFile::bIsExists(const tString &csFilePath) {
 //---------------------------------------------------------------------------
 //TODO: sIsExists
 /*static*/
-tString
-CxFile::sIsExists(const tString &csFilePath) {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), tString());
+std::tstring
+CxFile::sIsExists(const std::tstring &csFilePath) {
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring());
 
-    tString sRes;
+    std::tstring sRes;
     sRes.assign(csFilePath);
 
     //--static INT s_iFileExistsIndex = 0;
-    tString    sFileDir           = CxPath::sGetDir(sRes);
-    tString    sFileName          = CxPath::sGetName(sRes);
-    tString    sFileExt           = CxPath::sGetExt(sRes);
+    std::tstring    sFileDir           = CxPath::sGetDir(sRes);
+    std::tstring    sFileName          = CxPath::sGetName(sRes);
+    std::tstring    sFileExt           = CxPath::sGetExt(sRes);
 
     for (INT s_iFileExistsIndex = 1; TRUE == bIsExists(sRes); ++ s_iFileExistsIndex) {
         sRes = sFileDir                                   + CxConst::xSLASH     +
@@ -378,7 +373,7 @@ CxFile::sIsExists(const tString &csFilePath) {
 //TODO: tpGetTypeEx
 /*static*/
 CxFile::ETypeEx
-CxFile::tpGetTypeEx(const tString &csFilePath) {
+CxFile::tpGetTypeEx(const std::tstring &csFilePath) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), fteUnknown);
 
     ETypeEx ftRes = fteUnknown;
@@ -399,7 +394,7 @@ CxFile::tpGetTypeEx(const tString &csFilePath) {
 //TODO: llGetSize
 /*static*/
 LONGLONG
-CxFile::llGetSize(const tString &csFilePath) {
+CxFile::llGetSize(const std::tstring &csFilePath) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
     LONGLONG llRes = 0;
@@ -422,7 +417,7 @@ CxFile::llGetSize(const tString &csFilePath) {
 //TODO: bDelete
 /*static*/
 BOOL
-CxFile::bDelete(const tString &csFilePath) {
+CxFile::bDelete(const std::tstring &csFilePath) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
     BOOL bRes = FALSE;
@@ -442,7 +437,7 @@ CxFile::bDelete(const tString &csFilePath) {
 //TODO: FIXME - bMove
 /*static*/
 BOOL
-CxFile::bMove(const tString &csFilePathIn, const tString &csFilePathOut) {
+CxFile::bMove(const std::tstring &csFilePathIn, const std::tstring &csFilePathOut) {
     /*DEBUG*/xASSERT_RET(false == csFilePathIn.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePathIn), FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePathOut.empty(),   FALSE);
@@ -471,14 +466,14 @@ CxFile::bMove(const tString &csFilePathIn, const tString &csFilePathOut) {
 //TODO: sCreateTempName
 //NOTE: http://www.breakingrobots.net/blog/2006/02/24.html
 /*static*/
-tString
-CxFile::sCreateTempName(const tString &csExt) {    //csDirPath - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+std::tstring
+CxFile::sCreateTempName(const std::tstring &csExt) {    //csDirPath - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     /*DEBUG*/TCHAR szFatalChars[] = {xT('\\'), xT('/'), xT(':'), xT('*'), xT('<'), xT('>'), xT('|'), xT('?'), xT('"'), xT('\t'), xT('\n'), xT('\r')};
     /*DEBUG*/for (size_t i = 0; i < xARRAY_SIZE(szFatalChars); ++ i) {
-    /*DEBUG*/    xASSERT_RET(tString::npos == csExt.find(szFatalChars[i]), tString());
+    /*DEBUG*/    xASSERT_RET(std::tstring::npos == csExt.find(szFatalChars[i]), std::tstring());
     /*DEBUG*/}
 
-    tString sRes;
+    std::tstring sRes;
 
     if (true == csExt.empty()) {
         sRes = CxString::sCreateGuid();
@@ -492,7 +487,7 @@ CxFile::sCreateTempName(const tString &csExt) {    //csDirPath - ï¿½ï¿½ï¿½ ï¿½ï¿
 //TODO: bCopy
 /*static*/
 BOOL
-CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo) {
+CxFile::bCopy(const std::tstring &csFilePathFrom, const std::tstring &csFilePathTo) {
     /*DEBUG*/xASSERT_RET(false == csFilePathFrom.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePathFrom), FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePathTo.empty(),      FALSE);
@@ -515,7 +510,7 @@ CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo) {
 //TODO: bCopy
 /*static*/
 BOOL
-CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo, BOOL bFailIfExists) {
+CxFile::bCopy(const std::tstring &csFilePathFrom, const std::tstring &csFilePathTo, BOOL bFailIfExists) {
     /*DEBUG*/xASSERT_RET(false == csFilePathFrom.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePathFrom), FALSE);
     /*DEBUG*/xASSERT_RET(false == csFilePathTo.empty(),      FALSE);
@@ -531,7 +526,7 @@ CxFile::bCopy(const tString &csFilePathFrom, const tString &csFilePathTo, BOOL b
 //TODO: bReplace
 /*static*/
 BOOL
-CxFile::bReplace(const tString &csOldFileName, const tString &csNewFilePath, const tString &csBackupFilePath) {
+CxFile::bReplace(const std::tstring &csOldFileName, const std::tstring &csNewFilePath, const std::tstring &csBackupFilePath) {
     /*DEBUG*/xASSERT_RET(false == csOldFileName.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csOldFileName), FALSE);
     /*DEBUG*/xASSERT_RET(false == csNewFilePath.empty(),    FALSE);
@@ -549,7 +544,7 @@ CxFile::bReplace(const tString &csOldFileName, const tString &csNewFilePath, con
 //TODO: bWipe
 /*static*/
 BOOL
-CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
+CxFile::bWipe(const std::tstring &csFilePath, UINT uiPasses) {
     /*DEBUG*/// csFilePath - n/a
     /*DEBUG*/// iPasses    - n/a
 
@@ -563,7 +558,7 @@ CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
     LONGLONG       llFileSize          = 0;
     const LONG     cliBuffSize         = 1024;
     UCHAR          ucBuff[cliBuffSize] = {0};
-    tString        sFilePathOut;
+    std::tstring        sFilePathOut;
 
     //-------------------------------------
     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
@@ -660,7 +655,7 @@ CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
     //-------------------------------------
     //random file name (ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ MAX_PATH)
     {
-        tString sRandomFileName;
+        std::tstring sRandomFileName;
         sRandomFileName = CxString::sCreateGuid();
         sRandomFileName.resize( CxPath::sGetFullName(csFilePath).size() );
 
@@ -683,7 +678,7 @@ CxFile::bWipe(const tString &csFilePath, UINT uiPasses) {
 //TODO: bSetRandomDate
 /*static*/
 BOOL
-CxFile::bSetRandomDate(const tString &csFilePath) {
+CxFile::bSetRandomDate(const std::tstring &csFilePath) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), FALSE);
 
@@ -727,7 +722,7 @@ CxFile::bSetRandomDate(const tString &csFilePath) {
 //TODO: ullGetCompressedSize
 /*static*/
 ULONGLONG
-CxFile::ullGetCompressedSize(const tString &csFilePath) {
+CxFile::ullGetCompressedSize(const std::tstring &csFilePath) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
     ULONG ulLowPart  = 0;
@@ -752,7 +747,7 @@ CxFile::ullGetCompressedSize(const tString &csFilePath) {
 //TODO: bSetAttrUncompressed
 /*static*/
 BOOL
-CxFile::bSetAttrUncompressed(const tString &csFilePath) {
+CxFile::bSetAttrUncompressed(const std::tstring &csFilePath) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
     BOOL bRes = FALSE;
@@ -773,7 +768,7 @@ CxFile::bSetAttrUncompressed(const tString &csFilePath) {
 //TODO: bSetAttrCompressed
 /*static*/
 BOOL
-CxFile::bSetAttrCompressed(const tString &csFilePath, BOOL bIsCompress) {
+CxFile::bSetAttrCompressed(const std::tstring &csFilePath, BOOL bIsCompress) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// bIsCompress - n/a
 
@@ -803,7 +798,7 @@ CxFile::bSetAttrCompressed(const tString &csFilePath, BOOL bIsCompress) {
 //--------------------------------------------------------------------------
 /*static*/
 bool
-CxFile::bWriteText(const tString &csFilePath, const tString &csText) {
+CxFile::bWriteText(const std::tstring &csFilePath, const std::tstring &csText) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
 
     bool bRes = false;
@@ -832,10 +827,10 @@ CxFile::bWriteText(const tString &csFilePath, const tString &csText) {
 }
 //--------------------------------------------------------------------------
 /*static*/
-tString
-CxFile::sReadText(const tString &csFilePath) {    ////char -> BYTE
+std::tstring
+CxFile::sReadText(const std::tstring &csFilePath) {    ////char -> BYTE
     /*
-    tString xstr;
+    std::tstring xstr;
     std::ifstream xfile("inputfile.txt", std::ios::binary);
 
     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
@@ -849,7 +844,7 @@ CxFile::sReadText(const tString &csFilePath) {    ////char -> BYTE
 
     /*
     std::ifstream iFile("inputfile.txt");
-    tString mystr(std::istreambuf_iterator<char>(iFile), std::istreambuf_iterator<char>());
+    std::tstring mystr(std::istreambuf_iterator<char>(iFile), std::istreambuf_iterator<char>());
     */
 
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), xT(""));
@@ -872,7 +867,7 @@ CxFile::sReadText(const tString &csFilePath) {    ////char -> BYTE
 
     //-------------------------------------
     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-    tString  sRes = xT("");
+    std::tstring  sRes = xT("");
     ULONG        dwRealyRead = 0;
     TCHAR        *pBuff       = new TCHAR[dwFileSize + 1];
     if (NULL == pBuff) {
@@ -894,8 +889,8 @@ CxFile::sReadText(const tString &csFilePath) {    ////char -> BYTE
     }
 
     //-------------------------------------
-    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ tString
-    sRes = tString(pBuff, dwFileSize);
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ std::tstring
+    sRes = std::tstring(pBuff, dwFileSize);
 
     //-------------------------------------
     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½3
@@ -924,7 +919,7 @@ CxFile::sReadText(const tString &csFilePath) {    ////char -> BYTE
 //TODO: bBackup
 /*static*/
 BOOL
-CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bMakeDaily) {
+CxFile::bBackup(const std::tstring &csFilePath, const std::tstring &csDestDirPath, BOOL bMakeDaily) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), FALSE);
 
@@ -940,7 +935,7 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
     //format file full name
     CxDateTime dtDT;
 
-    tString sBackupFilePath =
+    std::tstring sBackupFilePath =
         CxPath::sSlashAppend(csDestDirPath) +
         CxPath::sGetFullName(csFilePath)    +
         xT(".bak [") + CxString::sReplaceAll((TRUE == bMakeDaily) ? (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDate)) : (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDateTime)), xT(":"), xT("-")) + xT("]");
@@ -971,7 +966,7 @@ CxFile::bBackup(const tString &csFilePath, const tString &csDestDirPath, BOOL bM
 //DONE: bExec
 /*static*/
 BOOL
-CxFile::bExec(const tString &csFilePath, const tString &csParams) {
+CxFile::bExec(const std::tstring &csFilePath, const std::tstring &csParams) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// csParams - n/a
 
@@ -979,7 +974,7 @@ CxFile::bExec(const tString &csFilePath, const tString &csParams) {
 
     //-------------------------------------
     //ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-    tString sCmdLine;
+    std::tstring sCmdLine;
 
     bRes = CxDir::bIsExists(csFilePath);
     if (FALSE != bRes) {

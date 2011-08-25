@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMacros
-* Description: functions like macroses
-* File name:   CxMacros.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     10.12.2010 19:13:57
-*
-*****************************************************************************/
+/**
+ * \file  CxMacros.h
+ * \brief functions like macroses
+ */
 
 
 #ifndef xLib_Common_CxMacrosH
@@ -87,12 +82,12 @@ class CxMacros :
         #define xPTR_ASSIGN(ptr, value) { if (NULL != (ptr))    { *(ptr) = (value); }                 }
             ///< assign pointer
 
-        #define xS2US(s)                uString( (s).begin(),  (s).begin()  + (s).size()  )
+        #define xS2US(s)                std::ustring( (s).begin(),  (s).begin()  + (s).size()  )
             ///< convert std::tstring to std::ustring
-        #define xUS2S(us)               tString( (us).begin(), (us).begin() + (us).size() )
+        #define xUS2S(us)               std::tstring( (us).begin(), (us).begin() + (us).size() )
             ///< convert std::ustring to std::tstring
 
-        #define xS2TS(s)                tString( (s).begin(),  (s).begin()  + (s).size()  )
+        #define xS2TS(s)                std::tstring( (s).begin(),  (s).begin()  + (s).size()  )
             ///< convert std::string to std::tstring
         #define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
             ///< convert std::tstring to std::string
@@ -245,9 +240,9 @@ class CxMacros :
             ///< concatinate strings
 
         template <class T>
-        static inline tString
+        static inline std::tstring
         sAsTString(const T &x) {
-            return (NULL != x) ? (tString(x)) : (tString());
+            return (NULL != x) ? (std::tstring(x)) : (std::tstring());
         }
             ///< convert C-string to std::tstring
 
@@ -281,9 +276,9 @@ class CxMacros :
 
 
         #if defined(xCOMPILER_CODEGEAR)
-            #define xD2S(s)   tString((s).c_str())
+            #define xD2S(s)   std::tstring((s).c_str())
                 ///< convert Delphi::String::c_str() to std::tstring
-            #define xD2AS(s)  tString((s).t_str())
+            #define xD2AS(s)  std::tstring((s).t_str())
                 ///< convert Delphi::String::t_str() to std::tstring
             #define xS2D(s)   String((s).c_str())
                 ///< convert std::tstring to Delphi::String

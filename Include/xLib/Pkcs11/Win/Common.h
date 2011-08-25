@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  All
-* Description: all SDK headers
-* File name:   All.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 12:56:53
-*
-*****************************************************************************/
+/**
+ * \file  Common.h
+ * \brief all SDK headers
+ */
 
 
 #ifndef xLib_Pkcs11_CommonH

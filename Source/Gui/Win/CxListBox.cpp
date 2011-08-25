@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxListBox
-* Description: 
-* File name:   CxListBox.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.07.2009 22:59:33
-*
-*****************************************************************************/
+/**
+ * \file  CxListBox.cpp
+ * \brief list box
+ */
 
 
 #include <xLib/Gui/CxListBox.h>
@@ -18,7 +13,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxListBox 
+//TODO: - CxListBox
 CxListBox::CxListBox() {
     LOG();
 
@@ -49,9 +44,9 @@ BOOL CxListBox::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -591,21 +586,21 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 
 
 //////---------------------------------------------------------------------------
-//////DONE: bAddString 
+//////DONE: bAddString
 ////BOOL CxListBox::bAddString(const tString &csItem) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_ADDSTRING, NULL, (LPARAM)csItem.c_str());
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
-//////DONE: bResetContent 
+//////DONE: bResetContent
 ////BOOL CxListBox::bResetContent() {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_RESETCONTENT, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -614,7 +609,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_ADDFILE, NULL, (LPARAM)csFileName.c_str());
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -623,7 +618,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_DELETESTRING, (WPARAM)iStartIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -641,7 +636,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_FINDSTRING, wStartIndex, lString);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -650,7 +645,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_FINDSTRINGEXACT, wStartIndex, lString);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -659,7 +654,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETANCHORINDEX, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -668,7 +663,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETCARETINDEX, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -677,7 +672,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETCOUNT, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -686,7 +681,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETCURSEL, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -695,7 +690,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETHORIZONTALEXTENT, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -704,7 +699,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETITEMDATA, wItemIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -713,7 +708,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETITEMHEIGHT, wItemIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -722,7 +717,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETITEMRECT, wItemIndex, lRect);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -731,7 +726,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    ///////////////pSendMessage(LB_GETLISTBOXINFO, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -740,7 +735,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETLOCALE, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -749,7 +744,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETSEL, wItemIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -758,7 +753,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETSELCOUNT, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -767,7 +762,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETSELITEMS, NULL, lItems);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -776,7 +771,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETTEXT, wItemIndex, lItems);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -785,7 +780,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETTEXTLEN, wItemIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -794,7 +789,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_GETTOPINDEX, NULL, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -803,7 +798,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_INITSTORAGE, wItemsCount, lMem);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -812,7 +807,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_INSERTSTRING, wItemIndex, lString);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -821,7 +816,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_ITEMFROMPOINT, NULL, lPoint);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -830,7 +825,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SELECTSTRING, wStartIndex, lString);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -839,7 +834,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SELITEMRANGE, wOption, lFirstLastItems);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -848,7 +843,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SELITEMRANGEEX, wFirstItem, lLastItem);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -857,7 +852,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETANCHORINDEX, wItemIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -866,7 +861,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETCARETINDEX, wItemIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -875,7 +870,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETCOLUMNWIDTH, wWidth, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -884,7 +879,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETCOUNT, wCount, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -893,7 +888,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETCURSEL, wItemIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -902,7 +897,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETHORIZONTALEXTENT, wScrollWidth, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -911,7 +906,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETITEMDATA, wItemIndex, lValue);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -920,7 +915,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETITEMHEIGHT, wItemIndex, lHeight);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -929,7 +924,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETLOCALE, wLocaleIdentifier, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -938,7 +933,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETSEL, wSelOption, lItemIndex);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -947,7 +942,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETTABSTOPS, wTabStopsNum, lTabStopsArr);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -956,7 +951,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    pSendMessage(LB_SETTOPINDEX, wItemIndex, NULL);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -965,7 +960,7 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 ////
 ////    return pSendMessage(WM_VSCROLL, MAKEWORD(wPos, 0), 0);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------

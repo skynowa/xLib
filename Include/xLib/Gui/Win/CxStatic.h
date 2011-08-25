@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxStatic
-* Description: работа с статическим полем
-* File name:   CxStatic.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 11:20:41
-*
-*****************************************************************************/
+/**
+ * \file  CxStatic.h
+ * \brief static field
+ */
 
 
 #ifndef XLib_Gui_CxStaticH
@@ -20,7 +15,7 @@ class CxStatic: public CxWindow {
         virtual ~CxStatic  ();
 
         BOOL     bCreateRes(INT iID, CxWindow *pwndParent);
-        
+
         //-------------------------------------
         //сообщения
 

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEnvironment
-* Description: system environment variables
-* File name:   CxEnvironment.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.04.2010 17:43:45
-*
-*****************************************************************************/
+/**
+ * \file  CxEnvironment.h
+ * \brief system environment variables
+ */
 
 
 #ifndef xLib_Filesystem_CxEnvironmentH
@@ -18,19 +13,19 @@ class CxEnvironment :
     public CxNonCopyable
 {
     public:
-        static BOOL    bIsExists          (const tString &csVarName);
-        static tString sGetVar            (const tString &csVarName);
-        static BOOL    bSetVar            (const tString &csVarName, const tString &csValue);
-        static BOOL    bDeleteVar         (const tString &csVarName);
-        static BOOL    bGetValues         (std::vector<tString> *pvsValues);
-        static tString sExpandStrings     (const tString &csvVar);
+        static BOOL    bIsExists          (const std::tstring &csVarName);
+        static std::tstring sGetVar            (const std::tstring &csVarName);
+        static BOOL    bSetVar            (const std::tstring &csVarName, const std::tstring &csValue);
+        static BOOL    bDeleteVar         (const std::tstring &csVarName);
+        static BOOL    bGetValues         (std::vector<std::tstring> *pvsValues);
+        static std::tstring sExpandStrings     (const std::tstring &csvVar);
 
-        static tString sGetCommandLine    ();
-        static BOOL    bGetCommandLineArgs(std::vector<tString> *pvsArgs);
+        static std::tstring sGetCommandLine    ();
+        static BOOL    bGetCommandLineArgs(std::vector<std::tstring> *pvsArgs);
         static BOOL    bSetCommandLineArgs(const INT ciArgsCount, TCHAR *paszArgs[]);
 
     private:
-        static std::vector<tString> _m_vsCommandLineArgs;
+        static std::vector<std::tstring> _m_vsCommandLineArgs;
 
                        CxEnvironment      ();
         virtual       ~CxEnvironment      ();

@@ -33,13 +33,13 @@ CxTest_CxFile::bUnit(
 #if defined(xOS_WIN)
     ULONG         ulWritten     = 0;
     ULONG         ulReaded      = 0;
-    const tString csStr         = xT("fcbujdfvugbxcjbfgicfkh");
+    const std::tstring csStr         = xT("fcbujdfvugbxcjbfgicfkh");
     TCHAR         szInBuff[256] = {0};
-    const tString csFilePath    = sGetWorkDirPath() + xT("\\Test.txt");
-    const tString csNewFilePath = sGetWorkDirPath() + xT("\\New.Test.txt");
-    const tString csBakFilePath = sGetWorkDirPath() + xT("\\Test_Static.txt.bak");
-    const tString csFilePathSt  = sGetWorkDirPath() + xT("\\Test_Static.txt");
-    const tString csTmpDirPath  = sGetWorkDirPath() + xT("\\Test");
+    const std::tstring csFilePath    = sGetWorkDirPath() + xT("\\Test.txt");
+    const std::tstring csNewFilePath = sGetWorkDirPath() + xT("\\New.Test.txt");
+    const std::tstring csBakFilePath = sGetWorkDirPath() + xT("\\Test_Static.txt.bak");
+    const std::tstring csFilePathSt  = sGetWorkDirPath() + xT("\\Test_Static.txt");
+    const std::tstring csTmpDirPath  = sGetWorkDirPath() + xT("\\Test");
 
     //-------------------------------------
     //????

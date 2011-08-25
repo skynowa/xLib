@@ -1,11 +1,7 @@
-/****************************************************************************
-* Class name:  xLinking
-* Description: linking static library
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     02.12.2010 11:47:23
-*
-*****************************************************************************/
+/**
+ * \file  xLinking.h
+ * \brief linking static library
+ */
 
 
 #ifndef xLib_Common_xLinkingH

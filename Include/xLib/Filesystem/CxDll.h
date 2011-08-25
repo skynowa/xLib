@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDll
-* Description: dynamic linking loader
-* File name:   CxDll.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.11.2009 23:39:28
-*
-*****************************************************************************/
+/**
+ * \file  CxDll.h
+ * \brief dynamic linking loader
+ */
 
 
 #ifndef xLib_Filesystem_CxDllH
@@ -22,8 +17,8 @@ class CxDll :
         virtual ~CxDll           ();
 
         BOOL     bIsLoaded       ();
-        BOOL     bLoad           (const tString &csDllPath);
-        VOID *   fpGetProcAddress(const tString &csProcName);
+        BOOL     bLoad           (const std::tstring &csDllPath);
+        VOID *   fpGetProcAddress(const std::tstring &csProcName);
         BOOL     bFree           ();
 
     private:

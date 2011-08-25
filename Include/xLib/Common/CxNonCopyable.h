@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxNonCopyable
-* Description: non copyable class
-* File name:   CxNonCopyable.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     02.09.2009 9:07:38
-*
-*****************************************************************************/
+/**
+ * \file  CxNonCopyable.h
+ * \brief non copyable class
+ */
 
 
 #ifndef xLib_Common_CxNonCopyableH

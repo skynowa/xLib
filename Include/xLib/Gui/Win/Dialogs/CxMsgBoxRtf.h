@@ -1,12 +1,7 @@
-﻿/****************************************************************************
-* Class name:  CxMsgBoxRtf
-* Description: RTF message box
-* File name:   CxMsgBoxRtf.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     08.05.2009 12:38:09
-*
-*****************************************************************************/
+﻿/**
+ * \file  CxMsgBoxRtf.h
+ * \brief RTF message box
+ */
 
 
 #ifndef xLib_Gui_Dialogs_CxMsgBoxRtfH
@@ -28,7 +23,7 @@ namespace CxMsgBoxRtf {
 
     BOOL             bCreateContent(HWND hParent);
     INT_PTR CALLBACK DialogProc    (HWND hDlg, UINT uiMsg, WPARAM wParam, LPARAM lParam);
-    EModalResult     iShow         (HWND hwndOwner, const tString &csMessage, const tString &csTiltle);
+    EModalResult     iShow         (HWND hwndOwner, const std::tstring &csMessage, const std::tstring &csTiltle);
 };
 //---------------------------------------------------------------------------
 #include <Gui/Win/Dialogs/CxMsgBoxRtf.inl>

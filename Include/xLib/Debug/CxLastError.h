@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxLastError
-* Description: system last error
-* File name:   CxLastError.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25 січ. 2011 11:01:46
-*
-*****************************************************************************/
+/**
+ * \file  CxLastError.h
+ * \brief system last error
+ */
 
 
 #ifndef xLib_Debug_CxLastErrorH
@@ -19,10 +14,10 @@ class CxLastError :
 {
     public:
         static ULONG   ulGet      ();
-        static tString sGet       ();
+        static std::tstring sGet       ();
         static BOOL    bSet       (const ULONG culCode);
         static BOOL    bReset     ();
-        static tString sFormat    (const ULONG culCode);
+        static std::tstring sFormat    (const ULONG culCode);
 
         #if xTODO
             GetErrorMode

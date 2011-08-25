@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest
-* Description: code testing
-* File name:   CxTest.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 9:29:52
-*
-*****************************************************************************/
+/**
+ * \file  CxTest.h
+ * \brief testing
+ */
 
 
 #ifndef xLib_Debug_CxTestH
@@ -41,12 +36,12 @@ class CxTest :
         ULONGLONG                       m_ullRes;
         FLOAT                           m_fRes;
         DOUBLE                          m_dRes;
-        tString                         m_sRes;
-        uString                         m_usRes;
+        std::tstring                         m_sRes;
+        std::ustring                         m_usRes;
         std::vector<TCHAR>              m_vecchRes;
-        std::vector<tString>            m_vsRes;
-        std::map<tString, tString>      m_msRes;
-        std::multimap<tString, tString> m_mmsRes;
+        std::vector<std::tstring>            m_vsRes;
+        std::map<std::tstring, std::tstring>      m_msRes;
+        std::multimap<std::tstring, std::tstring> m_mmsRes;
 
     #if defined(xOS_WIN)
         HANDLE                          m_hRes;
@@ -60,16 +55,16 @@ class CxTest :
 
         BOOL                            bRun           (const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
         virtual BOOL                    bUnit          (const ULONGLONG cullBlockLoops) = 0;
-        BOOL                            bCreateWorkDir (const tString &csDirName);
-        const tString &                 sGetWorkDirPath() const;
+        BOOL                            bCreateWorkDir (const std::tstring &csDirName);
+        const std::tstring &                 sGetWorkDirPath() const;
 
-        const tString &                 sGetName       () const;
-        BOOL                            bSetName       (const tString &csTestName);
+        const std::tstring &                 sGetName       () const;
+        BOOL                            bSetName       (const std::tstring &csTestName);
 
     private:
         BOOL                            _m_bRes;
-        tString                         _m_sWorkDirPath;
-        tString                         _m_sName;
+        std::tstring                         _m_sWorkDirPath;
+        std::tstring                         _m_sName;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxTestH

@@ -38,7 +38,7 @@ CxTest_CxException::bUnit(
             throw CxException();
         }
         catch (CxException &e) {
-            xASSERT_EQ(tString(), e.sGetWhat());
+            xASSERT_EQ(std::tstring(), e.sGetWhat());
             //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
         catch (...) {
@@ -47,10 +47,10 @@ CxTest_CxException::bUnit(
     }
 
     //--------------------------------------------------
-    //CxException(tString), what
+    //CxException(std::tstring), what
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString sTestData[][2] = {
+        const std::tstring sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("TEST_STRING_1")},
             {xT("TEST_STRING_2"),        xT("TEST_STRING_2")},
             {xT("TEST_STRING_3"),        xT("TEST_STRING_3")},
@@ -91,7 +91,7 @@ CxTest_CxException::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         try {
-            tString sStr;
+            std::tstring sStr;
 
             sStr.at(0);
         }
@@ -108,7 +108,7 @@ CxTest_CxException::bUnit(
     xTEST_BLOCK(cullBlockLoops) {
         #if xTODO
             xTRY {
-                tString sStr;
+                std::tstring sStr;
 
                 sStr.at(0);
             }

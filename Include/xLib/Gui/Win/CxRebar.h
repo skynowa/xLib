@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxRebar
-* Description: работа с ребаром
-* File name:   CxRebar.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 11:20:41
-*
-*****************************************************************************/
+/**
+ * \file  CxRebar.h
+ * \brief rebar
+ */
 
 
 #ifndef XLib_Gui_CxRebarH

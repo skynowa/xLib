@@ -35,9 +35,9 @@ CxTest_CxGz::bUnit(
     #if xTODO
         INT   iFileIn,
         INT   iFileOut,
-        const tString csOriginName = xT("OriginName");
+        const std::tstring csOriginName = xT("OriginName");
 
-        m_bRes = gzGz.bCompress(INT iFileIn, INT iFileOut, const tString &csOriginName);
+        m_bRes = gzGz.bCompress(INT iFileIn, INT iFileOut, const std::tstring &csOriginName);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = gzGz.bUncompress(INT iFileIn, INT iFileOut);

@@ -58,7 +58,7 @@ CxTest_CxLastError::bUnit(
         #endif
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
-            tString sError = CxLastError::sGet();
+            std::tstring sError = CxLastError::sGet();
             xASSERT_EQ(false, sError.empty());
         }
     }

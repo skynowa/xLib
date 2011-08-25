@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxUri
-* Description: URI (RFC 3986)
-* File name:   CxUri.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     17.11.2009 12:41:10
-*
-*****************************************************************************/
+/**
+ * \file  CxUri.h
+ * \brief URI (RFC 3986)
+ */
 
 
 #ifndef xLib_Net_CxUriH

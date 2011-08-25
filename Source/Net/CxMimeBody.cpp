@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMimeBody
-* Description: ���� ��������� ������ (RFC 822)
-* File name:   CxMimeBody.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.07.2009 19:11:02
-*
-*****************************************************************************/
+/**
+ * \file  CxMimeBody.cpp
+ * \brief MIME body (RFC 822)
+ */
 
 
 #include <xLib/Net/CxMimeBody.h>

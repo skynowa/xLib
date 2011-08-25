@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTab
-* Description: закладки
-* File name:   CxTab.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:11:14
-*
-*****************************************************************************/
+/**
+ * \file  CxTab.h
+ * \brief tabs
+ */
 
 
 #ifndef XLib_Gui_CxTabH
@@ -20,7 +15,7 @@
 //---------------------------------------------------------------------------
 ////class CxLayout : public CxWindowImpl {
 ////    public:
-////          CxLayout(const CxTab *ptabParentTab) { 
+////          CxLayout(const CxTab *ptabParentTab) {
 ////              /*DEBUG*/xASSERT(NULL != ptabParentTab);
 ////
 ////              _m_ptabParentTab = ptabParentTab;
@@ -28,7 +23,7 @@
 ////
 ////              _m_ulStyle   =  WS_CHILD | WS_TABSTOP | WS_CAPTION;
 ////              _m_ulStyleEx = WS_EX_CONTROLPARENT;
-////              
+////
 ////          };
 ////         ~CxLayout() {};
 ////
@@ -64,7 +59,7 @@
 ////                     }
 ////                     break;
 ////            }
-////        };    /*virtual*/    
+////        };    /*virtual*/
 ////        VOID       OnSize      (WPARAM wParam, LPARAM lParam) {};    /*virtual*/
 ////        VOID       OnTest      (WORD   id,     LPARAM lParam) {};
 ////
@@ -114,7 +109,7 @@ class CxTab : public CxWindow {
 ///////////////////////////////////////////////////////////////////////////////////////////////
         ////class CxLayout : public CxWindowImpl {
         ////    public:
-        ////        CxLayout() { 
+        ////        CxLayout() {
         ////            _m_ulStyle   = WS_CHILD | WS_TABSTOP | WS_CAPTION;
         ////            _m_ulStyleEx = WS_EX_CONTROLPARENT;
 
@@ -128,7 +123,7 @@ class CxTab : public CxWindow {
         ////        ////////xEND_MSG_MAP(CxWindowImpl)
 
         ////        VOID OnCreate(WPARAM wParam, LPARAM lParam) {};    /*virtual*/
-        ////        VOID OnNotify(WPARAM wParam, LPARAM lParam) {};    /*virtual*/    
+        ////        VOID OnNotify(WPARAM wParam, LPARAM lParam) {};    /*virtual*/
         ////        VOID OnSize  (WPARAM wParam, LPARAM lParam) {};    /*virtual*/
         ////        VOID OnTest  (WORD   id,     LPARAM lParam) {};
 
@@ -144,7 +139,7 @@ class CxTab : public CxWindow {
         INT         iGetCurSel  ();
         LRESULT     GetImageList();
         HIMAGELIST  SetImageList(HIMAGELIST lImageList);
-        
+
     private:
         std::vector<CxLayout *> _m_vecLayouts;
         BOOL        bPutLayout   (HWND hPageDlg, INT iPos);

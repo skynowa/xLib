@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCom
-* Description: COM
-* File name:   CxCom.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     10.12.2009 15:27:35
-*
-*****************************************************************************/
+/**
+ * \file  CxCom.cpp
+ * \brief COM
+ */
 
 
 #include <xLib/Common/Win/CxCom.h>

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxObject
-* Description: Pkcs11 object
-* File name:   CxObject.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:09:54
-*
-*****************************************************************************/
+/**
+ * \file  CxObject.h
+ * \brief Pkcs11 object
+ */
 
 
 #ifndef xLib_Pkcs11_CxObjectH
@@ -48,11 +43,11 @@ class CxObject :
     		///< destroys an object
 
         //Utils
-        static BOOL          bGetData          (CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString &cusDataLabel, uString *pusData);
+        static BOOL          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, const std::ustring &cusDataLabel, std::ustring *pusData);
     		///< get data
-        static BOOL          bSetData          (CK_SLOT_ID ulSlotId, const uString &cusUserPin, const uString &cusDataLabel, const uString &cusData);
+        static BOOL          bSetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, const std::ustring &cusDataLabel, const std::ustring &cusData);
     		///< set data
-        static BOOL          bGetData          (CK_SLOT_ID ulSlotId, const uString &cusUserPin, std::vector<uString> *pusDataLabel, std::vector<uString> *pusDataValue);
+        static BOOL          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, std::vector<std::ustring> *pusDataLabel, std::vector<std::ustring> *pusDataValue);
     		///< get data
 
     private:

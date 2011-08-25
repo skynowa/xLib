@@ -1,24 +1,19 @@
-/****************************************************************************
-* Class name:  CxFont
-* Description: רנטפע
-* File name:   CxFont.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     09.03.2010 10:36:56
-*
-*****************************************************************************/
+/**
+ * \file  CxFont.cpp
+ * \brief font
+ */
 
 
 #include <xLib/Gui/CxFont.h>
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: - CxFont
-CxFont::CxFont() : 
+CxFont::CxFont() :
     _m_hFont(NULL),
     _m_bRes (FALSE)
 {
@@ -29,8 +24,8 @@ CxFont::~CxFont() {
     xCHECK_DO(NULL != _m_hFont, bDelete());
 }
 //---------------------------------------------------------------------------
-//TODO: - bCreate (creates a logical font with the specified characteristics) 
-BOOL CxFont::bCreate(                
+//TODO: - bCreate (creates a logical font with the specified characteristics)
+BOOL CxFont::bCreate(
                 INT     iHeight,
                 INT     iWidth,
                 INT     iEscapement,
@@ -44,14 +39,14 @@ BOOL CxFont::bCreate(
                 ULONG   ulClipPrecision,
                 ULONG   ulQuality,
                 ULONG   ulPitchAndFamily,
-                LPCTSTR pcszFace) 
+                LPCTSTR pcszFace)
 {
-    /*DEBUG*/xASSERT_RET(NULL == _m_hFont, FALSE); 
-    
+    /*DEBUG*/xASSERT_RET(NULL == _m_hFont, FALSE);
+
     HFONT hFont = NULL;
-    
-    hFont = ::CreateFont(iHeight, iWidth, iEscapement, iOrientation, iWeight, 
-                         ulItalic, ulUnderline, ulStrikeOut, ulCharSet, 
+
+    hFont = ::CreateFont(iHeight, iWidth, iEscapement, iOrientation, iWeight,
+                         ulItalic, ulUnderline, ulStrikeOut, ulCharSet,
                          ulOutputPrecision, ulClipPrecision, ulQuality, ulPitchAndFamily, pcszFace);
     /*DEBUG*/xASSERT_RET(NULL != hFont, FALSE);
 
@@ -62,9 +57,9 @@ BOOL CxFont::bCreate(
 //---------------------------------------------------------------------------
 //DONE: bCreateDefault
 BOOL CxFont::bCreateDefault() {
-    /*DEBUG*/xASSERT_RET(NULL == _m_hFont, FALSE); 
+    /*DEBUG*/xASSERT_RET(NULL == _m_hFont, FALSE);
 
-    //_m_hFont = ::CreateFont(- 11, 0, 0, 0, FW_NORMAL, 0, 0, 0, ANSI_CHARSET, 
+    //_m_hFont = ::CreateFont(- 11, 0, 0, 0, FW_NORMAL, 0, 0, 0, ANSI_CHARSET,
     //                          OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Tahoma");
     _m_bRes = bCreate(- 11, 0, 0, 0, 400, 0, 0, 0, 0xCC, 0, 0, 0, DEFAULT_PITCH, /*_T("Arial Black")*/_T("Tahoma"));
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -75,7 +70,7 @@ BOOL CxFont::bCreateDefault() {
 //DONE: hGet
 HFONT CxFont::hGet(HWND hWnd) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hFont, NULL);
-    /*DEBUG*/xASSERT_RET(NULL != hWnd,     NULL); 
+    /*DEBUG*/xASSERT_RET(NULL != hWnd,     NULL);
 
     HFONT hFont = NULL;
 
@@ -88,10 +83,10 @@ HFONT CxFont::hGet(HWND hWnd) {
 //DONE: bSet
 BOOL CxFont::bSet(HWND hWnd) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hFont, FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != hWnd,     FALSE); 
+    /*DEBUG*/xASSERT_RET(NULL != hWnd,     FALSE);
 
     //TODO: reinterpret_cast
-    _m_bRes = static_cast<BOOL>( ::SendMessage(hWnd, WM_SETFONT, reinterpret_cast<WPARAM>(_m_hFont), /*MAKELPARAM(TRUE, 0)*/TRUE) );    
+    _m_bRes = static_cast<BOOL>( ::SendMessage(hWnd, WM_SETFONT, reinterpret_cast<WPARAM>(_m_hFont), /*MAKELPARAM(TRUE, 0)*/TRUE) );
     /*DEBUG*///not return a value
 
     return TRUE;
@@ -110,8 +105,8 @@ BOOL CxFont::bDelete() {
 
 
 /****************************************************************************
-*    Private methods                                                         
-*                                                                            
+*    Private methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------

@@ -89,7 +89,7 @@ CxTest_CxThread::bUnit(
             xASSERT_EQ(CxThread::tpLowest, m_iRes);
 
             m_sRes = pthT->sGetPriorityString();
-            xASSERT_EQ(tString(xT("Lowest")), m_sRes);
+            xASSERT_EQ(std::tstring(xT("Lowest")), m_sRes);
 
             m_bRes = pthT->bPriorityUp();
             xASSERT_NOT_EQ(FALSE, m_bRes);

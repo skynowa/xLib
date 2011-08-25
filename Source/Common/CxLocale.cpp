@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxLocale
-* Description: locale
-* File name:   CxLocale.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     09.08.2009 19:47:14
-*
-*****************************************************************************/
+/**
+ * \file  CxLocale.cpp
+ * \brief locale
+ */
 
 
 #include <xLib/Common/CxLocale.h>
@@ -21,11 +16,11 @@
 
 //---------------------------------------------------------------------------
 /*static*/
-tString
+std::tstring
 CxLocale::sGetCurrent() {
     /*DEBUG*/// n/a
 
-    tString sRes;
+    std::tstring sRes;
 
 #if defined(xOS_WIN)
     INT  iRes = - 1;
@@ -36,18 +31,18 @@ CxLocale::sGetCurrent() {
 
     //Retrieves information about a locale specified by identifier
     iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, 0, 0);
-    /*DEBUG*/xASSERT_RET(0 != iRes, tString());
+    /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring());
 
     sRes.resize(iRes);
     iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != iRes, tString());
+    /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring());
 
     sRes.resize(iRes - sizeof('\0'));    //delete from end '\0'
 #elif defined(xOS_LINUX)
     const TCHAR *pcszLocale = NULL;
 
     pcszLocale = _tsetlocale(LC_ALL, NULL);
-    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, tString());
+    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::tstring());
 
     sRes.assign(pcszLocale);
 #endif
@@ -58,7 +53,7 @@ CxLocale::sGetCurrent() {
 /*static*/
 BOOL
 CxLocale::bSetCurrent(
-    const tString &csLocale
+    const std::tstring &csLocale
 )
 {
     /*DEBUG*/// csLocale - n/a

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxNonAssignable
-* Description: non assignable class
-* File name:   CxNonAssignable.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     09.11.2009 11:11::00
-*
-*****************************************************************************/
+/**
+ * \file  CxNonAssignable.h
+ * \brief non assignable class
+ */
 
 
 #ifndef xLib_Common_CxNonAssignableH

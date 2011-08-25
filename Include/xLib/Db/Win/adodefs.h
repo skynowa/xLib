@@ -1,3 +1,9 @@
+/**
+ * \file  adodefs.h
+ * \brief ADO defines
+ */
+
+
 #if defined(xOS_WIN)
 #pragma once
 

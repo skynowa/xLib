@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxWindow
-* Description: ����� root ��� ���� �������� ����
-* File name:   CxWindow.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     31.08.2009 16:44:56
-*
-*****************************************************************************/
-
+/**
+ * \file  CxWindow.cpp
+ * \brief window
+ */
 
 
 #include <xLib/Gui/CxWindow.h>

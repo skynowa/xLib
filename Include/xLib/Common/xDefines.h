@@ -1,8 +1,6 @@
 /**
- * \file   xDefines.h
- * \brief  predefined macros
- * \author skynowa <skynowa@gmail.com>
- * \date   20.05.2011
+ * \file  xDefines.h
+ * \brief predefined macros
  */
 
 

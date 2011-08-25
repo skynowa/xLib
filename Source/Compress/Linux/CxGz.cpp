@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxGz
-* Description: gz
-* File name:   CxGz.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.01.2011 23:28:14
-*
-*****************************************************************************/
+/**
+ * \file  CxGz.cpp
+ * \brief gz
+ */
 
 
 #include <xLib/Compress/Linux/CxGz.h>
@@ -37,7 +32,7 @@ CxGz::~CxGz() {
 //---------------------------------------------------------------------------
 //DONE: bCompress ()
 BOOL
-CxGz::bCompress(INT iFileIn, INT iFileOut, const tString &csOriginName) {
+CxGz::bCompress(INT iFileIn, INT iFileOut, const std::tstring &csOriginName) {
     /*DEBUG*/xASSERT_RET(- 1   != iFileIn,              FALSE);
     /*DEBUG*/xASSERT_RET(- 1   != iFileOut,             FALSE);
     /*DEBUG*/xASSERT_RET(false == csOriginName.empty(), FALSE);

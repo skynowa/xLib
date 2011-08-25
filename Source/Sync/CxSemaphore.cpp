@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSemaphore
-* Description: semaphore
-* File name:   CxSemaphore.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2009 18:46:41
-*
-*****************************************************************************/
+/**
+ * \file  CxSemaphore.cpp
+ * \brief semaphore
+ */
 
 
 #include <xLib/Sync/CxSemaphore.h>
@@ -46,7 +41,7 @@ CxSemaphore::bCreate(
     const LPSECURITY_ATTRIBUTES  pcsaAttributes,
     const LONG                   cliInitialCount,
     const LONG                   cliMaxCount,
-    const tString               &csName
+    const std::tstring               &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hSemaphore.bIsValid(),                      FALSE);
@@ -71,7 +66,7 @@ BOOL
 CxSemaphore::bOpen(
     const ULONG    culAccess,
     const BOOL     cbInheritHandle,
-    const tString &csName
+    const std::tstring &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hSemaphore.bIsValid(), FALSE);

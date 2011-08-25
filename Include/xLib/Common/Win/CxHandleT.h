@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxHandleT
-* Description: handle
-* File name:   CxHandleT.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.01.2010 14:12:26
-*
-*****************************************************************************/
+/**
+ * \file  CxHandleT.h
+ * \brief handle
+ */
 
 
 #ifndef xLib_Common_Win_CxHandleTH

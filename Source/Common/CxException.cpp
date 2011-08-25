@@ -1,8 +1,6 @@
 /**
- * \file   CxException.cpp
- * \brief  CxException (exception)
- * \author skynowa <skynowa@gmail.com>
- * \date   01.02.2011
+ * \file  CxException.cpp
+ * \brief CxException (exception)
  */
 
 
@@ -26,7 +24,7 @@ CxException::~CxException() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-const tString &
+const std::tstring &
 CxException::sGetWhat() const {
     /*DEBUG*/
 

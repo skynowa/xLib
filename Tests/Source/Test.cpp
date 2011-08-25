@@ -165,7 +165,7 @@ _tmain(
     ULONGLONG ullBlockLoops = 1;
 
     {
-        std::vector<tString> vsArgs;
+        std::vector<std::tstring> vsArgs;
 
         bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
         xASSERT_NOT_EQ(FALSE, bRes);

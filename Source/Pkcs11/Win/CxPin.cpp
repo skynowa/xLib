@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxPin
-* Description: Pkcs11 pin
-* File name:   CxPin.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:09:04
-*
-*****************************************************************************/
+/**
+ * \file  CxPin.cpp
+ * \brief Pkcs11 pin
+ */
 
 
 #include <xLib/Pkcs11/Win/CxPin.h>

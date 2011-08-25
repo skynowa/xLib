@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxReport
-* Description: debug message
-* File name:   CxReport.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.02.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxReport.h
+ * \brief debug report
+ */
 
 
 #ifndef xLib_Debug_CxReportH
@@ -29,59 +24,59 @@ class CxReport :
             rtLoggingHtml
         };
 
-                         CxReport           (const EType &crtType, const tString &csExp, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, const tString &csComment);
-                         CxReport           (const EType &crtType, const tString &csExp, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, LPCTSTR pcszComment, ...);
+                         CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csComment);
+                         CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, LPCTSTR pcszComment, ...);
                          template<class T>
-                         CxReport           (const EType &crtType, const T &cVatT1, const T &cVatT2, const tString &csExpr1, const tString &csExpr2, const tString &csExprSign, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, const tString &csComment);
+                         CxReport           (const EType &crtType, const T &cVatT1, const T &cVatT2, const std::tstring &csExpr1, const std::tstring &csExpr2, const std::tstring &csExprSign, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csComment);
 
         virtual         ~CxReport           ();
 
         EType            rtGetType          () const;
-        const tString &  sGetReport         () const;
-        const tString &  sGetProgram        () const;
+        const std::tstring &  sGetReport         () const;
+        const std::tstring &  sGetProgram        () const;
         ULONG            ulGetProcessId     () const;
         ULONG            ulGetThreadId      () const;
-        const tString &  sGetFileSize       () const;
-        const tString &  sGetSourceFile     () const;
+        const std::tstring &  sGetFileSize       () const;
+        const std::tstring &  sGetSourceFile     () const;
         ULONG            ulGetSourceLine    () const;
-        const tString &  sGetFunctionName   () const;
-        const tString &  sGetExpression     () const;
+        const std::tstring &  sGetFunctionName   () const;
+        const std::tstring &  sGetExpression     () const;
         ULONG            ulGetLastError     () const;
-        const tString &  sGetLastErrorStr   () const;
-        const tString &  sGetCurrentDate    () const;
-        const tString &  sGetBuildDate      () const;
-        const tString &  sGetOsVersion      () const;
-        const tString &  sGetOsArchitecture () const;
-        const tString &  sGetComment        () const;
+        const std::tstring &  sGetLastErrorStr   () const;
+        const std::tstring &  sGetCurrentDate    () const;
+        const std::tstring &  sGetBuildDate      () const;
+        const std::tstring &  sGetOsVersion      () const;
+        const std::tstring &  sGetOsArchitecture () const;
+        const std::tstring &  sGetComment        () const;
 
     private:
         EType            _m_rtType;
-        tString          _m_sReport;
+        std::tstring          _m_sReport;
 
         //exe
-        tString          _m_sProgram;
+        std::tstring          _m_sProgram;
         ULONG            _m_ulProcessId;
         ULONG            _m_ulThreadId;
-        tString          _m_sFileSize;
+        std::tstring          _m_sFileSize;
 
         //source
-        tString          _m_sSourceFile;
+        std::tstring          _m_sSourceFile;
         ULONG            _m_ulSourceLine;
-        tString          _m_sFunctionName;
-        tString          _m_sExpression;
+        std::tstring          _m_sFunctionName;
+        std::tstring          _m_sExpression;
         ULONG            _m_ulLastError;
-        tString          _m_sLastErrorStr;
+        std::tstring          _m_sLastErrorStr;
 
         //other
-        tString          _m_sCurrentDate;
-        tString          _m_sBuildDate;
-        tString          _m_sOsVersion;
-        tString          _m_sOsArchitecture;
+        std::tstring          _m_sCurrentDate;
+        std::tstring          _m_sBuildDate;
+        std::tstring          _m_sOsVersion;
+        std::tstring          _m_sOsArchitecture;
 
         //comment
-        tString          _m_sComment;
+        std::tstring          _m_sComment;
 
-        BOOL             _bInitVars         (const EType &crtType, const tString &csExp, const ULONG culLastError, const tString &csFile, const ULONG culLine, const tString &csFunc, const tString &csDate, const tString &csTime, const tString &csComment);
+        BOOL             _bInitVars         (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csComment);
         BOOL             _bInitPlain        ();
         BOOL             _bInitHtml         ();
         BOOL             _bInitFormated     ();

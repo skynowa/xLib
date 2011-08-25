@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CCompletionPort
-* Description: ���� ����������
-* File name:   CCompletionPort.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.02.2010 14:28:40
-*
-*****************************************************************************/
+/**
+ * \file  CxCompletionPort.cpp
+ * \brief completion port
+ */
 
 
 #include <xLib/Sync/CxCompletionPort.h>
@@ -52,7 +47,7 @@ BOOL
 CxCompletionPort::bAssociate(
 	HANDLE    hFile,
 	ULONG_PTR pulCompletionKey
-) 
+)
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hCP.bIsValid(), FALSE);
     /*DEBUG*/// hFile
@@ -70,9 +65,9 @@ CxCompletionPort::bAssociate(
 //DONE: bGetStatus (Attempts to dequeue an I/O completion packet from the specified I/O completion port.)
 BOOL
 CxCompletionPort::bGetStatus(
-	LPDWORD       lpNumberOfBytes, 
-	PULONG_PTR    lpCompletionKey, 
-	LPOVERLAPPED *lpOverlapped, 
+	LPDWORD       lpNumberOfBytes,
+	PULONG_PTR    lpCompletionKey,
+	LPOVERLAPPED *lpOverlapped,
 	ULONG         ulMilliseconds
 )
 {
@@ -91,8 +86,8 @@ CxCompletionPort::bGetStatus(
 //DONE: bPostStatus (Posts an I/O completion packet to an I/O completion port.)
 BOOL
 CxCompletionPort::bPostStatus(
-	ULONG        ulNumberOfBytesTransferred, 
-	ULONG_PTR    ulCompletionKey, 
+	ULONG        ulNumberOfBytesTransferred,
+	ULONG_PTR    ulCompletionKey,
 	LPOVERLAPPED lpOverlapped
 )
 {

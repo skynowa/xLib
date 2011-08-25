@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxClipboard
-* Description: clipboard
-* File name:   CxClipboard.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     12.07.2010 12:43:35
-*
-*****************************************************************************/
+/**
+ * \file  CxClipboard.h
+ * \brief clipboard
+ */
 
 
 #ifndef xLib_Common_Win_CxClipboardH
@@ -52,10 +47,10 @@ class CxClipboard :
         virtual ~CxClipboard    ();
 
         BOOL     bSetOwner      (HWND hWndOwner);
-        BOOL     bGetText       (tString *psText);
-        BOOL     bSetText       (const tString csText);
+        BOOL     bGetText       (std::tstring *psText);
+        BOOL     bSetText       (const std::tstring csText);
         BOOL     bIsHasFormat   (EFormat fmFormat);
-        BOOL     bRegisterFormat(const tString csText, EFormat *pfmFormat);
+        BOOL     bRegisterFormat(const std::tstring csText, EFormat *pfmFormat);
         BOOL     bClear         ();
 
     private:

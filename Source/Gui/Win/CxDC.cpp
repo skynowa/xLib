@@ -1,17 +1,12 @@
-/****************************************************************************
-* Class name:  CxDC
-* Description: работа с контекстом устройства
-* File name:   CxDC.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     18.06.2009 21:30:49
-*
-*****************************************************************************/
+/**
+ * \file  CxDC.cpp
+ * \brief DC
+ */
 
 
 #include <xLib/Gui/CxDC.h>
 //---------------------------------------------------------------------------------------
-CxDC::CxDC() : 
+CxDC::CxDC() :
     _m_hDC(NULL)
 {
 }
@@ -26,7 +21,7 @@ BOOL CxDC::bAttach(HDC hdc) {
     if (_m_hDC) {
         return FALSE;
     }
-    
+
     _m_hDC = hdc;
 
     return TRUE;
@@ -35,7 +30,7 @@ BOOL CxDC::bAttach(HDC hdc) {
 HDC CxDC::hDetach() {
     HDC RetDc = _m_hDC;
     _m_hDC = NULL;
-    
+
     return RetDc;
 }
 //---------------------------------------------------------------------------
@@ -43,7 +38,7 @@ BOOL CxDC::bTextOut(INT xStart, INT yStart, std::string &csText, INT iText) {
     if (!_m_hDC) {
         return FALSE;
     }
-    
+
     return ::TextOut(_m_hDC, xStart, yStart, csText.c_str(), iText);
 }
 //---------------------------------------------------------------------------
@@ -51,7 +46,7 @@ BOOL CxDC::bTextOut(INT xStart, INT yStart, std::string &csText) {
     if (!_m_hDC) {
         return FALSE;
     }
-    
+
     return ::TextOut(_m_hDC, xStart, yStart, csText.c_str(), csText.size());
 }
 //---------------------------------------------------------------------------------------

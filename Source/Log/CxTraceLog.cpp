@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxTraceLog
-* Description: tracing
-* File name:   CxTraceLog.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.06.2009 17:45:21
-*
-*****************************************************************************/
-
+/**
+ * \file  CxTraceLog.cpp
+ * \brief tracing
+ */
 
 
 #include <xLib/Log/CxTraceLog.h>
@@ -53,7 +47,7 @@ CxTraceLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     //-------------------------------------
     //time
-    tString sTime;
+    std::tstring sTime;
 
     if (TRUE == _m_bIsUseTimeStr) {
         sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
@@ -63,7 +57,7 @@ CxTraceLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     //-------------------------------------
     //comment
-    tString sParam;
+    std::tstring sParam;
     va_list palArgs;
 
     xVA_START(palArgs, pcszFormat);

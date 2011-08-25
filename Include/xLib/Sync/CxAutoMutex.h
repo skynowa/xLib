@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxAutoMutex
-* Description: auto mutex
-* File name:   CxAutoMutex.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     16.12.2009 10:06:46
-*
-*****************************************************************************/
+/**
+ * \file  CxAutoMutex.h
+ * \brief auto mutex
+ */
 
 
 #ifndef xLib_Sync_CxAutoMutexH

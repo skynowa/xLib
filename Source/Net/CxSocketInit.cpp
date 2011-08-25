@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSocketInit
-* Description: initiates use of the Winsock DLL by a process
-* File name:   CxSocketInit.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     22.06.2010 10:25:42
-*
-*****************************************************************************/
+/**
+ * \file  CxSocketInit.cpp
+ * \brief initiates use of the Winsock DLL by a process
+ */
 
 
 #include <xLib/Net/CxSocketInit.h>

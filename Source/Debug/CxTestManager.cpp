@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTestManager
-* Description: manage tests (CxTest)
-* File name:   CxTestManager.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     18.07.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxTestManager.cpp
+ * \brief manage tests (CxTest)
+ */
 
 
 #include <xLib/Debug/CxTestManager.h>
@@ -47,7 +42,7 @@ CxTestManager::~CxTestManager() {
 BOOL
 CxTestManager::bAdd(
     CxTest        *pvtTest,
-    const tString &csTestName /*= CxConst::xSTR_EMPTY*/
+    const std::tstring &csTestName /*= CxConst::xSTR_EMPTY*/
 )
 {
     /*DEBUG*/

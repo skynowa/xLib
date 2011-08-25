@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxStatusBar
-* Description: строка состояния
-* File name:   CxStatusBar.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     26.07.2009 23:49:15
-*
-*****************************************************************************/
+/**
+ * \file  CxStatusBar.h
+ * \brief status bar
+ */
 
 
 #ifndef XLib_Gui_CxStatusBarH
@@ -51,19 +46,19 @@ class CxStatusBar: public CxWindow {
 
                         static std::vector<INT> m_veciWidths;
 
-                        CXItem() : 
-                            m_hIcon(NULL), m_sText(), m_sTipText(), m_iWidth(0), m_uiType(0) 
+                        CXItem() :
+                            m_hIcon(NULL), m_sText(), m_sTipText(), m_iWidth(0), m_uiType(0)
                         {
                         }
-                    
+
                     private:
                 };
 
                 BOOL                   _m_bRes;
                 CxStatusBar           *_m_pstaParent;
-                std::vector<CXItem *>  _m_vecpItems;    
-        }; 
-        
+                std::vector<CXItem *>  _m_vecpItems;
+        };
+
         CXItems m_Items;    //панели
 
                 CxStatusBar      ();
@@ -74,12 +69,12 @@ class CxStatusBar: public CxWindow {
         BOOL    bSetSimple          (BOOL bFlag);
         BOOL    bIsUnicodeFormat ();
         BOOL    bSetUnicodeFormat(BOOL bFlag);
-        BOOL    bSetMinHeight    (INT iHeight); 
+        BOOL    bSetMinHeight    (INT iHeight);
         BOOL    bGetBorders      (INT *piHorz, INT *piVert, INT *piSpacing);
         BOOL    bSetBkColor      (COLORREF crColor);
       //BOOL    bSetParts        (INT iParts);
       //INT     iGetParts        (/*PARAMS*/);
-    
+
     private:
 };
 //---------------------------------------------------------------------------

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxGeoIp
-* Description: GeoIP (http://geolite.maxmind.com/download/geoip/api/c/)
-* File name:   CxGeoIp.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.06.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxGeoIp.cpp
+ * \brief GeoIP (http://geolite.maxmind.com/download/geoip/api/c/)
+ */
 
 
 #include <xLib/Net/CxGeoIp.h>
@@ -45,7 +40,7 @@ CxGeoIp::~CxGeoIp() {
 //DONE: bOpen ()
 BOOL
 CxGeoIp::bOpen(
-    const tString &csFilePath,
+    const std::tstring &csFilePath,
     const EOption  copOption
 )
 {
@@ -71,35 +66,35 @@ CxGeoIp::bIsValid() const {
 }
 //---------------------------------------------------------------------------
 //DONE: sGetCountryCodeByAddress (get country code by address)
-tString
+std::tstring
 CxGeoIp::sGetCountryCodeByAddress(
-    const tString &csAddress
+    const std::tstring &csAddress
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        tString());
-    /*DEBUG*/xASSERT_RET(false == csAddress.empty(), tString());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        std::tstring());
+    /*DEBUG*/xASSERT_RET(false == csAddress.empty(), std::tstring());
 
-    tString sRes;
+    std::tstring sRes;
 
     sRes = CxMacros::sAsTString( GeoIP_country_code_by_addr(_m_pgiGeoIp, csAddress.c_str()) );
-    /*DEBUG*/xASSERT_RET(2 == sRes.size(), tString());
+    /*DEBUG*/xASSERT_RET(2 == sRes.size(), std::tstring());
 
     return sRes;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetCountryCodeBy3Address (get country code by address)
-tString
+std::tstring
 CxGeoIp::sGetCountryCode3ByAddress(
-    const tString &csAddress
+    const std::tstring &csAddress
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        tString());
-    /*DEBUG*/xASSERT_RET(false == csAddress.empty(), tString());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        std::tstring());
+    /*DEBUG*/xASSERT_RET(false == csAddress.empty(), std::tstring());
 
-    tString sRes;
+    std::tstring sRes;
 
     sRes = CxMacros::sAsTString( GeoIP_country_code3_by_addr(_m_pgiGeoIp, csAddress.c_str()) );
-    /*DEBUG*/xASSERT_RET(3 == sRes.size(), tString());
+    /*DEBUG*/xASSERT_RET(3 == sRes.size(), std::tstring());
 
     return sRes;
 }

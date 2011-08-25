@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxTab
-* Description: закладки
-* File name:   CxTab.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:11:14
-*
-*****************************************************************************/
-
+/**
+ * \file  CxTab.cpp
+ * \brief tab
+ */
 
 
 #include <xLib/Gui/CxTab.h>
@@ -23,7 +17,7 @@
 
 //---------------------------------------------------------------------------
 //DONE: CxTab
-CxTab::CxTab() {    
+CxTab::CxTab() {
     LOG();
 
     //-------------------------------------
@@ -59,10 +53,10 @@ BOOL CxTab::bCreateRes(INT iID, HWND hParent) {
     _m_bRes = _bInitCommonControls(ICC_TAB_CLASSES);
     xCHECK_RET(FALSE == _m_bRes, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, hParent, _m_sClassName, 
-                                CxResources::sGetText  (iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, hParent, _m_sClassName,
+                                CxResources::sGetText  (iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     xCHECK_RET(FALSE == _m_bRes, FALSE);
@@ -77,18 +71,18 @@ BOOL CxTab::bInsertTab(INT iLayoutID, LPTSTR lpCaption, INT iPos, INT iImage) {
 
     INT  iIndex = - 1;
 
-    TCITEM tci = {0};        
+    TCITEM tci = {0};
     tci.pszText    = lpCaption;
     tci.cchTextMax = 20;
     tci.mask       = TCIF_IMAGE | TCIF_TEXT;
     tci.iImage     = iImage;
-    
-    iIndex = (INT)pSendMessage(TCM_INSERTITEM, (WPARAM)(INT)iPos, (LPARAM)&tci);            
+
+    iIndex = (INT)pSendMessage(TCM_INSERTITEM, (WPARAM)(INT)iPos, (LPARAM)&tci);
     /*DEBUG*/xASSERT_RET(- 1 != iIndex, FALSE);    //Returns the index of the new tab if successful, or -1 otherwise.
 
     tci.pszText = lpCaption;
-    
-    
+
+
     /*-----------------------*/
     //создать Layout (окно)
     CxLayout *pwndLayout = new CxLayout();
@@ -103,21 +97,21 @@ BOOL CxTab::bInsertTab(INT iLayoutID, LPTSTR lpCaption, INT iPos, INT iImage) {
     _m_bRes = bPutLayout(pwndLayout->hGetHandle(), iIndex);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    _m_vecLayouts.push_back(pwndLayout); 
+    _m_vecLayouts.push_back(pwndLayout);
     pwndLayout = NULL;
     /*-----------------------*/
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL CxTab::bShowTab(INT iPos, BOOL bShow) {    
+BOOL CxTab::bShowTab(INT iPos, BOOL bShow) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
     /*DEBUG*/xASSERT_RET(0    <= iPos,    FALSE);
 
-    TCITEM tci = {0};        
+    TCITEM tci = {0};
     tci.mask   = TCIF_PARAM;
-    
+
     _m_bRes = (BOOL)pSendMessage(TCM_GETITEM, (WPARAM)(INT)iPos, (LPARAM)&tci);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -140,8 +134,8 @@ INT CxTab::iGetCurSel() {
 
     iRes = TabCtrl_GetCurSel(this->hGetHandle());
     ////iRes = (INT)pSendMessage(TCM_GETCURSEL, 0, 0);    //Returns the index of the selected tab if successful, or -1 if no tab is selected.
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, - 1);        
-    
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, - 1);
+
     return iRes;
 }
 //---------------------------------------------------------------------------
@@ -174,7 +168,7 @@ BOOL CxTab::bPutLayout(HWND hLayout, INT iPos) {
     /*DEBUG*/xASSERT_RET(NULL != hLayout,  FALSE);
     /*DEBUG*/xASSERT_RET(0    <= iPos,    FALSE);
 
-    RECT rect = {0};        
+    RECT rect = {0};
     _m_bRes = ::GetClientRect(_m_hWnd, &rect);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -184,7 +178,7 @@ BOOL CxTab::bPutLayout(HWND hLayout, INT iPos) {
     _m_bRes = ::MoveWindow(hLayout, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    TCITEM tci = {0};     
+    TCITEM tci = {0};
     tci.mask   = TCIF_PARAM;
     tci.lParam = reinterpret_cast<LPARAM>(hLayout);
 

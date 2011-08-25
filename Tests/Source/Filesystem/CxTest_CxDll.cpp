@@ -31,7 +31,7 @@ CxTest_CxDll::bUnit(
 )
 {
     #if defined(xOS_WIN)
-        const tString sData[][2] = {
+        const std::tstring sData[][2] = {
             {xT("kernel32.dll"), xT("Beep")}
         };
     #elif defined(xOS_LINUX)
@@ -39,11 +39,11 @@ CxTest_CxDll::bUnit(
 			//if -static CxDll::bLoad don't load any 'so'-libraries
 			return TRUE;
 
-			const tString sData[][2] = {
+			const std::tstring sData[][2] = {
                 {xT("libm.so"), xT("cos")}
             };
         #else
-            const tString sData[][2] = {
+            const std::tstring sData[][2] = {
                 {xT("libm.so"), xT("cos")}
             };
         #endif

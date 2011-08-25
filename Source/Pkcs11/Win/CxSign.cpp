@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSign
-* Description: Pkcs11 sign
-* File name:   CxSign.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:12:48
-*
-*****************************************************************************/
+/**
+ * \file  CxSign.cpp
+ * \brief Pkcs11 sign
+ */
 
 
 #include <xLib/Pkcs11/Win/CxSign.h>

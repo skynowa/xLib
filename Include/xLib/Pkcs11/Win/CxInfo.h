@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxInfo
-* Description: Pkcs11 info
-* File name:   CxInfo.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:08:14
-*
-*****************************************************************************/
+/**
+ * \file  CxInfo.h
+ * \brief Pkcs11 info
+ */
 
 
 #ifndef xLib_Pkcs11_CxInfoH

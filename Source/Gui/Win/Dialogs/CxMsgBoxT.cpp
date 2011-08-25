@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMsgBoxT
-* Description: message box
-* File name:   CxMsgBoxT.inl
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.04.2009 10:24:49
-*
-*****************************************************************************/
+/**
+ * \file  CxMsgBoxT.cpp
+ * \brief message box
+ */
 
 
 #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>

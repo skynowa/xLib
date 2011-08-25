@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEvent
-* Description: event
-* File name:   CxEvent.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2009 17:53:15
-*
-*****************************************************************************/
+/**
+ * \file  CxEvent.h
+ * \brief event
+ */
 
 
 #include <xLib/Sync/CxEvent.h>
@@ -46,7 +41,7 @@ CxEvent::bCreate(
     const LPSECURITY_ATTRIBUTES  pcsaAttributes,
     const BOOL                   cbManualReset,
     const BOOL                   cbInitialState,
-    const tString               &csName
+    const std::tstring               &csName
 ) {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
@@ -67,7 +62,7 @@ BOOL
 CxEvent::bOpen(
     const ULONG    culAccess,
     const BOOL     cbInheritHandle,
-    const tString &csName
+    const std::tstring &csName
 ) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxGeoIp
-* Description: GeoIP (http://geolite.maxmind.com/download/geoip/api/c/)
-* File name:   CxGeoIp.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.06.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxGeoIp.h
+ * \brief GeoIP (http://geolite.maxmind.com/download/geoip/api/c/)
+ */
 
 
 #ifndef xLib_Net_CxGeoIpH
@@ -30,10 +25,10 @@ class CxGeoIp :
                       CxGeoIp                  ();
         virtual      ~CxGeoIp                  ();
 
-        BOOL          bOpen                    (const tString &csFilePath, const EOption copOption);
+        BOOL          bOpen                    (const std::tstring &csFilePath, const EOption copOption);
         BOOL          bIsValid                 () const;
-        tString       sGetCountryCodeByAddress (const tString &csAddress) const;
-        tString       sGetCountryCode3ByAddress(const tString &csAddress) const;
+        std::tstring       sGetCountryCodeByAddress (const std::tstring &csAddress) const;
+        std::tstring       sGetCountryCode3ByAddress(const std::tstring &csAddress) const;
         BOOL          bClose                   ();
 
     private:

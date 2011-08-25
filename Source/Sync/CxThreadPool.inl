@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxThreadPool
-* Description: thread pool
-* File name:   CxThreadPool.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     10.12.2009 22:10:16
-*
-*****************************************************************************/
+/**
+ * \file  CxThreadPool.inl
+ * \brief thread pool
+ */
 
 
 /****************************************************************************

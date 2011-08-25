@@ -1,12 +1,7 @@
-/****************************************************************************
-* Func name:   bGetUsbInfo
-* Description: get USB info
-* File name:   bGetUsbInfo.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:
-*
-*****************************************************************************/
+/**
+ * \file  bGetUsbInfo.cpp
+ * \brief get USB info
+ */
 
 
 #include <xLib/Units/Win/bGetUsbInfo.h>
@@ -26,8 +21,8 @@
 //---------------------------------------------------------------------------
 BOOL
 bGetUsbInfo(
-    const tString        &csDrive,
-    std::vector<tString> *pvsInfo
+    const std::tstring        &csDrive,
+    std::vector<std::tstring> *pvsInfo
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDrive.empty(), FALSE);
@@ -80,8 +75,8 @@ bGetUsbInfo(
 
         //-------------------------------------
         //���������� ��� MountPoitName - �
-        tString sMountPointNameFromLetter     = CxVolume::sGetVolumeNameForVolumeMountPoint(csDrive);
-        tString sMountPointNameFromDevicePath = CxVolume::sGetVolumeNameForVolumeMountPoint(tString(diddDeviceInterfaceDetailData.pGetPtr()->DevicePath));
+        std::tstring sMountPointNameFromLetter     = CxVolume::sGetVolumeNameForVolumeMountPoint(csDrive);
+        std::tstring sMountPointNameFromDevicePath = CxVolume::sGetVolumeNameForVolumeMountPoint(std::tstring(diddDeviceInterfaceDetailData.pGetPtr()->DevicePath));
         if (sMountPointNameFromLetter != sMountPointNameFromDevicePath) {
             continue;
         }
@@ -108,8 +103,8 @@ bGetUsbInfo(
             TCHAR szRes[256 + 1] = {0};
 
             if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, xT("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
-                //--*pvsInfo = vsSplit(tString(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
-                bRes = CxString::bSplit(tString(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvsInfo);
+                //--*pvsInfo = vsSplit(std::tstring(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
+                bRes = CxString::bSplit(std::tstring(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvsInfo);
                 /*DEBUG*/xASSERT(TRUE == bRes);
             }
 

@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxStatic
-* Description: работа с статическим полем
-* File name:   CxStatic.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 11:20:41
-*
-*****************************************************************************/
-
+/**
+ * \file  CxStatic.cpp
+ * \brief static field
+ */
 
 
 #include <xLib/Gui/CxStatic.h>
@@ -36,7 +30,7 @@ CxStatic::CxStatic() {
 //TODO: - ~CxStatic
 CxStatic::~CxStatic() {
     LOG();
-    
+
     /*DEBUG*/xASSERT_DO(NULL != _m_pwndParent, return);
     _m_bRes = reinterpret_cast<CxWindowImpl *>(_m_pwndParent)->m_vecpContainer.bRemove(this);
     xCHECK_DO(FALSE == _m_bRes, return);
@@ -47,9 +41,9 @@ BOOL CxStatic::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);

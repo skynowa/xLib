@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSystemInfo
-* Description: system information
-* File name:   CxSystemInfo.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     09.07.2009 11:52:01
-*
-*****************************************************************************/
+/**
+ * \file  CxSystemInfo.h
+ * \brief system information
+ */
 
 
 #ifndef xLib_Common_CxSystemInfoH
@@ -55,19 +50,19 @@ class CxSystemInfo :
 
         static EOsType         osGetOS            ();
             ///< get information about the current OS
-        static tString         sFormatOsType      (const EOsType otOsType);
+        static std::tstring         sFormatOsType      (const EOsType otOsType);
             ///< format OS type
 
         static EOsArch         oaGetOsArch        ();
             ///< get OS architecture
-        static tString         sFormatOsArch      (const EOsArch oaOsArch);
+        static std::tstring         sFormatOsArch      (const EOsArch oaOsArch);
             ///< format get OS architecture
 
-        static tString         sGetComputerName   ();
+        static std::tstring         sGetComputerName   ();
             ///< get the NetBIOS name of the local computer
         static BOOL            bIsUserAnAdmin     ();
             ///< is current user an admin
-        static tString         sGetUserName       ();
+        static std::tstring         sGetUserName       ();
             ///< get the name of the user associated with the current thread
         static ULONG           ulGetNumOfCPUs     ();
             ///< get num of CPUs

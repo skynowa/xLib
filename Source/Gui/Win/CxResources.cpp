@@ -1,16 +1,10 @@
-/****************************************************************************
-* Class name:  CxResources
-* Description: 
-* File name:   CxResources.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     07.09.2009 9:44:20
-*
-*****************************************************************************/
+/**
+ * \file  CxResources.cpp
+ * \brief resources
+ */
 
 
-
-#include <xLib/GUI/CxResources.h> 
+#include <xLib/GUI/CxResources.h>
 
 #define RES_FILE_PATH <xLib/Gui/Resource.xrc.cpp>
 //---------------------------------------------------------------------------
@@ -20,8 +14,8 @@ CxResources::TSettingsMap CxResources::_m_mapResContent;
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
@@ -31,8 +25,8 @@ BOOL CxResources::bInit() {
     BOOL bRes = FALSE;
 
     #ifndef RES_FILE_PATH
-        #error "xLib: [Please, define RES_FILE_PATH]" 
-        
+        #error "xLib: [Please, define RES_FILE_PATH]"
+
         return FALSE;
     #endif
 
@@ -87,7 +81,7 @@ ULONG CxResources::ulGetStyle(INT iID) {
     xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
     return _m_mapResContent[iID].ulGetStyle();
-} 
+}
 //---------------------------------------------------------------------------
 //DONE: ulGetStyleEx (по ID контрола ищем свойство)
 /*static*/
@@ -100,18 +94,18 @@ ULONG CxResources::ulGetStyleEx(INT iID) {
 
 
 /****************************************************************************
-*    Private methods                                                         
-*                                                                            
+*    Private methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //DONE: CxResources
-CxResources::CxResources() {        
+CxResources::CxResources() {
     /*DEBUG*/xASSERT(FALSE);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxResources
-CxResources::~CxResources() {         
+CxResources::~CxResources() {
     /*DEBUG*/xASSERT(FALSE);
 }
 //---------------------------------------------------------------------------

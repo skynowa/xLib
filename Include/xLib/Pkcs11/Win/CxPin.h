@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxPin
-* Description: Pkcs11 pin
-* File name:   CxPin.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:09:04
-*
-*****************************************************************************/
+/**
+ * \file  CxPin.h
+ * \brief Pkcs11 pin
+ */
 
 
 #ifndef xLib_Pkcs11_CxPinH
@@ -35,8 +30,8 @@ class CxPin :
 
         //Utils
 	#if xTODO
-		tString              sChangeUserPin(const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
-		tString              sChangeSOPin  (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
+		std::tstring              sChangeUserPin(const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
+		std::tstring              sChangeSOPin  (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
 	#endif
 
     private:
