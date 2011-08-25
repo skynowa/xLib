@@ -13,14 +13,6 @@
 #define xLib_Crypt_CxBase64H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
-#if defined(xOS_WIN)
-	#if defined(xCOMPILER_MS)
-		#pragma comment(lib, "libeay32.lib")
-	#endif
-#elif defined(xOS_LINUX)
-    // -lcrypt -lssl -lcrypto
-#endif
 //---------------------------------------------------------------------------
 class CxBase64 :
     public CxNonCopyable

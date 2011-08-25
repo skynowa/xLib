@@ -16,7 +16,7 @@
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Filesystem/CxPath.h>
 //---------------------------------------------------------------------------
-#if defined(xTEST_PRIVATE_METHODS)
+#if xTEST_PRIVATE_METHODS
      #define private  public
         ///< \def    private
         ///< tests   private methods
@@ -369,16 +369,14 @@ class CxMacros :
         #else
             #define xFILE      xT("<unknown xFILE>")
         #endif
-            ///< \def   xFILE
-            ///< \brief source file path
+            ///< source file path
 
         #if defined(__LINE__)
             #define xLINE      __LINE__
         #else
             #define xLINE      0
         #endif
-            ///< \def   xLINE
-            ///< \brief source code line number
+            ///< source code line number
 
         #if defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL) || defined(xCOMPILER_MINGW32)
             #define xFUNCTION   xT(__FUNCTION__)
@@ -393,61 +391,52 @@ class CxMacros :
         #else
             #define xFUNCTION   xT("<unknown xFUNCTION>")
         #endif
-            ///< \def   xFUNCTION
-            ///< \brief source function name
+            ///< source function name
 
         #if defined(__DATE__)
             #define xDATE      xT(__DATE__)
         #else
             #define xDATE      xT("<unknown xDATE>")
         #endif
-            ///< \def   xDATE
-            ///< \brief date stamp
+            ///< build source date stamp
 
         #if defined(__TIME__)
             #define xTIME      xT(__TIME__)
         #else
             #define xTIME      xT("<unknown xTIME>")
         #endif
-            ///< \def   xTIME
-            ///< \brief time stamp
+            ///< build source time stamp
 
         #if defined(__DATE__) && defined(__TIME__)
             #define xDATETIME  xT(__DATE__) xT(" ") xT(__TIME__)
         #else
             #define xDATETIME  xT("<unknown xDATETIME>")
         #endif
-            ///< \def   xDATETIME
-            ///< \brief datetime stamp
+            ///< build source datetime stamp
 
         #if defined(__COUNTER__)
             #define xCOUNTER   __COUNTER__
         #else
             #define xCOUNTER   0
         #endif
-            ///< \def   xCOUNTER
-            ///< \brief Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
+            ///< Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
 
         //TODO: HOST_NAME_MAX
         #if !defined(HOST_NAME_MAX)
             #define HOST_NAME_MAX   MAXHOSTNAMELEN
+                ///< max host name length
         #endif
-            ///< \def   HOST_NAME_MAX
-            ///< \brief max host name length
 
         #define xPATH_MAX       (CxPath::uiGetMaxSize())
-            ///< \def   xPATH_MAX
-            ///< \brief max path length
+            ///< max path length
         #define xNAME_MAX       (CxPath::uiGetNameMaxSize())
-            ///< \def   xNAME_MAX
-            ///< \brief max file name length
+            ///< max file name length
 
         //var args
         #if defined(va_start)
             #define xVA_START(val, fmt) ( va_start(val, fmt) )
+                ///< initializes ap for subsequent use by xVA_ARG() and xVA_END(), and must be called first
         #endif
-            ///< \def   xVA_START(val, fmt)
-            ///< \brief initializes ap for subsequent use by xVA_ARG() and xVA_END(), and must be called first
 
         #if defined(va_copy)
             #define xVA_COPY(dest, src) ( va_copy(dest, src) )
@@ -456,55 +445,54 @@ class CxMacros :
         #else
             #define xVA_COPY(dest, src) ( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
         #endif
-            ///< \def   xVA_COPY(dest, src)
-            ///< \brief copy xVA_LIST
+            ///< copy xVA_LIST
 
         #if defined(va_end)
             #define xVA_END(val)        ( va_end(val) )
+                ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END() in the same function
         #endif
-            ///< \def   xVA_END(val)
-            ///< \brief Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END() in the same function
+
 
         //qualifiers
         #if defined(xOS_WIN)
             #ifdef xARCHITECTURE_64BIT
                 #define xPR_SIZET xT("I")
-                    ///<
+                    ///< qualifier for std::size_t
                 #define xPR_I64d  xT("I64d")
-                    ///<
+                    ///< qualifier for  long long int
                 #define xPR_I64u  xT("I64u")
-                    ///<
+                    ///< qualifier for unsigned long long int
                 #define xPR_I64x  xT("I64x")
-                    ///<
+                    ///< qualifier for long long int (hex)
             #else
                 #define xPR_SIZET xT("u")
-                    ///<
+                    ///< qualifier for std::size_t
                 #define xPR_I64d  xT("lld")
-                    ///<
+                    ///< qualifier for  long long int
                 #define xPR_I64u  xT("llu")
-                    ///<
+                    ///< qualifier for unsigned long long in
                 #define xPR_I64x  xT("llx")
-                    ///<
+                    ///< qualifier for long long int (hex)
             #endif
         #elif defined(xOS_LINUX)
             #ifdef xARCHITECTURE_64BIT
                 #define xPR_SIZET xT("zu")
-                    ///<
+                    ///< qualifier for std::size_t
                 #define xPR_I64d  xT("lld")
-                    ///<
+                    ///< qualifier for  long long int
                 #define xPR_I64u  xT("llu")
-                    ///<
+                    ///< qualifier for unsigned long long int
                 #define xPR_I64x  xT("llx")
-                    ///<
+                    ///< qualifier for long long int (hex)
             #else
                 #define xPR_SIZET xT("zu")
-                    ///<
+                    ///< qualifier for std::size_t
                 #define xPR_I64d  xT("lld")
-                    ///<
+                    ///< qualifier for  long long int
                 #define xPR_I64u  xT("llu")
-                    ///<
+                    ///< qualifier for unsigned long long int
                 #define xPR_I64x  xT("llx")
-                    ///<
+                    ///< qualifier for long long int (hex)
             #endif
         #endif
 

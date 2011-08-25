@@ -14,12 +14,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <GeoIP.h>
-
-#if defined(xOS_WIN)
-    #pragma comment(lib, "GeoIP.lib")
-#elif defined(xOS_LINUX)
-    //-lGeoIP
-#endif
 //---------------------------------------------------------------------------
 class CxGeoIp :
     public CxNonCopyable

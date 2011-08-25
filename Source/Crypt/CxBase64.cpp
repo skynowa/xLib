@@ -16,6 +16,14 @@
 #include <openssl/bio.h>
 #include <openssl/buffer.h>
 
+#if defined(xOS_WIN)
+    #if defined(xCOMPILER_MS)
+        #pragma comment(lib, "libeay32.lib")
+    #endif
+#elif defined(xOS_LINUX)
+    // -lcrypt -lssl -lcrypto
+#endif
+
 
 /****************************************************************************
 *    public

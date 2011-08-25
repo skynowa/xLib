@@ -21,8 +21,6 @@
 #elif defined(xOS_LINUX)
     #include <inttypes.h>
     #include <sys/types.h>
-
-    //-lz
 #endif
 //---------------------------------------------------------------------------
 #define BUFLEN          (64 * 1024)
