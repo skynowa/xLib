@@ -240,9 +240,6 @@
     <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp">
       <Filter>xLib\Log</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Log\Win\CxEventLog.cpp">
-      <Filter>xLib\Log\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Log\Win\CxWndLog.cpp">
       <Filter>xLib\Log\Win</Filter>
     </ClCompile>
@@ -684,6 +681,9 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Log\CxEventLog.cpp">
+      <Filter>xLib\Log</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -748,9 +748,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\xLog.h">
       <Filter>xLib\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Log\Win\CxEventLog.h">
-      <Filter>xLib\Log\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\Win\CxWndLog.h">
       <Filter>xLib\Log\Win</Filter>
@@ -1246,6 +1243,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h">
       <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Log\CxEventLog.h">
+      <Filter>xLib\Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
