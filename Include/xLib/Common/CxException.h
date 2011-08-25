@@ -1,12 +1,9 @@
-/****************************************************************************
-* Class name:  CxException
-* Description: exception
-* File name:   CxException.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     1 лют. 2011 11:13:48
-*
-*****************************************************************************/
+/**
+ * \file   CxException.h
+ * \brief  CxException (exception)
+ * \author skynowa <skynowa@gmail.com>
+ * \date   01.02.2011
+ */
 
 
 #ifndef xLib_Debug_CxExceptionH
@@ -17,22 +14,25 @@
 class CxException {
     public:
                            CxException  ();
+            ///< constructor
         virtual           ~CxException  ();
+            ///< destructor
 
         const tString &    sGetWhat     () const;
-        tString            sGetReport   ();
-
+            ///< get message
         template<class T>
         CxException &      operator <<  (const T &cMessageT);
+            ///< put message
 
     private:
         tString            _m_sMsg;
-
+            ///< message
 };
 //---------------------------------------------------------------------------
 #include <Common/CxException.inl>
 //---------------------------------------------------------------------------
 #define xTRY try
+    ///< like try
 
 #define xCATCH_ALL \
     catch (const CxException &e) { \
@@ -46,5 +46,6 @@ class CxException {
     catch (...) { \
         /*DEBUG*/xASSERT_MSG_RET(FALSE, xT("unknown error"), FALSE); \
     }
+    ///< catch CxException, std::exception and all other exceptions
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxExceptionH

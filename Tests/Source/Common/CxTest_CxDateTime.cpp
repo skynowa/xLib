@@ -363,21 +363,21 @@ CxTest_CxDateTime::bUnit(
         m_sRes = dtDT.sFormat(CxDateTime::ftTime);
         xASSERT_EQ(tString(xT("17:00:55:666")), m_sRes);
     }
-    
+
     xTEST_BLOCK(cullBlockLoops)
     {
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRes = dtDT.sFormat(CxDateTime::ftDate);
         xASSERT_EQ(tString(xT("14.01.2010")), m_sRes);
     }
-    
+
     xTEST_BLOCK(cullBlockLoops)
     {
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
         xASSERT_EQ(tString(xT("14.01.2010 17:00:55:666")), m_sRes);
     }
-    
+
     xTEST_BLOCK(cullBlockLoops)
     {
         CxDateTime dtDT(2011, 3, 19, 1, 35, 55, 666);
@@ -451,6 +451,20 @@ CxTest_CxDateTime::bUnit(
                 ////xASSERT_NOT_EQ(FALSE, m_bRes);
             }
         }
+    }
+
+    //--------------------------------------------------
+    //bIsValid(const CxDateTime &cdtDT)
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        //TODO: tests bIsValid
+    }
+
+    //--------------------------------------------------
+    //bIsValid() const
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        //TODO: tests bIsValid
     }
 
     //-------------------------------------

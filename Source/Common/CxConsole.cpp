@@ -1,12 +1,9 @@
-/****************************************************************************
-* Class name:  CxConsole
-* Description: console
-* File name:   CxConsole.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     09.09.2010 10:06:20
-*
-*****************************************************************************/
+/**
+ * \file   CxConsole.cpp
+ * \brief  console
+ * \author skynowa <skynowa@gmail.com>
+ * \date   09.09.2010
+ */
 
 
 #include <xLib/Common/CxConsole.h>
@@ -22,7 +19,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxConsole
 CxConsole::CxConsole()
 #if defined(xOS_WIN)
     :
@@ -50,7 +46,6 @@ CxConsole::CxConsole()
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxConsole
 CxConsole::~CxConsole() {
 #if defined(xOS_WIN)
     _m_hStdIn.hDetach();
@@ -61,7 +56,6 @@ CxConsole::~CxConsole() {
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: bSetTextColor (set text color)
 //NOTE: http://lifeforce4.wordpress.com/, http://lifeforce4.wordpress.com/
 tString
 CxConsole::bSetTextColor(
@@ -98,7 +92,6 @@ CxConsole::bSetTextColor(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: sRead (read)
 tString
 CxConsole::sRead() {
     tString sRes;
@@ -124,7 +117,6 @@ CxConsole::sRead() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bWrite (write)
 BOOL
 CxConsole::bWrite(
     const tString &csStr
@@ -149,7 +141,6 @@ CxConsole::bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bWriteLine (write line)
 BOOL
 CxConsole::bWriteLine(
     const tString &csStr /* = xT("")*/
@@ -168,7 +159,6 @@ CxConsole::bWriteLine(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bWriteErrLine (write error message)
 BOOL
 CxConsole::bWriteErrLine(
     const tString &csStr
@@ -189,7 +179,6 @@ CxConsole::bWriteErrLine(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: iMsgBox (message box)
 CxConsole::EModalResult
 CxConsole::iMsgBox(
     const tString &csText,
@@ -227,7 +216,6 @@ CxConsole::iMsgBox(
     return mrRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bPrompt (prompt dialog)
 BOOL
 CxConsole::bPrompt(
     const tString &csPrompt,
@@ -268,7 +256,6 @@ CxConsole::bPrompt(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bPause (pause)
 BOOL
 CxConsole::bPause() {
     /*DEBUG*/
@@ -297,7 +284,6 @@ CxConsole::bPause() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear (clear screen)
 BOOL
 CxConsole::bClear() {
     BOOL bRes = FALSE;
@@ -341,7 +327,6 @@ CxConsole::bClear() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bEnableClose (enable close button)
 BOOL
 CxConsole::bEnableClose(
     const BOOL cbFlag
@@ -373,7 +358,6 @@ CxConsole::bEnableClose(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetTitle (get title string)
 tString
 CxConsole::sGetTitle() {
     tString sRes;
@@ -392,14 +376,13 @@ CxConsole::sGetTitle() {
 
     sRes.assign(szBuff, ulTitleSize);
 #elif defined(xOS_LINUX)
-    //TODO: xOS_LINUX
+    //TODO: sGetTitle
     xNOT_IMPLEMENTED_RET(tString());
 #endif
 
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetTitle (set title string)
 BOOL
 CxConsole::bSetTitle(
     const tString &csTitle
@@ -415,6 +398,8 @@ CxConsole::bSetTitle(
     bRes = ::SetConsoleTitle(csTitle.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
+    //TODO: bSetTitle
+
     bRes = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), csTitle.c_str(), xT('\007')) );
     /*DEBUG*/xASSERT_RET(FALSE != bRes,  FALSE);
 #endif
@@ -422,7 +407,6 @@ CxConsole::bSetTitle(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetFullScreen (set full screen)
 BOOL
 CxConsole::bSetFullScreen() {
     BOOL bRes = FALSE;
@@ -457,7 +441,6 @@ CxConsole::bSetFullScreen() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bCenterWindow (allign to center)
 BOOL
 CxConsole::bCenterWindow() {
 #if defined(xOS_WIN)
@@ -499,7 +482,6 @@ CxConsole::bCenterWindow() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _hGetWndHandle
 #if defined(xOS_WIN)
 
 HWND
@@ -538,7 +520,6 @@ CxConsole::_hGetWndHandle() {
 
 #endif
 //---------------------------------------------------------------------------
-//DONE: _hGetMenuHandle
 #if defined(xOS_WIN)
 
 HMENU

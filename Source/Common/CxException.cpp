@@ -1,12 +1,9 @@
-/****************************************************************************
-* Class name:  CxException
-* Description: exception
-* File name:   CxException.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     1 лют. 2011 11:13:48
-*
-*****************************************************************************/
+/**
+ * \file   CxException.cpp
+ * \brief  CxException (exception)
+ * \author skynowa <skynowa@gmail.com>
+ * \date   01.02.2011
+ */
 
 
 #include <xLib/Common/CxException.h>
@@ -18,20 +15,17 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxException
 CxException::CxException() :
     _m_sMsg()
 {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxException
 /*virtual*/
 CxException::~CxException() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: sGetWhat ()
 const tString &
 CxException::sGetWhat() const {
     /*DEBUG*/
@@ -39,4 +33,3 @@ CxException::sGetWhat() const {
     return _m_sMsg;
 }
 //---------------------------------------------------------------------------
-

@@ -20,7 +20,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: osGetOS (information about the current operating system)
 /*static*/
 CxSystemInfo::EOsType
 CxSystemInfo::osGetOS() {
@@ -94,7 +93,6 @@ CxSystemInfo::osGetOS() {
     return otRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatOsType (format OS type)
 /*static*/
 tString
 CxSystemInfo::sFormatOsType(
@@ -137,7 +135,6 @@ CxSystemInfo::sFormatOsType(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: oaGetOsArch (get OS architecture)
 /*static*/
 CxSystemInfo::EOsArch
 CxSystemInfo::oaGetOsArch() {
@@ -216,7 +213,6 @@ CxSystemInfo::oaGetOsArch() {
     return oaRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatOsArch (format get OS architecture)
 /*static*/
 tString
 CxSystemInfo::sFormatOsArch(
@@ -238,7 +234,6 @@ CxSystemInfo::sFormatOsArch(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetComputerName (Retrieves the NetBIOS name of the local computer)
 /*static*/
 tString
 CxSystemInfo::sGetComputerName() {
@@ -267,7 +262,6 @@ CxSystemInfo::sGetComputerName() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsUserAnAdmin (is current user an admin)
 /*static*/
 BOOL
 CxSystemInfo::bIsUserAnAdmin() {
@@ -302,7 +296,6 @@ CxSystemInfo::bIsUserAnAdmin() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetUserName (Retrieves the name of the user associated with the current thread)
 /*static*/
 tString
 CxSystemInfo::sGetUserName() {
@@ -332,7 +325,6 @@ CxSystemInfo::sGetUserName() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetNumOfCPUs (get num of CPUs)
 /*static*/
 ULONG
 CxSystemInfo::ulGetNumOfCPUs() {
@@ -365,7 +357,7 @@ CxSystemInfo::ulGetNumOfCPUs() {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//TODO: ulGetCurrentCpuNum (Retrieves the number of the processor the current thread was running on during the call to this function)
+//TODO: ulGetCurrentCpuNum
 /*static*/
 ULONG
 CxSystemInfo::ulGetCurrentCpuNum() {
@@ -410,7 +402,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsUnicodeOS (is OS support unicode)
+//TODO: bIsUnicodeOS
 BOOL
 CxSystemInfo::bIsUnicodeOS()  {
     /*DEBUG*/// n/a
@@ -431,7 +423,7 @@ CxSystemInfo::bIsUnicodeOS()  {
     return bRes;
 }
 //---------------------------------------------------------------------------
-//TODO: ullGetCpuSpeed (calculates the CPU speed in MHz)
+//TODO: ullGetCpuSpeed
 /*static*/
 ULONGLONG
 CxSystemInfo::ullGetCpuSpeed() {
@@ -485,13 +477,11 @@ CxSystemInfo::ullGetCpuSpeed() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxSystemInfo
 /*virtual*/
 CxSystemInfo::CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxSystemInfo
 CxSystemInfo::~CxSystemInfo(){
 
 }

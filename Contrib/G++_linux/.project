@@ -101,5 +101,10 @@
 			<type>2</type>
 			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Include/xLib</locationURI>
 		</link>
+		<link>
+			<name>xLib.doxyfile</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Contrib/xLib.doxyfile</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>

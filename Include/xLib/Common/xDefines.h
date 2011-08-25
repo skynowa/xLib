@@ -1,15 +1,9 @@
-/****************************************************************************
-* Class name:  xDefines
-* File name:   xDefines.h
-* Description: predefined macros
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     20.05.2011
-*
-*****************************************************************************/
-
-///< \file  xDefines.h
-///< \brief predefined macros
+/**
+ * \file   xDefines.h
+ * \brief  predefined macros
+ * \author skynowa <skynowa@gmail.com>
+ * \date   20.05.2011
+ */
 
 
 #ifndef xLib_Common_xDefinesH

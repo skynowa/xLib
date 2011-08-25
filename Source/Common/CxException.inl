@@ -1,12 +1,9 @@
-/****************************************************************************
-* Class name:  CxException
-* Description: exception
-* File name:   CxException.inl
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     17.06.2011
-*
-*****************************************************************************/
+/**
+ * \file   CxException.inl
+ * \brief  CxException (exception)
+ * \author skynowa <skynowa@gmail.com>
+ * \date   01.02.2011
+ */
 
 
 /****************************************************************************
@@ -15,7 +12,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: operator << (set message)
 template<class T>
 CxException &
 CxException::operator << (
