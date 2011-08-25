@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxIcon
-* Description: иконка
-* File name:   CxIcon.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     13.04.2010 11:21:37
-*
-*****************************************************************************/
+/**
+ * \file  CxIcon.h
+ * \brief icon
+ */
 
 
 #ifndef XLib_Gui_CxIconH
@@ -19,7 +14,7 @@ class CxIcon : public CxNonCopyable {
     public:
                CxIcon();
     virtual   ~CxIcon();
-       
+
     #if (xWINVER >= xWIN32_XP)
         HICON  hCopyIcon                   (HICON hIcon);
     #endif //xWIN32_XP

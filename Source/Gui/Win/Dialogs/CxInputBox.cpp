@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxInputBox
-* Description: input box
-* File name:   CxInputBox.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     22.10.2010 13:53:30
-*
-*****************************************************************************/
+/**
+ * \file  CxInputBox.cpp
+ * \brief input box
+ */
 
 
 #include <xLib/Gui/Win/Dialogs/CxInputBox.h>
@@ -30,19 +25,19 @@ CxInputBox::CxInputBox() :
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxInputBox
-/*virtual*/ 
+/*virtual*/
 CxInputBox::~CxInputBox() {
 
 }
 //---------------------------------------------------------------------------
 //DONE: iShowModal ()
-CxInputBox::EModalResult 
-CxInputBox::mrShowModal(const tString &csCaption, const tString &csPrompt, const tString &csText) {
+CxInputBox::EModalResult
+CxInputBox::mrShowModal(const std::tstring &csCaption, const std::tstring &csPrompt, const std::tstring &csText) {
     /*DEBUG*/// csCaption - n/a
     /*DEBUG*/// csPrompt - n/a
     /*DEBUG*/// csText - n/a
 
-    HINSTANCE hInstance = ::GetModuleHandle(NULL);    
+    HINSTANCE hInstance = ::GetModuleHandle(NULL);
     /*DEBUG*/xASSERT_RET(NULL != hInstance, mrCancel);
 
     WNDCLASS wndClass = {0};
@@ -53,88 +48,88 @@ CxInputBox::mrShowModal(const tString &csCaption, const tString &csPrompt, const
     wndClass.hbrBackground = (HBRUSH)(COLOR_WINDOW/* + 1*/);
     wndClass.lpszClassName = xT("CxInputBox");
     wndClass.hIcon           = ::LoadIcon(NULL, IDI_QUESTION);
-    wndClass.hCursor       = ::LoadCursor(NULL, IDC_ARROW); 
+    wndClass.hCursor       = ::LoadCursor(NULL, IDC_ARROW);
     wndClass.cbWndExtra    = 4;    //4�����
-    
+
     _m_bRes = ::RegisterClass(&wndClass);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, CxInputBox::mrCancel);
-    
+
     //-------------------------------------
     //_m_hWndMain
     INT iWidth  = 240;
     INT iHeight = 125;
     INT x       = ::GetSystemMetrics(SM_CXSCREEN) / 2;
     INT y       = ::GetSystemMetrics(SM_CYSCREEN) / 2;
-    
+
     _m_hWndMain = ::CreateWindow(
-                            xT("CxInputBox"), 
-                            csCaption.c_str(), 
-                            WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME, 
-                            x - iWidth  / 2, 
-                            y - iHeight / 2, 
-                            iWidth, 
-                            iHeight, 
-                            NULL, 
-                            NULL, 
-                            hInstance, 
+                            xT("CxInputBox"),
+                            csCaption.c_str(),
+                            WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,
+                            x - iWidth  / 2,
+                            y - iHeight / 2,
+                            iWidth,
+                            iHeight,
+                            NULL,
+                            NULL,
+                            hInstance,
                             NULL);
     /*DEBUG*/xASSERT_RET(NULL != _m_hWndMain, mrCancel);
 
-    ::SetWindowLong(_m_hWndMain, 0, (LONG)this); 
+    ::SetWindowLong(_m_hWndMain, 0, (LONG)this);
 
     //-------------------------------------
     //_m_hStaPrompt
     _m_hStaPrompt = ::CreateWindow(
-                            xT("STATIC"), 
-                            csPrompt.c_str(), 
-                            WS_CHILD | WS_VISIBLE | ES_LEFT, 
-                            8,   8, 
-                            216, 20,   
-                            _m_hWndMain,        
-                            (HMENU)ID_staPrompt,   
-                            hInstance, 
-                            NULL); 
+                            xT("STATIC"),
+                            csPrompt.c_str(),
+                            WS_CHILD | WS_VISIBLE | ES_LEFT,
+                            8,   8,
+                            216, 20,
+                            _m_hWndMain,
+                            (HMENU)ID_staPrompt,
+                            hInstance,
+                            NULL);
     /*DEBUG*/xASSERT_RET(NULL != _m_hStaPrompt, mrCancel);
 
     //-------------------------------------
     //_m_hEdtText
     _m_hEdtText = ::CreateWindow(
-                            xT("EDIT"), 
-                            csText.c_str(), 
-                            WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT | ES_PASSWORD, 
-                            8,   8+20+8, 
-                            216, 20,   
-                            _m_hWndMain,        
-                            (HMENU)ID_edtText,   
-                            hInstance, 
-                            NULL); 
+                            xT("EDIT"),
+                            csText.c_str(),
+                            WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT | ES_PASSWORD,
+                            8,   8+20+8,
+                            216, 20,
+                            _m_hWndMain,
+                            (HMENU)ID_edtText,
+                            hInstance,
+                            NULL);
     /*DEBUG*/xASSERT_RET(NULL != _m_hEdtText, mrCancel);
 
     //-------------------------------------
     //_m_hBtnOk
     _m_hBtnOk = ::CreateWindow(
-                            xT("BUTTON"), 
-                            xT("OK"), 
-                            WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,  
-                            40, 62, 
-                            75, 25, 
-                            _m_hWndMain, 
-                            (HMENU)ID_btnOK, 
-                            hInstance, 
+                            xT("BUTTON"),
+                            xT("OK"),
+                            WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+                            40, 62,
+                            75, 25,
+                            _m_hWndMain,
+                            (HMENU)ID_btnOK,
+                            hInstance,
                             NULL);
     /*DEBUG*/xASSERT_RET(NULL != _m_hBtnOk, mrCancel);
 
     //-------------------------------------
     //_m_hBtnCancel
     _m_hBtnCancel = ::CreateWindow(
-                            xT("BUTTON"), 
-                            xT("Cancel"), 
-                            WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,  
-                            40+75+4, 62, 
-                            75,      25, 
-                            _m_hWndMain, 
-                            (HMENU)ID_btnCancel, 
-                            hInstance, 
+                            xT("BUTTON"),
+                            xT("Cancel"),
+                            WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+                            40+75+4, 62,
+                            75,      25,
+                            _m_hWndMain,
+                            (HMENU)ID_btnCancel,
+                            hInstance,
                             NULL);
     /*DEBUG*/xASSERT_RET(NULL != _m_hBtnCancel, mrCancel);
 
@@ -169,7 +164,7 @@ CxInputBox::mrShowModal(const tString &csCaption, const tString &csPrompt, const
         if (::PeekMessage(&msgMsg, NULL, 0, 0, PM_REMOVE)) {
             if (WM_QUIT == msgMsg.message) {
                 bIsDone = TRUE;
-            } 
+            }
             else {
                 ::TranslateMessage(&msgMsg);
                 ::DispatchMessage (&msgMsg);
@@ -185,9 +180,9 @@ CxInputBox::mrShowModal(const tString &csCaption, const tString &csPrompt, const
 }
 //---------------------------------------------------------------------------
 //DONE: sGetText (�����)
-tString 
+std::tstring
 CxInputBox::sGetText() {
-    return _m_sText;    
+    return _m_sText;
 }
 //---------------------------------------------------------------------------
 
@@ -199,8 +194,8 @@ CxInputBox::sGetText() {
 
 //---------------------------------------------------------------------------
 //DONE: _ms_pWndProc (������)
-/*static*/ 
-LRESULT CALLBACK 
+/*static*/
+LRESULT CALLBACK
 CxInputBox::_ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
     if (WM_COMMAND == uiMsg) {
         CxInputBox *pibThis = (CxInputBox *)::GetWindowLong(hWnd, 0);
@@ -208,27 +203,27 @@ CxInputBox::_ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 
         switch (wParam) {
             case ID_btnOK: {
-                INT iTextSize = ::GetWindowTextLength(pibThis->_m_hEdtText) + sizeof('\0');    
+                INT iTextSize = ::GetWindowTextLength(pibThis->_m_hEdtText) + sizeof('\0');
                 /*DEBUG*/
 
                 pibThis->_m_sText.resize(iTextSize);
 
                 UINT uiTextSize = ::GetDlgItemText(hWnd, ID_edtText, &pibThis->_m_sText.at(0), pibThis->_m_sText.size());
-                
+
                 //�������� ������ �� '\0'
-                pibThis->_m_sText = tString(pibThis->_m_sText, 0, uiTextSize); 
+                pibThis->_m_sText = std::tstring(pibThis->_m_sText, 0, uiTextSize);
 
                 ::PostQuitMessage(mrOk);
                 return 0;
             }
             case ID_btnCancel: {
-                pibThis->_m_sText.clear(); 
+                pibThis->_m_sText.clear();
 
                 ::PostQuitMessage(mrCancel);
                 return 0;
             }
         }
-    
+
         return 0;
     }
 

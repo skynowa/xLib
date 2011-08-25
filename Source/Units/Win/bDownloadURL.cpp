@@ -1,12 +1,7 @@
-/****************************************************************************
-* Unit name:   bDownloadURL
-* Description: download file using  ftp, http, https
-* File name:   bDownloadURL.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.11.2009 11:50:17
-*
-*****************************************************************************/
+/**
+ * \file  bDownloadURL.cpp
+ * \brief download file using  ftp, http, https
+ */
 
 
 #include <xLib/Units/Win/bDownloadURL.h>

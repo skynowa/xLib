@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxShell
-* Description: shell
-* File name:   CxShell.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     26.04.2010 22:05:23
-*
-*****************************************************************************/
+/**
+ * \file  CxShell.h
+ * \brief shell
+ */
 
 
 #ifndef xLib_Common_Win_CxShellH
@@ -114,14 +109,14 @@ class CxShell :
             sfWindows                = CSIDL_WINDOWS
         };
 
-        static tString bFindExecutable   (const tString csFileName, const tString csFindDirPath);
-        static BOOL    bExecute          (HWND hOwner, EOperation opOperation, const tString &csFilePath, const tString &csParams, const tString &csDir, EShowFlag sfShowCmd);
+        static std::tstring bFindExecutable   (const std::tstring csFileName, const std::tstring csFindDirPath);
+        static BOOL    bExecute          (HWND hOwner, EOperation opOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, EShowFlag sfShowCmd);
         static BOOL    bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
-        static BOOL    bExecuteHttp      (const tString &csUrl);
-        static BOOL    bExecuteFtp       (const tString &csUrl);
-        static BOOL    bExecuteEmail     (const tString &csToEmail, const tString &csSubject, const tString &csBody);
-        static tString sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken);
-        static BOOL    bCreateShortcut   (const tString &csFilePath, const tString &csShortCutPath, const tString &csDescription);
+        static BOOL    bExecuteHttp      (const std::tstring &csUrl);
+        static BOOL    bExecuteFtp       (const std::tstring &csUrl);
+        static BOOL    bExecuteEmail     (const std::tstring &csToEmail, const std::tstring &csSubject, const std::tstring &csBody);
+        static std::tstring sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken);
+        static BOOL    bCreateShortcut   (const std::tstring &csFilePath, const std::tstring &csShortCutPath, const std::tstring &csDescription);
 
     private:
         static   BOOL  _ms_bRes;

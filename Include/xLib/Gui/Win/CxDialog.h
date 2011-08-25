@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CXDialog
-* Description: работа с окнами
-* File name:   CXDialog.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:10:17
-*
-*****************************************************************************/
+/**
+ * \file  CxDialog.h
+ * \brief dialog
+ */
 
 
 #ifndef XLib_Gui_CXDialogH
@@ -19,9 +14,9 @@ class CXDialog : public CxWindow {
                      CXDialog      ();
                      CXDialog      (SHORT TemplID, SHORT IconID = 0, HWND hParentWnd = NULL);
                     ~CXDialog      ();
-                
+
                      xDECLARE_MSG_MAP();
-        
+
         BOOL         bCreate       (SHORT TemplID, SHORT IconID = 0, HWND hParentWnd = NULL);
         INT          CreateModal   ();
 
@@ -33,8 +28,8 @@ class CXDialog : public CxWindow {
         virtual VOID OnPaint       (WPARAM wParam, LPARAM lParam);
         virtual VOID OnCommand     (WPARAM wParam, LPARAM lParam);
         virtual VOID OnNotify      (WPARAM wParam, LPARAM lParam);
-        virtual VOID OnSize        (WPARAM wParam, LPARAM lParam);    
-        virtual VOID OnClose       (WPARAM wParam, LPARAM lParam);    
+        virtual VOID OnSize        (WPARAM wParam, LPARAM lParam);
+        virtual VOID OnClose       (WPARAM wParam, LPARAM lParam);
         virtual VOID OnDestroy     (WPARAM wParam, LPARAM lParam);
 };
 //---------------------------------------------------------------------------

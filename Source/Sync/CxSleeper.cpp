@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSleeper
-* Description: like ::Sleep()
-* File name:   CxSleeper.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.07.2009 12:54:38
-*
-*****************************************************************************/
+/**
+ * \file  CxSleeper.cpp
+ * \brief like ::Sleep()
+ */
 
 
 #include <xLib/Sync/CxSleeper.h>

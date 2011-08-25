@@ -1,11 +1,7 @@
-/****************************************************************************
-* Class name:  CxAppSettings
-* Description: application settings
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.11.2010 9:23:47
-*
-*****************************************************************************/
+/**
+ * \file  CxAppSettings.h
+ * \brief application settings
+ */
 
 
 #ifndef xLib_Common_CxAppSettingsH
@@ -17,16 +13,16 @@ class CxAppSettings :
     public CxNonCopyable
 {
     public:
-        static tString     m_sAppTitle;
-        static tString     m_sAppDir;
-        static tString     m_sDbDir;
-        static tString     m_sDbBackupDir;
-        static tString     m_sDbFilePath;
+        static std::tstring     m_sAppTitle;
+        static std::tstring     m_sAppDir;
+        static std::tstring     m_sDbDir;
+        static std::tstring     m_sDbBackupDir;
+        static std::tstring     m_sDbFilePath;
 
         static const UCHAR m_ucDbEmpty[];
         static size_t      m_uiDbEmptySize;
-        static tString     m_sPass;
-        static tString     m_sPassDefault;
+        static std::tstring     m_sPass;
+        static std::tstring     m_sPassDefault;
 
     private:
                            CxAppSettings();

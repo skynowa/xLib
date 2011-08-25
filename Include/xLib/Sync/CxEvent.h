@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEvent
-* Description: event
-* File name:   CxEvent.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2009 17:53:15
-*
-*****************************************************************************/
+/**
+ * \file  CxEvent.h
+ * \brief event
+ */
 
 
 #ifndef xLib_Sync_CxEventH
@@ -29,8 +24,8 @@ class CxEvent :
         virtual ~CxEvent    ();
 
         HANDLE   hGetHandle () const;
-        BOOL     bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const BOOL cbManualReset, const BOOL cbInitialState, const tString &csName);
-        BOOL     bOpen      (const ULONG culAccess, BOOL cbInheritHandle, const tString &csName);
+        BOOL     bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const BOOL cbManualReset, const BOOL cbInitialState, const std::tstring &csName);
+        BOOL     bOpen      (const ULONG culAccess, BOOL cbInheritHandle, const std::tstring &csName);
         BOOL     bPulse     () const;
         BOOL     bReset     () const;
         BOOL     bSet       () const;

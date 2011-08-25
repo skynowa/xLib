@@ -1,8 +1,6 @@
 /**
- * \file   CxException.h
- * \brief  CxException (exception)
- * \author skynowa <skynowa@gmail.com>
- * \date   01.02.2011
+ * \file  CxException.h
+ * \brief exception
  */
 
 
@@ -18,14 +16,14 @@ class CxException {
         virtual           ~CxException  ();
             ///< destructor
 
-        const tString &    sGetWhat     () const;
+        const std::tstring &    sGetWhat     () const;
             ///< get message
         template<class T>
         CxException &      operator <<  (const T &cMessageT);
             ///< put message
 
     private:
-        tString            _m_sMsg;
+        std::tstring            _m_sMsg;
             ///< message
 };
 //---------------------------------------------------------------------------

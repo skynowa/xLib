@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxToolBar
-* Description: работа с тулбаром
-* File name:   CxToolBar.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 11:20:41
-*
-*****************************************************************************/
+/**
+ * \file  CxToolBar.h
+ * \brief toolbar
+ */
 
 
 #ifndef XLib_Gui_CxToolBarH

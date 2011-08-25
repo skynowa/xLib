@@ -43,10 +43,10 @@ CxTest_CxPkcs11::bUnit(
     //bSetData
     xTEST_BLOCK(cullBlockLoops)
     {
-    //	const tString csUserPin   = xT("1111");
-    //	const tString csDataLabel = xT("Label_Id");
-    //	const tString csData      = xT("1203456789");
-    //	uString       usData      = xS2US(csData);
+    //	const std::tstring csUserPin   = xT("1111");
+    //	const std::tstring csDataLabel = xT("Label_Id");
+    //	const std::tstring csData      = xT("1203456789");
+    //	std::ustring       usData      = xS2US(csData);
 
     //	m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
     //	xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -56,9 +56,9 @@ CxTest_CxPkcs11::bUnit(
     //bGetData
     xTEST_BLOCK(cullBlockLoops)
     {
-    //	const tString csUserPin   = xT("1111");
-    //	const tString csDataLabel = xT("Label_Id");
-    //	uString       usData;
+    //	const std::tstring csUserPin   = xT("1111");
+    //	const std::tstring csDataLabel = xT("Label_Id");
+    //	std::ustring       usData;
 
     //	m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
     //	xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -68,10 +68,10 @@ CxTest_CxPkcs11::bUnit(
     //
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csUserPin   = xT("1111");
-        const tString csDataLabel = xT("Key1.tkey");
-        const tString csData      = xT("1203456789");
-        uString       usData      = xS2US(csData);
+        const std::tstring csUserPin   = xT("1111");
+        const std::tstring csDataLabel = xT("Key1.tkey");
+        const std::tstring csData      = xT("1203456789");
+        std::ustring       usData      = xS2US(csData);
 
         m_bRes = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
         xASSERT_NOT_EQ(FALSE, m_bRes);

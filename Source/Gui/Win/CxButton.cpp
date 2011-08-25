@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxButton
-* Description: ������ � �������
-* File name:   CxButton.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:11:14
-*
-*****************************************************************************/
+/**
+ * \file  CxButton.cpp
+ * \brief button
+ */
 
 
 #include <xLib/Gui/CxButton.h>

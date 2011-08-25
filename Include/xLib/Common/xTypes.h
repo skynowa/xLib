@@ -1,11 +1,7 @@
-/****************************************************************************
-* Class name:  xTypes
-* Description: types
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     20.05.2011
-*
-*****************************************************************************/
+/**
+ * \file  xTypes.h
+ * \brief types
+ */
 
 
 #ifndef xLib_Common_xTypesH
@@ -49,20 +45,22 @@
     #define TEOF            EOF
 #endif //xUNICODE
 
-    typedef std::basic_string<TCHAR,         std::char_traits<TCHAR>,         std::allocator<TCHAR> >         tString;
-    typedef std::basic_string<unsigned char, std::char_traits<unsigned char>, std::allocator<unsigned char> > uString;
-
-    typedef std::basic_istream <TCHAR, std::char_traits<TCHAR> >                                              tistream;
-    typedef std::basic_ostream <TCHAR, std::char_traits<TCHAR> >                                              tostream;
-    typedef std::basic_iostream<TCHAR, std::char_traits<TCHAR> >                                              tiostream;
-
-    typedef std::basic_istringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tistringstream;
-    typedef std::basic_ostringstream<TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tostringstream;
-    typedef std::basic_stringstream <TCHAR, std::char_traits<TCHAR>, std::allocator<TCHAR> >                  tstringstream;
-
-    typedef std::basic_ifstream<TCHAR, std::char_traits<TCHAR> >                                              tifstream;
-    typedef std::basic_ofstream<TCHAR, std::char_traits<TCHAR> >                                              tofstream;
-    typedef std::basic_fstream <TCHAR, std::char_traits<TCHAR> >                                              tfstream;
+namespace std {
+	typedef basic_string<TCHAR,         char_traits<TCHAR>,         allocator<TCHAR> >         tstring;
+	typedef basic_string<unsigned char, char_traits<unsigned char>, allocator<unsigned char> > ustring;
+	
+	typedef basic_istream <TCHAR, char_traits<TCHAR> >                                         tistream;
+	typedef basic_ostream <TCHAR, char_traits<TCHAR> >                                         tostream;
+	typedef basic_iostream<TCHAR, char_traits<TCHAR> >                                         tiostream;
+	
+	typedef basic_istringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tistringstream;
+	typedef basic_ostringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tostringstream;
+	typedef basic_stringstream <TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tstringstream;
+	
+	typedef basic_ifstream<TCHAR, char_traits<TCHAR> >                                         tifstream;
+	typedef basic_ofstream<TCHAR, char_traits<TCHAR> >                                         tofstream;
+	typedef basic_fstream <TCHAR, char_traits<TCHAR> >                                         tfstream;
+} //namespace std
 
     typedef float                  FLOAT;
     typedef double                 DOUBLE;
@@ -224,6 +222,7 @@
             #define GCLP_WNDPROC       GCL_WNDPROC
         #endif
     #endif
+    
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xTypesH

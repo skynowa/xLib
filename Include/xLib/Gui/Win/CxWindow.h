@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxWindow
-* Description: Класс root для всех дочерних окон 
-* File name:   CxWindow.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     31.08.2009 16:44:56
-*
-*****************************************************************************/
+/**
+ * \file  CxWindow.h
+ * \brief base class for windows controls
+ */
 
 
 #ifndef xLib_Gui_CxWindowH
@@ -19,16 +14,16 @@
 #include <xLib/Gui/CxFont.h>
 #include <xLib/Gui/CxStyle.h>
 //---------------------------------------------------------------------------
-class CxWindow : public CxNonCopyable {    
+class CxWindow : public CxNonCopyable {
     public:
         CxFont            m_fnFont;            //шрифт
         CxStyle           m_stStyle;
 
-                          CxWindow           ();    
+                          CxWindow           ();
         virtual          ~CxWindow           () = 0;
 
 
-        virtual LRESULT   lpProcessMsg       (UINT uiMsg, WPARAM wParam, LPARAM lParam); 
+        virtual LRESULT   lpProcessMsg       (UINT uiMsg, WPARAM wParam, LPARAM lParam);
 
         BOOL              bIsWindow          () const;
         //CxWindow       *pGetParentWnd      () const;
@@ -41,17 +36,17 @@ class CxWindow : public CxNonCopyable {
         BOOL              bSetID             (INT iID);
         tString           sGetClassName      () const;
         BOOL              bSetClassName      (const tString &csClassName);
-        //HWND            _m_hParentWnd;            //хэндл родительского окна        
+        //HWND            _m_hParentWnd;            //хэндл родительского окна
         tString           sGetText           () const;
         BOOL              bSetText           (const tString &csText);
         //INT             _m_iLeft,  _m_iTop;        //координаты окна
         //INT             _m_iWidth, _m_iHeight;    //размеры окна
 
         //создание
-        BOOL              bCreate            (INT iID, HWND hParent, const tString &csClassName, const tString &csText, 
+        BOOL              bCreate            (INT iID, HWND hParent, const tString &csClassName, const tString &csText,
                                               INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx, LPVOID lpParam);
-        BOOL              bCreate            (INT iID, CxWindow *pwndParent, const tString &csClassName, const tString &csText, 
-                                              INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx, LPVOID lpParam);                                              
+        BOOL              bCreate            (INT iID, CxWindow *pwndParent, const tString &csClassName, const tString &csText,
+                                              INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx, LPVOID lpParam);
         BOOL              bCreateRes         (INT iID, HWND hParent);
         //BOOL            bCreateRes         (INT iID, CxWindow *pwndParent);
 
@@ -62,8 +57,8 @@ class CxWindow : public CxNonCopyable {
         BOOL              bMoveCenter        (HWND hParentWnd);
         BOOL              bSetPos            (INT iLeft, INT iTop, INT iWidth, INT iHeight, UINT uiFlags);
         BOOL              bEnable            (BOOL bFlag) const;
-        BOOL              bSetActive         () const; 
-        BOOL              bSetRedraw         (BOOL bFlag) const; 
+        BOOL              bSetActive         () const;
+        BOOL              bSetRedraw         (BOOL bFlag) const;
         BOOL              bInvalidateRect    (const RECT *prcRect, BOOL bErase) const;
         BOOL              bDestroy           () const;
         BOOL              bClose             ();
@@ -85,7 +80,7 @@ class CxWindow : public CxNonCopyable {
         HWND              _m_hWnd;                //хэндл окна
         INT               _m_iID;                //идентификатор контрола    /*SHORT*/
         tString           _m_sClassName;        //класс окна, контрола
-        HWND              _m_hParentWnd;        //хэндл родительского окна        
+        HWND              _m_hParentWnd;        //хэндл родительского окна
         tString           _m_sText;                //текст окна
         INT               _m_iLeft,  _m_iTop;    //координаты окна
         INT               _m_iWidth, _m_iHeight;//размеры окна
@@ -93,15 +88,15 @@ class CxWindow : public CxNonCopyable {
         ULONG             _m_ulStyleEx;            //расширенный стиль окна
         ////INT           _m_iMenu;                //меню
 
-        CxWindow         *_m_pwndParent; 
+        CxWindow         *_m_pwndParent;
 
-        
+
         BOOL              _m_bIsControl;        //является ли окно контролом
         mutable BOOL      _m_bRes;
         static CxTraceLog _m_tlLog;                //лог
- 
+
         static LRESULT    _s_pWndProc         (HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);   //Функция окна
-        static BOOL       _bInitCommonControls(ULONG ulFlags);  
+        static BOOL       _bInitCommonControls(ULONG ulFlags);
         static BOOL       _bRegisterClass     (const WNDCLASSEX *cpwcWndClassEx);
         static BOOL       _bUnregisterClass   (const tString &csClassName);
         //Attach, Detach

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:
-* Description: ���� �������� (��������� �++)
-* File name:   Resource.xrc
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     07.09.2009 9:44:20
-*
-*****************************************************************************/
+/**
+ * \file  Resource.xrc.cpp
+ * \brief resource file
+ */
 
 
 #ifndef xLib_Gui_ResourceXrcH

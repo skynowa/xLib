@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSlot
-* Description: Pkcs11 slot
-* File name:   CxSlot.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:07:29
-*
-*****************************************************************************/
+/**
+ * \file  CxSlot.h
+ * \brief Pkcs11 slot
+ */
 
 
 #ifndef xLib_Pkcs11_CxSlotH

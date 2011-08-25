@@ -82,7 +82,7 @@ CxTest_CxShell::bUnit(
     xTEST_BLOCK(cullBlockLoops) {
         #if (xWINVER >= xWIN32_2K)
             m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
-            xASSERT_EQ(tString(xT("C:\\WINDOWS\\Fonts")), m_sRes);
+            xASSERT_EQ(std::tstring(xT("C:\\WINDOWS\\Fonts")), m_sRes);
         #endif //xWIN32_2K
     }
 #elif defined(xOS_LINUX)

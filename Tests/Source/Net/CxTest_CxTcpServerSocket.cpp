@@ -39,11 +39,11 @@ CxTest_CxTcpServerSocket::bUnit(
 	CxSocket::EType          tpType     = CxSocket::tpStream;
 	CxSocket::EProtocol      ptProtocol = CxSocket::ptIp;
 
-	const tString     csDomain        = xT("127.0.0.1");
-	tString           sIp             = xT("");
+	const std::tstring     csDomain        = xT("127.0.0.1");
+	std::tstring           sIp             = xT("");
 	USHORT            usPort          = 80;
 
-	tString           sSendBuff       = xT("TEST_STRING");
+	std::tstring           sSendBuff       = xT("TEST_STRING");
 	TCHAR             szRecvBuff[1024 * sizeof(TCHAR)]  = {0};
 
 	CxSocketInit      siInit(2, 2);
@@ -81,7 +81,7 @@ CxTest_CxTcpServerSocket::bUnit(
 		m_iRes = objClientSocket.iRecv(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
 		xASSERT_NOT_EQ((INT)CxTcpServerSocket::etError, m_iRes);
 
-		tcout << tString(szRecvBuff, m_iRes) << std::endl;
+		tcout << std::tstring(szRecvBuff, m_iRes) << std::endl;
 	}
 
 	//-------------------------------------

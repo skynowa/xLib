@@ -1,11 +1,7 @@
-/****************************************************************************
-* Class name:  xTracing
-* Description: compile time tracing
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     18.01.2011
-*
-*****************************************************************************/
+/**
+ * \file  xTracing.h
+ * \brief compile time tracing
+ */
 
 
 #ifndef xLib_Common_xTracingH

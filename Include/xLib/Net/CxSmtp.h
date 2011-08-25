@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSmtp
-* Description: POP3 (RFC 2821)
-* File name:   CxSmtp.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     13.04.2009 16:44:49
-*
-*****************************************************************************/
+/**
+ * \file  CxSmtp.h
+ * \brief SMTP (RFC 2821)
+ */
 
 
 #ifndef xLib_Net_CxSmtpH

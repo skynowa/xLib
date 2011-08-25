@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCOMPort
-* Description: COM port
-* File name:   CxCOMPort.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.04.2010 9:29:26
-*
-*****************************************************************************/
+/**
+ * \file  CxComPort.cpp
+ * \brief COM port
+ */
 
 
 #include <xLib/Common/Win/CxComPort.h>
@@ -22,7 +17,7 @@
 
 //---------------------------------------------------------------------------
 //TODO: CxCOMPort (�����������)
-CxCOMPort::CxCOMPort(const tString &sPortNum) :
+CxCOMPort::CxCOMPort(const std::tstring &sPortNum) :
     _m_bRes    (FALSE),
     _m_sPortNum(sPortNum)
 {
@@ -95,7 +90,7 @@ BOOL CxCOMPort::bClearData() {
 }
 //--------------------------------------------------------------------------
 //TODO: bReadData (������ ������)
-tString CxCOMPort::bReadData(LPTSTR pszBuff, ULONG dwNumOfBytesToRead) {
+std::tstring CxCOMPort::bReadData(LPTSTR pszBuff, ULONG dwNumOfBytesToRead) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     CxThread::bSleep(5L);
@@ -103,13 +98,13 @@ tString CxCOMPort::bReadData(LPTSTR pszBuff, ULONG dwNumOfBytesToRead) {
     DWORD dwNumOfBytesRead = 0;
     BOOL  bRes             = ::ReadFile(_m_hComPort, pszBuff, dwNumOfBytesToRead/*cuiSendStrLen*/, &dwNumOfBytesRead, NULL);
     if (FALSE == bRes) {
-        return tString();
+        return std::tstring();
     }
     if (dwNumOfBytesRead != dwNumOfBytesToRead) {
-        return tString();
+        return std::tstring();
     }
 
-    return tString(pszBuff, dwNumOfBytesRead);
+    return std::tstring(pszBuff, dwNumOfBytesRead);
 }
 //--------------------------------------------------------------------------
 //TODO: iReadDataWaiting ()
@@ -161,7 +156,7 @@ BOOL CxCOMPort::bWriteData(LPCTSTR pcszBuff, DWORD dwNumOfBytesToWrite) {
         //WriteFile completed immediately.
         bRes = true;
     }
-    
+
     return bRes;
 #endif
 }

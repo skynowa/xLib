@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxGroupBox
-* Description: 
-* File name:   CxGroupBox.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.07.2009 21:10:19
-*
-*****************************************************************************/
+/**
+ * \file  CxGroupBox.cpp
+ * \brief group box
+ */
 
 
 #include <xLib/Gui/CxGroupBox.h>
@@ -25,15 +20,15 @@ CxGroupBox::CxGroupBox() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна 
-    _m_sClassName     = xCXGROUPBOX_CONTROL_CLASS;           
-    _m_ulStyle        = xCXGROUPBOX_DEFAULT_WINDOW_STYLE;     
+    //переопределяем параметры окна
+    _m_sClassName     = xCXGROUPBOX_CONTROL_CLASS;
+    _m_ulStyle        = xCXGROUPBOX_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXGROUPBOX_DEFAULT_WINDOW_STYLE_EX;
 
     _m_iLeft          = 0;
     _m_iTop           = 0;
-    _m_iWidth         = xCXGROUPBOX_DEFAULT_WIDTH;     
-    _m_iHeight        = xCXGROUPBOX_DEFAULT_HEIGHT;  
+    _m_iWidth         = xCXGROUPBOX_DEFAULT_WIDTH;
+    _m_iHeight        = xCXGROUPBOX_DEFAULT_HEIGHT;
 
     _m_bIsControl     = TRUE;
 }
@@ -42,7 +37,7 @@ CxGroupBox::CxGroupBox() {
 /*virtual*/
 CxGroupBox::~CxGroupBox() {
     LOG();
-    
+
     /*DEBUG*/xASSERT_DO(NULL != _m_pwndParent, return);
     _m_bRes = reinterpret_cast<CxWindowImpl *>(_m_pwndParent)->m_vecpContainer.bRemove(this);
     xCHECK_DO(FALSE == _m_bRes, return);
@@ -53,9 +48,9 @@ BOOL CxGroupBox::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText  (iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText  (iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);

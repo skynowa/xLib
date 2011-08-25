@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxThreadPool
-* Description: tread pool
-* File name:   CxThreadPool.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     10.12.2009 22:10:16
-*
-*****************************************************************************/
+/**
+ * \file  CxThreadPool.h
+ * \brief thread pool
+ */
 
 
 #ifndef xLib_Sync_CxThreadPoolH

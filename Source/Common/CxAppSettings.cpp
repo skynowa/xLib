@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxAppSettings
-* Description: application settings
-* File name:   CxAppSettings.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.11.2010 9:23:47
-*
-*****************************************************************************/
+/**
+ * \file  CxAppSettings.cpp
+ * \brief application settings
+ */
 
 
 #include <xLib/Common/CxAppSettings.h>
@@ -17,13 +12,13 @@
 *
 *****************************************************************************/
 
-tString     CxAppSettings::m_sAppTitle;
-tString     CxAppSettings::m_sAppDir;
-tString     CxAppSettings::m_sDbDir;
-tString     CxAppSettings::m_sDbBackupDir;
-tString     CxAppSettings::m_sDbFilePath;
-tString     CxAppSettings::m_sPass;
-tString     CxAppSettings::m_sPassDefault;
+std::tstring     CxAppSettings::m_sAppTitle;
+std::tstring     CxAppSettings::m_sAppDir;
+std::tstring     CxAppSettings::m_sDbDir;
+std::tstring     CxAppSettings::m_sDbBackupDir;
+std::tstring     CxAppSettings::m_sDbFilePath;
+std::tstring     CxAppSettings::m_sPass;
+std::tstring     CxAppSettings::m_sPassDefault;
 
 const UCHAR CxAppSettings::m_ucDbEmpty[] = {
     #include "DbEmpty.db.zip.txt"

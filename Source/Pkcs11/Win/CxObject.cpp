@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxObject
-* Description: Pkcs11 object
-* File name:   CxObject.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:09:54
-*
-*****************************************************************************/
+/**
+ * \file  CxObject.cpp
+ * \brief Pkcs11 object
+ */
 
 
 #include <xLib/Pkcs11/Win/CxObject.h>
@@ -202,9 +197,9 @@ CxObject::bDestroy() {
 BOOL
 CxObject::bGetData(
     CK_SLOT_ID     ulSlotId,
-    const uString &cusUserPin,
-    const uString &cusDataLabel,
-    uString       *pusData
+    const std::ustring &cusUserPin,
+    const std::ustring &cusDataLabel,
+    std::ustring       *pusData
 )
 {
     /*DEBUG*/
@@ -269,7 +264,7 @@ CxObject::bGetData(
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        uString usValue = uString(pucValue, ulValueLen);
+        std::ustring usValue = std::ustring(pucValue, ulValueLen);
 
         (*pusData) = usValue;
 
@@ -292,9 +287,9 @@ CxObject::bGetData(
 BOOL
 CxObject::bGetData(
     CK_SLOT_ID            ulSlotId,
-    const uString        &cusUserPin,
-    std::vector<uString> *pusDataLabel,
-    std::vector<uString> *pusDataValue
+    const std::ustring        &cusUserPin,
+    std::vector<std::ustring> *pusDataLabel,
+    std::vector<std::ustring> *pusDataValue
 )
 {
     /*DEBUG*/// ulSlotId - n/a
@@ -361,8 +356,8 @@ CxObject::bGetData(
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        uString usLabel;
-        uString usValue;
+        std::ustring usLabel;
+        std::ustring usValue;
 
         {
 	        ULONG ulLabelLen      = atrTamplate[0].ulValueLen;
@@ -398,9 +393,9 @@ CxObject::bGetData(
 BOOL
 CxObject::bSetData(
     CK_SLOT_ID     ulSlotId,
-    const uString &cusUserPin,
-    const uString &cusDataLabel,
-    const uString &cusData
+    const std::ustring &cusUserPin,
+    const std::ustring &cusDataLabel,
+    const std::ustring &cusData
 )
 {
     /*DEBUG*/
@@ -462,7 +457,7 @@ CxObject::bSetData(
         CK_OBJECT_CLASS ocData    = CKO_DATA;
         CK_BBOOL        bFalse    = FALSE;
         CK_BBOOL        bTrue     = TRUE;
-        uString         usApplication;
+        std::ustring         usApplication;
 
         CK_ATTRIBUTE atrTamplate [] = {
             {CKA_CLASS,       &ocData,                            sizeof(ocData)      },

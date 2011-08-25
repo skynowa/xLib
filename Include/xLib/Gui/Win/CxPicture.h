@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxPicture
-* Description: картинка
-* File name:   CxPicture.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     20.07.2010 20:40:41
-*
-*****************************************************************************/
+/**
+ * \file  CxPicture.h
+ * \brief picture
+ */
 
 
 #ifndef XLib_Gui_CxPictureH
@@ -37,17 +32,17 @@ class CxPicture : public CxWindow {
             itCursor      = IMAGE_CURSOR,
             itEnhMetaFile = IMAGE_ENHMETAFILE
         };
-            
+
                    CxPicture    ();
         virtual   ~CxPicture    ();
 
         BOOL       bCreateRes   (INT iID, CxWindow *pwndParent);
-        
+
         //-------------------------------------
         //сообщения
         BOOL       bSetViewStyle(EViewStyle vsViewStyle);
         BOOL       bSetImage    (EImageType itImageType, HANDLE hImage);
-        
+
         //-------------------------------------
         //события
 

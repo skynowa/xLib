@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CCompletionPort
-* Description: completion port
-* File name:   CCompletionPort.h
-
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.02.2010 14:28:40
-*
-*****************************************************************************/
+/**
+ * \file  CxCompletionPort.h
+ * \brief completion port
+ */
 
 
 #ifndef xLib_Sync_CxCompletionPortH

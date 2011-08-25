@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxListView
-* Description: 
-* File name:   CxListView.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.07.2009 12:12:03
-*
-*****************************************************************************/
+/**
+ * \file  CxListView.h
+ * \brief list view
+ */
 
 
 #ifndef XLib_Gui_CxListViewH
@@ -18,9 +13,9 @@ class CxListView : public CxWindow {
     private:
         INT           m_ColumnCount;
         INT           m_ItemCount;
-        HIMAGELIST    m_hLargeImageList; //image list for icon view 
-        HIMAGELIST    m_hSmallImageList; //image list for other views 
-    
+        HIMAGELIST    m_hLargeImageList; //image list for icon view
+        HIMAGELIST    m_hSmallImageList; //image list for other views
+
     public:
         LVHITTESTINFO m_HitTestInfo;
 

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxThread
-* Description: thread
-* File name:   CxThread.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     22.11.2009 13:59:34
-*
-*****************************************************************************/
+/**
+ * \file  CxThread.h
+ * \brief thread
+ */
 
 
 #ifndef xLib_Sync_CxThreadH
@@ -89,7 +84,7 @@ class CxThread :
         //priority
         BOOL                    bSetPriority          (const EPriority ctpPriority) const;
         EPriority               tpGetPriority         () const;
-        tString                 sGetPriorityString    () const;
+        std::tstring                 sGetPriorityString    () const;
         BOOL                    bPriorityUp           () const;
         BOOL                    bPriorityDown         () const;
         BOOL                    bIsPriorityBoost      () const;
@@ -106,7 +101,7 @@ class CxThread :
         TId                     ulGetId               () const;
         BOOL                    bIsCurrent            () const;
         ULONG                   ulGetExitCode         () const;
-        BOOL                    bSetDebugName         (const tString &csName) const;
+        BOOL                    bSetDebugName         (const std::tstring &csName) const;
 
         //static
         static THandle          hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);

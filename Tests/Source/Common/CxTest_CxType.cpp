@@ -34,7 +34,7 @@ CxTest_CxType::bUnit(
     //sGetName
     xTEST_BLOCK(cullBlockLoops)
     {
-        tString sObject;
+        std::tstring sObject;
 
 	    m_sRes = CxType::sGetName(sObject);
         xASSERT_EQ(false, m_sRes.empty());
@@ -44,7 +44,7 @@ CxTest_CxType::bUnit(
     //sGetRawName
     xTEST_BLOCK(cullBlockLoops)
     {
-	    tString sObject;
+	    std::tstring sObject;
 
         m_sRes = CxType::sGetRawName(sObject);
         xASSERT_EQ(false, m_sRes.empty())

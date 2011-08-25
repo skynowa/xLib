@@ -1,12 +1,8 @@
-/****************************************************************************
-* Class name:  CxCgi
-* Description: CGI
-* File name:   CxCgi.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     11:01:2010 13:20:00
-*
-*****************************************************************************/
+/**
+ * \file  CxCgi.h
+ * \brief CGI
+ */
+
 
 #ifndef xLib_Net_CxCgiH
 #define xLib_Net_CxCgiH
@@ -20,15 +16,10 @@ class CxCgi;
 
 namespace NxCgi {
 
-    /****************************************************************************
-    * Class name:  CxCgiEnvironment
-    * Description: CGI environment
-    * File name:   CxCgi.h
-    * Author:      skynowa
-    * E-mail:      skynowa@gmail.com
-    * Created:     11:01:2010 13:20:00
-    *
-    *****************************************************************************/
+	/**
+	 * \class CxCgiEnvironment
+	 * \brief CGI environment
+	 */
 
     //---------------------------------------------------------------------------
     class CxCgiEnvironment :
@@ -44,72 +35,72 @@ namespace NxCgi {
                            CxCgiEnvironment      (CxCgi &ccgCgi);
             virtual       ~CxCgiEnvironment      ();
 
-            const tString &sGetAuthType          () const;
-            const tString &sGetContentLength     () const;
-            const tString &sGetContentType       () const;
-            const tString &sGetDocumentRoot      () const;
-            const tString &sGetGatewayInterface  () const;
-            const tString &sGetHttpAccept        () const;
-            const tString &sGetHttpCookie        () const;
-            const tString &sGetHttpPragma        () const;
-            const tString &sGetHttpUserAgent     () const;
-            const tString &sGetPathInfo          () const;
-            const tString &sGetPathTranslated    () const;
-            const tString &sGetQueryString       () const;
-            const tString &sGetRemoteAddr        () const;
-            const tString &sGetRemoteHost        () const;
-            const tString &sGetRemoteIdent       () const;
-            const tString &sGetRemotePort        () const;
-            const tString &sGetRemoteUser        () const;
-            const tString &sGetRequestMethod     () const;
-            const tString &sGetRequestUri        () const;
-            const tString &sGetScriptFilename    () const;
-            const tString &sGetScriptName        () const;
-            const tString &sGetServerAdmin       () const;
-            const tString &sGetServerName        () const;
-            const tString &sGetServerPort        () const;
-            const tString &sGetServerProtocol    () const;
-            const tString &sGetServerSoftware    () const;
-            const tString &sGetHttpReferer       () const;
-            const tString &sGetHttpHost          () const;
-            const tString &sGetHttpAcceptLanguage() const;
-            const tString &sGetCountryCode       () const;
+            const std::tstring &sGetAuthType          () const;
+            const std::tstring &sGetContentLength     () const;
+            const std::tstring &sGetContentType       () const;
+            const std::tstring &sGetDocumentRoot      () const;
+            const std::tstring &sGetGatewayInterface  () const;
+            const std::tstring &sGetHttpAccept        () const;
+            const std::tstring &sGetHttpCookie        () const;
+            const std::tstring &sGetHttpPragma        () const;
+            const std::tstring &sGetHttpUserAgent     () const;
+            const std::tstring &sGetPathInfo          () const;
+            const std::tstring &sGetPathTranslated    () const;
+            const std::tstring &sGetQueryString       () const;
+            const std::tstring &sGetRemoteAddr        () const;
+            const std::tstring &sGetRemoteHost        () const;
+            const std::tstring &sGetRemoteIdent       () const;
+            const std::tstring &sGetRemotePort        () const;
+            const std::tstring &sGetRemoteUser        () const;
+            const std::tstring &sGetRequestMethod     () const;
+            const std::tstring &sGetRequestUri        () const;
+            const std::tstring &sGetScriptFilename    () const;
+            const std::tstring &sGetScriptName        () const;
+            const std::tstring &sGetServerAdmin       () const;
+            const std::tstring &sGetServerName        () const;
+            const std::tstring &sGetServerPort        () const;
+            const std::tstring &sGetServerProtocol    () const;
+            const std::tstring &sGetServerSoftware    () const;
+            const std::tstring &sGetHttpReferer       () const;
+            const std::tstring &sGetHttpHost          () const;
+            const std::tstring &sGetHttpAcceptLanguage() const;
+            const std::tstring &sGetCountryCode       () const;
 
             ERequestMethod rmGetRequestMethod    () const;
-            tString        sGetDump              () const;
+            std::tstring        sGetDump              () const;
 
         private:
             CxCgi         &_m_ccgCgi;
-            tString        _m_sAuthType;
-            tString        _m_sContentLength;
-            tString        _m_sContentType;
-            tString        _m_sDocumentRoot;
-            tString        _m_sGatewayInterface;
-            tString        _m_sHttpAccept;
-            tString        _m_sHttpCookie;
-            tString        _m_sHttpPragma;
-            tString        _m_sHttpUserAgent;
-            tString        _m_sPathInfo;
-            tString        _m_sPathTranslated;
-            tString        _m_sQueryString;
-            tString        _m_sRemoteAddr;
-            tString        _m_sRemoteHost;
-            tString        _m_sRemoteIdent;
-            tString        _m_sRemotePort;
-            tString        _m_sRemoteUser;
-            tString        _m_sRequestMethod;
-            tString        _m_sRequestUri;
-            tString        _m_sScriptFilename;
-            tString        _m_sScriptName;
-            tString        _m_sServerAdmin;
-            tString        _m_sServerName;
-            tString        _m_sServerPort;
-            tString        _m_sServerProtocol;
-            tString        _m_sServerSoftware;
-            tString        _m_sHttpReferer;
-            tString        _m_sHttpHost;
-            tString        _m_sHttpAcceptLanguage;
-            tString        _m_sCountryCode;
+            std::tstring        _m_sAuthType;
+            std::tstring        _m_sContentLength;
+            std::tstring        _m_sContentType;
+            std::tstring        _m_sDocumentRoot;
+            std::tstring        _m_sGatewayInterface;
+            std::tstring        _m_sHttpAccept;
+            std::tstring        _m_sHttpCookie;
+            std::tstring        _m_sHttpPragma;
+            std::tstring        _m_sHttpUserAgent;
+            std::tstring        _m_sPathInfo;
+            std::tstring        _m_sPathTranslated;
+            std::tstring        _m_sQueryString;
+            std::tstring        _m_sRemoteAddr;
+            std::tstring        _m_sRemoteHost;
+            std::tstring        _m_sRemoteIdent;
+            std::tstring        _m_sRemotePort;
+            std::tstring        _m_sRemoteUser;
+            std::tstring        _m_sRequestMethod;
+            std::tstring        _m_sRequestUri;
+            std::tstring        _m_sScriptFilename;
+            std::tstring        _m_sScriptName;
+            std::tstring        _m_sServerAdmin;
+            std::tstring        _m_sServerName;
+            std::tstring        _m_sServerPort;
+            std::tstring        _m_sServerProtocol;
+            std::tstring        _m_sServerSoftware;
+            std::tstring        _m_sHttpReferer;
+            std::tstring        _m_sHttpHost;
+            std::tstring        _m_sHttpAcceptLanguage;
+            std::tstring        _m_sCountryCode;
             ERequestMethod _m_rmRequestMethod;
 
             BOOL           _bInit                ();
@@ -117,15 +108,10 @@ namespace NxCgi {
     //---------------------------------------------------------------------------
 
 
-    /****************************************************************************
-    * Class name:  CxCgiCookies
-    * Description: CGI cookies
-    * File name:   CxCgi.h
-    * Author:      skynowa
-    * E-mail:      skynowa@gmail.com
-    * Created:     11:01:2010 13:20:00
-    *
-    *****************************************************************************/
+	/**
+	 * \class CxCgiCookies
+	 * \brief CGI cookies
+	 */
 
     //---------------------------------------------------------------------------
     class CxCgiCookies :
@@ -138,9 +124,9 @@ namespace NxCgi {
             virtual ~CxCgiCookies();
 
             TCookies Items;
-            tString  sGetDump    () const;
+            std::tstring  sGetDump    () const;
 
-            tString  operator[]  (const tString &csCookieName);
+            std::tstring  operator[]  (const std::tstring &csCookieName);
 
         private:
             CxCgi   &_m_ccgCgi;
@@ -150,15 +136,10 @@ namespace NxCgi {
     //---------------------------------------------------------------------------
 
 
-    /****************************************************************************
-    * Class name:  CxCgiFormData
-    * Description: CGI form data
-    * File name:   CxCgi.h
-    * Author:      skynowa
-    * E-mail:      skynowa@gmail.com
-    * Created:     11:01:2010 13:20:00
-    *
-    *****************************************************************************/
+	/**
+	 * \class CxCgiFormData
+	 * \brief CGI form data
+	 */
 
     //---------------------------------------------------------------------------
     class CxCgiFormData :
@@ -168,15 +149,15 @@ namespace NxCgi {
                            CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize);
             virtual       ~CxCgiFormData();
 
-            const tString &sGetRawData  () const;
-            tString        sGetDump     () const;
+            const std::tstring &sGetRawData  () const;
+            std::tstring        sGetDump     () const;
 
         private:
             //consts
             const size_t   _m_cuiMaxData;
 
             CxCgi         &_m_ccgCgi;
-            tString        _m_sFormData;
+            std::tstring        _m_sFormData;
 
             BOOL           _bInit       ();
     };
@@ -187,6 +168,11 @@ namespace NxCgi {
 
 
 //---------------------------------------------------------------------------
+/**
+ * \class CxCgi
+ * \brief CGI
+ */
+
 class CxCgi :
     public CxNonCopyable
 {
@@ -200,14 +186,14 @@ class CxCgi :
         explicit                CxCgi          (const size_t cuiMaxSize);
         virtual                ~CxCgi          ();
 
-        tString                 sGetDump       () const;
+        std::tstring                 sGetDump       () const;
 
-        static BOOL             bRedirect      (const tString &csUrl);
-        static BOOL             bPageShow      (const tString &csFilePath);
+        static BOOL             bRedirect      (const std::tstring &csUrl);
+        static BOOL             bPageShow      (const std::tstring &csFilePath);
 
         //encoding, decoding
-        static BOOL             bUriEncode     (const tString &csUri, const tString &csReserved, tString *psEncodedStr);
-        static BOOL             bUriDecode     (const tString &csUri, tString *psDecodedStr);
+        static BOOL             bUriEncode     (const std::tstring &csUri, const std::tstring &csReserved, std::tstring *psEncodedStr);
+        static BOOL             bUriDecode     (const std::tstring &csUri, std::tstring *psDecodedStr);
 
     private:
         //--------------------------------------------------

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxPop3
-* Description: POP3
-* File name:   CxPop3.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     13.04.2009 16:44:49
-*
-*****************************************************************************/
+/**
+ * \file  CxPop3.h
+ * \brief POP3 (RFC 2821)
+ */
 
 
 #ifndef xLib_Net_CxPop3H
@@ -27,7 +22,7 @@ class CxPop3 :
                           CxPop3              ();
                          ~CxPop3              ();
 
-        BOOL              bCreate             (const tString &csUser, const tString &csPass, const tString &csServer, USHORT usPort);
+        BOOL              bCreate             (const std::tstring &csUser, const std::tstring &csPass, const std::tstring &csServer, USHORT usPort);
         BOOL              bConnect            ();
          BOOL              bLogin              ();
 
@@ -36,11 +31,11 @@ class CxPop3 :
         BOOL              bListAt             (ULONG &ulIndex);
         BOOL              bNoop               ();
         BOOL              bRset               ();
-        BOOL              bTop                (INT iNum, INT iLines, tString &sBuff);
+        BOOL              bTop                (INT iNum, INT iLines, std::tstring &sBuff);
 
-        BOOL      /*RETR*/bRetrive            (INT iNum, const tString &csRawMimeMessage);
-        BOOL      /*RETR*/bRetriveRaw         (INT iNum, const tString &csDirPath, const tString &csFileName);
-        BOOL      /*RETR*/bRetriveRawAndBackup(INT iNum, const tString &csDirPath, const tString &csBackupDirPath, const tString &csFileName);
+        BOOL      /*RETR*/bRetrive            (INT iNum, const std::tstring &csRawMimeMessage);
+        BOOL      /*RETR*/bRetriveRaw         (INT iNum, const std::tstring &csDirPath, const std::tstring &csFileName);
+        BOOL      /*RETR*/bRetriveRawAndBackup(INT iNum, const std::tstring &csDirPath, const std::tstring &csBackupDirPath, const std::tstring &csFileName);
         BOOL      /*TOP*/ bRetrieveHeader     (INT iNum, CxMimeHeader &mhMimeHeader);
 
         BOOL              bDelete             (INT iNum);
@@ -48,20 +43,20 @@ class CxPop3 :
 
     private:
         BOOL              _m_bRes;
-        tString           _m_sRes;
+        std::tstring           _m_sRes;
         /////CxSocketInit      _m_siInit;
         CxTcpClientSocket _m_scktSocket;
         CxConsoleLog      _m_clLog;
-        tString              _m_sUser;
-        tString           _m_sPass;
-        tString           _m_sServer;
+        std::tstring              _m_sUser;
+        std::tstring           _m_sPass;
+        std::tstring           _m_sServer;
         USHORT            _m_usPort;
         BOOL              _m_bConnected;
 
-        BOOL              _bCommand           (const tString &csCmd, const tString &csReplyDelimiter, tString *psReply);
-        BOOL              _bIsError           (const tString &csText);
-        ULONG             _ulMailsSum         (const tString &csServerAnswer);
-        ULONG             _ulMailsSize        (const tString &csServerAnswer);
+        BOOL              _bCommand           (const std::tstring &csCmd, const std::tstring &csReplyDelimiter, std::tstring *psReply);
+        BOOL              _bIsError           (const std::tstring &csText);
+        ULONG             _ulMailsSum         (const std::tstring &csServerAnswer);
+        ULONG             _ulMailsSize        (const std::tstring &csServerAnswer);
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxPop3H

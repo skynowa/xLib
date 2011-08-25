@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCriticalSection
-* Description: critical section
-* File name:   CxCriticalSection.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2009 21:16:33
-*
-*****************************************************************************/
+/**
+ * \file  CxCriticalSection.cpp
+ * \brief critical section
+ */
 
 
 #include <xLib/Sync/CxCriticalSection.h>

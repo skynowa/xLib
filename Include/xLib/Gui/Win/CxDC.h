@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDC
-* Description: работа с контекстом устройства
-* File name:   CxDC.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     18.06.2009 21:30:49
-*
-*****************************************************************************/
+/**
+ * \file  CxDC.h
+ * \brief DC
+ */
 
 
 #ifndef CxDCH
@@ -22,7 +17,7 @@ class CxDC : public CxNonCopyable {
         HDC      hDetach ();
         BOOL     bTextOut(INT xStart, INT yStart, std::string &csText, INT iText);
         BOOL     bTextOut(INT xStart, INT yStart, std::string &csText);
-        
+
     private:
         HDC      _m_hDC;
 };

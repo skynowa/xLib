@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxImage
-* Description: GDI+ image
-* File name:   CxImage.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.05.2010 17:10:16
-*
-*****************************************************************************/
+/**
+ * \file  CxImage.h
+ * \brief GDI+ image
+ */
 
 
 #ifndef xLib_GdiPlus_CxImageH
@@ -32,9 +27,9 @@
                             CxImage   ();
             virtual        ~CxImage   ();
 
-            BOOL            bLoad     (const tString &csFilePath);
+            BOOL            bLoad     (const std::tstring &csFilePath);
             BOOL            bLoad     (IStream *pisStream);
-            BOOL            bSave     (const tString &csFilePath, EEncoderType etType);
+            BOOL            bSave     (const std::tstring &csFilePath, EEncoderType etType);
             BOOL            bSave     (IStream *pisStream, EEncoderType etType);
             BOOL            bDraw     (HDC hDC, const RECT &crcRect);
             BOOL            bDraw     (HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight);
@@ -46,13 +41,13 @@
             UINT            uiGetHeight();
 
             Gdiplus::Status stGetLastStatus();
-            tString         sGetLastStatus (Gdiplus::Status stCode);
+            std::tstring         sGetLastStatus (Gdiplus::Status stCode);
 
         private:
             Gdiplus::Status _m_stRes;
             Gdiplus::Image *_m_pimgImage;
 
-            BOOL            _bGetEncoderClsid(const tString &csFormat, CLSID *pcidClsid);
+            BOOL            _bGetEncoderClsid(const std::tstring &csFormat, CLSID *pcidClsid);
     };
 #elif defined(xOS_LINUX)
 

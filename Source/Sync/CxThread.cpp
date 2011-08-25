@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxThread
-* Description: thread
-* File name:   CxThread.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     22.11.2009 13:59:34
-*
-*****************************************************************************/
+/**
+ * \file  CxThread.cpp
+ * \brief thread
+ */
 
 
 #include <xLib/Sync/CxThread.h>
@@ -577,7 +572,7 @@ CxThread::tpGetPriority() const {
 }
 //---------------------------------------------------------------------------
 //DONE: sGetPriorityString (get priority as string)
-tString
+std::tstring
 CxThread::sGetPriorityString() const {
     /*DEBUG*/// n/a
 
@@ -838,7 +833,7 @@ CxThread::ulGetExitCode() const {
 //DONE: bSetDebugName (Name your threads in the VC debugger thread list)
 BOOL
 CxThread::bSetDebugName(
-    const tString &csName
+    const std::tstring &csName
 ) const
 {
     /*DEBUG*/

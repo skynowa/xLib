@@ -1,8 +1,6 @@
 /**
- * \file   CxConsole.h
- * \brief  console
- * \author skynowa <skynowa@gmail.com>
- * \date   09.09.2010
+ * \file  CxConsole.h
+ * \brief console
  */
 
 
@@ -50,28 +48,28 @@ class CxConsole :
         };
             ///< background color
 
-        tString      bSetTextColor (const tString &csText, const EForeground cfgForeground, const BOOL cbIsBold, const BOOL cbIsUnderline, const EBackground cbgBackground, const BOOL cbIsBlink);
+        std::tstring      bSetTextColor (const std::tstring &csText, const EForeground cfgForeground, const BOOL cbIsBold, const BOOL cbIsUnderline, const EBackground cbgBackground, const BOOL cbIsBlink);
             ///< set text color
-        tString      sRead         ();
+        std::tstring      sRead         ();
             ///< read
-        BOOL         bWrite        (const tString &csStr);
+        BOOL         bWrite        (const std::tstring &csStr);
             ///< write
-        BOOL         bWriteLine    (const tString &csStr = xT(""));
+        BOOL         bWriteLine    (const std::tstring &csStr = xT(""));
             ///< write line
-        BOOL         bWriteErrLine (const tString &csStr);
+        BOOL         bWriteErrLine (const std::tstring &csStr);
             ///< write error message
-        EModalResult iMsgBox       (const tString &csText, const tString &csTitle, const UINT cuiType);
+        EModalResult iMsgBox       (const std::tstring &csText, const std::tstring &csTitle, const UINT cuiType);
             ///< show console message dialog
-        BOOL         bPrompt       (const tString &csPrompt, const BOOL cbIsVisible, tString *psAnswer);
+        BOOL         bPrompt       (const std::tstring &csPrompt, const BOOL cbIsVisible, std::tstring *psAnswer);
             ///< show console prompt dialog
         BOOL         bPause        ();
             ///< pause
         BOOL         bClear        ();
             ///< clear
 
-        tString      sGetTitle     ();
+        std::tstring      sGetTitle     ();
             ///< get title string
-        BOOL         bSetTitle     (const tString &csTitle);
+        BOOL         bSetTitle     (const std::tstring &csTitle);
             ///< set title string
         BOOL         bCenterWindow ();
             ///< allign to center

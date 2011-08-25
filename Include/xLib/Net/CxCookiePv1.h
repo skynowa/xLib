@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCookiePv1
-* Description: cookie (http://www.ietf.org/rfc/rfc2109.txt)
-* File name:   CxCookiePv1.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     26.01.2011 0:04:44
-*
-*****************************************************************************/
+/**
+ * \file  CxCookiePv1.h
+ * \brief cookie (http://www.ietf.org/rfc/rfc2109.txt)
+ */
 
 
 #ifndef xLib_Net_CxCookiePv1H
@@ -19,25 +14,25 @@ class CxCookiePv1 :
 {
     public:
         explicit         CxCookiePv1 ();
-                         CxCookiePv1 (const tString &csRawCookie);
+                         CxCookiePv1 (const std::tstring &csRawCookie);
         virtual         ~CxCookiePv1 ();
 
-        BOOL             bInit       (const tString &csRawCookie);
+        BOOL             bInit       (const std::tstring &csRawCookie);
 
-        const tString  & sGetName    () const;
-        BOOL             bSetName    (const tString &csName);
+        const std::tstring  & sGetName    () const;
+        BOOL             bSetName    (const std::tstring &csName);
 
-        const tString  & sGetValue   () const;
-        BOOL             bSetValue   (const tString &csValue);
+        const std::tstring  & sGetValue   () const;
+        BOOL             bSetValue   (const std::tstring &csValue);
 
-        const tString  & sGetComment () const;
-        BOOL             bSetComment (const tString &csComment);
+        const std::tstring  & sGetComment () const;
+        BOOL             bSetComment (const std::tstring &csComment);
 
-        const tString  & sGetDomain  () const;
-        BOOL             bSetDomain  (const tString &csDomain);
+        const std::tstring  & sGetDomain  () const;
+        BOOL             bSetDomain  (const std::tstring &csDomain);
 
-        const tString  & sGetPath    () const;
-        BOOL             bSetPath    (const tString &csPath);
+        const std::tstring  & sGetPath    () const;
+        BOOL             bSetPath    (const std::tstring &csPath);
 
         LONGLONG         liGetMaxAge () const;
         BOOL             bSetMaxAge  (LONGLONG liMaxAge);
@@ -48,16 +43,16 @@ class CxCookiePv1 :
         BOOL             bGetHttpOnly() const;
         BOOL             bSetHttpOnly(BOOL bFlag);
 
-        tString          sToString   () const;
-        tString          sGetDump    () const;  //TODO: impl
+        std::tstring          sToString   () const;
+        std::tstring          sGetDump    () const;  //TODO: impl
         BOOL             bClear      ();
 
     private:
-        tString          _m_sName;
-        tString          _m_sValue;
-        tString          _m_sComment;
-        tString          _m_sDomain;
-        tString          _m_sPath;
+        std::tstring          _m_sName;
+        std::tstring          _m_sValue;
+        std::tstring          _m_sComment;
+        std::tstring          _m_sDomain;
+        std::tstring          _m_sPath;
         LONGLONG         _m_liMaxAge;    //in seconds
         BOOL             _m_bSecure;
         BOOL             _m_bHttpOnly;

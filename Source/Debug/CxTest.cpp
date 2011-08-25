@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest
-* Description: code testing
-* File name:   CxTest.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 9:29:52
-*
-*****************************************************************************/
+/**
+ * \file  CxTest.cpp
+ * \brief testing
+ */
 
 
 #include <xLib/Debug/CxTest.h>
@@ -107,7 +102,7 @@ CxTest::bUnit(
         //[FUNCTION_NAME]
         xTEST_BLOCK(cullBlockLoops)
         {
-            const tString casData[][2] = {
+            const std::tstring casData[][2] = {
                 {xT("TEST_STRING_1"), xT("MUST_BE_1")},
                 {xT("TEST_STRING_2"), xT("MUST_BE_2")},
                 {xT("TEST_STRING_3"), xT("MUST_BE_3")},
@@ -124,7 +119,7 @@ CxTest::bUnit(
 }
 //---------------------------------------------------------------------------
 //DONE: sGetWorkDirPath (get work dir path)
-const tString &
+const std::tstring &
 CxTest::sGetWorkDirPath() const {
     /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
 
@@ -134,7 +129,7 @@ CxTest::sGetWorkDirPath() const {
 //DONE: bCreateWorkDir (create work dir)
 BOOL
 CxTest::bCreateWorkDir(
-    const tString &csDirName
+    const std::tstring &csDirName
 )
 {
     /*DEBUG*/// n/a
@@ -152,7 +147,7 @@ CxTest::bCreateWorkDir(
 }
 //---------------------------------------------------------------------------
 //DONE: sGetName ()
-const tString &
+const std::tstring &
 CxTest::sGetName() const {
     /*DEBUG*/
 
@@ -162,7 +157,7 @@ CxTest::sGetName() const {
 //DONE: bSetName ()
 BOOL
 CxTest::bSetName(
-    const tString &csTestName
+    const std::tstring &csTestName
 )
 {
     /*DEBUG*/

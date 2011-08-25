@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCrc32
-* Description: Crc32
-* File name:   CxCrc32.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     13.09.2010 12:25:59
-*
-*****************************************************************************/
+/**
+ * \file  CxCrc32.cpp
+ * \brief Crc32
+ */
 
 
 #include <xLib/Crypt/CxCrc32.h>
@@ -57,14 +52,14 @@ CxCrc32::ulCalc(
 /*static*/
 ULONG
 CxCrc32::ulCalcFile(
-    const tString &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
     ULONG ulRes = 0;
 
-    uString usFile;
+    std::ustring usFile;
 
     BOOL bRes = CxStdioFile::bBinRead(csFilePath, &usFile);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -186,14 +181,14 @@ CxCrc32::ulCalcFast(
 /*static*/
 ULONG
 CxCrc32::ulCalcFileFast(
-    const tString &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
     ULONG ulRes = 0;
 
-    uString usFile;
+    std::ustring usFile;
 
     BOOL bRes = CxStdioFile::bBinRead(csFilePath, &usFile);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -209,14 +204,14 @@ CxCrc32::ulCalcFileFast(
 //---------------------------------------------------------------------------
 //DONE: sFormatHex (format Crc32 like "0AADDEA0")
 /*static*/
-tString
+std::tstring
 CxCrc32::sFormatHex(
     const ULONG culCrc32
 )
 {
     /*DEBUG*/
 
-    tString      sRes;
+    std::tstring      sRes;
     const size_t uiCrc32Size = 8;
 
     sRes = CxString::sFormat(xT("%X"), culCrc32);    //0AADDEA0
@@ -226,7 +221,7 @@ CxCrc32::sFormatHex(
     if (0 != uiAdditionalZeros) {
         sRes.insert(0, uiAdditionalZeros, xT('0'));
     }
-    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), tString());
+    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), std::tstring());
 
     return sRes;
 }

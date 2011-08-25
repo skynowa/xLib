@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxAutoProfiler
-* Description: auto code profiling
-* File name:   CxAutoProfiler.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     05.07.2010 16:27:50
-*
-*****************************************************************************/
+/**
+ * \file  CxAutoProfiler.h
+ * \brief auto code profiling
+ */
 
 
 #ifndef xLib_Debug_CxAutoProfilerH
@@ -19,12 +14,12 @@ class CxAutoProfiler :
     public CxNonCopyable
 {
     public:
-                   CxAutoProfiler(const tString &csFilePath, const CxProfiler::EMode cpmMode, LPCTSTR pcszComment, ...);
+                   CxAutoProfiler(const std::tstring &csFilePath, const CxProfiler::EMode cpmMode, LPCTSTR pcszComment, ...);
         virtual   ~CxAutoProfiler();
 
     private:
         CxProfiler _m_pfProfiler;
-        tString    _m_sComment;
+        std::tstring    _m_sComment;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxAutoProfilerH

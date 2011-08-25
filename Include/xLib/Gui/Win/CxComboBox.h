@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxComboBox
-* Description: работа с выпадающем списком
-* File name:   CxComboBox.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 17:01:13
-*
-*****************************************************************************/
+/**
+ * \file  CxComboBox.h
+ * \brief combobox
+ */
 
 
 #ifndef XLib_Gui_CxComboBoxH
@@ -14,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxComboBox: public CxWindow { 
+class CxComboBox: public CxWindow {
     public:
         //-------------------------------------
         //константы
@@ -135,7 +130,7 @@ class CxComboBox: public CxWindow {
         ////BOOL    bAddString   (const tString &csItem);
         ////BOOL    bResetContent();
         ////BOOL    bSetCurSel   (WPARAM wIndex);
-        ////BOOL    bLoadFromFile(const tString &csFilePath, INT iItemIndex = - 1);  
+        ////BOOL    bLoadFromFile(const tString &csFilePath, INT iItemIndex = - 1);
 
         //-------------------------------------
         //события

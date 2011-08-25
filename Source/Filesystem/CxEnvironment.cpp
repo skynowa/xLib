@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEnvironment
-* Description: system environment variables
-* File name:   CxEnvironment.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.04.2010 17:43:45
-*
-*****************************************************************************/
+/**
+ * \file  CxEnvironment.cpp
+ * \brief system environment variables
+ */
 
 
 #include <xLib/Filesystem/CxEnvironment.h>
@@ -24,13 +19,13 @@
 /*static*/
 BOOL
 CxEnvironment::bIsExists(
-    const tString &csVarName
+    const std::tstring &csVarName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
 
 #if defined(xOS_WIN)
-    tString sRes;
+    std::tstring sRes;
     ULONG   ulStored = 0;
 
     sRes.resize(xPATH_MAX);
@@ -51,16 +46,16 @@ CxEnvironment::bIsExists(
 //---------------------------------------------------------------------------
 //DONE: sGetVar (get value by name)
 /*static*/
-tString
+std::tstring
 CxEnvironment::sGetVar(
-    const tString &csVarName
+    const std::tstring &csVarName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVarName.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csVarName.empty(), std::tstring());
 
-    xCHECK_RET(FALSE == bIsExists(csVarName), tString());
+    xCHECK_RET(FALSE == bIsExists(csVarName), std::tstring());
 
-    tString sRes;
+    std::tstring sRes;
 
 #if defined(xOS_WIN)
     ULONG ulStored = 0;
@@ -69,19 +64,19 @@ CxEnvironment::sGetVar(
 
     //not including the terminating null character
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
+    /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
 
     sRes.resize(ulStored);
 
     if (sRes.size() < ulStored) {
         ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
-        /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
+        /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
     }
 #elif defined(xOS_LINUX)
     char *pszRes = NULL;
 
     pszRes = getenv(csVarName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pszRes, tString());
+    /*DEBUG*/xASSERT_RET(NULL != pszRes, std::tstring());
 
     sRes.assign(pszRes);
 #endif
@@ -93,8 +88,8 @@ CxEnvironment::sGetVar(
 /*static*/
 BOOL
 CxEnvironment::bSetVar(
-    const tString &csVarName,
-    const tString &csValue
+    const std::tstring &csVarName,
+    const std::tstring &csValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
@@ -115,7 +110,7 @@ CxEnvironment::bSetVar(
 /*static*/
 BOOL
 CxEnvironment::bDeleteVar(
-    const tString &csVarName
+    const std::tstring &csVarName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
@@ -142,12 +137,12 @@ CxEnvironment::bDeleteVar(
 /*static*/
 BOOL
 CxEnvironment::bGetValues(
-    std::vector<tString> *pvsValues
+    std::vector<std::tstring> *pvsValues
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsValues, FALSE);
 
-    std::vector<tString> vsArgs;
+    std::vector<std::tstring> vsArgs;
 
 #if defined(xOS_WIN)
     BOOL   bRes   = FALSE;
@@ -184,14 +179,14 @@ CxEnvironment::bGetValues(
 //--------------------------------------------------------------------------
 //DONE: sExpandStrings (expands strings by separator "%")
 /*static*/
-tString
+std::tstring
 CxEnvironment::sExpandStrings(
-    const tString &csVar
+    const std::tstring &csVar
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVar.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csVar.empty(), std::tstring());
 
-    tString sRes;
+    std::tstring sRes;
 
 #if defined(xOS_WIN)
     ULONG ulStored = FALSE;
@@ -199,18 +194,18 @@ CxEnvironment::sExpandStrings(
     sRes.resize(xPATH_MAX);
 
     ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
+    /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
 
     sRes.resize(ulStored);
 
     if (sRes.size() < ulStored) {
         ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
-        /*DEBUG*/xASSERT_RET(0 != ulStored, tString());
+        /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
     }
 
     sRes.resize(ulStored - sizeof('\0'));
 #elif defined(xOS_LINUX)
-    const tString csSep = xT("%");
+    const std::tstring csSep = xT("%");
 
     sRes.assign(csVar);
 
@@ -221,29 +216,29 @@ CxEnvironment::sExpandStrings(
         //--------------------------------------------------
         //find from left two first chars '%'
         const size_t cuiStartSepPos = sRes.find(csSep);
-        xCHECK_DO(tString::npos == cuiStartSepPos, break);
+        xCHECK_DO(std::tstring::npos == cuiStartSepPos, break);
 
         const size_t cuiStopSepPos  = sRes.find(csSep, cuiStartSepPos + csSep.size());
-        xCHECK_DO(tString::npos == cuiStopSepPos, break);
+        xCHECK_DO(std::tstring::npos == cuiStopSepPos, break);
 
         //xTRACEV(xT("StartPos: %u, StopPos: %u"), uiStartSepPos, uiStopSepPos);
 
         //--------------------------------------------------
         //copy %var% to temp string
-        tString sRawEnvVar; // %var%
+        std::tstring sRawEnvVar; // %var%
 
         sRawEnvVar = CxString::sCut(sRes, cuiStartSepPos, cuiStopSepPos + csSep.size());
         xASSERT(false == sRawEnvVar.empty());
         //xTRACEV(xT("sRawEnvVar: %s"), sRawEnvVar.c_str());
 
-        tString sEnvVar;    // var
+        std::tstring sEnvVar;    // var
 
         sEnvVar = CxString::sTrimChars(sRawEnvVar, csSep);
         //xTRACEV(xT("sEnvVar: %s"), sEnvVar.c_str());
 
         //--------------------------------------------------
         //expand var to temp string
-        tString sExpandedEnvVar;
+        std::tstring sExpandedEnvVar;
 
         sExpandedEnvVar = sGetVar(sEnvVar);
         //xTRACEV(xT("sExpandedEnvVar: %s"), sExpandedEnvVar.c_str());
@@ -266,19 +261,19 @@ CxEnvironment::sExpandStrings(
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-/*static*/ std::vector<tString> CxEnvironment::_m_vsCommandLineArgs;
+/*static*/ std::vector<std::tstring> CxEnvironment::_m_vsCommandLineArgs;
 //--------------------------------------------------------------------------
 //DONE: sGetCommandLine (get command-line string for the current process)
 /*static*/
-tString
+std::tstring
 CxEnvironment::sGetCommandLine() {
     /*DEBUG*/// n/a
 
-    tString sRes;
+    std::tstring sRes;
 
 #if defined(xOS_WIN)
     LPCTSTR pcszRes = ::GetCommandLine();
-    /*DEBUG*/xASSERT_RET(NULL != pcszRes, tString());
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring());
 
     sRes.assign( CxString::sTrimSpace(pcszRes) );
 #elif defined(xOS_LINUX)
@@ -292,7 +287,7 @@ CxEnvironment::sGetCommandLine() {
 /*static*/
 BOOL
 CxEnvironment::bGetCommandLineArgs(
-    std::vector<tString> *pvsArgs
+    std::vector<std::tstring> *pvsArgs
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsArgs, FALSE);
@@ -318,7 +313,7 @@ CxEnvironment::bSetCommandLineArgs(
     const TCHAR  **pcaszCommandLineArgs     = const_cast<const TCHAR **>(paszArgs);
     const size_t   m_uiCommandLineArgsCount = ciArgsCount;
 
-    std::vector<tString> vsArgs;
+    std::vector<std::tstring> vsArgs;
 
     for (const TCHAR **pszVar = pcaszCommandLineArgs; (NULL != pcaszCommandLineArgs) && (NULL != *pszVar); ++ pszVar) {
         vsArgs.push_back(*pszVar);

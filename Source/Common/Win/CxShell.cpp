@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxShell
-* Description: shell
-* File name:   CxShell.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     26.04.2010 22:05:23
-*
-*****************************************************************************/
+/**
+ * \file  CxShell.cpp
+ * \brief shell
+ */
 
 
 #include <xLib/Common/Win/CxShell.h>
@@ -30,22 +25,22 @@
 //---------------------------------------------------------------------------
 //TODO:  bFindExecutable ()
 /*static*/
-tString CxShell::bFindExecutable(const tString csFileName, const tString csFindDirPath) {
-    /*DEBUG*/xASSERT_RET(false == csFileName.empty(), tString());
+std::tstring CxShell::bFindExecutable(const std::tstring csFileName, const std::tstring csFindDirPath) {
+    /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::tstring());
     /*DEBUG*/// csFindDirPath - n/a
 
     INT   iRes            = SE_ERR_FNF;
     TCHAR szRes[MAX_PATH] = {0};
 
     iRes = reinterpret_cast<INT>( ::FindExecutable(csFileName.c_str(), csFindDirPath.c_str(), szRes) );
-    /*DEBUG*/xASSERT_RET(32 < iRes, tString());
+    /*DEBUG*/xASSERT_RET(32 < iRes, std::tstring());
 
-    return tString(szRes);
+    return std::tstring(szRes);
 }
 //---------------------------------------------------------------------------
 //TODO:  bExecute ()
 /*static*/
-BOOL CxShell::bExecute(HWND hOwner, EOperation opOperation, const tString &csFilePath, const tString &csParams, const tString &csDir, EShowFlag sfShowCmd) {
+BOOL CxShell::bExecute(HWND hOwner, EOperation opOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, EShowFlag sfShowCmd) {
     /*DEBUG*/// hOwner      - n/a
     /*DEBUG*/// csOperation - n/a
     /*DEBUG*/// csFilePath  - n/a
@@ -53,11 +48,11 @@ BOOL CxShell::bExecute(HWND hOwner, EOperation opOperation, const tString &csFil
     /*DEBUG*/// csDir       - n/a
     /*DEBUG*/// iShowCmd    - n/a
 
-    tString sFilePath  = CxString::sTrimSpace(csFilePath);
-    tString sParams    = CxString::sTrimSpace(csParams);
-    tString sDir       = CxString::sTrimSpace(csDir);
+    std::tstring sFilePath  = CxString::sTrimSpace(csFilePath);
+    std::tstring sParams    = CxString::sTrimSpace(csParams);
+    std::tstring sDir       = CxString::sTrimSpace(csDir);
 
-    tString sOperation;
+    std::tstring sOperation;
     switch (opOperation) {
         case opEdit:    { sOperation = xT("edit");    } break;
         case opExplore: { sOperation = xT("explore"); } break;
@@ -88,10 +83,10 @@ BOOL CxShell::bExecuteEx(SHELLEXECUTEINFO *peiInfo) {
 //---------------------------------------------------------------------------
 //TODO: bExecuteHttp ()
 /*static*/
-BOOL CxShell::bExecuteHttp(const tString &csUrl) {
+BOOL CxShell::bExecuteHttp(const std::tstring &csUrl) {
     /*DEBUG*/// csUrl - n/a
 
-    tString sUrl = CxString::sTrimSpace(csUrl);
+    std::tstring sUrl = CxString::sTrimSpace(csUrl);
 
     xCHECK_RET(true == sUrl.empty(), FALSE);
 
@@ -103,10 +98,10 @@ BOOL CxShell::bExecuteHttp(const tString &csUrl) {
 //---------------------------------------------------------------------------
 //TODO: bExecuteFtp ()
 /*static*/
-BOOL CxShell::bExecuteFtp(const tString &csUrl) {
+BOOL CxShell::bExecuteFtp(const std::tstring &csUrl) {
     /*DEBUG*/// csUrl - n/a
 
-    tString sUrl = CxString::sTrimSpace(csUrl);
+    std::tstring sUrl = CxString::sTrimSpace(csUrl);
 
     xCHECK_RET(true == sUrl.empty(), FALSE);
 
@@ -118,21 +113,21 @@ BOOL CxShell::bExecuteFtp(const tString &csUrl) {
 //---------------------------------------------------------------------------
 //TODO: bExecuteEmail ()
 /*static*/
-BOOL CxShell::bExecuteEmail(const tString &csToEmail, const tString &csSubject, const tString &csBody) {
+BOOL CxShell::bExecuteEmail(const std::tstring &csToEmail, const std::tstring &csSubject, const std::tstring &csBody) {
     /*DEBUG*/// csToEmail - n/a
     /*DEBUG*/// csSubject - n/a
     /*DEBUG*/// csBody    - n/a
 
-    tString sToEmail = CxString::sTrimSpace(csToEmail);
-    tString sSubject = CxString::sTrimSpace(csSubject);
-    tString sBody    = CxString::sTrimSpace(csBody);
+    std::tstring sToEmail = CxString::sTrimSpace(csToEmail);
+    std::tstring sSubject = CxString::sTrimSpace(csSubject);
+    std::tstring sBody    = CxString::sTrimSpace(csBody);
 
     xCHECK_RET(true == csToEmail.empty(), FALSE);
 
     //mailto:sAddress[sHeaders]
     //mailto:user@example.com?subject=Message Title&body=Message Content
 
-    tString sCmd;
+    std::tstring sCmd;
 
     sCmd.append(xT("mailto:")  + sToEmail);
 
@@ -150,7 +145,7 @@ BOOL CxShell::bExecuteEmail(const tString &csToEmail, const tString &csSubject, 
 //---------------------------------------------------------------------------
 //TODO: sGetSpecialFolderLocation ()
 /*static*/
-tString CxShell::sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken) {
+std::tstring CxShell::sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken) {
     /*DEBUG*/// sfDir  - n/a
     /*DEBUG*/// hToken - n/a
 
@@ -159,23 +154,23 @@ tString CxShell::sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken) {
 
     ////hRes = ::SHGetFolderLocation(NULL, sfDir, hToken, 0, &pidlList);    //FIXME: SHGetFolderLocation
     hRes = ::SHGetSpecialFolderLocation(NULL, sfDir, &pidlList);
-    /*DEBUG*/xASSERT_DO(SUCCEEDED(hRes), ::CoTaskMemFree(pidlList); return tString());
+    /*DEBUG*/xASSERT_DO(SUCCEEDED(hRes), ::CoTaskMemFree(pidlList); return std::tstring());
 
     TCHAR szRes[MAX_PATH + sizeof(TCHAR)] = {0};
 
     _ms_bRes = ::SHGetPathFromIDList(pidlList, &szRes[0]);
-    /*DEBUG*/xASSERT_DO(FALSE != _ms_bRes, ::CoTaskMemFree(pidlList); return tString());
+    /*DEBUG*/xASSERT_DO(FALSE != _ms_bRes, ::CoTaskMemFree(pidlList); return std::tstring());
 
     ::CoTaskMemFree(pidlList);
     /*DEBUG*/// n/a
 
-    return tString(szRes);
+    return std::tstring(szRes);
 }
 //---------------------------------------------------------------------------
 //DONE: bCreateShortcut
 /*static*/
 BOOL
-CxShell::bCreateShortcut(const tString &csFilePath, const tString &csShortCutPath, const tString &csDescription) {
+CxShell::bCreateShortcut(const std::tstring &csFilePath, const std::tstring &csShortCutPath, const std::tstring &csDescription) {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),     FALSE);
     /*DEBUG*/xASSERT_RET(false == csShortCutPath.empty(), FALSE);
     /*DEBUG*/// csDescription - n/a

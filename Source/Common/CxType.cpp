@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxType
-* Description: type info
-* File name:   CxType.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     29.07.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxType.cpp
+ * \brief type info
+ */
 
 
 #include <xLib/Common/CxType.h>

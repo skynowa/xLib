@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTcpClientSocket
-* Description: client socket
-* File name:   CxTcpClientSocket.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.04.2009 6:21:18
-*
-*****************************************************************************/
+/**
+ * \file  CxTcpClientSocket.h
+ * \brief client socket
+ */
 
 
 #ifndef xLib_Net_CxTcpClientSocketH
@@ -25,14 +20,14 @@ class CxTcpClientSocket :
 
         BOOL        bIsReadable        ();  //TODO: repeats from CxSocket
         BOOL        bIsWritable        ();  //TODO: repeats from CxSocket
-        BOOL        bConnect           (const tString &csIp, USHORT usPort);
+        BOOL        bConnect           (const std::tstring &csIp, USHORT usPort);
 
         BOOL        bIoctl             (LONG liCmd, ULONG *pulArgp);
         BOOL        bSetNonBlockingMode(const BOOL cbFlag);
         BOOL        bGetTimeout        (LONG *pliSec, LONG *pliMicroSec);
         BOOL        bSetTimeout        (LONG liSec,   LONG liMicroSec);
 
-        static BOOL bIsServerAlive     (const tString &csIp, USHORT usPort);
+        static BOOL bIsServerAlive     (const std::tstring &csIp, USHORT usPort);
 
     protected:
         timeval     _m_tvTimeout;
@@ -43,10 +38,10 @@ class CxTcpClientSocket :
 
 /*
 
-tString sStr = xT("Some string!!!");
-::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(tString::value_type), 0);
+std::tstring sStr = xT("Some string!!!");
+::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring::value_type), 0);
 
-sizeof(tString::value_type)
+sizeof(std::tstring::value_type)
 
 */
 

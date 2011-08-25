@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxLastError
-* Description: system last error
-* File name:   CxLastError.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25 січ. 2011 11:01:46
-*
-*****************************************************************************/
+/**
+ * \file  CxLastError.cpp
+ * \brief system last error
+ */
 
 
 #include <xLib/Debug/CxLastError.h>
@@ -60,7 +55,7 @@ CxLastError::bSet(
 //---------------------------------------------------------------------------
 //DONE: sGet (get as string)
 /*static*/
-tString
+std::tstring
 CxLastError::sGet() {
     /*DEBUG*/
 
@@ -80,14 +75,14 @@ CxLastError::bReset() {
 //---------------------------------------------------------------------------
 //DONE: sFormat (get last error as string)
 /*static*/
-tString
+std::tstring
 CxLastError::sFormat(
     const ULONG culCode
 )
 {
     /*DEBUG*/// ulCode - n/a
 
-    tString sRes;
+    std::tstring sRes;
 
     sRes.append( CxString::sFormat(xT("%u - "), culCode) );
 
@@ -108,12 +103,12 @@ CxLastError::sFormat(
 
     //317 - "Не удается найти текст сообщения с номером 0x%1 в файле сообщений %2."
     xCHECK_RET(317 == ulGet(), xT("Unknown error"));
-    /*DEBUG*/xASSERT_RET(0 != ulRes, tString());
+    /*DEBUG*/xASSERT_RET(0 != ulRes, std::tstring());
 
-    sRes.append( CxString::sRemoveEol(tString(static_cast<LPCTSTR>(pvBuff), ulRes)) );
+    sRes.append( CxString::sRemoveEol(std::tstring(static_cast<LPCTSTR>(pvBuff), ulRes)) );
 
     hRes = ::LocalFree(pvBuff);
-    /*DEBUG*/xASSERT_RET(NULL == hRes, tString());
+    /*DEBUG*/xASSERT_RET(NULL == hRes, std::tstring());
 #elif defined(xOS_LINUX)
     sRes.append( strerror( static_cast<INT>(culCode) ) );
 #endif

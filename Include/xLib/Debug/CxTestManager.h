@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTestManager
-* Description: manage tests (CxTest)
-* File name:   CxTestManager.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     18.07.2011
-*
-*****************************************************************************/
+/**
+ * \file  CxTestManager.h
+ * \brief manage tests (CxTest)
+ */
 
 
 #ifndef xLib_Debug_CxTestManagerH
@@ -22,7 +17,7 @@ class CxTestManager :
 				   CxTestManager(const BOOL cbIsUseTracing);
 		virtual   ~CxTestManager();
 
-        BOOL       bAdd         (CxTest *pvtTest, const tString &csTestName = CxConst::xSTR_EMPTY);
+        BOOL       bAdd         (CxTest *pvtTest, const std::tstring &csTestName = CxConst::xSTR_EMPTY);
         BOOL       bRun         (const ULONGLONG cullAllLoops, const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
 
         //TODO: not enough RAM

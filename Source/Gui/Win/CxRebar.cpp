@@ -1,19 +1,13 @@
-/****************************************************************************
-* Class name:  CxRebar
-* Description: работа с ребаром
-* File name:   CxRebar.сзз
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 11:20:41
-*
-*****************************************************************************/
-
+/**
+ * \file  CxRebar.cpp
+ * \brief rebar
+ */
 
 
 #include <xLib/Gui/CxRebar.h>
 
 //---------------------------------------------------------------------------
-CxRebar::CxRebar() : 
+CxRebar::CxRebar() :
     CxWindow()
 {
     _m_bIsControl     = TRUE;
@@ -47,7 +41,7 @@ HWND CxRebar::Create(HWND hwndOwner, AlignFlags afFlag) {
         NULL);
     if(!_m_hWnd)
         return NULL;
-    rbi.cbSize = sizeof(REBARINFO);  
+    rbi.cbSize = sizeof(REBARINFO);
     rbi.fMask  = 0;
     rbi.himl   = (HIMAGELIST)NULL;
     if(!SendMessage(_m_hWnd, RB_SETBARINFO, 0, (LPARAM)&rbi))
@@ -58,12 +52,12 @@ HWND CxRebar::Create(HWND hwndOwner, AlignFlags afFlag) {
 VOID CxRebar::InsertBand(HWND hClientWnd,TCHAR* szName) {
     REBARBANDINFO rbBand;
     rbBand.cbSize = sizeof(REBARBANDINFO);  // Required
-    rbBand.fMask  =  RBBIM_TEXT | RBBIM_BACKGROUND | 
-        RBBIM_STYLE | RBBIM_CHILD  | RBBIM_CHILDSIZE | 
+    rbBand.fMask  =  RBBIM_TEXT | RBBIM_BACKGROUND |
+        RBBIM_STYLE | RBBIM_CHILD  | RBBIM_CHILDSIZE |
         RBBIM_IMAGE|RBBIM_SIZE;
     rbBand.fStyle =RBBS_BREAK|RBBS_CHILDEDGE | RBBS_FIXEDBMP/*RBBS_CHILDEDGE|
                                                             RBBS_USECHEVRON| RBBS_GRIPPERALWAYS|RBBS_VARIABLEHEIGHT*/;
-    rbBand.hbmBack = 0;//LoadBitmap(GetModuleHandle(NULL),MAKEINTRESOURCE(IDB_BITMAP_BG));   
+    rbBand.hbmBack = 0;//LoadBitmap(GetModuleHandle(NULL),MAKEINTRESOURCE(IDB_BITMAP_BG));
     RECT rect;
     GetClientRect(hClientWnd,&rect);
     //        rbBand.clrBack=RGB(212,208,200);
@@ -80,13 +74,13 @@ VOID CxRebar::InsertBand(HWND hClientWnd,TCHAR* szName) {
 }
 //---------------------------------------------------------------------------
 BOOL CxRebar::DeleteBand(int numBand) {
-    return (0!=SendMessage(_m_hWnd,(UINT) RB_DELETEBAND,WPARAM(numBand),0)); 
+    return (0!=SendMessage(_m_hWnd,(UINT) RB_DELETEBAND,WPARAM(numBand),0));
 }
 //---------------------------------------------------------------------------
 VOID CxRebar::AutoSize()    {
-    SendMessage((HWND) _m_hWnd,      
-        (UINT) RB_SHOWBAND,    
+    SendMessage((HWND) _m_hWnd,
+        (UINT) RB_SHOWBAND,
         (WPARAM) 0,
-        (LPARAM) TRUE);  
+        (LPARAM) TRUE);
 }
 //---------------------------------------------------------------------------

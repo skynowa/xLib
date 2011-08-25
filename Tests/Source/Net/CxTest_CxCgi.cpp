@@ -35,9 +35,9 @@ CxTest_CxCgi::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTEST_IGNORE
-            const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+            const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
-            const tString sFileContent =
+            const std::tstring sFileContent =
                     xT("\t<html>")
                     xT("<head></head>")
                     xT("<body>")
@@ -232,7 +232,7 @@ CxTest_CxCgi::bUnit(
     {
         //1
         {
-            const tString sData[] = {
+            const std::tstring sData[] = {
                 xT("TEST_STRING_1"),
                 xT("http://forum.vingrad.ru/forum/topic-327003/anchor-entry2330816/0.html"),
                 xT("http://www.google.ru/search?hl=ru&source=hp&q=репозитарий&aq=f&aqi=g-s10&aql=&oq="),
@@ -243,14 +243,14 @@ CxTest_CxCgi::bUnit(
                 const std::string ILLEGAL_CHARS("()[]/|\\',;");
 
 
-                tString sUri        = sData[i];
-                tString sEncodedStr;
+                std::tstring sUri        = sData[i];
+                std::tstring sEncodedStr;
 
                 m_bRes = CxCgi::bUriEncode(sUri, ILLEGAL_CHARS, &sEncodedStr);
                 xASSERT_NOT_EQ(FALSE,  m_bRes);
                 xASSERT_EQ(false, sEncodedStr.empty());
 
-                tString sDecodedStr;
+                std::tstring sDecodedStr;
 
                 m_bRes = CxCgi::bUriDecode(sEncodedStr, &sDecodedStr);
                 xASSERT_NOT_EQ(FALSE, m_bRes)
@@ -260,7 +260,7 @@ CxTest_CxCgi::bUnit(
 
         //2
         {
-            const tString sData[] = {
+            const std::tstring sData[] = {
                 xT("search?hl=ru&source=hp&q=%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%B0%D1%80%D0%B8%D0%B9&aq=f&aqi=g-s10&aql=&oq="),
                 xT("%E3%81%BB%E3%82%93%E3%81%A8%E3%81%86%E3%81%AB%E3%81%AA%E3%81%8C%E3%81%84%E3%82%8F%E3%81%91%E3%81%AE%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%81%A9%E3%82%81%E3%81%84%E3%82%93%E3%82%81%E3%81%84%E3%81%AE%E3%82%89%E3%81%B9%E3%82%8B%E3%81%BE%E3%81%A0%E3%81%AA%E3%81%8C%E3%81%8F%E3%81%97%E3%81%AA%E3%81%84%E3%81%A8%E3%81%9F%E3%82%8A%E3%81%AA%E3%81%84.%E3%81%BB%E3%82%93%E3%81%A8%E3%81%86%E3%81%AB%E3%81%AA%E3%81%8C%E3%81%84%E3%82%8F%E3%81%91%E3%81%AE%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%81%A9%E3%82%81%E3%81%84%E3%82%93%E3%82%81%E3%81%84%E3%81%AE%E3%82%89%E3%81%B9%E3%82%8B%E3%81%BE%E3%81%A0%E3%81%AA%E3%81%8C%E3%81%8F%E3%81%97%E3%81%AA%E3%81%84%E3%81%A8%E3%81%9F%E3%82%8A%E3%81%AA%E3%81%84.%E3%81%BB%E3%82%93%E3%81%A8%E3%81%86%E3%81%AB%E3%81%AA%E3%81%8C%E3%81%84%E3%82%8F%E3%81%91%E3%81%AE%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%81%A9%E3%82%81%E3%81%84%E3%82%93%E3%82%81%E3%81%84%E3%81%AE%E3%82%89%E3%81%B9%E3%82%8B%E3%81%BE%E3%81%A0%E3%81%AA%E3%81%8C%E3%81%8F%E3%81%97%E3%81%AA%E3%81%84%E3%81%A8%E3%81%9F%E3%82%8A%E3%81%AA%E3%81%84.w3.mag.keio.ac.jp"),
                 xT("xn--n8jaaaaai5bhf7as8fsfk3jnknefdde3fg11amb5gzdb4wi9bya3kc6lra.xn--n8jaaaaai5bhf7as8fsfk3jnknefdde3fg11amb5gzdb4wi9bya3kc6lra.xn--n8jaaaaai5bhf7as8fsfk3jnknefdde3fg11amb5gzdb4wi9bya3kc6lra.w3.mag.keio.ac.jp")
@@ -270,14 +270,14 @@ CxTest_CxCgi::bUnit(
                 const std::string ILLEGAL_CHARS("()[]/|\\',;");
 
 
-                tString sUri        = sData[i];
-                tString sDecodedStr;
+                std::tstring sUri        = sData[i];
+                std::tstring sDecodedStr;
 
                 m_bRes = CxCgi::bUriDecode(sUri, &sDecodedStr);
                 xASSERT_NOT_EQ(FALSE,  m_bRes)
                 xASSERT_EQ(false, sDecodedStr.empty());
 
-                tString sEncodedStr;
+                std::tstring sEncodedStr;
 
                 m_bRes = CxCgi::bUriEncode(sDecodedStr, ILLEGAL_CHARS, &sEncodedStr);
                 xASSERT_NOT_EQ(FALSE,  m_bRes);

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxFileAttribute
-* Description: file attribute
-* File name:   CxFileAttribute.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.04.2010 13:37:54
-*
-*****************************************************************************/
+/**
+ * \file  CxFileAttribute.h
+ * \brief file attribute
+ */
 
 
 #ifndef xLib_Filesystem_CxFileAttributeH
@@ -50,13 +45,13 @@ class CxFileAttribute :
             #endif
         };
 
-        static BOOL       bIsExists      (const tString &csFilePath, const EAttribute cfaValue);
-        static EAttribute atGet          (const tString &csFilePath);
-        static BOOL       bSet           (const tString &csFilePath, const EAttribute cfaValue);
-        static BOOL       bAdd           (const tString &csFilePath, const EAttribute cfaValue);
-        static BOOL       bRemove        (const tString &csFilePath, const EAttribute cfaValue);
-        static BOOL       bModify        (const tString &csFilePath, const EAttribute cfaRemoveValue, const EAttribute cfaAddValue);
-        static BOOL       bClear         (const tString &csFilePath);
+        static BOOL       bIsExists      (const std::tstring &csFilePath, const EAttribute cfaValue);
+        static EAttribute atGet          (const std::tstring &csFilePath);
+        static BOOL       bSet           (const std::tstring &csFilePath, const EAttribute cfaValue);
+        static BOOL       bAdd           (const std::tstring &csFilePath, const EAttribute cfaValue);
+        static BOOL       bRemove        (const std::tstring &csFilePath, const EAttribute cfaValue);
+        static BOOL       bModify        (const std::tstring &csFilePath, const EAttribute cfaRemoveValue, const EAttribute cfaAddValue);
+        static BOOL       bClear         (const std::tstring &csFilePath);
 
     private:
                           CxFileAttribute();

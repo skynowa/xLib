@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxAutoMallocT
-* Description: test CxAutoMallocT
-* File name:   CxAutoMallocT.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     17.05.2009 17:20:09
-*
-*****************************************************************************/
+/**
+ * \file  CxAutoMallocT.h
+ * \brief CxAutoMallocT
+ */
 
 /*
 Usage:

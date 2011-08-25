@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxRadioButton
-* Description: 
-* File name:   CxRadioButton.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.07.2009 21:38:38
-*
-*****************************************************************************/
+/**
+ * \file  CxRadioButton.h
+ * \brief radio button
+ */
 
 
 #ifndef XLib_Gui_CxRadioButtonH
@@ -24,18 +19,18 @@ class CxRadioButton: public CxButtonBase {
         enum ECheckState {
             csUknown    = - 1,
             csChecked    = BST_CHECKED,
-            csUnchecked    = BST_UNCHECKED,    
-        };    
+            csUnchecked    = BST_UNCHECKED,
+        };
 
                     CxRadioButton();
         virtual    ~CxRadioButton();
-            
+
         BOOL        bCreateRes   (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
         //сообщения
-        ECheckState bstGetState  ();                            
-        BOOL        bSetState    (CxRadioButton::ECheckState csCheckState);                    
+        ECheckState bstGetState  ();
+        BOOL        bSetState    (CxRadioButton::ECheckState csCheckState);
 
         //-------------------------------------
         //события

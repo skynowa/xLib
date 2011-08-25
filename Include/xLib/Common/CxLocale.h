@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxLocale
-* Description: locale
-* File name:   CxLocale.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     09.08.2009 19:47:14
-*
-*****************************************************************************/
+/**
+ * \file  CxLocale.h
+ * \brief locale
+ */
 
 
 #ifndef xLib_Common_CxLocaleH
@@ -18,9 +13,9 @@ class CxLocale :
     public CxNonCopyable
 {
     public:
-       static tString sGetCurrent();
+       static std::tstring sGetCurrent();
        	   ///< get current
-       static BOOL    bSetCurrent(const tString &csLocale);
+       static BOOL    bSetCurrent(const std::tstring &csLocale);
    	   	   ///< set current
        static BOOL    bSetDefault();
    	   	   ///< set default

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxProcess
-* Description: process
-* File name:   CxProcess.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.01.2011 22:42:07
-*
-*****************************************************************************/
+/**
+ * \file  CxProcess.cpp
+ * \brief process
+ */
 
 
 #include <xLib/Sync/CxProcess.h>
@@ -81,14 +76,14 @@ CxProcess::ulGetCurrParentId() {
 /*static*/
 BOOL
 CxProcess::bExec(
-    const tString &csFilePath,
+    const std::tstring &csFilePath,
     LPCTSTR        pcszCmdLine, ...
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        FALSE);
 
-    tString sCmdLine;
+    std::tstring sCmdLine;
 
     va_list palArgs;
     xVA_START(palArgs, pcszCmdLine);

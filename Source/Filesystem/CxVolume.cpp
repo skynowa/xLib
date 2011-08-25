@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxVolume
-* Description: volume
-* File name:   CxVolume.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.06.2009 9:25:22
-*
-*****************************************************************************/
+/**
+ * \file  CxVolume.cpp
+ * \brief volume
+ */
 
 
 #include <xLib/Filesystem/CxVolume.h>
@@ -31,17 +26,17 @@
 /*static*/
 BOOL
 CxVolume::bIsReady(
-    const tString &csVolumePath
+    const std::tstring &csVolumePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), FALSE);
 
     BOOL    bRes        = FALSE;
-    tString sVolumePath = CxPath::sSlashAppend(csVolumePath);
-    tString sOldDirPath;
+    std::tstring sVolumePath = CxPath::sSlashAppend(csVolumePath);
+    std::tstring sOldDirPath;
 
 #if defined(xOS_WIN)
-    tString sRes;
+    std::tstring sRes;
     UINT    uiOldErrorMode = 0;
 
     uiOldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
@@ -77,7 +72,7 @@ CxVolume::bIsReady(
 /*static*/
 BOOL
 CxVolume::bIsEmpty(
-    const tString &csVolumePath
+    const std::tstring &csVolumePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), FALSE);
@@ -89,7 +84,7 @@ CxVolume::bIsEmpty(
 /*static*/
 BOOL
 CxVolume::bGetFreeSpace(
-    const tString &csDirPath,
+    const std::tstring &csDirPath,
     ULONGLONG     *pullAvailable,   //for unprivileged users
     ULONGLONG     *pullTotal,
     ULONGLONG     *pullFree
@@ -102,7 +97,7 @@ CxVolume::bGetFreeSpace(
 
     //--------------------------------------------------
     //if csDirPath parameter is empty, uses the root of the current volume
-    tString _sDirPath;
+    std::tstring _sDirPath;
 
     if (true == csDirPath.empty()) {
         _sDirPath = CxPath::sGetExeDir();
@@ -148,8 +143,8 @@ CxVolume::bGetFreeSpace(
 /*static*/
 BOOL
 CxVolume::bMount(
-    const tString &csSourcePath,
-    const tString &csDestPath
+    const std::tstring &csSourcePath,
+    const std::tstring &csDestPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), FALSE);
@@ -169,7 +164,7 @@ CxVolume::bMount(
     //TODO: bMount
 
     #if xTODO
-        const tString  csFilesytemType;
+        const std::tstring  csFilesytemType;
         const ULONG    culMountFlags   = 0;
         const VOID    *pcvData         = NULL;
 
@@ -188,8 +183,8 @@ CxVolume::bMount(
 BOOL
 CxVolume::bDefineDosDevice(
     ULONG ulFlags,
-    const tString &csDeviceName,
-    const tString &csTargetPath
+    const std::tstring &csDeviceName,
+    const std::tstring &csTargetPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDeviceName.empty(), FALSE);
@@ -211,7 +206,7 @@ CxVolume::bDefineDosDevice(
 #if defined(xOS_WIN)
 BOOL
 CxVolume::bDeleteVolumeMountPoint(
-    const tString &csVolumeMountPoint
+    const std::tstring &csVolumeMountPoint
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVolumeMountPoint.empty(), FALSE);
@@ -232,7 +227,7 @@ CxVolume::bDeleteVolumeMountPoint(
 #if defined(xOS_WIN)
 HANDLE
 CxVolume::hFindFirstVolume(
-    tString *psVolumeName
+    std::tstring *psVolumeName
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != psVolumeName, INVALID_HANDLE_VALUE);
@@ -256,8 +251,8 @@ CxVolume::hFindFirstVolume(
 #if defined(xOS_WIN)
 HANDLE
 CxVolume::hFindFirstVolumeMountPoint(
-    const tString &csRootPathName,
-    tString *psVolumeMountPoint
+    const std::tstring &csRootPathName,
+    std::tstring *psVolumeMountPoint
 )
 {
     /*DEBUG*/xASSERT_RET(false == csRootPathName.empty(), INVALID_HANDLE_VALUE);
@@ -280,21 +275,21 @@ CxVolume::hFindFirstVolumeMountPoint(
 //DONE:  sFindNextVolume (Continues a volume search started by a call to the FindFirstVolume function.)
 /*static*/
 #if defined(xOS_WIN)
-tString
+std::tstring
 CxVolume::sFindNextVolume(
     HANDLE hFindVolume
 )
 {
-    /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hFindVolume, tString());
+    /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hFindVolume, std::tstring());
 
     BOOL        bRes                          = FALSE;
     const ULONG culBuffSize                   = MAX_PATH;
     TCHAR       szVolumeName[culBuffSize + 1] = {0};
 
     bRes = ::FindNextVolume(hFindVolume, &szVolumeName[0], culBuffSize);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
 
-    return tString(szVolumeName);
+    return std::tstring(szVolumeName);
 }
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
@@ -306,7 +301,7 @@ CxVolume::sFindNextVolume(
 BOOL
 CxVolume::bFindNextVolumeMountPoint(
     HANDLE hFindVolumeMountPoint,
-    tString *psVolumeMountPoint
+    std::tstring *psVolumeMountPoint
 )
 {
     /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hFindVolumeMountPoint, FALSE);
@@ -373,7 +368,7 @@ CxVolume::bFindVolumeMountPointClose(
 #if defined(xOS_WIN)
 CxVolume::EType
 CxVolume::dtGetType(
-    const tString &csDrivePath
+    const std::tstring &csDrivePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDrivePath.empty(), dtUnknown);
@@ -390,7 +385,7 @@ CxVolume::dtGetType(
 #if defined(xOS_WIN)
 BOOL
 CxVolume::bGetLogicalDrives(
-    std::vector<tString> *pvsDrives
+    std::vector<std::tstring> *pvsDrives
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsDrives, FALSE);
@@ -403,7 +398,7 @@ CxVolume::bGetLogicalDrives(
     pvsDrives->clear();
     for (INT i = 0; i < 26; ++ i) {
         if (1 == ((ulDrives >> i) & 0x00000001)) {
-            tString sDrivePath;
+            std::tstring sDrivePath;
 
             sDrivePath.push_back(static_cast<TCHAR>(65 + i));
             sDrivePath.append(CxConst::xDRIVE_SEP);
@@ -423,13 +418,13 @@ CxVolume::bGetLogicalDrives(
 #if defined(xOS_WIN)
 BOOL
 CxVolume::bGetLogicalDrives(
-    std::vector<tString> *pvsDrives,
+    std::vector<std::tstring> *pvsDrives,
     const EType           cdtDriveType
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsDrives, FALSE);
 
-    std::vector<tString> vsRes;
+    std::vector<std::tstring> vsRes;
 
 #if defined(xOS_WIN)
     ULONG                ulDrives = 0;
@@ -439,7 +434,7 @@ CxVolume::bGetLogicalDrives(
 
     for (INT i = 0; i < 26; ++ i) {
         if (1 == ((ulDrives >> i) & 0x00000001)) {
-            tString sDrivePath;
+            std::tstring sDrivePath;
 
             sDrivePath.push_back(static_cast<TCHAR>(65 + i));
             sDrivePath.append(CxConst::xDRIVE_SEP);
@@ -468,18 +463,18 @@ CxVolume::bGetLogicalDrives(
 //DONE:  sGetLogicalStrings (Fills a buffer with strings that specify valid drives in the _tsystem.)
 /*static*/  //FIXME
 #if defined(xOS_WIN)
-tString
+std::tstring
 CxVolume::sGetLogicalStrings() {
-    tString sRes;
+    std::tstring sRes;
     ULONG   ulRes = 0;
 
     ulRes = ::GetLogicalDriveStrings(0, NULL);
-    /*DEBUG*/xASSERT_RET(0 != ulRes, tString());
+    /*DEBUG*/xASSERT_RET(0 != ulRes, std::tstring());
 
     sRes.resize(ulRes);
 
     ulRes = ::GetLogicalDriveStrings(sRes.size(), &sRes[0]);
-    /*DEBUG*/xASSERT_RET(0 != ulRes, tString());
+    /*DEBUG*/xASSERT_RET(0 != ulRes, std::tstring());
 
     return sRes;
 }
@@ -492,12 +487,12 @@ CxVolume::sGetLogicalStrings() {
 #if defined(xOS_WIN)
 BOOL
 CxVolume::bGetInfo(
-    const tString &csDrivePath,
-    tString       *psVolumeName,
+    const std::tstring &csDrivePath,
+    std::tstring       *psVolumeName,
     ULONG         *pulVolumeSerialNumber,
     ULONG         *pulMaximumComponentLength,
     ULONG         *pulFileSystemFlags,
-    tString       *psFileSystemName
+    std::tstring       *psFileSystemName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDrivePath.empty(), FALSE);
@@ -551,21 +546,21 @@ CxVolume::bGetInfo(
 //DONE:  sGetVolumeNameForVolumeMountPoint (Retrieves a volume GUID path for the volume that is associated with the specified volume mount point (drive letter, volume GUID path, or mounted folder)
 /*static*/
 #if defined(xOS_WIN)
-tString
+std::tstring
 CxVolume::sGetVolumeNameForVolumeMountPoint(
-    const tString &csVolumeMountPoint
+    const std::tstring &csVolumeMountPoint
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVolumeMountPoint.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csVolumeMountPoint.empty(), std::tstring());
 
     TCHAR szRes[50 + 1] = {0};
     BOOL  bRes          = FALSE;
 
     bRes = ::GetVolumeNameForVolumeMountPoint(CxPath::sSlashAppend(csVolumeMountPoint).c_str(), &szRes[0], xPATH_MAX);
-    /*DEBUG*/////xASSERT_RET(FALSE != bRes, tString());
-    xCHECK_RET(FALSE == bRes, tString());
+    /*DEBUG*/////xASSERT_RET(FALSE != bRes, std::tstring());
+    xCHECK_RET(FALSE == bRes, std::tstring());
 
-    return tString(szRes);
+    return std::tstring(szRes);
 }
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
@@ -574,21 +569,21 @@ CxVolume::sGetVolumeNameForVolumeMountPoint(
 //DONE:  sGetVolumePathName (Retrieves the volume mount point where the specified path is mounted.)
 /*static*/
 #if defined(xOS_WIN)
-tString
+std::tstring
 CxVolume::sGetVolumePathName(
-    const tString &csFileName
+    const std::tstring &csFileName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFileName.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::tstring());
 
     BOOL        bRes                               = FALSE;
     const ULONG culBuffSize                        = MAX_PATH;
     TCHAR        szVolumePathName[culBuffSize + 1] = {0};
 
     bRes = ::GetVolumePathName(csFileName.c_str(), &szVolumePathName[0], culBuffSize);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, tString());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
 
-    return tString(szVolumePathName);
+    return std::tstring(szVolumePathName);
 }
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
@@ -597,16 +592,16 @@ CxVolume::sGetVolumePathName(
 //DONE:  sGetVolumePathNamesForVolumeName (Retrieves a list of drive letters and volume GUID paths for the specified volume.)
 /*static*/
 #if defined(xOS_WIN)
-tString
+std::tstring
 CxVolume::sGetVolumePathNamesForVolumeName(
-    const tString &csVolumeName
+    const std::tstring &csVolumeName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVolumeName.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csVolumeName.empty(), std::tstring());
 
 //    BOOL        bRes                           = FALSE;
     const ULONG culBuffSize                    = xPATH_MAX;
-    tString     sVolumePathNames(culBuffSize, 0);
+    std::tstring     sVolumePathNames(culBuffSize, 0);
     ULONG       ulReturnLength                 = 0;
 //    ULONG       ulLastError                    = 0;
 
@@ -617,9 +612,9 @@ CxVolume::sGetVolumePathNamesForVolumeName(
 //        bRes        = ::GetVolumePathNamesForVolumeName(csVolumeName.c_str(), &sVolumePathNames[0], culBuffSize, &ulReturnLength);
 //        ulLastError = ::GetLastError();
 //    }
-//    /*DEBUG*/xASSERT_RET(FALSE != bRes && ulLastError != ERROR_MORE_DATA, tString());
+//    /*DEBUG*/xASSERT_RET(FALSE != bRes && ulLastError != ERROR_MORE_DATA, std::tstring());
 
-    return tString(sVolumePathNames, ulReturnLength);
+    return std::tstring(sVolumePathNames, ulReturnLength);
 }
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
@@ -628,12 +623,12 @@ CxVolume::sGetVolumePathNamesForVolumeName(
 //DONE:  sQueryDosDevice (Retrieves information about MS-DOS device names)
 /*static*/
 #if defined(xOS_WIN)
-tString
+std::tstring
 CxVolume::sQueryDosDevice(
-    const tString &csDeviceName
+    const std::tstring &csDeviceName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csDeviceName.empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == csDeviceName.empty(), std::tstring());
 
     ULONG       ulRes                     = 0;
     const ULONG culMax                    = MAX_PATH;
@@ -642,9 +637,9 @@ CxVolume::sQueryDosDevice(
 
     ulRes       = ::QueryDosDevice(csDeviceName.c_str(), &szTargetPath[0], culMax);
     ulLastError = ::GetLastError();
-    /*DEBUG*/xASSERT_RET(0 != ulRes && ERROR_INSUFFICIENT_BUFFER != ulLastError, tString());
+    /*DEBUG*/xASSERT_RET(0 != ulRes && ERROR_INSUFFICIENT_BUFFER != ulLastError, std::tstring());
 
-    return tString(szTargetPath, ulRes);
+    return std::tstring(szTargetPath, ulRes);
 }
 #elif defined(xOS_LINUX)
     //TODO: xOS_LINUX
@@ -655,8 +650,8 @@ CxVolume::sQueryDosDevice(
 #if defined(xOS_WIN)
 BOOL
 CxVolume::bSetVolumeLabel(
-    const tString &csRootPathName,
-    const tString &cslpVolumeName
+    const std::tstring &csRootPathName,
+    const std::tstring &cslpVolumeName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csRootPathName.empty(), FALSE);
@@ -678,8 +673,8 @@ CxVolume::bSetVolumeLabel(
 #if defined(xOS_WIN)
 BOOL
 CxVolume::bSetVolumeMountPoint(
-    const tString &csVolumeMountPoint,
-    const tString &csVolumeName
+    const std::tstring &csVolumeMountPoint,
+    const std::tstring &csVolumeName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVolumeMountPoint.empty(), FALSE);

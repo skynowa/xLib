@@ -30,14 +30,14 @@ CxTest_CxCookiePv0::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    const tString csName      = xT("Name0");
-    const tString csValue     = xT("Value0");
-    const tString csDomain    = xT(".domain.com0");
-    const tString csPath      = xT("/0");
-    const tString csExpires   = xT("Wed, 13-Jan-2021 22:23:01 GMT");  //Thu, 22 Mar 2012 18:16:13 GMT
+    const std::tstring csName      = xT("Name0");
+    const std::tstring csValue     = xT("Value0");
+    const std::tstring csDomain    = xT(".domain.com0");
+    const std::tstring csPath      = xT("/0");
+    const std::tstring csExpires   = xT("Wed, 13-Jan-2021 22:23:01 GMT");  //Thu, 22 Mar 2012 18:16:13 GMT
     const BOOL    cbSecure    = TRUE;
     const BOOL    cbHttpOnly  = TRUE;
-    const tString csRawCookie = CxString::sFormat(
+    const std::tstring csRawCookie = CxString::sFormat(
                                     xT("%s=%s; Domain=%s; Path=%s; Expires=%s; Secure; HttpOnly"),
                                     csName.c_str(), csValue.c_str(), csDomain.c_str(), csPath.c_str(), csExpires.c_str() /*cbSecure = TRUE, cbHttpOnly = TRUE*/
                                 );
@@ -97,7 +97,7 @@ CxTest_CxCookiePv0::bUnit(
     }
 
     //--------------------------------------------------
-    //CxCookiePv0(const tString &)
+    //CxCookiePv0(const std::tstring &)
     xTEST_BLOCK(cullBlockLoops)
     {
         CxCookiePv0 ckCookiePv0(csRawCookie);

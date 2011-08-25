@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxStyle
-* Description: атрибуты файла
-* File name:   CxStyle.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.04.2010 13:37:54
-*
-*****************************************************************************/
+/**
+ * \file  CxStyle.h
+ * \brief window styles
+ */
 
 
 #ifndef xLib_Gui_CxStyleH
@@ -24,26 +19,26 @@ class CxStyle : public CxNonCopyable {
         ////static const TStyle faInvalid           = INVALID_FILE_ATTRIBUTES;
 
                  CxStyle    ();
-        virtual ~CxStyle    ();    
+        virtual ~CxStyle    ();
 
         BOOL     bSetOwner  (HWND hWnd);
-        
+
         TStyle   stGet      ();
         BOOL     bSet       (TStyle stValue);
         BOOL     bAdd       (TStyle stValue);
         BOOL     bRemove    (TStyle stValue);
         BOOL     bModify    (TStyle stRemoveValue, TStyle stAddValue);
         BOOL     bIsExists  (TStyle stValue);
-        
+
         TStyle   stGetEx    ();
         BOOL     bSetEx     (TStyle stValue);
         BOOL     bAddEx     (TStyle stValue);
         BOOL     bRemoveEx  (TStyle stValue);
         BOOL     bModifyEx  (TStyle stRemoveValue, TStyle stAddValue);
         BOOL     bIsExistsEx(TStyle stValue);
-     
+
     private:
-        HWND   _m_hWnd;    
+        HWND   _m_hWnd;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Gui_CxStyleH

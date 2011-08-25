@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxConnectionString
-* Description: DB connection string
-* File name:   CxConnectionString.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     30.09.2010 9:30:14
-*
-*****************************************************************************/
+/**
+ * \file  CxConnectionString.h
+ * \brief DB connection string
+ */
 
 
 #ifndef xLib_Db_CxConnectionStringH
@@ -18,7 +13,7 @@ class CxConnectionString :
     public CxNonCopyable
 {
     public:
-        static tString sMSJetOleDb40     (const tString &csDataSource, const tString &csUserId, const tString &csPassword, const tString &csDatabasePassword);
+        static std::tstring sMSJetOleDb40     (const std::tstring &csDataSource, const std::tstring &csUserId, const std::tstring &csPassword, const std::tstring &csDatabasePassword);
 
     private:
                        CxConnectionString();

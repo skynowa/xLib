@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxApplication
-* Description: application
-* File name:   CxApplication.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:08:45
-*
-*****************************************************************************/
+/**
+ * \file  CxApplication.cpp
+ * \brief application
+ */
 
 
 #include <xLib/Gui/CxApplication.h>
@@ -35,7 +30,7 @@ BOOL CxApplication::bInit(HINSTANCE hInstance, const tString &csCmdLine) {
     //TODO: - cdCmdLine
 
     BOOL bRes = FALSE;
-    
+
     _m_hInstance = hInstance;
 
     //-------------------------------------
@@ -82,8 +77,8 @@ VOID CxApplication::vProcessMessages() {
     MSG msgMsg = {0};
 
     while (::PeekMessage(&msgMsg, NULL, 0, 0, PM_REMOVE)) {
-        ::TranslateMessage(&msgMsg); 
-        ::DispatchMessage (&msgMsg); 
+        ::TranslateMessage(&msgMsg);
+        ::DispatchMessage (&msgMsg);
     }
 }
 //---------------------------------------------------------------------------
@@ -108,7 +103,7 @@ BOOL CxApplication::bRun() {
         }
 
     ////} else {
-    
+
     ////}
 
     return TRUE;    //static_cast<INT>(msgMsg.wParam)
@@ -145,7 +140,7 @@ BOOL CxApplication::bRun() {
 BOOL CxApplication::bIsRunning(const tString &csInstanceName) {
     HANDLE hMutex = ::CreateMutex(NULL, TRUE, csInstanceName.c_str());
     xCHECK_RET(ERROR_ALREADY_EXISTS != ::GetLastError(), FALSE);
-    
+
     /*DEBUG*/xASSERT_RET(NULL != hMutex, FALSE);
     ::CloseHandle(hMutex);    hMutex = NULL;
 
@@ -166,7 +161,7 @@ VOID CxApplication::vCreateWnd() {
     BOOL bRes = FALSE;
 
 
-    ////CWndMain frMain;    
+    ////CWndMain frMain;
     ////frMain._m_sClassName = "aaa";
     ////bRes = frMain.bCreate(IDC_SMPLULFRAMEWND, NULL, "MyFrameWnd", 400, 400, 600, 400, 0, 0, IDI_SMPLULFRAMEWND, IDI_SMALL, 1);
     ////bRes = frMain.bShow  (SW_SHOW);

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMimeHeader
-* Description: MIME header (RFC 822)
-* File name:   CxMimeHeader.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.07.2009 19:10:09
-*
-*****************************************************************************/
+/**
+ * \file  CxMimeHeader.h
+ * \brief MIME header (RFC 822)
+ */
 
 
 #ifndef xLib_Net_CxMimeHeaderH
@@ -21,22 +16,22 @@ class CxMimeHeader :
                              CxMimeHeader      ();
                             ~CxMimeHeader      ();
 
-        BOOL                 bParse            (const tString &csRawHeader);
-		tString              sGetField         (const tString &csName);
+        BOOL                 bParse            (const std::tstring &csRawHeader);
+		std::tstring              sGetField         (const std::tstring &csName);
         size_t               uiCount           ();
-        BOOL                 bLoadFromFile     (const tString &csRawMessageFilePath);
-        BOOL                 bSaveToFile       (const tString &csFilePath);
+        BOOL                 bLoadFromFile     (const std::tstring &csRawMessageFilePath);
+        BOOL                 bSaveToFile       (const std::tstring &csFilePath);
 
-        static tString       sGenerateMessageID();
+        static std::tstring       sGenerateMessageID();
 
     private:
-        static const tString _ms_csAttrDelimiter;
-        static const tString _ms_csEndOfHeader;
-        static const tString _ms_csEndOfLine;
+        static const std::tstring _ms_csAttrDelimiter;
+        static const std::tstring _ms_csEndOfHeader;
+        static const std::tstring _ms_csEndOfLine;
 
         BOOL                 _m_bRes;
-        tString              _m_sRes;
-        std::multimap<tString, tString> _m_mmsHeader;
+        std::tstring              _m_sRes;
+        std::multimap<std::tstring, std::tstring> _m_mmsHeader;
 
         //Delivered-To:
         //Return-Path:

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxArray
-* Description: fixed-size array
-* File name:   CxArray.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     28.03.2011 14:40:50
-*
-*****************************************************************************/
+/**
+ * \file  CxArray.inl
+ * \brief fixed-size array
+ */
 
 
 /****************************************************************************

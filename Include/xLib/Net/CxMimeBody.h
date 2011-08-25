@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMimeBody
-* Description: MIME body (RFC 822)
-* File name:   CxMimeBody.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.07.2009 19:11:02
-*
-*****************************************************************************/
+/**
+ * \file  CxMimeBody.h
+ * \brief MIME body (RFC 822)
+ */
 
 
 #ifndef CxMimeBodyH
@@ -22,7 +17,7 @@ class CxMimeBody :
 	   virtual ~CxMimeBody();
 
     private:
-        std::multimap<tString, tString> _m_mmsBody;
+        std::multimap<std::tstring, std::tstring> _m_mmsBody;
 };
 //---------------------------------------------------------------------------
 #endif

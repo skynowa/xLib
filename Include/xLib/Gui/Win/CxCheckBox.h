@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCheckBox
-* Description: 
-* File name:   CxCheckBox.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 11:47:59
-*
-*****************************************************************************/
+/**
+ * \file  CxCheckBox.h
+ * \brief checkbox
+ */
 
 
 #ifndef XLib_Gui_CxCheckBoxH
@@ -24,9 +19,9 @@ class CxCheckBox: public CxButtonBase {
         enum ECheckState {
             csUknown    = - 1,
             csChecked    = BST_CHECKED,
-            csGrayed    = BST_INDETERMINATE, 
-            csUnchecked = BST_UNCHECKED,    
-        };    
+            csGrayed    = BST_INDETERMINATE,
+            csUnchecked = BST_UNCHECKED,
+        };
 
                     CxCheckBox     ();
         virtual    ~CxCheckBox     ();
@@ -35,7 +30,7 @@ class CxCheckBox: public CxButtonBase {
 
         //-------------------------------------
         //сообщения
-        ECheckState csGetState     ();                            
+        ECheckState csGetState     ();
         BOOL        bSetState      (CxCheckBox::ECheckState csCheckState);
         BOOL        bSetAllowGrayed(BOOL bFlag);
 

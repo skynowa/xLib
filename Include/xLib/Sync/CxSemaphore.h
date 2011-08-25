@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSemaphore
-* Description: semaphore
-* File name:   CxSemaphore.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2009 18:46:41
-*
-*****************************************************************************/
+/**
+ * \file  CxSemaphore.h
+ * \brief semaphore
+ */
 
 
 #ifndef xLib_Sync_CxSemaphoreH
@@ -29,8 +24,8 @@ class CxSemaphore :
         virtual        ~CxSemaphore();
 
         HANDLE          hGetHandle () const;
-        BOOL            bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const LONG cliInitialCount, const LONG cliMaxCount, const tString &csName);
-        BOOL            bOpen      (const ULONG culAccess, const BOOL cbInheritHandle, const tString &csName) ;
+        BOOL            bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const LONG cliInitialCount, const LONG cliMaxCount, const std::tstring &csName);
+        BOOL            bOpen      (const ULONG culAccess, const BOOL cbInheritHandle, const std::tstring &csName) ;
         BOOL            bRelease   (const LONG cliReleaseCount/* = 1*/, LONG *pliOldCount/* = NULL*/) const;
         BOOL            bWait      (const ULONG culTimeout) const;
 
@@ -40,7 +35,7 @@ class CxSemaphore :
     private:
         CxHandle              _m_hSemaphore;
         LPSECURITY_ATTRIBUTES _m_psaAttributes;
-        tString               _m_sName;
+        std::tstring               _m_sName;
 };
 #elif defined(xOS_LINUX)
 

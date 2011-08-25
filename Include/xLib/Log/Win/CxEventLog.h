@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEventLog
-* Description: logging to "Event Log"
-* File name:   CxEventLog.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.06.2009 17:52:35
-*
-*****************************************************************************/
+/**
+ * \file  CxEventLog.h
+ * \brief logging to system event log
+ */
 
 
 #ifndef xLib_Log_CxEventLogH

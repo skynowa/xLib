@@ -1,18 +1,13 @@
-/****************************************************************************
-* Class name:  CxListView
-* Description: 
-* File name:   CxListView.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.07.2009 12:12:03
-*
-*****************************************************************************/
+/**
+ * \file  CxListView.cpp
+ * \brief list view
+ */
 
 
 #include <xLib/Gui/CxListView.h>
 
 //---------------------------------------------------------------------------
-CxListView::CxListView() : 
+CxListView::CxListView() :
     m_ColumnCount(0),
     m_ItemCount  (0)
 {
@@ -31,20 +26,20 @@ CxListView::CxListView() :
 
     _m_bIsControl     = TRUE;
 
-    
+
     //TODO: _bInitCommonControls
     _bInitCommonControls(ICC_LISTVIEW_CLASSES);
-    
-    //HICON hiconItem;     //icon for list-view items 
 
-    //Create the full-sized icon image lists. 
+    //HICON hiconItem;     //icon for list-view items
+
+    //Create the full-sized icon image lists.
     m_hLargeImageList = ImageList_Create(GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON), ILC_MASK | ILC_COLOR16, 1, 1);
     m_hSmallImageList = ImageList_Create(GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), ILC_MASK | ILC_COLOR16, 1, 1);
 
-    //Add an icon to each image list.  
+    //Add an icon to each image list.
     /*hiconItem = NULL;//LoadIcon (NULL, IDI_APPLICATION);
-    ImageList_AddIcon(hLarge, hiconItem); 
-    ImageList_AddIcon(hSmall, hiconItem); 
+    ImageList_AddIcon(hLarge, hiconItem);
+    ImageList_AddIcon(hSmall, hiconItem);
     DestroyIcon(hiconItem); */
 
     ListView_SetImageList(_m_hWnd, m_hLargeImageList, LVSIL_NORMAL);
@@ -56,9 +51,9 @@ BOOL CxListView::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -125,7 +120,7 @@ BOOL CxListView::DeleteColumn(INT Index) {
         return TRUE;
     } else {
         return FALSE;
-    } 
+    }
 }
 //---------------------------------------------------------------------------
 INT CxListView::AddItem(tString Text) {
@@ -154,12 +149,12 @@ INT CxListView::AddItem(tString Text, LPARAM lParam, INT Image) {
         lvi.mask |= LVIF_IMAGE;
         lvi.iImage = Image;
     }
-    
+
     INT i = ListView_InsertItem(_m_hWnd, &lvi);
     if (i !=  - 1) {
         m_ItemCount ++;
-    } 
-    
+    }
+
     return i;
 }
 //---------------------------------------------------------------------------
@@ -193,8 +188,8 @@ BOOL CxListView::AutoSizeColumns() {
 
     for (INT i = 0; i < m_ColumnCount; i ++) {
         ListView_SetColumnWidth(_m_hWnd, i, LVSCW_AUTOSIZE_USEHEADER);
-    } 
-    
+    }
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -221,7 +216,7 @@ LPARAM CxListView::GetItemParam(INT Index) {
         return lvi.lParam;
     } else {
         return 0;
-    } 
+    }
 }
 //---------------------------------------------------------------------------
 LPARAM CxListView::GetSelectedItemParam() {
@@ -266,7 +261,7 @@ BOOL CxListView::SetExtendedListViewStyle(DWORD ExStyle) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, NULL);
 
     ListView_SetExtendedListViewStyle(_m_hWnd, ExStyle);
-    
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -276,8 +271,8 @@ BOOL CxListView::View(UINT View) {
     LONG nStyle = ::GetWindowLong(_m_hWnd, GWL_STYLE);
     if ((nStyle &LVS_TYPEMASK) != View) {
         ::SetWindowLong(_m_hWnd, GWL_STYLE, (nStyle &~LVS_TYPEMASK) | View);
-    } 
-    
+    }
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -292,7 +287,7 @@ INT CxListView::HitTest(INT x, INT y) {
 
     m_HitTestInfo.pt.x = x;
     m_HitTestInfo.pt.y = y;
-    
+
     return ListView_HitTest(_m_hWnd, &m_HitTestInfo);
 }
 //---------------------------------------------------------------------------
@@ -332,8 +327,8 @@ BOOL CxListView::GetColumnOrderArray(INT *Order) {
 
     if (Order == NULL) {
         Order = new INT[m_ColumnCount];
-    } 
-    
+    }
+
     return ListView_GetColumnOrderArray(_m_hWnd, m_ColumnCount, Order);
 }
 //---------------------------------------------------------------------------
@@ -355,7 +350,7 @@ HICON CxListView::GetSelectedIcon(BOOL Small) {
     INT iSelIndex = ListView_GetNextItem(_m_hWnd, (WPARAM) - 1, LVNI_SELECTED);
     if (iSelIndex ==  - 1) {
         return 0;
-    } 
+    }
 
     LVITEM lvi;
     lvi.iItem = iSelIndex;
@@ -363,7 +358,7 @@ HICON CxListView::GetSelectedIcon(BOOL Small) {
     lvi.mask = LVIF_IMAGE;
     if (!ListView_GetItem(_m_hWnd, &lvi)) {
         return 0;
-    } 
+    }
 
     HICON Icon = ImageList_GetIcon(Small ? m_hSmallImageList : m_hLargeImageList, lvi.iImage, ILD_NORMAL);
 
@@ -380,7 +375,7 @@ BOOL CxListView::SelectItem(INT Index) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, NULL);
 
     ListView_SetItemState(_m_hWnd, Index, LVNI_SELECTED, LVNI_SELECTED);
-    
+
     return TRUE;
 }
 //---------------------------------------------------------------------------

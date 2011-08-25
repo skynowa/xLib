@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxGroupBox
-* Description: 
-* File name:   CxGroupBox.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.07.2009 21:10:19
-*
-*****************************************************************************/
+/**
+ * \file  CxGroupBox.h
+ * \brief group box
+ */
 
 
 #ifndef XLib_Gui_CxGroupBoxH
@@ -27,7 +22,7 @@ class CxGroupBox: public CxButtonBase {
 
         //-------------------------------------
         //сообщения
-                    
+
 
         //-------------------------------------
         //события

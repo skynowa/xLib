@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxChar
-* Description: character
-* File name:   CxChar.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     11:01:2010 13:20:00
-*
-*****************************************************************************/
+/**
+ * \file  CxChar.h
+ * \brief character
+ */
 
 
 #ifndef xLib_Common_CxCharH

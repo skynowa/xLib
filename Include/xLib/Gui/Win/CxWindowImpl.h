@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxWindowImpl
-* Description: работа с окнами
-* File name:   CxWindowImpl.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:10:17
-*
-*****************************************************************************/
+/**
+ * \file  CxWindowImpl.h
+ * \brief window
+ */
 
 
 #ifndef XLib_Gui_CxWindowImplH
@@ -20,10 +15,10 @@ class CxWindowImpl : public CxWindow {
         CxWndsContainer     m_vecpContainer;        //контейнер для дочерних окон
 
                             CxWindowImpl();
-        virtual            ~CxWindowImpl(); 
+        virtual            ~CxWindowImpl();
 
-        BOOL                bCreate     (INT iID, HWND hParent, const tString &csWndName, 
-                                         INT iLeft, INT iTop, INT iWidth, INT iHeight, 
+        BOOL                bCreate     (INT iID, HWND hParent, const tString &csWndName,
+                                         INT iLeft, INT iTop, INT iWidth, INT iHeight,
                                          ULONG ulStyle, ULONG ulExStyle);
         BOOL                bCreateRes  (INT iID, HWND hParent);
         BOOL                bShowModal  ();
@@ -62,7 +57,7 @@ class CxWindowImpl : public CxWindow {
         virtual VOID        vOnSysColorChange               (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnShowWindow                   (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnWininiChange                 (WPARAM wParam, LPARAM lParam);
-        
+
     #if(WINVER >= 0x0400)
         virtual VOID        vOnSettingChange                (WPARAM wParam, LPARAM lParam);
     #endif /* WINVER >= 0x0400 */
@@ -92,7 +87,7 @@ class CxWindowImpl : public CxWindow {
         virtual VOID        vOnGetHotKey                    (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnQueryDragIcon                (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnCompareItem                  (WPARAM wParam, LPARAM lParam);
-        
+
     #if(WINVER >= 0x0500)
     #ifndef _WIN32_WCE
         virtual VOID        vOnGetObject                    (WPARAM wParam, LPARAM lParam);
@@ -106,7 +101,7 @@ class CxWindowImpl : public CxWindow {
         virtual VOID        vOnPower                        (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnCopyData                     (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnCancelJournal                (WPARAM wParam, LPARAM lParam);
-        
+
     #if(WINVER >= 0x0400)
         virtual VOID        vOnNotify                       (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnInputLangChangeRequest       (WPARAM wParam, LPARAM lParam);
@@ -130,7 +125,7 @@ class CxWindowImpl : public CxWindow {
         virtual VOID        vOnNcPaint                      (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnNcActivate                   (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnGetDlgCode                   (WPARAM wParam, LPARAM lParam);
-        
+
     #ifndef _WIN32_WCE
         virtual VOID        vOnSyncPaint                    (WPARAM wParam, LPARAM lParam);
     #endif
@@ -169,7 +164,7 @@ class CxWindowImpl : public CxWindow {
         virtual VOID        vOnSysKeyUp                     (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnSysChar                      (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnSysDeadChar                  (WPARAM wParam, LPARAM lParam);
-        
+
     #if(_WIN32_WINNT >= 0x0501)
         virtual VOID        vOnUniChar                      (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnKeyLast                      (WPARAM wParam, LPARAM lParam);
@@ -195,7 +190,7 @@ class CxWindowImpl : public CxWindow {
         virtual VOID        vOnMenuSelect                   (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnMenuChar                     (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnEnterIdle                    (WPARAM wParam, LPARAM lParam);
-        
+
     #if(WINVER >= 0x0500)
     #ifndef _WIN32_WCE
         virtual VOID        vOnMenuRButtonUp                (WPARAM wParam, LPARAM lParam);
@@ -233,7 +228,7 @@ class CxWindowImpl : public CxWindow {
         virtual VOID        vOnMButtonDown                  (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnMButtonUp                    (WPARAM wParam, LPARAM lParam);
         virtual VOID        vOnMButtonDblClk                (WPARAM wParam, LPARAM lParam);
-        
+
     #if (_WIN32_WINNT >= 0x0400) || (_WIN32_WINDOWS > 0x0400)
         virtual VOID        vOnMouseWheel                   (WPARAM wParam, LPARAM lParam);
     #endif

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEdit
-* Description: текстовое поле
-* File name:   CxEdit.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:11:14
-*
-*****************************************************************************/
+/**
+ * \file  CxEdit.h
+ * \brief edit
+ */
 
 
 #ifndef XLib_Gui_CxEditH
@@ -21,7 +16,7 @@ class CxEdit : public CxWindow {
 
                 CxEdit    ();
                ~CxEdit    ();
-                       
+
         BOOL    bCreateRes(INT iID, CxWindow *pwndParent);
 
         //-------------------------------------

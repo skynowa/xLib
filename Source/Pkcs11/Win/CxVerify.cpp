@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxVerify
-* Description: Pkcs11 verify
-* File name:   CxVerify.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:14:22
-*
-*****************************************************************************/
+/**
+ * \file  CxVerify.cpp
+ * \brief Pkcs11 verify
+ */
 
 
 #include <xLib/Pkcs11/Win/CxVerify.h>

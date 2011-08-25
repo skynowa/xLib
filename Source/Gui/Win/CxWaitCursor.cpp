@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxWaitCursor
-* Description: wait cursor
-* File name:   CxWaitCursor.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.06.2009 19:08:17
-*
-*****************************************************************************/
-
+/**
+ * \file  CxWaitCursor.cpp
+ * \brief wait cursor
+ */
 
 
 #include <xLib/Gui/CxWaitCursor.h>
@@ -21,7 +15,7 @@ CxWaitCursor::CxWaitCursor() :
 
     hRes = ::LoadCursor(NULL, IDC_WAIT);
     /*DEBUG*/xASSERT_DO(NULL != hRes, return);
-    
+
     _m_hCursor = ::SetCursor(hRes);
     /*DEBUG*///not need
 }

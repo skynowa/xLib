@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDigest
-* Description: Pkcs11 digest
-* File name:   CxDigest.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:12:23
-*
-*****************************************************************************/
+/**
+ * \file  CxDigest.h
+ * \brief Pkcs11 digest
+ */
 
 
 #ifndef xLib_Pkcs11_CxDigestH

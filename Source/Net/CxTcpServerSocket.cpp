@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTcpServerSocket
-* Description: server socket
-* File name:   CxTcpServerSocket.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.04.2009 6:21:18
-*
-*****************************************************************************/
+/**
+ * \file  CxTcpServerSocket.cpp
+ * \brief server socket
+ */
 
 
 #include <xLib/Net/CxTcpServerSocket.h>
@@ -59,7 +54,7 @@ CxTcpServerSocket::bListen(INT iBacklog /*= SOMAXCONN*/) {
 //---------------------------------------------------------------------------
 //DONE: bAccept (permits an incoming connection attempt on a socket)
 BOOL
-CxTcpServerSocket::bAccept(CxTcpServerSocket *pscktAcceptSocket, tString *psFromIp) {
+CxTcpServerSocket::bAccept(CxTcpServerSocket *pscktAcceptSocket, std::tstring *psFromIp) {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,      FALSE);
     /*DEBUG*/xASSERT_RET(NULL      != pscktAcceptSocket, FALSE);
     /*DEBUG*/xASSERT_RET(NULL      != psFromIp,          FALSE);

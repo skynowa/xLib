@@ -30,7 +30,7 @@ CxTest_CxStdioFile::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
 
     /****************************************************************************
@@ -128,8 +128,8 @@ CxTest_CxStdioFile::bUnit(
     //uiWrite, uiRead
     xTEST_BLOCK(cullBlockLoops)
     {
-        tString sBuffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
-        tString sBuffRead  = xT("");       sBuffRead.resize(sBuffWrite.size());
+        std::tstring sBuffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
+        std::tstring sBuffRead  = xT("");       sBuffRead.resize(sBuffWrite.size());
 
         //uiWrite
         {
@@ -158,10 +158,10 @@ CxTest_CxStdioFile::bUnit(
     //bRead, bWrite
     xTEST_BLOCK(cullBlockLoops)
     {
-        const uString sContent(10, 5);
+        const std::ustring sContent(10, 5);
 
-        uString       usText1;
-        uString       usText2;
+        std::ustring       usText1;
+        std::ustring       usText2;
 
         //-------------------------------------
         //bWrite
@@ -219,8 +219,8 @@ CxTest_CxStdioFile::bUnit(
     //bWriteLine, bReadLine
     xTEST_BLOCK(cullBlockLoops)
     {
-        tString sBuffWrite = xT("<test1><test2><test3><...>");
-        tString sBuffRead  = xT("");
+        std::tstring sBuffWrite = xT("<test1><test2><test3><...>");
+        std::tstring sBuffRead  = xT("");
 
         //bWriteLine
         {
@@ -341,7 +341,7 @@ CxTest_CxStdioFile::bUnit(
     //bRead
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csTestContent = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
+        const std::tstring csTestContent = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
 
         {
             CxStdioFile F;
@@ -353,7 +353,7 @@ CxTest_CxStdioFile::bUnit(
             xASSERT_LESS(0, iResFprintf);
         }
 
-        tString sContent;
+        std::tstring sContent;
 
         {
             CxStdioFile F;
@@ -482,7 +482,7 @@ CxTest_CxStdioFile::bUnit(
     //bSetVBuff
     xTEST_BLOCK(cullBlockLoops)
     {
-        tString sBuffRead;       sBuffRead.resize(1024);
+        std::tstring sBuffRead;       sBuffRead.resize(1024);
 
         CxStdioFile F;
 
@@ -703,7 +703,7 @@ CxTest_CxStdioFile::bUnit1(
 {
     /*DEBUG*/
 
-    const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
     /****************************************************************************
     *   static
@@ -761,7 +761,7 @@ CxTest_CxStdioFile::bUnit1(
     //bRename
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bTextWrite(csFilePath, xT("Simple text"));
         xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -783,7 +783,7 @@ CxTest_CxStdioFile::bUnit1(
         #if 1
             FILE *pfFileHandle = NULL;
 
-            tString sTempFilePath = CxStdioFile::sTempCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &pfFileHandle);
+            std::tstring sTempFilePath = CxStdioFile::sTempCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &pfFileHandle);
             #if xTEST_IGNORE
                 xTRACEV(xT("\tsTemp: %s"), sTempFilePath.c_str());
             #endif
@@ -824,8 +824,8 @@ CxTest_CxStdioFile::bUnit1(
     //bCopy
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString sFilePathFrom = sGetWorkDirPath() + CxConst::xSLASH + xT("test_copy.txt");
-        const tString sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
+        const std::tstring sFilePathFrom = sGetWorkDirPath() + CxConst::xSLASH + xT("test_copy.txt");
+        const std::tstring sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
 
         {
             CxStdioFile F;
@@ -851,7 +851,7 @@ CxTest_CxStdioFile::bUnit1(
     //bMove
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bTextWrite(csNewFilePath, xT("Simple text"));
         xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -877,7 +877,7 @@ CxTest_CxStdioFile::bUnit1(
     //bClear
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bClear(csNewFilePath);
         xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -887,7 +887,7 @@ CxTest_CxStdioFile::bUnit1(
     //bDelete
     xTEST_BLOCK(cullBlockLoops)
     {
-        const tString csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxStdioFile::bDelete(csNewFilePath);
         xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -901,7 +901,7 @@ CxTest_CxStdioFile::bUnit1(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
-            const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+            const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
             for (size_t i = 0; i < 20; ++ i) {
                 if (i < 10) {
@@ -958,10 +958,10 @@ CxTest_CxStdioFile::bUnit1(
     *****************************************************************************/
 
     //-------------------------------------
-    //bTextRead, bTextWrite (tString)
+    //bTextRead, bTextWrite (std::tstring)
     xTEST_BLOCK(cullBlockLoops)
     {
-        tString sFileContent;
+        std::tstring sFileContent;
 
         {
             CxStdioFile F;
@@ -981,7 +981,7 @@ CxTest_CxStdioFile::bUnit1(
         m_bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        tString sStr;
+        std::tstring sStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, &sStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -992,7 +992,7 @@ CxTest_CxStdioFile::bUnit1(
     //empty content
     xTEST_BLOCK(cullBlockLoops)
     {
-        tString sFileContent;
+        std::tstring sFileContent;
 
         {
             CxStdioFile F;
@@ -1007,7 +1007,7 @@ CxTest_CxStdioFile::bUnit1(
         m_bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        tString sStr;
+        std::tstring sStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, &sStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -1019,7 +1019,7 @@ CxTest_CxStdioFile::bUnit1(
     //bTextRead, bTextWrite (std::vector)
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector<tString> vsFileContent;
+        std::vector<std::tstring> vsFileContent;
 
         {
             CxStdioFile F;
@@ -1039,7 +1039,7 @@ CxTest_CxStdioFile::bUnit1(
         m_bRes = CxStdioFile::bTextWrite(csFilePath, vsFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        std::vector<tString> vsStr;
+        std::vector<std::tstring> vsStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, &vsStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -1050,7 +1050,7 @@ CxTest_CxStdioFile::bUnit1(
     //empty content
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector<tString> vsFileContent;
+        std::vector<std::tstring> vsFileContent;
 
         {
             CxStdioFile F;
@@ -1065,7 +1065,7 @@ CxTest_CxStdioFile::bUnit1(
         m_bRes = CxStdioFile::bTextWrite(csFilePath, vsFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        std::vector<tString> vsStr;
+        std::vector<std::tstring> vsStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, &vsStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -1077,8 +1077,8 @@ CxTest_CxStdioFile::bUnit1(
     //bTextRead, bTextWrite (std::vector)
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::map<tString, tString> cmsFileContent;
-        const tString              csSeparator = CxConst::xEQUAL;
+        std::map<std::tstring, std::tstring> cmsFileContent;
+        const std::tstring              csSeparator = CxConst::xEQUAL;
 
         {
             CxStdioFile F;
@@ -1098,7 +1098,7 @@ CxTest_CxStdioFile::bUnit1(
         m_bRes = CxStdioFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        std::map<tString, tString> msStr;
+        std::map<std::tstring, std::tstring> msStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &msStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -1109,8 +1109,8 @@ CxTest_CxStdioFile::bUnit1(
     //empty content
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::map<tString, tString> cmsFileContent;
-        const tString              csSeparator = CxConst::xEQUAL;
+        std::map<std::tstring, std::tstring> cmsFileContent;
+        const std::tstring              csSeparator = CxConst::xEQUAL;
 
         {
             CxStdioFile F;
@@ -1125,7 +1125,7 @@ CxTest_CxStdioFile::bUnit1(
         m_bRes = CxStdioFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        std::map<tString, tString> msStr;
+        std::map<std::tstring, std::tstring> msStr;
         m_bRes = CxStdioFile::bTextRead(csFilePath, csSeparator, &msStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -1137,7 +1137,7 @@ CxTest_CxStdioFile::bUnit1(
     //binary
     xTEST_BLOCK(cullBlockLoops)
     {
-        uString usFileContent;   usFileContent.resize(1024 * 5);
+        std::ustring usFileContent;   usFileContent.resize(1024 * 5);
 
         {
             CxStdioFile F;
@@ -1158,7 +1158,7 @@ CxTest_CxStdioFile::bUnit1(
         m_bRes = CxStdioFile::bBinWrite(csFilePath, usFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        uString usStr;
+        std::ustring usStr;
         m_bRes = CxStdioFile::bBinRead(csFilePath, &usStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -1168,7 +1168,7 @@ CxTest_CxStdioFile::bUnit1(
     //empty content
     xTEST_BLOCK(cullBlockLoops)
     {
-        uString usFileContent;
+        std::ustring usFileContent;
 
         {
             CxStdioFile F;
@@ -1180,7 +1180,7 @@ CxTest_CxStdioFile::bUnit1(
         m_bRes = CxStdioFile::bBinWrite(csFilePath, usFileContent);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        uString usStr;
+        std::ustring usStr;
         m_bRes = CxStdioFile::bBinRead(csFilePath, &usStr);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -1229,7 +1229,7 @@ CxTest_CxStdioFile::bUnitePrivate(
 {
     /*DEBUG*/
 
-    const tString csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
 
     //--------------------------------------------------
@@ -1267,7 +1267,7 @@ CxTest_CxStdioFile::bUnitePrivate(
     //_sGetOpenMode
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector< std::pair<CxStdioFile::EOpenMode, tString> > vpData;
+        std::vector< std::pair<CxStdioFile::EOpenMode, std::tstring> > vpData;
 
         vpData.push_back( std::make_pair(CxStdioFile::omRead,               xT("r")) );
         vpData.push_back( std::make_pair(CxStdioFile::omWrite,              xT("w")) );
@@ -1285,7 +1285,7 @@ CxTest_CxStdioFile::bUnitePrivate(
 
         for (size_t i = 0; i < vpData.size(); ++ i) {
             CxStdioFile::EOpenMode omRes = vpData.at(i).first;
-            tString                sRes  = vpData.at(i).second;
+            std::tstring                sRes  = vpData.at(i).second;
 
             m_sRes = CxStdioFile::_sGetOpenMode(omRes);
             xASSERT_EQ(sRes, m_sRes);

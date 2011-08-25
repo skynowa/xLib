@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  xDebug
-* Description: code debugging
-* File name:   xDebug.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.11.2009 16:39:23
-*
-*****************************************************************************/
+/**
+ * \file  xDebug.h
+ * \brief code debugging
+ */
 
 
 #ifndef xLib_Debug_xDebugH
@@ -171,7 +166,7 @@
     #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                        }
     #define xTRACE(msg)                                     { CxDebugger::bTrace(msg);                                        }
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
-    #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(tString(xFUNCTION) + xT(": ") + tString(s)); }
+    #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::tstring(xFUNCTION) + xT(": ") + std::tstring(s)); }
     #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %li (file: %s, function: %s, last error: %s, line: %li)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
     #define xSTD_TRACE_POINT                                { tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << tendl; }
 #else

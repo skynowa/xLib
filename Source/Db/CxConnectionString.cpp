@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxConnectionString
-* Description: DB connection string
-* File name:   CxConnectionString.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     30.09.2010 9:30:14
-*
-*****************************************************************************/
+/**
+ * \file  CxConnectionString.cpp
+ * \brief DB connection string
+ */
 
 
 #include <xLib/Db/CxConnectionString.h>
@@ -20,23 +15,23 @@
 //---------------------------------------------------------------------------
 //DONE: sMSJetOleDb40 (Microsoft.Jet.OLEDB.4.0)
 /*static*/
-tString
+std::tstring
 CxConnectionString::sMSJetOleDb40(
-    const tString &csDataSource,
-    const tString &csUserId,
-    const tString &csPassword,
-    const tString &csDatabasePassword
+    const std::tstring &csDataSource,
+    const std::tstring &csUserId,
+    const std::tstring &csPassword,
+    const std::tstring &csDatabasePassword
 )
 {
-    /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(csDataSource).empty(), tString());
+    /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(csDataSource).empty(), std::tstring());
     /*DEBUG*/// csPassword         - n/a
     /*DEBUG*/// csUserId           - n/a
     /*DEBUG*/// csDatabasePassword - n/a
 
-    tString sRes;
+    std::tstring sRes;
 
     sRes =
-        tString() +
+        std::tstring() +
         xT("Provider                                 = Microsoft.Jet.OLEDB.4.0;")                               +
         xT("Data Source                              = ") + CxString::sTrimSpace(csDataSource) + xT(";")           +
         xT("Extended Properties                      = ;")                                                         +

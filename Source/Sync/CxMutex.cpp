@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxMutex
-* Description: mutex
-* File name:   CxMutex.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2009 18:48:44
-*
-*****************************************************************************/
-
+/**
+ * \file  CxMutex.cpp
+ * \brief mutex
+ */
 
 
 #include <xLib/Sync/CxMutex.h>
@@ -46,7 +40,7 @@ BOOL
 CxMutex::bCreate(
     const LPSECURITY_ATTRIBUTES  pcsaAttributes,
     const BOOL                   cbInitialOwner,
-    const tString               &csName
+    const std::tstring               &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hMutex.bIsValid(), FALSE);
@@ -69,7 +63,7 @@ BOOL
 CxMutex::bOpen(
     const ULONG    culAccess,
     const BOOL     cbInheritHandle,
-    const tString &csName
+    const std::tstring &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);

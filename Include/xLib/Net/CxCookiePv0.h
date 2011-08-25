@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCookiePv0
-* Description: cookie (http://www.ietf.org/rfc/rfc2109.txt)
-* File name:   CxCookiePv0.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     26.01.2011 0:04:44
-*
-*****************************************************************************/
+/**
+ * \file  CxCookiePv0.h
+ * \brief cookie (http://www.ietf.org/rfc/rfc2109.txt)
+ */
 
 
 #ifndef xLib_Net_CxCookiePv0H
@@ -19,25 +14,25 @@ class CxCookiePv0 :
 {
     public:
         explicit         CxCookiePv0 ();
-                         CxCookiePv0 (const tString &csRawCookie);
+                         CxCookiePv0 (const std::tstring &csRawCookie);
         virtual         ~CxCookiePv0 ();
 
-        BOOL             bInit     (const tString &csRawCookie);
+        BOOL             bInit     (const std::tstring &csRawCookie);
 
-        const tString &  sGetName    () const;
-        BOOL             bSetName    (const tString &csName);
+        const std::tstring &  sGetName    () const;
+        BOOL             bSetName    (const std::tstring &csName);
 
-        const tString &  sGetValue   () const;
-        BOOL             bSetValue   (const tString &csValue);
+        const std::tstring &  sGetValue   () const;
+        BOOL             bSetValue   (const std::tstring &csValue);
 
-        const tString &  sGetDomain  () const;
-        BOOL             bSetDomain  (const tString &csDomain);
+        const std::tstring &  sGetDomain  () const;
+        BOOL             bSetDomain  (const std::tstring &csDomain);
 
-        const tString &  sGetPath    () const;
-        BOOL             bSetPath    (const tString &csPath);
+        const std::tstring &  sGetPath    () const;
+        BOOL             bSetPath    (const std::tstring &csPath);
 
-        const tString &  sGetExpires () const;
-        BOOL             bSetExpires (const tString &csExpires);
+        const std::tstring &  sGetExpires () const;
+        BOOL             bSetExpires (const std::tstring &csExpires);
 
         BOOL             bGetSecure  () const;
         BOOL             bSetSecure  (BOOL bFlag);
@@ -45,16 +40,16 @@ class CxCookiePv0 :
         BOOL             bGetHttpOnly() const;
         BOOL             bSetHttpOnly(BOOL bFlag);
 
-        tString          sToString   () const;
-        tString          sGetDump    () const;
+        std::tstring          sToString   () const;
+        std::tstring          sGetDump    () const;
         BOOL             bClear      ();
 
     private:
-        tString          _m_sName;
-        tString          _m_sValue;
-        tString          _m_sDomain;
-        tString          _m_sPath;
-        tString          _m_sExpires;
+        std::tstring          _m_sName;
+        std::tstring          _m_sValue;
+        std::tstring          _m_sDomain;
+        std::tstring          _m_sPath;
+        std::tstring          _m_sExpires;
         BOOL             _m_bSecure;
         BOOL             _m_bHttpOnly;
 };

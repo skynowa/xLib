@@ -1,13 +1,8 @@
-/****************************************************************************
-* Class name:  xConfig
-* Description: configurations for xLib
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     29.03.2011 15:30:00
-*
-*****************************************************************************/
-///< \file  xConfig.h
-///< \brief configurations for xLib
+/**
+ * \file  xConfig.h
+ * \brief configurations for xLib
+ */
+
 
 #ifndef xLib_Common_xConfigH
 #define xLib_Common_xConfigH

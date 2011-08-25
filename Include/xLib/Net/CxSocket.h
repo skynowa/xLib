@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSocket
-* Description: socket
-* File name:   CxSocket.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.04.2009 6:21:18
-*
-*****************************************************************************/
+/**
+ * \file  CxSocket.h
+ * \brief socket
+ */
 
 
 #ifndef xLib_Net_CxSocket
@@ -206,14 +201,14 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        //VOID *, tString, uString
+        //VOID *, std::tstring, std::ustring
 
         INT         iSend              (LPCTSTR pcszBuff, INT iBuffSize, INT iFlags);
-        BOOL        bSendAll           (const tString &csBuff, INT iFlags);
+        BOOL        bSendAll           (const std::tstring &csBuff, INT iFlags);
 
         INT         iRecv              (LPTSTR  pszBuff,  INT iBuffSize, INT iFlags);
-        tString     sRecvAll           (INT iFlags);
-        tString     sRecvAll           (INT iFlags, const tString &csDelimiter);
+        std::tstring     sRecvAll           (INT iFlags);
+        std::tstring     sRecvAll           (INT iFlags, const std::tstring &csDelimiter);
 
         INT         iSendBytes         (LPSTR pszBuff, INT iMessageLength);
         INT         iReceiveBytes      (LPSTR pszBuff, INT iStillToReceive);
@@ -224,8 +219,8 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        BOOL        bGetPeerName       (tString *psPeerAddr, USHORT *pusPeerPort);
-        BOOL        bGetSocketName     (tString *psSocketAddr, USHORT *pusSocketPort);
+        BOOL        bGetPeerName       (std::tstring *psPeerAddr, USHORT *pusPeerPort);
+        BOOL        bGetSocketName     (std::tstring *psSocketAddr, USHORT *pusSocketPort);
 
         /****************************************************************************
         * static
@@ -240,7 +235,7 @@ class CxSocket :
         BOOL        _m_bRes;
         SOCKET      _m_puiSocket;
         SHORT       _m_siFamily;
-        tString     _m_sIp;
+        std::tstring     _m_sIp;
         USHORT      _m_usPort;
 
     private:
@@ -253,10 +248,10 @@ class CxSocket :
 
 /*
 
-tString sStr = xT("Some string!!!");
-::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(tString::value_type), 0);
+std::tstring sStr = xT("Some string!!!");
+::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring::value_type), 0);
 
-sizeof(tString::value_type)
+sizeof(std::tstring::value_type)
 
 */
 /*

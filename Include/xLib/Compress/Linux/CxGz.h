@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxGz
-* Description: gz
-* File name:   CxGz.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.01.2011 23:28:14
-*
-*****************************************************************************/
+/**
+ * \file  CxGz.h
+ * \brief gz
+ */
 
 
 #ifndef xLib_Compress_CxGzH
@@ -46,7 +41,7 @@ class CxGz :
                  CxGz         ();
         virtual ~CxGz         ();
 
-        BOOL     bCompress    (INT iFileIn, INT iFileOut, const tString &csOriginName);
+        BOOL     bCompress    (INT iFileIn, INT iFileOut, const std::tstring &csOriginName);
         BOOL     bUncompress  (INT iFileIn, INT iFileOut);
 
     private:

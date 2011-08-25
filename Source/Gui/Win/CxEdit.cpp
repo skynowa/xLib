@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxEdit
-* Description: текстовое поле
-* File name:   CxEdit.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     23.07.2009 13:11:14
-*
-*****************************************************************************/
+/**
+ * \file  CxEdit.cpp
+ * \brief edit
+ */
 
 
 #include <xLib/Gui/CxEdit.h>
@@ -21,7 +16,7 @@
 //TODO: - CxEdit
 CxEdit::CxEdit() {
     LOG();
-    
+
     //-------------------------------------
     //переопределяем параметры окна
     _m_sClassName     = xCXEDIT_CONTROL_CLASS;
@@ -49,9 +44,9 @@ BOOL CxEdit::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);

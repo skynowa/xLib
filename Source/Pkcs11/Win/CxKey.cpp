@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxKey
-* Description: Pkcs11 key
-* File name:   CxKey.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:10:29
-*
-*****************************************************************************/
+/**
+ * \file  CxKey.cpp
+ * \brief Pkcs11 key
+ */
 
 
 #include <xLib/Pkcs11/Win/CxKey.h>

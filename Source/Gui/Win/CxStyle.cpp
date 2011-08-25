@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxStyle
-* Description: атрибуты файла
-* File name:   CxStyle.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     06.04.2010 13:37:54
-*
-*****************************************************************************/
+/**
+ * \file  CxStyle.cpp
+ * \brief window styles
+ */
 
 
 #include <xLib/Gui/CxStyle.h>
@@ -14,13 +9,13 @@
 
 
 /****************************************************************************
-*    Public methods                                                          
-*                                                                            
+*    Public methods
+*
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
 //TODO: - CxStyle (comment)
-CxStyle::CxStyle() : 
+CxStyle::CxStyle() :
     _m_hWnd(NULL)
 {
     /*DEBUG*/xASSERT_DO(NULL == _m_hWnd, return);
@@ -36,7 +31,7 @@ BOOL CxStyle::bSetOwner(HWND hWnd) {
     /*DEBUG*/xASSERT_RET(NULL != hWnd, FALSE);
 
     _m_hWnd = hWnd;
-    
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -81,13 +76,13 @@ BOOL CxStyle::bRemove(TStyle stValue)  {
 //---------------------------------------------------------------------------
 //DONE: bModify
 /*static*/
-BOOL CxStyle::bModify(TStyle stRemoveValue, TStyle stAddValue) {    
+BOOL CxStyle::bModify(TStyle stRemoveValue, TStyle stAddValue) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
     /*DEBUG*/// stRemoveValue
     /*DEBUG*/// stAddValue
 
     BOOL bRes = FALSE;
-    
+
     //First we get the current window Attr.
     TStyle stValue = stGet();
 
@@ -100,10 +95,10 @@ BOOL CxStyle::bModify(TStyle stRemoveValue, TStyle stAddValue) {
     //Change the Attr.
     bSet(stValue);
     /*DEBUG*/
-    
+
     bRes = ::InvalidateRect(_m_hWnd, NULL, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -114,7 +109,7 @@ BOOL CxStyle::bIsExists(TStyle stValue) {
     /*DEBUG*/// stValue
 
     //////ULONG _ulAttr = 0xffffffff;
-    //////    
+    //////
     //////_m_bRes = bGetAttr(&_ulAttr);
     ///////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -130,10 +125,10 @@ BOOL CxStyle::bIsExists(TStyle stValue) {
     if (_ulAttr & ulAttr) {
         return TRUE;
     }*/
-    
-    
+
+
     TStyle _atValue /*= faInvalid*/;
-    
+
     _atValue = stGet();
     xCHECK_RET(_atValue & stValue, TRUE);
 
@@ -189,7 +184,7 @@ BOOL CxStyle::bRemoveEx(TStyle stValue)  {
 //---------------------------------------------------------------------------
 //DONE: bModify
 /*static*/
-BOOL CxStyle::bModifyEx(TStyle stRemoveValue, TStyle stAddValue) {    
+BOOL CxStyle::bModifyEx(TStyle stRemoveValue, TStyle stAddValue) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
     /*DEBUG*/// stRemoveValue
     /*DEBUG*/// stAddValue
@@ -222,7 +217,7 @@ BOOL CxStyle::bIsExistsEx(TStyle stValue) {
     /*DEBUG*/// stValue
 
     //////ULONG _ulAttr = 0xffffffff;
-    //////    
+    //////
     //////_m_bRes = bGetAttr(&_ulAttr);
     ///////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -250,8 +245,8 @@ BOOL CxStyle::bIsExistsEx(TStyle stValue) {
 //---------------------------------------------------------------------------
 
 /****************************************************************************
-*    Private methods                                                          
-*                                                                            
+*    Private methods
+*
 *****************************************************************************/
 
 
@@ -311,7 +306,7 @@ BOOL CxStyle::bIsExistsEx(TStyle stValue) {
 ////    }
 //////---------------------------------------------------------------------------
 //////DONE: bModifyStyle
-////BOOL CxWindow::bModifyStyle(ULONG ulRemoveStyle, ULONG ulAddStyle) {    
+////BOOL CxWindow::bModifyStyle(ULONG ulRemoveStyle, ULONG ulAddStyle) {
 ////    /*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////    //First we get the current window style.
@@ -341,7 +336,7 @@ BOOL CxStyle::bIsExistsEx(TStyle stValue) {
 ////    }
 //////---------------------------------------------------------------------------
 //////DONE: bModifyStyleEx
-////BOOL CxWindow::bModifyStyleEx(ULONG ulRemoveStyleEx, ULONG ulAddStyleEx) {    
+////BOOL CxWindow::bModifyStyleEx(ULONG ulRemoveStyleEx, ULONG ulAddStyleEx) {
 ////    /*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////    //First we get the current window extended style.
@@ -369,7 +364,7 @@ BOOL CxStyle::bIsExistsEx(TStyle stValue) {
 ////    /*DEBUG*/xASSERT_RET(FALSE != bIsWindow(), FALSE);
 ////
 ////    //////ULONG _ulStyle = 0xffffffff;
-////    //////    
+////    //////
 ////    //////_m_bRes = bGetStyle(&_ulStyle);
 ////    ///////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 ////

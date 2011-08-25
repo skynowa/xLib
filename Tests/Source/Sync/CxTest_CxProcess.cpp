@@ -51,11 +51,11 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
-            const tString csFilePath = xT("explorer.exe");
-            const tString csCmdLine  = xT("");
+            const std::tstring csFilePath = xT("explorer.exe");
+            const std::tstring csCmdLine  = xT("");
         #elif defined(xOS_LINUX)
-            const tString csFilePath = xT("dolphin");
-            const tString csCmdLine  = xT("");
+            const std::tstring csFilePath = xT("dolphin");
+            const std::tstring csCmdLine  = xT("");
         #endif
 
         ////m_bRes = CxProcess::bExec(csFilePath, csCmdLine.c_str(), 0);

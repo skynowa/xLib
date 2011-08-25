@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxPath
-* Description: file system path
-* File name:   CxPath.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.06.2009 9:27:28
-*
-*****************************************************************************/
+/**
+ * \file  CxPath.h
+ * \brief file system path
+ */
 
 
 #ifndef xLib_Filesystem_CxPathH
@@ -24,47 +19,47 @@ class CxPath :
             seLib
         };
 
-        static tString sGetExe         ();
-        static tString sGetExeDir      ();
-        static tString sGetDll         ();
+        static std::tstring sGetExe         ();
+        static std::tstring sGetExeDir      ();
+        static std::tstring sGetDll         ();
 
     #if defined(xOS_WIN)
-        static tString sGetDrive       (const tString &csFilePath);
+        static std::tstring sGetDrive       (const std::tstring &csFilePath);
     #endif
-        static tString sGetDir         (const tString &csFilePath);
-        static tString sGetDirName     (const tString &csFilePath);
-        static tString sGetFullName    (const tString &csFilePath);
-        static tString sGetName        (const tString &csFilePath);
-        static tString sGetExt         (const tString &csFilePath);
-        static tString sGetStandartExt (const EStandartExt cseFileExt);
+        static std::tstring sGetDir         (const std::tstring &csFilePath);
+        static std::tstring sGetDirName     (const std::tstring &csFilePath);
+        static std::tstring sGetFullName    (const std::tstring &csFilePath);
+        static std::tstring sGetName        (const std::tstring &csFilePath);
+        static std::tstring sGetExt         (const std::tstring &csFilePath);
+        static std::tstring sGetStandartExt (const EStandartExt cseFileExt);
 
     #if defined(xOS_WIN)
-        static tString sSetDrive       (const tString &csFilePath, const tString &csDrivePath);
+        static std::tstring sSetDrive       (const std::tstring &csFilePath, const std::tstring &csDrivePath);
     #endif
-        static tString sSetDir         (const tString &csFilePath, const tString &csDirPath);
-        static tString sSetFullName    (const tString &csFilePath, const tString &csFullName);
-        static tString sSetName        (const tString &csFilePath, const tString &csName);
-        static tString sSetExt         (const tString &csFilePath, const tString &csExt);
+        static std::tstring sSetDir         (const std::tstring &csFilePath, const std::tstring &csDirPath);
+        static std::tstring sSetFullName    (const std::tstring &csFilePath, const std::tstring &csFullName);
+        static std::tstring sSetName        (const std::tstring &csFilePath, const std::tstring &csName);
+        static std::tstring sSetExt         (const std::tstring &csFilePath, const std::tstring &csExt);
 
-        static tString sRemoveExt      (const tString &csFilePath);
-        static tString sRemoveExtIf    (const tString &csFilePath, const tString &csExt);
+        static std::tstring sRemoveExt      (const std::tstring &csFilePath);
+        static std::tstring sRemoveExtIf    (const std::tstring &csFilePath, const std::tstring &csExt);
 
         //normalize
-        static BOOL    bIsValid        (const tString &csFilePath);
-        static BOOL    bIsNameValid    (const tString &csFilePath);
-        static BOOL    bIsAbsolute     (const tString &csFilePath);
+        static BOOL    bIsValid        (const std::tstring &csFilePath);
+        static BOOL    bIsNameValid    (const std::tstring &csFilePath);
+        static BOOL    bIsAbsolute     (const std::tstring &csFilePath);
 
-        static tString sToWin          (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
-        static tString sToNix          (const tString &csFilePath, const BOOL cbIsSlashAtEnd);
-        static tString sToCurrentOs    (const tString &csFilePath, const BOOL cbIsSlashAtEnd);    //TODO: make test
-        static tString sGetAbsolute    (const tString &csFilePath);
+        static std::tstring sToWin          (const std::tstring &csFilePath, const BOOL cbIsSlashAtEnd);
+        static std::tstring sToNix          (const std::tstring &csFilePath, const BOOL cbIsSlashAtEnd);
+        static std::tstring sToCurrentOs    (const std::tstring &csFilePath, const BOOL cbIsSlashAtEnd);    //TODO: make test
+        static std::tstring sGetAbsolute    (const std::tstring &csFilePath);
 
-        static tString sMinimizeName   (const tString &csFileName, const size_t cuiMaxSize);
-        static tString sMinimize       (const tString &csFilePath, const size_t cuiMaxSize);
-        static tString sSetValidName   (const tString &csFileName);
+        static std::tstring sMinimizeName   (const std::tstring &csFileName, const size_t cuiMaxSize);
+        static std::tstring sMinimize       (const std::tstring &csFilePath, const size_t cuiMaxSize);
+        static std::tstring sSetValidName   (const std::tstring &csFileName);
 
-        static tString sSlashAppend    (const tString &csDirPath);
-        static tString sSlashRemove    (const tString &csDirPath);
+        static std::tstring sSlashAppend    (const std::tstring &csDirPath);
+        static std::tstring sSlashRemove    (const std::tstring &csDirPath);
 
         static size_t  uiGetMaxSize    ();
         static size_t  uiGetNameMaxSize();
@@ -104,7 +99,7 @@ void File_ShrinkName(char *pDestFileName, char *pSrcFileName, int maxlen)
 }
 */
 
-//static tString sGetRelativePath     (const tString &csFilePath);
+//static std::tstring sGetRelativePath     (const std::tstring &csFilePath);
 
 /*ExpandUNCFileName*/
 /*ExtractShortPathName*/

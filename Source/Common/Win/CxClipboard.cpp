@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxClipboard
-* Description: clipboard
-* File name:   CxClipboard.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     12.07.2010 12:43:35
-*
-*****************************************************************************/
+/**
+ * \file  CxClipboard.cpp
+ * \brief clipboard
+ */
 
 
 #include <xLib/Common/Win/CxClipboard.h>
@@ -89,7 +84,7 @@ CxClipboard::bSetData(EFormat fmFormat, HANDLE hData) {
 //---------------------------------------------------------------------------
 //DONE: bGetText ()
 BOOL
-CxClipboard::bGetText(tString *psText) {
+CxClipboard::bGetText(std::tstring *psText) {
     /*DEBUG*/xASSERT_RET(NULL != psText, FALSE);
 
     _m_bRes = bOpen();
@@ -109,7 +104,7 @@ CxClipboard::bGetText(tString *psText) {
     SIZE_T uiDataSize = ::GlobalSize(_m_hObject);
     /*DEBUG*/xASSERT_RET(0 != uiDataSize, FALSE);
 
-    uiDataSize = uiDataSize / sizeof(tString::value_type) - 1;    //'\0' - �� �����
+    uiDataSize = uiDataSize / sizeof(std::tstring::value_type) - 1;    //'\0' - �� �����
 
     (*psText).assign(static_cast<LPCTSTR>(pvData), uiDataSize);
 
@@ -124,7 +119,7 @@ CxClipboard::bGetText(tString *psText) {
 //---------------------------------------------------------------------------
 //DONE: bSetText ()
 BOOL
-CxClipboard::bSetText(const tString csText) {
+CxClipboard::bSetText(const std::tstring csText) {
     /*DEBUG*/
 
     _m_bRes = bClear();
@@ -136,7 +131,7 @@ CxClipboard::bSetText(const tString csText) {
     ////_m_bRes = ::EmptyClipboard();
     /////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    const SIZE_T cuiBytes = (csText.size() + 1 ) * sizeof(tString::value_type);    //'\0' - �����
+    const SIZE_T cuiBytes = (csText.size() + 1 ) * sizeof(std::tstring::value_type);    //'\0' - �����
 
     _m_hObject = ::GlobalAlloc(GMEM_MOVEABLE | GMEM_ZEROINIT, cuiBytes);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE);
@@ -192,7 +187,7 @@ BOOL CxClipboard::bIsHasFormat(EFormat fmFormat) {
 //---------------------------------------------------------------------------
 //TODO: bRegisterFormat ()
 BOOL
-CxClipboard::bRegisterFormat(const tString csText, EFormat *pfmFormat) {
+CxClipboard::bRegisterFormat(const std::tstring csText, EFormat *pfmFormat) {
     /*DEBUG*/// csText
     /*DEBUG*/xASSERT_RET(NULL != pfmFormat, FALSE);
 

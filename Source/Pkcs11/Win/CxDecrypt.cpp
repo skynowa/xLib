@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDecrypt
-* Description: Pkcs11 decrypt
-* File name:   CxDecrypt.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:11:10
-*
-*****************************************************************************/
+/**
+ * \file  CxDecrypt.cpp
+ * \brief Pkcs11 decrypt
+ */
 
 
 #include <xLib/Pkcs11/Win/CxDecrypt.h>
@@ -140,8 +135,8 @@ CxDecrypt::bVerifyUpdate(
 //---------------------------------------------------------------------------
 BOOL
 CxDecrypt::bMakeFile(
-    const tString    &csInFilePath,
-    const tString    &csOutFilePath,
+    const std::tstring    &csInFilePath,
+    const std::tstring    &csOutFilePath,
     CK_MECHANISM_PTR  pMechanism,
     CK_OBJECT_HANDLE  hKey
 )
@@ -153,7 +148,7 @@ CxDecrypt::bMakeFile(
 
     //-------------------------------------
     //������ ����-����� � �����
-    uString usEncryptedData;        //����-������
+    std::ustring usEncryptedData;        //����-������
 
     {
         CxStdioFile sfFileRaw;
@@ -174,7 +169,7 @@ CxDecrypt::bMakeFile(
 
       ////CK_BYTE  usDecryptedData[128]   = {0};
     const ULONG          g_culBuffSize    = 8192 * 4;  //FIX_ME:
-    uString  usDecryptedData;    usDecryptedData.resize(g_culBuffSize);
+    std::ustring  usDecryptedData;    usDecryptedData.resize(g_culBuffSize);
     CK_ULONG usDecryptedDataSize = g_culBuffSize;
 
     {

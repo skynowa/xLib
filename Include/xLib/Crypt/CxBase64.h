@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxBase64
-* Description: Base64
-* File name:   CxBase64.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     07.07.2009 12:22:00
-*
-*****************************************************************************/
+/**
+ * \file  CxBase64.h
+ * \brief base64
+ */
 
 
 #ifndef xLib_Crypt_CxBase64H

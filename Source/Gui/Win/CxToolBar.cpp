@@ -1,23 +1,17 @@
-/****************************************************************************
-* Class name:  CxToolBar
-* Description: работа с тулбаром
-* File name:   CxToolBar.сзз
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 11:20:41
-*
-*****************************************************************************/
-
+/**
+ * \file  CxToolBar.cpp
+ * \brief tool bar
+ */
 
 
 #include <xLib/Gui/CxToolBar.h>
 
 //---------------------------------------------------------------------------
-CxToolBar::CxToolBar() : 
-    CxWindow() 
+CxToolBar::CxToolBar() :
+    CxWindow()
 {
     _m_bIsControl     = TRUE;
-    
+
     m_hInstance=GetModuleHandle(NULL);
     m_nBitmaps=0;
     m_nButtons=0;
@@ -42,12 +36,12 @@ HWND CxToolBar::Create(HWND hParentWnd,
 {
     _m_hParentWnd=hParentWnd;
     m_nBitmaps=nBitmaps;
-    _m_hWnd= CreateToolbarEx(hParentWnd, 
-                            tbStyle, 
-                            tbID, nBitmaps, m_hInstance, wBMID, 
+    _m_hWnd= CreateToolbarEx(hParentWnd,
+                            tbStyle,
+                            tbID, nBitmaps, m_hInstance, wBMID,
                             0,0, dxButton, dyButton, dxBitmap, dyBitmap, sizeof (TBBUTTON));
     if(_m_hWnd!=NULL)
-        SendMessage(_m_hWnd, TB_SETEXTENDEDSTYLE , 0, tbExStyle ); 
+        SendMessage(_m_hWnd, TB_SETEXTENDEDSTYLE , 0, tbExStyle );
     return _m_hWnd;
 }
 //---------------------------------------------------------------------------
@@ -90,7 +84,7 @@ INT CxToolBar::AddButton(INT nBitmap,//номер картинки для тулбара (ресурс/ширина
         m_InfoButtons[m_nButtons-1].idCommand=0;
         m_InfoButtons[m_nButtons-1].nBitmap=0;
     }
-//=========================================================================    
+//=========================================================================
     TBBUTTON tbButtonsAdd[]={nBitmap-m_nBitmaps, idCommand, btnState, btnStyle,
 #if defined(_WIN32) | defined(_WIN64)
         {0},
@@ -104,8 +98,8 @@ INT CxToolBar::AddButton(INT nBitmap,//номер картинки для тулбара (ресурс/ширина
     for (INT i = 0; i < xARRAY_SIZE(tbButtonsAdd); i++)
         tbButtonsAdd[i].iBitmap += stdidx;
     SendMessage (_m_hWnd,
-        TB_ADDBUTTONS, 
-        xARRAY_SIZE(tbButtonsAdd), 
+        TB_ADDBUTTONS,
+        xARRAY_SIZE(tbButtonsAdd),
         (LPARAM) &tbButtonsAdd[0]);
     return TRUE;
 }
@@ -117,9 +111,9 @@ void CxToolBar::DoNotify(LPARAM lParam) {//вставить в обработчик WM_NOTIFY окна 
     switch(lpnm->code)
     {
     case TTN_GETDISPINFO:
-        { 
-            lpttt->hinst = m_hInstance; 
-            UINT_PTR idButton = lpttt->hdr.idFrom; 
+        {
+            lpttt->hinst = m_hInstance;
+            UINT_PTR idButton = lpttt->hdr.idFrom;
             for(INT i=0;i<m_nButtons;i++)
                 if(idButton==m_InfoButtons[i].idCommand)
                 {
@@ -138,18 +132,18 @@ void CxToolBar::DoNotify(LPARAM lParam) {//вставить в обработчик WM_NOTIFY окна 
            SendMessage(lpnmTB->hdr.hwndFrom, TB_GETRECT,
                (WPARAM)lpnmTB->iItem, (LPARAM)&rc);
               MapWindowPoints(lpnmTB->hdr.hwndFrom,
-               HWND_DESKTOP, (LPPOINT)&rc, 2);                         
+               HWND_DESKTOP, (LPPOINT)&rc, 2);
            tpm.cbSize = sizeof(TPMPARAMS);
            tpm.rcExclude = rc;
            for(INT i=0;i<m_nButtons;i++)
                 if(lpnmTB->iItem==m_InfoButtons[i].idCommand)
                 {
-                    hMenuLoaded = LoadMenu(m_hInstance, MAKEINTRESOURCE(m_InfoButtons[i].idMenu)); 
+                    hMenuLoaded = LoadMenu(m_hInstance, MAKEINTRESOURCE(m_InfoButtons[i].idMenu));
                     hPopupMenu = GetSubMenu(LoadMenu(m_hInstance,
                         MAKEINTRESOURCE(m_InfoButtons[i].idMenu)),0);
                     TrackPopupMenuEx(hPopupMenu,
-                        TPM_LEFTALIGN|TPM_LEFTBUTTON|TPM_VERTICAL,               
-                        rc.left, rc.bottom, _m_hParentWnd, &tpm); 
+                        TPM_LEFTALIGN|TPM_LEFTBUTTON|TPM_VERTICAL,
+                        rc.left, rc.bottom, _m_hParentWnd, &tpm);
                     DestroyMenu(hMenuLoaded);
                 }
                 break;
@@ -158,7 +152,7 @@ void CxToolBar::DoNotify(LPARAM lParam) {//вставить в обработчик WM_NOTIFY окна 
 }
 //---------------------------------------------------------------------------
 void CxToolBar::AutoSize() {//вставить в обработчик WM_SIZE окна родителя
-    SendMessage(_m_hWnd, TB_AUTOSIZE, 0, 0); 
+    SendMessage(_m_hWnd, TB_AUTOSIZE, 0, 0);
 }
 //---------------------------------------------------------------------------
 INT CxToolBar::DeleteButton(INT nButton) {
@@ -179,7 +173,7 @@ INT CxToolBar::DeleteButton(INT nButton) {
         };
     HeapFree(hHeap,HEAP_NO_SERIALIZE,tmpInfoButtons);
     SendMessage(_m_hWnd,TB_DELETEBUTTON,nButton,0);
-    
+
     return 0;
 }
 //---------------------------------------------------------------------------

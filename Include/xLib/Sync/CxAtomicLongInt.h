@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxAtomicLongInt
-* Description: atomic operartions with LONG
-* File name:   CxAtomicLongInt.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     25.11.2009 10:03:17
-*
-*****************************************************************************/
+/**
+ * \file  CxAtomicLongInt.h
+ * \brief atomic operartions with LONG
+ */
 
 
 #ifndef xLib_Sync_CxAtomicLongIntH

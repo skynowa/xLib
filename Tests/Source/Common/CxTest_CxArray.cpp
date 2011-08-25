@@ -70,8 +70,8 @@ CxTest_CxArray::bUnit(
     }
 
     xTEST_BLOCK(cullBlockLoops) {
-        NxArray::make_array<tString>( xT("0"),  xT("1") );
-        NxArray::make_array<tString>( xT("0"),  xT("1"),  xT("2") );
+        NxArray::make_array<std::tstring>( xT("0"),  xT("1") );
+        NxArray::make_array<std::tstring>( xT("0"),  xT("1"),  xT("2") );
     }
 
     return TRUE;

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxCOMPort
-* Description: COM port
-* File name:   CxCOMPort.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.04.2010 9:29:26
-*
-*****************************************************************************/
+/**
+ * \file  CxComPort.h
+ * \brief COM port
+ */
 
 
 #ifndef xLib_Common_Win_CxComPortH
@@ -24,13 +19,13 @@ class CxCOMPort :
     public CxNonCopyable
 {
     public:
-                     CxCOMPort       (const tString &sPortNum/* = xT("COM1")*/);
+                     CxCOMPort       (const std::tstring &sPortNum/* = xT("COM1")*/);
         virtual     ~CxCOMPort       ();
 
         BOOL         bOpen           ();
         BOOL         bConfig         ();
         BOOL         bClearData      ();
-        tString      bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
+        std::tstring      bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
         INT          iReadDataWaiting();
         BOOL         bWriteData      (LPCTSTR pcszBuff, ULONG ulNumOfBytesToWrite);
         BOOL         bClose          ();
@@ -44,7 +39,7 @@ class CxCOMPort :
     private:
         BOOL         _m_bRes;
         CxFileHandle _m_hComPort;
-        tString      _m_sPortNum;
+        std::tstring      _m_sPortNum;
 
         COMMTIMEOUTS CommTimeOuts;
         DCB          dcb;

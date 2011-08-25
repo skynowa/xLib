@@ -59,7 +59,7 @@ class CParam {
             ////xSTD_COUT_FUNC;
         };
 
-        tString sSetName(VOID *uiIndex) {
+        std::tstring sSetName(VOID *uiIndex) {
 
 
             return xT("Class_C");
@@ -76,7 +76,7 @@ class CThread {
             ////xSTD_COUT_FUNC;
         };
 
-        VOID vRun(const CxFunctorT<CParam, tString, VOID *> &bF) {
+        VOID vRun(const CxFunctorT<CParam, std::tstring, VOID *> &bF) {
             ////xSTD_COUT_FUNC;
         };
 };
@@ -160,10 +160,10 @@ CxTest_CxFunctorT::bUnit(
     //Execute
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxFunctorT<CParam, tString, VOID *> bF(&objParam, &CParam::sSetName);
+        CxFunctorT<CParam, std::tstring, VOID *> bF(&objParam, &CParam::sSetName);
 
         m_sRes = bF.Execute(0);
-        xASSERT_EQ(tString(xT("Class_C")), m_sRes);
+        xASSERT_EQ(std::tstring(xT("Class_C")), m_sRes);
     }
 
     return TRUE;

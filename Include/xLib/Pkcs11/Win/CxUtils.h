@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxUtils
-* Description: Pkcs11 utils
-* File name:   CxUtils.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:15:59
-*
-*****************************************************************************/
+/**
+ * \file  CxUtils.h
+ * \brief Pkcs11 utils
+ */
 
 
 #ifndef xLib_Pkcs11_CxUtilsH
@@ -20,7 +15,7 @@ class CxUtils :
     public CxNonCopyable
 {
     public:
-        static tString sErrorStr(const CK_RV culCode);
+        static std::tstring sErrorStr(const CK_RV culCode);
         	///< get error string by code, SDK 4.53
 
     private:

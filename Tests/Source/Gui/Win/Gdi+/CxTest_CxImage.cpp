@@ -33,7 +33,7 @@
 {
         /*DEBUG*/
 
-        const tString csInFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Pic.bmp");
+        const std::tstring csInFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Pic.bmp");
 
         CxGdiplus     m_gdiGdi;
         CxImage       m_imgImage;
@@ -74,7 +74,7 @@
                 0x48,0x42,0x54,0x54,0x54,0x49,0x49,0x61,0x42,0x4a,0x42,0x49,0x40,0x40,0x40,0x54,0x40,0x50,0x50,0x40,0x54,0x54,0x54,0x00,0x00,0x00
             };
 
-            uString usInFileContent;
+            std::ustring usInFileContent;
 
             usInFileContent.assign(cucInFileContent, xARRAY_SIZE(cucInFileContent));
 

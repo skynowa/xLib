@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxMutexScopeLock
-* Description: ������� � �����
-* File name:   CxAutoMutex.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     16.12.2009 10:06:46
-*
-*****************************************************************************/
+/**
+ * \file  CxAutoMutex.cpp
+ * \brief auto mutex
+ */
 
 
 #include <xLib/Sync/CxAutoMutex.h>

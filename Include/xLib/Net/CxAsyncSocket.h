@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxAsyncSocket
-* Description: async socket
-* File name:   CxAsyncSocket.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     16.11.2010 15:25:38
-*
-*****************************************************************************/
+/**
+ * \file  CxAsyncSocket.h
+ * \brief async socket
+ */
 
 
 #ifndef xLib_Net_CxAsyncSocketH

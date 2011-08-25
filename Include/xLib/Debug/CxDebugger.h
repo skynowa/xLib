@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDebugger
-* Description: debbuger
-* File name:   CxDebugger.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     27.11.2009 16:39:23
-*
-*****************************************************************************/
+/**
+ * \file  CxDebugger.h
+ * \brief debbuger
+ */
 
 
 #ifndef xLib_Debug_CxDebuggerH
@@ -27,16 +22,16 @@ class CxDebugger :
         static BOOL    bIsPresent        ();
         static BOOL    bBreak            ();
 
-        static BOOL    bSetLogPath       (const tString &csFilePath);
-        static tString sGetLogPath       ();
+        static BOOL    bSetLogPath       (const std::tstring &csFilePath);
+        static std::tstring sGetLogPath       ();
         static BOOL    bReportMake       (const CxReport &crpReport);
         static BOOL    bTrace            (LPCTSTR pcszFormat, ...);
-        static BOOL    bTrace            (const tString &csMsg);
+        static BOOL    bTrace            (const std::tstring &csMsg);
         static BOOL    bBeep             (const ULONG culFrequency = 800, const ULONG culDuration = 100);
 
     private:
         static BOOL    _ms_bIsEnabled;
-        static tString _ms_sLogPath;
+        static std::tstring _ms_sLogPath;
 
                        CxDebugger        ();
         virtual       ~CxDebugger        ();

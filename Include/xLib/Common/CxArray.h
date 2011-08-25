@@ -1,11 +1,7 @@
-/****************************************************************************
-* Class name:  CxArray
-* Description: fixed-size array
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     28.03.2011 14:40:50
-*
-*****************************************************************************/
+/**
+ * \file  CxArray.h
+ * \brief fixed-size array
+ */
 
 
 #ifndef xLib_Common_CxArrayH

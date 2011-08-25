@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxBlowfish
-* Description: blowfish (openssl-1.0.0a)
-* File name:   CxBlowfish.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.08.2009 10:41:45
-*
-*****************************************************************************/
+/**
+ * \file  CxBlowfish.h
+ * \brief blowfish (openssl-1.0.0a)
+ */
 
 
 #ifndef xLib_Crypt_OpenSSL_CxBlowfishH
@@ -39,19 +34,19 @@ class CxBlowfish :
         virtual      ~CxBlowfish          ();
 
         BOOL          bSetKey             (UCHAR *pucKey, INT iKeySize);
-        BOOL          bSetKey             (const uString &cusKey);
-        BOOL          bSetKey             (const tString &csKey);
-        BOOL          bSetFileKey         (const tString &csFilePath);
+        BOOL          bSetKey             (const std::ustring &cusKey);
+        BOOL          bSetKey             (const std::tstring &csKey);
+        BOOL          bSetFileKey         (const std::tstring &csFilePath);
         static size_t uiGetMaxKeySize     ();
 
         //cfb64
         BOOL          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, LONG liInSize, INT *piNum, ECryptMode cmMode);
-        BOOL          bEncryptCfb64       (const uString &cusIn, uString *pusOut, ECryptMode cmMode);
-        BOOL          bEncryptFileCfb64   (const tString &csFilePathIn, const tString &csFilePathOut, ECryptMode cmMode);
+        BOOL          bEncryptCfb64       (const std::ustring &cusIn, std::ustring *pusOut, ECryptMode cmMode);
+        BOOL          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, ECryptMode cmMode);
 
         //
-        BOOL          bEncryptFileCfb64   (const tString &csFilePathIn, const tString &csFilePathOut, const uString &cusStamp, ECryptMode cmCryptMode);
-        ECryptMode    cmGetFileCryptStatus(const tString &csFilePath, const uString &cusStamp);
+        BOOL          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const std::ustring &cusStamp, ECryptMode cmCryptMode);
+        ECryptMode    cmGetFileCryptStatus(const std::tstring &csFilePath, const std::ustring &cusStamp);
 
 };
 //---------------------------------------------------------------------------

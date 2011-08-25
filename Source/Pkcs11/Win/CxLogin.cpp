@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxLogin
-* Description: Pkcs11 login
-* File name:   CxLogin.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:03:30
-*
-*****************************************************************************/
+/**
+ * \file  CxLogin.cpp
+ * \brief Pkcs11 login
+ */
 
 
 #include <xLib/Pkcs11/Win/CxLogin.h>

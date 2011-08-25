@@ -1,13 +1,8 @@
-/****************************************************************************
-* Class name:  Closure library 1.1
-* Description: Closure library 1.1
-* File name:   closure_impl.h
-* Author:      Written by Ivan Yankov aka _Winnie. Many thanks to Wolfhound
-* E-mail:      woowoowoow@bk.ru (http://dobrokot.nm.ru/cpp/CppMethodsCallback.html)
-* Created:     18.12.2009 9:36:41
-* Version:     1.1.0.0 Debug
-*
-*****************************************************************************/
+/**
+ * \file  xClosureImpl.h
+ * \brief Closure library 1.1
+ * \note  woowoowoow@bk.ru (http://dobrokot.nm.ru/cpp/CppMethodsCallback.html)
+ */
 
 
 //---------------------------------------------------------------------------

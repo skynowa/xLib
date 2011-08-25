@@ -1,12 +1,7 @@
-/****************************************************************************
-* Func name:   sGetEan13BarCode
-* Description: code EAN-13 (http://grandzebu.net/index.php?page=/informatique/codbar-en/ean13.htm)
-* File name:   sGetEan13BarCode.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2010 9:33:24
-*
-*****************************************************************************/
+/**
+ * \file  sGetEan13BarCode.cpp
+ * \brief code EAN-13
+ */
 
 
 #include <xLib/Units/sGetEan13BarCode.h>
@@ -14,25 +9,25 @@
 
 //---------------------------------------------------------------------------
 //DONE: sGetEan13BarCode
-tString
+std::tstring
 sGetEan13BarCode(
-    const tString &csData
+    const std::tstring &csData
 )
 {
-	/*DEBUG*/xASSERT_RET(false == csData.empty(), tString());
-	/*DEBUG*/xASSERT_RET(12    == csData.size(),  tString());
+	/*DEBUG*/xASSERT_RET(false == csData.empty(), std::tstring());
+	/*DEBUG*/xASSERT_RET(12    == csData.size(),  std::tstring());
 
 	/*DEBUG*///And they are really digits
 	/*DEBUG*/for (size_t i = 0; i < csData.size(); ++ i) {
 	/*DEBUG*/	if ( (INT)csData.at(i) < 48 || (INT)csData.at(i) > 57 ) {
-	/*DEBUG*/		/*DEBUG*/xASSERT_RET(FALSE, tString());
+	/*DEBUG*/		/*DEBUG*/xASSERT_RET(FALSE, std::tstring());
 	/*DEBUG*/	}
 	/*DEBUG*/}
 
-	tString sRes;
+	std::tstring sRes;
 	INT 	iFirst    = 0;
 	BOOL    bTableA   = FALSE;
-	tString sData     = csData;
+	std::tstring sData     = csData;
 
 	//-------------------------------------
 	//x - ����� ������
@@ -64,7 +59,7 @@ sGetEan13BarCode(
 
 	//-------------------------------------
 	//����������� ����� (13-� ������): 90 - 84 = 6
-	tString sCheckSum;
+	std::tstring sCheckSum;
 
 	sCheckSum = CxString::lexical_cast((10 - iZ % 10) % 10 );
 
@@ -76,8 +71,8 @@ sGetEan13BarCode(
 
 	//-------------------------------------
 	//The first digit is taken just as it is, the second one come from table A
-	sRes   = tString(1, sData.at(0))  + tString(1,  (TCHAR)(65 + CxString::lexical_cast<INT>(sData.substr(1, 1))));
-	iFirst = CxString::lexical_cast<INT>( tString(1, sData.at(0)) );
+	sRes   = std::tstring(1, sData.at(0))  + std::tstring(1,  (TCHAR)(65 + CxString::lexical_cast<INT>(sData.substr(1, 1))));
+	iFirst = CxString::lexical_cast<INT>( std::tstring(1, sData.at(0)) );
 
 	for (INT i = 2; i < 7; ++ i) {
 		bTableA = FALSE;
@@ -171,9 +166,9 @@ sGetEan13BarCode(
 }
 //---------------------------------------------------------------------------
 //DONE: sGetEan13Code (������ ����������� �����)
-tString
+std::tstring
 sGetEan13Code(
-    const tString &csData
+    const std::tstring &csData
 )
 {
 	//	����� ���������� ������ ������.
@@ -190,7 +185,7 @@ sGetEan13Code(
 	//	����������� �����= 90 - 84 = 6
 	//	EAN13 ---> 9 780201 134476
 
-	tString sRes;
+	std::tstring sRes;
 
 	//-------------------------------------
 	//x - ����� ������
@@ -198,7 +193,7 @@ sGetEan13Code(
 	size_t uiX = 0;
 	for (size_t i = 0; i < csData.size(); i += 2) {
 		//iMsgBox( csData.at(i) );
-		uiX = uiX + CxString::lexical_cast<size_t>( tString(1, csData.at(i)) );
+		uiX = uiX + CxString::lexical_cast<size_t>( std::tstring(1, csData.at(i)) );
 	}
 	/*DEBUG*///xASSERT(27 == uiX);
 
@@ -208,7 +203,7 @@ sGetEan13Code(
 	size_t uiY = 0;
 	for (size_t i = 1; i < csData.size(); i += 2) {
 		//iMsgBox( csData.at(i) );
-		uiY = uiY + CxString::lexical_cast<size_t>( tString(1, csData.at(i)) );
+		uiY = uiY + CxString::lexical_cast<size_t>( std::tstring(1, csData.at(i)) );
 	}
 	/*DEBUG*///xASSERT(19 == uiY);
 

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDnsClient
-* Description: DNS
-* File name:   CxDnsClient.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     17.06.2010 12:59:14
-*
-*****************************************************************************/
+/**
+ * \file  CxDnsClient.cpp
+ * \brief DNS
+ */
 
 
 #include <xLib/Net/CxDnsClient.h>
@@ -22,14 +17,14 @@
 /*static*/
 BOOL
 CxDnsClient::bGetHostAddrByName(
-    const tString &csHostName,
-    tString       *psHostAddr
+    const std::tstring &csHostName,
+    std::tstring       *psHostAddr
 )
 {
     /*DEBUG*/xASSERT_RET(false == csHostName.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != psHostAddr,         FALSE);
 
-    tString sRes;
+    std::tstring sRes;
 
     //convert to UNICODE
     std::string casHostName(csHostName.begin(), csHostName.end());
@@ -55,9 +50,9 @@ CxDnsClient::bGetHostAddrByName(
 /*static*/
 BOOL
 CxDnsClient::bGetHostNameByAddr(
-    const tString            &csHostAddr,
+    const std::tstring            &csHostAddr,
     CxSocket::EAddressFamily  afFamily,
-    tString                  *psHostName
+    std::tstring                  *psHostName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csHostAddr.empty(), FALSE);
@@ -106,7 +101,7 @@ CxDnsClient::bGetHostNameByAddr(
 /*static*/
 BOOL
 CxDnsClient::bGetLocalHostName(
-    tString *psHostName
+    std::tstring *psHostName
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != psHostName, FALSE);
@@ -133,7 +128,7 @@ CxDnsClient::bGetLocalHostName(
 BOOL
 CxDnsClient::bGetNameInfo(
     CxSocket::EAddressFamily  afFamily,
-    const tString            &csHostAddr,
+    const std::tstring            &csHostAddr,
     USHORT                    usPort
 )
 {
@@ -172,8 +167,8 @@ CxDnsClient::bGetNameInfo(
 /*static*/
 BOOL
 CxDnsClient::bGetHostAddrInfo(
-    const tString    &csHostName,
-    const tString    &csPort,
+    const std::tstring    &csHostName,
+    const std::tstring    &csPort,
     const ADDRINFOT  *pHints,
     ADDRINFOT       **ppResult
 )
@@ -198,9 +193,9 @@ CxDnsClient::bGetHostAddrInfo(
 /*static*/
 BOOL
 CxDnsClient::bGetProtocolByName(
-    const tString        &csProtocolName,
-    tString              *psName,
-    std::vector<tString> *pvsAliases,
+    const std::tstring        &csProtocolName,
+    std::tstring              *psName,
+    std::vector<std::tstring> *pvsAliases,
     SHORT                *psiNumber
 )
 {
@@ -233,7 +228,7 @@ CxDnsClient::bGetProtocolByName(
             asRes.assign(*s);
 
             //convert to UNICODE
-            tString sRes;
+            std::tstring sRes;
             sRes.assign(asRes.begin(), asRes.end());
 
             pvsAliases->push_back(sRes);
@@ -252,8 +247,8 @@ CxDnsClient::bGetProtocolByName(
 BOOL
 CxDnsClient::bGetProtocolByNumber(
     SHORT                 siNumber,
-    tString              *psName,
-    std::vector<tString> *pvsAliases,
+    std::tstring              *psName,
+    std::vector<std::tstring> *pvsAliases,
     SHORT                *psiNumber
 )
 {
@@ -283,7 +278,7 @@ CxDnsClient::bGetProtocolByNumber(
             asRes.assign(*s);
 
             //convert to UNICODE
-            tString sRes;
+            std::tstring sRes;
             sRes.assign(asRes.begin(), asRes.end());
 
             pvsAliases->push_back(sRes);
@@ -301,12 +296,12 @@ CxDnsClient::bGetProtocolByNumber(
 /*static*/
 BOOL
 CxDnsClient::bGetServiceByName(
-    const tString        &csServiceName,
-    const tString        &csProtocolName,
-    tString              *psName,
-    std::vector<tString> *pvsAliases,
+    const std::tstring        &csServiceName,
+    const std::tstring        &csProtocolName,
+    std::tstring              *psName,
+    std::vector<std::tstring> *pvsAliases,
     SHORT                *psiPort,
-    tString              *psProtocolName
+    std::tstring              *psProtocolName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csServiceName.empty(), FALSE);
@@ -340,7 +335,7 @@ CxDnsClient::bGetServiceByName(
             asRes.assign(*s);
 
             //convert to UNICODE
-            tString sRes;
+            std::tstring sRes;
             sRes.assign(asRes.begin(), asRes.end());
 
             pvsAliases->push_back(sRes);
@@ -365,11 +360,11 @@ CxDnsClient::bGetServiceByName(
 BOOL
 CxDnsClient::bGetServiceByPort(
     SHORT                 siPort,
-    const tString        &csProtocolName,
-    tString              *psName,
-    std::vector<tString> *pvsAliases,
+    const std::tstring        &csProtocolName,
+    std::tstring              *psName,
+    std::vector<std::tstring> *pvsAliases,
     SHORT                *psiPort,
-    tString              *psProtocolName
+    std::tstring              *psProtocolName
 )
 {
     /*DEBUG*///TODO: siPort
@@ -402,7 +397,7 @@ CxDnsClient::bGetServiceByPort(
             asRes.assign(*s);
 
             //convert to UNICODE
-            tString sRes;
+            std::tstring sRes;
             sRes.assign(asRes.begin(), asRes.end());
 
             pvsAliases->push_back(sRes);

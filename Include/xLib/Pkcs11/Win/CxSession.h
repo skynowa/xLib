@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSession
-* Description: Pkcs11 session
-* File name:   CxSession.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.03.2010 13:04:46
-*
-*****************************************************************************/
+/**
+ * \file  CxSession.h
+ * \brief Pkcs11 session
+ */
 
 
 #ifndef xLib_Pkcs11_CxSessionH

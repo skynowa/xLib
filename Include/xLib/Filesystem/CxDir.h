@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDir
-* Description: directory
-* File name:   CxDir.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.06.2009 9:23:33
-*
-*****************************************************************************/
+/**
+ * \file  CxDir.h
+ * \brief directory
+ */
 
 
 #ifndef xLib_Filesystem_CxDirH
@@ -18,25 +13,25 @@ class CxDir :
     public CxNonCopyable
 {
     public:
-        static BOOL    bIsExists   (const tString &csDirPath);
-        static BOOL    bIsEmpty    (const tString &csDirPath, const tString &csMask = CxConst::xMASK_ALL);
-        static BOOL    bIsRoot     (const tString &csDirPath);
-        static BOOL    bIsDir      (const tString &csDirPath);
-        static tString sGetCurrent ();
-        static BOOL    bSetCurrent (const tString &csDirPath);
-        static tString sGetTemp    ();
-        static BOOL    bCreate     (const tString &csDirPath);
-        static BOOL    bCreateForce(const tString &csDirPath);
-        static BOOL    bCopy       (const tString &csDirPathFrom, const tString &csDirPathTo, const BOOL cbFailIfExists);
-        static BOOL    bMove       (const tString &csDirPathFrom, const tString &csDirPathTo, const BOOL cbFailIfExists);
+        static BOOL    bIsExists   (const std::tstring &csDirPath);
+        static BOOL    bIsEmpty    (const std::tstring &csDirPath, const std::tstring &csMask = CxConst::xMASK_ALL);
+        static BOOL    bIsRoot     (const std::tstring &csDirPath);
+        static BOOL    bIsDir      (const std::tstring &csDirPath);
+        static std::tstring sGetCurrent ();
+        static BOOL    bSetCurrent (const std::tstring &csDirPath);
+        static std::tstring sGetTemp    ();
+        static BOOL    bCreate     (const std::tstring &csDirPath);
+        static BOOL    bCreateForce(const std::tstring &csDirPath);
+        static BOOL    bCopy       (const std::tstring &csDirPathFrom, const std::tstring &csDirPathTo, const BOOL cbFailIfExists);
+        static BOOL    bMove       (const std::tstring &csDirPathFrom, const std::tstring &csDirPathTo, const BOOL cbFailIfExists);
 
-        static BOOL    bDelete     (const tString &csDirPath);
-        static BOOL    bTryDelete  (const tString &csDirPath, const size_t cuiAttempts, const ULONG culTimeoutMsec);
-        static BOOL    bClearForce (const tString &csDirPath);
-        static BOOL    bDeleteForce(const tString &csDirPath);
+        static BOOL    bDelete     (const std::tstring &csDirPath);
+        static BOOL    bTryDelete  (const std::tstring &csDirPath, const size_t cuiAttempts, const ULONG culTimeoutMsec);
+        static BOOL    bClearForce (const std::tstring &csDirPath);
+        static BOOL    bDeleteForce(const std::tstring &csDirPath);
 
-        static BOOL    bFindFiles  (const tString &csDirPath, const tString &cMask, const BOOL cbIsRecurse, std::vector<tString> *pvsFilePathes);
-        static BOOL    bFindDirs   (const tString &csDirPath, const tString &cMask, const BOOL cbIsRecurse, std::vector<tString> *pvsDirPathes);
+        static BOOL    bFindFiles  (const std::tstring &csDirPath, const std::tstring &cMask, const BOOL cbIsRecurse, std::vector<std::tstring> *pvsFilePathes);
+        static BOOL    bFindDirs   (const std::tstring &csDirPath, const std::tstring &cMask, const BOOL cbIsRecurse, std::vector<std::tstring> *pvsDirPathes);
 
     private:
                        CxDir       ();

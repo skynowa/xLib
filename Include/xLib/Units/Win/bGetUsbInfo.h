@@ -1,12 +1,7 @@
-/****************************************************************************
-* Func name:   bGetUsbInfo
-* Description: get USB info
-* File name:   bGetUsbInfo.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:
-*
-*****************************************************************************/
+/**
+ * \file  bGetUsbInfo.h
+ * \brief get USB info
+ */
 
 
 #ifndef xLib_Units_bGetUsbInfoH
@@ -15,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
-    BOOL bGetUsbInfo(const tString &csDrive, std::vector<tString> *pvsInfo);
+    BOOL bGetUsbInfo(const std::tstring &csDrive, std::vector<std::tstring> *pvsInfo);
 #elif defined(xOS_LINUX)
 
 #endif
@@ -38,7 +33,7 @@
  * )
  * {
  *     BOOL                 bRes = FALSE;
- *     std::vector<tString> vsRes;
+ *     std::vector<std::tstring> vsRes;
  *
  *     bRes = bGetUsbInfo("H:\\", &vsRes);
  *     xASSERT("\\??\\USB"                              == vsRes.at(0));

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxAutoCriticalSection
-* Description: auto critical section
-* File name:   CxAutoCriticalSection.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     19.05.2009 21:16:33
-*
-*****************************************************************************/
+/**
+ * \file  CxAutoCriticalSection.h
+ * \brief auto critical section
+ */
 
 
 #ifndef xLib_Sync_CxAutoCriticalSectionH

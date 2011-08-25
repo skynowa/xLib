@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  xLog.h
-* Description: logging
-* File name:   CxTraceLog.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.06.2009 17:45:21
-*
-*****************************************************************************/
+/**
+ * \file  xLog.h
+ * \brief logging
+ */
 
 
 #ifndef xLib_Log_xLogH

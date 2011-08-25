@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxFunctorT
-* Description: function object
-* File name:   CxFunctorT.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     30.09.2010 15:28:35
-*
-*****************************************************************************/
+/**
+ * \file  CxFunctorT.inl
+ * \brief function object
+ */
 
 
 /****************************************************************************

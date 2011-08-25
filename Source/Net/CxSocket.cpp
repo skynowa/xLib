@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxSocket
-* Description: blocking socket
-* File name:   CxSocket.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     04.04.2009 6:21:18
-*
-*****************************************************************************/
+/**
+ * \file  CxSocket.cpp
+ * \brief blocking socket
+ */
 
 
 #include <xLib/Net/CxSocket.h>
@@ -170,7 +165,7 @@ CxSocket::iSend(LPCTSTR pcszBuff, INT iBuffSize, INT iFlags) {
 //---------------------------------------------------------------------------
 //TODO: bSendAll (send data blocks)
 BOOL
-CxSocket::bSendAll(const tString &csBuff, INT iFlags) {
+CxSocket::bSendAll(const std::tstring &csBuff, INT iFlags) {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,   FALSE);
     /*DEBUG*/xASSERT_RET(false     == csBuff.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(0         <  csBuff.size(),  FALSE);
@@ -233,9 +228,9 @@ CxSocket::iRecv(LPTSTR pszBuff, INT iBuffSize, INT iFlags) {
 }
 //---------------------------------------------------------------------------
 //DONE: sRecvBytes ()
-tString
+std::tstring
 CxSocket::sRecvAll(INT iFlags) {
-    tString      sRes;
+    std::tstring      sRes;
 
     const size_t cuiBuffSize             = 1024 * sizeof(TCHAR);
     TCHAR        szBuff[cuiBuffSize + 1] = {0};
@@ -264,11 +259,11 @@ CxSocket::sRecvAll(INT iFlags) {
 }
 //---------------------------------------------------------------------------
 //DONE: sRecvBytes (recive data to delimiter, includs it)
-tString
-CxSocket::sRecvAll(INT iFlags, const tString &csDelimiter) {
-    tString      sRes;
+std::tstring
+CxSocket::sRecvAll(INT iFlags, const std::tstring &csDelimiter) {
+    std::tstring      sRes;
     const size_t cuiInSize = SOCKET_BUFF_SIZE * sizeof(TCHAR);
-    tString      sIn(cuiInSize, xT('\0'));
+    std::tstring      sIn(cuiInSize, xT('\0'));
 
     //-------------------------------------
     //read from socket by blocks, write to string
@@ -281,7 +276,7 @@ CxSocket::sRecvAll(INT iFlags, const tString &csDelimiter) {
 
         //if delimiter was finded - break
         size_t uiDelimiterPos = sRes.find(csDelimiter);        //TODO: from unicode ???
-        xCHECK_DO(tString::npos != uiDelimiterPos, break);
+        xCHECK_DO(std::tstring::npos != uiDelimiterPos, break);
     }
 
     return sRes;
@@ -373,7 +368,7 @@ CxSocket::iReceiveBytes(LPSTR pszBuff, INT iStillToReceive) {
 //---------------------------------------------------------------------------
 //DONE: bGetPeerName (get address of the peer to which a socket is connected)
 BOOL
-CxSocket::bGetPeerName(tString *psPeerAddr, USHORT *pusPeerPort) {
+CxSocket::bGetPeerName(std::tstring *psPeerAddr, USHORT *pusPeerPort) {
     /*DEBUG*///psPeerAddr  - n/a
     /*DEBUG*///pusPeerPort - n/a
 
@@ -407,7 +402,7 @@ CxSocket::bGetPeerName(tString *psPeerAddr, USHORT *pusPeerPort) {
 //---------------------------------------------------------------------------
 //DONE: bGetSocketName (get local name for a socket)
 BOOL
-CxSocket::bGetSocketName(tString *psSocketAddr, USHORT *pusSocketPort) {
+CxSocket::bGetSocketName(std::tstring *psSocketAddr, USHORT *pusSocketPort) {
     /*DEBUG*///psPeerAddr  - n/a
     /*DEBUG*///pusPeerPort - n/a
 

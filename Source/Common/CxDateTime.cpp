@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxDateTime
-* Description: date, time
-* File name:   CxDateTime.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     12.06.2009 15:37:34
-*
-*****************************************************************************/
+/**
+ * \file  CxDateTime.cpp
+ * \brief date, time
+ */
 
 
 #include <xLib/Common/CxDateTime.h>
@@ -35,7 +30,7 @@ CxDateTime::CxDateTime() :
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
-    const tString     &csDT,
+    const std::tstring     &csDT,
     const EFormatType  cftFormat
 ) :
     _m_bRes             (FALSE),
@@ -536,15 +531,15 @@ CxDateTime::_ullToMilliseconds() const {
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-tString
+std::tstring
 CxDateTime::sFormat(
     const EFormatType cftFormat
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), tString());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), std::tstring());
     /*DEBUG*/// n/a
 
-    tString sRes;
+    std::tstring sRes;
 
     switch (cftFormat) {
         case ftTime: {
@@ -576,7 +571,7 @@ CxDateTime::sFormat(
             break;
 
         default: {
-                /*DEBUG*/xASSERT_RET(FALSE, tString());
+                /*DEBUG*/xASSERT_RET(FALSE, std::tstring());
             }
             break;
     }
@@ -805,7 +800,7 @@ NOTE: signs of the zodiac
 */
 
 /*static*/
-tString
+std::tstring
 CxDateTime::sGetZodiacSign(
     const USHORT cusMonth,
     const USHORT cusDay
@@ -864,11 +859,11 @@ CxDateTime::sGetZodiacSign(
 
     /*DEBUG*/xASSERT(FALSE);
 
-    return tString();
+    return std::tstring();
 }
 //---------------------------------------------------------------------------
 /*static*/
-tString
+std::tstring
 CxDateTime::sGetMonthStr(
     USHORT     usMonth,
     const BOOL cbIsShortName
@@ -880,11 +875,11 @@ CxDateTime::sGetMonthStr(
     xCHECK_DO(12 < usMonth, usMonth = 12);
     xCHECK_DO(1  > usMonth, usMonth = 1);
 
-    tString sRes;
+    std::tstring sRes;
 
     if (FALSE == cbIsShortName) {
         //monthes numbering: 1-12
-        const CxArray<tString, 12> casLongMonths = {{
+        const CxArray<std::tstring, 12> casLongMonths = {{
             xT("January"),
             xT("February"),
             xT("March"),
@@ -903,7 +898,7 @@ CxDateTime::sGetMonthStr(
     }
     else {
         //monthes numbering: 1-12
-        const CxArray<tString, 12> casShortMonths = {{
+        const CxArray<std::tstring, 12> casShortMonths = {{
             xT("Jan"),
             xT("Feb"),
             xT("Mar"),
@@ -927,14 +922,14 @@ CxDateTime::sGetMonthStr(
 /*static*/
 USHORT
 CxDateTime::usGetMonthNum(
-    const tString &csMonth,
+    const std::tstring &csMonth,
     const BOOL     cbIsShortName
 )
 {
     /*DEBUG*/
 
     //monthes numbering: 1-12
-    const CxArray<tString, 12> casLongMonths = {{
+    const CxArray<std::tstring, 12> casLongMonths = {{
         xT("January"),
         xT("February"),
         xT("March"),
@@ -950,7 +945,7 @@ CxDateTime::usGetMonthNum(
     }};
 
     //monthes numbering: 1-12
-    const CxArray<tString, 12> casShortMonths = {{
+    const CxArray<std::tstring, 12> casShortMonths = {{
         xT("Jan"),
         xT("Feb"),
         xT("Mar"),
@@ -974,7 +969,7 @@ CxDateTime::usGetMonthNum(
 }
 //---------------------------------------------------------------------------
 /*static*/
-tString
+std::tstring
 CxDateTime::sGetWeekDayStr(
     USHORT     usDay,
     const BOOL cbIsShortName
@@ -985,11 +980,11 @@ CxDateTime::sGetWeekDayStr(
 
     xCHECK_DO(6 < usDay, usDay = 6);
 
-    tString sRes;
+    std::tstring sRes;
 
     if (FALSE == cbIsShortName) {
         //days numbering: 0-6
-        const CxArray<tString, 7> casLongDays = {{
+        const CxArray<std::tstring, 7> casLongDays = {{
             xT("Sunday"),
             xT("Monday"),
             xT("Tuesday"),
@@ -1002,7 +997,7 @@ CxDateTime::sGetWeekDayStr(
         sRes = casLongDays[usDay];
     } else {
         //days numbering: 0-6
-        const CxArray<tString, 8> casShortDays = {{
+        const CxArray<std::tstring, 8> casShortDays = {{
             xT("Sun"),
             xT("Mon"),
             xT("Tue"),
@@ -1021,14 +1016,14 @@ CxDateTime::sGetWeekDayStr(
 /*static*/
 USHORT
 CxDateTime::usGetWeekDayNum(
-    const tString &csDay,
+    const std::tstring &csDay,
     const BOOL     cbIsShortName
 )
 {
     /*DEBUG*/
 
     //days numbering: 0-6
-    const CxArray<tString, 7> casLongDays = {{
+    const CxArray<std::tstring, 7> casLongDays = {{
         xT("Sunday"),
         xT("Monday"),
         xT("Tuesday"),
@@ -1039,7 +1034,7 @@ CxDateTime::usGetWeekDayNum(
     }};
 
     //days numbering: 0-6
-    const CxArray<tString, 7> casShortDays = {{
+    const CxArray<std::tstring, 7> casShortDays = {{
         xT("Sun"),
         xT("Mon"),
         xT("Tue"),
@@ -1069,7 +1064,7 @@ CxDateTime::usGetWeekDayNum(
 /*static*/
 BOOL
 CxDateTime::_bParse(
-    const tString     &csDT,
+    const std::tstring     &csDT,
     const EFormatType  cftFormat,
     CxDateTime        *pdtDT) {
     /*DEBUG*/
@@ -1096,14 +1091,14 @@ CxDateTime::_bParse(
                 //Wdy, DD Mon YYYY HH:MM:SS GMT (Wed, 23 Mar 2011 15:05:49 GMT)
 
                 //replace ":" to " ", "-" to " "
-                tString sDT;
+                std::tstring sDT;
 
                 sDT.assign(csDT);
                 sDT.assign( CxString::sReplaceAll(sDT, CxConst::xCOLON,  CxConst::xSPACE) );
                 sDT.assign( CxString::sReplaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE) );
 
                 //split by separator " "
-                std::vector<tString> vsDates;
+                std::vector<std::tstring> vsDates;
 
                 bRes = CxString::bSplit(sDT, CxConst::xSPACE, &vsDates);
                 /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);

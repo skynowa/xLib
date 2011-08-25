@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxComboBox
-* Description: работа с выпадающем списком
-* File name:   CxComboBox.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     24.07.2009 17:01:13
-*
-*****************************************************************************/
-
+/**
+ * \file  CxComboBox.cpp
+ * \brief combobox
+ */
 
 
 #include <xLib/Gui/CxComboBox.h>
@@ -22,7 +16,7 @@
 //DONE: CxComboBox
 CxComboBox::CxComboBox() {
     LOG();
-    
+
     //-------------------------------------
     //переопределяем параметры окна
     _m_sClassName     = xCXCOMBOBOX_CONTROL_CLASS;
@@ -50,9 +44,9 @@ BOOL CxComboBox::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,            FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -612,7 +606,7 @@ INT CxComboBox::iFindString(INT iIndexStart, LPCTSTR pcszFind) {
 ////
 ////    bRes = (BOOL)pSendMessage(CB_SETCURSEL, wIndex, 0);
 ////    /*DEBUG*///??? xASSERT_RET(FALSE != bRes, FALSE);
-////    
+////
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
@@ -623,18 +617,18 @@ INT CxComboBox::iFindString(INT iIndexStart, LPCTSTR pcszFind) {
 ////    BOOL bRes = FALSE;
 ////
 ////    try {
-////        bResetContent();      
+////        bResetContent();
 ////
 ////        //прочитать файл построчно
 ////        tifstream   ifsStream(csFilePath.c_str(), std::ios::in);
 ////        const ULONG culLineSize             = MAX_PATH;
-////        TCHAR       szLine[culLineSize + 1] = {0};    
-////        
+////        TCHAR       szLine[culLineSize + 1] = {0};
+////
 ////        while ((!ifsStream.eof()) && (!ifsStream.fail())) {
 ////            ifsStream.getline(szLine, culLineSize);                    //overflow!!!
 ////            if (0 != ::lstrlen(szLine)) {
-////                szLine[::lstrlen(szLine)] = _T('\0');        //удаляем "\r\n"    
-////            }            
+////                szLine[::lstrlen(szLine)] = _T('\0');        //удаляем "\r\n"
+////            }
 ////
 ////            bAddString(szLine);
 ////        }

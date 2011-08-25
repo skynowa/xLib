@@ -1,13 +1,7 @@
-/****************************************************************************
-* Class name:  CxStatusBar
-* Description: строка состояния
-* File name:   CxStatusBar.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     26.07.2009 23:49:15
-*
-*****************************************************************************/
-
+/**
+ * \file  CxStatusBar.cpp
+ * \brief status bar
+ */
 
 
 #include <xLib/Gui/CxStatusBar.h>
@@ -33,7 +27,7 @@ std::vector<INT> CxStatusBar::CXItems::CXItem::m_veciWidths;
 CxStatusBar::CxStatusBar() {
     /*DEBUG*/
 
-    LOG(); 
+    LOG();
 
     //-------------------------------------
     //переопределяем параметры окна
@@ -47,7 +41,7 @@ CxStatusBar::CxStatusBar() {
     _m_iHeight        = xCXSTATUSBAR_DEFAULT_HEIGHT;
 
     _m_bIsControl     = TRUE;
-    
+
     //TODO: _bInitCommonControls
     _bInitCommonControls(ICC_BAR_CLASSES);
 }
@@ -65,9 +59,9 @@ BOOL CxStatusBar::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pwndParent, FALSE);
 
-    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID), 
-                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID), 
-                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID), 
+    _m_bRes = CxWindow::bCreate(iID, pwndParent, _m_sClassName, CxResources::sGetText(iID),
+                                CxResources::iGetLeft  (iID), CxResources::iGetTop     (iID),
+                                CxResources::iGetWidth (iID), CxResources::iGetHeight  (iID),
                                 CxResources::ulGetStyle(iID), CxResources::ulGetStyleEx(iID),
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -84,7 +78,7 @@ BOOL CxStatusBar::bIsSimple() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes = xSNDMSG(BOOL, SB_ISSIMPLE, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return _m_bRes;
 }
@@ -95,7 +89,7 @@ BOOL CxStatusBar::bSetSimple(BOOL bFlag) {
     /*DEBUG*/// bFlag - n/a
 
     xSNDMSG(BOOL, SB_SIMPLE, bFlag, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -106,7 +100,7 @@ BOOL CxStatusBar::bSetUnicodeFormat(BOOL bFlag) {
     /*DEBUG*/// bFlag - n/a
 
     xSNDMSG(BOOL, SB_SETUNICODEFORMAT, bFlag, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -116,7 +110,7 @@ BOOL CxStatusBar::bIsUnicodeFormat() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
     _m_bRes =  xSNDMSG(BOOL, SB_GETUNICODEFORMAT, 0, 0);
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return _m_bRes;
 }
@@ -124,7 +118,7 @@ BOOL CxStatusBar::bIsUnicodeFormat() {
 //DONE: bSetMinHeight (Sets the minimum height of a status window's drawing area)
 BOOL CxStatusBar::bSetMinHeight(INT iHeight) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-    /*DEBUG*/// iHeight - n/a 
+    /*DEBUG*/// iHeight - n/a
 
     xSNDMSG(VOID, SB_SETMINHEIGHT, iHeight, 0);
     /*DEBUG*/// n/a
@@ -175,7 +169,7 @@ BOOL CxStatusBar::bSetBkColor(COLORREF crColor) {
 ////    INT iRes = 0;
 ////
 ////    ////_m_bRes = static_cast<BOOL>( xSNDMSG((UINT)SB_GETPARTS, (WPARAM)xxxx, (LPARAM)xxxx) );
-////    /////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+////    /////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 ////
 ////    return iRes;
 ////}
@@ -190,7 +184,7 @@ BOOL CxStatusBar::bSetBkColor(COLORREF crColor) {
 ////    ////m_veciParts.resize(m_iNumParts);
 ////
 ////    ////_m_bRes = xSNDMSG(BOOL, SB_SETPARTS, m_iNumParts, &m_veciParts);
-////    /////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+////    /////*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 ////
 ////    return TRUE;
 ////}
@@ -220,7 +214,7 @@ CxStatusBar::CXItems::~CXItems() {
 
     for (INT i = 0; i < (INT)_m_vecpItems.size(); ++ i) {
         xDELETE_PTR(_m_vecpItems.at(i));
-    }    
+    }
 }
 //---------------------------------------------------------------------------
 //DONE: bSetParent (установка дочернего CxStatusBar-а)
@@ -228,7 +222,7 @@ BOOL CxStatusBar::CXItems::bSetParent(CxStatusBar *pstaParent) {
     /*DEBUG*/// _m_pstaParent - n/a
     /*DEBUG*/xASSERT_RET(NULL != pstaParent, FALSE);
 
-    _m_pstaParent = pstaParent;       
+    _m_pstaParent = pstaParent;
 
     return TRUE;
 }
@@ -333,7 +327,7 @@ BOOL CxStatusBar::CXItems::bRemove(INT iIndex) {
     //-------------------------------------
     //установка параметров
     CXItem::m_veciWidths.erase(CXItem::m_veciWidths.begin() + iIndex);
-    xDELETE_PTR(_m_vecpItems.at(iIndex));    _m_vecpItems.erase(_m_vecpItems.begin() + iIndex);    
+    xDELETE_PTR(_m_vecpItems.at(iIndex));    _m_vecpItems.erase(_m_vecpItems.begin() + iIndex);
 
     //-------------------------------------
     //применение атрибутов
@@ -366,7 +360,7 @@ BOOL CxStatusBar::CXItems::bUpdateAll() {
 
     //-------------------------------------
     //если надо убрать все панели
-    if (true == _m_vecpItems.empty()) {            
+    if (true == _m_vecpItems.empty()) {
         /*DEBUG*/xASSERT_RET(true == CXItem::m_veciWidths.empty(), FALSE);
 
         CXItem::m_veciWidths.resize(1);
@@ -430,7 +424,7 @@ BOOL CxStatusBar::CXItems::bSetText(INT iIndex, const tString &csText, UINT uiTy
     /*DEBUG*///uiType    - n/a
 
     _m_bRes = xSNDMSG_API(BOOL, _m_pstaParent->hGetHandle(), SB_SETTEXT, iIndex | uiType, csText.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -455,7 +449,7 @@ BOOL CxStatusBar::CXItems::bSetTipText(INT iIndex, const tString &csText) {
     /*DEBUG*///csText    - n/a
 
     xSNDMSG_API(VOID, _m_pstaParent->hGetHandle(), SB_SETTIPTEXT, iIndex, csText.c_str());
-    /*DEBUG*/// n/a 
+    /*DEBUG*/// n/a
 
     return TRUE;
 }
@@ -468,7 +462,7 @@ HICON CxStatusBar::CXItems::hGetIcon(INT iIndex) {
     HICON hIcon = NULL;
 
     hIcon = xSNDMSG_API(HICON, _m_pstaParent->hGetHandle(), SB_GETICON, iIndex, 0);
-    /*DEBUG*/xASSERT_RET(NULL != hIcon, NULL); 
+    /*DEBUG*/xASSERT_RET(NULL != hIcon, NULL);
 
     return hIcon;
 }
@@ -480,7 +474,7 @@ BOOL CxStatusBar::CXItems::bSetIcon(INT iIndex, HICON hIcon) {
     /*DEBUG*///hIcon     - n/a
 
     _m_bRes = xSNDMSG_API(BOOL, _m_pstaParent->hGetHandle(), SB_SETICON, iIndex, hIcon/*NULL*/);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
@@ -511,7 +505,7 @@ INT CxStatusBar::CXItems::iGetWidth(INT iIndex)  {
     RECT rcRect = {0};
 
     _m_bRes = bGetRect(iIndex, &rcRect);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     iRes = rcRect.right - rcRect.left;
 
@@ -525,7 +519,7 @@ BOOL CxStatusBar::CXItems::bGetRect(INT iIndex, RECT *prcRect)  {
     /*DEBUG*/xASSERT_RET(NULL != prcRect, FALSE);
 
     _m_bRes = xSNDMSG_API(BOOL, _m_pstaParent->hGetHandle(), SB_GETRECT, iIndex, prcRect);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE); 
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }

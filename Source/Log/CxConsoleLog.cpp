@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxConsoleLog
-* Description: logging to console
-* File name:   CxConsoleLog.cpp
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     01.06.2009 17:53:59
-*
-*****************************************************************************/
+/**
+ * \file  CxConsoleLog.cpp
+ * \brief logging to console
+ */
 
 
 #include <xLib/Log/CxConsoleLog.h>
@@ -54,7 +49,7 @@ CxConsoleLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     //-------------------------------------
     //time
-    tString sTime;
+    std::tstring sTime;
 
     if (TRUE == _m_bIsUseTimeStr) {
         sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
@@ -64,7 +59,7 @@ CxConsoleLog::bWrite(LPCTSTR pcszFormat, ...) {
 
     //-------------------------------------
     //comment
-    tString sParam;
+    std::tstring sParam;
     va_list palArgs;
 
     xVA_START(palArgs, pcszFormat);

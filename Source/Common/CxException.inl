@@ -1,8 +1,6 @@
 /**
- * \file   CxException.inl
- * \brief  CxException (exception)
- * \author skynowa <skynowa@gmail.com>
- * \date   01.02.2011
+ * \file  CxException.inl
+ * \brief CxException (exception)
  */
 
 
