@@ -1,5 +1,6 @@
 /****************************************************************************
 * Class name:  xDefines
+* File name:   xDefines.h
 * Description: predefined macros
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
@@ -11,7 +12,7 @@
 #ifndef xLib_Common_xDefinesH
 #define xLib_Common_xDefinesH
 //---------------------------------------------------------------------------
-//DONE: OS family (http://predef.sourceforge.net/preos.html)
+// OS family (http://predef.sourceforge.net/preos.html)
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
     #define xOS_WIN
 #elif defined(linux) || defined(__linux) || defined(__linux__)
@@ -23,7 +24,7 @@
     #error xLib: unsupported OS
 #endif
 //---------------------------------------------------------------------------
-//DONE: OS architecture (http://predef.sourceforge.net/preos.html)
+// OS architecture (http://predef.sourceforge.net/preos.html)
 #if defined(i386) || defined(__i386__) || defined(__i486__) || defined(__i586__) || defined(__i686__) || defined(__i386) || defined(_M_IX86) || \
     defined(__X86__) || defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__I86__) || defined(__INTEL__)
 
@@ -36,7 +37,7 @@
     #error xLib: unsupported architectures
 #endif
 //---------------------------------------------------------------------------
-//DONE: Compilers
+// Compilers
 #if   defined(__MINGW32__)
     #define xCOMPILER_MINGW32
 #elif defined(__INTEL_COMPILER) || defined(__ICC) || defined(__ECC) || defined(__ICL)
@@ -51,7 +52,7 @@
     #error xLib: unsupported compiler
 #endif
 //---------------------------------------------------------------------------
-//DONE: unicode, ansi
+// unicode, ansi
 #if defined(UNICODE) || defined(_UNICODE)
 	#define xUNICODE
 #else

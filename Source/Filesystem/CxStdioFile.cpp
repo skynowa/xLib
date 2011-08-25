@@ -27,13 +27,12 @@
 #endif
 
 
-/****************************************************************************
+/********************************************************************//********
 *    public: constructors, destructor
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxStdioFile
 CxStdioFile::CxStdioFile() :
     _m_bRes     (FALSE),
     _m_pFile    (NULL),
@@ -41,7 +40,6 @@ CxStdioFile::CxStdioFile() :
 {
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxStdioFile
 CxStdioFile::~CxStdioFile() {
     /*DEBUG*/// n/a
 
@@ -57,7 +55,6 @@ CxStdioFile::~CxStdioFile() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bOpen (open)
 BOOL
 CxStdioFile::bOpen(
     const tString   &csFilePath,
@@ -87,7 +84,6 @@ CxStdioFile::bOpen(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bReopen (reopen with different file or mode)
 BOOL
 CxStdioFile::bReopen(
     const tString   &csFilePath,
@@ -117,7 +113,6 @@ CxStdioFile::bReopen(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bOpen (attach to stream)
 BOOL
 CxStdioFile::bOpen(
     FILE *pflFile
@@ -135,7 +130,6 @@ CxStdioFile::bOpen(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: pGet (get handle)
 FILE *
 CxStdioFile::pGet() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), NULL);
@@ -143,7 +137,6 @@ CxStdioFile::pGet() const {
     return _m_pFile;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetPath (get file path)
 tString
 CxStdioFile::sGetPath() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),              tString());
@@ -161,7 +154,6 @@ CxStdioFile::sGetPath() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: uiRead (read block of data)
 size_t
 CxStdioFile::uiRead(
     LPVOID       pvBuff,
@@ -179,7 +171,6 @@ CxStdioFile::uiRead(
     return uiRes;
 }
 //---------------------------------------------------------------------------
-//DONE: uiWrite (write block of data)
 size_t
 CxStdioFile::uiWrite(
     const LPVOID pcvBuff,
@@ -197,7 +188,6 @@ CxStdioFile::uiWrite(
     return uiRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bRead (read to uString)
 BOOL
 CxStdioFile::bRead(
     uString *psBuff
@@ -222,7 +212,6 @@ CxStdioFile::bRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bWrite (write from uString)
 BOOL
 CxStdioFile::bWrite(
     const uString &csBuff
@@ -239,7 +228,6 @@ CxStdioFile::bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bRead (read to tString)
 BOOL
 CxStdioFile::bRead(
     tString *psBuff
@@ -264,7 +252,6 @@ CxStdioFile::bRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: iWrite(Write formatted output to stream)
 INT
 CxStdioFile::iWrite(
     LPCTSTR pcszFormat, ...
@@ -286,7 +273,6 @@ CxStdioFile::iWrite(
     return iRes;
 }
 //---------------------------------------------------------------------------
-//DONE: iWriteV (Write formatted variable argument list to stream)
 INT
 CxStdioFile::iWriteV(
     LPCTSTR pcszFormat,
@@ -305,7 +291,6 @@ CxStdioFile::iWriteV(
     return iRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bReadLine (read string to newline or to the end of file)
 BOOL
 CxStdioFile::bReadLine(
     tString      *psStr,
@@ -336,7 +321,6 @@ CxStdioFile::bReadLine(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bWriteLine (writes string and '\n')
 BOOL
 CxStdioFile::bWriteLine(
     const tString &csStr
@@ -355,7 +339,7 @@ CxStdioFile::bWriteLine(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: chReadChar (get character)
+//TODO: chReadChar
 TCHAR
 CxStdioFile::chReadChar() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -368,7 +352,7 @@ CxStdioFile::chReadChar() const {
     return static_cast<TCHAR>(iRes);
 }
 //---------------------------------------------------------------------------
-//TODO: bWriteChar (write character)
+//TODO: bWriteChar
 BOOL
 CxStdioFile::bWriteChar(
     const TCHAR ccChar
@@ -385,7 +369,7 @@ CxStdioFile::bWriteChar(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bUngetChar (Unget character from stream)
+//TODO: bUngetChar
 BOOL
 CxStdioFile::bUngetChar(
     const TCHAR ccChar
@@ -402,7 +386,6 @@ CxStdioFile::bUngetChar(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear (clear)
 BOOL
 CxStdioFile::bClear() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -418,7 +401,6 @@ CxStdioFile::bClear() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bLocking (Locks or unlocks bytes of a file)
 BOOL
 CxStdioFile::bLocking(
     const ELockingMode clmMode,
@@ -444,7 +426,6 @@ CxStdioFile::bLocking(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetPosition (REFilePosition stream position indicator)
 BOOL
 CxStdioFile::bSetPosition(
     const LONG             clOffset,
@@ -461,7 +442,6 @@ CxStdioFile::bSetPosition(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: liGetPosition (Get current position in stream)
 LONG
 CxStdioFile::liGetPosition() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -474,7 +454,6 @@ CxStdioFile::liGetPosition() const {
     return liRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetVBuff (Change stream buffering)
 BOOL
 CxStdioFile::bSetVBuff(
     LPSTR                pszBuff,
@@ -494,7 +473,6 @@ CxStdioFile::bSetVBuff(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetMode (Sets the file translation mode)
 #if defined(xOS_WIN)
 BOOL
 CxStdioFile::bSetMode(
@@ -513,11 +491,8 @@ CxStdioFile::bSetMode(
 
     return TRUE;
 }
-#elif defined(xOS_LINUX)
-    //TODO: bSetMode
 #endif
 //---------------------------------------------------------------------------
-//DONE: liGetSize (get file size)
 //NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
 LONG
 CxStdioFile::liGetSize() const {
@@ -540,7 +515,6 @@ CxStdioFile::liGetSize() const {
     return liStreamSize;
 }
 //---------------------------------------------------------------------------
-//DONE: bResize(changes the file size)
 BOOL
 CxStdioFile::bResize(
     const LONG cliSize
@@ -575,7 +549,6 @@ CxStdioFile::bResize(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsValid (validating handle)
 BOOL
 CxStdioFile::bIsValid() const {
     /*DEBUG*/
@@ -583,7 +556,6 @@ CxStdioFile::bIsValid() const {
     return static_cast<BOOL>( NULL != _m_pFile );
 }
 //---------------------------------------------------------------------------
-//DONE: bIsOpen (is open)
 BOOL
 CxStdioFile::bIsOpen() const {
     /*DEBUG*/// n/a
@@ -591,7 +563,6 @@ CxStdioFile::bIsOpen() const {
     return bIsValid();
 }
 //---------------------------------------------------------------------------
-//DONE: bIsEmpty (is empty)
 BOOL
 CxStdioFile::bIsEmpty() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -602,7 +573,6 @@ CxStdioFile::bIsEmpty() const {
     return static_cast<BOOL>( 0L == liFileSize);
 }
 //---------------------------------------------------------------------------
-//DONE: bIsEof (check end of file indicator)
 BOOL
 CxStdioFile::bIsEof() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -613,7 +583,6 @@ CxStdioFile::bIsEof() const {
     return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsError (check error indicator)
 BOOL
 CxStdioFile::bIsError() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -624,7 +593,7 @@ CxStdioFile::bIsError() const {
     return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bErrorClear (clear error indicators)
+
 BOOL
 CxStdioFile::bErrorClear() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -643,7 +612,6 @@ CxStdioFile::bErrorClear() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bFlush (flush)
 BOOL
 CxStdioFile::bFlush() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -656,7 +624,6 @@ CxStdioFile::bFlush() const {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClose (close)
 BOOL
 CxStdioFile::bClose() {
     /*DEBUG*/// _m_pFile - n/a
@@ -682,7 +649,6 @@ CxStdioFile::bClose() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsFile (check for file)
 /*static*/
 BOOL
 CxStdioFile::bIsFile(
@@ -716,7 +682,6 @@ CxStdioFile::bIsFile(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsExists (check for existence)
 /*static*/
 BOOL
 CxStdioFile::bIsExists(
@@ -736,7 +701,6 @@ CxStdioFile::bIsExists(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bAccess (determine file-access permission)
 /*static*/
 BOOL
 CxStdioFile::bAccess(
@@ -755,7 +719,6 @@ CxStdioFile::bAccess(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bChmod (change the file-permission settings)
 /*static*/
 BOOL
 CxStdioFile::bChmod(
@@ -779,7 +742,6 @@ CxStdioFile::bChmod(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear ()
 /*static*/
 BOOL
 CxStdioFile::bClear(
@@ -800,7 +762,6 @@ CxStdioFile::bClear(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bDelete (deleting)
 /*static*/
 BOOL
 CxStdioFile::bDelete(
@@ -823,7 +784,6 @@ CxStdioFile::bDelete(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTryDelete (try deleting, max 100 attempts)
 /*static*/
 BOOL
 CxStdioFile::bTryDelete(
@@ -852,7 +812,6 @@ CxStdioFile::bTryDelete(
     return bIsDeleted;
 }
 //---------------------------------------------------------------------------
-//DONE: bWipe (wipe)
 /*static*/
 BOOL
 CxStdioFile::bWipe(
@@ -966,7 +925,6 @@ CxStdioFile::bWipe(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bUnlink (deleting)
 /*static*/
 BOOL
 CxStdioFile::bUnlink(
@@ -983,7 +941,6 @@ CxStdioFile::bUnlink(
     return FALSE;
 }
 //---------------------------------------------------------------------------
-//DONE: bRename (renaming)
 /*static*/
 BOOL
 CxStdioFile::bRename(
@@ -1002,7 +959,6 @@ CxStdioFile::bRename(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bMove (move)
 /*static*/
 BOOL
 CxStdioFile::bMove(
@@ -1021,7 +977,6 @@ CxStdioFile::bMove(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bCopy (copy)
 /*static*/
 BOOL
 CxStdioFile::bCopy(
@@ -1079,7 +1034,6 @@ CxStdioFile::bCopy(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: liGetSize (size)
 /*static*/
 LONG
 CxStdioFile::liGetSize(
@@ -1102,7 +1056,6 @@ CxStdioFile::liGetSize(
     return liRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ullGetLines (get number of lines)
 /*static*/
 ULONGLONG
 CxStdioFile::ullGetLines(
@@ -1125,7 +1078,7 @@ CxStdioFile::ullGetLines(
     return ullRes;
 }
 //---------------------------------------------------------------------------
-//TODO:: bGetTime (get time)
+//TODO: bGetTime (get time)
 /*static*/
 BOOL
 CxStdioFile::bGetTime(
@@ -1213,7 +1166,6 @@ CxStdioFile::bSetTime(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sTempCreate (create temporary file, open it)
 /*static*/
 tString
 CxStdioFile::sTempCreate(
@@ -1258,7 +1210,6 @@ CxStdioFile::sTempCreate(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bTempClose (close temporary file)
 /*static*/
 BOOL
 CxStdioFile::bTempClose(
@@ -1285,7 +1236,6 @@ CxStdioFile::bTempClose(
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-//DONE: bTextRead (read to tString)
 /*static*/
 BOOL
 CxStdioFile::bTextRead(
@@ -1319,7 +1269,6 @@ CxStdioFile::bTextRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTextWrite (write tString)
 /*static*/
 BOOL
 CxStdioFile::bTextWrite(
@@ -1346,7 +1295,6 @@ CxStdioFile::bTextWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTextRead (read to std::vector)
 /*static*/
 BOOL
 CxStdioFile::bTextRead(
@@ -1374,7 +1322,6 @@ CxStdioFile::bTextRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTextWrite (write std::vector)
 /*static*/
 BOOL
 CxStdioFile::bTextWrite(
@@ -1398,7 +1345,6 @@ CxStdioFile::bTextWrite(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: bTextRead (read text to std::map)
 /*static*/
 BOOL
 CxStdioFile::bTextRead(
@@ -1467,7 +1413,6 @@ CxStdioFile::bTextRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTextWrite (write text from std::map)
 /*static*/
 BOOL
 CxStdioFile::bTextWrite(
@@ -1524,7 +1469,6 @@ CxStdioFile::bTextWrite(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bBinRead (read binary data)
 /*static*/
 BOOL
 CxStdioFile::bBinRead(
@@ -1559,7 +1503,6 @@ CxStdioFile::bBinRead(
 
 }
 //---------------------------------------------------------------------------
-//DONE: bBinWrite (write binary data)
 /*static*/
 BOOL
 CxStdioFile::bBinWrite(
@@ -1594,7 +1537,6 @@ CxStdioFile::bBinWrite(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sBackup (backup)
 /*static*/
 tString
 CxStdioFile::sBackup(
@@ -1661,7 +1603,6 @@ CxStdioFile::sBackup(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _iGetHandle (Gets the file descriptor associated with a stream)
 /*static*/
 INT
 CxStdioFile::_iGetHandle(
@@ -1678,7 +1619,6 @@ CxStdioFile::_iGetHandle(
     return iRes;
 }
 //---------------------------------------------------------------------------
-//DONE: _pfGetHandle (get stream by handle)
 /*static*/
 FILE *
 CxStdioFile::_pfGetHandle(
@@ -1697,7 +1637,6 @@ CxStdioFile::_pfGetHandle(
     return pfRes;
 }
 //---------------------------------------------------------------------------
-//DONE: _sGetOpenMode (get open mode as string, by default use "r")
 /*static*/
 tString
 CxStdioFile::_sGetOpenMode(
