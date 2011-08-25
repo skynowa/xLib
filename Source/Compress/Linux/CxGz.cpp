@@ -11,6 +11,12 @@
 
 #include <xLib/Compress/Linux/CxGz.h>
 
+#if defined(xOS_WIN)
+
+#elif defined(xOS_LINUX)
+    //-lz
+#endif
+
 
 /****************************************************************************
 *    public

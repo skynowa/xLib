@@ -11,6 +11,14 @@
 
 #include <xLib/Net/CxSocketInit.h>
 
+#if defined(xOS_WIN)
+    #if defined(xCOMPILER_MS)
+        #pragma comment(lib, "WS2_32.Lib")
+    #endif
+#elif defined(xOS_LINUX)
+    // n/a
+#endif
+
 
 /****************************************************************************
 *    public

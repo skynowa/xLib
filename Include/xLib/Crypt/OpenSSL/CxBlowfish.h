@@ -14,14 +14,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <openssl/blowfish.h>
-
-#if defined(xOS_WIN)
-	#if defined(xCOMPILER_MS)
-		#pragma comment(lib, "libeay32.lib")
-	#endif
-#elif defined(xOS_LINUX)
-    // -lssl
-#endif
 //---------------------------------------------------------------------------
 class CxBlowfish :
     public CxNonCopyable

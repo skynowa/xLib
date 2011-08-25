@@ -15,9 +15,6 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Common/CxDateTime.h>
-
-
-
 //---------------------------------------------------------------------------
 class CxProfiler :
     public CxNonCopyable

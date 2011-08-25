@@ -16,6 +16,14 @@
 #include <xLib/Debug/CxProfiler.h>
 #include <xLib/Crypt/CxCrc32.h>
 
+#if defined(xOS_WIN)
+    #if defined(xCOMPILER_MS)
+        #pragma comment(lib, "libeay32.lib")
+    #endif
+#elif defined(xOS_LINUX)
+    // -lssl
+#endif
+
 
 /****************************************************************************
 *    public
