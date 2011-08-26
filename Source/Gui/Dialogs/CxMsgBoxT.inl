@@ -14,7 +14,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: iShow
 #if defined(xOS_WIN)
 template <class TextT, class TitleT>
 /*static*/
@@ -34,7 +33,6 @@ CxMsgBoxT::iShow(
 }
 #endif
 //---------------------------------------------------------------------------
-//DONE: iShow
 template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::EModalResult
@@ -49,13 +47,18 @@ CxMsgBoxT::iShow(
 #if defined(xOS_WIN)
     mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), CxString::lexical_cast(cTitle).c_str(), cuiType) );
 #elif defined(xOS_LINUX)
-    mrRes = CxConsole::iMsgBox(CxString::lexical_cast(cText), CxString::lexical_cast(cTitle), cuiType);
+    std::tstring sMsg = CxString::sFormat(
+                            xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
+                            CxString::lexical_cast(cText).c_str(),
+                            CxString::lexical_cast(cTitle).c_str(),
+                            xT("Abort, Ignore, Retry"));
+
+    mrRes = static_cast<EModalResult>( _tsystem(sMsg.c_str()) );
 #endif
 
     return mrRes;
 }
 //---------------------------------------------------------------------------
-//DONE: iShow
 template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::EModalResult
@@ -69,13 +72,18 @@ CxMsgBoxT::iShow(
 #if defined(xOS_WIN)
     mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), CxString::lexical_cast(cTitle).c_str(), MB_OK) );
 #elif defined(xOS_LINUX)
-    mrRes = CxConsole::iMsgBox((CxString::lexical_cast(cText), CxString::lexical_cast(cTitle), 0U);
+    std::tstring sMsg = CxString::sFormat(
+                            xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
+                            CxString::lexical_cast(cText).c_str(),
+                            CxString::lexical_cast(cTitle).c_str(),
+                            xT("Ok"));
+
+    mrRes = static_cast<EModalResult>( _tsystem(sMsg.c_str()) );
 #endif
 
     return mrRes;
 }
 //---------------------------------------------------------------------------
-//DONE: iShow
 template <class TextT>
 /*static*/
 CxMsgBoxT::EModalResult
@@ -86,9 +94,15 @@ CxMsgBoxT::iShow(
     EModalResult mrRes = mrAbort;
 
 #if defined(xOS_WIN)
-	mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), std::tstring().c_str(), MB_OK) );
+    mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), std::tstring().c_str(), MB_OK) );
 #elif defined(xOS_LINUX)
-    mrRes = CxConsole::iMsgBox((CxString::lexical_cast(cText), CxConst::xSTR_EMPTY, 0U);
+    std::tstring sMsg = CxString::sFormat(
+                            xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
+                            CxString::lexical_cast(cText).c_str(),
+                            CxConst::xSTR_EMPTY.c_str(),
+                            xT("Ok"));
+
+    mrRes = static_cast<EModalResult>( _tsystem(sMsg.c_str()) );
 #endif
 
     return mrRes;

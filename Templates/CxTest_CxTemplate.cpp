@@ -1,32 +1,27 @@
-/****************************************************************************
-* Class name:  CxTest_CxTemplate
-* Description: test CxTemplate
-* File name:   CxTemplate.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_[CxTemplate].cpp
+ * \brief  test [CxTemplate]
+ */
 
 
-#include <Test/xxxxxxxxx/CxTest_CxTemplate.h>
+#include <Test/xxxxxxxxx/CxTest_[CxTemplate].h>
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxTemplate
-CxTest_CxTemplate::CxTest_CxTemplate() {
+CxTest_[CxTemplate]::CxTest_[CxTemplate]() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxTemplate
-CxTest_CxTemplate::~CxTest_CxTemplate() {
+CxTest_[CxTemplate]::~CxTest_[CxTemplate]() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
-CxTest_CxTemplate::bUnit() {
+CxTest_[CxTemplate]::bUnit(
+    const ULONGLONG cullBlockLoops
+)
+{
 
 
     return TRUE;

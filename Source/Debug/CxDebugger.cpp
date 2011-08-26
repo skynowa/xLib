@@ -9,13 +9,12 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxConsole.h>
-
-
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Sync/CxProcess.h>
+#include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 #if defined(xOS_WIN)
-    #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxRtf.h>
 #elif defined(xOS_LINUX)
     #if xTEMP_DISABLED
@@ -30,11 +29,10 @@
 *
 *****************************************************************************/
 
-BOOL    CxDebugger::_ms_bIsEnabled = TRUE;
+BOOL         CxDebugger::_ms_bIsEnabled = TRUE;
 std::tstring CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
-//DONE: bGetEnabled (is debugging enabled)
 /*static*/
 BOOL
 CxDebugger::bGetEnabled() {
@@ -43,7 +41,6 @@ CxDebugger::bGetEnabled() {
     return _ms_bIsEnabled;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetEnabled (set debugging mode on/off)
 /*static*/
 BOOL
 CxDebugger::bSetEnabled(
@@ -57,33 +54,30 @@ CxDebugger::bSetEnabled(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsPresent (is OS debugger presents)
 /*static*/
 BOOL
 CxDebugger::bIsPresent() {
     /*DEBUG*/// n/a
 
-    BOOL bRes = FALSE;
-
 #if defined(xOS_WIN)
-    bRes = ::IsDebuggerPresent();
+    BOOL bRes = ::IsDebuggerPresent();
     xCHECK_RET(FALSE == bRes, FALSE);
-    ////::CheckRemoteDebuggerPresent()
+
+    #if xTODO
+        ::CheckRemoteDebuggerPresent()
+    #endif
 #elif defined(xOS_LINUX)
-    xUNUSED(bRes);
-    //TODO: bIsPresent
-    ////bRes = std::getenv("xLIB_ENABLE_DEBUGGER");
-    ////xCHECK_RET(FALSE == bRes, FALSE);
+    std::tstring sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
+    xCHECK_RET(FALSE == CxString::bCompareNoCase(xT("yes"), sRes), FALSE);
 #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bBreak (attach to OS debugger)
 /*static*/
 BOOL
 CxDebugger::bBreak() {
-    /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/// n/a
 
 #if defined(xOS_WIN)
@@ -102,7 +96,6 @@ CxDebugger::bBreak() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetLogPath (set log file path)
 /*static*/
 BOOL
 CxDebugger::bSetLogPath(
@@ -116,7 +109,6 @@ CxDebugger::bSetLogPath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetLogPath (get log file path)
 /*static*/
 std::tstring
 CxDebugger::sGetLogPath() {
@@ -125,7 +117,6 @@ CxDebugger::sGetLogPath() {
     return _ms_sLogPath;
 }
 //---------------------------------------------------------------------------
-//DONE: bReportMake (make report)
 /*static*/
 BOOL
 CxDebugger::bReportMake(
@@ -157,7 +148,6 @@ CxDebugger::bReportMake(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTrace (tracing to debugger, std::cout)
 /*static*/
 BOOL
 CxDebugger::bTrace(
@@ -165,7 +155,7 @@ CxDebugger::bTrace(
 )
 {
     /*DEBUG*/
-    /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
     std::tstring sRes;
 
@@ -176,7 +166,7 @@ CxDebugger::bTrace(
 
 #if defined(xOS_WIN)
     ::OutputDebugString(sRes.c_str());
-    /*CHECK*/// n/a
+    /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
     // n/a
 #endif
@@ -186,7 +176,6 @@ CxDebugger::bTrace(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTrace (tracing to debugger, std::cout)
 /*static*/
 BOOL
 CxDebugger::bTrace(
@@ -194,13 +183,12 @@ CxDebugger::bTrace(
 )
 {
     /*DEBUG*/
-    /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
     return bTrace(csMsg.c_str());
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//TODO: bBeep (play sound)
 /*static*/
 BOOL
 CxDebugger::bBeep(
@@ -257,29 +245,31 @@ CxDebugger::bBeep(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxDebugger
 CxDebugger::CxDebugger() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxDebugger
 /*virtual*/
 CxDebugger::~CxDebugger() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: _bMsgboxPlain (show MessageBox)
 /*static*/
 BOOL
 CxDebugger::_bMsgboxPlain(
     const CxReport &crpReport
 )
 {
-    /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
 #if defined(xOS_WIN)
-    CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.sGetReport(), CxPath::sGetExe(), MB_ABORTRETRYIGNORE | MB_ICONSTOP);
+    ULONG ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
+#elif defined(xOS_LINUX)
+    ULONG ulType = 1;
+#endif
+
+    CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.sGetReport(), CxPath::sGetExe(), ulType);
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
                 CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
@@ -296,28 +286,23 @@ CxDebugger::_bMsgboxPlain(
                 if (TRUE == bIsPresent()) {
                     bBreak();
                 } else {
-                    CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"), MB_OK | MB_ICONWARNING);
+                    CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
                     CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
                 }
             }
             break;
     }
-#elif defined(xOS_LINUX)
-    //TODO: bMsgboxPlain
-    return FALSE;
-#endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bMsgboxFormated (show MessageBox or std::cerr)
 /*static*/
 BOOL
 CxDebugger::_bMsgboxFormated(
     const CxReport &crpReport
 )
 {
-    /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
 #if defined(xOS_WIN)
@@ -401,14 +386,13 @@ CxDebugger::_bMsgboxFormated(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bStdoutPlain (show plain report in std::cout)
 /*static*/
 BOOL
 CxDebugger::_bStdoutPlain(
     const CxReport &crpReport
 )
 {
-    /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
     enum EConsoleCmd {
@@ -463,14 +447,13 @@ CxDebugger::_bStdoutPlain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bStdoutHtml (show html report in std::cout)
 /*static*/
 BOOL
 CxDebugger::_bStdoutHtml(
     const CxReport &crpReport
 )
 {
-    /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
 
     enum EConsoleCmd {
@@ -528,19 +511,14 @@ CxDebugger::_bStdoutHtml(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bLoggingPlain (log to file)
 /*static*/
 BOOL
 CxDebugger::_bLoggingPlain(
     const CxReport &crpReport
 )
 {
-    /*CHECK*/xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
     /*DEBUG*/
-
-    #if xTEMP_DISABLED
-        _tsetlocale(LC_ALL, xT(""));
-    #endif
 
     //--------------------------------------------------
     //get log file path
@@ -568,14 +546,13 @@ CxDebugger::_bLoggingPlain(
 
         _ftprintf(pFile, xT("%s"), csMsg.data());
     }
-    catch (...) {}
+    catch (...) { }
 
     xFCLOSE(pFile);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: _bLoggingHtml (log html report)
 /*static*/
 BOOL
 CxDebugger::_bLoggingHtml(

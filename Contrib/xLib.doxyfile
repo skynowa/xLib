@@ -634,13 +634,13 @@ RECURSIVE              = YES
 # subdirectory from a directory tree whose root is specified with the INPUT tag.
 
 EXCLUDE                = ../Include/xLib/Pkcs11/Win/SDK \
-                         ../Include/xLib/Gui \
-                         ../Source/Gui \
                          . \
                          ../Library \
                          ../Libs \
                          ../Templates \
-                         ../Tests
+                         ../Tests \
+                         ../Include/xLib/Gui/Win \
+                         ../Source/Gui/Win
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or 
 # directories that are symbolic links (a Unix file system feature) are excluded 

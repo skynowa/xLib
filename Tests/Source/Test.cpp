@@ -124,6 +124,8 @@
 #endif
 
 //Gui
+#include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
+
 #if defined(xOS_WIN)
     #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
     #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
@@ -305,6 +307,8 @@ _tmain(
     #endif
 
         //Gui
+        bRes = tmManager.bAdd(new CxTest_CxMsgBoxT);
+
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxGdiplus);
         bRes = tmManager.bAdd(new CxTest_CxImage);

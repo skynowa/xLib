@@ -65,6 +65,7 @@ SOURCE_SUBDIRS			:=	.\
 					Net \
 					Patterns \
 					Sync \
+					Gui/Dialogs \
 					Units
 
 LIB_DIRS           		:= 	/usr/local/crystal_trader2.5/lib \

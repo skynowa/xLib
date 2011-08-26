@@ -1,28 +1,25 @@
-/****************************************************************************
-* Class name:  CxTemplate
-* Description: 
-* File name:   CxTemplate.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     
-*
-*****************************************************************************/
+/**
+ * \file   [CxTemplate].h
+ * \brief
+ */
 
 
-#ifndef xLib_CxTemplateH
-#define xLib_CxTemplateH
+#ifndef xLib_[CxTemplate]H
+#define xLib_[CxTemplate]H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxTemplate : 
-    public CxNonCopyable 
+class [CxTemplate] :
+    public CxNonCopyable
 {
 	public:
-				 CxTemplate();
-		virtual ~CxTemplate();
-        
+				 [CxTemplate]();
+            ///< constructor
+		virtual ~[CxTemplate]();
+		    ///< destructor
+
     private:
-      
+
 };
 //---------------------------------------------------------------------------
-#endif //xLib_CxTemplateH
+#endif //xLib_[CxTemplate]H

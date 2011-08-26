@@ -17,7 +17,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sBoolToStr
 /*static*/
 std::tstring
 CxString::sBoolToStr(
@@ -29,7 +28,6 @@ CxString::sBoolToStr(
     return (FALSE == cbBool) ? xT("FALSE") : xT("TRUE");
 }
 //---------------------------------------------------------------------------
-//DONE: bStrToBool
 /*static*/
 BOOL
 CxString::bStrToBool(
@@ -44,7 +42,6 @@ CxString::bStrToBool(
     return FALSE;
 }
 //---------------------------------------------------------------------------
-//DONE: sTrimLeftChars
 /*static*/
 std::tstring
 CxString::sTrimLeftChars(
@@ -61,7 +58,6 @@ CxString::sTrimLeftChars(
     return sRes.erase(0, sRes.find_first_not_of(csChars));
 }
 //---------------------------------------------------------------------------
-//DONE: sTrimRightChars
 /*static*/
 std::tstring
 CxString::sTrimRightChars(
@@ -78,7 +74,6 @@ CxString::sTrimRightChars(
     return sRes.erase(sRes.find_last_not_of(csChars) + 1);
 }
 //---------------------------------------------------------------------------
-//DONE: sTrimChars
 /*static*/
 std::tstring
 CxString::sTrimChars(
@@ -98,7 +93,6 @@ CxString::sTrimChars(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sTrimSpace
 /*static*/
 std::tstring
 CxString::sTrimSpace(
@@ -110,7 +104,6 @@ CxString::sTrimSpace(
     return sTrimChars(csStr, CxConst::xWHITE_SPACES);
 }
 //---------------------------------------------------------------------------
-//DONE: sRemoveEol
 /*static*/
 std::tstring
 CxString::sRemoveEol(
@@ -122,7 +115,6 @@ CxString::sRemoveEol(
     return sTrimRightChars(csStr, CxConst::xEOL);
 }
 //---------------------------------------------------------------------------
-//DONE: sReplaceAll
 /*static*/
 std::tstring
 CxString::sReplaceAll(
@@ -155,7 +147,6 @@ CxString::sReplaceAll(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sReplaceAll
 /*static*/
 std::tstring
 CxString::sReplaceAll(
@@ -171,7 +162,6 @@ CxString::sReplaceAll(
     return sReplaceAll(csStr, std::tstring(1, cchOldStr), std::tstring(1, cchNewStr));
 }
 //---------------------------------------------------------------------------
-//DONE: sRemoveAll
 /*static*/
 std::tstring
 CxString::sRemoveAll(
@@ -185,7 +175,6 @@ CxString::sRemoveAll(
     return sReplaceAll(csStr, csRemoveStr, std::tstring());
 }
 //---------------------------------------------------------------------------
-//DONE: СЂР°Р·Р±РёРІР°РµС‚ СЃС‚СЂРѕРєСѓ РЅР° С„СЂР°РіРјРµРЅС‚С‹ РїРѕ СЃРёРјРІРѕР»Сѓ-СЂР°Р·РґРµР»РёС‚РµР»СЋ, РІРѕР·РІСЂР°С‰Р°СЏ РјР°СЃСЃРёРІ СЃС‚СЂРѕРє (vector)
 /*static*/
 BOOL
 CxString::bSplit(
@@ -203,8 +192,8 @@ CxString::bSplit(
     xCHECK_RET(NULL == pvsOut,        FALSE);
 
     std::vector<std::tstring> vsRes;
-    size_t               uiPrevPos = 0;     //start of string
-    size_t               uiPos     = 0;
+    size_t                    uiPrevPos = 0;     //start of string
+    size_t                    uiPos     = 0;
 
     for ( ; ; ) {
         uiPos = csStr.find(csSep, uiPrevPos);
@@ -222,7 +211,6 @@ CxString::bSplit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sJoin ("СЃРєР»РµРёРІР°РµС‚" СЃС‚СЂРѕРєРё РІРµРєС‚РѕСЂР° СЃРёРјРІРѕР»РѕРј-СЂР°Р·РґРµР»РёС‚РµР»РµРј)
 /*static*/
 std::tstring
 CxString::sJoin(
@@ -244,12 +232,11 @@ CxString::sJoin(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sJoin ("СЃРєР»РµРёРІР°РµС‚" СЃС‚СЂРѕРєРё РІРµРєС‚РѕСЂР° СЃРёРјРІРѕР»РѕРј-СЂР°Р·РґРµР»РёС‚РµР»РµРј)
 /*static*/
 std::tstring
 CxString::sJoin(
     const std::vector<std::tstring> &cvsVec,
-    const TCHAR                 cchSep
+    const TCHAR                      cchSep
 )
 {
     /*DEBUG*/// cvsVec - n/a
@@ -258,7 +245,6 @@ CxString::sJoin(
     return sJoin(cvsVec, std::tstring(1, cchSep));
 }
 //---------------------------------------------------------------------------
-//DONE: sCut
 /*static*/
 std::tstring
 CxString::sCut(
@@ -286,7 +272,6 @@ CxString::sCut(
     return csStr.substr(uiStartDelimPos, uiStopDelimPos - uiStartDelimPos);
 }
 //---------------------------------------------------------------------------
-//DONE: sCut
 /*static*/
 std::tstring
 CxString::sCut(
@@ -295,15 +280,6 @@ CxString::sCut(
     const size_t  cuiEndPos   /*= std::tstring:npos*/
 )
 {
-    /*
-    + Р•СЃР»Рё indexA = indexB, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°
-    + Р•СЃР»Рё indexB РЅРµ СѓРєР°Р·Р°РЅ, substring РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРёРјРІРѕР»С‹ РґРѕ РєРѕРЅС†Р° СЃС‚СЂРѕРєРё
-    - Р•СЃР»Рё РєР°РєРѕР№-С‚Рѕ РёР· Р°СЂРіСѓРјРµРЅС‚РѕРІ РјРµРЅСЊС€Рµ 0 РёР»Рё СЏРІР»СЏРµС‚СЃСЏ NaN - РѕРЅ СЃС‡РёС‚Р°РµС‚СЃСЏ СЂР°РІРЅС‹Рј 0
-    + Р•СЃР»Рё РєР°РєРѕР№-С‚Рѕ РёР· Р°СЂРіСѓРјРµРЅС‚РѕРІ Р±РѕР»СЊС€Рµ, С‡РµРј РґР»РёРЅР° СЃС‚СЂРѕРєРё - РѕРЅ СЃС‡РёС‚Р°РµС‚СЃСЏ СЂР°РІРЅС‹Рј РґР»РёРЅРµ СЃС‚СЂРѕРєРё
-    + Р•СЃР»Рё indexA > indexB, С‚РѕРіРґР° substring РІРµРґРµС‚ СЃРµР±СЏ, РєР°Рє Р±СѓРґС‚Рѕ Р°СЂРіСѓРјРµРЅС‚С‹ РїРѕРјРµРЅСЏР»РёСЃСЊ РјРµСЃС‚Р°РјРё.
-    - Р•СЃР»Рё СЃС‚СЂРѕРєР° РЅРµ РЅР°Р№РґРµРЅР°, РІС‹Р·РѕРІ РІРѕР·РІСЂР°С‰Р°РµС‚ -1
-    */
-
     xCHECK_RET(true        == csStr.empty(), std::tstring());
     xCHECK_RET(cuiStartPos >  cuiEndPos,     std::tstring());
 
@@ -312,7 +288,6 @@ CxString::sCut(
     return csStr.substr(cuiStartPos, uiSize);
 }
 //---------------------------------------------------------------------------
-//DONE: sToLowerCase (convert to lowcase)
 /*static*/
 std::tstring
 CxString::sToLowerCase(
@@ -324,7 +299,6 @@ CxString::sToLowerCase(
     return sToLowerCase(csStr, csStr.size());
 }
 //---------------------------------------------------------------------------
-//DONE: sToUpperCase (convert to uppercase)
 /*static*/
 std::tstring
 CxString::sToUpperCase(
@@ -336,7 +310,6 @@ CxString::sToUpperCase(
     return sToUpperCase(csStr, csStr.size());
 }
 //---------------------------------------------------------------------------
-//DONE: sToLowerCase
 /*static*/
 std::tstring
 CxString::sToLowerCase(
@@ -362,7 +335,6 @@ CxString::sToLowerCase(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sToUpperCase
 /*static*/
 std::tstring
 CxString::sToUpperCase(
@@ -388,7 +360,6 @@ CxString::sToUpperCase(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bCompareNoCase (Compares two character strings. The comparison is not case-sensitive.)
 /*static*/
 BOOL
 CxString::bCompareNoCase(
@@ -429,11 +400,11 @@ CxString::bCompareNoCase(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: pvMemoryZeroSecure (secure zero memory)
 VOID *
 CxString::pvMemoryZeroSecure(
     VOID   *pvBuff,
-    size_t  uiBuffSize)
+    size_t  uiBuffSize
+)
 {
     /*DEBUG*/// pvBuff     - n/a
     /*DEBUG*/// uiBuffSize - n/a
@@ -456,7 +427,6 @@ CxString::pvMemoryZeroSecure(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sFormat
 /*static*/
 std::tstring
 CxString::sFormat(
@@ -478,7 +448,6 @@ CxString::sFormat(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatV
 /*static*/
 #if 1
     std::tstring
@@ -491,7 +460,7 @@ CxString::sFormat(
         xCHECK_RET(NULL == pcszFormat, std::tstring());
 
         std::tstring sBuff(64, 0);
-        INT     iWrittenSize = - 1;
+        INT          iWrittenSize = - 1;
 
         for ( ; ; ) {
             va_list _palArgs;
@@ -522,7 +491,7 @@ CxString::sFormat(
         xCHECK_RET(NULL == pcszFormat, std::tstring());
 
         std::tstring sBuff(64, 0);
-        INT     iWrittenSize = - 1;
+        INT          iWrittenSize = - 1;
 
         //--------------------------------------------------
         //calc size
@@ -559,7 +528,6 @@ CxString::sFormat(
     }
 #endif
 //---------------------------------------------------------------------------
-//DONE: sMinimize
 /*static*/
 std::tstring
 CxString::sMinimize(
@@ -586,7 +554,6 @@ CxString::sMinimize(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sCreateGuid (generate GUID)
 /*static*/
 std::tstring
 CxString::sCreateGuid() {
@@ -619,7 +586,6 @@ CxString::sCreateGuid() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsRepeated
 /*static*/
 BOOL CxString::bIsRepeated(
     const std::tstring &csStr
@@ -638,7 +604,6 @@ BOOL CxString::bIsRepeated(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sTranslitLatToRus
 /*static*/
 std::tstring
 CxString::sTranslitLatToRus(
@@ -685,7 +650,6 @@ CxString::sTranslitLatToRus(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatBytes (С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ Р±Р°Р№С‚РѕРІ РІ Bits, Bytes, KB, MB, GB)
 /*static*/
 std::tstring
 CxString::sFormatBytes(
@@ -724,7 +688,6 @@ CxString::sFormatBytes(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatBytes (С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ Р±Р°Р№С‚РѕРІ РІ Bits, Bytes, KB, MB, GB)
 /*static*/
 std::tstring
 CxString::sFormatBytes(
@@ -763,7 +726,6 @@ CxString::sFormatBytes(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatPercentage (formatting percentage)
 /*static*/
 std::tstring
 CxString::sFormatPercentage(
@@ -783,7 +745,6 @@ CxString::sFormatPercentage(
     return sRes.append(xT("%"));
 }
 //---------------------------------------------------------------------------
-//DONE: sStrToWStr (std::string in std::wstring)
 /*static*/
 std::wstring
 CxString::sStrToWStr(
@@ -811,7 +772,6 @@ CxString::sStrToWStr(
     return wsRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sWStrToStr (std::wstring in std::string)
 /*static*/
 std::string
 CxString::sWStrToStr(
@@ -839,7 +799,6 @@ CxString::sWStrToStr(
     return asRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sConvertCodePage (convert codepage)
 /*static*/
 std::string
 CxString::sConvertCodePage(
@@ -858,7 +817,6 @@ CxString::sConvertCodePage(
     return sWStrToStr(sStrToWStr(csSource, cuiCodePageSource), cuiCodePageDest);
 }
 //---------------------------------------------------------------------------
-//TODO: asCharToOemBuff
 /*static*/
 std::string
 CxString::asCharToOemBuff(
@@ -875,14 +833,13 @@ CxString::asCharToOemBuff(
     bRes = ::CharToOemBuff(csSrc.c_str(), &asDst.at(0), asDst.size());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string());
 #elif defined(xOS_LINUX)
-    //TODO: (asCharToOemBuff)
+    //TODO: asCharToOemBuff
     xNOT_IMPLEMENTED_RET(std::string());
 #endif
 
     return asDst;
 }
 //---------------------------------------------------------------------------
-//TODO: sOemToCharBuff
 /*static*/
 std::tstring
 CxString::sOemToCharBuff(
@@ -899,7 +856,7 @@ CxString::sOemToCharBuff(
     bRes = ::OemToCharBuff(csSrc.c_str(), &sDst.at(0), sDst.size());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
 #elif defined(xOS_LINUX)
-    //TODO: (sOemToCharBuff)
+    //TODO: sOemToCharBuff
     xNOT_IMPLEMENTED_RET(std::tstring());
 #endif
 

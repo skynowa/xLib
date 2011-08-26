@@ -111,7 +111,6 @@ operator << (
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//type -> std::tstring
 template<class T>
 /*static*/
 inline std::tstring
@@ -139,7 +138,6 @@ CxString::lexical_cast(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//type -> std::tstring by base
 template<class T>
 /*static*/
 inline std::tstring
@@ -169,7 +167,6 @@ CxString::lexical_cast(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//std::tstring -> type
 template<class T>
 /*static*/
 inline T
@@ -195,7 +192,6 @@ CxString::lexical_cast(
     return ResT;
 }
 //---------------------------------------------------------------------------
-//std::tstring by base (8, 10, 16) -> type
 template<class T>
 /*static*/
 inline T
