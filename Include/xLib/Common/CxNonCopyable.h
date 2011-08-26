@@ -7,9 +7,9 @@
 #ifndef xLib_Common_CxNonCopyableH
 #define xLib_Common_CxNonCopyableH
 //---------------------------------------------------------------------------
-class CxNonCopyable {
+class CxNonCopyable
     /// non copyable class
-    
+{    
     public:
 
     protected:
