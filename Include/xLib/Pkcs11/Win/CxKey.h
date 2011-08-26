@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxKey :
     public CxNonCopyable
+    /// Pkcs11 key
 {
     public:
                              CxKey          (const CxPkcs11 &cPkcs11, const CxSession &cSession);

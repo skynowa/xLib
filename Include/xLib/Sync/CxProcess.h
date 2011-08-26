@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxProcess :
     public CxNonCopyable
+    /// process
 {
     public:
         static ULONG ulGetCurrId      ();

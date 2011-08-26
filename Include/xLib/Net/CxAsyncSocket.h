@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxAsyncSocket :
     public CxNonCopyable
+    /// async socket
 {
     public:
                  CxAsyncSocket();

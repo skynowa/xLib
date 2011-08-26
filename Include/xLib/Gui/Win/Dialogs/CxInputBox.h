@@ -16,6 +16,7 @@
 //---------------------------------------------------------------------------
 class CxInputBox :
     public CxNonCopyable
+    /// input box
 {
     public:
         enum EModalResult {

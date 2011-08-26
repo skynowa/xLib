@@ -10,7 +10,10 @@
 #include <xLib/xCommon.h>
 #include <xLib/Gui/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxWndsContainer : public CxNonCopyable {
+class CxWndsContainer : 
+    public CxNonCopyable 
+    /// windows container
+{
     public:
                   CxWndsContainer();
                  ~CxWndsContainer();

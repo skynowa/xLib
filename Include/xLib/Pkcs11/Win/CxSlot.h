@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxSlot :
     public CxNonCopyable
+    /// Pkcs11 slot
 {
     public:
         enum ENotification {

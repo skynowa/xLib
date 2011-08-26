@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxRebar : public CxWindow {
+class CxRebar : 
+    public CxWindow 
+    /// rebar    
+{
     public:
         enum AlignFlags    {
             AlignTop    = CCS_TOP,

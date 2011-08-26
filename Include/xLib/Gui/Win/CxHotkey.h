@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
-class CXHotKey : public CxNonCopyable {
+class CXHotKey : 
+    public CxNonCopyable 
+    /// hotkey    
+{
     public:
         CXHotKey();
        ~CXHotKey();

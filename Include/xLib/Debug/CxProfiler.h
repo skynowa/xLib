@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxProfiler :
     public CxNonCopyable
+    /// code profiling (msec)
 {
     public:
         enum EMode {

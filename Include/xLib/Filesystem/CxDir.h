@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxDir :
     public CxNonCopyable
+    /// directory
 {
     public:
         static BOOL    bIsExists   (const std::tstring &csDirPath);

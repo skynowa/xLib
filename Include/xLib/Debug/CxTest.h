@@ -19,6 +19,7 @@
 //---------------------------------------------------------------------------
 class CxTest :
     public CxNonCopyable
+    /// testing
 {
     public:
         VOID *                          m_pvRes;

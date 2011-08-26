@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxSession :
     public CxNonCopyable
+    /// Pkcs11 session
 {
     public:
                              CxSession         (const CxPkcs11 &cPkcs11);

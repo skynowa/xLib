@@ -19,6 +19,7 @@
 #if defined(xOS_WIN)
 class CxFile :
     public CxNonCopyable
+    /// file
 {
     public:
         enum EGenericRights {

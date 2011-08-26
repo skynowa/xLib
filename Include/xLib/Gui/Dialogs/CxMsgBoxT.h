@@ -9,9 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-/// message box
 class CxMsgBoxT :
     public CxNonCopyable
+    /// message box
 {
     public:
         enum EModalResult {

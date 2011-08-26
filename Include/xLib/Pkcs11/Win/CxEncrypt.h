@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxEncrypt :
     public CxNonCopyable
+    /// Pkcs11 encrypt
 {
     public:
                              CxEncrypt(const CxPkcs11 &cPkcs11, const CxSession &cSession);

@@ -7,12 +7,7 @@
 #include <xLib/Sync/CxThread.h>
 
 #include <xLib/Common/CxSystemInfo.h>
-
-#if defined(xOS_WIN)
-    #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
-#elif defined(xOS_LINUX)
-
-#endif
+    #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 
 /****************************************************************************

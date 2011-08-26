@@ -13,6 +13,7 @@
 #if defined(xOS_WIN)
 class CxAutoCriticalSection :
     public CxNonCopyable
+    /// auto critical section
 {
     public:
                            CxAutoCriticalSection(CxCriticalSection &csCS);

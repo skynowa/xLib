@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxRandom :
     public CxNonCopyable
+    /// random
 {
     public:
                          CxRandom     (LONG liSeed = time(NULL));

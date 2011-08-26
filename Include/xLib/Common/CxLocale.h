@@ -11,19 +11,20 @@
 //---------------------------------------------------------------------------
 class CxLocale :
     public CxNonCopyable
+    /// locale
 {
     public:
        static std::tstring sGetCurrent();
        	   ///< get current
-       static BOOL    bSetCurrent(const std::tstring &csLocale);
+       static BOOL         bSetCurrent(const std::tstring &csLocale);
    	   	   ///< set current
-       static BOOL    bSetDefault();
+       static BOOL         bSetDefault();
    	   	   ///< set default
 
     private:
-                      CxLocale   ();
+                           CxLocale   ();
            ///< constructor
-       virtual       ~CxLocale   ();
+       virtual            ~CxLocale   ();
    	   	   ///< destructor
 };
 //---------------------------------------------------------------------------

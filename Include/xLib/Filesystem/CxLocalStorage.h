@@ -15,6 +15,7 @@ namespace NxLib {
 
 class CxLocalStorage :
     public CxNonCopyable
+    /// local storage
 {
     public:
                                CxLocalStorage ();

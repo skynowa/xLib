@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------
 class CxThread :
     public CxNonCopyable
+    /// thread
 {
     public:
 	    enum EPriority {

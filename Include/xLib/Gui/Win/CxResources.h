@@ -11,7 +11,10 @@
 #include <xLib/Gui/Win/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
-class CxResources : public CxNonCopyable {
+class CxResources : 
+    public CxNonCopyable 
+    /// resources    
+{
     public:
         static BOOL    bInit       ();
         static std::tstring sGetText    (INT iID);

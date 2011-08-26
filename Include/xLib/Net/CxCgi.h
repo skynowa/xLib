@@ -16,14 +16,10 @@ class CxCgi;
 
 namespace NxCgi {
 
-	/**
-	 * \class CxCgiEnvironment
-	 * \brief CGI environment
-	 */
-
     //---------------------------------------------------------------------------
     class CxCgiEnvironment :
         public CxNonCopyable
+        /// CGI environment
     {
         public:
             enum ERequestMethod {
@@ -108,14 +104,10 @@ namespace NxCgi {
     //---------------------------------------------------------------------------
 
 
-	/**
-	 * \class CxCgiCookies
-	 * \brief CGI cookies
-	 */
-
     //---------------------------------------------------------------------------
     class CxCgiCookies :
         public CxNonCopyable
+        /// CGI cookies
     {
         public:
             typedef std::vector<CxCookiePv0 *> TCookies;
@@ -136,14 +128,10 @@ namespace NxCgi {
     //---------------------------------------------------------------------------
 
 
-	/**
-	 * \class CxCgiFormData
-	 * \brief CGI form data
-	 */
-
     //---------------------------------------------------------------------------
     class CxCgiFormData :
         public CxNonCopyable
+        /// CGI form data
     {
         public:
                            CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize);
@@ -168,13 +156,9 @@ namespace NxCgi {
 
 
 //---------------------------------------------------------------------------
-/**
- * \class CxCgi
- * \brief CGI
- */
-
 class CxCgi :
     public CxNonCopyable
+    /// CGI
 {
     public:
         static const size_t     MAX_DATA_SIZE_DEFAULT = 1024 * 1024;

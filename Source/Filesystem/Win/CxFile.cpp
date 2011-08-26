@@ -11,6 +11,7 @@
 #include <xLib/Filesystem/CxVolume.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Crypt/CxRandom.h>
+#include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 #if defined(xOS_WIN)
     #include <fstream>
@@ -21,8 +22,6 @@
     #include <sys/stat.h>
     #include <shlobj.h>
     #include <WinIoCtl.h>
-
-    #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 #elif defined(xOS_LINUX)
 
 #endif

@@ -12,6 +12,7 @@
 template <class ClassNameT>
 class CxSingleton :
     public CxNonCopyable
+    /// singleton
 {
     public:
         static ClassNameT &GetInstance() {

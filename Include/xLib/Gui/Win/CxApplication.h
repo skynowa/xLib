@@ -15,6 +15,7 @@
 //---------------------------------------------------------------------------
 class CxApplication :
 	public CxNonCopyable
+    /// application
 {
     public:
         static BOOL      bInit           (HINSTANCE hInstance, const tString &csCmdLine);

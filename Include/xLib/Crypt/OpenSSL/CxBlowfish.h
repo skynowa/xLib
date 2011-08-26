@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 class CxBlowfish :
     public CxNonCopyable
+    /// blowfish (openssl-1.0.0a)
 {
     private:
         enum {

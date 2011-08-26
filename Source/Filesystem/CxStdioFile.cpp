@@ -15,10 +15,10 @@
 #include <xLib/Crypt/CxCrc32.h>
 #include <xLib/Crypt/CxRandom.h>
 #include <xLib/Sync/CxThread.h>
+#include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Filesystem/Win/CxFile.h>
-    #include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
 #endif
 
 

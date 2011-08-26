@@ -12,7 +12,10 @@
 #include <xLib/Fso/CxDll.h>
 #include <richedit.h>
 //---------------------------------------------------------------------------
-class CxRichEdit: public CxWindow {
+class CxRichEdit : 
+    public CxWindow 
+    /// rich edit
+{
     public:
         //-------------------------------------
         //константы

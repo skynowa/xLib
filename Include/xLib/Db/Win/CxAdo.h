@@ -58,7 +58,9 @@ using namespace std;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADOException {
+class CADOException 
+    /// ADO exception
+{
     public:
         virtual ~CADOException() {
 
@@ -80,7 +82,10 @@ class CADOException {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADOConnectionException : public CADOException {
+class CADOConnectionException : 
+    public CADOException 
+    /// ADO connection exception
+{
     public:
         enum _errConnection {
             ceUnknown, ceCantCreateConnection, ceConnectionNotExists, ceConnectionNotOpen,
@@ -147,7 +152,10 @@ class CADOConnectionException : public CADOException {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADORecordsetException : public CADOException {
+class CADORecordsetException : 
+    public CADOException 
+    /// ADO recordset exception
+{
     public:
         enum _errRecordset {
             reUnknown, reRecordsetNotCreated, reRecordsetNotClosed, reCannotCreateCmd,
@@ -238,7 +246,9 @@ class CADOConnection;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADORecordset {
+class CADORecordset 
+    /// ADO recordset
+{
     public:
                    CADORecordset();
         virtual    ~CADORecordset();
@@ -299,7 +309,9 @@ class CADORecordset {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADOConnection {
+class CADOConnection 
+    /// ADO connection
+{
     public:
         CADOConnection();
         CADOConnection(const char *pStrConnection, const char *pStrUserID = "", const char *pStrPassword = "", bool bOpen = false);

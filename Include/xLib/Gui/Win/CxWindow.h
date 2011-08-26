@@ -14,7 +14,10 @@
 #include <xLib/Gui/CxFont.h>
 #include <xLib/Gui/CxStyle.h>
 //---------------------------------------------------------------------------
-class CxWindow : public CxNonCopyable {
+class CxWindow : 
+    public CxNonCopyable 
+    /// base class for windows controls
+{
     public:
         CxFont            m_fnFont;            //רנטפע
         CxStyle           m_stStyle;

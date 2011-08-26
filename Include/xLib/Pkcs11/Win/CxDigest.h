@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxDigest :
 	public CxNonCopyable
+    /// Pkcs11 digest
 {
     public:
                              CxDigest      (const CxPkcs11 &cPkcs11, const CxSession &cSession);

@@ -18,6 +18,7 @@
 #if defined(xOS_WIN)
 class CxWaitableTimer  :
     public CxNonCopyable
+    /// waitable timer
 {
     public:
                  CxWaitableTimer();

@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxStatic: public CxWindow {
+class CxStatic : 
+    public CxWindow 
+    /// static field
+{
     public:
                  CxStatic  ();
         virtual ~CxStatic  ();

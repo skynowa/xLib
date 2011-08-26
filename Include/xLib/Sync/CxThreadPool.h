@@ -23,6 +23,7 @@
 template<class TaskT>
 class CxThreadPool :
     public CxThread
+    /// thread pool
 {
     private:
         mutable BOOL              _m_bRes;

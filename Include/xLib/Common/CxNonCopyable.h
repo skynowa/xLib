@@ -8,18 +8,21 @@
 #define xLib_Common_CxNonCopyableH
 //---------------------------------------------------------------------------
 class CxNonCopyable {
-   public:
+    /// non copyable class
+    
+    public:
 
-   protected:
-              CxNonCopyable() { }
-              	  ///< constructor
-             ~CxNonCopyable() { }
-         	  	  ///< dectructor
-   private:
-              CxNonCopyable(const CxNonCopyable &);
-          	  	  ///< constructor
+    protected:
+        CxNonCopyable() { }
+            ///< constructor
+       ~CxNonCopyable() { }
+            ///< dectructor
+            
+    private:
+        CxNonCopyable(const CxNonCopyable &);
+            ///< constructor
         const CxNonCopyable &operator = (const CxNonCopyable &);
-    	  	  	  ///< operator =
+            ///< operator =
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxNonCopyableH

@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxFunction :
     public CxNonCopyable
+    /// Pkcs11 function
 {
     public:
                              CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession);

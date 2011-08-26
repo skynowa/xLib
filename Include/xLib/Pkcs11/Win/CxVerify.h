@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxVerify :
     public CxNonCopyable
+    /// Pkcs11 verify
 {
     public:
                              CxVerify    (const CxPkcs11 &cPkcs11, const CxSession &cSession);

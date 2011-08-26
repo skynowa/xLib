@@ -11,7 +11,10 @@
 #include <xLib/Gui/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxButton : public CxButtonBase {
+class CxButton : 
+    public CxButtonBase 
+    /// button    
+{
     public:
         //-------------------------------------
         //константы

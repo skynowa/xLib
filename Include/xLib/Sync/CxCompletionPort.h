@@ -18,6 +18,7 @@
 #if defined(xOS_WIN)
 class CxCompletionPort :
     public CxNonCopyable
+    /// completion port
 {
     public:
                  CxCompletionPort();

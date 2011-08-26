@@ -13,10 +13,9 @@
 //---------------------------------------------------------------------------
 class CxReport;
 
-///< \class CxDebugger
-///< \brief debbuger
 class CxDebugger :
     public CxNonCopyable
+    /// debbuger
 {
     public:
         static BOOL         bGetEnabled     ();

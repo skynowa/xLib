@@ -22,6 +22,7 @@ CxTest_CxMsgBoxT::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
+#if xTEST_IGNORE
     //--------------------------------------------------
     //iShow
 #if defined(xOS_WIN)
@@ -32,12 +33,11 @@ CxTest_CxMsgBoxT::bUnit(
         const std::tstring csTitle = xT("Simple title");
         const UINT         cuiType = 0;
 
-        CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::(chWnd, csText, csTitle, cuiTypee);
+        CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(chWnd, csText, csTitle, cuiType);
         xUNUSED(mrRes);
     }
 #endif
 
-#if xTEST_IGNORE
     //--------------------------------------------------
     //iShow (3 params)
     xTEST_BLOCK(cullBlockLoops)

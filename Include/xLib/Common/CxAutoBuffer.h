@@ -10,6 +10,7 @@
 template<class T>
 class CxAutoBuffer :
     public CxNonCopyable
+    /// auto buffer
 {
     private:
         T* buffer;

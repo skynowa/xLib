@@ -12,6 +12,7 @@
 #if defined(xOS_WIN)
 class CxClipboard :
     public CxNonCopyable
+    /// clipboard
 {
     public:
         enum EFormat {

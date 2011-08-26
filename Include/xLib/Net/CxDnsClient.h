@@ -1,6 +1,6 @@
 /**
  * \file  CxDnsClient.h
- * \brief DNS
+ * \brief DNS client
  */
 
 
@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 class CxDnsClient :
     public CxNonCopyable
+    /// DNS client
 {
     public:
         static BOOL bGetHostAddrByName  (const std::tstring &csHostName, std::tstring *psHostAddr);

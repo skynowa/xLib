@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxObject :
     public CxNonCopyable
+    /// Pkcs11 object
 {
     public:
                              CxObject          (const CxPkcs11 &cPkcs11, const CxSession &cSession);

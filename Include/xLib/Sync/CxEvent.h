@@ -18,6 +18,7 @@
 #if defined(xOS_WIN)
 class CxEvent :
     public CxNonCopyable
+    /// event
 {
     public:
                  CxEvent    ();

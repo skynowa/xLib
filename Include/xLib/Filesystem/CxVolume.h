@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxVolume :
     public CxNonCopyable
+    /// volume
 {
     public:
         static BOOL    bIsReady                         (const std::tstring &csVolumePath);

@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxPath :
     public CxNonCopyable
+    /// file system path
 {
     public:
         enum EStandartExt {

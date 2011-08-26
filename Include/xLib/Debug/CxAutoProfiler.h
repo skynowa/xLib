@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 class CxAutoProfiler :
     public CxNonCopyable
+    /// auto code profiling
 {
     public:
                    CxAutoProfiler(const std::tstring &csFilePath, const CxProfiler::EMode cpmMode, LPCTSTR pcszComment, ...);

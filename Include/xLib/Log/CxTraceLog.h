@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxTraceLog :
     public CxNonCopyable
+    /// tracing
 {
     public:
         explicit CxTraceLog (BOOL bIsUseTimeStr);

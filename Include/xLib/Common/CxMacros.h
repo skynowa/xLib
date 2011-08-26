@@ -25,11 +25,9 @@
 
 class CxDebugger;
 
-/// \file  CxMacros.h
-/// \class CxMacros
-/// \brief help macroses
 class CxMacros :
     public CxNonCopyable
+    /// help macroses
 {
     public:
         #define xPTR_DELETE(p)         { if (NULL != (p)) { delete (p);     (p) = NULL; } }

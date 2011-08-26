@@ -1,6 +1,6 @@
 /**
  * \file  CxAutoMallocT.h
- * \brief CxAutoMallocT
+ * \brief auto malloc
  */
 
 /*
@@ -21,6 +21,7 @@ Usage:
 template<class PtrT>
 class CxAutoMallocT :
     public CxNonCopyable
+    /// auto malloc
 {
     public:
              CxAutoMallocT(const std::size_t cuiSize);

@@ -35,6 +35,7 @@ namespace std {
 //---------------------------------------------------------------------------
 class CxString :
     public CxNonCopyable
+    /// strings utils
 {
     public:
         template<class T>

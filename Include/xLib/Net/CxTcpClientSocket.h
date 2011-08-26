@@ -13,6 +13,7 @@
 //TODO: bIsReadable repeats from CxSocket
 class CxTcpClientSocket :
     public CxSocket
+    /// client socket
 {
     public:
                     CxTcpClientSocket  ();

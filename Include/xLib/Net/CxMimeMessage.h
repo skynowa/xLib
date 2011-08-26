@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxMimeMessage :
     public CxNonCopyable
+    /// MIME message (RFC 822)
 {
     public:
 					 CxMimeMessage   ();

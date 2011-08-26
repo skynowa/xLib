@@ -9,7 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxConst {
+class CxConst 
+    /// constants
+{
     public:
         //xSTR_EMPTY
         static const std::string  xSTR_EMPTY_A;

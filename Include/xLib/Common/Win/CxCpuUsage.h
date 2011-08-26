@@ -12,6 +12,7 @@
 #if defined(xOS_WIN)
 class CxCpuUsage :
     public CxNonCopyable
+    /// cpu usage
 {
     public:
                       CxCpuUsage ();

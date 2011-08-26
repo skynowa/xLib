@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxUtils :
     public CxNonCopyable
+    /// Pkcs11 utils
 {
     public:
         static std::tstring sErrorStr(const CK_RV culCode);

@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxEventLog :
     public CxNonCopyable
+    /// logging to system event log
 {
     public:
                 CxEventLog();

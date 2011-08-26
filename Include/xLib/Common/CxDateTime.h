@@ -9,7 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxDateTime {
+class CxDateTime
+    /// date, time
+{    
     public:
         enum EFormatType {
             ftTime,     ///< HH.MM.SS.MMM

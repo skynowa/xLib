@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxDll :
     public CxNonCopyable
+    /// dynamic linking loader
 {
     public:
                  CxDll           ();

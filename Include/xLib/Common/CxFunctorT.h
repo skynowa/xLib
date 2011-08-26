@@ -10,7 +10,9 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 template <class ClassT, typename ReturnT, typename ParamT>
-class CxFunctorT {
+class CxFunctorT
+    /// function object
+{
     public:
         typedef  ReturnT   (ClassT::*Method)(ParamT);
             ///< return type

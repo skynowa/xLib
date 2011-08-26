@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxType :
     public CxNonCopyable
+    /// type info
 {
 	public:
         template<class T>

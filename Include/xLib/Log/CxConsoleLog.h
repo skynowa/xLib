@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 class CxConsoleLog :
     public CxNonCopyable
+    /// logging to console
 {
     public:
                                  CxConsoleLog(BOOL bIsUseTimeStr);
