@@ -10,7 +10,10 @@
 #include <xLib/Gui/CxWindow.h>
 #include <xLib/Gui/CxWndsContainer.h>
 //---------------------------------------------------------------------------
-class CxWindowImpl : public CxWindow {
+class CxWindowImpl : 
+    public CxWindow 
+    /// window
+{
     public:
         CxWndsContainer     m_vecpContainer;        //контейнер для дочерних окон
 

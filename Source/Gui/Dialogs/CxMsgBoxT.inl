@@ -27,7 +27,11 @@ CxMsgBoxT::iShow(
 {
     EModalResult mrRes = mrAbort;
 
-    mrRes = static_cast<EModalResult>( ::MessageBox(chWnd, CxString::lexical_cast(cText).c_str(), CxString::lexical_cast(cTitle).c_str(), cuiType) );
+    mrRes = static_cast<EModalResult>( ::MessageBox(
+                            chWnd, 
+                            CxString::lexical_cast(cText).c_str(), 
+                            CxString::lexical_cast(cTitle).c_str(), 
+                            cuiType) );
 
     return mrRes;
 }
@@ -45,7 +49,11 @@ CxMsgBoxT::iShow(
     EModalResult mrRes = mrAbort;
 
 #if defined(xOS_WIN)
-    mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), CxString::lexical_cast(cTitle).c_str(), cuiType) );
+    mrRes = static_cast<EModalResult>( ::MessageBox(
+                            NULL, 
+                            CxString::lexical_cast(cText).c_str(), 
+                            CxString::lexical_cast(cTitle).c_str(), 
+                            cuiType) );
 #elif defined(xOS_LINUX)
     std::tstring sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
@@ -70,7 +78,11 @@ CxMsgBoxT::iShow(
     EModalResult mrRes = mrAbort;
 
 #if defined(xOS_WIN)
-    mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), CxString::lexical_cast(cTitle).c_str(), MB_OK) );
+    mrRes = static_cast<EModalResult>( ::MessageBox(
+                            NULL, 
+                            CxString::lexical_cast(cText).c_str(), 
+                            CxString::lexical_cast(cTitle).c_str(), 
+                            MB_OK) );
 #elif defined(xOS_LINUX)
     std::tstring sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
@@ -94,12 +106,16 @@ CxMsgBoxT::iShow(
     EModalResult mrRes = mrAbort;
 
 #if defined(xOS_WIN)
-    mrRes = static_cast<EModalResult>( ::MessageBox(NULL, CxString::lexical_cast(cText).c_str(), std::tstring().c_str(), MB_OK) );
+    mrRes = static_cast<EModalResult>( ::MessageBox(
+                            NULL, 
+                            CxString::lexical_cast(cText).c_str(), 
+                            CxPath::sGetFullName( CxPath::sGetExe() ).c_str(), 
+                            MB_OK) );
 #elif defined(xOS_LINUX)
     std::tstring sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
-                            CxConst::xSTR_EMPTY.c_str(),
+                            xT("Message box"),
                             xT("Ok"));
 
     mrRes = static_cast<EModalResult>( _tsystem(sMsg.c_str()) );

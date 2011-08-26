@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxSmtp :
     public CxNonCopyable
+    /// SMTP (RFC 2821)
 {
     public:
                             CxSmtp     ();

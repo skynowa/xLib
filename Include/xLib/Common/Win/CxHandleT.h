@@ -31,7 +31,9 @@ namespace {
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-class CxHandleT {
+class CxHandleT 
+    /// handle
+{
     public:
                             CxHandleT               ();
         explicit            CxHandleT               (const HANDLE chHandle);

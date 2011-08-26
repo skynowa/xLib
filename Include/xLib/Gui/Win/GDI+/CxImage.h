@@ -14,6 +14,7 @@
     //---------------------------------------------------------------------------
     class CxImage :
         public CxNonCopyable
+        /// GDI+ image
     {
         public:
             enum EEncoderType {

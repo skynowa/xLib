@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxStatusBar: public CxWindow {
+class CxStatusBar : 
+    public CxWindow 
+    /// status bar
+{
     public:
         //панели (определение)
         class CXItems {

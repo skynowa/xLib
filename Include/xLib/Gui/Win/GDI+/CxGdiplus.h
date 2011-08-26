@@ -16,6 +16,7 @@
     //---------------------------------------------------------------------------
     class CxGdiplus :
         public CxNonCopyable
+        /// GDI+
     {
         public:
                       CxGdiplus();

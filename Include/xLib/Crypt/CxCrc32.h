@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxCrc32 :
     public CxNonCopyable
+    /// Crc32
 {
     public:
         static ULONG   ulCalc        (UCHAR *pucBuff, const ULONG culSize);

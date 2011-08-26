@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxSocketInit :
     public CxNonCopyable
+    /// initiates use of the Winsock DLL by a process
 {
     public:
                   CxSocketInit(const USHORT cusHighVersion, const USHORT cusLowVersion);

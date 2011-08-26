@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxSign :
     public CxNonCopyable
+    /// Pkcs11 sign
 {
     public:
                              CxSign        (const CxPkcs11 &cPkcs11, const CxSession &cSession);

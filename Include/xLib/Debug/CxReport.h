@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 class CxReport :
     public CxNonCopyable
+    /// debug report
 {
     public:
         enum EType {

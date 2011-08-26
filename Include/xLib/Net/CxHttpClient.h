@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxHttpClient :
     public CxNonCopyable
+    /// protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 {
     public:
         //status line
@@ -65,7 +66,9 @@ class CxHttpClient :
 };
 //---------------------------------------------------------------------------
 //status line
-class CxHttpClient::CxStatusLine {
+class CxHttpClient::CxStatusLine 
+    /// HTTP status line
+{
     public:
                  CxStatusLine();
         virtual ~CxStatusLine();
@@ -75,7 +78,9 @@ class CxHttpClient::CxStatusLine {
 };
 //---------------------------------------------------------------------------
 //header
-class CxHttpClient::CxHeader {
+class CxHttpClient::CxHeader 
+    /// HTTP header
+{
     public:
                  CxHeader();
         virtual ~CxHeader();
@@ -85,7 +90,9 @@ class CxHttpClient::CxHeader {
 };
 //---------------------------------------------------------------------------
 //body
-class CxHttpClient::CxBody {
+class CxHttpClient::CxBody 
+    /// HTTP nody
+{
     public:
                  CxBody();
         virtual ~CxBody();

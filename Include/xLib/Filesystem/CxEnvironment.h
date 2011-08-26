@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxEnvironment :
     public CxNonCopyable
+    /// system environment variables
 {
     public:
         static BOOL    bIsExists          (const std::tstring &csVarName);

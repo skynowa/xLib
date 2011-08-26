@@ -17,6 +17,7 @@
 #if defined(xOS_WIN)
 class CxCom :
     public CxNonCopyable
+    /// COM
 {
     public:
         //concurrency model

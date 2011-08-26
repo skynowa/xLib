@@ -10,7 +10,10 @@
 #include <xLib/Gui/xCommon.h>
 //---------------------------------------------------------------------------
 #define STRINGIZE2(x) #x
-class CxIcon : public CxNonCopyable {
+class CxIcon : 
+    public CxNonCopyable 
+    /// icon    
+{
     public:
                CxIcon();
     virtual   ~CxIcon();

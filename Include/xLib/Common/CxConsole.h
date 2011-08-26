@@ -17,6 +17,7 @@
 //---------------------------------------------------------------------------
 class CxConsole :
     public CxNonCopyable
+    /// console
 {
     public:
         enum EModalResult {

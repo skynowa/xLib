@@ -9,11 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-/// \file  CxStdioFile.h
-/// \class CxStdioFile
-/// \brief file implementation
 class CxStdioFile :
     public CxNonCopyable
+    /// file
 {
     public:
         /// error type

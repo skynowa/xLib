@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxListView : public CxWindow {
+class CxListView : 
+    public CxWindow 
+    /// list view    
+{
     private:
         INT           m_ColumnCount;
         INT           m_ItemCount;

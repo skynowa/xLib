@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxCookiePv1 :
     public CxNonCopyable
+    /// cookie version 1
 {
     public:
         explicit         CxCookiePv1 ();

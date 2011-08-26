@@ -20,6 +20,7 @@
 /// MySQL connection
 class CxMySQLConnection :
     public CxNonCopyable
+    /// MySQL connection
 {
     public:
                                  CxMySQLConnection();
@@ -56,6 +57,7 @@ class CxMySQLConnection :
 /// MySQL recordset
 class CxMySQLRecordset :
     public CxNonCopyable
+    /// MySQL recordset
 {
     public:
                                  CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const BOOL cbIsUseResult);

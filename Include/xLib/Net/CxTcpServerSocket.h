@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 class CxTcpServerSocket :
     public CxSocket
+    /// server socket
 {
     public:
                     CxTcpServerSocket();

@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
     BOOL bGetUsbInfo(const std::tstring &csDrive, std::vector<std::tstring> *pvsInfo);
+        ///< get USB info
 #elif defined(xOS_LINUX)
 
 #endif

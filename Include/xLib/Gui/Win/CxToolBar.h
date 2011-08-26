@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxToolBar : public CxWindow {
+class CxToolBar : 
+    public CxWindow 
+    /// toolbar 
+{
     public:
          CxToolBar ();
         ~CxToolBar();

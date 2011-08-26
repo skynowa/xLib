@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 class CxGeoIp :
     public CxNonCopyable
+    /// GeoIP
 {
     public:
         enum EOption {

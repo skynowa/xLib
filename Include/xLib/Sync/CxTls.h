@@ -12,6 +12,7 @@
 #if defined(xOS_WIN)
 class CxTls :
     public CxNonCopyable
+    /// thread local storage
 {
     public:
                  CxTls     ();

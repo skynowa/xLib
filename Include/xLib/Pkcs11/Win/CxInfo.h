@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxInfo :
     public CxNonCopyable
+    /// Pkcs11 info
 {
     public:
                              CxInfo   (const CxPkcs11 &cPkcs11);

@@ -18,6 +18,7 @@
 #if defined(xOS_WIN)
 class CxMutex :
     public CxNonCopyable
+    /// mutex
 {
     public:
                  CxMutex   ();

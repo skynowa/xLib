@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
-class CxFont : public CxNonCopyable {
+class CxFont : 
+    public CxNonCopyable 
+    /// font    
+{
     public:
         CxFont();
        ~CxFont();

@@ -9,7 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxException {
+class CxException 
+    /// exception
+{
     public:
                            CxException  ();
             ///< constructor

@@ -9,9 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-/// DB connection string
 class CxConnectionString :
     public CxNonCopyable
+    /// DB connection string
 {
     public:
         static std::tstring sMSJetOleDb40     (const std::tstring &csDataSource, const std::tstring &csUserId, const std::tstring &csPassword, const std::tstring &csDatabasePassword);

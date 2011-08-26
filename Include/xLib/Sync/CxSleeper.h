@@ -1,6 +1,6 @@
 /**
  * \file  CxSleeper.h
- * \brief like ::Sleep()
+ * \brief sleeper
  */
 
 
@@ -13,6 +13,7 @@
 #if defined(xOS_WIN)
     class CxSleeper :
         public CxNonCopyable
+        /// sleeper
     {
         public:
                      CxSleeper  ();

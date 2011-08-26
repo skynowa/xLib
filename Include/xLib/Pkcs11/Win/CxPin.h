@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxPin :
     public CxNonCopyable
+    /// Pkcs11 pin
 {
     public:
                              CxPin         (const CxPkcs11 &cPkcs11, const CxSession &cSession);

@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxFileAttribute :
     public CxNonCopyable
+    /// file attribute
 {
     public:
         enum EAttribute {

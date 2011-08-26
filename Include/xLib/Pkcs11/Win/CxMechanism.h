@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxMechanism :
     public CxNonCopyable
+    /// Pkcs11 mechanism
 {
     public:
                              CxMechanism(const CxPkcs11 &cPkcs11);

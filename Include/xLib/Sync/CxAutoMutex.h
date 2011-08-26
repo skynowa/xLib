@@ -13,6 +13,7 @@
 #if defined(xOS_WIN)
 class CxAutoMutex :
     public CxNonCopyable
+    /// auto mutex
 {
     public:
                  CxAutoMutex(CxMutex &mtMutex);

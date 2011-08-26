@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------------------
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------------------
-class CxDC : public CxNonCopyable {
+class CxDC : 
+    public CxNonCopyable 
+    /// DC   
+{
     public:
                  CxDC    ();
         virtual ~CxDC    ();

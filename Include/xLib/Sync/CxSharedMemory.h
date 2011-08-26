@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxSharedMemory :
     public CxNonCopyable
+    /// share memory
 {
     public:
                  CxSharedMemory();

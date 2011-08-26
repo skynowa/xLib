@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxSystemInfo :
     public CxNonCopyable
+    /// system information
 {
    public:
         enum EOsType {

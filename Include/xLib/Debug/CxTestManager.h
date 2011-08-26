@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 class CxTestManager :
     public CxNonCopyable
+    /// manage tests (CxTest)
 {
 	public:
 				   CxTestManager(const BOOL cbIsUseTracing);

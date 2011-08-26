@@ -10,7 +10,10 @@
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxGroupBox: public CxButtonBase {
+class CxGroupBox : 
+    public CxButtonBase 
+    /// group box   
+{
     public:
         //-------------------------------------
         //константы

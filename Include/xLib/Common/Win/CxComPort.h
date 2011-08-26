@@ -17,6 +17,7 @@
 #if defined(xOS_WIN)
 class CxCOMPort :
     public CxNonCopyable
+    /// COM port
 {
     public:
                      CxCOMPort       (const std::tstring &sPortNum/* = xT("COM1")*/);

@@ -8,6 +8,8 @@
 #define xLib_Common_CxNonAssignableH
 //---------------------------------------------------------------------------
 class CxNonAssignable {
+    /// non assignable class
+    
 	public:
 
 	protected:

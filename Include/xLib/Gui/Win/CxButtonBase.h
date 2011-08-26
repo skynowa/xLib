@@ -10,7 +10,10 @@
 #include <xLib/Gui/xCommon.h>
 #include <xLib/Gui/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxButtonBase : public CxWindow {
+class CxButtonBase : 
+    public CxWindow 
+    /// base class for buttons    
+{
     public:
         //-------------------------------------
         //���������

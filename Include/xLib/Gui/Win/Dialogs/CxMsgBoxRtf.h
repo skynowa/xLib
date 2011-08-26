@@ -9,7 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/Win/xCommon.h>
 //---------------------------------------------------------------------------
-namespace CxMsgBoxRtf {
+namespace CxMsgBoxRtf 
+    /// RTF message box
+{
 
     enum EModalResult {
         mrInternalError = - 1,

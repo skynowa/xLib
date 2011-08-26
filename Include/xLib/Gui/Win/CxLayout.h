@@ -1,6 +1,6 @@
 /**
  * \file  CxLayout.h
- * \brief слой для размещения контролов
+ * \brief layout for controls 
  */
 
 
@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindowImpl.h>
 //---------------------------------------------------------------------------
-class CxLayout : public CxWindowImpl {
+class CxLayout : 
+    public CxWindowImpl 
+    /// layout for controls    
+{
     public:
         CxLayout();
        ~CxLayout();

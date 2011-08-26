@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxLastError :
     public CxNonCopyable
+    /// system last error
 {
     public:
         static ULONG   ulGet      ();

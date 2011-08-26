@@ -7,7 +7,7 @@
 #include <xLib/Pkcs11/Win/CxLogin.h>
 
 #include <xLib/Pkcs11/Win/CxUtils.h>
-#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
+#include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 
 /****************************************************************************

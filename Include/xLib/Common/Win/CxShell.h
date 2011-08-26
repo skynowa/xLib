@@ -20,6 +20,7 @@
 #if defined(xOS_WIN)
 class CxShell :
     public CxNonCopyable
+    /// shell
 {
      public:
         //operations

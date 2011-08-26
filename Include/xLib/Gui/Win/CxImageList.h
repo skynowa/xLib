@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/xCommon.h>
 //---------------------------------------------------------------------------
-class CxImageList : public CxNonCopyable {
+class CxImageList : 
+    public CxNonCopyable 
+    /// image list    
+{
     public:
         //-------------------------------------
         //константы

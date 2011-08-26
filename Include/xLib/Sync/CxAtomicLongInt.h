@@ -12,6 +12,7 @@
 #if defined(xOS_WIN)
 class CxAtomicLongInt :
     public CxNonCopyable
+    /// atomic operartions with LONG
 {
     public:
                          CxAtomicLongInt();

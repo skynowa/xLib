@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
-class CxWaitCursor : public CxNonCopyable {
+class CxWaitCursor : 
+    public CxNonCopyable 
+    /// wait cursor
+{
     public:
                 CxWaitCursor();
                ~CxWaitCursor();

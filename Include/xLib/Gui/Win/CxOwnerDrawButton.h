@@ -10,7 +10,10 @@
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxOwnerDrawButton: public CxButtonBase {
+class CxOwnerDrawButton : 
+    public CxButtonBase 
+    /// owner draw button    
+{
     public:
         //-------------------------------------
         //константы

@@ -12,6 +12,7 @@
 #if defined(xOS_WIN)
 class CxIni :
     public CxNonCopyable
+    /// ini
 {
     public:
                          CxIni             ();

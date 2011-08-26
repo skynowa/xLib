@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/CXWindow.h>
 //---------------------------------------------------------------------------
-class CXDialog : public CxWindow {
+class CXDialog : 
+    public CxWindow 
+    /// dialog    
+{
     public:
                      CXDialog      ();
                      CXDialog      (SHORT TemplID, SHORT IconID = 0, HWND hParentWnd = NULL);

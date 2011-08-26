@@ -176,8 +176,8 @@
     <ClCompile Include="..\..\Source\Filesystem\CxVolume.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\Win\CxFile.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp" />
+    <ClCompile Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
-    <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxT.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp" />
     <ClCompile Include="..\..\Source\Log\CxConsoleLog.cpp" />
@@ -295,6 +295,7 @@
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxFile.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Gui\Dialogs\CxTest_CxMsgBoxT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp" />
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp" />
     <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp" />
@@ -346,6 +347,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xTracing.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h" />
+    <ClInclude Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxEventLog.h" />
@@ -391,6 +393,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxFile.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Gui\Dialogs\CxTest_CxMsgBoxT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h" />
@@ -569,8 +572,8 @@
     <None Include="..\..\Source\Common\CxType.inl" />
     <None Include="..\..\Source\Common\Win\CxHandleT.inl" />
     <None Include="..\..\Source\Debug\CxReport.inl" />
+    <None Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
-    <None Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\Source\Sync\CxThreadPool.inl" />
     <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">
       <FileType>Document</FileType>

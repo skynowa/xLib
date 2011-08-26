@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------
 class CxLogin :
     public CxNonCopyable
+    /// Pkcs11 login
 {
     public:
                              CxLogin(const CxPkcs11 &cPkcs11, const CxSession &cSession);

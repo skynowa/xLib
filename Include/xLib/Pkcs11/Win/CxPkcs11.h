@@ -1,6 +1,6 @@
 /**
  * \file  CxPkcs11.h
- * \brief Aladdin eToken, PKCS #11
+ * \brief Aladdin eToken, PKCS#11
  */
 
 
@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxPkcs11 :
     public CxNonCopyable
+    /// Aladdin eToken, PKCS#11
 {
     public:
                              CxPkcs11      ();

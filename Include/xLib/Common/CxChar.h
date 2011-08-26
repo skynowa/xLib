@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxChar :
     public CxNonCopyable
+    /// character
 {
     public:
         static BOOL  bIsAlphaNum(const TCHAR cchChar);

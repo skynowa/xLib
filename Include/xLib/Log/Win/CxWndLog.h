@@ -18,6 +18,7 @@
 #if defined(xOS_WIN)
 class CxWndLog :
     public CxNonCopyable
+    /// logging to window
 {
     public:
         //window classes

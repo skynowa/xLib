@@ -10,7 +10,10 @@
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxRadioButton: public CxButtonBase {
+class CxRadioButton : 
+    public CxButtonBase 
+    /// radio button    
+{
     public:
         //-------------------------------------
         //константы

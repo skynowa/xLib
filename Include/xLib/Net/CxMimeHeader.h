@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxMimeHeader :
     public CxNonCopyable
+    /// MIME header (RFC 822)
 {
     public:
                              CxMimeHeader      ();

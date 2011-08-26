@@ -17,6 +17,7 @@
 //---------------------------------------------------------------------------
 class CxFileLog :
     public CxNonCopyable
+    /// logging to file
 {
     public:
         enum ELogSizes {

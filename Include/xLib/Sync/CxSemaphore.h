@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 
 #if defined(xOS_WIN)
-#include <xLib/Common/Win/CxHandleT.h>
+    #include <xLib/Common/Win/CxHandleT.h>
 #elif defined(xOS_LINUX)
 
 #endif
@@ -18,6 +18,7 @@
 #if defined(xOS_WIN)
 class CxSemaphore :
     public CxNonCopyable
+    /// semaphore
 {
     public:
                         CxSemaphore();

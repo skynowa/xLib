@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxAppSettings :
     public CxNonCopyable
+    /// application settings
 {
     public:
         static std::tstring     m_sAppTitle;

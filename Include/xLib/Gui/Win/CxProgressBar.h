@@ -9,7 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxProgressBar: public CxWindow {
+class CxProgressBar : 
+    public CxWindow 
+    /// progress bar    
+{
     public:
         //-------------------------------------
         //константы

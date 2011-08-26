@@ -10,7 +10,10 @@
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxCheckBox: public CxButtonBase {
+class CxCheckBox : 
+    public CxButtonBase 
+    /// checkbox    
+{
     public:
         //-------------------------------------
         //константы

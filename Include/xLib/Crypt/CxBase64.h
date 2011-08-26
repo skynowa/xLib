@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxBase64 :
     public CxNonCopyable
+    /// Base64
 {
     public:
         static std::string sEncode     (const std::string &csStr);

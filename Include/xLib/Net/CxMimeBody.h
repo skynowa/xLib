@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 class CxMimeBody :
 	public CxNonCopyable
+    /// MIME body (RFC 822)
 {
     public:
                 CxMimeBody();
