@@ -14,8 +14,9 @@ class CxStatusBar :
     /// status bar
 {
     public:
-        //панели (определение)
-        class CXItems {
+        class CXItems 
+            /// panels
+        {
             public:
                         CXItems    ();
                        ~CXItems    ();
@@ -38,8 +39,9 @@ class CxStatusBar :
                 BOOL    bGetRect   (INT iIndex, RECT *prcRect);
 
             private:
-                //панель (определение)
-                class CXItem {
+                class CXItem 
+                    /// panel
+                {
                     public:
                         HICON                   m_hIcon;
                         tString                 m_sText;

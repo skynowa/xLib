@@ -7,9 +7,9 @@
 #ifndef xLib_Common_CxNonAssignableH
 #define xLib_Common_CxNonAssignableH
 //---------------------------------------------------------------------------
-class CxNonAssignable {
+class CxNonAssignable
     /// non assignable class
-    
+{    
 	public:
 
 	protected:
