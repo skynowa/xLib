@@ -22,7 +22,8 @@ CxEnvironment::bIsExists(
     const std::tstring &csVarName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
+    /*DEBUG*/// n/a
+    xCHECK_RET(true == csVarName.empty(), FALSE);
 
 #if defined(xOS_WIN)
     std::tstring sRes;
@@ -51,8 +52,7 @@ CxEnvironment::sGetVar(
     const std::tstring &csVarName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVarName.empty(), std::tstring());
-
+    /*DEBUG*/// n/a
     xCHECK_RET(FALSE == bIsExists(csVarName), std::tstring());
 
     std::tstring sRes;
@@ -113,8 +113,7 @@ CxEnvironment::bDeleteVar(
     const std::tstring &csVarName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
-
+    /*DEBUG*/// n/a
     xCHECK_RET(FALSE == bIsExists(csVarName), TRUE);
 
 #if defined(xOS_WIN)

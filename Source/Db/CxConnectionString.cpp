@@ -13,7 +13,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sMSJetOleDb40 (Microsoft.Jet.OLEDB.4.0)
 /*static*/
 std::tstring
 CxConnectionString::sMSJetOleDb40(
@@ -33,12 +32,12 @@ CxConnectionString::sMSJetOleDb40(
     sRes =
         std::tstring() +
         xT("Provider                                 = Microsoft.Jet.OLEDB.4.0;")                               +
-        xT("Data Source                              = ") + CxString::sTrimSpace(csDataSource) + xT(";")           +
-        xT("Extended Properties                      = ;")                                                         +
+        xT("Data Source                              = ") + CxString::sTrimSpace(csDataSource) + xT(";")        +
+        xT("Extended Properties                      = ;")                                                      +
         xT("Jet OLEDB:Compact Without Replica Repair = False;")                                                 +
         xT("Jet OLEDB:Create System Database         = False;")                                                 +
-        xT("Jet OLEDB:Database Locking Mode          = 1;")                                                        +
-        xT("Jet OLEDB:Database Password              = ") + CxString::sTrimSpace(csDatabasePassword) + xT(";") +
+        xT("Jet OLEDB:Database Locking Mode          = 1;")                                                     +
+        xT("Jet OLEDB:Database Password              = ") + CxString::sTrimSpace(csDatabasePassword) + xT(";")  +
         xT("Jet OLEDB:Don't Copy Locale on Compact   = False;")                                                 +
         xT("Jet OLEDB:Encrypt Database               = False;")                                                 +
         xT("Jet OLEDB:Engine Type                    = 0;")                                                     +
@@ -49,8 +48,8 @@ CxConnectionString::sMSJetOleDb40(
         xT("Jet OLEDB:SFP                            = False;")                                                 +
         xT("Jet OLEDB:System database                = ;")                                                      +
         xT("Locale Identifier                        = 1033;")                                                  +
-        xT("Mode                                     = ReadWrite;")                               +
-        xT("Password                                 = ") + CxString::sTrimSpace(csPassword) + xT(";")             +
+        xT("Mode                                     = ReadWrite;")                                             +
+        xT("Password                                 = ") + CxString::sTrimSpace(csPassword) + xT(";")          +
         xT("Persist Security Info                    = False;")                                                 +
         xT("User ID                                  = ") + CxString::sTrimSpace(csUserId)   + xT(";");
 
@@ -65,12 +64,10 @@ CxConnectionString::sMSJetOleDb40(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxConnectionString
 CxConnectionString::CxConnectionString() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxConnectionString
 /*virtual*/
 CxConnectionString::~CxConnectionString() {
 

@@ -19,7 +19,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxMySQLConnection
 CxMySQLConnection::CxMySQLConnection() :
     _m_pmsConnection(NULL)
 {
@@ -31,7 +30,6 @@ CxMySQLConnection::CxMySQLConnection() :
     _m_pmsConnection = _pmsConnection;
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxMySQLConnection
 /*virtual*/
 CxMySQLConnection::~CxMySQLConnection() {
     /*DEBUG*/
@@ -40,7 +38,6 @@ CxMySQLConnection::~CxMySQLConnection() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: pmsGet (get handle)
 MYSQL *
 CxMySQLConnection::pmsGet() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), NULL);
@@ -48,7 +45,6 @@ CxMySQLConnection::pmsGet() const {
     return _m_pmsConnection;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsValid (validating handle)
 BOOL
 CxMySQLConnection::bIsValid() const {
     /*DEBUG*/// n/a
@@ -56,7 +52,6 @@ CxMySQLConnection::bIsValid() const {
     return static_cast<BOOL>( NULL != _m_pmsConnection );
 }
 //---------------------------------------------------------------------------
-//DONE: bOptions (set extra connect options and affect behavior)
 BOOL
 CxMySQLConnection::bOptions(
     mysql_option  cmoOption,
@@ -77,16 +72,15 @@ CxMySQLConnection::bOptions(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bConnect (attempts to establish a connection to a MySQL database engine running on host)
 BOOL
 CxMySQLConnection::bConnect(
     const std::tstring &csHost,
     const std::tstring &csUser,
     const std::tstring &csPassword,
     const std::tstring &csDb,
-    const UINT     cuiPort,
+    const UINT          cuiPort,
     const std::tstring &csUnixSocket,
-    const ULONG    culClientFlag
+    const ULONG         culClientFlag
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -107,7 +101,6 @@ CxMySQLConnection::bConnect(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bQuery (executes the SQL statement)
 BOOL
 CxMySQLConnection::bQuery(
     LPCTSTR pcszSqlFormat, ...
@@ -129,7 +122,6 @@ CxMySQLConnection::bQuery(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: uiFieldCount (number of columns in a result set)
 UINT
 CxMySQLConnection::uiFieldCount() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
@@ -142,7 +134,6 @@ CxMySQLConnection::uiFieldCount() const {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bClose (closes a previously opened connection)
 BOOL
 CxMySQLConnection::bClose() {
     /*DEBUG*/// _m_pmsConnection - n/a
@@ -165,7 +156,6 @@ CxMySQLConnection::bClose() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: uiGetLastError (error code for the most recently invoked API function that can succeed or fail)
 UINT
 CxMySQLConnection::uiGetLastError() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
@@ -178,7 +168,6 @@ CxMySQLConnection::uiGetLastError() const {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetLastErrorStr (error message for the most recently invoked API function that failed)
 std::tstring
 CxMySQLConnection::sGetLastErrorStr() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), std::tstring());
@@ -207,13 +196,12 @@ CxMySQLConnection::sGetLastErrorStr() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxMySQLRecordset
 CxMySQLRecordset::CxMySQLRecordset(
     const CxMySQLConnection &cmcConnection, //connection
     const BOOL               cbIsUseResult  //use result or store result
 ) :
     _m_pcmcConnection(&cmcConnection),
-    _m_pmrResult    (NULL)
+    _m_pmrResult     (NULL)
 {
     /*DEBUG*/xASSERT_DO(FALSE == bIsValid(),                  return);
     /*DEBUG*/xASSERT_DO(NULL  != _m_pcmcConnection->pmsGet(), return);
@@ -231,7 +219,6 @@ CxMySQLRecordset::CxMySQLRecordset(
     _m_pmrResult = pmrResult;
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxMySQLRecordset
 /*virtual*/
 CxMySQLRecordset::~CxMySQLRecordset() {
     /*DEBUG*/// _m_pmrResult - n/a
@@ -244,7 +231,6 @@ CxMySQLRecordset::~CxMySQLRecordset() {
     }
 }
 //---------------------------------------------------------------------------
-//DONE: pmrGet (get handle)
 MYSQL_RES *
 CxMySQLRecordset::pmrGet() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), NULL);
@@ -252,7 +238,6 @@ CxMySQLRecordset::pmrGet() const {
     return _m_pmrResult;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsValid (validating handle)
 BOOL
 CxMySQLRecordset::bIsValid() const {
     /*DEBUG*/// n/a
@@ -260,7 +245,6 @@ CxMySQLRecordset::bIsValid() const {
     return static_cast<BOOL>( NULL != _m_pmrResult );
 }
 //---------------------------------------------------------------------------
-//DONE: uiFieldsNum (number of columns in a result set)
 UINT
 CxMySQLRecordset::uiFieldsNum() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
@@ -273,7 +257,6 @@ CxMySQLRecordset::uiFieldsNum() const {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ullRowsNum (number of rows in the result set)
 my_ulonglong
 CxMySQLRecordset::ullRowsNum() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
@@ -286,7 +269,6 @@ CxMySQLRecordset::ullRowsNum() const {
     return ullRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bFetchField (The MYSQL_FIELD structure for the current column)
 BOOL
 CxMySQLRecordset::bFetchField(
     MYSQL_FIELD *pmfField
@@ -301,7 +283,6 @@ CxMySQLRecordset::bFetchField(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bFetchFieldDirect (The MYSQL_FIELD structure for the specified column)
 BOOL
 CxMySQLRecordset::bFetchFieldDirect(
     const UINT   cuiFieldNumber,
@@ -318,7 +299,6 @@ CxMySQLRecordset::bFetchFieldDirect(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bFetchFields (An array of MYSQL_FIELD structures for all columns of a result set)
 BOOL
 CxMySQLRecordset::bFetchFields(
     MYSQL_FIELD *pmfField
@@ -333,14 +313,13 @@ CxMySQLRecordset::bFetchFields(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bRowFetch (fetching row)
 BOOL
 CxMySQLRecordset::bFetchRow(
     std::vector<std::tstring> *pvsRow
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pvsRow,   FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsRow,     FALSE);
 
     BOOL       bRes            = FALSE;
     UINT       uiFieldsNum     = 0;
@@ -349,26 +328,24 @@ CxMySQLRecordset::bFetchRow(
 
     (*pvsRow).clear();
 
-//    //--UINT   uiFieldsNum   = mysql_num_fields   (_m_pmrResult);
-//    UINT       uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
-//    MYSQL_ROW  ppmrRow       = mysql_fetch_row    (_m_pmrResult);   //array of strings
-//    ULONG     *pulRowLengths = mysql_fetch_lengths(_m_pmrResult);   //TODO: maybe 64-bit bug
-
+    #if xTODO
+        //--UINT   uiFieldsNum   = mysql_num_fields   (_m_pmrResult);
+        UINT       uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
+        MYSQL_ROW  ppmrRow       = mysql_fetch_row    (_m_pmrResult);   //array of strings
+        ULONG     *pulRowLengths = mysql_fetch_lengths(_m_pmrResult);   //TODO: maybe 64-bit bug
+    #endif
 
     //fields count
     uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
-
 
     //fetch row
     bRes = _bFetchRow(&mrRow);
     xCHECK_RET(FALSE == bRes, TRUE);
 
-
     //field lengths
     bRes = _bFetchLengths(&pulFieldLengths);
     xASSERT(FALSE != bRes);
     xASSERT(NULL  != pulFieldLengths);
-
 
     //push to std::vector
     std::tstring sField;
@@ -394,7 +371,6 @@ CxMySQLRecordset::bFetchRow(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bFetchRow (A MYSQL_ROW structure for the next row)
 BOOL
 CxMySQLRecordset::_bFetchRow(
     MYSQL_ROW *pmrRow
@@ -410,7 +386,6 @@ CxMySQLRecordset::_bFetchRow(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bFetchLengths (An array of unsigned long integers representing the size of each column)
 BOOL
 CxMySQLRecordset::_bFetchLengths(
     ULONG **ppulFieldLengths

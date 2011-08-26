@@ -18,9 +18,9 @@
 	///< automatically include the NxLib namespace
 
 //log mode (only one mode can be activated)
-#define xDEBUG_MODE_MSGBOX_PLAIN     	0
+#define xDEBUG_MODE_MSGBOX_PLAIN     	1
 	///< debug mode "message box with plain text"
-#define xDEBUG_MODE_MSGBOX_FORMATED		1
+#define xDEBUG_MODE_MSGBOX_FORMATED		0
 	///< debug mode "message box with formated text"
 #define xDEBUG_MODE_STDOUT_PLAIN     	0
 	///< debug mode "std::out with plain text"

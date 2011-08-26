@@ -95,6 +95,7 @@ TESTS_SOURCE_SUBDIRS		:= 	.\
 					Net \
 					Patterns \
 					Sync \
+					Gui/Dialogs \
 					Units
 
 OTHER_INCLUDE_DIR		:=	/usr/local/crystal_trader2.5/include \

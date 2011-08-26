@@ -1,31 +1,29 @@
-/****************************************************************************
-* Class name:  CxTest_CxTemplate
-* Description: test CxTemplate
-* File name:   CxTemplate.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_[CxTemplate].h
+ * \brief  test [CxTemplate]
+ */
 
 
-#ifndef CxTest_CxTemplateH
-#define CxTest_CxTemplateH
+#ifndef CxTest_[CxTemplate]H
+#define CxTest_[CxTemplate]H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/xxxxxxxxx/CxTemplate.h>
+#include <xLib/xxxxxxxxx/[CxTemplate].h>
 //---------------------------------------------------------------------------
-class CxTest_CxTemplate : 
-    public CxTest 
+class CxTest_[CxTemplate] :
+    public CxTest
 {
 	public:
-		              CxTest_CxTemplate();
-	    virtual      ~CxTest_CxTemplate();
+		              CxTest_[CxTemplate]();
+            ///< constructor
+	    virtual      ~CxTest_[CxTemplate](const ULONGLONG cullBlockLoops);
+	        ///< destructor
 
 	    virtual BOOL  bUnit();
+	        ///< unit test
 
 	private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxTemplateH
+#endif //CxTest_[CxTemplate]H

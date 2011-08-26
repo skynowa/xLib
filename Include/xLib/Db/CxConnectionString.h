@@ -9,15 +9,19 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+/// DB connection string
 class CxConnectionString :
     public CxNonCopyable
 {
     public:
         static std::tstring sMSJetOleDb40     (const std::tstring &csDataSource, const std::tstring &csUserId, const std::tstring &csPassword, const std::tstring &csDatabasePassword);
+            ///< Microsoft.Jet.OLEDB.4.0
 
     private:
-                       CxConnectionString();
-        virtual       ~CxConnectionString();
+                            CxConnectionString();
+            ///< constructor
+        virtual            ~CxConnectionString();
+            ///< destructor
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Db_CxConnectionStringH
