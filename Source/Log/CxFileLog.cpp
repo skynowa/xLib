@@ -8,7 +8,7 @@
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Sync/CxAutoMutex.h>
@@ -108,13 +108,13 @@ CxFileLog::bWrite(
     //TODO: lock
 #endif
 
-    CxStdioFile sfFile;
+    CxFile sfFile;
 
-    bRes = sfFile.bOpen(sGetFilePath(), CxStdioFile::omAppend, FALSE);
+    bRes = sfFile.bOpen(sGetFilePath(), CxFile::omAppend, FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     INT iRes = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
-    /*DEBUG*/xASSERT_RET(iRes != CxStdioFile::etError, FALSE);
+    /*DEBUG*/xASSERT_RET(iRes != CxFile::etError, FALSE);
 
     return TRUE;
 }
@@ -130,7 +130,7 @@ CxFileLog::bClear() {
     //TODO: lock
 #endif
 
-    bRes = CxStdioFile::bClear(sGetFilePath());
+    bRes = CxFile::bClear(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -147,7 +147,7 @@ CxFileLog::bDelete() {
     //TODO: lock
 #endif
 
-    bRes = CxStdioFile::bDelete(sGetFilePath());
+    bRes = CxFile::bDelete(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -172,16 +172,16 @@ CxFileLog::_bDeleteIfFull() {
     //TODO: lock
 #endif
 
-    bRes = CxStdioFile::bIsExists(sGetFilePath());
+    bRes = CxFile::bIsExists(sGetFilePath());
     xCHECK_RET(FALSE == bRes, TRUE);
 
     //-------------------------------------
     //delete log, if full
-    ULONG ulSize = static_cast<ULONG>(  CxStdioFile::liGetSize(sGetFilePath()) );
+    ULONG ulSize = static_cast<ULONG>(  CxFile::liGetSize(sGetFilePath()) );
 
     xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, TRUE);
 
-    bRes = CxStdioFile::bDelete(sGetFilePath());
+    bRes = CxFile::bDelete(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;

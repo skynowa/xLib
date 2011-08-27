@@ -47,7 +47,7 @@ CxTest_CxCgi::bUnit(
                     xT("</body>")
                     xT("</html>");
 
-            m_bRes = CxStdioFile::bTextWrite(csFilePath, sFileContent);
+            m_bRes = CxFile::bTextWrite(csFilePath, sFileContent);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = CxCgi::bPageShow(csFilePath);

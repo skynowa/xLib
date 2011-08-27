@@ -6,7 +6,7 @@
 
 #include <xLib/Crypt/OpenSSL/CxBlowfish.h>
 
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Debug/CxProfiler.h>
 #include <xLib/Crypt/CxCrc32.h>
@@ -98,11 +98,11 @@ CxBlowfish::bSetFileKey(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
-    size_t      uiRes = 0;
-    std::ustring     usFile;
-    CxStdioFile sfFile;
+    size_t       uiRes = 0;
+    std::ustring usFile;
+    CxFile       sfFile;
 
-    _m_bRes = sfFile.bOpen(csFilePath, CxStdioFile::omBinRead, TRUE);
+    _m_bRes = sfFile.bOpen(csFilePath, CxFile::omBinRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     LONG liFileSize = sfFile.liGetSize();
@@ -197,9 +197,9 @@ CxBlowfish::bEncryptFileCfb64(
     std::ustring usOut;
 
     {
-        CxStdioFile sfFileIn;
+        CxFile sfFileIn;
 
-        _m_bRes = sfFileIn.bOpen(csFilePathIn, CxStdioFile::omBinRead, TRUE);
+        _m_bRes = sfFileIn.bOpen(csFilePathIn, CxFile::omBinRead, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileIn.bRead(&usIn);
@@ -210,9 +210,9 @@ CxBlowfish::bEncryptFileCfb64(
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     {
-        CxStdioFile sfFileOut;
+        CxFile sfFileOut;
 
-        _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::omBinCreateReadWrite, TRUE);
+        _m_bRes = sfFileOut.bOpen(csFilePathOut, CxFile::omBinCreateReadWrite, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileOut.bWrite(usOut);
@@ -253,13 +253,13 @@ CxBlowfish::bEncryptFileCfb64(
 
     //-------------------------------------
     //???????? ??????
-    CxStdioFile sfFileIn;
-    CxStdioFile sfFileOut;
+    CxFile sfFileIn;
+    CxFile sfFileOut;
 
-    _m_bRes = sfFileIn.bOpen(csFilePathIn,   CxStdioFile::omBinRead, TRUE);
+    _m_bRes = sfFileIn.bOpen(csFilePathIn,   CxFile::omBinRead, TRUE);
     /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    _m_bRes = sfFileOut.bOpen(csFilePathOut, CxStdioFile::omBinWrite, TRUE);
+    _m_bRes = sfFileOut.bOpen(csFilePathOut, CxFile::omBinWrite, TRUE);
     /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
@@ -293,7 +293,7 @@ CxBlowfish::bEncryptFileCfb64(
                 usCrc32.resize(CRC32_STR_SIZE);
 
                 //?????? Crc32 ?? ??????
-                _m_bRes = sfFileIn.bSetPosition(cusStamp.size(), CxStdioFile::ppBegin);
+                _m_bRes = sfFileIn.bSetPosition(cusStamp.size(), CxFile::ppBegin);
                 /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
                 size_t uiReadedSize = sfFileIn.uiRead(&usCrc32.at(0), usCrc32.size());
@@ -302,7 +302,7 @@ CxBlowfish::bEncryptFileCfb64(
                 usCrc32FromStamp = usCrc32;
 
                 //?????? ?????, ??????? ? ????? ??????
-                _m_bRes = sfFileIn.bSetPosition(cusStamp.size() + CRC32_STR_SIZE, CxStdioFile::ppBegin);
+                _m_bRes = sfFileIn.bSetPosition(cusStamp.size() + CRC32_STR_SIZE, CxFile::ppBegin);
                 /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
             }
             break;
@@ -350,20 +350,20 @@ CxBlowfish::bEncryptFileCfb64(
 
     //-------------------------------------
     //??????????? File.txt.tmp -> File.txt
-    _m_bRes = CxStdioFile::bWipe(csFilePathIn, 1);
+    _m_bRes = CxFile::bWipe(csFilePathIn, 1);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
     //????????? ?????????? ??? ???. ?????
     switch (cmCryptMode) {
         case CxBlowfish::cmEncrypt: {
-                _m_bRes = CxStdioFile::bRename(csFilePathOut, csFilePathIn + CxConst::xDOT + g_csCryptFileExt);
+                _m_bRes = CxFile::bRename(csFilePathOut, csFilePathIn + CxConst::xDOT + g_csCryptFileExt);
                 /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
             }
             break;
 
         case CxBlowfish::cmDecrypt: {
-                _m_bRes = CxStdioFile::bRename(csFilePathOut, CxPath::sRemoveExtIf(csFilePathIn, g_csCryptFileExt));
+                _m_bRes = CxFile::bRename(csFilePathOut, CxPath::sRemoveExtIf(csFilePathIn, g_csCryptFileExt));
                 /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
             }
             break;
@@ -395,9 +395,9 @@ CxBlowfish::cmGetFileCryptStatus(
     //CHECK
 
     //???? ?? ??????????
-    xCHECK_RET(FALSE == CxStdioFile::bIsExists(csFilePath), CxBlowfish::cmUnknown);
+    xCHECK_RET(FALSE == CxFile::bIsExists(csFilePath), CxBlowfish::cmUnknown);
 
-    liFileSize = CxStdioFile::liGetSize(csFilePath);
+    liFileSize = CxFile::liGetSize(csFilePath);
 
     //???? ????
     ////--xCHECK_RET(0 == liFileSize, CxBlowfish::cmNotNeed);
@@ -408,9 +408,9 @@ CxBlowfish::cmGetFileCryptStatus(
 
     //-------------------------------------
     //?????? ?????? N ??????
-    CxStdioFile sfFile;
+    CxFile sfFile;
 
-    _m_bRes = sfFile.bOpen(csFilePath, CxStdioFile::omBinRead, TRUE);
+    _m_bRes = sfFile.bOpen(csFilePath, CxFile::omBinRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, CxBlowfish::cmUnknown);
 
     //???????? ?????? ??? ?????

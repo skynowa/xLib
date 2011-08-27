@@ -9,7 +9,7 @@
 
 #include <xLib/Crypt/CxBase64.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Log/CxTraceLog.h>
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Net/CxDnsClient.h>
@@ -221,7 +221,7 @@ BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, c
     //DONE: ������ �� ����� � ����� ����� � �����
     std::string sText = "";
 
-    bRes = CxStdioFile::bTextRead(csFilePath, &sText);
+    bRes = CxFile::bTextRead(csFilePath, &sText);
     xCHECK_RET(FALSE == bRes, FALSE);
 
     //-------------------------------------

@@ -52,7 +52,7 @@ CxTest_CxFileLog::bUnit(
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = flLog.bWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
             xASSERT_NOT_EQ(FALSE, m_bRes);
-            xASSERT_LESS(0L, CxStdioFile::liGetSize( flLog.sGetFilePath()) );
+            xASSERT_LESS(0L, CxFile::liGetSize( flLog.sGetFilePath()) );
         }
     }
 
@@ -62,7 +62,7 @@ CxTest_CxFileLog::bUnit(
     {
         m_bRes = flLog.bClear();
         xASSERT_NOT_EQ(FALSE, m_bRes);
-        xASSERT_EQ(0L, CxStdioFile::liGetSize( flLog.sGetFilePath()) );
+        xASSERT_EQ(0L, CxFile::liGetSize( flLog.sGetFilePath()) );
     }
 
     //--------------------------------------------------
@@ -71,7 +71,7 @@ CxTest_CxFileLog::bUnit(
     {
         m_bRes = flLog.bDelete();
         xASSERT_NOT_EQ(FALSE, m_bRes);
-        xASSERT_EQ(FALSE, CxStdioFile::bIsExists( flLog.sGetFilePath()) );
+        xASSERT_EQ(FALSE, CxFile::bIsExists( flLog.sGetFilePath()) );
     }
 
     return TRUE;

@@ -7,7 +7,7 @@
 #include <xLib/Debug/CxProfiler.h>
 
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxThread.h>
 
 

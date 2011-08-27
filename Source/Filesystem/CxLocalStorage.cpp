@@ -8,7 +8,7 @@
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 /****************************************************************************
@@ -67,7 +67,7 @@ CxLocalStorage::bCreateDefault(
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/// csContent - n/a;
 
-    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, csContent);
+    _m_bRes = CxFile::bTextWrite(_m_sFilePath, csContent);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -111,7 +111,7 @@ BOOL
 CxLocalStorage::bFlush() const {
     /*DEBUG*/
 
-    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
+    _m_bRes = CxFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -122,7 +122,7 @@ BOOL
 CxLocalStorage::bClear() {
     /*DEBUG*/
 
-    _m_bRes = CxStdioFile::bClear(_m_sFilePath);
+    _m_bRes = CxFile::bClear(_m_sFilePath);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -134,7 +134,7 @@ CxLocalStorage::bDelete() {
     /*DEBUG*/
 
     //file
-    _m_bRes = CxStdioFile::bDelete(_m_sFilePath);
+    _m_bRes = CxFile::bDelete(_m_sFilePath);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //TLocalStorage
@@ -161,7 +161,7 @@ CxLocalStorage::bKeyIsExists(
 
     NxLib::TLocalStorage mmsIni;
 
-    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &mmsIni);
+    _m_bRes = CxFile::bTextRead(_m_sFilePath, _m_csSeparator, &mmsIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     xCHECK_RET(mmsIni.end() == mmsIni.find(csKey), FALSE);
@@ -367,7 +367,7 @@ CxLocalStorage::bKeyDelete(
     /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
 
     //read from file
-    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
+    _m_bRes = CxFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     xCHECK_RET(_m_msIni.end() == _m_msIni.find(csKey), TRUE);
@@ -376,7 +376,7 @@ CxLocalStorage::bKeyDelete(
     _m_msIni.erase(csKey);
 
     //write to file
-    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
+    _m_bRes = CxFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
@@ -403,7 +403,7 @@ CxLocalStorage::_bRead(
     /*DEBUG*/xASSERT_RET(NULL != psValue, FALSE);
 
     //read from file
-    _m_bRes = CxStdioFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
+    _m_bRes = CxFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //read to TLocalStorage
@@ -440,7 +440,7 @@ CxLocalStorage::_bWrite(
     }
 
     //write to file
-    _m_bRes = CxStdioFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
+    _m_bRes = CxFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
