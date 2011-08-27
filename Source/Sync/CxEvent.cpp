@@ -41,7 +41,7 @@ CxEvent::bCreate(
     const LPSECURITY_ATTRIBUTES  pcsaAttributes,
     const BOOL                   cbManualReset,
     const BOOL                   cbInitialState,
-    const std::tstring               &csName
+    const std::tstring          &csName
 ) {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
@@ -60,8 +60,8 @@ CxEvent::bCreate(
 //DONE: bOpen (Opens an existing named event object)
 BOOL
 CxEvent::bOpen(
-    const ULONG    culAccess,
-    const BOOL     cbInheritHandle,
+    const ULONG         culAccess,
+    const BOOL          cbInheritHandle,
     const std::tstring &csName
 ) {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);

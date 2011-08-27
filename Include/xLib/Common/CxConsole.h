@@ -49,9 +49,9 @@ class CxConsole :
         };
             ///< background color
 
-        std::tstring      bSetTextColor (const std::tstring &csText, const EForeground cfgForeground, const BOOL cbIsBold, const BOOL cbIsUnderline, const EBackground cbgBackground, const BOOL cbIsBlink);
+        std::tstring bSetTextColor (const std::tstring &csText, const EForeground cfgForeground, const BOOL cbIsBold, const BOOL cbIsUnderline, const EBackground cbgBackground, const BOOL cbIsBlink);
             ///< set text color
-        std::tstring      sRead         ();
+        std::tstring sRead         ();
             ///< read
         BOOL         bWrite        (const std::tstring &csStr);
             ///< write
@@ -68,7 +68,7 @@ class CxConsole :
         BOOL         bClear        ();
             ///< clear
 
-        std::tstring      sGetTitle     ();
+        std::tstring sGetTitle     ();
             ///< get title string
         BOOL         bSetTitle     (const std::tstring &csTitle);
             ///< set title string

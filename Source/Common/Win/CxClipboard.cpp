@@ -62,7 +62,10 @@ CxClipboard::bClose() {
 //---------------------------------------------------------------------------
 //DONE: bGetData ()
 BOOL
-CxClipboard::bGetData(EFormat fmFormat) {
+CxClipboard::bGetData(
+    EFormat fmFormat
+)
+{
     /*DEBUG*///
 
     _m_hObject = ::GetClipboardData(static_cast<UINT>(fmFormat));
@@ -73,7 +76,11 @@ CxClipboard::bGetData(EFormat fmFormat) {
 //---------------------------------------------------------------------------
 //DONE: bSetData ()
 BOOL
-CxClipboard::bSetData(EFormat fmFormat, HANDLE hData) {
+CxClipboard::bSetData(
+    EFormat fmFormat, 
+    HANDLE  hData
+)
+{
     /*DEBUG*///
 
     _m_hObject = ::SetClipboardData(static_cast<UINT>(fmFormat), hData);
@@ -84,7 +91,10 @@ CxClipboard::bSetData(EFormat fmFormat, HANDLE hData) {
 //---------------------------------------------------------------------------
 //DONE: bGetText ()
 BOOL
-CxClipboard::bGetText(std::tstring *psText) {
+CxClipboard::bGetText(
+    std::tstring *psText
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != psText, FALSE);
 
     _m_bRes = bOpen();
@@ -119,7 +129,10 @@ CxClipboard::bGetText(std::tstring *psText) {
 //---------------------------------------------------------------------------
 //DONE: bSetText ()
 BOOL
-CxClipboard::bSetText(const std::tstring csText) {
+CxClipboard::bSetText(
+    const std::tstring csText
+)
+{
     /*DEBUG*/
 
     _m_bRes = bClear();
@@ -176,7 +189,10 @@ CxClipboard::bClear() {
 }
 //---------------------------------------------------------------------------
 //TODO: bIsHasFormat ()
-BOOL CxClipboard::bIsHasFormat(EFormat fmFormat) {
+BOOL CxClipboard::bIsHasFormat(
+    EFormat fmFormat
+)
+{
     /*DEBUG*///
 
     _m_bRes = ::IsClipboardFormatAvailable(static_cast<UINT>(fmFormat));
@@ -187,7 +203,11 @@ BOOL CxClipboard::bIsHasFormat(EFormat fmFormat) {
 //---------------------------------------------------------------------------
 //TODO: bRegisterFormat ()
 BOOL
-CxClipboard::bRegisterFormat(const std::tstring csText, EFormat *pfmFormat) {
+CxClipboard::bRegisterFormat(
+    const std::tstring  csText, 
+    EFormat            *pfmFormat
+)
+{
     /*DEBUG*/// csText
     /*DEBUG*/xASSERT_RET(NULL != pfmFormat, FALSE);
 

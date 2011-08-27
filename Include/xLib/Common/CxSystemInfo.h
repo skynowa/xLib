@@ -49,35 +49,35 @@ class CxSystemInfo :
             ///< OS architecture
 
 
-        static EOsType         osGetOS            ();
+        static EOsType      osGetOS           ();
             ///< get information about the current OS
-        static std::tstring         sFormatOsType      (const EOsType otOsType);
+        static std::tstring sFormatOsType     (const EOsType otOsType);
             ///< format OS type
 
-        static EOsArch         oaGetOsArch        ();
+        static EOsArch      oaGetOsArch       ();
             ///< get OS architecture
-        static std::tstring         sFormatOsArch      (const EOsArch oaOsArch);
+        static std::tstring sFormatOsArch     (const EOsArch oaOsArch);
             ///< format get OS architecture
 
-        static std::tstring         sGetComputerName   ();
+        static std::tstring sGetComputerName  ();
             ///< get the NetBIOS name of the local computer
-        static BOOL            bIsUserAnAdmin     ();
+        static BOOL         bIsUserAnAdmin    ();
             ///< is current user an admin
-        static std::tstring         sGetUserName       ();
+        static std::tstring sGetUserName      ();
             ///< get the name of the user associated with the current thread
-        static ULONG           ulGetNumOfCPUs     ();
+        static ULONG        ulGetNumOfCPUs    ();
             ///< get num of CPUs
-        static ULONG           ulGetCurrentCpuNum ();
+        static ULONG        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
-        static BOOL            bIsUnicodeOS       ();
+        static BOOL         bIsUnicodeOS      ();
             ///< is OS support unicode
-        static ULONGLONG       ullGetCpuSpeed     ();
+        static ULONGLONG    ullGetCpuSpeed    ();
             ///< get the CPU speed in MHz
 
    private:
-                               CxSystemInfo       ();
+                            CxSystemInfo      ();
             ///< constructor
-        virtual               ~CxSystemInfo       ();
+        virtual            ~CxSystemInfo      ();
             ///< destructor
 };
 //---------------------------------------------------------------------------

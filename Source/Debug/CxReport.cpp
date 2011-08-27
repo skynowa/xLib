@@ -25,11 +25,11 @@
 //---------------------------------------------------------------------------
 //DONE: CxReport
 CxReport::CxReport(
-    const EType   &crtType,
+    const EType        &crtType,
     const std::tstring &csExp,
-    const ULONG    culLastError,
+    const ULONG         culLastError,
     const std::tstring &csFile,
-    const ULONG    culLine,
+    const ULONG         culLine,
     const std::tstring &csFunc,
     const std::tstring &csDate,
     const std::tstring &csTime,
@@ -72,15 +72,15 @@ CxReport::CxReport(
 //---------------------------------------------------------------------------
 //DONE: CxReport
 CxReport::CxReport(
-    const EType   &crtType,
+    const EType        &crtType,
     const std::tstring &csExp,
-    const ULONG    culLastError,
+    const ULONG         culLastError,
     const std::tstring &csFile,
-    const ULONG    culLine,
+    const ULONG         culLine,
     const std::tstring &csFunc,
     const std::tstring &csDate,
     const std::tstring &csTime,
-    LPCTSTR        pcszComment, ...
+    LPCTSTR             pcszComment, ...
 ) :
     _m_rtType         (rtUnknown),
     _m_sReport        (),
@@ -103,7 +103,7 @@ CxReport::CxReport(
     /*DEBUG*/
 
     std::tstring sComment;
-    va_list palArgs;
+    va_list      palArgs;
 
     xVA_START(palArgs, pcszComment);
     sComment = CxString::sFormatV(pcszComment, palArgs);
@@ -277,11 +277,11 @@ CxReport::sGetComment() const {
 //DONE: _bInit (formatting message, init class members)
 BOOL
 CxReport::_bInitVars(
-    const EType   &crtType,
+    const EType        &crtType,
     const std::tstring &csExp,
-    const ULONG    culLastError,
+    const ULONG         culLastError,
     const std::tstring &csFile,
-    const ULONG    culLine,
+    const ULONG         culLine,
     const std::tstring &csFunc,
     const std::tstring &csDate,
     const std::tstring &csTime,

@@ -17,7 +17,9 @@
 
 //---------------------------------------------------------------------------
 //TODO: CxCOMPort (�����������)
-CxCOMPort::CxCOMPort(const std::tstring &sPortNum) :
+CxCOMPort::CxCOMPort(
+    const std::tstring &sPortNum
+) :
     _m_bRes    (FALSE),
     _m_sPortNum(sPortNum)
 {
@@ -32,7 +34,8 @@ CxCOMPort::~CxCOMPort() {
 }
 //--------------------------------------------------------------------------
 //TODO: bOpen (��������)
-BOOL CxCOMPort::bOpen() {
+BOOL 
+CxCOMPort::bOpen() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     HANDLE hComPort = ::CreateFile(_m_sPortNum.c_str(), GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, FILE_FLAG_OVERLAPPED, 0);
@@ -44,7 +47,8 @@ BOOL CxCOMPort::bOpen() {
 }
 //--------------------------------------------------------------------------
 //TODO: bConfig (����������������)
-BOOL CxCOMPort::bConfig() {
+BOOL 
+CxCOMPort::bConfig() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     DCB dcb;
@@ -78,7 +82,8 @@ BOOL CxCOMPort::bConfig() {
 }
 //--------------------------------------------------------------------------
 //TODO: bClearData (����� ������)
-BOOL CxCOMPort::bClearData() {
+BOOL 
+CxCOMPort::bClearData() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     ::PurgeComm(_m_hComPort, PURGE_RXCLEAR | PURGE_TXCLEAR); ////PurgeComm(_m_hComPort, PURGE_TXCLEAR | PURGE_RXCLEAR | PURGE_TXABORT | PURGE_RXABORT);
@@ -90,7 +95,12 @@ BOOL CxCOMPort::bClearData() {
 }
 //--------------------------------------------------------------------------
 //TODO: bReadData (������ ������)
-std::tstring CxCOMPort::bReadData(LPTSTR pszBuff, ULONG dwNumOfBytesToRead) {
+std::tstring 
+CxCOMPort::bReadData(
+    LPTSTR pszBuff, 
+    ULONG  dwNumOfBytesToRead
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     CxThread::bSleep(5L);
@@ -108,14 +118,20 @@ std::tstring CxCOMPort::bReadData(LPTSTR pszBuff, ULONG dwNumOfBytesToRead) {
 }
 //--------------------------------------------------------------------------
 //TODO: iReadDataWaiting ()
-INT CxCOMPort::iReadDataWaiting() {
+INT 
+CxCOMPort::iReadDataWaiting() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     return 0;
 }
 //--------------------------------------------------------------------------
 //TODO: bWriteData (������ ������)
-BOOL CxCOMPort::bWriteData(LPCTSTR pcszBuff, DWORD dwNumOfBytesToWrite) {
+BOOL 
+CxCOMPort::bWriteData(
+    LPCTSTR pcszBuff, 
+    DWORD   dwNumOfBytesToWrite
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     ULONG dwNumOfBytesWritten = 0;
@@ -162,7 +178,8 @@ BOOL CxCOMPort::bWriteData(LPCTSTR pcszBuff, DWORD dwNumOfBytesToWrite) {
 }
 //--------------------------------------------------------------------------
 //TODO: bClose (��������)
-BOOL CxCOMPort::bClose() {
+BOOL 
+CxCOMPort::bClose() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     _m_bRes = _m_hComPort.bClose();
@@ -172,7 +189,8 @@ BOOL CxCOMPort::bClose() {
 }
 //--------------------------------------------------------------------------
 //TODO: ulInputBuffTest ()
-ULONG CxCOMPort::ulInputBuffTest() {
+ULONG 
+CxCOMPort::ulInputBuffTest() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     ULONG    dwErrors;
@@ -186,28 +204,32 @@ ULONG CxCOMPort::ulInputBuffTest() {
 }
 //-------------------------------------------------------------------------
 //TODO: bClearCLRDTR (����������� ������� DTR)
-BOOL CxCOMPort::bClearCLRDTR() {
+BOOL 
+CxCOMPort::bClearCLRDTR() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     return ::EscapeCommFunction(_m_hComPort, CLRDTR);
 }
 //-------------------------------------------------------------------------
 //TODO: bClearCLRRTS (����������� ������ RTS)
-BOOL CxCOMPort::bClearCLRRTS() {
+BOOL 
+CxCOMPort::bClearCLRRTS() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     return ::EscapeCommFunction(_m_hComPort, CLRRTS);
 }
 //-------------------------------------------------------------------------
 //TODO: bSetSETDTR (��������� ������� DTR)
-BOOL CxCOMPort::bSetSETDTR() {
+BOOL 
+CxCOMPort::bSetSETDTR() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     return ::EscapeCommFunction(_m_hComPort, SETDTR);
 }
 //-------------------------------------------------------------------------
 //TODO: bSetSETRTS (��������� ������� RTS)
-BOOL CxCOMPort::bSetSETRTS() {
+BOOL 
+CxCOMPort::bSetSETRTS() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
     return ::EscapeCommFunction(_m_hComPort, SETRTS);

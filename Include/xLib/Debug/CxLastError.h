@@ -14,10 +14,10 @@ class CxLastError :
     /// system last error
 {
     public:
-        static ULONG   ulGet      ();
+        static ULONG        ulGet      ();
         static std::tstring sGet       ();
-        static BOOL    bSet       (const ULONG culCode);
-        static BOOL    bReset     ();
+        static BOOL         bSet       (const ULONG culCode);
+        static BOOL         bReset     ();
         static std::tstring sFormat    (const ULONG culCode);
 
         #if xTODO
@@ -27,8 +27,8 @@ class CxLastError :
         #endif
 
     private:
-                       CxLastError();
-        virtual       ~CxLastError();
+                            CxLastError();
+        virtual            ~CxLastError();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxLastErrorH

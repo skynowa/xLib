@@ -25,28 +25,28 @@ class CxShell :
      public:
         //operations
         enum EOperation {
-            opEdit,        //Launches an editor and opens the document for editing. If lpFile is not a document file, the function will fail.
-            opExplore,    //Explores a folder specified by lpFile
-            opFind,        //Initiates a search beginning in the directory specified by lpDirectory
-            opOpen,        //Opens the item specified by the lpFile parameter. The item can be a file or folder
-            opPrint,    //Prints the file specified by lpFile. If lpFile is not a document file, the function fails
-            opNull        //
+            opEdit,       
+            opExplore,    
+            opFind,        
+            opOpen,       
+            opPrint,   
+            opNull       
         };
 
         //The flags that specify how an application is to be displayed when it is opened
         enum EShowFlag {
-            sfHide            = SW_HIDE,            //Hides the window and activates another window
-            sfMaximize        = SW_MAXIMIZE,        //Maximizes the specified window
-            sfMinimize        = SW_MINIMIZE,        //Minimizes the specified window and activates the next top-level window in the z-order
-            sfRestore         = SW_RESTORE,            //Activates and displays the window
-            sfShow            = SW_SHOW,            //Activates the window and displays it in its current size and position
-            sfShowDefault     = SW_SHOWDEFAULT,        //Sets the show state based on the sf flag specified in the STARTUPINFO structure passed to the CreateProcess function by the program that started the application
-            sfShowMaximized   = SW_SHOWMAXIMIZED,    //Activates the window and displays it as a maximized window
-            sfShowMinimized   = SW_SHOWMINIMIZED,    //Activates the window and displays it as a minimized window
-            sfShowMinNoActive = SW_SHOWMINNOACTIVE,    //Displays the window as a minimized window
-            sfShowNa          = SW_SHOWNA,            //Displays the window in its current state
-            sfShowNoActivate  = SW_SHOWNOACTIVATE,    //Displays a window in its most recent size and position
-            sfShowNormal      = SW_SHOWNORMAL        //Activates and displays a window
+            sfHide            = SW_HIDE,         
+            sfMaximize        = SW_MAXIMIZE,      
+            sfMinimize        = SW_MINIMIZE,     
+            sfRestore         = SW_RESTORE,           
+            sfShow            = SW_SHOW,        
+            sfShowDefault     = SW_SHOWDEFAULT,     
+            sfShowMaximized   = SW_SHOWMAXIMIZED,  
+            sfShowMinimized   = SW_SHOWMINIMIZED,    
+            sfShowMinNoActive = SW_SHOWMINNOACTIVE,    
+            sfShowNa          = SW_SHOWNA,            
+            sfShowNoActivate  = SW_SHOWNOACTIVATE,    
+            sfShowNormal      = SW_SHOWNORMAL        
         };
 
         //special folders
@@ -61,8 +61,8 @@ class CxShell :
             sfCommonAppData          = CSIDL_COMMON_APPDATA,
             sfCommonDesktopDirectory = CSIDL_COMMON_DESKTOPDIRECTORY,
             sfCommonDocuments        = CSIDL_COMMON_DOCUMENTS,
-            sfCommonFavorites         = CSIDL_COMMON_FAVORITES,
-            sfCommonMusic             = CSIDL_COMMON_MUSIC,
+            sfCommonFavorites        = CSIDL_COMMON_FAVORITES,
+            sfCommonMusic            = CSIDL_COMMON_MUSIC,
             sfCommonOemLinks         = CSIDL_COMMON_OEM_LINKS,
             sfCommonPictures         = CSIDL_COMMON_PICTURES,
             sfCommonPrograms         = CSIDL_COMMON_PROGRAMS,
@@ -83,7 +83,7 @@ class CxShell :
             sfInternet               = CSIDL_INTERNET,
             sfInternetCache          = CSIDL_INTERNET_CACHE,
             sfLocalAppData           = CSIDL_LOCAL_APPDATA,
-            ////TODO: G++ sfMyDocuments            = CSIDL_MYDOCUMENTS,
+            sfMyDocuments            = CSIDL_MYDOCUMENTS,
             sfMyMusic                = CSIDL_MYMUSIC,
             sfMyPictures             = CSIDL_MYPICTURES,
             sfMyVideo                = CSIDL_MYVIDEO,
@@ -111,19 +111,19 @@ class CxShell :
         };
 
         static std::tstring bFindExecutable   (const std::tstring csFileName, const std::tstring csFindDirPath);
-        static BOOL    bExecute          (HWND hOwner, EOperation opOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, EShowFlag sfShowCmd);
-        static BOOL    bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
-        static BOOL    bExecuteHttp      (const std::tstring &csUrl);
-        static BOOL    bExecuteFtp       (const std::tstring &csUrl);
-        static BOOL    bExecuteEmail     (const std::tstring &csToEmail, const std::tstring &csSubject, const std::tstring &csBody);
+        static BOOL         bExecute          (HWND hOwner, EOperation opOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, EShowFlag sfShowCmd);
+        static BOOL         bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
+        static BOOL         bExecuteHttp      (const std::tstring &csUrl);
+        static BOOL         bExecuteFtp       (const std::tstring &csUrl);
+        static BOOL         bExecuteEmail     (const std::tstring &csToEmail, const std::tstring &csSubject, const std::tstring &csBody);
         static std::tstring sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken);
-        static BOOL    bCreateShortcut   (const std::tstring &csFilePath, const std::tstring &csShortCutPath, const std::tstring &csDescription);
+        static BOOL         bCreateShortcut   (const std::tstring &csFilePath, const std::tstring &csShortCutPath, const std::tstring &csDescription);
 
     private:
-        static   BOOL  _ms_bRes;
+        static   BOOL       _ms_bRes;
 
-                       CxShell           ();
-        virtual       ~CxShell           ();
+                            CxShell           ();
+        virtual            ~CxShell           ();
 };
 #elif defined(xOS_LINUX)
 

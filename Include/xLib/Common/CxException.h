@@ -13,19 +13,19 @@ class CxException
     /// exception
 {
     public:
-                           CxException  ();
+                           CxException ();
             ///< constructor
-        virtual           ~CxException  ();
+        virtual           ~CxException ();
             ///< destructor
 
-        const std::tstring &    sGetWhat     () const;
+        const std::tstring &sGetWhat   () const;
             ///< get message
         template<class T>
-        CxException &      operator <<  (const T &cMessageT);
+        CxException &      operator << (const T &cMessageT);
             ///< put message
 
     private:
-        std::tstring            _m_sMsg;
+        std::tstring       _m_sMsg;
             ///< message
 };
 //---------------------------------------------------------------------------

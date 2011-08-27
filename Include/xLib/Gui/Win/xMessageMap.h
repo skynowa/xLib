@@ -9,9 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/xCommon.h>
 //---------------------------------------------------------------------------
-#define xDECLARE_MSG_MAP()                virtual LRESULT lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam)
+#define xDECLARE_MSG_MAP()               virtual LRESULT lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam)
 
-#define xBEGIN_MSG_MAP_NO_DECLARE()     virtual LRESULT lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam) {
+#define xBEGIN_MSG_MAP_NO_DECLARE()      virtual LRESULT lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 
 #define xBEGIN_MSG_MAP(_CXClass)         LRESULT _CXClass::lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam) {
 

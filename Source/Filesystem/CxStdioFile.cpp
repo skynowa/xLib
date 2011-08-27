@@ -52,9 +52,9 @@ CxStdioFile::~CxStdioFile() {
 //---------------------------------------------------------------------------
 BOOL
 CxStdioFile::bOpen(
-    const std::tstring   &csFilePath,
-    const EOpenMode  comMode,
-    const BOOL       cbIsUseBuffering
+    const std::tstring &csFilePath,
+    const EOpenMode     comMode,
+    const BOOL          cbIsUseBuffering
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE == bIsValid(),                       FALSE);
@@ -81,9 +81,9 @@ CxStdioFile::bOpen(
 //---------------------------------------------------------------------------
 BOOL
 CxStdioFile::bReopen(
-    const std::tstring   &csFilePath,
-    const EOpenMode  comMode,
-    const BOOL       cbIsUseBuffering
+    const std::tstring &csFilePath,
+    const EOpenMode     comMode,
+    const BOOL          cbIsUseBuffering
 )
 {
     /*DEBUG*/// _m_pFile - n/a
@@ -288,7 +288,7 @@ CxStdioFile::iWriteV(
 //---------------------------------------------------------------------------
 BOOL
 CxStdioFile::bReadLine(
-    std::tstring      *psStr,
+    std::tstring *psStr,
     const size_t  cuiMaxCount
 ) const
 {
@@ -717,7 +717,7 @@ CxStdioFile::bAccess(
 /*static*/
 BOOL
 CxStdioFile::bChmod(
-    const std::tstring         &csFilePath,
+    const std::tstring    &csFilePath,
     const EPermissionMode  cpmMode
 )
 {
@@ -783,8 +783,8 @@ CxStdioFile::bDelete(
 BOOL
 CxStdioFile::bTryDelete(
     const std::tstring &csFilePath,
-    const size_t   cuiAttempts,
-    const ULONG    culTimeoutMsec
+    const size_t        cuiAttempts,
+    const ULONG         culTimeoutMsec
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -811,7 +811,7 @@ CxStdioFile::bTryDelete(
 BOOL
 CxStdioFile::bWipe(
     const std::tstring &csFilePath,
-    const size_t   cuiPasses
+    const size_t        cuiPasses
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -977,7 +977,7 @@ BOOL
 CxStdioFile::bCopy(
     const std::tstring &csFilePathFrom,
     const std::tstring &csFilePathTo,
-    const BOOL     cbFailIfExists
+    const BOOL          cbFailIfExists
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePathFrom.empty(), FALSE);
@@ -1078,9 +1078,9 @@ CxStdioFile::ullGetLines(
 BOOL
 CxStdioFile::bGetTime(
     const std::tstring &csFilePath,
-    time_t        *ptmCreate,
-    time_t        *ptmAccess,
-    time_t        *ptmModified
+    time_t             *ptmCreate,
+    time_t             *ptmAccess,
+    time_t             *ptmModified
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -1107,9 +1107,9 @@ CxStdioFile::bGetTime(
 BOOL
 CxStdioFile::bSetTime(
     const std::tstring &csFilePath,
-    const time_t  &ctmCreate,
-    const time_t  &ctmAccess,
-    const time_t  &ctmModified
+    const time_t       &ctmCreate,
+    const time_t       &ctmAccess,
+    const time_t       &ctmModified
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -1164,9 +1164,9 @@ CxStdioFile::bSetTime(
 /*static*/
 std::tstring
 CxStdioFile::sTempCreate(
-    const std::tstring &csFilePath,
-    const std::tstring &csDirPath,
-    FILE          **pfFileHandle
+    const std::tstring  &csFilePath,
+    const std::tstring  &csDirPath,
+    FILE               **pfFileHandle
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring());
@@ -1343,8 +1343,8 @@ CxStdioFile::bTextWrite(
 /*static*/
 BOOL
 CxStdioFile::bTextRead(
-    const std::tstring              &csFilePath,
-    const std::tstring              &csSeparator,
+    const std::tstring                   &csFilePath,
+    const std::tstring                   &csSeparator,
     std::map<std::tstring, std::tstring> *pmsContent
 )
 {
@@ -1365,8 +1365,8 @@ CxStdioFile::bTextRead(
     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    FALSE);
 
     std::map<std::tstring, std::tstring> msRes;
-    std::tstring                    sLine;
-    std::vector<std::tstring>       vsLine;
+    std::tstring                         sLine;
+    std::vector<std::tstring>            vsLine;
 
     for (size_t i = 0; !ifsStream.eof();  ++ i) {
         std::getline(ifsStream, sLine);
@@ -1384,9 +1384,9 @@ CxStdioFile::bTextRead(
 
 
 #if xTODO
-    BOOL                       bRes = FALSE;
+    BOOL                                 bRes = FALSE;
     std::map<std::tstring, std::tstring> msRes;
-    std::vector<std::tstring>       vsRes;
+    std::vector<std::tstring>            vsRes;
 
     bRes = CxStdioFile::bTextRead(csFilePath, &vsRes);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -1411,8 +1411,8 @@ CxStdioFile::bTextRead(
 /*static*/
 BOOL
 CxStdioFile::bTextWrite(
-    const std::tstring                    &csFilePath,
-    const std::tstring                    &csSeparator,
+    const std::tstring                         &csFilePath,
+    const std::tstring                         &csSeparator,
     const std::map<std::tstring, std::tstring> &cmsContent
 )
 {
@@ -1537,7 +1537,7 @@ std::tstring
 CxStdioFile::sBackup(
     const std::tstring &csFilePath,
     const std::tstring &csDestDirPath,
-    const BOOL     cbMakeDaily
+    const BOOL          cbMakeDaily
     /*INT bBackupLimit*/
 )
 {

@@ -24,7 +24,7 @@ class CxMimeMessage :
 		static BOOL  bSaveToRawFile  (const std::tstring &csFilePath);       //csFilePath - raw msg
 
     private:
-        std::tstring      _m_csRawMessage;
+        std::tstring _m_csRawMessage;
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxMimeMessageH

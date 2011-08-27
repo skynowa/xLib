@@ -15,12 +15,12 @@ class CxAutoProfiler :
     /// auto code profiling
 {
     public:
-                   CxAutoProfiler(const std::tstring &csFilePath, const CxProfiler::EMode cpmMode, LPCTSTR pcszComment, ...);
-        virtual   ~CxAutoProfiler();
+                     CxAutoProfiler(const std::tstring &csFilePath, const CxProfiler::EMode cpmMode, LPCTSTR pcszComment, ...);
+        virtual     ~CxAutoProfiler();
 
     private:
-        CxProfiler _m_pfProfiler;
-        std::tstring    _m_sComment;
+        CxProfiler   _m_pfProfiler;
+        std::tstring _m_sComment;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxAutoProfilerH

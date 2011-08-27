@@ -572,7 +572,7 @@ CxPath::sSetValidName(
 std::tstring
 CxPath::sToWin(
     const std::tstring &csFilePath,
-    const BOOL     cbIsSlashAtEnd
+    const BOOL          cbIsSlashAtEnd
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring());
@@ -596,7 +596,7 @@ CxPath::sToWin(
 std::tstring
 CxPath::sToNix(
     const std::tstring &csFilePath,
-    const BOOL     cbIsSlashAtEnd
+    const BOOL          cbIsSlashAtEnd
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring());
@@ -620,7 +620,7 @@ CxPath::sToNix(
 std::tstring
 CxPath::sToCurrentOs(
     const std::tstring &csFilePath,
-    const BOOL     cbIsSlashAtEnd
+    const BOOL          cbIsSlashAtEnd
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring());
@@ -686,7 +686,7 @@ CxPath::sGetAbsolute(
 std::tstring
 CxPath::sMinimizeName(
     const std::tstring &csFileName,
-    const size_t   cuiMaxSize
+    const size_t        cuiMaxSize
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::tstring());
@@ -721,7 +721,7 @@ CxPath::sMinimizeName(
 std::tstring
 CxPath::sMinimize(
     const std::tstring &csFilePath,
-    const size_t   cuiMaxSize
+    const size_t        cuiMaxSize
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring());

@@ -17,7 +17,7 @@ template<class Traits>
 inline basic_ostream<TCHAR, Traits> &
 operator << (
     basic_ostream<TCHAR, Traits> &osOut,
-    const std::ustring                &cusValue
+    const std::ustring           &cusValue
 )
 {
     std::tstring sRes;
@@ -197,7 +197,7 @@ template<class T>
 inline T
 CxString::lexical_cast(
     const std::tstring &csStr,
-    const INT      ciBase
+    const INT           ciBase
 )
 {
     //csStr  - n/a

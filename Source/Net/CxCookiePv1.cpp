@@ -36,7 +36,9 @@ CxCookiePv1::CxCookiePv1() :
 }
 //---------------------------------------------------------------------------
 //DONE: CxCookiePv1
-CxCookiePv1::CxCookiePv1(const std::tstring &csRawCookie) :
+CxCookiePv1::CxCookiePv1(
+    const std::tstring &csRawCookie
+) :
     _m_sName    (),
     _m_sValue   (),
     _m_sComment (),
@@ -71,7 +73,10 @@ CxCookiePv1::sGetName() const {
 //---------------------------------------------------------------------------
 //DONE: bSetName ()
 BOOL
-CxCookiePv1::bSetName(const std::tstring &csName) {
+CxCookiePv1::bSetName(
+    const std::tstring &csName
+)
+{
     /*DEBUG*/
 
     _m_sName = csName;
@@ -89,7 +94,10 @@ CxCookiePv1::sGetValue() const {
 //---------------------------------------------------------------------------
 //DONE: bSetValue ()
 BOOL
-CxCookiePv1::bSetValue(const std::tstring &csValue) {
+CxCookiePv1::bSetValue(
+    const std::tstring &csValue
+)
+{
     /*DEBUG*/
 
     _m_sValue = csValue;
@@ -107,7 +115,10 @@ CxCookiePv1::sGetComment() const {
 //---------------------------------------------------------------------------
 //DONE: bSetComment ()
 BOOL
-CxCookiePv1::bSetComment(const std::tstring &csComment) {
+CxCookiePv1::bSetComment(
+    const std::tstring &csComment
+)
+{
     /*DEBUG*/
 
     _m_sComment = csComment;
@@ -125,7 +136,10 @@ CxCookiePv1::sGetDomain() const {
 //---------------------------------------------------------------------------
 //DONE: bSetDomain ()
 BOOL
-CxCookiePv1::bSetDomain(const std::tstring &csDomain) {
+CxCookiePv1::bSetDomain(
+    const std::tstring &csDomain
+)
+{
     /*DEBUG*/
 
     _m_sDomain = csDomain;
@@ -143,7 +157,10 @@ CxCookiePv1::sGetPath() const {
 //---------------------------------------------------------------------------
 //DONE: bSetPath ()
 BOOL
-CxCookiePv1::bSetPath(const std::tstring &csPath) {
+CxCookiePv1::bSetPath(
+    const std::tstring &csPath
+)
+{
     /*DEBUG*/
 
     _m_sPath = csPath;
@@ -161,7 +178,10 @@ CxCookiePv1::liGetMaxAge() const {
 //---------------------------------------------------------------------------
 //DONE: bSetMaxAge ()
 BOOL
-CxCookiePv1::bSetMaxAge(LONGLONG liMaxAge) {
+CxCookiePv1::bSetMaxAge(
+    LONGLONG liMaxAge
+)
+{
     /*DEBUG*/
 
     _m_liMaxAge = liMaxAge;
@@ -179,7 +199,10 @@ CxCookiePv1::bGetSecure() const {
 //---------------------------------------------------------------------------
 //DONE: bSetSecure ()
 BOOL
-CxCookiePv1::bSetSecure(BOOL bFlag) {
+CxCookiePv1::bSetSecure(
+    BOOL bFlag
+)
+{
     /*DEBUG*/
 
     _m_bSecure = bFlag;
@@ -197,7 +220,10 @@ CxCookiePv1::bGetHttpOnly() const {
 //---------------------------------------------------------------------------
 //DONE: bSetHttpOnly ()
 BOOL
-CxCookiePv1::bSetHttpOnly(BOOL bFlag) {
+CxCookiePv1::bSetHttpOnly(
+    BOOL bFlag
+)
+{
     /*DEBUG*/
 
     _m_bHttpOnly = bFlag;
@@ -291,7 +317,10 @@ struct SCompareNoCase {
 //---------------------------------------------------------------------------
 //DONE: bInit (parsing raw cookie string pv0)
 BOOL
-CxCookiePv1::bInit(const std::tstring &csRawCookie) {
+CxCookiePv1::bInit(
+    const std::tstring &csRawCookie
+)
+{
     /*DEBUG*/// _m_msCookie - n/a
     /*DEBUG*/// csRawCookie - n/a
 

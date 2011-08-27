@@ -36,7 +36,7 @@ class CxSemaphore :
     private:
         CxHandle              _m_hSemaphore;
         LPSECURITY_ATTRIBUTES _m_psaAttributes;
-        std::tstring               _m_sName;
+        std::tstring          _m_sName;
 };
 #elif defined(xOS_LINUX)
 

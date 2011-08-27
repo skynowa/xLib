@@ -18,11 +18,6 @@ class CxSocket :
     /// socket
 {
     public:
-        /****************************************************************************
-        *   constants
-        *
-        *****************************************************************************/
-
         //address family
         enum EAddressFamily {
         #if defined(xOS_WIN)
@@ -172,18 +167,18 @@ class CxSocket :
             SOCKET_BUFF_SIZE = 32768    // 32 KB      /*8192*//*1024*/
         };
 
-                    CxSocket           ();
-        virtual    ~CxSocket           () = 0;
+                     CxSocket       ();
+        virtual     ~CxSocket       () = 0;
 
-        BOOL        bAssign            (SOCKET scktSocket);
+        BOOL         bAssign        (SOCKET scktSocket);
 
         /****************************************************************************
         * operators
         *
         *****************************************************************************/
 
-        CxSocket&   operator =         (SOCKET s);
-                    operator SOCKET    ();
+        CxSocket&    operator =     (SOCKET s);
+                     operator SOCKET();
 
 
         /****************************************************************************
@@ -191,10 +186,10 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        BOOL        bCreate            (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
-        SOCKET      iGetSocket         () const;
-        BOOL        bIsValid           () const;
-        BOOL        bClose             ();
+        BOOL         bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
+        SOCKET       iGetSocket     () const;
+        BOOL         bIsValid       () const;
+        BOOL         bClose         ();
 
 
         /****************************************************************************
@@ -204,15 +199,15 @@ class CxSocket :
 
         //VOID *, std::tstring, std::ustring
 
-        INT         iSend              (LPCTSTR pcszBuff, INT iBuffSize, INT iFlags);
-        BOOL        bSendAll           (const std::tstring &csBuff, INT iFlags);
+        INT          iSend          (LPCTSTR pcszBuff, INT iBuffSize, INT iFlags);
+        BOOL         bSendAll       (const std::tstring &csBuff, INT iFlags);
 
-        INT         iRecv              (LPTSTR  pszBuff,  INT iBuffSize, INT iFlags);
-        std::tstring     sRecvAll           (INT iFlags);
-        std::tstring     sRecvAll           (INT iFlags, const std::tstring &csDelimiter);
+        INT          iRecv          (LPTSTR  pszBuff,  INT iBuffSize, INT iFlags);
+        std::tstring sRecvAll       (INT iFlags);
+        std::tstring sRecvAll       (INT iFlags, const std::tstring &csDelimiter);
 
-        INT         iSendBytes         (LPSTR pszBuff, INT iMessageLength);
-        INT         iReceiveBytes      (LPSTR pszBuff, INT iStillToReceive);
+        INT          iSendBytes     (LPSTR pszBuff, INT iMessageLength);
+        INT          iReceiveBytes  (LPSTR pszBuff, INT iStillToReceive);
 
 
         /****************************************************************************
@@ -220,8 +215,8 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        BOOL        bGetPeerName       (std::tstring *psPeerAddr, USHORT *pusPeerPort);
-        BOOL        bGetSocketName     (std::tstring *psSocketAddr, USHORT *pusSocketPort);
+        BOOL         bGetPeerName   (std::tstring *psPeerAddr, USHORT *pusPeerPort);
+        BOOL         bGetSocketName (std::tstring *psSocketAddr, USHORT *pusSocketPort);
 
         /****************************************************************************
         * static
@@ -229,15 +224,15 @@ class CxSocket :
         *****************************************************************************/
 
         ////getsockopt
-        static INT  iSelect            (INT nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
-        static INT  iGetLastError      ();
+        static INT   iSelect        (INT nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
+        static INT   iGetLastError  ();
 
     protected:
-        BOOL        _m_bRes;
-        SOCKET      _m_puiSocket;
-        SHORT       _m_siFamily;
-        std::tstring     _m_sIp;
-        USHORT      _m_usPort;
+        BOOL         _m_bRes;
+        SOCKET       _m_puiSocket;
+        SHORT        _m_siFamily;
+        std::tstring _m_sIp;
+        USHORT       _m_usPort;
 
     private:
 };

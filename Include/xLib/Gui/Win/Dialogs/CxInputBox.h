@@ -28,11 +28,11 @@ class CxInputBox :
         virtual                ~CxInputBox  ();
 
         EModalResult            mrShowModal (const std::tstring &csCaption, const std::tstring &csPrompt, const std::tstring &csText);
-        std::tstring                 sGetText    ();
+        std::tstring            sGetText    ();
 
     private:
         BOOL                    _m_bRes;
-        std::tstring                 _m_sText;
+        std::tstring            _m_sText;
         HWND                    _m_hWndMain;
         HWND                    _m_hBtnOk;
         HWND                    _m_hBtnCancel;

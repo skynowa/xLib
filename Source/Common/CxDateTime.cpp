@@ -30,8 +30,8 @@ CxDateTime::CxDateTime() :
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
-    const std::tstring     &csDT,
-    const EFormatType  cftFormat
+    const std::tstring &csDT,
+    const EFormatType   cftFormat
 ) :
     _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
@@ -923,7 +923,7 @@ CxDateTime::sGetMonthStr(
 USHORT
 CxDateTime::usGetMonthNum(
     const std::tstring &csMonth,
-    const BOOL     cbIsShortName
+    const BOOL          cbIsShortName
 )
 {
     /*DEBUG*/
@@ -1017,7 +1017,7 @@ CxDateTime::sGetWeekDayStr(
 USHORT
 CxDateTime::usGetWeekDayNum(
     const std::tstring &csDay,
-    const BOOL     cbIsShortName
+    const BOOL          cbIsShortName
 )
 {
     /*DEBUG*/
@@ -1064,9 +1064,9 @@ CxDateTime::usGetWeekDayNum(
 /*static*/
 BOOL
 CxDateTime::_bParse(
-    const std::tstring     &csDT,
-    const EFormatType  cftFormat,
-    CxDateTime        *pdtDT) {
+    const std::tstring &csDT,
+    const EFormatType   cftFormat,
+    CxDateTime         *pdtDT) {
     /*DEBUG*/
 
     BOOL bRes = FALSE;

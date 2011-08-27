@@ -14,45 +14,45 @@ class CxCookiePv0 :
     /// cookie version 0
 {
     public:
-        explicit         CxCookiePv0 ();
-                         CxCookiePv0 (const std::tstring &csRawCookie);
-        virtual         ~CxCookiePv0 ();
+        explicit             CxCookiePv0 ();
+                             CxCookiePv0 (const std::tstring &csRawCookie);
+        virtual             ~CxCookiePv0 ();
 
-        BOOL             bInit     (const std::tstring &csRawCookie);
+        BOOL                 bInit     (const std::tstring &csRawCookie);
 
-        const std::tstring &  sGetName    () const;
-        BOOL             bSetName    (const std::tstring &csName);
+        const std::tstring & sGetName    () const;
+        BOOL                 bSetName    (const std::tstring &csName);
 
-        const std::tstring &  sGetValue   () const;
-        BOOL             bSetValue   (const std::tstring &csValue);
+        const std::tstring & sGetValue   () const;
+        BOOL                 bSetValue   (const std::tstring &csValue);
 
-        const std::tstring &  sGetDomain  () const;
-        BOOL             bSetDomain  (const std::tstring &csDomain);
+        const std::tstring & sGetDomain  () const;
+        BOOL                 bSetDomain  (const std::tstring &csDomain);
 
-        const std::tstring &  sGetPath    () const;
-        BOOL             bSetPath    (const std::tstring &csPath);
+        const std::tstring & sGetPath    () const;
+        BOOL                 bSetPath    (const std::tstring &csPath);
 
-        const std::tstring &  sGetExpires () const;
-        BOOL             bSetExpires (const std::tstring &csExpires);
+        const std::tstring & sGetExpires () const;
+        BOOL                 bSetExpires (const std::tstring &csExpires);
 
-        BOOL             bGetSecure  () const;
-        BOOL             bSetSecure  (BOOL bFlag);
+        BOOL                 bGetSecure  () const;
+        BOOL                 bSetSecure  (BOOL bFlag);
 
-        BOOL             bGetHttpOnly() const;
-        BOOL             bSetHttpOnly(BOOL bFlag);
+        BOOL                 bGetHttpOnly() const;
+        BOOL                 bSetHttpOnly(BOOL bFlag);
 
-        std::tstring          sToString   () const;
-        std::tstring          sGetDump    () const;
-        BOOL             bClear      ();
+        std::tstring         sToString   () const;
+        std::tstring         sGetDump    () const;
+        BOOL                 bClear      ();
 
     private:
-        std::tstring          _m_sName;
-        std::tstring          _m_sValue;
-        std::tstring          _m_sDomain;
-        std::tstring          _m_sPath;
-        std::tstring          _m_sExpires;
-        BOOL             _m_bSecure;
-        BOOL             _m_bHttpOnly;
+        std::tstring         _m_sName;
+        std::tstring         _m_sValue;
+        std::tstring         _m_sDomain;
+        std::tstring         _m_sPath;
+        std::tstring         _m_sExpires;
+        BOOL                 _m_bSecure;
+        BOOL                 _m_bHttpOnly;
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxCookiePv0H

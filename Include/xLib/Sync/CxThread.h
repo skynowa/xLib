@@ -85,7 +85,7 @@ class CxThread :
         //priority
         BOOL                    bSetPriority          (const EPriority ctpPriority) const;
         EPriority               tpGetPriority         () const;
-        std::tstring                 sGetPriorityString    () const;
+        std::tstring            sGetPriorityString    () const;
         BOOL                    bPriorityUp           () const;
         BOOL                    bPriorityDown         () const;
         BOOL                    bIsPriorityBoost      () const;

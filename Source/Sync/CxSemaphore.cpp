@@ -16,7 +16,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxSemaphore
 CxSemaphore::CxSemaphore() :
-    _m_hSemaphore    (),
+    _m_hSemaphore   (),
     _m_psaAttributes(NULL),
     _m_sName        ()
 {
@@ -41,7 +41,7 @@ CxSemaphore::bCreate(
     const LPSECURITY_ATTRIBUTES  pcsaAttributes,
     const LONG                   cliInitialCount,
     const LONG                   cliMaxCount,
-    const std::tstring               &csName
+    const std::tstring          &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hSemaphore.bIsValid(),                      FALSE);
@@ -64,8 +64,8 @@ CxSemaphore::bCreate(
 //DONE: bOpen ()
 BOOL
 CxSemaphore::bOpen(
-    const ULONG    culAccess,
-    const BOOL     cbInheritHandle,
+    const ULONG         culAccess,
+    const BOOL          cbInheritHandle,
     const std::tstring &csName
 )
 {

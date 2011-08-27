@@ -26,8 +26,8 @@ class CxWndLog :
             wcListBox
         };
 
-                                 CxWndLog(EWindowClass wcWC);
-        virtual                 ~CxWndLog();
+                                    CxWndLog(EWindowClass wcWC);
+        virtual                    ~CxWndLog();
 
            BOOL                     bWrite  (HWND hWnd, LPCTSTR pcszFormat, ...);
 

@@ -24,7 +24,7 @@ class CxLocalStorage :
 
         //creation
         BOOL                   bCreateDefault (const std::tstring &csContent) const;
-        std::tstring                sGetPath       () const;
+        std::tstring           sGetPath       () const;
         BOOL                   bSetPath       (const std::tstring &csFilePath);
         NxLib::TLocalStorage & cmsGet         ();
 
@@ -35,7 +35,7 @@ class CxLocalStorage :
         //key
         BOOL                   bKeyIsExists   (const std::tstring &csKey) const;
 
-        std::tstring                sKeyReadString (const std::tstring &csKey, const std::tstring &csDefaultValue);
+        std::tstring           sKeyReadString (const std::tstring &csKey, const std::tstring &csDefaultValue);
         BOOL                   bKeyWriteString(const std::tstring &csKey, const std::tstring &csValue);
 
         LONG                   iKeyReadInt    (const std::tstring &csKey, const LONG     cliDefaultValue);
@@ -47,18 +47,18 @@ class CxLocalStorage :
         BOOL                   bKeyReadBool   (const std::tstring &csKey, const BOOL     cbDefaultValue);
         BOOL                   bKeyWriteBool  (const std::tstring &csKey, const BOOL     cbValue);
 
-        std::ustring                usKeyReadBin   (const std::tstring &csKey, const std::ustring &cusDefaultValue);
+        std::ustring           usKeyReadBin   (const std::tstring &csKey, const std::ustring &cusDefaultValue);
         BOOL                   bKeyWriteBin   (const std::tstring &csKey, const std::ustring &cusValue);
 
         BOOL                   bKeyClear      (const std::tstring &csKey);
         BOOL                   bKeyDelete     (const std::tstring &csKey);
 
     private:
-        const std::tstring          _m_csSeparator;    //separator between key and value
-        const std::tstring          _m_csFileExt;      //ini-file extension
+        const std::tstring     _m_csSeparator;    //separator between key and value
+        const std::tstring     _m_csFileExt;      //ini-file extension
 
         mutable BOOL           _m_bRes;
-        std::tstring                _m_sFilePath;      //file path to ini-file
+        std::tstring           _m_sFilePath;      //file path to ini-file
         NxLib::TLocalStorage   _m_msIni;          //std::map of keys and values
 
         BOOL                   _bRead         (const std::tstring &csKey, const std::tstring &csDefaultValue, std::tstring *psValue);

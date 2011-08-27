@@ -28,8 +28,8 @@ class CxGeoIp :
 
         BOOL          bOpen                    (const std::tstring &csFilePath, const EOption copOption);
         BOOL          bIsValid                 () const;
-        std::tstring       sGetCountryCodeByAddress (const std::tstring &csAddress) const;
-        std::tstring       sGetCountryCode3ByAddress(const std::tstring &csAddress) const;
+        std::tstring  sGetCountryCodeByAddress (const std::tstring &csAddress) const;
+        std::tstring  sGetCountryCode3ByAddress(const std::tstring &csAddress) const;
         BOOL          bClose                   ();
 
     private:

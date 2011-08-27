@@ -39,7 +39,7 @@ CxWaitableTimer::hGetHandle() const {
 BOOL
 CxWaitableTimer::bCreate(
     const BOOL                   bManualReset,
-    const std::tstring               &csName,
+    const std::tstring          &csName,
     const LPSECURITY_ATTRIBUTES  pcsaTimerAttributes
 )
 {
@@ -59,8 +59,8 @@ CxWaitableTimer::bCreate(
 BOOL
 CxWaitableTimer::bOpen(
     const std::tstring &csName,
-    const ULONG    culDesiredAccess,
-    const BOOL     cbInheritHandle
+    const ULONG         culDesiredAccess,
+    const BOOL          cbInheritHandle
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
