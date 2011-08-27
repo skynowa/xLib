@@ -67,14 +67,13 @@
 #include <Test/Filesystem/CxTest_CxPath.h>
 #include <Test/Filesystem/CxTest_CxDir.h>
 #include <Test/Filesystem/CxTest_CxEnvironment.h>
-#include <Test/Filesystem/CxTest_CxStdioFile.h>
+#include <Test/Filesystem/CxTest_CxFile.h>
 #include <Test/Filesystem/CxTest_CxDll.h>
 #include <Test/Filesystem/CxTest_CxFileAttribute.h>
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
 #include <Test/Filesystem/CxTest_CxVolume.h>
 
 #if defined(xOS_WIN)
-    #include <Test/Filesystem/Win/CxTest_CxFile.h>
     #include <Test/Filesystem/Win/CxTest_CxIni.h>
 #elif defined(xOS_LINUX)
 
@@ -203,123 +202,122 @@ _tmain(
     {
         CxTestManager tmManager(bIsUseTracing);
 
-        //Common
-        bRes = tmManager.bAdd(new CxTest_CxMacros);
-        bRes = tmManager.bAdd(new CxTest_CxArray);
-        bRes = tmManager.bAdd(new CxTest_CxChar);
-        bRes = tmManager.bAdd(new CxTest_CxLocale);
-        bRes = tmManager.bAdd(new CxTest_CxString);
-        bRes = tmManager.bAdd(new CxTest_CxDateTime);
-        bRes = tmManager.bAdd(new CxTest_CxFunctorT);
-        bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
-        bRes = tmManager.bAdd(new CxTest_CxAutoMallocT);
-        bRes = tmManager.bAdd(new CxTest_CxException);
-        bRes = tmManager.bAdd(new CxTest_CxType);
-        bRes = tmManager.bAdd(new CxTest_CxConsole);
+    //    //Common
+    //    bRes = tmManager.bAdd(new CxTest_CxMacros);
+    //    bRes = tmManager.bAdd(new CxTest_CxArray);
+    //    bRes = tmManager.bAdd(new CxTest_CxChar);
+    //    bRes = tmManager.bAdd(new CxTest_CxLocale);
+    //    bRes = tmManager.bAdd(new CxTest_CxString);
+    //    bRes = tmManager.bAdd(new CxTest_CxDateTime);
+    //    bRes = tmManager.bAdd(new CxTest_CxFunctorT);
+    //    bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
+    //    bRes = tmManager.bAdd(new CxTest_CxAutoMallocT);
+    //    bRes = tmManager.bAdd(new CxTest_CxException);
+    //    bRes = tmManager.bAdd(new CxTest_CxType);
+    //    bRes = tmManager.bAdd(new CxTest_CxConsole);
 
-    #if defined(xOS_WIN)
-        ////bRes = tmManager.bAdd(new CxTest_CxClipboard);
-        bRes = tmManager.bAdd(new CxTest_CxCom);
-        bRes = tmManager.bAdd(new CxTest_CxHandleT);
-        bRes = tmManager.bAdd(new CxTest_CxShell);
-        bRes = tmManager.bAdd(new CxTest_CxComPort);
-    #elif defined(xOS_LINUX)
+    //#if defined(xOS_WIN)
+    //    ////bRes = tmManager.bAdd(new CxTest_CxClipboard);
+    //    bRes = tmManager.bAdd(new CxTest_CxCom);
+    //    bRes = tmManager.bAdd(new CxTest_CxHandleT);
+    //    bRes = tmManager.bAdd(new CxTest_CxShell);
+    //    bRes = tmManager.bAdd(new CxTest_CxComPort);
+    //#elif defined(xOS_LINUX)
 
-    #endif
+    //#endif
 
-        //Compress
-    #if defined(xOS_WIN)
+    //    //Compress
+    //#if defined(xOS_WIN)
 
-    #elif defined(xOS_LINUX)
-        bRes = tmManager.bAdd(new CxTest_CxGz);
-    #endif
+    //#elif defined(xOS_LINUX)
+    //    bRes = tmManager.bAdd(new CxTest_CxGz);
+    //#endif
 
-        //Crypt
-        bRes = tmManager.bAdd(new CxTest_CxCrc32);
-        bRes = tmManager.bAdd(new CxTest_CxBase64);
-        bRes = tmManager.bAdd(new CxTest_CxCrc32);
-        bRes = tmManager.bAdd(new CxTest_CxBlowfish);
-        bRes = tmManager.bAdd(new CxTest_CxRandom);
+    //    //Crypt
+    //    bRes = tmManager.bAdd(new CxTest_CxCrc32);
+    //    bRes = tmManager.bAdd(new CxTest_CxBase64);
+    //    bRes = tmManager.bAdd(new CxTest_CxCrc32);
+    //    bRes = tmManager.bAdd(new CxTest_CxBlowfish);
+    //    bRes = tmManager.bAdd(new CxTest_CxRandom);
 
-        //Db
-        bRes = tmManager.bAdd(new CxTest_CxConnectionString);
-        ////bRes = tmManager.bAdd(new CxTest_CxMySql);
+    //    //Db
+    //    bRes = tmManager.bAdd(new CxTest_CxConnectionString);
+    //    ////bRes = tmManager.bAdd(new CxTest_CxMySql);
 
-        //Debug
-        bRes = tmManager.bAdd(new CxTest_CxLastError);
-        bRes = tmManager.bAdd(new CxTest_CxDebugger);
-        bRes = tmManager.bAdd(new CxTest_CxReport);
-        bRes = tmManager.bAdd(new CxTest_CxProfiler);
-        bRes = tmManager.bAdd(new CxTest_CxAutoProfiler);
+    //    //Debug
+    //    bRes = tmManager.bAdd(new CxTest_CxLastError);
+    //    bRes = tmManager.bAdd(new CxTest_CxDebugger);
+    //    bRes = tmManager.bAdd(new CxTest_CxReport);
+    //    bRes = tmManager.bAdd(new CxTest_CxProfiler);
+    //    bRes = tmManager.bAdd(new CxTest_CxAutoProfiler);
 
-        //Filesystem
-        bRes = tmManager.bAdd(new CxTest_CxPath);
-        bRes = tmManager.bAdd(new CxTest_CxStdioFile);
-        bRes = tmManager.bAdd(new CxTest_CxDir);
-        bRes = tmManager.bAdd(new CxTest_CxEnvironment);
-        bRes = tmManager.bAdd(new CxTest_CxDll);
-        bRes = tmManager.bAdd(new CxTest_CxFileAttribute);
-        bRes = tmManager.bAdd(new CxTest_CxLocalStorage);
-        bRes = tmManager.bAdd(new CxTest_CxVolume);
-
-    #if defined(xOS_WIN)
+    //    //Filesystem
+    //    bRes = tmManager.bAdd(new CxTest_CxPath);
         bRes = tmManager.bAdd(new CxTest_CxFile);
-        bRes = tmManager.bAdd(new CxTest_CxIni);
-    #elif defined(xOS_LINUX)
+    //    bRes = tmManager.bAdd(new CxTest_CxDir);
+    //    bRes = tmManager.bAdd(new CxTest_CxEnvironment);
+    //    bRes = tmManager.bAdd(new CxTest_CxDll);
+    //    bRes = tmManager.bAdd(new CxTest_CxFileAttribute);
+    //    bRes = tmManager.bAdd(new CxTest_CxLocalStorage);
+    //    bRes = tmManager.bAdd(new CxTest_CxVolume);
 
-    #endif
+    //#if defined(xOS_WIN)
+    //    bRes = tmManager.bAdd(new CxTest_CxIni);
+    //#elif defined(xOS_LINUX)
 
-        //Log
-        bRes = tmManager.bAdd(new CxTest_CxFileLog);
+    //#endif
 
-        //Net
-        bRes = tmManager.bAdd(new CxTest_CxCookiePv0);
-        bRes = tmManager.bAdd(new CxTest_CxCookiePv1);
-        bRes = tmManager.bAdd(new CxTest_CxCgi);
-        bRes = tmManager.bAdd(new CxTest_CxSocketInit);
-        ////bRes = tmManager.bAdd(new CxTest_CxDnsClient);
-        ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
-        ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
-        bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+    //    //Log
+    //    bRes = tmManager.bAdd(new CxTest_CxFileLog);
 
-        //Patterns
-        bRes = tmManager.bAdd(new CxTest_CxSingleton);
+    //    //Net
+    //    bRes = tmManager.bAdd(new CxTest_CxCookiePv0);
+    //    bRes = tmManager.bAdd(new CxTest_CxCookiePv1);
+    //    bRes = tmManager.bAdd(new CxTest_CxCgi);
+    //    bRes = tmManager.bAdd(new CxTest_CxSocketInit);
+    //    ////bRes = tmManager.bAdd(new CxTest_CxDnsClient);
+    //    ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
+    //    ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
+    //    bRes = tmManager.bAdd(new CxTest_CxHttpClient);
+    //    ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
-        //Pkcs11
-    #if defined(xOS_WIN)
-        ////bRes = tmManager.bAdd(new CxTest_CxPkcs11);
-    #elif defined(xOS_LINUX)
+    //    //Patterns
+    //    bRes = tmManager.bAdd(new CxTest_CxSingleton);
 
-    #endif
+    //    //Pkcs11
+    //#if defined(xOS_WIN)
+    //    ////bRes = tmManager.bAdd(new CxTest_CxPkcs11);
+    //#elif defined(xOS_LINUX)
 
-        //Sync
-        bRes = tmManager.bAdd(new CxTest_CxProcess);
-        bRes = tmManager.bAdd(new CxTest_CxThread);
+    //#endif
 
-    #if defined(xOS_WIN)
-        bRes = tmManager.bAdd(new CxTest_CxEvent);
-        bRes = tmManager.bAdd(new CxTest_CxMutex);
-        bRes = tmManager.bAdd(new CxTest_CxAutoMutex);
-        bRes = tmManager.bAdd(new CxTest_CxSleeper);
-    #elif defined(xOS_LINUX)
+    //    //Sync
+    //    bRes = tmManager.bAdd(new CxTest_CxProcess);
+    //    bRes = tmManager.bAdd(new CxTest_CxThread);
 
-    #endif
+    //#if defined(xOS_WIN)
+    //    bRes = tmManager.bAdd(new CxTest_CxEvent);
+    //    bRes = tmManager.bAdd(new CxTest_CxMutex);
+    //    bRes = tmManager.bAdd(new CxTest_CxAutoMutex);
+    //    bRes = tmManager.bAdd(new CxTest_CxSleeper);
+    //#elif defined(xOS_LINUX)
 
-        //Gui
-        bRes = tmManager.bAdd(new CxTest_CxMsgBoxT);
+    //#endif
 
-    #if defined(xOS_WIN)
-        bRes = tmManager.bAdd(new CxTest_CxGdiplus);
-        bRes = tmManager.bAdd(new CxTest_CxImage);
-    #endif
+    //    //Gui
+    //    bRes = tmManager.bAdd(new CxTest_CxMsgBoxT);
 
-        //Units
-    #if defined(xOS_WIN)
-        //TODO: test Units
-    #elif defined(xOS_LINUX)
+    //#if defined(xOS_WIN)
+    //    bRes = tmManager.bAdd(new CxTest_CxGdiplus);
+    //    bRes = tmManager.bAdd(new CxTest_CxImage);
+    //#endif
 
-    #endif
+    //    //Units
+    //#if defined(xOS_WIN)
+    //    //TODO: test Units
+    //#elif defined(xOS_LINUX)
+
+    //#endif
 
         bRes = tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
     }

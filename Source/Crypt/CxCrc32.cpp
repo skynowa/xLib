@@ -6,7 +6,7 @@
 
 #include <xLib/Crypt/CxCrc32.h>
 
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 /****************************************************************************
@@ -61,7 +61,7 @@ CxCrc32::ulCalcFile(
 
     std::ustring usFile;
 
-    BOOL bRes = CxStdioFile::bBinRead(csFilePath, &usFile);
+    BOOL bRes = CxFile::bBinRead(csFilePath, &usFile);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     if (true == usFile.empty()) {
@@ -190,7 +190,7 @@ CxCrc32::ulCalcFileFast(
 
     std::ustring usFile;
 
-    BOOL bRes = CxStdioFile::bBinRead(csFilePath, &usFile);
+    BOOL bRes = CxFile::bBinRead(csFilePath, &usFile);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     if (true == usFile.empty()) {

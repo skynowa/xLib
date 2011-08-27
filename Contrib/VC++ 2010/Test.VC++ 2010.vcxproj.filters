@@ -225,12 +225,6 @@
     <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Filesystem\CxStdioFile.cpp">
-      <Filter>xLib\Filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Filesystem\Win\CxFile.cpp">
-      <Filter>xLib\Filesystem\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp">
       <Filter>xLib\Filesystem\Win</Filter>
     </ClCompile>
@@ -552,9 +546,6 @@
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp">
       <Filter>Test\Filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxStdioFile.cpp">
-      <Filter>Test\Filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp">
       <Filter>Test\Filesystem</Filter>
     </ClCompile>
@@ -617,9 +608,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp">
       <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxFile.cpp">
-      <Filter>Test\Filesystem\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp">
       <Filter>xLib\Debug</Filter>
@@ -693,6 +681,12 @@
     <ClCompile Include="..\..\Tests\Source\Gui\Dialogs\CxTest_CxMsgBoxT.cpp">
       <Filter>Test\Gui\Dialogs</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Filesystem\CxFile.cpp">
+      <Filter>xLib\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxFile.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -739,12 +733,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxPath.h">
       <Filter>xLib\Filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Filesystem\CxStdioFile.h">
-      <Filter>xLib\Filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxFile.h">
-      <Filter>xLib\Filesystem\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\CxConsoleLog.h">
       <Filter>xLib\Log</Filter>
@@ -1139,9 +1127,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h">
       <Filter>Test\Filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxStdioFile.h">
-      <Filter>Test\Filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h">
       <Filter>Test\Filesystem</Filter>
     </ClInclude>
@@ -1177,9 +1162,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h">
       <Filter>Test\Crypt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxFile.h">
-      <Filter>Test\Filesystem\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h">
       <Filter>xLib\Debug</Filter>
@@ -1261,6 +1243,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Dialogs\CxTest_CxMsgBoxT.h">
       <Filter>Test\Gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxFile.h">
+      <Filter>xLib\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxFile.h">
+      <Filter>Test\Filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

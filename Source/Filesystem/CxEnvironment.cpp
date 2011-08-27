@@ -6,7 +6,7 @@
 
 #include <xLib/Filesystem/CxEnvironment.h>
 
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 /****************************************************************************

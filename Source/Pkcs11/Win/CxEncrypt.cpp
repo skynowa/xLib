@@ -7,7 +7,7 @@
 #include <xLib/Pkcs11/Win/CxEncrypt.h>
 
 #include <xLib/Pkcs11/Win/CxUtils.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 /****************************************************************************
@@ -119,9 +119,9 @@ CxEncrypt::bMakeFile(
     std::ustring usPlainData;        //����� ��� ����������
 
     {
-        CxStdioFile sfFileRaw;
+        CxFile sfFileRaw;
 
-        _m_bRes = sfFileRaw.bOpen(csInFilePath, CxStdioFile::omBinRead, TRUE);
+        _m_bRes = sfFileRaw.bOpen(csInFilePath, CxFile::omBinRead, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileRaw.bRead(&usPlainData);
@@ -164,9 +164,9 @@ CxEncrypt::bMakeFile(
     //-------------------------------------
     //������ ����-������ � ����
     {
-        CxStdioFile sfFileEncrypt;
+        CxFile sfFileEncrypt;
 
-        _m_bRes = sfFileEncrypt.bOpen(csOutFilePath, CxStdioFile::omBinWrite, TRUE);
+        _m_bRes = sfFileEncrypt.bOpen(csOutFilePath, CxFile::omBinWrite, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileEncrypt.bWrite(usEncryptedData);

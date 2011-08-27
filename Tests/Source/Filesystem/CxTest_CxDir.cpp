@@ -328,9 +328,9 @@ CxTest_CxDir::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(g_sFilePathes); ++ i) {
-            CxStdioFile sfFile;
+            CxFile sfFile;
 
-            m_bRes = sfFile.bOpen(g_sFilePathes[i], CxStdioFile::omWrite, TRUE);
+            m_bRes = sfFile.bOpen(g_sFilePathes[i], CxFile::omWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 

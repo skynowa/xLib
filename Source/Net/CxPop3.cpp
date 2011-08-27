@@ -6,7 +6,7 @@
 
 #include <xLib/Net/CxPop3.h>
 
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 /****************************************************************************
@@ -312,9 +312,9 @@ BOOL CxPop3::bRetriveRaw(INT iNum, const std::tstring &csDirPath, const std::tst
 
     //-------------------------------------
     //��������� ���� �� ����
-    CxStdioFile stdFile;
+    CxFile stdFile;
 
-	_m_bRes = stdFile.bOpen(csDirPath + "\\" + csFileName, CxStdioFile::omBinWrite, TRUE);
+	_m_bRes = stdFile.bOpen(csDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     size_t uiWriteSize = stdFile.uiWrite(&_m_sRes[0], _m_sRes.size());
@@ -368,9 +368,9 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const std::tstring &csDirPath, const
     //-------------------------------------
     //��������� ���� �� ���� (��������), ���� ���� ���� - �� ���������
     if (false == csDirPath.empty()) {
-        CxStdioFile stdfOriginal;
+        CxFile stdfOriginal;
 
-		_m_bRes = stdfOriginal.bOpen(csDirPath + "\\" + csFileName, CxStdioFile::omBinWrite, TRUE);
+		_m_bRes = stdfOriginal.bOpen(csDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
         xCHECK_RET(FALSE == _m_bRes, FALSE);
 
         size_t uiOriginalWriteSize = stdfOriginal.uiWrite(&_m_sRes[0], _m_sRes.size());
@@ -380,9 +380,9 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const std::tstring &csDirPath, const
     //-------------------------------------
     //��������� ���� �� ���� (�����), ���� ���� ���� - �� ���������
     if (false == csBackupDirPath.empty()) {
-        CxStdioFile stdfBackup;
+        CxFile stdfBackup;
 
-        _m_bRes = stdfBackup.bOpen(csBackupDirPath + "\\" + csFileName, CxStdioFile::omBinWrite, TRUE);
+        _m_bRes = stdfBackup.bOpen(csBackupDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
         xCHECK_RET(FALSE == _m_bRes, FALSE);
 
         size_t uiBackupWriteSize = stdfBackup.uiWrite(&_m_sRes[0], _m_sRes.size());

@@ -7,7 +7,7 @@
 #include <xLib/Filesystem/CxPath.h>
 
 #include <xLib/Common/CxChar.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Sync/CxProcess.h>
 
@@ -54,7 +54,7 @@ CxPath::sGetExe() {
                     BOOL bRes                = FALSE;
                     const std::tstring csProcFile = xT("/proc/curproc/file");
 
-                    bRes = CxStdioFile::bIsExists(csProcFile);
+                    bRes = CxFile::bIsExists(csProcFile);
                     if (TRUE == bRes) {
                         sRes.resize(xPATH_MAX);
 
@@ -79,7 +79,7 @@ CxPath::sGetExe() {
                 BOOL          bRes       = FALSE;
                 const std::tstring csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
 
-                bRes = CxStdioFile::bIsExists(csProcFile);
+                bRes = CxFile::bIsExists(csProcFile);
                 if (TRUE == bRes) {
                     sRes.resize(xPATH_MAX);
 
@@ -110,7 +110,7 @@ CxPath::sGetExe() {
     #endif
 
     /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 std::tstring());
-    /*DEBUG*/xASSERT_RET(FALSE != CxStdioFile::bIsExists(sRes), std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != CxFile::bIsExists(sRes), std::tstring());
 
     return sRes;
 }

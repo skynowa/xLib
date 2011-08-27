@@ -8,7 +8,7 @@
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Sync/CxAutoCriticalSection.h>
@@ -77,7 +77,7 @@ CxConsoleLog::bWrite(
     xNOT_IMPLEMENTED_RET(FALSE);
 #endif
 
-    ////--CxStdioFile::iPrintf(xT("%s%s\n"), sTime.c_str(), sParam.c_str());
+    ////--CxFile::iPrintf(xT("%s%s\n"), sTime.c_str(), sParam.c_str());
 
     tcout << sTime << sParam << tendl;
 

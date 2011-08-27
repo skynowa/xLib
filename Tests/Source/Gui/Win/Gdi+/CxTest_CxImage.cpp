@@ -78,7 +78,7 @@
 
             usInFileContent.assign(cucInFileContent, xARRAY_SIZE(cucInFileContent));
 
-            m_bRes = CxStdioFile::bBinWrite(csInFilePath, usInFileContent);
+            m_bRes = CxFile::bBinWrite(csInFilePath, usInFileContent);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 

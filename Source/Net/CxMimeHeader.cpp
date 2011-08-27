@@ -6,7 +6,7 @@
 
 #include <xLib/Net/CxMimeHeader.h>
 
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxLocale.h>
 
@@ -154,7 +154,7 @@ CxMimeHeader::uiCount() {
 	BOOL
 	CxMimeHeader::bLoadFromFile(const std::tstring &csFilePath) {
 	 /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),                 FALSE);
-	 /*DEBUG*/xASSERT_RET(TRUE  == CxStdioFile::bIsExists(csFilePath), FALSE);
+	 /*DEBUG*/xASSERT_RET(TRUE  == CxFile::bIsExists(csFilePath), FALSE);
 
 	 std::tstring       sUknownEmail("Uknown@Uknown.Uknown");
 	 std::tstring       sLine("");
@@ -197,7 +197,7 @@ CxMimeHeader::bLoadFromFile(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csRawMessageFilePath.empty(),                 FALSE);
-    /*DEBUG*/xASSERT_RET(TRUE  == CxStdioFile::bIsExists(csRawMessageFilePath), FALSE);
+    /*DEBUG*/xASSERT_RET(TRUE  == CxFile::bIsExists(csRawMessageFilePath), FALSE);
 
     std::tstring sRawHeader;
     std::tstring sLine;

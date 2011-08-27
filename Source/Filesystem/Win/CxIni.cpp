@@ -8,7 +8,7 @@
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 #if defined(xOS_WIN)
@@ -64,13 +64,13 @@ CxIni::bCreateDefault(
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //�������� �����
-    CxStdioFile sfFile;
+    CxFile sfFile;
 
-    _m_bRes = sfFile.bOpen(_m_sFilePath, CxStdioFile::omCreateReadWrite, TRUE);
+    _m_bRes = sfFile.bOpen(_m_sFilePath, CxFile::omCreateReadWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     INT iRes = sfFile.iWrite(csContent.c_str());
-    /*DEBUG*/xASSERT_RET(CxStdioFile::etError != iRes, FALSE);
+    /*DEBUG*/xASSERT_RET(CxFile::etError != iRes, FALSE);
 
     return TRUE;
 }

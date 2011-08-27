@@ -1,15 +1,15 @@
 /**
- * \file  CxStdioFile.h
+ * \file  CxFile.h
  * \brief file
  */
 
 
-#ifndef xLib_Filesystem_CxStdioFileH
-#define xLib_Filesystem_CxStdioFileH
+#ifndef xLib_Filesystem_CxFileH
+#define xLib_Filesystem_CxFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxStdioFile :
+class CxFile :
     public CxNonCopyable
     /// file
 {
@@ -108,10 +108,10 @@ class CxStdioFile :
         };
 
         //constructors, destructor
-                             CxStdioFile  ();
+                             CxFile       ();
             ///< constructor
 
-        virtual             ~CxStdioFile  ();
+        virtual             ~CxFile       ();
             ///< destructor
 
         //open, get
@@ -201,6 +201,8 @@ class CxStdioFile :
             ///< check for file
         static BOOL          bIsExists    (const std::tstring &csFilePath);
             ///< check for existence
+        static std::tstring  sIsExists    (const std::tstring &csFilePath);
+            ///< check for existence, if exists - generate new file name (file path), which not exists
         static BOOL          bAccess      (const std::tstring &csFilePath, const EAccessMode camMode);
             ///< determine file-access permission
         static BOOL          bChmod       (const std::tstring &csFilePath, const EPermissionMode cpmMode);
@@ -273,4 +275,4 @@ class CxStdioFile :
             ///< get open mode as string, by default use "r"
 };
 //---------------------------------------------------------------------------
-#endif  //xLib_Filesystem_CxStdioFileH
+#endif  //xLib_Filesystem_CxFileH

@@ -8,7 +8,7 @@
 
 #include <xLib/Common/CxChar.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
 #include <xLib/Sync/CxThread.h>
 
@@ -328,7 +328,7 @@ CxDir::bCopy(
         bRes = bCreateForce(CxPath::sGetDir(sFilePathTo));
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        bRes = CxStdioFile::bCopy(*it, sFilePathTo, cbFailIfExists);
+        bRes = CxFile::bCopy(*it, sFilePathTo, cbFailIfExists);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
@@ -452,7 +452,7 @@ CxDir::bClearForce(
             it != vsFilePathes.rend() && false == vsFilePathes.empty();
             ++ it)
         {
-            bRes = CxStdioFile::bDelete(*it);
+            bRes = CxFile::bDelete(*it);
             /*DEBUG*/// n/a
         }
     }

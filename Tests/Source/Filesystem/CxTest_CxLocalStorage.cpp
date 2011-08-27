@@ -294,7 +294,7 @@ CxTest_CxLocalStorage::bUnit(
     {
         m_bRes = iniIni.bClear();
         xASSERT_NOT_EQ(FALSE, m_bRes);
-        xASSERT_EQ(0L, CxStdioFile::liGetSize( iniIni.sGetPath() ));
+        xASSERT_EQ(0L, CxFile::liGetSize( iniIni.sGetPath() ));
     }
 
     //--------------------------------------------------
@@ -303,7 +303,7 @@ CxTest_CxLocalStorage::bUnit(
     {
         m_bRes = iniIni.bDelete();
         xASSERT_NOT_EQ(FALSE, m_bRes);
-        xASSERT_EQ(FALSE, CxStdioFile::bIsExists( iniIni.sGetPath() ));
+        xASSERT_EQ(FALSE, CxFile::bIsExists( iniIni.sGetPath() ));
     }
 
     return TRUE;

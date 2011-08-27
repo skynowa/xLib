@@ -12,7 +12,7 @@
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxConsole.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxProcess.h>
 
@@ -296,7 +296,7 @@ CxReport::_bInitVars(
     _m_sProgram        = CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
     _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
-    _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxStdioFile::liGetSize(CxPath::sGetExe())) );
+    _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxFile::liGetSize(CxPath::sGetExe())) );
 
     _m_sSourceFile     = csFile;
     _m_ulSourceLine    = culLine;

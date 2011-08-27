@@ -41,18 +41,18 @@ CxTest_CxFileAttribute::bUnit(
     //--------------------------------------------------
     //prepare
     {
-        m_bRes = CxStdioFile::bDelete(csFilePath);
+        m_bRes = CxFile::bDelete(csFilePath);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        CxStdioFile F;
+        CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxStdioFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bClose();
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = CxStdioFile::bIsExists(csFilePath);
+        m_bRes = CxFile::bIsExists(csFilePath);
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 

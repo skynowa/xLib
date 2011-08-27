@@ -15,7 +15,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 //---------------------------------------------------------------------------
 class CxTest_CxDir :
     public CxTest

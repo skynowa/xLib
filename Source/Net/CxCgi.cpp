@@ -8,7 +8,7 @@
 
 #include <xLib/Common/CxMacros.h>
 #include <xLib/Filesystem/CxEnvironment.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 using namespace NxCgi;
 
@@ -85,7 +85,7 @@ CxCgi::bPageShow(
 
     std::tstring sFileContent;
 
-    bRes = CxStdioFile::bTextRead(csFilePath, &sFileContent);
+    bRes = CxFile::bTextRead(csFilePath, &sFileContent);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     tcout << sFileContent << tendl;
@@ -971,7 +971,7 @@ CxCgiFormData::_bInit() {
 
 
                 //read, parse data
-                CxStdioFile sfFile;
+                CxFile sfFile;
                 std::tstring     sBuff;
 
                 bRes = sfFile.bOpen(stdin);

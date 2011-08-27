@@ -15,7 +15,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Crypt/CxCrc32.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 //---------------------------------------------------------------------------
 class CxTest_CxCrc32 :
     public CxTest

@@ -6,7 +6,7 @@
 
 #include <xLib/Common/CxConsole.h>
 
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxProcess.h>
 

@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxStdioFile
-* Description: test CxStdioFile
-* File name:   CxTest_CxStdioFile.h
+* Class name:  CxTest_CxFile
+* Description: test CxFile
+* File name:   CxTest_CxFile.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,19 +9,19 @@
 *****************************************************************************/
 
 
-#ifndef CxTest_CxStdioFileH
-#define CxTest_CxStdioFileH
+#ifndef CxTest_CxFileH
+#define CxTest_CxFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Filesystem/CxStdioFile.h>
+#include <xLib/Filesystem/CxFile.h>
 //---------------------------------------------------------------------------
-class CxTest_CxStdioFile :
+class CxTest_CxFile :
     public CxTest
 {
 	public:
-		               CxTest_CxStdioFile();
-		virtual       ~CxTest_CxStdioFile();
+		               CxTest_CxFile();
+		virtual       ~CxTest_CxFile();
 
 		virtual  BOOL  bUnit        (const ULONGLONG cullBlockLoops);
 
@@ -31,4 +31,4 @@ class CxTest_CxStdioFile :
 
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxStdioFileH
+#endif //CxTest_CxFileH
