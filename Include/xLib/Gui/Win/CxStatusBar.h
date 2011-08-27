@@ -70,8 +70,8 @@ class CxStatusBar :
                ~CxStatusBar      ();
 
         BOOL    bCreateRes       (INT iID, CxWindow *pwndParent);
-        BOOL    bIsSimple           ();
-        BOOL    bSetSimple          (BOOL bFlag);
+        BOOL    bIsSimple        ();
+        BOOL    bSetSimple       (BOOL bFlag);
         BOOL    bIsUnicodeFormat ();
         BOOL    bSetUnicodeFormat(BOOL bFlag);
         BOOL    bSetMinHeight    (INT iHeight);

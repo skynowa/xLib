@@ -8,15 +8,15 @@
 //DONE: CxReport
 template<class T>
 CxReport::CxReport(
-    const EType   &crtType,
-    const T       &cVarT1,
-    const T       &cVarT2,
+    const EType        &crtType,
+    const T            &cVarT1,
+    const T            &cVarT2,
     const std::tstring &csExpr1,
     const std::tstring &csExpr2,
     const std::tstring &csExprSign,
-    const ULONG    culLastError,
+    const ULONG         culLastError,
     const std::tstring &csFile,
-    const ULONG    culLine,
+    const ULONG         culLine,
     const std::tstring &csFunc,
     const std::tstring &csDate,
     const std::tstring &csTime,

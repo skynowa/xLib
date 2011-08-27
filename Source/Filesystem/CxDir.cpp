@@ -283,7 +283,7 @@ BOOL
 CxDir::bCopy(
     const std::tstring &csDirPathFrom,
     const std::tstring &csDirPathTo,
-    const BOOL     cbFailIfExists
+    const BOOL          cbFailIfExists
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPathFrom.empty(),    FALSE);

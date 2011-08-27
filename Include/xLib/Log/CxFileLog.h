@@ -26,19 +26,19 @@ class CxFileLog :
             lsLimitSize      = 500 * 1024 * 1024
         };
 
-                         CxFileLog   (const ULONG culMaxFileSizeBytes);
-        virtual         ~CxFileLog   ();
+                             CxFileLog   (const ULONG culMaxFileSizeBytes);
+        virtual             ~CxFileLog   ();
 
-        BOOL             bSetFilePath(const std::tstring &csFilePath);
-        const std::tstring &  sGetFilePath() const;
+        BOOL                 bSetFilePath(const std::tstring &csFilePath);
+        const std::tstring & sGetFilePath() const;
 
-        BOOL             bWrite      (LPCTSTR pcszFormat, ...);
-        BOOL             bClear      ();
-        BOOL             bDelete     ();
+        BOOL                 bWrite      (LPCTSTR pcszFormat, ...);
+        BOOL                 bClear      ();
+        BOOL                 bDelete     ();
 
     private:
-        std::tstring          _m_sFilePath;
-        ULONG            _m_ulMaxFileSizeBytes;
+        std::tstring         _m_sFilePath;
+        ULONG                _m_ulMaxFileSizeBytes;
 
     #if defined(xOS_WIN)
         ////CxMutex          _m_mtFile;
@@ -46,7 +46,7 @@ class CxFileLog :
         //TODO: CxMutex
     #endif
 
-        BOOL             _bDeleteIfFull();
+        BOOL                 _bDeleteIfFull();
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxFileLogH

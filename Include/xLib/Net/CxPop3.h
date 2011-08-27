@@ -25,7 +25,7 @@ class CxPop3 :
 
         BOOL              bCreate             (const std::tstring &csUser, const std::tstring &csPass, const std::tstring &csServer, USHORT usPort);
         BOOL              bConnect            ();
-         BOOL              bLogin              ();
+        BOOL              bLogin              ();
 
         BOOL              bStat               (ULONG &ulSum, ULONG &ulSize);
         BOOL              bList               (std::vector<ULONG> &veculList);
@@ -44,13 +44,13 @@ class CxPop3 :
 
     private:
         BOOL              _m_bRes;
-        std::tstring           _m_sRes;
-        /////CxSocketInit      _m_siInit;
+        std::tstring      _m_sRes;
+        /////CxSocketInit _m_siInit;
         CxTcpClientSocket _m_scktSocket;
         CxConsoleLog      _m_clLog;
-        std::tstring              _m_sUser;
-        std::tstring           _m_sPass;
-        std::tstring           _m_sServer;
+        std::tstring      _m_sUser;
+        std::tstring      _m_sPass;
+        std::tstring      _m_sServer;
         USHORT            _m_usPort;
         BOOL              _m_bConnected;
 

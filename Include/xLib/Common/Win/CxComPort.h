@@ -26,7 +26,7 @@ class CxCOMPort :
         BOOL         bOpen           ();
         BOOL         bConfig         ();
         BOOL         bClearData      ();
-        std::tstring      bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
+        std::tstring bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
         INT          iReadDataWaiting();
         BOOL         bWriteData      (LPCTSTR pcszBuff, ULONG ulNumOfBytesToWrite);
         BOOL         bClose          ();
@@ -40,7 +40,7 @@ class CxCOMPort :
     private:
         BOOL         _m_bRes;
         CxFileHandle _m_hComPort;
-        std::tstring      _m_sPortNum;
+        std::tstring _m_sPortNum;
 
         COMMTIMEOUTS CommTimeOuts;
         DCB          dcb;

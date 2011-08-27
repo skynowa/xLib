@@ -85,9 +85,9 @@ CxVolume::bIsEmpty(
 BOOL
 CxVolume::bGetFreeSpace(
     const std::tstring &csDirPath,
-    ULONGLONG     *pullAvailable,   //for unprivileged users
-    ULONGLONG     *pullTotal,
-    ULONGLONG     *pullFree
+    ULONGLONG          *pullAvailable,   //for unprivileged users
+    ULONGLONG          *pullTotal,
+    ULONGLONG          *pullFree
 )
 {
     /*DEBUG*/// csDirPath     - n/a
@@ -182,7 +182,7 @@ CxVolume::bMount(
 #if defined(xOS_WIN)
 BOOL
 CxVolume::bDefineDosDevice(
-    ULONG ulFlags,
+    ULONG               ulFlags,
     const std::tstring &csDeviceName,
     const std::tstring &csTargetPath
 )
@@ -252,7 +252,7 @@ CxVolume::hFindFirstVolume(
 HANDLE
 CxVolume::hFindFirstVolumeMountPoint(
     const std::tstring &csRootPathName,
-    std::tstring *psVolumeMountPoint
+    std::tstring       *psVolumeMountPoint
 )
 {
     /*DEBUG*/xASSERT_RET(false == csRootPathName.empty(), INVALID_HANDLE_VALUE);

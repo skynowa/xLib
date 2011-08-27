@@ -44,7 +44,10 @@ CxConsoleLog::~CxConsoleLog() {
 //---------------------------------------------------------------------------
 //DONE: bWrite (write)
 BOOL
-CxConsoleLog::bWrite(LPCTSTR pcszFormat, ...) {
+CxConsoleLog::bWrite(
+    LPCTSTR pcszFormat, ...
+)
+{
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
 
     //-------------------------------------

@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 //DONE: CxAutoProfiler
 CxAutoProfiler::CxAutoProfiler(
-    const std::tstring           &csFilePath,
+    const std::tstring      &csFilePath,
     const CxProfiler::EMode  cpmMode,
     LPCTSTR                  pcszComment, ...
 ) :

@@ -77,7 +77,7 @@ CxImage::bLoad(
 BOOL
 CxImage::bSave(
     const std::tstring &csFilePath,
-    EEncoderType etType
+    EEncoderType        etType
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,        FALSE);
@@ -86,11 +86,11 @@ CxImage::bSave(
 
     std::tstring sEncoderType;
     switch (etType) {
-        case etBmp:        { sEncoderType = xT("image/bmp");  }    break;
+        case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
-        case etGif:         { sEncoderType = xT("image/gif");  }    break;
-        case etTiff:     { sEncoderType = xT("image/tiff"); }    break;
-        case etPng:         { sEncoderType = xT("image/png");  }    break;
+        case etGif:     { sEncoderType = xT("image/gif");  }    break;
+        case etTiff:    { sEncoderType = xT("image/tiff"); }    break;
+        case etPng:     { sEncoderType = xT("image/png");  }    break;
 
         default:        { sEncoderType = xT("image/jpeg"); }     break;
     }
@@ -322,7 +322,7 @@ CxImage::sGetLastStatus(
 BOOL
 CxImage::_bGetEncoderClsid(
     const std::tstring &csFormat,
-    CLSID         *pcidClsid
+    CLSID              *pcidClsid
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a

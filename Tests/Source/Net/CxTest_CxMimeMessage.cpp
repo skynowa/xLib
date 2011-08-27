@@ -128,7 +128,7 @@ CxTest_CxMimeMessage::bUnit(
     //bStat
     m_bRes = objPop3.bStat(ulSum, ulSize);
     xASSERT_NOT_EQ(FALSE, m_bRes);
-    /*LOG*/printf("Mails %i\n", ulSum);
+    /*LOG*/printf("Mails %li\n", ulSum);
 
     //-------------------------------------
     //bTop
@@ -176,7 +176,7 @@ CxTest_CxMimeMessage::bUnit(
         ////xASSERT_EQ(false,               m_sRes.empty());
         ////xASSERT_EQ("<Admin@localhost>", m_sRes);
 
-        /*LOG*/printf("bTop %i\n", i);
+        /*LOG*/printf("bTop %li\n", i);
     }
 
     //-------------------------------------
@@ -214,7 +214,7 @@ CxTest_CxMimeMessage::bUnit(
         ////xASSERT_EQ(false,               m_sRes.empty());
         ////xASSERT_EQ("<Admin@localhost>", m_sRes);
 
-        /*LOG*/printf("bRetrieveHeader %i\n", y);
+        /*LOG*/printf("bRetrieveHeader %li\n", y);
     }
 
     //-------------------------------------

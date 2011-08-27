@@ -30,7 +30,9 @@ CxIni::CxIni() :
 }
 //-------------------------------------------------------------------------
 //DONE: CxIni (����������� - ���� � �������� ����������)
-CxIni::CxIni(const std::tstring &csFilePath) :
+CxIni::CxIni(
+    const std::tstring &csFilePath
+) :
     _m_bRes     (FALSE),
     _m_sFilePath()
 {
@@ -50,7 +52,10 @@ CxIni::~CxIni() {
 //-------------------------------------------------------------------------
 //DONE: bCreateDefault (�������� ����� ��-���������)
 BOOL
-CxIni::bCreateDefault(const std::tstring &csContent) {
+CxIni::bCreateDefault(
+    const std::tstring &csContent
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/// csContent - n/a;
 
@@ -80,7 +85,10 @@ CxIni::sGetPath() {
 //---------------------------------------------------------------------------
 //DONE: bSetPath (��������� ���� � ����)
 BOOL
-CxIni::bSetPath(const std::tstring &csFilePath) {
+CxIni::bSetPath(
+    const std::tstring &csFilePath
+)
+{
     /*DEBUG*///_m_sFilePath - n/a
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
@@ -131,7 +139,11 @@ CxIni::bClear() {
 //-------------------------------------------------------------------------
 //DONE: bKeyIsExists (������������� ������)
 BOOL
-CxIni::bKeyIsExists(const std::tstring &csSection, const std::tstring &csKey) {
+CxIni::bKeyIsExists(
+    const std::tstring &csSection, 
+    const std::tstring &csKey
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
 
@@ -149,7 +161,12 @@ CxIni::bKeyIsExists(const std::tstring &csSection, const std::tstring &csKey) {
 //---------------------------------------------------------------------------
 //DONE: iKeyReadInt (������ INT)
 INT
-CxIni::iKeyReadInt(const std::tstring &csSection, const std::tstring &csKey, LONG iDefaultValue) {
+CxIni::iKeyReadInt(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    LONG                iDefaultValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    0);
     /*DEBUG*///csKey         - n/a
@@ -160,7 +177,12 @@ CxIni::iKeyReadInt(const std::tstring &csSection, const std::tstring &csKey, LON
 //-------------------------------------------------------------------------
 //DONE: bKeyWriteInt (������ INT)
 BOOL
-CxIni::bKeyWriteInt(const std::tstring &csSection, const std::tstring &csKey, LONG iValue) {
+CxIni::bKeyWriteInt(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    LONG                iValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*///csKey     - n/a
@@ -171,7 +193,12 @@ CxIni::bKeyWriteInt(const std::tstring &csSection, const std::tstring &csKey, LO
 //-------------------------------------------------------------------------
 //DONE: dKeyReadFloat (������ FLOAT)
 double
-CxIni::dKeyReadFloat(const std::tstring &csSection, const std::tstring &csKey, double dDefaultValue) {
+CxIni::dKeyReadFloat(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    double              dDefaultValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0.0);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    0.0);
     /*DEBUG*///csKey         - n/a
@@ -182,7 +209,12 @@ CxIni::dKeyReadFloat(const std::tstring &csSection, const std::tstring &csKey, d
 //-------------------------------------------------------------------------
 //DONE: bKeyWriteFloat (������ FLOAT)
 BOOL
-CxIni::bKeyWriteFloat(const std::tstring &csSection, const std::tstring &csKey, double dValue) {
+CxIni::bKeyWriteFloat(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    double              dValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*///csKey     - n/a
@@ -193,7 +225,12 @@ CxIni::bKeyWriteFloat(const std::tstring &csSection, const std::tstring &csKey, 
 //-------------------------------------------------------------------------
 //DONE: bKeyReadBool (������ BOOL)
 BOOL
-CxIni::bKeyReadBool(const std::tstring &csSection, const std::tstring &csKey, BOOL bDefaultValue) {
+CxIni::bKeyReadBool(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    BOOL                bDefaultValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*///csKey         - n/a
@@ -216,7 +253,12 @@ CxIni::bKeyReadBool(const std::tstring &csSection, const std::tstring &csKey, BO
 //-------------------------------------------------------------------------
 //DONE: bKeyWriteBool (������ BOOL)
 BOOL
-CxIni::bKeyWriteBool(const std::tstring &csSection, const std::tstring &csKey, BOOL bValue) {
+CxIni::bKeyWriteBool(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    BOOL                bValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*///csKey     - n/a
@@ -231,7 +273,12 @@ CxIni::bKeyWriteBool(const std::tstring &csSection, const std::tstring &csKey, B
 //-------------------------------------------------------------------------
 //DONE: sKeyReadString (������ std::tstring)
 std::tstring
-CxIni::sKeyReadString(const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csDefaultValue) {
+CxIni::sKeyReadString(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    const std::tstring &csDefaultValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), std::tstring());
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    std::tstring());
     /*DEBUG*///csKey          - n/a
@@ -261,7 +308,12 @@ CxIni::sKeyReadString(const std::tstring &csSection, const std::tstring &csKey, 
 //-------------------------------------------------------------------------
 //DONE: bKeyWriteString (������ std::tstring)
 BOOL
-CxIni::bKeyWriteString(const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csValue) {
+CxIni::bKeyWriteString(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    const std::tstring &csValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*///csKey     - n/a
@@ -275,7 +327,12 @@ CxIni::bKeyWriteString(const std::tstring &csSection, const std::tstring &csKey,
 //-------------------------------------------------------------------------
 //DONE: usKeyReadBin (������ std::ustring)
 std::ustring
-CxIni::usKeyReadBin(const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusDefaultValue) {
+CxIni::usKeyReadBin(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    const std::ustring &cusDefaultValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), std::ustring());
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    std::ustring());
     /*DEBUG*///csKey          - n/a
@@ -293,7 +350,12 @@ CxIni::usKeyReadBin(const std::tstring &csSection, const std::tstring &csKey, co
 //-------------------------------------------------------------------------
 //DONE: bKeyWriteBin (������ std::ustring)
 BOOL
-CxIni::bKeyWriteBin(const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusValue) {
+CxIni::bKeyWriteBin(
+    const std::tstring &csSection, 
+    const std::tstring &csKey, 
+    const std::ustring &cusValue
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*///csKey     - n/a
@@ -307,7 +369,11 @@ CxIni::bKeyWriteBin(const std::tstring &csSection, const std::tstring &csKey, co
 //-------------------------------------------------------------------------
 //DONE: bKeyClear (������� �����)
 BOOL
-CxIni::bKeyClear(const std::tstring &csSection, const std::tstring &csKey) {
+CxIni::bKeyClear(
+    const std::tstring &csSection, 
+    const std::tstring &csKey
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
@@ -317,7 +383,11 @@ CxIni::bKeyClear(const std::tstring &csSection, const std::tstring &csKey) {
 //---------------------------------------------------------------------------
 //DONE: bKeyDelete (�������� �����)
 BOOL
-CxIni::bKeyDelete(const std::tstring &csSection, const std::tstring &csKey) {
+CxIni::bKeyDelete(
+    const std::tstring &csSection, 
+    const std::tstring &csKey
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
@@ -338,7 +408,10 @@ CxIni::bKeyDelete(const std::tstring &csSection, const std::tstring &csKey) {
 //---------------------------------------------------------------------------
 //DONE: bSectionIsExists (������������� ������)
 BOOL
-CxIni::bSectionIsExists(const std::tstring &csSection) {
+CxIni::bSectionIsExists(
+    const std::tstring &csSection
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
 
@@ -355,7 +428,11 @@ CxIni::bSectionIsExists(const std::tstring &csSection) {
 //---------------------------------------------------------------------------
 //DONE: bSectionRead (������ ������)
 BOOL
-CxIni::bSectionRead(const std::tstring &csSection, std::map<std::tstring, std::tstring> *pmsContent) {
+CxIni::bSectionRead(
+    const std::tstring                   &csSection, 
+    std::map<std::tstring, std::tstring> *pmsContent
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pmsContent,         FALSE);
@@ -424,7 +501,11 @@ CxIni::bSectionRead(const std::tstring &csSection, std::map<std::tstring, std::t
 //---------------------------------------------------------------------------
 //DONE: bSectionWrite (������ ������)
 BOOL
-CxIni::bSectionWrite(const std::tstring &csSection, const std::map<std::tstring, std::tstring> &msContent) {
+CxIni::bSectionWrite(
+    const std::tstring                         &csSection, 
+    const std::map<std::tstring, std::tstring> &msContent
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*/// vsContent - n/a
@@ -453,7 +534,10 @@ CxIni::bSectionWrite(const std::tstring &csSection, const std::map<std::tstring,
 //-------------------------------------------------------------------------
 //DONE: bSectionsReadNames (������ ���� ���� ������)
 BOOL
-CxIni::bSectionsReadNames(std::vector<std::tstring> *pvsNames) {
+CxIni::bSectionsReadNames(
+    std::vector<std::tstring> *pvsNames
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pvsNames,           FALSE);
 
@@ -496,7 +580,10 @@ CxIni::bSectionsReadNames(std::vector<std::tstring> *pvsNames) {
 //-------------------------------------------------------------------------
 //DONE: bSectionClear (������ ������)
 BOOL
-CxIni::bSectionClear(const std::tstring &csSection) {
+CxIni::bSectionClear(
+    const std::tstring &csSection
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
 
@@ -508,7 +595,10 @@ CxIni::bSectionClear(const std::tstring &csSection) {
 //-------------------------------------------------------------------------
 //DONE: bSectionDelete (�������� ������)
 BOOL
-CxIni::bSectionDelete(const std::tstring &csSection) {
+CxIni::bSectionDelete(
+    const std::tstring &csSection
+)
+{
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
 

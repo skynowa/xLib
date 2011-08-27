@@ -77,7 +77,7 @@ CxProcess::ulGetCurrParentId() {
 BOOL
 CxProcess::bExec(
     const std::tstring &csFilePath,
-    LPCTSTR        pcszCmdLine, ...
+    LPCTSTR             pcszCmdLine, ...
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);

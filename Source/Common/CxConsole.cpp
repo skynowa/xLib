@@ -57,7 +57,7 @@ CxConsole::~CxConsole() {
 //NOTE: http://lifeforce4.wordpress.com/, http://lifeforce4.wordpress.com/
 std::tstring
 CxConsole::bSetTextColor(
-    const std::tstring      &csText,
+    const std::tstring &csText,
     const EForeground   cfgForeground,
     const BOOL          cbIsBold,
     const BOOL          cbIsUnderline,
@@ -181,7 +181,7 @@ CxConsole::EModalResult
 CxConsole::iMsgBox(
     const std::tstring &csText,
     const std::tstring &csTitle,
-    const UINT     cuiType
+    const UINT          cuiType
 )
 {
     EModalResult mrRes;
@@ -217,7 +217,7 @@ CxConsole::iMsgBox(
 BOOL
 CxConsole::bPrompt(
     const std::tstring &csPrompt,
-    const BOOL     cbIsVisible,
+    const BOOL          cbIsVisible,
     std::tstring       *psAnswer
 )
 {

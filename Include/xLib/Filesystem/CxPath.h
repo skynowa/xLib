@@ -46,9 +46,9 @@ class CxPath :
         static std::tstring sRemoveExtIf    (const std::tstring &csFilePath, const std::tstring &csExt);
 
         //normalize
-        static BOOL    bIsValid        (const std::tstring &csFilePath);
-        static BOOL    bIsNameValid    (const std::tstring &csFilePath);
-        static BOOL    bIsAbsolute     (const std::tstring &csFilePath);
+        static BOOL         bIsValid        (const std::tstring &csFilePath);
+        static BOOL         bIsNameValid    (const std::tstring &csFilePath);
+        static BOOL         bIsAbsolute     (const std::tstring &csFilePath);
 
         static std::tstring sToWin          (const std::tstring &csFilePath, const BOOL cbIsSlashAtEnd);
         static std::tstring sToNix          (const std::tstring &csFilePath, const BOOL cbIsSlashAtEnd);
@@ -62,12 +62,12 @@ class CxPath :
         static std::tstring sSlashAppend    (const std::tstring &csDirPath);
         static std::tstring sSlashRemove    (const std::tstring &csDirPath);
 
-        static size_t  uiGetMaxSize    ();
-        static size_t  uiGetNameMaxSize();
+        static size_t       uiGetMaxSize    ();
+        static size_t       uiGetNameMaxSize();
 
     private:
-                       CxPath          ();
-        virtual       ~CxPath          ();
+                            CxPath          ();
+        virtual            ~CxPath          ();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxPathH

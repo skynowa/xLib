@@ -32,7 +32,12 @@ CxGz::~CxGz() {
 //---------------------------------------------------------------------------
 //DONE: bCompress ()
 BOOL
-CxGz::bCompress(INT iFileIn, INT iFileOut, const std::tstring &csOriginName) {
+CxGz::bCompress(
+    INT                 iFileIn, 
+    INT                 iFileOut, 
+    const std::tstring &csOriginName
+)
+{
     /*DEBUG*/xASSERT_RET(- 1   != iFileIn,              FALSE);
     /*DEBUG*/xASSERT_RET(- 1   != iFileOut,             FALSE);
     /*DEBUG*/xASSERT_RET(false == csOriginName.empty(), FALSE);
@@ -45,7 +50,11 @@ CxGz::bCompress(INT iFileIn, INT iFileOut, const std::tstring &csOriginName) {
 //---------------------------------------------------------------------------
 //DONE: bUncompress ()
 BOOL
-CxGz::bUncompress(INT iFileIn, INT iFileOut) {
+CxGz::bUncompress(
+    INT iFileIn, 
+    INT iFileOut
+)
+{
     /*DEBUG*/xASSERT_RET(- 1   != iFileIn,  FALSE);
     /*DEBUG*/xASSERT_RET(- 1   != iFileOut, FALSE);
 

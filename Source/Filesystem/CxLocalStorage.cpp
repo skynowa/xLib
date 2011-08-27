@@ -209,7 +209,7 @@ CxLocalStorage::bKeyWriteString(
 LONG
 CxLocalStorage::iKeyReadInt(
     const std::tstring &csKey,
-    const LONG     cliDefaultValue
+    const LONG          cliDefaultValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0);
@@ -223,7 +223,7 @@ CxLocalStorage::iKeyReadInt(
 BOOL
 CxLocalStorage::bKeyWriteInt(
     const std::tstring &csKey,
-    const LONG     cliValue
+    const LONG          cliValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
@@ -237,7 +237,7 @@ CxLocalStorage::bKeyWriteInt(
 DOUBLE
 CxLocalStorage::dKeyReadFloat(
     const std::tstring &csKey,
-    const DOUBLE   cdDefaultValue
+    const DOUBLE        cdDefaultValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0.0);
@@ -251,7 +251,7 @@ CxLocalStorage::dKeyReadFloat(
 BOOL
 CxLocalStorage::bKeyWriteFloat(
     const std::tstring &csKey,
-    const double   cdValue
+    const double        cdValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
@@ -265,7 +265,7 @@ CxLocalStorage::bKeyWriteFloat(
 BOOL
 CxLocalStorage::bKeyReadBool(
     const std::tstring &csKey,
-    const BOOL     cbDefaultValue
+    const BOOL          cbDefaultValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
@@ -291,7 +291,7 @@ CxLocalStorage::bKeyReadBool(
 BOOL
 CxLocalStorage::bKeyWriteBool(
     const std::tstring &csKey,
-    const BOOL     cbValue
+    const BOOL          cbValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);

@@ -20,7 +20,9 @@ using namespace NxCgi;
 
 //---------------------------------------------------------------------------
 //DONE: CxCgi
-CxCgi::CxCgi(const size_t cuiMaxSize) :
+CxCgi::CxCgi(
+    const size_t cuiMaxSize
+) :
     Environment(*this),
     Cookies    (*this),
     Formdata   (*this, cuiMaxSize)
@@ -56,7 +58,10 @@ CxCgi::sGetDump()  const{
 //DONE: bRedirect (redirect to URL)
 /*static*/
 BOOL
-CxCgi::bRedirect(const std::tstring &csUrl) {
+CxCgi::bRedirect(
+    const std::tstring &csUrl
+)
+{
     /*DEBUG*/xASSERT_RET(false == csUrl.empty(), FALSE)
 
     std::tstring sHttpResponse;
@@ -104,9 +109,9 @@ namespace {
 /*static*/
 BOOL
 CxCgi::bUriEncode(
-        const std::tstring &csUri,
-        const std::tstring &csReserved,
-        std::tstring       *psEncodedStr
+    const std::tstring &csUri,
+    const std::tstring &csReserved,
+    std::tstring       *psEncodedStr
 )
 {
     for (std::tstring::const_iterator it = csUri.begin(); it != csUri.end(); ++ it) {
@@ -142,8 +147,8 @@ CxCgi::bUriEncode(
 /*static*/
 BOOL
 CxCgi::bUriDecode(
-        const std::tstring &csUri,
-        std::tstring       *psDecodedStr
+    const std::tstring &csUri,
+    std::tstring       *psDecodedStr
 )
 {
     std::tstring::const_iterator it  = csUri.begin();
@@ -355,7 +360,9 @@ CxCgi::cgl_hex2char(char *what) {
 
 //---------------------------------------------------------------------------
 //DONE: CxCgiEnvironment
-CxCgiEnvironment::CxCgiEnvironment(CxCgi &ccgCgi) :
+CxCgiEnvironment::CxCgiEnvironment(
+    CxCgi &ccgCgi
+) :
     _m_ccgCgi         (ccgCgi),
     _m_rmRequestMethod(rmUknown)
 {
@@ -768,7 +775,9 @@ CxCgiEnvironment::_bInit() {
 
 //---------------------------------------------------------------------------
 //DONE: CxCgiCookies
-CxCgiCookies::CxCgiCookies(CxCgi &ccgCgi):
+CxCgiCookies::CxCgiCookies(
+    CxCgi &ccgCgi
+):
     _m_ccgCgi(ccgCgi)
 {
     _bInit();
@@ -784,7 +793,10 @@ CxCgiCookies::~CxCgiCookies() {
 //---------------------------------------------------------------------------
 //DONE: operator [] (no case searchig cookie value by name from list)
 std::tstring
-CxCgiCookies::operator [](const std::tstring &csCookieName) {
+CxCgiCookies::operator [](
+    const std::tstring &csCookieName
+)
+{
     /*DEBUG*/
 
     for (TCookies::const_iterator it = Items.begin(); it != Items.end(); ++ it) {
@@ -877,7 +889,10 @@ CxCgiCookies::_bInit() {
 
 //---------------------------------------------------------------------------
 //DONE: CxCgiFormData
-CxCgiFormData::CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize):
+CxCgiFormData::CxCgiFormData(
+    CxCgi        &ccgCgi, 
+    const size_t  cuiMaxSize
+) :
     _m_cuiMaxData(cuiMaxSize),
     _m_ccgCgi    (ccgCgi)
 {

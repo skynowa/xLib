@@ -34,7 +34,7 @@ CxTest_CxPkcs11::bUnit(
     CxPkcs11 objPkcs11;
     CxSlot   objSlot(objPkcs11);
 
-    CxSlot::ENotification nfNotif = CxSlot::nfError;
+    CxSlot::ENotification nfNotif = CxSlot::nfError;  xUNUSED(nfNotif);
     CK_SLOT_ID            ulSlot  = 0;
 
     /////nfNotif	= objSlot.nfWaitForEvent(0, &ulSlot, NULL_PTR);

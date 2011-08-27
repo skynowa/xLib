@@ -35,7 +35,9 @@ CxCookiePv0::CxCookiePv0() :
 }
 //---------------------------------------------------------------------------
 //DONE: CxCookiePv0
-CxCookiePv0::CxCookiePv0(const std::tstring &csRawCookie) :
+CxCookiePv0::CxCookiePv0(
+    const std::tstring &csRawCookie
+) :
     _m_sName    (),
     _m_sValue   (),
     _m_sDomain  (),
@@ -69,7 +71,10 @@ CxCookiePv0::sGetName() const {
 //---------------------------------------------------------------------------
 //DONE: bSetName ()
 BOOL
-CxCookiePv0::bSetName(const std::tstring &csName) {
+CxCookiePv0::bSetName(
+    const std::tstring &csName
+)
+{
     /*DEBUG*/
 
     _m_sName = csName;
@@ -87,7 +92,10 @@ CxCookiePv0::sGetValue() const {
 //---------------------------------------------------------------------------
 //DONE: bSetValue ()
 BOOL
-CxCookiePv0::bSetValue(const std::tstring &csValue) {
+CxCookiePv0::bSetValue(
+    const std::tstring &csValue
+)
+{
     /*DEBUG*/
 
     _m_sValue = csValue;
@@ -105,7 +113,10 @@ CxCookiePv0::sGetDomain() const {
 //---------------------------------------------------------------------------
 //DONE: bSetDomain ()
 BOOL
-CxCookiePv0::bSetDomain(const std::tstring &csDomain) {
+CxCookiePv0::bSetDomain(
+    const std::tstring &csDomain
+)
+{
     /*DEBUG*/
 
     _m_sDomain = csDomain;
@@ -123,7 +134,10 @@ CxCookiePv0::sGetPath() const {
 //---------------------------------------------------------------------------
 //DONE: bSetPath ()
 BOOL
-CxCookiePv0::bSetPath(const std::tstring &csPath) {
+CxCookiePv0::bSetPath(
+    const std::tstring &csPath
+)
+{
     /*DEBUG*/
 
     _m_sPath = csPath;
@@ -141,7 +155,10 @@ CxCookiePv0::sGetExpires() const {
 //---------------------------------------------------------------------------
 //DONE: bSetExpires ()
 BOOL
-CxCookiePv0::bSetExpires(const std::tstring &csExpires) {
+CxCookiePv0::bSetExpires(
+    const std::tstring &csExpires
+)
+{
     /*DEBUG*/
 
     _m_sExpires = csExpires;
@@ -159,7 +176,10 @@ CxCookiePv0::bGetSecure() const {
 //---------------------------------------------------------------------------
 //DONE: bSetSecure ()
 BOOL
-CxCookiePv0::bSetSecure(BOOL bFlag) {
+CxCookiePv0::bSetSecure(
+    BOOL bFlag
+)
+{
     /*DEBUG*/
 
     _m_bSecure = bFlag;
@@ -177,7 +197,10 @@ CxCookiePv0::bGetHttpOnly() const {
 //---------------------------------------------------------------------------
 //DONE: bSetHttpOnly ()
 BOOL
-CxCookiePv0::bSetHttpOnly(BOOL bFlag) {
+CxCookiePv0::bSetHttpOnly(
+    BOOL bFlag
+)
+{
     /*DEBUG*/
 
     _m_bHttpOnly = bFlag;
@@ -292,7 +315,10 @@ struct SCompareNoCase {
 //---------------------------------------------------------------------------
 //DONE: bInit (parsing raw cookie string)
 BOOL
-CxCookiePv0::bInit(const std::tstring &csRawCookie) {
+CxCookiePv0::bInit(
+    const std::tstring &csRawCookie
+)
+{
     /*DEBUG*/// _m_msCookie - n/a
     /*DEBUG*/// csRawCookie - n/a
 

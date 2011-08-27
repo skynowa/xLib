@@ -151,8 +151,8 @@ CxString::sReplaceAll(
 std::tstring
 CxString::sReplaceAll(
     const std::tstring &csStr,
-    const TCHAR    cchOldStr,
-    const TCHAR    cchNewStr
+    const TCHAR         cchOldStr,
+    const TCHAR         cchNewStr
 )
 {
     /*DEBUG*/// csStr    - n/a
@@ -276,8 +276,8 @@ CxString::sCut(
 std::tstring
 CxString::sCut(
     const std::tstring &csStr,
-    const size_t  cuiStartPos /*= 0*/,
-    const size_t  cuiEndPos   /*= std::tstring:npos*/
+    const size_t        cuiStartPos /*= 0*/,
+    const size_t        cuiEndPos   /*= std::tstring:npos*/
 )
 {
     xCHECK_RET(true        == csStr.empty(), std::tstring());
@@ -314,7 +314,7 @@ CxString::sToUpperCase(
 std::tstring
 CxString::sToLowerCase(
     const std::tstring &csStr,
-    size_t         uiLength
+    size_t              uiLength
 )
 {
     /*DEBUG*/// n/a
@@ -339,7 +339,7 @@ CxString::sToLowerCase(
 std::tstring
 CxString::sToUpperCase(
     const std::tstring &csStr,
-    size_t         uiLength
+    size_t              uiLength
 )
 {
     /*DEBUG*/// n/a
@@ -532,7 +532,7 @@ CxString::sFormat(
 std::tstring
 CxString::sMinimize(
     const std::tstring &csStr,
-    const size_t   cuiMaxLen
+    const size_t        cuiMaxLen
 )
 {
     /*DEBUG*/// n/a

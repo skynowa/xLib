@@ -41,7 +41,7 @@ CxGeoIp::~CxGeoIp() {
 BOOL
 CxGeoIp::bOpen(
     const std::tstring &csFilePath,
-    const EOption  copOption
+    const EOption       copOption
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE == bIsValid(),                       FALSE);

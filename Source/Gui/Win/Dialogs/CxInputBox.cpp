@@ -32,7 +32,12 @@ CxInputBox::~CxInputBox() {
 //---------------------------------------------------------------------------
 //DONE: iShowModal ()
 CxInputBox::EModalResult
-CxInputBox::mrShowModal(const std::tstring &csCaption, const std::tstring &csPrompt, const std::tstring &csText) {
+CxInputBox::mrShowModal(
+    const std::tstring &csCaption, 
+    const std::tstring &csPrompt, 
+    const std::tstring &csText
+)
+{
     /*DEBUG*/// csCaption - n/a
     /*DEBUG*/// csPrompt - n/a
     /*DEBUG*/// csText - n/a
@@ -196,7 +201,13 @@ CxInputBox::sGetText() {
 //DONE: _ms_pWndProc (������)
 /*static*/
 LRESULT CALLBACK
-CxInputBox::_ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) {
+CxInputBox::_ms_pWndProc(
+    HWND   hWnd, 
+    UINT   uiMsg, 
+    WPARAM wParam, 
+    LPARAM lParam
+)
+{
     if (WM_COMMAND == uiMsg) {
         CxInputBox *pibThis = (CxInputBox *)::GetWindowLong(hWnd, 0);
         /*DEBUG*/xASSERT_RET(NULL != pibThis, 0);

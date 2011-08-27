@@ -233,7 +233,7 @@ DialogProc(
 //DONE: iShow
 EModalResult
 iShow(
-    HWND           hwndOwner,
+    HWND                hwndOwner,
     const std::tstring &csMessage,
     const std::tstring &csTiltle
 )

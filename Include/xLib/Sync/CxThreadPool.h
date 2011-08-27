@@ -32,19 +32,19 @@ class CxThreadPool :
         TFuncPtr                  _m_fpFuncPtr;                    //����� ������� ������� �������
         VOID                     *_m_pvParam;                    //�������� ��� ������� ������� �������
 
-        const BOOL                  _m_cbIsGroupPaused;            //���� ����� �������
-        const BOOL                  _m_cbIsGroupAutoDelete;        //���� ������������ �������
+        const BOOL                _m_cbIsGroupPaused;            //���� ����� �������
+        const BOOL                _m_cbIsGroupAutoDelete;        //���� ������������ �������
 
         mutable CxSemaphore       _m_semSemaphore;                //�������
-        std::list<TaskT *>          _m_lstpthTasks;                //�������
+        std::list<TaskT *>        _m_lstpthTasks;                //�������
 
-        size_t                      _m_uiMaxRunningTasks;            //����� ������������ ���������� �������
-        size_t                      _m_uiNumTasks;                //����� ����� �������
-        size_t                      _m_uiCurrTask;                //������ �������� �������
+        size_t                    _m_uiMaxRunningTasks;            //����� ������������ ���������� �������
+        size_t                    _m_uiNumTasks;                //����� ����� �������
+        size_t                    _m_uiCurrTask;                //������ �������� �������
 
         //static
         static CxCriticalSection  _m_csList;                    //������������� std::list<TaskT *>
-        static CxConsoleLog          _m_clLog;                        //���
+        static CxConsoleLog       _m_clLog;                        //���
 
         BOOL                      _bAddTask    (CxThread *pvItem);
         BOOL                      _bRemoveTask (CxThread *pvItem);
@@ -55,26 +55,26 @@ class CxThreadPool :
         //WatchDog
 
     public:
-                                      CxThreadPool (BOOL bIsPaused, BOOL bIsAutoDelete, BOOL bIsGroupPaused, BOOL bIsGroupAutoDelete);
-        virtual                        ~CxThreadPool ();
+                                  CxThreadPool (BOOL bIsPaused, BOOL bIsAutoDelete, BOOL bIsGroupPaused, BOOL bIsGroupAutoDelete);
+        virtual                  ~CxThreadPool ();
 
         //�������� � �������
-        BOOL                           bCreateGroup (UINT uiStackSize, const TFuncPtr fpFuncPtr, VOID *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks);
-        BOOL                           bResumeGroup ();
-        BOOL                           bPauseGroup  ();
-        BOOL                           bExitGroup   (ULONG ulTimeout);
-        BOOL                           bKillGroup   (ULONG ulTimeout);
-        BOOL                           bWaitGroup   (ULONG ulTimeout);
+        BOOL                      bCreateGroup (UINT uiStackSize, const TFuncPtr fpFuncPtr, VOID *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks);
+        BOOL                      bResumeGroup ();
+        BOOL                      bPauseGroup  ();
+        BOOL                      bExitGroup   (ULONG ulTimeout);
+        BOOL                      bKillGroup   (ULONG ulTimeout);
+        BOOL                      bWaitGroup   (ULONG ulTimeout);
 
-        size_t                         uiGetMaxTasks() const;
-        BOOL                           bSetMaxTasks (UINT uiNum);
+        size_t                    uiGetMaxTasks() const;
+        BOOL                      bSetMaxTasks (UINT uiNum);
 
-        size_t                         uiGetNumTasks() const;
-        BOOL                           bSetNumTasks (UINT uiNum);
+        size_t                    uiGetNumTasks() const;
+        BOOL                      bSetNumTasks (UINT uiNum);
 
-        BOOL                           bIsEmpty     () const;
-        BOOL                           bIsFull      () const;
-        size_t                         uiGetSize    () const;
+        BOOL                      bIsEmpty     () const;
+        BOOL                      bIsFull      () const;
+        size_t                    uiGetSize    () const;
 
         //������
 

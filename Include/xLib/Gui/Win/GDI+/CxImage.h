@@ -42,7 +42,7 @@
             UINT            uiGetHeight();
 
             Gdiplus::Status stGetLastStatus();
-            std::tstring         sGetLastStatus (Gdiplus::Status stCode);
+            std::tstring    sGetLastStatus (Gdiplus::Status stCode);
 
         private:
             Gdiplus::Status _m_stRes;

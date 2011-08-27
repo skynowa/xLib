@@ -21,7 +21,7 @@ class CxIni :
 
         //creation
         BOOL             bCreateDefault    (const std::tstring &csContent);
-        std::tstring          sGetPath          ();
+        std::tstring     sGetPath          ();
         BOOL             bSetPath          (const std::tstring &csFilePath);
         BOOL             bFlush            ();
         BOOL             bClear            ();
@@ -38,10 +38,10 @@ class CxIni :
         BOOL             bKeyReadBool      (const std::tstring &csSection, const std::tstring &csKey, BOOL   bDefaultValue);
         BOOL             bKeyWriteBool     (const std::tstring &csSection, const std::tstring &csKey, BOOL   bValue);
 
-        std::tstring          sKeyReadString    (const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csDefaultValue);
+        std::tstring     sKeyReadString    (const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csDefaultValue);
         BOOL             bKeyWriteString   (const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csValue);
 
-        std::ustring          usKeyReadBin      (const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusDefaultValue);
+        std::ustring     usKeyReadBin      (const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusDefaultValue);
         BOOL             bKeyWriteBin      (const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusValue);
 
         BOOL             bKeyClear         (const std::tstring &csSection, const std::tstring &csKey);
@@ -59,7 +59,7 @@ class CxIni :
 
     private:
         BOOL             _m_bRes;
-        std::tstring          _m_sFilePath;
+        std::tstring     _m_sFilePath;
 };
 #elif defined(xOS_LINUX)
 

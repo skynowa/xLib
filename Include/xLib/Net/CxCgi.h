@@ -28,8 +28,8 @@ namespace NxCgi {
                 rmPost
             };
 
-                           CxCgiEnvironment      (CxCgi &ccgCgi);
-            virtual       ~CxCgiEnvironment      ();
+                               CxCgiEnvironment      (CxCgi &ccgCgi);
+            virtual           ~CxCgiEnvironment      ();
 
             const std::tstring &sGetAuthType          () const;
             const std::tstring &sGetContentLength     () const;
@@ -62,11 +62,11 @@ namespace NxCgi {
             const std::tstring &sGetHttpAcceptLanguage() const;
             const std::tstring &sGetCountryCode       () const;
 
-            ERequestMethod rmGetRequestMethod    () const;
+            ERequestMethod      rmGetRequestMethod    () const;
             std::tstring        sGetDump              () const;
 
         private:
-            CxCgi         &_m_ccgCgi;
+            CxCgi              &_m_ccgCgi;
             std::tstring        _m_sAuthType;
             std::tstring        _m_sContentLength;
             std::tstring        _m_sContentType;
@@ -97,9 +97,9 @@ namespace NxCgi {
             std::tstring        _m_sHttpHost;
             std::tstring        _m_sHttpAcceptLanguage;
             std::tstring        _m_sCountryCode;
-            ERequestMethod _m_rmRequestMethod;
+            ERequestMethod      _m_rmRequestMethod;
 
-            BOOL           _bInit                ();
+            BOOL                _bInit                ();
     };
     //---------------------------------------------------------------------------
 
@@ -112,8 +112,8 @@ namespace NxCgi {
         public:
             typedef std::vector<CxCookiePv0 *> TCookies;
 
-                     CxCgiCookies(CxCgi &ccgCgi);
-            virtual ~CxCgiCookies();
+                          CxCgiCookies(CxCgi &ccgCgi);
+            virtual      ~CxCgiCookies();
 
             TCookies Items;
             std::tstring  sGetDump    () const;
@@ -121,9 +121,9 @@ namespace NxCgi {
             std::tstring  operator[]  (const std::tstring &csCookieName);
 
         private:
-            CxCgi   &_m_ccgCgi;
+            CxCgi        &_m_ccgCgi;
 
-            BOOL     _bInit      ();
+            BOOL          _bInit      ();
     };
     //---------------------------------------------------------------------------
 
@@ -134,20 +134,20 @@ namespace NxCgi {
         /// CGI form data
     {
         public:
-                           CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize);
-            virtual       ~CxCgiFormData();
+                                CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize);
+            virtual            ~CxCgiFormData();
 
             const std::tstring &sGetRawData  () const;
             std::tstring        sGetDump     () const;
 
         private:
             //consts
-            const size_t   _m_cuiMaxData;
+            const size_t        _m_cuiMaxData;
 
-            CxCgi         &_m_ccgCgi;
+            CxCgi               &_m_ccgCgi;
             std::tstring        _m_sFormData;
 
-            BOOL           _bInit       ();
+            BOOL                _bInit       ();
     };
     //---------------------------------------------------------------------------
 
@@ -170,7 +170,7 @@ class CxCgi :
         explicit                CxCgi          (const size_t cuiMaxSize);
         virtual                ~CxCgi          ();
 
-        std::tstring                 sGetDump       () const;
+        std::tstring            sGetDump       () const;
 
         static BOOL             bRedirect      (const std::tstring &csUrl);
         static BOOL             bPageShow      (const std::tstring &csFilePath);

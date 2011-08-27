@@ -36,8 +36,6 @@ std::tstring CxDebugger::_ms_sLogPath;
 /*static*/
 BOOL
 CxDebugger::bGetEnabled() {
-    /*DEBUG*/// n/a
-
     return _ms_bIsEnabled;
 }
 //---------------------------------------------------------------------------
@@ -47,8 +45,6 @@ CxDebugger::bSetEnabled(
     const BOOL cbFlag
 )
 {
-    /*DEBUG*/// n/a
-
     _ms_bIsEnabled = cbFlag;
 
     return TRUE;
@@ -57,8 +53,6 @@ CxDebugger::bSetEnabled(
 /*static*/
 BOOL
 CxDebugger::bIsPresent() {
-    /*DEBUG*/// n/a
-
 #if defined(xOS_WIN)
     BOOL bRes = ::IsDebuggerPresent();
     xCHECK_RET(FALSE == bRes, FALSE);
@@ -78,13 +72,12 @@ CxDebugger::bIsPresent() {
 BOOL
 CxDebugger::bBreak() {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
-    /*DEBUG*/// n/a
 
 #if defined(xOS_WIN)
     #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
         _asm {int 3}
     #elif defined(xCOMPILER_MINGW32)
-       asm("int $3");
+        asm("int $3");
     #else
         abort();
     #endif
@@ -102,8 +95,6 @@ CxDebugger::bSetLogPath(
     const std::tstring &csFilePath
 )
 {
-    /*DEBUG*/
-
     _ms_sLogPath = csFilePath;
 
     return TRUE;
@@ -112,8 +103,6 @@ CxDebugger::bSetLogPath(
 /*static*/
 std::tstring
 CxDebugger::sGetLogPath() {
-    /*DEBUG*/
-
     return _ms_sLogPath;
 }
 //---------------------------------------------------------------------------
@@ -123,14 +112,12 @@ CxDebugger::bReportMake(
     const CxReport &crpReport
 )
 {
-    /*DEBUG*/
-
     //-------------------------------------
     //Never corrupt the last error value
-    ULONG _ulLastError = crpReport.ulGetLastError();
+    const ULONG culLastError = crpReport.ulGetLastError();
 
-    INT iRes = crpReport.rtGetType();
-    switch (iRes) {
+    CxReport::EType rtRes = crpReport.rtGetType();
+    switch (rtRes) {
         case CxReport::rtMsgboxPlain:    { _bMsgboxPlain   (crpReport); } break;
         case CxReport::rtMsgboxFormated: { _bMsgboxFormated(crpReport); } break;
         case CxReport::rtStdoutPlain:    { _bStdoutPlain   (crpReport); } break;
@@ -143,7 +130,7 @@ CxDebugger::bReportMake(
 
     //-------------------------------------
     //Never corrupt the last error value
-    CxLastError::bSet(_ulLastError);
+    CxLastError::bSet(culLastError);
 
     return TRUE;
 }
@@ -154,7 +141,6 @@ CxDebugger::bTrace(
     LPCTSTR pcszFormat, ...
 )
 {
-    /*DEBUG*/
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
     std::tstring sRes;
@@ -166,7 +152,6 @@ CxDebugger::bTrace(
 
 #if defined(xOS_WIN)
     ::OutputDebugString(sRes.c_str());
-    /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
     // n/a
 #endif
@@ -182,11 +167,9 @@ CxDebugger::bTrace(
     const std::tstring &csMsg
 )
 {
-    /*DEBUG*/
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
     return bTrace(csMsg.c_str());
-    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -195,8 +178,6 @@ CxDebugger::bBeep(
     const ULONG culFrequency /*= 800*/,
     const ULONG culDuration  /*= 100*/
 ) {
-    /*DEBUG*/
-
 #if defined(xOS_WIN)
     #if xTODO
         BOOL bRes = FALSE;
@@ -210,13 +191,13 @@ CxDebugger::bBeep(
     #else
         #if xTODO
             INT iRes = _tsystem(xT("xkbbell"));
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+            xASSERT_RET(- 1 == iRes, FALSE);
         #endif
     #endif
 
     #if xTEMP_DISABLED
         Display *display = XOpenDisplay(NULL);
-        /*DEBUG*/xASSERT_RET(NULL != display, FALSE);
+        xCHECK_RET(NULL == display, FALSE);
 
         XKeyboardControl xkc;
         xkc.bell_percent  = 10;
@@ -224,13 +205,13 @@ CxDebugger::bBeep(
         xkc.bell_duration = culDuration;    /* ms 100 */
 
         iRes = XChangeKeyboardControl(display, KBBellPercent | KBBellPitch | KBBellDuration, &xkc);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        xCHECK_RET(- 1 == iRes, FALSE);
 
         iRes = XBell(display, 0);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        xCHECK_RET(- 1 == iRes, FALSE);
 
         iRes = XCloseDisplay(display);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        xCHECK_RET(- 1 == iRes, FALSE);
     #endif
 #endif
 
@@ -261,7 +242,6 @@ CxDebugger::_bMsgboxPlain(
 )
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
-    /*DEBUG*/
 
 #if defined(xOS_WIN)
     ULONG ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
@@ -303,7 +283,6 @@ CxDebugger::_bMsgboxFormated(
 )
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
-    /*DEBUG*/
 
 #if defined(xOS_WIN)
     //-------------------------------------
@@ -393,7 +372,6 @@ CxDebugger::_bStdoutPlain(
 )
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
-    /*DEBUG*/
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -454,7 +432,6 @@ CxDebugger::_bStdoutHtml(
 )
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
-    /*DEBUG*/
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -518,7 +495,6 @@ CxDebugger::_bLoggingPlain(
 )
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
-    /*DEBUG*/
 
     //--------------------------------------------------
     //get log file path
@@ -559,8 +535,6 @@ CxDebugger::_bLoggingHtml(
     const CxReport &crpReport
 )
 {
-    /*DEBUG*/
-
     //TODO: bLoggingHtml
 
     return TRUE;

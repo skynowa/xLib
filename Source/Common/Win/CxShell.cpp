@@ -25,7 +25,12 @@
 //---------------------------------------------------------------------------
 //TODO:  bFindExecutable ()
 /*static*/
-std::tstring CxShell::bFindExecutable(const std::tstring csFileName, const std::tstring csFindDirPath) {
+std::tstring 
+CxShell::bFindExecutable(
+    const std::tstring csFileName, 
+    const std::tstring csFindDirPath
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::tstring());
     /*DEBUG*/// csFindDirPath - n/a
 
@@ -40,7 +45,16 @@ std::tstring CxShell::bFindExecutable(const std::tstring csFileName, const std::
 //---------------------------------------------------------------------------
 //TODO:  bExecute ()
 /*static*/
-BOOL CxShell::bExecute(HWND hOwner, EOperation opOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, EShowFlag sfShowCmd) {
+BOOL 
+CxShell::bExecute(
+    HWND                hOwner, 
+    EOperation          opOperation, 
+    const std::tstring &csFilePath, 
+    const std::tstring &csParams, 
+    const std::tstring &csDir, 
+    EShowFlag           sfShowCmd
+)
+{
     /*DEBUG*/// hOwner      - n/a
     /*DEBUG*/// csOperation - n/a
     /*DEBUG*/// csFilePath  - n/a
@@ -72,7 +86,11 @@ BOOL CxShell::bExecute(HWND hOwner, EOperation opOperation, const std::tstring &
 //---------------------------------------------------------------------------
 //TODO:  bExecuteEx ()
 /*static*/
-BOOL CxShell::bExecuteEx(SHELLEXECUTEINFO *peiInfo) {
+BOOL 
+CxShell::bExecuteEx(
+    SHELLEXECUTEINFO *peiInfo
+)
+{
     /*DEBUG*/xASSERT_RET(FALSE != peiInfo, FALSE);
 
     _ms_bRes = ::ShellExecuteEx(peiInfo);
@@ -83,7 +101,11 @@ BOOL CxShell::bExecuteEx(SHELLEXECUTEINFO *peiInfo) {
 //---------------------------------------------------------------------------
 //TODO: bExecuteHttp ()
 /*static*/
-BOOL CxShell::bExecuteHttp(const std::tstring &csUrl) {
+BOOL 
+CxShell::bExecuteHttp(
+    const std::tstring &csUrl
+)
+{
     /*DEBUG*/// csUrl - n/a
 
     std::tstring sUrl = CxString::sTrimSpace(csUrl);
@@ -98,7 +120,11 @@ BOOL CxShell::bExecuteHttp(const std::tstring &csUrl) {
 //---------------------------------------------------------------------------
 //TODO: bExecuteFtp ()
 /*static*/
-BOOL CxShell::bExecuteFtp(const std::tstring &csUrl) {
+BOOL 
+CxShell::bExecuteFtp(
+    const std::tstring &csUrl
+)
+{
     /*DEBUG*/// csUrl - n/a
 
     std::tstring sUrl = CxString::sTrimSpace(csUrl);
@@ -113,7 +139,13 @@ BOOL CxShell::bExecuteFtp(const std::tstring &csUrl) {
 //---------------------------------------------------------------------------
 //TODO: bExecuteEmail ()
 /*static*/
-BOOL CxShell::bExecuteEmail(const std::tstring &csToEmail, const std::tstring &csSubject, const std::tstring &csBody) {
+BOOL 
+CxShell::bExecuteEmail(
+    const std::tstring &csToEmail, 
+    const std::tstring &csSubject, 
+    const std::tstring &csBody
+)
+{
     /*DEBUG*/// csToEmail - n/a
     /*DEBUG*/// csSubject - n/a
     /*DEBUG*/// csBody    - n/a
@@ -145,7 +177,12 @@ BOOL CxShell::bExecuteEmail(const std::tstring &csToEmail, const std::tstring &c
 //---------------------------------------------------------------------------
 //TODO: sGetSpecialFolderLocation ()
 /*static*/
-std::tstring CxShell::sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken) {
+std::tstring 
+CxShell::sGetSpecialDirPath(
+    ESpecialDir sfDir, 
+    HANDLE      hToken
+)
+{
     /*DEBUG*/// sfDir  - n/a
     /*DEBUG*/// hToken - n/a
 
@@ -170,7 +207,12 @@ std::tstring CxShell::sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken) {
 //DONE: bCreateShortcut
 /*static*/
 BOOL
-CxShell::bCreateShortcut(const std::tstring &csFilePath, const std::tstring &csShortCutPath, const std::tstring &csDescription) {
+CxShell::bCreateShortcut(
+    const std::tstring &csFilePath, 
+    const std::tstring &csShortCutPath, 
+    const std::tstring &csDescription
+)
+{
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),     FALSE);
     /*DEBUG*/xASSERT_RET(false == csShortCutPath.empty(), FALSE);
     /*DEBUG*/// csDescription - n/a
