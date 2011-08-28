@@ -669,9 +669,6 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Log\CxEventLog.cpp">
-      <Filter>xLib\Log</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.cpp">
       <Filter>xLib\Gui\Dialogs</Filter>
     </ClCompile>
@@ -686,6 +683,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Crypt\OpenSSL\CxBase64.cpp">
       <Filter>xLib\Crypt\OpenSSL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Log\CxSystemLog.cpp">
+      <Filter>xLib\Log</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -741,9 +741,6 @@
       <Filter>xLib\Log</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\CxTraceLog.h">
-      <Filter>xLib\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Log\xLog.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\Win\CxWndLog.h">
@@ -1235,9 +1232,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Log\CxEventLog.h">
-      <Filter>xLib\Log</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.h">
       <Filter>xLib\Gui\Dialogs</Filter>
     </ClInclude>
@@ -1252,6 +1246,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Crypt\OpenSSL\CxBase64.h">
       <Filter>xLib\Crypt\OpenSSL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Log\CxSystemLog.h">
+      <Filter>xLib\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Log\xLogs.h">
+      <Filter>xLib\Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

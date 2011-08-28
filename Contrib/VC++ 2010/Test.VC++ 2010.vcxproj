@@ -180,8 +180,8 @@
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp" />
     <ClCompile Include="..\..\Source\Log\CxConsoleLog.cpp" />
-    <ClCompile Include="..\..\Source\Log\CxEventLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxFileLog.cpp" />
+    <ClCompile Include="..\..\Source\Log\CxSystemLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp" />
     <ClCompile Include="..\..\Source\Log\Win\CxWndLog.cpp" />
     <ClCompile Include="..\..\Source\Net\CxAsyncSocket.cpp" />
@@ -350,7 +350,8 @@
     <ClInclude Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
-    <ClInclude Include="..\..\Include\xLib\Log\CxEventLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\CxSystemLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\xLogs.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h" />
@@ -464,7 +465,6 @@
     <ClInclude Include="..\..\Include\xLib\Log\CxConsoleLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxFileLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxTraceLog.h" />
-    <ClInclude Include="..\..\Include\xLib\Log\xLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\Win\CxWndLog.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxAsyncSocket.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxCgi.h" />

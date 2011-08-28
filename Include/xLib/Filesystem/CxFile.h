@@ -284,3 +284,24 @@ class CxFile :
 };
 //---------------------------------------------------------------------------
 #endif  //xLib_Filesystem_CxFileH
+
+
+#if xTODO
+    int64_t 
+    CxFile::getSize(const String &path) {
+        int64_t size = -1;
+
+    #ifdef CCXX_OS_WINDOWS
+
+        struct _stati64 stbuf;
+        if (::_stati64(removeTrailingSeparators(path).c_str(), &stbuf) == 0)
+            size = stbuf.st_size;
+    #else
+        struct stat stbuf;
+        if (::stat(path.c_str(), &stbuf) == 0)
+            size = stbuf.st_size;
+    #endif
+
+        return size;
+    }
+#endif

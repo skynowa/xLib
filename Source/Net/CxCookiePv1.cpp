@@ -239,45 +239,45 @@ CxCookiePv1::sToString() const {
     std::tstring sRes;
 
     sRes.append(_m_sName);
-    sRes.append("=");
+    sRes.append(xT("="));
 
-    sRes.append("\"");
+    sRes.append(xT("\""));
     sRes.append(_m_sValue);
-    sRes.append("\"");
+    sRes.append(xT("\""));
 
     if (false == _m_sComment.empty()) {
-        sRes.append("; Comment=\"");
+        sRes.append(xT("; Comment=\""));
         sRes.append(_m_sComment);
-        sRes.append("\"");
+        sRes.append(xT("\""));
     }
 
     if (false == _m_sDomain.empty()) {
-        sRes.append("; Domain=\"");
+        sRes.append(xT("; Domain=\""));
         sRes.append(_m_sDomain);
-        sRes.append("\"");
+        sRes.append(xT("\""));
     }
 
     if (false == _m_sPath.empty()) {
-        sRes.append("; Path=\"");
+        sRes.append(xT("; Path=\""));
         sRes.append(_m_sPath);
-        sRes.append("\"");
+        sRes.append(xT("\""));
     }
 
     if (_m_liMaxAge >= 0) {
-        sRes.append("; Max-Age=\"");
+        sRes.append(xT("; Max-Age=\""));
         sRes.append( CxString::lexical_cast(_m_liMaxAge) );
-        sRes.append("\"");
+        sRes.append(xT("\""));
     }
 
     if (TRUE == _m_bSecure) {
-        sRes.append("; Secure");
+        sRes.append(xT("; Secure"));
     }
 
     if (TRUE == _m_bHttpOnly) {
-        sRes.append("; HttpOnly");
+        sRes.append(xT("; HttpOnly"));
     }
 
-    sRes.append("; Version=\"1\"");
+    sRes.append(xT("; Version=\"1\""));
 
     return sRes;
 }

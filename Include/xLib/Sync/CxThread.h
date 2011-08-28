@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/xClosure.h>
 #include <xLib/Sync/CxEvent.h>
-#include <xLib/Log/xLog.h>
+#include <xLib/Log/xLogs.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Common/Win/CxHandleT.h>

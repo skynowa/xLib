@@ -261,14 +261,14 @@ CxCookiePv0::sGetDump() const {
     std::tstring sRes;
 
     sRes = CxString::sFormat(
-            xT("[CxCookiePv0 dump]\n\n"
-            "Name: %s\n"
-            "Value: %s\n"
-            "Domain: %s\n"
-            "Path: %s\n"
-            "Expires: %s\n"
-            "Secure: %s\n"
-            "HttpOnly: %s\n\n"),
+            xT("[CxCookiePv0 dump]\n\n")
+            xT("Name: %s\n")
+            xT("Value: %s\n")
+            xT("Domain: %s\n")
+            xT("Path: %s\n")
+            xT("Expires: %s\n")
+            xT("Secure: %s\n")
+            xT("HttpOnly: %s\n\n"),
             sGetName().c_str(),
             sGetValue().c_str(),
             sGetDomain().c_str(),

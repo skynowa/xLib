@@ -1,10 +1,10 @@
 /**
- * \file  CxEventLog.cpp
- * \brief logging to system event log
+ * \file  CxSystemLog.cpp
+ * \brief logging to system log
  */
 
 
-#include <xLib/Log/CxEventLog.h>
+#include <xLib/Log/CxSystemLog.h>
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
@@ -16,11 +16,11 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxEventLog::CxEventLog() {
+CxSystemLog::CxSystemLog() {
 
 }
 //---------------------------------------------------------------------------
-CxEventLog::~CxEventLog() {
+CxSystemLog::~CxSystemLog() {
 
 }
 //---------------------------------------------------------------------------
