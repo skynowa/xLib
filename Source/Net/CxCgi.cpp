@@ -69,7 +69,7 @@ CxCgi::bRedirect(
     sHttpResponse.append( CxString::sFormat(xT("Location: %s\n"), csUrl.c_str()) );
     sHttpResponse.append( CxConst::xNL );
 
-    tcout << sHttpResponse << tendl;
+    std::tcout << sHttpResponse << std::endl;
 
     return TRUE;
 }
@@ -88,7 +88,7 @@ CxCgi::bPageShow(
     bRes = CxFile::bTextRead(csFilePath, &sFileContent);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    tcout << sFileContent << tendl;
+    std::tcout << sFileContent << std::endl;
 
     return TRUE;
 }

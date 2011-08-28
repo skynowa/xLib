@@ -18,7 +18,7 @@
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE: CxIni (����������� - ���� � ���������� Exe)
+//DONE: CxIni
 CxIni::CxIni() :
     _m_bRes     (FALSE),
     _m_sFilePath()
@@ -29,7 +29,7 @@ CxIni::CxIni() :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: CxIni (����������� - ���� � �������� ����������)
+//DONE: CxIni
 CxIni::CxIni(
     const std::tstring &csFilePath
 ) :
@@ -43,14 +43,14 @@ CxIni::CxIni(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: ~CxIni (����������)
+//DONE: ~CxIni
 /*virtual*/
 CxIni::~CxIni() {
     _m_bRes = bFlush();
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: bCreateDefault (�������� ����� ��-���������)
+//DONE: bCreateDefault
 BOOL
 CxIni::bCreateDefault(
     const std::tstring &csContent
@@ -75,7 +75,7 @@ CxIni::bCreateDefault(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-//DONE: sGetPath (��������� ���� � �����)
+//DONE: sGetPath
 std::tstring
 CxIni::sGetPath() {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), std::tstring());
@@ -83,7 +83,7 @@ CxIni::sGetPath() {
     return _m_sFilePath;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetPath (��������� ���� � ����)
+//DONE: bSetPath
 BOOL
 CxIni::bSetPath(
     const std::tstring &csFilePath
@@ -100,7 +100,7 @@ CxIni::bSetPath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bFlush (����� ����������� � ����)
+//DONE: bFlush
 BOOL
 CxIni::bFlush() {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
@@ -111,7 +111,7 @@ CxIni::bFlush() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear (������� �����)
+//DONE: bClear
 BOOL
 CxIni::bClear() {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
@@ -137,7 +137,7 @@ CxIni::bClear() {
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE: bKeyIsExists (������������� ������)
+//DONE: bKeyIsExists
 BOOL
 CxIni::bKeyIsExists(
     const std::tstring &csSection, 
@@ -159,7 +159,7 @@ CxIni::bKeyIsExists(
     }
 }
 //---------------------------------------------------------------------------
-//DONE: iKeyReadInt (������ INT)
+//DONE: iKeyReadInt
 INT
 CxIni::iKeyReadInt(
     const std::tstring &csSection, 
@@ -175,7 +175,7 @@ CxIni::iKeyReadInt(
     return CxString::lexical_cast<LONG>( sKeyReadString(csSection, csKey, CxString::lexical_cast(iDefaultValue)) );
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteInt (������ INT)
+//DONE: bKeyWriteInt
 BOOL
 CxIni::bKeyWriteInt(
     const std::tstring &csSection, 
@@ -191,7 +191,7 @@ CxIni::bKeyWriteInt(
     return bKeyWriteString(csSection, csKey, CxString::lexical_cast(iValue));
 }
 //-------------------------------------------------------------------------
-//DONE: dKeyReadFloat (������ FLOAT)
+//DONE: dKeyReadFloat
 double
 CxIni::dKeyReadFloat(
     const std::tstring &csSection, 
@@ -207,7 +207,7 @@ CxIni::dKeyReadFloat(
     return CxString::lexical_cast<double>( sKeyReadString(csSection, csKey, CxString::lexical_cast(dDefaultValue)) );
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteFloat (������ FLOAT)
+//DONE: bKeyWriteFloat
 BOOL
 CxIni::bKeyWriteFloat(
     const std::tstring &csSection, 
@@ -223,7 +223,7 @@ CxIni::bKeyWriteFloat(
     return bKeyWriteString(csSection, csKey, CxString::lexical_cast(dValue));
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyReadBool (������ BOOL)
+//DONE: bKeyReadBool
 BOOL
 CxIni::bKeyReadBool(
     const std::tstring &csSection, 
@@ -251,7 +251,7 @@ CxIni::bKeyReadBool(
     return bRes;
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteBool (������ BOOL)
+//DONE: bKeyWriteBool
 BOOL
 CxIni::bKeyWriteBool(
     const std::tstring &csSection, 
@@ -271,7 +271,7 @@ CxIni::bKeyWriteBool(
     return bKeyWriteString(csSection, csKey, sValue);
 }
 //-------------------------------------------------------------------------
-//DONE: sKeyReadString (������ std::tstring)
+//DONE: sKeyReadString
 std::tstring
 CxIni::sKeyReadString(
     const std::tstring &csSection, 
@@ -306,7 +306,7 @@ CxIni::sKeyReadString(
     return sRes;
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteString (������ std::tstring)
+//DONE: bKeyWriteString
 BOOL
 CxIni::bKeyWriteString(
     const std::tstring &csSection, 
@@ -325,7 +325,7 @@ CxIni::bKeyWriteString(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-//DONE: usKeyReadBin (������ std::ustring)
+//DONE: usKeyReadBin
 std::ustring
 CxIni::usKeyReadBin(
     const std::tstring &csSection, 
@@ -348,7 +348,7 @@ CxIni::usKeyReadBin(
     return std::ustring(sRes.begin(), sRes.end());
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteBin (������ std::ustring)
+//DONE: bKeyWriteBin
 BOOL
 CxIni::bKeyWriteBin(
     const std::tstring &csSection, 
@@ -367,7 +367,7 @@ CxIni::bKeyWriteBin(
     return bKeyWriteString(csSection, csKey, sHexStr);
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyClear (������� �����)
+//DONE: bKeyClear
 BOOL
 CxIni::bKeyClear(
     const std::tstring &csSection, 
@@ -381,7 +381,7 @@ CxIni::bKeyClear(
     return bKeyWriteString(csSection, csKey, std::tstring());
 }
 //---------------------------------------------------------------------------
-//DONE: bKeyDelete (�������� �����)
+//DONE: bKeyDelete
 BOOL
 CxIni::bKeyDelete(
     const std::tstring &csSection, 
@@ -406,7 +406,7 @@ CxIni::bKeyDelete(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bSectionIsExists (������������� ������)
+//DONE: bSectionIsExists
 BOOL
 CxIni::bSectionIsExists(
     const std::tstring &csSection
@@ -426,7 +426,7 @@ CxIni::bSectionIsExists(
     return (ulRes > 0);
 }
 //---------------------------------------------------------------------------
-//DONE: bSectionRead (������ ������)
+//DONE: bSectionRead
 BOOL
 CxIni::bSectionRead(
     const std::tstring                   &csSection, 
@@ -499,7 +499,7 @@ CxIni::bSectionRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSectionWrite (������ ������)
+//DONE: bSectionWrite
 BOOL
 CxIni::bSectionWrite(
     const std::tstring                         &csSection, 
@@ -532,7 +532,7 @@ CxIni::bSectionWrite(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-//DONE: bSectionsReadNames (������ ���� ���� ������)
+//DONE: bSectionsReadNames
 BOOL
 CxIni::bSectionsReadNames(
     std::vector<std::tstring> *pvsNames
@@ -578,7 +578,7 @@ CxIni::bSectionsReadNames(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-//DONE: bSectionClear (������ ������)
+//DONE: bSectionClear
 BOOL
 CxIni::bSectionClear(
     const std::tstring &csSection
@@ -593,7 +593,7 @@ CxIni::bSectionClear(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-//DONE: bSectionDelete (�������� ������)
+//DONE: bSectionDelete
 BOOL
 CxIni::bSectionDelete(
     const std::tstring &csSection

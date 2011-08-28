@@ -12,7 +12,9 @@
 namespace CxMsgBoxRtf 
     /// RTF message box
 {
-    enum EModalResult {
+    enum EModalResult 
+        /// modal result
+    {
         mrInternalError = - 1,
         mrNone          = 0,
         mrAbort         = 1,

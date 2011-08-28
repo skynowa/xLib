@@ -109,7 +109,7 @@ CxConsole::sRead() {
 
     sRes.assign(szBuff, ulRead - CxConst::xCRNL.size());
 #elif defined(xOS_LINUX)
-    tcin >> sRes;
+    std::tcin >> sRes;
 #endif
 
     return sRes;
@@ -131,10 +131,10 @@ CxConsole::bWrite(
     /*DEBUG*/xASSERT_RET(FALSE     != bRes,         FALSE);
     /*DEBUG*/xASSERT_RET(ulWritten == csStr.size(), FALSE);
 #elif defined(xOS_LINUX)
-    tcout << csStr;
+    std::tcout << csStr;
 #endif
 
-    tcout.flush();
+    std::tcout.flush();
 
     return TRUE;
 }
@@ -202,7 +202,7 @@ CxConsole::iMsgBox(
     bWriteLine();
     bWrite(CxString::sFormat(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry));
 
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
+    EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     switch (cmRes) {
         case cmAbort:  { mrRes = mrAbort;  bWriteLine(xT("Abort..."));  } break;
         case cmIgnore: { mrRes = mrIgnore; bWriteLine(xT("Ignore...")); } break;
@@ -229,7 +229,7 @@ CxConsole::bPrompt(
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
         while (true) {
-            const TCHAR chLetter = static_cast<TCHAR>( tcin.get() );   tcin.ignore();
+            const TCHAR chLetter = static_cast<TCHAR>( std::tcin.get() );   std::tcin.ignore();
 
             //asterisks
             xCHECK_DO(TRUE == cbIsVisible, bWrite(xT("*")));

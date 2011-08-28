@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Crypt/CxBase64.h>
+#include <xLib/Crypt/OpenSSL/CxBase64.h>
 //---------------------------------------------------------------------------
 class CxTest_CxBase64 :
     public CxTest

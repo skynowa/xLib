@@ -16,7 +16,9 @@ class CxProfiler :
     /// code profiling (msec)
 {
     public:
-        enum EMode {
+        enum EMode 
+            /// mode
+        {
             pmStdClock,
             pmDateTime,
             pmGetTimeOfDay

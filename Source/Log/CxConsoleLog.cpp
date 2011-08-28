@@ -79,7 +79,7 @@ CxConsoleLog::bWrite(
 
     ////--CxFile::iPrintf(xT("%s%s\n"), sTime.c_str(), sParam.c_str());
 
-    tcout << sTime << sParam << tendl;
+    std::tcout << sTime << sParam << std::endl;
 
     return TRUE;
 }

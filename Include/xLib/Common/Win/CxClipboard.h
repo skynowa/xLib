@@ -15,7 +15,9 @@ class CxClipboard :
     /// clipboard
 {
     public:
-        enum EFormat {
+        enum EFormat 
+            /// format
+        {
             fmBITMAP          = CF_BITMAP,
             fmdib             = CF_DIB,
             fmDibv5           = CF_DIBV5,

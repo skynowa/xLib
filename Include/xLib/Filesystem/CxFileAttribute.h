@@ -14,7 +14,9 @@ class CxFileAttribute :
     /// file attribute
 {
     public:
-        enum EAttribute {
+        enum EAttribute 
+            /// attribute
+        {
             //TODO: separate writable and readable attributes
             #if defined(xOS_WIN)
                 faInvalid           = INVALID_FILE_ATTRIBUTES,

@@ -23,7 +23,9 @@ class CxThread :
     /// thread
 {
     public:
-	    enum EPriority {
+	    enum EPriority 
+            /// priotity
+        {
             #if defined(xOS_WIN)
                 tpError        = THREAD_PRIORITY_ERROR_RETURN,
                 tpIdle         = THREAD_PRIORITY_IDLE,

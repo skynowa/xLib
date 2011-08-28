@@ -14,13 +14,15 @@ class CxFile :
     /// file
 {
     public:
-        /// error type
-        enum EErrorType {
+        enum EErrorType 
+            /// error type
+        {
             etError = TEOF
         };
 
-        /// open mode
-        enum EOpenMode {
+        enum EOpenMode 
+            /// open mode
+        {
             omRead,                ///< "r"
             omWrite,               ///< "w"
             omAppend,              ///< "a"
@@ -37,38 +39,43 @@ class CxFile :
         };
 
     #if defined(xOS_WIN)
-        /// translation mode
-        enum ETranslationMode {
+        enum ETranslationMode 
+            /// translation mode
+        {
             tmText   = O_TEXT,
             tmBinary = O_BINARY
         };
     #endif
 
-        /// access mode
-        enum EAccessMode {
+        enum EAccessMode 
+            /// access mode
+        {
             amExistence = 0,
             amWrite     = 2,
             amRead      = 4,
             amReadWrite = 6
         };
 
-        /// pointer position
-        enum EPointerPosition {
+        enum EPointerPosition 
+            /// pointer position
+        {
             ppBegin = SEEK_SET,
             ppCurr  = SEEK_CUR,
             ppEnd   = SEEK_END,
             ppError = - 1L
         };
 
-        /// buffering mode
-        enum EBufferingMode {
+        enum EBufferingMode 
+            /// buffering mode
+        {
             bmFull = _IOFBF,
             bmLine = _IOLBF,
             bmNo   = _IONBF
         };
 
-        /// locking mode
-        enum ELockingMode {
+        enum ELockingMode 
+            /// locking mode
+        {
             #if defined(xOS_WIN)
                 lmLock    = LK_NBLCK,
                 lmTryLock = LK_LOCK,
@@ -81,8 +88,9 @@ class CxFile :
             #endif
         };
 
-        /// permission mode
-        enum EPermissionMode {
+        enum EPermissionMode 
+            /// permission mode
+        {
             #if defined(xOS_WIN)
                 pmRead             = _S_IREAD,
                 pmWrite            = _S_IWRITE,

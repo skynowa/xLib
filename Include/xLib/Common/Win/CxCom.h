@@ -20,9 +20,10 @@ class CxCom :
     /// COM
 {
     public:
-        //concurrency model
-        //the COINIT_APARTMENTTHREADED and COINIT_MULTITHREADED flags cannot both be set
-        enum EConcurrencyModel {
+        enum EConcurrencyModel 
+            /// concurrency model
+            /// the COINIT_APARTMENTTHREADED and COINIT_MULTITHREADED flags cannot both be set
+        {
             cmApartmentThreaded = COINIT_APARTMENTTHREADED,
             cmMultiThreaded     = COINIT_MULTITHREADED,
             cmDisableOleIdde    = COINIT_DISABLE_OLE1DDE,

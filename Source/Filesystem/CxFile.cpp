@@ -66,7 +66,7 @@ CxFile::bOpen(
 
     //buffering
     if (FALSE == cbIsUseBuffering) {
-        _m_bRes = bSetVBuff(NULL, bmNo, 0);
+        _m_bRes = bSetVBuff(NULL, bmNo,   0);
     } else {
         _m_bRes = bSetVBuff(NULL, bmFull, BUFSIZ);
     }
@@ -1234,11 +1234,11 @@ CxFile::sTempCreate(
     FILE *pfFile = _tfopen(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
     /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 #elif defined(xOS_LINUX)
-    INT iFile = _tmkstemp(&sRes.at(0));
-    /*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
+    ////INT iFile = _tmkstemp(&sRes.at(0));
+    /////*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
 
-    FILE *pfFile = _tfdopen(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
+    ////FILE *pfFile = _tfdopen(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
+    /////*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 #endif
 
     //out
@@ -1650,6 +1650,9 @@ CxFile::_iGetHandle(
     INT iRes = etError;
 
     iRes = fileno(pfFile);
+    if (false == CxMacros::numeric_limits_check(iRes)) Beep(200, 200);
+
+
     /*DEBUG*/xASSERT_RET(etError != iRes, etError);
 
     return iRes;
@@ -1662,7 +1665,6 @@ CxFile::_pfGetHandle(
     const EOpenMode omMode
 )
 {
-    /*DEBUG*/
     /*DEBUG*/
 
     FILE *pfRes = NULL;

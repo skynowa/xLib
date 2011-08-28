@@ -7,7 +7,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Net/CxSmtp.h>
 
-#include <xLib/Crypt/CxBase64.h>
+#include <xLib/Crypt/OpenSSL/CxBase64.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Log/CxTraceLog.h>

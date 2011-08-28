@@ -22,14 +22,16 @@ namespace NxCgi {
         /// CGI environment
     {
         public:
-            enum ERequestMethod {
+            enum ERequestMethod 
+                /// request method
+            {
                 rmUknown,
                 rmGet,
                 rmPost
             };
 
-                               CxCgiEnvironment      (CxCgi &ccgCgi);
-            virtual           ~CxCgiEnvironment      ();
+                               CxCgiEnvironment       (CxCgi &ccgCgi);
+            virtual           ~CxCgiEnvironment       ();
 
             const std::tstring &sGetAuthType          () const;
             const std::tstring &sGetContentLength     () const;
@@ -112,12 +114,12 @@ namespace NxCgi {
         public:
             typedef std::vector<CxCookiePv0 *> TCookies;
 
+            TCookies      Items;
+            
                           CxCgiCookies(CxCgi &ccgCgi);
             virtual      ~CxCgiCookies();
-
-            TCookies Items;
+            
             std::tstring  sGetDump    () const;
-
             std::tstring  operator[]  (const std::tstring &csCookieName);
 
         private:

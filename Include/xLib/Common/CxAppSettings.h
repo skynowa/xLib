@@ -26,8 +26,8 @@ class CxAppSettings :
         static std::tstring m_sPassDefault;
 
     private:
-                           CxAppSettings();
-        virtual           ~CxAppSettings();
+                            CxAppSettings();
+        virtual            ~CxAppSettings();
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxAppSettingsH

@@ -16,12 +16,13 @@ class CxSlot :
     /// Pkcs11 slot
 {
     public:
-        enum ENotification {
+        enum ENotification 
+            /// notifications
+        {
             nfError,
             nfInsertion,
             nfRemoval
         };
-        	///< notifications
 
                              CxSlot        (const CxPkcs11 &cPkcs11);
             ///< constructor

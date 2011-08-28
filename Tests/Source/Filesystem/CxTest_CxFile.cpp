@@ -681,7 +681,7 @@ CxTest_CxFile::bUnit(
     xASSERT_NOT_EQ(FALSE, m_bRes);
 
     //bUnitePrivate
-    m_bRes = bUnitePrivate(cullBlockLoops);
+    m_bRes = bUnitPrivate(cullBlockLoops);
     xASSERT_NOT_EQ(FALSE, m_bRes);
 
     return TRUE;
@@ -1218,9 +1218,9 @@ CxTest_CxFile::bUnit1(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bUnitePrivate ()
+//DONE: bUnitPrivate ()
 BOOL
-CxTest_CxFile::bUnitePrivate(
+CxTest_CxFile::bUnitPrivate(
     const ULONGLONG cullBlockLoops
 )
 {
@@ -1244,9 +1244,10 @@ CxTest_CxFile::bUnitePrivate(
 
     //--------------------------------------------------
     //_pfGetHandle
+#if xTODO
     xTEST_BLOCK(cullBlockLoops)
     {
-        const CxFile::EOpenMode comMode = CxFile::omRead;
+        const CxFile::EOpenMode comMode = CxFile::omOpenReadWrite;
 
         CxFile sfFile;
 
@@ -1259,6 +1260,7 @@ CxTest_CxFile::bUnitePrivate(
         FILE *pfFile = CxFile::_pfGetHandle(iFile, comMode);
         xASSERT_PTR(pfFile);
     }
+#endif
 
     //--------------------------------------------------
     //_sGetOpenMode

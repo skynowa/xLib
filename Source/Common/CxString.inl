@@ -37,18 +37,18 @@ operator << (
     const vector<T>              &cvValueT
 )
 {
-    osOut << tendl;
-    osOut << xT("std::vector (") << cvValueT.size() << (" elements):") << tendl;
-    osOut << tendl;
+    osOut << std::endl;
+    osOut << xT("std::vector (") << cvValueT.size() << (" elements):") << std::endl;
+    osOut << std::endl;
 
     typename vector<T>::const_iterator it;
     size_t                             i = 0;
     for (it = cvValueT.begin(), i = 0; it != cvValueT.end(); ++ it, ++ i) {
-        osOut << xT("Value[") << i << xT("]: ") << (*it) << tendl;
+        osOut << xT("Value[") << i << xT("]: ") << (*it) << std::endl;
     }
 
-    osOut << tendl;
-    osOut << tendl;
+    osOut << std::endl;
+    osOut << std::endl;
 
     return osOut;
 }
@@ -61,18 +61,18 @@ operator << (
     const map<T1, T2>            &cmValueT
 )
 {
-    osOut << tendl;
-    osOut << xT("std::map (") << cmValueT.size() << (" elements):") << tendl;
-    osOut << tendl;
+    osOut << std::endl;
+    osOut << xT("std::map (") << cmValueT.size() << (" elements):") << std::endl;
+    osOut << std::endl;
 
     typename map<T1, T2>::const_iterator it;
     for (it = cmValueT.begin(); it != cmValueT.end(); ++ it) {
         osOut << xT("Key: ")   << (*it).first  << xT("\t\t")
-              << xT("Value: ") << (*it).second << tendl;
+              << xT("Value: ") << (*it).second << std::endl;
     }
 
-    osOut << tendl;
-    osOut << tendl;
+    osOut << std::endl;
+    osOut << std::endl;
 
     return osOut;
 }
@@ -85,18 +85,18 @@ operator << (
     const multimap<T1, T2>       &cmmValueT
 )
 {
-    osOut << tendl;
-    osOut << xT("std::multimap (") << cmmValueT.size() << (" elements):") << tendl;
-    osOut << tendl;
+    osOut << std::endl;
+    osOut << xT("std::multimap (") << cmmValueT.size() << (" elements):") << std::endl;
+    osOut << std::endl;
 
     typename multimap<T1, T2>::const_iterator it;
     for (it = cmmValueT.begin(); it != cmmValueT.end(); ++ it) {
         osOut << xT("Key: ")   << (*it).first  << xT("\t\t")
-              << xT("Value: ") << (*it).second << tendl;
+              << xT("Value: ") << (*it).second << std::endl;
     }
 
-    osOut << tendl;
-    osOut << tendl;
+    osOut << std::endl;
+    osOut << std::endl;
 
     return osOut;
 }

@@ -14,7 +14,9 @@ class CxMsgBoxT :
     /// message box
 {
     public:
-        enum EModalResult {
+        enum EModalResult 
+            /// modal result
+        {
             #if defined(xOS_WIN)
                 mrAbort  = IDABORT,
                 mrIgnore = IDIGNORE,
@@ -25,8 +27,6 @@ class CxMsgBoxT :
                 mrRetry  = 26368
             #endif
         };
-            ///< \enum EModalResult
-            ///< modal result
 
     #if defined(xOS_WIN)
         template <typename TextT, typename TitleT>

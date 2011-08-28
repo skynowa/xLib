@@ -15,7 +15,9 @@ class CxGeoIp :
     /// GeoIP
 {
     public:
-        enum EOption {
+        enum EOption 
+            /// option
+        {
             opStandard    = GEOIP_STANDARD,
             opMemoryCache = GEOIP_MEMORY_CACHE,
             opCheckCache  = GEOIP_CHECK_CACHE,
