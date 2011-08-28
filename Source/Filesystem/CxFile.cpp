@@ -1234,11 +1234,11 @@ CxFile::sTempCreate(
     FILE *pfFile = _tfopen(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
     /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 #elif defined(xOS_LINUX)
-    ////INT iFile = _tmkstemp(&sRes.at(0));
-    /////*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
+    INT iFile = _tmkstemp(&sRes.at(0));
+    /*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
 
-    ////FILE *pfFile = _tfdopen(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
-    /////*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
+    FILE *pfFile = _tfdopen(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
+    /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 #endif
 
     //out
