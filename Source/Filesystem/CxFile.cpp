@@ -1650,9 +1650,6 @@ CxFile::_iGetHandle(
     INT iRes = etError;
 
     iRes = fileno(pfFile);
-    if (false == CxMacros::numeric_limits_check(iRes)) Beep(200, 200);
-
-
     /*DEBUG*/xASSERT_RET(etError != iRes, etError);
 
     return iRes;
