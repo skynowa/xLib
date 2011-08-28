@@ -14,7 +14,9 @@ class CxPath :
     /// file system path
 {
     public:
-        enum EStandartExt {
+        enum EStandartExt 
+            /// standart extension
+        {
             seExe,
             seDll,
             seLib

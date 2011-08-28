@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Crypt/CxBase64.h>
+#include <xLib/Crypt/OpenSSL/CxBase64.h>
 
 #include <xLib/Common/CxChar.h>
 #include <openssl/evp.h>

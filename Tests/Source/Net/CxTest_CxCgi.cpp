@@ -74,7 +74,7 @@ CxTest_CxCgi::bUnit(
 
     xTEST_BLOCK(cullBlockLoops)
     {
-        //tcout << xT("<pre>");
+        //std::tcout << xT("<pre>");
 
         CxCgi cgCgi(CxCgi::MAX_DATA_SIZE_DEFAULT);
 
@@ -222,8 +222,8 @@ CxTest_CxCgi::bUnit(
             //xTRACEV(xT("cgCgi.sGetDump(): %s"), m_sRes.c_str());
         }
 
-        //tcout << xT("</pre>");
-        //tcout << tendl;
+        //std::tcout << xT("</pre>");
+        //std::tcout << std::endl;
     }
 
     //-------------------------------------

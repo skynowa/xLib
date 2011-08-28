@@ -43,7 +43,7 @@ CxTest_CxDnsClient::bUnit(
 		m_bRes = CxDnsClient::bGetHostAddrByName(sHostName, &sHostAddr);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 
-		//tcout << xT("[bGetHostAddrByName]: ") << sHostAddr << tendl;
+		//std::tcout << xT("[bGetHostAddrByName]: ") << sHostAddr << std::endl;
 	}
 
 	//-------------------------------------
@@ -55,7 +55,7 @@ CxTest_CxDnsClient::bUnit(
 		m_bRes = CxDnsClient::bGetHostNameByAddr(sHostAddr, CxSocket::afInet, &sHostName);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 
-		//tcout << xT("[bGetHostNameByAddr]: ") << sHostName << tendl;
+		//std::tcout << xT("[bGetHostNameByAddr]: ") << sHostName << std::endl;
 	}
 
 	//-------------------------------------
@@ -66,7 +66,7 @@ CxTest_CxDnsClient::bUnit(
 		m_bRes = CxDnsClient::bGetLocalHostName(&sLocalHostName);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 
-		//tcout << xT("[bGetLocalHostName]: ") << sLocalHostName << tendl;
+		//std::tcout << xT("[bGetLocalHostName]: ") << sLocalHostName << std::endl;
 	}
 
 	//-------------------------------------
@@ -134,15 +134,15 @@ CxTest_CxDnsClient::bUnit(
 			m_bRes = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
 			xASSERT_NOT_EQ(FALSE, m_bRes);
 
-			//tcout << xT("[bGetProtocolByName]: ")             << tendl;
-			//tcout << xT("	sName:    ") << sName             << tendl;
+			//std::tcout << xT("[bGetProtocolByName]: ")             << std::endl;
+			//std::tcout << xT("	sName:    ") << sName             << std::endl;
 			for (size_t j = 0; j < vsAliases.size(); ++ j) {
-			//tcout << xT("	sAlias:   ") << vsAliases.at(j) << tendl;
+			//std::tcout << xT("	sAlias:   ") << vsAliases.at(j) << std::endl;
 			}
-			//tcout << xT("	siNumber: ") << siNumber          << tendl;
-			//tcout << xT("	--------------------")            << tendl;
+			//std::tcout << xT("	siNumber: ") << siNumber          << std::endl;
+			//std::tcout << xT("	--------------------")            << std::endl;
 		}
-        //tcout << tendl;
+        //std::tcout << std::endl;
 	}
 
 	//-------------------------------------
@@ -160,15 +160,15 @@ CxTest_CxDnsClient::bUnit(
 			m_bRes = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
 			xASSERT_NOT_EQ(FALSE, m_bRes);
 
-			//tcout << xT("[bGetProtocolByNumber]: ")           << tendl;
-			//tcout << xT("	sName:    ") << sName             << tendl;;
+			//std::tcout << xT("[bGetProtocolByNumber]: ")           << std::endl;
+			//std::tcout << xT("	sName:    ") << sName             << std::endl;;
 			for (size_t j = 0; j < vsAliases.size(); ++ j) {
-			//tcout << xT("	sAlias:   ") << vsAliases.at(j) << tendl;
+			//std::tcout << xT("	sAlias:   ") << vsAliases.at(j) << std::endl;
 			}
-			//tcout << xT("	siNumber: ") << siNumber          << tendl;
-			//tcout << xT("	--------------------")            << tendl;
+			//std::tcout << xT("	siNumber: ") << siNumber          << std::endl;
+			//std::tcout << xT("	--------------------")            << std::endl;
 		}
-        //tcout << tendl;
+        //std::tcout << std::endl;
 	}
 
 	//-------------------------------------
@@ -184,40 +184,40 @@ CxTest_CxDnsClient::bUnit(
 		m_bRes = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 
-		//tcout << xT("[bGetServiceByName]: ")                   << tendl;
-		//tcout << xT("	sName:         ") << sName             << tendl;
+		//std::tcout << xT("[bGetServiceByName]: ")                   << std::endl;
+		//std::tcout << xT("	sName:         ") << sName             << std::endl;
 		for (size_t i = 0; i < vsAliases.size(); ++ i) {
-		//tcout << xT("	sAlias:        ") << vsAliases.at(i) << tendl;
+		//std::tcout << xT("	sAlias:        ") << vsAliases.at(i) << std::endl;
 		}
-		//tcout << xT("	siPort:        ") << siPort            << tendl;
-		//tcout << xT("	sProtocolName: ") << sProtocolName     << tendl;
-		//tcout << xT("	--------------------")                 << tendl;
-        //tcout << tendl;
+		//std::tcout << xT("	siPort:        ") << siPort            << std::endl;
+		//std::tcout << xT("	sProtocolName: ") << sProtocolName     << std::endl;
+		//std::tcout << xT("	--------------------")                 << std::endl;
+        //std::tcout << std::endl;
 	}
 
 
 	//-------------------------------------
 	//bGetServiceByPort
 	{
-		SHORT                csiPort  = 20480;
-		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+		SHORT                     csiPort  = 20480;
+		const TCHAR               cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
 		std::tstring              sName;
 		std::vector<std::tstring> vsAliases;
-		SHORT                siPort = - 1;
+		SHORT                     siPort = - 1;
 		std::tstring              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 		xASSERT_NOT_EQ(FALSE, m_bRes);
 
-		//tcout << xT("[bGetServiceByPort]: ") << tendl;
-		//tcout << xT("	sName:         ") << sName << tendl;
+		//std::tcout << xT("[bGetServiceByPort]: ") << std::endl;
+		//std::tcout << xT("	sName:         ") << sName << std::endl;
 		for (size_t i = 0; i < vsAliases.size(); ++ i) {
-		//tcout << xT("	sAlias:        ") << vsAliases.at(i) << tendl;
+		//std::tcout << xT("	sAlias:        ") << vsAliases.at(i) << std::endl;
 		}
-		//tcout << xT("	siPort:        ") << siPort            << tendl;
-		//tcout << xT("	sProtocolName: ") << sProtocolName     << tendl;
-        //tcout << xT("  --------------------")                << tendl;
-        //tcout << tendl;
+		//std::tcout << xT("	siPort:        ") << siPort          << std::endl;
+		//std::tcout << xT("	sProtocolName: ") << sProtocolName   << std::endl;
+        //std::tcout << xT("  --------------------")                 << std::endl;
+        //std::tcout << std::endl;
 	}
 
 	return TRUE;

@@ -23,8 +23,9 @@ class CxShell :
     /// shell
 {
      public:
-        //operations
-        enum EOperation {
+        enum EOperation 
+            /// operations
+        {
             opEdit,       
             opExplore,    
             opFind,        
@@ -33,8 +34,9 @@ class CxShell :
             opNull       
         };
 
-        //The flags that specify how an application is to be displayed when it is opened
-        enum EShowFlag {
+        enum EShowFlag 
+            /// The flags that specify how an application is to be displayed when it is opened
+        {
             sfHide            = SW_HIDE,         
             sfMaximize        = SW_MAXIMIZE,      
             sfMinimize        = SW_MINIMIZE,     
@@ -49,8 +51,9 @@ class CxShell :
             sfShowNormal      = SW_SHOWNORMAL        
         };
 
-        //special folders
-        enum ESpecialDir {
+        enum ESpecialDir 
+            /// special folders
+        {
             sfAdminTools             = CSIDL_ADMINTOOLS,
             sfAltStartup             = CSIDL_ALTSTARTUP,
             sfAppData                = CSIDL_APPDATA,

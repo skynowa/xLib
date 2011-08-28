@@ -156,7 +156,7 @@ CxDebugger::bTrace(
     // n/a
 #endif
 
-    tcout << sRes << tendl;
+    std::tcout << sRes << std::endl;
 
     return TRUE;
 }
@@ -317,18 +317,18 @@ CxDebugger::_bMsgboxFormated(
         cmRetry  = xT('r')
     };
 
-    tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, TRUE, FALSE, CxConsole::bgBlack, FALSE );
-    tcerr << crpReport.sGetReport();
-    tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, TRUE, FALSE, CxConsole::bgBlack, FALSE );
-    tcerr << xT("\n");
-    tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
-    tcerr.flush();
+    std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, TRUE, FALSE, CxConsole::bgBlack, FALSE );
+    std::tcerr << crpReport.sGetReport();
+    std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, TRUE, FALSE, CxConsole::bgBlack, FALSE );
+    std::tcerr << xT("\n");
+    std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
+    std::tcerr.flush();
 
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
+    EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     ////EConsoleCmd cmRes = cmIgnore;
     switch (cmRes) {
         case cmAbort: {
-                tcerr << xT("Abort...\n\n");  tcerr.flush();
+                std::tcerr << xT("Abort...\n\n");  std::tcerr.flush();
 
                 CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
             }
@@ -337,23 +337,23 @@ CxDebugger::_bMsgboxFormated(
         default:
         case cmIgnore: {
                 //skip
-                tcerr << xT("Ignore...\n\n");  tcerr.flush();
+                std::tcerr << xT("Ignore...\n\n");  std::tcerr.flush();
             }
             break;
 
         case cmRetry: {
-                tcerr << xT("Retry...\n\n");
+                std::tcerr << xT("Retry...\n\n");
 
                 if (TRUE == bIsPresent()) {
                     bBreak();
                 } else {
-                    tcerr << xT("\n####################################################################################################\n");
-                    tcerr << xT("CxDebugger\n");
-                    tcerr << xT("\n");
-                    tcerr << xT("OS debugger is not present.\nThe application will be terminated.\n");
-                    tcerr << xT("####################################################################################################\n");
-                    tcerr << xT("\n\n");
-                    tcerr.flush();
+                    std::tcerr << xT("\n####################################################################################################\n");
+                    std::tcerr << xT("CxDebugger\n");
+                    std::tcerr << xT("\n");
+                    std::tcerr << xT("OS debugger is not present.\nThe application will be terminated.\n");
+                    std::tcerr << xT("####################################################################################################\n");
+                    std::tcerr << xT("\n\n");
+                    std::tcerr.flush();
 
                     CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
                 }
@@ -379,17 +379,17 @@ CxDebugger::_bStdoutPlain(
         cmRetry  = xT('r')
     };
 
-    tcout << xT("\n####################################################################################################\n");
-    tcout << crpReport.sGetReport();
-    tcout << xT("\n####################################################################################################\n");
-    tcout << xT("\n");
-    tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
-    tcout.flush();
+    std::tcout << xT("\n####################################################################################################\n");
+    std::tcout << crpReport.sGetReport();
+    std::tcout << xT("\n####################################################################################################\n");
+    std::tcout << xT("\n");
+    std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
+    std::tcout.flush();
 
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
+    EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     switch (cmRes) {
         case cmAbort: {
-                tcout << xT("Abort...\n\n");  tcout.flush();
+                std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
                 CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
             }
@@ -398,23 +398,23 @@ CxDebugger::_bStdoutPlain(
         default:
         case cmIgnore: {
                 //skip
-                tcout << xT("Ignore...\n\n");  tcout.flush();
+                std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
             }
             break;
 
         case cmRetry: {
-                tcout << xT("Retry...\n\n");
+                std::tcout << xT("Retry...\n\n");
 
                 if (TRUE == bIsPresent()) {
                     bBreak();
                 } else {
-                    tcout << xT("\n####################################################################################################\n");
-                    tcout << xT("CxDebugger\n");
-                    tcout << xT("\n");
-                    tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
-                    tcout << xT("####################################################################################################\n");
-                    tcout << xT("\n\n");
-                    tcout.flush();
+                    std::tcout << xT("\n####################################################################################################\n");
+                    std::tcout << xT("CxDebugger\n");
+                    std::tcout << xT("\n");
+                    std::tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
+                    std::tcout << xT("####################################################################################################\n");
+                    std::tcout << xT("\n\n");
+                    std::tcout.flush();
 
                     CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
                 }
@@ -439,18 +439,18 @@ CxDebugger::_bStdoutHtml(
         cmRetry  = xT('r')
     };
 
-    tcout << xT("<pre>");
-    tcout << xT("\n####################################################################################################\n");
-    tcout << crpReport.sGetReport();
-    tcout << xT("\n####################################################################################################\n");
-    tcout << xT("\n");
-    tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
-    tcout.flush();
+    std::tcout << xT("<pre>");
+    std::tcout << xT("\n####################################################################################################\n");
+    std::tcout << crpReport.sGetReport();
+    std::tcout << xT("\n####################################################################################################\n");
+    std::tcout << xT("\n");
+    std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
+    std::tcout.flush();
 
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( tcin.get() );   tcin.ignore();
+    EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     switch (cmRes) {
         case cmAbort: {
-                tcout << xT("Abort...\n\n");  tcout.flush();
+                std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
                 CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
             }
@@ -459,23 +459,23 @@ CxDebugger::_bStdoutHtml(
         default:
         case cmIgnore: {
                 //skip
-                tcout << xT("Ignore...\n\n");  tcout.flush();
+                std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
             }
             break;
 
         case cmRetry: {
-                tcout << xT("Retry...\n\n");
+                std::tcout << xT("Retry...\n\n");
 
                 if (TRUE == bIsPresent()) {
                     bBreak();
                 } else {
-                    tcout << xT("\n####################################################################################################\n");
-                    tcout << xT("CxDebugger\n");
-                    tcout << xT("\n");
-                    tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
-                    tcout << xT("####################################################################################################\n");
-                    tcout << xT("\n\n");
-                    tcout.flush();
+                    std::tcout << xT("\n####################################################################################################\n");
+                    std::tcout << xT("CxDebugger\n");
+                    std::tcout << xT("\n");
+                    std::tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
+                    std::tcout << xT("####################################################################################################\n");
+                    std::tcout << xT("\n\n");
+                    std::tcout.flush();
 
                     CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
                 }
@@ -483,7 +483,7 @@ CxDebugger::_bStdoutHtml(
             break;
     }
 
-    tcout << xT("</pre>");  tcout.flush();
+    std::tcout << xT("</pre>");  std::tcout.flush();
 
     return TRUE;
 }

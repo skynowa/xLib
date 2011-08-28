@@ -107,8 +107,8 @@ CxTest_CxTcpClientSocket::bUnit(
 
 		sText.resize(256);
 
-		tcout << xT("> Input text: ");
-		tcin.getline(&sText[0], sText.size());
+		std::tcout << xT("> Input text: ");
+		std::tcin.getline(&sText[0], sText.size());
 
 		//-------------------------------------
 		//iSend

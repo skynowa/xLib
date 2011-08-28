@@ -19,7 +19,6 @@ class CxAsyncSocket :
 
     private:
         BOOL     _m_bRes;
-
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxAsyncSocketH

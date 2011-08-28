@@ -27,7 +27,7 @@ class CxTest_CxFile :
 
 	private:
         BOOL           bUnit1       (const ULONGLONG cullBlockLoops);
-        BOOL           bUnitePrivate(const ULONGLONG cullBlockLoops);
+        BOOL           bUnitPrivate (const ULONGLONG cullBlockLoops);
 
 };
 //---------------------------------------------------------------------------

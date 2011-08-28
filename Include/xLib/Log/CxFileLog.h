@@ -20,7 +20,9 @@ class CxFileLog :
     /// logging to file
 {
     public:
-        enum ELogSizes {
+        enum ELogSizes 
+            /// log size
+        {
             lsDefaultSize    = 20  * 1024 * 1024,
             lsDefaultMaxSize = 200 * 1024 * 1024,
             lsLimitSize      = 500 * 1024 * 1024

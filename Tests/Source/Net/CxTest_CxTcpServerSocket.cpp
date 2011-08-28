@@ -81,7 +81,7 @@ CxTest_CxTcpServerSocket::bUnit(
 		m_iRes = objClientSocket.iRecv(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
 		xASSERT_NOT_EQ((INT)CxTcpServerSocket::etError, m_iRes);
 
-		tcout << std::tstring(szRecvBuff, m_iRes) << std::endl;
+		std::tcout << std::tstring(szRecvBuff, m_iRes) << std::endl;
 	}
 
 	//-------------------------------------

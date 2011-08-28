@@ -14,7 +14,9 @@ class CxSystemInfo :
     /// system information
 {
    public:
-        enum EOsType {
+        enum EOsType 
+            /// OS type
+        {
             otUnknown,
 
             //windows
@@ -39,15 +41,14 @@ class CxSystemInfo :
             //BSD
             otFreeBSD
         };
-            ///< OS type
 
-        enum EOsArch {
+        enum EOsArch 
+            /// OS architecture
+        {
             oaUnknown,
             oa32bit,
             oa64bit
         };
-            ///< OS architecture
-
 
         static EOsType      osGetOS           ();
             ///< get information about the current OS

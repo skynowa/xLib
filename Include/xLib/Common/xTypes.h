@@ -17,11 +17,10 @@
     typedef wchar_t *       LPTSTR;
     typedef const wchar_t * LPCTSTR;
 
-    #define tcin            std::wcin
-    #define tcout           std::wcout
-    #define tcerr           std::wcerr
-    #define tclog           std::wclog
-    #define tendl           std::endl
+    #define tcin            wcin
+    #define tcout           wcout
+    #define tcerr           wcerr
+    #define tclog           wclog
 
     #define _ttmpnam        _wtmpnam
     #define TEOF            WEOF
@@ -35,11 +34,10 @@
     typedef char *          LPSTR;   //ansi
     typedef const char *    LPCSTR;  //ansi
 
-    #define tcin            std::cin
-    #define tcout           std::cout
-    #define tcerr           std::cerr
-    #define tclog           std::clog
-    #define tendl           std::endl
+    #define tcin            cin
+    #define tcout           cout
+    #define tcerr           cerr
+    #define tclog           clog
 
     #define _ttmpnam        tmpnam
     #define TEOF            EOF

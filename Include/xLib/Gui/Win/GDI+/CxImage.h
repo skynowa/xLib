@@ -17,7 +17,9 @@
         /// GDI+ image
     {
         public:
-            enum EEncoderType {
+            enum EEncoderType 
+                /// encoder type
+            {
                 etBmp  = 0,
                 etJpeg = 1,
                 etGif  = 2,

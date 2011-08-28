@@ -76,7 +76,7 @@ CxTraceLog::bWrite(
     ::OutputDebugString((sTime + sParam + CxConst::xNL).c_str());
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    tcout << (sTime + sParam + CxConst::xNL);   tcout.flush();
+    std::tcout << (sTime + sParam + CxConst::xNL);   std::tcout.flush();
 #endif
 
     return TRUE;

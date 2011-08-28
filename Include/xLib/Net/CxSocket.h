@@ -18,8 +18,9 @@ class CxSocket :
     /// socket
 {
     public:
-        //address family
-        enum EAddressFamily {
+        enum EAddressFamily 
+            /// address family
+        {
         #if defined(xOS_WIN)
             afUnspecified = AF_UNSPEC,
             afInet        = AF_INET,
@@ -66,8 +67,9 @@ class CxSocket :
         #endif
         };
 
-        //type
-        enum EType {
+        enum EType 
+           /// type
+        {
             tpStream      = SOCK_STREAM,
             tpDgram       = SOCK_DGRAM,
             tpRaw         = SOCK_RAW,
@@ -75,8 +77,9 @@ class CxSocket :
             tpSeqPacket   = SOCK_SEQPACKET
         };
 
-        //protocol
-        enum EProtocol {
+        enum EProtocol 
+            /// protocol
+        {
         #if defined(xOS_WIN)
             ptIp          = IPPROTO_IP,
             ptIcmp        = IPPROTO_ICMP,
@@ -149,9 +152,9 @@ class CxSocket :
         #endif
         };
 
-
-        //errors
-        enum EErrorType {
+        enum EErrorType 
+            /// errors
+        {
         #if defined(xOS_WIN)
             etInvalid = INVALID_SOCKET,  //~0
             etError   = SOCKET_ERROR     //-1
@@ -161,8 +164,9 @@ class CxSocket :
         #endif
         };
 
-        //options
-        enum EOptions {
+        enum EOptions 
+            /// options
+        {
             SOCKET_TIMEOUT   = 0,       // (1000000 / 10)
             SOCKET_BUFF_SIZE = 32768    // 32 KB      /*8192*//*1024*/
         };

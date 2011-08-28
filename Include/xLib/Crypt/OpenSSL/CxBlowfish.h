@@ -15,9 +15,11 @@ class CxBlowfish :
     /// blowfish (openssl-1.0.0a)
 {
     private:
-        enum {
-            MAX_KEY_SIZE = 56, //max key size 448 bit (56 byte)
-            IVEC_SIZE    = 8
+        enum 
+            /// constants
+        {
+            MAX_KEY_SIZE = 56,  ///< max key size 448 bit (56 byte)
+            IVEC_SIZE    = 8    ///< ivec size
         };
 
         BOOL          _m_bRes;
@@ -25,7 +27,9 @@ class CxBlowfish :
         UCHAR         _m_ucIvec[IVEC_SIZE];
 
     public:
-        enum ECryptMode {
+        enum ECryptMode 
+            /// crypt mode
+        {
             cmUnknown = - 1,
             cmEncrypt = BF_ENCRYPT,
             cmDecrypt = BF_DECRYPT

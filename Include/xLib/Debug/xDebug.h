@@ -146,9 +146,9 @@
 //-------------------------------------------------------------------------
 #define xCHECK_RET(expr, return_expr)                       { if ((expr)) { return (return_expr);                               } }
 #define xCHECK_DO(expr, do_instructions)                    { if ((expr)) { do_instructions;                                    } }
-#define xCHECK_MSG(expr, comment)                           { if ((expr)) { tcout << (comment) << tendl;                        } }
-#define xCHECK_MSG_RET(expr, comment, return_expr)          { if ((expr)) { tcout << (comment) << tendl; return (return_expr);  } }
-#define xCHECK_MSG_DO(expr, comment, do_instructions)       { if ((expr)) { tcout << (comment) << tendl; do_instructions;       } }
+#define xCHECK_MSG(expr, comment)                           { if ((expr)) { std::tcout << (comment) << std::endl;                        } }
+#define xCHECK_MSG_RET(expr, comment, return_expr)          { if ((expr)) { std::tcout << (comment) << std::endl; return (return_expr);  } }
+#define xCHECK_MSG_DO(expr, comment, do_instructions)       { if ((expr)) { std::tcout << (comment) << std::endl; do_instructions;       } }
 
 #define xASSERT_STATIC(expr)                                { switch (0) {case 0: case (expr):;} }
 #define xNOT_IMPLEMENTED_RET(return_expr)                   { xASSERT_MSG_RET(FALSE, xT("Not implemented"), (return_expr)); }
@@ -168,7 +168,7 @@
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
     #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::tstring(xFUNCTION) + xT(": ") + std::tstring(s)); }
     #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %li (file: %s, function: %s, last error: %s, line: %li)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
-    #define xSTD_TRACE_POINT                                { tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << tendl; }
+    #define xSTD_TRACE_POINT                                { std::tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << std::endl; }
 #else
     #define xTRACEV(format, ...)                            { /* n/a */ }
     #define xTRACE(msg)                                     { /* n/a */ }

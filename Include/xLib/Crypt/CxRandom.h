@@ -39,10 +39,10 @@ class CxRandom :
         LONG                liNext       ();
 
     private:
-        static const INT A;
-        static const INT M;
-        static const INT Q;
-        static const INT R;
+        static const INT    A;
+        static const INT    M;
+        static const INT    Q;
+        static const INT    R;
 
         LONG                _m_liSeed;
         double              _m_dNextNextGaussian;

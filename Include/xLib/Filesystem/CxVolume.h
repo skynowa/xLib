@@ -21,7 +21,9 @@ class CxVolume :
 
         //GetFileSystemType
     #if defined(xOS_WIN)
-        enum EType {
+        enum EType 
+            /// type
+        {
             dtUnknown   = DRIVE_UNKNOWN,
             dtNoRoot    = DRIVE_NO_ROOT_DIR,
             dtRemovable = DRIVE_REMOVABLE,
@@ -44,11 +46,11 @@ class CxVolume :
         static BOOL         bGetLogicalDrives                (std::vector<std::tstring> *pvsDrives, const EType cdtDriveType);
         static std::tstring sGetLogicalStrings               ();
         static BOOL         bGetInfo                         (const std::tstring &csDrivePath,
-                                                                std::tstring       *psVolumeName,
-                                                                ULONG         *pulVolumeSerialNumber,
-                                                                ULONG         *pulMaximumComponentLength,
-                                                                ULONG         *pulFileSystemFlags,
-                                                                std::tstring       *psFileSystemName);
+                                                              std::tstring       *psVolumeName,
+                                                              ULONG              *pulVolumeSerialNumber,
+                                                              ULONG              *pulMaximumComponentLength,
+                                                              ULONG              *pulFileSystemFlags,
+                                                              std::tstring       *psFileSystemName);
         static std::tstring sGetVolumeNameForVolumeMountPoint(const std::tstring &csVolumeMountPoint);
         static std::tstring sGetVolumePathName               (const std::tstring &csFileName);
         static std::tstring sGetVolumePathNamesForVolumeName (const std::tstring &csVolumeName);

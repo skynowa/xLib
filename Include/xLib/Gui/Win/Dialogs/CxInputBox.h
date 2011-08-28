@@ -19,7 +19,9 @@ class CxInputBox :
     /// input box
 {
     public:
-        enum EModalResult {
+        enum EModalResult 
+            /// modal result
+        {
             mrOk,
             mrCancel
         };

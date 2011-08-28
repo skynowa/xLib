@@ -15,7 +15,9 @@ class CxReport :
     /// debug report
 {
     public:
-        enum EType {
+        enum EType 
+            /// type
+        {
             rtUnknown,
             rtMsgboxPlain,
             rtMsgboxFormated,

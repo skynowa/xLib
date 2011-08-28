@@ -23,19 +23,16 @@ class CxHttpClient :
         //body
         class CxBody;
 
-        /****************************************************************************
-        * ���������
-        *
-        *****************************************************************************/
-
-        //protocol version
-        enum EProtocolVersion {
+        enum EProtocolVersion 
+            /// protocol version
+        {
             pv10 = 0,
             pv11 = 1
         };
 
-        //method
-        enum EMethod {
+        enum EMethod 
+            /// method
+        {
             hmHead,
             hmGet,
             hmPost,
@@ -65,7 +62,6 @@ class CxHttpClient :
         virtual ~CxHttpClient();
 };
 //---------------------------------------------------------------------------
-//status line
 class CxHttpClient::CxStatusLine 
     /// HTTP status line
 {
@@ -77,7 +73,6 @@ class CxHttpClient::CxStatusLine
 
 };
 //---------------------------------------------------------------------------
-//header
 class CxHttpClient::CxHeader 
     /// HTTP header
 {
@@ -89,7 +84,6 @@ class CxHttpClient::CxHeader
 
 };
 //---------------------------------------------------------------------------
-//body
 class CxHttpClient::CxBody 
     /// HTTP nody
 {

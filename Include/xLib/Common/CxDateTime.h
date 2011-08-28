@@ -13,13 +13,14 @@ class CxDateTime
     /// date, time
 {    
     public:
-        enum EFormatType {
+        enum EFormatType 
+            /// format type
+        {
             ftTime,     ///< HH.MM.SS.MMM
             ftDate,     ///< DD.MM.YYYY
             ftDateTime, ///< DD.MM.YYYY HH.MM.SS.MMM
             ftRFC1123   ///< Wdy, DD Mon YYYY HH:MM:SS GMT
         };
-            ///< format type
 
         //constructors, destructor
                             CxDateTime         ();

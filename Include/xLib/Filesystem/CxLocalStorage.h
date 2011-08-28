@@ -54,12 +54,12 @@ class CxLocalStorage :
         BOOL                   bKeyDelete     (const std::tstring &csKey);
 
     private:
-        const std::tstring     _m_csSeparator;    //separator between key and value
-        const std::tstring     _m_csFileExt;      //ini-file extension
+        const std::tstring     _m_csSeparator;  ///< separator between key and value
+        const std::tstring     _m_csFileExt;    ///< ini-file extension
 
-        mutable BOOL           _m_bRes;
-        std::tstring           _m_sFilePath;      //file path to ini-file
-        NxLib::TLocalStorage   _m_msIni;          //std::map of keys and values
+        mutable BOOL           _m_bRes;         ///< for private use
+        std::tstring           _m_sFilePath;    ///< file path to ini-file
+        NxLib::TLocalStorage   _m_msIni;        ///< std::map of keys and values
 
         BOOL                   _bRead         (const std::tstring &csKey, const std::tstring &csDefaultValue, std::tstring *psValue);
         BOOL                   _bWrite        (const std::tstring &csKey, const std::tstring &csValue);
