@@ -43,10 +43,10 @@ CxCgi::sGetDump()  const{
     std::tstring sRes;
 
     sRes = CxString::sFormat(
-            xT("[CGI dump]\n\n"
-            "%s\n"
-            "%s\n"
-            "%s\n"),
+            xT("[CGI dump]\n\n")
+            xT("%s\n")
+            xT("%s\n")
+            xT("%s\n"),
             Environment.sGetDump().c_str(),
             Cookies.sGetDump().c_str(),
             Formdata.sGetDump().c_str()
@@ -631,37 +631,37 @@ CxCgiEnvironment::sGetDump() const {
     std::tstring sRes;
 
     sRes = CxString::sFormat(
-            xT("[CxCgiEnvironment dump]\n\n"
-            "AUTH_TYPE: %s\n"
-            "CONTENT_LENGTH: %s\n"
-            "CONTENT_TYPE: %s\n"
-            "DOCUMENT_ROOT: %s\n"
-            "GATEWAY_INTERFACE: %s\n"
-            "HTTP_ACCEPT: %s\n"
-            "HTTP_COOKIE: %s\n"
-            "HTTP_PRAGMA: %s\n"
-            "HTTP_USER_AGENT: %s\n"
-            "PATH_INFO: %s\n"
-            "PATH_TRANSLATED: %s\n"
-            "QUERY_STRING: %s\n"
-            "REMOTE_ADDR: %s\n"
-            "REMOTE_HOST: %s\n"
-            "REMOTE_IDENT: %s\n"
-            "REMOTE_PORT: %s\n"
-            "REMOTE_USER: %s\n"
-            "REQUEST_METHOD: %s\n"
-            "REQUEST_URI: %s\n"
-            "SCRIPT_FILENAME: %s\n"
-            "SCRIPT_NAME: %s\n"
-            "SERVER_ADMIN: %s\n"
-            "SERVER_NAME: %s\n"
-            "SERVER_PORT: %s\n"
-            "SERVER_PROTOCOL: %s\n"
-            "SERVER_SOFTWARE: %s\n"
-            "HTTP_REFERER: %s\n"
-            "HTTP_HOST: %s\n"
-            "HTTP_ACCEPT_LANGUAGE: %s\n"
-            "GEOIP_COUNTRY_CODE: %s\n\n"),
+            xT("[CxCgiEnvironment dump]\n\n")
+            xT("AUTH_TYPE: %s\n")
+            xT("CONTENT_LENGTH: %s\n")
+            xT("CONTENT_TYPE: %s\n")
+            xT("DOCUMENT_ROOT: %s\n")
+            xT("GATEWAY_INTERFACE: %s\n")
+            xT("HTTP_ACCEPT: %s\n")
+            xT("HTTP_COOKIE: %s\n")
+            xT("HTTP_PRAGMA: %s\n")
+            xT("HTTP_USER_AGENT: %s\n")
+            xT("PATH_INFO: %s\n")
+            xT("PATH_TRANSLATED: %s\n")
+            xT("QUERY_STRING: %s\n")
+            xT("REMOTE_ADDR: %s\n")
+            xT("REMOTE_HOST: %s\n")
+            xT("REMOTE_IDENT: %s\n")
+            xT("REMOTE_PORT: %s\n")
+            xT("REMOTE_USER: %s\n")
+            xT("REQUEST_METHOD: %s\n")
+            xT("REQUEST_URI: %s\n")
+            xT("SCRIPT_FILENAME: %s\n")
+            xT("SCRIPT_NAME: %s\n")
+            xT("SERVER_ADMIN: %s\n")
+            xT("SERVER_NAME: %s\n")
+            xT("SERVER_PORT: %s\n")
+            xT("SERVER_PROTOCOL: %s\n")
+            xT("SERVER_SOFTWARE: %s\n")
+            xT("HTTP_REFERER: %s\n")
+            xT("HTTP_HOST: %s\n")
+            xT("HTTP_ACCEPT_LANGUAGE: %s\n")
+            xT("GEOIP_COUNTRY_CODE: %s\n\n"),
             sGetAuthType().c_str(),
             sGetContentLength().c_str(),
             sGetContentType().c_str(),
@@ -819,13 +819,13 @@ CxCgiCookies::sGetDump() const {
 
     for (TCookies::const_iterator it = Items.begin(); it != Items.end(); ++ it) {
         std::tstring sItemN = CxString::sFormat(
-                xT("Name: %s\n"
-                "Value: %s\n"
-                "Domain: %s\n"
-                "Path: %s\n"
-                "Expires: %s\n"
-                "Secure: %s\n"
-                "HttpOnly: %s\n\n"),
+                xT("Name: %s\n")
+                xT("Value: %s\n")
+                xT("Domain: %s\n")
+                xT("Path: %s\n")
+                xT("Expires: %s\n")
+                xT("Secure: %s\n")
+                xT("HttpOnly: %s\n\n"),
                 (*it)->sGetName().c_str(),
                 (*it)->sGetValue().c_str(),
                 (*it)->sGetDomain().c_str(),
@@ -921,8 +921,8 @@ CxCgiFormData::sGetDump() const {
     std::tstring sRes;
 
     sRes = CxString::sFormat(
-            xT("[CxCgiFormData dump]\n\n"
-            "Data: %s\n\n"),
+            xT("[CxCgiFormData dump]\n\n")
+            xT("Data: %s\n\n"),
             sGetRawData().c_str());
 
     return sRes;

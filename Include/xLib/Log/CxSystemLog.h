@@ -1,6 +1,6 @@
 /**
- * \file  CxEventLog.h
- * \brief logging to system event log
+ * \file  CxSystemLog.h
+ * \brief logging to system log
  */
 
 
@@ -9,14 +9,14 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxEventLog :
+class CxSystemLog :
     public CxNonCopyable
     /// logging to system event log
 {
     public:
-                CxEventLog();
+                CxSystemLog();
            ///< constructor
-       virtual ~CxEventLog();
+       virtual ~CxSystemLog();
            ///< destructor
 
     private:

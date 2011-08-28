@@ -1,16 +1,16 @@
 /**
- * \file  xLog.h
+ * \file  xLogs.h
  * \brief logging
  */
 
 
-#ifndef xLib_Log_xLogH
-#define xLib_Log_xLogH
+#ifndef xLib_Logs_xLogH
+#define xLib_Logs_xLogH
 //---------------------------------------------------------------------------
 #include <xLib/Log/CxConsoleLog.h>
-#include <xLib/Log/CxFileLog.h>
 #include <xLib/Log/CxTraceLog.h>
-#include <xLib/Log/CxEventLog.h>
+#include <xLib/Log/CxFileLog.h>
+#include <xLib/Log/CxSystemLog.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Log/Win/CxWndLog.h>
@@ -18,4 +18,4 @@
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Log_xLogH
+#endif    //xLib_Logs_xLogH
