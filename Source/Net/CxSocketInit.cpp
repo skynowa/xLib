@@ -21,7 +21,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxSocketInit (init winsock DLL)
 CxSocketInit::CxSocketInit(
     const USHORT cusMajorVersion,
     const USHORT cusMinorVersion
@@ -45,7 +44,6 @@ CxSocketInit::CxSocketInit(
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxSocketInit (clean winsock DLL)
 CxSocketInit::~CxSocketInit() {
 #if defined(xOS_WIN)
     INT iRes = ::WSACleanup();

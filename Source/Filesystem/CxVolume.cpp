@@ -22,7 +22,6 @@
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-//DONE:  bIsReady (is ready)
 /*static*/
 BOOL
 CxVolume::bIsReady(
@@ -31,13 +30,13 @@ CxVolume::bIsReady(
 {
     /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), FALSE);
 
-    BOOL    bRes        = FALSE;
+    BOOL         bRes        = FALSE;
     std::tstring sVolumePath = CxPath::sSlashAppend(csVolumePath);
     std::tstring sOldDirPath;
 
 #if defined(xOS_WIN)
     std::tstring sRes;
-    UINT    uiOldErrorMode = 0;
+    UINT         uiOldErrorMode = 0;
 
     uiOldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
     /*DEBUG*/// n/a
@@ -68,7 +67,6 @@ CxVolume::bIsReady(
     return bRes;
 }
 //--------------------------------------------------------------------------
-//DONE:  bIsEmpty (is empty)
 /*static*/
 BOOL
 CxVolume::bIsEmpty(
@@ -80,12 +78,11 @@ CxVolume::bIsEmpty(
     return CxDir::bIsEmpty(csVolumePath, CxConst::xMASK_FILES_ALL);
 }
 //--------------------------------------------------------------------------
-//DONE:  bGetFreeSpace (get free space)
 /*static*/
 BOOL
 CxVolume::bGetFreeSpace(
     const std::tstring &csDirPath,
-    ULONGLONG          *pullAvailable,   //for unprivileged users
+    ULONGLONG          *pullAvailable,   ///< for unprivileged users
     ULONGLONG          *pullTotal,
     ULONGLONG          *pullFree
 )
@@ -139,7 +136,7 @@ CxVolume::bGetFreeSpace(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bMount ()
+//TODO: bMount
 /*static*/
 BOOL
 CxVolume::bMount(
@@ -177,7 +174,7 @@ CxVolume::bMount(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE:  bDefineDosDevice (Defines, redefines, or deletes MS-DOS device names.)
+//Defines, redefines, or deletes MS-DOS device names
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -201,7 +198,7 @@ CxVolume::bDefineDosDevice(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  bDeleteVolumeMountPoint (Deletes a drive letter or mounted folder.)
+//Deletes a drive letter or mounted folder
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -222,7 +219,7 @@ CxVolume::bDeleteVolumeMountPoint(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  hFindFirstVolume (Retrieves the name of a volume on a computer)
+//Retrieves the name of a volume on a computer
 /*static*/
 #if defined(xOS_WIN)
 HANDLE
@@ -246,7 +243,7 @@ CxVolume::hFindFirstVolume(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  hFindFirstVolumeMountPoint (Retrieves the name of a mounted folder on the specified volume)
+//Retrieves the name of a mounted folder on the specified volume
 /*static*/
 #if defined(xOS_WIN)
 HANDLE
@@ -272,7 +269,7 @@ CxVolume::hFindFirstVolumeMountPoint(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  sFindNextVolume (Continues a volume search started by a call to the FindFirstVolume function.)
+//Continues a volume search started by a call to the FindFirstVolume function
 /*static*/
 #if defined(xOS_WIN)
 std::tstring
@@ -295,7 +292,7 @@ CxVolume::sFindNextVolume(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  bFindNextVolumeMountPoint (Continues a mounted folder search started by a call to the FindFirstVolumeMountPoint function)
+//Continues a mounted folder search started by a call to the FindFirstVolumeMountPoint function
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -321,7 +318,7 @@ CxVolume::bFindNextVolumeMountPoint(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  bFindVolumeClose (Closes the specified volume search handle)
+//Closes the specified volume search handle
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -342,7 +339,7 @@ CxVolume::bFindVolumeClose(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  bFindVolumeMountPointClose (Closes the specified mounted folder search handle)
+//Closes the specified mounted folder search handle
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -363,7 +360,7 @@ CxVolume::bFindVolumeMountPointClose(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  dtGetType (get type)
+//get type
 /*static*/
 #if defined(xOS_WIN)
 CxVolume::EType
@@ -380,7 +377,7 @@ CxVolume::dtGetType(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  bGetLogicalDrives (get logical drives)
+//get logical drives
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -460,7 +457,7 @@ CxVolume::bGetLogicalDrives(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  sGetLogicalStrings (Fills a buffer with strings that specify valid drives in the _tsystem.)
+//Fills a buffer with strings that specify valid drives in the _tsystem
 /*static*/  //FIXME
 #if defined(xOS_WIN)
 std::tstring
@@ -482,7 +479,7 @@ CxVolume::sGetLogicalStrings() {
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  bGetInfo (get info)
+//get info
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -543,7 +540,7 @@ CxVolume::bGetInfo(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  sGetVolumeNameForVolumeMountPoint (Retrieves a volume GUID path for the volume that is associated with the specified volume mount point (drive letter, volume GUID path, or mounted folder)
+//Retrieves a volume GUID path for the volume that is associated with the specified volume mount point (drive letter, volume GUID path, or mounted folder
 /*static*/
 #if defined(xOS_WIN)
 std::tstring
@@ -566,7 +563,7 @@ CxVolume::sGetVolumeNameForVolumeMountPoint(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  sGetVolumePathName (Retrieves the volume mount point where the specified path is mounted.)
+//Retrieves the volume mount point where the specified path is mounted
 /*static*/
 #if defined(xOS_WIN)
 std::tstring
@@ -589,7 +586,7 @@ CxVolume::sGetVolumePathName(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  sGetVolumePathNamesForVolumeName (Retrieves a list of drive letters and volume GUID paths for the specified volume.)
+//Retrieves a list of drive letters and volume GUID paths for the specified volume
 /*static*/
 #if defined(xOS_WIN)
 std::tstring
@@ -620,7 +617,7 @@ CxVolume::sGetVolumePathNamesForVolumeName(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  sQueryDosDevice (Retrieves information about MS-DOS device names)
+//Retrieves information about MS-DOS device names
 /*static*/
 #if defined(xOS_WIN)
 std::tstring
@@ -645,7 +642,7 @@ CxVolume::sQueryDosDevice(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  bSetVolumeLabel (Sets the label of a file _tsystem volume.)
+//Sets the label of a file _tsystem volume
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -668,7 +665,7 @@ CxVolume::bSetVolumeLabel(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//DONE:  bSetVolumeMountPoint (Associates a volume with a drive letter or a directory on another volume.)
+//Associates a volume with a drive letter or a directory on another volume
 /*static*/
 #if defined(xOS_WIN)
 BOOL
@@ -691,7 +688,7 @@ CxVolume::bSetVolumeMountPoint(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//TODO: bIsValidDriveLetter ()
+//TODO: bIsValidDriveLetter
 #if defined(xOS_WIN)
 /*static*/
 BOOL
@@ -716,12 +713,10 @@ CxVolume::bIsValidDriveLetter(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxVolume
 CxVolume::CxVolume() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: CxVolume
 /*virtual*/
 CxVolume::~CxVolume() {
 

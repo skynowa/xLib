@@ -57,7 +57,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.698827134" name="CxFile.h" rcbsApplicability="disable" resourcePath="Include/Filesystem/Win/CxFile.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.642560400" name="CxPop3.h" rcbsApplicability="disable" resourcePath="Include/Net/CxPop3.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.703975957" name="CxMimeMessage.h" rcbsApplicability="disable" resourcePath="Include/Net/CxMimeMessage.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.1399140347" name="CxTcpServerSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxTcpServerSocket.h" toolsToInvoke=""/>
@@ -124,7 +123,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.152262882" name="CxFile.h" rcbsApplicability="disable" resourcePath="Include/Filesystem/Win/CxFile.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1195476245" name="CxPop3.h" rcbsApplicability="disable" resourcePath="Include/Net/CxPop3.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1326617785" name="CxMimeMessage.h" rcbsApplicability="disable" resourcePath="Include/Net/CxMimeMessage.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.680528102" name="CxTcpServerSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxTcpServerSocket.h" toolsToInvoke=""/>

@@ -21,19 +21,23 @@ class CxWndLog :
     /// logging to window
 {
     public:
-        //window classes
-        enum EWindowClass {
+        enum EWindowClass
+        	/// window classes
+        {
             wcListBox
         };
 
-                                    CxWndLog(EWindowClass wcWC);
+        explicit                    CxWndLog(const EWindowClass cwcWC);
+            ///< constructor
         virtual                    ~CxWndLog();
+        	///< destructor
 
-           BOOL                     bWrite  (HWND hWnd, LPCTSTR pcszFormat, ...);
+        BOOL                        bWrite  (const HWND chWnd, LPCTSTR pcszFormat, ...);
+        	///< write
 
        private:
-           EWindowClass             _m_eWC;
-           static CxCriticalSection _ms_csListBox;  //Mutex
+           EWindowClass             _m_eWC;			///< window class
+           static CxCriticalSection _ms_csListBox;	///< critical section
 };
 #elif defined(xOS_LINUX)
 

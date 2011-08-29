@@ -13,7 +13,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxInputBox
 CxInputBox::CxInputBox() :
     _m_sText     (),
     _m_hWndMain  (NULL),
@@ -24,23 +23,21 @@ CxInputBox::CxInputBox() :
 {
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxInputBox
 /*virtual*/
 CxInputBox::~CxInputBox() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: iShowModal ()
 CxInputBox::EModalResult
 CxInputBox::mrShowModal(
-    const std::tstring &csCaption, 
-    const std::tstring &csPrompt, 
+    const std::tstring &csCaption,
+    const std::tstring &csPrompt,
     const std::tstring &csText
 )
 {
     /*DEBUG*/// csCaption - n/a
-    /*DEBUG*/// csPrompt - n/a
-    /*DEBUG*/// csText - n/a
+    /*DEBUG*/// csPrompt  - n/a
+    /*DEBUG*/// csText    - n/a
 
     HINSTANCE hInstance = ::GetModuleHandle(NULL);
     /*DEBUG*/xASSERT_RET(NULL != hInstance, mrCancel);
@@ -52,7 +49,7 @@ CxInputBox::mrShowModal(
     wndClass.hInstance     = hInstance;
     wndClass.hbrBackground = (HBRUSH)(COLOR_WINDOW/* + 1*/);
     wndClass.lpszClassName = xT("CxInputBox");
-    wndClass.hIcon           = ::LoadIcon(NULL, IDI_QUESTION);
+    wndClass.hIcon         = ::LoadIcon(NULL, IDI_QUESTION);
     wndClass.hCursor       = ::LoadCursor(NULL, IDC_ARROW);
     wndClass.cbWndExtra    = 4;    //4�����
 
@@ -153,7 +150,6 @@ CxInputBox::mrShowModal(
         ::SetForegroundWindow(_m_hWndMain);
         ::AttachThreadInput  (iMyTID, iCurrTID, FALSE);
 
-        //��������
         ////::AnimateWindow(_m_hWndMain, 800, AW_ACTIVATE  | AW_BLEND /*| AW_CENTER*/);
     }
 
@@ -184,7 +180,6 @@ CxInputBox::mrShowModal(
     return static_cast<EModalResult>(msgMsg.wParam);
 }
 //---------------------------------------------------------------------------
-//DONE: sGetText (�����)
 std::tstring
 CxInputBox::sGetText() {
     return _m_sText;
@@ -198,13 +193,12 @@ CxInputBox::sGetText() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _ms_pWndProc (������)
 /*static*/
 LRESULT CALLBACK
 CxInputBox::_ms_pWndProc(
-    HWND   hWnd, 
-    UINT   uiMsg, 
-    WPARAM wParam, 
+    HWND   hWnd,
+    UINT   uiMsg,
+    WPARAM wParam,
     LPARAM lParam
 )
 {

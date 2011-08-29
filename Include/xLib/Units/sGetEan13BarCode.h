@@ -17,10 +17,3 @@ std::tstring sGetEan13Code   (const std::tstring &csData);
     ///< code EAN-13
 //---------------------------------------------------------------------------
 #endif //xLib_Units_sGetEan13BarCodeH
-
-
-/*
-  Parameters : a 12 digits length string
-  Return     : a string which give the bar code when it is dispayed with EAN13.TTF font
-               an empty string if the supplied parameter is no good
-*/

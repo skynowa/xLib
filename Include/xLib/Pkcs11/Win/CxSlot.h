@@ -16,7 +16,7 @@ class CxSlot :
     /// Pkcs11 slot
 {
     public:
-        enum ENotification 
+        enum ENotification
             /// notifications
         {
             nfError,
@@ -37,12 +37,9 @@ class CxSlot :
     		///< waits for a slot event (token insertion, removal, etc.) to occur
 
     private:
-        BOOL                 _m_bRes;
-    		///< for private use
-        CK_RV                _m_ulRes;
-    		///< for private use
-        CK_FUNCTION_LIST_PTR _m_pFunc;
-    		///< pointer to dll's functions list
+        BOOL                 _m_bRes; 	///< for private use
+        CK_RV                _m_ulRes;	///< for private use
+        CK_FUNCTION_LIST_PTR _m_pFunc;	///< pointer to dll's functions list
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Pkcs11_CxSlotH

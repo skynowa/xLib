@@ -15,19 +15,20 @@ class CxConsoleLog :
     /// logging to console
 {
     public:
-                                 CxConsoleLog(BOOL bIsUseTimeStr);
+        explicit                 CxConsoleLog(const BOOL bIsUseTimeStr);
+            ///< constructor
         virtual                 ~CxConsoleLog();
+        	///< destructor
 
         BOOL                     bWrite      (LPCTSTR pcszFormat, ...);
+        	///< write
 
     private:
     #if defined(xOS_WIN)
-        static CxCriticalSection _ms_csConsole;
-    #elif defined(xOS_LINUX)
-
+        static CxCriticalSection _ms_csConsole;		///< critical section
     #endif
 
-        BOOL                     _m_bIsUseTimeStr;
+        BOOL                     _m_bIsUseTimeStr;	///< is use time string
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxConsoleLogH

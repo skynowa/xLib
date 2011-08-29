@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
     BOOL bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
-        ///< download file using  ftp, http, https
+        ///< download file using ftp, http, https
 #elif defined(xOS_LINUX)
 
 #endif

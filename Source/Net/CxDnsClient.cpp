@@ -13,7 +13,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bGetHostAddrByName
 /*static*/
 BOOL
 CxDnsClient::bGetHostAddrByName(
@@ -46,7 +45,6 @@ CxDnsClient::bGetHostAddrByName(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetHostNameByAddr
 /*static*/
 BOOL
 CxDnsClient::bGetHostNameByAddr(
@@ -66,13 +64,15 @@ CxDnsClient::bGetHostNameByAddr(
     switch (afFamily) {
         case CxSocket::afInet6: {
             #if (xWINVER >= xWIN32_VISTA)
-                //////////////IN6_ADDR iaAddr6 = {0};
+				#if xTODO
+					IN6_ADDR iaAddr6 = {0};
 
-                //////////////_ms_iRes = ::inet_pton(afInet6, casHostAddr.c_str(), &iaAddr6);
-                ///////////////*DEBUG*/xASSERT_RET(0 != _ms_iRes, FALSE);
+					_ms_iRes = ::inet_pton(afInet6, casHostAddr.c_str(), &iaAddr6);
+					/*DEBUG*/xASSERT_RET(0 != _ms_iRes, FALSE);
 
-                //////////////pHostent = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
-                ///////////////*DEBUG*/xASSERT_RET(NULL != pHostent, FALSE);
+					pHostent = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
+					/*DEBUG*/xASSERT_RET(NULL != pHostent, FALSE);
+				#endif
             #endif //xWIN32_VISTA
             }
             break;
@@ -97,7 +97,6 @@ CxDnsClient::bGetHostNameByAddr(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetLocalHostName ()
 /*static*/
 BOOL
 CxDnsClient::bGetLocalHostName(
@@ -123,7 +122,6 @@ CxDnsClient::bGetLocalHostName(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetNameInfo ()
 /*static*/
 BOOL
 CxDnsClient::bGetNameInfo(
@@ -162,7 +160,6 @@ CxDnsClient::bGetNameInfo(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetHostAddrInfo ()
 //NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
 /*static*/
 BOOL
@@ -189,7 +186,6 @@ CxDnsClient::bGetHostAddrInfo(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetProtocolByName ()
 /*static*/
 BOOL
 CxDnsClient::bGetProtocolByName(
@@ -200,9 +196,9 @@ CxDnsClient::bGetProtocolByName(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csProtocolName.empty(), FALSE);
-    /*DEBUG*///psName       - n/a
+    /*DEBUG*///psName     - n/a
     /*DEBUG*///pvsAliases - n/a
-    /*DEBUG*///psiNumber    - n/a
+    /*DEBUG*///psiNumber  - n/a
 
     //convert to UNICODE
     std::string asProtocolName(csProtocolName.begin(), csProtocolName.end());
@@ -242,7 +238,6 @@ CxDnsClient::bGetProtocolByName(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetProtocolByNumber ()
 /*static*/
 BOOL
 CxDnsClient::bGetProtocolByNumber(
@@ -252,10 +247,10 @@ CxDnsClient::bGetProtocolByNumber(
     SHORT                     *psiNumber
 )
 {
-    /*DEBUG*///siNum        - n/a
-    /*DEBUG*///psName       - n/a
+    /*DEBUG*///siNum      - n/a
+    /*DEBUG*///psName     - n/a
     /*DEBUG*///pvsAliases - n/a
-    /*DEBUG*///psiNum       - n/a
+    /*DEBUG*///psiNum     - n/a
 
     protoent/*PROTOENT*/*pptInfo = ::getprotobynumber(siNumber);
     /*DEBUG*/xASSERT_RET(NULL != pptInfo, FALSE);
@@ -292,7 +287,6 @@ CxDnsClient::bGetProtocolByNumber(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetServiceByName ()
 /*static*/
 BOOL
 CxDnsClient::bGetServiceByName(
@@ -355,7 +349,6 @@ CxDnsClient::bGetServiceByName(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetServiceByPort ()
 /*static*/
 BOOL
 CxDnsClient::bGetServiceByPort(
@@ -429,12 +422,10 @@ BOOL CxDnsClient::_ms_bRes = FALSE;
 INT  CxDnsClient::_ms_iRes = - 1;
 
 //---------------------------------------------------------------------------
-//DONE: CxDnsClient
 CxDnsClient::CxDnsClient() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxDnsClient
 /*virtual*/
 CxDnsClient::~CxDnsClient() {
 

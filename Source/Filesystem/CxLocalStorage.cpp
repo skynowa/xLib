@@ -17,7 +17,6 @@
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE: CxLocalStorage (exe-file path)
 CxLocalStorage::CxLocalStorage() :
     _m_csSeparator(CxConst::xEQUAL),
     _m_csFileExt  (xT("ini")),
@@ -33,7 +32,6 @@ CxLocalStorage::CxLocalStorage() :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: CxLocalStorage (file path)
 CxLocalStorage::CxLocalStorage(
     const std::tstring &csFilePath
 ) :
@@ -52,13 +50,11 @@ CxLocalStorage::CxLocalStorage(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: ~CxLocalStorage
 /*virtual*/
 CxLocalStorage::~CxLocalStorage() {
 
 }
 //-------------------------------------------------------------------------
-//DONE: bCreateDefault (create default file)
 BOOL
 CxLocalStorage::bCreateDefault(
     const std::tstring &csContent
@@ -73,7 +69,6 @@ CxLocalStorage::bCreateDefault(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-//DONE: sGetPath (get file path)
 std::tstring
 CxLocalStorage::sGetPath() const {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), std::tstring());
@@ -81,7 +76,6 @@ CxLocalStorage::sGetPath() const {
     return _m_sFilePath;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetPath (set file path)
 BOOL
 CxLocalStorage::bSetPath(
     const std::tstring &csFilePath
@@ -98,7 +92,6 @@ CxLocalStorage::bSetPath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: cmsGet (get innner TLocalStorage, may be used with bFlush)
 NxLib::TLocalStorage &
 CxLocalStorage::cmsGet() {
     /*DEBUG*/
@@ -106,7 +99,6 @@ CxLocalStorage::cmsGet() {
     return _m_msIni;
 }
 //---------------------------------------------------------------------------
-//DONE: bFlush (flush)
 BOOL
 CxLocalStorage::bFlush() const {
     /*DEBUG*/
@@ -117,7 +109,6 @@ CxLocalStorage::bFlush() const {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear (clear content)
 BOOL
 CxLocalStorage::bClear() {
     /*DEBUG*/
@@ -128,7 +119,6 @@ CxLocalStorage::bClear() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bDelete (delete)
 BOOL
 CxLocalStorage::bDelete() {
     /*DEBUG*/
@@ -151,7 +141,6 @@ CxLocalStorage::bDelete() {
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE: bKeyIsExists (is exists)
 BOOL
 CxLocalStorage::bKeyIsExists(
     const std::tstring &csKey
@@ -169,7 +158,6 @@ CxLocalStorage::bKeyIsExists(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-//DONE: sKeyReadString (read std::tstring)
 std::tstring
 CxLocalStorage::sKeyReadString(
     const std::tstring &csKey,
@@ -188,7 +176,6 @@ CxLocalStorage::sKeyReadString(
     return sRes;
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteString (write std::tstring)
 BOOL
 CxLocalStorage::bKeyWriteString(
     const std::tstring &csKey,
@@ -205,7 +192,6 @@ CxLocalStorage::bKeyWriteString(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: iKeyReadInt (read INT)
 LONG
 CxLocalStorage::iKeyReadInt(
     const std::tstring &csKey,
@@ -219,7 +205,6 @@ CxLocalStorage::iKeyReadInt(
     return CxString::lexical_cast<LONG>( sKeyReadString(csKey, CxString::lexical_cast(cliDefaultValue)) );
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteInt (write INT)
 BOOL
 CxLocalStorage::bKeyWriteInt(
     const std::tstring &csKey,
@@ -233,7 +218,6 @@ CxLocalStorage::bKeyWriteInt(
     return bKeyWriteString(csKey, CxString::lexical_cast(cliValue));
 }
 //-------------------------------------------------------------------------
-//DONE: dKeyReadFloat (read FLOAT)
 DOUBLE
 CxLocalStorage::dKeyReadFloat(
     const std::tstring &csKey,
@@ -247,7 +231,6 @@ CxLocalStorage::dKeyReadFloat(
     return CxString::lexical_cast<DOUBLE>( sKeyReadString(csKey, CxString::lexical_cast(cdDefaultValue)) );
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteFloat (write FLOAT)
 BOOL
 CxLocalStorage::bKeyWriteFloat(
     const std::tstring &csKey,
@@ -261,7 +244,6 @@ CxLocalStorage::bKeyWriteFloat(
     return bKeyWriteString(csKey, CxString::lexical_cast(cdValue));
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyReadBool (read BOOL)
 BOOL
 CxLocalStorage::bKeyReadBool(
     const std::tstring &csKey,
@@ -272,7 +254,7 @@ CxLocalStorage::bKeyReadBool(
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///bDefaultValue - n/a
 
-    BOOL    bRes = FALSE;
+    BOOL         bRes = FALSE;
     std::tstring sStr;
     std::tstring sDefaultValue;
 
@@ -287,7 +269,6 @@ CxLocalStorage::bKeyReadBool(
     return bRes;
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteBool (write BOOL)
 BOOL
 CxLocalStorage::bKeyWriteBool(
     const std::tstring &csKey,
@@ -305,7 +286,6 @@ CxLocalStorage::bKeyWriteBool(
     return bKeyWriteString(csKey, sValue);
 }
 //---------------------------------------------------------------------------
-//DONE: usKeyReadBin (write std::ustring)
 std::ustring
 CxLocalStorage::usKeyReadBin(
     const std::tstring &csKey,
@@ -326,7 +306,6 @@ CxLocalStorage::usKeyReadBin(
     return std::ustring(sRes.begin(), sRes.end());
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyWriteBin (read std::ustring)
 BOOL
 CxLocalStorage::bKeyWriteBin(
     const std::tstring &csKey,
@@ -345,7 +324,6 @@ CxLocalStorage::bKeyWriteBin(
     return bKeyWriteString(csKey, sHexStr);
 }
 //-------------------------------------------------------------------------
-//DONE: bKeyClear (clear value)
 BOOL
 CxLocalStorage::bKeyClear(
     const std::tstring &csKey
@@ -357,7 +335,6 @@ CxLocalStorage::bKeyClear(
     return bKeyWriteString(csKey, std::tstring());
 }
 //---------------------------------------------------------------------------
-//DONE: bKeyDelete (delete key and value)
 BOOL
 CxLocalStorage::bKeyDelete(
    const std::tstring &csKey
@@ -390,7 +367,6 @@ CxLocalStorage::bKeyDelete(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bRead (parse file)
 BOOL
 CxLocalStorage::_bRead(
     const std::tstring &csKey,
@@ -420,7 +396,6 @@ CxLocalStorage::_bRead(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bWrite (flush to TLocalStorage, file)
 BOOL
 CxLocalStorage::_bWrite(
     const std::tstring &csKey,

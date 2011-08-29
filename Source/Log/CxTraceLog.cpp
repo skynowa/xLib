@@ -16,32 +16,30 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxTraceLog ()
-CxTraceLog::CxTraceLog(BOOL bIsUseTimeStr) :
+CxTraceLog::CxTraceLog(
+	const BOOL cbIsUseTimeStr
+) :
     _m_bIsEnable    (TRUE),
-    _m_bIsUseTimeStr(bIsUseTimeStr)
+    _m_bIsUseTimeStr(cbIsUseTimeStr)
 {
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTraceLog ()
 CxTraceLog::~CxTraceLog() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bSetEnabled ()
 BOOL
 CxTraceLog::bSetEnabled(
-    BOOL bFlag
+    const BOOL cbFlag
 )
 {
-    /*DEBUG*/// bFlag - n/a
+    /*DEBUG*/// cbFlag - n/a
 
-    _m_bIsEnable = bFlag;
+    _m_bIsEnable = cbFlag;
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bWrite ()
 BOOL
 CxTraceLog::bWrite(
     LPCTSTR pcszFormat, ...
@@ -64,7 +62,7 @@ CxTraceLog::bWrite(
     //-------------------------------------
     //comment
     std::tstring sParam;
-    va_list palArgs;
+    va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);
@@ -76,7 +74,7 @@ CxTraceLog::bWrite(
     ::OutputDebugString((sTime + sParam + CxConst::xNL).c_str());
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    std::tcout << (sTime + sParam + CxConst::xNL);   std::tcout.flush();
+    std::tcout << sTime << sParam << std::endl;
 #endif
 
     return TRUE;

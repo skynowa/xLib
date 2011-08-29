@@ -19,7 +19,7 @@ class CxInputBox :
     /// input box
 {
     public:
-        enum EModalResult 
+        enum EModalResult
             /// modal result
         {
             mrOk,
@@ -27,55 +27,56 @@ class CxInputBox :
         };
 
                                 CxInputBox  ();
+            ///< constructor
         virtual                ~CxInputBox  ();
+        	///< destructor
 
         EModalResult            mrShowModal (const std::tstring &csCaption, const std::tstring &csPrompt, const std::tstring &csText);
+        	///< show modal
         std::tstring            sGetText    ();
+        	///< get text
 
     private:
-        BOOL                    _m_bRes;
-        std::tstring            _m_sText;
-        HWND                    _m_hWndMain;
-        HWND                    _m_hBtnOk;
-        HWND                    _m_hBtnCancel;
-        HWND                    _m_hStaPrompt;
-        HWND                    _m_hEdtText;
+        BOOL                    _m_bRes;		///< for private use
+        std::tstring            _m_sText;		///< text
+        HWND                    _m_hWndMain;	///< handle to main window
+        HWND                    _m_hBtnOk;		///< handle to button "Ok"
+        HWND                    _m_hBtnCancel;	///< handle to button "Cancel"
+        HWND                    _m_hStaPrompt;	///< handle to button "Prompt"
+        HWND                    _m_hEdtText;	///< handle to edit text field
 
-        //---------------------------------------------------------------------------
-        //TODO: ms_pWndProc
         static LRESULT CALLBACK _ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
+        	///< window callback
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Gui_CxInputBoxH
 
 
-/*
-void ToggleStyle(HWND hEdit)
-{
-    if(SendMessage(hEdit,EM_GETPASSWORDCHAR,0,0) == '*')
-        SendMessage(hEdit,EM_SETPASSWORDCHAR,0,0);
-    else
-        SendMessage(hEdit,EM_SETPASSWORDCHAR,(WPARAM)'*',0);
-    SetFocus(hEdit);
-}
-*/
-/*
-DWORD dwStyle = GetWindowLong(m_hwndEditPassword, GWL_STYLE);
+#if xTODO
+	void ToggleStyle(HWND hEdit)
+	{
+		if(SendMessage(hEdit,EM_GETPASSWORDCHAR,0,0) == '*')
+			SendMessage(hEdit,EM_SETPASSWORDCHAR,0,0);
+		else
+			SendMessage(hEdit,EM_SETPASSWORDCHAR,(WPARAM)'*',0);
+		SetFocus(hEdit);
+	}
+#endif
 
-    // �� �������� ���� ��������, ���� ���������� ������ � ����
-    if(SendMessage(m_hwndPasswordCheck, BM_GETCHECK, 0, 0) == BST_CHECKED)
-    {
-        // ������������� ��������� ����
-        SetWindowLong(m_hwndEditPassword, GWL_STYLE, dwStyle | ES_PASSWORD);
-        SendMessage(m_hwndEditPassword, EM_SETPASSWORDCHAR, '*', NULL);
-    }
-    else
-    {
-        // ������������� ����������� ����
-        SetWindowLong(m_hwndEditPassword, GWL_STYLE, dwStyle & ~ES_PASSWORD);
-        SendMessage(m_hwndEditPassword, EM_SETPASSWORDCHAR, NULL, NULL);
-    }
+#if xTODO
+	DWORD dwStyle = GetWindowLong(m_hwndEditPassword, GWL_STYLE);
 
-    SetFocus(m_hwndEditPassword);    // ��������� ����� � ���� � ������
-    SetFocus(m_hwndPasswordCheck);    // ���������� ����� �� �������
-*/
+	if(SendMessage(m_hwndPasswordCheck, BM_GETCHECK, 0, 0) == BST_CHECKED)
+	{
+		SetWindowLong(m_hwndEditPassword, GWL_STYLE, dwStyle | ES_PASSWORD);
+		SendMessage(m_hwndEditPassword, EM_SETPASSWORDCHAR, '*', NULL);
+	}
+	else
+	{
+		SetWindowLong(m_hwndEditPassword, GWL_STYLE, dwStyle & ~ES_PASSWORD);
+		SendMessage(m_hwndEditPassword, EM_SETPASSWORDCHAR, NULL, NULL);
+	}
+
+	SetFocus(m_hwndEditPassword);
+	SetFocus(m_hwndPasswordCheck);
+#endif

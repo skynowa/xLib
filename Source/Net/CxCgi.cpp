@@ -19,7 +19,6 @@ using namespace NxCgi;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCgi
 CxCgi::CxCgi(
     const size_t cuiMaxSize
 ) :
@@ -29,13 +28,11 @@ CxCgi::CxCgi(
 {
 }
 //---------------------------------------------------------------------------
-//DONE: CxCgi
 /*virtual*/
 CxCgi::~CxCgi() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDump (dump)
 std::tstring
 CxCgi::sGetDump()  const{
     /*DEBUG*/
@@ -55,7 +52,6 @@ CxCgi::sGetDump()  const{
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bRedirect (redirect to URL)
 /*static*/
 BOOL
 CxCgi::bRedirect(
@@ -74,7 +70,6 @@ CxCgi::bRedirect(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bPageShow (show file)
 /*static*/
 BOOL
 CxCgi::bPageShow(
@@ -105,7 +100,7 @@ namespace {
     ////static const std::tstring ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
 }
 //---------------------------------------------------------------------------
-//TODO: bUriEncode ()
+//TODO: bUriEncode
 /*static*/
 BOOL
 CxCgi::bUriEncode(
@@ -359,7 +354,6 @@ CxCgi::cgl_hex2char(char *what) {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCgiEnvironment
 CxCgiEnvironment::CxCgiEnvironment(
     CxCgi &ccgCgi
 ) :
@@ -369,7 +363,6 @@ CxCgiEnvironment::CxCgiEnvironment(
     _bInit();
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxCgiEnvironment
 /*virtual*/
 CxCgiEnvironment::~CxCgiEnvironment() {
 
@@ -383,7 +376,6 @@ CxCgiEnvironment::sGetAuthType() const {
     return _m_sAuthType;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetContentLength
 const std::tstring &
 CxCgiEnvironment::sGetContentLength() const {
     /*DEBUG*/
@@ -391,7 +383,6 @@ CxCgiEnvironment::sGetContentLength() const {
     return _m_sContentLength;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetContentType
 const std::tstring &
 CxCgiEnvironment::sGetContentType() const {
     /*DEBUG*/
@@ -399,7 +390,6 @@ CxCgiEnvironment::sGetContentType() const {
     return _m_sContentType;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDocumentRoot
 const std::tstring &
 CxCgiEnvironment::sGetDocumentRoot() const {
     /*DEBUG*/
@@ -407,7 +397,6 @@ CxCgiEnvironment::sGetDocumentRoot() const {
     return _m_sDocumentRoot;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetGatewayInterface
 const std::tstring &
 CxCgiEnvironment::sGetGatewayInterface() const {
     /*DEBUG*/
@@ -415,7 +404,6 @@ CxCgiEnvironment::sGetGatewayInterface() const {
     return _m_sGatewayInterface;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHttpAccept
 const std::tstring &
 CxCgiEnvironment::sGetHttpAccept() const {
     /*DEBUG*/
@@ -423,7 +411,6 @@ CxCgiEnvironment::sGetHttpAccept() const {
     return _m_sHttpAccept;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHttpCookie
 const std::tstring &
 CxCgiEnvironment::sGetHttpCookie() const {
     /*DEBUG*/
@@ -431,7 +418,6 @@ CxCgiEnvironment::sGetHttpCookie() const {
     return _m_sHttpCookie;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHttpPragma
 const std::tstring &
 CxCgiEnvironment::sGetHttpPragma() const {
     /*DEBUG*/
@@ -439,7 +425,6 @@ CxCgiEnvironment::sGetHttpPragma() const {
     return _m_sHttpPragma;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHttpUserAgent
 const std::tstring &
 CxCgiEnvironment::sGetHttpUserAgent() const {
     /*DEBUG*/
@@ -447,7 +432,6 @@ CxCgiEnvironment::sGetHttpUserAgent() const {
     return _m_sHttpUserAgent;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetPathInfo
 const std::tstring &
 CxCgiEnvironment::sGetPathInfo() const {
     /*DEBUG*/
@@ -455,7 +439,6 @@ CxCgiEnvironment::sGetPathInfo() const {
     return _m_sPathInfo;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetPathTranslated
 const std::tstring &
 CxCgiEnvironment::sGetPathTranslated() const {
     /*DEBUG*/
@@ -463,7 +446,6 @@ CxCgiEnvironment::sGetPathTranslated() const {
     return _m_sPathTranslated;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetQueryString
 const std::tstring &
 CxCgiEnvironment::sGetQueryString() const {
     /*DEBUG*/
@@ -471,7 +453,6 @@ CxCgiEnvironment::sGetQueryString() const {
     return _m_sQueryString;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetRemoteAddr
 const std::tstring &
 CxCgiEnvironment::sGetRemoteAddr() const {
     /*DEBUG*/
@@ -479,7 +460,6 @@ CxCgiEnvironment::sGetRemoteAddr() const {
     return _m_sRemoteAddr;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetRemoteHost
 const std::tstring &
 CxCgiEnvironment::sGetRemoteHost() const {
     /*DEBUG*/
@@ -487,7 +467,6 @@ CxCgiEnvironment::sGetRemoteHost() const {
     return _m_sRemoteHost;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetRemoteIdent
 const std::tstring &
 CxCgiEnvironment::sGetRemoteIdent() const {
     /*DEBUG*/
@@ -495,7 +474,6 @@ CxCgiEnvironment::sGetRemoteIdent() const {
     return _m_sRemoteIdent;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetRemotePort
 const std::tstring &
 CxCgiEnvironment::sGetRemotePort() const {
     /*DEBUG*/
@@ -503,7 +481,6 @@ CxCgiEnvironment::sGetRemotePort() const {
     return _m_sRemotePort;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetRemoteUser
 const std::tstring &
 CxCgiEnvironment::sGetRemoteUser() const {
     /*DEBUG*/
@@ -511,7 +488,6 @@ CxCgiEnvironment::sGetRemoteUser() const {
     return _m_sRemoteUser;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetRequestMethod
 const std::tstring &
 CxCgiEnvironment::sGetRequestMethod() const {
     /*DEBUG*/
@@ -519,7 +495,6 @@ CxCgiEnvironment::sGetRequestMethod() const {
     return _m_sRequestMethod;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetRequestUri
 const std::tstring &
 CxCgiEnvironment::sGetRequestUri() const {
     /*DEBUG*/
@@ -527,7 +502,6 @@ CxCgiEnvironment::sGetRequestUri() const {
     return _m_sRequestUri;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetScriptFilename
 const std::tstring &
 CxCgiEnvironment::sGetScriptFilename() const {
     /*DEBUG*/
@@ -535,7 +509,6 @@ CxCgiEnvironment::sGetScriptFilename() const {
     return _m_sScriptFilename;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetScriptName
 const std::tstring &
 CxCgiEnvironment::sGetScriptName() const {
     /*DEBUG*/
@@ -543,7 +516,6 @@ CxCgiEnvironment::sGetScriptName() const {
     return _m_sScriptName;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetServerAdmin
 const std::tstring &
 CxCgiEnvironment::sGetServerAdmin() const {
     /*DEBUG*/
@@ -551,7 +523,6 @@ CxCgiEnvironment::sGetServerAdmin() const {
     return _m_sServerAdmin;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetServerName
 const std::tstring &
 CxCgiEnvironment::sGetServerName() const {
     /*DEBUG*/
@@ -559,7 +530,6 @@ CxCgiEnvironment::sGetServerName() const {
     return _m_sServerName;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetServerPort
 const std::tstring &
 CxCgiEnvironment::sGetServerPort() const {
     /*DEBUG*/
@@ -567,7 +537,6 @@ CxCgiEnvironment::sGetServerPort() const {
     return _m_sServerPort;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetServerProtocol
 const std::tstring &
 CxCgiEnvironment::sGetServerProtocol() const {
     /*DEBUG*/
@@ -575,7 +544,6 @@ CxCgiEnvironment::sGetServerProtocol() const {
     return _m_sServerProtocol;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetServerSoftware
 const std::tstring &
 CxCgiEnvironment::sGetServerSoftware() const {
     /*DEBUG*/
@@ -583,7 +551,6 @@ CxCgiEnvironment::sGetServerSoftware() const {
     return _m_sServerSoftware;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHttpReferer
 const std::tstring &
 CxCgiEnvironment::sGetHttpReferer() const {
     /*DEBUG*/
@@ -591,7 +558,6 @@ CxCgiEnvironment::sGetHttpReferer() const {
     return _m_sHttpReferer;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHttpHost
 const std::tstring &
 CxCgiEnvironment::sGetHttpHost() const {
     /*DEBUG*/
@@ -599,7 +565,6 @@ CxCgiEnvironment::sGetHttpHost() const {
     return _m_sHttpHost;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHttpAcceptLanguage
 const std::tstring &
 CxCgiEnvironment::sGetHttpAcceptLanguage() const {
    /*DEBUG*/
@@ -607,7 +572,6 @@ CxCgiEnvironment::sGetHttpAcceptLanguage() const {
    return _m_sHttpAcceptLanguage;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetCountryCode
 const std::tstring &
 CxCgiEnvironment::sGetCountryCode() const {
     /*DEBUG*/
@@ -615,7 +579,6 @@ CxCgiEnvironment::sGetCountryCode() const {
     return _m_sCountryCode;
 }
 //---------------------------------------------------------------------------
-//DONE: rmGetRequestMethod ()
 CxCgiEnvironment::ERequestMethod
 CxCgiEnvironment::rmGetRequestMethod() const {
     /*DEBUG*/
@@ -623,7 +586,6 @@ CxCgiEnvironment::rmGetRequestMethod() const {
     return _m_rmRequestMethod;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDump (dump)
 std::tstring
 CxCgiEnvironment::sGetDump() const {
     /*DEBUG*/
@@ -704,7 +666,6 @@ CxCgiEnvironment::sGetDump() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bInit (initiate class data)
 BOOL
 CxCgiEnvironment::_bInit() {
     /*DEBUG*/
@@ -774,7 +735,6 @@ CxCgiEnvironment::_bInit() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCgiCookies
 CxCgiCookies::CxCgiCookies(
     CxCgi &ccgCgi
 ):
@@ -783,7 +743,6 @@ CxCgiCookies::CxCgiCookies(
     _bInit();
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxCgiCookies
 /*virtual*/
 CxCgiCookies::~CxCgiCookies() {
     for (TCookies::iterator it = Items.begin(); it != Items.end(); ++ it) {
@@ -791,9 +750,8 @@ CxCgiCookies::~CxCgiCookies() {
     }
 }
 //---------------------------------------------------------------------------
-//DONE: operator [] (no case searchig cookie value by name from list)
 std::tstring
-CxCgiCookies::operator [](
+CxCgiCookies::operator [] (
     const std::tstring &csCookieName
 )
 {
@@ -808,7 +766,6 @@ CxCgiCookies::operator [](
     return std::tstring();
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDump ()
 std::tstring
 CxCgiCookies::sGetDump() const {
     /*DEBUG*/
@@ -850,7 +807,6 @@ CxCgiCookies::sGetDump() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bInit (initiate class data)
 BOOL
 CxCgiCookies::_bInit() {
     /*DEBUG*/
@@ -888,9 +844,8 @@ CxCgiCookies::_bInit() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCgiFormData
 CxCgiFormData::CxCgiFormData(
-    CxCgi        &ccgCgi, 
+    CxCgi        &ccgCgi,
     const size_t  cuiMaxSize
 ) :
     _m_cuiMaxData(cuiMaxSize),
@@ -899,13 +854,11 @@ CxCgiFormData::CxCgiFormData(
     _bInit();
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxCgiFormData
 /*virtual*/
 CxCgiFormData::~CxCgiFormData() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: sGetRawData ()
 const std::tstring &
 CxCgiFormData::sGetRawData() const {
     /*DEBUG*/
@@ -913,7 +866,6 @@ CxCgiFormData::sGetRawData() const {
     return _m_sFormData;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDump ()
 std::tstring
 CxCgiFormData::sGetDump() const {
     /*DEBUG*/
@@ -935,7 +887,6 @@ CxCgiFormData::sGetDump() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bInitFormData (initiate class data)
 BOOL
 CxCgiFormData::_bInit() {
     /*DEBUG*/

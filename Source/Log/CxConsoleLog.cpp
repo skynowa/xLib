@@ -12,8 +12,6 @@
 
 #if defined(xOS_WIN)
     #include <xLib/Sync/CxAutoCriticalSection.h>
-#elif defined(xOS_LINUX)
-
 #endif
 
 
@@ -23,26 +21,24 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: static
 #if defined(xOS_WIN)
     CxCriticalSection CxConsoleLog::_ms_csConsole;
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
-//DONE: CxConsoleLog
-CxConsoleLog::CxConsoleLog(BOOL bIsUseTimeStr) :
-    _m_bIsUseTimeStr(bIsUseTimeStr)
+/*explicit*/
+CxConsoleLog::CxConsoleLog(
+	const BOOL cbIsUseTimeStr
+) :
+    _m_bIsUseTimeStr(cbIsUseTimeStr)
 {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxConsoleLog
+/*virtual*/
 CxConsoleLog::~CxConsoleLog() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bWrite (write)
 BOOL
 CxConsoleLog::bWrite(
     LPCTSTR pcszFormat, ...
@@ -63,7 +59,7 @@ CxConsoleLog::bWrite(
     //-------------------------------------
     //comment
     std::tstring sParam;
-    va_list palArgs;
+    va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);
@@ -73,11 +69,7 @@ CxConsoleLog::bWrite(
     //write
 #if defined(xOS_WIN)
     /*LOCK*/CxAutoCriticalSection SL(_ms_csConsole);
-#elif defined(xOS_LINUX)
-    xNOT_IMPLEMENTED_RET(FALSE);
 #endif
-
-    ////--CxFile::iPrintf(xT("%s%s\n"), sTime.c_str(), sParam.c_str());
 
     std::tcout << sTime << sParam << std::endl;
 

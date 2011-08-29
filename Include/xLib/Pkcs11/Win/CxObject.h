@@ -52,16 +52,11 @@ class CxObject :
     		///< get data
 
     private:
-        BOOL                 _m_bRes;
-        	///< for private use
-        CK_RV                _m_ulRes;
-        	///< for private use
-        CK_FUNCTION_LIST_PTR _m_pFunc;
-        	///< pointer to dll's functions list
-        CK_SESSION_HANDLE    _m_hSession;
-        	///< session handle
-        CK_OBJECT_HANDLE     _m_hObject;
-        	///< bject handle
+        BOOL                 _m_bRes;		///< for private use
+        CK_RV                _m_ulRes;	   	///< for private use
+        CK_FUNCTION_LIST_PTR _m_pFunc;		///< pointer to dll's functions list
+        CK_SESSION_HANDLE    _m_hSession;	///< session handle
+        CK_OBJECT_HANDLE     _m_hObject;	///< bject handle
 
 	#if xTODO
 		BOOL                 bFindInit         (CK_ATTRIBUTE_PTR  pTemplate, CK_ULONG ulCount);

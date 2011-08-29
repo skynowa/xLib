@@ -8,7 +8,6 @@
 
 #include <xLib/Common/CxAutoMallocT.h>
 
-////using namespace Gdiplus;
 
 /****************************************************************************
 *    public
@@ -16,7 +15,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxImage
 CxImage::CxImage() :
     _m_stRes    (Gdiplus::GenericError),
     _m_pimgImage(NULL)
@@ -24,7 +22,6 @@ CxImage::CxImage() :
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxImage
 /*virtual*/
 CxImage::~CxImage() {
     /*DEBUG*/
@@ -32,7 +29,6 @@ CxImage::~CxImage() {
     bDestroy();
 }
 //---------------------------------------------------------------------------
-//TODO: bLoad ()
 BOOL
 CxImage::bLoad(
     const std::tstring &csFilePath
@@ -55,7 +51,6 @@ CxImage::bLoad(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bLoad ()
 BOOL
 CxImage::bLoad(
     IStream *pisStream
@@ -73,7 +68,6 @@ CxImage::bLoad(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSave ()
 BOOL
 CxImage::bSave(
     const std::tstring &csFilePath,
@@ -110,7 +104,6 @@ CxImage::bSave(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSave ()
 BOOL
 CxImage::bSave(
     IStream *pisStream,
@@ -144,7 +137,6 @@ CxImage::bSave(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bDraw ()
 BOOL
 CxImage::bDraw(
     HDC         hDC,
@@ -167,7 +159,6 @@ CxImage::bDraw(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bDraw ()
 BOOL
 CxImage::bDraw(
     HDC hDC,
@@ -195,22 +186,22 @@ CxImage::bDraw(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bClear ()
-/*
-VOID
-Example_Clear(
-    HDC hdc
-)
-{
-    Graphics graphics(hdc);
+#if xTODO
+	VOID
+	Example_Clear(
+		HDC hdc
+	)
+	{
+		Graphics graphics(hdc);
 
-    // Create a Color object.
-    Color blueColor(255, 0, 0, 255);
+		// Create a Color object.
+		Color blueColor(255, 0, 0, 255);
 
-    // Clear the screen with a blue background.
-    graphics.Clear(blueColor);
-}
-*/
+		// Clear the screen with a blue background.
+		graphics.Clear(blueColor);
+	}
+#endif
+
 BOOL
 CxImage::bClear(
     HDC            hDC,
@@ -228,7 +219,6 @@ CxImage::bClear(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bDestroy ()
 BOOL
 CxImage::bDestroy() {
     /*DEBUG*/// _m_pimgImage - n/a
@@ -239,7 +229,6 @@ CxImage::bDestroy() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsLoaded ()
 BOOL
 CxImage::bIsLoaded() {
     /*DEBUG*/// n/a
@@ -247,7 +236,6 @@ CxImage::bIsLoaded() {
     return NULL != _m_pimgImage;
 }
 //---------------------------------------------------------------------------
-//TODO: uiGetWidth ()
 UINT
 CxImage::uiGetWidth() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
@@ -255,7 +243,6 @@ CxImage::uiGetWidth() {
     return _m_pimgImage->GetWidth();
 }
 //---------------------------------------------------------------------------
-//TODO: uiGetHeight ()
 UINT
 CxImage::uiGetHeight() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
@@ -263,7 +250,6 @@ CxImage::uiGetHeight() {
     return _m_pimgImage->GetHeight();
 }
 //---------------------------------------------------------------------------
-//TODO: stGetLastStatus ()
 Gdiplus::Status
 CxImage::stGetLastStatus() {
     /*DEBUG*/// _m_pimgImage - n/a
@@ -271,7 +257,6 @@ CxImage::stGetLastStatus() {
     return _m_pimgImage->GetLastStatus();
 }
 //---------------------------------------------------------------------------
-//TODO: sGetLastStatus ()
 std::tstring
 CxImage::sGetLastStatus(
     Gdiplus::Status stCode
@@ -318,7 +303,6 @@ CxImage::sGetLastStatus(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: _bGetEncoderClsid ()
 BOOL
 CxImage::_bGetEncoderClsid(
     const std::tstring &csFormat,

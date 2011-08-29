@@ -22,7 +22,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxGeoIp
 CxGeoIp::CxGeoIp() :
     _m_bRes    (FALSE),
     _m_pgiGeoIp(NULL)
@@ -30,14 +29,12 @@ CxGeoIp::CxGeoIp() :
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxGeoIp
 /*virtual*/
 CxGeoIp::~CxGeoIp() {
     _m_bRes = bClose();
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: bOpen ()
 BOOL
 CxGeoIp::bOpen(
     const std::tstring &csFilePath,
@@ -57,7 +54,6 @@ CxGeoIp::bOpen(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsValid (validating handle)
 BOOL
 CxGeoIp::bIsValid() const {
     /*DEBUG*/// n/a
@@ -65,7 +61,6 @@ CxGeoIp::bIsValid() const {
     return static_cast<BOOL>( NULL != _m_pgiGeoIp );
 }
 //---------------------------------------------------------------------------
-//DONE: sGetCountryCodeByAddress (get country code by address)
 std::tstring
 CxGeoIp::sGetCountryCodeByAddress(
     const std::tstring &csAddress
@@ -82,7 +77,6 @@ CxGeoIp::sGetCountryCodeByAddress(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetCountryCodeBy3Address (get country code by address)
 std::tstring
 CxGeoIp::sGetCountryCode3ByAddress(
     const std::tstring &csAddress
@@ -99,7 +93,6 @@ CxGeoIp::sGetCountryCode3ByAddress(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bClose (close)
 BOOL
 CxGeoIp::bClose() {
     /*DEBUG*/// _m_pgiGeoIp - n/a

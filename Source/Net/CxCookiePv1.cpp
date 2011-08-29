@@ -16,7 +16,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCookiePv1
 CxCookiePv1::CxCookiePv1() :
     _m_sName    (),
     _m_sValue   (),
@@ -35,7 +34,6 @@ CxCookiePv1::CxCookiePv1() :
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: CxCookiePv1
 CxCookiePv1::CxCookiePv1(
     const std::tstring &csRawCookie
 ) :
@@ -56,14 +54,12 @@ CxCookiePv1::CxCookiePv1(
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxCookiePv1
 /*virtual*/
 CxCookiePv1::~CxCookiePv1() {
     /*DEBUG*/
 
 }
 //---------------------------------------------------------------------------
-//DONE: sGetName ()
 const std::tstring &
 CxCookiePv1::sGetName() const {
     /*DEBUG*/
@@ -71,7 +67,6 @@ CxCookiePv1::sGetName() const {
     return _m_sName;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetName ()
 BOOL
 CxCookiePv1::bSetName(
     const std::tstring &csName
@@ -84,7 +79,6 @@ CxCookiePv1::bSetName(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetValue ()
 const std::tstring &
 CxCookiePv1::sGetValue() const {
     /*DEBUG*/
@@ -92,7 +86,6 @@ CxCookiePv1::sGetValue() const {
     return _m_sValue;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetValue ()
 BOOL
 CxCookiePv1::bSetValue(
     const std::tstring &csValue
@@ -105,7 +98,6 @@ CxCookiePv1::bSetValue(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetComment ()
 const std::tstring &
 CxCookiePv1::sGetComment() const {
     /*DEBUG*/
@@ -113,7 +105,6 @@ CxCookiePv1::sGetComment() const {
     return _m_sComment;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetComment ()
 BOOL
 CxCookiePv1::bSetComment(
     const std::tstring &csComment
@@ -126,7 +117,6 @@ CxCookiePv1::bSetComment(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDomain ()
 const std::tstring &
 CxCookiePv1::sGetDomain() const {
     /*DEBUG*/
@@ -134,7 +124,6 @@ CxCookiePv1::sGetDomain() const {
     return _m_sDomain;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetDomain ()
 BOOL
 CxCookiePv1::bSetDomain(
     const std::tstring &csDomain
@@ -147,7 +136,6 @@ CxCookiePv1::bSetDomain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetPath ()
 const std::tstring &
 CxCookiePv1::sGetPath() const {
     /*DEBUG*/
@@ -155,7 +143,6 @@ CxCookiePv1::sGetPath() const {
     return _m_sPath;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetPath ()
 BOOL
 CxCookiePv1::bSetPath(
     const std::tstring &csPath
@@ -168,7 +155,6 @@ CxCookiePv1::bSetPath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: liGetMaxAge ()
 LONGLONG
 CxCookiePv1::liGetMaxAge() const {
     /*DEBUG*/
@@ -176,7 +162,6 @@ CxCookiePv1::liGetMaxAge() const {
     return _m_liMaxAge;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetMaxAge ()
 BOOL
 CxCookiePv1::bSetMaxAge(
     LONGLONG liMaxAge
@@ -189,7 +174,6 @@ CxCookiePv1::bSetMaxAge(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetSecure ()
 BOOL
 CxCookiePv1::bGetSecure() const {
     /*DEBUG*/
@@ -197,7 +181,6 @@ CxCookiePv1::bGetSecure() const {
     return _m_bSecure;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetSecure ()
 BOOL
 CxCookiePv1::bSetSecure(
     BOOL bFlag
@@ -210,7 +193,6 @@ CxCookiePv1::bSetSecure(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHttpOnly ()
 BOOL
 CxCookiePv1::bGetHttpOnly() const {
     /*DEBUG*/
@@ -218,7 +200,6 @@ CxCookiePv1::bGetHttpOnly() const {
     return _m_bHttpOnly;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetHttpOnly ()
 BOOL
 CxCookiePv1::bSetHttpOnly(
     BOOL bFlag
@@ -231,7 +212,6 @@ CxCookiePv1::bSetHttpOnly(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sToString ()
 std::tstring
 CxCookiePv1::sToString() const {
     /*DEBUG*/
@@ -282,7 +262,16 @@ CxCookiePv1::sToString() const {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear ()
+//TODO: sGetDump
+std::tstring
+CxCookiePv1::sGetDump() const {
+	std::tstring sRes;
+
+	xNOT_IMPLEMENTED_RET(std::tstring());
+
+	return sRes;
+}
+//---------------------------------------------------------------------------
 BOOL
 CxCookiePv1::bClear() {
     /*DEBUG*/
@@ -307,7 +296,6 @@ CxCookiePv1::bClear() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: SCompareNoCase
 struct SCompareNoCase {
     bool
     operator() (const std::tstring &csStr1, const std::tstring &csStr2) const {
@@ -315,7 +303,6 @@ struct SCompareNoCase {
     }
 };
 //---------------------------------------------------------------------------
-//DONE: bInit (parsing raw cookie string pv0)
 BOOL
 CxCookiePv1::bInit(
     const std::tstring &csRawCookie
@@ -328,9 +315,9 @@ CxCookiePv1::bInit(
     typedef std::pair<std::tstring, std::tstring>                TStringPair;
 
 
-    BOOL       bRes = FALSE;
-    TStringMap msCookie;
-    std::tstring    sCookie;
+    BOOL         bRes = FALSE;
+    TStringMap   msCookie;
+    std::tstring sCookie;
 
     sCookie.assign( csRawCookie );
     sCookie.assign( CxString::sRemoveAll(sCookie, CxConst::xSQM) );

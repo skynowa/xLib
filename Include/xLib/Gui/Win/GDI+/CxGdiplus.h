@@ -8,23 +8,21 @@
 #define xLib_GdiPlus_CxGdiplusH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
+//---------------------------------------------------------------------------
 #if defined(xOS_WIN)
-    #include <GDIPlus.h>
+class CxGdiplus :
+	public CxNonCopyable
+	/// GDI+
+{
+	public:
+				  CxGdiplus();
+			///< constructor
+		virtual  ~CxGdiplus();
+			///< destructor
 
-    #pragma comment (lib, "Gdiplus.lib")
-    //---------------------------------------------------------------------------
-    class CxGdiplus :
-        public CxNonCopyable
-        /// GDI+
-    {
-        public:
-                      CxGdiplus();
-            virtual  ~CxGdiplus();
-
-        private:
-            ULONG_PTR _m_pulToken;
-    };
+	private:
+		ULONG_PTR _m_pulToken;	///< for private use
+};
 #elif defined(xOS_LINUX)
 
 #endif

@@ -8,14 +8,12 @@
 
 
 //---------------------------------------------------------------------------
-//TODO: CxAsyncSocket
 CxAsyncSocket::CxAsyncSocket() :
     _m_bRes(FALSE)
 {
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxAsyncSocket
 /*virtual*/
 CxAsyncSocket::~CxAsyncSocket() {
 

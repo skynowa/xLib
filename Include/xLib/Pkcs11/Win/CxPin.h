@@ -36,14 +36,10 @@ class CxPin :
 	#endif
 
     private:
-        BOOL                 _m_bRes;
-        	///< for private use
-        CK_RV                _m_ulRes;
-        	///< for private use
-        CK_FUNCTION_LIST_PTR _m_pFunc;
-        	///< pointer to dll's functions list
-        CK_SESSION_HANDLE    _m_hSession;
-        	///< session handle
+        BOOL                 _m_bRes;      	///< for private use
+        CK_RV                _m_ulRes;     	///< for private use
+        CK_FUNCTION_LIST_PTR _m_pFunc;     	///< pointer to dll's functions list
+        CK_SESSION_HANDLE    _m_hSession;	///< session handle
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Pkcs11_CxPinH

@@ -12,8 +12,6 @@
 
 #if defined(xOS_WIN)
     #include <xLib/Sync/CxAutoMutex.h>
-#elif defined(xOS_LINUX)
-
 #endif
 
 
@@ -24,31 +22,25 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxFileLog
 CxFileLog::CxFileLog(
     const ULONG culMaxFileSizeBytes
 ) :
-    _m_sFilePath      (),
+    _m_sFilePath         (),
     _m_ulMaxFileSizeBytes(culMaxFileSizeBytes)
-#if defined(xOS_WIN)
-//    ,
-//    _m_mtFile         ()
-#elif defined(xOS_LINUX)
-    //TODO: CxMutex
-#endif
+	#if xTODO
+		CxAutoMutex
+	#endif
 {
     /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(), return);
     /*DEBUG*/xASSERT_DO(lsLimitSize >  culMaxFileSizeBytes,  return);
     /*DEBUG*/xASSERT_DO(lsLimitSize >  lsDefaultMaxSize,     return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxFileLog
 /*virtual*/
 CxFileLog::~CxFileLog() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bSetFilePath (set log path)
 BOOL
 CxFileLog::bSetFilePath(
     const std::tstring &csFilePath
@@ -65,7 +57,6 @@ CxFileLog::bSetFilePath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetFilePath (get log path)
 const std::tstring &
 CxFileLog::sGetFilePath() const {
     /*DEBUG*/
@@ -73,7 +64,6 @@ CxFileLog::sGetFilePath() const {
     return _m_sFilePath;
 }
 //---------------------------------------------------------------------------
-//DONE: bWrite (write)
 BOOL
 CxFileLog::bWrite(
     LPCTSTR pcszFormat, ...
@@ -94,7 +84,7 @@ CxFileLog::bWrite(
     //-------------------------------------
     //comment
     std::tstring sParam;
-    va_list palArgs;
+    va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);
@@ -102,11 +92,9 @@ CxFileLog::bWrite(
 
     //-------------------------------------
     //write to file
-#if defined(xOS_WIN)
-//    /*LOCK*/CxAutoMutex SL(_m_mtFile);
-#elif defined(xOS_LINUX)
-    //TODO: lock
-#endif
+	#if xTODO
+		CxAutoMutex SL(_m_mtFile);
+	#endif
 
     CxFile sfFile;
 
@@ -119,16 +107,13 @@ CxFileLog::bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear (clear content)
 BOOL
 CxFileLog::bClear() {
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
-//    /*LOCK*/CxAutoMutex SL(_m_mtFile);
-#elif defined(xOS_LINUX)
-    //TODO: lock
-#endif
+	#if xTODO
+		CxAutoMutex SL(_m_mtFile);
+	#endif
 
     bRes = CxFile::bClear(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -136,16 +121,13 @@ CxFileLog::bClear() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bDelete (delete)
 BOOL
 CxFileLog::bDelete() {
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
-//    /*LOCK*/CxAutoMutex SL(_m_mtFile);
-#elif defined(xOS_LINUX)
-    //TODO: lock
-#endif
+	#if xTODO
+		CxAutoMutex SL(_m_mtFile);
+	#endif
 
     bRes = CxFile::bDelete(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -161,23 +143,20 @@ CxFileLog::bDelete() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bDeleteIfFull (delete log, if it is full)
 BOOL
 CxFileLog::_bDeleteIfFull() {
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
-//    /*LOCK*/CxAutoMutex SL(_m_mtFile);
-#elif defined(xOS_LINUX)
-    //TODO: lock
-#endif
+	#if xTODO
+		CxAutoMutex SL(_m_mtFile);
+	#endif
 
     bRes = CxFile::bIsExists(sGetFilePath());
     xCHECK_RET(FALSE == bRes, TRUE);
 
     //-------------------------------------
     //delete log, if full
-    ULONG ulSize = static_cast<ULONG>(  CxFile::liGetSize(sGetFilePath()) );
+    ULONG ulSize = static_cast<ULONG>( CxFile::liGetSize(sGetFilePath()) );
 
     xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, TRUE);
 

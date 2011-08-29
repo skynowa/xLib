@@ -15,14 +15,17 @@ class CxVolume :
 {
     public:
         static BOOL         bIsReady                         (const std::tstring &csVolumePath);
+        	///< is ready
         static BOOL         bIsEmpty                         (const std::tstring &csVolumePath);
+        	///< is empty
         static BOOL         bGetFreeSpace                    (const std::tstring &csDirPath, ULONGLONG *pullAvailable, ULONGLONG *pullTotal, ULONGLONG *pullFree);
+        	///< get free space
         static BOOL         bMount                           (const std::tstring &csSourcePath, const std::tstring &csDestPath);
+        	///< mount
 
-        //GetFileSystemType
     #if defined(xOS_WIN)
-        enum EType 
-            /// type
+        enum EType
+            /// filesystem type
         {
             dtUnknown   = DRIVE_UNKNOWN,
             dtNoRoot    = DRIVE_NO_ROOT_DIR,
@@ -64,7 +67,9 @@ class CxVolume :
 
     private:
                             CxVolume                         ();
+            ///< constructor
         virtual            ~CxVolume                         ();
+        	///< destructor
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxVolumeH
