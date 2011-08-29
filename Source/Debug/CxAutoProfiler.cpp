@@ -13,7 +13,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxAutoProfiler
 CxAutoProfiler::CxAutoProfiler(
     const std::tstring      &csFilePath,
     const CxProfiler::EMode  cpmMode,
@@ -40,7 +39,6 @@ CxAutoProfiler::CxAutoProfiler(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxAutoProfiler
 /*virtual*/
 CxAutoProfiler::~CxAutoProfiler() {
     _m_pfProfiler.bStop(_m_sComment.c_str());

@@ -18,8 +18,9 @@ const INT CxRandom::M = RAND_MAX;
 const INT CxRandom::Q = M / A;
 const INT CxRandom::R = M % A;
 //---------------------------------------------------------------------------
-//DONE: CxRandom
-CxRandom::CxRandom(LONG liSeed) :
+CxRandom::CxRandom(
+    LONG liSeed
+) :
     _m_liSeed               (0),
     _m_dNextNextGaussian    (false),
     _m_bHaveNextNextGaussian(false)
@@ -29,20 +30,23 @@ CxRandom::CxRandom(LONG liSeed) :
     liNext();
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxRandom
 /*virtual*/
 CxRandom::~CxRandom() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bSetSeed
 BOOL
-CxRandom::bSetSeed(LONG liSeed) {
+CxRandom::bSetSeed(
+    LONG liSeed
+)
+{
     srand(liSeed);
 
-////    if (liSeed < 0)    {
-////        liSeed = liSeed + (M + 1);
-////    }
+    #if xTEMP_DISABLED
+        if (liSeed < 0)    {
+            liSeed = liSeed + (M + 1);
+        }
+    #endif
 
     _m_liSeed = liSeed;
 
@@ -55,61 +59,58 @@ CxRandom::bSetSeed(LONG liSeed) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: iNextInt
 INT
 CxRandom::iNextInt() {
     return static_cast<INT>( liNext() );
 }
 //---------------------------------------------------------------------------
-//DONE: iNextInt
 INT
-CxRandom::iNextInt(INT max) {
+CxRandom::iNextInt(
+    INT max
+)
+{
     return iNextInt() % max;
 }
 //---------------------------------------------------------------------------
-//DONE: iNextInt
 INT
-CxRandom::iNextInt(INT a, INT b) {
+CxRandom::iNextInt(
+    INT a,
+    INT b
+)
+{
     return iNextInt() % (b - a) + a;
 }
 //---------------------------------------------------------------------------
-//DONE: liNextLong
 LONG
 CxRandom::liNextLong() {
     return liNext();
 }
 //---------------------------------------------------------------------------
-//DONE: bNextBoolean
 bool
 CxRandom::bNextBoolean() {
     return 0 == (liNext() % 2);
 }
 //---------------------------------------------------------------------------
-//TODO: fNextFloat
 FLOAT
 CxRandom::fNextFloat() {
     return static_cast<FLOAT>( iNextInt() / FLOAT(M) );
 }
 //---------------------------------------------------------------------------
-//DONE: bNextDouble
 DOUBLE
 CxRandom::bNextDouble() {
     return static_cast<DOUBLE>( iNextInt() / DOUBLE(M) );
 }
 //---------------------------------------------------------------------------
-//DONE:
 CHAR
 CxRandom::chNextChar() {
     return CHAR(('z' - 'a' + 1) * bNextDouble() + 'a');
 }
 //---------------------------------------------------------------------------
-//DONE: chNextFigure
 CHAR
 CxRandom::chNextFigure() {
     return CHAR(('9' - '0' + 1) * bNextDouble() + '0');
 }
 //---------------------------------------------------------------------------
-//DONE: dNextGaussian
 DOUBLE
 CxRandom::dNextGaussian() {
     //See Knuth, ACP, Section 3.4.1 Algorithm C.
@@ -146,7 +147,6 @@ CxRandom::dNextGaussian() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bSetSeed
 BOOL
 CxRandom::bSetSeed() {
     /*DEBUG*/// n/a
@@ -165,7 +165,6 @@ CxRandom::bSetSeed() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: liGetInt (Generates a random number between specified min/max boundaries)
 /*static*/
 LONG
 CxRandom::liGetInt(
@@ -186,7 +185,6 @@ CxRandom::liGetInt(
     return liRes;
 }
 //---------------------------------------------------------------------------
-//DONE: liGetIntEx (Generates a random number between specified min/max boundaries using a vector to shuffle)
 /*static*/
 LONG
 CxRandom::liGetIntEx(
@@ -209,7 +207,6 @@ CxRandom::liGetIntEx(
 	return vliRes.at(0);
 }
 //---------------------------------------------------------------------------
-//DONE: sGetString (get random string)
 /*static*/
 std::tstring
 CxRandom::sGetString(
@@ -274,14 +271,15 @@ CxRandom::sGetString(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: liNext
 LONG
 CxRandom::liNext() {
-//  INT tmp = A * (_m_liSeed % Q) - R * (_m_liSeed / Q);
-//  if(tmp>=0)  _m_liSeed = tmp;
-//  else        _m_liSeed = tmp + M;
-//
-//  return _m_liSeed;
+    #if xTEMP_DISABLED
+        INT tmp = A * (_m_liSeed % Q) - R * (_m_liSeed / Q);
+        if(tmp>=0)  _m_liSeed = tmp;
+        else        _m_liSeed = tmp + M;
+
+        return _m_liSeed;
+    #endif
 
     return rand();
 }

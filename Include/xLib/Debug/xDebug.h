@@ -145,37 +145,60 @@
 #endif
 //-------------------------------------------------------------------------
 #define xCHECK_RET(expr, return_expr)                       { if ((expr)) { return (return_expr);                               } }
+    ///< check expression and return value
 #define xCHECK_DO(expr, do_instructions)                    { if ((expr)) { do_instructions;                                    } }
+    ///< check expression and do instructions
 #define xCHECK_MSG(expr, comment)                           { if ((expr)) { std::tcout << (comment) << std::endl;                        } }
+    ///< check expression and show message with comment
 #define xCHECK_MSG_RET(expr, comment, return_expr)          { if ((expr)) { std::tcout << (comment) << std::endl; return (return_expr);  } }
+    ///< check expression, show message with comment and return value
 #define xCHECK_MSG_DO(expr, comment, do_instructions)       { if ((expr)) { std::tcout << (comment) << std::endl; do_instructions;       } }
+    ///< check expression, show message with comment and do instructions
 
 #define xASSERT_STATIC(expr)                                { switch (0) {case 0: case (expr):;} }
+    ///< static assert
 #define xNOT_IMPLEMENTED_RET(return_expr)                   { xASSERT_MSG_RET(FALSE, xT("Not implemented"), (return_expr)); }
+    ///< show not implemented message and return value
 
 #define xAUTO_PROFILER(file_path, mode, comment, ...)       CxAutoProfiler _apfPerfom(file_path, mode, comment, __VA_ARGS__)
+    ///< auto profiler
 #define xAUTO_PROFILER_FUNC(file_path, mode)                CxAutoProfiler _apfFunc(file_path, mode, xFUNCTION)
+    ///< auto profiler, comment contains name of current function
 
 #if xTEST_BLOCK_WITH_TRACE_POINT
     #define xTEST_BLOCK(uiLoops)                            xTRACE_POINT; for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
+        ///< test block with trace point
 #else
     #define xTEST_BLOCK(uiLoops)                                          for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
+        ///< test block without trace point
 #endif
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
     #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                        }
+        ///< tracing
     #define xTRACE(msg)                                     { CxDebugger::bTrace(msg);                                        }
+        ///< tracing
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
+        ///< tracing, comment with current function name
     #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::tstring(xFUNCTION) + xT(": ") + std::tstring(s)); }
+        ///< tracing, comment with current function name and message
     #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %li (file: %s, function: %s, last error: %s, line: %li)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
+        ///< trace point (use CxDebugger)
     #define xSTD_TRACE_POINT                                { std::tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << std::endl; }
+        ///< trace point (use std::cout)
 #else
     #define xTRACEV(format, ...)                            { /* n/a */ }
+        ///< nothing
     #define xTRACE(msg)                                     { /* n/a */ }
+        ///< nothing
     #define xTRACE_FUNC                                     { /* n/a */ }
+        ///< nothing
     #define xTRACE_FUNC_MSG(s)                              { /* n/a */ }
+        ///< nothing
     #define xTRACE_POINT                                    { /* n/a */ }
+        ///< nothing
     #define xSTD_TRACE_POINT                                { /* n/a */ }
+        ///< nothing
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_xDebugH

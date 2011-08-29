@@ -15,7 +15,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: ulCalc
 /*static*/
 ULONG
 CxCrc32::ulCalc(
@@ -48,7 +47,6 @@ CxCrc32::ulCalc(
     return crc ^ 0xFFFFFFFFUL;
 }
 //---------------------------------------------------------------------------
-//DONE: ulCalcFile
 /*static*/
 ULONG
 CxCrc32::ulCalcFile(
@@ -73,7 +71,6 @@ CxCrc32::ulCalcFile(
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ulCalcFast
 /*static*/
 ULONG
 CxCrc32::ulCalcFast(
@@ -177,7 +174,6 @@ CxCrc32::ulCalcFast(
     return crc ^ 0xFFFFFFFFUL;
 }
 //---------------------------------------------------------------------------
-//DONE: ulCalcFileFast
 /*static*/
 ULONG
 CxCrc32::ulCalcFileFast(
@@ -202,7 +198,6 @@ CxCrc32::ulCalcFileFast(
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sFormatHex (format Crc32 like "0AADDEA0")
 /*static*/
 std::tstring
 CxCrc32::sFormatHex(
@@ -216,7 +211,6 @@ CxCrc32::sFormatHex(
 
     sRes = CxString::sFormat(xT("%X"), culCrc32);    //0AADDEA0
 
-    //����� �� �������������� ���� � ������ Crc32
     size_t uiAdditionalZeros = uiCrc32Size - sRes.size();
     if (0 != uiAdditionalZeros) {
         sRes.insert(0, uiAdditionalZeros, xT('0'));
@@ -234,12 +228,10 @@ CxCrc32::sFormatHex(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCrc32
 CxCrc32::CxCrc32() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxCrc32
 /*virtual*/
 CxCrc32::~CxCrc32() {
 
