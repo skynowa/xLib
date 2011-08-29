@@ -26,7 +26,6 @@ class CxDebugger :
             ///< is OS debugger presents
         static BOOL         bBreak          ();
             ///< attach to OS debugger
-
         static BOOL         bSetLogPath     (const std::tstring &csFilePath);
             ///< set log file path
         static std::tstring sGetLogPath     ();

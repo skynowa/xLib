@@ -15,10 +15,17 @@ class CxBase64 :
 {
     public:
         static std::string sEncode     (const std::string &csStr);
+            ///< encoding
         static std::string sDecode     (const std::string &csStr);
+            ///< decoding
         static BOOL        bIsCharValid(const char cchChar);
+            ///< is a valid Base64 char
 
     private:
+                           CxBase64();
+            ///< constructor
+        virtual           ~CxBase64();
+            ///< destructor
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Crypt_CxBase64H

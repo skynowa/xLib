@@ -21,50 +21,57 @@ class CxTest :
     /// testing
 {
     public:
-        VOID *                    m_pvRes;
-        TCHAR                     m_chRes;
-        bool                      m_blRes;
-        BOOL                      m_bRes;
-        INT                       m_iRes;
-        SHORT                     m_siRes;
-        USHORT                    m_usiRes;
-        UINT                      m_uiRes;
-        size_t                    m_stRes;
-        LONG                      m_liRes;
-        ULONG                     m_ulRes;
-        LONGLONG                  m_llRes;
-        ULONGLONG                 m_ullRes;
-        FLOAT                     m_fRes;
-        DOUBLE                    m_dRes;
-        std::tstring              m_sRes;
-        std::ustring              m_usRes;
-        std::vector<TCHAR>        m_vecchRes;
-        std::vector<std::tstring> m_vsRes;
-        std::map<std::tstring, std::tstring>      m_msRes;
-        std::multimap<std::tstring, std::tstring> m_mmsRes;
+        VOID *                    m_pvRes;      ///< for global use
+        TCHAR                     m_chRes;      ///< for global use
+        bool                      m_blRes;      ///< for global use
+        BOOL                      m_bRes;       ///< for global use
+        INT                       m_iRes;       ///< for global use
+        SHORT                     m_siRes;      ///< for global use
+        USHORT                    m_usiRes;     ///< for global use
+        UINT                      m_uiRes;      ///< for global use
+        size_t                    m_stRes;      ///< for global use
+        LONG                      m_liRes;      ///< for global use
+        ULONG                     m_ulRes;      ///< for global use
+        LONGLONG                  m_llRes;      ///< for global use
+        ULONGLONG                 m_ullRes;     ///< for global use
+        FLOAT                     m_fRes;       ///< for global use
+        DOUBLE                    m_dRes;       ///< for global use
+        std::tstring              m_sRes;       ///< for global use
+        std::ustring              m_usRes;      ///< for global use
+        std::vector<TCHAR>        m_vecchRes;   ///< for global use
+        std::vector<std::tstring> m_vsRes;      ///< for global use
+        std::map<std::tstring, std::tstring>      m_msRes;  ///< for global use
+        std::multimap<std::tstring, std::tstring> m_mmsRes; ///< for global use
 
     #if defined(xOS_WIN)
-        HANDLE                    m_hRes;
-        HWND                      m_hwndRes;
+        HANDLE                    m_hRes;       ///< for global use
+        HWND                      m_hwndRes;    ///< for global use
     #elif defined(xOS_LINUX)
 
     #endif
 
                                   CxTest         ();
+            ///< constructor
         virtual                  ~CxTest         () = 0;
+            ///< destructor
 
         BOOL                      bRun           (const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
+            ///< run test units
         virtual BOOL              bUnit          (const ULONGLONG cullBlockLoops) = 0;
+            ///< test unit
         BOOL                      bCreateWorkDir (const std::tstring &csDirName);
+            ///< create work dir
         const std::tstring &      sGetWorkDirPath() const;
-
+            ///< get work dir path
         const std::tstring &      sGetName       () const;
+            ///< get name
         BOOL                      bSetName       (const std::tstring &csTestName);
+            ///< set name
 
     private:
-        BOOL                      _m_bRes;
-        std::tstring              _m_sWorkDirPath;
-        std::tstring              _m_sName;
+        BOOL                      _m_bRes;          ///< for private use
+        std::tstring              _m_sWorkDirPath;  ///< work dir path
+        std::tstring              _m_sName;         ///< test name
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxTestH

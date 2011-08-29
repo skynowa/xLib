@@ -114,11 +114,13 @@ CxTest_CxBlowfish::bUnit(
 		cmRes = BF.cmGetFileCryptStatus(sFilePlain, usStamp);
 		xASSERT_EQ(CxBlowfish::cmDecrypt, cmRes);
 
-//		m_bRes = BF.bEncryptFileCfb64(sFilePlain,     sFileEncrypted, usStamp);
-//		xASSERT_NOT_EQ(FALSE, m_bRes);
-//
-//		m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, usStamp);
-//		xASSERT_NOT_EQ(FALSE, m_bRes);
+    #if xTODO
+        m_bRes = BF.bEncryptFileCfb64(sFilePlain,     sFileEncrypted, usStamp);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+
+        m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, usStamp);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+    #endif
 	}
 
 

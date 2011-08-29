@@ -13,7 +13,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: ulGet (Retrieves the calling thread's last-error code value)
 /*static*/
 ULONG
 CxLastError::ulGet() {
@@ -34,7 +33,14 @@ CxLastError::ulGet() {
     return ulCode;
 }
 //---------------------------------------------------------------------------
-//DONE: bSet (Sets the last-error code for the calling thread)
+/*static*/
+std::tstring
+CxLastError::sGet() {
+    /*DEBUG*/
+
+    return sFormat(ulGet());
+}
+//---------------------------------------------------------------------------
 /*static*/
 BOOL
 CxLastError::bSet(
@@ -53,16 +59,6 @@ CxLastError::bSet(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGet (get as string)
-/*static*/
-std::tstring
-CxLastError::sGet() {
-    /*DEBUG*/
-
-    return sFormat(ulGet());
-}
-//---------------------------------------------------------------------------
-//DONE: bReset (set last-error code to 0)
 /*static*/
 BOOL
 CxLastError::bReset() {
@@ -73,7 +69,6 @@ CxLastError::bReset() {
     return bSet(culCodeSuccess);
 }
 //---------------------------------------------------------------------------
-//DONE: sFormat (get last error as string)
 /*static*/
 std::tstring
 CxLastError::sFormat(
@@ -124,12 +119,10 @@ CxLastError::sFormat(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxLastError
 CxLastError::CxLastError() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxLastError
 /*virtual*/
 CxLastError::~CxLastError() {
     /*DEBUG*/// n/a

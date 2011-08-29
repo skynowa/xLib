@@ -17,7 +17,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxProfiler
 CxProfiler::CxProfiler(
     const EMode cpmMode
 ) :
@@ -30,7 +29,6 @@ CxProfiler::CxProfiler(
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxProfiler
 CxProfiler::~CxProfiler() {
     if (false == _flLog.sGetFilePath().empty()) {
         _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
@@ -38,7 +36,6 @@ CxProfiler::~CxProfiler() {
     }
 }
 //---------------------------------------------------------------------------
-//DONE: bSetLogPath (set log path)
 BOOL
 CxProfiler::bSetLogPath(
     const std::tstring &csLogPath
@@ -52,7 +49,6 @@ CxProfiler::bSetLogPath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetLogPath (get log path)
 const std::tstring &
 CxProfiler::sGetLogPath() const {
     /*DEBUG*/
@@ -60,7 +56,6 @@ CxProfiler::sGetLogPath() const {
     return _flLog.sGetFilePath();
 }
 //--------------------------------------------------------------------------
-//DONE: bStart (start measurement)
 BOOL
 CxProfiler::bStart() {
     /*DEBUG*/xASSERT_RET(FALSE == _m_bIsStarted, FALSE);
@@ -134,7 +129,6 @@ CxProfiler::bStart() {
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: bStop (stop measurement)
 BOOL
 CxProfiler::bStop(
     LPCTSTR pcszComment, ...
@@ -234,7 +228,6 @@ CxProfiler::bStop(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: bPulse (stop, start measurement)
 BOOL
 CxProfiler::bPulse(
     LPCTSTR pcszComment, ...
@@ -270,7 +263,6 @@ CxProfiler::bPulse(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bResetData (reset all class data)
 BOOL
 CxProfiler::_bResetData() {
     #if xTODO
@@ -323,8 +315,6 @@ CxProfiler::_bResetData() {
 }
 //--------------------------------------------------------------------------
 #if defined(xOS_FREEBSD)
-//DONE: _liGetClock (determine processor time used for FreeBSD)
-//NOTE: http://bugs.vcmi.eu/view.php?id=719
 /*static*/
 std::clock_t
 CxProfiler::_liGetClock() {
@@ -346,7 +336,6 @@ CxProfiler::_liGetClock() {
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
 
-//DONE: gettimeofday (like unix gettimeofday)
 /*static*/
 INT
 CxProfiler::gettimeofday(

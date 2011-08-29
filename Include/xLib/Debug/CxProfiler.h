@@ -16,81 +16,93 @@ class CxProfiler :
     /// code profiling (msec)
 {
     public:
-        enum EMode 
+        enum EMode
             /// mode
         {
-            pmStdClock,
-            pmDateTime,
-            pmGetTimeOfDay
+            pmStdClock,         ///< use std::clock_t
+            pmDateTime,         ///< use CxDateTime
+            pmGetTimeOfDay      ///< use gettimeofday
         #if defined(xOS_WIN)
             ,
-            pmTickCount,
-            pmPerformanceCount,
-            pmThreadTimes
+            pmTickCount,        ///< use ::GetTickCount
+            pmPerformanceCount, ///< use ::QueryPerformanceFrequency
+            pmThreadTimes       ///< use ::GetThreadTime
         #endif
         };
 
                             CxProfiler (const EMode cpmMode);
+            ///< constructor
         virtual            ~CxProfiler ();
+            ///< destructor
 
         BOOL                bSetLogPath(const std::tstring &csLogPath);
+            ///< set log path
         const std::tstring &sGetLogPath() const;
+            ///< get log path
 
         BOOL                bStart     ();
+            ///< start measurement
         BOOL                bStop      (LPCTSTR pcszComment, ...);
+            ///< stop measurement
         BOOL                bPulse     (LPCTSTR pcszComment, ...);
+            ///< stop, start measurement
 
     private:
-        BOOL                _m_bRes;
-        const EMode         _m_pmModeNow;
-        BOOL                _m_bIsStarted;
-        CxFileLog           _flLog;
+        BOOL                _m_bRes;                ///< for private use
+        const EMode         _m_pmModeNow;           ///< which mode is running now
+        BOOL                _m_bIsStarted;          ///< is started
+        CxFileLog           _flLog;                 ///< file log
 
         //pmClock
-        std::clock_t        _m_ctClocksStart;
-        std::clock_t        _m_ctClocksStop;
+        std::clock_t        _m_ctClocksStart;       ///< start value
+        std::clock_t        _m_ctClocksStop;        ///< stop value
 
         //pmDateTime
-        CxDateTime          _m_dtTimesStart;
-        CxDateTime          _m_dtTimesStop;
+        CxDateTime          _m_dtTimesStart;        ///< start value
+        CxDateTime          _m_dtTimesStop;         ///< stop value
 
         //pmGetTimeOfDay
-        DOUBLE              _m_dMicrosecStart;
-        DOUBLE              _m_dMicrosecStop;
+        DOUBLE              _m_dMicrosecStart;      ///< start value
+        DOUBLE              _m_dMicrosecStop;       ///< stop value
 
     #if defined(xOS_WIN)
         //pmTickCount
-        ULONG               _m_ulTicksStart;
-        ULONG               _m_ulTicksStop;
+        ULONG               _m_ulTicksStart;        ///< start value
+        ULONG               _m_ulTicksStop;         ///< stop value
 
         //pmPerformanceCount
-        LARGE_INTEGER       _m_liCountersPerfFreq;    //Ticks per second
-        LARGE_INTEGER       _m_liCountersStart;
-        LARGE_INTEGER       _m_liCountersStop;
+        LARGE_INTEGER       _m_liCountersPerfFreq;  ///< ticks per second
+        LARGE_INTEGER       _m_liCountersStart;     ///< start value
+        LARGE_INTEGER       _m_liCountersStop;      ///< stop value
 
         //pmThreadTimes
-        FILETIME            _m_lpCreationTime;
-        FILETIME            _m_lpExitTime;
-        FILETIME            _m_lpKernelTimeStart;
-        FILETIME            _m_lpUserTimeStart;
-        FILETIME            _m_lpKernelTimeStop;
-        FILETIME            _m_lpUserTimeStop;
+        FILETIME            _m_lpCreationTime;      ///< for private use
+        FILETIME            _m_lpExitTime;          ///< for private use
+        FILETIME            _m_lpKernelTimeStart;   ///< start value
+        FILETIME            _m_lpUserTimeStart;     ///< start value
+        FILETIME            _m_lpKernelTimeStop;    ///< stop value
+        FILETIME            _m_lpUserTimeStop;      ///< stop value
     #endif
 
         BOOL                _bResetData();
+            ///< reset all class data
 
     #if defined(xOS_FREEBSD)
         static std::clock_t _liGetClock();
+            ///< get std::clock_t
+            ///< http://bugs.vcmi.eu/view.php?id=719
     #endif
 
     #if defined(xOS_WIN)
-        //for gettimeofday
-        struct timezone {
+        struct timezone
+            /// for gettimeofday
+        {
             INT tz_minuteswest; ///< minutes W of Greenwich
             INT tz_dsttime;     ///< type of dst correction
         };
 
         static INT          gettimeofday(struct timeval *tv, struct timezone *tz);
+            ///< porting from Linux gettimeofday
     #endif
 };
 //---------------------------------------------------------------------------

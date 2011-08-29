@@ -23,7 +23,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxReport
 CxReport::CxReport(
     const EType        &crtType,
     const std::tstring &csExp,
@@ -70,7 +69,6 @@ CxReport::CxReport(
     }
 }
 //---------------------------------------------------------------------------
-//DONE: CxReport
 CxReport::CxReport(
     const EType        &crtType,
     const std::tstring &csExp,
@@ -124,13 +122,11 @@ CxReport::CxReport(
     }
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxReport
 /*virtual*/
 CxReport::~CxReport() {
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetLastError (get last error)
 CxReport::EType
 CxReport::rtGetType() const {
     /*DEBUG*/
@@ -138,7 +134,6 @@ CxReport::rtGetType() const {
     return _m_rtType;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetReport (get report)
 const std::tstring &
 CxReport::sGetReport() const {
     /*DEBUG*/
@@ -146,7 +141,6 @@ CxReport::sGetReport() const {
     return _m_sReport;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetProgram (get program name)
 const std::tstring &
 CxReport::sGetProgram() const {
     /*DEBUG*/
@@ -154,7 +148,6 @@ CxReport::sGetProgram() const {
     return _m_sProgram;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetProcessId (get process id)
 ULONG
 CxReport::ulGetProcessId() const {
     /*DEBUG*/
@@ -162,7 +155,6 @@ CxReport::ulGetProcessId() const {
     return _m_ulProcessId;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetThreadId (get thread id)
 ULONG
 CxReport::ulGetThreadId() const {
     /*DEBUG*/
@@ -170,7 +162,6 @@ CxReport::ulGetThreadId() const {
     return _m_ulThreadId;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetFileSize ()
 const std::tstring &
 CxReport::sGetFileSize() const {
     /*DEBUG*/
@@ -178,7 +169,6 @@ CxReport::sGetFileSize() const {
     return _m_sFileSize;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetSourceFile (get source file path)
 const std::tstring &
 CxReport::sGetSourceFile() const {
     /*DEBUG*/
@@ -186,7 +176,6 @@ CxReport::sGetSourceFile() const {
     return _m_sSourceFile;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetSourceLine (get source file line)
 ULONG
 CxReport::ulGetSourceLine() const {
     /*DEBUG*/
@@ -194,7 +183,6 @@ CxReport::ulGetSourceLine() const {
     return _m_ulSourceLine;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetFunctionName (get source function name)
 const std::tstring &
 CxReport::sGetFunctionName() const {
     /*DEBUG*/
@@ -202,7 +190,6 @@ CxReport::sGetFunctionName() const {
     return _m_sFunctionName;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetExpression (get expression)
 const std::tstring &
 CxReport::sGetExpression() const {
     /*DEBUG*/
@@ -210,7 +197,6 @@ CxReport::sGetExpression() const {
     return _m_sExpression;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetLastError (get last error)
 ULONG
 CxReport::ulGetLastError() const {
     /*DEBUG*/
@@ -218,7 +204,6 @@ CxReport::ulGetLastError() const {
     return _m_ulLastError;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetLastErrorStr (get formatting last error)
 const std::tstring &
 CxReport::sGetLastErrorStr() const {
     /*DEBUG*/
@@ -226,7 +211,6 @@ CxReport::sGetLastErrorStr() const {
     return _m_sLastErrorStr;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetCurrentDate (get current datetime)
 const std::tstring &
 CxReport::sGetCurrentDate() const {
     /*DEBUG*/
@@ -234,7 +218,6 @@ CxReport::sGetCurrentDate() const {
     return _m_sCurrentDate;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetBuildDate (get build datetime)
 const std::tstring &
 CxReport::sGetBuildDate() const {
     /*DEBUG*/
@@ -242,7 +225,6 @@ CxReport::sGetBuildDate() const {
     return _m_sBuildDate;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetOsVersion (get build OS version)
 const std::tstring &
 CxReport::sGetOsVersion() const {
     /*DEBUG*/
@@ -250,7 +232,6 @@ CxReport::sGetOsVersion() const {
     return _m_sOsVersion;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetOsArchitecture (get OS architecture)
 const std::tstring &
 CxReport::sGetOsArchitecture() const {
     /*DEBUG*/
@@ -258,7 +239,6 @@ CxReport::sGetOsArchitecture() const {
     return _m_sOsArchitecture;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetComment (get comment)
 const std::tstring &
 CxReport::sGetComment() const {
     /*DEBUG*/
@@ -274,7 +254,6 @@ CxReport::sGetComment() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _bInit (formatting message, init class members)
 BOOL
 CxReport::_bInitVars(
     const EType        &crtType,
@@ -335,7 +314,6 @@ CxReport::_bInitVars(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bInitPlain
 BOOL
 CxReport::_bInitPlain() {
     _m_sReport = CxString::sFormat(
@@ -386,7 +364,6 @@ CxReport::_bInitPlain() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bInitHtml
 BOOL
 CxReport::_bInitHtml() {
     _m_sReport = CxString::sFormat(
@@ -438,11 +415,9 @@ CxReport::_bInitHtml() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: _bInitFormated
 BOOL
 CxReport::_bInitFormated() {
 #if defined(xOS_WIN)
-    //TODO: _bInitFormated (add some data)
     _m_sReport = CxString::sFormat(
         xT("{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}{\\f1\\fnil DejaVu Sans Mono;}{\\f2\\fswiss\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f3\\fswiss\\fprq2\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f4\\fswiss\\fprq2\\fcharset0 Arial;}}")
         xT("{\\colortbl ;\\red255\\green0\\blue0;\\red0\\green0\\blue0;\\red255\\green0\\blue255;\\red0\\green255\\blue255;\\red255\\green255\\blue0;}")

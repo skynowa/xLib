@@ -15,7 +15,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxTestManager
 CxTestManager::CxTestManager(
     const BOOL cbIsUseTracing
 ) :
@@ -27,7 +26,6 @@ CxTestManager::CxTestManager(
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTestManager
 /*virtual*/
 CxTestManager::~CxTestManager() {
     for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
@@ -38,7 +36,6 @@ CxTestManager::~CxTestManager() {
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------
-//DONE: bAdd (new CxTest)
 BOOL
 CxTestManager::bAdd(
     CxTest        *pvtTest,
@@ -58,7 +55,6 @@ CxTestManager::bAdd(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bRun (run tests)
 BOOL
 CxTestManager::bRun(
     const ULONGLONG cullAllLoops,

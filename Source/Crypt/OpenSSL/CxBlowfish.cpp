@@ -25,11 +25,7 @@
 *
 *****************************************************************************/
 
-#define CRC32_STR_SIZE 8
-#define BUFF_SIZE      1024
-
 //---------------------------------------------------------------------------
-//DONE: CxBlowfish
 CxBlowfish::CxBlowfish() :
     _m_bRes(FALSE)
 {
@@ -37,30 +33,27 @@ CxBlowfish::CxBlowfish() :
     xBUFF_ZERO(_m_ucIvec);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxBlowfish
 CxBlowfish::~CxBlowfish() {
     /*SECURE*/xSTRUCT_ZERO(_m_bfKey);
     /*SECURE*/xBUFF_ZERO(_m_ucIvec);
 }
 //---------------------------------------------------------------------------
-//DONE: bSetKey
 BOOL
 CxBlowfish::bSetKey(
-    UCHAR *pucKey, 
-    INT    iKeySize
+    UCHAR     *pucKey,
+    const INT  ciKeySize
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL         != pucKey,   FALSE);
-    /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= iKeySize, FALSE);
-    /*DEBUG*/xASSERT_RET(0            <  iKeySize, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL         != pucKey,    FALSE);
+    /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= ciKeySize, FALSE);
+    /*DEBUG*/xASSERT_RET(0            <  ciKeySize, FALSE);
 
-    BF_set_key(&_m_bfKey, iKeySize, pucKey);
+    BF_set_key(&_m_bfKey, ciKeySize, pucKey);
     /*DEBUG*/// n/a
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetKey (???? - UCHAR)
 BOOL
 CxBlowfish::bSetKey(
     const std::ustring &cusKey
@@ -75,13 +68,12 @@ CxBlowfish::bSetKey(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetKey (???? - std::tstring)
 BOOL
 CxBlowfish::bSetKey(
     const std::tstring &csKey
 )
 {
-    /*DEBUG*/xASSERT_RET(false        == csKey.empty(),                              FALSE);
+    /*DEBUG*/xASSERT_RET(false        == csKey.empty(),                                   FALSE);
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= csKey.size() * sizeof(std::tstring::value_type), FALSE);
 
     _m_bRes = bSetKey(std::ustring(csKey.begin(), csKey.end()));
@@ -90,7 +82,6 @@ CxBlowfish::bSetKey(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetFileKey (???? - ????)
 BOOL
 CxBlowfish::bSetFileKey(
     const std::tstring &csFilePath
@@ -122,7 +113,6 @@ CxBlowfish::bSetFileKey(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: uiGetMaxKeySize
 /*static*/
 size_t
 CxBlowfish::uiGetMaxKeySize() {
@@ -137,35 +127,33 @@ CxBlowfish::uiGetMaxKeySize() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bEncryptCfb64
 BOOL
 CxBlowfish::bEncryptCfb64(
-    UCHAR      *pucIn, 
-    UCHAR      *pucOut, 
-    LONG        liInSize, 
-    INT        *piNum, 
-    ECryptMode  cmMode
+    UCHAR            *pucIn,
+    UCHAR            *pucOut,
+    const LONG        cliInSize,
+    INT              *piNum,
+    const ECryptMode  cmMode
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pucIn,    FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != pucIn,    FALSE);
-    /*DEBUG*/xASSERT_RET(0    <  liInSize, FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != piNum,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pucIn,     FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pucIn,     FALSE);
+    /*DEBUG*/xASSERT_RET(0    <  cliInSize, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != piNum,     FALSE);
 
     xBUFF_ZERO(_m_ucIvec);
 
-    BF_cfb64_encrypt(pucIn, pucOut, liInSize, &_m_bfKey, _m_ucIvec, piNum, cmMode);
+    BF_cfb64_encrypt(pucIn, pucOut, cliInSize, &_m_bfKey, _m_ucIvec, piNum, cmMode);
     /*DEBUG*/// n/a
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bEncryptCfb64
 BOOL
 CxBlowfish::bEncryptCfb64(
-    const std::ustring &cusIn, 
-    std::ustring       *pusOut, 
-    ECryptMode          cmMode
+    const std::ustring &cusIn,
+    std::ustring       *pusOut,
+    const ECryptMode    cmMode
 )
 {
     /*DEBUG*/xASSERT_RET(false == cusIn.empty(), FALSE);
@@ -175,19 +163,18 @@ CxBlowfish::bEncryptCfb64(
 
     (*pusOut).resize( cusIn.size() );
 
-    _m_bRes = bEncryptCfb64(const_cast<UCHAR *>(&cusIn.at(0)), &(*pusOut).at(0), cusIn.size(), &iNum, cmMode);
+    _m_bRes = bEncryptCfb64(const_cast<UCHAR *>( &cusIn.at(0) ), &(*pusOut).at(0), cusIn.size(), &iNum, cmMode);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     /*DEBUG*/xASSERT_RET(- 1   <  iNum,    FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bEncryptFileCfb64
 BOOL
 CxBlowfish::bEncryptFileCfb64(
-    const std::tstring &csFilePathIn, 
-    const std::tstring &csFilePathOut, 
-    ECryptMode          cmMode
+    const std::tstring &csFilePathIn,
+    const std::tstring &csFilePathOut,
+    const ECryptMode    cmMode
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePathIn.empty(),  FALSE);
@@ -230,29 +217,31 @@ CxBlowfish::bEncryptFileCfb64(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bEncryptFileCfb64 (COMMENTS)
 BOOL
 CxBlowfish::bEncryptFileCfb64(
-    const std::tstring &csFilePathIn, 
-    const std::tstring &csFilePathOut, 
-    const std::ustring &cusStamp, 
-    ECryptMode          cmCryptMode
+    const std::tstring &csFilePathIn,
+    const std::tstring &csFilePathOut,
+    const std::ustring &cusStamp,
+    const ECryptMode    cmCryptMode
 )
 {
     /*DEBUG*/
 
+    const size_t cuiCrc32StrSize = 8;
+    const size_t cuiBuffSize     = 1024;
+
     //-------------------------------------
-    //??????????? ??????? ????? (???? / ??????)
+    //
     ECryptMode cmFileCryptStatus = cmGetFileCryptStatus(csFilePathIn, cusStamp);
     xCHECK_RET(cmEncrypt == cmCryptMode && cmEncrypt == cmFileCryptStatus, TRUE);
     xCHECK_RET(cmDecrypt == cmCryptMode && cmDecrypt == cmFileCryptStatus, TRUE);
 
-    const std::tstring g_csCryptFileExt = xT("enc");
-    const std::tstring g_csTempFileExt  = xT("tmp");
+    const std::tstring csCryptFileExt = xT("enc");
+    const std::tstring csTempFileExt  = xT("tmp");
     std::ustring       usCrc32FromStamp;
 
     //-------------------------------------
-    //???????? ??????
+    //
     CxFile sfFileIn;
     CxFile sfFileOut;
 
@@ -263,36 +252,27 @@ CxBlowfish::bEncryptFileCfb64(
     /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
-    //Crc32 + ?????
+    //
     switch (cmCryptMode) {
-        //??????????
         case cmEncrypt: {
-                //-------------------------------------
-                //????? + Crc32
                 std::ustring usStampCrc32;
 
                 ULONG   ulCrc32 = CxCrc32::ulCalcFileFast(csFilePathIn);
                 std::tstring sCrc32 = CxCrc32::sFormatHex(ulCrc32);
 
                 usStampCrc32 = cusStamp + xS2US(sCrc32);
-                /*DEBUG*/xASSERT_RET(cusStamp.size() + CRC32_STR_SIZE == usStampCrc32.size(), FALSE);
+                /*DEBUG*/xASSERT_RET(cusStamp.size() + cuiCrc32StrSize == usStampCrc32.size(), FALSE);
 
-                //-------------------------------------
-                //?????? ?????? ? Crc32 ? ???. ????
                 size_t uiWrited = sfFileOut.uiWrite((LPVOID)&usStampCrc32.at(0), usStampCrc32.size());
                 /*DEBUF*/xASSERT_RET(uiWrited == usStampCrc32.size(), FALSE);
             }
             break;
 
-        //????????????
         case cmDecrypt: {
-                //-------------------------------------
-                //?????
                 std::ustring usCrc32;
 
-                usCrc32.resize(CRC32_STR_SIZE);
+                usCrc32.resize(cuiCrc32StrSize);
 
-                //?????? Crc32 ?? ??????
                 _m_bRes = sfFileIn.bSetPosition(cusStamp.size(), CxFile::ppBegin);
                 /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -301,8 +281,7 @@ CxBlowfish::bEncryptFileCfb64(
 
                 usCrc32FromStamp = usCrc32;
 
-                //?????? ?????, ??????? ? ????? ??????
-                _m_bRes = sfFileIn.bSetPosition(cusStamp.size() + CRC32_STR_SIZE, CxFile::ppBegin);
+                _m_bRes = sfFileIn.bSetPosition(cusStamp.size() + cuiCrc32StrSize, CxFile::ppBegin);
                 /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
             }
             break;
@@ -314,12 +293,12 @@ CxBlowfish::bEncryptFileCfb64(
     }
 
     //-------------------------------------
-    //?????????? / ???????????? ???????? ?????
+    //
     std::ustring usIn;
-    usIn.resize(BUFF_SIZE);
+    usIn.resize(cuiBuffSize);
 
     std::ustring usOut;
-    usOut.resize(BUFF_SIZE);
+    usOut.resize(cuiBuffSize);
 
     for ( ; ; ) {
         INT iNum = 0;
@@ -341,7 +320,7 @@ CxBlowfish::bEncryptFileCfb64(
     /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
-    //???? ?????????? - ???????? Crc32 ??????????????? ?????
+    //
     if (cmDecrypt == cmCryptMode) {
         std::tstring sCrc32FileOut = CxCrc32::sFormatHex( CxCrc32::ulCalcFileFast(csFilePathOut) );
 
@@ -349,21 +328,21 @@ CxBlowfish::bEncryptFileCfb64(
     }
 
     //-------------------------------------
-    //??????????? File.txt.tmp -> File.txt
+    //File.txt.tmp -> File.txt
     _m_bRes = CxFile::bWipe(csFilePathIn, 1);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
-    //????????? ?????????? ??? ???. ?????
+    //
     switch (cmCryptMode) {
         case CxBlowfish::cmEncrypt: {
-                _m_bRes = CxFile::bRename(csFilePathOut, csFilePathIn + CxConst::xDOT + g_csCryptFileExt);
+                _m_bRes = CxFile::bRename(csFilePathOut, csFilePathIn + CxConst::xDOT + csCryptFileExt);
                 /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
             }
             break;
 
         case CxBlowfish::cmDecrypt: {
-                _m_bRes = CxFile::bRename(csFilePathOut, CxPath::sRemoveExtIf(csFilePathIn, g_csCryptFileExt));
+                _m_bRes = CxFile::bRename(csFilePathOut, CxPath::sRemoveExtIf(csFilePathIn, csCryptFileExt));
                 /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
             }
             break;
@@ -377,10 +356,9 @@ CxBlowfish::bEncryptFileCfb64(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: cmGetFileCryptStatus (????? ?????????)
 CxBlowfish::ECryptMode
 CxBlowfish::cmGetFileCryptStatus(
-    const std::tstring &csFilePath, 
+    const std::tstring &csFilePath,
     const std::ustring &cusStamp
 )
 {
@@ -394,34 +372,28 @@ CxBlowfish::cmGetFileCryptStatus(
     //-------------------------------------
     //CHECK
 
-    //???? ?? ??????????
     xCHECK_RET(FALSE == CxFile::bIsExists(csFilePath), CxBlowfish::cmUnknown);
 
     liFileSize = CxFile::liGetSize(csFilePath);
 
-    //???? ????
     ////--xCHECK_RET(0 == liFileSize, CxBlowfish::cmNotNeed);
     xCHECK_RET(0 == liFileSize, CxBlowfish::cmDecrypt);
 
-    //?????? ????? ??????, ????? ??????? ??????, ???? ?????? - ???????
-    xCHECK_RET(cusStamp.size() >= (size_t)liFileSize, CxBlowfish::cmDecrypt);
+    xCHECK_RET(cusStamp.size() >= static_cast<size_t>( liFileSize ), CxBlowfish::cmDecrypt);
 
     //-------------------------------------
-    //?????? ?????? N ??????
+    //
     CxFile sfFile;
 
     _m_bRes = sfFile.bOpen(csFilePath, CxFile::omBinRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, CxBlowfish::cmUnknown);
 
-    //???????? ?????? ??? ?????
     usStamp.resize(cusStamp.size());
     /*DEBUG*/xASSERT_RET(usStamp.size() == cusStamp.size(), CxBlowfish::cmUnknown);
 
-    //??????????? ???? ? ?????
     uiReadedSize = sfFile.uiRead(&usStamp.at(0), usStamp.size());
     /*DEBUG*/xASSERT_RET(usStamp.size() == uiReadedSize, CxBlowfish::cmUnknown);
 
-    //?????????? cusStamp ? ??????? ???????
     if (cusStamp == usStamp) {
         cmRes = CxBlowfish::cmEncrypt;
     } else {
@@ -431,4 +403,3 @@ CxBlowfish::cmGetFileCryptStatus(
     return cmRes;
 }
 //---------------------------------------------------------------------------
-

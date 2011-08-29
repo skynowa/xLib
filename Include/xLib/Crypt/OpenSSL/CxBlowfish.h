@@ -14,20 +14,8 @@ class CxBlowfish :
     public CxNonCopyable
     /// blowfish (openssl-1.0.0a)
 {
-    private:
-        enum 
-            /// constants
-        {
-            MAX_KEY_SIZE = 56,  ///< max key size 448 bit (56 byte)
-            IVEC_SIZE    = 8    ///< ivec size
-        };
-
-        BOOL          _m_bRes;
-        BF_KEY        _m_bfKey;
-        UCHAR         _m_ucIvec[IVEC_SIZE];
-
     public:
-        enum ECryptMode 
+        enum ECryptMode
             /// crypt mode
         {
             cmUnknown = - 1,
@@ -36,23 +24,46 @@ class CxBlowfish :
         };
 
                       CxBlowfish          ();
+            ///< constructor
         virtual      ~CxBlowfish          ();
+            ///< destructor
 
-        BOOL          bSetKey             (UCHAR *pucKey, INT iKeySize);
+        BOOL          bSetKey             (UCHAR *pucKey, const INT ciKeySize);
+            ///< set key
         BOOL          bSetKey             (const std::ustring &cusKey);
+            ///< set key
         BOOL          bSetKey             (const std::tstring &csKey);
+            ///< set key
         BOOL          bSetFileKey         (const std::tstring &csFilePath);
+            ///< set key as file
         static size_t uiGetMaxKeySize     ();
+            ///< get maximum key size
 
         //cfb64
-        BOOL          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, LONG liInSize, INT *piNum, ECryptMode cmMode);
-        BOOL          bEncryptCfb64       (const std::ustring &cusIn, std::ustring *pusOut, ECryptMode cmMode);
-        BOOL          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, ECryptMode cmMode);
+        BOOL          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, const LONG cliInSize, INT *piNum, const ECryptMode cmMode);
+            ///< encrypt buffer
+        BOOL          bEncryptCfb64       (const std::ustring &cusIn, std::ustring *pusOut, const ECryptMode cmMode);
+            ///< encrypt std::ustring
+        BOOL          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const ECryptMode cmMode);
+            ///< encrypt file
 
         //
-        BOOL          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const std::ustring &cusStamp, ECryptMode cmCryptMode);
+        BOOL          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const std::ustring &cusStamp, const ECryptMode cmCryptMode);
+            ///< encrypt file
         ECryptMode    cmGetFileCryptStatus(const std::tstring &csFilePath, const std::ustring &cusStamp);
+            ///< get file crypt status
 
+    private:
+        enum
+            /// constants
+        {
+            MAX_KEY_SIZE = 56,  ///< max key size 448 bit (56 byte)
+            IVEC_SIZE    = 8    ///< ivec size
+        };
+
+        BOOL          _m_bRes;              ///< for private use
+        BF_KEY        _m_bfKey;             ///< crypt key
+        UCHAR         _m_ucIvec[IVEC_SIZE]; ///< ivec
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Crypt_OpenSSL_CxBlowfishH

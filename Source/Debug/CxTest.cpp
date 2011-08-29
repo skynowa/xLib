@@ -18,7 +18,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxTest
 CxTest::CxTest() :
     m_pvRes        (NULL),
     m_chRes        (0),
@@ -51,14 +50,12 @@ CxTest::CxTest() :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest
 /*virtual*/
 CxTest::~CxTest() /* = 0*/ {
     _m_bRes = CxDir::bDeleteForce( sGetWorkDirPath() );
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: bRun (run in some loops)
 BOOL
 CxTest::bRun(
     const ULONGLONG cullUnitLoops,
@@ -88,7 +85,6 @@ CxTest::bRun(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit (unit)
 /*virtual*/
 BOOL
 CxTest::bUnit(
@@ -118,15 +114,6 @@ CxTest::bUnit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetWorkDirPath (get work dir path)
-const std::tstring &
-CxTest::sGetWorkDirPath() const {
-    /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
-
-    return _m_sWorkDirPath;
-}
-//---------------------------------------------------------------------------
-//DONE: bCreateWorkDir (create work dir)
 BOOL
 CxTest::bCreateWorkDir(
     const std::tstring &csDirName
@@ -146,7 +133,13 @@ CxTest::bCreateWorkDir(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetName ()
+const std::tstring &
+CxTest::sGetWorkDirPath() const {
+    /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
+
+    return _m_sWorkDirPath;
+}
+//---------------------------------------------------------------------------
 const std::tstring &
 CxTest::sGetName() const {
     /*DEBUG*/
@@ -154,7 +147,6 @@ CxTest::sGetName() const {
     return _m_sName;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetName ()
 BOOL
 CxTest::bSetName(
     const std::tstring &csTestName

@@ -16,10 +16,14 @@ class CxTestManager :
 {
 	public:
 				   CxTestManager(const BOOL cbIsUseTracing);
+	        ///< constructor
 		virtual   ~CxTestManager();
+		    ///< destructor
 
         BOOL       bAdd         (CxTest *pvtTest, const std::tstring &csTestName = CxConst::xSTR_EMPTY);
+            ///< add CxTest
         BOOL       bRun         (const ULONGLONG cullAllLoops, const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
+            ///< run all tests
 
         //TODO: not enough RAM
         //TODO: not enough HDD
@@ -29,9 +33,9 @@ class CxTestManager :
     private:
         typedef std::vector<CxTest *> TContainer;
 
-        BOOL       _m_bRes;
-        const BOOL _m_cbIsUseTracing;
-        TContainer _m_ctnTests;
+        BOOL       _m_bRes;             ///< for private use
+        const BOOL _m_cbIsUseTracing;   ///< is use tracing
+        TContainer _m_ctnTests;         ///< CxTest's container
 };
 //---------------------------------------------------------------------------
 #endif //xLib_CxTestManager.H
