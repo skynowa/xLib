@@ -8,11 +8,11 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: sGetEan13BarCode
 std::tstring
 sGetEan13BarCode(
-    const std::tstring &csData
+    const std::tstring &csData	///< a 12 digits length string
 )
+	///< \return a string which give the bar code when it is dispayed with EAN13.TTF font an empty string if the supplied parameter is no good
 {
 	/*DEBUG*/xASSERT_RET(false == csData.empty(), std::tstring());
 	/*DEBUG*/xASSERT_RET(12    == csData.size(),  std::tstring());
@@ -165,11 +165,11 @@ sGetEan13BarCode(
 	return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetEan13Code (������ ����������� �����)
 std::tstring
 sGetEan13Code(
-    const std::tstring &csData
+    const std::tstring &csData	///< a 12 digits length string
 )
+	///< \return a string which give the bar code when it is dispayed with EAN13.TTF font an empty string if the supplied parameter is no good
 {
 	//	����� ���������� ������ ������.
 	//	����� X - ����� ������ (�� ��������� - ����. Lyekka) ����, Y - ����� �������� (�� ���������) ����.

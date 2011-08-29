@@ -8,19 +8,19 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTcpServerSocket
 CxTcpServerSocket::CxTcpServerSocket() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTcpServerSocket
 CxTcpServerSocket::~CxTcpServerSocket() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bBind (associates a local address with a socket)
 BOOL
-CxTcpServerSocket::bBind(USHORT usPort) {
+CxTcpServerSocket::bBind(
+	USHORT usPort
+)
+{
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        FALSE);
     /*DEBUG*/xASSERT_RET((32767 > usPort) && (0 < usPort), FALSE);
 
@@ -41,9 +41,11 @@ CxTcpServerSocket::bBind(USHORT usPort) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bListen (places a socket in a state in which it is listening for an incoming connection)
 BOOL
-CxTcpServerSocket::bListen(INT iBacklog /*= SOMAXCONN*/) {
+CxTcpServerSocket::bListen(
+	INT iBacklog /*= SOMAXCONN*/
+)
+{
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, FALSE);
 
     INT iRes = listen(_m_puiSocket, iBacklog);
@@ -52,10 +54,13 @@ CxTcpServerSocket::bListen(INT iBacklog /*= SOMAXCONN*/) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bAccept (permits an incoming connection attempt on a socket)
 BOOL
-CxTcpServerSocket::bAccept(CxTcpServerSocket *pscktAcceptSocket, std::tstring *psFromIp) {
-    /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,      FALSE);
+CxTcpServerSocket::bAccept(
+	CxTcpServerSocket *pscktAcceptSocket,
+	std::tstring      *psFromIp
+)
+{
+	/*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,      FALSE);
     /*DEBUG*/xASSERT_RET(NULL      != pscktAcceptSocket, FALSE);
     /*DEBUG*/xASSERT_RET(NULL      != psFromIp,          FALSE);
 

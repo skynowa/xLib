@@ -15,6 +15,7 @@
 
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
+
 template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::EModalResult
@@ -28,13 +29,14 @@ CxMsgBoxT::iShow(
     EModalResult mrRes = mrAbort;
 
     mrRes = static_cast<EModalResult>( ::MessageBox(
-                            chWnd, 
-                            CxString::lexical_cast(cText).c_str(), 
-                            CxString::lexical_cast(cTitle).c_str(), 
+                            chWnd,
+                            CxString::lexical_cast(cText).c_str(),
+                            CxString::lexical_cast(cTitle).c_str(),
                             cuiType) );
 
     return mrRes;
 }
+
 #endif
 //---------------------------------------------------------------------------
 template <class TextT, class TitleT>
@@ -50,9 +52,9 @@ CxMsgBoxT::iShow(
 
 #if defined(xOS_WIN)
     mrRes = static_cast<EModalResult>( ::MessageBox(
-                            NULL, 
-                            CxString::lexical_cast(cText).c_str(), 
-                            CxString::lexical_cast(cTitle).c_str(), 
+                            NULL,
+                            CxString::lexical_cast(cText).c_str(),
+                            CxString::lexical_cast(cTitle).c_str(),
                             cuiType) );
 #elif defined(xOS_LINUX)
     std::tstring sMsg = CxString::sFormat(
@@ -79,9 +81,9 @@ CxMsgBoxT::iShow(
 
 #if defined(xOS_WIN)
     mrRes = static_cast<EModalResult>( ::MessageBox(
-                            NULL, 
-                            CxString::lexical_cast(cText).c_str(), 
-                            CxString::lexical_cast(cTitle).c_str(), 
+                            NULL,
+                            CxString::lexical_cast(cText).c_str(),
+                            CxString::lexical_cast(cTitle).c_str(),
                             MB_OK) );
 #elif defined(xOS_LINUX)
     std::tstring sMsg = CxString::sFormat(
@@ -107,9 +109,9 @@ CxMsgBoxT::iShow(
 
 #if defined(xOS_WIN)
     mrRes = static_cast<EModalResult>( ::MessageBox(
-                            NULL, 
-                            CxString::lexical_cast(cText).c_str(), 
-                            CxPath::sGetFullName( CxPath::sGetExe() ).c_str(), 
+                            NULL,
+                            CxString::lexical_cast(cText).c_str(),
+                            CxPath::sGetFullName( CxPath::sGetExe() ).c_str(),
                             MB_OK) );
 #elif defined(xOS_LINUX)
     std::tstring sMsg = CxString::sFormat(

@@ -1,6 +1,6 @@
 ﻿/**
  * \file  CxMsgBoxRtf.h
- * \brief RTF message box
+ * \brief formated message box
  */
 
 
@@ -9,10 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/Win/xCommon.h>
 //---------------------------------------------------------------------------
-namespace CxMsgBoxRtf 
-    /// RTF message box
+namespace CxMsgBoxRtf
+    /// formated message box
 {
-    enum EModalResult 
+    enum EModalResult
         /// modal result
     {
         mrInternalError = - 1,
@@ -25,8 +25,11 @@ namespace CxMsgBoxRtf
     };
 
     BOOL             bCreateContent(HWND hParent);
+    	///< create content
     INT_PTR CALLBACK DialogProc    (HWND hDlg, UINT uiMsg, WPARAM wParam, LPARAM lParam);
+		///< window callback
     EModalResult     iShow         (HWND hwndOwner, const std::tstring &csMessage, const std::tstring &csTiltle);
+		///< show
 };
 //---------------------------------------------------------------------------
 #include <Gui/Win/Dialogs/CxMsgBoxRtf.inl>

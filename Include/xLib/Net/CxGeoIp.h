@@ -15,7 +15,7 @@ class CxGeoIp :
     /// GeoIP
 {
     public:
-        enum EOption 
+        enum EOption
             /// option
         {
             opStandard    = GEOIP_STANDARD,
@@ -26,18 +26,24 @@ class CxGeoIp :
         };
 
                       CxGeoIp                  ();
+            ///< constructor
         virtual      ~CxGeoIp                  ();
+        	///< destructor
 
         BOOL          bOpen                    (const std::tstring &csFilePath, const EOption copOption);
+        	///< open
         BOOL          bIsValid                 () const;
+        	///< validating handle
         std::tstring  sGetCountryCodeByAddress (const std::tstring &csAddress) const;
+        	///< get country code by address
         std::tstring  sGetCountryCode3ByAddress(const std::tstring &csAddress) const;
+        	///< get country code by address
         BOOL          bClose                   ();
+        	///< close
 
     private:
-        mutable BOOL  _m_bRes;
-
-        GeoIP        *_m_pgiGeoIp;
+        mutable BOOL  _m_bRes;		///< constructor
+        GeoIP        *_m_pgiGeoIp;	///< pointer to GeoIP
 
 };
 //---------------------------------------------------------------------------

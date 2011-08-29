@@ -27,12 +27,9 @@ class CxMechanism :
         	///< obtains a list of mechanism types supported by a token
 
     private:
-        BOOL                 _m_bRes;
-        	///< for private use
-        CK_RV                _m_ulRes;
-        	///< for private use
-        CK_FUNCTION_LIST_PTR _m_pFunc;
-        	///< pointer to dll's functions list
+        BOOL                 _m_bRes;	///< for private use
+        CK_RV                _m_ulRes; 	///< for private use
+        CK_FUNCTION_LIST_PTR _m_pFunc; 	///< pointer to dll's functions list
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Pkcs11_CxMechanismH

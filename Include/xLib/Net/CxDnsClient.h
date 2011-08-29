@@ -16,56 +16,66 @@ class CxDnsClient :
 {
     public:
         static BOOL bGetHostAddrByName  (const std::tstring &csHostName, std::tstring *psHostAddr);
+        	///< get host address by name
         static BOOL bGetHostNameByAddr  (const std::tstring &csHostAddr, CxSocket::EAddressFamily afFamily, std::tstring *psHostName);
+        	///< get host name by address
         static BOOL bGetLocalHostName   (std::tstring *psHostName);
+        	///< get local host name
         static BOOL bGetNameInfo        (CxSocket::EAddressFamily afFamily, const std::tstring &csHostAddr, USHORT usPort);
+        	///< get name info
         static BOOL bGetHostAddrInfo    (const std::tstring &csHostName, const std::tstring &csPort, const ADDRINFOT *pHints, ADDRINFOT **ppResult);
+        	///< get host addr info
 
-        //TODO: protocol
+        //protocol
         static BOOL bGetProtocolByName  (const std::tstring &csProtocolName, std::tstring *psName, std::vector<std::tstring> *pvsAliases, SHORT *psiNumber);
+        	///< get protocol by name
         static BOOL bGetProtocolByNumber(SHORT siNumber, std::tstring *psName, std::vector<std::tstring> *pvsAliases, SHORT *psiNum);
+        	///< get protocol by number
 
-        //TODO: service
+        //service
         static BOOL bGetServiceByName   (const std::tstring &csServiceName, const std::tstring &csProtocolName, std::tstring *psName, std::vector<std::tstring> *pvsAliases, SHORT *psiPort,  std::tstring *psProtocolName);
+        	///< get service by name
         static BOOL bGetServiceByPort   (SHORT siPort, const std::tstring &csProtocolName, std::tstring *psName, std::vector<std::tstring> *pvsAliases, SHORT *psiPort,  std::tstring *psProtocolName);
+        	///< get service by port
 
     private:
-        static BOOL _ms_bRes;
-        static INT  _ms_iRes;
+        static BOOL _ms_bRes;	///< for private use
+        static INT  _ms_iRes;	///< for private use
 
                     CxDnsClient         ();
+            ///< constructor
         virtual    ~CxDnsClient         ();
+        	///< destructor
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxDnsClientH
 
 
+#if xTODO
+	- GetAddressByName
+
+	+ getaddrinfo
+	+ GetAddrInfoW
+	+ freeaddrinfo
+	+ FreeAddrInfoW
+
+	- GetAddrInfoEx
+	- SetAddrInfoEx
+	- FreeAddrInfoEx
+
+	+ gethostbyname
+	+ gethostbyaddr
+	+ gethostname
+
+	GetNameByType
+	GetTypeByName
+
+	getnameinfo
+	GetNameInfoW
 
 
-////- GetAddressByName
-
-////+ getaddrinfo
-////+ GetAddrInfoW
-////+ freeaddrinfo
-////+ FreeAddrInfoW
-
-////- GetAddrInfoEx
-////- SetAddrInfoEx
-////- FreeAddrInfoEx
-
-////+ gethostbyname
-////+ gethostbyaddr
-////+ gethostname
-
-////GetNameByType
-////GetTypeByName
-
-////getnameinfo
-////GetNameInfoW
-
-
-////+ getprotobyname
-////+ getprotobynumber
-////+ getservbyname
-////+ getservbyport
-
+	+ getprotobyname
+	+ getprotobynumber
+	+ getservbyname
+	+ getservbyport
+#endif

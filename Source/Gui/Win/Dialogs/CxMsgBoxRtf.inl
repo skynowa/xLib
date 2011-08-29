@@ -11,8 +11,8 @@
 namespace CxMsgBoxRtf {
 //---------------------------------------------------------------------------
 EModalResult g_mrRes          = mrNone;
-std::tstring      g_sTitle;
-std::tstring      g_sMessage;
+std::tstring g_sTitle;
+std::tstring g_sMessage;
 
 const INT    ID_staImg        = 200;
 const INT    ID_redtText      = 201;
@@ -46,7 +46,6 @@ const INT    ciRichEdtShift   = 68;
 const INT    ciBtnLeftMargin  = 90;
 const INT    ciBtnSpace       = 8;
 //---------------------------------------------------------------------------
-//DONE: bCreateContent
 BOOL
 bCreateContent(
     HWND hParent
@@ -165,7 +164,6 @@ bCreateContent(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: DialogProc
 INT_PTR CALLBACK
 DialogProc(
     HWND   hDlg,
@@ -230,7 +228,6 @@ DialogProc(
     return FALSE;
 }
 //---------------------------------------------------------------------------
-//DONE: iShow
 EModalResult
 iShow(
     HWND                hwndOwner,
@@ -300,4 +297,3 @@ iShow(
 //---------------------------------------------------------------------------
 }; //namespace CxMsgBoxRtf
 //---------------------------------------------------------------------------
-

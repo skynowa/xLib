@@ -6,7 +6,9 @@
 
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 
-using namespace Gdiplus;
+#include <GDIPlus.h>
+
+#pragma comment (lib, "Gdiplus.lib")
 
 
 /****************************************************************************
@@ -15,7 +17,6 @@ using namespace Gdiplus;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxGdiplus
 CxGdiplus::CxGdiplus() :
     _m_pulToken(0)
 {
@@ -25,7 +26,6 @@ CxGdiplus::CxGdiplus() :
     /*DEBUG*/xASSERT_DO(Gdiplus::Ok == stRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxGdiplus
 /*virtual*/
 CxGdiplus::~CxGdiplus() {
     Gdiplus::GdiplusShutdown(_m_pulToken);

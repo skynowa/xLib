@@ -20,7 +20,7 @@ class CxFileLog :
     /// logging to file
 {
     public:
-        enum ELogSizes 
+        enum ELogSizes
             /// log size
         {
             lsDefaultSize    = 20  * 1024 * 1024,
@@ -29,26 +29,32 @@ class CxFileLog :
         };
 
                              CxFileLog   (const ULONG culMaxFileSizeBytes);
+            ///< constructor
         virtual             ~CxFileLog   ();
+        	///< destructor
 
         BOOL                 bSetFilePath(const std::tstring &csFilePath);
+    		///< set log path
         const std::tstring & sGetFilePath() const;
+    		///< get log path
 
         BOOL                 bWrite      (LPCTSTR pcszFormat, ...);
+    		///< write
         BOOL                 bClear      ();
+    		///< clear content
         BOOL                 bDelete     ();
+    		///< delete
 
     private:
-        std::tstring         _m_sFilePath;
-        ULONG                _m_ulMaxFileSizeBytes;
+        std::tstring         _m_sFilePath;			///< file path
+        ULONG                _m_ulMaxFileSizeBytes;	///< maximum file size in bytes
 
-    #if defined(xOS_WIN)
-        ////CxMutex          _m_mtFile;
-    #elif defined(xOS_LINUX)
-        //TODO: CxMutex
+    #if xTODO
+        CxAutoMutex          _m_mtFile;
     #endif
 
         BOOL                 _bDeleteIfFull();
+    		///< delete log, if full
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxFileLogH

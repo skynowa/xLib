@@ -18,7 +18,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: sGetExe (full path to exe)
 //NOTE: http://www.cplusplus.com/forum/general/11104/
 //      http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
 //      http://libsylph.sourceforge.net/wiki/Full_path_to_binary
@@ -115,7 +114,7 @@ CxPath::sGetExe() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetDll (full path to Dll)
+//TODO: sGetDll
 /*static*/
 std::tstring
 CxPath::sGetDll() {
@@ -148,14 +147,12 @@ CxPath::sGetDll() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetExeDir (dir path to exe)
 /*static*/
 std::tstring
 CxPath::sGetExeDir() {
     return sGetDir(sGetExe());
 }
 //---------------------------------------------------------------------------
-//DONE: sGetDrive (get drive)
 #if defined(xOS_WIN)
 
 /*static*/
@@ -175,7 +172,6 @@ CxPath::sGetDrive(
 
 #endif
 //--------------------------------------------------------------------------
-//DONE: sGetDir (dir path, without a trailing backslash '\')
 /*static*/
 std::tstring
 CxPath::sGetDir(
@@ -190,7 +186,6 @@ CxPath::sGetDir(
     return csFilePath.substr(0, uiSlashPos);
 }
 //--------------------------------------------------------------------------
-//DONE: sGetDirName (dir name)
 /*static*/
 std::tstring
 CxPath::sGetDirName(
@@ -210,7 +205,6 @@ CxPath::sGetDirName(
     }
 }
 //---------------------------------------------------------------------------
-//DONE: sGetFullName (get name.extension)
 /*static*/
 std::tstring
 CxPath::sGetFullName(
@@ -225,7 +219,6 @@ CxPath::sGetFullName(
     return csFilePath.substr(uiSlashPos + CxConst::xSLASH.size(), csFilePath.size());
 }
 //--------------------------------------------------------------------------
-//DONE: sGetName (get name without extension)
 /*static*/
 std::tstring
 CxPath::sGetName(
@@ -240,7 +233,6 @@ CxPath::sGetName(
     return CxString::sCut(csFilePath, uiSlashPos + CxConst::xSLASH.size(), uiDotPos);
 }
 //--------------------------------------------------------------------------
-//DONE: sGetExt (get extension)
 /*static*/
 std::tstring
 CxPath::sGetExt(
@@ -259,7 +251,6 @@ CxPath::sGetExt(
     return csFilePath.substr(uiDotPos + CxConst::xDOT.size());
 }
 //--------------------------------------------------------------------------
-//DONE: sGetStandartExt (get standart extension)
 /*static*/
 std::tstring
 CxPath::sGetStandartExt(
@@ -284,7 +275,6 @@ CxPath::sGetStandartExt(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sSetDrive ()
 #if defined(xOS_WIN)
 /*static*/
 std::tstring
@@ -309,7 +299,6 @@ CxPath::sSetDrive(
 }
 #endif
 //---------------------------------------------------------------------------
-//DONE: sSetDir ()
 /*static*/
 std::tstring
 CxPath::sSetDir(
@@ -332,7 +321,6 @@ CxPath::sSetDir(
     return sRes.replace(uiPos, sDir.size(), sSlashRemove(csDirPath));
 }
 //---------------------------------------------------------------------------
-//DONE: sSetFullName ()
 /*static*/
 std::tstring
 CxPath::sSetFullName(
@@ -355,7 +343,6 @@ CxPath::sSetFullName(
     return sRes.replace(uiPos, sFullName.size(), csFullName);
 }
 //---------------------------------------------------------------------------
-//DONE: sSetName ()
 /*static*/
 std::tstring
 CxPath::sSetName(
@@ -378,7 +365,6 @@ CxPath::sSetName(
     return sRes.replace(uiPos, sName.size(), csName);
 }
 //---------------------------------------------------------------------------
-//DONE: sSetExt
 /*static*/
 std::tstring
 CxPath::sSetExt(
@@ -395,7 +381,6 @@ CxPath::sSetExt(
 
 
 //--------------------------------------------------------------------------
-//DONE: sRemoveExt
 /*static*/
 std::tstring
 CxPath::sRemoveExt(
@@ -409,7 +394,6 @@ CxPath::sRemoveExt(
     return csFilePath.substr(0, uiDotPos);
 }
 //--------------------------------------------------------------------------
-//DONE: sRemoveExtIf
 /*static*/
 std::tstring
 CxPath::sRemoveExtIf(
@@ -428,7 +412,7 @@ CxPath::sRemoveExtIf(
     return csFilePath.substr(0, uiDotPos);
 }
 //---------------------------------------------------------------------------
-//TODO: bIsValid ()
+//TODO: bIsValid
 /*static*/
 BOOL
 CxPath::bIsValid(
@@ -450,7 +434,7 @@ CxPath::bIsValid(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsNameValid (file name validation)
+//TODO: bIsNameValid
 /*static*/
 BOOL
 CxPath::bIsNameValid(
@@ -476,7 +460,6 @@ CxPath::bIsNameValid(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsAbsolute (is absolute)
 /*static*/
 BOOL
 CxPath::bIsAbsolute(
@@ -496,7 +479,6 @@ CxPath::bIsAbsolute(
     return FALSE;
 }
 //---------------------------------------------------------------------------
-//DONE: sSetValidName
 /*static*/
 std::tstring
 CxPath::sSetValidName(
@@ -567,7 +549,6 @@ CxPath::sSetValidName(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sToWin (convert slashes to Windows-like)
 /*static*/
 std::tstring
 CxPath::sToWin(
@@ -591,7 +572,6 @@ CxPath::sToWin(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sToNix (convert slashes to Nix-like)
 /*static*/
 std::tstring
 CxPath::sToNix(
@@ -615,8 +595,8 @@ CxPath::sToNix(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sToCurrentOs (convert slashes to current OS-like)
 /*static*/
+//TODO: make test
 std::tstring
 CxPath::sToCurrentOs(
     const std::tstring &csFilePath,
@@ -639,7 +619,6 @@ CxPath::sToCurrentOs(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sGetAbsolute (get absolute path of the specified file)
 /*static*/
 std::tstring
 CxPath::sGetAbsolute(
@@ -681,7 +660,6 @@ CxPath::sGetAbsolute(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sMinimizeName
 /*static*/
 std::tstring
 CxPath::sMinimizeName(
@@ -793,7 +771,6 @@ CxPath::sMinimize(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: sSlashAppend (append slash)
 /*static*/
 std::tstring
 CxPath::sSlashAppend(
@@ -805,7 +782,6 @@ CxPath::sSlashAppend(
     return CxString::sTrimRightChars(csDirPath, CxConst::xSLASH).append(CxConst::xSLASH);
 }
 //--------------------------------------------------------------------------
-//DONE: sSlashRemove (remove slash)
 /*static*/
 std::tstring
 CxPath::sSlashRemove(
@@ -817,7 +793,6 @@ CxPath::sSlashRemove(
     return CxString::sTrimRightChars(csDirPath, CxConst::xSLASH);
 }
 //--------------------------------------------------------------------------
-//DONE: uiGetMaxSize (get max path length in symbols)
 /*static*/
 size_t
 CxPath::uiGetMaxSize() {
@@ -862,7 +837,6 @@ CxPath::uiGetMaxSize() {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-//DONE: uiGetNameMaxSize (get max name length in symbols)
 /*static*/
 size_t
 CxPath::uiGetNameMaxSize() {
@@ -914,12 +888,10 @@ CxPath::uiGetNameMaxSize() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxPath
 CxPath::CxPath() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxPath
 /*virtual*/
 CxPath::~CxPath() {
 

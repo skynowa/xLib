@@ -23,24 +23,29 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
+//TODO: CxCriticalSection -> Mutex
 CxCriticalSection CxWndLog::_ms_csListBox;
 //---------------------------------------------------------------------------
-//DONE: CxWndLog
-CxWndLog::CxWndLog(EWindowClass wcWC) :
-    _m_eWC (wcWC)
+/*explicit*/
+CxWndLog::CxWndLog(
+	const EWindowClass cwcWC
+) :
+    _m_eWC (cwcWC)
 {
     /*DEBUG*/xASSERT_DO(wcListBox == _m_eWC, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxWndLog
 CxWndLog::~CxWndLog() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bWrite (write)
 BOOL
-CxWndLog::bWrite(HWND hWnd, LPCTSTR pcszFormat, ...) {
-    /*DEBUG*/xASSERT_RET(NULL != hWnd,       FALSE);
+CxWndLog::bWrite(
+	const HWND chWnd,
+	LPCTSTR    pcszFormat, ...
+)
+{
+    /*DEBUG*/xASSERT_RET(NULL != chWnd,      FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
 
     //-------------------------------------
@@ -59,20 +64,22 @@ CxWndLog::bWrite(HWND hWnd, LPCTSTR pcszFormat, ...) {
 
     //-------------------------------------
     //choose window
-//    switch(_m_eWC) {
-//        case wcListBox: {
-//                /*LOCK*/CxAutoCriticalSection SL(_ms_csListBox);
-//
-//                ::SendMessage(hWnd, LB_ADDSTRING, 0, (LPARAM)(CxString::sRemoveEOL(xT("[") + sTime + xT("] ") + xT(" ") + sParam)).c_str());
-//                ::SendMessage(hWnd, WM_VSCROLL, MAKEWORD(SB_LINEDOWN, 0), 0);
-//            }
-//            break;
-//
-//        default: {
-//                /*DEBUG*/xASSERT_RET(FALSE, FALSE);
-//            }
-//            break;
-//    }
+	#if xTODO
+		switch(_m_eWC) {
+			case wcListBox: {
+					/*LOCK*/CxAutoCriticalSection SL(_ms_csListBox);
+
+					::SendMessage(hWnd, LB_ADDSTRING, 0, (LPARAM)(CxString::sRemoveEOL(xT("[") + sTime + xT("] ") + xT(" ") + sParam)).c_str());
+					::SendMessage(hWnd, WM_VSCROLL, MAKEWORD(SB_LINEDOWN, 0), 0);
+				}
+				break;
+
+			default: {
+					/*DEBUG*/xASSERT_RET(FALSE, FALSE);
+				}
+				break;
+		}
+	#endif
 
     return TRUE;
 }

@@ -10,41 +10,42 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxSocket.h>
 //---------------------------------------------------------------------------
-//TODO: bIsReadable repeats from CxSocket
 class CxTcpClientSocket :
     public CxSocket
     /// client socket
 {
     public:
                     CxTcpClientSocket  ();
+            ///< constructor
         virtual    ~CxTcpClientSocket  ();
+        	///< constructor
 
-        BOOL        bIsReadable        ();  //TODO: repeats from CxSocket
-        BOOL        bIsWritable        ();  //TODO: repeats from CxSocket
+        BOOL        bIsReadable        ();
+        	///< checking for readability
+        BOOL        bIsWritable        ();
+        	///< checking for writability
         BOOL        bConnect           (const std::tstring &csIp, USHORT usPort);
+        	///< connecting
 
         BOOL        bIoctl             (LONG liCmd, ULONG *pulArgp);
+        	///< controls the i/o mode
         BOOL        bSetNonBlockingMode(const BOOL cbFlag);
+        	///< set nonblocking mode
         BOOL        bGetTimeout        (LONG *pliSec, LONG *pliMicroSec);
+        	///< get timeout
         BOOL        bSetTimeout        (LONG liSec,   LONG liMicroSec);
+        	///< set timeout
 
         static BOOL bIsServerAlive     (const std::tstring &csIp, USHORT usPort);
+        	///< is sever socket available
 
     protected:
-        timeval     _m_tvTimeout;
+        timeval     _m_tvTimeout;	///< timeout
 };
+//TODO: bIsWritable repeats from CxSocket
+//TODO: bIsReadable repeats from CxSocket
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxTcpClientSocketH
-
-
-/*
-
-std::tstring sStr = xT("Some string!!!");
-::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring::value_type), 0);
-
-sizeof(std::tstring::value_type)
-
-*/
 
 
 /*

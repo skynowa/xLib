@@ -15,10 +15,12 @@ class CxAsyncSocket :
 {
     public:
                  CxAsyncSocket();
+            ///< constructor
         virtual ~CxAsyncSocket();
+        	///< destructor
 
     private:
-        BOOL     _m_bRes;
+        BOOL     _m_bRes;	///< for private use
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxAsyncSocketH
