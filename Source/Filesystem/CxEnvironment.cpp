@@ -15,7 +15,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsExists (check for existence)
 /*static*/
 BOOL
 CxEnvironment::bIsExists(
@@ -45,7 +44,6 @@ CxEnvironment::bIsExists(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetVar (get value by name)
 /*static*/
 std::tstring
 CxEnvironment::sGetVar(
@@ -62,7 +60,6 @@ CxEnvironment::sGetVar(
 
     sRes.resize(xPATH_MAX);
 
-    //not including the terminating null character
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
 
@@ -84,7 +81,6 @@ CxEnvironment::sGetVar(
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: bSetVar (set or change value by name)
 /*static*/
 BOOL
 CxEnvironment::bSetVar(
@@ -106,7 +102,6 @@ CxEnvironment::bSetVar(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bDeleteVar (delete var)
 /*static*/
 BOOL
 CxEnvironment::bDeleteVar(
@@ -132,7 +127,6 @@ CxEnvironment::bDeleteVar(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: bGetValues (get all values)
 /*static*/
 BOOL
 CxEnvironment::bGetValues(
@@ -151,7 +145,7 @@ CxEnvironment::bGetValues(
     lpvEnv = ::GetEnvironmentStrings();
     /*DEBUG*/xASSERT_RET(NULL != lpvEnv, FALSE);
 
-    //Variable strings are separated by NULL byte, and the block is terminated by a NULL byte.
+    //Variable strings are separated by NULL byte, and the block is terminated by a NULL byte
     pszVar = static_cast<LPTSTR>( lpvEnv );
 
     while (*pszVar)    {
@@ -176,7 +170,6 @@ CxEnvironment::bGetValues(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: sExpandStrings (expands strings by separator "%")
 /*static*/
 std::tstring
 CxEnvironment::sExpandStrings(
@@ -209,9 +202,6 @@ CxEnvironment::sExpandStrings(
     sRes.assign(csVar);
 
     for ( ; ; ) {
-        //xTRACEV(xT("sRes (in): %s"), sRes.c_str());
-        //xTRACEV(xT("csSep:     %s"), csSep.c_str());
-
         //--------------------------------------------------
         //find from left two first chars '%'
         const size_t cuiStartSepPos = sRes.find(csSep);
@@ -220,32 +210,26 @@ CxEnvironment::sExpandStrings(
         const size_t cuiStopSepPos  = sRes.find(csSep, cuiStartSepPos + csSep.size());
         xCHECK_DO(std::tstring::npos == cuiStopSepPos, break);
 
-        //xTRACEV(xT("StartPos: %u, StopPos: %u"), uiStartSepPos, uiStopSepPos);
-
         //--------------------------------------------------
         //copy %var% to temp string
         std::tstring sRawEnvVar; // %var%
 
         sRawEnvVar = CxString::sCut(sRes, cuiStartSepPos, cuiStopSepPos + csSep.size());
         xASSERT(false == sRawEnvVar.empty());
-        //xTRACEV(xT("sRawEnvVar: %s"), sRawEnvVar.c_str());
 
         std::tstring sEnvVar;    // var
 
         sEnvVar = CxString::sTrimChars(sRawEnvVar, csSep);
-        //xTRACEV(xT("sEnvVar: %s"), sEnvVar.c_str());
 
         //--------------------------------------------------
         //expand var to temp string
         std::tstring sExpandedEnvVar;
 
         sExpandedEnvVar = sGetVar(sEnvVar);
-        //xTRACEV(xT("sExpandedEnvVar: %s"), sExpandedEnvVar.c_str());
 
         //--------------------------------------------------
         //replace sEnvVar(%var%) by sExpandedEnvVar
         sRes.replace(cuiStartSepPos, sRawEnvVar.size(), sExpandedEnvVar);
-        /*TRACE*///xTRACEV(xT("sRes (replaced): %s"), sRes.c_str());
     }
 #endif
 
@@ -262,7 +246,6 @@ CxEnvironment::sExpandStrings(
 //--------------------------------------------------------------------------
 /*static*/ std::vector<std::tstring> CxEnvironment::_m_vsCommandLineArgs;
 //--------------------------------------------------------------------------
-//DONE: sGetCommandLine (get command-line string for the current process)
 /*static*/
 std::tstring
 CxEnvironment::sGetCommandLine() {
@@ -282,7 +265,6 @@ CxEnvironment::sGetCommandLine() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bGetCommandLineArgs (get commandline arguments)
 /*static*/
 BOOL
 CxEnvironment::bGetCommandLineArgs(
@@ -298,7 +280,6 @@ CxEnvironment::bGetCommandLineArgs(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetCommandLineArgs (set commandline arguments)
 /*static*/
 BOOL
 CxEnvironment::bSetCommandLineArgs(
@@ -335,12 +316,10 @@ CxEnvironment::bSetCommandLineArgs(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxEnvironment
 CxEnvironment::CxEnvironment() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxEnvironment
 /*virtual*/
 CxEnvironment::~CxEnvironment() {
 

@@ -19,7 +19,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsExists (check for existence)
 /*static*/
 BOOL
 CxDir::bIsExists(
@@ -39,7 +38,6 @@ CxDir::bIsExists(
     return bRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsEmpty (is empty)
 /*static*/
 BOOL
 CxDir::bIsEmpty(
@@ -105,7 +103,6 @@ CxDir::bIsEmpty(
     return bRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsRoot (is root, root dir - A:\)
 /*static*/
 BOOL
 CxDir::bIsRoot(
@@ -129,7 +126,6 @@ CxDir::bIsRoot(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsDir (is dir)
 /*static*/
 BOOL
 CxDir::bIsDir(
@@ -146,7 +142,6 @@ CxDir::bIsDir(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: sGetCurrent (get current)
 /*static*/
 std::tstring
 CxDir::sGetCurrent() {
@@ -172,7 +167,6 @@ CxDir::sGetCurrent() {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: bSetCurrent (set current)
 /*static*/
 BOOL
 CxDir::bSetCurrent(
@@ -194,7 +188,6 @@ CxDir::bSetCurrent(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: sGetTemp (get path to system var %Temp%)
 /*static*/
 std::tstring
 CxDir::sGetTemp() {
@@ -219,7 +212,6 @@ CxDir::sGetTemp() {
     return sRes;
 }
 //--------------------------------------------------------------------------
-//DONE: bCreate (creation)
 /*static*/
 BOOL
 CxDir::bCreate(
@@ -246,7 +238,6 @@ CxDir::bCreate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bCreateForce (creation of all dirs that not exists in path)
 BOOL
 CxDir::bCreateForce(
     const std::tstring &csDirPath
@@ -277,7 +268,6 @@ CxDir::bCreateForce(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bCopy (copy)
 /*static*/
 BOOL
 CxDir::bCopy(
@@ -338,7 +328,6 @@ CxDir::bCopy(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bMove (move)
 /*static*/
 BOOL
 CxDir::bMove(
@@ -363,7 +352,6 @@ CxDir::bMove(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bDelete (deletion dir which empty)
 /*static*/
 BOOL
 CxDir::bDelete(
@@ -393,7 +381,6 @@ CxDir::bDelete(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTryDelete (try deleting, max 100 attempts)
 /*static*/
 BOOL
 CxDir::bTryDelete(
@@ -422,7 +409,6 @@ CxDir::bTryDelete(
     return bIsDeleted;
 }
 //---------------------------------------------------------------------------
-//DONE: bClearForce (detetion all content of dir)
 /*static*/
 BOOL
 CxDir::bClearForce(
@@ -480,7 +466,6 @@ CxDir::bClearForce(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bDeleteForce (detetion dir fnd all content of it)
 /*static*/
 BOOL
 CxDir::bDeleteForce(
@@ -505,16 +490,15 @@ CxDir::bDeleteForce(
     return bRes;  /*TRUE*/
 }
 //--------------------------------------------------------------------------
-//TODO: bFindFiles (search files)
-//NOTE: need empty pvsDirPathes param,
-//      http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
+//TODO: bFindFiles
+//http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
 /*static*/
 BOOL
 CxDir::bFindFiles(
     const std::tstring        &csDirPath,
     const std::tstring        &cMask,
-    const BOOL            cbIsRecurse,
-    std::vector<std::tstring> *pvsFilePathes
+    const BOOL                 cbIsRecurse,
+    std::vector<std::tstring> *pvsFilePathes    ///< \note must be empty
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
@@ -524,7 +508,9 @@ CxDir::bFindFiles(
 
     BOOL bRes = FALSE;
 
-    ////--(*pvsFilePathes).clear();
+    #if xTODO
+        (*pvsFilePathes).clear();
+    #endif
 
 #if defined(xOS_WIN)
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
@@ -655,15 +641,13 @@ CxDir::bFindFiles(
     return TRUE;
 }
 //--------------------------------------------------------------------------
-//DONE: bFindDirs (search subdirs)
-//NOTE: need empty pvsDirPathes param
 /*static*/
 BOOL
 CxDir::bFindDirs(
     const std::tstring        &csDirPath,
     const std::tstring        &cMask,
-    const BOOL            cbIsRecurse,
-    std::vector<std::tstring> *pvsDirPathes
+    const BOOL                 cbIsRecurse,
+    std::vector<std::tstring> *pvsDirPathes    ///< \note must be empty
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
@@ -672,7 +656,9 @@ CxDir::bFindDirs(
 
     BOOL bRes = FALSE;
 
-    ////--(*pvsDirPathes).clear();
+    #if xTODO
+        (*pvsDirPathes).clear();
+    #endif
 
 #if defined(xOS_WIN)
     HANDLE          hFile        = INVALID_HANDLE_VALUE;
@@ -757,12 +743,10 @@ CxDir::bFindDirs(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxDir
 CxDir::CxDir() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxDir
 /*virtual*/
 CxDir::~CxDir() {
 

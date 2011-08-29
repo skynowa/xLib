@@ -13,21 +13,18 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxDll
 CxDll::CxDll() :
     _m_bRes(FALSE),
     _m_hDLL(NULL)
 {
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxDll
 /*virtual*/
 CxDll::~CxDll() {
     _m_bRes = bFree();
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: bIsLoaded (is loading)
 BOOL
 CxDll::bIsLoaded() {
     /*DEBUG*/// n/a
@@ -35,7 +32,6 @@ CxDll::bIsLoaded() {
     return static_cast<BOOL>( NULL != _m_hDLL );
 }
 //---------------------------------------------------------------------------
-//DONE: bLoad (loading)
 BOOL
 CxDll::bLoad(
     const std::tstring &csDllPath
@@ -58,7 +54,6 @@ CxDll::bLoad(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: fpGetProcAddress (get address of an exported function or variable )
 VOID * /*FARPROC*/
 CxDll::fpGetProcAddress(
     const std::tstring &csProcName
@@ -86,7 +81,6 @@ CxDll::fpGetProcAddress(
     return fpRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bFree (free)
 BOOL
 CxDll::bFree() {
     /*DEBUG*/// n/a
