@@ -18,7 +18,6 @@
 *****************************************************************************/
 
 //-------------------------------------------------------------------------
-//DONE: CxIni
 CxIni::CxIni() :
     _m_bRes     (FALSE),
     _m_sFilePath()
@@ -29,7 +28,6 @@ CxIni::CxIni() :
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: CxIni
 CxIni::CxIni(
     const std::tstring &csFilePath
 ) :
@@ -43,7 +41,6 @@ CxIni::CxIni(
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //-------------------------------------------------------------------------
-//DONE: ~CxIni
 /*virtual*/
 CxIni::~CxIni() {
     _m_bRes = bFlush();
@@ -140,7 +137,7 @@ CxIni::bClear() {
 //DONE: bKeyIsExists
 BOOL
 CxIni::bKeyIsExists(
-    const std::tstring &csSection, 
+    const std::tstring &csSection,
     const std::tstring &csKey
 )
 {
@@ -162,8 +159,8 @@ CxIni::bKeyIsExists(
 //DONE: iKeyReadInt
 INT
 CxIni::iKeyReadInt(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     LONG                iDefaultValue
 )
 {
@@ -178,8 +175,8 @@ CxIni::iKeyReadInt(
 //DONE: bKeyWriteInt
 BOOL
 CxIni::bKeyWriteInt(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     LONG                iValue
 )
 {
@@ -194,8 +191,8 @@ CxIni::bKeyWriteInt(
 //DONE: dKeyReadFloat
 double
 CxIni::dKeyReadFloat(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     double              dDefaultValue
 )
 {
@@ -210,8 +207,8 @@ CxIni::dKeyReadFloat(
 //DONE: bKeyWriteFloat
 BOOL
 CxIni::bKeyWriteFloat(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     double              dValue
 )
 {
@@ -226,8 +223,8 @@ CxIni::bKeyWriteFloat(
 //DONE: bKeyReadBool
 BOOL
 CxIni::bKeyReadBool(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     BOOL                bDefaultValue
 )
 {
@@ -254,8 +251,8 @@ CxIni::bKeyReadBool(
 //DONE: bKeyWriteBool
 BOOL
 CxIni::bKeyWriteBool(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     BOOL                bValue
 )
 {
@@ -274,8 +271,8 @@ CxIni::bKeyWriteBool(
 //DONE: sKeyReadString
 std::tstring
 CxIni::sKeyReadString(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     const std::tstring &csDefaultValue
 )
 {
@@ -309,8 +306,8 @@ CxIni::sKeyReadString(
 //DONE: bKeyWriteString
 BOOL
 CxIni::bKeyWriteString(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     const std::tstring &csValue
 )
 {
@@ -328,8 +325,8 @@ CxIni::bKeyWriteString(
 //DONE: usKeyReadBin
 std::ustring
 CxIni::usKeyReadBin(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     const std::ustring &cusDefaultValue
 )
 {
@@ -351,8 +348,8 @@ CxIni::usKeyReadBin(
 //DONE: bKeyWriteBin
 BOOL
 CxIni::bKeyWriteBin(
-    const std::tstring &csSection, 
-    const std::tstring &csKey, 
+    const std::tstring &csSection,
+    const std::tstring &csKey,
     const std::ustring &cusValue
 )
 {
@@ -370,7 +367,7 @@ CxIni::bKeyWriteBin(
 //DONE: bKeyClear
 BOOL
 CxIni::bKeyClear(
-    const std::tstring &csSection, 
+    const std::tstring &csSection,
     const std::tstring &csKey
 )
 {
@@ -384,7 +381,7 @@ CxIni::bKeyClear(
 //DONE: bKeyDelete
 BOOL
 CxIni::bKeyDelete(
-    const std::tstring &csSection, 
+    const std::tstring &csSection,
     const std::tstring &csKey
 )
 {
@@ -429,7 +426,7 @@ CxIni::bSectionIsExists(
 //DONE: bSectionRead
 BOOL
 CxIni::bSectionRead(
-    const std::tstring                   &csSection, 
+    const std::tstring                   &csSection,
     std::map<std::tstring, std::tstring> *pmsContent
 )
 {
@@ -502,7 +499,7 @@ CxIni::bSectionRead(
 //DONE: bSectionWrite
 BOOL
 CxIni::bSectionWrite(
-    const std::tstring                         &csSection, 
+    const std::tstring                         &csSection,
     const std::map<std::tstring, std::tstring> &msContent
 )
 {

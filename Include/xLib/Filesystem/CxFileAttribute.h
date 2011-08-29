@@ -14,7 +14,7 @@ class CxFileAttribute :
     /// file attribute
 {
     public:
-        enum EAttribute 
+        enum EAttribute
             /// attribute
         {
             //TODO: separate writable and readable attributes
@@ -49,16 +49,25 @@ class CxFileAttribute :
         };
 
         static BOOL       bIsExists      (const std::tstring &csFilePath, const EAttribute cfaValue);
+            ///< is exists
         static EAttribute atGet          (const std::tstring &csFilePath);
+            ///< get
         static BOOL       bSet           (const std::tstring &csFilePath, const EAttribute cfaValue);
+            ///< set
         static BOOL       bAdd           (const std::tstring &csFilePath, const EAttribute cfaValue);
+            ///< add
         static BOOL       bRemove        (const std::tstring &csFilePath, const EAttribute cfaValue);
+            ///< remove
         static BOOL       bModify        (const std::tstring &csFilePath, const EAttribute cfaRemoveValue, const EAttribute cfaAddValue);
+            ///< modify
         static BOOL       bClear         (const std::tstring &csFilePath);
+            ///< clear
 
     private:
                           CxFileAttribute();
+            ///< constructor
         virtual          ~CxFileAttribute();
+            ///< destructor
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxFileAttributeH

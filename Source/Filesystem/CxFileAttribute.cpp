@@ -13,7 +13,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsExists (is exists)
 /*static*/
 BOOL
 CxFileAttribute::bIsExists(
@@ -35,7 +34,6 @@ CxFileAttribute::bIsExists(
     return FALSE;
 }
 //---------------------------------------------------------------------------
-//DONE: atGet (get)
 /*static*/
 CxFileAttribute::EAttribute
 CxFileAttribute::atGet(
@@ -64,7 +62,6 @@ CxFileAttribute::atGet(
     return faRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bSet (set)
 /*static*/
 BOOL
 CxFileAttribute::bSet(
@@ -86,7 +83,6 @@ CxFileAttribute::bSet(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bAdd (add)
 /*static*/
 BOOL
 CxFileAttribute::bAdd(
@@ -100,7 +96,6 @@ CxFileAttribute::bAdd(
     return bModify(csFilePath, static_cast<EAttribute>(0), cfaValue);
 }
 //---------------------------------------------------------------------------
-//DONE: bRemove (remove)
 /*static*/
 BOOL
 CxFileAttribute::bRemove(
@@ -114,7 +109,6 @@ CxFileAttribute::bRemove(
     return bModify(csFilePath, cfaValue, static_cast<EAttribute>(0));
 }
 //---------------------------------------------------------------------------
-//DONE: bModify (modify)
 /*static*/
 BOOL
 CxFileAttribute::bModify(
@@ -143,7 +137,7 @@ CxFileAttribute::bModify(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear (clear)
+//DONE: bClear ()
 /*static*/
 BOOL
 CxFileAttribute::bClear(
@@ -163,12 +157,10 @@ CxFileAttribute::bClear(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxFileAttribute
 CxFileAttribute::CxFileAttribute() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxFileAttribute
 /*virtual*/
 CxFileAttribute::~CxFileAttribute() {
 
