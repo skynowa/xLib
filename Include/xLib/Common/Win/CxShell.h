@@ -23,35 +23,35 @@ class CxShell :
     /// shell
 {
      public:
-        enum EOperation 
+        enum EOperation
             /// operations
         {
-            opEdit,       
-            opExplore,    
-            opFind,        
-            opOpen,       
-            opPrint,   
-            opNull       
+            opEdit,
+            opExplore,
+            opFind,
+            opOpen,
+            opPrint,
+            opNull
         };
 
-        enum EShowFlag 
+        enum EShowFlag
             /// The flags that specify how an application is to be displayed when it is opened
         {
-            sfHide            = SW_HIDE,         
-            sfMaximize        = SW_MAXIMIZE,      
-            sfMinimize        = SW_MINIMIZE,     
-            sfRestore         = SW_RESTORE,           
-            sfShow            = SW_SHOW,        
-            sfShowDefault     = SW_SHOWDEFAULT,     
-            sfShowMaximized   = SW_SHOWMAXIMIZED,  
-            sfShowMinimized   = SW_SHOWMINIMIZED,    
-            sfShowMinNoActive = SW_SHOWMINNOACTIVE,    
-            sfShowNa          = SW_SHOWNA,            
-            sfShowNoActivate  = SW_SHOWNOACTIVATE,    
-            sfShowNormal      = SW_SHOWNORMAL        
+            sfHide            = SW_HIDE,
+            sfMaximize        = SW_MAXIMIZE,
+            sfMinimize        = SW_MINIMIZE,
+            sfRestore         = SW_RESTORE,
+            sfShow            = SW_SHOW,
+            sfShowDefault     = SW_SHOWDEFAULT,
+            sfShowMaximized   = SW_SHOWMAXIMIZED,
+            sfShowMinimized   = SW_SHOWMINIMIZED,
+            sfShowMinNoActive = SW_SHOWMINNOACTIVE,
+            sfShowNa          = SW_SHOWNA,
+            sfShowNoActivate  = SW_SHOWNOACTIVATE,
+            sfShowNormal      = SW_SHOWNORMAL
         };
 
-        enum ESpecialDir 
+        enum ESpecialDir
             /// special folders
         {
             sfAdminTools             = CSIDL_ADMINTOOLS,
@@ -113,20 +113,30 @@ class CxShell :
             sfWindows                = CSIDL_WINDOWS
         };
 
-        static std::tstring bFindExecutable   (const std::tstring csFileName, const std::tstring csFindDirPath);
-        static BOOL         bExecute          (HWND hOwner, EOperation opOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, EShowFlag sfShowCmd);
+        static std::tstring bFindExecutable   (const std::tstring &csFileName, const std::tstring &csFindDirPath);
+        	///< find executable file path
+        static BOOL         bExecute          (HWND hOwner, EOperation opOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, const EShowFlag csfShowCmd);
+        	///< execute
         static BOOL         bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
+        	///< execute
         static BOOL         bExecuteHttp      (const std::tstring &csUrl);
+        	///< execute HTTP
         static BOOL         bExecuteFtp       (const std::tstring &csUrl);
+        	///< execute FTP
         static BOOL         bExecuteEmail     (const std::tstring &csToEmail, const std::tstring &csSubject, const std::tstring &csBody);
-        static std::tstring sGetSpecialDirPath(ESpecialDir sfDir, HANDLE hToken);
+        	///< execute email
+        static std::tstring sGetSpecialDirPath(const ESpecialDir csfDir, const HANDLE chToken);
+        	///< get special dir path
         static BOOL         bCreateShortcut   (const std::tstring &csFilePath, const std::tstring &csShortCutPath, const std::tstring &csDescription);
+        	///< create shortcut
 
     private:
-        static   BOOL       _ms_bRes;
+        static   BOOL       _ms_bRes;	///< for private use
 
                             CxShell           ();
+            ///< constructor
         virtual            ~CxShell           ();
+        	///< destructor
 };
 #elif defined(xOS_LINUX)
 

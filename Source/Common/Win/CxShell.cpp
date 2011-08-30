@@ -23,12 +23,11 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO:  bFindExecutable ()
 /*static*/
-std::tstring 
+std::tstring
 CxShell::bFindExecutable(
-    const std::tstring csFileName, 
-    const std::tstring csFindDirPath
+    const std::tstring &csFileName,
+    const std::tstring &csFindDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::tstring());
@@ -43,31 +42,30 @@ CxShell::bFindExecutable(
     return std::tstring(szRes);
 }
 //---------------------------------------------------------------------------
-//TODO:  bExecute ()
 /*static*/
-BOOL 
+BOOL
 CxShell::bExecute(
-    HWND                hOwner, 
-    EOperation          opOperation, 
-    const std::tstring &csFilePath, 
-    const std::tstring &csParams, 
-    const std::tstring &csDir, 
-    EShowFlag           sfShowCmd
+    const HWND          chOwner,
+    const EOperation    copOperation,
+    const std::tstring &csFilePath,
+    const std::tstring &csParams,
+    const std::tstring &csDir,
+    const EShowFlag     csfShowCmd
 )
 {
-    /*DEBUG*/// hOwner      - n/a
-    /*DEBUG*/// csOperation - n/a
-    /*DEBUG*/// csFilePath  - n/a
-    /*DEBUG*/// csParams    - n/a
-    /*DEBUG*/// csDir       - n/a
-    /*DEBUG*/// iShowCmd    - n/a
+    /*DEBUG*/// chOwner      - n/a
+    /*DEBUG*/// ccsOperation - n/a
+    /*DEBUG*/// csFilePath   - n/a
+    /*DEBUG*/// csParams     - n/a
+    /*DEBUG*/// csDir        - n/a
+    /*DEBUG*/// csfShowCmd   - n/a
 
     std::tstring sFilePath  = CxString::sTrimSpace(csFilePath);
     std::tstring sParams    = CxString::sTrimSpace(csParams);
     std::tstring sDir       = CxString::sTrimSpace(csDir);
 
     std::tstring sOperation;
-    switch (opOperation) {
+    switch (copOperation) {
         case opEdit:    { sOperation = xT("edit");    } break;
         case opExplore: { sOperation = xT("explore"); } break;
         case opFind:    { sOperation = xT("find");    } break;
@@ -78,15 +76,14 @@ CxShell::bExecute(
         default:        { sOperation = xT("");        } break;
     }
 
-    INT iRes = reinterpret_cast<INT>( ::ShellExecute(hOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), sfShowCmd) );
+    INT iRes = reinterpret_cast<INT>( ::ShellExecute(chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), csfShowCmd) );
     /*DEBUG*/xASSERT_RET(32 < iRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO:  bExecuteEx ()
 /*static*/
-BOOL 
+BOOL
 CxShell::bExecuteEx(
     SHELLEXECUTEINFO *peiInfo
 )
@@ -99,9 +96,8 @@ CxShell::bExecuteEx(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bExecuteHttp ()
 /*static*/
-BOOL 
+BOOL
 CxShell::bExecuteHttp(
     const std::tstring &csUrl
 )
@@ -118,9 +114,8 @@ CxShell::bExecuteHttp(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bExecuteFtp ()
 /*static*/
-BOOL 
+BOOL
 CxShell::bExecuteFtp(
     const std::tstring &csUrl
 )
@@ -137,12 +132,11 @@ CxShell::bExecuteFtp(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bExecuteEmail ()
 /*static*/
-BOOL 
+BOOL
 CxShell::bExecuteEmail(
-    const std::tstring &csToEmail, 
-    const std::tstring &csSubject, 
+    const std::tstring &csToEmail,
+    const std::tstring &csSubject,
     const std::tstring &csBody
 )
 {
@@ -175,22 +169,21 @@ CxShell::bExecuteEmail(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetSpecialFolderLocation ()
 /*static*/
-std::tstring 
+std::tstring
 CxShell::sGetSpecialDirPath(
-    ESpecialDir sfDir, 
-    HANDLE      hToken
+    const ESpecialDir csfDir,
+    const HANDLE      chToken
 )
 {
-    /*DEBUG*/// sfDir  - n/a
-    /*DEBUG*/// hToken - n/a
+    /*DEBUG*/// csfDir  - n/a
+    /*DEBUG*/// chToken - n/a
 
     HRESULT      hRes     = S_FALSE;
     LPITEMIDLIST pidlList = {0};
 
-    ////hRes = ::SHGetFolderLocation(NULL, sfDir, hToken, 0, &pidlList);    //FIXME: SHGetFolderLocation
-    hRes = ::SHGetSpecialFolderLocation(NULL, sfDir, &pidlList);
+    ////hRes = ::SHGetFolderLocation(NULL, sfDir, chToken, 0, &pidlList);    //FIXME: SHGetFolderLocation
+    hRes = ::SHGetSpecialFolderLocation(NULL, csfDir, &pidlList);
     /*DEBUG*/xASSERT_DO(SUCCEEDED(hRes), ::CoTaskMemFree(pidlList); return std::tstring());
 
     TCHAR szRes[MAX_PATH + sizeof(TCHAR)] = {0};
@@ -204,12 +197,11 @@ CxShell::sGetSpecialDirPath(
     return std::tstring(szRes);
 }
 //---------------------------------------------------------------------------
-//DONE: bCreateShortcut
 /*static*/
 BOOL
 CxShell::bCreateShortcut(
-    const std::tstring &csFilePath, 
-    const std::tstring &csShortCutPath, 
+    const std::tstring &csFilePath,
+    const std::tstring &csShortCutPath,
     const std::tstring &csDescription
 )
 {
@@ -258,54 +250,48 @@ CxShell::bCreateShortcut(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: CxShell
 CxShell::CxShell() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxShell
 /*virtual*/
 CxShell::~CxShell() {
 
 }
 //---------------------------------------------------------------------------
-
-
-
-
-
-
-/*
-How to find the application associated with particular file extension.
-
-May 30th
-
-Posted by Jijo Raj in Codeproject
-
-No comments
-
-
-
-Did you ever noticed that, While starting up some media player applications, they says that - �Some of its proprietary file formats are not associated with it and do you want to associate now?�. How these application are checking the associated application of particular filetype?
-
-
-For a given file extension, you can find the executable associated with it by calling the api � AssocQueryString(). See the sample code snippet below.
-#include "Shlwapi.h"
-...
-DWORD dwSize = MAX_PATH;
-TCHAR tchApplicationPath[ MAX_PATH ] = { 0 };
-HRESULT hr = AssocQueryString( 0,
-ASSOCSTR_EXECUTABLE,
-xT( ".mp3" ),
-xT( "open" ),
-tchApplicationPath,
-&dwSize );
-
-if( FAILED( hr ))
-{
-// Failed to get the associated application.
-}
-*/
 #elif defined(xOS_LINUX)
 
+#endif
+
+
+#if xTODO
+	How to find the application associated with particular file extension.
+
+	May 30th
+
+	Posted by Jijo Raj in Codeproject
+
+	No comments
+
+
+
+	Did you ever noticed that, While starting up some media player applications, they says that - �Some of its proprietary file formats are not associated with it and do you want to associate now?�. How these application are checking the associated application of particular filetype?
+
+
+	For a given file extension, you can find the executable associated with it by calling the api � AssocQueryString(). See the sample code snippet below.
+	#include "Shlwapi.h"
+	...
+	DWORD dwSize = MAX_PATH;
+	TCHAR tchApplicationPath[ MAX_PATH ] = { 0 };
+	HRESULT hr = AssocQueryString( 0,
+	ASSOCSTR_EXECUTABLE,
+	xT( ".mp3" ),
+	xT( "open" ),
+	tchApplicationPath,
+	&dwSize );
+
+	if( FAILED( hr ))
+	{
+	// Failed to get the associated application.
+	}
 #endif
