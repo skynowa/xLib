@@ -267,7 +267,7 @@ class CxFile :
             ///< write binary data
 
         //other
-        static std::tstring  sBackup      (const std::tstring &csFilePath, const std::tstring &csDestDirPath, const BOOL cbMakeDaily /*,INT bBackupLimit*/);
+        static std::tstring  sBackup      (const std::tstring &csFilePath, const std::tstring &csDestDirPath, const BOOL cbMakeDaily /*, INT bBackupLimit*/);
             ///< backup
 
     private:

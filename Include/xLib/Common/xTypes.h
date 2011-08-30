@@ -31,8 +31,8 @@
     typedef char            TCHAR;
     typedef char *          LPTSTR;
     typedef const char *    LPCTSTR;
-    typedef char *          LPSTR;   //ansi
-    typedef const char *    LPCSTR;  //ansi
+    typedef char *          LPSTR;   
+    typedef const char *    LPCSTR;  
 
     #define tcin            cin
     #define tcout           cout
@@ -110,7 +110,7 @@ namespace std {
         #define _gettchar   getwchar
         #define _tsystem    _wsystem
         #define _ttmpnam    _wtmpnam
-        #define _tmkstemp   mkstemp         //TODO: need unicode version
+        #define _tmkstemp   mkstemp
         #define _trename    _wrename
         #define _tunlink    _wunlink
         #define _tremove    _wremove

@@ -164,6 +164,7 @@
     <ClCompile Include="..\..\Source\Debug\CxLastError.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxProfiler.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxReport.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxStdError.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxTest.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxDir.cpp" />
@@ -284,6 +285,7 @@
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxReport.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxStdError.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDir.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxEnvironment.cpp" />
@@ -345,6 +347,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xTracing.h" />
     <ClInclude Include="..\..\Include\xLib\Crypt\OpenSSL\CxBase64.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxStdError.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxFile.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.h" />
@@ -384,6 +387,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxReport.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxStdError.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDir.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxEnvironment.h" />

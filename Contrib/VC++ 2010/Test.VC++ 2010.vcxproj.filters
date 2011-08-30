@@ -687,6 +687,12 @@
     <ClCompile Include="..\..\Source\Log\CxSystemLog.cpp">
       <Filter>xLib\Log</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Debug\CxStdError.cpp">
+      <Filter>xLib\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxStdError.cpp">
+      <Filter>Test\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1252,6 +1258,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\xLogs.h">
       <Filter>xLib\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Debug\CxStdError.h">
+      <Filter>xLib\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxStdError.h">
+      <Filter>Test\Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
