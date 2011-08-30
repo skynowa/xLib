@@ -21,6 +21,12 @@
 #else
     #error xLib: unsupported OS
 #endif
+
+// OS version
+#define xOS_WIN_VER     WINVER
+#define xOS_LINUX_VER
+#define xOS_FREEBSD_VER	__FreeBSD_version
+
 //---------------------------------------------------------------------------
 // OS architecture (http://predef.sourceforge.net/preos.html)
 #if defined(i386) || defined(__i386__) || defined(__i486__) || defined(__i586__) || defined(__i686__) || defined(__i386) || defined(_M_IX86) || \
@@ -56,6 +62,15 @@
 #else
     #error xLib: unsupported compiler
 #endif
+
+// compiler version
+#define xCOMPILER_MINGW32_MAJOR_VER	__MINGW32_MAJOR_VERSION
+#define xCOMPILER_MINGW32_MINOR_VER	__MINGW32_MINOR_VERSION
+
+#define xCOMPILER_INTEL_VER			__INTEL_COMPILER
+#define xCOMPILER_MS_VER			_MSC_VER
+#define xCOMPILER_CODEGEAR_VER		__CODEGEARC__
+#define xCOMPILER_GNUC_VER			__GNUC_VERSION__
 //---------------------------------------------------------------------------
 // unicode, ansi
 #if defined(UNICODE) || defined(_UNICODE)
