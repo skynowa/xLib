@@ -192,9 +192,9 @@ class CxArray
         }
 
         //--------------------------------------------------
-        //assign one value to all elements
+        //assign one value to all elements (synonym for fill)
         void
-        assign(const TypeT &value) { // A synonym for fill
+        assign(const TypeT &value) { //
             fill(value);
         }
 

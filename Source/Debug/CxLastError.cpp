@@ -93,8 +93,7 @@ CxLastError::sFormat(
                     MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
                     reinterpret_cast<LPTSTR>( &pvBuff ),
                     0,
-                    NULL
-    );
+                    NULL);
 
     //317 - "Не удается найти текст сообщения с номером 0x%1 в файле сообщений %2."
     xCHECK_RET(317 == ulGet(), xT("Unknown error"));

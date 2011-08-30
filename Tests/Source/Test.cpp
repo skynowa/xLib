@@ -52,6 +52,7 @@
 ////#include <Test/Db/CxTest_CxMySql.h>
 
 //Debug
+#include <Test/Debug/CxTest_CxStdError.h>
 #include <Test/Debug/CxTest_CxLastError.h>
 #include <Test/Debug/CxTest_CxReport.h>
 #include <Test/Debug/CxTest_CxDebugger.h>
@@ -240,6 +241,7 @@ _tmain(
         ////bRes = tmManager.bAdd(new CxTest_CxMySql);
 
         //Debug
+        bRes = tmManager.bAdd(new CxTest_CxStdError);
         bRes = tmManager.bAdd(new CxTest_CxLastError);
         bRes = tmManager.bAdd(new CxTest_CxDebugger);
         bRes = tmManager.bAdd(new CxTest_CxReport);

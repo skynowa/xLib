@@ -25,11 +25,6 @@ class CxTestManager :
         BOOL       bRun         (const ULONGLONG cullAllLoops, const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
             ///< run all tests
 
-        //TODO: not enough RAM
-        //TODO: not enough HDD
-        //TODO: busy CPU
-        //TODO: every macros wrapped by try-catch
-
     private:
         typedef std::vector<CxTest *> TContainer;
 
@@ -37,5 +32,10 @@ class CxTestManager :
         const BOOL _m_cbIsUseTracing;   ///< is use tracing
         TContainer _m_ctnTests;         ///< CxTest's container
 };
+
+//TODO: not enough RAM
+//TODO: not enough HDD
+//TODO: busy CPU
+//TODO: every macros wrapped by try-catch
 //---------------------------------------------------------------------------
 #endif //xLib_CxTestManager.H
