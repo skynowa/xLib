@@ -7,14 +7,14 @@
 #ifndef xLib_Common_xDefinesH
 #define xLib_Common_xDefinesH
 //---------------------------------------------------------------------------
-// OS family (http://predef.sourceforge.net/preos.html)
+// OS family
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
     #define xOS_WIN
         ///< operating system Windows
 #elif defined(linux) || defined(__linux) || defined(__linux__)
     #define xOS_LINUX
         ///< operating system Linux
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+#elif defined(__FreeBSD__)
     #define xOS_LINUX
     #define xOS_FREEBSD
         ///< operating system FreeBSD
@@ -24,11 +24,11 @@
 
 // OS version
 #define xOS_WIN_VER     WINVER
-#define xOS_LINUX_VER
-#define xOS_FREEBSD_VER	__FreeBSD_version
+#define xOS_LINUX_VER   0
+#define xOS_FREEBSD_VER	__FreeBSD__
 
 //---------------------------------------------------------------------------
-// OS architecture (http://predef.sourceforge.net/preos.html)
+// OS architecture
 #if defined(i386) || defined(__i386__) || defined(__i486__) || defined(__i586__) || defined(__i686__) || defined(__i386) || defined(_M_IX86) || \
     defined(__X86__) || defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__I86__) || defined(__INTEL__)
 
