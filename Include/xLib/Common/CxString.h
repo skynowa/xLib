@@ -165,7 +165,7 @@ class CxString :
         virtual             ~CxString          ();
             ///< destructor
 
-       static  INT           vsnprintf_safe    (TCHAR *pszBuff, const size_t  cuiBuffSize, const TCHAR *pcszFormat, va_list alList);
+       static  INT           vsntprintf_safe    (TCHAR *pszBuff, const size_t  cuiBuffSize, const TCHAR *pcszFormat, va_list alList);
             ///< call _vsnprintf, but always NUL-terminate
 };
 //---------------------------------------------------------------------------
