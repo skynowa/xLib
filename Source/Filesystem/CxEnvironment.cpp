@@ -288,17 +288,12 @@ CxEnvironment::bSetCommandLineArgs(
 )
 {
     /*DEBUG*/// n/a (because we'll have a recursion)
-    /*DEBUG*/// n/a (because we'll have a recursion)
-
-    const TCHAR  **pcaszCommandLineArgs     = const_cast<const TCHAR **>(paszArgs);
-    const size_t   m_uiCommandLineArgsCount = ciArgsCount;
 
     std::vector<std::tstring> vsArgs;
 
-    for (const TCHAR **pszVar = pcaszCommandLineArgs; (NULL != pcaszCommandLineArgs) && (NULL != *pszVar); ++ pszVar) {
-        vsArgs.push_back(*pszVar);
+    for (INT i = 0; i < ciArgsCount; ++ i) {
+        vsArgs.push_back(paszArgs[i]);
     }
-    /*DEBUG*/xASSERT_RET(vsArgs.size() == m_uiCommandLineArgsCount, FALSE);
 
     //out
     std::swap(_m_vsCommandLineArgs, vsArgs);
