@@ -13,7 +13,6 @@
 
 #include <xLib/Common/CxDateTime.h>
 
-
 //---------------------------------------------------------------------------
 //DONE: CxTest_CxThread
 CxTest_CxThread::CxTest_CxThread() {

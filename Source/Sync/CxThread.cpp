@@ -7,8 +7,10 @@
 #include <xLib/Sync/CxThread.h>
 
 #include <xLib/Common/CxSystemInfo.h>
-    #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
+#include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
+
+////xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
 *    public
@@ -16,7 +18,6 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxThread
 CxThread::CxThread(
     const BOOL cbIsAutoDelete
 ) :
@@ -57,7 +58,6 @@ CxThread::CxThread(
     ////this->hMainThreadId = ::GetCurrentThreadId();
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxThread
 /*virtual*/
 CxThread::~CxThread() {
     /*DEBUG*/
@@ -160,7 +160,6 @@ CxThread::bCreate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bResume (resumption)
 BOOL
 CxThread::bResume() {
 #if defined(xOS_WIN)
@@ -182,7 +181,6 @@ CxThread::bResume() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bPause (pause)
 BOOL
 CxThread::bPause() {
 #if defined(xOS_WIN)
@@ -204,7 +202,6 @@ CxThread::bPause() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bExit (exit - set flag "exit")
 BOOL
 CxThread::bExit(
     const ULONG culTimeout
@@ -235,7 +232,6 @@ CxThread::bExit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bKill (killing)
 BOOL
 CxThread::bKill(
     const ULONG culTimeout
@@ -285,7 +281,6 @@ CxThread::bKill(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bWait (waiting)
 BOOL
 CxThread::bWait(
     const ULONG culTimeout
@@ -320,7 +315,6 @@ CxThread::bWait(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsCreated (is created)
 BOOL
 CxThread::bIsCreated() const {
 #if defined(xOS_WIN)
@@ -332,7 +326,6 @@ CxThread::bIsCreated() const {
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: bIsRunning (is running)
 BOOL
 CxThread::bIsRunning() const {
     /*DEBUG*/// _m_hThread - n/a
@@ -356,7 +349,6 @@ CxThread::bIsRunning() const {
     return _m_bRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsPaused (is paused)
 BOOL
 CxThread::bIsPaused() const {
 #if defined(xOS_WIN)
@@ -368,7 +360,6 @@ CxThread::bIsPaused() const {
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: bIsExited (is set flag "exit")
 BOOL
 CxThread::bIsExited() const {
 #if defined(xOS_WIN)
@@ -389,7 +380,6 @@ CxThread::bIsExited() const {
 
 #if defined(xOS_WIN)
 //---------------------------------------------------------------------------
-//DONE: bPostMessage (send message from thread to window)
 BOOL
 CxThread::bPostMessage(
     HWND hHwnd,
@@ -408,7 +398,6 @@ CxThread::bPostMessage(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSendMessage (send message from thread to window)
 BOOL
 CxThread::bSendMessage(
     HWND hHwnd,
@@ -428,7 +417,6 @@ CxThread::bSendMessage(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bPostThreadMessage (send message to thread)
 BOOL
 CxThread::bPostThreadMessage(
     UINT uiMsg,
@@ -444,7 +432,6 @@ CxThread::bPostThreadMessage(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTryPostThreadMessage (trying send message to thread)
 BOOL
 CxThread::bTryPostThreadMessage(
     UINT  uiMsg,
@@ -466,7 +453,6 @@ CxThread::bTryPostThreadMessage(
     return FALSE;
 }
 //---------------------------------------------------------------------------
-//DONE: bMessageWaitQueue (waiting for message with params from other thread)
 BOOL
 CxThread::bMessageWaitQueue(
     UINT  uiMsg,
@@ -486,7 +472,6 @@ CxThread::bMessageWaitQueue(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bMessageWaitQueue (waiting for message with params from other thread)
 BOOL
 CxThread::bMessageWaitQueue(
     const std::vector<UINT> &cvecuiMsg,
@@ -527,7 +512,6 @@ CxThread::bMessageWaitQueue(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bSetPriority (seeting priority)
 BOOL
 CxThread::bSetPriority(
     const EPriority ctpPriority
@@ -545,7 +529,6 @@ CxThread::bSetPriority(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: iGetPriority (get priotity)
 CxThread::EPriority
 CxThread::tpGetPriority() const {
 #if defined(xOS_WIN)
@@ -566,7 +549,6 @@ CxThread::tpGetPriority() const {
      return tpRes;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetPriorityString (get priority as string)
 std::tstring
 CxThread::sGetPriorityString() const {
     /*DEBUG*/// n/a
@@ -589,7 +571,6 @@ CxThread::sGetPriorityString() const {
     return xT("N/A");
 }
 //---------------------------------------------------------------------------
-//DONE: bPriorityUp (increase priority on one level)
 BOOL
 CxThread::bPriorityUp() const {
 #if defined(xOS_WIN)
@@ -617,7 +598,6 @@ CxThread::bPriorityUp() const {
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: bPriorityDown (decrease priority on one level)
 BOOL
 CxThread::bPriorityDown() const {
 #if defined(xOS_WIN)
@@ -645,7 +625,6 @@ CxThread::bPriorityDown() const {
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: bIsPriorityBoost (Retrieves the priority boost control state of the specified thread)
 BOOL
 CxThread::bIsPriorityBoost() const {
 #if defined(xOS_WIN)
@@ -665,7 +644,6 @@ CxThread::bIsPriorityBoost() const {
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: bSetPriorityBoost (Disables or enables the ability of the system to temporarily boost the priority of a thread)
 BOOL
 CxThread::bSetPriorityBoost(
     const BOOL cbIsEnabled
@@ -691,30 +669,29 @@ CxThread::bSetPriorityBoost(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bSetAffinityMask (Sets a processor affinity mask for the specified thread)
 BOOL
 CxThread::bSetAffinityMask(
-    ULONG *pulMask
+    const size_t cuiMask
 ) const
 {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    DWORD_PTR pulRes = 0;
-
-    pulRes = ::SetThreadAffinityMask(_m_hThread.hGet(), *pulMask);    //ERROR_INVALID_PARAMETER
+    DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), cuiMask);    //ERROR_INVALID_PARAMETER
     /*DEBUG*/xASSERT_RET(0 != pulRes, FALSE);
+#elif defined(xOS_LINUX)
+    cpu_set_t csCpuSet; CPU_ZERO(&csCpuSet);
+    CPU_SET(cuiMask, &csCpuSet);
+
+    ///pthread_setaffinity(ulGetId(), &csCpuSet);
+#endif
 
     return TRUE;
-#elif defined(xOS_LINUX)
-    return FALSE;
-#endif
 }
 //---------------------------------------------------------------------------
-//DONE: bSetIdealProcessor (Sets a preferred processor for a thread, ulIdealProcessor - this value is zero-based)
 BOOL
 CxThread::bSetIdealCPU(
-    const ULONG culIdealCPU
+    const ULONG culIdealCPU    ///< value is zero-based
 ) const
 {
 #if defined(xOS_WIN)
@@ -734,7 +711,6 @@ CxThread::bSetIdealCPU(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetIdealProcessor (current ideal processor without changing it)
 ULONG
 CxThread::ulGetIdealCPU() const {
 #if defined(xOS_WIN)
@@ -755,7 +731,7 @@ CxThread::ulGetIdealCPU() const {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetCPUCount (CPU's number on machine)
+//TODO:  is static ???
 ULONG
 CxThread::ulGetCPUCount() const {
     /*DEBUG*///_m_hThread - n/a
@@ -776,7 +752,6 @@ CxThread::ulGetCPUCount() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: hGetHandle (get handle)
 #if defined(xOS_WIN)
 CxThread::THandle
 CxThread::hGetHandle() const {
@@ -788,7 +763,6 @@ CxThread::hGetHandle() const {
 
 #endif
 //---------------------------------------------------------------------------
-//DONE: ulGetId (get id)
 CxThread::TId
 CxThread::ulGetId() const {
 #if defined(xOS_WIN)
@@ -800,7 +774,6 @@ CxThread::ulGetId() const {
     return _m_ulID;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsCurrent (is current)
 BOOL
 CxThread::bIsCurrent() const {
     /*DEBUG*/
@@ -808,7 +781,6 @@ CxThread::bIsCurrent() const {
     return bIsCurrent( ulGetCurrId() );
 }
 //---------------------------------------------------------------------------
-//DONE: bGetExitCode (Retrieves the termination status of the specified thread)
 ULONG
 CxThread::ulGetExitCode() const {
 #if defined(xOS_WIN)
@@ -825,7 +797,6 @@ CxThread::ulGetExitCode() const {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetDebugName (Name your threads in the VC debugger thread list)
 BOOL
 CxThread::bSetDebugName(
     const std::tstring &csName
@@ -849,7 +820,6 @@ CxThread::bSetDebugName(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: hOpen (Opens an existing thread object.)
 /*static*/
 CxThread::THandle
 CxThread::hOpen(
@@ -876,7 +846,6 @@ CxThread::hOpen(
     return hRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetCurrId (Retrieves the thread identifier of the calling thread)
 /*static*/
 CxThread::TId
 CxThread::ulGetCurrId() {
@@ -895,7 +864,6 @@ CxThread::ulGetCurrId() {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bIsCurrent (is current id)
 /*static*/
 BOOL
 CxThread::bIsCurrent(
@@ -916,7 +884,6 @@ CxThread::bIsCurrent(
     return bRes;
 }
 //---------------------------------------------------------------------------
-//DONE: hGetCurrHandle (Retrieves a pseudo handle for the calling thread)
 /*static*/
 CxThread::THandle
 CxThread::hGetCurrHandle() {
@@ -937,7 +904,6 @@ CxThread::hGetCurrHandle() {
     return hRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetPriority (set priority)
 /*static*/
 BOOL
 CxThread::bSetPriority(
@@ -952,7 +918,6 @@ CxThread::bSetPriority(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bYield (уступить ресурсы другому потоку, который готов к исполнению на !текущем процессоре!)
 /*static*/
 BOOL
 CxThread::bYield() {
@@ -969,7 +934,6 @@ CxThread::bYield() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSleep (sleep)
 /*static*/
 BOOL
 CxThread::bSleep(
@@ -1007,7 +971,6 @@ CxThread::bSleep(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: vAttachHandler_OnEnter ()
 VOID
 CxThread::vAttachHandler_OnEnter(
     SClosureT<VOID(CxThread *pthSender)> vCallback
@@ -1017,13 +980,13 @@ CxThread::vAttachHandler_OnEnter(
     //_m_bFlag_OnEnter  = TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: vDetachHandler_OnEnter ()
-////VOID vDetachHandler_OnEnter(CxThread *pthSender) {
-////    //_m_bFlag_OnEnter         = FALSE;
-////    _m_Callback_OnEnter.p_this = NULL;
-////}
+#if xTEMP_DISABLED
+    VOID vDetachHandler_OnEnter(CxThread *pthSender) {
+        //_m_bFlag_OnEnter         = FALSE;
+        _m_Callback_OnEnter.p_this = NULL;
+    }
+#endif
 //---------------------------------------------------------------------------
-//DONE: vAttachHandler_OnExit ()
 VOID
 CxThread::vAttachHandler_OnExit(
     SClosureT<VOID(CxThread *pthSender)> vCallback
@@ -1033,11 +996,12 @@ CxThread::vAttachHandler_OnExit(
     //_m_bFlag_OnExit    = TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: vDetachHandler_OnExit ()
-////VOID vDetachHandler_OnExit(CxThread *pthSender) {
-////    //_m_bFlag_OnExit         = FALSE;
-////    _m_Callback_OnExit.p_this = NULL;
-////}
+#if xTEMP_DISABLED
+    VOID vDetachHandler_OnExit(CxThread *pthSender) {
+        //_m_bFlag_OnExit         = FALSE;
+        _m_Callback_OnExit.p_this = NULL;
+    }
+#endif
 //---------------------------------------------------------------------------
 
 
@@ -1052,7 +1016,6 @@ CxThread::vAttachHandler_OnExit(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: uiOnRun (thread function)    //must override this
 /*virtual*/
 UINT
 CxThread::uiOnRun(
@@ -1106,7 +1069,6 @@ CxThread::uiOnRun(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bIsTimeToExit (is need to exit from thread)
 BOOL
 CxThread::bIsTimeToExit() {
     /*DEBUG*/// n/a
@@ -1140,7 +1102,6 @@ CxThread::bIsTimeToExit() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: _s_uiStartFunc (callback)
 #if defined(xOS_WIN)
 /*static*/
 UINT __stdcall
@@ -1230,7 +1191,6 @@ CxThread::_s_uiStartFunc(
 }
 #endif
 //---------------------------------------------------------------------------
-//DONE: _bWaitForResume (waiting for reset pause)
 BOOL
 CxThread::_bWaitResumption() {
     /*DEBUG*/
@@ -1266,7 +1226,12 @@ CxThread::_bWaitResumption() {
     */
 }
 //---------------------------------------------------------------------------
-//DONE: _vSetStatesDefault ()
+//TODO: _vMembersClear
+VOID
+CxThread::_vMembersClear() {
+
+}
+//---------------------------------------------------------------------------
 VOID
 CxThread::_vSetStatesDefault() {
     /*DEBUG*/// n/a
@@ -1279,7 +1244,6 @@ CxThread::_vSetStatesDefault() {
     /*_m_bIsExited*///   n/a
 }
 //---------------------------------------------------------------------------
-//DONE: _bSetDebugNameA (Name your threads in the VC debugger thread list)
 BOOL
 CxThread::_bSetDebugNameA(
     const std::string &csName
@@ -1339,7 +1303,6 @@ CxThread::_bSetDebugNameA(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: vHandler_OnEnter ()
 VOID
 CxThread::_vHandler_OnEnter(
     CxThread *pthSender
@@ -1352,7 +1315,6 @@ CxThread::_vHandler_OnEnter(
     _m_vCallback_OnEnter(pthSender);
 }
 //---------------------------------------------------------------------------
-//DONE: vHandler_OnExit ()
 VOID
 CxThread::_vHandler_OnExit(
     CxThread *pthSender
@@ -1365,3 +1327,5 @@ CxThread::_vHandler_OnExit(
     _m_vCallback_OnExit(pthSender);
 }
 //---------------------------------------------------------------------------
+
+////xNAMESPACE_END(NxLib);
