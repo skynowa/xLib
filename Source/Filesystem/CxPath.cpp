@@ -108,7 +108,7 @@ CxPath::sGetExe() {
         #endif
     #endif
 
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(),                 std::tstring());
+    /*DEBUG*/xASSERT_RET(false == sRes.empty(),            std::tstring());
     /*DEBUG*/xASSERT_RET(FALSE != CxFile::bIsExists(sRes), std::tstring());
 
     return sRes;
@@ -165,7 +165,7 @@ CxPath::sGetDrive(
 
     size_t uiDriveDelimPos = csFilePath.find(CxConst::xDRIVE_SEP);
     /*DEBUG*/xASSERT_RET(std::tstring::npos != uiDriveDelimPos, std::tstring());
-    /*DEBUG*/xASSERT_RET(1             == uiDriveDelimPos, std::tstring());
+    /*DEBUG*/xASSERT_RET(1                  == uiDriveDelimPos, std::tstring());
 
     return csFilePath.substr(0, uiDriveDelimPos + CxConst::xDRIVE_SEP.size());
 }

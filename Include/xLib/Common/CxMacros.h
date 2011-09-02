@@ -30,6 +30,11 @@ class CxMacros :
     /// help macroses
 {
     public:
+        #define xNAMESPACE_BEGIN(n)    namespace n {
+                    ///< begin namespace
+        #define xNAMESPACE_END(n)      }
+                    ///< end namespace
+
         #define xPTR_DELETE(p)         { if (NULL != (p)) { delete (p);     (p) = NULL; } }
             ///< delete object by pointer
         /*template<class T>

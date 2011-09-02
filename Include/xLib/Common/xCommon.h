@@ -71,6 +71,7 @@
 
 //xLib
 namespace NxLib { }
+
 #if xUSING_NAMESPACE
     using namespace NxLib;
 #endif

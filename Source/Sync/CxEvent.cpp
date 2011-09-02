@@ -12,7 +12,7 @@
 *
 *****************************************************************************/
 
-#if defined(xOS_WIN)
+#if defined(xOS_WIN) || 0
 //---------------------------------------------------------------------------
 //DONE: CxEvent
 CxEvent::CxEvent() :
@@ -149,3 +149,133 @@ CxEvent::bIsSignaled() const {
 #elif defined(xOS_LINUX)
 
 #endif
+
+
+//---------------------------------------------------------------------------
+timespec *
+getTimeout(
+    struct timespec *spec,
+    timeout_t        timer
+)
+{
+    static  struct timespec myspec;
+
+    if(spec == NULL)
+        spec = &myspec;
+
+#ifdef  PTHREAD_GET_EXPIRATION_NP
+    struct timespec offset;
+
+    offset.tv_sec  = timer / 1000;
+    offset.tv_nsec = (timer % 1000) * 1000000;
+    pthread_get_expiration_np(&offset, sec);
+#else
+    struct timeval current;
+
+    #if xDEPRECIATE
+        SysTime::getTimeOfDay(&current);
+    #else
+        gettimeofday(&current, NULL);
+    #endif
+
+    spec->tv_sec  = current.tv_sec + ((timer + current.tv_usec / 1000) / 1000);
+    spec->tv_nsec = ((current.tv_usec / 1000 + timer) % 1000) * 1000000;
+
+#endif
+    return spec;
+}
+//---------------------------------------------------------------------------
+CxEvent::CxEvent() {
+#if defined(xOS_WIN)
+    cond = ::CreateEvent(NULL, TRUE, FALSE, NULL);
+    /*DEBUG*/
+#elif defined(xOS_LINUX)
+    pthread_mutexattr_t attr;
+
+    pthread_mutexattr_init(&attr);
+    pthread_mutex_init(&_mutex, &attr);
+    pthread_mutexattr_destroy(&attr);
+    pthread_cond_init(&_cond, NULL);
+
+    _signaled = FALSE;
+    _count    = 0;
+#endif
+}
+//---------------------------------------------------------------------------
+CxEvent::~CxEvent() {
+#if defined(xOS_WIN)
+    ::CloseHandle(cond);
+#elif defined(xOS_LINUX)
+    pthread_cond_destroy(&_cond);
+    pthread_mutex_destroy(&_mutex);
+#endif
+}
+//---------------------------------------------------------------------------
+BOOL
+CxEvent::bSignal() {
+#if defined(xOS_WIN)
+    ::SetEvent(cond);
+#elif defined(xOS_LINUX)
+    pthread_mutex_lock(&_mutex);
+
+    _signaled = TRUE;
+    ++_count;
+
+    pthread_cond_broadcast(&_cond);
+    pthread_mutex_unlock(&_mutex);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL
+CxEvent::bReset() {
+#if defined(xOS_WIN)
+    ::ResetEvent(cond);
+#elif defined(xOS_LINUX)
+    _signaled = FALSE;
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL
+CxEvent::bWait() {
+#ifdef WIN32
+    return (Thread::waitThread(cond, INFINITE) == WAIT_OBJECT_0);
+#elif defined(xOS_LINUX)
+    return bWait(TIMEOUT_INF);
+#endif
+}
+//---------------------------------------------------------------------------
+BOOL
+CxEvent::bWait(
+    timeout_t timer
+)
+{
+#if defined(xOS_WIN)
+    return WAIT_OBJECT_0 == Thread::waitThread(cond, timer);
+#elif defined(xOS_LINUX)
+    int             rc = 0;
+    struct timespec spec;
+
+    pthread_mutex_lock(&_mutex);
+    long count = _count;
+
+    while (!_signaled && _count == count) {
+        if (TIMEOUT_INF != timer) {
+            rc = pthread_cond_timedwait(&_cond, &_mutex, getTimeout(&spec, timer));
+        } else {
+            pthread_cond_wait(&_cond, &_mutex);
+        }
+
+        xCHECK_DO(rc == ETIMEDOUT, break);
+    }
+
+    pthread_mutex_unlock(&_mutex);
+    xCHECK_RET(rc == ETIMEDOUT, FALSE);
+
+    return TRUE;
+#endif
+}
+//---------------------------------------------------------------------------
