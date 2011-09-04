@@ -38,3 +38,10 @@ class CxMutex :
 #endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxMutexH
+
+#if xTODO
+    CreateMutex - semget, semctl 
+    CloseHandle - semctl 
+    WaitForSingleObject - semop 
+    ReleaseMutex - semop
+#endif

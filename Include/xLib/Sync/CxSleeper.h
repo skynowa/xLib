@@ -20,7 +20,7 @@
             virtual ~CxSleeper  ();
 
             BOOL     bSleep     (const ULONG culTimeout) const;
-            BOOL     bWakeUp    () const;
+            BOOL     bWakeUp    ();
             BOOL     bIsSleeping() const;
 
         private:

@@ -46,7 +46,7 @@ CxTest_CxEvent::bUnit(
         //-------------------------------------
         //bCreate
         {
-            m_bRes = objEvent.bCreate(0, TRUE, FALSE, xT(""));
+            m_bRes = objEvent.bCreate(/*0, TRUE, FALSE, xT("")*/);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
@@ -74,8 +74,10 @@ CxTest_CxEvent::bUnit(
         //-------------------------------------
         //bPulse
         {
+#if xTEMP_DISABLED
             m_bRes = objEvent.bPulse();
             xASSERT_NOT_EQ(FALSE, m_bRes);
+#endif
         }
 
         //-------------------------------------
@@ -122,7 +124,7 @@ CxTest_CxEvent::bUnit(
         //-------------------------------------
         //bCreate
         {
-            m_bRes = objEvent.bCreate(0, FALSE, TRUE, xT("XLib_CxEvent_25_01_2010"));
+            m_bRes = objEvent.bCreate(/*0, FALSE, TRUE, xT("XLib_CxEvent_25_01_2010")*/);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
@@ -130,7 +132,11 @@ CxTest_CxEvent::bUnit(
         //bIsSignaled
         {
             m_bRes = objEvent.bIsSignaled();
+#if xDEPRECIATE
             xASSERT_NOT_EQ(FALSE, m_bRes);
+#else
+            xASSERT_NOT_EQ(TRUE, m_bRes);
+#endif
         }
 
         //-------------------------------------
@@ -143,15 +149,19 @@ CxTest_CxEvent::bUnit(
         //-------------------------------------
         //bOpen
         {
-            ////m_bRes = objEvent.bOpen(0, FALSE, xT("XLib_CxEvent_25_01_2010"));
-            ////xASSERT_NOT_EQ(FALSE, m_bRes);
+#if xTEMP_DISABLED
+            m_bRes = objEvent.bOpen(0, FALSE, xT("XLib_CxEvent_25_01_2010"));
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+#endif
         }
 
         //-------------------------------------
         //bPulse
         {
+#if xTEMP_DISABLED
             m_bRes = objEvent.bPulse();
             xASSERT_NOT_EQ(FALSE, m_bRes);
+#endif
         }
 
         //-------------------------------------

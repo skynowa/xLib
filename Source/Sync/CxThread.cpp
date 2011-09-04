@@ -109,7 +109,7 @@ CxThread::bCreate(
     _m_pevStarter = new CxEvent();
     /*DEBUG*/xASSERT_RET(NULL != _m_pevStarter, FALSE);
 
-    _m_bRes = _m_pevStarter->bCreate(NULL, TRUE, TRUE, xT(""));
+    _m_bRes = _m_pevStarter->bCreate(/*NULL, TRUE, TRUE, xT("")*/);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
@@ -131,10 +131,10 @@ CxThread::bCreate(
 
     //-------------------------------------
     //_m_evPause
-    _m_bRes = _m_evPause.bCreate(NULL, TRUE, TRUE, xT(""));
+    _m_bRes = _m_evPause.bCreate(/*NULL, TRUE, TRUE, xT("")*/);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    _m_bRes = _m_evExit.bCreate(NULL, TRUE, TRUE, xT(""));
+    _m_bRes = _m_evExit.bCreate(/*NULL, TRUE, TRUE, xT("")*/);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
@@ -677,8 +677,9 @@ CxThread::bSetAffinityMask(
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), cuiMask);    //ERROR_INVALID_PARAMETER
-    /*DEBUG*/xASSERT_RET(0 != pulRes, FALSE);
+    DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), cuiMask);
+    /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
+    /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
 #elif defined(xOS_LINUX)
     cpu_set_t csCpuSet; CPU_ZERO(&csCpuSet);
     CPU_SET(cuiMask, &csCpuSet);
