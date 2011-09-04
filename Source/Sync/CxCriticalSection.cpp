@@ -36,7 +36,7 @@ CxCriticalSection::CxCriticalSection() :
 	    /*DEBUG*/xASSERT_DO(0 == iRes, return);
     }
 
-    iRes = pthread_mutexattr_destroy(&maAttr)
+    iRes = pthread_mutexattr_destroy(&maAttr);
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
 #endif
 }
@@ -123,7 +123,7 @@ CxCriticalSection::ulSetSpinCount(
 #elif defined(xOS_LINUX)
     //TODO: ulSetSpinCount
 
-    return 0;
+    return 0UL;
 #endif
 }
 //---------------------------------------------------------------------------
