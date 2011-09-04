@@ -26,7 +26,7 @@ CxCriticalSection::CxCriticalSection() :
 #elif defined(xOS_LINUX)
     INT iRes = - 1;
 
-    pthread_mutexattr_t maAttr; 
+    pthread_mutexattr_t maAttr;
 
     iRes = pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE_NP);
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
@@ -61,14 +61,13 @@ CxCriticalSection::~CxCriticalSection() {
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_destroy(&_m_mMutex);
-	/*DEBUG*/xASSERT_DO(0 == iRes, return);
+	///*DEBUG*/xASSERT_DO(0 == iRes, return);
+	xASSERT_EQ(0, iRes);
 #endif
 }
 //---------------------------------------------------------------------------
 BOOL
 CxCriticalSection::bEnter() {
-    BOOL bRes = FALSE;
-
 #if defined(xOS_WIN)
     ::EnterCriticalSection(&_m_CS);
     /*DEBUG*/// n/a
@@ -82,10 +81,8 @@ CxCriticalSection::bEnter() {
 //---------------------------------------------------------------------------
 BOOL
 CxCriticalSection::bTryEnter() {
-    BOOL bRes = FALSE;
-     
 #if defined(xOS_WIN)
-    bRes = ::TryEnterCriticalSection(&_m_CS);
+    BOOL bRes = ::TryEnterCriticalSection(&_m_CS);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_trylock(&_m_mMutex);
@@ -97,8 +94,6 @@ CxCriticalSection::bTryEnter() {
 //---------------------------------------------------------------------------
 BOOL
 CxCriticalSection::bLeave() {
-    BOOL bRes = FALSE;
-
 #if defined(xOS_WIN)
     ::LeaveCriticalSection(&_m_CS);
     /*DEBUG*/// n/a
