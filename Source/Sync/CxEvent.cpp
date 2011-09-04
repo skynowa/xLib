@@ -14,14 +14,12 @@
 
 #if defined(xOS_WIN) && 0
 //---------------------------------------------------------------------------
-//DONE: CxEvent
 CxEvent::CxEvent() :
     _m_hEvent()
 {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxEvent
 /*virtual*/
 CxEvent::~CxEvent() {
 
@@ -191,8 +189,8 @@ CxEvent::CxEvent() :
 #if defined(xOS_WIN)
     _m_hEvent     ()
 #elif defined(xOS_LINUX)
-    _m_mtMutex    (- 1),
-    _m_cndCond    (- 1),
+    _m_mtMutex    (),
+    _m_cndCond    (),
     _m_bIsSignaled(FALSE),
     _m_liCount    (0L)
 #endif
@@ -221,7 +219,7 @@ CxEvent::hGetHandle() const {
 #endif
 //---------------------------------------------------------------------------
 BOOL
-CxEvent::bCreate() 
+CxEvent::bCreate()
 
 {
 #if defined(xOS_WIN)
@@ -303,36 +301,40 @@ CxEvent::bWait(
     timeout_t culTimeout
 ) const
 {
-#if defined(xOS_WIN)
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
-    /*DEBUG*/// n/a
+#if 0
+	#if defined(xOS_WIN)
+		/*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
+		/*DEBUG*/// n/a
 
-    ULONG ulRes = ::WaitForSingleObject(_m_hEvent, culTimeout);
-    /*DEBUG*/// n/a
+		ULONG ulRes = ::WaitForSingleObject(_m_hEvent, culTimeout);
+		/*DEBUG*/// n/a
 
-    return (WAIT_OBJECT_0 == ulRes);
-#elif defined(xOS_LINUX)
-    int             rc = 0;
-    struct timespec spec;
+		return (WAIT_OBJECT_0 == ulRes);
+	#elif defined(xOS_LINUX)
+		int             rc = 0;
+		struct timespec spec;
 
-    pthread_mutex_lock(&_m_mtMutex);
-    LONG liCount = _m_liCount;
+		pthread_mutex_lock(&_m_mtMutex);
+		LONG liCount = _m_liCount;
 
-    while (!_m_bIsSignaled && _m_liCount == liCount) {
-        if (TIMEOUT_INF != timer) {
-            rc = pthread_cond_timedwait(&_m_cndCond, &_m_mtMutex, getTimeout(&spec, timer));
-        } else {
-            pthread_cond_wait(&_m_cndCond, &_m_mtMutex);
-        }
+		while (!_m_bIsSignaled && _m_liCount == liCount) {
+			if (TIMEOUT_INF != timer) {
+				rc = pthread_cond_timedwait(&_m_cndCond, &_m_mtMutex, getTimeout(&spec, timer));
+			} else {
+				pthread_cond_wait(&_m_cndCond, &_m_mtMutex);
+			}
 
-        xCHECK_DO(rc == ETIMEDOUT, break);
-    }
+			xCHECK_DO(rc == ETIMEDOUT, break);
+		}
 
-    pthread_mutex_unlock(&_m_mtMutex);
-    xCHECK_RET(rc == ETIMEDOUT, FALSE);
+		pthread_mutex_unlock(&_m_mtMutex);
+		xCHECK_RET(rc == ETIMEDOUT, FALSE);
 
-    return TRUE;
+		return TRUE;
+	#endif
 #endif
+
+	return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL

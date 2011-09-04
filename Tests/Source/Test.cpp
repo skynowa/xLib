@@ -110,9 +110,9 @@
 #include <Test/Sync/CxTest_CxThread.h>
 #include <Test/Sync/CxTest_CxCriticalSection.h>
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
-#include <Test/Sync/CxTest_CxEvent.h>
 
 #if defined(xOS_WIN)
+	#include <Test/Sync/CxTest_CxEvent.h>
     #include <Test/Sync/CxTest_CxMutex.h>
     #include <Test/Sync/CxTest_CxAutoMutex.h>
     #include <Test/Sync/CxTest_CxSleeper.h>

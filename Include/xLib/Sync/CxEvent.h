@@ -83,7 +83,7 @@ class CxEvent :
             ///< \param  timer timeout in milliseconds to wait for a signal
             ///< \return true if signaled, false if timed out
         BOOL     bWait() const;
-            ///< wait either for the cxevent to be signaled by another thread            
+            ///< wait either for the cxevent to be signaled by another thread
         BOOL     bIsSignaled() const;
             ///< is signaled
 
