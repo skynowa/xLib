@@ -209,12 +209,16 @@ CxEvent::~CxEvent() {
 #endif
 }
 //---------------------------------------------------------------------------
+#if defined(xOS_WIN)
 HANDLE
 CxEvent::hGetHandle() const {
     /*DEBUG*/// n/a
 
     return _m_hEvent.hGet();
 }
+#elif defined(xOS_LINUX)
+
+#endif
 //---------------------------------------------------------------------------
 BOOL
 CxEvent::bCreate() 

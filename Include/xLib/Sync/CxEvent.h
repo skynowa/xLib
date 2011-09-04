@@ -66,7 +66,11 @@ class CxEvent :
         virtual ~CxEvent();
             ///< destructor
 
+    #if defined(xOS_WIN)
         HANDLE   hGetHandle () const;
+    #elif defined(xOS_LINUX)
+
+    #endif
             ///< get handle
         BOOL     bCreate();
             ///< create
