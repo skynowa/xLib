@@ -7,27 +7,23 @@
 #include <xLib/Sync/CxAutoCriticalSection.h>
 
 
-#if defined(xOS_WIN)
 /****************************************************************************
 *    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxAutoCriticalSection
 CxAutoCriticalSection::CxAutoCriticalSection(
     CxCriticalSection &csCS
 ) :
     _m_csCS(csCS)
 {
-    _m_csCS.vEnter();
+    BOOL bRes = _m_csCS.bEnter();
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxAutoCriticalSection
 CxAutoCriticalSection::~CxAutoCriticalSection() {
-    _m_csCS.vLeave();
+    BOOL bRes = _m_csCS.bLeave();
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
-#endif

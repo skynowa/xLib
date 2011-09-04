@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAutoCriticalSection
 CxTest_CxAutoCriticalSection::CxTest_CxAutoCriticalSection() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAutoCriticalSection
 CxTest_CxAutoCriticalSection::~CxTest_CxAutoCriticalSection() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAutoCriticalSection::bUnit(
@@ -31,17 +28,19 @@ CxTest_CxAutoCriticalSection::bUnit(
 )
 {
 	//-------------------------------------
-	//
+	//CxAutoCriticalSection
     xTEST_BLOCK(cullBlockLoops)
 	{
-		////CxAutoCriticalSection objCxCriticalSectionLocker;
-	}
+        size_t            uiCounter = 0;
+        CxCriticalSection csCS;
 
-	//-------------------------------------
-	//
-    xTEST_BLOCK(cullBlockLoops)
-	{
-		////CxAutoCriticalSection objCxCriticalSectionLocker(10000);
+		{
+			CxAutoCriticalSection acsCS(csCS);
+	
+	        for (INT i = 0; i < 100; ++ i) {
+	            ++ uiCounter;    
+	        } 
+		}
 	}
 
     return TRUE;

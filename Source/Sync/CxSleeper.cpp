@@ -20,7 +20,7 @@ CxSleeper::CxSleeper() :
 {
     BOOL bRes = FALSE;
 
-    bRes = _m_objEvent.bCreate(NULL, FALSE, FALSE, xT(""));
+    bRes = _m_objEvent.bCreate(/*NULL, FALSE, FALSE, xT("")*/);
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
@@ -47,7 +47,7 @@ CxSleeper::bSleep(
 //---------------------------------------------------------------------------
 //DONE: bWakeUp (wakeup)
 BOOL
-CxSleeper::bWakeUp() const {
+CxSleeper::bWakeUp() {
     /*DEBUG*/// n/a
 
     BOOL bRes = FALSE;

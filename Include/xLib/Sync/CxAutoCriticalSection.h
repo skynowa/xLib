@@ -10,20 +10,17 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
 class CxAutoCriticalSection :
     public CxNonCopyable
     /// auto critical section
 {
     public:
                            CxAutoCriticalSection(CxCriticalSection &csCS);
+            ///< constructor                           
         virtual           ~CxAutoCriticalSection();
-
+            ///< destructor
     private:
-        CxCriticalSection &_m_csCS;
+        CxCriticalSection &_m_csCS;    ///< critical section
 };
-#elif defined(xOS_LINUX)
-
-#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAutoCriticalSectionH

@@ -12,7 +12,7 @@
 *
 *****************************************************************************/
 
-#if defined(xOS_WIN) || 0
+#if defined(xOS_WIN) && 0
 //---------------------------------------------------------------------------
 //DONE: CxEvent
 CxEvent::CxEvent() :
@@ -152,77 +152,111 @@ CxEvent::bIsSignaled() const {
 
 
 //---------------------------------------------------------------------------
-timespec *
-getTimeout(
-    struct timespec *spec,
-    timeout_t        timer
-)
-{
-    static  struct timespec myspec;
+#if !defined(xOS_WIN)
+    timespec *
+    getTimeout(
+        struct timespec *spec,
+        timeout_t        timer
+    )
+    {
+        static  struct timespec myspec;
 
-    if(spec == NULL)
-        spec = &myspec;
+        if(spec == NULL)
+            spec = &myspec;
 
-#ifdef  PTHREAD_GET_EXPIRATION_NP
-    struct timespec offset;
+    #ifdef  PTHREAD_GET_EXPIRATION_NP
+        struct timespec offset;
 
-    offset.tv_sec  = timer / 1000;
-    offset.tv_nsec = (timer % 1000) * 1000000;
-    pthread_get_expiration_np(&offset, sec);
-#else
-    struct timeval current;
-
-    #if xDEPRECIATE
-        SysTime::getTimeOfDay(&current);
+        offset.tv_sec  = timer / 1000;
+        offset.tv_nsec = (timer % 1000) * 1000000;
+        pthread_get_expiration_np(&offset, sec);
     #else
-        gettimeofday(&current, NULL);
+        struct timeval current;
+
+        #if xDEPRECIATE
+            SysTime::getTimeOfDay(&current);
+        #else
+            gettimeofday(&current, NULL);
+        #endif
+
+        spec->tv_sec  = current.tv_sec + ((timer + current.tv_usec / 1000) / 1000);
+        spec->tv_nsec = ((current.tv_usec / 1000 + timer) % 1000) * 1000000;
+
     #endif
-
-    spec->tv_sec  = current.tv_sec + ((timer + current.tv_usec / 1000) / 1000);
-    spec->tv_nsec = ((current.tv_usec / 1000 + timer) % 1000) * 1000000;
-
+        return spec;
+    }
 #endif
-    return spec;
+//---------------------------------------------------------------------------
+CxEvent::CxEvent() :
+#if defined(xOS_WIN)
+    _m_hEvent     ()
+#elif defined(xOS_LINUX)
+    _m_mtMutex    (- 1),
+    _m_cndCond    (- 1),
+    _m_bIsSignaled(FALSE),
+    _m_liCount    (0L)
+#endif
+{
+
 }
 //---------------------------------------------------------------------------
-CxEvent::CxEvent() {
+CxEvent::~CxEvent() {
 #if defined(xOS_WIN)
-    cond = ::CreateEvent(NULL, TRUE, FALSE, NULL);
+    // n/a
+#elif defined(xOS_LINUX)
+    pthread_cond_destroy(&_m_cndCond);
+    pthread_mutex_destroy(&_m_mtMutex);
+#endif
+}
+//---------------------------------------------------------------------------
+HANDLE
+CxEvent::hGetHandle() const {
+    /*DEBUG*/// n/a
+
+    return _m_hEvent.hGet();
+}
+//---------------------------------------------------------------------------
+BOOL
+CxEvent::bCreate() 
+
+{
+#if defined(xOS_WIN)
+    _m_hEvent = ::CreateEvent(NULL, TRUE, FALSE, NULL);
     /*DEBUG*/
 #elif defined(xOS_LINUX)
     pthread_mutexattr_t attr;
 
     pthread_mutexattr_init(&attr);
-    pthread_mutex_init(&_mutex, &attr);
+    pthread_mutex_init(&_m_mtMutex, &attr);
     pthread_mutexattr_destroy(&attr);
-    pthread_cond_init(&_cond, NULL);
 
-    _signaled = FALSE;
-    _count    = 0;
+    pthread_cond_init(&_m_cndCond, NULL);
+
+    _m_bIsSignaled = FALSE;
+    _m_liCount     = 0;
 #endif
-}
-//---------------------------------------------------------------------------
-CxEvent::~CxEvent() {
-#if defined(xOS_WIN)
-    ::CloseHandle(cond);
-#elif defined(xOS_LINUX)
-    pthread_cond_destroy(&_cond);
-    pthread_mutex_destroy(&_mutex);
-#endif
+
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL
-CxEvent::bSignal() {
+CxEvent::bSet() {
 #if defined(xOS_WIN)
-    ::SetEvent(cond);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
+    /*DEBUG*/
+
+    BOOL bRes = FALSE;
+
+    bRes = ::SetEvent(_m_hEvent.hGet());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    pthread_mutex_lock(&_mutex);
+    pthread_mutex_lock(&_m_mtMutex);
 
-    _signaled = TRUE;
-    ++_count;
+    _m_bIsSignaled = TRUE;
+    ++ _m_liCount;
 
-    pthread_cond_broadcast(&_cond);
-    pthread_mutex_unlock(&_mutex);
+    pthread_cond_broadcast(&_m_cndCond);
+    pthread_mutex_unlock(&_m_mtMutex);
 #endif
 
     return TRUE;
@@ -231,18 +265,30 @@ CxEvent::bSignal() {
 BOOL
 CxEvent::bReset() {
 #if defined(xOS_WIN)
-    ::ResetEvent(cond);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
+    /*DEBUG*/
+
+    BOOL bRes = FALSE;
+
+    bRes = ::ResetEvent(_m_hEvent);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    _signaled = FALSE;
+    _m_bIsSignaled = FALSE;
 #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL
-CxEvent::bWait() {
-#ifdef WIN32
-    return (Thread::waitThread(cond, INFINITE) == WAIT_OBJECT_0);
+CxEvent::bWait() const {
+#if defined(xOS_WIN)
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
+    /*DEBUG*/// n/a
+
+    ULONG ulRes = ::WaitForSingleObject(_m_hEvent, INFINITE);
+    /*DEBUG*/// n/a
+
+    return (WAIT_OBJECT_0 == ulRes);
 #elif defined(xOS_LINUX)
     return bWait(TIMEOUT_INF);
 #endif
@@ -250,32 +296,52 @@ CxEvent::bWait() {
 //---------------------------------------------------------------------------
 BOOL
 CxEvent::bWait(
-    timeout_t timer
-)
+    timeout_t culTimeout
+) const
 {
 #if defined(xOS_WIN)
-    return WAIT_OBJECT_0 == Thread::waitThread(cond, timer);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
+    /*DEBUG*/// n/a
+
+    ULONG ulRes = ::WaitForSingleObject(_m_hEvent, culTimeout);
+    /*DEBUG*/// n/a
+
+    return (WAIT_OBJECT_0 == ulRes);
 #elif defined(xOS_LINUX)
     int             rc = 0;
     struct timespec spec;
 
-    pthread_mutex_lock(&_mutex);
-    long count = _count;
+    pthread_mutex_lock(&_m_mtMutex);
+    LONG liCount = _m_liCount;
 
-    while (!_signaled && _count == count) {
+    while (!_m_bIsSignaled && _m_liCount == liCount) {
         if (TIMEOUT_INF != timer) {
-            rc = pthread_cond_timedwait(&_cond, &_mutex, getTimeout(&spec, timer));
+            rc = pthread_cond_timedwait(&_m_cndCond, &_m_mtMutex, getTimeout(&spec, timer));
         } else {
-            pthread_cond_wait(&_cond, &_mutex);
+            pthread_cond_wait(&_m_cndCond, &_m_mtMutex);
         }
 
         xCHECK_DO(rc == ETIMEDOUT, break);
     }
 
-    pthread_mutex_unlock(&_mutex);
+    pthread_mutex_unlock(&_m_mtMutex);
     xCHECK_RET(rc == ETIMEDOUT, FALSE);
 
     return TRUE;
+#endif
+}
+//---------------------------------------------------------------------------
+BOOL
+CxEvent::bIsSignaled() const {
+    /*DEBUG*/// n/a
+
+#if defined(xOS_WIN)
+    ULONG ulRes = ::WaitForSingleObject(_m_hEvent, 0);
+    /*DEBUG*/// n/a
+
+    return (FALSE != _m_hEvent.bIsValid()) && (WAIT_OBJECT_0 == ulRes);
+#elif defined(xOS_LINUX)
+    return _m_bIsSignaled;
 #endif
 }
 //---------------------------------------------------------------------------
