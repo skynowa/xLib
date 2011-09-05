@@ -10,15 +10,21 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
-class CxCriticalSection :
-    public CxNonCopyable
+class CxCriticalSection
     /// critical section
 {
     public:
+    #if defined(xOS_WIN)
+        typedef CRITICAL_SECTION TxHandle;
+    #elif defined(xOS_LINUX)
+        typedef pthread_mutex_t  TxHandle;
+    #endif
+
                           CxCriticalSection();
         explicit          CxCriticalSection(const ULONG culSpinCount);
                          ~CxCriticalSection();
 
+        const TxHandle &  hGet             () const;
         BOOL              bEnter           ();
         BOOL              bTryEnter        ();
         BOOL              bLeave           ();

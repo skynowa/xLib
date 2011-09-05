@@ -86,6 +86,17 @@ CxCriticalSection::~CxCriticalSection() {
 #endif
 }
 //---------------------------------------------------------------------------
+const CxCriticalSection::TxHandle &
+CxCriticalSection::hGet() const {
+    /*DEBUG*/
+
+#if defined(xOS_WIN)
+    return _m_CS;
+#elif defined(xOS_LINUX)
+    return _m_mMutex;
+#endif
+}
+//---------------------------------------------------------------------------
 BOOL
 CxCriticalSection::bEnter() {
 #if defined(xOS_WIN)

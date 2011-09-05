@@ -30,7 +30,6 @@ CxTest_CxEvent::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
     //-------------------------------------
     //bManualReset == TRUE
     {
@@ -39,8 +38,10 @@ CxTest_CxEvent::bUnit(
         //-------------------------------------
         //hGetHandle
         {
-            m_hRes = objEvent.hGetHandle();
-            xASSERT(NULL == m_hRes);
+            #if xTODO
+                m_hRes = objEvent.hGetHandle();
+                xASSERT(NULL == m_hRes);
+            #endif
         }
 
         //-------------------------------------
@@ -60,8 +61,10 @@ CxTest_CxEvent::bUnit(
         //-------------------------------------
         //hGetHandle
         {
-            m_hRes = objEvent.hGetHandle();
-            xASSERT(NULL != m_hRes);
+            #if xTODO
+                m_hRes = objEvent.hGetHandle();
+                xASSERT(NULL != m_hRes);
+            #endif
         }
 
         //-------------------------------------
@@ -142,8 +145,10 @@ CxTest_CxEvent::bUnit(
         //-------------------------------------
         //hGetHandle
         {
-            m_hRes = objEvent.hGetHandle();
-            xASSERT(NULL != m_hRes);
+            #if xTODO
+                m_hRes = objEvent.hGetHandle();
+                xASSERT(NULL != m_hRes);
+            #endif
         }
 
         //-------------------------------------
@@ -202,13 +207,10 @@ CxTest_CxEvent::bUnit(
         //-------------------------------------
         //bWait
         {
-            m_bRes = objEvent.bWait(5000);
+            m_bRes = objEvent.bWait(5000UL);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
-#elif defined(xOS_LINUX)
-
-#endif
 
     return TRUE;
 }

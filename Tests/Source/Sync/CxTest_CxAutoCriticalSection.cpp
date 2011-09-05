@@ -37,7 +37,7 @@ CxTest_CxAutoCriticalSection::bUnit(
 		{
 			CxAutoCriticalSection acsCS(csCS);
 
-	        for (INT i = 0; i < 10; ++ i) {
+	        for (size_t i = 0; i < 10; ++ i) {
 	            ++ uiCounter;
 	        }
 		}
