@@ -69,7 +69,7 @@ CxTestManager::bRun(
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::sGetExe().c_str()));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(" unit loops: %") xPR_I64u xT(" unit number: %") xPR_SIZET xT("\n"), cullAllLoops, cullUnitLoops, _m_ctnTests.size()));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(", unit loops: %") xPR_I64u xT(", block loops: %") xPR_I64u xT(", unit number: %")  xPR_SIZET xT("\n"), cullAllLoops, cullUnitLoops, cullBlockLoops, _m_ctnTests.size()));
 
     for (ULONGLONG i = 0ULL; i < cullAllLoops; ++ i) {
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {

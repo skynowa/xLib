@@ -293,6 +293,26 @@ CxTest_CxThread::bUnit(
         }
     }
 
+
+    /****************************************************************************
+    *    public: CPU
+    *
+    *****************************************************************************/
+
+    //--------------------------------------------------
+    //bSetAffinityMask
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if xTODO
+            const INT ciProcCount = 2;
+
+            for (INT i = 0; i < ciProcCount; ++ i) {
+                m_bRes = CxThread::bSetAffinityMask(i);
+                xASSERT_NOT_EQ(FALSE, m_bRes);
+            }
+        #endif
+    }
+
     return TRUE;
 }
 //---------------------------------------------------------------------------
