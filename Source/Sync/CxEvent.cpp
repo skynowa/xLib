@@ -189,7 +189,7 @@ CxEvent::CxEvent() :
 #if defined(xOS_WIN)
     _m_hEvent     ()
 #elif defined(xOS_LINUX)
-    _m_mtMutex    (),
+    _m_csCS    (),
     _m_cndCond    (),
     _m_bIsSignaled(FALSE),
     _m_liCount    (0L)
@@ -203,7 +203,7 @@ CxEvent::~CxEvent() {
     // n/a
 #elif defined(xOS_LINUX)
     pthread_cond_destroy(&_m_cndCond);
-    pthread_mutex_destroy(&_m_mtMutex);
+    //--pthread_mutex_destroy(&_m_csCS);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -226,16 +226,17 @@ CxEvent::bCreate()
     _m_hEvent = ::CreateEvent(NULL, TRUE, FALSE, NULL);
     /*DEBUG*/
 #elif defined(xOS_LINUX)
-    pthread_mutexattr_t attr;
+    //--pthread_mutexattr_t attr;
 
-    pthread_mutexattr_init(&attr);
-    pthread_mutex_init(&_m_mtMutex, &attr);
-    pthread_mutexattr_destroy(&attr);
+    //--pthread_mutexattr_init(&attr);
+    //--pthread_mutex_init(&_m_csCS, &attr);
+    //--pthread_mutexattr_destroy(&attr);
 
-    pthread_cond_init(&_m_cndCond, NULL);
+    INT iRes = pthread_cond_init(&_m_cndCond, NULL);
+    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 
     _m_bIsSignaled = FALSE;
-    _m_liCount     = 0;
+    _m_liCount     = 0L;
 #endif
 
     return TRUE;
@@ -247,18 +248,22 @@ CxEvent::bSet() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
 
-    BOOL bRes = FALSE;
-
-    bRes = ::SetEvent(_m_hEvent.hGet());
+    BOOL bRes = ::SetEvent(_m_hEvent.hGet());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    pthread_mutex_lock(&_m_mtMutex);
+    //--pthread_mutex_lock(&_m_csCS);
 
-    _m_bIsSignaled = TRUE;
-    ++ _m_liCount;
+    {
+        CxCriticalSection acsAutoCS(_m_csCS);
 
-    pthread_cond_broadcast(&_m_cndCond);
-    pthread_mutex_unlock(&_m_mtMutex);
+        _m_bIsSignaled = TRUE;
+        ++ _m_liCount;
+
+        INT iRes = pthread_cond_broadcast(&_m_cndCond);
+        /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    }
+
+    //--pthread_mutex_unlock(&_m_csCS);
 #endif
 
     return TRUE;
@@ -270,19 +275,25 @@ CxEvent::bReset() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
 
-    BOOL bRes = FALSE;
-
-    bRes = ::ResetEvent(_m_hEvent);
+    BOOL bRes = ::ResetEvent(_m_hEvent);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    _m_bIsSignaled = FALSE;
+    //--pthread_mutex_lock(&_m_csCS);
+
+    {
+        CxCriticalSection acsAutoCS(_m_csCS);
+
+        _m_bIsSignaled = FALSE;
+    }
+
+    //--pthread_mutex_unlock(&_m_csCS);
 #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL
-CxEvent::bWait() const {
+CxEvent::bWait() /*const*/ {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/// n/a
@@ -299,9 +310,9 @@ CxEvent::bWait() const {
 BOOL
 CxEvent::bWait(
     timeout_t culTimeout
-) const
+) /*const*/
 {
-#if 0
+#if 1
 	#if defined(xOS_WIN)
 		/*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
 		/*DEBUG*/// n/a
@@ -311,23 +322,29 @@ CxEvent::bWait(
 
 		return (WAIT_OBJECT_0 == ulRes);
 	#elif defined(xOS_LINUX)
-		int             rc = 0;
-		struct timespec spec;
+		int             rc   = 0;
+		struct timespec spec = {0};
 
-		pthread_mutex_lock(&_m_mtMutex);
-		LONG liCount = _m_liCount;
+		//--pthread_mutex_lock(&_m_csCS);
 
-		while (!_m_bIsSignaled && _m_liCount == liCount) {
-			if (TIMEOUT_INF != timer) {
-				rc = pthread_cond_timedwait(&_m_cndCond, &_m_mtMutex, getTimeout(&spec, timer));
-			} else {
-				pthread_cond_wait(&_m_cndCond, &_m_mtMutex);
-			}
+        {
+            CxCriticalSection acsAutoCS(_m_csCS);
 
-			xCHECK_DO(rc == ETIMEDOUT, break);
-		}
+            LONG liCount = _m_liCount;
 
-		pthread_mutex_unlock(&_m_mtMutex);
+            while (!_m_bIsSignaled && _m_liCount == liCount) {
+                if (TIMEOUT_INF != culTimeout) {
+                    rc = pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ), getTimeout(&spec, culTimeout));
+                } else {
+                    pthread_cond_wait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ));
+                }
+
+                xCHECK_DO(rc == ETIMEDOUT, break);
+            }
+        }
+
+        //--pthread_mutex_unlock(&_m_csCS);
+
 		xCHECK_RET(rc == ETIMEDOUT, FALSE);
 
 		return TRUE;

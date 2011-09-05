@@ -8,6 +8,8 @@
 #define xLib_Sync_CxEventH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Sync/CxCriticalSection.h>
+#include <xLib/Sync/CxAutoCriticalSection.h>
 
 #if defined(xOS_WIN)
     #include <xLib/Common/Win/CxHandleT.h>
@@ -78,23 +80,23 @@ class CxEvent :
             ///< once signaled, the event class must be "reset" before responding to a new signal
         BOOL     bSet();
             ///< signal the event for the waiting thread
-        BOOL     bWait(timeout_t timer) const;
+        BOOL     bWait(timeout_t timer) /*const*/;
             ///< \brief  wait either for the cxevent to be signaled by another thread or for the specified timeout duration
             ///< \param  timer timeout in milliseconds to wait for a signal
             ///< \return true if signaled, false if timed out
-        BOOL     bWait() const;
+        BOOL     bWait() /*const*/;
             ///< wait either for the cxevent to be signaled by another thread
         BOOL     bIsSignaled() const;
             ///< is signaled
 
     private:
     #if defined(xOS_WIN)
-        CxHandle        _m_hEvent;
+        CxHandle          _m_hEvent;
     #elif defined(xOS_LINUX)
-        pthread_mutex_t _m_mtMutex;
-        pthread_cond_t  _m_cndCond;
-        BOOL            _m_bIsSignaled;
-        LONG            _m_liCount;
+        CxCriticalSection _m_csCS;
+        pthread_cond_t    _m_cndCond;
+        volatile BOOL     _m_bIsSignaled;
+        LONG              _m_liCount;
     #endif
 };
 //---------------------------------------------------------------------------
