@@ -28,12 +28,15 @@ CxCriticalSection::CxCriticalSection() :
 
     pthread_mutexattr_t maAttr;
 
-    iRes = pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE_NP);
+    iRes = pthread_mutexattr_init(&maAttr);
+    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+
+    iRes = pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
 
     {
-	    iRes = pthread_mutex_init(&_m_mMutex, &maAttr);
-	    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+        iRes = pthread_mutex_init(&_m_mMutex, &maAttr);
+        /*DEBUG*/xASSERT_DO(0 == iRes, return);
     }
 
     iRes = pthread_mutexattr_destroy(&maAttr);
@@ -51,7 +54,25 @@ CxCriticalSection::CxCriticalSection(
     BOOL bRes = ::InitializeCriticalSectionAndSpinCount(&_m_CS, culSpinCount);
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 #elif defined(xOS_LINUX)
-    //TODO: CxCriticalSection
+    INT iRes = - 1;
+
+    pthread_mutexattr_t maAttr;
+
+    iRes = pthread_mutexattr_init(&maAttr);
+    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+
+    iRes = pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
+    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+
+    {
+        iRes = pthread_mutex_init(&_m_mMutex, &maAttr);
+        /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    }
+
+    iRes = pthread_mutexattr_destroy(&maAttr);
+    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+
+    //TODO: culSpinCount
 #endif
 }
 //---------------------------------------------------------------------------
@@ -61,8 +82,7 @@ CxCriticalSection::~CxCriticalSection() {
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_destroy(&_m_mMutex);
-	///*DEBUG*/xASSERT_DO(0 == iRes, return);
-	xASSERT_EQ(0, iRes);
+	/*DEBUG*/xASSERT_DO(0 == iRes, return);
 #endif
 }
 //---------------------------------------------------------------------------

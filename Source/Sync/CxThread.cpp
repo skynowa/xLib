@@ -671,20 +671,27 @@ CxThread::bSetPriorityBoost(
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bSetAffinityMask(
-    const size_t cuiMask
+    const INT ciProcNum
 ) const
 {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
-    DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), cuiMask);
+    DWORD_PTR dwMask;
+
+    dwMask = 1 << ciProc;
+
+    DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), dwMask);
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
     /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
 #elif defined(xOS_LINUX)
     cpu_set_t csCpuSet; CPU_ZERO(&csCpuSet);
-    CPU_SET(cuiMask, &csCpuSet);
 
-    ///pthread_setaffinity(ulGetId(), &csCpuSet);
+    CPU_SET(ciProcNum, &csCpuSet);
+    /*DEBUG*/// n/a
+
+    INT iRes = sched_setaffinity(ulGetId(), sizeof(csCpuSet), &csCpuSet);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
     return TRUE;

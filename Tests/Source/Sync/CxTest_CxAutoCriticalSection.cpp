@@ -36,10 +36,10 @@ CxTest_CxAutoCriticalSection::bUnit(
 
 		{
 			CxAutoCriticalSection acsCS(csCS);
-	
-	        for (INT i = 0; i < 100; ++ i) {
-	            ++ uiCounter;    
-	        } 
+
+	        for (INT i = 0; i < 10; ++ i) {
+	            ++ uiCounter;
+	        }
 		}
 	}
 

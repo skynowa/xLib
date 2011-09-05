@@ -121,7 +121,7 @@ class CxThread :
             ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
         //CPU
-        BOOL                    bSetAffinityMask      (const size_t cuiMask) const;
+        BOOL                    bSetAffinityMask      (const INT ciProcNum) const;
             ///< set processor affinity mask
         BOOL                    bSetIdealCPU          (const ULONG culIdealCPU) const;
             ///< sets preferred processor for a thread

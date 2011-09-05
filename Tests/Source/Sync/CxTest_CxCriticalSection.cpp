@@ -33,17 +33,61 @@ CxTest_CxCriticalSection::bUnit(
     {
         CxCriticalSection objCriticalSection;
 
-        objCriticalSection.bEnter();
-        //xASSERT - not need
+        {
+            m_ulRes = objCriticalSection.ulSetSpinCount(10000);
+            xASSERT_LESS_EQ(0UL, m_ulRes);
 
-        objCriticalSection.bLeave();
-        //xASSERT - not need
+            m_bRes = objCriticalSection.bEnter();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_ulRes = objCriticalSection.ulSetSpinCount(10000);
-        xASSERT_LESS_EQ(0UL, m_ulRes);
+            m_bRes = objCriticalSection.bLeave();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        }
 
-        m_bRes = objCriticalSection.bTryEnter();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        {
+            m_ulRes = objCriticalSection.ulSetSpinCount(1000);
+            xASSERT_LESS_EQ(0UL, m_ulRes);
+
+            m_bRes = objCriticalSection.bTryEnter();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+
+            m_bRes = objCriticalSection.bLeave();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        }
+
+        {
+            const size_t cuiLocks = 10;
+
+            m_ulRes = objCriticalSection.ulSetSpinCount(1000);
+            xASSERT_LESS_EQ(0UL, m_ulRes);
+
+            for (size_t i = 0; i < cuiLocks; ++ i) {
+                m_bRes = objCriticalSection.bEnter();
+                xASSERT_NOT_EQ(FALSE, m_bRes);
+            }
+
+            for (size_t i = 0; i < cuiLocks; ++ i) {
+                m_bRes = objCriticalSection.bLeave();
+                xASSERT_NOT_EQ(FALSE, m_bRes);
+            }
+        }
+
+        {
+            const size_t cuiLocks = 10;
+
+            m_ulRes = objCriticalSection.ulSetSpinCount(1000);
+            xASSERT_LESS_EQ(0UL, m_ulRes);
+
+            for (size_t i = 0; i < cuiLocks; ++ i) {
+                m_bRes = objCriticalSection.bTryEnter();
+                xASSERT_NOT_EQ(FALSE, m_bRes);
+            }
+
+            for (size_t i = 0; i < cuiLocks; ++ i) {
+                m_bRes = objCriticalSection.bLeave();
+                xASSERT_NOT_EQ(FALSE, m_bRes);
+            }
+        }
     }
 
     //-------------------------------------
@@ -52,17 +96,27 @@ CxTest_CxCriticalSection::bUnit(
     {
         CxCriticalSection objCriticalSection(1000);
 
-        objCriticalSection.bEnter();
-        //xASSERT - not need
+        {
+            m_ulRes = objCriticalSection.ulSetSpinCount(10000);
+            xASSERT_LESS_EQ(0UL, m_ulRes);
 
-        objCriticalSection.bLeave();
-        //xASSERT - not need
+            m_bRes = objCriticalSection.bEnter();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_ulRes = objCriticalSection.ulSetSpinCount(10000);
-        xASSERT_LESS_EQ(0UL, m_ulRes);
+            m_bRes = objCriticalSection.bLeave();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        }
 
-        m_bRes = objCriticalSection.bTryEnter();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        {
+            m_ulRes = objCriticalSection.ulSetSpinCount(4000);
+            xASSERT_LESS_EQ(0UL, m_ulRes);
+
+            m_bRes = objCriticalSection.bTryEnter();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+
+            m_bRes = objCriticalSection.bLeave();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        }
     }
 
     return TRUE;
