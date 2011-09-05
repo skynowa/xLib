@@ -49,7 +49,7 @@
 
 //Db
 #include <Test/Db/CxTest_CxConnectionString.h>
-////#include <Test/Db/CxTest_CxMySql.h>
+#include <Test/Db/CxTest_CxMySql.h>
 
 //Debug
 #include <Test/Debug/CxTest_CxStdError.h>
@@ -92,7 +92,7 @@
 #if defined(xOS_WIN)
 
 #elif defined(xOS_LINUX)
-    ////#include <Test/Net/CxTest_CxGeoIp.h>
+    #include <Test/Net/CxTest_CxGeoIp.h>
 #endif
 
 //Patterns
@@ -111,11 +111,11 @@
 #include <Test/Sync/CxTest_CxCriticalSection.h>
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
 #include <Test/Sync/CxTest_CxEvent.h>
-
+#include <Test/Sync/CxTest_CxSleeper.h>
+    
 #if defined(xOS_WIN)
     #include <Test/Sync/CxTest_CxMutex.h>
     #include <Test/Sync/CxTest_CxAutoMutex.h>
-    #include <Test/Sync/CxTest_CxSleeper.h>
 #elif defined(xOS_LINUX)
 
 #endif
@@ -215,7 +215,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxConsole);
 
     #if defined(xOS_WIN)
-        ////bRes = tmManager.bAdd(new CxTest_CxClipboard);
+        bRes = tmManager.bAdd(new CxTest_CxClipboard);
         bRes = tmManager.bAdd(new CxTest_CxCom);
         bRes = tmManager.bAdd(new CxTest_CxHandleT);
         bRes = tmManager.bAdd(new CxTest_CxShell);
@@ -278,7 +278,7 @@ _tmain(
         ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
         bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+        bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);
@@ -296,11 +296,11 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxAutoCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxEvent);
-
+        bRes = tmManager.bAdd(new CxTest_CxSleeper);
+        
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxMutex);
         bRes = tmManager.bAdd(new CxTest_CxAutoMutex);
-        bRes = tmManager.bAdd(new CxTest_CxSleeper);
     #elif defined(xOS_LINUX)
 
     #endif

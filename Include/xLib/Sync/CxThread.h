@@ -201,13 +201,11 @@ class CxThread :
         /*BOOL                  _m_bIsExited;*/// n/a
 
         //other
-    #if defined(xOS_WIN)
         CxEvent                 _m_evPause;                 ///< pause event
         CxEvent                *_m_pevStarter;              ///< starter event
         CxEvent                 _m_evExit;                  ///< exit event
         //HANDLE                _m_hParentHandle;           ///<
         //HANDLE                _m_hParentId;               ///<
-    #endif
 
         CxTraceLog              _m_clLog;                   ///< trace log
 

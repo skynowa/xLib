@@ -10,22 +10,25 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
-    class CxSleeper :
-        public CxNonCopyable
-        /// sleeper
-    {
-        public:
-                     CxSleeper  ();
-            virtual ~CxSleeper  ();
+class CxSleeper :
+	public CxNonCopyable
+	/// sleeper
+{
+	public:
+				 CxSleeper  ();
+			///< constructor
+		virtual ~CxSleeper  ();
+			///< destructor
 
-            BOOL     bSleep     (const ULONG culTimeout) const;
-            BOOL     bWakeUp    ();
-            BOOL     bIsSleeping() const;
+		BOOL     bSleep     (const ULONG culTimeout);
+			///< sleep
+		BOOL     bWakeUp    ();
+			///< wake up
+		BOOL     bIsSleeping() const;
+			///< check for sleeping
 
-        private:
-            CxEvent  _m_objEvent;
-    };
-#endif
+	private:
+		CxEvent  _m_objEvent;	///< event object
+};
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxSleeperH

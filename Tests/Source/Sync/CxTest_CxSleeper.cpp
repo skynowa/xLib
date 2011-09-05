@@ -30,10 +30,9 @@ CxTest_CxSleeper::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
     CxSleeper objSleeper;
 
-    xTEST_BLOCK(cullBlockLoops) 
+    xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = objSleeper.bIsSleeping();
         xASSERT_EQ(FALSE, m_bRes);
@@ -54,9 +53,6 @@ CxTest_CxSleeper::bUnit(
             xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
-#elif defined(xOS_LINUX)
-
-#endif
 
     return TRUE;
 }

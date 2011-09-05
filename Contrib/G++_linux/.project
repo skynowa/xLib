@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Test.Eclipse.Linux</name>
+	<name>xLib_test</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -84,27 +84,17 @@
 		<link>
 			<name>Source</name>
 			<type>2</type>
-			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Source</locationURI>
-		</link>
-		<link>
-			<name>TODO.txt</name>
-			<type>1</type>
-			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/TODO.txt</locationURI>
+			<locationURI>xLib/Source</locationURI>
 		</link>
 		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<location>/home/sergey/Libs/xLib/Tests</location>
+			<locationURI>xLib/Tests</locationURI>
 		</link>
 		<link>
 			<name>xLib</name>
 			<type>2</type>
-			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Include/xLib</locationURI>
-		</link>
-		<link>
-			<name>xLib.doxyfile</name>
-			<type>1</type>
-			<locationURI>$%7BPARENT-2-PROJECT_LOC%7D/Contrib/xLib.doxyfile</locationURI>
+			<locationURI>xLib/Include/xLib</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
