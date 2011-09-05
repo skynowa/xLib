@@ -33,22 +33,15 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     //bManualReset == TRUE
     {
-        CxEvent objEvent;
+        CxEvent objEvent;	// objEvent.bCreate(/*0, TRUE, FALSE, xT("")*/);
 
         //-------------------------------------
         //hGetHandle
         {
-            #if xTODO
-                m_hRes = objEvent.hGetHandle();
-                xASSERT(NULL == m_hRes);
-            #endif
-        }
-
-        //-------------------------------------
-        //bCreate
-        {
-            m_bRes = objEvent.bCreate(/*0, TRUE, FALSE, xT("")*/);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+			#if xTODO
+			   m_hRes = objEvent.hGet();
+			   xASSERT(NULL == m_hRes);
+			#endif
         }
 
         //-------------------------------------
@@ -122,14 +115,7 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     //bManualReset == FALSE
     {
-        CxEvent objEvent;
-
-        //-------------------------------------
-        //bCreate
-        {
-            m_bRes = objEvent.bCreate(/*0, FALSE, TRUE, xT("XLib_CxEvent_25_01_2010")*/);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
+        CxEvent objEvent;	// objEvent.bCreate(/*0, FALSE, TRUE, xT("XLib_CxEvent_25_01_2010")*/);
 
         //-------------------------------------
         //bIsSignaled

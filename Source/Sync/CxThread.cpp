@@ -49,9 +49,7 @@ CxThread::CxThread(
     ///_vOnExit             (NULL),
 
     //other
-#if defined(xOS_WIN)
     _m_pevStarter           (NULL),
-#endif
     _m_clLog                (FALSE)
 {
     ////this->hMainThread   = ::GetCurrentThread();
@@ -164,6 +162,9 @@ BOOL
 CxThread::bResume() {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+#elif defined(xOS_LINUX)
+
+#endif
 
     _m_bRes = _m_evPause.bReset();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -174,9 +175,6 @@ CxThread::bResume() {
     /*_m_bIsRunning*///   n/a
     /*_m_bIsPaused*///    n/a
     /*_m_bIsExited*///    n/a
-#elif defined(xOS_LINUX)
-
-#endif
 
     return TRUE;
 }
@@ -185,6 +183,9 @@ BOOL
 CxThread::bPause() {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_hThread.bIsValid(), CxString::lexical_cast(_m_hThread.hGet()).c_str(), FALSE);
+#elif defined(xOS_LINUX)
+
+#endif
 
     _m_bRes = _m_evPause.bSet();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -195,9 +196,6 @@ CxThread::bPause() {
     /*_m_bIsRunning*///   n/a
     /*_m_bIsPaused*///    n/a
     /*_m_bIsExited*///    n/a
-#elif defined(xOS_LINUX)
-
-#endif
 
     return TRUE;
 }
@@ -210,6 +208,9 @@ CxThread::bExit(
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
+#elif defined(xOS_LINUX)
+
+#endif
 
     _m_bRes = _m_evExit.bSet();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -225,9 +226,6 @@ CxThread::bExit(
     //TODO: waiting oneself
     //--bRes = bWait(ulTimeout);
     //--/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
-
-#endif
 
     return TRUE;
 }
@@ -553,7 +551,6 @@ std::tstring
 CxThread::sGetPriorityString() const {
     /*DEBUG*/// n/a
 
-#if defined(xOS_WIN)
     INT iRes = tpGetPriority();
     switch (iRes) {
         case tpIdle:            return xT("Idle");
@@ -564,9 +561,6 @@ CxThread::sGetPriorityString() const {
         case tpHighest:         return xT("Highest");
         case tpTimeCritical:    return xT("Time critical");
     }
-#elif defined(xOS_LINUX)
-
-#endif
 
     return xT("N/A");
 }
@@ -575,6 +569,9 @@ BOOL
 CxThread::bPriorityUp() const {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+#elif defined(xOS_LINUX)
+
+#endif
 
     EPriority tpOldLevel  = tpError;
     EPriority tpiNewLevel = tpError;
@@ -589,19 +586,19 @@ CxThread::bPriorityUp() const {
         case tpHighest:         tpiNewLevel = tpTimeCritical;           break;
         case tpTimeCritical:    return TRUE;                            break;
 
-        default:            /*xASSERT*/xASSERT_RET(FALSE, tpNormal);    break;
+        default:                /*DEBUG*/xASSERT_RET(FALSE, FALSE);     break;
     }
 
     return bSetPriority(tpiNewLevel);
-#elif defined(xOS_LINUX)
-    return FALSE;
-#endif
 }
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bPriorityDown() const {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+#elif defined(xOS_LINUX)
+
+#endif
 
     EPriority tpOldLevel  = tpError;
     EPriority tpiNewLevel = tpError;
@@ -616,13 +613,10 @@ CxThread::bPriorityDown() const {
         case tpHighest:         tpiNewLevel = tpAboveNormal;            break;
         case tpTimeCritical:    tpiNewLevel = tpHighest;                break;
 
-        default:            /*xASSERT*/xASSERT_RET(FALSE, tpNormal);    break;
+        default:                /*DEBUG*/xASSERT_RET(FALSE, FALSE);     break;
     }
 
     return bSetPriority(tpiNewLevel);
-#elif defined(xOS_LINUX)
-    return FALSE;
-#endif
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -791,15 +785,15 @@ CxThread::bIsCurrent() const {
 //---------------------------------------------------------------------------
 ULONG
 CxThread::ulGetExitCode() const {
+    ULONG ulRes = 0;
+
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0);
-
-    ULONG ulRes = 0;
 
     _m_bRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, ulRes);
 #elif defined(xOS_LINUX)
-    ULONG ulRes = 0;
+
 #endif
 
     return ulRes;

@@ -17,6 +17,62 @@
 
 #endif
 //---------------------------------------------------------------------------
+class CxEvent :
+    public CxNonCopyable
+    /// event
+{
+    public:
+        #if defined(xOS_WIN)
+        typedef HANDLE          TxHandle;
+    #elif defined(xOS_LINUX)
+        typedef pthread_cond_t	TxHandle;
+    #endif
+
+                 		  CxEvent    ();
+            ///< constructor
+        virtual 		 ~CxEvent    ();
+            ///< destructor
+
+        const TxHandle &  hGet       () const;
+            ///< get handle
+        BOOL     		  bReset     ();
+            ///< once signaled, the event class must be "reset" before responding to a new signal
+        BOOL     		  bSet       ();
+            ///< signal the event for the waiting thread
+        BOOL     		  bWait      (const ULONG culTimeout);
+            ///< \brief  wait either for the cxevent to be signaled by another thread or for the specified timeout duration
+            ///< \param  timer timeout in milliseconds to wait for a signal
+            ///< \return true if signaled, false if timed out
+        BOOL     		  bWait      ();
+            ///< wait either for the cxevent to be signaled by another thread
+        BOOL     		  bIsSignaled() const;
+            ///< is signaled
+
+    private:
+    #if defined(xOS_WIN)
+        CxHandle          _m_hEvent;
+    #elif defined(xOS_LINUX)
+        CxCriticalSection _m_csCS;
+        pthread_cond_t    _m_cndCond;
+        volatile BOOL     _m_bIsSignaled;
+        LONG              _m_liCount;
+    #endif
+};
+//---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------------------------------------
 #if defined(xOS_WIN) && 0
 class CxEvent :
     public CxNonCopyable
@@ -42,62 +98,5 @@ class CxEvent :
 #elif defined(xOS_LINUX)
 
 #endif
-//---------------------------------------------------------------------------
-#if defined(xOS_WIN)
-    typedef DWORD   timeout_t;
-#elif defined(xOS_LINUX)
-    typedef unsigned long   timeout_t;
-
-    #define TIMEOUT_INF ~((timeout_t) 0)
-#endif
-
-
-// FIXME: not in win32 implementation
-#if !defined(xOS_WIN)
-    // FIXME: private declaration ???
-    struct  timespec *getTimeout(struct timespec *spec, timeout_t timeout);
-#endif // !WIN32
-
-class CxEvent :
-    public CxNonCopyable
-    /// event
-{
-    public:
-                 CxEvent();
-            ///< constructor
-        virtual ~CxEvent();
-            ///< destructor
-
-    #if defined(xOS_WIN)
-        HANDLE   hGetHandle () const;
-    #elif defined(xOS_LINUX)
-
-    #endif
-            ///< get handle
-        BOOL     bCreate();
-            ///< create
-        BOOL     bReset();
-            ///< once signaled, the event class must be "reset" before responding to a new signal
-        BOOL     bSet();
-            ///< signal the event for the waiting thread
-        BOOL     bWait(timeout_t timer) /*const*/;
-            ///< \brief  wait either for the cxevent to be signaled by another thread or for the specified timeout duration
-            ///< \param  timer timeout in milliseconds to wait for a signal
-            ///< \return true if signaled, false if timed out
-        BOOL     bWait() /*const*/;
-            ///< wait either for the cxevent to be signaled by another thread
-        BOOL     bIsSignaled() const;
-            ///< is signaled
-
-    private:
-    #if defined(xOS_WIN)
-        CxHandle          _m_hEvent;
-    #elif defined(xOS_LINUX)
-        CxCriticalSection _m_csCS;
-        pthread_cond_t    _m_cndCond;
-        volatile BOOL     _m_bIsSignaled;
-        LONG              _m_liCount;
-    #endif
-};
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxEventH
