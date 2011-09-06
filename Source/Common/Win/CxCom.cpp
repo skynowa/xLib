@@ -11,24 +11,19 @@
 LONG CxCom::_ms_lInitCount = 0;
 
 /****************************************************************************
-*    Public methods
+*    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxCom (�����������)
 CxCom::CxCom(
-    EConcurrencyModel cmCoModel/* = cmMultiThreaded*/
+    const EConcurrencyModel ccmCoModel/* = cmMultiThreaded*/
 ) :
-    _m_ulConModel(static_cast<ULONG>(cmCoModel))
+    _m_ulConModel(static_cast<ULONG>(ccmCoModel))
 {
     /*DEBUG*/// n/a ?
 
-    ////xCHECK_DO(TRUE == CxCom::bIsInit(cmCoModel), return);
-
-    //--HRESULT hrRes = S_FALSE;
-    //--hrRes = ::CoInitializeEx(NULL, _m_ulConModel);
-    //--/*DEBUG*/xASSERT_DO(S_OK == hrRes || RPC_E_CHANGED_MODE == hrRes, return);
+    ////xCHECK_DO(TRUE == CxCom::bIsInit(ccmCoModel), return);
 
     if (0 == _ms_lInitCount ++) {
         HRESULT hrRes = ::CoInitializeEx(NULL, _m_ulConModel);
@@ -36,11 +31,7 @@ CxCom::CxCom(
     }
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxCom (����������)
 CxCom::~CxCom() {
-    //--::CoUninitialize();
-    //--/*DEBUG*/// n/a
-
     if (0 == -- _ms_lInitCount) {
         ::CoUninitialize();
         /*DEBUG*/// n/a
@@ -50,12 +41,11 @@ CxCom::~CxCom() {
 
 
 /****************************************************************************
-*    Static methods
+*    static
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: bIsInit ()
 /*static*/
 BOOL 
 CxCom::bIsInit() {
@@ -64,6 +54,4 @@ CxCom::bIsInit() {
     return (_ms_lInitCount > 0);
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
 #endif

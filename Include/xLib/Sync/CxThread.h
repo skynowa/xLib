@@ -83,9 +83,9 @@ class CxThread :
             ///< is created
         BOOL                    bIsRunning            () const;
             ///< is runnig
-        BOOL                    bIsPaused             () const;
+        BOOL                    bIsPaused             ();
             ///< is paused
-        BOOL                    bIsExited             () const;
+        BOOL                    bIsExited             ();
             ///< is exited (is set flag "exit")
 
     #if defined(xOS_WIN)

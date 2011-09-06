@@ -43,9 +43,9 @@ class CxEvent :
         };
 
     #if defined(xOS_WIN)
-        static const ULONG m_culTimeoutInfinite = INFINITE;
+        static const ULONG m_culTimeoutInfinite = INFINITE; ///< infinite timeout
     #elif defined(xOS_LINUX)
-        static const ULONG m_culTimeoutInfinite = ~(0UL);
+        static const ULONG m_culTimeoutInfinite = ~(0UL);   ///< infinite timeout
     #endif
 
 
@@ -67,11 +67,11 @@ class CxEvent :
 
     private:
     #if defined(xOS_WIN)
-        CxHandle          _m_hEvent;
+        CxHandle          _m_hEvent;        ///< event 
     #elif defined(xOS_LINUX)
-        CxCriticalSection _m_csCS;
-        pthread_cond_t    _m_cndCond;
-        volatile BOOL     _m_bIsSignaled;
+        CxCriticalSection _m_csCS;          ///< critical section
+        pthread_cond_t    _m_cndCond;       ///< condition variable
+        volatile BOOL     _m_bIsSignaled;   ///< is signaled flag
     #endif
 };
 //---------------------------------------------------------------------------

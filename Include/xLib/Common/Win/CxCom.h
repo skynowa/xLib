@@ -8,11 +8,6 @@
 #define xLib_Common_Win_CxComH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#if defined(xOS_WIN)
-    #include <Objbase.h>
-#elif defined(xOS_LINUX)
-
-#endif
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
 class CxCom :
@@ -30,18 +25,19 @@ class CxCom :
             cmSpeedOverMemory   = COINIT_SPEED_OVER_MEMORY
         };
 
-                    CxCom  (EConcurrencyModel cmCoModel/* = cmMultiThreaded*/);
+                    CxCom  (const EConcurrencyModel ccmCoModel /* = cmMultiThreaded*/);
+            ///< constructor
         virtual    ~CxCom  ();
+            ///< destructor
 
         //static
         static BOOL bIsInit();
+            ///< is initiated
 
     private:
-        ULONG       _m_ulConModel;
-        static LONG _ms_lInitCount;
+        ULONG       _m_ulConModel;  ///< COM model
+        static LONG _ms_lInitCount; ///< init counter
 };
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_Win_CxComH

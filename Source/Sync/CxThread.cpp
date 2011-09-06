@@ -104,11 +104,8 @@ CxThread::bCreate(
 
     //-------------------------------------
     //_m_evStarter
-    _m_pevStarter = new CxEvent();
+    _m_pevStarter = new CxEvent();  // _m_pevStarter->bCreate(/*NULL, TRUE, TRUE, xT("")*/);
     /*DEBUG*/xASSERT_RET(NULL != _m_pevStarter, FALSE);
-
-    _m_bRes = _m_pevStarter->bCreate(/*NULL, TRUE, TRUE, xT("")*/);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
     //start
@@ -126,14 +123,6 @@ CxThread::bCreate(
     _m_bRes = _m_hThread.bSet(hRes);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,               FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-
-    //-------------------------------------
-    //_m_evPause
-    _m_bRes = _m_evPause.bCreate(/*NULL, TRUE, TRUE, xT("")*/);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-
-    _m_bRes = _m_evExit.bCreate(/*NULL, TRUE, TRUE, xT("")*/);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
     //flags
@@ -348,7 +337,7 @@ CxThread::bIsRunning() const {
 }
 //---------------------------------------------------------------------------
 BOOL
-CxThread::bIsPaused() const {
+CxThread::bIsPaused() {
 #if defined(xOS_WIN)
     /*DEBUG*/// _m_hThread - n/a
 
@@ -359,7 +348,7 @@ CxThread::bIsPaused() const {
 }
 //---------------------------------------------------------------------------
 BOOL
-CxThread::bIsExited() const {
+CxThread::bIsExited() {
 #if defined(xOS_WIN)
     /*DEBUG*/// _m_hThread - n/a
 
@@ -673,7 +662,7 @@ CxThread::bSetAffinityMask(
 
     DWORD_PTR dwMask;
 
-    dwMask = 1 << ciProc;
+    dwMask = 1 << ciProcNum;
 
     DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), dwMask);
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
@@ -1122,8 +1111,8 @@ CxThread::_s_uiStartFunc(
     //-------------------------------------
     //handle must be valid
     //bSleep(5);
-    bRes = pthThis->_m_pevStarter->bWait(/*+INFINITE*/10000);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    CxEvent::EObjectState osRes = pthThis->_m_pevStarter->osWait(/*+INFINITE*/10000);
+    /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, FALSE);
 
     /*CxMacros::*/xPTR_DELETE(pthThis->_m_pevStarter);
 
@@ -1207,7 +1196,7 @@ CxThread::_bWaitResumption() {
     /*_m_bIsPaused*///    n/a
     /*_m_bIsExited*///    n/a
 
-    ulRes = ::WaitForSingleObject(_m_evPause.hGetHandle(), INFINITE);
+    ulRes = ::WaitForSingleObject(_m_evPause.hGet(), INFINITE);
     /*DEBUG*///- n/a
 
     return TRUE;
