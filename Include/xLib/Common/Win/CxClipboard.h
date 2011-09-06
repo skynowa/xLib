@@ -47,51 +47,57 @@ class CxClipboard :
         };
 
                  CxClipboard    ();
+            ///< constructor
         virtual ~CxClipboard    ();
+            ///< destructor
 
-        BOOL     bSetOwner      (HWND hWndOwner);
+        BOOL     bSetOwner      (const HWND chWndOwner);
+            ///< set owner
         BOOL     bGetText       (std::tstring *psText);
-        BOOL     bSetText       (const std::tstring csText);
-        BOOL     bIsHasFormat   (EFormat fmFormat);
-        BOOL     bRegisterFormat(const std::tstring csText, EFormat *pfmFormat);
+            ///< get text
+        BOOL     bSetText       (const std::tstring &csText);
+            ///< set text
+        BOOL     bIsHasFormat   (const EFormat cfmFormat);
+            ///<  is has format
+        BOOL     bRegisterFormat(const std::tstring &csText, EFormat *pfmFormat);
+            ///< register format
         BOOL     bClear         ();
+            ///< clear
 
     private:
-        BOOL    _m_bRes;
-        HANDLE  _m_hObject;
-        HWND    _m_hWndOwner;
+        BOOL    _m_bRes;        ///< for private use
+        HANDLE  _m_hObject;     ///< handle
+        HWND    _m_hWndOwner;   ///< owner handle
 
         BOOL    bOpen           ();
+            ///< open
         BOOL    bClose          ();
+            ///< close
 
-        BOOL    bGetData        (EFormat fmFormat);
-        BOOL    bSetData        (EFormat fmFormat, HANDLE hData);
+        BOOL    bGetData        (const EFormat cfmFormat);
+            ///< get data
+        BOOL    bSetData        (const EFormat cfmFormat, const HANDLE chData);
+            ///< set data
 };
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_Win_CxClipboardH
 
 
+#if xTODO
+    static HGLOBAL   hglb;
 
-/*
-//static HGLOBAL   hglb;
-void __fastcall TfrmMainServer::LockClipboard(bool bLockFlag) {
-    if (bLockFlag == true) {
-        OpenClipboard(NULL);
-//        hglb = GetClipboardData(CF_TEXT);
-//        GlobalLock(hglb);
-        EmptyClipboard();
-    } else {
-//        GlobalUnlock(hglb);
-//        GlobalFree(hglb);
-        CloseClipboard();
+    void __fastcall 
+    TfrmMainServer::LockClipboard(bool bLockFlag) {
+        if (bLockFlag == true) {
+            OpenClipboard(NULL);
+            //hglb = GetClipboardData(CF_TEXT);
+            //GlobalLock(hglb);
+            EmptyClipboard();
+        } else {
+            //GlobalUnlock(hglb);
+            //GlobalFree(hglb);
+            CloseClipboard();
+        }
     }
-}
-*/
-
-
-
-
-
+#endif

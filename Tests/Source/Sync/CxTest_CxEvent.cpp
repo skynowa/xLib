@@ -36,7 +36,7 @@ CxTest_CxEvent::bUnit(
 
         hRes = objEvent.hGet();
         #if defined(xOS_WIN)
-            xASSERT_NOT_EQ(NULL, hRes);
+            xASSERT_NOT_EQ((ULONG)NULL, (ULONG)hRes);
         #elif defined(xOS_LINUX)
             //TODO: hRes
         #endif

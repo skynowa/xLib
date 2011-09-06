@@ -8,6 +8,7 @@
 
 #include <xLib/Common/Win/CxCom.h>
 
+
 #if defined(xOS_WIN)
 /****************************************************************************
 *    Static
@@ -226,7 +227,7 @@ CxShell::bCreateShortcut(
     hRes = pslSL->QueryInterface(IID_IPersistFile, CxMacros::xreinterpret_cast<VOID **>( &pPF ));
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
 
-    #if defined(UNICODE) || defined(_UNICODE)
+    #if defined(xUNICODE)
         hRes = pPF->Save(csShortCutPath.c_str(), TRUE);
         pPF->Release();
     #else
@@ -235,7 +236,7 @@ CxShell::bCreateShortcut(
         ::MultiByteToWideChar(CP_ACP, 0, csShortCutPath.c_str(), - 1, wszBuff, MAX_PATH);
         hRes = pPF->Save(wszBuff, TRUE);
         pPF->Release();
-    #endif  /*_UNICODE*/
+    #endif  /*xUNICODE*/
 
     pslSL->Release();
 
@@ -259,8 +260,6 @@ CxShell::~CxShell() {
 
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
 #endif
 
 

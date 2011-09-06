@@ -23,13 +23,13 @@ CxEvent::CxEvent() :
 #endif
 {
 #if defined(xOS_WIN)
-    /*DEBUG*/xASSERT_RET(FALSE == _m_hEvent.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_DO(FALSE == _m_hEvent.bIsValid(), return);
     /*DEBUG*/
 
     HANDLE hRes = NULL;
 
     hRes = ::CreateEvent(NULL, TRUE/*manual reset*/, FALSE/*initial state*/, NULL);
-    /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
+    /*DEBUG*/xASSERT_DO(NULL != hRes, return);
 
     _m_hEvent.bSet(hRes);
     /*DEBUG*/// n/a
@@ -112,7 +112,7 @@ CxEvent::osWait(
     EObjectState osRes = osFailed;
 
 #if defined(xOS_WIN)
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), osFailed);
 
     osRes = static_cast<EObjectState>( ::WaitForSingleObject(hGet(), culTimeout) );
 #elif defined(xOS_LINUX)

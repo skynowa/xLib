@@ -13,8 +13,6 @@
     #include <shellapi.h>
     #include <shlwapi.h>
     #include <shlobj.h>
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
@@ -115,7 +113,7 @@ class CxShell :
 
         static std::tstring bFindExecutable   (const std::tstring &csFileName, const std::tstring &csFindDirPath);
         	///< find executable file path
-        static BOOL         bExecute          (HWND hOwner, EOperation opOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, const EShowFlag csfShowCmd);
+        static BOOL         bExecute          (const HWND chOwner, const EOperation copOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, const EShowFlag csfShowCmd);
         	///< execute
         static BOOL         bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
         	///< execute
@@ -138,8 +136,6 @@ class CxShell :
         virtual            ~CxShell           ();
         	///< destructor
 };
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_Win_CxShellH

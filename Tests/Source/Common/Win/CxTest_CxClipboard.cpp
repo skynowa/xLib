@@ -80,7 +80,7 @@ CxTest_CxClipboard::bUnit(
     //-------------------------------------
     //bIsHasFormat
     {
-    #ifdef _UNICODE
+    #ifdef xUNICODE
         m_bRes = cbCB.bIsHasFormat(CxClipboard::fmUnicodeText);
     #else
         m_bRes = cbCB.bIsHasFormat(CxClipboard::fmText);
