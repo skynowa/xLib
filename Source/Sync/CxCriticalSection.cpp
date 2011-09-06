@@ -1,6 +1,6 @@
 /**
  * \file  CxCriticalSection.cpp
- * \brief critical section
+ * \brief critical section (using between threads)
  */
 
 
@@ -21,8 +21,17 @@ CxCriticalSection::CxCriticalSection() :
 #endif
 {
 #if defined(xOS_WIN)
-    ::InitializeCriticalSection(&_m_CS);
-    /*DEBUG*/// n/a
+    BOOL bRes = FALSE;
+
+    try {
+        (VOID)::InitializeCriticalSection(&_m_CS);
+
+        bRes = TRUE;
+    } catch (...) {
+        bRes = FALSE;
+    }
+
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 #elif defined(xOS_LINUX)
     INT iRes = - 1;
 
@@ -51,7 +60,7 @@ CxCriticalSection::CxCriticalSection(
     /*DEBUG*///ulSpinCount - n/a
 
 #if defined(xOS_WIN)
-    BOOL bRes = ::InitializeCriticalSectionAndSpinCount(&_m_CS, culSpinCount);
+    BOOL bRes = ::InitializeCriticalSectionAndSpinCount(&_m_CS, culSpinCount /*0x00000400*/);
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 #elif defined(xOS_LINUX)
     INT iRes = - 1;
@@ -78,8 +87,17 @@ CxCriticalSection::CxCriticalSection(
 //---------------------------------------------------------------------------
 CxCriticalSection::~CxCriticalSection() {
 #if defined(xOS_WIN)
-    ::DeleteCriticalSection(&_m_CS);
-    /*DEBUG*/// n/a
+    BOOL bRes = FALSE;
+
+    try {
+        (VOID)::DeleteCriticalSection(&_m_CS);
+
+        bRes = TRUE;
+    } catch (...) {
+        bRes = FALSE;
+    }
+
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_destroy(&_m_mMutex);
 	/*DEBUG*/xASSERT_DO(0 == iRes, return);
@@ -100,8 +118,17 @@ CxCriticalSection::hGet() const {
 BOOL
 CxCriticalSection::bEnter() {
 #if defined(xOS_WIN)
-    ::EnterCriticalSection(&_m_CS);
-    /*DEBUG*/// n/a
+    BOOL bRes = FALSE;
+
+    try {
+        (VOID)::EnterCriticalSection(&_m_CS);
+
+        bRes = TRUE;
+    } catch (...) {
+        bRes = FALSE;
+    }
+
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_lock(&_m_mMutex);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
@@ -126,8 +153,17 @@ CxCriticalSection::bTryEnter() {
 BOOL
 CxCriticalSection::bLeave() {
 #if defined(xOS_WIN)
-    ::LeaveCriticalSection(&_m_CS);
-    /*DEBUG*/// n/a
+    BOOL bRes = FALSE;
+
+    try {
+        (VOID)::LeaveCriticalSection(&_m_CS);
+
+        bRes = TRUE;
+    } catch (...) {
+        bRes = FALSE;
+    }
+
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_unlock(&_m_mMutex);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
@@ -141,7 +177,7 @@ CxCriticalSection::ulSetSpinCount(
     const ULONG culSpinCount
 )
 {
-    /*DEBUG*///ulSpinCount - n/a
+    /*DEBUG*/// ulSpinCount - n/a
 
 #if defined(xOS_WIN)
     return ::SetCriticalSectionSpinCount(&_m_CS, culSpinCount);

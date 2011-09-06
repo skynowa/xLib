@@ -24,7 +24,7 @@ class CxSleeper :
 			///< sleep
 		BOOL     bWakeUp    ();
 			///< wake up
-		BOOL     bIsSleeping() const;
+		BOOL     bIsSleeping();
 			///< check for sleeping
 
 	private:

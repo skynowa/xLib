@@ -112,7 +112,7 @@
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
 #include <Test/Sync/CxTest_CxEvent.h>
 #include <Test/Sync/CxTest_CxSleeper.h>
-    
+
 #if defined(xOS_WIN)
     #include <Test/Sync/CxTest_CxMutex.h>
     #include <Test/Sync/CxTest_CxAutoMutex.h>
@@ -297,7 +297,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxAutoCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxEvent);
         bRes = tmManager.bAdd(new CxTest_CxSleeper);
-        
+
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxMutex);
         bRes = tmManager.bAdd(new CxTest_CxAutoMutex);

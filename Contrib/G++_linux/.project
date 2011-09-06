@@ -84,17 +84,22 @@
 		<link>
 			<name>Source</name>
 			<type>2</type>
-			<locationURI>xLib/Source</locationURI>
+			<location>/home/sergey/Libs/xLib/Source</location>
 		</link>
 		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<locationURI>xLib/Tests</locationURI>
+			<location>/home/sergey/Libs/xLib/Tests</location>
 		</link>
 		<link>
 			<name>xLib</name>
 			<type>2</type>
-			<locationURI>xLib/Include/xLib</locationURI>
+			<location>/home/sergey/Libs/xLib/Include/xLib</location>
+		</link>
+		<link>
+			<name>xLib.doxyfile</name>
+			<type>1</type>
+			<location>/home/sergey/Libs/xLib/Contrib/xLib.doxyfile</location>
 		</link>
 	</linkedResources>
 </projectDescription>

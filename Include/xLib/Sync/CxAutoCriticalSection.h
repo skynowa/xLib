@@ -1,6 +1,6 @@
 /**
  * \file  CxAutoCriticalSection.h
- * \brief auto critical section
+ * \brief auto critical section (using between threads)
  */
 
 
@@ -10,7 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
-class CxAutoCriticalSection
+class CxAutoCriticalSection :
+    public CxNonCopyable
     /// auto critical section
 {
     public:
