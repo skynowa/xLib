@@ -1,6 +1,6 @@
 /**
  * \file  CxAutoCriticalSection.h
- * \brief auto critical section
+ * \brief auto critical section (using between threads)
  */
 
 

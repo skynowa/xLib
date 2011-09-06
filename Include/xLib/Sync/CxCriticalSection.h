@@ -1,6 +1,6 @@
 /**
  * \file  CxCriticalSection.h
- * \brief critical section
+ * \brief critical section (using between threads)
  */
 
 
@@ -10,7 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
-class CxCriticalSection
+class CxCriticalSection :
+    public CxNonCopyable
     /// critical section
 {
     public:

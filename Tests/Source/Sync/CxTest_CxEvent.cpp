@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxEvent
 CxTest_CxEvent::CxTest_CxEvent() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxEvent
 CxTest_CxEvent::~CxTest_CxEvent() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxEvent::bUnit(
@@ -31,171 +28,89 @@ CxTest_CxEvent::bUnit(
 )
 {
     //-------------------------------------
-    //bManualReset == TRUE
+    //hGet
     {
-        CxEvent objEvent;	// objEvent.bCreate(/*0, TRUE, FALSE, xT("")*/);
+        CxEvent objEvent;
 
-        //-------------------------------------
-        //hGetHandle
-        {
-			#if xTODO
-			   m_hRes = objEvent.hGet();
-			   xASSERT(NULL == m_hRes);
-			#endif
-        }
+        CxEvent::TxHandle hRes;
 
-        //-------------------------------------
-        //bIsSignaled
-        {
-            m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQ(FALSE, m_bRes);
-        }
+        hRes = objEvent.hGet();
+        #if defined(xOS_WIN)
+            xASSERT_NOT_EQ(NULL, hRes);
+        #elif defined(xOS_LINUX)
+            //TODO: hRes
+        #endif
+    }
 
-        //-------------------------------------
-        //hGetHandle
-        {
-            #if xTODO
-                m_hRes = objEvent.hGetHandle();
-                xASSERT(NULL != m_hRes);
-            #endif
-        }
+    //-------------------------------------
+    //bIsSignaled
+    {
+        CxEvent objEvent;
 
-        //-------------------------------------
-        //bOpen
-        {
-            ////m_bRes = objEvent.bOpen(0, FALSE, NULL);
-            ////xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
+        m_bRes = objEvent.bIsSignaled();
+        xASSERT_EQ(FALSE, m_bRes);
+    }
 
-        //-------------------------------------
-        //bPulse
-        {
-#if xTEMP_DISABLED
-            m_bRes = objEvent.bPulse();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-#endif
-        }
+    //-------------------------------------
+    //bSet
+    {
+        const size_t cuiSpinCount = 3;
 
-        //-------------------------------------
-        //bReset
-        {
+
+        CxEvent objEvent;
+
+        for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
 
-        //-------------------------------------
-        //bIsSignaled
-        {
             m_bRes = objEvent.bIsSignaled();
             xASSERT_EQ(FALSE, m_bRes);
         }
 
-        //-------------------------------------
-        //bSet
-        {
+        for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bSet();
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
 
-        //-------------------------------------
-        //bIsSignaled
-        {
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
-
-        //-------------------------------------
-        //bWait
-        {
-            m_bRes = objEvent.bWait(5000);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
 
     //-------------------------------------
-    //bManualReset == FALSE
+    //bReset
     {
-        CxEvent objEvent;	// objEvent.bCreate(/*0, FALSE, TRUE, xT("XLib_CxEvent_25_01_2010")*/);
+        const size_t cuiSpinCount = 3;
 
-        //-------------------------------------
-        //bIsSignaled
-        {
+
+        CxEvent objEvent;
+
+        for (size_t i = 0; i < cuiSpinCount; ++ i) {
+            m_bRes = objEvent.bSet();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+
             m_bRes = objEvent.bIsSignaled();
-#if xDEPRECIATE
             xASSERT_NOT_EQ(FALSE, m_bRes);
-#else
-            xASSERT_NOT_EQ(TRUE, m_bRes);
-#endif
         }
 
-        //-------------------------------------
-        //hGetHandle
-        {
-            #if xTODO
-                m_hRes = objEvent.hGetHandle();
-                xASSERT(NULL != m_hRes);
-            #endif
-        }
-
-        //-------------------------------------
-        //bOpen
-        {
-#if xTEMP_DISABLED
-            m_bRes = objEvent.bOpen(0, FALSE, xT("XLib_CxEvent_25_01_2010"));
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-#endif
-        }
-
-        //-------------------------------------
-        //bPulse
-        {
-#if xTEMP_DISABLED
-            m_bRes = objEvent.bPulse();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-#endif
-        }
-
-        //-------------------------------------
-        //bReset
-        {
+        for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
 
-        //-------------------------------------
-        //bIsSignaled
-        {
             m_bRes = objEvent.bIsSignaled();
-            xASSERT(FALSE == m_bRes);
+            xASSERT_EQ(FALSE, m_bRes);
         }
+    }
 
-        //-------------------------------------
-        //bSet
-        {
-            m_bRes = objEvent.bSet();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
+    //-------------------------------------
+    //bWait
+    {
+        CxEvent objEvent;
 
-        //-------------------------------------
-        //bIsSignaled
-        {
-            m_bRes = objEvent.bIsSignaled();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
+        m_bRes = objEvent.bIsSignaled();
+        xASSERT_EQ(FALSE, m_bRes);
 
-        //-------------------------------------
-        //bSet
-        {
-            m_bRes = objEvent.bSet();
-            xASSERT_NOT_EQ(FALSE, m_bRes)
-        }
-
-        //-------------------------------------
-        //bWait
-        {
-            m_bRes = objEvent.bWait(5000UL);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
+        CxEvent::EObjectState osRes = objEvent.osWait(5);
+        xASSERT_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);
     }
 
     return TRUE;

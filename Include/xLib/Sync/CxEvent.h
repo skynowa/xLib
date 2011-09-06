@@ -1,6 +1,6 @@
 /**
  * \file  CxEvent.h
- * \brief event
+ * \brief event (using between threads)
  */
 
 
@@ -23,10 +23,31 @@ class CxEvent :
 {
     public:
         #if defined(xOS_WIN)
-        typedef HANDLE          TxHandle;
+        typedef HANDLE          TxHandle;   ///< handle
     #elif defined(xOS_LINUX)
-        typedef pthread_cond_t	TxHandle;
+        typedef pthread_cond_t  TxHandle;   ///< handle
     #endif
+
+        enum EObjectState
+            /// current object state
+        {
+            #if defined(xOS_WIN)
+                osSignaled = WAIT_OBJECT_0, ///< signaled
+                osTimeout  = WAIT_TIMEOUT,  ///< time-out interval elapsed and the object's state is nonsignaled
+                osFailed   = WAIT_FAILED    ///< failed
+            #elif defined(xOS_LINUX)
+                osSignaled = 0,             ///< signaled
+                osTimeout  = ETIMEDOUT,     ///< time-out interval elapsed and the object's state is nonsignaled
+                osFailed /* other values */ ///< failed
+            #endif
+        };
+
+    #if defined(xOS_WIN)
+        static const ULONG m_culTimeoutInfinite = INFINITE;
+    #elif defined(xOS_LINUX)
+        static const ULONG m_culTimeoutInfinite = ~(0UL);
+    #endif
+
 
                  		  CxEvent    ();
             ///< constructor
@@ -35,17 +56,13 @@ class CxEvent :
 
         const TxHandle &  hGet       () const;
             ///< get handle
+        BOOL              bSet       ();
+            ///< signal the event for the waiting thread
         BOOL     		  bReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
-        BOOL     		  bSet       ();
-            ///< signal the event for the waiting thread
-        BOOL     		  bWait      (const ULONG culTimeout);
-            ///< \brief  wait either for the cxevent to be signaled by another thread or for the specified timeout duration
-            ///< \param  timer timeout in milliseconds to wait for a signal
-            ///< \return true if signaled, false if timed out
-        BOOL     		  bWait      ();
-            ///< wait either for the cxevent to be signaled by another thread
-        BOOL     		  bIsSignaled() const;
+        EObjectState      osWait     (const ULONG culTimeout = m_culTimeoutInfinite);
+            ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
+        BOOL     		  bIsSignaled();
             ///< is signaled
 
     private:
@@ -55,48 +72,7 @@ class CxEvent :
         CxCriticalSection _m_csCS;
         pthread_cond_t    _m_cndCond;
         volatile BOOL     _m_bIsSignaled;
-        LONG              _m_liCount;
     #endif
 };
-//---------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-//---------------------------------------------------------------------------
-#if defined(xOS_WIN) && 0
-class CxEvent :
-    public CxNonCopyable
-    /// event
-{
-    public:
-                 CxEvent    ();
-        virtual ~CxEvent    ();
-
-        HANDLE   hGetHandle () const;
-        BOOL     bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const BOOL cbManualReset, const BOOL cbInitialState, const std::tstring &csName);
-        BOOL     bOpen      (const ULONG culAccess, BOOL cbInheritHandle, const std::tstring &csName);
-        BOOL     bPulse     () const;
-        BOOL     bReset     () const;
-        BOOL     bSet       () const;
-        BOOL     bWait      (const ULONG culTimeout) const;
-
-        BOOL     bIsSignaled() const;
-
-    private:
-        CxHandle _m_hEvent;
-};
-#elif defined(xOS_LINUX)
-
-#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxEventH

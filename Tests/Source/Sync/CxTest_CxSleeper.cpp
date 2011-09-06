@@ -13,42 +13,58 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSleeper
 CxTest_CxSleeper::CxTest_CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSleeper
 CxTest_CxSleeper::~CxTest_CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSleeper::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    CxSleeper objSleeper;
-
+    //--------------------------------------------------
+    //bIsSleeping
     xTEST_BLOCK(cullBlockLoops)
     {
+        CxSleeper objSleeper;
+
         m_bRes = objSleeper.bIsSleeping();
         xASSERT_EQ(FALSE, m_bRes);
     }
 
-    for (size_t i = 0; i < 4; ++ i) {
-        m_bRes = objSleeper.bSleep(10);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+    //--------------------------------------------------
+    //bSleep
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxSleeper objSleeper;
 
-        m_bRes = objSleeper.bIsSleeping();
-        xASSERT_EQ(FALSE, m_bRes);
+        for (size_t i = 0; i < 3; ++ i) {
+            m_bRes = objSleeper.bIsSleeping();
+            xASSERT_EQ(FALSE, m_bRes);
 
-        m_bRes = objSleeper.bIsSleeping();
-        xASSERT_EQ(FALSE, m_bRes);
+            m_bRes = objSleeper.bSleep(5);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
+            m_bRes = objSleeper.bIsSleeping();
+            xASSERT_EQ(FALSE, m_bRes);
+
+            m_bRes = objSleeper.bIsSleeping();
+            xASSERT_EQ(FALSE, m_bRes);
+        }
+    }
+
+    //--------------------------------------------------
+    //bWakeUp
+    xTEST_BLOCK(cullBlockLoops)
+    {
         #if xTODO
+            CxSleeper objSleeper;
+
             m_bRes = objSleeper.bWakeUp();
             xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif

@@ -14,29 +14,25 @@
 
 //---------------------------------------------------------------------------
 CxSleeper::CxSleeper() :
-    _m_objEvent()	// _m_objEvent.bCreate(/*NULL, FALSE, FALSE, xT("")*/);
+    _m_objEvent()
 {
 
 }
 //---------------------------------------------------------------------------
+/*virtual*/
 CxSleeper::~CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
 BOOL
 CxSleeper::bSleep(
-    const ULONG culTimeout
+    const ULONG culTimeout  ///< in milliseconds
 )
 {
     /*DEBUG*/// n/a
 
-#if defined(xOS_WIN)
-    ULONG ulRes = ::WaitForSingleObject(_m_objEvent.hGet(), culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_FAILED != ulRes || WAIT_OBJECT_0 == ulRes, FALSE);
-#elif defined(xOS_LINUX)
-	BOOL bRes = _m_objEvent.bWait(culTimeout);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#endif
+	CxEvent::EObjectState osRes = _m_objEvent.osWait(culTimeout);
+	/*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes, FALSE);
 
     return TRUE;
 }
@@ -52,7 +48,7 @@ CxSleeper::bWakeUp() {
 }
 //---------------------------------------------------------------------------
 BOOL
-CxSleeper::bIsSleeping() const {
+CxSleeper::bIsSleeping() {
     /*DEBUG*/// n/a
 
     return _m_objEvent.bIsSignaled();
