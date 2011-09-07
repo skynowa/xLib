@@ -50,7 +50,7 @@ CxEvent::~CxEvent() {
 #endif
 }
 //---------------------------------------------------------------------------
-const CxEvent::TxHandle &
+CxEvent::TxHandle
 CxEvent::hGet() const {
     /*DEBUG*/
 
@@ -165,39 +165,4 @@ CxEvent::bIsSignaled() {
     return _m_bIsSignaled;
 #endif
 }
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*	private
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-#if defined(xOS_LINUX)
-    #if xDEPRECIATE
-        timespec *
-        CxEvent::_ptsGetTimeout(
-            timespec    *ptsTime,
-            const ULONG  culTimeout
-        )
-        {
-            /*DEBUG*/// n/a
-
-            static timespec s_tsTime = {0};
-
-            xCHECK_DO(NULL == ptsTime, ptsTime = &s_tsTime);
-
-            timeval tvNow = {0};
-
-            INT iRes = gettimeofday(&tvNow, NULL);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, NULL);
-
-            ptsTime->tv_sec  = tvNow.tv_sec + ((culTimeout + tvNow.tv_usec / 1000) / 1000);
-            ptsTime->tv_nsec = ((tvNow.tv_usec / 1000 + culTimeout) % 1000) * 1000000;
-
-            return ptsTime;
-        }
-    #endif
-#endif
 //---------------------------------------------------------------------------

@@ -50,176 +50,181 @@ class CxThread :
 	    };
 
     #if defined(xOS_WIN)
-        typedef HANDLE    THandle;  ///< handle
-        typedef DWORD     TId;      ///< ID
+        typedef HANDLE    TxHandle; ///< handle
+        typedef DWORD     TxId;     ///< ID
     #elif defined(xOS_LINUX)
-        typedef pthread_t THandle;  ///< handle
-        typedef pthread_t TId;      ///< ID
+        typedef pthread_t TxHandle; ///< handle
+        typedef pthread_t TxId;     ///< ID
     #endif
 
-        volatile LONG           m_ulTag;    ///< tag
+        volatile LONG             m_ulTag;    ///< tag
 
-                                CxThread              (const BOOL cbAutoDelete);
+                                  CxThread              (const BOOL cbAutoDelete);
             ///< constructor
-        virtual                ~CxThread              () = 0;
+        virtual                  ~CxThread              () = 0;
             ///< destructor
 
         //actions
-        BOOL                    bCreate               (const BOOL cbIsPaused, const UINT cuiStackSize, VOID *pvParam);
+        BOOL                      bCreate               (const BOOL cbIsPaused, const UINT cuiStackSize, VOID *pvParam);
             ///< start
-        BOOL                    bResume               ();
+        BOOL                      bResume               ();
             ///< resume
-        BOOL                    bPause                ();
+        BOOL                      bPause                ();
             ///< pause
-        BOOL                    bExit                 (const ULONG culTimeout);
+        BOOL                      bExit                 (const ULONG culTimeout);
             ///< exit (set flag "exit")
-        BOOL                    bKill                 (const ULONG culTimeout);
+        BOOL                      bKill                 (const ULONG culTimeout);
             ///< kill
-        BOOL                    bWait                 (const ULONG culTimeout) const;
+        BOOL                      bWait                 (const ULONG culTimeout) const;
             ///< wait
 
         //flags
-        BOOL                    bIsCreated            () const;
+        BOOL                      bIsCreated            () const;
             ///< is created
-        BOOL                    bIsRunning            () const;
+        BOOL                      bIsRunning            () const;
             ///< is runnig
-        BOOL                    bIsPaused             ();
+        BOOL                      bIsPaused             ();
             ///< is paused
-        BOOL                    bIsExited             ();
+        BOOL                      bIsExited             ();
             ///< is exited (is set flag "exit")
 
     #if defined(xOS_WIN)
         //messages
-        BOOL                    bPostMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        BOOL                      bPostMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
             ///< post message from thread to window
-        BOOL                    bSendMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        BOOL                      bSendMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
             ///< send message from thread to window
-        BOOL                    bPostThreadMessage    (UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        BOOL                      bPostThreadMessage    (UINT uiMsg, UINT uiParam1, LONG liParam2) const;
             ///< post message from thread to thread
-        BOOL                    bTryPostThreadMessage (UINT uiMsg, UINT uiParam1, LONG liParam2, ULONG ulAttemps, ULONG ulAttempTimeout) const;
+        BOOL                      bTryPostThreadMessage (UINT uiMsg, UINT uiParam1, LONG liParam2, ULONG ulAttemps, ULONG ulAttempTimeout) const;
             ///< try post message from thread to thread
-        BOOL                    bMessageWaitQueue     (UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const;
+        BOOL                      bMessageWaitQueue     (UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const;
             ///< waiting for message with params from other thread
-        BOOL                    bMessageWaitQueue     (const std::vector<UINT> &cvecuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
+        BOOL                      bMessageWaitQueue     (const std::vector<UINT> &cvecuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
             ///< waiting for message with params from other thread
     #endif
 
         //priority
-        BOOL                    bSetPriority          (const EPriority ctpPriority) const;
+        BOOL                      bSetPriority          (const EPriority ctpPriority) const;
             ///< set priority
-        EPriority               tpGetPriority         () const;
+        EPriority                 tpGetPriority         () const;
             ///< get priotity
-        std::tstring            sGetPriorityString    () const;
+        std::tstring              sGetPriorityString    () const;
             ///< get priority as string
-        BOOL                    bPriorityUp           () const;
+        BOOL                      bPriorityUp           () const;
             ///< increase priority on one level
-        BOOL                    bPriorityDown         () const;
+        BOOL                      bPriorityDown         () const;
             ///< decrease priority on one level
-        BOOL                    bIsPriorityBoost      () const;
+        BOOL                      bIsPriorityBoost      () const;
             ///< get priority boost control state of the specified thread
-        BOOL                    bSetPriorityBoost     (const BOOL cbIsEnabled) const;
+        BOOL                      bSetPriorityBoost     (const BOOL cbIsEnabled) const;
             ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
         //CPU
-        BOOL                    bSetAffinityMask      (const INT ciProcNum) const;
+        BOOL                      bSetAffinityMask      (const INT ciProcNum) const;
             ///< set processor affinity mask
-        BOOL                    bSetIdealCPU          (const ULONG culIdealCPU) const;
+        BOOL                      bSetIdealCpu          (const ULONG culIdealCpu) const;
             ///< sets preferred processor for a thread
-        ULONG                   ulGetIdealCPU         () const;
+        ULONG                     ulGetIdealCpu         () const;
             ///< get current ideal processor without changing it
-        ULONG                   ulGetCPUCount         () const;
+        ULONG                     ulGetCpuCount         () const;
             ///< get CPU count on machine
 
         //other
-        THandle                 hGetHandle            () const;
+        TxHandle                  hGet                  () const;
             ///< get handle
-        TId                     ulGetId               () const;
+        TxId                      ulGetId               () const;
             ///< get ID
-        BOOL                    bIsCurrent            () const;
+        BOOL                      bIsCurrent            () const;
             ///< is current
-        ULONG                   ulGetExitCode         () const;
+        ULONG                     ulGetExitCode         () const;
             ///< get termination status
-        BOOL                    bSetDebugName         (const std::tstring &csName) const;
+        BOOL                      bSetDebugName         (const std::tstring &csName) const;
             ///< set name your threads in the debugger thread list
 
         //static
-        static THandle          hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
+        static TxHandle           hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
             ///< opens an existing thread object
-        static TId              ulGetCurrId           ();
+        static TxId               ulGetCurrId           ();
             ///< get the thread identifier of the calling thread
-        static BOOL             bIsCurrent            (const TId culId);
+        static BOOL               bIsCurrent            (const TxId culId);
             ///< is current id
-        static THandle          hGetCurrHandle        ();
+        static TxHandle           hGetCurrHandle        ();
             ///< get pseudo handle for the calling thread
-        static BOOL             bSetPriority          (const THandle chHandle, const EPriority ctpPriority);
+        static BOOL               bSetPriority          (const TxHandle chHandle, const EPriority ctpPriority);
             ///< set priority
-        static BOOL             bYield                ();
+        static BOOL               bYield                ();
             ///< yield
-        static BOOL             bSleep                (const ULONG culMsec);
+        static BOOL               bSleep                (const ULONG culMsec);
             ///< sleep
 
         //callbacks
-        VOID                    vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback);
+        VOID                      vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback);
             ///<
-        VOID                    vAttachHandler_OnExit (SClosureT<VOID(CxThread *pthSender)> vCallback);
+        VOID                      vAttachHandler_OnExit (SClosureT<VOID(CxThread *pthSender)> vCallback);
             ///<
 
     protected:
         //events
-        virtual UINT            uiOnRun               (VOID *pvParam) = 0;
+        virtual UINT              uiOnRun               (VOID *pvParam) = 0;
             ///< work thread function, must be overrided
-        //--virtual VOID        vOnEnter              ();
-        //--virtual VOID        vOnExit               ();
+        //--virtual VOID          vOnEnter              ();
+        //--virtual VOID          vOnExit               ();
 
-        BOOL                    bIsTimeToExit         ();
+        BOOL                      bIsTimeToExit         ();
             ///< is need to exit from work thread function
 
     private:
-        mutable BOOL            _m_bRes;                    ///< for private use
+        mutable BOOL              _m_bRes;                    ///< for private use
 
         //constants
-        const ULONG             _m_culStillActiveTimeout;   ///< still active timeout (msec)
-        const ULONG             _m_culExitTimeout;          ///< exit timeout (msec)
+        const ULONG               _m_culStillActiveTimeout;   ///< still active timeout (msec)
+        const ULONG               _m_culExitTimeout;          ///< exit timeout (msec)
 
 
         //thread data
     #if defined(xOS_WIN)
-        CxHandle                _m_hThread;                 ///< handle
+        CxHandle                  _m_hThread;                 ///< native handle
     #elif defined(xOS_LINUX)
-
+        TxHandle                  _m_hThread;                 ///< native handle
     #endif
 
-        TId                     _m_ulID;                    ///< ID
-        UINT                    _m_uiExitCode;              ///< exit code
-        VOID                   *_m_pvParam;                 ///< param for work function
-        const BOOL              _m_cbIsAutoDelete;          ///< is autodelete thread object
+        TxId                      _m_ulId;                    ///< ID
+        UINT                      _m_uiExitCode;              ///< exit code
+        VOID                     *_m_pvParam;                 ///< param for work function
+        const BOOL                _m_cbIsAutoDelete;          ///< is autodelete thread object
 
         //flags
-        BOOL                    _m_bIsCreated;              ///< is created
-        BOOL                    _m_bIsRunning;              ///< is running
-        /*BOOL                  _m_bIsPaused;*/// n/a
-        /*BOOL                  _m_bIsExited;*/// n/a
+        //TODO: make struct SFlags
+        BOOL                      _m_bIsCreated;              ///< is created
+        BOOL                      _m_bIsRunning;              ///< is running
+        /*BOOL                    _m_bIsPaused;*/// n/a
+        /*BOOL                    _m_bIsExited;*/// n/a
 
         //other
-        CxEvent                 _m_evPause;                 ///< pause event
-        CxEvent                *_m_pevStarter;              ///< starter event
-        CxEvent                 _m_evExit;                  ///< exit event
-        //HANDLE                _m_hParentHandle;           ///<
-        //HANDLE                _m_hParentId;               ///<
+        CxEvent                   _m_evPause;                 ///< pause event
+        CxEvent                  *_m_pevStarter;              ///< starter event
+        CxEvent                   _m_evExit;                  ///< exit event
+        //HANDLE                  _m_hParentHandle;           ///<
+        //HANDLE                  _m_hParentId;               ///<
 
-        CxTraceLog              _m_clLog;                   ///< trace log
+        CxTraceLog                _m_clLog;                   ///< trace log
 
     #if defined(xOS_WIN)
-        static UINT __stdcall   _s_uiStartFunc    (VOID *pvParam);
-            ///< callback
+        typedef UINT    TExitCode;
+    #elif defined(xOS_LINUX)
+        typedef VOID *  TExitCode;
     #endif
-        BOOL                    _bWaitResumption  ();
+
+        static TExitCode xSTDCALL _s_uiJobEntry     (VOID *pvParam);
+            ///< callback
+        BOOL                      _bWaitResumption  ();
             ///< waiting for reset pause
-        VOID                    _vMembersClear    ();
+        VOID                      _vMembersClear    ();
             ///< clear all class members
-        VOID                    _vSetStatesDefault();
+        VOID                      _vSetStatesDefault();
             ///< set states as default
-        BOOL                    _bSetDebugNameA   (const std::string &csName) const;
+        BOOL                      _bSetDebugNameA   (const std::string &csName) const;
             ///< set name your threads in the debugger thread list (ansi)
 
         //callbacks
@@ -229,8 +234,8 @@ class CxThread :
         SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnExit;
         BOOL                                 _m_bFlag_OnExit;
 
-        VOID                    _vHandler_OnEnter(CxThread *pthSender);
-        VOID                    _vHandler_OnExit (CxThread *pthSender);
+        VOID                      _vHandler_OnEnter(CxThread *pthSender);
+        VOID                      _vHandler_OnExit (CxThread *pthSender);
 };
 
 ////xNAMESPACE_END(NxLib);
@@ -261,7 +266,7 @@ class CxThread :
 
 
 #if xTODO
-    __int64 CThread::GetThreadCPUTime(DWORD id) {
+    __int64 CThread::GetThreadCpuTime(DWORD id) {
         int result = 0;
         __int64 TimeTotal = 0;
         FILETIME CreationTime;

@@ -50,7 +50,9 @@ CxTestManager::bAdd(
 
     _m_ctnTests.push_back(pvtTest);
 
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), pvtTest->sGetName().c_str()));
+    #if xTEMP_DISABLED
+        xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), pvtTest->sGetName().c_str()));
+    #endif
 
     return TRUE;
 }

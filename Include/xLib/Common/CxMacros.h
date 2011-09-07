@@ -13,15 +13,21 @@
 //---------------------------------------------------------------------------
 #if xTEST_PRIVATE_METHODS
      #define private  public
-        ///< \def    private
-        ///< tests   private methods
-        ///< warning !!!dirty hack!!!
+         ///< test private methods (it's !!!dirty hack!!!)
 #endif
 
 #if !defined(xCOMPILER_MS) && !defined(xCOMPILER_CODEGEAR)
     #define __forceinline  inline
-        ///< inline
 #endif
+    ///< inline
+
+#if defined(xOS_WIN)
+    #define xSTDCALL    __stdcall
+#elif defined(xOS_LINUX)
+    #define xSTDCALL
+#endif
+    ///< calling convention
+
 
 class CxDebugger;
 
