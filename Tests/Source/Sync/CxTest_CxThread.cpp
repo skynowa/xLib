@@ -48,13 +48,13 @@ CWorkThread::uiOnRun(
     bRes = CxThread::bIsCurrent();
     xASSERT_NOT_EQ(FALSE, bRes);
 
-    for (size_t i = 0; i < 10; ++ i, ++ uiRes) {
+    for (size_t i = 0; ; ++ i) {
         bRes = bIsTimeToExit();
-        xCHECK_DO(TRUE == bRes, break);
+        xCHECK_DO(TRUE == bRes, xTRACEV(xT("break\n")); break);
 
-        for (size_t i = 0; i < 20; i ++) {
-            //xTRACEV(xT("*\n"));
-            bSleep(1000);
+        for (size_t j = 0; j < 20; ++ j) {
+            xTRACEV(xT("*\n"));
+            bSleep(1000UL);
         }
     }
 
@@ -124,7 +124,7 @@ CxTest_CxThread::bUnit(
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = pthT->bIsPaused();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_EQ(FALSE, m_bRes);
 
         m_bRes = pthT->bIsExited();
         xASSERT_EQ(FALSE, m_bRes);
@@ -239,8 +239,8 @@ CxTest_CxThread::bUnit(
     //ulGetCpuCount
     xTEST_BLOCK(cullBlockLoops)
     {
-            m_ulRes = pthT->ulGetCpuCount();
-            xASSERT_LESS(0UL, m_ulRes);
+        m_ulRes = pthT->ulGetCpuCount();
+        xASSERT_LESS(0UL, m_ulRes);
     }
 
 
@@ -283,7 +283,7 @@ CxTest_CxThread::bUnit(
     //bSetDebugName
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bSetDebugName(xT("Thread_Test_Name"));
+        m_bRes = pthT->bSetDebugName(xT("CxThread_Test_Name"));
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
