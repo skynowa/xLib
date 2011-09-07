@@ -54,7 +54,7 @@ class CxEvent :
         virtual 		 ~CxEvent    ();
             ///< destructor
 
-        const TxHandle &  hGet       () const;
+        TxHandle          hGet       () const;
             ///< get handle
         BOOL              bSet       ();
             ///< signal the event for the waiting thread
@@ -67,7 +67,7 @@ class CxEvent :
 
     private:
     #if defined(xOS_WIN)
-        CxHandle          _m_hEvent;        ///< event 
+        CxHandle          _m_hEvent;        ///< event
     #elif defined(xOS_LINUX)
         CxCriticalSection _m_csCS;          ///< critical section
         pthread_cond_t    _m_cndCond;       ///< condition variable

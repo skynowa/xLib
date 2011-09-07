@@ -15,10 +15,24 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxThread.h>
+#include <xLib/Log/xLogs.h>
+//---------------------------------------------------------------------------
+class CWorkThread :
+    public CxThread
+    ///< tests thread
+{
+    public:
+        size_t       m_uiIndex;
 
-#if xTODO
-    #include "CWorkThread.h"
-#endif
+                     CWorkThread(const BOOL cbAutoDelete);
+        virtual     ~CWorkThread();
+
+    protected:
+        virtual UINT uiOnRun    (VOID *pData);
+
+    private:
+        CxConsoleLog _m_clLog;
+};
 //---------------------------------------------------------------------------
 class CxTest_CxThread :
     public CxTest
