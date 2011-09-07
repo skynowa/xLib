@@ -110,8 +110,8 @@ CxThread::bCreate(
     TxId   ulId = 0;
 
     hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, cuiStackSize, _s_uiJobEntry, this, 0, (UINT *)&ulId) );
-    /*DEBUG*/xASSERT_RET(NULL != hRes,    FALSE);
-    /*DEBUG*/xASSERT_RET(0    <  _m_ulId, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
+    /*DEBUG*/xASSERT_RET(0    <  ulId, FALSE);
 
     _m_bRes = _m_hThread.bSet(hRes);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes,               FALSE);
@@ -379,9 +379,9 @@ CxThread::bIsExited() {
     bool bRes = false;
 
 #if defined(xOS_WIN)
-    bRes = !_m_evExit.bIsSignaled() && (FALSE != _m_hThread.bIsValid());
+    bRes = (!_m_evExit.bIsSignaled()) && (FALSE != _m_hThread.bIsValid());
 #elif defined(xOS_LINUX)
-    bRes = !_m_evExit.bIsSignaled() && (0UL   != _m_hThread);
+    bRes = (!_m_evExit.bIsSignaled()) && (0UL   != _m_hThread);
 #endif
 
     return static_cast<BOOL>( bRes );
