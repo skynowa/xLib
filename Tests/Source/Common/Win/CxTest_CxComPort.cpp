@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxComPort
 CxTest_CxComPort::CxTest_CxComPort() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxComPort
 CxTest_CxComPort::~CxTest_CxComPort() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL 
 CxTest_CxComPort::bUnit(

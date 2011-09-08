@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxLastError
 CxTest_CxLastError::CxTest_CxLastError() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxLastError
 CxTest_CxLastError::~CxTest_CxLastError() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxLastError::bUnit(

@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxWaitableTimer
 CxTest_CxWaitableTimer::CxTest_CxWaitableTimer() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxWaitableTimer
 CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxWaitableTimer::bUnit(

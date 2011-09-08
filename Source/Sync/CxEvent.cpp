@@ -13,14 +13,18 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxEvent::CxEvent() :
+CxEvent::CxEvent(
+    const BOOL cbIsAutoReset,
+    const BOOL cbInitialState
+) :
 #if defined(xOS_WIN)
-	_m_hEvent     ()
+	_m_hEvent       (),
 #elif defined(xOS_LINUX)
-	_m_csCS       (),
-	_m_cndCond    (),
-	_m_bIsSignaled(FALSE)
+	_m_csCS         (),
+	_m_cndCond      (),
+	_m_bIsSignaled  (FALSE),
 #endif
+	_m_bIsAutoReset (cbIsAutoReset)
 {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_DO(FALSE == _m_hEvent.bIsValid(), return);
@@ -28,16 +32,23 @@ CxEvent::CxEvent() :
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateEvent(NULL, TRUE/*manual reset*/, FALSE/*initial state*/, NULL);
+    hRes = ::CreateEvent(NULL,
+                         (FALSE == _m_bIsAutoReset)  ? TRUE  : FALSE,
+                         (FALSE == _m_bInitialState) ? FALSE : TRUE,
+                         NULL);
     /*DEBUG*/xASSERT_DO(NULL != hRes, return);
 
     _m_hEvent.bSet(hRes);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    INT iRes = pthread_cond_init(const_cast<TxHandle *>( &hGet() ), NULL);
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    {
+        ////CxAutoCriticalSection acsAutoCS(_m_csCS);
 
-    _m_bIsSignaled = FALSE;
+        INT iRes = pthread_cond_init(const_cast<TxHandle *>( &_m_cndCond ), NULL);
+        /*DEBUG*/xASSERT_DO(0 == iRes, return);
+
+        _m_bIsSignaled = cbInitialState;
+    }
 #endif
 }
 //---------------------------------------------------------------------------
@@ -45,7 +56,7 @@ CxEvent::~CxEvent() {
 #if defined(xOS_WIN)
     // n/a
 #elif defined(xOS_LINUX)
-    INT iRes = pthread_cond_destroy(const_cast<TxHandle *>( &hGet() ));
+    INT iRes = pthread_cond_destroy(const_cast<TxHandle *>( &_m_cndCond ));
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
 #endif
 }
@@ -75,7 +86,7 @@ CxEvent::bSet() {
 
         _m_bIsSignaled = TRUE;
 
-        INT iRes = pthread_cond_broadcast(const_cast<TxHandle *>( &hGet() ));
+        INT iRes = pthread_cond_broadcast(const_cast<TxHandle *>( &_m_cndCond ));
         /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
     }
 #endif
@@ -120,7 +131,7 @@ CxEvent::osWait(
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
         for ( ; ; ) {
-            xCHECK_DO(TRUE == bIsSignaled(), break);
+            xCHECK_DO(TRUE == _m_bIsSignaled, break);
 
             if (m_culTimeoutInfinite != culTimeout) {
                 timespec tsTime = {0};
@@ -133,21 +144,25 @@ CxEvent::osWait(
                 tsTime.tv_nsec = ((tvNow.tv_usec / 1000 + culTimeout) % 1000) * 1000000;
 
                 osRes = static_cast<EObjectState>( pthread_cond_timedwait(
-                                                        const_cast<TxHandle *>( &hGet() ),
+                                                        const_cast<TxHandle *>( &_m_cndCond ),
                                                         const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ),
                                                         &tsTime) );
                 xCHECK_DO(osTimeout == osRes, break);
             } else {
                 osRes = static_cast<EObjectState>( pthread_cond_wait(
-                                                        const_cast<TxHandle *>( &hGet() ),
+                                                        const_cast<TxHandle *>( &_m_cndCond ),
                                                         const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() )) );
                 xCHECK_DO(osTimeout == osRes, break);
             }
         } // for
+
+        xCHECK_DO(osSignaled == osRes && FALSE != _m_bIsAutoReset, _m_bIsSignaled = FALSE);
+
+        /*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxString::lexical_cast(osRes), osFailed);
     }
 #endif
 
-    /*DEBUG*/xASSERT_RET(osSignaled == osRes || osTimeout == osRes, osFailed);
+
 
     return osRes;
 }

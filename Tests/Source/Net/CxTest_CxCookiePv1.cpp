@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxCookiePv1
 CxTest_CxCookiePv1::CxTest_CxCookiePv1() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxCookiePv1
 CxTest_CxCookiePv1::~CxTest_CxCookiePv1() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxCookiePv1::bUnit(

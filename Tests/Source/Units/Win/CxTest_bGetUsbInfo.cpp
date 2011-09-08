@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_bGetUsbInfo
 CxTest_bGetUsbInfo::CxTest_bGetUsbInfo() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_bGetUsbInfo
 CxTest_bGetUsbInfo::~CxTest_bGetUsbInfo() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_bGetUsbInfo::bUnit(

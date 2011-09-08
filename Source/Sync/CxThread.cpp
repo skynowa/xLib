@@ -38,14 +38,16 @@ CxThread::CxThread(
     //flags
     _m_bIsCreated           (FALSE),
     _m_bIsRunning           (FALSE),
-    //--_m_bIsPaused            (FALSE/*TRUE == bIsPaused ? CREATE_SUSPENDED : 0*/),
-    /*_m_bIsExited*///   n/a
+    /*_m_bIsPaused*/// n/a
+    /*_m_bIsExited*/// n/a
 
     //
     ///_vOnExit             (NULL),
 
     //other
+    _m_evPause              (TRUE, TRUE),
     _m_pevStarter           (NULL),
+    _m_evExit               (TRUE, TRUE),
     _m_clLog                (FALSE)
 {
     ////this->hMainThread   = ::GetCurrentThread();
@@ -91,16 +93,15 @@ CxThread::bCreate(
 #elif defined(xOS_LINUX)
 
 #endif
-    /*DEBUG*///uiStackSize  - n/a
-    /*DEBUG*///ptfStartAddr - n/a
-    /*DEBUG*///pvParam      - n/a
+    /*DEBUG*/// cbIsPaused   - n/a
+    /*DEBUG*/// cuiStackSize - n/a
+    /*DEBUG*/// pvParam      - n/a
 
-    //--_m_bIsPaused = cbIsPaused/*TRUE == bIsPaused ? CREATE_SUSPENDED : 0*/,
-    _m_pvParam   = pvParam;
+    _m_pvParam = pvParam;
 
     //-------------------------------------
     //_m_evStarter
-    _m_pevStarter = new CxEvent();
+    _m_pevStarter = new CxEvent(TRUE, TRUE);
     /*DEBUG*/xASSERT_RET(NULL != _m_pevStarter, FALSE);
 
     //-------------------------------------
@@ -109,7 +110,7 @@ CxThread::bCreate(
     HANDLE hRes = NULL;
     TxId   ulId = 0;
 
-    hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, cuiStackSize, _s_uiJobEntry, this, 0, (UINT *)&ulId) );
+    hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, cuiStackSize, _s_uiJobEntry, this, 0U, (UINT *)&ulId) );
     /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
     /*DEBUG*/xASSERT_RET(0    <  ulId, FALSE);
 
@@ -119,12 +120,24 @@ CxThread::bCreate(
 
     _m_ulId = ulId;
 #elif defined(xOS_LINUX)
+    INT            iRes = - 1;
     TxId           ulId;
-    pthread_attr_t attr;    xUNUSED(attr);
+    pthread_attr_t paAttributes = {{0}};
 
-    INT iRes = pthread_create(&ulId, NULL, &_s_uiJobEntry, this);
+    iRes = pthread_attr_init(&paAttributes);
+    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+
+    if (0 != cuiStackSize) {
+        iRes = pthread_attr_setstacksize(&paAttributes, cuiStackSize);
+        /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    }
+
+    iRes = pthread_create(&ulId, &paAttributes, &_s_uiJobEntry, this);
     /*DEBUG*/xASSERT_RET(0   == iRes, FALSE);
     /*DEBUG*/xASSERT_RET(0UL <  ulId, FALSE);
+
+    iRes = pthread_attr_destroy(&paAttributes);
+    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 
     _m_hThread = ulId;  //TODO: is it right?
     _m_ulId    = ulId;
@@ -163,10 +176,10 @@ CxThread::bResume() {
 
     //-------------------------------------
     //flags
-    /*_m_bIsCreated*///   n/a
-    /*_m_bIsRunning*///   n/a
-    /*_m_bIsPaused*///    n/a
-    /*_m_bIsExited*///    n/a
+    /*_m_bIsCreated*/// n/a
+    /*_m_bIsRunning*/// n/a
+    /*_m_bIsPaused*///  n/a
+    /*_m_bIsExited*///  n/a
 
     return TRUE;
 }
@@ -184,10 +197,10 @@ CxThread::bPause() {
 
     //-------------------------------------
     //flags
-    /*_m_bIsCreated*///   n/a
-    /*_m_bIsRunning*///   n/a
-    /*_m_bIsPaused*///    n/a
-    /*_m_bIsExited*///    n/a
+    /*_m_bIsCreated*/// n/a
+    /*_m_bIsRunning*/// n/a
+    /*_m_bIsPaused*///  n/a
+    /*_m_bIsExited*///  n/a
 
     return TRUE;
 }
@@ -212,8 +225,8 @@ CxThread::bExit(
     /*_m_bIsExited*///   n/a
     /*_m_bIsCreated*///  n/a
     /*_m_bIsRunning*///  n/a
-    /*_m_bIsPaused*/    xCHECK_DO(TRUE == bIsPaused(),   bResume()       ); //если поток приостановленный (bPause) - возобновляем
-                                                                            //если ожидает чего-то
+    /*_m_bIsPaused*/    xCHECK_DO(TRUE == bIsPaused(), bResume()); //если поток приостановленный (bPause) - возобновляем
+                                                                   //если ожидает чего-то
     //-------------------------------------
     //TODO: waiting oneself
     #if xCAN_REMOVE
@@ -267,7 +280,10 @@ CxThread::bKill(
     //flags
     _vSetStatesDefault();
 #elif defined(xOS_LINUX)
-
+/*
+ * int pthread_kill(pthread_t thread_id, int sig)
+ *
+ * */
 #endif
 
     return TRUE;
@@ -286,8 +302,8 @@ CxThread::bWait(
     //flags
     //?????????
 
-    /*DEBUG*/xASSERT(CxThread::ulGetCurrId() != _m_ulId);        //TODO: ?????
-    xCHECK_RET(CxThread::ulGetCurrId() == _m_ulId, TRUE);        //TODO: ?????
+    /*DEBUG*/xASSERT(CxThread::ulGetCurrId() != _m_ulId);
+    xCHECK_RET(CxThread::ulGetCurrId() == _m_ulId, TRUE);
 
     ULONG ulRes = WAIT_FAILED;
     ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
@@ -751,15 +767,11 @@ CxThread::ulGetIdealCpu() const {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//TODO:  is static ???
+/*static*/
 ULONG
-CxThread::ulGetCpuCount() const {
-    /*DEBUG*///_m_hThread - n/a
-
-    ULONG ulRes = 0;
-
-    ulRes = CxSystemInfo::ulGetNumOfCPUs();
-    xCHECK_RET(ulRes < 1 || ulRes > 32, 1);
+CxThread::ulGetCpuCount() {
+    ULONG ulRes = CxSystemInfo::ulGetNumOfCPUs();
+    xCHECK_RET(ulRes < 1UL || ulRes > 32UL, 1UL);
 
     return ulRes;
 }
@@ -871,14 +883,22 @@ CxThread::TxId
 CxThread::ulGetCurrId() {
     /*DEBUG*/// n/a
 
-    TxId ulRes = 0;
+    TxId ulRes = 0UL;
 
 #if defined(xOS_WIN)
     ulRes = ::GetCurrentThreadId();
-    /*DEBUG*/xASSERT_RET(0 < ulRes, 0);
+    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
 #elif defined(xOS_LINUX)
-    ulRes = (TxId)pthread_self();
-    /*DEBUG*/xASSERT_RET(0 < ulRes, 0);
+    #if 1
+        ulRes = pthread_self();
+        xTRACEV("ulGetCurrId: %ld", ulRes);
+        /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
+    #else
+        INT iRes = syscall(SYS_gettid);
+        xTRACEV("ulGetCurrId: %ld", iRes);
+
+        ulRes = iRes;
+    #endif
 #endif
 
     return ulRes;
@@ -923,18 +943,18 @@ CxThread::hGetCurrHandle() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
-CxThread::bSetPriority(
-    const TxHandle  chHandle,
-    const EPriority ctpPriority
-)
-{
-    /*DEBUG*/
-
-    xNOT_IMPLEMENTED_RET(FALSE);
-
-    return TRUE;
-}
+//BOOL
+//CxThread::bSetPriority(
+//    const TxHandle  chHandle,
+//    const EPriority ctpPriority
+//)
+//{
+//    /*DEBUG*/
+//
+//    xNOT_IMPLEMENTED_RET(FALSE);
+//
+//    return TRUE;
+//}
 //---------------------------------------------------------------------------
 /*static*/
 BOOL
@@ -1228,10 +1248,10 @@ CxThread::_bWaitResumption() {
 
     //-------------------------------------
     //flags
-    /*_m_bIsCreated*///   n/a
-    /*_m_bIsRunning*///   n/a
-    /*_m_bIsPaused*///    n/a
-    /*_m_bIsExited*///    n/a
+    /*_m_bIsCreated*/// n/a
+    /*_m_bIsRunning*/// n/a
+    /*_m_bIsPaused*///  n/a
+    /*_m_bIsExited*///  n/a
 
     ulRes = ::WaitForSingleObject(_m_evPause.hGet(), INFINITE);
     /*DEBUG*///- n/a
@@ -1269,8 +1289,8 @@ CxThread::_vSetStatesDefault() {
     //flags
     _m_bIsCreated  = FALSE;
     _m_bIsRunning  = FALSE;
-    /*_m_bIsPaused*///   n/a
-    /*_m_bIsExited*///   n/a
+    /*_m_bIsPaused*/// n/a
+    /*_m_bIsExited*/// n/a
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -1312,7 +1332,7 @@ CxThread::_bSetDebugNameA(
 	#elif defined(xCOMPILER_MINGW32)
 		//TODO: _bSetDebugNameA
 	#else
-		//TODO:
+		//TODO: _bSetDebugNameA
 	#endif
 #elif defined(xOS_FREEBSD)
     (VOID)pthread_set_name_np(ulGetId(), csName.c_str());

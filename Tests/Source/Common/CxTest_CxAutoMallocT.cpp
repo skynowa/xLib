@@ -19,17 +19,14 @@ typedef struct {
     INT y;
 } SMy, *PSMy;
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAutoMallocT
 CxTest_CxAutoMallocT::CxTest_CxAutoMallocT() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAutoMallocT
 CxTest_CxAutoMallocT::~CxTest_CxAutoMallocT() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAutoMallocT::bUnit(

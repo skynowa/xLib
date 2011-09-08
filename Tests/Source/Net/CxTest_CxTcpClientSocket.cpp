@@ -15,17 +15,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxTcpClientSocket
 CxTest_CxTcpClientSocket::CxTest_CxTcpClientSocket() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxTcpClientSocket
 CxTest_CxTcpClientSocket::~CxTest_CxTcpClientSocket() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxTcpClientSocket::bUnit(

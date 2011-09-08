@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxBlowfish
 CxTest_CxBlowfish::CxTest_CxBlowfish() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxBlowfish
 CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxBlowfish::bUnit(

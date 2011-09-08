@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxException
 CxTest_CxException::CxTest_CxException() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxException
 CxTest_CxException::~CxTest_CxException() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxException::bUnit(

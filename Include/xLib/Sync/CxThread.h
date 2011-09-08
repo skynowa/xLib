@@ -127,7 +127,7 @@ class CxThread :
             ///< sets preferred processor for a thread
         ULONG                     ulGetIdealCpu         () const;
             ///< get current ideal processor without changing it
-        ULONG                     ulGetCpuCount         () const;
+        static ULONG              ulGetCpuCount         ();
             ///< get CPU count on machine
 
         //other
@@ -151,7 +151,7 @@ class CxThread :
             ///< is current id
         static TxHandle           hGetCurrHandle        ();
             ///< get pseudo handle for the calling thread
-        static BOOL               bSetPriority          (const TxHandle chHandle, const EPriority ctpPriority);
+        ////static BOOL               bSetPriority          (const TxHandle chHandle, const EPriority ctpPriority);
             ///< set priority
         static BOOL               bYield                ();
             ///< yield

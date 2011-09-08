@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxLocalStorage
 CxTest_CxLocalStorage::CxTest_CxLocalStorage() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxLocalStorage
 CxTest_CxLocalStorage::~CxTest_CxLocalStorage() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxLocalStorage::bUnit(

@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxProfiler
 CxTest_CxProfiler::CxTest_CxProfiler() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxProfiler
 CxTest_CxProfiler::~CxTest_CxProfiler() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxProfiler::bUnit(

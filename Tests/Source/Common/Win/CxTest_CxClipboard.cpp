@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxClipboard
 CxTest_CxClipboard::CxTest_CxClipboard() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxClipboard
 CxTest_CxClipboard::~CxTest_CxClipboard() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxClipboard::bUnit(

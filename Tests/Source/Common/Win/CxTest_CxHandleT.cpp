@@ -19,17 +19,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxHandleT
 CxTest_CxHandleT::CxTest_CxHandleT() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxHandleT
 CxTest_CxHandleT::~CxTest_CxHandleT() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxHandleT::bUnit(

@@ -13,21 +13,19 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxString
 CxTest_CxString::CxTest_CxString() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxString
 CxTest_CxString::~CxTest_CxString() {
 
 }
 //---------------------------------------------------------------------------
-
-UCHAR RandomNumber () { return (UCHAR)(rand()%100); }
-
-
-//DONE: bUnit ()
+UCHAR 
+RandomNumber () { 
+    return (UCHAR)(rand()%100); 
+}
+//---------------------------------------------------------------------------
 /*virtual*/
 BOOL
 CxTest_CxString::bUnit(

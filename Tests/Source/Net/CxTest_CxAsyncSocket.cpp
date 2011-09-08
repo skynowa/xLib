@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAsyncSocket
 CxTest_CxAsyncSocket::CxTest_CxAsyncSocket() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAsyncSocket
 CxTest_CxAsyncSocket::~CxTest_CxAsyncSocket() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL 
 CxTest_CxAsyncSocket::bUnit(

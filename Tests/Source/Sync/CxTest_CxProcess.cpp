@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxProcess
 CxTest_CxProcess::CxTest_CxProcess() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxProcess
 CxTest_CxProcess::~CxTest_CxProcess() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxProcess::bUnit(

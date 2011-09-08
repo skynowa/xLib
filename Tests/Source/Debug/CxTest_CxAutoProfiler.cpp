@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAutoProfiler
 CxTest_CxAutoProfiler::CxTest_CxAutoProfiler() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAutoProfiler
 CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAutoProfiler::bUnit(

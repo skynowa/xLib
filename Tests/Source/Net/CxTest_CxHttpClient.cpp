@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxHttpClient
 CxTest_CxHttpClient::CxTest_CxHttpClient() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxHttpClient
 CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxHttpClient::bUnit(

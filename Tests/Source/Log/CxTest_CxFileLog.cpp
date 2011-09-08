@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxFileLog
 CxTest_CxFileLog::CxTest_CxFileLog() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxFileLog
 CxTest_CxFileLog::~CxTest_CxFileLog() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxFileLog::bUnit(
