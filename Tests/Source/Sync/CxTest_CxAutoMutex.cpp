@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAutoMutex
 CxTest_CxAutoMutex::CxTest_CxAutoMutex() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAutoMutex
 CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAutoMutex::bUnit(

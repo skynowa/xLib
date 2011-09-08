@@ -50,11 +50,11 @@ CWorkThread::uiOnRun(
 
     for (size_t i = 0; ; ++ i) {
         bRes = bIsTimeToExit();
-        xCHECK_DO(TRUE == bRes, xTRACEV(xT("break\n")); break);
+        xCHECK_DO(TRUE == bRes, xTRACE(xT("break\n")); break);
 
-        for (size_t j = 0; j < 20; ++ j) {
-            xTRACEV(xT("*\n"));
-            bSleep(1000UL);
+        for (size_t j = 0; j < 50; ++ j) {
+            xTRACE(xT("*\n"));
+            bSleep(500UL);
         }
     }
 
@@ -103,7 +103,6 @@ CxTest_CxThread::bUnit(
 
         m_bRes = pthT->bCreate(cbIsPaused, 0, &uiParam);
         xASSERT_NOT_EQ(FALSE, m_bRes);
-        ////LOG("bCreate()");
 
         m_bRes = pthT->bIsPaused();
         xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -124,7 +123,7 @@ CxTest_CxThread::bUnit(
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = pthT->bIsPaused();
-        xASSERT_EQ(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = pthT->bIsExited();
         xASSERT_EQ(FALSE, m_bRes);
@@ -150,55 +149,73 @@ CxTest_CxThread::bUnit(
     //bSetPriority, tpGetPriority
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bSetPriority(CxThread::tpLowest);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        #if defined(xOS_WIN)
+            m_bRes = pthT->bSetPriority(CxThread::tpLowest);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_iRes = pthT->tpGetPriority();
-        xASSERT_EQ((INT)CxThread::tpLowest, (INT)m_iRes);
+            m_iRes = pthT->tpGetPriority();
+            xASSERT_EQ((INT)CxThread::tpLowest, (INT)m_iRes);
+        #elif defined(xOS_LINUX)
+
+        #endif
     }
 
     //-------------------------------------
     //sGetPriorityString
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_sRes = pthT->sGetPriorityString();
-        xASSERT_EQ(std::tstring(xT("Lowest")), m_sRes);
+        #if xTODO
+            m_sRes = pthT->sGetPriorityString();
+            xASSERT_EQ(std::tstring(xT("Lowest")), m_sRes);
+        #endif
     }
 
     //-------------------------------------
     //bPriorityUp, bPriorityDown
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bPriorityUp();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        #if defined(xOS_WIN)
+            m_bRes = pthT->bPriorityUp();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = pthT->bPriorityDown();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = pthT->bPriorityDown();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #elif defined(xOS_LINUX)
+
+        #endif
     }
 
     //-------------------------------------
     //bIsPriorityBoost
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bIsPriorityBoost();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        #if defined(xOS_WIN)
+            m_bRes = pthT->bIsPriorityBoost();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #elif defined(xOS_LINUX)
+
+        #endif
     }
 
     //-------------------------------------
     //bSetPriorityBoost
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bSetPriorityBoost(FALSE);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        #if defined(xOS_WIN)
+            m_bRes = pthT->bSetPriorityBoost(FALSE);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = pthT->bIsPriorityBoost();
-        xASSERT_EQ(FALSE, m_bRes);
+            m_bRes = pthT->bIsPriorityBoost();
+            xASSERT_EQ(FALSE, m_bRes);
 
-        m_bRes = pthT->bSetPriorityBoost(TRUE);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = pthT->bSetPriorityBoost(TRUE);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = pthT->bIsPriorityBoost();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = pthT->bIsPriorityBoost();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #elif defined(xOS_LINUX)
+
+        #endif
     }
 
 
@@ -219,27 +236,31 @@ CxTest_CxThread::bUnit(
     //bSetIdealCpu, ulGetIdealCpu
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bSetIdealCpu(0);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        #if defined(xOS_WIN)
+            m_bRes = pthT->bSetIdealCpu(0);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_ulRes = pthT->ulGetIdealCpu();
-        xASSERT_LESS_EQ(0UL, m_ulRes);
+            m_ulRes = pthT->ulGetIdealCpu();
+            xASSERT_LESS_EQ(0UL, m_ulRes);
 
-        m_bRes = pthT->bSetIdealCpu(10);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = pthT->bSetIdealCpu(10);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = pthT->bSetIdealCpu(0);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = pthT->bSetIdealCpu(0);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_ulRes = pthT->ulGetIdealCpu();
-        xASSERT_EQ(0UL, m_ulRes);
+            m_ulRes = pthT->ulGetIdealCpu();
+            xASSERT_EQ(0UL, m_ulRes);
+        #elif defined(xOS_LINUX)
+
+        #endif
     }
 
     //--------------------------------------------------
     //ulGetCpuCount
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_ulRes = pthT->ulGetCpuCount();
+        m_ulRes = CxThread::ulGetCpuCount();
         xASSERT_LESS(0UL, m_ulRes);
     }
 
@@ -267,16 +288,22 @@ CxTest_CxThread::bUnit(
     //bIsCurrent
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bIsCurrent();
-        xASSERT_EQ(FALSE, m_bRes);
+        #if xTODO
+            m_bRes = pthT->bIsCurrent();
+            xASSERT_EQ(FALSE, m_bRes);
+        #endif
     }
 
     //--------------------------------------------------
     //ulGetExitCode
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_ulRes = pthT->ulGetExitCode();
-        xASSERT_LESS_EQ(0UL, m_ulRes);
+        #if defined(xOS_WIN)
+            m_ulRes = pthT->ulGetExitCode();
+            xASSERT_LESS_EQ(0UL, m_ulRes);
+        #elif defined(xOS_LINUX)
+
+        #endif
     }
 
     //--------------------------------------------------
@@ -322,7 +349,7 @@ CxTest_CxThread::bUnit(
     //non static
 
     //-------------------------------------
-    //bPause, bResume
+    //bPause, bResume (start thread)
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = pthT->bResume();

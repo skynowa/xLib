@@ -13,18 +13,15 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxConnectionString
 CxTest_CxConnectionString::CxTest_CxConnectionString() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxConnectionString
 /*virtual*/
 CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL 
 CxTest_CxConnectionString::bUnit(

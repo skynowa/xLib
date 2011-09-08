@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSystemInfo
 CxTest_CxSystemInfo::CxTest_CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSystemInfo
 CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSystemInfo::bUnit(

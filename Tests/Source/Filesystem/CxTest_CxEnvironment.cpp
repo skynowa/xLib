@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxEnvironment
 CxTest_CxEnvironment::CxTest_CxEnvironment() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxEnvironment
 CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxEnvironment::bUnit(

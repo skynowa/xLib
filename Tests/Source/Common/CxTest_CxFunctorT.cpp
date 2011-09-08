@@ -82,17 +82,14 @@ class CThread {
 };
 CThread objThread;
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxFunctorT
 CxTest_CxFunctorT::CxTest_CxFunctorT() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxFunctorT
 CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 BOOL
 CxTest_CxFunctorT::bUnit(
     const ULONGLONG cullBlockLoops

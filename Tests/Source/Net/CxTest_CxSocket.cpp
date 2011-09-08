@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSocket
 CxTest_CxSocket::CxTest_CxSocket() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSocket
 CxTest_CxSocket::~CxTest_CxSocket() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL 
 CxTest_CxSocket::bUnit(

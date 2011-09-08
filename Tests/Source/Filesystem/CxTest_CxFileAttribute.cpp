@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxFileAttribute
 CxTest_CxFileAttribute::CxTest_CxFileAttribute() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxFileAttribute
 CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxFileAttribute::bUnit(

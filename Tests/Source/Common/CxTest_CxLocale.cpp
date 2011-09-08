@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxLocale
 CxTest_CxLocale::CxTest_CxLocale() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxLocale
 CxTest_CxLocale::~CxTest_CxLocale() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxLocale::bUnit(

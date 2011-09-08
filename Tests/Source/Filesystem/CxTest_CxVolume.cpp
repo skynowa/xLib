@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxVolume
 CxTest_CxVolume::CxTest_CxVolume() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxVolume
 CxTest_CxVolume::~CxTest_CxVolume() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxVolume::bUnit(

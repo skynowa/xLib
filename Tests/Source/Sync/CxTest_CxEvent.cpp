@@ -30,7 +30,7 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     //hGet
     {
-        CxEvent objEvent;
+        CxEvent objEvent(TRUE, TRUE);
 
         CxEvent::TxHandle hRes;
 
@@ -45,10 +45,10 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     //bIsSignaled
     {
-        CxEvent objEvent;
+        CxEvent objEvent(TRUE, TRUE);
 
         m_bRes = objEvent.bIsSignaled();
-        xASSERT_EQ(FALSE, m_bRes);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -57,7 +57,7 @@ CxTest_CxEvent::bUnit(
         const size_t cuiSpinCount = 3;
 
 
-        CxEvent objEvent;
+        CxEvent objEvent(TRUE, TRUE);
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
@@ -82,7 +82,7 @@ CxTest_CxEvent::bUnit(
         const size_t cuiSpinCount = 3;
 
 
-        CxEvent objEvent;
+        CxEvent objEvent(TRUE, TRUE);
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bSet();
@@ -104,7 +104,7 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     //bWait
     {
-        CxEvent objEvent;
+        CxEvent objEvent(FALSE, FALSE);
 
         m_bRes = objEvent.bIsSignaled();
         xASSERT_EQ(FALSE, m_bRes);

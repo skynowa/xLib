@@ -49,7 +49,7 @@ class CxEvent :
     #endif
 
 
-                 		  CxEvent    ();
+                 		  CxEvent    (const BOOL bIsAutoReset, const BOOL cbInitialState);
             ///< constructor
         virtual 		 ~CxEvent    ();
             ///< destructor
@@ -73,6 +73,8 @@ class CxEvent :
         pthread_cond_t    _m_cndCond;       ///< condition variable
         volatile BOOL     _m_bIsSignaled;   ///< is signaled flag
     #endif
+
+        BOOL              _m_bIsAutoReset;  ///< auto-reset flag
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxEventH

@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxCompletionPort
 CxTest_CxCompletionPort::CxTest_CxCompletionPort() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxCompletionPort
 CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxCompletionPort::bUnit(    

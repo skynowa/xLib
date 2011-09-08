@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxDateTime
 CxTest_CxDateTime::CxTest_CxDateTime() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxDateTime
 CxTest_CxDateTime::~CxTest_CxDateTime() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxDateTime::bUnit(

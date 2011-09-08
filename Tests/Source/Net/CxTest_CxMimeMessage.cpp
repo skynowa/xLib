@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxMimeMessage
 CxTest_CxMimeMessage::CxTest_CxMimeMessage() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxMimeMessage
 CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxMimeMessage::bUnit(

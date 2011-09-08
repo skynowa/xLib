@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxRandom
 CxTest_CxRandom::CxTest_CxRandom() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxRandom
 CxTest_CxRandom::~CxTest_CxRandom() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxRandom::bUnit(

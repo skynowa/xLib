@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxDnsClient
 CxTest_CxDnsClient::CxTest_CxDnsClient() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxDnsClient
 CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxDnsClient::bUnit(

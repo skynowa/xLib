@@ -12,22 +12,22 @@
 
 //Common
 #include <Test/Common/CxTest_CxMacros.h>
+#include <Test/Common/CxTest_CxException.h>
+#include <Test/Common/CxTest_CxType.h>
+#include <Test/Common/CxTest_CxFunctorT.h>
 #include <Test/Common/CxTest_CxArray.h>
 #include <Test/Common/CxTest_CxChar.h>
 #include <Test/Common/CxTest_CxLocale.h>
+#include <Test/Common/CxTest_CxAutoMallocT.h>
 #include <Test/Common/CxTest_CxString.h>
 #include <Test/Common/CxTest_CxDateTime.h>
-#include <Test/Common/CxTest_CxFunctorT.h>
 #include <Test/Common/CxTest_CxSystemInfo.h>
-#include <Test/Common/CxTest_CxAutoMallocT.h>
-#include <Test/Common/CxTest_CxException.h>
-#include <Test/Common/CxTest_CxType.h>
 #include <Test/Common/CxTest_CxConsole.h>
 
 #if defined(xOS_WIN)
-    #include <Test/Common/Win/CxTest_CxClipboard.h>
-    #include <Test/Common/Win/CxTest_CxCom.h>
     #include <Test/Common/Win/CxTest_CxHandleT.h>
+    #include <Test/Common/Win/CxTest_CxCom.h>
+    #include <Test/Common/Win/CxTest_CxClipboard.h>
     #include <Test/Common/Win/CxTest_CxShell.h>
     #include <Test/Common/Win/CxTest_CxComPort.h>
 #elif defined(xOS_LINUX)
@@ -61,13 +61,13 @@
 
 //Filesystem
 #include <Test/Filesystem/CxTest_CxPath.h>
-#include <Test/Filesystem/CxTest_CxDir.h>
-#include <Test/Filesystem/CxTest_CxEnvironment.h>
+#include <Test/Filesystem/CxTest_CxFileAttribute.h>
 #include <Test/Filesystem/CxTest_CxFile.h>
 #include <Test/Filesystem/CxTest_CxDll.h>
-#include <Test/Filesystem/CxTest_CxFileAttribute.h>
-#include <Test/Filesystem/CxTest_CxLocalStorage.h>
+#include <Test/Filesystem/CxTest_CxDir.h>
 #include <Test/Filesystem/CxTest_CxVolume.h>
+#include <Test/Filesystem/CxTest_CxEnvironment.h>
+#include <Test/Filesystem/CxTest_CxLocalStorage.h>
 
 #if defined(xOS_WIN)
     #include <Test/Filesystem/Win/CxTest_CxIni.h>
@@ -106,12 +106,12 @@
 #endif
 
 //Sync
-#include <Test/Sync/CxTest_CxProcess.h>
-#include <Test/Sync/CxTest_CxThread.h>
 #include <Test/Sync/CxTest_CxCriticalSection.h>
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
 #include <Test/Sync/CxTest_CxEvent.h>
 #include <Test/Sync/CxTest_CxSleeper.h>
+#include <Test/Sync/CxTest_CxThread.h>
+#include <Test/Sync/CxTest_CxProcess.h>
 
 #if defined(xOS_WIN)
     #include <Test/Sync/CxTest_CxMutex.h>
@@ -202,22 +202,22 @@ _tmain(
 
         //Common
         bRes = tmManager.bAdd(new CxTest_CxMacros);
+        bRes = tmManager.bAdd(new CxTest_CxException);
+        bRes = tmManager.bAdd(new CxTest_CxType);
+        bRes = tmManager.bAdd(new CxTest_CxFunctorT);
         bRes = tmManager.bAdd(new CxTest_CxArray);
         bRes = tmManager.bAdd(new CxTest_CxChar);
         bRes = tmManager.bAdd(new CxTest_CxLocale);
+        bRes = tmManager.bAdd(new CxTest_CxAutoMallocT);
         bRes = tmManager.bAdd(new CxTest_CxString);
         bRes = tmManager.bAdd(new CxTest_CxDateTime);
-        bRes = tmManager.bAdd(new CxTest_CxFunctorT);
         bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
-        bRes = tmManager.bAdd(new CxTest_CxAutoMallocT);
-        bRes = tmManager.bAdd(new CxTest_CxException);
-        bRes = tmManager.bAdd(new CxTest_CxType);
         bRes = tmManager.bAdd(new CxTest_CxConsole);
 
     #if defined(xOS_WIN)
-        bRes = tmManager.bAdd(new CxTest_CxClipboard);
-        bRes = tmManager.bAdd(new CxTest_CxCom);
         bRes = tmManager.bAdd(new CxTest_CxHandleT);
+        bRes = tmManager.bAdd(new CxTest_CxCom);
+        bRes = tmManager.bAdd(new CxTest_CxClipboard);
         bRes = tmManager.bAdd(new CxTest_CxShell);
         bRes = tmManager.bAdd(new CxTest_CxComPort);
     #elif defined(xOS_LINUX)
@@ -252,13 +252,13 @@ _tmain(
 
         //Filesystem
         bRes = tmManager.bAdd(new CxTest_CxPath);
-        bRes = tmManager.bAdd(new CxTest_CxFile);
-        bRes = tmManager.bAdd(new CxTest_CxDir);
-        bRes = tmManager.bAdd(new CxTest_CxEnvironment);
-        bRes = tmManager.bAdd(new CxTest_CxDll);
         bRes = tmManager.bAdd(new CxTest_CxFileAttribute);
-        bRes = tmManager.bAdd(new CxTest_CxLocalStorage);
+        bRes = tmManager.bAdd(new CxTest_CxFile);
+        bRes = tmManager.bAdd(new CxTest_CxDll);
+        bRes = tmManager.bAdd(new CxTest_CxDir);
         bRes = tmManager.bAdd(new CxTest_CxVolume);
+        bRes = tmManager.bAdd(new CxTest_CxEnvironment);
+        bRes = tmManager.bAdd(new CxTest_CxLocalStorage);
 
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxIni);
@@ -291,12 +291,12 @@ _tmain(
     #endif
 
         //Sync
-        bRes = tmManager.bAdd(new CxTest_CxProcess);
-        bRes = tmManager.bAdd(new CxTest_CxThread);
         bRes = tmManager.bAdd(new CxTest_CxCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxAutoCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxEvent);
         bRes = tmManager.bAdd(new CxTest_CxSleeper);
+        bRes = tmManager.bAdd(new CxTest_CxThread);
+        bRes = tmManager.bAdd(new CxTest_CxProcess);
 
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxMutex);

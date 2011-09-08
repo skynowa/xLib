@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxMacros
 CxTest_CxMacros::CxTest_CxMacros() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxMacros
 CxTest_CxMacros::~CxTest_CxMacros() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: DONE (unit test)
 /*virtual*/
 BOOL
 CxTest_CxMacros::bUnit(

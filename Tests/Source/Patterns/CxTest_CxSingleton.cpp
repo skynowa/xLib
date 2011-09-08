@@ -29,17 +29,14 @@ class CLogger {
 };
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSingleton
 CxTest_CxSingleton::CxTest_CxSingleton() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSingleton
 CxTest_CxSingleton::~CxTest_CxSingleton() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSingleton::bUnit(

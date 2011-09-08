@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxAtomicLongInt
 CxTest_CxAtomicLongInt::CxTest_CxAtomicLongInt() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxAtomicLongInt
 CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxAtomicLongInt::bUnit(

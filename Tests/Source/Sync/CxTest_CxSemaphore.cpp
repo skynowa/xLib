@@ -35,17 +35,14 @@ vTest( void* pArguments ) {
     return 0;
 }
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxSemaphore
 CxTest_CxSemaphore::CxTest_CxSemaphore() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxSemaphore
 CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxSemaphore::bUnit(

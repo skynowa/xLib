@@ -13,17 +13,14 @@
 
 
 //---------------------------------------------------------------------------
-//DONE: CxTest_CxConsole
 CxTest_CxConsole::CxTest_CxConsole() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxTest_CxConsole
 CxTest_CxConsole::~CxTest_CxConsole() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: bUnit ()
 /*virtual*/
 BOOL
 CxTest_CxConsole::bUnit(

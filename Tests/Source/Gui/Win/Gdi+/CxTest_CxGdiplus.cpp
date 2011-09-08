@@ -13,34 +13,31 @@
 
 
 #if defined(xOS_WIN)
-    //---------------------------------------------------------------------------
-    //DONE: CxTest_CxGdiplus
-    CxTest_CxGdiplus::CxTest_CxGdiplus() {
+//---------------------------------------------------------------------------
+CxTest_CxGdiplus::CxTest_CxGdiplus() {
 
-    }
-    //---------------------------------------------------------------------------
-    //DONE: ~CxTest_CxGdiplus
-    CxTest_CxGdiplus::~CxTest_CxGdiplus() {
+}
+//---------------------------------------------------------------------------
+CxTest_CxGdiplus::~CxTest_CxGdiplus() {
 
-    }
-    //---------------------------------------------------------------------------
-    //DONE: bUnit ()
-    /*virtual*/
-    BOOL
-    CxTest_CxGdiplus::bUnit(
-    const ULONGLONG cullBlockLoops
+}
+//---------------------------------------------------------------------------
+/*virtual*/
+BOOL
+CxTest_CxGdiplus::bUnit(
+const ULONGLONG cullBlockLoops
 )
 {
-        /*DEBUG*/
+    /*DEBUG*/
 
-        xTEST_BLOCK(cullBlockLoops)
-        {
-            CxGdiplus gpGdiPlus;
-        }
-
-        return TRUE;
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxGdiplus gpGdiPlus;
     }
-    //---------------------------------------------------------------------------
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 #elif defined(xOS_LINUX)
 
 #endif
