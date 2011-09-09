@@ -9,6 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTestManager.h>
+#include <xLib/Common/CxConsole.h>
 
 //Common
 #include <Test/Common/CxTest_CxMacros.h>

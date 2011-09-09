@@ -54,8 +54,7 @@ CxReport::CxReport(
 {
     /*DEBUG*/
 
-    _bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csComment.c_str());
-    /*DEBUG*/// n/a
+    (VOID)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csComment.c_str());
 
     switch (crtType) {
         case rtMsgboxPlain:     { _bInitPlain();    }   break;
@@ -107,18 +106,17 @@ CxReport::CxReport(
     sComment = CxString::sFormatV(pcszComment, palArgs);
     xVA_END(palArgs);
 
-    _bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment.c_str());
-    /*DEBUG*/// n/a
+    (VOID)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment.c_str());
 
     switch (crtType) {
-        case rtMsgboxPlain:     { _bInitPlain();    }   break;
-        case rtMsgboxFormated:  { _bInitFormated(); }   break;
-        case rtStdoutPlain:     { _bInitPlain();    }   break;
-        case rtStdoutHtml:      { _bInitHtml();     }   break;
-        case rtLoggingPlain:    { _bInitPlain();    }   break;
-        case rtLoggingHtml:     { _bInitHtml();     }   break;
+        case rtMsgboxPlain:     { (VOID)_bInitPlain();    }   break;
+        case rtMsgboxFormated:  { (VOID)_bInitFormated(); }   break;
+        case rtStdoutPlain:     { (VOID)_bInitPlain();    }   break;
+        case rtStdoutHtml:      { (VOID)_bInitHtml();     }   break;
+        case rtLoggingPlain:    { (VOID)_bInitPlain();    }   break;
+        case rtLoggingHtml:     { (VOID)_bInitHtml();     }   break;
 
-        default:                { _bInitPlain();    }   break;
+        default:                { (VOID)_bInitPlain();    }   break;
     }
 }
 //---------------------------------------------------------------------------
@@ -274,7 +272,7 @@ CxReport::_bInitVars(
 #if 1
     _m_sProgram        = CxPath::sGetExe();
     _m_ulProcessId     = CxProcess::ulGetCurrId();
-    _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
+    _m_ulThreadId      = (ULONG)CxThread::ulGetCurrentId();
     _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxFile::liGetSize(CxPath::sGetExe())) );
 
     _m_sSourceFile     = csFile;
