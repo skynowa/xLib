@@ -38,18 +38,18 @@ CxCriticalSection::CxCriticalSection() :
     pthread_mutexattr_t maAttr;
 
     iRes = pthread_mutexattr_init(&maAttr);
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
     iRes = pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
     {
         iRes = pthread_mutex_init(&_m_mMutex, &maAttr);
-        /*DEBUG*/xASSERT_DO(0 == iRes, return);
+        /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
     }
 
     iRes = pthread_mutexattr_destroy(&maAttr);
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -68,18 +68,18 @@ CxCriticalSection::CxCriticalSection(
     pthread_mutexattr_t maAttr;
 
     iRes = pthread_mutexattr_init(&maAttr);
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
     iRes = pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
     {
         iRes = pthread_mutex_init(&_m_mMutex, &maAttr);
-        /*DEBUG*/xASSERT_DO(0 == iRes, return);
+        /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
     }
 
     iRes = pthread_mutexattr_destroy(&maAttr);
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
     //TODO: culSpinCount
 #endif
@@ -100,7 +100,7 @@ CxCriticalSection::~CxCriticalSection() {
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_destroy(&_m_mMutex);
-	/*DEBUG*/xASSERT_DO(0 == iRes, return);
+	/*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -131,7 +131,7 @@ CxCriticalSection::bEnter() {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_lock(&_m_mMutex);
-    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
     return TRUE;
@@ -166,7 +166,7 @@ CxCriticalSection::bLeave() {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     INT iRes = pthread_mutex_unlock(&_m_mMutex);
-    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
     return TRUE;

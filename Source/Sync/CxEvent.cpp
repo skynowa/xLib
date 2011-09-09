@@ -18,13 +18,13 @@ CxEvent::CxEvent(
     const BOOL cbInitialState
 ) :
 #if defined(xOS_WIN)
-	_m_hEvent       (),
+	_m_hEvent      ()
 #elif defined(xOS_LINUX)
-	_m_csCS         (),
-	_m_cndCond      (),
-	_m_bIsSignaled  (FALSE),
+	_m_csCS        (),
+	_m_cndCond     (),
+    _m_bIsAutoReset(cbIsAutoReset),
+	_m_bIsSignaled (cbInitialState)
 #endif
-	_m_bIsAutoReset (cbIsAutoReset)
 {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_DO(FALSE == _m_hEvent.bIsValid(), return);
@@ -32,23 +32,26 @@ CxEvent::CxEvent(
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateEvent(NULL,
-                         (FALSE == _m_bIsAutoReset)  ? TRUE  : FALSE,
-                         (FALSE == _m_bInitialState) ? FALSE : TRUE,
-                         NULL);
+    hRes = ::CreateEvent(NULL, (FALSE == _m_bIsAutoReset) ? TRUE : FALSE, cbInitialState, NULL);
     /*DEBUG*/xASSERT_DO(NULL != hRes, return);
 
     _m_hEvent.bSet(hRes);
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    {
-        ////CxAutoCriticalSection acsAutoCS(_m_csCS);
+    INT iRes = pthread_cond_init(&_m_cndCond, NULL);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
-        INT iRes = pthread_cond_init(const_cast<TxHandle *>( &_m_cndCond ), NULL);
-        /*DEBUG*/xASSERT_DO(0 == iRes, return);
-
+    #if 0
+        if (FALSE == cbInitialState) {
+            BOOL bRes = bReset();
+            /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+        } else {
+            BOOL bRes = bSet();
+            /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+        }
+    #else
         _m_bIsSignaled = cbInitialState;
-    }
+    #endif
 #endif
 }
 //---------------------------------------------------------------------------
@@ -56,8 +59,8 @@ CxEvent::~CxEvent() {
 #if defined(xOS_WIN)
     // n/a
 #elif defined(xOS_LINUX)
-    INT iRes = pthread_cond_destroy(const_cast<TxHandle *>( &_m_cndCond ));
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
+    INT iRes = pthread_cond_destroy(&_m_cndCond);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -72,6 +75,7 @@ CxEvent::hGet() const {
 #endif
 }
 //---------------------------------------------------------------------------
+//NOTE: unblock threads blocked on a condition variable
 BOOL
 CxEvent::bSet() {
 #if defined(xOS_WIN)
@@ -86,8 +90,8 @@ CxEvent::bSet() {
 
         _m_bIsSignaled = TRUE;
 
-        INT iRes = pthread_cond_broadcast(const_cast<TxHandle *>( &_m_cndCond ));
-        /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+        INT iRes = pthread_cond_broadcast(&_m_cndCond);
+        /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
     }
 #endif
 
@@ -144,25 +148,23 @@ CxEvent::osWait(
                 tsTime.tv_nsec = ((tvNow.tv_usec / 1000 + culTimeout) % 1000) * 1000000;
 
                 osRes = static_cast<EObjectState>( pthread_cond_timedwait(
-                                                        const_cast<TxHandle *>( &_m_cndCond ),
+                                                        &_m_cndCond,
                                                         const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ),
                                                         &tsTime) );
                 xCHECK_DO(osTimeout == osRes, break);
             } else {
                 osRes = static_cast<EObjectState>( pthread_cond_wait(
-                                                        const_cast<TxHandle *>( &_m_cndCond ),
+                                                        &_m_cndCond,
                                                         const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() )) );
                 xCHECK_DO(osTimeout == osRes, break);
             }
         } // for
 
-        xCHECK_DO(osSignaled == osRes && FALSE != _m_bIsAutoReset, _m_bIsSignaled = FALSE);
-
-        /*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxString::lexical_cast(osRes), osFailed);
+        xCHECK_DO(FALSE != _m_bIsAutoReset && osSignaled == osRes, _m_bIsSignaled = FALSE);
     }
 #endif
 
-
+    /*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes), osFailed);
 
     return osRes;
 }

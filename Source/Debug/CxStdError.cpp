@@ -22,8 +22,7 @@ CxStdError::iGet() {
 
     iCode = errno;
 
-    bReset();
-    /*DEBUG*/// n/a
+    (VOID)bReset();
 
     return iCode;
 }

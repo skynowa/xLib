@@ -27,8 +27,7 @@ CxLastError::ulGet() {
     ulCode = static_cast<ULONG>( errno );
 #endif
 
-    bReset();
-    /*DEBUG*/// n/a
+    (VOID)bReset();
 
     return ulCode;
 }
@@ -79,7 +78,7 @@ CxLastError::sFormat(
 
     std::tstring sRes;
 
-    sRes.append( CxString::sFormat(xT("%u - "), culCode) );
+    sRes.append( CxString::sFormat(xT("%li - "), culCode) );
 
 #if defined(xOS_WIN)
     ULONG   ulRes  = 0;
@@ -95,16 +94,16 @@ CxLastError::sFormat(
                     0,
                     NULL);
 
-    //317 - "Не удается найти текст сообщения с номером 0x%1 в файле сообщений %2."
-    xCHECK_RET(317 == ulGet(), xT("Unknown error"));
-    /*DEBUG*/xASSERT_RET(0 != ulRes, std::tstring());
+    //the system cannot find message text for message number 0x%1 in the message file for %2
+    xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRes.append(xT("Unknown error")));
+    xCHECK_RET(0UL                    == ulRes,   sRes.append(xT("[Cann't format error message]")));
 
     sRes.append( CxString::sRemoveEol(std::tstring(static_cast<LPCTSTR>(pvBuff), ulRes)) );
 
     hRes = ::LocalFree(pvBuff);
     /*DEBUG*/xASSERT_RET(NULL == hRes, std::tstring());
 #elif defined(xOS_LINUX)
-    sRes.append( strerror( static_cast<INT>(culCode) ) );
+    sRes.append( strerror(static_cast<INT>( culCode )) );
 #endif
 
     return sRes;

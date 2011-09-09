@@ -45,10 +45,19 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     //bIsSignaled
     {
-        CxEvent objEvent(TRUE, TRUE);
+        {
+            CxEvent objEvent(TRUE, TRUE);
 
-        m_bRes = objEvent.bIsSignaled();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+            m_bRes = objEvent.bIsSignaled();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        }
+
+        {
+            CxEvent objEvent(TRUE, FALSE);
+
+            m_bRes = objEvent.bIsSignaled();
+            xASSERT_EQ(FALSE, m_bRes);
+        }
     }
 
     //-------------------------------------

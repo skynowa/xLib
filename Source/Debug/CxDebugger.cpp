@@ -29,8 +29,8 @@
 *
 *****************************************************************************/
 
-BOOL         CxDebugger::_ms_bIsEnabled = TRUE;
-std::tstring CxDebugger::_ms_sLogPath;
+/*static*/ BOOL         CxDebugger::_ms_bIsEnabled = TRUE;
+/*static*/ std::tstring CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
 /*static*/
@@ -113,7 +113,7 @@ CxDebugger::bReportMake(
 )
 {
     //-------------------------------------
-    //Never corrupt the last error value
+    //never corrupt the last error value
     const ULONG culLastError = crpReport.ulGetLastError();
 
     CxReport::EType rtRes = crpReport.rtGetType();
@@ -129,8 +129,8 @@ CxDebugger::bReportMake(
     }
 
     //-------------------------------------
-    //Never corrupt the last error value
-    CxLastError::bSet(culLastError);
+    //never corrupt the last error value
+    (VOID)CxLastError::bSet(culLastError);
 
     return TRUE;
 }
@@ -151,7 +151,7 @@ CxDebugger::bTrace(
     xVA_END(palArgs);
 
 #if defined(xOS_WIN)
-    ::OutputDebugString(sRes.c_str());
+    (VOID)::OutputDebugString(sRes.c_str());
 #elif defined(xOS_LINUX)
     // n/a
 #endif
@@ -258,13 +258,13 @@ CxDebugger::_bMsgboxPlain(
 
         default:
         case CxMsgBoxT::mrIgnore: {
-                //skip
+                // n/a
             }
             break;
 
         case CxMsgBoxT::mrRetry: {
                 if (TRUE == bIsPresent()) {
-                    bBreak();
+                    (VOID)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
                     CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
@@ -296,13 +296,13 @@ CxDebugger::_bMsgboxFormated(
 
         default:
         case CxMsgBoxRtf::mrIgnore: {
-                //skip
+                // n/a
             }
             break;
 
         case CxMsgBoxRtf::mrRetry: {
                 if (TRUE == bIsPresent()) {
-                    bBreak();
+                    (VOID)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"), MB_OK | MB_ICONWARNING);
                     CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
@@ -336,7 +336,6 @@ CxDebugger::_bMsgboxFormated(
 
         default:
         case cmIgnore: {
-                //skip
                 std::tcerr << xT("Ignore...\n\n");  std::tcerr.flush();
             }
             break;
@@ -345,7 +344,7 @@ CxDebugger::_bMsgboxFormated(
                 std::tcerr << xT("Retry...\n\n");
 
                 if (TRUE == bIsPresent()) {
-                    bBreak();
+                    (VOID)bBreak();
                 } else {
                     std::tcerr << xT("\n####################################################################################################\n");
                     std::tcerr << xT("CxDebugger\n");
@@ -397,7 +396,6 @@ CxDebugger::_bStdoutPlain(
 
         default:
         case cmIgnore: {
-                //skip
                 std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
             }
             break;
@@ -406,7 +404,7 @@ CxDebugger::_bStdoutPlain(
                 std::tcout << xT("Retry...\n\n");
 
                 if (TRUE == bIsPresent()) {
-                    bBreak();
+                    (VOID)bBreak();
                 } else {
                     std::tcout << xT("\n####################################################################################################\n");
                     std::tcout << xT("CxDebugger\n");
@@ -458,7 +456,6 @@ CxDebugger::_bStdoutHtml(
 
         default:
         case cmIgnore: {
-                //skip
                 std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
             }
             break;
@@ -467,7 +464,7 @@ CxDebugger::_bStdoutHtml(
                 std::tcout << xT("Retry...\n\n");
 
                 if (TRUE == bIsPresent()) {
-                    bBreak();
+                    (VOID)bBreak();
                 } else {
                     std::tcout << xT("\n####################################################################################################\n");
                     std::tcout << xT("CxDebugger\n");

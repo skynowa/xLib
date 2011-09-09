@@ -57,7 +57,7 @@ class CxEvent :
         TxHandle          hGet       () const;
             ///< get handle
         BOOL              bSet       ();
-            ///< signal the event for the waiting thread
+            ///< signal the event for the waiting thread (!!! unlock !!!)
         BOOL     		  bReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
         EObjectState      osWait     (const ULONG culTimeout = m_culTimeoutInfinite);
@@ -71,10 +71,9 @@ class CxEvent :
     #elif defined(xOS_LINUX)
         CxCriticalSection _m_csCS;          ///< critical section
         pthread_cond_t    _m_cndCond;       ///< condition variable
+        BOOL              _m_bIsAutoReset;  ///< auto-reset flag
         volatile BOOL     _m_bIsSignaled;   ///< is signaled flag
     #endif
-
-        BOOL              _m_bIsAutoReset;  ///< auto-reset flag
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxEventH

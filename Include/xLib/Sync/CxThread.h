@@ -145,11 +145,11 @@ class CxThread :
         //static
         static TxHandle           hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
             ///< opens an existing thread object
-        static TxId               ulGetCurrId           ();
+        static TxId               ulGetCurrentId        ();
             ///< get the thread identifier of the calling thread
         static BOOL               bIsCurrent            (const TxId culId);
             ///< is current id
-        static TxHandle           hGetCurrHandle        ();
+        static TxHandle           hGetCurrentHandle     ();
             ///< get pseudo handle for the calling thread
         ////static BOOL               bSetPriority          (const TxHandle chHandle, const EPriority ctpPriority);
             ///< set priority
@@ -202,8 +202,8 @@ class CxThread :
         /*BOOL                    _m_bIsExited;*/// n/a
 
         //other
-        CxEvent                   _m_evPause;                 ///< pause event
         CxEvent                  *_m_pevStarter;              ///< starter event
+        CxEvent                   _m_evPause;                 ///< pause event
         CxEvent                   _m_evExit;                  ///< exit event
         //HANDLE                  _m_hParentHandle;           ///<
         //HANDLE                  _m_hParentId;               ///<
