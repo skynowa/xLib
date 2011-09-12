@@ -42,12 +42,6 @@ class CxEvent :
             #endif
         };
 
-    #if defined(xOS_WIN)
-        static const ULONG m_culTimeoutInfinite = INFINITE; ///< infinite timeout
-    #elif defined(xOS_LINUX)
-        static const ULONG m_culTimeoutInfinite = ~(0UL);   ///< infinite timeout
-    #endif
-
 
                  		  CxEvent    (const BOOL bIsAutoReset, const BOOL cbInitialState);
             ///< constructor
@@ -60,7 +54,7 @@ class CxEvent :
             ///< signal the event for the waiting thread (!!! unlock !!!)
         BOOL     		  bReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
-        EObjectState      osWait     (const ULONG culTimeout = m_culTimeoutInfinite);
+        EObjectState      osWait     (const ULONG culTimeout = xTIMEOUT_INFINITE);
             ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
         BOOL     		  bIsSignaled();
             ///< is signaled

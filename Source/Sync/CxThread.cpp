@@ -156,18 +156,18 @@ CxThread::bCreate(
     _m_bIsRunning = TRUE;
     /*_m_bIsPaused*/// n/a
 
-    if (TRUE == cbIsPaused) {
+    if (FALSE == cbIsPaused) {
         //set flag - "pause"
-        _m_bRes = _m_evPause.bReset();
+        _m_bRes = _m_evPause.bSet();
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
     }
     /*_m_bIsExited*/// n/a
-
+xTRACE_POINT;
     //-------------------------------------
     //construction is complete, lets start the job entry
     _m_bRes = _m_pevStarter->bSet();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-
+xTRACE_POINT;
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -1186,7 +1186,7 @@ xTRACE_POINT;
     //handle must be valid
     ////bSleep(500);
 
-    CxEvent::EObjectState osRes = pthThis->_m_pevStarter->osWait(/*+INFINITE*/10000);
+    CxEvent::EObjectState osRes = pthThis->_m_pevStarter->osWait(/*+xTIMEOUT_INFINITE*/10000);
     /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, TExitCode());
 
     xPTR_DELETE(pthThis->_m_pevStarter);
@@ -1292,7 +1292,7 @@ CxThread::_bWaitResumption() {
     /*_m_bIsPaused*///  n/a
     /*_m_bIsExited*///  n/a
 
-    ULONG ulRes = ::WaitForSingleObject(_m_evPause.hGet(), INFINITE);
+    ULONG ulRes = ::WaitForSingleObject(_m_evPause.hGet(), xTIMEOUT_INFINITE);
     /*DEBUG*/
 #elif defined(xOS_LINUX)
     INT iRes = pthread_join(_m_ulId, NULL);
