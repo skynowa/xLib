@@ -112,7 +112,7 @@ CxProfiler::bStart() {
                 break;
 
             case pmThreadTimes: {
-                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
+                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrentHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
                     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
                 }
                 break;
@@ -193,7 +193,7 @@ CxProfiler::bStop(
                 break;
 
             case pmThreadTimes: {
-                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
+                    _m_bRes = ::GetThreadTimes(CxThread::hGetCurrentHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
                     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
                     sTimeString = CxDateTime((CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStop) - CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStart)) / 10000).sFormat(CxDateTime::ftTime);

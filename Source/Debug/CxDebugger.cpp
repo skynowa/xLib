@@ -82,7 +82,7 @@ CxDebugger::bBreak() {
         abort();
     #endif
 #elif defined(xOS_LINUX)
-    INT iRes = kill(getpid(), SIGINT);
+    INT iRes = kill(getpid(), SIGALRM);
     xCHECK_RET(- 1 == iRes, FALSE);
 #endif
 

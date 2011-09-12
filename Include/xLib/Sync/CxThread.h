@@ -71,7 +71,7 @@ class CxThread :
             ///< resume
         BOOL                      bPause                ();
             ///< pause
-        BOOL                      bExit                 (const ULONG culTimeout);
+        BOOL                      bExit                 ();
             ///< exit (set flag "exit")
         BOOL                      bKill                 (const ULONG culTimeout);
             ///< kill
@@ -224,8 +224,6 @@ class CxThread :
             ///< clear all class members
         VOID                      _vSetStatesDefault();
             ///< set states as default
-        BOOL                      _bSetDebugNameA   (const std::string &csName) const;
-            ///< set name your threads in the debugger thread list (ansi)
 
         //callbacks
         SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnEnter;

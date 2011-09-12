@@ -71,9 +71,9 @@ class CxEvent :
     #elif defined(xOS_LINUX)
         CxCriticalSection _m_csCS;          ///< critical section
         pthread_cond_t    _m_cndCond;       ///< condition variable
-        BOOL              _m_bIsAutoReset;  ///< auto-reset flag
         volatile BOOL     _m_bIsSignaled;   ///< is signaled flag
     #endif
+        BOOL              _m_bIsAutoReset;  ///< auto-reset flag
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxEventH
