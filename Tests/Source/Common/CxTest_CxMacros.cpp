@@ -49,17 +49,6 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xARRAY_ZERO_DELETE
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        INT *pPtr = new INT[5];
-        xASSERT(NULL != pPtr);
-
-        xARRAY_ZERO_DELETE(pPtr);
-        xASSERT(NULL == pPtr);
-    }
-
-    //-------------------------------------
     //xBUFF_ZERO
     xTEST_BLOCK(cullBlockLoops)
     {

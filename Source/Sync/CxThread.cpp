@@ -239,13 +239,13 @@ CxThread::bKill(
     const ULONG culTimeout
 )
 {
+    ULONG ulRes = 0UL;
+
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
 
-    ULONG ulRes = 0;
-
-    _m_uiExitCode = 0;
+    _m_uiExitCode = 0U;
     _m_bRes = ::TerminateThread(_m_hThread.hGet(), _m_uiExitCode);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -819,7 +819,7 @@ CxThread::ulGetExitCode() const {
     _m_bRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, ulRes);
 #elif defined(xOS_LINUX)
-
+    ulRes = _m_uiExitCode;
 #endif
 
     return ulRes;
@@ -1181,32 +1181,30 @@ xTRACE_POINT;
 
     CxThread *pthThis = static_cast<CxThread *>( pvParam );
     /*DEBUG*/xASSERT_RET(NULL != pthThis, 0);
-xTRACE_POINT;
+
     //-------------------------------------
     //handle must be valid
     ////bSleep(500);
 
     CxEvent::EObjectState osRes = pthThis->_m_pevStarter->osWait(/*+INFINITE*/10000);
-xTRACE_POINT;
     /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, TExitCode());
-xTRACE_POINT;
+
     xPTR_DELETE(pthThis->_m_pevStarter);
-xTRACE_POINT;
+
     #if defined(xOS_WIN)
         /*DEBUG*/xASSERT_RET(FALSE != pthThis->_m_hThread.bIsValid(), 0);
     #elif defined(xOS_LINUX)
 
     #endif
-xTRACE_POINT;
+
     //-------------------------------------
     //создан ли приостановленный поток?
     xCHECK_DO(TRUE == pthThis->bIsPaused(), (VOID)pthThis->_bWaitResumption());
-xTRACE_POINT;
+
     {
         //-------------------------------------
         //begin of thread function
         try {
-            //--pthThis->vOnEnter();
             pthThis->_vHandler_OnEnter(pthThis);
         }
         catch (...) {
@@ -1237,9 +1235,8 @@ xTRACE_POINT;
     #endif
 
         //-------------------------------------
-        //eind of thread function
+        //end of thread function
         try {
-            //--pthThis->vOnExit();
             pthThis->_vHandler_OnExit(pthThis);
         }
         catch (...) {
