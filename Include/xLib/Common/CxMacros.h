@@ -356,6 +356,13 @@
             ///< qualifier for long long int (hex)
     #endif
 #endif
+
+//timeout
+#if defined(xOS_WIN)
+    #define xTIMEOUT_INFINITE   INFINITE    ///< infinite timeout
+#elif defined(xOS_LINUX)
+    #define xTIMEOUT_INFINITE   ~(0UL)      ///< infinite timeout
+#endif
 //---------------------------------------------------------------------------
 class CxDebugger;
 

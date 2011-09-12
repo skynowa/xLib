@@ -14,16 +14,36 @@
 
 //---------------------------------------------------------------------------
 CxAutoCriticalSection::CxAutoCriticalSection(
-    CxCriticalSection &csCS
+    CxCriticalSection &csCS,
+    const BOOL         cbIsUseTry /* = FALSE*/
 ) :
-    _m_csCS(csCS)
+    _m_csCS     (csCS),
+    _m_bIsLocked(FALSE)
 {
-    BOOL bRes = _m_csCS.bEnter();
-    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    BOOL bRes = FALSE;
+
+    if (FALSE == cbIsUseTry) {
+        bRes = _m_csCS.bEnter();
+        /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    } else {
+        bRes = _m_csCS.bTryEnter();
+        /*DEBUG*/// n/a
+    }
+
+    _m_bIsLocked = bRes;
 }
 //---------------------------------------------------------------------------
 CxAutoCriticalSection::~CxAutoCriticalSection() {
-    BOOL bRes = _m_csCS.bLeave();
-    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    if (FALSE != _m_bIsLocked) {
+        BOOL bRes = _m_csCS.bLeave();
+        /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+
+        _m_bIsLocked = FALSE;
+    }
+}
+//---------------------------------------------------------------------------
+BOOL
+CxAutoCriticalSection::bIsLocked() const {
+    return _m_bIsLocked;
 }
 //---------------------------------------------------------------------------

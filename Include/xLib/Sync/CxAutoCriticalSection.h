@@ -15,12 +15,16 @@ class CxAutoCriticalSection :
     /// auto critical section
 {
     public:
-        explicit           CxAutoCriticalSection(CxCriticalSection &csCS);
+                           CxAutoCriticalSection(CxCriticalSection &csCS, const BOOL cbIsUseTry = FALSE);
             ///< constructor
         virtual           ~CxAutoCriticalSection();
             ///< destructor
+        BOOL               bIsLocked            () const;
+            ///< is locked
+
     private:
-        CxCriticalSection &_m_csCS;    ///< critical section
+        CxCriticalSection &_m_csCS;         ///< critical section
+        mutable BOOL       _m_bIsLocked;    ///< lock flag for explicit unlock
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAutoCriticalSectionH
