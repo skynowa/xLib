@@ -511,19 +511,16 @@ CxTest_CxThread::bUnit(
         #endif
     }
 
-    #if xTODO
-        m_bRes = pthT->bWait(0);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
-    #endif
-
     ULONG ulRes = pthT->ulGetExitCode();
     xTRACEV("ulGetExitCode(): %li", ulRes);
 
     CxConsole().bPause();
 
     if (FALSE == cbAutoDelete) {
-        xASSERT_PTR(pthT);
+        m_bRes = pthT->bWait(10000UL);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
+        xASSERT_PTR(pthT);
         xPTR_DELETE(pthT);
     }
 

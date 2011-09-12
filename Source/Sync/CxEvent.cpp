@@ -18,13 +18,13 @@ CxEvent::CxEvent(
     const BOOL cbInitialState
 ) :
 #if defined(xOS_WIN)
-	_m_hEvent      ()
+	_m_hEvent      (),
 #elif defined(xOS_LINUX)
 	_m_csCS        (),
 	_m_cndCond     (),
-    _m_bIsAutoReset(cbIsAutoReset),
-	_m_bIsSignaled (cbInitialState)
+	_m_bIsSignaled (cbInitialState),
 #endif
+    _m_bIsAutoReset(cbIsAutoReset)
 {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_DO(FALSE == _m_hEvent.bIsValid(), return);
