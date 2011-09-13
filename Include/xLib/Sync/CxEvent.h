@@ -43,12 +43,12 @@ class CxEvent :
         };
 
 
-                 		  CxEvent    (const BOOL bIsAutoReset, const BOOL cbInitialState);
+                 		  CxEvent    (const BOOL bIsAutoReset, const BOOL cbIsSignaled);
             ///< constructor
         virtual 		 ~CxEvent    ();
             ///< destructor
 
-        TxHandle          hGet       () const;
+        const TxHandle &  hGet       () const;
             ///< get handle
         BOOL              bSet       ();
             ///< signal the event for the waiting thread (!!! unlock !!!)
@@ -64,10 +64,10 @@ class CxEvent :
         CxHandle          _m_hEvent;        ///< event
     #elif defined(xOS_LINUX)
         CxCriticalSection _m_csCS;          ///< critical section
-        pthread_cond_t    _m_cndCond;       ///< condition variable
+        TxHandle          _m_cndCond;       ///< condition variable
+        volatile BOOL     _m_bIsAutoReset;  ///< auto-reset flag
         volatile BOOL     _m_bIsSignaled;   ///< is signaled flag
     #endif
-        BOOL              _m_bIsAutoReset;  ///< auto-reset flag
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxEventH

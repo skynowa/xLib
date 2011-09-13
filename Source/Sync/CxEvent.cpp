@@ -15,16 +15,16 @@
 //---------------------------------------------------------------------------
 CxEvent::CxEvent(
     const BOOL cbIsAutoReset,
-    const BOOL cbInitialState
+    const BOOL cbIsSignaled     ///< FALSE - wait, lock
 ) :
 #if defined(xOS_WIN)
 	_m_hEvent      (),
 #elif defined(xOS_LINUX)
 	_m_csCS        (),
 	_m_cndCond     (),
-	_m_bIsSignaled (cbInitialState),
+    _m_bIsAutoReset(FALSE),
+	_m_bIsSignaled (FALSE)
 #endif
-    _m_bIsAutoReset(cbIsAutoReset)
 {
 #if defined(xOS_WIN)
     /*DEBUG*/xASSERT_DO(FALSE == _m_hEvent.bIsValid(), return);
@@ -32,7 +32,7 @@ CxEvent::CxEvent(
 
     HANDLE hRes = NULL;
 
-    hRes = ::CreateEvent(NULL, (FALSE == _m_bIsAutoReset) ? TRUE : FALSE, cbInitialState, NULL);
+    hRes = ::CreateEvent(NULL, ! cbIsAutoReset, cbIsSignaled, NULL);
     /*DEBUG*/xASSERT_DO(NULL != hRes, return);
 
     _m_hEvent.bSet(hRes);
@@ -41,17 +41,8 @@ CxEvent::CxEvent(
     INT iRes = pthread_cond_init(&_m_cndCond, NULL);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
-    #if 0
-        if (FALSE == cbInitialState) {
-            BOOL bRes = bReset();
-            /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
-        } else {
-            BOOL bRes = bSet();
-            /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
-        }
-    #else
-        _m_bIsSignaled = cbInitialState;
-    #endif
+    _m_bIsAutoReset = cbIsAutoReset;
+    _m_bIsSignaled  = cbIsSignaled;
 #endif
 }
 //---------------------------------------------------------------------------
@@ -64,7 +55,7 @@ CxEvent::~CxEvent() {
 #endif
 }
 //---------------------------------------------------------------------------
-CxEvent::TxHandle
+const CxEvent::TxHandle &
 CxEvent::hGet() const {
     /*DEBUG*/
 
@@ -92,7 +83,7 @@ CxEvent::bSet() {
             INT iRes = pthread_cond_broadcast(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
         } else {
-            INT iRes = pthread_cond_signal(&_m_cndCond);
+            INT iRes = pthread_cond_broadcast(&_m_cndCond);        //pthread_cond_signal
             /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
         }
 
@@ -136,85 +127,48 @@ CxEvent::osWait(
 
     osRes = static_cast<EObjectState>( ::WaitForSingleObject(hGet(), culTimeout) );
 #elif defined(xOS_LINUX)
-    #if xDEPRECIATE
-        {
-            CxAutoCriticalSection acsAutoCS(_m_csCS);
+    {
+        CxAutoCriticalSection acsAutoCS(_m_csCS);
 
-            for ( ; ; ) {
-                xCHECK_DO(TRUE == _m_bIsSignaled, break);
+        INT iRes = 0;  // If we don't do anything it's because it's free already
 
+        if (FALSE == _m_bIsSignaled) { // if already in a signal state just return
+            xCHECK_RET(! culTimeout, osTimeout);    // no time for waiting
+
+            timespec tsTime = {0};
+
+            if (xTIMEOUT_INFINITE != culTimeout) {
+                // set timeout
+                timeval tvNow  = {0};
+
+                iRes = gettimeofday(&tvNow, NULL);
+                /*DEBUG*/xASSERT_RET(- 1 != iRes, osFailed);
+
+                tsTime.tv_sec  = tvNow.tv_sec + culTimeout / 1000;
+                tsTime.tv_nsec = (((culTimeout % 1000) * 1000 + tvNow.tv_usec) % 1000000) * 1000;
+            }
+
+            // wait until condition thread returns control
+            do {
                 if (xTIMEOUT_INFINITE != culTimeout) {
-                    timespec tsTime = {0};
-                    timeval  tvNow  = {0};
-
-                    INT iRes = gettimeofday(&tvNow, NULL);
-                    /*DEBUG*/xASSERT_DO(- 1 != iRes, break);
-
-                    tsTime.tv_sec  = tvNow.tv_sec + ((culTimeout + tvNow.tv_usec / 1000) / 1000);
-                    tsTime.tv_nsec = ((tvNow.tv_usec / 1000 + culTimeout) % 1000) * 1000000;
-
-                    osRes = static_cast<EObjectState>( pthread_cond_timedwait(
-                                                            &_m_cndCond,
-                                                            const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ),
-                                                            &tsTime) );
-                    xCHECK_DO(osTimeout == osRes, break);
+                    iRes = pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ), &tsTime);
                 } else {
-                    osRes = static_cast<EObjectState>( pthread_cond_wait(
-                                                            &_m_cndCond,
-                                                            const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() )) );
-                    xCHECK_DO(osTimeout == osRes, break);
-                }
-            } // for
-
-            xCHECK_DO(FALSE != _m_bIsAutoReset && osSignaled == osRes, _m_bIsSignaled = FALSE);
-        }
-    #else
-        {
-            CxAutoCriticalSection acsAutoCS(_m_csCS);
-
-            int ret = 0;  // If we don't do anything it's because it's free already
-
-            if (_m_bIsSignaled) { // if already in a signal state just return
-                if (! culTimeout) { // no time for waiting
-                    return osTimeout;
-                } else {
-
-
-                    if (xTIMEOUT_INFINITE != culTimeout) {
-                        // set timeout
-                        timespec tsTime = {0};
-                        timeval  tvNow  = {0};
-
-                        INT iRes = gettimeofday(&tvNow, NULL);
-                        /*DEBUG*/xASSERT_RET(- 1 != iRes, osFailed);
-
-                        tsTime.tv_sec = tvNow.tv_sec + culTimeout / 1000;
-                        tsTime.tv_nsec = (((culTimeout % 1000) * 1000 + tvNow.tv_usec) % 1000000) * 1000;
-                    }
-
-                    // wait until condition thread returns control
-                    do {
-                        ret = (xTIMEOUT_INFINITE == culTimeout ? pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() )) :
-                                                                 pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ), &tsTime));
-                    }
-                    while (!ret && !_m_bIsSignaled);
+                    iRes = pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ));
                 }
             }
-
-            // adjust signaled member
-            switch (ret) {
-                case 0: // success
-                    if (_m_bIsAutoReset)
-                        _m_bIsSignaled = FALSE;
-
-                    return osSignaled;
-
-                case ETIMEDOUT:
-                default:
-                    return osTimeout;
-            }
+            while (!iRes && !_m_bIsSignaled);
+        } else {
+            iRes = 0;
         }
-    #endif
+
+        // adjust signaled member
+        switch (iRes) {
+            case 0:         { xCHECK_DO(_m_bIsAutoReset, _m_bIsSignaled = FALSE);
+                              osRes = osSignaled; }  break;
+            case ETIMEDOUT: { osRes = osTimeout;  }  break;
+            default:        { osRes = osFailed;   }  break;
+        }
+    }
 #endif
 
     /*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes), osFailed);

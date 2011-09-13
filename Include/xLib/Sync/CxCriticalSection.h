@@ -22,21 +22,21 @@ class CxCriticalSection :
     #endif
 
                           CxCriticalSection();
-        explicit          CxCriticalSection(const ULONG culSpinCount);
-                         ~CxCriticalSection();
+            ///< constructor
+        virtual          ~CxCriticalSection();
+            ///< destructor
 
         const TxHandle &  hGet             () const;
-        BOOL              bEnter           ();
-        BOOL              bTryEnter        ();
-        BOOL              bLeave           ();
-        ULONG             ulSetSpinCount   (const ULONG culSpinCount);
+            ///< get handle
+        BOOL              bLock            ();
+            ///< lock
+        BOOL              bTryLock         ();
+            ///< try lock
+        BOOL              bUnlock          ();
+            ///< unlock
 
     private:
-    #if defined(xOS_WIN)
-        CRITICAL_SECTION  _m_CS;
-    #elif defined(xOS_LINUX)
-        pthread_mutex_t   _m_mMutex;
-    #endif
+        TxHandle          _m_hHandle;   ///< critical section handle
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxCriticalSectionH

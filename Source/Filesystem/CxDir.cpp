@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
-#include <xLib/Sync/CxThread.h>
+#include <xLib/Sync/CxCurrentThread.h>
 
 
 /****************************************************************************
@@ -402,7 +402,7 @@ CxDir::bTryDelete(
         bRes = bDelete(csDirPath);
         xCHECK_DO(TRUE == bRes, bIsDeleted = TRUE; break);
 
-        bRes = CxThread::bSleep(culTimeoutMsec);
+        bRes = CxCurrentThread::bSleep(culTimeoutMsec);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 

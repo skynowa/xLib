@@ -24,8 +24,7 @@ CWorkThread::CWorkThread(
     const BOOL cbAutoDelete
 ) :
     CxThread (cbAutoDelete),
-    m_uiIndex(0),
-    _m_clLog (FALSE)
+    m_uiIndex(0U)
 {
 
 }
@@ -39,7 +38,7 @@ CWorkThread::uiOnRun(
     VOID *pvData
 )
 {
-    xTRACEV(xT("--- Start thread: #%i ---\n"), m_uiIndex);
+    xTRACEV(xT("--- Start CWorkThread: #%i ---\n"), m_uiIndex);
 
     UINT uiRes = 0;
     BOOL bRes  = FALSE;
@@ -48,22 +47,22 @@ CWorkThread::uiOnRun(
     bRes = CxThread::bIsCurrent();
     xASSERT_NOT_EQ(FALSE, bRes);
 
-    for ( ; ; ) {
+    for (size_t i = 0; i < 10; ++ i) {
         //interrupt point
         bRes = bIsTimeToExit();
-        xCHECK_DO(TRUE == bRes, xTRACE(xT("break\n")); break);
+        xCHECK_DO(FALSE != bRes, xTRACE(xT("break\n")); break);
 
         //jobs
         xTRACE(xT("*"));
 
-        bRes = CxThread::bSleep(500UL);
+        bRes = CxCurrentThread::bSleep(500UL);
         xASSERT_NOT_EQ(FALSE, bRes);
 
-        bRes = CxThread::bYield();
+        bRes = CxCurrentThread::bYield();
         xASSERT_NOT_EQ(FALSE, bRes);
     }
 
-    xTRACEV(xT("--- End thread: #%i ---\n"), m_uiIndex);
+    xTRACEV(xT("--- End CWorkThread: #%i ---\n"), m_uiIndex);
 
     return uiRes;
 }
@@ -97,7 +96,7 @@ CxTest_CxThread::bUnit(
     CWorkThread *pthT = new CWorkThread(cbAutoDelete);
     xASSERT_PTR(pthT);
 
-    pthT->m_uiIndex = 0;
+    pthT->m_ulTag = 0;
     ////pthT->vOnExit2  = vOnExitHandle;
 
 
@@ -106,7 +105,7 @@ CxTest_CxThread::bUnit(
     {
         size_t uiParam = 1000;
 
-        m_bRes = pthT->bCreate(cbIsPaused, 0, &uiParam);
+        m_bRes = pthT->bCreate(cbIsPaused, 0U, &uiParam);
         xASSERT_EQ(TRUE, m_bRes);
 
         m_bRes = pthT->bIsPaused();
@@ -159,7 +158,7 @@ CxTest_CxThread::bUnit(
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
-            xASSERT_EQ((INT)CxThread::tpLowest, (INT)m_iRes);
+            xASSERT_EQ(CxThread::tpLowest, m_iRes);
         #elif defined(xOS_LINUX)
 
         #endif
@@ -286,7 +285,7 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_ulRes = pthT->ulGetId();
-        ////xASSERT_NOT_EQ(0UL, m_ulRes);
+        xASSERT_NOT_EQ(0UL, m_ulRes);
     }
 
     //--------------------------------------------------
@@ -328,25 +327,9 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
-            m_hRes = CxThread::hOpen(THREAD_ALL_ACCESS, FALSE, ::GetCurrentThreadId());
+            m_hRes = CxThread::hOpen(THREAD_ALL_ACCESS, FALSE, CxThread::ulGetCurrentId());
             xASSERT_PTR(m_hRes);
         #endif
-    }
-
-    //--------------------------------------------------
-    //ulGetCurrId
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        m_ulRes = CxThread::ulGetCurrentId();
-        xASSERT_LESS(0UL, m_ulRes);
-    }
-
-    //--------------------------------------------------
-    //hGetCurrHandle
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxThread::TxHandle hRes = CxThread::hGetCurrentHandle();
-        xASSERT_NOT_EQ(0UL, (ULONG)hRes);
     }
 
 
@@ -362,86 +345,6 @@ CxTest_CxThread::bUnit(
         #if xTODO
             THandle hRes = CxThread::hOpen(const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
         #endif
-    }
-
-    //--------------------------------------------------
-    //ulGetCurrId
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxThread::TxId idRes = CxThread::ulGetCurrentId();
-        xASSERT_LESS((ULONG)0, (ULONG)idRes);
-    }
-
-    //--------------------------------------------------
-    //bIsCurrent
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxThread::TxId aulData[5][2] = {{0}};
-
-        aulData[0][0] = (CxThread::TxId)CxThread::ulGetCurrentId();
-        aulData[0][1] = (CxThread::TxId)TRUE;
-
-        aulData[1][0] = (CxThread::TxId)((ULONG)CxThread::ulGetCurrentId() - 1);
-        aulData[1][1] = (CxThread::TxId)FALSE;
-
-        aulData[2][0] = (CxThread::TxId)0;
-        aulData[2][1] = (CxThread::TxId)FALSE;
-
-        aulData[3][0] = (CxThread::TxId) - 1;
-        aulData[3][1] = (CxThread::TxId)FALSE;
-
-        aulData[4][0] = (CxThread::TxId)- 1;
-        aulData[4][1] = (CxThread::TxId)FALSE;
-
-        for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
-            const CxThread::TxId culId = aulData[i][0];
-            const BOOL          cbRes = (BOOL)(ULONG)aulData[i][1];
-
-            m_bRes = CxThread::bIsCurrent(culId);
-            xASSERT_EQ(cbRes, m_bRes);
-        }
-    }
-
-    //--------------------------------------------------
-    //hGetCurrHandle
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxThread::TxHandle hRes = CxThread::hGetCurrentHandle();
-        xASSERT_LESS((ULONG)0, (ULONG)hRes);
-    }
-
-    //--------------------------------------------------
-    //bYield
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        m_bRes = CxThread::bYield();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
-    }
-
-    //--------------------------------------------------
-    //bSleep
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        const ULONG caulData[] = {
-            0,
-            1,
-            (std::numeric_limits<ULONG>::min)(),
-            //(std::numeric_limits<ULONG>::max)()
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
-	        const UINT cuiMsec = caulData[i];
-
-	        CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
-
-	        m_bRes = CxThread::bSleep(cuiMsec);
-	        xASSERT_NOT_EQ(FALSE, m_bRes);
-
-	        CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
-
-	        xASSERT_GREATER_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
-	        //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
-        }
     }
 
 
@@ -465,7 +368,6 @@ CxTest_CxThread::bUnit(
     }
 
 
-
     //--------------------------------------------------
     //non static
 
@@ -473,7 +375,7 @@ CxTest_CxThread::bUnit(
     //bPause, bResume (start thread)
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
+        #if 1
             m_bRes = pthT->bResume();
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -496,7 +398,7 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
-            m_bRes = pthT->bExit(INFINITE);
+            m_bRes = pthT->bExit(xTIMEOUT_INFINITE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         #endif
     }
@@ -506,18 +408,18 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
-            m_uiRes = pthT->uiKill(INFINITE);
+            m_uiRes = pthT->uiKill(xTIMEOUT_INFINITE);
             xASSERT_EQ(0, m_uiRes);
         #endif
     }
 
-    ULONG ulRes = pthT->ulGetExitCode();
-    xTRACEV("ulGetExitCode(): %li", ulRes);
+    ULONG ulRes = pthT->ulGetExitStatus();
+    xTRACEV("ulGetExitStatus(): %li", ulRes);
 
-    CxConsole().bPause();
+    ////CxConsole().bPause();
 
     if (FALSE == cbAutoDelete) {
-        m_bRes = pthT->bWait(10000UL);
+        m_bRes = pthT->bWait(xTIMEOUT_INFINITE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         xASSERT_PTR(pthT);

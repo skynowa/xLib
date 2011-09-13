@@ -8,7 +8,7 @@
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Sync/CxThread.h>
+#include <xLib/Sync/CxCurrentThread.h>
 
 
 /****************************************************************************
@@ -68,7 +68,7 @@ CxProfiler::bStart() {
         /*DEBUG*/xASSERT(FALSE != _m_bRes);
     #endif
 
-    CxThread::bSleep(10UL);
+    CxCurrentThread::bSleep(10UL);
 
     switch (_m_pmModeNow) {
         case pmStdClock: {

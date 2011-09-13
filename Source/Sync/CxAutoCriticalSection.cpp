@@ -23,10 +23,10 @@ CxAutoCriticalSection::CxAutoCriticalSection(
     BOOL bRes = FALSE;
 
     if (FALSE == cbIsUseTry) {
-        bRes = _m_csCS.bEnter();
+        bRes = _m_csCS.bLock();
         /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
     } else {
-        bRes = _m_csCS.bTryEnter();
+        bRes = _m_csCS.bTryLock();
         /*DEBUG*/// n/a
     }
 
@@ -35,11 +35,11 @@ CxAutoCriticalSection::CxAutoCriticalSection(
 //---------------------------------------------------------------------------
 CxAutoCriticalSection::~CxAutoCriticalSection() {
     if (FALSE != _m_bIsLocked) {
-        BOOL bRes = _m_csCS.bLeave();
+        BOOL bRes = _m_csCS.bUnlock();
         /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
-
-        _m_bIsLocked = FALSE;
     }
+
+    _m_bIsLocked = FALSE;
 }
 //---------------------------------------------------------------------------
 BOOL

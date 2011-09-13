@@ -27,94 +27,77 @@ CxTest_CxCriticalSection::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    //-------------------------------------
-    //CxCriticalSection
+    size_t uiVal = 0;
+
+
+    //--------------------------------------------------
+    //bLock, bUnlock
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxCriticalSection objCriticalSection;
+        CxCriticalSection csCS;
 
-        {
-            m_ulRes = objCriticalSection.ulSetSpinCount(10000);
-            xASSERT_LESS_EQ(0UL, m_ulRes);
+        m_bRes = csCS.bLock();
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
-            m_bRes = objCriticalSection.bEnter();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+        ++ uiVal;
 
-            m_bRes = objCriticalSection.bLeave();
+        m_bRes = csCS.bUnlock();
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //bTryLock, bUnlock
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxCriticalSection csCS;
+
+        m_bRes = csCS.bTryLock();
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+
+        ++ uiVal;
+
+        m_bRes = csCS.bUnlock();
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //bLock, bUnlock
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxCriticalSection csCS;
+
+        const size_t cuiLocks = 10;
+
+        for (size_t i = 0; i < cuiLocks; ++ i) {
+            m_bRes = csCS.bLock();
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
-        {
-            m_ulRes = objCriticalSection.ulSetSpinCount(1000);
-            xASSERT_LESS_EQ(0UL, m_ulRes);
+        ++ uiVal;
 
-            m_bRes = objCriticalSection.bTryEnter();
+        for (size_t i = 0; i < cuiLocks; ++ i) {
+            m_bRes = csCS.bUnlock();
             xASSERT_NOT_EQ(FALSE, m_bRes);
-
-            m_bRes = objCriticalSection.bLeave();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-        }
-
-        {
-            const size_t cuiLocks = 10;
-
-            m_ulRes = objCriticalSection.ulSetSpinCount(1000);
-            xASSERT_LESS_EQ(0UL, m_ulRes);
-
-            for (size_t i = 0; i < cuiLocks; ++ i) {
-                m_bRes = objCriticalSection.bEnter();
-                xASSERT_NOT_EQ(FALSE, m_bRes);
-            }
-
-            for (size_t i = 0; i < cuiLocks; ++ i) {
-                m_bRes = objCriticalSection.bLeave();
-                xASSERT_NOT_EQ(FALSE, m_bRes);
-            }
-        }
-
-        {
-            const size_t cuiLocks = 10;
-
-            m_ulRes = objCriticalSection.ulSetSpinCount(1000);
-            xASSERT_LESS_EQ(0UL, m_ulRes);
-
-            for (size_t i = 0; i < cuiLocks; ++ i) {
-                m_bRes = objCriticalSection.bTryEnter();
-                xASSERT_NOT_EQ(FALSE, m_bRes);
-            }
-
-            for (size_t i = 0; i < cuiLocks; ++ i) {
-                m_bRes = objCriticalSection.bLeave();
-                xASSERT_NOT_EQ(FALSE, m_bRes);
-            }
         }
     }
 
-    //-------------------------------------
-    //CxCriticalSection(const ULONG culSpinCount);
+    //--------------------------------------------------
+    //bTryLock, bUnlock
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxCriticalSection objCriticalSection(1000);
+        CxCriticalSection csCS;
 
-        {
-            m_ulRes = objCriticalSection.ulSetSpinCount(10000);
-            xASSERT_LESS_EQ(0UL, m_ulRes);
+        const size_t cuiLocks = 10;
 
-            m_bRes = objCriticalSection.bEnter();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-
-            m_bRes = objCriticalSection.bLeave();
+        for (size_t i = 0; i < cuiLocks; ++ i) {
+            m_bRes = csCS.bTryLock();
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
-        {
-            m_ulRes = objCriticalSection.ulSetSpinCount(4000);
-            xASSERT_LESS_EQ(0UL, m_ulRes);
+        ++ uiVal;
 
-            m_bRes = objCriticalSection.bTryEnter();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-
-            m_bRes = objCriticalSection.bLeave();
+        for (size_t i = 0; i < cuiLocks; ++ i) {
+            m_bRes = csCS.bUnlock();
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
