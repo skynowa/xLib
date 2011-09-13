@@ -158,7 +158,7 @@ CxTest_CxThread::bUnit(
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
-            xASSERT_EQ(CxThread::tpLowest, m_iRes);
+            xASSERT_EQ((INT)CxThread::tpLowest, (INT)m_iRes);
         #elif defined(xOS_LINUX)
 
         #endif
@@ -303,7 +303,7 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
-            m_ulRes = pthT->ulGetExitCode();
+            m_ulRes = pthT->ulGetExitStatus();
             xASSERT_LESS_EQ(0UL, m_ulRes);
         #elif defined(xOS_LINUX)
 

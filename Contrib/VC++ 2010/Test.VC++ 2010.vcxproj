@@ -226,6 +226,7 @@
     <ClCompile Include="..\..\Source\Sync\CxAutoMutex.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxCompletionPort.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxCriticalSection.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxCurrentThread.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxEvent.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxMutex.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxProcess.cpp" />
@@ -328,6 +329,7 @@
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCompletionPort.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCriticalSection.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCurrentThread.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxEvent.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxMutex.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxProcess.cpp" />
@@ -355,6 +357,7 @@
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxSystemLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\xLogs.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxCurrentThread.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h" />
@@ -430,6 +433,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCompletionPort.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCriticalSection.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxProcess.h" />
