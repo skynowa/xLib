@@ -1,0 +1,132 @@
+/**
+ * \file   CxCurrentThread.cpp
+ * \brief
+ */
+
+
+#include <xLib/Sync/CxCurrentThread.h>
+
+
+/****************************************************************************
+*   public
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+CxCurrentThread::CxCurrentThread() {
+
+}
+//---------------------------------------------------------------------------
+/*virtual*/
+CxCurrentThread::~CxCurrentThread() {
+
+}
+//---------------------------------------------------------------------------
+/*static*/
+CxThread::TxId
+CxCurrentThread::ulGetId() {
+    /*DEBUG*/// n/a
+
+    CxThread::TxId ulRes = 0UL;
+
+#if defined(xOS_WIN)
+    ulRes = ::GetCurrentThreadId();
+    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
+#elif defined(xOS_LINUX)
+    #if 1
+        ulRes = pthread_self();
+        ////xTRACEV("ulGetCurrentId: %ld", ulRes);
+        /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
+    #else
+        INT iRes = syscall(SYS_gettid);
+        ////xTRACEV("ulGetCurrentId: %ld", iRes);
+
+        ulRes = iRes;
+    #endif
+#endif
+
+    return ulRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+BOOL
+CxCurrentThread::bIsCurrent(
+    const CxThread::TxId culId
+)
+{
+    /*DEBUG*/
+
+    BOOL bRes = FALSE;
+
+#if defined(xOS_WIN)
+    bRes = static_cast<BOOL>( ulGetCurrentId() == culId );
+#elif defined(xOS_LINUX)
+    //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
+    bRes = static_cast<BOOL>( pthread_equal(ulGetId(), culId) );
+#endif
+
+    return bRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+CxThread::TxHandle
+CxCurrentThread::hGetHandle() {
+    /*DEBUG*/// n/a
+
+    CxThread::TxHandle hRes;
+
+#if defined(xOS_WIN)
+    hRes = ::GetCurrentThread();
+    /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
+#elif defined(xOS_LINUX)
+    hRes = pthread_self();
+    /*DEBUG*/xASSERT_RET(0 < hRes, 0);
+#endif
+
+    return hRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+BOOL
+CxCurrentThread::bYield() {
+    /*DEBUG*/// n/a
+
+#if defined(xOS_WIN)
+    (VOID)::SwitchToThread();
+#elif defined(xOS_LINUX)
+    INT iRes = sched_yield();
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+/*static*/
+BOOL
+CxCurrentThread::bSleep(
+    const ULONG culMsec
+) {
+    /*DEBUG*/// n/a
+
+#if defined(xOS_WIN)
+    (VOID)::Sleep(culMsec);
+#elif defined(xOS_LINUX)
+    INT      iRes     = - 1;
+    timespec tsSleep  = {0};
+    timespec tsRemain = {0};
+
+    tsSleep.tv_sec  = culMsec / 1000;
+    tsSleep.tv_nsec = (culMsec % 1000) * (1000 * 1000);
+
+    for ( ; ; ) {
+        iRes = nanosleep(&tsSleep, &tsRemain);
+        /*DEBUG*/// n/a
+        xCHECK_DO(!(- 1 == iRes && EINTR == CxLastError::ulGet()), break);
+
+        tsSleep = tsRemain;
+    }
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------

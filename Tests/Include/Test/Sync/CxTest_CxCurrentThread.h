@@ -1,23 +1,23 @@
 /**
- * \file   CxTest_[CxTemplate].h
- * \brief  test [CxTemplate]
+ * \file   CxTest_CxCurrentThread.h
+ * \brief  test CxCurrentThread
  */
 
 
-#ifndef CxTest_[CxTemplate]H
-#define CxTest_[CxTemplate]H
+#ifndef CxTest_CxCurrentThreadH
+#define CxTest_CxCurrentThreadH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/xxxxxxxxx/[CxTemplate].h>
+#include <xLib/Sync/CxCurrentThread.h>
 //---------------------------------------------------------------------------
-class CxTest_[CxTemplate] :
+class CxTest_CxCurrentThread :
     public CxTest
 {
 	public:
-		              CxTest_[CxTemplate]();
+		              CxTest_CxCurrentThread();
             ///< constructor
-	    virtual      ~CxTest_[CxTemplate]();
+	    virtual      ~CxTest_CxCurrentThread();
 	        ///< destructor
 
 	    virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
@@ -26,4 +26,4 @@ class CxTest_[CxTemplate] :
 	private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_[CxTemplate]H
+#endif //CxTest_CxCurrentThreadH

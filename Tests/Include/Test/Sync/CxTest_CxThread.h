@@ -15,7 +15,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Sync/CxThread.h>
-#include <xLib/Log/xLogs.h>
+#include <xLib/Sync/CxCurrentThread.h>
 //---------------------------------------------------------------------------
 class CWorkThread :
     public CxThread
@@ -29,9 +29,6 @@ class CWorkThread :
 
     protected:
         virtual UINT uiOnRun    (VOID *pData);
-
-    private:
-        CxConsoleLog _m_clLog;
 };
 //---------------------------------------------------------------------------
 class CxTest_CxThread :

@@ -14,8 +14,7 @@
 #include <xLib/Filesystem/CxVolume.h>
 #include <xLib/Crypt/CxCrc32.h>
 #include <xLib/Crypt/CxRandom.h>
-#include <xLib/Sync/CxThread.h>
-#include <xLib/Gui/Dialogs/CxMsgBoxT.h>
+#include <xLib/Sync/CxCurrentThread.h>
 
 
 /****************************************************************************
@@ -824,7 +823,7 @@ CxFile::bTryDelete(
         bRes = bDelete(csFilePath);
         xCHECK_DO(TRUE == bRes, bIsDeleted = TRUE; break);
 
-        bRes = CxThread::bSleep(culTimeoutMsec);
+        bRes = CxCurrentThread::bSleep(culTimeoutMsec);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
@@ -1124,8 +1123,8 @@ CxFile::bGetTime(
     xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime); //modification
 
 #if xTODO
-    FILETIME *pftCreate, 
-    FILETIME *pftAccess, 
+    FILETIME *pftCreate,
+    FILETIME *pftAccess,
     FILETIME *pftModified
 
     _m_bRes = ::GetFileTime(m_hHandle, pftCreate, pftAccess, pftModified);

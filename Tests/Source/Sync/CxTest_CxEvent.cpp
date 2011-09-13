@@ -113,13 +113,39 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     //bWait
     {
-        CxEvent objEvent(FALSE, FALSE);
+        {
+            const BOOL cbIsAutoReset  = FALSE;
+            const BOOL cbInitialState = FALSE;
 
-        m_bRes = objEvent.bIsSignaled();
-        xASSERT_EQ(FALSE, m_bRes);
 
-        CxEvent::EObjectState osRes = objEvent.osWait(5);
-        xASSERT_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);
+            CxEvent objEvent(cbIsAutoReset, cbInitialState);
+
+            m_bRes = objEvent.bIsSignaled();
+            xASSERT_EQ(cbInitialState, m_bRes);
+
+            CxEvent::EObjectState osRes = objEvent.osWait(5);
+            xASSERT_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);
+
+            m_bRes = objEvent.bIsSignaled();
+            xASSERT_EQ(cbInitialState, m_bRes);
+        }
+
+        {
+            const BOOL cbIsAutoReset  = TRUE;
+            const BOOL cbInitialState = TRUE;
+
+
+            CxEvent objEvent(cbIsAutoReset, cbInitialState);
+
+            m_bRes = objEvent.bIsSignaled();
+            xASSERT_EQ(cbInitialState, m_bRes);
+
+            CxEvent::EObjectState osRes = objEvent.osWait(5);
+            xASSERT_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);
+
+            m_bRes = objEvent.bIsSignaled();
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        }
     }
 
     return TRUE;

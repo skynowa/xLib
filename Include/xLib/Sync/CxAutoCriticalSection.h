@@ -24,7 +24,7 @@ class CxAutoCriticalSection :
 
     private:
         CxCriticalSection &_m_csCS;         ///< critical section
-        mutable BOOL       _m_bIsLocked;    ///< lock flag for explicit unlock
+        BOOL               _m_bIsLocked;    ///< lock flag for explicit unlock
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAutoCriticalSectionH
