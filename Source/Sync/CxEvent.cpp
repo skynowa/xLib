@@ -18,7 +18,7 @@ CxEvent::CxEvent(
     const BOOL cbIsSignaled     ///< FALSE - wait, lock
 ) :
 #if defined(xOS_WIN)
-	_m_hEvent      (),
+	_m_hEvent      ()
 #elif defined(xOS_LINUX)
 	_m_csCS        (),
 	_m_cndCond     (),

@@ -250,7 +250,7 @@ CxThread::bKill(
         ulRes = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
-        _m_bRes = bSleep(_m_culStillActiveTimeout);
+        _m_bRes = CxCurrentThread::bSleep(_m_culStillActiveTimeout);
         /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, break);
     }
 #elif defined(xOS_LINUX)
@@ -295,8 +295,8 @@ CxThread::bWait(
     //flags
     //?????????
 
-    /*DEBUG*/xASSERT(CxThread::ulGetCurrentId() != _m_ulId);
-    xCHECK_RET(CxThread::ulGetCurrentId() == _m_ulId, TRUE);
+    /*DEBUG*/xASSERT(CxCurrentThread::ulGetId() != _m_ulId);
+    xCHECK_RET(CxCurrentThread::ulGetId() == _m_ulId, TRUE);
 
     ULONG ulRes = WAIT_FAILED;
     ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
@@ -472,7 +472,7 @@ CxThread::bTryPostThreadMessage(
         _m_bRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
 
         xCHECK_RET(TRUE  == _m_bRes, TRUE);
-        xCHECK_DO (FALSE == _m_bRes, bSleep(ulAttempTimeout));
+        xCHECK_DO (FALSE == _m_bRes, CxCurrentThread::bSleep(ulAttempTimeout));
     }
 
     return FALSE;
@@ -1044,7 +1044,7 @@ CxThread::bIsTimeToExit() {
 
 //---------------------------------------------------------------------------
 /*static*/
-CxThread::TxExitStatus
+CxThread::TxExitStatus xSTDCALL
 CxThread::_s_uiJobEntry(
     VOID *pvParam
 )

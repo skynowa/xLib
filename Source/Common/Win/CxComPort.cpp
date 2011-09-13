@@ -6,7 +6,7 @@
 
 #include <xLib/Common/Win/CxComPort.h>
 
-#include <xLib/Sync/CxThread.h>
+#include <xLib/Sync/CxCurrentThread.h>
 
 
 #if defined(xOS_WIN)
@@ -103,7 +103,7 @@ CxCOMPort::bReadData(
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
-    CxThread::bSleep(5L);
+    CxCurrentThread::bSleep(5UL);
 
     DWORD dwNumOfBytesRead = 0;
     BOOL  bRes             = ::ReadFile(_m_hComPort, pszBuff, dwNumOfBytesToRead/*cuiSendStrLen*/, &dwNumOfBytesRead, NULL);

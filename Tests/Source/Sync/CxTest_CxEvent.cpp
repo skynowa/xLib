@@ -124,7 +124,7 @@ CxTest_CxEvent::bUnit(
             xASSERT_EQ(cbInitialState, m_bRes);
 
             CxEvent::EObjectState osRes = objEvent.osWait(5);
-            xASSERT_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);
+            xASSERT_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);
 
             m_bRes = objEvent.bIsSignaled();
             xASSERT_EQ(cbInitialState, m_bRes);
@@ -144,7 +144,7 @@ CxTest_CxEvent::bUnit(
             xASSERT_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_EQ(FALSE, m_bRes);
         }
     }
 

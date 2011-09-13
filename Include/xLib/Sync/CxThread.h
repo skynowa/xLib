@@ -194,12 +194,12 @@ class CxThread :
         CxEvent             _m_evExit;                  ///< exit event
 
     #if defined(xOS_WIN)
-        typedef UINT    xSTDCALL TxExitStatus;
+        typedef UINT     TxExitStatus;
     #elif defined(xOS_LINUX)
-        typedef VOID *  xSTDCALL TxExitStatus;
+        typedef VOID *   TxExitStatus;
     #endif
 
-        static TxExitStatus _s_uiJobEntry     (VOID *pvParam);
+        static TxExitStatus xSTDCALL _s_uiJobEntry     (VOID *pvParam);
             ///< callback
         BOOL                _bWaitResumption  ();
             ///< waiting for reset pause

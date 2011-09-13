@@ -693,6 +693,12 @@
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxStdError.cpp">
       <Filter>Test\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Sync\CxCurrentThread.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCurrentThread.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1264,6 +1270,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxStdError.h">
       <Filter>Test\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Sync\CxCurrentThread.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h">
+      <Filter>Test\Sync</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
