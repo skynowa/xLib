@@ -276,7 +276,7 @@ _tmain(
         bRes = tmManager.bAdd(new CxTest_CxCookiePv1);
         bRes = tmManager.bAdd(new CxTest_CxCgi);
         bRes = tmManager.bAdd(new CxTest_CxSocketInit);
-        bRes = tmManager.bAdd(new CxTest_CxDnsClient);
+        ////bRes = tmManager.bAdd(new CxTest_CxDnsClient);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
         bRes = tmManager.bAdd(new CxTest_CxHttpClient);

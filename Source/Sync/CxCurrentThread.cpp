@@ -59,7 +59,7 @@ CxCurrentThread::bIsCurrent(
     BOOL bRes = FALSE;
 
 #if defined(xOS_WIN)
-    bRes = static_cast<BOOL>( CxCurrentThread::ulGetId() == culId );
+    bRes = static_cast<BOOL>( ulGetId() == culId );
 #elif defined(xOS_LINUX)
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     bRes = static_cast<BOOL>( pthread_equal(ulGetId(), culId) );

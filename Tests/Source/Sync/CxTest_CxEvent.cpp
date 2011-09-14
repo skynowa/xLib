@@ -141,7 +141,7 @@ CxTest_CxEvent::bUnit(
             xASSERT_EQ(cbInitialState, m_bRes);
 
             CxEvent::EObjectState osRes = objEvent.osWait(5);
-            xASSERT_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);
+            xASSERT_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);
 
             m_bRes = objEvent.bIsSignaled();
             xASSERT_EQ(FALSE, m_bRes);

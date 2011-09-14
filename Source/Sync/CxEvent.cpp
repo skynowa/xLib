@@ -83,7 +83,7 @@ CxEvent::bSet() {
             INT iRes = pthread_cond_broadcast(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
         } else {
-            INT iRes = pthread_cond_broadcast(&_m_cndCond);        //pthread_cond_signal
+            INT iRes = pthread_cond_signal(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
         }
 
@@ -130,10 +130,10 @@ CxEvent::osWait(
     {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
-        INT iRes = 0;  // If we don't do anything it's because it's free already
+        INT iRes = 0;
 
-        if (FALSE == _m_bIsSignaled) { // if already in a signal state just return
-            xCHECK_RET(! culTimeout, osTimeout);    // no time for waiting
+        if (FALSE == _m_bIsSignaled) {
+            ////xCHECK_RET(! culTimeout, osTimeout);    // no time for waiting
 
             timespec tsTime = {0};
 
