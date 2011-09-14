@@ -162,8 +162,6 @@ class CxThread :
             ///< is need to exit from work thread function
 
     private:
-        mutable BOOL        _m_bRes;                    ///< for private use
-
         //constants
         const ULONG         _m_culStillActiveTimeout;   ///< still active timeout (msec)
         const ULONG         _m_culExitTimeout;          ///< exit timeout (msec)
@@ -203,8 +201,6 @@ class CxThread :
             ///< callback
         BOOL                _bWaitResumption  ();
             ///< waiting for reset pause
-        VOID                _vMembersClear    ();
-            ///< clear all class members
         VOID                _vSetStatesDefault();
             ///< set states as default
 
