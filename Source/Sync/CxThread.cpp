@@ -242,6 +242,7 @@ CxThread::bKill(
     const ULONG culTimeout
 )
 {
+    BOOL  bRes  = FALSE;
     ULONG ulRes = 0UL;
 
 #if defined(xOS_WIN)
@@ -860,7 +861,7 @@ CxThread::ulGetExitStatus() const {
 
     BOOL bRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
     /*DEBUG*/xASSERT_RET(FALSE           != bRes,  ulRes);
-    /*DEBUG*/xASSERT_RET(_m_uiExitStatus =  ulRes, ulRes);
+    /*DEBUG*/xASSERT_RET(_m_uiExitStatus == ulRes, ulRes);
 #elif defined(xOS_LINUX)
     ulRes = _m_uiExitStatus;
 #endif
