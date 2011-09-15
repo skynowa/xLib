@@ -158,6 +158,14 @@ _tmain(
         std::tcout << "<pre>\n\n" << std::endl;
     #endif
 
+
+    INT iMin = CxThread::_iGetPriorityMin();
+    INT iMax = CxThread::_iGetPriorityMax();
+
+    xTRACEV("Tnread prior: %i ... %i", iMin, iMax);
+
+    ///return 0;
+
     //--------------------------------------------------
     //options (default)
     BOOL      bIsUseTracing = TRUE;

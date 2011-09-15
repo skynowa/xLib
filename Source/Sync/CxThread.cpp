@@ -8,7 +8,7 @@
 
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Sync/CxCurrentThread.h>
-
+#include <xLib/Sync/CxProcess.h>
 
 ////xNAMESPACE_BEGIN(NxLib)
 
@@ -22,10 +22,6 @@ CxThread::CxThread(
     const BOOL cbIsAutoDelete
 ) :
     m_ulTag                 (0UL),
-
-    //constants
-    _m_culStillActiveTimeout(2UL),
-    _m_culExitTimeout       (5000UL),
 
     //data
     _m_hThread              (),
@@ -60,7 +56,7 @@ CxThread::~CxThread() {
     if (TRUE == bRes) {
         bRes = bExit();
         if (FALSE == bRes) {
-            bRes = bKill(_m_culExitTimeout);
+            bRes = bKill(_ms_culExitTimeout);
             if (FALSE == bRes) {
                 /*DEBUG*/xASSERT_DO(FALSE != bRes, /*nothing*/);
             }
@@ -257,14 +253,14 @@ CxThread::bKill(
         ulRes = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
-        bRes = CxCurrentThread::bSleep(_m_culStillActiveTimeout);
+        bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
         /*DEBUG*/xASSERT_DO(FALSE != bRes, break);
     }
 #elif defined(xOS_LINUX)
     INT iRes = pthread_kill(_m_ulId, SIGALRM);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 
-    BOOL bRes = CxCurrentThread::bSleep(_m_culStillActiveTimeout);
+    bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
     /*DEBUG*/xASSERT(FALSE != bRes);
 #endif
 
@@ -546,29 +542,30 @@ CxThread::bMessageWaitQueue(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
+/*static*/
 INT
-_iGetPriorityMin() {
+CxThread::_iGetPriorityMin() {
     INT iRes = - 1;
 
 #if defined(xOS_WIN)
     iRes = THREAD_PRIORITY_IDLE;
 #elif defined(xOS_LINUX)
-    iRes = sched_get_priority_min(SCHED_OTHER);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+    iRes = sched_get_priority_min(SCHED_FIFO);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
-
     return iRes;
 }
 //---------------------------------------------------------------------------
+/*static*/
 INT
-_iGetPriorityMax() {
+CxThread::_iGetPriorityMax() {
     INT iRes = - 1;
 
 #if defined(xOS_WIN)
     iRes = THREAD_PRIORITY_TIME_CRITICAL;
 #elif defined(xOS_LINUX)
-    iRes = sched_get_priority_max(SCHED_OTHER);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+    iRes = sched_get_priority_max(SCHED_FIFO);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
     return iRes;
@@ -584,10 +581,16 @@ CxThread::bSetPriority(
 
     BOOL bRes = ::SetThreadPriority(_m_hThread.hGet(), ctpPriority);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
-    const sched_param spParam = { ctpPriority };
+#elif defined(xOS_ENV_UNIX)
+    #if defined(xOS_LINUX)
+        xCHECK_RET(FALSE == CxSystemInfo::bIsUserAnAdmin(), FALSE);
+    #endif
 
-    INT iRes = pthread_setschedparam(ulGetId(), SCHED_OTHER, &spParam);
+    sched_param spParam = {0};
+
+    spParam.sched_priority = ctpPriority;
+
+    INT iRes = pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -609,7 +612,7 @@ CxThread::tpGetPriority() const {
     /*DEBUG*/xASSERT_RET(tpError != tpRes, tpError);
 #elif defined(xOS_LINUX)
     sched_param spParam  = {0};
-    INT         iPolicy  = SCHED_OTHER;
+    INT         iPolicy  = SCHED_FIFO;
 
     INT iRes = pthread_getschedparam(ulGetId(), &iPolicy, &spParam);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), tpError);
@@ -1012,9 +1015,9 @@ CxThread::uiOnRun(
 ) /* = 0*/
 {
     /*DEBUG*/// n/a
-    /*DEBUG*/xASSERT_RET(FALSE, 0U);
+    /*DEBUG*/xASSERT_MSG_RET(FALSE, xT("It's virtual method"), 0U);
 
-    UINT uiRes = 0;
+    UINT uiRes = 0U;
 
     #if xTEMP_DISABLED
         for ( ; ; ) {

@@ -22,6 +22,19 @@
     #error xLib: unsupported OS
 #endif
 
+
+// OS environment
+#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
+    #define xOS_ENV_WIN
+#elif defined(__unix__) || defined(__unix)
+    #define xOS_ENV_UNIX
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+    #define xOS_ENV_BSD
+#else
+    #error xLib: unsupported OS environment
+#endif
+
+
 // OS version
 #define xOS_WIN_VER     WINVER
 #define xOS_LINUX_VER   0

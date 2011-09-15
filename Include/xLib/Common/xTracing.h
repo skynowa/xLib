@@ -21,6 +21,18 @@
     #endif
 
     //--------------------------------------------------
+    //OS environment
+    #if defined(xOS_ENV_WIN)
+        #pragma message("xLib: xOS_ENV_WIN")
+    #elif defined(xOS_ENV_UNIX)
+        #pragma message("xLib: xOS_ENV_UNIX")
+    #elif defined(xOS_ENV_BSD)
+        #pragma message("xLib: xOS_ENV_BSD")
+    #else
+        #pragma message("xLib: unsupported OS")
+    #endif
+
+    //--------------------------------------------------
     //OS architecture
     #if defined(xARCHITECTURE_32BIT)
         #pragma message("xLib: xARCHITECTURE_32BIT")

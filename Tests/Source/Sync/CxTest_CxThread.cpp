@@ -64,6 +64,8 @@ CWorkThread::uiOnRun(
         }
     }
 
+        CxConsole().bPause();
+
     xTRACEV(xT("\tCWorkThread: end #%li\n"), m_ulTag);
 
     return uiRes;
@@ -150,11 +152,19 @@ CxTest_CxThread::bUnit(
     //bSetPriority, tpGetPriority
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bSetPriority(CxThread::tpLowest);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        #if defined(xOS_LINUX)
+            m_bRes = pthT->bSetPriority(CxThread::tpLowest);
+            xASSERT_EQ(FALSE, m_bRes);
 
-        m_iRes = pthT->tpGetPriority();
-        xASSERT_EQ((INT)CxThread::tpLowest, (INT)m_iRes);
+            m_iRes = pthT->tpGetPriority();
+            xASSERT_EQ(0, m_iRes);
+        #elif
+            m_bRes = pthT->bSetPriority(CxThread::tpLowest);
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+
+            m_iRes = pthT->tpGetPriority();
+            xASSERT_EQ((INT)CxThread::tpLowest, (INT)m_iRes);
+        #endif
     }
 
     //-------------------------------------
