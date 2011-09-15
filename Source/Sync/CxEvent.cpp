@@ -60,7 +60,7 @@ CxEvent::hGet() const {
     /*DEBUG*/
 
 #if defined(xOS_WIN)
-    return _m_hEvent.hGet();
+    return _m_hEvent;
 #elif defined(xOS_LINUX)
     return _m_cndCond;
 #endif

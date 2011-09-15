@@ -64,7 +64,9 @@ CWorkThread::uiOnRun(
         }
     }
 
+    #if xTEMP_DISABLED
         CxConsole().bPause();
+    #endif
 
     xTRACEV(xT("\tCWorkThread: end #%li\n"), m_ulTag);
 
@@ -157,8 +159,8 @@ CxTest_CxThread::bUnit(
             xASSERT_EQ(FALSE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
-            xASSERT_EQ(0, m_iRes);
-        #elif
+            xASSERT_EQ((INT)0, (INT)m_iRes);
+        #else
             m_bRes = pthT->bSetPriority(CxThread::tpLowest);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 

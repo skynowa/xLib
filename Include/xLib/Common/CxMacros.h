@@ -31,10 +31,15 @@
     ///< calling convention
 
 
-#define xNAMESPACE_BEGIN(n)    namespace n {
+#define xNAMESPACE_BEGIN(n)         namespace n {
             ///< begin namespace
-#define xNAMESPACE_END(n)      }
+#define xNAMESPACE_END(n)           }
             ///< end namespace
+
+#define xNAMESPACE_ANONYM_BEGIN     namespace {
+            ///< begin anonymous namespace
+#define xNAMESPACE_ANONYM_END       }
+            ///< end anonymous namespace
 
 //---------------------------------------------------------------------------
 //converters

@@ -14,7 +14,7 @@
 template<EHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT() :
     _m_bRes   (FALSE),
-    _m_hHandle( FailValue::get() )
+    _m_hHandle( TxFailValue::get() )
 {
     /*DEBUG*/// n/a
 }
@@ -36,7 +36,7 @@ CxHandleT<hvTag>::CxHandleT(
     const CxHandleT &chHandle
 ) :
     _m_bRes   (FALSE),
-    _m_hHandle( FailValue::get() )
+    _m_hHandle( TxFailValue::get() )
 {
     /*DEBUG*/
 
@@ -65,7 +65,7 @@ CxHandleT<hvTag>::operator = (
     const HANDLE chHandle
 )
 {
-    /*DEBUG*/xASSERT_DO(FALSE == bIsValid(), FailValue::get());
+    /*DEBUG*/xASSERT_DO(FALSE == bIsValid(), TxFailValue::get());
     /*DEBUG*///hHandle - n/a
 
     //Try m_Handle.Attach(other.Detach(), if you got an assertion here.
@@ -92,7 +92,7 @@ CxHandleT<hvTag>::operator = (
     const CxHandleT &chHandle
 )
 {
-    /*DEBUG*/xASSERT_DO(FALSE == bIsValid(), FailValue::get());
+    /*DEBUG*/xASSERT_DO(FALSE == bIsValid(), TxFailValue::get());
     /*DEBUG*///CxHandleT - n/a
 
     xCHECK_RET(this == &chHandle, *this);
@@ -108,7 +108,7 @@ CxHandleT<hvTag>::operator = (
     }
 
     _m_hHandle = chHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
-    /*DEBUG*/xASSERT_RET(FailValue::get() != _m_hHandle, FailValue::get());
+    /*DEBUG*/xASSERT_RET(TxFailValue::get() != _m_hHandle, TxFailValue::get());
 
     return *this;
 }
@@ -152,7 +152,7 @@ CxHandleT<hvTag>::bIsValid() const {
     BOOL bCond4 = (reinterpret_cast<HANDLE>(0xFDFDFDFD) != _m_hHandle);	//No man's land (normally outside of a process)
     BOOL bCond5 = (reinterpret_cast<HANDLE>(0xFEEEFEEE) != _m_hHandle);	//Freed memory set by NT's heap manager
     BOOL bCond6 = (reinterpret_cast<HANDLE>(0xDDDDDDDD) != _m_hHandle);	//Deleted
-    BOOL bCond7 = (FailValue::get()                     != _m_hHandle);
+    BOOL bCond7 = (TxFailValue::get()                     != _m_hHandle);
 
     return (TRUE == bCond1) && (TRUE == bCond2) && (TRUE == bCond3) && (TRUE == bCond4) &&
            (TRUE == bCond5) && (TRUE == bCond6) && (TRUE == bCond7);
@@ -181,7 +181,7 @@ CxHandleT<hvTag>::hDetach() {
 
     HANDLE hHandle = _m_hHandle;
 
-    _m_hHandle = FailValue::get();
+    _m_hHandle = TxFailValue::get();
 
     return hHandle;
 }
@@ -196,7 +196,7 @@ CxHandleT<hvTag>::bClose() {
     _m_bRes = ::CloseHandle(_m_hHandle);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    _m_hHandle = FailValue::get();
+    _m_hHandle = TxFailValue::get();
 
     return TRUE;
 }
@@ -279,12 +279,12 @@ CxHandleT<hvTag>::hDuplicate(
     const ULONG  culOptions      /* = 0*/
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FailValue::get());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), TxFailValue::get());
 
-    HANDLE hRes = FailValue::get();
+    HANDLE hRes = TxFailValue::get();
 
     _m_bRes = ::DuplicateHandle(hGetCurrentProcess(), _m_hHandle, chTargetProcess, &hRes, culDesiredAccess, cbInheritHandle, culOptions);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FailValue::get());
+    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, TxFailValue::get());
 
     return hRes;
 }
@@ -328,7 +328,7 @@ CxHandleT<hvTag>::bIsValid(
 {
     /*DEBUG*/// n/a
 
-    return FailValue::get() != chHandle;
+    return TxFailValue::get() != chHandle;
 }
 //---------------------------------------------------------------------------
 #endif
