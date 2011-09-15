@@ -13,8 +13,6 @@
 
 #if defined(xOS_WIN)
     #include <xLib/Common/Win/CxHandleT.h>
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 ////xNAMESPACE_BEGIN(NxLib)
@@ -38,12 +36,12 @@ class CxThread :
                 tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
             #elif defined(xOS_LINUX)
                 tpError        = - 1,
-                tpIdle,
-                tpLowest,
-                tpBelowNormal,
-                tpNormal,
-                tpAboveNormal,
-                tpHighest,
+                tpIdle         ,
+                tpLowest       = 10,
+                tpBelowNormal  ,
+                tpNormal       ,
+                tpAboveNormal  ,
+                tpHighest      ,
                 tpTimeCritical
             #endif
 	    };
@@ -105,7 +103,7 @@ class CxThread :
 
         //priority
         BOOL                bSetPriority          (const EPriority ctpPriority) const;
-            ///< set priority
+            ///< set priority (under Linux must use admin privilege)
         EPriority           tpGetPriority         () const;
             ///< get priotity
         std::tstring        sGetPriorityString    () const;
@@ -163,8 +161,8 @@ class CxThread :
 
     private:
         //constants
-        const ULONG         _m_culStillActiveTimeout;   ///< still active timeout (msec)
-        const ULONG         _m_culExitTimeout;          ///< exit timeout (msec)
+        static const ULONG  _ms_culStillActiveTimeout = 2UL;    ///< still active timeout (msec)
+        static const ULONG  _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
 
 
         //thread data
@@ -176,7 +174,7 @@ class CxThread :
 
         TxId                _m_ulId;                    ///< ID
         UINT                _m_uiExitStatus;            ///< exit code
-        VOID               *_m_pvParam;                 ///< param for work function
+        VOID               *_m_pvParam;                 ///< param for job function
         const BOOL          _m_cbIsAutoDelete;          ///< is autodelete thread object
 
         //flags
@@ -197,7 +195,8 @@ class CxThread :
         typedef VOID *   TxExitStatus;
     #endif
 
-        static TxExitStatus xSTDCALL _s_uiJobEntry     (VOID *pvParam);
+        static TxExitStatus xSTDCALL
+                            _s_uiJobEntry     (VOID *pvParam);
             ///< callback
         BOOL                _bWaitResumption  ();
             ///< waiting for reset pause
@@ -213,6 +212,10 @@ class CxThread :
 
         VOID                _vHandler_OnEnter(CxThread *pthSender);
         VOID                _vHandler_OnExit (CxThread *pthSender);
+
+        //static
+        static INT          _iGetPriorityMin ();
+        static INT          _iGetPriorityMax ();
 };
 
 ////xNAMESPACE_END(NxLib);

@@ -16,10 +16,12 @@
          ///< test private methods (it's !!!dirty hack!!!)
 #endif
 
+
 #if !defined(xCOMPILER_MS) && !defined(xCOMPILER_CODEGEAR)
     #define __forceinline  inline
 #endif
     ///< inline
+
 
 #if defined(xOS_WIN)
     #define xSTDCALL    __stdcall
@@ -28,12 +30,35 @@
 #endif
     ///< calling convention
 
+
 #define xNAMESPACE_BEGIN(n)    namespace n {
             ///< begin namespace
 #define xNAMESPACE_END(n)      }
             ///< end namespace
 
 //---------------------------------------------------------------------------
+//converters
+#define xS2US(s)                std::ustring( (s).begin(),  (s).begin()  + (s).size()  )
+    ///< convert std::tstring to std::ustring
+#define xUS2S(us)               std::tstring( (us).begin(), (us).begin() + (us).size() )
+    ///< convert std::ustring to std::tstring
+#define xS2TS(s)                std::tstring( (s).begin(),  (s).begin()  + (s).size()  )
+    ///< convert std::string to std::tstring
+#define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
+    ///< convert std::tstring to std::string
+
+#if defined(xCOMPILER_CODEGEAR)
+    #define xD2S(s)   std::tstring((s).c_str())
+        ///< convert Delphi::String::c_str() to std::tstring
+    #define xD2AS(s)  std::tstring((s).t_str())
+        ///< convert Delphi::String::t_str() to std::tstring
+    #define xS2D(s)   String((s).c_str())
+        ///< convert std::tstring to Delphi::String
+    #define xD2WD(s)  WideString((s))
+        ///< convert Delphi::String to Delphi::WideString
+#endif
+
+
 #define xPTR_DELETE(p)          { CxMacros::vPtrDelete(p); }
     ///< delete object by pointer
 #define xARRAY_DELETE(p)        { CxMacros::vArrayDelete(p); }
@@ -46,26 +71,19 @@
     ///< zero struct memory
 #define xBUFF_FREE(pvBuff)      { if (NULL != (pvBuff)) { free(pvBuff); (pvBuff) = NULL; }    }
     ///< free buffer memory
-#define xPTR_ASSIGN(ptr, value) { if (NULL != (ptr))    { *(ptr) = (value); }                 }
+#define xPTR_ASSIGN(ptr, value) { if (NULL != (ptr)) { *(ptr) = (value); }                 }
     ///< assign pointer
-
-#define xS2US(s)                std::ustring( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::tstring to std::ustring
-#define xUS2S(us)               std::tstring( (us).begin(), (us).begin() + (us).size() )
-    ///< convert std::ustring to std::tstring
-
-#define xS2TS(s)                std::tstring( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::string to std::tstring
-#define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
-    ///< convert std::tstring to std::string
-
 #define xFCLOSE(f)              { if (NULL != (f)) { fclose(f); (f) = NULL; } }
     ///< close file stream (FILE *)
-
+#define xRELEASE(p)             { if (NULL != (p)) {(p)->Release(); (p) = NULL;} }
+    ///< release object
 #define xMAX(a, b)              ( ((a) > (b)) ? (a) : (b) )
     ///< get max value
 #define xMIN(a, b)              ( ((a) < (b)) ? (a) : (b) )
     ///< get min value
+#define xAS_BOOL(expr)          ( (true == (expr)) ? (TRUE) : (FALSE) )
+    ///< convert bool to BOOL
+
 
 /// hide "unused variable" warnings
 #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL)
@@ -82,14 +100,13 @@
     //#define xUNUSED(a)              do { (a) = (TRUE) ? (a) : (a); } while (&(a) < (typeof(a) *)0);
 #endif
 
-#define xAS_BOOL(expr)          ( (true == (expr)) ? (TRUE) : (FALSE) )
-    ///< convert bool to BOOL
 
 //enum
 #define xENUM_ENC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) + 1 ); }
     ///< encriment enumerator
 #define xENUM_DEC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) - 1 ); }
     ///< decriment enumerator
+
 
 //temporary enable/disable code
 #define xTEMP_ENABLED           1
@@ -104,7 +121,7 @@
     ///< can remove code
 #define xTEST_IGNORE            0
     ///< ignore test code
-//TODO: #define xNA(arg)        ( arg )
+
 
 #define xSTRINGIZE2(x)     #x
     ///< make as string
@@ -122,28 +139,8 @@
 #   define xNOT_IMPL(s)     { xPRAGMA( message(" Not implemented: "(s)) ) }
 #endif
 
-#define xRELEASE(p)          { if (NULL != (p)) {(p)->Release(); (p) = NULL;} }
-    ///< release object
-#define xKEYDOWN(vk_code)    ((::GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
-    ///< is key down
-#define xKEYUP(vk_code)      ((::GetAsyncKeyState(vk_code) & 0x8000) ? 0 : 1)
-    ///< is key up
-#define xGET_X_LPARAM(lp)    ( (INT)(SHORT)LOWORD(lp) )
-    ///< get x LPARAM
-#define xGET_Y_LPARAM(lp)    ( (INT)(SHORT)HIWORD(lp) )
-    ///< get y LPARAM
-
 
 #if defined(xCOMPILER_CODEGEAR)
-    #define xD2S(s)   std::tstring((s).c_str())
-        ///< convert Delphi::String::c_str() to std::tstring
-    #define xD2AS(s)  std::tstring((s).t_str())
-        ///< convert Delphi::String::t_str() to std::tstring
-    #define xS2D(s)   String((s).c_str())
-        ///< convert std::tstring to Delphi::String
-    #define xD2WD(s)  WideString((s))
-        ///< convert Delphi::String to Delphi::WideString
-
     //xTRY_BOOL
     #define xTRY_BOOL    \
                 BOOL bRes = FALSE;  \
@@ -215,6 +212,7 @@
         ///< catch block
 #endif //xCOMPILER_CODEGEAR
 
+
 //--------------------------------------------------
 //buildin macroses
 
@@ -225,12 +223,14 @@
 #endif
     ///< source file path
 
+
 #if defined(__LINE__)
     #define xLINE      __LINE__
 #else
     #define xLINE      0
 #endif
     ///< source code line number
+
 
 #if defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL) || defined(xCOMPILER_MINGW32)
     #define xFUNCTION   xT(__FUNCTION__)
@@ -247,12 +247,14 @@
 #endif
     ///< source function name
 
+
 #if defined(__DATE__)
     #define xDATE      xT(__DATE__)
 #else
     #define xDATE      xT("<unknown xDATE>")
 #endif
     ///< build source date stamp
+
 
 #if defined(__TIME__)
     #define xTIME      xT(__TIME__)
@@ -261,6 +263,7 @@
 #endif
     ///< build source time stamp
 
+
 #if defined(__DATE__) && defined(__TIME__)
     #define xDATETIME  xT(__DATE__) xT(" ") xT(__TIME__)
 #else
@@ -268,12 +271,23 @@
 #endif
     ///< build source datetime stamp
 
+
 #if defined(__COUNTER__)
     #define xCOUNTER   __COUNTER__
 #else
     #define xCOUNTER   0
 #endif
     ///< Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
+
+
+//function params
+#define xIN
+    ///< incoming param
+#define xOUT
+    ///< outcoming param
+#define xIN_OUT
+    ///< incoming and outcoming param
+
 
 //TODO: HOST_NAME_MAX
 #if !defined(HOST_NAME_MAX)
@@ -285,6 +299,7 @@
     ///< max path length
 #define xNAME_MAX       (CxPath::uiGetNameMaxSize())
     ///< max file name length
+
 
 //var args
 #if defined(va_start)
@@ -305,6 +320,7 @@
     #define xVA_END(val)        ( va_end(val) )
         ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END() in the same function
 #endif
+
 
 //qualifiers
 #if defined(xOS_WIN)
@@ -356,6 +372,7 @@
             ///< qualifier for long long int (hex)
     #endif
 #endif
+
 
 //timeout
 #if defined(xOS_WIN)
