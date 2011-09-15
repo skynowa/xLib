@@ -32,11 +32,8 @@ CxTest_CxEvent::bUnit(
     {
         CxEvent objEvent(TRUE, TRUE);
 
-        CxEvent::TxHandle hRes;
-
-        hRes = objEvent.hGet();
         #if defined(xOS_WIN)
-            xASSERT_NOT_EQ((ULONG)NULL, (ULONG)hRes);
+            xASSERT_NOT_EQ(FALSE, objEvent.hGet().bIsValid())
         #elif defined(xOS_LINUX)
             //TODO: hRes
         #endif
@@ -141,7 +138,7 @@ CxTest_CxEvent::bUnit(
             xASSERT_EQ(cbInitialState, m_bRes);
 
             CxEvent::EObjectState osRes = objEvent.osWait(5);
-            xASSERT_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);
+            xASSERT_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);    //LINUX - osSignaled
 
             m_bRes = objEvent.bIsSignaled();
             xASSERT_EQ(FALSE, m_bRes);

@@ -23,7 +23,7 @@ class CxEvent :
 {
     public:
         #if defined(xOS_WIN)
-        typedef HANDLE          TxHandle;   ///< handle
+        typedef CxHandle        TxHandle;   ///< handle
     #elif defined(xOS_LINUX)
         typedef pthread_cond_t  TxHandle;   ///< handle
     #endif

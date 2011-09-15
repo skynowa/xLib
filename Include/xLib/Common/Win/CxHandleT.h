@@ -11,7 +11,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
 
-namespace {
+xNAMESPACE_ANONYM_BEGIN
+
     enum EHandleValue {
         hvNull,
         hvInvalid
@@ -29,7 +30,8 @@ namespace {
     struct CxHandleFailValue<hvInvalid> {
         static HANDLE get () { return INVALID_HANDLE_VALUE; }
     };
-}
+
+xNAMESPACE_ANONYM_END
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
 class CxHandleT 
@@ -88,7 +90,7 @@ class CxHandleT
             ///< is valid
 
     private:
-        typedef CxHandleFailValue<hvTag>  FailValue;
+        typedef CxHandleFailValue<hvTag>  TxFailValue;
 
         mutable BOOL        _m_bRes;                    ///< for private use
         HANDLE              _m_hHandle;                 ///< handle
