@@ -33,16 +33,8 @@ CxCurrentThread::ulGetId() {
     ulRes = ::GetCurrentThreadId();
     /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
 #elif defined(xOS_LINUX)
-    #if 1
-        ulRes = pthread_self();
-        ////xTRACEV("ulGetCurrentId: %ld", ulRes);
-        /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
-    #else
-        INT iRes = syscall(SYS_gettid);
-        ////xTRACEV("ulGetCurrentId: %ld", iRes);
-
-        ulRes = iRes;
-    #endif
+    ulRes = pthread_self();
+    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
 #endif
 
     return ulRes;

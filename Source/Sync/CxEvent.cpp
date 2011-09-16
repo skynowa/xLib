@@ -163,7 +163,7 @@ CxEvent::osWait(
 
         // adjust signaled member
         switch (iRes) {
-            case 0:         { xCHECK_DO(_m_bIsAutoReset, _m_bIsSignaled = FALSE);
+            case 0:         { xCHECK_DO(FALSE != _m_bIsAutoReset, _m_bIsSignaled = FALSE);
                               osRes = osSignaled; }  break;
             case ETIMEDOUT: { osRes = osTimeout;  }  break;
             default:        { osRes = osFailed;   }  break;
