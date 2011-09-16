@@ -97,7 +97,7 @@ class CxThread :
             ///< try post message from thread to thread
         BOOL                bMessageWaitQueue     (UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const;
             ///< waiting for message with params from other thread
-        BOOL                bMessageWaitQueue     (const std::vector<UINT> &cvecuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
+        BOOL                bMessageWaitQueue     (const std::vector<UINT> &cvuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
             ///< waiting for message with params from other thread
     #endif
 

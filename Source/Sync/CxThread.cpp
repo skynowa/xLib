@@ -492,10 +492,10 @@ CxThread::bMessageWaitQueue(
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(0     <  uiMsg,                 FALSE);
 
-    std::vector<UINT> vecuiMsg;
-    vecuiMsg.push_back(uiMsg);
+    std::vector<UINT> vuiMsg;
+    vuiMsg.push_back(uiMsg);
 
-    BOOL bRes = bMessageWaitQueue(vecuiMsg, NULL, puiParam1, pliParam2);
+    BOOL bRes = bMessageWaitQueue(vuiMsg, NULL, puiParam1, pliParam2);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
@@ -503,14 +503,14 @@ CxThread::bMessageWaitQueue(
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bMessageWaitQueue(
-    const std::vector<UINT> &cvecuiMsg,
+    const std::vector<UINT> &cvuiMsg,
     UINT                    *puiMsg,
     UINT                    *puiParam1,
     LONG                    *pliParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(false == cvecuiMsg.empty(),     FALSE);
+    /*DEBUG*/xASSERT_RET(false == cvuiMsg.empty(),       FALSE);
 
     BOOL bRes   = FALSE;
     MSG  msgMsg = {0};
@@ -518,15 +518,14 @@ CxThread::bMessageWaitQueue(
     while ((bRes = ::GetMessage(&msgMsg, NULL, 0, 0 ))) {
         /*DEBUG*/xASSERT_RET(- 1 != bRes, FALSE);
 
-        for (size_t i = 0; i < cvecuiMsg.size(); ++ i) {
-            if (cvecuiMsg.at(i) == msgMsg.message) {
+        for (size_t i = 0; i < cvuiMsg.size(); ++ i) {
+            xCHECK_DO(cvuiMsg.at(i) != msgMsg.message, continue);
 
-                xCHECK_DO(NULL != puiMsg,    *puiMsg    = msgMsg.message                  );
-                xCHECK_DO(NULL != puiParam1, *puiParam1 = static_cast<UINT>(msgMsg.wParam));
-                xCHECK_DO(NULL != pliParam2, *pliParam2 = static_cast<LONG>(msgMsg.lParam));
+            xPTR_ASSIGN(puiMsg,    msgMsg.message                    );
+            xPTR_ASSIGN(puiParam1, static_cast<UINT>( msgMsg.wParam ));
+            xPTR_ASSIGN(pliParam2, static_cast<LONG>( msgMsg.lParam ));
 
-                return TRUE;
-            }
+            return TRUE;
         }
     }
 
@@ -871,6 +870,12 @@ CxThread::ulGetExitStatus() const {
 
     return ulRes;
 }
+BOOL
+CxThread::bPost() {
+
+long sys_tgkill (int tgid, int pid, int sig);
+}
+
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bSetDebugName(

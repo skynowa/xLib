@@ -138,8 +138,8 @@ CxTest_CxEvent::bUnit(
             xASSERT_EQ(cbInitialState, m_bRes);
 
             CxEvent::EObjectState osRes = objEvent.osWait(5);
-            xASSERT_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);    //LINUX - osSignaled
-
+            xASSERT_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);   //LINUX   - osSignaled
+                                                                    //Windows - osTimeout
             m_bRes = objEvent.bIsSignaled();
             xASSERT_EQ(FALSE, m_bRes);
         }
