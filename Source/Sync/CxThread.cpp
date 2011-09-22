@@ -870,11 +870,11 @@ CxThread::ulGetExitStatus() const {
 
     return ulRes;
 }
-BOOL
-CxThread::bPost() {
-
-long sys_tgkill (int tgid, int pid, int sig);
-}
+//BOOL
+///*CxThread::*/bPost() {
+//
+//long sys_tgkill (int tgid, int pid, int sig);
+//}
 
 //---------------------------------------------------------------------------
 BOOL

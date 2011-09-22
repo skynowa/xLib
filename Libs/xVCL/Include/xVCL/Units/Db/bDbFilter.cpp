@@ -8,7 +8,7 @@
 #pragma hdrstop
 
 //#include "uMain.h"
-#include <xLib/Gui/Win/Dialogs/CxMsgBoxT.h>
+#include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 //---------------------------------------------------------------------------
 //TODO: фильтр

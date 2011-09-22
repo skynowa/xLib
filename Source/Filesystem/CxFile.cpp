@@ -30,6 +30,7 @@ CxFile::CxFile() :
 {
 }
 //---------------------------------------------------------------------------
+/*virtual*/
 CxFile::~CxFile() {
     /*DEBUG*/// n/a
 
@@ -700,21 +701,17 @@ CxFile::sIsExists(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring());
 
     std::tstring sRes;
-    sRes.assign(csFilePath);
 
-    //--static INT s_iFileExistsIndex = 0;
-    std::tstring    sFileDir           = CxPath::sGetDir(sRes);
-    std::tstring    sFileName          = CxPath::sGetName(sRes);
-    std::tstring    sFileExt           = CxPath::sGetExt(sRes);
+	std::tstring sFileDir  = CxPath::sGetDir(csFilePath);
+	std::tstring sFileName = CxPath::sGetName(csFilePath);
+	std::tstring sFileExt  = CxPath::sGetExt(csFilePath);
 
-    for (INT s_iFileExistsIndex = 1; TRUE == bIsExists(sRes); ++ s_iFileExistsIndex) {
-        sRes = sFileDir                                   + CxConst::xSLASH     +
-               sFileName                                  + xT(" (")                +
-               CxString::lexical_cast(s_iFileExistsIndex) + xT(")") + CxConst::xDOT +
+	for (size_t uiFileExistsIndex = 1; FALSE != bIsExists(csFilePath); ++ uiFileExistsIndex) {
+        sRes = sFileDir                                  + CxConst::xSLASH         +
+			   sFileName                                 + xT(" (")                +
+			   CxString::lexical_cast(uiFileExistsIndex) + xT(")") + CxConst::xDOT +
                sFileExt;
     }
-
-    //--s_iFileExistsIndex = 0;
 
     return sRes;
 }
@@ -1111,10 +1108,23 @@ CxFile::bGetTime(
     /*DEBUG*/// pftAccess   - n/a
     /*DEBUG*/// pftModified - n/a
 
-    struct stat stInfo = {0};
+	#if defined(xCOMPILER_CODEGEAR)
+		#define xStat xxxxx
+	#else
+		#define xStat xxxxx
+	#endif
 
-    INT iRes = stat(csFilePath.c_str(), &stInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+	#if defined(xCOMPILER_CODEGEAR)
+		struct _stat stInfo = {0};
+
+		INT iRes = _wstat(csFilePath.c_str(), &stInfo);
+		/*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+	#elif defined(xOS_LINUX)
+		struct stat stInfo = {0};
+
+		INT iRes = stat(csFilePath.c_str(), &stInfo);
+		/*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+	#endif
 
 #if xTODO
     xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = stInfo.st_ctim);  //status change
@@ -1179,7 +1189,7 @@ CxFile::bSetTime(
         /*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
 
         bRes = ::SetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+		/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     #endif
 #elif defined(xOS_LINUX)
     utimbuf tbTimes;
@@ -1225,23 +1235,29 @@ CxFile::sTempCreate(
     sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
 #if defined(xOS_WIN)
-    sRes.resize( sRes.size() + 1);
 
-    errno_t iError = _tmktemp_s(&sRes.at(0), sRes.size() + 1);
-    /*DEBUG*/xASSERT_RET(0 == iError, std::tstring());
+	#if defined(xCOMPILER_CODEGEAR)
+		FILE *pfFile = tmpfile();
+        /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
+	#else
+		sRes.resize( sRes.size() + 1);
 
-    FILE *pfFile = _tfopen(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
+		errno_t iError = _tmktemp_s(&sRes.at(0), sRes.size() + 1);
+		/*DEBUG*/xASSERT_RET(0 == iError, std::tstring());
+
+		FILE *pfFile = _tfopen(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
+		/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
+	#endif
 #elif defined(xOS_LINUX)
-    INT iFile = _tmkstemp(&sRes.at(0));
+	INT iFile = _tmkstemp(&sRes.at(0));
     /*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
 
-    FILE *pfFile = _tfdopen(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
+	FILE *pfFile = _tfdopen(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
+	/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 #endif
 
     //out
-    *pfFileHandle = pfFile;
+	*pfFileHandle = pfFile;
 
     return sRes;
 }

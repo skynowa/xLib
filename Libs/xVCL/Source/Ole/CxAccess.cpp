@@ -1,4 +1,4 @@
-/**********************************************************************
+﻿/**********************************************************************
 *	�����  CxAccess (CxAccess.cpp)
 *
 ***********************************************************************/
@@ -151,7 +151,7 @@ BOOL CxAccess::bCompactMdb(const String &csMdbFilePath, const String &csPass1, c
 
 		//-------------------------------------
 		//������
-		tString    sTmpFilePath = CxPath::sSetExt(xD2S(csMdbFilePath), xT("tmp"));
+		std::tstring    sTmpFilePath = CxPath::sSetExt(xD2S(csMdbFilePath), xT("tmp"));
 
 		WideString sProviderIn  = "Provider="                      "Microsoft.Jet.OLEDB.4.0;"
 								  "Data Source="                 + WideString(csMdbFilePath.c_str()) + ";"

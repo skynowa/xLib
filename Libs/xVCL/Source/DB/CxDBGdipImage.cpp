@@ -15,7 +15,7 @@
 
 #include <xVCL/DB/CxDBGdipImage.h>
 
-#include <xLib/Filesystem/Win/CxFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 /****************************************************************************
