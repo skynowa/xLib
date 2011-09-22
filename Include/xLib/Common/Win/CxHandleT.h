@@ -8,28 +8,29 @@
 #define xLib_Common_Win_CxHandleTH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Common/CxMacros.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
 
 xNAMESPACE_ANONYM_BEGIN
 
-    enum EHandleValue {
-        hvNull,
-        hvInvalid
-    };
+	enum EHandleValue {
+		hvNull,
+		hvInvalid
+	};
 
-    template<EHandleValue hvTag>
-    struct CxHandleFailValue;
+	template<EHandleValue hvTag>
+	struct CxHandleFailValue;
 
-    template<>
-    struct CxHandleFailValue<hvNull> {
-        static HANDLE get () { return NULL; }
-    };
+	template<>
+	struct CxHandleFailValue<hvNull> {
+		static HANDLE get () { return NULL; }
+	};
 
-    template<>
-    struct CxHandleFailValue<hvInvalid> {
-        static HANDLE get () { return INVALID_HANDLE_VALUE; }
-    };
+	template<>
+	struct CxHandleFailValue<hvInvalid> {
+		static HANDLE get () { return INVALID_HANDLE_VALUE; }
+	};
 
 xNAMESPACE_ANONYM_END
 //---------------------------------------------------------------------------

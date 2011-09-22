@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/Win/CxFile.h>
+#include <xLib/Filesystem/CxFile.h>
 
 #include <xVCL/xCommon.h>
 #include <ComObj.hpp>   //OLE
