@@ -516,13 +516,8 @@ CxFile::bResize(
     INT iRes = etError;
 
 #if defined(xOS_WIN)
-    #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
-        iRes = chsize(_iGetHandle(pGet()), cliSize);
-        /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
-    #elif defined(xCOMPILER_CODEGEAR)
-        iRes = chsize(_iGetHandle(pGet()), cliSize);
-        /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
-    #endif
+    iRes = chsize(_iGetHandle(pGet()), cliSize);
+    /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
 #elif defined(xOS_LINUX)
     iRes = ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cliSize ));
     /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
@@ -706,11 +701,13 @@ CxFile::sIsExists(
 	std::tstring sFileName = CxPath::sGetName(csFilePath);
 	std::tstring sFileExt  = CxPath::sGetExt(csFilePath);
 
-	for (size_t uiFileExistsIndex = 1; FALSE != bIsExists(csFilePath); ++ uiFileExistsIndex) {
-        sRes = sFileDir                                  + CxConst::xSLASH         +
-			   sFileName                                 + xT(" (")                +
-			   CxString::lexical_cast(uiFileExistsIndex) + xT(")") + CxConst::xDOT +
-               sFileExt;
+	xCHECK_DO(false == sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
+
+	for (ULONG ulExistsIndex = 1; ; ++ ulExistsIndex) {
+        sRes = CxString::sFormat(xT("%s%s%s (%li)%s"),
+                                 sFileDir.c_str(), CxConst::xSLASH.c_str(), sFileName.c_str(), ulExistsIndex, sFileExt.c_str());
+
+        xCHECK_DO(FALSE == bIsExists(sRes), break);
     }
 
     return sRes;
@@ -1109,22 +1106,15 @@ CxFile::bGetTime(
     /*DEBUG*/// pftModified - n/a
 
 	#if defined(xCOMPILER_CODEGEAR)
-		#define xStat xxxxx
+		#define xStat _stat
 	#else
-		#define xStat xxxxx
+		#define xStat stat
 	#endif
 
-	#if defined(xCOMPILER_CODEGEAR)
-		struct _stat stInfo = {0};
+    struct xStat stInfo = {0};
 
-		INT iRes = _wstat(csFilePath.c_str(), &stInfo);
-		/*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-	#elif defined(xOS_LINUX)
-		struct stat stInfo = {0};
-
-		INT iRes = stat(csFilePath.c_str(), &stInfo);
-		/*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-	#endif
+    INT iRes = _tstat(csFilePath.c_str(), &stInfo);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
 #if xTODO
     xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = stInfo.st_ctim);  //status change
@@ -1235,12 +1225,11 @@ CxFile::sTempCreate(
     sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
 #if defined(xOS_WIN)
-
 	#if defined(xCOMPILER_CODEGEAR)
 		FILE *pfFile = tmpfile();
         /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 	#else
-		sRes.resize( sRes.size() + 1);
+		sRes.resize(sRes.size() + 1);
 
 		errno_t iError = _tmktemp_s(&sRes.at(0), sRes.size() + 1);
 		/*DEBUG*/xASSERT_RET(0 == iError, std::tstring());
@@ -1425,7 +1414,7 @@ CxFile::bTextRead(
     std::tstring                         sLine;
     std::vector<std::tstring>            vsLine;
 
-    for (size_t i = 0; !ifsStream.eof();  ++ i) {
+    for (size_t i = 0; !ifsStream.eof(); ++ i) {
         std::getline(ifsStream, sLine);
 
         sLine = CxString::sTrimRightChars(sLine, CxConst::xEOL);

@@ -23,7 +23,7 @@
     #define tclog           wclog
 
     #define _ttmpnam        _wtmpnam
-    #define TEOF            WEOF
+    #define xTEOF           WEOF
 #else
     #define xTEXT(x)        x
     #define xT(x)           xTEXT(x)
@@ -31,8 +31,8 @@
     typedef char            TCHAR;
     typedef char *          LPTSTR;
     typedef const char *    LPCTSTR;
-    typedef char *          LPSTR;   
-    typedef const char *    LPCSTR;  
+    typedef char *          LPSTR;
+    typedef const char *    LPCSTR;
 
     #define tcin            cin
     #define tcout           cout
@@ -40,21 +40,21 @@
     #define tclog           clog
 
     #define _ttmpnam        tmpnam
-    #define TEOF            EOF
+    #define xTEOF           EOF
 #endif //xUNICODE
 
 namespace std {
 	typedef basic_string<TCHAR,         char_traits<TCHAR>,         allocator<TCHAR> >         tstring;
 	typedef basic_string<unsigned char, char_traits<unsigned char>, allocator<unsigned char> > ustring;
-	
+
 	typedef basic_istream <TCHAR, char_traits<TCHAR> >                                         tistream;
 	typedef basic_ostream <TCHAR, char_traits<TCHAR> >                                         tostream;
 	typedef basic_iostream<TCHAR, char_traits<TCHAR> >                                         tiostream;
-	
+
 	typedef basic_istringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tistringstream;
 	typedef basic_ostringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tostringstream;
 	typedef basic_stringstream <TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tstringstream;
-	
+
 	typedef basic_ifstream<TCHAR, char_traits<TCHAR> >                                         tifstream;
 	typedef basic_ofstream<TCHAR, char_traits<TCHAR> >                                         tofstream;
 	typedef basic_fstream <TCHAR, char_traits<TCHAR> >                                         tfstream;
@@ -220,7 +220,7 @@ namespace std {
             #define GCLP_WNDPROC       GCL_WNDPROC
         #endif
     #endif
-    
+
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xTypesH
