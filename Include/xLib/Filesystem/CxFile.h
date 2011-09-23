@@ -14,13 +14,13 @@ class CxFile :
     /// file
 {
     public:
-        enum EErrorType 
+        enum EErrorType
             /// error type
         {
-            etError = TEOF
+            etError = xTEOF
         };
 
-        enum EOpenMode 
+        enum EOpenMode
             /// open mode
         {
             omRead,                ///< "r"
@@ -39,7 +39,7 @@ class CxFile :
         };
 
     #if defined(xOS_WIN)
-        enum ETranslationMode 
+        enum ETranslationMode
             /// translation mode
         {
             tmText   = O_TEXT,
@@ -47,7 +47,7 @@ class CxFile :
         };
     #endif
 
-        enum EAccessMode 
+        enum EAccessMode
             /// access mode
         {
             amExistence = 0,
@@ -56,7 +56,7 @@ class CxFile :
             amReadWrite = 6
         };
 
-        enum EPointerPosition 
+        enum EPointerPosition
             /// pointer position
         {
             ppBegin = SEEK_SET,
@@ -65,7 +65,7 @@ class CxFile :
             ppError = - 1L
         };
 
-        enum EBufferingMode 
+        enum EBufferingMode
             /// buffering mode
         {
             bmFull = _IOFBF,
@@ -73,7 +73,7 @@ class CxFile :
             bmNo   = _IONBF
         };
 
-        enum ELockingMode 
+        enum ELockingMode
             /// locking mode
         {
             #if defined(xOS_WIN)
@@ -88,7 +88,7 @@ class CxFile :
             #endif
         };
 
-        enum EPermissionMode 
+        enum EPermissionMode
             /// permission mode
         {
             #if defined(xOS_WIN)
@@ -287,7 +287,7 @@ class CxFile :
 
 
 #if xTODO
-    int64_t 
+    int64_t
     CxFile::getSize(const String &path) {
         int64_t size = -1;
 

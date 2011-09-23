@@ -739,6 +739,17 @@ CxTest_CxFile::bUnit1(
     }
 
     //-------------------------------------
+    //sIsExists
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        m_sRes = CxFile::sIsExists(csFilePath);
+        xASSERT_NOT_EQ(FALSE, CxFile::bIsExists(csFilePath));
+        xASSERT_EQ(FALSE, CxFile::bIsExists(m_sRes));
+
+        ////xTRACEV(xT("\tCxFile::sIsExists: %s"), m_sRes.c_str());
+    }
+
+    //-------------------------------------
     //bAccess
     xTEST_BLOCK(cullBlockLoops)
     {

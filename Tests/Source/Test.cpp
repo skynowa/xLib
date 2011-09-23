@@ -184,11 +184,11 @@ _tmain(
             bRes = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
             if (TRUE == bRes) {
                 std::tcout << "\nUsage: xlib_r is_tracing all_loops unit_loops\n"
-                         "  - xlib_r      (binary file path)\n"
-                         "  - is_tracing  (is tracing)\n"
-                         "  - all_loops   (loops for all tests)\n"
-                         "  - unit_loops  (loops for unit test)\n"
-                         "  - block_loops (loops for unit test)\n" << std::endl;
+                              "  - xlib_r      (binary file path)\n"
+                              "  - is_tracing  (is tracing)\n"
+                              "  - all_loops   (loops for all tests)\n"
+                              "  - unit_loops  (loops for unit test)\n"
+                              "  - block_loops (loops for unit test)\n" << std::endl;
             } else {
                 std::tcout << "\nUnknown switches\n" << std::endl;
             }
@@ -334,7 +334,7 @@ _tmain(
         bRes = tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
     }
 
-    return EXIT_SUCCESS;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 #endif //xLib_UnitTestH

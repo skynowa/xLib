@@ -15,7 +15,7 @@ class CxTestManager :
     /// manage tests (CxTest)
 {
 	public:
-				   CxTestManager(const BOOL cbIsUseTracing);
+		explicit   CxTestManager(const BOOL cbIsUseTracing);
 	        ///< constructor
 		virtual   ~CxTestManager();
 		    ///< destructor
