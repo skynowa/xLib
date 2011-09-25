@@ -38,7 +38,7 @@ bDownloadURL(
     hService = ::InternetOpenUrl(hSession, pszUrl, NULL, 0, INTERNET_FLAG_RELOAD | INTERNET_FLAG_DONT_CACHE, 0);
     /*DEBUG*/xASSERT_RET(NULL != hService, FALSE);
 
-    FILE *pFile = _tfopen(pszFilePath, xT("wb"));
+    FILE *pFile = xTFOPEN(pszFilePath, xT("wb"));
     /*DEBUG*/xASSERT_RET(NULL != pFile, FALSE);
 
     while (::InternetReadFile(hService, szBuff, culBuffSize, &ulBytesRead) && ulBytesRead) {
