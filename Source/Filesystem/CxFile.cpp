@@ -33,7 +33,7 @@ CxFile::CxFile() :
 /*virtual*/
 CxFile::~CxFile() {
     /*DEBUG*/// n/a
-
+    
     _m_bRes = bClose();
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
@@ -58,7 +58,7 @@ CxFile::bOpen(
     /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsNameValid(csFilePath), FALSE);
     /*DEBUG*/// comMode - n/a
 
-    FILE *pFile = _tfopen(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());
+    FILE *pFile = xTFOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());
     /*DEBUG*/xASSERT_RET(NULL != pFile, FALSE);
 
     _m_pFile     = pFile;
@@ -77,9 +77,9 @@ CxFile::bOpen(
 //---------------------------------------------------------------------------
 BOOL
 CxFile::bReopen(
-    const std::tstring &csFilePath,
-    const EOpenMode     comMode,
-    const BOOL          cbIsUseBuffering
+	const std::tstring &csFilePath,
+	const EOpenMode     comMode,
+	const BOOL          cbIsUseBuffering
 )
 {
     /*DEBUG*/// _m_pFile - n/a
@@ -87,7 +87,7 @@ CxFile::bReopen(
     /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsNameValid(csFilePath), FALSE);
     /*DEBUG*/// omMode - n/a
 
-    FILE *pFile = _tfreopen(csFilePath.c_str(), _sGetOpenMode(comMode).c_str(), _m_pFile);
+    FILE *pFile = xTFREOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str(), _m_pFile);
     /*DEBUG*/xASSERT_RET(NULL != pFile, FALSE);
 
     _m_pFile     = pFile;
@@ -256,7 +256,7 @@ CxFile::iWrite(
     va_list vlArgs;
     xVA_START(vlArgs, pcszFormat);
 
-    iRes = _vftprintf(pGet(), pcszFormat, vlArgs);
+    iRes = xVFTPRINTF(pGet(), pcszFormat, vlArgs);
     /*DEBUG*/xASSERT_RET(etError < iRes, etError);
 
     xVA_END(vlArgs);
@@ -276,7 +276,7 @@ CxFile::iWriteV(
 
     INT iRes = etError;
 
-    iRes = _vftprintf(pGet(), pcszFormat, vlArgs);
+    iRes = xVFTPRINTF(pGet(), pcszFormat, vlArgs);
     /*DEBUG*/xASSERT_RET(etError < iRes, etError);
 
     return iRes;
@@ -304,7 +304,7 @@ CxFile::bReadLine(
     (*psStr).clear();
     (*psStr).resize(cuiMaxCount + 1);   //+ 1 for 0
 
-    pszRes = _fgetts(&(*psStr).at(0), (*psStr).size(), pGet());
+    pszRes = xFGETTS(&(*psStr).at(0), (*psStr).size(), pGet());
     /*DEBUG*/xASSERT_RET(NULL != pszRes, FALSE);
 
     (*psStr).erase( (*psStr).end() - 1 );   //erase last char - 0
@@ -337,7 +337,7 @@ CxFile::chReadChar() const {
 
     INT iRes = etError;
 
-    iRes = _gettc(pGet());
+    iRes = xFGETTC(pGet());
     /*DEBUG*/xASSERT_RET(EOF <= iRes, static_cast<TCHAR>(etError));
 
     return static_cast<TCHAR>(iRes);
@@ -353,7 +353,7 @@ CxFile::bWriteChar(
 
     INT iRes = etError;
 
-    iRes = _fputtc(static_cast<INT>(ccChar), pGet());
+    iRes = xFPUTTC(static_cast<INT>(ccChar), pGet());
     /*DEBUG*/xASSERT_RET(static_cast<INT>(ccChar) != etError, FALSE);
     /*DEBUG*/xASSERT_RET(static_cast<INT>(ccChar) == iRes,    FALSE);
 
@@ -370,7 +370,7 @@ CxFile::bUngetChar(
 
     INT iRes = etError;
 
-    iRes = _ungettc(ccChar, pGet());
+    iRes = xUNGETTC(ccChar, pGet());
     /*DEBUG*/xASSERT_RET(iRes   != etError,                  FALSE);
     /*DEBUG*/xASSERT_RET(ccChar == static_cast<TCHAR>(iRes), FALSE);
 
@@ -402,12 +402,12 @@ CxFile::bLocking(
 
 #if defined(xOS_WIN)
 	#if defined(xCOMPILER_CODEGEAR)
-		#define xLocking locking
+		#define xLOCKING locking
 	#else
-		#define xLocking _locking
+		#define xLOCKING _locking
 	#endif
 
-	iRes = xLocking(_iGetHandle(pGet()), clmMode, cliBytes);
+	iRes = xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
 	/*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
     iRes = lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
@@ -472,13 +472,8 @@ CxFile::bSetMode(
 {
     INT iRes = etError;
 
-    #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS)
-        iRes = setmode(_iGetHandle(pGet()), ctmMode);
-        /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
-    #elif defined(xCOMPILER_CODEGEAR)
-        iRes = setmode(_iGetHandle(pGet()), ctmMode);
-        /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
-    #endif
+    iRes = setmode(_iGetHandle(pGet()), ctmMode);
+    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
     return TRUE;
 }
@@ -680,7 +675,7 @@ CxFile::bIsExists(
     INT iRes       = etError;
     INT iLastError = 0;
 
-    iRes       = _taccess(csFilePath.c_str(), amExistence);
+    iRes       = xTACCESS(csFilePath.c_str(), amExistence);
     iLastError = errno;
     xCHECK_RET((etError == iRes) && (ENOENT == iLastError), FALSE);
 
@@ -725,7 +720,7 @@ CxFile::bAccess(
 
     INT iRes = etError;
 
-    iRes = _taccess(csFilePath.c_str(), camMode);
+    iRes = xTACCESS(csFilePath.c_str(), camMode);
     /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
 
     return TRUE;
@@ -744,10 +739,10 @@ CxFile::bChmod(
     INT iRes = etError;
 
 #if defined(xOS_WIN)
-    iRes = _tchmod(csFilePath.c_str(), static_cast<INT>( cpmMode ));
+    iRes = xTCHMOD(csFilePath.c_str(), static_cast<INT>( cpmMode ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_LINUX)
-    iRes = _tchmod(csFilePath.c_str(), static_cast<mode_t>( cpmMode ));
+    iRes = xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cpmMode ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
 
@@ -790,7 +785,7 @@ CxFile::bDelete(
     bRes = bChmod(csFilePath, pmWrite);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    iRes = _tremove(csFilePath.c_str());
+    iRes = xTREMOVE(csFilePath.c_str());
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 
     return TRUE;
@@ -947,7 +942,7 @@ CxFile::bUnlink(
 
     INT iRes = etError;
 
-    iRes = _tunlink(csFilePath.c_str());
+    iRes = xTUNLINK(csFilePath.c_str());
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
     return FALSE;
@@ -965,7 +960,7 @@ CxFile::bRename(
 
     INT iRes = etError;
 
-    iRes = _trename(csOldFilePath.c_str(), csNewFilePath.c_str());
+    iRes = xTRENAME(csOldFilePath.c_str(), csNewFilePath.c_str());
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 
     return TRUE;
@@ -1107,13 +1102,15 @@ CxFile::bGetTime(
 
 	#if defined(xCOMPILER_CODEGEAR)
 		#define xStat _stat
+    #elif defined(xCOMPILER_MS)
+        #define xStat _tstat64
 	#else
 		#define xStat stat
 	#endif
 
     struct xStat stInfo = {0};
 
-    INT iRes = _tstat(csFilePath.c_str(), &stInfo);
+    INT iRes = xTSTAT(csFilePath.c_str(), &stInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
 #if xTODO
@@ -1217,31 +1214,37 @@ CxFile::sTempCreate(
     const std::tstring csFileNameTemplate = xT("XXXXXX");
 
 
-    std::tstring sRes;
+	std::tstring  sRes;
+	FILE         *pfFile = NULL;
 
     BOOL bRes = CxDir::bCreateForce(csDirPath);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
 
-    sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
+	sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
 #if defined(xOS_WIN)
 	#if defined(xCOMPILER_CODEGEAR)
-		FILE *pfFile = tmpfile();
-        /*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
+		sRes.resize(sRes.size() + 1);
+
+		TCHAR *pszFile = xTMKSTEMP(&sRes.at(0));
+		/*DEBUG*/xASSERT_RET(NULL != pszFile, std::tstring());
+
+		pfFile = xTFOPEN(pszFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
+		/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 	#else
 		sRes.resize(sRes.size() + 1);
 
 		errno_t iError = _tmktemp_s(&sRes.at(0), sRes.size() + 1);
 		/*DEBUG*/xASSERT_RET(0 == iError, std::tstring());
 
-		FILE *pfFile = _tfopen(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
+		pfFile = xTFOPEN(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
 		/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 	#endif
 #elif defined(xOS_LINUX)
-	INT iFile = _tmkstemp(&sRes.at(0));
-    /*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
+	INT iFile = xTMKSTEMP(&sRes.at(0));
+	/*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
 
-	FILE *pfFile = _tfdopen(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
+	pfFile = xTFDOPEN(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
 	/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 #endif
 
@@ -1670,7 +1673,7 @@ CxFile::_pfGetHandle(
 
     FILE *pfRes = NULL;
 
-    pfRes = _tfdopen(iFileHandle, _sGetOpenMode(omMode).c_str());
+    pfRes = xTFDOPEN(iFileHandle, _sGetOpenMode(omMode).c_str());
     /*DEBUG*/xASSERT_RET(NULL != pfRes, NULL);
 
     return pfRes;

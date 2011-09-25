@@ -1277,6 +1277,9 @@
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\xFunctions.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Source\Sync\CxThreadPool.inl">

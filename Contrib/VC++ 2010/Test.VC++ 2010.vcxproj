@@ -347,6 +347,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\xFunctions.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xTracing.h" />
     <ClInclude Include="..\..\Include\xLib\Crypt\OpenSSL\CxBase64.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxStdError.h" />

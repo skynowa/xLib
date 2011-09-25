@@ -190,7 +190,7 @@ CxDebugger::bBeep(
         //TODO: bBeep
     #else
         #if xTODO
-            INT iRes = _tsystem(xT("xkbbell"));
+            INT iRes = xTSYSTEM(xT("xkbbell"));
             xASSERT_RET(- 1 == iRes, FALSE);
         #endif
     #endif
@@ -505,7 +505,7 @@ CxDebugger::_bLoggingPlain(
 
     //--------------------------------------------------
     //write to file
-    FILE *pFile = _tfopen(sFilePath.c_str(), xT("ab"));
+    FILE *pFile = xTFOPEN(sFilePath.c_str(), xT("ab"));
     xCHECK_RET(NULL == pFile, FALSE);
 
     try {
@@ -517,7 +517,7 @@ CxDebugger::_bLoggingPlain(
             crpReport.sGetReport().c_str()
         );
 
-        _ftprintf(pFile, xT("%s"), csMsg.data());
+        xFTPRINTF(pFile, xT("%s"), csMsg.data());
     }
     catch (...) { }
 

@@ -457,7 +457,7 @@ CxVolume::bGetLogicalDrives(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//Fills a buffer with strings that specify valid drives in the _tsystem
+//Fills a buffer with strings that specify valid drives in the xTSYSTEM
 /*static*/  //FIXME
 #if defined(xOS_WIN)
 std::tstring
@@ -642,7 +642,7 @@ CxVolume::sQueryDosDevice(
     //TODO: xOS_LINUX
 #endif
 //--------------------------------------------------------------------------
-//Sets the label of a file _tsystem volume
+//Sets the label of a file xTSYSTEM volume
 /*static*/
 #if defined(xOS_WIN)
 BOOL
