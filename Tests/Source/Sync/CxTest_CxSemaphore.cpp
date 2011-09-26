@@ -52,7 +52,7 @@ CxTest_CxSemaphore::bUnit(
     m_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));
     xASSERT_NOT_EQ(FALSE, m_bRes);
 
-    if (NULL == _beginthreadex(0, 0, &vTest, 0, NULL, NULL)) {
+    if (NULL == _beginthreadex(0, 0, &vTest, 0, 0, NULL)) {
         std::cout << "Error begin thread " << std::endl;
     }
 

@@ -1214,7 +1214,7 @@ CxFile::sTempCreate(
 	sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
 #if defined(xOS_WIN)
-	#if defined(xCOMPILER_CODEGEAR)
+	#if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_CODEGEAR)
 		sRes.resize(sRes.size() + 1);
 
 		TCHAR *pszFile = xTMKSTEMP(&sRes.at(0));
@@ -1225,7 +1225,7 @@ CxFile::sTempCreate(
 	#else
 		sRes.resize(sRes.size() + 1);
 
-		errno_t iError = _tmktemp_s(&sRes.at(0), sRes.size() + 1);
+		errno_t iError = xTMKSTEMP(&sRes.at(0), sRes.size() + 1);
 		/*DEBUG*/xASSERT_RET(0 == iError, std::tstring());
 
 		pfFile = xTFOPEN(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());

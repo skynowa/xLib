@@ -84,7 +84,9 @@ class CxShell :
             sfInternet               = CSIDL_INTERNET,
             sfInternetCache          = CSIDL_INTERNET_CACHE,
             sfLocalAppData           = CSIDL_LOCAL_APPDATA,
+		#if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
             sfMyDocuments            = CSIDL_MYDOCUMENTS,
+		#endif
             sfMyMusic                = CSIDL_MYMUSIC,
             sfMyPictures             = CSIDL_MYPICTURES,
             sfMyVideo                = CSIDL_MYVIDEO,

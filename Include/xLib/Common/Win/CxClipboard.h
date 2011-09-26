@@ -15,12 +15,14 @@ class CxClipboard :
     /// clipboard
 {
     public:
-        enum EFormat 
+        enum EFormat
             /// format
         {
             fmBITMAP          = CF_BITMAP,
             fmdib             = CF_DIB,
-            fmDibv5           = CF_DIBV5,
+		#if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
+			fmDibv5           = CF_DIBV5,
+		#endif
             fmDif             = CF_DIF,
             fmDspBitmap       = CF_DSPBITMAP,
             fmDsPenhMetaFile  = CF_DSPENHMETAFILE,
@@ -87,7 +89,7 @@ class CxClipboard :
 #if xTODO
     static HGLOBAL   hglb;
 
-    void __fastcall 
+    void __fastcall
     TfrmMainServer::LockClipboard(bool bLockFlag) {
         if (bLockFlag == true) {
             OpenClipboard(NULL);

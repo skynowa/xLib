@@ -293,7 +293,7 @@ CxConsole::bClear() {
 
     COORD                      coordScreen   = {0};     //here's where we'll home the cursor
     ULONG                      cCharsWritten = 0;
-    CONSOLE_SCREEN_BUFFER_INFO csbi          = {0};     //to get buffer info
+    CONSOLE_SCREEN_BUFFER_INFO csbi          = {{0}};     //to get buffer info
     ULONG                      ulConSize     = 0;       //number of character cells in the current buffer
 
     //get the number of character cells in the current buffer
