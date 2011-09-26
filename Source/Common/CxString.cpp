@@ -467,7 +467,7 @@ CxString::sFormat(
             xVA_COPY(_palArgs, palArgs);
 
             {
-                iWrittenSize = xVSNTPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
+                iWrittenSize = xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
                 xCHECK_DO(iWrittenSize > - 1 && static_cast<size_t>( iWrittenSize ) < sBuff.size(), break);
 
                 sBuff.resize(sBuff.size() * 2);
@@ -498,7 +498,7 @@ CxString::sFormat(
         {
             va_list _palArgs;
             xVA_COPY(_palArgs, palArgs);
-            iWrittenSize = xVSNTPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
+            iWrittenSize = xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
             xVA_END(_palArgs);
 
             /*DEBUG*/assert(- 1 < iWrittenSize);
@@ -513,7 +513,7 @@ CxString::sFormat(
 
             va_list _palArgs;
             xVA_COPY(_palArgs, palArgs);
-            iWrittenSize = xVSNTPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
+            iWrittenSize = xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
             xVA_END(_palArgs);
 
             /*DEBUG*/assert(- 1          <  iWrittenSize);

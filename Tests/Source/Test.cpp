@@ -158,13 +158,14 @@ xTMAIN(
         std::tcout << "<pre>\n\n" << std::endl;
     #endif
 
+    #if xTEMP_DISABLED
+        INT iMin = CxThread::_iGetPriorityMin();
+        INT iMax = CxThread::_iGetPriorityMax();
 
-    INT iMin = CxThread::_iGetPriorityMin();
-    INT iMax = CxThread::_iGetPriorityMax();
+        xTRACEV("Tnread prior: %i ... %i", iMin, iMax);
 
-    xTRACEV("Tnread prior: %i ... %i", iMin, iMax);
-
-    ///return 0;
+        return 0;
+    #endif
 
     //--------------------------------------------------
     //options (default)
