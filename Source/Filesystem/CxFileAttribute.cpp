@@ -48,7 +48,7 @@ CxFileAttribute::atGet(
     faRes = static_cast<EAttribute>( ::GetFileAttributes(csFilePath.c_str()) );
     /*DEBUG*/// n/a
 #elif defined(xOS_LINUX)
-    struct stat stInfo = {0};
+    xTSTAT_STRUCT stInfo = {0};
 
     INT iRes = xTSTAT(csFilePath.c_str(), &stInfo);
     /*DEBUG*/// n/a
@@ -76,7 +76,7 @@ CxFileAttribute::bSet(
     BOOL bRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ULONG>(cfaValue));
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
-    INT iRes = _tchmod(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
+    INT iRes = xTCHMOD(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -121,8 +121,6 @@ CxFileAttribute::bModify(
     /*DEBUG*/// cfaRemoveValue
     /*DEBUG*/// cfaAddValue
 
-    BOOL bRes = FALSE;
-
     //get the current attributes
     EAttribute cfaValue = atGet(csFilePath);
 
@@ -131,7 +129,7 @@ CxFileAttribute::bModify(
     cfaValue = static_cast<EAttribute>( static_cast<ULONG>(cfaValue) |  cfaAddValue    );
 
     //change the attributes
-    bRes = bSet(csFilePath, cfaValue);
+    BOOL bRes = bSet(csFilePath, cfaValue);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;

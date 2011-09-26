@@ -1,6 +1,6 @@
 /**
  * \file  xFunctions.h
- * \brief types
+ * \brief function's macroses
  */
 
 
@@ -10,126 +10,145 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xUNICODE)
-    #define xTMAIN      wmain
-    #define xFTPRINTF   fwprintf
-    #define xTASCTIME   _wasctime
-    #define xTFOPEN     _wfopen
-    #define xTFDOPEN    _wfdopen
-    #define xTSETLOCALE _wsetlocale
-    #define xVSNTPRINTF _vsnwprintf
-    #define xTFREOPEN   _wfreopen
-    #define xTPERROR    _wperror
-    #define xVSTPRINTF  _vswprintf
-    #define xVTPRINTF   vwprintf
-    #define xVFTPRINTF  vfwprintf
-    #define xFGETTC      getwc
-    #define xPUTTS      _putws
-	#define xPUTTCHAR   putwchar
-    #define xTACCESS    _waccess
-    #define xGETTS      _getws
-    #define xGETTCHAR   getwchar
-    #define xTSYSTEM    _wsystem
-	#define xTTMPNAM    _wtmpnam
+        #define tcin            wcin
+        #define tcout           wcout
+        #define tcerr           wcerr
+        #define tclog           wclog
+        #define xTEOF           WEOF
 
-	#define xTMKSTEMP   mkstemp
+        #define xTMAIN          wmain
+        #define xFTPRINTF       fwprintf
+        #define xTASCTIME       _wasctime
+        #define xTSETLOCALE     _wsetlocale
+        #define xTFOPEN         _wfopen
+        #define xTFREOPEN       _wfreopen
+        #define xTFDOPEN        _wfdopen
+        #define xTVSNPRINTF     _vsnwprintf
+        #define xTPERROR        _wperror
+        #define xTVSPRINTF      _vswprintf
+        #define xTVPRINTF       vwprintf
+        #define xTVFPRINTF      vfwprintf
+        #define xTFGETC         getwc
+        #define xTPUTS          _putws
+        #define xTPUTCHAR       putwchar
+        #define xTACCESS        _waccess
+        #define xTGETS          _getws
+        #define xTGETCHAR       getwchar
+        #define xTTMPNAM        _wtmpnam
+        #define xTMKSTEMP       mkstemp
+        #define xTRENAME        _wrename
+        #define xTUNLINK        _wunlink
+        #define xTREMOVE        _wremove
+        #define xTFPUTS         fputws
+        #define xTUNGETC        ungetwc
+        #define xTFPUTC         fputwc
+        #define xTFGETS         fgetws
+        #define xTSTRLEN        wcslen
+        #define xTCHMOD         _wchmod
+        #define xTSYSTEM        _wsystem
 
-
-    #define xTRENAME    _wrename
-	#define xTUNLINK    _wunlink
-    #define xTREMOVE    _wremove
-    #define xFPUTTS     fputws
-	#define xUNGETTC    ungetwc
-    #define xFPUTTC     fputwc
-    #define xFGETTS     fgetws
-    #define xTCSLEN     wcslen
-    #define xTCHMOD     _wchmod
+    //struct stat
+    #if defined(xCOMPILER_CODEGEAR)
+        #define xTSTAT_STRUCT   struct _stat
+    #elif defined(xCOMPILER_MS)
+        #define xTSTAT_STRUCT   struct _tstat64
+    #else
+        #define xTSTAT_STRUCT   struct stat
+    #endif
 
     //stat
     #if defined(xCOMPILER_CODEGEAR)
-	    #define xTSTAT      _tstat
+	    #define xTSTAT          _tstat
     #elif defined(xCOMPILER_MS)
-        #define xTSTAT      _tstat64
+        #define xTSTAT          _tstat64
     #else
-        #define xTSTAT      _wstat
+        #define xTSTAT          _wstat
     #endif
 
-    
-    //chars
-    #define xISTALNUM   iswalnum
-    #define xISTALPHA   iswalpha
-    #define xISTCNTRL   iswcntrl
-    #define xISTDIGIT   iswdigit
-    #define xISTXDIGIT  iswxdigit
-    #define xISTGRAPH   iswgraph
-    #define xISTPRINT   iswprint
-    #define xISTPUNCT   iswpunct
-    #define xISTSPACE   iswspace
-    #define xISTLOWER   iswlower
-    #define xISTUPPER   iswupper
-    #define xTOTLOWER   towlower
-    #define xTOTUPPER   towupper
-
-    //sockets
-    ////typedef addrinfo    ADDRINFOT;
+        //chars
+        #define xTISALNUM       iswalnum
+        #define xTISALPHA       iswalpha
+        #define xTISCNTRL       iswcntrl
+        #define xTISDIGIT       iswdigit
+        #define xTISXDIGIT      iswxdigit
+        #define xTISGRAPH       iswgraph
+        #define xTISPRINT       iswprint
+        #define xTISPUNCT       iswpunct
+        #define xTISSPACE       iswspace
+        #define xTISLOWER       iswlower
+        #define xTISUPPER       iswupper
+        #define xTTOLOWER       towlower
+        #define xTTOUPPER       towupper
 #else
-    #define xTMAIN      main
-    #define xFTPRINTF   fprintf
-    #define xTASCTIME   asctime
-    #define xTFOPEN     fopen
-    #define xTFDOPEN    fdopen
-    #define xTSETLOCALE setlocale
-    #define xVSNTPRINTF vsnprintf
-    #define xTFREOPEN   freopen
-    #define xTPERROR    perror
-    #define xVSTPRINTF  vsprintf
-    #define xVTPRINTF   vprintf
-    #define xVFTPRINTF  vfprintf
-    #define xFGETTC      getc
-    #define xPUTTS      puts
-    #define xPUTTCHAR   putchar
-    #define xTACCESS    access
-    #define xGETTS      gets
-    #define xGETTCHAR   getchar
-    #define xTSYSTEM    system
-    #define xTTMPNAM    tmpnam
-    #define xTMKSTEMP   mkstemp
-    #define xTRENAME    rename
-    #define xTUNLINK    unlink
-    #define xTREMOVE    remove
-    #define xFPUTTS     fputs
-    #define xUNGETTC    ungetc
-    #define xFPUTTC     fputc
-    #define xFGETTS     fgets
-    #define xTCSLEN     strlen
-    #define xTCHMOD     chmod
+        #define tcin            cin
+        #define tcout           cout
+        #define tcerr           cerr
+        #define tclog           clog
+        #define xTEOF           EOF
+
+        #define xTMAIN          main
+        #define xFTPRINTF       fprintf
+        #define xTASCTIME       asctime
+        #define xTSETLOCALE     setlocale
+        #define xTFOPEN         fopen
+        #define xTFREOPEN       freopen
+        #define xTFDOPEN        fdopen
+        #define xTVSNPRINTF     vsnprintf
+        #define xTPERROR        perror
+        #define xTVSPRINTF      vsprintf
+        #define xTVPRINTF       vprintf
+        #define xTVFPRINTF      vfprintf
+        #define xTFGETC         getc
+        #define xTPUTS          puts
+        #define xTPUTCHAR       putchar
+        #define xTACCESS        access
+        #define xTGETS          gets
+        #define xTGETCHAR       getchar
+        #define xTTMPNAM        tmpnam
+        #define xTMKSTEMP       mkstemp
+        #define xTRENAME        rename
+        #define xTUNLINK        unlink
+        #define xTREMOVE        remove
+        #define xTFPUTS         fputs
+        #define xTUNGETC        ungetc
+        #define xTFPUTC         fputc
+        #define xTFGETS         fgets
+        #define xTSTRLEN        strlen
+        #define xTCHMOD         chmod
+        #define xTSYSTEM        system
+
+    //struct stat
+    #if defined(xCOMPILER_CODEGEAR)
+        #define xTSTAT_STRUCT   struct _stat
+    #elif defined(xCOMPILER_MS)
+        #define xTSTAT_STRUCT   struct _tstat64
+    #else
+        #define xTSTAT_STRUCT   struct stat
+    #endif
 
     //stat
     #if defined(xCOMPILER_CODEGEAR)
-	    #define xTSTAT      _tstat
+	    #define xTSTAT          _tstat
     #elif defined(xCOMPILER_MS)
-        #define xTSTAT      _tstat64
+        #define xTSTAT          _tstat64
     #else
-        #define xTSTAT      _wstat
+        #define xTSTAT          stat
     #endif
 
-
-    //chars
-    #define xISTALNUM   isalnum
-    #define xISTALPHA   isalpha
-    #define xISTCNTRL   iscntrl
-    #define xISTDIGIT   isdigit
-    #define xISTXDIGIT  isxdigit
-    #define xISTGRAPH   isgraph
-    #define xISTPRINT   isprint
-    #define xISTPUNCT   ispunct
-    #define xISTSPACE   isspace
-    #define xISTLOWER   islower
-    #define xISTUPPER   isupper
-    #define xTOTLOWER   tolower
-    #define xTOTUPPER   toupper
-
-    //sockets
-    ////typedef addrinfo    ADDRINFOT;
+        //chars
+        #define xTISALNUM       isalnum
+        #define xTISALPHA       isalpha
+        #define xTISCNTRL       iscntrl
+        #define xTISDIGIT       isdigit
+        #define xTISXDIGIT      isxdigit
+        #define xTISGRAPH       isgraph
+        #define xTISPRINT       isprint
+        #define xTISPUNCT       ispunct
+        #define xTISSPACE       isspace
+        #define xTISLOWER       islower
+        #define xTISUPPER       isupper
+        #define xTTOLOWER       tolower
+        #define xTTOUPPER       toupper
 #endif //xUNICODE
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xFunctionsH
