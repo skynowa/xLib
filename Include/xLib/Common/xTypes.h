@@ -16,14 +16,6 @@
     typedef wchar_t         TCHAR;
     typedef wchar_t *       LPTSTR;
     typedef const wchar_t * LPCTSTR;
-
-    #define tcin            wcin
-    #define tcout           wcout
-    #define tcerr           wcerr
-    #define tclog           wclog
-
-    #define xTTMPNAM        _wtmpnam
-    #define xTEOF           WEOF
 #else
     #define xTEXT(x)        x
     #define xT(x)           xTEXT(x)
@@ -33,14 +25,6 @@
     typedef const char *    LPCTSTR;
     typedef char *          LPSTR;
     typedef const char *    LPCSTR;
-
-    #define tcin            cin
-    #define tcout           cout
-    #define tcerr           cerr
-    #define tclog           clog
-
-    #define xTTMPNAM        tmpnam
-    #define xTEOF           EOF
 #endif //xUNICODE
 
 namespace std {
@@ -65,9 +49,8 @@ namespace std {
 
 #if defined(xOS_WIN)
 	#if defined(xCOMPILER_MINGW32)
-		//sockets
 		typedef addrinfo           ADDRINFOT;
-	#endif //xUNICODE
+	#endif
 #elif defined(xOS_LINUX)
     #if !defined(BOOL)
         typedef enum { FALSE = 0, TRUE = 1 } BOOL;
@@ -76,18 +59,20 @@ namespace std {
     typedef void                   VOID;
     typedef void *                 LPVOID;
 
-    typedef int                    INT;
-    typedef short int              SHORT;
-    typedef long int               LONG;
-    typedef long long int          LONGLONG;
+    typedef signed int             INT;
+    typedef signed short int       SHORT;
+    typedef signed long int        LONG;
+    typedef signed long long int   LONGLONG;
 
     typedef unsigned int           UINT;
     typedef unsigned short int     USHORT;
     typedef unsigned long int      ULONG;
     typedef unsigned long long int ULONGLONG;
 
-    typedef char                   CHAR;
+    typedef signed char            CHAR;
     typedef unsigned char          UCHAR;
+
+    typedef addrinfo               ADDRINFOT;
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xTypesH
