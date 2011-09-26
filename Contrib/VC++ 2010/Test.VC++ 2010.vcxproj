@@ -248,9 +248,6 @@
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxComPort.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxShell.cpp" />
-    <ClCompile Include="..\..\Source\Compress\Linux\CxGz.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bGetUsbInfo.cpp" />
@@ -271,10 +268,6 @@
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxComPort.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxHandleT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxShell.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Compress\Linux\CxTest_CxGz.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp" />
@@ -376,10 +369,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxComPort.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxHandleT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxShell.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Compress\Linux\CxTest_CxGz.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h" />

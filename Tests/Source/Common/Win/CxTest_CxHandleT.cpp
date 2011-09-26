@@ -82,8 +82,6 @@ CxTest_CxHandleT::bUnit(
         m_hRes = objHandle.hGet();
         xASSERT_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
 
-        HANDLE chHandle;
-
         m_bRes = objHandle.bSet(NULL);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 

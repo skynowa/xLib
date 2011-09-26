@@ -82,15 +82,6 @@
     <Filter Include="xLib\Common\Linux">
       <UniqueIdentifier>{b204125e-5803-4619-9ecf-22067a589e50}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Compress">
-      <UniqueIdentifier>{f056993a-0678-4c1e-ad77-8d2cfd333d30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Compress\Win">
-      <UniqueIdentifier>{d02a03ce-c41f-402b-8cb8-b51656aac7fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Compress\Linux">
-      <UniqueIdentifier>{c64e5c25-ecbb-485e-8344-b81c7b3ae1bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Units">
       <UniqueIdentifier>{1c657a2d-d04a-4cdf-9e8b-8c16abad6039}</UniqueIdentifier>
     </Filter>
@@ -108,9 +99,6 @@
     </Filter>
     <Filter Include="Test\Common">
       <UniqueIdentifier>{56e6e316-b95d-437d-a0c1-d0c59bcbd090}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test\Compress">
-      <UniqueIdentifier>{4363a1e5-84d2-409c-afc2-d99d7e8d7f5e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Test\Crypt">
       <UniqueIdentifier>{96743506-b7a5-48d3-9f63-09acb786370a}</UniqueIdentifier>
@@ -156,9 +144,6 @@
     </Filter>
     <Filter Include="Test\Common\Win">
       <UniqueIdentifier>{e62c7241-b993-40fa-bf6c-80dad98ef5b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test\Compress\Linux">
-      <UniqueIdentifier>{a6448b76-bb32-44fd-a796-95655343e67f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Test\Units\Win">
       <UniqueIdentifier>{554701ed-ecd7-49f7-84b7-f2866f1fedcd}</UniqueIdentifier>
@@ -362,9 +347,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\Win\CxShell.cpp">
       <Filter>xLib\Common\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Compress\Linux\CxGz.cpp">
-      <Filter>xLib\Compress\Linux</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp">
       <Filter>xLib\Units</Filter>
@@ -650,9 +632,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxClipboard.cpp">
       <Filter>Test\Common\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Compress\Linux\CxTest_CxGz.cpp">
-      <Filter>Test\Compress\Linux</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp">
       <Filter>Test\Units\Win</Filter>
@@ -1223,9 +1202,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxShell.h">
       <Filter>Test\Common\Win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Compress\Linux\CxTest_CxGz.h">
-      <Filter>Test\Compress\Linux</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Units\Win\CxTest_bGetUsbInfo.h">
       <Filter>Test\Units\Win</Filter>
     </ClInclude>
@@ -1349,9 +1325,6 @@
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpServerSocket.h">
       <Filter>xLib\Net</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
-      <Filter>xLib\Compress\Linux</Filter>
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxLocalStorage.h">
       <Filter>xLib\Filesystem</Filter>

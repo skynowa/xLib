@@ -35,7 +35,22 @@
         #define xTGETS          _getws
         #define xTGETCHAR       getwchar
         #define xTTMPNAM        _wtmpnam
+
+        //mkstemp
+    #if   defined(xCOMPILER_MINGW32)
+        #define xTMKSTEMP       _wmktemp
+    #elif defined(xCOMPILER_INTEL)
+        #define xTMKSTEMP       _tmktemp_s
+    #elif defined(xCOMPILER_MS)
+        #define xTMKSTEMP       _tmktemp_s
+    #elif defined(xCOMPILER_CODEGEAR)
+        #define xTMKSTEMP       _wmktemp
+    #elif defined(xCOMPILER_GNUC)
         #define xTMKSTEMP       mkstemp
+    #else
+        #define xTMKSTEMP       mkstemp
+    #endif
+
         #define xTRENAME        _wrename
         #define xTUNLINK        _wunlink
         #define xTREMOVE        _wremove
@@ -105,7 +120,22 @@
         #define xTGETS          gets
         #define xTGETCHAR       getchar
         #define xTTMPNAM        tmpnam
+
+        //mkstemp
+    #if   defined(xCOMPILER_MINGW32)
+        #define xTMKSTEMP       _mktemp
+    #elif defined(xCOMPILER_INTEL)
+        #define xTMKSTEMP       _tmktemp_s
+    #elif defined(xCOMPILER_MS)
+        #define xTMKSTEMP       _tmktemp_s
+    #elif defined(xCOMPILER_CODEGEAR)
+        #define xTMKSTEMP       _mktemp
+    #elif defined(xCOMPILER_GNUC)
         #define xTMKSTEMP       mkstemp
+    #else
+        #define xTMKSTEMP       mktemp
+    #endif
+
         #define xTRENAME        rename
         #define xTUNLINK        unlink
         #define xTREMOVE        remove

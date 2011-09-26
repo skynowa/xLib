@@ -106,8 +106,11 @@ CxTest_CxDnsClient::bUnit(
 		}
 
         #if defined(xOS_WIN)
-		    ////freeaddrinfo(paiList);
-       		::FreeAddrInfo(paiList);
+			#if defined(xCOMPILER_MS)
+				::FreeAddrInfo(paiList);
+			#else
+				freeaddrinfo(paiList);
+			#endif
         #elif defined(xOS_LINUX)
        		freeaddrinfo(paiList);
         #endif
