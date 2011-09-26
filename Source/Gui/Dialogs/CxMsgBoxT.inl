@@ -120,7 +120,7 @@ CxMsgBoxT::iShow(
                             xT("Message box"),
                             xT("Ok"));
 
-    mrRes = static_cast<EModalResult>( _tsystem(sMsg.c_str()) );
+    mrRes = static_cast<EModalResult>( xTSYSTEM(sMsg.c_str()) );
 #endif
 
     return mrRes;
