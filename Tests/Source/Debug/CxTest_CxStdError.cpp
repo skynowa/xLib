@@ -80,20 +80,18 @@ CxTest_CxStdError::bUnit(
     //sFormat
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_sRes = CxStdError::sFormat(0);
-        xASSERT_EQ(false, m_sRes.empty());
+        #if defined(xOS_WIN)
+            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
+        #elif defined(xOS_LINUX)
+            const size_t cuiMaxErrors = 200;    /*0...132*/
+        #endif
 
-        m_sRes = CxStdError::sFormat(1);
-        xASSERT_EQ(false, m_sRes.empty());
+        for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
+            m_sRes = CxStdError::sFormat(i);
+            xASSERT_EQ(false, m_sRes.empty());
 
-        m_sRes = CxStdError::sFormat(2);
-        xASSERT_EQ(false, m_sRes.empty());
-
-        m_sRes = CxStdError::sFormat(3);
-        xASSERT_EQ(false, m_sRes.empty());
-
-        m_sRes = CxStdError::sFormat(4);
-        xASSERT_EQ(false, m_sRes.empty());
+            //xTRACEV(xT("\CxStdError::sFormat(%li) = %s (size = %li)"), i, m_sRes.c_str(), m_sRes.size() - 4);
+        }
     }
 
     return TRUE;

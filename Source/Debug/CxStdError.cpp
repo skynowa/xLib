@@ -16,8 +16,6 @@
 /*static*/
 INT
 CxStdError::iGet() {
-    /*DEBUG*/// n/a
-
     INT iCode = 0; /*= ciCodeSuccess*/;
 
     iCode = errno;
@@ -30,8 +28,6 @@ CxStdError::iGet() {
 /*static*/
 std::tstring
 CxStdError::sGet() {
-    /*DEBUG*/
-
     return sFormat(iGet());
 }
 //---------------------------------------------------------------------------
@@ -41,8 +37,6 @@ CxStdError::bSet(
     const INT ciCode
 )
 {
-    /*DEBUG*/// iCode - n/a
-
     errno = ciCode;
 
     return TRUE;
@@ -51,8 +45,6 @@ CxStdError::bSet(
 /*static*/
 BOOL
 CxStdError::bReset() {
-    /*DEBUG*/// n/a
-
     const INT ciCodeSuccess = 0;
 
     return bSet(ciCodeSuccess);
@@ -64,9 +56,11 @@ CxStdError::sFormat(
     const INT ciCode
 )
 {
-    /*DEBUG*/// iCode - n/a
+    CHAR szBuff[64 + 1] = {0};
 
-    return CxString::sFormat(xT("%i - %s"), ciCode, strerror(ciCode));
+    const TCHAR *pcszError = strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+
+    return CxString::sFormat(xT("%i - %s"), ciCode, pcszError);
 }
 //---------------------------------------------------------------------------
 
@@ -78,11 +72,11 @@ CxStdError::sFormat(
 
 //---------------------------------------------------------------------------
 CxStdError::CxStdError() {
-    /*DEBUG*/// n/a
+
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxStdError::~CxStdError() {
-    /*DEBUG*/// n/a
+
 }
 //---------------------------------------------------------------------------

@@ -32,9 +32,9 @@ CxTest_CxLastError::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
-        const size_t cuiMaxErrors = 17000;  /*0...15999*/;
+            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
         #elif defined(xOS_LINUX)
-        const size_t cuiMaxErrors = 200;    /*0...132*/
+            const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
@@ -49,9 +49,9 @@ CxTest_CxLastError::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
-        const size_t cuiMaxErrors = 17000;  /*0...15999*/;
+            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
         #elif defined(xOS_LINUX)
-        const size_t cuiMaxErrors = 200;    /*0...132*/
+            const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
@@ -65,9 +65,9 @@ CxTest_CxLastError::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
-        const size_t cuiMaxErrors = 17000;  /*0...15999*/;
+            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
         #elif defined(xOS_LINUX)
-        const size_t cuiMaxErrors = 200;    /*0...132*/
+            const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
@@ -81,9 +81,9 @@ CxTest_CxLastError::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_WIN)
-        const size_t cuiMaxErrors = 17000;  /*0...15999*/;
+            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
         #elif defined(xOS_LINUX)
-        const size_t cuiMaxErrors = 200;    /*0...132*/
+            const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
@@ -101,20 +101,18 @@ CxTest_CxLastError::bUnit(
     //sFormat
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_sRes = CxLastError::sFormat(0);
-        xASSERT_EQ(false, m_sRes.empty());
+        #if defined(xOS_WIN)
+            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
+        #elif defined(xOS_LINUX)
+            const size_t cuiMaxErrors = 200;    /*0...132*/
+        #endif
 
-        m_sRes = CxLastError::sFormat(1);
-        xASSERT_EQ(false, m_sRes.empty());
+        for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
+            m_sRes = CxLastError::sFormat(i);
+            xASSERT_EQ(false, m_sRes.empty());
 
-        m_sRes = CxLastError::sFormat(2);
-        xASSERT_EQ(false, m_sRes.empty());
-
-        m_sRes = CxLastError::sFormat(3);
-        xASSERT_EQ(false, m_sRes.empty());
-
-        m_sRes = CxLastError::sFormat(4);
-        xASSERT_EQ(false, m_sRes.empty());
+            //xTRACEV(xT("\tCxLastError::sFormat(%li) = %s (size = %li)"), i, m_sRes.c_str(), m_sRes.size() - 4);
+        }
     }
 
     return TRUE;
