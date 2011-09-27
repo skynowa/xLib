@@ -26,7 +26,7 @@ CxEnvironment::bIsExists(
 
 #if defined(xOS_WIN)
     std::tstring sRes;
-    ULONG   ulStored = 0;
+    ULONG        ulStored = 0UL;
 
     sRes.resize(xPATH_MAX);
 
@@ -34,11 +34,9 @@ CxEnvironment::bIsExists(
     /*DEBUG*/// n/a
     xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), FALSE);
 #elif defined(xOS_LINUX)
-    char *pszRes = NULL;
-
-    pszRes = getenv(csVarName.c_str());
+    const char *pcszRes = getenv(csVarName.c_str());
     /*DEBUG*/// n/a
-    xCHECK_RET(NULL == pszRes, FALSE);
+    xCHECK_RET(NULL == pcszRes, FALSE);
 #endif
 
     return TRUE;
@@ -56,7 +54,7 @@ CxEnvironment::sGetVar(
     std::tstring sRes;
 
 #if defined(xOS_WIN)
-    ULONG ulStored = 0;
+    ULONG ulStored = 0UL;
 
     sRes.resize(xPATH_MAX);
 
@@ -67,15 +65,13 @@ CxEnvironment::sGetVar(
 
     if (sRes.size() < ulStored) {
         ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
-        /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
+        /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring());
     }
 #elif defined(xOS_LINUX)
-    char *pszRes = NULL;
+    const char *pcszRes = getenv(csVarName.c_str());
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring());
 
-    pszRes = getenv(csVarName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pszRes, std::tstring());
-
-    sRes.assign(pszRes);
+    sRes.assign(pcszRes);
 #endif
 
     return sRes;
@@ -116,8 +112,7 @@ CxEnvironment::bDeleteVar(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_LINUX)
     #if defined(xOS_FREEBSD)
-        unsetenv(csVarName.c_str());
-        /*DEBUG*/// n/a
+        (VOID)unsetenv(csVarName.c_str());
     #else
         INT iRes = unsetenv(csVarName.c_str());
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
@@ -148,7 +143,7 @@ CxEnvironment::bGetValues(
     //Variable strings are separated by NULL byte, and the block is terminated by a NULL byte
     pszVar = static_cast<LPTSTR>( lpvEnv );
 
-    while (*pszVar)    {
+    while (NULL != *pszVar)    {
         vsArgs.push_back(pszVar);
         pszVar += ::lstrlen(pszVar) + 1;
     }
@@ -181,18 +176,18 @@ CxEnvironment::sExpandStrings(
     std::tstring sRes;
 
 #if defined(xOS_WIN)
-    ULONG ulStored = FALSE;
+    ULONG ulStored = 0UL;
 
     sRes.resize(xPATH_MAX);
 
     ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
+    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring());
 
     sRes.resize(ulStored);
 
     if (sRes.size() < ulStored) {
         ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
-        /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
+        /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring());
     }
 
     sRes.resize(ulStored - sizeof('\0'));
@@ -236,73 +231,6 @@ CxEnvironment::sExpandStrings(
     return sRes;
 }
 //--------------------------------------------------------------------------
-
-
-/****************************************************************************
-*	command line args
-*
-*****************************************************************************/
-
-//--------------------------------------------------------------------------
-/*static*/ std::vector<std::tstring> CxEnvironment::_m_vsCommandLineArgs;
-//--------------------------------------------------------------------------
-/*static*/
-std::tstring
-CxEnvironment::sGetCommandLine() {
-    /*DEBUG*/// n/a
-
-    std::tstring sRes;
-
-#if defined(xOS_WIN)
-    LPCTSTR pcszRes = ::GetCommandLine();
-    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring());
-
-    sRes.assign( CxString::sTrimSpace(pcszRes) );
-#elif defined(xOS_LINUX)
-    sRes.assign( CxString::sJoin(_m_vsCommandLineArgs, CxConst::xSPACE) );
-#endif
-
-    return sRes;
-}
-//---------------------------------------------------------------------------
-/*static*/
-BOOL
-CxEnvironment::bGetCommandLineArgs(
-    std::vector<std::tstring> *pvsArgs
-)
-{
-    /*DEBUG*/xASSERT_RET(NULL != pvsArgs, FALSE);
-
-    xCHECK_DO(true == _m_vsCommandLineArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
-
-    (*pvsArgs).assign(_m_vsCommandLineArgs.begin(), _m_vsCommandLineArgs.end());
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-/*static*/
-BOOL
-CxEnvironment::bSetCommandLineArgs(
-    const INT  ciArgsCount,
-    TCHAR     *paszArgs[]
-)
-{
-    /*DEBUG*/// n/a (because we'll have a recursion)
-
-    std::vector<std::tstring> vsArgs;
-
-    for (INT i = 0; i < ciArgsCount; ++ i) {
-        vsArgs.push_back(paszArgs[i]);
-    }
-
-    //out
-    std::swap(_m_vsCommandLineArgs, vsArgs);
-
-    xCHECK_DO(true == _m_vsCommandLineArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
 
 
 /****************************************************************************
