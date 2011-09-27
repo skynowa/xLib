@@ -8,6 +8,12 @@
 #ifndef xLib_Common_Linux_xCommon_LinuxH
 #define xLib_Common_Linux_xCommon_LinuxH
 //----------------------------------------------------------------------------------------------------
+//options
+#if xTODO
+    #define _POSIX_SOURCE 1
+#endif
+
+
 //POSIX
 #include <cpio.h>
 #include <dirent.h>
@@ -28,6 +34,7 @@
 #include <sys/wait.h>
 #include <sys/uio.h>
 #include <sys/syscall.h>
+#include <string.h>
 
 //thread
 #include <pthread.h>    //lib: -pthread
@@ -56,11 +63,6 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-
-
-#if xTODO
-    #define _POSIX_SOURCE 1
-#endif
 //----------------------------------------------------------------------------------------------------
 #endif //xLib_Common_Linux_xCommon_LinuxH
 //----------------------------------------------------------------------------------------------------
