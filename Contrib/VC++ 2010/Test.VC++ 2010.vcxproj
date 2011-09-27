@@ -151,6 +151,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Common\CxCommandLine.cpp" />
     <ClCompile Include="..\..\Source\Common\CxConsole.cpp" />
     <ClCompile Include="..\..\Source\Common\CxType.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp" />
@@ -254,6 +255,7 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxArray.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxAutoMallocT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxChar.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxCommandLine.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxDateTime.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxException.cpp" />
@@ -337,6 +339,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Common\CxArray.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxAutoBuffer.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxCommandLine.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
@@ -355,6 +358,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxCommandLine.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxException.h" />
