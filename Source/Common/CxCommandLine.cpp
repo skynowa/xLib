@@ -1,0 +1,105 @@
+/**
+ * \file   CxCommandLine.cpp
+ * \brief
+ */
+
+
+#include <xLib/Common/CxCommandLine.h>
+
+
+/****************************************************************************
+*   public
+*
+*****************************************************************************/
+
+//--------------------------------------------------------------------------
+/*static*/ std::vector<std::tstring> CxCommandLine::_ms_vsArgs;
+//--------------------------------------------------------------------------
+LONG
+CxCommandLine::liGetArgsMax() {
+    LONG liRes = 0L;
+
+#if defined(xOS_WIN)
+    liRes = 32L * 1024L;
+#elif defined(xOS_LINUX)
+    liRes = sysconf(_SC_ARG_MAX) / sizeof(std::tstring::value_type);
+    /*DEBUG*/xASSERT_RET(- 1 != liRes, 0L);
+#endif
+
+    return liRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+std::tstring
+CxCommandLine::sGet() {
+    /*DEBUG*/// n/a
+
+    std::tstring sRes;
+
+#if defined(xOS_WIN)
+    LPCTSTR pcszRes = ::GetCommandLine();
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring());
+
+    sRes.assign( CxString::sTrimSpace(pcszRes) );
+#elif defined(xOS_LINUX)
+    sRes.assign( CxString::sJoin(_ms_vsArgs, CxConst::xSPACE) );
+#endif
+
+    return sRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+BOOL
+CxCommandLine::bGetArgs(
+    std::vector<std::tstring> *pvsArgs
+)
+{
+    /*DEBUG*/xASSERT_RET(NULL != pvsArgs, FALSE);
+
+    xCHECK_DO(true == _ms_vsArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
+
+    (*pvsArgs).assign(_ms_vsArgs.begin(), _ms_vsArgs.end());
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+/*static*/
+BOOL
+CxCommandLine::bSetArgs(
+    const INT  ciArgsCount,
+    TCHAR     *paszArgs[]
+)
+{
+    /*DEBUG*/// n/a (because we'll have a recursion)
+
+    std::vector<std::tstring> vsArgs;
+
+    for (INT i = 0; i < ciArgsCount; ++ i) {
+        vsArgs.push_back(paszArgs[i]);
+    }
+
+    //out
+    std::swap(_ms_vsArgs, vsArgs);
+
+    xCHECK_DO(true == _ms_vsArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    private
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+CxCommandLine::CxCommandLine() {
+
+}
+//---------------------------------------------------------------------------
+/*virtual*/
+CxCommandLine::~CxCommandLine() {
+
+}
+//---------------------------------------------------------------------------

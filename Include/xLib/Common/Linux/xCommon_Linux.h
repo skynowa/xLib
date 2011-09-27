@@ -8,12 +8,6 @@
 #ifndef xLib_Common_Linux_xCommon_LinuxH
 #define xLib_Common_Linux_xCommon_LinuxH
 //----------------------------------------------------------------------------------------------------
-//options
-#if xTODO
-    #define _POSIX_SOURCE 1
-#endif
-
-
 //POSIX
 #include <cpio.h>
 #include <dirent.h>

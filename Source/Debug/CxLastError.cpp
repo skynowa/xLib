@@ -84,7 +84,13 @@ CxLastError::sFormat(
     xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRes.append(xT("Unknown error")));
     xCHECK_RET(0UL                    == ulRes,   sRes.append(xT("[Cann't format error message]")));
 
-    sRes.append( CxString::sRemoveEol(std::tstring(static_cast<LPCTSTR>( pvBuff ), ulRes)) );
+    std::tstring sMessage;
+
+    sMessage.assign( static_cast<LPCTSTR>( pvBuff ), ulRes );
+    sMessage.assign( CxString::sRemoveEol(sMessage) );
+    sMessage.assign( CxString::sTrimRight(sMessage, CxConst::xDOT) );
+
+    sRes.append(sMessage);
 
     (VOID)::LocalFree(pvBuff);
 #elif defined(xOS_LINUX)
