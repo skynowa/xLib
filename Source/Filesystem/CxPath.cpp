@@ -7,8 +7,8 @@
 #include <xLib/Filesystem/CxPath.h>
 
 #include <xLib/Common/CxChar.h>
+#include <xLib/Common/CxCommandLine.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Sync/CxProcess.h>
 
 
@@ -99,7 +99,7 @@ CxPath::sGetExe() {
         #else   //xDEPRECIATE
             std::vector<std::tstring> vsArgs;
 
-            BOOL bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
+            BOOL bRes = CxCommandLine::bGetArgs(&vsArgs);
             /*DEBUG*/xASSERT_RET(FALSE != bRes,                      std::tstring());
             /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring());
             /*DEBUG*/xASSERT_RET(FALSE == bIsAbsolute(vsArgs.at(0)), std::tstring());

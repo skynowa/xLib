@@ -154,26 +154,6 @@ CxTest_CxEnvironment::bUnit(
         }
     }
 
-    //-------------------------------------
-    //sGetCommandLine
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        m_sRes = CxEnvironment::sGetCommandLine();
-        #if xTEST_IGNORE
-            xTRACEV(xT("\tCxEnvironment::sGetCommandLine(): %s"), m_sRes.c_str());
-        #endif
-        xASSERT_EQ(false, m_sRes.empty());
-    }
-
-    //-------------------------------------
-    //bGetCommandLineArgs
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        m_bRes = CxEnvironment::bGetCommandLineArgs(&m_vsRes);
-        xASSERT_NOT_EQ(FALSE,  m_bRes);
-        xASSERT_EQ(false, m_vsRes.empty());
-    }
-
     return TRUE;
 }
 //---------------------------------------------------------------------------
