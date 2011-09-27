@@ -10,6 +10,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTestManager.h>
 #include <xLib/Common/CxConsole.h>
+#include <xLib/Common/CxCommandLine.h>
 
 //Common
 #include <Test/Common/CxTest_CxMacros.h>
@@ -24,6 +25,7 @@
 #include <Test/Common/CxTest_CxDateTime.h>
 #include <Test/Common/CxTest_CxSystemInfo.h>
 #include <Test/Common/CxTest_CxConsole.h>
+#include <Test/Common/CxTest_CxCommandLine.h>
 
 #if defined(xOS_WIN)
     #include <Test/Common/Win/CxTest_CxHandleT.h>
@@ -139,7 +141,7 @@ xTMAIN(
     //--------------------------------------------------
     //set commandline args for xLib
     {
-        BOOL bRes = CxEnvironment::bSetCommandLineArgs(iArgCount, paszArgs);
+        BOOL bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
         xASSERT_NOT_EQ(FALSE, bRes);
     }
 
@@ -170,7 +172,7 @@ xTMAIN(
     {
         std::vector<std::tstring> vsArgs;
 
-        bRes = CxEnvironment::bGetCommandLineArgs(&vsArgs);
+        bRes = CxCommandLine::bGetArgs(&vsArgs);
         xASSERT_NOT_EQ(FALSE, bRes);
 
         //usage
@@ -217,6 +219,7 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxDateTime);
         bRes = tmManager.bAdd(new CxTest_CxSystemInfo);
         bRes = tmManager.bAdd(new CxTest_CxConsole);
+        bRes = tmManager.bAdd(new CxTest_CxCommandLine);
 
     #if defined(xOS_WIN)
         bRes = tmManager.bAdd(new CxTest_CxHandleT);

@@ -11,7 +11,7 @@
 
 #include <Test/Filesystem/CxTest_CxPath.h>
 
-#include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/Common/CxCommandLine.h>
 
 
 //---------------------------------------------------------------------------
@@ -719,7 +719,7 @@ CxTest_CxPath::bUnit(
     {
         std::vector<std::tstring> vsArgs;
 
-        CxEnvironment::bGetCommandLineArgs(&vsArgs);
+        CxCommandLine::bGetArgs(&vsArgs);
 
 	    sRes = CxPath::sGetAbsolute(vsArgs.at(0));
         xASSERT_EQ(false, sRes.empty());

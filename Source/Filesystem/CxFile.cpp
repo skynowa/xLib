@@ -1606,6 +1606,7 @@ CxFile::sBackup(
     //-------------------------------------
     //check for enough space
     ULONGLONG ullTotalFreeBytes = 0ULL;
+
     bRes = CxVolume::bGetFreeSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
     xCHECK_RET(FALSE == bRes, std::tstring());
 
