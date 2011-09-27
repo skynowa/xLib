@@ -56,11 +56,19 @@ CxStdError::sFormat(
     const INT ciCode
 )
 {
+    std::tstring sRes;
+
+#if defined(xOS_WIN)
+    const TCHAR *pcszError = strerror(ciCode);
+#elif defined(xOS_LINUX)
     CHAR szBuff[64 + 1] = {0};
 
     const TCHAR *pcszError = strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+#endif
 
-    return CxString::sFormat(xT("%i - %s"), ciCode, pcszError);
+    sRes = CxString::sFormat(xT("%i - %s"), ciCode, pcszError);
+
+    return sRes;
 }
 //---------------------------------------------------------------------------
 

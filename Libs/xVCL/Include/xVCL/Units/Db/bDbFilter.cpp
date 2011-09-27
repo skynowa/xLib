@@ -21,12 +21,19 @@ BOOL bDbFilter(
 	const String &csSqlStrOrderBy
 ) 
 {
+	String _sSql = "csSqlStrJoin:    " + csSqlStrJoin    + "\n"
+				   "csSqlStrWhere:   " + csSqlStrWhere   + "\n"
+				   "csSqlStrOrderBy: " + csSqlStrOrderBy;
+	/*
+	csSqlStrJoin:    (F_OTHER_DATE_CREATE_RECORD BETWEEN #2004/01/01# AND #2011/09/28#)
+	csSqlStrWhere:
+	csSqlStrOrderBy:
+	*/
+	CxMsgBoxT::iShow(xD2S(_sSql));
+
 	/*DEBUG*/xASSERT_RET(NULL  != pqryADOQuery,          false);
     /*DEBUG*/xASSERT_RET(false == csTableName.IsEmpty(), false);
 	/*DEBUG*/xASSERT_RET(NULL  != pslFieldsAndControls,  false);
-	/*DEBUG*/// csSqlStrWhere   - n/a
-	/*DEBUG*/// csSqlStrJoin    - n/a
-	/*DEBUG*/// csSqlStrOrderBy - n/a
 
 	String sSqlStr;
 
@@ -82,12 +89,13 @@ BOOL bDbFilter(
 		}			    
 	}
 
- 
+
 	//-------------------------------------
 	//ORDER BY
 	sSqlStr += xT(" ") + csSqlStrOrderBy + xT(";");
 	
 	CxMsgBoxT::iShow(xD2S(sSqlStr));
+	//SELECT * FROM T_XXXDb (F_OTHER_DATE_CREATE_RECORD BETWEEN #2004/01/01# AND #2011/09/28#) ;
 
 	//-------------------------------------
 	//выполнить запрос

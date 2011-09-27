@@ -678,6 +678,12 @@
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCurrentThread.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Common\CxCommandLine.cpp">
+      <Filter>xLib\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxCommandLine.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1255,6 +1261,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\xFunctions.h">
       <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\CxCommandLine.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxCommandLine.h">
+      <Filter>Test\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
