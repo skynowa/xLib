@@ -69,7 +69,7 @@ namespace std {
     typedef unsigned long int      ULONG;
     typedef unsigned long long int ULONGLONG;
 
-    typedef signed char            CHAR;
+    typedef char                   CHAR;
     typedef unsigned char          UCHAR;
 
     typedef addrinfo               ADDRINFOT;

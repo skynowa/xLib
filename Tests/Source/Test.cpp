@@ -35,13 +35,6 @@
 
 #endif
 
-//Compress
-#if defined(xOS_WIN)
-
-#elif defined(xOS_LINUX)
-    #include <Test/Compress/Linux/CxTest_CxGz.h>
-#endif
-
 //Crypt
 #include <Test/Crypt/CxTest_CxBase64.h>
 #include <Test/Crypt/CxTest_CxCrc32.h>
@@ -233,13 +226,6 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxComPort);
     #elif defined(xOS_LINUX)
 
-    #endif
-
-        //Compress
-    #if defined(xOS_WIN)
-
-    #elif defined(xOS_LINUX)
-        bRes = tmManager.bAdd(new CxTest_CxGz);
     #endif
 
         //Crypt
