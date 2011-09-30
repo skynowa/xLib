@@ -68,7 +68,7 @@ CxLastError::sFormat(
 
     sRes = CxString::sFormat(xT("%li - "), culCode);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ULONG  ulRes  = 0UL;
     LPVOID pvBuff = NULL;
 
@@ -93,12 +93,22 @@ CxLastError::sFormat(
     sRes.append(sMessage);
 
     (VOID)::LocalFree(pvBuff);
-#elif defined(xOS_LINUX)
-    CHAR szBuff[64 + 1] = {0};
+#elif defined(xOS_ENV_UNIX)
+    #if defined(xOS_LINUX)
+        CHAR szBuff[64 + 1] = {0};
 
-    const TCHAR *pszError = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        const TCHAR *pcszError = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
-    sRes.append(pszError);
+        sRes.append(pcszError);
+    #else
+        CHAR szBuff[64 + 1] = {0};
+
+        INT iRes = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        xCHECK_RET(- 1 == iRes, sRes.append(xT("[Cann't format error message]")));
+
+        sRes.append(&szBuff[0]);
+    #endif
 #endif
 
     return sRes;

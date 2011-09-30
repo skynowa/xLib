@@ -58,15 +58,28 @@ CxStdError::sFormat(
 {
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+    sRes = CxString::sFormat(xT("%li - "), ciCode);
+
+#if defined(xOS_ENV_WIN)
     const TCHAR *pcszError = strerror(ciCode);
-#elif defined(xOS_LINUX)
-    CHAR szBuff[64 + 1] = {0};
+    xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
+#elif defined(xOS_ENV_UNIX)
+    #if defined(xOS_LINUX)
+        CHAR szBuff[64 + 1] = {0};
 
-    const TCHAR *pcszError = strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+        const TCHAR *pcszError = strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+        xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
+
+        sRes.append(pcszError);
+    #else
+        CHAR szBuff[64 + 1] = {0};
+
+        INT iRes = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        xCHECK_RET(- 1 == iRes, sRes.append(xT("[Cann't format error message]")));
+
+        sRes.append(&szBuff[0]);
+    #endif
 #endif
-
-    sRes = CxString::sFormat(xT("%i - %s"), ciCode, pcszError);
 
     return sRes;
 }

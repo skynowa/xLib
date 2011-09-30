@@ -87,6 +87,11 @@
 			<location>/home/sergey/Libs/xLib/Source</location>
 		</link>
 		<link>
+			<name>TODO.txt</name>
+			<type>1</type>
+			<location>/home/sergey/Libs/xLib/TODO.txt</location>
+		</link>
+		<link>
 			<name>Tests</name>
 			<type>2</type>
 			<location>/home/sergey/Libs/xLib/Tests</location>
