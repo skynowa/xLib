@@ -27,7 +27,7 @@ CxTest_CxWaitableTimer::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL bRes = FALSE;
 
     CxWaitableTimer WT;
@@ -64,7 +64,7 @@ CxTest_CxWaitableTimer::bUnit(
         }
 
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 

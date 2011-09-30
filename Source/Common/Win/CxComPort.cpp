@@ -9,7 +9,7 @@
 #include <xLib/Sync/CxCurrentThread.h>
 
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -235,6 +235,6 @@ CxCOMPort::bSetSETRTS() {
     return ::EscapeCommFunction(_m_hComPort, SETRTS);
 }
 //-------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif

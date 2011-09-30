@@ -7,7 +7,7 @@
 #include <xLib/Sync/CxWaitableTimer.h>
 
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -143,6 +143,6 @@ CxWaitableTimer::bWait(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif

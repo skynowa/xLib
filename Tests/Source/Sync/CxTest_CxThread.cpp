@@ -154,7 +154,7 @@ CxTest_CxThread::bUnit(
     //bSetPriority, tpGetPriority
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_LINUX)
+        #if defined(xOS_ENV_UNIX)
             m_bRes = pthT->bSetPriority(CxThread::tpLowest);
             xASSERT_EQ(FALSE, m_bRes);
 
@@ -183,13 +183,13 @@ CxTest_CxThread::bUnit(
     //bPriorityUp, bPriorityDown
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             m_bRes = pthT->bPriorityUp();
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = pthT->bPriorityDown();
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
 
         #endif
     }
@@ -198,10 +198,10 @@ CxTest_CxThread::bUnit(
     //bIsPriorityBoost
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             m_bRes = pthT->bIsPriorityBoost();
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
 
         #endif
     }
@@ -210,7 +210,7 @@ CxTest_CxThread::bUnit(
     //bSetPriorityBoost
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             m_bRes = pthT->bSetPriorityBoost(FALSE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -222,7 +222,7 @@ CxTest_CxThread::bUnit(
 
             m_bRes = pthT->bIsPriorityBoost();
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
 
         #endif
     }
@@ -245,7 +245,7 @@ CxTest_CxThread::bUnit(
     //bSetIdealCpu, ulGetIdealCpu
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             m_bRes = pthT->bSetIdealCpu(0);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
@@ -260,7 +260,7 @@ CxTest_CxThread::bUnit(
 
             m_ulRes = pthT->ulGetIdealCpu();
             xASSERT_EQ(0UL, m_ulRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
 
         #endif
     }
@@ -307,10 +307,10 @@ CxTest_CxThread::bUnit(
     //ulGetExitCode
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             m_ulRes = pthT->ulGetExitStatus();
             xASSERT_LESS_EQ(0UL, m_ulRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
 
         #endif
     }

@@ -400,7 +400,7 @@ CxFile::bLocking(
 {
     INT iRes = etError;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 	#if defined(xCOMPILER_CODEGEAR)
 		#define xLOCKING locking
 	#else
@@ -409,7 +409,7 @@ CxFile::bLocking(
 
 	iRes = xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
 	/*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     iRes = lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
@@ -464,7 +464,7 @@ CxFile::bSetVBuff(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 BOOL
 CxFile::bSetMode(
     const ETranslationMode ctmMode
@@ -510,10 +510,10 @@ CxFile::bResize(
 
     INT iRes = etError;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     iRes = chsize(_iGetHandle(pGet()), cliSize);
     /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     iRes = ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cliSize ));
     /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
 #endif
@@ -643,7 +643,7 @@ CxFile::bIsFile(
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faDirectory);
     xCHECK_RET(TRUE == bRes, FALSE);
 
@@ -655,7 +655,7 @@ CxFile::bIsFile(
 
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faOffline);
     xCHECK_RET(TRUE == bRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
     xCHECK_RET(FALSE == bRes, FALSE);
 #endif
@@ -738,10 +738,10 @@ CxFile::bChmod(
 
     INT iRes = etError;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     iRes = xTCHMOD(csFilePath.c_str(), static_cast<INT>( cpmMode ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     iRes = xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cpmMode ));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
@@ -1137,7 +1137,7 @@ CxFile::bSetTime(
     /*DEBUG*/// ctmAccess   - n/a
     /*DEBUG*/// ctmModified - n/a
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL     bRes     = FALSE;
 
     FILETIME ftCreate = {0};
@@ -1169,7 +1169,7 @@ CxFile::bSetTime(
         bRes = ::SetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
 		/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     #endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     utimbuf tbTimes;
 
     tbTimes.actime  = ctmAccess;
@@ -1213,7 +1213,7 @@ CxFile::sTempCreate(
 
 	sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 	#if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_CODEGEAR)
 		sRes.resize(sRes.size() + 1);
 
@@ -1231,7 +1231,7 @@ CxFile::sTempCreate(
 		pfFile = xTFOPEN(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
 		/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
 	#endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 	INT iFile = xTMKSTEMP(&sRes.at(0));
 	/*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
 

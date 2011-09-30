@@ -9,7 +9,7 @@
 *
 *****************************************************************************/
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 //---------------------------------------------------------------------------
 template<class TaskT>
 CxCriticalSection CxThreadPool<TaskT>::_m_csList;
@@ -567,6 +567,6 @@ CxThreadPool<TaskT>::_vOnExitTask(CxThread *pthSender)  {
     /*LOG*///_m_clLog.bWrite(xT("_vOnExitTask stop: #%i"), pthTask->m_uiIndex);
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif

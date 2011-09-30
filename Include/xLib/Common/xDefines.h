@@ -15,7 +15,6 @@
     #define xOS_LINUX
         ///< operating system Linux
 #elif defined(__FreeBSD__)
-    #define xOS_LINUX
     #define xOS_FREEBSD
         ///< operating system FreeBSD
 #else

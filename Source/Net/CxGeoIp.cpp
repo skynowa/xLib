@@ -9,9 +9,9 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #pragma comment(lib, "GeoIP.lib")
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //-lGeoIP
 #endif
 

@@ -22,7 +22,7 @@ CxSystemInfo::osGetOS() {
 
     EOsType otRes = otUnknown;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL bRes = FALSE;
 
     OSVERSIONINFO ovVer = {0};
@@ -68,7 +68,7 @@ CxSystemInfo::osGetOS() {
             break;
     }
 
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     utsname unKernelInfo= {{0}};
 
     INT iRes = uname(&unKernelInfo);
@@ -98,7 +98,7 @@ CxSystemInfo::sFormatOsType(
 
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     switch (otOsType) {
         case otWindows3:                { sRes = xT("Windows 3.1");                }    break;
         case otWindows95:               { sRes = xT("Windows 95");                 }    break;
@@ -117,7 +117,7 @@ CxSystemInfo::sFormatOsType(
 
         default:                        { sRes = xT("<unknown>");                  }    break;
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: sFormatOsType
     utsname unKernelInfo= {{0}};
 
@@ -137,7 +137,7 @@ CxSystemInfo::oaGetOsArch() {
 
     EOsArch oaRes = oaUnknown;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //TODO: oaGetOsArchitecture
     //http://www.tek-tips.com/viewthread.cfm?qid=1573774&page=6
 
@@ -167,7 +167,7 @@ CxSystemInfo::oaGetOsArch() {
             oaRes = oaUnknown;
             break;
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     utsname unKernelInfo= {{0}};
 
     INT iRes = uname(&unKernelInfo);
@@ -236,7 +236,7 @@ CxSystemInfo::sGetComputerName() {
 
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL    bRes                                = FALSE;
     ULONG   ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
     TCHAR   szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
@@ -245,7 +245,7 @@ CxSystemInfo::sGetComputerName() {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("LOCALHOST"));
 
     sRes.assign(szBuff, ulBuffSize);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     utsname unKernelInfo= {{0}};
 
     INT iRes = uname(&unKernelInfo);
@@ -262,7 +262,7 @@ BOOL
 CxSystemInfo::bIsUserAnAdmin() {
     /*DEBUG*/
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #if xTEMP_DISABLED
         BOOL bRes = IsUserAnAdmin();
         /*DEBUG*/// n/a
@@ -274,7 +274,7 @@ CxSystemInfo::bIsUserAnAdmin() {
 
     FARPROC fpAddr = ::GetProcAddress(hMod, "LoadLibraryW");
     xCHECK_RET(NULL == fpAddr, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     const uid_t cuiRootId = 0;
 
     uid_t       uiUserId  = 0;
@@ -298,7 +298,7 @@ CxSystemInfo::sGetUserName() {
 
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL  bRes              = FALSE;
     ULONG ulBuffSize        = UNLEN;
     TCHAR szBuff[UNLEN + 1] = {0};
@@ -307,7 +307,7 @@ CxSystemInfo::sGetUserName() {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
 
     sRes.assign(szBuff, ulBuffSize);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //http://www.metalshell.com/source_code/107/List_Users.html
     //http://www.metalshell.com/source_code/83/Get_GID_Name.html
 
@@ -327,14 +327,14 @@ CxSystemInfo::ulGetNumOfCPUs() {
 
     ULONG ulRes = 0;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     SYSTEM_INFO siSysInfo = {{0}};
 
     ::GetSystemInfo(&siSysInfo);
     /*DEBUG*/// n/a
 
     ulRes = siSysInfo.dwNumberOfProcessors;
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #if defined(xOS_FREEBSD)
         INT    aiMib[]   = {CTL_HW, HW_NCPU};
         size_t uiResSize = sizeof(ulRes);
@@ -360,7 +360,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
     ULONG ulRes = static_cast<ULONG>( - 1 );
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #if (xWINVER >= xWIN32_7)
         ulRes = ::GetCurrentProcessorNumber();
         /*DEBUG*/// n/a
@@ -373,7 +373,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
         ulRes = 0;
     #endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #if defined(xOS_FREEBSD)
         //TODO: ulGetCurrentCpuNum
         ulRes = 0;
@@ -404,13 +404,13 @@ CxSystemInfo::bIsUnicodeOS()  {
 
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     OSVERSIONINFOW oviInfo = {0};
 
     oviInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOW);
 
     bRes = (0 != ::GetVersionExW(&oviInfo));
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: bIsUnicodeOS
     bRes = TRUE;
 #endif
@@ -426,7 +426,7 @@ CxSystemInfo::ullGetCpuSpeed() {
 
     ULONGLONG ullRes = 0;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //TODO: ullGetCpuSpeed
     #if xTODO
         //TODO: CxCycle
@@ -456,7 +456,7 @@ CxSystemInfo::ullGetCpuSpeed() {
     #endif
 
     ullRes = 0;
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: iGetCpuSpeed
     ullRes = 0;
 #endif

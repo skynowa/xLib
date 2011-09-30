@@ -9,14 +9,14 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <xLib/Sync/CxAutoCriticalSection.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -84,6 +84,6 @@ CxWndLog::bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif

@@ -27,7 +27,7 @@ CxTest_CxAutoMutex::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
     	//-------------------------------------
         //CxAutoMutex
         xTEST_BLOCK(cullBlockLoops)
@@ -36,7 +36,7 @@ CxTest_CxAutoMutex::bUnit(
 
             CxAutoMutex objAutoMutex(mtMutex);
         }
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
 
     #endif
 

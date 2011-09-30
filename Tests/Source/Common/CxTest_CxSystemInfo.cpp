@@ -34,9 +34,9 @@ CxTest_CxSystemInfo::bUnit(
         CxSystemInfo::EOsType otType = CxSystemInfo::otUnknown;
 
         otType = CxSystemInfo::osGetOS();
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             xASSERT_EQ(CxSystemInfo::otWindowsXP, otType);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             #if defined(xOS_FREEBSD)
                 xASSERT_EQ(CxSystemInfo::otFreeBSD, otType);
             #else
@@ -49,7 +49,7 @@ CxTest_CxSystemInfo::bUnit(
     //sFormatOsType
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             std::map<CxSystemInfo::EOsType, std::tstring> mapData;
 
             mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindows3,               xT("Windows 3.1")) );
@@ -72,7 +72,7 @@ CxTest_CxSystemInfo::bUnit(
                 m_sRes = CxSystemInfo::sFormatOsType((*it).first);
                 xASSERT_EQ((*it).second, m_sRes);
             }
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otLinux);
             xASSERT_EQ(false, m_sRes.empty());
 

@@ -11,9 +11,9 @@
 #include <xLib/Sync/CxCriticalSection.h>
 #include <xLib/Sync/CxAutoCriticalSection.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <xLib/Common/Win/CxHandleT.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------
@@ -22,20 +22,20 @@ class CxEvent :
     /// event
 {
     public:
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
         typedef CxHandle        TxHandle;   ///< handle
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         typedef pthread_cond_t  TxHandle;   ///< handle
     #endif
 
         enum EObjectState
             /// current object state
         {
-            #if defined(xOS_WIN)
+            #if defined(xOS_ENV_WIN)
                 osSignaled = WAIT_OBJECT_0, ///< signaled
                 osTimeout  = WAIT_TIMEOUT,  ///< time-out interval elapsed and the object's state is nonsignaled
                 osFailed   = WAIT_FAILED    ///< failed
-            #elif defined(xOS_LINUX)
+            #elif defined(xOS_ENV_UNIX)
                 osSignaled = 0,             ///< signaled
                 osTimeout  = ETIMEDOUT,     ///< time-out interval elapsed and the object's state is nonsignaled
                 osFailed /* other values */ ///< failed
@@ -60,9 +60,9 @@ class CxEvent :
             ///< is signaled
 
     private:
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         CxHandle          _m_hEvent;        ///< event
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         CxCriticalSection _m_csCS;          ///< critical section
         TxHandle          _m_cndCond;       ///< condition variable
         volatile BOOL     _m_bIsAutoReset;  ///< auto-reset flag

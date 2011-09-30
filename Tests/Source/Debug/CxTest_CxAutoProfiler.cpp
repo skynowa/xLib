@@ -30,11 +30,11 @@ CxTest_CxAutoProfiler::bUnit(
 	const CxProfiler::EMode pmPerformMode[] = {
 	        CxProfiler::pmStdClock,
 	        CxProfiler::pmDateTime,
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
 	        CxProfiler::pmTickCount,
 	        CxProfiler::pmPerformanceCount,
 	        CxProfiler::pmThreadTimes,
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
 	        CxProfiler::pmGetTimeOfDay
         #endif
 	};

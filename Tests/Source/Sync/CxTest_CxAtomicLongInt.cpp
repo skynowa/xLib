@@ -27,7 +27,7 @@ CxTest_CxAtomicLongInt::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 #if xTEMP_DISABLED
     LONG iRes = 0;
 
@@ -76,7 +76,7 @@ CxTest_CxAtomicLongInt::bUnit(
     //operator BOOL ();
     //CxAtomicLongInt& operator ++   (INT iPos);
     //CxAtomicLongInt& operator --   (INT iPos);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 

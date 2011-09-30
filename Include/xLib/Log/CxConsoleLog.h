@@ -24,7 +24,7 @@ class CxConsoleLog :
         	///< write
 
     private:
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         static CxCriticalSection _ms_csConsole;		///< critical section
     #endif
 

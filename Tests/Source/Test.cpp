@@ -27,13 +27,13 @@
 #include <Test/Common/CxTest_CxConsole.h>
 #include <Test/Common/CxTest_CxCommandLine.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <Test/Common/Win/CxTest_CxHandleT.h>
     #include <Test/Common/Win/CxTest_CxCom.h>
     #include <Test/Common/Win/CxTest_CxClipboard.h>
     #include <Test/Common/Win/CxTest_CxShell.h>
     #include <Test/Common/Win/CxTest_CxComPort.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 
@@ -65,9 +65,9 @@
 #include <Test/Filesystem/CxTest_CxEnvironment.h>
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <Test/Filesystem/Win/CxTest_CxIni.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 
@@ -85,9 +85,9 @@
 #include <Test/Net/CxTest_CxTcpServerSocket.h>
 #include <Test/Net/CxTest_CxHttpClient.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #include <Test/Net/CxTest_CxGeoIp.h>
 #endif
 
@@ -95,9 +95,9 @@
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
 //Pkcs11
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <Test/Pkcs11/Win/CxTest_CxPkcs11.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 
@@ -110,25 +110,25 @@
 #include <Test/Sync/CxTest_CxThread.h>
 #include <Test/Sync/CxTest_CxProcess.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <Test/Sync/CxTest_CxMutex.h>
     #include <Test/Sync/CxTest_CxAutoMutex.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 
 //Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
     #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
 #endif
 
 //Units
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //TODO: test Units
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------
@@ -221,13 +221,13 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxConsole);
         bRes = tmManager.bAdd(new CxTest_CxCommandLine);
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         bRes = tmManager.bAdd(new CxTest_CxHandleT);
         bRes = tmManager.bAdd(new CxTest_CxCom);
         bRes = tmManager.bAdd(new CxTest_CxClipboard);
         bRes = tmManager.bAdd(new CxTest_CxShell);
         bRes = tmManager.bAdd(new CxTest_CxComPort);
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
 
     #endif
 
@@ -260,9 +260,9 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxEnvironment);
         bRes = tmManager.bAdd(new CxTest_CxLocalStorage);
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         bRes = tmManager.bAdd(new CxTest_CxIni);
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
 
     #endif
 
@@ -284,9 +284,9 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxSingleton);
 
         //Pkcs11
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         ////bRes = tmManager.bAdd(new CxTest_CxPkcs11);
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
 
     #endif
 
@@ -299,25 +299,25 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxThread);
         bRes = tmManager.bAdd(new CxTest_CxProcess);
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         bRes = tmManager.bAdd(new CxTest_CxMutex);
         bRes = tmManager.bAdd(new CxTest_CxAutoMutex);
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
 
     #endif
 
         //Gui
         bRes = tmManager.bAdd(new CxTest_CxMsgBoxT);
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         bRes = tmManager.bAdd(new CxTest_CxGdiplus);
         bRes = tmManager.bAdd(new CxTest_CxImage);
     #endif
 
         //Units
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         //TODO: test Units
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
 
     #endif
 

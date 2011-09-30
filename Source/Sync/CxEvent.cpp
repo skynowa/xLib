@@ -17,16 +17,16 @@ CxEvent::CxEvent(
     const BOOL cbIsAutoReset,
     const BOOL cbIsSignaled     ///< FALSE - wait, lock
 ) :
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 	_m_hEvent      ()
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 	_m_csCS        (),
 	_m_cndCond     (),
     _m_bIsAutoReset(FALSE),
 	_m_bIsSignaled (FALSE)
 #endif
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     /*DEBUG*/xASSERT_DO(FALSE == _m_hEvent.bIsValid(), return);
     /*DEBUG*/
 
@@ -37,7 +37,7 @@ CxEvent::CxEvent(
 
     _m_hEvent.bSet(hRes);
     /*DEBUG*/// n/a
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     INT iRes = pthread_cond_init(&_m_cndCond, NULL);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
@@ -47,9 +47,9 @@ CxEvent::CxEvent(
 }
 //---------------------------------------------------------------------------
 CxEvent::~CxEvent() {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     // n/a
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     INT iRes = pthread_cond_destroy(&_m_cndCond);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 #endif
@@ -59,9 +59,9 @@ const CxEvent::TxHandle &
 CxEvent::hGet() const {
     /*DEBUG*/
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     return _m_hEvent;
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     return _m_cndCond;
 #endif
 }
@@ -69,13 +69,13 @@ CxEvent::hGet() const {
 //NOTE: unblock threads blocked on a condition variable
 BOOL
 CxEvent::bSet() {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
 
     BOOL bRes = ::SetEvent(hGet());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
@@ -96,13 +96,13 @@ CxEvent::bSet() {
 //---------------------------------------------------------------------------
 BOOL
 CxEvent::bReset() {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), FALSE);
     /*DEBUG*/
 
     BOOL bRes = ::ResetEvent(hGet());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
@@ -122,11 +122,11 @@ CxEvent::osWait(
 
     EObjectState osRes = osFailed;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     /*DEBUG*/xASSERT_RET(FALSE != _m_hEvent.bIsValid(), osFailed);
 
     osRes = static_cast<EObjectState>( ::WaitForSingleObject(hGet(), culTimeout) );
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
@@ -180,12 +180,12 @@ BOOL
 CxEvent::bIsSignaled() {
     /*DEBUG*/// n/a
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ULONG ulRes = ::WaitForSingleObject(hGet(), 0UL);
     /*DEBUG*/// n/a
 
     return (FALSE != _m_hEvent.bIsValid()) && (osSignaled == ulRes);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     return _m_bIsSignaled;
 #endif
 }

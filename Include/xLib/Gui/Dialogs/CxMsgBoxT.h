@@ -17,18 +17,18 @@ class CxMsgBoxT :
         enum EModalResult 
             /// modal result
         {
-            #if defined(xOS_WIN)
+            #if defined(xOS_ENV_WIN)
                 mrAbort  = IDABORT,
                 mrIgnore = IDIGNORE,
                 mrRetry  = IDRETRY
-            #elif defined(xOS_LINUX)
+            #elif defined(xOS_ENV_UNIX)
                 mrAbort  = 25856,
                 mrIgnore = 26112,
                 mrRetry  = 26368
             #endif
         };
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         template <typename TextT, typename TitleT>
         static EModalResult iShow(const HWND chWnd, const TextT &cText, const TitleT &cTitle, const UINT cuiType);
             ///< message box has parent window, with custom text, custom title, custom type

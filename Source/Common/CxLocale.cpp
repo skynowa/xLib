@@ -22,7 +22,7 @@ CxLocale::sGetCurrent() {
 
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     INT  iRes = - 1;
     LCID lcId   = 0;
 
@@ -38,7 +38,7 @@ CxLocale::sGetCurrent() {
     /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring());
 
     sRes.resize(iRes - sizeof('\0'));    //delete from end '\0'
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     const TCHAR *pcszLocale = NULL;
 
     pcszLocale = xTSETLOCALE(LC_ALL, NULL);

@@ -76,9 +76,9 @@ namespace NxLib { }
     using namespace NxLib;
 #endif
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <xLib/Common/Win/xCommon_Win.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #include <xLib/Common/Linux/xCommon_Linux.h>
 #endif
 

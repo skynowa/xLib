@@ -12,7 +12,7 @@
 #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
 
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 //---------------------------------------------------------------------------
 CxTest_CxGdiplus::CxTest_CxGdiplus() {
 
@@ -25,7 +25,7 @@ CxTest_CxGdiplus::~CxTest_CxGdiplus() {
 /*virtual*/
 BOOL
 CxTest_CxGdiplus::bUnit(
-const ULONGLONG cullBlockLoops
+    const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
@@ -38,6 +38,4 @@ const ULONGLONG cullBlockLoops
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
 #endif

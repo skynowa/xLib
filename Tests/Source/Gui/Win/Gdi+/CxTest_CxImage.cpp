@@ -12,7 +12,7 @@
 #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
 
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 //---------------------------------------------------------------------------
 CxTest_CxImage::CxTest_CxImage() {
 
@@ -144,6 +144,4 @@ CxTest_CxImage::bUnit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
 #endif

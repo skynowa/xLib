@@ -105,13 +105,13 @@ CxTest_CxDnsClient::bUnit(
 			///*struct addrinfo **/   paiList->ai_next;        // Next structure in linked list
 		}
 
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
 			#if defined(xCOMPILER_MS)
 				::FreeAddrInfo(paiList);
 			#else
 				freeaddrinfo(paiList);
 			#endif
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
        		freeaddrinfo(paiList);
         #endif
 		/*DEBUG*/// n/a

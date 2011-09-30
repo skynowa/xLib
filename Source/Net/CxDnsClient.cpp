@@ -105,9 +105,9 @@ CxDnsClient::bGetLocalHostName(
 {
     /*DEBUG*/xASSERT_RET(NULL != psHostName, FALSE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     std::string asRes(255 + 1, '0');
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     std::string asRes(HOST_NAME_MAX, '0');
 #endif
 
@@ -145,11 +145,11 @@ CxDnsClient::bGetNameInfo(
     TCHAR szHostName[NI_MAXHOST] = {0};
     TCHAR szServInfo[NI_MAXSERV] = {0};
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //TODO: bGetNameInfo
     _ms_iRes = ::GetNameInfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: bGetNameInfo
     _ms_iRes = getnameinfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
@@ -175,10 +175,10 @@ CxDnsClient::bGetHostAddrInfo(
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     _ms_iRes = ::GetAddrInfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
     /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     _ms_iRes =   getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
     /*DEBUG*/xASSERT_MSG_RET(0 == _ms_iRes, CxString::lexical_cast(_ms_iRes), FALSE);
 #endif

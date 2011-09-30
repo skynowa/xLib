@@ -32,9 +32,9 @@ CxTest_CxEvent::bUnit(
     {
         CxEvent objEvent(TRUE, TRUE);
 
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             xASSERT_NOT_EQ(FALSE, objEvent.hGet().bIsValid())
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             //TODO: hRes
         #endif
     }

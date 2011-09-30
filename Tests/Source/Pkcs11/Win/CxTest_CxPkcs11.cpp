@@ -27,7 +27,7 @@ CxTest_CxPkcs11::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     CxPkcs11 objPkcs11;
     CxSlot   objSlot(objPkcs11);
 
@@ -73,7 +73,7 @@ CxTest_CxPkcs11::bUnit(
         m_bRes = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 

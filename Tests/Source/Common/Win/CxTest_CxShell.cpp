@@ -29,7 +29,7 @@ CxTest_CxShell::bUnit(
 {
     /*DEBUG*/
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //-------------------------------------
     //bFindExecutable
     xTEST_BLOCK(cullBlockLoops)
@@ -82,8 +82,6 @@ CxTest_CxShell::bUnit(
             xASSERT_EQ(std::tstring(xT("C:\\WINDOWS\\Fonts")), m_sRes);
         #endif //xWIN32_2K
     }
-#elif defined(xOS_LINUX)
-
 #endif
 
     return TRUE;

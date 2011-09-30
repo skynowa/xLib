@@ -14,22 +14,22 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#if defined(xOS_WIN)
-    #include <xLib/Debug/CxTest.h>
-    #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
-    //---------------------------------------------------------------------------
-    class CxTest_CxGdiplus :
-        public CxTest
-    {
-        public:
-                         CxTest_CxGdiplus();
-            virtual     ~CxTest_CxGdiplus();
+#if defined(xOS_ENV_WIN)
 
-            virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+#include <xLib/Debug/CxTest.h>
+#include <xLib/Gui/Win/GDI+/CxGdiplus.h>
+//---------------------------------------------------------------------------
+class CxTest_CxGdiplus :
+    public CxTest
+{
+    public:
+                     CxTest_CxGdiplus();
+        virtual     ~CxTest_CxGdiplus();
 
-        private:
-    };
-#elif defined(xOS_LINUX)
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+
+    private:
+};
 
 #endif
 //---------------------------------------------------------------------------

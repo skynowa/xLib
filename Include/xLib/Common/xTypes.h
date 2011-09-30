@@ -47,11 +47,11 @@ namespace std {
     typedef float                  FLOAT;
     typedef double                 DOUBLE;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 	#if defined(xCOMPILER_MINGW32)
 		typedef addrinfo           ADDRINFOT;
 	#endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #if !defined(BOOL)
         typedef enum { FALSE = 0, TRUE = 1 } BOOL;
     #endif

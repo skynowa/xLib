@@ -6,9 +6,9 @@
 
 #include <xLib/Sync/CxProcess.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <xLib/Common/Win/CxHandleT.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 
@@ -27,10 +27,10 @@ CxProcess::ulGetCurrId() {
 
     ULONG ulRes = (ULONG)- 1;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ulRes = ::GetCurrentProcessId();
     /*DEBUG*/// n/a
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     ulRes = static_cast<ULONG>( getpid() );
     /*DEBUG*/// n/a
 #endif
@@ -46,7 +46,7 @@ CxProcess::ulGetCurrParentId() {
 
     ULONG ulRes = 0;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     const ULONG culInvalidId = (ULONG)- 1;
 
     ULONG_PTR pbi[6] = {0};
@@ -63,7 +63,7 @@ CxProcess::ulGetCurrParentId() {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, culInvalidId);
 
     ulRes = pbi[5];
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     ulRes = static_cast<ULONG>( getppid() );
     /*DEBUG*/// n/a
 #endif
@@ -90,7 +90,7 @@ CxProcess::bExec(
     sCmdLine = CxString::sFormatV(pcszCmdLine, palArgs);
     xVA_END(palArgs);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL bRes = FALSE;
 
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
@@ -104,7 +104,7 @@ CxProcess::bExec(
 
     bRes = ::CloseHandle(piInfo.hProcess);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #if xDEPRECIATE
         INT iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
@@ -140,10 +140,10 @@ CxProcess::bExit(
 {
     /*DEBUG*/// uiExitCode - n/a
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ::ExitProcess(cuiExitCode);
     /*DEBUG*/// n/a
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     exit(static_cast<INT>( cuiExitCode ));
     /*DEBUG*/// n/a
 #endif
@@ -160,7 +160,7 @@ CxProcess::bTerminate(
 {
     /*DEBUG*/// uiExitCode - n/a
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     CxHandle hProcess;
 
     hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, culPid);
@@ -168,7 +168,7 @@ CxProcess::bTerminate(
 
     BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     INT iRes = kill(static_cast<pid_t>( culPid ), SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif

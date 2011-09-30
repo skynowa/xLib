@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_LINUX)
+#if defined(xOS_ENV_UNIX)
     typedef INT SOCKET;
 #endif
 //---------------------------------------------------------------------------
@@ -21,7 +21,7 @@ class CxSocket :
         enum EAddressFamily
             /// address family
         {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             afUnspecified = AF_UNSPEC,
             afInet        = AF_INET,
             afIpx         = AF_IPX,
@@ -33,7 +33,7 @@ class CxSocket :
 				,
 				afBluetooth   = AF_BTH
 			#endif
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             #if defined(xOS_FREEBSD)
                 afLocal     = PF_LOCAL,
                 afUnix      = PF_UNIX,
@@ -80,7 +80,7 @@ class CxSocket :
         enum EProtocol
             /// protocol
         {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             ptIp          = IPPROTO_IP,
             ptIcmp        = IPPROTO_ICMP,
             ptIgmp        = IPPROTO_IGMP,
@@ -89,7 +89,7 @@ class CxSocket :
             ptUdp         = IPPROTO_UDP,
             ptIcmpv6      = IPPROTO_ICMPV6,
             ////ptRm          = IPPROTO_RM
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             #if defined(xOS_FREEBSD)
                 ptIp          = IPPROTO_IP,
                 ptHopopts     = IPPROTO_HOPOPTS,
@@ -155,10 +155,10 @@ class CxSocket :
         enum EErrorType
             /// errors
         {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             etInvalid = INVALID_SOCKET,  ///< ~0
             etError   = SOCKET_ERROR     ///< -1
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             etInvalid = - 1,
             etError   = - 1
         #endif

@@ -27,7 +27,7 @@ CxTest_CxMimeMessage::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     CxPop3 objPop3;
 
     //-------------------------------------
@@ -218,7 +218,7 @@ CxTest_CxMimeMessage::bUnit(
     //bDisconnect
     m_bRes = objPop3.bDisconnect();
     xASSERT_NOT_EQ(FALSE, m_bRes);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 
