@@ -43,10 +43,10 @@ class CxTest :
         std::map<std::tstring, std::tstring>      m_msRes;  ///< for global use
         std::multimap<std::tstring, std::tstring> m_mmsRes; ///< for global use
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         HANDLE                    m_hRes;       ///< for global use
         HWND                      m_hwndRes;    ///< for global use
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
 
     #endif
 

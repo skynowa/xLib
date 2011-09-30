@@ -57,7 +57,7 @@ class CxDateTime
         //assignment operators
         const CxDateTime   &operator =         (const CxDateTime &cdtDT);
             ///< operator =
-    #if defined(xOS_WIN) && defined(xCOMPILER_CODEGEAR)
+    #if defined(xOS_ENV_WIN) && defined(xCOMPILER_CODEGEAR)
         const CxDateTime   &operator =         (const TDateTime  &cdtDT);
             ///< operator =
     #endif
@@ -111,7 +111,7 @@ class CxDateTime
             ///< get number days in month
         static BOOL         bIsLeapYear        (const USHORT cusYear);
             ///< is leap year
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         static LONGLONG     i64FiletimeToInt64 (const FILETIME &cftTime);
             ///< convert FILETIME to LONGLONG
         static BOOL         bUnixTimeToFileTime(const time_t ctmUnixTime, FILETIME *pftFileTime);

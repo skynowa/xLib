@@ -6,9 +6,9 @@
 
 #include <xLib/Db/CxMySql.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #pragma comment(lib, "libmysql.lib")
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     // -lmysqlclient
 #endif
 

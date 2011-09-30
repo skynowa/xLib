@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <xLib/Sync/CxAutoCriticalSection.h>
 #endif
 
@@ -21,7 +21,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     CxCriticalSection CxConsoleLog::_ms_csConsole;
 #endif
 //---------------------------------------------------------------------------
@@ -67,7 +67,7 @@ CxConsoleLog::bWrite(
 
     //-------------------------------------
     //write
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     /*LOCK*/CxAutoCriticalSection SL(_ms_csConsole);
 #endif
 

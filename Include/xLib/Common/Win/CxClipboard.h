@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 class CxClipboard :
     public CxNonCopyable
     /// clipboard

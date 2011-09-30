@@ -43,10 +43,10 @@ CxDll::bLoad(
     _m_bRes = bFree();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     _m_hDLL = ::LoadLibrary(csDllPath.c_str());
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     _m_hDLL = dlopen(csDllPath.c_str(), RTLD_LAZY);
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, FALSE);
 #endif
@@ -63,10 +63,10 @@ CxDll::fpGetProcAddress(
 
     VOID *fpRes = NULL;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     fpRes = (VOID *)( ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str()) );
     /*DEBUG*/xASSERT_RET(NULL != fpRes, NULL);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     const CHAR *pszError = NULL;
 
     pszError = dlerror();
@@ -87,10 +87,10 @@ CxDll::bFree() {
 
     xCHECK_RET(FALSE == bIsLoaded(), TRUE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     _m_bRes = ::FreeLibrary(_m_hDLL);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     INT iRes = dlclose(_m_hDLL);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #endif

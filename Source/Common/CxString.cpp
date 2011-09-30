@@ -325,10 +325,10 @@ CxString::sToLowerCase(
     std::tstring sRes;
     sRes.assign(csStr);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ULONG ulRes = ::CharLowerBuff(static_cast<LPTSTR>( &sRes[0] ), uiLength);
     /*DEBUG*/xASSERT_RET(uiLength == ulRes, std::tstring());
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     std::transform(sRes.begin(), sRes.begin() + uiLength, sRes.begin(), CxChar::chToLower);
 #endif
 
@@ -350,10 +350,10 @@ CxString::sToUpperCase(
     std::tstring sRes;
     sRes.assign(csStr);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ULONG ulRes = ::CharUpperBuff(static_cast<LPTSTR>( &sRes[0] ), uiLength);
     /*DEBUG*/xASSERT_RET(uiLength == ulRes, std::tstring());
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     std::transform(sRes.begin(), sRes.begin() + uiLength, sRes.begin(), CxChar::chToUpper);
 #endif
 
@@ -371,13 +371,13 @@ CxString::bCompareNoCase(
     /*DEBUG*/// csStr2 - n/a
     xCHECK_RET(csStr1.size() != csStr2.size(), FALSE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     INT iRes = - 1;
 
     iRes = ::lstrcmpi(csStr1.c_str(), csStr2.c_str());
     /*DEBUG*/// n/a
     xCHECK_RET(0 != iRes, FALSE);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     struct SCompare {
         static bool
         bNoCase(const std::tstring::value_type &cchChar1, const std::tstring::value_type &cchChar2) {
@@ -561,7 +561,7 @@ CxString::sCreateGuid() {
 
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     GUID    guidId = {0};
     HRESULT hrGuid = S_FALSE;
 
@@ -577,7 +577,7 @@ CxString::sCreateGuid() {
                 guidId.Data4[2], guidId.Data4[3], guidId.Data4[4], guidId.Data4[5], guidId.Data4[6], guidId.Data4[7]
     );
     /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring());
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: (sCreateGuid)
     //#include <uuid/uuid.h>
     xNOT_IMPLEMENTED_RET(std::tstring());
@@ -757,14 +757,14 @@ CxString::sStrToWStr(
 
     std::wstring wsRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     INT iSize = ::MultiByteToWideChar(cuiCodePage, 0, csStr.c_str(), - 1, NULL, 0);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::wstring());
 
     wsRes.resize(iSize - 1);    //Р±РµР· '\0'
     iSize = ::MultiByteToWideChar(cuiCodePage, 0, csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::wstring());
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: (sStrToWStr)
     xNOT_IMPLEMENTED_RET(std::wstring());
 #endif
@@ -784,14 +784,14 @@ CxString::sWStrToStr(
 
     std::string asRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     INT iSize = ::WideCharToMultiByte(cuiCodePage, 0, cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::string());
 
     asRes.resize(iSize - 1);    //Р±РµР· '\0'
     iSize = ::WideCharToMultiByte(cuiCodePage, 0, cwsStr.c_str(), - 1, static_cast<LPSTR>(&asRes.at(0)), iSize, NULL, NULL);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::string());
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: (sWStrToStr)
     xNOT_IMPLEMENTED_RET(std::string());
 #endif
@@ -825,14 +825,14 @@ CxString::asCharToOemBuff(
 {
     std::string asDst;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL bRes = FALSE;
 
     asDst.resize(csSrc.size());
 
     bRes = ::CharToOemBuff(csSrc.c_str(), &asDst.at(0), asDst.size());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string());
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: asCharToOemBuff
     xNOT_IMPLEMENTED_RET(std::string());
 #endif
@@ -848,14 +848,14 @@ CxString::sOemToCharBuff(
 {
     std::tstring sDst;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL bRes = FALSE;
 
     sDst.resize(csSrc.size());
 
     bRes = ::OemToCharBuff(csSrc.c_str(), &sDst.at(0), sDst.size());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: sOemToCharBuff
     xNOT_IMPLEMENTED_RET(std::tstring());
 #endif

@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 #include <GDIPlus.h>
 //---------------------------------------------------------------------------
 class CxImage :
@@ -68,8 +68,6 @@ class CxImage :
 		BOOL            _bGetEncoderClsid(const std::tstring &csFormat, CLSID *pcidClsid);
 	    	///< get encoder clsid
 };
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_GdiPlus_CxImageH

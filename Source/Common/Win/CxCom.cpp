@@ -7,7 +7,7 @@
 #include <xLib/Common/Win/CxCom.h>
 
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 LONG CxCom::_ms_lInitCount = 0;
 
 /****************************************************************************

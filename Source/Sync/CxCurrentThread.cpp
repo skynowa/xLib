@@ -29,10 +29,10 @@ CxCurrentThread::ulGetId() {
 
     CxThread::TxId ulRes = 0UL;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ulRes = ::GetCurrentThreadId();
     /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     ulRes = pthread_self();
     /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
 #endif
@@ -50,9 +50,9 @@ CxCurrentThread::bIsCurrent(
 
     BOOL bRes = FALSE;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     bRes = static_cast<BOOL>( ulGetId() == culId );
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     bRes = static_cast<BOOL>( pthread_equal(ulGetId(), culId) );
 #endif
@@ -67,10 +67,10 @@ CxCurrentThread::hGetHandle() {
 
     CxThread::TxHandle hRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     hRes = ::GetCurrentThread();
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     hRes = pthread_self();
     /*DEBUG*/xASSERT_RET(0 < hRes, 0);
 #endif
@@ -83,9 +83,9 @@ BOOL
 CxCurrentThread::bYield() {
     /*DEBUG*/// n/a
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     (VOID)::SwitchToThread();
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     INT iRes = sched_yield();
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
@@ -100,9 +100,9 @@ CxCurrentThread::bSleep(
 ) {
     /*DEBUG*/// n/a
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     (VOID)::Sleep(culMsec);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     INT      iRes     = - 1;
     timespec tsSleep  = {0};
     timespec tsRemain = {0};

@@ -19,7 +19,7 @@
 ////#include <boost\bind.hpp>
 ////#include <functional>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 template<class TaskT>
 class CxThreadPool :
     public CxThread
@@ -83,7 +83,7 @@ class CxThreadPool :
 };
 //---------------------------------------------------------------------------
 #include <Sync/CxThreadPool.inl>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------

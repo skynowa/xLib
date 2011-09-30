@@ -6,7 +6,7 @@
 
 #include <xLib/Units/Win/bDownloadURL.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 #include <wininet.h>
 
 #if defined(xCOMPILER_MS)
@@ -56,6 +56,4 @@ bDownloadURL(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
 #endif

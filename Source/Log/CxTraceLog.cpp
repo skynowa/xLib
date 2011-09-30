@@ -70,10 +70,10 @@ CxTraceLog::bWrite(
 
     //-------------------------------------
     //tracing
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ::OutputDebugString((sTime + sParam + CxConst::xNL).c_str());
     /*DEBUG*/// n/a
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     std::tcout << sTime << sParam << std::endl;
 #endif
 

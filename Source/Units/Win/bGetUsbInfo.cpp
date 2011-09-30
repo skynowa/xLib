@@ -6,7 +6,7 @@
 
 #include <xLib/Units/Win/bGetUsbInfo.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 #include <winioctl.h>
 #include <setupapi.h>
 #pragma comment(lib, "setupapi")
@@ -127,6 +127,4 @@ bGetUsbInfo(
     return bRes;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
 #endif

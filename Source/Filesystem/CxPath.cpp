@@ -28,55 +28,30 @@ std::tstring
 CxPath::sGetExe() {
     std::tstring sRes;
 
-    #if defined(xOS_WIN)
-        sRes.resize(xPATH_MAX);
+#if defined(xOS_ENV_WIN)
+    sRes.resize(xPATH_MAX);
 
-        ULONG ulStored = ::GetModuleFileName(NULL, &sRes.at(0), sRes.size());
-        /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
+    ULONG ulStored = ::GetModuleFileName(NULL, &sRes.at(0), sRes.size());
+    /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
 
-        sRes.resize(ulStored);
-    #elif defined(xOS_LINUX)
-        #if xDEPRECIATE
-            #if defined(xOS_FREEBSD)
-                #if defined(KERN_PROC_PATHNAME)
-                    sRes.resize(xPATH_MAX);
+    sRes.resize(ulStored);
+#elif defined(xOS_ENV_UNIX)
+    #if xDEPRECIATE
+        #if defined(xOS_FREEBSD)
+            #if defined(KERN_PROC_PATHNAME)
+                sRes.resize(xPATH_MAX);
 
-                    INT aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+                INT aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
-                    size_t uiResSize = sRes.size() * sizeof(std::tstring::value_type);
+                size_t uiResSize = sRes.size() * sizeof(std::tstring::value_type);
 
-                    INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
-                    /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring());
+                INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
+                /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring());
 
-                    sRes.resize(uiResSize);
-                #else
-                    BOOL bRes                = FALSE;
-                    const std::tstring csProcFile = xT("/proc/curproc/file");
-
-                    bRes = CxFile::bIsExists(csProcFile);
-                    if (TRUE == bRes) {
-                        sRes.resize(xPATH_MAX);
-
-                        INT iReaded = - 1;
-
-                        for ( ; ; ) {
-                            iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring::value_type));
-                            /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring());
-
-                            xCHECK_DO(sRes.size() * sizeof(std::tstring::value_type) > static_cast<size_t>( iReaded ), break);
-
-                            sRes.resize(sRes.size() * 2);
-                        }
-
-                        sRes.resize(iReaded);
-
-                    } else {
-                        sRes = std::tstring();
-                    }
-                #endif
+                sRes.resize(uiResSize);
             #else
-                BOOL          bRes       = FALSE;
-                const std::tstring csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
+                BOOL bRes                = FALSE;
+                const std::tstring csProcFile = xT("/proc/curproc/file");
 
                 bRes = CxFile::bIsExists(csProcFile);
                 if (TRUE == bRes) {
@@ -94,19 +69,44 @@ CxPath::sGetExe() {
                     }
 
                     sRes.resize(iReaded);
+
+                } else {
+                    sRes = std::tstring();
                 }
             #endif
-        #else   //xDEPRECIATE
-            std::vector<std::tstring> vsArgs;
+        #else
+            BOOL          bRes       = FALSE;
+            const std::tstring csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
 
-            BOOL bRes = CxCommandLine::bGetArgs(&vsArgs);
-            /*DEBUG*/xASSERT_RET(FALSE != bRes,                      std::tstring());
-            /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring());
-            /*DEBUG*/xASSERT_RET(FALSE == bIsAbsolute(vsArgs.at(0)), std::tstring());
+            bRes = CxFile::bIsExists(csProcFile);
+            if (TRUE == bRes) {
+                sRes.resize(xPATH_MAX);
 
-            sRes.assign( sGetAbsolute(vsArgs.at(0)) );
+                INT iReaded = - 1;
+
+                for ( ; ; ) {
+                    iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring::value_type));
+                    /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring());
+
+                    xCHECK_DO(sRes.size() * sizeof(std::tstring::value_type) > static_cast<size_t>( iReaded ), break);
+
+                    sRes.resize(sRes.size() * 2);
+                }
+
+                sRes.resize(iReaded);
+            }
         #endif
+    #else   //xDEPRECIATE
+        std::vector<std::tstring> vsArgs;
+
+        BOOL bRes = CxCommandLine::bGetArgs(&vsArgs);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes,                      std::tstring());
+        /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring());
+        /*DEBUG*/xASSERT_RET(FALSE == bIsAbsolute(vsArgs.at(0)), std::tstring());
+
+        sRes.assign( sGetAbsolute(vsArgs.at(0)) );
     #endif
+#endif
 
     /*DEBUG*/xASSERT_RET(false == sRes.empty(),            std::tstring());
     /*DEBUG*/xASSERT_RET(FALSE != CxFile::bIsExists(sRes), std::tstring());
@@ -122,7 +122,7 @@ CxPath::sGetDll() {
 
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #if xTODO
         MEMORY_BASIC_INFORMATION mbi;
         VirtualQuery(&symbol,&mbi,sizeof(mbi));
@@ -136,7 +136,7 @@ CxPath::sGetDll() {
         }
         String fullpath = arr;
     #endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #if xTODO
         Dl_info info;
         dladdr(&symbol,&info);
@@ -153,7 +153,7 @@ CxPath::sGetExeDir() {
     return sGetDir(sGetExe());
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 
 /*static*/
 std::tstring
@@ -260,11 +260,11 @@ CxPath::sGetStandartExt(
     std::tstring sRes;
 
 	switch (cseFileExt) {
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         case seExe:	{ sRes = xT("exe"); }   break;
 	    case seDll:	{ sRes = xT("dll"); }   break;
 	    case seLib:	{ sRes = xT("lib"); }   break;
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         case seExe:	{ sRes = xT("");    }   break;
 	    case seDll:	{ sRes = xT("so");  }   break;
 	    case seLib:	{ sRes = xT("a");   }   break;
@@ -275,7 +275,7 @@ CxPath::sGetStandartExt(
     return sRes;
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 /*static*/
 std::tstring
 CxPath::sSetDrive(
@@ -469,7 +469,7 @@ CxPath::bIsAbsolute(
     xCHECK_RET(true                  == csFilePath.empty(), FALSE);
     xCHECK_RET(CxConst::xSLASH.at(0) == csFilePath.at(0),   TRUE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     xCHECK_RET(1 == csFilePath.size(),                                                          FALSE);
     xCHECK_RET(CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == csFilePath.at(1), TRUE);
 #else
@@ -498,7 +498,7 @@ CxPath::sSetValidName(
     //check for name size
     xCHECK_RET(xNAME_MAX <= sRes.size(), std::tstring());
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //-------------------------------------
     //if only dots
     size_t uiDotPos = sRes.find_first_not_of(CxConst::xDOT);
@@ -542,7 +542,7 @@ CxPath::sSetValidName(
     for (size_t i = 0; i < xARRAY_SIZE(csReservedNames); ++ i) {
         xCHECK_RET(TRUE == CxString::bCompareNoCase(sFileName, csReservedNames[i]), std::tstring());
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     //TODO: sSetValidName
 #endif
 
@@ -629,7 +629,7 @@ CxPath::sGetAbsolute(
 
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ULONG   ulRes = 0;
     std::tstring sBuff;
 
@@ -644,7 +644,7 @@ CxPath::sGetAbsolute(
     sBuff.resize(ulRes);
 
     sRes.assign(sBuff);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     std::tstring sBuff;
 
     sBuff.resize(xPATH_MAX);
@@ -707,7 +707,7 @@ CxPath::sMinimize(
 
     std::tstring sRes;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     sRes.assign(csFilePath);
 
     std::tstring sDrive = sGetDrive(sRes);                                            //D:
@@ -764,7 +764,7 @@ CxPath::sMinimize(
 
         sRes = sDrive + sDir + sName;
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     sRes.assign(csFilePath);
 #endif
 
@@ -800,7 +800,7 @@ CxPath::uiGetMaxSize() {
 
     size_t uiRes = 0;
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         #if defined(MAX_PATH)
             uiRes = MAX_PATH;
         #else
@@ -808,7 +808,7 @@ CxPath::uiGetMaxSize() {
 
             uiRes = cuiDefaultSize;
         #endif
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         #if defined(PATH_MAX)
             uiRes = PATH_MAX;
         #else
@@ -844,7 +844,7 @@ CxPath::uiGetNameMaxSize() {
 
     size_t uiRes = 0;
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         #if defined(FILENAME_MAX)
             uiRes = FILENAME_MAX;
         #else
@@ -852,7 +852,7 @@ CxPath::uiGetNameMaxSize() {
 
             uiRes = cuiDefaultSize;
         #endif
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         #if defined(NAME_MAX)
             uiRes = NAME_MAX;
         #else

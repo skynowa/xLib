@@ -27,7 +27,7 @@ CxTest_CxMutex::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     const std::tstring csName = CxString::sCreateGuid();
 
 
@@ -75,7 +75,7 @@ CxTest_CxMutex::bUnit(
         m_bRes = mtMutex.bRelease();
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 

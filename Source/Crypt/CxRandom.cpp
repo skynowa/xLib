@@ -153,9 +153,9 @@ CxRandom::bSetSeed() {
 
     UINT uiSeed = 0;
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     uiSeed = static_cast<UINT>( ::GetTickCount() );
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     uiSeed = static_cast<UINT>( time(NULL) );
 #endif
 

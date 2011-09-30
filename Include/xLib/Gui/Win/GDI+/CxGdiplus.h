@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 class CxGdiplus :
 	public CxNonCopyable
 	/// GDI+
@@ -23,8 +23,6 @@ class CxGdiplus :
 	private:
 		ULONG_PTR _m_pulToken;	///< for private use
 };
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_GdiPlus_CxGdiplusH

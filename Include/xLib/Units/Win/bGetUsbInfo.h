@@ -9,11 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL bGetUsbInfo(const std::tstring &csDrive, std::vector<std::tstring> *pvsInfo);
         ///< get USB info
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Units_bGetUsbInfoH

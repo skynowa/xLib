@@ -402,13 +402,13 @@ CxTest_CxString::bUnit(
     //sRemoveEol
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             const std::tstring sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\r\n")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\r")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")}
             };
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             const std::tstring sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n\n")},
@@ -757,9 +757,9 @@ CxTest_CxString::bUnit(
         xASSERT_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000]")));
 
         m_sRes = CxString::sFormat(xT("qqqq-wwww [%f]"), 1000.0);
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             xASSERT_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000,000000]")));
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             xASSERT_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000.000000]")));
         #endif
 
@@ -1051,10 +1051,10 @@ CxTest_CxString::bUnit(
     //sCreateGuid
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             m_sRes = CxString::sCreateGuid();
             xASSERT_EQ(false, m_sRes.empty());
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             ////xASSERT_EQ(true, m_sRes.empty());
         #endif
     }
@@ -1096,7 +1096,7 @@ CxTest_CxString::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
-            #if defined(xOS_WIN)
+            #if defined(xOS_ENV_WIN)
                 //CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
                 std::string sAnsi;
                 std::string sUtf8;
@@ -1113,7 +1113,7 @@ CxTest_CxString::bUnit(
                 sKoiStr = CxString::sConvertCodePage(csAnsiStr[i], 1251,  20866);
                 sWinStr = CxString::sConvertCodePage(sKoiStr,      20866, 1251);
                 xASSERT_EQ(csAnsiStr[i], sWinStr);
-            #elif defined(xOS_LINUX)
+            #elif defined(xOS_ENV_UNIX)
                 //TODO: sConvertCodePage
                 //xNOT_IMPLEMENTED_RET(RET_VALUE);
             #endif
@@ -1126,10 +1126,10 @@ CxTest_CxString::bUnit(
     {
         std::string sRes;
 
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             sRes = CxString::asCharToOemBuff(xT("Boss, hello? "));
             xASSERT_EQ(std::string("Boss, hello? "), sRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             //TODO: sCharToOemBuff
         #endif
     }
@@ -1140,10 +1140,10 @@ CxTest_CxString::bUnit(
     {
         std::tstring sRes;
 
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             sRes = CxString::sOemToCharBuff(("1111, hdbhjgjk hkl, jl.,kh."));
             xASSERT_EQ(std::tstring(xT("1111, hdbhjgjk hkl, jl.,kh.")), sRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             //TODO: sOemToCharBuff
         #endif
     }

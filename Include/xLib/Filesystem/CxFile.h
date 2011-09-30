@@ -38,7 +38,7 @@ class CxFile :
             omBinOpenReadAppend    ///< "ab+"
         };
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         enum ETranslationMode
             /// translation mode
         {
@@ -76,11 +76,11 @@ class CxFile :
         enum ELockingMode
             /// locking mode
         {
-            #if defined(xOS_WIN)
+            #if defined(xOS_ENV_WIN)
                 lmLock    = LK_NBLCK,
                 lmTryLock = LK_LOCK,
                 lmUnlock  = LK_UNLCK
-            #elif defined(xOS_LINUX)
+            #elif defined(xOS_ENV_UNIX)
                 lmLock    = F_LOCK,
                 lmTlock   = F_TLOCK,
                 lmTryLock = F_TEST,
@@ -91,11 +91,11 @@ class CxFile :
         enum EPermissionMode
             /// permission mode
         {
-            #if defined(xOS_WIN)
+            #if defined(xOS_ENV_WIN)
                 pmRead             = _S_IREAD,
                 pmWrite            = _S_IWRITE,
                 pmReadWrite        = (_S_IREAD | _S_IWRITE)
-            #elif defined(xOS_LINUX)
+            #elif defined(xOS_ENV_UNIX)
                 pmSetUserId        = S_ISUID,
                 pmSetGroupId       = S_ISGID,
                 pmStickyBit        = S_ISVTX,
@@ -174,7 +174,7 @@ class CxFile :
         BOOL                 bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
             ///< change stream buffering
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         BOOL                 bSetMode     (const ETranslationMode tmMode) const;
             ///< sets the file translation mode
     #endif

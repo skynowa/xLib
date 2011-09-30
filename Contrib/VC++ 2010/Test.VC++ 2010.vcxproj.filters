@@ -597,9 +597,6 @@
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp">
       <Filter>xLib\Gui\Win\GDI+\Win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp">
-      <Filter>Test\Gui\Win\Gdi+</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp">
       <Filter>Test\Gui\Win\Gdi+</Filter>
     </ClCompile>
@@ -683,6 +680,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxCommandLine.cpp">
       <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp">
+      <Filter>Test\Gui\Win\Gdi+</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1166,9 +1166,6 @@
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h">
       <Filter>xLib\Gui\Win\GDI+\Win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h">
-      <Filter>Test\Gui\Win\Gdi+</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h">
       <Filter>Test\Gui\Win\Gdi+</Filter>
     </ClInclude>
@@ -1267,6 +1264,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxCommandLine.h">
       <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h">
+      <Filter>Test\Gui\Win\Gdi+</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
 #ifndef xLib_Common_xLinkingH
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #if !defined(_LIB) && xIS_AUTO_LINKING
         #if defined(NDEBUG)
             //release
@@ -29,7 +29,7 @@
             #endif
         #endif
     #endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     // n/a
 #endif
 //---------------------------------------------------------------------------

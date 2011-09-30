@@ -499,10 +499,10 @@ CxTest_CxFile::bUnit(
         m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             m_bRes = F.bSetMode(CxFile::tmBinary);
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             //TODO: bSetMode
         #endif
     }
@@ -516,10 +516,10 @@ CxTest_CxFile::bUnit(
         m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             m_bRes = F.bSetMode(CxFile::tmText);
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             //TODO: bSetMode
         #endif
     }

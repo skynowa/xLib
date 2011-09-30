@@ -38,7 +38,7 @@ CxTest::CxTest() :
     m_usRes        (),
     m_vsRes        (),
     m_msRes        (),
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     m_hRes         (INVALID_HANDLE_VALUE),
     m_hwndRes      (NULL),
 #endif

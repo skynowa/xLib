@@ -9,13 +9,13 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <shellapi.h>
     #include <shlwapi.h>
     #include <shlobj.h>
 #endif
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 class CxShell :
     public CxNonCopyable
     /// shell

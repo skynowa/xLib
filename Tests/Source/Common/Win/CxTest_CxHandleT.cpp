@@ -33,7 +33,7 @@ CxTest_CxHandleT::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //-------------------------------------
     //CxHandleT
     CxHandleT<hvNull> objHandle;
@@ -209,8 +209,6 @@ CxTest_CxHandleT::bUnit(
     //detach handle
     m_bRes = objHandle.bSet(NULL);
     xASSERT_NOT_EQ(FALSE, m_bRes);
-#elif defined(xOS_LINUX)
-
 #endif
 
     return TRUE;

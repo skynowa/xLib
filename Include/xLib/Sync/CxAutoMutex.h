@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxMutex.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 class CxAutoMutex :
     public CxNonCopyable
     /// auto mutex
@@ -22,7 +22,7 @@ class CxAutoMutex :
     private:
         CxMutex &_m_mtMutex;
 };
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------

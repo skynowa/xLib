@@ -27,7 +27,7 @@ CxTest_CxIni::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #define TEST_DEF_CONSTRUCTOR 1
 
     {
@@ -291,8 +291,6 @@ CxTest_CxIni::bUnit(
             xASSERT_EQ(TRUE, m_bRes);
         }
     }
-#elif defined(xOS_LINUX)
-
 #endif
 
     return TRUE;

@@ -14,9 +14,9 @@
 #include <xLib/Sync/CxProcess.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxRtf.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #if xTEMP_DISABLED
         #include <linux/kd.h>   //bBeep
         #include <X11/Xlib.h>   //bBeep -lX11
@@ -53,14 +53,14 @@ CxDebugger::bSetEnabled(
 /*static*/
 BOOL
 CxDebugger::bIsPresent() {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL bRes = ::IsDebuggerPresent();
     xCHECK_RET(FALSE == bRes, FALSE);
 
     #if xTODO
         ::CheckRemoteDebuggerPresent()
     #endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     std::tstring sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
     xCHECK_RET(FALSE == CxString::bCompareNoCase(xT("yes"), sRes), FALSE);
 #endif
@@ -73,7 +73,7 @@ BOOL
 CxDebugger::bBreak() {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
         _asm {int 3}
     #elif defined(xCOMPILER_MINGW32)
@@ -81,7 +81,7 @@ CxDebugger::bBreak() {
     #else
         abort();
     #endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     INT iRes = kill(getpid(), SIGALRM);
     xCHECK_RET(- 1 == iRes, FALSE);
 #endif
@@ -150,9 +150,9 @@ CxDebugger::bTrace(
     sRes = CxString::sFormatV(pcszFormat, palArgs);
     xVA_END(palArgs);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     (VOID)::OutputDebugString(sRes.c_str());
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     // n/a
 #endif
 
@@ -178,14 +178,14 @@ CxDebugger::bBeep(
     const ULONG culFrequency /*= 800*/,
     const ULONG culDuration  /*= 100*/
 ) {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #if xTODO
         BOOL bRes = FALSE;
 
         bRes = ::Beep(culFrequency, culDuration);
         xCHECK_RET(FALSE == bRes, FALSE);
     #endif
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     #if defined(xOS_FREEBSD)
         //TODO: bBeep
     #else
@@ -243,9 +243,9 @@ CxDebugger::_bMsgboxPlain(
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     ULONG ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     ULONG ulType = 1;
 #endif
 
@@ -284,7 +284,7 @@ CxDebugger::_bMsgboxFormated(
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //-------------------------------------
     //show message
     CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.sGetReport(), CxPath::sGetExe());
@@ -310,7 +310,7 @@ CxDebugger::_bMsgboxFormated(
             }
             break;
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     enum EConsoleCmd {
         cmAbort  = xT('a'),
         cmIgnore = xT('i'),

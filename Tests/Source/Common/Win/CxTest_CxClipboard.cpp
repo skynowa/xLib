@@ -27,7 +27,7 @@ CxTest_CxClipboard::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     CxClipboard cbCB;
 
     const std::tstring csText = xT("Simple text");
@@ -99,7 +99,7 @@ CxTest_CxClipboard::bUnit(
         ////m_bRes = cbCB.bClose();
         ////xASSERT_NOT_EQ(FALSE, m_bRes);
     }
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 

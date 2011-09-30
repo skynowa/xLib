@@ -29,7 +29,7 @@ class CxPath :
         static std::tstring sGetDll         ();
         	///< get full path to dll
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         static std::tstring sGetDrive       (const std::tstring &csFilePath);
         	///< get drive
     #endif
@@ -46,7 +46,7 @@ class CxPath :
         static std::tstring sGetStandartExt (const EStandartExt cseFileExt);
         	///< get standart extension
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         static std::tstring sSetDrive       (const std::tstring &csFilePath, const std::tstring &csDrivePath);
         	///< set drive
     #endif

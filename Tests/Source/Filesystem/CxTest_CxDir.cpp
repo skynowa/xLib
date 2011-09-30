@@ -30,7 +30,7 @@ CxTest_CxDir::bUnit(
     const std::tstring csTempScanDirPath = sGetWorkDirPath() + CxConst::xSLASH + xT("Scan");
     const std::tstring csMask            = xT("*.txt");
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     const std::tstring csFilePath		= sGetWorkDirPath() + xT("\\Test.txt");
     const std::tstring csRootTestDirPath = sGetWorkDirPath() + xT("\\Test_Dir");
     const std::tstring csDirPath         = sGetWorkDirPath() + xT("\\Test_Dir\\1\\2\\3");
@@ -38,7 +38,7 @@ CxTest_CxDir::bUnit(
     const std::tstring csNewFilePath		= sGetWorkDirPath() + xT("\\New.Test.txt");
     const std::tstring csBakFilePath		= sGetWorkDirPath() + xT("\\Test_Static.txt.bak");
     const std::tstring csFilePathSt		= sGetWorkDirPath() + xT("\\Test_Static.txt");
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
     const std::tstring csFilePath        = sGetWorkDirPath() + xT("/Test.txt");
     const std::tstring csRootTestDirPath = sGetWorkDirPath() + xT("/Test_Dir");
     const std::tstring csDirPath         = sGetWorkDirPath() + xT("/Test_Dir/1/2/3");
@@ -120,7 +120,7 @@ CxTest_CxDir::bUnit(
     //bIsRoot
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             const std::tstring sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("FALSE")},
                 {xT(""),              xT("FALSE")},
@@ -135,7 +135,7 @@ CxTest_CxDir::bUnit(
                 {xT("B:"),            xT("FALSE")},
                 {xT("B"),             xT("FALSE")}
             };
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             const std::tstring sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("FALSE")},
                 {xT(""),              xT("FALSE")},

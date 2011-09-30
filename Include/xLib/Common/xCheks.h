@@ -13,7 +13,7 @@
 #endif
 
 //check for supporting unicode
-#if defined(xOS_LINUX)
+#if defined(xOS_ENV_UNIX)
     #if defined(xUNICODE)
         #error xLib: unicode unsupported for Linux and FreeBSD
     #endif
@@ -38,13 +38,13 @@
 
 //--------------------------------------------------
 //Linux
-#if defined(xOS_LINUX)
+#if defined(xOS_ENV_UNIX)
 
 #endif
 
 //--------------------------------------------------
 //Win
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #if !defined(MAX_PATH)
         #error xLib: MAX_PATH not defined
     #endif

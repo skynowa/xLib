@@ -23,7 +23,7 @@ class CxVolume :
         static BOOL         bMount                           (const std::tstring &csSourcePath, const std::tstring &csDestPath);
         	///< mount
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         enum EType
             /// filesystem type
         {
@@ -61,7 +61,7 @@ class CxVolume :
         static BOOL         bSetVolumeLabel                  (const std::tstring &csRootPathName, const std::tstring &cslpVolumeName);
         static BOOL         bSetVolumeMountPoint             (const std::tstring &csVolumeMountPoint, const std::tstring &csVolumeName);
         static BOOL         bIsValidDriveLetter              (TCHAR szDriveLetter);
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
 
     #endif
 

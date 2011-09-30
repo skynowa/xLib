@@ -10,7 +10,7 @@
 #if xIS_COMPILE_TIME_TRACING
     //--------------------------------------------------
     //OS family
-    #if defined(xOS_WIN)
+    #if   defined(xOS_WIN)
         #pragma message("xLib: xOS_WIN")
     #elif defined(xOS_LINUX)
         #pragma message("xLib: xOS_LINUX")
@@ -22,19 +22,19 @@
 
     //--------------------------------------------------
     //OS environment
-    #if defined(xOS_ENV_WIN)
+    #if   defined(xOS_ENV_WIN)
         #pragma message("xLib: xOS_ENV_WIN")
     #elif defined(xOS_ENV_UNIX)
         #pragma message("xLib: xOS_ENV_UNIX")
     #elif defined(xOS_ENV_BSD)
         #pragma message("xLib: xOS_ENV_BSD")
     #else
-        #pragma message("xLib: unsupported OS")
+        #pragma message("xLib: unsupported OS environment")
     #endif
 
     //--------------------------------------------------
     //OS architecture
-    #if defined(xARCHITECTURE_32BIT)
+    #if   defined(xARCHITECTURE_32BIT)
         #pragma message("xLib: xARCHITECTURE_32BIT")
     #elif defined(xARCHITECTURE_64BIT)
         #pragma message("xLib: xARCHITECTURE_64BIT")
@@ -44,7 +44,7 @@
 
     //--------------------------------------------------
     //Compilers
-    #if defined(xCOMPILER_MINGW32)
+    #if   defined(xCOMPILER_MINGW32)
         #pragma message("xLib: xCOMPILER_MINGW32")
     #elif defined(xCOMPILER_MS)
         #pragma message("xLib: xCOMPILER_MS")

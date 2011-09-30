@@ -49,22 +49,22 @@ const std::wstring CxConst::xNIX_SLASH_W      (L"/");
 const std::tstring CxConst::xNIX_SLASH        (xT("/"));
 
 //xSLASH
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 const std::string  CxConst::xSLASH_A          (CxConst::xWIN_SLASH_A);
 const std::wstring CxConst::xSLASH_W          (CxConst::xWIN_SLASH_W);
 const std::tstring CxConst::xSLASH            (CxConst::xWIN_SLASH);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 const std::string  CxConst::xSLASH_A          (CxConst::xNIX_SLASH_A);
 const std::wstring CxConst::xSLASH_W          (CxConst::xNIX_SLASH_W);
 const std::tstring CxConst::xSLASH            (CxConst::xNIX_SLASH);
 #endif
 
 //xEOL
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 const std::string  CxConst::xEOL_A            (xCRNL_A);
 const std::wstring CxConst::xEOL_W            (xCRNL_W);
 const std::tstring CxConst::xEOL              (xCRNL);
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 const std::string  CxConst::xEOL_A            (xNL_A);
 const std::wstring CxConst::xEOL_W            (xNL_W);
 const std::tstring CxConst::xEOL              (xNL);

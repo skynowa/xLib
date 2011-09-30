@@ -48,7 +48,7 @@ CxTest_CxEnvironment::bUnit(
     //bIsExists
     xTEST_BLOCK(cullBlockLoops)
     {
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         const std::tstring sData[][2] = {
             {xT("ENV_TEST_1"), xT("TRUE")},
             {xT("ENV_TEST_2"), xT("TRUE")},
@@ -59,7 +59,7 @@ CxTest_CxEnvironment::bUnit(
             {xT("XXXL"),       xT("FALSE")},
             {xT("windir"),     xT("TRUE") }
         };
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         const std::tstring sData[][2] = {
             {xT("ENV_TEST_1"), xT("TRUE")},
             {xT("ENV_TEST_2"), xT("TRUE")},
@@ -78,14 +78,14 @@ CxTest_CxEnvironment::bUnit(
     //sGetVar
     xTEST_BLOCK(cullBlockLoops)
     {
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         const std::tstring sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
             {xT("ENV_TEST_4"), xT("value4")},
         };
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         const std::tstring sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
@@ -116,12 +116,12 @@ CxTest_CxEnvironment::bUnit(
 	//sExpandStrings
     xTEST_BLOCK(cullBlockLoops)
     {
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         const std::tstring sData[][2] = {
             {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\WINDOWS")},
             {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\WINDOWS ")}
         };
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         const std::tstring sData[][2] = {
             {xT("111%ENV_TEST_1%"),    xT("111value1")},
             {xT("%ENV_TEST_2%111"),    xT("value2111")},

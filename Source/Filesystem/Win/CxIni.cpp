@@ -11,7 +11,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public: creation
 *
@@ -605,6 +605,4 @@ CxIni::bSectionDelete(
     return TRUE;
 }
 //-------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
-
 #endif

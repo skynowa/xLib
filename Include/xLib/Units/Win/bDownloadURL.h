@@ -9,11 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     BOOL bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
         ///< download file using ftp, http, https
-#elif defined(xOS_LINUX)
-
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Units_bDownloadURLH

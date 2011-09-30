@@ -8,13 +8,13 @@
 #define xLib_Common_Win_CxComPortH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     #include <xLib/Common/Win/CxHandleT.h>
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 class CxCOMPort :
     public CxNonCopyable
     /// COM port
@@ -47,7 +47,7 @@ class CxCOMPort :
         COMSTAT      ComState;
         OVERLAPPED   Overlap;
 };
-#elif defined(xOS_LINUX)
+#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------

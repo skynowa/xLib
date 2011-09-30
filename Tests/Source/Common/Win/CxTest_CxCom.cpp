@@ -29,7 +29,7 @@ CxTest_CxCom::bUnit(
 {
     /*DEBUG*/
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     //-------------------------------------
     //bIsInit
     xTEST_BLOCK(cullBlockLoops)
@@ -44,8 +44,6 @@ CxTest_CxCom::bUnit(
         m_bRes = CxCom::bIsInit();
         xASSERT_EQ(FALSE, m_bRes);
     }
-#elif defined(xOS_LINUX)
-
 #endif
 
     return TRUE;

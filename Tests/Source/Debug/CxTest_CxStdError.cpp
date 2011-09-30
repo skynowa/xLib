@@ -80,9 +80,9 @@ CxTest_CxStdError::bUnit(
     //sFormat
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_WIN)
+        #if defined(xOS_ENV_WIN)
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif defined(xOS_LINUX)
+        #elif defined(xOS_ENV_UNIX)
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 

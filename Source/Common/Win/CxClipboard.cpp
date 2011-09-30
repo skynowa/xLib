@@ -7,7 +7,7 @@
 #include <xLib/Common/Win/CxClipboard.h>
 
 
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *

@@ -25,7 +25,7 @@ CxTest_CxMsgBoxT::bUnit(
 #if xTEST_IGNORE
     //--------------------------------------------------
     //iShow
-#if defined(xOS_WIN)
+#if defined(xOS_ENV_WIN)
     xTEST_BLOCK(cullBlockLoops)
     {
         const HWND         chWnd   = NULL;

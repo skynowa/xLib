@@ -31,9 +31,9 @@ class CxDll :
     private:
         BOOL     _m_bRes;   ///< for private use
 
-    #if defined(xOS_WIN)
+    #if defined(xOS_ENV_WIN)
         HMODULE  _m_hDLL;   ///< dll module handle
-    #elif defined(xOS_LINUX)
+    #elif defined(xOS_ENV_UNIX)
         VOID    *_m_hDLL;   ///< dll module handle
     #endif
 };
