@@ -113,7 +113,7 @@ class CxThread :
         BOOL                bPriorityDown         () const;
             ///< decrease priority on one level
         BOOL                bIsPriorityBoost      () const;
-            ///< get priority boost control state of the specified thread
+            ///< get priority boost control state
         BOOL                bSetPriorityBoost     (const BOOL cbIsEnabled) const;
             ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
