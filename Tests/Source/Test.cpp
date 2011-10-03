@@ -102,7 +102,7 @@
 #endif
 
 //Sync
-#include <Test/Sync/CxTest_CxTls.h>
+#include <Test/Sync/CxTest_CxThreadStorage.h>
 #include <Test/Sync/CxTest_CxCriticalSection.h>
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
 #include <Test/Sync/CxTest_CxEvent.h>
@@ -301,7 +301,7 @@ xTMAIN(
     #endif
 
         //Sync
-        bRes = tmManager.bAdd(new CxTest_CxTls);
+        bRes = tmManager.bAdd(new CxTest_CxThreadStorage);
         bRes = tmManager.bAdd(new CxTest_CxCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxAutoCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxEvent);
