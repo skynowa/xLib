@@ -322,7 +322,7 @@ CxSystemInfo::sGetUserName() {
 //---------------------------------------------------------------------------
 /*static*/
 ULONG
-CxSystemInfo::ulGetNumOfCPUs() {
+CxSystemInfo::ulGetNumOfCpus() {
     /*DEBUG*/// n/a
 
     ULONG ulRes = 0;

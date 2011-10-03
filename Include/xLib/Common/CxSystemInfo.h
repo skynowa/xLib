@@ -14,7 +14,7 @@ class CxSystemInfo :
     /// system information
 {
    public:
-        enum EOsType 
+        enum EOsType
             /// OS type
         {
             otUnknown,
@@ -42,7 +42,7 @@ class CxSystemInfo :
             otFreeBSD
         };
 
-        enum EOsArch 
+        enum EOsArch
             /// OS architecture
         {
             oaUnknown,
@@ -66,7 +66,7 @@ class CxSystemInfo :
             ///< is current user an admin
         static std::tstring sGetUserName      ();
             ///< get the name of the user associated with the current thread
-        static ULONG        ulGetNumOfCPUs    ();
+        static ULONG        ulGetNumOfCpus    ();
             ///< get num of CPUs
         static ULONG        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function

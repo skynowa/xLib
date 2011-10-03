@@ -33,7 +33,7 @@ CxTest_CxCommandLine::bUnit(
     {
         m_liRes = CxCommandLine::liGetArgsMax();
         xASSERT_LESS(0L, m_liRes);
-        xTRACEV(xT("\tCxCommandLine::liGetArgsMax() = %li"), m_liRes);
+        //xTRACEV(xT("\tCxCommandLine::liGetArgsMax() = %li"), m_liRes);
     }
 
     //-------------------------------------
