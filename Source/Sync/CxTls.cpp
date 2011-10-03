@@ -85,7 +85,7 @@ CxTls::_bAlloc() {
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES == _m_indIndex, FALSE);
 
     indRes = ::TlsAlloc();
-    /*DEBUG*/xASSERT_RET(xINDEX_ERROR != indRes, FALSE);
+    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != indRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     /*DEBUG*/xASSERT_RET(static_cast<pthread_key_t>( -1 ) == _m_indIndex, FALSE);
 
