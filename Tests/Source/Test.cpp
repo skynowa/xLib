@@ -102,6 +102,7 @@
 #endif
 
 //Sync
+#include <Test/Sync/CxTest_CxTls.h>
 #include <Test/Sync/CxTest_CxCriticalSection.h>
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
 #include <Test/Sync/CxTest_CxEvent.h>
@@ -145,6 +146,15 @@ xTMAIN(
         xASSERT_NOT_EQ(FALSE, bRes);
     }
 
+
+    #if xTEMP_DISABLED
+        int iTest = - 2;
+
+        xTRACEV("(i =  %i): %i", iTest, iTest);
+        xTRACEV("(i = !%i): %i", iTest, !iTest);
+
+        return 0;
+    #endif
 
     BOOL bRes = FALSE;
 
@@ -291,6 +301,7 @@ xTMAIN(
     #endif
 
         //Sync
+        bRes = tmManager.bAdd(new CxTest_CxTls);
         bRes = tmManager.bAdd(new CxTest_CxCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxAutoCriticalSection);
         bRes = tmManager.bAdd(new CxTest_CxEvent);

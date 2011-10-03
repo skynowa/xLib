@@ -7,84 +7,115 @@
 #include <xLib/Sync/CxTls.h>
 
 
-#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxTls
 CxTls::CxTls() :
-    _m_ulIndex(TLS_OUT_OF_INDEXES)
+#if defined(xOS_ENV_WIN)
+    _m_indIndex(TLS_OUT_OF_INDEXES)
+#elif defined(xOS_ENV_UNIX)
+    _m_indIndex(static_cast<pthread_key_t>( -1 ))
+#endif
 {
-
+    (VOID)_bAlloc();
 }
 //---------------------------------------------------------------------------
-//TODO: ~CxTls
+/*virtual*/
 CxTls::~CxTls() {
-
+    (VOID)_bFree();
 }
 //---------------------------------------------------------------------------
-//DONE: bAlloc (Allocates a thread local storage (TLS) index)
-BOOL
-CxTls::bAlloc() {
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES == _m_ulIndex, FALSE);
-
-    ULONG ulRes = TLS_OUT_OF_INDEXES;
-
-    ulRes = ::TlsAlloc();
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != ulRes, FALSE);
-
-    _m_ulIndex = ulRes;
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//TODO: bFree (Releases a thread local storage (TLS) index, making it available for reuse)
-BOOL
-CxTls::bFree() {
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_ulIndex, FALSE);
-
-    BOOL bRes = FALSE;
-
-    bRes = ::TlsFree(_m_ulIndex);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-
-    return TRUE;
-}
-//---------------------------------------------------------------------------
-//TODO: pGetValue (Retrieves the value in the calling thread's thread local storage (TLS) slot for the specified TLS index)
 VOID *
-CxTls::pvGetValue() {
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_ulIndex, FALSE);
-
+CxTls::pvGetValue() const {
     VOID *pvRes = NULL;
 
-    pvRes = ::TlsGetValue(_m_ulIndex);
-    /*DEBUG*/xASSERT_RET(FALSE      != pvRes, FALSE);
-    /*DEBUG*/////xASSERT_RET(_m_ulIndex == pvRes, FALSE);
+#if defined(xOS_ENV_WIN)
+    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, NULL);
+
+    pvRes = ::TlsGetValue(_m_indIndex);
+    /*DEBUG*/xASSERT_RET(NULL != pvRes, NULL);
+#elif defined(xOS_ENV_UNIX)
+    /*DEBUG*/xASSERT_RET(0U < _m_indIndex, NULL);
+
+    pvRes = pthread_getspecific(_m_indIndex);
+    /*DEBUG*/xASSERT_RET(NULL != pvRes, NULL);
+#endif
 
     return pvRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetValue (Stores a value in the calling thread's thread local storage (TLS) slot for the specified TLS index)
 BOOL
 CxTls::bSetValue(
     VOID *pvValue
-)
+) const
 {
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_ulIndex, FALSE);
-    /*DEBUG*/xASSERT_RET(NULL               != pvValue,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pvValue, FALSE);
 
-    BOOL bRes = FALSE;
+#if defined(xOS_ENV_WIN)
+    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, FALSE);
 
-    bRes = ::TlsSetValue(_m_ulIndex, pvValue);
+    BOOL bRes = ::TlsSetValue(_m_indIndex, pvValue);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+#elif defined(xOS_ENV_UNIX)
+    /*DEBUG*/xASSERT_RET(0U < _m_indIndex, FALSE);
+
+    INT iRes = pthread_setspecific(_m_indIndex, pvValue);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+#endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
 
+
+/****************************************************************************
+*	private
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+BOOL
+CxTls::_bAlloc() {
+    TxIndex indRes = (TxIndex)- 1;
+
+#if defined(xOS_ENV_WIN)
+    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES == _m_indIndex, FALSE);
+
+    indRes = ::TlsAlloc();
+    /*DEBUG*/xASSERT_RET(xINDEX_ERROR != indRes, FALSE);
+#elif defined(xOS_ENV_UNIX)
+    /*DEBUG*/xASSERT_RET(static_cast<pthread_key_t>( -1 ) == _m_indIndex, FALSE);
+
+    INT iRes = pthread_key_create(&indRes, NULL);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
+
+    _m_indIndex = indRes;
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL
+CxTls::_bFree() {
+#if defined(xOS_ENV_WIN)
+    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, FALSE);
+
+    BOOL bRes = ::TlsFree(_m_indIndex);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    _m_indIndex = TLS_OUT_OF_INDEXES;
+#elif defined(xOS_ENV_UNIX)
+    /*DEBUG*/xASSERT_RET(0U < _m_indIndex, FALSE);
+
+    INT iRes = pthread_key_delete(_m_indIndex);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+
+    _m_indIndex = static_cast<pthread_key_t>( -1 );
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------

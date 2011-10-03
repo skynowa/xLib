@@ -27,8 +27,25 @@ CxTest_CxTls::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
+    //--------------------------------------------------
+    //bSetValue, pvGetValue
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxTls tlsTls;
 
-    //TODO: bUnit
+        const ULONG culData = 777;
+
+        VOID *pvValue = new ULONG(culData);
+
+        _m_bRes = tlsTls.bSetValue(pvValue);
+        xASSERT_NOT_EQ(FALSE, _m_bRes);
+
+        ULONG *pulRes = static_cast<ULONG *>( tlsTls.pvGetValue() );
+        xASSERT_PTR(pulRes);
+        xASSERT_EQ(culData, ULONG(*pulRes));
+
+        delete pvValue;
+    }
 
     return TRUE;
 }
