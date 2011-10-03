@@ -1,10 +1,10 @@
 /**
- * \file  CxTls.cpp
+ * \file  CxThreadStorage.cpp
  * \brief thread local storage
  */
 
 
-#include <xLib/Sync/CxTls.h>
+#include <xLib/Sync/CxThreadStorage.h>
 
 
 /****************************************************************************
@@ -13,7 +13,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxTls::CxTls() :
+CxThreadStorage::CxThreadStorage() :
 #if defined(xOS_ENV_WIN)
     _m_indIndex(TLS_OUT_OF_INDEXES)
 #elif defined(xOS_ENV_UNIX)
@@ -24,12 +24,12 @@ CxTls::CxTls() :
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-CxTls::~CxTls() {
+CxThreadStorage::~CxThreadStorage() {
     (VOID)_bFree();
 }
 //---------------------------------------------------------------------------
 VOID *
-CxTls::pvGetValue() const {
+CxThreadStorage::pvGetValue() const {
     VOID *pvRes = NULL;
 
 #if defined(xOS_ENV_WIN)
@@ -48,7 +48,7 @@ CxTls::pvGetValue() const {
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTls::bSetValue(
+CxThreadStorage::bSetValue(
     VOID *pvValue
 ) const
 {
@@ -78,7 +78,7 @@ CxTls::bSetValue(
 
 //---------------------------------------------------------------------------
 BOOL
-CxTls::_bAlloc() {
+CxThreadStorage::_bAlloc() {
     TxIndex indRes = (TxIndex)- 1;
 
 #if defined(xOS_ENV_WIN)
@@ -99,7 +99,7 @@ CxTls::_bAlloc() {
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTls::_bFree() {
+CxThreadStorage::_bFree() {
 #if defined(xOS_ENV_WIN)
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, FALSE);
 

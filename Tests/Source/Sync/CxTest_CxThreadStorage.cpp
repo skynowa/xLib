@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxTls
-* Description: test CxTls
-* File name:   CxTest_CxTls.h
+* Class name:  CxTest_CxThreadStorage
+* Description: test CxThreadStorage
+* File name:   CxTest_CxThreadStorage.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,21 +9,21 @@
 *****************************************************************************/
 
 
-#include <Test/Sync/CxTest_CxTls.h>
+#include <Test/Sync/CxTest_CxThreadStorage.h>
 
 
 //---------------------------------------------------------------------------
-CxTest_CxTls::CxTest_CxTls() {
+CxTest_CxThreadStorage::CxTest_CxThreadStorage() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxTls::~CxTest_CxTls() {
+CxTest_CxThreadStorage::~CxTest_CxThreadStorage() {
 
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 BOOL
-CxTest_CxTls::bUnit(
+CxTest_CxThreadStorage::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
@@ -31,7 +31,7 @@ CxTest_CxTls::bUnit(
     //bSetValue, pvGetValue
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxTls tlsTls;
+        CxThreadStorage tlsTls;
 
         const ULONG culData = 777;
 

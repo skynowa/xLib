@@ -1,22 +1,22 @@
 /**
- * \file  CxTls.h
+ * \file  CxThreadStorage.h
  * \brief thread local storage
  */
 
 
-#ifndef CxLib_Sync_CxTlsH
-#define CxLib_Sync_CxTlsH
+#ifndef CxLib_Sync_CxThreadStorageH
+#define CxLib_Sync_CxThreadStorageH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-class CxTls :
+class CxThreadStorage :
     public CxNonCopyable
     /// thread local storage
 {
     public:
-                 CxTls     ();
+                 CxThreadStorage     ();
             ///< constructor
-        virtual ~CxTls     ();
+        virtual ~CxThreadStorage     ();
             ///< destructor
 
         VOID    *pvGetValue() const;
@@ -39,4 +39,4 @@ class CxTls :
         TxIndex  _m_indIndex;
 };
 //---------------------------------------------------------------------------
-#endif    //CxLib_Sync_CxTlsH
+#endif    //CxLib_Sync_CxThreadStorageH

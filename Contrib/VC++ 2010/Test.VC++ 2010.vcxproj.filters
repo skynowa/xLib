@@ -306,9 +306,6 @@
     <ClCompile Include="..\..\Source\Sync\CxThread.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Sync\CxTls.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
@@ -451,9 +448,6 @@
       <Filter>Test\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxThread.cpp">
-      <Filter>Test\Sync</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxTls.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp">
@@ -684,6 +678,12 @@
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp">
       <Filter>Test\Gui\Win\Gdi+</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Sync\CxThreadStorage.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxThreadStorage.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -804,9 +804,6 @@
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\CxThreadPool.h">
-      <Filter>xLib\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Sync\CxTls.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\CxWaitableTimer.h">
@@ -1049,9 +1046,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxThread.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxTls.h">
-      <Filter>Test\Sync</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
@@ -1267,6 +1261,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h">
       <Filter>Test\Gui\Win\Gdi+</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Sync\CxThreadStorage.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxThreadStorage.h">
+      <Filter>Test\Sync</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
