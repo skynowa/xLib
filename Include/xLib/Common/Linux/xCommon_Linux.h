@@ -40,7 +40,7 @@
 
 #if defined(xOS_FREEBSD)
     #include <osreldate.h>
-    #include <pthread_np.h>
+    #include <pthread_np.h>    //lib: libpthread, -lpthread (FreeBSD)
     #include <sys/param.h>
     #include <sys/mount.h>
     #include <sys/statvfs.h>

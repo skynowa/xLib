@@ -755,21 +755,12 @@ CxThread::bSetCpuAffinity(
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
     /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-	#if defined(xOS_LINUX)
-		cpu_set_t csCpuSet; CPU_ZERO(&csCpuSet);
+    cpu_set_t csCpuSet; CPU_ZERO(&csCpuSet);
 
-		(VOID)CPU_SET(ciProcNum, &csCpuSet);
+    (VOID)CPU_SET(ciProcNum, &csCpuSet);
 
-		INT iRes = sched_setaffinity(ulGetId(), sizeof(csCpuSet), &csCpuSet);
-		/*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
-	#elif defined(xOS_FREEBSD)
-		cpuset_t csCpuSet; CPU_ZERO(&csCpuSet);
-
-		(VOID)CPU_SET(ciProcNum, &csCpuSet);
-
-		INT iRes = cpuset_setaffinity(CPU_LEVEL_WHICH, CPU_WHICH_TID, reinterpret_cast<id_t>( ulGetId() ), sizeof(csCpuSet), &csCpuSet);
-		/*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
-	#endif
+    INT iRes = pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
     return TRUE;
@@ -800,7 +791,7 @@ CxThread::bSetCpuIdeal(
 ULONG
 CxThread::ulGetCpuIdeal() const {
 #if defined(xOS_ENV_WIN)
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0UL;
 #elif defined(xOS_ENV_UNIX)
 
 #endif
@@ -809,7 +800,7 @@ CxThread::ulGetCpuIdeal() const {
 
 #if defined(xOS_ENV_WIN)
     ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), MAXIMUM_PROCESSORS);
-    /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, FALSE);
+    /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, (ULONG) - 1);
 #elif defined(xOS_ENV_UNIX)
 
 #endif
@@ -820,7 +811,7 @@ CxThread::ulGetCpuIdeal() const {
 /*static*/
 ULONG
 CxThread::ulGetCpuCount() {
-    ULONG ulRes = CxSystemInfo::ulGetNumOfCPUs();
+    ULONG ulRes = CxSystemInfo::ulGetNumOfCpus();
     xCHECK_RET(ulRes < 1UL || ulRes > 32UL, 1UL);
 
     return ulRes;
@@ -868,7 +859,7 @@ CxThread::ulGetExitStatus() const {
     ULONG ulRes = 0;
 
 #if defined(xOS_ENV_WIN)
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0);
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0UL);
 
     BOOL bRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
     /*DEBUG*/xASSERT_RET(FALSE           != bRes,  ulRes);
@@ -958,7 +949,7 @@ CxThread::hOpen(
 {
     /*DEBUG*///ulAccess       - n/a
     /*DEBUG*///bInheritHandle - n/a
-    /*DEBUG*/xASSERT_RET(0 < culId, (TxHandle)NULL);
+    /*DEBUG*/xASSERT_RET(0UL < culId, TxHandle());
 
 #if defined(xOS_ENV_WIN)
     TxHandle hRes = NULL;

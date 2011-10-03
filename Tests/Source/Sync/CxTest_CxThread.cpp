@@ -232,13 +232,13 @@ CxTest_CxThread::bUnit(
     //CPU
 
     //-------------------------------------
-    //bSetAffinityMask
+    //bSetCpuAffinity
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
-            m_bRes = bSetCpuAffinity(DWORD_PTR pulMask);
+        for (size_t i = 0; i < CxSystemInfo::ulGetNumOfCpus(); ++ i) {
+            m_bRes = pthT->bSetCpuAffinity(i);
             xASSERT_NOT_EQ(FALSE, m_bRes);
-        #endif
+        }
     }
 
     //--------------------------------------------------
@@ -297,22 +297,16 @@ CxTest_CxThread::bUnit(
     //bIsCurrent
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTODO
-            m_bRes = pthT->bIsCurrent();
-            xASSERT_EQ(FALSE, m_bRes);
-        #endif
+        m_bRes = pthT->bIsCurrent();
+        xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
     //ulGetExitCode
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
-            m_ulRes = pthT->ulGetExitStatus();
-            xASSERT_LESS_EQ(0UL, m_ulRes);
-        #elif defined(xOS_ENV_UNIX)
-
-        #endif
+        m_ulRes = pthT->ulGetExitStatus();
+        xASSERT_LESS_EQ(0UL, m_ulRes);
     }
 
     //--------------------------------------------------
@@ -322,10 +316,6 @@ CxTest_CxThread::bUnit(
         m_bRes = pthT->bSetDebugName(xT("CxThread_Test_Name"));
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
-
-
-    //-------------------------------------
-    //static
 
     //-------------------------------------
     //hOpen
@@ -337,12 +327,6 @@ CxTest_CxThread::bUnit(
         #endif
     }
 
-
-    /****************************************************************************
-    *	static
-    *
-    *****************************************************************************/
-
     //--------------------------------------------------
     //hOpen
     xTEST_BLOCK(cullBlockLoops)
@@ -351,30 +335,6 @@ CxTest_CxThread::bUnit(
             THandle hRes = CxThread::hOpen(const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
         #endif
     }
-
-
-    /****************************************************************************
-    *    public: CPU
-    *
-    *****************************************************************************/
-
-    //--------------------------------------------------
-    //bSetAffinityMask
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        #if xTODO
-            const INT ciProcCount = 2;
-
-            for (INT i = 0; i < ciProcCount; ++ i) {
-                m_bRes = CxThread::bSetCpuAffinity(i);
-                xASSERT_NOT_EQ(FALSE, m_bRes);
-            }
-        #endif
-    }
-
-
-    //--------------------------------------------------
-    //non static
 
     //-------------------------------------
     //bResume (start thread)

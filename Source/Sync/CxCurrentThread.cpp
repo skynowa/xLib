@@ -103,7 +103,6 @@ CxCurrentThread::bSleep(
 #if defined(xOS_ENV_WIN)
     (VOID)::Sleep(culMsec);
 #elif defined(xOS_ENV_UNIX)
-    INT      iRes     = - 1;
     timespec tsSleep  = {0};
     timespec tsRemain = {0};
 
@@ -111,7 +110,7 @@ CxCurrentThread::bSleep(
     tsSleep.tv_nsec = (culMsec % 1000) * (1000 * 1000);
 
     for ( ; ; ) {
-        iRes = nanosleep(&tsSleep, &tsRemain);
+        INT iRes = nanosleep(&tsSleep, &tsRemain);
         /*DEBUG*/// n/a
         xCHECK_DO(!(- 1 == iRes && EINTR == CxLastError::ulGet()), break);
 
