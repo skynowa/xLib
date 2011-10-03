@@ -36,79 +36,51 @@ CxPath::sGetExe() {
 
     sRes.resize(ulStored);
 #elif defined(xOS_ENV_UNIX)
-    #if xDEPRECIATE
-        #if defined(xOS_FREEBSD)
-            #if defined(KERN_PROC_PATHNAME)
-                sRes.resize(xPATH_MAX);
+    #if defined(xOS_FREEBSD)
+        #if defined(KERN_PROC_PATHNAME)
+            sRes.resize(xPATH_MAX);
 
-                INT aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+            INT aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
-                size_t uiResSize = sRes.size() * sizeof(std::tstring::value_type);
+            size_t uiResSize = sRes.size() * sizeof(std::tstring::value_type);
 
-                INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
-                /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring());
+            INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring());
 
-                sRes.resize(uiResSize);
-            #else
-                BOOL bRes                = FALSE;
-                const std::tstring csProcFile = xT("/proc/curproc/file");
-
-                bRes = CxFile::bIsExists(csProcFile);
-                if (TRUE == bRes) {
-                    sRes.resize(xPATH_MAX);
-
-                    INT iReaded = - 1;
-
-                    for ( ; ; ) {
-                        iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring::value_type));
-                        /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring());
-
-                        xCHECK_DO(sRes.size() * sizeof(std::tstring::value_type) > static_cast<size_t>( iReaded ), break);
-
-                        sRes.resize(sRes.size() * 2);
-                    }
-
-                    sRes.resize(iReaded);
-
-                } else {
-                    sRes = std::tstring();
-                }
-            #endif
+            sRes.resize(uiResSize);
         #else
-            BOOL          bRes       = FALSE;
-            const std::tstring csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
+            std::vector<std::tstring> vsArgs;
 
-            bRes = CxFile::bIsExists(csProcFile);
-            if (TRUE == bRes) {
-                sRes.resize(xPATH_MAX);
+            BOOL bRes = CxCommandLine::bGetArgs(&vsArgs);
+            /*DEBUG*/xASSERT_RET(FALSE != bRes,                      std::tstring());
+            /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring());
+            /*DEBUG*/xASSERT_RET(FALSE == bIsAbsolute(vsArgs.at(0)), std::tstring());
 
-                INT iReaded = - 1;
-
-                for ( ; ; ) {
-                    iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring::value_type));
-                    /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring());
-
-                    xCHECK_DO(sRes.size() * sizeof(std::tstring::value_type) > static_cast<size_t>( iReaded ), break);
-
-                    sRes.resize(sRes.size() * 2);
-                }
-
-                sRes.resize(iReaded);
-            }
+            sRes.assign( sGetAbsolute(vsArgs.at(0)) );
         #endif
-    #else   //xDEPRECIATE
-        std::vector<std::tstring> vsArgs;
+    #else
+        const std::tstring csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
 
-        BOOL bRes = CxCommandLine::bGetArgs(&vsArgs);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes,                      std::tstring());
-        /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring());
-        /*DEBUG*/xASSERT_RET(FALSE == bIsAbsolute(vsArgs.at(0)), std::tstring());
+        BOOL bRes = CxFile::bIsExists(csProcFile);
+        if (TRUE == bRes) {
+            sRes.resize(xPATH_MAX);
 
-        sRes.assign( sGetAbsolute(vsArgs.at(0)) );
+            INT iReaded = - 1;
+
+            for ( ; ; ) {
+                iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring::value_type));
+                /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring());
+
+                xCHECK_DO(sRes.size() * sizeof(std::tstring::value_type) > static_cast<size_t>( iReaded ), break);
+
+                sRes.resize(sRes.size() * 2);
+            }
+
+            sRes.resize(iReaded);
+        }
     #endif
 #endif
 
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(),            std::tstring());
     /*DEBUG*/xASSERT_RET(FALSE != CxFile::bIsExists(sRes), std::tstring());
 
     return sRes;
@@ -276,6 +248,7 @@ CxPath::sGetStandartExt(
 }
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 /*static*/
 std::tstring
 CxPath::sSetDrive(
@@ -297,6 +270,7 @@ CxPath::sSetDrive(
 
     return sRes.replace(uiPos, sDrive.size(), csDrivePath);
 }
+
 #endif
 //---------------------------------------------------------------------------
 /*static*/
@@ -630,16 +604,16 @@ CxPath::sGetAbsolute(
     std::tstring sRes;
 
 #if defined(xOS_ENV_WIN)
-    ULONG   ulRes = 0;
+    ULONG   ulRes = 0UL;
     std::tstring sBuff;
 
     ulRes = ::GetFullPathName(&csFilePath.at(0), 0, NULL, NULL);
-    /*DEBUG*/xASSERT_RET(0 != ulRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(0UL != ulRes, std::tstring());
 
     sBuff.resize(ulRes);
 
     ulRes = ::GetFullPathName(&csFilePath.at(0), sBuff.size(), &sBuff.at(0), NULL);
-    /*DEBUG*/xASSERT_RET(0 != ulRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(0UL != ulRes, std::tstring());
 
     sBuff.resize(ulRes);
 
@@ -710,9 +684,9 @@ CxPath::sMinimize(
 #if defined(xOS_ENV_WIN)
     sRes.assign(csFilePath);
 
-    std::tstring sDrive = sGetDrive(sRes);                                            //D:
-    std::tstring sDir   = sGetDir(sRes).erase(0, sDrive.size()) + CxConst::xSLASH;    /* \xLib\Test\CxString\Project\Debug\ */
-    std::tstring sName  = sGetFullName(sRes);                                        //Test.exe
+    std::tstring sDrive = sGetDrive(sRes);                                          /* D: */
+    std::tstring sDir   = sGetDir(sRes).erase(0, sDrive.size()) + CxConst::xSLASH;  /* \xLib\Test\CxString\Project\Debug */
+    std::tstring sName  = sGetFullName(sRes);                                       /* Test.exe */
 
     while (((false == sDir.empty()) || (false == sDrive.empty())) && (sRes.size() > cuiMaxSize)) {
         if ((CxConst::xSLASH + xT("...") + CxConst::xSLASH) == sDir ) {
@@ -723,7 +697,7 @@ CxPath::sMinimize(
             sDrive.clear();
         }
         else {
-            BOOL        bRoot = FALSE;
+            BOOL   bRoot = FALSE;
             size_t uiPos = std::tstring::npos;
 
             if (CxConst::xSLASH == sDir) {
@@ -745,12 +719,12 @@ CxPath::sMinimize(
                 }
 
                 //uiPos = AnsiPos("\\", S);
-                uiPos = sDir.find_first_of(CxConst::xSLASH);        //-- uiPos = sDir.find_first_of(xWIN_SLASH) + 1;
+                uiPos = sDir.find_first_of(CxConst::xSLASH);
                 if (std::tstring::npos == uiPos) {
                     sDir.clear();
                 } else {
                     //Delete(S, 1, uiPos); - c ������� 1(0) uiPos ��������
-                    sDir.erase(0, uiPos + CxConst::xSLASH.size());                //-- sDir.erase(0, uiPos);
+                    sDir.erase(0, uiPos + CxConst::xSLASH.size());
                     sDir = xT("...") + CxConst::xSLASH + sDir;
                 }
 
@@ -800,39 +774,39 @@ CxPath::uiGetMaxSize() {
 
     size_t uiRes = 0;
 
-    #if defined(xOS_ENV_WIN)
-        #if defined(MAX_PATH)
-            uiRes = MAX_PATH;
-        #else
-            const cuiDefaultSize = 260;
+#if defined(xOS_ENV_WIN)
+    #if defined(MAX_PATH)
+        uiRes = MAX_PATH;
+    #else
+        const size_t cuiDefaultSize = 260;
+
+        uiRes = cuiDefaultSize;
+    #endif
+#elif defined(xOS_ENV_UNIX)
+    #if defined(PATH_MAX)
+        uiRes = PATH_MAX;
+    #else
+        const ULONG culSavedError = 0UL;
+        LONG        liRes         = - 1L;
+        ULONG       ulLastError   = 0UL;
+
+        (VOID)CxLastError::bSet(culSavedError);
+
+        liRes       = ::pathconf("/", _PC_PATH_MAX);
+        ulLastError = CxLastError::ulGet();
+        /*DEBUG*/xASSERT_RET(- 1L == liRes && 0UL != culSavedError, 0);
+
+        if (- 1L == liRes && culSavedError == ulLastError) {
+            //system does not have a limit for the requested resource
+            const size_t cuiDefaultSize = 1024;
 
             uiRes = cuiDefaultSize;
-        #endif
-    #elif defined(xOS_ENV_UNIX)
-        #if defined(PATH_MAX)
-            uiRes = PATH_MAX;
-        #else
-            const ULONG culSavedError = 0;
-            LONG        liRes         = - 1;
-            ULONG       ulLastError   = 0;
-
-            CxLastError::bSet(culSavedError);
-
-            liRes       = ::pathconf("/", _PC_PATH_MAX);
-            ulLastError = CxLastError::ulGet();
-            /*DEBUG*/xASSERT_RET(- 1 == liRes && 0 != culSavedError, 0);
-
-            if (- 1 == liRes && culSavedError == ulLastError) {
-                //system does not have a limit for the requested resource
-                const cuiDefaultSize = 1024;
-
-                uiRes = cuiDefaultSize;
-            } else {
-                //relative root
-                uiRes = static_cast<std::size_t>(liRes + 1);
-            }
-        #endif
+        } else {
+            //relative root
+            uiRes = static_cast<size_t>( liRes + 1 );
+        }
     #endif
+#endif
 
     return uiRes;
 }
@@ -844,38 +818,38 @@ CxPath::uiGetNameMaxSize() {
 
     size_t uiRes = 0;
 
-    #if defined(xOS_ENV_WIN)
-        #if defined(FILENAME_MAX)
-            uiRes = FILENAME_MAX;
-        #else
-            const cuiDefaultSize = 260;
+#if defined(xOS_ENV_WIN)
+    #if defined(FILENAME_MAX)
+        uiRes = FILENAME_MAX;
+    #else
+        const size_t cuiDefaultSize = 260;
+
+        uiRes = cuiDefaultSize;
+    #endif
+#elif defined(xOS_ENV_UNIX)
+    #if defined(NAME_MAX)
+        uiRes = NAME_MAX;
+    #else
+        const ULONG culSavedError = 0UL;
+        LONG        liRes         = - 1L;
+        ULONG       ulLastError   = 0UL;
+
+        (VOID)CxLastError::bSet(culSavedError);
+
+        liRes       = ::pathconf("/", _PC_NAME_MAX);
+        ulLastError = CxLastError::ulGet();
+        /*DEBUG*/xASSERT_RET(- 1L == liRes && 0UL != culSavedError, 0);
+
+        if (- 1 == liRes && culSavedError == ulLastError) {
+            //system does not have a limit for the requested resource
+            const size_t cuiDefaultSize = 1024;
 
             uiRes = cuiDefaultSize;
-        #endif
-    #elif defined(xOS_ENV_UNIX)
-        #if defined(NAME_MAX)
-            uiRes = NAME_MAX;
-        #else
-            const ULONG culSavedError = 0;
-            LONG        liRes         = - 1;
-            ULONG       ulLastError   = 0;
-
-            CxLastError::bSet(culSavedError);
-
-            liRes       = ::pathconf("/", _PC_NAME_MAX);
-            ulLastError = CxLastError::ulGet();
-            /*DEBUG*/xASSERT_RET(- 1 == liRes && 0 != culSavedError, 0);
-
-            if (- 1 == liRes && culSavedError == ulLastError) {
-                //system does not have a limit for the requested resource
-                const cuiDefaultSize = 1024;
-
-                uiRes = cuiDefaultSize;
-            } else {
-                uiRes = static_cast<std::size_t>(liRes);
-            }
-        #endif
+        } else {
+            uiRes = static_cast<size_t>( liRes );
+        }
     #endif
+#endif
 
     return uiRes;
 }
