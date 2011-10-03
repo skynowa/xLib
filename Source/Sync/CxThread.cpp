@@ -791,7 +791,7 @@ CxThread::bSetCpuIdeal(
 ULONG
 CxThread::ulGetCpuIdeal() const {
 #if defined(xOS_ENV_WIN)
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0UL;
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0UL);
 #elif defined(xOS_ENV_UNIX)
 
 #endif
