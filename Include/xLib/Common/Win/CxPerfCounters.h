@@ -11,7 +11,6 @@
 
 #if defined(xOS_WIN)
 #include <comdef.h>    // for using bstr_t class
-#include <registry.hpp>
 //---------------------------------------------------------------------------
 #define TOTALBYTES    1024 * 100
 #define BYTEINCREMENT 1024 * 10

@@ -517,7 +517,7 @@ CxDebugger::_bLoggingPlain(
             crpReport.sGetReport().c_str()
         );
 
-        xFTPRINTF(pFile, xT("%s"), csMsg.data());
+        xTFPRINTF(pFile, xT("%s"), csMsg.data());
     }
     catch (...) { }
 

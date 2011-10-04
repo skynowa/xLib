@@ -235,7 +235,7 @@ CxConsole::bPrompt(
             xCHECK_DO(TRUE == cbIsVisible, bWrite(xT("*")));
 
             //ENTER
-            xCHECK_DO(0x0D == chLetter, break);
+            xCHECK_DO(10 == chLetter, break);
 
             //BACKSPACE
             xCHECK_DO(0x8 == chLetter, (*psAnswer).clear(); continue);

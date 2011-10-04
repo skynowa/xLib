@@ -17,7 +17,7 @@
         #define xTEOF           WEOF
 
         #define xTMAIN          wmain
-        #define xFTPRINTF       fwprintf
+        #define xTFPRINTF       fwprintf
         #define xTASCTIME       _wasctime
         #define xTSETLOCALE     _wsetlocale
         #define xTFOPEN         _wfopen
@@ -102,7 +102,7 @@
         #define xTEOF           EOF
 
         #define xTMAIN          main
-        #define xFTPRINTF       fprintf
+        #define xTFPRINTF       fprintf     
         #define xTASCTIME       asctime
         #define xTSETLOCALE     setlocale
         #define xTFOPEN         fopen
