@@ -11,22 +11,23 @@
 #include <xLib/Gui/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxButton : 
-    public CxButtonBase 
-    /// button    
+#if defined(xOS_ENV_WIN)
+class CxButton :
+    public CxButtonBase
+    /// button
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        //стиль (изображение/текст)
+        //пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ)
         enum EViewStyle {
             vsText     = BS_TEXT,
             vsBitmap   = BS_BITMAP,
             vsIcon     = BS_ICON
         };
 
-        //тип изображения
+        //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum EImageType {
             itBitmap   = IMAGE_BITMAP,
             itIcon       = IMAGE_ICON,
@@ -40,12 +41,12 @@ class CxButton :
         BOOL     bCreateRes      (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         BOOL     bSetViewStyle   (EViewStyle vsViewStyle);
         BOOL     bSetImage       (EImageType itImageType, HANDLE hImage);
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         VOID     vSet_OnClick    (SClosureT<VOID(CxButton *pbtnSender)> vCallback);
         VOID     vSet_OnDbClick  (SClosureT<VOID(CxButton *pbtnSender)> vCallback);
         VOID     vSet_OnKillFocus(SClosureT<VOID(CxButton *pbtnSender)> vCallback);
@@ -60,7 +61,7 @@ class CxButton :
         virtual void vOnSetFocus () { _vHandler_OnSetFocus (this); }
 
 
-        //callback методы
+        //callback пїЅпїЅпїЅпїЅпїЅпїЅ
         SClosureT<VOID(CxButton *pthSender)> _m_vCallback_OnClick;
         VOID                                 _vHandler_OnClick(CxButton *pthSender);
 
@@ -73,6 +74,7 @@ class CxButton :
         SClosureT<VOID(CxButton *pthSender)> _m_vCallback_OnSetFocus;
         VOID                                 _vHandler_OnSetFocus(CxButton *pthSender);
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxButtonH
 

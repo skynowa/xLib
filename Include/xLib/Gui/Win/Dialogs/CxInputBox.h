@@ -14,6 +14,7 @@
 #define ID_btnOK        IDOK
 #define ID_btnCancel    IDCANCEL
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
 class CxInputBox :
     public CxNonCopyable
     /// input box
@@ -29,12 +30,12 @@ class CxInputBox :
                                 CxInputBox  ();
             ///< constructor
         virtual                ~CxInputBox  ();
-        	///< destructor
+            ///< destructor
 
         EModalResult            mrShowModal (const std::tstring &csCaption, const std::tstring &csPrompt, const std::tstring &csText);
-        	///< show modal
+            ///< show modal
         std::tstring            sGetText    ();
-        	///< get text
+            ///< get text
 
     private:
         BOOL                    _m_bRes;		///< for private use
@@ -46,8 +47,11 @@ class CxInputBox :
         HWND                    _m_hEdtText;	///< handle to edit text field
 
         static LRESULT CALLBACK _ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
-        	///< window callback
+            ///< window callback
 };
+#elif defined(xOS_ENV_UNIX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Gui_CxInputBoxH
 

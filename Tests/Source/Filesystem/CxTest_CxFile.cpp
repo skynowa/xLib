@@ -48,13 +48,13 @@ CxTest_CxFile::bUnit(
     *****************************************************************************/
 
     //-------------------------------------
-    //bOpen
+    //bCreate
     xTEST_BLOCK(cullBlockLoops)
     {
         CxFile F;
 
         for (size_t i = 0; i < 1; ++ i) {
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
     }
@@ -65,7 +65,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         for (size_t i = 0; i < 7; ++ i) {
@@ -78,15 +78,17 @@ CxTest_CxFile::bUnit(
     //bAttach
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEMP_DISABLED
-            CxFile _F;
+        CxFile _F;
 
-            m_bRes = _F.bAttach(stdout);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+        m_bRes = _F.bAttach(stdout);
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
-            m_bRes = _F.bIsValid();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-        #endif
+        m_bRes = _F.bIsValid();
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+
+        FILE *pFile = _F.pDetach();
+        xASSERT_PTR(pFile);
+        xASSERT_EQ(stdout, pFile);
     }
 
     //--------------------------------------------------
@@ -95,7 +97,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         FILE *pFile = F.pGet();
@@ -108,7 +110,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_sRes = F.sGetPath();
@@ -132,7 +134,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             F.uiWrite(&sBuffWrite.at(0), sBuffWrite.size());
@@ -142,7 +144,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinRead, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             F.uiRead(&sBuffRead.at(0), sBuffWrite.size());
@@ -165,7 +167,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bWrite(sContent);
@@ -177,7 +179,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinRead, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bRead(&usText1);
@@ -189,7 +191,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(sGetWorkDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxFile::omBinWrite, TRUE);
+            m_bRes = F.bCreate(sGetWorkDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxFile::omBinWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bWrite(usText1);
@@ -201,7 +203,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinRead, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bRead(&usText2);
@@ -223,7 +225,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bWriteLine(sBuffWrite);
@@ -234,7 +236,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omRead, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omRead, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bReadLine(&sBuffRead, sBuffWrite.size());
@@ -254,7 +256,7 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bWriteChar(chChar);
@@ -282,7 +284,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bClear();
@@ -303,7 +305,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
@@ -343,7 +345,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             INT iResFprintf = F.iWrite(csTestContent.c_str());
@@ -355,7 +357,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omRead, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omRead, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bRead(&sContent);
@@ -371,7 +373,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         INT iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
@@ -397,7 +399,7 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         SWriter::DoV(F, xT("%s"), xT("zzz"));
@@ -415,7 +417,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bResize(1024);
@@ -434,7 +436,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bSetPosition(0, CxFile::ppBegin);
@@ -452,7 +454,7 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bResize(culNewSize);
@@ -468,7 +470,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bResize(0);
@@ -483,7 +485,7 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bSetVBuff(&sBuffRead.at(0), CxFile::bmFull, sBuffRead.size() * 2);
@@ -496,7 +498,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         #if defined(xOS_ENV_WIN)
@@ -513,7 +515,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         #if defined(xOS_ENV_WIN)
@@ -539,7 +541,7 @@ CxTest_CxFile::bUnit(
         m_bRes = F.bIsValid();
         xASSERT_EQ(FALSE, m_bRes);
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bIsValid();
@@ -558,7 +560,7 @@ CxTest_CxFile::bUnit(
         m_bRes = F.bIsOpen();
         xASSERT_EQ(FALSE, m_bRes);
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bIsOpen();
@@ -577,7 +579,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bIsEmpty();
@@ -602,7 +604,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bIsEof();
@@ -615,7 +617,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bIsError();
@@ -628,7 +630,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bErrorClear();
@@ -647,7 +649,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bFlush();
@@ -663,7 +665,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bClose();
@@ -784,26 +786,6 @@ CxTest_CxFile::bUnit1(
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
-    //-------------------------------------
-    //sTempCreate, bTempClose
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        #if 1
-            FILE *pfFileHandle = NULL;
-
-            std::tstring sTempFilePath = CxFile::sTempCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &pfFileHandle);
-            #if xTEST_IGNORE
-                xTRACEV(xT("\tsTemp: %s"), sTempFilePath.c_str());
-            #endif
-
-            m_bRes = CxFile::bTempClose(&pfFileHandle);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-
-            m_bRes = CxFile::bDelete(sTempFilePath);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
-        #endif
-    }
-
     //--------------------------------------------------
     //ullGetLines
     xTEST_BLOCK(cullBlockLoops)
@@ -812,7 +794,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             for (size_t i = 0; i < cullLinesNum; ++ i) {
@@ -835,7 +817,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(sFilePathFrom, CxFile::omBinCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(sFilePathFrom, CxFile::omBinCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bResize(1024 * 5);
@@ -912,7 +894,7 @@ CxTest_CxFile::bUnit1(
                 if (i < 10) {
                     CxFile F;
 
-                    m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+                    m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
                     xASSERT_NOT_EQ(FALSE, m_bRes);
 
                     m_bRes = F.bResize(1024);
@@ -943,7 +925,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_iRes = F.iWrite(xT("0123456789"));
@@ -971,7 +953,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             for (size_t i = 0; i < 7; ++ i) {
@@ -1002,7 +984,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
@@ -1029,7 +1011,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             for (size_t i = 0; i < 10; ++ i) {
@@ -1060,7 +1042,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
@@ -1088,7 +1070,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             for (size_t i = 0; i < 10; ++ i) {
@@ -1120,7 +1102,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
@@ -1147,7 +1129,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_iRes = F.iWrite(xT("0123456789"));
@@ -1178,7 +1160,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
@@ -1207,7 +1189,7 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bOpen(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
 
             m_bRes = F.bResize(cliFileSize);
@@ -1243,7 +1225,7 @@ CxTest_CxFile::bUnitPrivate(
     {
         CxFile sfFile;
 
-        m_bRes = sfFile.bOpen(csFilePath, CxFile::omRead, TRUE);
+        m_bRes = sfFile.bCreate(csFilePath, CxFile::omRead, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_iRes = CxFile::_iGetHandle( sfFile.pGet() );
@@ -1259,7 +1241,7 @@ CxTest_CxFile::bUnitPrivate(
 
         CxFile sfFile;
 
-        m_bRes = sfFile.bOpen(csFilePath, comMode, TRUE);
+        m_bRes = sfFile.bCreate(csFilePath, comMode, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         INT iFile = CxFile::_iGetHandle(sfFile.pGet());

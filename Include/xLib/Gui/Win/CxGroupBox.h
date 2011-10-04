@@ -10,13 +10,14 @@
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxGroupBox : 
-    public CxButtonBase 
-    /// group box   
+#if defined(xOS_ENV_WIN)
+class CxGroupBox :
+    public CxButtonBase
+    /// group box
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
                  CxGroupBox();
         virtual ~CxGroupBox();
@@ -24,11 +25,12 @@ class CxGroupBox :
         BOOL     bCreateRes(INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxGroupBoxH

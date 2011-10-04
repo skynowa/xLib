@@ -1,9 +1,10 @@
 /**
  * \file  Resource.xrc.h
- * \brief resource file (Ñ++ syntax)
+ * \brief resource file (ï¿½++ syntax)
  */
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *   IDD_DIALOG1
 *
@@ -56,3 +57,4 @@
 #define IDD_WND_SHEET1 10002
 #define IDD_WND_SHEET2 10003
 //---------------------------------------------------------------------------
+#endif

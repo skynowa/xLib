@@ -9,13 +9,14 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/xCommon.h>
 //---------------------------------------------------------------------------
-class CxImageList : 
-    public CxNonCopyable 
-    /// image list    
+#if defined(xOS_ENV_WIN)
+class CxImageList :
+    public CxNonCopyable
+    /// image list
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         CxImageList();
         ~CxImageList();
@@ -30,7 +31,7 @@ class CxImageList :
         #endif //xWIN32_VISTA
 
 
-        //создание/разрушение
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         #if (xWINVER >= xWIN32_31)
             HIMAGELIST hCreate            (INT iWidth, INT iHeight, UINT uiFlags, INT iSize, INT iGrow);
         #endif //xWIN32_31
@@ -42,7 +43,7 @@ class CxImageList :
         #endif //xWIN32_31
 
 
-        //действия
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         #if (xWINVER >= xWIN32_31)
             INT        iAdd               (HBITMAP hBitmap, HBITMAP hBitmapMask);
         #endif //xWIN32_31
@@ -63,7 +64,7 @@ class CxImageList :
         #endif //xWIN32_31
 
 
-        //чтение/запись
+        //пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ
         #if (xWINVER >= xWIN32_31)
             HIMAGELIST hRead              (LPSTREAM pStream);
         #endif //xWIN32_31
@@ -78,7 +79,7 @@ class CxImageList :
         #endif //xWIN32_VISTA
 
 
-        //перетаскивание
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         #if (xWINVER >= xWIN32_31)
             BOOL       bBeginDrag         (INT iIndex, INT iLeft, INT iTop);
         #endif //xWIN32_31
@@ -105,7 +106,7 @@ class CxImageList :
         #endif //xWIN32_31
 
 
-        //рисование
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         #if (xWINVER >= xWIN32_31)
             BOOL       bDraw              (INT iIndex, HDC hDC, INT iLeft, INT iTop, UINT uiStyle);
         #endif //xWIN32_31
@@ -147,7 +148,7 @@ class CxImageList :
         #endif //xWIN32_31
 
 
-        //цвет
+        //пїЅпїЅпїЅпїЅ
         #if (xWINVER >= xWIN32_31)
             COLORREF   crGetBkColor       ();
         #endif //xWIN32_31
@@ -161,6 +162,7 @@ class CxImageList :
     private:
         HIMAGELIST  _m_hImglst;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxImageListH
 

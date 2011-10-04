@@ -12,15 +12,16 @@
 #include <xLib/Fso/CxDll.h>
 #include <richedit.h>
 //---------------------------------------------------------------------------
-class CxRichEdit : 
-    public CxWindow 
+#if defined(xOS_ENV_WIN)
+class CxRichEdit :
+    public CxWindow
     /// rich edit
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        //тип выделенного объекта
+        //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum ESelectionType {
             stEmpty       = SEL_EMPTY,        //selection is empty
             stText        = SEL_TEXT,        //Text
@@ -29,7 +30,7 @@ class CxRichEdit :
             stMultiObject = SEL_MULTIOBJECT    //More than one COM object
         };
 
-        //операции
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum EOptionOperation {
             ooSET = ECOOP_SET,            //Sets the options to those specified by lParam.
             ooOR  = ECOOP_OR,            //Combines the specified options with the current options.
@@ -37,7 +38,7 @@ class CxRichEdit :
             ooXOR = ECOOP_XOR            //Logically exclusive OR the current options with those specified by lParam.
         };
 
-        //значения для операций
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum EOptionValue {
             ovAUTOWORDSELECTION = ECO_AUTOWORDSELECTION,    //Automatic selection of word on double-click
             ovAUTOVSCROLL       = ECO_AUTOVSCROLL,            //Same as ES_AUTOVSCROLL style
@@ -49,7 +50,7 @@ class CxRichEdit :
             ovVERTICAL          = ECO_VERTICAL                //Same as ES_VERTICAL style. Available in Asian-language versions only
         };
 
-        //значения для IME-операций
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IME-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum EImeOptionValue {
             ivCloseStatusWindow = IMF_CLOSESTATUSWINDOW,    //Closes the IME status window when the control receives the input focus.
             ivForceActive       = IMF_FORCEACTIVE,            //Activates the IME when the control receives the input focus
@@ -61,7 +62,7 @@ class CxRichEdit :
             ivMultiPleedIt      = IMF_MULTIPLEEDIT            //Specifies that the composition string will not be canceled or determined by focus changes
         };
 
-        //опции языка
+        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         enum ELangOption {
             loAutoFont            = IMF_AUTOFONT,            //If this flag is set, the control automatically changes fonts when the user explicitly changes to a different keyboard layout.
             loAutoFontSizeAdjust  = IMF_AUTOFONTSIZEADJUST,    //Font-bound font sizes are scaled from insertion point size according to a script
@@ -72,13 +73,13 @@ class CxRichEdit :
             loUiFonts             = IMF_UIFONTS                //Use UI default fonts. This option is turned off by default.
         };
 
-        //опции типографии
+        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum ETypographyOption {
             toAdvancedTypography = TO_ADVANCEDTYPOGRAPHY,    //Advanced typography (special line breaking and line formatting) is turned on
             toSimpleLinebreak     = TO_SIMPLELINEBREAK        //Normal line breaking and formatting is used.
         };
 
-        //стили
+        //пїЅпїЅпїЅпїЅпїЅ
         enum EEditStyle {
             stEmulateSysEdit     = SES_EMULATESYSEDIT,        //When this bit is on, Rich Edit attempts to emulate the system edit control
             stBeepOnMaxText      = SES_BEEPONMAXTEXT,        //Rich Edit calls the system beeper if the user attempts to input more than the maximum characters
@@ -100,7 +101,7 @@ class CxRichEdit :
             stCtFallowProofing   = SES_CTFALLOWPROOFING        //Windows XP SP1: Allows TSF proofing tips
         };
 
-        //текстовые режимы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         enum ETextMode {
             tmPLAINTEXT         = TM_PLAINTEXT,
             tmRICHTEXT          = TM_RICHTEXT,
@@ -110,7 +111,7 @@ class CxRichEdit :
             tmMULTICODEPAGE     = TM_MULTICODEPAGE
         };
 
-        //Параметры поиска
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         enum EFindParams {
             fpDown             = FR_DOWN,
             fpMatchAlefhamza = FR_MATCHALEFHAMZA,
@@ -132,13 +133,13 @@ class CxRichEdit :
             foRightBreak    = WB_RIGHTBREAK            //Finds the next end-of-word delimiter after the specified position
         };
 
-        //IME mode bias значение
+        //IME mode bias пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum EImeBiasMode {
             ibmPlauralClause = IMF_SMODE_PLAURALCLAUSE,    //Sets the IME mode bias to Name
             ibmNone             = IMF_SMODE_NONE            //No bias
         };
 
-        //CTF mode bias значение
+        //CTF mode bias пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum ECtfBiasMode {
             cbmDefault                  = CTFMODEBIAS_DEFAULT,                    //There is no mode bias
             cbmFileName              = CTFMODEBIAS_FILENAME,                //The bias is to a filename
@@ -197,7 +198,7 @@ class CxRichEdit :
             cfUseUiRules     = SCF_USEUIRULES,        //RichEdit 4.1: Used with SCF_SELECTION. Indicates that format came from a toolbar or other UI tool
         };
 
-        //формат потока
+        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         enum EStreamFormat {
             sfRtf       = SF_RTF,        //RTF
             sfRtfNoObjs = SF_RTFNOOBJS,    //RTF with spaces in place of COM objects.
@@ -205,7 +206,7 @@ class CxRichEdit :
             sfTextized    = SF_TEXTIZED,    //Text with a text representation of COM objects.
         };
 
-        //флаг форматирования потока
+        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         enum EStreamFormatFlag {
             sffPlainRtf    = SFF_PLAINRTF,        //If specified, the rich edit control streams out only the keywords common to all languages, ignoring language-specific keywords. If not specified, the rich edit control streams out all keywords. You can combine this flag with the SF_RTF or SF_RTFNOOBJS flag.
             sffSelection   = SFF_SELECTION,        //If specified, the rich edit control streams out only the contents of the current selection. If not specified, the control streams out the entire contents. You can combine this flag with any of data format values.
@@ -257,7 +258,7 @@ class CxRichEdit :
 
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         //Selection
         #if (xWINVER >= xWIN32_2K)
@@ -645,16 +646,17 @@ class CxRichEdit :
 
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     private:
         CxDll   _m_dlDll;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxRichEdit10H
 
 /*
-The range includes everything if cpMin is 0 and cpMax is –1.
+The range includes everything if cpMin is 0 and cpMax is пїЅ1.
 Syntax
 Copy
 

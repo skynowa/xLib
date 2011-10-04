@@ -9,13 +9,15 @@
 //---------------------------------------------------------------------------
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
-class CXHotKey : 
-    public CxNonCopyable 
-    /// hotkey    
+#if defined(xOS_ENV_WIN)
+class CXHotKey :
+    public CxNonCopyable
+    /// hotkey
 {
     public:
         CXHotKey();
        ~CXHotKey();
 };
+#endif
 //---------------------------------------------------------------------------
 #endif //XLib_Gui_CXHotKeyH

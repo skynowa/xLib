@@ -10,8 +10,9 @@
 #include <xLib/xCommon.h>
 #include <xLib/Gui/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxWndsContainer : 
-    public CxNonCopyable 
+#if defined(xOS_ENV_WIN)
+class CxWndsContainer :
+    public CxNonCopyable
     /// windows container
 {
     public:
@@ -26,5 +27,6 @@ class CxWndsContainer :
     private:
         std::vector<CxWindow *>  _m_vecpWnds;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif //XLib_Gui_CxWndsContainerH

@@ -93,7 +93,7 @@ CxBlowfish::bSetFileKey(
     std::ustring usFile;
     CxFile       sfFile;
 
-    _m_bRes = sfFile.bOpen(csFilePath, CxFile::omBinRead, TRUE);
+    _m_bRes = sfFile.bCreate(csFilePath, CxFile::omBinRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     LONG liFileSize = sfFile.liGetSize();
@@ -186,7 +186,7 @@ CxBlowfish::bEncryptFileCfb64(
     {
         CxFile sfFileIn;
 
-        _m_bRes = sfFileIn.bOpen(csFilePathIn, CxFile::omBinRead, TRUE);
+        _m_bRes = sfFileIn.bCreate(csFilePathIn, CxFile::omBinRead, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileIn.bRead(&usIn);
@@ -199,7 +199,7 @@ CxBlowfish::bEncryptFileCfb64(
     {
         CxFile sfFileOut;
 
-        _m_bRes = sfFileOut.bOpen(csFilePathOut, CxFile::omBinCreateReadWrite, TRUE);
+        _m_bRes = sfFileOut.bCreate(csFilePathOut, CxFile::omBinCreateReadWrite, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
         _m_bRes = sfFileOut.bWrite(usOut);
@@ -245,10 +245,10 @@ CxBlowfish::bEncryptFileCfb64(
     CxFile sfFileIn;
     CxFile sfFileOut;
 
-    _m_bRes = sfFileIn.bOpen(csFilePathIn,   CxFile::omBinRead, TRUE);
+    _m_bRes = sfFileIn.bCreate(csFilePathIn,   CxFile::omBinRead, TRUE);
     /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    _m_bRes = sfFileOut.bOpen(csFilePathOut, CxFile::omBinWrite, TRUE);
+    _m_bRes = sfFileOut.bCreate(csFilePathOut, CxFile::omBinWrite, TRUE);
     /*DEBUF*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
@@ -385,7 +385,7 @@ CxBlowfish::cmGetFileCryptStatus(
     //
     CxFile sfFile;
 
-    _m_bRes = sfFile.bOpen(csFilePath, CxFile::omBinRead, TRUE);
+    _m_bRes = sfFile.bCreate(csFilePath, CxFile::omBinRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, CxBlowfish::cmUnknown);
 
     usStamp.resize(cusStamp.size());

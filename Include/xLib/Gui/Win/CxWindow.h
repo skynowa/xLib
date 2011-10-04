@@ -14,12 +14,13 @@
 #include <xLib/Gui/CxFont.h>
 #include <xLib/Gui/CxStyle.h>
 //---------------------------------------------------------------------------
-class CxWindow : 
-    public CxNonCopyable 
+#if defined(xOS_ENV_WIN)
+class CxWindow :
+    public CxNonCopyable
     /// base class for windows controls
 {
     public:
-        CxFont            m_fnFont;            //шрифт
+        CxFont            m_fnFont;            //пїЅпїЅпїЅпїЅпїЅ
         CxStyle           m_stStyle;
 
                           CxWindow           ();
@@ -32,20 +33,20 @@ class CxWindow :
         //CxWindow       *pGetParentWnd      () const;
         //BOOL            bSetParentWnd      ();
 
-        //данные
+        //пїЅпїЅпїЅпїЅпїЅпїЅ
         HWND              hGetHandle         () const;
         BOOL              bSetHandle         (HWND hWnd);
         INT               iGetID             () const;
         BOOL              bSetID             (INT iID);
         tString           sGetClassName      () const;
         BOOL              bSetClassName      (const tString &csClassName);
-        //HWND            _m_hParentWnd;            //хэндл родительского окна
+        //HWND            _m_hParentWnd;            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         tString           sGetText           () const;
         BOOL              bSetText           (const tString &csText);
-        //INT             _m_iLeft,  _m_iTop;        //координаты окна
-        //INT             _m_iWidth, _m_iHeight;    //размеры окна
+        //INT             _m_iLeft,  _m_iTop;        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        //INT             _m_iWidth, _m_iHeight;    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-        //создание
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         BOOL              bCreate            (INT iID, HWND hParent, const tString &csClassName, const tString &csText,
                                               INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx, LPVOID lpParam);
         BOOL              bCreate            (INT iID, CxWindow *pwndParent, const tString &csClassName, const tString &csText,
@@ -53,7 +54,7 @@ class CxWindow :
         BOOL              bCreateRes         (INT iID, HWND hParent);
         //BOOL            bCreateRes         (INT iID, CxWindow *pwndParent);
 
-        //действия
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         BOOL              bShow              (INT iCmdShow) const;
         BOOL              bUpdate            () const;
         BOOL              bMove              (INT iLeft, INT iTop, INT iWidth, INT iHeight);
@@ -66,11 +67,11 @@ class CxWindow :
         BOOL              bDestroy           () const;
         BOOL              bClose             ();
 
-        //посылка сообщений
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         LRESULT           pSendMessage       (UINT uiMsg, WPARAM wParam, LPARAM lParam) const;
         BOOL              bPostMessage       (UINT uiMsg, WPARAM wParam, LPARAM lParam) const;
 
-        //остальное
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         LONG              liGetWindowLong    (INT iIndex);
         LONG              liSetWindowLong    (INT iIndex, LONG liNewLong);
 
@@ -80,25 +81,25 @@ class CxWindow :
         virtual VOID      vOnSetFocus        () {/*iMsgBox(xT(__FUNCTION__);*/}
 
     protected:
-        HWND              _m_hWnd;                //хэндл окна
-        INT               _m_iID;                //идентификатор контрола    /*SHORT*/
-        tString           _m_sClassName;        //класс окна, контрола
-        HWND              _m_hParentWnd;        //хэндл родительского окна
-        tString           _m_sText;                //текст окна
-        INT               _m_iLeft,  _m_iTop;    //координаты окна
-        INT               _m_iWidth, _m_iHeight;//размеры окна
-        ULONG             _m_ulStyle;            //стиль окна
-        ULONG             _m_ulStyleEx;            //расширенный стиль окна
-        ////INT           _m_iMenu;                //меню
+        HWND              _m_hWnd;                //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        INT               _m_iID;                //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ    /*SHORT*/
+        tString           _m_sClassName;        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        HWND              _m_hParentWnd;        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        tString           _m_sText;                //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        INT               _m_iLeft,  _m_iTop;    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        INT               _m_iWidth, _m_iHeight;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        ULONG             _m_ulStyle;            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        ULONG             _m_ulStyleEx;            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        ////INT           _m_iMenu;                //пїЅпїЅпїЅпїЅ
 
         CxWindow         *_m_pwndParent;
 
 
-        BOOL              _m_bIsControl;        //является ли окно контролом
+        BOOL              _m_bIsControl;        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         mutable BOOL      _m_bRes;
-        static CxTraceLog _m_tlLog;                //лог
+        static CxTraceLog _m_tlLog;                //пїЅпїЅпїЅ
 
-        static LRESULT    _s_pWndProc         (HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);   //Функция окна
+        static LRESULT    _s_pWndProc         (HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);   //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         static BOOL       _bInitCommonControls(ULONG ulFlags);
         static BOOL       _bRegisterClass     (const WNDCLASSEX *cpwcWndClassEx);
         static BOOL       _bUnregisterClass   (const tString &csClassName);
@@ -107,6 +108,7 @@ class CxWindow :
     private:
 
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Gui_CxWindowH
 
