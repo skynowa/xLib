@@ -10,15 +10,16 @@
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxCheckBox : 
-    public CxButtonBase 
-    /// checkbox    
+#if defined(xOS_ENV_WIN)
+class CxCheckBox :
+    public CxButtonBase
+    /// checkbox
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        //состояния
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum ECheckState {
             csUknown    = - 1,
             csChecked    = BST_CHECKED,
@@ -32,14 +33,15 @@ class CxCheckBox :
         BOOL        bCreateRes     (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         ECheckState csGetState     ();
         BOOL        bSetState      (CxCheckBox::ECheckState csCheckState);
         BOOL        bSetAllowGrayed(BOOL bFlag);
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxCheckBoxH

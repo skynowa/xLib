@@ -922,10 +922,10 @@ CxCgiFormData::_bInit() {
 
 
                 //read, parse data
-                CxFile sfFile;
-                std::tstring     sBuff;
+                CxFile       sfFile;
+                std::tstring sBuff;
 
-                bRes = sfFile.bOpen(stdin);
+                bRes = sfFile.bAttach(stdin);
                 /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
                 sBuff.resize(uiPostSize);
@@ -936,6 +936,8 @@ CxCgiFormData::_bInit() {
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
                 _m_sFormData.assign(sBuff);
+
+                (VOID)sfFile.pDetach();
             }
             break;
 

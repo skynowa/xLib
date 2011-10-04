@@ -59,6 +59,7 @@
 #include <Test/Filesystem/CxTest_CxPath.h>
 #include <Test/Filesystem/CxTest_CxFileAttribute.h>
 #include <Test/Filesystem/CxTest_CxFile.h>
+#include <Test/Filesystem/CxTest_CxFileTemp.h>
 #include <Test/Filesystem/CxTest_CxDll.h>
 #include <Test/Filesystem/CxTest_CxDir.h>
 #include <Test/Filesystem/CxTest_CxVolume.h>
@@ -264,6 +265,7 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxPath);
         bRes = tmManager.bAdd(new CxTest_CxFileAttribute);
         bRes = tmManager.bAdd(new CxTest_CxFile);
+        bRes = tmManager.bAdd(new CxTest_CxFileTemp);
         bRes = tmManager.bAdd(new CxTest_CxDll);
         bRes = tmManager.bAdd(new CxTest_CxDir);
         bRes = tmManager.bAdd(new CxTest_CxVolume);
@@ -284,7 +286,7 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxCookiePv1);
         bRes = tmManager.bAdd(new CxTest_CxCgi);
         bRes = tmManager.bAdd(new CxTest_CxSocketInit);
-        ////bRes = tmManager.bAdd(new CxTest_CxDnsClient);
+        bRes = tmManager.bAdd(new CxTest_CxDnsClient);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
         ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
         bRes = tmManager.bAdd(new CxTest_CxHttpClient);

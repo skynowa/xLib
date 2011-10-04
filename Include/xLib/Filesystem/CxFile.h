@@ -15,9 +15,9 @@ class CxFile :
 {
     public:
         enum EErrorType
-            /// error type
+                /// error type
         {
-            etError = xTEOF
+            etError = - 1
         };
 
         enum EOpenMode
@@ -123,12 +123,14 @@ class CxFile :
             ///< destructor
 
         //open, get
-        BOOL                 bOpen        (const std::tstring &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
+        BOOL                 bCreate      (const std::tstring &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
             ///< open
         BOOL                 bReopen      (const std::tstring &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
             ///< reopen with different file or mode
-        BOOL                 bOpen        (FILE *pflFile);
+        BOOL                 bAttach      (FILE *pflFile);
             ///< attach to stream
+        FILE *               pDetach      ();
+            ///< detach from stream
         FILE                *pGet         () const;
             ///< get handle
         std::tstring         sGetPath     () const;
@@ -240,12 +242,6 @@ class CxFile :
         static BOOL          bSetTime     (const std::tstring &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
             ///< set time
 
-        //temporary
-        static std::tstring  sTempCreate  (const std::tstring &csFilePath, const std::tstring &csDirPath, FILE **pfFileHandle);
-            ///< create temporary file, open it
-        static BOOL          bTempClose   (FILE **pfFileHandle);
-            ///< close temporary file
-
         //text
         static BOOL          bTextRead    (const std::tstring &csFilePath, std::tstring *psContent);
             ///< read to std::tstring
@@ -271,7 +267,6 @@ class CxFile :
             ///< backup
 
     private:
-        mutable BOOL         _m_bRes;       ///< for private using
         FILE                *_m_pFile;      ///< file handle
         std::tstring         _m_sFilePath;  ///< file path
 

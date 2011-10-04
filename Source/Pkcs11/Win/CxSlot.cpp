@@ -9,6 +9,7 @@
 #include <xLib/Pkcs11/Win/CxUtils.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -31,11 +32,11 @@ CxSlot::~CxSlot() {
 }
 //---------------------------------------------------------------------------
 #if xTEMP_DISABLED
-	BOOL CxSlot::bGetList(
-		CK_BBOOL       bTokenPresent,  ///< only slots with tokens?
-		CK_SLOT_ID_PTR pSlotList,      ///< receives array of slot IDs
-		CK_ULONG_PTR   pulCount        ///< receives number of slots
-	)
+    BOOL CxSlot::bGetList(
+        CK_BBOOL       bTokenPresent,  ///< only slots with tokens?
+        CK_SLOT_ID_PTR pSlotList,      ///< receives array of slot IDs
+        CK_ULONG_PTR   pulCount        ///< receives number of slots
+    )
 #endif
 
 BOOL
@@ -108,3 +109,6 @@ CxSlot::nfWaitForEvent(
     return nfRemoval;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_ENV_UNIX)
+
+#endif

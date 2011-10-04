@@ -1,4 +1,4 @@
-#Sat Jun 25 14:15:49 EEST 2011
+#Tue Oct 04 10:56:05 EEST 2011
 eclipse.preferences.version=1
 environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.debug.1548278989/CPATH/delimiter=\:
 environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.debug.1548278989/CPATH/operation=remove
@@ -24,6 +24,14 @@ environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.debug.751623
 environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.debug.751623414/C_INCLUDE_PATH/operation=remove
 environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.debug.751623414/append=true
 environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.debug.751623414/appendContributed=true
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.release.254541633/CPATH/delimiter=\:
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.release.254541633/CPATH/operation=remove
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.release.254541633/CPLUS_INCLUDE_PATH/delimiter=\:
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.release.254541633/CPLUS_INCLUDE_PATH/operation=remove
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.release.254541633/C_INCLUDE_PATH/delimiter=\:
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.release.254541633/C_INCLUDE_PATH/operation=remove
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.release.254541633/append=true
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.exe.release.254541633/appendContributed=true
 environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.debug.1548278989/LIBRARY_PATH/delimiter=\:
 environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.debug.1548278989/LIBRARY_PATH/operation=remove
 environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.debug.1548278989/append=true
@@ -36,3 +44,7 @@ environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.debug.751623
 environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.debug.751623414/LIBRARY_PATH/operation=remove
 environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.debug.751623414/append=true
 environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.debug.751623414/appendContributed=true
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.release.254541633/LIBRARY_PATH/delimiter=\:
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.release.254541633/LIBRARY_PATH/operation=remove
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.release.254541633/append=true
+environment/buildEnvironmentLibrary/cdt.managedbuild.config.gnu.exe.release.254541633/appendContributed=true

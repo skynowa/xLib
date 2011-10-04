@@ -314,7 +314,7 @@ BOOL CxPop3::bRetriveRaw(INT iNum, const std::tstring &csDirPath, const std::tst
     //��������� ���� �� ����
     CxFile stdFile;
 
-	_m_bRes = stdFile.bOpen(csDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
+	_m_bRes = stdFile.bCreate(csDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     size_t uiWriteSize = stdFile.uiWrite(&_m_sRes[0], _m_sRes.size());
@@ -370,7 +370,7 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const std::tstring &csDirPath, const
     if (false == csDirPath.empty()) {
         CxFile stdfOriginal;
 
-		_m_bRes = stdfOriginal.bOpen(csDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
+		_m_bRes = stdfOriginal.bCreate(csDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
         xCHECK_RET(FALSE == _m_bRes, FALSE);
 
         size_t uiOriginalWriteSize = stdfOriginal.uiWrite(&_m_sRes[0], _m_sRes.size());
@@ -382,7 +382,7 @@ BOOL CxPop3::bRetriveRawAndBackup(INT iNum, const std::tstring &csDirPath, const
     if (false == csBackupDirPath.empty()) {
         CxFile stdfBackup;
 
-        _m_bRes = stdfBackup.bOpen(csBackupDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
+        _m_bRes = stdfBackup.bCreate(csBackupDirPath + "\\" + csFileName, CxFile::omBinWrite, TRUE);
         xCHECK_RET(FALSE == _m_bRes, FALSE);
 
         size_t uiBackupWriteSize = stdfBackup.uiWrite(&_m_sRes[0], _m_sRes.size());

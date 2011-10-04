@@ -9,6 +9,7 @@
 #include <xLib/Pkcs11/Win/CxUtils.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    Public methods
 *
@@ -60,3 +61,6 @@ CxMechanism::bGetList(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_ENV_UNIX)
+
+#endif

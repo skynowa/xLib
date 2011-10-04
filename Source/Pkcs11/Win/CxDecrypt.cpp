@@ -10,6 +10,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -207,3 +208,6 @@ CxDecrypt::bMakeFile(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_ENV_UNIX)
+
+#endif

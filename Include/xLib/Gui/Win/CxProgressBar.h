@@ -9,15 +9,16 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxProgressBar : 
-    public CxWindow 
-    /// progress bar    
+#if defined(xOS_ENV_WIN)
+class CxProgressBar :
+    public CxWindow
+    /// progress bar
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        //стиль
+        //пїЅпїЅпїЅпїЅпїЅ
         enum EViewStyle {
             vsDefault       = 0x00,        //FIX: 0x00
         #if (xWINVER >= xWIN32_S03)
@@ -30,7 +31,7 @@ class CxProgressBar :
             vsVertical      = PBS_VERTICAL
         };
 
-        //состояние
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     #if (xWINVER >= xWIN32_VISTA)
         enum EState {
             stNormal = PBST_NORMAL,    //In progress
@@ -48,7 +49,7 @@ class CxProgressBar :
 
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     #if (xWINVER >= xWIN32_2K)
         UINT     uiGetPos     ();
     #endif //xWIN32_2K
@@ -106,11 +107,12 @@ class CxProgressBar :
 
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     private:
         EViewStyle _m_vsViewStyle;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxProgressBarH
 

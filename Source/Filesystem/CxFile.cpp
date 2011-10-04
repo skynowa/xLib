@@ -24,7 +24,6 @@
 
 //---------------------------------------------------------------------------
 CxFile::CxFile() :
-    _m_bRes     (FALSE),
     _m_pFile    (NULL),
     _m_sFilePath()
 {
@@ -34,8 +33,7 @@ CxFile::CxFile() :
 CxFile::~CxFile() {
     /*DEBUG*/// n/a
 
-    _m_bRes = bClose();
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    (VOID)bClose();
 }
 //---------------------------------------------------------------------------
 
@@ -47,7 +45,7 @@ CxFile::~CxFile() {
 
 //---------------------------------------------------------------------------
 BOOL
-CxFile::bOpen(
+CxFile::bCreate(
     const std::tstring &csFilePath,
     const EOpenMode     comMode,
     const BOOL          cbIsUseBuffering
@@ -65,12 +63,14 @@ CxFile::bOpen(
     _m_sFilePath = csFilePath;
 
     //buffering
+    BOOL bRes = FALSE;
+
     if (FALSE == cbIsUseBuffering) {
-        _m_bRes = bSetVBuff(NULL, bmNo,   0);
+        bRes = bSetVBuff(NULL, bmNo,   0);
     } else {
-        _m_bRes = bSetVBuff(NULL, bmFull, BUFSIZ);
+        bRes = bSetVBuff(NULL, bmFull, BUFSIZ);
     }
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -94,31 +94,42 @@ CxFile::bReopen(
     _m_sFilePath = csFilePath;
 
     //buffering
+    BOOL bRes = FALSE;
+
     if (FALSE == cbIsUseBuffering) {
-        _m_bRes = bSetVBuff(NULL, bmNo,   0);
+        bRes = bSetVBuff(NULL, bmNo,   0);
     } else {
-        _m_bRes = bSetVBuff(NULL, bmFull, BUFSIZ);
+        bRes = bSetVBuff(NULL, bmFull, BUFSIZ);
     }
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL
-CxFile::bOpen(
+CxFile::bAttach(
     FILE *pflFile
 )
 {
     /*DEBUG*/// _m_pFile - n/a
     /*DEBUG*/// pflFile  - n/a
 
-    _m_bRes = bClose();
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = bClose();
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     _m_pFile     = pflFile;
     _m_sFilePath = CxConst::xSTR_EMPTY;
 
     return TRUE;
+}
+//---------------------------------------------------------------------------
+FILE *
+CxFile::pDetach() {
+    FILE *pFile = _m_pFile;
+
+    _m_pFile = NULL;
+
+    return pFile;
 }
 //---------------------------------------------------------------------------
 FILE *
@@ -154,9 +165,7 @@ CxFile::uiRead(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
     /*DEBUG*/xASSERT_RET(NULL  != pvBuff,     0);
 
-    size_t uiRes = 0;
-
-    uiRes = fread(pvBuff, 1, cuiCount, pGet());
+    size_t uiRes = fread(pvBuff, 1, cuiCount, pGet());
     /*DEBUG*/xASSERT_RET(cuiCount >= uiRes, uiRes);
 
     return uiRes;
@@ -171,9 +180,7 @@ CxFile::uiWrite(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
     /*DEBUG*/xASSERT_RET(NULL  != pcvBuff,    0);
 
-    size_t uiRes = 0;
-
-    uiRes = fwrite(pcvBuff, 1, cuiCount, pGet());
+    size_t uiRes = fwrite(pcvBuff, 1, cuiCount, pGet());
     /*DEBUG*/xASSERT_RET(cuiCount == uiRes, uiRes);
 
     return uiRes;
@@ -187,17 +194,16 @@ CxFile::bRead(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != psBuff,     FALSE);
 
-    size_t uiRes      = 0;
-    LONG   liFileSize = 0;
+    LONG liFileSize = 0L;
 
     liFileSize = liGetSize();
     /*DEBUG*/xASSERT_RET(ppError != liFileSize, FALSE);
 
     (*psBuff).clear();
     (*psBuff).resize(liFileSize);
-    xCHECK_RET(0 == liFileSize, TRUE);
+    xCHECK_RET(0L == liFileSize, TRUE);
 
-    uiRes = fread(&(*psBuff).at(0), sizeof(std::ustring::value_type), (*psBuff).size(), pGet());
+    size_t uiRes = fread(&(*psBuff).at(0), sizeof(std::ustring::value_type), (*psBuff).size(), pGet());
     /*DEBUG*/xASSERT_RET((*psBuff).size() == uiRes, FALSE);
 
     return TRUE;
@@ -211,9 +217,7 @@ CxFile::bWrite(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*///csBuff - n/a
 
-    size_t uiRes = 0;
-
-    uiRes = fwrite(&csBuff.at(0), sizeof(std::ustring::value_type), csBuff.size(), pGet());
+    size_t uiRes = fwrite(&csBuff.at(0), sizeof(std::ustring::value_type), csBuff.size(), pGet());
     /*DEBUG*/xASSERT_RET(csBuff.size() == uiRes, FALSE);
 
     return TRUE;
@@ -227,17 +231,16 @@ CxFile::bRead(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != psBuff,     FALSE);
 
-    size_t uiRes      = 0;
-    LONG   liFileSize = 0;
+    LONG liFileSize = 0L;
 
     liFileSize = liGetSize();
     /*DEBUG*/xASSERT_RET(ppError != liFileSize, FALSE);
 
     (*psBuff).clear();
     (*psBuff).resize(liFileSize);
-    xCHECK_RET(0 == liFileSize, TRUE);
+    xCHECK_RET(0L == liFileSize, TRUE);
 
-    uiRes = fread(&(*psBuff).at(0), sizeof(std::tstring::value_type), (*psBuff).size(), pGet());
+    size_t uiRes = fread(&(*psBuff).at(0), sizeof(std::tstring::value_type), (*psBuff).size(), pGet());
     /*DEBUG*/xASSERT_RET((*psBuff).size() == uiRes, FALSE);
 
     return TRUE;
@@ -251,13 +254,11 @@ CxFile::iWrite(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), etError);
     /*DEBUG*/xASSERT_RET(NULL  != pcszFormat, etError);
 
-    INT iRes = etError;
-
     va_list vlArgs;
     xVA_START(vlArgs, pcszFormat);
 
-    iRes = xTVFPRINTF(pGet(), pcszFormat, vlArgs);
-    /*DEBUG*/xASSERT_RET(etError < iRes, etError);
+    INT iRes = xTVFPRINTF(pGet(), pcszFormat, vlArgs);
+    /*DEBUG*/xASSERT_RET(- 1 < iRes, etError);
 
     xVA_END(vlArgs);
 
@@ -274,10 +275,8 @@ CxFile::iWriteV(
     /*DEBUG*/xASSERT_RET(NULL  != pcszFormat, etError);
     /*DEBUG*/xASSERT_RET(NULL  != vlArgs,     etError);
 
-    INT iRes = etError;
-
-    iRes = xTVFPRINTF(pGet(), pcszFormat, vlArgs);
-    /*DEBUG*/xASSERT_RET(etError < iRes, etError);
+    INT iRes = xTVFPRINTF(pGet(), pcszFormat, vlArgs);
+    /*DEBUG*/xASSERT_RET(- 1 < iRes, etError);
 
     return iRes;
 }
@@ -292,8 +291,6 @@ CxFile::bReadLine(
     /*DEBUG*/xASSERT_RET(NULL  != psStr,      FALSE);
     /*DEBUG*/xASSERT_RET(0     < cuiMaxCount, FALSE);
 
-    LPTSTR pszRes = NULL;
-
     #if xTEMP_DISABLED
         if ((*psStr).size() != cuiMaxCount) {
             (*psStr).resize(cuiMaxCount);
@@ -304,7 +301,7 @@ CxFile::bReadLine(
     (*psStr).clear();
     (*psStr).resize(cuiMaxCount + 1);   //+ 1 for 0
 
-    pszRes = xTFGETS(&(*psStr).at(0), (*psStr).size(), pGet());
+    TCHAR *pszRes = xTFGETS(&(*psStr).at(0), (*psStr).size(), pGet());
     /*DEBUG*/xASSERT_RET(NULL != pszRes, FALSE);
 
     (*psStr).erase( (*psStr).end() - 1 );   //erase last char - 0
@@ -335,12 +332,10 @@ TCHAR
 CxFile::chReadChar() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    INT iRes = etError;
+    INT iRes = xTFGETC(pGet());
+    /*DEBUG*/xASSERT_RET(xTEOF <= iRes, static_cast<TCHAR>( etError ));
 
-    iRes = xTFGETC(pGet());
-    /*DEBUG*/xASSERT_RET(EOF <= iRes, static_cast<TCHAR>(etError));
-
-    return static_cast<TCHAR>(iRes);
+    return static_cast<TCHAR>( iRes );
 }
 //---------------------------------------------------------------------------
 //TODO: bWriteChar
@@ -351,11 +346,9 @@ CxFile::bWriteChar(
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    INT iRes = etError;
-
-    iRes = xTFPUTC(static_cast<INT>(ccChar), pGet());
-    /*DEBUG*/xASSERT_RET(static_cast<INT>(ccChar) != etError, FALSE);
-    /*DEBUG*/xASSERT_RET(static_cast<INT>(ccChar) == iRes,    FALSE);
+    INT iRes = xTFPUTC(static_cast<INT>( ccChar ), pGet());
+    /*DEBUG*/xASSERT_RET(static_cast<INT>( ccChar ) != xTEOF, FALSE);
+    /*DEBUG*/xASSERT_RET(static_cast<INT>( ccChar ) == iRes,  FALSE);
 
     return TRUE;
 }
@@ -368,11 +361,9 @@ CxFile::bUngetChar(
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    INT iRes = etError;
-
-    iRes = xTUNGETC(ccChar, pGet());
-    /*DEBUG*/xASSERT_RET(iRes   != etError,                  FALSE);
-    /*DEBUG*/xASSERT_RET(ccChar == static_cast<TCHAR>(iRes), FALSE);
+    INT iRes = xTUNGETC(ccChar, pGet());
+    /*DEBUG*/xASSERT_RET(iRes   != xTEOF,                      FALSE);
+    /*DEBUG*/xASSERT_RET(ccChar == static_cast<TCHAR>( iRes ), FALSE);
 
     return TRUE;
 }
@@ -398,8 +389,6 @@ CxFile::bLocking(
     const LONG         cliBytes
 )
 {
-    INT iRes = etError;
-
 #if defined(xOS_ENV_WIN)
 	#if defined(xCOMPILER_CODEGEAR)
 		#define xLOCKING locking
@@ -407,11 +396,11 @@ CxFile::bLocking(
 		#define xLOCKING _locking
 	#endif
 
-	iRes = xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
-	/*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+	INT iRes = xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
+	/*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    iRes = lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
-    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+    INT iRes = lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
     return TRUE;
@@ -425,10 +414,8 @@ CxFile::bSetPosition(
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    INT iRet = ppError;
-
-    iRet = fseek(pGet(), clOffset, cppPos);
-    /*DEBUG*/xASSERT_RET(0 == iRet, FALSE);
+    INT iRet = fseek(pGet(), clOffset, cppPos);
+    /*DEBUG*/xASSERT_RET(- 1 != iRet, FALSE);
 
     return TRUE;
 }
@@ -437,10 +424,8 @@ LONG
 CxFile::liGetPosition() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    LONG liRes = ppError;
-
-    liRes = ftell(pGet());
-    /*DEBUG*/xASSERT_RET(ppError != liRes, ppError);
+    LONG liRes = ftell(pGet());
+    /*DEBUG*/xASSERT_RET(- 1 != liRes, ppError);
 
     return liRes;
 }
@@ -456,47 +441,45 @@ CxFile::bSetVBuff(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/// cuiSize - n/a
 
-    INT iRes = etError;
-
-    iRes = setvbuf(pGet(), pszBuff, cbmMode, cuiSize);
-    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    INT iRes = setvbuf(pGet(), pszBuff, cbmMode, cuiSize);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 BOOL
 CxFile::bSetMode(
     const ETranslationMode ctmMode
 ) const
 {
-    INT iRes = etError;
-
-    iRes = setmode(_iGetHandle(pGet()), ctmMode);
-    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+    INT iRes = setmode(_iGetHandle(pGet()), ctmMode);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
     return TRUE;
 }
+
 #endif
 //---------------------------------------------------------------------------
 //NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
 LONG
 CxFile::liGetSize() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), ppError);
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), etError);
 
-    LONG liStreamSize    = ppError;
-    LONG liCurrStreamPos = ppError;
+    LONG liStreamSize    = - 1L;
+    LONG liCurrStreamPos = - 1L;
 
     //Get current position
     liCurrStreamPos = liGetPosition();
 
     //seek to the end of file
-    xCHECK_RET(FALSE == bSetPosition(0, ppEnd), ppError);
+    xCHECK_RET(FALSE == bSetPosition(0, ppEnd), etError);
 
     liStreamSize = liGetPosition();
 
     //Get back to the stored position
-    xCHECK_RET(FALSE == bSetPosition(liCurrStreamPos, ppBegin), ppError);
+    xCHECK_RET(FALSE == bSetPosition(liCurrStreamPos, ppBegin), etError);
 
     return liStreamSize;
 }
@@ -508,14 +491,12 @@ CxFile::bResize(
 {
     /*DEBUG*/// n/a
 
-    INT iRes = etError;
-
 #if defined(xOS_ENV_WIN)
-    iRes = chsize(_iGetHandle(pGet()), cliSize);
-    /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
+    INT iRes = chsize(_iGetHandle(pGet()), cliSize);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    iRes = ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cliSize ));
-    /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
+    INT iRes = ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cliSize ));
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
     /*DEBUG*/xASSERT_RET(cliSize == liGetSize(), FALSE);
@@ -549,7 +530,7 @@ CxFile::bIsEmpty() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
     LONG liFileSize = liGetSize();
-    /*DEBUG*/xASSERT_RET(etError != liFileSize, TRUE);
+    /*DEBUG*/xASSERT_RET(- 1L != liFileSize, TRUE);
 
     return static_cast<BOOL>( 0L == liFileSize);
 }
@@ -558,20 +539,16 @@ BOOL
 CxFile::bIsEof() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    _m_bRes = static_cast<BOOL>( feof(pGet()) );
+    return static_cast<BOOL>( feof(pGet()) );
     /*DEBUG*/// n/a
-
-    return _m_bRes;
 }
 //---------------------------------------------------------------------------
 BOOL
 CxFile::bIsError() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    _m_bRes = static_cast<BOOL>( ferror(pGet()) );
+    return static_cast<BOOL>( ferror(pGet()) );
     /*DEBUG*/// n/a
-
-    return _m_bRes;
 }
 //---------------------------------------------------------------------------
 
@@ -579,8 +556,7 @@ BOOL
 CxFile::bErrorClear() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    clearerr(pGet());
-    /*DEBUG*/// n/a
+    (VOID)clearerr(pGet());
 
     return TRUE;
 }
@@ -597,10 +573,8 @@ BOOL
 CxFile::bFlush() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
-    INT iRes = etError;
-
-    iRes = fflush(pGet());
-    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    INT iRes = fflush(pGet());
+    /*DEBUG*/xASSERT_RET(xTEOF != iRes, FALSE);
 
     return TRUE;
 }
@@ -610,11 +584,11 @@ CxFile::bClose() {
     /*DEBUG*/// _m_pFile - n/a
 
     if (FALSE != bIsValid()) {
-        _m_bRes = bErrorClear();
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+        BOOL bRes = bErrorClear();
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
         INT iRes = fclose(pGet());
-        /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+        /*DEBUG*/xASSERT_RET(xTEOF != iRes, FALSE);
     }
 
     _m_pFile = NULL;
@@ -672,12 +646,9 @@ CxFile::bIsExists(
     /*DEBUG*/// csFilePath - n/a
     xCHECK_RET(FALSE == bIsFile(csFilePath), FALSE);
 
-    INT iRes       = etError;
-    INT iLastError = 0;
-
-    iRes       = xTACCESS(csFilePath.c_str(), amExistence);
-    iLastError = errno;
-    xCHECK_RET((etError == iRes) && (ENOENT == iLastError), FALSE);
+    INT iRes       = xTACCESS(csFilePath.c_str(), amExistence);
+    INT iLastError = errno;
+    xCHECK_RET((- 1 == iRes) && (ENOENT == iLastError), FALSE);
 
     return TRUE;
 }
@@ -718,10 +689,8 @@ CxFile::bAccess(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*///iMode
 
-    INT iRes = etError;
-
-    iRes = xTACCESS(csFilePath.c_str(), camMode);
-    /*DEBUG*/xASSERT_RET(iRes != etError, FALSE);
+    INT iRes = xTACCESS(csFilePath.c_str(), camMode);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
     return TRUE;
 }
@@ -736,14 +705,12 @@ CxFile::bChmod(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*///iMode
 
-    INT iRes = etError;
-
 #if defined(xOS_ENV_WIN)
-    iRes = xTCHMOD(csFilePath.c_str(), static_cast<INT>( cpmMode ));
-    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+    INT iRes = xTCHMOD(csFilePath.c_str(), static_cast<INT>( cpmMode ));
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    iRes = xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cpmMode ));
-    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+    INT iRes = xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cpmMode ));
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
     return TRUE;
@@ -760,7 +727,7 @@ CxFile::bClear(
     BOOL   bRes = FALSE;
     CxFile sfFile;
 
-    bRes = sfFile.bOpen(csFilePath, omWrite, TRUE);
+    bRes = sfFile.bCreate(csFilePath, omWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     bRes = sfFile.bClear();
@@ -779,14 +746,13 @@ CxFile::bDelete(
 
     xCHECK_RET(FALSE == bIsExists(csFilePath), TRUE);
 
-    BOOL bRes = FALSE;
-    INT  iRes = etError;
-
-    bRes = bChmod(csFilePath, pmWrite);
+    BOOL bRes = bChmod(csFilePath, pmWrite);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    iRes = xTREMOVE(csFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    INT iRes = xTREMOVE(csFilePath.c_str());
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+
+    /*DEBUG*/xASSERT_RET(FALSE == bIsExists(csFilePath), FALSE);
 
     return TRUE;
 }
@@ -844,7 +810,7 @@ CxFile::bWipe(
 
         //--------------------------------------------------
         //open
-        bRes = sfFile.bOpen(csFilePath, omBinWrite, TRUE);
+        bRes = sfFile.bCreate(csFilePath, omBinWrite, TRUE);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
         liSize = sfFile.liGetSize();
@@ -946,7 +912,7 @@ CxFile::bUnlink(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
     INT iRes = xTUNLINK(csFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
     return FALSE;
 }
@@ -962,7 +928,7 @@ CxFile::bRename(
     /*DEBUG*/xASSERT_RET(false == csNewFilePath.empty(), FALSE);
 
     INT iRes = xTRENAME(csOldFilePath.c_str(), csNewFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
     return TRUE;
 }
@@ -1007,12 +973,12 @@ CxFile::bCopy(
         //open files
         CxFile sfFrom;
 
-        bRes = sfFrom.bOpen(csFilePathFrom, omBinRead, TRUE);
+        bRes = sfFrom.bCreate(csFilePathFrom, omBinRead, TRUE);
         xCHECK_RET(FALSE == bRes, FALSE);
 
         CxFile sfTo;
 
-        bRes = sfTo.bOpen(csFilePathTo, omBinWrite, TRUE);
+        bRes = sfTo.bCreate(csFilePathTo, omBinWrite, TRUE);
         xCHECK_RET(FALSE == bRes, FALSE);
 
         //--------------------------------------------------
@@ -1031,11 +997,11 @@ CxFile::bCopy(
 
     //--------------------------------------------------
     //if copy fail - delete out file
-    xCHECK_DO(bIsCopyOk == FALSE, bDelete(csFilePathTo); return FALSE);
+    xCHECK_DO(FALSE == bIsCopyOk, bDelete(csFilePathTo); return FALSE);
 
     //--------------------------------------------------
     //test for size, maybe CRC
-    xCHECK_DO(liGetSize(csFilePathFrom) != liGetSize(csFilePathTo), bDelete(csFilePathTo); return FALSE);
+    xCHECK_DO(liGetSize(csFilePathFrom) != liGetSize(csFilePathTo), (VOID)bDelete(csFilePathTo); return FALSE);
 
     return TRUE;
 }
@@ -1049,14 +1015,12 @@ CxFile::liGetSize(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    - 1L);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), - 1L);
 
-    LONG   liRes = 0L;
-    BOOL   bRes  = FALSE;
     CxFile sfFile;
 
-    bRes = sfFile.bOpen(csFilePath, omRead, TRUE);
+    BOOL bRes = sfFile.bCreate(csFilePath, omRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, - 1L);
 
-    liRes = sfFile.liGetSize();
+    LONG liRes = sfFile.liGetSize();
     /*DEBUG*/xASSERT_RET(0 <= liRes, - 1L);
 
     return liRes;
@@ -1115,8 +1079,8 @@ CxFile::bGetTime(
     FILETIME *pftAccess,
     FILETIME *pftModified
 
-    _m_bRes = ::GetFileTime(m_hHandle, pftCreate, pftAccess, pftModified);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    bRes = ::GetFileTime(m_hHandle, pftCreate, pftAccess, pftModified);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #endif
 
     return TRUE;
@@ -1155,7 +1119,7 @@ CxFile::bSetTime(
     #if xDEPRECIATE
         CxFile flFile;
 
-        bRes = flFile.bOpen(csFilePath, grWrite, smWrite, cfOpenExisting, CxFileAttribute::faNormal);
+        bRes = flFile.bCreate(csFilePath, grWrite, smWrite, cfOpenExisting, CxFileAttribute::faNormal);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
         bRes = flFile.bSetTime(ftCreate, ftAccess, ftModified);
@@ -1170,7 +1134,7 @@ CxFile::bSetTime(
 		/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     #endif
 #elif defined(xOS_ENV_UNIX)
-    utimbuf tbTimes;
+    utimbuf tbTimes = {0};
 
     tbTimes.actime  = ctmAccess;
     tbTimes.modtime = ctmModified;
@@ -1182,87 +1146,6 @@ CxFile::bSetTime(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*   public: temporary
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-/*static*/
-std::tstring
-CxFile::sTempCreate(
-    const std::tstring  &csFilePath,
-    const std::tstring  &csDirPath,
-    FILE               **pfFileHandle
-)
-{
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring());
-    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  std::tstring());
-    /*DEBUG*/xASSERT_RET(NULL  == *pfFileHandle,      std::tstring());
-
-    const std::tstring csFileNameTemplate = xT("XXXXXX");
-
-
-	std::tstring  sRes;
-	FILE         *pfFile = NULL;
-
-    BOOL bRes = CxDir::bCreateForce(csDirPath);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
-
-	sRes = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
-
-#if defined(xOS_ENV_WIN)
-	#if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_CODEGEAR)
-		sRes.resize(sRes.size() + 1);
-
-		TCHAR *pszFile = xTMKSTEMP(&sRes.at(0));
-		/*DEBUG*/xASSERT_RET(NULL != pszFile, std::tstring());
-
-		pfFile = xTFOPEN(pszFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
-		/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
-	#else
-		sRes.resize(sRes.size() + 1);
-
-		errno_t iError = xTMKSTEMP(&sRes.at(0), sRes.size() + 1);
-		/*DEBUG*/xASSERT_RET(0 == iError, std::tstring());
-
-		pfFile = xTFOPEN(sRes.c_str(), _sGetOpenMode(omBinCreateReadWrite).c_str());
-		/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
-	#endif
-#elif defined(xOS_ENV_UNIX)
-	INT iFile = xTMKSTEMP(&sRes.at(0));
-	/*DEBUG*/xASSERT_RET(- 1 != iFile, std::tstring());
-
-	pfFile = xTFDOPEN(iFile, _sGetOpenMode(omBinCreateReadWrite).c_str());
-	/*DEBUG*/xASSERT_RET(NULL != pfFile, std::tstring());
-#endif
-
-    //out
-	*pfFileHandle = pfFile;
-
-    return sRes;
-}
-//---------------------------------------------------------------------------
-/*static*/
-BOOL
-CxFile::bTempClose(
-    FILE **pfFileHandle
-)
-{
-    /*DEBUG*/// n/a
-
-    if (NULL != *pfFileHandle) {
-        INT iRes = fclose(*pfFileHandle);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-    }
-
-    pfFileHandle = NULL;
-
-    return TRUE;
-}
-//--------------------------------------------------------------------------
 
 
 /****************************************************************************
@@ -1285,7 +1168,7 @@ CxFile::bTextRead(
     CxFile       sfFile;
     std::tstring sRes;
 
-    bRes = sfFile.bOpen(csFilePath, omBinRead, TRUE);
+    bRes = sfFile.bCreate(csFilePath, omBinRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     LONG liFileSize = sfFile.liGetSize();
@@ -1319,7 +1202,7 @@ CxFile::bTextWrite(
     BOOL   bRes = FALSE;
     CxFile sfFile;
 
-    bRes = sfFile.bOpen(csFilePath, omBinWrite, TRUE);
+    bRes = sfFile.bCreate(csFilePath, omBinWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     xCHECK_RET(true == csContent.empty(), TRUE);
@@ -1341,7 +1224,7 @@ CxFile::bTextRead(
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csFilePath), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pvsContent,            FALSE);
 
-    BOOL                 bRes = FALSE;
+    BOOL                      bRes = FALSE;
     std::vector<std::tstring> vsRes;
     std::tstring              sFileContent;
 
@@ -1369,7 +1252,7 @@ CxFile::bTextWrite(
 
     //TODO: if cvsContent.empty()
 
-    BOOL    bRes = FALSE;
+    BOOL         bRes = FALSE;
     std::tstring sFileContent;
 
     sFileContent = CxString::sJoin(cvsContent, CxConst::xNL);
@@ -1465,7 +1348,7 @@ CxFile::bTextWrite(
     BOOL   bRes = FALSE;
     CxFile stdFile;
 
-    bRes = stdFile.bOpen(csFilePath, omWrite, TRUE);
+    bRes = stdFile.bCreate(csFilePath, omWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     std::map<std::tstring, std::tstring>::const_iterator it;
@@ -1517,7 +1400,7 @@ CxFile::bBinRead(
     CxFile       sfFile;
     std::ustring usRes;
 
-    bRes = sfFile.bOpen(csFilePath, omBinRead, TRUE);
+    bRes = sfFile.bCreate(csFilePath, omBinRead, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     LONG liFileSize = sfFile.liGetSize();
@@ -1552,7 +1435,7 @@ CxFile::bBinWrite(
     BOOL   bRes = FALSE;
     CxFile sfFile;
 
-    bRes = sfFile.bOpen(csFilePath, omBinWrite, TRUE);
+    bRes = sfFile.bCreate(csFilePath, omBinWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     xCHECK_RET(true == cusContent.empty(), TRUE);
@@ -1644,12 +1527,10 @@ CxFile::_iGetHandle(
     FILE *pfFile
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pfFile, etError);
+    /*DEBUG*/xASSERT_RET(NULL != pfFile, - 1);
 
-    INT iRes = etError;
-
-    iRes = fileno(pfFile);
-    /*DEBUG*/xASSERT_RET(etError != iRes, etError);
+    INT iRes = fileno(pfFile);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, - 1);
 
     return iRes;
 }
@@ -1663,9 +1544,7 @@ CxFile::_pfGetHandle(
 {
     /*DEBUG*/
 
-    FILE *pfRes = NULL;
-
-    pfRes = xTFDOPEN(iFileHandle, _sGetOpenMode(omMode).c_str());
+    FILE *pfRes = xTFDOPEN(iFileHandle, _sGetOpenMode(omMode).c_str());
     /*DEBUG*/xASSERT_RET(NULL != pfRes, NULL);
 
     return pfRes;
