@@ -43,7 +43,7 @@ CxTest_CxFileAttribute::bUnit(
 
         CxFile F;
 
-        m_bRes = F.bOpen(csFilePath, CxFile::omCreateReadWrite, TRUE);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         m_bRes = F.bClose();

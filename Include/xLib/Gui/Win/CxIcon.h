@@ -9,10 +9,12 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/xCommon.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
 #define STRINGIZE2(x) #x
-class CxIcon : 
-    public CxNonCopyable 
-    /// icon    
+
+class CxIcon :
+    public CxNonCopyable
+    /// icon
 {
     public:
                CxIcon();
@@ -76,5 +78,6 @@ class CxIcon :
     private:
         HICON _m_hHandle;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif //XLib_Gui_CxIconH

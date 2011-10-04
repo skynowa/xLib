@@ -9,9 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
-class CxFont : 
-    public CxNonCopyable 
-    /// font    
+#if defined(xOS_ENV_WIN)
+class CxFont :
+    public CxNonCopyable
+    /// font
 {
     public:
         CxFont();
@@ -27,5 +28,6 @@ class CxFont :
         BOOL  _m_bRes;
         HFONT _m_hFont;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Gui_CxFontH

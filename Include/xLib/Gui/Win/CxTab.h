@@ -11,6 +11,7 @@
 #include <xLib/Gui/CxWindowImpl.h>
 #include <xLib/GUI/CxLayout.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
 ////class CxTab;
 //---------------------------------------------------------------------------
 ////class CxLayout : public CxWindowImpl {
@@ -104,8 +105,8 @@
 ////}
 //////---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-class CxTab : 
-    public CxWindow 
+class CxTab :
+    public CxWindow
     /// tab
 {
     public:
@@ -147,6 +148,7 @@ class CxTab :
         std::vector<CxLayout *> _m_vecLayouts;
         BOOL        bPutLayout   (HWND hPageDlg, INT iPos);
 };
+#endif
 //---------------------------------------------------------------------------
 #endif //XLib_Gui_CxTabH
 

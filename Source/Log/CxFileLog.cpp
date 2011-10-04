@@ -98,7 +98,7 @@ CxFileLog::bWrite(
 
     CxFile sfFile;
 
-    bRes = sfFile.bOpen(sGetFilePath(), CxFile::omAppend, FALSE);
+    bRes = sfFile.bCreate(sGetFilePath(), CxFile::omAppend, FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     INT iRes = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());

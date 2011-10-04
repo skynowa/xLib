@@ -7,6 +7,7 @@
 #include <xLib/Gui/Win/Dialogs/CxInputBox.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -241,3 +242,6 @@ CxInputBox::_ms_pWndProc(
     return ::DefWindowProc(hWnd, uiMsg, wParam, lParam);
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_ENV_UNIX)
+
+#endif

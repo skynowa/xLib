@@ -9,15 +9,16 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxPicture : 
-    public CxWindow 
-    /// picture    
+#if defined(xOS_ENV_WIN)
+class CxPicture :
+    public CxWindow
+    /// picture
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        //стиль изображения
+        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum EViewStyle {
             vsUknown       = 0,
             vsBitmap       = SS_BITMAP,
@@ -27,7 +28,7 @@ class CxPicture :
             vsOwnerDraw    = SS_OWNERDRAW
         };
 
-        //тип изображения
+        //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum EImageType {
             itUknown      = - 1,
             itBitmap      = IMAGE_BITMAP,
@@ -42,15 +43,16 @@ class CxPicture :
         BOOL       bCreateRes   (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         BOOL       bSetViewStyle(EViewStyle vsViewStyle);
         BOOL       bSetImage    (EImageType itImageType, HANDLE hImage);
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     private:
         EViewStyle _m_vsViewStyle;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxPictureH

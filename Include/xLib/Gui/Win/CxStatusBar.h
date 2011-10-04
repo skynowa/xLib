@@ -9,12 +9,13 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxStatusBar : 
-    public CxWindow 
+#if defined(xOS_ENV_WIN)
+class CxStatusBar :
+    public CxWindow
     /// status bar
 {
     public:
-        class CXItems 
+        class CXItems
             /// panels
         {
             public:
@@ -39,7 +40,7 @@ class CxStatusBar :
                 BOOL    bGetRect   (INT iIndex, RECT *prcRect);
 
             private:
-                class CXItem 
+                class CXItem
                     /// panel
                 {
                     public:
@@ -64,7 +65,7 @@ class CxStatusBar :
                 std::vector<CXItem *>  _m_vecpItems;
         };
 
-        CXItems m_Items;    //панели
+        CXItems m_Items;    //пїЅпїЅпїЅпїЅпїЅпїЅ
 
                 CxStatusBar      ();
                ~CxStatusBar      ();
@@ -82,5 +83,6 @@ class CxStatusBar :
 
     private:
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxStatusBarH

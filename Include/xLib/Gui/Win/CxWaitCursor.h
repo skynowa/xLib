@@ -9,8 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
-class CxWaitCursor : 
-    public CxNonCopyable 
+#if defined(xOS_ENV_WIN)
+class CxWaitCursor :
+    public CxNonCopyable
     /// wait cursor
 {
     public:
@@ -22,5 +23,6 @@ class CxWaitCursor :
     private:
         HCURSOR _m_hCursor;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Gui_CxWaitCursorH

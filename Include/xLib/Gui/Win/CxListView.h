@@ -9,9 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxListView : 
-    public CxWindow 
-    /// list view    
+#if defined(xOS_ENV_WIN)
+class CxListView :
+    public CxWindow
+    /// list view
 {
     private:
         INT           m_ColumnCount;
@@ -73,5 +74,6 @@ class CxListView :
         ////VOID          (*OnItemChanged)        (LPNMLISTVIEW pNMLV);
         ////VOID          (*OnColumnClick)        (LPNMLISTVIEW pNMLV);
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxListViewH

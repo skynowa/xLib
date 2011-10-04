@@ -7,19 +7,21 @@
 #ifndef xLib_Gui_CommonH
 #define xLib_Gui_CommonH
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
+
 #include <xLib/Common/xCommon.h>
 
 ///#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 #include <commctrl.h>
 #if defined(xCOMPILER_MS)
-	#pragma comment(lib, "comctl32.lib")
+    #pragma comment(lib, "comctl32.lib")
 #endif
 
 
 //#include <Uxtheme.h>
 #if defined(xCOMPILER_MS)
-	//#pragma comment(lib, "UxTheme.lib")
+    //#pragma comment(lib, "UxTheme.lib")
 #endif
 
 #include <richedit.h>
@@ -32,7 +34,7 @@
 
 
 //---------------------------------------------------------------------------
-//имена классов контролов
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 /*
 ANIMATE_CLASS      - Creates animation controls. These controls silently display an audio video interleaved (AVI) clip.
 DATETIMEPICK_CLASS - Creates date and time picker controls. These controls provide a simple interface to exchange date and time information with a user.
@@ -89,7 +91,7 @@ WC_TREEVIEW           - Creates tree-view controls. These controls display a hie
 #define xCXRICHEDIT20_CONTROL_CLASS             RICHEDIT_CLASS
 #define xCXTAB_CONTROL_CLASS                    WC_TABCONTROL
 //---------------------------------------------------------------------------
-//дефолтные оконные стили контролов
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #define xCXFRAME_DEFAULT_WINDOW_STYLE           WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX
 #define xCXFRAME_DEFAULT_WINDOW_STYLE_EX        0
 
@@ -160,7 +162,7 @@ WC_TREEVIEW           - Creates tree-view controls. These controls display a hie
 #define xCXTAB_DEFAULT_WINDOW_STYLE               WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_CLIPSIBLINGS | TCS_FOCUSNEVER | TCS_SINGLELINE//WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_CLIPSIBLINGS
 #define xCXTAB_DEFAULT_WINDOW_STYLE_EX          0
 //---------------------------------------------------------------------------
-//дефолтные размеры контролов (ширина, высота)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ)
 #define xCXFRAME_DEFAULT_WIDTH                  CW_USEDEFAULT
 #define xCXFRAME_DEFAULT_HEIGHT                 CW_USEDEFAULT
 
@@ -237,6 +239,8 @@ WC_TREEVIEW           - Creates tree-view controls. These controls display a hie
     ((TCastType)( ::SendMessage((HWND)(hWnd), (UINT)(uiMsg), (WPARAM)(wParam), (LPARAM)(lParam)) ));
 
 #define LOG()                                  _m_tlLog.bWrite(xT(__FUNCTION__))
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Gui_CommonH
 

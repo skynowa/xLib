@@ -14,15 +14,15 @@ class CxThreadStorage :
     /// thread local storage
 {
     public:
-                 CxThreadStorage     ();
+                 CxThreadStorage();
             ///< constructor
-        virtual ~CxThreadStorage     ();
+        virtual ~CxThreadStorage();
             ///< destructor
 
-        VOID    *pvGetValue() const;
-            ///< retrieves the value in the calling thread's thread local storage (TLS) slot for the specified TLS index
-        BOOL     bSetValue (VOID *pvValue) const;
-            ///< stores a value in the calling thread's thread local storage (TLS) slot for the specified TLS index
+        VOID    *pvGetValue     () const;
+            ///< get the value
+        BOOL     bSetValue      (VOID *pvValue) const;
+            ///< set value
 
     private:
     #if defined(xOS_ENV_WIN)
@@ -31,12 +31,13 @@ class CxThreadStorage :
         typedef pthread_key_t TxIndex;
     #endif
 
-        BOOL     _bAlloc    ();
-            ///< allocates a thread local storage (TLS) index
-        BOOL     _bFree     ();
-            ///< releases a thread local storage (TLS) index, making it available for reuse
+        BOOL     _bAlloc        ();
+            ///< allocates a thread storage index
+        BOOL     _bFree         ();
+            ///< releases a thread storage index
 
         TxIndex  _m_indIndex;
+            ///< thread storage index
 };
 //---------------------------------------------------------------------------
 #endif    //CxLib_Sync_CxThreadStorageH

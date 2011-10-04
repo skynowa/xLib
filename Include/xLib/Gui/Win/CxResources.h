@@ -11,9 +11,10 @@
 #include <xLib/Gui/Win/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
-class CxResources : 
-    public CxNonCopyable 
-    /// resources    
+#if defined(xOS_ENV_WIN)
+class CxResources :
+    public CxNonCopyable
+    /// resources
 {
     public:
         static BOOL    bInit       ();
@@ -27,7 +28,7 @@ class CxResources :
 
     private:
         //-------------------------------------
-        //класс настроек контролов
+        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         class CXSettings {
             public:
                         CXSettings   () :
@@ -69,12 +70,13 @@ class CxResources :
 
         //-------------------------------------
         //
-        static TSettingsMap _m_mapResContent;        //буфер (ID (Key) + данные (Value))
+        static TSettingsMap _m_mapResContent;        //пїЅпїЅпїЅпїЅпїЅ (ID (Key) + пїЅпїЅпїЅпїЅпїЅпїЅ (Value))
 
                              CxResources   ();
                             ~CxResources   ();
         static BOOL         _bInitControl  (INT iID, const std::tstring &csText, INT iLeft, INT iTop, INT iWidth, INT iHeight, ULONG ulStyle, ULONG ulStyleEx);
         static BOOL         _bRemoveControl(INT iID);
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxResourcesH

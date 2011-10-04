@@ -10,9 +10,10 @@
 #include <xLib/Gui/xCommon.h>
 #include <xLib/Gui/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxButtonBase : 
-    public CxWindow 
-    /// base class for buttons    
+#if defined(xOS_ENV_WIN)
+class CxButtonBase :
+    public CxWindow
+    /// base class for buttons
 {
     public:
         //-------------------------------------
@@ -68,6 +69,7 @@ class CxButtonBase :
         SClosureT<VOID(CxButtonBase *pthSender)> _m_vCallback_OnSetFocus;
         VOID                                     _vHandler_OnSetFocus(CxButtonBase *pthSender);
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxButtonBaseH
 

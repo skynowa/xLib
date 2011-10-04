@@ -9,13 +9,14 @@
 //---------------------------------------------------------------------------
 #include <xLib/xCommon.h>
 //---------------------------------------------------------------------------
-class CxStyle : 
-    public CxNonCopyable 
+#if defined(xOS_ENV_WIN)
+class CxStyle :
+    public CxNonCopyable
     /// window styles
 {
     public:
         //-------------------------------------
-        //атрибуты файлов
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         typedef ULONG TStyle;
         typedef ULONG TStyleEx;
 
@@ -43,6 +44,7 @@ class CxStyle :
     private:
         HWND   _m_hWnd;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Gui_CxStyleH
 

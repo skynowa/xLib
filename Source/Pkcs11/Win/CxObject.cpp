@@ -10,6 +10,7 @@
 #include <xLib/Pkcs11/Win/CxUtils.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    Public methods
 *
@@ -360,13 +361,13 @@ CxObject::bGetData(
         std::ustring usValue;
 
         {
-	        ULONG ulLabelLen      = atrTamplate[0].ulValueLen;
-	        usLabel.resize(ulLabelLen);
-	        atrTamplate[0].pValue = &usLabel.at(0);
+            ULONG ulLabelLen      = atrTamplate[0].ulValueLen;
+            usLabel.resize(ulLabelLen);
+            atrTamplate[0].pValue = &usLabel.at(0);
 
-	        ULONG ulValueLen      = atrTamplate[1].ulValueLen;
-	        usValue.resize(ulValueLen);
-	        atrTamplate[1].pValue = &usValue.at(0);
+            ULONG ulValueLen      = atrTamplate[1].ulValueLen;
+            usValue.resize(ulValueLen);
+            atrTamplate[1].pValue = &usValue.at(0);
         }
 
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
@@ -496,46 +497,49 @@ CxObject::bSetData(
 #if xTODO
 //---------------------------------------------------------------------------
 BOOL CxObject::bFindInit(
-	CK_ATTRIBUTE_PTR  pTemplate,  ///< attribute values to match
-	CK_ULONG          ulCount     ///< attrs in search template
+    CK_ATTRIBUTE_PTR  pTemplate,  ///< attribute values to match
+    CK_ULONG          ulCount     ///< attrs in search template
 )
 {
-	/*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-	/*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-	/*DEBUG*/// _m_hObject - n/a
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+    /*DEBUG*/// _m_hObject - n/a
 
-	_m_ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL CxObject::bFind(
-	CK_OBJECT_HANDLE_PTR phObject,          ///< gets obj. handles
-	CK_ULONG             ulMaxObjectCount,  ///< max handles to get
-	CK_ULONG_PTR         pulObjectCount     ///< actual # returned
+    CK_OBJECT_HANDLE_PTR phObject,          ///< gets obj. handles
+    CK_ULONG             ulMaxObjectCount,  ///< max handles to get
+    CK_ULONG_PTR         pulObjectCount     ///< actual # returned
 )
 {
-	/*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-	/*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-	/*DEBUG*/// _m_hObject - n/a
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+    /*DEBUG*/// _m_hObject - n/a
 
-	_m_ulRes = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
-	/*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      FALSE);
+    _m_ulRes = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL CxObject::bFindFinal() {
-	/*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
-	/*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
-	/*DEBUG*/// _m_hObject - n/a
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
+    /*DEBUG*/// _m_hObject - n/a
 
-	_m_ulRes = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-	/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    _m_ulRes = _m_pFunc->C_FindObjectsFinal(_m_hSession);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif
+#elif defined(xOS_ENV_UNIX)
+
 #endif

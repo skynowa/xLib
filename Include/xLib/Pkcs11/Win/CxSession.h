@@ -11,6 +11,7 @@
 #include <xLib/Pkcs11/Win/Common.h>
 #include <xLib/Pkcs11/Win/CxPkcs11.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
 class CxSession :
     public CxNonCopyable
     /// Pkcs11 session
@@ -19,22 +20,22 @@ class CxSession :
                              CxSession         (const CxPkcs11 &cPkcs11);
             ///< constructor
         virtual             ~CxSession         ();
-        	///< destructor
+            ///< destructor
 
         CK_SESSION_HANDLE    hGetHandle        () const;
-    		///< get handle
+            ///< get handle
         BOOL                 bOpen             (CK_SLOT_ID slotID, CK_FLAGS flags, CK_VOID_PTR pApplication, CK_NOTIFY Notify);
-    		///< opens a session between an application and a token
+            ///< opens a session between an application and a token
         BOOL                 bGetInfo          (CK_SESSION_INFO_PTR pInfo);
-    		///< obtains information about the session
+            ///< obtains information about the session
         BOOL                 bSetOperationState(CK_BYTE_PTR pOperationState, CK_ULONG ulOperationStateLen, CK_OBJECT_HANDLE hEncryptionKey, CK_OBJECT_HANDLE hAuthenticationKey);
-    		///< restores the state of the cryptographic operation in a session
+            ///< restores the state of the cryptographic operation in a session
         BOOL                 bGetOperationState(CK_BYTE_PTR pOperationState, CK_ULONG_PTR pulOperationStateLen);
-        	///< obtains the state of the cryptographic operation in a session
+            ///< obtains the state of the cryptographic operation in a session
         BOOL                 bClose            ();
-    		///< closes a session between an application and a token
+            ///< closes a session between an application and a token
         BOOL                 bCloseAll         (CK_SLOT_ID slotID);
-    		///< closes all sessions with a token
+            ///< closes all sessions with a token
 
     private:
         BOOL                 _m_bRes;		///< for private use
@@ -42,5 +43,8 @@ class CxSession :
         CK_FUNCTION_LIST_PTR _m_pFunc;		///< pointer to dll's functions list
         CK_SESSION_HANDLE    _m_hSession;	///< session handle
 };
+#elif defined(xOS_ENV_UNIX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Pkcs11_CxSessionH

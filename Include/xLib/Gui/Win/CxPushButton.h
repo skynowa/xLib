@@ -10,29 +10,30 @@
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxPushButton : 
-    public CxButtonBase 
-    /// push button    
+#if defined(xOS_ENV_WIN)
+class CxPushButton :
+    public CxButtonBase
+    /// push button
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        //состояния
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum ECheckState {
             csUknown     = - 1,
             csChecked     = BST_CHECKED,
             csUnchecked     = BST_UNCHECKED,
         };
 
-        //стиль (изображение/текст)
+        //пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ)
         enum EViewStyle {
             vsText   = BS_TEXT,
             vsBitmap = BS_BITMAP,
             vsIcon   = BS_ICON
         };
 
-        //тип изображения
+        //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         enum EImageType {
             itBitmap   = IMAGE_BITMAP,
             itIcon       = IMAGE_ICON,
@@ -46,7 +47,7 @@ class CxPushButton :
         BOOL        bCreateRes   (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         BOOL        bSetViewStyle(EViewStyle vsViewStyle);
         BOOL        bSetImage    (EImageType itImageType, HANDLE hImage);
 
@@ -54,10 +55,11 @@ class CxPushButton :
         BOOL        bSetState    (CxPushButton::ECheckState csCheckState);
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     private:
         EViewStyle _m_vsViewStyle;
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxPushButtonH
