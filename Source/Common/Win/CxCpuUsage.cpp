@@ -40,7 +40,7 @@
 
 
 #if defined(xOS_WIN)
-#include <xVCL/xCommon.h>
+
 #include <ATLBASE.H>    // for CRegKey use
 
 #pragma pack(push,8)

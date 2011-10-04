@@ -24,6 +24,7 @@
 #include <DB.hpp>
 #include <DBGrids.hpp>
 #include <Clipbrd.hpp>
+#include <registry.hpp>
 
 #pragma hdrstop
 //---------------------------------------------------------------------------
