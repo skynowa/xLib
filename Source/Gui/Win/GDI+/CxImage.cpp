@@ -9,6 +9,7 @@
 #include <xLib/Common/CxAutoMallocT.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -187,19 +188,19 @@ CxImage::bDraw(
 }
 //---------------------------------------------------------------------------
 #if xTODO
-	VOID
-	Example_Clear(
-		HDC hdc
-	)
-	{
-		Graphics graphics(hdc);
+    VOID
+    Example_Clear(
+        HDC hdc
+    )
+    {
+        Graphics graphics(hdc);
 
-		// Create a Color object.
-		Color blueColor(255, 0, 0, 255);
+        // Create a Color object.
+        Color blueColor(255, 0, 0, 255);
 
-		// Clear the screen with a blue background.
-		graphics.Clear(blueColor);
-	}
+        // Clear the screen with a blue background.
+        graphics.Clear(blueColor);
+    }
 #endif
 
 BOOL
@@ -342,3 +343,6 @@ CxImage::_bGetEncoderClsid(
     return FALSE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_ENV_UNIX)
+
+#endif

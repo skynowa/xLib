@@ -10,12 +10,13 @@
 #include <xLib/Gui/CxWindow.h>
 #include <xLib/Gui/CxWndsContainer.h>
 //---------------------------------------------------------------------------
-class CxWindowImpl : 
-    public CxWindow 
+#if defined(xOS_ENV_WIN)
+class CxWindowImpl :
+    public CxWindow
     /// window
 {
     public:
-        CxWndsContainer     m_vecpContainer;        //контейнер для дочерних окон
+        CxWndsContainer     m_vecpContainer;        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
                             CxWindowImpl();
         virtual            ~CxWindowImpl();
@@ -27,10 +28,10 @@ class CxWindowImpl :
         BOOL                bShowModal  ();
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                             xDECLARE_MSG_MAP                ();
 
         virtual VOID        vOnNull                         (WPARAM wParam, LPARAM lParam);
@@ -387,7 +388,8 @@ class CxWindowImpl :
         virtual VOID        vOnUser                         (WPARAM wParam, LPARAM lParam);
 
     private:
-        BOOL                _m_bIsDestroyed;        //флаг разрушения окна
+        BOOL                _m_bIsDestroyed;        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxWindowImplH

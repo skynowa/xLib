@@ -6,7 +6,8 @@
 
 #ifndef xLib_Gui_ResourceXrcH
 #define xLib_Gui_ResourceXrcH
-
+//---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
 #include <xLib/Gui/Resource.xrc.h>
 #include <tchar.h>
 
@@ -61,5 +62,6 @@ _bInitControl(IDD_WND_DIALOG,      xT("About Dialog"),    100,   200,   300, 200
 //---------------------------------------------------------------------------
 _bInitControl(IDD_WND_SHEET1,      xT("Layout1"),    100,   200,   300, 200, 0, 0);
 _bInitControl(IDD_WND_SHEET2,      xT("Layout2"),    100,   200,   300, 200, 0, 0);
+#endif
 //---------------------------------------------------------------------------
 #endif //xLib_Gui_ResourceXrcH

@@ -10,13 +10,14 @@
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-class CxOwnerDrawButton : 
-    public CxButtonBase 
-    /// owner draw button    
+#if defined(xOS_ENV_WIN)
+class CxOwnerDrawButton :
+    public CxButtonBase
+    /// owner draw button
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
                  CxOwnerDrawButton();
         virtual ~CxOwnerDrawButton();
@@ -24,12 +25,13 @@ class CxOwnerDrawButton :
         BOOL     bCreateRes       (INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxOwnerDrawButtonH

@@ -9,13 +9,14 @@
 ///---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 ///---------------------------------------------------------------------------
-class CxListBox : 
-    public CxWindow 
+#if defined(xOS_ENV_WIN)
+class CxListBox :
+    public CxWindow
     /// list box
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
              CxListBox           ();
             ~CxListBox           ();
@@ -23,7 +24,7 @@ class CxListBox :
         BOOL bCreateRes(INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         #if (xWINVER >= xWIN32_31)
             INT     iDir                (UINT uiAttr, LPCTSTR pcszFileSpec);
         #endif //xWIN32_31
@@ -175,7 +176,8 @@ class CxListBox :
         ////BOOL bVScroll            (WPARAM wPos);
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxListBoxH

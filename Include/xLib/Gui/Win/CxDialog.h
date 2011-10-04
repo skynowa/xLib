@@ -9,9 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/Gui/CXWindow.h>
 //---------------------------------------------------------------------------
-class CXDialog : 
-    public CxWindow 
-    /// dialog    
+#if defined(xOS_ENV_WIN)
+class CXDialog :
+    public CxWindow
+    /// dialog
 {
     public:
                      CXDialog      ();
@@ -35,5 +36,6 @@ class CXDialog :
         virtual VOID OnClose       (WPARAM wParam, LPARAM lParam);
         virtual VOID OnDestroy     (WPARAM wParam, LPARAM lParam);
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CXDialogH

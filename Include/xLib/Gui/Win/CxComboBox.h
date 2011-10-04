@@ -9,20 +9,21 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxComboBox : 
-    public CxWindow 
-    /// combobox    
+#if defined(xOS_ENV_WIN)
+class CxComboBox :
+    public CxWindow
+    /// combobox
 {
     public:
         //-------------------------------------
-        //константы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
                 CxComboBox();
                ~CxComboBox();
         BOOL    bCreateRes(INT iID, CxWindow *pwndParent);
 
         //-------------------------------------
-        //сообщения
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         #if (xWINVER >= xWIN32_95)
             INT     iFindStringExact       (INT iIndexStart, LPCTSTR pcszFind);
         #endif //xWIN32_95
@@ -136,7 +137,8 @@ class CxComboBox :
         ////BOOL    bLoadFromFile(const tString &csFilePath, INT iItemIndex = - 1);
 
         //-------------------------------------
-        //события
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxComboBoxH

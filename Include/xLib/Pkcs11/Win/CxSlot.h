@@ -11,6 +11,7 @@
 #include <xLib/Pkcs11/Win/Common.h>
 #include <xLib/Pkcs11/Win/CxPkcs11.h>
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
 class CxSlot :
     public CxNonCopyable
     /// Pkcs11 slot
@@ -27,19 +28,22 @@ class CxSlot :
                              CxSlot        (const CxPkcs11 &cPkcs11);
             ///< constructor
         virtual             ~CxSlot        ();
-        	///< destructor
+            ///< destructor
 
         BOOL                 bGetList      (CK_BBOOL bTokenPresent, std::vector<CK_SLOT_ID> *pvecSlotList);
-    		///< obtains a list of slots in the system
+            ///< obtains a list of slots in the system
         BOOL                 bGetInfo      (CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo);
-    		///< obtains information about a particular slot in the system
+            ///< obtains information about a particular slot in the system
         ENotification        nfWaitForEvent(CK_FLAGS flags, CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pRserved);
-    		///< waits for a slot event (token insertion, removal, etc.) to occur
+            ///< waits for a slot event (token insertion, removal, etc.) to occur
 
     private:
         BOOL                 _m_bRes; 	///< for private use
         CK_RV                _m_ulRes;	///< for private use
         CK_FUNCTION_LIST_PTR _m_pFunc;	///< pointer to dll's functions list
 };
+#elif defined(xOS_ENV_UNIX)
+
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Pkcs11_CxSlotH

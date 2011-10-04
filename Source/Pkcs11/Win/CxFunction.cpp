@@ -9,6 +9,7 @@
 #include <xLib/Pkcs11/Win/CxUtils.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -69,11 +70,14 @@ BOOL
 CxFunction::bGetListEx() {
     /*DEBUG*/
 
-	#if xTODO
-		_m_ulRes = _m_pFunc->ETC_GetFunctionListEx();
-		/*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
-	#endif
+    #if xTODO
+        _m_ulRes = _m_pFunc->ETC_GetFunctionListEx();
+        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_ENV_UNIX)
+
+#endif

@@ -9,9 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/GUI/CxWindow.h>
 //---------------------------------------------------------------------------
-class CxRebar : 
-    public CxWindow 
-    /// rebar    
+#if defined(xOS_ENV_WIN)
+class CxRebar :
+    public CxWindow
+    /// rebar
 {
     public:
         enum AlignFlags    {
@@ -29,5 +30,6 @@ class CxRebar :
         BOOL DeleteBand(int numBand);
         VOID AutoSize();
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //XLib_Gui_CxRebarH

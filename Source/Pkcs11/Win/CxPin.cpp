@@ -9,6 +9,7 @@
 #include <xLib/Pkcs11/Win/CxUtils.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -78,3 +79,6 @@ CxPin::bSetPIN(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_ENV_UNIX)
+
+#endif

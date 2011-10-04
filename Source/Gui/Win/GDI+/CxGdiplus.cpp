@@ -6,6 +6,7 @@
 
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 
+#if defined(xOS_ENV_WIN)
 #include <GDIPlus.h>
 
 #pragma comment (lib, "Gdiplus.lib")
@@ -34,3 +35,6 @@ CxGdiplus::~CxGdiplus() {
     _m_pulToken = NULL;
 }
 //---------------------------------------------------------------------------
+#elif defined(xOS_ENV_UNIX)
+
+#endif

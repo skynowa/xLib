@@ -11,10 +11,10 @@
 //--#include <xLib/GUI/CxWindow.h>
 #include <xLib/Gui/xCommon.h>
 //--#include <xLib/Gui/CxResources.h>
-#include <vector>
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
 class CxApplication :
-	public CxNonCopyable
+    public CxNonCopyable
     /// application
 {
     public:
@@ -34,5 +34,6 @@ class CxApplication :
                          CxApplication   ();
                         ~CxApplication   ();
 };
+#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Gui_CxApplication_H

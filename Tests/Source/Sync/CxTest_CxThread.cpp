@@ -38,7 +38,9 @@ CWorkThread::uiOnRun(
     VOID *pvData
 )
 {
-    xTRACEV(xT("\n\tCWorkThread: start #%li"), m_ulTag);
+    #if xTEST_IGNORE
+        xTRACEV(xT("\n\tCWorkThread: start #%li"), m_ulTag);
+    #endif
 
     UINT uiRes = 0;
     BOOL bRes  = FALSE;
@@ -50,11 +52,16 @@ CWorkThread::uiOnRun(
     for (size_t i = 0; i < 10; ++ i) {
         //interrupt point
         bRes = bIsTimeToExit();
-        xCHECK_DO(FALSE != bRes, xTRACE(xT("\tCWorkThread: break")); break);
+        #if xTEST_IGNORE
+            xCHECK_DO(FALSE != bRes, xTRACE(xT("\tCWorkThread: break")));
+        #endif
+        xCHECK_DO(FALSE != bRes, break);
 
         //jobs
         {
-            xTRACE(xT("\t*"));
+            #if xTEST_IGNORE
+                xTRACE(xT("\t*"));
+            #endif
 
             bRes = CxCurrentThread::bSleep(50UL);
             xASSERT_NOT_EQ(FALSE, bRes);
@@ -68,7 +75,9 @@ CWorkThread::uiOnRun(
         CxConsole().bPause();
     #endif
 
-    xTRACEV(xT("\tCWorkThread: end #%li\n"), m_ulTag);
+    #if xTEST_IGNORE
+        xTRACEV(xT("\tCWorkThread: end #%li\n"), m_ulTag);
+    #endif
 
     return uiRes;
 }
@@ -393,7 +402,10 @@ CxTest_CxThread::bUnit(
     }
 
     ULONG ulRes = pthT->ulGetExitStatus();
-    xTRACEV("\tulGetExitStatus(): %li", ulRes);
+    xUNUSED(ulRes);
+    #if xTEST_IGNORE
+        xTRACEV("\tulGetExitStatus(): %li", ulRes);
+    #endif
 
     m_bRes = pthT->bWait(xTIMEOUT_INFINITE);
     xASSERT_NOT_EQ(FALSE, m_bRes);
