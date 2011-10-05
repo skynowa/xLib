@@ -9,9 +9,9 @@
 #define xLib_Common_Unix_xCommon_UnixH
 //----------------------------------------------------------------------------------------------------
 //POSIX
+#include <string.h>
 #include <cpio.h>
 #include <dirent.h>
-#include <fcntl.h>
 #include <grp.h>
 #include <pwd.h>
 #include <tar.h>
@@ -21,14 +21,12 @@
 #include <signal.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
-#include <sys/stat.h>
 #include <sys/time.h>
-#include <sys/types.h>
 #include <sys/utsname.h>
 #include <sys/wait.h>
 #include <sys/uio.h>
 #include <sys/syscall.h>
-#include <string.h>
+
 
 //thread
 #include <pthread.h>    //lib: -pthread

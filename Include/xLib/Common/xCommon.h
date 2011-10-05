@@ -26,6 +26,11 @@
 //tracing
 #include <xLib/Common/xTracing.h>
 
+//POSIX
+#include <sys/types.h>  //must be at the top (it's portable)
+#include <fcntl.h>
+#include <sys/stat.h>
+
 //C library
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,11 +68,6 @@
 #include <cerrno>
 #include <limits>
 #include <stdexcept>
-
-//POSIX
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 
 //xLib
 namespace NxLib { }
