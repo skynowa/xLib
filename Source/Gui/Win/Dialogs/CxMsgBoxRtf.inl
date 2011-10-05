@@ -4,11 +4,40 @@
  */
 
 
+#include <commctrl.h>
+#if defined(xCOMPILER_MS)
+    #pragma comment(lib, "comctl32.lib")
+#endif
 #include <richedit.h>
 
 
 //---------------------------------------------------------------------------
 namespace CxMsgBoxRtf {
+
+#define xCXWINDOW_CONTROL_CLASS                 xT("WC_XWINDOW")
+#define xCXLAYOUT_CONTROL_CLASS                 xT("WC_XLAYOUT")
+
+#define xCXBUTTON_CONTROL_CLASS                 WC_BUTTON
+#define xCXPUSHBUTTON_CONTROL_CLASS             WC_BUTTON
+#define xCXIMAGEBUTTON_CONTROL_CLASS            WC_BUTTON
+#define xCXCHECKBOX_CONTROL_CLASS               WC_BUTTON
+#define xCXRADIOBUTTON_CONTROL_CLASS            WC_BUTTON
+#define xCXGROUPBOX_CONTROL_CLASS               WC_BUTTON
+#define xCXOWNERDRAWBUTTON_CONTROL_CLASS        WC_BUTTON
+
+#define xCXCOMBOBOX_CONTROL_CLASS               WC_COMBOBOX
+#define xCXEDIT_CONTROL_CLASS                   WC_EDIT
+#define xCXMDICLIENT_CONTROL_CLASS              xT("MDICLIENT")
+#define xCXSCROLLBAR_CONTROL_CLASS              xT("SCROLLBAR")
+#define xCXSTATIC_CONTROL_CLASS                 WC_STATIC
+#define xCXPICTURE_CONTROL_CLASS                WC_STATIC
+#define xCXLISTBOX_CONTROL_CLASS                WC_LISTBOX
+#define xCXSTATUSBAR_CONTROL_CLASS              STATUSCLASSNAME
+#define xCXPROGRESSBAR_CONTROL_CLASS            PROGRESS_CLASS
+#define xCXLISTVIEW_CONTROL_CLASS               WC_LISTVIEW
+#define xCXRICHEDIT10_CONTROL_CLASS             xT("RichEdit")
+#define xCXRICHEDIT20_CONTROL_CLASS             RICHEDIT_CLASS
+#define xCXTAB_CONTROL_CLASS                    WC_TABCONTROL
 //---------------------------------------------------------------------------
 EModalResult g_mrRes          = mrNone;
 std::tstring g_sTitle;

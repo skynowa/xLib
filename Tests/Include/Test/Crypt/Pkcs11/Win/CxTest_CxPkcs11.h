@@ -16,9 +16,7 @@
 #include <xLib/Debug/CxTest.h>
 
 #if defined(xOS_ENV_WIN)
-    #include <xLib/Pkcs11/Win/All.h>
-#elif defined(xOS_ENV_UNIX)
-
+    #include <xLib/Crypt/Pkcs11/Win/All.h>
 #endif
 //---------------------------------------------------------------------------
 class CxTest_CxPkcs11 :

@@ -7,7 +7,7 @@
 #ifndef xLib_Gui_Dialogs_CxMsgBoxRtfH
 #define xLib_Gui_Dialogs_CxMsgBoxRtfH
 //---------------------------------------------------------------------------
-#include <xLib/Gui/Win/xCommon.h>
+#include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 namespace CxMsgBoxRtf
     /// formated message box

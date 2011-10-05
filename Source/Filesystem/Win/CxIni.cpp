@@ -63,7 +63,7 @@ CxIni::bCreateDefault(
     //�������� �����
     CxFile sfFile;
 
-    _m_bRes = sfFile.bOpen(_m_sFilePath, CxFile::omCreateReadWrite, TRUE);
+    _m_bRes = sfFile.bCreate(_m_sFilePath, CxFile::omCreateReadWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     INT iRes = sfFile.iWrite(csContent.c_str());
