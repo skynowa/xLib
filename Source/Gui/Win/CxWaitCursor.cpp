@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxWaitCursor.h>
+#include <xLib/Gui/Win/CxWaitCursor.h>
 
+#if defined(xOS_ENV_WIN)
 //---------------------------------------------------------------------------
 //DONE: CxWaitCursor (Set the cursor remembering the old cursor)
 CxWaitCursor::CxWaitCursor() :
@@ -44,3 +45,4 @@ BOOL CxWaitCursor::bRestore() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

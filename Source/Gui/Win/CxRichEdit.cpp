@@ -4,9 +4,10 @@
  */
 
 
-#include <xLib/Gui/CxRichEdit.h>
+#include <xLib/Gui/Win/CxRichEdit.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -21,7 +22,7 @@ CxRichEdit::CxRichEdit() {
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXRICHEDIT20_CONTROL_CLASS;
     _m_ulStyle        = xCXRICHEDIT_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXRICHEDIT_DEFAULT_WINDOW_STYLE_EX;
@@ -57,7 +58,7 @@ BOOL CxRichEdit::bCreateRes(INT iID, CxWindow *pwndParent) {
 
 
 /****************************************************************************
-*    public: сообщения, Selection
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Selection
 *
 *****************************************************************************/
 
@@ -75,7 +76,7 @@ BOOL CxRichEdit::bGetSel(LONG *pliMin, LONG *pliMax)  {
     xCHECK_DO(NULL != pliMin, *pliMin = chrRange.cpMin);
     xCHECK_DO(NULL != pliMax, *pliMax = chrRange.cpMax);
 
-    //The range includes everything if cpMin is 0 and cpMax is –1.
+    //The range includes everything if cpMin is 0 and cpMax is пїЅ1.
 
     return TRUE;
 }
@@ -122,7 +123,7 @@ CxRichEdit::ESelectionType CxRichEdit::stGetSelectionType() {
 
 
 /****************************************************************************
-*    public: сообщения, Clip operations
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Clip operations
 *
 *****************************************************************************/
 
@@ -219,7 +220,7 @@ UNDONAMEID CxRichEdit::uidGetUndoName() {
 
 
 /****************************************************************************
-*    public: сообщения, Options
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Options
 *
 *****************************************************************************/
 
@@ -328,7 +329,7 @@ BOOL CxRichEdit::bSetTypographyOptions(ETypographyOption toOptions, ULONG ulMask
 
 
 /****************************************************************************
-*    public: сообщения, Scroll
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Scroll
 *
 *****************************************************************************/
 
@@ -386,7 +387,7 @@ BOOL CxRichEdit::bShowScrollbar(BOOL bFlagVert, BOOL bFlagHorz) {
 
 
 /****************************************************************************
-*    public: сообщения, Style
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Style
 *
 *****************************************************************************/
 
@@ -416,7 +417,7 @@ BOOL CxRichEdit::bSetEditStyle(EEditStyle stStyle, EEditStyle stMask) {
 
 
 /****************************************************************************
-*    public: сообщения, Text
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Text
 *
 *****************************************************************************/
 
@@ -544,7 +545,7 @@ BOOL CxRichEdit::bLimitText(LONG iChars) {
 
 
 /****************************************************************************
-*    public: сообщения, Find
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Find
 *
 *****************************************************************************/
 
@@ -569,7 +570,7 @@ BOOL CxRichEdit::bFindText(const tString &csText, LONG liMin, LONG liMax, EFindP
     xCHECK_RET(- 1 == iRes, FALSE);
 
     //-------------------------------------
-    //текст найден
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     xCHECK_DO(NULL != pliFoundMin, *pliFoundMin = iRes);
 
     return TRUE;
@@ -600,7 +601,7 @@ BOOL CxRichEdit::bFindTextEx(const tString &csText, LONG liMin, LONG liMax, EFin
     /*DEBUG*/xASSERT_RET(crRangeOut.cpMin == iRes, FALSE);
 
     //-------------------------------------
-    //текст найден
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     xCHECK_DO(NULL != pliFoundMin, *pliFoundMin = crRangeOut.cpMin);
     xCHECK_DO(NULL != pliFoundMax, *pliFoundMax = crRangeOut.cpMax);
 
@@ -624,7 +625,7 @@ LONG CxRichEdit::liFindWordBreak(EFindOperation foOperation, LONG liPos) {
 
 
 /****************************************************************************
-*    public: сообщения, IME
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, IME
 *
 *****************************************************************************/
 
@@ -812,7 +813,7 @@ BOOL CxRichEdit::bGetReconversion() {
 
 
 /****************************************************************************
-*    public: сообщения, WORD
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, WORD
 *
 *****************************************************************************/
 
@@ -866,7 +867,7 @@ INT CxRichEdit::iSetWordBreakProcEx(INT *piProcEx /*NULL - default procedure*/) 
 
 
 /****************************************************************************
-*    public: сообщения, Format
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Format
 *
 *****************************************************************************/
 
@@ -1009,12 +1010,12 @@ BOOL CxRichEdit::bFormatRange(BOOL bDisplay, HDC hDC, HDC hDCTarget, RECT rcRect
 
 
 /****************************************************************************
-*    public: сообщения, Stream
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Stream
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - liStreamIn (The EM_STREAMIN message replaces the contents of a rich edit control with a stream of data provided by an application defined–EditStreamCallback callback function)
+//TODO: - liStreamIn (The EM_STREAMIN message replaces the contents of a rich edit control with a stream of data provided by an application definedпїЅEditStreamCallback callback function)
 #if (xWINVER >= xWIN32_2K)
 LONG CxRichEdit::liStreamIn(EStreamFormat sfFormat, EStreamFormatFlag sffFlags, EDITSTREAM *pesStream) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, 0);
@@ -1024,7 +1025,7 @@ LONG CxRichEdit::liStreamIn(EStreamFormat sfFormat, EStreamFormatFlag sffFlags, 
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
-//TODO: - liStreamOut (The EM_STREAMOUT message causes a rich edit control to pass its contents to an application–defined EditStreamCallback callback function)
+//TODO: - liStreamOut (The EM_STREAMOUT message causes a rich edit control to pass its contents to an applicationпїЅdefined EditStreamCallback callback function)
 #if (xWINVER >= xWIN32_2K)
 LONG CxRichEdit::liStreamOut(EStreamFormat sfFormat, EStreamFormatFlag sffFlags, EDITSTREAM *pesStream) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, 0);
@@ -1037,7 +1038,7 @@ LONG CxRichEdit::liStreamOut(EStreamFormat sfFormat, EStreamFormatFlag sffFlags,
 
 
 /****************************************************************************
-*    public: сообщения, Punctuation
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Punctuation
 *
 *****************************************************************************/
 
@@ -1075,7 +1076,7 @@ BOOL CxRichEdit::bSetPunctuation(EPunctuationType ptType, const tString &csStr) 
 
 
 /****************************************************************************
-*    public: сообщения, Url
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Url
 *
 *****************************************************************************/
 
@@ -1113,7 +1114,7 @@ BOOL CxRichEdit::bSetAutoUrlDetect(BOOL bFlag) {
 
 
 /****************************************************************************
-*    public: сообщения, Zoom
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Zoom
 *
 *****************************************************************************/
 
@@ -1147,7 +1148,7 @@ BOOL CxRichEdit::bSetZoom(INT iNumerator, INT iDenominator) {
 
 
 /****************************************************************************
-*    public: сообщения, Event
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Event
 *
 *****************************************************************************/
 
@@ -1177,7 +1178,7 @@ BOOL CxRichEdit::bSetEventMask(EEventMask emMask) {
 
 
 /****************************************************************************
-*    public: сообщения, Hyphenate info
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Hyphenate info
 *
 *****************************************************************************/
 
@@ -1209,7 +1210,7 @@ BOOL CxRichEdit::bSetHyphenateInfo(const HYPHENATEINFO *cphiInfo) {
 
 
 /****************************************************************************
-*    public: сообщения, Page rotate
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Page rotate
 *
 *****************************************************************************/
 
@@ -1241,7 +1242,7 @@ CxRichEdit::ETextLayout CxRichEdit::tlGetPageRotate() {
 
 
 /****************************************************************************
-*    public: сообщения, Other
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, Other
 *
 *****************************************************************************/
 
@@ -1629,3 +1630,4 @@ LONG CxRichEdit::liGetLineFromChar(LONG liCharIndex) {
 ////    ::SendMessage(_m_hWnd, WM_PASTE, 0, 0L);
 ////}
 //////---------------------------------------------------------------------------
+#endif

@@ -7,7 +7,7 @@
 #ifndef xLib_Gui_xMessageMapH
 #define xLib_Gui_xMessageMapH
 //---------------------------------------------------------------------------
-#include <xLib/Gui/xCommon.h>
+#include <xLib/Gui/Win/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
     #define xDECLARE_MSG_MAP()               virtual LRESULT lpProcessMsg(UINT uiMsg, WPARAM wParam, LPARAM lParam)

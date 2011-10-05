@@ -7,7 +7,7 @@
 #ifndef XLib_Gui_CxLayoutH
 #define XLib_Gui_CxLayoutH
 //---------------------------------------------------------------------------
-#include <xLib/GUI/CxWindowImpl.h>
+#include <xLib/Gui/Win/CxWindowImpl.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxLayout :

@@ -7,7 +7,7 @@
 #ifndef XLib_Gui_CxIconH
 #define XLib_Gui_CxIconH
 //---------------------------------------------------------------------------
-#include <xLib/Gui/xCommon.h>
+#include <xLib/Gui/Win/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 #define STRINGIZE2(x) #x

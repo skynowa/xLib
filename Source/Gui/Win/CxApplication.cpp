@@ -4,13 +4,14 @@
  */
 
 
-#include <xLib/Gui/CxApplication.h>
+#include <xLib/Gui/Win/CxApplication.h>
 
+#if defined(xOS_ENV_WIN)
 #include <shellapi.h>
 #include <xLib/Gui/CxResources.h>
 #include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
-//DONE: инициализируем статик члены
+//DONE: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 HINSTANCE CxApplication::_m_hInstance = NULL;
 
 
@@ -34,7 +35,7 @@ BOOL CxApplication::bInit(HINSTANCE hInstance, const tString &csCmdLine) {
     _m_hInstance = hInstance;
 
     //-------------------------------------
-    //используем с ресурсами
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     bRes = CxResources::bInit();
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
@@ -188,3 +189,4 @@ CxApplication::~CxApplication() {
     /*DEBUG*/xASSERT(FALSE);
 }
 //---------------------------------------------------------------------------
+#endif

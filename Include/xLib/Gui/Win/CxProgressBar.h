@@ -7,7 +7,7 @@
 #ifndef XLib_Gui_CxProgressBarH
 #define XLib_Gui_CxProgressBarH
 //---------------------------------------------------------------------------
-#include <xLib/GUI/CxWindow.h>
+#include <xLib/Gui/Win/CxWindow.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxProgressBar :

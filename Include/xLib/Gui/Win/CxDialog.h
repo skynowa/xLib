@@ -7,7 +7,7 @@
 #ifndef XLib_Gui_CXDialogH
 #define XLib_Gui_CXDialogH
 //---------------------------------------------------------------------------
-#include <xLib/Gui/CXWindow.h>
+#include <xLib/Gui/Win/CxWindow.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CXDialog :

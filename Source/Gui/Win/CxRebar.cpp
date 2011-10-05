@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxRebar.h>
+#include <xLib/Gui/Win/CxRebar.h>
 
+#if defined(xOS_ENV_WIN)
 //---------------------------------------------------------------------------
 CxRebar::CxRebar() :
     CxWindow()
@@ -84,3 +85,4 @@ VOID CxRebar::AutoSize()    {
         (LPARAM) TRUE);
 }
 //---------------------------------------------------------------------------
+#endif

@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxGroupBox.h>
+#include <xLib/Gui/Win/CxGroupBox.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxWindowImpl.h>
 
 
@@ -20,7 +21,7 @@ CxGroupBox::CxGroupBox() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXGROUPBOX_CONTROL_CLASS;
     _m_ulStyle        = xCXGROUPBOX_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXGROUPBOX_DEFAULT_WINDOW_STYLE_EX;
@@ -58,3 +59,4 @@ BOOL CxGroupBox::bCreateRes(INT iID, CxWindow *pwndParent) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

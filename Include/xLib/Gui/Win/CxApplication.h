@@ -9,7 +9,7 @@
 #define xLib_Gui_CxApplication_H
 //---------------------------------------------------------------------------
 //--#include <xLib/GUI/CxWindow.h>
-#include <xLib/Gui/xCommon.h>
+#include <xLib/Gui/Win/xCommon.h>
 //--#include <xLib/Gui/CxResources.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)

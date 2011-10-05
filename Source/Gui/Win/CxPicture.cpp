@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxPicture.h>
+#include <xLib/Gui/Win/CxPicture.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxWindowImpl.h>
 
 //---------------------------------------------------------------------------
@@ -14,7 +15,7 @@ CxPicture::CxPicture() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXPICTURE_CONTROL_CLASS;
     _m_ulStyle        = xCXPICTURE_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXPICTURE_DEFAULT_WINDOW_STYLE_EX;
@@ -27,7 +28,7 @@ CxPicture::CxPicture() {
     _m_bIsControl     = TRUE;
 
     //-------------------------------------
-    //внутр.
+    //пїЅпїЅпїЅпїЅпїЅ.
     _m_vsViewStyle    = vsBitmap/*vsUknown*/;
 }
 //---------------------------------------------------------------------------
@@ -58,12 +59,12 @@ BOOL CxPicture::bCreateRes(INT iID, CxWindow *pwndParent) {
 
 
 /****************************************************************************
-*    public: сообщения
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bSetViewStyle (установка стиля)
+//DONE: bSetViewStyle (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 BOOL CxPicture::bSetViewStyle(EViewStyle vsViewStyle) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
@@ -75,7 +76,7 @@ BOOL CxPicture::bSetViewStyle(EViewStyle vsViewStyle) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSetImage (установка изображения)
+//DONE: bSetImage (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxPicture::bSetImage(EImageType itImageType, HANDLE hImage) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
 
@@ -85,3 +86,4 @@ BOOL CxPicture::bSetImage(EImageType itImageType, HANDLE hImage) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

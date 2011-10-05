@@ -4,9 +4,10 @@
  */
 
 
-#include <xLib/Gui/CxComboBox.h>
+#include <xLib/Gui/Win/CxComboBox.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -18,7 +19,7 @@ CxComboBox::CxComboBox() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXCOMBOBOX_CONTROL_CLASS;
     _m_ulStyle        = xCXCOMBOBOX_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXCOMBOBOX_DEFAULT_WINDOW_STYLE_EX;
@@ -31,7 +32,7 @@ CxComboBox::CxComboBox() {
     _m_bIsControl     = TRUE;
 
     //-------------------------------------
-    //внутр
+    //пїЅпїЅпїЅпїЅпїЅ
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxComboBox
@@ -57,7 +58,7 @@ BOOL CxComboBox::bCreateRes(INT iID, CxWindow *pwndParent) {
 
 
 /****************************************************************************
-*    public: сообщения
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -619,7 +620,7 @@ INT CxComboBox::iFindString(INT iIndexStart, LPCTSTR pcszFind) {
 ////    try {
 ////        bResetContent();
 ////
-////        //прочитать файл построчно
+////        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 ////        tifstream   ifsStream(csFilePath.c_str(), std::ios::in);
 ////        const ULONG culLineSize             = MAX_PATH;
 ////        TCHAR       szLine[culLineSize + 1] = {0};
@@ -627,7 +628,7 @@ INT CxComboBox::iFindString(INT iIndexStart, LPCTSTR pcszFind) {
 ////        while ((!ifsStream.eof()) && (!ifsStream.fail())) {
 ////            ifsStream.getline(szLine, culLineSize);                    //overflow!!!
 ////            if (0 != ::lstrlen(szLine)) {
-////                szLine[::lstrlen(szLine)] = _T('\0');        //удаляем "\r\n"
+////                szLine[::lstrlen(szLine)] = _T('\0');        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ "\r\n"
 ////            }
 ////
 ////            bAddString(szLine);
@@ -644,3 +645,4 @@ INT CxComboBox::iFindString(INT iIndexStart, LPCTSTR pcszFind) {
 ////    return bRes;
 ////}
 //////---------------------------------------------------------------------------
+#endif

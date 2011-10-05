@@ -7,9 +7,9 @@
 #ifndef XLib_Gui_CxTabH
 #define XLib_Gui_CxTabH
 //---------------------------------------------------------------------------
-#include <xLib/GUI/CxWindow.h>
-#include <xLib/Gui/CxWindowImpl.h>
-#include <xLib/GUI/CxLayout.h>
+#include <xLib/Gui/Win/CxWindow.h>
+#include <xLib/Gui/Win/CxWindowImpl.h>
+#include <xLib/Gui/Win/CxLayout.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 ////class CxTab;

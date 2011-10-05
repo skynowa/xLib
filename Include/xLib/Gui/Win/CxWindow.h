@@ -7,14 +7,15 @@
 #ifndef xLib_Gui_CxWindowH
 #define xLib_Gui_CxWindowH
 //---------------------------------------------------------------------------
-#include <xLib/xClosure.h>
+#if defined(xOS_ENV_WIN)
+
+#include <xLib/Common/xClosure.h>
 #include <xLib/Gui/xCommon.h>
 #include <xLib/Gui/xMessageMap.h>
 #include <xLib/Gui/CxApplication.h>
 #include <xLib/Gui/CxFont.h>
 #include <xLib/Gui/CxStyle.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
 class CxWindow :
     public CxNonCopyable
     /// base class for windows controls

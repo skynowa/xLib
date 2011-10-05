@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxWindowImpl.h>
+#include <xLib/Gui/Win/CxWindowImpl.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/Gui/xCommon.h>
 #include <xLib/GUI/CxApplication.h>
 #include <xLib/CxString.h>
@@ -26,7 +27,7 @@ CxWindowImpl::CxWindowImpl() :
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName = xCXWINDOW_CONTROL_CLASS + tString(_T("_")) + CxString::sCreateGUID();
     _m_ulStyle    = xCXFRAME_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx  = xCXFRAME_DEFAULT_WINDOW_STYLE_EX;
@@ -51,27 +52,27 @@ BOOL CxWindowImpl::bCreate(INT iID, HWND hParent, const tString &csText,
                             ULONG ulStyle, ULONG ulExStyle)
 {
     //-------------------------------------
-    //регистрируем класс окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     WNDCLASSEX wcex = {0};
 
-    wcex.cbSize         = sizeof(WNDCLASSEX);                                                                        //размер структуры в байтах
-    wcex.style            = CS_HREDRAW | CS_VREDRAW;                                                                    //стиль класса окна
-    wcex.lpfnWndProc    = xreinterpret_cast<WNDPROC>(_s_pWndProc);                                                    //указатель на функцию окна
-    wcex.cbClsExtra        = 0;                                                                                        //дополнительная память в байтах для класса окна
-    wcex.cbWndExtra        = 0;                                                                                        //дополнительная память в байтах для каждого окна этого класса
-    wcex.hInstance        = CxApplication::hGetInstance();                                                            //дескриптор экземпляра приложения
-    wcex.hIcon            = ::LoadIcon(CxApplication::hGetInstance(), static_cast<LPCTSTR>(NULL)/*siIconID*/);        //дескриптор пиктограммы приложения
-    wcex.hCursor        = ::LoadCursor(NULL, IDC_ARROW);                                                            //дескриптор курсора приложения
-    wcex.hbrBackground    = reinterpret_cast<HBRUSH>( (COLOR_WINDOW + reinterpret_cast<HBRUSH>(3)/*siBGColor*/) );    //дескриптор кисти для закраски фона окна
-    wcex.lpszMenuName    = reinterpret_cast<LPCTSTR>(iID);                                                            //указатель на строку  с именем меню окна
-    wcex.lpszClassName    = _m_sClassName.c_str();                                                                    //указатель на строку  с именем класса окна
-    wcex.hIconSm        = ::LoadIcon(CxApplication::hGetInstance(), static_cast<LPCTSTR>(0)/*siIconSmID*/);            //дескриптор малой пиктограммы
+    wcex.cbSize         = sizeof(WNDCLASSEX);                                                                        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    wcex.style            = CS_HREDRAW | CS_VREDRAW;                                                                    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    wcex.lpfnWndProc    = xreinterpret_cast<WNDPROC>(_s_pWndProc);                                                    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    wcex.cbClsExtra        = 0;                                                                                        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    wcex.cbWndExtra        = 0;                                                                                        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    wcex.hInstance        = CxApplication::hGetInstance();                                                            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    wcex.hIcon            = ::LoadIcon(CxApplication::hGetInstance(), static_cast<LPCTSTR>(NULL)/*siIconID*/);        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    wcex.hCursor        = ::LoadCursor(NULL, IDC_ARROW);                                                            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    wcex.hbrBackground    = reinterpret_cast<HBRUSH>( (COLOR_WINDOW + reinterpret_cast<HBRUSH>(3)/*siBGColor*/) );    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    wcex.lpszMenuName    = reinterpret_cast<LPCTSTR>(iID);                                                            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    wcex.lpszClassName    = _m_sClassName.c_str();                                                                    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    wcex.hIconSm        = ::LoadIcon(CxApplication::hGetInstance(), static_cast<LPCTSTR>(0)/*siIconSmID*/);            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     _m_bRes = _bRegisterClass(&wcex);
     xCHECK_RET(FALSE == _m_bRes, FALSE);
 
     //-------------------------------------
-    //создаем окно
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_bRes = CxWindow::bCreate(iID, hParent, _m_sClassName, csText,
                              iLeft, iTop, iWidth, iHeight,
                              _m_ulStyle | ulStyle,
@@ -80,7 +81,7 @@ BOOL CxWindowImpl::bCreate(INT iID, HWND hParent, const tString &csText,
     xCHECK_RET(FALSE == _m_bRes, FALSE);
 
     //-------------------------------------
-    //если это дочернее окно, то дизэйблим родительское
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     ////if (NULL != _m_hParentWnd) {
     ////    bRes = ::EnableWindow(_m_hParentWnd, FALSE);
     ////      /*DEBUG*/xASSERT_RET(0 == bRes, FALSE);
@@ -125,13 +126,13 @@ BOOL CxWindowImpl::bShowModal() {
 
 
 /****************************************************************************
-*    сообщения
+*    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
 
 /****************************************************************************
-*    события
+*    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -139,7 +140,7 @@ BOOL CxWindowImpl::bShowModal() {
 
 
 //---------------------------------------------------------------------------
-//TODO: Карта сообщений
+//TODO: пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 xBEGIN_MSG_MAP(CxWindowImpl)
     ////xMSG(WM_CREATE,  vOnCreate)
     ////xMSG(WM_PAINT,   vOnPaint);
@@ -516,7 +517,7 @@ VOID CxWindowImpl::vOnDestroy                      (WPARAM wParam, LPARAM lParam
 
     _m_bIsDestroyed = TRUE;
 
-    if (NULL == _m_hParentWnd) {    //TODO: а если у главного окна есть родитель?
+    if (NULL == _m_hParentWnd) {    //TODO: пїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
         CxApplication::vTerminate();
 
         return;
@@ -1260,7 +1261,7 @@ VOID CxWindowImpl::vOnCommand                      (WPARAM wParam, LPARAM lParam
         }
 
         //-------------------------------------
-        //уведомления для CxStatic
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ CxStatic
         if (xCXSTATIC_CONTROL_CLASS == m_vecpContainer.pwndGet(i)->sGetClassName()) {
             switch (HIWORD(wParam))    {
                 case STN_CLICKED:    iMsgBox(_T("STN_CLICKED"));    break;
@@ -1273,7 +1274,7 @@ VOID CxWindowImpl::vOnCommand                      (WPARAM wParam, LPARAM lParam
         }
 
         //-------------------------------------
-        //уведомления для CxButton, CxGroupBox, CxCheckBox, CxRadioButton
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ CxButton, CxGroupBox, CxCheckBox, CxRadioButton
         if (xCXBUTTON_CONTROL_CLASS == m_vecpContainer.pwndGet(i)->sGetClassName()) {
             switch (HIWORD(wParam))    {
                 case BN_CLICKED:    m_vecpContainer.pwndGet(i)->vOnClick    ();    break;
@@ -2106,10 +2107,4 @@ VOID CxWindowImpl::vOnUser                         (WPARAM wParam, LPARAM lParam
 }
 //---------------------------------------------------------------------------
 
-
-
-
-/****************************************************************************
-*    private
-*
-*****************************************************************************/
+#endif

@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxListView.h>
+#include <xLib/Gui/Win/CxListView.h>
 
+#if defined(xOS_ENV_WIN)
 //---------------------------------------------------------------------------
 CxListView::CxListView() :
     m_ColumnCount(0),
@@ -14,7 +15,7 @@ CxListView::CxListView() :
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXLISTVIEW_CONTROL_CLASS;
     _m_ulStyle        = xCXLISTVIEW_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXLISTVIEW_DEFAULT_WINDOW_STYLE_EX;
@@ -391,3 +392,4 @@ HWND CxListView::GetHeader() {
     return ListView_GetHeader(_m_hWnd);
 }
 //---------------------------------------------------------------------------
+#endif

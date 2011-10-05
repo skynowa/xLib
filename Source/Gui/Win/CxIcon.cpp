@@ -4,9 +4,10 @@
  */
 
 
-#include <xLib/Gui/CxIcon.h>
+#include <xLib/Gui/Win/CxIcon.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    Public methods
 *
@@ -346,3 +347,4 @@ UINT CxIcon::uiPrivateExtractIcons(LPCTSTR pcszFile, INT iIconIndex, INT ciIconX
 }
 #endif //xWIN32_2K
 //---------------------------------------------------------------------------
+#endif

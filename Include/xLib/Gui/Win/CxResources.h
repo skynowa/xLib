@@ -7,11 +7,12 @@
 #ifndef XLib_Gui_CxResourcesH
 #define XLib_Gui_CxResourcesH
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Gui/Win/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
 class CxResources :
     public CxNonCopyable
     /// resources

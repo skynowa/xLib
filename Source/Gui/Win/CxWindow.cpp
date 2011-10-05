@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxWindow.h>
+#include <xLib/Gui/Win/CxWindow.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxWindowImpl.h>
 
 //---------------------------------------------------------------------------
@@ -580,3 +581,4 @@ BOOL CxWindow::_bUnregisterClass(const tString &csClassName) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

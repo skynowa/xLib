@@ -7,7 +7,7 @@
 #ifndef XLib_Gui_CxEditH
 #define XLib_Gui_CxEditH
 //---------------------------------------------------------------------------
-#include <xLib/Gui/CxWindow.h>
+#include <xLib/Gui/Win/CxWindow.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxEdit :

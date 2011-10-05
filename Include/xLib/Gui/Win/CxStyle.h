@@ -7,7 +7,7 @@
 #ifndef xLib_Gui_CxStyleH
 #define xLib_Gui_CxStyleH
 //---------------------------------------------------------------------------
-#include <xLib/xCommon.h>
+#include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxStyle :

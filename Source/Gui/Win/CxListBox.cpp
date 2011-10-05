@@ -4,9 +4,10 @@
  */
 
 
-#include <xLib/Gui/CxListBox.h>
+#include <xLib/Gui/Win/CxListBox.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -18,7 +19,7 @@ CxListBox::CxListBox() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXLISTBOX_CONTROL_CLASS;
     _m_ulStyle        = xCXLISTBOX_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXLISTBOX_DEFAULT_WINDOW_STYLE_EX;
@@ -31,7 +32,7 @@ CxListBox::CxListBox() {
     _m_bIsControl     = TRUE;
 
     //-------------------------------------
-    //внутр
+    //пїЅпїЅпїЅпїЅпїЅ
 }
 //---------------------------------------------------------------------------
 //TODO: - ~CxListBox
@@ -57,7 +58,7 @@ BOOL CxListBox::bCreateRes(INT iID, CxWindow *pwndParent) {
 
 
 /****************************************************************************
-*    public: сообщения
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -964,3 +965,4 @@ INT CxListBox::iSetTopIndex(INT iIndex) {
 ////    return TRUE;
 ////}
 //////---------------------------------------------------------------------------
+#endif

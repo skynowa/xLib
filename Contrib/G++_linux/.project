@@ -82,29 +82,24 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Include</name>
+			<type>2</type>
+			<location>/home/sergey/Coding/xLib/Include</location>
+		</link>
+		<link>
 			<name>Source</name>
 			<type>2</type>
-			<location>/home/sergey/Libs/xLib/Source</location>
+			<location>/home/sergey/Coding/xLib/Source</location>
 		</link>
 		<link>
 			<name>TODO.txt</name>
 			<type>1</type>
-			<location>/home/sergey/Libs/xLib/TODO.txt</location>
+			<location>/home/sergey/Coding/xLib/TODO.txt</location>
 		</link>
 		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<location>/home/sergey/Libs/xLib/Tests</location>
-		</link>
-		<link>
-			<name>xLib</name>
-			<type>2</type>
-			<location>/home/sergey/Libs/xLib/Include/xLib</location>
-		</link>
-		<link>
-			<name>xLib.doxyfile</name>
-			<type>1</type>
-			<location>/home/sergey/Libs/xLib/Contrib/xLib.doxyfile</location>
+			<location>/home/sergey/Coding/xLib/Tests</location>
 		</link>
 	</linkedResources>
 </projectDescription>

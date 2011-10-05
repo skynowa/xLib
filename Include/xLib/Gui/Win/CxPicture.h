@@ -7,7 +7,7 @@
 #ifndef XLib_Gui_CxPictureH
 #define XLib_Gui_CxPictureH
 //---------------------------------------------------------------------------
-#include <xLib/GUI/CxWindow.h>
+#include <xLib/Gui/Win/CxWindow.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxPicture :

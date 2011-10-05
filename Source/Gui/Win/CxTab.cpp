@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxTab.h>
+#include <xLib/Gui/Win/CxTab.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/Resource.xrc.h>
 #include <xLib/CxString.h>
 
@@ -21,7 +22,7 @@ CxTab::CxTab() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXTAB_CONTROL_CLASS;
     _m_ulStyle        = xCXTAB_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXTAB_DEFAULT_WINDOW_STYLE_EX;
@@ -84,7 +85,7 @@ BOOL CxTab::bInsertTab(INT iLayoutID, LPTSTR lpCaption, INT iPos, INT iImage) {
 
 
     /*-----------------------*/
-    //создать Layout (окно)
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Layout (пїЅпїЅпїЅпїЅ)
     CxLayout *pwndLayout = new CxLayout();
     /*DEBUG*/xASSERT_RET(NULL != pwndLayout, FALSE);
 
@@ -93,7 +94,7 @@ BOOL CxTab::bInsertTab(INT iLayoutID, LPTSTR lpCaption, INT iPos, INT iImage) {
 
     /*DEBUG*/::SetWindowText(pwndLayout->hGetHandle(), CxString::lexical_cast(iIndex).c_str());
 
-    //положить Layout на вкладку
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Layout пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     _m_bRes = bPutLayout(pwndLayout->hGetHandle(), iIndex);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -147,10 +148,11 @@ LRESULT CxTab::GetImageList()    {
 //---------------------------------------------------------------------------
 HIMAGELIST CxTab::SetImageList(HIMAGELIST lImageList) {
     /*DEBUG*/xASSERT_RET(NULL != _m_hWnd, FALSE);
-
-// #define TCM_SETIMAGELIST        (TCM_FIRST + 3)
-// #define TabCtrl_SetImageList(hwnd, himl) \
-//         (HIMAGELIST)SNDMSG((hwnd), TCM_SETIMAGELIST, 0, (LPARAM)(HIMAGELIST)(himl))
+/*
+ #define TCM_SETIMAGELIST        (TCM_FIRST + 3)
+ #define TabCtrl_SetImageList(hwnd, himl) \
+         (HIMAGELIST)SNDMSG((hwnd), TCM_SETIMAGELIST, 0, (LPARAM)(HIMAGELIST)(himl))
+*/
 
     return (HIMAGELIST)pSendMessage(TCM_SETIMAGELIST, (WPARAM)NULL, (LPARAM)lImageList);
 }
@@ -188,3 +190,4 @@ BOOL CxTab::bPutLayout(HWND hLayout, INT iPos) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

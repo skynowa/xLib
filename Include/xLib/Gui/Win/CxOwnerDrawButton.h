@@ -7,10 +7,11 @@
 #ifndef XLib_Gui_CxOwnerDrawButtonH
 #define XLib_Gui_CxOwnerDrawButtonH
 //---------------------------------------------------------------------------
-#include <xLib/GUI/CxWindow.h>
-#include <xLib/GUI/CxButtonBase.h>
-//---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+#include <xLib/Gui/Win/CxWindow.h>
+#include <xLib/Gui/Win/CxButtonBase.h>
+//---------------------------------------------------------------------------
 class CxOwnerDrawButton :
     public CxButtonBase
     /// owner draw button
