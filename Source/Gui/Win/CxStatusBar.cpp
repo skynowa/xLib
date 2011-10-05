@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxStatusBar.h>
+#include <xLib/Gui/Win/CxStatusBar.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxApplication.h>
 
 
@@ -23,14 +24,14 @@ std::vector<INT> CxStatusBar::CXItems::CXItem::m_veciWidths;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//TODO: - CxStatusBar (конструктор)
+//TODO: - CxStatusBar (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 CxStatusBar::CxStatusBar() {
     /*DEBUG*/
 
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXSTATUSBAR_CONTROL_CLASS;
     _m_ulStyle        = xCXSTATUSBAR_DEFAULT_WINDOW_STYLE | SBT_TOOLTIPS /*| SBARS_SIZEGRIP*/;
     _m_ulStyleEx      = xCXSTATUSBAR_DEFAULT_WINDOW_STYLE_EX;
@@ -46,14 +47,14 @@ CxStatusBar::CxStatusBar() {
     _bInitCommonControls(ICC_BAR_CLASSES);
 }
 //---------------------------------------------------------------------------
-//TODO: - ~CxStatusBar (деструктор)
+//TODO: - ~CxStatusBar (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 CxStatusBar::~CxStatusBar() {
     /*DEBUG*/
 
     LOG();
 }
 //---------------------------------------------------------------------------
-//DONE: bCreateRes (создание из ресурсов)
+//DONE: bCreateRes (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxStatusBar::bCreateRes(INT iID, CxWindow *pwndParent) {
     /*DEBUG*/xASSERT_RET(NULL == _m_hWnd, FALSE);
     /*DEBUG*/xASSERT_RET(0 < iID,         FALSE);
@@ -66,7 +67,7 @@ BOOL CxStatusBar::bCreateRes(INT iID, CxWindow *pwndParent) {
                                 this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
-    //добавление панелей
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     _m_bRes = m_Items.bSetParent(this);
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
@@ -192,12 +193,12 @@ BOOL CxStatusBar::bSetBkColor(COLORREF crColor) {
 
 
 /****************************************************************************
-*    Класс CXItems - панели
+*    пїЅпїЅпїЅпїЅпїЅ CXItems - пїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CXItems (конструктор)
+//DONE: CXItems (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 CxStatusBar::CXItems::CXItems() :
     _m_bRes      (FALSE),
     _m_pstaParent(NULL),
@@ -208,7 +209,7 @@ CxStatusBar::CXItems::CXItems() :
     /*DEBUG*/xASSERT_DO(TRUE  == _m_vecpItems.empty(), return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CXItems (деструктор)
+//DONE: ~CXItems (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 CxStatusBar::CXItems::~CXItems() {
     /*DEBUG*/xASSERT_DO(NULL != _m_pstaParent, return);
 
@@ -217,7 +218,7 @@ CxStatusBar::CXItems::~CXItems() {
     }
 }
 //---------------------------------------------------------------------------
-//DONE: bSetParent (установка дочернего CxStatusBar-а)
+//DONE: bSetParent (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CxStatusBar-пїЅ)
 BOOL CxStatusBar::CXItems::bSetParent(CxStatusBar *pstaParent) {
     /*DEBUG*/// _m_pstaParent - n/a
     /*DEBUG*/xASSERT_RET(NULL != pstaParent, FALSE);
@@ -227,7 +228,7 @@ BOOL CxStatusBar::CXItems::bSetParent(CxStatusBar *pstaParent) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bAdd (добавление пустого айтема)
+//DONE: bAdd (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxStatusBar::CXItems::bAdd() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 
@@ -236,7 +237,7 @@ BOOL CxStatusBar::CXItems::bAdd() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
-    //установка параметров
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     CXItem *pItem = new CXItem();
     /*DEBUG*/xASSERT_RET(NULL != pItem, FALSE);
 
@@ -249,14 +250,14 @@ BOOL CxStatusBar::CXItems::bAdd() {
     _m_vecpItems.push_back(pItem);
 
     //-------------------------------------
-    //применение атрибутов
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     _m_bRes = bUpdateAll();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bSet (установка)
+//DONE: bSet (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxStatusBar::CXItems::bSet(INT iIndex, HICON hIcon, const tString &csText, const tString &csTipText, INT iWidth, UINT uiType) {
     /*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
     /*DEBUG*///iIndex    - n/a  ???????
@@ -267,7 +268,7 @@ BOOL CxStatusBar::CXItems::bSet(INT iIndex, HICON hIcon, const tString &csText, 
     /*DEBUG*///uiType    - n/a
 
     //-------------------------------------
-    //установка параметров
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     _m_vecpItems.at(iIndex)->m_hIcon    = hIcon;
     _m_vecpItems.at(iIndex)->m_sText    = csText;
     _m_vecpItems.at(iIndex)->m_sTipText = csTipText;
@@ -275,14 +276,14 @@ BOOL CxStatusBar::CXItems::bSet(INT iIndex, HICON hIcon, const tString &csText, 
     _m_vecpItems.at(iIndex)->m_uiType   = uiType;
 
     //-------------------------------------
-    //применение атрибутов
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     _m_bRes = bUpdateAll();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bInsert (вставка)
+//DONE: bInsert (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxStatusBar::CXItems::bInsert(INT iIndex, HICON hIcon, const tString &csText, const tString &csTipText, INT iWidth, UINT uiType) {
     /*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
     /*DEBUG*///iIndex    - n/a  ???????
@@ -293,13 +294,13 @@ BOOL CxStatusBar::CXItems::bInsert(INT iIndex, HICON hIcon, const tString &csTex
     /*DEBUG*///uiType    - n/a
 
     //-------------------------------------
-    //добавление пустого айтема
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     CXItem::m_veciWidths.insert(CXItem::m_veciWidths.begin() + iIndex, 0);
     _m_bRes = xSNDMSG_API(BOOL, _m_pstaParent->hGetHandle(), SB_SETPARTS, CXItem::m_veciWidths.size(), &CXItem::m_veciWidths.at(0));
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     //-------------------------------------
-    //установка параметров
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     CXItem *pItem = new CXItem();
     /*DEBUG*/xASSERT_RET(NULL != pItem, FALSE);
 
@@ -312,54 +313,54 @@ BOOL CxStatusBar::CXItems::bInsert(INT iIndex, HICON hIcon, const tString &csTex
     _m_vecpItems.insert(_m_vecpItems.begin() + iIndex, pItem);
 
     //-------------------------------------
-    //применение атрибутов
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     _m_bRes = bUpdateAll();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bRemove (удаление)
+//DONE: bRemove (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 BOOL CxStatusBar::CXItems::bRemove(INT iIndex) {
     /*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
     /*DEBUG*///iIndex - n/a  ???????
 
     //-------------------------------------
-    //установка параметров
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     CXItem::m_veciWidths.erase(CXItem::m_veciWidths.begin() + iIndex);
     xDELETE_PTR(_m_vecpItems.at(iIndex));    _m_vecpItems.erase(_m_vecpItems.begin() + iIndex);
 
     //-------------------------------------
-    //применение атрибутов
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     _m_bRes = bUpdateAll();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear (удаление всех)
+//DONE: bClear (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
 BOOL CxStatusBar::CXItems::bClear()  {
     /*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 
     //-------------------------------------
-    //установка параметров
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     CXItem::m_veciWidths.clear();
     for (INT i = 0; i < (INT)_m_vecpItems.size(); ++ i) {xDELETE_PTR(_m_vecpItems.at(i));}    _m_vecpItems.clear();
 
     //-------------------------------------
-    //применение атрибутов
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     _m_bRes = bUpdateAll();
     /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bUpdateAll (обновление всех)
+//DONE: bUpdateAll (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
 BOOL CxStatusBar::CXItems::bUpdateAll() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pstaParent, FALSE);
 
     //-------------------------------------
-    //если надо убрать все панели
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     if (true == _m_vecpItems.empty()) {
         /*DEBUG*/xASSERT_RET(true == CXItem::m_veciWidths.empty(), FALSE);
 
@@ -371,7 +372,7 @@ BOOL CxStatusBar::CXItems::bUpdateAll() {
     }
 
     //-------------------------------------
-    //обновление панелей
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     for (INT i = 0, _iWidth = 0; i < (INT)_m_vecpItems.size(); ++ i) {
         _m_bRes = bSetIcon   (i, _m_vecpItems.at(i)->m_hIcon);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -388,7 +389,7 @@ BOOL CxStatusBar::CXItems::bUpdateAll() {
     }
 
     //-------------------------------------
-    //автосайз последней панели
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     if (0 != _m_vecpItems.size()) {
         _m_bRes = bSetWidth(_m_vecpItems.size() - 1, - 1);
         /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
@@ -524,3 +525,4 @@ BOOL CxStatusBar::CXItems::bGetRect(INT iIndex, RECT *prcRect)  {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

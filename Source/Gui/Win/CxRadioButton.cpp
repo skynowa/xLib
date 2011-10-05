@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxRadioButton.h>
+#include <xLib/Gui/Win/CxRadioButton.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxWindowImpl.h>
 
 
@@ -20,7 +21,7 @@ CxRadioButton::CxRadioButton() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXRADIOBUTTON_CONTROL_CLASS;
     _m_ulStyle        = xCXRADIOBUTTON_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXRADIOBUTTON_DEFAULT_WINDOW_STYLE_EX;
@@ -62,7 +63,7 @@ BOOL CxRadioButton::bCreateRes(INT iID, CxWindow *pwndParent) {
 
 
 /****************************************************************************
-*    сообщения
+*    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -90,3 +91,4 @@ BOOL CxRadioButton::bSetState(CxRadioButton::ECheckState csCheckState) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

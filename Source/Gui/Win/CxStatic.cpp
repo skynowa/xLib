@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxStatic.h>
+#include <xLib/Gui/Win/CxStatic.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxWindowImpl.h>
 
 //---------------------------------------------------------------------------
@@ -14,7 +15,7 @@ CxStatic::CxStatic() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXSTATIC_CONTROL_CLASS;
     _m_ulStyle        = xCXSTATIC_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXSTATIC_DEFAULT_WINDOW_STYLE_EX;
@@ -51,3 +52,4 @@ BOOL CxStatic::bCreateRes(INT iID, CxWindow *pwndParent) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

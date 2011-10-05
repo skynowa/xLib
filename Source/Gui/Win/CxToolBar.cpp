@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxToolBar.h>
+#include <xLib/Gui/Win/CxToolBar.h>
 
+#if defined(xOS_ENV_WIN)
 //---------------------------------------------------------------------------
 CxToolBar::CxToolBar() :
     CxWindow()
@@ -26,13 +27,13 @@ CxToolBar::~CxToolBar() {
 HWND CxToolBar::Create(HWND hParentWnd,
                 DWORD tbStyle,
                 DWORD tbExStyle,
-                UINT tbID,//ID тулбара
-                INT nBitmaps,//колличество битмапов в тулбаре(ресурс/ширина)
-                UINT_PTR wBMID,//ID ресурса битмапа для тулбара
-                INT dxButton,//ширина кнопки
-                INT dyButton,//высота кнопки
-                INT dxBitmap,//ширина картинки для кнопки
-                INT dyBitmap)//высота картинки для кнопки
+                UINT tbID,//ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                INT nBitmaps,//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ)
+                UINT_PTR wBMID,//ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                INT dxButton,//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                INT dyButton,//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                INT dxBitmap,//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                INT dyBitmap)//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 {
     _m_hParentWnd=hParentWnd;
     m_nBitmaps=nBitmaps;
@@ -45,16 +46,16 @@ HWND CxToolBar::Create(HWND hParentWnd,
     return _m_hWnd;
 }
 //---------------------------------------------------------------------------
-INT CxToolBar::AddButton(INT nBitmap,//номер картинки для тулбара (ресурс/ширина, счёт слева направо)
-                INT idCommand,//ID контрола(кнопки)
-                BYTE btnState,//состояние кнопки
-                BYTE btnStyle,//стиль кнопки
+INT CxToolBar::AddButton(INT nBitmap,//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+                INT idCommand,//ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅ)
+                BYTE btnState,//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                BYTE btnStyle,//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 DWORD_PTR dwData,
-                INT_PTR iString,//подпись для кнопки
-                TCHAR* szTTip,//тултип для кнопки
-                INT idMenu)//ID контекстного меню для кнопки(если btnStyle==BTNS_DROPDOWN)
+                INT_PTR iString,//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                TCHAR* szTTip,//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                INT idMenu)//ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅ btnStyle==BTNS_DROPDOWN)
 {
-//========================добавление в массив m_InfoButtons===============
+//========================пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ m_InfoButtons===============
     HANDLE hHeap=GetProcessHeap();
     ULTB_INFO_BUTTONS* tmpInfoButtons=(ULTB_INFO_BUTTONS*)HeapAlloc(hHeap,
         HEAP_ZERO_MEMORY,m_nButtons*sizeof(ULTB_INFO_BUTTONS));
@@ -104,7 +105,7 @@ INT CxToolBar::AddButton(INT nBitmap,//номер картинки для тулбара (ресурс/ширина
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void CxToolBar::DoNotify(LPARAM lParam) {//вставить в обработчик WM_NOTIFY окна родителя
+void CxToolBar::DoNotify(LPARAM lParam) {//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WM_NOTIFY пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     #define lpnm   ((LPNMHDR)lParam)
     #define lpnmTB ((LPNMTOOLBAR)lParam)
     #define lpttt ((LPTOOLTIPTEXT)lParam)
@@ -151,12 +152,12 @@ void CxToolBar::DoNotify(LPARAM lParam) {//вставить в обработчик WM_NOTIFY окна 
     }
 }
 //---------------------------------------------------------------------------
-void CxToolBar::AutoSize() {//вставить в обработчик WM_SIZE окна родителя
+void CxToolBar::AutoSize() {//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WM_SIZE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     SendMessage(_m_hWnd, TB_AUTOSIZE, 0, 0);
 }
 //---------------------------------------------------------------------------
 INT CxToolBar::DeleteButton(INT nButton) {
-//========================удаление из массива m_InfoButtons===============
+//========================пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ m_InfoButtons===============
     HANDLE hHeap=GetProcessHeap();
     ULTB_INFO_BUTTONS* tmpInfoButtons=(ULTB_INFO_BUTTONS*)HeapAlloc(hHeap,
         HEAP_ZERO_MEMORY,m_nButtons*sizeof(ULTB_INFO_BUTTONS));
@@ -177,7 +178,7 @@ INT CxToolBar::DeleteButton(INT nButton) {
     return 0;
 }
 //---------------------------------------------------------------------------
-INT CxToolBar::InsertButton(INT nInto,//куда вставить
+INT CxToolBar::InsertButton(INT nInto,//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                              INT nBitmap,
                              INT idCommand,
                              BYTE btnState,
@@ -187,7 +188,7 @@ INT CxToolBar::InsertButton(INT nInto,//куда вставить
                              TCHAR* szTTip,
                              INT idMenu)
 {
-//========================вставка в массив m_InfoButtons===============
+//========================пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ m_InfoButtons===============
     HANDLE hHeap=GetProcessHeap();
     ULTB_INFO_BUTTONS* tmpInfoButtons=(ULTB_INFO_BUTTONS*)HeapAlloc(hHeap,
         HEAP_ZERO_MEMORY,m_nButtons*sizeof(ULTB_INFO_BUTTONS));
@@ -228,3 +229,4 @@ INT CxToolBar::InsertButton(INT nInto,//куда вставить
     return 0;
 }
 //---------------------------------------------------------------------------
+#endif

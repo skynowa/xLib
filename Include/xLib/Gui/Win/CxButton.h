@@ -7,11 +7,11 @@
 #ifndef XLib_Gui_CxButtonH
 #define XLib_Gui_CxButtonH
 //---------------------------------------------------------------------------
-#include <xLib/Gui/xCommon.h>
-#include <xLib/Gui/CxWindow.h>
-#include <xLib/GUI/CxButtonBase.h>
-//---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+#include <xLib/Gui/Win/xCommon.h>
+#include <xLib/Gui/Win/CxWindow.h>
+#include <xLib/GUI/Win/CxButtonBase.h>
+//---------------------------------------------------------------------------
 class CxButton :
     public CxButtonBase
     /// button

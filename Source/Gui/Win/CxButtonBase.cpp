@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxButtonBase.h>
+#include <xLib/Gui/Win/CxButtonBase.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxApplication.h>
 #include <xLib/GUI/CxWindowImpl.h>
 
@@ -217,3 +218,4 @@ VOID CxButtonBase::_vHandler_OnSetFocus(CxButtonBase *pbtnSender)    {
     _m_vCallback_OnSetFocus(pbtnSender);
 }
 //---------------------------------------------------------------------------
+#endif

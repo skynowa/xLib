@@ -7,7 +7,7 @@
 #ifndef CxDCH
 #define CxDCH
 //---------------------------------------------------------------------------------------
-#include <xLib/xCommon.h>
+#include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxDC :

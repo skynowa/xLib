@@ -33,8 +33,6 @@
     #include <Test/Common/Win/CxTest_CxClipboard.h>
     #include <Test/Common/Win/CxTest_CxShell.h>
     #include <Test/Common/Win/CxTest_CxComPort.h>
-#elif defined(xOS_ENV_UNIX)
-
 #endif
 
 //Crypt
@@ -42,6 +40,7 @@
 #include <Test/Crypt/CxTest_CxCrc32.h>
 #include <Test/Crypt/CxTest_CxBlowfish.h>
 #include <Test/Crypt/CxTest_CxRandom.h>
+#include <Test/Crypt/Pkcs11/Win/CxTest_CxPkcs11.h>
 
 //Db
 #include <Test/Db/CxTest_CxConnectionString.h>
@@ -68,8 +67,6 @@
 
 #if defined(xOS_ENV_WIN)
     #include <Test/Filesystem/Win/CxTest_CxIni.h>
-#elif defined(xOS_ENV_UNIX)
-
 #endif
 
 //Log
@@ -85,22 +82,10 @@
 #include <Test/Net/CxTest_CxTcpClientSocket.h>
 #include <Test/Net/CxTest_CxTcpServerSocket.h>
 #include <Test/Net/CxTest_CxHttpClient.h>
-
-#if defined(xOS_ENV_WIN)
-
-#elif defined(xOS_ENV_UNIX)
-    #include <Test/Net/CxTest_CxGeoIp.h>
-#endif
+#include <Test/Net/CxTest_CxGeoIp.h>
 
 //Patterns
 #include <Test/Patterns/CxTest_CxSingleton.h>
-
-//Pkcs11
-#if defined(xOS_ENV_WIN)
-    #include <Test/Pkcs11/Win/CxTest_CxPkcs11.h>
-#elif defined(xOS_ENV_UNIX)
-
-#endif
 
 //Sync
 #include <Test/Sync/CxTest_CxThreadStorage.h>
@@ -115,8 +100,6 @@
 #if defined(xOS_ENV_WIN)
     #include <Test/Sync/CxTest_CxMutex.h>
     #include <Test/Sync/CxTest_CxAutoMutex.h>
-#elif defined(xOS_ENV_UNIX)
-
 #endif
 
 //Gui
@@ -128,11 +111,7 @@
 #endif
 
 //Units
-#if defined(xOS_ENV_WIN)
-    //TODO: test Units
-#elif defined(xOS_ENV_UNIX)
-
-#endif
+//TODO: test Units
 //---------------------------------------------------------------------------
 INT
 xTMAIN(

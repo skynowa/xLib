@@ -7,8 +7,8 @@
 #ifndef XLib_Gui_CxWndsContainerH
 #define XLib_Gui_CxWndsContainerH
 //---------------------------------------------------------------------------
-#include <xLib/xCommon.h>
-#include <xLib/Gui/CxWindow.h>
+#include <xLib/Common/xCommon.h>
+#include <xLib/Gui/Win/CxWindow.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxWndsContainer :

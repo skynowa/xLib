@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CXDialog.h>
+#include <xLib/Gui/Win/CxDialog.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/xCommon.h>
 #include <xLib/GUI/CxApplication.h>
 //---------------------------------------------------------------------------
@@ -27,7 +28,7 @@ CXDialog::~CXDialog() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: Карта сообщений
+//TODO: пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 xBEGIN_MSG_MAP(CXDialog)
     xMSG(WM_INITDIALOG, OnInitial);
     xMSG(WM_PAINT,      OnPaint);
@@ -91,3 +92,4 @@ VOID CXDialog::OnDestroy(WPARAM wParam, LPARAM lParam) {    /*virtual*/
 
 }
 //---------------------------------------------------------------------------
+#endif

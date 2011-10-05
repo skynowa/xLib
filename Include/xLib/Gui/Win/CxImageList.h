@@ -7,7 +7,7 @@
 #ifndef XLib_Gui_CxImageListH
 #define XLib_Gui_CxImageListH
 //---------------------------------------------------------------------------
-#include <xLib/Gui/xCommon.h>
+#include <xLib/Gui/Win/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxImageList :

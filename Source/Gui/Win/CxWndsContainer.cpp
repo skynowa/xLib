@@ -4,9 +4,10 @@
  */
 
 
-#include <xLib/Gui/CxWndsContainer.h>
+#include <xLib/Gui/Win/CxWndsContainer.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    Public methods
 *
@@ -63,3 +64,4 @@ UINT CxWndsContainer::uiGetSize() {
     return _m_vecpWnds.size();
 }
 //---------------------------------------------------------------------------
+#endif

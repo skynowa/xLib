@@ -4,7 +4,10 @@
  */
 
 
-#include <xLib/Gui/CxDC.h>
+#include <xLib/Gui/Win/CxDC.h>
+
+
+#if defined(xOS_ENV_WIN)
 //---------------------------------------------------------------------------------------
 CxDC::CxDC() :
     _m_hDC(NULL)
@@ -50,3 +53,4 @@ BOOL CxDC::bTextOut(INT xStart, INT yStart, std::string &csText) {
     return ::TextOut(_m_hDC, xStart, yStart, csText.c_str(), csText.size());
 }
 //---------------------------------------------------------------------------------------
+#endif

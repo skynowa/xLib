@@ -7,7 +7,7 @@
 #ifndef XLib_Gui_CxRebarH
 #define XLib_Gui_CxRebarH
 //---------------------------------------------------------------------------
-#include <xLib/GUI/CxWindow.h>
+#include <xLib/Gui/Win/CxWindow.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxRebar :

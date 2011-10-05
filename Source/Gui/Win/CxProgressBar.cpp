@@ -4,9 +4,10 @@
  */
 
 
-#include <xLib/Gui/CxProgressBar.h>
+#include <xLib/Gui/Win/CxProgressBar.h>
 
 
+#if defined(xOS_ENV_WIN)
 /****************************************************************************
 *    public
 *
@@ -18,7 +19,7 @@ CxProgressBar::CxProgressBar() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXPROGRESSBAR_CONTROL_CLASS;
     _m_ulStyle        = xCXPROGRESSBAR_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXPROGRESSBAR_DEFAULT_WINDOW_STYLE_EX;
@@ -34,7 +35,7 @@ CxProgressBar::CxProgressBar() {
     _bInitCommonControls(ICC_PROGRESS_CLASS);
 
     //-------------------------------------
-    //внутр
+    //пїЅпїЅпїЅпїЅпїЅ
     _m_vsViewStyle    = vsDefault;
 }
 //---------------------------------------------------------------------------
@@ -73,7 +74,7 @@ BOOL CxProgressBar::bSetViewStyle(EViewStyle vsViewStyle) {
 
 
 /****************************************************************************
-*    public: сообщения
+*    public: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -289,5 +290,4 @@ BOOL CxProgressBar::bSetMarquee(BOOL bIsOn, ULONG ulMilliSeconds) {
 ////    return pSendMessage(PBM_GETRANGE, (WPARAM)1, (LPARAM)0);
 ////}
 //////---------------------------------------------------------------------------
-
-
+#endif

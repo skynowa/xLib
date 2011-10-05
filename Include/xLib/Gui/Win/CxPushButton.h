@@ -7,8 +7,8 @@
 #ifndef XLib_Gui_CxPushButtonH
 #define XLib_Gui_CxPushButtonH
 //---------------------------------------------------------------------------
-#include <xLib/GUI/CxWindow.h>
-#include <xLib/GUI/CxButtonBase.h>
+#include <xLib/Gui/Win/CxWindow.h>
+#include <xLib/Gui/Win/CxButtonBase.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxPushButton :

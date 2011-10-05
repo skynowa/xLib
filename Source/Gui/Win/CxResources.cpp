@@ -4,11 +4,12 @@
  */
 
 
-#include <xLib/GUI/CxResources.h>
+#include <xLib/Gui/Win/CxResources.h>
 
+#if defined(xOS_ENV_WIN)
 #define RES_FILE_PATH <xLib/Gui/Resource.xrc.cpp>
 //---------------------------------------------------------------------------
-//DONE: инициализируем статик члены
+//DONE: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 CxResources::TSettingsMap CxResources::_m_mapResContent;
 //---------------------------------------------------------------------------
 
@@ -30,13 +31,13 @@ BOOL CxResources::bInit() {
         return FALSE;
     #endif
 
-    //включаем файл с кодом свойств контролов
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     #include RES_FILE_PATH
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: sGetText (по ID контрола ищем свойство)
+//DONE: sGetText (пїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 /*static*/
 tString CxResources::sGetText(INT iID) {
     xCHECK_RET(true == _m_mapResContent.empty(), 0);
@@ -44,14 +45,14 @@ tString CxResources::sGetText(INT iID) {
     return _m_mapResContent[iID].sGetText();
 }
 //---------------------------------------------------------------------------
-//DONE: iGetLeft (по ID контрола ищем свойство)
+//DONE: iGetLeft (пїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 /*static*/INT CxResources::iGetLeft(INT iID) {
     xCHECK_RET(true == _m_mapResContent.empty(), 0);
 
     return _m_mapResContent[iID].iGetLeft();
 }
 //---------------------------------------------------------------------------
-//DONE: iGetTop (по ID контрола ищем свойство)
+//DONE: iGetTop (пїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 /*static*/
 INT CxResources::iGetTop(INT iID) {
     xCHECK_RET(true == _m_mapResContent.empty(), 0);
@@ -59,7 +60,7 @@ INT CxResources::iGetTop(INT iID) {
     return _m_mapResContent[iID].iGetTop();
 }
 //---------------------------------------------------------------------------
-//DONE: iGetWidth (по ID контрола ищем свойство)
+//DONE: iGetWidth (пїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 /*static*/
 INT CxResources::iGetWidth(INT iID) {
     xCHECK_RET(true == _m_mapResContent.empty(), 0);
@@ -67,7 +68,7 @@ INT CxResources::iGetWidth(INT iID) {
     return _m_mapResContent[iID].iGetWidth();
 }
 //---------------------------------------------------------------------------
-//DONE: iGetHeight (по ID контрола ищем свойство)
+//DONE: iGetHeight (пїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 /*static*/
 INT CxResources::iGetHeight(INT iID) {
     xCHECK_RET(true == _m_mapResContent.empty(), 0);
@@ -75,7 +76,7 @@ INT CxResources::iGetHeight(INT iID) {
     return _m_mapResContent[iID].iGetHeight();
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetStyle (по ID контрола ищем свойство)
+//DONE: ulGetStyle (пїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 /*static*/
 ULONG CxResources::ulGetStyle(INT iID) {
     xCHECK_RET(true == _m_mapResContent.empty(), 0);
@@ -83,7 +84,7 @@ ULONG CxResources::ulGetStyle(INT iID) {
     return _m_mapResContent[iID].ulGetStyle();
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetStyleEx (по ID контрола ищем свойство)
+//DONE: ulGetStyleEx (пїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 /*static*/
 ULONG CxResources::ulGetStyleEx(INT iID) {
     xCHECK_RET(true == _m_mapResContent.empty(), 0);
@@ -138,3 +139,4 @@ BOOL CxResources::_bRemoveControl(INT iID) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

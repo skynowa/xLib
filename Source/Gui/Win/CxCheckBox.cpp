@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxCheckBox.h>
+#include <xLib/Gui/Win/CxCheckBox.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxWindowImpl.h>
 
 
@@ -20,7 +21,7 @@ CxCheckBox::CxCheckBox() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXCHECKBOX_CONTROL_CLASS;
     _m_ulStyle        = xCXCHECKBOX_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXCHECKBOX_DEFAULT_WINDOW_STYLE_EX;
@@ -60,7 +61,7 @@ BOOL CxCheckBox::bCreateRes(INT iID, CxWindow *pwndParent) {
 
 
 /****************************************************************************
-*    сообщения
+*    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *
 *****************************************************************************/
 
@@ -109,3 +110,4 @@ BOOL CxCheckBox::bSetAllowGrayed(BOOL bFlag) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

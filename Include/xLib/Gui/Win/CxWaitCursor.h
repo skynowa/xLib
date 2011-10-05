@@ -7,7 +7,7 @@
 #ifndef xLib_Gui_CxWaitCursorH
 #define xLib_Gui_CxWaitCursorH
 //---------------------------------------------------------------------------
-#include <xLib/xCommon.h>
+#include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 class CxWaitCursor :

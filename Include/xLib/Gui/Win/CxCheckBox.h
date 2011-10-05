@@ -7,10 +7,11 @@
 #ifndef XLib_Gui_CxCheckBoxH
 #define XLib_Gui_CxCheckBoxH
 //---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
+
 #include <xLib/GUI/CxWindow.h>
 #include <xLib/GUI/CxButtonBase.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
 class CxCheckBox :
     public CxButtonBase
     /// checkbox

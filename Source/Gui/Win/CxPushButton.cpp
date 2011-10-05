@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxPushButton.h>
+#include <xLib/Gui/Win/CxPushButton.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxWindowImpl.h>
 
 
@@ -118,3 +119,4 @@ BOOL CxPushButton::bSetState(CxPushButton::ECheckState csCheckState) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+#endif

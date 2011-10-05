@@ -4,8 +4,9 @@
  */
 
 
-#include <xLib/Gui/CxOwnerDrawButton.h>
+#include <xLib/Gui/Win/CxOwnerDrawButton.h>
 
+#if defined(xOS_ENV_WIN)
 #include <xLib/GUI/CxWindowImpl.h>
 
 
@@ -22,7 +23,7 @@ CxOwnerDrawButton::CxOwnerDrawButton() {
     LOG();
 
     //-------------------------------------
-    //переопределяем параметры окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     _m_sClassName     = xCXOWNERDRAWBUTTON_CONTROL_CLASS;
     _m_ulStyle        = xCXOWNERDRAWBUTTON_DEFAULT_WINDOW_STYLE;
     _m_ulStyleEx      = xCXOWNERDRAWBUTTON_DEFAULT_WINDOW_STYLE_EX;
@@ -61,9 +62,4 @@ BOOL CxOwnerDrawButton::bCreateRes(INT iID, CxWindow *pwndParent) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    сообщения
-*
-*****************************************************************************/
+#endif
