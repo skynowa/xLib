@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxTcpClientSocket
-* Description: test CxTcpClientSocket
-* File name:   CxTest_CxTcpClientSocket.h
+* Class name:  CxTest_CxTcpClient
+* Description: test CxTcpClient
+* File name:   CxTest_CxTcpClient.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,23 +9,23 @@
 *****************************************************************************/
 
 
-#ifndef CxTest_CxTcpClientSocketH
-#define CxTest_CxTcpClientSocketH
+#ifndef CxTest_CxTcpClientH
+#define CxTest_CxTcpClientH
 //---------------------------------------------------------------------------
-#include <xLib/Net/CxTcpClientSocket.h>
+#include <xLib/Net/CxTcpClient.h>
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
 //---------------------------------------------------------------------------
-class CxTest_CxTcpClientSocket :
+class CxTest_CxTcpClient :
     public CxTest
 {
 	public:
-                     CxTest_CxTcpClientSocket();
-        virtual     ~CxTest_CxTcpClientSocket();
+                     CxTest_CxTcpClient();
+        virtual     ~CxTest_CxTcpClient();
 
         virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
 	private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxTcpClientSocketH
+#endif //CxTest_CxTcpClientH

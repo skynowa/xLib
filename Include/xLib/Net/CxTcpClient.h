@@ -1,23 +1,23 @@
 /**
- * \file  CxTcpClientSocket.h
+ * \file  CxTcpClient.h
  * \brief client socket
  */
 
 
-#ifndef xLib_Net_CxTcpClientSocketH
-#define xLib_Net_CxTcpClientSocketH
+#ifndef xLib_Net_CxTcpClientH
+#define xLib_Net_CxTcpClientH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxSocket.h>
 //---------------------------------------------------------------------------
-class CxTcpClientSocket :
+class CxTcpClient :
     public CxSocket
     /// client socket
 {
     public:
-                    CxTcpClientSocket  ();
+                    CxTcpClient  ();
             ///< constructor
-        virtual    ~CxTcpClientSocket  ();
+        virtual    ~CxTcpClient  ();
         	///< constructor
 
         BOOL        bIsReadable        ();
@@ -45,7 +45,7 @@ class CxTcpClientSocket :
 //TODO: bIsWritable repeats from CxSocket
 //TODO: bIsReadable repeats from CxSocket
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxTcpClientSocketH
+#endif    //xLib_Net_CxTcpClientH
 
 
 /*

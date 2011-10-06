@@ -1,10 +1,10 @@
 /**
- * \file  CxTcpClientSocket.cpp
+ * \file  CxTcpClient.cpp
  * \brief client socket
  */
 
 
-#include <xLib/Net/CxTcpClientSocket.h>
+#include <xLib/Net/CxTcpClient.h>
 
 
 /****************************************************************************
@@ -14,19 +14,19 @@
 
 //---------------------------------------------------------------------------
 /*virtual*/
-CxTcpClientSocket::CxTcpClientSocket() :
+CxTcpClient::CxTcpClient() :
     _m_tvTimeout()
 {
     _m_bRes = bSetTimeout(0, SOCKET_TIMEOUT);
     /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
 }
 //---------------------------------------------------------------------------
-CxTcpClientSocket::~CxTcpClientSocket() {
+CxTcpClient::~CxTcpClient() {
 
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpClientSocket::bIsReadable() {
+CxTcpClient::bIsReadable() {
     timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
     fd_set  fds;        FD_ZERO(&fds);
 
@@ -39,7 +39,7 @@ CxTcpClientSocket::bIsReadable() {
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpClientSocket::bIsWritable() {
+CxTcpClient::bIsWritable() {
     timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
     fd_set  fds;        FD_ZERO(&fds);
 
@@ -52,7 +52,7 @@ CxTcpClientSocket::bIsWritable() {
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpClientSocket::bConnect(
+CxTcpClient::bConnect(
 	const std::tstring &csIp,
 	USHORT              usPort
 )
@@ -76,7 +76,7 @@ CxTcpClientSocket::bConnect(
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpClientSocket::bIoctl(
+CxTcpClient::bIoctl(
 	LONG   liCmd,
 	ULONG *pulArgp
 )
@@ -97,7 +97,7 @@ CxTcpClientSocket::bIoctl(
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpClientSocket::bSetNonBlockingMode(
+CxTcpClient::bSetNonBlockingMode(
 	const BOOL cbFlag
 )
 {
@@ -135,7 +135,7 @@ CxTcpClientSocket::bSetNonBlockingMode(
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpClientSocket::bGetTimeout(
+CxTcpClient::bGetTimeout(
 	LONG *pliSec,
 	LONG *pliMicroSec
 )
@@ -151,7 +151,7 @@ CxTcpClientSocket::bGetTimeout(
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpClientSocket::bSetTimeout(
+CxTcpClient::bSetTimeout(
 	LONG liSec,
 	LONG liMicroSec
 )
@@ -176,7 +176,7 @@ CxTcpClientSocket::bSetTimeout(
 //---------------------------------------------------------------------------
 /*static*/
 BOOL
-CxTcpClientSocket::bIsServerAlive(
+CxTcpClient::bIsServerAlive(
 	const std::tstring &csIp,
 	USHORT              usPort
 )
@@ -187,7 +187,7 @@ CxTcpClientSocket::bIsServerAlive(
     BOOL bRes     = FALSE;
     INT  iRes     = - 1;
 
-    CxTcpClientSocket objSocket;
+    CxTcpClient objSocket;
 
     //-------------------------------------
     //bCreate

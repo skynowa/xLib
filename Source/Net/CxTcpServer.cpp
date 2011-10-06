@@ -1,23 +1,23 @@
 /**
- * \file  CxTcpServerSocket.cpp
+ * \file  CxTcpServer.cpp
  * \brief server socket
  */
 
 
-#include <xLib/Net/CxTcpServerSocket.h>
+#include <xLib/Net/CxTcpServer.h>
 
 
 //---------------------------------------------------------------------------
-CxTcpServerSocket::CxTcpServerSocket() {
+CxTcpServer::CxTcpServer() {
 
 }
 //---------------------------------------------------------------------------
-CxTcpServerSocket::~CxTcpServerSocket() {
+CxTcpServer::~CxTcpServer() {
 
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpServerSocket::bBind(
+CxTcpServer::bBind(
 	USHORT usPort
 )
 {
@@ -42,7 +42,7 @@ CxTcpServerSocket::bBind(
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpServerSocket::bListen(
+CxTcpServer::bListen(
 	INT iBacklog /*= SOMAXCONN*/
 )
 {
@@ -55,8 +55,8 @@ CxTcpServerSocket::bListen(
 }
 //---------------------------------------------------------------------------
 BOOL
-CxTcpServerSocket::bAccept(
-	CxTcpServerSocket *pscktAcceptSocket,
+CxTcpServer::bAccept(
+	CxTcpServer *pscktAcceptSocket,
 	std::tstring      *psFromIp
 )
 {

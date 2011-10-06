@@ -8,7 +8,7 @@
 #define xLib_Net_CxPop3H
 //---------------------------------------------------------------------------
 #include <xLib/Net/CxSocketInit.h>
-#include <xLib/Net/CxTcpClientSocket.h>
+#include <xLib/Net/CxTcpClient.h>
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxMimeMessage.h>
@@ -46,7 +46,7 @@ class CxPop3 :
         BOOL              _m_bRes;
         std::tstring      _m_sRes;
         /////CxSocketInit _m_siInit;
-        CxTcpClientSocket _m_scktSocket;
+        CxTcpClient       _m_scktSocket;
         CxConsoleLog      _m_clLog;
         std::tstring      _m_sUser;
         std::tstring      _m_sPass;

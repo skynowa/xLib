@@ -8,7 +8,7 @@
 #define xLib_Net_CxSmtpH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Net/CxTcpClientSocket.h>
+#include <xLib/Net/CxTcpClient.h>
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
@@ -30,7 +30,7 @@ class CxSmtp :
         BOOL                bDisconnect();
 
     private:
-        CxTcpClientSocket   _m_scktSocket;
+        CxTcpClient         _m_scktSocket;
         CxConsoleLog        _m_ConsoleLog;
         std::string         _m_sUser;
         std::string         _m_sPass;
