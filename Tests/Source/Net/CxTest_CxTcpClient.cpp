@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxTcpClientSocket
-* Description: test CxTcpClientSocket
-* File name:   CxTest_CxTcpClientSocket.h
+* Class name:  CxTest_CxTcpClient
+* Description: test CxTcpClient
+* File name:   CxTest_CxTcpClient.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,23 +9,23 @@
 *****************************************************************************/
 
 
-#include <Test/Net/CxTest_CxTcpClientSocket.h>
+#include <Test/Net/CxTest_CxTcpClient.h>
 
 #include <xLib/Net/CxDnsClient.h>
 
 
 //---------------------------------------------------------------------------
-CxTest_CxTcpClientSocket::CxTest_CxTcpClientSocket() {
+CxTest_CxTcpClient::CxTest_CxTcpClient() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxTcpClientSocket::~CxTest_CxTcpClientSocket() {
+CxTest_CxTcpClient::~CxTest_CxTcpClient() {
 
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 BOOL
-CxTest_CxTcpClientSocket::bUnit(
+CxTest_CxTcpClient::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
@@ -42,7 +42,7 @@ CxTest_CxTcpClientSocket::bUnit(
 	//-------------------------------------
 	//�������������
 	CxSocketInit      siInit(2, 2);
-	CxTcpClientSocket objSocket;
+	CxTcpClient objSocket;
 
 	//-------------------------------------
 	//bCreate
@@ -110,13 +110,13 @@ CxTest_CxTcpClientSocket::bUnit(
 		//-------------------------------------
 		//iSend
 		m_iRes = objSocket.iSend(sText.c_str(), sText.size(), 0);
-		xASSERT_NOT_EQ((INT)CxTcpClientSocket::etError, m_iRes);
+		xASSERT_NOT_EQ((INT)CxTcpClient::etError, m_iRes);
 	}
 
 	//-------------------------------------
 	//iRecv
 	////m_iRes = objSocket.iRecv(&szRecvBuff[0], ARRAYSIZE(szRecvBuff), 0);
-	////xASSERT_NOT_EQ(CxTcpClientSocket::etError, m_iRes);
+	////xASSERT_NOT_EQ(CxTcpClient::etError, m_iRes);
 
 	//-------------------------------------
 	//bClose
@@ -125,7 +125,7 @@ CxTest_CxTcpClientSocket::bUnit(
 
 	//-------------------------------------
 	//iGetLastError
-	m_iRes = CxTcpClientSocket::iGetLastError();
+	m_iRes = CxTcpClient::iGetLastError();
 	//xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	return TRUE;

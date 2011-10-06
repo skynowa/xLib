@@ -1,7 +1,7 @@
 /****************************************************************************
-* Class name:  CxTest_CxTcpServerSocket
-* Description: test CxTcpServerSocket
-* File name:   CxTest_CxTcpServerSocket.h
+* Class name:  CxTest_CxTcpServer
+* Description: test CxTcpServer
+* File name:   CxTest_CxTcpServer.h
 * Author:      skynowa
 * E-mail:      skynowa@gmail.com
 * Created:     14.04.2010 11:03:19
@@ -9,24 +9,24 @@
 *****************************************************************************/
 
 
-#include <Test/Net/CxTest_CxTcpServerSocket.h>
+#include <Test/Net/CxTest_CxTcpServer.h>
 
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Net/CxDnsClient.h>
 
 
 //---------------------------------------------------------------------------
-CxTest_CxTcpServerSocket::CxTest_CxTcpServerSocket() {
+CxTest_CxTcpServer::CxTest_CxTcpServer() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxTcpServerSocket::~CxTest_CxTcpServerSocket() {
+CxTest_CxTcpServer::~CxTest_CxTcpServer() {
 
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 BOOL
-CxTest_CxTcpServerSocket::bUnit(
+CxTest_CxTcpServer::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
@@ -44,8 +44,8 @@ CxTest_CxTcpServerSocket::bUnit(
 	TCHAR             szRecvBuff[1024 * sizeof(TCHAR)]  = {0};
 
 	CxSocketInit      siInit(2, 2);
-	CxTcpServerSocket objListenSocket;
-	CxTcpServerSocket objClientSocket;
+	CxTcpServer objListenSocket;
+	CxTcpServer objClientSocket;
 
 	//-------------------------------------
 	//bCreate
@@ -76,7 +76,7 @@ CxTest_CxTcpServerSocket::bUnit(
 		//-------------------------------------
 		//iRecv
 		m_iRes = objClientSocket.iRecv(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
-		xASSERT_NOT_EQ((INT)CxTcpServerSocket::etError, m_iRes);
+		xASSERT_NOT_EQ((INT)CxTcpServer::etError, m_iRes);
 
 		std::tcout << std::tstring(szRecvBuff, m_iRes) << std::endl;
 	}
@@ -89,7 +89,7 @@ CxTest_CxTcpServerSocket::bUnit(
 	//-------------------------------------
 	//iSend
 	////m_iRes = objSocket.iSend(sSendBuff.c_str(), sSendBuff.size(), 0);
-	////xASSERT_NOT_EQ(CxTcpServerSocket::etError, m_iRes);
+	////xASSERT_NOT_EQ(CxTcpServer::etError, m_iRes);
 
 	//-------------------------------------
 	//bClose
@@ -98,7 +98,7 @@ CxTest_CxTcpServerSocket::bUnit(
 
 	//-------------------------------------
 	//iGetLastError
-	m_iRes = CxTcpServerSocket::iGetLastError();
+	m_iRes = CxTcpServer::iGetLastError();
 	//xASSERT_NOT_EQ(FALSE, m_bRes);
 
 	return TRUE;
