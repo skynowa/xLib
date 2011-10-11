@@ -12,6 +12,7 @@
 #include <xLib/Filesystem/CxDll.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 class CxPkcs11 :
     public CxNonCopyable
     /// Aladdin eToken, PKCS#11
@@ -25,8 +26,6 @@ class CxPkcs11 :
         CK_FUNCTION_LIST_PTR pGetFuncList  () const;
             ///< get pointer to dll's functions list
    private:
-        BOOL                 _m_bRes;        	///< for private use
-        CK_RV                _m_ulRes;        	///< for private use
         CK_FUNCTION_LIST_PTR _m_pFunc;        	///< pointer to fumction
         CxDll                _m_dllETPkcs11;	///< Pkcs11 CxDll object
 
@@ -37,7 +36,6 @@ class CxPkcs11 :
         BOOL                 bFinalize     ();
             ///< finalize PKCS#11
 };
-#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------

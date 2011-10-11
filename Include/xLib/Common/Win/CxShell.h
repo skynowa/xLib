@@ -131,8 +131,6 @@ class CxShell :
         	///< create shortcut
 
     private:
-        static   BOOL       _ms_bRes;	///< for private use
-
                             CxShell           ();
             ///< constructor
         virtual            ~CxShell           ();

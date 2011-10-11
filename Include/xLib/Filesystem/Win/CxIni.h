@@ -15,51 +15,50 @@ class CxIni :
     /// ini
 {
     public:
-                         CxIni             ();
-        explicit         CxIni             (const std::tstring &csFilePath);
-        virtual         ~CxIni             ();
+                     CxIni             ();
+        explicit     CxIni             (const std::tstring &csFilePath);
+        virtual     ~CxIni             ();
 
         //creation
-        BOOL             bCreateDefault    (const std::tstring &csContent);
-        std::tstring     sGetPath          ();
-        BOOL             bSetPath          (const std::tstring &csFilePath);
-        BOOL             bFlush            ();
-        BOOL             bClear            ();
+        BOOL         bCreateDefault    (const std::tstring &csContent);
+        std::tstring sGetPath          ();
+        BOOL         bSetPath          (const std::tstring &csFilePath);
+        BOOL         bFlush            ();
+        BOOL         bClear            ();
 
         //key
-        BOOL             bKeyIsExists      (const std::tstring &csSection, const std::tstring &csKey);
+        BOOL         bKeyIsExists      (const std::tstring &csSection, const std::tstring &csKey);
 
-        INT              iKeyReadInt       (const std::tstring &csSection, const std::tstring &csKey, LONG   iDefaultValue);
-        BOOL             bKeyWriteInt      (const std::tstring &csSection, const std::tstring &csKey, LONG   iValue);
+        INT          iKeyReadInt       (const std::tstring &csSection, const std::tstring &csKey, LONG   iDefaultValue);
+        BOOL         bKeyWriteInt      (const std::tstring &csSection, const std::tstring &csKey, LONG   iValue);
 
-        double           dKeyReadFloat     (const std::tstring &csSection, const std::tstring &csKey, double dDefaultValue);
-        BOOL             bKeyWriteFloat    (const std::tstring &csSection, const std::tstring &csKey, double dValue);
+        double       dKeyReadFloat     (const std::tstring &csSection, const std::tstring &csKey, double dDefaultValue);
+        BOOL         bKeyWriteFloat    (const std::tstring &csSection, const std::tstring &csKey, double dValue);
 
-        BOOL             bKeyReadBool      (const std::tstring &csSection, const std::tstring &csKey, BOOL   bDefaultValue);
-        BOOL             bKeyWriteBool     (const std::tstring &csSection, const std::tstring &csKey, BOOL   bValue);
+        BOOL         bKeyReadBool      (const std::tstring &csSection, const std::tstring &csKey, BOOL   bDefaultValue);
+        BOOL         bKeyWriteBool     (const std::tstring &csSection, const std::tstring &csKey, BOOL   bValue);
 
-        std::tstring     sKeyReadString    (const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csDefaultValue);
-        BOOL             bKeyWriteString   (const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csValue);
+        std::tstring sKeyReadString    (const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csDefaultValue);
+        BOOL         bKeyWriteString   (const std::tstring &csSection, const std::tstring &csKey, const std::tstring &csValue);
 
-        std::ustring     usKeyReadBin      (const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusDefaultValue);
-        BOOL             bKeyWriteBin      (const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusValue);
+        std::ustring usKeyReadBin      (const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusDefaultValue);
+        BOOL         bKeyWriteBin      (const std::tstring &csSection, const std::tstring &csKey, const std::ustring &cusValue);
 
-        BOOL             bKeyClear         (const std::tstring &csSection, const std::tstring &csKey);
-        BOOL             bKeyDelete        (const std::tstring &csSection, const std::tstring &csKey);
+        BOOL         bKeyClear         (const std::tstring &csSection, const std::tstring &csKey);
+        BOOL         bKeyDelete        (const std::tstring &csSection, const std::tstring &csKey);
 
         //section
-        BOOL             bSectionIsExists  (const std::tstring &csSection);
-        BOOL             bSectionRead      (const std::tstring &csSection, std::map<std::tstring, std::tstring> *pmsContent);
-        BOOL             bSectionWrite     (const std::tstring &csSection, const std::map<std::tstring, std::tstring> &msContent);
-        BOOL             bSectionsReadNames(std::vector<std::tstring> *pvsNames);
-        BOOL             bSectionClear     (const std::tstring &csSection);
-        BOOL             bSectionDelete    (const std::tstring &csSection);
+        BOOL         bSectionIsExists  (const std::tstring &csSection);
+        BOOL         bSectionRead      (const std::tstring &csSection, std::map<std::tstring, std::tstring> *pmsContent);
+        BOOL         bSectionWrite     (const std::tstring &csSection, const std::map<std::tstring, std::tstring> &msContent);
+        BOOL         bSectionsReadNames(std::vector<std::tstring> *pvsNames);
+        BOOL         bSectionClear     (const std::tstring &csSection);
+        BOOL         bSectionDelete    (const std::tstring &csSection);
 
         //function ValueExists(const Section, Ident: string): Boolean;
 
     private:
-        BOOL             _m_bRes;
-        std::tstring     _m_sFilePath;
+        std::tstring _m_sFilePath;
 };
 #endif
 //---------------------------------------------------------------------------

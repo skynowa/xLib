@@ -46,11 +46,8 @@ CxConsole::CxConsole()
 //---------------------------------------------------------------------------
 CxConsole::~CxConsole() {
 #if defined(xOS_ENV_WIN)
-    _m_hStdIn.hDetach();
-    /*DEBUG*/// n/a
-
-    _m_hStdOut.hDetach();
-    /*DEBUG*/// n/a
+    (VOID)_m_hStdIn.hDetach();
+    (VOID)_m_hStdOut.hDetach();
 #endif
 }
 //---------------------------------------------------------------------------
@@ -99,8 +96,8 @@ CxConsole::sRead() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  std::tstring());
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), std::tstring());
 
-    ULONG       ulRead                  = 0;
-    const ULONG culBuffSize             = 1024 * 4;
+    ULONG       ulRead                  = 0UL;
+    const ULONG culBuffSize             = 1024UL * 4UL;
     TCHAR       szBuff[culBuffSize + 1] = {0};
 
     BOOL bRes = ::ReadConsole(_m_hStdIn, &szBuff[0], culBuffSize, &ulRead, NULL);
@@ -292,9 +289,9 @@ CxConsole::bClear() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
 
     COORD                      coordScreen   = {0};     //here's where we'll home the cursor
-    ULONG                      cCharsWritten = 0;
-    CONSOLE_SCREEN_BUFFER_INFO csbi          = {{0}};     //to get buffer info
-    ULONG                      ulConSize     = 0;       //number of character cells in the current buffer
+    ULONG                      cCharsWritten = 0UL;
+    CONSOLE_SCREEN_BUFFER_INFO csbi          = {{0}};   //to get buffer info
+    ULONG                      ulConSize     = 0UL;     //number of character cells in the current buffer
 
     //get the number of character cells in the current buffer
     bRes = ::GetConsoleScreenBufferInfo(_m_hStdOut, &csbi);
@@ -365,9 +362,9 @@ CxConsole::sGetTitle() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  std::tstring());
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), std::tstring());
 
-    const ULONG culBuffSize             = 1024;
+    const ULONG culBuffSize             = 1024UL;
     TCHAR       szBuff[culBuffSize + 1] = {0};
-    ULONG       ulTitleSize             = 0;
+    ULONG       ulTitleSize             = 0UL;
 
     ulTitleSize = ::GetConsoleTitle(szBuff, culBuffSize);
     /*DEBUG*/xASSERT_RET(0 < ulTitleSize, std::tstring());
@@ -486,8 +483,8 @@ HWND
 CxConsole::_hGetWndHandle() {
     /*DEBUG*/
 
-    HWND    hRes         = NULL;
-    BOOL    bRes         = FALSE;
+    HWND         hRes         = NULL;
+    BOOL         bRes         = FALSE;
     std::tstring sNewWndTitle;
     std::tstring sOldWndTitle;
 

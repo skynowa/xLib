@@ -42,18 +42,15 @@ CxTest::CxTest() :
     m_hRes         (INVALID_HANDLE_VALUE),
     m_hwndRes      (NULL),
 #endif
-    _m_bRes        (FALSE),
     _m_sWorkDirPath(),
     _m_sName       ()
 {
-    _m_bRes = bCreateWorkDir(xT("Temp for tests"));
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    (VOID)bCreateWorkDir(xT("Temp for tests"));
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxTest::~CxTest() /* = 0*/ {
-    _m_bRes = CxDir::bDeleteForce( sGetWorkDirPath() );
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    (VOID)CxDir::bDeleteForce( sGetWorkDirPath() );
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -66,8 +63,8 @@ CxTest::bRun(
 
     try {
         for (ULONGLONG i = 0ULL; i < cullUnitLoops; ++ i) {
-            _m_bRes = bUnit(cullBlockLoops);
-            /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_bRes, sGetName() + xT(": fail"), FALSE);
+            BOOL bRes = bUnit(cullBlockLoops);
+            /*DEBUG*/xASSERT_MSG_RET(FALSE != bRes, sGetName() + xT(": fail"), FALSE);
         }
     }
     catch (const CxException &e) {
@@ -126,8 +123,8 @@ CxTest::bCreateWorkDir(
     } else {
         _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + csDirName;
 
-        _m_bRes = CxDir::bCreateForce(_m_sWorkDirPath);
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+        BOOL bRes = CxDir::bCreateForce(_m_sWorkDirPath);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
     return TRUE;

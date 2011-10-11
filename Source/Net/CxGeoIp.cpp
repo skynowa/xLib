@@ -23,7 +23,6 @@
 
 //---------------------------------------------------------------------------
 CxGeoIp::CxGeoIp() :
-    _m_bRes    (FALSE),
     _m_pgiGeoIp(NULL)
 {
 
@@ -31,8 +30,7 @@ CxGeoIp::CxGeoIp() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxGeoIp::~CxGeoIp() {
-    _m_bRes = bClose();
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    (VOID)bClose();
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -98,8 +96,7 @@ CxGeoIp::bClose() {
     /*DEBUG*/// _m_pgiGeoIp - n/a
 
     if (FALSE != bIsValid()) {
-        GeoIP_delete(_m_pgiGeoIp);
-        /*DEBUG*/// n/a
+        (VOID)GeoIP_delete(_m_pgiGeoIp);
     }
 
     _m_pgiGeoIp = NULL;

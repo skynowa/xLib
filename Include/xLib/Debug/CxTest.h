@@ -70,7 +70,6 @@ class CxTest :
             ///< set name
 
     private:
-        BOOL                      _m_bRes;          ///< for private use
         std::tstring              _m_sWorkDirPath;  ///< work dir path
         std::tstring              _m_sName;         ///< test name
 };

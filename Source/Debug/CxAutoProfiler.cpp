@@ -32,16 +32,13 @@ CxAutoProfiler::CxAutoProfiler(
 
     //-------------------------------------
     //start
-    _m_pfProfiler.bSetLogPath(csFilePath);
-    /*DEBUG*/
+    (VOID)_m_pfProfiler.bSetLogPath(csFilePath);
 
-    _m_pfProfiler.bStart();
-    /*DEBUG*/// n/a
+    (VOID)_m_pfProfiler.bStart();
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxAutoProfiler::~CxAutoProfiler() {
-    _m_pfProfiler.bStop(_m_sComment.c_str());
-    /*DEBUG*/// n/a
+    (VOID)_m_pfProfiler.bStop(_m_sComment.c_str());
 }
 //---------------------------------------------------------------------------

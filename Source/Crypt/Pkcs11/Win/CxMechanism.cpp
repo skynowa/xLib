@@ -19,8 +19,6 @@
 CxMechanism::CxMechanism(
     const CxPkcs11 &cPkcs11
 ) :
-    _m_bRes (FALSE),
-    _m_ulRes(!CKR_OK),
     _m_pFunc(cPkcs11.pGetFuncList())
 {
 
@@ -40,8 +38,8 @@ CxMechanism::bGetInfo(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_GetMechanismInfo(slotID, type, pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GetMechanismInfo(slotID, type, pInfo);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -55,12 +53,10 @@ CxMechanism::bGetList(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_GetMechanismList(slotID, pMechanismList, pulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GetMechanismList(slotID, pMechanismList, pulCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

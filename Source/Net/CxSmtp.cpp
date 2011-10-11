@@ -45,7 +45,8 @@ CxSmtp::~CxSmtp() {
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate
-BOOL CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const std::string &csServer, USHORT usPort) {
+BOOL 
+CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const std::string &csServer, USHORT usPort) {
     /*DEBUG*/xASSERT_RET(FALSE == csUser.empty(),          FALSE);
     /*DEBUG*/////xASSERT_RET(FALSE == csPass.empty(),          FALSE);
     /*DEBUG*/xASSERT_RET(FALSE == csServer.empty(),        FALSE);
@@ -60,7 +61,8 @@ BOOL CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const
 }
 //---------------------------------------------------------------------------
 //DONE: bConnect
-BOOL CxSmtp::bConnect() {
+BOOL 
+CxSmtp::bConnect() {
     BOOL        bRes = FALSE;
     std::string sRes = "";
 
@@ -100,7 +102,8 @@ BOOL CxSmtp::bConnect() {
 }
 //---------------------------------------------------------------------------
 //DONE: bLogin (��������� �� ������)
-BOOL CxSmtp::bLogin() {
+BOOL 
+CxSmtp::bLogin() {
     //-------------------------------------
     //RFC
     /*
@@ -139,7 +142,8 @@ BOOL CxSmtp::bLogin() {
 }
 //---------------------------------------------------------------------------
 //DONE: bNoop (�������� ��������� ���������� � ���������)
-BOOL CxSmtp::bNoop() {
+BOOL 
+CxSmtp::bNoop() {
     //-------------------------------------
     //RFC
     /*
@@ -161,7 +165,8 @@ BOOL CxSmtp::bNoop() {
 }
 //---------------------------------------------------------------------------
 //DONE: bRset (������ ����� �������� �����)
-BOOL CxSmtp::bRset() {
+BOOL 
+CxSmtp::bRset() {
     //-------------------------------------
     //RFC
     /*
@@ -183,7 +188,8 @@ BOOL CxSmtp::bRset() {
 }
 //---------------------------------------------------------------------------
 //DONE: bSendRaw
-BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, const std::string &sTo) {
+BOOL 
+CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, const std::string &sTo) {
     /*DEBUG*/xASSERT_RET(CxSocket::etInvalid != _m_scktSocket, FALSE);
     /*DEBUG*/xASSERT_RET(FALSE               == sFrom.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(FALSE               == sTo.empty(),   FALSE);
@@ -233,7 +239,8 @@ BOOL CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, c
 }
 //---------------------------------------------------------------------------
 //DONE: bSend
-BOOL CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const std::string &sTo) {
+BOOL 
+CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const std::string &sTo) {
     /*DEBUG*/xASSERT_RET(CxSocket::etInvalid != _m_scktSocket, FALSE);
     /*DEBUG*/xASSERT_RET(FALSE               == sFrom.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(FALSE               == sTo.empty(),   FALSE);
@@ -281,7 +288,8 @@ BOOL CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const st
 }
 //---------------------------------------------------------------------------
 //DONE: bDisconnect
-BOOL CxSmtp::bDisconnect() {
+BOOL 
+CxSmtp::bDisconnect() {
     //-------------------------------------
     //RFC
     /*
@@ -317,7 +325,8 @@ BOOL CxSmtp::bDisconnect() {
 
 //---------------------------------------------------------------------------
 //DONE: _bCommand
-BOOL CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply) {
+BOOL 
+CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply) {
     /*DEBUG*/xASSERT_RET(false == csCmd.empty(),            FALSE);
     /*DEBUG*/xASSERT_RET(false == csReplyDelimiter.empty(), FALSE);
 
@@ -340,7 +349,8 @@ BOOL CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelim
 }
 //---------------------------------------------------------------------------
 //DONE: _bIsError
-BOOL CxSmtp::_bIsError(const std::string &csText) {
+BOOL 
+CxSmtp::_bIsError(const std::string &csText) {
     /*DEBUG*/xASSERT_RET(FALSE == csText.empty(), TRUE);
 
     BOOL bRes = (BOOL)!(

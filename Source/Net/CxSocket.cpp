@@ -14,7 +14,6 @@
 
 //---------------------------------------------------------------------------
 CxSocket::CxSocket() :
-    _m_bRes     (FALSE),
     _m_puiSocket(etInvalid),
     _m_siFamily (- 1),
     _m_sIp      (),

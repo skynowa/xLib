@@ -264,12 +264,6 @@
     <ClCompile Include="..\..\Source\Net\CxSocketInit.cpp">
       <Filter>xLib\Net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Net\CxTcpClientSocket.cpp">
-      <Filter>xLib\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Net\CxTcpServerSocket.cpp">
-      <Filter>xLib\Net</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Net\CxUri.cpp">
       <Filter>xLib\Net</Filter>
     </ClCompile>
@@ -442,12 +436,6 @@
       <Filter>Test\Net</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp">
-      <Filter>Test\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpClientSocket.cpp">
-      <Filter>Test\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpServerSocket.cpp">
       <Filter>Test\Net</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxUri.cpp">
@@ -690,6 +678,18 @@
     <ClCompile Include="..\..\Source\Filesystem\CxFileTemp.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpClient.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpServer.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxTcpClient.cpp">
+      <Filter>xLib\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxTcpServer.cpp">
+      <Filter>xLib\Net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -890,9 +890,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\Win\xCommon_Win.h">
       <Filter>xLib\Common\Win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Linux.h">
-      <Filter>xLib\Common\Linux</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Units\sGetEan13BarCode.h">
       <Filter>xLib\Units</Filter>
     </ClInclude>
@@ -1017,12 +1014,6 @@
       <Filter>Test\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h">
-      <Filter>Test\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClientSocket.h">
-      <Filter>Test\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpServerSocket.h">
       <Filter>Test\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxUri.h">
@@ -1280,6 +1271,21 @@
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxFileTemp.h">
       <Filter>xLib\Filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClient.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpServer.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Net\CxTcpClient.h">
+      <Filter>xLib\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Net\CxTcpServer.h">
+      <Filter>xLib\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Unix.h">
+      <Filter>xLib\Common\Linux</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Source\Sync\CxThreadPool.inl">
@@ -1342,12 +1348,6 @@
       <Filter>xLib\Net</Filter>
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h">
-      <Filter>xLib\Net</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpClientSocket.h">
-      <Filter>xLib\Net</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpServerSocket.h">
       <Filter>xLib\Net</Filter>
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxLocalStorage.h">

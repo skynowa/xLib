@@ -20,8 +20,6 @@ CxKey::CxKey(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
 ) :
-    _m_bRes    (FALSE),
-    _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
@@ -43,8 +41,8 @@ CxKey::bGenerate(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_GenerateKey(_m_hSession, pMechanism, pTemplate, ulCount, phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GenerateKey(_m_hSession, pMechanism, pTemplate, ulCount, phKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -62,8 +60,8 @@ CxKey::bGeneratePair(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_GenerateKeyPair(_m_hSession, pMechanism, pPublicKeyTemplate, ulPublicKeyAttributeCount, pPrivateKeyTemplate, ulPrivateKeyAttributeCount, phPublicKey, phPrivateKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GenerateKeyPair(_m_hSession, pMechanism, pPublicKeyTemplate, ulPublicKeyAttributeCount, pPrivateKeyTemplate, ulPrivateKeyAttributeCount, phPublicKey, phPrivateKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -79,8 +77,8 @@ CxKey::bDerive(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_DeriveKey(_m_hSession, pMechanism, hBaseKey, pTemplate, ulAttributeCount, phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_DeriveKey(_m_hSession, pMechanism, hBaseKey, pTemplate, ulAttributeCount, phKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -96,8 +94,8 @@ CxKey::bWrap(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_WrapKey(_m_hSession, pMechanism, hWrappingKey, hKey, pWrappedKey, pulWrappedKeyLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_WrapKey(_m_hSession, pMechanism, hWrappingKey, hKey, pWrappedKey, pulWrappedKeyLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -115,8 +113,8 @@ CxKey::bUnwrap(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_UnwrapKey(_m_hSession, pMechanism, hUnwrappingKey, pWrappedKey, ulWrappedKeyLen, pTemplate, ulAttributeCount, phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_UnwrapKey(_m_hSession, pMechanism, hUnwrappingKey, pWrappedKey, ulWrappedKeyLen, pTemplate, ulAttributeCount, phKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -129,8 +127,8 @@ CxKey::bSeedRandom(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_SeedRandom(_m_hSession, pSeed, ulSeedLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SeedRandom(_m_hSession, pSeed, ulSeedLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -143,12 +141,10 @@ CxKey::bGenerateRandom(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_GenerateRandom(_m_hSession, pRandomData, ulRandomLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GenerateRandom(_m_hSession, pRandomData, ulRandomLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

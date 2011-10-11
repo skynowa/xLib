@@ -54,8 +54,8 @@ CxInputBox::mrShowModal(
     wndClass.hCursor       = ::LoadCursor(NULL, IDC_ARROW);
     wndClass.cbWndExtra    = 4;    //4�����
 
-    _m_bRes = ::RegisterClass(&wndClass);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, CxInputBox::mrCancel);
+    BOOL bRes = ::RegisterClass(&wndClass);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, CxInputBox::mrCancel);
 
     //-------------------------------------
     //_m_hWndMain
@@ -175,8 +175,8 @@ CxInputBox::mrShowModal(
     }
 
     ::DestroyWindow(_m_hWndMain);
-    _m_bRes = ::UnregisterClass(xT("CxInputBox"), hInstance);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, CxInputBox::mrCancel);
+    bRes = ::UnregisterClass(xT("CxInputBox"), hInstance);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, CxInputBox::mrCancel);
 
     return static_cast<EModalResult>(msgMsg.wParam);
 }

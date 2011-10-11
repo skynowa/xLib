@@ -13,6 +13,7 @@
 #include <xLib/Crypt/Pkcs11/Win/CxSession.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 class CxLogin :
     public CxNonCopyable
     /// Pkcs11 login
@@ -29,12 +30,9 @@ class CxLogin :
             ///< logout user from a token
 
     private:
-        BOOL                 _m_bRes;		///< for private use
-        CK_RV                _m_ulRes;		///< for private use
         CK_FUNCTION_LIST_PTR _m_pFunc;		///< pointer to dll's functions list
         CK_SESSION_HANDLE    _m_hSession;	///< session handle
 };
-#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------

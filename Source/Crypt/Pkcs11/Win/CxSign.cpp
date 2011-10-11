@@ -20,8 +20,6 @@ CxSign::CxSign(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
 ) :
-    _m_bRes    (FALSE),
-    _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
@@ -41,8 +39,8 @@ CxSign::bInit(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_SignInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SignInit(_m_hSession, pMechanism, hKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -57,8 +55,8 @@ CxSign::bMake(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_Sign(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_Sign(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -71,8 +69,8 @@ CxSign::bUpdate(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_SignUpdate(_m_hSession, pPart, ulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SignUpdate(_m_hSession, pPart, ulPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -87,8 +85,8 @@ CxSign::bEncryptUpdate(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_SignEncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SignEncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -101,8 +99,8 @@ CxSign::bFinal(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_SignFinal(_m_hSession, pSignature, pulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SignFinal(_m_hSession, pSignature, pulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -115,8 +113,8 @@ CxSign::bRecoverInit(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_SignRecoverInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SignRecoverInit(_m_hSession, pMechanism, hKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -131,12 +129,10 @@ CxSign::bRecover(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_SignRecover(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SignRecover(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

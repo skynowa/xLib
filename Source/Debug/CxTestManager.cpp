@@ -19,7 +19,6 @@
 CxTestManager::CxTestManager(
     const BOOL cbIsUseTracing
 ) :
-    _m_bRes          (FALSE),
     _m_cbIsUseTracing(cbIsUseTracing),
     _m_ctnTests      ()
 {
@@ -39,15 +38,14 @@ CxTestManager::~CxTestManager() {
 //---------------------------------------------------------------------------
 BOOL
 CxTestManager::bAdd(
-    CxTest        *pvtTest,
-    const std::tstring &csTestName /*= CxConst::xSTR_EMPTY*/
+    CxTest             *pvtTest,
+    const std::tstring &csTestName /* = CxConst::xSTR_EMPTY*/
 )
 {
     /*DEBUG*/
     /*DEBUG*/xASSERT_RET(NULL != pvtTest, FALSE)
 
-    pvtTest->bSetName( CxType::sGetName(*pvtTest) );
-    /*DEBUG*/// n/a
+    (VOID)pvtTest->bSetName( CxType::sGetName(*pvtTest) );
 
     _m_ctnTests.push_back(pvtTest);
 
@@ -67,8 +65,6 @@ CxTestManager::bRun(
 {
     /*DEBUG*/
 
-    BOOL bRes = FALSE;
-
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::sGetExe().c_str()));
@@ -78,7 +74,7 @@ CxTestManager::bRun(
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 
-            bRes = (*it)->bRun(cullUnitLoops, cullBlockLoops);
+            BOOL bRes = (*it)->bRun(cullUnitLoops, cullBlockLoops);
             xASSERT_MSG_RET(FALSE != bRes, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()), FALSE);
 
             //xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("...Ok")));

@@ -28,7 +28,6 @@ class CxTestManager :
     private:
         typedef std::vector<CxTest *> TContainer;
 
-        BOOL       _m_bRes;             ///< for private use
         const BOOL _m_cbIsUseTracing;   ///< is use tracing
         TContainer _m_ctnTests;         ///< CxTest's container
 };

@@ -30,7 +30,6 @@ class CxCompletionPort :
         BOOL     bPostStatus     (ULONG ulNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
 
     private:
-        BOOL     _m_bRes;
         CxHandle _m_hCP;
 };
 #endif

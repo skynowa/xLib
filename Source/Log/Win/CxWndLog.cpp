@@ -84,6 +84,5 @@ CxWndLog::bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
 
 #endif

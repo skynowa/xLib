@@ -8,14 +8,10 @@
 #define xLib_Log_CxWndLogH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
-#if defined(xOS_ENV_WIN)
-    #include <xLib/Sync/CxCriticalSection.h>
-#elif defined(xOS_ENV_UNIX)
-
-#endif
+#include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 class CxWndLog :
     public CxNonCopyable
     /// logging to window
@@ -39,7 +35,6 @@ class CxWndLog :
            EWindowClass             _m_eWC;			///< window class
            static CxCriticalSection _ms_csListBox;	///< critical section
 };
-#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------

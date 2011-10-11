@@ -39,9 +39,6 @@ class CxDnsClient :
         	///< get service by port
 
     private:
-        static BOOL _ms_bRes;	///< for private use
-        static INT  _ms_iRes;	///< for private use
-
                     CxDnsClient         ();
             ///< constructor
         virtual    ~CxDnsClient         ();

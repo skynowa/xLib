@@ -220,8 +220,8 @@
     <ClCompile Include="..\..\Source\Net\CxSmtp.cpp" />
     <ClCompile Include="..\..\Source\Net\CxSocket.cpp" />
     <ClCompile Include="..\..\Source\Net\CxSocketInit.cpp" />
-    <ClCompile Include="..\..\Source\Net\CxTcpClientSocket.cpp" />
-    <ClCompile Include="..\..\Source\Net\CxTcpServerSocket.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxTcpClient.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxTcpServer.cpp" />
     <ClCompile Include="..\..\Source\Net\CxUri.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxAutoCriticalSection.cpp" />
@@ -313,8 +313,8 @@
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocket.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpClientSocket.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpServerSocket.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpClient.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpServer.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxUri.cpp" />
     <ClCompile Include="..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CWorkThread.cpp">
@@ -344,6 +344,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxCommandLine.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Unix.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xFunctions.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xTracing.h" />
@@ -382,6 +383,8 @@
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxSystemLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\xLogs.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxTcpClient.h" />
+    <ClInclude Include="..\..\Include\xLib\Net\CxTcpServer.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\CxCurrentThread.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\CxThreadStorage.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h" />
@@ -444,8 +447,8 @@
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocket.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClientSocket.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpServerSocket.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClient.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpServer.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxUri.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CWorkThread.h">
@@ -561,7 +564,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxComPort.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxShell.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\xCommon_Win.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Linux.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuildStep>

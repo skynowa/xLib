@@ -20,8 +20,6 @@ CxDigest::CxDigest(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
 ) :
-    _m_bRes    (FALSE),
-    _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
@@ -43,8 +41,8 @@ CxDigest::bMake(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_Digest(_m_hSession, pData, ulDataLen, pDigest, pulDigestLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_Digest(_m_hSession, pData, ulDataLen, pDigest, pulDigestLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -59,8 +57,8 @@ CxDigest::bEncryptUpdate(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_DigestEncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_DigestEncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -73,8 +71,8 @@ CxDigest::bFinal(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_DigestFinal(_m_hSession, pDigest, pulDigestLen );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_DigestFinal(_m_hSession, pDigest, pulDigestLen );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -86,8 +84,8 @@ CxDigest::bInit(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_DigestInit(_m_hSession,    pMechanism);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_DigestInit(_m_hSession,    pMechanism);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -99,8 +97,8 @@ CxDigest::bKey(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_DigestKey(_m_hSession, hKey );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_DigestKey(_m_hSession, hKey );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -113,12 +111,10 @@ CxDigest::bUpdate(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_DigestUpdate(_m_hSession, pPart, ulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_DigestUpdate(_m_hSession, pPart, ulPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

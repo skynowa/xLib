@@ -20,19 +20,17 @@
 CxProfiler::CxProfiler(
     const EMode cpmMode
 ) :
-    _m_bRes      (FALSE),
     _m_pmModeNow (cpmMode),
     _m_bIsStarted(FALSE),
     _flLog       (CxFileLog::lsDefaultSize)
 {
-    _bResetData();
-    /*DEBUG*/// n/a
+    (VOID)_bResetData();
 }
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
     if (false == _flLog.sGetFilePath().empty()) {
-        _m_bRes = _flLog.bWrite(xT("----------------------------------------"));
-        /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+        BOOL bRes = _flLog.bWrite(xT("----------------------------------------"));
+        /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
     }
 }
 //---------------------------------------------------------------------------
@@ -43,8 +41,8 @@ CxProfiler::bSetLogPath(
 {
     /*DEBUG*/
 
-    _m_bRes = _flLog.bSetFilePath(csLogPath);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = _flLog.bSetFilePath(csLogPath);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -60,12 +58,12 @@ BOOL
 CxProfiler::bStart() {
     /*DEBUG*/xASSERT_RET(FALSE == _m_bIsStarted, FALSE);
 
-    _m_bRes = _bResetData();
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = _bResetData();
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     #if xTODO
-        _m_bRes = CxThread::bSetPriority(CxThread::ulGetCurrId(), CxThread::tpTimeCritical);
-        /*DEBUG*/xASSERT(FALSE != _m_bRes);
+        bRes = CxThread::bSetPriority(CxThread::ulGetCurrId(), CxThread::tpTimeCritical);
+        /*DEBUG*/xASSERT(FALSE != bRes);
     #endif
 
     CxCurrentThread::bSleep(10UL);
@@ -103,17 +101,17 @@ CxProfiler::bStart() {
                 break;
 
             case pmPerformanceCount: {
-                    _m_bRes = ::QueryPerformanceFrequency(&_m_liCountersPerfFreq);
-                    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                    bRes = ::QueryPerformanceFrequency(&_m_liCountersPerfFreq);
+                    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-                    _m_bRes = ::QueryPerformanceCounter(&_m_liCountersStart);
-                    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                    bRes = ::QueryPerformanceCounter(&_m_liCountersStart);
+                    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
                 }
                 break;
 
             case pmThreadTimes: {
-                    _m_bRes = ::GetThreadTimes(CxCurrentThread::hGetHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
-                    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                    bRes = ::GetThreadTimes(CxCurrentThread::hGetHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
+                    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
                 }
                 break;
         #endif
@@ -185,16 +183,16 @@ CxProfiler::bStop(
                 break;
 
             case pmPerformanceCount: {
-                    _m_bRes = ::QueryPerformanceCounter(&_m_liCountersStop);
-                    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                    BOOL bRes = ::QueryPerformanceCounter(&_m_liCountersStop);
+                    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
                     sTimeString = CxDateTime((_m_liCountersStop.QuadPart - _m_liCountersStart.QuadPart) * 1000 / _m_liCountersPerfFreq.QuadPart).sFormat(CxDateTime::ftTime);
                 }
                 break;
 
             case pmThreadTimes: {
-                    _m_bRes = ::GetThreadTimes(CxCurrentThread::hGetHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
-                    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+                    BOOL bRes = ::GetThreadTimes(CxCurrentThread::hGetHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
+                    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
                     sTimeString = CxDateTime((CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStop) - CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStart)) / 10000).sFormat(CxDateTime::ftTime);
                 }
@@ -220,8 +218,8 @@ CxProfiler::bStop(
 
     //-------------------------------------
     //write to log
-    _m_bRes = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRes.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRes.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     _m_bIsStarted = FALSE;
 
@@ -246,11 +244,11 @@ CxProfiler::bPulse(
 
     //-------------------------------------
     //stop, start
-    _m_bRes = bStop(sRes.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = bStop(sRes.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    _m_bRes = bStart();
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    bRes = bStart();
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -266,8 +264,8 @@ CxProfiler::bPulse(
 BOOL
 CxProfiler::_bResetData() {
     #if xTODO
-        _m_bRes = CxThread::bSetPriority(CxThread::ulGetCurrId(), CxThread::tpNormal);
-        /*DEBUG*/xASSERT(FALSE != _m_bRes);
+        BOOL bRes = CxThread::bSetPriority(CxThread::ulGetCurrId(), CxThread::tpNormal);
+        /*DEBUG*/xASSERT(FALSE != bRes);
     #endif
 
     _m_bIsStarted                       = FALSE;
@@ -314,7 +312,7 @@ CxProfiler::_bResetData() {
     return TRUE;
 }
 //--------------------------------------------------------------------------
-#if defined(xOS_FREEBSD)
+#if defined(xOS_ENV_UNI) && defined(xOS_FREEBSD)
 /*static*/
 std::clock_t
 CxProfiler::_liGetClock() {

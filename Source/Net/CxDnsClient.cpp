@@ -67,8 +67,8 @@ CxDnsClient::bGetHostNameByAddr(
 				#if xTODO
 					IN6_ADDR iaAddr6 = {0};
 
-					_ms_iRes = ::inet_pton(afInet6, casHostAddr.c_str(), &iaAddr6);
-					/*DEBUG*/xASSERT_RET(0 != _ms_iRes, FALSE);
+					iRes = ::inet_pton(afInet6, casHostAddr.c_str(), &iaAddr6);
+					/*DEBUG*/xASSERT_RET(0 != iRes, FALSE);
 
 					pHostent = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
 					/*DEBUG*/xASSERT_RET(NULL != pHostent, FALSE);
@@ -111,8 +111,8 @@ CxDnsClient::bGetLocalHostName(
     std::string asRes(HOST_NAME_MAX, '0');
 #endif
 
-    _ms_iRes = ::gethostname(&asRes.at(0), asRes.size() * sizeof(std::string::value_type));
-    /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
+    INT iRes = ::gethostname(&asRes.at(0), asRes.size() * sizeof(std::string::value_type));
+    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 
     asRes.assign(asRes.c_str());    //delete '0' from end
 
@@ -147,12 +147,12 @@ CxDnsClient::bGetNameInfo(
 
 #if defined(xOS_ENV_WIN)
     //TODO: bGetNameInfo
-    _ms_iRes = ::GetNameInfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
-    /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
+    INT iRes = ::GetNameInfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     //TODO: bGetNameInfo
-    _ms_iRes = getnameinfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
-    /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
+    INT iRes = getnameinfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #endif
 
     //hostname
@@ -176,11 +176,11 @@ CxDnsClient::bGetHostAddrInfo(
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
 
 #if defined(xOS_ENV_WIN)
-    _ms_iRes = ::GetAddrInfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
-    /*DEBUG*/xASSERT_RET(0 == _ms_iRes, FALSE);
+    INT iRes = ::GetAddrInfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
+    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    _ms_iRes =   getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
-    /*DEBUG*/xASSERT_MSG_RET(0 == _ms_iRes, CxString::lexical_cast(_ms_iRes), FALSE);
+    INT iRes =   getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxString::lexical_cast(iRes), FALSE);
 #endif
 
     return TRUE;
@@ -417,9 +417,6 @@ CxDnsClient::bGetServiceByPort(
 *    private
 *
 *****************************************************************************/
-
-BOOL CxDnsClient::_ms_bRes = FALSE;
-INT  CxDnsClient::_ms_iRes = - 1;
 
 //---------------------------------------------------------------------------
 CxDnsClient::CxDnsClient() {

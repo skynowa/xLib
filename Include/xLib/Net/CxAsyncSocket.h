@@ -20,7 +20,7 @@ class CxAsyncSocket :
         	///< destructor
 
     private:
-        BOOL     _m_bRes;	///< for private use
+
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxAsyncSocketH

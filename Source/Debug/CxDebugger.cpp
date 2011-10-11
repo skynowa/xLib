@@ -180,9 +180,7 @@ CxDebugger::bBeep(
 ) {
 #if defined(xOS_ENV_WIN)
     #if xTODO
-        BOOL bRes = FALSE;
-
-        bRes = ::Beep(culFrequency, culDuration);
+        BOOL bRes = ::Beep(culFrequency, culDuration);
         xCHECK_RET(FALSE == bRes, FALSE);
     #endif
 #elif defined(xOS_ENV_UNIX)
@@ -246,7 +244,7 @@ CxDebugger::_bMsgboxPlain(
 #if defined(xOS_ENV_WIN)
     ULONG ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
 #elif defined(xOS_ENV_UNIX)
-    ULONG ulType = 1;
+    ULONG ulType = 1UL;
 #endif
 
     CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.sGetReport(), CxPath::sGetExe(), ulType);

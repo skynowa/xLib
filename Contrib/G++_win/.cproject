@@ -59,9 +59,7 @@
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.642560400" name="CxPop3.h" rcbsApplicability="disable" resourcePath="Include/Net/CxPop3.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.703975957" name="CxMimeMessage.h" rcbsApplicability="disable" resourcePath="Include/Net/CxMimeMessage.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.1399140347" name="CxTcpServerSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxTcpServerSocket.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.2137010183" name="CxSocketInit.h" rcbsApplicability="disable" resourcePath="Include/Net/CxSocketInit.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.681247847" name="CxTcpClientSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxTcpClientSocket.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.1689464681" name="CxSmtp.h" rcbsApplicability="disable" resourcePath="Include/Net/CxSmtp.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.1530442432" name="CxSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxSocket.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.477496064.1545929688" name="CxMimeHeader.h" rcbsApplicability="disable" resourcePath="Include/Net/CxMimeHeader.h" toolsToInvoke=""/>
@@ -78,6 +76,7 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 			<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 			<storageModule moduleId="scannerConfiguration"/>
+			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 		</cconfiguration>
 		<cconfiguration id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782" moduleId="org.eclipse.cdt.core.settings" name="Release">
@@ -127,9 +126,7 @@
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1195476245" name="CxPop3.h" rcbsApplicability="disable" resourcePath="Include/Net/CxPop3.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1326617785" name="CxMimeMessage.h" rcbsApplicability="disable" resourcePath="Include/Net/CxMimeMessage.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.680528102" name="CxTcpServerSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxTcpServerSocket.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1122102653" name="CxSocketInit.h" rcbsApplicability="disable" resourcePath="Include/Net/CxSocketInit.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1824482149" name="CxTcpClientSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxTcpClientSocket.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1777605967" name="CxSmtp.h" rcbsApplicability="disable" resourcePath="Include/Net/CxSmtp.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1986914495" name="CxSocket.h" rcbsApplicability="disable" resourcePath="Include/Net/CxSocket.h" toolsToInvoke=""/>
 					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.387102782.1152751111" name="CxMimeHeader.h" rcbsApplicability="disable" resourcePath="Include/Net/CxMimeHeader.h" toolsToInvoke=""/>
@@ -146,6 +143,7 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 			<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 			<storageModule moduleId="scannerConfiguration"/>
+			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">

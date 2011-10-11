@@ -61,7 +61,6 @@ class CxBlowfish :
             IVEC_SIZE    = 8    ///< ivec size
         };
 
-        BOOL          _m_bRes;              ///< for private use
         BF_KEY        _m_bfKey;             ///< crypt key
         UCHAR         _m_ucIvec[IVEC_SIZE]; ///< ivec
 };

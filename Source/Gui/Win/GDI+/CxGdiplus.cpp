@@ -19,7 +19,7 @@
 
 //---------------------------------------------------------------------------
 CxGdiplus::CxGdiplus() :
-    _m_pulToken(0)
+    _m_pulToken(NULL)
 {
     Gdiplus::GdiplusStartupInput siStartupInput;
 
@@ -29,12 +29,10 @@ CxGdiplus::CxGdiplus() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxGdiplus::~CxGdiplus() {
-    Gdiplus::GdiplusShutdown(_m_pulToken);
-    /*DEBUG*/// n/a
+    (VOID)Gdiplus::GdiplusShutdown(_m_pulToken);
 
     _m_pulToken = NULL;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
 
 #endif

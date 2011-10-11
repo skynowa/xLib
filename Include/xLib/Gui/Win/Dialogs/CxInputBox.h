@@ -38,7 +38,6 @@ class CxInputBox :
             ///< get text
 
     private:
-        BOOL                    _m_bRes;		///< for private use
         std::tstring            _m_sText;		///< text
         HWND                    _m_hWndMain;	///< handle to main window
         HWND                    _m_hBtnOk;		///< handle to button "Ok"

@@ -9,10 +9,7 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-
-#if defined(xOS_ENV_WIN)
-    #include <xLib/Sync/CxAutoCriticalSection.h>
-#endif
+#include <xLib/Sync/CxAutoCriticalSection.h>
 
 
 /****************************************************************************
@@ -21,9 +18,7 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
-    CxCriticalSection CxConsoleLog::_ms_csConsole;
-#endif
+CxCriticalSection CxConsoleLog::_ms_csConsole;
 //---------------------------------------------------------------------------
 /*explicit*/
 CxConsoleLog::CxConsoleLog(
@@ -67,9 +62,7 @@ CxConsoleLog::bWrite(
 
     //-------------------------------------
     //write
-#if defined(xOS_ENV_WIN)
     /*LOCK*/CxAutoCriticalSection SL(_ms_csConsole);
-#endif
 
     std::tcout << sTime << sParam << std::endl;
 

@@ -43,7 +43,6 @@ class CxPop3 :
         BOOL              bDisconnect         ();
 
     private:
-        BOOL              _m_bRes;
         std::tstring      _m_sRes;
         /////CxSocketInit _m_siInit;
         CxTcpClient       _m_scktSocket;

@@ -23,12 +23,10 @@ CxSystemInfo::osGetOS() {
     EOsType otRes = otUnknown;
 
 #if defined(xOS_ENV_WIN)
-    BOOL bRes = FALSE;
-
     OSVERSIONINFO ovVer = {0};
 
     ovVer.dwOSVersionInfoSize = sizeof(ovVer);
-    bRes = ::GetVersionEx(&ovVer);
+    BOOL bRes = ::GetVersionEx(&ovVer);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, otUnknown);
 
     switch (ovVer.dwPlatformId) {
@@ -237,11 +235,10 @@ CxSystemInfo::sGetComputerName() {
     std::tstring sRes;
 
 #if defined(xOS_ENV_WIN)
-    BOOL    bRes                                = FALSE;
     ULONG   ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
     TCHAR   szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
 
-    bRes = ::GetComputerName(szBuff, &ulBuffSize);
+    BOOL bRes = ::GetComputerName(szBuff, &ulBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("LOCALHOST"));
 
     sRes.assign(szBuff, ulBuffSize);
@@ -299,11 +296,10 @@ CxSystemInfo::sGetUserName() {
     std::tstring sRes;
 
 #if defined(xOS_ENV_WIN)
-    BOOL  bRes              = FALSE;
     ULONG ulBuffSize        = UNLEN;
     TCHAR szBuff[UNLEN + 1] = {0};
 
-    bRes = ::GetUserName(&szBuff[0], &ulBuffSize);
+    BOOL bRes = ::GetUserName(&szBuff[0], &ulBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
 
     sRes.assign(szBuff, ulBuffSize);
@@ -325,7 +321,7 @@ ULONG
 CxSystemInfo::ulGetNumOfCpus() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = 0;
+    ULONG ulRes = 0UL;
 
 #if defined(xOS_ENV_WIN)
     SYSTEM_INFO siSysInfo = {{0}};
@@ -371,7 +367,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         _asm {shr ebx, 24}
         _asm {mov eax, ebx}*/
 
-        ulRes = 0;
+        ulRes = 0UL;
     #endif
 #elif defined(xOS_ENV_UNIX)
     #if defined(xOS_FREEBSD)
@@ -379,7 +375,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         ulRes = 0;
     #else
         #if defined(SYS_getcpu)
-            ULONG ulCpu = 0;
+            ULONG ulCpu = 0UL;
 
             INT iRes = syscall(SYS_getcpu, &ulCpu, NULL, NULL);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
@@ -424,7 +420,7 @@ ULONGLONG
 CxSystemInfo::ullGetCpuSpeed() {
     /*DEBUG*/// n/a
 
-    ULONGLONG ullRes = 0;
+    ULONGLONG ullRes = 0ULL;
 
 #if defined(xOS_ENV_WIN)
     //TODO: ullGetCpuSpeed
@@ -434,6 +430,7 @@ CxSystemInfo::ullGetCpuSpeed() {
             public:
                 static /*inline*/ unsigned __int64 ullGetCount();
         };
+
         unsigned __int64 CxCycle::ullGetCount() {
                 UINT uiTimeHigh = 0;
                 UINT uiTimeLow  = 0;
@@ -455,10 +452,10 @@ CxSystemInfo::ullGetCpuSpeed() {
         ullRes = (CxCycle::ullGetCount() - ullStartCycle) / 1000000;
     #endif
 
-    ullRes = 0;
+    ullRes = 0UL;
 #elif defined(xOS_ENV_UNIX)
     //TODO: iGetCpuSpeed
-    ullRes = 0;
+    ullRes = 0UL;
 #endif
 
     return ullRes;

@@ -103,12 +103,11 @@ CxVolume::bGetFreeSpace(
     }
 
 #if defined(xOS_ENV_WIN)
-    BOOL           bRes         = FALSE;
     ULARGE_INTEGER ullAvailable = {{0}};
     ULARGE_INTEGER ullTotal     = {{0}};
     ULARGE_INTEGER ullFree      = {{0}};
 
-    bRes = ::GetDiskFreeSpaceEx(_sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
+    BOOL bRes = ::GetDiskFreeSpaceEx(_sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     xPTR_ASSIGN(pullAvailable, ullAvailable.QuadPart);
@@ -162,8 +161,8 @@ CxVolume::bMount(
 
     #if xTODO
         const std::tstring  csFilesytemType;
-        const ULONG    culMountFlags   = 0;
-        const VOID    *pcvData         = NULL;
+        const ULONG         culMountFlags = 0UL;
+        const VOID         *pcvData       = NULL;
 
         INT iRes = mount(csSourcePath.c_str(), csDestPath.c_str(), csFilesytemType.c_str(), culMountFlags, pcvData);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);

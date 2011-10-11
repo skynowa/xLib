@@ -10,13 +10,6 @@
 
 
 #if defined(xOS_ENV_WIN)
-/****************************************************************************
-*    Static
-*
-*****************************************************************************/
-
-/*static*/ BOOL CxShell::_ms_bRes = FALSE;
-
 
 /****************************************************************************
 *    public
@@ -91,8 +84,8 @@ CxShell::bExecuteEx(
 {
     /*DEBUG*/xASSERT_RET(FALSE != peiInfo, FALSE);
 
-    _ms_bRes = ::ShellExecuteEx(peiInfo);
-    /*DEBUG*/xASSERT_RET(FALSE != _ms_bRes, FALSE);
+    BOOL bRes = ::ShellExecuteEx(peiInfo);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -109,8 +102,8 @@ CxShell::bExecuteHttp(
 
     xCHECK_RET(true == sUrl.empty(), FALSE);
 
-    _ms_bRes = bExecute(NULL, opOpen, xT("IEXPLORE.EXE"), sUrl, xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(FALSE != _ms_bRes, FALSE);
+    BOOL bRes = bExecute(NULL, opOpen, xT("IEXPLORE.EXE"), sUrl, xT(""), sfShowNormal);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -127,8 +120,8 @@ CxShell::bExecuteFtp(
 
     xCHECK_RET(true == sUrl.empty(), FALSE);
 
-    _ms_bRes = bExecute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + sUrl, xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(FALSE != _ms_bRes, FALSE);
+    BOOL bRes = bExecute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + sUrl, xT(""), sfShowNormal);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -164,8 +157,8 @@ CxShell::bExecuteEmail(
 
     //iMsgBox(sCmd);
 
-    _ms_bRes = bExecute(NULL, opOpen, sCmd, xT(""), xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(FALSE != _ms_bRes, FALSE);
+    BOOL bRes = bExecute(NULL, opOpen, sCmd, xT(""), xT(""), sfShowNormal);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -189,8 +182,8 @@ CxShell::sGetSpecialDirPath(
 
     TCHAR szRes[MAX_PATH + sizeof(TCHAR)] = {0};
 
-    _ms_bRes = ::SHGetPathFromIDList(pidlList, &szRes[0]);
-    /*DEBUG*/xASSERT_DO(FALSE != _ms_bRes, ::CoTaskMemFree(pidlList); return std::tstring());
+    BOOL bRes = ::SHGetPathFromIDList(pidlList, &szRes[0]);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, ::CoTaskMemFree(pidlList); return std::tstring());
 
     ::CoTaskMemFree(pidlList);
     /*DEBUG*/// n/a
