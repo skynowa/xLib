@@ -80,7 +80,6 @@ class CxLocalStorage :
         const std::tstring     _m_csSeparator;  ///< separator between key and value
         const std::tstring     _m_csFileExt;    ///< ini-file extension
 
-        mutable BOOL           _m_bRes;         ///< for private use
         std::tstring           _m_sFilePath;    ///< file path to ini-file
         NxLib::TLocalStorage   _m_msIni;        ///< std::map of keys and values
 

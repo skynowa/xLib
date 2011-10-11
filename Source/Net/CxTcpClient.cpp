@@ -17,8 +17,8 @@
 CxTcpClient::CxTcpClient() :
     _m_tvTimeout()
 {
-    _m_bRes = bSetTimeout(0, SOCKET_TIMEOUT);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    BOOL bRes = bSetTimeout(0, SOCKET_TIMEOUT);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 CxTcpClient::~CxTcpClient() {
@@ -106,8 +106,8 @@ CxTcpClient::bSetNonBlockingMode(
 #if defined(xOS_ENV_WIN)
     ULONG ulNonBlockingMode = static_cast<ULONG>(cbFlag);
 
-    _m_bRes = bIoctl(FIONBIO, static_cast<ULONG FAR *>(&ulNonBlockingMode));
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = bIoctl(FIONBIO, static_cast<ULONG FAR *>(&ulNonBlockingMode));
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     /*
     int bOptVal = TRUE;

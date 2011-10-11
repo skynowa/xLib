@@ -44,13 +44,13 @@ ULONG
 CxProcess::ulGetCurrParentId() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = 0;
+    ULONG ulRes = 0UL;
 
 #if defined(xOS_ENV_WIN)
     const ULONG culInvalidId = (ULONG)- 1;
 
     ULONG_PTR pbi[6] = {0};
-    ULONG     ulSize = 0;
+    ULONG     ulSize = 0UL;
     LONG (WINAPI *NtQueryInformationProcess)(HANDLE ProcessHandle, ULONG ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
 
     HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
@@ -141,11 +141,9 @@ CxProcess::bExit(
     /*DEBUG*/// uiExitCode - n/a
 
 #if defined(xOS_ENV_WIN)
-    ::ExitProcess(cuiExitCode);
-    /*DEBUG*/// n/a
+    (VOID)::ExitProcess(cuiExitCode);
 #elif defined(xOS_ENV_UNIX)
-    exit(static_cast<INT>( cuiExitCode ));
-    /*DEBUG*/// n/a
+    (VOID)exit(static_cast<INT>( cuiExitCode ));
 #endif
 
     return TRUE;
@@ -184,12 +182,10 @@ CxProcess::bTerminate(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxProcess
 CxProcess::CxProcess() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxProcess
 /*virtual*/
 CxProcess::~CxProcess() {
 

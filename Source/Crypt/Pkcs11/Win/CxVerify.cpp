@@ -20,8 +20,6 @@ CxVerify::CxVerify(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
 ) :
-    _m_bRes    (FALSE),
-    _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
@@ -41,8 +39,8 @@ CxVerify::bInit(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_VerifyInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_VerifyInit(_m_hSession, pMechanism, hKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -57,8 +55,8 @@ CxVerify::bMake(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_Verify(_m_hSession, pData, ulDataLen, pSignature, ulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_Verify(_m_hSession, pData, ulDataLen, pSignature, ulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -71,8 +69,8 @@ CxVerify::bFinal(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_VerifyFinal(_m_hSession, pSignature, ulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_VerifyFinal(_m_hSession, pSignature, ulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -85,8 +83,8 @@ CxVerify::bRecoverInit(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_VerifyRecoverInit(_m_hSession, pMechanism, hKey );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_VerifyRecoverInit(_m_hSession, pMechanism, hKey );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -101,8 +99,8 @@ CxVerify::bRecover(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_VerifyRecover(_m_hSession, pSignature,ulSignatureLen, pData, pulDataLen );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_VerifyRecover(_m_hSession, pSignature,ulSignatureLen, pData, pulDataLen );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -115,12 +113,10 @@ CxVerify::bUpdate(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_VerifyUpdate(_m_hSession, pPart, ulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_VerifyUpdate(_m_hSession, pPart, ulPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

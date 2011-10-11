@@ -19,8 +19,6 @@
 CxSession::CxSession(
     const CxPkcs11 &cPkcs11
 ) :
-    _m_bRes    (FALSE),
-    _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(NULL)
 {
@@ -52,8 +50,8 @@ CxSession::bOpen(
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL == _m_hSession, FALSE);
 
-    _m_ulRes = _m_pFunc->C_OpenSession(slotID, flags, pApplication, Notify, &_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_OpenSession(slotID, flags, pApplication, Notify, &_m_hSession);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -66,8 +64,8 @@ CxSession::bGetInfo(
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
 
-    _m_ulRes = _m_pFunc->C_GetSessionInfo(_m_hSession, pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GetSessionInfo(_m_hSession, pInfo);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -83,8 +81,8 @@ CxSession::bSetOperationState(
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
 
-    _m_ulRes = _m_pFunc->C_SetOperationState(_m_hSession, pOperationState, ulOperationStateLen, hEncryptionKey, hAuthenticationKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SetOperationState(_m_hSession, pOperationState, ulOperationStateLen, hEncryptionKey, hAuthenticationKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -98,8 +96,8 @@ CxSession::bGetOperationState(
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,   FALSE);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
 
-    _m_ulRes = _m_pFunc->C_GetOperationState(_m_hSession, pOperationState, pulOperationStateLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GetOperationState(_m_hSession, pOperationState, pulOperationStateLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -110,8 +108,8 @@ CxSession::bClose() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, FALSE);
 
 
-    _m_ulRes = _m_pFunc->C_CloseSession(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_CloseSession(_m_hSession);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     _m_hSession = NULL;
 
@@ -126,14 +124,12 @@ CxSession::bCloseAll(
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);
     /*DEBUG*/// _m_hSession - n/a
 
-    _m_ulRes =     _m_pFunc->C_CloseAllSessions(slotID);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_CloseAllSessions(slotID);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     _m_hSession = NULL;
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

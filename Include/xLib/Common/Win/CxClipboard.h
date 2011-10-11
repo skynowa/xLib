@@ -67,7 +67,6 @@ class CxClipboard :
             ///< clear
 
     private:
-        BOOL    _m_bRes;        ///< for private use
         HANDLE  _m_hObject;     ///< handle
         HWND    _m_hWndOwner;   ///< owner handle
 

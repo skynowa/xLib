@@ -269,7 +269,7 @@ xTMAIN(
         //bRes = tmManager.bAdd(new CxTest_CxTcpClient);
         //bRes = tmManager.bAdd(new CxTest_CxTcpServer);
         bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+        //bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);

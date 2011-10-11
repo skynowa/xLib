@@ -73,9 +73,7 @@ BOOL
 CxLocale::bSetDefault() {
     /*DEBUG*/// n/a
 
-    BOOL bRes = FALSE;
-
-    bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
+    BOOL bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
    return TRUE;

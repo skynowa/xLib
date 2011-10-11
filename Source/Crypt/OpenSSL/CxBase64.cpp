@@ -113,9 +113,7 @@ CxBase64::bIsCharValid(
 {
     /*DEBUG*/// n/a
 
-    BOOL bRes = FALSE;
-
-    bRes = static_cast<BOOL>( (FALSE != CxChar::bIsAlphaNum(cchChar)) || ('+' == cchChar) || ('/' == cchChar) );
+    BOOL bRes = static_cast<BOOL>( (FALSE != CxChar::bIsAlphaNum(cchChar)) || ('+' == cchChar) || ('/' == cchChar) );
 
     return bRes;
 }

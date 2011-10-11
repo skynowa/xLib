@@ -37,8 +37,8 @@ CxTest_CxThreadStorage::bUnit(
 
         ULONG *pulValue = new ULONG(culData);
 
-        _m_bRes = tlsTls.bSetValue(static_cast<VOID *>( pulValue ));
-        xASSERT_NOT_EQ(FALSE, _m_bRes);
+        m_bRes = tlsTls.bSetValue(static_cast<VOID *>( pulValue ));
+        xASSERT_NOT_EQ(FALSE, m_bRes);
 
         ULONG *pulRes = static_cast<ULONG *>( tlsTls.pvGetValue() );
         xASSERT_PTR(pulRes);

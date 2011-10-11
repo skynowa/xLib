@@ -19,32 +19,29 @@
 
 //-------------------------------------------------------------------------
 CxIni::CxIni() :
-    _m_bRes     (FALSE),
     _m_sFilePath()
 {
     /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(), return);
 
-    _m_bRes = bSetPath(CxPath::sSetExt( CxPath::sGetExe(), xT("ini") ));
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    BOOL bRes = bSetPath(CxPath::sSetExt( CxPath::sGetExe(), xT("ini") ));
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //-------------------------------------------------------------------------
 CxIni::CxIni(
     const std::tstring &csFilePath
 ) :
-    _m_bRes     (FALSE),
     _m_sFilePath()
 {
     /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(), return);
     /*DEBUG*/xASSERT_DO(false == csFilePath.empty(),   return);
 
-    _m_bRes = bSetPath(csFilePath);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    BOOL bRes = bSetPath(csFilePath);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //-------------------------------------------------------------------------
 /*virtual*/
 CxIni::~CxIni() {
-    _m_bRes = bFlush();
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    (VOID)bFlush();
 }
 //-------------------------------------------------------------------------
 //DONE: bCreateDefault
@@ -57,14 +54,14 @@ CxIni::bCreateDefault(
     /*DEBUG*/// csContent - n/a;
 
     //�������� �����
-    _m_bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //�������� �����
     CxFile sfFile;
 
-    _m_bRes = sfFile.bCreate(_m_sFilePath, CxFile::omCreateReadWrite, TRUE);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    bRes = sfFile.bCreate(_m_sFilePath, CxFile::omCreateReadWrite, TRUE);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     INT iRes = sfFile.iWrite(csContent.c_str());
     /*DEBUG*/xASSERT_RET(CxFile::etError != iRes, FALSE);
@@ -91,8 +88,8 @@ CxIni::bSetPath(
 
     _m_sFilePath.assign(csFilePath);
 
-    _m_bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -102,8 +99,8 @@ BOOL
 CxIni::bFlush() {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
 
-    _m_bRes = ::WritePrivateProfileString(NULL, NULL, NULL, _m_sFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE == _m_bRes, FALSE);
+    BOOL bRes = ::WritePrivateProfileString(NULL, NULL, NULL, _m_sFilePath.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE == bRes, FALSE);
 
     return TRUE;
 }
@@ -115,12 +112,12 @@ CxIni::bClear() {
 
     std::vector<std::tstring> vsNames;
 
-    _m_bRes = bSectionsReadNames(&vsNames);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = bSectionsReadNames(&vsNames);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     for (std::size_t i = 0; i < vsNames.size(); ++ i) {
-        _m_bRes = bSectionDelete(vsNames.at(i));
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+        bRes = bSectionDelete(vsNames.at(i));
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     }
 
     return TRUE;
@@ -146,8 +143,8 @@ CxIni::bKeyIsExists(
 
     std::map<std::tstring, std::tstring> msContent;
 
-    _m_bRes = bSectionRead(csSection, &msContent);
-    xASSERT(FALSE != _m_bRes);
+    BOOL bRes = bSectionRead(csSection, &msContent);
+    xASSERT(FALSE != bRes);
 
     if (msContent.end() == msContent.find(csKey)) {
         return FALSE;
@@ -232,17 +229,13 @@ CxIni::bKeyReadBool(
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///bDefaultValue - n/a
-
-    BOOL    bRes = FALSE;
+      
     std::tstring sStr;
     std::tstring sDefaultValue;
 
-    sStr = CxString::sBoolToStr(bDefaultValue);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    sStr = sKeyReadString(csSection, csKey, CxString::sBoolToStr(bDefaultValue));
 
-    sStr = sKeyReadString(csSection, csKey, sStr);
-
-    bRes = CxString::bStrToBool(sStr);
+    BOOL bRes = CxString::bStrToBool(sStr);
     /*DEBUG*/
 
     return bRes;
@@ -281,9 +274,9 @@ CxIni::sKeyReadString(
     /*DEBUG*///csKey          - n/a
     /*DEBUG*///csDefaultValue - n/a
 
-    std::tstring           sRes;
+    std::tstring      sRes;
     const std::size_t cuiLineSize = 32;
-    ULONG             ulRes       = 0;
+    ULONG             ulRes       = 0UL;
 
     sRes.resize(cuiLineSize);
 
@@ -316,8 +309,8 @@ CxIni::bKeyWriteString(
     /*DEBUG*///csKey     - n/a
     /*DEBUG*///csValue   - n/a
 
-    _m_bRes = ::WritePrivateProfileString(csSection.c_str(), csKey.c_str(), csValue.c_str(), _m_sFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = ::WritePrivateProfileString(csSection.c_str(), csKey.c_str(), csValue.c_str(), _m_sFilePath.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -389,8 +382,8 @@ CxIni::bKeyDelete(
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(false == csKey.empty(),        FALSE);
 
-    _m_bRes = ::WritePrivateProfileString(csSection.c_str(), csKey.c_str(), NULL, _m_sFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = ::WritePrivateProfileString(csSection.c_str(), csKey.c_str(), NULL, _m_sFilePath.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -420,7 +413,7 @@ CxIni::bSectionIsExists(
 
     ulRes = ::GetPrivateProfileString(csSection.c_str(), NULL, xT(""), &sRes.at(0), sRes.size(), _m_sFilePath.c_str());
 
-    return (ulRes > 0);
+    return (ulRes > 0UL);
 }
 //---------------------------------------------------------------------------
 //DONE: bSectionRead
@@ -434,7 +427,7 @@ CxIni::bSectionRead(
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pmsContent,         FALSE);
 
-    std::tstring           sBuff;
+    std::tstring      sBuff;
     const std::size_t cuiSectionSize = 32 * 4;
     ULONG             ulRes          = 0;
 
@@ -467,8 +460,8 @@ CxIni::bSectionRead(
     /*DEBUG*/
 
     if (std::tstring::npos != sBuff.find(CxConst::xNL)) {
-        _m_bRes = CxString::bSplit(sBuff, CxConst::xNL, &vsContent);
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+        BOOL bRes = CxString::bSplit(sBuff, CxConst::xNL, &vsContent);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
     } else {
         vsContent.push_back(sBuff);
     }
@@ -486,8 +479,8 @@ CxIni::bSectionRead(
     std::pair<std::map<std::tstring, std::tstring>::iterator, bool> itRet;
 
     for (std::vector<std::tstring>::const_iterator it = vsContent.begin(); it != vsContent.end(); ++ it) {
-        _m_bRes = CxString::bSplit(*it, xT("="), &vsKeyValue);
-        /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+        BOOL bRes = CxString::bSplit(*it, xT("="), &vsKeyValue);
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
         itRet = (*pmsContent).insert( std::pair<std::tstring, std::tstring>(vsKeyValue.at(0), vsKeyValue.at(1)) );
         /*DEBUG*/xASSERT_RET(false != itRet.second, FALSE);        //element 'z' already existed
@@ -523,8 +516,8 @@ CxIni::bSectionWrite(
 
     //-------------------------------------
     //������
-    _m_bRes = ::WritePrivateProfileSection(csSection.c_str(), sContent.c_str(), _m_sFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = ::WritePrivateProfileSection(csSection.c_str(), sContent.c_str(), _m_sFilePath.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -569,8 +562,8 @@ CxIni::bSectionsReadNames(
     sBuff = CxString::sTrimRightChars(sBuff, CxConst::xNL);
     /*DEBUG*/
 
-    _m_bRes = CxString::bSplit(sBuff, CxConst::xNL, pvsNames);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = CxString::bSplit(sBuff, CxConst::xNL, pvsNames);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -584,8 +577,8 @@ CxIni::bSectionClear(
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
 
-    _m_bRes = ::WritePrivateProfileSection(csSection.c_str(), xT(""), _m_sFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = ::WritePrivateProfileSection(csSection.c_str(), xT(""), _m_sFilePath.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }
@@ -599,8 +592,8 @@ CxIni::bSectionDelete(
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
 
-    _m_bRes = ::WritePrivateProfileSection(csSection.c_str(), NULL, _m_sFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = ::WritePrivateProfileSection(csSection.c_str(), NULL, _m_sFilePath.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
 }

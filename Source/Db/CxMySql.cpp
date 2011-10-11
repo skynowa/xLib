@@ -34,8 +34,7 @@ CxMySQLConnection::CxMySQLConnection() :
 CxMySQLConnection::~CxMySQLConnection() {
     /*DEBUG*/
 
-    bClose();
-    /*DEBUG*/// n/a
+    (VOID)bClose();
 }
 //---------------------------------------------------------------------------
 MYSQL *
@@ -110,7 +109,7 @@ CxMySQLConnection::bQuery(
     /*DEBUG*/xASSERT_RET(NULL  != pcszSqlFormat, FALSE);
 
     std::tstring csSqlQuery;
-    va_list palArgs;
+    va_list      palArgs;
 
     xVA_START(palArgs, pcszSqlFormat);
     csSqlQuery = CxString::sFormatV(pcszSqlFormat, palArgs);
@@ -126,9 +125,7 @@ UINT
 CxMySQLConnection::uiFieldCount() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
 
-    UINT uiRes = 0;
-
-    uiRes = mysql_field_count(_m_pmsConnection);
+    UINT uiRes = mysql_field_count(_m_pmsConnection);
     /*DEBUG*/// n/a
 
     return uiRes;
@@ -139,8 +136,7 @@ CxMySQLConnection::bClose() {
     /*DEBUG*/// _m_pmsConnection - n/a
 
     if (FALSE != bIsValid()) {
-        mysql_close(_m_pmsConnection);
-        /*DEBUG*/// n/a
+        (VOID)mysql_close(_m_pmsConnection);
 
         _m_pmsConnection = NULL;
     }
@@ -160,9 +156,7 @@ UINT
 CxMySQLConnection::uiGetLastError() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
 
-    UINT uiRes = 0;
-
-    uiRes = mysql_errno(_m_pmsConnection);
+    UINT uiRes = mysql_errno(_m_pmsConnection);
     /*DEBUG*/// n/a
 
     return uiRes;
@@ -224,8 +218,7 @@ CxMySQLRecordset::~CxMySQLRecordset() {
     /*DEBUG*/// _m_pmrResult - n/a
 
     if (FALSE != bIsValid()) {
-        mysql_free_result(_m_pmrResult);
-        /*DEBUG*/// n/a
+        (VOID)mysql_free_result(_m_pmrResult);
 
         _m_pmrResult = NULL;
     }
@@ -249,9 +242,7 @@ UINT
 CxMySQLRecordset::uiFieldsNum() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
 
-    UINT uiRes = 0;
-
-    uiRes = mysql_num_fields(_m_pmrResult);
+    UINT uiRes = mysql_num_fields(_m_pmrResult);
     /*DEBUG*/// n/a
 
     return uiRes;
@@ -261,9 +252,7 @@ my_ulonglong
 CxMySQLRecordset::ullRowsNum() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
 
-    my_ulonglong ullRes = 0;
-
-    ullRes = mysql_num_rows(_m_pmrResult);
+    my_ulonglong ullRes = mysql_num_rows(_m_pmrResult);
     /*DEBUG*/// n/a
 
     return ullRes;
@@ -321,7 +310,6 @@ CxMySQLRecordset::bFetchRow(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pvsRow,     FALSE);
 
-    BOOL       bRes            = FALSE;
     UINT       uiFieldsNum     = 0;
     MYSQL_ROW  mrRow           = NULL;
     ULONG     *pulFieldLengths = NULL;
@@ -339,7 +327,7 @@ CxMySQLRecordset::bFetchRow(
     uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
 
     //fetch row
-    bRes = _bFetchRow(&mrRow);
+    BOOL bRes = _bFetchRow(&mrRow);
     xCHECK_RET(FALSE == bRes, TRUE);
 
     //field lengths

@@ -27,7 +27,7 @@ CxImage::CxImage() :
 CxImage::~CxImage() {
     /*DEBUG*/
 
-    bDestroy();
+    (VOID)bDestroy();
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -107,8 +107,8 @@ CxImage::bSave(
 //---------------------------------------------------------------------------
 BOOL
 CxImage::bSave(
-    IStream *pisStream,
-    EEncoderType etType
+    IStream      *pisStream,
+    EEncoderType  etType
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, FALSE);
@@ -343,6 +343,4 @@ CxImage::_bGetEncoderClsid(
     return FALSE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

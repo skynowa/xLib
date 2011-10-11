@@ -24,10 +24,7 @@ class CxConsoleLog :
         	///< write
 
     private:
-    #if defined(xOS_ENV_WIN)
         static CxCriticalSection _ms_csConsole;		///< critical section
-    #endif
-
         BOOL                     _m_bIsUseTimeStr;	///< is use time string
 };
 //---------------------------------------------------------------------------

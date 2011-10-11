@@ -38,12 +38,10 @@ size_t        CxAppSettings::m_uiDbEmptySize = xARRAY_SIZE(CxAppSettings::m_ucDb
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxAppSettings
 CxAppSettings::CxAppSettings() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxAppSettings
 /*virtual*/
 CxAppSettings::~CxAppSettings() {
 

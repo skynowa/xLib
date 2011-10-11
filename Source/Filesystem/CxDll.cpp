@@ -59,10 +59,10 @@ CxDll::fpGetProcAddress(
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);
 
-    VOID *fpRes = NULL;
+    TxProcAddress fpRes = NULL;
 
 #if defined(xOS_ENV_WIN)
-    fpRes = (VOID *)( ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str()) );
+    fpRes = (TxProcAddress)( ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str()) );
     /*DEBUG*/xASSERT_RET(NULL != fpRes, NULL);
 #elif defined(xOS_ENV_UNIX)
     const CHAR *pszError = NULL;

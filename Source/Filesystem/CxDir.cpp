@@ -27,13 +27,11 @@ CxDir::bIsExists(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-    BOOL bRes = FALSE;
-
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
     /*DEBUG*/// n/a
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
 
-    bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+    BOOL bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
 
     return bRes;
 }
@@ -55,7 +53,7 @@ CxDir::bIsEmpty(
 #if defined(xOS_ENV_WIN)
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData   = {0};
-    std::tstring         sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, FALSE );
+    std::tstring    sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, FALSE );
 
     hFile = ::FindFirstFile(sDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, TRUE);
@@ -134,9 +132,7 @@ CxDir::bIsDir(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-    BOOL bRes = FALSE;
-
-    bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+    BOOL bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
     xCHECK_RET(FALSE == bRes, FALSE);
 
     return TRUE;
@@ -220,9 +216,7 @@ CxDir::bCreate(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-    BOOL bRes = FALSE;
-
-    bRes = bIsExists(csDirPath);
+    BOOL bRes = bIsExists(csDirPath);
     xCHECK_RET(FALSE != bRes, TRUE);
 
 #if defined(xOS_ENV_WIN)
@@ -245,7 +239,7 @@ CxDir::bCreateForce(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-    BOOL                 bRes = FALSE;
+    BOOL                      bRes = FALSE;
     std::vector<std::tstring> vsPathParts;
     std::tstring              sBuildPath;
 
@@ -281,11 +275,9 @@ CxDir::bCopy(
     /*DEBUG*/xASSERT_RET(false == csDirPathTo.empty(),      FALSE);
     /*DEBUG*/// cbFailIfExists - n/a
 
-    BOOL bRes = FALSE;
-
     //-------------------------------------
     //sets attr "normal"
-    bRes = bIsExists(csDirPathTo);
+    BOOL bRes = bIsExists(csDirPathTo);
     if (TRUE == bRes) {
         bRes = CxFileAttribute::bSet(csDirPathTo, CxFileAttribute::faNormal);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -333,7 +325,7 @@ BOOL
 CxDir::bMove(
     const std::tstring &csDirPathFrom,
     const std::tstring &csDirPathTo,
-    const BOOL     cbFailIfExists
+    const BOOL          cbFailIfExists
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPathFrom.empty(),    FALSE);
@@ -341,9 +333,7 @@ CxDir::bMove(
     /*DEBUG*/xASSERT_RET(false == csDirPathTo.empty(),      FALSE);
     /*DEBUG*/// cbFailIfExists - n/a
 
-    BOOL bRes = FALSE;
-
-    bRes = bCopy(csDirPathFrom, csDirPathTo, cbFailIfExists);
+    BOOL bRes = bCopy(csDirPathFrom, csDirPathTo, cbFailIfExists);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     bRes = bDeleteForce(csDirPathFrom);
@@ -360,9 +350,7 @@ CxDir::bDelete(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-    BOOL bRes = FALSE;
-
-    bRes = bIsExists(csDirPath);
+    BOOL bRes = bIsExists(csDirPath);
     xCHECK_RET(FALSE == bRes, TRUE);
 
     bRes = CxFileAttribute::bSet(csDirPath, CxFileAttribute::faNormal);
@@ -395,11 +383,10 @@ CxDir::bTryDelete(
     const size_t cuiMaxAttempts  = 100;  //MAGIC_NUMBER: cuiMaxAttempts
     const size_t cuiRealAttempts = (cuiMaxAttempts < cuiAttempts) ? cuiMaxAttempts : cuiAttempts;
 
-    BOOL bRes       = FALSE;
     BOOL bIsDeleted = FALSE;
 
     for (size_t i = 0; i < cuiRealAttempts; ++ i) {
-        bRes = bDelete(csDirPath);
+        BOOL bRes = bDelete(csDirPath);
         xCHECK_DO(TRUE == bRes, bIsDeleted = TRUE; break);
 
         bRes = CxCurrentThread::bSleep(culTimeoutMsec);
@@ -418,11 +405,9 @@ CxDir::bClearForce(
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),    FALSE);
     /*DEBUG*/xASSERT_RET(TRUE  == bIsExists(csDirPath), FALSE);
 
-    BOOL bRes = FALSE;
-
     //-------------------------------------
     //checks
-    bRes = bIsEmpty(csDirPath, CxConst::xMASK_ALL);
+    BOOL bRes = bIsEmpty(csDirPath, CxConst::xMASK_ALL);
     xCHECK_RET(FALSE != bRes, TRUE);
 
     //-------------------------------------
@@ -474,9 +459,7 @@ CxDir::bDeleteForce(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
 
-    BOOL bRes = FALSE;
-
-    bRes = bIsExists(csDirPath);
+    BOOL bRes = bIsExists(csDirPath);
     xCHECK_RET(FALSE == bRes, TRUE);
 
     bRes = bClearForce(csDirPath);
@@ -515,10 +498,10 @@ CxDir::bFindFiles(
 #if defined(xOS_ENV_WIN)
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData        = {0};
-    std::tstring         sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, FALSE );
-    std::tstring         sFileFullName = CxPath::sGetFullName(sFilePath);
-    std::tstring         sPart;
-    std::tstring         sTmpPath;
+    std::tstring    sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, FALSE );
+    std::tstring    sFileFullName = CxPath::sGetFullName(sFilePath);
+    std::tstring    sPart;
+    std::tstring    sTmpPath;
 
     //-------------------------------------
     //subdirs
@@ -663,7 +646,7 @@ CxDir::bFindDirs(
 #if defined(xOS_ENV_WIN)
     HANDLE          hFile        = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData       = {0};
-    std::tstring         sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, FALSE );
+    std::tstring    sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, FALSE );
 
     hFile = ::FindFirstFile(sRootDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, FALSE);

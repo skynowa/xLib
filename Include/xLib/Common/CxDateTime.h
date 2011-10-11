@@ -131,9 +131,6 @@ class CxDateTime
             ///< get week day number by string
 
     private:
-        BOOL                _m_bRes;
-            ///< for private use
-
         ULONGLONG           _m_ullDateTimeInMSec;
             ///< datetime in milliseconds
 

@@ -48,7 +48,6 @@ class CxProfiler :
             ///< stop, start measurement
 
     private:
-        BOOL                _m_bRes;                ///< for private use
         const EMode         _m_pmModeNow;           ///< which mode is running now
         BOOL                _m_bIsStarted;          ///< is started
         CxFileLog           _flLog;                 ///< file log
@@ -87,7 +86,7 @@ class CxProfiler :
         BOOL                _bResetData();
             ///< reset all class data
 
-    #if defined(xOS_FREEBSD)
+    #if defined(xOS_ENV_UNIX) && defined(xOS_FREEBSD)
         static std::clock_t _liGetClock();
             ///< get std::clock_t
             ///< http://bugs.vcmi.eu/view.php?id=719

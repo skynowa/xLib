@@ -93,9 +93,7 @@ class CxHandleT
     private:
         typedef CxHandleFailValue<hvTag>  TxFailValue;
 
-        mutable BOOL        _m_bRes;                    ///< for private use
         HANDLE              _m_hHandle;                 ///< handle
-
         static const HANDLE _ms_chCurrProcessHandle;    ///< current process handle
 };
 //---------------------------------------------------------------------------

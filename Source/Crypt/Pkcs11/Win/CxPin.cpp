@@ -20,8 +20,6 @@ CxPin::CxPin(
     const CxPkcs11  &cPkcs11,
     const CxSession &cSession
 ) :
-    _m_bRes    (FALSE),
-    _m_ulRes   (!CKR_OK),
     _m_pFunc   (cPkcs11.pGetFuncList()),
     _m_hSession(cSession.hGetHandle())
 {
@@ -43,8 +41,8 @@ CxPin::bInitToken(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_InitToken(slotID, pPin, ulPinLen, pLabel);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_InitToken(slotID, pPin, ulPinLen, pLabel);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -57,8 +55,8 @@ CxPin::bInitPIN(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_InitPIN(_m_hSession, pPin, ulPinLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_InitPIN(_m_hSession, pPin, ulPinLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -73,12 +71,10 @@ CxPin::bSetPIN(
 {
     /*DEBUG*/
 
-    _m_ulRes = _m_pFunc->C_SetPIN(_m_hSession, pOldPin, ulOldLen, pNewPin, ulNewLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_SetPIN(_m_hSession, pOldPin, ulOldLen, pNewPin, ulNewLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

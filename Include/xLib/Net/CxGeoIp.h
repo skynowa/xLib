@@ -42,9 +42,7 @@ class CxGeoIp :
         	///< close
 
     private:
-        mutable BOOL  _m_bRes;		///< constructor
         GeoIP        *_m_pgiGeoIp;	///< pointer to GeoIP
-
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxGeoIpH

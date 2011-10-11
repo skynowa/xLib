@@ -12,6 +12,7 @@
 #include <xLib/Crypt/Pkcs11/Win/CxPkcs11.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 class CxUtils :
     public CxNonCopyable
     /// Pkcs11 utils
@@ -26,7 +27,6 @@ class CxUtils :
         virtual            ~CxUtils  ();
             ///< destructor
 };
-#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------

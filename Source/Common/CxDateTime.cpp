@@ -16,7 +16,6 @@
 
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime() :
-    _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
     _m_usYear           (0),
     _m_usMonth          (0),
@@ -33,7 +32,6 @@ CxDateTime::CxDateTime(
     const std::tstring &csDT,
     const EFormatType   cftFormat
 ) :
-    _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
     _m_usYear           (0),
     _m_usMonth          (0),
@@ -47,18 +45,17 @@ CxDateTime::CxDateTime(
 
     CxDateTime dtDT;
 
-    _m_bRes = _bParse(csDT, cftFormat, &dtDT);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    BOOL bRes = _bParse(csDT, cftFormat, &dtDT);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 
-    _m_bRes = bSet(dtDT._m_usYear, dtDT._m_usMonth,  dtDT._m_usDay,
+    bRes = bSet(dtDT._m_usYear, dtDT._m_usMonth,  dtDT._m_usDay,
                    dtDT._m_usHour, dtDT._m_usMinute, dtDT._m_usSecond, dtDT._m_usMillisecond);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
     const CxDateTime &cdtDT
 ) :
-    _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
     _m_usYear           (0),
     _m_usMonth          (0),
@@ -70,15 +67,14 @@ CxDateTime::CxDateTime(
 {
     /*DEBUG*/
 
-    _m_bRes = bSet(cdtDT._m_usYear, cdtDT._m_usMonth,  cdtDT._m_usDay,
+    BOOL bRes = bSet(cdtDT._m_usYear, cdtDT._m_usMonth,  cdtDT._m_usDay,
                    cdtDT._m_usHour, cdtDT._m_usMinute, cdtDT._m_usSecond, cdtDT._m_usMillisecond);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
     const ULONGLONG cullMilliseconds
 ) :
-    _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
     _m_usYear           (0),
     _m_usMonth          (0),
@@ -90,8 +86,8 @@ CxDateTime::CxDateTime(
 {
     /*DEBUG*/
 
-    _m_bRes = bSet(cullMilliseconds);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    BOOL bRes = bSet(cullMilliseconds);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
@@ -100,7 +96,6 @@ CxDateTime::CxDateTime(
     const USHORT cusSecond,
     const USHORT cusMillisecond
 ) :
-    _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
     _m_usYear           (0),
     _m_usMonth          (0),
@@ -112,8 +107,8 @@ CxDateTime::CxDateTime(
 {
     /*DEBUG*/
 
-    _m_bRes = bSet(0, 0, 0, cusHour, cusMinute, cusSecond, cusMillisecond);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    BOOL bRes = bSet(0, 0, 0, cusHour, cusMinute, cusSecond, cusMillisecond);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
@@ -121,7 +116,6 @@ CxDateTime::CxDateTime(
     const USHORT cusMonth,
     const USHORT cusDay
 ) :
-    _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
     _m_usYear           (0),
     _m_usMonth          (0),
@@ -133,8 +127,8 @@ CxDateTime::CxDateTime(
 {
     /*DEBUG*/
 
-    _m_bRes = bSet(cusYear, cusMonth, cusDay, 0, 0, 0, 0);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    BOOL bRes = bSet(cusYear, cusMonth, cusDay, 0, 0, 0, 0);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
@@ -146,7 +140,6 @@ CxDateTime::CxDateTime(
     const USHORT usSecond,
     const USHORT usMillisecond
 ) :
-    _m_bRes             (FALSE),
     _m_ullDateTimeInMSec(0),
     _m_usYear           (0),
     _m_usMonth          (0),
@@ -158,8 +151,8 @@ CxDateTime::CxDateTime(
 {
     /*DEBUG*/
 
-    _m_bRes = bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    BOOL bRes = bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 CxDateTime::~CxDateTime() {
@@ -258,8 +251,8 @@ CxDateTime::operator = (
 
     xCHECK_RET(this == &cdtDT, *this);
 
-    _m_bRes = bSet(cdtDT._m_ullDateTimeInMSec);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return *this);
+    BOOL bRes = bSet(cdtDT._m_ullDateTimeInMSec);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return *this);
 
     return *this;
 }
@@ -287,8 +280,8 @@ CxDateTime::operator = (
     cdtDT.DecodeTime(&usHour, &usMinute, &usSecond, &usMillisecond);
     /*DEBUG*/// n/a
 
-    _m_bRes = bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, *this);
+    bRes = bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, *this);
 
     return *this;
 }
@@ -302,8 +295,8 @@ CxDateTime::operator = (
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), *this);
     /*DEBUG*/
 
-    _m_bRes = bSet(cullMillisecond);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return *this);
+    BOOL bRes = bSet(cullMillisecond);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return *this);
 
     return *this;
 }
@@ -340,8 +333,8 @@ CxDateTime::operator += (
 
     _m_ullDateTimeInMSec += cdtDT._m_ullDateTimeInMSec;
 
-    _m_bRes = bSet(_m_ullDateTimeInMSec);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return *this);
+    BOOL bRes = bSet(_m_ullDateTimeInMSec);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return *this);
 
     return *this;
 }
@@ -356,8 +349,8 @@ CxDateTime::operator -= (
 
     _m_ullDateTimeInMSec -= cdtDT._m_ullDateTimeInMSec;
 
-    _m_bRes = bSet(_m_ullDateTimeInMSec);
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return *this);
+    BOOL bRes = bSet(_m_ullDateTimeInMSec);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return *this);
 
     return *this;
 }

@@ -252,7 +252,6 @@ class CxSocket :
     		///< get error status for the last operation that failed
 
     protected:
-        BOOL         _m_bRes;       ///< for private use
         SOCKET       _m_puiSocket;	///< handle to socket
         SHORT        _m_siFamily;   ///< family
         std::tstring _m_sIp;        ///< IP

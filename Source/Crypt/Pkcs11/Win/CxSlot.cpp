@@ -19,8 +19,6 @@
 CxSlot::CxSlot(
     const CxPkcs11 &cPkcs11
 ) :
-    _m_bRes (FALSE),
-    _m_ulRes(!CKR_OK),
     _m_pFunc(cPkcs11.pGetFuncList())
 {
     /*DEBUG*/xASSERT_DO(NULL != _m_pFunc, return);
@@ -53,14 +51,14 @@ CxSlot::bGetList(
 
     (*pvecSlotList).clear();
 
-    _m_ulRes = _m_pFunc->C_GetSlotList(bTokenPresent, NULL_PTR, &ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GetSlotList(bTokenPresent, NULL_PTR, &ulCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
     xCHECK_RET(0 == ulCount, TRUE);
 
     (*pvecSlotList).resize(ulCount);
 
-    _m_ulRes = _m_pFunc->C_GetSlotList(bTokenPresent, &(*pvecSlotList).at(0), &ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    ulRes = _m_pFunc->C_GetSlotList(bTokenPresent, &(*pvecSlotList).at(0), &ulCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
     /*DEBUG*/xASSERT_RET    ((*pvecSlotList).size() == ulCount,                                        FALSE);
 
     return TRUE;
@@ -76,8 +74,8 @@ CxSlot::bGetInfo(
     /*DEBUG*/// slotID - n/a
     /*DEBUG*/xASSERT_RET(NULL != pInfo,    FALSE);
 
-    _m_ulRes = _m_pFunc->C_GetSlotInfo(slotID, pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), FALSE);
+    CK_RV ulRes = _m_pFunc->C_GetSlotInfo(slotID, pInfo);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
 
     return TRUE;
 }
@@ -94,21 +92,19 @@ CxSlot::nfWaitForEvent(
     /*DEBUG*/xASSERT_RET(NULL     != pSlot,    nfError);
     /*DEBUG*/// pRserved - n/a
 
-    _m_ulRes = _m_pFunc->C_WaitForSlotEvent(flags, pSlot, pRserved);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == _m_ulRes, CxUtils::sErrorStr(_m_ulRes).c_str(), nfError);
+    CK_RV ulRes = _m_pFunc->C_WaitForSlotEvent(flags, pSlot, pRserved);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), nfError);
 
     //-------------------------------------
     //�������� ������� ������ � �����
     CK_SLOT_INFO siInfo = {{0}};
 
-    _m_bRes = bGetInfo(*pSlot, &siInfo);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, nfError);
+    BOOL bRes = bGetInfo(*pSlot, &siInfo);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, nfError);
 
     xCHECK_RET(siInfo.flags & CKF_TOKEN_PRESENT, nfInsertion);
 
     return nfRemoval;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
-
 #endif

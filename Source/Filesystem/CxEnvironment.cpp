@@ -133,7 +133,6 @@ CxEnvironment::bGetValues(
     std::vector<std::tstring> vsArgs;
 
 #if defined(xOS_ENV_WIN)
-    BOOL   bRes   = FALSE;
     LPTSTR pszVar = NULL;
     LPTCH  lpvEnv = NULL;
 
@@ -148,7 +147,7 @@ CxEnvironment::bGetValues(
         pszVar += ::lstrlen(pszVar) + 1;
     }
 
-    bRes = ::FreeEnvironmentStrings(lpvEnv);
+    BOOL bRes = ::FreeEnvironmentStrings(lpvEnv);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     extern char **environ;  //from <env.h>
