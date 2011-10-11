@@ -79,8 +79,8 @@
 #include <Test/Net/CxTest_CxSocketInit.h>
 #include <Test/Net/CxTest_CxSocket.h>
 #include <Test/Net/CxTest_CxDnsClient.h>
-#include <Test/Net/CxTest_CxTcpClientSocket.h>
-#include <Test/Net/CxTest_CxTcpServerSocket.h>
+#include <Test/Net/CxTest_CxTcpClient.h>
+#include <Test/Net/CxTest_CxTcpServer.h>
 #include <Test/Net/CxTest_CxHttpClient.h>
 #include <Test/Net/CxTest_CxGeoIp.h>
 
@@ -230,7 +230,7 @@ xTMAIN(
 
         //Db
         bRes = tmManager.bAdd(new CxTest_CxConnectionString);
-        ////bRes = tmManager.bAdd(new CxTest_CxMySql);
+        //bRes = tmManager.bAdd(new CxTest_CxMySql);
 
         //Debug
         bRes = tmManager.bAdd(new CxTest_CxStdError);
@@ -266,10 +266,10 @@ xTMAIN(
         bRes = tmManager.bAdd(new CxTest_CxCgi);
         bRes = tmManager.bAdd(new CxTest_CxSocketInit);
         bRes = tmManager.bAdd(new CxTest_CxDnsClient);
-        ////bRes = tmManager.bAdd(new CxTest_CxTcpClientSocket);
-        ////bRes = tmManager.bAdd(new CxTest_CxTcpServerSocket);
+        //bRes = tmManager.bAdd(new CxTest_CxTcpClient);
+        //bRes = tmManager.bAdd(new CxTest_CxTcpServer);
         bRes = tmManager.bAdd(new CxTest_CxHttpClient);
-        ////bRes = tmManager.bAdd(new CxTest_CxGeoIp);
+        bRes = tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         bRes = tmManager.bAdd(new CxTest_CxSingleton);

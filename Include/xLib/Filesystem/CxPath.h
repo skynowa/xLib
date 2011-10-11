@@ -17,8 +17,8 @@ class CxPath :
         enum EStandartExt
             /// standart extension
         {
-            seExe,	///< exe module
-            seDll,	///< dll module
+            seExe,	///< execute module
+            seDll,	///< dynamically linked shared library
             seLib	///< static library
         };
 

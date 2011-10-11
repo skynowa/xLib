@@ -14,15 +14,13 @@
 
 //---------------------------------------------------------------------------
 CxDll::CxDll() :
-    _m_bRes(FALSE),
     _m_hDLL(NULL)
 {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxDll::~CxDll() {
-    _m_bRes = bFree();
-    /*DEBUG*/xASSERT_DO(FALSE != _m_bRes, return);
+    (VOID)bFree();
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -40,8 +38,8 @@ CxDll::bLoad(
     /*DEBUG*/// n/a
     /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), FALSE);
 
-    _m_bRes = bFree();
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = bFree();
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
 #if defined(xOS_ENV_WIN)
     _m_hDLL = ::LoadLibrary(csDllPath.c_str());
@@ -54,7 +52,7 @@ CxDll::bLoad(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-VOID * /*FARPROC*/
+CxDll::TxProcAddress
 CxDll::fpGetProcAddress(
     const std::tstring &csProcName
 )
@@ -88,8 +86,8 @@ CxDll::bFree() {
     xCHECK_RET(FALSE == bIsLoaded(), TRUE);
 
 #if defined(xOS_ENV_WIN)
-    _m_bRes = ::FreeLibrary(_m_hDLL);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_bRes, FALSE);
+    BOOL bRes = ::FreeLibrary(_m_hDLL);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     INT iRes = dlclose(_m_hDLL);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
