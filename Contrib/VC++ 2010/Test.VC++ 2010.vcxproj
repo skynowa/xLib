@@ -573,6 +573,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Source\Common\CxArray.inl" />
+    <None Include="..\..\Source\Common\CxFunctorT.inl" />
     <None Include="..\..\Source\Common\CxString.inl" />
     <None Include="..\..\Source\Common\CxType.inl" />
     <None Include="..\..\Source\Common\Win\CxHandleT.inl" />
