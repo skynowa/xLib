@@ -749,7 +749,7 @@ CxThread::bSetCpuAffinity(
 
     DWORD_PTR dwMask;
 
-    dwMask = 1 << ciProcNum;
+    dwMask = 1UL << ciProcNum;
 
     DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), dwMask);
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
