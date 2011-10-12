@@ -1321,6 +1321,9 @@
     <None Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.inl">
       <Filter>xLib\Gui\Dialogs</Filter>
     </None>
+    <None Include="..\..\Source\Common\CxFunctorT.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h">
