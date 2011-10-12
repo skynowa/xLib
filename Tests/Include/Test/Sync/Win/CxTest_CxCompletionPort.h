@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Sync/CxCompletionPort.h>
+#include <xLib/Sync/Win/CxCompletionPort.h>
 //---------------------------------------------------------------------------
 class CxTest_CxCompletionPort :
     public CxTest

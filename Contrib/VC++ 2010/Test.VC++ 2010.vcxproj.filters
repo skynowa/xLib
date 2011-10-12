@@ -157,6 +157,12 @@
     <Filter Include="xLib\Crypt\Pkcs11\Win\SDK">
       <UniqueIdentifier>{f9abee5c-5f5d-4683-9c94-5a9203e778d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xLib\Sync\Win">
+      <UniqueIdentifier>{e0b0be9d-a4c7-485e-8890-91ea2b0da6e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Sync\Win">
+      <UniqueIdentifier>{31a83dad-3469-402e-a21a-654773870a24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp">
@@ -276,9 +282,6 @@
     <ClCompile Include="..\..\Source\Sync\CxAutoMutex.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Sync\CxCompletionPort.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Sync\CxCriticalSection.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
@@ -370,9 +373,6 @@
       <Filter>Test\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp">
-      <Filter>Test\Sync</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCompletionPort.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCriticalSection.cpp">
@@ -690,6 +690,12 @@
     <ClCompile Include="..\..\Source\Net\CxTcpServer.cpp">
       <Filter>xLib\Net</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Sync\Win\CxCompletionPort.cpp">
+      <Filter>xLib\Sync\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp">
+      <Filter>Test\Sync\Win</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -783,9 +789,6 @@
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\CxAutoMutex.h">
-      <Filter>xLib\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Sync\CxCompletionPort.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\CxCriticalSection.h">
@@ -948,9 +951,6 @@
       <Filter>Test\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h">
-      <Filter>Test\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCompletionPort.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCriticalSection.h">
@@ -1285,6 +1285,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Unix.h">
       <Filter>xLib\Common\Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Sync\Win\CxCompletionPort.h">
+      <Filter>xLib\Sync\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\Win\CxTest_CxCompletionPort.h">
+      <Filter>Test\Sync\Win</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

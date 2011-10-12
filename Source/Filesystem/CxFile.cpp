@@ -1201,7 +1201,7 @@ CxFile::bTextWrite(
 
     BOOL   bRes = FALSE;
     CxFile sfFile;
-
+//BUG: line 1206
     bRes = sfFile.bCreate(csFilePath, omBinWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
