@@ -24,11 +24,11 @@ class CxDll :
         virtual      ~CxDll           ();
             ///< destructor
 
-        BOOL          bIsLoaded       ();
+        BOOL          bIsLoaded       () const;
             ///< is loaded
         BOOL          bLoad           (const std::tstring &csDllPath);
             ///< load
-        TxProcAddress fpGetProcAddress(const std::tstring &csProcName);
+        TxProcAddress fpGetProcAddress(const std::tstring &csProcName) const;
             ///< get address of an exported function or variable
         BOOL          bFree           ();
             ///< free
@@ -40,7 +40,7 @@ class CxDll :
         typedef VOID *   TxHandle;
     #endif
 
-        TxHandle _m_hDLL;   ///< dll module handle
+        TxHandle      _m_hDLL;   ///< dll module handle
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxDllH

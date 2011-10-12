@@ -35,7 +35,7 @@ CxPop3::~CxPop3() {
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate
-BOOL 
+BOOL
 CxPop3::bCreate(const std::tstring &csUser, const std::tstring &csPass, const std::tstring &csServer, USHORT usPort) {
      /*DEBUG*/xASSERT_RET(FALSE == csUser.empty(),          FALSE);
      /*DEBUG*/xASSERT_RET(FALSE == csPass.empty(),          FALSE);
@@ -51,7 +51,7 @@ CxPop3::bCreate(const std::tstring &csUser, const std::tstring &csPass, const st
 }
 //---------------------------------------------------------------------------
 //DONE: bConnect
-BOOL 
+BOOL
 CxPop3::bConnect() {
      //-------------------------------------
      //Create sock
@@ -81,7 +81,7 @@ CxPop3::bConnect() {
  }
 //---------------------------------------------------------------------------
 //DONE: bLogin
-BOOL 
+BOOL
 CxPop3::bLogin() {
     //-------------------------------------
     //RFC
@@ -127,7 +127,7 @@ CxPop3::bLogin() {
 }
 //---------------------------------------------------------------------------
 //DONE: bStat
-BOOL 
+BOOL
 CxPop3::bStat(ULONG &ulSum, ULONG &ulSize) {
     //-------------------------------------
     //RFC
@@ -156,7 +156,7 @@ CxPop3::bStat(ULONG &ulSum, ULONG &ulSize) {
 }
 //---------------------------------------------------------------------------
 //TODO: bList (������ ��������, ������ �� �������)
-BOOL 
+BOOL
 CxPop3::bList(std::vector<ULONG> &veculList) {
     //-------------------------------------
     //RFC
@@ -183,7 +183,7 @@ CxPop3::bList(std::vector<ULONG> &veculList) {
 }
 //---------------------------------------------------------------------------
 //TODO: bListAt (������ ������ � �������� ulIndex)
-BOOL 
+BOOL
 CxPop3::bListAt(ULONG &ulIndex) {
     //-------------------------------------
     //RFC
@@ -209,7 +209,7 @@ CxPop3::bListAt(ULONG &ulIndex) {
 }
 //---------------------------------------------------------------------------
 //DONE: bNoop (�������� ��������� ���������� � ����)
-BOOL 
+BOOL
 CxPop3::bNoop() {
     //-------------------------------------
     //RFC
@@ -229,7 +229,7 @@ CxPop3::bNoop() {
 }
 //---------------------------------------------------------------------------
 //DONE: bRset (������ ����� �������� �����)
-BOOL 
+BOOL
 CxPop3::bRset() {
     //-------------------------------------
     //RFC
@@ -249,7 +249,7 @@ CxPop3::bRset() {
 }
 //---------------------------------------------------------------------------
 //DONE: bTop (�������� ��������� ������)
-BOOL 
+BOOL
 CxPop3::bTop(INT iNum, INT iLines, std::tstring &sBuff) {
     /*DEBUG*/xASSERT_RET(iNum   > 0,   FALSE);
     /*DEBUG*/xASSERT_RET(iLines > - 1, FALSE);
@@ -278,7 +278,7 @@ CxPop3::bTop(INT iNum, INT iLines, std::tstring &sBuff) {
 }
 //---------------------------------------------------------------------------
 //DONE: bRetriveRaw ()
-BOOL 
+BOOL
 CxPop3::bRetriveRaw(INT iNum, const std::tstring &csDirPath, const std::tstring &csFileName) {  //csDirPath ��� �����
     /*DEBUG*/xASSERT_RET(iNum > 0,                    FALSE);
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  FALSE);
@@ -334,7 +334,7 @@ CxPop3::bRetriveRaw(INT iNum, const std::tstring &csDirPath, const std::tstring 
 }
 //---------------------------------------------------------------------------
 //DONE: bRetriveRawAndBackup ()
-BOOL 
+BOOL
 CxPop3::bRetriveRawAndBackup(INT iNum, const std::tstring &csDirPath, const std::tstring &csBackupDirPath, const std::tstring &csFileName) {
     /*DEBUG*/xASSERT_RET(iNum > 0,                                                         FALSE);
     /*DEBUG*/xASSERT_RET(! (true == csDirPath.empty() && true == csBackupDirPath.empty()), FALSE);
@@ -403,7 +403,7 @@ CxPop3::bRetriveRawAndBackup(INT iNum, const std::tstring &csDirPath, const std:
 }
 //---------------------------------------------------------------------------
 //DONE: bRetrieveHeader ()
-BOOL 
+BOOL
 CxPop3::bRetrieveHeader(INT iNum, CxMimeHeader &mhMimeHeader) {
     /*DEBUG*/xASSERT_RET(iNum > 0, FALSE);
 
@@ -433,7 +433,7 @@ CxPop3::bRetrieveHeader(INT iNum, CxMimeHeader &mhMimeHeader) {
 }
 //---------------------------------------------------------------------------
 //DONE: bDelete (������� ������)
-BOOL 
+BOOL
 CxPop3::bDelete(INT iNum) {
     /*DEBUG*/xASSERT_RET(iNum > 0, FALSE);
 
@@ -462,7 +462,7 @@ CxPop3::bDelete(INT iNum) {
 }
 //---------------------------------------------------------------------------
 //DONE: bDisconnect (������������� �� �������)
-BOOL 
+BOOL
 CxPop3::bDisconnect() {
     //-------------------------------------
     //RFC
@@ -487,17 +487,17 @@ CxPop3::bDisconnect() {
 }
 //---------------------------------------------------------------------------
 //DONE: _ulMailsSum (������� ����� �����)
-ULONG 
+ULONG
 CxPop3::_ulMailsSum(const std::tstring &csServerAnswer) {
     /*DEBUG*/xASSERT_RET(false == csServerAnswer.empty(), FALSE);
 
     //+OK 2 1141841
-    ULONG        ulSum = 0;
-    std::tstring sSum;
+    ULONG                     ulSum = 0UL;
+    std::tstring              sSum;
     std::vector<std::tstring> vsRes;
 
     BOOL bRes = CxString::bSplit(csServerAnswer, " ", &vsRes);
-    /*DEBUG*///TODO:
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, 0UL);
 
     sSum  = vsRes.at(1);
     ulSum = atol(sSum.c_str());        // ul -> l
@@ -506,7 +506,7 @@ CxPop3::_ulMailsSum(const std::tstring &csServerAnswer) {
 }
 //---------------------------------------------------------------------------
 //DONE: _ulMailsSize (����� ������ ����� � ������)
-ULONG 
+ULONG
 CxPop3::_ulMailsSize(const std::tstring &csServerAnswer) {
     /*DEBUG*/xASSERT_RET(false == csServerAnswer.empty(), FALSE);
 
@@ -516,7 +516,7 @@ CxPop3::_ulMailsSize(const std::tstring &csServerAnswer) {
     std::vector<std::tstring> vsRes;
 
     BOOL bRes = CxString::bSplit(csServerAnswer, " ", &vsRes);
-    /*DEBUG*///TODO:
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, 0UL);
 
     sSize  = vsRes.at(2);
     ulSize = atol(sSize.c_str());    // ul+\r\n -> l
@@ -534,7 +534,7 @@ CxPop3::_ulMailsSize(const std::tstring &csServerAnswer) {
 
 //---------------------------------------------------------------------------
 //DONE: _bCommand ()
-BOOL 
+BOOL
 CxPop3::_bCommand(const std::tstring &csCmd, const std::tstring &csReplyDelimiter, std::tstring *psReply) {
     /*DEBUG*/xASSERT_RET(false == csCmd.empty(),            FALSE);
     /*DEBUG*/xASSERT_RET(false == csReplyDelimiter.empty(), FALSE);
@@ -556,7 +556,7 @@ CxPop3::_bCommand(const std::tstring &csCmd, const std::tstring &csReplyDelimite
 }
 //---------------------------------------------------------------------------
 //DONE: _bIsError ()
-BOOL 
+BOOL
 CxPop3::_bIsError(const std::tstring &csText) {
     /*DEBUG*/xASSERT_RET(FALSE == csText.empty(), TRUE);
 

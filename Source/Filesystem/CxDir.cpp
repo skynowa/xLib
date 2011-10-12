@@ -148,7 +148,7 @@ CxDir::sGetCurrent() {
 
 #if defined(xOS_ENV_WIN)
     ULONG ulRes = ::GetCurrentDirectory(xPATH_MAX, &sBuff[0]);
-    /*DEBUG*/xASSERT_RET(0     != ulRes,    std::tstring());
+    /*DEBUG*/xASSERT_RET(0UL   != ulRes,    std::tstring());
     /*DEBUG*/xASSERT_RET(ulRes <  MAX_PATH, std::tstring());
 
     sRes.assign(sBuff, 0, ulRes);
