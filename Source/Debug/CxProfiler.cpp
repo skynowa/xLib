@@ -62,7 +62,7 @@ CxProfiler::bStart() {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     #if xTODO
-        bRes = CxThread::bSetPriority(CxThread::ulGetCurrId(), CxThread::tpTimeCritical);
+        bRes = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
         /*DEBUG*/xASSERT(FALSE != bRes);
     #endif
 
@@ -264,7 +264,7 @@ CxProfiler::bPulse(
 BOOL
 CxProfiler::_bResetData() {
     #if xTODO
-        BOOL bRes = CxThread::bSetPriority(CxThread::ulGetCurrId(), CxThread::tpNormal);
+        BOOL bRes = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpNormal);
         /*DEBUG*/xASSERT(FALSE != bRes);
     #endif
 
