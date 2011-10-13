@@ -123,6 +123,9 @@ CxTest_CxThread::bUnit(
 
         m_bRes = pthT->bCreate(cbIsPaused, 0U, &uiParam);
         xASSERT_EQ(TRUE, m_bRes);
+
+        m_bRes = pthT->bIsPaused();
+        xASSERT_EQ(cbIsPaused, m_bRes);
     }
 
 
@@ -349,9 +352,6 @@ CxTest_CxThread::bUnit(
     //bResume (start thread)
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_bRes = pthT->bIsPaused();
-        xASSERT_EQ(TRUE, m_bRes);
-
         m_bRes = pthT->bResume();
         xASSERT_EQ(TRUE, m_bRes);
 

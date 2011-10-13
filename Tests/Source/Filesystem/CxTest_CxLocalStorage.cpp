@@ -29,18 +29,18 @@ CxTest_CxLocalStorage::bUnit(
 {
     const std::tstring csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
 
-    const std::tstring csKey1   = xT("a");
-    const std::tstring csValue1 = xT("1");
+    const std::tstring csKey1     = xT("a");
+    const std::tstring csValue1   = xT("1");
 
-    const std::tstring csKey2   = xT("b");
-    const std::tstring csValue2 = xT("2");
+    const std::tstring csKey2     = xT("b");
+    const std::tstring csValue2   = xT("2");
 
-    const std::tstring csKey3   = xT("c");
-    const std::tstring csValue3 = xT("3");
+    const std::tstring csKey3     = xT("c");
+    const std::tstring csValue3   = xT("3");
 
-    const std::tstring csContent = csKey1 + CxConst::xEQUAL + csValue1 + CxConst::xNL +
-                              csKey2 + CxConst::xEQUAL + csValue2 + CxConst::xNL +
-                              csKey3 + CxConst::xEQUAL + csValue3 + CxConst::xNL;
+    const std::tstring csContent  = csKey1 + CxConst::xEQUAL + csValue1 + CxConst::xNL +
+                                    csKey2 + CxConst::xEQUAL + csValue2 + CxConst::xNL +
+                                    csKey3 + CxConst::xEQUAL + csValue3 + CxConst::xNL;
 
     //--------------------------------------------------
     //CxLocalStorage()
