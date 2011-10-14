@@ -46,6 +46,15 @@ CxDir::bIsEmpty(
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csMask.empty(),    FALSE);
 
+/*****************************************************************************/
+std::vector<std::string> vsStack;
+
+CxStackTrace_Print(64, &vsStack);
+
+std::tcerr << "stack trace:" << std::endl;
+std::tcerr << vsStack        << std::endl;
+/*****************************************************************************/
+
     BOOL bRes = FALSE;
 
     //TODO: CxPath::sToCurrentOs + CxPath::sSlashAppend
