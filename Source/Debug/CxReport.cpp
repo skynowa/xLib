@@ -32,6 +32,7 @@ CxReport::CxReport(
     const std::tstring &csFunc,
     const std::tstring &csDate,
     const std::tstring &csTime,
+    const std::tstring &csStackTrace,
     const std::tstring &csComment
 ) :
     _m_rtType         (rtUnknown),
@@ -50,11 +51,12 @@ CxReport::CxReport(
     _m_sBuildDate     (),
     _m_sOsVersion     (),
     _m_sOsArchitecture(),
+    _m_sStackTrace    (),
     _m_sComment       ()
 {
     /*DEBUG*/
 
-    (VOID)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csComment.c_str());
+    (VOID)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, csComment.c_str());
 
     switch (crtType) {
         case rtMsgboxPlain:     { _bInitPlain();    }   break;
@@ -77,6 +79,7 @@ CxReport::CxReport(
     const std::tstring &csFunc,
     const std::tstring &csDate,
     const std::tstring &csTime,
+    const std::tstring &csStackTrace,
     LPCTSTR             pcszComment, ...
 ) :
     _m_rtType         (rtUnknown),
@@ -95,6 +98,7 @@ CxReport::CxReport(
     _m_sBuildDate     (),
     _m_sOsVersion     (),
     _m_sOsArchitecture(),
+    _m_sStackTrace    (),
     _m_sComment       ()
 {
     /*DEBUG*/
@@ -106,7 +110,7 @@ CxReport::CxReport(
     sComment = CxString::sFormatV(pcszComment, palArgs);
     xVA_END(palArgs);
 
-    (VOID)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment.c_str());
+    (VOID)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment.c_str());
 
     switch (crtType) {
         case rtMsgboxPlain:     { (VOID)_bInitPlain();    }   break;
@@ -244,7 +248,13 @@ CxReport::sGetComment() const {
     return _m_sComment;
 }
 //---------------------------------------------------------------------------
+const std::tstring &
+CxReport::sGetStackTrace() const {
+    /*DEBUG*/
 
+    return _m_sStackTrace;
+}
+//---------------------------------------------------------------------------
 
 /****************************************************************************
 *    private
@@ -262,6 +272,7 @@ CxReport::_bInitVars(
     const std::tstring &csFunc,
     const std::tstring &csDate,
     const std::tstring &csTime,
+    const std::tstring &csStackTrace,
     const std::tstring &csComment
 )
 {
@@ -271,7 +282,7 @@ CxReport::_bInitVars(
 
 #if 1
     _m_sProgram        = CxPath::sGetExe();
-    _m_ulProcessId     = CxProcess::ulGetCurrId();
+    _m_ulProcessId     = (ULONG)CxProcess::ulGetCurrId();
     _m_ulThreadId      = (ULONG)CxCurrentThread::ulGetId();
     _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxFile::liGetSize(CxPath::sGetExe())) );
 
@@ -287,10 +298,11 @@ CxReport::_bInitVars(
     _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     _m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
+    _m_sStackTrace     = csStackTrace;
     _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #else
     _m_sProgram        = xT("");
-    _m_ulProcessId     = CxProcess::ulGetCurrId();
+    _m_ulProcessId     = (ULONG)CxProcess::ulGetCurrId();
     _m_ulThreadId      = (ULONG)CxThread::ulGetCurrId();
     _m_sFileSize       = xT("");
 
@@ -306,6 +318,7 @@ CxReport::_bInitVars(
     _m_sOsVersion      = xT("");
     _m_sOsArchitecture = xT("");
 
+    _m_sStackTrace     = csStackTrace;
     _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #endif
 
@@ -335,6 +348,7 @@ CxReport::_bInitPlain() {
         xT("%s%s\n")      //Build date
         xT("%s%s\n")      //OS version
         xT("%s%s\n")      //OS architecture
+        xT("%s%s\n")      //stack trace
         xT("\n")
 
         xT("%s%s"),       //Comment
@@ -356,6 +370,7 @@ CxReport::_bInitPlain() {
         xT("Build date:      "), sGetBuildDate().c_str(),
         xT("OS version:      "), sGetOsVersion().c_str(),
         xT("OS architecture: "), sGetOsArchitecture().c_str(),
+        xT("Stack trace:     "), sGetStackTrace().c_str(),
 
         xT("Comment:         "), sGetComment().c_str());
 
@@ -386,6 +401,7 @@ CxReport::_bInitHtml() {
         xT("<b>%s</b>%s\n")      //Build date
         xT("<b>%s</b>%s\n")      //OS version
         xT("<b>%s</b>%s\n")      //OS architecture
+        xT("<b>%s</b>%s\n")      //stack trace
         xT("\n")
 
         xT("<b>%s</b>%s")        //Comment
@@ -407,6 +423,7 @@ CxReport::_bInitHtml() {
         xT("Build date:      "), sGetBuildDate().c_str(),
         xT("OS version:      "), sGetOsVersion().c_str(),
         xT("OS architecture: "), sGetOsArchitecture().c_str(),
+        xT("Stack trace:     "), sGetStackTrace().c_str(),
 
         xT("Comment:         "), sGetComment().c_str());
 
@@ -438,6 +455,7 @@ CxReport::_bInitFormated() {
         xT("\\b %s\\lang1033\\f0  \\b0 %s\\par")
         xT("\\lang1049\\f2\\par")
         xT("\\b %s\\b0  \\lang1033\\f0   %s\\lang1049\\f2\\par")
+        xT("\\b %s\\b0  \\lang1033\\f0   %s\\lang1049\\f2\\par")
         xT("}"),
 
         xT("CxReport "),
@@ -457,6 +475,7 @@ CxReport::_bInitFormated() {
         xT("Build date:      "), sGetBuildDate().c_str(),
         xT("OS version:      "), sGetOsVersion().c_str(),
         xT("OS architecture: "), sGetOsArchitecture().c_str(),
+        xT("Stack trace:     "), sGetStackTrace().c_str(),
 
         xT("Comment:         "), sGetComment().c_str()
     );
@@ -482,6 +501,7 @@ CxReport::_bInitFormated() {
         xT("%s%s\n")      //Build date
         xT("%s%s\n")      //OS version
         xT("%s%s\n")      //OS architecture
+        xT("%s%s\n")      //stack trace
         xT("#  \n")
 
         xT("%s%s\n")      //Comment
@@ -504,6 +524,7 @@ CxReport::_bInitFormated() {
         xT("#  Build date:      "), sGetBuildDate().c_str(),
         xT("#  OS version:      "), sGetOsVersion().c_str(),
         xT("#  OS architecture: "), sGetOsArchitecture().c_str(),
+        xT("#  Stack trace:     "), sGetStackTrace().c_str(),
 
         xT("#  Comment:         "), CxConsole().bSetTextColor( sGetComment(),                             CxConsole::fgYellow_, FALSE, FALSE, CxConsole::bgBlue,  FALSE ).c_str()
     );

@@ -696,6 +696,9 @@
     <ClCompile Include="..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp">
       <Filter>Test\Sync\Win</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Debug\CxStackTrace.cpp">
+      <Filter>xLib\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1291,6 +1294,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Sync\Win\CxTest_CxCompletionPort.h">
       <Filter>Test\Sync\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Debug\CxStackTrace.h">
+      <Filter>xLib\Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -101,7 +101,7 @@ CxTest_CxDebugger::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {
-	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));
+	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
 
 	        //m_bRes = CxDebugger::bReportMake(rpReport);
             //xASSERT_NOT_EQ(FALSE, m_bRes);

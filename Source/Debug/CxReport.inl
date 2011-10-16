@@ -19,6 +19,7 @@ CxReport::CxReport(
     const std::tstring &csFunc,
     const std::tstring &csDate,
     const std::tstring &csTime,
+    const std::tstring &csStackTrace,
     const std::tstring &csComment
 ) :
     _m_rtType         (rtUnknown),
@@ -37,6 +38,7 @@ CxReport::CxReport(
     _m_sBuildDate     (),
     _m_sOsVersion     (),
     _m_sOsArchitecture(),
+    _m_sStackTrace    (),
     _m_sComment       ()
 {
     /*DEBUG*/
@@ -46,7 +48,7 @@ CxReport::CxReport(
 
     //sComment
     std::tstring sComment;
-
+     
     {
         std::tostringstream ossStream;
         ossStream.exceptions(std::tostringstream::eofbit | std::tostringstream::failbit | std::tostringstream::badbit);
@@ -64,7 +66,7 @@ CxReport::CxReport(
         sComment.assign( ossStream.str() );
     }
 
-    (VOID)_bInitVars(crtType, sExpr, culLastError, csFile, culLine, csFunc, csDate, csTime, sComment);
+    (VOID)_bInitVars(crtType, sExpr, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment);
 
     switch (crtType) {
         case rtMsgboxPlain:     { (VOID)_bInitPlain();    } break;

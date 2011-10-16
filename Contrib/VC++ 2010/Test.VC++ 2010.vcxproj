@@ -181,6 +181,7 @@
     <ClCompile Include="..\..\Source\Debug\CxLastError.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxProfiler.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxReport.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxStackTrace.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxStdError.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxTest.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp" />
@@ -374,6 +375,7 @@
     <ClInclude Include="..\..\Include\xLib\Crypt\Pkcs11\Win\SDK\SDK 4.53\pkcs11.h" />
     <ClInclude Include="..\..\Include\xLib\Crypt\Pkcs11\Win\SDK\SDK 4.53\pkcs11f.h" />
     <ClInclude Include="..\..\Include\xLib\Crypt\Pkcs11\Win\SDK\SDK 4.53\pkcs11t.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxStackTrace.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxStdError.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxFile.h" />

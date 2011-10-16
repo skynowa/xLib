@@ -31,7 +31,7 @@ CxTest_CxReport::bUnit(
     //CxReport
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT("Simple comment: %s"), xT("comment"));
+        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("Simple comment: %s"), xT("comment"));
         m_sRes = rpReport.sGetReport();
         //xTRACE(m_sRes);
     }
@@ -40,7 +40,7 @@ CxTest_CxReport::bUnit(
     //CxReport
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, std::tstring(xT("Simple comment")));
+        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), std::tstring(xT("Simple comment")));
         m_sRes = rpReport.sGetReport();
         //xTRACE(m_sRes);
     }
