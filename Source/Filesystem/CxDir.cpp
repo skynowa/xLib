@@ -49,7 +49,9 @@ CxDir::bIsEmpty(
 /*****************************************************************************/
 std::vector<std::string> vsStack;
 
-CxStackTrace_Print(64, &vsStack);
+CxStackTrace stStack;
+
+stStack.bGet(&vsStack, 64);
 
 std::tcerr << "stack trace:" << std::endl;
 std::tcerr << vsStack        << std::endl;

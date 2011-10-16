@@ -85,8 +85,8 @@ namespace NxLib { }
 #include <xLib/Common/xTypes.h>
 #include <xLib/Common/xFunctions.h>
 #include <xLib/Common/xLinking.h>
-#include <xLib/Common/CxMacros.h>
 #include <xLib/Common/CxConst.h>
+#include <xLib/Common/CxMacros.h>
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Common/CxString.h>

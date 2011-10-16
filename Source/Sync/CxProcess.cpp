@@ -8,8 +8,6 @@
 
 #if defined(xOS_ENV_WIN)
     #include <xLib/Common/Win/CxHandleT.h>
-#elif defined(xOS_ENV_UNIX)
-
 #endif
 
 
@@ -19,35 +17,33 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: ulGetCurrId (process ID of the calling process)
 /*static*/
-ULONG
+CxProcess::TxId
 CxProcess::ulGetCurrId() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = (ULONG)- 1;
+    TxId ulRes;
 
 #if defined(xOS_ENV_WIN)
     ulRes = ::GetCurrentProcessId();
     /*DEBUG*/// n/a
 #elif defined(xOS_ENV_UNIX)
-    ulRes = static_cast<ULONG>( getpid() );
+    ulRes = getpid();
     /*DEBUG*/// n/a
 #endif
 
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//DONE: ulGetCurrParentId (process ID of the parent of the calling process)
 /*static*/
-ULONG
+CxProcess::TxId
 CxProcess::ulGetCurrParentId() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = 0UL;
+    TxId ulRes;
 
 #if defined(xOS_ENV_WIN)
-    const ULONG culInvalidId = (ULONG)- 1;
+    const TxId culInvalidId = (ULONG)- 1;
 
     ULONG_PTR pbi[6] = {0};
     ULONG     ulSize = 0UL;
@@ -64,14 +60,13 @@ CxProcess::ulGetCurrParentId() {
 
     ulRes = pbi[5];
 #elif defined(xOS_ENV_UNIX)
-    ulRes = static_cast<ULONG>( getppid() );
+    ulRes = getppid();
     /*DEBUG*/// n/a
 #endif
 
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bExec (execute a file)
 //http://www-theorie.physik.unizh.ch/~dpotter/howto/daemonize
 /*static*/
 BOOL
@@ -130,12 +125,11 @@ CxProcess::bExec(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bExit (Ends the calling process and all its threads)
 /*static*/
 BOOL
 CxProcess::bExit(
-    const ULONG culPid,
-    const UINT  cuiExitCode
+    const TxId culPid,
+    const UINT cuiExitCode
 )
 {
     /*DEBUG*/// uiExitCode - n/a
@@ -149,11 +143,10 @@ CxProcess::bExit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//DONE: bTerminate (kills the calling process and all of its threads)
 /*static*/
 BOOL
 CxProcess::bTerminate(
-    const ULONG culPid
+    const TxId culPid
 )
 {
     /*DEBUG*/// uiExitCode - n/a
@@ -167,7 +160,7 @@ CxProcess::bTerminate(
     BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = kill(static_cast<pid_t>( culPid ), SIGKILL);
+    INT iRes = kill(culPid, SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 

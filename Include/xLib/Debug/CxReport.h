@@ -27,12 +27,12 @@ class CxReport :
             rtLoggingHtml       ///< to log with HTML text
         };
 
-                              CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csComment);
+                              CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csStackTrace, const std::tstring &csComment);
             ///< constructor
-                              CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, LPCTSTR pcszComment, ...);
+                              CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csStackTrace, LPCTSTR pcszComment, ...);
             ///< constructor
                               template<class T>
-                              CxReport           (const EType &crtType, const T &cVatT1, const T &cVatT2, const std::tstring &csExpr1, const std::tstring &csExpr2, const std::tstring &csExprSign, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csComment);
+                              CxReport           (const EType &crtType, const T &cVatT1, const T &cVatT2, const std::tstring &csExpr1, const std::tstring &csExpr2, const std::tstring &csExprSign, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csStackTrace, const std::tstring &csComment);
             ///< constructor
         virtual              ~CxReport           ();
             ///< destructor
@@ -71,6 +71,9 @@ class CxReport :
             ///< get OS architecture
         const std::tstring &  sGetComment        () const;
             ///< get comment
+        const std::tstring &  sGetStackTrace     () const;
+            ///< get comment
+        
 
     private:
         EType                 _m_rtType;            ///< report type
@@ -95,11 +98,13 @@ class CxReport :
         std::tstring          _m_sBuildDate;        ///< build date, time
         std::tstring          _m_sOsVersion;        ///< build OS version
         std::tstring          _m_sOsArchitecture;   ///< OS architecture
+        std::tstring          _m_sStackTrace;       ///< stack trace
 
         //comment
         std::tstring          _m_sComment;          ///< comment
 
-        BOOL                  _bInitVars         (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csComment);
+
+        BOOL                  _bInitVars         (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csStackTrace, const std::tstring &csComment);
             ///< initiate class members
         BOOL                  _bInitPlain        ();
             ///< initiate plain report

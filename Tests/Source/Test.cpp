@@ -113,53 +113,6 @@
 //Units
 //TODO: test Units
 //---------------------------------------------------------------------------
-void sig_handler(int sig) {
-    std::tstring bt;
-
-    void *buffer[200];
-
-    size_t size    = backtrace (buffer, 200);
-    char **strings = backtrace_symbols(buffer, size);
-    {
-        for (size_t i = 0; i < size; i++) {
-        #if defined(BLOCXX_HAVE_CXXABI_H)
-            bt += strings[i];
-            int status;
-            // extract the identifier from strings[i].  It's inside of parens.
-            char* firstparen = ::strchr(strings[i], '(');
-            char* lastparen = ::strchr(strings[i], '+');
-            if (firstparen != 0 && lastparen != 0 && firstparen < lastparen)
-            {
-                bt += ": ";
-                *lastparen = '\0';
-                char* realname = abi::__cxa_demangle(firstparen+1, 0, 0, &status);
-                bt += realname;
-                free(realname);
-            }
-        #else
-            bt += strings[i];
-        #endif
-            bt += "\n";
-        }
-    }
-    free(strings);
-
-    std::cerr << bt << std::endl;
-
-    signal(sig, &sig_handler);
-}
-
-void vTest2() {
-    //kill(0, SIGSEGV);
-    CxStackTrace_Print();
-}
-void vTest1() {
-    vTest2();
-}
-void vTest0() {
-    vTest1();
-}
-//---------------------------------------------------------------------------
 INT
 xTMAIN(
     INT    iArgCount,
@@ -184,7 +137,6 @@ xTMAIN(
     #endif
 
     //signal(SIGSEGV, &sig_handler);
-
 
     BOOL bRes = FALSE;
 

@@ -31,16 +31,16 @@ CxTest_CxProcess::bUnit(
     //ulGetCurrId
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_ulRes = CxProcess::ulGetCurrId();
-        xASSERT_LESS_EQ(0UL, m_ulRes);
+        CxProcess::TxId ulRes = CxProcess::ulGetCurrId();
+        xASSERT_LESS_EQ(0UL, (ULONG)ulRes);
     }
 
     //--------------------------------------------------
     //ulGetCurrParentId
     xTEST_BLOCK(cullBlockLoops)
     {
-        m_ulRes = CxProcess::ulGetCurrParentId();
-        xASSERT_LESS_EQ(0UL, m_ulRes);
+        CxProcess::TxId ulRes = CxProcess::ulGetCurrParentId();
+        xASSERT_LESS_EQ(0UL, (ULONG)ulRes);
     }
 
     //--------------------------------------------------
