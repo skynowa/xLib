@@ -25,13 +25,7 @@
 
 //---------------------------------------------------------------------------
 /*explicit*/
-CxStackTrace::CxStackTrace() :
-#if defined(xOS_ENV_WIN)
-    _m_culMaxFrames(62UL)     // from MSDN, ::CaptureStackBackTrace
-#elif defined(xOS_ENV_UNIX)
-    _m_culMaxFrames(256)    // this should be enough
-#endif
-{
+CxStackTrace::CxStackTrace() {
 
 }
 //---------------------------------------------------------------------------
@@ -86,7 +80,7 @@ CxStackTrace::bGet(
 
     xARRAY_DELETE(psiSymbol);
 #elif defined(xOS_ENV_UNIX)
-    VOID *pvStack[_m_culMaxFrames];
+    VOID *pvStack[_m_culMaxFrames] = {0};
 
     INT iFramesNum  = backtrace(pvStack, _m_culMaxFrames);
     xCHECK_RET(iFramesNum <= 0, FALSE);
