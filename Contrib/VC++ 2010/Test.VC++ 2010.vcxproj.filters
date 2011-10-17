@@ -699,6 +699,9 @@
     <ClCompile Include="..\..\Source\Debug\CxStackTrace.cpp">
       <Filter>xLib\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Units\CxTest_Draft.cpp">
+      <Filter>Test\Units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1297,6 +1300,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\CxStackTrace.h">
       <Filter>xLib\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Units\CxTest_Draft.h">
+      <Filter>Test\Units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
