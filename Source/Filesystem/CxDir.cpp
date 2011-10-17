@@ -47,14 +47,16 @@ CxDir::bIsEmpty(
     /*DEBUG*/xASSERT_RET(false == csMask.empty(),    FALSE);
 
 /*****************************************************************************/
-std::vector<std::string> vsStack;
+#if xTEMP_DISABLED
+    std::vector<std::string> vsStack;
 
-CxStackTrace stStack;
+    CxStackTrace stStack;
 
-stStack.bGet(&vsStack, 64);
+    stStack.bGet(&vsStack, 64);
 
-std::tcerr << "stack trace:" << std::endl;
-std::tcerr << vsStack        << std::endl;
+    std::tcerr << "stack trace:" << std::endl;
+    std::tcerr << vsStack        << std::endl;
+#endif
 /*****************************************************************************/
 
     BOOL bRes = FALSE;

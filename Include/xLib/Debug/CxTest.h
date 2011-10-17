@@ -10,6 +10,7 @@
 #include <xLib/Common/xCommon.h>
 
 #include <xLib/Common/CxSystemInfo.h>
+#include <xLib/Debug/CxAutoProfiler.h>
 #include <xLib/Filesystem/CxFile.h>    //TODO: include all xLib headers
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Filesystem/CxPath.h>

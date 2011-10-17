@@ -21,11 +21,13 @@ class CxStackTrace :
 		virtual     ~CxStackTrace();
 		    ///< destructor
 
-        BOOL         bGet        (std::vector<std::string> *pvsStack, const size_t cuiMaxFrames = 62);
-        std::tstring sGet        (const std::tstring &csSeparator = xT("\r\n"), const size_t cuiMaxFrames = 62);
+        BOOL         bGet        (std::vector<std::string> *pvsStack);
+            ///< get stack trace
+        std::tstring sGet        (const std::tstring &csLinesSeparator = xT("\n"));
+            ///< get stack trace
 
     private:
-
+        const ULONG _m_culMaxFrames;   ///< maximum frames for report
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxStackTraceH

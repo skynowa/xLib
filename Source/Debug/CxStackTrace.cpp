@@ -25,7 +25,13 @@
 
 //---------------------------------------------------------------------------
 /*explicit*/
-CxStackTrace::CxStackTrace() {
+CxStackTrace::CxStackTrace() :
+#if defined(xOS_ENV_WIN)
+    _m_culMaxFrames(62UL)     // from MSDN, ::CaptureStackBackTrace
+#elif defined(xOS_ENV_UNIX)
+    _m_culMaxFrames(256)    // this should be enough
+#endif
+{
 
 }
 //---------------------------------------------------------------------------
@@ -44,165 +50,77 @@ CxStackTrace::~CxStackTrace() {
 //---------------------------------------------------------------------------
 BOOL
 CxStackTrace::bGet(
-    std::vector<std::string> *pvsStack,
-    const size_t              cuiMaxFrames
+    std::vector<std::string> *pvsStack
 )
 {
-////#if defined(xOS_ENV_WIN)
-////    const ULONG _culMaxFrames = 63UL;
-////
-////    if (cuiMaxFrames > _culMaxFrames) {
-////        _m_uiMaxFrames = _culMaxFrames;
-////    } else {
-////        _m_uiMaxFrames = cuiMaxFrames;
-////    }
-////#elif defined(xOS_ENV_UNIX)
-////    _m_uiMaxFrames = cuiMaxFrames;
-////#endif
-
-
     std::vector<std::string> vsStack;
 
 #if defined(xOS_ENV_WIN)
-    ////const size_t cuiMaxFrames          = cuiMaxFrames;
-
-    VOID        *pvStack[62/*cuiMaxFrames*/] = {0};
-    SYMBOL_INFO *psiSymbol             = NULL;
-    HANDLE       hProcess              = NULL;
+    VOID        *pvStack[_m_culMaxFrames] = {0};
+    SYMBOL_INFO *psiSymbol                = NULL;
+    HANDLE       hProcess                 = NULL;
 
     hProcess = ::GetCurrentProcess();
 
     BOOL bRes = ::SymInitialize(hProcess, NULL, TRUE);
+    xCHECK_RET(FALSE == bRes, FALSE);
 
-    USHORT usFramesNum      = ::CaptureStackBackTrace(0UL, cuiMaxFrames, pvStack, NULL);
+    USHORT usFramesNum      = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
+    xCHECK_RET(usFramesNum == 0U, FALSE);
+
     psiSymbol               = new SYMBOL_INFO [ sizeof( SYMBOL_INFO ) + (255UL + 1) * sizeof(TCHAR) ];
     psiSymbol->MaxNameLen   = 255UL;
     psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
 
-    for (USHORT i = 0U; i < usFramesNum; ++ i) {
+    for (USHORT i = 1U; i < usFramesNum; ++ i) {
         bRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
 
         const ULONG64      ullAddress = psiSymbol->Address;
         const std::tstring csName     = std::tstring(psiSymbol->Name);
 
         //std::tstring sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
-        std::tstring sStackLine = CxString::sFormat(xT("%u: 0x%0X  %s"), usFramesNum - i - 1U, ullAddress, csName.c_str());
+        std::tstring sStackLine = CxString::sFormat(xT("%u: %p\t%s"), usFramesNum - i - 1U, csName.c_str(), ullAddress);
 
         vsStack.push_back(sStackLine);
     }
 
-    xARRAY_DELETE(psiSymbol);    
+    xARRAY_DELETE(psiSymbol);
 #elif defined(xOS_ENV_UNIX)
-    #if 1
-        // storage array for stack trace address data
-        void *ppvAddressList[cuiMaxFrames + 1];
+    VOID *pvStack[_m_culMaxFrames];
 
-        // retrieve current stack addresses
-        int iAddressesSize = backtrace(ppvAddressList, sizeof(ppvAddressList) / sizeof(void *));
-        if (0 == iAddressesSize) {
-            std::tcerr << "  <empty, possibly corrupt>" << std::endl;
+    INT iFramesNum  = backtrace(pvStack, _m_culMaxFrames);
+    xCHECK_RET(iFramesNum <= 0, FALSE);
 
-            return;
-        }
+    TCHAR **ppszSymbols = backtrace_symbols(pvStack, iFramesNum);
+    xCHECK_RET(NULL == ppszSymbols, FALSE);
 
-        // resolve addresses into strings containing "filename(function+address)",
-        // this array must be free()-ed
-        char **ppSymbolList = backtrace_symbols(ppvAddressList, iAddressesSize);
+    for (INT i = 1; i < iFramesNum; ++ i) {
+        std::tstring sStackLine;
 
-        // allocate string which will be filled with the demangled function name
-        size_t      uiFuncNameSize = 256;
-        std::string sFuncName;
+        Dl_info dlinfo = {0};
 
-        sFuncName.resize(uiFuncNameSize);
+        INT iRes = dladdr(pvStack[i], &dlinfo);
+        if (0 == iRes) {
+            sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
+        } else {
+            const TCHAR *pcszSymName     = NULL;
+            TCHAR       *pszDemangleName = NULL;
+            INT          iStatus         = - 1;
 
-        // iterate over the returned symbol lines. skip the first, it is the
-        // address of this function.
-        for (int i = 1; i < iAddressesSize; ++ i) {
-            #if 1
-                std::tstring sStackLine;
-
-                char *pszNameBegin   = NULL;
-                char *pszOffsetBegin = NULL;
-                char *pszOffsetEnd   = NULL;
-
-                // find parentheses and +address offset surrounding the mangled name:
-                // ./module(function+0x15c) [0x8048a6d]
-                for (char *p = ppSymbolList[i]; *p; ++ p) {
-                    if      ('(' == *p) {
-                        pszNameBegin = p;
-                    }
-                    else if ('+' == *p) {
-                        pszOffsetBegin = p;
-                    }
-                    else if (')' == *p && pszOffsetBegin) {
-                        pszOffsetEnd = p;
-
-                        break;
-                    }
-                }
-
-                if (pszNameBegin && pszOffsetBegin && pszOffsetEnd && pszNameBegin < pszOffsetBegin) {
-                    *pszNameBegin   ++ = '\0';
-                    *pszOffsetBegin ++ = '\0';
-                    *pszOffsetEnd      = '\0';
-
-                    // mangled name is now in [pszNameBegin, pszOffsetBegin) and caller
-                    // offset in [pszOffsetBegin, pszOffsetEnd). now apply __cxa_demangle():
-                    int   iStatus = - 1;
-                    char *pszRes  = abi::__cxa_demangle(pszNameBegin, &sFuncName.at(0), &uiFuncNameSize, &iStatus);
-                    if (0 == iStatus) {
-                        sFuncName.assign(pszRes); // use possibly realloc()-ed string
-
-                        sStackLine = CxString::sFormat("\t%s : %s +%s",   ppSymbolList[i], sFuncName.c_str(), pszOffsetBegin);
-                    } else {
-                        // demangling failed. Output function name as a C function with  no arguments.
-                        sStackLine = CxString::sFormat("\t%s : %s() +%s", ppSymbolList[i], pszNameBegin,      pszOffsetBegin);
-                    }
-                } else {
-                        // couldn't parse the line? print the whole line.
-                        sStackLine = CxString::sFormat("\t%s",            ppSymbolList[i]);
-                }
-
-                vsStack.push_back(sStackLine);
-            #else
-                vsStack.push_back(ppSymbolList[i]);
-            #endif
-        }
-
-        free(ppSymbolList); ppSymbolList = NULL;
-    #else
-        enum {
-            MAX_DEPTH = 10
-        };
-
-        void *paszTrace[MAX_DEPTH];
-
-        int trace_size = backtrace(paszTrace, MAX_DEPTH);
-
-        printf("Call stack: \n");
-
-        for (int i = 0; i < trace_size; ++ i) {\
-            Dl_info dlinfo = {0};
-
-            if (!dladdr(paszTrace[i], &dlinfo)) {
-                continue;
+            pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
+            if (NULL != pszDemangleName && 0 == iStatus) {
+                pcszSymName = pszDemangleName;
+            } else {
+                pcszSymName = dlinfo.dli_sname;
             }
 
-            const char *symname = dlinfo.dli_sname;
+            sStackLine = CxString::sFormat(xT("%u: %s\t%p\t%s"), iFramesNum - i - 1, dlinfo.dli_fname, dlinfo.dli_fbase, pcszSymName);
 
-            int   status;
-            char *demangled = abi::__cxa_demangle(symname, NULL, 0, &status);
-            if (status == 0 && demangled) {
-                symname = demangled;
-            }
-
-            printf("\tfile: %s, address: %llX, function: %s\n", dlinfo.dli_fname, (long long)dlinfo.dli_fbase, symname);
-
-            if (demangled) {
-                free(demangled);
-            }
+            xBUFF_FREE(pszDemangleName);
         }
-    #endif
+
+        vsStack.push_back(sStackLine);
+    }
 #endif
 
     std::reverse(vsStack.begin(), vsStack.end());
@@ -212,21 +130,20 @@ CxStackTrace::bGet(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-std::tstring 
+std::tstring
 CxStackTrace::sGet(
-    const std::tstring &csSeparator /* = CxConst::xNL*/,
-    const size_t        cuiMaxFrames
+    const std::tstring &csLinesSeparator /* = xT("\n") */
 )
 {
     std::tstring sRes;
 
     std::vector<std::string> vsStack;
 
-    BOOL bRes = bGet(&vsStack, cuiMaxFrames);
+    BOOL bRes = bGet(&vsStack);
     if (FALSE == bRes) {
         sRes.clear();
     } else {
-        sRes = CxString::sJoin(vsStack, csSeparator);
+        sRes = CxString::sJoin(vsStack, csLinesSeparator);
     }
 
     return sRes;

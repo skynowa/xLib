@@ -52,7 +52,7 @@ CxType::sGetName(
     INT  iStatus      = - 1;
     char *pszRealName = NULL;
 
-    pszRealName = abi::__cxa_demangle(typeid(cObjectT).name(), 0, 0, &iStatus);
+    pszRealName = abi::__cxa_demangle(typeid(cObjectT).name(), NULL, NULL, &iStatus);
     asClassName = (NULL != pszRealName) ? (pszRealName) : "<unknown test name>";
     xBUFF_FREE(pszRealName);
 #else
