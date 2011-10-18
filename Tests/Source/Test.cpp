@@ -49,6 +49,7 @@
 //Debug
 #include <Test/Debug/CxTest_CxStdError.h>
 #include <Test/Debug/CxTest_CxLastError.h>
+#include <Test/Debug/CxTest_CxStackTrace.h>
 #include <Test/Debug/CxTest_CxReport.h>
 #include <Test/Debug/CxTest_CxDebugger.h>
 #include <Test/Debug/CxTest_CxProfiler.h>
@@ -216,6 +217,7 @@ xTMAIN(
         //Debug
         (VOID)tmManager.bAdd(new CxTest_CxStdError);
         (VOID)tmManager.bAdd(new CxTest_CxLastError);
+        (VOID)tmManager.bAdd(new CxTest_CxStackTrace);
         (VOID)tmManager.bAdd(new CxTest_CxDebugger);
         (VOID)tmManager.bAdd(new CxTest_CxReport);
         (VOID)tmManager.bAdd(new CxTest_CxProfiler);
