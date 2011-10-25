@@ -28,6 +28,21 @@ CxThreadStorage::~CxThreadStorage() {
     (VOID)_bFree();
 }
 //---------------------------------------------------------------------------
+BOOL     
+CxThreadStorage::bIsSet() const {
+    VOID *pvRes = NULL;
+
+#if defined(xOS_ENV_WIN)
+    pvRes = ::TlsGetValue(_m_indIndex);
+    xCHECK_RET((NULL == pvRes) && (GetLastError() != ERROR_SUCCESS), FALSE);
+#elif defined(xOS_ENV_UNIX)
+    pvRes = pthread_getspecific(_m_indIndex);
+    xCHECK_RET(NULL == pvRes, FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 VOID *
 CxThreadStorage::pvGetValue() const {
     VOID *pvRes = NULL;
