@@ -284,6 +284,7 @@
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxReport.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxStackTrace.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxStdError.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDir.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp" />
@@ -421,6 +422,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxReport.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxStackTrace.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxStdError.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDir.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h" />

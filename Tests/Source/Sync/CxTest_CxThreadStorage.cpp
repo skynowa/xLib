@@ -33,11 +33,17 @@ CxTest_CxThreadStorage::bUnit(
     {
         CxThreadStorage tlsTls;
 
-        const ULONG culData = 777;
+        const ULONG culData = 777UL;
 
         ULONG *pulValue = new ULONG(culData);
 
+        m_bRes = tlsTls.bIsSet();
+        xASSERT_EQ(FALSE, m_bRes);
+
         m_bRes = tlsTls.bSetValue(static_cast<VOID *>( pulValue ));
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+
+        m_bRes = tlsTls.bIsSet();
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
         ULONG *pulRes = static_cast<ULONG *>( tlsTls.pvGetValue() );
