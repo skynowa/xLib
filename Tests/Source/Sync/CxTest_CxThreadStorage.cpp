@@ -50,6 +50,9 @@ CxTest_CxThreadStorage::bUnit(
         xASSERT_PTR(pulRes);
         xASSERT_EQ(culData, ULONG(*pulRes));
 
+        m_bRes = tlsTls.bIsSet();
+        xASSERT_NOT_EQ(FALSE, m_bRes);
+
         delete pulRes;
     }
 
