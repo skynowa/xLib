@@ -690,6 +690,7 @@ CxDateTime::dtGetCurrent() {
 }
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 /*static*/
 LONGLONG
 CxDateTime::i64FiletimeToInt64(
@@ -698,9 +699,11 @@ CxDateTime::i64FiletimeToInt64(
 {
     return Int64ShllMod32(cftTime.dwHighDateTime, 32) | cftTime.dwLowDateTime;
 }
+
 #endif
 //--------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 /*static*/
 BOOL
 CxDateTime::bUnixTimeToFileTime(
@@ -711,25 +714,38 @@ CxDateTime::bUnixTimeToFileTime(
     /*DEBUG*/// ctmTime - n/a
     /*DEBUG*/xASSERT_RET(NULL != pftFileTime, FALSE);
 
-    #if xTEMP_DISABLED
-        LONGLONG llRes = 0LL;
+    LONGLONG llRes = 0LL;
 
-        llRes = Int32x32To64(ctmUnixTime, 10000000) + 116444736000000000;
-        pftFileTime->dwLowDateTime  = static_cast<ULONG>( llRes );
-        pftFileTime->dwHighDateTime = llRes >> 32;
-    #endif
-
-    LARGE_INTEGER li = {{0}};
-    time_t tmUnixTime = ctmUnixTime;
-
-    tmUnixTime *= 10000000;
-    li.QuadPart = ctmUnixTime;
-
-    pftFileTime->dwLowDateTime  = li.LowPart;
-    pftFileTime->dwHighDateTime = li.HighPart;
+    llRes = Int32x32To64(ctmUnixTime, 10000000) + 116444736000000000;
+    pftFileTime->dwLowDateTime  = static_cast<ULONG>( llRes );
+    pftFileTime->dwHighDateTime = llRes >> 32;
 
     return TRUE;
 }
+
+#endif
+
+//---------------------------------------------------------------------------
+#if defined(xOS_ENV_WIN)
+
+//TODO: make tests tmFileTimeToUnixTime
+/*static*/
+time_t 
+CxDateTime::tmFileTimeToUnixTime(
+    const FILETIME &ftFileTime
+)
+{
+    const __int64 NANOSECS_BETWEEN_EPOCHS = 116444736000000000LL;
+
+	__int64 llRes = 0LL;
+
+	llRes = (static_cast<__int64>( ftFileTime.dwHighDateTime ) << 32) + ftFileTime.dwLowDateTime;
+	llRes -= NANOSECS_BETWEEN_EPOCHS;
+	llRes /= 10000000;
+
+	return static_cast<time_t>( llRes );
+}
+
 #endif
 //--------------------------------------------------------------------------
 /*static*/
