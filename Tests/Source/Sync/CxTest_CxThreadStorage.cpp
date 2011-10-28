@@ -31,29 +31,34 @@ CxTest_CxThreadStorage::bUnit(
     //bSetValue, pvGetValue
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxThreadStorage tlsTls;
+        const ULONG caulData[] = {0, 1, 2, 777};
 
-        const ULONG culData = 777UL;
 
-        ULONG *pulValue = new ULONG(culData);
-
-        m_bRes = tlsTls.bIsSet();
-        xASSERT_EQ(FALSE, m_bRes);
-
-        m_bRes = tlsTls.bSetValue(static_cast<VOID *>( pulValue ));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
-
-        m_bRes = tlsTls.bIsSet();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
-
-        ULONG *pulRes = static_cast<ULONG *>( tlsTls.pvGetValue() );
-        xASSERT_PTR(pulRes);
-        xASSERT_EQ(culData, ULONG(*pulRes));
-
-        m_bRes = tlsTls.bIsSet();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
-
-        delete pulRes;
+        for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
+	        CxThreadStorage tlsTls;
+	
+	        const ULONG culData = caulData[i];
+	
+	        ULONG *pulValue = new ULONG(culData);
+	
+	        m_bRes = tlsTls.bIsSet();
+	        xASSERT_EQ(FALSE, m_bRes);
+	
+	        m_bRes = tlsTls.bSetValue(static_cast<VOID *>( pulValue ));
+	        xASSERT_NOT_EQ(FALSE, m_bRes);
+	
+	        m_bRes = tlsTls.bIsSet();
+	        xASSERT_NOT_EQ(FALSE, m_bRes);
+	
+	        ULONG *pulRes = static_cast<ULONG *>( tlsTls.pvGetValue() );
+	        xASSERT_PTR(pulRes);
+	        xASSERT_EQ(culData, ULONG(*pulRes));
+	
+	        m_bRes = tlsTls.bIsSet();
+	        xASSERT_NOT_EQ(FALSE, m_bRes);
+	
+	        delete pulRes;
+        }
     }
 
     return TRUE;
