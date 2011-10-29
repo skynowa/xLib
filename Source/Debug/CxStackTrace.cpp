@@ -41,6 +41,30 @@ CxStackTrace::~CxStackTrace() {
 *
 *****************************************************************************/
 
+void printStack( void ) {
+     unsigned int   i;
+     void         * stack[ 100 ];
+     unsigned short frames;
+     SYMBOL_INFO  * symbol;
+     HANDLE         process;
+
+     process = GetCurrentProcess();
+
+     SymInitialize( process, NULL, TRUE );
+
+     frames               = CaptureStackBackTrace( 0, 100, stack, NULL );
+     symbol               = ( SYMBOL_INFO * )calloc( sizeof( SYMBOL_INFO ) + 256 * sizeof( char ), 1 );
+     symbol->MaxNameLen   = 255;
+     symbol->SizeOfStruct = sizeof( SYMBOL_INFO );
+
+     for( i = 0; i < frames; i++ )  {
+         SymFromAddr( process, ( DWORD64 )( stack[ i ] ), 0, symbol );
+
+         printf( "%i: %s - 0x%0X\n", frames - i - 1, symbol->Name, symbol->Address );
+     }
+
+     free( symbol );
+}
 //---------------------------------------------------------------------------
 BOOL
 CxStackTrace::bGet(
@@ -62,21 +86,31 @@ CxStackTrace::bGet(
     USHORT usFramesNum      = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
     xCHECK_RET(usFramesNum == 0U, FALSE);
 
-    psiSymbol               = new SYMBOL_INFO [ sizeof( SYMBOL_INFO ) + (255UL + 1) * sizeof(TCHAR) ];
+    psiSymbol               = new SYMBOL_INFO[ sizeof( SYMBOL_INFO ) + (255UL + 1) * sizeof(TCHAR) ];
+    memset(psiSymbol, 0, sizeof(* psiSymbol));
+
     psiSymbol->MaxNameLen   = 255UL;
     psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
-
+    
     for (USHORT i = 1U; i < usFramesNum; ++ i) {
+        std::tstring sStackLine;
+
         bRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
-
-        const ULONG64      ullAddress = psiSymbol->Address;
-        const std::tstring csName     = std::tstring(psiSymbol->Name);
-
-        //std::tstring sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
-        std::tstring sStackLine = CxString::sFormat(xT("%u: %p\t%s"), usFramesNum - i - 1U, csName.c_str(), ullAddress);
+        if (FALSE == bRes) {
+            sStackLine = xT("[Unknown]");        
+        } else {
+        #if 0
+            //TODO: I don't know, why this code not work, so it's temporary disable (maybe CxString::sFormat fail)
+            sStackLine = CxString::sFormat(xT("%u: 0x%p    %s"), usFramesNum - i - 1U, psiSymbol->Address, psiSymbol->Name);
+        #else
+            sStackLine = CxString::sFormat(xT("%u: %s    0x%p"), usFramesNum - i - 1U, psiSymbol->Name, psiSymbol->Address);
+        #endif
+        }
 
         vsStack.push_back(sStackLine);
     }
+
+    (VOID)::SymCleanup(hProcess);
 
     xARRAY_DELETE(psiSymbol);
 #elif defined(xOS_ENV_UNIX)
@@ -108,7 +142,7 @@ CxStackTrace::bGet(
                 pcszSymName = dlinfo.dli_sname;
             }
 
-            sStackLine = CxString::sFormat(xT("%u: %s\t%p\t%s"), iFramesNum - i - 1, dlinfo.dli_fname, dlinfo.dli_fbase, pcszSymName);
+            sStackLine = CxString::sFormat(xT("%u: %s    %p    %s"), iFramesNum - i - 1, dlinfo.dli_fname, dlinfo.dli_fbase, pcszSymName);
 
             xBUFF_FREE(pszDemangleName);
         }
