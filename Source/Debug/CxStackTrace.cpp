@@ -1,6 +1,6 @@
 /**
  * \file   CxStackTrace.h
- * \brief  Print a demangled stack backtrace of the caller function to FILE* out
+ * \brief  get stack backtrace of the caller function
  *         http://idlebox.net/
  */
 
