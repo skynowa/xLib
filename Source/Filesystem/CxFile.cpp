@@ -1083,7 +1083,7 @@ CxFile::bGetTime(
     INT iRes = xTSTAT(csFilePath.c_str(), &stInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-    xUNUSED(ctmCreate);                                            
+    //ctmCreate - n/a                                            
     xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = stInfo.st_atime); 
     xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime); 
 #endif
@@ -1130,7 +1130,7 @@ CxFile::bSetTime(
 #elif defined(xOS_ENV_UNIX)
     utimbuf tbTimes = {0};
 
-    xUNUSED(ctmCreate);
+    //ctmCreate - n/a
     tbTimes.actime  = ctmAccess;
     tbTimes.modtime = ctmModified;
 
