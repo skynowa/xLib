@@ -884,7 +884,7 @@ CxThread::ulGetExitStatus() const {
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bSetDebugName(
-    const std::string &csName
+    const std::tstring &csName
 ) const
 {
     /////*DEBUG*/xASSERT_RET(0  < _m_ulId,       FALSE);
@@ -908,7 +908,9 @@ CxThread::bSetDebugName(
 		tagTHREADNAME_INFO tiInfo = {0};
 		tiInfo.dwType     = 0x1000;
     #if defined(xUNICODE)
-    	tiInfo.pszName    = xTS2S(csName).c_str();
+        //TODO: bSetDebugName, convert from Unicode to Ansi 
+    	////tiInfo.pszName    = xTS2S(csName).c_str();  
+        tiInfo.pszName    = "[Unknown]"; 
     #else
         tiInfo.pszName    = csName.c_str();
     #endif

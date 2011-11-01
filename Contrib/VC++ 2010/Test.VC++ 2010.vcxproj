@@ -55,10 +55,11 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</RunCodeAnalysis>
     <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</RunCodeAnalysis>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\xLib\Tests\Include;D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\xLib\Tests\Include;D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;$(IncludePath);D:\Libs\OpenSSL\OpenSSL-Win32\include</IncludePath>
     <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;D:\xLib\Tests\Source;$(SourcePath)</SourcePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\xLib\Tests\Include;$(IncludePath)</IncludePath>
     <SourcePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\xLib\Tests\Source;$(SourcePath)</SourcePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Libs\OpenSSL\OpenSSL-Win32\lib;D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC\static;D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC;C:\Program Files\MySQL\MySQL Server 5.1\lib\opt;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <BuildLog>
@@ -175,7 +176,10 @@
     <ClCompile Include="..\..\Source\Crypt\Pkcs11\Win\CxUtils.cpp" />
     <ClCompile Include="..\..\Source\Crypt\Pkcs11\Win\CxVerify.cpp" />
     <ClCompile Include="..\..\Source\Db\CxConnectionString.cpp" />
-    <ClCompile Include="..\..\Source\Db\CxMySql.cpp" />
+    <ClCompile Include="..\..\Source\Db\CxMySql.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Debug\CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxDebugger.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxLastError.cpp" />
@@ -213,12 +217,24 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Net\CxHttpClient.cpp" />
-    <ClCompile Include="..\..\Source\Net\CxMimeBody.cpp" />
-    <ClCompile Include="..\..\Source\Net\CxMimeHeader.cpp" />
-    <ClCompile Include="..\..\Source\Net\CxMimeMessage.cpp" />
-    <ClCompile Include="..\..\Source\Net\CxPop3.cpp" />
-    <ClCompile Include="..\..\Source\Net\CxSmtp.cpp" />
+    <ClCompile Include="..\..\Source\Net\CxHttpClient.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxMimeBody.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxMimeHeader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxMimeMessage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxPop3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Net\CxSmtp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Net\CxSocket.cpp" />
     <ClCompile Include="..\..\Source\Net\CxSocketInit.cpp" />
     <ClCompile Include="..\..\Source\Net\CxTcpClient.cpp" />
@@ -278,7 +294,9 @@
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxRandom.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\Pkcs11\Win\CxTest_CxPkcs11.cpp" />
     <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp" />
@@ -309,15 +327,25 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxPop3.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxPop3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocket.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpClient.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxTcpServer.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxUri.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxUri.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CWorkThread.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -416,7 +444,9 @@
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\Pkcs11\Win\CxTest_CxPkcs11.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h" />
@@ -447,15 +477,25 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxPop3.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxPop3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocket.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpClient.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxTcpServer.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxUri.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxUri.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CWorkThread.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -483,7 +523,10 @@
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
     <ClInclude Include="..\..\Include\xLib\Db\CxConnectionString.h" />
-    <ClInclude Include="..\..\Include\xLib\Db\CxMySql.h" />
+    <ClInclude Include="..\..\Include\xLib\Db\CxMySql.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\CxAutoProfiler.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxDebugger.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxLastError.h" />
@@ -513,15 +556,27 @@
     <ClInclude Include="..\..\Include\xLib\Net\CxCookiePv0.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxCookiePv1.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxDnsClient.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxHttpClient.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeBody.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeHeader.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeMessage.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxPop3.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxHttpClient.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeBody.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeHeader.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeMessage.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxPop3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxQueryList.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h" />
+    <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
     <ClInclude Include="..\..\Include\xLib\Net\CxGeoIp.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

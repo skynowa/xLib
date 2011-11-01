@@ -483,14 +483,14 @@ CxTest_CxFile::bUnit(
     //bSetVBuff
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::tstring sBuffRead;       sBuffRead.resize(1024);
+        std::string asBuffRead;       asBuffRead.resize(1024);
 
         CxFile F;
 
         m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = F.bSetVBuff(&sBuffRead.at(0), CxFile::bmFull, sBuffRead.size() * 2);
+        m_bRes = F.bSetVBuff(&asBuffRead.at(0), CxFile::bmFull, asBuffRead.size() * 2);
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
