@@ -44,10 +44,10 @@ CxStackTrace::~CxStackTrace() {
 //---------------------------------------------------------------------------
 BOOL
 CxStackTrace::bGet(
-    std::vector<std::string> *pvsStack
+    std::vector<std::tstring> *pvsStack
 )
 {
-    std::vector<std::string> vsStack;
+    std::vector<std::tstring> vsStack;
 
 #if defined(xOS_ENV_WIN)
     VOID        *pvStack[_m_culMaxFrames] = {0};
@@ -141,7 +141,7 @@ CxStackTrace::sGet(
 {
     std::tstring sRes;
 
-    std::vector<std::string> vsStack;
+    std::vector<std::tstring> vsStack;
 
     BOOL bRes = bGet(&vsStack);
     if (FALSE == bRes) {
