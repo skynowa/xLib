@@ -107,8 +107,8 @@
 
 
 //enum
-#define xENUM_ENC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) + 1 ); }
-    ///< encriment enumerator
+#define xENUM_INC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) + 1 ); }
+    ///< increment enumerator
 #define xENUM_DEC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) - 1 ); }
     ///< decriment enumerator
 
@@ -237,16 +237,12 @@
     ///< source code line number
 
 
-#if defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL) || defined(xCOMPILER_MINGW32)
+#if defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL)
     #define xFUNCTION   xT(__FUNCTION__)
 #elif defined(xCOMPILER_CODEGEAR)
     #define xFUNCTION   xT(__FUNC__)
-#elif defined(xCOMPILER_GNUC)
+#elif defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32) // possibly always true
     #define xFUNCTION   xT(__PRETTY_FUNCTION__)
-#elif defined(__func__)
-    #define xFUNCTION   xT(__func__)
-#elif defined(__FUNCSIG__)
-    #define xFUNCTION   xT(__FUNCSIG__)
 #else
     #define xFUNCTION   xT("<unknown xFUNCTION>")
 #endif
