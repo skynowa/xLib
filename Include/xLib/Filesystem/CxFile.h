@@ -15,7 +15,7 @@ class CxFile :
 {
     public:
         enum EErrorType
-                /// error type
+            /// error type
         {
             etError = - 1
         };
@@ -59,10 +59,10 @@ class CxFile :
         enum EPointerPosition
             /// pointer position
         {
+            ppError = - 1L,
             ppBegin = SEEK_SET,
             ppCurr  = SEEK_CUR,
-            ppEnd   = SEEK_END,
-            ppError = - 1L
+            ppEnd   = SEEK_END
         };
 
         enum EBufferingMode
