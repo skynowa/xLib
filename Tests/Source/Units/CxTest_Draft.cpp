@@ -23,18 +23,21 @@ CxTest_Draft::bUnit(
 )
 {
     #if xTEMP_DISABLED
-        int iTest = - 2;
+        {
+            int iTest = - 2;
 
-        xTRACEV("(i =  %i): %i", iTest, iTest);
-        xTRACEV("(i = !%i): %i", iTest, !iTest);
+            xTRACEV("(i =  %i): %i", iTest, iTest);
+            xTRACEV("(i = !%i): %i", iTest, !iTest);
+        }
     #endif
 
-
     #if xTEMP_DISABLED
-        INT iMin = CxThread::_iGetPriorityMin();
-        INT iMax = CxThread::_iGetPriorityMax();
+        {
+            INT iMin = CxThread::_iGetPriorityMin();
+            INT iMax = CxThread::_iGetPriorityMax();
 
-        xTRACEV("Tnread prior: %i ... %i", iMin, iMax);
+            xTRACEV("Tnread prior: %i ... %i", iMin, iMax);
+        }
     #endif
 
     //--------------------------------------------------
@@ -76,6 +79,10 @@ CxTest_Draft::bUnit(
 
             xTRACE(sRes.c_str());
         }
+    #endif
+
+    #if 1
+        xASSERT(FALSE);
     #endif
 
     return TRUE;
