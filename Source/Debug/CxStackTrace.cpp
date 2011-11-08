@@ -73,11 +73,11 @@ CxStackTrace::bGet(
     for (USHORT i = 1U; i < usFramesNum; ++ i) {
         bRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
 
-        const ULONG64      ullAddress = psiSymbol->Address;
+        const ULONG64       ullAddress = psiSymbol->Address;
         const std::string_t csName     = std::string_t(psiSymbol->Name);
 
         //std::string_t sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
-        std::string_t sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, csName.c_str(), ullAddress);
+        std::string_t sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, ullAddress, csName.c_str());
 
         vsStack.push_back(sStackLine);
     }
