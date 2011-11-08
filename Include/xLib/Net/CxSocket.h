@@ -212,12 +212,12 @@ class CxSocket :
 
         //VOID *, std::string_t, std::ustring
 
-        INT          iSend          (const TCHAR *pcszBuff, INT iBuffSize, INT iFlags);
+        INT          iSend          (const char_t *pcszBuff, INT iBuffSize, INT iFlags);
             ///< send data
         BOOL         bSendAll       (const std::string_t &csBuff, INT iFlags);
             ///< send data by blocks
 
-        INT          iRecv          (TCHAR *pszBuff,  INT iBuffSize, INT iFlags);
+        INT          iRecv          (char_t *pszBuff,  INT iBuffSize, INT iFlags);
             ///< recieve data
         std::string_t sRecvAll       (INT iFlags);
             ///< recieve data

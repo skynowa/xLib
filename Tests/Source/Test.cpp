@@ -118,7 +118,7 @@
 INT
 xTMAIN(
     INT    iArgCount,
-    TCHAR *paszArgs[]
+    char_t *paszArgs[]
 )
 {
     //--------------------------------------------------

@@ -16,7 +16,7 @@
 /*static*/
 BOOL
 CxChar::bIsAlphaNum(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -28,7 +28,7 @@ CxChar::bIsAlphaNum(
 /*static*/
 BOOL
 CxChar::bIsAlpha(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -40,7 +40,7 @@ CxChar::bIsAlpha(
 /*static*/
 BOOL
 CxChar::bIsControl(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -52,7 +52,7 @@ CxChar::bIsControl(
 /*static*/
 BOOL
 CxChar::bIsDigitDec(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -64,7 +64,7 @@ CxChar::bIsDigitDec(
 /*static*/
 BOOL
 CxChar::bIsDigitHex(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -76,7 +76,7 @@ CxChar::bIsDigitHex(
 /*static*/
 BOOL
 CxChar::bIsGraph(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -88,7 +88,7 @@ CxChar::bIsGraph(
 /*static*/
 BOOL
 CxChar::bIsPrint(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -100,7 +100,7 @@ CxChar::bIsPrint(
 /*static*/
 BOOL
 CxChar::bIsPunct(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -111,7 +111,7 @@ CxChar::bIsPunct(
 /*static*/
 BOOL
 CxChar::bIsSpace(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -123,7 +123,7 @@ CxChar::bIsSpace(
 /*static*/
 BOOL
 CxChar::bIsLower(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -134,7 +134,7 @@ CxChar::bIsLower(
 /*static*/
 BOOL
 CxChar::bIsUpper(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -144,9 +144,9 @@ CxChar::bIsUpper(
 }
 //---------------------------------------------------------------------------
 /*static*/
-TCHAR
+char_t
 CxChar::chToLower(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a
@@ -156,9 +156,9 @@ CxChar::chToLower(
 }
 //---------------------------------------------------------------------------
 /*static*/
-TCHAR
+char_t
 CxChar::chToUpper(
-    const TCHAR cchChar
+    const char_t cchChar
 )
 {
     /*DEBUG*/// n/a

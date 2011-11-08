@@ -62,7 +62,7 @@ CxMySQLConnection::bOptions(
     /*DEBUG*/// cpvArg   - n/a
 
 #if MYSQL_VERSION_ID < 50154
-    int iRes = mysql_options(_m_pmsConnection, cmoOption, static_cast<const TCHAR *>( cpvArg ));
+    int iRes = mysql_options(_m_pmsConnection, cmoOption, static_cast<const char_t *>( cpvArg ));
 #else
     int iRes = mysql_options(_m_pmsConnection, cmoOption, cpvArg);
 #endif
@@ -102,7 +102,7 @@ CxMySQLConnection::bConnect(
 //---------------------------------------------------------------------------
 BOOL
 CxMySQLConnection::bQuery(
-    const TCHAR *pcszSqlFormat, ...
+    const char_t *pcszSqlFormat, ...
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),    FALSE);

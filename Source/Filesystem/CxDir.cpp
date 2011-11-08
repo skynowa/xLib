@@ -166,7 +166,7 @@ CxDir::sGetCurrent() {
 
     sRes.assign(sBuff, 0, ulRes);
 #elif defined(xOS_ENV_UNIX)
-    TCHAR *pszRes = getcwd(&sBuff[0], xPATH_MAX);
+    char_t *pszRes = getcwd(&sBuff[0], xPATH_MAX);
     /*DEBUG*/xASSERT_RET(NULL         != pszRes, std::string_t());
     /*DEBUG*/xASSERT_RET(&sBuff.at(0) == pszRes, std::string_t());
 

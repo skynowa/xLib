@@ -97,7 +97,7 @@ CxLastError::sFormat(
     #if defined(xOS_LINUX)
         CHAR szBuff[64 + 1] = {0};
 
-        const TCHAR *pcszError = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        const char_t *pcszError = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(pcszError);

@@ -28,7 +28,7 @@ bDownloadURL(
     HINTERNET   hSession                = NULL;
     HINTERNET   hService                = NULL ;
     const ULONG culBuffSize             = 1024;
-    TCHAR       szBuff[culBuffSize + 1] = {0};
+    char_t       szBuff[culBuffSize + 1] = {0};
     ULONG       ulBytesRead             = 0;
 
     //hSession = ::InternetOpen(xT("Microsoft FireFox"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);

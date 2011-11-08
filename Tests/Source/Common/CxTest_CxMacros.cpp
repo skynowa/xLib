@@ -52,7 +52,7 @@ CxTest_CxMacros::bUnit(
     //xBUFF_ZERO
     xTEST_BLOCK(cullBlockLoops)
     {
-        TCHAR szBuff[255 + 1];
+        char_t szBuff[255 + 1];
 
         xBUFF_ZERO(szBuff);
 
@@ -66,7 +66,7 @@ CxTest_CxMacros::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         {
-            TCHAR szBuff[256] = {0};
+            char_t szBuff[256] = {0};
             m_uiRes = xARRAY_SIZE(szBuff);
             xTEST_EQ(256U, m_uiRes);
 
@@ -81,7 +81,7 @@ CxTest_CxMacros::bUnit(
 
         //must compile-error
         {
-            ////TCHAR *pszBuff = NULL;
+            ////char_t *pszBuff = NULL;
             ////m_uiRes = xARRAY_SIZE(pszBuff);
         }
     }
@@ -140,7 +140,7 @@ CxTest_CxMacros::bUnit(
     {
         //1
         {
-            const TCHAR *pcszBuff = xT("xxxxx");
+            const char_t *pcszBuff = xT("xxxxx");
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
             xTEST_EQ(std::string_t(pcszBuff), m_sRes);
@@ -148,7 +148,7 @@ CxTest_CxMacros::bUnit(
 
         //2
         {
-            const TCHAR *pcszBuff = xT("1236cnqwieru872692*qwer8lkl;l<l;hoihljkhlwcruqw");
+            const char_t *pcszBuff = xT("1236cnqwieru872692*qwer8lkl;l<l;hoihljkhlwcruqw");
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
             xTEST_EQ(std::string_t(pcszBuff), m_sRes);
@@ -156,7 +156,7 @@ CxTest_CxMacros::bUnit(
 
         //3
         {
-            const TCHAR *pcszBuff = xT("/n/n/n/n/n/n/n/t/t/t/t/t/t");
+            const char_t *pcszBuff = xT("/n/n/n/n/n/n/n/t/t/t/t/t/t");
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
             xTEST_EQ(std::string_t(pcszBuff), m_sRes);
@@ -164,7 +164,7 @@ CxTest_CxMacros::bUnit(
 
         //4
         {
-            const TCHAR *pcszBuff = xT("");
+            const char_t *pcszBuff = xT("");
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
             xTEST_EQ(std::string_t(pcszBuff), m_sRes);
@@ -172,7 +172,7 @@ CxTest_CxMacros::bUnit(
 
         //5
         {
-            const TCHAR *pcszBuff = NULL;
+            const char_t *pcszBuff = NULL;
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
             xTEST_EQ(std::string_t(), m_sRes);
@@ -180,7 +180,7 @@ CxTest_CxMacros::bUnit(
 
         //7
         {
-            const TCHAR cszBuff[] = xT("sdjkrtfwo34892vnm3,9rfx12j304y81-34m8905-");
+            const char_t cszBuff[] = xT("sdjkrtfwo34892vnm3,9rfx12j304y81-34m8905-");
 
             m_sRes = CxMacros::sAsTString(cszBuff);
             xTEST_EQ(std::string_t(cszBuff), m_sRes);
@@ -188,7 +188,7 @@ CxTest_CxMacros::bUnit(
 
         //8
         {
-            const TCHAR cszBuff[] = {0};
+            const char_t cszBuff[] = {0};
 
             m_sRes = CxMacros::sAsTString(cszBuff);
             xTEST_EQ(std::string_t(cszBuff), m_sRes);

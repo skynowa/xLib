@@ -252,7 +252,7 @@ CxTest_CxFile::bUnit(
     //bWriteChar, chReadChar, bUngetChar
     xTEST_BLOCK(cullBlockLoops)
     {
-        const TCHAR chChar = xT('W');
+        const char_t chChar = xT('W');
 
         CxFile F;
 
@@ -388,7 +388,7 @@ CxTest_CxFile::bUnit(
     {
         struct SWriter {
             static void
-            DoV(const CxFile &csfFile, const TCHAR *pcszFormat, ...) {
+            DoV(const CxFile &csfFile, const char_t *pcszFormat, ...) {
                 va_list args;
                 xVA_START(args, pcszFormat);
 

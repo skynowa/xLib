@@ -98,7 +98,7 @@ CxConsole::sRead() {
 
     ULONG       ulRead                  = 0UL;
     const ULONG culBuffSize             = 1024UL * 4UL;
-    TCHAR       szBuff[culBuffSize + 1] = {0};
+    char_t       szBuff[culBuffSize + 1] = {0};
 
     BOOL bRes = ::ReadConsole(_m_hStdIn, &szBuff[0], culBuffSize, &ulRead, NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes,   std::string_t());
@@ -226,7 +226,7 @@ CxConsole::bPrompt(
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
         while (true) {
-            const TCHAR chLetter = static_cast<TCHAR>( std::tcin.get() );   std::tcin.ignore();
+            const char_t chLetter = static_cast<char_t>( std::tcin.get() );   std::tcin.ignore();
 
             //asterisks
             xCHECK_DO(TRUE == cbIsVisible, bWrite(xT("*")));
@@ -300,7 +300,7 @@ CxConsole::bClear() {
     ulConSize = csbi.dwSize.X * csbi.dwSize.Y;
 
     //fill the entire screen with blanks
-    bRes = ::FillConsoleOutputCharacter(_m_hStdOut, (TCHAR)xT(' '), ulConSize, coordScreen, &cCharsWritten);
+    bRes = ::FillConsoleOutputCharacter(_m_hStdOut, (char_t)xT(' '), ulConSize, coordScreen, &cCharsWritten);
     /*DEBUG*/xASSERT_RET(FALSE != bRes,  FALSE);
 
     //get the current text attribute
@@ -363,7 +363,7 @@ CxConsole::sGetTitle() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), std::string_t());
 
     const ULONG culBuffSize             = 1024UL;
-    TCHAR       szBuff[culBuffSize + 1] = {0};
+    char_t       szBuff[culBuffSize + 1] = {0};
     ULONG       ulTitleSize             = 0UL;
 
     ulTitleSize = ::GetConsoleTitle(szBuff, culBuffSize);

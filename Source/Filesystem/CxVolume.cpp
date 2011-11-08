@@ -280,7 +280,7 @@ CxVolume::sFindNextVolume(
 
     BOOL        bRes                          = FALSE;
     const ULONG culBuffSize                   = MAX_PATH;
-    TCHAR       szVolumeName[culBuffSize + 1] = {0};
+    char_t       szVolumeName[culBuffSize + 1] = {0};
 
     bRes = ::FindNextVolume(hFindVolume, &szVolumeName[0], culBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string_t());
@@ -396,7 +396,7 @@ CxVolume::bGetLogicalDrives(
         if (1 == ((ulDrives >> i) & 0x00000001)) {
             std::string_t sDrivePath;
 
-            sDrivePath.push_back(static_cast<TCHAR>(65 + i));
+            sDrivePath.push_back(static_cast<char_t>(65 + i));
             sDrivePath.append(CxConst::xDRIVE_SEP);
 
             pvsDrives->push_back(sDrivePath);
@@ -432,7 +432,7 @@ CxVolume::bGetLogicalDrives(
         if (1 == ((ulDrives >> i) & 0x00000001)) {
             std::string_t sDrivePath;
 
-            sDrivePath.push_back(static_cast<TCHAR>(65 + i));
+            sDrivePath.push_back(static_cast<char_t>(65 + i));
             sDrivePath.append(CxConst::xDRIVE_SEP);
 
             xCHECK_DO(cdtDriveType != dtGetType(sDrivePath), continue);
@@ -549,7 +549,7 @@ CxVolume::sGetVolumeNameForVolumeMountPoint(
 {
     /*DEBUG*/xASSERT_RET(false == csVolumeMountPoint.empty(), std::string_t());
 
-    TCHAR szRes[50 + 1] = {0};
+    char_t szRes[50 + 1] = {0};
     BOOL  bRes          = FALSE;
 
     bRes = ::GetVolumeNameForVolumeMountPoint(CxPath::sSlashAppend(csVolumeMountPoint).c_str(), &szRes[0], xPATH_MAX);
@@ -574,7 +574,7 @@ CxVolume::sGetVolumePathName(
 
     BOOL        bRes                               = FALSE;
     const ULONG culBuffSize                        = MAX_PATH;
-    TCHAR        szVolumePathName[culBuffSize + 1] = {0};
+    char_t        szVolumePathName[culBuffSize + 1] = {0};
 
     bRes = ::GetVolumePathName(csFileName.c_str(), &szVolumePathName[0], culBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string_t());
@@ -628,7 +628,7 @@ CxVolume::sQueryDosDevice(
 
     ULONG       ulRes                     = 0;
     const ULONG culMax                    = MAX_PATH;
-    TCHAR        szTargetPath[culMax + 1] = {0};
+    char_t        szTargetPath[culMax + 1] = {0};
     ULONG       ulLastError               = 0;
 
     ulRes       = ::QueryDosDevice(csDeviceName.c_str(), &szTargetPath[0], culMax);
@@ -692,7 +692,7 @@ CxVolume::bSetVolumeMountPoint(
 /*static*/
 BOOL
 CxVolume::bIsValidDriveLetter(
-    TCHAR szDriveLetter
+    char_t szDriveLetter
 )
 {
     /*DEBUG*/// szDriveLetter - n/a

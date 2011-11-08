@@ -24,7 +24,7 @@ class CxTest :
 {
     public:
         VOID *                    m_pvRes;      ///< for global use
-        TCHAR                     m_chRes;      ///< for global use
+        char_t                     m_chRes;      ///< for global use
         bool                      m_blRes;      ///< for global use
         BOOL                      m_bRes;       ///< for global use
         INT                       m_iRes;       ///< for global use
@@ -40,7 +40,7 @@ class CxTest :
         DOUBLE                    m_dRes;       ///< for global use
         std::string_t              m_sRes;       ///< for global use
         std::ustring              m_usRes;      ///< for global use
-        std::vector<TCHAR>        m_vecchRes;   ///< for global use
+        std::vector<char_t>        m_vecchRes;   ///< for global use
         std::vector<std::string_t> m_vsRes;      ///< for global use
         std::map<std::string_t, std::string_t>      m_msRes;  ///< for global use
         std::multimap<std::string_t, std::string_t> m_mmsRes; ///< for global use

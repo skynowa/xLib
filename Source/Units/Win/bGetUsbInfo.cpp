@@ -102,11 +102,11 @@ bGetUsbInfo(
             bRes = FALSE;
         } else {
             ULONG ulResSize      = 256;
-            TCHAR szRes[256 + 1] = {0};
+            char_t szRes[256 + 1] = {0};
 
             if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, xT("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
-                //--*pvsInfo = vsSplit(std::string_t(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
-                bRes = CxString::bSplit(std::string_t(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvsInfo);
+                //--*pvsInfo = vsSplit(std::string_t(szRes, ulResSize / sizeof(char_t)), xT("#"));
+                bRes = CxString::bSplit(std::string_t(szRes, ulResSize / sizeof(char_t)), xT("#"), pvsInfo);
                 /*DEBUG*/xASSERT(TRUE == bRes);
             }
 

@@ -41,7 +41,7 @@ CxTest_CxTcpServer::bUnit(
 	USHORT            usPort          = 80;
 
 	std::string_t           sSendBuff       = xT("TEST_STRING");
-	TCHAR             szRecvBuff[1024 * sizeof(TCHAR)]  = {0};
+	char_t             szRecvBuff[1024 * sizeof(char_t)]  = {0};
 
 	CxSocketInit      siInit(2, 2);
 	CxTcpServer objListenSocket;

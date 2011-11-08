@@ -23,7 +23,7 @@ class CxTraceLog :
 
         BOOL     bSetEnabled(const BOOL cbFlag);
             ///< set enabled
-        BOOL     bWrite     (const TCHAR *pcszFormat, ...);
+        BOOL     bWrite     (const char_t *pcszFormat, ...);
             ///< write
 
     private:

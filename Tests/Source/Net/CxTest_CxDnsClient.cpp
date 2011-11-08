@@ -120,7 +120,7 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetProtocolByName
 	{
-		const TCHAR cszProtocolNames[][10] =
+		const char_t cszProtocolNames[][10] =
 		{
             xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"),
             xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp")
@@ -175,7 +175,7 @@ CxTest_CxDnsClient::bUnit(
 	//bGetServiceByName
 	{
 		std::string_t              csServiceName  = xT("http");
-		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+		const char_t          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
 		std::string_t              sName;
 		std::vector<std::string_t> vsAliases;
 		SHORT                siPort;
@@ -200,7 +200,7 @@ CxTest_CxDnsClient::bUnit(
 	//bGetServiceByPort
 	{
 		SHORT                     csiPort  = 20480;
-		const TCHAR               cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+		const char_t               cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
 		std::string_t              sName;
 		std::vector<std::string_t> vsAliases;
 		SHORT                     siPort = - 1;

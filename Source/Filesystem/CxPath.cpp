@@ -100,7 +100,7 @@ CxPath::sGetDll() {
         VirtualQuery(&symbol,&mbi,sizeof(mbi));
         HMODULE mod = mbi.AllocationBase;
 
-        LPTSTR buf = new TCHAR[255];
+        LPTSTR buf = new char_t[255];
         GetModuleFileName(mod,buf,255);
         Array<uchar> arr(strlen(buf));
         for(idx_t i = 0; i < strlen(buf);i++) {
@@ -623,7 +623,7 @@ CxPath::sGetAbsolute(
 
     sBuff.resize(xPATH_MAX);
 
-    TCHAR *pszRes = realpath(&csFilePath.at(0), &sBuff.at(0));
+    char_t *pszRes = realpath(&csFilePath.at(0), &sBuff.at(0));
     /*DEBUG*/xASSERT_RET(NULL != pszRes, std::string_t());
 
     sRes.assign(pszRes);

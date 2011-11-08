@@ -61,7 +61,7 @@ CxStdError::sFormat(
     sRes = CxString::sFormat(xT("%li - "), ciCode);
 
 #if defined(xOS_ENV_WIN)
-    TCHAR *pcszError = (TCHAR *)_tcserror(ciCode);
+    char_t *pcszError = (char_t *)_tcserror(ciCode);
     xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
     sRes.append(pcszError);
@@ -69,7 +69,7 @@ CxStdError::sFormat(
     #if defined(xOS_LINUX)
         CHAR szBuff[64 + 1] = {0};
 
-        const TCHAR *pcszError = strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+        const char_t *pcszError = strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(pcszError);

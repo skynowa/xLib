@@ -249,7 +249,7 @@ CxFile::bRead(
 //---------------------------------------------------------------------------
 INT
 CxFile::iWrite(
-    const TCHAR *pcszFormat, ...
+    const char_t *pcszFormat, ...
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), etError);
@@ -268,7 +268,7 @@ CxFile::iWrite(
 //---------------------------------------------------------------------------
 INT
 CxFile::iWriteV(
-    const TCHAR *pcszFormat,
+    const char_t *pcszFormat,
     va_list      vlArgs
 ) const
 {
@@ -302,7 +302,7 @@ CxFile::bReadLine(
     (*psStr).clear();
     (*psStr).resize(cuiMaxCount + 1);   //+ 1 for 0
 
-    TCHAR *pszRes = xTFGETS(&(*psStr).at(0), (*psStr).size(), pGet());
+    char_t *pszRes = xTFGETS(&(*psStr).at(0), (*psStr).size(), pGet());
     /*DEBUG*/xASSERT_RET(NULL != pszRes, FALSE);
 
     (*psStr).erase( (*psStr).end() - 1 );   //erase last char - 0
@@ -329,20 +329,20 @@ CxFile::bWriteLine(
 }
 //---------------------------------------------------------------------------
 //TODO: chReadChar
-TCHAR
+char_t
 CxFile::chReadChar() const {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
     INT iRes = xTFGETC(pGet());
-    /*DEBUG*/xASSERT_RET(xTEOF <= iRes, static_cast<TCHAR>( etError ));
+    /*DEBUG*/xASSERT_RET(xTEOF <= iRes, static_cast<char_t>( etError ));
 
-    return static_cast<TCHAR>( iRes );
+    return static_cast<char_t>( iRes );
 }
 //---------------------------------------------------------------------------
 //TODO: bWriteChar
 BOOL
 CxFile::bWriteChar(
-    const TCHAR ccChar
+    const char_t ccChar
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -357,14 +357,14 @@ CxFile::bWriteChar(
 //TODO: bUngetChar
 BOOL
 CxFile::bUngetChar(
-    const TCHAR ccChar
+    const char_t ccChar
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
 
     INT iRes = xTUNGETC(ccChar, pGet());
     /*DEBUG*/xASSERT_RET(iRes   != xTEOF,                      FALSE);
-    /*DEBUG*/xASSERT_RET(ccChar == static_cast<TCHAR>( iRes ), FALSE);
+    /*DEBUG*/xASSERT_RET(ccChar == static_cast<char_t>( iRes ), FALSE);
 
     return TRUE;
 }
@@ -1039,7 +1039,7 @@ CxFile::ullGetLines(
 
     xCHECK_RET(!ifsStream || ifsStream.fail() || !ifsStream.good() || !ifsStream.is_open() || ifsStream.eof(), 0LL);
 
-    TCHAR chChar;
+    char_t chChar;
     for (ullRes = 0LL; ifsStream.get(chChar); ) {
         xCHECK_DO(xT('\n') == chChar, ++ ullRes);
     }

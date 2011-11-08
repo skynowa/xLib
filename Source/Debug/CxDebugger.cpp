@@ -138,7 +138,7 @@ CxDebugger::bReportMake(
 /*static*/
 BOOL
 CxDebugger::bTrace(
-    const TCHAR *pcszFormat, ...
+    const char_t *pcszFormat, ...
 )
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);

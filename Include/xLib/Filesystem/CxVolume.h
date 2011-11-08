@@ -60,7 +60,7 @@ class CxVolume :
         static std::string_t sQueryDosDevice                  (const std::string_t &csDeviceName);
         static BOOL         bSetVolumeLabel                  (const std::string_t &csRootPathName, const std::string_t &cslpVolumeName);
         static BOOL         bSetVolumeMountPoint             (const std::string_t &csVolumeMountPoint, const std::string_t &csVolumeName);
-        static BOOL         bIsValidDriveLetter              (TCHAR szDriveLetter);
+        static BOOL         bIsValidDriveLetter              (char_t szDriveLetter);
     #elif defined(xOS_ENV_UNIX)
 
     #endif
