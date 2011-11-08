@@ -10,6 +10,10 @@
 #include <xLib/Sync/CxProcess.h>
 
 #if defined(xOS_ENV_WIN)
+    #ifdef xUNICODE
+        #define DBGHELP_TRANSLATE_TCHAR
+    #endif
+
     #include <DbgHelp.h>
     #pragma comment(lib, "DbgHelp.Lib")
 #elif defined(xOS_ENV_UNIX)
@@ -44,10 +48,10 @@ CxStackTrace::~CxStackTrace() {
 //---------------------------------------------------------------------------
 BOOL
 CxStackTrace::bGet(
-    std::vector<std::string> *pvsStack
+    std::vector<std::tstring> *pvsStack
 )
 {
-    std::vector<std::string> vsStack;
+    std::vector<std::tstring> vsStack;
 
 #if defined(xOS_ENV_WIN)
     VOID        *pvStack[_m_culMaxFrames] = {0};
@@ -63,8 +67,8 @@ CxStackTrace::bGet(
     xCHECK_RET(usFramesNum == 0U, FALSE);
 
     psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(TCHAR) ];
-    psiSymbol->MaxNameLen   = 255UL;
     psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
+    psiSymbol->MaxNameLen   = 255UL;
 
     for (USHORT i = 1U; i < usFramesNum; ++ i) {
         bRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
@@ -79,6 +83,8 @@ CxStackTrace::bGet(
     }
 
     xARRAY_DELETE(psiSymbol);
+
+    (VOID)::SymCleanup(hProcess);
 #elif defined(xOS_ENV_UNIX)
     #if defined(xOS_LINUX)
         VOID *pvStack[_m_culMaxFrames] = {0};
@@ -135,7 +141,7 @@ CxStackTrace::sGet(
 {
     std::tstring sRes;
 
-    std::vector<std::string> vsStack;
+    std::vector<std::tstring> vsStack;
 
     BOOL bRes = bGet(&vsStack);
     if (FALSE == bRes) {
