@@ -91,27 +91,31 @@ CxStackTrace::bGet(
     for (INT i = 1; i < iFramesNum; ++ i) {
         std::tstring sStackLine;
 
-        Dl_info dlinfo = {0};
+        #if 1
+            Dl_info dlinfo = {0};
 
-        INT iRes = dladdr(pvStack[i], &dlinfo);
-        if (0 == iRes) {
-            sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
-        } else {
-            const TCHAR *pcszSymName     = NULL;
-            TCHAR       *pszDemangleName = NULL;
-            INT          iStatus         = - 1;
-
-            pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
-            if (NULL != pszDemangleName && 0 == iStatus) {
-                pcszSymName = pszDemangleName;
+            INT iRes = dladdr(pvStack[i], &dlinfo);
+            if (0 == iRes) {
+                sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
             } else {
-                pcszSymName = dlinfo.dli_sname;
+                const TCHAR *pcszSymName     = NULL;
+                TCHAR       *pszDemangleName = NULL;
+                INT          iStatus         = - 1;
+
+                pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
+                if (NULL != pszDemangleName && 0 == iStatus) {
+                    pcszSymName = pszDemangleName;
+                } else {
+                    pcszSymName = dlinfo.dli_sname;
+                }
+
+                sStackLine = CxString::sFormat(xT("%u: %p\t%s\t%s"), iFramesNum - i - 1, pvStack[i], dlinfo.dli_fname, pcszSymName);
+
+                xBUFF_FREE(pszDemangleName);
             }
-
-            sStackLine = CxString::sFormat(xT("%u: %s\t%p\t%s"), iFramesNum - i - 1, dlinfo.dli_fname, dlinfo.dli_fbase, pcszSymName);
-
-            xBUFF_FREE(pszDemangleName);
-        }
+        #else
+            sStackLine = CxString::sFormat(xT("%u: %p\t%s"), iFramesNum - i - 1, pvStack[i], ppszSymbols[i]);
+        #endif
 
         vsStack.push_back(sStackLine);
     }
