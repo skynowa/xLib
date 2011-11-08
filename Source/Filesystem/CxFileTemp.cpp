@@ -70,7 +70,7 @@ CxFileTemp::bCreate(
         errno_t iError = xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
         /*DEBUG*/xASSERT_RET(0 == iError, FALSE);
 
-        _pfStdFile = xTFOPEN(&_m_sFilePath.at(0), CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
+        _pfStdFile = xTFOPEN(_m_sFilePath.c_str(), CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
         /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, FALSE);
     #endif
 #elif defined(xOS_ENV_UNIX)

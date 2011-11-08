@@ -241,7 +241,7 @@
     #define xFUNCTION   xT(__FUNCTION__)
 #elif defined(xCOMPILER_CODEGEAR)
     #define xFUNCTION   xT(__FUNC__)
-#elif defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32) // possibly always true
+#elif defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32)
     #define xFUNCTION   xT(__PRETTY_FUNCTION__)
 #else
     #define xFUNCTION   xT("<unknown xFUNCTION>")
