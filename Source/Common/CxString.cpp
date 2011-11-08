@@ -430,7 +430,7 @@ CxString::pvMemoryZeroSecure(
 /*static*/
 std::tstring
 CxString::sFormat(
-    LPCTSTR pcszFormat, ...
+    const TCHAR *pcszFormat, ...
 )
 {
     /*DEBUG*/// n/a
@@ -452,8 +452,8 @@ CxString::sFormat(
 #if 1
     std::tstring
     CxString::sFormatV(
-        LPCTSTR pcszFormat,
-        va_list palArgs
+        const TCHAR *pcszFormat,
+        va_list      palArgs
     )
     {
         /*DEBUG*/// n/a
@@ -615,29 +615,29 @@ CxString::sTranslitLatToRus(
 
     //translit table
     const std::tstring csDict[][2] = {
-		{xT("Й"), xT("Y")},   {xT("Ц"), xT("C")},  {xT("У"), xT("U")},
-		{xT("К"), xT("K")},   {xT("Е"), xT("E")},  {xT("Ё"), xT("E")},
-		{xT("Н"), xT("N")},   {xT("Г"), xT("G")},  {xT("Ш"), xT("SH")},
-		{xT("Щ"), xT("SH'")}, {xT("З"), xT("Z")},  {xT("Х"), xT("H")},
-		{xT("Ъ"), xT("`")},   {xT("Ф"), xT("F")},  {xT("Ы"), xT("I")},
-		{xT("В"), xT("V")},   {xT("А"), xT("A")},  {xT("П"), xT("P")},
-		{xT("Р"), xT("R")},   {xT("О"), xT("O")},  {xT("Л"), xT("L")},
-		{xT("Д"), xT("D")},   {xT("Ж"), xT("ZH")}, {xT("Э"), xT("E")},
-		{xT("Я"), xT("YA")},  {xT("Ч"), xT("4")},  {xT("С"), xT("S")},
-		{xT("М"), xT("M")},   {xT("И"), xT("I")},  {xT("Т"), xT("T")},
-		{xT("Ь"), xT("'")},   {xT("Б"), xT("B")},  {xT("Ю"), xT("YU")},
+        {xT("Й"), xT("Y")},   {xT("Ц"), xT("C")},  {xT("У"), xT("U")},
+        {xT("К"), xT("K")},   {xT("Е"), xT("E")},  {xT("Ё"), xT("E")},
+        {xT("Н"), xT("N")},   {xT("Г"), xT("G")},  {xT("Ш"), xT("SH")},
+        {xT("Щ"), xT("SH'")}, {xT("З"), xT("Z")},  {xT("Х"), xT("H")},
+        {xT("Ъ"), xT("`")},   {xT("Ф"), xT("F")},  {xT("Ы"), xT("I")},
+        {xT("В"), xT("V")},   {xT("А"), xT("A")},  {xT("П"), xT("P")},
+        {xT("Р"), xT("R")},   {xT("О"), xT("O")},  {xT("Л"), xT("L")},
+        {xT("Д"), xT("D")},   {xT("Ж"), xT("ZH")}, {xT("Э"), xT("E")},
+        {xT("Я"), xT("YA")},  {xT("Ч"), xT("4")},  {xT("С"), xT("S")},
+        {xT("М"), xT("M")},   {xT("И"), xT("I")},  {xT("Т"), xT("T")},
+        {xT("Ь"), xT("'")},   {xT("Б"), xT("B")},  {xT("Ю"), xT("YU")},
 
-		{xT("й"), xT("y")},   {xT("ц"), xT("c")},  {xT("у"), xT("u")},
-		{xT("к"), xT("k")},   {xT("е"), xT("e")},  {xT("ё"), xT("e")},
-		{xT("н"), xT("n")},   {xT("г"), xT("g")},  {xT("ш"), xT("sh")},
-		{xT("щ"), xT("sh'")}, {xT("з"), xT("z")},  {xT("х"), xT("h")},
-		{xT("ъ"), xT("`")},   {xT("ф"), xT("f")},  {xT("ы"), xT("i")},
-		{xT("в"), xT("v")},   {xT("а"), xT("a")},  {xT("п"), xT("p")},
-		{xT("р"), xT("r")},   {xT("о"), xT("o")},  {xT("л"), xT("l")},
-		{xT("д"), xT("d")},   {xT("ж"), xT("zh")}, {xT("э"), xT("e")},
-		{xT("я"), xT("ya")},  {xT("ч"), xT("4")},  {xT("с"), xT("s")},
-		{xT("м"), xT("m")},   {xT("и"), xT("i")},  {xT("т"), xT("t")},
-		{xT("ь"), xT("'")},   {xT("б"), xT("b")},  {xT("ю"), xT("yu")}
+        {xT("й"), xT("y")},   {xT("ц"), xT("c")},  {xT("у"), xT("u")},
+        {xT("к"), xT("k")},   {xT("е"), xT("e")},  {xT("ё"), xT("e")},
+        {xT("н"), xT("n")},   {xT("г"), xT("g")},  {xT("ш"), xT("sh")},
+        {xT("щ"), xT("sh'")}, {xT("з"), xT("z")},  {xT("х"), xT("h")},
+        {xT("ъ"), xT("`")},   {xT("ф"), xT("f")},  {xT("ы"), xT("i")},
+        {xT("в"), xT("v")},   {xT("а"), xT("a")},  {xT("п"), xT("p")},
+        {xT("р"), xT("r")},   {xT("о"), xT("o")},  {xT("л"), xT("l")},
+        {xT("д"), xT("d")},   {xT("ж"), xT("zh")}, {xT("э"), xT("e")},
+        {xT("я"), xT("ya")},  {xT("ч"), xT("4")},  {xT("с"), xT("s")},
+        {xT("м"), xT("m")},   {xT("и"), xT("i")},  {xT("т"), xT("t")},
+        {xT("ь"), xT("'")},   {xT("б"), xT("b")},  {xT("ю"), xT("yu")}
     };
 
     std::tstring sRes;

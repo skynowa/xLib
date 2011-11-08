@@ -22,7 +22,7 @@ CxCriticalSection CxConsoleLog::_ms_csConsole;
 //---------------------------------------------------------------------------
 /*explicit*/
 CxConsoleLog::CxConsoleLog(
-	const BOOL cbIsUseTimeStr
+    const BOOL cbIsUseTimeStr
 ) :
     _m_bIsUseTimeStr(cbIsUseTimeStr)
 {
@@ -36,7 +36,7 @@ CxConsoleLog::~CxConsoleLog() {
 //---------------------------------------------------------------------------
 BOOL
 CxConsoleLog::bWrite(
-    LPCTSTR pcszFormat, ...
+    const TCHAR *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);

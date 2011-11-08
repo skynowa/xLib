@@ -38,6 +38,7 @@ Library/G++_win/Release/
 ##### G++_linux #####
 Contrib/G++_linux/Debug/
 Contrib/G++_linux/Release/
+Contrib/G++_linux/.settings/
 
 Library/G++_linux/Debug/
 Library/G++_linux/Release/

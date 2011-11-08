@@ -137,9 +137,9 @@ class CxFile :
             ///< get file path
 
         //read, write
-        size_t               uiRead       (LPVOID pvBuff,        const size_t cuiCount) const;
+        size_t               uiRead       (VOID *pvBuff,        const size_t cuiCount) const;
             ///< read block of data
-        size_t               uiWrite      (const LPVOID pcvBuff, const size_t cuiCount) const;
+        size_t               uiWrite      (const VOID *pcvBuff, const size_t cuiCount) const;
             ///< write block of data
         BOOL                 bRead        (std::ustring *psBuff) const;
             ///< read to std::ustring
@@ -147,9 +147,9 @@ class CxFile :
             ///< write from std::ustring
         BOOL                 bRead        (std::tstring *psBuff) const;
             ///< read to std::tstring
-        INT                  iWrite       (LPCTSTR pcszFormat, ...) const;
+        INT                  iWrite       (const TCHAR *pcszFormat, ...) const;
             ///< write formatted output to stream
-        INT                  iWriteV      (LPCTSTR pcszFormat, va_list arg) const;
+        INT                  iWriteV      (const TCHAR *pcszFormat, va_list arg) const;
             ///< write formatted variable argument list to stream
         BOOL                 bReadLine    (std::tstring *psStr, const size_t cuiMaxCount) const;
             ///< read string to newline or to the end of file
@@ -173,7 +173,7 @@ class CxFile :
             ///< set stream position indicator
         LONG                 liGetPosition() const;
             ///< get current position in stream
-        BOOL                 bSetVBuff    (LPSTR pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
+        BOOL                 bSetVBuff    (CHAR *pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
             ///< change stream buffering
 
     #if defined(xOS_ENV_WIN)

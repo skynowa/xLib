@@ -29,10 +29,10 @@ class CxSocket :
             afNetbios     = AF_NETBIOS,
             afInet6       = AF_INET6,
             afIrdA        = AF_IRDA
-			#if !defined(xCOMPILER_MINGW32)
-				,
-				afBluetooth   = AF_BTH
-			#endif
+            #if !defined(xCOMPILER_MINGW32)
+                ,
+                afBluetooth   = AF_BTH
+            #endif
         #elif defined(xOS_ENV_UNIX)
             #if defined(xOS_FREEBSD)
                 afLocal     = PF_LOCAL,
@@ -168,7 +168,7 @@ class CxSocket :
             /// options
         {
             SOCKET_TIMEOUT   = 0,       ///< (1000000 / 10)
-            SOCKET_BUFF_SIZE = 32768	///< 32 KB
+            SOCKET_BUFF_SIZE = 32768    ///< 32 KB
         };
 
                      CxSocket       ();
@@ -177,7 +177,7 @@ class CxSocket :
             ///< destructor
 
         BOOL         bAssign        (SOCKET scktSocket);
-        	///< assign to another socket
+            ///< assign to another socket
 
         /****************************************************************************
         * operators
@@ -185,7 +185,7 @@ class CxSocket :
         *****************************************************************************/
 
         CxSocket &   operator =     (SOCKET s);
-    		///< operator =
+            ///< operator =
                      operator SOCKET();
             ///< operator SOCKET
 
@@ -196,13 +196,13 @@ class CxSocket :
         *****************************************************************************/
 
         BOOL         bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
-    		///< creates a socket that is bound to a specific transport service provider
+            ///< creates a socket that is bound to a specific transport service provider
         SOCKET       iGetSocket     () const;
-    		///< get socket
+            ///< get socket
         BOOL         bIsValid       () const;
-    		///< checking for validness
+            ///< checking for validness
         BOOL         bClose         ();
-    		///< close
+            ///< close
 
 
         /****************************************************************************
@@ -212,22 +212,22 @@ class CxSocket :
 
         //VOID *, std::tstring, std::ustring
 
-        INT          iSend          (LPCTSTR pcszBuff, INT iBuffSize, INT iFlags);
-    		///< send data
+        INT          iSend          (const TCHAR *pcszBuff, INT iBuffSize, INT iFlags);
+            ///< send data
         BOOL         bSendAll       (const std::tstring &csBuff, INT iFlags);
-    		///< send data by blocks
+            ///< send data by blocks
 
-        INT          iRecv          (LPTSTR  pszBuff,  INT iBuffSize, INT iFlags);
-    		///< recieve data
+        INT          iRecv          (TCHAR *pszBuff,  INT iBuffSize, INT iFlags);
+            ///< recieve data
         std::tstring sRecvAll       (INT iFlags);
-    		///< recieve data
+            ///< recieve data
         std::tstring sRecvAll       (INT iFlags, const std::tstring &csDelimiter);
-    		///< recive data to delimiter, includs it
+            ///< recive data to delimiter, includs it
 
-        INT          iSendBytes     (LPSTR pszBuff, INT iMessageLength);
-    		///< send bytes
-        INT          iReceiveBytes  (LPSTR pszBuff, INT iStillToReceive);
-    		///< recieve bytes
+        INT          iSendBytes     (CHAR *pszBuff, INT iMessageLength);
+            ///< send bytes
+        INT          iReceiveBytes  (CHAR *pszBuff, INT iStillToReceive);
+            ///< recieve bytes
 
 
         /****************************************************************************
@@ -236,9 +236,9 @@ class CxSocket :
         *****************************************************************************/
 
         BOOL         bGetPeerName   (std::tstring *psPeerAddr, USHORT *pusPeerPort);
-    		///< get address of the peer to which a socket is connected
+            ///< get address of the peer to which a socket is connected
         BOOL         bGetSocketName (std::tstring *psSocketAddr, USHORT *pusSocketPort);
-    		///< get local name for a socket
+            ///< get local name for a socket
 
         /****************************************************************************
         * static
@@ -247,12 +247,12 @@ class CxSocket :
 
         ////getsockopt
         static INT   iSelect        (INT nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
-    		///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
+            ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
         static INT   iGetLastError  ();
-    		///< get error status for the last operation that failed
+            ///< get error status for the last operation that failed
 
     protected:
-        SOCKET       _m_puiSocket;	///< handle to socket
+        SOCKET       _m_puiSocket;    ///< handle to socket
         SHORT        _m_siFamily;   ///< family
         std::tstring _m_sIp;        ///< IP
         USHORT       _m_usPort;     ///< port
@@ -264,86 +264,86 @@ class CxSocket :
 
 
 #if xTODO
-	//http://www.yolinux.com/TUTORIALS/Sockets.html
+    //http://www.yolinux.com/TUTORIALS/Sockets.html
 #endif
 
 #if xTODO
-	std::tstring sStr = xT("Some string!!!");
-	::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring::value_type), 0);
+    std::tstring sStr = xT("Some string!!!");
+    ::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring::value_type), 0);
 
-	sizeof(std::tstring::value_type)
+    sizeof(std::tstring::value_type)
 #endif
 
 #if xTODO
-	---Server-----
+    ---Server-----
 
-	Initialize Winsock.
-	Create a socket.
-	Bind the socket.
-	Listen on the socket for a client.
-	Accept a connection from a client.
-	Receive and send data.
-	Disconnect.
-	---Client----
+    Initialize Winsock.
+    Create a socket.
+    Bind the socket.
+    Listen on the socket for a client.
+    Accept a connection from a client.
+    Receive and send data.
+    Disconnect.
+    ---Client----
 
-	Initialize Winsock.
-	Create a socket.
-	Connect to the server.
-	Send and receive data.
-	Disconnect.
+    Initialize Winsock.
+    Create a socket.
+    Connect to the server.
+    Send and receive data.
+    Disconnect.
 #endif
 
 #if xTODO
-	INT
-	CxSocket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending, SOCKET *pSocketForExceptions) {
-		int nSocketsReady = 0;
+    INT
+    CxSocket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending, SOCKET *pSocketForExceptions) {
+        int nSocketsReady = 0;
 
-		fd_set FdSetReceive;    FD_ZERO(&FdSetReceive);
-		fd_set FdSetSend;       FD_ZERO(&FdSetSend);
-		fd_set FdSetError;      FD_ZERO(&FdSetError);
+        fd_set FdSetReceive;    FD_ZERO(&FdSetReceive);
+        fd_set FdSetSend;       FD_ZERO(&FdSetSend);
+        fd_set FdSetError;      FD_ZERO(&FdSetError);
 
-		if (pSocketForReceiving) {
-			FD_SET(*pSocketForReceiving, &FdSetReceive);
-		}
-		if (pSocketForSending) {
-			FD_SET(*pSocketForSending, &FdSetSend);
-		}
-		if (pSocketForExceptions) {
-			FD_SET(*pSocketForExceptions, &FdSetError);
-		}
+        if (pSocketForReceiving) {
+            FD_SET(*pSocketForReceiving, &FdSetReceive);
+        }
+        if (pSocketForSending) {
+            FD_SET(*pSocketForSending, &FdSetSend);
+        }
+        if (pSocketForExceptions) {
+            FD_SET(*pSocketForExceptions, &FdSetError);
+        }
 
-		TIMEVAL tv;
-		TIMEVAL *ptv = NULL;
+        TIMEVAL tv;
+        TIMEVAL *ptv = NULL;
 
-		if (_m_tvTimeout) {
-			tv.tv_sec =  _m_tvTimeout / 1000;
-			tv.tv_usec = _m_tvTimeout * 1000 - tv.tv_sec * 1000000;
-			ptv = &tv;
-		} else {
-			ptv = NULL; // NULL for blocking operation (never times out)
-		}
+        if (_m_tvTimeout) {
+            tv.tv_sec =  _m_tvTimeout / 1000;
+            tv.tv_usec = _m_tvTimeout * 1000 - tv.tv_sec * 1000000;
+            ptv = &tv;
+        } else {
+            ptv = NULL; // NULL for blocking operation (never times out)
+        }
 
-		nSocketsReady = select(0, &FdSetReceive, &FdSetSend, &FdSetError, ptv);
+        nSocketsReady = select(0, &FdSetReceive, &FdSetSend, &FdSetError, ptv);
 
-		//If the operation timed out, set a more natural error message
-		if (nSocketsReady == 0) {
-			SetLastError(WSAETIMEDOUT);
-			nSocketsReady = SOCKET_ERROR;
-		}
+        //If the operation timed out, set a more natural error message
+        if (nSocketsReady == 0) {
+            SetLastError(WSAETIMEDOUT);
+            nSocketsReady = SOCKET_ERROR;
+        }
 
-		return nSocketsReady;
-	}
+        return nSocketsReady;
+    }
 #endif
 
 #if xTODO
-	procedure FlushRecvBufferUntil(s:TSOCKET;condition:Char);
-	var
-		iReceiveRes : integer;
-		cDummy : char;
-		begin
-	repeat
-		iReceiveRes := recv(s, cDummy, sizeof(cDummy), 0);
-		until NOT ((iReceiveRes<>SOCKET_ERROR) and (iReceiveRes<>0) and
-		(cDummy<>condition));
-	end;
+    procedure FlushRecvBufferUntil(s:TSOCKET;condition:Char);
+    var
+        iReceiveRes : integer;
+        cDummy : char;
+        begin
+    repeat
+        iReceiveRes := recv(s, cDummy, sizeof(cDummy), 0);
+        until NOT ((iReceiveRes<>SOCKET_ERROR) and (iReceiveRes<>0) and
+        (cDummy<>condition));
+    end;
 #endif

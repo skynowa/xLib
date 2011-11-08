@@ -58,9 +58,9 @@ CxLocale::bSetCurrent(
 {
     /*DEBUG*/// csLocale - n/a
 
-    LPCTSTR pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
+    const TCHAR *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
 
-    LPCTSTR pcszRes = NULL;
+    const TCHAR *pcszRes = NULL;
 
     pcszRes = xTSETLOCALE(LC_ALL, pcszLocale);
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, FALSE);

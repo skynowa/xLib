@@ -17,18 +17,18 @@ class CxTraceLog :
 {
     public:
         explicit CxTraceLog (const BOOL cbIsUseTimeStr);
-        	///< constructor
+            ///< constructor
         virtual ~CxTraceLog ();
-        	///< destructor
+            ///< destructor
 
         BOOL     bSetEnabled(const BOOL cbFlag);
-        	///< set enabled
-        BOOL     bWrite     (LPCTSTR pcszFormat, ...);
-        	///< write
+            ///< set enabled
+        BOOL     bWrite     (const TCHAR *pcszFormat, ...);
+            ///< write
 
     private:
-        BOOL     _m_bIsEnable;		///< is enabled
-        BOOL     _m_bIsUseTimeStr;	///< is use time string
+        BOOL     _m_bIsEnable;        ///< is enabled
+        BOOL     _m_bIsUseTimeStr;    ///< is use time string
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxTraceLogH

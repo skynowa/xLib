@@ -65,6 +65,28 @@
     #else
         #pragma message("xLib: xANSI")
     #endif
+
+    //--------------------------------------------------
+    //debug mode
+    #if xDEBUG_MODE_MSGBOX_PLAIN
+        #pragma message("xLib: xDEBUG_MODE_MSGBOX_PLAIN")
+    #elif xDEBUG_MODE_MSGBOX_FORMATED
+        #pragma message("xLib: xDEBUG_MODE_MSGBOX_FORMATED")
+    #elif xDEBUG_MODE_STDOUT_PLAIN
+        #pragma message("xLib: xDEBUG_MODE_STDOUT_PLAIN")
+    #elif xDEBUG_MODE_STDOUT_HTML
+        #pragma message("xLib: xDEBUG_MODE_STDOUT_HTML")
+    #elif xDEBUG_MODE_LOGGING_PLAIN
+        #pragma message("xLib: xDEBUG_MODE_LOGGING_PLAIN")
+    #elif xDEBUG_MODE_LOGGING_HTML
+        #pragma message("xLib: xDEBUG_MODE_LOGGING_HTML")
+    #elif xDEBUG_MODE_NOLOGGING
+        #pragma message("xLib: xDEBUG_MODE_NOLOGGING")
+    #elif xDEBUG_MODE_NO
+        #pragma message("xLib: xDEBUG_MODE_NO")
+    #else
+        #pragma message("xLib: unsupported debug mode")
+    #endif
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_xTracingH
