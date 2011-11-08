@@ -232,7 +232,7 @@ CxSocket::iRecv(
     /*DEBUG*/xASSERT_RET(0                              != iRes,                                      etError);  //gracefully closed
     /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(TCHAR) >= iRes,                                      etError);
 #elif defined(xOS_ENV_UNIX)
-    ssize_t iRes = recv(_m_puiSocket, (TCHAR *)pszBuff, iBuffSize * sizeof(TCHAR), iFlags);
+    ssize_t iRes = recv(_m_puiSocket, (CHAR *)pszBuff, iBuffSize * sizeof(TCHAR), iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRes,                                      etError);
     /*DEBUG*/xASSERT_RET(0                              != iRes,                                      etError);  //gracefully closed
     /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(TCHAR) >= iRes,                                      etError);
@@ -265,7 +265,7 @@ CxSocket::sRecvAll(
         xCHECK_DO(0 == ulArg,          break);
         xCHECK_DO(cuiBuffSize < ulArg, ulArg = cuiBuffSize);
 
-        iRes = recv(_m_puiSocket, (TCHAR *)&szBuff[0], ulArg, 0);
+        iRes = recv(_m_puiSocket, (CHAR *)&szBuff[0], ulArg, 0);
         xCHECK_DO(iRes <= 0, break);
 
         sRes.append(szBuff, iRes);
