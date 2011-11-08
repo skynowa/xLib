@@ -30,8 +30,8 @@ CxTest_CxStdError::bUnit(
 
         for (INT i = 0; i < ciMaxErrors; ++ i) {
             INT iCode = CxStdError::iGet();
-            xASSERT_EQ(0, CxStdError::iGet());
-            xASSERT_LESS_EQ(0, iCode);
+            xTEST_EQ(0, CxStdError::iGet());
+            xTEST_LESS_EQ(0, iCode);
         }
     }
 
@@ -43,7 +43,7 @@ CxTest_CxStdError::bUnit(
 
         for (INT i = 0; i < ciMaxErrors; ++ i) {
             std::tstring sError = CxStdError::sGet();
-            xASSERT_EQ(false, sError.empty());
+            xTEST_EQ(false, sError.empty());
         }
     }
 
@@ -55,7 +55,7 @@ CxTest_CxStdError::bUnit(
 
         for (INT i = 0; i < ciMaxErrors; ++ i) {
             m_bRes = CxStdError::bSet(i);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         }
     }
 
@@ -67,12 +67,12 @@ CxTest_CxStdError::bUnit(
 
         for (INT i = 0; i < ciMaxErrors; ++ i) {
             m_bRes = CxStdError::bSet(i);
-			xASSERT_DIFF(FALSE, m_bRes);
+			xTEST_DIFF(FALSE, m_bRes);
 
 			m_bRes = CxStdError::bReset();
-			xASSERT_DIFF(FALSE, m_bRes);
+			xTEST_DIFF(FALSE, m_bRes);
 
-			xASSERT_EQ(0, CxStdError::iGet());
+			xTEST_EQ(0, CxStdError::iGet());
         }
     }
 
@@ -88,7 +88,7 @@ CxTest_CxStdError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_sRes = CxStdError::sFormat(i);
-            xASSERT_EQ(false, m_sRes.empty());
+            xTEST_EQ(false, m_sRes.empty());
 
             //xTRACEV(xT("\CxStdError::sFormat(%li) = %s (size = %li)"), i, m_sRes.c_str(), m_sRes.size() - 4);
         }

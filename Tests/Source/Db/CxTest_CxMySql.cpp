@@ -54,7 +54,7 @@ CxTest_CxMySql::bUnit(
     //bIsValid
     {
         m_bRes = conConn.bIsValid();
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -64,7 +64,7 @@ CxTest_CxMySql::bUnit(
         const void  *cpvArg   = NULL;
 
         m_bRes = conConn.bOptions(moOption, cpvArg);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -78,7 +78,7 @@ CxTest_CxMySql::bUnit(
             csDbName = xT("");
 
             m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, ulClientFlag);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         }
     }
 
@@ -87,7 +87,7 @@ CxTest_CxMySql::bUnit(
     {
         //create Db
         m_bRes = conConn.bQuery("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8", csDbName.c_str());
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         //create table
         m_bRes = conConn.bQuery(
@@ -100,7 +100,7 @@ CxTest_CxMySql::bUnit(
                                 "       PRIMARY KEY(`f_id`)"
                                 "   )"),
                                 sTableName.c_str());
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         //insert records
         m_bRes = conConn.bQuery(
@@ -113,11 +113,11 @@ CxTest_CxMySql::bUnit(
                                 "    ('Vasya', 24),"
                                 "    ('Sasha', 20)"),
                                 sTableName.c_str());
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         //select all records
         m_bRes = conConn.bQuery(xT("SELECT * FROM `t_main`"));
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -125,21 +125,21 @@ CxTest_CxMySql::bUnit(
     {
         m_uiRes = conConn.uiFieldCount();
         //xTRACE("uiFieldsNum: %i", m_uiRes);
-        xASSERT_EQ(3U, m_uiRes);
+        xTEST_EQ(3U, m_uiRes);
     }
 
     //--------------------------------------------------
     //uiGetLastError
     {
         m_uiRes = conConn.uiGetLastError();
-        xASSERT_EQ(0U, m_uiRes);
+        xTEST_EQ(0U, m_uiRes);
     }
 
     //--------------------------------------------------
     //sGetLastErrorStr
     {
         m_sRes = conConn.sGetLastErrorStr();
-        xASSERT_EQ(false, m_sRes.empty());
+        xTEST_EQ(false, m_sRes.empty());
     }
 
 
@@ -161,7 +161,7 @@ CxTest_CxMySql::bUnit(
     //bIsValid
     {
         m_bRes = recRec.bIsValid();
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -169,7 +169,7 @@ CxTest_CxMySql::bUnit(
     {
         m_uiRes = recRec.uiFieldsNum();
         //xTRACE("uiFieldsNum: %i", m_uiRes);
-        xASSERT_EQ(3U, m_uiRes);
+        xTEST_EQ(3U, m_uiRes);
     }
 
     //--------------------------------------------------
@@ -177,7 +177,7 @@ CxTest_CxMySql::bUnit(
     {
         my_ulonglong ullRes = recRec.ullRowsNum();
         //xTRACE("ullRowsNum: %lli", ullRes);
-        xASSERT_EQ(5ULL, ullRes);
+        xTEST_EQ(5ULL, ullRes);
     }
 
     //--------------------------------------------------
@@ -186,7 +186,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchField(&mfField);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -196,7 +196,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchFieldDirect(uiFieldNumber, &mfField);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -205,7 +205,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchFields(&mfField);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     #if xTODO
@@ -215,7 +215,7 @@ CxTest_CxMySql::bUnit(
             MYSQL_ROW mrRow;
 
             m_bRes = recRec.bFetchRow(&mrRow);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         }
 
         //--------------------------------------------------
@@ -224,7 +224,7 @@ CxTest_CxMySql::bUnit(
             ULONG *pulFieldLengths = NULL;
 
             m_bRes = recRec.bFetchLengths(&pulFieldLengths);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
             xASSERT(NULL  != pulFieldLengths);
         }
     #endif
@@ -236,7 +236,7 @@ CxTest_CxMySql::bUnit(
 
         for (my_ulonglong i = 0; i < recRec.ullRowsNum(); ++ i) {
             m_bRes = recRec.bFetchRow(&vsRow);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             //CxString::vStdVectorPrintT(vsRow);
         }
@@ -246,11 +246,11 @@ CxTest_CxMySql::bUnit(
     //drop Db
     {
         m_bRes = conConn.bQuery(xT("DROP TABLE IF EXISTS `%s`"), sTableName.c_str());
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         #if xTODO
             m_bRes = conConn.bQuery(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -258,7 +258,7 @@ CxTest_CxMySql::bUnit(
     //bClose
     {
         m_bRes = conConn.bClose();
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     return TRUE;

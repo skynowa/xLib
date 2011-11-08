@@ -35,7 +35,7 @@ CxTest_CxShell::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxShell::bFindExecutable(xT("win.ini"), xT("C:"));
-        xASSERT_EQ(false, m_sRes.empty());
+        xTEST_EQ(false, m_sRes.empty());
     }
 
     //-------------------------------------
@@ -79,7 +79,7 @@ CxTest_CxShell::bUnit(
     xTEST_BLOCK(cullBlockLoops) {
         #if (xWINVER >= xWIN32_2K)
             m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
-            xASSERT_EQ(std::tstring(xT("C:\\WINDOWS\\Fonts")), m_sRes);
+            xTEST_EQ(std::tstring(xT("C:\\WINDOWS\\Fonts")), m_sRes);
         #endif //xWIN32_2K
     }
 #endif

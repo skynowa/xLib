@@ -36,12 +36,12 @@ CxTest_bGetUsbInfo::bUnit(
         std::vector<std::tstring> vsInfo;
 
         m_bRes = bGetUsbInfo(csDrive, &vsInfo);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
-        xASSERT_EQ(std::tstring(xT("\\??\\USB")),                              vsInfo.at(0));
-        xASSERT_EQ(std::tstring(xT("Vid_058f&Pid_6387")),                      vsInfo.at(1));
-        xASSERT_EQ(std::tstring(xT("3DH5R5EL")),                               vsInfo.at(2));
-        xASSERT_EQ(std::tstring(xT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}")), vsInfo.at(3));
+        xTEST_EQ(std::tstring(xT("\\??\\USB")),                              vsInfo.at(0));
+        xTEST_EQ(std::tstring(xT("Vid_058f&Pid_6387")),                      vsInfo.at(1));
+        xTEST_EQ(std::tstring(xT("3DH5R5EL")),                               vsInfo.at(2));
+        xTEST_EQ(std::tstring(xT("{a5dcbf10-6530-11d2-901f-00c04fb951ed}")), vsInfo.at(3));
 
         //assert(sRes == "\\??\\USB#Vid_058f&Pid_6387#3DH5R5EL#{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
         //std::cout << "sGetFlashSerialFromDrive: " << sRes.c_str() << std::endl;

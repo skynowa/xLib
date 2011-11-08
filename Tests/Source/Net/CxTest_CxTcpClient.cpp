@@ -47,32 +47,32 @@ CxTest_CxTcpClient::bUnit(
 	//-------------------------------------
 	//bCreate
 	m_bRes = objSocket.bCreate(afAf, tpType, ptProtocol);
-	xASSERT_DIFF(FALSE, m_bRes);
+	xTEST_DIFF(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bIsServerAlive
 	////m_bRes = objSocket.bIsServerAlive(sIp, usPort);
-	////xASSERT_DIFF(FALSE, m_bRes);
+	////xTEST_DIFF(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bDnsParse
 	m_bRes = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-	xASSERT_DIFF(FALSE, m_bRes);
+	xTEST_DIFF(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bConnect
 	m_bRes = objSocket.bConnect(sIp, usPort);
-	xASSERT_DIFF(FALSE, m_bRes);
+	xTEST_DIFF(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bIsReadable
 	m_bRes = objSocket.bIsReadable();
-	xASSERT_EQ(FALSE, m_bRes);
+	xTEST_EQ(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bIsWritable
 	m_bRes = objSocket.bIsWritable();
-	xASSERT_DIFF(FALSE, m_bRes);
+	xTEST_DIFF(FALSE, m_bRes);
 
 	//-------------------------------------
 	//bGetPeerName
@@ -81,7 +81,7 @@ CxTest_CxTcpClient::bUnit(
 		USHORT  _usPort = 0;
 
 		m_bRes = objSocket.bGetPeerName(&_sIp, &_usPort);
-		xASSERT_DIFF(FALSE, m_bRes);
+		xTEST_DIFF(FALSE, m_bRes);
 	}
 
 	//-------------------------------------
@@ -91,13 +91,13 @@ CxTest_CxTcpClient::bUnit(
 		USHORT  _usPort = 0;
 
 		m_bRes = objSocket.bGetSocketName(&_sIp, &_usPort);
-		xASSERT_DIFF(FALSE, m_bRes);
+		xTEST_DIFF(FALSE, m_bRes);
 	}
 
 	//-------------------------------------
 	//bIsReadible
 	////m_bRes = objSocket.bIsReadable();
-	////xASSERT_DIFF(FALSE, m_bRes);
+	////xTEST_DIFF(FALSE, m_bRes);
 
 	for (; ;) {
 		std::tstring sText;
@@ -110,23 +110,23 @@ CxTest_CxTcpClient::bUnit(
 		//-------------------------------------
 		//iSend
 		m_iRes = objSocket.iSend(sText.c_str(), sText.size(), 0);
-		xASSERT_DIFF((INT)CxTcpClient::etError, m_iRes);
+		xTEST_DIFF((INT)CxTcpClient::etError, m_iRes);
 	}
 
 	//-------------------------------------
 	//iRecv
 	////m_iRes = objSocket.iRecv(&szRecvBuff[0], ARRAYSIZE(szRecvBuff), 0);
-	////xASSERT_DIFF(CxTcpClient::etError, m_iRes);
+	////xTEST_DIFF(CxTcpClient::etError, m_iRes);
 
 	//-------------------------------------
 	//bClose
 	m_bRes = objSocket.bClose();
-	xASSERT_DIFF(FALSE, m_bRes);
+	xTEST_DIFF(FALSE, m_bRes);
 
 	//-------------------------------------
 	//iGetLastError
 	m_iRes = CxTcpClient::iGetLastError();
-	//xASSERT_DIFF(FALSE, m_bRes);
+	//xTEST_DIFF(FALSE, m_bRes);
 
 	return TRUE;
 }

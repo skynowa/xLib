@@ -52,7 +52,7 @@ CxTest_CxString::bUnit(
             std::tostringstream osOut;   osOut << usStr;
             std::tstring sVal2 = osOut.str();
 
-            xASSERT_EQ(sVal1, sVal2);
+            xTEST_EQ(sVal1, sVal2);
         }
     }
 
@@ -70,7 +70,7 @@ CxTest_CxString::bUnit(
 
         std::tostringstream osOut;   osOut << m_vsRes;
         //xTRACEV(xT("\toperator << for std::vector: %s"), osOut.str().c_str());
-        xASSERT_EQ(false, osOut.str().empty());
+        xTEST_EQ(false, osOut.str().empty());
 
         m_vsRes.clear();
     }
@@ -89,7 +89,7 @@ CxTest_CxString::bUnit(
 
         std::tostringstream osOut;   osOut << m_msRes;
         //xTRACEV(xT("\toperator << for std::map: %s"), osOut.str().c_str());
-        xASSERT_EQ(false, osOut.str().empty());
+        xTEST_EQ(false, osOut.str().empty());
 
         m_msRes.clear();
     }
@@ -108,7 +108,7 @@ CxTest_CxString::bUnit(
 
         std::tostringstream osOut;   osOut << m_mmsRes;
         //xTRACEV(xT("\toperator << for std::multimap: %s"), osOut.str().c_str());
-        xASSERT_EQ(false, osOut.str().empty());
+        xTEST_EQ(false, osOut.str().empty());
 
         m_mmsRes.clear();
     }
@@ -118,25 +118,25 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::lexical_cast(1);
-        xASSERT_EQ(std::tstring(xT("1")), m_sRes);
+        xTEST_EQ(std::tstring(xT("1")), m_sRes);
 
         m_sRes = CxString::lexical_cast(xT('A'));
-        xASSERT_EQ(std::tstring(xT("A")), m_sRes);
+        xTEST_EQ(std::tstring(xT("A")), m_sRes);
 
         m_sRes = CxString::lexical_cast(xT("-"));
-        xASSERT_EQ(std::tstring(xT("-")), m_sRes);
+        xTEST_EQ(std::tstring(xT("-")), m_sRes);
 
         m_sRes = CxString::lexical_cast(0.0);
-        xASSERT_EQ(std::tstring(xT("0")), m_sRes);
+        xTEST_EQ(std::tstring(xT("0")), m_sRes);
 
         m_sRes = CxString::lexical_cast(- 5);
-        xASSERT_EQ(std::tstring(xT("-5")), m_sRes);
+        xTEST_EQ(std::tstring(xT("-5")), m_sRes);
 
         m_sRes = CxString::lexical_cast(true);
-        xASSERT_EQ(std::tstring(xT("1")), m_sRes);
+        xTEST_EQ(std::tstring(xT("1")), m_sRes);
 
         m_sRes = CxString::lexical_cast(false);
-        xASSERT_EQ(std::tstring(xT("0")), m_sRes);
+        xTEST_EQ(std::tstring(xT("0")), m_sRes);
     }
 
     //-------------------------------------
@@ -144,28 +144,28 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::lexical_cast<std::tstring>(xT("String"));
-        xASSERT_EQ(std::tstring(xT("String")), m_sRes);
+        xTEST_EQ(std::tstring(xT("String")), m_sRes);
 
         m_iRes = CxString::lexical_cast<INT>(xT("7"));
-        xASSERT_EQ(7, m_iRes);
+        xTEST_EQ(7, m_iRes);
 
         m_ulRes = CxString::lexical_cast<ULONG>(xT("123"));
-        xASSERT_EQ(123UL, m_ulRes);
+        xTEST_EQ(123UL, m_ulRes);
 
         m_ullRes = CxString::lexical_cast<ULONGLONG>(xT("123"));
-        xASSERT_EQ(123ULL, m_ullRes);
+        xTEST_EQ(123ULL, m_ullRes);
 
         m_dRes = CxString::lexical_cast<double>(xT("5.3"));
-        xASSERT_EQ(5.3, m_dRes);
+        xTEST_EQ(5.3, m_dRes);
 
         ////m_bRes = lexical_cast<bool>(xT("true"));
-        ////xASSERT_EQ(5.3, m_dRes);
+        ////xTEST_EQ(5.3, m_dRes);
 
         ////m_bRes = lexical_cast<bool>(xT("false"));
-        ////xASSERT_EQ(5.3, m_dRes);
+        ////xTEST_EQ(5.3, m_dRes);
 
         ////m_uiRes = CxString::lexical_cast<size_t>( std::tstring() );
-        ////xASSERT_EQ(0U, m_uiRes);
+        ////xTEST_EQ(0U, m_uiRes);
     }
 
     //-------------------------------------
@@ -173,73 +173,73 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::lexical_cast(1033, 8);
-        xASSERT_EQ(std::tstring(xT("2011")), m_sRes);
+        xTEST_EQ(std::tstring(xT("2011")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033, 10);
-        xASSERT_EQ(std::tstring(xT("1033")), m_sRes);
+        xTEST_EQ(std::tstring(xT("1033")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033, 16);
-        xASSERT_EQ(std::tstring(xT("409")), m_sRes);
+        xTEST_EQ(std::tstring(xT("409")), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033L, 2);
-        ////xASSERT_EQ(std::tstring(xT("10000001001")), m_sRes);
+        ////xTEST_EQ(std::tstring(xT("10000001001")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033L, 8);
-        xASSERT_EQ(std::tstring(xT("2011")), m_sRes);
+        xTEST_EQ(std::tstring(xT("2011")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033L, 10);
-        xASSERT_EQ(std::tstring(xT("1033")), m_sRes);
+        xTEST_EQ(std::tstring(xT("1033")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033L, 16);
-        xASSERT_EQ(std::tstring(xT("409")), m_sRes);
+        xTEST_EQ(std::tstring(xT("409")), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033UL, 2);
-        ////xASSERT_EQ(std::tstring(xT("10000001001")), m_sRes);
+        ////xTEST_EQ(std::tstring(xT("10000001001")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033UL, 8);
-        xASSERT_EQ(std::tstring(xT("2011")), m_sRes);
+        xTEST_EQ(std::tstring(xT("2011")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033UL, 10);
-        xASSERT_EQ(std::tstring(xT("1033")), m_sRes);
+        xTEST_EQ(std::tstring(xT("1033")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033UL, 16);
-        xASSERT_EQ(std::tstring(xT("409")), m_sRes);
+        xTEST_EQ(std::tstring(xT("409")), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033LL, 2);
-        ////xASSERT_EQ(xT("10000001001") == m_sRes);
+        ////xTEST_EQ(xT("10000001001") == m_sRes);
 
         m_sRes = CxString::lexical_cast(1033LL, 8);
-        xASSERT_EQ(std::tstring(xT("2011")), m_sRes);
+        xTEST_EQ(std::tstring(xT("2011")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033LL, 10);
-        xASSERT_EQ(std::tstring(xT("1033")), m_sRes);
+        xTEST_EQ(std::tstring(xT("1033")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033LL, 16);
-        xASSERT_EQ(std::tstring(xT("409")), m_sRes);
+        xTEST_EQ(std::tstring(xT("409")), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_sRes = CxString::sIntToStr(1033ULL, 2);
-        ////xASSERT_EQ(std::tstring(xT("10000001001")), m_sRes);
+        ////xTEST_EQ(std::tstring(xT("10000001001")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033ULL, 8);
-        xASSERT_EQ(std::tstring(xT("2011")), m_sRes);
+        xTEST_EQ(std::tstring(xT("2011")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033ULL, 10);
-        xASSERT_EQ(std::tstring(xT("1033")), m_sRes);
+        xTEST_EQ(std::tstring(xT("1033")), m_sRes);
 
         m_sRes = CxString::lexical_cast(1033ULL, 16);
-        xASSERT_EQ(std::tstring(xT("409")), m_sRes);
+        xTEST_EQ(std::tstring(xT("409")), m_sRes);
     }
 
     //-------------------------------------
@@ -263,7 +263,7 @@ CxTest_CxString::bUnit(
                 const std::tstring sHexStr = CxString::lexical_cast(sRes, caiBases[b]);
                 const std::tstring sStdStr = CxString::lexical_cast<std::tstring>(sHexStr, caiBases[b]);
 
-                xASSERT_EQ(sRes, sStdStr);
+                xTEST_EQ(sRes, sStdStr);
             }
         }
     }
@@ -273,10 +273,10 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sBoolToStr(TRUE);
-        xASSERT_EQ(std::tstring(xT("TRUE")), m_sRes);
+        xTEST_EQ(std::tstring(xT("TRUE")), m_sRes);
 
         m_sRes = CxString::sBoolToStr(FALSE);
-        xASSERT_EQ(std::tstring(xT("FALSE")), m_sRes);
+        xTEST_EQ(std::tstring(xT("FALSE")), m_sRes);
     }
 
     //-------------------------------------
@@ -284,28 +284,28 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxString::bStrToBool(xT("true"));
-        xASSERT_EQ(TRUE, m_bRes);
+        xTEST_EQ(TRUE, m_bRes);
 
         m_bRes = CxString::bStrToBool(xT("trUe"));
-        xASSERT_EQ(TRUE, m_bRes);
+        xTEST_EQ(TRUE, m_bRes);
 
         m_bRes = CxString::bStrToBool(xT("TRUE"));
-        xASSERT_EQ(TRUE, m_bRes);
+        xTEST_EQ(TRUE, m_bRes);
 
         m_bRes = CxString::bStrToBool(xT("false"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bStrToBool(xT("FAlse"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bStrToBool(xT("FALSE"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bStrToBool(xT(" TRUE "));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bStrToBool(xT("qwertyuiop[]"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -322,11 +322,11 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sTrimLeftChars(sTestData[i][0], xT("#"));
             std::tstring sStr2 = CxString::sTrimLeftChars(sTestData[i][1], xT("#"));
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr3 = sTestData[i][0];
             std::tstring sStr4 = CxString::sTrimLeftChars(sTestData[i][1], xT("#"));
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -344,12 +344,12 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sTrimRightChars(sTestData[i][0], xT("#"));
             std::tstring sStr2 = CxString::sTrimRightChars(sTestData[i][1], xT("#"));
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr3 = sTestData[i][0];
             std::tstring sStr4 = CxString::sTrimRightChars(sTestData[i][1], xT("#"));
 
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -367,11 +367,11 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sTrimChars(sTestData[i][0], xT("#+-"));
             std::tstring sStr2 = CxString::sTrimChars(sTestData[i][1], xT("#+-"));
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr4 = sTestData[i][0];
             std::tstring sStr3 = CxString::sTrimChars(sTestData[i][1], xT("#+-"));
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -390,11 +390,11 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sTrimSpace(sTestData[i][0]);
             std::tstring sStr2 = CxString::sTrimSpace(sTestData[i][1]);
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr3 = CxString::sTrimSpace(sTestData[i][1]);
             std::tstring sStr4 = sTestData[i][0];
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -419,11 +419,11 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sRemoveEol(sTestData[i][0]);
             std::tstring sStr2 = CxString::sRemoveEol(sTestData[i][1]);
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr3 = CxString::sRemoveEol(sTestData[i][1]);
             std::tstring sStr4 = sTestData[i][0];
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -432,31 +432,31 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sReplaceAll(xT("aTaaaEaST_aSTaRINaaGaa_1a"), xT("a"), xT(""));
-        xASSERT_EQ(std::tstring(xT("TEST_STRING_1")), m_sRes);
+        xTEST_EQ(std::tstring(xT("TEST_STRING_1")), m_sRes);
 
         m_sRes = CxString::sReplaceAll(xT("TEST_STRING_1"), xT("T"), xT("a"));
-        xASSERT_EQ(std::tstring(xT("aESa_SaRING_1")), m_sRes);
+        xTEST_EQ(std::tstring(xT("aESa_SaRING_1")), m_sRes);
 
         m_sRes = CxString::sReplaceAll(xT("D:/XVCL/Include\\XVCL/Units/Gui/vSpeedButton_LoadDrives.cpp"), xT("/"), xT("_"));
-        xASSERT_EQ(std::tstring(xT("D:_XVCL_Include\\XVCL_Units_Gui_vSpeedButton_LoadDrives.cpp")), m_sRes);
+        xTEST_EQ(std::tstring(xT("D:_XVCL_Include\\XVCL_Units_Gui_vSpeedButton_LoadDrives.cpp")), m_sRes);
 
         m_sRes = CxString::sReplaceAll(xT("D:/XVCL/Include\\XVCL/Units/Gui/vSpeedButton_LoadDrives.cpp"), xT("\\"), xT("_"));
-        xASSERT_EQ(std::tstring(xT("D:/XVCL/Include_XVCL/Units/Gui/vSpeedButton_LoadDrives.cpp")), m_sRes);
+        xTEST_EQ(std::tstring(xT("D:/XVCL/Include_XVCL/Units/Gui/vSpeedButton_LoadDrives.cpp")), m_sRes);
 
         m_sRes = CxString::sReplaceAll(xT("_one_two_three_"), xT("two"), xT(""));
-        xASSERT_EQ(std::tstring(xT("_one__three_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_one__three_")), m_sRes);
 
         m_sRes = CxString::sReplaceAll(xT("_one_two_three_"), xT("two"), xT("fife"));
-        xASSERT_EQ(std::tstring(xT("_one_fife_three_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_one_fife_three_")), m_sRes);
 
         m_sRes = CxString::sReplaceAll(xT("_one_two_three_"), xT("two"), xT("^"));
-        xASSERT_EQ(std::tstring(xT("_one_^_three_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_one_^_three_")), m_sRes);
 
         m_sRes = CxString::sReplaceAll(xT("aaaaffaaaa"), xT("ff"), xT("ffff"));
-        xASSERT_EQ(std::tstring(xT("aaaaffffaaaa")), m_sRes);
+        xTEST_EQ(std::tstring(xT("aaaaffffaaaa")), m_sRes);
 
         m_sRes = CxString::sReplaceAll(xT("aaaaffaaaa"), xT("ff"), xT("f"));
-        xASSERT_EQ(std::tstring(xT("aaaafaaaa")), m_sRes);
+        xTEST_EQ(std::tstring(xT("aaaafaaaa")), m_sRes);
     }
 
     //-------------------------------------
@@ -464,13 +464,13 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sReplaceAll(xT(" one test string "), xT(" "), xT("_"));
-        xASSERT_EQ(m_sRes, std::tstring(xT("_one_test_string_")));
+        xTEST_EQ(m_sRes, std::tstring(xT("_one_test_string_")));
 
         m_sRes = CxString::sReplaceAll(xT(" one test string "), xT(" "), xT(""));
-        xASSERT_EQ(m_sRes, std::tstring(xT("oneteststring")));
+        xTEST_EQ(m_sRes, std::tstring(xT("oneteststring")));
 
         m_sRes = CxString::sReplaceAll(xT(" one test string "), xT(' '), xT('-'));
-        xASSERT_EQ(m_sRes, std::tstring(xT("-one-test-string-")));
+        xTEST_EQ(m_sRes, std::tstring(xT("-one-test-string-")));
     }
 
     //-------------------------------------
@@ -478,22 +478,22 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sRemoveAll(xT(" one test string "), xT(" "));
-        xASSERT_EQ(std::tstring(xT("oneteststring")), m_sRes);
+        xTEST_EQ(std::tstring(xT("oneteststring")), m_sRes);
 
         m_sRes = CxString::sRemoveAll(xT(" one test string "), xT(" "));
-        xASSERT_EQ(std::tstring(xT("oneteststring")), m_sRes);
+        xTEST_EQ(std::tstring(xT("oneteststring")), m_sRes);
 
         m_sRes = CxString::sRemoveAll(xT("one test strin g"),  xT(" "));
-        xASSERT_EQ(std::tstring(xT("oneteststring")), m_sRes);
+        xTEST_EQ(std::tstring(xT("oneteststring")), m_sRes);
 
         m_sRes = CxString::sRemoveAll(xT(" one test string "), xT("string"));
-        xASSERT_EQ(std::tstring(xT(" one test  ")), m_sRes);
+        xTEST_EQ(std::tstring(xT(" one test  ")), m_sRes);
 
         m_sRes = CxString::sRemoveAll(xT(" one test string "), xT("string"));
-        xASSERT_EQ(std::tstring(xT(" one test  ")), m_sRes);
+        xTEST_EQ(std::tstring(xT(" one test  ")), m_sRes);
 
         m_sRes = CxString::sRemoveAll(xT("one test stringg"),  xT("string"));
-        xASSERT_EQ(std::tstring(xT("one test g")), m_sRes);
+        xTEST_EQ(std::tstring(xT("one test g")), m_sRes);
     }
 
     //-------------------------------------
@@ -503,14 +503,14 @@ CxTest_CxString::bUnit(
         std::vector<std::tstring> vsText;
 
         m_bRes = CxString::bSplit(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vsText);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bSplit(xT("Key+"), xT("+"), &vsText);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         vsText.clear();
         m_bRes = CxString::bSplit(xT(""), xT("+"), &vsText);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -524,7 +524,7 @@ CxTest_CxString::bUnit(
         vsRes.push_back(xT("333"));
 
         m_sRes = CxString::sJoin(vsRes, xT("-"));
-        xASSERT_EQ(std::tstring(xT("111--222-333")), m_sRes);
+        xTEST_EQ(std::tstring(xT("111--222-333")), m_sRes);
     }
 
     //-------------------------------------
@@ -538,7 +538,7 @@ CxTest_CxString::bUnit(
         vsRes.push_back(xT("333"));
 
         m_sRes = CxString::sJoin(vsRes, xT('-'));
-        xASSERT_EQ(std::tstring(xT("111--222-333")), m_sRes);
+        xTEST_EQ(std::tstring(xT("111--222-333")), m_sRes);
     }
 
     //-------------------------------------
@@ -549,67 +549,67 @@ CxTest_CxString::bUnit(
 
         sForCut = xT("To: =?windows-1251?B?x+Di4+7w7uTt//8=?= <_Alca@meta.ua_>");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
-        xASSERT_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
 
         sForCut = xT("<_Alca@meta.ua_>To: =?windows-1251?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
-        xASSERT_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
 
         sForCut = xT("To: =?windows-125<_Alca@meta.ua_>1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
-        xASSERT_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
 
         sForCut = xT("To: =?windows-125<_Alc<a>@meta>.ua_>1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
-        xASSERT_EQ(std::tstring(xT("_Alc<a>@meta>.ua_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_Alc<a>@meta>.ua_")), m_sRes);
 
         sForCut = xT("To: =?windows-125_Alca@meta.ua_>1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         sForCut = xT("To: =?windows-125<_Alca@meta.ua_1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         sForCut = xT("To: =?windows-125>_Alca@meta.ua_<1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         sForCut = xT("To: =?windows-125_Alca<>@meta.ua_1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<"), xT(">"));
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         sForCut = xT("To: =?windows-1251?B?x+Di4+7w7uTt//8=?= <<_Alca@meta.ua_>>");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
-        xASSERT_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
 
         sForCut = xT("<<_Alca@meta.ua_>>To: =?windows-1251?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
-        xASSERT_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
 
         sForCut = xT("To: =?windows-125<<_Alca@meta.ua_>>1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
-        xASSERT_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_Alca@meta.ua_")), m_sRes);
 
         sForCut = xT("To: =?windows-125<<_Alc<<a>>@meta>>.ua_>1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
-        xASSERT_EQ(std::tstring(xT("_Alc<<a>>@meta")), m_sRes);
+        xTEST_EQ(std::tstring(xT("_Alc<<a>>@meta")), m_sRes);
 
         sForCut = xT("To: =?windows-125_Alca@meta.ua_>>1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         sForCut = xT("To: =?windows-125<<_Alca@meta.ua_1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         sForCut = xT("To: =?windows-125>>_Alca@meta.ua_<<1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         sForCut = xT("To: =?windows-125_Alca<<>>@meta.ua_1?B?x+Di4+7w7uTt//8=?= ");
         m_sRes = CxString::sCut(sForCut, xT("<<"), xT(">>"));
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
     }
 
     //-------------------------------------
@@ -620,43 +620,43 @@ CxTest_CxString::bUnit(
 
 
         m_sRes = CxString::sCut(sForCut, 0, 1);
-        xASSERT_EQ(std::tstring(xT("0")), m_sRes);
+        xTEST_EQ(std::tstring(xT("0")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 0, 9);
-        xASSERT_EQ(std::tstring(xT("012345678")), m_sRes);
+        xTEST_EQ(std::tstring(xT("012345678")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 4, 5);
-        xASSERT_EQ(std::tstring(xT("4")), m_sRes);
+        xTEST_EQ(std::tstring(xT("4")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 4, 6);
-        xASSERT_EQ(std::tstring(xT("45")), m_sRes);
+        xTEST_EQ(std::tstring(xT("45")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 6, 6);
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 6, 4);
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         m_sRes = CxString::sCut(xT(""), 1, 2);
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 0);
-        xASSERT_EQ(std::tstring(xT("0123456789")), m_sRes);
+        xTEST_EQ(std::tstring(xT("0123456789")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 4);
-        xASSERT_EQ(std::tstring(xT("456789")), m_sRes);
+        xTEST_EQ(std::tstring(xT("456789")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 9);
-        xASSERT_EQ(std::tstring(xT("9")), m_sRes);
+        xTEST_EQ(std::tstring(xT("9")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut, 10);
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         m_sRes = CxString::sCut(xT(""), 1);
-        xASSERT_EQ(std::tstring(xT("")), m_sRes);
+        xTEST_EQ(std::tstring(xT("")), m_sRes);
 
         m_sRes = CxString::sCut(sForCut);
-        xASSERT_EQ(std::tstring(xT("0123456789")), m_sRes);
+        xTEST_EQ(std::tstring(xT("0123456789")), m_sRes);
     }
 
     //-------------------------------------
@@ -673,11 +673,11 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sToLowerCase(sTestData[i][0]);
             std::tstring sStr2 = CxString::sToLowerCase(sTestData[i][1]);
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr3 = CxString::sToLowerCase(sTestData[i][1]);
             std::tstring sStr4 = sTestData[i][0];
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -695,11 +695,11 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sToUpperCase(sTestData[i][0]);
             std::tstring sStr2 = CxString::sToUpperCase(sTestData[i][1]);
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr3 = CxString::sToUpperCase(sTestData[i][1]);
             std::tstring sStr4 = sTestData[i][0];
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -717,11 +717,11 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sToLowerCase(sTestData[i][0], sTestData[i][0].size());
             std::tstring sStr2 = CxString::sToLowerCase(sTestData[i][1], sTestData[i][1].size());
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr3 = CxString::sToLowerCase(sTestData[i][1], sTestData[i][1].size() + 1000);
             std::tstring sStr4 = sTestData[i][0];
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -739,11 +739,11 @@ CxTest_CxString::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::tstring sStr1 = CxString::sToUpperCase(sTestData[i][0], sTestData[i][0].size());
             std::tstring sStr2 = CxString::sToUpperCase(sTestData[i][1], sTestData[i][1].size());
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
 
             std::tstring sStr3 = CxString::sToUpperCase(sTestData[i][1], sTestData[i][1].size() - 1000);
             std::tstring sStr4 = sTestData[i][0];
-            xASSERT_EQ(sStr3, sStr4);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -754,49 +754,49 @@ CxTest_CxString::bUnit(
         std::tstring sData;
 
         m_sRes = CxString::sFormat(xT("qqqq-wwww [%i]"), 1000);
-        xASSERT_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000]")));
+        xTEST_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000]")));
 
         m_sRes = CxString::sFormat(xT("qqqq-wwww [%f]"), 1000.0);
         #if defined(xOS_ENV_WIN)
-            xASSERT_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000,000000]")));
+            xTEST_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000,000000]")));
         #elif defined(xOS_ENV_UNIX)
-            xASSERT_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000.000000]")));
+            xTEST_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000.000000]")));
         #endif
 
         m_sRes = CxString::sFormat(xT("qqqq-wwww [%s]"), xT("1000"));
-        xASSERT_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000]")));
+        xTEST_EQ(m_sRes, std::tstring(xT("qqqq-wwww [1000]")));
 
         m_sRes = CxString::sFormat(xT("qqqq-wwww [%i]"), -1000);
-        xASSERT_EQ(m_sRes, std::tstring(xT("qqqq-wwww [-1000]")));
+        xTEST_EQ(m_sRes, std::tstring(xT("qqqq-wwww [-1000]")));
 
         m_sRes = CxString::sFormat(xT("Characters: %c %c"), xT('a'), 65);
-        xASSERT_EQ(m_sRes, std::tstring(xT("Characters: a A")));
+        xTEST_EQ(m_sRes, std::tstring(xT("Characters: a A")));
 
         m_sRes = CxString::sFormat(xT("Decimals: %d %ld"), 1977, 650000L);
-        xASSERT_EQ(m_sRes, std::tstring(xT("Decimals: 1977 650000")));
+        xTEST_EQ(m_sRes, std::tstring(xT("Decimals: 1977 650000")));
 
         m_sRes = CxString::sFormat(xT("Preceding with blanks: %10d"), 1977);
-        xASSERT_EQ(m_sRes, std::tstring(xT("Preceding with blanks:       1977")));
+        xTEST_EQ(m_sRes, std::tstring(xT("Preceding with blanks:       1977")));
 
         m_sRes = CxString::sFormat(xT("Preceding with zeros: %010d"), 1977);
-        xASSERT_EQ(m_sRes, std::tstring(xT("Preceding with zeros: 0000001977")));
+        xTEST_EQ(m_sRes, std::tstring(xT("Preceding with zeros: 0000001977")));
 
         m_sRes = CxString::sFormat(xT("Some different radixes: %d %x %o %#x %#o"), 100, 100, 100, 100, 100);
-        xASSERT_EQ(m_sRes, std::tstring(xT("Some different radixes: 100 64 144 0x64 0144")));
+        xTEST_EQ(m_sRes, std::tstring(xT("Some different radixes: 100 64 144 0x64 0144")));
 
         m_sRes = CxString::sFormat(xT("floats: %4.2f %+.0e %E"), 3.1416, 3.1416, 3.1416);
-        xASSERT_EQ(false, m_sRes.empty());
+        xTEST_EQ(false, m_sRes.empty());
 
         m_sRes = CxString::sFormat(xT("Width trick: %*d"), 5, 10);
-        xASSERT_EQ(m_sRes, std::tstring(xT("Width trick:    10")));
+        xTEST_EQ(m_sRes, std::tstring(xT("Width trick:    10")));
 
         sData = xT("0A string2344565600");
         m_sRes = CxString::sFormat(xT("%s"), sData.c_str());
-        xASSERT_EQ(m_sRes, sData);
+        xTEST_EQ(m_sRes, sData);
 
         sData = xT("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
         m_sRes = CxString::sFormat(xT("%s"), sData.c_str());
-        xASSERT_EQ(sData, m_sRes);
+        xTEST_EQ(sData, m_sRes);
 
         //various string size
         {
@@ -806,8 +806,8 @@ CxTest_CxString::bUnit(
                 std::tstring m_sRes = CxString::sFormat(xT("%s"), _sData.c_str());
                 //xSTD_COUT("_sData (" << _sData.size() << ") = " << _sData << "\nm_sRes (" << m_sRes.size() << ") = " << m_sRes);
 
-                xASSERT_EQ(m_sRes.size(), _sData.size());
-                xASSERT_EQ(m_sRes,        _sData);
+                xTEST_EQ(m_sRes.size(), _sData.size());
+                xTEST_EQ(m_sRes,        _sData);
             }
         }
     }
@@ -824,10 +824,10 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxString::sMinimize(xT("55555wwwww"), 5);
-        xASSERT_EQ(std::tstring(xT("55...")), m_sRes);
+        xTEST_EQ(std::tstring(xT("55...")), m_sRes);
 
         m_sRes = CxString::sMinimize(xT("55555wwwww00000"), 20);
-        xASSERT_EQ(std::tstring(xT("55555wwwww00000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("55555wwwww00000")), m_sRes);
     }
 
     //-------------------------------------
@@ -836,38 +836,38 @@ CxTest_CxString::bUnit(
     {
         //must TRUE
         m_bRes = CxString::bCompareNoCase(xT(""),     xT(""));
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("xxx"),  xT("XXX"));
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("111"),  xT("111"));
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("eee"),  xT("EeE"));
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("WWW"),  xT("wwW"));
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         //maust FALSE
         m_bRes = CxString::bCompareNoCase(xT("ccc"),  xT("CCCz"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("!!!!!"),  xT("@@@@@@"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("$$$$$"), xT("sdfgsdg"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("&&&&&"),  xT("&&&&&????"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("_+#$^%^&*^&*("), xT("@#$%TY(J^HGYT"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("dddd"), xT("d"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
     }
 
 
@@ -888,10 +888,10 @@ CxTest_CxString::bUnit(
     {
         #if xTODO
             m_sRes = CxString::sTranslitLatToRus(xT(""));
-            xASSERT_EQ(std::tstring(), m_sRes);
+            xTEST_EQ(std::tstring(), m_sRes);
 
             m_sRes = CxString::sTranslitLatToRus(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll"));
-            xASSERT_EQ(std::tstring(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll")), m_sRes);
+            xTEST_EQ(std::tstring(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll")), m_sRes);
         #endif
     }
 
@@ -1053,9 +1053,9 @@ CxTest_CxString::bUnit(
     {
         #if defined(xOS_ENV_WIN)
             m_sRes = CxString::sCreateGuid();
-            xASSERT_EQ(false, m_sRes.empty());
+            xTEST_EQ(false, m_sRes.empty());
         #elif defined(xOS_ENV_UNIX)
-            ////xASSERT_EQ(true, m_sRes.empty());
+            ////xTEST_EQ(true, m_sRes.empty());
         #endif
     }
 
@@ -1064,16 +1064,16 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxString::bIsRepeated(xT("yyyyyyyyyyyy"));
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bIsRepeated(xT("111111111111"));
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bIsRepeated(xT("uuuuuiuuuuuuuuuuuu"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = CxString::bIsRepeated(xT("000000000111111111"));
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
     }
 
 
@@ -1103,7 +1103,7 @@ CxTest_CxString::bUnit(
 
                 sUtf8 = CxString::sConvertCodePage(csAnsiStr[i], CP_ACP,  CP_UTF8);
                 sAnsi = CxString::sConvertCodePage(sUtf8,        CP_UTF8, CP_ACP);
-                xASSERT_EQ(csAnsiStr[i], sAnsi);
+                xTEST_EQ(csAnsiStr[i], sAnsi);
 
 
                 //1251(WIN)  <-> 20866(KOI-8r)
@@ -1112,7 +1112,7 @@ CxTest_CxString::bUnit(
 
                 sKoiStr = CxString::sConvertCodePage(csAnsiStr[i], 1251,  20866);
                 sWinStr = CxString::sConvertCodePage(sKoiStr,      20866, 1251);
-                xASSERT_EQ(csAnsiStr[i], sWinStr);
+                xTEST_EQ(csAnsiStr[i], sWinStr);
             #elif defined(xOS_ENV_UNIX)
                 //TODO: sConvertCodePage
                 //xNOT_IMPLEMENTED_RET(RET_VALUE);
@@ -1128,7 +1128,7 @@ CxTest_CxString::bUnit(
 
         #if defined(xOS_ENV_WIN)
             sRes = CxString::asCharToOemBuff(xT("Boss, hello? "));
-            xASSERT_EQ(std::string("Boss, hello? "), sRes);
+            xTEST_EQ(std::string("Boss, hello? "), sRes);
         #elif defined(xOS_ENV_UNIX)
             //TODO: sCharToOemBuff
         #endif
@@ -1142,7 +1142,7 @@ CxTest_CxString::bUnit(
 
         #if defined(xOS_ENV_WIN)
             sRes = CxString::sOemToCharBuff(("1111, hdbhjgjk hkl, jl.,kh."));
-            xASSERT_EQ(std::tstring(xT("1111, hdbhjgjk hkl, jl.,kh.")), sRes);
+            xTEST_EQ(std::tstring(xT("1111, hdbhjgjk hkl, jl.,kh.")), sRes);
         #elif defined(xOS_ENV_UNIX)
             //TODO: sOemToCharBuff
         #endif

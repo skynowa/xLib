@@ -32,7 +32,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxProcess::TxId ulRes = CxProcess::ulGetCurrId();
-        xASSERT_LESS_EQ(0UL, (ULONG)ulRes);
+        xTEST_LESS_EQ(0UL, (ULONG)ulRes);
     }
 
     //--------------------------------------------------
@@ -40,7 +40,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxProcess::TxId ulRes = CxProcess::ulGetCurrParentId();
-        xASSERT_LESS_EQ(0UL, (ULONG)ulRes);
+        xTEST_LESS_EQ(0UL, (ULONG)ulRes);
     }
 
     //--------------------------------------------------
@@ -56,7 +56,7 @@ CxTest_CxProcess::bUnit(
         #endif
 
         ////m_bRes = CxProcess::bExec(csFilePath, csCmdLine.c_str(), 0);
-        ////xASSERT_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -64,7 +64,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_bRes = CxProcess::bExit(CxProcess::ulGetCurrParentId(), 0);
-        ////xASSERT_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -72,7 +72,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
-        //xASSERT_DIFF(FALSE, m_bRes);
+        //xTEST_DIFF(FALSE, m_bRes);
     }
 
     return TRUE;

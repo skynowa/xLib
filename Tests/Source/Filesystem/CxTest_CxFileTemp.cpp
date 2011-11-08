@@ -35,19 +35,19 @@ CxTest_CxFileTemp::bUnit(
         #endif
 
         m_liRes = fJobber.liGetSize();
-        xASSERT_EQ(0L, m_liRes);
+        xTEST_EQ(0L, m_liRes);
 
         m_bRes = fJobber.bWriteLine(xT("qwertyuiop"));
-        xASSERT_EQ(TRUE, m_bRes);
+        xTEST_EQ(TRUE, m_bRes);
 
         m_bRes = fJobber.bIsEmpty();
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = fJobber.bClear();
-        xASSERT_EQ(TRUE, m_bRes);
+        xTEST_EQ(TRUE, m_bRes);
 
         m_bRes = fJobber.bClose();
-        xASSERT_EQ(TRUE, m_bRes);
+        xTEST_EQ(TRUE, m_bRes);
     }
 
     return TRUE;

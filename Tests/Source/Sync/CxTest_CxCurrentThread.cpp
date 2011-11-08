@@ -30,7 +30,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxThread::TxId idRes = CxCurrentThread::ulGetId();
-        xASSERT_LESS(0UL, (ULONG)idRes);
+        xTEST_LESS(0UL, (ULONG)idRes);
     }
 
     //--------------------------------------------------
@@ -38,7 +38,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
-        xASSERT_DIFF(0UL, (ULONG)hRes);
+        xTEST_DIFF(0UL, (ULONG)hRes);
     }
 
     //--------------------------------------------------
@@ -46,7 +46,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxThread::TxId idRes = CxCurrentThread::ulGetId();
-        xASSERT_LESS(0UL, (ULONG)idRes);
+        xTEST_LESS(0UL, (ULONG)idRes);
     }
 
     //--------------------------------------------------
@@ -75,7 +75,7 @@ CxTest_CxCurrentThread::bUnit(
             const BOOL           cbRes = (BOOL)(ULONG)aulData[i][1];
 
             m_bRes = CxCurrentThread::bIsCurrent(culId);
-            xASSERT_EQ(cbRes, m_bRes);
+            xTEST_EQ(cbRes, m_bRes);
         }
     }
 
@@ -84,7 +84,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
-        xASSERT_LESS((ULONG)0, (ULONG)hRes);
+        xTEST_LESS((ULONG)0, (ULONG)hRes);
     }
 
     //--------------------------------------------------
@@ -92,7 +92,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxCurrentThread::bYield();
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -112,11 +112,11 @@ CxTest_CxCurrentThread::bUnit(
             CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
 
             m_bRes = CxCurrentThread::bSleep(cuiMsec);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
 
-            xASSERT_GREATER_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
+            xTEST_GREATER_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
             //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
         }
     }

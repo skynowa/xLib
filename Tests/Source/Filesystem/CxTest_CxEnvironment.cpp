@@ -40,7 +40,7 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             m_bRes = CxEnvironment::bSetVar(sData[i][0], sData[i][1]);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         }
     }
 
@@ -70,7 +70,7 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             BOOL bStr1 = CxEnvironment::bIsExists(sData[i][0]);
-            xASSERT_EQ((sData[i][1] == xT("FALSE") ? FALSE : TRUE), bStr1);
+            xTEST_EQ((sData[i][1] == xT("FALSE") ? FALSE : TRUE), bStr1);
         }
     }
 
@@ -97,7 +97,7 @@ CxTest_CxEnvironment::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             std::tstring sStr1 = CxEnvironment::sGetVar(sData[i][0]);
             std::tstring sStr2 = sData[i][1];
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
         }
     }
 
@@ -106,8 +106,8 @@ CxTest_CxEnvironment::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxEnvironment::bGetValues(&m_vsRes);
-        xASSERT_DIFF(FALSE, m_bRes);
-        xASSERT_EQ(false, m_vsRes.empty());
+        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_EQ(false, m_vsRes.empty());
 
         ////CxString::vStdVectorPrintT(m_vsRes);
     }
@@ -133,7 +133,7 @@ CxTest_CxEnvironment::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             std::tstring sStr1 = CxEnvironment::sExpandStrings(sData[i][0]);
             std::tstring sStr2 = sData[i][1];
-            xASSERT_EQ(sStr1, sStr2);
+            xTEST_EQ(sStr1, sStr2);
         }
     }
 
@@ -150,7 +150,7 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             BOOL bStr1 = CxEnvironment::bDeleteVar(sData[i][0]);
-            xASSERT_DIFF(FALSE, bStr1);
+            xTEST_DIFF(FALSE, bStr1);
         }
     }
 
