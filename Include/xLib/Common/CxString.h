@@ -43,7 +43,7 @@ class CxString :
             ///< convert type to std::string_t
 
         template<class T>
-        static  std::string_t lexical_cast      (const T &cValueT, const INT ciBase);
+        static  std::string_t lexical_cast      (const T &cValueT, const int ciBase);
             ///< convert type to std::string_t by base
 
         template<class T>
@@ -51,7 +51,7 @@ class CxString :
             ///< convert std::string_t to type
 
         template<class T>
-        static T             lexical_cast      (const std::string_t &csStr, const INT ciBase);
+        static T             lexical_cast      (const std::string_t &csStr, const int ciBase);
             ///< convert std::string_t by base (8, 10, 16) to type
 
         static std::string_t  sBoolToStr        (const BOOL cbBool);
@@ -119,7 +119,7 @@ class CxString :
 
         static std::string_t  sTranslitLatToRus (const std::string_t &csStr);
             ///< translit
-        static std::string_t  sFormatBytes      (const DOUBLE cdBytes);
+        static std::string_t  sFormatBytes      (const double cdBytes);
             ///< format bytes (like Bit(s), Byte(s), MB, GB, TB)
         static std::string_t  sFormatBytes      (const ULONGLONG cullBytes);
             ///< ormat bytes (like Bit(s), Byte(s), MB, GB, TB)
@@ -145,7 +145,7 @@ class CxString :
         *
         *****************************************************************************/
 
-        static VOID *        pvMemoryZeroSecure(VOID *pvBuff, size_t  uiBuffSize);
+        static void *        pvMemoryZeroSecure(void *pvBuff, size_t  uiBuffSize);
             ///< secure zero memory
 
 

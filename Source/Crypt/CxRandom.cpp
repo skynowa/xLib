@@ -13,10 +13,10 @@
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-const INT CxRandom::A = 48271;
-const INT CxRandom::M = RAND_MAX;
-const INT CxRandom::Q = M / A;
-const INT CxRandom::R = M % A;
+const int CxRandom::A = 48271;
+const int CxRandom::M = RAND_MAX;
+const int CxRandom::Q = M / A;
+const int CxRandom::R = M % A;
 //---------------------------------------------------------------------------
 CxRandom::CxRandom(
     LONG liSeed
@@ -59,23 +59,23 @@ CxRandom::bSetSeed(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-INT
+int
 CxRandom::iNextInt() {
-    return static_cast<INT>( liNext() );
+    return static_cast<int>( liNext() );
 }
 //---------------------------------------------------------------------------
-INT
+int
 CxRandom::iNextInt(
-    INT max
+    int max
 )
 {
     return iNextInt() % max;
 }
 //---------------------------------------------------------------------------
-INT
+int
 CxRandom::iNextInt(
-    INT a,
-    INT b
+    int a,
+    int b
 )
 {
     return iNextInt() % (b - a) + a;
@@ -91,37 +91,37 @@ CxRandom::bNextBoolean() {
     return 0 == (liNext() % 2);
 }
 //---------------------------------------------------------------------------
-FLOAT
+float
 CxRandom::fNextFloat() {
-    return static_cast<FLOAT>( iNextInt() / FLOAT(M) );
+    return static_cast<float>( iNextInt() / float(M) );
 }
 //---------------------------------------------------------------------------
-DOUBLE
+double
 CxRandom::bNextDouble() {
-    return static_cast<DOUBLE>( iNextInt() / DOUBLE(M) );
+    return static_cast<double>( iNextInt() / double(M) );
 }
 //---------------------------------------------------------------------------
-CHAR
+char
 CxRandom::chNextChar() {
-    return CHAR(('z' - 'a' + 1) * bNextDouble() + 'a');
+    return char(('z' - 'a' + 1) * bNextDouble() + 'a');
 }
 //---------------------------------------------------------------------------
-CHAR
+char
 CxRandom::chNextFigure() {
-    return CHAR(('9' - '0' + 1) * bNextDouble() + '0');
+    return char(('9' - '0' + 1) * bNextDouble() + '0');
 }
 //---------------------------------------------------------------------------
-DOUBLE
+double
 CxRandom::dNextGaussian() {
     //See Knuth, ACP, Section 3.4.1 Algorithm C.
     if (_m_bHaveNextNextGaussian) {
         _m_bHaveNextNextGaussian = false;
 
-        return static_cast<DOUBLE>( _m_dNextNextGaussian );
+        return static_cast<double>( _m_dNextNextGaussian );
     } else {
-        DOUBLE v1 = 0.0;
-        DOUBLE v2 = 0.0;
-        DOUBLE s  = 0.0;
+        double v1 = 0.0;
+        double v2 = 0.0;
+        double s  = 0.0;
 
         do {
             v1 = 2 * bNextDouble() - 1; // between -1 and 1
@@ -130,12 +130,12 @@ CxRandom::dNextGaussian() {
         }
         while (s >= 1 || s == 0);
 
-        DOUBLE multiplier = sqrt(-2 * log(s)/s);
+        double multiplier = sqrt(-2 * log(s)/s);
 
         _m_dNextNextGaussian     = v2 * multiplier;
         _m_bHaveNextNextGaussian = true;
 
-        return static_cast<DOUBLE>( v1 * multiplier );
+        return static_cast<double>( v1 * multiplier );
     }
 }
 //---------------------------------------------------------------------------
@@ -179,7 +179,7 @@ CxRandom::liGetInt(
 #if 1
     liRes   = (rand() % (cliMax - cliMin))  + cliMin;
 #else
-    liRes   = (rand() * (DOUBLE)(cliMax - cliMin) / RAND_MAX) + cliMin;
+    liRes   = (rand() * (double)(cliMax - cliMin) / RAND_MAX) + cliMin;
 #endif
 
     return liRes;
@@ -225,32 +225,32 @@ CxRandom::sGetString(
     std::string_t sAllPossible;
 
     if (TRUE == cbIsLetters) {
-        for (INT i = 65; i <= 90; ++ i) {
+        for (int i = 65; i <= 90; ++ i) {
             sAllPossible.push_back( static_cast<char_t>(i) );         //upper case
             sAllPossible.push_back( static_cast<char_t>(i + 32) );    //lower case
         }
     }
 
     if (TRUE == cbIsNumbers) {
-        for (INT i = 48; i <= 57; ++ i) {
+        for (int i = 48; i <= 57; ++ i) {
             sAllPossible.push_back( static_cast<char_t>(i) );
         }
     }
 
     if (TRUE == cbIsAsciiSymbols) {
-        for (INT i = 33; i <= 47; ++ i) {
+        for (int i = 33; i <= 47; ++ i) {
             sAllPossible.push_back( static_cast<char_t>(i) );
         }
 
-        for (INT i = 58; i <= 64; ++ i) {
+        for (int i = 58; i <= 64; ++ i) {
             sAllPossible.push_back( static_cast<char_t>(i) );
         }
 
-        for (INT i = 91; i <= 96; ++ i) {
+        for (int i = 91; i <= 96; ++ i) {
             sAllPossible.push_back( static_cast<char_t>(i) );
         }
 
-        for (INT i = 123; i <= 126; ++ i) {
+        for (int i = 123; i <= 126; ++ i) {
             sAllPossible.push_back( static_cast<char_t>(i) );
         }
     }
@@ -274,7 +274,7 @@ CxRandom::sGetString(
 LONG
 CxRandom::liNext() {
     #if xTEMP_DISABLED
-        INT tmp = A * (_m_liSeed % Q) - R * (_m_liSeed / Q);
+        int tmp = A * (_m_liSeed % Q) - R * (_m_liSeed / Q);
         if(tmp>=0)  _m_liSeed = tmp;
         else        _m_liSeed = tmp + M;
 

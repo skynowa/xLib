@@ -34,7 +34,7 @@ CxMySQLConnection::CxMySQLConnection() :
 CxMySQLConnection::~CxMySQLConnection() {
     /*DEBUG*/
 
-    (VOID)bClose();
+    (void)bClose();
 }
 //---------------------------------------------------------------------------
 MYSQL *
@@ -115,7 +115,7 @@ CxMySQLConnection::bQuery(
     csSqlQuery = CxString::sFormatV(pcszSqlFormat, palArgs);
     xVA_END(palArgs);
 
-    INT iRes = mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ULONG>( csSqlQuery.size() * sizeof(std::string_t::value_type) ));
+    int iRes = mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ULONG>( csSqlQuery.size() * sizeof(std::string_t::value_type) ));
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), FALSE);
 
     return TRUE;
@@ -136,7 +136,7 @@ CxMySQLConnection::bClose() {
     /*DEBUG*/// _m_pmsConnection - n/a
 
     if (FALSE != bIsValid()) {
-        (VOID)mysql_close(_m_pmsConnection);
+        (void)mysql_close(_m_pmsConnection);
 
         _m_pmsConnection = NULL;
     }
@@ -218,7 +218,7 @@ CxMySQLRecordset::~CxMySQLRecordset() {
     /*DEBUG*/// _m_pmrResult - n/a
 
     if (FALSE != bIsValid()) {
-        (VOID)mysql_free_result(_m_pmrResult);
+        (void)mysql_free_result(_m_pmrResult);
 
         _m_pmrResult = NULL;
     }

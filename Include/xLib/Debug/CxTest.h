@@ -23,11 +23,11 @@ class CxTest :
     /// testing
 {
     public:
-        VOID *                    m_pvRes;      ///< for global use
+        void *                    m_pvRes;      ///< for global use
         char_t                     m_chRes;      ///< for global use
         bool                      m_blRes;      ///< for global use
         BOOL                      m_bRes;       ///< for global use
-        INT                       m_iRes;       ///< for global use
+        int                       m_iRes;       ///< for global use
         SHORT                     m_siRes;      ///< for global use
         USHORT                    m_usiRes;     ///< for global use
         UINT                      m_uiRes;      ///< for global use
@@ -36,8 +36,8 @@ class CxTest :
         ULONG                     m_ulRes;      ///< for global use
         LONGLONG                  m_llRes;      ///< for global use
         ULONGLONG                 m_ullRes;     ///< for global use
-        FLOAT                     m_fRes;       ///< for global use
-        DOUBLE                    m_dRes;       ///< for global use
+        float                     m_fRes;       ///< for global use
+        double                    m_dRes;       ///< for global use
         std::string_t              m_sRes;       ///< for global use
         std::ustring              m_usRes;      ///< for global use
         std::vector<char_t>        m_vecchRes;   ///< for global use

@@ -52,14 +52,14 @@ class CxLocalStorage :
     		///< write std::string_t
 
         LONG                   iKeyReadInt    (const std::string_t &csKey, const LONG     cliDefaultValue);
-    		///< read INT
+    		///< read int
         BOOL                   bKeyWriteInt   (const std::string_t &csKey, const LONG     cliValue);
-    		///< write INT
+    		///< write int
 
-        DOUBLE                 dKeyReadFloat  (const std::string_t &csKey, const DOUBLE   cdDefaultValue);
-    		///< read FLOAT
-        BOOL                   bKeyWriteFloat (const std::string_t &csKey, const DOUBLE   cdValue);
-    		///< write FLOAT
+        double                 dKeyReadFloat  (const std::string_t &csKey, const double   cdDefaultValue);
+    		///< read float
+        BOOL                   bKeyWriteFloat (const std::string_t &csKey, const double   cdValue);
+    		///< write float
 
         BOOL                   bKeyReadBool   (const std::string_t &csKey, const BOOL     cbDefaultValue);
     		///< read BOOL

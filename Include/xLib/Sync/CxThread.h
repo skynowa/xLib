@@ -62,7 +62,7 @@ class CxThread :
             ///< destructor
 
         //actions
-        BOOL                bCreate               (const BOOL cbIsPaused, const UINT cuiStackSize, VOID *pvParam);
+        BOOL                bCreate               (const BOOL cbIsPaused, const UINT cuiStackSize, void *pvParam);
             ///< start
         BOOL                bResume               ();
             ///< resume
@@ -118,7 +118,7 @@ class CxThread :
             ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
         //CPU
-        BOOL                bSetCpuAffinity       (const INT ciProcNum) const;
+        BOOL                bSetCpuAffinity       (const int ciProcNum) const;
             ///< set processor affinity
         BOOL                bSetCpuIdeal          (const ULONG culIdealCpu) const;
             ///< sets preferred processor for a thread
@@ -144,17 +144,17 @@ class CxThread :
             ///< opens an existing thread object
 
         //callbacks
-        VOID                vAttachHandler_OnEnter(SClosureT<VOID(CxThread *pthSender)> vCallback);
+        void                vAttachHandler_OnEnter(SClosureT<void(CxThread *pthSender)> vCallback);
             ///<
-        VOID                vAttachHandler_OnExit (SClosureT<VOID(CxThread *pthSender)> vCallback);
+        void                vAttachHandler_OnExit (SClosureT<void(CxThread *pthSender)> vCallback);
             ///<
 
     protected:
         //events
-        virtual UINT        uiOnRun               (VOID *pvParam) = 0;
+        virtual UINT        uiOnRun               (void *pvParam) = 0;
             ///< work thread function, must be overrided
-        //--virtual VOID    vOnEnter              ();
-        //--virtual VOID    vOnExit               ();
+        //--virtual void    vOnEnter              ();
+        //--virtual void    vOnExit               ();
 
         BOOL                bIsTimeToExit         ();
             ///< is need to exit from work thread function
@@ -174,7 +174,7 @@ class CxThread :
 
         TxId                _m_ulId;                    ///< ID
         UINT                _m_uiExitStatus;            ///< exit code
-        VOID               *_m_pvParam;                 ///< param for job function
+        void               *_m_pvParam;                 ///< param for job function
         const BOOL          _m_cbIsAutoDelete;          ///< is autodelete thread object
 
         //flags
@@ -192,30 +192,30 @@ class CxThread :
     #if defined(xOS_ENV_WIN)
         typedef UINT     TxExitStatus;
     #elif defined(xOS_ENV_UNIX)
-        typedef VOID *   TxExitStatus;
+        typedef void *   TxExitStatus;
     #endif
 
         static TxExitStatus xSTDCALL
-                            _s_uiJobEntry     (VOID *pvParam);
+                            _s_uiJobEntry     (void *pvParam);
             ///< callback
         BOOL                _bWaitResumption  ();
             ///< waiting for reset pause
-        VOID                _vSetStatesDefault();
+        void                _vSetStatesDefault();
             ///< set states as default
 
         //callbacks
-        SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnEnter;
+        SClosureT<void(CxThread *pthSender)> _m_vCallback_OnEnter;
         BOOL                                 _m_bFlag_OnEnter;
 
-        SClosureT<VOID(CxThread *pthSender)> _m_vCallback_OnExit;
+        SClosureT<void(CxThread *pthSender)> _m_vCallback_OnExit;
         BOOL                                 _m_bFlag_OnExit;
 
-        VOID                _vHandler_OnEnter(CxThread *pthSender);
-        VOID                _vHandler_OnExit (CxThread *pthSender);
+        void                _vHandler_OnEnter(CxThread *pthSender);
+        void                _vHandler_OnExit (CxThread *pthSender);
 
         //static
-        static INT          _iGetPriorityMin ();
-        static INT          _iGetPriorityMax ();
+        static int          _iGetPriorityMin ();
+        static int          _iGetPriorityMax ();
 };
 
 ////xNAMESPACE_END(NxLib);

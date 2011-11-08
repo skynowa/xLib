@@ -126,7 +126,7 @@ CxTest_CxImage::bUnit(
     //-------------------------------------
     //bDraw
     {
-        //m_bRes = m_imgImage.bDraw(HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight);
+        //m_bRes = m_imgImage.bDraw(HDC hDC, int iLeft, int iTop, int iWidth, int iHeight);
     }
 
     //-------------------------------------

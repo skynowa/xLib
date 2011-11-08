@@ -30,7 +30,7 @@ CxGeoIp::CxGeoIp() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxGeoIp::~CxGeoIp() {
-    (VOID)bClose();
+    (void)bClose();
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -96,7 +96,7 @@ CxGeoIp::bClose() {
     /*DEBUG*/// _m_pgiGeoIp - n/a
 
     if (FALSE != bIsValid()) {
-        (VOID)GeoIP_delete(_m_pgiGeoIp);
+        (void)GeoIP_delete(_m_pgiGeoIp);
     }
 
     _m_pgiGeoIp = NULL;

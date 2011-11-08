@@ -30,8 +30,8 @@ class CxAtomicLongInt :
         BOOL             operator !=   (const LONG cliRight) const ;
                          operator LONG () const ;
                          operator BOOL () const ;
-        CxAtomicLongInt& operator ++   (INT iPos);
-        CxAtomicLongInt& operator --   (INT iPos);
+        CxAtomicLongInt& operator ++   (int iPos);
+        CxAtomicLongInt& operator --   (int iPos);
 
     private:
         LONG             _m_liValue;

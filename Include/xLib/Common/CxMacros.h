@@ -107,9 +107,9 @@
 
 
 //enum
-#define xENUM_INC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) + 1 ); }
+#define xENUM_INC(type, obj)    { (obj) = static_cast<type>( static_cast<int>(obj) + 1 ); }
     ///< increment enumerator
-#define xENUM_DEC(type, obj)    { (obj) = static_cast<type>( static_cast<INT>(obj) - 1 ); }
+#define xENUM_DEC(type, obj)    { (obj) = static_cast<type>( static_cast<int>(obj) - 1 ); }
     ///< decriment enumerator
 
 
@@ -313,7 +313,7 @@
 #elif defined(__va_copy)
     #define xVA_COPY(dest, src) ( __va_copy(dest, src) )
 #else
-    #define xVA_COPY(dest, src) ( (VOID)memcpy(&dest, &src, sizeof(va_list)) )
+    #define xVA_COPY(dest, src) ( (void)memcpy(&dest, &src, sizeof(va_list)) )
 #endif
     ///< copy xVA_LIST
 
@@ -390,14 +390,14 @@ class CxMacros :
 {
     public:
         template<class T>
-        static inline VOID
+        static inline void
         vPtrDelete(T *&ptr) {
             if (NULL != ptr) { delete ptr;   ptr = NULL; }
         }
             ///< delete object by pointer
 
         template<class T>
-        static inline VOID
+        static inline void
         vArrayDelete(T *&ptr) {
             if (NULL != ptr) { delete [] ptr; ptr = NULL; }
         }

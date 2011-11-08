@@ -41,7 +41,7 @@ CxIni::CxIni(
 //-------------------------------------------------------------------------
 /*virtual*/
 CxIni::~CxIni() {
-    (VOID)bFlush();
+    (void)bFlush();
 }
 //-------------------------------------------------------------------------
 //DONE: bCreateDefault
@@ -63,7 +63,7 @@ CxIni::bCreateDefault(
     bRes = sfFile.bCreate(_m_sFilePath, CxFile::omCreateReadWrite, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    INT iRes = sfFile.iWrite(csContent.c_str());
+    int iRes = sfFile.iWrite(csContent.c_str());
     /*DEBUG*/xASSERT_RET(CxFile::etError != iRes, FALSE);
 
     return TRUE;
@@ -154,7 +154,7 @@ CxIni::bKeyIsExists(
 }
 //---------------------------------------------------------------------------
 //DONE: iKeyReadInt
-INT
+int
 CxIni::iKeyReadInt(
     const std::string_t &csSection,
     const std::string_t &csKey,

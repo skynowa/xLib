@@ -66,7 +66,7 @@ CxCommandLine::bGetArgs(
 /*static*/
 BOOL
 CxCommandLine::bSetArgs(
-    const INT  ciArgsCount,
+    const int  ciArgsCount,
     char_t     *paszArgs[]
 )
 {
@@ -74,7 +74,7 @@ CxCommandLine::bSetArgs(
 
     std::vector<std::string_t> vsArgs;
 
-    for (INT i = 0; i < ciArgsCount; ++ i) {
+    for (int i = 0; i < ciArgsCount; ++ i) {
         vsArgs.push_back(paszArgs[i]);
     }
 

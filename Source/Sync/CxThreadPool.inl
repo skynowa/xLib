@@ -60,7 +60,7 @@ CxThreadPool<TaskT>::~CxThreadPool() {
 //TODO: bCreateGroup (��������)
 template<class TaskT>
 BOOL
-CxThreadPool<TaskT>::bCreateGroup(UINT uiStackSize, const TFuncPtr fpFuncPtr, VOID *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks) {
+CxThreadPool<TaskT>::bCreateGroup(UINT uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks) {
     /*DEBUG*/xASSERT_RET(0    <= uiStackSize,       FALSE);    //TODO: MaxValue
     /*DEBUG*/xASSERT_RET(NULL == fpFuncPtr,         FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pvParam,           FALSE);
@@ -401,7 +401,7 @@ CxThreadPool<TaskT>::uiGetSize() const {
 //TODO: uiOnRun (������� �������)
 template<class TaskT>
 UINT
-CxThreadPool<TaskT>::uiOnRun(VOID *pvParam) {
+CxThreadPool<TaskT>::uiOnRun(void *pvParam) {
     /*DEBUG*/
 
     UINT uiRes = 0;
@@ -540,7 +540,7 @@ CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) {
 //---------------------------------------------------------------------------
 //TODO: _vOnEnterTask (������ ������� �������)
 template<class TaskT>
-VOID
+void
 CxThreadPool<TaskT>::_vOnEnterTask(CxThread *pthSender)  {
     /*DEBUG*/
     /*DEBUG*/xASSERT_DO(NULL  != pthSender,               return);
@@ -553,7 +553,7 @@ CxThreadPool<TaskT>::_vOnEnterTask(CxThread *pthSender)  {
 //---------------------------------------------------------------------------
 //TODO: _vOnExitTask (����� ������� �������)
 template<class TaskT>
-VOID
+void
 CxThreadPool<TaskT>::_vOnExitTask(CxThread *pthSender)  {
     /*DEBUG*/
     /*DEBUG*/xASSERT_DO(NULL  != pthSender,               return);

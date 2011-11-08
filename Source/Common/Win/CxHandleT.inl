@@ -44,7 +44,7 @@ template<EHandleValue hvTag>
 CxHandleT<hvTag>::~CxHandleT() {
     /*DEBUG*/// n/a
 
-    (VOID)bClose();
+    (void)bClose();
 }
 //---------------------------------------------------------------------------
 

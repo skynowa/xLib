@@ -19,7 +19,7 @@ class CxCommandLine :
             ///< get commandline string for the current process
         static BOOL         bGetArgs     (std::vector<std::string_t> *pvsArgs);
             ///< get commandline arguments
-        static BOOL         bSetArgs     (const INT ciArgsCount, char_t *paszArgs[]);
+        static BOOL         bSetArgs     (const int ciArgsCount, char_t *paszArgs[]);
             ///< set commandline arguments
 
     private:

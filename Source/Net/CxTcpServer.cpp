@@ -29,10 +29,10 @@ CxTcpServer::bBind(
     saSockAddr.sin_addr.s_addr = INADDR_ANY;
     saSockAddr.sin_port        = htons(usPort);
 
-    INT iRes = bind(_m_puiSocket, CxMacros::xreinterpret_cast<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int iRes = bind(_m_puiSocket, CxMacros::xreinterpret_cast<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
-    ////INT iOpt = 1;
+    ////int iOpt = 1;
     //???
     ////if (::setsockopt(_m_puiSocket, SOL_SOCKET, SO_REUSEADDR, (LPSTR)&iOpt, sizeof(iOpt)) < 0) {
     ////    return FALSE;
@@ -43,12 +43,12 @@ CxTcpServer::bBind(
 //---------------------------------------------------------------------------
 BOOL
 CxTcpServer::bListen(
-	INT iBacklog /*= SOMAXCONN*/
+	int iBacklog /*= SOMAXCONN*/
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, FALSE);
 
-    INT iRes = listen(_m_puiSocket, iBacklog);
+    int iRes = listen(_m_puiSocket, iBacklog);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
     return TRUE;
@@ -68,7 +68,7 @@ CxTcpServer::bAccept(
 
 #if defined(xOS_ENV_WIN)
     struct sockaddr_in cliaddr  = {0};
-    INT                iAddrlen = sizeof(cliaddr);
+    int                iAddrlen = sizeof(cliaddr);
 
     scktClient = accept(_m_puiSocket, CxMacros::xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
     /*DEBUG*/xASSERT_RET(etInvalid != scktClient, FALSE);

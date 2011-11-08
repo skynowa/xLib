@@ -27,10 +27,10 @@ CxFileTemp::CxFileTemp(
 //---------------------------------------------------------------------------
 /*virtual*/
 CxFileTemp::~CxFileTemp() {
-    (VOID)(*_m_pfFile).bClose();
+    (void)(*_m_pfFile).bClose();
 
     if (FALSE != _m_cbIsAutoDelete) {
-        (VOID)CxFile::bDelete(_m_sFilePath);
+        (void)CxFile::bDelete(_m_sFilePath);
     }
 }
 //---------------------------------------------------------------------------
@@ -74,7 +74,7 @@ CxFileTemp::bCreate(
         /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, FALSE);
     #endif
 #elif defined(xOS_ENV_UNIX)
-    INT iFile = xTMKSTEMP(&_m_sFilePath.at(0));
+    int iFile = xTMKSTEMP(&_m_sFilePath.at(0));
     /*DEBUG*/xASSERT_RET(- 1 != iFile, FALSE);
 
     _pfStdFile = xTFDOPEN(iFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());

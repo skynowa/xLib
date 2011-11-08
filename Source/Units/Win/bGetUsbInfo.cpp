@@ -31,8 +31,8 @@ bGetUsbInfo(
     /*DEBUG*/xASSERT_RET(NULL  != pvsInfo,         FALSE);
 
     BOOL                     bRes                   = FALSE;
-    INT                      mapiRes                = CR_FAILURE;
-    INT                      iRes                   = ! 0;
+    int                      mapiRes                = CR_FAILURE;
+    int                      iRes                   = ! 0;
     HDEVINFO                 hPnP                   = INVALID_HANDLE_VALUE;
     SP_DEVINFO_DATA          ddDevinfoData          = {0};
     SP_DEVICE_INTERFACE_DATA didDeviceInterfaceData = {0};

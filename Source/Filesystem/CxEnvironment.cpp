@@ -91,7 +91,7 @@ CxEnvironment::bSetVar(
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = setenv(csVarName.c_str(), csValue.c_str(), TRUE);
+    int iRes = setenv(csVarName.c_str(), csValue.c_str(), TRUE);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -112,9 +112,9 @@ CxEnvironment::bDeleteVar(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     #if defined(xOS_FREEBSD)
-        (VOID)unsetenv(csVarName.c_str());
+        (void)unsetenv(csVarName.c_str());
     #else
-        INT iRes = unsetenv(csVarName.c_str());
+        int iRes = unsetenv(csVarName.c_str());
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
 #endif

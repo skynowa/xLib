@@ -28,7 +28,7 @@ class A /*: CxNonCopyable*/ {
             ////xSTD_COUT_FUNC;
         };
 
-        VOID vOutput() {
+        void vOutput() {
             ////xSTD_COUT_FUNC;
         };
 };
@@ -59,7 +59,7 @@ class CParam {
             ////xSTD_COUT_FUNC;
         };
 
-        std::string_t sSetName(VOID *uiIndex) {
+        std::string_t sSetName(void *uiIndex) {
 
 
             return xT("Class_C");
@@ -76,7 +76,7 @@ class CThread {
             ////xSTD_COUT_FUNC;
         };
 
-        VOID vRun(const CxFunctorT<CParam, std::string_t, VOID *> &bF) {
+        void vRun(const CxFunctorT<CParam, std::string_t, void *> &bF) {
             ////xSTD_COUT_FUNC;
         };
 };
@@ -157,7 +157,7 @@ CxTest_CxFunctorT::bUnit(
     //Execute
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxFunctorT<CParam, std::string_t, VOID *> bF(&objParam, &CParam::sSetName);
+        CxFunctorT<CParam, std::string_t, void *> bF(&objParam, &CParam::sSetName);
 
         m_sRes = bF.Execute(0);
         xTEST_EQ(std::string_t(xT("Class_C")), m_sRes);

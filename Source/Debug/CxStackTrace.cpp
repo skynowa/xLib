@@ -54,7 +54,7 @@ CxStackTrace::bGet(
     std::vector<std::string_t> vsStack;
 
 #if defined(xOS_ENV_WIN)
-    VOID        *pvStack[_m_culMaxFrames] = {0};
+    void        *pvStack[_m_culMaxFrames] = {0};
     SYMBOL_INFO *psiSymbol                = NULL;
     HANDLE       hProcess                 = NULL;
 
@@ -84,29 +84,29 @@ CxStackTrace::bGet(
 
     xARRAY_DELETE(psiSymbol);
 
-    (VOID)::SymCleanup(hProcess);
+    (void)::SymCleanup(hProcess);
 #elif defined(xOS_ENV_UNIX)
     #if defined(xOS_LINUX)
-        VOID *pvStack[_m_culMaxFrames] = {0};
+        void *pvStack[_m_culMaxFrames] = {0};
 
-        INT iFramesNum  = backtrace(pvStack, _m_culMaxFrames);
+        int iFramesNum  = backtrace(pvStack, _m_culMaxFrames);
         xCHECK_RET(iFramesNum <= 0, FALSE);
 
         char_t **ppszSymbols = backtrace_symbols(pvStack, iFramesNum);
         xCHECK_RET(NULL == ppszSymbols, FALSE);
 
-        for (INT i = 1; i < iFramesNum; ++ i) {
+        for (int i = 1; i < iFramesNum; ++ i) {
             std::string_t sStackLine;
 
             Dl_info dlinfo = {0};
 
-            INT iRes = dladdr(pvStack[i], &dlinfo);
+            int iRes = dladdr(pvStack[i], &dlinfo);
             if (0 == iRes) {
                 sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
             } else {
                 const char_t *pcszSymName     = NULL;
                 char_t       *pszDemangleName = NULL;
-                INT          iStatus         = - 1;
+                int          iStatus         = - 1;
 
                 pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
                 if (NULL != pszDemangleName && 0 == iStatus) {

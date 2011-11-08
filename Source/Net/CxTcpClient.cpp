@@ -32,7 +32,7 @@ CxTcpClient::bIsReadable() {
 
     FD_SET(_m_puiSocket, &fds);
 
-    INT iRes = select(0, &fds, NULL, NULL, &tvTimeout);
+    int iRes = select(0, &fds, NULL, NULL, &tvTimeout);
     xCHECK_RET(iRes <= 0 || !FD_ISSET(_m_puiSocket, &fds), FALSE);
 
     return TRUE;
@@ -45,7 +45,7 @@ CxTcpClient::bIsWritable() {
 
     FD_SET(_m_puiSocket, &fds);
 
-    INT iRes = select(0, NULL, &fds, NULL, &tvTimeout);
+    int iRes = select(0, NULL, &fds, NULL, &tvTimeout);
     xCHECK_RET(iRes <= 0 || !FD_ISSET(_m_puiSocket, &fds), FALSE);
 
     return TRUE;
@@ -69,7 +69,7 @@ CxTcpClient::bConnect(
     saSockAddr.sin_addr.s_addr = inet_addr(asIp.c_str());
     saSockAddr.sin_port        = htons(usPort); //???????
 
-    INT iRes = connect(_m_puiSocket, CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int iRes = connect(_m_puiSocket, CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
     return TRUE;
@@ -83,7 +83,7 @@ CxTcpClient::bIoctl(
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, FALSE);
 
-    INT iRes = etError;
+    int iRes = etError;
 
 #if defined(xOS_ENV_WIN)
     iRes = ioctlsocket(_m_puiSocket, liCmd, pulArgp);
@@ -116,7 +116,7 @@ CxTcpClient::bSetNonBlockingMode(
     setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char*)&bOptVal, bOptLen);
     */
 #elif defined(xOS_ENV_UNIX)
-    INT iFlags = - 1;
+    int iFlags = - 1;
 
     iFlags = fcntl(_m_puiSocket, F_GETFL);
     /*DEBUG*/xASSERT_RET(etError != iFlags, FALSE);
@@ -185,7 +185,7 @@ CxTcpClient::bIsServerAlive(
     /*DEBUG*/xASSERT_RET((65535 > usPort) && (0 < usPort), FALSE);
 
     BOOL bRes     = FALSE;
-    INT  iRes     = - 1;
+    int  iRes     = - 1;
 
     CxTcpClient objSocket;
 

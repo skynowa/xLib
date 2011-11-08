@@ -42,7 +42,7 @@ class CxImage :
 	    	///< save
 		BOOL            bDraw            (HDC hDC, const RECT &crcRect);
 	    	///< draw
-		BOOL            bDraw            (HDC hDC, INT iLeft, INT iTop, INT iWidth, INT iHeight);
+		BOOL            bDraw            (HDC hDC, int iLeft, int iTop, int iWidth, int iHeight);
 	    	///< draw
 		BOOL            bClear           (HDC hDC, Gdiplus::Color clBackGround);
 	    	///< clear

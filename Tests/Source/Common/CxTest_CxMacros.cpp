@@ -31,7 +31,7 @@ CxTest_CxMacros::bUnit(
     //xPTR_DELETE
     xTEST_BLOCK(cullBlockLoops)
     {
-        INT *pPtr = new INT();
+        int *pPtr = new int();
         xASSERT(NULL != pPtr);
 
         /*CxMacros::*/xPTR_DELETE(pPtr);
@@ -41,7 +41,7 @@ CxTest_CxMacros::bUnit(
     //xARRAY_DELETE
     xTEST_BLOCK(cullBlockLoops)
     {
-        INT *pPtr = new INT[5];
+        int *pPtr = new int[5];
         xASSERT(NULL != pPtr);
 
         /*CxMacros::*/xARRAY_DELETE(pPtr);
@@ -70,7 +70,7 @@ CxTest_CxMacros::bUnit(
             m_uiRes = xARRAY_SIZE(szBuff);
             xTEST_EQ(256U, m_uiRes);
 
-            INT aiBuff[256] = {0};
+            int aiBuff[256] = {0};
             m_uiRes = xARRAY_SIZE(aiBuff);
             xTEST_EQ(256U, m_uiRes);
 

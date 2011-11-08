@@ -29,7 +29,7 @@ class CxIni :
         //key
         BOOL         bKeyIsExists      (const std::string_t &csSection, const std::string_t &csKey);
 
-        INT          iKeyReadInt       (const std::string_t &csSection, const std::string_t &csKey, LONG   iDefaultValue);
+        int          iKeyReadInt       (const std::string_t &csSection, const std::string_t &csKey, LONG   iDefaultValue);
         BOOL         bKeyWriteInt      (const std::string_t &csSection, const std::string_t &csKey, LONG   iValue);
 
         double       dKeyReadFloat     (const std::string_t &csSection, const std::string_t &csKey, double dDefaultValue);

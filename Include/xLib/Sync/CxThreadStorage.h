@@ -21,9 +21,9 @@ class CxThreadStorage :
 
         BOOL     bIsSet         () const;
 
-        VOID    *pvGetValue     () const;
+        void    *pvGetValue     () const;
             ///< get the value
-        BOOL     bSetValue      (VOID *pvValue) const;
+        BOOL     bSetValue      (void *pvValue) const;
             ///< set value
 
     private:

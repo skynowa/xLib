@@ -27,7 +27,7 @@ CxImage::CxImage() :
 CxImage::~CxImage() {
     /*DEBUG*/
 
-    (VOID)bDestroy();
+    (void)bDestroy();
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -163,10 +163,10 @@ CxImage::bDraw(
 BOOL
 CxImage::bDraw(
     HDC hDC,
-    INT iLeft,
-    INT iTop,
-    INT iWidth,
-    INT iHeight
+    int iLeft,
+    int iTop,
+    int iWidth,
+    int iHeight
 )
 {
     xCHECK_RET(FALSE == bIsLoaded(), TRUE);
@@ -188,7 +188,7 @@ CxImage::bDraw(
 }
 //---------------------------------------------------------------------------
 #if xTODO
-    VOID
+    void
     Example_Clear(
         HDC hdc
     )

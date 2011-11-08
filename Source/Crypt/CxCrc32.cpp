@@ -29,9 +29,9 @@ CxCrc32::ulCalc(
     ULONG crc_table[256] = {0};
     ULONG ulSize         = culSize;
 
-    for (INT i = 0; i < 256; ++ i) {
+    for (int i = 0; i < 256; ++ i) {
         crc = i;
-        for (INT j = 0; j < 8; ++ j) {
+        for (int j = 0; j < 8; ++ j) {
             crc = crc & 1 ? (crc >> 1) ^ 0xEDB88320UL : crc >> 1;
         }
 

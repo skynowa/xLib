@@ -51,9 +51,9 @@ CxBase64::sEncode(
     pbioContainer = BIO_push(pbioBase64, pbioMemory);
     /*DEBUG*/// n/a
 
-    INT iWritten = BIO_write(pbioContainer, &csStr.at(0), csStr.size());    BIO_flush(pbioContainer);
+    int iWritten = BIO_write(pbioContainer, &csStr.at(0), csStr.size());    BIO_flush(pbioContainer);
     /*DEBUG*/xASSERT_RET(0                                <  iWritten, std::string());
-    /*DEBUG*/xASSERT_RET(static_cast<INT>( csStr.size() ) == iWritten, std::string());
+    /*DEBUG*/xASSERT_RET(static_cast<int>( csStr.size() ) == iWritten, std::string());
 
     LONG liRes = BIO_get_mem_ptr(pbioContainer, &pbmBuffMemory);
     /*DEBUG*/xASSERT_RET(0 < liRes, std::string());
@@ -79,7 +79,7 @@ CxBase64::sDecode(
 
 
     //create a memory buffer containing base64 encoded data
-    pbioMemory = BIO_new_mem_buf((VOID *)&csStr.at(0), csStr.size());
+    pbioMemory = BIO_new_mem_buf((void *)&csStr.at(0), csStr.size());
     /*DEBUG*/xASSERT_RET(NULL != pbioMemory, std::string());
 
     //create a base64 filter
@@ -94,7 +94,7 @@ CxBase64::sDecode(
 
     sRes.resize(csStr.size());
 
-    INT iReaded = BIO_read(pbioContainer, &sRes.at(0), sRes.size());
+    int iReaded = BIO_read(pbioContainer, &sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(0 < iReaded, std::string());
 
     sRes.resize(iReaded);

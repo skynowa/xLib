@@ -46,8 +46,8 @@ CxConsole::CxConsole()
 //---------------------------------------------------------------------------
 CxConsole::~CxConsole() {
 #if defined(xOS_ENV_WIN)
-    (VOID)_m_hStdIn.hDetach();
-    (VOID)_m_hStdOut.hDetach();
+    (void)_m_hStdIn.hDetach();
+    (void)_m_hStdOut.hDetach();
 #endif
 }
 //---------------------------------------------------------------------------
@@ -453,11 +453,11 @@ CxConsole::bCenterWindow() {
     bRes = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &rcDesktop, 0);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    INT iDesktopX  = (rcDesktop.right  - rcDesktop.left) / 2;
-    INT iDesktopY  = (rcDesktop.bottom - rcDesktop.top)  / 2;
-    INT iWndWidth  = (rcOrigin.right   - rcOrigin.left);
-    INT iWndHeight = (rcOrigin.bottom  - rcOrigin.top);
-    INT X          = iDesktopX - iWndWidth / 2;        if (X < 0) {X = 0;}
+    int iDesktopX  = (rcDesktop.right  - rcDesktop.left) / 2;
+    int iDesktopY  = (rcDesktop.bottom - rcDesktop.top)  / 2;
+    int iWndWidth  = (rcOrigin.right   - rcOrigin.left);
+    int iWndHeight = (rcOrigin.bottom  - rcOrigin.top);
+    int X          = iDesktopX - iWndWidth / 2;        if (X < 0) {X = 0;}
 
     bRes = ::MoveWindow(_m_hWnd, X, iDesktopY - iWndHeight / 2, iWndWidth, iWndHeight, TRUE);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);

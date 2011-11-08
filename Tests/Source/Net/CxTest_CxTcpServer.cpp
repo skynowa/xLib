@@ -76,7 +76,7 @@ CxTest_CxTcpServer::bUnit(
 		//-------------------------------------
 		//iRecv
 		m_iRes = objClientSocket.iRecv(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
-		xTEST_DIFF((INT)CxTcpServer::etError, m_iRes);
+		xTEST_DIFF((int)CxTcpServer::etError, m_iRes);
 
 		std::tcout << std::string_t(szRecvBuff, m_iRes) << std::endl;
 	}

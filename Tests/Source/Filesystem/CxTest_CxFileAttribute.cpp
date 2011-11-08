@@ -63,7 +63,7 @@ CxTest_CxFileAttribute::bUnit(
         CxFileAttribute::EAttribute faRes;
 
         faRes = CxFileAttribute::atGet(csFilePath);
-        xTEST_EQ((INT)cfaValue, (INT)faRes);
+        xTEST_EQ((int)cfaValue, (int)faRes);
     }
 
     //--------------------------------------------------
@@ -114,7 +114,7 @@ CxTest_CxFileAttribute::bUnit(
             xTEST_DIFF(FALSE, m_bRes);
 
             CxFileAttribute::EAttribute faRes = CxFileAttribute::atGet(csFilePath);
-            xTEST_EQ((INT)faAttr, (INT)faRes);
+            xTEST_EQ((int)faAttr, (int)faRes);
         #elif defined(xOS_ENV_UNIX)
             //file
             {
@@ -183,9 +183,9 @@ CxTest_CxFileAttribute::bUnit(
         faRes = CxFileAttribute::atGet(csFilePath);
         //xTRACEV("faRes: %lld", faRes);
         #if defined(xOS_ENV_WIN)
-            xTEST_EQ((INT)CxFileAttribute::faNormal, (INT)faRes);
+            xTEST_EQ((int)CxFileAttribute::faNormal, (int)faRes);
         #elif defined(xOS_ENV_UNIX)
-            xTEST_EQ((INT)CxFileAttribute::faRegularFile, (INT)faRes);
+            xTEST_EQ((int)CxFileAttribute::faRegularFile, (int)faRes);
         #endif
     }
 

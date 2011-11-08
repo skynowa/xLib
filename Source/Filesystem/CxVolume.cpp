@@ -56,7 +56,7 @@ CxVolume::bIsReady(
     sOldDirPath  = CxDir::sGetCurrent();
     /*DEBUG*/// n/a
 
-    INT iRes = chdir(sVolumePath.c_str());
+    int iRes = chdir(sVolumePath.c_str());
     /*DEBUG*/// n/a
     bRes = xAS_BOOL(- 1 != iRes);
 
@@ -124,7 +124,7 @@ CxVolume::bGetFreeSpace(
 
     struct xSTATVFS stfInfo = {0};
 
-    INT iRes = xSTATVFS(_sDirPath.c_str(), &stfInfo);
+    int iRes = xSTATVFS(_sDirPath.c_str(), &stfInfo);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, _sDirPath, FALSE);
 
     xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE);
@@ -162,9 +162,9 @@ CxVolume::bMount(
     #if xTODO
         const std::string_t  csFilesytemType;
         const ULONG         culMountFlags = 0UL;
-        const VOID         *pcvData       = NULL;
+        const void         *pcvData       = NULL;
 
-        INT iRes = mount(csSourcePath.c_str(), csDestPath.c_str(), csFilesytemType.c_str(), culMountFlags, pcvData);
+        int iRes = mount(csSourcePath.c_str(), csDestPath.c_str(), csFilesytemType.c_str(), culMountFlags, pcvData);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
 
@@ -392,7 +392,7 @@ CxVolume::bGetLogicalDrives(
     /*DEBUG*/xASSERT_RET(0 != ulDrives, FALSE);
 
     pvsDrives->clear();
-    for (INT i = 0; i < 26; ++ i) {
+    for (int i = 0; i < 26; ++ i) {
         if (1 == ((ulDrives >> i) & 0x00000001)) {
             std::string_t sDrivePath;
 
@@ -428,7 +428,7 @@ CxVolume::bGetLogicalDrives(
     ulDrives = ::GetLogicalDrives();
     /*DEBUG*/xASSERT_RET(0 != ulDrives, FALSE);
 
-    for (INT i = 0; i < 26; ++ i) {
+    for (int i = 0; i < 26; ++ i) {
         if (1 == ((ulDrives >> i) & 0x00000001)) {
             std::string_t sDrivePath;
 

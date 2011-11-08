@@ -80,7 +80,7 @@ BOOL
 CxThread::bCreate(
     const BOOL cbIsPaused,
     const UINT cuiStackSize,
-    VOID       *pvParam
+    void       *pvParam
 )
 {
 #if defined(xOS_ENV_WIN)
@@ -117,7 +117,7 @@ CxThread::bCreate(
 
     _m_ulId = ulId;
 #elif defined(xOS_ENV_UNIX)
-    INT            iRes = - 1;
+    int            iRes = - 1;
     TxId           ulId;
     pthread_attr_t paAttributes; // n/a - {{0}}
 
@@ -257,7 +257,7 @@ CxThread::bKill(
         /*DEBUG*/xASSERT_DO(FALSE != bRes, break);
     }
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = pthread_kill(_m_ulId, SIGALRM);
+    int iRes = pthread_kill(_m_ulId, SIGALRM);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 
     bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
@@ -305,7 +305,7 @@ CxThread::bWait(
     ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = pthread_join(_m_ulId, NULL);
+    int iRes = pthread_join(_m_ulId, NULL);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -344,7 +344,7 @@ CxThread::bIsRunning() const {
 #if defined(xOS_ENV_WIN)
     ULONG ulRes = 0;
 
-    (VOID)::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
+    (void)::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
 
     bool bCond1 = ( FALSE         != _m_hThread.bIsValid()                       );
     bool bCond2 = ( 0UL           <  _m_ulId                                     );
@@ -438,7 +438,7 @@ CxThread::bSendMessage(
     /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 FALSE);
     /*DEBUG*/xASSERT_RET(FALSE != ::IsWindow(hHwnd),     FALSE);
 
-    (VOID)::SendMessage(hHwnd, uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
+    (void)::SendMessage(hHwnd, uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
     /*DEBUG*/xASSERT_RET(0UL == CxLastError::ulGet(), FALSE);
 
     return TRUE;
@@ -542,9 +542,9 @@ CxThread::bMessageWaitQueue(
 
 //---------------------------------------------------------------------------
 /*static*/
-INT
+int
 CxThread::_iGetPriorityMin() {
-    INT iRes = - 1;
+    int iRes = - 1;
 
 #if defined(xOS_ENV_WIN)
     iRes = THREAD_PRIORITY_IDLE;
@@ -557,9 +557,9 @@ CxThread::_iGetPriorityMin() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-INT
+int
 CxThread::_iGetPriorityMax() {
-    INT iRes = - 1;
+    int iRes = - 1;
 
 #if defined(xOS_ENV_WIN)
     iRes = THREAD_PRIORITY_TIME_CRITICAL;
@@ -590,7 +590,7 @@ CxThread::bSetPriority(
 
     spParam.sched_priority = ctpPriority;
 
-    INT iRes = pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
+    int iRes = pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -612,9 +612,9 @@ CxThread::tpGetPriority() const {
     /*DEBUG*/xASSERT_RET(tpError != tpRes, tpError);
 #elif defined(xOS_ENV_UNIX)
     sched_param spParam  = {0};
-    INT         iPolicy  = SCHED_FIFO;
+    int         iPolicy  = SCHED_FIFO;
 
-    INT iRes = pthread_getschedparam(ulGetId(), &iPolicy, &spParam);
+    int iRes = pthread_getschedparam(ulGetId(), &iPolicy, &spParam);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), tpError);
 
     tpRes = static_cast<EPriority>( spParam.sched_priority );
@@ -627,7 +627,7 @@ std::string_t
 CxThread::sGetPriorityString() const {
     /*DEBUG*/// n/a
 
-    INT iRes = tpGetPriority();
+    int iRes = tpGetPriority();
     switch (iRes) {
         case tpIdle:            return xT("Idle");
         case tpLowest:          return xT("Lowest");
@@ -741,7 +741,7 @@ CxThread::bSetPriorityBoost(
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bSetCpuAffinity(
-    const INT ciProcNum
+    const int ciProcNum
 ) const
 {
 #if defined(xOS_ENV_WIN)
@@ -762,9 +762,9 @@ CxThread::bSetCpuAffinity(
 	#endif
 
 	CPU_ZERO(&csCpuSet);
-    (VOID)CPU_SET(ciProcNum, &csCpuSet);
+    (void)CPU_SET(ciProcNum, &csCpuSet);
 
-    INT iRes = pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
+    int iRes = pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -918,7 +918,7 @@ CxThread::bSetDebugName(
 		tiInfo.dwFlags    = 0;
 
 		__try {
-			(VOID)::RaiseException(culMsVcException, 0, sizeof(tiInfo) / sizeof(ULONG_PTR), (ULONG_PTR *)&tiInfo);
+			(void)::RaiseException(culMsVcException, 0, sizeof(tiInfo) / sizeof(ULONG_PTR), (ULONG_PTR *)&tiInfo);
 		}
 		__except (EXCEPTION_EXECUTE_HANDLER) {
 			//n/a
@@ -929,9 +929,9 @@ CxThread::bSetDebugName(
 		//TODO: bSetDebugName
 	#endif
 #elif defined(xOS_FREEBSD)
-    (VOID)pthread_set_name_np(ulGetId(), csName.c_str());
+    (void)pthread_set_name_np(ulGetId(), csName.c_str());
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
+    int iRes = prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -980,9 +980,9 @@ CxThread::hOpen(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-VOID
+void
 CxThread::vAttachHandler_OnEnter(
-    SClosureT<VOID(CxThread *pthSender)> vCallback
+    SClosureT<void(CxThread *pthSender)> vCallback
 )
 {
     _m_vCallback_OnEnter = vCallback;
@@ -990,15 +990,15 @@ CxThread::vAttachHandler_OnEnter(
 }
 //---------------------------------------------------------------------------
 #if xTEMP_DISABLED
-    VOID vDetachHandler_OnEnter(CxThread *pthSender) {
+    void vDetachHandler_OnEnter(CxThread *pthSender) {
         //_m_bFlag_OnEnter         = FALSE;
         _m_Callback_OnEnter.p_this = NULL;
     }
 #endif
 //---------------------------------------------------------------------------
-VOID
+void
 CxThread::vAttachHandler_OnExit(
-    SClosureT<VOID(CxThread *pthSender)> vCallback
+    SClosureT<void(CxThread *pthSender)> vCallback
 )
 {
     _m_vCallback_OnExit = vCallback;
@@ -1006,7 +1006,7 @@ CxThread::vAttachHandler_OnExit(
 }
 //---------------------------------------------------------------------------
 #if xTEMP_DISABLED
-    VOID vDetachHandler_OnExit(CxThread *pthSender) {
+    void vDetachHandler_OnExit(CxThread *pthSender) {
         //_m_bFlag_OnExit         = FALSE;
         _m_Callback_OnExit.p_this = NULL;
     }
@@ -1023,7 +1023,7 @@ CxThread::vAttachHandler_OnExit(
 /*virtual*/
 UINT
 CxThread::uiOnRun(
-    VOID *pvParam
+    void *pvParam
 ) /* = 0*/
 {
     /*DEBUG*/// n/a
@@ -1085,7 +1085,7 @@ CxThread::bIsTimeToExit() {
 /*static*/
 CxThread::TxExitStatus xSTDCALL
 CxThread::_s_uiJobEntry(
-    VOID *pvParam
+    void *pvParam
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvParam, 0);
@@ -1108,7 +1108,7 @@ CxThread::_s_uiJobEntry(
 
     //-------------------------------------
     //if created suspended thread - wait for resumption
-    xCHECK_DO(TRUE == pthThis->bIsPaused(), (VOID)pthThis->_bWaitResumption());
+    xCHECK_DO(TRUE == pthThis->bIsPaused(), (void)pthThis->_bWaitResumption());
 
     {
         //-------------------------------------
@@ -1191,7 +1191,7 @@ CxThread::_bWaitResumption() {
     return static_cast<BOOL>( CxEvent::osSignaled == osRes );
 }
 //---------------------------------------------------------------------------
-VOID
+void
 CxThread::_vSetStatesDefault() {
     /*DEBUG*/// n/a
 
@@ -1211,7 +1211,7 @@ CxThread::_vSetStatesDefault() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-VOID
+void
 CxThread::_vHandler_OnEnter(
     CxThread *pthSender
 )
@@ -1223,7 +1223,7 @@ CxThread::_vHandler_OnEnter(
     _m_vCallback_OnEnter(pthSender);
 }
 //---------------------------------------------------------------------------
-VOID
+void
 CxThread::_vHandler_OnExit(
     CxThread *pthSender
 )

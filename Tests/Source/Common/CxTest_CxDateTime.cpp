@@ -620,8 +620,8 @@ CxTest_CxDateTime::bUnit(
         };
 
         for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::string_t sStr1 = CxDateTime::sGetZodiacSign(CxString::lexical_cast<INT>(sTestData[i][0]),
-                                                       CxString::lexical_cast<INT>(sTestData[i][1]));
+            std::string_t sStr1 = CxDateTime::sGetZodiacSign(CxString::lexical_cast<int>(sTestData[i][0]),
+                                                       CxString::lexical_cast<int>(sTestData[i][1]));
             std::string_t sStr2 = sTestData[i][2];
             xTEST_EQ(sStr1, sStr2);
         }

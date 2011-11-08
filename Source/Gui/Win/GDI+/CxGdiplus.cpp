@@ -29,7 +29,7 @@ CxGdiplus::CxGdiplus() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxGdiplus::~CxGdiplus() {
-    (VOID)Gdiplus::GdiplusShutdown(_m_pulToken);
+    (void)Gdiplus::GdiplusShutdown(_m_pulToken);
 
     _m_pulToken = NULL;
 }

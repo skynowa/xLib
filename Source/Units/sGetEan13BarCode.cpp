@@ -19,40 +19,40 @@ sGetEan13BarCode(
 
 	/*DEBUG*///And they are really digits
 	/*DEBUG*/for (size_t i = 0; i < csData.size(); ++ i) {
-	/*DEBUG*/	if ( (INT)csData.at(i) < 48 || (INT)csData.at(i) > 57 ) {
+	/*DEBUG*/	if ( (int)csData.at(i) < 48 || (int)csData.at(i) > 57 ) {
 	/*DEBUG*/		/*DEBUG*/xASSERT_RET(FALSE, std::string_t());
 	/*DEBUG*/	}
 	/*DEBUG*/}
 
 	std::string_t sRes;
-	INT 	iFirst    = 0;
+	int 	iFirst    = 0;
 	BOOL    bTableA   = FALSE;
 	std::string_t sData     = csData;
 
 	//-------------------------------------
 	//x - ����� ������
 	//x = 4 + 3 + 1 + 2 + 8 + 9 = 27
-	INT iX = 0;
+	int iX = 0;
 
-	for (INT i = csData.size() - 2; i >= 0; i -= 2) {
-		iX += CxString::lexical_cast<INT>(sData.substr(i, 1));
+	for (int i = csData.size() - 2; i >= 0; i -= 2) {
+		iX += CxString::lexical_cast<int>(sData.substr(i, 1));
 	}
 	/*DEBUG*///xASSERT(27 == iX);
 
 	//-------------------------------------
 	//y - ����� ��������
 	//y = 7 + 4 + 1 + 0 + 0 + 7 = 19
-	INT iY = 0;
+	int iY = 0;
 
-	for (INT i = csData.size() - 1; i >= 0; i -= 2) {
-		iY += CxString::lexical_cast<INT>(sData.substr(i, 1));
+	for (int i = csData.size() - 1; i >= 0; i -= 2) {
+		iY += CxString::lexical_cast<int>(sData.substr(i, 1));
 	}
 	/*DEBUG*///xASSERT(19 == iY);
 
 	//-------------------------------------
 	//��������� Z �� �������: z = x + 3 * y
 	//z = 3 * 19 + 27 = 84
-	INT iZ = 0;
+	int iZ = 0;
 
 	iZ = iX + iY * 3;
 	/*DEBUG*///xASSERT(84 == iZ);
@@ -71,10 +71,10 @@ sGetEan13BarCode(
 
 	//-------------------------------------
 	//The first digit is taken just as it is, the second one come from table A
-	sRes   = std::string_t(1, sData.at(0))  + std::string_t(1,  (char_t)(65 + CxString::lexical_cast<INT>(sData.substr(1, 1))));
-	iFirst = CxString::lexical_cast<INT>( std::string_t(1, sData.at(0)) );
+	sRes   = std::string_t(1, sData.at(0))  + std::string_t(1,  (char_t)(65 + CxString::lexical_cast<int>(sData.substr(1, 1))));
+	iFirst = CxString::lexical_cast<int>( std::string_t(1, sData.at(0)) );
 
-	for (INT i = 2; i < 7; ++ i) {
+	for (int i = 2; i < 7; ++ i) {
 		bTableA = FALSE;
 
 		switch (i) {
@@ -143,10 +143,10 @@ sGetEan13BarCode(
 		}
 
 		if (TRUE == bTableA) {
-			char_t chChar = (char_t)(65 + CxString::lexical_cast<INT>(sData.substr(i, 1)));
+			char_t chChar = (char_t)(65 + CxString::lexical_cast<int>(sData.substr(i, 1)));
 			sRes.push_back( chChar );
 		} else {
-			char_t chChar = (char_t)(75 + CxString::lexical_cast<INT>(sData.substr(i, 1)));
+			char_t chChar = (char_t)(75 + CxString::lexical_cast<int>(sData.substr(i, 1)));
 			sRes.push_back( chChar );
 		}
 	} //for
@@ -156,7 +156,7 @@ sGetEan13BarCode(
 
 	//6 digits from table C
 	for (size_t i = 7; i < sData.size(); ++ i) {
-		sRes.push_back( (char_t)(97 + CxString::lexical_cast<INT>(sData.substr(i, 1))) );
+		sRes.push_back( (char_t)(97 + CxString::lexical_cast<int>(sData.substr(i, 1))) );
 	}
 
 	//Add end mark

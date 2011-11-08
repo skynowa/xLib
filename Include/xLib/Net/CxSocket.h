@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_UNIX)
-    typedef INT SOCKET;
+    typedef int SOCKET;
 #endif
 //---------------------------------------------------------------------------
 class CxSocket :
@@ -210,23 +210,23 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        //VOID *, std::string_t, std::ustring
+        //void *, std::string_t, std::ustring
 
-        INT          iSend          (const char_t *pcszBuff, INT iBuffSize, INT iFlags);
+        int          iSend          (const char_t *pcszBuff, int iBuffSize, int iFlags);
             ///< send data
-        BOOL         bSendAll       (const std::string_t &csBuff, INT iFlags);
+        BOOL         bSendAll       (const std::string_t &csBuff, int iFlags);
             ///< send data by blocks
 
-        INT          iRecv          (char_t *pszBuff,  INT iBuffSize, INT iFlags);
+        int          iRecv          (char_t *pszBuff,  int iBuffSize, int iFlags);
             ///< recieve data
-        std::string_t sRecvAll       (INT iFlags);
+        std::string_t sRecvAll       (int iFlags);
             ///< recieve data
-        std::string_t sRecvAll       (INT iFlags, const std::string_t &csDelimiter);
+        std::string_t sRecvAll       (int iFlags, const std::string_t &csDelimiter);
             ///< recive data to delimiter, includs it
 
-        INT          iSendBytes     (CHAR *pszBuff, INT iMessageLength);
+        int          iSendBytes     (char *pszBuff, int iMessageLength);
             ///< send bytes
-        INT          iReceiveBytes  (CHAR *pszBuff, INT iStillToReceive);
+        int          iReceiveBytes  (char *pszBuff, int iStillToReceive);
             ///< recieve bytes
 
 
@@ -246,9 +246,9 @@ class CxSocket :
         *****************************************************************************/
 
         ////getsockopt
-        static INT   iSelect        (INT nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
+        static int   iSelect        (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
             ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
-        static INT   iGetLastError  ();
+        static int   iGetLastError  ();
             ///< get error status for the last operation that failed
 
     protected:
@@ -294,7 +294,7 @@ class CxSocket :
 #endif
 
 #if xTODO
-    INT
+    int
     CxSocket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending, SOCKET *pSocketForExceptions) {
         int nSocketsReady = 0;
 

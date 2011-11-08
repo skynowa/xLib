@@ -20,17 +20,17 @@ CxThreadStorage::CxThreadStorage() :
     _m_indIndex(static_cast<pthread_key_t>( -1 ))
 #endif
 {
-    (VOID)_bAlloc();
+    (void)_bAlloc();
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxThreadStorage::~CxThreadStorage() {
-    (VOID)_bFree();
+    (void)_bFree();
 }
 //---------------------------------------------------------------------------
 BOOL     
 CxThreadStorage::bIsSet() const {
-    VOID *pvRes = NULL;
+    void *pvRes = NULL;
 
 #if defined(xOS_ENV_WIN)
     pvRes = ::TlsGetValue(_m_indIndex);
@@ -43,9 +43,9 @@ CxThreadStorage::bIsSet() const {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-VOID *
+void *
 CxThreadStorage::pvGetValue() const {
-    VOID *pvRes = NULL;
+    void *pvRes = NULL;
 
 #if defined(xOS_ENV_WIN)
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, NULL);
@@ -64,7 +64,7 @@ CxThreadStorage::pvGetValue() const {
 //---------------------------------------------------------------------------
 BOOL
 CxThreadStorage::bSetValue(
-    VOID *pvValue
+    void *pvValue
 ) const
 {
     /*DEBUG*/xASSERT_RET(NULL != pvValue, FALSE);
@@ -77,7 +77,7 @@ CxThreadStorage::bSetValue(
 #elif defined(xOS_ENV_UNIX)
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, FALSE);
 
-    INT iRes = pthread_setspecific(_m_indIndex, pvValue);
+    int iRes = pthread_setspecific(_m_indIndex, pvValue);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -104,7 +104,7 @@ CxThreadStorage::_bAlloc() {
 #elif defined(xOS_ENV_UNIX)
     /*DEBUG*/xASSERT_RET(static_cast<pthread_key_t>( -1 ) == _m_indIndex, FALSE);
 
-    INT iRes = pthread_key_create(&indRes, NULL);
+    int iRes = pthread_key_create(&indRes, NULL);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -125,7 +125,7 @@ CxThreadStorage::_bFree() {
 #elif defined(xOS_ENV_UNIX)
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, FALSE);
 
-    INT iRes = pthread_key_delete(_m_indIndex);
+    int iRes = pthread_key_delete(_m_indIndex);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 
     _m_indIndex = static_cast<pthread_key_t>( -1 );

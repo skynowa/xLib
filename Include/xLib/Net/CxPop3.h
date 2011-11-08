@@ -32,14 +32,14 @@ class CxPop3 :
         BOOL              bListAt             (ULONG &ulIndex);
         BOOL              bNoop               ();
         BOOL              bRset               ();
-        BOOL              bTop                (INT iNum, INT iLines, std::string_t &sBuff);
+        BOOL              bTop                (int iNum, int iLines, std::string_t &sBuff);
 
-        BOOL      /*RETR*/bRetrive            (INT iNum, const std::string_t &csRawMimeMessage);
-        BOOL      /*RETR*/bRetriveRaw         (INT iNum, const std::string_t &csDirPath, const std::string_t &csFileName);
-        BOOL      /*RETR*/bRetriveRawAndBackup(INT iNum, const std::string_t &csDirPath, const std::string_t &csBackupDirPath, const std::string_t &csFileName);
-        BOOL      /*TOP*/ bRetrieveHeader     (INT iNum, CxMimeHeader &mhMimeHeader);
+        BOOL      /*RETR*/bRetrive            (int iNum, const std::string_t &csRawMimeMessage);
+        BOOL      /*RETR*/bRetriveRaw         (int iNum, const std::string_t &csDirPath, const std::string_t &csFileName);
+        BOOL      /*RETR*/bRetriveRawAndBackup(int iNum, const std::string_t &csDirPath, const std::string_t &csBackupDirPath, const std::string_t &csFileName);
+        BOOL      /*TOP*/ bRetrieveHeader     (int iNum, CxMimeHeader &mhMimeHeader);
 
-        BOOL              bDelete             (INT iNum);
+        BOOL              bDelete             (int iNum);
         BOOL              bDisconnect         ();
 
     private:

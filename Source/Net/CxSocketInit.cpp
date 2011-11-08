@@ -29,7 +29,7 @@ CxSocketInit::CxSocketInit(
 #if defined(xOS_ENV_WIN)
     WSADATA wdData = {0};
 
-    INT iRes = ::WSAStartup(MAKEWORD(cusMajorVersion, cusMinorVersion), &wdData);
+    int iRes = ::WSAStartup(MAKEWORD(cusMajorVersion, cusMinorVersion), &wdData);
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
 
     //Confirm that the WinSock DLL supports some version
@@ -46,7 +46,7 @@ CxSocketInit::CxSocketInit(
 //---------------------------------------------------------------------------
 CxSocketInit::~CxSocketInit() {
 #if defined(xOS_ENV_WIN)
-    INT iRes = ::WSACleanup();
+    int iRes = ::WSACleanup();
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
 #elif defined(xOS_ENV_UNIX)
     // n/a

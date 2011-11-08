@@ -38,7 +38,7 @@ CxEvent::CxEvent(
     _m_hEvent.bSet(hRes);
     /*DEBUG*/// n/a
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = pthread_cond_init(&_m_cndCond, NULL);
+    int iRes = pthread_cond_init(&_m_cndCond, NULL);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
     _m_bIsAutoReset = cbIsAutoReset;
@@ -50,7 +50,7 @@ CxEvent::~CxEvent() {
 #if defined(xOS_ENV_WIN)
     // n/a
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = pthread_cond_destroy(&_m_cndCond);
+    int iRes = pthread_cond_destroy(&_m_cndCond);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 #endif
 }
@@ -80,10 +80,10 @@ CxEvent::bSet() {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
         if (FALSE == _m_bIsAutoReset) {
-            INT iRes = pthread_cond_broadcast(&_m_cndCond);
+            int iRes = pthread_cond_broadcast(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
         } else {
-            INT iRes = pthread_cond_signal(&_m_cndCond);
+            int iRes = pthread_cond_signal(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
         }
 
@@ -130,7 +130,7 @@ CxEvent::osWait(
     {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
-        INT iRes = 0;
+        int iRes = 0;
 
         if (FALSE == _m_bIsSignaled) {
             ////xCHECK_RET(! culTimeout, osTimeout);    // no time for waiting

@@ -138,7 +138,7 @@ CxAtomicLongInt::operator BOOL () const {
 //---------------------------------------------------------------------------
 //DONE: operator ++ ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator ++ (INT iPos) {
+CxAtomicLongInt::operator ++ (int iPos) {
     #if defined(xOS_ENV_WIN)
         if (0 == iPos) {
             ::InterlockedIncrement(&_m_liValue);
@@ -154,7 +154,7 @@ CxAtomicLongInt::operator ++ (INT iPos) {
 //---------------------------------------------------------------------------
 //DONE: operator -- ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator -- (INT iPos) {
+CxAtomicLongInt::operator -- (int iPos) {
     #if defined(xOS_ENV_WIN)
         if (0 == iPos) {
             ::InterlockedDecrement(&_m_liValue);

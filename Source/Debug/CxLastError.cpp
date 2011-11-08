@@ -24,7 +24,7 @@ CxLastError::ulGet() {
     ulCode = static_cast<ULONG>( errno );
 #endif
 
-    (VOID)bReset();
+    (void)bReset();
 
     return ulCode;
 }
@@ -42,9 +42,9 @@ CxLastError::bSet(
 )
 {
 #if defined(xOS_ENV_WIN)
-    (VOID)::SetLastError(culCode);
+    (void)::SetLastError(culCode);
 #elif defined(xOS_ENV_UNIX)
-    errno = static_cast<INT>( culCode );
+    errno = static_cast<int>( culCode );
 #endif
 
     return TRUE;
@@ -92,19 +92,19 @@ CxLastError::sFormat(
 
     sRes.append(sMessage);
 
-    (VOID)::LocalFree(pvBuff);
+    (void)::LocalFree(pvBuff);
 #elif defined(xOS_ENV_UNIX)
     #if defined(xOS_LINUX)
-        CHAR szBuff[64 + 1] = {0};
+        char szBuff[64 + 1] = {0};
 
-        const char_t *pcszError = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        const char_t *pcszError = strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(pcszError);
     #else
-        CHAR szBuff[64 + 1] = {0};
+        char szBuff[64 + 1] = {0};
 
-        INT iRes = strerror_r(static_cast<INT>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int iRes = strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRes, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(&szBuff[0]);

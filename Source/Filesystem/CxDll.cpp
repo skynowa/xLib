@@ -20,7 +20,7 @@ CxDll::CxDll() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxDll::~CxDll() {
-    (VOID)bFree();
+    (void)bFree();
 }
 //---------------------------------------------------------------------------
 BOOL
@@ -65,7 +65,7 @@ CxDll::fpGetProcAddress(
     fpRes = (TxProcAddress)( ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str()) );
     /*DEBUG*/xASSERT_RET(NULL != fpRes, NULL);
 #elif defined(xOS_ENV_UNIX)
-    const CHAR *pszError = NULL;
+    const char *pszError = NULL;
 
     pszError = dlerror();
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
@@ -89,7 +89,7 @@ CxDll::bFree() {
     BOOL bRes = ::FreeLibrary(_m_hDLL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = dlclose(_m_hDLL);
+    int iRes = dlclose(_m_hDLL);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #endif
 

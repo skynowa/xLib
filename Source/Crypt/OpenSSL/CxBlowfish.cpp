@@ -40,14 +40,14 @@ CxBlowfish::~CxBlowfish() {
 BOOL
 CxBlowfish::bSetKey(
     UCHAR     *pucKey,
-    const INT  ciKeySize
+    const int  ciKeySize
 )
 {
     /*DEBUG*/xASSERT_RET(NULL         != pucKey,    FALSE);
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= ciKeySize, FALSE);
     /*DEBUG*/xASSERT_RET(0            <  ciKeySize, FALSE);
 
-    (VOID)BF_set_key(&_m_bfKey, ciKeySize, pucKey);
+    (void)BF_set_key(&_m_bfKey, ciKeySize, pucKey);
 
     return TRUE;
 }
@@ -130,7 +130,7 @@ CxBlowfish::bEncryptCfb64(
     UCHAR            *pucIn,
     UCHAR            *pucOut,
     const LONG        cliInSize,
-    INT              *piNum,
+    int              *piNum,
     const ECryptMode  cmMode
 )
 {
@@ -141,7 +141,7 @@ CxBlowfish::bEncryptCfb64(
 
     xBUFF_ZERO(_m_ucIvec);
 
-    (VOID)BF_cfb64_encrypt(pucIn, pucOut, cliInSize, &_m_bfKey, _m_ucIvec, piNum, cmMode);
+    (void)BF_cfb64_encrypt(pucIn, pucOut, cliInSize, &_m_bfKey, _m_ucIvec, piNum, cmMode);
 
     return TRUE;
 }
@@ -156,7 +156,7 @@ CxBlowfish::bEncryptCfb64(
     /*DEBUG*/xASSERT_RET(false == cusIn.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pusOut,        FALSE);
 
-    INT iNum = 0;    //This integer must be initialized to zero when ivec is initialized
+    int iNum = 0;    //This integer must be initialized to zero when ivec is initialized
 
     (*pusOut).resize( cusIn.size() );
 
@@ -261,7 +261,7 @@ CxBlowfish::bEncryptFileCfb64(
                 usStampCrc32 = cusStamp + xS2US(sCrc32);
                 /*DEBUG*/xASSERT_RET(cusStamp.size() + cuiCrc32StrSize == usStampCrc32.size(), FALSE);
 
-                size_t uiWrited = sfFileOut.uiWrite((VOID *)&usStampCrc32.at(0), usStampCrc32.size());
+                size_t uiWrited = sfFileOut.uiWrite((void *)&usStampCrc32.at(0), usStampCrc32.size());
                 /*DEBUF*/xASSERT_RET(uiWrited == usStampCrc32.size(), FALSE);
             }
             break;
@@ -299,7 +299,7 @@ CxBlowfish::bEncryptFileCfb64(
     usOut.resize(cuiBuffSize);
 
     for ( ; ; ) {
-        INT iNum = 0;
+        int iNum = 0;
 
         size_t uiInSize = sfFileIn.uiRead(&usIn.at(0), usIn.size());
         xCHECK_DO(uiInSize <= 0, break);

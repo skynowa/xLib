@@ -15,8 +15,8 @@
 //---------------------------------------------------------------------------
 //test struct
 typedef struct {
-    INT x;
-    INT y;
+    int x;
+    int y;
 } SMy, *PSMy;
 //---------------------------------------------------------------------------
 CxTest_CxAutoMallocT::CxTest_CxAutoMallocT() {
