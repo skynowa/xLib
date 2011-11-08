@@ -39,18 +39,18 @@ CxTest_CxFileAttribute::bUnit(
     //prepare
     {
         m_bRes = CxFile::bDelete(csFilePath);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         CxFile F;
 
         m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = F.bClose();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxFile::bIsExists(csFilePath);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -58,7 +58,7 @@ CxTest_CxFileAttribute::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bSet(csFilePath, cfaValue);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         CxFileAttribute::EAttribute faRes;
 
@@ -71,13 +71,13 @@ CxTest_CxFileAttribute::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bClear(csFilePath);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxFileAttribute::bAdd(csFilePath, cfaValue);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxFileAttribute::bIsExists(csFilePath, cfaValue);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -89,29 +89,29 @@ CxTest_CxFileAttribute::bUnit(
             CxFileAttribute::EAttribute faValue = CxFileAttribute::faReadOnly;
 
             m_bRes = CxFileAttribute::bClear(csFilePath);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_bRes = CxFileAttribute::bAdd(csFilePath, faAttr);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_bRes = CxFileAttribute::bAdd(csFilePath, faValue);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_bRes = CxFileAttribute::bIsExists(csFilePath, faValue);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             //remove
             m_bRes = CxFileAttribute::bRemove(csFilePath, faValue);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_bRes = CxFileAttribute::bIsExists(csFilePath, faValue);
             xASSERT_EQ(FALSE, m_bRes);
 
             m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             CxFileAttribute::EAttribute faRes = CxFileAttribute::atGet(csFilePath);
             xASSERT_EQ((INT)faAttr, (INT)faRes);
@@ -119,10 +119,10 @@ CxTest_CxFileAttribute::bUnit(
             //file
             {
                 m_bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
-                xASSERT_NOT_EQ(FALSE, m_bRes);
+                xASSERT_DIFF(FALSE, m_bRes);
 
                 m_bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
-                xASSERT_NOT_EQ(FALSE, m_bRes);
+                xASSERT_DIFF(FALSE, m_bRes);
             }
 
             //dir
@@ -130,10 +130,10 @@ CxTest_CxFileAttribute::bUnit(
                 const std::tstring csDirPath = sGetWorkDirPath();
 
                 m_bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-                xASSERT_NOT_EQ(FALSE, m_bRes);
+                xASSERT_DIFF(FALSE, m_bRes);
 
                 m_bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-                xASSERT_NOT_EQ(FALSE, m_bRes);
+                xASSERT_DIFF(FALSE, m_bRes);
             }
         #endif
     }
@@ -151,7 +151,7 @@ CxTest_CxFileAttribute::bUnit(
         #endif
 
         m_bRes = CxFileAttribute::bModify(csFilePath, cfaRemoveValue, cfaAddValue);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -165,10 +165,10 @@ CxTest_CxFileAttribute::bUnit(
         #endif
 
         m_bRes = CxFileAttribute::bClear(csFilePath);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -176,7 +176,7 @@ CxTest_CxFileAttribute::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bClear(csFilePath);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         CxFileAttribute::EAttribute faRes;
 

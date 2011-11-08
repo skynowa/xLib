@@ -30,7 +30,7 @@ CxTest_CxStackTrace::bUnit(
         std::vector<std::tstring> vsStack;
 
         m_bRes = stStack.bGet(&vsStack);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
         xASSERT_EQ(false, vsStack.empty());
     }
 

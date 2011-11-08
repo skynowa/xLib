@@ -38,7 +38,7 @@ CxTest_CxCom::bUnit(
             CxCom cmCom(CxCom::cmMultiThreaded);
 
             m_bRes = CxCom::bIsInit();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         }
 
         m_bRes = CxCom::bIsInit();

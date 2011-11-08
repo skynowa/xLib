@@ -34,7 +34,7 @@ CxTest_CxRandom::bUnit(
         //bSetSeed
         {
             m_bRes = rndR.bSetSeed( static_cast<ULONG>( time(NULL) ) );
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         }
 
         //--------------------------------------------------
@@ -126,7 +126,7 @@ CxTest_CxRandom::bUnit(
             const LONG cliMax = caliData[i][1];
 
             m_bRes = CxRandom::bSetSeed();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_liRes = CxRandom::liGetInt(cliMin, cliMax);
             xASSERT_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
@@ -144,7 +144,7 @@ CxTest_CxRandom::bUnit(
 
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = CxRandom::bSetSeed();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_sRes = CxRandom::sGetString(cuiStrSize);
             xASSERT_EQ(cuiStrSize, m_sRes.size());

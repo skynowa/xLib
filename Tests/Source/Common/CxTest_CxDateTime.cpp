@@ -128,7 +128,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 == dtDt2);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -161,7 +161,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 <= dtDt2);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -183,7 +183,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 >= dtDt2);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
 
@@ -264,10 +264,10 @@ CxTest_CxDateTime::bUnit(
         USHORT     usMSec   = 666;
 
         m_bRes = dtDT.bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = dtDT.bGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         xASSERT_EQ((USHORT)2010, usYear);
         xASSERT_EQ((USHORT)1,    usMonth);
@@ -319,10 +319,10 @@ CxTest_CxDateTime::bUnit(
         USHORT     usMSec   = 0;
 
         m_bRes = dtDT.bSet(ui64DT);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = dtDT.bGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         xASSERT_EQ((USHORT)0, usYear);
         xASSERT_EQ((USHORT)0, usMonth);
@@ -445,7 +445,7 @@ CxTest_CxDateTime::bUnit(
                 ////USHORT usMSec   = causiNonValid[i][6];
 
                 ////m_bRes = CxDateTime::bIsValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-                ////xASSERT_NOT_EQ(FALSE, m_bRes);
+                ////xASSERT_DIFF(FALSE, m_bRes);
             }
         }
     }
@@ -473,7 +473,7 @@ CxTest_CxDateTime::bUnit(
             CxDateTime dtNowDT;
 
             m_sRes = dtNowDT.dtGetCurrent().sFormat(CxDateTime::ftDateTime);
-            xASSERT_NOT_EQ(std::tstring(xT("00.00.0000 0:00:00:000")), m_sRes);
+            xASSERT_DIFF(std::tstring(xT("00.00.0000 0:00:00:000")), m_sRes);
         }
 
         //2
@@ -540,7 +540,7 @@ CxTest_CxDateTime::bUnit(
 
             ////for (size_t i = 0; i < xARRAY_SIZE(causNonValid); ++ i) {
             ////    m_bRes = CxDateTime::bIsLeapYear(causNonValid[i]);
-            ////    xASSERT_NOT_EQ(FALSE, m_bRes);
+            ////    xASSERT_DIFF(FALSE, m_bRes);
             ////}
         }
     }
@@ -568,7 +568,7 @@ CxTest_CxDateTime::bUnit(
             FILETIME     ftFileTime  = {0};
 
             m_bRes = CxDateTime::bUnixTimeToFileTime(ctmUnixTime, &ftFileTime);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         #endif
     }
 

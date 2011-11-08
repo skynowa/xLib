@@ -45,10 +45,10 @@ CxTest_CxCgi::bUnit(
                     xT("</html>");
 
             m_bRes = CxFile::bTextWrite(csFilePath, sFileContent);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_bRes = CxCgi::bPageShow(csFilePath);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -58,7 +58,7 @@ CxTest_CxCgi::bUnit(
     {
         #if xTEMP_DISABLED
             CxCgi::bRedirect(xT("http://yandex.ru/"));
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -244,13 +244,13 @@ CxTest_CxCgi::bUnit(
                 std::tstring sEncodedStr;
 
                 m_bRes = CxCgi::bUriEncode(sUri, ILLEGAL_CHARS, &sEncodedStr);
-                xASSERT_NOT_EQ(FALSE,  m_bRes);
+                xASSERT_DIFF(FALSE,  m_bRes);
                 xASSERT_EQ(false, sEncodedStr.empty());
 
                 std::tstring sDecodedStr;
 
                 m_bRes = CxCgi::bUriDecode(sEncodedStr, &sDecodedStr);
-                xASSERT_NOT_EQ(FALSE, m_bRes)
+                xASSERT_DIFF(FALSE, m_bRes)
                 xASSERT_EQ(sUri, sDecodedStr);
             }
         }
@@ -271,13 +271,13 @@ CxTest_CxCgi::bUnit(
                 std::tstring sDecodedStr;
 
                 m_bRes = CxCgi::bUriDecode(sUri, &sDecodedStr);
-                xASSERT_NOT_EQ(FALSE,  m_bRes)
+                xASSERT_DIFF(FALSE,  m_bRes)
                 xASSERT_EQ(false, sDecodedStr.empty());
 
                 std::tstring sEncodedStr;
 
                 m_bRes = CxCgi::bUriEncode(sDecodedStr, ILLEGAL_CHARS, &sEncodedStr);
-                xASSERT_NOT_EQ(FALSE,  m_bRes);
+                xASSERT_DIFF(FALSE,  m_bRes);
                 xASSERT_EQ(sUri,  sEncodedStr);
             }
         }

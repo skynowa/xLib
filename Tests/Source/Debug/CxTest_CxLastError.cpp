@@ -72,7 +72,7 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         }
     }
 
@@ -88,10 +88,10 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-			xASSERT_NOT_EQ(FALSE, m_bRes);
+			xASSERT_DIFF(FALSE, m_bRes);
 
 			m_bRes = CxLastError::bReset();
-			xASSERT_NOT_EQ(FALSE, m_bRes);
+			xASSERT_DIFF(FALSE, m_bRes);
 
 			xASSERT_EQ(0UL, CxLastError::ulGet());
         }

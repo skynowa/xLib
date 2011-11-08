@@ -55,12 +55,12 @@ CxTest_CxDll::bUnit(
         //-------------------------------------
         //bLoad
         m_bRes = objDll.bLoad(sData[i][0]);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
     	//-------------------------------------
     	//fpGetProcAddress
@@ -91,7 +91,7 @@ CxTest_CxDll::bUnit(
         //-------------------------------------
         //bFree
         m_bRes = objDll.bFree();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //-------------------------------------
         //bIsLoaded

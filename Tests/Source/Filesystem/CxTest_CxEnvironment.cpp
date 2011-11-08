@@ -40,7 +40,7 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             m_bRes = CxEnvironment::bSetVar(sData[i][0], sData[i][1]);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         }
     }
 
@@ -106,7 +106,7 @@ CxTest_CxEnvironment::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxEnvironment::bGetValues(&m_vsRes);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
         xASSERT_EQ(false, m_vsRes.empty());
 
         ////CxString::vStdVectorPrintT(m_vsRes);
@@ -150,7 +150,7 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             BOOL bStr1 = CxEnvironment::bDeleteVar(sData[i][0]);
-            xASSERT_NOT_EQ(FALSE, bStr1);
+            xASSERT_DIFF(FALSE, bStr1);
         }
     }
 

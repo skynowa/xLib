@@ -52,13 +52,13 @@ CxTest_CxBlowfish::bUnit(
 			std::ustring sDecrypted;
 
 			m_bRes = BF.bSetKey(sKey);
-			xASSERT_NOT_EQ(FALSE, m_bRes);
+			xASSERT_DIFF(FALSE, m_bRes);
 
 			m_bRes = BF.bEncryptCfb64(usPlain[i], &sEncrypted, CxBlowfish::cmEncrypt);
-			xASSERT_NOT_EQ(FALSE, m_bRes);
+			xASSERT_DIFF(FALSE, m_bRes);
 
 			m_bRes = BF.bEncryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
-			xASSERT_NOT_EQ(FALSE, m_bRes);
+			xASSERT_DIFF(FALSE, m_bRes);
 
 			xASSERT(usPlain[i] == sDecrypted);
 		}
@@ -77,18 +77,18 @@ CxTest_CxBlowfish::bUnit(
 		//prepare
         {
             m_bRes = CxFile::bTextWrite(sFilePlain, xT("text_text"));
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         }
 
 		//test
 		m_bRes = BF.bSetKey(sKey);
-		xASSERT_NOT_EQ(FALSE, m_bRes);
+		xASSERT_DIFF(FALSE, m_bRes);
 
 		m_bRes = BF.bEncryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
-		xASSERT_NOT_EQ(FALSE, m_bRes);
+		xASSERT_DIFF(FALSE, m_bRes);
 
 		m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
-		xASSERT_NOT_EQ(FALSE, m_bRes);
+		xASSERT_DIFF(FALSE, m_bRes);
 	}
 
 	//-------------------------------------
@@ -106,17 +106,17 @@ CxTest_CxBlowfish::bUnit(
 		std::tstring sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
 		m_bRes = BF.bSetKey(sKey);
-		xASSERT_NOT_EQ(FALSE, m_bRes);
+		xASSERT_DIFF(FALSE, m_bRes);
 
 		cmRes = BF.cmGetFileCryptStatus(sFilePlain, usStamp);
 		xASSERT_EQ(CxBlowfish::cmDecrypt, cmRes);
 
     #if xTODO
         m_bRes = BF.bEncryptFileCfb64(sFilePlain,     sFileEncrypted, usStamp);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, usStamp);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     #endif
 	}
 

@@ -63,7 +63,7 @@ CxTest_CxArray::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         /*m_bRes =*/ aszArray.clear();
-        ////xASSERT_NOT_EQ(FALSE, m_bRes);
+        ////xASSERT_DIFF(FALSE, m_bRes);
     }
 
     xTEST_BLOCK(cullBlockLoops) {
