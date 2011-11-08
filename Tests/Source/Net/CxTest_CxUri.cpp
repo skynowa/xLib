@@ -27,7 +27,8 @@ CxTest_CxUri::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_ENV_WIN)
+    std::string m_sRes;
+
     xTEST_BLOCK(cullBlockLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret#nose");
@@ -270,9 +271,6 @@ CxTest_CxUri::bUnit(
             xASSERT_EQ(sUri[i], m_sRes);
         }
     }
-#elif defined(xOS_ENV_UNIX)
-
-#endif
 
     return TRUE;
 }

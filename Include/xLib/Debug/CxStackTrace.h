@@ -1,6 +1,6 @@
 /**
  * \file   CxStackTrace.h
- * \brief  Print a demangled stack backtrace of the caller function to FILE* out
+ * \brief  get stack backtrace of the caller function
  *         http://idlebox.net/
  */
 
@@ -15,13 +15,13 @@ class CxStackTrace :
     public CxNonCopyable
     /// stack trace
 {
-	public:
-		explicit     CxStackTrace();
+    public:
+        explicit     CxStackTrace();
             ///< constructor
-		virtual     ~CxStackTrace();
-		    ///< destructor
+        virtual     ~CxStackTrace();
+            ///< destructor
 
-        BOOL         bGet        (std::vector<std::string> *pvsStack);
+        BOOL         bGet        (std::vector<std::tstring> *pvsStack);
             ///< get stack trace
         std::tstring sGet        (const std::tstring &csLinesSeparator = xT("\n"));
             ///< get stack trace
@@ -32,7 +32,7 @@ class CxStackTrace :
     #elif defined(xOS_ENV_UNIX)
         static const INT   _m_culMaxFrames = 256;     //this should be enough
     #endif
-        ///< maximum frames for report
+            ///< maximum frames for report
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxStackTraceH

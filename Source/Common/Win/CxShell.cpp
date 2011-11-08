@@ -191,46 +191,73 @@ CxShell::sGetSpecialDirPath(
     return std::tstring(szRes);
 }
 //---------------------------------------------------------------------------
+#define xHOTKEY(modifier, key) ((((modifier) & 0xff) << 8) | ((key)&0xff))
+
 /*static*/
 BOOL
 CxShell::bCreateShortcut(
-    const std::tstring &csFilePath,
-    const std::tstring &csShortCutPath,
-    const std::tstring &csDescription
+    const std::tstring &csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
+                                            ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
+                                            ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
+    const std::tstring &csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
+    const std::tstring &csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
+    const std::tstring &csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.Txt"
+    const WORD          cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
+    const INT           ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
+    const std::tstring &csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
+    const INT           ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
+    const std::tstring &csDescription       ///< description
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),     FALSE);
-    /*DEBUG*/xASSERT_RET(false == csShortCutPath.empty(), FALSE);
-    /*DEBUG*/// csDescription - n/a
+    /*DEBUG*/
 
-    CxCom comCom(CxCom::cmMultiThreaded);
+    CxCom cmCom(CxCom::cmMultiThreaded);
 
     IShellLink *pslSL = NULL;
     HRESULT     hRes  = 0;
 
-    hRes = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void **)&pslSL);
+    hRes = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (VOID **)&pslSL);
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
 
-    pslSL->SetPath(csFilePath.c_str());
-    pslSL->SetDescription(csDescription.c_str());
+    {
+	    hRes = pslSL->SetPath(csFilePath.c_str());
+	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+	
+	    hRes = pslSL->SetArguments(csArguments.c_str());
+	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+	
+	    hRes = pslSL->SetWorkingDirectory(csWorkingDirectory.c_str());
+	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+	
+	    hRes = pslSL->SetIconLocation(csIconFilePath.c_str(), ciIconIndex);
+	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+	
+	    hRes = pslSL->SetHotkey(cwHotKey);
+	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+	
+	    hRes = pslSL->SetShowCmd(ciCmdShow);
+	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+	
+	    hRes = pslSL->SetDescription(csDescription.c_str());
+	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+    }
 
 
-    IPersistFile *pPF = NULL;
+    IPersistFile *ppfPF = NULL;
 
-    hRes = pslSL->QueryInterface(IID_IPersistFile, CxMacros::xreinterpret_cast<VOID **>( &pPF ));
+    hRes = pslSL->QueryInterface(IID_IPersistFile, CxMacros::xreinterpret_cast<VOID **>( &ppfPF ));
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
 
-    #if defined(xUNICODE)
-        hRes = pPF->Save(csShortCutPath.c_str(), TRUE);
-        pPF->Release();
-    #else
-        wchar_t wszBuff[MAX_PATH + 1] = {0};
+#if defined(xUNICODE)
+    hRes = ppfPF->Save(csShortCutFilePath.c_str(), TRUE);
+#else
+    wchar_t wszBuff[MAX_PATH + 1] = {0};
 
-        ::MultiByteToWideChar(CP_ACP, 0, csShortCutPath.c_str(), - 1, wszBuff, MAX_PATH);
-        hRes = pPF->Save(wszBuff, TRUE);
-        pPF->Release();
-    #endif  /*xUNICODE*/
+    ::MultiByteToWideChar(CP_ACP, 0, csShortCutFilePath.c_str(), - 1, wszBuff, MAX_PATH);
+    hRes = ppfPF->Save(wszBuff, TRUE);
+#endif
 
+    ppfPF->Release();
     pslSL->Release();
 
     return TRUE;

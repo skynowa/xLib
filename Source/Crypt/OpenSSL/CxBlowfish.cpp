@@ -31,6 +31,7 @@ CxBlowfish::CxBlowfish() {
     xBUFF_ZERO(_m_ucIvec);
 }
 //---------------------------------------------------------------------------
+/*virtual*/
 CxBlowfish::~CxBlowfish() {
     /*SECURE*/xSTRUCT_ZERO(_m_bfKey);
     /*SECURE*/xBUFF_ZERO(_m_ucIvec);
@@ -46,8 +47,7 @@ CxBlowfish::bSetKey(
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= ciKeySize, FALSE);
     /*DEBUG*/xASSERT_RET(0            <  ciKeySize, FALSE);
 
-    BF_set_key(&_m_bfKey, ciKeySize, pucKey);
-    /*DEBUG*/// n/a
+    (VOID)BF_set_key(&_m_bfKey, ciKeySize, pucKey);
 
     return TRUE;
 }
@@ -95,7 +95,7 @@ CxBlowfish::bSetFileKey(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     LONG liFileSize = sfFile.liGetSize();
-    /*DEBUG*/xASSERT_RET(0            <  liFileSize, FALSE);
+    /*DEBUG*/xASSERT_RET(0L           <  liFileSize, FALSE);
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= liFileSize, FALSE);
 
     usFile.resize(liFileSize);
@@ -136,7 +136,7 @@ CxBlowfish::bEncryptCfb64(
 {
     /*DEBUG*/xASSERT_RET(NULL != pucIn,     FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pucIn,     FALSE);
-    /*DEBUG*/xASSERT_RET(0    <  cliInSize, FALSE);
+    /*DEBUG*/xASSERT_RET(0L   <  cliInSize, FALSE);
     /*DEBUG*/xASSERT_RET(NULL != piNum,     FALSE);
 
     xBUFF_ZERO(_m_ucIvec);
@@ -162,7 +162,7 @@ CxBlowfish::bEncryptCfb64(
 
     BOOL bRes = bEncryptCfb64(const_cast<UCHAR *>( &cusIn.at(0) ), &(*pusOut).at(0), cusIn.size(), &iNum, cmMode);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    /*DEBUG*/xASSERT_RET(- 1   <  iNum,    FALSE);
+    /*DEBUG*/xASSERT_RET(- 1   <  iNum, FALSE);
 
     return TRUE;
 }
@@ -362,7 +362,7 @@ CxBlowfish::cmGetFileCryptStatus(
 {
     /*DEBUG*/
 
-    ECryptMode   cmRes = cmUnknown;
+    ECryptMode   cmRes        = cmUnknown;
     std::ustring usStamp;
     size_t       uiReadedSize = 0;
     LONG         liFileSize   = (ULONG)- 1;

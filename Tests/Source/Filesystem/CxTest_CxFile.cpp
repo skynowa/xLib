@@ -301,17 +301,16 @@ CxTest_CxFile::bUnit(
     //bGetTime, bSetTime
     xTEST_BLOCK(cullBlockLoops)
     {
-    #if xTODO
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, FALSE);
             xASSERT_NOT_EQ(FALSE, m_bRes);
         }
 
-        const time_t ctmCreate   = 1305748663;
-        const time_t ctmAccess   = 1305753000;
-        const time_t ctmModified = 1305753052;
+        const time_t ctmCreate   = 1319714265;
+        const time_t ctmAccess   = 1319714452;
+        const time_t ctmModified = 1319714452;
 
         m_bRes = CxFile::bSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
         xASSERT_NOT_EQ(FALSE, m_bRes);
@@ -322,12 +321,15 @@ CxTest_CxFile::bUnit(
 
         m_bRes = CxFile::bGetTime(csFilePath, &tmCreate, &tmAccess, &tmModified);
         xASSERT_NOT_EQ(FALSE, m_bRes);
-        #if xTODO
-            xASSERT_EQ(ctmCreate, tmCreate);
-        #endif
+
+    #if defined(xOS_ENV_WIN)
+        xASSERT_EQ(ctmCreate, tmCreate);
+    #elif defined(xOS_ENV_UNIX)
+        xUNUSED(tmCreate);
+    #endif
+
         xASSERT_EQ(ctmAccess,   tmAccess);
         xASSERT_EQ(ctmModified, tmModified);
-    #endif
     }
 
 
@@ -481,14 +483,14 @@ CxTest_CxFile::bUnit(
     //bSetVBuff
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::tstring sBuffRead;       sBuffRead.resize(1024);
+        std::string asBuffRead;       asBuffRead.resize(1024);
 
         CxFile F;
 
         m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xASSERT_NOT_EQ(FALSE, m_bRes);
 
-        m_bRes = F.bSetVBuff(&sBuffRead.at(0), CxFile::bmFull, sBuffRead.size() * 2);
+        m_bRes = F.bSetVBuff(&asBuffRead.at(0), CxFile::bmFull, asBuffRead.size() * 2);
         xASSERT_NOT_EQ(FALSE, m_bRes);
     }
 
