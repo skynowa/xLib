@@ -28,7 +28,7 @@ class CxBlowfish :
         virtual      ~CxBlowfish          ();
             ///< destructor
 
-        BOOL          bSetKey             (UCHAR *pucKey, const INT ciKeySize);
+        BOOL          bSetKey             (UCHAR *pucKey, const int ciKeySize);
             ///< set key
         BOOL          bSetKey             (const std::ustring &cusKey);
             ///< set key
@@ -40,7 +40,7 @@ class CxBlowfish :
             ///< get maximum key size
 
         //cfb64
-        BOOL          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, const LONG cliInSize, INT *piNum, const ECryptMode cmMode);
+        BOOL          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, const LONG cliInSize, int *piNum, const ECryptMode cmMode);
             ///< encrypt buffer
         BOOL          bEncryptCfb64       (const std::ustring &cusIn, std::ustring *pusOut, const ECryptMode cmMode);
             ///< encrypt std::ustring

@@ -17,7 +17,7 @@ class CxDll :
     #if defined(xOS_ENV_WIN)
         typedef FARPROC TxProcAddress;
     #elif defined(xOS_ENV_UNIX)
-        typedef VOID *  TxProcAddress;
+        typedef void *  TxProcAddress;
     #endif
                       CxDll           ();
             ///< constructor
@@ -37,7 +37,7 @@ class CxDll :
     #if defined(xOS_ENV_WIN)
         typedef HMODULE  TxHandle;
     #elif defined(xOS_ENV_UNIX)
-        typedef VOID *   TxHandle;
+        typedef void *   TxHandle;
     #endif
 
         TxHandle      _m_hDLL;   ///< dll module handle

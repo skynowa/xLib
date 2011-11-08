@@ -49,7 +49,7 @@ CxType::sGetName(
     std::string asClassName;
 
 #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_GNUC)
-    INT  iStatus      = - 1;
+    int  iStatus      = - 1;
     char *pszRealName = NULL;
 
     pszRealName = abi::__cxa_demangle(typeid(cObjectT).name(), NULL, NULL, &iStatus);

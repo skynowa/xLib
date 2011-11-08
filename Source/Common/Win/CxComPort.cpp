@@ -118,7 +118,7 @@ CxCOMPort::bReadData(
 }
 //--------------------------------------------------------------------------
 //TODO: iReadDataWaiting ()
-INT 
+int 
 CxCOMPort::iReadDataWaiting() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 

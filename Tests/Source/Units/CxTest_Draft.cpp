@@ -33,8 +33,8 @@ CxTest_Draft::bUnit(
 
     #if xTEMP_DISABLED
         {
-            INT iMin = CxThread::_iGetPriorityMin();
-            INT iMax = CxThread::_iGetPriorityMax();
+            int iMin = CxThread::_iGetPriorityMin();
+            int iMax = CxThread::_iGetPriorityMax();
 
             xTRACEV("Tnread prior: %i ... %i", iMin, iMax);
         }

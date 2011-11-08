@@ -111,7 +111,7 @@ CxDnsClient::bGetLocalHostName(
     std::string asRes(HOST_NAME_MAX, '0');
 #endif
 
-    INT iRes = ::gethostname(&asRes.at(0), asRes.size() * sizeof(std::string::value_type));
+    int iRes = ::gethostname(&asRes.at(0), asRes.size() * sizeof(std::string::value_type));
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 
     asRes.assign(asRes.c_str());    //delete '0' from end
@@ -147,11 +147,11 @@ CxDnsClient::bGetNameInfo(
 
 #if defined(xOS_ENV_WIN)
     //TODO: bGetNameInfo
-    INT iRes = ::GetNameInfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    int iRes = ::GetNameInfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     //TODO: bGetNameInfo
-    INT iRes = getnameinfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    int iRes = getnameinfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #endif
 
@@ -176,10 +176,10 @@ CxDnsClient::bGetHostAddrInfo(
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
 
 #if defined(xOS_ENV_WIN)
-    INT iRes = ::GetAddrInfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
+    int iRes = ::GetAddrInfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    INT iRes =   getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
+    int iRes =   getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxString::lexical_cast(iRes), FALSE);
 #endif
 
@@ -219,7 +219,7 @@ CxDnsClient::bGetProtocolByName(
     if (NULL != pvsAliases) {
         pvsAliases->clear();
 
-        for (CHAR **s = pptInfo->p_aliases; s && *s; ++ s) {
+        for (char **s = pptInfo->p_aliases; s && *s; ++ s) {
             std::string asRes;
             asRes.assign(*s);
 
@@ -268,7 +268,7 @@ CxDnsClient::bGetProtocolByNumber(
     if (NULL != pvsAliases) {
         pvsAliases->clear();
 
-        for (CHAR **s = pptInfo->p_aliases; s && *s; ++ s) {
+        for (char **s = pptInfo->p_aliases; s && *s; ++ s) {
             std::string asRes;
             asRes.assign(*s);
 
@@ -324,7 +324,7 @@ CxDnsClient::bGetServiceByName(
     if (NULL != pvsAliases) {
         pvsAliases->clear();
 
-        for (CHAR **s = psvInfo->s_aliases; s && *s; ++ s) {
+        for (char **s = psvInfo->s_aliases; s && *s; ++ s) {
             std::string asRes;
             asRes.assign(*s);
 
@@ -385,7 +385,7 @@ CxDnsClient::bGetServiceByPort(
     if (NULL != pvsAliases) {
         pvsAliases->clear();
 
-        for (CHAR **s = psvInfo->s_aliases; s && *s; ++ s) {
+        for (char **s = psvInfo->s_aliases; s && *s; ++ s) {
             std::string asRes;
             asRes.assign(*s);
 

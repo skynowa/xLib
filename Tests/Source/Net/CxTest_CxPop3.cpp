@@ -64,7 +64,7 @@ CxTest_CxPop3::bUnit(
     ULONG              ulMsgID    = 1;
     std::vector<ULONG> veculList;
     ////ULONG              ulIndex    = 1;
-    INT                iNum       = 1;
+    int                iNum       = 1;
     const std::string_t      csDirPath  = xT("C:/Temp2");
     const std::string_t      csFileName = xT("MailFileName");
 

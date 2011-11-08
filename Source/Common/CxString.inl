@@ -143,7 +143,7 @@ template<class T>
 inline std::string_t
 CxString::lexical_cast(
     const T   &cValueT,
-    const INT  ciBase
+    const int  ciBase
 )
 {
     //cValueT - n/a
@@ -197,7 +197,7 @@ template<class T>
 inline T
 CxString::lexical_cast(
     const std::string_t &csStr,
-    const INT           ciBase
+    const int           ciBase
 )
 {
     //csStr  - n/a

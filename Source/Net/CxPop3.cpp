@@ -250,7 +250,7 @@ CxPop3::bRset() {
 //---------------------------------------------------------------------------
 //DONE: bTop (�������� ��������� ������)
 BOOL
-CxPop3::bTop(INT iNum, INT iLines, std::string_t &sBuff) {
+CxPop3::bTop(int iNum, int iLines, std::string_t &sBuff) {
     /*DEBUG*/xASSERT_RET(iNum   > 0,   FALSE);
     /*DEBUG*/xASSERT_RET(iLines > - 1, FALSE);
 
@@ -279,7 +279,7 @@ CxPop3::bTop(INT iNum, INT iLines, std::string_t &sBuff) {
 //---------------------------------------------------------------------------
 //DONE: bRetriveRaw ()
 BOOL
-CxPop3::bRetriveRaw(INT iNum, const std::string_t &csDirPath, const std::string_t &csFileName) {  //csDirPath ��� �����
+CxPop3::bRetriveRaw(int iNum, const std::string_t &csDirPath, const std::string_t &csFileName) {  //csDirPath ��� �����
     /*DEBUG*/xASSERT_RET(iNum > 0,                    FALSE);
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  FALSE);
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(), FALSE);
@@ -335,7 +335,7 @@ CxPop3::bRetriveRaw(INT iNum, const std::string_t &csDirPath, const std::string_
 //---------------------------------------------------------------------------
 //DONE: bRetriveRawAndBackup ()
 BOOL
-CxPop3::bRetriveRawAndBackup(INT iNum, const std::string_t &csDirPath, const std::string_t &csBackupDirPath, const std::string_t &csFileName) {
+CxPop3::bRetriveRawAndBackup(int iNum, const std::string_t &csDirPath, const std::string_t &csBackupDirPath, const std::string_t &csFileName) {
     /*DEBUG*/xASSERT_RET(iNum > 0,                                                         FALSE);
     /*DEBUG*/xASSERT_RET(! (true == csDirPath.empty() && true == csBackupDirPath.empty()), FALSE);
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(),                                      FALSE);
@@ -404,7 +404,7 @@ CxPop3::bRetriveRawAndBackup(INT iNum, const std::string_t &csDirPath, const std
 //---------------------------------------------------------------------------
 //DONE: bRetrieveHeader ()
 BOOL
-CxPop3::bRetrieveHeader(INT iNum, CxMimeHeader &mhMimeHeader) {
+CxPop3::bRetrieveHeader(int iNum, CxMimeHeader &mhMimeHeader) {
     /*DEBUG*/xASSERT_RET(iNum > 0, FALSE);
 
     //-------------------------------------
@@ -434,7 +434,7 @@ CxPop3::bRetrieveHeader(INT iNum, CxMimeHeader &mhMimeHeader) {
 //---------------------------------------------------------------------------
 //DONE: bDelete (������� ������)
 BOOL
-CxPop3::bDelete(INT iNum) {
+CxPop3::bDelete(int iNum) {
     /*DEBUG*/xASSERT_RET(iNum > 0, FALSE);
 
     //-------------------------------------

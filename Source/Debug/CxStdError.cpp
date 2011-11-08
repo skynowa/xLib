@@ -14,13 +14,13 @@
 
 //---------------------------------------------------------------------------
 /*static*/
-INT
+int
 CxStdError::iGet() {
-    INT iCode = 0; /*= ciCodeSuccess*/;
+    int iCode = 0; /*= ciCodeSuccess*/;
 
     iCode = errno;
 
-    (VOID)bReset();
+    (void)bReset();
 
     return iCode;
 }
@@ -34,7 +34,7 @@ CxStdError::sGet() {
 /*static*/
 BOOL
 CxStdError::bSet(
-    const INT ciCode
+    const int ciCode
 )
 {
     errno = ciCode;
@@ -45,7 +45,7 @@ CxStdError::bSet(
 /*static*/
 BOOL
 CxStdError::bReset() {
-    const INT ciCodeSuccess = 0;
+    const int ciCodeSuccess = 0;
 
     return bSet(ciCodeSuccess);
 }
@@ -53,7 +53,7 @@ CxStdError::bReset() {
 /*static*/
 std::string_t
 CxStdError::sFormat(
-    const INT ciCode
+    const int ciCode
 )
 {
     std::string_t sRes;
@@ -67,16 +67,16 @@ CxStdError::sFormat(
     sRes.append(pcszError);
 #elif defined(xOS_ENV_UNIX)
     #if defined(xOS_LINUX)
-        CHAR szBuff[64 + 1] = {0};
+        char szBuff[64 + 1] = {0};
 
         const char_t *pcszError = strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(pcszError);
     #else
-        CHAR szBuff[64 + 1] = {0};
+        char szBuff[64 + 1] = {0};
 
-        INT iRes = strerror_r(static_cast<INT>( ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int iRes = strerror_r(static_cast<int>( ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRes, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(&szBuff[0]);

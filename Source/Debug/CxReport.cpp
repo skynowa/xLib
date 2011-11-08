@@ -56,7 +56,7 @@ CxReport::CxReport(
 {
     /*DEBUG*/
 
-    (VOID)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, csComment.c_str());
+    (void)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, csComment.c_str());
 
     switch (crtType) {
         case rtMsgboxPlain:     { _bInitPlain();    }   break;
@@ -110,17 +110,17 @@ CxReport::CxReport(
     sComment = CxString::sFormatV(pcszComment, palArgs);
     xVA_END(palArgs);
 
-    (VOID)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment.c_str());
+    (void)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment.c_str());
 
     switch (crtType) {
-        case rtMsgboxPlain:     { (VOID)_bInitPlain();    }   break;
-        case rtMsgboxFormated:  { (VOID)_bInitFormated(); }   break;
-        case rtStdoutPlain:     { (VOID)_bInitPlain();    }   break;
-        case rtStdoutHtml:      { (VOID)_bInitHtml();     }   break;
-        case rtLoggingPlain:    { (VOID)_bInitPlain();    }   break;
-        case rtLoggingHtml:     { (VOID)_bInitHtml();     }   break;
+        case rtMsgboxPlain:     { (void)_bInitPlain();    }   break;
+        case rtMsgboxFormated:  { (void)_bInitFormated(); }   break;
+        case rtStdoutPlain:     { (void)_bInitPlain();    }   break;
+        case rtStdoutHtml:      { (void)_bInitHtml();     }   break;
+        case rtLoggingPlain:    { (void)_bInitPlain();    }   break;
+        case rtLoggingHtml:     { (void)_bInitHtml();     }   break;
 
-        default:                { (VOID)_bInitPlain();    }   break;
+        default:                { (void)_bInitPlain();    }   break;
     }
 }
 //---------------------------------------------------------------------------

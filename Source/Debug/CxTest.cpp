@@ -45,12 +45,12 @@ CxTest::CxTest() :
     _m_sWorkDirPath(),
     _m_sName       ()
 {
-    (VOID)bCreateWorkDir(xT("Temp for tests"));
+    (void)bCreateWorkDir(xT("Temp for tests"));
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxTest::~CxTest() /* = 0*/ {
-    (VOID)CxDir::bDeleteForce( sGetWorkDirPath() );
+    (void)CxDir::bDeleteForce( sGetWorkDirPath() );
 }
 //---------------------------------------------------------------------------
 BOOL

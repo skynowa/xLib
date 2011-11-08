@@ -61,8 +61,8 @@ class CxProfiler :
         CxDateTime          _m_dtTimesStop;         ///< stop value
 
         //pmGetTimeOfDay
-        DOUBLE              _m_dMicrosecStart;      ///< start value
-        DOUBLE              _m_dMicrosecStop;       ///< stop value
+        double              _m_dMicrosecStart;      ///< start value
+        double              _m_dMicrosecStop;       ///< stop value
 
     #if defined(xOS_ENV_WIN)
         //pmTickCount
@@ -96,11 +96,11 @@ class CxProfiler :
         struct timezone
             /// for gettimeofday
         {
-            INT tz_minuteswest; ///< minutes W of Greenwich
-            INT tz_dsttime;     ///< type of dst correction
+            int tz_minuteswest; ///< minutes W of Greenwich
+            int tz_dsttime;     ///< type of dst correction
         };
 
-        static INT          gettimeofday(struct timeval *tv, struct timezone *tz);
+        static int          gettimeofday(struct timeval *tv, struct timezone *tz);
             ///< porting from Linux gettimeofday
     #endif
 };

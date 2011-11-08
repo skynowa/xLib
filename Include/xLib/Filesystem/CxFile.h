@@ -137,9 +137,9 @@ class CxFile :
             ///< get file path
 
         //read, write
-        size_t               uiRead       (VOID *pvBuff,        const size_t cuiCount) const;
+        size_t               uiRead       (void *pvBuff,        const size_t cuiCount) const;
             ///< read block of data
-        size_t               uiWrite      (const VOID *pcvBuff, const size_t cuiCount) const;
+        size_t               uiWrite      (const void *pcvBuff, const size_t cuiCount) const;
             ///< write block of data
         BOOL                 bRead        (std::ustring *psBuff) const;
             ///< read to std::ustring
@@ -147,9 +147,9 @@ class CxFile :
             ///< write from std::ustring
         BOOL                 bRead        (std::string_t *psBuff) const;
             ///< read to std::string_t
-        INT                  iWrite       (const char_t *pcszFormat, ...) const;
+        int                  iWrite       (const char_t *pcszFormat, ...) const;
             ///< write formatted output to stream
-        INT                  iWriteV      (const char_t *pcszFormat, va_list arg) const;
+        int                  iWriteV      (const char_t *pcszFormat, va_list arg) const;
             ///< write formatted variable argument list to stream
         BOOL                 bReadLine    (std::string_t *psStr, const size_t cuiMaxCount) const;
             ///< read string to newline or to the end of file
@@ -173,7 +173,7 @@ class CxFile :
             ///< set stream position indicator
         LONG                 liGetPosition() const;
             ///< get current position in stream
-        BOOL                 bSetVBuff    (CHAR *pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
+        BOOL                 bSetVBuff    (char *pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
             ///< change stream buffering
 
     #if defined(xOS_ENV_WIN)
@@ -263,16 +263,16 @@ class CxFile :
             ///< write binary data
 
         //other
-        static std::string_t  sBackup      (const std::string_t &csFilePath, const std::string_t &csDestDirPath, const BOOL cbMakeDaily /*, INT bBackupLimit*/);
+        static std::string_t  sBackup      (const std::string_t &csFilePath, const std::string_t &csDestDirPath, const BOOL cbMakeDaily /*, int bBackupLimit*/);
             ///< backup
 
     private:
         FILE                *_m_pFile;      ///< file handle
         std::string_t         _m_sFilePath;  ///< file path
 
-        static INT           _iGetHandle  (FILE *pfFile);
+        static int           _iGetHandle  (FILE *pfFile);
             ///< gets the file descriptor associated with a stream
-        static FILE *        _pfGetHandle (INT iFileHandle, const EOpenMode omMode);
+        static FILE *        _pfGetHandle (int iFileHandle, const EOpenMode omMode);
             ///< get stream by handle
         static std::string_t  _sGetOpenMode(const EOpenMode comMode);
             ///< get open mode as string, by default use "r"

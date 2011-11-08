@@ -148,7 +148,7 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//cszProtocolNumbers
 	{
-		const INT ciProtocolNumbers[] = {
+		const int ciProtocolNumbers[] = {
 		    0, 1, 3, 6, 8, 12, 17, 20, 22, 27
 		};
 

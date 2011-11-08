@@ -40,11 +40,11 @@ CxPath::sGetExe() {
         #if defined(KERN_PROC_PATHNAME)
             sRes.resize(xPATH_MAX);
 
-            INT aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+            int aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
             size_t uiResSize = sRes.size() * sizeof(std::string_t::value_type);
 
-            INT iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
+            int iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, std::string_t());
 
             sRes.resize(uiResSize);
@@ -65,7 +65,7 @@ CxPath::sGetExe() {
         if (TRUE == bRes) {
             sRes.resize(xPATH_MAX);
 
-            INT iReaded = - 1;
+            int iReaded = - 1;
 
             for ( ; ; ) {
                 iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::string_t::value_type));
@@ -790,7 +790,7 @@ CxPath::uiGetMaxSize() {
         LONG        liRes         = - 1L;
         ULONG       ulLastError   = 0UL;
 
-        (VOID)CxLastError::bSet(culSavedError);
+        (void)CxLastError::bSet(culSavedError);
 
         liRes       = ::pathconf("/", _PC_PATH_MAX);
         ulLastError = CxLastError::ulGet();
@@ -834,7 +834,7 @@ CxPath::uiGetNameMaxSize() {
         LONG        liRes         = - 1L;
         ULONG       ulLastError   = 0UL;
 
-        (VOID)CxLastError::bSet(culSavedError);
+        (void)CxLastError::bSet(culSavedError);
 
         liRes       = ::pathconf("/", _PC_NAME_MAX);
         ulLastError = CxLastError::ulGet();

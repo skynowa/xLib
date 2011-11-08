@@ -23,9 +23,9 @@ class CLogger {
             //xSTD_COUT_FUNC;
         };
 
-       VOID  vOpen  () { /*xSTD_COUT_FUNC;*/ };
-       VOID  vWrite () { /*xSTD_COUT_FUNC;*/ };
-       VOID  vClose () { /*xSTD_COUT_FUNC;*/ };
+       void  vOpen  () { /*xSTD_COUT_FUNC;*/ };
+       void  vWrite () { /*xSTD_COUT_FUNC;*/ };
+       void  vClose () { /*xSTD_COUT_FUNC;*/ };
 };
 
 //---------------------------------------------------------------------------

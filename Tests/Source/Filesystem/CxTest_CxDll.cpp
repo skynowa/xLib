@@ -64,25 +64,25 @@ CxTest_CxDll::bUnit(
 
     	//-------------------------------------
     	//fpGetProcAddress
-    	/*FARPROC**/VOID *fpRes = NULL;
+    	/*FARPROC**/void *fpRes = NULL;
 
     	fpRes = objDll.fpGetProcAddress(sData[i][1]);
     	xASSERT(NULL != fpRes);
 
     #if defined(xOS_ENV_WIN)
-        typedef VOID (__stdcall *pDllFunc)(ULONG, ULONG);
+        typedef void (__stdcall *pDllFunc)(ULONG, ULONG);
 
         pDllFunc pLoadBeepFunc = NULL;
 
         pLoadBeepFunc = (pDllFunc)fpRes;
         pLoadBeepFunc(1, 1);
     #elif defined(xOS_ENV_UNIX)
-        typedef DOUBLE (*pDllFunc)(DOUBLE);
+        typedef double (*pDllFunc)(double);
 
         pDllFunc pCosine = NULL;
 
         pCosine = (pDllFunc)fpRes;
-        DOUBLE m_dRes = pCosine(2.0);
+        double m_dRes = pCosine(2.0);
         xUNUSED(m_dRes);
         //xTEST_EQ(-0.416147, m_dRes);
         //xTRACEV(xT("\tpCosine(2.0): %f"), m_dRes);

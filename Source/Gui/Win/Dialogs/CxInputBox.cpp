@@ -59,10 +59,10 @@ CxInputBox::mrShowModal(
 
     //-------------------------------------
     //_m_hWndMain
-    INT iWidth  = 240;
-    INT iHeight = 125;
-    INT x       = ::GetSystemMetrics(SM_CXSCREEN) / 2;
-    INT y       = ::GetSystemMetrics(SM_CYSCREEN) / 2;
+    int iWidth  = 240;
+    int iHeight = 125;
+    int x       = ::GetSystemMetrics(SM_CXSCREEN) / 2;
+    int y       = ::GetSystemMetrics(SM_CYSCREEN) / 2;
 
     _m_hWndMain = ::CreateWindow(
                             xT("CxInputBox"),
@@ -144,8 +144,8 @@ CxInputBox::mrShowModal(
     //��������� _m_hWndMain
     {
         HWND hCurrWnd = ::GetForegroundWindow();
-        INT  iMyTID   = ::GetCurrentThreadId();
-        INT  iCurrTID = ::GetWindowThreadProcessId(hCurrWnd, 0);
+        int  iMyTID   = ::GetCurrentThreadId();
+        int  iCurrTID = ::GetWindowThreadProcessId(hCurrWnd, 0);
 
         ::AttachThreadInput  (iMyTID, iCurrTID, TRUE);
         ::SetForegroundWindow(_m_hWndMain);
@@ -209,7 +209,7 @@ CxInputBox::_ms_pWndProc(
 
         switch (wParam) {
             case ID_btnOK: {
-                INT iTextSize = ::GetWindowTextLength(pibThis->_m_hEdtText) + sizeof('\0');
+                int iTextSize = ::GetWindowTextLength(pibThis->_m_hEdtText) + sizeof('\0');
                 /*DEBUG*/
 
                 pibThis->_m_sText.resize(iTextSize);

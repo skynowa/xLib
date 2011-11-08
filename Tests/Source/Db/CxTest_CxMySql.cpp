@@ -93,8 +93,8 @@ CxTest_CxMySql::bUnit(
         m_bRes = conConn.bQuery(
                              xT("CREATE TABLE IF NOT EXISTS "
                                 "   `%s` ("
-                                "       `f_id`    INT(11)     NOT NULL AUTO_INCREMENT,"
-                                "       `f_name`  CHAR(30)    NOT NULL,"
+                                "       `f_id`    int(11)     NOT NULL AUTO_INCREMENT,"
+                                "       `f_name`  char(30)    NOT NULL,"
                                 "       `f_age`   SMALLINT(6) NOT NULL,"
                                 ""
                                 "       PRIMARY KEY(`f_id`)"

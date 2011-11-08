@@ -74,8 +74,8 @@ CxTest_CxAtomicLongInt::bUnit(
     //BOOL             operator !=   (const LONG cliRight);
     //operator LONG ();
     //operator BOOL ();
-    //CxAtomicLongInt& operator ++   (INT iPos);
-    //CxAtomicLongInt& operator --   (INT iPos);
+    //CxAtomicLongInt& operator ++   (int iPos);
+    //CxAtomicLongInt& operator --   (int iPos);
 #elif defined(xOS_ENV_UNIX)
 
 #endif

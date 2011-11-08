@@ -115,9 +115,9 @@
 //TODO: test Units
 #include <Test/Units/CxTest_Draft.h>
 //---------------------------------------------------------------------------
-INT
+int
 xTMAIN(
-    INT    iArgCount,
+    int    iArgCount,
     char_t *paszArgs[]
 )
 {
@@ -166,7 +166,7 @@ xTMAIN(
 
         //loops number
         if (5 == iArgCount) {
-            bIsUseTracing = static_cast<BOOL>( CxString::lexical_cast<INT>( vsArgs.at(1) ) );
+            bIsUseTracing = static_cast<BOOL>( CxString::lexical_cast<int>( vsArgs.at(1) ) );
             ullAllLoops   = CxString::lexical_cast<ULONGLONG>( vsArgs.at(2) );
             ullUnitLoops  = CxString::lexical_cast<ULONGLONG>( vsArgs.at(3) );
             ullBlockLoops = CxString::lexical_cast<ULONGLONG>( vsArgs.at(4) );
@@ -179,121 +179,121 @@ xTMAIN(
         CxTestManager tmManager(bIsUseTracing);
 
         //Common
-        (VOID)tmManager.bAdd(new CxTest_CxMacros);
-        (VOID)tmManager.bAdd(new CxTest_CxException);
-        (VOID)tmManager.bAdd(new CxTest_CxType);
-        (VOID)tmManager.bAdd(new CxTest_CxFunctorT);
-        (VOID)tmManager.bAdd(new CxTest_CxArray);
-        (VOID)tmManager.bAdd(new CxTest_CxChar);
-        (VOID)tmManager.bAdd(new CxTest_CxLocale);
-        (VOID)tmManager.bAdd(new CxTest_CxAutoMallocT);
-        (VOID)tmManager.bAdd(new CxTest_CxString);
-        (VOID)tmManager.bAdd(new CxTest_CxDateTime);
-        (VOID)tmManager.bAdd(new CxTest_CxSystemInfo);
-        (VOID)tmManager.bAdd(new CxTest_CxConsole);
-        (VOID)tmManager.bAdd(new CxTest_CxCommandLine);
+        (void)tmManager.bAdd(new CxTest_CxMacros);
+        (void)tmManager.bAdd(new CxTest_CxException);
+        (void)tmManager.bAdd(new CxTest_CxType);
+        (void)tmManager.bAdd(new CxTest_CxFunctorT);
+        (void)tmManager.bAdd(new CxTest_CxArray);
+        (void)tmManager.bAdd(new CxTest_CxChar);
+        (void)tmManager.bAdd(new CxTest_CxLocale);
+        (void)tmManager.bAdd(new CxTest_CxAutoMallocT);
+        (void)tmManager.bAdd(new CxTest_CxString);
+        (void)tmManager.bAdd(new CxTest_CxDateTime);
+        (void)tmManager.bAdd(new CxTest_CxSystemInfo);
+        (void)tmManager.bAdd(new CxTest_CxConsole);
+        (void)tmManager.bAdd(new CxTest_CxCommandLine);
 
     #if defined(xOS_ENV_WIN)
-        (VOID)tmManager.bAdd(new CxTest_CxHandleT);
-        (VOID)tmManager.bAdd(new CxTest_CxCom);
-        (VOID)tmManager.bAdd(new CxTest_CxClipboard);
-        (VOID)tmManager.bAdd(new CxTest_CxShell);
-        (VOID)tmManager.bAdd(new CxTest_CxComPort);
+        (void)tmManager.bAdd(new CxTest_CxHandleT);
+        (void)tmManager.bAdd(new CxTest_CxCom);
+        (void)tmManager.bAdd(new CxTest_CxClipboard);
+        (void)tmManager.bAdd(new CxTest_CxShell);
+        (void)tmManager.bAdd(new CxTest_CxComPort);
     #elif defined(xOS_ENV_UNIX)
 
     #endif
 
         //Crypt
-        (VOID)tmManager.bAdd(new CxTest_CxCrc32);
-        (VOID)tmManager.bAdd(new CxTest_CxBase64);
-        (VOID)tmManager.bAdd(new CxTest_CxCrc32);
-        (VOID)tmManager.bAdd(new CxTest_CxBlowfish);
-        (VOID)tmManager.bAdd(new CxTest_CxRandom);
+        (void)tmManager.bAdd(new CxTest_CxCrc32);
+        (void)tmManager.bAdd(new CxTest_CxBase64);
+        (void)tmManager.bAdd(new CxTest_CxCrc32);
+        (void)tmManager.bAdd(new CxTest_CxBlowfish);
+        (void)tmManager.bAdd(new CxTest_CxRandom);
 
         //Db
-        (VOID)tmManager.bAdd(new CxTest_CxConnectionString);
-        //(VOID)tmManager.bAdd(new CxTest_CxMySql);
+        (void)tmManager.bAdd(new CxTest_CxConnectionString);
+        //(void)tmManager.bAdd(new CxTest_CxMySql);
 
         //Debug
-        (VOID)tmManager.bAdd(new CxTest_CxStdError);
-        (VOID)tmManager.bAdd(new CxTest_CxLastError);
-        (VOID)tmManager.bAdd(new CxTest_CxStackTrace);
-        (VOID)tmManager.bAdd(new CxTest_CxDebugger);
-        (VOID)tmManager.bAdd(new CxTest_CxReport);
-        (VOID)tmManager.bAdd(new CxTest_CxProfiler);
-        (VOID)tmManager.bAdd(new CxTest_CxAutoProfiler);
+        (void)tmManager.bAdd(new CxTest_CxStdError);
+        (void)tmManager.bAdd(new CxTest_CxLastError);
+        (void)tmManager.bAdd(new CxTest_CxStackTrace);
+        (void)tmManager.bAdd(new CxTest_CxDebugger);
+        (void)tmManager.bAdd(new CxTest_CxReport);
+        (void)tmManager.bAdd(new CxTest_CxProfiler);
+        (void)tmManager.bAdd(new CxTest_CxAutoProfiler);
 
         //Filesystem
-        (VOID)tmManager.bAdd(new CxTest_CxPath);
-        (VOID)tmManager.bAdd(new CxTest_CxFileAttribute);
-        (VOID)tmManager.bAdd(new CxTest_CxFile);
-        (VOID)tmManager.bAdd(new CxTest_CxFileTemp);
-        (VOID)tmManager.bAdd(new CxTest_CxDll);
-        (VOID)tmManager.bAdd(new CxTest_CxDir);
-        (VOID)tmManager.bAdd(new CxTest_CxVolume);
-        (VOID)tmManager.bAdd(new CxTest_CxEnvironment);
-        (VOID)tmManager.bAdd(new CxTest_CxLocalStorage);
+        (void)tmManager.bAdd(new CxTest_CxPath);
+        (void)tmManager.bAdd(new CxTest_CxFileAttribute);
+        (void)tmManager.bAdd(new CxTest_CxFile);
+        (void)tmManager.bAdd(new CxTest_CxFileTemp);
+        (void)tmManager.bAdd(new CxTest_CxDll);
+        (void)tmManager.bAdd(new CxTest_CxDir);
+        (void)tmManager.bAdd(new CxTest_CxVolume);
+        (void)tmManager.bAdd(new CxTest_CxEnvironment);
+        (void)tmManager.bAdd(new CxTest_CxLocalStorage);
 
     #if defined(xOS_ENV_WIN)
-        (VOID)tmManager.bAdd(new CxTest_CxIni);
+        (void)tmManager.bAdd(new CxTest_CxIni);
     #elif defined(xOS_ENV_UNIX)
 
     #endif
 
         //Log
-        (VOID)tmManager.bAdd(new CxTest_CxFileLog);
+        (void)tmManager.bAdd(new CxTest_CxFileLog);
 
         //Net
-        (VOID)tmManager.bAdd(new CxTest_CxCookiePv0);
-        (VOID)tmManager.bAdd(new CxTest_CxCookiePv1);
-        (VOID)tmManager.bAdd(new CxTest_CxCgi);
-        (VOID)tmManager.bAdd(new CxTest_CxSocketInit);
-        (VOID)tmManager.bAdd(new CxTest_CxDnsClient);
-        //(VOID)tmManager.bAdd(new CxTest_CxTcpClient);
-        //(VOID)tmManager.bAdd(new CxTest_CxTcpServer);
-        (VOID)tmManager.bAdd(new CxTest_CxHttpClient);
-        //(VOID)tmManager.bAdd(new CxTest_CxGeoIp);
+        (void)tmManager.bAdd(new CxTest_CxCookiePv0);
+        (void)tmManager.bAdd(new CxTest_CxCookiePv1);
+        (void)tmManager.bAdd(new CxTest_CxCgi);
+        (void)tmManager.bAdd(new CxTest_CxSocketInit);
+        (void)tmManager.bAdd(new CxTest_CxDnsClient);
+        //(void)tmManager.bAdd(new CxTest_CxTcpClient);
+        //(void)tmManager.bAdd(new CxTest_CxTcpServer);
+        (void)tmManager.bAdd(new CxTest_CxHttpClient);
+        //(void)tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
-        (VOID)tmManager.bAdd(new CxTest_CxSingleton);
+        (void)tmManager.bAdd(new CxTest_CxSingleton);
 
         //Pkcs11
     #if defined(xOS_ENV_WIN)
-        ////(VOID)tmManager.bAdd(new CxTest_CxPkcs11);
+        ////(void)tmManager.bAdd(new CxTest_CxPkcs11);
     #elif defined(xOS_ENV_UNIX)
 
     #endif
 
         //Sync
-        (VOID)tmManager.bAdd(new CxTest_CxThreadStorage);
-        (VOID)tmManager.bAdd(new CxTest_CxCriticalSection);
-        (VOID)tmManager.bAdd(new CxTest_CxAutoCriticalSection);
-        (VOID)tmManager.bAdd(new CxTest_CxEvent);
-        (VOID)tmManager.bAdd(new CxTest_CxSleeper);
-        (VOID)tmManager.bAdd(new CxTest_CxCurrentThread);
-        (VOID)tmManager.bAdd(new CxTest_CxThread);
-        (VOID)tmManager.bAdd(new CxTest_CxProcess);
+        (void)tmManager.bAdd(new CxTest_CxThreadStorage);
+        (void)tmManager.bAdd(new CxTest_CxCriticalSection);
+        (void)tmManager.bAdd(new CxTest_CxAutoCriticalSection);
+        (void)tmManager.bAdd(new CxTest_CxEvent);
+        (void)tmManager.bAdd(new CxTest_CxSleeper);
+        (void)tmManager.bAdd(new CxTest_CxCurrentThread);
+        (void)tmManager.bAdd(new CxTest_CxThread);
+        (void)tmManager.bAdd(new CxTest_CxProcess);
 
     #if defined(xOS_ENV_WIN)
-        (VOID)tmManager.bAdd(new CxTest_CxMutex);
-        (VOID)tmManager.bAdd(new CxTest_CxAutoMutex);
+        (void)tmManager.bAdd(new CxTest_CxMutex);
+        (void)tmManager.bAdd(new CxTest_CxAutoMutex);
     #elif defined(xOS_ENV_UNIX)
 
     #endif
 
         //Gui
-        (VOID)tmManager.bAdd(new CxTest_CxMsgBoxT);
+        (void)tmManager.bAdd(new CxTest_CxMsgBoxT);
 
     #if defined(xOS_ENV_WIN)
-        (VOID)tmManager.bAdd(new CxTest_CxGdiplus);
-        (VOID)tmManager.bAdd(new CxTest_CxImage);
+        (void)tmManager.bAdd(new CxTest_CxGdiplus);
+        (void)tmManager.bAdd(new CxTest_CxImage);
     #endif
 
         //Units
-        (VOID)tmManager.bAdd(new CxTest_Draft);
+        (void)tmManager.bAdd(new CxTest_Draft);
 
 
-        (VOID)tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
+        (void)tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
     }
 
     return TRUE;

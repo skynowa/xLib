@@ -168,7 +168,7 @@ CxTest_CxCgi::bUnit(
             m_sRes = cgCgi.Environment.sGetCountryCode();
             //xTRACEV(xT("cgCgi.Environment.sGetCountryCode(): %s"), m_sRes.c_str());
 
-            m_iRes = static_cast<INT>( cgCgi.Environment.rmGetRequestMethod() );
+            m_iRes = static_cast<int>( cgCgi.Environment.rmGetRequestMethod() );
             //xTRACEV(xT("cgCgi.Environment.rmGetRequestMethod(): %i"), m_iRes);
 
             m_sRes = cgCgi.Environment.sGetDump();

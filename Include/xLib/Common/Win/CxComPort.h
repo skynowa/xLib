@@ -27,7 +27,7 @@ class CxCOMPort :
         BOOL         bConfig         ();
         BOOL         bClearData      ();
         std::string_t bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
-        INT          iReadDataWaiting();
+        int          iReadDataWaiting();
         BOOL         bWriteData      (LPCTSTR pcszBuff, ULONG ulNumOfBytesToWrite);
         BOOL         bClose          ();
 

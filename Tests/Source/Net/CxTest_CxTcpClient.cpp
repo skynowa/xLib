@@ -37,7 +37,7 @@ CxTest_CxTcpClient::bUnit(
 	std::string_t					 sIp            = xT("127.0.0.1");
 	USHORT                   usPort         = 80;
 	std::string_t                  sSendBuff      = xT("TEST_STRING");
-	////CHAR                     szRecvBuff[32] = {0};
+	////char                     szRecvBuff[32] = {0};
 
 	//-------------------------------------
 	//�������������
@@ -110,7 +110,7 @@ CxTest_CxTcpClient::bUnit(
 		//-------------------------------------
 		//iSend
 		m_iRes = objSocket.iSend(sText.c_str(), sText.size(), 0);
-		xTEST_DIFF((INT)CxTcpClient::etError, m_iRes);
+		xTEST_DIFF((int)CxTcpClient::etError, m_iRes);
 	}
 
 	//-------------------------------------

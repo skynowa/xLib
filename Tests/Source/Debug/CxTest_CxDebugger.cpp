@@ -201,55 +201,55 @@ CxTest_CxDebugger::bUnit(
     //--------------------------------------------------
     //like xTEST_EQ macroses
 
-    //with INT
+    //with int
     {
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    INT iVar1 = 1;
-		    INT iVar2 = 1;
+		    int iVar1 = 1;
+		    int iVar2 = 1;
 		    xTEST_EQ(iVar1, iVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    INT iVar1 = 0;
-		    INT iVar2 = 1;
+		    int iVar1 = 0;
+		    int iVar2 = 1;
 		    xTEST_DIFF(iVar1, iVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    INT iVar1 = 1;
-		    INT iVar2 = 122;
+		    int iVar1 = 1;
+		    int iVar2 = 122;
 		    xTEST_LESS(iVar1, iVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    INT iVar1 = 110;
-		    INT iVar2 = 10;
+		    int iVar1 = 110;
+		    int iVar2 = 10;
 		    xTEST_GREATER(iVar1, iVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    INT iVar1 = 50;
-		    INT iVar2 = 122;
+		    int iVar1 = 50;
+		    int iVar2 = 122;
 		    xTEST_LESS_EQ(iVar1, iVar2);
 
-            INT iVar3 = 200;
-		    INT iVar4 = 200;
+            int iVar3 = 200;
+		    int iVar4 = 200;
 		    xTEST_LESS_EQ(iVar3, iVar4);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    INT iVar1 = 500;
-		    INT iVar2 = 147;
+		    int iVar1 = 500;
+		    int iVar2 = 147;
 		    xTEST_GREATER_EQ(iVar1, iVar2);
 
-            INT iVar3 = 77777;
-		    INT iVar4 = 77777;
+            int iVar3 = 77777;
+		    int iVar4 = 77777;
 		    xTEST_GREATER_EQ(iVar3, iVar4);
 	    }
     }

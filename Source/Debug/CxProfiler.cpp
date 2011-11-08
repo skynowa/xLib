@@ -24,7 +24,7 @@ CxProfiler::CxProfiler(
     _m_bIsStarted(FALSE),
     _flLog       (CxFileLog::lsDefaultSize)
 {
-    (VOID)_bResetData();
+    (void)_bResetData();
 }
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
@@ -89,7 +89,7 @@ CxProfiler::bStart() {
                 timeval tv = {0};
                 gettimeofday(&tv, NULL);
 
-                _m_dMicrosecStart = static_cast<DOUBLE>( tv.tv_sec ) + static_cast<DOUBLE>( tv.tv_usec ) * 0.000001;
+                _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
             }
             break;
 
@@ -167,7 +167,7 @@ CxProfiler::bStop(
                 timeval tv = {0};
                 gettimeofday(&tv, NULL);
 
-                _m_dMicrosecStop = static_cast<DOUBLE>( tv.tv_sec ) + static_cast<DOUBLE>( tv.tv_usec ) * 0.000001;
+                _m_dMicrosecStop = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
 
                 sTimeString = CxString::sFormat(xT("%.6lf (sec)"), _m_dMicrosecStop - _m_dMicrosecStart);
             }
@@ -322,7 +322,7 @@ CxProfiler::_liGetClock() {
 
     rusage ruUsage = {{0}};
 
-    INT iRes = getrusage(RUSAGE_SELF, &ruUsage);
+    int iRes = getrusage(RUSAGE_SELF, &ruUsage);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<clock_t>( - 1 ));
 
     liRes = static_cast<std::clock_t>(ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec) * 1000000 +
@@ -335,7 +335,7 @@ CxProfiler::_liGetClock() {
 #if defined(xOS_ENV_WIN)
 
 /*static*/
-INT
+int
 CxProfiler::gettimeofday(
     struct timeval  *tv,
     struct timezone *tz
@@ -349,7 +349,7 @@ CxProfiler::gettimeofday(
 
     FILETIME   ftTime  = {0};
     ULONGLONG  ullRes  = 0ULL;
-    static INT iTzFlag = 0;
+    static int iTzFlag = 0;
 
     if (NULL != tv) {
         ::GetSystemTimeAsFileTime(&ftTime);

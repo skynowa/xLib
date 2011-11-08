@@ -112,7 +112,7 @@ BOOL
 CxSocket::bClose() {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, FALSE);
 
-    INT iRes = etError;
+    int iRes = etError;
 
 #if defined(xOS_ENV_WIN)
     iRes = shutdown(_m_puiSocket, SD_BOTH);
@@ -141,11 +141,11 @@ CxSocket::bClose() {
 //---------------------------------------------------------------------------
 //TODO: iSend
 //TODO: LINUX: ssize_t send(int sockfd, const void *buf, size_t len, int flags);
-INT
+int
 CxSocket::iSend(
     const char_t *pcszBuff,
-    INT          iBuffSize,
-    INT          iFlags
+    int          iBuffSize,
+    int          iFlags
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        etError);
@@ -153,9 +153,9 @@ CxSocket::iSend(
     /*DEBUG*//////xASSERT_RET(0         <  ::lstrlen(pcszBuff), etError);
 
 #if defined(xOS_ENV_WIN)
-    INT     iRes = send(_m_puiSocket, (LPCSTR)pcszBuff, iBuffSize * sizeof(char_t), iFlags);
+    int     iRes = send(_m_puiSocket, (LPCSTR)pcszBuff, iBuffSize * sizeof(char_t), iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRes && WSAEWOULDBLOCK != iGetLastError(), etError);
-    /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(char_t) >= iRes,                                      etError);
+    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(char_t) >= iRes,                                      etError);
 #elif defined(xOS_ENV_UNIX)
     #if !defined(MSG_NOSIGNAL)
         #define MSG_NOSIGNAL  0x20000
@@ -163,7 +163,7 @@ CxSocket::iSend(
 
     ssize_t iRes = send(_m_puiSocket, pcszBuff, iBuffSize, MSG_NOSIGNAL);
     /*DEBUG*/xASSERT_RET(etError                        != iRes, etError);
-    /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(char_t) >= iRes, etError);
+    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(char_t) >= iRes, etError);
 #endif
 
     return iRes / sizeof(char_t);
@@ -173,7 +173,7 @@ CxSocket::iSend(
 BOOL
 CxSocket::bSendAll(
     const std::string_t &csBuff,
-    INT                 iFlags
+    int                 iFlags
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,   FALSE);
@@ -182,11 +182,11 @@ CxSocket::bSendAll(
 
     //-------------------------------------
     //������ �� ������ ������� � ����� � ������
-    INT iCurrPos  = 0;
-    INT iLeftSize = csBuff.size() * sizeof(char_t);            //TODO: !!!!!!  bSendAll (overflow)
+    int iCurrPos  = 0;
+    int iLeftSize = csBuff.size() * sizeof(char_t);            //TODO: !!!!!!  bSendAll (overflow)
 
     //if size of data more than size of buffer - sizeof buffer SOCKET_BUFF_SIZE
-    INT iBuffOutSize  = 0;
+    int iBuffOutSize  = 0;
     if (iLeftSize >= SOCKET_BUFF_SIZE) {
         iBuffOutSize = SOCKET_BUFF_SIZE;
     } else {
@@ -194,7 +194,7 @@ CxSocket::bSendAll(
     }
 
     for (;;) {        /*uiLeftSize > 0*/
-        INT iRes = iSend(&csBuff.at(0) + iCurrPos, iBuffOutSize, iFlags);
+        int iRes = iSend(&csBuff.at(0) + iCurrPos, iBuffOutSize, iFlags);
         xCHECK_DO(etError == iRes, break);
         xCHECK_DO(0       == iRes, break);
 
@@ -205,7 +205,7 @@ CxSocket::bSendAll(
 
         //id data is finished - exit from loop
         if (0 >= iLeftSize) {
-            /*DEBUG*/xASSERT_RET((INT)csBuff.size() * (INT)sizeof(char_t) == iCurrPos, FALSE);
+            /*DEBUG*/xASSERT_RET((int)csBuff.size() * (int)sizeof(char_t) == iCurrPos, FALSE);
             break;
         }
     }
@@ -213,11 +213,11 @@ CxSocket::bSendAll(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-INT
+int
 CxSocket::iRecv(
     char_t *pszBuff,
-    INT    iBuffSize,
-    INT    iFlags
+    int    iBuffSize,
+    int    iFlags
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, etError);
@@ -227,15 +227,15 @@ CxSocket::iRecv(
     memset(pszBuff, 0, iBuffSize * sizeof(char_t));
 
 #if defined(xOS_ENV_WIN)
-    INT     iRes = recv(_m_puiSocket, (LPSTR)pszBuff, iBuffSize * sizeof(char_t), iFlags);
+    int     iRes = recv(_m_puiSocket, (LPSTR)pszBuff, iBuffSize * sizeof(char_t), iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRes && WSAEWOULDBLOCK != iGetLastError(), etError);
     /*DEBUG*/xASSERT_RET(0                              != iRes,                                      etError);  //gracefully closed
-    /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(char_t) >= iRes,                                      etError);
+    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(char_t) >= iRes,                                      etError);
 #elif defined(xOS_ENV_UNIX)
-    ssize_t iRes = recv(_m_puiSocket, (CHAR *)pszBuff, iBuffSize * sizeof(char_t), iFlags);
+    ssize_t iRes = recv(_m_puiSocket, (char *)pszBuff, iBuffSize * sizeof(char_t), iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRes,                                      etError);
     /*DEBUG*/xASSERT_RET(0                              != iRes,                                      etError);  //gracefully closed
-    /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(char_t) >= iRes,                                      etError);
+    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(char_t) >= iRes,                                      etError);
 #endif
 
     return iRes / sizeof(char_t);
@@ -243,7 +243,7 @@ CxSocket::iRecv(
 //---------------------------------------------------------------------------
 std::string_t
 CxSocket::sRecvAll(
-    INT iFlags
+    int iFlags
 )
 {
     std::string_t      sRes;
@@ -252,7 +252,7 @@ CxSocket::sRecvAll(
     char_t        szBuff[cuiBuffSize + 1] = {0};
 
     for (;;) {
-        INT   iRes  = - 1;
+        int   iRes  = - 1;
         ULONG ulArg = (ULONG)FALSE;
 
     #if defined(xOS_ENV_WIN)
@@ -265,7 +265,7 @@ CxSocket::sRecvAll(
         xCHECK_DO(0 == ulArg,          break);
         xCHECK_DO(cuiBuffSize < ulArg, ulArg = cuiBuffSize);
 
-        iRes = recv(_m_puiSocket, (CHAR *)&szBuff[0], ulArg, 0);
+        iRes = recv(_m_puiSocket, (char *)&szBuff[0], ulArg, 0);
         xCHECK_DO(iRes <= 0, break);
 
         sRes.append(szBuff, iRes);
@@ -276,7 +276,7 @@ CxSocket::sRecvAll(
 //---------------------------------------------------------------------------
 std::string_t
 CxSocket::sRecvAll(
-    INT                 iFlags,
+    int                 iFlags,
     const std::string_t &csDelimiter
 )
 {
@@ -287,7 +287,7 @@ CxSocket::sRecvAll(
     //-------------------------------------
     //read from socket by blocks, write to string
     for (;;) {
-        INT iRes = iRecv(&sIn.at(0), cuiInSize, iFlags);
+        int iRes = iRecv(&sIn.at(0), cuiInSize, iFlags);
         xCHECK_DO(etError == iRes, break);
         xCHECK_DO(0       == iRes, break);
 
@@ -302,14 +302,14 @@ CxSocket::sRecvAll(
 }
 //---------------------------------------------------------------------------
 //TODO: iSendBytes
-INT
+int
 CxSocket::iSendBytes(
-    CHAR *pszBuff,
-    INT   iMessageLength
+    char *pszBuff,
+    int   iMessageLength
 )
 {
-    INT     iRC         = 0;
-    INT     iSendStatus = 0;
+    int     iRC         = 0;
+    int     iSendStatus = 0;
     timeval SendTimeout = {0};
 
     //sSetting the timeout
@@ -344,14 +344,14 @@ CxSocket::iSendBytes(
 }
 //---------------------------------------------------------------------------
 //TODO: ReceiveNBytes
-INT
+int
 CxSocket::iReceiveBytes(
-    CHAR *pszBuff,
-    INT   iStillToReceive
+    char *pszBuff,
+    int   iStillToReceive
 )
 {
-    INT     iRC               = 0;
-    INT     iReceiveStatus    = 0;
+    int     iRC               = 0;
+    int     iReceiveStatus    = 0;
     timeval ReceiveTimeout    = {0};
 
     //Setting the timeout
@@ -404,15 +404,15 @@ CxSocket::bGetPeerName(
 
 #if defined(xOS_ENV_WIN)
     SOCKADDR_IN sockAddr     = {0};
-    INT         iSockAddrLen = sizeof(sockAddr);
+    int         iSockAddrLen = sizeof(sockAddr);
 
-    INT iRes = getpeername(_m_puiSocket, CxMacros::xreinterpret_cast<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
+    int iRes = getpeername(_m_puiSocket, CxMacros::xreinterpret_cast<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     sockaddr_in sockAddr      = {0};
     socklen_t   uiSockAddrLen = sizeof(sockAddr);
 
-    INT iRes = getpeername(_m_puiSocket, CxMacros::xreinterpret_cast<sockaddr *>( &sockAddr ), &uiSockAddrLen);
+    int iRes = getpeername(_m_puiSocket, CxMacros::xreinterpret_cast<sockaddr *>( &sockAddr ), &uiSockAddrLen);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
 
@@ -441,15 +441,15 @@ CxSocket::bGetSocketName(
 
 #if defined(xOS_ENV_WIN)
     SOCKADDR_IN sockAddr     = {0};
-    INT         iSockAddrLen = sizeof(sockAddr);
+    int         iSockAddrLen = sizeof(sockAddr);
 
-    INT iRes = ::getsockname(_m_puiSocket, CxMacros::xreinterpret_cast<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
+    int iRes = ::getsockname(_m_puiSocket, CxMacros::xreinterpret_cast<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     sockaddr_in sockAddr     = {0};
     socklen_t   iSockAddrLen = sizeof(sockAddr);
 
-    INT iRes = ::getsockname(_m_puiSocket, CxMacros::xreinterpret_cast<sockaddr *>( &sockAddr ), &iSockAddrLen);
+    int iRes = ::getsockname(_m_puiSocket, CxMacros::xreinterpret_cast<sockaddr *>( &sockAddr ), &iSockAddrLen);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
 
@@ -476,9 +476,9 @@ CxSocket::bGetSocketName(
 
 //---------------------------------------------------------------------------
 /*static*/
-INT
+int
 CxSocket::iSelect(
-    INT      nfds,
+    int      nfds,
     fd_set  *pReadfds,
     fd_set  *pWritefds,
     fd_set  *pExceptfds,
@@ -490,7 +490,7 @@ CxSocket::iSelect(
     /*DEBUG*/// pWritefds
     /*DEBUG*/// pExceptfds
 
-     INT iRes = select(nfds, pReadfds, pWritefds, pExceptfds, tvTimeout);
+     int iRes = select(nfds, pReadfds, pWritefds, pExceptfds, tvTimeout);
      /*DEBUG*/xASSERT_RET(etError != iRes, etError);
      /*DEBUG*/xASSERT_RET(0       != iRes, 0);  //zero if the time limit expired
 
@@ -498,7 +498,7 @@ CxSocket::iSelect(
 }
 //---------------------------------------------------------------------------
 /*static*/
-INT
+int
 CxSocket::iGetLastError() {
     /*DEBUG*/// n/a
 

@@ -665,7 +665,7 @@ CxDateTime::dtGetCurrent() {
     //get milliseconds
     timeval tvTime = {0};
 
-    INT iRes = gettimeofday(&tvTime, NULL);
+    int iRes = gettimeofday(&tvTime, NULL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, CxDateTime());
 
     //get datetime

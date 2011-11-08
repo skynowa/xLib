@@ -35,7 +35,7 @@ CWorkThread::~CWorkThread() {
 //---------------------------------------------------------------------------
 UINT
 CWorkThread::uiOnRun(
-    VOID *pvData
+    void *pvData
 )
 {
     #if xTEST_IGNORE
@@ -171,13 +171,13 @@ CxTest_CxThread::bUnit(
             xTEST_EQ(FALSE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
-            xTEST_EQ((INT)0, (INT)m_iRes);
+            xTEST_EQ((int)0, (int)m_iRes);
         #else
             m_bRes = pthT->bSetPriority(CxThread::tpLowest);
             xTEST_DIFF(FALSE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
-            xTEST_EQ((INT)CxThread::tpLowest, (INT)m_iRes);
+            xTEST_EQ((int)CxThread::tpLowest, (int)m_iRes);
         #endif
     }
 

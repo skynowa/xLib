@@ -21,25 +21,25 @@ class CxRandom :
 
         BOOL                bSetSeed     (LONG liSeed);
             ///< set seed
-        INT                 iNextInt     ();
+        int                 iNextInt     ();
             ///< next int
-        INT                 iNextInt     (INT max);
+        int                 iNextInt     (int max);
             ///< next int
-        INT                 iNextInt     (INT a, INT b);
+        int                 iNextInt     (int a, int b);
             ///< next int
         LONG                liNextLong   ();
             ///< next long
         bool                bNextBoolean ();
             ///< next boolean
-        FLOAT               fNextFloat   ();
+        float               fNextFloat   ();
             ///< next float
-        DOUBLE              bNextDouble  ();
+        double              bNextDouble  ();
             ///< next double
-        CHAR                chNextChar   ();
+        char                chNextChar   ();
             ///< next char
-        CHAR                chNextFigure ();
+        char                chNextFigure ();
             ///< next figure
-        DOUBLE              dNextGaussian();
+        double              dNextGaussian();
             ///< next gaussian
 
         static BOOL         bSetSeed     ();
@@ -56,10 +56,10 @@ class CxRandom :
             ///< next long
 
     private:
-        static const INT    A;  ///< for private use
-        static const INT    M;  ///< for private use
-        static const INT    Q;  ///< for private use
-        static const INT    R;  ///< for private use
+        static const int    A;  ///< for private use
+        static const int    M;  ///< for private use
+        static const int    Q;  ///< for private use
+        static const int    R;  ///< for private use
 
         LONG                _m_liSeed;                  ///< for private use
         double              _m_dNextNextGaussian;       ///< for private use

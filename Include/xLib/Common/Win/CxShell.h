@@ -133,9 +133,9 @@ class CxShell :
                                                const std::string_t &csWorkingDirectory,
                                                const std::string_t &csArguments,
                                                const WORD          cwHotKey,
-                                               const INT           ciCmdShow,
+                                               const int           ciCmdShow,
                                                const std::string_t &csIconFilePath,
-                                               const INT           ciIconIndex,
+                                               const int           ciIconIndex,
                                                const std::string_t &csDescription
                                               );
         	///< create shortcut

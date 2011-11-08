@@ -891,7 +891,7 @@ BOOL
 CxCgiFormData::_bInit() {
     /*DEBUG*/
 
-    INT iRes = _m_ccgCgi.Environment.rmGetRequestMethod();
+    int iRes = _m_ccgCgi.Environment.rmGetRequestMethod();
     switch (iRes) {
         case CxCgiEnvironment::rmGet: {
                 /*DEBUG*/xASSERT_RET(false == _m_ccgCgi.Environment.sGetQueryString().empty(), FALSE);
@@ -937,7 +937,7 @@ CxCgiFormData::_bInit() {
 
                 _m_sFormData.assign(sBuff);
 
-                (VOID)sfFile.pDetach();
+                (void)sfFile.pDetach();
             }
             break;
 

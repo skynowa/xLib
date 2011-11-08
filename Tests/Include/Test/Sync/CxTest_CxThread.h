@@ -28,7 +28,7 @@ class CWorkThread :
         virtual     ~CWorkThread();
 
     protected:
-        virtual UINT uiOnRun    (VOID *pData);
+        virtual UINT uiOnRun    (void *pData);
 };
 //---------------------------------------------------------------------------
 class CxTest_CxThread :

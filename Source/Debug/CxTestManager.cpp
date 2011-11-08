@@ -45,7 +45,7 @@ CxTestManager::bAdd(
     /*DEBUG*/
     /*DEBUG*/xASSERT_RET(NULL != pvtTest, FALSE)
 
-    (VOID)pvtTest->bSetName( CxType::sGetName(*pvtTest) );
+    (void)pvtTest->bSetName( CxType::sGetName(*pvtTest) );
 
     _m_ctnTests.push_back(pvtTest);
 

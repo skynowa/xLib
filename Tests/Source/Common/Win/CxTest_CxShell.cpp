@@ -50,7 +50,7 @@ CxTest_CxShell::bUnit(
     //bExecute
     xTEST_BLOCK(cullBlockLoops)
     {
-        //m_bRes = CxShell::bExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, INT iShowCmd);
+        //m_bRes = CxShell::bExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int iShowCmd);
     }
 
     //-------------------------------------

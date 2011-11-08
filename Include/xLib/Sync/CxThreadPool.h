@@ -30,7 +30,7 @@ class CxThreadPool :
 
         UINT                      _m_uiStackSize;               
         TFuncPtr                  _m_fpFuncPtr;                  
-        VOID                     *_m_pvParam;                    
+        void                     *_m_pvParam;                    
 
         const BOOL                _m_cbIsGroupPaused;          
         const BOOL                _m_cbIsGroupAutoDelete;     
@@ -49,8 +49,8 @@ class CxThreadPool :
         BOOL                      _bAddTask    (CxThread *pvItem);
         BOOL                      _bRemoveTask (CxThread *pvItem);
 
-        VOID                      _vOnEnterTask(CxThread *pthSender);
-        VOID                      _vOnExitTask (CxThread *pthSender);
+        void                      _vOnEnterTask(CxThread *pthSender);
+        void                      _vOnExitTask (CxThread *pthSender);
 
         //WatchDog
 
@@ -59,7 +59,7 @@ class CxThreadPool :
         virtual                  ~CxThreadPool ();
 
         //�������� � �������
-        BOOL                      bCreateGroup (UINT uiStackSize, const TFuncPtr fpFuncPtr, VOID *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks);
+        BOOL                      bCreateGroup (UINT uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks);
         BOOL                      bResumeGroup ();
         BOOL                      bPauseGroup  ();
         BOOL                      bExitGroup   (ULONG ulTimeout);
@@ -79,7 +79,7 @@ class CxThreadPool :
         //������
 
     protected:
-        virtual UINT              uiOnRun      (VOID *pvParam);    /*overload*/
+        virtual UINT              uiOnRun      (void *pvParam);    /*overload*/
 };
 //---------------------------------------------------------------------------
 #include <Sync/CxThreadPool.inl>
@@ -104,5 +104,5 @@ class CxThreadPool :
 /*
 ����� ������������ ������ ������:
 
-m_bRes = thpTP->bCreateGroup(0, (UINT (WINAPI *)(VOID *))&CTest::s_uiThreadFunc, NULL);
+m_bRes = thpTP->bCreateGroup(0, (UINT (WINAPI *)(void *))&CTest::s_uiThreadFunc, NULL);
 */

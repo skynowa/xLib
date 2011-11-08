@@ -372,7 +372,7 @@ CxString::bCompareNoCase(
     xCHECK_RET(csStr1.size() != csStr2.size(), FALSE);
 
 #if defined(xOS_ENV_WIN)
-    INT iRes = - 1;
+    int iRes = - 1;
 
     iRes = ::lstrcmpi(csStr1.c_str(), csStr2.c_str());
     /*DEBUG*/// n/a
@@ -400,16 +400,16 @@ CxString::bCompareNoCase(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-VOID *
+void *
 CxString::pvMemoryZeroSecure(
-    VOID   *pvBuff,
+    void   *pvBuff,
     size_t  uiBuffSize
 )
 {
     /*DEBUG*/// pvBuff     - n/a
     /*DEBUG*/// uiBuffSize - n/a
 
-    for (volatile CHAR *vpvBuff = static_cast<volatile CHAR *>( pvBuff );
+    for (volatile char *vpvBuff = static_cast<volatile char *>( pvBuff );
          NULL != pvBuff && 0 != uiBuffSize;
          ++ vpvBuff, -- uiBuffSize)
     {
@@ -460,7 +460,7 @@ CxString::sFormat(
         xCHECK_RET(NULL == pcszFormat, std::string_t());
 
         std::string_t sBuff(64, 0);
-        INT          iWrittenSize = - 1;
+        int          iWrittenSize = - 1;
 
         for ( ; ; ) {
             va_list _palArgs;
@@ -491,7 +491,7 @@ CxString::sFormat(
         xCHECK_RET(NULL == pcszFormat, std::string_t());
 
         std::string_t sBuff(64, 0);
-        INT          iWrittenSize = - 1;
+        int          iWrittenSize = - 1;
 
         //--------------------------------------------------
         //calc size
@@ -653,7 +653,7 @@ CxString::sTranslitLatToRus(
 /*static*/
 std::string_t
 CxString::sFormatBytes(
-    const DOUBLE cdBytes
+    const double cdBytes
 )
 {
     /*DEBUG*/// dBytes - n/a
@@ -667,19 +667,19 @@ CxString::sFormatBytes(
     const ULONGLONG cullByte = 1ULL;
 
     if (     static_cast<ULONGLONG>(cdBytes) / cullTB   > 0ULL) {
-        sRes = sFormat(xT("%.2f TB"),      cdBytes / static_cast<DOUBLE>(cullTB));
+        sRes = sFormat(xT("%.2f TB"),      cdBytes / static_cast<double>(cullTB));
     }
     else if (static_cast<ULONGLONG>(cdBytes) / cullGB   > 0ULL) {
-        sRes = sFormat(xT("%.2f GB"),      cdBytes / static_cast<DOUBLE>(cullGB));
+        sRes = sFormat(xT("%.2f GB"),      cdBytes / static_cast<double>(cullGB));
     }
     else if (static_cast<ULONGLONG>(cdBytes) / cullMB   > 0ULL) {
-        sRes = sFormat(xT("%.2f MB"),      cdBytes / static_cast<DOUBLE>(cullMB));
+        sRes = sFormat(xT("%.2f MB"),      cdBytes / static_cast<double>(cullMB));
     }
     else if (static_cast<ULONGLONG>(cdBytes) / cullKB   > 0ULL) {
-        sRes = sFormat(xT("%.2f KB"),      cdBytes / static_cast<DOUBLE>(cullKB));
+        sRes = sFormat(xT("%.2f KB"),      cdBytes / static_cast<double>(cullKB));
     }
     else if (static_cast<ULONGLONG>(cdBytes) / cullByte > 0ULL) {
-        sRes = sFormat(xT("%.2f Byte(s)"), cdBytes / static_cast<DOUBLE>(cullByte));
+        sRes = sFormat(xT("%.2f Byte(s)"), cdBytes / static_cast<double>(cullByte));
     }
     else {
         sRes = sFormat(xT("%.2f Bit(s)"),  cdBytes);
@@ -705,22 +705,22 @@ CxString::sFormatBytes(
     const ULONGLONG cullByte = 1ULL;
 
     if (     cullBytes / cullTB   > 0ULL) {
-        sRes = sFormat(xT("%.2f TB"),      static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullTB));
+        sRes = sFormat(xT("%.2f TB"),      static_cast<double>(cullBytes) / static_cast<double>(cullTB));
     }
     else if (cullBytes / cullGB   > 0ULL) {
-        sRes = sFormat(xT("%.2f GB"),      static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullGB));
+        sRes = sFormat(xT("%.2f GB"),      static_cast<double>(cullBytes) / static_cast<double>(cullGB));
     }
     else if (cullBytes / cullMB   > 0ULL) {
-        sRes = sFormat(xT("%.2f MB"),      static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullMB));
+        sRes = sFormat(xT("%.2f MB"),      static_cast<double>(cullBytes) / static_cast<double>(cullMB));
     }
     else if (cullBytes / cullKB   > 0ULL) {
-        sRes = sFormat(xT("%.2f KB"),      static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullKB));
+        sRes = sFormat(xT("%.2f KB"),      static_cast<double>(cullBytes) / static_cast<double>(cullKB));
     }
     else if (cullBytes / cullByte > 0ULL) {
-        sRes = sFormat(xT("%.2f Byte(s)"), static_cast<DOUBLE>(cullBytes) / static_cast<DOUBLE>(cullByte));
+        sRes = sFormat(xT("%.2f Byte(s)"), static_cast<double>(cullBytes) / static_cast<double>(cullByte));
     }
     else {
-        sRes = sFormat(xT("%.2f Bit(s)"),  static_cast<DOUBLE>(cullBytes));
+        sRes = sFormat(xT("%.2f Bit(s)"),  static_cast<double>(cullBytes));
     }
 
     return sRes;
@@ -758,7 +758,7 @@ CxString::sStrToWStr(
     std::wstring wsRes;
 
 #if defined(xOS_ENV_WIN)
-    INT iSize = ::MultiByteToWideChar(cuiCodePage, 0, csStr.c_str(), - 1, NULL, 0);
+    int iSize = ::MultiByteToWideChar(cuiCodePage, 0, csStr.c_str(), - 1, NULL, 0);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::wstring());
 
     wsRes.resize(iSize - 1);    //Р±РµР· '\0'
@@ -785,7 +785,7 @@ CxString::sWStrToStr(
     std::string asRes;
 
 #if defined(xOS_ENV_WIN)
-    INT iSize = ::WideCharToMultiByte(cuiCodePage, 0, cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
+    int iSize = ::WideCharToMultiByte(cuiCodePage, 0, cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::string());
 
     asRes.resize(iSize - 1);    //Р±РµР· '\0'

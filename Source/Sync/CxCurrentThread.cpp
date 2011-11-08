@@ -84,9 +84,9 @@ CxCurrentThread::bYield() {
     /*DEBUG*/// n/a
 
 #if defined(xOS_ENV_WIN)
-    (VOID)::SwitchToThread();
+    (void)::SwitchToThread();
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = sched_yield();
+    int iRes = sched_yield();
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -101,7 +101,7 @@ CxCurrentThread::bSleep(
     /*DEBUG*/// n/a
 
 #if defined(xOS_ENV_WIN)
-    (VOID)::Sleep(culMsec);
+    (void)::Sleep(culMsec);
 #elif defined(xOS_ENV_UNIX)
     timespec tsSleep  = {0};
     timespec tsRemain = {0};
@@ -110,7 +110,7 @@ CxCurrentThread::bSleep(
     tsSleep.tv_nsec = (culMsec % 1000) * (1000 * 1000);
 
     for ( ; ; ) {
-        INT iRes = nanosleep(&tsSleep, &tsRemain);
+        int iRes = nanosleep(&tsSleep, &tsRemain);
         /*DEBUG*/// n/a
         xCHECK_DO(!(- 1 == iRes && EINTR == CxLastError::ulGet()), break);
 

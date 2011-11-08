@@ -216,17 +216,17 @@ CxLocalStorage::bKeyWriteInt(
     return bKeyWriteString(csKey, CxString::lexical_cast(cliValue));
 }
 //-------------------------------------------------------------------------
-DOUBLE
+double
 CxLocalStorage::dKeyReadFloat(
     const std::string_t &csKey,
-    const DOUBLE        cdDefaultValue
+    const double        cdDefaultValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0.0);
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///dDefaultValue - n/a
 
-    return CxString::lexical_cast<DOUBLE>( sKeyReadString(csKey, CxString::lexical_cast(cdDefaultValue)) );
+    return CxString::lexical_cast<double>( sKeyReadString(csKey, CxString::lexical_cast(cdDefaultValue)) );
 }
 //-------------------------------------------------------------------------
 BOOL

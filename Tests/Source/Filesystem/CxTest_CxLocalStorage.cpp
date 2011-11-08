@@ -219,7 +219,7 @@ CxTest_CxLocalStorage::bUnit(
     //dKeyReadFloat, bKeyWriteFloat
     xTEST_BLOCK(cullBlockLoops)
     {
-        const DOUBLE cdValue = 777.0f;
+        const double cdValue = 777.0f;
 
         m_bRes  = iniIni.bKeyWriteFloat(csKey1, cdValue);
         xTEST_DIFF(FALSE, m_bRes);

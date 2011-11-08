@@ -23,7 +23,7 @@ CxLocale::sGetCurrent() {
     std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
-    INT  iRes = - 1;
+    int  iRes = - 1;
     LCID lcId   = 0;
 
     lcId = ::GetSystemDefaultLCID();

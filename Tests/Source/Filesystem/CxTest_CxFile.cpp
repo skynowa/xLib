@@ -350,7 +350,7 @@ CxTest_CxFile::bUnit(
             m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
             xTEST_DIFF(FALSE, m_bRes);
 
-            INT iResFprintf = F.iWrite(csTestContent.c_str());
+            int iResFprintf = F.iWrite(csTestContent.c_str());
             xTEST_LESS(0, iResFprintf);
         }
 
@@ -378,7 +378,7 @@ CxTest_CxFile::bUnit(
         m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xTEST_DIFF(FALSE, m_bRes);
 
-        INT iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
+        int iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
         xTEST_LESS(0, iResFprintf);
     }
 
@@ -392,8 +392,8 @@ CxTest_CxFile::bUnit(
                 va_list args;
                 xVA_START(args, pcszFormat);
 
-                INT iRes = csfFile.iWriteV(pcszFormat, args);
-                xTEST_DIFF((INT)CxFile::etError, iRes);
+                int iRes = csfFile.iWriteV(pcszFormat, args);
+                xTEST_DIFF((int)CxFile::etError, iRes);
 
                 xVA_END(args);
             };
@@ -931,7 +931,7 @@ CxTest_CxFile::bUnit1(
             xTEST_DIFF(FALSE, m_bRes);
 
             m_iRes = F.iWrite(xT("0123456789"));
-            xTEST_DIFF(static_cast<INT>( CxFile::etError ), m_iRes);
+            xTEST_DIFF(static_cast<int>( CxFile::etError ), m_iRes);
         }
 
         for (size_t i = 0; i < 3; ++ i) {
@@ -1231,7 +1231,7 @@ CxTest_CxFile::bUnitPrivate(
         xTEST_DIFF(FALSE, m_bRes);
 
         m_iRes = CxFile::_iGetHandle( sfFile.pGet() );
-        xTEST_DIFF((INT)CxFile::etError, m_iRes);
+        xTEST_DIFF((int)CxFile::etError, m_iRes);
     }
 
     //--------------------------------------------------
@@ -1246,8 +1246,8 @@ CxTest_CxFile::bUnitPrivate(
         m_bRes = sfFile.bCreate(csFilePath, comMode, TRUE);
         xTEST_DIFF(FALSE, m_bRes);
 
-        INT iFile = CxFile::_iGetHandle(sfFile.pGet());
-        xTEST_DIFF((INT)CxFile::etError, iFile);
+        int iFile = CxFile::_iGetHandle(sfFile.pGet());
+        xTEST_DIFF((int)CxFile::etError, iFile);
 
         FILE *pfFile = CxFile::_pfGetHandle(iFile, comMode);
         xTEST_PTR(pfFile);

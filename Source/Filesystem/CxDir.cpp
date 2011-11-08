@@ -107,7 +107,7 @@ CxDir::bIsEmpty(
     }
     while (NULL != (pdrEntry = readdir(pDir)));
 
-    INT iRes = closedir(pDir); pDir = NULL;
+    int iRes = closedir(pDir); pDir = NULL;
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -190,7 +190,7 @@ CxDir::bSetCurrent(
     BOOL bRes = ::SetCurrentDirectory(sDirPath.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = chdir(sDirPath.c_str());
+    int iRes = chdir(sDirPath.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -236,7 +236,7 @@ CxDir::bCreate(
     bRes = ::CreateDirectory(csDirPath.c_str(), NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = mkdir(csDirPath.c_str(), 0755);
+    int iRes = mkdir(csDirPath.c_str(), 0755);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -373,7 +373,7 @@ CxDir::bDelete(
     bRes = ::RemoveDirectory(csDirPath.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    INT iRes = rmdir(csDirPath.c_str());
+    int iRes = rmdir(csDirPath.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -601,7 +601,7 @@ CxDir::bFindFiles(
         }
         while (NULL != (pdrEntry = readdir(pDir)));
 
-        INT iRes = closedir(pDir); pDir = NULL;
+        int iRes = closedir(pDir); pDir = NULL;
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     }
 
@@ -628,7 +628,7 @@ CxDir::bFindFiles(
             }
             while ( NULL != (pdrEntry = readdir(pDir)) );
 
-            INT iRes = closedir(pDir); pDir = NULL;
+            int iRes = closedir(pDir); pDir = NULL;
             /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
         }
     #endif
@@ -724,7 +724,7 @@ CxDir::bFindDirs(
     }
     while ( NULL != (pdrEntry = readdir(pDir)) );
 
-    INT iRes = closedir(pDir); pDir = NULL;
+    int iRes = closedir(pDir); pDir = NULL;
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 

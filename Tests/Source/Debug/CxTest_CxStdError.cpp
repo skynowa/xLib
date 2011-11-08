@@ -26,10 +26,10 @@ CxTest_CxStdError::bUnit(
     //iGet
     xTEST_BLOCK(cullBlockLoops)
     {
-        const INT ciMaxErrors = 200;  /*0...132*/;
+        const int ciMaxErrors = 200;  /*0...132*/;
 
-        for (INT i = 0; i < ciMaxErrors; ++ i) {
-            INT iCode = CxStdError::iGet();
+        for (int i = 0; i < ciMaxErrors; ++ i) {
+            int iCode = CxStdError::iGet();
             xTEST_EQ(0, CxStdError::iGet());
             xTEST_LESS_EQ(0, iCode);
         }
@@ -39,9 +39,9 @@ CxTest_CxStdError::bUnit(
     //iGet
     xTEST_BLOCK(cullBlockLoops)
     {
-        const INT ciMaxErrors = 200;    /*0...132*/
+        const int ciMaxErrors = 200;    /*0...132*/
 
-        for (INT i = 0; i < ciMaxErrors; ++ i) {
+        for (int i = 0; i < ciMaxErrors; ++ i) {
             std::string_t sError = CxStdError::sGet();
             xTEST_EQ(false, sError.empty());
         }
@@ -51,9 +51,9 @@ CxTest_CxStdError::bUnit(
     //bSet
     xTEST_BLOCK(cullBlockLoops)
     {
-        const INT ciMaxErrors = 200;    /*0...132*/
+        const int ciMaxErrors = 200;    /*0...132*/
 
-        for (INT i = 0; i < ciMaxErrors; ++ i) {
+        for (int i = 0; i < ciMaxErrors; ++ i) {
             m_bRes = CxStdError::bSet(i);
             xTEST_DIFF(FALSE, m_bRes);
         }
@@ -63,9 +63,9 @@ CxTest_CxStdError::bUnit(
     //bReset
     xTEST_BLOCK(cullBlockLoops)
     {
-        const INT ciMaxErrors = 200;    /*0...132*/
+        const int ciMaxErrors = 200;    /*0...132*/
 
-        for (INT i = 0; i < ciMaxErrors; ++ i) {
+        for (int i = 0; i < ciMaxErrors; ++ i) {
             m_bRes = CxStdError::bSet(i);
 			xTEST_DIFF(FALSE, m_bRes);
 

@@ -23,15 +23,15 @@ CxPkcs11::CxPkcs11() :
     /*DEBUG*/xASSERT_DO(NULL == _m_pFunc, return);
     /*DEBUG*/// _m_dllETPkcs11 - n/a
 
-    (VOID)_bLoadETPkcs11();
-    (VOID)bInitialize();
+    (void)_bLoadETPkcs11();
+    (void)bInitialize();
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxPkcs11::~CxPkcs11() {
     /*DEBUG*/
 
-    (VOID)bFinalize();
+    (void)bFinalize();
 }
 //---------------------------------------------------------------------------
 CK_FUNCTION_LIST_PTR

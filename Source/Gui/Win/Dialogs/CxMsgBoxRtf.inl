@@ -43,13 +43,13 @@ EModalResult g_mrRes          = mrNone;
 std::string_t g_sTitle;
 std::string_t g_sMessage;
 
-const INT    ID_staImg        = 200;
-const INT    ID_redtText      = 201;
-const INT    ID_btnAbort      = 202;
-const INT    ID_btnRetry      = 203;
-const INT    ID_btnIgnore     = 204;
-const INT    ID_btnCopyToClip = 205;
-const INT    ID_btnSendReport = 206;
+const int    ID_staImg        = 200;
+const int    ID_redtText      = 201;
+const int    ID_btnAbort      = 202;
+const int    ID_btnRetry      = 203;
+const int    ID_btnIgnore     = 204;
+const int    ID_btnCopyToClip = 205;
+const int    ID_btnSendReport = 206;
 
 HWND         g_hMainWnd       = NULL;
 HINSTANCE    g_hInst          = ::GetModuleHandle(NULL);
@@ -62,18 +62,18 @@ HWND         g_hBtnIgnore     = NULL;
 HWND         g_hBtnCopyToClip = NULL;
 HWND         g_hBtnSendReport = NULL;
 
-const INT    ciLeft           = 350;
-const INT    ciTop            = 200;
-const INT    ciWidth          = 270;
-const INT    ciHeight         = 190;
+const int    ciLeft           = 350;
+const int    ciTop            = 200;
+const int    ciWidth          = 270;
+const int    ciHeight         = 190;
 
-const INT    ciBtnWidth       = 75;
-const INT    ciBtnHeight      = 25;
-const INT    ciBtnShift       = 100;
-const INT    ciRichEdtShift   = 68;
+const int    ciBtnWidth       = 75;
+const int    ciBtnHeight      = 25;
+const int    ciBtnShift       = 100;
+const int    ciRichEdtShift   = 68;
 
-const INT    ciBtnLeftMargin  = 90;
-const INT    ciBtnSpace       = 8;
+const int    ciBtnLeftMargin  = 90;
+const int    ciBtnSpace       = 8;
 //---------------------------------------------------------------------------
 BOOL
 bCreateContent(
@@ -271,7 +271,7 @@ iShow(
     LPWORD            lpw          = NULL;
     LPWSTR            lpwsz        = NULL;
     LRESULT           lpRes        = (LRESULT)NULL;
-    INT               nchar        = - 1;
+    int               nchar        = - 1;
 
     //-------------------------------------
     //loading DLL

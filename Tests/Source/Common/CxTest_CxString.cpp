@@ -146,7 +146,7 @@ CxTest_CxString::bUnit(
         m_sRes = CxString::lexical_cast<std::string_t>(xT("String"));
         xTEST_EQ(std::string_t(xT("String")), m_sRes);
 
-        m_iRes = CxString::lexical_cast<INT>(xT("7"));
+        m_iRes = CxString::lexical_cast<int>(xT("7"));
         xTEST_EQ(7, m_iRes);
 
         m_ulRes = CxString::lexical_cast<ULONG>(xT("123"));
@@ -246,7 +246,7 @@ CxTest_CxString::bUnit(
     //lexical_cast (from, to string by base)
     xTEST_BLOCK(cullBlockLoops)
     {
-        const INT caiBases[] = {8, 10, 16};
+        const int caiBases[] = {8, 10, 16};
 
         const std::string_t casData[] = {
                 xT("01234567890ABC"),
@@ -879,7 +879,7 @@ CxTest_CxString::bUnit(
     //-------------------------------------
     //sDecodeWinKoi
     xTEST_BLOCK(cullBlockLoops) {
-        //m_sRes = sDecodeWinKoi(INT iFrom, INT iTo, const std::string_t &sOldStr);
+        //m_sRes = sDecodeWinKoi(int iFrom, int iTo, const std::string_t &sOldStr);
     }
 
     //-------------------------------------
@@ -898,7 +898,7 @@ CxTest_CxString::bUnit(
     //-------------------------------------
     //bCharToWide
     xTEST_BLOCK(cullBlockLoops) {
-        //m_bRes = CxString::bCharToWide(const CHAR *pszSrc, WCHAR *pwszDest, INT iDestSize);
+        //m_bRes = CxString::bCharToWide(const char *pszSrc, WCHAR *pwszDest, int iDestSize);
     }
 
     //-------------------------------------

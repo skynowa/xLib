@@ -27,10 +27,10 @@ CxShell::bFindExecutable(
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::string_t());
     /*DEBUG*/// csFindDirPath - n/a
 
-    INT   iRes            = SE_ERR_FNF;
+    int   iRes            = SE_ERR_FNF;
     char_t szRes[MAX_PATH] = {0};
 
-    iRes = reinterpret_cast<INT>( ::FindExecutable(csFileName.c_str(), csFindDirPath.c_str(), szRes) );
+    iRes = reinterpret_cast<int>( ::FindExecutable(csFileName.c_str(), csFindDirPath.c_str(), szRes) );
     /*DEBUG*/xASSERT_RET(32 < iRes, std::string_t());
 
     return std::string_t(szRes);
@@ -70,7 +70,7 @@ CxShell::bExecute(
         default:        { sOperation = xT("");        } break;
     }
 
-    INT iRes = reinterpret_cast<INT>( ::ShellExecute(chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), csfShowCmd) );
+    int iRes = reinterpret_cast<int>( ::ShellExecute(chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), csfShowCmd) );
     /*DEBUG*/xASSERT_RET(32 < iRes, FALSE);
 
     return TRUE;
@@ -203,9 +203,9 @@ CxShell::bCreateShortcut(
     const std::string_t &csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
     const std::string_t &csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.Txt"
     const WORD          cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
-    const INT           ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
+    const int           ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
     const std::string_t &csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
-    const INT           ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
+    const int           ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
     const std::string_t &csDescription       ///< description
 )
 {
@@ -216,7 +216,7 @@ CxShell::bCreateShortcut(
     IShellLink *pslSL = NULL;
     HRESULT     hRes  = 0;
 
-    hRes = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (VOID **)&pslSL);
+    hRes = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void **)&pslSL);
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
 
     {
@@ -245,7 +245,7 @@ CxShell::bCreateShortcut(
 
     IPersistFile *ppfPF = NULL;
 
-    hRes = pslSL->QueryInterface(IID_IPersistFile, CxMacros::xreinterpret_cast<VOID **>( &ppfPF ));
+    hRes = pslSL->QueryInterface(IID_IPersistFile, CxMacros::xreinterpret_cast<void **>( &ppfPF ));
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
 
 #if defined(xUNICODE)
