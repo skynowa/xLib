@@ -52,7 +52,7 @@ CxTest_CxCommandLine::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxCommandLine::bGetArgs(&m_vsRes);
-        xASSERT_NOT_EQ(FALSE,  m_bRes);
+        xASSERT_DIFF(FALSE,  m_bRes);
         xASSERT_EQ(false, m_vsRes.empty());
     }
 

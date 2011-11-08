@@ -39,13 +39,13 @@ CxTest_CxDebugger::bUnit(
         xASSERT_EQ(cbTrue, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbFalse);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
         xASSERT_EQ(cbFalse, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbTrue);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
         xASSERT_EQ(cbTrue, m_bRes);
@@ -75,13 +75,13 @@ CxTest_CxDebugger::bUnit(
         xASSERT_EQ(true, m_sRes.empty());
 
         m_bRes = CxDebugger::bSetLogPath(csFilePath);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
         xASSERT_EQ(csFilePath, m_sRes);
 
         m_bRes = CxDebugger::bSetLogPath(xT(""));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
         xASSERT_EQ(true, m_sRes.empty());
@@ -104,7 +104,7 @@ CxTest_CxDebugger::bUnit(
 	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
 
 	        //m_bRes = CxDebugger::bReportMake(rpReport);
-            //xASSERT_NOT_EQ(FALSE, m_bRes);
+            //xASSERT_DIFF(FALSE, m_bRes);
         }
     }
 
@@ -114,7 +114,7 @@ CxTest_CxDebugger::bUnit(
     {
         #if xTEST_IGNORE
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -126,7 +126,7 @@ CxTest_CxDebugger::bUnit(
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
         #endif
 
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -134,7 +134,7 @@ CxTest_CxDebugger::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxDebugger::bBeep();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -214,7 +214,7 @@ CxTest_CxDebugger::bUnit(
 	    {
 		    INT iVar1 = 0;
 		    INT iVar2 = 1;
-		    xASSERT_NOT_EQ(iVar1, iVar2);
+		    xASSERT_DIFF(iVar1, iVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
@@ -270,7 +270,7 @@ CxTest_CxDebugger::bUnit(
 	    {
 		    std::tstring sVar1 = xT("bbb");
 		    std::tstring sVar2 = xT("BBB");
-		    xASSERT_NOT_EQ(sVar1, sVar2);
+		    xASSERT_DIFF(sVar1, sVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)

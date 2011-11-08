@@ -54,7 +54,7 @@ CxTest_CxMySql::bUnit(
     //bIsValid
     {
         m_bRes = conConn.bIsValid();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -64,7 +64,7 @@ CxTest_CxMySql::bUnit(
         const void  *cpvArg   = NULL;
 
         m_bRes = conConn.bOptions(moOption, cpvArg);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -78,7 +78,7 @@ CxTest_CxMySql::bUnit(
             csDbName = xT("");
 
             m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, ulClientFlag);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         }
     }
 
@@ -87,7 +87,7 @@ CxTest_CxMySql::bUnit(
     {
         //create Db
         m_bRes = conConn.bQuery("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8", csDbName.c_str());
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //create table
         m_bRes = conConn.bQuery(
@@ -100,7 +100,7 @@ CxTest_CxMySql::bUnit(
                                 "       PRIMARY KEY(`f_id`)"
                                 "   )"),
                                 sTableName.c_str());
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //insert records
         m_bRes = conConn.bQuery(
@@ -113,11 +113,11 @@ CxTest_CxMySql::bUnit(
                                 "    ('Vasya', 24),"
                                 "    ('Sasha', 20)"),
                                 sTableName.c_str());
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //select all records
         m_bRes = conConn.bQuery(xT("SELECT * FROM `t_main`"));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -161,7 +161,7 @@ CxTest_CxMySql::bUnit(
     //bIsValid
     {
         m_bRes = recRec.bIsValid();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -186,7 +186,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchField(&mfField);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -196,7 +196,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchFieldDirect(uiFieldNumber, &mfField);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -205,7 +205,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchFields(&mfField);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     #if xTODO
@@ -215,7 +215,7 @@ CxTest_CxMySql::bUnit(
             MYSQL_ROW mrRow;
 
             m_bRes = recRec.bFetchRow(&mrRow);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         }
 
         //--------------------------------------------------
@@ -224,7 +224,7 @@ CxTest_CxMySql::bUnit(
             ULONG *pulFieldLengths = NULL;
 
             m_bRes = recRec.bFetchLengths(&pulFieldLengths);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
             xASSERT(NULL  != pulFieldLengths);
         }
     #endif
@@ -236,7 +236,7 @@ CxTest_CxMySql::bUnit(
 
         for (my_ulonglong i = 0; i < recRec.ullRowsNum(); ++ i) {
             m_bRes = recRec.bFetchRow(&vsRow);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             //CxString::vStdVectorPrintT(vsRow);
         }
@@ -246,11 +246,11 @@ CxTest_CxMySql::bUnit(
     //drop Db
     {
         m_bRes = conConn.bQuery(xT("DROP TABLE IF EXISTS `%s`"), sTableName.c_str());
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         #if xTODO
             m_bRes = conConn.bQuery(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -258,7 +258,7 @@ CxTest_CxMySql::bUnit(
     //bClose
     {
         m_bRes = conConn.bClose();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     return TRUE;

@@ -38,7 +38,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
-        xASSERT_NOT_EQ(0UL, (ULONG)hRes);
+        xASSERT_DIFF(0UL, (ULONG)hRes);
     }
 
     //--------------------------------------------------
@@ -92,7 +92,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxCurrentThread::bYield();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -112,7 +112,7 @@ CxTest_CxCurrentThread::bUnit(
             CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
 
             m_bRes = CxCurrentThread::bSleep(cuiMsec);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
 

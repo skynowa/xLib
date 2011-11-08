@@ -503,14 +503,14 @@ CxTest_CxString::bUnit(
         std::vector<std::tstring> vsText;
 
         m_bRes = CxString::bSplit(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vsText);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bSplit(xT("Key+"), xT("+"), &vsText);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         vsText.clear();
         m_bRes = CxString::bSplit(xT(""), xT("+"), &vsText);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -836,19 +836,19 @@ CxTest_CxString::bUnit(
     {
         //must TRUE
         m_bRes = CxString::bCompareNoCase(xT(""),     xT(""));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("xxx"),  xT("XXX"));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("111"),  xT("111"));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("eee"),  xT("EeE"));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bCompareNoCase(xT("WWW"),  xT("wwW"));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //maust FALSE
         m_bRes = CxString::bCompareNoCase(xT("ccc"),  xT("CCCz"));
@@ -1064,10 +1064,10 @@ CxTest_CxString::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxString::bIsRepeated(xT("yyyyyyyyyyyy"));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bIsRepeated(xT("111111111111"));
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         m_bRes = CxString::bIsRepeated(xT("uuuuuiuuuuuuuuuuuu"));
         xASSERT_EQ(FALSE, m_bRes);

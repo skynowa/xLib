@@ -48,7 +48,7 @@ CxTest_CxSleeper::bUnit(
             xASSERT_EQ(FALSE, m_bRes);
 
             m_bRes = objSleeper.bSleep(5);
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
 
             m_bRes = objSleeper.bIsSleeping();
             xASSERT_EQ(FALSE, m_bRes);
@@ -66,7 +66,7 @@ CxTest_CxSleeper::bUnit(
             CxSleeper objSleeper;
 
             m_bRes = objSleeper.bWakeUp();
-            xASSERT_NOT_EQ(FALSE, m_bRes);
+            xASSERT_DIFF(FALSE, m_bRes);
         #endif
     }
 

@@ -40,7 +40,7 @@ CxTest_CxLocale::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetCurrent( CxLocale::sGetCurrent() );
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -48,7 +48,7 @@ CxTest_CxLocale::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetDefault();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -56,7 +56,7 @@ CxTest_CxLocale::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     return TRUE;

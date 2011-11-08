@@ -88,7 +88,7 @@ CxTest_CxSystemInfo::bUnit(
         CxSystemInfo::EOsArch oaRes = CxSystemInfo::oaUnknown;
 
         oaRes = CxSystemInfo::oaGetOsArch();
-        xASSERT_NOT_EQ(CxSystemInfo::oaUnknown, oaRes);
+        xASSERT_DIFF(CxSystemInfo::oaUnknown, oaRes);
     }
 
     //-------------------------------------
@@ -142,7 +142,7 @@ CxTest_CxSystemInfo::bUnit(
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
         #endif
-        xASSERT_NOT_EQ(static_cast<ULONG>( - 1 ), m_ulRes);
+        xASSERT_DIFF(static_cast<ULONG>( - 1 ), m_ulRes);
         xASSERT_EQ(true, 0 <= m_ulRes && CxSystemInfo::ulGetNumOfCpus() > m_ulRes);
     }
 
@@ -151,7 +151,7 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxSystemInfo::bIsUnicodeOS();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------

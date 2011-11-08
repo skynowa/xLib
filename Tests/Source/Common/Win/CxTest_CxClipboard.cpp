@@ -36,42 +36,42 @@ CxTest_CxClipboard::bUnit(
     //bSetOwner
     {
         m_bRes = cbCB.bSetOwner(NULL);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bOpen
     {
         ////m_bRes = cbCB.bOpen();
-        ////xASSERT_NOT_EQ(FALSE, m_bRes);
+        ////xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bClear
     {
         m_bRes = cbCB.bClear();
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bGetData
     {
         ////m_bRes = cbCB.bGetData(EFormat fmFormat);
-        ////xASSERT_NOT_EQ(FALSE, m_bRes);
+        ////xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bSetData
     {
         ////m_bRes = cbCB.bSetData(EFormat fmFormat, HANDLE hData);
-        ////xASSERT_NOT_EQ(FALSE, m_bRes);
+        ////xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bSetText
     {
         m_bRes = cbCB.bSetText(csText);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -82,14 +82,14 @@ CxTest_CxClipboard::bUnit(
     #else
         m_bRes = cbCB.bIsHasFormat(CxClipboard::fmText);
     #endif
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bGetText
     {
         m_bRes = cbCB.bGetText(&m_sRes);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
         xASSERT_EQ(csText, m_sRes);
     }
 
@@ -97,7 +97,7 @@ CxTest_CxClipboard::bUnit(
     //bClose
     {
         ////m_bRes = cbCB.bClose();
-        ////xASSERT_NOT_EQ(FALSE, m_bRes);
+        ////xASSERT_DIFF(FALSE, m_bRes);
     }
 #elif defined(xOS_ENV_UNIX)
 

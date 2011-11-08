@@ -110,22 +110,22 @@ CxTest_CxMimeMessage::bUnit(
     //-------------------------------------
     //bCreate
     m_bRes = objPop3.bCreate(csUser, csPass, csServer, usPort);
-    xASSERT_NOT_EQ(FALSE, m_bRes);
+    xASSERT_DIFF(FALSE, m_bRes);
 
     //-------------------------------------
     //bConnect
     m_bRes = objPop3.bConnect();
-    xASSERT_NOT_EQ(FALSE, m_bRes);
+    xASSERT_DIFF(FALSE, m_bRes);
 
     //-------------------------------------
     //bLogin
     m_bRes = objPop3.bLogin();
-    xASSERT_NOT_EQ(FALSE, m_bRes);
+    xASSERT_DIFF(FALSE, m_bRes);
 
     //-------------------------------------
     //bStat
     m_bRes = objPop3.bStat(ulSum, ulSize);
-    xASSERT_NOT_EQ(FALSE, m_bRes);
+    xASSERT_DIFF(FALSE, m_bRes);
     /*LOG*/printf("Mails %li\n", ulSum);
 
     //-------------------------------------
@@ -142,12 +142,12 @@ CxTest_CxMimeMessage::bUnit(
         CxMimeHeader objHeader;
 
         m_bRes = objPop3.bTop(i, 0, /*ref*/sRawHeader);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //-------------------------------------
         //bParse
         m_bRes = objHeader.bParse(sRawHeader);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //-------------------------------------
         //sGetField
@@ -185,7 +185,7 @@ CxTest_CxMimeMessage::bUnit(
         //-------------------------------------
         //bRetrieveHeader
         m_bRes = objPop3.bRetrieveHeader(y, objHeader);
-        xASSERT_NOT_EQ(FALSE, m_bRes);
+        xASSERT_DIFF(FALSE, m_bRes);
 
         //-------------------------------------
         //sGetField
@@ -218,7 +218,7 @@ CxTest_CxMimeMessage::bUnit(
     //-------------------------------------
     //bDisconnect
     m_bRes = objPop3.bDisconnect();
-    xASSERT_NOT_EQ(FALSE, m_bRes);
+    xASSERT_DIFF(FALSE, m_bRes);
 
     return TRUE;
 }

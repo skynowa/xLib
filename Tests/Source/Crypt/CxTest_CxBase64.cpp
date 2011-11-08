@@ -89,7 +89,7 @@ CxTest_CxBase64::bUnit(
             for (size_t i = 0; i < csValidChars.size(); ++ i) {
                 m_bRes = CxBase64::bIsCharValid(csValidChars.at(i));
                 //xTRACEV(xT("csValidChars.at(i): %c"), csValidChars.at(i));
-                xASSERT_NOT_EQ(FALSE, m_bRes);
+                xASSERT_DIFF(FALSE, m_bRes);
             }
         }
 
