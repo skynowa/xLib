@@ -142,8 +142,8 @@ CxDnsClient::bGetNameInfo(
     saGNI.sin_addr.s_addr = ::inet_addr(casHostAddr.c_str());
     saGNI.sin_port        = htons(usPort);
 
-    TCHAR szHostName[NI_MAXHOST] = {0};
-    TCHAR szServInfo[NI_MAXSERV] = {0};
+    char_t szHostName[NI_MAXHOST] = {0};
+    char_t szServInfo[NI_MAXSERV] = {0};
 
 #if defined(xOS_ENV_WIN)
     //TODO: bGetNameInfo

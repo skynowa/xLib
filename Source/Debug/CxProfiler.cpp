@@ -129,7 +129,7 @@ CxProfiler::bStart() {
 //--------------------------------------------------------------------------
 BOOL
 CxProfiler::bStop(
-    const TCHAR *pcszComment, ...
+    const char_t *pcszComment, ...
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bIsStarted, FALSE);
@@ -228,7 +228,7 @@ CxProfiler::bStop(
 //--------------------------------------------------------------------------
 BOOL
 CxProfiler::bPulse(
-    const TCHAR *pcszComment, ...
+    const char_t *pcszComment, ...
 )
 {
     //-------------------------------------

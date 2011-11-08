@@ -236,7 +236,7 @@ CxSystemInfo::sGetComputerName() {
 
 #if defined(xOS_ENV_WIN)
     ULONG   ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
-    TCHAR   szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
+    char_t   szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
 
     BOOL bRes = ::GetComputerName(szBuff, &ulBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("LOCALHOST"));
@@ -297,7 +297,7 @@ CxSystemInfo::sGetUserName() {
 
 #if defined(xOS_ENV_WIN)
     ULONG ulBuffSize        = UNLEN;
-    TCHAR szBuff[UNLEN + 1] = {0};
+    char_t szBuff[UNLEN + 1] = {0};
 
     BOOL bRes = ::GetUserName(&szBuff[0], &ulBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string_t());

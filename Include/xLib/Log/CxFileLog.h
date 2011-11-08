@@ -38,7 +38,7 @@ class CxFileLog :
         const std::string_t & sGetFilePath() const;
             ///< get log path
 
-        BOOL                 bWrite      (const TCHAR *pcszFormat, ...);
+        BOOL                 bWrite      (const char_t *pcszFormat, ...);
             ///< write
         BOOL                 bClear      ();
             ///< clear content

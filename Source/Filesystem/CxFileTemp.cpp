@@ -59,7 +59,7 @@ CxFileTemp::bCreate(
     #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_CODEGEAR)
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
-        TCHAR *pszFile = xTMKSTEMP(&_m_sFilePath.at(0));
+        char_t *pszFile = xTMKSTEMP(&_m_sFilePath.at(0));
         /*DEBUG*/xASSERT_RET(NULL != pszFile, FALSE);
 
         _pfStdFile = xTFOPEN(pszFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());

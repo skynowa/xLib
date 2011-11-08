@@ -42,9 +42,9 @@ class CxProfiler :
 
         BOOL                bStart     ();
             ///< start measurement
-        BOOL                bStop      (const TCHAR *pcszComment, ...);
+        BOOL                bStop      (const char_t *pcszComment, ...);
             ///< stop measurement
-        BOOL                bPulse     (const TCHAR *pcszComment, ...);
+        BOOL                bPulse     (const char_t *pcszComment, ...);
             ///< stop, start measurement
 
     private:

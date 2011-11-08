@@ -39,7 +39,7 @@ CxLocale::sGetCurrent() {
 
     sRes.resize(iRes - sizeof('\0'));    //delete from end '\0'
 #elif defined(xOS_ENV_UNIX)
-    const TCHAR *pcszLocale = NULL;
+    const char_t *pcszLocale = NULL;
 
     pcszLocale = xTSETLOCALE(LC_ALL, NULL);
     /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::string_t());
@@ -58,9 +58,9 @@ CxLocale::bSetCurrent(
 {
     /*DEBUG*/// csLocale - n/a
 
-    const TCHAR *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
+    const char_t *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
 
-    const TCHAR *pcszRes = NULL;
+    const char_t *pcszRes = NULL;
 
     pcszRes = xTSETLOCALE(LC_ALL, pcszLocale);
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, FALSE);

@@ -128,7 +128,7 @@ _MAX_PATH
  String
    FileUtilities::GetShortPath(const String &sInPath)
    {
-      TCHAR szModuleShort[_MAX_PATH];
+      char_t szModuleShort[_MAX_PATH];
       GetShortPathName(sInPath, szModuleShort, _MAX_PATH );
 
       return szModuleShort;
@@ -137,7 +137,7 @@ _MAX_PATH
    String
    FileUtilities::GetLongPath(const String &sInPath)
    {
-      TCHAR szLong[_MAX_PATH];
+      char_t szLong[_MAX_PATH];
       GetLongPathName(sInPath, szLong, _MAX_PATH );
 
       return szLong;

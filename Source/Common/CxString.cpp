@@ -151,8 +151,8 @@ CxString::sReplaceAll(
 std::string_t
 CxString::sReplaceAll(
     const std::string_t &csStr,
-    const TCHAR         cchOldStr,
-    const TCHAR         cchNewStr
+    const char_t         cchOldStr,
+    const char_t         cchNewStr
 )
 {
     /*DEBUG*/// csStr    - n/a
@@ -236,7 +236,7 @@ CxString::sJoin(
 std::string_t
 CxString::sJoin(
     const std::vector<std::string_t> &cvsVec,
-    const TCHAR                      cchSep
+    const char_t                      cchSep
 )
 {
     /*DEBUG*/// cvsVec - n/a
@@ -430,7 +430,7 @@ CxString::pvMemoryZeroSecure(
 /*static*/
 std::string_t
 CxString::sFormat(
-    const TCHAR *pcszFormat, ...
+    const char_t *pcszFormat, ...
 )
 {
     /*DEBUG*/// n/a
@@ -452,7 +452,7 @@ CxString::sFormat(
 #if 1
     std::string_t
     CxString::sFormatV(
-        const TCHAR *pcszFormat,
+        const char_t *pcszFormat,
         va_list      palArgs
     )
     {

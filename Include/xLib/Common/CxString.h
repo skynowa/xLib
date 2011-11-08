@@ -13,23 +13,23 @@
 //overload operators << for std::basic_ostream
 namespace std {
     template<class Traits>
-    inline basic_ostream<TCHAR, Traits> &
-    operator << (basic_ostream<TCHAR, Traits> &osOut, const std::ustring &cusValue);
+    inline basic_ostream<char_t, Traits> &
+    operator << (basic_ostream<char_t, Traits> &osOut, const std::ustring &cusValue);
         ///< overload operators << for std::ustring
 
     template<class Traits, class T>
-    inline basic_ostream<TCHAR, Traits> &
-    operator << (basic_ostream<TCHAR, Traits> &osOut, const vector<T> &cvValueT);
+    inline basic_ostream<char_t, Traits> &
+    operator << (basic_ostream<char_t, Traits> &osOut, const vector<T> &cvValueT);
         ///< overload operators << for std::vector
 
     template<class Traits, class T1, class T2>
-    inline basic_ostream<TCHAR, Traits> &
-    operator << (basic_ostream<TCHAR, Traits> &osOut, const map<T1, T2> &cmValueT);
+    inline basic_ostream<char_t, Traits> &
+    operator << (basic_ostream<char_t, Traits> &osOut, const map<T1, T2> &cmValueT);
         ///< overload operators << for std::map
 
     template<class Traits, class T1, class T2>
-    inline basic_ostream<TCHAR, Traits> &
-    operator << (basic_ostream<TCHAR, Traits> &osOut, const multimap<T1, T2> &cmmValueT);
+    inline basic_ostream<char_t, Traits> &
+    operator << (basic_ostream<char_t, Traits> &osOut, const multimap<T1, T2> &cmmValueT);
         ///< overload operators << for std::multimap
 }
 //---------------------------------------------------------------------------
@@ -72,14 +72,14 @@ class CxString :
 
         static std::string_t  sReplaceAll       (const std::string_t &csStr, const std::string_t &csOldStr, const std::string_t &csNewStr);
             ///< replace all strings
-        static std::string_t  sReplaceAll       (const std::string_t &csStr, const TCHAR ccOldStr, const TCHAR ccNewStr);
+        static std::string_t  sReplaceAll       (const std::string_t &csStr, const char_t ccOldStr, const char_t ccNewStr);
             ///< replace all chars
         static std::string_t  sRemoveAll        (const std::string_t &csStr, const std::string_t &csRemoveStr);
             ///< remove all strings
 
         static BOOL          bSplit            (const std::string_t &csStr, const std::string_t &csSep, std::vector<std::string_t> *pvsOut);
             ///< split by separator
-        static std::string_t  sJoin             (const std::vector<std::string_t> &cvsVec, const TCHAR cchSep);
+        static std::string_t  sJoin             (const std::vector<std::string_t> &cvsVec, const char_t cchSep);
             ///< join with char separator
         static std::string_t  sJoin             (const std::vector<std::string_t> &cvsVec, const std::string_t &csSep);
             ///< oin with string separator
@@ -97,9 +97,9 @@ class CxString :
         static std::string_t  sToUpperCase      (const std::string_t &csStr, size_t uiLength);
             ///< convert to uppercase
 
-        static std::string_t  sFormat           (const TCHAR *pcszFormat, ...);
+        static std::string_t  sFormat           (const char_t *pcszFormat, ...);
             ///< format
-        static std::string_t  sFormatV          (const TCHAR *pcszFormat, va_list palArgs);
+        static std::string_t  sFormatV          (const char_t *pcszFormat, va_list palArgs);
             ///< format
         static std::string_t  sMinimize         (const std::string_t &csStr, const size_t cuiMaxLen);
             ///< minimize

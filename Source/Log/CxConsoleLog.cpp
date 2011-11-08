@@ -36,7 +36,7 @@ CxConsoleLog::~CxConsoleLog() {
 //---------------------------------------------------------------------------
 BOOL
 CxConsoleLog::bWrite(
-    const TCHAR *pcszFormat, ...
+    const char_t *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);

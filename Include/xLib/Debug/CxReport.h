@@ -29,7 +29,7 @@ class CxReport :
 
                               CxReport           (const EType &crtType, const std::string_t &csExp, const ULONG culLastError, const std::string_t &csFile, const ULONG culLine, const std::string_t &csFunc, const std::string_t &csDate, const std::string_t &csTime, const std::string_t &csStackTrace, const std::string_t &csComment);
             ///< constructor
-                              CxReport           (const EType &crtType, const std::string_t &csExp, const ULONG culLastError, const std::string_t &csFile, const ULONG culLine, const std::string_t &csFunc, const std::string_t &csDate, const std::string_t &csTime, const std::string_t &csStackTrace, const TCHAR *pcszComment, ...);
+                              CxReport           (const EType &crtType, const std::string_t &csExp, const ULONG culLastError, const std::string_t &csFile, const ULONG culLine, const std::string_t &csFunc, const std::string_t &csDate, const std::string_t &csTime, const std::string_t &csStackTrace, const char_t *pcszComment, ...);
             ///< constructor
                               template<class T>
                               CxReport           (const EType &crtType, const T &cVatT1, const T &cVatT2, const std::string_t &csExpr1, const std::string_t &csExpr2, const std::string_t &csExprSign, const ULONG culLastError, const std::string_t &csFile, const ULONG culLine, const std::string_t &csFunc, const std::string_t &csDate, const std::string_t &csTime, const std::string_t &csStackTrace, const std::string_t &csComment);

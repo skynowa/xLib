@@ -13,12 +13,12 @@
     #define xTEXT(x)               L##x
     #define xT(x)                  xTEXT(x)
 
-    typedef wchar_t                TCHAR;
+    typedef wchar_t                char_t;
 #else
     #define xTEXT(x)               x
     #define xT(x)                  xTEXT(x)
 
-    typedef char                   TCHAR;
+    typedef char                   char_t;
 #endif //xUNICODE
 
     typedef float                  FLOAT;
@@ -58,20 +58,20 @@
 #endif
 
 namespace std {
-    typedef basic_string<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >        string_t;
+    typedef basic_string<char_t, char_traits<char_t>, allocator<char_t> >        string_t;
     typedef basic_string<UCHAR, char_traits<UCHAR>, allocator<UCHAR> >        ustring;
 
-    typedef basic_istream <TCHAR, char_traits<TCHAR> >                        istream_t;
-    typedef basic_ostream <TCHAR, char_traits<TCHAR> >                        ostream_t;
-    typedef basic_iostream<TCHAR, char_traits<TCHAR> >                        iostream_t;
+    typedef basic_istream <char_t, char_traits<char_t> >                        istream_t;
+    typedef basic_ostream <char_t, char_traits<char_t> >                        ostream_t;
+    typedef basic_iostream<char_t, char_traits<char_t> >                        iostream_t;
 
-    typedef basic_istringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> > istringstream_t;
-    typedef basic_ostringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> > ostringstream_t;
-    typedef basic_stringstream <TCHAR, char_traits<TCHAR>, allocator<TCHAR> > stringstream_t;
+    typedef basic_istringstream<char_t, char_traits<char_t>, allocator<char_t> > istringstream_t;
+    typedef basic_ostringstream<char_t, char_traits<char_t>, allocator<char_t> > ostringstream_t;
+    typedef basic_stringstream <char_t, char_traits<char_t>, allocator<char_t> > stringstream_t;
 
-    typedef basic_ifstream<TCHAR, char_traits<TCHAR> >                        ifstream_t;
-    typedef basic_ofstream<TCHAR, char_traits<TCHAR> >                        ofstream_t;
-    typedef basic_fstream <TCHAR, char_traits<TCHAR> >                        fstream_t;
+    typedef basic_ifstream<char_t, char_traits<char_t> >                        ifstream_t;
+    typedef basic_ofstream<char_t, char_traits<char_t> >                        ofstream_t;
+    typedef basic_fstream <char_t, char_traits<char_t> >                        fstream_t;
 } //namespace std
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xTypesH

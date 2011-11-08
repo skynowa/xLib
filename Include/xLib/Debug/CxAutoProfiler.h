@@ -15,7 +15,7 @@ class CxAutoProfiler :
     /// auto code profiling
 {
     public:
-                     CxAutoProfiler(const std::string_t &csFilePath, const CxProfiler::EMode cpmMode, const TCHAR *pcszComment, ...);
+                     CxAutoProfiler(const std::string_t &csFilePath, const CxProfiler::EMode cpmMode, const char_t *pcszComment, ...);
             ///< constructor
         virtual     ~CxAutoProfiler();
             ///< destructor

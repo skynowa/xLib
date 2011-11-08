@@ -28,7 +28,7 @@ CxShell::bFindExecutable(
     /*DEBUG*/// csFindDirPath - n/a
 
     INT   iRes            = SE_ERR_FNF;
-    TCHAR szRes[MAX_PATH] = {0};
+    char_t szRes[MAX_PATH] = {0};
 
     iRes = reinterpret_cast<INT>( ::FindExecutable(csFileName.c_str(), csFindDirPath.c_str(), szRes) );
     /*DEBUG*/xASSERT_RET(32 < iRes, std::string_t());
@@ -180,7 +180,7 @@ CxShell::sGetSpecialDirPath(
     hRes = ::SHGetSpecialFolderLocation(NULL, csfDir, &pidlList);
     /*DEBUG*/xASSERT_DO(SUCCEEDED(hRes), ::CoTaskMemFree(pidlList); return std::string_t());
 
-    TCHAR szRes[MAX_PATH + sizeof(TCHAR)] = {0};
+    char_t szRes[MAX_PATH + sizeof(char_t)] = {0};
 
     BOOL bRes = ::SHGetPathFromIDList(pidlList, &szRes[0]);
     /*DEBUG*/xASSERT_DO(FALSE != bRes, ::CoTaskMemFree(pidlList); return std::string_t());
@@ -301,7 +301,7 @@ CxShell::~CxShell() {
 	#include "Shlwapi.h"
 	...
 	DWORD dwSize = MAX_PATH;
-	TCHAR tchApplicationPath[ MAX_PATH ] = { 0 };
+	char_t tchApplicationPath[ MAX_PATH ] = { 0 };
 	HRESULT hr = AssocQueryString( 0,
 	ASSOCSTR_EXECUTABLE,
 	xT( ".mp3" ),

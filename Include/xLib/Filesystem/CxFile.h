@@ -147,19 +147,19 @@ class CxFile :
             ///< write from std::ustring
         BOOL                 bRead        (std::string_t *psBuff) const;
             ///< read to std::string_t
-        INT                  iWrite       (const TCHAR *pcszFormat, ...) const;
+        INT                  iWrite       (const char_t *pcszFormat, ...) const;
             ///< write formatted output to stream
-        INT                  iWriteV      (const TCHAR *pcszFormat, va_list arg) const;
+        INT                  iWriteV      (const char_t *pcszFormat, va_list arg) const;
             ///< write formatted variable argument list to stream
         BOOL                 bReadLine    (std::string_t *psStr, const size_t cuiMaxCount) const;
             ///< read string to newline or to the end of file
         BOOL                 bWriteLine   (const std::string_t &csStr) const;
             ///< write string and end of line
-        TCHAR                chReadChar   () const;
+        char_t                chReadChar   () const;
             ///< get character
-        BOOL                 bWriteChar   (const TCHAR ccChar) const;
+        BOOL                 bWriteChar   (const char_t ccChar) const;
             ///< write character
-        BOOL                 bUngetChar   (const TCHAR ccChar) const;
+        BOOL                 bUngetChar   (const char_t ccChar) const;
             ///< unget character from stream
         BOOL                 bClear       () const;
             ///< clear

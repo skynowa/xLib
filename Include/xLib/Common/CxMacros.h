@@ -478,7 +478,7 @@ class CxMacros :
 
         //TODO: tests
         template <class T>
-        static inline const TCHAR *
+        static inline const char_t *
         pcszAsCString(const T &x) {
             return (true == x.empty()) ? (NULL) : (x.c_str());
         }

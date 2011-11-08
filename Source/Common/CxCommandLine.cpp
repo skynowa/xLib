@@ -67,7 +67,7 @@ CxCommandLine::bGetArgs(
 BOOL
 CxCommandLine::bSetArgs(
     const INT  ciArgsCount,
-    TCHAR     *paszArgs[]
+    char_t     *paszArgs[]
 )
 {
     /*DEBUG*/// n/a (because we'll have a recursion)

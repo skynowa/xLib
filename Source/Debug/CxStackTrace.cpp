@@ -66,7 +66,7 @@ CxStackTrace::bGet(
     USHORT usFramesNum      = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
     xCHECK_RET(usFramesNum == 0U, FALSE);
 
-    psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(TCHAR) ];
+    psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(char_t) ];
     psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
     psiSymbol->MaxNameLen   = 255UL;
 
@@ -92,7 +92,7 @@ CxStackTrace::bGet(
         INT iFramesNum  = backtrace(pvStack, _m_culMaxFrames);
         xCHECK_RET(iFramesNum <= 0, FALSE);
 
-        TCHAR **ppszSymbols = backtrace_symbols(pvStack, iFramesNum);
+        char_t **ppszSymbols = backtrace_symbols(pvStack, iFramesNum);
         xCHECK_RET(NULL == ppszSymbols, FALSE);
 
         for (INT i = 1; i < iFramesNum; ++ i) {
@@ -104,8 +104,8 @@ CxStackTrace::bGet(
             if (0 == iRes) {
                 sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
             } else {
-                const TCHAR *pcszSymName     = NULL;
-                TCHAR       *pszDemangleName = NULL;
+                const char_t *pcszSymName     = NULL;
+                char_t       *pszDemangleName = NULL;
                 INT          iStatus         = - 1;
 
                 pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);

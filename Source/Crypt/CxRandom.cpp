@@ -226,32 +226,32 @@ CxRandom::sGetString(
 
     if (TRUE == cbIsLetters) {
         for (INT i = 65; i <= 90; ++ i) {
-            sAllPossible.push_back( static_cast<TCHAR>(i) );         //upper case
-            sAllPossible.push_back( static_cast<TCHAR>(i + 32) );    //lower case
+            sAllPossible.push_back( static_cast<char_t>(i) );         //upper case
+            sAllPossible.push_back( static_cast<char_t>(i + 32) );    //lower case
         }
     }
 
     if (TRUE == cbIsNumbers) {
         for (INT i = 48; i <= 57; ++ i) {
-            sAllPossible.push_back( static_cast<TCHAR>(i) );
+            sAllPossible.push_back( static_cast<char_t>(i) );
         }
     }
 
     if (TRUE == cbIsAsciiSymbols) {
         for (INT i = 33; i <= 47; ++ i) {
-            sAllPossible.push_back( static_cast<TCHAR>(i) );
+            sAllPossible.push_back( static_cast<char_t>(i) );
         }
 
         for (INT i = 58; i <= 64; ++ i) {
-            sAllPossible.push_back( static_cast<TCHAR>(i) );
+            sAllPossible.push_back( static_cast<char_t>(i) );
         }
 
         for (INT i = 91; i <= 96; ++ i) {
-            sAllPossible.push_back( static_cast<TCHAR>(i) );
+            sAllPossible.push_back( static_cast<char_t>(i) );
         }
 
         for (INT i = 123; i <= 126; ++ i) {
-            sAllPossible.push_back( static_cast<TCHAR>(i) );
+            sAllPossible.push_back( static_cast<char_t>(i) );
         }
     }
 

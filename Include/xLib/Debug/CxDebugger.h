@@ -32,7 +32,7 @@ class CxDebugger :
             ///< get log file path
         static BOOL         bReportMake     (const CxReport &crpReport);
             ///< make report
-        static BOOL         bTrace          (const TCHAR *pcszFormat, ...);
+        static BOOL         bTrace          (const char_t *pcszFormat, ...);
             ///< tracing to debugger, std::cout
         static BOOL         bTrace          (const std::string_t &csMsg);
             ///< tracing to debugger, std::cout
