@@ -16,11 +16,11 @@
 
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxLocale::sGetCurrent() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     INT  iRes = - 1;
@@ -31,18 +31,18 @@ CxLocale::sGetCurrent() {
 
     //Retrieves information about a locale specified by identifier
     iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, 0, 0);
-    /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(0 != iRes, std::string_t());
 
     sRes.resize(iRes);
     iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(0 != iRes, std::string_t());
 
     sRes.resize(iRes - sizeof('\0'));    //delete from end '\0'
 #elif defined(xOS_ENV_UNIX)
     const TCHAR *pcszLocale = NULL;
 
     pcszLocale = xTSETLOCALE(LC_ALL, NULL);
-    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::string_t());
 
     sRes.assign(pcszLocale);
 #endif
@@ -53,7 +53,7 @@ CxLocale::sGetCurrent() {
 /*static*/
 BOOL
 CxLocale::bSetCurrent(
-    const std::tstring &csLocale
+    const std::string_t &csLocale
 )
 {
     /*DEBUG*/// csLocale - n/a

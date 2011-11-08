@@ -40,7 +40,7 @@ CxTest_CxProfiler::bUnit(
 	};
 
 	for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
-		const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("___Log.log");
+		const std::string_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("___Log.log");
 
 		CxProfiler pfP(pmPerformMode[i]);
 

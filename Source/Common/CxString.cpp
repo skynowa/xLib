@@ -18,7 +18,7 @@
 
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sBoolToStr(
     const BOOL cbBool
 )
@@ -31,7 +31,7 @@ CxString::sBoolToStr(
 /*static*/
 BOOL
 CxString::bStrToBool(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
     /*DEBUG*/// n/a
@@ -43,48 +43,48 @@ CxString::bStrToBool(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sTrimLeftChars(
-    const std::tstring &csStr,
-    const std::tstring &csChars
+    const std::string_t &csStr,
+    const std::string_t &csChars
 )
 {
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
     sRes.assign(csStr);
 
     return sRes.erase(0, sRes.find_first_not_of(csChars));
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sTrimRightChars(
-    const std::tstring &csStr,
-    const std::tstring &csChars
+    const std::string_t &csStr,
+    const std::string_t &csChars
 )
 {
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
     sRes.assign(csStr);
 
     return sRes.erase(sRes.find_last_not_of(csChars) + 1);
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sTrimChars(
-    const std::tstring &csStr,
-    const std::tstring &csChars
+    const std::string_t &csStr,
+    const std::string_t &csChars
 )
 {
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
     sRes.assign(csStr);
 
     sRes.assign( sTrimRightChars(sRes, csChars) );
@@ -94,9 +94,9 @@ CxString::sTrimChars(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sTrimSpace(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
     /*DEBUG*/// csStr - n/a
@@ -105,9 +105,9 @@ CxString::sTrimSpace(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sRemoveEol(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
     /*DEBUG*/// csStr - n/a
@@ -116,11 +116,11 @@ CxString::sRemoveEol(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sReplaceAll(
-    const std::tstring &csStr,
-    const std::tstring &csOldStr,
-    const std::tstring &csNewStr
+    const std::string_t &csStr,
+    const std::string_t &csOldStr,
+    const std::string_t &csNewStr
 )
 {
     /*DEBUG*/// csStr    - n/a
@@ -130,14 +130,14 @@ CxString::sReplaceAll(
     xCHECK_RET(true == csStr.empty(),    csStr);
     xCHECK_RET(true == csOldStr.empty(), csStr);
 
-    std::tstring sRes;
+    std::string_t sRes;
     sRes.assign(csStr);
 
     size_t uiPos = 0;
 
     for ( ; ; ) {
         uiPos = sRes.find(csOldStr, uiPos);
-        xCHECK_DO(std::tstring::npos == uiPos, break);
+        xCHECK_DO(std::string_t::npos == uiPos, break);
 
         sRes.replace(uiPos, csOldStr.size(), csNewStr);
 
@@ -148,9 +148,9 @@ CxString::sReplaceAll(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sReplaceAll(
-    const std::tstring &csStr,
+    const std::string_t &csStr,
     const TCHAR         cchOldStr,
     const TCHAR         cchNewStr
 )
@@ -159,28 +159,28 @@ CxString::sReplaceAll(
     /*DEBUG*/// cchOldStr - n/a
     /*DEBUG*/// cchNewStr - n/a
 
-    return sReplaceAll(csStr, std::tstring(1, cchOldStr), std::tstring(1, cchNewStr));
+    return sReplaceAll(csStr, std::string_t(1, cchOldStr), std::string_t(1, cchNewStr));
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sRemoveAll(
-    const std::tstring &csStr,
-    const std::tstring &csRemoveStr
+    const std::string_t &csStr,
+    const std::string_t &csRemoveStr
 )
 {
     /*DEBUG*/// csStr      - n/a
     /*DEBUG*/// csRemoveStr - n/a
 
-    return sReplaceAll(csStr, csRemoveStr, std::tstring());
+    return sReplaceAll(csStr, csRemoveStr, std::string_t());
 }
 //---------------------------------------------------------------------------
 /*static*/
 BOOL
 CxString::bSplit(
-    const std::tstring        &csStr,
-    const std::tstring        &csSep,
-    std::vector<std::tstring> *pvsOut
+    const std::string_t        &csStr,
+    const std::string_t        &csSep,
+    std::vector<std::string_t> *pvsOut
 )
 {
     /*DEBUG*/// csStr    - n/a
@@ -191,13 +191,13 @@ CxString::bSplit(
     xCHECK_RET(true == csSep.empty(), TRUE);
     xCHECK_RET(NULL == pvsOut,        FALSE);
 
-    std::vector<std::tstring> vsRes;
+    std::vector<std::string_t> vsRes;
     size_t                    uiPrevPos = 0;     //start of string
     size_t                    uiPos     = 0;
 
     for ( ; ; ) {
         uiPos = csStr.find(csSep, uiPrevPos);
-        xCHECK_DO(std::tstring::npos == uiPos, break);
+        xCHECK_DO(std::string_t::npos == uiPos, break);
 
         vsRes.push_back(csStr.substr(uiPrevPos, uiPos - uiPrevPos));
 
@@ -212,18 +212,18 @@ CxString::bSplit(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sJoin(
-    const std::vector<std::tstring> &cvsVec,
-    const std::tstring              &csSep
+    const std::vector<std::string_t> &cvsVec,
+    const std::string_t              &csSep
 )
 {
     /*DEBUG*/// cvsVec - n/a
     /*DEBUG*/// csSep    - n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
-    for (std::vector<std::tstring>::const_iterator it = cvsVec.begin(); it != cvsVec.end(); ++ it) {
+    for (std::vector<std::string_t>::const_iterator it = cvsVec.begin(); it != cvsVec.end(); ++ it) {
         sRes.append(*it);
 
         xCHECK_DO(it < cvsVec.end() - 1, sRes.append(csSep));
@@ -233,24 +233,24 @@ CxString::sJoin(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sJoin(
-    const std::vector<std::tstring> &cvsVec,
+    const std::vector<std::string_t> &cvsVec,
     const TCHAR                      cchSep
 )
 {
     /*DEBUG*/// cvsVec - n/a
     /*DEBUG*/// csSep    - n/a
 
-    return sJoin(cvsVec, std::tstring(1, cchSep));
+    return sJoin(cvsVec, std::string_t(1, cchSep));
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sCut(
-    const std::tstring &csStr,
-    const std::tstring &csLeftSep,
-    const std::tstring &csRightSep
+    const std::string_t &csStr,
+    const std::string_t &csLeftSep,
+    const std::string_t &csRightSep
 )
 {
     /*DEBUG*/// csStr      - n/a
@@ -261,27 +261,27 @@ CxString::sCut(
     size_t uiStopDelimPos  = 0;
 
     uiStartDelimPos = csStr.find(csLeftSep);
-    xCHECK_RET(std::tstring::npos == uiStartDelimPos, std::tstring());
+    xCHECK_RET(std::string_t::npos == uiStartDelimPos, std::string_t());
     uiStartDelimPos += csLeftSep.size();
 
     uiStopDelimPos  = csStr.rfind(csRightSep);
-    xCHECK_RET(std::tstring::npos == uiStopDelimPos, std::tstring());
+    xCHECK_RET(std::string_t::npos == uiStopDelimPos, std::string_t());
 
-    xCHECK_RET(uiStartDelimPos >= uiStopDelimPos, std::tstring());
+    xCHECK_RET(uiStartDelimPos >= uiStopDelimPos, std::string_t());
 
     return csStr.substr(uiStartDelimPos, uiStopDelimPos - uiStartDelimPos);
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sCut(
-    const std::tstring &csStr,
+    const std::string_t &csStr,
     const size_t        cuiStartPos /*= 0*/,
-    const size_t        cuiEndPos   /*= std::tstring:npos*/
+    const size_t        cuiEndPos   /*= std::string_t:npos*/
 )
 {
-    xCHECK_RET(true        == csStr.empty(), std::tstring());
-    xCHECK_RET(cuiStartPos >  cuiEndPos,     std::tstring());
+    xCHECK_RET(true        == csStr.empty(), std::string_t());
+    xCHECK_RET(cuiStartPos >  cuiEndPos,     std::string_t());
 
     size_t uiSize = ( (std::string::npos == cuiEndPos) ? (csStr.size()) : (cuiEndPos) ) - cuiStartPos/* + 1*/;
 
@@ -289,9 +289,9 @@ CxString::sCut(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sToLowerCase(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
     /*DEBUG*/// n/a
@@ -300,9 +300,9 @@ CxString::sToLowerCase(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sToUpperCase(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
     /*DEBUG*/// n/a
@@ -311,23 +311,23 @@ CxString::sToUpperCase(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sToLowerCase(
-    const std::tstring &csStr,
+    const std::string_t &csStr,
     size_t              uiLength
 )
 {
     /*DEBUG*/// n/a
 
-    xCHECK_RET(true == csStr.empty(), std::tstring());
+    xCHECK_RET(true == csStr.empty(), std::string_t());
     xCHECK_DO (csStr.size() < uiLength, uiLength = csStr.size());
 
-    std::tstring sRes;
+    std::string_t sRes;
     sRes.assign(csStr);
 
 #if defined(xOS_ENV_WIN)
     ULONG ulRes = ::CharLowerBuff(static_cast<LPTSTR>( &sRes[0] ), uiLength);
-    /*DEBUG*/xASSERT_RET(uiLength == ulRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(uiLength == ulRes, std::string_t());
 #elif defined(xOS_ENV_UNIX)
     std::transform(sRes.begin(), sRes.begin() + uiLength, sRes.begin(), CxChar::chToLower);
 #endif
@@ -336,23 +336,23 @@ CxString::sToLowerCase(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sToUpperCase(
-    const std::tstring &csStr,
+    const std::string_t &csStr,
     size_t              uiLength
 )
 {
     /*DEBUG*/// n/a
 
-    xCHECK_RET(true == csStr.empty(), std::tstring());
+    xCHECK_RET(true == csStr.empty(), std::string_t());
     xCHECK_DO (csStr.size() < uiLength, uiLength = csStr.size());
 
-    std::tstring sRes;
+    std::string_t sRes;
     sRes.assign(csStr);
 
 #if defined(xOS_ENV_WIN)
     ULONG ulRes = ::CharUpperBuff(static_cast<LPTSTR>( &sRes[0] ), uiLength);
-    /*DEBUG*/xASSERT_RET(uiLength == ulRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(uiLength == ulRes, std::string_t());
 #elif defined(xOS_ENV_UNIX)
     std::transform(sRes.begin(), sRes.begin() + uiLength, sRes.begin(), CxChar::chToUpper);
 #endif
@@ -363,8 +363,8 @@ CxString::sToUpperCase(
 /*static*/
 BOOL
 CxString::bCompareNoCase(
-    const std::tstring &csStr1,
-    const std::tstring &csStr2
+    const std::string_t &csStr1,
+    const std::string_t &csStr2
 )
 {
     /*DEBUG*/// csStr1 - n/a
@@ -380,7 +380,7 @@ CxString::bCompareNoCase(
 #elif defined(xOS_ENV_UNIX)
     struct SCompare {
         static bool
-        bNoCase(const std::tstring::value_type &cchChar1, const std::tstring::value_type &cchChar2) {
+        bNoCase(const std::string_t::value_type &cchChar1, const std::string_t::value_type &cchChar2) {
             return CxChar::chToUpper(cchChar1) == CxChar::chToUpper(cchChar2);
         }
     };
@@ -428,15 +428,15 @@ CxString::pvMemoryZeroSecure(
 
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sFormat(
     const TCHAR *pcszFormat, ...
 )
 {
     /*DEBUG*/// n/a
-    xCHECK_RET(NULL == pcszFormat, std::tstring());
+    xCHECK_RET(NULL == pcszFormat, std::string_t());
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszFormat);
@@ -450,16 +450,16 @@ CxString::sFormat(
 //---------------------------------------------------------------------------
 /*static*/
 #if 1
-    std::tstring
+    std::string_t
     CxString::sFormatV(
         const TCHAR *pcszFormat,
         va_list      palArgs
     )
     {
         /*DEBUG*/// n/a
-        xCHECK_RET(NULL == pcszFormat, std::tstring());
+        xCHECK_RET(NULL == pcszFormat, std::string_t());
 
-        std::tstring sBuff(64, 0);
+        std::string_t sBuff(64, 0);
         INT          iWrittenSize = - 1;
 
         for ( ; ; ) {
@@ -481,16 +481,16 @@ CxString::sFormat(
         return sBuff;
     }
 #else
-    std::tstring
+    std::string_t
     CxString::sFormatV(
         LPCTSTR pcszFormat,
         va_list palArgs
     )
     {
         /*DEBUG*/// n/a
-        xCHECK_RET(NULL == pcszFormat, std::tstring());
+        xCHECK_RET(NULL == pcszFormat, std::string_t());
 
-        std::tstring sBuff(64, 0);
+        std::string_t sBuff(64, 0);
         INT          iWrittenSize = - 1;
 
         //--------------------------------------------------
@@ -502,7 +502,7 @@ CxString::sFormat(
             xVA_END(_palArgs);
 
             /*DEBUG*/assert(- 1 < iWrittenSize);
-            xCHECK_RET(0 >  iWrittenSize, std::tstring());
+            xCHECK_RET(0 >  iWrittenSize, std::string_t());
             xCHECK_RET(0 == iWrittenSize, sBuff);
         }
 
@@ -518,8 +518,8 @@ CxString::sFormat(
 
             /*DEBUG*/assert(- 1          <  iWrittenSize);
             /*DEBUG*/assert(sBuff.size() == static_cast<size_t>( iWrittenSize ) + 1);
-            xCHECK_RET(0             >  iWrittenSize,                           std::tstring());
-            xCHECK_RET(sBuff.size() != static_cast<size_t>( iWrittenSize ) + 1, std::tstring());
+            xCHECK_RET(0             >  iWrittenSize,                           std::string_t());
+            xCHECK_RET(sBuff.size() != static_cast<size_t>( iWrittenSize ) + 1, std::string_t());
         }
 
         sBuff.resize(iWrittenSize);
@@ -529,17 +529,17 @@ CxString::sFormat(
 #endif
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sMinimize(
-    const std::tstring &csStr,
+    const std::string_t &csStr,
     const size_t        cuiMaxLen
 )
 {
     /*DEBUG*/// n/a
-    xCHECK_RET(true == csStr.empty(), std::tstring());
-    xCHECK_RET(0    == cuiMaxLen,     std::tstring());
+    xCHECK_RET(true == csStr.empty(), std::string_t());
+    xCHECK_RET(0    == cuiMaxLen,     std::string_t());
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     if (csStr.size() > cuiMaxLen) {
         if (cuiMaxLen < CxConst::x3DOT.size()) {
@@ -555,18 +555,18 @@ CxString::sMinimize(
 }
 //--------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sCreateGuid() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     GUID    guidId = {0};
     HRESULT hrGuid = S_FALSE;
 
     hrGuid = CoCreateGuid(&guidId);
-    /*DEBUG*/xASSERT_RET(SUCCEEDED(hrGuid), std::tstring());
+    /*DEBUG*/xASSERT_RET(SUCCEEDED(hrGuid), std::string_t());
 
     sRes = sFormat(
                 xT("%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X"),
@@ -576,11 +576,11 @@ CxString::sCreateGuid() {
                 guidId.Data4[0], guidId.Data4[1],
                 guidId.Data4[2], guidId.Data4[3], guidId.Data4[4], guidId.Data4[5], guidId.Data4[6], guidId.Data4[7]
     );
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring());
+    /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::string_t());
 #elif defined(xOS_ENV_UNIX)
     //TODO: (sCreateGuid)
     //#include <uuid/uuid.h>
-    xNOT_IMPLEMENTED_RET(std::tstring());
+    xNOT_IMPLEMENTED_RET(std::string_t());
 #endif
 
     return sRes;
@@ -588,12 +588,12 @@ CxString::sCreateGuid() {
 //---------------------------------------------------------------------------
 /*static*/
 BOOL CxString::bIsRepeated(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( std::tstring::npos == csStr.find_first_not_of(csStr.at(0)) );
+    return static_cast<BOOL>( std::string_t::npos == csStr.find_first_not_of(csStr.at(0)) );
 }
 //---------------------------------------------------------------------------
 
@@ -605,16 +605,16 @@ BOOL CxString::bIsRepeated(
 
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sTranslitLatToRus(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
     /*DEBUG*/// n/a
-    xCHECK_RET(true == csStr.empty(), std::tstring());
+    xCHECK_RET(true == csStr.empty(), std::string_t());
 
     //translit table
-    const std::tstring csDict[][2] = {
+    const std::string_t csDict[][2] = {
         {xT("Й"), xT("Y")},   {xT("Ц"), xT("C")},  {xT("У"), xT("U")},
         {xT("К"), xT("K")},   {xT("Е"), xT("E")},  {xT("Ё"), xT("E")},
         {xT("Н"), xT("N")},   {xT("Г"), xT("G")},  {xT("Ш"), xT("SH")},
@@ -640,7 +640,7 @@ CxString::sTranslitLatToRus(
         {xT("ь"), xT("'")},   {xT("б"), xT("b")},  {xT("ю"), xT("yu")}
     };
 
-    std::tstring sRes;
+    std::string_t sRes;
     sRes.assign(csStr);
 
     for (size_t i = 0; i < xARRAY_SIZE(csDict); ++ i) {
@@ -651,14 +651,14 @@ CxString::sTranslitLatToRus(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sFormatBytes(
     const DOUBLE cdBytes
 )
 {
     /*DEBUG*/// dBytes - n/a
 
-    std::tstring sRes = xT("Uknown");
+    std::string_t sRes = xT("Uknown");
 
     const ULONGLONG cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
     const ULONGLONG cullGB   = 1024ULL * 1024ULL * 1024ULL;
@@ -689,14 +689,14 @@ CxString::sFormatBytes(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sFormatBytes(
     const ULONGLONG cullBytes
 )
 {
     /*DEBUG*/// ulBytes - n/a
 
-    std::tstring sRes = xT("<uknown>");
+    std::string_t sRes = xT("<uknown>");
 
     const ULONGLONG cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
     const ULONGLONG cullGB   = 1024ULL * 1024ULL * 1024ULL;
@@ -727,7 +727,7 @@ CxString::sFormatBytes(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sFormatPercentage(
     ULONGLONG ullMaxValue,
     ULONGLONG ullCurrValue
@@ -737,7 +737,7 @@ CxString::sFormatPercentage(
     /*DEBUG*/// ullCurrValue - n/a
     xCHECK_RET(0 == ullMaxValue, xT("0%"));    //devision by zero
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = lexical_cast( ullCurrValue * 100ULL / ullMaxValue );
     xCHECK_RET(true == sRes.empty(), xT("0%"));
@@ -820,7 +820,7 @@ CxString::sConvertCodePage(
 /*static*/
 std::string
 CxString::asCharToOemBuff(
-    const std::tstring &csSrc
+    const std::string_t &csSrc
 )
 {
     std::string asDst;
@@ -841,12 +841,12 @@ CxString::asCharToOemBuff(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxString::sOemToCharBuff(
     const std::string &csSrc
 )
 {
-    std::tstring sDst;
+    std::string_t sDst;
 
 #if defined(xOS_ENV_WIN)
     BOOL bRes = FALSE;
@@ -854,10 +854,10 @@ CxString::sOemToCharBuff(
     sDst.resize(csSrc.size());
 
     bRes = ::OemToCharBuff(csSrc.c_str(), &sDst.at(0), sDst.size());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string_t());
 #elif defined(xOS_ENV_UNIX)
     //TODO: sOemToCharBuff
-    xNOT_IMPLEMENTED_RET(std::tstring());
+    xNOT_IMPLEMENTED_RET(std::string_t());
 #endif
 
     return sDst;

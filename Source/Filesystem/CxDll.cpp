@@ -32,7 +32,7 @@ CxDll::bIsLoaded() const {
 //---------------------------------------------------------------------------
 BOOL
 CxDll::bLoad(
-    const std::tstring &csDllPath
+    const std::string_t &csDllPath
 )
 {
     /*DEBUG*/// n/a
@@ -54,7 +54,7 @@ CxDll::bLoad(
 //---------------------------------------------------------------------------
 CxDll::TxProcAddress
 CxDll::fpGetProcAddress(
-    const std::tstring &csProcName
+    const std::string_t &csProcName
 ) const
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);

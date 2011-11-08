@@ -28,7 +28,7 @@ namespace CxMsgBoxRtf
     	///< create content
     INT_PTR CALLBACK DialogProc    (HWND hDlg, UINT uiMsg, WPARAM wParam, LPARAM lParam);
 		///< window callback
-    EModalResult     iShow         (HWND hwndOwner, const std::tstring &csMessage, const std::tstring &csTiltle);
+    EModalResult     iShow         (HWND hwndOwner, const std::string_t &csMessage, const std::string_t &csTiltle);
 		///< show
 };
 //---------------------------------------------------------------------------

@@ -14,7 +14,7 @@ class CxConnectionString :
     /// DB connection string
 {
     public:
-        static std::tstring sMSJetOleDb40     (const std::tstring &csDataSource, const std::tstring &csUserId, const std::tstring &csPassword, const std::tstring &csDatabasePassword);
+        static std::string_t sMSJetOleDb40     (const std::string_t &csDataSource, const std::string_t &csUserId, const std::string_t &csPassword, const std::string_t &csDatabasePassword);
             ///< Microsoft.Jet.OLEDB.4.0
 
     private:

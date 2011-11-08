@@ -27,7 +27,7 @@ CxTest_CxFileLog::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.log");
+    const std::string_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.log");
 
     CxFileLog flLog(1);
 

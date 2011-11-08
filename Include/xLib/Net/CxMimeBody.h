@@ -18,7 +18,7 @@ class CxMimeBody :
 	   virtual ~CxMimeBody();
 
     private:
-        std::multimap<std::tstring, std::tstring> _m_mmsBody;
+        std::multimap<std::string_t, std::string_t> _m_mmsBody;
 };
 //---------------------------------------------------------------------------
 #endif

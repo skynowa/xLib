@@ -23,8 +23,8 @@
 //---------------------------------------------------------------------------
 BOOL
 bGetUsbInfo(
-    const std::tstring        &csDrive,
-    std::vector<std::tstring> *pvsInfo
+    const std::string_t        &csDrive,
+    std::vector<std::string_t> *pvsInfo
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDrive.empty(), FALSE);
@@ -77,8 +77,8 @@ bGetUsbInfo(
 
         //-------------------------------------
         //���������� ��� MountPoitName - �
-        std::tstring sMountPointNameFromLetter     = CxVolume::sGetVolumeNameForVolumeMountPoint(csDrive);
-        std::tstring sMountPointNameFromDevicePath = CxVolume::sGetVolumeNameForVolumeMountPoint(std::tstring(diddDeviceInterfaceDetailData.pGetPtr()->DevicePath));
+        std::string_t sMountPointNameFromLetter     = CxVolume::sGetVolumeNameForVolumeMountPoint(csDrive);
+        std::string_t sMountPointNameFromDevicePath = CxVolume::sGetVolumeNameForVolumeMountPoint(std::string_t(diddDeviceInterfaceDetailData.pGetPtr()->DevicePath));
         if (sMountPointNameFromLetter != sMountPointNameFromDevicePath) {
             continue;
         }
@@ -105,8 +105,8 @@ bGetUsbInfo(
             TCHAR szRes[256 + 1] = {0};
 
             if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, xT("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
-                //--*pvsInfo = vsSplit(std::tstring(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
-                bRes = CxString::bSplit(std::tstring(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvsInfo);
+                //--*pvsInfo = vsSplit(std::string_t(szRes, ulResSize / sizeof(TCHAR)), xT("#"));
+                bRes = CxString::bSplit(std::string_t(szRes, ulResSize / sizeof(TCHAR)), xT("#"), pvsInfo);
                 /*DEBUG*/xASSERT(TRUE == bRes);
             }
 

@@ -29,7 +29,7 @@ CxTest_CxCrc32::bUnit(
 {
 	/*DEBUG*/
 
-	const std::tstring csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
+	const std::string_t csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
 
     //-------------------------------------
     //Prepare

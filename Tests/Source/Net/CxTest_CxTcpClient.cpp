@@ -33,10 +33,10 @@ CxTest_CxTcpClient::bUnit(
 	CxSocket::EType          tpType         = CxSocket::tpStream;
 	CxSocket::EProtocol      ptProtocol     = CxSocket::ptIp;
 
-	const std::tstring			 csDomain		= xT("127.0.0.1");
-	std::tstring					 sIp            = xT("127.0.0.1");
+	const std::string_t			 csDomain		= xT("127.0.0.1");
+	std::string_t					 sIp            = xT("127.0.0.1");
 	USHORT                   usPort         = 80;
-	std::tstring                  sSendBuff      = xT("TEST_STRING");
+	std::string_t                  sSendBuff      = xT("TEST_STRING");
 	////CHAR                     szRecvBuff[32] = {0};
 
 	//-------------------------------------
@@ -77,7 +77,7 @@ CxTest_CxTcpClient::bUnit(
 	//-------------------------------------
 	//bGetPeerName
 	{
-		std::tstring _sIp;
+		std::string_t _sIp;
 		USHORT  _usPort = 0;
 
 		m_bRes = objSocket.bGetPeerName(&_sIp, &_usPort);
@@ -87,7 +87,7 @@ CxTest_CxTcpClient::bUnit(
 	//-------------------------------------
 	//bGetSocketName
 	{
-		std::tstring _sIp;
+		std::string_t _sIp;
 		USHORT  _usPort = 0;
 
 		m_bRes = objSocket.bGetSocketName(&_sIp, &_usPort);
@@ -100,7 +100,7 @@ CxTest_CxTcpClient::bUnit(
 	////xTEST_DIFF(FALSE, m_bRes);
 
 	for (; ;) {
-		std::tstring sText;
+		std::string_t sText;
 
 		sText.resize(256);
 

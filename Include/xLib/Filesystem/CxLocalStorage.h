@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 namespace NxLib {
-    typedef std::map<std::tstring, std::tstring> TLocalStorage;
+    typedef std::map<std::string_t, std::string_t> TLocalStorage;
 }
 
 class CxLocalStorage :
@@ -20,17 +20,17 @@ class CxLocalStorage :
     public:
                                CxLocalStorage ();
             ///< constructor, exe-file path
-        explicit               CxLocalStorage (const std::tstring &csFilePath);
+        explicit               CxLocalStorage (const std::string_t &csFilePath);
         	///< constructor, file path
         virtual               ~CxLocalStorage ();
         	///< destructor
 
         //creation
-        BOOL                   bCreateDefault (const std::tstring &csContent) const;
+        BOOL                   bCreateDefault (const std::string_t &csContent) const;
     		///< create default file
-        std::tstring           sGetPath       () const;
+        std::string_t           sGetPath       () const;
     		///< get file path
-        BOOL                   bSetPath       (const std::tstring &csFilePath);
+        BOOL                   bSetPath       (const std::string_t &csFilePath);
     		///< set file path
         NxLib::TLocalStorage & cmsGet         ();
     		///< get innner TLocalStorage, may be used with bFlush
@@ -43,49 +43,49 @@ class CxLocalStorage :
     		///< delete
 
         //key
-        BOOL                   bKeyIsExists   (const std::tstring &csKey) const;
+        BOOL                   bKeyIsExists   (const std::string_t &csKey) const;
     		///< is exists
 
-        std::tstring           sKeyReadString (const std::tstring &csKey, const std::tstring &csDefaultValue);
-    		///< read std::tstring
-        BOOL                   bKeyWriteString(const std::tstring &csKey, const std::tstring &csValue);
-    		///< write std::tstring
+        std::string_t           sKeyReadString (const std::string_t &csKey, const std::string_t &csDefaultValue);
+    		///< read std::string_t
+        BOOL                   bKeyWriteString(const std::string_t &csKey, const std::string_t &csValue);
+    		///< write std::string_t
 
-        LONG                   iKeyReadInt    (const std::tstring &csKey, const LONG     cliDefaultValue);
+        LONG                   iKeyReadInt    (const std::string_t &csKey, const LONG     cliDefaultValue);
     		///< read INT
-        BOOL                   bKeyWriteInt   (const std::tstring &csKey, const LONG     cliValue);
+        BOOL                   bKeyWriteInt   (const std::string_t &csKey, const LONG     cliValue);
     		///< write INT
 
-        DOUBLE                 dKeyReadFloat  (const std::tstring &csKey, const DOUBLE   cdDefaultValue);
+        DOUBLE                 dKeyReadFloat  (const std::string_t &csKey, const DOUBLE   cdDefaultValue);
     		///< read FLOAT
-        BOOL                   bKeyWriteFloat (const std::tstring &csKey, const DOUBLE   cdValue);
+        BOOL                   bKeyWriteFloat (const std::string_t &csKey, const DOUBLE   cdValue);
     		///< write FLOAT
 
-        BOOL                   bKeyReadBool   (const std::tstring &csKey, const BOOL     cbDefaultValue);
+        BOOL                   bKeyReadBool   (const std::string_t &csKey, const BOOL     cbDefaultValue);
     		///< read BOOL
-        BOOL                   bKeyWriteBool  (const std::tstring &csKey, const BOOL     cbValue);
+        BOOL                   bKeyWriteBool  (const std::string_t &csKey, const BOOL     cbValue);
     		///< write BOOL
 
-        std::ustring           usKeyReadBin   (const std::tstring &csKey, const std::ustring &cusDefaultValue);
+        std::ustring           usKeyReadBin   (const std::string_t &csKey, const std::ustring &cusDefaultValue);
     		///< write std::ustring
-        BOOL                   bKeyWriteBin   (const std::tstring &csKey, const std::ustring &cusValue);
+        BOOL                   bKeyWriteBin   (const std::string_t &csKey, const std::ustring &cusValue);
     		///< read std::ustring
 
-        BOOL                   bKeyClear      (const std::tstring &csKey);
+        BOOL                   bKeyClear      (const std::string_t &csKey);
     		///< clear value
-        BOOL                   bKeyDelete     (const std::tstring &csKey);
+        BOOL                   bKeyDelete     (const std::string_t &csKey);
     		///< delete key and value
 
     private:
-        const std::tstring     _m_csSeparator;  ///< separator between key and value
-        const std::tstring     _m_csFileExt;    ///< ini-file extension
+        const std::string_t     _m_csSeparator;  ///< separator between key and value
+        const std::string_t     _m_csFileExt;    ///< ini-file extension
 
-        std::tstring           _m_sFilePath;    ///< file path to ini-file
+        std::string_t           _m_sFilePath;    ///< file path to ini-file
         NxLib::TLocalStorage   _m_msIni;        ///< std::map of keys and values
 
-        BOOL                   _bRead         (const std::tstring &csKey, const std::tstring &csDefaultValue, std::tstring *psValue);
+        BOOL                   _bRead         (const std::string_t &csKey, const std::string_t &csDefaultValue, std::string_t *psValue);
     		///< parse file
-        BOOL                   _bWrite        (const std::tstring &csKey, const std::tstring &csValue);
+        BOOL                   _bWrite        (const std::string_t &csKey, const std::string_t &csValue);
     		///< flush to TLocalStorage, file
 };
 //---------------------------------------------------------------------------

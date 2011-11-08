@@ -18,22 +18,22 @@
 
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxShell::bFindExecutable(
-    const std::tstring &csFileName,
-    const std::tstring &csFindDirPath
+    const std::string_t &csFileName,
+    const std::string_t &csFindDirPath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::tstring());
+    /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::string_t());
     /*DEBUG*/// csFindDirPath - n/a
 
     INT   iRes            = SE_ERR_FNF;
     TCHAR szRes[MAX_PATH] = {0};
 
     iRes = reinterpret_cast<INT>( ::FindExecutable(csFileName.c_str(), csFindDirPath.c_str(), szRes) );
-    /*DEBUG*/xASSERT_RET(32 < iRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(32 < iRes, std::string_t());
 
-    return std::tstring(szRes);
+    return std::string_t(szRes);
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -41,9 +41,9 @@ BOOL
 CxShell::bExecute(
     const HWND          chOwner,
     const EOperation    copOperation,
-    const std::tstring &csFilePath,
-    const std::tstring &csParams,
-    const std::tstring &csDir,
+    const std::string_t &csFilePath,
+    const std::string_t &csParams,
+    const std::string_t &csDir,
     const EShowFlag     csfShowCmd
 )
 {
@@ -54,11 +54,11 @@ CxShell::bExecute(
     /*DEBUG*/// csDir        - n/a
     /*DEBUG*/// csfShowCmd   - n/a
 
-    std::tstring sFilePath  = CxString::sTrimSpace(csFilePath);
-    std::tstring sParams    = CxString::sTrimSpace(csParams);
-    std::tstring sDir       = CxString::sTrimSpace(csDir);
+    std::string_t sFilePath  = CxString::sTrimSpace(csFilePath);
+    std::string_t sParams    = CxString::sTrimSpace(csParams);
+    std::string_t sDir       = CxString::sTrimSpace(csDir);
 
-    std::tstring sOperation;
+    std::string_t sOperation;
     switch (copOperation) {
         case opEdit:    { sOperation = xT("edit");    } break;
         case opExplore: { sOperation = xT("explore"); } break;
@@ -93,12 +93,12 @@ CxShell::bExecuteEx(
 /*static*/
 BOOL
 CxShell::bExecuteHttp(
-    const std::tstring &csUrl
+    const std::string_t &csUrl
 )
 {
     /*DEBUG*/// csUrl - n/a
 
-    std::tstring sUrl = CxString::sTrimSpace(csUrl);
+    std::string_t sUrl = CxString::sTrimSpace(csUrl);
 
     xCHECK_RET(true == sUrl.empty(), FALSE);
 
@@ -111,12 +111,12 @@ CxShell::bExecuteHttp(
 /*static*/
 BOOL
 CxShell::bExecuteFtp(
-    const std::tstring &csUrl
+    const std::string_t &csUrl
 )
 {
     /*DEBUG*/// csUrl - n/a
 
-    std::tstring sUrl = CxString::sTrimSpace(csUrl);
+    std::string_t sUrl = CxString::sTrimSpace(csUrl);
 
     xCHECK_RET(true == sUrl.empty(), FALSE);
 
@@ -129,25 +129,25 @@ CxShell::bExecuteFtp(
 /*static*/
 BOOL
 CxShell::bExecuteEmail(
-    const std::tstring &csToEmail,
-    const std::tstring &csSubject,
-    const std::tstring &csBody
+    const std::string_t &csToEmail,
+    const std::string_t &csSubject,
+    const std::string_t &csBody
 )
 {
     /*DEBUG*/// csToEmail - n/a
     /*DEBUG*/// csSubject - n/a
     /*DEBUG*/// csBody    - n/a
 
-    std::tstring sToEmail = CxString::sTrimSpace(csToEmail);
-    std::tstring sSubject = CxString::sTrimSpace(csSubject);
-    std::tstring sBody    = CxString::sTrimSpace(csBody);
+    std::string_t sToEmail = CxString::sTrimSpace(csToEmail);
+    std::string_t sSubject = CxString::sTrimSpace(csSubject);
+    std::string_t sBody    = CxString::sTrimSpace(csBody);
 
     xCHECK_RET(true == csToEmail.empty(), FALSE);
 
     //mailto:sAddress[sHeaders]
     //mailto:user@example.com?subject=Message Title&body=Message Content
 
-    std::tstring sCmd;
+    std::string_t sCmd;
 
     sCmd.append(xT("mailto:")  + sToEmail);
 
@@ -164,7 +164,7 @@ CxShell::bExecuteEmail(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxShell::sGetSpecialDirPath(
     const ESpecialDir csfDir,
     const HANDLE      chToken
@@ -178,17 +178,17 @@ CxShell::sGetSpecialDirPath(
 
     ////hRes = ::SHGetFolderLocation(NULL, sfDir, chToken, 0, &pidlList);    //FIXME: SHGetFolderLocation
     hRes = ::SHGetSpecialFolderLocation(NULL, csfDir, &pidlList);
-    /*DEBUG*/xASSERT_DO(SUCCEEDED(hRes), ::CoTaskMemFree(pidlList); return std::tstring());
+    /*DEBUG*/xASSERT_DO(SUCCEEDED(hRes), ::CoTaskMemFree(pidlList); return std::string_t());
 
     TCHAR szRes[MAX_PATH + sizeof(TCHAR)] = {0};
 
     BOOL bRes = ::SHGetPathFromIDList(pidlList, &szRes[0]);
-    /*DEBUG*/xASSERT_DO(FALSE != bRes, ::CoTaskMemFree(pidlList); return std::tstring());
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, ::CoTaskMemFree(pidlList); return std::string_t());
 
     ::CoTaskMemFree(pidlList);
     /*DEBUG*/// n/a
 
-    return std::tstring(szRes);
+    return std::string_t(szRes);
 }
 //---------------------------------------------------------------------------
 #define xHOTKEY(modifier, key) ((((modifier) & 0xff) << 8) | ((key)&0xff))
@@ -196,17 +196,17 @@ CxShell::sGetSpecialDirPath(
 /*static*/
 BOOL
 CxShell::bCreateShortcut(
-    const std::tstring &csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
+    const std::string_t &csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
                                             ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
                                             ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
-    const std::tstring &csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
-    const std::tstring &csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
-    const std::tstring &csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.Txt"
+    const std::string_t &csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
+    const std::string_t &csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
+    const std::string_t &csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.Txt"
     const WORD          cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
     const INT           ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
-    const std::tstring &csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
+    const std::string_t &csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
     const INT           ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
-    const std::tstring &csDescription       ///< description
+    const std::string_t &csDescription       ///< description
 )
 {
     /*DEBUG*/

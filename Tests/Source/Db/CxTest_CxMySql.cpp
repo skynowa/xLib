@@ -27,12 +27,12 @@ CxTest_CxMySql::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    std::tstring csHost       = xT("127.0.0.1");
-    std::tstring csUser       = xT("root");
-    std::tstring csPassword   = xT("root");
-    std::tstring csDbName     = xT("db_test");
+    std::string_t csHost       = xT("127.0.0.1");
+    std::string_t csUser       = xT("root");
+    std::string_t csPassword   = xT("root");
+    std::string_t csDbName     = xT("db_test");
     UINT    uiPort       = 0;
-    std::tstring sTableName   = xT("t_main");
+    std::string_t sTableName   = xT("t_main");
 
 
     /****************************************************************************
@@ -70,7 +70,7 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bConnect
     {
-        std::tstring csUnixSocket = xT("");
+        std::string_t csUnixSocket = xT("");
         ULONG   ulClientFlag = 0;
 
         m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, ulClientFlag);
@@ -232,7 +232,7 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bFetchRow
     {
-        std::vector<std::tstring> vsRow;
+        std::vector<std::string_t> vsRow;
 
         for (my_ulonglong i = 0; i < recRec.ullRowsNum(); ++ i) {
             m_bRes = recRec.bFetchRow(&vsRow);

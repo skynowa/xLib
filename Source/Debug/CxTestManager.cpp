@@ -39,7 +39,7 @@ CxTestManager::~CxTestManager() {
 BOOL
 CxTestManager::bAdd(
     CxTest             *pvtTest,
-    const std::tstring &csTestName /* = CxConst::xSTR_EMPTY*/
+    const std::string_t &csTestName /* = CxConst::xSTR_EMPTY*/
 )
 {
     /*DEBUG*/

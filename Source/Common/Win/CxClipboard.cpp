@@ -86,7 +86,7 @@ CxClipboard::bSetData(
 //---------------------------------------------------------------------------
 BOOL
 CxClipboard::bGetText(
-    std::tstring *psText
+    std::string_t *psText
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != psText, FALSE);
@@ -108,7 +108,7 @@ CxClipboard::bGetText(
     SIZE_T uiDataSize = ::GlobalSize(_m_hObject);
     /*DEBUG*/xASSERT_RET(0 != uiDataSize, FALSE);
 
-    uiDataSize = uiDataSize / sizeof(std::tstring::value_type) - 1;    //'\0'
+    uiDataSize = uiDataSize / sizeof(std::string_t::value_type) - 1;    //'\0'
 
     (*psText).assign(static_cast<LPCTSTR>( pvData ), uiDataSize);
 
@@ -123,7 +123,7 @@ CxClipboard::bGetText(
 //---------------------------------------------------------------------------
 BOOL
 CxClipboard::bSetText(
-    const std::tstring &csText
+    const std::string_t &csText
 )
 {
     /*DEBUG*/
@@ -137,7 +137,7 @@ CxClipboard::bSetText(
     ////bRes = ::EmptyClipboard();
     /////*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    const SIZE_T cuiBytes = (csText.size() + 1 ) * sizeof(std::tstring::value_type);    //'\0'
+    const SIZE_T cuiBytes = (csText.size() + 1 ) * sizeof(std::string_t::value_type);    //'\0'
 
     _m_hObject = ::GlobalAlloc(GMEM_MOVEABLE | GMEM_ZEROINIT, cuiBytes);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE);
@@ -194,7 +194,7 @@ BOOL CxClipboard::bIsHasFormat(
 //---------------------------------------------------------------------------
 BOOL
 CxClipboard::bRegisterFormat(
-    const std::tstring &csText, 
+    const std::string_t &csText, 
     EFormat            *pfmFormat
 )
 {

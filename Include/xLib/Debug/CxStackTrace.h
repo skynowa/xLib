@@ -21,9 +21,9 @@ class CxStackTrace :
         virtual     ~CxStackTrace();
             ///< destructor
 
-        BOOL         bGet        (std::vector<std::tstring> *pvsStack);
+        BOOL         bGet        (std::vector<std::string_t> *pvsStack);
             ///< get stack trace
-        std::tstring sGet        (const std::tstring &csLinesSeparator = xT("\n"));
+        std::string_t sGet        (const std::string_t &csLinesSeparator = xT("\n"));
             ///< get stack trace
 
     private:

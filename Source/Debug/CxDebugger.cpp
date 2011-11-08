@@ -30,7 +30,7 @@
 *****************************************************************************/
 
 /*static*/ BOOL         CxDebugger::_ms_bIsEnabled = TRUE;
-/*static*/ std::tstring CxDebugger::_ms_sLogPath;
+/*static*/ std::string_t CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
 /*static*/
@@ -61,7 +61,7 @@ CxDebugger::bIsPresent() {
         ::CheckRemoteDebuggerPresent()
     #endif
 #elif defined(xOS_ENV_UNIX)
-    std::tstring sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
+    std::string_t sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
     xCHECK_RET(FALSE == CxString::bCompareNoCase(xT("yes"), sRes), FALSE);
 #endif
 
@@ -92,7 +92,7 @@ CxDebugger::bBreak() {
 /*static*/
 BOOL
 CxDebugger::bSetLogPath(
-    const std::tstring &csFilePath
+    const std::string_t &csFilePath
 )
 {
     _ms_sLogPath = csFilePath;
@@ -101,7 +101,7 @@ CxDebugger::bSetLogPath(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxDebugger::sGetLogPath() {
     return _ms_sLogPath;
 }
@@ -143,7 +143,7 @@ CxDebugger::bTrace(
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszFormat);
@@ -164,7 +164,7 @@ CxDebugger::bTrace(
 /*static*/
 BOOL
 CxDebugger::bTrace(
-    const std::tstring &csMsg
+    const std::string_t &csMsg
 )
 {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
@@ -493,7 +493,7 @@ CxDebugger::_bLoggingPlain(
 
     //--------------------------------------------------
     //get log file path
-    std::tstring sFilePath;
+    std::string_t sFilePath;
 
     if (true == sGetLogPath().empty()) {
         sFilePath = CxPath::sSetExt(CxPath::sGetExe(), xT("debug"));
@@ -507,7 +507,7 @@ CxDebugger::_bLoggingPlain(
     xCHECK_RET(NULL == pFile, FALSE);
 
     try {
-        const std::tstring csMsg = CxString::sFormat(
+        const std::string_t csMsg = CxString::sFormat(
             xT("\n")
             xT("####################################################################################################\n")
             xT("%s\n")

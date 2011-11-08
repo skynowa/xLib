@@ -14,16 +14,16 @@ class CxAppSettings :
     /// application settings
 {
     public:
-        static std::tstring m_sAppTitle;
-        static std::tstring m_sAppDir;
-        static std::tstring m_sDbDir;
-        static std::tstring m_sDbBackupDir;
-        static std::tstring m_sDbFilePath;
+        static std::string_t m_sAppTitle;
+        static std::string_t m_sAppDir;
+        static std::string_t m_sDbDir;
+        static std::string_t m_sDbBackupDir;
+        static std::string_t m_sDbFilePath;
 
         static const UCHAR  m_ucDbEmpty[];
         static size_t       m_uiDbEmptySize;
-        static std::tstring m_sPass;
-        static std::tstring m_sPassDefault;
+        static std::string_t m_sPass;
+        static std::string_t m_sPassDefault;
 
     private:
                             CxAppSettings();

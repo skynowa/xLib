@@ -31,7 +31,7 @@ CxTest_CxEnvironment::bUnit(
     //bSetVar
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::tstring sData[][2] = {
+        const std::string_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
@@ -49,7 +49,7 @@ CxTest_CxEnvironment::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
     #if defined(xOS_ENV_WIN)
-        const std::tstring sData[][2] = {
+        const std::string_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("TRUE")},
             {xT("ENV_TEST_2"), xT("TRUE")},
             {xT("ENV_TEST_3"), xT("TRUE")},
@@ -60,7 +60,7 @@ CxTest_CxEnvironment::bUnit(
             {xT("windir"),     xT("TRUE") }
         };
     #elif defined(xOS_ENV_UNIX)
-        const std::tstring sData[][2] = {
+        const std::string_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("TRUE")},
             {xT("ENV_TEST_2"), xT("TRUE")},
             {xT("ENV_TEST_3"), xT("TRUE")},
@@ -79,14 +79,14 @@ CxTest_CxEnvironment::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
     #if defined(xOS_ENV_WIN)
-        const std::tstring sData[][2] = {
+        const std::string_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
             {xT("ENV_TEST_4"), xT("value4")},
         };
     #elif defined(xOS_ENV_UNIX)
-        const std::tstring sData[][2] = {
+        const std::string_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
@@ -95,8 +95,8 @@ CxTest_CxEnvironment::bUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxEnvironment::sGetVar(sData[i][0]);
-            std::tstring sStr2 = sData[i][1];
+            std::string_t sStr1 = CxEnvironment::sGetVar(sData[i][0]);
+            std::string_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -117,12 +117,12 @@ CxTest_CxEnvironment::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
     #if defined(xOS_ENV_WIN)
-        const std::tstring sData[][2] = {
+        const std::string_t sData[][2] = {
             {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\WINDOWS")},
             {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\WINDOWS ")}
         };
     #elif defined(xOS_ENV_UNIX)
-        const std::tstring sData[][2] = {
+        const std::string_t sData[][2] = {
             {xT("111%ENV_TEST_1%"),    xT("111value1")},
             {xT("%ENV_TEST_2%111"),    xT("value2111")},
             {xT("ttt%ENV_TEST_3%"),    xT("tttvalue3")},
@@ -131,8 +131,8 @@ CxTest_CxEnvironment::bUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxEnvironment::sExpandStrings(sData[i][0]);
-            std::tstring sStr2 = sData[i][1];
+            std::string_t sStr1 = CxEnvironment::sExpandStrings(sData[i][0]);
+            std::string_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -141,7 +141,7 @@ CxTest_CxEnvironment::bUnit(
     //bDeleteVar
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::tstring sData[][2] = {
+        const std::string_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},

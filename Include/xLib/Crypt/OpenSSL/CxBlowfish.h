@@ -32,9 +32,9 @@ class CxBlowfish :
             ///< set key
         BOOL          bSetKey             (const std::ustring &cusKey);
             ///< set key
-        BOOL          bSetKey             (const std::tstring &csKey);
+        BOOL          bSetKey             (const std::string_t &csKey);
             ///< set key
-        BOOL          bSetFileKey         (const std::tstring &csFilePath);
+        BOOL          bSetFileKey         (const std::string_t &csFilePath);
             ///< set key as file
         static size_t uiGetMaxKeySize     ();
             ///< get maximum key size
@@ -44,13 +44,13 @@ class CxBlowfish :
             ///< encrypt buffer
         BOOL          bEncryptCfb64       (const std::ustring &cusIn, std::ustring *pusOut, const ECryptMode cmMode);
             ///< encrypt std::ustring
-        BOOL          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const ECryptMode cmMode);
+        BOOL          bEncryptFileCfb64   (const std::string_t &csFilePathIn, const std::string_t &csFilePathOut, const ECryptMode cmMode);
             ///< encrypt file
 
         //
-        BOOL          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const std::ustring &cusStamp, const ECryptMode cmCryptMode);
+        BOOL          bEncryptFileCfb64   (const std::string_t &csFilePathIn, const std::string_t &csFilePathOut, const std::ustring &cusStamp, const ECryptMode cmCryptMode);
             ///< encrypt file
-        ECryptMode    cmGetFileCryptStatus(const std::tstring &csFilePath, const std::ustring &cusStamp);
+        ECryptMode    cmGetFileCryptStatus(const std::string_t &csFilePath, const std::ustring &cusStamp);
             ///< get file crypt status
 
     private:

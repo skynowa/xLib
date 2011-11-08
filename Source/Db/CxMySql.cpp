@@ -73,12 +73,12 @@ CxMySQLConnection::bOptions(
 //---------------------------------------------------------------------------
 BOOL
 CxMySQLConnection::bConnect(
-    const std::tstring &csHost,
-    const std::tstring &csUser,
-    const std::tstring &csPassword,
-    const std::tstring &csDb,
+    const std::string_t &csHost,
+    const std::string_t &csUser,
+    const std::string_t &csPassword,
+    const std::string_t &csDb,
     const UINT          cuiPort,
-    const std::tstring &csUnixSocket,
+    const std::string_t &csUnixSocket,
     const ULONG         culClientFlag
 )
 {
@@ -108,14 +108,14 @@ CxMySQLConnection::bQuery(
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),    FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pcszSqlFormat, FALSE);
 
-    std::tstring csSqlQuery;
+    std::string_t csSqlQuery;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszSqlFormat);
     csSqlQuery = CxString::sFormatV(pcszSqlFormat, palArgs);
     xVA_END(palArgs);
 
-    INT iRes = mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ULONG>( csSqlQuery.size() * sizeof(std::tstring::value_type) ));
+    INT iRes = mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ULONG>( csSqlQuery.size() * sizeof(std::string_t::value_type) ));
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), FALSE);
 
     return TRUE;
@@ -162,16 +162,16 @@ CxMySQLConnection::uiGetLastError() const {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxMySQLConnection::sGetLastErrorStr() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), std::string_t());
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     const UINT cuiLastError = uiGetLastError();
     const char *cpszRes     = mysql_error(_m_pmsConnection);
     /*DEBUG*/// n/a
-    /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::string_t());
 
     if (0 == cuiLastError) {
         sRes.assign( CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success")) );
@@ -304,7 +304,7 @@ CxMySQLRecordset::bFetchFields(
 //---------------------------------------------------------------------------
 BOOL
 CxMySQLRecordset::bFetchRow(
-    std::vector<std::tstring> *pvsRow
+    std::vector<std::string_t> *pvsRow
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
@@ -336,13 +336,13 @@ CxMySQLRecordset::bFetchRow(
     xASSERT(NULL  != pulFieldLengths);
 
     //push to std::vector
-    std::tstring sField;
+    std::string_t sField;
 
     for (UINT i = 0; i < uiFieldsNum; ++ i) {
         if (NULL == mrRow[i]) {
-            sField = std::tstring();
+            sField = std::string_t();
         } else {
-            sField = std::tstring(mrRow[i], pulFieldLengths[i]);
+            sField = std::string_t(mrRow[i], pulFieldLengths[i]);
         }
 
         (*pvsRow).push_back(sField);

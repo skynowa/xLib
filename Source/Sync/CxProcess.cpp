@@ -71,14 +71,14 @@ CxProcess::ulGetCurrParentId() {
 /*static*/
 BOOL
 CxProcess::bExec(
-    const std::tstring &csFilePath,
+    const std::string_t &csFilePath,
     const TCHAR        *pcszCmdLine, ...
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        FALSE);
 
-    std::tstring sCmdLine;
+    std::string_t sCmdLine;
 
     va_list palArgs;
     xVA_START(palArgs, pcszCmdLine);

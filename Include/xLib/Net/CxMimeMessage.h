@@ -19,12 +19,12 @@ class CxMimeMessage :
 					 CxMimeMessage   ();
 		virtual	   	~CxMimeMessage   ();
 
-		static BOOL  bParse          (const std::tstring &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
-		static BOOL  bLoadFromRawFile(const std::tstring &csFilePath);       //csFilePath - raw msg
-		static BOOL  bSaveToRawFile  (const std::tstring &csFilePath);       //csFilePath - raw msg
+		static BOOL  bParse          (const std::string_t &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
+		static BOOL  bLoadFromRawFile(const std::string_t &csFilePath);       //csFilePath - raw msg
+		static BOOL  bSaveToRawFile  (const std::string_t &csFilePath);       //csFilePath - raw msg
 
     private:
-        std::tstring _m_csRawMessage;
+        std::string_t _m_csRawMessage;
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxMimeMessageH

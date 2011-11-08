@@ -16,13 +16,13 @@ class CxLastError :
     public:
         static ULONG        ulGet      ();
             ///< get the calling thread's last-error code value
-        static std::tstring sGet       ();
+        static std::string_t sGet       ();
             ///< get as string
         static BOOL         bSet       (const ULONG culCode);
             ///< set the last error code for the calling thread
         static BOOL         bReset     ();
             ///< set last error code to 0
-        static std::tstring sFormat    (const ULONG culCode);
+        static std::string_t sFormat    (const ULONG culCode);
             ///< get last error as string
 
     private:

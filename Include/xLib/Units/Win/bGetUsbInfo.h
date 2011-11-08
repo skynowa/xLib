@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
-    BOOL bGetUsbInfo(const std::tstring &csDrive, std::vector<std::tstring> *pvsInfo);
+    BOOL bGetUsbInfo(const std::string_t &csDrive, std::vector<std::string_t> *pvsInfo);
         ///< get USB info
 #endif
 //---------------------------------------------------------------------------
@@ -32,7 +32,7 @@
  * )
  * {
  *     BOOL                 bRes = FALSE;
- *     std::vector<std::tstring> vsRes;
+ *     std::vector<std::string_t> vsRes;
  *
  *     bRes = bGetUsbInfo("H:\\", &vsRes);
  *     xASSERT("\\??\\USB"                              == vsRes.at(0));

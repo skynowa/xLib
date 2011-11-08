@@ -95,7 +95,7 @@ CxTest::bUnit(
         //[FUNCTION_NAME]
         xTEST_BLOCK(cullBlockLoops)
         {
-            const std::tstring casData[][2] = {
+            const std::string_t casData[][2] = {
                 {xT("TEST_STRING_1"), xT("MUST_BE_1")},
                 {xT("TEST_STRING_2"), xT("MUST_BE_2")},
                 {xT("TEST_STRING_3"), xT("MUST_BE_3")},
@@ -113,7 +113,7 @@ CxTest::bUnit(
 //---------------------------------------------------------------------------
 BOOL
 CxTest::bCreateWorkDir(
-    const std::tstring &csDirName
+    const std::string_t &csDirName
 )
 {
     /*DEBUG*/// n/a
@@ -130,14 +130,14 @@ CxTest::bCreateWorkDir(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxTest::sGetWorkDirPath() const {
     /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxTest::sGetName() const {
     /*DEBUG*/
 
@@ -146,7 +146,7 @@ CxTest::sGetName() const {
 //---------------------------------------------------------------------------
 BOOL
 CxTest::bSetName(
-    const std::tstring &csTestName
+    const std::string_t &csTestName
 )
 {
     /*DEBUG*/

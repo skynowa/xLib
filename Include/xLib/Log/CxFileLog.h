@@ -33,9 +33,9 @@ class CxFileLog :
         virtual             ~CxFileLog   ();
             ///< destructor
 
-        BOOL                 bSetFilePath(const std::tstring &csFilePath);
+        BOOL                 bSetFilePath(const std::string_t &csFilePath);
             ///< set log path
-        const std::tstring & sGetFilePath() const;
+        const std::string_t & sGetFilePath() const;
             ///< get log path
 
         BOOL                 bWrite      (const TCHAR *pcszFormat, ...);
@@ -46,7 +46,7 @@ class CxFileLog :
             ///< delete
 
     private:
-        std::tstring         _m_sFilePath;            ///< file path
+        std::string_t         _m_sFilePath;            ///< file path
         ULONG                _m_ulMaxFileSizeBytes;    ///< maximum file size in bytes
 
     #if xTODO

@@ -53,7 +53,7 @@ CxTcpClient::bIsWritable() {
 //---------------------------------------------------------------------------
 BOOL
 CxTcpClient::bConnect(
-	const std::tstring &csIp,
+	const std::string_t &csIp,
 	USHORT              usPort
 )
 {
@@ -177,7 +177,7 @@ CxTcpClient::bSetTimeout(
 /*static*/
 BOOL
 CxTcpClient::bIsServerAlive(
-	const std::tstring &csIp,
+	const std::string_t &csIp,
 	USHORT              usPort
 )
 {

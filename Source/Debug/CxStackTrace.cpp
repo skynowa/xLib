@@ -48,10 +48,10 @@ CxStackTrace::~CxStackTrace() {
 //---------------------------------------------------------------------------
 BOOL
 CxStackTrace::bGet(
-    std::vector<std::tstring> *pvsStack
+    std::vector<std::string_t> *pvsStack
 )
 {
-    std::vector<std::tstring> vsStack;
+    std::vector<std::string_t> vsStack;
 
 #if defined(xOS_ENV_WIN)
     VOID        *pvStack[_m_culMaxFrames] = {0};
@@ -74,10 +74,10 @@ CxStackTrace::bGet(
         bRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
 
         const ULONG64      ullAddress = psiSymbol->Address;
-        const std::tstring csName     = std::tstring(psiSymbol->Name);
+        const std::string_t csName     = std::string_t(psiSymbol->Name);
 
-        //std::tstring sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
-        std::tstring sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, csName.c_str(), ullAddress);
+        //std::string_t sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
+        std::string_t sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, csName.c_str(), ullAddress);
 
         vsStack.push_back(sStackLine);
     }
@@ -96,7 +96,7 @@ CxStackTrace::bGet(
         xCHECK_RET(NULL == ppszSymbols, FALSE);
 
         for (INT i = 1; i < iFramesNum; ++ i) {
-            std::tstring sStackLine;
+            std::string_t sStackLine;
 
             Dl_info dlinfo = {0};
 
@@ -134,14 +134,14 @@ CxStackTrace::bGet(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxStackTrace::sGet(
-    const std::tstring &csLinesSeparator /* = xT("\n") */
+    const std::string_t &csLinesSeparator /* = xT("\n") */
 )
 {
-    std::tstring sRes;
+    std::string_t sRes;
 
-    std::vector<std::tstring> vsStack;
+    std::vector<std::string_t> vsStack;
 
     BOOL bRes = bGet(&vsStack);
     if (FALSE == bRes) {

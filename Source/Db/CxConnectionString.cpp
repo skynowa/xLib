@@ -14,23 +14,23 @@
 
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxConnectionString::sMSJetOleDb40(
-    const std::tstring &csDataSource,
-    const std::tstring &csUserId,
-    const std::tstring &csPassword,
-    const std::tstring &csDatabasePassword
+    const std::string_t &csDataSource,
+    const std::string_t &csUserId,
+    const std::string_t &csPassword,
+    const std::string_t &csDatabasePassword
 )
 {
-    /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(csDataSource).empty(), std::tstring());
+    /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(csDataSource).empty(), std::string_t());
     /*DEBUG*/// csPassword         - n/a
     /*DEBUG*/// csUserId           - n/a
     /*DEBUG*/// csDatabasePassword - n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes =
-        std::tstring() +
+        std::string_t() +
         xT("Provider                                 = Microsoft.Jet.OLEDB.4.0;")                               +
         xT("Data Source                              = ") + CxString::sTrimSpace(csDataSource) + xT(";")        +
         xT("Extended Properties                      = ;")                                                      +

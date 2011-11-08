@@ -36,7 +36,7 @@ CxProfiler::~CxProfiler() {
 //---------------------------------------------------------------------------
 BOOL
 CxProfiler::bSetLogPath(
-    const std::tstring &csLogPath
+    const std::string_t &csLogPath
 )
 {
     /*DEBUG*/
@@ -47,7 +47,7 @@ CxProfiler::bSetLogPath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxProfiler::sGetLogPath() const {
     /*DEBUG*/
 
@@ -134,7 +134,7 @@ CxProfiler::bStop(
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_bIsStarted, FALSE);
 
-    std::tstring sTimeString = xT("0:00:00:000");
+    std::string_t sTimeString = xT("0:00:00:000");
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
@@ -207,7 +207,7 @@ CxProfiler::bStop(
 
     //-------------------------------------
     //format comment
-    std::tstring sRes;
+    std::string_t sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszComment);
@@ -233,7 +233,7 @@ CxProfiler::bPulse(
 {
     //-------------------------------------
     //format comment
-    std::tstring sRes;
+    std::string_t sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszComment);

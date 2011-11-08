@@ -18,14 +18,14 @@ class CxException
         virtual           ~CxException ();
             ///< destructor
 
-        const std::tstring &sGetWhat   () const;
+        const std::string_t &sGetWhat   () const;
             ///< get message
         template<class T>
         CxException &      operator << (const T &cMessageT);
             ///< put message
 
     private:
-        std::tstring       _m_sMsg;
+        std::string_t       _m_sMsg;
             ///< message
 };
 //---------------------------------------------------------------------------

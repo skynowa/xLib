@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------
 //TODO: CxCOMPort (�����������)
 CxCOMPort::CxCOMPort(
-    const std::tstring &sPortNum
+    const std::string_t &sPortNum
 ) :
     _m_bRes    (FALSE),
     _m_sPortNum(sPortNum)
@@ -95,7 +95,7 @@ CxCOMPort::bClearData() {
 }
 //--------------------------------------------------------------------------
 //TODO: bReadData (������ ������)
-std::tstring 
+std::string_t 
 CxCOMPort::bReadData(
     LPTSTR pszBuff, 
     ULONG  dwNumOfBytesToRead
@@ -108,13 +108,13 @@ CxCOMPort::bReadData(
     DWORD dwNumOfBytesRead = 0;
     BOOL  bRes             = ::ReadFile(_m_hComPort, pszBuff, dwNumOfBytesToRead/*cuiSendStrLen*/, &dwNumOfBytesRead, NULL);
     if (FALSE == bRes) {
-        return std::tstring();
+        return std::string_t();
     }
     if (dwNumOfBytesRead != dwNumOfBytesToRead) {
-        return std::tstring();
+        return std::string_t();
     }
 
-    return std::tstring(pszBuff, dwNumOfBytesRead);
+    return std::string_t(pszBuff, dwNumOfBytesRead);
 }
 //--------------------------------------------------------------------------
 //TODO: iReadDataWaiting ()

@@ -40,7 +40,7 @@ CxTest_CxReport::bUnit(
     //CxReport
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), std::tstring(xT("Simple comment")));
+        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), std::string_t(xT("Simple comment")));
         m_sRes = rpReport.sGetReport();
         //xTRACE(m_sRes);
     }

@@ -58,20 +58,20 @@
 #endif
 
 namespace std {
-    typedef basic_string<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >        tstring;
+    typedef basic_string<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >        string_t;
     typedef basic_string<UCHAR, char_traits<UCHAR>, allocator<UCHAR> >        ustring;
 
-    typedef basic_istream <TCHAR, char_traits<TCHAR> >                        tistream;
-    typedef basic_ostream <TCHAR, char_traits<TCHAR> >                        tostream;
-    typedef basic_iostream<TCHAR, char_traits<TCHAR> >                        tiostream;
+    typedef basic_istream <TCHAR, char_traits<TCHAR> >                        istream_t;
+    typedef basic_ostream <TCHAR, char_traits<TCHAR> >                        ostream_t;
+    typedef basic_iostream<TCHAR, char_traits<TCHAR> >                        iostream_t;
 
-    typedef basic_istringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> > tistringstream;
-    typedef basic_ostringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> > tostringstream;
-    typedef basic_stringstream <TCHAR, char_traits<TCHAR>, allocator<TCHAR> > tstringstream;
+    typedef basic_istringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> > istringstream_t;
+    typedef basic_ostringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> > ostringstream_t;
+    typedef basic_stringstream <TCHAR, char_traits<TCHAR>, allocator<TCHAR> > stringstream_t;
 
-    typedef basic_ifstream<TCHAR, char_traits<TCHAR> >                        tifstream;
-    typedef basic_ofstream<TCHAR, char_traits<TCHAR> >                        tofstream;
-    typedef basic_fstream <TCHAR, char_traits<TCHAR> >                        tfstream;
+    typedef basic_ifstream<TCHAR, char_traits<TCHAR> >                        ifstream_t;
+    typedef basic_ofstream<TCHAR, char_traits<TCHAR> >                        ofstream_t;
+    typedef basic_fstream <TCHAR, char_traits<TCHAR> >                        fstream_t;
 } //namespace std
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xTypesH

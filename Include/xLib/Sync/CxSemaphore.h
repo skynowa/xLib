@@ -25,8 +25,8 @@ class CxSemaphore :
         virtual        ~CxSemaphore();
 
         HANDLE          hGetHandle () const;
-        BOOL            bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const LONG cliInitialCount, const LONG cliMaxCount, const std::tstring &csName);
-        BOOL            bOpen      (const ULONG culAccess, const BOOL cbInheritHandle, const std::tstring &csName) ;
+        BOOL            bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const LONG cliInitialCount, const LONG cliMaxCount, const std::string_t &csName);
+        BOOL            bOpen      (const ULONG culAccess, const BOOL cbInheritHandle, const std::string_t &csName) ;
         BOOL            bRelease   (const LONG cliReleaseCount/* = 1*/, LONG *pliOldCount/* = NULL*/) const;
         BOOL            bWait      (const ULONG culTimeout) const;
 
@@ -36,7 +36,7 @@ class CxSemaphore :
     private:
         CxHandle              _m_hSemaphore;
         LPSECURITY_ATTRIBUTES _m_psaAttributes;
-        std::tstring          _m_sName;
+        std::string_t          _m_sName;
 };
 #elif defined(xOS_ENV_UNIX)
 

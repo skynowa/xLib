@@ -10,17 +10,17 @@ CxReport::CxReport(
     const EType        &crtType,
     const T            &cVarT1,
     const T            &cVarT2,
-    const std::tstring &csExpr1,
-    const std::tstring &csExpr2,
-    const std::tstring &csExprSign,
+    const std::string_t &csExpr1,
+    const std::string_t &csExpr2,
+    const std::string_t &csExprSign,
     const ULONG         culLastError,
-    const std::tstring &csFile,
+    const std::string_t &csFile,
     const ULONG         culLine,
-    const std::tstring &csFunc,
-    const std::tstring &csDate,
-    const std::tstring &csTime,
-    const std::tstring &csStackTrace,
-    const std::tstring &csComment
+    const std::string_t &csFunc,
+    const std::string_t &csDate,
+    const std::string_t &csTime,
+    const std::string_t &csStackTrace,
+    const std::string_t &csComment
 ) :
     _m_rtType         (rtUnknown),
     _m_sReport        (),
@@ -44,14 +44,14 @@ CxReport::CxReport(
     /*DEBUG*/
 
     //sExpr
-    std::tstring sExpr = csExpr1 + xT(" ") + csExprSign + xT(" ") + csExpr2;
+    std::string_t sExpr = csExpr1 + xT(" ") + csExprSign + xT(" ") + csExpr2;
 
     //sComment
-    std::tstring sComment;
+    std::string_t sComment;
      
     {
-        std::tostringstream ossStream;
-        ossStream.exceptions(std::tostringstream::eofbit | std::tostringstream::failbit | std::tostringstream::badbit);
+        std::ostringstream_t ossStream;
+        ossStream.exceptions(std::ostringstream_t::eofbit | std::ostringstream_t::failbit | std::ostringstream_t::badbit);
 
         size_t uiAlignWidth = CxMacros::xMax(csExpr1.size(), csExpr2.size());
 

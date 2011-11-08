@@ -43,12 +43,12 @@ CxFileLog::~CxFileLog() {
 //---------------------------------------------------------------------------
 BOOL
 CxFileLog::bSetFilePath(
-    const std::tstring &csFilePath
+    const std::string_t &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
 
-    if (std::tstring::npos == csFilePath.find(CxConst::xSLASH)) {
+    if (std::string_t::npos == csFilePath.find(CxConst::xSLASH)) {
         _m_sFilePath.assign( CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath);
     } else {
         _m_sFilePath.assign( csFilePath );
@@ -57,7 +57,7 @@ CxFileLog::bSetFilePath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxFileLog::sGetFilePath() const {
     /*DEBUG*/
 
@@ -78,12 +78,12 @@ CxFileLog::bWrite(
 
     //-------------------------------------
     //time
-    std::tstring sTime;
+    std::string_t sTime;
     sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment
-    std::tstring sParam;
+    std::string_t sParam;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);

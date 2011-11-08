@@ -208,21 +208,21 @@ CxRandom::liGetIntEx(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxRandom::sGetString(
     const size_t cuiLength
 )
 {
     /*DEBUG*/
 
-    xCHECK_RET(0 == cuiLength, std::tstring());
+    xCHECK_RET(0 == cuiLength, std::string_t());
 
     const BOOL cbIsLetters      = TRUE;
     const BOOL cbIsNumbers      = TRUE;
     const BOOL cbIsAsciiSymbols = TRUE;
 
-    std::tstring sRes;
-    std::tstring sAllPossible;
+    std::string_t sRes;
+    std::string_t sAllPossible;
 
     if (TRUE == cbIsLetters) {
         for (INT i = 65; i <= 90; ++ i) {

@@ -28,7 +28,7 @@ CxTest_CxMutex::bUnit(
 )
 {
 #if defined(xOS_ENV_WIN)
-    const std::tstring csName = CxString::sCreateGuid();
+    const std::string_t csName = CxString::sCreateGuid();
 
 
     CxMutex mtMutex;

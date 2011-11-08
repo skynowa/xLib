@@ -33,11 +33,11 @@ CxCgi::~CxCgi() {
 
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxCgi::sGetDump()  const{
     /*DEBUG*/
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = CxString::sFormat(
             xT("[CGI dump]\n\n")
@@ -55,12 +55,12 @@ CxCgi::sGetDump()  const{
 /*static*/
 BOOL
 CxCgi::bRedirect(
-    const std::tstring &csUrl
+    const std::string_t &csUrl
 )
 {
     /*DEBUG*/xASSERT_RET(false == csUrl.empty(), FALSE)
 
-    std::tstring sHttpResponse;
+    std::string_t sHttpResponse;
 
     sHttpResponse.append( CxString::sFormat(xT("Location: %s\n"), csUrl.c_str()) );
     sHttpResponse.append( CxConst::xNL );
@@ -73,12 +73,12 @@ CxCgi::bRedirect(
 /*static*/
 BOOL
 CxCgi::bPageShow(
-    const std::tstring &csFilePath
+    const std::string_t &csFilePath
 )
 {
     BOOL bRes = FALSE;
 
-    std::tstring sFileContent;
+    std::string_t sFileContent;
 
     bRes = CxFile::bTextRead(csFilePath, &sFileContent);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -96,20 +96,20 @@ CxCgi::bPageShow(
 *****************************************************************************/
 
 namespace {
-    static const std::tstring URI_ILLEGAL   = xT("%<>{}|\\\"^`");
-    ////static const std::tstring ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
+    static const std::string_t URI_ILLEGAL   = xT("%<>{}|\\\"^`");
+    ////static const std::string_t ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
 }
 //---------------------------------------------------------------------------
 //TODO: bUriEncode
 /*static*/
 BOOL
 CxCgi::bUriEncode(
-    const std::tstring &csUri,
-    const std::tstring &csReserved,
-    std::tstring       *psEncodedStr
+    const std::string_t &csUri,
+    const std::string_t &csReserved,
+    std::string_t       *psEncodedStr
 )
 {
-    for (std::tstring::const_iterator it = csUri.begin(); it != csUri.end(); ++ it) {
+    for (std::string_t::const_iterator it = csUri.begin(); it != csUri.end(); ++ it) {
         char chChar = *it;
 
         if ((chChar >= 'a' && chChar <= 'z') || (chChar >= 'A' && chChar <= 'Z') || (chChar >= '0' && chChar <= '9') ||
@@ -117,7 +117,7 @@ CxCgi::bUriEncode(
         {
             (*psEncodedStr) += chChar;
         }
-        else if (chChar <= 0x20 || chChar >= 0x7F || std::tstring::npos != URI_ILLEGAL.find(chChar) || std::tstring::npos != csReserved.find(chChar)) {
+        else if (chChar <= 0x20 || chChar >= 0x7F || std::string_t::npos != URI_ILLEGAL.find(chChar) || std::string_t::npos != csReserved.find(chChar)) {
             (*psEncodedStr) += '%';
             //--encodedStr += NumberFormatter::formatHex((unsigned) (unsigned char) chChar, 2);
 
@@ -142,12 +142,12 @@ CxCgi::bUriEncode(
 /*static*/
 BOOL
 CxCgi::bUriDecode(
-    const std::tstring &csUri,
-    std::tstring       *psDecodedStr
+    const std::string_t &csUri,
+    std::string_t       *psDecodedStr
 )
 {
-    std::tstring::const_iterator it  = csUri.begin();
-    std::tstring::const_iterator end = csUri.end();
+    std::string_t::const_iterator it  = csUri.begin();
+    std::string_t::const_iterator end = csUri.end();
 
     while (it != end) {
         char chChar = *it++;
@@ -245,7 +245,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *query) {
 //        return 0;
 //
 //    //--cgl_charify(s, ' ', '+');
-//    std::tstring sRes = CxString::sReplaceAll(s, CxConst::xSPACE, xT("+"));
+//    std::string_t sRes = CxString::sReplaceAll(s, CxConst::xSPACE, xT("+"));
 //
 //    return bUrlEscape(sRes, fw);
 //}
@@ -254,7 +254,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *query) {
 //void
 //CxCgi::cgl_urldecode(char *s) {
 //    //--cgl_charify(s, '+', ' ');
-//    std::tstring sRes;
+//    std::string_t sRes;
 //
 //    sRes = CxString::sReplaceAll(s, xT("+"), CxConst::xSPACE);
 //
@@ -369,210 +369,210 @@ CxCgiEnvironment::~CxCgiEnvironment() {
 }
 //---------------------------------------------------------------------------
 //DONE: sGetAuthType
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetAuthType() const {
     /*DEBUG*/
 
     return _m_sAuthType;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetContentLength() const {
     /*DEBUG*/
 
     return _m_sContentLength;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetContentType() const {
     /*DEBUG*/
 
     return _m_sContentType;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetDocumentRoot() const {
     /*DEBUG*/
 
     return _m_sDocumentRoot;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetGatewayInterface() const {
     /*DEBUG*/
 
     return _m_sGatewayInterface;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetHttpAccept() const {
     /*DEBUG*/
 
     return _m_sHttpAccept;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetHttpCookie() const {
     /*DEBUG*/
 
     return _m_sHttpCookie;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetHttpPragma() const {
     /*DEBUG*/
 
     return _m_sHttpPragma;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetHttpUserAgent() const {
     /*DEBUG*/
 
     return _m_sHttpUserAgent;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetPathInfo() const {
     /*DEBUG*/
 
     return _m_sPathInfo;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetPathTranslated() const {
     /*DEBUG*/
 
     return _m_sPathTranslated;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetQueryString() const {
     /*DEBUG*/
 
     return _m_sQueryString;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetRemoteAddr() const {
     /*DEBUG*/
 
     return _m_sRemoteAddr;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetRemoteHost() const {
     /*DEBUG*/
 
     return _m_sRemoteHost;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetRemoteIdent() const {
     /*DEBUG*/
 
     return _m_sRemoteIdent;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetRemotePort() const {
     /*DEBUG*/
 
     return _m_sRemotePort;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetRemoteUser() const {
     /*DEBUG*/
 
     return _m_sRemoteUser;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetRequestMethod() const {
     /*DEBUG*/
 
     return _m_sRequestMethod;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetRequestUri() const {
     /*DEBUG*/
 
     return _m_sRequestUri;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetScriptFilename() const {
     /*DEBUG*/
 
     return _m_sScriptFilename;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetScriptName() const {
     /*DEBUG*/
 
     return _m_sScriptName;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetServerAdmin() const {
     /*DEBUG*/
 
     return _m_sServerAdmin;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetServerName() const {
     /*DEBUG*/
 
     return _m_sServerName;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetServerPort() const {
     /*DEBUG*/
 
     return _m_sServerPort;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetServerProtocol() const {
     /*DEBUG*/
 
     return _m_sServerProtocol;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetServerSoftware() const {
     /*DEBUG*/
 
     return _m_sServerSoftware;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetHttpReferer() const {
     /*DEBUG*/
 
     return _m_sHttpReferer;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetHttpHost() const {
     /*DEBUG*/
 
     return _m_sHttpHost;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetHttpAcceptLanguage() const {
    /*DEBUG*/
 
    return _m_sHttpAcceptLanguage;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiEnvironment::sGetCountryCode() const {
     /*DEBUG*/
 
@@ -586,11 +586,11 @@ CxCgiEnvironment::rmGetRequestMethod() const {
     return _m_rmRequestMethod;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxCgiEnvironment::sGetDump() const {
     /*DEBUG*/
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = CxString::sFormat(
             xT("[CxCgiEnvironment dump]\n\n")
@@ -750,9 +750,9 @@ CxCgiCookies::~CxCgiCookies() {
     }
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxCgiCookies::operator [] (
-    const std::tstring &csCookieName
+    const std::string_t &csCookieName
 )
 {
     /*DEBUG*/
@@ -763,19 +763,19 @@ CxCgiCookies::operator [] (
         return (*it)->sGetValue();
     }
 
-    return std::tstring();
+    return std::string_t();
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxCgiCookies::sGetDump() const {
     /*DEBUG*/
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes.append(xT("[CxCgiCookies dump]\n\n"));
 
     for (TCookies::const_iterator it = Items.begin(); it != Items.end(); ++ it) {
-        std::tstring sItemN = CxString::sFormat(
+        std::string_t sItemN = CxString::sFormat(
                 xT("Name: %s\n")
                 xT("Value: %s\n")
                 xT("Domain: %s\n")
@@ -812,14 +812,14 @@ CxCgiCookies::_bInit() {
     /*DEBUG*/
 
     BOOL                 bRes           = FALSE;
-    std::tstring              sRawCookies    = _m_ccgCgi.Environment.sGetHttpCookie();
-    std::vector<std::tstring> vsRawCookies;
+    std::string_t              sRawCookies    = _m_ccgCgi.Environment.sGetHttpCookie();
+    std::vector<std::string_t> vsRawCookies;
     TCookies             vecckCookies;
 
     bRes = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    for (std::vector<std::tstring>::const_iterator it = vsRawCookies.begin(); it != vsRawCookies.end(); ++ it) {
+    for (std::vector<std::string_t>::const_iterator it = vsRawCookies.begin(); it != vsRawCookies.end(); ++ it) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
         /*DEBUG*/xASSERT_RET(NULL != pckItem, FALSE);
 
@@ -859,18 +859,18 @@ CxCgiFormData::~CxCgiFormData() {
 
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCgiFormData::sGetRawData() const {
     /*DEBUG*/
 
     return _m_sFormData;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxCgiFormData::sGetDump() const {
     /*DEBUG*/
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = CxString::sFormat(
             xT("[CxCgiFormData dump]\n\n")
@@ -923,7 +923,7 @@ CxCgiFormData::_bInit() {
 
                 //read, parse data
                 CxFile       sfFile;
-                std::tstring sBuff;
+                std::string_t sBuff;
 
                 bRes = sfFile.bAttach(stdin);
                 /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);

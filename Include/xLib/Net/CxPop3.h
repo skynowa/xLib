@@ -23,7 +23,7 @@ class CxPop3 :
                           CxPop3              ();
                          ~CxPop3              ();
 
-        BOOL              bCreate             (const std::tstring &csUser, const std::tstring &csPass, const std::tstring &csServer, USHORT usPort);
+        BOOL              bCreate             (const std::string_t &csUser, const std::string_t &csPass, const std::string_t &csServer, USHORT usPort);
         BOOL              bConnect            ();
         BOOL              bLogin              ();
 
@@ -32,31 +32,31 @@ class CxPop3 :
         BOOL              bListAt             (ULONG &ulIndex);
         BOOL              bNoop               ();
         BOOL              bRset               ();
-        BOOL              bTop                (INT iNum, INT iLines, std::tstring &sBuff);
+        BOOL              bTop                (INT iNum, INT iLines, std::string_t &sBuff);
 
-        BOOL      /*RETR*/bRetrive            (INT iNum, const std::tstring &csRawMimeMessage);
-        BOOL      /*RETR*/bRetriveRaw         (INT iNum, const std::tstring &csDirPath, const std::tstring &csFileName);
-        BOOL      /*RETR*/bRetriveRawAndBackup(INT iNum, const std::tstring &csDirPath, const std::tstring &csBackupDirPath, const std::tstring &csFileName);
+        BOOL      /*RETR*/bRetrive            (INT iNum, const std::string_t &csRawMimeMessage);
+        BOOL      /*RETR*/bRetriveRaw         (INT iNum, const std::string_t &csDirPath, const std::string_t &csFileName);
+        BOOL      /*RETR*/bRetriveRawAndBackup(INT iNum, const std::string_t &csDirPath, const std::string_t &csBackupDirPath, const std::string_t &csFileName);
         BOOL      /*TOP*/ bRetrieveHeader     (INT iNum, CxMimeHeader &mhMimeHeader);
 
         BOOL              bDelete             (INT iNum);
         BOOL              bDisconnect         ();
 
     private:
-        std::tstring      _m_sRes;
+        std::string_t      _m_sRes;
         /////CxSocketInit _m_siInit;
         CxTcpClient       _m_scktSocket;
         CxConsoleLog      _m_clLog;
-        std::tstring      _m_sUser;
-        std::tstring      _m_sPass;
-        std::tstring      _m_sServer;
+        std::string_t      _m_sUser;
+        std::string_t      _m_sPass;
+        std::string_t      _m_sServer;
         USHORT            _m_usPort;
         BOOL              _m_bConnected;
 
-        BOOL              _bCommand           (const std::tstring &csCmd, const std::tstring &csReplyDelimiter, std::tstring *psReply);
-        BOOL              _bIsError           (const std::tstring &csText);
-        ULONG             _ulMailsSum         (const std::tstring &csServerAnswer);
-        ULONG             _ulMailsSize        (const std::tstring &csServerAnswer);
+        BOOL              _bCommand           (const std::string_t &csCmd, const std::string_t &csReplyDelimiter, std::string_t *psReply);
+        BOOL              _bIsError           (const std::string_t &csText);
+        ULONG             _ulMailsSum         (const std::string_t &csServerAnswer);
+        ULONG             _ulMailsSize        (const std::string_t &csServerAnswer);
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxPop3H

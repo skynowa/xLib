@@ -40,8 +40,8 @@ namespace CxMsgBoxRtf {
 #define xCXTAB_CONTROL_CLASS                    WC_TABCONTROL
 //---------------------------------------------------------------------------
 EModalResult g_mrRes          = mrNone;
-std::tstring g_sTitle;
-std::tstring g_sMessage;
+std::string_t g_sTitle;
+std::string_t g_sMessage;
 
 const INT    ID_staImg        = 200;
 const INT    ID_redtText      = 201;
@@ -260,8 +260,8 @@ DialogProc(
 EModalResult
 iShow(
     HWND                hwndOwner,
-    const std::tstring &csMessage,
-    const std::tstring &csTiltle
+    const std::string_t &csMessage,
+    const std::string_t &csTiltle
 )
 {
     HMODULE           hmRichEdtDll = NULL;
