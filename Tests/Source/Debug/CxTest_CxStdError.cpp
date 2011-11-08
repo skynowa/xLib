@@ -42,7 +42,7 @@ CxTest_CxStdError::bUnit(
         const INT ciMaxErrors = 200;    /*0...132*/
 
         for (INT i = 0; i < ciMaxErrors; ++ i) {
-            std::tstring sError = CxStdError::sGet();
+            std::string_t sError = CxStdError::sGet();
             xTEST_EQ(false, sError.empty());
         }
     }

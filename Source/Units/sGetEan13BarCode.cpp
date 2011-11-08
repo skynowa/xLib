@@ -8,26 +8,26 @@
 
 
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 sGetEan13BarCode(
-    const std::tstring &csData	///< a 12 digits length string
+    const std::string_t &csData	///< a 12 digits length string
 )
 	///< \return a string which give the bar code when it is dispayed with EAN13.TTF font an empty string if the supplied parameter is no good
 {
-	/*DEBUG*/xASSERT_RET(false == csData.empty(), std::tstring());
-	/*DEBUG*/xASSERT_RET(12    == csData.size(),  std::tstring());
+	/*DEBUG*/xASSERT_RET(false == csData.empty(), std::string_t());
+	/*DEBUG*/xASSERT_RET(12    == csData.size(),  std::string_t());
 
 	/*DEBUG*///And they are really digits
 	/*DEBUG*/for (size_t i = 0; i < csData.size(); ++ i) {
 	/*DEBUG*/	if ( (INT)csData.at(i) < 48 || (INT)csData.at(i) > 57 ) {
-	/*DEBUG*/		/*DEBUG*/xASSERT_RET(FALSE, std::tstring());
+	/*DEBUG*/		/*DEBUG*/xASSERT_RET(FALSE, std::string_t());
 	/*DEBUG*/	}
 	/*DEBUG*/}
 
-	std::tstring sRes;
+	std::string_t sRes;
 	INT 	iFirst    = 0;
 	BOOL    bTableA   = FALSE;
-	std::tstring sData     = csData;
+	std::string_t sData     = csData;
 
 	//-------------------------------------
 	//x - ����� ������
@@ -59,7 +59,7 @@ sGetEan13BarCode(
 
 	//-------------------------------------
 	//����������� ����� (13-� ������): 90 - 84 = 6
-	std::tstring sCheckSum;
+	std::string_t sCheckSum;
 
 	sCheckSum = CxString::lexical_cast((10 - iZ % 10) % 10 );
 
@@ -71,8 +71,8 @@ sGetEan13BarCode(
 
 	//-------------------------------------
 	//The first digit is taken just as it is, the second one come from table A
-	sRes   = std::tstring(1, sData.at(0))  + std::tstring(1,  (TCHAR)(65 + CxString::lexical_cast<INT>(sData.substr(1, 1))));
-	iFirst = CxString::lexical_cast<INT>( std::tstring(1, sData.at(0)) );
+	sRes   = std::string_t(1, sData.at(0))  + std::string_t(1,  (TCHAR)(65 + CxString::lexical_cast<INT>(sData.substr(1, 1))));
+	iFirst = CxString::lexical_cast<INT>( std::string_t(1, sData.at(0)) );
 
 	for (INT i = 2; i < 7; ++ i) {
 		bTableA = FALSE;
@@ -165,9 +165,9 @@ sGetEan13BarCode(
 	return sRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 sGetEan13Code(
-    const std::tstring &csData	///< a 12 digits length string
+    const std::string_t &csData	///< a 12 digits length string
 )
 	///< \return a string which give the bar code when it is dispayed with EAN13.TTF font an empty string if the supplied parameter is no good
 {
@@ -185,7 +185,7 @@ sGetEan13Code(
 	//	����������� �����= 90 - 84 = 6
 	//	EAN13 ---> 9 780201 134476
 
-	std::tstring sRes;
+	std::string_t sRes;
 
 	//-------------------------------------
 	//x - ����� ������
@@ -193,7 +193,7 @@ sGetEan13Code(
 	size_t uiX = 0;
 	for (size_t i = 0; i < csData.size(); i += 2) {
 		//iMsgBox( csData.at(i) );
-		uiX = uiX + CxString::lexical_cast<size_t>( std::tstring(1, csData.at(i)) );
+		uiX = uiX + CxString::lexical_cast<size_t>( std::string_t(1, csData.at(i)) );
 	}
 	/*DEBUG*///xASSERT(27 == uiX);
 
@@ -203,7 +203,7 @@ sGetEan13Code(
 	size_t uiY = 0;
 	for (size_t i = 1; i < csData.size(); i += 2) {
 		//iMsgBox( csData.at(i) );
-		uiY = uiY + CxString::lexical_cast<size_t>( std::tstring(1, csData.at(i)) );
+		uiY = uiY + CxString::lexical_cast<size_t>( std::string_t(1, csData.at(i)) );
 	}
 	/*DEBUG*///xASSERT(19 == uiY);
 

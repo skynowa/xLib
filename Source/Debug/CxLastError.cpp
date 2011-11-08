@@ -30,7 +30,7 @@ CxLastError::ulGet() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxLastError::sGet() {
     return sFormat(ulGet());
 }
@@ -59,12 +59,12 @@ CxLastError::bReset() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxLastError::sFormat(
     const ULONG culCode
 )
 {
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = CxString::sFormat(xT("%li - "), culCode);
 
@@ -84,7 +84,7 @@ CxLastError::sFormat(
     xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRes.append(xT("Unknown error")));
     xCHECK_RET(0UL                    == ulRes,   sRes.append(xT("[Cann't format error message]")));
 
-    std::tstring sMessage;
+    std::string_t sMessage;
 
     sMessage.assign( static_cast<LPCTSTR>( pvBuff ), ulRes );
     sMessage.assign( CxString::sRemoveEol(sMessage) );

@@ -24,7 +24,7 @@ class CxTcpServer :
         	///< associates a local address with a socket
         BOOL        bListen          (INT iBacklog /* = SOMAXCONN*/);
     		///< places a socket in a state in which it is listening for an incoming connection
-        BOOL        bAccept          (CxTcpServer *pscktAcceptSocket, std::tstring *psFromIp);
+        BOOL        bAccept          (CxTcpServer *pscktAcceptSocket, std::string_t *psFromIp);
     		///< permits an incoming connection attempt on a socket
 
     protected:

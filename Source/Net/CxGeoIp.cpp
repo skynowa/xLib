@@ -35,7 +35,7 @@ CxGeoIp::~CxGeoIp() {
 //---------------------------------------------------------------------------
 BOOL
 CxGeoIp::bOpen(
-    const std::tstring &csFilePath,
+    const std::string_t &csFilePath,
     const EOption       copOption
 )
 {
@@ -59,34 +59,34 @@ CxGeoIp::bIsValid() const {
     return static_cast<BOOL>( NULL != _m_pgiGeoIp );
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxGeoIp::sGetCountryCodeByAddress(
-    const std::tstring &csAddress
+    const std::string_t &csAddress
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        std::tstring());
-    /*DEBUG*/xASSERT_RET(false == csAddress.empty(), std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        std::string_t());
+    /*DEBUG*/xASSERT_RET(false == csAddress.empty(), std::string_t());
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = CxMacros::sAsTString( GeoIP_country_code_by_addr(_m_pgiGeoIp, csAddress.c_str()) );
-    /*DEBUG*/xASSERT_RET(2 == sRes.size(), std::tstring());
+    /*DEBUG*/xASSERT_RET(2 == sRes.size(), std::string_t());
 
     return sRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxGeoIp::sGetCountryCode3ByAddress(
-    const std::tstring &csAddress
+    const std::string_t &csAddress
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        std::tstring());
-    /*DEBUG*/xASSERT_RET(false == csAddress.empty(), std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        std::string_t());
+    /*DEBUG*/xASSERT_RET(false == csAddress.empty(), std::string_t());
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = CxMacros::sAsTString( GeoIP_country_code3_by_addr(_m_pgiGeoIp, csAddress.c_str()) );
-    /*DEBUG*/xASSERT_RET(3 == sRes.size(), std::tstring());
+    /*DEBUG*/xASSERT_RET(3 == sRes.size(), std::string_t());
 
     return sRes;
 }

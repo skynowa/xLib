@@ -187,7 +187,7 @@ CxTest_CxThread::bUnit(
     {
         #if xTODO
             m_sRes = pthT->sGetPriorityString();
-            xTEST_EQ(std::tstring(xT("Lowest")), m_sRes);
+            xTEST_EQ(std::string_t(xT("Lowest")), m_sRes);
         #endif
     }
 

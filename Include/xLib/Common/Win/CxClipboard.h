@@ -55,13 +55,13 @@ class CxClipboard :
 
         BOOL     bSetOwner      (const HWND chWndOwner);
             ///< set owner
-        BOOL     bGetText       (std::tstring *psText);
+        BOOL     bGetText       (std::string_t *psText);
             ///< get text
-        BOOL     bSetText       (const std::tstring &csText);
+        BOOL     bSetText       (const std::string_t &csText);
             ///< set text
         BOOL     bIsHasFormat   (const EFormat cfmFormat);
             ///<  is has format
-        BOOL     bRegisterFormat(const std::tstring &csText, EFormat *pfmFormat);
+        BOOL     bRegisterFormat(const std::string_t &csText, EFormat *pfmFormat);
             ///< register format
         BOOL     bClear         ();
             ///< clear

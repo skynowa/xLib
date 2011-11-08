@@ -19,7 +19,7 @@ class CxFileTemp :
 		virtual      ~CxFileTemp();
 		    ///< destructor
 
-        BOOL          bCreate   (const std::tstring &csFilePath, const std::tstring &csDirPath, CxFile *pfFile);
+        BOOL          bCreate   (const std::string_t &csFilePath, const std::string_t &csDirPath, CxFile *pfFile);
             ///< create temporary file, open it
 
     private:
@@ -27,7 +27,7 @@ class CxFileTemp :
 
         const BOOL    _m_cbIsAutoDelete;    ///< autodelete flag
         CxFile       *_m_pfFile;            ///< temporary file handle
-        std::tstring  _m_sFilePath;         ///< temporary file path
+        std::string_t  _m_sFilePath;         ///< temporary file path
 };
 //---------------------------------------------------------------------------
 #endif //xLib_CxFileTempH

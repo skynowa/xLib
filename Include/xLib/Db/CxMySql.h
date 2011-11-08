@@ -34,7 +34,7 @@ class CxMySQLConnection :
             ///< validating handle
         BOOL                     bOptions         (const mysql_option cmoOption, const void *cpvArg) const;
             ///< set extra connect options and affect behavior
-        BOOL                     bConnect         (const std::tstring &csHost, const std::tstring &csUser, const std::tstring &csPassword, const std::tstring &csDb, const UINT cuiPort, const std::tstring &csUnixSocket, const ULONG culClientFlag);
+        BOOL                     bConnect         (const std::string_t &csHost, const std::string_t &csUser, const std::string_t &csPassword, const std::string_t &csDb, const UINT cuiPort, const std::string_t &csUnixSocket, const ULONG culClientFlag);
             ///< attempts to establish a connection to a MySQL database engine running on host
         BOOL                     bQuery           (const TCHAR *pcszSqlFormat, ...) const;
             ///< executes the SQL statement
@@ -46,7 +46,7 @@ class CxMySQLConnection :
         //errors
         UINT                     uiGetLastError   () const;
             ///< error code for the most recently invoked API function that can succeed or fail
-        std::tstring             sGetLastErrorStr () const;
+        std::string_t             sGetLastErrorStr () const;
             ///< error message for the most recently invoked API function that failed
 
     private:
@@ -80,7 +80,7 @@ class CxMySQLRecordset :
             ///< The MYSQL_FIELD structure for the specified column
         BOOL                     bFetchFields     (MYSQL_FIELD *pmfField) const;
             ///< An array of MYSQL_FIELD structures for all columns of a result set
-        BOOL                     bFetchRow        (std::vector<std::tstring> *pvsRow) const;
+        BOOL                     bFetchRow        (std::vector<std::string_t> *pvsRow) const;
             ///< fetching row
 
     private:

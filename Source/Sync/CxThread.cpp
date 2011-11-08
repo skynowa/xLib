@@ -623,7 +623,7 @@ CxThread::tpGetPriority() const {
     return tpRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxThread::sGetPriorityString() const {
     /*DEBUG*/// n/a
 
@@ -884,7 +884,7 @@ CxThread::ulGetExitStatus() const {
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bSetDebugName(
-    const std::tstring &csName
+    const std::string_t &csName
 ) const
 {
     /////*DEBUG*/xASSERT_RET(0  < _m_ulId,       FALSE);

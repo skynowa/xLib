@@ -27,7 +27,7 @@ CxTest_CxStackTrace::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxStackTrace stStack;
-        std::vector<std::tstring> vsStack;
+        std::vector<std::string_t> vsStack;
 
         m_bRes = stStack.bGet(&vsStack);
         xTEST_DIFF(FALSE, m_bRes);
@@ -39,7 +39,7 @@ CxTest_CxStackTrace::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxStackTrace stStack;
-        std::tstring sStack;
+        std::string_t sStack;
 
         sStack = stStack.sGet();
         xTEST_EQ(false, sStack.empty());

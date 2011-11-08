@@ -38,12 +38,12 @@ class CxTest :
         ULONGLONG                 m_ullRes;     ///< for global use
         FLOAT                     m_fRes;       ///< for global use
         DOUBLE                    m_dRes;       ///< for global use
-        std::tstring              m_sRes;       ///< for global use
+        std::string_t              m_sRes;       ///< for global use
         std::ustring              m_usRes;      ///< for global use
         std::vector<TCHAR>        m_vecchRes;   ///< for global use
-        std::vector<std::tstring> m_vsRes;      ///< for global use
-        std::map<std::tstring, std::tstring>      m_msRes;  ///< for global use
-        std::multimap<std::tstring, std::tstring> m_mmsRes; ///< for global use
+        std::vector<std::string_t> m_vsRes;      ///< for global use
+        std::map<std::string_t, std::string_t>      m_msRes;  ///< for global use
+        std::multimap<std::string_t, std::string_t> m_mmsRes; ///< for global use
 
     #if defined(xOS_ENV_WIN)
         HANDLE                    m_hRes;       ///< for global use
@@ -61,18 +61,18 @@ class CxTest :
             ///< run test units
         virtual BOOL              bUnit          (const ULONGLONG cullBlockLoops) = 0;
             ///< test unit
-        BOOL                      bCreateWorkDir (const std::tstring &csDirName);
+        BOOL                      bCreateWorkDir (const std::string_t &csDirName);
             ///< create work dir
-        const std::tstring &      sGetWorkDirPath() const;
+        const std::string_t &      sGetWorkDirPath() const;
             ///< get work dir path
-        const std::tstring &      sGetName       () const;
+        const std::string_t &      sGetName       () const;
             ///< get name
-        BOOL                      bSetName       (const std::tstring &csTestName);
+        BOOL                      bSetName       (const std::string_t &csTestName);
             ///< set name
 
     private:
-        std::tstring              _m_sWorkDirPath;  ///< work dir path
-        std::tstring              _m_sName;         ///< test name
+        std::string_t              _m_sWorkDirPath;  ///< work dir path
+        std::string_t              _m_sName;         ///< test name
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxTestH

@@ -35,9 +35,9 @@ class CxProfiler :
         virtual            ~CxProfiler ();
             ///< destructor
 
-        BOOL                bSetLogPath(const std::tstring &csLogPath);
+        BOOL                bSetLogPath(const std::string_t &csLogPath);
             ///< set log path
-        const std::tstring &sGetLogPath() const;
+        const std::string_t &sGetLogPath() const;
             ///< get log path
 
         BOOL                bStart     ();

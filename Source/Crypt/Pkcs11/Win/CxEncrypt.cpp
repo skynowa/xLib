@@ -102,8 +102,8 @@ CxEncrypt::bFinal(
 //---------------------------------------------------------------------------
 BOOL
 CxEncrypt::bMakeFile(
-    const std::tstring &csInFilePath,
-    const std::tstring &csOutFilePath,
+    const std::string_t &csInFilePath,
+    const std::string_t &csOutFilePath,
     CK_MECHANISM_PTR    pMechanism,
     CK_OBJECT_HANDLE    hKey
 )

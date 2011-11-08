@@ -17,22 +17,22 @@ class CxMimeHeader :
                              CxMimeHeader      ();
                             ~CxMimeHeader      ();
 
-        BOOL                 bParse            (const std::tstring &csRawHeader);
-		std::tstring         sGetField         (const std::tstring &csName);
+        BOOL                 bParse            (const std::string_t &csRawHeader);
+		std::string_t         sGetField         (const std::string_t &csName);
         size_t               uiCount           ();
-        BOOL                 bLoadFromFile     (const std::tstring &csRawMessageFilePath);
-        BOOL                 bSaveToFile       (const std::tstring &csFilePath);
+        BOOL                 bLoadFromFile     (const std::string_t &csRawMessageFilePath);
+        BOOL                 bSaveToFile       (const std::string_t &csFilePath);
 
-        static std::tstring  sGenerateMessageID();
+        static std::string_t  sGenerateMessageID();
 
     private:
-        static const std::tstring _ms_csAttrDelimiter;
-        static const std::tstring _ms_csEndOfHeader;
-        static const std::tstring _ms_csEndOfLine;
+        static const std::string_t _ms_csAttrDelimiter;
+        static const std::string_t _ms_csEndOfHeader;
+        static const std::string_t _ms_csEndOfLine;
 
         BOOL                 _m_bRes;
-        std::tstring         _m_sRes;
-        std::multimap<std::tstring, std::tstring> _m_mmsHeader;
+        std::string_t         _m_sRes;
+        std::multimap<std::string_t, std::string_t> _m_mmsHeader;
 
         //Delivered-To:
         //Return-Path:

@@ -40,7 +40,7 @@ BOOL
 CxMutex::bCreate(
     const LPSECURITY_ATTRIBUTES  pcsaAttributes,
     const BOOL                   cbInitialOwner,
-    const std::tstring          &csName
+    const std::string_t          &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE == _m_hMutex.bIsValid(), FALSE);
@@ -63,7 +63,7 @@ BOOL
 CxMutex::bOpen(
     const ULONG         culAccess,
     const BOOL          cbInheritHandle,
-    const std::tstring &csName
+    const std::string_t &csName
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hMutex.bIsValid(), FALSE);

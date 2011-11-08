@@ -25,15 +25,15 @@
 //---------------------------------------------------------------------------
 CxReport::CxReport(
     const EType        &crtType,
-    const std::tstring &csExp,
+    const std::string_t &csExp,
     const ULONG         culLastError,
-    const std::tstring &csFile,
+    const std::string_t &csFile,
     const ULONG         culLine,
-    const std::tstring &csFunc,
-    const std::tstring &csDate,
-    const std::tstring &csTime,
-    const std::tstring &csStackTrace,
-    const std::tstring &csComment
+    const std::string_t &csFunc,
+    const std::string_t &csDate,
+    const std::string_t &csTime,
+    const std::string_t &csStackTrace,
+    const std::string_t &csComment
 ) :
     _m_rtType         (rtUnknown),
     _m_sReport        (),
@@ -72,14 +72,14 @@ CxReport::CxReport(
 //---------------------------------------------------------------------------
 CxReport::CxReport(
     const EType        &crtType,
-    const std::tstring &csExp,
+    const std::string_t &csExp,
     const ULONG         culLastError,
-    const std::tstring &csFile,
+    const std::string_t &csFile,
     const ULONG         culLine,
-    const std::tstring &csFunc,
-    const std::tstring &csDate,
-    const std::tstring &csTime,
-    const std::tstring &csStackTrace,
+    const std::string_t &csFunc,
+    const std::string_t &csDate,
+    const std::string_t &csTime,
+    const std::string_t &csStackTrace,
     const TCHAR        *pcszComment, ...
 ) :
     _m_rtType         (rtUnknown),
@@ -103,7 +103,7 @@ CxReport::CxReport(
 {
     /*DEBUG*/
 
-    std::tstring sComment;
+    std::string_t sComment;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszComment);
@@ -136,14 +136,14 @@ CxReport::rtGetType() const {
     return _m_rtType;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetReport() const {
     /*DEBUG*/
 
     return _m_sReport;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetProgram() const {
     /*DEBUG*/
 
@@ -164,14 +164,14 @@ CxReport::ulGetThreadId() const {
     return _m_ulThreadId;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetFileSize() const {
     /*DEBUG*/
 
     return _m_sFileSize;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetSourceFile() const {
     /*DEBUG*/
 
@@ -185,14 +185,14 @@ CxReport::ulGetSourceLine() const {
     return _m_ulSourceLine;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetFunctionName() const {
     /*DEBUG*/
 
     return _m_sFunctionName;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetExpression() const {
     /*DEBUG*/
 
@@ -206,49 +206,49 @@ CxReport::ulGetLastError() const {
     return _m_ulLastError;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetLastErrorStr() const {
     /*DEBUG*/
 
     return _m_sLastErrorStr;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetCurrentDate() const {
     /*DEBUG*/
 
     return _m_sCurrentDate;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetBuildDate() const {
     /*DEBUG*/
 
     return _m_sBuildDate;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetOsVersion() const {
     /*DEBUG*/
 
     return _m_sOsVersion;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetOsArchitecture() const {
     /*DEBUG*/
 
     return _m_sOsArchitecture;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetComment() const {
     /*DEBUG*/
 
     return _m_sComment;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxReport::sGetStackTrace() const {
     /*DEBUG*/
 
@@ -265,15 +265,15 @@ CxReport::sGetStackTrace() const {
 BOOL
 CxReport::_bInitVars(
     const EType        &crtType,
-    const std::tstring &csExp,
+    const std::string_t &csExp,
     const ULONG         culLastError,
-    const std::tstring &csFile,
+    const std::string_t &csFile,
     const ULONG         culLine,
-    const std::tstring &csFunc,
-    const std::tstring &csDate,
-    const std::tstring &csTime,
-    const std::tstring &csStackTrace,
-    const std::tstring &csComment
+    const std::string_t &csFunc,
+    const std::string_t &csDate,
+    const std::string_t &csTime,
+    const std::string_t &csStackTrace,
+    const std::string_t &csComment
 )
 {
     /*DEBUG*/

@@ -26,9 +26,9 @@ class CxDll :
 
         BOOL          bIsLoaded       () const;
             ///< is loaded
-        BOOL          bLoad           (const std::tstring &csDllPath);
+        BOOL          bLoad           (const std::string_t &csDllPath);
             ///< load
-        TxProcAddress fpGetProcAddress(const std::tstring &csProcName) const;
+        TxProcAddress fpGetProcAddress(const std::string_t &csProcName) const;
             ///< get address of an exported function or variable
         BOOL          bFree           ();
             ///< free

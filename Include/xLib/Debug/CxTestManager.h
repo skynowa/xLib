@@ -20,7 +20,7 @@ class CxTestManager :
 		virtual   ~CxTestManager();
 		    ///< destructor
 
-        BOOL       bAdd         (CxTest *pvtTest, const std::tstring &csTestName = CxConst::xSTR_EMPTY);
+        BOOL       bAdd         (CxTest *pvtTest, const std::string_t &csTestName = CxConst::xSTR_EMPTY);
             ///< add CxTest
         BOOL       bRun         (const ULONGLONG cullAllLoops, const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
             ///< run all tests

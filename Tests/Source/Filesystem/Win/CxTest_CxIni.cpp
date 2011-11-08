@@ -31,7 +31,7 @@ CxTest_CxIni::bUnit(
     #define TEST_DEF_CONSTRUCTOR 1
 
     {
-        const std::tstring csIniPath = xT("C:\\Test\\__Test.ini");
+        const std::string_t csIniPath = xT("C:\\Test\\__Test.ini");
 
     #ifdef TEST_DEF_CONSTRUCTOR
         CxIni objIni;
@@ -43,7 +43,7 @@ CxTest_CxIni::bUnit(
         //bCreateDefault
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::tstring sContent;
+            std::string_t sContent;
             sContent.append(xT("[DEFAULT_SECTION]\n"));
             sContent.append(xT("default_key_1=111\n"));
             sContent.append(xT("default_key_2=222\n"));
@@ -143,13 +143,13 @@ CxTest_CxIni::bUnit(
             xTEST_EQ(TRUE, m_bRes);
 
             m_sRes = objIni.sKeyReadString(xT("Section_String_1"), xT("Key_1"), xT(""));
-            xTEST_EQ(std::tstring(xT("Begin_Value_1_Value_1_Value_1_Value_End")), m_sRes);
+            xTEST_EQ(std::string_t(xT("Begin_Value_1_Value_1_Value_1_Value_End")), m_sRes);
 
             m_bRes = objIni.bKeyWriteString(xT("Section_String_2"), xT("Key_1"), xT("Value_1"));
             xTEST_EQ(TRUE, m_bRes);
 
             m_sRes = objIni.sKeyReadString(xT("Section_String_2"), xT("Key_1"), xT(""));
-            xTEST_EQ(std::tstring(xT("Value_1")), m_sRes);
+            xTEST_EQ(std::string_t(xT("Value_1")), m_sRes);
         }
 
         //-------------------------------------
@@ -215,7 +215,7 @@ CxTest_CxIni::bUnit(
         //bSectionRead, bSectionWrite
         xTEST_BLOCK(cullBlockLoops)
         {
-             std::map<std::tstring, std::tstring> msContent;
+             std::map<std::string_t, std::string_t> msContent;
              msContent[xT("qqq")] = xT("111");
              msContent[xT("www")] = xT("222");
              msContent[xT("eee")] = xT("333");
@@ -259,7 +259,7 @@ CxTest_CxIni::bUnit(
         //bSectionsReadNames
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::vector<std::tstring> vsNames;
+            std::vector<std::string_t> vsNames;
 
             m_bRes = objIni.bSectionsReadNames(&vsNames);
             xTEST_EQ(TRUE, m_bRes);
@@ -285,7 +285,7 @@ CxTest_CxIni::bUnit(
         //bSectionsReadNames
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::vector<std::tstring> vsNames;
+            std::vector<std::string_t> vsNames;
 
             m_bRes = objIni.bSectionsReadNames(&vsNames);
             xTEST_EQ(TRUE, m_bRes);

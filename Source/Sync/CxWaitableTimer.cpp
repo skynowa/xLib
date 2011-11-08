@@ -39,7 +39,7 @@ CxWaitableTimer::hGetHandle() const {
 BOOL
 CxWaitableTimer::bCreate(
     const BOOL                   bManualReset,
-    const std::tstring          &csName,
+    const std::string_t          &csName,
     const LPSECURITY_ATTRIBUTES  pcsaTimerAttributes
 )
 {
@@ -58,7 +58,7 @@ CxWaitableTimer::bCreate(
 //DONE: bOpen ()
 BOOL
 CxWaitableTimer::bOpen(
-    const std::tstring &csName,
+    const std::string_t &csName,
     const ULONG         culDesiredAccess,
     const BOOL          cbInheritHandle
 )

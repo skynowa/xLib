@@ -44,21 +44,21 @@
 //---------------------------------------------------------------------------
 //converters
 #define xS2US(s)                std::ustring( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::tstring to std::ustring
-#define xUS2S(us)               std::tstring( (us).begin(), (us).begin() + (us).size() )
-    ///< convert std::ustring to std::tstring
-#define xS2TS(s)                std::tstring( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::string to std::tstring
+    ///< convert std::string_t to std::ustring
+#define xUS2S(us)               std::string_t( (us).begin(), (us).begin() + (us).size() )
+    ///< convert std::ustring to std::string_t
+#define xS2TS(s)                std::string_t( (s).begin(),  (s).begin()  + (s).size()  )
+    ///< convert std::string to std::string_t
 #define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
-    ///< convert std::tstring to std::string
+    ///< convert std::string_t to std::string
 
 #if defined(xCOMPILER_CODEGEAR)
-    #define xD2S(s)   std::tstring((s).c_str())
-        ///< convert Delphi::String::c_str() to std::tstring
-    #define xD2AS(s)  std::tstring((s).t_str())
-        ///< convert Delphi::String::t_str() to std::tstring
+    #define xD2S(s)   std::string_t((s).c_str())
+        ///< convert Delphi::String::c_str() to std::string_t
+    #define xD2AS(s)  std::string_t((s).t_str())
+        ///< convert Delphi::String::t_str() to std::string_t
     #define xS2D(s)   String((s).c_str())
-        ///< convert std::tstring to Delphi::String
+        ///< convert std::string_t to Delphi::String
     #define xD2WD(s)  WideString((s))
         ///< convert Delphi::String to Delphi::WideString
 #endif
@@ -470,11 +470,11 @@ class CxMacros :
             ///< allows any pointer to be converted into any other pointer type
 
         template <class T>
-        static inline std::tstring
+        static inline std::string_t
         sAsTString(const T &x) {
-            return (NULL != x) ? (std::tstring(x)) : (std::tstring());
+            return (NULL != x) ? (std::string_t(x)) : (std::string_t());
         }
-            ///< convert C-string to std::tstring
+            ///< convert C-string to std::string_t
 
         //TODO: tests
         template <class T>
@@ -482,7 +482,7 @@ class CxMacros :
         pcszAsCString(const T &x) {
             return (true == x.empty()) ? (NULL) : (x.c_str());
         }
-            ///< convert std::tstring to C-string
+            ///< convert std::string_t to C-string
 
     private:
                 CxMacros();

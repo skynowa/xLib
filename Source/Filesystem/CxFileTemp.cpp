@@ -36,8 +36,8 @@ CxFileTemp::~CxFileTemp() {
 //---------------------------------------------------------------------------
 BOOL
 CxFileTemp::bCreate(
-    const std::tstring  &csFilePath,
-    const std::tstring  &csDirPath,
+    const std::string_t  &csFilePath,
+    const std::string_t  &csDirPath,
     CxFile              *pfFile
 )
 {
@@ -45,7 +45,7 @@ CxFileTemp::bCreate(
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  FALSE);
     /*DEBUG*/xASSERT_RET(FALSE == pfFile->bIsValid(), FALSE);
 
-    const std::tstring csFileNameTemplate = xT("XXXXXX");
+    const std::string_t csFileNameTemplate = xT("XXXXXX");
 
 
     FILE *_pfStdFile = NULL;

@@ -50,12 +50,12 @@ CxWndLog::bWrite(
 
     //-------------------------------------
     //time
-    std::tstring sTime;
+    std::string_t sTime;
     sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment
-    std::tstring sParam;
+    std::string_t sParam;
     va_list palArgs = NULL;
 
     xVA_START(palArgs, pcszFormat);

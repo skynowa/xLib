@@ -87,14 +87,14 @@ CxSystemInfo::osGetOS() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxSystemInfo::sFormatOsType(
     const EOsType otOsType
 )
 {
     /*DEBUG*/// otOsType - n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     switch (otOsType) {
@@ -120,7 +120,7 @@ CxSystemInfo::sFormatOsType(
     utsname unKernelInfo= {{0}};
 
     INT iRes = uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, std::string_t());
 
     sRes.assign( CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine) );
 #endif
@@ -170,7 +170,7 @@ CxSystemInfo::oaGetOsArch() {
 
     INT iRes = uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes,                                 oaUnknown);
-    /*DEBUG*/xASSERT_RET(0   != std::tstring(unKernelInfo.machine).size(), oaUnknown);
+    /*DEBUG*/xASSERT_RET(0   != std::string_t(unKernelInfo.machine).size(), oaUnknown);
 
     //32-bit checks
     if      (TRUE == CxString::bCompareNoCase(xT("i386"), unKernelInfo.machine)) {
@@ -207,14 +207,14 @@ CxSystemInfo::oaGetOsArch() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxSystemInfo::sFormatOsArch(
     const EOsArch oaOsArch
 )
 {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     switch (oaOsArch) {
         case CxSystemInfo::oa32bit:     sRes = xT("32-bit");    break;
@@ -228,11 +228,11 @@ CxSystemInfo::sFormatOsArch(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxSystemInfo::sGetComputerName() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     ULONG   ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
@@ -289,18 +289,18 @@ CxSystemInfo::bIsUserAnAdmin() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxSystemInfo::sGetUserName() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     ULONG ulBuffSize        = UNLEN;
     TCHAR szBuff[UNLEN + 1] = {0};
 
     BOOL bRes = ::GetUserName(&szBuff[0], &ulBuffSize);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string_t());
 
     sRes.assign(szBuff, ulBuffSize);
 #elif defined(xOS_ENV_UNIX)
@@ -308,7 +308,7 @@ CxSystemInfo::sGetUserName() {
     //http://www.metalshell.com/source_code/83/Get_GID_Name.html
 
     passwd *ppwPassword = getpwuid(getuid());
-    /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::string_t());
 
     sRes.assign(ppwPassword->pw_name);
 #endif

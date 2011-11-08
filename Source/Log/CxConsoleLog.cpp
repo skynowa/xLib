@@ -43,7 +43,7 @@ CxConsoleLog::bWrite(
 
     //-------------------------------------
     //time
-    std::tstring sTime;
+    std::string_t sTime;
 
     if (TRUE == _m_bIsUseTimeStr) {
         sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
@@ -53,7 +53,7 @@ CxConsoleLog::bWrite(
 
     //-------------------------------------
     //comment
-    std::tstring sParam;
+    std::string_t sParam;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);

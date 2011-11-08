@@ -41,16 +41,16 @@ CxTest_Draft::bUnit(
     #endif
 
     //--------------------------------------------------
-    //std::tstring::operator=, std::tstring::assign, std::swap
+    //std::string_t::operator=, std::string_t::assign, std::swap
     #if xTEMP_DISABLED
         xTEST_BLOCK(cullBlockLoops)
         {
             const size_t cuiLoops = 1000000000;
-            std::tstring csStr    = xT("qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=");
-            std::tstring sRes     = xT(" qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-= ");
+            std::string_t csStr    = xT("qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=");
+            std::string_t sRes     = xT(" qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-= ");
 
             {
-                xAUTO_PROFILER(xT("./__std_tstring.profile"), CxProfiler::pmStdClock, xT("%s"), xT("std::tstring::operator="));
+                xAUTO_PROFILER(xT("./__std_tstring.profile"), CxProfiler::pmStdClock, xT("%s"), xT("std::string_t::operator="));
 
                 for (size_t i = 0; i < cuiLoops; ++ i) {
                     sRes = csStr;
@@ -60,7 +60,7 @@ CxTest_Draft::bUnit(
             xTRACE(sRes.c_str());
 
             {
-                xAUTO_PROFILER(xT("./__std_tstring.profile"), CxProfiler::pmStdClock, xT("%s"), xT("std::tstring::assign"));
+                xAUTO_PROFILER(xT("./__std_tstring.profile"), CxProfiler::pmStdClock, xT("%s"), xT("std::string_t::assign"));
 
                 for (size_t i = 0; i < cuiLoops; ++ i) {
                     sRes.assign(csStr);
@@ -70,7 +70,7 @@ CxTest_Draft::bUnit(
             xTRACE(sRes.c_str());
 
            {
-                xAUTO_PROFILER(xT("./__std_tstring.profile"), CxProfiler::pmStdClock, xT("%s"), xT("std::tstring::swap"));
+                xAUTO_PROFILER(xT("./__std_tstring.profile"), CxProfiler::pmStdClock, xT("%s"), xT("std::string_t::swap"));
 
                 for (size_t i = 0; i < cuiLoops; ++ i) {
                     sRes.swap(csStr);

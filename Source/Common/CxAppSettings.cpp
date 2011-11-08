@@ -12,13 +12,13 @@
 *
 *****************************************************************************/
 
-std::tstring  CxAppSettings::m_sAppTitle;
-std::tstring  CxAppSettings::m_sAppDir;
-std::tstring  CxAppSettings::m_sDbDir;
-std::tstring  CxAppSettings::m_sDbBackupDir;
-std::tstring  CxAppSettings::m_sDbFilePath;
-std::tstring  CxAppSettings::m_sPass;
-std::tstring  CxAppSettings::m_sPassDefault;
+std::string_t  CxAppSettings::m_sAppTitle;
+std::string_t  CxAppSettings::m_sAppDir;
+std::string_t  CxAppSettings::m_sDbDir;
+std::string_t  CxAppSettings::m_sDbBackupDir;
+std::string_t  CxAppSettings::m_sDbFilePath;
+std::string_t  CxAppSettings::m_sPass;
+std::string_t  CxAppSettings::m_sPassDefault;
 
 const UCHAR   CxAppSettings::m_ucDbEmpty[] = {
     #include "DbEmpty.db.zip.txt"

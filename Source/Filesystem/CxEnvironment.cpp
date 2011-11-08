@@ -18,14 +18,14 @@
 /*static*/
 BOOL
 CxEnvironment::bIsExists(
-    const std::tstring &csVarName
+    const std::string_t &csVarName
 )
 {
     /*DEBUG*/// n/a
     xCHECK_RET(true == csVarName.empty(), FALSE);
 
 #if defined(xOS_ENV_WIN)
-    std::tstring sRes;
+    std::string_t sRes;
     ULONG        ulStored = 0UL;
 
     sRes.resize(xPATH_MAX);
@@ -43,15 +43,15 @@ CxEnvironment::bIsExists(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxEnvironment::sGetVar(
-    const std::tstring &csVarName
+    const std::string_t &csVarName
 )
 {
     /*DEBUG*/// n/a
-    xCHECK_RET(FALSE == bIsExists(csVarName), std::tstring());
+    xCHECK_RET(FALSE == bIsExists(csVarName), std::string_t());
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     ULONG ulStored = 0UL;
@@ -59,17 +59,17 @@ CxEnvironment::sGetVar(
     sRes.resize(xPATH_MAX);
 
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring());
+    /*DEBUG*/xASSERT_RET(0 != ulStored, std::string_t());
 
     sRes.resize(ulStored);
 
     if (sRes.size() < ulStored) {
         ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
-        /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring());
+        /*DEBUG*/xASSERT_RET(0UL != ulStored, std::string_t());
     }
 #elif defined(xOS_ENV_UNIX)
     const char *pcszRes = getenv(csVarName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::string_t());
 
     sRes.assign(pcszRes);
 #endif
@@ -80,8 +80,8 @@ CxEnvironment::sGetVar(
 /*static*/
 BOOL
 CxEnvironment::bSetVar(
-    const std::tstring &csVarName,
-    const std::tstring &csValue
+    const std::string_t &csVarName,
+    const std::string_t &csValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
@@ -101,7 +101,7 @@ CxEnvironment::bSetVar(
 /*static*/
 BOOL
 CxEnvironment::bDeleteVar(
-    const std::tstring &csVarName
+    const std::string_t &csVarName
 )
 {
     /*DEBUG*/// n/a
@@ -125,12 +125,12 @@ CxEnvironment::bDeleteVar(
 /*static*/
 BOOL
 CxEnvironment::bGetValues(
-    std::vector<std::tstring> *pvsValues
+    std::vector<std::string_t> *pvsValues
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsValues, FALSE);
 
-    std::vector<std::tstring> vsArgs;
+    std::vector<std::string_t> vsArgs;
 
 #if defined(xOS_ENV_WIN)
     LPTSTR pszVar = NULL;
@@ -165,14 +165,14 @@ CxEnvironment::bGetValues(
 }
 //--------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxEnvironment::sExpandStrings(
-    const std::tstring &csVar
+    const std::string_t &csVar
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVar.empty(), std::tstring());
+    /*DEBUG*/xASSERT_RET(false == csVar.empty(), std::string_t());
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     ULONG ulStored = 0UL;
@@ -180,18 +180,18 @@ CxEnvironment::sExpandStrings(
     sRes.resize(xPATH_MAX);
 
     ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring());
+    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::string_t());
 
     sRes.resize(ulStored);
 
     if (sRes.size() < ulStored) {
         ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
-        /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring());
+        /*DEBUG*/xASSERT_RET(0UL != ulStored, std::string_t());
     }
 
     sRes.resize(ulStored - sizeof('\0'));
 #elif defined(xOS_ENV_UNIX)
-    const std::tstring csSep = xT("%");
+    const std::string_t csSep = xT("%");
 
     sRes.assign(csVar);
 
@@ -199,25 +199,25 @@ CxEnvironment::sExpandStrings(
         //--------------------------------------------------
         //find from left two first chars '%'
         const size_t cuiStartSepPos = sRes.find(csSep);
-        xCHECK_DO(std::tstring::npos == cuiStartSepPos, break);
+        xCHECK_DO(std::string_t::npos == cuiStartSepPos, break);
 
         const size_t cuiStopSepPos  = sRes.find(csSep, cuiStartSepPos + csSep.size());
-        xCHECK_DO(std::tstring::npos == cuiStopSepPos, break);
+        xCHECK_DO(std::string_t::npos == cuiStopSepPos, break);
 
         //--------------------------------------------------
         //copy %var% to temp string
-        std::tstring sRawEnvVar; // %var%
+        std::string_t sRawEnvVar; // %var%
 
         sRawEnvVar = CxString::sCut(sRes, cuiStartSepPos, cuiStopSepPos + csSep.size());
         xASSERT(false == sRawEnvVar.empty());
 
-        std::tstring sEnvVar;    // var
+        std::string_t sEnvVar;    // var
 
         sEnvVar = CxString::sTrimChars(sRawEnvVar, csSep);
 
         //--------------------------------------------------
         //expand var to temp string
-        std::tstring sExpandedEnvVar;
+        std::string_t sExpandedEnvVar;
 
         sExpandedEnvVar = sGetVar(sEnvVar);
 

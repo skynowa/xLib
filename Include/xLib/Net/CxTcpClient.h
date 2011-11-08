@@ -24,7 +24,7 @@ class CxTcpClient :
         	///< checking for readability
         BOOL        bIsWritable        ();
         	///< checking for writability
-        BOOL        bConnect           (const std::tstring &csIp, USHORT usPort);
+        BOOL        bConnect           (const std::string_t &csIp, USHORT usPort);
         	///< connecting
 
         BOOL        bIoctl             (LONG liCmd, ULONG *pulArgp);
@@ -36,7 +36,7 @@ class CxTcpClient :
         BOOL        bSetTimeout        (LONG liSec,   LONG liMicroSec);
         	///< set timeout
 
-        static BOOL bIsServerAlive     (const std::tstring &csIp, USHORT usPort);
+        static BOOL bIsServerAlive     (const std::string_t &csIp, USHORT usPort);
         	///< is sever socket available
 
     protected:

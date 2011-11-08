@@ -34,8 +34,8 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetHostAddrByName
 	{
-		std::tstring sHostName = xT("msdn.microsoft.com");
-		std::tstring sHostAddr = xT("");
+		std::string_t sHostName = xT("msdn.microsoft.com");
+		std::string_t sHostAddr = xT("");
 
 		m_bRes = CxDnsClient::bGetHostAddrByName(sHostName, &sHostAddr);
 		xTEST_DIFF(FALSE, m_bRes);
@@ -46,8 +46,8 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetHostNameByAddr
 	{
-		std::tstring sHostName = xT("");
-		std::tstring sHostAddr = xT("127.0.0.1");
+		std::string_t sHostName = xT("");
+		std::string_t sHostAddr = xT("127.0.0.1");
 
 		m_bRes = CxDnsClient::bGetHostNameByAddr(sHostAddr, CxSocket::afInet, &sHostName);
 		xTEST_DIFF(FALSE, m_bRes);
@@ -58,7 +58,7 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetLocalHostName
 	{
-		std::tstring sLocalHostName = xT("");
+		std::string_t sLocalHostName = xT("");
 
 		m_bRes = CxDnsClient::bGetLocalHostName(&sLocalHostName);
 		xTEST_DIFF(FALSE, m_bRes);
@@ -70,7 +70,7 @@ CxTest_CxDnsClient::bUnit(
 	//bGetNameInfo
 	{
 		////CxDnsClient::EAddressFamily afFamily  = CxDnsClient::afInet;
-		////std::tstring                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
+		////std::string_t                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
 		////USHORT                      usPort    = 27015;
 
 		////m_bRes = CxDnsClient::bGetNameInfo(afFamily, sHostAddr, usPort);
@@ -82,8 +82,8 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetHostAddrInfo
 	{
-		std::tstring sHostName = xT("www.google.ru");
-		std::tstring sPort     = xT("http");
+		std::string_t sHostName = xT("www.google.ru");
+		std::string_t sPort     = xT("http");
 
 		////ADDRINFOT aiHints  = {0};
 		ADDRINFOT *paiList = NULL;
@@ -127,8 +127,8 @@ CxTest_CxDnsClient::bUnit(
 		};
 
 		for (size_t i = 0; i < xARRAY_SIZE(cszProtocolNames); ++ i) {
-			std::tstring              sName;
-			std::vector<std::tstring> vsAliases;
+			std::string_t              sName;
+			std::vector<std::string_t> vsAliases;
 			SHORT                siNumber = - 1;
 
 			m_bRes = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
@@ -153,8 +153,8 @@ CxTest_CxDnsClient::bUnit(
 		};
 
 		for (size_t i = 0; i < xARRAY_SIZE(ciProtocolNumbers); ++ i) {
-			std::tstring              sName;
-			std::vector<std::tstring> vsAliases;
+			std::string_t              sName;
+			std::vector<std::string_t> vsAliases;
 			SHORT                siNumber = - 1;
 
 			m_bRes = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
@@ -174,12 +174,12 @@ CxTest_CxDnsClient::bUnit(
 	//-------------------------------------
 	//bGetServiceByName
 	{
-		std::tstring              csServiceName  = xT("http");
+		std::string_t              csServiceName  = xT("http");
 		const TCHAR          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
-		std::tstring              sName;
-		std::vector<std::tstring> vsAliases;
+		std::string_t              sName;
+		std::vector<std::string_t> vsAliases;
 		SHORT                siPort;
-		std::tstring              sProtocolName;
+		std::string_t              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 		xTEST_DIFF(FALSE, m_bRes);
@@ -201,10 +201,10 @@ CxTest_CxDnsClient::bUnit(
 	{
 		SHORT                     csiPort  = 20480;
 		const TCHAR               cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
-		std::tstring              sName;
-		std::vector<std::tstring> vsAliases;
+		std::string_t              sName;
+		std::vector<std::string_t> vsAliases;
 		SHORT                     siPort = - 1;
-		std::tstring              sProtocolName;
+		std::string_t              sProtocolName;
 
 		m_bRes = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 		xTEST_DIFF(FALSE, m_bRes);

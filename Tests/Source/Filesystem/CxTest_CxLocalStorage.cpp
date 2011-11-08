@@ -27,18 +27,18 @@ CxTest_CxLocalStorage::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    const std::tstring csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
+    const std::string_t csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
 
-    const std::tstring csKey1     = xT("a");
-    const std::tstring csValue1   = xT("1");
+    const std::string_t csKey1     = xT("a");
+    const std::string_t csValue1   = xT("1");
 
-    const std::tstring csKey2     = xT("b");
-    const std::tstring csValue2   = xT("2");
+    const std::string_t csKey2     = xT("b");
+    const std::string_t csValue2   = xT("2");
 
-    const std::tstring csKey3     = xT("c");
-    const std::tstring csValue3   = xT("3");
+    const std::string_t csKey3     = xT("c");
+    const std::string_t csValue3   = xT("3");
 
-    const std::tstring csContent  = csKey1 + CxConst::xEQUAL + csValue1 + CxConst::xNL +
+    const std::string_t csContent  = csKey1 + CxConst::xEQUAL + csValue1 + CxConst::xNL +
                                     csKey2 + CxConst::xEQUAL + csValue2 + CxConst::xNL +
                                     csKey3 + CxConst::xEQUAL + csValue3 + CxConst::xNL;
 
@@ -99,13 +99,13 @@ CxTest_CxLocalStorage::bUnit(
         m_bRes = iniIni.bFlush();
         xTEST_DIFF(FALSE, m_bRes);
 
-        m_sRes = iniIni.sKeyReadString(csKey1, std::tstring());
+        m_sRes = iniIni.sKeyReadString(csKey1, std::string_t());
         xTEST_EQ(csValue1, m_sRes);
 
-        m_sRes = iniIni.sKeyReadString(csKey2, std::tstring());
+        m_sRes = iniIni.sKeyReadString(csKey2, std::string_t());
         xTEST_EQ(csValue2, m_sRes);
 
-        m_sRes = iniIni.sKeyReadString(csKey3, std::tstring());
+        m_sRes = iniIni.sKeyReadString(csKey3, std::string_t());
         xTEST_EQ(csValue3, m_sRes);
 
         iniIni.cmsGet().clear();
@@ -130,14 +130,14 @@ CxTest_CxLocalStorage::bUnit(
 
         //success
         {
-            std::vector<std::tstring> vsPairs;
+            std::vector<std::string_t> vsPairs;
 
             vsPairs.push_back(csKey1 + CxConst::xEQUAL + csValue1);
             vsPairs.push_back(csKey2 + CxConst::xEQUAL + csValue2);
             vsPairs.push_back(csKey3 + CxConst::xEQUAL + csValue3);
 
             for (size_t i = 0; i < vsPairs.size(); ++ i) {
-                std::vector<std::tstring> vsPair;
+                std::vector<std::string_t> vsPair;
 
                 m_bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
                 xTEST_DIFF(FALSE, m_bRes);
@@ -150,7 +150,7 @@ CxTest_CxLocalStorage::bUnit(
 
         //fail
         {
-            std::vector<std::tstring> vsPairs;
+            std::vector<std::string_t> vsPairs;
 
             vsPairs.push_back(xT("not_existance_key"));
             vsPairs.push_back(xT("s<erfsenot_existance_key56eb54"));
@@ -159,7 +159,7 @@ CxTest_CxLocalStorage::bUnit(
             vsPairs.push_back(xT("not_exi5g675467stance_key"));
 
             for (size_t i = 0; i < vsPairs.size(); ++ i) {
-                std::vector<std::tstring> vsPair;
+                std::vector<std::string_t> vsPair;
 
                 m_bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
                 xTEST_DIFF(FALSE, m_bRes);
@@ -181,23 +181,23 @@ CxTest_CxLocalStorage::bUnit(
     {
         //success
         {
-            const std::tstring csStr = csValue1;
+            const std::string_t csStr = csValue1;
 
             m_bRes = iniIni.bKeyWriteString(csKey1, csStr);
             xTEST_DIFF(FALSE, m_bRes);
 
-            m_sRes = iniIni.sKeyReadString(csKey1, std::tstring());
+            m_sRes = iniIni.sKeyReadString(csKey1, std::string_t());
             xTEST_EQ(csStr, m_sRes);
         }
 
         //fail
         {
-            const std::tstring csStr = xT("sssssssssssss");
+            const std::string_t csStr = xT("sssssssssssss");
 
             m_bRes = iniIni.bKeyWriteString(csKey1, csStr);
             xTEST_DIFF(FALSE, m_bRes);
 
-            m_sRes = iniIni.sKeyReadString(csKey1, std::tstring());
+            m_sRes = iniIni.sKeyReadString(csKey1, std::string_t());
             xTEST_EQ(csStr, m_sRes);
         }
     }
@@ -266,15 +266,15 @@ CxTest_CxLocalStorage::bUnit(
         xTEST_DIFF(FALSE, iniIni.bKeyIsExists(csKey3));
 
         m_sRes = iniIni.sKeyReadString(csKey3, xT("fasrfsefrtg"));
-        xTEST_EQ(std::tstring(), m_sRes);
+        xTEST_EQ(std::string_t(), m_sRes);
     }
 
     //--------------------------------------------------
     //bKeyDelete
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::tstring csKey   = xT("Key");
-        const std::tstring csValue = xT("");
+        const std::string_t csKey   = xT("Key");
+        const std::string_t csValue = xT("");
 
         m_bRes = iniIni.bKeyWriteString(csKey, csValue);
         xTEST_DIFF(FALSE, m_bRes);

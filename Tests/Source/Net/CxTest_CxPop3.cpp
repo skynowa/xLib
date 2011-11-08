@@ -30,30 +30,30 @@ CxTest_CxPop3::bUnit(
 #if defined(xOS_ENV_WIN)
     //-------------------------------------
     //
-    //const std::tstring csUser     = xT("Sergey");		//"test_1";
-    //const std::tstring csPass     = xT("12345");			//"test_1";
-    //const std::tstring csServer   = xT("192.168.1.47");	//"127.0.0.1";
+    //const std::string_t csUser     = xT("Sergey");		//"test_1";
+    //const std::string_t csPass     = xT("12345");			//"test_1";
+    //const std::string_t csServer   = xT("192.168.1.47");	//"127.0.0.1";
     //const USHORT  cusPort    = 110;
 
     //-------------------------------------
     //CourierMS.exe
-    //const std::tstring csUser     = xT("test_1@serg.com");
-    //const std::tstring csPass     = xT("test_1");
-    //const std::tstring csServer   = xT("127.0.0.1");
+    //const std::string_t csUser     = xT("test_1@serg.com");
+    //const std::string_t csPass     = xT("test_1");
+    //const std::string_t csServer   = xT("127.0.0.1");
     //const USHORT  cusPort    = 110;
 
     //-------------------------------------
     //IPNET
-    const std::tstring  csUser     = xT("domen");
-    const std::tstring  csPass     = xT("control6");
-    const std::tstring  csServer   = xT("mail.ipnet.kiev.ua");
+    const std::string_t  csUser     = xT("domen");
+    const std::string_t  csPass     = xT("control6");
+    const std::string_t  csServer   = xT("mail.ipnet.kiev.ua");
     const USHORT   cusPort    = 110;
 
     //-------------------------------------
     //hMailServer
-    ////const std::tstring  csUser     = xT("test_2@serg.com");
-    ////const std::tstring  csPass     = xT("test_2");
-    ////const std::tstring  csServer   = xT("127.0.0.1");
+    ////const std::string_t  csUser     = xT("test_2@serg.com");
+    ////const std::string_t  csPass     = xT("test_2");
+    ////const std::string_t  csServer   = xT("127.0.0.1");
     ////const USHORT   cusPort    = 110;
 
 
@@ -65,8 +65,8 @@ CxTest_CxPop3::bUnit(
     std::vector<ULONG> veculList;
     ////ULONG              ulIndex    = 1;
     INT                iNum       = 1;
-    const std::tstring      csDirPath  = xT("C:/Temp2");
-    const std::tstring      csFileName = xT("MailFileName");
+    const std::string_t      csDirPath  = xT("C:/Temp2");
+    const std::string_t      csFileName = xT("MailFileName");
 
 
     CxPop3 objPop3;
@@ -122,7 +122,7 @@ CxTest_CxPop3::bUnit(
         //////-------------------------------------
         //////CxMimeMessage
         ////CxMimeMessage objMessage;
-        ////std::tstring       sRawHeader;
+        ////std::string_t       sRawHeader;
 
         //////-------------------------------------
         //////CxMimeHeader

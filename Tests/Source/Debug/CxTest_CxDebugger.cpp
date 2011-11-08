@@ -69,7 +69,7 @@ CxTest_CxDebugger::bUnit(
     //bSetLogPath, sGetLogPath
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::tstring csFilePath = xT("");
+        const std::string_t csFilePath = xT("");
 
         m_sRes = CxDebugger::sGetLogPath();
         xTEST_EQ(true, m_sRes.empty());
@@ -148,8 +148,8 @@ CxTest_CxDebugger::bUnit(
     //xASSERT
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::tstring sVar1 = xT("xxx");
-        std::tstring sVar2 = xT("xxx");
+        std::string_t sVar1 = xT("xxx");
+        std::string_t sVar2 = xT("xxx");
         xASSERT(sVar1 == sVar2);
     }
 
@@ -157,8 +157,8 @@ CxTest_CxDebugger::bUnit(
     //xASSERT_RET
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::tstring sVar1 = xT("xxx");
-        std::tstring sVar2 = xT("xxx");
+        std::string_t sVar1 = xT("xxx");
+        std::string_t sVar2 = xT("xxx");
         xASSERT_RET(sVar1 == sVar2, FALSE);
     }
 
@@ -166,8 +166,8 @@ CxTest_CxDebugger::bUnit(
     //xASSERT_DO
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::tstring sVar1 = xT("xxx");
-        std::tstring sVar2 = xT("xxx");
+        std::string_t sVar1 = xT("xxx");
+        std::string_t sVar2 = xT("xxx");
         xASSERT_DO(sVar1 == sVar2, sVar1.clear());
     }
 
@@ -175,8 +175,8 @@ CxTest_CxDebugger::bUnit(
     //xASSERT_MSG
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::tstring sVar1 = xT("xxx");
-        std::tstring sVar2 = xT("xxx");
+        std::string_t sVar1 = xT("xxx");
+        std::string_t sVar2 = xT("xxx");
         xASSERT_MSG(sVar1 == sVar2, xT("Simple message"));
     }
 
@@ -184,8 +184,8 @@ CxTest_CxDebugger::bUnit(
     //xASSERT_MSG_RET
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::tstring sVar1 = xT("xxx");
-        std::tstring sVar2 = xT("xxx");
+        std::string_t sVar1 = xT("xxx");
+        std::string_t sVar2 = xT("xxx");
         xASSERT_MSG_RET(sVar1 == sVar2, xT("Simple message"), FALSE);
     }
 
@@ -193,8 +193,8 @@ CxTest_CxDebugger::bUnit(
     //xASSERT_MSG_DO
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::tstring sVar1 = xT("xxx");
-        std::tstring sVar2 = xT("xxx");
+        std::string_t sVar1 = xT("xxx");
+        std::string_t sVar2 = xT("xxx");
         xASSERT_MSG_DO(sVar1 == sVar2, xT("Simple message"), sVar1.swap(sVar2));
     }
 
@@ -257,55 +257,55 @@ CxTest_CxDebugger::bUnit(
     //--------------------------------------------------
     //like xTEST_EQ macroses
 
-    //with std::tstring
+    //with std::string_t
     {
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    std::tstring sVar1 = xT("aaa");
-		    std::tstring sVar2 = xT("aaa");
+		    std::string_t sVar1 = xT("aaa");
+		    std::string_t sVar2 = xT("aaa");
 		    xTEST_EQ(sVar1, sVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    std::tstring sVar1 = xT("bbb");
-		    std::tstring sVar2 = xT("BBB");
+		    std::string_t sVar1 = xT("bbb");
+		    std::string_t sVar2 = xT("BBB");
 		    xTEST_DIFF(sVar1, sVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    std::tstring sVar1 = xT("aaa");
-		    std::tstring sVar2 = xT("ccc");
+		    std::string_t sVar1 = xT("aaa");
+		    std::string_t sVar2 = xT("ccc");
 		    xTEST_LESS(sVar1, sVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    std::tstring sVar1 = xT("bbb");
-		    std::tstring sVar2 = xT("aaa");
+		    std::string_t sVar1 = xT("bbb");
+		    std::string_t sVar2 = xT("aaa");
 		    xTEST_GREATER(sVar1, sVar2);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    std::tstring sVar1 = xT("aaa");
-		    std::tstring sVar2 = xT("aaa");
+		    std::string_t sVar1 = xT("aaa");
+		    std::string_t sVar2 = xT("aaa");
 		    xTEST_LESS_EQ(sVar1, sVar2);
 
-            std::tstring sVar3 = xT("aaa");
-		    std::tstring sVar4 = xT("ggg");
+            std::string_t sVar3 = xT("aaa");
+		    std::string_t sVar4 = xT("ggg");
 		    xTEST_LESS_EQ(sVar3, sVar4);
 	    }
 
         xTEST_BLOCK(cullBlockLoops)
 	    {
-		    std::tstring sVar1 = xT("aaa");
-		    std::tstring sVar2 = xT("aaa");
+		    std::string_t sVar1 = xT("aaa");
+		    std::string_t sVar2 = xT("aaa");
 		    xTEST_GREATER_EQ(sVar1, sVar2);
 
-            std::tstring sVar3 = xT("hhhh");
-		    std::tstring sVar4 = xT("aaa");
+            std::string_t sVar3 = xT("hhhh");
+		    std::string_t sVar4 = xT("aaa");
 		    xTEST_GREATER_EQ(sVar3, sVar4);
 	    }
     }

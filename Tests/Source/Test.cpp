@@ -142,7 +142,7 @@ xTMAIN(
     ULONGLONG ullBlockLoops = 1UL;
 
     {
-        std::vector<std::tstring> vsArgs;
+        std::vector<std::string_t> vsArgs;
 
         BOOL bRes = CxCommandLine::bGetArgs(&vsArgs);
         xTEST_DIFF(FALSE, bRes);

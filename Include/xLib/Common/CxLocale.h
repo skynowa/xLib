@@ -14,9 +14,9 @@ class CxLocale :
     /// locale
 {
     public:
-       static std::tstring sGetCurrent();
+       static std::string_t sGetCurrent();
        	   ///< get current
-       static BOOL         bSetCurrent(const std::tstring &csLocale);
+       static BOOL         bSetCurrent(const std::string_t &csLocale);
    	   	   ///< set current
        static BOOL         bSetDefault();
    	   	   ///< set default

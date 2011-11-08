@@ -34,7 +34,7 @@ class CxEncrypt :
             ///< finishes a multiple-part encryption operation
 
         //Utils
-        BOOL                 bMakeFile(const std::tstring &csInFilePath, const std::tstring &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        BOOL                 bMakeFile(const std::string_t &csInFilePath, const std::string_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
             ///< make file
 
     private:

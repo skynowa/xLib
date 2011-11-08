@@ -106,7 +106,7 @@ class CxThread :
             ///< set priority (under Linux must use admin privilege)
         EPriority           tpGetPriority         () const;
             ///< get priotity
-        std::tstring        sGetPriorityString    () const;
+        std::string_t        sGetPriorityString    () const;
             ///< get priority as string
         BOOL                bPriorityUp           () const;
             ///< increase priority on one level
@@ -136,7 +136,7 @@ class CxThread :
             ///< is current
         ULONG               ulGetExitStatus       () const;
             ///< get termination status
-        BOOL                bSetDebugName         (const std::tstring &csName) const;
+        BOOL                bSetDebugName         (const std::string_t &csName) const;
             ///< set name your threads in the debugger thread list
 
         //static

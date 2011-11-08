@@ -20,13 +20,13 @@ class CxCOMPort :
     /// COM port
 {
     public:
-                     CxCOMPort       (const std::tstring &sPortNum/* = xT("COM1")*/);
+                     CxCOMPort       (const std::string_t &sPortNum/* = xT("COM1")*/);
         virtual     ~CxCOMPort       ();
 
         BOOL         bOpen           ();
         BOOL         bConfig         ();
         BOOL         bClearData      ();
-        std::tstring bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
+        std::string_t bReadData       (LPTSTR pszBuff, ULONG ulNumOfBytesToRead);
         INT          iReadDataWaiting();
         BOOL         bWriteData      (LPCTSTR pcszBuff, ULONG ulNumOfBytesToWrite);
         BOOL         bClose          ();
@@ -40,7 +40,7 @@ class CxCOMPort :
     private:
         BOOL         _m_bRes;
         CxFileHandle _m_hComPort;
-        std::tstring _m_sPortNum;
+        std::string_t _m_sPortNum;
 
         COMMTIMEOUTS CommTimeOuts;
         DCB          dcb;

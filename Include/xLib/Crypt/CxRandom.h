@@ -48,7 +48,7 @@ class CxRandom :
             ///< generates a random number between specified min/max boundaries
         static LONG         liGetIntEx   (const LONG cliMin, const LONG cliMax);
             ///< generates a random number between specified min/max boundaries using a vector to shuffle
-        static std::tstring sGetString   (const size_t cuiSize);
+        static std::string_t sGetString   (const size_t cuiSize);
             ///< get random string
 
     protected:

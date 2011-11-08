@@ -15,14 +15,14 @@
 
 //--------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxUtils::sErrorStr(
     const CK_RV culCode
 )
 {
     /*DEBUG*/// culCode - n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     switch (culCode) {
         case CKR_OK:                               sRes.assign(xT("CKR_OK"));

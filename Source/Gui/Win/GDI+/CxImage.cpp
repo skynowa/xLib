@@ -32,7 +32,7 @@ CxImage::~CxImage() {
 //---------------------------------------------------------------------------
 BOOL
 CxImage::bLoad(
-    const std::tstring &csFilePath
+    const std::string_t &csFilePath
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
@@ -71,7 +71,7 @@ CxImage::bLoad(
 //---------------------------------------------------------------------------
 BOOL
 CxImage::bSave(
-    const std::tstring &csFilePath,
+    const std::string_t &csFilePath,
     EEncoderType        etType
 )
 {
@@ -79,7 +79,7 @@ CxImage::bSave(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// etType - n/a
 
-    std::tstring sEncoderType;
+    std::string_t sEncoderType;
     switch (etType) {
         case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
@@ -115,7 +115,7 @@ CxImage::bSave(
     /*DEBUG*/xASSERT_RET(NULL != pisStream,    FALSE);
     /*DEBUG*/// etType - n/a
 
-    std::tstring sEncoderType;
+    std::string_t sEncoderType;
     switch (etType) {
         case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
@@ -258,14 +258,14 @@ CxImage::stGetLastStatus() {
     return _m_pimgImage->GetLastStatus();
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxImage::sGetLastStatus(
     Gdiplus::Status stCode
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     switch (stCode) {
         case Gdiplus::Ok:                        { sRes = xT("Ok");                         }    break;
@@ -306,7 +306,7 @@ CxImage::sGetLastStatus(
 //---------------------------------------------------------------------------
 BOOL
 CxImage::_bGetEncoderClsid(
-    const std::tstring &csFormat,
+    const std::string_t &csFormat,
     CLSID              *pcidClsid
 )
 {

@@ -16,37 +16,37 @@ class CxCookiePv1 :
     public:
         explicit             CxCookiePv1 ();
         	///< constructor
-                             CxCookiePv1 (const std::tstring &csRawCookie);
+                             CxCookiePv1 (const std::string_t &csRawCookie);
             ///< constructor
         virtual             ~CxCookiePv1 ();
         	///< destructor
 
-        BOOL                 bInit       (const std::tstring &csRawCookie);
+        BOOL                 bInit       (const std::string_t &csRawCookie);
         	///< parsing raw cookie string pv0
 
-        const std::tstring & sGetName    () const;
+        const std::string_t & sGetName    () const;
     		///< get name
-        BOOL                 bSetName    (const std::tstring &csName);
+        BOOL                 bSetName    (const std::string_t &csName);
     		///< set name
 
-        const std::tstring & sGetValue   () const;
+        const std::string_t & sGetValue   () const;
     		///< get value
-        BOOL                 bSetValue   (const std::tstring &csValue);
+        BOOL                 bSetValue   (const std::string_t &csValue);
     		///< set value
 
-        const std::tstring & sGetComment () const;
+        const std::string_t & sGetComment () const;
     		///< get comment
-        BOOL                 bSetComment (const std::tstring &csComment);
+        BOOL                 bSetComment (const std::string_t &csComment);
     		///< set comment
 
-        const std::tstring & sGetDomain  () const;
+        const std::string_t & sGetDomain  () const;
     		///< get domain
-        BOOL                 bSetDomain  (const std::tstring &csDomain);
+        BOOL                 bSetDomain  (const std::string_t &csDomain);
     		///< set domain
 
-        const std::tstring & sGetPath    () const;
+        const std::string_t & sGetPath    () const;
     		///< get path
-        BOOL                 bSetPath    (const std::tstring &csPath);
+        BOOL                 bSetPath    (const std::string_t &csPath);
     		///< set path
 
         LONGLONG             liGetMaxAge () const;
@@ -64,19 +64,19 @@ class CxCookiePv1 :
         BOOL                 bSetHttpOnly(BOOL bFlag);
     		///< set http only
 
-        std::tstring         sToString   () const;
+        std::string_t         sToString   () const;
     		///< convert to string
-        std::tstring         sGetDump    () const;
+        std::string_t         sGetDump    () const;
     		///< get dump
         BOOL                 bClear      ();
     		///< clear
 
     private:
-        std::tstring         _m_sName;		///< name
-        std::tstring         _m_sValue;		///< value
-        std::tstring         _m_sComment;	///< comment
-        std::tstring         _m_sDomain;	///< domain
-        std::tstring         _m_sPath;		///< path
+        std::string_t         _m_sName;		///< name
+        std::string_t         _m_sValue;		///< value
+        std::string_t         _m_sComment;	///< comment
+        std::string_t         _m_sDomain;	///< domain
+        std::string_t         _m_sPath;		///< path
         LONGLONG             _m_liMaxAge;   ///< max age (in seconds)
         BOOL                 _m_bSecure;	///< secure
         BOOL                 _m_bHttpOnly;	///< http only

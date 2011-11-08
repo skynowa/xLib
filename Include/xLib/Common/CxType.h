@@ -15,11 +15,11 @@ class CxType :
 {
 	public:
         template<class T>
-        static std::tstring sGetName   (const T &cObjectT);
+        static std::string_t sGetName   (const T &cObjectT);
         	///< get name
 
         template<class T>
-        static std::tstring sGetRawName(const T &cObjectT);
+        static std::string_t sGetRawName(const T &cObjectT);
     		///< get raw name
 
         template<class T1, class T2>

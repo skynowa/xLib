@@ -22,75 +22,75 @@ class CxPath :
             seLib	///< static library
         };
 
-        static std::tstring sGetExe         ();
+        static std::string_t sGetExe         ();
         	///< get full path to exe
-        static std::tstring sGetExeDir      ();
+        static std::string_t sGetExeDir      ();
         	///< get dir path to exe
-        static std::tstring sGetDll         ();
+        static std::string_t sGetDll         ();
         	///< get full path to dll
 
     #if defined(xOS_ENV_WIN)
-        static std::tstring sGetDrive       (const std::tstring &csFilePath);
+        static std::string_t sGetDrive       (const std::string_t &csFilePath);
         	///< get drive
     #endif
-        static std::tstring sGetDir         (const std::tstring &csFilePath);
+        static std::string_t sGetDir         (const std::string_t &csFilePath);
         	///< get dir path, without a trailing backslash '\'
-        static std::tstring sGetDirName     (const std::tstring &csFilePath);
+        static std::string_t sGetDirName     (const std::string_t &csFilePath);
         	///< get dir name
-        static std::tstring sGetFullName    (const std::tstring &csFilePath);
+        static std::string_t sGetFullName    (const std::string_t &csFilePath);
         	///< get name.extension
-        static std::tstring sGetName        (const std::tstring &csFilePath);
+        static std::string_t sGetName        (const std::string_t &csFilePath);
         	///< get name without extension
-        static std::tstring sGetExt         (const std::tstring &csFilePath);
+        static std::string_t sGetExt         (const std::string_t &csFilePath);
         	///< get extension
-        static std::tstring sGetStandartExt (const EStandartExt cseFileExt);
+        static std::string_t sGetStandartExt (const EStandartExt cseFileExt);
         	///< get standart extension
 
     #if defined(xOS_ENV_WIN)
-        static std::tstring sSetDrive       (const std::tstring &csFilePath, const std::tstring &csDrivePath);
+        static std::string_t sSetDrive       (const std::string_t &csFilePath, const std::string_t &csDrivePath);
         	///< set drive
     #endif
-        static std::tstring sSetDir         (const std::tstring &csFilePath, const std::tstring &csDirPath);
+        static std::string_t sSetDir         (const std::string_t &csFilePath, const std::string_t &csDirPath);
         	///< set dir
-        static std::tstring sSetFullName    (const std::tstring &csFilePath, const std::tstring &csFullName);
+        static std::string_t sSetFullName    (const std::string_t &csFilePath, const std::string_t &csFullName);
         	///< set full name
-        static std::tstring sSetName        (const std::tstring &csFilePath, const std::tstring &csName);
+        static std::string_t sSetName        (const std::string_t &csFilePath, const std::string_t &csName);
         	///< set name
-        static std::tstring sSetExt         (const std::tstring &csFilePath, const std::tstring &csExt);
+        static std::string_t sSetExt         (const std::string_t &csFilePath, const std::string_t &csExt);
         	///< set extension
 
-        static std::tstring sRemoveExt      (const std::tstring &csFilePath);
+        static std::string_t sRemoveExt      (const std::string_t &csFilePath);
         	///< remove extention
-        static std::tstring sRemoveExtIf    (const std::tstring &csFilePath, const std::tstring &csExt);
+        static std::string_t sRemoveExtIf    (const std::string_t &csFilePath, const std::string_t &csExt);
         	///< remove extension if it equal some string
 
         //normalize
-        static BOOL         bIsValid        (const std::tstring &csFilePath);
+        static BOOL         bIsValid        (const std::string_t &csFilePath);
         	///< path validation
-        static BOOL         bIsNameValid    (const std::tstring &csFilePath);
+        static BOOL         bIsNameValid    (const std::string_t &csFilePath);
         	///< name validation
-        static BOOL         bIsAbsolute     (const std::tstring &csFilePath);
+        static BOOL         bIsAbsolute     (const std::string_t &csFilePath);
         	///< is absolute
 
-        static std::tstring sToWin          (const std::tstring &csFilePath, const BOOL cbIsSlashAtEnd);
+        static std::string_t sToWin          (const std::string_t &csFilePath, const BOOL cbIsSlashAtEnd);
         	///< convert slashes to Windows style
-        static std::tstring sToNix          (const std::tstring &csFilePath, const BOOL cbIsSlashAtEnd);
+        static std::string_t sToNix          (const std::string_t &csFilePath, const BOOL cbIsSlashAtEnd);
         	///< convert slashes to Nix style
-        static std::tstring sToCurrentOs    (const std::tstring &csFilePath, const BOOL cbIsSlashAtEnd);
+        static std::string_t sToCurrentOs    (const std::string_t &csFilePath, const BOOL cbIsSlashAtEnd);
         	///< convert slashes to current OS style
-        static std::tstring sGetAbsolute    (const std::tstring &csFilePath);
+        static std::string_t sGetAbsolute    (const std::string_t &csFilePath);
         	///< get absolute path
 
-        static std::tstring sMinimizeName   (const std::tstring &csFileName, const size_t cuiMaxSize);
+        static std::string_t sMinimizeName   (const std::string_t &csFileName, const size_t cuiMaxSize);
         	///< minimize name
-        static std::tstring sMinimize       (const std::tstring &csFilePath, const size_t cuiMaxSize);
+        static std::string_t sMinimize       (const std::string_t &csFilePath, const size_t cuiMaxSize);
         	///< minimize path
-        static std::tstring sSetValidName   (const std::tstring &csFileName);
+        static std::string_t sSetValidName   (const std::string_t &csFileName);
         	///< set name as valid
 
-        static std::tstring sSlashAppend    (const std::tstring &csDirPath);
+        static std::string_t sSlashAppend    (const std::string_t &csDirPath);
         	///< append slash
-        static std::tstring sSlashRemove    (const std::tstring &csDirPath);
+        static std::string_t sSlashRemove    (const std::string_t &csDirPath);
         	///< remove slash
 
         static size_t       uiGetMaxSize    ();
@@ -118,7 +118,7 @@ _MAX_PATH
 
 
 
-//static std::tstring sGetRelativePath     (const std::tstring &csFilePath);
+//static std::string_t sGetRelativePath     (const std::string_t &csFilePath);
 
 /*ExpandUNCFileName*/
 /*ExtractShortPathName*/

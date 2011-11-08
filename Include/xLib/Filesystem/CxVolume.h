@@ -14,13 +14,13 @@ class CxVolume :
     /// volume
 {
     public:
-        static BOOL         bIsReady                         (const std::tstring &csVolumePath);
+        static BOOL         bIsReady                         (const std::string_t &csVolumePath);
         	///< is ready
-        static BOOL         bIsEmpty                         (const std::tstring &csVolumePath);
+        static BOOL         bIsEmpty                         (const std::string_t &csVolumePath);
         	///< is empty
-        static BOOL         bGetFreeSpace                    (const std::tstring &csDirPath, ULONGLONG *pullAvailable, ULONGLONG *pullTotal, ULONGLONG *pullFree);
+        static BOOL         bGetFreeSpace                    (const std::string_t &csDirPath, ULONGLONG *pullAvailable, ULONGLONG *pullTotal, ULONGLONG *pullFree);
         	///< get free space
-        static BOOL         bMount                           (const std::tstring &csSourcePath, const std::tstring &csDestPath);
+        static BOOL         bMount                           (const std::string_t &csSourcePath, const std::string_t &csDestPath);
         	///< mount
 
     #if defined(xOS_ENV_WIN)
@@ -36,30 +36,30 @@ class CxVolume :
             dtRam       = DRIVE_RAMDISK
         };
 
-        static BOOL         bDefineDosDevice                 (ULONG ulFlags, const std::tstring &csDeviceName, const std::tstring &csTargetPath);
-        static BOOL         bDeleteVolumeMountPoint          (const std::tstring &csVolumeMountPoint);
-        static HANDLE       hFindFirstVolume                 (std::tstring *psVolumeName);
-        static HANDLE       hFindFirstVolumeMountPoint       (const std::tstring &csRootPathName, std::tstring *psVolumeMountPoint);
-        static std::tstring sFindNextVolume                  (HANDLE hFindVolume);
-        static BOOL         bFindNextVolumeMountPoint        (HANDLE hFindVolumeMountPoint, std::tstring *psVolumeMountPoint);
+        static BOOL         bDefineDosDevice                 (ULONG ulFlags, const std::string_t &csDeviceName, const std::string_t &csTargetPath);
+        static BOOL         bDeleteVolumeMountPoint          (const std::string_t &csVolumeMountPoint);
+        static HANDLE       hFindFirstVolume                 (std::string_t *psVolumeName);
+        static HANDLE       hFindFirstVolumeMountPoint       (const std::string_t &csRootPathName, std::string_t *psVolumeMountPoint);
+        static std::string_t sFindNextVolume                  (HANDLE hFindVolume);
+        static BOOL         bFindNextVolumeMountPoint        (HANDLE hFindVolumeMountPoint, std::string_t *psVolumeMountPoint);
         static BOOL         bFindVolumeClose                 (HANDLE hFindVolume);
         static BOOL         bFindVolumeMountPointClose       (HANDLE hFindVolumeMountPoint);
-        static EType        dtGetType                        (const std::tstring &csDrivePath);
-        static BOOL         bGetLogicalDrives                (std::vector<std::tstring> *pvsDrives);
-        static BOOL         bGetLogicalDrives                (std::vector<std::tstring> *pvsDrives, const EType cdtDriveType);
-        static std::tstring sGetLogicalStrings               ();
-        static BOOL         bGetInfo                         (const std::tstring &csDrivePath,
-                                                              std::tstring       *psVolumeName,
+        static EType        dtGetType                        (const std::string_t &csDrivePath);
+        static BOOL         bGetLogicalDrives                (std::vector<std::string_t> *pvsDrives);
+        static BOOL         bGetLogicalDrives                (std::vector<std::string_t> *pvsDrives, const EType cdtDriveType);
+        static std::string_t sGetLogicalStrings               ();
+        static BOOL         bGetInfo                         (const std::string_t &csDrivePath,
+                                                              std::string_t       *psVolumeName,
                                                               ULONG              *pulVolumeSerialNumber,
                                                               ULONG              *pulMaximumComponentLength,
                                                               ULONG              *pulFileSystemFlags,
-                                                              std::tstring       *psFileSystemName);
-        static std::tstring sGetVolumeNameForVolumeMountPoint(const std::tstring &csVolumeMountPoint);
-        static std::tstring sGetVolumePathName               (const std::tstring &csFileName);
-        static std::tstring sGetVolumePathNamesForVolumeName (const std::tstring &csVolumeName);
-        static std::tstring sQueryDosDevice                  (const std::tstring &csDeviceName);
-        static BOOL         bSetVolumeLabel                  (const std::tstring &csRootPathName, const std::tstring &cslpVolumeName);
-        static BOOL         bSetVolumeMountPoint             (const std::tstring &csVolumeMountPoint, const std::tstring &csVolumeName);
+                                                              std::string_t       *psFileSystemName);
+        static std::string_t sGetVolumeNameForVolumeMountPoint(const std::string_t &csVolumeMountPoint);
+        static std::string_t sGetVolumePathName               (const std::string_t &csFileName);
+        static std::string_t sGetVolumePathNamesForVolumeName (const std::string_t &csVolumeName);
+        static std::string_t sQueryDosDevice                  (const std::string_t &csDeviceName);
+        static BOOL         bSetVolumeLabel                  (const std::string_t &csRootPathName, const std::string_t &cslpVolumeName);
+        static BOOL         bSetVolumeMountPoint             (const std::string_t &csVolumeMountPoint, const std::string_t &csVolumeName);
         static BOOL         bIsValidDriveLetter              (TCHAR szDriveLetter);
     #elif defined(xOS_ENV_UNIX)
 

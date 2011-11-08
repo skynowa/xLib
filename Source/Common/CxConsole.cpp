@@ -52,9 +52,9 @@ CxConsole::~CxConsole() {
 }
 //---------------------------------------------------------------------------
 //NOTE: http://lifeforce4.wordpress.com/, http://lifeforce4.wordpress.com/
-std::tstring
+std::string_t
 CxConsole::bSetTextColor(
-    const std::tstring &csText,
+    const std::string_t &csText,
     const EForeground   cfgForeground,
     const BOOL          cbIsBold,
     const BOOL          cbIsUnderline,
@@ -64,7 +64,7 @@ CxConsole::bSetTextColor(
 {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               FALSE);
@@ -72,7 +72,7 @@ CxConsole::bSetTextColor(
     /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), FALSE);
 
     BOOL bRes = ::SetConsoleTextAttribute(_m_hStdOut, cfgForeground);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string_t());
 #elif defined(xOS_ENV_UNIX)
     xCHECK_DO(TRUE == cbIsUnderline, sRes += CxString::sFormat(xT("\033[%im"), atUnderscore));
     xCHECK_DO(TRUE == cbIsBlink,     sRes += CxString::sFormat(xT("\033[%im"), atBlink)     );
@@ -87,22 +87,22 @@ CxConsole::bSetTextColor(
     return sRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxConsole::sRead() {
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::tstring());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  std::tstring());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::string_t());
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  std::string_t());
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), std::string_t());
 
     ULONG       ulRead                  = 0UL;
     const ULONG culBuffSize             = 1024UL * 4UL;
     TCHAR       szBuff[culBuffSize + 1] = {0};
 
     BOOL bRes = ::ReadConsole(_m_hStdIn, &szBuff[0], culBuffSize, &ulRead, NULL);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes,   std::tstring());
-    /*DEBUG*/xASSERT_RET(NULL  != szBuff, std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes,   std::string_t());
+    /*DEBUG*/xASSERT_RET(NULL  != szBuff, std::string_t());
 
     sRes.assign(szBuff, ulRead - CxConst::xCRNL.size());
 #elif defined(xOS_ENV_UNIX)
@@ -114,7 +114,7 @@ CxConsole::sRead() {
 //---------------------------------------------------------------------------
 BOOL
 CxConsole::bWrite(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
 #if defined(xOS_ENV_WIN)
@@ -138,7 +138,7 @@ CxConsole::bWrite(
 //---------------------------------------------------------------------------
 BOOL
 CxConsole::bWriteLine(
-    const std::tstring &csStr /* = xT("")*/
+    const std::string_t &csStr /* = xT("")*/
 )
 {
 #if defined(xOS_ENV_WIN)
@@ -156,7 +156,7 @@ CxConsole::bWriteLine(
 //---------------------------------------------------------------------------
 BOOL
 CxConsole::bWriteErrLine(
-    const std::tstring &csStr
+    const std::string_t &csStr
 )
 {
 #if defined(xOS_ENV_WIN)
@@ -176,8 +176,8 @@ CxConsole::bWriteErrLine(
 //---------------------------------------------------------------------------
 CxConsole::EModalResult
 CxConsole::iMsgBox(
-    const std::tstring &csText,
-    const std::tstring &csTitle,
+    const std::string_t &csText,
+    const std::string_t &csTitle,
     const UINT          cuiType
 )
 {
@@ -213,9 +213,9 @@ CxConsole::iMsgBox(
 //---------------------------------------------------------------------------
 BOOL
 CxConsole::bPrompt(
-    const std::tstring &csPrompt,
+    const std::string_t &csPrompt,
     const BOOL          cbIsVisible,
-    std::tstring       *psAnswer
+    std::string_t       *psAnswer
 )
 {
     /*DEBUG*/xASSERT_RET(false == csPrompt.empty(), FALSE);
@@ -353,26 +353,26 @@ CxConsole::bEnableClose(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxConsole::sGetTitle() {
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     /*DEBUG*///_m_hWnd - n/a
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  std::tstring());
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hStdIn.bIsValid(),  std::string_t());
+    /*DEBUG*/xASSERT_RET(FALSE != _m_hStdOut.bIsValid(), std::string_t());
 
     const ULONG culBuffSize             = 1024UL;
     TCHAR       szBuff[culBuffSize + 1] = {0};
     ULONG       ulTitleSize             = 0UL;
 
     ulTitleSize = ::GetConsoleTitle(szBuff, culBuffSize);
-    /*DEBUG*/xASSERT_RET(0 < ulTitleSize, std::tstring());
+    /*DEBUG*/xASSERT_RET(0 < ulTitleSize, std::string_t());
 
     sRes.assign(szBuff, ulTitleSize);
 #elif defined(xOS_ENV_UNIX)
     //TODO: sGetTitle
-    xNOT_IMPLEMENTED_RET(std::tstring());
+    xNOT_IMPLEMENTED_RET(std::string_t());
 #endif
 
     return sRes;
@@ -380,7 +380,7 @@ CxConsole::sGetTitle() {
 //---------------------------------------------------------------------------
 BOOL
 CxConsole::bSetTitle(
-    const std::tstring &csTitle
+    const std::string_t &csTitle
 )
 {
     BOOL bRes = FALSE;
@@ -485,8 +485,8 @@ CxConsole::_hGetWndHandle() {
 
     HWND         hRes         = NULL;
     BOOL         bRes         = FALSE;
-    std::tstring sNewWndTitle;
-    std::tstring sOldWndTitle;
+    std::string_t sNewWndTitle;
+    std::string_t sOldWndTitle;
 
     //Fetch current window title.
     sOldWndTitle = sGetTitle();

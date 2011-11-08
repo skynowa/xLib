@@ -39,69 +39,69 @@ class CxString :
 {
     public:
         template<class T>
-        static  std::tstring lexical_cast      (const T &cValueT);
-            ///< convert type to std::tstring
+        static  std::string_t lexical_cast      (const T &cValueT);
+            ///< convert type to std::string_t
 
         template<class T>
-        static  std::tstring lexical_cast      (const T &cValueT, const INT ciBase);
-            ///< convert type to std::tstring by base
+        static  std::string_t lexical_cast      (const T &cValueT, const INT ciBase);
+            ///< convert type to std::string_t by base
 
         template<class T>
-        static T             lexical_cast      (const std::tstring &csStr);
-            ///< convert std::tstring to type
+        static T             lexical_cast      (const std::string_t &csStr);
+            ///< convert std::string_t to type
 
         template<class T>
-        static T             lexical_cast      (const std::tstring &csStr, const INT ciBase);
-            ///< convert std::tstring by base (8, 10, 16) to type
+        static T             lexical_cast      (const std::string_t &csStr, const INT ciBase);
+            ///< convert std::string_t by base (8, 10, 16) to type
 
-        static std::tstring  sBoolToStr        (const BOOL cbBool);
-            ///< BOOL to std::tstring
-        static BOOL          bStrToBool        (const std::tstring &csStr);
-            ///< convert std::tstring to BOOL
+        static std::string_t  sBoolToStr        (const BOOL cbBool);
+            ///< BOOL to std::string_t
+        static BOOL          bStrToBool        (const std::string_t &csStr);
+            ///< convert std::string_t to BOOL
 
-        static std::tstring  sTrimLeftChars    (const std::tstring &csStr, const std::tstring &csChars);
+        static std::string_t  sTrimLeftChars    (const std::string_t &csStr, const std::string_t &csChars);
             ///< trim left chars
-        static std::tstring  sTrimRightChars   (const std::tstring &csStr, const std::tstring &csChars);
+        static std::string_t  sTrimRightChars   (const std::string_t &csStr, const std::string_t &csChars);
             ///< trim left chars
-        static std::tstring  sTrimChars        (const std::tstring &csStr, const std::tstring &csChars);
+        static std::string_t  sTrimChars        (const std::string_t &csStr, const std::string_t &csChars);
             ///< trim left, right chars
-        static std::tstring  sTrimSpace        (const std::tstring &csStr);
+        static std::string_t  sTrimSpace        (const std::string_t &csStr);
             ///< trim left, right spaces
-        static std::tstring  sRemoveEol        (const std::tstring &csStr);
+        static std::string_t  sRemoveEol        (const std::string_t &csStr);
             ///< remove end of line from end of string
 
-        static std::tstring  sReplaceAll       (const std::tstring &csStr, const std::tstring &csOldStr, const std::tstring &csNewStr);
+        static std::string_t  sReplaceAll       (const std::string_t &csStr, const std::string_t &csOldStr, const std::string_t &csNewStr);
             ///< replace all strings
-        static std::tstring  sReplaceAll       (const std::tstring &csStr, const TCHAR ccOldStr, const TCHAR ccNewStr);
+        static std::string_t  sReplaceAll       (const std::string_t &csStr, const TCHAR ccOldStr, const TCHAR ccNewStr);
             ///< replace all chars
-        static std::tstring  sRemoveAll        (const std::tstring &csStr, const std::tstring &csRemoveStr);
+        static std::string_t  sRemoveAll        (const std::string_t &csStr, const std::string_t &csRemoveStr);
             ///< remove all strings
 
-        static BOOL          bSplit            (const std::tstring &csStr, const std::tstring &csSep, std::vector<std::tstring> *pvsOut);
+        static BOOL          bSplit            (const std::string_t &csStr, const std::string_t &csSep, std::vector<std::string_t> *pvsOut);
             ///< split by separator
-        static std::tstring  sJoin             (const std::vector<std::tstring> &cvsVec, const TCHAR cchSep);
+        static std::string_t  sJoin             (const std::vector<std::string_t> &cvsVec, const TCHAR cchSep);
             ///< join with char separator
-        static std::tstring  sJoin             (const std::vector<std::tstring> &cvsVec, const std::tstring &csSep);
+        static std::string_t  sJoin             (const std::vector<std::string_t> &cvsVec, const std::string_t &csSep);
             ///< oin with string separator
-        static std::tstring  sCut              (const std::tstring &csStr, const std::tstring &csLeftSep, const std::tstring &csRightSep);
+        static std::string_t  sCut              (const std::string_t &csStr, const std::string_t &csLeftSep, const std::string_t &csRightSep);
             ///< cut using strings
-        static std::tstring  sCut              (const std::tstring &csStr, const size_t cuiStartPos = 0, const size_t cuiEndPos = std::tstring::npos);
+        static std::string_t  sCut              (const std::string_t &csStr, const size_t cuiStartPos = 0, const size_t cuiEndPos = std::string_t::npos);
             ///< cut using string positions
 
-        static std::tstring  sToLowerCase      (const std::tstring &csStr);
+        static std::string_t  sToLowerCase      (const std::string_t &csStr);
             ///< convert to lowcase
-        static std::tstring  sToUpperCase      (const std::tstring &csStr);
+        static std::string_t  sToUpperCase      (const std::string_t &csStr);
             ///< convert to uppercase
-        static std::tstring  sToLowerCase      (const std::tstring &csStr, size_t uiLength);
+        static std::string_t  sToLowerCase      (const std::string_t &csStr, size_t uiLength);
             ///< convert to lowcase
-        static std::tstring  sToUpperCase      (const std::tstring &csStr, size_t uiLength);
+        static std::string_t  sToUpperCase      (const std::string_t &csStr, size_t uiLength);
             ///< convert to uppercase
 
-        static std::tstring  sFormat           (const TCHAR *pcszFormat, ...);
+        static std::string_t  sFormat           (const TCHAR *pcszFormat, ...);
             ///< format
-        static std::tstring  sFormatV          (const TCHAR *pcszFormat, va_list palArgs);
+        static std::string_t  sFormatV          (const TCHAR *pcszFormat, va_list palArgs);
             ///< format
-        static std::tstring  sMinimize         (const std::tstring &csStr, const size_t cuiMaxLen);
+        static std::string_t  sMinimize         (const std::string_t &csStr, const size_t cuiMaxLen);
             ///< minimize
 
         /****************************************************************************
@@ -109,7 +109,7 @@ class CxString :
         *
         *****************************************************************************/
 
-        static BOOL          bCompareNoCase    (const std::tstring &csStr1, const std::tstring &csStr2);
+        static BOOL          bCompareNoCase    (const std::string_t &csStr1, const std::string_t &csStr2);
             ///< no case compare
 
         /****************************************************************************
@@ -117,13 +117,13 @@ class CxString :
         *
         *****************************************************************************/
 
-        static std::tstring  sTranslitLatToRus (const std::tstring &csStr);
+        static std::string_t  sTranslitLatToRus (const std::string_t &csStr);
             ///< translit
-        static std::tstring  sFormatBytes      (const DOUBLE cdBytes);
+        static std::string_t  sFormatBytes      (const DOUBLE cdBytes);
             ///< format bytes (like Bit(s), Byte(s), MB, GB, TB)
-        static std::tstring  sFormatBytes      (const ULONGLONG cullBytes);
+        static std::string_t  sFormatBytes      (const ULONGLONG cullBytes);
             ///< ormat bytes (like Bit(s), Byte(s), MB, GB, TB)
-        static std::tstring  sFormatPercentage (ULONGLONG ullMaxValue, ULONGLONG ullCurrValue);
+        static std::string_t  sFormatPercentage (ULONGLONG ullMaxValue, ULONGLONG ullCurrValue);
             ///< formatting percentage
 
         static std::wstring  sStrToWStr        (const std::string  &csStr,  const UINT cuiCodePage);
@@ -134,9 +134,9 @@ class CxString :
         static std::string   sConvertCodePage  (const std::string &csSource, const UINT cuiCodePageSource, const UINT cuiCodePageDest);
             ///< convert codepage
 
-        static std::string   asCharToOemBuff   (const std::tstring &csSrc);
+        static std::string   asCharToOemBuff   (const std::string_t &csSrc);
             ///< convert char to oem
-        static std::tstring  sOemToCharBuff    (const std::string  &csSrc);
+        static std::string_t  sOemToCharBuff    (const std::string  &csSrc);
             ///< convert oem to char
 
 
@@ -154,9 +154,9 @@ class CxString :
         *
         *****************************************************************************/
 
-        static std::tstring  sCreateGuid       ();
+        static std::string_t  sCreateGuid       ();
             ///< generate GUID
-        static BOOL          bIsRepeated       (const std::tstring &csStr);
+        static BOOL          bIsRepeated       (const std::string_t &csStr);
             ///< is repeated
 
     private:

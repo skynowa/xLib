@@ -57,7 +57,7 @@ CxTcpServer::bListen(
 BOOL
 CxTcpServer::bAccept(
 	CxTcpServer *pscktAcceptSocket,
-	std::tstring      *psFromIp
+	std::string_t      *psFromIp
 )
 {
 	/*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,      FALSE);

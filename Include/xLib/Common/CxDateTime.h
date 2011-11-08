@@ -25,7 +25,7 @@ class CxDateTime
         //constructors, destructor
                             CxDateTime          ();
             ///< constructor
-        explicit            CxDateTime          (const std::tstring &csDT, const EFormatType cftFormat);
+        explicit            CxDateTime          (const std::string_t &csDT, const EFormatType cftFormat);
             ///< constructor
         /*explicit*/        CxDateTime          (const CxDateTime &cdtDT);
             ///< constructor
@@ -94,7 +94,7 @@ class CxDateTime
         #endif
 
         //formating
-        std::tstring        sFormat             (const EFormatType cftFormat) const;
+        std::string_t        sFormat             (const EFormatType cftFormat) const;
             ///< formating
 
         //static
@@ -121,15 +121,15 @@ class CxDateTime
     #endif
 
         //other
-        static std::tstring sGetZodiacSign      (const USHORT cusMonth, const USHORT cusDay);
+        static std::string_t sGetZodiacSign      (const USHORT cusMonth, const USHORT cusDay);
             ///< sign of the zodiac by date
-        static std::tstring sGetMonthStr        (USHORT usMonth, const BOOL cbIsShortName);
+        static std::string_t sGetMonthStr        (USHORT usMonth, const BOOL cbIsShortName);
             ///< get month string
-        static USHORT       usGetMonthNum       (const std::tstring &csMonth, const BOOL cbIsShortName);
+        static USHORT       usGetMonthNum       (const std::string_t &csMonth, const BOOL cbIsShortName);
             ///< get month number by string
-        static std::tstring sGetWeekDayStr      (USHORT usDay, const BOOL cbIsShortName);
+        static std::string_t sGetWeekDayStr      (USHORT usDay, const BOOL cbIsShortName);
             ///< get week day string
-        static USHORT       usGetWeekDayNum     (const std::tstring &csDay, const BOOL cbIsShortName);
+        static USHORT       usGetWeekDayNum     (const std::string_t &csDay, const BOOL cbIsShortName);
             ///< get week day number by string
 
     private:
@@ -154,7 +154,7 @@ class CxDateTime
 
         ULONGLONG           _ullToMilliseconds  () const;
             ///< convert to milliseconds
-        static BOOL         _bParse             (const std::tstring &csDT, const EFormatType cftFormat, CxDateTime *pdtDT);
+        static BOOL         _bParse             (const std::string_t &csDT, const EFormatType cftFormat, CxDateTime *pdtDT);
             ///< parsing datetime string
 };
 //---------------------------------------------------------------------------

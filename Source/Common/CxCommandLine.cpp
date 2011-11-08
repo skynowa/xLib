@@ -13,7 +13,7 @@
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-/*static*/ std::vector<std::tstring> CxCommandLine::_ms_vsArgs;
+/*static*/ std::vector<std::string_t> CxCommandLine::_ms_vsArgs;
 //--------------------------------------------------------------------------
 LONG
 CxCommandLine::liGetArgsMax() {
@@ -22,7 +22,7 @@ CxCommandLine::liGetArgsMax() {
 #if defined(xOS_ENV_WIN)
     liRes = 32L * 1024L;
 #elif defined(xOS_ENV_UNIX)
-    liRes = sysconf(_SC_ARG_MAX) / sizeof(std::tstring::value_type);
+    liRes = sysconf(_SC_ARG_MAX) / sizeof(std::string_t::value_type);
     /*DEBUG*/xASSERT_RET(- 1 != liRes, 0L);
 #endif
 
@@ -30,15 +30,15 @@ CxCommandLine::liGetArgsMax() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxCommandLine::sGet() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
 #if defined(xOS_ENV_WIN)
     LPCTSTR pcszRes = ::GetCommandLine();
-    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::string_t());
 
     sRes.assign( CxString::sTrimSpace(pcszRes) );
 #elif defined(xOS_ENV_UNIX)
@@ -51,7 +51,7 @@ CxCommandLine::sGet() {
 /*static*/
 BOOL
 CxCommandLine::bGetArgs(
-    std::vector<std::tstring> *pvsArgs
+    std::vector<std::string_t> *pvsArgs
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsArgs, FALSE);
@@ -72,7 +72,7 @@ CxCommandLine::bSetArgs(
 {
     /*DEBUG*/// n/a (because we'll have a recursion)
 
-    std::vector<std::tstring> vsArgs;
+    std::vector<std::string_t> vsArgs;
 
     for (INT i = 0; i < ciArgsCount; ++ i) {
         vsArgs.push_back(paszArgs[i]);

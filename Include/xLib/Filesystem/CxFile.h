@@ -123,9 +123,9 @@ class CxFile :
             ///< destructor
 
         //open, get
-        BOOL                 bCreate      (const std::tstring &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
+        BOOL                 bCreate      (const std::string_t &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
             ///< open
-        BOOL                 bReopen      (const std::tstring &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
+        BOOL                 bReopen      (const std::string_t &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
             ///< reopen with different file or mode
         BOOL                 bAttach      (FILE *pflFile);
             ///< attach to stream
@@ -133,7 +133,7 @@ class CxFile :
             ///< detach from stream
         FILE                *pGet         () const;
             ///< get handle
-        std::tstring         sGetPath     () const;
+        std::string_t         sGetPath     () const;
             ///< get file path
 
         //read, write
@@ -145,15 +145,15 @@ class CxFile :
             ///< read to std::ustring
         BOOL                 bWrite       (const std::ustring &csBuff) const;
             ///< write from std::ustring
-        BOOL                 bRead        (std::tstring *psBuff) const;
-            ///< read to std::tstring
+        BOOL                 bRead        (std::string_t *psBuff) const;
+            ///< read to std::string_t
         INT                  iWrite       (const TCHAR *pcszFormat, ...) const;
             ///< write formatted output to stream
         INT                  iWriteV      (const TCHAR *pcszFormat, va_list arg) const;
             ///< write formatted variable argument list to stream
-        BOOL                 bReadLine    (std::tstring *psStr, const size_t cuiMaxCount) const;
+        BOOL                 bReadLine    (std::string_t *psStr, const size_t cuiMaxCount) const;
             ///< read string to newline or to the end of file
-        BOOL                 bWriteLine   (const std::tstring &csStr) const;
+        BOOL                 bWriteLine   (const std::string_t &csStr) const;
             ///< write string and end of line
         TCHAR                chReadChar   () const;
             ///< get character
@@ -207,74 +207,74 @@ class CxFile :
             ///< close
 
         //static
-        static BOOL          bIsFile      (const std::tstring &csFilePath);
+        static BOOL          bIsFile      (const std::string_t &csFilePath);
             ///< check for file
-        static BOOL          bIsExists    (const std::tstring &csFilePath);
+        static BOOL          bIsExists    (const std::string_t &csFilePath);
             ///< check for existence
-        static std::tstring  sIsExists    (const std::tstring &csFilePath);
+        static std::string_t  sIsExists    (const std::string_t &csFilePath);
             ///< check for existence, if exists - generate new file name (file path), which not exists
-        static BOOL          bAccess      (const std::tstring &csFilePath, const EAccessMode camMode);
+        static BOOL          bAccess      (const std::string_t &csFilePath, const EAccessMode camMode);
             ///< determine file-access permission
-        static BOOL          bChmod       (const std::tstring &csFilePath, const EPermissionMode cpmMode);
+        static BOOL          bChmod       (const std::string_t &csFilePath, const EPermissionMode cpmMode);
             ///< change the file-permission settings
-        static BOOL          bClear       (const std::tstring &csFilePath);
+        static BOOL          bClear       (const std::string_t &csFilePath);
             ///< clear content
-        static BOOL          bDelete      (const std::tstring &csFilePath);
+        static BOOL          bDelete      (const std::string_t &csFilePath);
             ///< deleting
-        static BOOL          bTryDelete   (const std::tstring &csFilePath, const size_t cuiAttempts, const ULONG culTimeoutMsec);
+        static BOOL          bTryDelete   (const std::string_t &csFilePath, const size_t cuiAttempts, const ULONG culTimeoutMsec);
             ///< try deleting, max 100 attempts
-        static BOOL          bWipe        (const std::tstring &csFilePath, const size_t cuiPasses);
+        static BOOL          bWipe        (const std::string_t &csFilePath, const size_t cuiPasses);
             ///< wipe
-        static BOOL          bUnlink      (const std::tstring &csFilePath);
+        static BOOL          bUnlink      (const std::string_t &csFilePath);
             ///< deleting
-        static BOOL          bRename      (const std::tstring &csOldFilePath,  const std::tstring &csNewFilePath);
+        static BOOL          bRename      (const std::string_t &csOldFilePath,  const std::string_t &csNewFilePath);
             ///< renaming
-        static BOOL          bMove        (const std::tstring &csFilePath,     const std::tstring &csDirPath);
+        static BOOL          bMove        (const std::string_t &csFilePath,     const std::string_t &csDirPath);
             ///< move
-        static BOOL          bCopy        (const std::tstring &csFilePathFrom, const std::tstring &csFilePathTo, const BOOL cbFailIfExists);
+        static BOOL          bCopy        (const std::string_t &csFilePathFrom, const std::string_t &csFilePathTo, const BOOL cbFailIfExists);
             ///< copy
-        static LONG          liGetSize    (const std::tstring &csFilePath);
+        static LONG          liGetSize    (const std::string_t &csFilePath);
             ///< get size
-        static ULONGLONG     ullGetLines  (const std::tstring &csFilePath);
+        static ULONGLONG     ullGetLines  (const std::string_t &csFilePath);
             ///< get number of lines
-        static BOOL          bGetTime     (const std::tstring &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
+        static BOOL          bGetTime     (const std::string_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
             ///< get time
-        static BOOL          bSetTime     (const std::tstring &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
+        static BOOL          bSetTime     (const std::string_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
             ///< set time
 
         //text
-        static BOOL          bTextRead    (const std::tstring &csFilePath, std::tstring *psContent);
-            ///< read to std::tstring
-        static BOOL          bTextWrite   (const std::tstring &csFilePath, const std::tstring &csContent);
-            ///< write std::tstring
-        static BOOL          bTextRead    (const std::tstring &csFilePath, std::vector<std::tstring> *pvsContent);
+        static BOOL          bTextRead    (const std::string_t &csFilePath, std::string_t *psContent);
+            ///< read to std::string_t
+        static BOOL          bTextWrite   (const std::string_t &csFilePath, const std::string_t &csContent);
+            ///< write std::string_t
+        static BOOL          bTextRead    (const std::string_t &csFilePath, std::vector<std::string_t> *pvsContent);
             ///< read to std::vector
-        static BOOL          bTextWrite   (const std::tstring &csFilePath, const std::vector<std::tstring> &cvsContent);
+        static BOOL          bTextWrite   (const std::string_t &csFilePath, const std::vector<std::string_t> &cvsContent);
             ///< write std::vector
-        static BOOL          bTextRead    (const std::tstring &csFilePath, const std::tstring &csSeparator, std::map<std::tstring, std::tstring> *pmsContent);
+        static BOOL          bTextRead    (const std::string_t &csFilePath, const std::string_t &csSeparator, std::map<std::string_t, std::string_t> *pmsContent);
             ///< read text to std::map
-        static BOOL          bTextWrite   (const std::tstring &csFilePath, const std::tstring &csSeparator, const std::map<std::tstring, std::tstring> &cmsContent);
+        static BOOL          bTextWrite   (const std::string_t &csFilePath, const std::string_t &csSeparator, const std::map<std::string_t, std::string_t> &cmsContent);
             ///< write text from std::map
 
         //binary
-        static BOOL          bBinRead     (const std::tstring &csFilePath, std::ustring *pusContent);
+        static BOOL          bBinRead     (const std::string_t &csFilePath, std::ustring *pusContent);
             ///< read binary data
-        static BOOL          bBinWrite    (const std::tstring &csFilePath, const std::ustring &cusContent);
+        static BOOL          bBinWrite    (const std::string_t &csFilePath, const std::ustring &cusContent);
             ///< write binary data
 
         //other
-        static std::tstring  sBackup      (const std::tstring &csFilePath, const std::tstring &csDestDirPath, const BOOL cbMakeDaily /*, INT bBackupLimit*/);
+        static std::string_t  sBackup      (const std::string_t &csFilePath, const std::string_t &csDestDirPath, const BOOL cbMakeDaily /*, INT bBackupLimit*/);
             ///< backup
 
     private:
         FILE                *_m_pFile;      ///< file handle
-        std::tstring         _m_sFilePath;  ///< file path
+        std::string_t         _m_sFilePath;  ///< file path
 
         static INT           _iGetHandle  (FILE *pfFile);
             ///< gets the file descriptor associated with a stream
         static FILE *        _pfGetHandle (INT iFileHandle, const EOpenMode omMode);
             ///< get stream by handle
-        static std::tstring  _sGetOpenMode(const EOpenMode comMode);
+        static std::string_t  _sGetOpenMode(const EOpenMode comMode);
             ///< get open mode as string, by default use "r"
 };
 //---------------------------------------------------------------------------

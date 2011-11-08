@@ -26,7 +26,7 @@ CxStdError::iGet() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxStdError::sGet() {
     return sFormat(iGet());
 }
@@ -51,12 +51,12 @@ CxStdError::bReset() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::string_t
 CxStdError::sFormat(
     const INT ciCode
 )
 {
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = CxString::sFormat(xT("%li - "), ciCode);
 

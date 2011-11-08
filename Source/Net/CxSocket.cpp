@@ -172,7 +172,7 @@ CxSocket::iSend(
 //TODO: bSendAll
 BOOL
 CxSocket::bSendAll(
-    const std::tstring &csBuff,
+    const std::string_t &csBuff,
     INT                 iFlags
 )
 {
@@ -241,12 +241,12 @@ CxSocket::iRecv(
     return iRes / sizeof(TCHAR);
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxSocket::sRecvAll(
     INT iFlags
 )
 {
-    std::tstring      sRes;
+    std::string_t      sRes;
 
     const size_t cuiBuffSize             = 1024 * sizeof(TCHAR);
     TCHAR        szBuff[cuiBuffSize + 1] = {0};
@@ -274,15 +274,15 @@ CxSocket::sRecvAll(
     return sRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxSocket::sRecvAll(
     INT                 iFlags,
-    const std::tstring &csDelimiter
+    const std::string_t &csDelimiter
 )
 {
-    std::tstring sRes;
+    std::string_t sRes;
     const size_t cuiInSize = SOCKET_BUFF_SIZE * sizeof(TCHAR);
-    std::tstring sIn(cuiInSize, xT('\0'));
+    std::string_t sIn(cuiInSize, xT('\0'));
 
     //-------------------------------------
     //read from socket by blocks, write to string
@@ -295,7 +295,7 @@ CxSocket::sRecvAll(
 
         //if delimiter was finded - break
         size_t uiDelimiterPos = sRes.find(csDelimiter);        //TODO: from unicode ???
-        xCHECK_DO(std::tstring::npos != uiDelimiterPos, break);
+        xCHECK_DO(std::string_t::npos != uiDelimiterPos, break);
     }
 
     return sRes;
@@ -395,7 +395,7 @@ CxSocket::iReceiveBytes(
 //---------------------------------------------------------------------------
 BOOL
 CxSocket::bGetPeerName(
-    std::tstring *psPeerAddr,
+    std::string_t *psPeerAddr,
     USHORT       *pusPeerPort
 )
 {
@@ -432,7 +432,7 @@ CxSocket::bGetPeerName(
 //---------------------------------------------------------------------------
 BOOL
 CxSocket::bGetSocketName(
-    std::tstring *psSocketAddr,
+    std::string_t *psSocketAddr,
     USHORT       *pusSocketPort
 )
 {

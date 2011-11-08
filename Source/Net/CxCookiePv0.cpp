@@ -29,12 +29,12 @@ CxCookiePv0::CxCookiePv0() :
 
     BOOL bRes = FALSE;
 
-    bRes = bInit(std::tstring());
+    bRes = bInit(std::string_t());
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
 CxCookiePv0::CxCookiePv0(
-    const std::tstring &csRawCookie
+    const std::string_t &csRawCookie
 ) :
     _m_sName    (),
     _m_sValue   (),
@@ -58,7 +58,7 @@ CxCookiePv0::~CxCookiePv0() {
 
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCookiePv0::sGetName() const {
     /*DEBUG*/
 
@@ -67,7 +67,7 @@ CxCookiePv0::sGetName() const {
 //---------------------------------------------------------------------------
 BOOL
 CxCookiePv0::bSetName(
-    const std::tstring &csName
+    const std::string_t &csName
 )
 {
     /*DEBUG*/
@@ -77,7 +77,7 @@ CxCookiePv0::bSetName(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCookiePv0::sGetValue() const {
     /*DEBUG*/
 
@@ -86,7 +86,7 @@ CxCookiePv0::sGetValue() const {
 //---------------------------------------------------------------------------
 BOOL
 CxCookiePv0::bSetValue(
-    const std::tstring &csValue
+    const std::string_t &csValue
 )
 {
     /*DEBUG*/
@@ -96,7 +96,7 @@ CxCookiePv0::bSetValue(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCookiePv0::sGetDomain() const {
     /*DEBUG*/
 
@@ -105,7 +105,7 @@ CxCookiePv0::sGetDomain() const {
 //---------------------------------------------------------------------------
 BOOL
 CxCookiePv0::bSetDomain(
-    const std::tstring &csDomain
+    const std::string_t &csDomain
 )
 {
     /*DEBUG*/
@@ -115,7 +115,7 @@ CxCookiePv0::bSetDomain(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCookiePv0::sGetPath() const {
     /*DEBUG*/
 
@@ -124,7 +124,7 @@ CxCookiePv0::sGetPath() const {
 //---------------------------------------------------------------------------
 BOOL
 CxCookiePv0::bSetPath(
-    const std::tstring &csPath
+    const std::string_t &csPath
 )
 {
     /*DEBUG*/
@@ -134,7 +134,7 @@ CxCookiePv0::bSetPath(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::string_t &
 CxCookiePv0::sGetExpires() const {
     /*DEBUG*/
 
@@ -143,7 +143,7 @@ CxCookiePv0::sGetExpires() const {
 //---------------------------------------------------------------------------
 BOOL
 CxCookiePv0::bSetExpires(
-    const std::tstring &csExpires
+    const std::string_t &csExpires
 )
 {
     /*DEBUG*/
@@ -191,11 +191,11 @@ CxCookiePv0::bSetHttpOnly(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxCookiePv0::sToString() const {
     /*DEBUG*/
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     //name
     sRes.append(_m_sName);
@@ -235,11 +235,11 @@ CxCookiePv0::sToString() const {
 }
 //---------------------------------------------------------------------------
 //TODO: sGetDump make tests
-std::tstring
+std::string_t
 CxCookiePv0::sGetDump() const {
     /*DEBUG*/
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     sRes = CxString::sFormat(
             xT("[CxCookiePv0 dump]\n\n")
@@ -287,46 +287,46 @@ CxCookiePv0::bClear() {
 //---------------------------------------------------------------------------
 struct SCompareNoCase {
     bool
-    operator() (const std::tstring &csStr1, const std::tstring &csStr2) const {
+    operator() (const std::string_t &csStr1, const std::string_t &csStr2) const {
         return !! CxString::bCompareNoCase(csStr1, csStr2);
     }
 };
 //---------------------------------------------------------------------------
 BOOL
 CxCookiePv0::bInit(
-    const std::tstring &csRawCookie
+    const std::string_t &csRawCookie
 )
 {
     /*DEBUG*/// _m_msCookie - n/a
     /*DEBUG*/// csRawCookie - n/a
 
-    typedef std::map<std::tstring, std::tstring/*, SCompareNoCase*/> TStringMap;
-    typedef std::pair<std::tstring, std::tstring>                TStringPair;
+    typedef std::map<std::string_t, std::string_t/*, SCompareNoCase*/> TStringMap;
+    typedef std::pair<std::string_t, std::string_t>                TStringPair;
 
 
     BOOL       bRes = FALSE;
     TStringMap msCookie;
-    std::tstring    sCookie;
+    std::string_t    sCookie;
 
     sCookie.assign( csRawCookie );
     sCookie.assign( CxString::sRemoveAll(sCookie, CxConst::xSQM) );
     sCookie.assign( CxString::sRemoveAll(sCookie, CxConst::xDQM) );
 
     //split into pairs (name1=value1; name2=value2; nameN=valueN)
-    std::vector<std::tstring> vsPairs;
+    std::vector<std::string_t> vsPairs;
 
     bRes = CxString::bSplit(sCookie, CxConst::xSEMICOLON, &vsPairs);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     for (size_t i = 0; i < vsPairs.size(); ++ i) {
         //split into name, value (name=value)
-        std::vector<std::tstring> vsTemp;
+        std::vector<std::string_t> vsTemp;
 
         bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
         /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-        std::tstring sCookieName  = CxString::sTrimSpace(vsTemp.at(0));
-        std::tstring sCookieValue = ( (1 == vsTemp.size()) ? std::tstring() : vsTemp.at(1) );
+        std::string_t sCookieName  = CxString::sTrimSpace(vsTemp.at(0));
+        std::string_t sCookieValue = ( (1 == vsTemp.size()) ? std::string_t() : vsTemp.at(1) );
 
         if (0 == i) {
             //1-st pair is "Name=Value"

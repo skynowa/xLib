@@ -14,17 +14,17 @@ class CxEnvironment :
     /// system environment variables
 {
     public:
-        static BOOL         bIsExists     (const std::tstring &csVarName);
+        static BOOL         bIsExists     (const std::string_t &csVarName);
             ///< check for existence
-        static std::tstring sGetVar       (const std::tstring &csVarName);
+        static std::string_t sGetVar       (const std::string_t &csVarName);
             ///< get value by name
-        static BOOL         bSetVar       (const std::tstring &csVarName, const std::tstring &csValue);
+        static BOOL         bSetVar       (const std::string_t &csVarName, const std::string_t &csValue);
             ///< set or change value by name
-        static BOOL         bDeleteVar    (const std::tstring &csVarName);
+        static BOOL         bDeleteVar    (const std::string_t &csVarName);
             ///< delete var
-        static BOOL         bGetValues    (std::vector<std::tstring> *pvsValues);
+        static BOOL         bGetValues    (std::vector<std::string_t> *pvsValues);
             ///< get all values
-        static std::tstring sExpandStrings(const std::tstring &csvVar);
+        static std::string_t sExpandStrings(const std::string_t &csvVar);
             ///< expands strings by separator "%"
 
     private:

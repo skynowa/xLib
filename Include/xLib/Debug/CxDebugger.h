@@ -26,15 +26,15 @@ class CxDebugger :
             ///< is OS debugger presents
         static BOOL         bBreak          ();
             ///< attach to OS debugger
-        static BOOL         bSetLogPath     (const std::tstring &csFilePath);
+        static BOOL         bSetLogPath     (const std::string_t &csFilePath);
             ///< set log file path
-        static std::tstring sGetLogPath     ();
+        static std::string_t sGetLogPath     ();
             ///< get log file path
         static BOOL         bReportMake     (const CxReport &crpReport);
             ///< make report
         static BOOL         bTrace          (const TCHAR *pcszFormat, ...);
             ///< tracing to debugger, std::cout
-        static BOOL         bTrace          (const std::tstring &csMsg);
+        static BOOL         bTrace          (const std::string_t &csMsg);
             ///< tracing to debugger, std::cout
         static BOOL         bBeep           (const ULONG culFrequency = 800, const ULONG culDuration = 100);
             ///< play sound
@@ -42,7 +42,7 @@ class CxDebugger :
     private:
         static BOOL         _ms_bIsEnabled;
             ///< is debugger enabled
-        static std::tstring _ms_sLogPath;
+        static std::string_t _ms_sLogPath;
             ///< log path
 
                             CxDebugger      ();

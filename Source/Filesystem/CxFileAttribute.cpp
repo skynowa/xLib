@@ -16,7 +16,7 @@
 /*static*/
 BOOL
 CxFileAttribute::bIsExists(
-    const std::tstring &csFilePath,
+    const std::string_t &csFilePath,
     const EAttribute   cfaValue
 )
 {
@@ -37,7 +37,7 @@ CxFileAttribute::bIsExists(
 /*static*/
 CxFileAttribute::EAttribute
 CxFileAttribute::atGet(
-    const std::tstring &csFilePath
+    const std::string_t &csFilePath
 )
 {
     /*DEBUG*/// csFilePath - n/a
@@ -65,7 +65,7 @@ CxFileAttribute::atGet(
 /*static*/
 BOOL
 CxFileAttribute::bSet(
-    const std::tstring &csFilePath,
+    const std::string_t &csFilePath,
     const EAttribute    cfaValue
 )
 {
@@ -86,7 +86,7 @@ CxFileAttribute::bSet(
 /*static*/
 BOOL
 CxFileAttribute::bAdd(
-    const std::tstring &csFilePath,
+    const std::string_t &csFilePath,
     const EAttribute    cfaValue
 )
 {
@@ -99,7 +99,7 @@ CxFileAttribute::bAdd(
 /*static*/
 BOOL
 CxFileAttribute::bRemove(
-    const std::tstring &csFilePath,
+    const std::string_t &csFilePath,
     const EAttribute    cfaValue
 )
 {
@@ -112,7 +112,7 @@ CxFileAttribute::bRemove(
 /*static*/
 BOOL
 CxFileAttribute::bModify(
-    const std::tstring &csFilePath,
+    const std::string_t &csFilePath,
     const EAttribute    cfaRemoveValue,
     const EAttribute    cfaAddValue
 )
@@ -139,7 +139,7 @@ CxFileAttribute::bModify(
 /*static*/
 BOOL
 CxFileAttribute::bClear(
-    const std::tstring &csFilePath
+    const std::string_t &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);

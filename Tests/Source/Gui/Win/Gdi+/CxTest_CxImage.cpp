@@ -30,7 +30,7 @@ CxTest_CxImage::bUnit(
 {
     /*DEBUG*/
 
-    const std::tstring csInFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Pic.bmp");
+    const std::string_t csInFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Pic.bmp");
 
     CxGdiplus     m_gdiGdi;
     CxImage       m_imgImage;

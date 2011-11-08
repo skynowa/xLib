@@ -17,14 +17,14 @@
 //---------------------------------------------------------------------------
 template<class T>
 /*static*/
-std::tstring
+std::string_t
 CxType::sGetRawName(
     const T &cObjectT
 )
 {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     std::string asClassName;
 
@@ -37,14 +37,14 @@ CxType::sGetRawName(
 //---------------------------------------------------------------------------
 template<class T>
 /*static*/
-std::tstring
+std::string_t
 CxType::sGetName(
     const T &cObjectT
 )
 {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::string_t sRes;
 
     std::string asClassName;
 

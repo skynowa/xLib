@@ -26,7 +26,7 @@ class CxProcess :
             ///< process ID of the calling process
         static TxId     ulGetCurrParentId();
             ///< process ID of the parent of the calling process
-        static BOOL     bExec            (const std::tstring &csFilePath, const TCHAR *pcszCmdLine, ...);
+        static BOOL     bExec            (const std::string_t &csFilePath, const TCHAR *pcszCmdLine, ...);
             ///< execute a file
         static BOOL     bExit            (const TxId culPid, const UINT cuiExitCode);
             ///< ends the calling process and all its threads

@@ -30,7 +30,7 @@ CxTest_CxClipboard::bUnit(
 #if defined(xOS_ENV_WIN)
     CxClipboard cbCB;
 
-    const std::tstring csText = xT("Simple text");
+    const std::string_t csText = xT("Simple text");
 
     //-------------------------------------
     //bSetOwner

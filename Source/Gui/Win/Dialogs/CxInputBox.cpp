@@ -31,9 +31,9 @@ CxInputBox::~CxInputBox() {
 //---------------------------------------------------------------------------
 CxInputBox::EModalResult
 CxInputBox::mrShowModal(
-    const std::tstring &csCaption,
-    const std::tstring &csPrompt,
-    const std::tstring &csText
+    const std::string_t &csCaption,
+    const std::string_t &csPrompt,
+    const std::string_t &csText
 )
 {
     /*DEBUG*/// csCaption - n/a
@@ -181,7 +181,7 @@ CxInputBox::mrShowModal(
     return static_cast<EModalResult>(msgMsg.wParam);
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::string_t
 CxInputBox::sGetText() {
     return _m_sText;
 }
@@ -217,7 +217,7 @@ CxInputBox::_ms_pWndProc(
                 UINT uiTextSize = ::GetDlgItemText(hWnd, ID_edtText, &pibThis->_m_sText.at(0), pibThis->_m_sText.size());
 
                 //�������� ������ �� '\0'
-                pibThis->_m_sText = std::tstring(pibThis->_m_sText, 0, uiTextSize);
+                pibThis->_m_sText = std::string_t(pibThis->_m_sText, 0, uiTextSize);
 
                 ::PostQuitMessage(mrOk);
                 return 0;

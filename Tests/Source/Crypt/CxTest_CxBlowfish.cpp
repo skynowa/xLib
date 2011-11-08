@@ -47,7 +47,7 @@ CxTest_CxBlowfish::bUnit(
 
 		for (size_t i = 0; i < xARRAY_SIZE(usPlain); i ++) {
 			CxBlowfish BF;
-			std::tstring sKey       = xT("888888888");
+			std::string_t sKey       = xT("888888888");
 			std::ustring sEncrypted;
 			std::ustring sDecrypted;
 
@@ -69,10 +69,10 @@ CxTest_CxBlowfish::bUnit(
     xTEST_BLOCK(cullBlockLoops)
 	{
 		CxBlowfish BF;
-		std::tstring sKey           = xT("888888888");
-		std::tstring sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
-		std::tstring sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
-		std::tstring sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
+		std::string_t sKey           = xT("888888888");
+		std::string_t sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
+		std::string_t sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
+		std::string_t sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
 		//prepare
         {
@@ -98,12 +98,12 @@ CxTest_CxBlowfish::bUnit(
 		CxBlowfish BF;
 
 		CxBlowfish::ECryptMode cmRes = CxBlowfish::cmUnknown;
-		std::tstring sKey           = xT("888888888");
-		std::tstring sStamp         = xT("stamp");
+		std::string_t sKey           = xT("888888888");
+		std::string_t sStamp         = xT("stamp");
 		std::ustring usStamp        = xS2US(sStamp);
-		std::tstring sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
-		std::tstring sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
-		std::tstring sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
+		std::string_t sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
+		std::string_t sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
+		std::string_t sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
 		m_bRes = BF.bSetKey(sKey);
 		xTEST_DIFF(FALSE, m_bRes);
