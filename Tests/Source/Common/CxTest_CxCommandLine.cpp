@@ -32,7 +32,7 @@ CxTest_CxCommandLine::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_liRes = CxCommandLine::liGetArgsMax();
-        xASSERT_LESS(0L, m_liRes);
+        xTEST_LESS(0L, m_liRes);
         //xTRACEV(xT("\tCxCommandLine::liGetArgsMax() = %li"), m_liRes);
     }
 
@@ -44,7 +44,7 @@ CxTest_CxCommandLine::bUnit(
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxCommandLine::sGet(): %s"), m_sRes.c_str());
         #endif
-        xASSERT_EQ(false, m_sRes.empty());
+        xTEST_EQ(false, m_sRes.empty());
     }
 
     //-------------------------------------
@@ -52,8 +52,8 @@ CxTest_CxCommandLine::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxCommandLine::bGetArgs(&m_vsRes);
-        xASSERT_DIFF(FALSE,  m_bRes);
-        xASSERT_EQ(false, m_vsRes.empty());
+        xTEST_DIFF(FALSE,  m_bRes);
+        xTEST_EQ(false, m_vsRes.empty());
     }
 
     //--------------------------------------------------

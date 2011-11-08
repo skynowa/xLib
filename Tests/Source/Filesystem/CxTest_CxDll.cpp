@@ -50,17 +50,17 @@ CxTest_CxDll::bUnit(
         CxDll objDll;
 
         m_bRes = objDll.bIsLoaded();
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         //-------------------------------------
         //bLoad
         m_bRes = objDll.bLoad(sData[i][0]);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
     	//-------------------------------------
     	//fpGetProcAddress
@@ -84,19 +84,19 @@ CxTest_CxDll::bUnit(
         pCosine = (pDllFunc)fpRes;
         DOUBLE m_dRes = pCosine(2.0);
         xUNUSED(m_dRes);
-        //xASSERT_EQ(-0.416147, m_dRes);
+        //xTEST_EQ(-0.416147, m_dRes);
         //xTRACEV(xT("\tpCosine(2.0): %f"), m_dRes);
     #endif
 
         //-------------------------------------
         //bFree
         m_bRes = objDll.bFree();
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
     } //for
 
     return TRUE;

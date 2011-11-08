@@ -37,10 +37,10 @@ CxTest_CxCrc32::bUnit(
     	CxFile flFile;
 
         m_bRes = flFile.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = flFile.bResize(1333);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
 	//-------------------------------------
@@ -55,11 +55,11 @@ CxTest_CxCrc32::bUnit(
     xTEST_BLOCK(cullBlockLoops)
 	{
 		m_ulRes = CxCrc32::ulCalcFile(csFilePath);
-		xASSERT_LESS(0UL, m_ulRes);
+		xTEST_LESS(0UL, m_ulRes);
 	    //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xASSERT_EQ(false, m_sRes.empty());
+        xTEST_EQ(false, m_sRes.empty());
 	}
 
 	//-------------------------------------
@@ -74,11 +74,11 @@ CxTest_CxCrc32::bUnit(
     xTEST_BLOCK(cullBlockLoops)
 	{
 	    m_ulRes = CxCrc32::ulCalcFileFast(csFilePath);
-        xASSERT_LESS(0UL, m_ulRes);
+        xTEST_LESS(0UL, m_ulRes);
         //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xASSERT_EQ(false, m_sRes.empty());
+        xTEST_EQ(false, m_sRes.empty());
 	}
 
 	return TRUE;

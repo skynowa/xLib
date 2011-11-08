@@ -42,14 +42,14 @@ CxTest_CxHandleT::bUnit(
     //CxHandleT(const HANDLE chHandle)
     {
         m_bRes = objHandle.bIsValid();
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
 
         m_bRes = objHandle.bSet( CxHandle::hGetCurrentProcess() );
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_bRes = objHandle.bIsValid();
-        xASSERT_DIFF(FALSE, m_bRes);
-        xASSERT_EQ(CxHandle::hGetCurrentProcess(), objHandle.hGet());
+        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_EQ(CxHandle::hGetCurrentProcess(), objHandle.hGet());
     }
 
     //-------------------------------------
@@ -80,26 +80,26 @@ CxTest_CxHandleT::bUnit(
     //hGet, bSet
     {
         m_hRes = objHandle.hGet();
-        xASSERT_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
+        xTEST_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
 
         m_bRes = objHandle.bSet(NULL);
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_hRes = objHandle.hGet();
         xASSERT(NULL == m_hRes);
 
         m_bRes = objHandle.bSet(CxHandle::hGetCurrentProcess());
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
 
         m_hRes = objHandle.hGet();
-        xASSERT_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
+        xTEST_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
     }
 
     //-------------------------------------
     //bIsValid
     {
         m_bRes = objHandle.bIsValid();
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -107,7 +107,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bSetInformation(7, HANDLE_FLAG_INHERIT);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -116,7 +116,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_ulRes = objHandle.ulGetInformation();
-            xASSERT_EQ(HANDLE_FLAG_INHERIT, m_ulRes);
+            xTEST_EQ(HANDLE_FLAG_INHERIT, m_ulRes);
         #endif
     }
 
@@ -125,7 +125,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bSetFlagInherit(TRUE);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -134,7 +134,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bIsFlagInherit();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -143,7 +143,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bSetFlagProtectFromClose(FALSE);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -152,7 +152,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bIsFlagProtectFromClose();
-            xASSERT_EQ(FALSE, m_bRes);
+            xTEST_EQ(FALSE, m_bRes);
         #endif
     }
 
@@ -179,7 +179,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bAttach(CxHandle::hGetCurrentProcess());
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -188,7 +188,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bClose();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         #endif
     }
 
@@ -196,19 +196,19 @@ CxTest_CxHandleT::bUnit(
     //bIsValid
     {
         m_bRes = CxHandleT<hvNull>::bIsValid(CxHandle::hGetCurrentProcess());
-        xASSERT_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bIsValid
     {
         m_bRes = CxHandleT<hvInvalid>::bIsValid(CxHandle::hGetCurrentProcess());
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
     }
 
     //detach handle
     m_bRes = objHandle.bSet(NULL);
-    xASSERT_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(FALSE, m_bRes);
 #endif
 
     return TRUE;

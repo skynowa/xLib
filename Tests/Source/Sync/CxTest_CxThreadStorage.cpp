@@ -42,20 +42,20 @@ CxTest_CxThreadStorage::bUnit(
 	        ULONG *pulValue = new ULONG(culData);
 	
 	        m_bRes = tlsTls.bIsSet();
-	        xASSERT_EQ(FALSE, m_bRes);
+	        xTEST_EQ(FALSE, m_bRes);
 	
 	        m_bRes = tlsTls.bSetValue(static_cast<VOID *>( pulValue ));
-	        xASSERT_DIFF(FALSE, m_bRes);
+	        xTEST_DIFF(FALSE, m_bRes);
 	
 	        m_bRes = tlsTls.bIsSet();
-	        xASSERT_DIFF(FALSE, m_bRes);
+	        xTEST_DIFF(FALSE, m_bRes);
 	
 	        ULONG *pulRes = static_cast<ULONG *>( tlsTls.pvGetValue() );
-	        xASSERT_PTR(pulRes);
-	        xASSERT_EQ(culData, ULONG(*pulRes));
+	        xTEST_PTR(pulRes);
+	        xTEST_EQ(culData, ULONG(*pulRes));
 	
 	        m_bRes = tlsTls.bIsSet();
-	        xASSERT_DIFF(FALSE, m_bRes);
+	        xTEST_DIFF(FALSE, m_bRes);
 	
 	        delete pulRes;
         }

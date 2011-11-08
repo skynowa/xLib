@@ -1101,7 +1101,7 @@ CxThread::_s_uiJobEntry(
     ////CxCurrentThread::bSleep(500UL);
 
     CxEvent::EObjectState osRes = pthThis->_m_pevStarter->osWait(5000UL);   // not infinite timeout
-    xASSERT_EQ(CxEvent::osSignaled, osRes);
+    xTEST_EQ(CxEvent::osSignaled, osRes);
     /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, TxExitStatus());
 
     xPTR_DELETE(pthThis->_m_pevStarter);

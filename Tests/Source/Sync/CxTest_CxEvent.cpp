@@ -33,7 +33,7 @@ CxTest_CxEvent::bUnit(
         CxEvent objEvent(TRUE, TRUE);
 
         #if defined(xOS_ENV_WIN)
-            xASSERT_DIFF(FALSE, objEvent.hGet().bIsValid())
+            xTEST_DIFF(FALSE, objEvent.hGet().bIsValid())
         #elif defined(xOS_ENV_UNIX)
             //TODO: hRes
         #endif
@@ -46,14 +46,14 @@ CxTest_CxEvent::bUnit(
             CxEvent objEvent(TRUE, TRUE);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         }
 
         {
             CxEvent objEvent(TRUE, FALSE);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQ(FALSE, m_bRes);
+            xTEST_EQ(FALSE, m_bRes);
         }
     }
 
@@ -67,18 +67,18 @@ CxTest_CxEvent::bUnit(
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQ(FALSE, m_bRes);
+            xTEST_EQ(FALSE, m_bRes);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bSet();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         }
     }
 
@@ -92,18 +92,18 @@ CxTest_CxEvent::bUnit(
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bSet();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQ(FALSE, m_bRes);
+            xTEST_EQ(FALSE, m_bRes);
         }
     }
 
@@ -118,13 +118,13 @@ CxTest_CxEvent::bUnit(
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQ(cbInitialState, m_bRes);
+            xTEST_EQ(cbInitialState, m_bRes);
 
             CxEvent::EObjectState osRes = objEvent.osWait(5);
-            xASSERT_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);
+            xTEST_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQ(cbInitialState, m_bRes);
+            xTEST_EQ(cbInitialState, m_bRes);
         }
 
         {
@@ -135,13 +135,13 @@ CxTest_CxEvent::bUnit(
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQ(cbInitialState, m_bRes);
+            xTEST_EQ(cbInitialState, m_bRes);
 
             CxEvent::EObjectState osRes = objEvent.osWait(5);
-            xASSERT_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);   //LINUX   - osSignaled
+            xTEST_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);   //LINUX   - osSignaled
                                                                     //Windows - osTimeout
             m_bRes = objEvent.bIsSignaled();
-            xASSERT_EQ(FALSE, m_bRes);
+            xTEST_EQ(FALSE, m_bRes);
         }
     }
 

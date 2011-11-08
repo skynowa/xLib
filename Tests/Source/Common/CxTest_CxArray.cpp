@@ -37,7 +37,7 @@ CxTest_CxArray::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
-            xASSERT_EQ(i, aszArray[i]);
+            xTEST_EQ(i, aszArray[i]);
         }
     }
 
@@ -46,7 +46,7 @@ CxTest_CxArray::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
-            xASSERT_EQ(i, aszArray.at(i));
+            xTEST_EQ(i, aszArray.at(i));
         }
     }
 
@@ -55,7 +55,7 @@ CxTest_CxArray::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_stRes = aszArray.size();
-        xASSERT_EQ(cuiArraySize, m_stRes);
+        xTEST_EQ(cuiArraySize, m_stRes);
     }
 
     //--------------------------------------------------
@@ -63,7 +63,7 @@ CxTest_CxArray::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         /*m_bRes =*/ aszArray.clear();
-        ////xASSERT_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(FALSE, m_bRes);
     }
 
     xTEST_BLOCK(cullBlockLoops) {

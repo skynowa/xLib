@@ -34,7 +34,7 @@ CxTest_CxSleeper::bUnit(
         CxSleeper objSleeper;
 
         m_bRes = objSleeper.bIsSleeping();
-        xASSERT_EQ(FALSE, m_bRes);
+        xTEST_EQ(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
@@ -45,16 +45,16 @@ CxTest_CxSleeper::bUnit(
 
         for (size_t i = 0; i < 3; ++ i) {
             m_bRes = objSleeper.bIsSleeping();
-            xASSERT_EQ(FALSE, m_bRes);
+            xTEST_EQ(FALSE, m_bRes);
 
             m_bRes = objSleeper.bSleep(5);
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             m_bRes = objSleeper.bIsSleeping();
-            xASSERT_EQ(FALSE, m_bRes);
+            xTEST_EQ(FALSE, m_bRes);
 
             m_bRes = objSleeper.bIsSleeping();
-            xASSERT_EQ(FALSE, m_bRes);
+            xTEST_EQ(FALSE, m_bRes);
         }
     }
 
@@ -66,7 +66,7 @@ CxTest_CxSleeper::bUnit(
             CxSleeper objSleeper;
 
             m_bRes = objSleeper.bWakeUp();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         #endif
     }
 

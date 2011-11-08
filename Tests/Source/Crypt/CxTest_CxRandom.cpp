@@ -34,42 +34,42 @@ CxTest_CxRandom::bUnit(
         //bSetSeed
         {
             m_bRes = rndR.bSetSeed( static_cast<ULONG>( time(NULL) ) );
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
         }
 
         //--------------------------------------------------
         //iNextInt
         {
             m_iRes = rndR.iNextInt();
-            xASSERT_LESS(0, m_iRes);
+            xTEST_LESS(0, m_iRes);
         }
 
         //--------------------------------------------------
         //iNextInt
         {
             m_iRes = rndR.iNextInt(100);
-            xASSERT_LESS_EQ(0, m_iRes);
+            xTEST_LESS_EQ(0, m_iRes);
         }
 
         //--------------------------------------------------
         //iNextInt
         {
             m_iRes = rndR.iNextInt(100, 200);
-            xASSERT_EQ(true, 100 <= m_iRes && 200 >= m_iRes);
+            xTEST_EQ(true, 100 <= m_iRes && 200 >= m_iRes);
         }
 
         //--------------------------------------------------
         //liNextLong
         {
             m_liRes = rndR.liNextLong();
-            xASSERT_LESS(0L, m_liRes);
+            xTEST_LESS(0L, m_liRes);
         }
 
         //--------------------------------------------------
         //bNextBoolean
         {
             m_blRes = rndR.bNextBoolean();
-            xASSERT_EQ(true, true == m_blRes || false == m_blRes);
+            xTEST_EQ(true, true == m_blRes || false == m_blRes);
         }
 
         //--------------------------------------------------
@@ -126,13 +126,13 @@ CxTest_CxRandom::bUnit(
             const LONG cliMax = caliData[i][1];
 
             m_bRes = CxRandom::bSetSeed();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             m_liRes = CxRandom::liGetInt(cliMin, cliMax);
-            xASSERT_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
+            xTEST_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
 
             m_liRes = CxRandom::liGetIntEx(cliMin, cliMax);
-            xASSERT_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
+            xTEST_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
         }
     }
 
@@ -144,10 +144,10 @@ CxTest_CxRandom::bUnit(
 
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = CxRandom::bSetSeed();
-            xASSERT_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
             m_sRes = CxRandom::sGetString(cuiStrSize);
-            xASSERT_EQ(cuiStrSize, m_sRes.size());
+            xTEST_EQ(cuiStrSize, m_sRes.size());
             //xTRACEV(xT("\ti: %s"), m_sRes.c_str());
         }
     }
