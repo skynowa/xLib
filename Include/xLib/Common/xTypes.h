@@ -28,32 +28,32 @@
 #endif //xUNICODE
 
 namespace std {
-	typedef basic_string<TCHAR,         char_traits<TCHAR>,         allocator<TCHAR> >         tstring;
-	typedef basic_string<unsigned char, char_traits<unsigned char>, allocator<unsigned char> > ustring;
+    typedef basic_string<TCHAR,         char_traits<TCHAR>,         allocator<TCHAR> >         tstring;
+    typedef basic_string<unsigned char, char_traits<unsigned char>, allocator<unsigned char> > ustring;
 
-	typedef basic_istream <TCHAR, char_traits<TCHAR> >                                         tistream;
-	typedef basic_ostream <TCHAR, char_traits<TCHAR> >                                         tostream;
-	typedef basic_iostream<TCHAR, char_traits<TCHAR> >                                         tiostream;
+    typedef basic_istream <TCHAR, char_traits<TCHAR> >                                         tistream;
+    typedef basic_ostream <TCHAR, char_traits<TCHAR> >                                         tostream;
+    typedef basic_iostream<TCHAR, char_traits<TCHAR> >                                         tiostream;
 
-	typedef basic_istringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tistringstream;
-	typedef basic_ostringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tostringstream;
-	typedef basic_stringstream <TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tstringstream;
+    typedef basic_istringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tistringstream;
+    typedef basic_ostringstream<TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tostringstream;
+    typedef basic_stringstream <TCHAR, char_traits<TCHAR>, allocator<TCHAR> >                  tstringstream;
 
-	typedef basic_ifstream<TCHAR, char_traits<TCHAR> >                                         tifstream;
-	typedef basic_ofstream<TCHAR, char_traits<TCHAR> >                                         tofstream;
-	typedef basic_fstream <TCHAR, char_traits<TCHAR> >                                         tfstream;
+    typedef basic_ifstream<TCHAR, char_traits<TCHAR> >                                         tifstream;
+    typedef basic_ofstream<TCHAR, char_traits<TCHAR> >                                         tofstream;
+    typedef basic_fstream <TCHAR, char_traits<TCHAR> >                                         tfstream;
 } //namespace std
 
     typedef float                  FLOAT;
     typedef double                 DOUBLE;
 
 #if defined(xOS_ENV_WIN)
-	#if defined(xCOMPILER_MINGW32)
-		typedef addrinfo           ADDRINFOT;
-	#endif
+    #if defined(xCOMPILER_MINGW32)
+        typedef addrinfo           ADDRINFOT;
+    #endif
 #elif defined(xOS_ENV_UNIX)
     #if !defined(BOOL)
-        typedef enum { xFALSE = 0, xTRUE = 1 } BOOL;
+        typedef enum { FALSE = 0, TRUE = 1 } BOOL;
     #endif
 
     typedef void                   VOID;

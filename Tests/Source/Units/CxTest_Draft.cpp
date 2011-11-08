@@ -81,7 +81,7 @@ CxTest_Draft::bUnit(
         }
     #endif
 
-    #if 1
+    #if 0
         xASSERT(FALSE);
     #endif
 

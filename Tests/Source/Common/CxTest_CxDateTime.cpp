@@ -554,10 +554,8 @@ CxTest_CxDateTime::bUnit(
 
             m_ullRes = CxDateTime::i64FiletimeToInt64(cftTime);
             #if xTODO
-                xASSERT_EQ( == m_ullRes);
+                xASSERT_EQ( , m_ullRes);
             #endif
-        #elif defined(xOS_ENV_UNIX)
-            // n/a
         #endif
     }
 
@@ -570,8 +568,19 @@ CxTest_CxDateTime::bUnit(
             FILETIME     ftFileTime  = {0};
 
             m_bRes = CxDateTime::bUnixTimeToFileTime(ctmUnixTime, &ftFileTime);
-        #elif defined(xOS_ENV_UNIX)
-            // n/a
+            xASSERT_NOT_EQ(FALSE, m_bRes);
+        #endif
+    }
+
+    //-------------------------------------
+    //tmFileTimeToUnixTime
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        #if defined(xOS_ENV_WIN)
+            time_t   tmUnixTime = 0;
+            FILETIME ftFileTime = {0};
+
+            tmUnixTime = CxDateTime::tmFileTimeToUnixTime(ftFileTime);
         #endif
     }
 

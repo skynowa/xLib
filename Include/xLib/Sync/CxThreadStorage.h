@@ -19,6 +19,8 @@ class CxThreadStorage :
         virtual ~CxThreadStorage();
             ///< destructor
 
+        BOOL     bIsSet         () const;
+
         VOID    *pvGetValue     () const;
             ///< get the value
         BOOL     bSetValue      (VOID *pvValue) const;

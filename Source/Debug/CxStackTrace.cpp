@@ -62,7 +62,7 @@ CxStackTrace::bGet(
     USHORT usFramesNum      = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
     xCHECK_RET(usFramesNum == 0U, FALSE);
 
-    psiSymbol               = new SYMBOL_INFO [ sizeof( SYMBOL_INFO ) + (255UL + 1) * sizeof(TCHAR) ];
+    psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(TCHAR) ];
     psiSymbol->MaxNameLen   = 255UL;
     psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
 
@@ -73,25 +73,25 @@ CxStackTrace::bGet(
         const std::tstring csName     = std::tstring(psiSymbol->Name);
 
         //std::tstring sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
-        std::tstring sStackLine = CxString::sFormat(xT("%u: %p\t%s"), usFramesNum - i - 1U, csName.c_str(), ullAddress);
+        std::tstring sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, csName.c_str(), ullAddress);
 
         vsStack.push_back(sStackLine);
     }
 
     xARRAY_DELETE(psiSymbol);
 #elif defined(xOS_ENV_UNIX)
-    VOID *pvStack[_m_culMaxFrames] = {0};
+    #if defined(xOS_LINUX)
+        VOID *pvStack[_m_culMaxFrames] = {0};
 
-    INT iFramesNum  = backtrace(pvStack, _m_culMaxFrames);
-    xCHECK_RET(iFramesNum <= 0, FALSE);
+        INT iFramesNum  = backtrace(pvStack, _m_culMaxFrames);
+        xCHECK_RET(iFramesNum <= 0, FALSE);
 
-    TCHAR **ppszSymbols = backtrace_symbols(pvStack, iFramesNum);
-    xCHECK_RET(NULL == ppszSymbols, FALSE);
+        TCHAR **ppszSymbols = backtrace_symbols(pvStack, iFramesNum);
+        xCHECK_RET(NULL == ppszSymbols, FALSE);
 
-    for (INT i = 1; i < iFramesNum; ++ i) {
-        std::tstring sStackLine;
+        for (INT i = 1; i < iFramesNum; ++ i) {
+            std::tstring sStackLine;
 
-        #if 1
             Dl_info dlinfo = {0};
 
             INT iRes = dladdr(pvStack[i], &dlinfo);
@@ -109,16 +109,16 @@ CxStackTrace::bGet(
                     pcszSymName = dlinfo.dli_sname;
                 }
 
-                sStackLine = CxString::sFormat(xT("%u: %p\t%s\t%s"), iFramesNum - i - 1, pvStack[i], dlinfo.dli_fname, pcszSymName);
+                sStackLine = CxString::sFormat(xT("%u: %s    %p    %s"), iFramesNum - i - 1, dlinfo.dli_fname, dlinfo.dli_fbase, pcszSymName);
 
                 xBUFF_FREE(pszDemangleName);
             }
-        #else
-            sStackLine = CxString::sFormat(xT("%u: %p\t%s"), iFramesNum - i - 1, pvStack[i], ppszSymbols[i]);
-        #endif
 
-        vsStack.push_back(sStackLine);
-    }
+            vsStack.push_back(sStackLine);
+        }
+    #elif defined(xOS_FREEBSD)
+        //TODO: CxStackTrace::bGet
+    #endif
 #endif
 
     std::reverse(vsStack.begin(), vsStack.end());

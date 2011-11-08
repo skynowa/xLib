@@ -28,6 +28,21 @@ CxThreadStorage::~CxThreadStorage() {
     (VOID)_bFree();
 }
 //---------------------------------------------------------------------------
+BOOL     
+CxThreadStorage::bIsSet() const {
+    VOID *pvRes = NULL;
+
+#if defined(xOS_ENV_WIN)
+    pvRes = ::TlsGetValue(_m_indIndex);
+    xCHECK_RET(NULL == pvRes, FALSE);
+#elif defined(xOS_ENV_UNIX)
+    pvRes = pthread_getspecific(_m_indIndex);
+    xCHECK_RET(NULL == pvRes, FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 VOID *
 CxThreadStorage::pvGetValue() const {
     VOID *pvRes = NULL;
@@ -36,7 +51,7 @@ CxThreadStorage::pvGetValue() const {
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, NULL);
 
     pvRes = ::TlsGetValue(_m_indIndex);
-    /*DEBUG*/xASSERT_RET(NULL != pvRes, NULL);
+    /*DEBUG*/xASSERT_RET((NULL != pvRes) && (ERROR_SUCCESS == CxLastError::ulGet()), NULL);
 #elif defined(xOS_ENV_UNIX)
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, NULL);
 

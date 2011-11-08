@@ -56,6 +56,13 @@ CxFile::bCreate(
     /*DEBUG*/xASSERT_RET(FALSE != CxPath::bIsNameValid(csFilePath), FALSE);
     /*DEBUG*/// comMode - n/a
 
+    BOOL bRes = FALSE;
+
+    //create force dirs
+    bRes = CxDir::bCreateForce( CxPath::sGetDir(csFilePath) );
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    //create, open file
     FILE *pFile = xTFOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());
     /*DEBUG*/xASSERT_RET(NULL != pFile, FALSE);
 
@@ -63,8 +70,6 @@ CxFile::bCreate(
     _m_sFilePath = csFilePath;
 
     //buffering
-    BOOL bRes = FALSE;
-
     if (FALSE == cbIsUseBuffering) {
         bRes = bSetVBuff(NULL, bmNo,   0);
     } else {
@@ -643,7 +648,7 @@ CxFile::bIsExists(
     xCHECK_RET(FALSE == bIsFile(csFilePath), FALSE);
 
     INT iRes       = xTACCESS(csFilePath.c_str(), amExistence);
-    INT iLastError = errno;
+    INT iLastError = CxStdError::iGet();
     xCHECK_RET((- 1 == iRes) && (ENOENT == iLastError), FALSE);
 
     return TRUE;
@@ -1042,7 +1047,6 @@ CxFile::ullGetLines(
     return ullRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bGetTime (get time)
 /*static*/
 BOOL
 CxFile::bGetTime(
@@ -1057,30 +1061,36 @@ CxFile::bGetTime(
     /*DEBUG*/// pftAccess   - n/a
     /*DEBUG*/// pftModified - n/a
 
+#if defined(xOS_ENV_WIN)
+    FILETIME ftCreate   = {{0}};
+    FILETIME ftAccess   = {{0}};
+    FILETIME ftModified = {{0}};
+
+    CxFileHandle m_hHandle;
+
+    m_hHandle = ::CreateFile(csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
+    /*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
+
+    BOOL bRes = ::GetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+
+    xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = CxDateTime::tmFileTimeToUnixTime(ftCreate));    
+    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = CxDateTime::tmFileTimeToUnixTime(ftAccess));    
+    xCHECK_DO(NULL != ptmModified, *ptmModified = CxDateTime::tmFileTimeToUnixTime(ftModified)); 
+#elif defined(xOS_ENV_UNIX)
     xTSTAT_STRUCT stInfo = {0};
 
     INT iRes = xTSTAT(csFilePath.c_str(), &stInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-#if xTODO
-    xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = stInfo.st_ctim);  //status change
-#endif
-    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = stInfo.st_atime); //access
-    xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime); //modification
-
-#if xTODO
-    FILETIME *pftCreate,
-    FILETIME *pftAccess,
-    FILETIME *pftModified
-
-    bRes = ::GetFileTime(m_hHandle, pftCreate, pftAccess, pftModified);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    //ctmCreate - n/a                                            
+    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = stInfo.st_atime); 
+    xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime); 
 #endif
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-//TODO: bSetTime (set time)
 /*static */
 BOOL
 CxFile::bSetTime(
@@ -1110,26 +1120,17 @@ CxFile::bSetTime(
     bRes = CxDateTime::bUnixTimeToFileTime(ctmModified, &ftModified);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    #if xDEPRECIATE
-        CxFile flFile;
+    CxFileHandle m_hHandle;
 
-        bRes = flFile.bCreate(csFilePath, grWrite, smWrite, cfOpenExisting, CxFileAttribute::faNormal);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    m_hHandle = ::CreateFile(csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
+    /*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
 
-        bRes = flFile.bSetTime(ftCreate, ftAccess, ftModified);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    #else
-        CxFileHandle m_hHandle;
-
-        m_hHandle = ::CreateFile(csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
-        /*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
-
-        bRes = ::SetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
-		/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-    #endif
+    bRes = ::SetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
+	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     utimbuf tbTimes = {0};
 
+    //ctmCreate - n/a
     tbTimes.actime  = ctmAccess;
     tbTimes.modtime = ctmModified;
 

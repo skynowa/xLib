@@ -71,7 +71,8 @@ data   : text/plain;charset=iso-8859-7,%be%fg%be
 tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
-std::string CxUri::sGetUri() const {
+std::string 
+CxUri::sGetUri() const {
     /*DEBUG*/
 
     std::string sRes;
@@ -109,7 +110,8 @@ std::string CxUri::sGetUri() const {
 
     return sRes;
 }
-BOOL CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment) {
+BOOL 
+CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment) {
     /*DEBUG*/
 
     BOOL bRes = FALSE;
@@ -124,17 +126,20 @@ BOOL CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority,
 }
 //---------------------------------------------------------------------------
 //TODO: sGetScheme
-std::string CxUri::sGetScheme() const {
+std::string 
+CxUri::sGetScheme() const {
     return sEncodeComponent(_m_sScheme);
 }
-BOOL CxUri::bSetScheme(const std::string &csScheme) {
+BOOL 
+CxUri::bSetScheme(const std::string &csScheme) {
     _m_sScheme = sDecodeComponent(csScheme);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetAuthority
-std::string CxUri::sGetAuthority() const {
+std::string 
+CxUri::sGetAuthority() const {
     std::string sTempAuthority;
 
     sTempAuthority += "//";
@@ -155,17 +160,20 @@ std::string CxUri::sGetAuthority() const {
 
     return sEncodeComponent(sTempAuthority/*_m_sAuthority*/);
 }
-BOOL CxUri::bSetAuthority(const std::string &csAuthority) {
+BOOL 
+CxUri::bSetAuthority(const std::string &csAuthority) {
     _m_sAuthority = sDecodeComponent(csAuthority);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetUserInfo
-std::string CxUri::sGetUserInfo() const {
+std::string 
+CxUri::sGetUserInfo() const {
     return sEncodeComponent(_m_sUserInfo);
 }
-BOOL CxUri::bSetUserInfo(const std::string &csUserInfo) {
+BOOL 
+CxUri::bSetUserInfo(const std::string &csUserInfo) {
     _m_sUserInfo = sDecodeComponent(csUserInfo);
 
     //TODO: bSetAuthority
@@ -174,10 +182,12 @@ BOOL CxUri::bSetUserInfo(const std::string &csUserInfo) {
 }
 //---------------------------------------------------------------------------
 //DONE: sGetHost
-std::string CxUri::sGetHost() const {
+std::string 
+CxUri::sGetHost() const {
     return sEncodeComponent(_m_sHost);
 }
-BOOL CxUri::bSetHost(const std::string &csHost) {
+BOOL 
+CxUri::bSetHost(const std::string &csHost) {
     _m_sHost = sDecodeComponent(csHost);
 
     //TODO: bSetAuthority
@@ -186,10 +196,12 @@ BOOL CxUri::bSetHost(const std::string &csHost) {
 }
 //---------------------------------------------------------------------------
 //DONE: usGetPort
-USHORT CxUri::usGetPort() {
+USHORT 
+CxUri::usGetPort() {
     return _m_usPort;
 }
-BOOL CxUri::bSetPort(const USHORT &cusPort) {
+BOOL 
+CxUri::bSetPort(const USHORT &cusPort) {
     _m_usPort = cusPort;
 
     //TODO: bSetAuthority
@@ -198,37 +210,44 @@ BOOL CxUri::bSetPort(const USHORT &cusPort) {
 }
 //---------------------------------------------------------------------------
 //DONE: sGetPath
-std::string CxUri::sGetPath() const {
+std::string 
+CxUri::sGetPath() const {
     return sEncodeComponent(_m_sPath);
 }
-BOOL CxUri::bSetPath(const std::string &csPath) {
+BOOL 
+CxUri::bSetPath(const std::string &csPath) {
     _m_sPath = sDecodeComponent(csPath);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetQuery
-std::string CxUri::sGetQuery() const {
+std::string 
+CxUri::sGetQuery() const {
     return sEncodeComponent(_m_sQuery);
 }
-BOOL CxUri::bSetQuery(const std::string &csQuery) {
+BOOL 
+CxUri::bSetQuery(const std::string &csQuery) {
     _m_sQuery = sDecodeComponent(csQuery);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetFragment
-std::string CxUri::sGetFragment() const {
+std::string 
+CxUri::sGetFragment() const {
     return sEncodeComponent(_m_sFragment);
 }
-BOOL CxUri::bSetFragment(const std::string &csFragment) {
+BOOL 
+CxUri::bSetFragment(const std::string &csFragment) {
     _m_sFragment = sDecodeComponent(csFragment);
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 //DONE: bClear ()
-BOOL CxUri::bClear() {
+BOOL 
+CxUri::bClear() {
     ////BOOL bRes = FALSE;
 
     _m_sScheme.clear();
@@ -298,7 +317,9 @@ CxUri::sUnescape(const std::string &csUri) {
 //---------------------------------------------------------------------------
 //TODO: sEncodeComponent
 //void URI::encode(const std::string& str, const std::string& reserved, std::string& encodedStr)
-/*static*/ std::string CxUri::sEncodeComponent(const std::string &csUri) {
+/*static*/ 
+std::string 
+CxUri::sEncodeComponent(const std::string &csUri) {
     std::string sRes;
 
     for (std::string::const_iterator it = csUri.begin(); it != csUri.end(); ++ it) {
@@ -335,7 +356,9 @@ CxUri::sUnescape(const std::string &csUri) {
 //---------------------------------------------------------------------------
 //TODO: sDecodeComponent
 //void URI::decode(const std::string& str, std::string& decodedStr)
-/*static*/ std::string CxUri::sDecodeComponent(const std::string &csUri) {
+/*static*/ 
+std::string 
+CxUri::sDecodeComponent(const std::string &csUri) {
     std::string sRes;
 
     std::string::const_iterator it  = csUri.begin();
@@ -428,7 +451,8 @@ data   : text/plain;charset=iso-8859-7,%be%fg%be
 tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
-BOOL CxUri::_bParse(const std::string &csUri) {
+BOOL 
+CxUri::_bParse(const std::string &csUri) {
     BOOL bRes = FALSE;
 
     //Normilize();
@@ -551,7 +575,8 @@ BOOL CxUri::_bParse(const std::string &csUri) {
 }
 //---------------------------------------------------------------------------
 //TODO: _bNormilize ()
-BOOL CxUri::_bNormilize(const std::string &csUri) {
+BOOL 
+CxUri::_bNormilize(const std::string &csUri) {
     ////BOOL bRes = FALSE;
 
     //trim
@@ -562,7 +587,8 @@ BOOL CxUri::_bNormilize(const std::string &csUri) {
 }
 //---------------------------------------------------------------------------
 //TODO: _usGetDefaultPort ()
-USHORT CxUri::_usGetDefaultPort() const {
+USHORT 
+CxUri::_usGetDefaultPort() const {
     if (       "ftp"    == _m_sScheme) {
         return 21;
     } else if ("ssh"    == _m_sScheme) {
@@ -585,7 +611,8 @@ USHORT CxUri::_usGetDefaultPort() const {
 }
 //---------------------------------------------------------------------------
 //TODO: _bIsDefaultPort ()
-BOOL CxUri::_bIsDefaultPort() const {
+BOOL 
+CxUri::_bIsDefaultPort() const {
     return static_cast<BOOL>( _m_usPort == _usGetDefaultPort() );
 }
 //---------------------------------------------------------------------------

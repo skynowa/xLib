@@ -16,6 +16,7 @@
 #endif
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 class CxShell :
     public CxNonCopyable
     /// shell
@@ -127,7 +128,16 @@ class CxShell :
         	///< execute email
         static std::tstring sGetSpecialDirPath(const ESpecialDir csfDir, const HANDLE chToken);
         	///< get special dir path
-        static BOOL         bCreateShortcut   (const std::tstring &csFilePath, const std::tstring &csShortCutPath, const std::tstring &csDescription);
+        static BOOL         bCreateShortcut   (const std::tstring &csShortCutFilePath,
+                                               const std::tstring &csFilePath,
+                                               const std::tstring &csWorkingDirectory,
+                                               const std::tstring &csArguments,
+                                               const WORD          cwHotKey,
+                                               const INT           ciCmdShow,
+                                               const std::tstring &csIconFilePath,
+                                               const INT           ciIconIndex,
+                                               const std::tstring &csDescription
+                                              );
         	///< create shortcut
 
     private:
@@ -136,6 +146,7 @@ class CxShell :
         virtual            ~CxShell           ();
         	///< destructor
 };
+
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_Win_CxShellH
