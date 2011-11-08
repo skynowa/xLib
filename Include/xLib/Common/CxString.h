@@ -97,9 +97,9 @@ class CxString :
         static std::tstring  sToUpperCase      (const std::tstring &csStr, size_t uiLength);
             ///< convert to uppercase
 
-        static std::tstring  sFormat           (LPCTSTR pcszFormat, ...);
+        static std::tstring  sFormat           (const TCHAR *pcszFormat, ...);
             ///< format
-        static std::tstring  sFormatV          (LPCTSTR pcszFormat, va_list palArgs);
+        static std::tstring  sFormatV          (const TCHAR *pcszFormat, va_list palArgs);
             ///< format
         static std::tstring  sMinimize         (const std::tstring &csStr, const size_t cuiMaxLen);
             ///< minimize

@@ -80,7 +80,7 @@ CxReport::CxReport(
     const std::tstring &csDate,
     const std::tstring &csTime,
     const std::tstring &csStackTrace,
-    LPCTSTR             pcszComment, ...
+    const TCHAR        *pcszComment, ...
 ) :
     _m_rtType         (rtUnknown),
     _m_sReport        (),

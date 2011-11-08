@@ -72,7 +72,7 @@ CxProcess::ulGetCurrParentId() {
 BOOL
 CxProcess::bExec(
     const std::tstring &csFilePath,
-    LPCTSTR             pcszCmdLine, ...
+    const TCHAR        *pcszCmdLine, ...
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
@@ -110,7 +110,7 @@ CxProcess::bExec(
         if (0 == pid) {
             //TODO: csFilePath is executable
 
-            INT iRes = execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
+            INT iRes = execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const TCHAR *>( NULL ));
             /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
             _exit(EXIT_SUCCESS);  /* Note that we do not use exit() */

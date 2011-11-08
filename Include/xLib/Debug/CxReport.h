@@ -29,7 +29,7 @@ class CxReport :
 
                               CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csStackTrace, const std::tstring &csComment);
             ///< constructor
-                              CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csStackTrace, LPCTSTR pcszComment, ...);
+                              CxReport           (const EType &crtType, const std::tstring &csExp, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csStackTrace, const TCHAR *pcszComment, ...);
             ///< constructor
                               template<class T>
                               CxReport           (const EType &crtType, const T &cVatT1, const T &cVatT2, const std::tstring &csExpr1, const std::tstring &csExpr2, const std::tstring &csExprSign, const ULONG culLastError, const std::tstring &csFile, const ULONG culLine, const std::tstring &csFunc, const std::tstring &csDate, const std::tstring &csTime, const std::tstring &csStackTrace, const std::tstring &csComment);
@@ -73,7 +73,7 @@ class CxReport :
             ///< get comment
         const std::tstring &  sGetStackTrace     () const;
             ///< get comment
-        
+
 
     private:
         EType                 _m_rtType;            ///< report type

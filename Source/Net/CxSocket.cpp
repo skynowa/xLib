@@ -30,7 +30,7 @@ CxSocket::~CxSocket() {
 //---------------------------------------------------------------------------
 BOOL
 CxSocket::bAssign(
-	SOCKET scktSocket
+    SOCKET scktSocket
 )
 {
     /*DEBUG*/// _m_puiSocket - n/a
@@ -51,7 +51,7 @@ CxSocket::bAssign(
 //---------------------------------------------------------------------------
 CxSocket &
 CxSocket::operator = (
-	SOCKET puiSocket
+    SOCKET puiSocket
 )
 {
     /*DEBUG*/// _m_puiSocket - n/a
@@ -79,9 +79,9 @@ CxSocket::operator SOCKET () {
 //---------------------------------------------------------------------------
 BOOL
 CxSocket::bCreate(
-	EAddressFamily afFamily,
-	EType          tpType,
-	EProtocol      ptProtocol
+    EAddressFamily afFamily,
+    EType          tpType,
+    EProtocol      ptProtocol
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid == _m_puiSocket, FALSE);
@@ -143,9 +143,9 @@ CxSocket::bClose() {
 //TODO: LINUX: ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 INT
 CxSocket::iSend(
-    LPCTSTR pcszBuff,
-    INT     iBuffSize,
-    INT     iFlags
+    const TCHAR *pcszBuff,
+    INT          iBuffSize,
+    INT          iFlags
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        etError);
@@ -172,8 +172,8 @@ CxSocket::iSend(
 //TODO: bSendAll
 BOOL
 CxSocket::bSendAll(
-	const std::tstring &csBuff,
-	INT                 iFlags
+    const std::tstring &csBuff,
+    INT                 iFlags
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,   FALSE);
@@ -215,7 +215,7 @@ CxSocket::bSendAll(
 //---------------------------------------------------------------------------
 INT
 CxSocket::iRecv(
-    LPTSTR pszBuff,
+    TCHAR *pszBuff,
     INT    iBuffSize,
     INT    iFlags
 )
@@ -232,7 +232,7 @@ CxSocket::iRecv(
     /*DEBUG*/xASSERT_RET(0                              != iRes,                                      etError);  //gracefully closed
     /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(TCHAR) >= iRes,                                      etError);
 #elif defined(xOS_ENV_UNIX)
-    ssize_t iRes = recv(_m_puiSocket, (LPSTR)pszBuff, iBuffSize * sizeof(TCHAR), iFlags);
+    ssize_t iRes = recv(_m_puiSocket, (TCHAR *)pszBuff, iBuffSize * sizeof(TCHAR), iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRes,                                      etError);
     /*DEBUG*/xASSERT_RET(0                              != iRes,                                      etError);  //gracefully closed
     /*DEBUG*/xASSERT_RET(iBuffSize * (INT)sizeof(TCHAR) >= iRes,                                      etError);
@@ -243,7 +243,7 @@ CxSocket::iRecv(
 //---------------------------------------------------------------------------
 std::tstring
 CxSocket::sRecvAll(
-	INT iFlags
+    INT iFlags
 )
 {
     std::tstring      sRes;
@@ -265,7 +265,7 @@ CxSocket::sRecvAll(
         xCHECK_DO(0 == ulArg,          break);
         xCHECK_DO(cuiBuffSize < ulArg, ulArg = cuiBuffSize);
 
-        iRes = recv(_m_puiSocket, (LPSTR)&szBuff[0], ulArg, 0);
+        iRes = recv(_m_puiSocket, (TCHAR *)&szBuff[0], ulArg, 0);
         xCHECK_DO(iRes <= 0, break);
 
         sRes.append(szBuff, iRes);
@@ -276,8 +276,8 @@ CxSocket::sRecvAll(
 //---------------------------------------------------------------------------
 std::tstring
 CxSocket::sRecvAll(
-	INT                 iFlags,
-	const std::tstring &csDelimiter
+    INT                 iFlags,
+    const std::tstring &csDelimiter
 )
 {
     std::tstring sRes;
@@ -304,8 +304,8 @@ CxSocket::sRecvAll(
 //TODO: iSendBytes
 INT
 CxSocket::iSendBytes(
-	LPSTR pszBuff,
-	INT   iMessageLength
+    CHAR *pszBuff,
+    INT   iMessageLength
 )
 {
     INT     iRC         = 0;
@@ -346,8 +346,8 @@ CxSocket::iSendBytes(
 //TODO: ReceiveNBytes
 INT
 CxSocket::iReceiveBytes(
-	LPSTR pszBuff,
-	INT   iStillToReceive
+    CHAR *pszBuff,
+    INT   iStillToReceive
 )
 {
     INT     iRC               = 0;
@@ -395,8 +395,8 @@ CxSocket::iReceiveBytes(
 //---------------------------------------------------------------------------
 BOOL
 CxSocket::bGetPeerName(
-	std::tstring *psPeerAddr,
-	USHORT       *pusPeerPort
+    std::tstring *psPeerAddr,
+    USHORT       *pusPeerPort
 )
 {
     /*DEBUG*///psPeerAddr  - n/a
@@ -432,8 +432,8 @@ CxSocket::bGetPeerName(
 //---------------------------------------------------------------------------
 BOOL
 CxSocket::bGetSocketName(
-	std::tstring *psSocketAddr,
-	USHORT       *pusSocketPort
+    std::tstring *psSocketAddr,
+    USHORT       *pusSocketPort
 )
 {
     /*DEBUG*///psPeerAddr  - n/a
@@ -478,11 +478,11 @@ CxSocket::bGetSocketName(
 /*static*/
 INT
 CxSocket::iSelect(
-	INT      nfds,
-	fd_set  *pReadfds,
-	fd_set  *pWritefds,
-	fd_set  *pExceptfds,
-	timeval *tvTimeout
+    INT      nfds,
+    fd_set  *pReadfds,
+    fd_set  *pWritefds,
+    fd_set  *pExceptfds,
+    timeval *tvTimeout
 )
 {
     /*DEBUG*/// nfds

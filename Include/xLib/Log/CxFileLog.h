@@ -31,30 +31,30 @@ class CxFileLog :
                              CxFileLog   (const ULONG culMaxFileSizeBytes);
             ///< constructor
         virtual             ~CxFileLog   ();
-        	///< destructor
+            ///< destructor
 
         BOOL                 bSetFilePath(const std::tstring &csFilePath);
-    		///< set log path
+            ///< set log path
         const std::tstring & sGetFilePath() const;
-    		///< get log path
+            ///< get log path
 
-        BOOL                 bWrite      (LPCTSTR pcszFormat, ...);
-    		///< write
+        BOOL                 bWrite      (const TCHAR *pcszFormat, ...);
+            ///< write
         BOOL                 bClear      ();
-    		///< clear content
+            ///< clear content
         BOOL                 bDelete     ();
-    		///< delete
+            ///< delete
 
     private:
-        std::tstring         _m_sFilePath;			///< file path
-        ULONG                _m_ulMaxFileSizeBytes;	///< maximum file size in bytes
+        std::tstring         _m_sFilePath;            ///< file path
+        ULONG                _m_ulMaxFileSizeBytes;    ///< maximum file size in bytes
 
     #if xTODO
         CxAutoMutex          _m_mtFile;
     #endif
 
         BOOL                 _bDeleteIfFull();
-    		///< delete log, if full
+            ///< delete log, if full
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxFileLogH

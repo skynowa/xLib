@@ -27,9 +27,9 @@ CxFileLog::CxFileLog(
 ) :
     _m_sFilePath         (),
     _m_ulMaxFileSizeBytes(culMaxFileSizeBytes)
-	#if xTODO
-		CxAutoMutex
-	#endif
+    #if xTODO
+        CxAutoMutex
+    #endif
 {
     /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(), return);
     /*DEBUG*/xASSERT_DO(lsLimitSize >  culMaxFileSizeBytes,  return);
@@ -66,7 +66,7 @@ CxFileLog::sGetFilePath() const {
 //---------------------------------------------------------------------------
 BOOL
 CxFileLog::bWrite(
-    LPCTSTR pcszFormat, ...
+    const TCHAR *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
@@ -92,9 +92,9 @@ CxFileLog::bWrite(
 
     //-------------------------------------
     //write to file
-	#if xTODO
-		CxAutoMutex SL(_m_mtFile);
-	#endif
+    #if xTODO
+        CxAutoMutex SL(_m_mtFile);
+    #endif
 
     CxFile sfFile;
 
@@ -111,9 +111,9 @@ BOOL
 CxFileLog::bClear() {
     BOOL bRes = FALSE;
 
-	#if xTODO
-		CxAutoMutex SL(_m_mtFile);
-	#endif
+    #if xTODO
+        CxAutoMutex SL(_m_mtFile);
+    #endif
 
     bRes = CxFile::bClear(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -125,9 +125,9 @@ BOOL
 CxFileLog::bDelete() {
     BOOL bRes = FALSE;
 
-	#if xTODO
-		CxAutoMutex SL(_m_mtFile);
-	#endif
+    #if xTODO
+        CxAutoMutex SL(_m_mtFile);
+    #endif
 
     bRes = CxFile::bDelete(sGetFilePath());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
@@ -147,9 +147,9 @@ BOOL
 CxFileLog::_bDeleteIfFull() {
     BOOL bRes = FALSE;
 
-	#if xTODO
-		CxAutoMutex SL(_m_mtFile);
-	#endif
+    #if xTODO
+        CxAutoMutex SL(_m_mtFile);
+    #endif
 
     bRes = CxFile::bIsExists(sGetFilePath());
     xCHECK_RET(FALSE == bRes, TRUE);

@@ -16,7 +16,7 @@
 CxAutoProfiler::CxAutoProfiler(
     const std::tstring      &csFilePath,
     const CxProfiler::EMode  cpmMode,
-    LPCTSTR                  pcszComment, ...
+    const TCHAR             *pcszComment, ...
 ) :
     _m_pfProfiler(cpmMode),
     _m_sComment  ()

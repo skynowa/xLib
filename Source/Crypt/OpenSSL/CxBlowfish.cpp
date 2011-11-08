@@ -136,7 +136,7 @@ CxBlowfish::bEncryptCfb64(
 {
     /*DEBUG*/xASSERT_RET(NULL != pucIn,     FALSE);
     /*DEBUG*/xASSERT_RET(NULL != pucIn,     FALSE);
-    /*DEBUG*/xASSERT_RET(0L   <  cliInSize, FALSE);
+    /*DEBUG*/xASSERT_RET(- 1L <  cliInSize, FALSE);
     /*DEBUG*/xASSERT_RET(NULL != piNum,     FALSE);
 
     xBUFF_ZERO(_m_ucIvec);
@@ -261,7 +261,7 @@ CxBlowfish::bEncryptFileCfb64(
                 usStampCrc32 = cusStamp + xS2US(sCrc32);
                 /*DEBUG*/xASSERT_RET(cusStamp.size() + cuiCrc32StrSize == usStampCrc32.size(), FALSE);
 
-                size_t uiWrited = sfFileOut.uiWrite((LPVOID)&usStampCrc32.at(0), usStampCrc32.size());
+                size_t uiWrited = sfFileOut.uiWrite((VOID *)&usStampCrc32.at(0), usStampCrc32.size());
                 /*DEBUF*/xASSERT_RET(uiWrited == usStampCrc32.size(), FALSE);
             }
             break;

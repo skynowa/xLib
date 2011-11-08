@@ -82,9 +82,9 @@ CxFile::bCreate(
 //---------------------------------------------------------------------------
 BOOL
 CxFile::bReopen(
-	const std::tstring &csFilePath,
-	const EOpenMode     comMode,
-	const BOOL          cbIsUseBuffering
+    const std::tstring &csFilePath,
+    const EOpenMode     comMode,
+    const BOOL          cbIsUseBuffering
 )
 {
     /*DEBUG*/// _m_pFile - n/a
@@ -163,8 +163,8 @@ CxFile::sGetPath() const {
 //---------------------------------------------------------------------------
 size_t
 CxFile::uiRead(
-    LPVOID       pvBuff,
-    const size_t cuiCount
+    VOID         *pvBuff,
+    const size_t  cuiCount
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
@@ -178,8 +178,8 @@ CxFile::uiRead(
 //---------------------------------------------------------------------------
 size_t
 CxFile::uiWrite(
-    const LPVOID pcvBuff,
-    const size_t cuiCount
+    const VOID   *pcvBuff,
+    const size_t  cuiCount
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
@@ -249,7 +249,7 @@ CxFile::bRead(
 //---------------------------------------------------------------------------
 INT
 CxFile::iWrite(
-    LPCTSTR pcszFormat, ...
+    const TCHAR *pcszFormat, ...
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), etError);
@@ -268,8 +268,8 @@ CxFile::iWrite(
 //---------------------------------------------------------------------------
 INT
 CxFile::iWriteV(
-    LPCTSTR pcszFormat,
-    va_list vlArgs
+    const TCHAR *pcszFormat,
+    va_list      vlArgs
 ) const
 {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), etError);
@@ -391,14 +391,14 @@ CxFile::bLocking(
 )
 {
 #if defined(xOS_ENV_WIN)
-	#if defined(xCOMPILER_CODEGEAR)
-		#define xLOCKING locking
-	#else
-		#define xLOCKING _locking
-	#endif
+    #if defined(xCOMPILER_CODEGEAR)
+        #define xLOCKING locking
+    #else
+        #define xLOCKING _locking
+    #endif
 
-	INT iRes = xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
-	/*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    INT iRes = xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     INT iRes = lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
@@ -433,9 +433,9 @@ CxFile::liGetPosition() const {
 //---------------------------------------------------------------------------
 BOOL
 CxFile::bSetVBuff(
-    LPSTR                pszBuff,
-    const EBufferingMode cbmMode,
-    const size_t         cuiSize
+    CHAR                 *pszBuff,
+    const EBufferingMode  cbmMode,
+    const size_t          cuiSize
 ) const
 {
     /*DEBUG*/// pszBuff - n/a
@@ -664,13 +664,13 @@ CxFile::sIsExists(
 
     std::tstring sRes;
 
-	std::tstring sFileDir  = CxPath::sGetDir(csFilePath);
-	std::tstring sFileName = CxPath::sGetName(csFilePath);
-	std::tstring sFileExt  = CxPath::sGetExt(csFilePath);
+    std::tstring sFileDir  = CxPath::sGetDir(csFilePath);
+    std::tstring sFileName = CxPath::sGetName(csFilePath);
+    std::tstring sFileExt  = CxPath::sGetExt(csFilePath);
 
-	xCHECK_DO(false == sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
+    xCHECK_DO(false == sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
 
-	for (ULONG ulExistsIndex = 1; ; ++ ulExistsIndex) {
+    for (ULONG ulExistsIndex = 1; ; ++ ulExistsIndex) {
         sRes = CxString::sFormat(xT("%s%s%s (%li)%s"),
                                  sFileDir.c_str(), CxConst::xSLASH.c_str(), sFileName.c_str(), ulExistsIndex, sFileExt.c_str());
 
@@ -1074,18 +1074,18 @@ CxFile::bGetTime(
     BOOL bRes = ::GetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-    xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = CxDateTime::tmFileTimeToUnixTime(ftCreate));    
-    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = CxDateTime::tmFileTimeToUnixTime(ftAccess));    
-    xCHECK_DO(NULL != ptmModified, *ptmModified = CxDateTime::tmFileTimeToUnixTime(ftModified)); 
+    xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = CxDateTime::tmFileTimeToUnixTime(ftCreate));
+    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = CxDateTime::tmFileTimeToUnixTime(ftAccess));
+    xCHECK_DO(NULL != ptmModified, *ptmModified = CxDateTime::tmFileTimeToUnixTime(ftModified));
 #elif defined(xOS_ENV_UNIX)
     xTSTAT_STRUCT stInfo = {0};
 
     INT iRes = xTSTAT(csFilePath.c_str(), &stInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-    //ctmCreate - n/a                                            
-    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = stInfo.st_atime); 
-    xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime); 
+    //ctmCreate - n/a
+    xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = stInfo.st_atime);
+    xCHECK_DO(NULL != ptmModified, *ptmModified = stInfo.st_mtime);
 #endif
 
     return TRUE;
@@ -1126,7 +1126,7 @@ CxFile::bSetTime(
     /*DEBUG*/xASSERT_RET(FALSE != m_hHandle.bIsValid(), FALSE);
 
     bRes = ::SetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
-	/*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     utimbuf tbTimes = {0};
 
@@ -1144,7 +1144,7 @@ CxFile::bSetTime(
 
 
 /****************************************************************************
-*	public: text
+*    public: text
 *
 *****************************************************************************/
 
@@ -1172,7 +1172,7 @@ CxFile::bTextRead(
 
     sRes.resize(liFileSize);
 
-    size_t uiReadLen = sfFile.uiRead((LPVOID)&sRes.at(0), sRes.size());
+    size_t uiReadLen = sfFile.uiRead((VOID *)&sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(sRes.size() == uiReadLen, FALSE);
 
     //out
@@ -1201,7 +1201,7 @@ CxFile::bTextWrite(
 
     xCHECK_RET(true == csContent.empty(), TRUE);
 
-    size_t uiWriteLen = sfFile.uiWrite((LPVOID)&csContent.at(0), csContent.size());
+    size_t uiWriteLen = sfFile.uiWrite((VOID *)&csContent.at(0), csContent.size());
     /*DEBUG*/xASSERT_RET(csContent.size() == uiWriteLen, FALSE);
 
     return TRUE;
@@ -1375,7 +1375,7 @@ CxFile::bTextWrite(
 
 
 /****************************************************************************
-*	public: bin
+*    public: bin
 *
 *****************************************************************************/
 
@@ -1404,7 +1404,7 @@ CxFile::bBinRead(
 
     usRes.resize(liFileSize);
 
-    size_t uiReadLen = sfFile.uiRead((LPVOID)&usRes.at(0), usRes.size());
+    size_t uiReadLen = sfFile.uiRead((VOID *)&usRes.at(0), usRes.size());
     /*DEBUG*/xASSERT_RET(usRes.size() == uiReadLen, FALSE);
 
     //out
@@ -1434,7 +1434,7 @@ CxFile::bBinWrite(
 
     xCHECK_RET(true == cusContent.empty(), TRUE);
 
-    size_t uiWriteLen = sfFile.uiWrite((LPVOID)&cusContent.at(0), cusContent.size());
+    size_t uiWriteLen = sfFile.uiWrite((VOID *)&cusContent.at(0), cusContent.size());
     /*DEBUG*/xASSERT_RET(cusContent.size() == uiWriteLen, FALSE);
 
     return TRUE;
@@ -1443,7 +1443,7 @@ CxFile::bBinWrite(
 
 
 /****************************************************************************
-*	public: other
+*    public: other
 *
 *****************************************************************************/
 
@@ -1488,9 +1488,9 @@ CxFile::sBackup(
     xCHECK_RET(FALSE == bRes, std::tstring());
 
     if (static_cast<ULONGLONG>( liGetSize(csFilePath) ) > ullTotalFreeBytes) {
-    	////TODO: CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"));
+        ////TODO: CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"));
 
-    	return std::tstring();
+        return std::tstring();
     }
 
     //-------------------------------------
@@ -1569,7 +1569,7 @@ CxFile::_sGetOpenMode(
         case omBinCreateReadWrite:  { sRes.assign( xT("wb+") ); }   break;
         case omBinOpenReadAppend:   { sRes.assign( xT("ab+") ); }   break;
 
-        default:                    { sRes.assign( xT("r")   ); }	break;
+        default:                    { sRes.assign( xT("r")   ); }    break;
     }
 
     return sRes;

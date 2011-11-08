@@ -18,14 +18,14 @@ class CxConsoleLog :
         explicit                 CxConsoleLog(const BOOL bIsUseTimeStr);
             ///< constructor
         virtual                 ~CxConsoleLog();
-        	///< destructor
+            ///< destructor
 
-        BOOL                     bWrite      (LPCTSTR pcszFormat, ...);
-        	///< write
+        BOOL                     bWrite      (const TCHAR *pcszFormat, ...);
+            ///< write
 
     private:
-        static CxCriticalSection _ms_csConsole;		///< critical section
-        BOOL                     _m_bIsUseTimeStr;	///< is use time string
+        static CxCriticalSection _ms_csConsole;        ///< critical section
+        BOOL                     _m_bIsUseTimeStr;    ///< is use time string
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxConsoleLogH

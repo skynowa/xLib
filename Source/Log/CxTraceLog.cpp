@@ -17,7 +17,7 @@
 
 //---------------------------------------------------------------------------
 CxTraceLog::CxTraceLog(
-	const BOOL cbIsUseTimeStr
+    const BOOL cbIsUseTimeStr
 ) :
     _m_bIsEnable    (TRUE),
     _m_bIsUseTimeStr(cbIsUseTimeStr)
@@ -42,7 +42,7 @@ CxTraceLog::bSetEnabled(
 //---------------------------------------------------------------------------
 BOOL
 CxTraceLog::bWrite(
-    LPCTSTR pcszFormat, ...
+    const TCHAR *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);

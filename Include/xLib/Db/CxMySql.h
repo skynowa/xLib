@@ -36,7 +36,7 @@ class CxMySQLConnection :
             ///< set extra connect options and affect behavior
         BOOL                     bConnect         (const std::tstring &csHost, const std::tstring &csUser, const std::tstring &csPassword, const std::tstring &csDb, const UINT cuiPort, const std::tstring &csUnixSocket, const ULONG culClientFlag);
             ///< attempts to establish a connection to a MySQL database engine running on host
-        BOOL                     bQuery           (LPCTSTR pcszSqlFormat, ...) const;
+        BOOL                     bQuery           (const TCHAR *pcszSqlFormat, ...) const;
             ///< executes the SQL statement
         UINT                     uiFieldCount     () const;
             ///< number of columns in a result set
