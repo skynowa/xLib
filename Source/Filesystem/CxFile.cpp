@@ -1453,7 +1453,7 @@ std::string_t
 CxFile::sBackup(
     const std::string_t &csFilePath,
     const std::string_t &csDestDirPath,
-    const BOOL          cbMakeDaily
+    const BOOL           cbMakeDaily
     /*int bBackupLimit*/
 )
 {
