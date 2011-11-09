@@ -61,7 +61,7 @@ CxObject::bSetHandle(
 //---------------------------------------------------------------------------
 BOOL
 CxObject::bCreate(
-    CK_ATTRIBUTE_PTR pTemplate,	///< the object's template
+    CK_ATTRIBUTE_PTR pTemplate,    ///< the object's template
     CK_ULONG         ulCount    ///< attributes in template
 )
 {
@@ -77,7 +77,7 @@ CxObject::bCreate(
 //---------------------------------------------------------------------------
 BOOL
 CxObject::bGetSize(
-    CK_ULONG_PTR pulSize	///< receives size of object
+    CK_ULONG_PTR pulSize    ///< receives size of object
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    FALSE);
@@ -111,7 +111,7 @@ BOOL
 CxObject::bFind(
     CK_ATTRIBUTE_PTR               pTemplate,           ///< attribute values to match
     CK_ULONG                       ulCount,             ///< attrs in search template
-    std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles	///< [out] handles to objects
+    std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles    ///< [out] handles to objects
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,          FALSE);

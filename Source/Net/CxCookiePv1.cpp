@@ -265,11 +265,11 @@ CxCookiePv1::sToString() const {
 //TODO: sGetDump
 std::string_t
 CxCookiePv1::sGetDump() const {
-	std::string_t sRes;
+    std::string_t sRes;
 
-	xNOT_IMPLEMENTED_RET(std::string_t());
+    xNOT_IMPLEMENTED_RET(std::string_t());
 
-	return sRes;
+    return sRes;
 }
 //---------------------------------------------------------------------------
 BOOL

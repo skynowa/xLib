@@ -26,8 +26,8 @@ class CxPkcs11 :
         CK_FUNCTION_LIST_PTR pGetFuncList  () const;
             ///< get pointer to dll's functions list
    private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;        	///< pointer to fumction
-        CxDll                _m_dllETPkcs11;	///< Pkcs11 CxDll object
+        CK_FUNCTION_LIST_PTR _m_pFunc;            ///< pointer to fumction
+        CxDll                _m_dllETPkcs11;    ///< Pkcs11 CxDll object
 
         BOOL                 _bLoadETPkcs11();
             ///< load eTPkcs11.dll

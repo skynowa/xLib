@@ -13,11 +13,11 @@
 class CxFileTemp :
     public CxNonCopyable
 {
-	public:
-		explicit      CxFileTemp(const BOOL cbIsAutoDelete);
+    public:
+        explicit      CxFileTemp(const BOOL cbIsAutoDelete);
             ///< constructor
-		virtual      ~CxFileTemp();
-		    ///< destructor
+        virtual      ~CxFileTemp();
+            ///< destructor
 
         BOOL          bCreate   (const std::string_t &csFilePath, const std::string_t &csDirPath, CxFile *pfFile);
             ///< create temporary file, open it

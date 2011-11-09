@@ -43,8 +43,8 @@ CxCompletionPort::bCreate(
 //DONE: bAssociate
 BOOL
 CxCompletionPort::bAssociate(
-	HANDLE    hFile,
-	ULONG_PTR pulCompletionKey
+    HANDLE    hFile,
+    ULONG_PTR pulCompletionKey
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hCP.bIsValid(), FALSE);
@@ -61,10 +61,10 @@ CxCompletionPort::bAssociate(
 //DONE: bGetStatus (Attempts to dequeue an I/O completion packet from the specified I/O completion port.)
 BOOL
 CxCompletionPort::bGetStatus(
-	LPDWORD       lpNumberOfBytes,
-	PULONG_PTR    lpCompletionKey,
-	LPOVERLAPPED *lpOverlapped,
-	ULONG         ulMilliseconds
+    LPDWORD       lpNumberOfBytes,
+    PULONG_PTR    lpCompletionKey,
+    LPOVERLAPPED *lpOverlapped,
+    ULONG         ulMilliseconds
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hCP.bIsValid(), FALSE);
@@ -82,9 +82,9 @@ CxCompletionPort::bGetStatus(
 //DONE: bPostStatus (Posts an I/O completion packet to an I/O completion port.)
 BOOL
 CxCompletionPort::bPostStatus(
-	ULONG        ulNumberOfBytesTransferred,
-	ULONG_PTR    ulCompletionKey,
-	LPOVERLAPPED lpOverlapped
+    ULONG        ulNumberOfBytesTransferred,
+    ULONG_PTR    ulCompletionKey,
+    LPOVERLAPPED lpOverlapped
 )
 {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hCP.bIsValid(), FALSE);

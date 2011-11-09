@@ -54,7 +54,7 @@ extern "C" {
 #define ETCKA_OTP_MAY_SET_DURATION         0x80001802
 
 #define ETCKA_CAPI_DEFAULT_KC              0x80001901
-#define ETCKA_CAPI_ENROLL_KC               0x80001902 
+#define ETCKA_CAPI_ENROLL_KC               0x80001902
 #define ETCKA_CAPI_AUX_KC                  0x80001903
 
   /* Token object's attributes */
@@ -181,13 +181,13 @@ ETC_CreateTracker
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_CreateTracker)
 (
-  ETCK_TRACKER_HANDLE_PTR pTracker, 
+  ETCK_TRACKER_HANDLE_PTR pTracker,
   CK_VOID_PTR param /* NULL */
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_CreateTracker)
 (
-  ETCK_TRACKER_HANDLE_PTR pTracker, 
+  ETCK_TRACKER_HANDLE_PTR pTracker,
   CK_VOID_PTR param /* NULL */
 );
 
@@ -240,7 +240,7 @@ ETC_GetProperty
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_GetProperty)
 (
-  CK_UTF8CHAR_PTR name, 
+  CK_UTF8CHAR_PTR name,
   CK_VOID_PTR pBuffer,
   CK_ULONG_PTR pulSize,
   CK_VOID_PTR pReserved /* NULL */
@@ -248,7 +248,7 @@ CK_DECLARE_FUNCTION(CK_RV, ETC_GetProperty)
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_GetProperty)
 (
-  CK_UTF8CHAR_PTR name, 
+  CK_UTF8CHAR_PTR name,
   CK_VOID_PTR pBuffer,
   CK_ULONG_PTR pulSize,
   CK_VOID_PTR pReserved
@@ -259,7 +259,7 @@ ETC_SetProperty
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_SetProperty)
 (
-  CK_UTF8CHAR_PTR name, 
+  CK_UTF8CHAR_PTR name,
   CK_VOID_PTR pBuffer,
   CK_ULONG ulSize,
   CK_ULONG flags,
@@ -268,7 +268,7 @@ CK_DECLARE_FUNCTION(CK_RV, ETC_SetProperty)
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_SetProperty)
 (
-  CK_UTF8CHAR_PTR name, 
+  CK_UTF8CHAR_PTR name,
   CK_VOID_PTR pBuffer,
   CK_ULONG ulSize,
   CK_ULONG flags,
@@ -296,16 +296,16 @@ ETC_SingleLogonGetPin
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_SingleLogonGetPin)
 (
-  CK_SESSION_HANDLE hSession, 
-  CK_CHAR_PTR       pPin,     
-  CK_ULONG_PTR      ulPinLen  
+  CK_SESSION_HANDLE hSession,
+  CK_CHAR_PTR       pPin,
+  CK_ULONG_PTR      ulPinLen
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_SingleLogonGetPin)
 (
-  CK_SESSION_HANDLE hSession, 
-  CK_CHAR_PTR       pPin,     
-  CK_ULONG_PTR      ulPinLen  
+  CK_SESSION_HANDLE hSession,
+  CK_CHAR_PTR       pPin,
+  CK_ULONG_PTR      ulPinLen
 );
 
 
@@ -329,22 +329,22 @@ ETC_InitTokenInit
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_InitTokenInit)
 (
-  CK_SLOT_ID             slotID,        
-  CK_UTF8CHAR_PTR        pPin,          
-  CK_ULONG               ulPinLen,      
+  CK_SLOT_ID             slotID,
+  CK_UTF8CHAR_PTR        pPin,
+  CK_ULONG               ulPinLen,
     CK_ULONG               ulRetryCounter,
-  CK_UTF8CHAR_PTR        pLabel,        
-  CK_SESSION_HANDLE_PTR  phSession      
+  CK_UTF8CHAR_PTR        pLabel,
+  CK_SESSION_HANDLE_PTR  phSession
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_InitTokenInit)
 (
-  CK_SLOT_ID             slotID,        
-  CK_UTF8CHAR_PTR        pPin,          
-  CK_ULONG               ulPinLen,      
+  CK_SLOT_ID             slotID,
+  CK_UTF8CHAR_PTR        pPin,
+  CK_ULONG               ulPinLen,
     CK_ULONG               ulRetryCounter,
-  CK_UTF8CHAR_PTR        pLabel,        
-  CK_SESSION_HANDLE_PTR  phSession      
+  CK_UTF8CHAR_PTR        pLabel,
+  CK_SESSION_HANDLE_PTR  phSession
 );
 
 /*
@@ -365,37 +365,37 @@ ETC_InitPIN
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_InitPIN)
 (
-  CK_SESSION_HANDLE hSession,        
-  CK_UTF8CHAR_PTR   pPin,            
-  CK_ULONG          ulPinLen,        
-    CK_ULONG          ulRetryCounter,  
-    CK_BBOOL          toBeChanged      
+  CK_SESSION_HANDLE hSession,
+  CK_UTF8CHAR_PTR   pPin,
+  CK_ULONG          ulPinLen,
+    CK_ULONG          ulRetryCounter,
+    CK_BBOOL          toBeChanged
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_InitPIN)
 (
-  CK_SESSION_HANDLE hSession,        
-  CK_UTF8CHAR_PTR   pPin,            
-  CK_ULONG          ulPinLen,        
-    CK_ULONG          ulRetryCounter,  
-    CK_BBOOL          toBeChanged      
+  CK_SESSION_HANDLE hSession,
+  CK_UTF8CHAR_PTR   pPin,
+  CK_ULONG          ulPinLen,
+    CK_ULONG          ulRetryCounter,
+    CK_BBOOL          toBeChanged
 );
 
 /*
 ETC_UnlockGetChallenge
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_UnlockGetChallenge)
-( 
-  CK_SESSION_HANDLE hSession, 
-  CK_VOID_PTR       pChallenge, 
-  CK_ULONG_PTR      pulChallengeLen 
+(
+  CK_SESSION_HANDLE hSession,
+  CK_VOID_PTR       pChallenge,
+  CK_ULONG_PTR      pulChallengeLen
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_UnlockGetChallenge)
 (
-  CK_SESSION_HANDLE hSession, 
-  CK_VOID_PTR       pChallenge, 
-  CK_ULONG_PTR      pulChallengeLen 
+  CK_SESSION_HANDLE hSession,
+  CK_VOID_PTR       pChallenge,
+  CK_ULONG_PTR      pulChallengeLen
 );
 
 /*
@@ -403,24 +403,24 @@ ETC_UnlockComplete
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_UnlockComplete)
 (
-  CK_SESSION_HANDLE hSession,        
-  CK_VOID_PTR       pResponse, 
+  CK_SESSION_HANDLE hSession,
+  CK_VOID_PTR       pResponse,
   CK_ULONG          ulResponse,
-  CK_UTF8CHAR_PTR   pPin,            
-  CK_ULONG          ulPinLen,        
-    CK_ULONG          ulRetryCounter,  
-    CK_BBOOL          toBeChanged      
+  CK_UTF8CHAR_PTR   pPin,
+  CK_ULONG          ulPinLen,
+    CK_ULONG          ulRetryCounter,
+    CK_BBOOL          toBeChanged
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_UnlockComplete)
 (
-  CK_SESSION_HANDLE hSession,        
-  CK_VOID_PTR       pResponse, 
+  CK_SESSION_HANDLE hSession,
+  CK_VOID_PTR       pResponse,
   CK_ULONG          ulResponse,
-  CK_UTF8CHAR_PTR   pPin,            
-  CK_ULONG          ulPinLen,        
-    CK_ULONG          ulRetryCounter,  
-    CK_BBOOL          toBeChanged      
+  CK_UTF8CHAR_PTR   pPin,
+  CK_ULONG          ulPinLen,
+    CK_ULONG          ulRetryCounter,
+    CK_BBOOL          toBeChanged
 );
 
 /*
@@ -428,22 +428,22 @@ ETC_DeviceIOCTL
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_DeviceIOCTL)
 (
-  CK_SLOT_ID slotId, 
-  CK_ULONG code, 
-  CK_VOID_PTR pInput, 
-  CK_ULONG ulInputLength, 
-  CK_VOID_PTR pOutput, 
-  CK_ULONG_PTR pulOutputLength 
+  CK_SLOT_ID slotId,
+  CK_ULONG code,
+  CK_VOID_PTR pInput,
+  CK_ULONG ulInputLength,
+  CK_VOID_PTR pOutput,
+  CK_ULONG_PTR pulOutputLength
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_DeviceIOCTL)
 (
-  CK_SLOT_ID slotId, 
-  CK_ULONG code, 
-  CK_VOID_PTR pInput, 
-  CK_ULONG ulInputLength, 
-  CK_VOID_PTR pOutput, 
-  CK_ULONG_PTR pulOutputLength 
+  CK_SLOT_ID slotId,
+  CK_ULONG code,
+  CK_VOID_PTR pInput,
+  CK_ULONG ulInputLength,
+  CK_VOID_PTR pOutput,
+  CK_ULONG_PTR pulOutputLength
 );
 
 /*
@@ -451,27 +451,27 @@ ETC_TokenIOCTL
 */
 CK_DECLARE_FUNCTION(CK_RV, ETC_TokenIOCTL)
 (
-  CK_SESSION_HANDLE hSession, 
+  CK_SESSION_HANDLE hSession,
   CK_OBJECT_HANDLE hObject,
-  CK_ULONG code, 
-  CK_VOID_PTR pInput, 
-  CK_ULONG ulInputLength, 
-  CK_VOID_PTR pOutput, 
-  CK_ULONG_PTR pulOutputLength 
+  CK_ULONG code,
+  CK_VOID_PTR pInput,
+  CK_ULONG ulInputLength,
+  CK_VOID_PTR pOutput,
+  CK_ULONG_PTR pulOutputLength
 );
 
 typedef CK_DECLARE_FUNCTION_POINTER(CK_RV, CK_ETC_TokenIOCTL)
 (
-  CK_SESSION_HANDLE hSession, 
+  CK_SESSION_HANDLE hSession,
   CK_OBJECT_HANDLE hObject,
-  CK_ULONG code, 
-  CK_VOID_PTR pInput, 
-  CK_ULONG ulInputLength, 
-  CK_VOID_PTR pOutput, 
-  CK_ULONG_PTR pulOutputLength 
+  CK_ULONG code,
+  CK_VOID_PTR pInput,
+  CK_ULONG ulInputLength,
+  CK_VOID_PTR pOutput,
+  CK_ULONG_PTR pulOutputLength
 );
 
-typedef struct tag_ETCK_FUNCTION_LIST_EX 
+typedef struct tag_ETCK_FUNCTION_LIST_EX
 {
   CK_VERSION                    version;  /* Cryptoki extension version */
   unsigned short                flags;

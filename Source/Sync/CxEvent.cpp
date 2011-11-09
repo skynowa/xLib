@@ -18,12 +18,12 @@ CxEvent::CxEvent(
     const BOOL cbIsSignaled     ///< FALSE - wait, lock
 ) :
 #if defined(xOS_ENV_WIN)
-	_m_hEvent      ()
+    _m_hEvent      ()
 #elif defined(xOS_ENV_UNIX)
-	_m_csCS        (),
-	_m_cndCond     (),
+    _m_csCS        (),
+    _m_cndCond     (),
     _m_bIsAutoReset(FALSE),
-	_m_bIsSignaled (FALSE)
+    _m_bIsSignaled (FALSE)
 #endif
 {
 #if defined(xOS_ENV_WIN)

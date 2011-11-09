@@ -18,17 +18,17 @@ class CxTcpServer :
                     CxTcpServer();
             ///< constructor
         virtual    ~CxTcpServer();
-        	///< destructor
+            ///< destructor
 
         BOOL        bBind            (USHORT usPort);
-        	///< associates a local address with a socket
+            ///< associates a local address with a socket
         BOOL        bListen          (int iBacklog /* = SOMAXCONN*/);
-    		///< places a socket in a state in which it is listening for an incoming connection
+            ///< places a socket in a state in which it is listening for an incoming connection
         BOOL        bAccept          (CxTcpServer *pscktAcceptSocket, std::string_t *psFromIp);
-    		///< permits an incoming connection attempt on a socket
+            ///< permits an incoming connection attempt on a socket
 
     protected:
-        timeval     _m_tvTimeout;		///< timeout
+        timeval     _m_tvTimeout;        ///< timeout
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxTcpServerH

@@ -11,9 +11,9 @@
 //---------------------------------------------------------------------------
 class CxDateTime
     /// date, time
-{    
+{
     public:
-        enum EFormatType 
+        enum EFormatType
             /// format type
         {
             ftTime,     ///< HH.MM.SS.MMM

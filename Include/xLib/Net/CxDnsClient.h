@@ -16,63 +16,63 @@ class CxDnsClient :
 {
     public:
         static BOOL bGetHostAddrByName  (const std::string_t &csHostName, std::string_t *psHostAddr);
-        	///< get host address by name
+            ///< get host address by name
         static BOOL bGetHostNameByAddr  (const std::string_t &csHostAddr, CxSocket::EAddressFamily afFamily, std::string_t *psHostName);
-        	///< get host name by address
+            ///< get host name by address
         static BOOL bGetLocalHostName   (std::string_t *psHostName);
-        	///< get local host name
+            ///< get local host name
         static BOOL bGetNameInfo        (CxSocket::EAddressFamily afFamily, const std::string_t &csHostAddr, USHORT usPort);
-        	///< get name info
+            ///< get name info
         static BOOL bGetHostAddrInfo    (const std::string_t &csHostName, const std::string_t &csPort, const ADDRINFOT *pHints, ADDRINFOT **ppResult);
-        	///< get host addr info
+            ///< get host addr info
 
         //protocol
         static BOOL bGetProtocolByName  (const std::string_t &csProtocolName, std::string_t *psName, std::vector<std::string_t> *pvsAliases, SHORT *psiNumber);
-        	///< get protocol by name
+            ///< get protocol by name
         static BOOL bGetProtocolByNumber(SHORT siNumber, std::string_t *psName, std::vector<std::string_t> *pvsAliases, SHORT *psiNum);
-        	///< get protocol by number
+            ///< get protocol by number
 
         //service
         static BOOL bGetServiceByName   (const std::string_t &csServiceName, const std::string_t &csProtocolName, std::string_t *psName, std::vector<std::string_t> *pvsAliases, SHORT *psiPort,  std::string_t *psProtocolName);
-        	///< get service by name
+            ///< get service by name
         static BOOL bGetServiceByPort   (SHORT siPort, const std::string_t &csProtocolName, std::string_t *psName, std::vector<std::string_t> *pvsAliases, SHORT *psiPort,  std::string_t *psProtocolName);
-        	///< get service by port
+            ///< get service by port
 
     private:
                     CxDnsClient         ();
             ///< constructor
         virtual    ~CxDnsClient         ();
-        	///< destructor
+            ///< destructor
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxDnsClientH
 
 
 #if xTODO
-	- GetAddressByName
+    - GetAddressByName
 
-	+ getaddrinfo
-	+ GetAddrInfoW
-	+ freeaddrinfo
-	+ FreeAddrInfoW
+    + getaddrinfo
+    + GetAddrInfoW
+    + freeaddrinfo
+    + FreeAddrInfoW
 
-	- GetAddrInfoEx
-	- SetAddrInfoEx
-	- FreeAddrInfoEx
+    - GetAddrInfoEx
+    - SetAddrInfoEx
+    - FreeAddrInfoEx
 
-	+ gethostbyname
-	+ gethostbyaddr
-	+ gethostname
+    + gethostbyname
+    + gethostbyaddr
+    + gethostname
 
-	GetNameByType
-	GetTypeByName
+    GetNameByType
+    GetTypeByName
 
-	getnameinfo
-	GetNameInfoW
+    getnameinfo
+    GetNameInfoW
 
 
-	+ getprotobyname
-	+ getprotobynumber
-	+ getservbyname
-	+ getservbyport
+    + getprotobyname
+    + getprotobynumber
+    + getservbyname
+    + getservbyport
 #endif

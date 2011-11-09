@@ -194,17 +194,17 @@ CxRandom::liGetIntEx(
 {
     /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0)
 
-	std::vector<LONG> vliRes;
+    std::vector<LONG> vliRes;
 
-	for (LONG i = cliMin; i < cliMax; ++ i) {
-		vliRes.push_back(i);
+    for (LONG i = cliMin; i < cliMax; ++ i) {
+        vliRes.push_back(i);
     }
 
     /*DEBUG*/xASSERT_RET(false == vliRes.empty(), 0L);
 
     std::random_shuffle(vliRes.begin(), vliRes.end());
 
-	return vliRes.at(0);
+    return vliRes.at(0);
 }
 //---------------------------------------------------------------------------
 /*static*/

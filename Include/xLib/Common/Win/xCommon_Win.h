@@ -19,9 +19,9 @@
 
 //xCOMPILER_MS
 #if defined(xCOMPILER_MS)
-	#pragma warning (disable : 4996)    //function or variable may be unsafe (deprecated)
-	#pragma warning (disable : 4355)    //'this' : used in base member initializer list
-	#pragma warning (disable : 4101)    //'e' : unreferenced local variable
+    #pragma warning (disable : 4996)    //function or variable may be unsafe (deprecated)
+    #pragma warning (disable : 4355)    //'this' : used in base member initializer list
+    #pragma warning (disable : 4101)    //'e' : unreferenced local variable
 
     #define VC_EXTRALEAN
 
@@ -94,7 +94,7 @@
 #include <errno.h>
 
 #if defined(xCOMPILER_CODEGEAR)
-	#include <xVCL/xCommon.h>
+    #include <xVCL/xCommon.h>
     #include <dir.h>
 #endif
 //---------------------------------------------------------------------------

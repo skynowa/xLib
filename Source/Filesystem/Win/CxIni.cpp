@@ -229,7 +229,7 @@ CxIni::bKeyReadBool(
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    FALSE);
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///bDefaultValue - n/a
-      
+
     std::string_t sStr;
     std::string_t sDefaultValue;
 

@@ -657,7 +657,7 @@ CxThread::bPriorityUp() const {
         case tpIdle:            tpiNewLevel = tpLowest;                 break;
         case tpLowest:          tpiNewLevel = tpBelowNormal;            break;
         case tpBelowNormal:     tpiNewLevel = tpNormal;                 break;
-        case tpNormal:          tpiNewLevel = tpAboveNormal;	        break;
+        case tpNormal:          tpiNewLevel = tpAboveNormal;            break;
         case tpAboveNormal:     tpiNewLevel = tpHighest;                break;
         case tpHighest:         tpiNewLevel = tpTimeCritical;           break;
         case tpTimeCritical:    return TRUE;                            break;
@@ -684,7 +684,7 @@ CxThread::bPriorityDown() const {
         case tpIdle:            return TRUE;                            break;
         case tpLowest:          tpiNewLevel = tpIdle;                   break;
         case tpBelowNormal:     tpiNewLevel = tpLowest;                 break;
-        case tpNormal:          tpiNewLevel = tpBelowNormal;	        break;
+        case tpNormal:          tpiNewLevel = tpBelowNormal;            break;
         case tpAboveNormal:     tpiNewLevel = tpNormal;                 break;
         case tpHighest:         tpiNewLevel = tpAboveNormal;            break;
         case tpTimeCritical:    tpiNewLevel = tpHighest;                break;
@@ -755,13 +755,13 @@ CxThread::bSetCpuAffinity(
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
     /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-	#if defined(xOS_FREEBSD)
-		cpuset_t  csCpuSet;
-	#else
-		cpu_set_t csCpuSet;
-	#endif
+    #if defined(xOS_FREEBSD)
+        cpuset_t  csCpuSet;
+    #else
+        cpu_set_t csCpuSet;
+    #endif
 
-	CPU_ZERO(&csCpuSet);
+    CPU_ZERO(&csCpuSet);
     (void)CPU_SET(ciProcNum, &csCpuSet);
 
     int iRes = pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
@@ -893,41 +893,41 @@ CxThread::bSetDebugName(
     xCHECK_RET(FALSE == CxDebugger::bIsPresent(), TRUE);
 
 #if defined(xOS_ENV_WIN)
-	#if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
-		const DWORD culMsVcException = 0x406D1388;
+    #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
+        const DWORD culMsVcException = 0x406D1388;
 
     #pragma pack(push, 8)
-	    struct tagTHREADNAME_INFO {
-		    DWORD  dwType;      //must be 0x1000
-		    LPCSTR pszName;     //pointer to name (in user addr space)
-		    DWORD  dwThreadID;  //thread ID (-1 = caller thread)
-		    DWORD  dwFlags;     //reserved for future use, must be zero
-	    };
+        struct tagTHREADNAME_INFO {
+            DWORD  dwType;      //must be 0x1000
+            LPCSTR pszName;     //pointer to name (in user addr space)
+            DWORD  dwThreadID;  //thread ID (-1 = caller thread)
+            DWORD  dwFlags;     //reserved for future use, must be zero
+        };
     #pragma pack(pop)
 
-		tagTHREADNAME_INFO tiInfo = {0};
-		tiInfo.dwType     = 0x1000;
+        tagTHREADNAME_INFO tiInfo = {0};
+        tiInfo.dwType     = 0x1000;
     #if defined(xUNICODE)
-        //TODO: bSetDebugName, convert from Unicode to Ansi 
-    	////tiInfo.pszName    = xTS2S(csName).c_str();  
-        tiInfo.pszName    = "[Unknown]"; 
+        //TODO: bSetDebugName, convert from Unicode to Ansi
+        ////tiInfo.pszName    = xTS2S(csName).c_str();
+        tiInfo.pszName    = "[Unknown]";
     #else
         tiInfo.pszName    = csName.c_str();
     #endif
-		tiInfo.dwThreadID = ulGetId();
-		tiInfo.dwFlags    = 0;
+        tiInfo.dwThreadID = ulGetId();
+        tiInfo.dwFlags    = 0;
 
-		__try {
-			(void)::RaiseException(culMsVcException, 0, sizeof(tiInfo) / sizeof(ULONG_PTR), (ULONG_PTR *)&tiInfo);
-		}
-		__except (EXCEPTION_EXECUTE_HANDLER) {
-			//n/a
-		}
-	#elif defined(xCOMPILER_MINGW32)
-		//TODO: bSetDebugName
-	#else
-		//TODO: bSetDebugName
-	#endif
+        __try {
+            (void)::RaiseException(culMsVcException, 0, sizeof(tiInfo) / sizeof(ULONG_PTR), (ULONG_PTR *)&tiInfo);
+        }
+        __except (EXCEPTION_EXECUTE_HANDLER) {
+            //n/a
+        }
+    #elif defined(xCOMPILER_MINGW32)
+        //TODO: bSetDebugName
+    #else
+        //TODO: bSetDebugName
+    #endif
 #elif defined(xOS_FREEBSD)
     (void)pthread_set_name_np(ulGetId(), csName.c_str());
 #elif defined(xOS_ENV_UNIX)

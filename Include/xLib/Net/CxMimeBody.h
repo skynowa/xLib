@@ -10,12 +10,12 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 class CxMimeBody :
-	public CxNonCopyable
+    public CxNonCopyable
     /// MIME body (RFC 822)
 {
     public:
                 CxMimeBody();
-	   virtual ~CxMimeBody();
+       virtual ~CxMimeBody();
 
     private:
         std::multimap<std::string_t, std::string_t> _m_mmsBody;

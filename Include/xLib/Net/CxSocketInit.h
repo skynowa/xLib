@@ -17,7 +17,7 @@ class CxSocketInit :
                   CxSocketInit(const USHORT cusHighVersion, const USHORT cusLowVersion);
             ///< constructor (init winsock DLL)
         virtual  ~CxSocketInit();
-        	///< destructor  (clean winsock DLL)
+            ///< destructor  (clean winsock DLL)
 
     private:
 

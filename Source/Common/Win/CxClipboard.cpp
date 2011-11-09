@@ -72,7 +72,7 @@ CxClipboard::bGetData(
 //---------------------------------------------------------------------------
 BOOL
 CxClipboard::bSetData(
-    const EFormat cfmFormat, 
+    const EFormat cfmFormat,
     const HANDLE  chData
 )
 {
@@ -194,7 +194,7 @@ BOOL CxClipboard::bIsHasFormat(
 //---------------------------------------------------------------------------
 BOOL
 CxClipboard::bRegisterFormat(
-    const std::string_t &csText, 
+    const std::string_t &csText,
     EFormat            *pfmFormat
 )
 {

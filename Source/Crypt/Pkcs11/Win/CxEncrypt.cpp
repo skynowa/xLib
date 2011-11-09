@@ -116,7 +116,7 @@ CxEncrypt::bMakeFile(
     //-------------------------------------
     //������ ����� � �����
     BOOL         bRes        = FALSE;
-    std::ustring usPlainData;     
+    std::ustring usPlainData;
 
     {
         CxFile sfFileRaw;

@@ -11,24 +11,24 @@
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
 class CxSleeper :
-	public CxNonCopyable
-	/// sleeper
+    public CxNonCopyable
+    /// sleeper
 {
-	public:
-				 CxSleeper  ();
-			///< constructor
-		virtual ~CxSleeper  ();
-			///< destructor
+    public:
+                 CxSleeper  ();
+            ///< constructor
+        virtual ~CxSleeper  ();
+            ///< destructor
 
-		BOOL     bSleep     (const ULONG culTimeout);
-			///< sleep
-		BOOL     bWakeUp    ();
-			///< wake up
-		BOOL     bIsSleeping();
-			///< check for sleeping
+        BOOL     bSleep     (const ULONG culTimeout);
+            ///< sleep
+        BOOL     bWakeUp    ();
+            ///< wake up
+        BOOL     bIsSleeping();
+            ///< check for sleeping
 
-	private:
-		CxEvent  _m_objEvent;	///< event object
+    private:
+        CxEvent  _m_objEvent;    ///< event object
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxSleeperH

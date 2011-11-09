@@ -43,20 +43,20 @@ class CxEvent :
         };
 
 
-                 		  CxEvent    (const BOOL bIsAutoReset, const BOOL cbIsSignaled);
+                           CxEvent    (const BOOL bIsAutoReset, const BOOL cbIsSignaled);
             ///< constructor
-        virtual 		 ~CxEvent    ();
+        virtual          ~CxEvent    ();
             ///< destructor
 
         const TxHandle &  hGet       () const;
             ///< get handle
         BOOL              bSet       ();
             ///< signal the event for the waiting thread (!!! unlock !!!)
-        BOOL     		  bReset     ();
+        BOOL               bReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
         EObjectState      osWait     (const ULONG culTimeout = xTIMEOUT_INFINITE);
             ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
-        BOOL     		  bIsSignaled();
+        BOOL               bIsSignaled();
             ///< is signaled
 
     private:

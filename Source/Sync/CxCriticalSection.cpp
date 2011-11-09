@@ -31,7 +31,7 @@ CxCriticalSection::CxCriticalSection() :
 #elif defined(xOS_ENV_UNIX)
     int iRes = - 1;
 
-    pthread_mutexattr_t maAttr;	// n/a {{0}}
+    pthread_mutexattr_t maAttr;    // n/a {{0}}
 
     iRes = pthread_mutexattr_init(&maAttr);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
@@ -65,7 +65,7 @@ CxCriticalSection::~CxCriticalSection() {
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 #elif defined(xOS_ENV_UNIX)
     int iRes = pthread_mutex_destroy(&_m_hHandle);
-	/*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 #endif
 }
 //---------------------------------------------------------------------------

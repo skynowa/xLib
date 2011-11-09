@@ -29,7 +29,7 @@ class CxInfo :
             ///< obtains information about a particular token in the system
 
     private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;	///< pointer to dll's function list
+        CK_FUNCTION_LIST_PTR _m_pFunc;    ///< pointer to dll's function list
 };
 
 #endif

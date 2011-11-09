@@ -28,23 +28,23 @@ class CxThreadPool :
     private:
         mutable BOOL              _m_bRes;
 
-        UINT                      _m_uiStackSize;               
-        TFuncPtr                  _m_fpFuncPtr;                  
-        void                     *_m_pvParam;                    
+        UINT                      _m_uiStackSize;
+        TFuncPtr                  _m_fpFuncPtr;
+        void                     *_m_pvParam;
 
-        const BOOL                _m_cbIsGroupPaused;          
-        const BOOL                _m_cbIsGroupAutoDelete;     
+        const BOOL                _m_cbIsGroupPaused;
+        const BOOL                _m_cbIsGroupAutoDelete;
 
-        mutable CxSemaphore       _m_semSemaphore;              
-        std::list<TaskT *>        _m_lstpthTasks;            
+        mutable CxSemaphore       _m_semSemaphore;
+        std::list<TaskT *>        _m_lstpthTasks;
 
-        size_t                    _m_uiMaxRunningTasks;          
-        size_t                    _m_uiNumTasks;           
-        size_t                    _m_uiCurrTask;             
+        size_t                    _m_uiMaxRunningTasks;
+        size_t                    _m_uiNumTasks;
+        size_t                    _m_uiCurrTask;
 
         //static
-        static CxCriticalSection  _m_csList;                  
-        static CxConsoleLog       _m_clLog;                 
+        static CxCriticalSection  _m_csList;
+        static CxConsoleLog       _m_clLog;
 
         BOOL                      _bAddTask    (CxThread *pvItem);
         BOOL                      _bRemoveTask (CxThread *pvItem);

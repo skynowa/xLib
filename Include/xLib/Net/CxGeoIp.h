@@ -28,21 +28,21 @@ class CxGeoIp :
                       CxGeoIp                  ();
             ///< constructor
         virtual      ~CxGeoIp                  ();
-        	///< destructor
+            ///< destructor
 
         BOOL          bOpen                    (const std::string_t &csFilePath, const EOption copOption);
-        	///< open
+            ///< open
         BOOL          bIsValid                 () const;
-        	///< validating handle
+            ///< validating handle
         std::string_t  sGetCountryCodeByAddress (const std::string_t &csAddress) const;
-        	///< get country code by address
+            ///< get country code by address
         std::string_t  sGetCountryCode3ByAddress(const std::string_t &csAddress) const;
-        	///< get country code by address
+            ///< get country code by address
         BOOL          bClose                   ();
-        	///< close
+            ///< close
 
     private:
-        GeoIP        *_m_pgiGeoIp;	///< pointer to GeoIP
+        GeoIP        *_m_pgiGeoIp;    ///< pointer to GeoIP
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxGeoIpH

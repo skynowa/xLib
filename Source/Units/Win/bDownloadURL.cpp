@@ -10,7 +10,7 @@
 #include <wininet.h>
 
 #if defined(xCOMPILER_MS)
-	#pragma comment(lib,"wininet")
+    #pragma comment(lib,"wininet")
 #endif
 
 
@@ -45,7 +45,7 @@ bDownloadURL(
         fwrite(szBuff, 1, ulBytesRead, pFile);
     }
 
-    fclose(pFile);	pFile = NULL;
+    fclose(pFile);    pFile = NULL;
 
     bRes = ::InternetCloseHandle(hService);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);

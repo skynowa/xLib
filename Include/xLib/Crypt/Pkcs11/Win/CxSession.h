@@ -39,8 +39,8 @@ class CxSession :
             ///< closes all sessions with a token
 
     private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;		///< pointer to dll's functions list
-        CK_SESSION_HANDLE    _m_hSession;	///< session handle
+        CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointer to dll's functions list
+        CK_SESSION_HANDLE    _m_hSession;    ///< session handle
 };
 
 #endif

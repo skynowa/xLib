@@ -7,10 +7,10 @@
 
  * License is also granted to make and use derivative works provided that
  * such works are identified as "derived from the RSA Security Inc. PKCS #11
- * Cryptographic Token Interface (Cryptoki)" in all material mentioning or 
+ * Cryptographic Token Interface (Cryptoki)" in all material mentioning or
  * referencing the derived work.
 
- * RSA Security Inc. makes no representations concerning either the 
+ * RSA Security Inc. makes no representations concerning either the
  * merchantability of this software or the suitability of this software for
  * any particular purpose. It is provided "as is" without express or implied
  * warranty of any kind.
@@ -220,9 +220,9 @@ extern "C" {
  * #endif
  */
 
- 
+
 /*---------------------------------------------------------------------------*/
-/*Добавлен код для SDK 4.53 ()*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ SDK 4.53 ()*/
 /* Win 32 specific */
 #ifdef _WIN32
     #pragma pack(push, cryptoki, 1)
@@ -238,7 +238,7 @@ extern "C" {
     #define NULL_PTR 0
 #endif
 /*---------------------------------------------------------------------------*/
-/*либо код для SDK 4.53 ()*/
+/*пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ SDK 4.53 ()*/
 /*
 #pragma pack (push, cryptoki, 1)
 #include <pkcs11.h>
@@ -312,7 +312,7 @@ pkcs11.h:
 
 #define CK_PKCS11_FUNCTION_INFO(name) \
   __PASTE(CK_,name) name;
-  
+
 struct CK_FUNCTION_LIST {
 
   CK_VERSION    version;  /* Cryptoki version */
@@ -335,7 +335,7 @@ struct CK_FUNCTION_LIST {
 
 
 /*---------------------------------------------------------------------------*/
-/*Добавлен код для SDK 4.53 ()*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ SDK 4.53 ()*/
 /* Win32 stuff */
 #ifdef _WIN32
     #pragma pack(pop, cryptoki)

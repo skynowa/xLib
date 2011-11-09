@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 class CxNonCopyable
     /// non copyable class
-{    
+{
     public:
 
     protected:
@@ -17,7 +17,7 @@ class CxNonCopyable
             ///< constructor
        ~CxNonCopyable() { }
             ///< dectructor
-            
+
     private:
         CxNonCopyable(const CxNonCopyable &);
             ///< constructor

@@ -730,20 +730,20 @@ CxDateTime::bUnixTimeToFileTime(
 
 //TODO: make tests tmFileTimeToUnixTime
 /*static*/
-time_t 
+time_t
 CxDateTime::tmFileTimeToUnixTime(
     const FILETIME &ftFileTime
 )
 {
     const __int64 NANOSECS_BETWEEN_EPOCHS = 116444736000000000LL;
 
-	__int64 llRes = 0LL;
+    __int64 llRes = 0LL;
 
-	llRes = (static_cast<__int64>( ftFileTime.dwHighDateTime ) << 32) + ftFileTime.dwLowDateTime;
-	llRes -= NANOSECS_BETWEEN_EPOCHS;
-	llRes /= 10000000;
+    llRes = (static_cast<__int64>( ftFileTime.dwHighDateTime ) << 32) + ftFileTime.dwLowDateTime;
+    llRes -= NANOSECS_BETWEEN_EPOCHS;
+    llRes /= 10000000;
 
-	return static_cast<time_t>( llRes );
+    return static_cast<time_t>( llRes );
 }
 
 #endif

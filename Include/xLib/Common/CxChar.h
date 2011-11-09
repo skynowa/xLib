@@ -15,40 +15,40 @@ class CxChar :
 {
     public:
         static BOOL  bIsAlphaNum(const char_t cchChar);
-        	///< Check if character is alphanumeric
+            ///< Check if character is alphanumeric
         static BOOL  bIsAlpha   (const char_t cchChar);
-    		///< Check if character is alphabetic
+            ///< Check if character is alphabetic
         static BOOL  bIsControl (const char_t cchChar);
-			///< Check if character is a control character
+            ///< Check if character is a control character
         static BOOL  bIsDigitDec(const char_t cchChar);
-			///< Check if character is decimal digit
+            ///< Check if character is decimal digit
         static BOOL  bIsDigitHex(const char_t cchChar);
-			///< Check if character is hexadecimal digit
+            ///< Check if character is hexadecimal digit
 
         static BOOL  bIsGraph   (const char_t cchChar);
-			///< Check if character has graphical representation
+            ///< Check if character has graphical representation
         static BOOL  bIsPrint   (const char_t cchChar);
-			///< Check if character is printable
+            ///< Check if character is printable
         static BOOL  bIsPunct   (const char_t cchChar);
-			///< Check if character is a punctuation character
+            ///< Check if character is a punctuation character
         static BOOL  bIsSpace   (const char_t cchChar);
-			///< Check if character is a white-space
+            ///< Check if character is a white-space
 
         static BOOL  bIsLower   (const char_t cchChar);
-			///< Check if character is lowercase letter
+            ///< Check if character is lowercase letter
         static BOOL  bIsUpper   (const char_t cchChar);
-			///< Check if character is uppercase letter
+            ///< Check if character is uppercase letter
 
         static char_t chToLower  (const char_t cchChar);
-			///< Convert uppercase letter to lowercase
+            ///< Convert uppercase letter to lowercase
         static char_t chToUpper  (const char_t cchChar);
-			///< Convert lowercase letter to uppercase
+            ///< Convert lowercase letter to uppercase
 
     private:
                      CxChar     ();
             ///< constructor
         virtual     ~CxChar     ();
-			///< destructor
+            ///< destructor
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxCharH

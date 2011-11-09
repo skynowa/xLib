@@ -58,7 +58,7 @@ using namespace std;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADOException 
+class CADOException
     /// ADO exception
 {
     public:
@@ -82,8 +82,8 @@ class CADOException
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADOConnectionException : 
-    public CADOException 
+class CADOConnectionException :
+    public CADOException
     /// ADO connection exception
 {
     public:
@@ -152,8 +152,8 @@ class CADOConnectionException :
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADORecordsetException : 
-    public CADOException 
+class CADORecordsetException :
+    public CADOException
     /// ADO recordset exception
 {
     public:
@@ -246,7 +246,7 @@ class CADOConnection;
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADORecordset 
+class CADORecordset
     /// ADO recordset
 {
     public:
@@ -309,7 +309,7 @@ class CADORecordset
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-class CADOConnection 
+class CADOConnection
     /// ADO connection
 {
     public:

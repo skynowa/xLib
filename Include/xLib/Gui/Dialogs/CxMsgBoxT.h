@@ -14,7 +14,7 @@ class CxMsgBoxT :
     /// message box
 {
     public:
-        enum EModalResult 
+        enum EModalResult
             /// modal result
         {
             #if defined(xOS_ENV_WIN)

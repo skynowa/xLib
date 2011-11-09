@@ -21,60 +21,60 @@ class CxLocalStorage :
                                CxLocalStorage ();
             ///< constructor, exe-file path
         explicit               CxLocalStorage (const std::string_t &csFilePath);
-        	///< constructor, file path
+            ///< constructor, file path
         virtual               ~CxLocalStorage ();
-        	///< destructor
+            ///< destructor
 
         //creation
         BOOL                   bCreateDefault (const std::string_t &csContent) const;
-    		///< create default file
+            ///< create default file
         std::string_t           sGetPath       () const;
-    		///< get file path
+            ///< get file path
         BOOL                   bSetPath       (const std::string_t &csFilePath);
-    		///< set file path
+            ///< set file path
         NxLib::TLocalStorage & cmsGet         ();
-    		///< get innner TLocalStorage, may be used with bFlush
+            ///< get innner TLocalStorage, may be used with bFlush
 
         BOOL                   bFlush         () const;
-    		///< flush
+            ///< flush
         BOOL                   bClear         ();
-    		///< clear content
+            ///< clear content
         BOOL                   bDelete        ();
-    		///< delete
+            ///< delete
 
         //key
         BOOL                   bKeyIsExists   (const std::string_t &csKey) const;
-    		///< is exists
+            ///< is exists
 
         std::string_t           sKeyReadString (const std::string_t &csKey, const std::string_t &csDefaultValue);
-    		///< read std::string_t
+            ///< read std::string_t
         BOOL                   bKeyWriteString(const std::string_t &csKey, const std::string_t &csValue);
-    		///< write std::string_t
+            ///< write std::string_t
 
         LONG                   iKeyReadInt    (const std::string_t &csKey, const LONG     cliDefaultValue);
-    		///< read int
+            ///< read int
         BOOL                   bKeyWriteInt   (const std::string_t &csKey, const LONG     cliValue);
-    		///< write int
+            ///< write int
 
         double                 dKeyReadFloat  (const std::string_t &csKey, const double   cdDefaultValue);
-    		///< read float
+            ///< read float
         BOOL                   bKeyWriteFloat (const std::string_t &csKey, const double   cdValue);
-    		///< write float
+            ///< write float
 
         BOOL                   bKeyReadBool   (const std::string_t &csKey, const BOOL     cbDefaultValue);
-    		///< read BOOL
+            ///< read BOOL
         BOOL                   bKeyWriteBool  (const std::string_t &csKey, const BOOL     cbValue);
-    		///< write BOOL
+            ///< write BOOL
 
         std::ustring           usKeyReadBin   (const std::string_t &csKey, const std::ustring &cusDefaultValue);
-    		///< write std::ustring
+            ///< write std::ustring
         BOOL                   bKeyWriteBin   (const std::string_t &csKey, const std::ustring &cusValue);
-    		///< read std::ustring
+            ///< read std::ustring
 
         BOOL                   bKeyClear      (const std::string_t &csKey);
-    		///< clear value
+            ///< clear value
         BOOL                   bKeyDelete     (const std::string_t &csKey);
-    		///< delete key and value
+            ///< delete key and value
 
     private:
         const std::string_t     _m_csSeparator;  ///< separator between key and value
@@ -84,9 +84,9 @@ class CxLocalStorage :
         NxLib::TLocalStorage   _m_msIni;        ///< std::map of keys and values
 
         BOOL                   _bRead         (const std::string_t &csKey, const std::string_t &csDefaultValue, std::string_t *psValue);
-    		///< parse file
+            ///< parse file
         BOOL                   _bWrite        (const std::string_t &csKey, const std::string_t &csValue);
-    		///< flush to TLocalStorage, file
+            ///< flush to TLocalStorage, file
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxLocalStorageH

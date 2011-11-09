@@ -39,7 +39,7 @@ class CxSlot :
             ///< waits for a slot event (token insertion, removal, etc.) to occur
 
     private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;	///< pointer to dll's functions list
+        CK_FUNCTION_LIST_PTR _m_pFunc;    ///< pointer to dll's functions list
 };
 
 #endif

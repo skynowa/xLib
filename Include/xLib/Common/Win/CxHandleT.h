@@ -14,28 +14,28 @@
 
 xNAMESPACE_ANONYM_BEGIN
 
-	enum EHandleValue {
-		hvNull,
-		hvInvalid
-	};
+    enum EHandleValue {
+        hvNull,
+        hvInvalid
+    };
 
-	template<EHandleValue hvTag>
-	struct CxHandleFailValue;
+    template<EHandleValue hvTag>
+    struct CxHandleFailValue;
 
-	template<>
-	struct CxHandleFailValue<hvNull> {
-		static HANDLE get () { return NULL; }
-	};
+    template<>
+    struct CxHandleFailValue<hvNull> {
+        static HANDLE get () { return NULL; }
+    };
 
-	template<>
-	struct CxHandleFailValue<hvInvalid> {
-		static HANDLE get () { return INVALID_HANDLE_VALUE; }
-	};
+    template<>
+    struct CxHandleFailValue<hvInvalid> {
+        static HANDLE get () { return INVALID_HANDLE_VALUE; }
+    };
 
 xNAMESPACE_ANONYM_END
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-class CxHandleT 
+class CxHandleT
     /// handle
 {
     public:
@@ -73,7 +73,7 @@ class CxHandleT
             ///< get certain properties of an object handle
         BOOL                bSetInformation         (const ULONG culMask, const ULONG culFlags);
             ///< set information
-        BOOL 	            bIsFlagInherit          () const;
+        BOOL                 bIsFlagInherit          () const;
             ///< is flag inherit
         BOOL                bIsFlagProtectFromClose () const;
             ///< is flag protect from close
@@ -104,4 +104,4 @@ typedef CxHandleT<hvInvalid> CxFileHandle;
 
 #endif
 //---------------------------------------------------------------------------
-#endif	//xLib_Common_Win_CxHandleTH
+#endif    //xLib_Common_Win_CxHandleTH

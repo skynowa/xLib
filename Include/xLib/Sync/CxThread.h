@@ -22,7 +22,7 @@ class CxThread :
     /// thread
 {
     public:
-	    enum EPriority
+        enum EPriority
             /// priotity
         {
             #if defined(xOS_ENV_WIN)
@@ -44,7 +44,7 @@ class CxThread :
                 tpHighest      ,
                 tpTimeCritical
             #endif
-	    };
+        };
 
     #if defined(xOS_ENV_WIN)
         typedef HANDLE    TxHandle; ///< handle

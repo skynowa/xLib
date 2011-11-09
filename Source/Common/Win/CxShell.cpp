@@ -220,26 +220,26 @@ CxShell::bCreateShortcut(
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
 
     {
-	    hRes = pslSL->SetPath(csFilePath.c_str());
-	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
-	
-	    hRes = pslSL->SetArguments(csArguments.c_str());
-	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
-	
-	    hRes = pslSL->SetWorkingDirectory(csWorkingDirectory.c_str());
-	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
-	
-	    hRes = pslSL->SetIconLocation(csIconFilePath.c_str(), ciIconIndex);
-	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
-	
-	    hRes = pslSL->SetHotkey(cwHotKey);
-	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
-	
-	    hRes = pslSL->SetShowCmd(ciCmdShow);
-	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
-	
-	    hRes = pslSL->SetDescription(csDescription.c_str());
-	    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+        hRes = pslSL->SetPath(csFilePath.c_str());
+        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+
+        hRes = pslSL->SetArguments(csArguments.c_str());
+        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+
+        hRes = pslSL->SetWorkingDirectory(csWorkingDirectory.c_str());
+        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+
+        hRes = pslSL->SetIconLocation(csIconFilePath.c_str(), ciIconIndex);
+        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+
+        hRes = pslSL->SetHotkey(cwHotKey);
+        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+
+        hRes = pslSL->SetShowCmd(ciCmdShow);
+        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
+
+        hRes = pslSL->SetDescription(csDescription.c_str());
+        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
     }
 
 
@@ -284,33 +284,33 @@ CxShell::~CxShell() {
 
 
 #if xTODO
-	How to find the application associated with particular file extension.
+    How to find the application associated with particular file extension.
 
-	May 30th
+    May 30th
 
-	Posted by Jijo Raj in Codeproject
+    Posted by Jijo Raj in Codeproject
 
-	No comments
-
-
-
-	Did you ever noticed that, While starting up some media player applications, they says that - �Some of its proprietary file formats are not associated with it and do you want to associate now?�. How these application are checking the associated application of particular filetype?
+    No comments
 
 
-	For a given file extension, you can find the executable associated with it by calling the api � AssocQueryString(). See the sample code snippet below.
-	#include "Shlwapi.h"
-	...
-	DWORD dwSize = MAX_PATH;
-	char_t tchApplicationPath[ MAX_PATH ] = { 0 };
-	HRESULT hr = AssocQueryString( 0,
-	ASSOCSTR_EXECUTABLE,
-	xT( ".mp3" ),
-	xT( "open" ),
-	tchApplicationPath,
-	&dwSize );
 
-	if( FAILED( hr ))
-	{
-	// Failed to get the associated application.
-	}
+    Did you ever noticed that, While starting up some media player applications, they says that - �Some of its proprietary file formats are not associated with it and do you want to associate now?�. How these application are checking the associated application of particular filetype?
+
+
+    For a given file extension, you can find the executable associated with it by calling the api � AssocQueryString(). See the sample code snippet below.
+    #include "Shlwapi.h"
+    ...
+    DWORD dwSize = MAX_PATH;
+    char_t tchApplicationPath[ MAX_PATH ] = { 0 };
+    HRESULT hr = AssocQueryString( 0,
+    ASSOCSTR_EXECUTABLE,
+    xT( ".mp3" ),
+    xT( "open" ),
+    tchApplicationPath,
+    &dwSize );
+
+    if( FAILED( hr ))
+    {
+    // Failed to get the associated application.
+    }
 #endif
