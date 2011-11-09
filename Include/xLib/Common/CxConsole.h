@@ -20,7 +20,7 @@ class CxConsole :
     /// console
 {
     public:
-        enum EModalResult 
+        enum EModalResult
             /// modal result
         {
             mrAbort  = 3,
@@ -33,20 +33,20 @@ class CxConsole :
         virtual     ~CxConsole     ();
             ///< destructor
 
-        enum EAttribute 
+        enum EAttribute
             /// attribute
         {
             atAllOff = 0, atBold = 1, atUnderscore = 4, atBlink = 5, atReverse = 7, atConcealed  = 8
         };
 
-        enum EForeground 
+        enum EForeground
             /// foreground color
         {
             fgBlack  = 30, fgRed  = 31, fgGreen  = 32, fgYellow  = 33, fgBlue  = 34, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37,
             fgBlack_ = 90, fgRed_ = 91, fgGreen_ = 92, fgYellow_ = 93, fgBlue_ = 94, fgMagenta_ = 95, fgCyan_ = 96, fgWhite_ = 97
         };
 
-        enum EBackground 
+        enum EBackground
             /// background color
         {
             bgBlack  = 40,  bgRed  = 41,  bgGreen  = 42,  bgYellow  = 43,  bgBlue  = 44,  bgMagenta  = 45,  bgCyan  = 46,  bgWhite  = 47,

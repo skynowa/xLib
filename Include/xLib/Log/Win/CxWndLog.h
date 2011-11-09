@@ -18,7 +18,7 @@ class CxWndLog :
 {
     public:
         enum EWindowClass
-        	/// window classes
+            /// window classes
         {
             wcListBox
         };
@@ -26,14 +26,14 @@ class CxWndLog :
         explicit                    CxWndLog(const EWindowClass cwcWC);
             ///< constructor
         virtual                    ~CxWndLog();
-        	///< destructor
+            ///< destructor
 
         BOOL                        bWrite  (const HWND chWnd, LPCTSTR pcszFormat, ...);
-        	///< write
+            ///< write
 
        private:
-           EWindowClass             _m_eWC;			///< window class
-           static CxCriticalSection _ms_csListBox;	///< critical section
+           EWindowClass             _m_eWC;            ///< window class
+           static CxCriticalSection _ms_csListBox;    ///< critical section
 };
 
 #endif

@@ -166,72 +166,72 @@ const std::wstring CxConst::xHYPHEN_W         (L"-");
 const std::string_t CxConst::xHYPHEN           (xT("-"));
 
 #if xTEMP_DISABLED
-	//xXXXXX
-	const std::string  CxConst::xXXXXX_A          ("XXXXX");
-	const std::wstring CxConst::xXXXXX_W          (L"XXXXX");
-	const std::string_t CxConst::xXXXXX            (xT("XXXXX"));
+    //xXXXXX
+    const std::string  CxConst::xXXXXX_A          ("XXXXX");
+    const std::wstring CxConst::xXXXXX_W          (L"XXXXX");
+    const std::string_t CxConst::xXXXXX            (xT("XXXXX"));
 #endif
 
 
 //---------------------------------------------------------------------------
 #if xTODO
-	const std::string_t xOPEN_BRACKET     ("{");
-	const std::string_t xCLOSE_BRACKET    ("}");
-	const std::string_t xOPEN_LINE_COMMENT("//");
-	const std::string_t xOPEN_COMMENT     ("/*");
-	const std::string_t xCLOSE_COMMENT    ("*/");
+    const std::string_t xOPEN_BRACKET     ("{");
+    const std::string_t xCLOSE_BRACKET    ("}");
+    const std::string_t xOPEN_LINE_COMMENT("//");
+    const std::string_t xOPEN_COMMENT     ("/*");
+    const std::string_t xCLOSE_COMMENT    ("*/");
 
-	const std::string_t xASSIGN           ("=");
-	const std::string_t xPLUS_ASSIGN      ("+=");
-	const std::string_t xMINUS_ASSIGN     ("-=");
-	const std::string_t xMULT_ASSIGN      ("*=");
-	const std::string_t xDIV_ASSIGN       ("/=");
-	const std::string_t xMOD_ASSIGN       ("%=");
-	const std::string_t xOR_ASSIGN        ("|=");
-	const std::string_t xAND_ASSIGN       ("&=");
-	const std::string_t xXOR_ASSIGN       ("^=");
-	const std::string_t xGR_GR_ASSIGN     (">>=");
-	const std::string_t xLS_LS_ASSIGN     ("<<=");
-	const std::string_t xGR_GR_GR_ASSIGN  (">>>=");
-	const std::string_t xLS_LS_LS_ASSIGN  ("<<<=");
-	const std::string_t xGCC_MIN_ASSIGN   ("<?");
-	const std::string_t xGCC_MAX_ASSIGN   (">?");
+    const std::string_t xASSIGN           ("=");
+    const std::string_t xPLUS_ASSIGN      ("+=");
+    const std::string_t xMINUS_ASSIGN     ("-=");
+    const std::string_t xMULT_ASSIGN      ("*=");
+    const std::string_t xDIV_ASSIGN       ("/=");
+    const std::string_t xMOD_ASSIGN       ("%=");
+    const std::string_t xOR_ASSIGN        ("|=");
+    const std::string_t xAND_ASSIGN       ("&=");
+    const std::string_t xXOR_ASSIGN       ("^=");
+    const std::string_t xGR_GR_ASSIGN     (">>=");
+    const std::string_t xLS_LS_ASSIGN     ("<<=");
+    const std::string_t xGR_GR_GR_ASSIGN  (">>>=");
+    const std::string_t xLS_LS_LS_ASSIGN  ("<<<=");
+    const std::string_t xGCC_MIN_ASSIGN   ("<?");
+    const std::string_t xGCC_MAX_ASSIGN   (">?");
 
-	const std::string_t xEQUAL          	 ("==");
-	const std::string_t xPLUS_PLUS        ("++");
-	const std::string_t xMINUS_MINUS      ("--");
-	const std::string_t xNOT_EQUAL        ("!=");
-	const std::string_t xGR_EQUAL         (">=");
-	const std::string_t xGR_GR          	 (">>");
-	const std::string_t xGR_GR_GR         (">>>");
-	const std::string_t xLS_EQUAL         ("<=");
-	const std::string_t xLS_LS          	 ("<<");
-	const std::string_t xLS_LS_LS         ("<<<");
-	const std::string_t xQUESTION_QUESTION("??");
-	const std::string_t xEQUAL_GR         ("=>");
-	const std::string_t xARROW          	 ("->");
-	const std::string_t xAND          	 ("&&");
-	const std::string_t xOR          	 ("||");
-	const std::string_t xCOLON_COLON      ("::");
-	const std::string_t xPAREN_PAREN      ("()");
-	const std::string_t xBLPAREN_BLPAREN  ("[]");
+    const std::string_t xEQUAL               ("==");
+    const std::string_t xPLUS_PLUS        ("++");
+    const std::string_t xMINUS_MINUS      ("--");
+    const std::string_t xNOT_EQUAL        ("!=");
+    const std::string_t xGR_EQUAL         (">=");
+    const std::string_t xGR_GR               (">>");
+    const std::string_t xGR_GR_GR         (">>>");
+    const std::string_t xLS_EQUAL         ("<=");
+    const std::string_t xLS_LS               ("<<");
+    const std::string_t xLS_LS_LS         ("<<<");
+    const std::string_t xQUESTION_QUESTION("??");
+    const std::string_t xEQUAL_GR         ("=>");
+    const std::string_t xARROW               ("->");
+    const std::string_t xAND               ("&&");
+    const std::string_t xOR               ("||");
+    const std::string_t xCOLON_COLON      ("::");
+    const std::string_t xPAREN_PAREN      ("()");
+    const std::string_t xBLPAREN_BLPAREN  ("[]");
 
-	const std::string_t xPLUS          	 ("+");
-	const std::string_t xMINUS          	 ("-");
-	const std::string_t xMULT          	 ("*");
-	const std::string_t xDIV          	 ("/");
-	const std::string_t xMOD          	 ("%");
-	const std::string_t xGR          	 (">");
-	const std::string_t xLS         		 ("<");
-	const std::string_t xNOT          	 ("!");
-	const std::string_t xBIT_OR           ("|");
-	const std::string_t xBIT_AND          ("&");
-	const std::string_t xBIT_NOT          ("~");
-	const std::string_t xBIT_XOR          ("^");
-	const std::string_t xQUESTION         ("?");
-	const std::string_t xCOLON          	 (":");
-	const std::string_t xCOMMA          	 (",");
-	const std::string_t xSEMICOLON        (";");
+    const std::string_t xPLUS               ("+");
+    const std::string_t xMINUS               ("-");
+    const std::string_t xMULT               ("*");
+    const std::string_t xDIV               ("/");
+    const std::string_t xMOD               ("%");
+    const std::string_t xGR               (">");
+    const std::string_t xLS                  ("<");
+    const std::string_t xNOT               ("!");
+    const std::string_t xBIT_OR           ("|");
+    const std::string_t xBIT_AND          ("&");
+    const std::string_t xBIT_NOT          ("~");
+    const std::string_t xBIT_XOR          ("^");
+    const std::string_t xQUESTION         ("?");
+    const std::string_t xCOLON               (":");
+    const std::string_t xCOMMA               (",");
+    const std::string_t xSEMICOLON        (";");
 #endif
 //---------------------------------------------------------------------------
 

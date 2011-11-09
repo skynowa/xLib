@@ -13,23 +13,23 @@ class CxType :
     public CxNonCopyable
     /// type info
 {
-	public:
+    public:
         template<class T>
         static std::string_t sGetName   (const T &cObjectT);
-        	///< get name
+            ///< get name
 
         template<class T>
         static std::string_t sGetRawName(const T &cObjectT);
-    		///< get raw name
+            ///< get raw name
 
         template<class T1, class T2>
-        static BOOL 	    bIsEquals  (const T1 &cObjectT1, const T2 &cObjectT2);
-    		///< is equals
+        static BOOL         bIsEquals  (const T1 &cObjectT1, const T2 &cObjectT2);
+            ///< is equals
     private:
-    				        CxType     ();
-    		///< constructor
-		virtual            ~CxType     ();
-    		///< destructor
+                            CxType     ();
+            ///< constructor
+        virtual            ~CxType     ();
+            ///< destructor
 };
 //---------------------------------------------------------------------------
 #include <Common/CxType.inl>

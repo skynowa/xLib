@@ -18,29 +18,29 @@ class CxTcpClient :
                     CxTcpClient  ();
             ///< constructor
         virtual    ~CxTcpClient  ();
-        	///< constructor
+            ///< constructor
 
         BOOL        bIsReadable        ();
-        	///< checking for readability
+            ///< checking for readability
         BOOL        bIsWritable        ();
-        	///< checking for writability
+            ///< checking for writability
         BOOL        bConnect           (const std::string_t &csIp, USHORT usPort);
-        	///< connecting
+            ///< connecting
 
         BOOL        bIoctl             (LONG liCmd, ULONG *pulArgp);
-        	///< controls the i/o mode
+            ///< controls the i/o mode
         BOOL        bSetNonBlockingMode(const BOOL cbFlag);
-        	///< set nonblocking mode
+            ///< set nonblocking mode
         BOOL        bGetTimeout        (LONG *pliSec, LONG *pliMicroSec);
-        	///< get timeout
+            ///< get timeout
         BOOL        bSetTimeout        (LONG liSec,   LONG liMicroSec);
-        	///< set timeout
+            ///< set timeout
 
         static BOOL bIsServerAlive     (const std::string_t &csIp, USHORT usPort);
-        	///< is sever socket available
+            ///< is sever socket available
 
     protected:
-        timeval     _m_tvTimeout;	///< timeout
+        timeval     _m_tvTimeout;    ///< timeout
 };
 //TODO: bIsWritable repeats from CxSocket
 //TODO: bIsReadable repeats from CxSocket

@@ -29,7 +29,7 @@ class CxMechanism :
             ///< obtains a list of mechanism types supported by a token
 
     private:
-        CK_FUNCTION_LIST_PTR _m_pFunc; 	///< pointer to dll's functions list
+        CK_FUNCTION_LIST_PTR _m_pFunc;     ///< pointer to dll's functions list
 };
 
 #endif

@@ -53,8 +53,8 @@ CxTcpClient::bIsWritable() {
 //---------------------------------------------------------------------------
 BOOL
 CxTcpClient::bConnect(
-	const std::string_t &csIp,
-	USHORT              usPort
+    const std::string_t &csIp,
+    USHORT              usPort
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        FALSE);
@@ -77,8 +77,8 @@ CxTcpClient::bConnect(
 //---------------------------------------------------------------------------
 BOOL
 CxTcpClient::bIoctl(
-	LONG   liCmd,
-	ULONG *pulArgp
+    LONG   liCmd,
+    ULONG *pulArgp
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, FALSE);
@@ -98,7 +98,7 @@ CxTcpClient::bIoctl(
 //---------------------------------------------------------------------------
 BOOL
 CxTcpClient::bSetNonBlockingMode(
-	const BOOL cbFlag
+    const BOOL cbFlag
 )
 {
     /*DEBUG*/
@@ -136,8 +136,8 @@ CxTcpClient::bSetNonBlockingMode(
 //---------------------------------------------------------------------------
 BOOL
 CxTcpClient::bGetTimeout(
-	LONG *pliSec,
-	LONG *pliMicroSec
+    LONG *pliSec,
+    LONG *pliMicroSec
 )
 {
     /*DEBUG*/
@@ -152,8 +152,8 @@ CxTcpClient::bGetTimeout(
 //---------------------------------------------------------------------------
 BOOL
 CxTcpClient::bSetTimeout(
-	LONG liSec,
-	LONG liMicroSec
+    LONG liSec,
+    LONG liMicroSec
 )
 {
     /*DEBUG*/
@@ -177,8 +177,8 @@ CxTcpClient::bSetTimeout(
 /*static*/
 BOOL
 CxTcpClient::bIsServerAlive(
-	const std::string_t &csIp,
-	USHORT              usPort
+    const std::string_t &csIp,
+    USHORT              usPort
 )
 {
     /*DEBUG*/xASSERT_RET(false == csIp.empty(),            FALSE);

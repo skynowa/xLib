@@ -15,7 +15,7 @@ class CxCom :
     /// COM
 {
     public:
-        enum EConcurrencyModel 
+        enum EConcurrencyModel
             /// concurrency model
             /// the COINIT_APARTMENTTHREADED and COINIT_MULTITHREADED flags cannot both be set
         {

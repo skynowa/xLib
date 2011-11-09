@@ -38,12 +38,12 @@ class CxInputBox :
             ///< get text
 
     private:
-        std::string_t            _m_sText;		///< text
-        HWND                    _m_hWndMain;	///< handle to main window
-        HWND                    _m_hBtnOk;		///< handle to button "Ok"
-        HWND                    _m_hBtnCancel;	///< handle to button "Cancel"
-        HWND                    _m_hStaPrompt;	///< handle to button "Prompt"
-        HWND                    _m_hEdtText;	///< handle to edit text field
+        std::string_t            _m_sText;        ///< text
+        HWND                    _m_hWndMain;    ///< handle to main window
+        HWND                    _m_hBtnOk;        ///< handle to button "Ok"
+        HWND                    _m_hBtnCancel;    ///< handle to button "Cancel"
+        HWND                    _m_hStaPrompt;    ///< handle to button "Prompt"
+        HWND                    _m_hEdtText;    ///< handle to edit text field
 
         static LRESULT CALLBACK _ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
             ///< window callback
@@ -56,30 +56,30 @@ class CxInputBox :
 
 
 #if xTODO
-	void ToggleStyle(HWND hEdit)
-	{
-		if(SendMessage(hEdit,EM_GETPASSWORDCHAR,0,0) == '*')
-			SendMessage(hEdit,EM_SETPASSWORDCHAR,0,0);
-		else
-			SendMessage(hEdit,EM_SETPASSWORDCHAR,(WPARAM)'*',0);
-		SetFocus(hEdit);
-	}
+    void ToggleStyle(HWND hEdit)
+    {
+        if(SendMessage(hEdit,EM_GETPASSWORDCHAR,0,0) == '*')
+            SendMessage(hEdit,EM_SETPASSWORDCHAR,0,0);
+        else
+            SendMessage(hEdit,EM_SETPASSWORDCHAR,(WPARAM)'*',0);
+        SetFocus(hEdit);
+    }
 #endif
 
 #if xTODO
-	DWORD dwStyle = GetWindowLong(m_hwndEditPassword, GWL_STYLE);
+    DWORD dwStyle = GetWindowLong(m_hwndEditPassword, GWL_STYLE);
 
-	if(SendMessage(m_hwndPasswordCheck, BM_GETCHECK, 0, 0) == BST_CHECKED)
-	{
-		SetWindowLong(m_hwndEditPassword, GWL_STYLE, dwStyle | ES_PASSWORD);
-		SendMessage(m_hwndEditPassword, EM_SETPASSWORDCHAR, '*', NULL);
-	}
-	else
-	{
-		SetWindowLong(m_hwndEditPassword, GWL_STYLE, dwStyle & ~ES_PASSWORD);
-		SendMessage(m_hwndEditPassword, EM_SETPASSWORDCHAR, NULL, NULL);
-	}
+    if(SendMessage(m_hwndPasswordCheck, BM_GETCHECK, 0, 0) == BST_CHECKED)
+    {
+        SetWindowLong(m_hwndEditPassword, GWL_STYLE, dwStyle | ES_PASSWORD);
+        SendMessage(m_hwndEditPassword, EM_SETPASSWORDCHAR, '*', NULL);
+    }
+    else
+    {
+        SetWindowLong(m_hwndEditPassword, GWL_STYLE, dwStyle & ~ES_PASSWORD);
+        SendMessage(m_hwndEditPassword, EM_SETPASSWORDCHAR, NULL, NULL);
+    }
 
-	SetFocus(m_hwndEditPassword);
-	SetFocus(m_hwndPasswordCheck);
+    SetFocus(m_hwndEditPassword);
+    SetFocus(m_hwndPasswordCheck);
 #endif

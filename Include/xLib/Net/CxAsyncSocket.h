@@ -17,7 +17,7 @@ class CxAsyncSocket :
                  CxAsyncSocket();
             ///< constructor
         virtual ~CxAsyncSocket();
-        	///< destructor
+            ///< destructor
 
     private:
 

@@ -33,7 +33,7 @@ CxMimeHeader::~CxMimeHeader () {
 //DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
 BOOL
 CxMimeHeader::bParse(
-	const std::string_t &csRawHeader
+    const std::string_t &csRawHeader
 )
 {
 #if xTODO
@@ -125,7 +125,7 @@ CxMimeHeader::bParse(
 //DONE: sGetField
 std::string_t
 CxMimeHeader::sGetField(
-	const std::string_t &csName
+    const std::string_t &csName
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_mmsHeader.empty(), std::string_t());
@@ -151,49 +151,49 @@ CxMimeHeader::uiCount() {
 //---------------------------------------------------------------------------
 //TODO:  bLoadFromFile
 #if xTODO
-	BOOL
-	CxMimeHeader::bLoadFromFile(const std::string_t &csFilePath) {
-	 /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),                 FALSE);
-	 /*DEBUG*/xASSERT_RET(TRUE  == CxFile::bIsExists(csFilePath), FALSE);
+    BOOL
+    CxMimeHeader::bLoadFromFile(const std::string_t &csFilePath) {
+     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),                 FALSE);
+     /*DEBUG*/xASSERT_RET(TRUE  == CxFile::bIsExists(csFilePath), FALSE);
 
-	 std::string_t       sUknownEmail("Uknown@Uknown.Uknown");
-	 std::string_t       sLine("");
-	 std::ifstream     ifsStream(csFilePath.c_str());
-	 /*DEBUG*/xASSERT_RET(ifsStream,           FALSE);
-	 /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   FALSE);
-	 /*DEBUG*/xASSERT_RET(ifsStream.good(),    FALSE);
-	 /*DEBUG*/xASSERT_RET(ifsStream.is_open(), FALSE);
-	 /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    FALSE);
+     std::string_t       sUknownEmail("Uknown@Uknown.Uknown");
+     std::string_t       sLine("");
+     std::ifstream     ifsStream(csFilePath.c_str());
+     /*DEBUG*/xASSERT_RET(ifsStream,           FALSE);
+     /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   FALSE);
+     /*DEBUG*/xASSERT_RET(ifsStream.good(),    FALSE);
+     /*DEBUG*/xASSERT_RET(ifsStream.is_open(), FALSE);
+     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    FALSE);
 
-	 ULONG ulCountBreaks = 0;
-	 for (ULONG i = 0; !ifsStream.eof();  ++ i) {
-		 std::getline(ifsStream, sLine);
+     ULONG ulCountBreaks = 0;
+     for (ULONG i = 0; !ifsStream.eof();  ++ i) {
+         std::getline(ifsStream, sLine);
 
-		 //���� �� ������ csFrom (From:)
-		 if (std::string_t::npos != sLine.find(csFrom + ":")) {
-			 //From: ����<test_1@localhost>
-			 return sReplaceAll(vsSplit(_ms_csAttrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
-		 }
+         //���� �� ������ csFrom (From:)
+         if (std::string_t::npos != sLine.find(csFrom + ":")) {
+             //From: ����<test_1@localhost>
+             return sReplaceAll(vsSplit(_ms_csAttrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
+         }
 
-		 //������ �� "\r\n\r\n" (����� ������)
-		 if ("" == sLine) {
-			 ulCountBreaks ++;
-			 if (2 == ulCountBreaks) {
-				 return "";
-			 }
-		 } else {
-			 ulCountBreaks = 0;
-		 }
-	 }
+         //������ �� "\r\n\r\n" (����� ������)
+         if ("" == sLine) {
+             ulCountBreaks ++;
+             if (2 == ulCountBreaks) {
+                 return "";
+             }
+         } else {
+             ulCountBreaks = 0;
+         }
+     }
 
-	 return "";
+     return "";
 
-	 return FALSE;
-	}
+     return FALSE;
+    }
 #endif
 BOOL
 CxMimeHeader::bLoadFromFile(
-	const std::string_t &csRawMessageFilePath
+    const std::string_t &csRawMessageFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csRawMessageFilePath.empty(),                 FALSE);
@@ -236,7 +236,7 @@ CxMimeHeader::bLoadFromFile(
 //TODO: bSaveToFile
 BOOL
 CxMimeHeader::bSaveToFile(
-	const std::string_t &csFilePath
+    const std::string_t &csFilePath
 )
 {
     //_m_mmsHeader

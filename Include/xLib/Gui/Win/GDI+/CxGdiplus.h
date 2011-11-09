@@ -12,17 +12,17 @@
 #if defined(xOS_ENV_WIN)
 
 class CxGdiplus :
-	public CxNonCopyable
-	/// GDI+
+    public CxNonCopyable
+    /// GDI+
 {
-	public:
-				  CxGdiplus();
-			///< constructor
-		virtual  ~CxGdiplus();
-			///< destructor
+    public:
+                  CxGdiplus();
+            ///< constructor
+        virtual  ~CxGdiplus();
+            ///< destructor
 
-	private:
-		ULONG_PTR _m_pulToken;	///< for private use
+    private:
+        ULONG_PTR _m_pulToken;    ///< for private use
 };
 
 #endif

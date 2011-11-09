@@ -48,7 +48,7 @@ CxReport::CxReport(
 
     //sComment
     std::string_t sComment;
-     
+
     {
         std::ostringstream_t ossStream;
         ossStream.exceptions(std::ostringstream_t::eofbit | std::ostringstream_t::failbit | std::ostringstream_t::badbit);

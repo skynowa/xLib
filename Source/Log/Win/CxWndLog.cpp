@@ -28,7 +28,7 @@ CxCriticalSection CxWndLog::_ms_csListBox;
 //---------------------------------------------------------------------------
 /*explicit*/
 CxWndLog::CxWndLog(
-	const EWindowClass cwcWC
+    const EWindowClass cwcWC
 ) :
     _m_eWC (cwcWC)
 {
@@ -41,8 +41,8 @@ CxWndLog::~CxWndLog() {
 //---------------------------------------------------------------------------
 BOOL
 CxWndLog::bWrite(
-	const HWND chWnd,
-	LPCTSTR    pcszFormat, ...
+    const HWND chWnd,
+    LPCTSTR    pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != chWnd,      FALSE);
@@ -64,22 +64,22 @@ CxWndLog::bWrite(
 
     //-------------------------------------
     //choose window
-	#if xTODO
-		switch(_m_eWC) {
-			case wcListBox: {
-					/*LOCK*/CxAutoCriticalSection SL(_ms_csListBox);
+    #if xTODO
+        switch(_m_eWC) {
+            case wcListBox: {
+                    /*LOCK*/CxAutoCriticalSection SL(_ms_csListBox);
 
-					::SendMessage(hWnd, LB_ADDSTRING, 0, (LPARAM)(CxString::sRemoveEOL(xT("[") + sTime + xT("] ") + xT(" ") + sParam)).c_str());
-					::SendMessage(hWnd, WM_VSCROLL, MAKEWORD(SB_LINEDOWN, 0), 0);
-				}
-				break;
+                    ::SendMessage(hWnd, LB_ADDSTRING, 0, (LPARAM)(CxString::sRemoveEOL(xT("[") + sTime + xT("] ") + xT(" ") + sParam)).c_str());
+                    ::SendMessage(hWnd, WM_VSCROLL, MAKEWORD(SB_LINEDOWN, 0), 0);
+                }
+                break;
 
-			default: {
-					/*DEBUG*/xASSERT_RET(FALSE, FALSE);
-				}
-				break;
-		}
-	#endif
+            default: {
+                    /*DEBUG*/xASSERT_RET(FALSE, FALSE);
+                }
+                break;
+        }
+    #endif
 
     return TRUE;
 }

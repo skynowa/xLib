@@ -13,11 +13,11 @@
 class CxCurrentThread :
     public CxNonCopyable
 {
-	public:
-				                  CxCurrentThread();
+    public:
+                                  CxCurrentThread();
             ///< constructor
-		virtual                  ~CxCurrentThread();
-		    ///< destructor
+        virtual                  ~CxCurrentThread();
+            ///< destructor
 
         static CxThread::TxId     ulGetId        ();
             ///< get the thread identifier of the calling thread

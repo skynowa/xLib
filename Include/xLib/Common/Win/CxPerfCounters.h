@@ -16,10 +16,10 @@
 #define BYTEINCREMENT 1024 * 10
 //---------------------------------------------------------------------------
 template <class T>
-class CxPerfCounters 
+class CxPerfCounters
     /// cpu usage
 {
-    
+
 public:
     CxPerfCounters() {
 

@@ -13,7 +13,7 @@ template <class TypeT, std::size_t uiNumT>
 class CxArray
     /// fixed-size array
 {
-    
+
     public:
         TypeT tArray[uiNumT];
 

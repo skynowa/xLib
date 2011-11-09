@@ -15,13 +15,13 @@ class CxVolume :
 {
     public:
         static BOOL         bIsReady                         (const std::string_t &csVolumePath);
-        	///< is ready
+            ///< is ready
         static BOOL         bIsEmpty                         (const std::string_t &csVolumePath);
-        	///< is empty
+            ///< is empty
         static BOOL         bGetFreeSpace                    (const std::string_t &csDirPath, ULONGLONG *pullAvailable, ULONGLONG *pullTotal, ULONGLONG *pullFree);
-        	///< get free space
+            ///< get free space
         static BOOL         bMount                           (const std::string_t &csSourcePath, const std::string_t &csDestPath);
-        	///< mount
+            ///< mount
 
     #if defined(xOS_ENV_WIN)
         enum EType
@@ -69,7 +69,7 @@ class CxVolume :
                             CxVolume                         ();
             ///< constructor
         virtual            ~CxVolume                         ();
-        	///< destructor
+            ///< destructor
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxVolumeH

@@ -15,17 +15,17 @@ class CxLocale :
 {
     public:
        static std::string_t sGetCurrent();
-       	   ///< get current
+              ///< get current
        static BOOL         bSetCurrent(const std::string_t &csLocale);
-   	   	   ///< set current
+                 ///< set current
        static BOOL         bSetDefault();
-   	   	   ///< set default
+                 ///< set default
 
     private:
                            CxLocale   ();
            ///< constructor
        virtual            ~CxLocale   ();
-   	   	   ///< destructor
+                 ///< destructor
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxLocaleH

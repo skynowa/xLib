@@ -9,18 +9,18 @@
 //---------------------------------------------------------------------------
 class CxNonAssignable
     /// non assignable class
-{    
-	public:
+{
+    public:
 
-	protected:
-		 CxNonAssignable() { }
-			///< constructor
-		~CxNonAssignable() { }
-			///< dectructor
+    protected:
+         CxNonAssignable() { }
+            ///< constructor
+        ~CxNonAssignable() { }
+            ///< dectructor
 
-	private:
-		const CxNonAssignable &operator = (const CxNonAssignable &);
-			///< operator =
+    private:
+        const CxNonAssignable &operator = (const CxNonAssignable &);
+            ///< operator =
 };
 //---------------------------------------------------------------------------
 #endif    //xLib_CxNonAssignableH

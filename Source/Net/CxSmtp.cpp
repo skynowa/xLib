@@ -45,7 +45,7 @@ CxSmtp::~CxSmtp() {
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate
-BOOL 
+BOOL
 CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const std::string &csServer, USHORT usPort) {
     /*DEBUG*/xASSERT_RET(FALSE == csUser.empty(),          FALSE);
     /*DEBUG*/////xASSERT_RET(FALSE == csPass.empty(),          FALSE);
@@ -61,7 +61,7 @@ CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const std:
 }
 //---------------------------------------------------------------------------
 //DONE: bConnect
-BOOL 
+BOOL
 CxSmtp::bConnect() {
     BOOL        bRes = FALSE;
     std::string sRes = "";
@@ -102,7 +102,7 @@ CxSmtp::bConnect() {
 }
 //---------------------------------------------------------------------------
 //DONE: bLogin (��������� �� ������)
-BOOL 
+BOOL
 CxSmtp::bLogin() {
     //-------------------------------------
     //RFC
@@ -142,7 +142,7 @@ CxSmtp::bLogin() {
 }
 //---------------------------------------------------------------------------
 //DONE: bNoop (�������� ��������� ���������� � ���������)
-BOOL 
+BOOL
 CxSmtp::bNoop() {
     //-------------------------------------
     //RFC
@@ -165,7 +165,7 @@ CxSmtp::bNoop() {
 }
 //---------------------------------------------------------------------------
 //DONE: bRset (������ ����� �������� �����)
-BOOL 
+BOOL
 CxSmtp::bRset() {
     //-------------------------------------
     //RFC
@@ -188,7 +188,7 @@ CxSmtp::bRset() {
 }
 //---------------------------------------------------------------------------
 //DONE: bSendRaw
-BOOL 
+BOOL
 CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, const std::string &sTo) {
     /*DEBUG*/xASSERT_RET(CxSocket::etInvalid != _m_scktSocket, FALSE);
     /*DEBUG*/xASSERT_RET(FALSE               == sFrom.empty(), FALSE);
@@ -239,7 +239,7 @@ CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, const 
 }
 //---------------------------------------------------------------------------
 //DONE: bSend
-BOOL 
+BOOL
 CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const std::string &sTo) {
     /*DEBUG*/xASSERT_RET(CxSocket::etInvalid != _m_scktSocket, FALSE);
     /*DEBUG*/xASSERT_RET(FALSE               == sFrom.empty(), FALSE);
@@ -288,7 +288,7 @@ CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const std::st
 }
 //---------------------------------------------------------------------------
 //DONE: bDisconnect
-BOOL 
+BOOL
 CxSmtp::bDisconnect() {
     //-------------------------------------
     //RFC
@@ -325,7 +325,7 @@ CxSmtp::bDisconnect() {
 
 //---------------------------------------------------------------------------
 //DONE: _bCommand
-BOOL 
+BOOL
 CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply) {
     /*DEBUG*/xASSERT_RET(false == csCmd.empty(),            FALSE);
     /*DEBUG*/xASSERT_RET(false == csReplyDelimiter.empty(), FALSE);
@@ -349,7 +349,7 @@ CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelimiter,
 }
 //---------------------------------------------------------------------------
 //DONE: _bIsError
-BOOL 
+BOOL
 CxSmtp::_bIsError(const std::string &csText) {
     /*DEBUG*/xASSERT_RET(FALSE == csText.empty(), TRUE);
 

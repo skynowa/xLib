@@ -25,11 +25,11 @@ namespace CxMsgBoxRtf
     };
 
     BOOL             bCreateContent(HWND hParent);
-    	///< create content
+        ///< create content
     INT_PTR CALLBACK DialogProc    (HWND hDlg, UINT uiMsg, WPARAM wParam, LPARAM lParam);
-		///< window callback
+        ///< window callback
     EModalResult     iShow         (HWND hwndOwner, const std::string_t &csMessage, const std::string_t &csTiltle);
-		///< show
+        ///< show
 };
 //---------------------------------------------------------------------------
 #include <Gui/Win/Dialogs/CxMsgBoxRtf.inl>

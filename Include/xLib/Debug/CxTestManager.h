@@ -14,11 +14,11 @@ class CxTestManager :
     public CxNonCopyable
     /// manage tests (CxTest)
 {
-	public:
-		explicit   CxTestManager(const BOOL cbIsUseTracing);
-	        ///< constructor
-		virtual   ~CxTestManager();
-		    ///< destructor
+    public:
+        explicit   CxTestManager(const BOOL cbIsUseTracing);
+            ///< constructor
+        virtual   ~CxTestManager();
+            ///< destructor
 
         BOOL       bAdd         (CxTest *pvtTest, const std::string_t &csTestName = CxConst::xSTR_EMPTY);
             ///< add CxTest

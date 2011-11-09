@@ -19,21 +19,21 @@
 
 //---------------------------------------------------------------------------
 /*int main(int argc, char* argv[]) {
-	BOOL        bRes         = FALSE;
-	std::string sUrl         = xT("http://dn0.berloga.net/78938/Uraliskaya_rybalka_v.02.rar"); //xT("http://forum.vingrad.ru/forum/borland-c++builder.html");
-	std::string sFileContent = xT("");
-	std::string sFilePath    = xT("C:/test.rar");
+    BOOL        bRes         = FALSE;
+    std::string sUrl         = xT("http://dn0.berloga.net/78938/Uraliskaya_rybalka_v.02.rar"); //xT("http://forum.vingrad.ru/forum/borland-c++builder.html");
+    std::string sFileContent = xT("");
+    std::string sFilePath    = xT("C:/test.rar");
 
 
-	bRes = bDownloadURL(sUrl.c_str(), sFilePath.c_str());
-	if (TRUE == bRes) {
-		std::cout << "Yes" << std::endl;
-	} else {
-		std::cout << "No" << std::endl;
-	}
+    bRes = bDownloadURL(sUrl.c_str(), sFilePath.c_str());
+    if (TRUE == bRes) {
+        std::cout << "Yes" << std::endl;
+    } else {
+        std::cout << "No" << std::endl;
+    }
 
 
-	system("pause");
-	return 0;
+    system("pause");
+    return 0;
 }*/
 //---------------------------------------------------------------------------

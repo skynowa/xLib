@@ -18,7 +18,7 @@ CxTcpServer::~CxTcpServer() {
 //---------------------------------------------------------------------------
 BOOL
 CxTcpServer::bBind(
-	USHORT usPort
+    USHORT usPort
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        FALSE);
@@ -43,7 +43,7 @@ CxTcpServer::bBind(
 //---------------------------------------------------------------------------
 BOOL
 CxTcpServer::bListen(
-	int iBacklog /*= SOMAXCONN*/
+    int iBacklog /*= SOMAXCONN*/
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, FALSE);
@@ -56,11 +56,11 @@ CxTcpServer::bListen(
 //---------------------------------------------------------------------------
 BOOL
 CxTcpServer::bAccept(
-	CxTcpServer *pscktAcceptSocket,
-	std::string_t      *psFromIp
+    CxTcpServer *pscktAcceptSocket,
+    std::string_t      *psFromIp
 )
 {
-	/*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,      FALSE);
+    /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,      FALSE);
     /*DEBUG*/xASSERT_RET(NULL      != pscktAcceptSocket, FALSE);
     /*DEBUG*/xASSERT_RET(NULL      != psFromIp,          FALSE);
 

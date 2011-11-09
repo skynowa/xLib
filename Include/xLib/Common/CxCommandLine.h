@@ -12,7 +12,7 @@
 class CxCommandLine :
     public CxNonCopyable
 {
-	public:
+    public:
         static LONG         liGetArgsMax ();
             ///< get maximum length of commandline arguments (in chars)
         static std::string_t sGet         ();

@@ -18,7 +18,7 @@ class CxMimeHeader :
                             ~CxMimeHeader      ();
 
         BOOL                 bParse            (const std::string_t &csRawHeader);
-		std::string_t         sGetField         (const std::string_t &csName);
+        std::string_t         sGetField         (const std::string_t &csName);
         size_t               uiCount           ();
         BOOL                 bLoadFromFile     (const std::string_t &csRawMessageFilePath);
         BOOL                 bSaveToFile       (const std::string_t &csFilePath);

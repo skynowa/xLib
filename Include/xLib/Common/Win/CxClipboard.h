@@ -20,9 +20,9 @@ class CxClipboard :
         {
             fmBITMAP          = CF_BITMAP,
             fmdib             = CF_DIB,
-		#if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
-			fmDibv5           = CF_DIBV5,
-		#endif
+        #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
+            fmDibv5           = CF_DIBV5,
+        #endif
             fmDif             = CF_DIF,
             fmDspBitmap       = CF_DSPBITMAP,
             fmDsPenhMetaFile  = CF_DSPENHMETAFILE,

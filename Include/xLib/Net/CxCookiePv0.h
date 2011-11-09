@@ -15,65 +15,65 @@ class CxCookiePv0 :
 {
     public:
         explicit             CxCookiePv0 ();
-        	///< constructor
+            ///< constructor
                              CxCookiePv0 (const std::string_t &csRawCookie);
             ///< constructor
         virtual             ~CxCookiePv0 ();
-        	///< constructor
+            ///< constructor
 
         BOOL                 bInit     (const std::string_t &csRawCookie);
-    		///< parsing raw cookie string
+            ///< parsing raw cookie string
 
         const std::string_t & sGetName    () const;
-    		///< get name
+            ///< get name
         BOOL                 bSetName    (const std::string_t &csName);
-    		///< set name
+            ///< set name
 
         const std::string_t & sGetValue   () const;
-    		///< get value
+            ///< get value
         BOOL                 bSetValue   (const std::string_t &csValue);
-    		///< set value
+            ///< set value
 
         const std::string_t & sGetDomain  () const;
-    		///< get domain
+            ///< get domain
         BOOL                 bSetDomain  (const std::string_t &csDomain);
-    		///< set domain
+            ///< set domain
 
         const std::string_t & sGetPath    () const;
-    		///< get path
+            ///< get path
         BOOL                 bSetPath    (const std::string_t &csPath);
-    		///< set path
+            ///< set path
 
         const std::string_t & sGetExpires () const;
-    		///< get expire
+            ///< get expire
         BOOL                 bSetExpires (const std::string_t &csExpires);
-    		///< set expire
+            ///< set expire
 
         BOOL                 bGetSecure  () const;
-    		///< get secure
+            ///< get secure
         BOOL                 bSetSecure  (BOOL bFlag);
-    		///< set secure
+            ///< set secure
 
         BOOL                 bGetHttpOnly() const;
-    		///< get http only
+            ///< get http only
         BOOL                 bSetHttpOnly(BOOL bFlag);
-    		///< set http only
+            ///< set http only
 
         std::string_t         sToString   () const;
-    		///< convert to string
+            ///< convert to string
         std::string_t         sGetDump    () const;
-    		///< get dump
+            ///< get dump
         BOOL                 bClear      ();
-    		///< clear
+            ///< clear
 
     private:
-        std::string_t         _m_sName;		///< name
-        std::string_t         _m_sValue;		///< value
-        std::string_t         _m_sDomain;	///< domain
-        std::string_t         _m_sPath;		///< path
-        std::string_t         _m_sExpires;	///< expire
-        BOOL                 _m_bSecure;	///< secure
-        BOOL                 _m_bHttpOnly;	///< http only
+        std::string_t         _m_sName;        ///< name
+        std::string_t         _m_sValue;        ///< value
+        std::string_t         _m_sDomain;    ///< domain
+        std::string_t         _m_sPath;        ///< path
+        std::string_t         _m_sExpires;    ///< expire
+        BOOL                 _m_bSecure;    ///< secure
+        BOOL                 _m_bHttpOnly;    ///< http only
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxCookiePv0H

@@ -15,71 +15,71 @@ class CxCookiePv1 :
 {
     public:
         explicit             CxCookiePv1 ();
-        	///< constructor
+            ///< constructor
                              CxCookiePv1 (const std::string_t &csRawCookie);
             ///< constructor
         virtual             ~CxCookiePv1 ();
-        	///< destructor
+            ///< destructor
 
         BOOL                 bInit       (const std::string_t &csRawCookie);
-        	///< parsing raw cookie string pv0
+            ///< parsing raw cookie string pv0
 
         const std::string_t & sGetName    () const;
-    		///< get name
+            ///< get name
         BOOL                 bSetName    (const std::string_t &csName);
-    		///< set name
+            ///< set name
 
         const std::string_t & sGetValue   () const;
-    		///< get value
+            ///< get value
         BOOL                 bSetValue   (const std::string_t &csValue);
-    		///< set value
+            ///< set value
 
         const std::string_t & sGetComment () const;
-    		///< get comment
+            ///< get comment
         BOOL                 bSetComment (const std::string_t &csComment);
-    		///< set comment
+            ///< set comment
 
         const std::string_t & sGetDomain  () const;
-    		///< get domain
+            ///< get domain
         BOOL                 bSetDomain  (const std::string_t &csDomain);
-    		///< set domain
+            ///< set domain
 
         const std::string_t & sGetPath    () const;
-    		///< get path
+            ///< get path
         BOOL                 bSetPath    (const std::string_t &csPath);
-    		///< set path
+            ///< set path
 
         LONGLONG             liGetMaxAge () const;
-    		///< get max age
+            ///< get max age
         BOOL                 bSetMaxAge  (LONGLONG liMaxAge);
-    		///< set max age
+            ///< set max age
 
         BOOL                 bGetSecure  () const;
-    		///< get secure
+            ///< get secure
         BOOL                 bSetSecure  (BOOL bFlag);
-    		///< set decure
+            ///< set decure
 
         BOOL                 bGetHttpOnly() const;
-    		///< get http only
+            ///< get http only
         BOOL                 bSetHttpOnly(BOOL bFlag);
-    		///< set http only
+            ///< set http only
 
         std::string_t         sToString   () const;
-    		///< convert to string
+            ///< convert to string
         std::string_t         sGetDump    () const;
-    		///< get dump
+            ///< get dump
         BOOL                 bClear      ();
-    		///< clear
+            ///< clear
 
     private:
-        std::string_t         _m_sName;		///< name
-        std::string_t         _m_sValue;		///< value
-        std::string_t         _m_sComment;	///< comment
-        std::string_t         _m_sDomain;	///< domain
-        std::string_t         _m_sPath;		///< path
+        std::string_t         _m_sName;        ///< name
+        std::string_t         _m_sValue;        ///< value
+        std::string_t         _m_sComment;    ///< comment
+        std::string_t         _m_sDomain;    ///< domain
+        std::string_t         _m_sPath;        ///< path
         LONGLONG             _m_liMaxAge;   ///< max age (in seconds)
-        BOOL                 _m_bSecure;	///< secure
-        BOOL                 _m_bHttpOnly;	///< http only
+        BOOL                 _m_bSecure;    ///< secure
+        BOOL                 _m_bHttpOnly;    ///< http only
 };
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxCookiePv1H

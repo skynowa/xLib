@@ -143,11 +143,11 @@ CxHandleT<hvTag>::bIsValid() const {
     /*DEBUG*///n/a
 
     bool bCond1 = (reinterpret_cast<HANDLE>(0xCDCDCDCD) != _m_hHandle); //Created but not initialised
-    bool bCond2 = (reinterpret_cast<HANDLE>(0xCCCCCCCC) != _m_hHandle);	//Uninitialized locals in VC6 when you compile w/ /GZ
-    bool bCond3 = (reinterpret_cast<HANDLE>(0xBAADF00D) != _m_hHandle);	//indicate an uninitialised variable
-    bool bCond4 = (reinterpret_cast<HANDLE>(0xFDFDFDFD) != _m_hHandle);	//No man's land (normally outside of a process)
-    bool bCond5 = (reinterpret_cast<HANDLE>(0xFEEEFEEE) != _m_hHandle);	//Freed memory set by NT's heap manager
-    bool bCond6 = (reinterpret_cast<HANDLE>(0xDDDDDDDD) != _m_hHandle);	//Deleted
+    bool bCond2 = (reinterpret_cast<HANDLE>(0xCCCCCCCC) != _m_hHandle);    //Uninitialized locals in VC6 when you compile w/ /GZ
+    bool bCond3 = (reinterpret_cast<HANDLE>(0xBAADF00D) != _m_hHandle);    //indicate an uninitialised variable
+    bool bCond4 = (reinterpret_cast<HANDLE>(0xFDFDFDFD) != _m_hHandle);    //No man's land (normally outside of a process)
+    bool bCond5 = (reinterpret_cast<HANDLE>(0xFEEEFEEE) != _m_hHandle);    //Freed memory set by NT's heap manager
+    bool bCond6 = (reinterpret_cast<HANDLE>(0xDDDDDDDD) != _m_hHandle);    //Deleted
     bool bCond7 = (TxFailValue::get()                   != _m_hHandle);
 
     return (true == bCond1) && (true == bCond2) && (true == bCond3) && (true == bCond4) &&
@@ -288,7 +288,7 @@ CxHandleT<hvTag>::hDuplicate(
 
 
 /****************************************************************************
-*	public, static
+*    public, static
 *
 *****************************************************************************/
 

@@ -1,5 +1,5 @@
 /* otp-pkcs11.h include file for the PKCS #11 Mechanisms for One-Time
-   Password Tokens OTPS document. */ 
+   Password Tokens OTPS document. */
 /* $Revision: 1.1 $ */
 
 /* License to copy and use this software is granted provided that it is

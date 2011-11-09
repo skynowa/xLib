@@ -85,9 +85,9 @@ class CxShell :
             sfInternet               = CSIDL_INTERNET,
             sfInternetCache          = CSIDL_INTERNET_CACHE,
             sfLocalAppData           = CSIDL_LOCAL_APPDATA,
-		#if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
+        #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
             sfMyDocuments            = CSIDL_MYDOCUMENTS,
-		#endif
+        #endif
             sfMyMusic                = CSIDL_MYMUSIC,
             sfMyPictures             = CSIDL_MYPICTURES,
             sfMyVideo                = CSIDL_MYVIDEO,
@@ -115,19 +115,19 @@ class CxShell :
         };
 
         static std::string_t bFindExecutable   (const std::string_t &csFileName, const std::string_t &csFindDirPath);
-        	///< find executable file path
+            ///< find executable file path
         static BOOL         bExecute          (const HWND chOwner, const EOperation copOperation, const std::string_t &csFilePath, const std::string_t &csParams, const std::string_t &csDir, const EShowFlag csfShowCmd);
-        	///< execute
+            ///< execute
         static BOOL         bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
-        	///< execute
+            ///< execute
         static BOOL         bExecuteHttp      (const std::string_t &csUrl);
-        	///< execute HTTP
+            ///< execute HTTP
         static BOOL         bExecuteFtp       (const std::string_t &csUrl);
-        	///< execute FTP
+            ///< execute FTP
         static BOOL         bExecuteEmail     (const std::string_t &csToEmail, const std::string_t &csSubject, const std::string_t &csBody);
-        	///< execute email
+            ///< execute email
         static std::string_t sGetSpecialDirPath(const ESpecialDir csfDir, const HANDLE chToken);
-        	///< get special dir path
+            ///< get special dir path
         static BOOL         bCreateShortcut   (const std::string_t &csShortCutFilePath,
                                                const std::string_t &csFilePath,
                                                const std::string_t &csWorkingDirectory,
@@ -138,13 +138,13 @@ class CxShell :
                                                const int           ciIconIndex,
                                                const std::string_t &csDescription
                                               );
-        	///< create shortcut
+            ///< create shortcut
 
     private:
                             CxShell           ();
             ///< constructor
         virtual            ~CxShell           ();
-        	///< destructor
+            ///< destructor
 };
 
 #endif

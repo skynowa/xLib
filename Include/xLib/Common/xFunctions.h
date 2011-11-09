@@ -73,7 +73,7 @@
 
     //stat
     #if defined(xCOMPILER_CODEGEAR)
-	    #define xTSTAT          _tstat
+        #define xTSTAT          _tstat
     #elif defined(xCOMPILER_MS)
         #define xTSTAT          _tstat64
     #else
@@ -102,7 +102,7 @@
         #define xTEOF           EOF
 
         #define xTMAIN          main
-        #define xTFPRINTF       fprintf     
+        #define xTFPRINTF       fprintf
         #define xTASCTIME       asctime
         #define xTSETLOCALE     setlocale
         #define xTFOPEN         fopen
@@ -158,7 +158,7 @@
 
     //stat
     #if defined(xCOMPILER_CODEGEAR)
-	    #define xTSTAT          _tstat
+        #define xTSTAT          _tstat
     #elif defined(xCOMPILER_MS)
         #define xTSTAT          _tstat64
     #else

@@ -34,7 +34,7 @@ CxCOMPort::~CxCOMPort() {
 }
 //--------------------------------------------------------------------------
 //TODO: bOpen (��������)
-BOOL 
+BOOL
 CxCOMPort::bOpen() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -47,7 +47,7 @@ CxCOMPort::bOpen() {
 }
 //--------------------------------------------------------------------------
 //TODO: bConfig (����������������)
-BOOL 
+BOOL
 CxCOMPort::bConfig() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -82,7 +82,7 @@ CxCOMPort::bConfig() {
 }
 //--------------------------------------------------------------------------
 //TODO: bClearData (����� ������)
-BOOL 
+BOOL
 CxCOMPort::bClearData() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -95,9 +95,9 @@ CxCOMPort::bClearData() {
 }
 //--------------------------------------------------------------------------
 //TODO: bReadData (������ ������)
-std::string_t 
+std::string_t
 CxCOMPort::bReadData(
-    LPTSTR pszBuff, 
+    LPTSTR pszBuff,
     ULONG  dwNumOfBytesToRead
 )
 {
@@ -118,7 +118,7 @@ CxCOMPort::bReadData(
 }
 //--------------------------------------------------------------------------
 //TODO: iReadDataWaiting ()
-int 
+int
 CxCOMPort::iReadDataWaiting() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -126,9 +126,9 @@ CxCOMPort::iReadDataWaiting() {
 }
 //--------------------------------------------------------------------------
 //TODO: bWriteData (������ ������)
-BOOL 
+BOOL
 CxCOMPort::bWriteData(
-    LPCTSTR pcszBuff, 
+    LPCTSTR pcszBuff,
     DWORD   dwNumOfBytesToWrite
 )
 {
@@ -178,7 +178,7 @@ CxCOMPort::bWriteData(
 }
 //--------------------------------------------------------------------------
 //TODO: bClose (��������)
-BOOL 
+BOOL
 CxCOMPort::bClose() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -189,7 +189,7 @@ CxCOMPort::bClose() {
 }
 //--------------------------------------------------------------------------
 //TODO: ulInputBuffTest ()
-ULONG 
+ULONG
 CxCOMPort::ulInputBuffTest() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -204,7 +204,7 @@ CxCOMPort::ulInputBuffTest() {
 }
 //-------------------------------------------------------------------------
 //TODO: bClearCLRDTR (����������� ������� DTR)
-BOOL 
+BOOL
 CxCOMPort::bClearCLRDTR() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -212,7 +212,7 @@ CxCOMPort::bClearCLRDTR() {
 }
 //-------------------------------------------------------------------------
 //TODO: bClearCLRRTS (����������� ������ RTS)
-BOOL 
+BOOL
 CxCOMPort::bClearCLRRTS() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -220,7 +220,7 @@ CxCOMPort::bClearCLRRTS() {
 }
 //-------------------------------------------------------------------------
 //TODO: bSetSETDTR (��������� ������� DTR)
-BOOL 
+BOOL
 CxCOMPort::bSetSETDTR() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
@@ -228,7 +228,7 @@ CxCOMPort::bSetSETDTR() {
 }
 //-------------------------------------------------------------------------
 //TODO: bSetSETRTS (��������� ������� RTS)
-BOOL 
+BOOL
 CxCOMPort::bSetSETRTS() {
     /*DEBUG*/xASSERT_RET(FALSE != _m_hComPort.bIsValid(), FALSE);
 
