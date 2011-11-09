@@ -231,17 +231,19 @@ CxPath::sGetStandartExt(
 {
     std::string_t sRes;
 
-	switch (cseFileExt) {
+    switch (cseFileExt) {
     #if defined(xOS_ENV_WIN)
-        case seExe:	{ sRes = xT("exe"); }   break;
-	    case seDll:	{ sRes = xT("dll"); }   break;
-	    case seLib:	{ sRes = xT("lib"); }   break;
+        case seExe: { sRes = xT("exe"); }   break;
+        case seDll: { sRes = xT("dll"); }   break;
+        case seLib: { sRes = xT("lib"); }   break;
+        case seObj: { sRes = xT("obj"); }   break;
     #elif defined(xOS_ENV_UNIX)
-        case seExe:	{ sRes = xT("");    }   break;
-	    case seDll:	{ sRes = xT("so");  }   break;
-	    case seLib:	{ sRes = xT("a");   }   break;
+        case seExe: { sRes = xT("");    }   break;
+        case seDll: { sRes = xT("so");  }   break;
+        case seLib: { sRes = xT("a");   }   break;
+        case seObj: { sRes = xT("0");   }   break;
     #endif
-    	default:    { sRes = xT("");    }   break;
+        default:    { sRes = xT("");    }   break;
     }
 
     return sRes;
