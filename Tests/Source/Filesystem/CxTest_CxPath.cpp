@@ -29,10 +29,10 @@ CxTest_CxPath::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-	//-------------------------------------
-	//vars
-	std::string_t       sRes          = xT("");
-	std::vector<std::string_t> vsRes;
+    //-------------------------------------
+    //vars
+    std::string_t       sRes          = xT("");
+    std::vector<std::string_t> vsRes;
 
     #if defined(xOS_ENV_WIN)
         const std::string_t csFilePath    = xT("C:\\Test.txt");
@@ -52,16 +52,16 @@ CxTest_CxPath::bUnit(
 
 
 
-	/****************************************************************************
-	*	����
-	*
-	*****************************************************************************/
+    /****************************************************************************
+    *    ����
+    *
+    *****************************************************************************/
 
-	//-------------------------------------
-	//sGetExe
+    //-------------------------------------
+    //sGetExe
     xTEST_BLOCK(cullBlockLoops)
     {
-    	sRes = CxPath::sGetExe();
+        sRes = CxPath::sGetExe();
         #if defined(xOS_ENV_WIN)
             xTEST_EQ(sRes, std::string_t(xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug\\Test.VC++ 2010.exe")));
         #elif defined(xOS_ENV_UNIX)
@@ -79,11 +79,11 @@ CxTest_CxPath::bUnit(
         #endif
     }
 
-	//-------------------------------------
-	//sGetExeDir
+    //-------------------------------------
+    //sGetExeDir
     xTEST_BLOCK(cullBlockLoops)
     {
-    	sRes = CxPath::sGetExeDir();
+        sRes = CxPath::sGetExeDir();
         #if defined(xOS_ENV_WIN)
             xTEST_EQ(sRes, std::string_t(xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug")));
         #elif defined(xOS_ENV_UNIX)
@@ -155,8 +155,8 @@ CxTest_CxPath::bUnit(
         }
     }
 
-	//-------------------------------------
-	//sGetFullName
+    //-------------------------------------
+    //sGetFullName
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_ENV_WIN)
@@ -182,8 +182,8 @@ CxTest_CxPath::bUnit(
         }
     }
 
-	//-------------------------------------
-	//sGetName
+    //-------------------------------------
+    //sGetName
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_ENV_WIN)
@@ -209,8 +209,8 @@ CxTest_CxPath::bUnit(
         }
     }
 
-	//-------------------------------------
-	//sGetExt
+    //-------------------------------------
+    //sGetExt
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_ENV_WIN)
@@ -242,7 +242,7 @@ CxTest_CxPath::bUnit(
     //sGetStandartExt
     xTEST_BLOCK(cullBlockLoops)
     {
-	    m_sRes = CxPath::sGetStandartExt(CxPath::seExe);
+        m_sRes = CxPath::sGetStandartExt(CxPath::seExe);
         #if defined(xOS_ENV_WIN)
             xTEST_EQ(std::string_t(xT("exe")), m_sRes);
         #elif defined(xOS_ENV_UNIX)
@@ -262,19 +262,26 @@ CxTest_CxPath::bUnit(
         #elif defined(xOS_ENV_UNIX)
             xTEST_EQ(std::string_t(xT("a")), m_sRes);
         #endif
+
+        m_sRes = CxPath::sGetStandartExt(CxPath::seObj);
+        #if defined(xOS_ENV_WIN)
+            xTEST_EQ(std::string_t(xT("obj")), m_sRes);
+        #elif defined(xOS_ENV_UNIX)
+            xTEST_EQ(std::string_t(xT("o")), m_sRes);
+        #endif
     }
 
-	//-------------------------------------
-	//sSetDrive
+    //-------------------------------------
+    //sSetDrive
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             const std::string_t sData[][3] = {
-                {xT("C:\\Test.doc"),                  xT("F:"),	xT("F:\\Test.doc")},
-                {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),	xT("T:\\okoval@winnerauto.ua.info")},
-                ////{xT("TEST_STRING_3.doc"),             xT("R:"),	xT("")},
-                {xT("D:\\Test.config"),               xT("A:"),	xT("A:\\Test.config")},
-                ////{xT("TEST_STRING_3.f"),               xT("B:"),	xT("")}
+                {xT("C:\\Test.doc"),                  xT("F:"),    xT("F:\\Test.doc")},
+                {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),    xT("T:\\okoval@winnerauto.ua.info")},
+                ////{xT("TEST_STRING_3.doc"),             xT("R:"),    xT("")},
+                {xT("D:\\Test.config"),               xT("A:"),    xT("A:\\Test.config")},
+                ////{xT("TEST_STRING_3.f"),               xT("B:"),    xT("")}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
@@ -287,20 +294,20 @@ CxTest_CxPath::bUnit(
                 xTEST_EQ(sStr3, sStr4);
             }
         #endif
-	}
+    }
 
-	//-------------------------------------
-	//sSetDir
+    //-------------------------------------
+    //sSetDir
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             const std::string_t sData[][3] = {
-                {xT("C:\\Test.doc"),                  xT("F:\\"),	  xT("F:\\Test.doc")},
-                {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:\\"),	  xT("T:\\okoval@winnerauto.ua.info")},
-                ////{xT("TEST_STRING_3.doc"),         xT("R:\\"),	  xT("")},
-                {xT("D:\\Test.config"),               xT("A:\\"),	  xT("A:\\Test.config")},
-                ////{xT("TEST_STRING_3.f"),           xT("B:\\"),	  xT("")}
-                {xT("D:\\Test\\Test.config"),         xT("A:\\"),	  xT("A:\\Test.config")},
+                {xT("C:\\Test.doc"),                  xT("F:\\"),      xT("F:\\Test.doc")},
+                {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:\\"),      xT("T:\\okoval@winnerauto.ua.info")},
+                ////{xT("TEST_STRING_3.doc"),         xT("R:\\"),      xT("")},
+                {xT("D:\\Test.config"),               xT("A:\\"),      xT("A:\\Test.config")},
+                ////{xT("TEST_STRING_3.f"),           xT("B:\\"),      xT("")}
+                {xT("D:\\Test\\Test.config"),         xT("A:\\"),      xT("A:\\Test.config")},
                 {xT("D:\\Test\\Test.config"),         xT("A:\\1\\2"), xT("A:\\1\\2\\Test.config")}
 
             };
@@ -316,29 +323,29 @@ CxTest_CxPath::bUnit(
             };
         #endif
 
-		for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-			//std::string_t sStr1 = CxPath::sSetDir(sData[i][0], sData[i][1]);
-			//std::string_t sStr2 = CxPath::sSetDir(sData[i][2], sData[i][1]);
-			//xTEST_EQ(sStr1, sStr2);
+        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
+            //std::string_t sStr1 = CxPath::sSetDir(sData[i][0], sData[i][1]);
+            //std::string_t sStr2 = CxPath::sSetDir(sData[i][2], sData[i][1]);
+            //xTEST_EQ(sStr1, sStr2);
 
-			std::string_t sStr3 = CxPath::sSetDir(sData[i][0], sData[i][1]);
-			std::string_t sStr4 = sData[i][2];
-			xTEST_EQ(sStr3, sStr4);
-		}
-	}
+            std::string_t sStr3 = CxPath::sSetDir(sData[i][0], sData[i][1]);
+            std::string_t sStr4 = sData[i][2];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
 
-	//-------------------------------------
-	//sSetFullName
+    //-------------------------------------
+    //sSetFullName
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             const std::string_t sData[][3] = {
-                /*FilePath*/						  /*NewFileName*/   /*MustBe*/
-                {xT("C:\\Test.doc"),                  xT("aaaa.xls"),	xT("C:\\aaaa.xls")},
-                {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty.fdm"),	xT("Z:\\qwerty.fdm")},
-                ////{xT("TEST_STRING_3.doc"),         xT("xxxxxx.c"),	xT("xxxxxx.c")},
-                {xT("D:\\Test.config"),               xT("r.txt"),		xT("D:\\r.txt")},
-                ////{xT("TEST_STRING_3.f"),           xT("fff.qq"),		xT("fff.qq")}
+                /*FilePath*/                          /*NewFileName*/   /*MustBe*/
+                {xT("C:\\Test.doc"),                  xT("aaaa.xls"),    xT("C:\\aaaa.xls")},
+                {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty.fdm"),    xT("Z:\\qwerty.fdm")},
+                ////{xT("TEST_STRING_3.doc"),         xT("xxxxxx.c"),    xT("xxxxxx.c")},
+                {xT("D:\\Test.config"),               xT("r.txt"),        xT("D:\\r.txt")},
+                ////{xT("TEST_STRING_3.f"),           xT("fff.qq"),        xT("fff.qq")}
             };
         #elif defined(xOS_ENV_UNIX)
             const std::string_t sData[][3] = {
@@ -351,29 +358,29 @@ CxTest_CxPath::bUnit(
             };
         #endif
 
-		for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-			std::string_t sStr1 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
-			std::string_t sStr2 = CxPath::sSetFullName(sData[i][2], sData[i][1]);
-			xTEST_EQ(sStr1, sStr2);
+        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
+            std::string_t sStr1 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
+            std::string_t sStr2 = CxPath::sSetFullName(sData[i][2], sData[i][1]);
+            xTEST_EQ(sStr1, sStr2);
 
-			std::string_t sStr3 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
-			std::string_t sStr4 = sData[i][2];
-			xTEST_EQ(sStr3, sStr4);
-		}
-	}
+            std::string_t sStr3 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
+            std::string_t sStr4 = sData[i][2];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
 
-	//-------------------------------------
-	//sSetName
+    //-------------------------------------
+    //sSetName
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             const std::string_t sData[][3] = {
-                {xT("C:\\Test.doc"),                  xT("xxx"),	  xT("C:\\xxx.doc")},
-                {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty"),	  xT("Z:\\qwerty.info")},
-                ////{xT("TEST_STRING_3.doc"),         xT(""),	      xT("")},
-                ////{xT("D:\\Test.config"),               xT(""),	      xT("D:\\.config")},
-                ////{xT("TEST_STRING_3.f"),           xT("B:\\"),	  xT("")}
-                {xT("D:\\Test\\Test.config"),         xT("rrr"),	  xT("D:\\Test\\rrr.config")},
+                {xT("C:\\Test.doc"),                  xT("xxx"),      xT("C:\\xxx.doc")},
+                {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty"),      xT("Z:\\qwerty.info")},
+                ////{xT("TEST_STRING_3.doc"),         xT(""),          xT("")},
+                ////{xT("D:\\Test.config"),               xT(""),          xT("D:\\.config")},
+                ////{xT("TEST_STRING_3.f"),           xT("B:\\"),      xT("")}
+                {xT("D:\\Test\\Test.config"),         xT("rrr"),      xT("D:\\Test\\rrr.config")},
                 {xT("D:\\1\\2\\Test\\Test.config"),   xT("yyyyyyyy"), xT("D:\\1\\2\\Test\\yyyyyyyy.config")}
 
             };
@@ -389,44 +396,44 @@ CxTest_CxPath::bUnit(
             };
         #endif
 
-		for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-			std::string_t sStr1 = CxPath::sSetName(sData[i][0], sData[i][1]);
-			std::string_t sStr2 = CxPath::sSetName(sData[i][2], sData[i][1]);
-			xTEST_EQ(sStr1, sStr2);
+        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
+            std::string_t sStr1 = CxPath::sSetName(sData[i][0], sData[i][1]);
+            std::string_t sStr2 = CxPath::sSetName(sData[i][2], sData[i][1]);
+            xTEST_EQ(sStr1, sStr2);
 
-			std::string_t sStr3 = CxPath::sSetName(sData[i][0], sData[i][1]);
-			std::string_t sStr4 = sData[i][2];
-			xTEST_EQ(sStr3, sStr4);
-		}
-	}
+            std::string_t sStr3 = CxPath::sSetName(sData[i][0], sData[i][1]);
+            std::string_t sStr4 = sData[i][2];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
 
-	//-------------------------------------
-	//sSetExt
+    //-------------------------------------
+    //sSetExt
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         const std::string_t sData[][3] = {
             {xT("C:\\Test.doc"),                  xT("xls"),    xT("C:\\Test.xls")},
             {xT("C:\\Test"),                      xT("xls"),    xT("C:\\Test.xls")},
-            {xT("Z:\\okoval@winnerauto.ua.info"), xT("fdm"),	xT("Z:\\okoval@winnerauto.ua.fdm")},
-            {xT("TEST_STRING_3.doc"),             xT("xxxxxx"),	xT("TEST_STRING_3.xxxxxx")},
-            {xT("D:\\Test.config"),               xT("txt"),	xT("D:\\Test.txt")},
-            {xT("TEST_STRING_3.f"),               xT("fff"),	xT("TEST_STRING_3.fff")},
-            {xT("TEST_STRING_4"),                 xT("fff"),	xT("TEST_STRING_4.fff")}
+            {xT("Z:\\okoval@winnerauto.ua.info"), xT("fdm"),    xT("Z:\\okoval@winnerauto.ua.fdm")},
+            {xT("TEST_STRING_3.doc"),             xT("xxxxxx"),    xT("TEST_STRING_3.xxxxxx")},
+            {xT("D:\\Test.config"),               xT("txt"),    xT("D:\\Test.txt")},
+            {xT("TEST_STRING_3.f"),               xT("fff"),    xT("TEST_STRING_3.fff")},
+            {xT("TEST_STRING_4"),                 xT("fff"),    xT("TEST_STRING_4.fff")}
         };
 
-		for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-			std::string_t sStr1 = CxPath::sSetExt(sData[i][0], sData[i][1]);
-			std::string_t sStr2 = CxPath::sSetExt(sData[i][2], sData[i][1]);
-			xTEST_EQ(sStr1, sStr2);
+        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
+            std::string_t sStr1 = CxPath::sSetExt(sData[i][0], sData[i][1]);
+            std::string_t sStr2 = CxPath::sSetExt(sData[i][2], sData[i][1]);
+            xTEST_EQ(sStr1, sStr2);
 
-			std::string_t sStr3 = CxPath::sSetExt(sData[i][0], sData[i][1]);
-			std::string_t sStr4 = sData[i][2];
-			xTEST_EQ(sStr3, sStr4);
-		}
-	}
+            std::string_t sStr3 = CxPath::sSetExt(sData[i][0], sData[i][1]);
+            std::string_t sStr4 = sData[i][2];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
 
-	//-------------------------------------
-	//sRemoveExt
+    //-------------------------------------
+    //sRemoveExt
     xTEST_BLOCK(cullBlockLoops)
     {
         #if defined(xOS_ENV_WIN)
@@ -519,101 +526,101 @@ CxTest_CxPath::bUnit(
         }
     }
 
-	//-------------------------------------
-	//sSetValidName
+    //-------------------------------------
+    //sSetValidName
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
     #if defined(xOS_ENV_WIN)
         const std::string_t sTestData[][2] =
         {
-            {xT("CLOCK$"),		 xT("")},
-            {xT("AUX"),			 xT("")},
-            {xT("CON"),			 xT("")},
-            {xT("NUL"),			 xT("")},
-            {xT("PRN"),			 xT("")},
-            {xT("COM1"),		 xT("")},
-            {xT("COM2"),		 xT("")},
-            {xT("COM3"),		 xT("")},
-            {xT("COM4"),		 xT("")},
-            {xT("COM5"),		 xT("")},
-            {xT("COM6"),		 xT("")},
-            {xT("COM7"),		 xT("")},
-            {xT("COM8"),		 xT("")},
-            {xT("COM9"),		 xT("")},
-            {xT("LPT1"),		 xT("")},
-            {xT("LPT2"),		 xT("")},
-            {xT("LPT3"),		 xT("")},
-            {xT("LPT4"),		 xT("")},
-            {xT("LPT5"),		 xT("")},
-            {xT("LPT6"),		 xT("")},
-            {xT("LPT7"),		 xT("")},
-            {xT("LPT8"),		 xT("")},
-            {xT("LPT9"),		 xT("")},
-            {xT("clock$"),		 xT("")},
-            {xT("aux"),			 xT("")},
-            {xT("con"),			 xT("")},
-            {xT("nul"),			 xT("")},
-            {xT("prn"),			 xT("")},
-            {xT("com1"),		 xT("")},
-            {xT("com2"),		 xT("")},
-            {xT("com3"),		 xT("")},
-            {xT("com4"),		 xT("")},
-            {xT("com5"),		 xT("")},
-            {xT("com6"),		 xT("")},
-            {xT("com7"),		 xT("")},
-            {xT("com8"),		 xT("")},
-            {xT("com9"),		 xT("")},
-            {xT("LPT1"),		 xT("")},
-            {xT("LPT2"),		 xT("")},
-            {xT("LPT3"),		 xT("")},
-            {xT("LPT4"),		 xT("")},
-            {xT("LPT5"),		 xT("")},
-            {xT("LPT6"),		 xT("")},
-            {xT("LPT7"),		 xT("")},
-            {xT("LPT8"),		 xT("")},
-            {xT("LPT9"),		 xT("")},
-            {xT("clock$.txt"),	 xT("")},
-            {xT("aux.txt"),		 xT("")},
-            {xT("con.txt"),		 xT("")},
-            {xT("nul.txt"),		 xT("")},
-            {xT("prn.txt"),		 xT("")},
-            {xT("com1.txt"),	 xT("")},
-            {xT("com2.txt"),	 xT("")},
-            {xT("com3.txt"),	 xT("")},
-            {xT("com4.txt"),	 xT("")},
-            {xT("com5.txt"),	 xT("")},
-            {xT("com6.txt"),	 xT("")},
-            {xT("com7.txt"),	 xT("")},
-            {xT("com8.txt"),	 xT("")},
-            {xT("com9.txt"),	 xT("")},
-            {xT("LPT1.txt"),	 xT("")},
-            {xT("LPT2.txt"),	 xT("")},
-            {xT("LPT3.txt"),	 xT("")},
-            {xT("LPT4.txt"),	 xT("")},
-            {xT("LPT5.txt"),	 xT("")},
-            {xT("LPT6.txt"),	 xT("")},
-            {xT("LPT7.txt"),	 xT("")},
-            {xT("LPT8.txt"),	 xT("")},
-            {xT("LPT9.txt"),	 xT("")},
-            {xT("T\t"),			 xT("T")},
-            {xT("T\n"),			 xT("T")},
-            {xT("T\r"),			 xT("T")},
-            {xT("T<"),			 xT("T")},
-            {xT("T>"),			 xT("T")},
-            {xT("T:"),			 xT("T")},
-            {xT("T\""),			 xT("T")},
-            {xT("T\\"),			 xT("T")},
-            {xT("T/"),			 xT("T")},
-            {xT("T*"),			 xT("T")},
-            {xT("T?"),			 xT("T")},
-            {xT("T|"),			 xT("T")},
-            {xT("..."),		     xT("")},
-            {xT("Good Data"),	 xT("Good Data")},
-            {xT("commit"),		 xT("commit")},
-            {xT("console"),		 xT("console")},
-            {xT("LPT10"),		 xT("LPT10")},
-            {xT("clock"),		 xT("clock")},
-            {xT(".aux.txt"),	 xT("")},
+            {xT("CLOCK$"),         xT("")},
+            {xT("AUX"),             xT("")},
+            {xT("CON"),             xT("")},
+            {xT("NUL"),             xT("")},
+            {xT("PRN"),             xT("")},
+            {xT("COM1"),         xT("")},
+            {xT("COM2"),         xT("")},
+            {xT("COM3"),         xT("")},
+            {xT("COM4"),         xT("")},
+            {xT("COM5"),         xT("")},
+            {xT("COM6"),         xT("")},
+            {xT("COM7"),         xT("")},
+            {xT("COM8"),         xT("")},
+            {xT("COM9"),         xT("")},
+            {xT("LPT1"),         xT("")},
+            {xT("LPT2"),         xT("")},
+            {xT("LPT3"),         xT("")},
+            {xT("LPT4"),         xT("")},
+            {xT("LPT5"),         xT("")},
+            {xT("LPT6"),         xT("")},
+            {xT("LPT7"),         xT("")},
+            {xT("LPT8"),         xT("")},
+            {xT("LPT9"),         xT("")},
+            {xT("clock$"),         xT("")},
+            {xT("aux"),             xT("")},
+            {xT("con"),             xT("")},
+            {xT("nul"),             xT("")},
+            {xT("prn"),             xT("")},
+            {xT("com1"),         xT("")},
+            {xT("com2"),         xT("")},
+            {xT("com3"),         xT("")},
+            {xT("com4"),         xT("")},
+            {xT("com5"),         xT("")},
+            {xT("com6"),         xT("")},
+            {xT("com7"),         xT("")},
+            {xT("com8"),         xT("")},
+            {xT("com9"),         xT("")},
+            {xT("LPT1"),         xT("")},
+            {xT("LPT2"),         xT("")},
+            {xT("LPT3"),         xT("")},
+            {xT("LPT4"),         xT("")},
+            {xT("LPT5"),         xT("")},
+            {xT("LPT6"),         xT("")},
+            {xT("LPT7"),         xT("")},
+            {xT("LPT8"),         xT("")},
+            {xT("LPT9"),         xT("")},
+            {xT("clock$.txt"),     xT("")},
+            {xT("aux.txt"),         xT("")},
+            {xT("con.txt"),         xT("")},
+            {xT("nul.txt"),         xT("")},
+            {xT("prn.txt"),         xT("")},
+            {xT("com1.txt"),     xT("")},
+            {xT("com2.txt"),     xT("")},
+            {xT("com3.txt"),     xT("")},
+            {xT("com4.txt"),     xT("")},
+            {xT("com5.txt"),     xT("")},
+            {xT("com6.txt"),     xT("")},
+            {xT("com7.txt"),     xT("")},
+            {xT("com8.txt"),     xT("")},
+            {xT("com9.txt"),     xT("")},
+            {xT("LPT1.txt"),     xT("")},
+            {xT("LPT2.txt"),     xT("")},
+            {xT("LPT3.txt"),     xT("")},
+            {xT("LPT4.txt"),     xT("")},
+            {xT("LPT5.txt"),     xT("")},
+            {xT("LPT6.txt"),     xT("")},
+            {xT("LPT7.txt"),     xT("")},
+            {xT("LPT8.txt"),     xT("")},
+            {xT("LPT9.txt"),     xT("")},
+            {xT("T\t"),             xT("T")},
+            {xT("T\n"),             xT("T")},
+            {xT("T\r"),             xT("T")},
+            {xT("T<"),             xT("T")},
+            {xT("T>"),             xT("T")},
+            {xT("T:"),             xT("T")},
+            {xT("T\""),             xT("T")},
+            {xT("T\\"),             xT("T")},
+            {xT("T/"),             xT("T")},
+            {xT("T*"),             xT("T")},
+            {xT("T?"),             xT("T")},
+            {xT("T|"),             xT("T")},
+            {xT("..."),             xT("")},
+            {xT("Good Data"),     xT("Good Data")},
+            {xT("commit"),         xT("commit")},
+            {xT("console"),         xT("console")},
+            {xT("LPT10"),         xT("LPT10")},
+            {xT("clock"),         xT("clock")},
+            {xT(".aux.txt"),     xT("")},
             {xT("auxx.aux.txt"), xT("auxx.aux.txt")},
             {xT("NULL"),         xT("NULL")},
             {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("ValidTestName")},
@@ -634,49 +641,49 @@ CxTest_CxPath::bUnit(
             std::string_t sStr4 = sTestData[i][1];
             xTEST_EQ(sStr3, sStr4);
         }
-	}
+    }
 
-	//-------------------------------------
-	//sToWin
+    //-------------------------------------
+    //sToWin
     xTEST_BLOCK(cullBlockLoops)
-	{
-	    const std::string_t csUnixPath = xT("C:/TestDir");
-	    const std::string_t csWinPath  = xT("C:\\TestDir");
+    {
+        const std::string_t csUnixPath = xT("C:/TestDir");
+        const std::string_t csWinPath  = xT("C:\\TestDir");
 
-	    sRes    = CxPath::sToWin(csUnixPath, FALSE);
-		xTEST_EQ(sRes, std::string_t(xT("C:\\TestDir")));
+        sRes    = CxPath::sToWin(csUnixPath, FALSE);
+        xTEST_EQ(sRes, std::string_t(xT("C:\\TestDir")));
 
-		sRes    = CxPath::sToWin(csUnixPath, TRUE);
-		xTEST_EQ(sRes, std::string_t(xT("C:\\TestDir\\")));
+        sRes    = CxPath::sToWin(csUnixPath, TRUE);
+        xTEST_EQ(sRes, std::string_t(xT("C:\\TestDir\\")));
 
-		sRes    = CxPath::sToWin(csWinPath, TRUE);
-		xTEST_EQ(sRes, std::string_t(xT("C:\\TestDir\\")));
+        sRes    = CxPath::sToWin(csWinPath, TRUE);
+        xTEST_EQ(sRes, std::string_t(xT("C:\\TestDir\\")));
 
-		sRes    = CxPath::sToWin(csWinPath, FALSE);
-		xTEST_EQ(sRes, std::string_t(xT("C:\\TestDir")));
-	}
+        sRes    = CxPath::sToWin(csWinPath, FALSE);
+        xTEST_EQ(sRes, std::string_t(xT("C:\\TestDir")));
+    }
 
-	//-------------------------------------
-	//sToNix
+    //-------------------------------------
+    //sToNix
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         const std::string_t csUnixPath = xT("/home/user/Soft/TestDir");
         const std::string_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
-		sRes    = CxPath::sToNix(csUnixPath,  FALSE);
-		xTEST_EQ(sRes, std::string_t(xT("/home/user/Soft/TestDir")));
+        sRes    = CxPath::sToNix(csUnixPath,  FALSE);
+        xTEST_EQ(sRes, std::string_t(xT("/home/user/Soft/TestDir")));
 
-		sRes    = CxPath::sToNix(csUnixPath,  TRUE);
-		xTEST_EQ(sRes, std::string_t(xT("/home/user/Soft/TestDir/")));
+        sRes    = CxPath::sToNix(csUnixPath,  TRUE);
+        xTEST_EQ(sRes, std::string_t(xT("/home/user/Soft/TestDir/")));
 
-		sRes    = CxPath::sToNix(csWinPath,  TRUE);
-		xTEST_EQ(sRes, std::string_t(xT("/home/user/Soft/TestDir/")));
+        sRes    = CxPath::sToNix(csWinPath,  TRUE);
+        xTEST_EQ(sRes, std::string_t(xT("/home/user/Soft/TestDir/")));
 
-		sRes    = CxPath::sToNix(csWinPath,  FALSE);
-		xTEST_EQ(sRes, std::string_t(xT("/home/user/Soft/TestDir")));
-	}
+        sRes    = CxPath::sToNix(csWinPath,  FALSE);
+        xTEST_EQ(sRes, std::string_t(xT("/home/user/Soft/TestDir")));
+    }
 
-	//--------------------------------------------------
+    //--------------------------------------------------
     //sToCurrentOs
     xTEST_BLOCK(cullBlockLoops)
     {
@@ -721,14 +728,14 @@ CxTest_CxPath::bUnit(
 
         CxCommandLine::bGetArgs(&vsArgs);
 
-	    sRes = CxPath::sGetAbsolute(vsArgs.at(0));
+        sRes = CxPath::sGetAbsolute(vsArgs.at(0));
         xTEST_EQ(false, sRes.empty());
     }
 
-	//-------------------------------------
-	//TODO: sMinimizeName
+    //-------------------------------------
+    //TODO: sMinimizeName
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         const std::string_t sData[][2] = {
             {xT("Name"),                   xT("Name")},
             {xT("full name"),              xT("ful~")},
@@ -746,12 +753,12 @@ CxTest_CxPath::bUnit(
             std::string_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
-	}
+    }
 
-	//-------------------------------------
-	//sMinimize
+    //-------------------------------------
+    //sMinimize
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             sRes    = CxPath::sMinimize(csFilePath, 4);
             // n/a
@@ -762,12 +769,12 @@ CxTest_CxPath::bUnit(
         #elif defined(xOS_ENV_UNIX)
             //TODO: sMinimize
         #endif
-	}
+    }
 
-	//-------------------------------------
-	//sSlashAppend
+    //-------------------------------------
+    //sSlashAppend
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             const std::string_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("C:\\Test.doc\\")},
@@ -795,12 +802,12 @@ CxTest_CxPath::bUnit(
             std::string_t sStr4 = sData[i][1];
             xTEST_EQ(sStr3, sStr3);
         }
-	}
+    }
 
-	//-------------------------------------
-	//sSlashRemove
+    //-------------------------------------
+    //sSlashRemove
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             const std::string_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("C:\\Test.doc")},
@@ -828,14 +835,14 @@ CxTest_CxPath::bUnit(
             std::string_t sStr4 = sData[i][1];
             xTEST_EQ(sStr3, sStr3);
         }
-	}
+    }
 
     //--------------------------------------------------
     //uiGetMaxSize
     xTEST_BLOCK(cullBlockLoops)
     {
-    	m_uiRes = CxPath::uiGetMaxSize();
-    	xTEST_LESS(0U, m_uiRes);
+        m_uiRes = CxPath::uiGetMaxSize();
+        xTEST_LESS(0U, m_uiRes);
     }
 
     //--------------------------------------------------
