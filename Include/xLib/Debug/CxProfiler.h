@@ -86,10 +86,12 @@ class CxProfiler :
         BOOL                _bResetData();
             ///< reset all class data
 
-    #if defined(xOS_ENV_UNIX) && defined(xOS_FREEBSD)
+    #if defined(xOS_ENV_UNIX)
+        #if defined(xOS_FREEBSD)
         static std::clock_t _liGetClock();
             ///< get std::clock_t
             ///< http://bugs.vcmi.eu/view.php?id=719
+        #endif
     #endif
 
     #if defined(xOS_ENV_WIN)
