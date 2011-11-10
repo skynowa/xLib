@@ -20,7 +20,6 @@
 #include <Test/Common/CxTest_CxArray.h>
 #include <Test/Common/CxTest_CxChar.h>
 #include <Test/Common/CxTest_CxLocale.h>
-#include <Test/Common/CxTest_CxAutoMallocT.h>
 #include <Test/Common/CxTest_CxString.h>
 #include <Test/Common/CxTest_CxDateTime.h>
 #include <Test/Common/CxTest_CxSystemInfo.h>
@@ -186,7 +185,6 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxArray);
         (void)tmManager.bAdd(new CxTest_CxChar);
         (void)tmManager.bAdd(new CxTest_CxLocale);
-        (void)tmManager.bAdd(new CxTest_CxAutoMallocT);
         (void)tmManager.bAdd(new CxTest_CxString);
         (void)tmManager.bAdd(new CxTest_CxDateTime);
         (void)tmManager.bAdd(new CxTest_CxSystemInfo);
