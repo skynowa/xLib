@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxEvent
-* Description: test CxEvent
-* File name:   CxTest_CxEvent.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxEvent.cpp
+ * \brief
+ */
 
 
 #include <Test/Sync/CxTest_CxEvent.h>

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxClipboard
-* Description: test CxClipboard
-* File name:   CxTest_CxClipboard.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxClipboard.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/Win/CxTest_CxClipboard.h>

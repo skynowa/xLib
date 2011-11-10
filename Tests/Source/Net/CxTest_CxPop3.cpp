@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxPop3
-* Description: test CxPop3
-* File name:   CxTest_CxPop3.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxPop3.cpp
+ * \brief
+ */
 
 
 #include <Test/Net/CxTest_CxPop3.h>

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxCookiePv0
-* Description: test CxCookiePv0
-* File name:   CxTest_CxCookiePv0.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxCookiePv0.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxCookiePv0H

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxGdiplus
-* Description: test CxGdiplus
-* File name:   CxTest_CxGdiplus.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxGdiplus.cpp
+ * \brief
+ */
 
 
 #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>

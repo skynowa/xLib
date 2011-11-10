@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_bGetUsbInfo
-* Description: test bGetUsbInfo
-* File name:   CxTest_bGetUsbInfo.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_bGetUsbInfo.h
+ * \brief
+ */
 
 
 #ifndef CxTest_bGetUsbInfoH

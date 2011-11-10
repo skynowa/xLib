@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxDll
-* Description: test CxDll
-* File name:   CxTest_CxDll.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxDll.cpp
+ * \brief
+ */
 
 
 #include <Test/Filesystem/CxTest_CxDll.h>

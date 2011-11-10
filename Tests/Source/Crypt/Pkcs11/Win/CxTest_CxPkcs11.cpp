@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxPkcs11
-* Description: test CxPkcs11
-* File name:   CxTest_CxPkcs11.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxPkcs11.cpp
+ * \brief
+ */
 
 
 #include <Test/Crypt/Pkcs11/Win/CxTest_CxPkcs11.h>

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Array name:  CxTest_CxArray
-* Description: test CxArray
-* File name:   CxTest_CxArray.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxArray.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/CxTest_CxArray.h>

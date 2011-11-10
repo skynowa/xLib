@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxRandom
-* Description: test CxRandom
-* File name:   CxTest_CxRandom.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxRandom.cpp
+ * \brief
+ */
 
 
 #include <Test/Crypt/CxTest_CxRandom.h>

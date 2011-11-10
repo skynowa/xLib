@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxSingleton
-* Description: test CxSingleton
-* File name:   CxTest_CxSingleton.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxSingleton.cpp
+ * \brief
+ */
 
 
 #include <Test/Patterns/CxTest_CxSingleton.h>

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxSleeper
-* Description: test CxSleeper
-* File name:   CxTest_CxSleeper.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxSleeper.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxSleeperH

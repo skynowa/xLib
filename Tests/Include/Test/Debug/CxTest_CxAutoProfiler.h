@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxAutoProfiler
-* Description: test CxAutoProfiler
-* File name:   CxTest_CxAutoProfiler.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxAutoProfiler.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxAutoProfilerH

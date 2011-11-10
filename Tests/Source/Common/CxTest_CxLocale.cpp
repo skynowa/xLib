@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxLocale
-* Description: test CxLocale
-* File name:   CxTest_CxLocale.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxLocale.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/CxTest_CxLocale.h>

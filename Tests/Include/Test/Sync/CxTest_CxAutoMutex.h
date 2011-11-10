@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxAutoMutex
-* Description: test CxAutoMutex
-* File name:   CxTest_CxAutoMutex.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxAutoMutex.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxAutoMutexH

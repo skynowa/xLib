@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxMacros
-* Description: testing CxMacros
-* File name:   CxTest_CxMacros.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxMacros.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/CxTest_CxMacros.h>

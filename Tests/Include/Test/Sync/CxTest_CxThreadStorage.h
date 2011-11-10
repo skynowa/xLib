@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxThreadStorage
-* Description: test CxThreadStorage
-* File name:   CxTest_CxThreadStorage.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxThreadStorage.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxThreadStorageH

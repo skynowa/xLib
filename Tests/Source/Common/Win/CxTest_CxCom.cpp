@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxCom
-* Description: test CxCom
-* File name:   CxTest_CxCom.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxCom.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/Win/CxTest_CxCom.h>

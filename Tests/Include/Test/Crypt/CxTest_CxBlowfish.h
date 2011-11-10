@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxBlowfish
-* Description: test CxBlowfish
-* File name:   CxTest_CxBlowfish.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxBlowfish.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxBlowfishH

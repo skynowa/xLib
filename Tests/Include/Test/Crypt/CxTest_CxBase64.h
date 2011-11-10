@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxBase64
-* Description: test CxBase64
-* File name:   CxTest_CxBase64.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxBase64.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxBase64H

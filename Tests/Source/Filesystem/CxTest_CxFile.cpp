@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxFile
-* Description: test CxFile
-* File name:   CxTest_CxFile.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxFile.cpp
+ * \brief
+ */
 
 
 #include <Test/Filesystem/CxTest_CxFile.h>

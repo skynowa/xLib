@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxImage
-* Description: test CxImage
-* File name:   CxTest_CxImage.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxImage.cpp
+ * \brief
+ */
 
 
 #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxSmtp
-* Description: test CxSmtp
-* File name:   CxTest_CxSmtp.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxSmtp.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxSmtpH

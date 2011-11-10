@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxSocket
-* Description: test CxSocket
-* File name:   CxTest_CxSocket.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxSocket.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxSocketH

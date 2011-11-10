@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxMimeMessage
-* Description: test CxMimeMessage
-* File name:   CxTest_CxMimeMessage.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxMimeMessage.cpp
+ * \brief
+ */
 
 
 #include <Test/Net/CxTest_CxMimeMessage.h>

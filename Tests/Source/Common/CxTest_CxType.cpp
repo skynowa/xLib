@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxType
-* Description: test CxType
-* File name:   CxType.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     30.07.2011
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxType.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/CxTest_CxType.h>

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxWaitableTimer
-* Description: test CxWaitableTimer
-* File name:   CxTest_CxWaitableTimer.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxWaitableTimer.cpp
+ * \brief
+ */
 
 
 #include <Test/Sync/CxTest_CxWaitableTimer.h>

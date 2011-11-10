@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxTcpServer
-* Description: test CxTcpServer
-* File name:   CxTest_CxTcpServer.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxTcpServer.cpp
+ * \brief
+ */
 
 
 #include <Test/Net/CxTest_CxTcpServer.h>

@@ -1,16 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxHandleT
-* Description: test CxHandle
-* File name:   CxTest_CxHandleT.h
-* Compilers:   Visual C++ 2010
-* String type: Ansi, Unicode
-* Libraries:   WinAPI, Stl, xLib
-* Author:      Alca
-* E-mail:      dr.web.agent@gmail.com
-* Created:     14.04.2010 11:03:19
-* Version:     1.0.0.0 Debug
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxHandleT.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/Win/CxTest_CxHandleT.h>
