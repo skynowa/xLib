@@ -19,13 +19,13 @@
 class CxTest_CxEvent :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxEvent();
-		virtual     ~CxTest_CxEvent();
+        virtual     ~CxTest_CxEvent();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxEventH

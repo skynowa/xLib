@@ -22,13 +22,13 @@ CxTest_CxAsyncSocket::~CxTest_CxAsyncSocket() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL 
+BOOL
 CxTest_CxAsyncSocket::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

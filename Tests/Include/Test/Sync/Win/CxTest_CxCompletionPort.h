@@ -19,13 +19,13 @@
 class CxTest_CxCompletionPort :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxCompletionPort();
-		virtual     ~CxTest_CxCompletionPort();
+        virtual     ~CxTest_CxCompletionPort();
 
-		virtual     BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual     BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCompletionPortH

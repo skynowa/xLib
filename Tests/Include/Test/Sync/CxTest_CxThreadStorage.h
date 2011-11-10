@@ -19,13 +19,13 @@
 class CxTest_CxThreadStorage :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxThreadStorage();
-		virtual     ~CxTest_CxThreadStorage();
+        virtual     ~CxTest_CxThreadStorage();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxThreadStorageH

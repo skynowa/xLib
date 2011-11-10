@@ -19,13 +19,13 @@
 class CxTest_bGetUsbInfo :
     public CxTest
 {
-	public:
+    public:
                      CxTest_bGetUsbInfo();
-		virtual     ~CxTest_bGetUsbInfo();
+        virtual     ~CxTest_bGetUsbInfo();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_bGetUsbInfoH

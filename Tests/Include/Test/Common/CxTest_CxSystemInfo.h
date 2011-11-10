@@ -19,13 +19,13 @@
 class CxTest_CxSystemInfo :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxSystemInfo();
-		virtual     ~CxTest_CxSystemInfo();
+        virtual     ~CxTest_CxSystemInfo();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSystemInfoH

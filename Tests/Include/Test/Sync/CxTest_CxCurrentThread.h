@@ -14,16 +14,16 @@
 class CxTest_CxCurrentThread :
     public CxTest
 {
-	public:
-		              CxTest_CxCurrentThread();
+    public:
+                      CxTest_CxCurrentThread();
             ///< constructor
-	    virtual      ~CxTest_CxCurrentThread();
-	        ///< destructor
+        virtual      ~CxTest_CxCurrentThread();
+            ///< destructor
 
-	    virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
-	        ///< unit test
+        virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
+            ///< unit test
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCurrentThreadH

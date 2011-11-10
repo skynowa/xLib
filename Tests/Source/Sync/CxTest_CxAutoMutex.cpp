@@ -28,7 +28,7 @@ CxTest_CxAutoMutex::bUnit(
 )
 {
     #if defined(xOS_ENV_WIN)
-    	//-------------------------------------
+        //-------------------------------------
         //CxAutoMutex
         xTEST_BLOCK(cullBlockLoops)
         {

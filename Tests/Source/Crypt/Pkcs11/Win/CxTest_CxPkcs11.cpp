@@ -34,31 +34,31 @@ CxTest_CxPkcs11::bUnit(
     CxSlot::ENotification nfNotif = CxSlot::nfError;  xUNUSED(nfNotif);
     CK_SLOT_ID            ulSlot  = 0;
 
-    /////nfNotif	= objSlot.nfWaitForEvent(0, &ulSlot, NULL_PTR);
+    /////nfNotif    = objSlot.nfWaitForEvent(0, &ulSlot, NULL_PTR);
 
     //-------------------------------------
     //bSetData
     xTEST_BLOCK(cullBlockLoops)
     {
-    //	const std::string_t csUserPin   = xT("1111");
-    //	const std::string_t csDataLabel = xT("Label_Id");
-    //	const std::string_t csData      = xT("1203456789");
-    //	std::ustring       usData      = xS2US(csData);
+    //    const std::string_t csUserPin   = xT("1111");
+    //    const std::string_t csDataLabel = xT("Label_Id");
+    //    const std::string_t csData      = xT("1203456789");
+    //    std::ustring       usData      = xS2US(csData);
 
-    //	m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
-    //	xTEST_DIFF(FALSE, m_bRes);
+    //    m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
+    //    xTEST_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
     //bGetData
     xTEST_BLOCK(cullBlockLoops)
     {
-    //	const std::string_t csUserPin   = xT("1111");
-    //	const std::string_t csDataLabel = xT("Label_Id");
-    //	std::ustring       usData;
+    //    const std::string_t csUserPin   = xT("1111");
+    //    const std::string_t csDataLabel = xT("Label_Id");
+    //    std::ustring       usData;
 
-    //	m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
-    //	xTEST_DIFF(FALSE, m_bRes);
+    //    m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
+    //    xTEST_DIFF(FALSE, m_bRes);
     }
 
     //-------------------------------------
@@ -77,6 +77,6 @@ CxTest_CxPkcs11::bUnit(
 
 #endif
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

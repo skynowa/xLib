@@ -19,13 +19,13 @@
 class CxTest_CxPop3 :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxPop3();
-		virtual     ~CxTest_CxPop3();
+        virtual     ~CxTest_CxPop3();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxPop3H

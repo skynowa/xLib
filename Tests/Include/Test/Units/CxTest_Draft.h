@@ -13,16 +13,16 @@
 class CxTest_Draft :
     public CxTest
 {
-	public:
-		              CxTest_Draft();
+    public:
+                      CxTest_Draft();
             ///< constructor
-	    virtual      ~CxTest_Draft();
-	        ///< destructor
+        virtual      ~CxTest_Draft();
+            ///< destructor
 
-	    virtual BOOL  bUnit       (const ULONGLONG cullBlockLoops);
-	        ///< unit test
+        virtual BOOL  bUnit       (const ULONGLONG cullBlockLoops);
+            ///< unit test
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_DraftH

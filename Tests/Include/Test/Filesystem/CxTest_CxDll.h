@@ -19,13 +19,13 @@
 class CxTest_CxDll :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxDll();
-		virtual     ~CxTest_CxDll();
+        virtual     ~CxTest_CxDll();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxDllH

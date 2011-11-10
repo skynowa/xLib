@@ -27,30 +27,30 @@ CxTest_CxAutoCriticalSection::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-	//-------------------------------------
-	//CxAutoCriticalSection
+    //-------------------------------------
+    //CxAutoCriticalSection
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         size_t            uiCounter = 0;
         CxCriticalSection csCS;
 
-		{
-			CxAutoCriticalSection acsCS(csCS);
+        {
+            CxAutoCriticalSection acsCS(csCS);
 
-			m_bRes = acsCS.bIsLocked();
-			xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = acsCS.bIsLocked();
+            xTEST_DIFF(FALSE, m_bRes);
 
-	        for (size_t i = 0; i < 10; ++ i) {
+            for (size_t i = 0; i < 10; ++ i) {
                 m_bRes = acsCS.bIsLocked();
                 xTEST_DIFF(FALSE, m_bRes);
 
-	            ++ uiCounter;
-	        }
+                ++ uiCounter;
+            }
 
-	        m_bRes = acsCS.bIsLocked();
+            m_bRes = acsCS.bIsLocked();
             xTEST_DIFF(FALSE, m_bRes);
-		}
-	}
+        }
+    }
 
     return TRUE;
 }

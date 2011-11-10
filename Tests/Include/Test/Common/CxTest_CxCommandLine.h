@@ -19,13 +19,13 @@
 class CxTest_CxCommandLine :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxCommandLine();
-		virtual     ~CxTest_CxCommandLine();
+        virtual     ~CxTest_CxCommandLine();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCommandLineH

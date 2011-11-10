@@ -34,13 +34,13 @@ class CWorkThread :
 class CxTest_CxThread :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxThread();
-		virtual     ~CxTest_CxThread();
+        virtual     ~CxTest_CxThread();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxThreadH

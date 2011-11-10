@@ -23,13 +23,13 @@ CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL 
+BOOL
 CxTest_CxConnectionString::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

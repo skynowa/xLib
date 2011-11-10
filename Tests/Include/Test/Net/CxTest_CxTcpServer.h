@@ -19,13 +19,13 @@
 class CxTest_CxTcpServer :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxTcpServer();
-		virtual     ~CxTest_CxTcpServer();
+        virtual     ~CxTest_CxTcpServer();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxTcpServerH

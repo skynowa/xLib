@@ -27,8 +27,8 @@ CxTest_CxVolume::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-	//-------------------------------------
-	//bIsReady
+    //-------------------------------------
+    //bIsReady
     xTEST_BLOCK(cullBlockLoops)
     {
         //TRUE
@@ -66,10 +66,10 @@ CxTest_CxVolume::bUnit(
         }
     }
 
-	//-------------------------------------
-	//bIsEmpty
+    //-------------------------------------
+    //bIsEmpty
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         //TRUE
         {
             #if xTODO
@@ -109,10 +109,10 @@ CxTest_CxVolume::bUnit(
         }
     }
 
-	//-------------------------------------
-	//bGetFreeSpace
+    //-------------------------------------
+    //bGetFreeSpace
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             const std::string_t  csVolumePathWithSlash     = xT("C:\\");
             const std::string_t  csVolumeePathWithoutSlash = xT("C:");
@@ -172,51 +172,51 @@ CxTest_CxVolume::bUnit(
 
             //xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
         }
-	}
-
-	//-------------------------------------
-	//dtGetType
-    xTEST_BLOCK(cullBlockLoops)
-    {
-	    #if defined(xOS_ENV_WIN)
-	        const std::string_t csVolumePath = xT("C:");
-
-	        CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
-	        xTEST_EQ(CxVolume::dtFixed, dtRes);
-	    #elif defined(xOS_ENV_UNIX)
-	        //TODO: xOS_ENV_UNIX
-	    #endif
     }
 
-	//-------------------------------------
-	//bGetInfo
+    //-------------------------------------
+    //dtGetType
     xTEST_BLOCK(cullBlockLoops)
     {
-	    #if defined(xOS_ENV_WIN)
-	        const std::string_t csVolumePath = xT("C:");
-	    	std::string_t szVolumeName;
-	        ULONG   ulVolumeSerialNumber     = 0;
-	        ULONG   ulMaximumComponentLength = 0;
-	        ULONG   ulFileSystemFlags        = 0;
-	        std::string_t sFileSystemName;
+        #if defined(xOS_ENV_WIN)
+            const std::string_t csVolumePath = xT("C:");
 
-	        m_bRes = CxVolume::bGetInfo(
-	                            csVolumePath,
-	                            &szVolumeName,
-	                            &ulVolumeSerialNumber,
-	                            &ulMaximumComponentLength,
-	                            &ulFileSystemFlags,
-	                            &sFileSystemName);
-	        xTEST_DIFF(FALSE, m_bRes);
-	    #elif defined(xOS_ENV_UNIX)
-	        //TODO: xOS_ENV_UNIX
-	    #endif
+            CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
+            xTEST_EQ(CxVolume::dtFixed, dtRes);
+        #elif defined(xOS_ENV_UNIX)
+            //TODO: xOS_ENV_UNIX
+        #endif
     }
 
-	//-------------------------------------
-	//bGetLogicalDrives
+    //-------------------------------------
+    //bGetInfo
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
+        #if defined(xOS_ENV_WIN)
+            const std::string_t csVolumePath = xT("C:");
+            std::string_t szVolumeName;
+            ULONG   ulVolumeSerialNumber     = 0;
+            ULONG   ulMaximumComponentLength = 0;
+            ULONG   ulFileSystemFlags        = 0;
+            std::string_t sFileSystemName;
+
+            m_bRes = CxVolume::bGetInfo(
+                                csVolumePath,
+                                &szVolumeName,
+                                &ulVolumeSerialNumber,
+                                &ulMaximumComponentLength,
+                                &ulFileSystemFlags,
+                                &sFileSystemName);
+            xTEST_DIFF(FALSE, m_bRes);
+        #elif defined(xOS_ENV_UNIX)
+            //TODO: xOS_ENV_UNIX
+        #endif
+    }
+
+    //-------------------------------------
+    //bGetLogicalDrives
+    xTEST_BLOCK(cullBlockLoops)
+    {
         #if defined(xOS_ENV_WIN)
             std::vector<std::string_t> vsDrives;
 
@@ -225,12 +225,12 @@ CxTest_CxVolume::bUnit(
         #elif defined(xOS_ENV_UNIX)
             //TODO: xOS_ENV_UNIX
         #endif
-	}
+    }
 
-	//-------------------------------------
-	//bGetLogicalDrives2
+    //-------------------------------------
+    //bGetLogicalDrives2
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
         #if defined(xOS_ENV_WIN)
             std::vector<std::string_t> vsDrives;
 
@@ -239,112 +239,112 @@ CxTest_CxVolume::bUnit(
         #elif defined(xOS_ENV_UNIX)
             //TODO: xOS_ENV_UNIX
         #endif
-	}
+    }
 
-	//-------------------------------------
-	//bDefineDosDevice
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//bDeleteVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//hFindFirstVolume
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//hFindFirstVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//sFindNextVolume
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//bFindNextVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//bFindVolumeClose
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//bFindVolumeMountPointClose
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//sGetLogicalStrings
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//sGetVolumeNameForVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//sGetVolumePathName
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//sGetVolumePathNamesForVolumeName
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//-------------------------------------
-	//sQueryDosDevice
+    //-------------------------------------
+    //bDefineDosDevice
     xTEST_BLOCK(cullBlockLoops)
     {
 
     }
 
-	//-------------------------------------
-	//bSetVolumeLabel
+    //-------------------------------------
+    //bDeleteVolumeMountPoint
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
 
-	}
+    }
 
-	//-------------------------------------
-	//bSetVolumeMountPoint
+    //-------------------------------------
+    //hFindFirstVolume
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
 
-	}
+    }
+
+    //-------------------------------------
+    //hFindFirstVolumeMountPoint
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //sFindNextVolume
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //bFindNextVolumeMountPoint
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //bFindVolumeClose
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //bFindVolumeMountPointClose
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //sGetLogicalStrings
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //sGetVolumeNameForVolumeMountPoint
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //sGetVolumePathName
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //sGetVolumePathNamesForVolumeName
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //sQueryDosDevice
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //bSetVolumeLabel
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //-------------------------------------
+    //bSetVolumeMountPoint
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
 
     return TRUE;
 }

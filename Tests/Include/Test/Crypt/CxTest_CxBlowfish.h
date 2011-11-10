@@ -19,13 +19,13 @@
 class CxTest_CxBlowfish :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxBlowfish();
-		virtual     ~CxTest_CxBlowfish();
+        virtual     ~CxTest_CxBlowfish();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxBlowfishH

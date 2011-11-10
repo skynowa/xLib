@@ -19,13 +19,13 @@
 class CxTest_CxProfiler :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxProfiler();
-		virtual     ~CxTest_CxProfiler();
+        virtual     ~CxTest_CxProfiler();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxProfilerH

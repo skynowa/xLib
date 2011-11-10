@@ -19,13 +19,13 @@
 class CxTest_CxMySql :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxMySql();
-		virtual     ~CxTest_CxMySql();
+        virtual     ~CxTest_CxMySql();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxMySqlH

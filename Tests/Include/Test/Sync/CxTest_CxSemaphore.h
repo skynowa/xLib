@@ -19,13 +19,13 @@
 class CxTest_CxSemaphore :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxSemaphore();
-		virtual     ~CxTest_CxSemaphore();
+        virtual     ~CxTest_CxSemaphore();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSemaphoreH

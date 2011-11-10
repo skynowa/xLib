@@ -19,13 +19,13 @@
 class CxTest_CxLocalStorage :
     public CxTest
 {
-	public:
-		              CxTest_CxLocalStorage();
-	    virtual      ~CxTest_CxLocalStorage();
+    public:
+                      CxTest_CxLocalStorage();
+        virtual      ~CxTest_CxLocalStorage();
 
-	    virtual  BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual  BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxLocalStorageH

@@ -17,16 +17,16 @@
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 #include <xLib/Gui/Win/GDI+/CxImage.h>
 //---------------------------------------------------------------------------
-class CxTest_CxImage : 
-    public CxTest 
+class CxTest_CxImage :
+    public CxTest
 {
-	public:
+    public:
                      CxTest_CxImage();
-		virtual     ~CxTest_CxImage();
+        virtual     ~CxTest_CxImage();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxImageH

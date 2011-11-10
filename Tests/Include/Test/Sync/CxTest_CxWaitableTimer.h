@@ -19,13 +19,13 @@
 class CxTest_CxWaitableTimer :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxWaitableTimer();
-		virtual     ~CxTest_CxWaitableTimer();
+        virtual     ~CxTest_CxWaitableTimer();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxWaitableTimerH

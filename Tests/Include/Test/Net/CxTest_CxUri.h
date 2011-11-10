@@ -19,13 +19,13 @@
 class CxTest_CxUri :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxUri();
-		virtual     ~CxTest_CxUri();
+        virtual     ~CxTest_CxUri();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxUriH

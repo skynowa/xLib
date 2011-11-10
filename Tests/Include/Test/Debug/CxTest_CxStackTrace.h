@@ -14,16 +14,16 @@
 class CxTest_CxStackTrace :
     public CxTest
 {
-	public:
-		              CxTest_CxStackTrace();
+    public:
+                      CxTest_CxStackTrace();
             ///< constructor
-	    virtual      ~CxTest_CxStackTrace();
-	        ///< destructor
+        virtual      ~CxTest_CxStackTrace();
+            ///< destructor
 
-	    virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
-	        ///< unit test
+        virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
+            ///< unit test
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxStackTraceH

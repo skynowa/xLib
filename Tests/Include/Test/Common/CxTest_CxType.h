@@ -16,16 +16,16 @@
 #include <xLib/Debug/CxTest.h>
 #include <xLib/Common/CxType.h>
 //---------------------------------------------------------------------------
-class CxTest_CxType : 
-    public CxTest 
+class CxTest_CxType :
+    public CxTest
 {
-	public:
-		              CxTest_CxType();
-	    virtual      ~CxTest_CxType();
+    public:
+                      CxTest_CxType();
+        virtual      ~CxTest_CxType();
 
-	    virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxTypeH

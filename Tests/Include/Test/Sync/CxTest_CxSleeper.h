@@ -19,13 +19,13 @@
 class CxTest_CxSleeper :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxSleeper();
-		virtual     ~CxTest_CxSleeper();
+        virtual     ~CxTest_CxSleeper();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSleeperH

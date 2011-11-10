@@ -30,9 +30,9 @@ CxTest_CxPop3::bUnit(
 #if defined(xOS_ENV_WIN)
     //-------------------------------------
     //
-    //const std::string_t csUser     = xT("Sergey");		//"test_1";
-    //const std::string_t csPass     = xT("12345");			//"test_1";
-    //const std::string_t csServer   = xT("192.168.1.47");	//"127.0.0.1";
+    //const std::string_t csUser     = xT("Sergey");        //"test_1";
+    //const std::string_t csPass     = xT("12345");            //"test_1";
+    //const std::string_t csServer   = xT("192.168.1.47");    //"127.0.0.1";
     //const USHORT  cusPort    = 110;
 
     //-------------------------------------

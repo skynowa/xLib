@@ -19,13 +19,13 @@
 class CxTest_CxAutoMallocT :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxAutoMallocT();
-		virtual     ~CxTest_CxAutoMallocT();
+        virtual     ~CxTest_CxAutoMallocT();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxAutoMallocTH

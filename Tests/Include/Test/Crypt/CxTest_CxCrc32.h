@@ -20,13 +20,13 @@
 class CxTest_CxCrc32 :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxCrc32();
-		virtual     ~CxTest_CxCrc32();
+        virtual     ~CxTest_CxCrc32();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCrc32H
