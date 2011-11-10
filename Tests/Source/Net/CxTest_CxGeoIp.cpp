@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxGeoIp
-* Description: test CxGeoIp
-* File name:   CxGeoIp.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxGeoIp.cpp
+ * \brief
+ */
 
 
 #include <Test/Net/CxTest_CxGeoIp.h>

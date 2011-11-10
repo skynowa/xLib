@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxComPort
-* Description: test CxComPort
-* File name:   CxTest_CxComPort.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxComPort.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxComPortH

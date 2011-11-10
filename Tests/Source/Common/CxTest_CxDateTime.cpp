@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxDateTime
-* Description: testing CxDateTime
-* File name:   CxTest_CxDateTime.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxDateTime.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/CxTest_CxDateTime.h>

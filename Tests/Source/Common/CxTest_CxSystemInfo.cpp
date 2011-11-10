@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxSystemInfo
-* Description: test CxSystemInfo
-* File name:   CxTest_CxSystemInfo.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxSystemInfo.cpp
+ * \brief
+ */
 
 
 #include <Test/Common/CxTest_CxSystemInfo.h>

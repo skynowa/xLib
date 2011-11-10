@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxCgi
-* Description: test CxCgi
-* File name:   CxTest_CxCgi.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxCgi.cpp
+ * \brief
+ */
 
 
 #include <Test/Net/CxTest_CxCgi.h>

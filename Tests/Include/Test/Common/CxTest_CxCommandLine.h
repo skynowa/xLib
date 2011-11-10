@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxCommandLine
-* Description: test CxCommandLine
-* File name:   CxTest_CxCommandLine.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxCommandLine.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxCommandLineH

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxSemaphore
-* Description: test CxSemaphore
-* File name:   CxTest_CxSemaphore.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxSemaphore.cpp
+ * \brief
+ */
 
 
 #include <Test/Sync/CxTest_CxSemaphore.h>

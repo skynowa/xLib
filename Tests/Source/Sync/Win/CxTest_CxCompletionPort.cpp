@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxCompletionPort
-* Description: test CxCompletionPort
-* File name:   CxTest_CxCompletionPort.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxCompletionPort.cpp
+ * \brief
+ */
 
 
 #include <Test/Sync/Win/CxTest_CxCompletionPort.h>

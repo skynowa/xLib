@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxDnsClient
-* Description: test CxDnsClient
-* File name:   CxTest_CxDnsClient.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxDnsClient.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxDnsClientH

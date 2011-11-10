@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxPath
-* Description: test CxPath
-* File name:   CxTest_CxPath.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxPath.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxPathH

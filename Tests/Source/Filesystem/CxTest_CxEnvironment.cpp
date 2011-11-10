@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxEnvironment
-* Description: test CxEnvironment
-* File name:   CxTest_CxEnvironment.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxEnvironment.cpp
+ * \brief
+ */
 
 
 #include <Test/Filesystem/CxTest_CxEnvironment.h>

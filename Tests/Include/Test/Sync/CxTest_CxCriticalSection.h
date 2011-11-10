@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxCriticalSection
-* Description: test CxCriticalSection
-* File name:   CxTest_CxCriticalSection.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxCriticalSection.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxCriticalSectionH

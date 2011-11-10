@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxLocalStorage
-* Description: test CxLocalStorage
-* File name:   CxLocalStorage.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxLocalStorage.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxLocalStorageH

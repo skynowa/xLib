@@ -1,12 +1,7 @@
- /****************************************************************************
-* Class name:  CxTest_CxLastError
-* Description: test CxLastError
-* File name:   CxTest_CxLastError.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxLastError.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxLastErrorH

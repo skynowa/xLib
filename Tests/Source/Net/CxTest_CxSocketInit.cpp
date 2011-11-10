@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxSocketInit
-* Description: test CxSocketInit
-* File name:   CxTest_CxSocketInit.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxSocketInit.cpp
+ * \brief
+ */
 
 
 #include <Test/Net/CxTest_CxSocketInit.h>

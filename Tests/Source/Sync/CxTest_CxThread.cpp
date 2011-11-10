@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxThread
-* Description: test CxThread
-* File name:   CxTest_CxThread.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxThread.cpp
+ * \brief
+ */
 
 
 #include <Test/Sync/CxTest_CxThread.h>

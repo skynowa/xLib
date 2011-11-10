@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxFileLog
-* Description: test CxFileLog
-* File name:   CxFileLog.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxFileLog.cpp
+ * \brief
+ */
 
 
 #include <Test/Log/CxTest_CxFileLog.h>

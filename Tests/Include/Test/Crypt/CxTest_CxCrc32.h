@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxCrc32
-* Description: test CxCrc32
-* File name:   CxTest_CxCrc32.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxCrc32.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxCrc32H

@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxFileAttribute
-* Description: test CxFileAttribute
-* File name:   CxFileAttribute.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     10.05.2011
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxFileAttribute.cpp
+ * \brief
+ */
 
 
 #include <Test/Filesystem/CxTest_CxFileAttribute.h>

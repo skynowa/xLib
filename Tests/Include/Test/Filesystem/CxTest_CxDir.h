@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxDir
-* Description: testing CxDir
-* File name:   CxTest_CxDir.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxDir.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxDirH

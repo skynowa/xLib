@@ -1,12 +1,7 @@
-/****************************************************************************
-* Class name:  CxTest_CxFunctorT
-* Description: testing CxFunctor
-* File name:   CxTest_CxFunctorT.h
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.04.2010 11:03:19
-*
-*****************************************************************************/
+/**
+ * \file   CxTest_CxFunctorT.h
+ * \brief
+ */
 
 
 #ifndef CxTest_CxFunctorTH
