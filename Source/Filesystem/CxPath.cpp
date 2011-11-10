@@ -241,7 +241,7 @@ CxPath::sGetStandartExt(
         case seExe: { sRes = xT("");    }   break;
         case seDll: { sRes = xT("so");  }   break;
         case seLib: { sRes = xT("a");   }   break;
-        case seObj: { sRes = xT("0");   }   break;
+        case seObj: { sRes = xT("o");   }   break;
     #endif
         default:    { sRes = xT("");    }   break;
     }
