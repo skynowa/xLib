@@ -6,10 +6,9 @@
 
 #include <xLib/Gui/Win/GDI+/CxImage.h>
 
-#include <xLib/Common/CxAutoMallocT.h>
-
 
 #if defined(xOS_ENV_WIN)
+
 /****************************************************************************
 *    public
 *
@@ -322,23 +321,27 @@ CxImage::_bGetEncoderClsid(
     /*DEBUG*/xASSERT_RET(uiSize      != 0,        FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
-    CxAutoMallocT<Gdiplus::ImageCodecInfo *> pImageCodecInfo(uiSize);
+    Gdiplus::ImageCodecInfo *pImageCodecInfo = (Gdiplus::ImageCodecInfo *)malloc(uiSize);
+    /*DEBUG*/xASSERT(NULL != pImageCodecInfo);
 
-    _m_stRes = GetImageEncoders(uiNum, uiSize, pImageCodecInfo.pGetPtr());
+    _m_stRes = GetImageEncoders(uiNum, uiSize, pImageCodecInfo);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, FALSE);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
 
     for (UINT j = 0; j < uiNum; ++ j) {
-#if defined(xUNICODE)
-    if (csFormat == pImageCodecInfo.pGetPtr()[j].MimeType) {
-#else
-    if (std::wstring(csFormat.begin(), csFormat.end()) == pImageCodecInfo.pGetPtr()[j].MimeType) {
-#endif
-            *pcidClsid = pImageCodecInfo.pGetPtr()[j].Clsid;
+    #if defined(xUNICODE)
+        if (csFormat == pImageCodecInfo[j].MimeType) {
+    #else
+        if (std::wstring(csFormat.begin(), csFormat.end()) == pImageCodecInfo[j].MimeType) {
+    #endif
+            *pcidClsid = pImageCodecInfo[j].Clsid;
+            xBUFF_FREE(pImageCodecInfo);
 
             return TRUE /*j*/;
         }
     }
+
+    xBUFF_FREE(pImageCodecInfo);
 
     return FALSE;
 }

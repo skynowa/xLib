@@ -498,9 +498,6 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxArray.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxAutoMallocT.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxChar.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
@@ -830,9 +827,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxAppSettings.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\CxAutoMallocT.h">
-      <Filter>xLib\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\CxChar.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
@@ -924,9 +918,6 @@
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h">
