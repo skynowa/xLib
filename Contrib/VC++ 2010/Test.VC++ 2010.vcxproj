@@ -271,7 +271,6 @@
     <ClCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bGetUsbInfo.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxArray.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxAutoMallocT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxChar.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxCommandLine.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp" />
@@ -421,7 +420,6 @@
     <ClInclude Include="..\..\Include\xLib\Sync\CxThreadStorage.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\Win\CxCompletionPort.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxAutoMallocT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxChar.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxCommandLine.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h" />
@@ -601,7 +599,6 @@
     <ClInclude Include="..\..\Include\xLib\Sync\CxThreadPool.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\CxWaitableTimer.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxAppSettings.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\CxAutoMallocT.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxChar.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxConst.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxDateTime.h" />
