@@ -702,6 +702,12 @@
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxStackTrace.cpp">
       <Filter>Test\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Filesystem\CxBackuper.cpp">
+      <Filter>xLib\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxBackuper.cpp">
+      <Filter>Test\Filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1300,6 +1306,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxStackTrace.h">
       <Filter>Test\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Filesystem\CxBackuper.h">
+      <Filter>xLib\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxBackuper.h">
+      <Filter>Test\Filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

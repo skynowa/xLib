@@ -262,10 +262,6 @@ class CxFile :
         static BOOL          bBinWrite    (const std::string_t &csFilePath, const std::ustring &cusContent);
             ///< write binary data
 
-        //other
-        static std::string_t  sBackup      (const std::string_t &csFilePath, const std::string_t &csDestDirPath, const BOOL cbMakeDaily /*, int bBackupLimit*/);
-            ///< backup
-
     private:
         FILE                *_m_pFile;      ///< file handle
         std::string_t         _m_sFilePath;  ///< file path
