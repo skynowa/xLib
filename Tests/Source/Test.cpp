@@ -64,6 +64,7 @@
 #include <Test/Filesystem/CxTest_CxVolume.h>
 #include <Test/Filesystem/CxTest_CxEnvironment.h>
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
+#include <Test/Filesystem/CxTest_CxBackuper.h>
 
 #if defined(xOS_ENV_WIN)
     #include <Test/Filesystem/Win/CxTest_CxIni.h>
@@ -231,6 +232,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxVolume);
         (void)tmManager.bAdd(new CxTest_CxEnvironment);
         (void)tmManager.bAdd(new CxTest_CxLocalStorage);
+        (void)tmManager.bAdd(new CxTest_CxBackuper);
 
     #if defined(xOS_ENV_WIN)
         (void)tmManager.bAdd(new CxTest_CxIni);

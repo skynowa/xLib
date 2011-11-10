@@ -11,8 +11,6 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
-#include <xLib/Filesystem/CxVolume.h>
-#include <xLib/Crypt/CxCrc32.h>
 #include <xLib/Crypt/CxRandom.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
@@ -1438,73 +1436,6 @@ CxFile::bBinWrite(
     /*DEBUG*/xASSERT_RET(cusContent.size() == uiWriteLen, FALSE);
 
     return TRUE;
-}
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    public: other
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-/*static*/
-std::string_t
-CxFile::sBackup(
-    const std::string_t &csFilePath,
-    const std::string_t &csDestDirPath,
-    const BOOL           cbMakeDaily
-    /*int bBackupLimit*/
-)
-{
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    std::string_t());
-    /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), std::string_t());
-
-    BOOL bRes = FALSE;
-
-    bRes = bIsExists(csFilePath);
-    xCHECK_RET(FALSE == bRes, std::string_t());
-
-    bRes = CxDir::bIsExists(csDestDirPath);
-    xCHECK_DO(FALSE == bRes, CxDir::bCreateForce(csDestDirPath));
-
-    //-------------------------------------
-    //format file full name
-    CxDateTime dtDT;
-
-    std::string_t sBackupFilePath =
-        CxPath::sSlashAppend(csDestDirPath) +
-        CxPath::sGetFullName(csFilePath)    +
-        xT(".bak [") + CxString::sReplaceAll((TRUE == cbMakeDaily) ? (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDate)) : (dtDT.dtGetCurrent().sFormat(CxDateTime::ftDateTime)), xT(":"), xT("-")) + xT("]");
-
-    bRes = bIsExists(sBackupFilePath);
-    xCHECK_RET(TRUE == bRes, sBackupFilePath);
-
-    //-------------------------------------
-    //check for enough space
-    ULONGLONG ullTotalFreeBytes = 0ULL;
-
-    bRes = CxVolume::bGetFreeSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
-    xCHECK_RET(FALSE == bRes, std::string_t());
-
-    if (static_cast<ULONGLONG>( liGetSize(csFilePath) ) > ullTotalFreeBytes) {
-        ////TODO: CxMsgBoxT::iShow(xT("Not enough free space"), xT("File backup"));
-
-        return std::string_t();
-    }
-
-    //-------------------------------------
-    //copy
-    bRes = bCopy(csFilePath, sBackupFilePath, TRUE);
-    xCHECK_RET(FALSE == bRes, std::string_t());
-
-    //-------------------------------------
-    //check for a valid backup
-    /*DEBUG*/xASSERT_RET(TRUE                                == bIsExists(sBackupFilePath),               std::string_t());
-    /*DEBUG*/xASSERT_RET(liGetSize(csFilePath)               == liGetSize(sBackupFilePath),               std::string_t());
-    /*DEBUG*/xASSERT_RET(CxCrc32::ulCalcFileFast(csFilePath) == CxCrc32::ulCalcFileFast(sBackupFilePath), std::string_t());
-
-    return sBackupFilePath;
 }
 //---------------------------------------------------------------------------
 
