@@ -27,43 +27,43 @@ CxTest_CxBase64::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-	//-------------------------------------
-	//sEncode, sDecode
+    //-------------------------------------
+    //sEncode, sDecode
     xTEST_BLOCK(cullBlockLoops)
-	{
-		const std::string sTestData[][1] = {
-			{"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
-			{"TEST_STRING_2"},
-			{"evrtvertre=-430956=-lmj';l'654"},
-			{"ngb213,jhv560vlk254mlkvj6254klj'lcmkc34;lr,m34;'rtlm2cv456467809=-0i=-09i=-24i09v5grfmkldfgjghmjgyuiyuirvbty34v5"},
-			{"On-line Testing Pages by dev.FYIcenter.com\nWelcome to dev.FYIcenter.com on-line learning and testing pages.\nClick the Start button to play regular expression, date formatting, \nURL encoding, and many more programming techniques..."},
-			{"TEST_STRING_3"},
+    {
+        const std::string sTestData[][1] = {
+            {"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
+            {"TEST_STRING_2"},
+            {"evrtvertre=-430956=-lmj';l'654"},
+            {"ngb213,jhv560vlk254mlkvj6254klj'lcmkc34;lr,m34;'rtlm2cv456467809=-0i=-09i=-24i09v5grfmkldfgjghmjgyuiyuirvbty34v5"},
+            {"On-line Testing Pages by dev.FYIcenter.com\nWelcome to dev.FYIcenter.com on-line learning and testing pages.\nClick the Start button to play regular expression, date formatting, \nURL encoding, and many more programming techniques..."},
+            {"TEST_STRING_3"},
             {"On-line Testing Pages by dev.FYIcenter.comWelcome to dev.FYIcenter.com on-line learning and testing pages.Click the Start button to play regular expression, date formatting, \nURL encoding, and many more programming techniques..."},
             {"If you need a javascript for md5: http://pajhome.org.uk/crypt/md5/md5src.html"}
-		};
+        };
 
-		for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-			std::string sSource = sTestData[i][0];
+        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+            std::string sSource = sTestData[i][0];
 
-			std::string sEncoded = CxBase64::sEncode(sSource);
-			std::string sDecoded = CxBase64::sDecode(sEncoded);
-			xTEST_EQ(sSource, sDecoded);
-		}
-	}
+            std::string sEncoded = CxBase64::sEncode(sSource);
+            std::string sDecoded = CxBase64::sDecode(sEncoded);
+            xTEST_EQ(sSource, sDecoded);
+        }
+    }
 
     //-------------------------------------
     //sEncode, sDecode
     xTEST_BLOCK(cullBlockLoops)
-	{
-	    const std::string casData[][2] = {
+    {
+        const std::string casData[][2] = {
             {"YOYO!", "WU9ZTyE="},
             {"111111111111111", "MTExMTExMTExMTExMTEx"},
-	        {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},
-	        {"A", "QQ=="},
+            {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},
+            {"A", "QQ=="},
             {"AB", "QUI="},
             {"ABC", "QUJD"},
             {"This is an encoded string", "VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw=="}
-	    };
+        };
 
         for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
             const std::string csSource  = casData[i][0];
@@ -77,7 +77,7 @@ CxTest_CxBase64::bUnit(
             //xTRACEV("csEncoded: %s (%zu), csSource (%zu)", csDecoded.c_str(), csDecoded.size(), csSource.size());
             xTEST_EQ(csSource, csDecoded);
         }
-	}
+    }
 
     //--------------------------------------------------
     //bIsCharValid

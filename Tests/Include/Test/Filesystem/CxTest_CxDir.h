@@ -20,13 +20,13 @@
 class CxTest_CxDir :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxDir();
-		virtual     ~CxTest_CxDir();
+        virtual     ~CxTest_CxDir();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxDirH

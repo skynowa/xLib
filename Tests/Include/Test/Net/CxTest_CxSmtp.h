@@ -19,13 +19,13 @@
 class CxTest_CxSmtp :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxSmtp();
-		virtual     ~CxTest_CxSmtp();
+        virtual     ~CxTest_CxSmtp();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSmtpH

@@ -19,13 +19,13 @@
 class CxTest_CxArray :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxArray();
-		virtual     ~CxTest_CxArray();
+        virtual     ~CxTest_CxArray();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxArrayH

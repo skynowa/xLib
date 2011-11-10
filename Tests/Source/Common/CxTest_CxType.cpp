@@ -33,7 +33,7 @@ CxTest_CxType::bUnit(
     {
         std::string_t sObject;
 
-	    m_sRes = CxType::sGetName(sObject);
+        m_sRes = CxType::sGetName(sObject);
         xTEST_EQ(false, m_sRes.empty());
     }
 
@@ -41,7 +41,7 @@ CxTest_CxType::bUnit(
     //sGetRawName
     xTEST_BLOCK(cullBlockLoops)
     {
-	    std::string_t sObject;
+        std::string_t sObject;
 
         m_sRes = CxType::sGetRawName(sObject);
         xTEST_EQ(false, m_sRes.empty())
@@ -51,10 +51,10 @@ CxTest_CxType::bUnit(
     //bIsEquals
     xTEST_BLOCK(cullBlockLoops)
     {
- 	    std::string  sObject1;
+         std::string  sObject1;
         std::wstring sObject2;
 
-	    m_bRes = CxType::bIsEquals(sObject1, sObject2);
+        m_bRes = CxType::bIsEquals(sObject1, sObject2);
         xTEST_EQ(FALSE, m_bRes);
     }
 

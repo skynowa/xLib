@@ -1,4 +1,4 @@
-/****************************************************************************
+ /****************************************************************************
 * Class name:  CxTest_CxLastError
 * Description: test CxLastError
 * File name:   CxTest_CxLastError.h
@@ -19,13 +19,13 @@
 class CxTest_CxLastError :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxLastError();
-		virtual     ~CxTest_CxLastError();
+        virtual     ~CxTest_CxLastError();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxLastErrorH

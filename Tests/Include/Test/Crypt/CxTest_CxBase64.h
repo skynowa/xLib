@@ -19,13 +19,13 @@
 class CxTest_CxBase64 :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxBase64();
-		virtual     ~CxTest_CxBase64();
+        virtual     ~CxTest_CxBase64();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxBase64H

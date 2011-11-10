@@ -19,13 +19,13 @@
 class CxTest_CxAtomicLongInt :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxAtomicLongInt();
-		virtual     ~CxTest_CxAtomicLongInt();
+        virtual     ~CxTest_CxAtomicLongInt();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxAtomicLongIntH

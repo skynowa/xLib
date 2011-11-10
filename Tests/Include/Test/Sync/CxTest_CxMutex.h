@@ -19,13 +19,13 @@
 class CxTest_CxMutex :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxMutex();
-		virtual     ~CxTest_CxMutex();
+        virtual     ~CxTest_CxMutex();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxMutexH

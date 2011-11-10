@@ -19,13 +19,13 @@
 class CxTest_CxAutoCriticalSection :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxAutoCriticalSection();
-		virtual     ~CxTest_CxAutoCriticalSection();
+        virtual     ~CxTest_CxAutoCriticalSection();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxAutoCriticalSectionH

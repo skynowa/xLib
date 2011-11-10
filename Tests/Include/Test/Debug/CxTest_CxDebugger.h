@@ -1,4 +1,4 @@
-/****************************************************************************
+ /****************************************************************************
 * Class name:  CxTest_CxDebugger
 * Description: test CxDebugger
 * File name:   CxTest_CxDebugger.h
@@ -19,13 +19,13 @@
 class CxTest_CxDebugger :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxDebugger();
-		virtual     ~CxTest_CxDebugger();
+        virtual     ~CxTest_CxDebugger();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxDebuggerH

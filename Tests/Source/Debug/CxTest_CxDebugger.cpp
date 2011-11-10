@@ -101,9 +101,9 @@ CxTest_CxDebugger::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {
-	        CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
+            CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
 
-	        //m_bRes = CxDebugger::bReportMake(rpReport);
+            //m_bRes = CxDebugger::bReportMake(rpReport);
             //xTEST_DIFF(FALSE, m_bRes);
         }
     }
@@ -204,54 +204,54 @@ CxTest_CxDebugger::bUnit(
     //with int
     {
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    int iVar1 = 1;
-		    int iVar2 = 1;
-		    xTEST_EQ(iVar1, iVar2);
-	    }
+        {
+            int iVar1 = 1;
+            int iVar2 = 1;
+            xTEST_EQ(iVar1, iVar2);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    int iVar1 = 0;
-		    int iVar2 = 1;
-		    xTEST_DIFF(iVar1, iVar2);
-	    }
+        {
+            int iVar1 = 0;
+            int iVar2 = 1;
+            xTEST_DIFF(iVar1, iVar2);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    int iVar1 = 1;
-		    int iVar2 = 122;
-		    xTEST_LESS(iVar1, iVar2);
-	    }
+        {
+            int iVar1 = 1;
+            int iVar2 = 122;
+            xTEST_LESS(iVar1, iVar2);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    int iVar1 = 110;
-		    int iVar2 = 10;
-		    xTEST_GREATER(iVar1, iVar2);
-	    }
+        {
+            int iVar1 = 110;
+            int iVar2 = 10;
+            xTEST_GREATER(iVar1, iVar2);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    int iVar1 = 50;
-		    int iVar2 = 122;
-		    xTEST_LESS_EQ(iVar1, iVar2);
+        {
+            int iVar1 = 50;
+            int iVar2 = 122;
+            xTEST_LESS_EQ(iVar1, iVar2);
 
             int iVar3 = 200;
-		    int iVar4 = 200;
-		    xTEST_LESS_EQ(iVar3, iVar4);
-	    }
+            int iVar4 = 200;
+            xTEST_LESS_EQ(iVar3, iVar4);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    int iVar1 = 500;
-		    int iVar2 = 147;
-		    xTEST_GREATER_EQ(iVar1, iVar2);
+        {
+            int iVar1 = 500;
+            int iVar2 = 147;
+            xTEST_GREATER_EQ(iVar1, iVar2);
 
             int iVar3 = 77777;
-		    int iVar4 = 77777;
-		    xTEST_GREATER_EQ(iVar3, iVar4);
-	    }
+            int iVar4 = 77777;
+            xTEST_GREATER_EQ(iVar3, iVar4);
+        }
     }
 
     //--------------------------------------------------
@@ -260,54 +260,54 @@ CxTest_CxDebugger::bUnit(
     //with std::string_t
     {
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    std::string_t sVar1 = xT("aaa");
-		    std::string_t sVar2 = xT("aaa");
-		    xTEST_EQ(sVar1, sVar2);
-	    }
+        {
+            std::string_t sVar1 = xT("aaa");
+            std::string_t sVar2 = xT("aaa");
+            xTEST_EQ(sVar1, sVar2);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    std::string_t sVar1 = xT("bbb");
-		    std::string_t sVar2 = xT("BBB");
-		    xTEST_DIFF(sVar1, sVar2);
-	    }
+        {
+            std::string_t sVar1 = xT("bbb");
+            std::string_t sVar2 = xT("BBB");
+            xTEST_DIFF(sVar1, sVar2);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    std::string_t sVar1 = xT("aaa");
-		    std::string_t sVar2 = xT("ccc");
-		    xTEST_LESS(sVar1, sVar2);
-	    }
+        {
+            std::string_t sVar1 = xT("aaa");
+            std::string_t sVar2 = xT("ccc");
+            xTEST_LESS(sVar1, sVar2);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    std::string_t sVar1 = xT("bbb");
-		    std::string_t sVar2 = xT("aaa");
-		    xTEST_GREATER(sVar1, sVar2);
-	    }
+        {
+            std::string_t sVar1 = xT("bbb");
+            std::string_t sVar2 = xT("aaa");
+            xTEST_GREATER(sVar1, sVar2);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    std::string_t sVar1 = xT("aaa");
-		    std::string_t sVar2 = xT("aaa");
-		    xTEST_LESS_EQ(sVar1, sVar2);
+        {
+            std::string_t sVar1 = xT("aaa");
+            std::string_t sVar2 = xT("aaa");
+            xTEST_LESS_EQ(sVar1, sVar2);
 
             std::string_t sVar3 = xT("aaa");
-		    std::string_t sVar4 = xT("ggg");
-		    xTEST_LESS_EQ(sVar3, sVar4);
-	    }
+            std::string_t sVar4 = xT("ggg");
+            xTEST_LESS_EQ(sVar3, sVar4);
+        }
 
         xTEST_BLOCK(cullBlockLoops)
-	    {
-		    std::string_t sVar1 = xT("aaa");
-		    std::string_t sVar2 = xT("aaa");
-		    xTEST_GREATER_EQ(sVar1, sVar2);
+        {
+            std::string_t sVar1 = xT("aaa");
+            std::string_t sVar2 = xT("aaa");
+            xTEST_GREATER_EQ(sVar1, sVar2);
 
             std::string_t sVar3 = xT("hhhh");
-		    std::string_t sVar4 = xT("aaa");
-		    xTEST_GREATER_EQ(sVar3, sVar4);
-	    }
+            std::string_t sVar4 = xT("aaa");
+            xTEST_GREATER_EQ(sVar3, sVar4);
+        }
     }
 
     return TRUE;

@@ -27,7 +27,7 @@ CxTest_CxMimeMessage::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    std::string m_sRes; 
+    std::string m_sRes;
 
     CxPop3 objPop3;
 

@@ -19,13 +19,13 @@
 class CxTest_CxGeoIp :
     public CxTest
 {
-	public:
-		         CxTest_CxGeoIp();
-	    virtual ~CxTest_CxGeoIp();
+    public:
+                 CxTest_CxGeoIp();
+        virtual ~CxTest_CxGeoIp();
 
-	    virtual  BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual  BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxGeoIpH

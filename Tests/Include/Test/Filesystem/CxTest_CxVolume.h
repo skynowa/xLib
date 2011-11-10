@@ -17,13 +17,13 @@
 #include <xLib/Filesystem/CxVolume.h>
 //---------------------------------------------------------------------------
 class CxTest_CxVolume : public CxTest {
-	public:
-		             CxTest_CxVolume();
-		virtual     ~CxTest_CxVolume();
+    public:
+                     CxTest_CxVolume();
+        virtual     ~CxTest_CxVolume();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxVolumeH

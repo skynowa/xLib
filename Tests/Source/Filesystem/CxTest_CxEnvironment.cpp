@@ -112,8 +112,8 @@ CxTest_CxEnvironment::bUnit(
         ////CxString::vStdVectorPrintT(m_vsRes);
     }
 
-	//-------------------------------------
-	//sExpandStrings
+    //-------------------------------------
+    //sExpandStrings
     xTEST_BLOCK(cullBlockLoops)
     {
     #if defined(xOS_ENV_WIN)

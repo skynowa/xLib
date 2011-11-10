@@ -43,39 +43,39 @@ CxTest_CxSingleton::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-	//-------------------------------------
-	//test
+    //-------------------------------------
+    //test
     xTEST_BLOCK(cullBlockLoops)
-	{
-		typedef CxSingleton<CLogger> TLoggerSingleton;
+    {
+        typedef CxSingleton<CLogger> TLoggerSingleton;
 
-		TLoggerSingleton::GetInstance().vOpen();
-		TLoggerSingleton::GetInstance().vWrite();
-		TLoggerSingleton::GetInstance().vClose();
-	}
-    
+        TLoggerSingleton::GetInstance().vOpen();
+        TLoggerSingleton::GetInstance().vWrite();
+        TLoggerSingleton::GetInstance().vClose();
+    }
+
     xTEST_BLOCK(cullBlockLoops)
-	{
-		CxSingleton<CLogger>::GetInstance().vOpen();
-		CxSingleton<CLogger>::GetInstance().vWrite();
-		CxSingleton<CLogger>::GetInstance().vClose();
-	}
+    {
+        CxSingleton<CLogger>::GetInstance().vOpen();
+        CxSingleton<CLogger>::GetInstance().vWrite();
+        CxSingleton<CLogger>::GetInstance().vClose();
+    }
 
-	//-------------------------------------
-	//construct CxSingleton on stack
+    //-------------------------------------
+    //construct CxSingleton on stack
     xTEST_BLOCK(cullBlockLoops)
-	{
-		////TLoggerSingleton objLoggerSingleton;
-	}
+    {
+        ////TLoggerSingleton objLoggerSingleton;
+    }
 
-	//-------------------------------------
-	//construct CxSingleton on heap
+    //-------------------------------------
+    //construct CxSingleton on heap
     xTEST_BLOCK(cullBlockLoops)
-	{
-		////TLoggerSingleton *pobjLoggerSingleton = new TLoggerSingleton;
-		////xPTR_DELETE(pobjLoggerSingleton);
-	}
+    {
+        ////TLoggerSingleton *pobjLoggerSingleton = new TLoggerSingleton;
+        ////xPTR_DELETE(pobjLoggerSingleton);
+    }
 
-	return TRUE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------

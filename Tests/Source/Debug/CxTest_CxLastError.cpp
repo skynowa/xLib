@@ -88,12 +88,12 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-			xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
-			m_bRes = CxLastError::bReset();
-			xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = CxLastError::bReset();
+            xTEST_DIFF(FALSE, m_bRes);
 
-			xTEST_EQ(0UL, CxLastError::ulGet());
+            xTEST_EQ(0UL, CxLastError::ulGet());
         }
     }
 

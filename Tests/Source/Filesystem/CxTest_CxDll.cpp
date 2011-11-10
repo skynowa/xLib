@@ -33,10 +33,10 @@ CxTest_CxDll::bUnit(
         };
     #elif defined(xOS_ENV_UNIX)
         #if defined(xOS_FREEBSD)
-			//if -static CxDll::bLoad don't load any 'so'-libraries
-			return TRUE;
+            //if -static CxDll::bLoad don't load any 'so'-libraries
+            return TRUE;
 
-			const std::string_t sData[][2] = {
+            const std::string_t sData[][2] = {
                 {xT("libm.so"), xT("cos")}
             };
         #else
@@ -62,12 +62,12 @@ CxTest_CxDll::bUnit(
         m_bRes = objDll.bIsLoaded();
         xTEST_DIFF(FALSE, m_bRes);
 
-    	//-------------------------------------
-    	//fpGetProcAddress
-    	/*FARPROC**/void *fpRes = NULL;
+        //-------------------------------------
+        //fpGetProcAddress
+        /*FARPROC**/void *fpRes = NULL;
 
-    	fpRes = objDll.fpGetProcAddress(sData[i][1]);
-    	xASSERT(NULL != fpRes);
+        fpRes = objDll.fpGetProcAddress(sData[i][1]);
+        xASSERT(NULL != fpRes);
 
     #if defined(xOS_ENV_WIN)
         typedef void (__stdcall *pDllFunc)(ULONG, ULONG);

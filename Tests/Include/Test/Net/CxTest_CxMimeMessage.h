@@ -22,13 +22,13 @@
 class CxTest_CxMimeMessage :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxMimeMessage();
-		virtual     ~CxTest_CxMimeMessage();
+        virtual     ~CxTest_CxMimeMessage();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxMimeMessageH

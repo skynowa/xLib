@@ -19,13 +19,13 @@
 class CxTest_CxEnvironment :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxEnvironment();
-		virtual     ~CxTest_CxEnvironment();
+        virtual     ~CxTest_CxEnvironment();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxEnvironmentH

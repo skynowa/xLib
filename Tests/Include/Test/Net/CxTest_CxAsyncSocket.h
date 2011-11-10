@@ -19,13 +19,13 @@
 class CxTest_CxAsyncSocket :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxAsyncSocket();
-		virtual     ~CxTest_CxAsyncSocket();
+        virtual     ~CxTest_CxAsyncSocket();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxAsyncSocketH

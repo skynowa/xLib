@@ -27,14 +27,14 @@ CxTest_CxCrc32::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-	/*DEBUG*/
+    /*DEBUG*/
 
-	const std::string_t csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
+    const std::string_t csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
 
     //-------------------------------------
     //Prepare
     {
-    	CxFile flFile;
+        CxFile flFile;
 
         m_bRes = flFile.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xTEST_DIFF(FALSE, m_bRes);
@@ -43,44 +43,44 @@ CxTest_CxCrc32::bUnit(
         xTEST_DIFF(FALSE, m_bRes);
     }
 
-	//-------------------------------------
-	//ulCalc
+    //-------------------------------------
+    //ulCalc
     xTEST_BLOCK(cullBlockLoops)
-	{
+    {
 
-	}
+    }
 
-	//-------------------------------------
-	//ulCalcFile, sFormatHex
+    //-------------------------------------
+    //ulCalcFile, sFormatHex
     xTEST_BLOCK(cullBlockLoops)
-	{
-		m_ulRes = CxCrc32::ulCalcFile(csFilePath);
-		xTEST_LESS(0UL, m_ulRes);
-	    //xTRACE(m_ulRes);
-
-        m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xTEST_EQ(false, m_sRes.empty());
-	}
-
-	//-------------------------------------
-	//ulCalcFast
-    xTEST_BLOCK(cullBlockLoops)
-	{
-
-	}
-
-	//------------------------------------
-	//ulCalcFileFast, sFormatHex
-    xTEST_BLOCK(cullBlockLoops)
-	{
-	    m_ulRes = CxCrc32::ulCalcFileFast(csFilePath);
+    {
+        m_ulRes = CxCrc32::ulCalcFile(csFilePath);
         xTEST_LESS(0UL, m_ulRes);
         //xTRACE(m_ulRes);
 
         m_sRes = CxCrc32::sFormatHex(m_ulRes);
         xTEST_EQ(false, m_sRes.empty());
-	}
+    }
 
-	return TRUE;
+    //-------------------------------------
+    //ulCalcFast
+    xTEST_BLOCK(cullBlockLoops)
+    {
+
+    }
+
+    //------------------------------------
+    //ulCalcFileFast, sFormatHex
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        m_ulRes = CxCrc32::ulCalcFileFast(csFilePath);
+        xTEST_LESS(0UL, m_ulRes);
+        //xTRACE(m_ulRes);
+
+        m_sRes = CxCrc32::sFormatHex(m_ulRes);
+        xTEST_EQ(false, m_sRes.empty());
+    }
+
+    return TRUE;
 }
 //---------------------------------------------------------------------------

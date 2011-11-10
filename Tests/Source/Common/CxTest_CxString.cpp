@@ -21,9 +21,9 @@ CxTest_CxString::~CxTest_CxString() {
 
 }
 //---------------------------------------------------------------------------
-UCHAR 
-RandomNumber () { 
-    return (UCHAR)(rand()%100); 
+UCHAR
+RandomNumber () {
+    return (UCHAR)(rand()%100);
 }
 //---------------------------------------------------------------------------
 /*virtual*/

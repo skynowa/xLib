@@ -34,11 +34,11 @@ CxTest_CxAutoMallocT::bUnit(
 )
 {
     //-------------------------------------
-	//CxAutoMallocT
+    //CxAutoMallocT
     xTEST_BLOCK(cullBlockLoops)
-	{
-	    CxAutoMallocT<PSMy> stM(sizeof(SMy));
-	}
+    {
+        CxAutoMallocT<PSMy> stM(sizeof(SMy));
+    }
 
     return TRUE;
 }

@@ -19,13 +19,13 @@
 class CxTest_CxPath :
     public CxTest
 {
-	public:
-		             CxTest_CxPath();
-	    virtual     ~CxTest_CxPath();
+    public:
+                     CxTest_CxPath();
+        virtual     ~CxTest_CxPath();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxPathH

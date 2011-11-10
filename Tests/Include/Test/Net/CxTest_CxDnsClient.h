@@ -18,13 +18,13 @@
 class CxTest_CxDnsClient :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxDnsClient();
-		virtual     ~CxTest_CxDnsClient();
+        virtual     ~CxTest_CxDnsClient();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxDnsClientH

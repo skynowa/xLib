@@ -19,13 +19,13 @@
 class CxTest_CxRandom :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxRandom();
-		virtual     ~CxTest_CxRandom();
+        virtual     ~CxTest_CxRandom();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxRandomH

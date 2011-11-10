@@ -19,13 +19,13 @@
 class CxTest_CxFileLog :
     public CxTest
 {
-	public:
-		              CxTest_CxFileLog();
-	    virtual      ~CxTest_CxFileLog();
+    public:
+                      CxTest_CxFileLog();
+        virtual      ~CxTest_CxFileLog();
 
-	    virtual  BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual  BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxFileLogH

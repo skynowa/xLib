@@ -14,16 +14,16 @@
 class CxTest_CxFileTemp :
     public CxTest
 {
-	public:
-		              CxTest_CxFileTemp();
+    public:
+                      CxTest_CxFileTemp();
             ///< constructor
-	    virtual      ~CxTest_CxFileTemp();
-	        ///< destructor
+        virtual      ~CxTest_CxFileTemp();
+            ///< destructor
 
-	    virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
-	        ///< unit test
+        virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
+            ///< unit test
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxFileTempH

@@ -22,13 +22,13 @@
 class CxTest_CxPkcs11 :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxPkcs11();
-		virtual     ~CxTest_CxPkcs11();
+        virtual     ~CxTest_CxPkcs11();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxPkcs11H

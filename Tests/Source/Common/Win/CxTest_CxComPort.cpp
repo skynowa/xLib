@@ -22,7 +22,7 @@ CxTest_CxComPort::~CxTest_CxComPort() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL 
+BOOL
 CxTest_CxComPort::bUnit(
     const ULONGLONG cullBlockLoops
 )

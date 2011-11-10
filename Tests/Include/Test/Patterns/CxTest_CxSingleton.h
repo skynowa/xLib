@@ -19,13 +19,13 @@
 class CxTest_CxSingleton :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxSingleton();
-		virtual     ~CxTest_CxSingleton();
+        virtual     ~CxTest_CxSingleton();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSingletonH

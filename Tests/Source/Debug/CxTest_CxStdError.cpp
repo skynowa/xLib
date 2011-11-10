@@ -67,12 +67,12 @@ CxTest_CxStdError::bUnit(
 
         for (int i = 0; i < ciMaxErrors; ++ i) {
             m_bRes = CxStdError::bSet(i);
-			xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(FALSE, m_bRes);
 
-			m_bRes = CxStdError::bReset();
-			xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = CxStdError::bReset();
+            xTEST_DIFF(FALSE, m_bRes);
 
-			xTEST_EQ(0, CxStdError::iGet());
+            xTEST_EQ(0, CxStdError::iGet());
         }
     }
 

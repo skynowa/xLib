@@ -19,13 +19,13 @@
 class CxTest_CxSocket :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxSocket();
-		virtual     ~CxTest_CxSocket();
+        virtual     ~CxTest_CxSocket();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSocketH

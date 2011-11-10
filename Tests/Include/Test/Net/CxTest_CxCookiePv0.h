@@ -19,13 +19,13 @@
 class CxTest_CxCookiePv0 :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxCookiePv0();
-		virtual     ~CxTest_CxCookiePv0();
+        virtual     ~CxTest_CxCookiePv0();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCookiePv0H

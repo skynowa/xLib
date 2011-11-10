@@ -19,13 +19,13 @@
 class CxTest_CxConnectionString :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxConnectionString();
-		virtual     ~CxTest_CxConnectionString();
+        virtual     ~CxTest_CxConnectionString();
 
-		virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxConnectionStringH

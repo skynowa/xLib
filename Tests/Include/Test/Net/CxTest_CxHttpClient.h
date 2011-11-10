@@ -19,13 +19,13 @@
 class CxTest_CxHttpClient :
     public CxTest
 {
-	public:
+    public:
                      CxTest_CxHttpClient();
-		virtual     ~CxTest_CxHttpClient();
+        virtual     ~CxTest_CxHttpClient();
 
-	    virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxHttpClientH
