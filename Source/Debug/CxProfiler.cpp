@@ -312,7 +312,8 @@ CxProfiler::_bResetData() {
     return TRUE;
 }
 //--------------------------------------------------------------------------
-#if defined(xOS_ENV_UNI) && defined(xOS_FREEBSD)
+#if defined(xOS_ENV_UNIX) && defined(xOS_FREEBSD)
+
 /*static*/
 std::clock_t
 CxProfiler::_liGetClock() {
@@ -330,6 +331,7 @@ CxProfiler::_liGetClock() {
 
     return liRes;
 }
+
 #endif
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
