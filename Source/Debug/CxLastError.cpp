@@ -7,6 +7,8 @@
 #include <xLib/Debug/CxLastError.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -131,3 +133,5 @@ CxLastError::~CxLastError() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

@@ -7,6 +7,8 @@
 #include <xLib/Net/CxTcpClient.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -213,4 +215,6 @@ CxTcpClient::bIsServerAlive(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
 

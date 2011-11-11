@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxSocket.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxDnsClient :
     public CxNonCopyable
     /// DNS client
@@ -44,6 +46,8 @@ class CxDnsClient :
         virtual    ~CxDnsClient         ();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxDnsClientH
 

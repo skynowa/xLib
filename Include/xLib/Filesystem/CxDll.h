@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxDll :
     public CxNonCopyable
     /// dynamic linking loader
@@ -42,5 +44,7 @@ class CxDll :
 
         TxHandle      _m_hDLL;   ///< dll module handle
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxDllH

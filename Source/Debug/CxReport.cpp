@@ -17,6 +17,8 @@
 #include <xLib/Sync/CxProcess.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -533,3 +535,5 @@ CxReport::_bInitFormated() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

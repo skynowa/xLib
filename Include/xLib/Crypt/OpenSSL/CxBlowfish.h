@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <openssl/blowfish.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxBlowfish :
     public CxNonCopyable
     /// blowfish (openssl-1.0.0a)
@@ -64,6 +66,8 @@ class CxBlowfish :
         BF_KEY        _m_bfKey;             ///< crypt key
         UCHAR         _m_ucIvec[IVEC_SIZE]; ///< ivec
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Crypt_OpenSSL_CxBlowfishH
 

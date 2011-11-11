@@ -12,6 +12,8 @@
 #include <xLib/Net/CxCookiePv0.h>
 #include <xLib/Net/CxCookiePv1.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCgi;
 
 namespace NxCgi {
@@ -251,6 +253,8 @@ class CxCgi :
         char                    cgl_hex2char   (char *what);
             ///< hex to char
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxCgiH
 

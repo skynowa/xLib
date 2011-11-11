@@ -34,6 +34,8 @@ xNAMESPACE_ANONYM_BEGIN
 
 xNAMESPACE_ANONYM_END
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 template<EHandleValue hvTag>
 class CxHandleT
     /// handle
@@ -99,6 +101,8 @@ class CxHandleT
 //---------------------------------------------------------------------------
 typedef CxHandleT<hvNull>    CxHandle;
 typedef CxHandleT<hvInvalid> CxFileHandle;
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Common/Win/CxHandleT.inl>
 

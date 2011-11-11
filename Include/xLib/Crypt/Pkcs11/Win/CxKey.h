@@ -14,6 +14,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxKey :
     public CxNonCopyable
     /// Pkcs11 key
@@ -44,6 +46,8 @@ class CxKey :
         CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointerto dll's functions list
         CK_SESSION_HANDLE    _m_hSession;    ///< session handle
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

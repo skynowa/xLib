@@ -7,10 +7,13 @@
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 
 #if defined(xOS_ENV_WIN)
+
 #include <GDIPlus.h>
 
 #pragma comment (lib, "Gdiplus.lib")
 
+
+xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
 *    public
@@ -34,5 +37,7 @@ CxGdiplus::~CxGdiplus() {
     _m_pulToken = NULL;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
 
 #endif

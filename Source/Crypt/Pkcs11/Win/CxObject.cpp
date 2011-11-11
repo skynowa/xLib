@@ -11,6 +11,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    Public methods
 *
@@ -538,5 +541,7 @@ BOOL CxObject::bFindFinal() {
 }
 //---------------------------------------------------------------------------
 #endif
+
+xNAMESPACE_END(NxLib)
 
 #endif

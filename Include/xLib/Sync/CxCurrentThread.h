@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxThread.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCurrentThread :
     public CxNonCopyable
 {
@@ -32,5 +34,7 @@ class CxCurrentThread :
     private:
 
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_CxCurrentThreadH

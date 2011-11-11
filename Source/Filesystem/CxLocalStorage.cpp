@@ -11,6 +11,8 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public: creation
 *
@@ -414,3 +416,5 @@ CxLocalStorage::_bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

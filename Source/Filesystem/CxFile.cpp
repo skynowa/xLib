@@ -15,6 +15,8 @@
 #include <xLib/Sync/CxCurrentThread.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public: constructors, destructor
 *
@@ -1506,3 +1508,5 @@ CxFile::_sGetOpenMode(
     return sRes;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

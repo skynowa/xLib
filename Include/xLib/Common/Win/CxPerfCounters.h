@@ -10,11 +10,14 @@
 #include <xLib/Common/xCommon.h>
 
 #if defined(xOS_WIN)
+
 #include <comdef.h>    // for using bstr_t class
 //---------------------------------------------------------------------------
 #define TOTALBYTES    1024 * 100
 #define BYTEINCREMENT 1024 * 10
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 template <class T>
 class CxPerfCounters
     /// cpu usage
@@ -327,7 +330,8 @@ protected:
         return( (PPERF_INSTANCE_DEFINITION)((PBYTE)PerfCntrBlk + PerfCntrBlk->ByteLength) );
     }
 };
-#elif defined(xOS_LINUX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

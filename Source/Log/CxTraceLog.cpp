@@ -10,6 +10,8 @@
 #include <xLib/Filesystem/CxPath.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -80,3 +82,5 @@ CxTraceLog::bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

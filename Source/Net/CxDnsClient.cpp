@@ -7,6 +7,8 @@
 #include <xLib/Net/CxDnsClient.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    Public
 *
@@ -428,3 +430,5 @@ CxDnsClient::~CxDnsClient() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

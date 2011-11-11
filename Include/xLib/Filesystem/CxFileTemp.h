@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Filesystem/CxFile.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxFileTemp :
     public CxNonCopyable
 {
@@ -29,5 +31,7 @@ class CxFileTemp :
         CxFile       *_m_pfFile;            ///< temporary file handle
         std::string_t  _m_sFilePath;         ///< temporary file path
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_CxFileTempH

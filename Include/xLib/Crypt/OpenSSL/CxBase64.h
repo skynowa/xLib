@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxBase64 :
     public CxNonCopyable
     /// Base64
@@ -27,5 +29,7 @@ class CxBase64 :
         virtual           ~CxBase64();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Crypt_CxBase64H

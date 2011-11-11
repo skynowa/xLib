@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxAsyncSocket :
     public CxNonCopyable
     /// async socket
@@ -22,5 +24,7 @@ class CxAsyncSocket :
     private:
 
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxAsyncSocketH

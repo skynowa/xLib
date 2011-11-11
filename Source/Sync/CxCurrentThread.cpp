@@ -7,6 +7,8 @@
 #include <xLib/Sync/CxCurrentThread.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *   public
 *
@@ -121,3 +123,5 @@ CxCurrentThread::bSleep(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

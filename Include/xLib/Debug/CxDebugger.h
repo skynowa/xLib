@@ -11,6 +11,8 @@
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Debug/CxReport.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxReport;
 
 class CxDebugger :
@@ -65,5 +67,7 @@ class CxDebugger :
         static BOOL         _bLoggingHtml   (const CxReport &crpReport);
             ///< log html report to file
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Debug_CxDebuggerH

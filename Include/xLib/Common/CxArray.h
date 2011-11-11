@@ -9,267 +9,214 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-template <class TypeT, std::size_t uiNumT>
-class CxArray
-    /// fixed-size array
-{
+xNAMESPACE_BEGIN(NxLib)
+
+template<class T, std::size_t N>
+class CxArray {
+    public:
+        T elems[N];    // fixed-size array of elements of type T
 
     public:
-        TypeT tArray[uiNumT];
+        // type definitions
+        typedef T              value_type;
+        typedef T*             iterator;
+        typedef const T*       const_iterator;
+        typedef T&             reference;
+        typedef const T&       const_reference;
+        typedef std::size_t    size_type;
+        typedef std::ptrdiff_t difference_type;
 
-    public:
-        //--------------------------------------------------
-        //types
-        typedef TypeT           value_type;
-        typedef TypeT         * iterator;
-        typedef const TypeT   * const_iterator;
-        typedef TypeT         & reference;
-        typedef const TypeT   & const_reference;
-        typedef std::size_t     size_type;
-        typedef std::ptrdiff_t  difference_type;
+        // iterator support
+        iterator        begin()        { return elems; }
+        const_iterator  begin()  const { return elems; }
+        const_iterator  cbegin() const { return elems; }
 
-        //--------------------------------------------------
-        //iterators
-        iterator
-        begin() {
-            return tArray;
-        }
+        iterator        end()          { return elems + N; }
+        const_iterator  end()    const { return elems + N; }
+        const_iterator  cend()   const { return elems + N; }
 
-        const_iterator
-        begin() const {
-            return tArray;
-        }
-
-        iterator
-        end() {
-            return tArray + uiNumT;
-        }
-
-        const_iterator
-        end() const {
-            return tArray + uiNumT;
-        }
-
-        //--------------------------------------------------
-        //reverse iterators
+        // reverse iterator support
+    #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION) && !defined(BOOST_MSVC_STD_ITERATOR) && !defined(BOOST_NO_STD_ITERATOR_TRAITS)
         typedef std::reverse_iterator<iterator>       reverse_iterator;
         typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+    #else
+        // workaround for broken reverse_iterator implementations
+        typedef std::reverse_iterator<iterator,T>       reverse_iterator;
+        typedef std::reverse_iterator<const_iterator,T> const_reverse_iterator;
+    #endif
 
-        reverse_iterator
-        rbegin() {
+        reverse_iterator rbegin() {
             return reverse_iterator(end());
         }
-
-        const_reverse_iterator
-        rbegin() const {
+        const_reverse_iterator rbegin() const {
+            return const_reverse_iterator(end());
+        }
+        const_reverse_iterator crbegin() const {
             return const_reverse_iterator(end());
         }
 
-        reverse_iterator
-        rend() {
+        reverse_iterator rend() {
             return reverse_iterator(begin());
         }
-
-        const_reverse_iterator
-        rend() const {
+        const_reverse_iterator rend() const {
+            return const_reverse_iterator(begin());
+        }
+        const_reverse_iterator crend() const {
             return const_reverse_iterator(begin());
         }
 
-        //--------------------------------------------------
-        //operator[]
-        reference
-        operator[](size_type i) {
-            /*DEBUG*/xASSERT_MSG(i < uiNumT, xT("out of range"));
-
-            return tArray[i];
+        // operator[]
+        reference operator[](size_type i) {
+            ////BOOST_ASSERT( i < N && "out of range" );
+            return elems[i];
         }
 
-        const_reference
-        operator[](size_type i) const {
-            /*DEBUG*/xASSERT_MSG(i < uiNumT, xT("out of range"));
-
-            return tArray[i];
+        const_reference operator[](size_type i) const {
+            ////BOOST_ASSERT( i < N && "out of range" );
+            return elems[i];
         }
 
-        //--------------------------------------------------
-        //at() with range check
-        reference
-        at(size_type i) {
-            rangecheck(i);
+        // at() with range check
+        reference       at(size_type i)       { rangecheck(i); return elems[i]; }
+        const_reference at(size_type i) const { rangecheck(i); return elems[i]; }
 
-            return tArray[i];
+        // front() and back()
+        reference front() {
+            return elems[0];
         }
 
-        const_reference
-        at(size_type i) const {
-            rangecheck(i);
-
-            return tArray[i];
+        const_reference front() const {
+            return elems[0];
         }
 
-        //--------------------------------------------------
-        //front(), back()
-        reference
-        front() {
-            return tArray[0];
+        reference back() {
+            return elems[N-1];
         }
 
-        const_reference
-        front() const {
-            return tArray[0];
+        const_reference back() const {
+            return elems[N-1];
         }
 
-        reference
-        back() {
-            return tArray[uiNumT - 1];
-        }
+        // size is constant
+        static size_type size    () { return N; }
+        static bool      empty   () { return false; }
+        static size_type max_size() { return N; }
+        enum { static_size = N };
 
-        const_reference
-        back() const {
-            return tArray[uiNumT - 1];
-        }
-
-        //--------------------------------------------------
-        //size is constant
-        static
-        size_type
-        size() {
-            return uiNumT;
-        }
-
-        static
-        bool
-        empty() {
-            return false;
-        }
-
-        static
-        size_type
-        max_size() {
-            return uiNumT;
-        }
-
-        enum {
-            static_size = uiNumT
-        };
-
-        //--------------------------------------------------
-        //swap (note: linear complexity)
-        void
-        swap(CxArray<TypeT,uiNumT> &y) {
-            for (size_type i = 0; i < uiNumT; ++ i) {
-                std::swap(tArray[i], y.tArray[i]);
+        // swap (note: linear complexity)
+        void swap (CxArray<T,N> &y) {
+            for (size_type i = 0; i < N; ++ i) {
+                ////boost::swap(elems[i], y.elems[i]);
             }
         }
 
-        //--------------------------------------------------
-        //direct access to data (read-only)
-        const TypeT *
-        data() const {
-            return tArray;
+        // direct access to data (read-only)
+        const T* data() const {
+            return elems;
+        }
+        T* data() {
+            return elems;
         }
 
-        TypeT *
-        data() {
-            return tArray;
+        // use array as C array (direct read/write access to data)
+        T* c_array() {
+            return elems;
         }
 
-        //--------------------------------------------------
-        //use CxArray as C array (direct read/write access to data)
-        TypeT*
-        c_array() {
-            return tArray;
-        }
-
-        //--------------------------------------------------
-        //assignment with type conversion
+        // assignment with type conversion
         template <typename T2>
-        CxArray<TypeT, uiNumT> &
-        operator = (const CxArray<T2, uiNumT> &rhs) {
-            std::copy(rhs.begin(), rhs.end(), begin());
-
+        CxArray<T,N>& operator= (const CxArray<T2,N>& rhs) {
+        std::copy(rhs.begin(),rhs.end(), begin());
             return *this;
         }
 
-        //--------------------------------------------------
-        //assign one value to all elements (synonym for fill)
-        void
-        assign(const TypeT &value) { //
-            fill(value);
+        // assign one value to all elements
+        void assign (const T& value) {
+            fill ( value );
+        }    // A synonym for fill
+
+        void fill   (const T& value) {
+            std::fill_n(begin(),size(),value);
         }
 
-        void
-        fill(const TypeT &value) {
-            std::fill_n(begin(), size(), value);
-        }
-
-        void
-        clear() {
+        void clear() {
             fill(0);
         }
 
-        //--------------------------------------------------
         // check range (may be private because it is static)
-        static
-        void
-        rangecheck(size_type i) {
+        static void rangecheck (size_type i) {
             if (i >= size()) {
-                /////boost::out_of_range e("CxArray<>: index out of range");
-                /////boost::throw_exception(e);
-
-                std::out_of_range e("CxArray<>: index out of range");
-                throw std::exception(e);
+                std::out_of_range e("array<>: index out of range");
+                ////boost::throw_exception(e);
             }
         }
 };
-//---------------------------------------------------------------------------
+
+
+// comparisons
 namespace NxArray {
-    //comparisons
     template<class T, std::size_t N>
-    bool
-    operator == (const CxArray<T,N> &x, const CxArray<T,N> &y) {
+    bool operator== (const CxArray<T,N>& x, const CxArray<T,N>& y) {
         return std::equal(x.begin(), x.end(), y.begin());
     }
-
     template<class T, std::size_t N>
-    bool
-    operator < (const CxArray<T, N> &x, const CxArray<T, N> &y) {
-        return std::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
+    bool operator< (const CxArray<T,N>& x, const CxArray<T,N>& y) {
+        return std::lexicographical_compare(x.begin(),x.end(),y.begin(),y.end());
+    }
+    template<class T, std::size_t N>
+    bool operator!= (const CxArray<T,N>& x, const CxArray<T,N>& y) {
+        return !(x==y);
+    }
+    template<class T, std::size_t N>
+    bool operator> (const CxArray<T,N>& x, const CxArray<T,N>& y) {
+        return y<x;
+    }
+    template<class T, std::size_t N>
+    bool operator<= (const CxArray<T,N>& x, const CxArray<T,N>& y) {
+        return !(y<x);
+    }
+    template<class T, std::size_t N>
+    bool operator>= (const CxArray<T,N>& x, const CxArray<T,N>& y) {
+        return !(x<y);
     }
 
+    // global swap()
     template<class T, std::size_t N>
-    bool
-    operator != (const CxArray<T, N> &x, const CxArray<T,N> &y) {
-        return !(x == y);
-    }
-
-    template<class T, std::size_t N>
-    bool
-    operator > (const CxArray<T, N> &x, const CxArray<T, N> &y) {
-        return y < x;
-    }
-
-    template<class T, std::size_t N>
-    bool
-    operator <= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
-        return !(y < x);
-    }
-
-    template<class T, std::size_t N>
-    bool
-    operator >= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
-        return !(x < y);
-    }
-
-    //global swap()
-    template<class T, std::size_t N>
-    inline
-    void
-    swap (CxArray<T, N > &x, CxArray<T, N> &y) {
+    inline void swap (CxArray<T,N>& x, CxArray<T,N>& y) {
         x.swap(y);
     }
 }
 
+#if xTEMP_DISABLED
+    // Specific for boost::array: simply returns its elems data member.
+    template <typename T, std::size_t N>
+    T(&get_c_array(boost::CxArray<T,N>& arg))[N] {
+        return arg.elems;
+    }
+
+    // Const version.
+    template <typename T, std::size_t N>
+    const T(&get_c_array(const boost::CxArray<T,N>& arg))[N] {
+        return arg.elems;
+    }
+#endif
+
+#if 0
+    // Overload for std::array, assuming that std::array will have
+    // explicit conversion functions as discussed at the WG21 meeting
+    // in Summit, March 2009.
+    template <typename T, std::size_t N>
+    T(&get_c_array(std::array<T,N>& arg))[N] {
+        return static_cast<T(&)[N]>(arg);
+    }
+
+    // Const version.
+    template <typename T, std::size_t N>
+    const T(&get_c_array(const std::array<T,N>& arg))[N] {
+        return static_cast<T(&)[N]>(arg);
+    }
+#endif
+//---------------------------------------------------------------------------
 namespace NxArray {
     //DONE: make_array (2 elements)
     template<typename T>
@@ -289,6 +236,8 @@ namespace NxArray {
         return aArrayT;
     }
 }
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Common/CxArray.inl>
 //---------------------------------------------------------------------------

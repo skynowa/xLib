@@ -14,6 +14,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxObject :
     public CxNonCopyable
     /// Pkcs11 object
@@ -67,6 +69,8 @@ class CxObject :
             ///< finishes a search for token and session objects
     #endif
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

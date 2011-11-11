@@ -10,8 +10,11 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
 #include <GDIPlus.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxImage :
     public CxNonCopyable
     /// GDI+ image
@@ -68,6 +71,9 @@ class CxImage :
         BOOL            _bGetEncoderClsid(const std::string_t &csFormat, CLSID *pcidClsid);
             ///< get encoder clsid
 };
+
+xNAMESPACE_END(NxLib)
+
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_GdiPlus_CxImageH

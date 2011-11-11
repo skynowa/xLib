@@ -9,9 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-namespace NxLib {
-    typedef std::map<std::string_t, std::string_t> TLocalStorage;
-}
+xNAMESPACE_BEGIN(NxLib)
+
+typedef std::map<std::string_t, std::string_t> TLocalStorage;
 
 class CxLocalStorage :
     public CxNonCopyable
@@ -88,5 +88,7 @@ class CxLocalStorage :
         BOOL                   _bWrite        (const std::string_t &csKey, const std::string_t &csValue);
             ///< flush to TLocalStorage, file
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxLocalStorageH

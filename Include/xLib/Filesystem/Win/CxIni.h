@@ -10,6 +10,9 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxIni :
     public CxNonCopyable
     /// ini
@@ -60,6 +63,9 @@ class CxIni :
     private:
         std::string_t _m_sFilePath;
 };
+
+xNAMESPACE_END(NxLib)
+
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_Win_CxIniH

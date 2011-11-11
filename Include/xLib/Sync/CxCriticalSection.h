@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCriticalSection :
     public CxNonCopyable
     /// critical section
@@ -38,5 +40,7 @@ class CxCriticalSection :
     private:
         TxHandle          _m_hHandle;   ///< critical section handle
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxCriticalSectionH

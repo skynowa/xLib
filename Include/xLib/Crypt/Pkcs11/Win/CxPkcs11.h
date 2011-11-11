@@ -13,6 +13,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxPkcs11 :
     public CxNonCopyable
     /// Aladdin eToken, PKCS#11
@@ -36,6 +38,8 @@ class CxPkcs11 :
         BOOL                 bFinalize     ();
             ///< finalize PKCS#11
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

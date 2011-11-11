@@ -9,10 +9,12 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 #if defined(xOS_ENV_UNIX)
     typedef int SOCKET;
 #endif
-//---------------------------------------------------------------------------
+
 class CxSocket :
     public CxNonCopyable
     /// socket
@@ -259,6 +261,8 @@ class CxSocket :
 
     private:
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxSocket
 

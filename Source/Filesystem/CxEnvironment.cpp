@@ -9,6 +9,10 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
+extern char **environ;  //from <env.h>
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -150,7 +154,6 @@ CxEnvironment::bGetValues(
     BOOL bRes = ::FreeEnvironmentStrings(lpvEnv);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    extern char **environ;  //from <env.h>
     /*DEBUG*/xASSERT_RET(NULL != environ, FALSE);
 
     for (size_t i = 0; NULL != environ[i]; ++ i) {
@@ -247,3 +250,5 @@ CxEnvironment::~CxEnvironment() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

@@ -20,6 +20,8 @@
 #endif
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -398,3 +400,5 @@ CxBlowfish::cmGetFileCryptStatus(
     return cmRes;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

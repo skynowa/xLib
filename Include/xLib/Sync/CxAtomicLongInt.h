@@ -10,6 +10,9 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxAtomicLongInt :
     public CxNonCopyable
     /// atomic operartions with LONG
@@ -36,7 +39,8 @@ class CxAtomicLongInt :
     private:
         LONG             _m_liValue;
 };
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

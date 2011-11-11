@@ -15,6 +15,8 @@
 
 #endif
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxConsole :
     public CxNonCopyable
     /// console
@@ -98,6 +100,8 @@ class CxConsole :
 
     #endif
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxConsoleH
 

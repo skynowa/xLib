@@ -15,6 +15,9 @@
 #define ID_btnCancel    IDCANCEL
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxInputBox :
     public CxNonCopyable
     /// input box
@@ -48,7 +51,8 @@ class CxInputBox :
         static LRESULT CALLBACK _ms_pWndProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
             ///< window callback
 };
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

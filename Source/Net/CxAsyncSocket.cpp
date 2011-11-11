@@ -7,6 +7,8 @@
 #include <xLib/Net/CxAsyncSocket.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
 CxAsyncSocket::CxAsyncSocket() {
 
@@ -17,3 +19,5 @@ CxAsyncSocket::~CxAsyncSocket() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

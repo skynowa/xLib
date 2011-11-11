@@ -17,7 +17,8 @@
     #include <mysql/errmsg.h>
 #endif
 //---------------------------------------------------------------------------
-/// MySQL connection
+xNAMESPACE_BEGIN(NxLib)
+
 class CxMySQLConnection :
     public CxNonCopyable
     /// MySQL connection
@@ -54,7 +55,6 @@ class CxMySQLConnection :
             ///< pointer to connection
 };
 //---------------------------------------------------------------------------
-/// MySQL recordset
 class CxMySQLRecordset :
     public CxNonCopyable
     /// MySQL recordset
@@ -94,6 +94,8 @@ class CxMySQLRecordset :
         BOOL                     _bFetchRow       (MYSQL_ROW *pmrRow) const;
             ///< A MYSQL_ROW structure for the next row
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Db_CxMySqlH
 

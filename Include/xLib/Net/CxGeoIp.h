@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <GeoIP.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxGeoIp :
     public CxNonCopyable
     /// GeoIP
@@ -44,5 +46,7 @@ class CxGeoIp :
     private:
         GeoIP        *_m_pgiGeoIp;    ///< pointer to GeoIP
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxGeoIpH

@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxAppSettings :
     public CxNonCopyable
     /// application settings
@@ -29,5 +31,7 @@ class CxAppSettings :
                             CxAppSettings();
         virtual            ~CxAppSettings();
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxAppSettingsH

@@ -8,6 +8,8 @@
 #include <xLib/Common/CxConsole.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -126,3 +128,5 @@ CxMsgBoxT::iShow(
     return mrRes;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

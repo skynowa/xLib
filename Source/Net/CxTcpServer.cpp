@@ -7,6 +7,8 @@
 #include <xLib/Net/CxTcpServer.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
 CxTcpServer::CxTcpServer() {
 
@@ -93,4 +95,6 @@ CxTcpServer::bAccept(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
 

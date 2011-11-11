@@ -7,6 +7,8 @@
 #ifndef xLib_Pkcs11_CommonH
 #define xLib_Pkcs11_CommonH
 //---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+//---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
     #include "SDK/SDK 4.53/pkcs11.h"
     #include "SDK/SDK 4.53/eTSAPI.h"

@@ -13,6 +13,8 @@
 #endif
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    CxMySQLConnection
 *
@@ -388,3 +390,5 @@ CxMySQLRecordset::_bFetchLengths(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

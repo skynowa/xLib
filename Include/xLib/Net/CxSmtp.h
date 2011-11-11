@@ -12,6 +12,8 @@
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxSmtp :
     public CxNonCopyable
     /// SMTP (RFC 2821)
@@ -41,6 +43,8 @@ class CxSmtp :
         BOOL                _bCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/
         BOOL                _bIsError   (const std::string &csText);
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif
 

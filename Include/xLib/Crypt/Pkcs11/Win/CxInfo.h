@@ -13,6 +13,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxInfo :
     public CxNonCopyable
     /// Pkcs11 info
@@ -31,6 +33,8 @@ class CxInfo :
     private:
         CK_FUNCTION_LIST_PTR _m_pFunc;    ///< pointer to dll's function list
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

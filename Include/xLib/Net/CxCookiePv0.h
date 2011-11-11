@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCookiePv0 :
     public CxNonCopyable
     /// cookie version 0
@@ -75,5 +77,7 @@ class CxCookiePv0 :
         BOOL                 _m_bSecure;    ///< secure
         BOOL                 _m_bHttpOnly;    ///< http only
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxCookiePv0H

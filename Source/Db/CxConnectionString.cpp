@@ -7,6 +7,8 @@
 #include <xLib/Db/CxConnectionString.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -73,3 +75,5 @@ CxConnectionString::~CxConnectionString() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

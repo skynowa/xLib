@@ -7,6 +7,8 @@
 #include <xLib/Sync/CxAutoCriticalSection.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -47,3 +49,5 @@ CxAutoCriticalSection::bIsLocked() const {
     return _m_bIsLocked;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

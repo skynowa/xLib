@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxTestManager :
     public CxNonCopyable
     /// manage tests (CxTest)
@@ -31,6 +33,8 @@ class CxTestManager :
         const BOOL _m_cbIsUseTracing;   ///< is use tracing
         TContainer _m_ctnTests;         ///< CxTest's container
 };
+
+xNAMESPACE_END(NxLib)
 
 //TODO: not enough RAM
 //TODO: not enough HDD

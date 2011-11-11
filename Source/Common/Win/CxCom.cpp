@@ -8,6 +8,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 LONG CxCom::_ms_lInitCount = 0;
 
 /****************************************************************************
@@ -53,4 +56,7 @@ CxCom::bIsInit() {
     return (_ms_lInitCount > 0L);
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
+
 #endif

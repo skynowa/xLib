@@ -15,6 +15,8 @@
 
 #endif
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxFileLog :
     public CxNonCopyable
     /// logging to file
@@ -56,5 +58,7 @@ class CxFileLog :
         BOOL                 _bDeleteIfFull();
             ///< delete log, if full
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxFileLogH

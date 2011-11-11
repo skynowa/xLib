@@ -7,6 +7,8 @@
 #include <xLib/Sync/CxEvent.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -190,3 +192,5 @@ CxEvent::bIsSignaled() {
 #endif
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

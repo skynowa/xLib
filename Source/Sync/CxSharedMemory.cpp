@@ -7,6 +7,8 @@
 #include <xLib/Sync/CxSharedMemory.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -24,3 +26,5 @@ CxSharedMemory::~CxSharedMemory() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

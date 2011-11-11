@@ -14,7 +14,7 @@
 #define xLIB_DATE                       xDATETIME
     ///< xLib build datetime stamp
 
-#define xUSING_NAMESPACE                1
+#define xUSING_NAMESPACE_NXLIB          1
     ///< automatically include the NxLib namespace
 
 //log mode (only one mode can be activated)

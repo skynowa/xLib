@@ -11,6 +11,8 @@
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Common/CxDateTime.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxProfiler :
     public CxNonCopyable
     /// code profiling (msec)
@@ -104,6 +106,8 @@ class CxProfiler :
             ///< porting from Linux gettimeofday
     #endif
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxProfilerH
 

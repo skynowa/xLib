@@ -12,6 +12,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public: creation
 *
@@ -598,4 +601,7 @@ CxIni::bSectionDelete(
     return TRUE;
 }
 //-------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
+
 #endif

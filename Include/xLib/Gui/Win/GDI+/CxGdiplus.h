@@ -11,6 +11,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxGdiplus :
     public CxNonCopyable
     /// GDI+
@@ -24,6 +26,8 @@ class CxGdiplus :
     private:
         ULONG_PTR _m_pulToken;    ///< for private use
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

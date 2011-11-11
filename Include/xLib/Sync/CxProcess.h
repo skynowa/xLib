@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxProcess :
     public CxNonCopyable
     /// process
@@ -39,5 +41,7 @@ class CxProcess :
                      CxProcess        ();
         virtual     ~CxProcess        ();
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Sync_CxProcessH

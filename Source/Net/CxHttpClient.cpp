@@ -7,6 +7,8 @@
 #include <xLib/Net/CxHttpClient.h>  //65536
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
 CxHttpClient::CxHttpClient() {
 
@@ -190,3 +192,5 @@ CxHttpClient::CxBody::~CxBody() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxLocale :
     public CxNonCopyable
     /// locale
@@ -27,5 +29,7 @@ class CxLocale :
        virtual            ~CxLocale   ();
                  ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxLocaleH

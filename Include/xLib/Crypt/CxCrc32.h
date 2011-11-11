@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCrc32 :
     public CxNonCopyable
     /// Crc32
@@ -33,5 +35,7 @@ class CxCrc32 :
         virtual            ~CxCrc32       ();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Crypt_CxCrc32H

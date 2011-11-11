@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxReport :
     public CxNonCopyable
     /// debug report
@@ -113,6 +115,8 @@ class CxReport :
         BOOL                  _bInitFormated     ();
             ///< initiate formatrd report
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Debug/CxReport.inl>
 //---------------------------------------------------------------------------

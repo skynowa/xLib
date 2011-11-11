@@ -16,6 +16,9 @@
 #endif
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxMutex :
     public CxNonCopyable
     /// mutex
@@ -33,7 +36,8 @@ class CxMutex :
     private:
         CxHandle _m_hMutex;
 };
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

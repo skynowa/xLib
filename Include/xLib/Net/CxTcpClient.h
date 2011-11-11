@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxSocket.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxTcpClient :
     public CxSocket
     /// client socket
@@ -44,6 +46,8 @@ class CxTcpClient :
 };
 //TODO: bIsWritable repeats from CxSocket
 //TODO: bIsReadable repeats from CxSocket
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxTcpClientH
 

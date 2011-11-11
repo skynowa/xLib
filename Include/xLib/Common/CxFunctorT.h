@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 template <class ClassT, typename ReturnT, typename ParamT>
 class CxFunctorT
     /// function object
@@ -31,6 +33,8 @@ class CxFunctorT
         ClassT  *_m_pObject;
         Method   _m_Method;
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Common/CxFunctorT.inl>
 //---------------------------------------------------------------------------

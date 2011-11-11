@@ -9,6 +9,8 @@
 
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -346,4 +348,7 @@ CxImage::_bGetEncoderClsid(
     return FALSE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
+
 #endif

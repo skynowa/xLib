@@ -7,6 +7,8 @@
 #include <xLib/Debug/CxAutoProfiler.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -42,3 +44,5 @@ CxAutoProfiler::~CxAutoProfiler() {
     (void)_m_pfProfiler.bStop(_m_sComment.c_str());
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

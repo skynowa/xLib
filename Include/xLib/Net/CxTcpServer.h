@@ -10,6 +10,8 @@
 #include <xLib/Net/CxSocket.h>
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxTcpServer :
     public CxSocket
     /// server socket
@@ -30,6 +32,8 @@ class CxTcpServer :
     protected:
         timeval     _m_tvTimeout;        ///< timeout
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxTcpServerH
 

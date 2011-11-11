@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxStdError :
     public CxNonCopyable
     /// standard C library last error
@@ -31,5 +33,7 @@ class CxStdError :
         virtual            ~CxStdError();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxStdErrorH

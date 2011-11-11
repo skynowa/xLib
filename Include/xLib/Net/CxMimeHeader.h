@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxMimeHeader :
     public CxNonCopyable
     /// MIME header (RFC 822)
@@ -53,6 +55,8 @@ class CxMimeHeader :
         //Date:
         //Message-ID:
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxMimeHeaderH
 

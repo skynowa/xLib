@@ -7,6 +7,8 @@
 #include <xLib/Common/CxCommandLine.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *   public
 *
@@ -103,3 +105,5 @@ CxCommandLine::~CxCommandLine() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

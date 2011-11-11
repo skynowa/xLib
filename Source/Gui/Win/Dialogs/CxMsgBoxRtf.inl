@@ -11,8 +11,10 @@
 #include <richedit.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
-namespace CxMsgBoxRtf {
+xNAMESPACE_BEGIN(CxMsgBoxRtf)
 
 #define xCXWINDOW_CONTROL_CLASS                 xT("WC_XWINDOW")
 #define xCXLAYOUT_CONTROL_CLASS                 xT("WC_XLAYOUT")
@@ -324,5 +326,7 @@ iShow(
     return /*lpRes*/g_mrRes;
 }
 //---------------------------------------------------------------------------
-}; //namespace CxMsgBoxRtf
+xNAMESPACE_END(CxMsgBoxRtf)
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

@@ -13,6 +13,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxUtils :
     public CxNonCopyable
     /// Pkcs11 utils
@@ -27,6 +29,8 @@ class CxUtils :
         virtual            ~CxUtils  ();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

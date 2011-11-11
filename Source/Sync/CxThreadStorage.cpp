@@ -7,6 +7,8 @@
 #include <xLib/Sync/CxThreadStorage.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -134,3 +136,5 @@ CxThreadStorage::_bFree() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

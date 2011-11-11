@@ -9,6 +9,8 @@
 #include <xLib/Common/CxType.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *   public
 *
@@ -87,3 +89,5 @@ CxTestManager::bRun(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

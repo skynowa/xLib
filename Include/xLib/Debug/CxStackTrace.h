@@ -11,6 +11,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxConst.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxStackTrace :
     public CxNonCopyable
     /// stack trace
@@ -34,5 +36,7 @@ class CxStackTrace :
     #endif
             ///< maximum frames for report
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxStackTraceH

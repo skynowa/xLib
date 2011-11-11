@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxProfiler.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxAutoProfiler :
     public CxNonCopyable
     /// auto code profiling
@@ -24,5 +26,7 @@ class CxAutoProfiler :
         CxProfiler   _m_pfProfiler; ///< profiler
         std::string_t _m_sComment;   ///< comment
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxAutoProfilerH

@@ -37,7 +37,7 @@
 // OS version
 #define xOS_WIN_VER     WINVER
 #define xOS_LINUX_VER   0
-#define xOS_FREEBSD_VER    __FreeBSD__
+#define xOS_FREEBSD_VER __FreeBSD__
 
 //---------------------------------------------------------------------------
 // OS architecture
@@ -76,13 +76,13 @@
 #endif
 
 // compiler version
-#define xCOMPILER_MINGW32_MAJOR_VER    __MINGW32_MAJOR_VERSION
-#define xCOMPILER_MINGW32_MINOR_VER    __MINGW32_MINOR_VERSION
+#define xCOMPILER_MINGW32_MAJOR_VER __MINGW32_MAJOR_VERSION
+#define xCOMPILER_MINGW32_MINOR_VER __MINGW32_MINOR_VERSION
 
-#define xCOMPILER_INTEL_VER            __INTEL_COMPILER
+#define xCOMPILER_INTEL_VER         __INTEL_COMPILER
 #define xCOMPILER_MS_VER            _MSC_VER
-#define xCOMPILER_CODEGEAR_VER        __CODEGEARC__
-#define xCOMPILER_GNUC_VER            __GNUC_VERSION__
+#define xCOMPILER_CODEGEAR_VER      __CODEGEARC__
+#define xCOMPILER_GNUC_VER          __GNUC_VERSION__
 //---------------------------------------------------------------------------
 // unicode, ansi
 #if defined(UNICODE) || defined(_UNICODE)

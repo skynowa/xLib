@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxConsoleLog :
     public CxNonCopyable
     /// logging to console
@@ -27,5 +29,7 @@ class CxConsoleLog :
         static CxCriticalSection _ms_csConsole;        ///< critical section
         BOOL                     _m_bIsUseTimeStr;    ///< is use time string
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxConsoleLogH

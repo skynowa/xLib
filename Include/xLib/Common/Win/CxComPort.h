@@ -15,6 +15,9 @@
 #endif
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCOMPort :
     public CxNonCopyable
     /// COM port
@@ -47,7 +50,8 @@ class CxCOMPort :
         COMSTAT      ComState;
         OVERLAPPED   Overlap;
 };
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
