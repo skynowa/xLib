@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxFileAttribute :
     public CxNonCopyable
     /// file attribute
@@ -69,5 +71,7 @@ class CxFileAttribute :
         virtual          ~CxFileAttribute();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxFileAttributeH

@@ -9,6 +9,8 @@
 #endif
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *   public
 *
@@ -79,3 +81,5 @@ CxType::bIsEquals(
     return static_cast<BOOL>( sGetRawName(cObjectT1) == sGetRawName(cObjectT2) );
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

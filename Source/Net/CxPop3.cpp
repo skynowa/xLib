@@ -9,6 +9,8 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    private
 *
@@ -572,3 +574,5 @@ CxPop3::_bIsError(const std::string_t &csText) {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

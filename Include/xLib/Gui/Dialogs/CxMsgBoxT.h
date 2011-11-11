@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxMsgBoxT :
     public CxNonCopyable
     /// message box
@@ -52,6 +54,8 @@ class CxMsgBoxT :
         virtual            ~CxMsgBoxT();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Gui/Dialogs/CxMsgBoxT.inl>
 //---------------------------------------------------------------------------

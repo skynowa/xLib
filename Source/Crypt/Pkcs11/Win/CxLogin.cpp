@@ -11,6 +11,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -65,4 +68,7 @@ CxLogin::bLogout() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
+
 #endif

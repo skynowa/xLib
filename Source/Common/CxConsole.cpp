@@ -11,6 +11,8 @@
 #include <xLib/Sync/CxProcess.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -533,3 +535,5 @@ CxConsole::_hGetMenuHandle(
 
 #endif
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

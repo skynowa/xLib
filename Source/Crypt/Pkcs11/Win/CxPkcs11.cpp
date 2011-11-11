@@ -10,6 +10,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -88,4 +91,7 @@ CxPkcs11::bFinalize() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
+
 #endif

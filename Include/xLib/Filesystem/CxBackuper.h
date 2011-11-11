@@ -9,12 +9,14 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxBackuper :
     public CxNonCopyable
     /// backup file
 {
-	public:
-        enum EErrorType 
+    public:
+        enum EErrorType
             /// error type
         {
             etUnknown,
@@ -24,7 +26,7 @@ class CxBackuper :
             etCopyingFail
         };
 
-        enum EBackupPeriod 
+        enum EBackupPeriod
             /// backup period
         {
             bpUnknown,
@@ -34,10 +36,10 @@ class CxBackuper :
             //TODO: bpMonthly
         };
 
-		explicit             CxBackuper(const EBackupPeriod cbpPeriod);
+        explicit             CxBackuper(const EBackupPeriod cbpPeriod);
             ///< constructor
-		virtual             ~CxBackuper();
-		    ///< destructor
+        virtual             ~CxBackuper();
+            ///< destructor
 
         EErrorType           etExecute (const std::string_t &csFilePath, const std::string_t &csDestDirPath, std::string_t *psDestFilePath);
             ///< backup
@@ -46,5 +48,7 @@ class CxBackuper :
         const EBackupPeriod  _m_cbpPeriod;  ///< backup period
 
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_CxBackuperH

@@ -7,6 +7,8 @@
 #include <xLib/Filesystem/CxDll.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -98,3 +100,5 @@ CxDll::bFree() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

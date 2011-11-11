@@ -7,6 +7,10 @@
 #ifndef xLib_Common_CxNonAssignableH
 #define xLib_Common_CxNonAssignableH
 //---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+//---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxNonAssignable
     /// non assignable class
 {
@@ -22,5 +26,7 @@ class CxNonAssignable
         const CxNonAssignable &operator = (const CxNonAssignable &);
             ///< operator =
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_CxNonAssignableH

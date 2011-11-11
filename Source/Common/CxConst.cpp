@@ -7,6 +7,8 @@
 #include <xLib/Common/CxConst.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -235,3 +237,4 @@ const std::string_t CxConst::xHYPHEN           (xT("-"));
 #endif
 //---------------------------------------------------------------------------
 
+xNAMESPACE_END(NxLib)

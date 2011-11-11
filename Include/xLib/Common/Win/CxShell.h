@@ -17,6 +17,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxShell :
     public CxNonCopyable
     /// shell
@@ -146,6 +148,8 @@ class CxShell :
         virtual            ~CxShell           ();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

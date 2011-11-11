@@ -7,6 +7,8 @@
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -22,3 +24,5 @@ CxMsgBoxT::~CxMsgBoxT() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

@@ -9,9 +9,11 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-namespace CxMsgBoxRtf
+xNAMESPACE_BEGIN(NxLib)
+
+xNAMESPACE_BEGIN(CxMsgBoxRtf)
     /// formated message box
-{
+
     enum EModalResult
         /// modal result
     {
@@ -30,7 +32,10 @@ namespace CxMsgBoxRtf
         ///< window callback
     EModalResult     iShow         (HWND hwndOwner, const std::string_t &csMessage, const std::string_t &csTiltle);
         ///< show
-};
+
+xNAMESPACE_END(CxMsgBoxRtf)
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Gui/Win/Dialogs/CxMsgBoxRtf.inl>
 //---------------------------------------------------------------------------

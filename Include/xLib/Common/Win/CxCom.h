@@ -10,6 +10,9 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCom :
     public CxNonCopyable
     /// COM
@@ -38,6 +41,9 @@ class CxCom :
         ULONG       _m_ulConModel;  ///< COM model
         static LONG _ms_lInitCount; ///< init counter
 };
+
+xNAMESPACE_END(NxLib)
+
 #endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_Win_CxComH

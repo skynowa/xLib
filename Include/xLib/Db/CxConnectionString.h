@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxConnectionString :
     public CxNonCopyable
     /// DB connection string
@@ -23,5 +25,7 @@ class CxConnectionString :
         virtual            ~CxConnectionString();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Db_CxConnectionStringH

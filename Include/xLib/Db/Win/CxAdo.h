@@ -9,6 +9,9 @@
 
 
 #if defined(xOS_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 #import "C:/Program Files/Common Files/System/ado/msado15.dll" no_namespace rename("EOF","EoF")
 
 #include <string>
@@ -336,7 +339,9 @@ class CADOConnection
         friend class CADORecordset;
 };
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
+//---------------------------------------------------------------------------
 #endif

@@ -20,6 +20,9 @@
 ////#include <functional>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 template<class TaskT>
 class CxThreadPool :
     public CxThread
@@ -81,9 +84,10 @@ class CxThreadPool :
     protected:
         virtual UINT              uiOnRun      (void *pvParam);    /*overload*/
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Sync/CxThreadPool.inl>
-#elif defined(xOS_ENV_UNIX)
 
 #endif
 //---------------------------------------------------------------------------

@@ -8,6 +8,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -242,6 +245,7 @@ CxInputBox::_ms_pWndProc(
     return ::DefWindowProc(hWnd, uiMsg, wParam, lParam);
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif

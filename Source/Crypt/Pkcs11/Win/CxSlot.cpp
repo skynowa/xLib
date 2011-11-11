@@ -10,6 +10,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -107,4 +110,7 @@ CxSlot::nfWaitForEvent(
     return nfRemoval;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
+
 #endif

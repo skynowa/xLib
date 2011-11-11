@@ -7,6 +7,8 @@
 #include <xLib/Sync/CxCriticalSection.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -133,3 +135,5 @@ CxCriticalSection::bUnlock() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

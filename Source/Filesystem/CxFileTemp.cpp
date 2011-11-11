@@ -6,8 +6,11 @@
 
 #include <xLib/Filesystem/CxFileTemp.h>
 
+#include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
+
+xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
 *   public
@@ -90,3 +93,5 @@ CxFileTemp::bCreate(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

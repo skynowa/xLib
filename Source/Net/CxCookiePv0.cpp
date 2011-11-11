@@ -10,6 +10,8 @@
 #include <xLib/Filesystem/CxEnvironment.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *   public
 *
@@ -349,3 +351,5 @@ CxCookiePv0::bInit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

@@ -14,6 +14,8 @@
 #endif
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
 BOOL
 bDownloadURL(
@@ -56,4 +58,7 @@ bDownloadURL(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
+
 #endif

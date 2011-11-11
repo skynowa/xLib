@@ -15,6 +15,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCompletionPort :
     public CxNonCopyable
     /// completion port
@@ -31,6 +33,8 @@ class CxCompletionPort :
     private:
         CxHandle _m_hCP;
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

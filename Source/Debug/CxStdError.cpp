@@ -7,6 +7,8 @@
 #include <xLib/Debug/CxStdError.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -103,3 +105,5 @@ CxStdError::~CxStdError() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

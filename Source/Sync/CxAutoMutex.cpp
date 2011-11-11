@@ -8,6 +8,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -37,6 +40,7 @@ CxAutoMutex::~CxAutoMutex() {
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif

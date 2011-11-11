@@ -11,7 +11,8 @@
 #include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
 //overload operators << for std::basic_ostream
-namespace std {
+xNAMESPACE_BEGIN(std)
+
     template<class Traits>
     inline basic_ostream<char_t, Traits> &
     operator << (basic_ostream<char_t, Traits> &osOut, const std::ustring &cusValue);
@@ -31,8 +32,11 @@ namespace std {
     inline basic_ostream<char_t, Traits> &
     operator << (basic_ostream<char_t, Traits> &osOut, const multimap<T1, T2> &cmmValueT);
         ///< overload operators << for std::multimap
-}
+
+xNAMESPACE_END(std)
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxString :
     public CxNonCopyable
     /// strings utils
@@ -165,6 +169,8 @@ class CxString :
         virtual             ~CxString          ();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Common/CxString.inl>
 //---------------------------------------------------------------------------

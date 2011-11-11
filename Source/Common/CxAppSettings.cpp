@@ -7,6 +7,8 @@
 #include <xLib/Common/CxAppSettings.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public, static
 *
@@ -47,3 +49,5 @@ CxAppSettings::~CxAppSettings() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

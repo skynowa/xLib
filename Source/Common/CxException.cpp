@@ -7,6 +7,8 @@
 #include <xLib/Common/CxException.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -31,3 +33,5 @@ CxException::sGetWhat() const {
     return _m_sMsg;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

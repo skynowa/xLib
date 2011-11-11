@@ -10,6 +10,9 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxCpuUsage :
     public CxNonCopyable
     /// cpu usage
@@ -29,7 +32,8 @@ class CxCpuUsage :
         LONGLONG      m_lnOldValue;
         LARGE_INTEGER m_OldPerfTime100nSec;
 };
-#elif defined(xOS_LINUX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

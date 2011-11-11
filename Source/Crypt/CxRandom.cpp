@@ -7,6 +7,8 @@
 #include <xLib/Crypt/CxRandom.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -284,3 +286,5 @@ CxRandom::liNext() {
     return rand();
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

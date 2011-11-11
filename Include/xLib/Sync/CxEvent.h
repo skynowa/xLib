@@ -17,6 +17,8 @@
 
 #endif
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxEvent :
     public CxNonCopyable
     /// event
@@ -69,5 +71,7 @@ class CxEvent :
         volatile BOOL     _m_bIsSignaled;   ///< is signaled flag
     #endif
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxEventH

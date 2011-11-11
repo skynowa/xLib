@@ -12,6 +12,8 @@
 #include <xLib/Sync/CxAutoCriticalSection.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -69,3 +71,5 @@ CxConsoleLog::bWrite(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

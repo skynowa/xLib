@@ -8,10 +8,13 @@
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Crypt/CxCrc32.h>
+#include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxVolume.h>
 
+
+xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
 *   public
@@ -55,25 +58,25 @@ CxBackuper::etExecute(
     xCHECK_DO(FALSE == bRes, CxDir::bCreateForce(csDestDirPath));
 
     //-------------------------------------
-    //process backup period 
+    //process backup period
     std::string_t sDateTimeStamp;
 
-	switch (_m_cbpPeriod) {
-    	//TODO: case bpHourly:	{ ; }    break;
-		case bpDaily:	{ sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDate);     }    break;
-		//TODO: case bpWeekly:	{ ; }    break;
-		//TODO: case bpMonthly:	{ ; }    break;
-    	
-    	default:        { sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDateTime); }    break;
+    switch (_m_cbpPeriod) {
+        //TODO: case bpHourly:    { ; }    break;
+        case bpDaily:    { sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDate);     }    break;
+        //TODO: case bpWeekly:    { ; }    break;
+        //TODO: case bpMonthly:    { ; }    break;
+
+        default:        { sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDateTime); }    break;
     }
 
     sDateTimeStamp = CxString::sReplaceAll(sDateTimeStamp, xT(":"), xT("-"));
 
     //-------------------------------------
     //format file full name
-    std::string_t sBackupFilePath = 
-                        CxPath::sSlashAppend(csDestDirPath) + 
-                        CxPath::sGetFullName(csFilePath)    +   
+    std::string_t sBackupFilePath =
+                        CxPath::sSlashAppend(csDestDirPath) +
+                        CxPath::sGetFullName(csFilePath)    +
                         xT(".bak [") + sDateTimeStamp + xT("]");
 
     bRes = CxFile::bIsExists(sBackupFilePath);
@@ -107,4 +110,6 @@ CxBackuper::etExecute(
     return etSuccess;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
 

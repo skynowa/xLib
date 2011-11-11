@@ -11,6 +11,8 @@
 #include <xLib/Sync/CxCurrentThread.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 * public
 *
@@ -384,3 +386,5 @@ CxProfiler::gettimeofday(
 
 #endif
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

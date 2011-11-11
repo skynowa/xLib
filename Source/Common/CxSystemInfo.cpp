@@ -9,6 +9,8 @@
 #include <xLib/Filesystem/CxEnvironment.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -478,3 +480,5 @@ CxSystemInfo::~CxSystemInfo(){
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

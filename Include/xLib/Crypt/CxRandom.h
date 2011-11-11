@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxRandom :
     public CxNonCopyable
     /// random
@@ -65,5 +67,7 @@ class CxRandom :
         double              _m_dNextNextGaussian;       ///< for private use
         bool                _m_bHaveNextNextGaussian;   ///< for private use
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Crypt_RandomH

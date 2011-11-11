@@ -12,6 +12,8 @@
 #include <xLib/Filesystem/CxEnvironment.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -156,3 +158,5 @@ CxTest::bSetName(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

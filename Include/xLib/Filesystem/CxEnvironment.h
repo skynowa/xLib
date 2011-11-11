@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxEnvironment :
     public CxNonCopyable
     /// system environment variables
@@ -33,6 +35,8 @@ class CxEnvironment :
         virtual            ~CxEnvironment ();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxEnvironmentH
 

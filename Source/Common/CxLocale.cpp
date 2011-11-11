@@ -6,8 +6,8 @@
 
 #include <xLib/Common/CxLocale.h>
 
-#include <locale.h>
 
+xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
 *    public
@@ -96,3 +96,5 @@ CxLocale::~CxLocale() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

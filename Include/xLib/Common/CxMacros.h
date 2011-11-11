@@ -8,8 +8,6 @@
 #define xLib_Common_CxMacrosH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/CxNonCopyable.h>
-#include <xLib/Filesystem/CxPath.h>
 //---------------------------------------------------------------------------
 #if xTEST_PRIVATE_METHODS
      #define private  public
@@ -381,7 +379,13 @@
 #elif defined(xOS_ENV_UNIX)
     #define xTIMEOUT_INFINITE   ~(0UL)      ///< infinite timeout
 #endif
+
 //---------------------------------------------------------------------------
+#include <xLib/Common/CxNonCopyable.h>
+#include <xLib/Common/xTypes.h>
+//---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxDebugger;
 
 class CxMacros :
@@ -490,6 +494,8 @@ class CxMacros :
                ~CxMacros();
                     ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxMacrosH
 

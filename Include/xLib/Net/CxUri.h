@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxUri :
     public CxNonCopyable
     /// URI (RFC 3986)
@@ -73,5 +75,7 @@ class CxUri :
         USHORT             _usGetDefaultPort() const;
         BOOL               _bIsDefaultPort  () const;
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxUriH

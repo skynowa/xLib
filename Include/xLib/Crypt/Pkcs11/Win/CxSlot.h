@@ -13,6 +13,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxSlot :
     public CxNonCopyable
     /// Pkcs11 slot
@@ -41,6 +43,8 @@ class CxSlot :
     private:
         CK_FUNCTION_LIST_PTR _m_pFunc;    ///< pointer to dll's functions list
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

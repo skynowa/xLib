@@ -11,6 +11,8 @@
 #include <xLib/Common/CxArray.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -869,3 +871,5 @@ CxString::sOemToCharBuff(
 *    other
 *
 *****************************************************************************/
+
+xNAMESPACE_END(NxLib)

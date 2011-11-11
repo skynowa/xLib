@@ -8,6 +8,9 @@
 
 
 #if defined(xOS_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    CADORecordset
 *
@@ -491,6 +494,7 @@ void CADOConnection::Execute(const char *pStrCmd) {
     }
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_LINUX)
+
+xNAMESPACE_END(NxLib)
 
 #endif

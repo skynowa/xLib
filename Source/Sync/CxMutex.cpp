@@ -8,6 +8,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -112,6 +115,7 @@ CxMutex::bWait(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif

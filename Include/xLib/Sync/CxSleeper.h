@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxSleeper :
     public CxNonCopyable
     /// sleeper
@@ -30,5 +32,7 @@ class CxSleeper :
     private:
         CxEvent  _m_objEvent;    ///< event object
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxSleeperH

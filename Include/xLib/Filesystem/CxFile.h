@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxFile :
     public CxNonCopyable
     /// file
@@ -273,6 +275,8 @@ class CxFile :
         static std::string_t  _sGetOpenMode(const EOpenMode comMode);
             ///< get open mode as string, by default use "r"
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif  //xLib_Filesystem_CxFileH
 

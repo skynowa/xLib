@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxHttpClient :
     public CxNonCopyable
     /// protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
@@ -94,5 +96,7 @@ class CxHttpClient::CxBody
     private:
 
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxHttpClientH

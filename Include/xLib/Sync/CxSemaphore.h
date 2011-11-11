@@ -16,6 +16,9 @@
 #endif
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxSemaphore :
     public CxNonCopyable
     /// semaphore
@@ -38,7 +41,8 @@ class CxSemaphore :
         LPSECURITY_ATTRIBUTES _m_psaAttributes;
         std::string_t          _m_sName;
 };
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

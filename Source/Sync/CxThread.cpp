@@ -10,7 +10,8 @@
 #include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Sync/CxProcess.h>
 
-////xNAMESPACE_BEGIN(NxLib)
+
+xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
 *    public
@@ -975,46 +976,6 @@ CxThread::hOpen(
 
 
 /****************************************************************************
-*    public: callbacks
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-void
-CxThread::vAttachHandler_OnEnter(
-    SClosureT<void(CxThread *pthSender)> vCallback
-)
-{
-    _m_vCallback_OnEnter = vCallback;
-    //_m_bFlag_OnEnter  = TRUE;
-}
-//---------------------------------------------------------------------------
-#if xTEMP_DISABLED
-    void vDetachHandler_OnEnter(CxThread *pthSender) {
-        //_m_bFlag_OnEnter         = FALSE;
-        _m_Callback_OnEnter.p_this = NULL;
-    }
-#endif
-//---------------------------------------------------------------------------
-void
-CxThread::vAttachHandler_OnExit(
-    SClosureT<void(CxThread *pthSender)> vCallback
-)
-{
-    _m_vCallback_OnExit = vCallback;
-    //_m_bFlag_OnExit    = TRUE;
-}
-//---------------------------------------------------------------------------
-#if xTEMP_DISABLED
-    void vDetachHandler_OnExit(CxThread *pthSender) {
-        //_m_bFlag_OnExit         = FALSE;
-        _m_Callback_OnExit.p_this = NULL;
-    }
-#endif
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
 *    protected: events
 *
 *****************************************************************************/
@@ -1114,7 +1075,9 @@ CxThread::_s_uiJobEntry(
         //-------------------------------------
         //begin of thread function
         try {
-            pthThis->_vHandler_OnEnter(pthThis);
+            #if xTODO
+                pthThis->_vHandler_OnEnter(pthThis);
+            #endif
         }
         catch (...) {
             /*DEBUG*/xASSERT(FALSE);
@@ -1136,7 +1099,9 @@ CxThread::_s_uiJobEntry(
         //-------------------------------------
         //end of thread function
         try {
-            pthThis->_vHandler_OnExit(pthThis);
+            #if xTODO
+                pthThis->_vHandler_OnExit(pthThis);
+            #endif
         }
         catch (...) {
             /*DEBUG*/xASSERT(FALSE);
@@ -1204,36 +1169,4 @@ CxThread::_vSetStatesDefault() {
 }
 //---------------------------------------------------------------------------
 
-
-/****************************************************************************
-*    callbacks
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-void
-CxThread::_vHandler_OnEnter(
-    CxThread *pthSender
-)
-{
-    //если произошел щелчкок мышки на нашей кнопке...
-    //if (TRUE == _m_bFlag_OnEnter) {
-    xCHECK_DO(NULL == _m_vCallback_OnEnter, return);
-
-    _m_vCallback_OnEnter(pthSender);
-}
-//---------------------------------------------------------------------------
-void
-CxThread::_vHandler_OnExit(
-    CxThread *pthSender
-)
-{
-    //если произошел щелчкок мышки на нашей кнопке...
-    //if (TRUE == _m_bFlag_OnExit) {
-    xCHECK_DO(NULL == _m_vCallback_OnExit, return)
-
-    _m_vCallback_OnExit(pthSender);
-}
-//---------------------------------------------------------------------------
-
-////xNAMESPACE_END(NxLib);
+xNAMESPACE_END(NxLib)

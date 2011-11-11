@@ -7,6 +7,8 @@
 #include <xLib/Sync/CxSleeper.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -55,3 +57,5 @@ CxSleeper::bIsSleeping() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

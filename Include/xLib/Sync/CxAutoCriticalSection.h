@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxAutoCriticalSection :
     public CxNonCopyable
     /// auto critical section
@@ -26,5 +28,7 @@ class CxAutoCriticalSection :
         CxCriticalSection &_m_csCS;         ///< critical section
         BOOL               _m_bIsLocked;    ///< lock flag for explicit unlock
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAutoCriticalSectionH

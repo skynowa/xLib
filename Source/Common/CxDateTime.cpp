@@ -9,6 +9,8 @@
 #include <xLib/Common/CxArray.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public: constructors, destructor
 *
@@ -1145,3 +1147,5 @@ CxDateTime::_bParse(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

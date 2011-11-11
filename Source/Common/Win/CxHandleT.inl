@@ -5,6 +5,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -327,4 +330,7 @@ CxHandleT<hvTag>::bIsValid(
     return TxFailValue::get() != chHandle;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
+
 #endif

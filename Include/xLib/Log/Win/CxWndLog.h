@@ -12,6 +12,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxWndLog :
     public CxNonCopyable
     /// logging to window
@@ -35,6 +37,8 @@ class CxWndLog :
            EWindowClass             _m_eWC;            ///< window class
            static CxCriticalSection _ms_csListBox;    ///< critical section
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

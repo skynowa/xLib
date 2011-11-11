@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxSocketInit :
     public CxNonCopyable
     /// initiates use of the Winsock DLL by a process
@@ -22,5 +24,7 @@ class CxSocketInit :
     private:
 
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Net_CxSocketInitH

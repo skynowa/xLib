@@ -13,6 +13,8 @@
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
 
+xNAMESPACE_BEGIN(NxLib)
+
 class CxMechanism :
     public CxNonCopyable
     /// Pkcs11 mechanism
@@ -31,6 +33,8 @@ class CxMechanism :
     private:
         CK_FUNCTION_LIST_PTR _m_pFunc;     ///< pointer to dll's functions list
 };
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

@@ -10,8 +10,14 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
-    BOOL bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
-        ///< download file using ftp, http, https
+
+    xNAMESPACE_BEGIN(NxLib)
+
+        BOOL bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
+            ///< download file using ftp, http, https
+
+    xNAMESPACE_END(NxLib)
+
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Units_bDownloadURLH

@@ -11,6 +11,8 @@
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxTraceLog :
     public CxNonCopyable
     /// tracing
@@ -30,5 +32,7 @@ class CxTraceLog :
         BOOL     _m_bIsEnable;        ///< is enabled
         BOOL     _m_bIsUseTimeStr;    ///< is use time string
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Log_CxTraceLogH

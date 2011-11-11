@@ -7,6 +7,8 @@
 #include <xLib/Filesystem/CxFileAttribute.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -164,3 +166,5 @@ CxFileAttribute::~CxFileAttribute() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

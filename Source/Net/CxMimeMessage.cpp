@@ -7,6 +7,8 @@
 #include <xLib/Net/CxMimeMessage.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
 CxMimeMessage::CxMimeMessage() {
 
@@ -51,4 +53,6 @@ CxMimeMessage::bSaveToRawFile(
     return FALSE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
 

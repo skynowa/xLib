@@ -11,6 +11,8 @@
 #include <xLib/Common/CxLocale.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
 const std::string_t CxMimeHeader::_ms_csAttrDelimiter = xT(":");
 const std::string_t CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n");
@@ -257,3 +259,4 @@ CxMimeHeader::sGenerateMessageID() {
 }
 //---------------------------------------------------------------------------
 
+xNAMESPACE_END(NxLib)

@@ -10,6 +10,8 @@
 #include <xLib/Filesystem/CxPath.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -24,3 +26,5 @@ CxSystemLog::~CxSystemLog() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

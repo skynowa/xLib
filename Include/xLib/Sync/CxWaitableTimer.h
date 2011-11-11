@@ -16,6 +16,9 @@
 #endif
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxWaitableTimer  :
     public CxNonCopyable
     /// waitable timer
@@ -34,7 +37,8 @@ class CxWaitableTimer  :
     private:
         CxHandle _m_hWaitableTimer;
 };
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------

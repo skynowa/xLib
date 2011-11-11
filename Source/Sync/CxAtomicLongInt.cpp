@@ -8,6 +8,9 @@
 
 
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -168,6 +171,7 @@ CxAtomicLongInt::operator -- (int iPos) {
     return *this;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
+
+xNAMESPACE_END(NxLib)
 
 #endif

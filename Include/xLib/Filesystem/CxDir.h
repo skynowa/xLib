@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxDir :
     public CxNonCopyable
     /// directory
@@ -57,5 +59,7 @@ class CxDir :
         virtual            ~CxDir       ();
             ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxDirH

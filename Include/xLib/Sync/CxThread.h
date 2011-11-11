@@ -8,14 +8,13 @@
 #define xLib_Sync_CxThreadH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/xClosure.h>
 #include <xLib/Sync/CxEvent.h>
 
 #if defined(xOS_ENV_WIN)
     #include <xLib/Common/Win/CxHandleT.h>
 #endif
 //---------------------------------------------------------------------------
-////xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(NxLib)
 
 class CxThread :
     public CxNonCopyable
@@ -143,12 +142,6 @@ class CxThread :
         static TxHandle     hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
             ///< opens an existing thread object
 
-        //callbacks
-        void                vAttachHandler_OnEnter(SClosureT<void(CxThread *pthSender)> vCallback);
-            ///<
-        void                vAttachHandler_OnExit (SClosureT<void(CxThread *pthSender)> vCallback);
-            ///<
-
     protected:
         //events
         virtual UINT        uiOnRun               (void *pvParam) = 0;
@@ -203,21 +196,11 @@ class CxThread :
         void                _vSetStatesDefault();
             ///< set states as default
 
-        //callbacks
-        SClosureT<void(CxThread *pthSender)> _m_vCallback_OnEnter;
-        BOOL                                 _m_bFlag_OnEnter;
-
-        SClosureT<void(CxThread *pthSender)> _m_vCallback_OnExit;
-        BOOL                                 _m_bFlag_OnExit;
-
-        void                _vHandler_OnEnter(CxThread *pthSender);
-        void                _vHandler_OnExit (CxThread *pthSender);
-
         //static
         static int          _iGetPriorityMin ();
         static int          _iGetPriorityMax ();
 };
 
-////xNAMESPACE_END(NxLib);
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxThreadH

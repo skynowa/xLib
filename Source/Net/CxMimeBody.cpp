@@ -7,6 +7,8 @@
 #include <xLib/Net/CxMimeBody.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
 CxMimeBody::CxMimeBody() {
 
@@ -18,3 +20,4 @@ CxMimeBody::~CxMimeBody() {
 }
 //---------------------------------------------------------------------------
 
+xNAMESPACE_END(NxLib)

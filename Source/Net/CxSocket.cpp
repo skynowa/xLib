@@ -7,6 +7,8 @@
 #include <xLib/Net/CxSocket.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -509,3 +511,5 @@ CxSocket::iGetLastError() {
 #endif
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

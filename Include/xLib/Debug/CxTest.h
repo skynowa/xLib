@@ -18,6 +18,8 @@
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Crypt/CxRandom.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxTest :
     public CxNonCopyable
     /// testing
@@ -74,5 +76,7 @@ class CxTest :
         std::string_t              _m_sWorkDirPath;  ///< work dir path
         std::string_t              _m_sName;         ///< test name
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxTestH

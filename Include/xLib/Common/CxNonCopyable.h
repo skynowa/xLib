@@ -7,6 +7,10 @@
 #ifndef xLib_Common_CxNonCopyableH
 #define xLib_Common_CxNonCopyableH
 //---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+//---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxNonCopyable
     /// non copyable class
 {
@@ -24,5 +28,7 @@ class CxNonCopyable
         const CxNonCopyable &operator = (const CxNonCopyable &);
             ///< operator =
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxNonCopyableH

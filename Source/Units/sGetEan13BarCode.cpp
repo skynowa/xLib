@@ -7,6 +7,8 @@
 #include <xLib/Units/sGetEan13BarCode.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 //---------------------------------------------------------------------------
 std::string_t
 sGetEan13BarCode(
@@ -247,3 +249,5 @@ sGetEan13Code(
     return sRes;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

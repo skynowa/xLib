@@ -68,11 +68,12 @@
 #include <cerrno>
 #include <limits>
 #include <stdexcept>
+#include <locale.h>
 
 //xLib
 namespace NxLib { }
 
-#if xUSING_NAMESPACE
+#if xUSING_NAMESPACE_NXLIB
     using namespace NxLib;
 #endif
 
@@ -82,11 +83,12 @@ namespace NxLib { }
     #include <xLib/Common/Linux/xCommon_Unix.h>
 #endif
 
-#include <xLib/Common/xTypes.h>
 #include <xLib/Common/xFunctions.h>
 #include <xLib/Common/xLinking.h>
-#include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxMacros.h>
+#include <xLib/Common/xTypes.h>
+
+#include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Common/CxString.h>

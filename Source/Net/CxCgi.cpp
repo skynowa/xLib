@@ -10,6 +10,9 @@
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Filesystem/CxFile.h>
 
+
+xNAMESPACE_BEGIN(NxLib)
+
 using namespace NxCgi;
 
 
@@ -950,3 +953,5 @@ CxCgiFormData::_bInit() {
     return TRUE;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

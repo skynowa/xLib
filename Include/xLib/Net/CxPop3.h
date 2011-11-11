@@ -15,6 +15,8 @@
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxPop3 :
     public CxNonCopyable
     /// POP3 (RFC 2821)
@@ -58,6 +60,8 @@ class CxPop3 :
         ULONG             _ulMailsSum         (const std::string_t &csServerAnswer);
         ULONG             _ulMailsSize        (const std::string_t &csServerAnswer);
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxPop3H
 

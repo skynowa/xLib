@@ -105,6 +105,8 @@ operator << (
 xNAMESPACE_END(std)
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *   lexical_cast
 *
@@ -219,3 +221,5 @@ CxString::lexical_cast(
     return ResT;
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

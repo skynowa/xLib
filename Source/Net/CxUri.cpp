@@ -6,6 +6,9 @@
 
 #include <xLib/Net/CxUri.h>
 
+
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 * public
 *
@@ -616,3 +619,5 @@ CxUri::_bIsDefaultPort() const {
     return static_cast<BOOL>( _m_usPort == _usGetDefaultPort() );
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

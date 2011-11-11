@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxThreadStorage :
     public CxNonCopyable
     /// thread local storage
@@ -41,5 +43,7 @@ class CxThreadStorage :
         TxIndex  _m_indIndex;
             ///< thread storage index
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //CxLib_Sync_CxThreadStorageH

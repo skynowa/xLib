@@ -54,6 +54,8 @@
 #define PROCESSOR_TIME_COUNTER_INDEX        6        // '% processor time' counter (for Win2K/XP)
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *    public
 *
@@ -301,6 +303,6 @@ CxCpuUsage::GetCpuUsage(DWORD dwProcessID) {
 }
 //---------------------------------------------------------------------------
 
-#elif defined(xOS_LINUX)
+xNAMESPACE_END(NxLib)
 
 #endif

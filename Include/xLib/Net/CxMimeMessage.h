@@ -11,6 +11,8 @@
 #include <xLib/Net/CxMimeHeader.h>
 #include <xLib/Net/CxMimeBody.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxMimeMessage :
     public CxNonCopyable
     /// MIME message (RFC 822)
@@ -26,5 +28,7 @@ class CxMimeMessage :
     private:
         std::string_t _m_csRawMessage;
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Net_CxMimeMessageH

@@ -10,6 +10,9 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN)
+
+xNAMESPACE_BEGIN(NxLib)
+
 class CxClipboard :
     public CxNonCopyable
     /// clipboard
@@ -80,6 +83,9 @@ class CxClipboard :
         BOOL    bSetData        (const EFormat cfmFormat, const HANDLE chData);
             ///< set data
 };
+
+xNAMESPACE_END(NxLib)
+
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_Win_CxClipboardH
