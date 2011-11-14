@@ -23,17 +23,6 @@
     #endif
 #endif
 
-#if xTODO
-    #if !xIS_STL_ASSERTING
-        #ifdef assert
-            #error xLib: stl asserting not allowed
-        #else
-            //#error xLib: xxxxx
-            #define assert {}
-        #endif
-    #endif
-#endif
-
 //TODO: for debug mode
 
 //--------------------------------------------------

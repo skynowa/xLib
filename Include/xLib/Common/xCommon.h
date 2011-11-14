@@ -43,10 +43,7 @@
 #include <stddef.h>
 #include <math.h>
 #include <limits.h>
-
-#if xIS_STL_ASSERTING
-    #include <assert.h>
-#endif
+#include <assert.h>
 
 #if defined(xUNICODE)
     #include <wchar.h>

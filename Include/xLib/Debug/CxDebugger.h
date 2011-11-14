@@ -26,6 +26,8 @@ class CxDebugger :
             ///< set debugging mode on/off
         static BOOL         bIsPresent      ();
             ///< is OS debugger presents
+        static BOOL         bIsDebugBuild   ();
+            ///< is debug build (is NDEBUG macros is don't set)
         static BOOL         bBreak          ();
             ///< attach to OS debugger
         static BOOL         bSetLogPath     (const std::string_t &csFilePath);

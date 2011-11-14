@@ -7,13 +7,6 @@
 #ifndef xLib_Common_xConfigH
 #define xLib_Common_xConfigH
 //---------------------------------------------------------------------------
-#define xLIB_VERSION                    xT("1.0.000")
-    ///< xLib version
-#define xLIB_AUTHOR                     xT("Skynowa")
-    ///< xLib author
-#define xLIB_DATE                       xDATETIME
-    ///< xLib build datetime stamp
-
 #define xUSING_NAMESPACE_NXLIB          1
     ///< automatically include the NxLib namespace
 
@@ -37,9 +30,6 @@
 
 #define xDEBUG_MODE_TRACE               1
     ///< trace mode
-
-#define xIS_STL_ASSERTING               0
-    ///< is stl assert enable
 
 #define xIS_COMPILE_TIME_TRACING        0
     ///< is compile time tracing

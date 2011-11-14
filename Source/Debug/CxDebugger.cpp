@@ -72,6 +72,18 @@ CxDebugger::bIsPresent() {
 //---------------------------------------------------------------------------
 /*static*/
 BOOL
+CxDebugger::bIsDebugBuild() {
+//#if defined(xBUILD_DEBUG)
+//    return TRUE;
+//#else
+//    return FALSE;
+//#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+/*static*/
+BOOL
 CxDebugger::bBreak() {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
@@ -324,8 +336,11 @@ CxDebugger::_bMsgboxFormated(
     std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     std::tcerr.flush();
 
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
-    ////EConsoleCmd cmRes = cmIgnore;
+    #if 1
+        EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
+    #else
+        EConsoleCmd cmRes = cmIgnore;
+    #endif
     switch (cmRes) {
         case cmAbort: {
                 std::tcerr << xT("Abort...\n\n");  std::tcerr.flush();
