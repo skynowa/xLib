@@ -15,7 +15,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>
-#include <xLib/Sync/CxProcess.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -294,7 +294,7 @@ CxReport::_bInitVars(
 
 #if 1
     _m_sProgram        = CxPath::sGetExe();
-    _m_ulProcessId     = (ULONG)CxProcess::ulGetCurrId();
+    _m_ulProcessId     = (ULONG)CxCurrentProcess::ulGetId();
     _m_ulThreadId      = (ULONG)CxCurrentThread::ulGetId();
     _m_sFileSize       = CxString::sFormatBytes( static_cast<ULONGLONG>( CxFile::liGetSize(CxPath::sGetExe())) );
 

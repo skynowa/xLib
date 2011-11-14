@@ -8,7 +8,7 @@
 
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>
-#include <xLib/Sync/CxProcess.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -495,7 +495,7 @@ CxConsole::_hGetWndHandle() {
     /*DEBUG*/xASSERT_RET(false == sOldWndTitle.empty(), NULL);
 
     //Format a "unique" szNewWndTitle.
-    sNewWndTitle = CxString::sFormat(xT("%li/%li"), ::GetTickCount(), CxProcess::ulGetCurrId());
+    sNewWndTitle = CxString::sFormat(xT("%li/%li"), ::GetTickCount(), CxCurrentProcess::ulGetId());
 
     //Change current window title.
     bRes = bSetTitle(sNewWndTitle);

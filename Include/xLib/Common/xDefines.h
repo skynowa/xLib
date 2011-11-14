@@ -103,12 +103,12 @@
 #endif
 //---------------------------------------------------------------------------
 // debug, release build
-//#if defined(NDEBUG)
-//    #define xBUILD_RELEASE
-//        ///< release build
-//#else
-//    #define xBUILD_DEBUG
-//        ///< debug build
-//#endif
+#if defined(NDEBUG)
+    #define xBUILD_RELEASE
+        ///< release build
+#else
+    #define xBUILD_DEBUG
+        ///< debug build
+#endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xDefinesH

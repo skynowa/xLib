@@ -24,22 +24,18 @@ class CxProcess :
         typedef pid_t  TxId;     ///< ID
     #endif
 
-        static TxId     ulGetCurrId      ();
-            ///< process ID of the calling process
-        static TxId     ulGetCurrParentId();
-            ///< process ID of the parent of the calling process
-        static BOOL     bExec            (const std::string_t &csFilePath, const char_t *pcszCmdLine, ...);
+        static BOOL  bExec     (const std::string_t &csFilePath, const char_t *pcszCmdLine, ...);
             ///< execute a file
-        static BOOL     bExit            (const TxId culPid, const UINT cuiExitCode);
+        static BOOL  bExit     (const TxId culPid, const UINT cuiExitCode);
             ///< ends the calling process and all its threads
-        static BOOL     bTerminate       (const TxId culPid);
+        static BOOL  bTerminate(const TxId culPid);
             ///< kills the calling process and all of its threads
 
         //wait
 
     private:
-                     CxProcess        ();
-        virtual     ~CxProcess        ();
+                     CxProcess ();
+        virtual     ~CxProcess ();
 };
 
 xNAMESPACE_END(NxLib)

@@ -306,9 +306,6 @@
     <ClCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Common\CxAppSettings.cpp">
-      <Filter>xLib\Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Common\CxChar.cpp">
       <Filter>xLib\Common</Filter>
     </ClCompile>
@@ -418,9 +415,6 @@
       <Filter>Test\Net</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxGeoIp.cpp">
-      <Filter>Test\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
       <Filter>Test\Net</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp">
@@ -708,6 +702,15 @@
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxBackuper.cpp">
       <Filter>Test\Filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
+      <Filter>Test\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sync\CxCurrentProcess.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCurrentProcess.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -829,9 +832,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\CxWaitableTimer.h">
       <Filter>xLib\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\CxAppSettings.h">
-      <Filter>xLib\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\CxChar.h">
       <Filter>xLib\Common</Filter>
@@ -1002,9 +1002,6 @@
       <Filter>Test\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxGeoIp.h">
-      <Filter>Test\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
       <Filter>Test\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
@@ -1312,6 +1309,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxBackuper.h">
       <Filter>Test\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
+      <Filter>Test\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Sync\CxCurrentProcess.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentProcess.h">
+      <Filter>Test\Sync</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

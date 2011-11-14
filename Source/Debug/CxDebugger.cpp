@@ -11,7 +11,7 @@
 #include <xLib/Common/CxConsole.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxEnvironment.h>
-#include <xLib/Sync/CxProcess.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 #if defined(xOS_ENV_WIN)
@@ -57,11 +57,12 @@ BOOL
 CxDebugger::bIsPresent() {
 #if defined(xOS_ENV_WIN)
     BOOL bRes = ::IsDebuggerPresent();
-    xCHECK_RET(FALSE == bRes, FALSE);
+    xCHECK_RET(TRUE == bRes, TRUE);
+    
+    BOOL bIsRemoteDebuggerPresent = FALSE;
 
-    #if xTODO
-        ::CheckRemoteDebuggerPresent()
-    #endif
+    bRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &bIsRemoteDebuggerPresent);
+    xCHECK_RET(FALSE == bRes || FALSE == bIsRemoteDebuggerPresent, FALSE);
 #elif defined(xOS_ENV_UNIX)
     std::string_t sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
     xCHECK_RET(FALSE == CxString::bCompareNoCase(xT("yes"), sRes), FALSE);
@@ -73,13 +74,11 @@ CxDebugger::bIsPresent() {
 /*static*/
 BOOL
 CxDebugger::bIsDebugBuild() {
-//#if defined(xBUILD_DEBUG)
-//    return TRUE;
-//#else
-//    return FALSE;
-//#endif
-
+#if defined(xBUILD_DEBUG)
     return TRUE;
+#else
+    return FALSE;
+#endif
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -264,7 +263,7 @@ CxDebugger::_bMsgboxPlain(
     CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.sGetReport(), CxPath::sGetExe(), ulType);
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
-                CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
             }
             break;
 
@@ -279,7 +278,7 @@ CxDebugger::_bMsgboxPlain(
                     (void)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
-                    CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
                 }
             }
             break;
@@ -302,7 +301,7 @@ CxDebugger::_bMsgboxFormated(
     CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.sGetReport(), CxPath::sGetExe());
     switch (mrRes) {
         case CxMsgBoxRtf::mrAbort: {
-                CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
             }
             break;
 
@@ -317,7 +316,7 @@ CxDebugger::_bMsgboxFormated(
                     (void)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"), MB_OK | MB_ICONWARNING);
-                    CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
                 }
             }
             break;
@@ -405,7 +404,7 @@ CxDebugger::_bStdoutPlain(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
             }
             break;
 
@@ -429,7 +428,7 @@ CxDebugger::_bStdoutPlain(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
                 }
             }
             break;
@@ -465,7 +464,7 @@ CxDebugger::_bStdoutHtml(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
             }
             break;
 
@@ -489,7 +488,7 @@ CxDebugger::_bStdoutHtml(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
                 }
             }
             break;

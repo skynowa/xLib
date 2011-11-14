@@ -7,7 +7,7 @@
 
 #include <xLib/Debug/CxStackTrace.h>
 
-#include <xLib/Sync/CxProcess.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 
 #if defined(xOS_ENV_WIN)
     #ifdef xUNICODE
@@ -60,7 +60,7 @@ CxStackTrace::bGet(
     SYMBOL_INFO *psiSymbol                = NULL;
     HANDLE       hProcess                 = NULL;
 
-    hProcess = ::GetCurrentProcess();
+    hProcess = CxCurrentProcess::hGetHandle();
 
     BOOL bRes = ::SymInitialize(hProcess, NULL, TRUE);
     xCHECK_RET(FALSE == bRes, FALSE);
