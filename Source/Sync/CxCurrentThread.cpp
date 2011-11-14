@@ -15,33 +15,6 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxCurrentThread::CxCurrentThread() {
-
-}
-//---------------------------------------------------------------------------
-/*virtual*/
-CxCurrentThread::~CxCurrentThread() {
-
-}
-//---------------------------------------------------------------------------
-/*static*/
-CxThread::TxId
-CxCurrentThread::ulGetId() {
-    /*DEBUG*/// n/a
-
-    CxThread::TxId ulRes = 0UL;
-
-#if defined(xOS_ENV_WIN)
-    ulRes = ::GetCurrentThreadId();
-    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
-#elif defined(xOS_ENV_UNIX)
-    ulRes = pthread_self();
-    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
-#endif
-
-    return ulRes;
-}
-//---------------------------------------------------------------------------
 /*static*/
 BOOL
 CxCurrentThread::bIsCurrent(
@@ -60,6 +33,24 @@ CxCurrentThread::bIsCurrent(
 #endif
 
     return bRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+CxThread::TxId
+CxCurrentThread::ulGetId() {
+    /*DEBUG*/// n/a
+
+    CxThread::TxId ulRes = 0UL;
+
+#if defined(xOS_ENV_WIN)
+    ulRes = ::GetCurrentThreadId();
+    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
+#elif defined(xOS_ENV_UNIX)
+    ulRes = pthread_self();
+    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
+#endif
+
+    return ulRes;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -121,6 +112,23 @@ CxCurrentThread::bSleep(
 #endif
 
     return TRUE;
+}
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    private
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+CxCurrentThread::CxCurrentThread() {
+
+}
+//---------------------------------------------------------------------------
+/*virtual*/
+CxCurrentThread::~CxCurrentThread() {
+
 }
 //---------------------------------------------------------------------------
 

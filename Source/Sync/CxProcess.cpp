@@ -19,56 +19,6 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
-CxProcess::TxId
-CxProcess::ulGetCurrId() {
-    /*DEBUG*/// n/a
-
-    TxId ulRes;
-
-#if defined(xOS_ENV_WIN)
-    ulRes = ::GetCurrentProcessId();
-    /*DEBUG*/// n/a
-#elif defined(xOS_ENV_UNIX)
-    ulRes = getpid();
-    /*DEBUG*/// n/a
-#endif
-
-    return ulRes;
-}
-//---------------------------------------------------------------------------
-/*static*/
-CxProcess::TxId
-CxProcess::ulGetCurrParentId() {
-    /*DEBUG*/// n/a
-
-    TxId ulRes;
-
-#if defined(xOS_ENV_WIN)
-    const TxId culInvalidId = (ULONG)- 1;
-
-    ULONG_PTR pbi[6] = {0};
-    ULONG     ulSize = 0UL;
-    LONG (WINAPI *NtQueryInformationProcess)(HANDLE ProcessHandle, ULONG ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
-
-    HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
-    /*DEBUG*/xASSERT_RET(NULL != hModule, culInvalidId);
-
-    *(FARPROC *)&NtQueryInformationProcess = ::GetProcAddress(hModule, "NtQueryInformationProcess");
-    /*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
-
-    BOOL bRes = ( NtQueryInformationProcess(CxHandleT<hvNull>::hGetCurrentProcess(), 0, &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi) );
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, culInvalidId);
-
-    ulRes = pbi[5];
-#elif defined(xOS_ENV_UNIX)
-    ulRes = getppid();
-    /*DEBUG*/// n/a
-#endif
-
-    return ulRes;
-}
-//---------------------------------------------------------------------------
 //http://www-theorie.physik.unizh.ch/~dpotter/howto/daemonize
 /*static*/
 BOOL

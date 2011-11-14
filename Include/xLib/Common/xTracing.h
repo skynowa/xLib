@@ -90,13 +90,13 @@
 
     //--------------------------------------------------
     //debug mode
-    /*#if   defined(xBUILD_DEBUG)
+    #if   defined(xBUILD_DEBUG)
         #pragma message("xLib: xBUILD_DEBUG")
     #elif defined(xBUILD_RELEASE)
         #pragma message("xLib: xBUILD_RELEASE")
     #else
         #pragma message("xLib: unsupported build")
-    #endif*/
+    #endif
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_xTracingH

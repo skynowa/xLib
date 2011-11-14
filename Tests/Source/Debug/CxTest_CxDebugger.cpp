@@ -50,7 +50,19 @@ CxTest_CxDebugger::bUnit(
     //bIsPresent
     xTEST_BLOCK(cullBlockLoops)
     {
-        //TODO: bIsPresent
+        m_bRes = CxDebugger::bIsPresent();
+    }
+
+    //-------------------------------------
+    //bIsDebugBuild
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        m_bRes = CxDebugger::bIsDebugBuild();
+        #if defined(NDEBUG)
+            xTEST_EQ(FALSE, m_bRes);
+        #else
+            xTEST_EQ(TRUE, m_bRes);
+        #endif
     }
 
     //-------------------------------------

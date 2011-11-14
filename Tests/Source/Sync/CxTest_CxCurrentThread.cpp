@@ -24,31 +24,6 @@ CxTest_CxCurrentThread::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-
-    //--------------------------------------------------
-    //ulGetCurrId
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxThread::TxId idRes = CxCurrentThread::ulGetId();
-        xTEST_LESS(0UL, (ULONG)idRes);
-    }
-
-    //--------------------------------------------------
-    //hGetCurrHandle
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
-        xTEST_DIFF(0UL, (ULONG)hRes);
-    }
-
-    //--------------------------------------------------
-    //ulGetCurrId
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxThread::TxId idRes = CxCurrentThread::ulGetId();
-        xTEST_LESS(0UL, (ULONG)idRes);
-    }
-
     //--------------------------------------------------
     //bIsCurrent
     xTEST_BLOCK(cullBlockLoops)
@@ -80,7 +55,31 @@ CxTest_CxCurrentThread::bUnit(
     }
 
     //--------------------------------------------------
-    //hGetCurrHandle
+    //ulGetId
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxThread::TxId idRes = CxCurrentThread::ulGetId();
+        xTEST_LESS(0UL, (ULONG)idRes);
+    }
+
+    //--------------------------------------------------
+    //hGetHandle
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
+        xTEST_DIFF(0UL, (ULONG)hRes);
+    }
+
+    //--------------------------------------------------
+    //ulGetId
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        CxThread::TxId idRes = CxCurrentThread::ulGetId();
+        xTEST_LESS(0UL, (ULONG)idRes);
+    }
+
+    //--------------------------------------------------
+    //hGetHandle
     xTEST_BLOCK(cullBlockLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();

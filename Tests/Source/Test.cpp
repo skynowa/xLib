@@ -96,6 +96,7 @@
 #include <Test/Sync/CxTest_CxSleeper.h>
 #include <Test/Sync/CxTest_CxCurrentThread.h>
 #include <Test/Sync/CxTest_CxThread.h>
+#include <Test/Sync/CxTest_CxCurrentProcess.h>
 #include <Test/Sync/CxTest_CxProcess.h>
 
 #if defined(xOS_ENV_WIN)
@@ -251,7 +252,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxDnsClient);
         //(void)tmManager.bAdd(new CxTest_CxTcpClient);
         //(void)tmManager.bAdd(new CxTest_CxTcpServer);
-        (void)tmManager.bAdd(new CxTest_CxHttpClient);
+        //(void)tmManager.bAdd(new CxTest_CxHttpClient);
         //(void)tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
@@ -272,6 +273,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxSleeper);
         (void)tmManager.bAdd(new CxTest_CxCurrentThread);
         (void)tmManager.bAdd(new CxTest_CxThread);
+        (void)tmManager.bAdd(new CxTest_CxCurrentProcess);
         (void)tmManager.bAdd(new CxTest_CxProcess);
 
     #if defined(xOS_ENV_WIN)

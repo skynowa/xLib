@@ -57,9 +57,10 @@
     <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</RunCodeAnalysis>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\xLib\Tests\Include;D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;$(IncludePath);D:\Libs\OpenSSL\OpenSSL-Win32\include</IncludePath>
     <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;D:\xLib\Tests\Source;$(SourcePath)</SourcePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\xLib\Tests\Include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Libs\OpenSSL\OpenSSL-Win32\include;D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;D:\xLib\Tests\Include;$(IncludePath)</IncludePath>
     <SourcePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\xLib\Tests\Source;$(SourcePath)</SourcePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Libs\OpenSSL\OpenSSL-Win32\lib;D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC\static;D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC;C:\Program Files\MySQL\MySQL Server 5.1\lib\opt;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC\static;D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC;D:\Libs\OpenSSL\OpenSSL-Win32\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <BuildLog>
@@ -245,6 +246,7 @@
     <ClCompile Include="..\..\Source\Sync\CxAutoCriticalSection.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxAutoMutex.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxCriticalSection.cpp" />
+    <ClCompile Include="..\..\Source\Sync\CxCurrentProcess.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxCurrentThread.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxEvent.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxMutex.cpp" />
@@ -255,7 +257,6 @@
     <ClCompile Include="..\..\Source\Sync\CxThread.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxThreadStorage.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp" />
-    <ClCompile Include="..\..\Source\Common\CxAppSettings.cpp" />
     <ClCompile Include="..\..\Source\Common\CxChar.cpp" />
     <ClCompile Include="..\..\Source\Common\CxConst.cpp" />
     <ClCompile Include="..\..\Source\Common\CxDateTime.cpp" />
@@ -296,6 +297,7 @@
     <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp" />
     <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp" />
@@ -356,6 +358,7 @@
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoCriticalSection.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCriticalSection.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCurrentProcess.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCurrentThread.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxEvent.cpp" />
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxMutex.cpp" />
@@ -419,6 +422,7 @@
     <ClInclude Include="..\..\Include\xLib\Log\xLogs.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxTcpClient.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxTcpServer.h" />
+    <ClInclude Include="..\..\Include\xLib\Sync\CxCurrentProcess.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\CxCurrentThread.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\CxThreadStorage.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\Win\CxCompletionPort.h" />
@@ -447,6 +451,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h" />
@@ -507,6 +512,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoCriticalSection.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCriticalSection.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentProcess.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h" />
@@ -602,7 +608,6 @@
     <ClInclude Include="..\..\Include\xLib\Sync\CxThread.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\CxThreadPool.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\CxWaitableTimer.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\CxAppSettings.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxChar.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxConst.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxDateTime.h" />

@@ -23,22 +23,6 @@ CxTest_CxProcess::bUnit(
 )
 {
     //--------------------------------------------------
-    //ulGetCurrId
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxProcess::TxId ulRes = CxProcess::ulGetCurrId();
-        xTEST_LESS_EQ(0UL, (ULONG)ulRes);
-    }
-
-    //--------------------------------------------------
-    //ulGetCurrParentId
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        CxProcess::TxId ulRes = CxProcess::ulGetCurrParentId();
-        xTEST_LESS_EQ(0UL, (ULONG)ulRes);
-    }
-
-    //--------------------------------------------------
     //bExec
     xTEST_BLOCK(cullBlockLoops)
     {
