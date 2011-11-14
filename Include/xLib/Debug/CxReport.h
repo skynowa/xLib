@@ -67,6 +67,8 @@ class CxReport :
             ///< get current date, time
         const std::string_t &  sGetBuildDate      () const;
             ///< get build date, time
+        const std::string_t &  sGetBuildType      () const;
+            ///< get build type (debug or release)
         const std::string_t &  sGetOsVersion      () const;
             ///< get build OS version
         const std::string_t &  sGetOsArchitecture () const;
@@ -98,6 +100,7 @@ class CxReport :
         //other
         std::string_t          _m_sCurrentDate;      ///< current date, time
         std::string_t          _m_sBuildDate;        ///< build date, time
+        std::string_t          _m_sBuildType;        ///< get build type
         std::string_t          _m_sOsVersion;        ///< build OS version
         std::string_t          _m_sOsArchitecture;   ///< OS architecture
         std::string_t          _m_sStackTrace;       ///< stack trace

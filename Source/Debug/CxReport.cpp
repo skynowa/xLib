@@ -11,6 +11,7 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxConsole.h>
+#include <xLib/Debug/CxDebugger.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>
@@ -51,6 +52,7 @@ CxReport::CxReport(
     _m_sLastErrorStr  (),
     _m_sCurrentDate   (),
     _m_sBuildDate     (),
+    _m_sBuildType  (),
     _m_sOsVersion     (),
     _m_sOsArchitecture(),
     _m_sStackTrace    (),
@@ -98,6 +100,7 @@ CxReport::CxReport(
     _m_sLastErrorStr  (),
     _m_sCurrentDate   (),
     _m_sBuildDate     (),
+    _m_sBuildType     (),
     _m_sOsVersion     (),
     _m_sOsArchitecture(),
     _m_sStackTrace    (),
@@ -230,6 +233,13 @@ CxReport::sGetBuildDate() const {
 }
 //---------------------------------------------------------------------------
 const std::string_t &
+CxReport::sGetBuildType() const {
+    /*DEBUG*/
+
+    return _m_sBuildType;
+}
+//---------------------------------------------------------------------------
+const std::string_t &
 CxReport::sGetOsVersion() const {
     /*DEBUG*/
 
@@ -297,6 +307,7 @@ CxReport::_bInitVars(
 
     _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
     _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
+    _m_sBuildType      = (TRUE == CxDebugger::bIsDebugBuild()) ? xT("debug") : xT("release");
     _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     _m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
@@ -317,6 +328,7 @@ CxReport::_bInitVars(
 
     _m_sCurrentDate    = xT("");
     _m_sBuildDate      = xT("");
+    _m_sBuildType      = xT("");
     _m_sOsVersion      = xT("");
     _m_sOsArchitecture = xT("");
 
@@ -348,6 +360,7 @@ CxReport::_bInitPlain() {
 
         xT("%s%s\n")      //Current date
         xT("%s%s\n")      //Build date
+        xT("%s%s\n")      //Build type
         xT("%s%s\n")      //OS version
         xT("%s%s\n")      //OS architecture
         xT("%s%s\n")      //stack trace
@@ -370,6 +383,7 @@ CxReport::_bInitPlain() {
 
         xT("Current date:    "), sGetCurrentDate().c_str(),
         xT("Build date:      "), sGetBuildDate().c_str(),
+        xT("Build type:      "), sGetBuildType().c_str(),
         xT("OS version:      "), sGetOsVersion().c_str(),
         xT("OS architecture: "), sGetOsArchitecture().c_str(),
         xT("Stack trace:     "), sGetStackTrace().c_str(),
@@ -401,6 +415,7 @@ CxReport::_bInitHtml() {
 
         xT("<b>%s</b>%s\n")      //Current date
         xT("<b>%s</b>%s\n")      //Build date
+        xT("<b>%s</b>%s\n")      //Build type
         xT("<b>%s</b>%s\n")      //OS version
         xT("<b>%s</b>%s\n")      //OS architecture
         xT("<b>%s</b>%s\n")      //stack trace
@@ -423,6 +438,7 @@ CxReport::_bInitHtml() {
 
         xT("Current date:    "), sGetCurrentDate().c_str(),
         xT("Build date:      "), sGetBuildDate().c_str(),
+        xT("Build type:      "), sGetBuildType().c_str(),
         xT("OS version:      "), sGetOsVersion().c_str(),
         xT("OS architecture: "), sGetOsArchitecture().c_str(),
         xT("Stack trace:     "), sGetStackTrace().c_str(),
@@ -453,6 +469,7 @@ CxReport::_bInitFormated() {
         xT("\\cf0\\lang1049\\f2\\par")
         xT("\\b %s\\lang1033\\b0\\f0    %s\\lang1049\\f2\\par")
         xT("\\b %s\\lang1033\\b0\\f0     %s\\lang1049\\f2\\par")
+        xT("\\b %s\\lang1033\\b0\\f0     %s\\lang1049\\f2\\par")
         xT("\\b %s\\lang1033\\b0\\f0    %s\\lang1049\\f2\\par")
         xT("\\b %s\\lang1033\\f0  \\b0 %s\\par")
         xT("\\lang1049\\f2\\par")
@@ -475,10 +492,11 @@ CxReport::_bInitFormated() {
 
         xT("Current date:    "), sGetCurrentDate().c_str(),
         xT("Build date:      "), sGetBuildDate().c_str(),
+        xT("Build type:      "), sGetBuildType().c_str(),
         xT("OS version:      "), sGetOsVersion().c_str(),
         xT("OS architecture: "), sGetOsArchitecture().c_str(),
-        xT("Stack trace:     "), sGetStackTrace().c_str(),
 
+        xT("Stack trace:     "), sGetStackTrace().c_str(),
         xT("Comment:         "), sGetComment().c_str()
     );
 #elif defined(xOS_ENV_UNIX)
@@ -501,6 +519,7 @@ CxReport::_bInitFormated() {
 
         xT("%s%s\n")      //Current date
         xT("%s%s\n")      //Build date
+        xT("%s%s\n")      //Build type
         xT("%s%s\n")      //OS version
         xT("%s%s\n")      //OS architecture
         xT("%s%s\n")      //stack trace
@@ -524,6 +543,7 @@ CxReport::_bInitFormated() {
 
         xT("#  Current date:    "), sGetCurrentDate().c_str(),
         xT("#  Build date:      "), sGetBuildDate().c_str(),
+        xT("#  Build type:      "), sGetBuildType().c_str(),
         xT("#  OS version:      "), sGetOsVersion().c_str(),
         xT("#  OS architecture: "), sGetOsArchitecture().c_str(),
         xT("#  Stack trace:     "), sGetStackTrace().c_str(),

@@ -68,7 +68,7 @@
 
     //--------------------------------------------------
     //debug mode
-    #if xDEBUG_MODE_MSGBOX_PLAIN
+    #if   xDEBUG_MODE_MSGBOX_PLAIN
         #pragma message("xLib: xDEBUG_MODE_MSGBOX_PLAIN")
     #elif xDEBUG_MODE_MSGBOX_FORMATED
         #pragma message("xLib: xDEBUG_MODE_MSGBOX_FORMATED")
@@ -87,6 +87,16 @@
     #else
         #pragma message("xLib: unsupported debug mode")
     #endif
+
+    //--------------------------------------------------
+    //debug mode
+    /*#if   defined(xBUILD_DEBUG)
+        #pragma message("xLib: xBUILD_DEBUG")
+    #elif defined(xBUILD_RELEASE)
+        #pragma message("xLib: xBUILD_RELEASE")
+    #else
+        #pragma message("xLib: unsupported build")
+    #endif*/
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_xTracingH

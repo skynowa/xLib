@@ -7,6 +7,15 @@
 #ifndef xLib_Common_xDefinesH
 #define xLib_Common_xDefinesH
 //---------------------------------------------------------------------------
+// xLib info
+#define xLIB_VERSION                    xT("1.0.000")
+    ///< xLib version
+#define xLIB_AUTHOR                     xT("Skynowa")
+    ///< xLib author
+#define xLIB_DATE                       xDATETIME
+    ///< xLib build datetime stamp
+
+
 // OS family
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
     #define xOS_WIN
@@ -92,5 +101,14 @@
     #define xANSI
         ///< ansi
 #endif
+//---------------------------------------------------------------------------
+// debug, release build
+//#if defined(NDEBUG)
+//    #define xBUILD_RELEASE
+//        ///< release build
+//#else
+//    #define xBUILD_DEBUG
+//        ///< debug build
+//#endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xDefinesH

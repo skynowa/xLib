@@ -38,6 +38,7 @@ CxReport::CxReport(
     _m_sLastErrorStr  (),
     _m_sCurrentDate   (),
     _m_sBuildDate     (),
+    _m_sBuildType     (),
     _m_sOsVersion     (),
     _m_sOsArchitecture(),
     _m_sStackTrace    (),
