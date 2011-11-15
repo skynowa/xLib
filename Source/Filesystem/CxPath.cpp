@@ -9,7 +9,7 @@
 #include <xLib/Common/CxChar.h>
 #include <xLib/Common/CxCommandLine.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Sync/CxProcess.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -61,7 +61,7 @@ CxPath::sGetExe() {
             sRes.assign( sGetAbsolute(vsArgs.at(0)) );
         #endif
     #else
-        const std::string_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxProcess::ulGetCurrId());
+        const std::string_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxCurrentProcess::ulGetId());
 
         BOOL bRes = CxFile::bIsExists(csProcFile);
         if (TRUE == bRes) {
