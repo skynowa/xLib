@@ -1,5 +1,5 @@
 ######################################################################################################
-# Class name:  
+# Class name:
 # Description: make file (static library, Linux, release)
 # File name:   makefile
 # Author:      skynowa
@@ -15,7 +15,7 @@ cOS				:= $(shell uname -s)
 cOS_BIT				:= $(shell getconf LONG_BIT)
 cOS_ARCH 			:= $(shell gcc -dumpmachine) #$(shell uname -m)
 cOS_INFO 			:= $(shell uname -a)
-cGCC_INFO			:= $(shell gcc -dumpversion) 
+cGCC_INFO			:= $(shell gcc -dumpversion)
 cGLIBC_INFO			:= n/a	##$(shell ldd --version)	#TODO: not implemented
 cBINUTILS_INFO			:= n/a
 
@@ -70,44 +70,44 @@ endif
 INSTALL_DIR			:= /usr/local/crystal_trader2.5/lib/xLib
 
 SOURCE_SUBDIRS			:= 	.\
-					Common \
-					Compress/Linux \
-					Crypt \
-					Crypt/OpenSSL \
-					Debug \
-					Db \
-					Filesystem \
-					Log \
-					Net \
-					Patterns \
-					Sync \
-					Units
+                    Common \
+                    Compress/Linux \
+                    Crypt \
+                    Crypt/OpenSSL \
+                    Debug \
+                    Db \
+                    Filesystem \
+                    Log \
+                    Net \
+                    Patterns \
+                    Sync \
+                    Units
 
 TESTS_SOURCE_SUBDIRS		:= 	.\
-					Common \
-					Compress/Linux \
-					Crypt \
-					Crypt/OpenSSL \
-					Debug \
-					Db \
-					Filesystem \
-					Log \
-					Net \
-					Patterns \
-					Sync \
-					Gui/Dialogs \
-					Units
+                    Common \
+                    Compress/Linux \
+                    Crypt \
+                    Crypt/OpenSSL \
+                    Debug \
+                    Db \
+                    Filesystem \
+                    Log \
+                    Net \
+                    Patterns \
+                    Sync \
+                    Gui/Dialogs \
+                    Units
 
 OTHER_INCLUDE_DIR		:=	/usr/local/crystal_trader2.5/include \
-					/usr/local/include \
-					/usr/include
-	
+                    /usr/local/include \
+                    /usr/include
+
 LIB_DIRS			:= 	/usr/local/crystal_trader2.5/lib \
-					/usr/local/crystal_trader2.5/lib/mysql \
-					/usr/local/lib \
-					/usr/lib \
-					/usr/local/lib/mysql \
-					/usr/lib/mysql
+                    /usr/local/crystal_trader2.5/lib/mysql \
+                    /usr/local/lib \
+                    /usr/lib \
+                    /usr/local/lib/mysql \
+                    /usr/lib/mysql
 
 COMPILE_FLAGS			:= -Wall -pipe
 LINK_FLAGS			:= -pthread -s -pipe -rdynamic #-static
@@ -141,11 +141,11 @@ TESTS_OBJECTS			:= $(TESTS_OBJECTS:.c=.o)
 all: 				$(PROGRAM_PATH)
 
 $(PROGRAM_PATH): 		OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS)
-				$(cCOMPILER) -o $@ $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBRARIES)
+					$(cCOMPILER) -o $@ $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBRARIES)
 
 OBJ_DIRS:
 #				clear
-#				
+#
 #				@echo "************************************************************"
 #				@echo "* Description:     " $(cDESCRIPTION)
 #				@echo "*"
@@ -164,25 +164,25 @@ OBJ_DIRS:
 
 				mkdir -p $(OBJECTS_DIRS) $(TESTS_OBJECTS_DIRS)
 
+#%.o:				%.h %.inl
+#				$(cCOMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
+				
 %.o:				%.cpp
-				$(cCOMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
-
-%.o: 				%.c
-				$(cCOMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
+				$(cCOMPILER) -o $@ -c $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))				
 
 .PHONY: 			clean
 
-install:				
+install:
 #				@echo "[Install ...]"
 				mkdir -p $(INSTALL_DIR)
 				cp $(BINARY_DIR)/$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_EXT) $(INSTALL_DIR)
 #				@echo ""
-	
+
 clean:
 				rm -rf $(BINARY_DIR)
-							
+
 help:
-				#TODO: help
+                #TODO: help
 
 include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
 include $(wildcard $(addsuffix /*.d, $(TESTS_OBJECTS_DIRS)))
