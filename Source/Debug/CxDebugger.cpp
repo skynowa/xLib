@@ -58,7 +58,7 @@ CxDebugger::bIsPresent() {
 #if defined(xOS_ENV_WIN)
     BOOL bRes = ::IsDebuggerPresent();
     xCHECK_RET(TRUE == bRes, TRUE);
-    
+
     BOOL bIsRemoteDebuggerPresent = FALSE;
 
     bRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &bIsRemoteDebuggerPresent);
@@ -344,7 +344,7 @@ CxDebugger::_bMsgboxFormated(
         case cmAbort: {
                 std::tcerr << xT("Abort...\n\n");  std::tcerr.flush();
 
-                CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
             }
             break;
 
@@ -368,7 +368,7 @@ CxDebugger::_bMsgboxFormated(
                     std::tcerr << xT("\n\n");
                     std::tcerr.flush();
 
-                    CxProcess::bExit(CxProcess::ulGetCurrId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
                 }
             }
             break;
