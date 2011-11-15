@@ -52,7 +52,7 @@ CxReport::CxReport(
     _m_sLastErrorStr  (),
     _m_sCurrentDate   (),
     _m_sBuildDate     (),
-    _m_sBuildType  (),
+    _m_sBuildType     (),
     _m_sOsVersion     (),
     _m_sOsArchitecture(),
     _m_sStackTrace    (),
@@ -346,13 +346,13 @@ CxReport::_bInitPlain() {
         xT("\n")
 
         xT("%s%s\n")      //Program
-        xT("%s%li\n")     //Process id
-        xT("%s%li\n")     //Thread id
+        xT("%s%lu\n")     //Process id
+        xT("%s%lu\n")     //Thread id
         xT("%s%s\n")      //file size
         xT("\n")
 
         xT("%s%s\n")      //Source file
-        xT("%s%li\n")     //Source line
+        xT("%s%lu\n")     //Source line
         xT("%s%s\n")      //Function name
         xT("%s%s\n")      //Expression
         xT("%s%s\n")      //Last error
@@ -401,13 +401,13 @@ CxReport::_bInitHtml() {
         xT("\n")
 
         xT("<b>%s</b>%s\n")      //Program
-        xT("<b>%s</b>%li\n")     //Process id
-        xT("<b>%s</b>%li\n")     //Thread id
+        xT("<b>%s</b>%lu\n")     //Process id
+        xT("<b>%s</b>%lu\n")     //Thread id
         xT("<b>%s</b>%s\n")      //file size
         xT("\n")
 
         xT("<b>%s</b>%s\n")      //Source file
-        xT("<b>%s</b>%li\n")     //Source line
+        xT("<b>%s</b>%lu\n")     //Source line
         xT("<b>%s</b>%s\n")      //Function name
         xT("<b>%s</b>%s\n")      //Expression
         xT("<b>%s</b>%s\n")      //Last error
@@ -457,12 +457,12 @@ CxReport::_bInitFormated() {
         xT("\\viewkind4\\uc1\\pard\\lang1033\\ul\\b\\f0\\fs20 %s\\cf1\\lang1049\\ulnone\\b0\\f1\\fs16\\par")
         xT("\\cf0\\b\\f2\\fs20\\par")
         xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f0  \\cf2 %s\\cf1\\lang1049\\f2\\par")
-        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4   \\f0 %li\\cf1\\lang1049\\f2\\par")
-        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4   \\f0 %li\\cf1\\lang1049\\f2\\par")
+        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4   \\f0 %lu\\cf1\\lang1049\\f2\\par")
+        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4   \\f0 %lu\\cf1\\lang1049\\f2\\par")
         xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4     \\f0 %s\\par")
         xT("\\cf1\\lang1049\\f2\\par")
         xT("\\cf0\\b %s\\b0   \\lang1033\\f0   \\b %s\\cf1\\lang1049\\b0\\f2\\par")
-        xT("\\cf0\\b %s\\b0   \\lang1033\\f0  \\cf3\\b\\f4 %li\\lang1049\\f3\\par")
+        xT("\\cf0\\b %s\\b0   \\lang1033\\f0  \\cf3\\b\\f4 %lu\\lang1049\\f3\\par")
         xT("\\cf0\\f2 %s\\lang1033\\f0 \\cf4\\f4 %s\\lang1049\\f3\\par")
         xT("\\cf0\\f2 %s\\b0   \\lang1033\\f0  \\cf5\\b\\f4 %s\\cf0\\lang1049\\b0\\f2\\par")
         xT("\\b %s\\lang1033\\b0\\f0      \\cf1\\b\\f4 %s\\b0\\par")
@@ -505,8 +505,8 @@ CxReport::_bInitFormated() {
         xT("#  \n")
 
         xT("%s%s\n")      //Program
-        xT("%s%li\n")     //Process id
-        xT("%s%li\n")     //Thread id
+        xT("%s%lu\n")     //Process id
+        xT("%s%lu\n")     //Thread id
         xT("%s%s\n")      //file size
         xT("#  \n")
 

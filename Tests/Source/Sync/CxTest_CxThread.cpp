@@ -161,18 +161,20 @@ CxTest_CxThread::bUnit(
     //bSetPriority, tpGetPriority
     xTEST_BLOCK(cullBlockLoops)
     {
+        const CxThread::EPriority ctpPriority = CxThread::tpLowest;
+
         #if defined(xOS_ENV_UNIX)
-            m_bRes = pthT->bSetPriority(CxThread::tpLowest);
-            xTEST_EQ(FALSE, m_bRes);
+            m_bRes = pthT->bSetPriority(ctpPriority);
+            xTEST_EQ(TRUE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
-            xTEST_EQ((int)0, (int)m_iRes);
+            xTEST_EQ((int)ctpPriority, (int)m_iRes);
         #else
-            m_bRes = pthT->bSetPriority(CxThread::tpLowest);
+            m_bRes = pthT->bSetPriority(ctpPriority);
             xTEST_DIFF(FALSE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
-            xTEST_EQ((int)CxThread::tpLowest, (int)m_iRes);
+            xTEST_EQ(ctpPriority, m_iRes);
         #endif
     }
 
