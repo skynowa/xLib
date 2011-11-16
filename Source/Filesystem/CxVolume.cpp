@@ -58,7 +58,7 @@ CxVolume::bIsReady(
     sOldDirPath  = CxDir::sGetCurrent();
     /*DEBUG*/// n/a
 
-    int iRes = chdir(sVolumePath.c_str());
+    int iRes = ::chdir(sVolumePath.c_str());
     /*DEBUG*/// n/a
     bRes = xAS_BOOL(- 1 != iRes);
 
@@ -126,7 +126,7 @@ CxVolume::bGetFreeSpace(
 
     struct xSTATVFS stfInfo = {0};
 
-    int iRes = xSTATVFS(_sDirPath.c_str(), &stfInfo);
+    int iRes = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, _sDirPath, FALSE);
 
     xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE);
@@ -166,7 +166,7 @@ CxVolume::bMount(
         const ULONG         culMountFlags = 0UL;
         const void         *pcvData       = NULL;
 
-        int iRes = mount(csSourcePath.c_str(), csDestPath.c_str(), csFilesytemType.c_str(), culMountFlags, pcvData);
+        int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), csFilesytemType.c_str(), culMountFlags, pcvData);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
 

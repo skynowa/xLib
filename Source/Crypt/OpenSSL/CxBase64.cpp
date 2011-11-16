@@ -41,19 +41,18 @@ CxBase64::sEncode(
     BUF_MEM     *pbmBuffMemory = NULL;
 
 
-    pbioBase64 = BIO_new(BIO_f_base64());
+    pbioBase64 = ::BIO_new(BIO_f_base64());
     /*DEBUG*/xASSERT_RET(NULL != pbioBase64, std::string());
 
-    BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
-    /*DEBUG*/// n/a
+    (void)::BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
 
-    pbioMemory = BIO_new(BIO_s_mem());
+    pbioMemory = ::BIO_new(::BIO_s_mem());
     /*DEBUG*/xASSERT_RET(NULL != pbioMemory, std::string());
 
-    pbioContainer = BIO_push(pbioBase64, pbioMemory);
+    pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
     /*DEBUG*/// n/a
 
-    int iWritten = BIO_write(pbioContainer, &csStr.at(0), csStr.size());    BIO_flush(pbioContainer);
+    int iWritten = ::BIO_write(pbioContainer, &csStr.at(0), csStr.size());    BIO_flush(pbioContainer);
     /*DEBUG*/xASSERT_RET(0                                <  iWritten, std::string());
     /*DEBUG*/xASSERT_RET(static_cast<int>( csStr.size() ) == iWritten, std::string());
 
@@ -62,8 +61,7 @@ CxBase64::sEncode(
 
     sRes.assign(pbmBuffMemory->data, pbmBuffMemory->length);
 
-    BIO_free_all(pbioContainer);
-    /*DEBUG*/// n/a
+    (void)::BIO_free_all(pbioContainer);
 
     return sRes;
 }
@@ -81,28 +79,26 @@ CxBase64::sDecode(
 
 
     //create a memory buffer containing base64 encoded data
-    pbioMemory = BIO_new_mem_buf((void *)&csStr.at(0), csStr.size());
+    pbioMemory = ::BIO_new_mem_buf((void *)&csStr.at(0), csStr.size());
     /*DEBUG*/xASSERT_RET(NULL != pbioMemory, std::string());
 
     //create a base64 filter
-    pbioBase64 = BIO_new(BIO_f_base64());
+    pbioBase64 = ::BIO_new(BIO_f_base64());
     /*DEBUG*/xASSERT_RET(NULL != pbioBase64, std::string());
 
-    BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
-    /*DEBUG*/// n/a
+    (void)::BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
 
     //push a Base64 filter so that reading from buffer decodes it
-    pbioContainer = BIO_push(pbioBase64, pbioMemory);
+    pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
 
     sRes.resize(csStr.size());
 
-    int iReaded = BIO_read(pbioContainer, &sRes.at(0), sRes.size());
+    int iReaded = ::BIO_read(pbioContainer, &sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(0 < iReaded, std::string());
 
     sRes.resize(iReaded);
 
-    BIO_free_all(pbioContainer);
-    /*DEBUG*/// n/a
+    (void)::BIO_free_all(pbioContainer);
 
     return sRes;
 }

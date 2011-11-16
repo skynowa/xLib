@@ -23,7 +23,7 @@ CxChar::bIsAlphaNum(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISALNUM(cchChar) );
+    return static_cast<BOOL>( std::xTISALNUM(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -35,7 +35,7 @@ CxChar::bIsAlpha(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISALPHA(cchChar) );
+    return static_cast<BOOL>( ::xTISALPHA(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -47,7 +47,7 @@ CxChar::bIsControl(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISCNTRL(cchChar) );
+    return static_cast<BOOL>( std::xTISCNTRL(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -59,7 +59,7 @@ CxChar::bIsDigitDec(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISDIGIT(cchChar) );
+    return static_cast<BOOL>( std::xTISDIGIT(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -71,7 +71,7 @@ CxChar::bIsDigitHex(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISXDIGIT(cchChar) );
+    return static_cast<BOOL>( std::xTISXDIGIT(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -83,7 +83,7 @@ CxChar::bIsGraph(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISGRAPH(cchChar) );
+    return static_cast<BOOL>( std::xTISGRAPH(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -95,7 +95,7 @@ CxChar::bIsPrint(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISPRINT(cchChar) );
+    return static_cast<BOOL>( std::xTISPRINT(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -107,7 +107,7 @@ CxChar::bIsPunct(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISPUNCT(cchChar) );
+    return static_cast<BOOL>( std::xTISPUNCT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -118,7 +118,7 @@ CxChar::bIsSpace(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISSPACE(cchChar) );
+    return static_cast<BOOL>( std::xTISSPACE(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -130,7 +130,7 @@ CxChar::bIsLower(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISLOWER(cchChar) );
+    return static_cast<BOOL>( std::xTISLOWER(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -141,7 +141,7 @@ CxChar::bIsUpper(
 {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( xTISUPPER(cchChar) );
+    return static_cast<BOOL>( std::xTISUPPER(cchChar) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------

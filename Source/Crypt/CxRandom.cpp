@@ -42,7 +42,7 @@ CxRandom::bSetSeed(
     LONG liSeed
 )
 {
-    srand(liSeed);
+    std::srand(liSeed);
 
     #if xTEMP_DISABLED
         if (liSeed < 0)    {
@@ -132,7 +132,7 @@ CxRandom::dNextGaussian() {
         }
         while (s >= 1 || s == 0);
 
-        double multiplier = sqrt(-2 * log(s)/s);
+        double multiplier = ::sqrt(-2 * ::log(s)/s);
 
         _m_dNextNextGaussian     = v2 * multiplier;
         _m_bHaveNextNextGaussian = true;
@@ -158,10 +158,10 @@ CxRandom::bSetSeed() {
 #if defined(xOS_ENV_WIN)
     uiSeed = static_cast<UINT>( ::GetTickCount() );
 #elif defined(xOS_ENV_UNIX)
-    uiSeed = static_cast<UINT>( time(NULL) );
+    uiSeed = static_cast<UINT>( std::time(NULL) );
 #endif
 
-    srand(uiSeed);
+    std::srand(uiSeed);
     /*DEBUG*/// n/a
 
     return TRUE;
@@ -179,9 +179,9 @@ CxRandom::liGetInt(
     LONG liRes = 0;
 
 #if 1
-    liRes   = (rand() % (cliMax - cliMin))  + cliMin;
+    liRes   = (::rand() % (cliMax - cliMin))  + cliMin;
 #else
-    liRes   = (rand() * (double)(cliMax - cliMin) / RAND_MAX) + cliMin;
+    liRes   = (::rand() * (double)(cliMax - cliMin) / RAND_MAX) + cliMin;
 #endif
 
     return liRes;
@@ -283,7 +283,7 @@ CxRandom::liNext() {
         return _m_liSeed;
     #endif
 
-    return rand();
+    return ::rand();
 }
 //---------------------------------------------------------------------------
 

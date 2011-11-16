@@ -40,7 +40,7 @@ CxEvent::CxEvent(
     _m_hEvent.bSet(hRes);
     /*DEBUG*/// n/a
 #elif defined(xOS_ENV_UNIX)
-    int iRes = pthread_cond_init(&_m_cndCond, NULL);
+    int iRes = ::pthread_cond_init(&_m_cndCond, NULL);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
     _m_bIsAutoReset = cbIsAutoReset;
@@ -52,7 +52,7 @@ CxEvent::~CxEvent() {
 #if defined(xOS_ENV_WIN)
     // n/a
 #elif defined(xOS_ENV_UNIX)
-    int iRes = pthread_cond_destroy(&_m_cndCond);
+    int iRes = ::pthread_cond_destroy(&_m_cndCond);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 #endif
 }
@@ -82,10 +82,10 @@ CxEvent::bSet() {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
         if (FALSE == _m_bIsAutoReset) {
-            int iRes = pthread_cond_broadcast(&_m_cndCond);
+            int iRes = ::pthread_cond_broadcast(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
         } else {
-            int iRes = pthread_cond_signal(&_m_cndCond);
+            int iRes = ::pthread_cond_signal(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
         }
 
@@ -143,7 +143,7 @@ CxEvent::osWait(
                 // set timeout
                 timeval tvNow  = {0};
 
-                iRes = gettimeofday(&tvNow, NULL);
+                iRes = ::gettimeofday(&tvNow, NULL);
                 /*DEBUG*/xASSERT_RET(- 1 != iRes, osFailed);
 
                 tsTime.tv_sec  = tvNow.tv_sec + culTimeout / 1000;
@@ -153,9 +153,9 @@ CxEvent::osWait(
             // wait until condition thread returns control
             do {
                 if (xTIMEOUT_INFINITE != culTimeout) {
-                    iRes = pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ), &tsTime);
+                    iRes = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ), &tsTime);
                 } else {
-                    iRes = pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ));
+                    iRes = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ));
                 }
             }
             while (!iRes && !_m_bIsSignaled);

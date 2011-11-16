@@ -89,7 +89,7 @@ CxProfiler::bStart() {
 
         case pmGetTimeOfDay: {
                 timeval tv = {0};
-                gettimeofday(&tv, NULL);
+                ::gettimeofday(&tv, NULL);
 
                 _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
             }
@@ -167,7 +167,7 @@ CxProfiler::bStop(
 
         case pmGetTimeOfDay: {
                 timeval tv = {0};
-                gettimeofday(&tv, NULL);
+                ::gettimeofday(&tv, NULL);
 
                 _m_dMicrosecStop = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
 
@@ -325,7 +325,7 @@ CxProfiler::_liGetClock() {
 
     rusage ruUsage = {{0}};
 
-    int iRes = getrusage(RUSAGE_SELF, &ruUsage);
+    int iRes = ::getrusage(RUSAGE_SELF, &ruUsage);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<clock_t>( - 1 ));
 
     liRes = static_cast<std::clock_t>(ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec) * 1000000 +

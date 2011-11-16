@@ -91,10 +91,10 @@ CxStackTrace::bGet(
     #if defined(xOS_LINUX)
         void *pvStack[_m_culMaxFrames] = {0};
 
-        int iFramesNum  = backtrace(pvStack, _m_culMaxFrames);
+        int iFramesNum  = ::backtrace(pvStack, _m_culMaxFrames);
         xCHECK_RET(iFramesNum <= 0, FALSE);
 
-        char_t **ppszSymbols = backtrace_symbols(pvStack, iFramesNum);
+        char_t **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);
         xCHECK_RET(NULL == ppszSymbols, FALSE);
 
         for (int i = 1; i < iFramesNum; ++ i) {
@@ -102,7 +102,7 @@ CxStackTrace::bGet(
 
             Dl_info dlinfo = {0};
 
-            int iRes = dladdr(pvStack[i], &dlinfo);
+            int iRes = ::dladdr(pvStack[i], &dlinfo);
             if (0 == iRes) {
                 sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
             } else {

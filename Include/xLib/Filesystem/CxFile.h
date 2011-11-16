@@ -16,11 +16,7 @@ class CxFile :
     /// file
 {
     public:
-        enum EErrorType
-            /// error type
-        {
-            etError = - 1
-        };
+
 
         enum EOpenMode
             /// open mode
@@ -129,13 +125,13 @@ class CxFile :
             ///< open
         BOOL                 bReopen      (const std::string_t &csFilePath, const EOpenMode omMode, const BOOL cbIsUseBuffering);
             ///< reopen with different file or mode
-        BOOL                 bAttach      (FILE *pflFile);
+        BOOL                 bAttach      (std::FILE *pflFile);
             ///< attach to stream
-        FILE *               pDetach      ();
+        std::FILE *          pDetach      ();
             ///< detach from stream
-        FILE                *pGet         () const;
+        std::FILE           *pGet         () const;
             ///< get handle
-        std::string_t         sGetPath     () const;
+        std::string_t        sGetPath     () const;
             ///< get file path
 
         //read, write
@@ -265,12 +261,18 @@ class CxFile :
             ///< write binary data
 
     private:
-        FILE                *_m_pFile;      ///< file handle
+            enum EErrorType
+            /// error type
+        {
+            etError = - 1
+        };
+
+        std::FILE            *_m_pFile;      ///< file handle
         std::string_t         _m_sFilePath;  ///< file path
 
-        static int           _iGetHandle  (FILE *pfFile);
+        static int           _iGetHandle  (std::FILE *pfFile);
             ///< gets the file descriptor associated with a stream
-        static FILE *        _pfGetHandle (int iFileHandle, const EOpenMode omMode);
+        static std::FILE *   _pfGetHandle (int iFileHandle, const EOpenMode omMode);
             ///< get stream by handle
         static std::string_t  _sGetOpenMode(const EOpenMode comMode);
             ///< get open mode as string, by default use "r"

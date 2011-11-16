@@ -122,22 +122,22 @@ CxThread::bCreate(
     TxId           ulId;
     pthread_attr_t paAttributes; // n/a - {{0}}
 
-    iRes = pthread_attr_init(&paAttributes);
+    iRes = ::pthread_attr_init(&paAttributes);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 
-    iRes = pthread_attr_setdetachstate(&paAttributes, PTHREAD_CREATE_JOINABLE); //PTHREAD_CREATE_DETACHED
+    iRes = ::pthread_attr_setdetachstate(&paAttributes, PTHREAD_CREATE_JOINABLE); //PTHREAD_CREATE_DETACHED
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 
     if (0 != cuiStackSize) {
-        iRes = pthread_attr_setstacksize(&paAttributes, cuiStackSize);
+        iRes = ::pthread_attr_setstacksize(&paAttributes, cuiStackSize);
         /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
     }
 
-    iRes = pthread_create(&ulId, &paAttributes, &_s_uiJobEntry, this);
+    iRes = ::pthread_create(&ulId, &paAttributes, &_s_uiJobEntry, this);
     /*DEBUG*/xASSERT_MSG_RET(0   == iRes, CxLastError::sFormat(iRes), FALSE);
     /*DEBUG*/xASSERT_MSG_RET(0UL <  ulId, CxLastError::sFormat(iRes), FALSE);
 
-    iRes = pthread_attr_destroy(&paAttributes);
+    iRes = ::pthread_attr_destroy(&paAttributes);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 
     _m_hThread = ulId;  //TODO: is it right?
@@ -258,7 +258,7 @@ CxThread::bKill(
         /*DEBUG*/xASSERT_DO(FALSE != bRes, break);
     }
 #elif defined(xOS_ENV_UNIX)
-    int iRes = pthread_kill(_m_ulId, SIGALRM);
+    int iRes = ::pthread_kill(_m_ulId, SIGALRM);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 
     bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
@@ -306,7 +306,7 @@ CxThread::bWait(
     ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    int iRes = pthread_join(_m_ulId, NULL);
+    int iRes = ::pthread_join(_m_ulId, NULL);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -550,7 +550,7 @@ CxThread::_iGetPriorityMin() {
 #if defined(xOS_ENV_WIN)
     iRes = THREAD_PRIORITY_IDLE;
 #elif defined(xOS_ENV_UNIX)
-    iRes = sched_get_priority_min(SCHED_FIFO);
+    iRes = ::sched_get_priority_min(SCHED_FIFO);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -565,7 +565,7 @@ CxThread::_iGetPriorityMax() {
 #if defined(xOS_ENV_WIN)
     iRes = THREAD_PRIORITY_TIME_CRITICAL;
 #elif defined(xOS_ENV_UNIX)
-    iRes = sched_get_priority_max(SCHED_FIFO);
+    iRes = ::sched_get_priority_max(SCHED_FIFO);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -591,7 +591,7 @@ CxThread::bSetPriority(
 
     spParam.sched_priority = ctpPriority;
 
-    int iRes = pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
+    int iRes = ::pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -615,7 +615,7 @@ CxThread::tpGetPriority() const {
     sched_param spParam  = {0};
     int         iPolicy  = SCHED_FIFO;
 
-    int iRes = pthread_getschedparam(ulGetId(), &iPolicy, &spParam);
+    int iRes = ::pthread_getschedparam(ulGetId(), &iPolicy, &spParam);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), tpError);
 
     tpRes = static_cast<EPriority>( spParam.sched_priority );
@@ -765,7 +765,7 @@ CxThread::bSetCpuAffinity(
     CPU_ZERO(&csCpuSet);
     (void)CPU_SET(ciProcNum, &csCpuSet);
 
-    int iRes = pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
+    int iRes = ::pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
 
@@ -932,7 +932,7 @@ CxThread::bSetDebugName(
 #elif defined(xOS_FREEBSD)
     (void)pthread_set_name_np(ulGetId(), csName.c_str());
 #elif defined(xOS_ENV_UNIX)
-    int iRes = prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
+    int iRes = ::prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 

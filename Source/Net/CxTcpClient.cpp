@@ -34,7 +34,7 @@ CxTcpClient::bIsReadable() {
 
     FD_SET(_m_puiSocket, &fds);
 
-    int iRes = select(0, &fds, NULL, NULL, &tvTimeout);
+    int iRes = ::select(0, &fds, NULL, NULL, &tvTimeout);
     xCHECK_RET(iRes <= 0 || !FD_ISSET(_m_puiSocket, &fds), FALSE);
 
     return TRUE;
@@ -47,7 +47,7 @@ CxTcpClient::bIsWritable() {
 
     FD_SET(_m_puiSocket, &fds);
 
-    int iRes = select(0, NULL, &fds, NULL, &tvTimeout);
+    int iRes = ::select(0, NULL, &fds, NULL, &tvTimeout);
     xCHECK_RET(iRes <= 0 || !FD_ISSET(_m_puiSocket, &fds), FALSE);
 
     return TRUE;
@@ -68,10 +68,10 @@ CxTcpClient::bConnect(
 
     sockaddr_in saSockAddr = {0};
     saSockAddr.sin_family      = _m_siFamily;
-    saSockAddr.sin_addr.s_addr = inet_addr(asIp.c_str());
+    saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
     saSockAddr.sin_port        = htons(usPort); //???????
 
-    int iRes = connect(_m_puiSocket, CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int iRes = ::connect(_m_puiSocket, CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
     return TRUE;
@@ -91,7 +91,7 @@ CxTcpClient::bIoctl(
     iRes = ioctlsocket(_m_puiSocket, liCmd, pulArgp);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    iRes = ioctl        (_m_puiSocket, liCmd, pulArgp);
+    iRes = ::ioctl    (_m_puiSocket, liCmd, pulArgp);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
 
@@ -120,7 +120,7 @@ CxTcpClient::bSetNonBlockingMode(
 #elif defined(xOS_ENV_UNIX)
     int iFlags = - 1;
 
-    iFlags = fcntl(_m_puiSocket, F_GETFL);
+    iFlags = ::fcntl(_m_puiSocket, F_GETFL);
     /*DEBUG*/xASSERT_RET(etError != iFlags, FALSE);
 
     if (TRUE == cbFlag) {
@@ -129,7 +129,7 @@ CxTcpClient::bSetNonBlockingMode(
         iFlags = (iFlags & ~O_NONBLOCK);
     }
 
-    iFlags = fcntl(_m_puiSocket, F_SETFL, iFlags);
+    iFlags = ::fcntl(_m_puiSocket, F_SETFL, iFlags);
     /*DEBUG*/xASSERT_RET(etError != iFlags, FALSE);
 #endif
 
@@ -203,11 +203,11 @@ CxTcpClient::bIsServerAlive(
 
     sockaddr_in saSockAddr = {0};
     saSockAddr.sin_family      = CxSocket::afInet;
-    saSockAddr.sin_addr.s_addr = inet_addr(asIp.c_str());
-    saSockAddr.sin_port        = htons(usPort); //???????
+    saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
+    saSockAddr.sin_port        = htons(usPort); //TODO: htons
 
     //connect - [+] 0 [-] SOCKET_ERROR
-    iRes = connect(objSocket.iGetSocket(), CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    iRes = ::connect(objSocket.iGetSocket(), CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/// n/a
 
     xCHECK_RET(0 != iRes, FALSE);

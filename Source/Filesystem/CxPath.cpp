@@ -46,7 +46,7 @@ CxPath::sGetExe() {
 
             size_t uiResSize = sRes.size() * sizeof(std::string_t::value_type);
 
-            int iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
+            int iRes = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, std::string_t());
 
             sRes.resize(uiResSize);
@@ -70,7 +70,7 @@ CxPath::sGetExe() {
             int iReaded = - 1;
 
             for ( ; ; ) {
-                iReaded = readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::string_t::value_type));
+                iReaded = ::readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::string_t::value_type));
                 /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::string_t());
 
                 xCHECK_DO(sRes.size() * sizeof(std::string_t::value_type) > static_cast<size_t>( iReaded ), break);
@@ -627,7 +627,7 @@ CxPath::sGetAbsolute(
 
     sBuff.resize(xPATH_MAX);
 
-    char_t *pszRes = realpath(&csFilePath.at(0), &sBuff.at(0));
+    char_t *pszRes = ::realpath(&csFilePath.at(0), &sBuff.at(0));
     /*DEBUG*/xASSERT_RET(NULL != pszRes, std::string_t());
 
     sRes.assign(pszRes);

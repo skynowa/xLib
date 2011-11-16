@@ -56,16 +56,16 @@ CxProcess::bExec(
         int iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #else
-        pid_t pid = fork();
+        pid_t pid = ::fork();
         /*DEBUG*/xASSERT_RET(- 1 == pid, FALSE);
 
         if (0 == pid) {
             //TODO: csFilePath is executable
 
-            int iRes = execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const char_t *>( NULL ));
+            int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const char_t *>( NULL ));
             /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
-            _exit(EXIT_SUCCESS);  /* Note that we do not use exit() */
+            ::_exit(EXIT_SUCCESS);  /* Note that we do not use exit() */
 
             return TRUE;
         } else {
@@ -89,7 +89,7 @@ CxProcess::bExit(
 #if defined(xOS_ENV_WIN)
     (void)::ExitProcess(cuiExitCode);
 #elif defined(xOS_ENV_UNIX)
-    (void)exit(static_cast<int>( cuiExitCode ));
+    (void)::exit(static_cast<int>( cuiExitCode ));
 #endif
 
     return TRUE;
@@ -112,7 +112,7 @@ CxProcess::bTerminate(
     BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    int iRes = kill(culPid, SIGKILL);
+    int iRes = ::kill(culPid, SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 

@@ -31,7 +31,7 @@ CxTcpServer::bBind(
     saSockAddr.sin_addr.s_addr = INADDR_ANY;
     saSockAddr.sin_port        = htons(usPort);
 
-    int iRes = bind(_m_puiSocket, CxMacros::xreinterpret_cast<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int iRes = ::bind(_m_puiSocket, CxMacros::xreinterpret_cast<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
     ////int iOpt = 1;
@@ -50,7 +50,7 @@ CxTcpServer::bListen(
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, FALSE);
 
-    int iRes = listen(_m_puiSocket, iBacklog);
+    int iRes = ::listen(_m_puiSocket, iBacklog);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 
     return TRUE;
@@ -72,13 +72,13 @@ CxTcpServer::bAccept(
     struct sockaddr_in cliaddr  = {0};
     int                iAddrlen = sizeof(cliaddr);
 
-    scktClient = accept(_m_puiSocket, CxMacros::xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = ::accept(_m_puiSocket, CxMacros::xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
     /*DEBUG*/xASSERT_RET(etInvalid != scktClient, FALSE);
 #elif defined(xOS_ENV_UNIX)
     struct sockaddr_in cliaddr  = {0};
     socklen_t          iAddrlen = sizeof(cliaddr);
 
-    scktClient = accept(_m_puiSocket, CxMacros::xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = ::accept(_m_puiSocket, CxMacros::xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
     /*DEBUG*/xASSERT_RET(etInvalid != scktClient, FALSE);
 #endif
 
@@ -88,7 +88,7 @@ CxTcpServer::bAccept(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     //конверт из UNICODE
-    std::string asFromIp = inet_ntoa(cliaddr.sin_addr);
+    std::string asFromIp = ::inet_ntoa(cliaddr.sin_addr);
 
     (*psFromIp).assign(asFromIp.begin(), asFromIp.end());
 

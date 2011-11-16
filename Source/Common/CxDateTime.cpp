@@ -260,6 +260,7 @@ CxDateTime::operator = (
 }
 //--------------------------------------------------------------------------
 #if defined(xOS_ENV_WIN) && defined(xCOMPILER_CODEGEAR)
+
 const CxDateTime &
 CxDateTime::operator = (
     const TDateTime &cdtDT
@@ -287,6 +288,7 @@ CxDateTime::operator = (
 
     return *this;
 }
+
 #endif
 //---------------------------------------------------------------------------
 const CxDateTime &
@@ -402,7 +404,7 @@ CxDateTime::usGetDayOfWeek() const {
     tmTimeInfo.tm_mon  = _m_usMonth - 1;
     tmTimeInfo.tm_mday = _m_usDay;
 
-    time_t tmTime = mktime(&tmTimeInfo);
+    time_t tmTime = std::mktime(&tmTimeInfo);
     /*DEBUG*/xASSERT_RET(- 1 != tmTime, 0);
 
     usRes = tmTimeInfo.tm_wday;
@@ -667,13 +669,13 @@ CxDateTime::dtGetCurrent() {
     //get milliseconds
     timeval tvTime = {0};
 
-    int iRes = gettimeofday(&tvTime, NULL);
+    int iRes = ::gettimeofday(&tvTime, NULL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, CxDateTime());
 
     //get datetime
     std::tm *ptmDateTime = {0};
 
-    ptmDateTime = localtime( reinterpret_cast<const time_t *>( &tvTime.tv_sec ));
+    ptmDateTime = std::localtime( reinterpret_cast<const time_t *>( &tvTime.tv_sec ));
     /*DEBUG*/xASSERT_RET(NULL != ptmDateTime, CxDateTime());
 
     //set datetime

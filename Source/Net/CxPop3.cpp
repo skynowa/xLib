@@ -502,7 +502,7 @@ CxPop3::_ulMailsSum(const std::string_t &csServerAnswer) {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, 0UL);
 
     sSum  = vsRes.at(1);
-    ulSum = atol(sSum.c_str());        // ul -> l
+    ulSum = ::atol(sSum.c_str());        // ul -> l
 
     return ulSum;
 }
@@ -521,7 +521,7 @@ CxPop3::_ulMailsSize(const std::string_t &csServerAnswer) {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, 0UL);
 
     sSize  = vsRes.at(2);
-    ulSize = atol(sSize.c_str());    // ul+\r\n -> l
+    ulSize = ::atol(sSize.c_str());    // ul+\r\n -> l
 
     return ulSize;
 }
@@ -562,10 +562,10 @@ BOOL
 CxPop3::_bIsError(const std::string_t &csText) {
     /*DEBUG*/xASSERT_RET(FALSE == csText.empty(), TRUE);
 
-    if (0 == memcmp(csText.c_str(), "+OK", 3)) {
+    if (0 == std::memcmp(csText.c_str(), "+OK", 3)) {
         return FALSE;
     }
-    if (0 == memcmp(csText.c_str(), "-ERR", 4)) {
+    if (0 == std::memcmp(csText.c_str(), "-ERR", 4)) {
         return TRUE;
     }
 

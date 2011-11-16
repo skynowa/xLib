@@ -47,7 +47,7 @@ CxDll::bLoad(
     _m_hDLL = ::LoadLibrary(csDllPath.c_str());
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    _m_hDLL = dlopen(csDllPath.c_str(), RTLD_LAZY);
+    _m_hDLL = ::dlopen(csDllPath.c_str(), RTLD_LAZY);
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, FALSE);
 #endif
 
@@ -69,12 +69,12 @@ CxDll::fpGetProcAddress(
 #elif defined(xOS_ENV_UNIX)
     const char *pszError = NULL;
 
-    pszError = dlerror();
+    pszError = ::dlerror();
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
 
-    fpRes = dlsym(_m_hDLL, csProcName.c_str());
+    fpRes = ::dlsym(_m_hDLL, csProcName.c_str());
 
-    pszError = dlerror();
+    pszError = ::dlerror();
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
 #endif
 
@@ -91,7 +91,7 @@ CxDll::bFree() {
     BOOL bRes = ::FreeLibrary(_m_hDLL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    int iRes = dlclose(_m_hDLL);
+    int iRes = ::dlclose(_m_hDLL);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #endif
 
