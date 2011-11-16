@@ -89,7 +89,7 @@ CxProfiler::bStart() {
 
         case pmGetTimeOfDay: {
                 timeval tv = {0};
-                ::gettimeofday(&tv, NULL);
+                /*::*/gettimeofday(&tv, NULL);
 
                 _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
             }
@@ -167,7 +167,7 @@ CxProfiler::bStop(
 
         case pmGetTimeOfDay: {
                 timeval tv = {0};
-                ::gettimeofday(&tv, NULL);
+                /*::*/gettimeofday(&tv, NULL);
 
                 _m_dMicrosecStop = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
 

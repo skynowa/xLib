@@ -70,7 +70,7 @@ CxFileTemp::bCreate(
     #else
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
-        errno_t iError = std::xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
+        errno_t iError = ::xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
         /*DEBUG*/xASSERT_RET(0 == iError, FALSE);
 
         _pfStdFile = std::xTFOPEN(_m_sFilePath.c_str(), CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
