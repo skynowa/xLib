@@ -397,7 +397,7 @@ CxFile::bLocking(
         #define xLOCKING _locking
     #endif
 
-    int iRes = std::xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
+    int iRes = ::xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     int iRes = ::lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
@@ -455,7 +455,7 @@ CxFile::bSetMode(
     const ETranslationMode ctmMode
 ) const
 {
-    int iRes = std::setmode(_iGetHandle(pGet()), ctmMode);
+    int iRes = ::setmode(_iGetHandle(pGet()), ctmMode);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 
     return TRUE;
@@ -493,7 +493,7 @@ CxFile::bResize(
     /*DEBUG*/// n/a
 
 #if defined(xOS_ENV_WIN)
-    int iRes = std::chsize(_iGetHandle(pGet()), cliSize);
+    int iRes = ::chsize(_iGetHandle(pGet()), cliSize);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     int iRes = ::ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cliSize ));
@@ -707,7 +707,7 @@ CxFile::bChmod(
     /*DEBUG*///iMode
 
 #if defined(xOS_ENV_WIN)
-    int iRes = std::xTCHMOD(csFilePath.c_str(), static_cast<int>( cpmMode ));
+    int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<int>( cpmMode ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cpmMode ));

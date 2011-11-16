@@ -62,7 +62,7 @@ CxLocale::bSetCurrent(
 
     const char_t *pcszRes = NULL;
 
-    pcszRes = std::xTSETLOCALE(LC_ALL, pcszLocale);
+    pcszRes = ::xTSETLOCALE(LC_ALL, pcszLocale);
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, FALSE);
 
     return TRUE;
