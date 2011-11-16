@@ -153,7 +153,7 @@ CxDnsClient::bGetNameInfo(
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     //TODO: bGetNameInfo
-    int iRes = getnameinfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    int iRes = ::getnameinfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #endif
 
@@ -181,7 +181,7 @@ CxDnsClient::bGetHostAddrInfo(
     int iRes = ::GetAddrInfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
     /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    int iRes =   getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
+    int iRes = ::getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxString::lexical_cast(iRes), FALSE);
 #endif
 

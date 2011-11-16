@@ -31,7 +31,7 @@ xNAMESPACE_BEGIN(NxLib)
 *
 *****************************************************************************/
 
-/*static*/ BOOL         CxDebugger::_ms_bIsEnabled = TRUE;
+/*static*/ BOOL          CxDebugger::_ms_bIsEnabled = TRUE;
 /*static*/ std::string_t CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
@@ -95,7 +95,7 @@ CxDebugger::bBreak() {
         abort();
     #endif
 #elif defined(xOS_ENV_UNIX)
-    int iRes = kill(getpid(), SIGALRM);
+    int iRes = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
     xCHECK_RET(- 1 == iRes, FALSE);
 #endif
 
@@ -201,13 +201,13 @@ CxDebugger::bBeep(
         //TODO: bBeep
     #else
         #if xTODO
-            int iRes = xTSYSTEM(xT("xkbbell"));
+            int iRes = std::xTSYSTEM(xT("xkbbell"));
             xASSERT_RET(- 1 == iRes, FALSE);
         #endif
     #endif
 
     #if xTEMP_DISABLED
-        Display *display = XOpenDisplay(NULL);
+        Display *display = ::XOpenDisplay(NULL);
         xCHECK_RET(NULL == display, FALSE);
 
         XKeyboardControl xkc;
@@ -215,13 +215,13 @@ CxDebugger::bBeep(
         xkc.bell_pitch    = culFrequency;   /* Hz 800 */
         xkc.bell_duration = culDuration;    /* ms 100 */
 
-        iRes = XChangeKeyboardControl(display, KBBellPercent | KBBellPitch | KBBellDuration, &xkc);
+        iRes = ::XChangeKeyboardControl(display, KBBellPercent | KBBellPitch | KBBellDuration, &xkc);
         xCHECK_RET(- 1 == iRes, FALSE);
 
-        iRes = XBell(display, 0);
+        iRes = ::XBell(display, 0);
         xCHECK_RET(- 1 == iRes, FALSE);
 
-        iRes = XCloseDisplay(display);
+        iRes = ::XCloseDisplay(display);
         xCHECK_RET(- 1 == iRes, FALSE);
     #endif
 #endif
@@ -519,7 +519,7 @@ CxDebugger::_bLoggingPlain(
 
     //--------------------------------------------------
     //write to file
-    FILE *pFile = xTFOPEN(sFilePath.c_str(), xT("ab"));
+    std::FILE *pFile = std::xTFOPEN(sFilePath.c_str(), xT("ab"));
     xCHECK_RET(NULL == pFile, FALSE);
 
     try {
@@ -531,7 +531,7 @@ CxDebugger::_bLoggingPlain(
             crpReport.sGetReport().c_str()
         );
 
-        xTFPRINTF(pFile, xT("%s"), csMsg.data());
+        std::xTFPRINTF(pFile, xT("%s"), csMsg.data());
     }
     catch (...) { }
 

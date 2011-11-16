@@ -49,7 +49,7 @@ CxBlowfish::bSetKey(
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= ciKeySize, FALSE);
     /*DEBUG*/xASSERT_RET(0            <  ciKeySize, FALSE);
 
-    (void)BF_set_key(&_m_bfKey, ciKeySize, pucKey);
+    (void)::BF_set_key(&_m_bfKey, ciKeySize, pucKey);
 
     return TRUE;
 }
@@ -143,7 +143,7 @@ CxBlowfish::bEncryptCfb64(
 
     xBUFF_ZERO(_m_ucIvec);
 
-    (void)BF_cfb64_encrypt(pucIn, pucOut, cliInSize, &_m_bfKey, _m_ucIvec, piNum, cmMode);
+    (void)::BF_cfb64_encrypt(pucIn, pucOut, cliInSize, &_m_bfKey, _m_ucIvec, piNum, cmMode);
 
     return TRUE;
 }

@@ -41,7 +41,7 @@ CxLocale::sGetCurrent() {
 #elif defined(xOS_ENV_UNIX)
     const char_t *pcszLocale = NULL;
 
-    pcszLocale = xTSETLOCALE(LC_ALL, NULL);
+    pcszLocale = std::xTSETLOCALE(LC_ALL, NULL);
     /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::string_t());
 
     sRes.assign(pcszLocale);
@@ -62,7 +62,7 @@ CxLocale::bSetCurrent(
 
     const char_t *pcszRes = NULL;
 
-    pcszRes = xTSETLOCALE(LC_ALL, pcszLocale);
+    pcszRes = std::xTSETLOCALE(LC_ALL, pcszLocale);
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, FALSE);
 
     return TRUE;

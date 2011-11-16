@@ -71,7 +71,7 @@ CxSystemInfo::osGetOS() {
 #elif defined(xOS_ENV_UNIX)
     utsname unKernelInfo= {{0}};
 
-    int iRes = uname(&unKernelInfo);
+    int iRes = ::uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, otUnknown);
 
     if      (TRUE == CxString::bCompareNoCase(xT("Linux"), unKernelInfo.sysname)) {
@@ -121,7 +121,7 @@ CxSystemInfo::sFormatOsType(
     //TODO: sFormatOsType
     utsname unKernelInfo= {{0}};
 
-    int iRes = uname(&unKernelInfo);
+    int iRes = ::uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, std::string_t());
 
     sRes.assign( CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine) );
@@ -170,7 +170,7 @@ CxSystemInfo::oaGetOsArch() {
 #elif defined(xOS_ENV_UNIX)
     utsname unKernelInfo= {{0}};
 
-    int iRes = uname(&unKernelInfo);
+    int iRes = ::uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes,                                 oaUnknown);
     /*DEBUG*/xASSERT_RET(0   != std::string_t(unKernelInfo.machine).size(), oaUnknown);
 
@@ -247,7 +247,7 @@ CxSystemInfo::sGetComputerName() {
 #elif defined(xOS_ENV_UNIX)
     utsname unKernelInfo= {{0}};
 
-    int iRes = uname(&unKernelInfo);
+    int iRes = ::uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, xT("LOCALHOST"));
 
     sRes.assign(unKernelInfo.nodename);
@@ -278,11 +278,11 @@ CxSystemInfo::bIsUserAnAdmin() {
 
     uid_t       uiUserId  = 0;
 
-    uiUserId = getuid();
+    uiUserId = ::getuid();
     /*DEBUG*/// n/a
     xCHECK_RET(cuiRootId != uiUserId, FALSE);
 
-    uiUserId = geteuid();
+    uiUserId = ::geteuid();
     /*DEBUG*/// n/a
     xCHECK_RET(cuiRootId != uiUserId, FALSE);
 #endif
@@ -309,7 +309,7 @@ CxSystemInfo::sGetUserName() {
     //http://www.metalshell.com/source_code/107/List_Users.html
     //http://www.metalshell.com/source_code/83/Get_GID_Name.html
 
-    passwd *ppwPassword = getpwuid(getuid());
+    passwd *ppwPassword = ::getpwuid(getuid());
     /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::string_t());
 
     sRes.assign(ppwPassword->pw_name);
@@ -340,7 +340,7 @@ CxSystemInfo::ulGetNumOfCpus() {
         int iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRes, &uiResSize, NULL, 0);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, 0);
     #else
-        LONG liRes = sysconf(_SC_NPROCESSORS_ONLN);
+        LONG liRes = ::sysconf(_SC_NPROCESSORS_ONLN);
         /*DEBUG*/xASSERT_RET(- 1 != liRes, 0);
 
         ulRes = static_cast<ULONG>( liRes );
@@ -379,7 +379,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         #if defined(SYS_getcpu)
             ULONG ulCpu = 0UL;
 
-            int iRes = syscall(SYS_getcpu, &ulCpu, NULL, NULL);
+            int iRes = ::syscall(SYS_getcpu, &ulCpu, NULL, NULL);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
 
             ulRes = ulCpu;

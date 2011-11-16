@@ -26,7 +26,7 @@ CxCurrentProcess::ulGetId() {
     ulRes = ::GetCurrentProcessId();
     /*DEBUG*/// n/a
 #elif defined(xOS_ENV_UNIX)
-    ulRes = getpid();
+    ulRes = ::getpid();
     /*DEBUG*/// n/a
 #endif
 
@@ -58,7 +58,7 @@ CxCurrentProcess::ulGetParentId() {
 
     ulRes = pbi[5];
 #elif defined(xOS_ENV_UNIX)
-    ulRes = getppid();
+    ulRes = ::getppid();
     /*DEBUG*/// n/a
 #endif
 
@@ -76,7 +76,7 @@ CxCurrentProcess::hGetHandle() {
     hRes = ::GetCurrentProcess();
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
 #elif defined(xOS_ENV_UNIX)
-    hRes = getpid();
+    hRes = ::getpid();
     /*DEBUG*/// n/a
 #endif
 

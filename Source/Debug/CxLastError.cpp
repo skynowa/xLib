@@ -99,14 +99,14 @@ CxLastError::sFormat(
     #if defined(xOS_LINUX)
         char szBuff[64 + 1] = {0};
 
-        const char_t *pcszError = strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        const char_t *pcszError = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(pcszError);
     #else
         char szBuff[64 + 1] = {0};
 
-        int iRes = strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int iRes = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRes, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(&szBuff[0]);

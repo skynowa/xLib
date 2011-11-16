@@ -6,7 +6,7 @@
 
 #include <xLib/Filesystem/CxEnvironment.h>
 
-#include <xLib/Filesystem/CxPath.h>                    
+#include <xLib/Filesystem/CxPath.h>
 
 
 extern char **environ;  //from <env.h>
@@ -38,7 +38,7 @@ CxEnvironment::bIsExists(
     /*DEBUG*/// n/a
     xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), FALSE);
 #elif defined(xOS_ENV_UNIX)
-    const char *pcszRes = getenv(csVarName.c_str());
+    const char *pcszRes = ::getenv(csVarName.c_str());
     /*DEBUG*/// n/a
     xCHECK_RET(NULL == pcszRes, FALSE);
 #endif
@@ -72,7 +72,7 @@ CxEnvironment::sGetVar(
         /*DEBUG*/xASSERT_RET(0UL != ulStored, std::string_t());
     }
 #elif defined(xOS_ENV_UNIX)
-    const char *pcszRes = getenv(csVarName.c_str());
+    const char *pcszRes = ::getenv(csVarName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::string_t());
 
     sRes.assign(pcszRes);
@@ -95,7 +95,7 @@ CxEnvironment::bSetVar(
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    int iRes = setenv(csVarName.c_str(), csValue.c_str(), TRUE);
+    int iRes = ::setenv(csVarName.c_str(), csValue.c_str(), TRUE);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
@@ -116,9 +116,9 @@ CxEnvironment::bDeleteVar(
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
     #if defined(xOS_FREEBSD)
-        (void)unsetenv(csVarName.c_str());
+        (void)::unsetenv(csVarName.c_str());
     #else
-        int iRes = unsetenv(csVarName.c_str());
+        int iRes = ::unsetenv(csVarName.c_str());
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
     #endif
 #endif

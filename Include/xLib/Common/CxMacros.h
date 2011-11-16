@@ -68,17 +68,17 @@
     ///< delete array by pointer
 #define xARRAY_SIZE(a)          ( CxMacros::uiCountOf(a) )
     ///< get array size
-#define xBUFF_ZERO(Buff)        { memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
+#define xBUFF_ZERO(Buff)        { std::memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
     ///< zero buffer memory
-#define xSTRUCT_ZERO(Buff)      { memset(static_cast<void *>( &(Buff) ),    0, sizeof(Buff)); }
+#define xSTRUCT_ZERO(Buff)      { std::memset(static_cast<void *>( &(Buff) ),    0, sizeof(Buff)); }
     ///< zero struct memory
-#define xBUFF_FREE(pvBuff)      { if (NULL != (pvBuff)) { free(pvBuff); (pvBuff) = NULL; }    }
+#define xBUFF_FREE(pvBuff)      { if (NULL != (pvBuff)) { std::free(pvBuff); (pvBuff) = NULL; }    }
     ///< free buffer memory
 #define xPTR_ASSIGN(ptr, value) { if (NULL != (ptr)) { *(ptr) = (value); }                 }
     ///< assign pointer
-#define xFCLOSE(f)              { if (NULL != (f)) { fclose(f); (f) = NULL; } }
+#define xFCLOSE(f)              { if (NULL != (f)) { std::fclose(f); (f) = NULL; } }
     ///< close file stream (FILE *)
-#define xRELEASE(p)             { if (NULL != (p)) {(p)->Release(); (p) = NULL;} }
+#define xRELEASE(p)             { if (NULL != (p)) {(p)->Release(); (p) = NULL; } }
     ///< release object
 #define xMAX(a, b)              ( ((a) > (b)) ? (a) : (b) )
     ///< get max value
@@ -147,7 +147,7 @@
     //xTRY_BOOL
     #define xTRY_BOOL    \
                 BOOL bRes = FALSE;  \
-                try    {                \
+                try {                \
                     {
         ///< try block
 
@@ -170,7 +170,7 @@
 
     //xTRY_LONG
     #define xTRY_LONG(ret_error_value)    LONG liRes = ret_error_value;  \
-                try    {                \
+                try {                \
                     {                \
                         liRes =         \
         ///< try block
@@ -193,7 +193,7 @@
 
     //xTRY_VARIANT
     #define xTRY_VARIANT(ret_error_value)    Variant vRes = ret_error_value;  \
-                try    {                \
+                try {                \
                     {                \
                         vRes =         \
         ///< try block
@@ -311,7 +311,7 @@
 #elif defined(__va_copy)
     #define xVA_COPY(dest, src) ( __va_copy(dest, src) )
 #else
-    #define xVA_COPY(dest, src) ( (void)memcpy(&dest, &src, sizeof(va_list)) )
+    #define xVA_COPY(dest, src) ( (void)std::memcpy(&dest, &src, sizeof(va_list)) )
 #endif
     ///< copy xVA_LIST
 

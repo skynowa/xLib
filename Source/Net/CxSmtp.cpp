@@ -356,12 +356,12 @@ CxSmtp::_bIsError(const std::string &csText) {
     /*DEBUG*/xASSERT_RET(FALSE == csText.empty(), TRUE);
 
     BOOL bRes = (BOOL)!(
-            !memcmp(csText.c_str(), "334", 3) ||    //334 VXNlcm5hbWU6
-            !memcmp(csText.c_str(), "235", 3) ||    //235 2.0.0 Authentication successful
-            !memcmp(csText.c_str(), "220", 3) ||    //220 Sergey Kerio MailServer 6.7.0 patch 1 ESMTP ready
-            !memcmp(csText.c_str(), "250", 3) ||    //250 2.0.0 OK
-            !memcmp(csText.c_str(), "354", 3) ||    //354 Enter mail, end with CRLF.CRLF
-            !memcmp(csText.c_str(), "221", 3)        //221 221 2.0.0 SMTP closing connection
+            !std::memcmp(csText.c_str(), "334", 3) ||    //334 VXNlcm5hbWU6
+            !std::memcmp(csText.c_str(), "235", 3) ||    //235 2.0.0 Authentication successful
+            !std::memcmp(csText.c_str(), "220", 3) ||    //220 Sergey Kerio MailServer 6.7.0 patch 1 ESMTP ready
+            !std::memcmp(csText.c_str(), "250", 3) ||    //250 2.0.0 OK
+            !std::memcmp(csText.c_str(), "354", 3) ||    //354 Enter mail, end with CRLF.CRLF
+            !std::memcmp(csText.c_str(), "221", 3)        //221 221 2.0.0 SMTP closing connection
     );
 
     return bRes;

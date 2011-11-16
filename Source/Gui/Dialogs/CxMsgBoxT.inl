@@ -65,7 +65,7 @@ CxMsgBoxT::iShow(
                             CxString::lexical_cast(cTitle).c_str(),
                             xT("Abort, Ignore, Retry"));
 
-    mrRes = static_cast<EModalResult>( xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<EModalResult>( std::xTSYSTEM(sMsg.c_str()) );
 #endif
 
     return mrRes;
@@ -94,7 +94,7 @@ CxMsgBoxT::iShow(
                             CxString::lexical_cast(cTitle).c_str(),
                             xT("Ok"));
 
-    mrRes = static_cast<EModalResult>( xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<EModalResult>( std::xTSYSTEM(sMsg.c_str()) );
 #endif
 
     return mrRes;
@@ -122,7 +122,7 @@ CxMsgBoxT::iShow(
                             xT("Message box"),
                             xT("Ok"));
 
-    mrRes = static_cast<EModalResult>( xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<EModalResult>( std::xTSYSTEM(sMsg.c_str()) );
 #endif
 
     return mrRes;

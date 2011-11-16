@@ -52,7 +52,7 @@ CxFileAttribute::atGet(
 #elif defined(xOS_ENV_UNIX)
     xTSTAT_STRUCT stInfo = {0};
 
-    int iRes = xTSTAT(csFilePath.c_str(), &stInfo);
+    int iRes = ::xTSTAT(csFilePath.c_str(), &stInfo);
     /*DEBUG*/// n/a
     if (- 1 == iRes) {
         faRes = faInvalid;
@@ -78,7 +78,7 @@ CxFileAttribute::bSet(
     BOOL bRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ULONG>(cfaValue));
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif defined(xOS_ENV_UNIX)
-    int iRes = xTCHMOD(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
+    int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
 
