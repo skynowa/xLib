@@ -57,11 +57,7 @@ CxTest_CxPath::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         sRes = CxPath::sGetExe();
-        #if xOS_ENV_WIN
-            xTEST_EQ(sRes, std::string_t(xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug\\Test.VC++ 2010.exe")));
-        #elif xOS_ENV_UNIX
-            //TODO: sGetExe
-        #endif
+        xTEST_EQ(TRUE, CxFile::bIsExists(sRes));
     }
 
     //-------------------------------------
@@ -79,11 +75,7 @@ CxTest_CxPath::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         sRes = CxPath::sGetExeDir();
-        #if xOS_ENV_WIN
-            xTEST_EQ(sRes, std::string_t(xT("D:\\xLib\\Contrib\\VC++ 2010\\Debug")));
-        #elif xOS_ENV_UNIX
-            //TODO: sGetExeDir
-        #endif
+        xTEST_EQ(TRUE, CxDir::bIsExists(sRes));
     }
 
     //-------------------------------------
