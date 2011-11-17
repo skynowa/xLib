@@ -18,13 +18,13 @@
 
 // OS family
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
-    #define xOS_WIN 1
+    #define xOS_WIN true
         ///< operating system Windows
 #elif defined(linux) || defined(__linux) || defined(__linux__)
-    #define xOS_LINUX 1
+    #define xOS_LINUX true
         ///< operating system Linux
 #elif defined(__FreeBSD__)
-    #define xOS_FREEBSD 1
+    #define xOS_FREEBSD true
         ///< operating system FreeBSD
 #else
     #error xLib: unsupported OS
@@ -33,11 +33,11 @@
 
 // OS environment
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
-    #define xOS_ENV_WIN 1
+    #define xOS_ENV_WIN true
 #elif defined(__unix__) || defined(__unix)
     #define xOS_ENV_UNIX
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
-    #define xOS_ENV_BSD 1
+    #define xOS_ENV_BSD true
 #else
     #error xLib: unsupported OS environment
 #endif
@@ -53,12 +53,12 @@
 #if defined(i386) || defined(__i386__) || defined(__i486__) || defined(__i586__) || defined(__i686__) || defined(__i386) || defined(_M_IX86) || \
     defined(__X86__) || defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__I86__) || defined(__INTEL__)
 
-    #define xARCHITECTURE_32BIT 1
+    #define xARCHITECTURE_32BIT true
         ///< architecture 32-bit
 #elif defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(__ia64__) || \
       defined(_IA64) || defined(__IA64__) || defined(__ia64) || defined(_M_IA64 )
 
-    #define xARCHITECTURE_64BIT 1
+    #define xARCHITECTURE_64BIT true
         ///< architecture 64-bit
 #else
     #error xLib: unsupported architectures
@@ -66,19 +66,19 @@
 //---------------------------------------------------------------------------
 // compiler types
 #if   defined(__MINGW32__)
-    #define xCOMPILER_MINGW32 1
+    #define xCOMPILER_MINGW32 true
         ///< compiler MinGW
 #elif defined(__INTEL_COMPILER) || defined(__ICC) || defined(__ECC) || defined(__ICL)
-    #define xCOMPILER_INTEL 1
+    #define xCOMPILER_INTEL true
         ///< compiler Intel C/C++
 #elif defined(_MSC_VER) || defined(_MSC_FULL_VER) || defined(_MSC_BUILD)
-    #define xCOMPILER_MS 1
+    #define xCOMPILER_MS true
         ///< compiler Microsoft Visual C++
 #elif defined(__BORLANDC__) || defined(__CODEGEARC__)
-    #define xCOMPILER_CODEGEAR 1
+    #define xCOMPILER_CODEGEAR true
         ///< compiler Borland C++, Code Gear
 #elif defined(__GNUC__)
-    #define xCOMPILER_GNUC 1
+    #define xCOMPILER_GNUC true
         ///< compiler GNU C/C++
 #else
     #error xLib: unsupported compiler
@@ -95,19 +95,19 @@
 //---------------------------------------------------------------------------
 // unicode, ansi
 #if defined(UNICODE) || defined(_UNICODE)
-    #define xUNICODE 1
+    #define xUNICODE true
         ///< unicode
 #else
-    #define xANSI 1
+    #define xANSI true
         ///< ansi
 #endif
 //---------------------------------------------------------------------------
 // debug, release build
 #if defined(NDEBUG)
-    #define xBUILD_RELEASE 1
+    #define xBUILD_RELEASE true
         ///< release build
 #else
-    #define xBUILD_DEBUG 1
+    #define xBUILD_DEBUG true
         ///< debug build
 #endif
 

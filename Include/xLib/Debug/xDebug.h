@@ -30,6 +30,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                     { if ( !((expr1) <= (expr2)) )  { CxReport rpReport(CxReport::rtMsgboxPlain, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_GREATER_EQ(expr1, expr2)                  { if ( !((expr1) >= (expr2)) )  { CxReport rpReport(CxReport::rtMsgboxPlain, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_PTR(ptr)                                  { if ( (NULL)    == (ptr)    )  { CxReport rpReport(CxReport::rtMsgboxPlain, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("!="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xTEST_FAIL                                      { if ( true                  )  { CxReport rpReport(CxReport::rtMsgboxPlain, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
 
 #elif xDEBUG_MODE_MSGBOX_FORMATED
     #define xASSERT(expr)                                   { if ( !(expr) )                { CxReport rpReport(CxReport::rtMsgboxFormated, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
@@ -46,6 +47,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                     { if ( !((expr1) <= (expr2)) )  { CxReport rpReport(CxReport::rtMsgboxFormated, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_GREATER_EQ(expr1, expr2)                  { if ( !((expr1) >= (expr2)) )  { CxReport rpReport(CxReport::rtMsgboxFormated, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_PTR(ptr)                                  { if ( (NULL)    == (ptr)    )  { CxReport rpReport(CxReport::rtMsgboxFormated, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("!="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xTEST_FAIL                                      { if ( true                  )  { CxReport rpReport(CxReport::rtMsgboxFormated, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
 
 #elif xDEBUG_MODE_STDOUT_PLAIN
     #define xASSERT(expr)                                   { if ( !(expr) )                { CxReport rpReport(CxReport::rtStdoutPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
@@ -62,6 +64,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                     { if ( !((expr1) <= (expr2)) )  { CxReport rpReport(CxReport::rtStdoutPlain, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_GREATER_EQ(expr1, expr2)                  { if ( !((expr1) >= (expr2)) )  { CxReport rpReport(CxReport::rtStdoutPlain, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_PTR(ptr)                                  { if ( (NULL)    == (ptr)    )  { CxReport rpReport(CxReport::rtStdoutPlain, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("!="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xTEST_FAIL                                      { if ( true                  )  { CxReport rpReport(CxReport::rtStdoutPlain, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
 
 #elif xDEBUG_MODE_STDOUT_HTML
     #define xASSERT(expr)                                   { if ( !(expr) )                { CxReport rpReport(CxReport::rtStdoutHtml, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, xT(""));  CxDebugger::bReportMake(rpReport);}                       }
@@ -78,6 +81,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                     { if ( !((expr1) <= (expr2)) )  { CxReport rpReport(CxReport::rtStdoutHtml, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_GREATER_EQ(expr1, expr2)                  { if ( !((expr1) >= (expr2)) )  { CxReport rpReport(CxReport::rtStdoutHtml, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_PTR(ptr)                                  { if ( (NULL)    == (ptr)    )  { CxReport rpReport(CxReport::rtStdoutHtml, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("!="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xTEST_FAIL                                      { if ( true                  )  { CxReport rpReport(CxReport::rtStdoutHtml, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
 
 #elif xDEBUG_MODE_LOGGING_PLAIN
     #define xASSERT(expr)                                   { if ( !(expr) )                { CxReport rpReport(CxReport::rtLoggingPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
@@ -94,6 +98,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                     { if ( !((expr1) <= (expr2)) )  { CxReport rpReport(CxReport::rtLoggingPlain, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_GREATER_EQ(expr1, expr2)                  { if ( !((expr1) >= (expr2)) )  { CxReport rpReport(CxReport::rtLoggingPlain, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_PTR(ptr)                                  { if ( (NULL)    == (ptr)    )  { CxReport rpReport(CxReport::rtLoggingPlain, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("!="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xTEST_FAIL                                      { if ( true                  )  { CxReport rpReport(CxReport::rtLoggingPlain, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
 
 #elif xDEBUG_MODE_LOGGING_HTML
     #define xASSERT(expr)                                   { if ( !(expr) )                { CxReport rpReport(CxReport::rtLoggingHtml, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
@@ -110,6 +115,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                     { if ( !((expr1) <= (expr2)) )  { CxReport rpReport(CxReport::rtLoggingHtml, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_GREATER_EQ(expr1, expr2)                  { if ( !((expr1) >= (expr2)) )  { CxReport rpReport(CxReport::rtLoggingHtml, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
     #define xTEST_PTR(ptr)                                  { if ( (NULL)    == (ptr)    )  { CxReport rpReport(CxReport::rtLoggingHtml, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("!="), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
+    #define xTEST_FAIL                                      { if ( true                  )  { CxReport rpReport(CxReport::rtLoggingHtml, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); } }
 
 #elif xDEBUG_MODE_NOLOGGING
     #define xASSERT(expr)                                   { /* n/a */                                                 }
@@ -126,6 +132,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                     { /* n/a */ }
     #define xTEST_GREATER_EQ(expr1, expr2)                  { /* n/a */ }
     #define xTEST_PTR(ptr)                                  { /* n/a */ }
+    #define xTEST_FAIL                                      { /* n/a */ }
 
 #elif xDEBUG_MODE_NO
     #define xASSERT(expr)                                   { /* n/a */ }
@@ -142,6 +149,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                     { /* n/a */ }
     #define xTEST_GREATER_EQ(expr1, expr2)                  { /* n/a */ }
     #define xTEST_PTR(ptr)                                  { /* n/a */ }
+    #define xTEST_FAIL                                      { /* n/a */ }
 
 #else
     #error xLib: incorrect debug mode
