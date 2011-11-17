@@ -8,11 +8,11 @@
 #define xLib_Common_xDefinesH
 //---------------------------------------------------------------------------
 // xLib info
-#define xLIB_VERSION                    xT("1.0.000")
+#define xLIB_VERSION xT("1.0.000")
     ///< xLib version
-#define xLIB_AUTHOR                     xT("Skynowa")
+#define xLIB_AUTHOR  xT("Skynowa")
     ///< xLib author
-#define xLIB_DATE                       xDATETIME
+#define xLIB_DATE    xDATETIME
     ///< xLib build datetime stamp
 
 
@@ -35,7 +35,7 @@
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
     #define xOS_ENV_WIN 1
 #elif defined(__unix__) || defined(__unix)
-    #define xOS_ENV_UNIX
+    #define xOS_ENV_UNIX 1
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
     #define xOS_ENV_BSD 1
 #else

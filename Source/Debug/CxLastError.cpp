@@ -20,9 +20,9 @@ ULONG
 CxLastError::ulGet() {
     ULONG ulCode = 0UL; /*= culCodeSuccess*/;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ulCode = ::GetLastError();
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     ulCode = static_cast<ULONG>( errno );
 #endif
 
@@ -43,9 +43,9 @@ CxLastError::bSet(
     const ULONG culCode
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     (void)::SetLastError(culCode);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     errno = static_cast<int>( culCode );
 #endif
 
@@ -68,9 +68,9 @@ CxLastError::sFormat(
 {
     std::string_t sRes;
 
-    sRes = CxString::sFormat(xT("%li - "), culCode);
+    sRes = CxString::sFormat(xT("%lu - "), culCode);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ULONG  ulRes  = 0UL;
     LPVOID pvBuff = NULL;
 
@@ -95,7 +95,7 @@ CxLastError::sFormat(
     sRes.append(sMessage);
 
     (void)::LocalFree(pvBuff);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(xOS_LINUX)
         char szBuff[64 + 1] = {0};
 

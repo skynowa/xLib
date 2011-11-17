@@ -160,7 +160,7 @@ CxTest_CxConsole::bUnit(
     //sGetTitle
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 1 && defined(xOS_ENV_WIN)
+        #if 1 && xOS_ENV_WIN
             std::string_t csTitle = xT("Title1");
 
 
@@ -187,7 +187,7 @@ CxTest_CxConsole::bUnit(
             m_bRes = cnConsole.bSetTitle(csTitle);
             xTEST_DIFF(FALSE, m_bRes);
 
-            #if 1 && defined(xOS_ENV_WIN)
+            #if 1 && xOS_ENV_WIN
                 m_sRes = cnConsole.sGetTitle();
                 xTEST_EQ(m_sRes, csTitle);
             #endif
@@ -198,7 +198,7 @@ CxTest_CxConsole::bUnit(
     //bCenterWindow
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEST_IGNORE && defined(xOS_ENV_WIN)
+        #if xTEST_IGNORE && xOS_ENV_WIN
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bCenterWindow();
@@ -210,7 +210,7 @@ CxTest_CxConsole::bUnit(
     //bSetFullScreen
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if xTEST_IGNORE && defined(xOS_ENV_WIN)
+        #if xTEST_IGNORE && xOS_ENV_WIN
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetFullScreen();
@@ -222,7 +222,7 @@ CxTest_CxConsole::bUnit(
     //bEnableClose
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if 0 && defined(xOS_ENV_WIN)
+        #if 0 && xOS_ENV_WIN
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bEnableClose(FALSE);

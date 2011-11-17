@@ -95,7 +95,7 @@ CxProfiler::bStart() {
             }
             break;
 
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             case pmTickCount: {
                     _m_ulTicksStart = ::GetTickCount();
                     /*DEBUG*/// n/a
@@ -175,7 +175,7 @@ CxProfiler::bStop(
             }
             break;
 
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             case pmTickCount: {
                     _m_ulTicksStop = ::GetTickCount();
                     /*DEBUG*/// n/a
@@ -284,7 +284,7 @@ CxProfiler::_bResetData() {
     _m_dMicrosecStart                   = 0.0f;
     _m_dMicrosecStop                    = 0.0f;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //pmGetTickCount
     _m_ulTicksStart                     = 0UL;
     _m_ulTicksStop                      = 0UL;
@@ -307,14 +307,14 @@ CxProfiler::_bResetData() {
     _m_lpKernelTimeStop.dwHighDateTime  = 0UL;
     _m_lpUserTimeStop.dwLowDateTime     = 0UL;
     _m_lpUserTimeStop.dwHighDateTime    = 0UL;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
     return TRUE;
 }
 //--------------------------------------------------------------------------
-#if defined(xOS_ENV_UNIX) && defined(xOS_FREEBSD)
+#if xOS_ENV_UNIX && defined(xOS_FREEBSD)
 
 /*static*/
 std::clock_t
@@ -336,7 +336,7 @@ CxProfiler::_liGetClock() {
 
 #endif
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 /*static*/
 int

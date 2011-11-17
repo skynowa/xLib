@@ -12,7 +12,7 @@
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Log/CxSystemLog.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <xLib/Log/Win/CxWndLog.h>
 #endif
 //---------------------------------------------------------------------------

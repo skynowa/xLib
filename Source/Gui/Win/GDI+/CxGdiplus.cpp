@@ -6,7 +6,7 @@
 
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 #include <GDIPlus.h>
 

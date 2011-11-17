@@ -544,7 +544,7 @@ CxTest_CxDateTime::bUnit(
     //i64FiletimeToInt64
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const FILETIME cftTime = {100, 200};
 
             m_ullRes = CxDateTime::i64FiletimeToInt64(cftTime);
@@ -558,7 +558,7 @@ CxTest_CxDateTime::bUnit(
     //bUnixTimeToFileTime
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const time_t ctmUnixTime = 1000;
             FILETIME     ftFileTime  = {0};
 
@@ -571,7 +571,7 @@ CxTest_CxDateTime::bUnit(
     //tmFileTimeToUnixTime
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             time_t   tmUnixTime = 0;
             FILETIME ftFileTime = {0};
 

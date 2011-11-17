@@ -7,7 +7,7 @@
 #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
 
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 //---------------------------------------------------------------------------
 CxTest_CxImage::CxTest_CxImage() {
 

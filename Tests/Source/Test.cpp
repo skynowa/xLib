@@ -26,7 +26,7 @@
 #include <Test/Common/CxTest_CxConsole.h>
 #include <Test/Common/CxTest_CxCommandLine.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <Test/Common/Win/CxTest_CxHandleT.h>
     #include <Test/Common/Win/CxTest_CxCom.h>
     #include <Test/Common/Win/CxTest_CxClipboard.h>
@@ -66,7 +66,7 @@
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
 #include <Test/Filesystem/CxTest_CxBackuper.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <Test/Filesystem/Win/CxTest_CxIni.h>
 #endif
 
@@ -99,7 +99,7 @@
 #include <Test/Sync/CxTest_CxCurrentProcess.h>
 #include <Test/Sync/CxTest_CxProcess.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <Test/Sync/CxTest_CxMutex.h>
     #include <Test/Sync/CxTest_CxAutoMutex.h>
 #endif
@@ -107,7 +107,7 @@
 //Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
     #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
 #endif
@@ -193,13 +193,13 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxConsole);
         (void)tmManager.bAdd(new CxTest_CxCommandLine);
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         (void)tmManager.bAdd(new CxTest_CxHandleT);
         (void)tmManager.bAdd(new CxTest_CxCom);
         (void)tmManager.bAdd(new CxTest_CxClipboard);
         (void)tmManager.bAdd(new CxTest_CxShell);
         (void)tmManager.bAdd(new CxTest_CxComPort);
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
 
     #endif
 
@@ -235,9 +235,9 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxLocalStorage);
         (void)tmManager.bAdd(new CxTest_CxBackuper);
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         (void)tmManager.bAdd(new CxTest_CxIni);
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
 
     #endif
 
@@ -259,9 +259,9 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxSingleton);
 
         //Pkcs11
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         ////(void)tmManager.bAdd(new CxTest_CxPkcs11);
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
 
     #endif
 
@@ -276,17 +276,17 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxCurrentProcess);
         (void)tmManager.bAdd(new CxTest_CxProcess);
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         (void)tmManager.bAdd(new CxTest_CxMutex);
         (void)tmManager.bAdd(new CxTest_CxAutoMutex);
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
 
     #endif
 
         //Gui
         (void)tmManager.bAdd(new CxTest_CxMsgBoxT);
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         (void)tmManager.bAdd(new CxTest_CxGdiplus);
         (void)tmManager.bAdd(new CxTest_CxImage);
     #endif

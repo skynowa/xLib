@@ -16,10 +16,10 @@ class CxProcess :
     /// process
 {
     public:
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         typedef HANDLE TxHandle; ///< handle
         typedef DWORD  TxId;     ///< ID
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef pid_t  TxHandle; ///< handle
         typedef pid_t  TxId;     ///< ID
     #endif

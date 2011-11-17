@@ -84,9 +84,9 @@ CxThread::bCreate(
     void       *pvParam
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE == _m_hThread.bIsValid(), FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
     /*DEBUG*/// cbIsPaused   - n/a
@@ -104,7 +104,7 @@ CxThread::bCreate(
 
     //-------------------------------------
     //start
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     HANDLE hRes = NULL;
     TxId   ulId = 0;
 
@@ -117,7 +117,7 @@ CxThread::bCreate(
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     _m_ulId = ulId;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int            iRes = - 1;
     TxId           ulId;
     pthread_attr_t paAttributes; // n/a - {{0}}
@@ -173,9 +173,9 @@ CxThread::bCreate(
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bResume() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -194,9 +194,9 @@ CxThread::bResume() {
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bPause() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_hThread.bIsValid(), CxString::lexical_cast(_m_hThread.hGet()).c_str(), FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -215,9 +215,9 @@ CxThread::bPause() {
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bExit() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -242,7 +242,7 @@ CxThread::bKill(
     BOOL  bRes  = FALSE;
     ULONG ulRes = 0UL;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
 
@@ -257,7 +257,7 @@ CxThread::bKill(
         bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
         /*DEBUG*/xASSERT_DO(FALSE != bRes, break);
     }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::pthread_kill(_m_ulId, SIGALRM);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 
@@ -267,10 +267,10 @@ CxThread::bKill(
 
     //-------------------------------------
     //clean members
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     bRes = _m_hThread.bClose();
     /*DEBUG*/xASSERT(FALSE != bRes);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     _m_hThread = 0UL;
 #endif
 
@@ -291,7 +291,7 @@ CxThread::bWait(
     const ULONG culTimeout
 ) const
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
     /*DEBUG*///ulTimeout - n/a
 
@@ -305,7 +305,7 @@ CxThread::bWait(
     ULONG ulRes = WAIT_FAILED;
     ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::pthread_join(_m_ulId, NULL);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
@@ -327,9 +327,9 @@ CxThread::bIsCreated() const {
 
     bool bRes = false;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     bRes = (FALSE != _m_bIsCreated) && (FALSE != _m_hThread.bIsValid());
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     bRes = (FALSE != _m_bIsCreated) && (0UL   != _m_hThread);
 #endif
 
@@ -342,7 +342,7 @@ CxThread::bIsRunning() const {
 
     bool bRes = false;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ULONG ulRes = 0;
 
     (void)::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
@@ -354,7 +354,7 @@ CxThread::bIsRunning() const {
     bool bCond5 = ( STILL_ACTIVE  == ulRes                                       );
 
     bRes = bCond1 && bCond2 && bCond3 && bCond4 && bCond5;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     bool bCond1 = ( 0UL           != _m_hThread                                  );
     bool bCond2 = ( 0UL            <  _m_ulId                                    );
     bool bCond3 = ( TRUE          == _m_bIsRunning                               );
@@ -376,9 +376,9 @@ CxThread::bIsPaused() {
 
     bool bRes = false;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     bRes = (!_m_evPause.bIsSignaled()) && (FALSE != _m_hThread.bIsValid());
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     bRes = (!_m_evPause.bIsSignaled()) /*&& (0UL   != _m_hThread)*/;
 #endif
 
@@ -391,9 +391,9 @@ CxThread::bIsExited() {
 
     bool bRes = false;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     bRes = (_m_evExit.bIsSignaled()) && (FALSE != _m_hThread.bIsValid());
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     bRes = (_m_evExit.bIsSignaled()) /*&& (0UL   != _m_hThread)*/;
 #endif
 
@@ -407,7 +407,7 @@ CxThread::bIsExited() {
 *
 *****************************************************************************/
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bPostMessage(
@@ -547,9 +547,9 @@ int
 CxThread::_iGetPriorityMin() {
     int iRes = - 1;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     iRes = THREAD_PRIORITY_IDLE;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     iRes = ::sched_get_priority_min(SCHED_FIFO);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
@@ -562,9 +562,9 @@ int
 CxThread::_iGetPriorityMax() {
     int iRes = - 1;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     iRes = THREAD_PRIORITY_TIME_CRITICAL;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     iRes = ::sched_get_priority_max(SCHED_FIFO);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
@@ -577,13 +577,13 @@ CxThread::bSetPriority(
     const EPriority ctpPriority
 ) const
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     BOOL bRes = ::SetThreadPriority(_m_hThread.hGet(), ctpPriority);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
-    #if defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
+    #if xOS_ENV_UNIX
         xCHECK_RET(FALSE == CxSystemInfo::bIsUserAnAdmin(), FALSE);
     #endif
 
@@ -600,18 +600,18 @@ CxThread::bSetPriority(
 //---------------------------------------------------------------------------
 CxThread::EPriority
 CxThread::tpGetPriority() const {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), tpError);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
     CxThread::EPriority tpRes = tpError;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     tpRes = static_cast<EPriority>( ::GetThreadPriority(_m_hThread.hGet()) );
     /*DEBUG*/xASSERT_RET(tpError != tpRes, tpError);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     sched_param spParam  = {0};
     int         iPolicy  = SCHED_FIFO;
 
@@ -644,9 +644,9 @@ CxThread::sGetPriorityString() const {
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bPriorityUp() const {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -671,9 +671,9 @@ CxThread::bPriorityUp() const {
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bPriorityDown() const {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -698,7 +698,7 @@ CxThread::bPriorityDown() const {
 //---------------------------------------------------------------------------
 BOOL
 CxThread::bIsPriorityBoost() const {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     BOOL bDisablePriorityBoost = TRUE;
@@ -710,7 +710,7 @@ CxThread::bIsPriorityBoost() const {
     //bDisablePriorityBoost == FALSE - normal behavior
 
     return ! bDisablePriorityBoost;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     return FALSE;
 #endif
 }
@@ -720,14 +720,14 @@ CxThread::bSetPriorityBoost(
     const BOOL cbIsEnabled
 ) const
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     BOOL bRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! cbIsEnabled);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
     return TRUE;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     return FALSE;
 #endif
 }
@@ -745,7 +745,7 @@ CxThread::bSetCpuAffinity(
     const int ciProcNum
 ) const
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     DWORD_PTR dwMask;
@@ -755,7 +755,7 @@ CxThread::bSetCpuAffinity(
     DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), dwMask);
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
     /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(xOS_FREEBSD)
         cpuset_t  csCpuSet;
     #else
@@ -777,7 +777,7 @@ CxThread::bSetCpuIdeal(
     const ULONG culIdealCpu    ///< value is zero-based
 ) const
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
 
     ULONG ulRes = (ULONG) - 1;
@@ -787,7 +787,7 @@ CxThread::bSetCpuIdeal(
 
     //TODO: xASSERT_RET
     ////*DEBUG*/xASSERT_RET(ulIdealCpu != ulRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     return FALSE;
 #endif
 
@@ -796,18 +796,18 @@ CxThread::bSetCpuIdeal(
 //---------------------------------------------------------------------------
 ULONG
 CxThread::ulGetCpuIdeal() const {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0UL);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
     ULONG ulRes = (ULONG) - 1;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), MAXIMUM_PROCESSORS);
     /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, (ULONG) - 1);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -833,20 +833,20 @@ CxThread::ulGetCpuCount() {
 //---------------------------------------------------------------------------
 CxThread::TxHandle
 CxThread::hGet() const {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), TxHandle());
 
     return _m_hThread.hGet();
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     return _m_hThread;
 #endif
 }
 //---------------------------------------------------------------------------
 CxThread::TxId
 CxThread::ulGetId() const {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -864,13 +864,13 @@ ULONG
 CxThread::ulGetExitStatus() const {
     ULONG ulRes = 0;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0UL);
 
     BOOL bRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
     /*DEBUG*/xASSERT_RET(FALSE           != bRes,  ulRes);
     //--/*DEBUG*/xASSERT_RET(_m_uiExitStatus == ulRes, ulRes);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     ulRes = _m_uiExitStatus;
 #endif
 
@@ -893,7 +893,7 @@ CxThread::bSetDebugName(
 
     xCHECK_RET(FALSE == CxDebugger::bIsPresent(), TRUE);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
         const DWORD culMsVcException = 0x406D1388;
 
@@ -931,7 +931,7 @@ CxThread::bSetDebugName(
     #endif
 #elif defined(xOS_FREEBSD)
     (void)pthread_set_name_np(ulGetId(), csName.c_str());
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
@@ -959,12 +959,12 @@ CxThread::hOpen(
     /*DEBUG*///bInheritHandle - n/a
     /*DEBUG*/xASSERT_RET(0UL < culId, TxHandle());
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     TxHandle hRes = NULL;
 
     hRes = ::OpenThread(culAccess, cbInheritHandle, culId);
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     TxHandle hRes = 0;
 
     //TODO: hOpen
@@ -1110,10 +1110,10 @@ CxThread::_s_uiJobEntry(
 
     //-------------------------------------
     //clean members (is need to close???)
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     bRes = pthThis->_m_hThread.bClose();
     /*DEBUG*/xASSERT(FALSE != bRes);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: _m_hThread.bClose()
 #endif
 
@@ -1130,9 +1130,9 @@ CxThread::_s_uiJobEntry(
     //auto delete oneself
     xCHECK_DO(TRUE == pthThis->_m_cbIsAutoDelete, xPTR_DELETE(pthThis));
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     return  pthThis->_m_uiExitStatus;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     return &pthThis->_m_uiExitStatus;
 #endif
 }

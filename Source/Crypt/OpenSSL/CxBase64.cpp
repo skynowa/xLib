@@ -11,11 +11,11 @@
 #include <openssl/bio.h>
 #include <openssl/buffer.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #if defined(xCOMPILER_MS)
         #pragma comment(lib, "libeay32.lib")
     #endif
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     // -lcrypt -lssl -lcrypto
 #endif
 

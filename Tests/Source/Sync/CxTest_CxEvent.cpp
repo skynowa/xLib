@@ -27,9 +27,9 @@ CxTest_CxEvent::bUnit(
     {
         CxEvent objEvent(TRUE, TRUE);
 
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             xTEST_DIFF(FALSE, objEvent.hGet().bIsValid())
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             //TODO: hRes
         #endif
     }

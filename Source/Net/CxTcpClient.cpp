@@ -87,10 +87,10 @@ CxTcpClient::bIoctl(
 
     int iRes = etError;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     iRes = ioctlsocket(_m_puiSocket, liCmd, pulArgp);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     iRes = ::ioctl    (_m_puiSocket, liCmd, pulArgp);
     /*DEBUG*/xASSERT_RET(etError != iRes, FALSE);
 #endif
@@ -105,7 +105,7 @@ CxTcpClient::bSetNonBlockingMode(
 {
     /*DEBUG*/
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ULONG ulNonBlockingMode = static_cast<ULONG>(cbFlag);
 
     BOOL bRes = bIoctl(FIONBIO, static_cast<ULONG FAR *>(&ulNonBlockingMode));
@@ -117,7 +117,7 @@ CxTcpClient::bSetNonBlockingMode(
 
     setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char*)&bOptVal, bOptLen);
     */
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iFlags = - 1;
 
     iFlags = ::fcntl(_m_puiSocket, F_GETFL);

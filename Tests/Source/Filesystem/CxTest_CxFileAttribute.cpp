@@ -24,9 +24,9 @@ CxTest_CxFileAttribute::bUnit(
 {
     const std::string_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         const CxFileAttribute::EAttribute cfaValue = CxFileAttribute::faReadOnly;
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         const CxFileAttribute::EAttribute cfaValue = CxFileAttribute::faRegularFile;
     #endif
 
@@ -79,7 +79,7 @@ CxTest_CxFileAttribute::bUnit(
     //bRemove
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             CxFileAttribute::EAttribute faAttr  = CxFileAttribute::faHidden;
             CxFileAttribute::EAttribute faValue = CxFileAttribute::faReadOnly;
 
@@ -110,7 +110,7 @@ CxTest_CxFileAttribute::bUnit(
 
             CxFileAttribute::EAttribute faRes = CxFileAttribute::atGet(csFilePath);
             xTEST_EQ((int)faAttr, (int)faRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             //file
             {
                 m_bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
@@ -137,10 +137,10 @@ CxTest_CxFileAttribute::bUnit(
     //bModify
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const CxFileAttribute::EAttribute cfaRemoveValue = cfaValue;
             const CxFileAttribute::EAttribute cfaAddValue    = CxFileAttribute::faHidden;
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             const CxFileAttribute::EAttribute cfaRemoveValue = cfaValue;
             const CxFileAttribute::EAttribute cfaAddValue    = CxFileAttribute::faSymbolicLink;
         #endif
@@ -153,9 +153,9 @@ CxTest_CxFileAttribute::bUnit(
     //bIsExists
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             CxFileAttribute::EAttribute faAttr = CxFileAttribute::faNormal;
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             CxFileAttribute::EAttribute faAttr = CxFileAttribute::faRegularFile;
         #endif
 
@@ -177,9 +177,9 @@ CxTest_CxFileAttribute::bUnit(
 
         faRes = CxFileAttribute::atGet(csFilePath);
         //xTRACEV("faRes: %lld", faRes);
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             xTEST_EQ((int)CxFileAttribute::faNormal, (int)faRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             xTEST_EQ((int)CxFileAttribute::faRegularFile, (int)faRes);
         #endif
     }

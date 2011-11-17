@@ -317,9 +317,9 @@ CxTest_CxFile::bUnit(
         m_bRes = CxFile::bGetTime(csFilePath, &tmCreate, &tmAccess, &tmModified);
         xTEST_DIFF(FALSE, m_bRes);
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         xTEST_EQ(ctmCreate, tmCreate);
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         xUNUSED(tmCreate);
     #endif
 
@@ -498,10 +498,10 @@ CxTest_CxFile::bUnit(
         m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xTEST_DIFF(FALSE, m_bRes);
 
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             m_bRes = F.bSetMode(CxFile::tmBinary);
             xTEST_DIFF(FALSE, m_bRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             //TODO: bSetMode
         #endif
     }
@@ -515,10 +515,10 @@ CxTest_CxFile::bUnit(
         m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
         xTEST_DIFF(FALSE, m_bRes);
 
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             m_bRes = F.bSetMode(CxFile::tmText);
             xTEST_DIFF(FALSE, m_bRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             //TODO: bSetMode
         #endif
     }

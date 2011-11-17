@@ -9,10 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <mysql.h>
     #include <errmsg.h>
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #include <mysql/mysql.h>
     #include <mysql/errmsg.h>
 #endif

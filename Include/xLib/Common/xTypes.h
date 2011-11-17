@@ -31,11 +31,11 @@ xNAMESPACE_BEGIN(NxLib)
             #define TRUE               1
         #endif
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         #if defined(xCOMPILER_MINGW32)
             typedef addrinfo           ADDRINFOT;
         #endif
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef int                    BOOL;
 
         typedef unsigned char          UCHAR;

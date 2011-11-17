@@ -29,9 +29,9 @@ CxTest_CxSystemInfo::bUnit(
         CxSystemInfo::EOsType otType = CxSystemInfo::otUnknown;
 
         otType = CxSystemInfo::osGetOS();
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             xTEST_EQ(CxSystemInfo::otWindowsXP, otType);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             #if defined(xOS_FREEBSD)
                 xTEST_EQ(CxSystemInfo::otFreeBSD, otType);
             #else
@@ -44,7 +44,7 @@ CxTest_CxSystemInfo::bUnit(
     //sFormatOsType
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             std::map<CxSystemInfo::EOsType, std::string_t> mapData;
 
             mapData.insert( std::pair<CxSystemInfo::EOsType, std::string_t>(CxSystemInfo::otWindows3,               xT("Windows 3.1")) );
@@ -67,7 +67,7 @@ CxTest_CxSystemInfo::bUnit(
                 m_sRes = CxSystemInfo::sFormatOsType((*it).first);
                 xTEST_EQ((*it).second, m_sRes);
             }
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otLinux);
             xTEST_EQ(false, m_sRes.empty());
 
@@ -124,7 +124,7 @@ CxTest_CxSystemInfo::bUnit(
     {
         m_ulRes = CxSystemInfo::ulGetNumOfCpus();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCpus: %li"), m_ulRes);
+            xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCpus: %lu"), m_ulRes);
         #endif
         xTEST_LESS(0UL, m_ulRes);
     }
@@ -135,7 +135,7 @@ CxTest_CxSystemInfo::bUnit(
     {
         m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %li"), m_ulRes);
+            xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %lu"), m_ulRes);
         #endif
         xTEST_DIFF(static_cast<ULONG>( - 1 ), m_ulRes);
         xTEST_EQ(true, 0 <= m_ulRes && CxSystemInfo::ulGetNumOfCpus() > m_ulRes);

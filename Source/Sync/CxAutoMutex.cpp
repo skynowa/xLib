@@ -7,7 +7,7 @@
 #include <xLib/Sync/CxAutoMutex.h>
 
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

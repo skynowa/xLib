@@ -58,7 +58,7 @@ CxFileTemp::bCreate(
 
     _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_CODEGEAR)
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
@@ -76,7 +76,7 @@ CxFileTemp::bCreate(
         _pfStdFile = std::xTFOPEN(_m_sFilePath.c_str(), CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
         /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, FALSE);
     #endif
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
     /*DEBUG*/xASSERT_RET(- 1 != iFile, FALSE);
 

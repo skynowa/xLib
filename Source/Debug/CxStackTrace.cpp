@@ -9,14 +9,14 @@
 
 #include <xLib/Sync/CxCurrentProcess.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #ifdef xUNICODE
         #define DBGHELP_TRANSLATE_TCHAR
     #endif
 
     #include <DbgHelp.h>
     #pragma comment(lib, "DbgHelp.Lib")
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #include <execinfo.h>
     #include <cxxabi.h>
 #endif
@@ -55,7 +55,7 @@ CxStackTrace::bGet(
 {
     std::vector<std::string_t> vsStack;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     void        *pvStack[_m_culMaxFrames] = {0};
     SYMBOL_INFO *psiSymbol                = NULL;
     HANDLE       hProcess                 = NULL;
@@ -87,7 +87,7 @@ CxStackTrace::bGet(
     xARRAY_DELETE(psiSymbol);
 
     (void)::SymCleanup(hProcess);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(xOS_LINUX)
         void *pvStack[_m_culMaxFrames] = {0};
 

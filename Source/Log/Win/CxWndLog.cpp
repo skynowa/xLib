@@ -9,14 +9,14 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <xLib/Sync/CxAutoCriticalSection.h>
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

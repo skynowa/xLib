@@ -20,7 +20,7 @@ class CxFileAttribute :
             /// attribute
         {
             //TODO: separate writable and readable attributes
-            #if defined(xOS_ENV_WIN)
+            #if xOS_ENV_WIN
                 faInvalid           = INVALID_FILE_ATTRIBUTES,
                 faNormal            = FILE_ATTRIBUTE_NORMAL,
                 faReadOnly          = FILE_ATTRIBUTE_READONLY,
@@ -36,7 +36,7 @@ class CxFileAttribute :
                 faOffline           = FILE_ATTRIBUTE_OFFLINE,
                 faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
                 faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
-            #elif defined(xOS_ENV_UNIX)
+            #elif xOS_ENV_UNIX
                 faInvalid           = - 1,
                 faNormal            = 0755,
                 faReadOnly          = 0444,

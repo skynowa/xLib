@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxMacros.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 xNAMESPACE_ANONYM_BEGIN
 

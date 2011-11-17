@@ -17,9 +17,9 @@ class CxCriticalSection :
     /// critical section
 {
     public:
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         typedef CRITICAL_SECTION TxHandle;
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef pthread_mutex_t  TxHandle;
     #endif
 

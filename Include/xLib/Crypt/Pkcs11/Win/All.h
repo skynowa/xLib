@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <xLib/Crypt/Pkcs11/Win/Common.h>
 
     #include <xLib/Crypt/Pkcs11/Win/CxUtils.h>

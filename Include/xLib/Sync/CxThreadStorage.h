@@ -29,9 +29,9 @@ class CxThreadStorage :
             ///< set value
 
     private:
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         typedef ULONG         TxIndex;
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef pthread_key_t TxIndex;
     #endif
 

@@ -6,7 +6,7 @@
 
 #include <xLib/Sync/CxProcess.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <xLib/Common/Win/CxHandleT.h>
 #endif
 
@@ -37,7 +37,7 @@ CxProcess::bExec(
     sCmdLine = CxString::sFormatV(pcszCmdLine, palArgs);
     xVA_END(palArgs);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = FALSE;
 
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
@@ -51,7 +51,7 @@ CxProcess::bExec(
 
     bRes = ::CloseHandle(piInfo.hProcess);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if xDEPRECIATE
         int iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
         /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
@@ -86,9 +86,9 @@ CxProcess::bExit(
 {
     /*DEBUG*/// uiExitCode - n/a
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     (void)::ExitProcess(cuiExitCode);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     (void)::exit(static_cast<int>( cuiExitCode ));
 #endif
 
@@ -103,7 +103,7 @@ CxProcess::bTerminate(
 {
     /*DEBUG*/// uiExitCode - n/a
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     CxHandle hProcess;
 
     hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, culPid);
@@ -111,7 +111,7 @@ CxProcess::bTerminate(
 
     BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::kill(culPid, SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif

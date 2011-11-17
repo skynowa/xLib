@@ -259,7 +259,7 @@ CxDateTime::operator = (
     return *this;
 }
 //--------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN) && defined(xCOMPILER_CODEGEAR)
+#if xOS_ENV_WIN && defined(xCOMPILER_CODEGEAR)
 
 const CxDateTime &
 CxDateTime::operator = (
@@ -657,7 +657,7 @@ CxDateTime
 CxDateTime::dtGetCurrent() {
     /*DEBUG*/
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     SYSTEMTIME stDateTime = {0};
 
     ::GetLocalTime(&stDateTime);
@@ -665,7 +665,7 @@ CxDateTime::dtGetCurrent() {
     /*DEBUG*/xASSERT_RET(FALSE != bIsValid(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds), CxDateTime());
 
     return CxDateTime(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //get milliseconds
     timeval tvTime = {0};
 
@@ -693,7 +693,7 @@ CxDateTime::dtGetCurrent() {
 #endif
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 /*static*/
 LONGLONG
@@ -706,7 +706,7 @@ CxDateTime::i64FiletimeToInt64(
 
 #endif
 //--------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 /*static*/
 BOOL
@@ -730,7 +730,7 @@ CxDateTime::bUnixTimeToFileTime(
 #endif
 
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 //TODO: make tests tmFileTimeToUnixTime
 /*static*/

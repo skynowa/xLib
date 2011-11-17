@@ -19,7 +19,7 @@
 ////#include <boost\bind.hpp>
 ////#include <functional>
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

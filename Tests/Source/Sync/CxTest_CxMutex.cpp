@@ -22,7 +22,7 @@ CxTest_CxMutex::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     const std::string_t csName = CxString::sCreateGuid();
 
 
@@ -70,7 +70,7 @@ CxTest_CxMutex::bUnit(
         m_bRes = mtMutex.bRelease();
         xTEST_DIFF(FALSE, m_bRes);
     }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 

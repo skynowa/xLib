@@ -60,14 +60,14 @@ CxStdError::sFormat(
 {
     std::string_t sRes;
 
-    sRes = CxString::sFormat(xT("%li - "), ciCode);
+    sRes = CxString::sFormat(xT("%lu - "), ciCode);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     char_t *pcszError = (char_t *)std::_tcserror(ciCode);
     xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
     sRes.append(pcszError);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(xOS_LINUX)
         char szBuff[64 + 1] = {0};
 

@@ -24,7 +24,7 @@ CxTest_CxShell::bUnit(
 {
     /*DEBUG*/
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //-------------------------------------
     //bFindExecutable
     xTEST_BLOCK(cullBlockLoops)

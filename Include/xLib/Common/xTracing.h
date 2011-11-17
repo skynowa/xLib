@@ -10,11 +10,11 @@
 #if xIS_COMPILE_TIME_TRACING
     //--------------------------------------------------
     //OS family
-    #if   defined(xOS_WIN)
+    #if   xOS_WIN
         #pragma message("xLib: xOS_WIN")
-    #elif defined(xOS_LINUX)
+    #elif xOS_LINUX
         #pragma message("xLib: xOS_LINUX")
-    #elif defined(xOS_FREEBSD)
+    #elif xOS_FREEBSD
         #pragma message("xLib: xOS_FREEBSD")
     #else
         #pragma message("xLib: unsupported OS")
@@ -22,11 +22,11 @@
 
     //--------------------------------------------------
     //OS environment
-    #if   defined(xOS_ENV_WIN)
+    #if   xOS_ENV_WIN
         #pragma message("xLib: xOS_ENV_WIN")
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         #pragma message("xLib: xOS_ENV_UNIX")
-    #elif defined(xOS_ENV_BSD)
+    #elif xOS_ENV_BSD
         #pragma message("xLib: xOS_ENV_BSD")
     #else
         #pragma message("xLib: unsupported OS environment")
@@ -34,9 +34,9 @@
 
     //--------------------------------------------------
     //OS architecture
-    #if   defined(xARCHITECTURE_32BIT)
+    #if   xARCHITECTURE_32BIT
         #pragma message("xLib: xARCHITECTURE_32BIT")
-    #elif defined(xARCHITECTURE_64BIT)
+    #elif xARCHITECTURE_64BIT
         #pragma message("xLib: xARCHITECTURE_64BIT")
     #else
         #pragma message("xLib: unsupported architectures")
@@ -44,15 +44,15 @@
 
     //--------------------------------------------------
     //Compilers
-    #if   defined(xCOMPILER_MINGW32)
+    #if   xCOMPILER_MINGW32
         #pragma message("xLib: xCOMPILER_MINGW32")
-    #elif defined(xCOMPILER_MS)
+    #elif xCOMPILER_MS
         #pragma message("xLib: xCOMPILER_MS")
-    #elif defined(xCOMPILER_CODEGEAR)
+    #elif xCOMPILER_CODEGEAR
         #pragma message("xLib: xCOMPILER_CODEGEAR")
-    #elif defined(xCOMPILER_INTEL)
+    #elif xCOMPILER_INTEL
         #pragma message("xLib: xCOMPILER_INTEL")
-    #elif defined(xCOMPILER_GNUC)
+    #elif xCOMPILER_GNUC
         #pragma message("xLib: xCOMPILER_GNUC")
     #else
         #pragma message("xLib: unsupported compiler")
@@ -60,7 +60,7 @@
 
     //--------------------------------------------------
     //unicode, ansi
-    #if defined(xUNICODE)
+    #if xUNICODE
         #pragma message("xLib: xUNICODE")
     #else
         #pragma message("xLib: xANSI")
@@ -90,9 +90,9 @@
 
     //--------------------------------------------------
     //debug mode
-    #if   defined(xBUILD_DEBUG)
+    #if   xBUILD_DEBUG
         #pragma message("xLib: xBUILD_DEBUG")
-    #elif defined(xBUILD_RELEASE)
+    #elif xBUILD_RELEASE
         #pragma message("xLib: xBUILD_RELEASE")
     #else
         #pragma message("xLib: unsupported build")

@@ -22,7 +22,7 @@ CxTest_CxIni::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #define TEST_DEF_CONSTRUCTOR 1
 
     {
