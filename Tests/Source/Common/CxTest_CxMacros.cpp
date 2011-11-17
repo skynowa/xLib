@@ -22,6 +22,137 @@ CxTest_CxMacros::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
+    //--------------------------------------------------
+    //several combinations of preprocessor's defines
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        /*
+            if (DEFINE_VAL == NOT_ZERO_DIGIT) {
+                [true]
+            } else {
+                [false]
+            }
+        */
+
+        {
+            #define xDEF_A
+
+
+            #if defined(xDEF_A)
+
+            #else
+                xTEST_FAIL;
+            #endif
+
+            //#if xDEF_A                      //compile error: #if with no expression
+            //
+            //#endif
+
+            //#if defined(xDEF_A) && xDEF_A   //compile error: operator '&&' has no right operand
+            //
+            //#endif
+        }
+
+        {
+            #define xDEF_B -1
+
+
+            #if defined(xDEF_B) && xDEF_B
+
+            #else
+                xTEST_FAIL;
+            #endif
+        }
+
+        {
+            #define xDEF_C 0
+
+
+            #if defined(xDEF_C) && xDEF_C
+                xTEST_FAIL;
+            #else
+
+            #endif
+        }
+
+        {
+            #define xDEF_D 1
+
+
+            #if defined(xDEF_D) && xDEF_D
+
+            #else
+                xTEST_FAIL;
+            #endif
+        }
+
+        {
+            #define xDEF_E 2
+
+
+            #if defined(xDEF_E) && xDEF_E
+
+            #else
+                xTEST_FAIL;
+            #endif
+        }
+
+        {
+            #define xDEF_F zzz
+
+
+            #if defined(xDEF_F) && xDEF_F
+                xTEST_FAIL;
+            #else
+
+            #endif
+        }
+
+        {
+            #define xDEF_G true
+
+
+            #if defined(xDEF_G) && xDEF_G
+
+            #else
+                xTEST_FAIL;
+            #endif
+        }
+
+        {
+            #define xDEF_H false
+
+
+            #if defined(xDEF_H) && xDEF_H
+                xTEST_FAIL;
+            #else
+
+            #endif
+        }
+
+        {
+            #define xDEF_I !true
+
+
+            #if defined(xDEF_I) && xDEF_I
+                xTEST_FAIL;
+            #else
+
+            #endif
+        }
+
+        {
+            #define xDEF_J !false
+
+
+            #if defined(xDEF_J) && xDEF_J
+
+            #else
+                xTEST_FAIL;
+            #endif
+        }
+    }
+
     //-------------------------------------
     //xPTR_DELETE
     xTEST_BLOCK(cullBlockLoops)
@@ -32,6 +163,7 @@ CxTest_CxMacros::bUnit(
         /*CxMacros::*/xPTR_DELETE(pPtr);
         xASSERT(NULL == pPtr);
     }
+
     //-------------------------------------
     //xARRAY_DELETE
     xTEST_BLOCK(cullBlockLoops)
