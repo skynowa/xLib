@@ -107,50 +107,6 @@ CxTest_CxMacros::bUnit(
 
             #endif
         }
-
-        {
-            #define xDEF_G true
-
-
-            #if defined(xDEF_G) && xDEF_G
-
-            #else
-                xTEST_FAIL;
-            #endif
-        }
-
-        {
-            #define xDEF_H false
-
-
-            #if defined(xDEF_H) && xDEF_H
-                xTEST_FAIL;
-            #else
-
-            #endif
-        }
-
-        {
-            #define xDEF_I !true
-
-
-            #if defined(xDEF_I) && xDEF_I
-                xTEST_FAIL;
-            #else
-
-            #endif
-        }
-
-        {
-            #define xDEF_J !false
-
-
-            #if defined(xDEF_J) && xDEF_J
-
-            #else
-                xTEST_FAIL;
-            #endif
-        }
     }
 
     //-------------------------------------
