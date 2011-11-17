@@ -7,7 +7,7 @@
 #include <Test/Sync/CxTest_CxSemaphore.h>
 
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 //---------------------------------------------------------------------------
 BOOL m_bRes = FALSE;
 CxSemaphore m_Semaphore;
@@ -65,6 +65,6 @@ CxTest_CxSemaphore::bUnit(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif

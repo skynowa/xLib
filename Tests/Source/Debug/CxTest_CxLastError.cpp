@@ -26,9 +26,9 @@ CxTest_CxLastError::bUnit(
     //ulGet
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
@@ -43,9 +43,9 @@ CxTest_CxLastError::bUnit(
     //ulGet
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
@@ -59,9 +59,9 @@ CxTest_CxLastError::bUnit(
     //bSet
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
@@ -75,9 +75,9 @@ CxTest_CxLastError::bUnit(
     //bReset
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
@@ -96,9 +96,9 @@ CxTest_CxLastError::bUnit(
     //sFormat
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
@@ -106,7 +106,7 @@ CxTest_CxLastError::bUnit(
             m_sRes = CxLastError::sFormat(i);
             xTEST_EQ(false, m_sRes.empty());
 
-            //xTRACEV(xT("\tCxLastError::sFormat(%li) = %s (size = %li)"), i, m_sRes.c_str(), m_sRes.size() - 4);
+            //xTRACEV(xT("\tCxLastError::sFormat(%lu) = %s (size = %lu)"), i, m_sRes.c_str(), m_sRes.size() - 4);
         }
     }
 

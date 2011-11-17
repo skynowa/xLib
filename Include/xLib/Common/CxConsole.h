@@ -9,9 +9,9 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <xLib/Common/Win/CxHandleT.h>
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 //---------------------------------------------------------------------------
@@ -86,7 +86,7 @@ class CxConsole :
             ///< enable close button
 
     private:
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         HWND         _m_hWnd;       ///< console window handle
         HMENU        _m_hMenu;      ///< console menu handle
         CxFileHandle _m_hStdIn;     ///< standart input handle
@@ -96,7 +96,7 @@ class CxConsole :
             ///< get console window handle
         HMENU        _hGetMenuHandle(const BOOL cbRevert);
             ///< get console menu handle
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
 
     #endif
 };

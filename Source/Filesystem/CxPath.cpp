@@ -30,14 +30,14 @@ std::string_t
 CxPath::sGetExe() {
     std::string_t sRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     sRes.resize(xPATH_MAX);
 
     ULONG ulStored = ::GetModuleFileName(NULL, &sRes.at(0), sRes.size());
     /*DEBUG*/xASSERT_RET(0 != ulStored, std::string_t());
 
     sRes.resize(ulStored);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(xOS_FREEBSD)
         #if defined(KERN_PROC_PATHNAME)
             sRes.resize(xPATH_MAX);
@@ -96,7 +96,7 @@ CxPath::sGetDll() {
 
     std::string_t sRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #if xTODO
         MEMORY_BASIC_INFORMATION mbi;
         VirtualQuery(&symbol,&mbi,sizeof(mbi));
@@ -110,7 +110,7 @@ CxPath::sGetDll() {
         }
         String fullpath = arr;
     #endif
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if xTODO
         Dl_info info;
         dladdr(&symbol,&info);
@@ -127,7 +127,7 @@ CxPath::sGetExeDir() {
     return sGetDir(sGetExe());
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 /*static*/
 std::string_t
@@ -234,12 +234,12 @@ CxPath::sGetStandartExt(
     std::string_t sRes;
 
     switch (cseFileExt) {
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         case seExe: { sRes = xT("exe"); }   break;
         case seDll: { sRes = xT("dll"); }   break;
         case seLib: { sRes = xT("lib"); }   break;
         case seObj: { sRes = xT("obj"); }   break;
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         case seExe: { sRes = xT("");    }   break;
         case seDll: { sRes = xT("so");  }   break;
         case seLib: { sRes = xT("a");   }   break;
@@ -251,7 +251,7 @@ CxPath::sGetStandartExt(
     return sRes;
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 /*static*/
 std::string_t
@@ -447,7 +447,7 @@ CxPath::bIsAbsolute(
     xCHECK_RET(true                  == csFilePath.empty(), FALSE);
     xCHECK_RET(CxConst::xSLASH.at(0) == csFilePath.at(0),   TRUE);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     xCHECK_RET(1 == csFilePath.size(),                                                          FALSE);
     xCHECK_RET(CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == csFilePath.at(1), TRUE);
 #else
@@ -476,7 +476,7 @@ CxPath::sSetValidName(
     //check for name size
     xCHECK_RET(xNAME_MAX <= sRes.size(), std::string_t());
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //-------------------------------------
     //if only dots
     size_t uiDotPos = sRes.find_first_not_of(CxConst::xDOT);
@@ -520,7 +520,7 @@ CxPath::sSetValidName(
     for (size_t i = 0; i < xARRAY_SIZE(csReservedNames); ++ i) {
         xCHECK_RET(TRUE == CxString::bCompareNoCase(sFileName, csReservedNames[i]), std::string_t());
     }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: sSetValidName
 #endif
 
@@ -607,7 +607,7 @@ CxPath::sGetAbsolute(
 
     std::string_t sRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ULONG   ulRes = 0UL;
     std::string_t sBuff;
 
@@ -622,7 +622,7 @@ CxPath::sGetAbsolute(
     sBuff.resize(ulRes);
 
     sRes.assign(sBuff);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     std::string_t sBuff;
 
     sBuff.resize(xPATH_MAX);
@@ -685,7 +685,7 @@ CxPath::sMinimize(
 
     std::string_t sRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     sRes.assign(csFilePath);
 
     std::string_t sDrive = sGetDrive(sRes);                                          /* D: */
@@ -742,7 +742,7 @@ CxPath::sMinimize(
 
         sRes = sDrive + sDir + sName;
     }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     sRes.assign(csFilePath);
 #endif
 
@@ -778,7 +778,7 @@ CxPath::uiGetMaxSize() {
 
     size_t uiRes = 0;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #if defined(MAX_PATH)
         uiRes = MAX_PATH;
     #else
@@ -786,7 +786,7 @@ CxPath::uiGetMaxSize() {
 
         uiRes = cuiDefaultSize;
     #endif
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(PATH_MAX)
         uiRes = PATH_MAX;
     #else
@@ -822,7 +822,7 @@ CxPath::uiGetNameMaxSize() {
 
     size_t uiRes = 0;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #if defined(FILENAME_MAX)
         uiRes = FILENAME_MAX;
     #else
@@ -830,7 +830,7 @@ CxPath::uiGetNameMaxSize() {
 
         uiRes = cuiDefaultSize;
     #endif
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(NAME_MAX)
         uiRes = NAME_MAX;
     #else

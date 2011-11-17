@@ -9,13 +9,13 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <xLib/Common/Win/CxHandleT.h>
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

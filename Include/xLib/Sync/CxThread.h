@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxEvent.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #include <xLib/Common/Win/CxHandleT.h>
 #endif
 //---------------------------------------------------------------------------
@@ -24,7 +24,7 @@ class CxThread :
         enum EPriority
             /// priotity
         {
-            #if defined(xOS_ENV_WIN)
+            #if xOS_ENV_WIN
                 tpError        = THREAD_PRIORITY_ERROR_RETURN,
                 tpIdle         = THREAD_PRIORITY_IDLE,
                 tpLowest       = THREAD_PRIORITY_LOWEST,
@@ -33,7 +33,7 @@ class CxThread :
                 tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
                 tpHighest      = THREAD_PRIORITY_HIGHEST,
                 tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
-            #elif defined(xOS_ENV_UNIX)
+            #elif xOS_ENV_UNIX
                 tpError        = - 1,
                 tpIdle         ,
                 tpLowest       = 10,
@@ -45,10 +45,10 @@ class CxThread :
             #endif
         };
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         typedef HANDLE    TxHandle; ///< handle
         typedef DWORD     TxId;     ///< ID
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef pthread_t TxHandle; ///< handle
         typedef pthread_t TxId;     ///< ID
     #endif
@@ -84,7 +84,7 @@ class CxThread :
         BOOL                bIsExited             ();
             ///< is exited (is set flag "exit")
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         //messages
         BOOL                bPostMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
             ///< post message from thread to window
@@ -159,9 +159,9 @@ class CxThread :
 
 
         //thread data
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         CxHandle            _m_hThread;                 ///< native handle
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         TxHandle            _m_hThread;                 ///< native handle
     #endif
 
@@ -182,9 +182,9 @@ class CxThread :
         CxEvent             _m_evPause;                 ///< pause event
         CxEvent             _m_evExit;                  ///< exit event
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         typedef UINT     TxExitStatus;
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef void *   TxExitStatus;
     #endif
 

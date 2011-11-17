@@ -6,11 +6,11 @@
 
 #include <xLib/Net/CxSocketInit.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #if defined(xCOMPILER_MS)
         #pragma comment(lib, "WS2_32.Lib")
     #endif
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     // n/a
 #endif
 
@@ -28,7 +28,7 @@ CxSocketInit::CxSocketInit(
     const USHORT cusMinorVersion
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     WSADATA wdData = {0};
 
     int iRes = ::WSAStartup(MAKEWORD(cusMajorVersion, cusMinorVersion), &wdData);
@@ -41,16 +41,16 @@ CxSocketInit::CxSocketInit(
 
         /*DEBUG*/xASSERT_DO(FALSE,     return);
     }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     // n/a
 #endif
 }
 //---------------------------------------------------------------------------
 CxSocketInit::~CxSocketInit() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     int iRes = ::WSACleanup();
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     // n/a
 #endif
 }

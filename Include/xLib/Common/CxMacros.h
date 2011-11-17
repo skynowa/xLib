@@ -21,9 +21,9 @@
     ///< inline
 
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #define xSTDCALL    __stdcall
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #define xSTDCALL
 #endif
     ///< calling convention
@@ -133,10 +133,10 @@
 #define xSTR_CONCAT(x, y)  x ## y
     ///< concatinate strings
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 #   define xTODO_TASK(text) { message(__FILE__ "(" xSTRINGIZE(__LINE__) ") [" xFUNCTION "]: warning TODO: [" xFUNCTION "] " ## text) }
 #   define xTODO_IMPL       { xTODO("Implement " xFUNCTION " function!") }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 #   define xPRAGMA(s)       { _Pragma (#s) }
 #   define xTODO_TASK(s)    { xPRAGMA( message(" TODO: "(s)) ) }
 #   define xNOT_IMPL(s)     { xPRAGMA( message(" Not implemented: "(s)) ) }
@@ -322,7 +322,7 @@
 
 
 //qualifiers
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #ifdef xARCHITECTURE_64BIT
         #define xPR_SIZET xT("I")
             ///< qualifier for std::size_t
@@ -346,7 +346,7 @@
         #define xPR_I64X  xT("llX")
             ///< qualifier for long long int (hex)
     #endif
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #ifdef xARCHITECTURE_64BIT
         #define xPR_SIZET xT("zu")
             ///< qualifier for std::size_t
@@ -374,9 +374,9 @@
 
 
 //timeout
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #define xTIMEOUT_INFINITE   INFINITE    ///< infinite timeout
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #define xTIMEOUT_INFINITE   ~(0UL)      ///< infinite timeout
 #endif
 

@@ -29,9 +29,9 @@ class CxStackTrace :
             ///< get stack trace
 
     private:
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         static const ULONG _m_culMaxFrames = 62UL;    //from MSDN, ::CaptureStackBackTrace
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         static const int   _m_culMaxFrames = 256;     //this should be enough
     #endif
             ///< maximum frames for report

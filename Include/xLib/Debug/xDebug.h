@@ -193,7 +193,7 @@
         ///< tracing, comment with current function name
     #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::string_t(xFUNCTION) + xT(": ") + std::string_t(s)); }
         ///< tracing, comment with current function name and message
-    #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %li (file: %s, function: %s, last error: %s, line: %li)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
+    #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
         ///< trace point (use CxDebugger)
     #define xSTD_TRACE_POINT                                { std::tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << std::endl; }
         ///< trace point (use std::cout)

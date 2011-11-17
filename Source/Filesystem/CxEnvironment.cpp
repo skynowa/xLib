@@ -28,7 +28,7 @@ CxEnvironment::bIsExists(
     /*DEBUG*/// n/a
     xCHECK_RET(true == csVarName.empty(), FALSE);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     std::string_t sRes;
     ULONG        ulStored = 0UL;
 
@@ -37,7 +37,7 @@ CxEnvironment::bIsExists(
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
     /*DEBUG*/// n/a
     xCHECK_RET(0 == ulStored && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(csVarName.c_str());
     /*DEBUG*/// n/a
     xCHECK_RET(NULL == pcszRes, FALSE);
@@ -57,7 +57,7 @@ CxEnvironment::sGetVar(
 
     std::string_t sRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ULONG ulStored = 0UL;
 
     sRes.resize(xPATH_MAX);
@@ -71,7 +71,7 @@ CxEnvironment::sGetVar(
         ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
         /*DEBUG*/xASSERT_RET(0UL != ulStored, std::string_t());
     }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(csVarName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::string_t());
 
@@ -91,10 +91,10 @@ CxEnvironment::bSetVar(
     /*DEBUG*/xASSERT_RET(false == csVarName.empty(), FALSE);
     /*DEBUG*/// csValue - n/a
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::setenv(csVarName.c_str(), csValue.c_str(), TRUE);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
@@ -111,10 +111,10 @@ CxEnvironment::bDeleteVar(
     /*DEBUG*/// n/a
     xCHECK_RET(FALSE == bIsExists(csVarName), TRUE);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(xOS_FREEBSD)
         (void)::unsetenv(csVarName.c_str());
     #else
@@ -136,7 +136,7 @@ CxEnvironment::bGetValues(
 
     std::vector<std::string_t> vsArgs;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     LPTSTR pszVar = NULL;
     LPTCH  lpvEnv = NULL;
 
@@ -153,7 +153,7 @@ CxEnvironment::bGetValues(
 
     BOOL bRes = ::FreeEnvironmentStrings(lpvEnv);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(NULL != environ, FALSE);
 
     for (size_t i = 0; NULL != environ[i]; ++ i) {
@@ -177,7 +177,7 @@ CxEnvironment::sExpandStrings(
 
     std::string_t sRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ULONG ulStored = 0UL;
 
     sRes.resize(xPATH_MAX);
@@ -193,7 +193,7 @@ CxEnvironment::sExpandStrings(
     }
 
     sRes.resize(ulStored - sizeof('\0'));
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     const std::string_t csSep = xT("%");
 
     sRes.assign(csVar);

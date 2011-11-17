@@ -22,11 +22,11 @@ CxTest_CxDll::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         const std::string_t sData[][2] = {
             {xT("kernel32.dll"), xT("Beep")}
         };
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         #if defined(xOS_FREEBSD)
             //if -static CxDll::bLoad don't load any 'so'-libraries
             return TRUE;
@@ -64,14 +64,14 @@ CxTest_CxDll::bUnit(
         fpRes = objDll.fpGetProcAddress(sData[i][1]);
         xASSERT(NULL != fpRes);
 
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         typedef void (__stdcall *pDllFunc)(ULONG, ULONG);
 
         pDllFunc pLoadBeepFunc = NULL;
 
         pLoadBeepFunc = (pDllFunc)fpRes;
         pLoadBeepFunc(1, 1);
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef double (*pDllFunc)(double);
 
         pDllFunc pCosine = NULL;

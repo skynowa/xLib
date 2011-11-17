@@ -16,9 +16,9 @@ class CxDll :
     /// dynamic linking loader
 {
     public:
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         typedef FARPROC TxProcAddress;
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef void *  TxProcAddress;
     #endif
                       CxDll           ();
@@ -36,9 +36,9 @@ class CxDll :
             ///< free
 
     private:
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         typedef HMODULE  TxHandle;
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         typedef void *   TxHandle;
     #endif
 

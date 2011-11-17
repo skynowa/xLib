@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxCriticalSection::CxCriticalSection() :
     _m_hHandle()
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = FALSE;
 
     try {
@@ -30,7 +30,7 @@ CxCriticalSection::CxCriticalSection() :
     }
 
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = - 1;
 
     pthread_mutexattr_t maAttr;    // n/a {{0}}
@@ -53,7 +53,7 @@ CxCriticalSection::CxCriticalSection() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxCriticalSection::~CxCriticalSection() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = FALSE;
 
     try {
@@ -65,7 +65,7 @@ CxCriticalSection::~CxCriticalSection() {
     }
 
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::pthread_mutex_destroy(&_m_hHandle);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 #endif
@@ -80,7 +80,7 @@ CxCriticalSection::hGet() const {
 //---------------------------------------------------------------------------
 BOOL
 CxCriticalSection::bLock() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = FALSE;
 
     try {
@@ -92,7 +92,7 @@ CxCriticalSection::bLock() {
     }
 
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::pthread_mutex_lock(&_m_hHandle);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif
@@ -102,10 +102,10 @@ CxCriticalSection::bLock() {
 //---------------------------------------------------------------------------
 BOOL
 CxCriticalSection::bTryLock() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = ::TryEnterCriticalSection(&_m_hHandle);
     xCHECK_RET(FALSE == bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::pthread_mutex_trylock(&_m_hHandle);
     xCHECK_RET(0 != iRes, FALSE);
 #endif
@@ -115,7 +115,7 @@ CxCriticalSection::bTryLock() {
 //---------------------------------------------------------------------------
 BOOL
 CxCriticalSection::bUnlock() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = FALSE;
 
     try {
@@ -127,7 +127,7 @@ CxCriticalSection::bUnlock() {
     }
 
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::pthread_mutex_unlock(&_m_hHandle);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
 #endif

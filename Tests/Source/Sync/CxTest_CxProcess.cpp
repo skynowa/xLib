@@ -26,10 +26,10 @@ CxTest_CxProcess::bUnit(
     //bExec
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             const std::string_t csFilePath = xT("explorer.exe");
             const std::string_t csCmdLine  = xT("");
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             const std::string_t csFilePath = xT("dolphin");
             const std::string_t csCmdLine  = xT("");
         #endif

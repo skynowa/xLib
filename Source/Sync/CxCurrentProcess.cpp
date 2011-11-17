@@ -22,10 +22,10 @@ CxCurrentProcess::ulGetId() {
 
     CxProcess::TxId ulRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ulRes = ::GetCurrentProcessId();
     /*DEBUG*/// n/a
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     ulRes = ::getpid();
     /*DEBUG*/// n/a
 #endif
@@ -40,7 +40,7 @@ CxCurrentProcess::ulGetParentId() {
 
     CxProcess::TxId ulRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     const CxProcess::TxId culInvalidId = (ULONG)- 1;
 
     ULONG_PTR pbi[6] = {0};
@@ -57,7 +57,7 @@ CxCurrentProcess::ulGetParentId() {
     /*DEBUG*/xASSERT_RET(FALSE != bRes, culInvalidId);
 
     ulRes = pbi[5];
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     ulRes = ::getppid();
     /*DEBUG*/// n/a
 #endif
@@ -72,10 +72,10 @@ CxCurrentProcess::hGetHandle() {
 
     CxProcess::TxHandle hRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     hRes = ::GetCurrentProcess();
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     hRes = ::getpid();
     /*DEBUG*/// n/a
 #endif

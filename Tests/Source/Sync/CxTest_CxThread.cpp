@@ -34,7 +34,7 @@ CWorkThread::uiOnRun(
 )
 {
     #if xTEST_IGNORE
-        xTRACEV(xT("\n\tCWorkThread: start #%li"), m_ulTag);
+        xTRACEV(xT("\n\tCWorkThread: start #%lu"), m_ulTag);
     #endif
 
     UINT uiRes = 0;
@@ -71,7 +71,7 @@ CWorkThread::uiOnRun(
     #endif
 
     #if xTEST_IGNORE
-        xTRACEV(xT("\tCWorkThread: end #%li\n"), m_ulTag);
+        xTRACEV(xT("\tCWorkThread: end #%lu\n"), m_ulTag);
     #endif
 
     return uiRes;
@@ -163,13 +163,13 @@ CxTest_CxThread::bUnit(
     {
         const CxThread::EPriority ctpPriority = CxThread::tpLowest;
 
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             m_bRes = pthT->bSetPriority(ctpPriority);
             xTEST_EQ(TRUE, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
             xTEST_EQ((int)ctpPriority, (int)m_iRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             m_bRes = pthT->bSetPriority(ctpPriority);
             //TODO: xTEST_DIFF(FALSE, m_bRes);
 
@@ -192,13 +192,13 @@ CxTest_CxThread::bUnit(
     //bPriorityUp, bPriorityDown
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             m_bRes = pthT->bPriorityUp();
             xTEST_DIFF(FALSE, m_bRes);
 
             m_bRes = pthT->bPriorityDown();
             xTEST_DIFF(FALSE, m_bRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
 
         #endif
     }
@@ -207,10 +207,10 @@ CxTest_CxThread::bUnit(
     //bIsPriorityBoost
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             m_bRes = pthT->bIsPriorityBoost();
             xTEST_DIFF(FALSE, m_bRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
 
         #endif
     }
@@ -219,7 +219,7 @@ CxTest_CxThread::bUnit(
     //bSetPriorityBoost
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             m_bRes = pthT->bSetPriorityBoost(FALSE);
             xTEST_DIFF(FALSE, m_bRes);
 
@@ -231,7 +231,7 @@ CxTest_CxThread::bUnit(
 
             m_bRes = pthT->bIsPriorityBoost();
             xTEST_DIFF(FALSE, m_bRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
 
         #endif
     }
@@ -254,7 +254,7 @@ CxTest_CxThread::bUnit(
     //bSetCpuIdeal, ulGetCpuIdeal
     xTEST_BLOCK(cullBlockLoops)
     {
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             m_bRes = pthT->bSetCpuIdeal(0);
             xTEST_DIFF(FALSE, m_bRes);
 
@@ -269,7 +269,7 @@ CxTest_CxThread::bUnit(
 
             m_ulRes = pthT->ulGetCpuIdeal();
             xTEST_EQ(0UL, m_ulRes);
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
 
         #endif
     }
@@ -401,7 +401,7 @@ CxTest_CxThread::bUnit(
     ULONG ulRes = pthT->ulGetExitStatus();
     xUNUSED(ulRes);
     #if xTEST_IGNORE
-        xTRACEV("\tulGetExitStatus(): %li", ulRes);
+        xTRACEV("\tulGetExitStatus(): %lu", ulRes);
     #endif
 
     m_bRes = pthT->bWait(xTIMEOUT_INFINITE);

@@ -68,13 +68,13 @@ CxTcpServer::bAccept(
 
     SOCKET scktClient = etInvalid;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     struct sockaddr_in cliaddr  = {0};
     int                iAddrlen = sizeof(cliaddr);
 
     scktClient = ::accept(_m_puiSocket, CxMacros::xreinterpret_cast<struct sockaddr *>( &cliaddr ), &iAddrlen);
     /*DEBUG*/xASSERT_RET(etInvalid != scktClient, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     struct sockaddr_in cliaddr  = {0};
     socklen_t          iAddrlen = sizeof(cliaddr);
 

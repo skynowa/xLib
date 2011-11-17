@@ -21,9 +21,9 @@ LONG
 CxCommandLine::liGetArgsMax() {
     LONG liRes = 0L;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     liRes = 32L * 1024L;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     liRes = ::sysconf(_SC_ARG_MAX) / sizeof(std::string_t::value_type);
     /*DEBUG*/xASSERT_RET(- 1 != liRes, 0L);
 #endif
@@ -38,12 +38,12 @@ CxCommandLine::sGet() {
 
     std::string_t sRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     LPCTSTR pcszRes = ::GetCommandLine();
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::string_t());
 
     sRes.assign( CxString::sTrimSpace(pcszRes) );
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     sRes.assign( CxString::sJoin(_ms_vsArgs, CxConst::xSPACE) );
 #endif
 

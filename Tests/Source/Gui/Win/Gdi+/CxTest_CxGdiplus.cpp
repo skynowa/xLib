@@ -7,7 +7,7 @@
 #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
 
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 //---------------------------------------------------------------------------
 CxTest_CxGdiplus::CxTest_CxGdiplus() {
 

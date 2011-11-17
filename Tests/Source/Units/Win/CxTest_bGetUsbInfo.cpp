@@ -22,7 +22,7 @@ CxTest_bGetUsbInfo::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //-------------------------------------
     //bGetUsbInfo
     xTEST_BLOCK(cullBlockLoops)

@@ -9,9 +9,9 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #include <sys/mount.h>
 #endif
 
@@ -36,7 +36,7 @@ CxVolume::bIsReady(
     std::string_t sVolumePath = CxPath::sSlashAppend(csVolumePath);
     std::string_t sOldDirPath;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     std::string_t sRes;
     UINT         uiOldErrorMode = 0;
 
@@ -54,7 +54,7 @@ CxVolume::bIsReady(
 
     ::SetErrorMode(uiOldErrorMode);
     /*DEBUG*/// n/a
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     sOldDirPath  = CxDir::sGetCurrent();
     /*DEBUG*/// n/a
 
@@ -104,7 +104,7 @@ CxVolume::bGetFreeSpace(
         _sDirPath = csDirPath;
     }
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ULARGE_INTEGER ullAvailable = {{0}};
     ULARGE_INTEGER ullTotal     = {{0}};
     ULARGE_INTEGER ullFree      = {{0}};
@@ -115,7 +115,7 @@ CxVolume::bGetFreeSpace(
     xPTR_ASSIGN(pullAvailable, ullAvailable.QuadPart);
     xPTR_ASSIGN(pullTotal,     ullTotal.QuadPart);
     xPTR_ASSIGN(pullFree,      ullFree.QuadPart);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #if defined(xOS_FREEBSD)
         #define xSTATVFS          statvfs
         #define xSTATVFS_F_FRSIZE f_frsize
@@ -148,7 +148,7 @@ CxVolume::bMount(
     /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), FALSE);
     /*DEBUG*/xASSERT_RET(false == csDestPath.empty(),   FALSE);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //TODO: bMount
     #if xTODO
         DWORD WNetAddConnection2(
@@ -158,7 +158,7 @@ CxVolume::bMount(
           __in  DWORD dwFlags
         );
     #endif
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: bMount
 
     #if xTODO
@@ -177,7 +177,7 @@ CxVolume::bMount(
 //--------------------------------------------------------------------------
 //Defines, redefines, or deletes MS-DOS device names
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bDefineDosDevice(
     ULONG               ulFlags,
@@ -195,13 +195,13 @@ CxVolume::bDefineDosDevice(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Deletes a drive letter or mounted folder
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bDeleteVolumeMountPoint(
     const std::string_t &csVolumeMountPoint
@@ -216,13 +216,13 @@ CxVolume::bDeleteVolumeMountPoint(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Retrieves the name of a volume on a computer
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 HANDLE
 CxVolume::hFindFirstVolume(
     std::string_t *psVolumeName
@@ -240,13 +240,13 @@ CxVolume::hFindFirstVolume(
 
     return hRes;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Retrieves the name of a mounted folder on the specified volume
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 HANDLE
 CxVolume::hFindFirstVolumeMountPoint(
     const std::string_t &csRootPathName,
@@ -266,13 +266,13 @@ CxVolume::hFindFirstVolumeMountPoint(
 
     return hRes;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Continues a volume search started by a call to the FindFirstVolume function
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 std::string_t
 CxVolume::sFindNextVolume(
     HANDLE hFindVolume
@@ -289,13 +289,13 @@ CxVolume::sFindNextVolume(
 
     return std::string_t(szVolumeName);
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Continues a mounted folder search started by a call to the FindFirstVolumeMountPoint function
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bFindNextVolumeMountPoint(
     HANDLE hFindVolumeMountPoint,
@@ -315,13 +315,13 @@ CxVolume::bFindNextVolumeMountPoint(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Closes the specified volume search handle
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bFindVolumeClose(
     HANDLE hFindVolume
@@ -336,13 +336,13 @@ CxVolume::bFindVolumeClose(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Closes the specified mounted folder search handle
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bFindVolumeMountPointClose(
     HANDLE hFindVolumeMountPoint
@@ -357,13 +357,13 @@ CxVolume::bFindVolumeMountPointClose(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //get type
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 CxVolume::EType
 CxVolume::dtGetType(
     const std::string_t &csDrivePath
@@ -374,13 +374,13 @@ CxVolume::dtGetType(
     return static_cast<EType>( ::GetDriveType(CxPath::sSlashAppend(csDrivePath).c_str()) );
     /*DEBUG*/// n/a
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //get logical drives
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bGetLogicalDrives(
     std::vector<std::string_t> *pvsDrives
@@ -407,13 +407,13 @@ CxVolume::bGetLogicalDrives(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //TODO:  bGetLogicalDrives (get logical drives by type)
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bGetLogicalDrives(
     std::vector<std::string_t> *pvsDrives,
@@ -424,7 +424,7 @@ CxVolume::bGetLogicalDrives(
 
     std::vector<std::string_t> vsRes;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ULONG                ulDrives = 0;
 
     ulDrives = ::GetLogicalDrives();
@@ -442,7 +442,7 @@ CxVolume::bGetLogicalDrives(
             vsRes.push_back(sDrivePath);
         }
     }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     BOOL bRes = CxDir::bFindDirs(xT("/"), CxConst::xMASK_ALL, FALSE, &vsRes);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
@@ -454,13 +454,13 @@ CxVolume::bGetLogicalDrives(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Fills a buffer with strings that specify valid drives in the xTSYSTEM
 /*static*/  //FIXME
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 std::string_t
 CxVolume::sGetLogicalStrings() {
     std::string_t sRes;
@@ -476,13 +476,13 @@ CxVolume::sGetLogicalStrings() {
 
     return sRes;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //get info
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bGetInfo(
     const std::string_t &csDrivePath,
@@ -537,13 +537,13 @@ CxVolume::bGetInfo(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Retrieves a volume GUID path for the volume that is associated with the specified volume mount point (drive letter, volume GUID path, or mounted folder
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 std::string_t
 CxVolume::sGetVolumeNameForVolumeMountPoint(
     const std::string_t &csVolumeMountPoint
@@ -560,13 +560,13 @@ CxVolume::sGetVolumeNameForVolumeMountPoint(
 
     return std::string_t(szRes);
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Retrieves the volume mount point where the specified path is mounted
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 std::string_t
 CxVolume::sGetVolumePathName(
     const std::string_t &csFileName
@@ -583,13 +583,13 @@ CxVolume::sGetVolumePathName(
 
     return std::string_t(szVolumePathName);
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Retrieves a list of drive letters and volume GUID paths for the specified volume
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 std::string_t
 CxVolume::sGetVolumePathNamesForVolumeName(
     const std::string_t &csVolumeName
@@ -614,13 +614,13 @@ CxVolume::sGetVolumePathNamesForVolumeName(
 
     return std::string_t(sVolumePathNames, ulReturnLength);
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Retrieves information about MS-DOS device names
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 std::string_t
 CxVolume::sQueryDosDevice(
     const std::string_t &csDeviceName
@@ -639,13 +639,13 @@ CxVolume::sQueryDosDevice(
 
     return std::string_t(szTargetPath, ulRes);
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Sets the label of a file xTSYSTEM volume
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bSetVolumeLabel(
     const std::string_t &csRootPathName,
@@ -662,13 +662,13 @@ CxVolume::bSetVolumeLabel(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //Associates a volume with a drive letter or a directory on another volume
 /*static*/
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 BOOL
 CxVolume::bSetVolumeMountPoint(
     const std::string_t &csVolumeMountPoint,
@@ -685,12 +685,12 @@ CxVolume::bSetVolumeMountPoint(
 
     return TRUE;
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //--------------------------------------------------------------------------
 //TODO: bIsValidDriveLetter
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 /*static*/
 BOOL
 CxVolume::bIsValidDriveLetter(
@@ -702,7 +702,7 @@ CxVolume::bIsValidDriveLetter(
     return (xT('a') <= szDriveLetter && szDriveLetter <= xT('z'))  ||
            (xT('A') <= szDriveLetter && szDriveLetter <= xT('Z'));
 }
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO: xOS_ENV_UNIX
 #endif
 //---------------------------------------------------------------------------

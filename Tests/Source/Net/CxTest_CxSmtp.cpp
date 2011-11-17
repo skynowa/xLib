@@ -22,7 +22,7 @@ CxTest_CxSmtp::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //-------------------------------------
     //IPNET
     //const std::string  csUser     = "domen";
@@ -113,7 +113,7 @@ CxTest_CxSmtp::bUnit(
     //bDisconnect
     m_bRes = objSmtp.bDisconnect();
     xTEST_DIFF(FALSE, m_bRes);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 

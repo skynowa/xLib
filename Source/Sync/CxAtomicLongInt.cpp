@@ -7,7 +7,7 @@
 #include <xLib/Sync/CxAtomicLongInt.h>
 
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN(NxLib)
 CxAtomicLongInt::CxAtomicLongInt() :
     _m_liValue(0)
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, 0);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO:
 #endif
 }
@@ -36,9 +36,9 @@ CxAtomicLongInt::~CxAtomicLongInt() {
 //DONE: operator += ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ::InterlockedExchangeAdd(&_m_liValue, cRight._m_liValue);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO:
 #endif
 
@@ -48,9 +48,9 @@ CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
 //DONE: operator -= ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, _m_liValue - cRight._m_liValue);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO:
 #endif
 
@@ -60,9 +60,9 @@ CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
 //DONE: operator = ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)    {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, cRight._m_liValue);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO:
 #endif
 
@@ -72,9 +72,9 @@ CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)    {
 //DONE: operator += ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator += (const LONG cliRight) {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ::InterlockedExchangeAdd(&_m_liValue, cliRight);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO:
 #endif
 
@@ -84,9 +84,9 @@ CxAtomicLongInt::operator += (const LONG cliRight) {
 //DONE: operator -= ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator -= (const LONG cliRight) {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, _m_liValue - cliRight);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO:
 #endif
 
@@ -96,9 +96,9 @@ CxAtomicLongInt::operator -= (const LONG cliRight) {
 //DONE: operator = ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator = (const LONG cliRight) {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, cliRight);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //TODO:
 #endif
 
@@ -142,13 +142,13 @@ CxAtomicLongInt::operator BOOL () const {
 //DONE: operator ++ ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator ++ (int iPos) {
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         if (0 == iPos) {
             ::InterlockedIncrement(&_m_liValue);
         } else {
             ::InterlockedExchangeAdd(&_m_liValue, iPos + 1);
         }
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         //TODO:
     #endif
 
@@ -158,13 +158,13 @@ CxAtomicLongInt::operator ++ (int iPos) {
 //DONE: operator -- ()
 CxAtomicLongInt &
 CxAtomicLongInt::operator -- (int iPos) {
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         if (0 == iPos) {
             ::InterlockedDecrement(&_m_liValue);
         } else {
             ::InterlockedExchangeAdd(&_m_liValue, - (iPos + 1));
         }
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
         //TODO:
     #endif
 

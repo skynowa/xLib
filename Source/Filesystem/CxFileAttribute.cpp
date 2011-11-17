@@ -26,7 +26,7 @@ CxFileAttribute::bIsExists(
     /*DEBUG*/// cfaValue
 
 #if xTEMP_DISABLED
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         xCHECK_RET((atGet(csFilePath) & BS_TYPEMASK) == cfaValue, TRUE);
     #endif
 #endif
@@ -46,10 +46,10 @@ CxFileAttribute::atGet(
 
     EAttribute faRes = faInvalid;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     faRes = static_cast<EAttribute>( ::GetFileAttributes(csFilePath.c_str()) );
     /*DEBUG*/// n/a
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
     int iRes = ::xTSTAT(csFilePath.c_str(), &stInfo);
@@ -74,10 +74,10 @@ CxFileAttribute::bSet(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*/// cfaValue
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL bRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ULONG>(cfaValue));
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif

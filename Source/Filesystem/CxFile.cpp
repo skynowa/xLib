@@ -390,7 +390,7 @@ CxFile::bLocking(
     const LONG         cliBytes
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #if defined(xCOMPILER_CODEGEAR)
         #define xLOCKING locking
     #else
@@ -399,7 +399,7 @@ CxFile::bLocking(
 
     int iRes = ::xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
@@ -448,7 +448,7 @@ CxFile::bSetVBuff(
     return TRUE;
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 BOOL
 CxFile::bSetMode(
@@ -492,10 +492,10 @@ CxFile::bResize(
 {
     /*DEBUG*/// n/a
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     int iRes = ::chsize(_iGetHandle(pGet()), cliSize);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cliSize ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
@@ -618,7 +618,7 @@ CxFile::bIsFile(
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, FALSE);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faDirectory);
     xCHECK_RET(TRUE == bRes, FALSE);
 
@@ -630,7 +630,7 @@ CxFile::bIsFile(
 
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faOffline);
     xCHECK_RET(TRUE == bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
     xCHECK_RET(FALSE == bRes, FALSE);
 #endif
@@ -671,7 +671,7 @@ CxFile::sIsExists(
     xCHECK_DO(false == sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
 
     for (ULONG ulExistsIndex = 1; ; ++ ulExistsIndex) {
-        sRes = CxString::sFormat(xT("%s%s%s (%li)%s"),
+        sRes = CxString::sFormat(xT("%s%s%s (%lu)%s"),
                                  sFileDir.c_str(), CxConst::xSLASH.c_str(), sFileName.c_str(), ulExistsIndex, sFileExt.c_str());
 
         xCHECK_DO(FALSE == bIsExists(sRes), break);
@@ -706,10 +706,10 @@ CxFile::bChmod(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
     /*DEBUG*///iMode
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<int>( cpmMode ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cpmMode ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
 #endif
@@ -1061,7 +1061,7 @@ CxFile::bGetTime(
     /*DEBUG*/// pftAccess   - n/a
     /*DEBUG*/// pftModified - n/a
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     FILETIME ftCreate   = {{0}};
     FILETIME ftAccess   = {{0}};
     FILETIME ftModified = {{0}};
@@ -1077,7 +1077,7 @@ CxFile::bGetTime(
     xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = CxDateTime::tmFileTimeToUnixTime(ftCreate));
     xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = CxDateTime::tmFileTimeToUnixTime(ftAccess));
     xCHECK_DO(NULL != ptmModified, *ptmModified = CxDateTime::tmFileTimeToUnixTime(ftModified));
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
     int iRes = ::xTSTAT(csFilePath.c_str(), &stInfo);
@@ -1105,7 +1105,7 @@ CxFile::bSetTime(
     /*DEBUG*/// ctmAccess   - n/a
     /*DEBUG*/// ctmModified - n/a
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL     bRes     = FALSE;
 
     FILETIME ftCreate = {0};
@@ -1127,7 +1127,7 @@ CxFile::bSetTime(
 
     bRes = ::SetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     utimbuf tbTimes = {0};
 
     //ctmCreate - n/a

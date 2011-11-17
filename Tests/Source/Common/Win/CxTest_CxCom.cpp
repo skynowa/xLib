@@ -24,7 +24,7 @@ CxTest_CxCom::bUnit(
 {
     /*DEBUG*/
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //-------------------------------------
     //bIsInit
     xTEST_BLOCK(cullBlockLoops)

@@ -22,7 +22,7 @@ CxTest_CxPop3::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //-------------------------------------
     //
     //const std::string_t csUser     = xT("Sergey");        //"test_1";
@@ -150,7 +150,7 @@ CxTest_CxPop3::bUnit(
         m_bRes = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::lexical_cast(i) + xT(".eml"));
         xTEST_DIFF(FALSE, m_bRes);
 
-        /*LOG*/printf("bRetriveRaw %li\n", i);
+        /*LOG*/printf("bRetriveRaw %lu\n", i);
     }
 
     //-------------------------------------
@@ -161,14 +161,14 @@ CxTest_CxPop3::bUnit(
         m_bRes = objPop3.bRetrieveHeader(iNum, mhMimeHeader);
         xTEST_DIFF(FALSE, m_bRes);
 
-        /*LOG*/printf("bRetrieveHeader %li\n", i);
+        /*LOG*/printf("bRetrieveHeader %lu\n", i);
     }
 
     //-------------------------------------
     //bDisconnect
     m_bRes = objPop3.bDisconnect();
     xTEST_DIFF(FALSE, m_bRes);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 

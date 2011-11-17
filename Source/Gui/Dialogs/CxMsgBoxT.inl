@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 template <class TextT, class TitleT>
 /*static*/
@@ -52,13 +52,13 @@ CxMsgBoxT::iShow(
 {
     EModalResult mrRes = mrAbort;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     mrRes = static_cast<EModalResult>( ::MessageBox(
                             NULL,
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
                             cuiType) );
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     std::string_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
@@ -81,13 +81,13 @@ CxMsgBoxT::iShow(
 {
     EModalResult mrRes = mrAbort;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     mrRes = static_cast<EModalResult>( ::MessageBox(
                             NULL,
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
                             MB_OK) );
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     std::string_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
@@ -109,13 +109,13 @@ CxMsgBoxT::iShow(
 {
     EModalResult mrRes = mrAbort;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     mrRes = static_cast<EModalResult>( ::MessageBox(
                             NULL,
                             CxString::lexical_cast(cText).c_str(),
                             CxPath::sGetFullName( CxPath::sGetExe() ).c_str(),
                             MB_OK) );
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     std::string_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
