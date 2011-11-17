@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-    #if defined(xUNICODE)
+    #if xUNICODE
         #define xTEXT(x)               L##x
         #define xT(x)                  xTEXT(x)
 
@@ -32,7 +32,7 @@ xNAMESPACE_BEGIN(NxLib)
         #endif
 
     #if xOS_ENV_WIN
-        #if defined(xCOMPILER_MINGW32)
+        #if xCOMPILER_MINGW32
             typedef addrinfo           ADDRINFOT;
         #endif
     #elif xOS_ENV_UNIX

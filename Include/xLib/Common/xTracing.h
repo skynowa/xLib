@@ -34,10 +34,10 @@
 
     //--------------------------------------------------
     //OS architecture
-    #if   xARCHITECTURE_32BIT
-        #pragma message("xLib: xARCHITECTURE_32BIT")
-    #elif xARCHITECTURE_64BIT
-        #pragma message("xLib: xARCHITECTURE_64BIT")
+    #if   xCPU_32BIT
+        #pragma message("xLib: xCPU_32BIT")
+    #elif xCPU_64BIT
+        #pragma message("xLib: xCPU_64BIT")
     #else
         #pragma message("xLib: unsupported architectures")
     #endif

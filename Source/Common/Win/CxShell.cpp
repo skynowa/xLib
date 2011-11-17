@@ -250,7 +250,7 @@ CxShell::bCreateShortcut(
     hRes = pslSL->QueryInterface(IID_IPersistFile, CxMacros::xreinterpret_cast<void **>( &ppfPF ));
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRes), FALSE);
 
-#if defined(xUNICODE)
+#if xUNICODE
     hRes = ppfPF->Save(csShortCutFilePath.c_str(), TRUE);
 #else
     wchar_t wszBuff[MAX_PATH + 1] = {0};

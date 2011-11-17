@@ -59,7 +59,7 @@ CxFileTemp::bCreate(
     _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
 #if xOS_ENV_WIN
-    #if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_CODEGEAR)
+    #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
         char_t *pszFile = std::xTMKSTEMP(&_m_sFilePath.at(0));

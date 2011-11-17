@@ -38,7 +38,7 @@ CxPath::sGetExe() {
 
     sRes.resize(ulStored);
 #elif xOS_ENV_UNIX
-    #if defined(xOS_FREEBSD)
+    #if xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
             sRes.resize(xPATH_MAX);
 

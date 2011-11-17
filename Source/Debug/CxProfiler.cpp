@@ -72,7 +72,7 @@ CxProfiler::bStart() {
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                #if defined(xOS_FREEBSD)
+                #if xOS_FREEBSD
                     _m_ctClocksStart = _liGetClock();
                 #else
                     _m_ctClocksStart = std::clock();
@@ -142,7 +142,7 @@ CxProfiler::bStop(
         case pmStdClock: {
                 std::clock_t ctClockResolution;
 
-                #if defined(xOS_FREEBSD)
+                #if xOS_FREEBSD
                     ctClockResolution = 1000;
                     _m_ctClocksStop   = _liGetClock();
 
@@ -314,7 +314,7 @@ CxProfiler::_bResetData() {
     return TRUE;
 }
 //--------------------------------------------------------------------------
-#if xOS_ENV_UNIX && defined(xOS_FREEBSD)
+#if xOS_ENV_UNIX && xOS_FREEBSD
 
 /*static*/
 std::clock_t
@@ -345,7 +345,7 @@ CxProfiler::gettimeofday(
     struct timezone *tz
 )
 {
-#if defined(xCOMPILER_MS) || defined(_MSC_EXTENSIONS)
+#if xCOMPILER_MS || defined(_MSC_EXTENSIONS)
     ULONGLONG DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
 #else
     ULONGLONG DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;

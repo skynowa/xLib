@@ -5,7 +5,7 @@
 
 
 #include <commctrl.h>
-#if defined(xCOMPILER_MS)
+#if xCOMPILER_MS
     #pragma comment(lib, "comctl32.lib")
 #endif
 #include <richedit.h>

@@ -97,7 +97,7 @@ CxClipboard::bGetText(
     BOOL bRes = bOpen();
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 
-#if defined(xUNICODE)
+#if xUNICODE
     bRes = bGetData(fmUnicodeText);
 #else
     bRes = bGetData(fmText);
@@ -154,7 +154,7 @@ CxClipboard::bSetText(
     bRes = ::GlobalUnlock(_m_hObject);
     /*DEBUG*/xASSERT_RET((FALSE == bRes) && (NO_ERROR == CxLastError::ulGet()), FALSE);
 
-#if defined(xUNICODE)
+#if xUNICODE
     bRes = bSetData(fmUnicodeText, _m_hObject);
 #else
     bRes = bSetData(fmText,        _m_hObject);

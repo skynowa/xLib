@@ -93,7 +93,7 @@ CxStackTrace::bGet(
 
     (void)::SymCleanup(hProcess);
 #elif xOS_ENV_UNIX
-    #if defined(xOS_LINUX)
+    #if xOS_LINUX
         void *pvStack[_m_culMaxFrames] = {0};
 
         int iFramesNum  = ::backtrace(pvStack, _m_culMaxFrames);
@@ -129,7 +129,7 @@ CxStackTrace::bGet(
 
             vsStack.push_back(sStackLine);
         }
-    #elif defined(xOS_FREEBSD)
+    #elif xOS_FREEBSD
         //TODO: CxStackTrace::bGet
     #endif
 #endif

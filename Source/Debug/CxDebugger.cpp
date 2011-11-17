@@ -74,7 +74,7 @@ CxDebugger::bIsPresent() {
 /*static*/
 BOOL
 CxDebugger::bIsDebugBuild() {
-#if defined(xBUILD_DEBUG)
+#if xBUILD_DEBUG
     return TRUE;
 #else
     return FALSE;
@@ -87,9 +87,9 @@ CxDebugger::bBreak() {
     xCHECK_RET(FALSE == bGetEnabled(), TRUE);
 
 #if xOS_ENV_WIN
-    #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
+    #if xCOMPILER_MS || xCOMPILER_CODEGEAR
         _asm {int 3}
-    #elif defined(xCOMPILER_MINGW32)
+    #elif xCOMPILER_MINGW32
         asm("int $3");
     #else
         abort();
@@ -197,7 +197,7 @@ CxDebugger::bBeep(
         xCHECK_RET(FALSE == bRes, FALSE);
     #endif
 #elif xOS_ENV_UNIX
-    #if defined(xOS_FREEBSD)
+    #if xOS_FREEBSD
         //TODO: bBeep
     #else
         #if xTODO

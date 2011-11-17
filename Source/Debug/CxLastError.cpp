@@ -96,7 +96,7 @@ CxLastError::sFormat(
 
     (void)::LocalFree(pvBuff);
 #elif xOS_ENV_UNIX
-    #if defined(xOS_LINUX)
+    #if xOS_LINUX
         char szBuff[64 + 1] = {0};
 
         const char_t *pcszError = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));

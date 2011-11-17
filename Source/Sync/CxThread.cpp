@@ -756,7 +756,7 @@ CxThread::bSetCpuAffinity(
     /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
     /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
 #elif xOS_ENV_UNIX
-    #if defined(xOS_FREEBSD)
+    #if xOS_FREEBSD
         cpuset_t  csCpuSet;
     #else
         cpu_set_t csCpuSet;
@@ -894,7 +894,7 @@ CxThread::bSetDebugName(
     xCHECK_RET(FALSE == CxDebugger::bIsPresent(), TRUE);
 
 #if xOS_ENV_WIN
-    #if defined(xCOMPILER_MS) || defined(xCOMPILER_CODEGEAR)
+    #if xCOMPILER_MS || xCOMPILER_CODEGEAR
         const DWORD culMsVcException = 0x406D1388;
 
     #pragma pack(push, 8)
@@ -908,7 +908,7 @@ CxThread::bSetDebugName(
 
         tagTHREADNAME_INFO tiInfo = {0};
         tiInfo.dwType     = 0x1000;
-    #if defined(xUNICODE)
+    #if xUNICODE
         //TODO: bSetDebugName, convert from Unicode to Ansi
         ////tiInfo.pszName    = xTS2S(csName).c_str();
         tiInfo.pszName    = "[Unknown]";
@@ -924,12 +924,12 @@ CxThread::bSetDebugName(
         __except (EXCEPTION_EXECUTE_HANDLER) {
             //n/a
         }
-    #elif defined(xCOMPILER_MINGW32)
+    #elif xCOMPILER_MINGW32
         //TODO: bSetDebugName
     #else
         //TODO: bSetDebugName
     #endif
-#elif defined(xOS_FREEBSD)
+#elif xOS_FREEBSD
     (void)pthread_set_name_np(ulGetId(), csName.c_str());
 #elif xOS_ENV_UNIX
     int iRes = ::prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);

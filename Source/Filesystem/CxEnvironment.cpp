@@ -115,7 +115,7 @@ CxEnvironment::bDeleteVar(
     BOOL bRes = ::SetEnvironmentVariable(csVarName.c_str(), NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
 #elif xOS_ENV_UNIX
-    #if defined(xOS_FREEBSD)
+    #if xOS_FREEBSD
         (void)::unsetenv(csVarName.c_str());
     #else
         int iRes = ::unsetenv(csVarName.c_str());
