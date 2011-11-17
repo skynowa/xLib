@@ -31,12 +31,12 @@ class CxSocket :
             afNetbios     = AF_NETBIOS,
             afInet6       = AF_INET6,
             afIrdA        = AF_IRDA
-            #if !defined(xCOMPILER_MINGW32)
+            #if !xCOMPILER_MINGW32
                 ,
                 afBluetooth   = AF_BTH
             #endif
         #elif xOS_ENV_UNIX
-            #if defined(xOS_FREEBSD)
+            #if xOS_FREEBSD
                 afLocal     = PF_LOCAL,
                 afUnix      = PF_UNIX,
                 afInet      = PF_INET,
@@ -92,7 +92,7 @@ class CxSocket :
             ptIcmpv6      = IPPROTO_ICMPV6,
             ////ptRm          = IPPROTO_RM
         #elif xOS_ENV_UNIX
-            #if defined(xOS_FREEBSD)
+            #if xOS_FREEBSD
                 ptIp          = IPPROTO_IP,
                 ptHopopts     = IPPROTO_HOPOPTS,
                 ptIcmp        = IPPROTO_ICMP,

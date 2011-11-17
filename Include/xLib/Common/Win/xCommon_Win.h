@@ -18,7 +18,7 @@
 
 
 //xCOMPILER_MS
-#if defined(xCOMPILER_MS)
+#if xCOMPILER_MS
     #pragma warning (disable : 4996)    //function or variable may be unsafe (deprecated)
     #pragma warning (disable : 4355)    //'this' : used in base member initializer list
     #pragma warning (disable : 4101)    //'e' : unreferenced local variable
@@ -64,12 +64,12 @@
 #endif
 
 //xCOMPILER_MINGW32
-#if defined(xCOMPILER_MINGW32)
+#if xCOMPILER_MINGW32
 
 #endif
 
 //xCOMPILER_CODEGEAR
-#if defined(xCOMPILER_CODEGEAR)
+#if xCOMPILER_CODEGEAR
     #pragma option -w-8027  //function not expanded inline
     #pragma option -w-8057  //parameter is never used
     #pragma option -w-8058  //cannot create pre-compiled header: initialized data in header
@@ -93,7 +93,7 @@
 #include <io.h>
 #include <errno.h>
 
-#if defined(xCOMPILER_CODEGEAR)
+#if xCOMPILER_CODEGEAR
     #include <xVCL/xCommon.h>
     #include <dir.h>
 #endif

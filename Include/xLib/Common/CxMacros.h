@@ -15,7 +15,7 @@
 #endif
 
 
-#if !defined(xCOMPILER_MS) && !defined(xCOMPILER_CODEGEAR)
+#if !xCOMPILER_MS && !xCOMPILER_CODEGEAR
     #define __forceinline  inline
 #endif
     ///< inline
@@ -50,7 +50,7 @@
 #define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
     ///< convert std::string_t to std::string
 
-#if defined(xCOMPILER_CODEGEAR)
+#if xCOMPILER_CODEGEAR
     #define xD2S(s)   std::string_t((s).c_str())
         ///< convert Delphi::String::c_str() to std::string_t
     #define xD2AS(s)  std::string_t((s).t_str())
@@ -89,11 +89,11 @@
 
 
 /// hide "unused variable" warnings
-#if defined(xCOMPILER_MINGW32) || defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL)
+#if xCOMPILER_MINGW32 || xCOMPILER_MS || xCOMPILER_INTEL
     #define xUNUSED(arg)          ( (void)(arg) )
-#elif defined(xCOMPILER_CODEGEAR)
+#elif xCOMPILER_CODEGEAR
     #define xUNUSED(arg)          ( (void)(arg) )
-#elif defined(xCOMPILER_GNUC)
+#elif xCOMPILER_GNUC
     #define xUNUSED(arg)          { (void)( (arg) = ((TRUE) ? (arg) : (arg)) ); }
 #else
     #define xUNUSED(arg)          ( (void)(arg) )
@@ -143,7 +143,7 @@
 #endif
 
 
-#if defined(xCOMPILER_CODEGEAR)
+#if xCOMPILER_CODEGEAR
     //xTRY_BOOL
     #define xTRY_BOOL    \
                 BOOL bRes = FALSE;  \
@@ -235,11 +235,11 @@
     ///< source code line number
 
 
-#if defined(xCOMPILER_MS) || defined(xCOMPILER_INTEL)
+#if xCOMPILER_MS || xCOMPILER_INTEL
     #define xFUNCTION   xT(__FUNCTION__)
-#elif defined(xCOMPILER_CODEGEAR)
+#elif xCOMPILER_CODEGEAR
     #define xFUNCTION   xT(__FUNC__)
-#elif defined(xCOMPILER_GNUC) || defined(xCOMPILER_MINGW32)
+#elif xCOMPILER_GNUC || xCOMPILER_MINGW32
     #define xFUNCTION   xT(__PRETTY_FUNCTION__)
 #else
     #define xFUNCTION   xT("<unknown xFUNCTION>")
@@ -323,7 +323,7 @@
 
 //qualifiers
 #if xOS_ENV_WIN
-    #ifdef xARCHITECTURE_64BIT
+    #ifdef xCPU_64BIT
         #define xPR_SIZET xT("I")
             ///< qualifier for std::size_t
         #define xPR_I64d  xT("I64d")
@@ -347,7 +347,7 @@
             ///< qualifier for long long int (hex)
     #endif
 #elif xOS_ENV_UNIX
-    #ifdef xARCHITECTURE_64BIT
+    #ifdef xCPU_64BIT
         #define xPR_SIZET xT("zu")
             ///< qualifier for std::size_t
         #define xPR_I64d  xT("lld")

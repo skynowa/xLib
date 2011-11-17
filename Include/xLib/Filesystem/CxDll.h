@@ -30,6 +30,8 @@ class CxDll :
             ///< is loaded
         BOOL          bLoad           (const std::string_t &csDllPath);
             ///< load
+        BOOL          bIsProcExists   (const std::string_t &csProcName) const;
+            ///< is function exists
         TxProcAddress fpGetProcAddress(const std::string_t &csProcName) const;
             ///< get address of an exported function or variable
         BOOL          bFree           ();

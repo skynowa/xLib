@@ -88,7 +88,7 @@ class CxProfiler :
         BOOL                _bResetData();
             ///< reset all class data
 
-    #if xOS_ENV_UNIX && defined(xOS_FREEBSD)
+    #if xOS_ENV_UNIX && xOS_FREEBSD
         static std::clock_t _liGetClock();
             ///< get std::clock_t
             ///< http://bugs.vcmi.eu/view.php?id=719

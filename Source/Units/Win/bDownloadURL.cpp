@@ -9,7 +9,7 @@
 #if xOS_ENV_WIN
 #include <wininet.h>
 
-#if defined(xCOMPILER_MS)
+#if xCOMPILER_MS
     #pragma comment(lib,"wininet")
 #endif
 

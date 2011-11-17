@@ -7,6 +7,8 @@
 #include <xLib/Common/CxSystemInfo.h>
 
 #include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/Filesystem/CxDll.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -130,6 +132,7 @@ CxSystemInfo::sFormatOsType(
     return sRes;
 }
 //---------------------------------------------------------------------------
+//BOOL 
 /*static*/
 CxSystemInfo::EOsArch
 CxSystemInfo::oaGetOsArch() {
@@ -138,40 +141,27 @@ CxSystemInfo::oaGetOsArch() {
     EOsArch oaRes = oaUnknown;
 
 #if xOS_ENV_WIN
-    //TODO: oaGetOsArchitecture
-    //http://www.tek-tips.com/viewthread.cfm?qid=1573774&page=6
+    #if xCPU_64BIT
+        oaRes = oa64bit;
+    #elif xCPU_32BIT
+        BOOL bIs64BitOs          = FALSE;
+        BOOL bIsWin32MethodExist = FALSE;
+        {
+            CxDll dlDll;
+            bIsWin32MethodExist = ( dlDll.bLoad(xT("kernel32.dll")) && dlDll.bIsProcExists(xT("IsWow64Process")) );
+        }
+        BOOL bIsWow64Process     = ::IsWow64Process(CxCurrentProcess::hGetHandle(), &bIs64BitOs);
 
-
-    SYSTEM_INFO siSysInfo = {{0}};
-
-    ::GetSystemInfo(&siSysInfo);
-    /*DEBUG*/// n/a
-
-    switch (siSysInfo.wProcessorArchitecture) {
-        case PROCESSOR_ARCHITECTURE_INTEL:
-            oaRes = oa32bit;
-            break;
-
-        case PROCESSOR_ARCHITECTURE_AMD64:
-        case PROCESSOR_ARCHITECTURE_IA64:
-            oaRes = oa64bit;
-            break;
-
-        case PROCESSOR_ARCHITECTURE_UNKNOWN:
-            /*DEBUG*/xASSERT_RET(FALSE, oaUnknown);
-            oaRes = oaUnknown;
-            break;
-
-        default:
-            /*DEBUG*/xASSERT_RET(FALSE, oaUnknown);
-            oaRes = oaUnknown;
-            break;
-    }
+        oaRes = ((bIsWin32MethodExist && bIsWow64Process) && bIs64BitOs) ? oa64bit : oa32bit;
+    #else
+        // 64-bit Windows does not support Win16
+        oaRes = oaUnknown;  
+    #endif
 #elif xOS_ENV_UNIX
     utsname unKernelInfo= {{0}};
 
     int iRes = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes,                                 oaUnknown);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes,                                       oaUnknown);
     /*DEBUG*/xASSERT_RET(0   != std::string_t(unKernelInfo.machine).size(), oaUnknown);
 
     //32-bit checks
@@ -333,7 +323,7 @@ CxSystemInfo::ulGetNumOfCpus() {
 
     ulRes = siSysInfo.dwNumberOfProcessors;
 #elif xOS_ENV_UNIX
-    #if defined(xOS_FREEBSD)
+    #if xOS_FREEBSD
         int    aiMib[]   = {CTL_HW, HW_NCPU};
         size_t uiResSize = sizeof(ulRes);
 
@@ -372,7 +362,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         ulRes = 0UL;
     #endif
 #elif xOS_ENV_UNIX
-    #if defined(xOS_FREEBSD)
+    #if xOS_FREEBSD
         //TODO: ulGetCurrentCpuNum
         ulRes = 0;
     #else

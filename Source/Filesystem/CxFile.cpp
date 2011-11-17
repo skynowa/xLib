@@ -391,7 +391,7 @@ CxFile::bLocking(
 )
 {
 #if xOS_ENV_WIN
-    #if defined(xCOMPILER_CODEGEAR)
+    #if xCOMPILER_CODEGEAR
         #define xLOCKING locking
     #else
         #define xLOCKING _locking

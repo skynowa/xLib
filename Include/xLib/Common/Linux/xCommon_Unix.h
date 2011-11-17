@@ -36,7 +36,7 @@
 //dll
 #include <dlfcn.h>      //lib: -ldl, -lc (FreeBSD)
 
-#if defined(xOS_FREEBSD)
+#if xOS_FREEBSD
     #include <osreldate.h>
     #include <pthread_np.h>    //lib: libpthread, -lpthread (FreeBSD)
     #include <sys/param.h>

@@ -101,7 +101,7 @@ CxTest_CxDnsClient::bUnit(
         }
 
         #if xOS_ENV_WIN
-            #if defined(xCOMPILER_MS)
+            #if xCOMPILER_MS
                 ::FreeAddrInfo(paiList);
             #else
                 freeaddrinfo(paiList);

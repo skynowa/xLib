@@ -27,7 +27,7 @@ CxTest_CxDll::bUnit(
             {xT("kernel32.dll"), xT("Beep")}
         };
     #elif xOS_ENV_UNIX
-        #if defined(xOS_FREEBSD)
+        #if xOS_FREEBSD
             //if -static CxDll::bLoad don't load any 'so'-libraries
             return TRUE;
 

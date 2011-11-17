@@ -59,7 +59,7 @@ class CxDateTime
         //assignment operators
         const CxDateTime   &operator =          (const CxDateTime &cdtDT);
             ///< operator =
-    #if xOS_ENV_WIN && defined(xCOMPILER_CODEGEAR)
+    #if xOS_ENV_WIN && xCOMPILER_CODEGEAR
         const CxDateTime   &operator =          (const TDateTime  &cdtDT);
             ///< operator =
     #endif

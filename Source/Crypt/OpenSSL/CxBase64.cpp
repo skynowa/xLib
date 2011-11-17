@@ -12,7 +12,7 @@
 #include <openssl/buffer.h>
 
 #if xOS_ENV_WIN
-    #if defined(xCOMPILER_MS)
+    #if xCOMPILER_MS
         #pragma comment(lib, "libeay32.lib")
     #endif
 #elif xOS_ENV_UNIX

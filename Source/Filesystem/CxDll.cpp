@@ -54,6 +54,35 @@ CxDll::bLoad(
     return TRUE;
 }
 //---------------------------------------------------------------------------
+BOOL 
+CxDll::bIsProcExists(
+    const std::string_t &csProcName
+) const
+{
+    /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);
+
+    BOOL          bRes  = FALSE;
+    TxProcAddress fpRes = NULL;
+
+#if xOS_ENV_WIN
+    fpRes = ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str());
+    xCHECK_RET(NULL == fpRes, FALSE);
+#elif xOS_ENV_UNIX
+    const char *pszError = NULL;
+
+    pszError = ::dlerror();
+    /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
+
+    fpRes = ::dlsym(_m_hDLL, csProcName.c_str());
+    /*DEBUG*/// n/a
+
+    pszError = ::dlerror();
+    xCHECK_RET(NULL != pszError, FALSE);
+#endif
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
 CxDll::TxProcAddress
 CxDll::fpGetProcAddress(
     const std::string_t &csProcName
@@ -64,7 +93,7 @@ CxDll::fpGetProcAddress(
     TxProcAddress fpRes = NULL;
 
 #if xOS_ENV_WIN
-    fpRes = (TxProcAddress)( ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str()) );
+    fpRes = ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str());
     /*DEBUG*/xASSERT_RET(NULL != fpRes, NULL);
 #elif xOS_ENV_UNIX
     const char *pszError = NULL;
@@ -73,6 +102,7 @@ CxDll::fpGetProcAddress(
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
 
     fpRes = ::dlsym(_m_hDLL, csProcName.c_str());
+    /*DEBUG*/// n/a
 
     pszError = ::dlerror();
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);

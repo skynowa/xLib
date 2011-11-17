@@ -45,7 +45,7 @@
 #include <limits.h>
 #include <assert.h>
 
-#if defined(xUNICODE)
+#if xUNICODE
     #include <wchar.h>
     #include <wctype.h>
 #endif

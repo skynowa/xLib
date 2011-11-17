@@ -116,7 +116,7 @@ CxVolume::bGetFreeSpace(
     xPTR_ASSIGN(pullTotal,     ullTotal.QuadPart);
     xPTR_ASSIGN(pullFree,      ullFree.QuadPart);
 #elif xOS_ENV_UNIX
-    #if defined(xOS_FREEBSD)
+    #if xOS_FREEBSD
         #define xSTATVFS          statvfs
         #define xSTATVFS_F_FRSIZE f_frsize
     #else

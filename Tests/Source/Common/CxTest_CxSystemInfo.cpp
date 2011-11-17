@@ -32,7 +32,7 @@ CxTest_CxSystemInfo::bUnit(
         #if xOS_ENV_WIN
             xTEST_EQ(CxSystemInfo::otWindowsXP, otType);
         #elif xOS_ENV_UNIX
-            #if defined(xOS_FREEBSD)
+            #if xOS_FREEBSD
                 xTEST_EQ(CxSystemInfo::otFreeBSD, otType);
             #else
                 xTEST_EQ(CxSystemInfo::otLinux, otType);

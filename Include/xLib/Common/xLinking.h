@@ -11,7 +11,7 @@
     #if !defined(_LIB) && xIS_AUTO_LINKING
         #if defined(NDEBUG)
             //release
-            #if defined(xUNICODE)
+            #if xUNICODE
                 #pragma comment(lib, "xLibW_Release.lib")
                 //#pragma message("  --- xLib: unicode, release ---")
             #else
@@ -20,7 +20,7 @@
             #endif
         #else
             //debug
-            #if defined(xUNICODE)
+            #if xUNICODE
                 #pragma comment(lib, "xLibW_Debug.lib")
                 //#pragma message("  --- xLib: unicode, debug ---")
             #else

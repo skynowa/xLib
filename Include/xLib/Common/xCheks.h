@@ -14,7 +14,7 @@
 
 //check for supporting unicode
 #if xOS_ENV_UNIX
-    #if defined(xUNICODE)
+    #if xUNICODE
         #error xLib: unicode unsupported for Linux and FreeBSD
     #endif
 

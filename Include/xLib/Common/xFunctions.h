@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if defined(xUNICODE)
+#if xUNICODE
         #define tcin            wcin
         #define tcout           wcout
         #define tcerr           wcerr
@@ -37,15 +37,15 @@
         #define xTTMPNAM        _wtmpnam
 
         //mkstemp
-    #if   defined(xCOMPILER_MINGW32)
+    #if   xCOMPILER_MINGW32
         #define xTMKSTEMP       _wmktemp
-    #elif defined(xCOMPILER_INTEL)
+    #elif xCOMPILER_INTEL
         #define xTMKSTEMP       _tmktemp_s
-    #elif defined(xCOMPILER_MS)
+    #elif xCOMPILER_MS
         #define xTMKSTEMP       _tmktemp_s
-    #elif defined(xCOMPILER_CODEGEAR)
+    #elif xCOMPILER_CODEGEAR
         #define xTMKSTEMP       _wmktemp
-    #elif defined(xCOMPILER_GNUC)
+    #elif xCOMPILER_GNUC
         #define xTMKSTEMP       mkstemp
     #else
         #define xTMKSTEMP       mkstemp
@@ -63,18 +63,18 @@
         #define xTSYSTEM        _wsystem
 
     //struct stat
-    #if defined(xCOMPILER_CODEGEAR)
+    #if xCOMPILER_CODEGEAR
         #define xTSTAT_STRUCT   struct _stat
-    #elif defined(xCOMPILER_MS)
+    #elif xCOMPILER_MS
         #define xTSTAT_STRUCT   struct _tstat64
     #else
         #define xTSTAT_STRUCT   struct stat
     #endif
 
     //stat
-    #if defined(xCOMPILER_CODEGEAR)
+    #if xCOMPILER_CODEGEAR
         #define xTSTAT          _tstat
-    #elif defined(xCOMPILER_MS)
+    #elif xCOMPILER_MS
         #define xTSTAT          _tstat64
     #else
         #define xTSTAT          _wstat
@@ -122,15 +122,15 @@
         #define xTTMPNAM        tmpnam
 
         //mkstemp
-    #if   defined(xCOMPILER_MINGW32)
+    #if   xCOMPILER_MINGW32
         #define xTMKSTEMP       _mktemp
-    #elif defined(xCOMPILER_INTEL)
+    #elif xCOMPILER_INTEL
         #define xTMKSTEMP       _tmktemp_s
-    #elif defined(xCOMPILER_MS)
+    #elif xCOMPILER_MS
         #define xTMKSTEMP       _tmktemp_s
-    #elif defined(xCOMPILER_CODEGEAR)
+    #elif xCOMPILER_CODEGEAR
         #define xTMKSTEMP       _mktemp
-    #elif defined(xCOMPILER_GNUC)
+    #elif xCOMPILER_GNUC
         #define xTMKSTEMP       mkstemp
     #else
         #define xTMKSTEMP       mktemp
@@ -148,18 +148,18 @@
         #define xTSYSTEM        system
 
     //struct stat
-    #if defined(xCOMPILER_CODEGEAR)
+    #if xCOMPILER_CODEGEAR
         #define xTSTAT_STRUCT   struct _stat
-    #elif defined(xCOMPILER_MS)
+    #elif xCOMPILER_MS
         #define xTSTAT_STRUCT   struct _tstat64
     #else
         #define xTSTAT_STRUCT   struct stat
     #endif
 
     //stat
-    #if defined(xCOMPILER_CODEGEAR)
+    #if xCOMPILER_CODEGEAR
         #define xTSTAT          _tstat
-    #elif defined(xCOMPILER_MS)
+    #elif xCOMPILER_MS
         #define xTSTAT          _tstat64
     #else
         #define xTSTAT          stat
