@@ -77,7 +77,7 @@ CxStackTrace::bGet(
 
         bRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
         if (FALSE == bRes) {
-            sStackLine = xT("[Unknown]");
+            sStackLine = xUNKNOWN_STRING;
         } else {
 	        const ULONG64       ullAddress = psiSymbol->Address;
 	        const std::string_t csName     = std::string_t(psiSymbol->Name);

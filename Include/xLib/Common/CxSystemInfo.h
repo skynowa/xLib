@@ -72,8 +72,6 @@ class CxSystemInfo :
             ///< get num of CPUs
         static ULONG        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
-        static BOOL         bIsUnicodeOS      ();
-            ///< is OS support unicode
         static ULONGLONG    ullGetCpuSpeed    ();
             ///< get the CPU speed in MHz
 

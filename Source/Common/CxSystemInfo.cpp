@@ -30,6 +30,7 @@ CxSystemInfo::osGetOS() {
     OSVERSIONINFO ovVer = {0};
 
     ovVer.dwOSVersionInfoSize = sizeof(ovVer);
+
     BOOL bRes = ::GetVersionEx(&ovVer);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, otUnknown);
 
@@ -47,17 +48,17 @@ CxSystemInfo::osGetOS() {
             break;
 
         case VER_PLATFORM_WIN32_NT: {
-                xCHECK_DO(ovVer.dwMajorVersion <= 4,                              otRes = otWindowsNT; break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindows2000; break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsXP; break);
+                xCHECK_DO(ovVer.dwMajorVersion <= 4,                              otRes = otWindowsNT;              break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindows2000;            break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsXP;              break);
                 xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsXPProx64Edition; break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003; break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsHomeServer; break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2; break);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsVista; break);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsServer2008; break);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2; break);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindows7; break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003;      break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsHomeServer;      break);
+                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2;    break);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsVista;           break);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsServer2008;      break);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2;    break);
+                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindows7;               break);
 
                 //for unknown windows/newest windows version
                 otRes = otUnknown;
@@ -117,7 +118,7 @@ CxSystemInfo::sFormatOsType(
         case otWindowsServer2008R2:     { sRes = xT("Windows Server 2008 R2");     }    break;
         case otWindows7:                { sRes = xT("Windows 7");                  }    break;
 
-        default:                        { sRes = xT("<unknown>");                  }    break;
+        default:                        { sRes = xUNKNOWN_STRING;                  }    break;
     }
 #elif xOS_ENV_UNIX
     //TODO: sFormatOsType
@@ -132,7 +133,6 @@ CxSystemInfo::sFormatOsType(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//BOOL 
 /*static*/
 CxSystemInfo::EOsArch
 CxSystemInfo::oaGetOsArch() {
@@ -152,7 +152,7 @@ CxSystemInfo::oaGetOsArch() {
         }
         BOOL bIsWow64Process     = ::IsWow64Process(CxCurrentProcess::hGetHandle(), &bIs64BitOs);
 
-        oaRes = ((bIsWin32MethodExist && bIsWow64Process) && bIs64BitOs) ? oa64bit : oa32bit;
+        oaRes = (bIsWin32MethodExist && bIsWow64Process && bIs64BitOs) ? oa64bit : oa32bit;
     #else
         // 64-bit Windows does not support Win16
         oaRes = oaUnknown;  
@@ -211,9 +211,9 @@ CxSystemInfo::sFormatOsArch(
     switch (oaOsArch) {
         case CxSystemInfo::oa32bit:     sRes = xT("32-bit");    break;
         case CxSystemInfo::oa64bit:     sRes = xT("64-bit");    break;
-        case CxSystemInfo::oaUnknown:   sRes = xT("<unknown>"); break;
+        case CxSystemInfo::oaUnknown:   sRes = xUNKNOWN_STRING; break;
 
-        default:                        sRes = xT("<unknown>"); break;
+        default:                        sRes = xUNKNOWN_STRING; break;
     }
 
     return sRes;
@@ -227,8 +227,8 @@ CxSystemInfo::sGetComputerName() {
     std::string_t sRes;
 
 #if xOS_ENV_WIN
-    ULONG   ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
-    char_t   szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
+    ULONG  ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
+    char_t szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
 
     BOOL bRes = ::GetComputerName(szBuff, &ulBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("LOCALHOST"));
@@ -252,17 +252,29 @@ CxSystemInfo::bIsUserAnAdmin() {
     /*DEBUG*/
 
 #if xOS_ENV_WIN
-    #if xTEMP_DISABLED
-        BOOL bRes = IsUserAnAdmin();
-        /*DEBUG*/// n/a
-        xCHECK_RET(FALSE == bRes, FALSE);
-    #endif
+    BOOL                     bIsAdmin              = FALSE;
+    SID_IDENTIFIER_AUTHORITY siaNtAuthority        = SECURITY_NT_AUTHORITY;
+    PSID                     psAdministratorsGroup = NULL; 
 
-    HMODULE hMod = ::GetModuleHandle(xT("kernel32.dll"));
-    /*DEBUG*/xASSERT_RET(NULL != hMod, FALSE);
+    BOOL bRes = ::AllocateAndInitializeSid(&siaNtAuthority, 2, 
+                                           SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, 
+                                           &psAdministratorsGroup); 
+    xCHECK_RET(FALSE == bRes, FALSE);
 
-    FARPROC fpAddr = ::GetProcAddress(hMod, "LoadLibraryW");
-    xCHECK_RET(NULL == fpAddr, FALSE);
+    {
+	    BOOL bIsMember = FALSE;
+
+	    bRes = ::CheckTokenMembership(NULL, psAdministratorsGroup, &bIsMember);
+        if (FALSE == bRes || FALSE == bIsMember) {
+            bIsAdmin = FALSE;
+        } else {
+            bIsAdmin = TRUE;
+        }
+    }
+
+    (void)::FreeSid(psAdministratorsGroup); 
+
+    xCHECK_RET(FALSE == bIsAdmin, FALSE);
 #elif xOS_ENV_UNIX
     const uid_t cuiRootId = 0;
 
@@ -318,8 +330,7 @@ CxSystemInfo::ulGetNumOfCpus() {
 #if xOS_ENV_WIN
     SYSTEM_INFO siSysInfo = {{0}};
 
-    ::GetSystemInfo(&siSysInfo);
-    /*DEBUG*/// n/a
+    (void)::GetSystemInfo(&siSysInfo);
 
     ulRes = siSysInfo.dwNumberOfProcessors;
 #elif xOS_ENV_UNIX
@@ -385,27 +396,6 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsUnicodeOS
-BOOL
-CxSystemInfo::bIsUnicodeOS()  {
-    /*DEBUG*/// n/a
-
-    BOOL bRes = FALSE;
-
-#if xOS_ENV_WIN
-    OSVERSIONINFOW oviInfo = {0};
-
-    oviInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOW);
-
-    bRes = (0 != ::GetVersionExW(&oviInfo));
-#elif xOS_ENV_UNIX
-    //TODO: bIsUnicodeOS
-    bRes = TRUE;
-#endif
-
-    return bRes;
-}
-//---------------------------------------------------------------------------
 //TODO: ullGetCpuSpeed
 /*static*/
 ULONGLONG
@@ -439,7 +429,7 @@ CxSystemInfo::ullGetCpuSpeed() {
 
         const ULONGLONG ullStartCycle = CxCycle::ullGetCount();
 
-        bSleep(1000);
+        bSleep(1000UL);
 
         ullRes = (CxCycle::ullGetCount() - ullStartCycle) / 1000000;
     #endif
@@ -466,7 +456,7 @@ CxSystemInfo::CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
-CxSystemInfo::~CxSystemInfo(){
+CxSystemInfo::~CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
