@@ -380,6 +380,10 @@
     #define xTIMEOUT_INFINITE   ~(0UL)      ///< infinite timeout
 #endif
 
+
+//other
+#define xUNKNOWN_STRING xT("[unknown]")      ///< unknown string value
+
 //---------------------------------------------------------------------------
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Common/xTypes.h>

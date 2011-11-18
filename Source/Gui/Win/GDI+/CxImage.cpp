@@ -291,7 +291,7 @@ CxImage::sGetLastStatus(
         case Gdiplus::PropertyNotFound:          { sRes = xT("PropertyNotFound");           }    break;
         case Gdiplus::PropertyNotSupported:      { sRes = xT("PropertyNotSupported");       }    break;
 
-        default:                                 { sRes = xT("Unknown");                    }    break;
+        default:                                 { sRes = xUNKNOWN_STRING;                  }    break;
     }
 
     return sRes;

@@ -77,13 +77,27 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //oaGetOsArchitecture
+    //oaGetOsArch
     xTEST_BLOCK(cullBlockLoops)
     {
         CxSystemInfo::EOsArch oaRes = CxSystemInfo::oaUnknown;
 
         oaRes = CxSystemInfo::oaGetOsArch();
         xTEST_DIFF(CxSystemInfo::oaUnknown, oaRes);
+    }
+
+    //--------------------------------------------------
+    //sFormatOsArch
+    xTEST_BLOCK(cullBlockLoops)
+    {
+        m_sRes = CxSystemInfo::sFormatOsArch(CxSystemInfo::oaUnknown);
+        xTEST_EQ(false, m_sRes.empty());
+
+        m_sRes = CxSystemInfo::sFormatOsArch(CxSystemInfo::oa32bit);
+        xTEST_EQ(false, m_sRes.empty());
+
+        m_sRes = CxSystemInfo::sFormatOsArch(CxSystemInfo::oa64bit);
+        xTEST_EQ(false, m_sRes.empty());
     }
 
     //-------------------------------------
@@ -139,14 +153,6 @@ CxTest_CxSystemInfo::bUnit(
         #endif
         xTEST_DIFF(static_cast<ULONG>( - 1 ), m_ulRes);
         xTEST_EQ(true, 0 <= m_ulRes && CxSystemInfo::ulGetNumOfCpus() > m_ulRes);
-    }
-
-    //-------------------------------------
-    //bIsUnicodeOS - Vista
-    xTEST_BLOCK(cullBlockLoops)
-    {
-        m_bRes = CxSystemInfo::bIsUnicodeOS();
-        xTEST_DIFF(FALSE, m_bRes);
     }
 
     //--------------------------------------------------
