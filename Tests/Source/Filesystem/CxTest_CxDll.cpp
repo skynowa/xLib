@@ -58,8 +58,13 @@ CxTest_CxDll::bUnit(
         xTEST_DIFF(FALSE, m_bRes);
 
         //-------------------------------------
+        //bIsProcExists
+        m_bRes = objDll.bIsProcExists(sData[i][1]);
+        xTEST_EQ(TRUE, m_bRes);
+
+        //-------------------------------------
         //fpGetProcAddress
-        /*FARPROC**/void *fpRes = NULL;
+        CxDll::TxProcAddress fpRes = NULL;
 
         fpRes = objDll.fpGetProcAddress(sData[i][1]);
         xASSERT(NULL != fpRes);
