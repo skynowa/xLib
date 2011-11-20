@@ -50,19 +50,19 @@ class CxFileAttribute :
             #endif
         };
 
-        static BOOL       bIsExists      (const std::string_t &csFilePath, const EAttribute cfaValue);
+        static bool       bIsExists      (const std::tstring &csFilePath, const EAttribute cfaValue);
             ///< is exists
-        static EAttribute atGet          (const std::string_t &csFilePath);
+        static EAttribute atGet          (const std::tstring &csFilePath);
             ///< get
-        static BOOL       bSet           (const std::string_t &csFilePath, const EAttribute cfaValue);
+        static bool       bSet           (const std::tstring &csFilePath, const EAttribute cfaValue);
             ///< set
-        static BOOL       bAdd           (const std::string_t &csFilePath, const EAttribute cfaValue);
+        static bool       bAdd           (const std::tstring &csFilePath, const EAttribute cfaValue);
             ///< add
-        static BOOL       bRemove        (const std::string_t &csFilePath, const EAttribute cfaValue);
+        static bool       bRemove        (const std::tstring &csFilePath, const EAttribute cfaValue);
             ///< remove
-        static BOOL       bModify        (const std::string_t &csFilePath, const EAttribute cfaRemoveValue, const EAttribute cfaAddValue);
+        static bool       bModify        (const std::tstring &csFilePath, const EAttribute cfaRemoveValue, const EAttribute cfaAddValue);
             ///< modify
-        static BOOL       bClear         (const std::string_t &csFilePath);
+        static bool       bClear         (const std::tstring &csFilePath);
             ///< clear
 
     private:

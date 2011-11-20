@@ -16,7 +16,7 @@
 
 //---------------------------------------------------------------------------
 CWorkThread::CWorkThread(
-    const BOOL cbAutoDelete
+    const bool cbAutoDelete
 ) :
     CxThread (cbAutoDelete),
     m_uiIndex(0U)
@@ -38,19 +38,19 @@ CWorkThread::uiOnRun(
     #endif
 
     UINT uiRes = 0;
-    BOOL bRes  = FALSE;
+    bool bRes  = false;
 
     //bIsCurrent
     bRes = CxThread::bIsCurrent();
-    xTEST_DIFF(FALSE, bRes);
+    xTEST_DIFF(false, bRes);
 
     for (size_t i = 0; i < 10; ++ i) {
         //interrupt point
         bRes = bIsTimeToExit();
         #if xTEST_IGNORE
-            xCHECK_DO(FALSE != bRes, xTRACE(xT("\tCWorkThread: break")));
+            xCHECK_DO(false != bRes, xTRACE(xT("\tCWorkThread: break")));
         #endif
-        xCHECK_DO(FALSE != bRes, break);
+        xCHECK_DO(false != bRes, break);
 
         //jobs
         {
@@ -59,10 +59,10 @@ CWorkThread::uiOnRun(
             #endif
 
             bRes = CxCurrentThread::bSleep(50UL);
-            xTEST_DIFF(FALSE, bRes);
+            xTEST_DIFF(false, bRes);
 
             bRes = CxCurrentThread::bYield();
-            xTEST_DIFF(FALSE, bRes);
+            xTEST_DIFF(false, bRes);
         }
     }
 
@@ -94,13 +94,13 @@ CxTest_CxThread::~CxTest_CxThread() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxThread::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    const BOOL cbIsPaused   = TRUE;
-    const BOOL cbAutoDelete = FALSE;
+    const bool cbIsPaused   = true;
+    const bool cbAutoDelete = false;
 
 
     CWorkThread *pthT = new CWorkThread(cbAutoDelete);
@@ -117,7 +117,7 @@ CxTest_CxThread::bUnit(
         size_t uiParam = 1000;
 
         m_bRes = pthT->bCreate(cbIsPaused, 0U, &uiParam);
-        xTEST_EQ(TRUE, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = pthT->bIsPaused();
         xTEST_EQ(cbIsPaused, m_bRes);
@@ -129,16 +129,16 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = pthT->bIsCreated();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = pthT->bIsRunning();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = pthT->bIsPaused();
-        xTEST_DIFF(FALSE/*cbIsPaused*/, m_bRes);
+        xTEST_DIFF(false/*cbIsPaused*/, m_bRes);
 
         m_bRes = pthT->bIsExited();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
 
@@ -165,13 +165,13 @@ CxTest_CxThread::bUnit(
 
         #if xOS_ENV_WIN
             m_bRes = pthT->bSetPriority(ctpPriority);
-            xTEST_EQ(TRUE, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
             xTEST_EQ((int)ctpPriority, (int)m_iRes);
         #elif xOS_ENV_UNIX
             m_bRes = pthT->bSetPriority(ctpPriority);
-            //TODO: xTEST_DIFF(FALSE, m_bRes);
+            //TODO: xTEST_DIFF(false, m_bRes);
 
             m_iRes = pthT->tpGetPriority();
             //TODO: xTEST_EQ(ctpPriority, m_iRes);
@@ -184,7 +184,7 @@ CxTest_CxThread::bUnit(
     {
         #if xTODO
             m_sRes = pthT->sGetPriorityString();
-            xTEST_EQ(std::string_t(xT("Lowest")), m_sRes);
+            xTEST_EQ(std::tstring(xT("Lowest")), m_sRes);
         #endif
     }
 
@@ -194,10 +194,10 @@ CxTest_CxThread::bUnit(
     {
         #if xOS_ENV_WIN
             m_bRes = pthT->bPriorityUp();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = pthT->bPriorityDown();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #elif xOS_ENV_UNIX
 
         #endif
@@ -209,7 +209,7 @@ CxTest_CxThread::bUnit(
     {
         #if xOS_ENV_WIN
             m_bRes = pthT->bIsPriorityBoost();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #elif xOS_ENV_UNIX
 
         #endif
@@ -220,17 +220,17 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            m_bRes = pthT->bSetPriorityBoost(FALSE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = pthT->bSetPriorityBoost(false);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = pthT->bIsPriorityBoost();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
 
-            m_bRes = pthT->bSetPriorityBoost(TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = pthT->bSetPriorityBoost(true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = pthT->bIsPriorityBoost();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #elif xOS_ENV_UNIX
 
         #endif
@@ -246,7 +246,7 @@ CxTest_CxThread::bUnit(
     {
         for (size_t i = 0; i < CxSystemInfo::ulGetNumOfCpus(); ++ i) {
             m_bRes = pthT->bSetCpuAffinity(i);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -256,16 +256,16 @@ CxTest_CxThread::bUnit(
     {
         #if xOS_ENV_WIN
             m_bRes = pthT->bSetCpuIdeal(0);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_ulRes = pthT->ulGetCpuIdeal();
             xTEST_LESS_EQ(0UL, m_ulRes);
 
             m_bRes = pthT->bSetCpuIdeal(10);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = pthT->bSetCpuIdeal(0);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_ulRes = pthT->ulGetCpuIdeal();
             xTEST_EQ(0UL, m_ulRes);
@@ -307,7 +307,7 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = pthT->bIsCurrent();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -323,7 +323,7 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = pthT->bSetDebugName(xT("CxThread_Test_Name"));
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -331,7 +331,7 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
-            m_hRes = CxThread::hOpen(THREAD_ALL_ACCESS, FALSE, CxThread::ulGetCurrentId());
+            m_hRes = CxThread::hOpen(THREAD_ALL_ACCESS, false, CxThread::ulGetCurrentId());
             xTEST_PTR(m_hRes);
         #endif
     }
@@ -341,7 +341,7 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
-            THandle hRes = CxThread::hOpen(const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
+            THandle hRes = CxThread::hOpen(const ULONG culAccess, const bool cbInheritHandle, const ULONG culId);
         #endif
     }
 
@@ -350,10 +350,10 @@ CxTest_CxThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = pthT->bResume();
-        xTEST_EQ(TRUE, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = pthT->bIsPaused();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
@@ -362,19 +362,19 @@ CxTest_CxThread::bUnit(
     {
         #if 1
             m_bRes = pthT->bIsPaused();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
 
             m_bRes = pthT->bPause();
-            xTEST_EQ(TRUE, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = pthT->bIsPaused();
-            xTEST_EQ(TRUE, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = pthT->bResume();
-            xTEST_EQ(TRUE, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = pthT->bIsPaused();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
         #endif
     }
 
@@ -384,7 +384,7 @@ CxTest_CxThread::bUnit(
     {
         #if xTODO
             m_bRes = pthT->bExit(xTIMEOUT_INFINITE);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #endif
     }
 
@@ -405,15 +405,15 @@ CxTest_CxThread::bUnit(
     #endif
 
     m_bRes = pthT->bWait(xTIMEOUT_INFINITE);
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
-    if (FALSE == cbAutoDelete) {
+    if (false == cbAutoDelete) {
         xTEST_PTR(pthT);
         xPTR_DELETE(pthT);
     }
 
     ////CxConsole().bPause();
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

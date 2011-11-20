@@ -48,17 +48,17 @@ class CxHttpClient :
             hmUnlink
         };
 
-        BOOL     bHead   (const std::string &csUrl,  std::string *psResponse);
-        BOOL     bGet    (const std::string &csUrl,  std::string *psResponse);
-        BOOL     bPost   (const std::string &csUrl,  const std::string &csParams, std::string *psResponse);
-        BOOL     bOptions(const std::string &csUrl);
-        BOOL     bTrace  (const std::string &csUrl);
-        BOOL     bPut    (const std::string &csUrl);
-        BOOL     bDelete (const std::string &csUrl);
-        BOOL     bConnect(const std::string &csUrl);
-        BOOL     bPatch  (const std::string &csUrl);
-        BOOL     bLink   (const std::string &csUrl);
-        BOOL     bUnlink (const std::string &csUrl);
+        bool     bHead   (const std::string &csUrl,  std::string *psResponse);
+        bool     bGet    (const std::string &csUrl,  std::string *psResponse);
+        bool     bPost   (const std::string &csUrl,  const std::string &csParams, std::string *psResponse);
+        bool     bOptions(const std::string &csUrl);
+        bool     bTrace  (const std::string &csUrl);
+        bool     bPut    (const std::string &csUrl);
+        bool     bDelete (const std::string &csUrl);
+        bool     bConnect(const std::string &csUrl);
+        bool     bPatch  (const std::string &csUrl);
+        bool     bLink   (const std::string &csUrl);
+        bool     bUnlink (const std::string &csUrl);
 
                  CxHttpClient();
         virtual ~CxHttpClient();

@@ -28,31 +28,31 @@ class CxObject :
 
         CK_OBJECT_HANDLE     hGetHandle        () const;
             ///< get handle
-        BOOL                 bSetHandle        (CK_OBJECT_HANDLE hHandle);
+        bool                 bSetHandle        (CK_OBJECT_HANDLE hHandle);
             ///< assign object handle
-        BOOL                 bCreate           (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+        bool                 bCreate           (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
             ///< creates a new object
-        BOOL                 bGetSize          (CK_ULONG_PTR pulSize);
+        bool                 bGetSize          (CK_ULONG_PTR pulSize);
             ///< gets the size of an object in bytes
-        BOOL                 bCopy             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, CK_OBJECT_HANDLE_PTR phNewObject);
+        bool                 bCopy             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, CK_OBJECT_HANDLE_PTR phNewObject);
             ///< copies an object, creating a new object for the copy
-        BOOL                 bFind             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles);
+        bool                 bFind             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles);
             ///< search for token and session objects that match a template, obtaining additional object handles
 
-        BOOL                 bGetAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+        bool                 bGetAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
             ///< obtains the value of one or more object attributes
-        BOOL                 bSetAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+        bool                 bSetAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
             ///< modifies the value of one or more object attributes
 
-        BOOL                 bDestroy          ();
+        bool                 bDestroy          ();
             ///< destroys an object
 
         //Utils
-        static BOOL          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, const std::ustring &cusDataLabel, std::ustring *pusData);
+        static bool          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, const std::ustring &cusDataLabel, std::ustring *pusData);
             ///< get data
-        static BOOL          bSetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, const std::ustring &cusDataLabel, const std::ustring &cusData);
+        static bool          bSetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, const std::ustring &cusDataLabel, const std::ustring &cusData);
             ///< set data
-        static BOOL          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, std::vector<std::ustring> *pusDataLabel, std::vector<std::ustring> *pusDataValue);
+        static bool          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, std::vector<std::ustring> *pusDataLabel, std::vector<std::ustring> *pusDataValue);
             ///< get data
 
     private:
@@ -61,11 +61,11 @@ class CxObject :
         CK_OBJECT_HANDLE     _m_hObject;    ///< bject handle
 
     #if xTODO
-        BOOL                 bFindInit         (CK_ATTRIBUTE_PTR  pTemplate, CK_ULONG ulCount);
+        bool                 bFindInit         (CK_ATTRIBUTE_PTR  pTemplate, CK_ULONG ulCount);
             ///< initializes a search for token and session objects that match a template
-        BOOL                 bFind             (CK_OBJECT_HANDLE_PTR phObject, CK_ULONG ulMaxObjectCount, CK_ULONG_PTR pulObjectCount);
+        bool                 bFind             (CK_OBJECT_HANDLE_PTR phObject, CK_ULONG ulMaxObjectCount, CK_ULONG_PTR pulObjectCount);
             ///< continues a search for token and session objects that match a template, obtaining additional object handles
-        BOOL                 bFindFinal        ();
+        bool                 bFindFinal        ();
             ///< finishes a search for token and session objects
     #endif
 };

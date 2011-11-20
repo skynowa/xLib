@@ -20,14 +20,14 @@ class CxException
         virtual           ~CxException ();
             ///< destructor
 
-        const std::string_t &sGetWhat   () const;
+        const std::tstring &sGetWhat   () const;
             ///< get message
         template<class T>
         CxException &      operator << (const T &cMessageT);
             ///< put message
 
     private:
-        std::string_t       _m_sMsg;
+        std::tstring       _m_sMsg;
             ///< message
 };
 
@@ -40,15 +40,15 @@ xNAMESPACE_END(NxLib)
 
 #define xCATCH_ALL \
     catch (const CxException &e) { \
-        /*DEBUG*/xASSERT_MSG_RET(FALSE, e.sGetWhat(), FALSE); \
+        /*DEBUG*/xASSERT_MSG_RET(false, e.sGetWhat(), false); \
     } \
     catch (const std::exception &cexE) { \
         std::string asMsg = cexE.what(); \
                                          \
-        /*DEBUG*/xASSERT_MSG_RET(FALSE, xS2TS(asMsg), FALSE); \
+        /*DEBUG*/xASSERT_MSG_RET(false, xS2TS(asMsg), false); \
     } \
     catch (...) { \
-        /*DEBUG*/xASSERT_MSG_RET(FALSE, xT("unknown error"), FALSE); \
+        /*DEBUG*/xASSERT_MSG_RET(false, xT("unknown error"), false); \
     }
     ///< catch CxException, std::exception and all other exceptions
 //---------------------------------------------------------------------------

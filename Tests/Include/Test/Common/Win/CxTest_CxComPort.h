@@ -18,7 +18,7 @@ class CxTest_CxComPort :
                      CxTest_CxComPort();
         virtual     ~CxTest_CxComPort();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

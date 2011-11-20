@@ -18,7 +18,7 @@ class CxTest_CxSemaphore :
                      CxTest_CxSemaphore();
         virtual     ~CxTest_CxSemaphore();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

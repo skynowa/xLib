@@ -12,28 +12,45 @@
 xNAMESPACE_BEGIN(std)
 
 //---------------------------------------------------------------------------
+//DONE: operator << for bool
+template<class Traits>
+inline basic_ostream<tchar, Traits> &
+operator << (
+    basic_ostream<tchar, Traits> &osOut,
+    bool                     cbValue
+)
+{
+    std::tstring sRes;
+
+    sRes.assign( CxString::sBoolToStr(cbValue) );
+
+    --osOut << sRes << std::flush;
+
+    return osOut;
+}
+//---------------------------------------------------------------------------
 //DONE: operator << for std::ustring
 template<class Traits>
-inline basic_ostream<char_t, Traits> &
+inline basic_ostream<tchar, Traits> &
 operator << (
-    basic_ostream<char_t, Traits> &osOut,
+    basic_ostream<tchar, Traits> &osOut,
     const std::ustring           &cusValue
 )
 {
-    std::string_t sRes;
+    std::tstring sRes;
 
     sRes.assign( cusValue.begin(), cusValue.end() );
 
-    osOut << sRes.data() << std::flush;
+    osOut << sRes << std::flush;
 
     return osOut;
 }
 //---------------------------------------------------------------------------
 //DONE: operator << for std::vector
 template<class Traits, class T>
-inline basic_ostream<char_t, Traits> &
+inline basic_ostream<tchar, Traits> &
 operator << (
-    basic_ostream<char_t, Traits> &osOut,
+    basic_ostream<tchar, Traits> &osOut,
     const vector<T>              &cvValueT
 )
 {
@@ -55,9 +72,9 @@ operator << (
 //---------------------------------------------------------------------------
 //DONE: operator << for std::map
 template<class Traits, class T1, class T2>
-inline basic_ostream<char_t, Traits> &
+inline basic_ostream<tchar, Traits> &
 operator << (
-    basic_ostream<char_t, Traits> &osOut,
+    basic_ostream<tchar, Traits> &osOut,
     const map<T1, T2>            &cmValueT
 )
 {
@@ -79,9 +96,9 @@ operator << (
 //---------------------------------------------------------------------------
 //DONE: operator << for std::multimap
 template<class Traits, class T1, class T2>
-inline basic_ostream<char_t, Traits> &
+inline basic_ostream<tchar, Traits> &
 operator << (
-    basic_ostream<char_t, Traits> &osOut,
+    basic_ostream<tchar, Traits> &osOut,
     const multimap<T1, T2>       &cmmValueT
 )
 {
@@ -115,23 +132,23 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 template<class T>
 /*static*/
-inline std::string_t
+inline std::tstring
 CxString::lexical_cast(
     const T &cValueT
 )
 {
     //cValueT - n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
     try {
-        std::ostringstream_t ossRes;
+        std::tostringstream ossRes;
 
-        ossRes.exceptions(std::ostringstream_t::failbit | std::ostringstream_t::badbit);
+        ossRes.exceptions(std::tostringstream::failbit | std::tostringstream::badbit);
         ossRes << cValueT;
 
         sRes.assign(ossRes.str());
-    } catch (std::ostringstream_t::failure &e) {
+    } catch (std::tostringstream::failure &e) {
         sRes.clear();
     } catch (...) {
         sRes.clear();
@@ -142,7 +159,7 @@ CxString::lexical_cast(
 //---------------------------------------------------------------------------
 template<class T>
 /*static*/
-inline std::string_t
+inline std::tstring
 CxString::lexical_cast(
     const T   &cValueT,
     const int  ciBase
@@ -151,16 +168,16 @@ CxString::lexical_cast(
     //cValueT - n/a
     //ciBase  - n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
     try {
-        std::ostringstream_t ossRes;
+        std::tostringstream ossRes;
 
-        ossRes.exceptions(std::ostringstream_t::failbit | std::ostringstream_t::badbit);
+        ossRes.exceptions(std::tostringstream::failbit | std::tostringstream::badbit);
         ossRes << std::setbase(ciBase) << std::uppercase << cValueT;  //std::showbase
 
         sRes.assign(ossRes.str());
-    } catch (std::ostringstream_t::failure &e) {
+    } catch (std::tostringstream::failure &e) {
         sRes.clear();
     } catch (...) {
         sRes.clear();
@@ -173,7 +190,7 @@ template<class T>
 /*static*/
 inline T
 CxString::lexical_cast(
-    const std::string_t &csStr
+    const std::tstring &csStr
 )
 {
     //csStr - n/a
@@ -181,11 +198,11 @@ CxString::lexical_cast(
     T ResT;
 
     try {
-        std::istringstream_t issStream(csStr);
+        std::tistringstream issStream(csStr);
 
-        issStream.exceptions(std::istringstream_t::failbit | std::istringstream_t::badbit);
+        issStream.exceptions(std::tistringstream::failbit | std::tistringstream::badbit);
         issStream >> ResT;
-    } catch (std::istringstream_t::failure &e) {
+    } catch (std::tistringstream::failure &e) {
         return T();
     } catch (...) {
         return T();
@@ -198,7 +215,7 @@ template<class T>
 /*static*/
 inline T
 CxString::lexical_cast(
-    const std::string_t &csStr,
+    const std::tstring &csStr,
     const int           ciBase
 )
 {
@@ -208,11 +225,11 @@ CxString::lexical_cast(
     T ResT;
 
     try {
-        std::istringstream_t issStream(csStr);
+        std::tistringstream issStream(csStr);
 
-        issStream.exceptions(std::istringstream_t::failbit | std::istringstream_t::badbit);
+        issStream.exceptions(std::tistringstream::failbit | std::tistringstream::badbit);
         issStream >> std::setbase(ciBase) >> ResT;
-    } catch (std::istringstream_t::failure &e) {
+    } catch (std::tistringstream::failure &e) {
         return T();
     } catch (...) {
         return T();

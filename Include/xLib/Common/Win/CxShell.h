@@ -116,29 +116,29 @@ class CxShell :
             sfWindows                = CSIDL_WINDOWS
         };
 
-        static std::string_t bFindExecutable   (const std::string_t &csFileName, const std::string_t &csFindDirPath);
+        static std::tstring bFindExecutable   (const std::tstring &csFileName, const std::tstring &csFindDirPath);
             ///< find executable file path
-        static BOOL         bExecute          (const HWND chOwner, const EOperation copOperation, const std::string_t &csFilePath, const std::string_t &csParams, const std::string_t &csDir, const EShowFlag csfShowCmd);
+        static bool         bExecute          (const HWND chOwner, const EOperation copOperation, const std::tstring &csFilePath, const std::tstring &csParams, const std::tstring &csDir, const EShowFlag csfShowCmd);
             ///< execute
-        static BOOL         bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
+        static bool         bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
             ///< execute
-        static BOOL         bExecuteHttp      (const std::string_t &csUrl);
+        static bool         bExecuteHttp      (const std::tstring &csUrl);
             ///< execute HTTP
-        static BOOL         bExecuteFtp       (const std::string_t &csUrl);
+        static bool         bExecuteFtp       (const std::tstring &csUrl);
             ///< execute FTP
-        static BOOL         bExecuteEmail     (const std::string_t &csToEmail, const std::string_t &csSubject, const std::string_t &csBody);
+        static bool         bExecuteEmail     (const std::tstring &csToEmail, const std::tstring &csSubject, const std::tstring &csBody);
             ///< execute email
-        static std::string_t sGetSpecialDirPath(const ESpecialDir csfDir, const HANDLE chToken);
+        static std::tstring sGetSpecialDirPath(const ESpecialDir csfDir, const HANDLE chToken);
             ///< get special dir path
-        static BOOL         bCreateShortcut   (const std::string_t &csShortCutFilePath,
-                                               const std::string_t &csFilePath,
-                                               const std::string_t &csWorkingDirectory,
-                                               const std::string_t &csArguments,
+        static bool         bCreateShortcut   (const std::tstring &csShortCutFilePath,
+                                               const std::tstring &csFilePath,
+                                               const std::tstring &csWorkingDirectory,
+                                               const std::tstring &csArguments,
                                                const WORD          cwHotKey,
                                                const int           ciCmdShow,
-                                               const std::string_t &csIconFilePath,
+                                               const std::tstring &csIconFilePath,
                                                const int           ciIconIndex,
-                                               const std::string_t &csDescription
+                                               const std::tstring &csDescription
                                               );
             ///< create shortcut
 

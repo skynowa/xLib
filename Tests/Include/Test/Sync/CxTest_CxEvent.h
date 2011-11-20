@@ -18,7 +18,7 @@ class CxTest_CxEvent :
                      CxTest_CxEvent();
         virtual     ~CxTest_CxEvent();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

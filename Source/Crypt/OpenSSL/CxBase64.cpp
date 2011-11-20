@@ -104,14 +104,14 @@ CxBase64::sDecode(
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxBase64::bIsCharValid(
     const char cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    BOOL bRes = static_cast<BOOL>( (FALSE != CxChar::bIsAlphaNum(cchChar)) || ('+' == cchChar) || ('/' == cchChar) );
+    bool bRes = static_cast<bool>( (false != CxChar::bIsAlphaNum(cchChar)) || ('+' == cchChar) || ('/' == cchChar) );
 
     return bRes;
 }

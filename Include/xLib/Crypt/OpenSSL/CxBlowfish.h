@@ -30,29 +30,29 @@ class CxBlowfish :
         virtual      ~CxBlowfish          ();
             ///< destructor
 
-        BOOL          bSetKey             (UCHAR *pucKey, const int ciKeySize);
+        bool          bSetKey             (UCHAR *pucKey, const int ciKeySize);
             ///< set key
-        BOOL          bSetKey             (const std::ustring &cusKey);
+        bool          bSetKey             (const std::ustring &cusKey);
             ///< set key
-        BOOL          bSetKey             (const std::string_t &csKey);
+        bool          bSetKey             (const std::tstring &csKey);
             ///< set key
-        BOOL          bSetFileKey         (const std::string_t &csFilePath);
+        bool          bSetFileKey         (const std::tstring &csFilePath);
             ///< set key as file
         static size_t uiGetMaxKeySize     ();
             ///< get maximum key size
 
         //cfb64
-        BOOL          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, const LONG cliInSize, int *piNum, const ECryptMode cmMode);
+        bool          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, const LONG cliInSize, int *piNum, const ECryptMode cmMode);
             ///< encrypt buffer
-        BOOL          bEncryptCfb64       (const std::ustring &cusIn, std::ustring *pusOut, const ECryptMode cmMode);
+        bool          bEncryptCfb64       (const std::ustring &cusIn, std::ustring *pusOut, const ECryptMode cmMode);
             ///< encrypt std::ustring
-        BOOL          bEncryptFileCfb64   (const std::string_t &csFilePathIn, const std::string_t &csFilePathOut, const ECryptMode cmMode);
+        bool          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const ECryptMode cmMode);
             ///< encrypt file
 
         //
-        BOOL          bEncryptFileCfb64   (const std::string_t &csFilePathIn, const std::string_t &csFilePathOut, const std::ustring &cusStamp, const ECryptMode cmCryptMode);
+        bool          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const std::ustring &cusStamp, const ECryptMode cmCryptMode);
             ///< encrypt file
-        ECryptMode    cmGetFileCryptStatus(const std::string_t &csFilePath, const std::ustring &cusStamp);
+        ECryptMode    cmGetFileCryptStatus(const std::tstring &csFilePath, const std::ustring &cusStamp);
             ///< get file crypt status
 
     private:

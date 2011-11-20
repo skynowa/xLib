@@ -19,7 +19,7 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxCurrentThread::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -31,23 +31,23 @@ CxTest_CxCurrentThread::bUnit(
         CxThread::TxId aulData[5][2] = {{0}};
 
         aulData[0][0] = (CxThread::TxId)CxCurrentThread::ulGetId();
-        aulData[0][1] = (CxThread::TxId)TRUE;
+        aulData[0][1] = (CxThread::TxId)true;
 
         aulData[1][0] = (CxThread::TxId)((ULONG)CxCurrentThread::ulGetId() - 1);
-        aulData[1][1] = (CxThread::TxId)FALSE;
+        aulData[1][1] = (CxThread::TxId)false;
 
         aulData[2][0] = (CxThread::TxId)0;
-        aulData[2][1] = (CxThread::TxId)FALSE;
+        aulData[2][1] = (CxThread::TxId)false;
 
         aulData[3][0] = (CxThread::TxId) - 1;
-        aulData[3][1] = (CxThread::TxId)FALSE;
+        aulData[3][1] = (CxThread::TxId)false;
 
         aulData[4][0] = (CxThread::TxId)- 1;
-        aulData[4][1] = (CxThread::TxId)FALSE;
+        aulData[4][1] = (CxThread::TxId)false;
 
         for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
             const CxThread::TxId culId = aulData[i][0];
-            const BOOL           cbRes = (BOOL)(ULONG)aulData[i][1];
+            const bool           cbRes = xINT_AS_BOOL( (ULONG)aulData[i][1] );
 
             m_bRes = CxCurrentThread::bIsCurrent(culId);
             xTEST_EQ(cbRes, m_bRes);
@@ -91,7 +91,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxCurrentThread::bYield();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -111,7 +111,7 @@ CxTest_CxCurrentThread::bUnit(
             CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
 
             m_bRes = CxCurrentThread::bSleep(cuiMsec);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
 
@@ -120,6 +120,6 @@ CxTest_CxCurrentThread::bUnit(
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

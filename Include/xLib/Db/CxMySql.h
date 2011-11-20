@@ -31,23 +31,23 @@ class CxMySQLConnection :
 
         MYSQL                   *pmsGet           () const;
             ///< get handle
-        BOOL                     bIsValid         () const;
+        bool                     bIsValid         () const;
             ///< validating handle
-        BOOL                     bOptions         (const mysql_option cmoOption, const void *cpvArg) const;
+        bool                     bOptions         (const mysql_option cmoOption, const void *cpvArg) const;
             ///< set extra connect options and affect behavior
-        BOOL                     bConnect         (const std::string_t &csHost, const std::string_t &csUser, const std::string_t &csPassword, const std::string_t &csDb, const UINT cuiPort, const std::string_t &csUnixSocket, const ULONG culClientFlag);
+        bool                     bConnect         (const std::tstring &csHost, const std::tstring &csUser, const std::tstring &csPassword, const std::tstring &csDb, const UINT cuiPort, const std::tstring &csUnixSocket, const ULONG culClientFlag);
             ///< attempts to establish a connection to a MySQL database engine running on host
-        BOOL                     bQuery           (const char_t *pcszSqlFormat, ...) const;
+        bool                     bQuery           (const tchar *pcszSqlFormat, ...) const;
             ///< executes the SQL statement
         UINT                     uiFieldCount     () const;
             ///< number of columns in a result set
-        BOOL                     bClose           ();
+        bool                     bClose           ();
             ///< closes a previously opened connection
 
         //errors
         UINT                     uiGetLastError   () const;
             ///< error code for the most recently invoked API function that can succeed or fail
-        std::string_t             sGetLastErrorStr () const;
+        std::tstring             sGetLastErrorStr () const;
             ///< error message for the most recently invoked API function that failed
 
     private:
@@ -60,27 +60,27 @@ class CxMySQLRecordset :
     /// MySQL recordset
 {
     public:
-                                 CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const BOOL cbIsUseResult);
+                                 CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const bool cbIsUseResult);
             ///< constructor
         virtual                 ~CxMySQLRecordset ();
             ///< destructor
 
         MYSQL_RES               *pmrGet           () const;
             ///< get handle
-        BOOL                     bIsValid         () const;
+        bool                     bIsValid         () const;
             ///< validating handle
 
         UINT                     uiFieldsNum      () const;
             ///< number of columns in a result set
         my_ulonglong             ullRowsNum       () const;
             ///< number of rows in the result set
-        BOOL                     bFetchField      (MYSQL_FIELD *pmfField) const;
+        bool                     bFetchField      (MYSQL_FIELD *pmfField) const;
             ///< The MYSQL_FIELD structure for the current column
-        BOOL                     bFetchFieldDirect(const UINT cuiFieldNumber, MYSQL_FIELD *pmfField) const;
+        bool                     bFetchFieldDirect(const UINT cuiFieldNumber, MYSQL_FIELD *pmfField) const;
             ///< The MYSQL_FIELD structure for the specified column
-        BOOL                     bFetchFields     (MYSQL_FIELD *pmfField) const;
+        bool                     bFetchFields     (MYSQL_FIELD *pmfField) const;
             ///< An array of MYSQL_FIELD structures for all columns of a result set
-        BOOL                     bFetchRow        (std::vector<std::string_t> *pvsRow) const;
+        bool                     bFetchRow        (std::vector<std::tstring> *pvsRow) const;
             ///< fetching row
 
     private:
@@ -89,9 +89,9 @@ class CxMySQLRecordset :
         MYSQL_RES               *_m_pmrResult;
             ///< for private use
 
-        BOOL                     _bFetchLengths   (ULONG **ppulFieldLengths) const;
+        bool                     _bFetchLengths   (ULONG **ppulFieldLengths) const;
             ///< An array of unsigned long integers representing the size of each column
-        BOOL                     _bFetchRow       (MYSQL_ROW *pmrRow) const;
+        bool                     _bFetchRow       (MYSQL_ROW *pmrRow) const;
             ///< A MYSQL_ROW structure for the next row
 };
 

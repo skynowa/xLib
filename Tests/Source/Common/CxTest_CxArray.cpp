@@ -17,7 +17,7 @@ CxTest_CxArray::~CxTest_CxArray() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxArray::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -58,14 +58,14 @@ CxTest_CxArray::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         /*m_bRes =*/ aszArray.clear();
-        ////xTEST_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(false, m_bRes);
     }
 
     xTEST_BLOCK(cullBlockLoops) {
-        NxArray::make_array<std::string_t>( xT("0"),  xT("1") );
-        NxArray::make_array<std::string_t>( xT("0"),  xT("1"),  xT("2") );
+        NxArray::make_array<std::tstring>( xT("0"),  xT("1") );
+        NxArray::make_array<std::tstring>( xT("0"),  xT("1"),  xT("2") );
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

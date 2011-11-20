@@ -18,14 +18,14 @@ xNAMESPACE_BEGIN(NxLib)
 
 //--------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxUtils::sErrorStr(
     const CK_RV culCode
 )
 {
     /*DEBUG*/// culCode - n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
     switch (culCode) {
         case CKR_OK:                               sRes.assign(xT("CKR_OK"));

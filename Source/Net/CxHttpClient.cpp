@@ -19,9 +19,9 @@ CxHttpClient::~CxHttpClient() {
 }
 //---------------------------------------------------------------------------
 //TODO: bHead ()
-BOOL
+bool
 CxHttpClient::bHead(const std::string &csUrl, std::string *psResponse) {
-    BOOL bRes = FALSE;
+    bool bRes = false;
     xUNUSED(bRes);
 
     //csUrl = http://dn1.berloga.net/83841/zombie_baseball_2.swf
@@ -39,70 +39,70 @@ CxHttpClient::bHead(const std::string &csUrl, std::string *psResponse) {
 
     sBody      = "";
 
-    return TRUE;
+    return true;
 
 
 
 }
 //---------------------------------------------------------------------------
 //TODO: bGet ()
-BOOL
+bool
 CxHttpClient::bGet(const std::string &csUrl,  std::string *psResponse) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bPost ()
-BOOL
+bool
 CxHttpClient::bPost(const std::string &csUrl,  const std::string &csParams, std::string *psResponse) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bOptions ()
-BOOL
+bool
 CxHttpClient::bOptions(const std::string &csUrl) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bTrace ()
-BOOL
+bool
 CxHttpClient::bTrace(const std::string &csUrl) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bPut ()
-BOOL
+bool
 CxHttpClient::bPut(const std::string &csUrl) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bDelete ()
-BOOL
+bool
 CxHttpClient::bDelete(const std::string &csUrl) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bConnect ()
-BOOL
+bool
 CxHttpClient::bConnect(const std::string &csUrl) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bPatch ()
-BOOL
+bool
 CxHttpClient::bPatch(const std::string &csUrl) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bLink ()
-BOOL
+bool
 CxHttpClient::bLink(const std::string &csUrl) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bUnlink ()
-BOOL
+bool
 CxHttpClient::bUnlink(const std::string &csUrl) {
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 

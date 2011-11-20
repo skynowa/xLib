@@ -178,7 +178,7 @@ class CxSocket :
         virtual     ~CxSocket       () = 0;
             ///< destructor
 
-        BOOL         bAssign        (SOCKET scktSocket);
+        bool         bAssign        (SOCKET scktSocket);
             ///< assign to another socket
 
         /****************************************************************************
@@ -197,13 +197,13 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        BOOL         bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
+        bool         bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
             ///< creates a socket that is bound to a specific transport service provider
         SOCKET       iGetSocket     () const;
             ///< get socket
-        BOOL         bIsValid       () const;
+        bool         bIsValid       () const;
             ///< checking for validness
-        BOOL         bClose         ();
+        bool         bClose         ();
             ///< close
 
 
@@ -212,18 +212,18 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        //void *, std::string_t, std::ustring
+        //void *, std::tstring, std::ustring
 
-        int          iSend          (const char_t *pcszBuff, int iBuffSize, int iFlags);
+        int          iSend          (const tchar *pcszBuff, int iBuffSize, int iFlags);
             ///< send data
-        BOOL         bSendAll       (const std::string_t &csBuff, int iFlags);
+        bool         bSendAll       (const std::tstring &csBuff, int iFlags);
             ///< send data by blocks
 
-        int          iRecv          (char_t *pszBuff,  int iBuffSize, int iFlags);
+        int          iRecv          (tchar *pszBuff,  int iBuffSize, int iFlags);
             ///< recieve data
-        std::string_t sRecvAll       (int iFlags);
+        std::tstring sRecvAll       (int iFlags);
             ///< recieve data
-        std::string_t sRecvAll       (int iFlags, const std::string_t &csDelimiter);
+        std::tstring sRecvAll       (int iFlags, const std::tstring &csDelimiter);
             ///< recive data to delimiter, includs it
 
         int          iSendBytes     (char *pszBuff, int iMessageLength);
@@ -237,9 +237,9 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        BOOL         bGetPeerName   (std::string_t *psPeerAddr, USHORT *pusPeerPort);
+        bool         bGetPeerName   (std::tstring *psPeerAddr, USHORT *pusPeerPort);
             ///< get address of the peer to which a socket is connected
-        BOOL         bGetSocketName (std::string_t *psSocketAddr, USHORT *pusSocketPort);
+        bool         bGetSocketName (std::tstring *psSocketAddr, USHORT *pusSocketPort);
             ///< get local name for a socket
 
         /****************************************************************************
@@ -256,7 +256,7 @@ class CxSocket :
     protected:
         SOCKET       _m_puiSocket;    ///< handle to socket
         SHORT        _m_siFamily;   ///< family
-        std::string_t _m_sIp;        ///< IP
+        std::tstring _m_sIp;        ///< IP
         USHORT       _m_usPort;     ///< port
 
     private:
@@ -272,10 +272,10 @@ xNAMESPACE_END(NxLib)
 #endif
 
 #if xTODO
-    std::string_t sStr = xT("Some string!!!");
-    ::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::string_t::value_type), 0);
+    std::tstring sStr = xT("Some string!!!");
+    ::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring::value_type), 0);
 
-    sizeof(std::string_t::value_type)
+    sizeof(std::tstring::value_type)
 #endif
 
 #if xTODO

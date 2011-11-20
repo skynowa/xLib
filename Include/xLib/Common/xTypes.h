@@ -15,29 +15,19 @@ xNAMESPACE_BEGIN(NxLib)
         #define xTEXT(x)               L##x
         #define xT(x)                  xTEXT(x)
 
-        typedef wchar_t                char_t;
+        typedef wchar_t                tchar;
     #else
         #define xTEXT(x)               x
         #define xT(x)                  xTEXT(x)
 
-        typedef char                   char_t;
+        typedef char                   tchar;
     #endif //xUNICODE
-
-        #ifndef FALSE
-            #define FALSE              0
-        #endif
-
-        #ifndef TRUE
-            #define TRUE               1
-        #endif
 
     #if xOS_ENV_WIN
         #if xCOMPILER_MINGW32
             typedef addrinfo           ADDRINFOT;
         #endif
     #elif xOS_ENV_UNIX
-        typedef int                    BOOL;
-
         typedef unsigned char          UCHAR;
 
         typedef signed short int       SHORT;
@@ -57,20 +47,20 @@ xNAMESPACE_END(NxLib)
 
 xNAMESPACE_BEGIN(std)
 
-    typedef basic_string<char_t, char_traits<char_t>, allocator<char_t> >        string_t;
+    typedef basic_string<tchar, char_traits<tchar>, allocator<tchar> >        tstring;
     typedef basic_string<UCHAR, char_traits<UCHAR>, allocator<UCHAR> >           ustring;
 
-    typedef basic_istream <char_t, char_traits<char_t> >                         istream_t;
-    typedef basic_ostream <char_t, char_traits<char_t> >                         ostream_t;
-    typedef basic_iostream<char_t, char_traits<char_t> >                         iostream_t;
+    typedef basic_istream <tchar, char_traits<tchar> >                         tistream;
+    typedef basic_ostream <tchar, char_traits<tchar> >                         tostream;
+    typedef basic_iostream<tchar, char_traits<tchar> >                         tiostream;
 
-    typedef basic_istringstream<char_t, char_traits<char_t>, allocator<char_t> > istringstream_t;
-    typedef basic_ostringstream<char_t, char_traits<char_t>, allocator<char_t> > ostringstream_t;
-    typedef basic_stringstream <char_t, char_traits<char_t>, allocator<char_t> > stringstream_t;
+    typedef basic_istringstream<tchar, char_traits<tchar>, allocator<tchar> > tistringstream;
+    typedef basic_ostringstream<tchar, char_traits<tchar>, allocator<tchar> > tostringstream;
+    typedef basic_stringstream <tchar, char_traits<tchar>, allocator<tchar> > tstringstream;
 
-    typedef basic_ifstream<char_t, char_traits<char_t> >                         ifstream_t;
-    typedef basic_ofstream<char_t, char_traits<char_t> >                         ofstream_t;
-    typedef basic_fstream <char_t, char_traits<char_t> >                         fstream_t;
+    typedef basic_ifstream<tchar, char_traits<tchar> >                         tifstream;
+    typedef basic_ofstream<tchar, char_traits<tchar> >                         tofstream;
+    typedef basic_fstream <tchar, char_traits<tchar> >                         tfstream;
 
 xNAMESPACE_END(std)
 //---------------------------------------------------------------------------

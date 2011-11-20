@@ -21,7 +21,7 @@ class CxRandom :
         virtual            ~CxRandom     ();
             ///< destructor
 
-        BOOL                bSetSeed     (LONG liSeed);
+        bool                bSetSeed     (LONG liSeed);
             ///< set seed
         int                 iNextInt     ();
             ///< next int
@@ -44,13 +44,13 @@ class CxRandom :
         double              dNextGaussian();
             ///< next gaussian
 
-        static BOOL         bSetSeed     ();
+        static bool         bSetSeed     ();
             ///< set seed
         static LONG         liGetInt     (const LONG cliMin, const LONG cliMax);
             ///< generates a random number between specified min/max boundaries
         static LONG         liGetIntEx   (const LONG cliMin, const LONG cliMax);
             ///< generates a random number between specified min/max boundaries using a vector to shuffle
-        static std::string_t sGetString   (const size_t cuiSize);
+        static std::tstring sGetString   (const size_t cuiSize);
             ///< get random string
 
     protected:

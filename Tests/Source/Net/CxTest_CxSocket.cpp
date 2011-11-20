@@ -17,13 +17,13 @@ CxTest_CxSocket::~CxTest_CxSocket() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxSocket::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

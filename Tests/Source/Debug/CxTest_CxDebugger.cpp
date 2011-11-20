@@ -17,7 +17,7 @@ CxTest_CxDebugger::~CxTest_CxDebugger() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxDebugger::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -27,20 +27,20 @@ CxTest_CxDebugger::bUnit(
     //bGetEnabled, bGetEnabled
     xTEST_BLOCK(cullBlockLoops)
     {
-        const BOOL cbTrue  = TRUE;
-        const BOOL cbFalse = FALSE;
+        const bool cbTrue  = true;
+        const bool cbFalse = false;
 
         m_bRes = CxDebugger::bGetEnabled();
         xTEST_EQ(cbTrue, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbFalse);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
         xTEST_EQ(cbFalse, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbTrue);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
         xTEST_EQ(cbTrue, m_bRes);
@@ -59,9 +59,9 @@ CxTest_CxDebugger::bUnit(
     {
         m_bRes = CxDebugger::bIsDebugBuild();
         #if defined(NDEBUG)
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
         #else
-            xTEST_EQ(TRUE, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -76,19 +76,19 @@ CxTest_CxDebugger::bUnit(
     //bSetLogPath, sGetLogPath
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t csFilePath = xT("");
+        const std::tstring csFilePath = xT("");
 
         m_sRes = CxDebugger::sGetLogPath();
         xTEST_EQ(true, m_sRes.empty());
 
         m_bRes = CxDebugger::bSetLogPath(csFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
         xTEST_EQ(csFilePath, m_sRes);
 
         m_bRes = CxDebugger::bSetLogPath(xT(""));
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
         xTEST_EQ(true, m_sRes.empty());
@@ -111,7 +111,7 @@ CxTest_CxDebugger::bUnit(
             CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
 
             //m_bRes = CxDebugger::bReportMake(rpReport);
-            //xTEST_DIFF(FALSE, m_bRes);
+            //xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -121,7 +121,7 @@ CxTest_CxDebugger::bUnit(
     {
         #if xTEST_IGNORE
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #endif
     }
 
@@ -133,7 +133,7 @@ CxTest_CxDebugger::bUnit(
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
         #endif
 
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -141,7 +141,7 @@ CxTest_CxDebugger::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxDebugger::bBeep();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -155,8 +155,8 @@ CxTest_CxDebugger::bUnit(
     //xASSERT
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sVar1 = xT("xxx");
-        std::string_t sVar2 = xT("xxx");
+        std::tstring sVar1 = xT("xxx");
+        std::tstring sVar2 = xT("xxx");
         xASSERT(sVar1 == sVar2);
     }
 
@@ -164,17 +164,17 @@ CxTest_CxDebugger::bUnit(
     //xASSERT_RET
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sVar1 = xT("xxx");
-        std::string_t sVar2 = xT("xxx");
-        xASSERT_RET(sVar1 == sVar2, FALSE);
+        std::tstring sVar1 = xT("xxx");
+        std::tstring sVar2 = xT("xxx");
+        xASSERT_RET(sVar1 == sVar2, false);
     }
 
     //--------------------------------------------------
     //xASSERT_DO
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sVar1 = xT("xxx");
-        std::string_t sVar2 = xT("xxx");
+        std::tstring sVar1 = xT("xxx");
+        std::tstring sVar2 = xT("xxx");
         xASSERT_DO(sVar1 == sVar2, sVar1.clear());
     }
 
@@ -182,8 +182,8 @@ CxTest_CxDebugger::bUnit(
     //xASSERT_MSG
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sVar1 = xT("xxx");
-        std::string_t sVar2 = xT("xxx");
+        std::tstring sVar1 = xT("xxx");
+        std::tstring sVar2 = xT("xxx");
         xASSERT_MSG(sVar1 == sVar2, xT("Simple message"));
     }
 
@@ -191,17 +191,17 @@ CxTest_CxDebugger::bUnit(
     //xASSERT_MSG_RET
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sVar1 = xT("xxx");
-        std::string_t sVar2 = xT("xxx");
-        xASSERT_MSG_RET(sVar1 == sVar2, xT("Simple message"), FALSE);
+        std::tstring sVar1 = xT("xxx");
+        std::tstring sVar2 = xT("xxx");
+        xASSERT_MSG_RET(sVar1 == sVar2, xT("Simple message"), false);
     }
 
     //--------------------------------------------------
     //xASSERT_MSG_DO
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sVar1 = xT("xxx");
-        std::string_t sVar2 = xT("xxx");
+        std::tstring sVar1 = xT("xxx");
+        std::tstring sVar2 = xT("xxx");
         xASSERT_MSG_DO(sVar1 == sVar2, xT("Simple message"), sVar1.swap(sVar2));
     }
 
@@ -264,59 +264,59 @@ CxTest_CxDebugger::bUnit(
     //--------------------------------------------------
     //like xTEST_EQ macroses
 
-    //with std::string_t
+    //with std::tstring
     {
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::string_t sVar1 = xT("aaa");
-            std::string_t sVar2 = xT("aaa");
+            std::tstring sVar1 = xT("aaa");
+            std::tstring sVar2 = xT("aaa");
             xTEST_EQ(sVar1, sVar2);
         }
 
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::string_t sVar1 = xT("bbb");
-            std::string_t sVar2 = xT("BBB");
+            std::tstring sVar1 = xT("bbb");
+            std::tstring sVar2 = xT("BBB");
             xTEST_DIFF(sVar1, sVar2);
         }
 
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::string_t sVar1 = xT("aaa");
-            std::string_t sVar2 = xT("ccc");
+            std::tstring sVar1 = xT("aaa");
+            std::tstring sVar2 = xT("ccc");
             xTEST_LESS(sVar1, sVar2);
         }
 
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::string_t sVar1 = xT("bbb");
-            std::string_t sVar2 = xT("aaa");
+            std::tstring sVar1 = xT("bbb");
+            std::tstring sVar2 = xT("aaa");
             xTEST_GREATER(sVar1, sVar2);
         }
 
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::string_t sVar1 = xT("aaa");
-            std::string_t sVar2 = xT("aaa");
+            std::tstring sVar1 = xT("aaa");
+            std::tstring sVar2 = xT("aaa");
             xTEST_LESS_EQ(sVar1, sVar2);
 
-            std::string_t sVar3 = xT("aaa");
-            std::string_t sVar4 = xT("ggg");
+            std::tstring sVar3 = xT("aaa");
+            std::tstring sVar4 = xT("ggg");
             xTEST_LESS_EQ(sVar3, sVar4);
         }
 
         xTEST_BLOCK(cullBlockLoops)
         {
-            std::string_t sVar1 = xT("aaa");
-            std::string_t sVar2 = xT("aaa");
+            std::tstring sVar1 = xT("aaa");
+            std::tstring sVar2 = xT("aaa");
             xTEST_GREATER_EQ(sVar1, sVar2);
 
-            std::string_t sVar3 = xT("hhhh");
-            std::string_t sVar4 = xT("aaa");
+            std::tstring sVar3 = xT("hhhh");
+            std::tstring sVar4 = xT("aaa");
             xTEST_GREATER_EQ(sVar3, sVar4);
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

@@ -30,7 +30,7 @@ class CxWndLog :
         virtual                    ~CxWndLog();
             ///< destructor
 
-        BOOL                        bWrite  (const HWND chWnd, LPCTSTR pcszFormat, ...);
+        bool                        bWrite  (const HWND chWnd, LPCTSTR pcszFormat, ...);
             ///< write
 
        private:

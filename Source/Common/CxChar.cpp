@@ -16,157 +16,120 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsAlphaNum(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISALNUM(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( std::xTISALNUM(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsAlpha(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( ::xTISALPHA(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( ::xTISALPHA(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsControl(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISCNTRL(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( std::xTISCNTRL(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsDigitDec(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISDIGIT(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( std::xTISDIGIT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsDigitHex(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISXDIGIT(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( std::xTISXDIGIT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsGraph(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISGRAPH(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( std::xTISGRAPH(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsPrint(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISPRINT(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( std::xTISPRINT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsPunct(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISPUNCT(cchChar) );
+    return xINT_AS_BOOL( std::xTISPUNCT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsSpace(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISSPACE(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( std::xTISSPACE(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsLower(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISLOWER(cchChar) );
+    return xINT_AS_BOOL( std::xTISLOWER(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxChar::bIsUpper(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
-    return static_cast<BOOL>( std::xTISUPPER(cchChar) );
-    /*DEBUG*/// n/a
+    return xINT_AS_BOOL( std::xTISUPPER(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-char_t
+tchar
 CxChar::chToLower(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
     return xTTOLOWER(cchChar);
-    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 /*static*/
-char_t
+tchar
 CxChar::chToUpper(
-    const char_t cchChar
+    const tchar cchChar
 )
 {
-    /*DEBUG*/// n/a
-
     return xTTOUPPER(cchChar);
-    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 
@@ -178,12 +141,12 @@ CxChar::chToUpper(
 
 //---------------------------------------------------------------------------
 CxChar::CxChar() {
-    /*DEBUG*/// n/a
+
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxChar::~CxChar() {
-    /*DEBUG*/// n/a
+
 }
 //---------------------------------------------------------------------------
 

@@ -17,7 +17,7 @@ CxTest_CxClipboard::~CxTest_CxClipboard() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxClipboard::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -25,48 +25,48 @@ CxTest_CxClipboard::bUnit(
 #if xOS_ENV_WIN
     CxClipboard cbCB;
 
-    const std::string_t csText = xT("Simple text");
+    const std::tstring csText = xT("Simple text");
 
     //-------------------------------------
     //bSetOwner
     {
         m_bRes = cbCB.bSetOwner(NULL);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bOpen
     {
         ////m_bRes = cbCB.bOpen();
-        ////xTEST_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bClear
     {
         m_bRes = cbCB.bClear();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bGetData
     {
         ////m_bRes = cbCB.bGetData(EFormat fmFormat);
-        ////xTEST_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bSetData
     {
         ////m_bRes = cbCB.bSetData(EFormat fmFormat, HANDLE hData);
-        ////xTEST_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bSetText
     {
         m_bRes = cbCB.bSetText(csText);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -77,14 +77,14 @@ CxTest_CxClipboard::bUnit(
     #else
         m_bRes = cbCB.bIsHasFormat(CxClipboard::fmText);
     #endif
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bGetText
     {
         m_bRes = cbCB.bGetText(&m_sRes);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
         xTEST_EQ(csText, m_sRes);
     }
 
@@ -92,12 +92,12 @@ CxTest_CxClipboard::bUnit(
     //bClose
     {
         ////m_bRes = cbCB.bClose();
-        ////xTEST_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(false, m_bRes);
     }
 #elif xOS_ENV_UNIX
 
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

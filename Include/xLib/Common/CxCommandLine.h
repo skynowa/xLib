@@ -17,15 +17,15 @@ class CxCommandLine :
     public:
         static LONG         liGetArgsMax ();
             ///< get maximum length of commandline arguments (in chars)
-        static std::string_t sGet         ();
+        static std::tstring sGet         ();
             ///< get commandline string for the current process
-        static BOOL         bGetArgs     (std::vector<std::string_t> *pvsArgs);
+        static bool         bGetArgs     (std::vector<std::tstring> *pvsArgs);
             ///< get commandline arguments
-        static BOOL         bSetArgs     (const int ciArgsCount, char_t *paszArgs[]);
+        static bool         bSetArgs     (const int ciArgsCount, tchar *paszArgs[]);
             ///< set commandline arguments
 
     private:
-        static std::vector<std::string_t> _ms_vsArgs;  ///< command line arguments
+        static std::vector<std::tstring> _ms_vsArgs;  ///< command line arguments
 
                             CxCommandLine();
             ///< constructor

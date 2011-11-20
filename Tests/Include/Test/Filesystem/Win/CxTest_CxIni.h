@@ -18,7 +18,7 @@ class CxTest_CxIni:
                      CxTest_CxIni();
         virtual     ~CxTest_CxIni();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

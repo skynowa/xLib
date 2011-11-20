@@ -27,12 +27,12 @@ class CxAtomicLongInt :
         CxAtomicLongInt& operator +=   (const LONG cliRight);
         CxAtomicLongInt& operator -=   (const LONG cliRight);
         CxAtomicLongInt& operator =    (const LONG cliRight);
-        BOOL             operator ==   (const CxAtomicLongInt &cRight) const ;
-        BOOL             operator !=   (const CxAtomicLongInt &cRight) const ;
-        BOOL             operator ==   (const LONG cliRight) const ;
-        BOOL             operator !=   (const LONG cliRight) const ;
+        bool             operator ==   (const CxAtomicLongInt &cRight) const ;
+        bool             operator !=   (const CxAtomicLongInt &cRight) const ;
+        bool             operator ==   (const LONG cliRight) const ;
+        bool             operator !=   (const LONG cliRight) const ;
                          operator LONG () const ;
-                         operator BOOL () const ;
+                         operator bool () const ;
         CxAtomicLongInt& operator ++   (int iPos);
         CxAtomicLongInt& operator --   (int iPos);
 

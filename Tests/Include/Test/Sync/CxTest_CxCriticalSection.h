@@ -18,7 +18,7 @@ class CxTest_CxCriticalSection :
                      CxTest_CxCriticalSection();
         virtual     ~CxTest_CxCriticalSection();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

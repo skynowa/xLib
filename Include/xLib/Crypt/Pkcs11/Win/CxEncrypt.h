@@ -26,17 +26,17 @@ class CxEncrypt :
         virtual             ~CxEncrypt();
             ///< destructor
 
-        BOOL                 bInit    (CK_MECHANISM_PTR  pMechanism, CK_OBJECT_HANDLE hKey);
+        bool                 bInit    (CK_MECHANISM_PTR  pMechanism, CK_OBJECT_HANDLE hKey);
             ///< initializes an encryption operation
-        BOOL                 bMake    (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pEncryptedData, CK_ULONG_PTR pulEncryptedDataLen);
+        bool                 bMake    (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pEncryptedData, CK_ULONG_PTR pulEncryptedDataLen);
             ///< encrypts single-part data
-        BOOL                 bUpdate  (CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR  pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
+        bool                 bUpdate  (CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR  pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
             ///< continues a multiple-part encryption operation
-        BOOL                 bFinal   (CK_BYTE_PTR pLastEncryptedPart, CK_ULONG_PTR pulLastEncryptedPartLen );
+        bool                 bFinal   (CK_BYTE_PTR pLastEncryptedPart, CK_ULONG_PTR pulLastEncryptedPartLen );
             ///< finishes a multiple-part encryption operation
 
         //Utils
-        BOOL                 bMakeFile(const std::string_t &csInFilePath, const std::string_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        bool                 bMakeFile(const std::tstring &csInFilePath, const std::tstring &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
             ///< make file
 
     private:

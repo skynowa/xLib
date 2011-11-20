@@ -35,23 +35,23 @@ class CxImage :
         virtual        ~CxImage          ();
             ///< destructor
 
-        BOOL            bLoad            (const std::string_t &csFilePath);
+        bool            bLoad            (const std::tstring &csFilePath);
             ///< load
-        BOOL            bLoad            (IStream *pisStream);
+        bool            bLoad            (IStream *pisStream);
             ///< load
-        BOOL            bSave            (const std::string_t &csFilePath, EEncoderType etType);
+        bool            bSave            (const std::tstring &csFilePath, EEncoderType etType);
             ///< save
-        BOOL            bSave            (IStream *pisStream, EEncoderType etType);
+        bool            bSave            (IStream *pisStream, EEncoderType etType);
             ///< save
-        BOOL            bDraw            (HDC hDC, const RECT &crcRect);
+        bool            bDraw            (HDC hDC, const RECT &crcRect);
             ///< draw
-        BOOL            bDraw            (HDC hDC, int iLeft, int iTop, int iWidth, int iHeight);
+        bool            bDraw            (HDC hDC, int iLeft, int iTop, int iWidth, int iHeight);
             ///< draw
-        BOOL            bClear           (HDC hDC, Gdiplus::Color clBackGround);
+        bool            bClear           (HDC hDC, Gdiplus::Color clBackGround);
             ///< clear
-        BOOL            bDestroy         ();
+        bool            bDestroy         ();
             ///< sestroy
-        BOOL            bIsLoaded        ();
+        bool            bIsLoaded        ();
             ///< is loaded
 
         UINT            uiGetWidth       ();
@@ -61,14 +61,14 @@ class CxImage :
 
         Gdiplus::Status stGetLastStatus  ();
             ///< get last status
-        std::string_t    sGetLastStatus   (Gdiplus::Status stCode);
+        std::tstring    sGetLastStatus   (Gdiplus::Status stCode);
             ///< get last status
 
     private:
         Gdiplus::Status _m_stRes;        ///< for private use
         Gdiplus::Image *_m_pimgImage;    ///< pointer to GDI+ image
 
-        BOOL            _bGetEncoderClsid(const std::string_t &csFormat, CLSID *pcidClsid);
+        bool            _bGetEncoderClsid(const std::tstring &csFormat, CLSID *pcidClsid);
             ///< get encoder clsid
 };
 

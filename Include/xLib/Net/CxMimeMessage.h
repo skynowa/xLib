@@ -21,12 +21,12 @@ class CxMimeMessage :
                      CxMimeMessage   ();
         virtual           ~CxMimeMessage   ();
 
-        static BOOL  bParse          (const std::string_t &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
-        static BOOL  bLoadFromRawFile(const std::string_t &csFilePath);       //csFilePath - raw msg
-        static BOOL  bSaveToRawFile  (const std::string_t &csFilePath);       //csFilePath - raw msg
+        static bool  bParse          (const std::tstring &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
+        static bool  bLoadFromRawFile(const std::tstring &csFilePath);       //csFilePath - raw msg
+        static bool  bSaveToRawFile  (const std::tstring &csFilePath);       //csFilePath - raw msg
 
     private:
-        std::string_t _m_csRawMessage;
+        std::tstring _m_csRawMessage;
 };
 
 xNAMESPACE_END(NxLib)

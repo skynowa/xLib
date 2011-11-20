@@ -18,7 +18,7 @@ class CxTest_CxLocale :
                      CxTest_CxLocale();
         virtual     ~CxTest_CxLocale();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

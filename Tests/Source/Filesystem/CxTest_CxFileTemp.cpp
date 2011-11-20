@@ -17,7 +17,7 @@ CxTest_CxFileTemp::~CxTest_CxFileTemp() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxFileTemp::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -26,7 +26,7 @@ CxTest_CxFileTemp::bUnit(
     //sTempCreate, bTempClose
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxFileTemp ftFileTemp(TRUE);
+        CxFileTemp ftFileTemp(true);
         CxFile     fJobber;
 
         m_bRes = ftFileTemp.bCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
@@ -38,18 +38,18 @@ CxTest_CxFileTemp::bUnit(
         xTEST_EQ(0L, m_liRes);
 
         m_bRes = fJobber.bWriteLine(xT("qwertyuiop"));
-        xTEST_EQ(TRUE, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = fJobber.bIsEmpty();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
 
         m_bRes = fJobber.bClear();
-        xTEST_EQ(TRUE, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = fJobber.bClose();
-        xTEST_EQ(TRUE, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

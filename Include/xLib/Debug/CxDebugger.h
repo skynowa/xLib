@@ -20,33 +20,33 @@ class CxDebugger :
     /// debbuger
 {
     public:
-        static BOOL         bGetEnabled     ();
+        static bool         bGetEnabled     ();
             ///< is debugging enabled
-        static BOOL         bSetEnabled     (const BOOL cbFlag);
+        static bool         bSetEnabled     (const bool cbFlag);
             ///< set debugging mode on/off
-        static BOOL         bIsPresent      ();
+        static bool         bIsPresent      ();
             ///< is OS debugger presents
-        static BOOL         bIsDebugBuild   ();
+        static bool         bIsDebugBuild   ();
             ///< is debug build (is NDEBUG macros is don't set)
-        static BOOL         bBreak          ();
+        static bool         bBreak          ();
             ///< attach to OS debugger
-        static BOOL         bSetLogPath     (const std::string_t &csFilePath);
+        static bool         bSetLogPath     (const std::tstring &csFilePath);
             ///< set log file path
-        static std::string_t sGetLogPath     ();
+        static std::tstring sGetLogPath     ();
             ///< get log file path
-        static BOOL         bReportMake     (const CxReport &crpReport);
+        static bool         bReportMake     (const CxReport &crpReport);
             ///< make report
-        static BOOL         bTrace          (const char_t *pcszFormat, ...);
+        static bool         bTrace          (const tchar *pcszFormat, ...);
             ///< tracing to debugger, std::cout
-        static BOOL         bTrace          (const std::string_t &csMsg);
+        static bool         bTrace          (const std::tstring &csMsg);
             ///< tracing to debugger, std::cout
-        static BOOL         bBeep           (const ULONG culFrequency = 800, const ULONG culDuration = 100);
+        static bool         bBeep           (const ULONG culFrequency = 800, const ULONG culDuration = 100);
             ///< play sound
 
     private:
-        static BOOL         _ms_bIsEnabled;
+        static bool         _ms_bIsEnabled;
             ///< is debugger enabled
-        static std::string_t _ms_sLogPath;
+        static std::tstring _ms_sLogPath;
             ///< log path
 
                             CxDebugger      ();
@@ -54,19 +54,19 @@ class CxDebugger :
         virtual            ~CxDebugger      ();
             ///< destructor
 
-        static BOOL         _bMsgboxPlain   (const CxReport &crpReport);
+        static bool         _bMsgboxPlain   (const CxReport &crpReport);
             ///< show message box with plain report
-        static BOOL         _bMsgboxFormated(const CxReport &crpReport);
+        static bool         _bMsgboxFormated(const CxReport &crpReport);
             ///< show message box with formated report, std::cerr
 
-        static BOOL         _bStdoutPlain   (const CxReport &crpReport);
+        static bool         _bStdoutPlain   (const CxReport &crpReport);
             ///< show plain report in std::cout
-        static BOOL         _bStdoutHtml    (const CxReport &crpReport);
+        static bool         _bStdoutHtml    (const CxReport &crpReport);
             ///< show html report in std::cout
 
-        static BOOL         _bLoggingPlain  (const CxReport &crpReport);
+        static bool         _bLoggingPlain  (const CxReport &crpReport);
             ///< log plain report to file
-        static BOOL         _bLoggingHtml   (const CxReport &crpReport);
+        static bool         _bLoggingHtml   (const CxReport &crpReport);
             ///< log html report to file
 };
 

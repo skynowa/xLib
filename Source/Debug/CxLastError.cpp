@@ -32,13 +32,13 @@ CxLastError::ulGet() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxLastError::sGet() {
     return sFormat(ulGet());
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxLastError::bSet(
     const ULONG culCode
 )
@@ -49,11 +49,11 @@ CxLastError::bSet(
     errno = static_cast<int>( culCode );
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxLastError::bReset() {
     const ULONG culCodeSuccess = 0UL;
 
@@ -61,12 +61,12 @@ CxLastError::bReset() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxLastError::sFormat(
     const ULONG culCode
 )
 {
-    std::string_t sRes;
+    std::tstring sRes;
 
     sRes = CxString::sFormat(xT("%lu - "), culCode);
 
@@ -86,7 +86,7 @@ CxLastError::sFormat(
     xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRes.append(xT("Unknown error")));
     xCHECK_RET(0UL                    == ulRes,   sRes.append(xT("[Cann't format error message]")));
 
-    std::string_t sMessage;
+    std::tstring sMessage;
 
     sMessage.assign( static_cast<LPCTSTR>( pvBuff ), ulRes );
     sMessage.assign( CxString::sRemoveEol(sMessage) );
@@ -99,7 +99,7 @@ CxLastError::sFormat(
     #if xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        const char_t *pcszError = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        const tchar *pcszError = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(pcszError);

@@ -18,13 +18,13 @@ class CxStdError :
     public:
         static int          iGet      ();
             ///< get the calling thread's last-error code value
-        static std::string_t sGet      ();
+        static std::tstring sGet      ();
             ///< get as string
-        static BOOL         bSet      (const int ciCode);
+        static bool         bSet      (const int ciCode);
             ///< set the last error code for the calling thread
-        static BOOL         bReset    ();
+        static bool         bReset    ();
             ///< set last error code to 0
-        static std::string_t sFormat   (const int ciCode);
+        static std::tstring sFormat   (const int ciCode);
             ///< get last error as string
 
     private:

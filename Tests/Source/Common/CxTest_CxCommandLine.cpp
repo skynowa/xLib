@@ -17,7 +17,7 @@ CxTest_CxCommandLine::~CxTest_CxCommandLine() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxCommandLine::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -47,7 +47,7 @@ CxTest_CxCommandLine::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxCommandLine::bGetArgs(&m_vsRes);
-        xTEST_DIFF(FALSE,  m_bRes);
+        xTEST_DIFF(false,  m_bRes);
         xTEST_EQ(false, m_vsRes.empty());
     }
 
@@ -60,6 +60,6 @@ CxTest_CxCommandLine::bUnit(
         #endif
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

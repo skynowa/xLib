@@ -18,7 +18,7 @@ class CxTest_CxLastError :
                      CxTest_CxLastError();
         virtual     ~CxTest_CxLastError();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

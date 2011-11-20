@@ -13,9 +13,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //NOTE: http://grandzebu.net/index.php?page=/informatique/codbar-en/ean13.htm
 
-std::string_t sGetEan13BarCode(const std::string_t &csData);
+std::tstring sGetEan13BarCode(const std::tstring &csData);
     ///< code EAN-13
-std::string_t sGetEan13Code   (const std::string_t &csData);
+std::tstring sGetEan13Code   (const std::tstring &csData);
     ///< code EAN-13
 
 xNAMESPACE_END(NxLib)

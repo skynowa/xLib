@@ -26,15 +26,15 @@ class CxDll :
         virtual      ~CxDll           ();
             ///< destructor
 
-        BOOL          bIsLoaded       () const;
+        bool          bIsLoaded       () const;
             ///< is loaded
-        BOOL          bLoad           (const std::string_t &csDllPath);
+        bool          bLoad           (const std::tstring &csDllPath);
             ///< load
-        BOOL          bIsProcExists   (const std::string_t &csProcName) const;
+        bool          bIsProcExists   (const std::tstring &csProcName) const;
             ///< is function exists
-        TxProcAddress fpGetProcAddress(const std::string_t &csProcName) const;
+        TxProcAddress fpGetProcAddress(const std::tstring &csProcName) const;
             ///< get address of an exported function or variable
-        BOOL          bFree           ();
+        bool          bFree           ();
             ///< free
 
     private:

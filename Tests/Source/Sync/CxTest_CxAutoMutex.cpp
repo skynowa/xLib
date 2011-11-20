@@ -17,7 +17,7 @@ CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxAutoMutex::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -35,6 +35,6 @@ CxTest_CxAutoMutex::bUnit(
 
     #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

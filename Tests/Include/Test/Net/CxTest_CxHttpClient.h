@@ -18,7 +18,7 @@ class CxTest_CxHttpClient :
                      CxTest_CxHttpClient();
         virtual     ~CxTest_CxHttpClient();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

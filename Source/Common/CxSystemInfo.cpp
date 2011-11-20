@@ -77,10 +77,10 @@ CxSystemInfo::osGetOS() {
     int iRes = ::uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, otUnknown);
 
-    if      (TRUE == CxString::bCompareNoCase(xT("Linux"), unKernelInfo.sysname)) {
+    if      (true == CxString::bCompareNoCase(xT("Linux"), unKernelInfo.sysname)) {
         otRes = otLinux;
     }
-    else if (TRUE == CxString::bCompareNoCase(xT("FreeBSD"), unKernelInfo.sysname)) {
+    else if (true == CxString::bCompareNoCase(xT("FreeBSD"), unKernelInfo.sysname)) {
         otRes = otFreeBSD;
     }
     else {
@@ -92,14 +92,14 @@ CxSystemInfo::osGetOS() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxSystemInfo::sFormatOsType(
     const EOsType otOsType
 )
 {
     /*DEBUG*/// otOsType - n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
 #if xOS_ENV_WIN
     switch (otOsType) {
@@ -125,7 +125,7 @@ CxSystemInfo::sFormatOsType(
     utsname unKernelInfo= {{0}};
 
     int iRes = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, std::string_t());
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring());
 
     sRes.assign( CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine) );
 #endif
@@ -162,30 +162,30 @@ CxSystemInfo::oaGetOsArch() {
 
     int iRes = ::uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes,                                       oaUnknown);
-    /*DEBUG*/xASSERT_RET(0   != std::string_t(unKernelInfo.machine).size(), oaUnknown);
+    /*DEBUG*/xASSERT_RET(0   != std::tstring(unKernelInfo.machine).size(), oaUnknown);
 
     //32-bit checks
-    if      (TRUE == CxString::bCompareNoCase(xT("i386"), unKernelInfo.machine)) {
+    if      (true == CxString::bCompareNoCase(xT("i386"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (TRUE == CxString::bCompareNoCase(xT("i486"), unKernelInfo.machine)) {
+    else if (true == CxString::bCompareNoCase(xT("i486"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (TRUE == CxString::bCompareNoCase(xT("i586"), unKernelInfo.machine)) {
+    else if (true == CxString::bCompareNoCase(xT("i586"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (TRUE == CxString::bCompareNoCase(xT("i686"), unKernelInfo.machine)) {
+    else if (true == CxString::bCompareNoCase(xT("i686"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
 
     //64-bit checks
-    else if (TRUE == CxString::bCompareNoCase(xT("x86_64"), unKernelInfo.machine)) {
+    else if (true == CxString::bCompareNoCase(xT("x86_64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
-    else if (TRUE == CxString::bCompareNoCase(xT("ia64"), unKernelInfo.machine)) {
+    else if (true == CxString::bCompareNoCase(xT("ia64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
-    else if (TRUE == CxString::bCompareNoCase(xT("amd64"), unKernelInfo.machine)) {
+    else if (true == CxString::bCompareNoCase(xT("amd64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
 
@@ -199,14 +199,14 @@ CxSystemInfo::oaGetOsArch() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxSystemInfo::sFormatOsArch(
     const EOsArch oaOsArch
 )
 {
     /*DEBUG*/// n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
     switch (oaOsArch) {
         case CxSystemInfo::oa32bit:     sRes = xT("32-bit");    break;
@@ -220,25 +220,25 @@ CxSystemInfo::sFormatOsArch(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxSystemInfo::sGetComputerName() {
     /*DEBUG*/// n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
 #if xOS_ENV_WIN
     ULONG  ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
-    char_t szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
+    tchar szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
 
     BOOL bRes = ::GetComputerName(szBuff, &ulBuffSize);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("LOCALHOST"));
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("localhost"));
 
     sRes.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
     utsname unKernelInfo= {{0}};
 
     int iRes = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, xT("LOCALHOST"));
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, xT("localhost"));
 
     sRes.assign(unKernelInfo.nodename);
 #endif
@@ -247,34 +247,34 @@ CxSystemInfo::sGetComputerName() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxSystemInfo::bIsUserAnAdmin() {
     /*DEBUG*/
 
 #if xOS_ENV_WIN
-    BOOL                     bIsAdmin              = FALSE;
+    bool                     bIsAdmin              = false;
     SID_IDENTIFIER_AUTHORITY siaNtAuthority        = SECURITY_NT_AUTHORITY;
     PSID                     psAdministratorsGroup = NULL; 
 
     BOOL bRes = ::AllocateAndInitializeSid(&siaNtAuthority, 2, 
                                            SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, 
                                            &psAdministratorsGroup); 
-    xCHECK_RET(FALSE == bRes, FALSE);
+    xCHECK_RET(FALSE == bRes, false);
 
     {
 	    BOOL bIsMember = FALSE;
 
 	    bRes = ::CheckTokenMembership(NULL, psAdministratorsGroup, &bIsMember);
         if (FALSE == bRes || FALSE == bIsMember) {
-            bIsAdmin = FALSE;
+            bIsAdmin = false;
         } else {
-            bIsAdmin = TRUE;
+            bIsAdmin = true;
         }
     }
 
     (void)::FreeSid(psAdministratorsGroup); 
 
-    xCHECK_RET(FALSE == bIsAdmin, FALSE);
+    xCHECK_RET(false == bIsAdmin, false);
 #elif xOS_ENV_UNIX
     const uid_t cuiRootId = 0;
 
@@ -282,29 +282,29 @@ CxSystemInfo::bIsUserAnAdmin() {
 
     uiUserId = ::getuid();
     /*DEBUG*/// n/a
-    xCHECK_RET(cuiRootId != uiUserId, FALSE);
+    xCHECK_RET(cuiRootId != uiUserId, false);
 
     uiUserId = ::geteuid();
     /*DEBUG*/// n/a
-    xCHECK_RET(cuiRootId != uiUserId, FALSE);
+    xCHECK_RET(cuiRootId != uiUserId, false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxSystemInfo::sGetUserName() {
     /*DEBUG*/// n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
 #if xOS_ENV_WIN
     ULONG ulBuffSize        = UNLEN;
-    char_t szBuff[UNLEN + 1] = {0};
+    tchar szBuff[UNLEN + 1] = {0};
 
     BOOL bRes = ::GetUserName(&szBuff[0], &ulBuffSize);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string_t());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
 
     sRes.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
@@ -312,7 +312,7 @@ CxSystemInfo::sGetUserName() {
     //http://www.metalshell.com/source_code/83/Get_GID_Name.html
 
     passwd *ppwPassword = ::getpwuid(getuid());
-    /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::string_t());
+    /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::tstring());
 
     sRes.assign(ppwPassword->pw_name);
 #endif

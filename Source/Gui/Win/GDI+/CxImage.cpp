@@ -31,15 +31,15 @@ CxImage::~CxImage() {
     (void)bDestroy();
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::bLoad(
-    const std::string_t &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
 
-    xCHECK_DO(TRUE == bIsLoaded(), bDestroy());
+    xCHECK_DO(true == bIsLoaded(), bDestroy());
 
 #if xUNICODE
     _m_pimgImage = Gdiplus::Image::FromFile(csFilePath.c_str());
@@ -47,40 +47,40 @@ CxImage::bLoad(
     _m_pimgImage = Gdiplus::Image::FromFile(std::wstring(csFilePath.begin(), csFilePath.end()).c_str());
 #endif
 
-    /*DEBUG*/xASSERT_RET(NULL        != _m_pimgImage,                  FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
+    /*DEBUG*/xASSERT_RET(NULL        != _m_pimgImage,                  false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::bLoad(
     IStream *pisStream
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pisStream, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pisStream, false);
 
-    xCHECK_DO(TRUE == bIsLoaded(), bDestroy());
+    xCHECK_DO(true == bIsLoaded(), bDestroy());
 
     _m_pimgImage = Gdiplus::Image::FromStream(pisStream);
-    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,                         FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,                         false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::bSave(
-    const std::string_t &csFilePath,
+    const std::tstring &csFilePath,
     EEncoderType        etType
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,        FALSE);
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage,        false);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// etType - n/a
 
-    std::string_t sEncoderType;
+    std::tstring sEncoderType;
     switch (etType) {
         case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
@@ -100,23 +100,23 @@ CxImage::bSave(
 #else
     _m_stRes = _m_pimgImage->Save(std::wstring(csFilePath.begin(), csFilePath.end()).c_str(), &cidClsid, NULL);
 #endif
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes,                      FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes,                      false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::bSave(
     IStream      *pisStream,
     EEncoderType  etType
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != pisStream,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, false);
+    /*DEBUG*/xASSERT_RET(NULL != pisStream,    false);
     /*DEBUG*/// etType - n/a
 
-    std::string_t sEncoderType;
+    std::tstring sEncoderType;
     switch (etType) {
         case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
@@ -129,25 +129,25 @@ CxImage::bSave(
 
     //Save the altered image.
     CLSID cidClsid = {0};
-    BOOL bRes = _bGetEncoderClsid(sEncoderType, &cidClsid);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = _bGetEncoderClsid(sEncoderType, &cidClsid);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     _m_stRes = _m_pimgImage->Save(pisStream, &cidClsid, NULL);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes,                      FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes,                      false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::bDraw(
     HDC         hDC,
     const RECT &crcRect
 )
 {
-    xCHECK_RET(FALSE == bIsLoaded(), TRUE);
+    xCHECK_RET(false == bIsLoaded(), true);
 
-    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, false);
     /*DEBUG*/// hDC          - n/a
     /*DEBUG*/// crcRect      - n/a
 
@@ -155,13 +155,13 @@ CxImage::bDraw(
     Gdiplus::Rect     rcRect    (crcRect.left, crcRect.top, crcRect.right, crcRect.bottom);
 
     _m_stRes = grGraphics.DrawImage(_m_pimgImage, rcRect);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::bDraw(
     HDC hDC,
     int iLeft,
@@ -170,9 +170,9 @@ CxImage::bDraw(
     int iHeight
 )
 {
-    xCHECK_RET(FALSE == bIsLoaded(), TRUE);
+    xCHECK_RET(false == bIsLoaded(), true);
 
-    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, false);
     /*DEBUG*/// hDC          - n/a
     /*DEBUG*/// crcRect      - n/a
 
@@ -181,11 +181,11 @@ CxImage::bDraw(
     _m_stRes = grGraphics.DrawImage(_m_pimgImage, iLeft, iTop, iWidth, iHeight);
     Gdiplus::Status stCode = _m_pimgImage->GetLastStatus();
 
-    /*DEBUG*/xASSERT_MSG_RET(Gdiplus::Ok == stCode, sGetLastStatus(stCode).c_str(), FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(Gdiplus::Ok == stCode, sGetLastStatus(stCode).c_str(), false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, false);
 
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 #if xTODO
@@ -204,7 +204,7 @@ CxImage::bDraw(
     }
 #endif
 
-BOOL
+bool
 CxImage::bClear(
     HDC            hDC,
     Gdiplus::Color clBackGround
@@ -215,23 +215,23 @@ CxImage::bClear(
     Gdiplus::Graphics grGraphics(hDC);
 
     _m_stRes = grGraphics.Clear(clBackGround);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::bDestroy() {
     /*DEBUG*/// _m_pimgImage - n/a
 
     /*CxMacros::*/xPTR_DELETE(_m_pimgImage);
-    /*DEBUG*/xASSERT_RET(NULL == _m_pimgImage, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL == _m_pimgImage, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::bIsLoaded() {
     /*DEBUG*/// n/a
 
@@ -259,14 +259,14 @@ CxImage::stGetLastStatus() {
     return _m_pimgImage->GetLastStatus();
 }
 //---------------------------------------------------------------------------
-std::string_t
+std::tstring
 CxImage::sGetLastStatus(
     Gdiplus::Status stCode
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
     switch (stCode) {
         case Gdiplus::Ok:                        { sRes = xT("Ok");                         }    break;
@@ -305,30 +305,30 @@ CxImage::sGetLastStatus(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxImage::_bGetEncoderClsid(
-    const std::string_t &csFormat,
+    const std::tstring &csFormat,
     CLSID              *pcidClsid
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
-    /*DEBUG*/xASSERT_RET(false == csFormat.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != pcidClsid,         FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFormat.empty(), false);
+    /*DEBUG*/xASSERT_RET(NULL != pcidClsid,         false);
 
     UINT uiNum  = 0;    //number of image encoders
     UINT uiSize = 0;    //size of the image encoder array in bytes
 
     _m_stRes = Gdiplus::GetImageEncodersSize(&uiNum, &uiSize);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, FALSE);
-    /*DEBUG*/xASSERT_RET(uiSize      != 0,        FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, false);
+    /*DEBUG*/xASSERT_RET(uiSize      != 0,        false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
     Gdiplus::ImageCodecInfo *pImageCodecInfo = (Gdiplus::ImageCodecInfo *)malloc(uiSize);
     /*DEBUG*/xASSERT(NULL != pImageCodecInfo);
 
     _m_stRes = GetImageEncoders(uiNum, uiSize, pImageCodecInfo);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, FALSE);
-    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), FALSE);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, false);
+    /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
     for (UINT j = 0; j < uiNum; ++ j) {
     #if xUNICODE
@@ -339,13 +339,13 @@ CxImage::_bGetEncoderClsid(
             *pcidClsid = pImageCodecInfo[j].Clsid;
             xBUFF_FREE(pImageCodecInfo);
 
-            return TRUE /*j*/;
+            return true /*j*/;
         }
     }
 
     xBUFF_FREE(pImageCodecInfo);
 
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 

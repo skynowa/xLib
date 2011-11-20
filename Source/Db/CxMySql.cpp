@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxMySQLConnection::CxMySQLConnection() :
     _m_pmsConnection(NULL)
 {
-    /*DEBUG*/xASSERT_DO(FALSE == bIsValid(), return);
+    /*DEBUG*/xASSERT_DO(false == bIsValid(), return);
 
     MYSQL *_pmsConnection = ::mysql_init(NULL);
     /*DEBUG*/xASSERT_MSG_DO(NULL != _pmsConnection, sGetLastErrorStr().c_str(), return);
@@ -41,50 +41,50 @@ CxMySQLConnection::~CxMySQLConnection() {
 //---------------------------------------------------------------------------
 MYSQL *
 CxMySQLConnection::pmsGet() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), NULL);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), NULL);
 
     return _m_pmsConnection;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLConnection::bIsValid() const {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( NULL != _m_pmsConnection );
+    return static_cast<bool>( NULL != _m_pmsConnection );
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLConnection::bOptions(
     mysql_option  cmoOption,
     const void   *cpvArg
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
     /*DEBUG*/// moOption - n/a
     /*DEBUG*/// cpvArg   - n/a
 
 #if MYSQL_VERSION_ID < 50154
-    int iRes = ::mysql_options(_m_pmsConnection, cmoOption, static_cast<const char_t *>( cpvArg ));
+    int iRes = ::mysql_options(_m_pmsConnection, cmoOption, static_cast<const tchar *>( cpvArg ));
 #else
     int iRes = ::mysql_options(_m_pmsConnection, cmoOption, cpvArg);
 #endif
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLConnection::bConnect(
-    const std::string_t &csHost,
-    const std::string_t &csUser,
-    const std::string_t &csPassword,
-    const std::string_t &csDb,
+    const std::tstring &csHost,
+    const std::tstring &csUser,
+    const std::tstring &csPassword,
+    const std::tstring &csDb,
     const UINT          cuiPort,
-    const std::string_t &csUnixSocket,
+    const std::tstring &csUnixSocket,
     const ULONG         culClientFlag
 )
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
     /*DEBUG*/// csHost       - n/a
     /*DEBUG*/// csUser       - n/a
     /*DEBUG*/// csPassword   - n/a
@@ -94,38 +94,38 @@ CxMySQLConnection::bConnect(
     /*DEBUG*/// ulClientFlag - n/a
 
     MYSQL *pmsConnection = ::mysql_real_connect(_m_pmsConnection, csHost.c_str(), csUser.c_str(), csPassword.c_str(), csDb.c_str(), cuiPort, csUnixSocket.c_str(), culClientFlag);
-    /*DEBUG*/xASSERT_MSG_RET(NULL             != pmsConnection, sGetLastErrorStr().c_str(), FALSE);
-    /*DEBUG*/xASSERT_MSG_RET(_m_pmsConnection == pmsConnection, sGetLastErrorStr().c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(NULL             != pmsConnection, sGetLastErrorStr().c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(_m_pmsConnection == pmsConnection, sGetLastErrorStr().c_str(), false);
 
     _m_pmsConnection = pmsConnection;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLConnection::bQuery(
-    const char_t *pcszSqlFormat, ...
+    const tchar *pcszSqlFormat, ...
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),    FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pcszSqlFormat, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(),    false);
+    /*DEBUG*/xASSERT_RET(NULL  != pcszSqlFormat, false);
 
-    std::string_t csSqlQuery;
+    std::tstring csSqlQuery;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszSqlFormat);
     csSqlQuery = CxString::sFormatV(pcszSqlFormat, palArgs);
     xVA_END(palArgs);
 
-    int iRes = ::mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ULONG>( csSqlQuery.size() * sizeof(std::string_t::value_type) ));
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), FALSE);
+    int iRes = ::mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ULONG>( csSqlQuery.size() * sizeof(std::tstring::value_type) ));
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 UINT
 CxMySQLConnection::uiFieldCount() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), 0);
 
     UINT uiRes = ::mysql_field_count(_m_pmsConnection);
     /*DEBUG*/// n/a
@@ -133,17 +133,17 @@ CxMySQLConnection::uiFieldCount() const {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLConnection::bClose() {
     /*DEBUG*/// _m_pmsConnection - n/a
 
-    if (FALSE != bIsValid()) {
+    if (false != bIsValid()) {
         (void)::mysql_close(_m_pmsConnection);
 
         _m_pmsConnection = NULL;
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -156,7 +156,7 @@ CxMySQLConnection::bClose() {
 //---------------------------------------------------------------------------
 UINT
 CxMySQLConnection::uiGetLastError() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), 0);
 
     UINT uiRes = ::mysql_errno(_m_pmsConnection);
     /*DEBUG*/// n/a
@@ -164,16 +164,16 @@ CxMySQLConnection::uiGetLastError() const {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-std::string_t
+std::tstring
 CxMySQLConnection::sGetLastErrorStr() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), std::string_t());
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), std::tstring());
 
-    std::string_t sRes;
+    std::tstring sRes;
 
     const UINT cuiLastError = uiGetLastError();
     const char *cpszRes     = ::mysql_error(_m_pmsConnection);
     /*DEBUG*/// n/a
-    /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::string_t());
+    /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::tstring());
 
     if (0 == cuiLastError) {
         sRes.assign( CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success")) );
@@ -194,17 +194,17 @@ CxMySQLConnection::sGetLastErrorStr() const {
 //---------------------------------------------------------------------------
 CxMySQLRecordset::CxMySQLRecordset(
     const CxMySQLConnection &cmcConnection, //connection
-    const BOOL               cbIsUseResult  //use result or store result
+    const bool               cbIsUseResult  //use result or store result
 ) :
     _m_pcmcConnection(&cmcConnection),
     _m_pmrResult     (NULL)
 {
-    /*DEBUG*/xASSERT_DO(FALSE == bIsValid(),                  return);
+    /*DEBUG*/xASSERT_DO(false == bIsValid(),                  return);
     /*DEBUG*/xASSERT_DO(NULL  != _m_pcmcConnection->pmsGet(), return);
 
     MYSQL_RES *pmrResult = NULL;
 
-    if (FALSE != cbIsUseResult) {
+    if (false != cbIsUseResult) {
         pmrResult = ::mysql_use_result  (_m_pcmcConnection->pmsGet());
         /*DEBUG*/xASSERT_MSG_DO(NULL != pmrResult, _m_pcmcConnection->sGetLastErrorStr().c_str(), return);
     } else {
@@ -219,7 +219,7 @@ CxMySQLRecordset::CxMySQLRecordset(
 CxMySQLRecordset::~CxMySQLRecordset() {
     /*DEBUG*/// _m_pmrResult - n/a
 
-    if (FALSE != bIsValid()) {
+    if (false != bIsValid()) {
         (void)::mysql_free_result(_m_pmrResult);
 
         _m_pmrResult = NULL;
@@ -228,21 +228,21 @@ CxMySQLRecordset::~CxMySQLRecordset() {
 //---------------------------------------------------------------------------
 MYSQL_RES *
 CxMySQLRecordset::pmrGet() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), NULL);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), NULL);
 
     return _m_pmrResult;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLRecordset::bIsValid() const {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( NULL != _m_pmrResult );
+    return static_cast<bool>( NULL != _m_pmrResult );
 }
 //---------------------------------------------------------------------------
 UINT
 CxMySQLRecordset::uiFieldsNum() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), 0);
 
     UINT uiRes = ::mysql_num_fields(_m_pmrResult);
     /*DEBUG*/// n/a
@@ -252,7 +252,7 @@ CxMySQLRecordset::uiFieldsNum() const {
 //---------------------------------------------------------------------------
 my_ulonglong
 CxMySQLRecordset::ullRowsNum() const {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), 0);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), 0);
 
     my_ulonglong ullRes = ::mysql_num_rows(_m_pmrResult);
     /*DEBUG*/// n/a
@@ -260,57 +260,57 @@ CxMySQLRecordset::ullRowsNum() const {
     return ullRes;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLRecordset::bFetchField(
     MYSQL_FIELD *pmfField
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pmfField,   FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != pmfField,   false);
 
     pmfField = ::mysql_fetch_field(_m_pmrResult);
-    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLRecordset::bFetchFieldDirect(
     const UINT   cuiFieldNumber,
     MYSQL_FIELD *pmfField
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
     /*DEBUG*/// uiFieldNumber - n/a
-    /*DEBUG*/xASSERT_RET(NULL  != pmfField,   FALSE);
+    /*DEBUG*/xASSERT_RET(NULL  != pmfField,   false);
 
     pmfField = ::mysql_fetch_field_direct(_m_pmrResult, cuiFieldNumber);
-    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLRecordset::bFetchFields(
     MYSQL_FIELD *pmfField
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pmfField,   FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != pmfField,   false);
 
     pmfField = ::mysql_fetch_fields(_m_pmrResult);
-    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != pmfField, _m_pcmcConnection->sGetLastErrorStr().c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLRecordset::bFetchRow(
-    std::vector<std::string_t> *pvsRow
+    std::vector<std::tstring> *pvsRow
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pvsRow,     FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsRow,     false);
 
     UINT       uiFieldsNum     = 0;
     MYSQL_ROW  mrRow           = NULL;
@@ -329,28 +329,28 @@ CxMySQLRecordset::bFetchRow(
     uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
 
     //fetch row
-    BOOL bRes = _bFetchRow(&mrRow);
-    xCHECK_RET(FALSE == bRes, TRUE);
+    bool bRes = _bFetchRow(&mrRow);
+    xCHECK_RET(false == bRes, true);
 
     //field lengths
     bRes = _bFetchLengths(&pulFieldLengths);
-    xASSERT(FALSE != bRes);
+    xASSERT(false != bRes);
     xASSERT(NULL  != pulFieldLengths);
 
     //push to std::vector
-    std::string_t sField;
+    std::tstring sField;
 
     for (UINT i = 0; i < uiFieldsNum; ++ i) {
         if (NULL == mrRow[i]) {
-            sField = std::string_t();
+            sField = std::tstring();
         } else {
-            sField = std::string_t(mrRow[i], pulFieldLengths[i]);
+            sField = std::tstring(mrRow[i], pulFieldLengths[i]);
         }
 
         (*pvsRow).push_back(sField);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -361,33 +361,33 @@ CxMySQLRecordset::bFetchRow(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLRecordset::_bFetchRow(
     MYSQL_ROW *pmrRow
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pmrRow,     FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != pmrRow,     false);
 
     *pmrRow = ::mysql_fetch_row(_m_pmrResult);
     /*DEBUG*/// n/a
-    xCHECK_RET(NULL == *pmrRow, FALSE);
+    xCHECK_RET(NULL == *pmrRow, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMySQLRecordset::_bFetchLengths(
     ULONG **ppulFieldLengths
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != bIsValid(),        FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  == *ppulFieldLengths, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(),        false);
+    /*DEBUG*/xASSERT_RET(NULL  == *ppulFieldLengths, false);
 
     *ppulFieldLengths = ::mysql_fetch_lengths(_m_pmrResult);
-    /*DEBUG*/xASSERT_MSG_RET(NULL != *ppulFieldLengths, _m_pcmcConnection->sGetLastErrorStr().c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(NULL != *ppulFieldLengths, _m_pcmcConnection->sGetLastErrorStr().c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

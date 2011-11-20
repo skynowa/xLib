@@ -18,7 +18,7 @@ class CxTest_CxPath :
                      CxTest_CxPath();
         virtual     ~CxTest_CxPath();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

@@ -25,9 +25,9 @@ class CxInfo :
         virtual             ~CxInfo   ();
             ///< destructor
 
-        BOOL                 bGet     (CK_INFO_PTR pInfo);
+        bool                 bGet     (CK_INFO_PTR pInfo);
             ///< returns general information about Cryptoki
-        BOOL                 bGetToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
+        bool                 bGetToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
             ///< obtains information about a particular token in the system
 
     private:

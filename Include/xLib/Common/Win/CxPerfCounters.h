@@ -228,7 +228,7 @@ protected:
     GetCounterValueForProcessID(PPERF_OBJECT_TYPE pPerfObj, DWORD dwCounterIndex, DWORD dwProcessID) {
         int PROC_ID_COUNTER = 784;
 
-        BOOL    bProcessIDExist = FALSE;
+        bool    bProcessIDExist = false;
         PPERF_COUNTER_DEFINITION pPerfCntr = NULL;
         PPERF_COUNTER_DEFINITION pTheRequestedPerfCntr = NULL;
         PPERF_COUNTER_DEFINITION pProcIDPerfCntr = NULL;
@@ -268,7 +268,7 @@ protected:
                     int processID  = 0;
                     processID = *(T*)((LPBYTE) pCounterBlock + pProcIDPerfCntr->CounterOffset);
                     if (processID == dwProcessID) {
-                        bProcessIDExist = TRUE;
+                        bProcessIDExist = true;
                         break;
                     }
                 }

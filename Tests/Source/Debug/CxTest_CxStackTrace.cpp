@@ -17,7 +17,7 @@ CxTest_CxStackTrace::~CxTest_CxStackTrace() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxStackTrace::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -27,10 +27,10 @@ CxTest_CxStackTrace::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxStackTrace stStack;
-        std::vector<std::string_t> vsStack;
+        std::vector<std::tstring> vsStack;
 
         m_bRes = stStack.bGet(&vsStack);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
         xTEST_EQ(false, vsStack.empty());
     }
 
@@ -39,12 +39,12 @@ CxTest_CxStackTrace::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxStackTrace stStack;
-        std::string_t sStack;
+        std::tstring sStack;
 
         sStack = stStack.sGet();
         xTEST_EQ(false, sStack.empty());
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

@@ -18,7 +18,7 @@ class CxTest_CxCookiePv0 :
                      CxTest_CxCookiePv0();
         virtual     ~CxTest_CxCookiePv0();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

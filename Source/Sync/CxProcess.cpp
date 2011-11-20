@@ -21,16 +21,16 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 //http://www-theorie.physik.unizh.ch/~dpotter/howto/daemonize
 /*static*/
-BOOL
+bool
 CxProcess::bExec(
-    const std::string_t &csFilePath,
-    const char_t        *pcszCmdLine, ...
+    const std::tstring &csFilePath,
+    const tchar        *pcszCmdLine, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        false);
 
-    std::string_t sCmdLine;
+    std::tstring sCmdLine;
 
     va_list palArgs;
     xVA_START(palArgs, pcszCmdLine);
@@ -38,47 +38,47 @@ CxProcess::bExec(
     xVA_END(palArgs);
 
 #if xOS_ENV_WIN
-    BOOL bRes = FALSE;
+    BOOL blRes = FALSE;
 
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
-    bRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    blRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, false, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    bRes = ::CloseHandle(piInfo.hThread);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    blRes = ::CloseHandle(piInfo.hThread);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    bRes = ::CloseHandle(piInfo.hProcess);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    blRes = ::CloseHandle(piInfo.hProcess);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     #if xDEPRECIATE
         int iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
     #else
         pid_t pid = ::fork();
-        /*DEBUG*/xASSERT_RET(- 1 == pid, FALSE);
+        /*DEBUG*/xASSERT_RET(- 1 == pid, false);
 
         if (0 == pid) {
             //TODO: csFilePath is executable
 
-            int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const char_t *>( NULL ));
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+            int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar *>( NULL ));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
             ::_exit(EXIT_SUCCESS);  /* Note that we do not use exit() */
 
-            return TRUE;
+            return true;
         } else {
-            return TRUE;
+            return true;
         }
     #endif
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxProcess::bExit(
     const TxId culPid,
     const UINT cuiExitCode
@@ -92,11 +92,11 @@ CxProcess::bExit(
     (void)::exit(static_cast<int>( cuiExitCode ));
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxProcess::bTerminate(
     const TxId culPid
 )
@@ -106,17 +106,17 @@ CxProcess::bTerminate(
 #if xOS_ENV_WIN
     CxHandle hProcess;
 
-    hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, culPid);
-    /*DEBUG*/xASSERT_RET(NULL != hProcess, FALSE);
+    hProcess = ::OpenProcess(PROCESS_TERMINATE, false, culPid);
+    /*DEBUG*/xASSERT_RET(NULL != hProcess, false);
 
-    BOOL bRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL blRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::kill(culPid, SIGKILL);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

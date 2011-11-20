@@ -24,11 +24,11 @@ class CxProcess :
         typedef pid_t  TxId;     ///< ID
     #endif
 
-        static BOOL  bExec     (const std::string_t &csFilePath, const char_t *pcszCmdLine, ...);
+        static bool  bExec     (const std::tstring &csFilePath, const tchar *pcszCmdLine, ...);
             ///< execute a file
-        static BOOL  bExit     (const TxId culPid, const UINT cuiExitCode);
+        static bool  bExit     (const TxId culPid, const UINT cuiExitCode);
             ///< ends the calling process and all its threads
-        static BOOL  bTerminate(const TxId culPid);
+        static bool  bTerminate(const TxId culPid);
             ///< kills the calling process and all of its threads
 
         //wait

@@ -28,7 +28,7 @@ CxClipboard::~CxClipboard() {
     /*DEBUG*///
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bSetOwner(
     const HWND chWndOwner
 )
@@ -37,30 +37,30 @@ CxClipboard::bSetOwner(
 
     _m_hWndOwner = chWndOwner;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bOpen() {
     /*DEBUG*///
 
     BOOL bRes = ::OpenClipboard(_m_hWndOwner);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bClose() {
     /*DEBUG*///
 
     BOOL bRes = ::CloseClipboard();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bGetData(
     const EFormat cfmFormat
 )
@@ -68,12 +68,12 @@ CxClipboard::bGetData(
     /*DEBUG*///
 
     _m_hObject = ::GetClipboardData(static_cast<UINT>( cfmFormat ));
-    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bSetData(
     const EFormat cfmFormat,
     const HANDLE  chData
@@ -82,108 +82,109 @@ CxClipboard::bSetData(
     /*DEBUG*///
 
     _m_hObject = ::SetClipboardData(static_cast<UINT>( cfmFormat ), chData);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bGetText(
-    std::string_t *psText
+    std::tstring *psText
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != psText, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != psText, false);
 
-    BOOL bRes = bOpen();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = bOpen();
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
 #if xUNICODE
     bRes = bGetData(fmUnicodeText);
 #else
     bRes = bGetData(fmText);
 #endif
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     LPVOID pvData = ::GlobalLock(_m_hObject);
-    /*DEBUG*/xASSERT_RET(NULL != pvData, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pvData, false);
 
     //TODO: resize() ???
     SIZE_T uiDataSize = ::GlobalSize(_m_hObject);
-    /*DEBUG*/xASSERT_RET(0 != uiDataSize, FALSE);
+    /*DEBUG*/xASSERT_RET(0 != uiDataSize, false);
 
-    uiDataSize = uiDataSize / sizeof(std::string_t::value_type) - 1;    //'\0'
+    uiDataSize = uiDataSize / sizeof(std::tstring::value_type) - 1;    //'\0'
 
     (*psText).assign(static_cast<LPCTSTR>( pvData ), uiDataSize);
 
-    bRes = ::GlobalUnlock(_m_hObject);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL blRes = ::GlobalUnlock(_m_hObject);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     bRes = bClose();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bSetText(
-    const std::string_t &csText
+    const std::tstring &csText
 )
 {
     /*DEBUG*/
 
-    BOOL bRes = bClear();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = bClear();
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     bRes = bOpen();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     ////bRes = ::EmptyClipboard();
-    /////*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /////*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    const SIZE_T cuiBytes = (csText.size() + 1 ) * sizeof(std::string_t::value_type);    //'\0'
+    const SIZE_T cuiBytes = (csText.size() + 1 ) * sizeof(std::tstring::value_type);    //'\0'
 
     _m_hObject = ::GlobalAlloc(GMEM_MOVEABLE | GMEM_ZEROINIT, cuiBytes);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hObject, false);
 
     LPVOID pvData = ::GlobalLock(_m_hObject);
-    /*DEBUG*/xASSERT_RET(NULL != pvData, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pvData, false);
 
     ::CopyMemory(pvData, csText.data(), cuiBytes);    //'\0'
     /*DEBUG*/// n/a
 
-    bRes = ::GlobalUnlock(_m_hObject);
-    /*DEBUG*/xASSERT_RET((FALSE == bRes) && (NO_ERROR == CxLastError::ulGet()), FALSE);
+    BOOL blRes = ::GlobalUnlock(_m_hObject);
+    /*DEBUG*/xASSERT_RET((FALSE == blRes) && (NO_ERROR == CxLastError::ulGet()), false);
 
 #if xUNICODE
     bRes = bSetData(fmUnicodeText, _m_hObject);
 #else
     bRes = bSetData(fmText,        _m_hObject);
 #endif
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     bRes = bClose();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bClear() {
     /*DEBUG*///
 
-    BOOL bRes = bOpen();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = bOpen();
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    bRes = ::EmptyClipboard();
-    /*DEBUG*/xASSERT(FALSE != bRes);
+    BOOL blRes = ::EmptyClipboard();
+    /*DEBUG*/xASSERT(FALSE != blRes);
 
     bRes = bClose();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL CxClipboard::bIsHasFormat(
+bool 
+CxClipboard::bIsHasFormat(
     const EFormat cfmFormat
 )
 {
@@ -192,24 +193,24 @@ BOOL CxClipboard::bIsHasFormat(
     BOOL bRes = ::IsClipboardFormatAvailable(static_cast<UINT>( cfmFormat ));
     /*DEBUG*/// n/a
 
-    return bRes;
+    return !!bRes;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxClipboard::bRegisterFormat(
-    const std::string_t &csText,
+    const std::tstring &csText,
     EFormat            *pfmFormat
 )
 {
     /*DEBUG*/// csText
-    /*DEBUG*/xASSERT_RET(NULL != pfmFormat, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pfmFormat, false);
 
     UINT uiRes = ::RegisterClipboardFormat(csText.c_str());
-    /*DEBUG*/xASSERT_RET(0 != uiRes, FALSE);
+    /*DEBUG*/xASSERT_RET(0 != uiRes, false);
 
     *pfmFormat = static_cast<EFormat>( uiRes );
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

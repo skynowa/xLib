@@ -18,7 +18,7 @@ class CxTest_CxSystemInfo :
                      CxTest_CxSystemInfo();
         virtual     ~CxTest_CxSystemInfo();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

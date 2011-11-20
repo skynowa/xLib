@@ -29,14 +29,14 @@ class CxThreadPool :
     /// thread pool
 {
     private:
-        mutable BOOL              _m_bRes;
+        mutable bool              _m_bRes;
 
         UINT                      _m_uiStackSize;
         TFuncPtr                  _m_fpFuncPtr;
         void                     *_m_pvParam;
 
-        const BOOL                _m_cbIsGroupPaused;
-        const BOOL                _m_cbIsGroupAutoDelete;
+        const bool                _m_cbIsGroupPaused;
+        const bool                _m_cbIsGroupAutoDelete;
 
         mutable CxSemaphore       _m_semSemaphore;
         std::list<TaskT *>        _m_lstpthTasks;
@@ -49,8 +49,8 @@ class CxThreadPool :
         static CxCriticalSection  _m_csList;
         static CxConsoleLog       _m_clLog;
 
-        BOOL                      _bAddTask    (CxThread *pvItem);
-        BOOL                      _bRemoveTask (CxThread *pvItem);
+        bool                      _bAddTask    (CxThread *pvItem);
+        bool                      _bRemoveTask (CxThread *pvItem);
 
         void                      _vOnEnterTask(CxThread *pthSender);
         void                      _vOnExitTask (CxThread *pthSender);
@@ -58,25 +58,25 @@ class CxThreadPool :
         //WatchDog
 
     public:
-                                  CxThreadPool (BOOL bIsPaused, BOOL bIsAutoDelete, BOOL bIsGroupPaused, BOOL bIsGroupAutoDelete);
+                                  CxThreadPool (bool bIsPaused, bool bIsAutoDelete, bool bIsGroupPaused, bool bIsGroupAutoDelete);
         virtual                  ~CxThreadPool ();
 
         //�������� � �������
-        BOOL                      bCreateGroup (UINT uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks);
-        BOOL                      bResumeGroup ();
-        BOOL                      bPauseGroup  ();
-        BOOL                      bExitGroup   (ULONG ulTimeout);
-        BOOL                      bKillGroup   (ULONG ulTimeout);
-        BOOL                      bWaitGroup   (ULONG ulTimeout);
+        bool                      bCreateGroup (UINT uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks);
+        bool                      bResumeGroup ();
+        bool                      bPauseGroup  ();
+        bool                      bExitGroup   (ULONG ulTimeout);
+        bool                      bKillGroup   (ULONG ulTimeout);
+        bool                      bWaitGroup   (ULONG ulTimeout);
 
         size_t                    uiGetMaxTasks() const;
-        BOOL                      bSetMaxTasks (UINT uiNum);
+        bool                      bSetMaxTasks (UINT uiNum);
 
         size_t                    uiGetNumTasks() const;
-        BOOL                      bSetNumTasks (UINT uiNum);
+        bool                      bSetNumTasks (UINT uiNum);
 
-        BOOL                      bIsEmpty     () const;
-        BOOL                      bIsFull      () const;
+        bool                      bIsEmpty     () const;
+        bool                      bIsFull      () const;
         size_t                    uiGetSize    () const;
 
         //������

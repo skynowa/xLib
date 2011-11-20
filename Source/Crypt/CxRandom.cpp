@@ -37,7 +37,7 @@ CxRandom::~CxRandom() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxRandom::bSetSeed(
     LONG liSeed
 )
@@ -58,7 +58,7 @@ CxRandom::bSetSeed(
 
     _m_bHaveNextNextGaussian = false;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 int
@@ -149,7 +149,7 @@ CxRandom::dNextGaussian() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxRandom::bSetSeed() {
     /*DEBUG*/// n/a
 
@@ -164,7 +164,7 @@ CxRandom::bSetSeed() {
     std::srand(uiSeed);
     /*DEBUG*/// n/a
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -210,50 +210,50 @@ CxRandom::liGetIntEx(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxRandom::sGetString(
     const size_t cuiLength
 )
 {
     /*DEBUG*/
 
-    xCHECK_RET(0 == cuiLength, std::string_t());
+    xCHECK_RET(0 == cuiLength, std::tstring());
 
-    const BOOL cbIsLetters      = TRUE;
-    const BOOL cbIsNumbers      = TRUE;
-    const BOOL cbIsAsciiSymbols = TRUE;
+    const bool cbIsLetters      = true;
+    const bool cbIsNumbers      = true;
+    const bool cbIsAsciiSymbols = true;
 
-    std::string_t sRes;
-    std::string_t sAllPossible;
+    std::tstring sRes;
+    std::tstring sAllPossible;
 
-    if (TRUE == cbIsLetters) {
+    if (true == cbIsLetters) {
         for (int i = 65; i <= 90; ++ i) {
-            sAllPossible.push_back( static_cast<char_t>(i) );         //upper case
-            sAllPossible.push_back( static_cast<char_t>(i + 32) );    //lower case
+            sAllPossible.push_back( static_cast<tchar>(i) );         //upper case
+            sAllPossible.push_back( static_cast<tchar>(i + 32) );    //lower case
         }
     }
 
-    if (TRUE == cbIsNumbers) {
+    if (true == cbIsNumbers) {
         for (int i = 48; i <= 57; ++ i) {
-            sAllPossible.push_back( static_cast<char_t>(i) );
+            sAllPossible.push_back( static_cast<tchar>(i) );
         }
     }
 
-    if (TRUE == cbIsAsciiSymbols) {
+    if (true == cbIsAsciiSymbols) {
         for (int i = 33; i <= 47; ++ i) {
-            sAllPossible.push_back( static_cast<char_t>(i) );
+            sAllPossible.push_back( static_cast<tchar>(i) );
         }
 
         for (int i = 58; i <= 64; ++ i) {
-            sAllPossible.push_back( static_cast<char_t>(i) );
+            sAllPossible.push_back( static_cast<tchar>(i) );
         }
 
         for (int i = 91; i <= 96; ++ i) {
-            sAllPossible.push_back( static_cast<char_t>(i) );
+            sAllPossible.push_back( static_cast<tchar>(i) );
         }
 
         for (int i = 123; i <= 126; ++ i) {
-            sAllPossible.push_back( static_cast<char_t>(i) );
+            sAllPossible.push_back( static_cast<tchar>(i) );
         }
     }
 

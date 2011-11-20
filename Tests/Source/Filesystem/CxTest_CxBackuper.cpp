@@ -17,13 +17,13 @@ CxTest_CxBackuper::~CxTest_CxBackuper() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxBackuper::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    const std::string_t csFilePath  = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
-    const std::string_t csBackupDir = sGetWorkDirPath() + CxConst::xSLASH + xT("Backup_dir");
+    const std::tstring csFilePath  = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring csBackupDir = sGetWorkDirPath() + CxConst::xSLASH + xT("Backup_dir");
 
 
     //--------------------------------------------------
@@ -35,17 +35,17 @@ CxTest_CxBackuper::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bResize(cliFileSize);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         for (size_t i = 0; i < 10; ++ i) {
             CxBackuper bkBackuper(CxBackuper::bpDaily);
 
-            std::string_t sBackupFilePath;
+            std::tstring sBackupFilePath;
 
             CxBackuper::EErrorType etRes = bkBackuper.etExecute(csFilePath, csBackupDir, &sBackupFilePath);
             xTEST_EQ(CxBackuper::etSuccess, etRes);
@@ -53,9 +53,9 @@ CxTest_CxBackuper::bUnit(
         }
 
         m_bRes = CxDir::bDeleteForce(csBackupDir);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

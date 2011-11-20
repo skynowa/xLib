@@ -17,7 +17,7 @@ CxTest_CxCom::~CxTest_CxCom() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxCom::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -33,14 +33,14 @@ CxTest_CxCom::bUnit(
             CxCom cmCom(CxCom::cmMultiThreaded);
 
             m_bRes = CxCom::bIsInit();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         m_bRes = CxCom::bIsInit();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

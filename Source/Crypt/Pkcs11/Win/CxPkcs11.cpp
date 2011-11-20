@@ -52,43 +52,43 @@ CxPkcs11::pGetFuncList() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxPkcs11::_bLoadETPkcs11() {
     /*DEBUG*/
 
-    BOOL bRes = _m_dllETPkcs11.bLoad(xT("eTPkcs11.dll"));
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = _m_dllETPkcs11.bLoad(xT("eTPkcs11.dll"));
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     CK_C_GetFunctionList pFunctionList = NULL;
 
     (FARPROC &)pFunctionList = (FARPROC)_m_dllETPkcs11.fpGetProcAddress(xT("C_GetFunctionList"));
-    /*DEBUG*/xASSERT_RET(NULL != pFunctionList, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pFunctionList, false);
 
     CK_RV ulRes = pFunctionList(&_m_pFunc);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
-    /*DEBUG*/xASSERT_RET    (NULL   != _m_pFunc,                                       FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    /*DEBUG*/xASSERT_RET    (NULL   != _m_pFunc,                                       false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxPkcs11::bInitialize() {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
 
     CK_RV ulRes = _m_pFunc->C_Initialize(NULL_PTR);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxPkcs11::bFinalize() {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
 
     CK_RV ulRes = _m_pFunc->C_Finalize(NULL_PTR);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

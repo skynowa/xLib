@@ -42,8 +42,8 @@ xNAMESPACE_BEGIN(CxMsgBoxRtf)
 #define xCXTAB_CONTROL_CLASS                    WC_TABCONTROL
 //---------------------------------------------------------------------------
 EModalResult g_mrRes          = mrNone;
-std::string_t g_sTitle;
-std::string_t g_sMessage;
+std::tstring g_sTitle;
+std::tstring g_sMessage;
 
 const int    ID_staImg        = 200;
 const int    ID_redtText      = 201;
@@ -77,7 +77,7 @@ const int    ciRichEdtShift   = 68;
 const int    ciBtnLeftMargin  = 90;
 const int    ciBtnSpace       = 8;
 //---------------------------------------------------------------------------
-BOOL
+bool
 bCreateContent(
     HWND hParent
 )
@@ -96,7 +96,7 @@ bCreateContent(
                         (HMENU)ID_staImg,
                         g_hInst,
                         NULL);
-    ::SendMessage(g_hStaImg, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
+    ::SendMessage(g_hStaImg, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)true);
     ::SendMessage(g_hStaImg, STM_SETICON, (WPARAM)::LoadIcon(NULL, IDI_ERROR), (LPARAM)0);
 
     //-------------------------------------
@@ -112,15 +112,15 @@ bCreateContent(
                         g_hInst,
                         NULL);
     ::SendMessage(g_hRedtText, EM_SETBKGNDCOLOR, (WPARAM)0, (LPARAM)::GetSysColor(COLOR_3DFACE));
-    ::SendMessage(g_hRedtText, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
-    ::ShowScrollBar(g_hRedtText, SB_VERT/*SB_BOTH*/, TRUE);
+    ::SendMessage(g_hRedtText, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)true);
+    ::ShowScrollBar(g_hRedtText, SB_VERT/*SB_BOTH*/, true);
 
     CHARRANGE crRange = {0};
     crRange.cpMin = ::GetWindowTextLength(g_hRedtText);
     crRange.cpMax = ::GetWindowTextLength(g_hRedtText);
 
     ::SendMessage(g_hRedtText, EM_EXSETSEL, (WPARAM)0, (LPARAM)&crRange);
-    ::SendMessage(g_hRedtText, EM_REPLACESEL, (WPARAM)/*bCanUndo*/FALSE, (LPARAM)g_sMessage.c_str());
+    ::SendMessage(g_hRedtText, EM_REPLACESEL, (WPARAM)/*bCanUndo*/false, (LPARAM)g_sMessage.c_str());
 
     //-------------------------------------
     //button "Abort"
@@ -134,7 +134,7 @@ bCreateContent(
                         (HMENU)ID_btnAbort,
                         g_hInst,
                         NULL);
-    ::SendMessage(g_hBtnAbort, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
+    ::SendMessage(g_hBtnAbort, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)true);
 
     //-------------------------------------
     //button "Retry"
@@ -148,7 +148,7 @@ bCreateContent(
                         (HMENU)ID_btnRetry,
                         g_hInst,
                         NULL);
-    ::SendMessage(g_hBtnBreak, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
+    ::SendMessage(g_hBtnBreak, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)true);
 
     //-------------------------------------
     //button "Ignore"
@@ -162,7 +162,7 @@ bCreateContent(
                         (HMENU)ID_btnIgnore,
                         g_hInst,
                         NULL);
-    ::SendMessage(g_hBtnIgnore, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
+    ::SendMessage(g_hBtnIgnore, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)true);
 
     //-------------------------------------
     //button "Copy to clip"
@@ -176,7 +176,7 @@ bCreateContent(
                         (HMENU)ID_btnCopyToClip,
                         g_hInst,
                         NULL);
-    ::SendMessage(g_hBtnIgnore, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
+    ::SendMessage(g_hBtnIgnore, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)true);
 
     //-------------------------------------
     //button "Send report"
@@ -190,9 +190,9 @@ bCreateContent(
                         (HMENU)ID_btnSendReport,
                         g_hInst,
                         NULL);
-    ::SendMessage(g_hBtnSendReport, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)TRUE);
+    ::SendMessage(g_hBtnSendReport, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)true);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 INT_PTR CALLBACK
@@ -207,12 +207,12 @@ DialogProc(
         case WM_INITDIALOG:    {
                 bCreateContent(hDlg);
             }
-            return TRUE;
+            return true;
 
         case WM_CLOSE: {
                 ::EndDialog(hDlg, 0);
             }
-            return TRUE;
+            return true;
 
         case WM_COMMAND:
             {
@@ -221,49 +221,49 @@ DialogProc(
                             g_mrRes = CxMsgBoxRtf::mrAbort;
                             ::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
                         }
-                        return TRUE;
+                        return true;
 
                     case ID_btnRetry: {
                             g_mrRes = CxMsgBoxRtf::mrRetry;
                             ::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
                         }
-                        return TRUE;
+                        return true;
 
                     case ID_btnIgnore: {
                             g_mrRes = CxMsgBoxRtf::mrIgnore;
                             ::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
                         }
-                        return TRUE;
+                        return true;
 
                     case ID_btnCopyToClip: {
                             g_mrRes = CxMsgBoxRtf::mrCopyToClip;
                             ::SendMessage(g_hRedtText, WM_COPY, (WPARAM)0, (LPARAM)0);
                         }
-                        return TRUE;
+                        return true;
 
                     case ID_btnSendReport: {
                             g_mrRes = CxMsgBoxRtf::mrSendReport;
                             ::MessageBox(0, xT("ID_btnSendReport"), xT(""), MB_OK);
                         }
-                        return TRUE;
+                        return true;
 
                     default: {
 
                         }
-                        return FALSE;
+                        return false;
                 }
             }
-            return TRUE;
+            return true;
     }
 
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 EModalResult
 iShow(
     HWND                hwndOwner,
-    const std::string_t &csMessage,
-    const std::string_t &csTiltle
+    const std::tstring &csMessage,
+    const std::tstring &csTiltle
 )
 {
     HMODULE           hmRichEdtDll = NULL;

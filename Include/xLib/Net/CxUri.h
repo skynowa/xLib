@@ -21,31 +21,31 @@ class CxUri :
                           ~CxUri            ();
 
         std::string        sGetUri          () const;
-        BOOL               bSetUri          (const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment);
+        bool               bSetUri          (const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment);
 
         std::string        sGetScheme       () const;
-        BOOL               bSetScheme       (const std::string &csScheme);
+        bool               bSetScheme       (const std::string &csScheme);
 
         std::string        sGetAuthority    () const;
-        BOOL               bSetAuthority    (const std::string &csAuthority);
+        bool               bSetAuthority    (const std::string &csAuthority);
 
         std::string        sGetUserInfo     () const;
-        BOOL               bSetUserInfo     (const std::string &csUserInfo);
+        bool               bSetUserInfo     (const std::string &csUserInfo);
 
         std::string        sGetHost         () const;
-        BOOL               bSetHost         (const std::string &csHost);
+        bool               bSetHost         (const std::string &csHost);
 
         USHORT             usGetPort        ();
-        BOOL               bSetPort         (const USHORT &cusPort);
+        bool               bSetPort         (const USHORT &cusPort);
 
         std::string        sGetPath         () const;
-        BOOL               bSetPath         (const std::string &csPath);
+        bool               bSetPath         (const std::string &csPath);
 
         std::string        sGetQuery        () const;
-        BOOL               bSetQuery        (const std::string &csQuery);
+        bool               bSetQuery        (const std::string &csQuery);
 
         std::string        sGetFragment     () const;
-        BOOL               bSetFragment     (const std::string &csFragment);
+        bool               bSetFragment     (const std::string &csFragment);
 
         static std::string sEscape          (const std::string &csUri);
         static std::string sUnescape        (const std::string &csUri);
@@ -53,7 +53,7 @@ class CxUri :
         static std::string sEncodeComponent (const std::string &csUri);
         static std::string sDecodeComponent (const std::string &csUri);
 
-        BOOL               bClear           ();
+        bool               bClear           ();
 
     private:
         static const std::string RESERVED_PATH;
@@ -70,10 +70,10 @@ class CxUri :
         std::string        _m_sQuery;
         std::string        _m_sFragment;
 
-        BOOL               _bParse          (const std::string &csUri);
-        BOOL               _bNormilize      (const std::string &csUri);
+        bool               _bParse          (const std::string &csUri);
+        bool               _bNormilize      (const std::string &csUri);
         USHORT             _usGetDefaultPort() const;
-        BOOL               _bIsDefaultPort  () const;
+        bool               _bIsDefaultPort  () const;
 };
 
 xNAMESPACE_END(NxLib)

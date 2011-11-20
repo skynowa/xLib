@@ -17,17 +17,17 @@ class CxConsoleLog :
     /// logging to console
 {
     public:
-        explicit                 CxConsoleLog(const BOOL bIsUseTimeStr);
+        explicit                 CxConsoleLog(const bool bIsUseTimeStr);
             ///< constructor
         virtual                 ~CxConsoleLog();
             ///< destructor
 
-        BOOL                     bWrite      (const char_t *pcszFormat, ...);
+        bool                     bWrite      (const tchar *pcszFormat, ...);
             ///< write
 
     private:
         static CxCriticalSection _ms_csConsole;        ///< critical section
-        BOOL                     _m_bIsUseTimeStr;    ///< is use time string
+        bool                     _m_bIsUseTimeStr;    ///< is use time string
 };
 
 xNAMESPACE_END(NxLib)

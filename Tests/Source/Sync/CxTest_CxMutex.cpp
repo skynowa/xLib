@@ -17,13 +17,13 @@ CxTest_CxMutex::~CxTest_CxMutex() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxMutex::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
-    const std::string_t csName = CxString::sCreateGuid();
+    const std::tstring csName = CxString::sCreateGuid();
 
 
     CxMutex mtMutex;
@@ -39,20 +39,20 @@ CxTest_CxMutex::bUnit(
     //bCreate
     {
         const LPSECURITY_ATTRIBUTES lpcsaAttributes = NULL;
-        const BOOL                  cbInitialOwner  = FALSE;
+        const bool                  cbInitialOwner  = false;
 
         m_bRes = mtMutex.bCreate(lpcsaAttributes, cbInitialOwner, csName.c_str());
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bOpen
     {
         const ULONG culAccess       = MUTEX_ALL_ACCESS;
-        const BOOL  cbInheritHandle = FALSE;
+        const bool  cbInheritHandle = false;
 
         m_bRes = mtMutex.bOpen(culAccess, cbInheritHandle,  csName.c_str());
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -61,19 +61,19 @@ CxTest_CxMutex::bUnit(
         const ULONG culTimeout = 1000;
 
         m_bRes = mtMutex.bWait(culTimeout);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bRelease
     {
         m_bRes = mtMutex.bRelease();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 #elif xOS_ENV_UNIX
 
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

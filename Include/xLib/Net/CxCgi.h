@@ -37,107 +37,107 @@ namespace NxCgi {
             virtual           ~CxCgiEnvironment       ();
                 ///< destructor
 
-            const std::string_t &sGetAuthType          () const;
+            const std::tstring &sGetAuthType          () const;
                 ///< get auth type
-            const std::string_t &sGetContentLength     () const;
+            const std::tstring &sGetContentLength     () const;
                 ///< get content length
-            const std::string_t &sGetContentType       () const;
+            const std::tstring &sGetContentType       () const;
                 ///< get content type
-            const std::string_t &sGetDocumentRoot      () const;
+            const std::tstring &sGetDocumentRoot      () const;
                 ///< get document roor
-            const std::string_t &sGetGatewayInterface  () const;
+            const std::tstring &sGetGatewayInterface  () const;
                 ///< get gateway interface
-            const std::string_t &sGetHttpAccept        () const;
+            const std::tstring &sGetHttpAccept        () const;
                 ///< get HTTP accept
-            const std::string_t &sGetHttpCookie        () const;
+            const std::tstring &sGetHttpCookie        () const;
                 ///< get HTTP cookie
-            const std::string_t &sGetHttpPragma        () const;
+            const std::tstring &sGetHttpPragma        () const;
                 ///< get HTTP pragma
-            const std::string_t &sGetHttpUserAgent     () const;
+            const std::tstring &sGetHttpUserAgent     () const;
                 ///< get HTTP user agent
-            const std::string_t &sGetPathInfo          () const;
+            const std::tstring &sGetPathInfo          () const;
                 ///< get path info
-            const std::string_t &sGetPathTranslated    () const;
+            const std::tstring &sGetPathTranslated    () const;
                 ///< get path translated
-            const std::string_t &sGetQueryString       () const;
+            const std::tstring &sGetQueryString       () const;
                 ///< get query string
-            const std::string_t &sGetRemoteAddr        () const;
+            const std::tstring &sGetRemoteAddr        () const;
                 ///< get remote address
-            const std::string_t &sGetRemoteHost        () const;
+            const std::tstring &sGetRemoteHost        () const;
                 ///< get remote host
-            const std::string_t &sGetRemoteIdent       () const;
+            const std::tstring &sGetRemoteIdent       () const;
                 ///< et remote ident
-            const std::string_t &sGetRemotePort        () const;
+            const std::tstring &sGetRemotePort        () const;
                 ///< get remote port
-            const std::string_t &sGetRemoteUser        () const;
+            const std::tstring &sGetRemoteUser        () const;
                 ///< get remote user
-            const std::string_t &sGetRequestMethod     () const;
+            const std::tstring &sGetRequestMethod     () const;
                 ///< get request method
-            const std::string_t &sGetRequestUri        () const;
+            const std::tstring &sGetRequestUri        () const;
                 ///< get request URI
-            const std::string_t &sGetScriptFilename    () const;
+            const std::tstring &sGetScriptFilename    () const;
                 ///< get script file name
-            const std::string_t &sGetScriptName        () const;
+            const std::tstring &sGetScriptName        () const;
                 ///< get script name
-            const std::string_t &sGetServerAdmin       () const;
+            const std::tstring &sGetServerAdmin       () const;
                 ///< get server admin
-            const std::string_t &sGetServerName        () const;
+            const std::tstring &sGetServerName        () const;
                 ///< get server name
-            const std::string_t &sGetServerPort        () const;
+            const std::tstring &sGetServerPort        () const;
                 ///< get server port
-            const std::string_t &sGetServerProtocol    () const;
+            const std::tstring &sGetServerProtocol    () const;
                 ///< get server protocol
-            const std::string_t &sGetServerSoftware    () const;
+            const std::tstring &sGetServerSoftware    () const;
                 ///< get server software
-            const std::string_t &sGetHttpReferer       () const;
+            const std::tstring &sGetHttpReferer       () const;
                 ///< get HTTP referer
-            const std::string_t &sGetHttpHost          () const;
+            const std::tstring &sGetHttpHost          () const;
                 ///< get HTTP host
-            const std::string_t &sGetHttpAcceptLanguage() const;
+            const std::tstring &sGetHttpAcceptLanguage() const;
                 ///< get HTTP accept language
-            const std::string_t &sGetCountryCode       () const;
+            const std::tstring &sGetCountryCode       () const;
                 ///< get country code
 
             ERequestMethod      rmGetRequestMethod    () const;
                 ///< get request method
-            std::string_t        sGetDump              () const;
+            std::tstring        sGetDump              () const;
                 ///< get dump
 
         private:
             CxCgi              &_m_ccgCgi;                ///< CxCgi onject
-            std::string_t        _m_sAuthType;            ///< auth type
-            std::string_t        _m_sContentLength;        ///< content length
-            std::string_t        _m_sContentType;        ///< content type
-            std::string_t        _m_sDocumentRoot;        ///< document root
-            std::string_t        _m_sGatewayInterface;    ///< gateway interface
-            std::string_t        _m_sHttpAccept;            ///< HTTP accept
-            std::string_t        _m_sHttpCookie;            ///< HTTP cookie
-            std::string_t        _m_sHttpPragma;            ///< HTTP pragma
-            std::string_t        _m_sHttpUserAgent;        ///< HTTP user agent
-            std::string_t        _m_sPathInfo;            ///< path info
-            std::string_t        _m_sPathTranslated;        ///< path translated
-            std::string_t        _m_sQueryString;        ///< query string
-            std::string_t        _m_sRemoteAddr;            ///< remote address
-            std::string_t        _m_sRemoteHost;            ///< remote host
-            std::string_t        _m_sRemoteIdent;        ///< remote ident
-            std::string_t        _m_sRemotePort;            ///< remote port
-            std::string_t        _m_sRemoteUser;            ///< remote user
-            std::string_t        _m_sRequestMethod;        ///< request method
-            std::string_t        _m_sRequestUri;            ///< request URI
-            std::string_t        _m_sScriptFilename;        ///< script file name
-            std::string_t        _m_sScriptName;            ///< script name
-            std::string_t        _m_sServerAdmin;        ///< server admin
-            std::string_t        _m_sServerName;            ///< server name
-            std::string_t        _m_sServerPort;            ///< server port
-            std::string_t        _m_sServerProtocol;        ///< server protocol
-            std::string_t        _m_sServerSoftware;        ///< server software
-            std::string_t        _m_sHttpReferer;        ///< HTTP referer
-            std::string_t        _m_sHttpHost;            ///< HTTP host
-            std::string_t        _m_sHttpAcceptLanguage;    ///< HTTP accept language
-            std::string_t        _m_sCountryCode;        ///< country code
+            std::tstring        _m_sAuthType;            ///< auth type
+            std::tstring        _m_sContentLength;        ///< content length
+            std::tstring        _m_sContentType;        ///< content type
+            std::tstring        _m_sDocumentRoot;        ///< document root
+            std::tstring        _m_sGatewayInterface;    ///< gateway interface
+            std::tstring        _m_sHttpAccept;            ///< HTTP accept
+            std::tstring        _m_sHttpCookie;            ///< HTTP cookie
+            std::tstring        _m_sHttpPragma;            ///< HTTP pragma
+            std::tstring        _m_sHttpUserAgent;        ///< HTTP user agent
+            std::tstring        _m_sPathInfo;            ///< path info
+            std::tstring        _m_sPathTranslated;        ///< path translated
+            std::tstring        _m_sQueryString;        ///< query string
+            std::tstring        _m_sRemoteAddr;            ///< remote address
+            std::tstring        _m_sRemoteHost;            ///< remote host
+            std::tstring        _m_sRemoteIdent;        ///< remote ident
+            std::tstring        _m_sRemotePort;            ///< remote port
+            std::tstring        _m_sRemoteUser;            ///< remote user
+            std::tstring        _m_sRequestMethod;        ///< request method
+            std::tstring        _m_sRequestUri;            ///< request URI
+            std::tstring        _m_sScriptFilename;        ///< script file name
+            std::tstring        _m_sScriptName;            ///< script name
+            std::tstring        _m_sServerAdmin;        ///< server admin
+            std::tstring        _m_sServerName;            ///< server name
+            std::tstring        _m_sServerPort;            ///< server port
+            std::tstring        _m_sServerProtocol;        ///< server protocol
+            std::tstring        _m_sServerSoftware;        ///< server software
+            std::tstring        _m_sHttpReferer;        ///< HTTP referer
+            std::tstring        _m_sHttpHost;            ///< HTTP host
+            std::tstring        _m_sHttpAcceptLanguage;    ///< HTTP accept language
+            std::tstring        _m_sCountryCode;        ///< country code
             ERequestMethod      _m_rmRequestMethod;        ///< request method
 
-            BOOL                _bInit                ();
+            bool                _bInit                ();
                 ///< initiate class data
     };
     //---------------------------------------------------------------------------
@@ -158,15 +158,15 @@ namespace NxCgi {
             virtual      ~CxCgiCookies();
                 ///< destructor
 
-            std::string_t  sGetDump    () const;
+            std::tstring  sGetDump    () const;
                 ///< get dump
-            std::string_t  operator[]  (const std::string_t &csCookieName);
+            std::tstring  operator[]  (const std::tstring &csCookieName);
                 ///< no case searchig cookie value by name from list
 
         private:
             CxCgi        &_m_ccgCgi;    ///< CxCgi object
 
-            BOOL          _bInit      ();
+            bool          _bInit      ();
                 ///< initiate class data
     };
     //---------------------------------------------------------------------------
@@ -183,9 +183,9 @@ namespace NxCgi {
             virtual            ~CxCgiFormData();
                 ///< destructor
 
-            const std::string_t &sGetRawData  () const;
+            const std::tstring &sGetRawData  () const;
                 ///< get raw data
-            std::string_t        sGetDump     () const;
+            std::tstring        sGetDump     () const;
                 ///< get dump
 
         private:
@@ -193,9 +193,9 @@ namespace NxCgi {
             const size_t        _m_cuiMaxData;    ///< maximum data size
 
             CxCgi               &_m_ccgCgi;        ///< CxCgi object
-            std::string_t        _m_sFormData;    ///< form data
+            std::tstring        _m_sFormData;    ///< form data
 
-            BOOL                _bInit       ();
+            bool                _bInit       ();
                 ///< initiate class data
     };
     //---------------------------------------------------------------------------
@@ -221,17 +221,17 @@ class CxCgi :
         virtual                ~CxCgi          ();
             ///< destructor
 
-        std::string_t            sGetDump       () const;
+        std::tstring            sGetDump       () const;
             ///< get dump
-        static BOOL             bRedirect      (const std::string_t &csUrl);
+        static bool             bRedirect      (const std::tstring &csUrl);
             ///< redirect to URL
-        static BOOL             bPageShow      (const std::string_t &csFilePath);
+        static bool             bPageShow      (const std::tstring &csFilePath);
             ///< show page from file
 
         //encoding, decoding
-        static BOOL             bUriEncode     (const std::string_t &csUri, const std::string_t &csReserved, std::string_t *psEncodedStr);
+        static bool             bUriEncode     (const std::tstring &csUri, const std::tstring &csReserved, std::tstring *psEncodedStr);
             ///< encode URI
-        static BOOL             bUriDecode     (const std::string_t &csUri, std::string_t *psDecodedStr);
+        static bool             bUriDecode     (const std::tstring &csUri, std::tstring *psDecodedStr);
             ///< decode URI
 
     private:

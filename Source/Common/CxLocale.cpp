@@ -16,11 +16,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxLocale::sGetCurrent() {
     /*DEBUG*/// n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
 #if xOS_ENV_WIN
     int  iRes = - 1;
@@ -31,18 +31,18 @@ CxLocale::sGetCurrent() {
 
     //Retrieves information about a locale specified by identifier
     iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, 0, 0);
-    /*DEBUG*/xASSERT_RET(0 != iRes, std::string_t());
+    /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring());
 
     sRes.resize(iRes);
     iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != iRes, std::string_t());
+    /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring());
 
     sRes.resize(iRes - sizeof('\0'));    //delete from end '\0'
 #elif xOS_ENV_UNIX
-    const char_t *pcszLocale = NULL;
+    const tchar *pcszLocale = NULL;
 
     pcszLocale = std::xTSETLOCALE(LC_ALL, NULL);
-    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::string_t());
+    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::tstring());
 
     sRes.assign(pcszLocale);
 #endif
@@ -51,32 +51,32 @@ CxLocale::sGetCurrent() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxLocale::bSetCurrent(
-    const std::string_t &csLocale
+    const std::tstring &csLocale
 )
 {
     /*DEBUG*/// csLocale - n/a
 
-    const char_t *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
+    const tchar *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
 
-    const char_t *pcszRes = NULL;
+    const tchar *pcszRes = NULL;
 
     pcszRes = ::xTSETLOCALE(LC_ALL, pcszLocale);
-    /*DEBUG*/xASSERT_RET(NULL != pcszRes, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxLocale::bSetDefault() {
     /*DEBUG*/// n/a
 
-    BOOL bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
-   /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
+   /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-   return TRUE;
+   return true;
 }
 //---------------------------------------------------------------------------
 

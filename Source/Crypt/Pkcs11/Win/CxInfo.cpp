@@ -31,7 +31,7 @@ CxInfo::~CxInfo() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxInfo::bGet(
     CK_INFO_PTR pInfo  ///< location that receives information
 )
@@ -39,12 +39,12 @@ CxInfo::bGet(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GetInfo(pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxInfo::bGetToken(
     CK_SLOT_ID        slotID,  ///< ID of the token's slot
     CK_TOKEN_INFO_PTR pInfo    ///< receives the token information
@@ -53,9 +53,9 @@ CxInfo::bGetToken(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GetTokenInfo(slotID, pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

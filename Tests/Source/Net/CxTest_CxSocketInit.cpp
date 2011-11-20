@@ -17,7 +17,7 @@ CxTest_CxSocketInit::~CxTest_CxSocketInit() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxSocketInit::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -35,6 +35,6 @@ CxTest_CxSocketInit::bUnit(
         CxSocketInit siInit22(2, 2);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

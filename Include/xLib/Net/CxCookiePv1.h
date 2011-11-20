@@ -18,70 +18,70 @@ class CxCookiePv1 :
     public:
         explicit             CxCookiePv1 ();
             ///< constructor
-                             CxCookiePv1 (const std::string_t &csRawCookie);
+                             CxCookiePv1 (const std::tstring &csRawCookie);
             ///< constructor
         virtual             ~CxCookiePv1 ();
             ///< destructor
 
-        BOOL                 bInit       (const std::string_t &csRawCookie);
+        bool                 bInit       (const std::tstring &csRawCookie);
             ///< parsing raw cookie string pv0
 
-        const std::string_t & sGetName    () const;
+        const std::tstring & sGetName    () const;
             ///< get name
-        BOOL                 bSetName    (const std::string_t &csName);
+        bool                 bSetName    (const std::tstring &csName);
             ///< set name
 
-        const std::string_t & sGetValue   () const;
+        const std::tstring & sGetValue   () const;
             ///< get value
-        BOOL                 bSetValue   (const std::string_t &csValue);
+        bool                 bSetValue   (const std::tstring &csValue);
             ///< set value
 
-        const std::string_t & sGetComment () const;
+        const std::tstring & sGetComment () const;
             ///< get comment
-        BOOL                 bSetComment (const std::string_t &csComment);
+        bool                 bSetComment (const std::tstring &csComment);
             ///< set comment
 
-        const std::string_t & sGetDomain  () const;
+        const std::tstring & sGetDomain  () const;
             ///< get domain
-        BOOL                 bSetDomain  (const std::string_t &csDomain);
+        bool                 bSetDomain  (const std::tstring &csDomain);
             ///< set domain
 
-        const std::string_t & sGetPath    () const;
+        const std::tstring & sGetPath    () const;
             ///< get path
-        BOOL                 bSetPath    (const std::string_t &csPath);
+        bool                 bSetPath    (const std::tstring &csPath);
             ///< set path
 
         LONGLONG             liGetMaxAge () const;
             ///< get max age
-        BOOL                 bSetMaxAge  (LONGLONG liMaxAge);
+        bool                 bSetMaxAge  (LONGLONG liMaxAge);
             ///< set max age
 
-        BOOL                 bGetSecure  () const;
+        bool                 bGetSecure  () const;
             ///< get secure
-        BOOL                 bSetSecure  (BOOL bFlag);
+        bool                 bSetSecure  (bool bFlag);
             ///< set decure
 
-        BOOL                 bGetHttpOnly() const;
+        bool                 bGetHttpOnly() const;
             ///< get http only
-        BOOL                 bSetHttpOnly(BOOL bFlag);
+        bool                 bSetHttpOnly(bool bFlag);
             ///< set http only
 
-        std::string_t         sToString   () const;
+        std::tstring         sToString   () const;
             ///< convert to string
-        std::string_t         sGetDump    () const;
+        std::tstring         sGetDump    () const;
             ///< get dump
-        BOOL                 bClear      ();
+        bool                 bClear      ();
             ///< clear
 
     private:
-        std::string_t         _m_sName;        ///< name
-        std::string_t         _m_sValue;        ///< value
-        std::string_t         _m_sComment;    ///< comment
-        std::string_t         _m_sDomain;    ///< domain
-        std::string_t         _m_sPath;        ///< path
+        std::tstring         _m_sName;        ///< name
+        std::tstring         _m_sValue;        ///< value
+        std::tstring         _m_sComment;    ///< comment
+        std::tstring         _m_sDomain;    ///< domain
+        std::tstring         _m_sPath;        ///< path
         LONGLONG             _m_liMaxAge;   ///< max age (in seconds)
-        BOOL                 _m_bSecure;    ///< secure
-        BOOL                 _m_bHttpOnly;    ///< http only
+        bool                 _m_bSecure;    ///< secure
+        bool                 _m_bHttpOnly;    ///< http only
 };
 
 xNAMESPACE_END(NxLib)

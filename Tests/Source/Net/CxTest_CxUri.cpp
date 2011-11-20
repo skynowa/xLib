@@ -17,7 +17,7 @@ CxTest_CxUri::~CxTest_CxUri() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxUri::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -267,6 +267,6 @@ CxTest_CxUri::bUnit(
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

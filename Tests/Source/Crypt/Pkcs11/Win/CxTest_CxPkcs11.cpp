@@ -17,7 +17,7 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxPkcs11::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -35,43 +35,43 @@ CxTest_CxPkcs11::bUnit(
     //bSetData
     xTEST_BLOCK(cullBlockLoops)
     {
-    //    const std::string_t csUserPin   = xT("1111");
-    //    const std::string_t csDataLabel = xT("Label_Id");
-    //    const std::string_t csData      = xT("1203456789");
+    //    const std::tstring csUserPin   = xT("1111");
+    //    const std::tstring csDataLabel = xT("Label_Id");
+    //    const std::tstring csData      = xT("1203456789");
     //    std::ustring       usData      = xS2US(csData);
 
     //    m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
-    //    xTEST_DIFF(FALSE, m_bRes);
+    //    xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bGetData
     xTEST_BLOCK(cullBlockLoops)
     {
-    //    const std::string_t csUserPin   = xT("1111");
-    //    const std::string_t csDataLabel = xT("Label_Id");
+    //    const std::tstring csUserPin   = xT("1111");
+    //    const std::tstring csDataLabel = xT("Label_Id");
     //    std::ustring       usData;
 
     //    m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
-    //    xTEST_DIFF(FALSE, m_bRes);
+    //    xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t csUserPin   = xT("1111");
-        const std::string_t csDataLabel = xT("Key1.tkey");
-        const std::string_t csData      = xT("1203456789");
+        const std::tstring csUserPin   = xT("1111");
+        const std::tstring csDataLabel = xT("Key1.tkey");
+        const std::tstring csData      = xT("1203456789");
         std::ustring       usData      = xS2US(csData);
 
         m_bRes = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_EQ((bool)true, (bool)m_bRes);   //TODO: xTEST_EQ
     }
 #elif xOS_ENV_UNIX
 
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

@@ -17,7 +17,7 @@ CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxHttpClient::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -27,6 +27,6 @@ CxTest_CxHttpClient::bUnit(
         CxHttpClient hcHttpClient;
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

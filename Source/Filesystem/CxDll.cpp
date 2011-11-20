@@ -25,48 +25,48 @@ CxDll::~CxDll() {
     (void)bFree();
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxDll::bIsLoaded() const {
     /*DEBUG*/// n/a
 
-    return static_cast<BOOL>( NULL != _m_hDLL );
+    return static_cast<bool>( NULL != _m_hDLL );
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxDll::bLoad(
-    const std::string_t &csDllPath
+    const std::tstring &csDllPath
 )
 {
     /*DEBUG*/// n/a
-    /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), false);
 
-    BOOL bRes = bFree();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = bFree();
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
 #if xOS_ENV_WIN
     _m_hDLL = ::LoadLibrary(csDllPath.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, false);
 #elif xOS_ENV_UNIX
     _m_hDLL = ::dlopen(csDllPath.c_str(), RTLD_LAZY);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL 
+bool 
 CxDll::bIsProcExists(
-    const std::string_t &csProcName
+    const std::tstring &csProcName
 ) const
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);
 
-    BOOL          bRes  = FALSE;
+    bool          bRes  = false;
     TxProcAddress fpRes = NULL;
 
 #if xOS_ENV_WIN
     fpRes = ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str());
-    xCHECK_RET(NULL == fpRes, FALSE);
+    xCHECK_RET(NULL == fpRes, false);
 #elif xOS_ENV_UNIX
     const char *pszError = NULL;
 
@@ -77,15 +77,15 @@ CxDll::bIsProcExists(
     /*DEBUG*/// n/a
 
     pszError = ::dlerror();
-    xCHECK_RET(NULL != pszError, FALSE);
+    xCHECK_RET(NULL != pszError, false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 CxDll::TxProcAddress
 CxDll::fpGetProcAddress(
-    const std::string_t &csProcName
+    const std::tstring &csProcName
 ) const
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);
@@ -111,23 +111,23 @@ CxDll::fpGetProcAddress(
     return fpRes;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxDll::bFree() {
     /*DEBUG*/// n/a
 
-    xCHECK_RET(FALSE == bIsLoaded(), TRUE);
+    xCHECK_RET(false == bIsLoaded(), true);
 
 #if xOS_ENV_WIN
-    BOOL bRes = ::FreeLibrary(_m_hDLL);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL blRes = ::FreeLibrary(_m_hDLL);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::dlclose(_m_hDLL);
-    /*DEBUG*/xASSERT_RET(0 == iRes, FALSE);
+    /*DEBUG*/xASSERT_RET(0 == iRes, false);
 #endif
 
     _m_hDLL = NULL;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

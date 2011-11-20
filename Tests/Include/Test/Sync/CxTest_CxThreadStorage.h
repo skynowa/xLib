@@ -18,7 +18,7 @@ class CxTest_CxThreadStorage :
                      CxTest_CxThreadStorage();
         virtual     ~CxTest_CxThreadStorage();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

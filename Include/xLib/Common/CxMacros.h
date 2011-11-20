@@ -42,21 +42,21 @@
 //---------------------------------------------------------------------------
 //converters
 #define xS2US(s)                std::ustring( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::string_t to std::ustring
-#define xUS2S(us)               std::string_t( (us).begin(), (us).begin() + (us).size() )
-    ///< convert std::ustring to std::string_t
-#define xS2TS(s)                std::string_t( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::string to std::string_t
+    ///< convert std::tstring to std::ustring
+#define xUS2S(us)               std::tstring( (us).begin(), (us).begin() + (us).size() )
+    ///< convert std::ustring to std::tstring
+#define xS2TS(s)                std::tstring( (s).begin(),  (s).begin()  + (s).size()  )
+    ///< convert std::string to std::tstring
 #define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
-    ///< convert std::string_t to std::string
+    ///< convert std::tstring to std::string
 
 #if xCOMPILER_CODEGEAR
-    #define xD2S(s)   std::string_t((s).c_str())
-        ///< convert Delphi::String::c_str() to std::string_t
-    #define xD2AS(s)  std::string_t((s).t_str())
-        ///< convert Delphi::String::t_str() to std::string_t
+    #define xD2S(s)   std::tstring((s).c_str())
+        ///< convert Delphi::String::c_str() to std::tstring
+    #define xD2AS(s)  std::tstring((s).t_str())
+        ///< convert Delphi::String::t_str() to std::tstring
     #define xS2D(s)   String((s).c_str())
-        ///< convert std::string_t to Delphi::String
+        ///< convert std::tstring to Delphi::String
     #define xD2WD(s)  WideString((s))
         ///< convert Delphi::String to Delphi::WideString
 #endif
@@ -84,8 +84,8 @@
     ///< get max value
 #define xMIN(a, b)              ( ((a) < (b)) ? (a) : (b) )
     ///< get min value
-#define xAS_BOOL(expr)          ( (true == (expr)) ? (TRUE) : (FALSE) )
-    ///< convert bool to BOOL
+#define xINT_AS_BOOL(expr)      ( (0 == (expr)) ? false : true )
+    ///< convert int to bool
 
 
 /// hide "unused variable" warnings
@@ -94,13 +94,13 @@
 #elif xCOMPILER_CODEGEAR
     #define xUNUSED(arg)          ( (void)(arg) )
 #elif xCOMPILER_GNUC
-    #define xUNUSED(arg)          { (void)( (arg) = ((TRUE) ? (arg) : (arg)) ); }
+    #define xUNUSED(arg)          { (void)( (arg) = ((true) ? (arg) : (arg)) ); }
 #else
     #define xUNUSED(arg)          ( (void)(arg) )
 
     //#define xUNUSED(arg)            ( (arg) = (arg) )   //( (void)(arg) )
     //#define xUNUSED(a)              do { (a) = (a); } while (&(a) < (typeof(a) *)0);
-    //#define xUNUSED(a)              do { (a) = (TRUE) ? (a) : (a); } while (&(a) < (typeof(a) *)0);
+    //#define xUNUSED(a)              do { (a) = (true) ? (a) : (a); } while (&(a) < (typeof(a) *)0);
 #endif
 
 
@@ -146,24 +146,24 @@
 #if xCOMPILER_CODEGEAR
     //xTRY_BOOL
     #define xTRY_BOOL    \
-                BOOL bRes = FALSE;  \
+                bool bRes = false;  \
                 try {                \
                     {
         ///< try block
 
     #define xCATCH_BOOL_RET    \
                     }    \
-                    bRes = TRUE;    \
+                    bRes = true;    \
                 } \
                 catch (Exception &e) {    \
-                    xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
+                    xASSERT_MSG(false, xD2AS(e.Message).c_str());    \
                 }                             \
                 catch (std::exception e) {   \
                     std::string asWhat = e.what();    \
-                    xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
+                    xASSERT_MSG(false, xS2TS(asWhat).c_str());    \
                 }    \
                 catch (...) {    \
-                    xASSERT_MSG(FALSE, xT("Uknown error"));    \
+                    xASSERT_MSG(false, xT("Uknown error"));    \
                 }    \
                 return bRes;
         ///< catch block
@@ -179,14 +179,14 @@
                     }    \
                 }    \
                 catch (Exception &e) {    \
-                    xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
+                    xASSERT_MSG(false, xD2AS(e.Message).c_str());    \
                 }    \
                 catch (std::exception e) {    \
                     std::string asWhat = e.what();    \
-                    xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
+                    xASSERT_MSG(false, xS2TS(asWhat).c_str());    \
                 }    \
                 catch (...) {    \
-                    xASSERT_MSG(FALSE, xT("Uknown error"));    \
+                    xASSERT_MSG(false, xT("Uknown error"));    \
                 }    \
                 return liRes;
         ///< catch block
@@ -202,14 +202,14 @@
                     }    \
                 }    \
                 catch (Exception &e) {    \
-                    xASSERT_MSG(FALSE, xD2AS(e.Message).c_str());    \
+                    xASSERT_MSG(false, xD2AS(e.Message).c_str());    \
                 }    \
                 catch (std::exception e) {    \
                     std::string asWhat = e.what();    \
-                    xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());    \
+                    xASSERT_MSG(false, xS2TS(asWhat).c_str());    \
                 }    \
                 catch (...) {    \
-                    xASSERT_MSG(FALSE, xT("Uknown error"));    \
+                    xASSERT_MSG(false, xT("Uknown error"));    \
                 }    \
                 return vRes;
         ///< catch block
@@ -478,19 +478,19 @@ class CxMacros :
             ///< allows any pointer to be converted into any other pointer type
 
         template <class T>
-        static inline std::string_t
+        static inline std::tstring
         sAsTString(const T &x) {
-            return (NULL != x) ? (std::string_t(x)) : (std::string_t());
+            return (NULL != x) ? (std::tstring(x)) : (std::tstring());
         }
-            ///< convert C-string to std::string_t
+            ///< convert C-string to std::tstring
 
         //TODO: tests
         template <class T>
-        static inline const char_t *
+        static inline const tchar *
         pcszAsCString(const T &x) {
             return (true == x.empty()) ? (NULL) : (x.c_str());
         }
-            ///< convert std::string_t to C-string
+            ///< convert std::tstring to C-string
 
     private:
                 CxMacros();

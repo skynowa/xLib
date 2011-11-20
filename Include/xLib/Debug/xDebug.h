@@ -168,7 +168,7 @@
 
 #define xASSERT_STATIC(expr)                                { switch (0) {case 0: case (expr):;} }
     ///< static assert
-#define xNOT_IMPLEMENTED_RET(return_expr)                   { xASSERT_MSG_RET(FALSE, xT("Not implemented"), (return_expr)); }
+#define xNOT_IMPLEMENTED_RET(return_expr)                   { xASSERT_MSG_RET(false, xT("Not implemented"), (return_expr)); }
     ///< show not implemented message and return value
 
 #define xAUTO_PROFILER(file_path, mode, comment, ...)       CxAutoProfiler _apfPerfom(file_path, mode, comment, __VA_ARGS__)
@@ -191,7 +191,7 @@
         ///< tracing
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
         ///< tracing, comment with current function name
-    #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::string_t(xFUNCTION) + xT(": ") + std::string_t(s)); }
+    #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::tstring(xFUNCTION) + xT(": ") + std::tstring(s)); }
         ///< tracing, comment with current function name and message
     #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
         ///< trace point (use CxDebugger)

@@ -18,7 +18,7 @@ class CxTest_CxException :
                      CxTest_CxException();
         virtual     ~CxTest_CxException();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

@@ -59,7 +59,7 @@ CxMsgBoxT::iShow(
                             CxString::lexical_cast(cTitle).c_str(),
                             cuiType) );
 #elif xOS_ENV_UNIX
-    std::string_t sMsg = CxString::sFormat(
+    std::tstring sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
@@ -88,7 +88,7 @@ CxMsgBoxT::iShow(
                             CxString::lexical_cast(cTitle).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
-    std::string_t sMsg = CxString::sFormat(
+    std::tstring sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
@@ -116,7 +116,7 @@ CxMsgBoxT::iShow(
                             CxPath::sGetFullName( CxPath::sGetExe() ).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
-    std::string_t sMsg = CxString::sFormat(
+    std::tstring sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
                             xT("Message box"),

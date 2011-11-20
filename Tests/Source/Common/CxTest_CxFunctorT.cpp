@@ -37,11 +37,11 @@ class B : CxNonCopyable  {
             ////xSTD_COUT_FUNC;
         };
 
-        BOOL methodB(A a) {
+        bool methodB(A a) {
             ////xSTD_COUT_FUNC;
             a.vOutput();
 
-            return TRUE;
+            return true;
         };
 };
 class CThread;
@@ -54,7 +54,7 @@ class CParam {
             ////xSTD_COUT_FUNC;
         };
 
-        std::string_t sSetName(void *uiIndex) {
+        std::tstring sSetName(void *uiIndex) {
 
 
             return xT("Class_C");
@@ -71,7 +71,7 @@ class CThread {
             ////xSTD_COUT_FUNC;
         };
 
-        void vRun(const CxFunctorT<CParam, std::string_t, void *> &bF) {
+        void vRun(const CxFunctorT<CParam, std::tstring, void *> &bF) {
             ////xSTD_COUT_FUNC;
         };
 };
@@ -85,7 +85,7 @@ CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxTest_CxFunctorT::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -97,11 +97,11 @@ CxTest_CxFunctorT::bUnit(
         A a;
         B b;
 
-        CxFunctorT<B, BOOL, A> *pbF = new CxFunctorT<B, BOOL, A>(&b, &B::methodB);
+        CxFunctorT<B, bool, A> *pbF = new CxFunctorT<B, bool, A>(&b, &B::methodB);
         xASSERT(NULL != pbF);
 
         m_bRes = (*pbF)(a);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         delete pbF;
     }
@@ -113,11 +113,11 @@ CxTest_CxFunctorT::bUnit(
         A a;
         B b;
 
-        CxFunctorT<B, BOOL, A> *pbF = new CxFunctorT<B, BOOL, A>(&b, &B::methodB);
+        CxFunctorT<B, bool, A> *pbF = new CxFunctorT<B, bool, A>(&b, &B::methodB);
         xASSERT(NULL != pbF);
 
         m_bRes = pbF->Execute(a);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         delete pbF;
     }
@@ -128,10 +128,10 @@ CxTest_CxFunctorT::bUnit(
     {
         A a;
         B b;
-        CxFunctorT<B, BOOL, A> bF(&b, &B::methodB);
+        CxFunctorT<B, bool, A> bF(&b, &B::methodB);
 
         m_bRes = bF(a);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -141,10 +141,10 @@ CxTest_CxFunctorT::bUnit(
         A a;
         B b;
 
-        CxFunctorT<B, BOOL, A> bF(&b, &B::methodB);
+        CxFunctorT<B, bool, A> bF(&b, &B::methodB);
 
         m_bRes = bF.Execute(a);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
 
@@ -152,12 +152,12 @@ CxTest_CxFunctorT::bUnit(
     //Execute
     xTEST_BLOCK(cullBlockLoops)
     {
-        CxFunctorT<CParam, std::string_t, void *> bF(&objParam, &CParam::sSetName);
+        CxFunctorT<CParam, std::tstring, void *> bF(&objParam, &CParam::sSetName);
 
         m_sRes = bF.Execute(0);
-        xTEST_EQ(std::string_t(xT("Class_C")), m_sRes);
+        xTEST_EQ(std::tstring(xT("Class_C")), m_sRes);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

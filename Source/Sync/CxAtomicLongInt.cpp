@@ -106,27 +106,27 @@ CxAtomicLongInt::operator = (const LONG cliRight) {
 }
 //---------------------------------------------------------------------------
 //DONE: operator == ()
-BOOL
+bool
 CxAtomicLongInt::operator == (const CxAtomicLongInt &cRight) const {
-    return (BOOL)(_m_liValue == cRight._m_liValue);
+    return (bool)(_m_liValue == cRight._m_liValue);
 }
 //---------------------------------------------------------------------------
 //DONE: operator != ()
-BOOL
+bool
 CxAtomicLongInt::operator != (const CxAtomicLongInt &cRight) const {
-    return (BOOL)(!(_m_liValue == cRight._m_liValue));
+    return (bool)(!(_m_liValue == cRight._m_liValue));
 }
 //---------------------------------------------------------------------------
 //DONE: operator == ()
-BOOL
+bool
 CxAtomicLongInt::operator == (const LONG cliRight) const {
-    return (BOOL)(_m_liValue == cliRight);
+    return (bool)(_m_liValue == cliRight);
 }
 //---------------------------------------------------------------------------
 //DONE: operator != ()
-BOOL
+bool
 CxAtomicLongInt::operator != (const LONG cliRight) const {
-    return (BOOL)( !(_m_liValue == cliRight) );
+    return (bool)( !(_m_liValue == cliRight) );
 }
 //---------------------------------------------------------------------------
 //DONE: operator LONG ()
@@ -134,9 +134,9 @@ CxAtomicLongInt::operator LONG () const {
     return _m_liValue;
 }
 //---------------------------------------------------------------------------
-//DONE: operator BOOL ()
-CxAtomicLongInt::operator BOOL () const {
-    return _m_liValue ? TRUE : FALSE;
+//DONE: operator bool ()
+CxAtomicLongInt::operator bool () const {
+    return _m_liValue ? true : false;
 }
 //---------------------------------------------------------------------------
 //DONE: operator ++ ()

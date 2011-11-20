@@ -18,7 +18,7 @@ class CxTest_CxUri :
                      CxTest_CxUri();
         virtual     ~CxTest_CxUri();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

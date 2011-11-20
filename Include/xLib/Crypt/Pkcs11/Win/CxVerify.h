@@ -26,17 +26,17 @@ class CxVerify :
         virtual             ~CxVerify    ();
             ///< destructor
 
-        BOOL                 bInit       (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        bool                 bInit       (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
             ///< initializes a verification operation, where the signature is an appendix to the data, and plaintext cannot cannot be recovered from the signature (e.g. DSA)
-        BOOL                 bMake       (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen);
+        bool                 bMake       (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen);
             ///< verifies a signature in a single-part operation,  where the signature is an appendix to the data, and plaintext cannot be recovered from the signature
-        BOOL                 bFinal      (CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen);
+        bool                 bFinal      (CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen);
             ///< finishes a multiple-part verification operation, checking the signature
-        BOOL                 bRecoverInit(CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        bool                 bRecoverInit(CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
             ///< initializes a signature verification operation, where the data is recovered from the signature
-        BOOL                 bRecover    (CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
+        bool                 bRecover    (CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
             ///< verifies a signature in a single-part operation, where the data is recovered from the signature
-        BOOL                 bUpdate     (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
+        bool                 bUpdate     (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
             ///< continues a multiple-part verification operation, where the signature is an appendix to the data, and plaintext cannot be recovered from the signature
 
     private:

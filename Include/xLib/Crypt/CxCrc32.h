@@ -18,15 +18,15 @@ class CxCrc32 :
     public:
         static ULONG        ulCalc        (UCHAR *pucBuff, const ULONG culSize);
             ///< calculate
-        static ULONG        ulCalcFile    (const std::string_t &csFilePath);
+        static ULONG        ulCalcFile    (const std::tstring &csFilePath);
             ///< calculate
 
         static ULONG        ulCalcFast    (UCHAR *pucBuff, const ULONG culSize);
             ///< fast calculate
-        static ULONG        ulCalcFileFast(const std::string_t &csFilePath);
+        static ULONG        ulCalcFileFast(const std::tstring &csFilePath);
             ///< fast calculate
 
-        static std::string_t sFormatHex    (const ULONG culCrc32);
+        static std::tstring sFormatHex    (const ULONG culCrc32);
             ///< format Crc32 like "0AADDEA0"
 
     private:

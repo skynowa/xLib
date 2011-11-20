@@ -17,7 +17,7 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxRandom::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -29,7 +29,7 @@ CxTest_CxRandom::bUnit(
         //bSetSeed
         {
             m_bRes = rndR.bSetSeed( static_cast<ULONG>( time(NULL) ) );
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         //--------------------------------------------------
@@ -121,7 +121,7 @@ CxTest_CxRandom::bUnit(
             const LONG cliMax = caliData[i][1];
 
             m_bRes = CxRandom::bSetSeed();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_liRes = CxRandom::liGetInt(cliMin, cliMax);
             xTEST_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
@@ -139,7 +139,7 @@ CxTest_CxRandom::bUnit(
 
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = CxRandom::bSetSeed();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_sRes = CxRandom::sGetString(cuiStrSize);
             xTEST_EQ(cuiStrSize, m_sRes.size());
@@ -147,6 +147,6 @@ CxTest_CxRandom::bUnit(
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

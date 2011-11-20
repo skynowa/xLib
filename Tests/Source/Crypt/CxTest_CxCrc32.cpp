@@ -17,25 +17,25 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxCrc32::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
 
-    const std::string_t csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
+    const std::tstring csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
 
     //-------------------------------------
     //Prepare
     {
         CxFile flFile;
 
-        m_bRes = flFile.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = flFile.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = flFile.bResize(1333);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -76,6 +76,6 @@ CxTest_CxCrc32::bUnit(
         xTEST_EQ(false, m_sRes.empty());
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

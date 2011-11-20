@@ -18,14 +18,14 @@ CxTest_CxImage::~CxTest_CxImage() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxImage::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
 
-    const std::string_t csInFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Pic.bmp");
+    const std::tstring csInFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Pic.bmp");
 
     CxGdiplus     m_gdiGdi;
     CxImage       m_imgImage;
@@ -71,14 +71,14 @@ CxTest_CxImage::bUnit(
         usInFileContent.assign(cucInFileContent, xARRAY_SIZE(cucInFileContent));
 
         m_bRes = CxFile::bBinWrite(csInFilePath, usInFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bLoad
     {
         m_bRes = m_imgImage.bLoad(csInFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -91,19 +91,19 @@ CxTest_CxImage::bUnit(
     //bSave
     {
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.bmp"), CxImage::etBmp);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.jpeg"), CxImage::etJpeg);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.gif"), CxImage::etGif);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.tiff"), CxImage::etTiff);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.png"), CxImage::etPng);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -136,7 +136,7 @@ CxTest_CxImage::bUnit(
         //m_bRes = m_imgImage.bDestroy(HDC hDC, Gdiplus::Color clBackGround);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 #endif

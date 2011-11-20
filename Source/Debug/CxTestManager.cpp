@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /*explicit*/
 CxTestManager::CxTestManager(
-    const BOOL cbIsUseTracing
+    const bool cbIsUseTracing
 ) :
     _m_cbIsUseTracing(cbIsUseTracing),
     _m_ctnTests      ()
@@ -38,14 +38,14 @@ CxTestManager::~CxTestManager() {
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxTestManager::bAdd(
     CxTest             *pvtTest,
-    const std::string_t &csTestName /* = CxConst::xSTR_EMPTY*/
+    const std::tstring &csTestName /* = CxConst::xSTR_EMPTY*/
 )
 {
     /*DEBUG*/
-    /*DEBUG*/xASSERT_RET(NULL != pvtTest, FALSE)
+    /*DEBUG*/xASSERT_RET(NULL != pvtTest, false)
 
     (void)pvtTest->bSetName( CxType::sGetName(*pvtTest) );
 
@@ -55,10 +55,10 @@ CxTestManager::bAdd(
         xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), pvtTest->sGetName().c_str()));
     #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxTestManager::bRun(
     const ULONGLONG cullAllLoops,
     const ULONGLONG cullUnitLoops,
@@ -76,8 +76,8 @@ CxTestManager::bRun(
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 
-            BOOL bRes = (*it)->bRun(cullUnitLoops, cullBlockLoops);
-            xASSERT_MSG_RET(FALSE != bRes, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()), FALSE);
+            bool bRes = (*it)->bRun(cullUnitLoops, cullBlockLoops);
+            xASSERT_MSG_RET(false != bRes, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()), false);
 
             //xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("...Ok")));
         }
@@ -86,7 +86,7 @@ CxTestManager::bRun(
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests successful done.")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("\n")));
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

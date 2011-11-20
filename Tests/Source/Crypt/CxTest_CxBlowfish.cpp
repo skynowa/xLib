@@ -17,7 +17,7 @@ CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxBlowfish::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -42,18 +42,18 @@ CxTest_CxBlowfish::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(usPlain); i ++) {
             CxBlowfish BF;
-            std::string_t sKey       = xT("888888888");
+            std::tstring sKey       = xT("888888888");
             std::ustring sEncrypted;
             std::ustring sDecrypted;
 
             m_bRes = BF.bSetKey(sKey);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = BF.bEncryptCfb64(usPlain[i], &sEncrypted, CxBlowfish::cmEncrypt);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = BF.bEncryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             xASSERT(usPlain[i] == sDecrypted);
         }
@@ -64,26 +64,26 @@ CxTest_CxBlowfish::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         CxBlowfish BF;
-        std::string_t sKey           = xT("888888888");
-        std::string_t sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
-        std::string_t sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
-        std::string_t sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
+        std::tstring sKey           = xT("888888888");
+        std::tstring sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
+        std::tstring sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
+        std::tstring sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
         //prepare
         {
             m_bRes = CxFile::bTextWrite(sFilePlain, xT("text_text"));
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         //test
         m_bRes = BF.bSetKey(sKey);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = BF.bEncryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -93,29 +93,29 @@ CxTest_CxBlowfish::bUnit(
         CxBlowfish BF;
 
         CxBlowfish::ECryptMode cmRes = CxBlowfish::cmUnknown;
-        std::string_t sKey           = xT("888888888");
-        std::string_t sStamp         = xT("stamp");
+        std::tstring sKey           = xT("888888888");
+        std::tstring sStamp         = xT("stamp");
         std::ustring usStamp        = xS2US(sStamp);
-        std::string_t sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
-        std::string_t sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
-        std::string_t sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
+        std::tstring sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
+        std::tstring sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
+        std::tstring sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
         m_bRes = BF.bSetKey(sKey);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         cmRes = BF.cmGetFileCryptStatus(sFilePlain, usStamp);
         xTEST_EQ(CxBlowfish::cmDecrypt, cmRes);
 
     #if xTODO
         m_bRes = BF.bEncryptFileCfb64(sFilePlain,     sFileEncrypted, usStamp);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, usStamp);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     #endif
     }
 
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

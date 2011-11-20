@@ -39,7 +39,7 @@ CxSocketInit::CxSocketInit(
         iRes = ::WSACleanup();
         /*DEBUG*/xASSERT_DO(0 == iRes, return);
 
-        /*DEBUG*/xASSERT_DO(FALSE,     return);
+        /*DEBUG*/xASSERT_DO(false,     return);
     }
 #elif xOS_ENV_UNIX
     // n/a

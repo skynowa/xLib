@@ -17,25 +17,25 @@ CxTest_CxDll::~CxTest_CxDll() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxDll::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
     #if xOS_ENV_WIN
-        const std::string_t sData[][2] = {
+        const std::tstring sData[][2] = {
             {xT("kernel32.dll"), xT("Beep")}
         };
     #elif xOS_ENV_UNIX
         #if xOS_FREEBSD
             //if -static CxDll::bLoad don't load any 'so'-libraries
-            return TRUE;
+            return true;
 
-            const std::string_t sData[][2] = {
+            const std::tstring sData[][2] = {
                 {xT("libm.so"), xT("cos")}
             };
         #else
-            const std::string_t sData[][2] = {
+            const std::tstring sData[][2] = {
                 {xT("libm.so"), xT("cos")}
             };
         #endif
@@ -45,22 +45,22 @@ CxTest_CxDll::bUnit(
         CxDll objDll;
 
         m_bRes = objDll.bIsLoaded();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
 
         //-------------------------------------
         //bLoad
         m_bRes = objDll.bLoad(sData[i][0]);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         //-------------------------------------
         //bIsProcExists
         m_bRes = objDll.bIsProcExists(sData[i][1]);
-        xTEST_EQ(TRUE, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         //-------------------------------------
         //fpGetProcAddress
@@ -91,14 +91,14 @@ CxTest_CxDll::bUnit(
         //-------------------------------------
         //bFree
         m_bRes = objDll.bFree();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     } //for
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

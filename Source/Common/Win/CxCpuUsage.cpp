@@ -107,10 +107,10 @@ CxCpuUsage::~CxCpuUsage() {
 }
 //---------------------------------------------------------------------------
 //TODO: FUNCTION_NAME (COMMENTS)
-BOOL
-CxCpuUsage::EnablePerformaceCounters(BOOL bEnable) {
+bool
+CxCpuUsage::EnablePerformaceCounters(bool bEnable) {
     if (GetPlatform() != WIN2K_XP)
-        return TRUE;
+        return true;
 
 
     std::auto_ptr<TRegistry> regKey(new TRegistry(KEY_ALL_ACCESS));
@@ -119,19 +119,19 @@ CxCpuUsage::EnablePerformaceCounters(BOOL bEnable) {
     regKey->RootKey = HKEY_LOCAL_MACHINE;
 
     if (regKey->OpenKey("SYSTEM\\CurrentControlSet\\Services\\PerfOS\\Performance", true) != ERROR_SUCCESS)
-        return FALSE;
+        return false;
 
     regKey->WriteBool("Disable Performance Counters", !bEnable);
     regKey->CloseKey();
 
     regKey->RootKey = HKEY_LOCAL_MACHINE;
     if (regKey->OpenKey("SYSTEM\\CurrentControlSet\\Services\\PerfProc\\Performance", true) != ERROR_SUCCESS)
-        return FALSE;
+        return false;
 
     regKey->WriteBool("Disable Performance Counters", !bEnable);
     regKey->CloseKey();
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: - FUNCTION_NAME (COMMENTS)
@@ -208,6 +208,7 @@ CxCpuUsage::GetCpuUsage() {
     CpuUsage = (INT)(f + 0.5);    // rounding the result
     if (CpuUsage < 0)
         return 0;
+
     return CpuUsage;
 }
 //---------------------------------------------------------------------------

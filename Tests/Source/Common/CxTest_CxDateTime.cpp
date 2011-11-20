@@ -17,7 +17,7 @@ CxTest_CxDateTime::~CxTest_CxDateTime() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxDateTime::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -34,11 +34,11 @@ CxTest_CxDateTime::bUnit(
     {
         CxDateTime dtDT;
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("00.00.0000 0:00:00:000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("00.00.0000 0:00:00:000")), m_sRes);
     }
 
     //-------------------------------------
-    //CxDateTime(const std::string_t &csDT, EFormatType ftFormat)
+    //CxDateTime(const std::tstring &csDT, EFormatType ftFormat)
     xTEST_BLOCK(cullBlockLoops)
     {
         const CxDateTime::EFormatType caftFormats[] = {
@@ -48,7 +48,7 @@ CxTest_CxDateTime::bUnit(
             CxDateTime::ftRFC1123   //Wdy, DD Mon YYYY HH:MM:SS GMT
         };
 
-        const std::string_t casDateTime[] = {
+        const std::tstring casDateTime[] = {
             ////xT("23.05.33.555"),             //HH.MM.SS.MMM
             ////xT("31.07.1978"),               //DD.MM.YYYY
             ////xT("24.01.1977 12.12.12.222"),  //DD.MM.YYYY HH.MM.SS.MMM
@@ -70,11 +70,11 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDT1(2010, 7, 8, 3, 15, 6, 111);
         CxDateTime dtDT2(dtDT1);
         m_sRes = dtDT2.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("08.07.2010 3:15:06:111")), m_sRes);
+        xTEST_EQ(std::tstring(xT("08.07.2010 3:15:06:111")), m_sRes);
 
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("14.01.2010 17:00:55:666")), m_sRes);
+        xTEST_EQ(std::tstring(xT("14.01.2010 17:00:55:666")), m_sRes);
     }
 
     //CxDateTime(ULONGLONG ullMSec);
@@ -82,7 +82,7 @@ CxTest_CxDateTime::bUnit(
     {
         CxDateTime dtDT(1000 * 60 * 60);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("00.00.0000 1:00:00:000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("00.00.0000 1:00:00:000")), m_sRes);
     }
 
     //CxDateTime(USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMSec);
@@ -90,7 +90,7 @@ CxTest_CxDateTime::bUnit(
     {
         CxDateTime dtDT(12, 20, 37, 555);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("00.00.0000 12:20:37:555")), m_sRes);
+        xTEST_EQ(std::tstring(xT("00.00.0000 12:20:37:555")), m_sRes);
     }
 
     //CxDateTime(USHORT usYear, USHORT usMonth, USHORT usDay);
@@ -98,7 +98,7 @@ CxTest_CxDateTime::bUnit(
     {
         CxDateTime dtDT(2010, 7, 8);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("08.07.2010 0:00:00:000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("08.07.2010 0:00:00:000")), m_sRes);
     }
 
     //CxDateTime(USHORT usYear, USHORT usMonth, USHORT usDay, USHORT usHour, USHORT usMinute, USHORT usSecond, USHORT usMSec);
@@ -106,7 +106,7 @@ CxTest_CxDateTime::bUnit(
     {
         CxDateTime dtDT(2010, 8, 18, 14, 0, 5, 777);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("18.08.2010 14:00:05:777")), m_sRes);
+        xTEST_EQ(std::tstring(xT("18.08.2010 14:00:05:777")), m_sRes);
     }
 
 
@@ -123,7 +123,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 == dtDt2);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -134,7 +134,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 != dtDt2);
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
@@ -145,7 +145,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 < dtDt2);
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
@@ -156,7 +156,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 <= dtDt2);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -167,7 +167,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 > dtDt2);
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
@@ -178,7 +178,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 >= dtDt2);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
 
@@ -196,7 +196,7 @@ CxTest_CxDateTime::bUnit(
 
         dtDt = ullMSec;
         m_sRes = dtDt.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("00.00.0000 1:00:00:000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("00.00.0000 1:00:00:000")), m_sRes);
     }
 
     //-------------------------------------
@@ -207,11 +207,11 @@ CxTest_CxDateTime::bUnit(
 
         dtDT = CxDateTime() + CxDateTime(1000 * 60 * 60);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("00.00.0000 1:00:00:000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("00.00.0000 1:00:00:000")), m_sRes);
 
         dtDT = dtDT - CxDateTime(1000 * 60 * 60 / 2);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("00.00.0000 0:30:00:000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("00.00.0000 0:30:00:000")), m_sRes);
     }
 
     //-------------------------------------
@@ -223,7 +223,7 @@ CxTest_CxDateTime::bUnit(
 
         dtDt1 += dtDt2;
         m_sRes = dtDt1.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("00.00.0000 2:30:00:000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("00.00.0000 2:30:00:000")), m_sRes);
     }
 
     //-------------------------------------
@@ -235,7 +235,7 @@ CxTest_CxDateTime::bUnit(
 
         dtDt1 -= dtDt2;
         m_sRes = dtDt1.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("00.00.0000 0:20:00:000")), m_sRes);
+        xTEST_EQ(std::tstring(xT("00.00.0000 0:20:00:000")), m_sRes);
     }
 
 
@@ -259,10 +259,10 @@ CxTest_CxDateTime::bUnit(
         USHORT     usMSec   = 666;
 
         m_bRes = dtDT.bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = dtDT.bGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xTEST_EQ((USHORT)2010, usYear);
         xTEST_EQ((USHORT)1,    usMonth);
@@ -314,10 +314,10 @@ CxTest_CxDateTime::bUnit(
         USHORT     usMSec   = 0;
 
         m_bRes = dtDT.bSet(ui64DT);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = dtDT.bGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xTEST_EQ((USHORT)0, usYear);
         xTEST_EQ((USHORT)0, usMonth);
@@ -353,28 +353,28 @@ CxTest_CxDateTime::bUnit(
     {
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRes = dtDT.sFormat(CxDateTime::ftTime);
-        xTEST_EQ(std::string_t(xT("17:00:55:666")), m_sRes);
+        xTEST_EQ(std::tstring(xT("17:00:55:666")), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
     {
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRes = dtDT.sFormat(CxDateTime::ftDate);
-        xTEST_EQ(std::string_t(xT("14.01.2010")), m_sRes);
+        xTEST_EQ(std::tstring(xT("14.01.2010")), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
     {
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRes = dtDT.sFormat(CxDateTime::ftDateTime);
-        xTEST_EQ(std::string_t(xT("14.01.2010 17:00:55:666")), m_sRes);
+        xTEST_EQ(std::tstring(xT("14.01.2010 17:00:55:666")), m_sRes);
     }
 
     xTEST_BLOCK(cullBlockLoops)
     {
         CxDateTime dtDT(2011, 3, 19, 1, 35, 55, 666);
         m_sRes = dtDT.sFormat(CxDateTime::ftRFC1123);
-        xTEST_EQ(std::string_t(xT("Sat, 19 Mar 2011 01:35:55 GMT")), m_sRes);
+        xTEST_EQ(std::tstring(xT("Sat, 19 Mar 2011 01:35:55 GMT")), m_sRes);
     }
 
 
@@ -413,7 +413,7 @@ CxTest_CxDateTime::bUnit(
     //                USHORT usMSec   = causiValid[i][6];
     //
     //                m_bRes = CxDateTime::bIsValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-    //                xTEST_EQ(TRUE, m_bRes);
+    //                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -440,7 +440,7 @@ CxTest_CxDateTime::bUnit(
                 ////USHORT usMSec   = causiNonValid[i][6];
 
                 ////m_bRes = CxDateTime::bIsValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-                ////xTEST_DIFF(FALSE, m_bRes);
+                ////xTEST_DIFF(false, m_bRes);
             }
         }
     }
@@ -468,7 +468,7 @@ CxTest_CxDateTime::bUnit(
             CxDateTime dtNowDT;
 
             m_sRes = dtNowDT.dtGetCurrent().sFormat(CxDateTime::ftDateTime);
-            xTEST_DIFF(std::string_t(xT("00.00.0000 0:00:00:000")), m_sRes);
+            xTEST_DIFF(std::tstring(xT("00.00.0000 0:00:00:000")), m_sRes);
         }
 
         //2
@@ -523,7 +523,7 @@ CxTest_CxDateTime::bUnit(
 
             ////for (size_t i = 0; i < xARRAY_SIZE(causValid); ++ i) {
             ////    m_bRes = CxDateTime::bIsLeapYear(causValid[i]);
-            ////    xTEST_EQ(TRUE, m_bRes);
+            ////    xTEST_EQ(true, m_bRes);
             ////}
         }
 
@@ -535,7 +535,7 @@ CxTest_CxDateTime::bUnit(
 
             ////for (size_t i = 0; i < xARRAY_SIZE(causNonValid); ++ i) {
             ////    m_bRes = CxDateTime::bIsLeapYear(causNonValid[i]);
-            ////    xTEST_DIFF(FALSE, m_bRes);
+            ////    xTEST_DIFF(false, m_bRes);
             ////}
         }
     }
@@ -563,7 +563,7 @@ CxTest_CxDateTime::bUnit(
             FILETIME     ftFileTime  = {0};
 
             m_bRes = CxDateTime::bUnixTimeToFileTime(ctmUnixTime, &ftFileTime);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #endif
     }
 
@@ -609,15 +609,15 @@ CxTest_CxDateTime::bUnit(
         -----------------------------------------------------
         */
 
-        const std::string_t sTestData[][3] = {
+        const std::tstring sTestData[][3] = {
             {xT("7"), xT("31"), xT("Лев")},
             {xT("5"), xT("18"), xT("Телец")},
         };
 
         for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::string_t sStr1 = CxDateTime::sGetZodiacSign(CxString::lexical_cast<int>(sTestData[i][0]),
+            std::tstring sStr1 = CxDateTime::sGetZodiacSign(CxString::lexical_cast<int>(sTestData[i][0]),
                                                        CxString::lexical_cast<int>(sTestData[i][1]));
-            std::string_t sStr2 = sTestData[i][2];
+            std::tstring sStr2 = sTestData[i][2];
             xTEST_EQ(sStr1, sStr2);
         }
     #endif
@@ -627,76 +627,76 @@ CxTest_CxDateTime::bUnit(
     //sGetMonthStr
     xTEST_BLOCK(cullBlockLoops)
     {
-        //bIsShortName = FALSE
-        m_sRes = CxDateTime::sGetMonthStr((USHORT)- 1, FALSE);
-        xTEST_EQ(std::string_t(xT("December")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(0, FALSE);
-        xTEST_EQ(std::string_t(xT("January")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(1, FALSE);
-        xTEST_EQ(std::string_t(xT("January")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(2, FALSE);
-        xTEST_EQ(std::string_t(xT("February")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(3, FALSE);
-        xTEST_EQ(std::string_t(xT("March")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(4, FALSE);
-        xTEST_EQ(std::string_t(xT("April")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(5, FALSE);
-        xTEST_EQ(std::string_t(xT("May")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(6, FALSE);
-        xTEST_EQ(std::string_t(xT("June")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(7, FALSE);
-        xTEST_EQ(std::string_t(xT("July")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(8, FALSE);
-        xTEST_EQ(std::string_t(xT("August")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(9, FALSE);
-        xTEST_EQ(std::string_t(xT("September")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(10, FALSE);
-        xTEST_EQ(std::string_t(xT("October")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(11, FALSE);
-        xTEST_EQ(std::string_t(xT("November")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(12, FALSE);
-        xTEST_EQ(std::string_t(xT("December")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(13, FALSE);
-        xTEST_EQ(std::string_t(xT("December")), m_sRes);
+        //bIsShortName = false
+        m_sRes = CxDateTime::sGetMonthStr((USHORT)- 1, false);
+        xTEST_EQ(std::tstring(xT("December")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(0, false);
+        xTEST_EQ(std::tstring(xT("January")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(1, false);
+        xTEST_EQ(std::tstring(xT("January")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(2, false);
+        xTEST_EQ(std::tstring(xT("February")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(3, false);
+        xTEST_EQ(std::tstring(xT("March")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(4, false);
+        xTEST_EQ(std::tstring(xT("April")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(5, false);
+        xTEST_EQ(std::tstring(xT("May")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(6, false);
+        xTEST_EQ(std::tstring(xT("June")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(7, false);
+        xTEST_EQ(std::tstring(xT("July")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(8, false);
+        xTEST_EQ(std::tstring(xT("August")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(9, false);
+        xTEST_EQ(std::tstring(xT("September")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(10, false);
+        xTEST_EQ(std::tstring(xT("October")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(11, false);
+        xTEST_EQ(std::tstring(xT("November")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(12, false);
+        xTEST_EQ(std::tstring(xT("December")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(13, false);
+        xTEST_EQ(std::tstring(xT("December")), m_sRes);
 
-        //bIsShortName = TRUE
-        m_sRes = CxDateTime::sGetMonthStr((USHORT)- 1, TRUE);
-        xTEST_EQ(std::string_t(xT("Dec")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(0, TRUE);
-        xTEST_EQ(std::string_t(xT("Jan")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(1, TRUE);
-        xTEST_EQ(std::string_t(xT("Jan")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(2, TRUE);
-        xTEST_EQ(std::string_t(xT("Feb")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(3, TRUE);
-        xTEST_EQ(std::string_t(xT("Mar")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(4, TRUE);
-        xTEST_EQ(std::string_t(xT("Apr")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(5, TRUE);
-        xTEST_EQ(std::string_t(xT("May")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(6, TRUE);
-        xTEST_EQ(std::string_t(xT("Jun")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(7, TRUE);
-        xTEST_EQ(std::string_t(xT("Jul")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(8, TRUE);
-        xTEST_EQ(std::string_t(xT("Aug")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(9, TRUE);
-        xTEST_EQ(std::string_t(xT("Sep")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(10, TRUE);
-        xTEST_EQ(std::string_t(xT("Oct")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(11, TRUE);
-        xTEST_EQ(std::string_t(xT("Nov")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(12, TRUE);
-        xTEST_EQ(std::string_t(xT("Dec")), m_sRes);
-        m_sRes = CxDateTime::sGetMonthStr(13, TRUE);
-        xTEST_EQ(std::string_t(xT("Dec")), m_sRes);
+        //bIsShortName = true
+        m_sRes = CxDateTime::sGetMonthStr((USHORT)- 1, true);
+        xTEST_EQ(std::tstring(xT("Dec")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(0, true);
+        xTEST_EQ(std::tstring(xT("Jan")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(1, true);
+        xTEST_EQ(std::tstring(xT("Jan")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(2, true);
+        xTEST_EQ(std::tstring(xT("Feb")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(3, true);
+        xTEST_EQ(std::tstring(xT("Mar")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(4, true);
+        xTEST_EQ(std::tstring(xT("Apr")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(5, true);
+        xTEST_EQ(std::tstring(xT("May")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(6, true);
+        xTEST_EQ(std::tstring(xT("Jun")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(7, true);
+        xTEST_EQ(std::tstring(xT("Jul")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(8, true);
+        xTEST_EQ(std::tstring(xT("Aug")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(9, true);
+        xTEST_EQ(std::tstring(xT("Sep")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(10, true);
+        xTEST_EQ(std::tstring(xT("Oct")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(11, true);
+        xTEST_EQ(std::tstring(xT("Nov")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(12, true);
+        xTEST_EQ(std::tstring(xT("Dec")), m_sRes);
+        m_sRes = CxDateTime::sGetMonthStr(13, true);
+        xTEST_EQ(std::tstring(xT("Dec")), m_sRes);
     }
 
     //--------------------------------------------------
     //usGetMonthNum
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t casMonths[12][2] = {
+        const std::tstring casMonths[12][2] = {
             { xT("January"),    xT("Jan") },
             { xT("February"),   xT("Feb") },
             { xT("March"),      xT("Mar") },
@@ -712,23 +712,23 @@ CxTest_CxDateTime::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casMonths); ++ i) {
-            m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][0], FALSE);
+            m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][0], false);
             xTEST_EQ((USHORT)(i + 1), m_usiRes);
 
-            m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][1], TRUE);
+            m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][1], true);
             xTEST_EQ((USHORT)(i + 1), m_usiRes);
 
             if (xT("May") == casMonths[i][0] || xT("May") == casMonths[i][1]) {
-                m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][0], TRUE);
+                m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][0], true);
                 xTEST_EQ((USHORT)(i + 1), m_usiRes);
 
-                m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][1], FALSE);
+                m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][1], false);
                 xTEST_EQ((USHORT)(i + 1), m_usiRes);
             } else {
-                m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][0], TRUE);
+                m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][0], true);
                 xTEST_EQ((USHORT)- 1, m_usiRes);
 
-                m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][1], FALSE);
+                m_usiRes = CxDateTime::usGetMonthNum(casMonths[i][1], false);
                 xTEST_EQ((USHORT)- 1, m_usiRes);
             }
         }
@@ -738,48 +738,48 @@ CxTest_CxDateTime::bUnit(
     //sGetWeekDayStr
     xTEST_BLOCK(cullBlockLoops)
     {
-        //bIsShortName = FALSE
-        m_sRes = CxDateTime::sGetWeekDayStr(0, FALSE);
-        xTEST_EQ(std::string_t(xT("Sunday")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(1, FALSE);
-        xTEST_EQ(std::string_t(xT("Monday")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(2, FALSE);
-        xTEST_EQ(std::string_t(xT("Tuesday")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(3, FALSE);
-        xTEST_EQ(std::string_t(xT("Wednesday")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(4, FALSE);
-        xTEST_EQ(std::string_t(xT("Thursday")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(5, FALSE);
-        xTEST_EQ(std::string_t(xT("Friday")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(6, FALSE);
-        xTEST_EQ(std::string_t(xT("Saturday")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(7, FALSE);
-        xTEST_EQ(std::string_t(xT("Saturday")), m_sRes);
+        //bIsShortName = false
+        m_sRes = CxDateTime::sGetWeekDayStr(0, false);
+        xTEST_EQ(std::tstring(xT("Sunday")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(1, false);
+        xTEST_EQ(std::tstring(xT("Monday")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(2, false);
+        xTEST_EQ(std::tstring(xT("Tuesday")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(3, false);
+        xTEST_EQ(std::tstring(xT("Wednesday")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(4, false);
+        xTEST_EQ(std::tstring(xT("Thursday")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(5, false);
+        xTEST_EQ(std::tstring(xT("Friday")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(6, false);
+        xTEST_EQ(std::tstring(xT("Saturday")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(7, false);
+        xTEST_EQ(std::tstring(xT("Saturday")), m_sRes);
 
-        //bIsShortName = TRUE
-        m_sRes = CxDateTime::sGetWeekDayStr(0, TRUE);
-        xTEST_EQ(std::string_t(xT("Sun")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(1, TRUE);
-        xTEST_EQ(std::string_t(xT("Mon")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(2, TRUE);
-        xTEST_EQ(std::string_t(xT("Tue")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(3, TRUE);
-        xTEST_EQ(std::string_t(xT("Wed")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(4, TRUE);
-        xTEST_EQ(std::string_t(xT("Thu")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(5, TRUE);
-        xTEST_EQ(std::string_t(xT("Fri")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(6, TRUE);
-        xTEST_EQ(std::string_t(xT("Sat")), m_sRes);
-        m_sRes = CxDateTime::sGetWeekDayStr(7, TRUE);
-        xTEST_EQ(std::string_t(xT("Sat")), m_sRes);
+        //bIsShortName = true
+        m_sRes = CxDateTime::sGetWeekDayStr(0, true);
+        xTEST_EQ(std::tstring(xT("Sun")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(1, true);
+        xTEST_EQ(std::tstring(xT("Mon")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(2, true);
+        xTEST_EQ(std::tstring(xT("Tue")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(3, true);
+        xTEST_EQ(std::tstring(xT("Wed")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(4, true);
+        xTEST_EQ(std::tstring(xT("Thu")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(5, true);
+        xTEST_EQ(std::tstring(xT("Fri")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(6, true);
+        xTEST_EQ(std::tstring(xT("Sat")), m_sRes);
+        m_sRes = CxDateTime::sGetWeekDayStr(7, true);
+        xTEST_EQ(std::tstring(xT("Sat")), m_sRes);
     }
 
     //--------------------------------------------------
     //usGetWeekDayNum
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t casDays[7][2] = {
+        const std::tstring casDays[7][2] = {
             { xT("Sunday"),     xT("Sun") },
             { xT("Monday"),     xT("Mon") },
             { xT("Tuesday"),    xT("Tue"} ),
@@ -790,20 +790,20 @@ CxTest_CxDateTime::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casDays); ++ i) {
-            m_usiRes = CxDateTime::usGetWeekDayNum(casDays[i][0], FALSE);
+            m_usiRes = CxDateTime::usGetWeekDayNum(casDays[i][0], false);
             xTEST_EQ((USHORT)i, m_usiRes);
 
-            m_usiRes = CxDateTime::usGetWeekDayNum(casDays[i][1], TRUE);
+            m_usiRes = CxDateTime::usGetWeekDayNum(casDays[i][1], true);
             xTEST_EQ((USHORT)i, m_usiRes);
 
-            m_usiRes = CxDateTime::usGetWeekDayNum(casDays[i][0], TRUE);
+            m_usiRes = CxDateTime::usGetWeekDayNum(casDays[i][0], true);
             xTEST_EQ((USHORT)- 1, m_usiRes);
 
-            m_usiRes = CxDateTime::usGetWeekDayNum(casDays[i][1], FALSE);
+            m_usiRes = CxDateTime::usGetWeekDayNum(casDays[i][1], false);
             xTEST_EQ((USHORT)- 1, m_usiRes);
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

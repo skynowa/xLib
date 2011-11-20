@@ -16,11 +16,11 @@ class CxLocale :
     /// locale
 {
     public:
-       static std::string_t sGetCurrent();
+       static std::tstring sGetCurrent();
               ///< get current
-       static BOOL         bSetCurrent(const std::string_t &csLocale);
+       static bool         bSetCurrent(const std::tstring &csLocale);
                  ///< set current
-       static BOOL         bSetDefault();
+       static bool         bSetDefault();
                  ///< set default
 
     private:

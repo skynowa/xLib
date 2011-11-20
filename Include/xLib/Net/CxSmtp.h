@@ -22,14 +22,14 @@ class CxSmtp :
                             CxSmtp     ();
                            ~CxSmtp     ();
 
-        BOOL                bCreate    (const std::string &csUser, const std::string &csPass, const std::string &csServer, USHORT usPort);
-        BOOL                bConnect   ();
-        BOOL                bLogin     ();
-        BOOL                bNoop      ();
-        BOOL                bRset      ();
-        BOOL                bSendRaw   (const std::string &csFilePath, const std::string &csFrom, const std::string &csTo);
-        BOOL                bSend      (const std::string &csText, const std::string &sFrom, const std::string &sTo);
-        BOOL                bDisconnect();
+        bool                bCreate    (const std::string &csUser, const std::string &csPass, const std::string &csServer, USHORT usPort);
+        bool                bConnect   ();
+        bool                bLogin     ();
+        bool                bNoop      ();
+        bool                bRset      ();
+        bool                bSendRaw   (const std::string &csFilePath, const std::string &csFrom, const std::string &csTo);
+        bool                bSend      (const std::string &csText, const std::string &sFrom, const std::string &sTo);
+        bool                bDisconnect();
 
     private:
         CxTcpClient         _m_scktSocket;
@@ -38,10 +38,10 @@ class CxSmtp :
         std::string         _m_sPass;
         std::string         _m_sServer;
         USHORT              _m_usPort;
-        BOOL                _m_bConnected;
+        bool                _m_bConnected;
 
-        BOOL                _bCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/
-        BOOL                _bIsError   (const std::string &csText);
+        bool                _bCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/
+        bool                _bIsError   (const std::string &csText);
 };
 
 xNAMESPACE_END(NxLib)

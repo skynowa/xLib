@@ -34,9 +34,9 @@ CxInputBox::~CxInputBox() {
 //---------------------------------------------------------------------------
 CxInputBox::EModalResult
 CxInputBox::mrShowModal(
-    const std::string_t &csCaption,
-    const std::string_t &csPrompt,
-    const std::string_t &csText
+    const std::tstring &csCaption,
+    const std::tstring &csPrompt,
+    const std::tstring &csText
 )
 {
     /*DEBUG*/// csCaption - n/a
@@ -150,9 +150,9 @@ CxInputBox::mrShowModal(
         int  iMyTID   = ::GetCurrentThreadId();
         int  iCurrTID = ::GetWindowThreadProcessId(hCurrWnd, 0);
 
-        ::AttachThreadInput  (iMyTID, iCurrTID, TRUE);
+        ::AttachThreadInput  (iMyTID, iCurrTID, true);
         ::SetForegroundWindow(_m_hWndMain);
-        ::AttachThreadInput  (iMyTID, iCurrTID, FALSE);
+        ::AttachThreadInput  (iMyTID, iCurrTID, false);
 
         ////::AnimateWindow(_m_hWndMain, 800, AW_ACTIVATE  | AW_BLEND /*| AW_CENTER*/);
     }
@@ -163,12 +163,12 @@ CxInputBox::mrShowModal(
     //-------------------------------------
     //������� ���������
     MSG  msgMsg  = {0};
-    BOOL bIsDone = FALSE;
+    bool bIsDone = false;
 
     while (!bIsDone) {
         if (::PeekMessage(&msgMsg, NULL, 0, 0, PM_REMOVE)) {
             if (WM_QUIT == msgMsg.message) {
-                bIsDone = TRUE;
+                bIsDone = true;
             }
             else {
                 ::TranslateMessage(&msgMsg);
@@ -179,12 +179,12 @@ CxInputBox::mrShowModal(
 
     ::DestroyWindow(_m_hWndMain);
     bRes = ::UnregisterClass(xT("CxInputBox"), hInstance);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, CxInputBox::mrCancel);
+    /*DEBUG*/xASSERT_RET(false != bRes, CxInputBox::mrCancel);
 
     return static_cast<EModalResult>(msgMsg.wParam);
 }
 //---------------------------------------------------------------------------
-std::string_t
+std::tstring
 CxInputBox::sGetText() {
     return _m_sText;
 }
@@ -220,7 +220,7 @@ CxInputBox::_ms_pWndProc(
                 UINT uiTextSize = ::GetDlgItemText(hWnd, ID_edtText, &pibThis->_m_sText.at(0), pibThis->_m_sText.size());
 
                 //�������� ������ �� '\0'
-                pibThis->_m_sText = std::string_t(pibThis->_m_sText, 0, uiTextSize);
+                pibThis->_m_sText = std::tstring(pibThis->_m_sText, 0, uiTextSize);
 
                 ::PostQuitMessage(mrOk);
                 return 0;

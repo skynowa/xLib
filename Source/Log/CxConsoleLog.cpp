@@ -24,7 +24,7 @@ CxCriticalSection CxConsoleLog::_ms_csConsole;
 //---------------------------------------------------------------------------
 /*explicit*/
 CxConsoleLog::CxConsoleLog(
-    const BOOL cbIsUseTimeStr
+    const bool cbIsUseTimeStr
 ) :
     _m_bIsUseTimeStr(cbIsUseTimeStr)
 {
@@ -36,18 +36,18 @@ CxConsoleLog::~CxConsoleLog() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxConsoleLog::bWrite(
-    const char_t *pcszFormat, ...
+    const tchar *pcszFormat, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
 
     //-------------------------------------
     //time
-    std::string_t sTime;
+    std::tstring sTime;
 
-    if (TRUE == _m_bIsUseTimeStr) {
+    if (true == _m_bIsUseTimeStr) {
         sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
     } else {
         sTime = xT("");
@@ -55,7 +55,7 @@ CxConsoleLog::bWrite(
 
     //-------------------------------------
     //comment
-    std::string_t sParam;
+    std::tstring sParam;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);
@@ -68,7 +68,7 @@ CxConsoleLog::bWrite(
 
     std::tcout << sTime << sParam << std::endl;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

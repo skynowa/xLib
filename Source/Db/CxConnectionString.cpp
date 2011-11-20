@@ -16,23 +16,23 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxConnectionString::sMSJetOleDb40(
-    const std::string_t &csDataSource,
-    const std::string_t &csUserId,
-    const std::string_t &csPassword,
-    const std::string_t &csDatabasePassword
+    const std::tstring &csDataSource,
+    const std::tstring &csUserId,
+    const std::tstring &csPassword,
+    const std::tstring &csDatabasePassword
 )
 {
-    /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(csDataSource).empty(), std::string_t());
+    /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(csDataSource).empty(), std::tstring());
     /*DEBUG*/// csPassword         - n/a
     /*DEBUG*/// csUserId           - n/a
     /*DEBUG*/// csDatabasePassword - n/a
 
-    std::string_t sRes;
+    std::tstring sRes;
 
     sRes =
-        std::string_t() +
+        std::tstring() +
         xT("Provider                                 = Microsoft.Jet.OLEDB.4.0;")                               +
         xT("Data Source                              = ") + CxString::sTrimSpace(csDataSource) + xT(";")        +
         xT("Extended Properties                      = ;")                                                      +
