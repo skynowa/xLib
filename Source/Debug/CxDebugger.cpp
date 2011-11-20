@@ -31,60 +31,60 @@ xNAMESPACE_BEGIN(NxLib)
 *
 *****************************************************************************/
 
-/*static*/ BOOL          CxDebugger::_ms_bIsEnabled = TRUE;
-/*static*/ std::string_t CxDebugger::_ms_sLogPath;
+/*static*/ bool          CxDebugger::_ms_bIsEnabled = true;
+/*static*/ std::tstring CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bGetEnabled() {
     return _ms_bIsEnabled;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bSetEnabled(
-    const BOOL cbFlag
+    const bool cbFlag
 )
 {
     _ms_bIsEnabled = cbFlag;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bIsPresent() {
 #if xOS_ENV_WIN
     BOOL bRes = ::IsDebuggerPresent();
-    xCHECK_RET(TRUE == bRes, TRUE);
+    xCHECK_RET(FALSE != bRes, true);
 
     BOOL bIsRemoteDebuggerPresent = FALSE;
 
     bRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &bIsRemoteDebuggerPresent);
-    xCHECK_RET(FALSE == bRes || FALSE == bIsRemoteDebuggerPresent, FALSE);
+    xCHECK_RET(FALSE == bRes || FALSE == bIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
-    std::string_t sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
-    xCHECK_RET(FALSE == CxString::bCompareNoCase(xT("yes"), sRes), FALSE);
+    std::tstring sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
+    xCHECK_RET(false == CxString::bCompareNoCase(xT("yes"), sRes), false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bIsDebugBuild() {
 #if xBUILD_DEBUG
-    return TRUE;
+    return true;
 #else
-    return FALSE;
+    return false;
 #endif
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bBreak() {
-    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(false == bGetEnabled(), true);
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -96,31 +96,31 @@ CxDebugger::bBreak() {
     #endif
 #elif xOS_ENV_UNIX
     int iRes = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
-    xCHECK_RET(- 1 == iRes, FALSE);
+    xCHECK_RET(- 1 == iRes, false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bSetLogPath(
-    const std::string_t &csFilePath
+    const std::tstring &csFilePath
 )
 {
     _ms_sLogPath = csFilePath;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxDebugger::sGetLogPath() {
     return _ms_sLogPath;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bReportMake(
     const CxReport &crpReport
 )
@@ -145,18 +145,18 @@ CxDebugger::bReportMake(
     //never corrupt the last error value
     (void)CxLastError::bSet(culLastError);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bTrace(
-    const char_t *pcszFormat, ...
+    const tchar *pcszFormat, ...
 )
 {
-    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(false == bGetEnabled(), true);
 
-    std::string_t sRes;
+    std::tstring sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszFormat);
@@ -171,30 +171,31 @@ CxDebugger::bTrace(
 
     std::tcout << sRes << std::endl;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bTrace(
-    const std::string_t &csMsg
+    const std::tstring &csMsg
 )
 {
-    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(false == bGetEnabled(), true);
 
     return bTrace(csMsg.c_str());
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::bBeep(
     const ULONG culFrequency /*= 800*/,
     const ULONG culDuration  /*= 100*/
-) {
+) 
+{
 #if xOS_ENV_WIN
     #if xTODO
-        BOOL bRes = ::Beep(culFrequency, culDuration);
-        xCHECK_RET(FALSE == bRes, FALSE);
+        bool bRes = ::Beep(culFrequency, culDuration);
+        xCHECK_RET(false == bRes, false);
     #endif
 #elif xOS_ENV_UNIX
     #if xOS_FREEBSD
@@ -202,13 +203,13 @@ CxDebugger::bBeep(
     #else
         #if xTODO
             int iRes = std::xTSYSTEM(xT("xkbbell"));
-            xASSERT_RET(- 1 == iRes, FALSE);
+            xASSERT_RET(- 1 == iRes, false);
         #endif
     #endif
 
     #if xTEMP_DISABLED
         Display *display = ::XOpenDisplay(NULL);
-        xCHECK_RET(NULL == display, FALSE);
+        xCHECK_RET(NULL == display, false);
 
         XKeyboardControl xkc;
         xkc.bell_percent  = 10;
@@ -216,17 +217,17 @@ CxDebugger::bBeep(
         xkc.bell_duration = culDuration;    /* ms 100 */
 
         iRes = ::XChangeKeyboardControl(display, KBBellPercent | KBBellPitch | KBBellDuration, &xkc);
-        xCHECK_RET(- 1 == iRes, FALSE);
+        xCHECK_RET(- 1 == iRes, false);
 
         iRes = ::XBell(display, 0);
-        xCHECK_RET(- 1 == iRes, FALSE);
+        xCHECK_RET(- 1 == iRes, false);
 
         iRes = ::XCloseDisplay(display);
-        xCHECK_RET(- 1 == iRes, FALSE);
+        xCHECK_RET(- 1 == iRes, false);
     #endif
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -247,12 +248,12 @@ CxDebugger::~CxDebugger() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::_bMsgboxPlain(
     const CxReport &crpReport
 )
 {
-    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(false == bGetEnabled(), true);
 
 #if xOS_ENV_WIN
     ULONG ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
@@ -263,7 +264,7 @@ CxDebugger::_bMsgboxPlain(
     CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.sGetReport(), CxPath::sGetExe(), ulType);
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
             }
             break;
 
@@ -274,26 +275,26 @@ CxDebugger::_bMsgboxPlain(
             break;
 
         case CxMsgBoxT::mrRetry: {
-                if (TRUE == bIsPresent()) {
+                if (true == bIsPresent()) {
                     (void)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
                 }
             }
             break;
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::_bMsgboxFormated(
     const CxReport &crpReport
 )
 {
-    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(false == bGetEnabled(), true);
 
 #if xOS_ENV_WIN
     //-------------------------------------
@@ -301,7 +302,7 @@ CxDebugger::_bMsgboxFormated(
     CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.sGetReport(), CxPath::sGetExe());
     switch (mrRes) {
         case CxMsgBoxRtf::mrAbort: {
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
             }
             break;
 
@@ -312,11 +313,11 @@ CxDebugger::_bMsgboxFormated(
             break;
 
         case CxMsgBoxRtf::mrRetry: {
-                if (TRUE == bIsPresent()) {
+                if (true == bIsPresent()) {
                     (void)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"), MB_OK | MB_ICONWARNING);
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
                 }
             }
             break;
@@ -328,9 +329,9 @@ CxDebugger::_bMsgboxFormated(
         cmRetry  = xT('r')
     };
 
-    std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, TRUE, FALSE, CxConsole::bgBlack, FALSE );
+    std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, true, false, CxConsole::bgBlack, false );
     std::tcerr << crpReport.sGetReport();
-    std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, TRUE, FALSE, CxConsole::bgBlack, FALSE );
+    std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, true, false, CxConsole::bgBlack, false );
     std::tcerr << xT("\n");
     std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     std::tcerr.flush();
@@ -344,7 +345,7 @@ CxDebugger::_bMsgboxFormated(
         case cmAbort: {
                 std::tcerr << xT("Abort...\n\n");  std::tcerr.flush();
 
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
             }
             break;
 
@@ -357,7 +358,7 @@ CxDebugger::_bMsgboxFormated(
         case cmRetry: {
                 std::tcerr << xT("Retry...\n\n");
 
-                if (TRUE == bIsPresent()) {
+                if (true == bIsPresent()) {
                     (void)bBreak();
                 } else {
                     std::tcerr << xT("\n####################################################################################################\n");
@@ -368,23 +369,23 @@ CxDebugger::_bMsgboxFormated(
                     std::tcerr << xT("\n\n");
                     std::tcerr.flush();
 
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
                 }
             }
             break;
     }
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::_bStdoutPlain(
     const CxReport &crpReport
 )
 {
-    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(false == bGetEnabled(), true);
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -404,7 +405,7 @@ CxDebugger::_bStdoutPlain(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
             }
             break;
 
@@ -417,7 +418,7 @@ CxDebugger::_bStdoutPlain(
         case cmRetry: {
                 std::tcout << xT("Retry...\n\n");
 
-                if (TRUE == bIsPresent()) {
+                if (true == bIsPresent()) {
                     (void)bBreak();
                 } else {
                     std::tcout << xT("\n####################################################################################################\n");
@@ -428,22 +429,22 @@ CxDebugger::_bStdoutPlain(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
                 }
             }
             break;
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::_bStdoutHtml(
     const CxReport &crpReport
 )
 {
-    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(false == bGetEnabled(), true);
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -464,7 +465,7 @@ CxDebugger::_bStdoutHtml(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
             }
             break;
 
@@ -477,7 +478,7 @@ CxDebugger::_bStdoutHtml(
         case cmRetry: {
                 std::tcout << xT("Retry...\n\n");
 
-                if (TRUE == bIsPresent()) {
+                if (true == bIsPresent()) {
                     (void)bBreak();
                 } else {
                     std::tcout << xT("\n####################################################################################################\n");
@@ -488,7 +489,7 @@ CxDebugger::_bStdoutHtml(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), FALSE);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
                 }
             }
             break;
@@ -496,20 +497,20 @@ CxDebugger::_bStdoutHtml(
 
     std::tcout << xT("</pre>");  std::tcout.flush();
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::_bLoggingPlain(
     const CxReport &crpReport
 )
 {
-    xCHECK_RET(FALSE == bGetEnabled(), TRUE);
+    xCHECK_RET(false == bGetEnabled(), true);
 
     //--------------------------------------------------
     //get log file path
-    std::string_t sFilePath;
+    std::tstring sFilePath;
 
     if (true == sGetLogPath().empty()) {
         sFilePath = CxPath::sSetExt(CxPath::sGetExe(), xT("debug"));
@@ -520,10 +521,10 @@ CxDebugger::_bLoggingPlain(
     //--------------------------------------------------
     //write to file
     std::FILE *pFile = std::xTFOPEN(sFilePath.c_str(), xT("ab"));
-    xCHECK_RET(NULL == pFile, FALSE);
+    xCHECK_RET(NULL == pFile, false);
 
     try {
-        const std::string_t csMsg = CxString::sFormat(
+        const std::tstring csMsg = CxString::sFormat(
             xT("\n")
             xT("####################################################################################################\n")
             xT("%s\n")
@@ -537,18 +538,18 @@ CxDebugger::_bLoggingPlain(
 
     xFCLOSE(pFile);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxDebugger::_bLoggingHtml(
     const CxReport &crpReport
 )
 {
     //TODO: bLoggingHtml
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

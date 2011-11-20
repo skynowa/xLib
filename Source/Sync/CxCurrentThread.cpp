@@ -16,20 +16,20 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxCurrentThread::bIsCurrent(
     const CxThread::TxId culId
 )
 {
     /*DEBUG*/
 
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
 #if xOS_ENV_WIN
-    bRes = static_cast<BOOL>( ulGetId() == culId );
+    bRes = static_cast<bool>( ulGetId() == culId );
 #elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    bRes = static_cast<BOOL>( ::pthread_equal(ulGetId(), culId) );
+    bRes = static_cast<bool>( ::pthread_equal(ulGetId(), culId) );
 #endif
 
     return bRes;
@@ -72,7 +72,7 @@ CxCurrentThread::hGetHandle() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxCurrentThread::bYield() {
     /*DEBUG*/// n/a
 
@@ -80,14 +80,14 @@ CxCurrentThread::bYield() {
     (void)::SwitchToThread();
 #elif xOS_ENV_UNIX
     int iRes = ::sched_yield();
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxCurrentThread::bSleep(
     const ULONG culMsec
 ) {
@@ -111,7 +111,7 @@ CxCurrentThread::bSleep(
     }
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

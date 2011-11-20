@@ -27,7 +27,7 @@ class CxDateTime
         //constructors, destructor
                             CxDateTime          ();
             ///< constructor
-        explicit            CxDateTime          (const std::string_t &csDT, const EFormatType cftFormat);
+        explicit            CxDateTime          (const std::tstring &csDT, const EFormatType cftFormat);
             ///< constructor
         /*explicit*/        CxDateTime          (const CxDateTime &cdtDT);
             ///< constructor
@@ -43,17 +43,17 @@ class CxDateTime
             ///< destructor
 
         //comparison operators
-        BOOL                operator ==         (const CxDateTime &cdtDT) const;
+        bool                operator ==         (const CxDateTime &cdtDT) const;
             ///< operator ==
-        BOOL                operator !=         (const CxDateTime &cdtDT) const;
+        bool                operator !=         (const CxDateTime &cdtDT) const;
             ///< operator !=
-        BOOL                operator <          (const CxDateTime &cdtDT) const;
+        bool                operator <          (const CxDateTime &cdtDT) const;
             ///< operator <
-        BOOL                operator <=         (const CxDateTime &cdtDT) const;
+        bool                operator <=         (const CxDateTime &cdtDT) const;
             ///< operator <=
-        BOOL                operator >          (const CxDateTime &cdtDT) const;
+        bool                operator >          (const CxDateTime &cdtDT) const;
             ///< operator >
-        BOOL                operator >=         (const CxDateTime &cdtDT) const;
+        bool                operator >=         (const CxDateTime &cdtDT) const;
             ///< operator >=
 
         //assignment operators
@@ -78,13 +78,13 @@ class CxDateTime
         //--
 
         //get/set
-        BOOL                bGet                (USHORT *pusYear, USHORT *pusMonth, USHORT *pusDay, USHORT *pusHour, USHORT *pusMinute, USHORT *pusSecond, USHORT *pusMillisecond) const;
+        bool                bGet                (USHORT *pusYear, USHORT *pusMonth, USHORT *pusDay, USHORT *pusHour, USHORT *pusMinute, USHORT *pusSecond, USHORT *pusMillisecond) const;
             ///< get datetime data
         USHORT              usGetDayOfWeek      () const;
             ///< get day of week, days since Sunday 0-6
-        BOOL                bSet                (const ULONGLONG ullMSec);
+        bool                bSet                (const ULONGLONG ullMSec);
             ///< set CxDateTime by milliseconds
-        BOOL                bSet                (const USHORT cusYear, const USHORT cusMonth, const USHORT cusDay, const USHORT cusHour, const USHORT cusMinute, const USHORT cusSecond, const USHORT cusMillisecond);
+        bool                bSet                (const USHORT cusYear, const USHORT cusMonth, const USHORT cusDay, const USHORT cusHour, const USHORT cusMinute, const USHORT cusSecond, const USHORT cusMillisecond);
             ///< set CxDateTime by datetime data
 
         //converting
@@ -96,42 +96,42 @@ class CxDateTime
         #endif
 
         //formating
-        std::string_t        sFormat             (const EFormatType cftFormat) const;
+        std::tstring        sFormat             (const EFormatType cftFormat) const;
             ///< formating
 
         //static
-        static BOOL         bIsValid            (const USHORT cusYear, const USHORT cusMonth, const USHORT cusDay, const USHORT cusHour, const USHORT cusMinute, const USHORT cusSecond, const USHORT cusMillisecond);
+        static bool         bIsValid            (const USHORT cusYear, const USHORT cusMonth, const USHORT cusDay, const USHORT cusHour, const USHORT cusMinute, const USHORT cusSecond, const USHORT cusMillisecond);
             ///< checking for a valid datetime
-        static BOOL         bIsValid            (const CxDateTime &cdtDT);
+        static bool         bIsValid            (const CxDateTime &cdtDT);
             ///< checking for a valid datetime
-               BOOL         bIsValid            () const;
+               bool         bIsValid            () const;
             ///< checking for a valid datetime
 
         static CxDateTime   dtGetCurrent        ();
             ///< get current datetime
         static USHORT       usDaysInMonth       (const USHORT cusYear, const USHORT cusMonth);
             ///< get number days in month
-        static BOOL         bIsLeapYear         (const USHORT cusYear);
+        static bool         bIsLeapYear         (const USHORT cusYear);
             ///< is leap year
     #if xOS_ENV_WIN
         static LONGLONG     i64FiletimeToInt64  (const FILETIME &cftTime);
             ///< convert FILETIME to LONGLONG
-        static BOOL         bUnixTimeToFileTime (const time_t ctmUnixTime, FILETIME *pftFileTime);
+        static bool         bUnixTimeToFileTime (const time_t ctmUnixTime, FILETIME *pftFileTime);
             ///< convert UNIX time_t to Win32 FILETIME
         static time_t       tmFileTimeToUnixTime(const FILETIME &ftFileTime);
             ///< convert Win32 FILETIME to UNIX time_t
     #endif
 
         //other
-        static std::string_t sGetZodiacSign      (const USHORT cusMonth, const USHORT cusDay);
+        static std::tstring sGetZodiacSign      (const USHORT cusMonth, const USHORT cusDay);
             ///< sign of the zodiac by date
-        static std::string_t sGetMonthStr        (USHORT usMonth, const BOOL cbIsShortName);
+        static std::tstring sGetMonthStr        (USHORT usMonth, const bool cbIsShortName);
             ///< get month string
-        static USHORT       usGetMonthNum       (const std::string_t &csMonth, const BOOL cbIsShortName);
+        static USHORT       usGetMonthNum       (const std::tstring &csMonth, const bool cbIsShortName);
             ///< get month number by string
-        static std::string_t sGetWeekDayStr      (USHORT usDay, const BOOL cbIsShortName);
+        static std::tstring sGetWeekDayStr      (USHORT usDay, const bool cbIsShortName);
             ///< get week day string
-        static USHORT       usGetWeekDayNum     (const std::string_t &csDay, const BOOL cbIsShortName);
+        static USHORT       usGetWeekDayNum     (const std::tstring &csDay, const bool cbIsShortName);
             ///< get week day number by string
 
     private:
@@ -156,7 +156,7 @@ class CxDateTime
 
         ULONGLONG           _ullToMilliseconds  () const;
             ///< convert to milliseconds
-        static BOOL         _bParse             (const std::string_t &csDT, const EFormatType cftFormat, CxDateTime *pdtDT);
+        static bool         _bParse             (const std::tstring &csDT, const EFormatType cftFormat, CxDateTime *pdtDT);
             ///< parsing datetime string
 };
 

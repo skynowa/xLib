@@ -17,7 +17,7 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxEvent::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -25,10 +25,10 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     //hGet
     {
-        CxEvent objEvent(TRUE, TRUE);
+        CxEvent objEvent(true, true);
 
         #if xOS_ENV_WIN
-            xTEST_DIFF(FALSE, objEvent.hGet().bIsValid())
+            xTEST_DIFF(false, objEvent.hGet().bIsValid())
         #elif xOS_ENV_UNIX
             //TODO: hRes
         #endif
@@ -38,17 +38,17 @@ CxTest_CxEvent::bUnit(
     //bIsSignaled
     {
         {
-            CxEvent objEvent(TRUE, TRUE);
+            CxEvent objEvent(true, true);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         {
-            CxEvent objEvent(TRUE, FALSE);
+            CxEvent objEvent(true, false);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
         }
     }
 
@@ -58,22 +58,22 @@ CxTest_CxEvent::bUnit(
         const size_t cuiSpinCount = 3;
 
 
-        CxEvent objEvent(TRUE, TRUE);
+        CxEvent objEvent(true, true);
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bSet();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -83,22 +83,22 @@ CxTest_CxEvent::bUnit(
         const size_t cuiSpinCount = 3;
 
 
-        CxEvent objEvent(TRUE, TRUE);
+        CxEvent objEvent(true, true);
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bSet();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
         }
     }
 
@@ -106,8 +106,8 @@ CxTest_CxEvent::bUnit(
     //bWait
     {
         {
-            const BOOL cbIsAutoReset  = FALSE;
-            const BOOL cbInitialState = FALSE;
+            const bool cbIsAutoReset  = false;
+            const bool cbInitialState = false;
 
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
@@ -123,8 +123,8 @@ CxTest_CxEvent::bUnit(
         }
 
         {
-            const BOOL cbIsAutoReset  = TRUE;
-            const BOOL cbInitialState = TRUE;
+            const bool cbIsAutoReset  = true;
+            const bool cbInitialState = true;
 
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
@@ -140,10 +140,10 @@ CxTest_CxEvent::bUnit(
                                                                   //Windows - osTimeout
         #endif
             m_bRes = objEvent.bIsSignaled();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

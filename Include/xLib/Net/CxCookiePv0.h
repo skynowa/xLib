@@ -18,64 +18,64 @@ class CxCookiePv0 :
     public:
         explicit             CxCookiePv0 ();
             ///< constructor
-                             CxCookiePv0 (const std::string_t &csRawCookie);
+                             CxCookiePv0 (const std::tstring &csRawCookie);
             ///< constructor
         virtual             ~CxCookiePv0 ();
             ///< constructor
 
-        BOOL                 bInit     (const std::string_t &csRawCookie);
+        bool                 bInit     (const std::tstring &csRawCookie);
             ///< parsing raw cookie string
 
-        const std::string_t & sGetName    () const;
+        const std::tstring & sGetName    () const;
             ///< get name
-        BOOL                 bSetName    (const std::string_t &csName);
+        bool                 bSetName    (const std::tstring &csName);
             ///< set name
 
-        const std::string_t & sGetValue   () const;
+        const std::tstring & sGetValue   () const;
             ///< get value
-        BOOL                 bSetValue   (const std::string_t &csValue);
+        bool                 bSetValue   (const std::tstring &csValue);
             ///< set value
 
-        const std::string_t & sGetDomain  () const;
+        const std::tstring & sGetDomain  () const;
             ///< get domain
-        BOOL                 bSetDomain  (const std::string_t &csDomain);
+        bool                 bSetDomain  (const std::tstring &csDomain);
             ///< set domain
 
-        const std::string_t & sGetPath    () const;
+        const std::tstring & sGetPath    () const;
             ///< get path
-        BOOL                 bSetPath    (const std::string_t &csPath);
+        bool                 bSetPath    (const std::tstring &csPath);
             ///< set path
 
-        const std::string_t & sGetExpires () const;
+        const std::tstring & sGetExpires () const;
             ///< get expire
-        BOOL                 bSetExpires (const std::string_t &csExpires);
+        bool                 bSetExpires (const std::tstring &csExpires);
             ///< set expire
 
-        BOOL                 bGetSecure  () const;
+        bool                 bGetSecure  () const;
             ///< get secure
-        BOOL                 bSetSecure  (BOOL bFlag);
+        bool                 bSetSecure  (bool bFlag);
             ///< set secure
 
-        BOOL                 bGetHttpOnly() const;
+        bool                 bGetHttpOnly() const;
             ///< get http only
-        BOOL                 bSetHttpOnly(BOOL bFlag);
+        bool                 bSetHttpOnly(bool bFlag);
             ///< set http only
 
-        std::string_t         sToString   () const;
+        std::tstring         sToString   () const;
             ///< convert to string
-        std::string_t         sGetDump    () const;
+        std::tstring         sGetDump    () const;
             ///< get dump
-        BOOL                 bClear      ();
+        bool                 bClear      ();
             ///< clear
 
     private:
-        std::string_t         _m_sName;        ///< name
-        std::string_t         _m_sValue;        ///< value
-        std::string_t         _m_sDomain;    ///< domain
-        std::string_t         _m_sPath;        ///< path
-        std::string_t         _m_sExpires;    ///< expire
-        BOOL                 _m_bSecure;    ///< secure
-        BOOL                 _m_bHttpOnly;    ///< http only
+        std::tstring         _m_sName;        ///< name
+        std::tstring         _m_sValue;        ///< value
+        std::tstring         _m_sDomain;    ///< domain
+        std::tstring         _m_sPath;        ///< path
+        std::tstring         _m_sExpires;    ///< expire
+        bool                 _m_bSecure;    ///< secure
+        bool                 _m_bHttpOnly;    ///< http only
 };
 
 xNAMESPACE_END(NxLib)

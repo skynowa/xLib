@@ -38,28 +38,28 @@ CxBackuper::~CxBackuper() {
 //---------------------------------------------------------------------------
 CxBackuper::EErrorType
 CxBackuper::etExecute(
-    const std::string_t &csFilePath,
-    const std::string_t &csDestDirPath,
-    std::string_t       *psDestFilePath
+    const std::tstring &csFilePath,
+    const std::tstring &csDestDirPath,
+    std::tstring       *psDestFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    etUnknown);
     /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), etUnknown);
 
     EErrorType etRes = etUnknown;
-    BOOL       bRes  = FALSE;
+    bool       bRes  = false;
 
     (*psDestFilePath).clear();
 
     bRes = CxFile::bIsExists(csFilePath);
-    xCHECK_RET(FALSE == bRes, etDestFileNotExists);
+    xCHECK_RET(false == bRes, etDestFileNotExists);
 
     bRes = CxDir::bIsExists(csDestDirPath);
-    xCHECK_DO(FALSE == bRes, CxDir::bCreateForce(csDestDirPath));
+    xCHECK_DO(false == bRes, CxDir::bCreateForce(csDestDirPath));
 
     //-------------------------------------
     //process backup period
-    std::string_t sDateTimeStamp;
+    std::tstring sDateTimeStamp;
 
     switch (_m_cbpPeriod) {
         //TODO: case bpHourly:    { ; }    break;
@@ -74,20 +74,20 @@ CxBackuper::etExecute(
 
     //-------------------------------------
     //format file full name
-    std::string_t sBackupFilePath =
+    std::tstring sBackupFilePath =
                         CxPath::sSlashAppend(csDestDirPath) +
                         CxPath::sGetFullName(csFilePath)    +
                         xT(".bak [") + sDateTimeStamp + xT("]");
 
     bRes = CxFile::bIsExists(sBackupFilePath);
-    xCHECK_DO(TRUE == bRes, *psDestFilePath = sBackupFilePath; return etSuccess);
+    xCHECK_DO(true == bRes, *psDestFilePath = sBackupFilePath; return etSuccess);
 
     //-------------------------------------
     //check for enough space
     ULONGLONG ullTotalFreeBytes = 0ULL;
 
     bRes = CxVolume::bGetFreeSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
-    xCHECK_RET(FALSE == bRes, etUnknown);
+    xCHECK_RET(false == bRes, etUnknown);
 
     if (static_cast<ULONGLONG>( CxFile::liGetSize(csFilePath) ) > ullTotalFreeBytes) {
         return etNotEnoughFreeSpace;
@@ -95,12 +95,12 @@ CxBackuper::etExecute(
 
     //-------------------------------------
     //copy
-    bRes = CxFile::bCopy(csFilePath, sBackupFilePath, TRUE);
-    xCHECK_RET(FALSE == bRes, etCopyingFail);
+    bRes = CxFile::bCopy(csFilePath, sBackupFilePath, true);
+    xCHECK_RET(false == bRes, etCopyingFail);
 
     //-------------------------------------
     //check for a valid backup
-    xCHECK_RET(FALSE                               == CxFile::bIsExists(sBackupFilePath),       etCopyingFail);
+    xCHECK_RET(false                               == CxFile::bIsExists(sBackupFilePath),       etCopyingFail);
     xCHECK_RET(CxFile::liGetSize(csFilePath)       != CxFile::liGetSize(sBackupFilePath),       etCopyingFail);
     xCHECK_RET(CxCrc32::ulCalcFileFast(csFilePath) != CxCrc32::ulCalcFileFast(sBackupFilePath), etCopyingFail);
 

@@ -30,11 +30,11 @@ class CxCriticalSection :
 
         const TxHandle &  hGet             () const;
             ///< get handle
-        BOOL              bLock            ();
+        bool              bLock            ();
             ///< lock
-        BOOL              bTryLock         ();
+        bool              bTryLock         ();
             ///< try lock
-        BOOL              bUnlock          ();
+        bool              bUnlock          ();
             ///< unlock
 
     private:

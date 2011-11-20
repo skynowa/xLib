@@ -37,21 +37,21 @@ class CxProfiler :
         virtual            ~CxProfiler ();
             ///< destructor
 
-        BOOL                bSetLogPath(const std::string_t &csLogPath);
+        bool                bSetLogPath(const std::tstring &csLogPath);
             ///< set log path
-        const std::string_t &sGetLogPath() const;
+        const std::tstring &sGetLogPath() const;
             ///< get log path
 
-        BOOL                bStart     ();
+        bool                bStart     ();
             ///< start measurement
-        BOOL                bStop      (const char_t *pcszComment, ...);
+        bool                bStop      (const tchar *pcszComment, ...);
             ///< stop measurement
-        BOOL                bPulse     (const char_t *pcszComment, ...);
+        bool                bPulse     (const tchar *pcszComment, ...);
             ///< stop, start measurement
 
     private:
         const EMode         _m_pmModeNow;           ///< which mode is running now
-        BOOL                _m_bIsStarted;          ///< is started
+        bool                _m_bIsStarted;          ///< is started
         CxFileLog           _flLog;                 ///< file log
 
         //pmClock
@@ -85,7 +85,7 @@ class CxProfiler :
         FILETIME            _m_lpUserTimeStop;      ///< stop value
     #endif
 
-        BOOL                _bResetData();
+        bool                _bResetData();
             ///< reset all class data
 
     #if xOS_ENV_UNIX && xOS_FREEBSD

@@ -17,7 +17,7 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxAutoProfiler::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -67,6 +67,6 @@ CxTest_CxAutoProfiler::bUnit(
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

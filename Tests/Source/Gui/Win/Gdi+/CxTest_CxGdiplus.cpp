@@ -18,7 +18,7 @@ CxTest_CxGdiplus::~CxTest_CxGdiplus() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxGdiplus::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -30,7 +30,7 @@ CxTest_CxGdiplus::bUnit(
         CxGdiplus gpGdiPlus;
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 #endif

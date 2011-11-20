@@ -23,8 +23,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxTest::CxTest() :
     m_pvRes        (NULL),
     m_chRes        (0),
-    m_blRes        (false),
-    m_bRes         (FALSE),
+    m_bRes         (false),
     m_iRes         (- 1),
     m_siRes        (0),
     m_usiRes       (0),
@@ -55,37 +54,37 @@ CxTest::~CxTest() /* = 0*/ {
     (void)CxDir::bDeleteForce( sGetWorkDirPath() );
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxTest::bRun(
     const ULONGLONG cullUnitLoops,
     const ULONGLONG cullBlockLoops
-)
+) 
 {
     /*DEBUG*/
 
     try {
         for (ULONGLONG i = 0ULL; i < cullUnitLoops; ++ i) {
-            BOOL bRes = bUnit(cullBlockLoops);
-            /*DEBUG*/xASSERT_MSG_RET(FALSE != bRes, sGetName() + xT(": fail"), FALSE);
+            bool bRes = bUnit(cullBlockLoops);
+            /*DEBUG*/xASSERT_MSG_RET(false != bRes, sGetName() + xT(": fail"), false);
         }
     }
     catch (const CxException &e) {
-        /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + e.sGetWhat(), FALSE);
+        /*DEBUG*/xASSERT_MSG_RET(false, sGetName() + xT(": ") + e.sGetWhat(), false);
     }
     catch (const std::exception &cexE) {
         std::string asMsg = cexE.what();
 
-        /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": ") + xS2TS(asMsg), FALSE);
+        /*DEBUG*/xASSERT_MSG_RET(false, sGetName() + xT(": ") + xS2TS(asMsg), false);
     }
     catch (...) {
-        /*DEBUG*/xASSERT_MSG_RET(FALSE, sGetName() + xT(": Unknown test error"), FALSE);
+        /*DEBUG*/xASSERT_MSG_RET(false, sGetName() + xT(": Unknown test error"), false);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest::bUnit(
     const ULONGLONG cullBlockLoops
 ) /*= 0*/
@@ -97,7 +96,7 @@ CxTest::bUnit(
         //[FUNCTION_NAME]
         xTEST_BLOCK(cullBlockLoops)
         {
-            const std::string_t casData[][2] = {
+            const std::tstring casData[][2] = {
                 {xT("TEST_STRING_1"), xT("MUST_BE_1")},
                 {xT("TEST_STRING_2"), xT("MUST_BE_2")},
                 {xT("TEST_STRING_3"), xT("MUST_BE_3")},
@@ -110,12 +109,12 @@ CxTest::bUnit(
         }
     #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxTest::bCreateWorkDir(
-    const std::string_t &csDirName
+    const std::tstring &csDirName
 )
 {
     /*DEBUG*/// n/a
@@ -125,37 +124,37 @@ CxTest::bCreateWorkDir(
     } else {
         _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + csDirName;
 
-        BOOL bRes = CxDir::bCreateForce(_m_sWorkDirPath);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+        bool bRes = CxDir::bCreateForce(_m_sWorkDirPath);
+        /*DEBUG*/xASSERT_RET(false != bRes, false);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxTest::sGetWorkDirPath() const {
     /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxTest::sGetName() const {
     /*DEBUG*/
 
     return _m_sName;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxTest::bSetName(
-    const std::string_t &csTestName
+    const std::tstring &csTestName
 )
 {
     /*DEBUG*/
 
     _m_sName = csTestName;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

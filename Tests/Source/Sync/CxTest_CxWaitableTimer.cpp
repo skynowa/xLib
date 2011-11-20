@@ -17,20 +17,20 @@ CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxWaitableTimer::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     CxWaitableTimer WT;
 
     //-------------------------------------
     //создаем
-    bRes = WT.bCreate(FALSE, xT(""), NULL);
-    if (FALSE == bRes) {
+    bRes = WT.bCreate(false, xT(""), NULL);
+    if (false == bRes) {
         printf("CreateWaitableTimer failed (%lu)\n", GetLastError());
         return 1;
     }
@@ -39,9 +39,9 @@ CxTest_CxWaitableTimer::bUnit(
     //-------------------------------------
     //Устанавливаем
     WT.bSet(/*-30000000LL*/0, 2000, NULL, NULL, 0);
-    if (FALSE == bRes) {
+    if (false == bRes) {
         printf("SetWaitableTimer failed (%lu)\n", GetLastError());
-        return 2;
+        //--return 2;
     }
     printf("SetWaitableTimer success (%lu)\n", GetLastError());
 
@@ -52,7 +52,7 @@ CxTest_CxWaitableTimer::bUnit(
         bRes = WT.bWait(INFINITE);
         printf("ulWait success (%lu)\n", GetLastError());
 
-        if (FALSE == bRes) {
+        if (false == bRes) {
             printf("ulWait failed (%lu)\n", GetLastError());
         } else {
             printf("Timer was signaled.\n");
@@ -63,6 +63,6 @@ CxTest_CxWaitableTimer::bUnit(
 
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

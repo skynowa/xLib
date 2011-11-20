@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxThread::CxThread(
-    const BOOL cbIsAutoDelete
+    const bool cbIsAutoDelete
 ) :
     m_ulTag                 (0UL),
 
@@ -32,8 +32,8 @@ CxThread::CxThread(
     _m_cbIsAutoDelete       (cbIsAutoDelete),
 
     //flags
-    _m_bIsCreated           (FALSE),
-    _m_bIsRunning           (FALSE),
+    _m_bIsCreated           (false),
+    _m_bIsRunning           (false),
     /*_m_bIsPaused*/// n/a
     /*_m_bIsExited*/// n/a
 
@@ -42,8 +42,8 @@ CxThread::CxThread(
 
     //other
     _m_pevStarter           (NULL),
-    _m_evPause              (FALSE, FALSE),
-    _m_evExit               (TRUE,  FALSE)
+    _m_evPause              (false, false),
+    _m_evExit               (true,  false)
 {
 }
 //---------------------------------------------------------------------------
@@ -53,13 +53,13 @@ CxThread::~CxThread() {
 
     //-------------------------------------
     //close thread, if it still running
-    BOOL bRes = bIsRunning();
-    if (TRUE == bRes) {
+    bool bRes = bIsRunning();
+    if (true == bRes) {
         bRes = bExit();
-        if (FALSE == bRes) {
+        if (false == bRes) {
             bRes = bKill(_ms_culExitTimeout);
-            if (FALSE == bRes) {
-                /*DEBUG*/xASSERT_DO(FALSE != bRes, /*nothing*/);
+            if (false == bRes) {
+                /*DEBUG*/xASSERT_DO(false != bRes, /*nothing*/);
             }
         }
     }
@@ -77,15 +77,15 @@ CxThread::~CxThread() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bCreate(
-    const BOOL cbIsPaused,
+    const bool cbIsPaused,
     const UINT cuiStackSize,
     void       *pvParam
 )
 {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE == _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == _m_hThread.bIsValid(), false);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -93,14 +93,14 @@ CxThread::bCreate(
     /*DEBUG*/// cuiStackSize - n/a
     /*DEBUG*/// pvParam      - n/a
 
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     _m_pvParam = pvParam;
 
     //-------------------------------------
     //_m_evStarter
-    _m_pevStarter = new CxEvent(TRUE, FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != _m_pevStarter, FALSE);
+    _m_pevStarter = new CxEvent(true, false);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pevStarter, false);
 
     //-------------------------------------
     //start
@@ -109,12 +109,12 @@ CxThread::bCreate(
     TxId   ulId = 0;
 
     hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, cuiStackSize, _s_uiJobEntry, this, 0U, (UINT *)&ulId) );
-    /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
-    /*DEBUG*/xASSERT_RET(0    <  ulId, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != hRes, false);
+    /*DEBUG*/xASSERT_RET(0    <  ulId, false);
 
     bRes = _m_hThread.bSet(hRes);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes,                  FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes,                  false);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
     _m_ulId = ulId;
 #elif xOS_ENV_UNIX
@@ -123,41 +123,41 @@ CxThread::bCreate(
     pthread_attr_t paAttributes; // n/a - {{0}}
 
     iRes = ::pthread_attr_init(&paAttributes);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
     iRes = ::pthread_attr_setdetachstate(&paAttributes, PTHREAD_CREATE_JOINABLE); //PTHREAD_CREATE_DETACHED
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
     if (0 != cuiStackSize) {
         iRes = ::pthread_attr_setstacksize(&paAttributes, cuiStackSize);
-        /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+        /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
     }
 
     iRes = ::pthread_create(&ulId, &paAttributes, &_s_uiJobEntry, this);
-    /*DEBUG*/xASSERT_MSG_RET(0   == iRes, CxLastError::sFormat(iRes), FALSE);
-    /*DEBUG*/xASSERT_MSG_RET(0UL <  ulId, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0   == iRes, CxLastError::sFormat(iRes), false);
+    /*DEBUG*/xASSERT_MSG_RET(0UL <  ulId, CxLastError::sFormat(iRes), false);
 
     iRes = ::pthread_attr_destroy(&paAttributes);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
     _m_hThread = ulId;  //TODO: is it right?
     _m_ulId    = ulId;
 #endif
-    /*DEBUG*/xASSERT_RET(FALSE == CxCurrentThread::bIsCurrent(_m_ulId), FALSE);
+    /*DEBUG*/xASSERT_RET(false == CxCurrentThread::bIsCurrent(_m_ulId), false);
 
     //-------------------------------------
     //flags
     {
-        _m_bIsCreated = TRUE;
-        _m_bIsRunning = TRUE;
+        _m_bIsCreated = true;
+        _m_bIsRunning = true;
         /*_m_bIsPaused*/// n/a
 
-        if (FALSE != cbIsPaused) {
+        if (false != cbIsPaused) {
             bRes = bPause();
-            /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+            /*DEBUG*/xASSERT_RET(false != bRes, false);
         } else {
             bRes = bResume();
-            /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+            /*DEBUG*/xASSERT_RET(false != bRes, false);
         }
 
         /*_m_bIsExited*/// n/a
@@ -166,21 +166,21 @@ CxThread::bCreate(
     //-------------------------------------
     //construction is complete, start job entry
     bRes = _m_pevStarter->bSet();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bResume() {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 #elif xOS_ENV_UNIX
 
 #endif
 
-    BOOL bRes = _m_evPause.bSet();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = _m_evPause.bSet();
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     //-------------------------------------
     //flags
@@ -189,19 +189,19 @@ CxThread::bResume() {
     /*_m_bIsPaused*///  n/a
     /*_m_bIsExited*///  n/a
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bPause() {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_MSG_RET(FALSE != _m_hThread.bIsValid(), CxString::lexical_cast(_m_hThread.hGet()).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(false != _m_hThread.bIsValid(), CxString::lexical_cast(_m_hThread.hGet()).c_str(), false);
 #elif xOS_ENV_UNIX
 
 #endif
 
-    BOOL bRes = _m_evPause.bReset();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = _m_evPause.bReset();
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     //-------------------------------------
     //flags
@@ -210,66 +210,66 @@ CxThread::bPause() {
     /*_m_bIsPaused*///  n/a
     /*_m_bIsExited*///  n/a
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bExit() {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 #elif xOS_ENV_UNIX
 
 #endif
 
-    BOOL bRes = _m_evExit.bSet();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = _m_evExit.bSet();
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     //-------------------------------------
     //flags
     /*_m_bIsExited*///  n/a
     /*_m_bIsCreated*/// n/a
     /*_m_bIsRunning*/// n/a
-    /*_m_bIsPaused*/    xCHECK_DO(TRUE == bIsPaused(), bResume()); //если поток приостановленный (bPause) - возобновляем
+    /*_m_bIsPaused*/    xCHECK_DO(true == bIsPaused(), bResume()); //если поток приостановленный (bPause) - возобновляем
                                                                    //если ожидает чего-то
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bKill(
     const ULONG culTimeout
 )
 {
-    BOOL  bRes  = FALSE;
+    bool  bRes  = false;
     ULONG ulRes = 0UL;
 
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
     _m_uiExitStatus = 0U;
-    bRes = ::TerminateThread(_m_hThread.hGet(), _m_uiExitStatus);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL blRes = ::TerminateThread(_m_hThread.hGet(), _m_uiExitStatus);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     for ( ; ; ) {
         ulRes = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
         bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
-        /*DEBUG*/xASSERT_DO(FALSE != bRes, break);
+        /*DEBUG*/xASSERT_DO(false != bRes, break);
     }
 #elif xOS_ENV_UNIX
     int iRes = ::pthread_kill(_m_ulId, SIGALRM);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
     bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
-    /*DEBUG*/xASSERT(FALSE != bRes);
+    /*DEBUG*/xASSERT(false != bRes);
 #endif
 
     //-------------------------------------
     //clean members
 #if xOS_ENV_WIN
     bRes = _m_hThread.bClose();
-    /*DEBUG*/xASSERT(FALSE != bRes);
+    /*DEBUG*/xASSERT(false != bRes);
 #elif xOS_ENV_UNIX
     _m_hThread = 0UL;
 #endif
@@ -283,16 +283,16 @@ CxThread::bKill(
     //flags
     _vSetStatesDefault();
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bWait(
     const ULONG culTimeout
 ) const
 {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
     //-------------------------------------
@@ -300,17 +300,17 @@ CxThread::bWait(
     //?????????
 
     /*DEBUG*/xASSERT(CxCurrentThread::ulGetId() != _m_ulId);
-    xCHECK_RET(CxCurrentThread::ulGetId() == _m_ulId, TRUE);
+    xCHECK_RET(CxCurrentThread::ulGetId() == _m_ulId, true);
 
     ULONG ulRes = WAIT_FAILED;
     ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::pthread_join(_m_ulId, NULL);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -321,22 +321,22 @@ CxThread::bWait(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bIsCreated() const {
     /*DEBUG*/// _m_hThread - n/a
 
     bool bRes = false;
 
 #if xOS_ENV_WIN
-    bRes = (FALSE != _m_bIsCreated) && (FALSE != _m_hThread.bIsValid());
+    bRes = (false != _m_bIsCreated) && (false != _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
-    bRes = (FALSE != _m_bIsCreated) && (0UL   != _m_hThread);
+    bRes = (false != _m_bIsCreated) && (0UL   != _m_hThread);
 #endif
 
-    return static_cast<BOOL>( bRes );
+    return static_cast<bool>( bRes );
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bIsRunning() const {
     /*DEBUG*/// _m_hThread - n/a
 
@@ -347,9 +347,9 @@ CxThread::bIsRunning() const {
 
     (void)::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
 
-    bool bCond1 = ( FALSE         != _m_hThread.bIsValid()                       );
+    bool bCond1 = ( false         != _m_hThread.bIsValid()                       );
     bool bCond2 = ( 0UL           <  _m_ulId                                     );
-    bool bCond3 = ( TRUE          == _m_bIsRunning                               );
+    bool bCond3 = ( true          == _m_bIsRunning                               );
     bool bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0) );
     bool bCond5 = ( STILL_ACTIVE  == ulRes                                       );
 
@@ -357,7 +357,7 @@ CxThread::bIsRunning() const {
 #elif xOS_ENV_UNIX
     bool bCond1 = ( 0UL           != _m_hThread                                  );
     bool bCond2 = ( 0UL            <  _m_ulId                                    );
-    bool bCond3 = ( TRUE          == _m_bIsRunning                               );
+    bool bCond3 = ( true          == _m_bIsRunning                               );
 
     #if xTODO
         bool bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0) );
@@ -367,37 +367,37 @@ CxThread::bIsRunning() const {
     bRes = bCond1 && bCond2 && bCond3 /*&& bCond4 && bCond5*/;
 #endif
 
-    return static_cast<BOOL>( bRes );
+    return static_cast<bool>( bRes );
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bIsPaused() {
     /*DEBUG*/// _m_hThread - n/a
 
     bool bRes = false;
 
 #if xOS_ENV_WIN
-    bRes = (!_m_evPause.bIsSignaled()) && (FALSE != _m_hThread.bIsValid());
+    bRes = (!_m_evPause.bIsSignaled()) && (false != _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
     bRes = (!_m_evPause.bIsSignaled()) /*&& (0UL   != _m_hThread)*/;
 #endif
 
-    return static_cast<BOOL>( bRes );
+    return static_cast<bool>( bRes );
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bIsExited() {
     /*DEBUG*/// _m_hThread - n/a
 
     bool bRes = false;
 
 #if xOS_ENV_WIN
-    bRes = (_m_evExit.bIsSignaled()) && (FALSE != _m_hThread.bIsValid());
+    bRes = (_m_evExit.bIsSignaled()) && (false != _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
     bRes = (_m_evExit.bIsSignaled()) /*&& (0UL   != _m_hThread)*/;
 #endif
 
-    return static_cast<BOOL>( bRes );
+    return static_cast<bool>( bRes );
 }
 //---------------------------------------------------------------------------
 
@@ -409,7 +409,7 @@ CxThread::bIsExited() {
 
 #if xOS_ENV_WIN
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bPostMessage(
     HWND hHwnd,
     UINT uiMsg,
@@ -417,17 +417,17 @@ CxThread::bPostMessage(
     LONG liParam2
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE != ::IsWindow(hHwnd),     FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 false);
+    /*DEBUG*/xASSERT_RET(false != ::IsWindow(hHwnd),     false);
 
-    BOOL bRes = ::PostMessage(hHwnd, uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL blRes = ::PostMessage(hHwnd, uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bSendMessage(
     HWND hHwnd,
     UINT uiMsg,
@@ -435,32 +435,32 @@ CxThread::bSendMessage(
     LONG liParam2
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE != ::IsWindow(hHwnd),     FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 false);
+    /*DEBUG*/xASSERT_RET(false != ::IsWindow(hHwnd),     false);
 
     (void)::SendMessage(hHwnd, uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
-    /*DEBUG*/xASSERT_RET(0UL == CxLastError::ulGet(), FALSE);
+    /*DEBUG*/xASSERT_RET(0UL == CxLastError::ulGet(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bPostThreadMessage(
     UINT uiMsg,
     UINT uiParam1,
     LONG liParam2
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    BOOL bRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL blRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bTryPostThreadMessage(
     UINT  uiMsg,
     UINT  uiParam1,
@@ -469,40 +469,38 @@ CxThread::bTryPostThreadMessage(
     ULONG ulAttempTimeout
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-
-    BOOL bRes = FALSE;
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
     for (ULONG i = 0UL; i < ulAttemps; ++ i) {
-        bRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
+        BOOL blRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
 
-        xCHECK_RET(TRUE  == bRes, TRUE);
-        xCHECK_DO (FALSE == bRes, CxCurrentThread::bSleep(ulAttempTimeout));
+        xCHECK_RET(FALSE != blRes, true);
+        xCHECK_DO (FALSE == blRes, CxCurrentThread::bSleep(ulAttempTimeout));
     }
 
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bMessageWaitQueue(
     UINT  uiMsg,
     UINT *puiParam1,
     LONG *pliParam2
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(0     <  uiMsg,                 FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(0     <  uiMsg,                 false);
 
     std::vector<UINT> vuiMsg;
     vuiMsg.push_back(uiMsg);
 
-    BOOL bRes = bMessageWaitQueue(vuiMsg, NULL, puiParam1, pliParam2);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = bMessageWaitQueue(vuiMsg, NULL, puiParam1, pliParam2);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bMessageWaitQueue(
     const std::vector<UINT> &cvuiMsg,
     UINT                    *puiMsg,
@@ -510,14 +508,14 @@ CxThread::bMessageWaitQueue(
     LONG                    *pliParam2
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
-    /*DEBUG*/xASSERT_RET(false == cvuiMsg.empty(),       FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(false == cvuiMsg.empty(),       false);
 
     BOOL bRes   = FALSE;
     MSG  msgMsg = {0};
 
     while ((bRes = ::GetMessage(&msgMsg, NULL, 0, 0 ))) {
-        /*DEBUG*/xASSERT_RET(- 1 != bRes, FALSE);
+        /*DEBUG*/xASSERT_RET(- 1 != bRes, false);
 
         for (size_t i = 0; i < cvuiMsg.size(); ++ i) {
             xCHECK_DO(cvuiMsg.at(i) != msgMsg.message, continue);
@@ -526,11 +524,11 @@ CxThread::bMessageWaitQueue(
             xPTR_ASSIGN(puiParam1, static_cast<UINT>( msgMsg.wParam ));
             xPTR_ASSIGN(pliParam2, static_cast<LONG>( msgMsg.lParam ));
 
-            return TRUE;
+            return true;
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 #endif
@@ -551,7 +549,7 @@ CxThread::_iGetPriorityMin() {
     iRes = THREAD_PRIORITY_IDLE;
 #elif xOS_ENV_UNIX
     iRes = ::sched_get_priority_min(SCHED_FIFO);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), false);
 #endif
 
     return iRes;
@@ -566,25 +564,25 @@ CxThread::_iGetPriorityMax() {
     iRes = THREAD_PRIORITY_TIME_CRITICAL;
 #elif xOS_ENV_UNIX
     iRes = ::sched_get_priority_max(SCHED_FIFO);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), false);
 #endif
 
     return iRes;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bSetPriority(
     const EPriority ctpPriority
 ) const
 {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    BOOL bRes = ::SetThreadPriority(_m_hThread.hGet(), ctpPriority);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL blRes = ::SetThreadPriority(_m_hThread.hGet(), ctpPriority);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     #if xOS_ENV_UNIX
-        xCHECK_RET(FALSE == CxSystemInfo::bIsUserAnAdmin(), FALSE);
+        xCHECK_RET(false == CxSystemInfo::bIsUserAnAdmin(), false);
     #endif
 
     sched_param spParam = {0};
@@ -592,16 +590,16 @@ CxThread::bSetPriority(
     spParam.sched_priority = ctpPriority;
 
     int iRes = ::pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 CxThread::EPriority
 CxThread::tpGetPriority() const {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), tpError);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), tpError);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -624,7 +622,7 @@ CxThread::tpGetPriority() const {
     return tpRes;
 }
 //---------------------------------------------------------------------------
-std::string_t
+std::tstring
 CxThread::sGetPriorityString() const {
     /*DEBUG*/// n/a
 
@@ -642,10 +640,10 @@ CxThread::sGetPriorityString() const {
     return xT("N/A");
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bPriorityUp() const {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -661,18 +659,18 @@ CxThread::bPriorityUp() const {
         case tpNormal:          tpiNewLevel = tpAboveNormal;            break;
         case tpAboveNormal:     tpiNewLevel = tpHighest;                break;
         case tpHighest:         tpiNewLevel = tpTimeCritical;           break;
-        case tpTimeCritical:    return TRUE;                            break;
+        case tpTimeCritical:    return true;                            break;
 
-        default:                /*DEBUG*/xASSERT_RET(FALSE, FALSE);     break;
+        default:                /*DEBUG*/xASSERT_RET(false, false);     break;
     }
 
     return bSetPriority(tpiNewLevel);
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bPriorityDown() const {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -682,7 +680,7 @@ CxThread::bPriorityDown() const {
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpIdle:            return TRUE;                            break;
+        case tpIdle:            return true;                            break;
         case tpLowest:          tpiNewLevel = tpIdle;                   break;
         case tpBelowNormal:     tpiNewLevel = tpLowest;                 break;
         case tpNormal:          tpiNewLevel = tpBelowNormal;            break;
@@ -690,45 +688,45 @@ CxThread::bPriorityDown() const {
         case tpHighest:         tpiNewLevel = tpAboveNormal;            break;
         case tpTimeCritical:    tpiNewLevel = tpHighest;                break;
 
-        default:                /*DEBUG*/xASSERT_RET(FALSE, FALSE);     break;
+        default:                /*DEBUG*/xASSERT_RET(false, false);     break;
     }
 
     return bSetPriority(tpiNewLevel);
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bIsPriorityBoost() const {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
     BOOL bDisablePriorityBoost = TRUE;
 
     BOOL bRes = ::GetThreadPriorityBoost(_m_hThread.hGet(), &bDisablePriorityBoost);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 
-    //bDisablePriorityBoost == TRUE  - dynamic boosting is disabled
-    //bDisablePriorityBoost == FALSE - normal behavior
+    //bDisablePriorityBoost == true  - dynamic boosting is disabled
+    //bDisablePriorityBoost == false - normal behavior
 
     return ! bDisablePriorityBoost;
 #elif xOS_ENV_UNIX
-    return FALSE;
+    return false;
 #endif
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bSetPriorityBoost(
-    const BOOL cbIsEnabled
+    const bool cbIsEnabled
 ) const
 {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    BOOL bRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! cbIsEnabled);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL blRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! cbIsEnabled);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    return TRUE;
+    return true;
 #elif xOS_ENV_UNIX
-    return FALSE;
+    return false;
 #endif
 }
 //---------------------------------------------------------------------------
@@ -740,21 +738,21 @@ CxThread::bSetPriorityBoost(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bSetCpuAffinity(
     const int ciProcNum
 ) const
 {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
     DWORD_PTR dwMask;
 
     dwMask = 1UL << ciProcNum;
 
     DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), dwMask);
-    /*DEBUG*/xASSERT_RET(0                       != uiRes, FALSE);
-    /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, FALSE);
+    /*DEBUG*/xASSERT_RET(0                       != uiRes, false);
+    /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, false);
 #elif xOS_ENV_UNIX
     #if xOS_FREEBSD
         cpuset_t  csCpuSet;
@@ -766,38 +764,38 @@ CxThread::bSetCpuAffinity(
     (void)CPU_SET(ciProcNum, &csCpuSet);
 
     int iRes = ::pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bSetCpuIdeal(
     const ULONG culIdealCpu    ///< value is zero-based
 ) const
 {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
     ULONG ulRes = (ULONG) - 1;
 
     ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), culIdealCpu);
-    /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, FALSE);
+    /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, false);
 
     //TODO: xASSERT_RET
-    ////*DEBUG*/xASSERT_RET(ulIdealCpu != ulRes, FALSE);
+    ////*DEBUG*/xASSERT_RET(ulIdealCpu != ulRes, false);
 #elif xOS_ENV_UNIX
-    return FALSE;
+    return false;
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 ULONG
 CxThread::ulGetCpuIdeal() const {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0UL);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), 0UL);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -834,7 +832,7 @@ CxThread::ulGetCpuCount() {
 CxThread::TxHandle
 CxThread::hGet() const {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), TxHandle());
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), TxHandle());
 
     return _m_hThread.hGet();
 #elif xOS_ENV_UNIX
@@ -845,7 +843,7 @@ CxThread::hGet() const {
 CxThread::TxId
 CxThread::ulGetId() const {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), 0);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -853,7 +851,7 @@ CxThread::ulGetId() const {
     return _m_ulId;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bIsCurrent() const {
     /*DEBUG*/
 
@@ -865,10 +863,10 @@ CxThread::ulGetExitStatus() const {
     ULONG ulRes = 0;
 
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hThread.bIsValid(), 0UL);
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), 0UL);
 
-    BOOL bRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
-    /*DEBUG*/xASSERT_RET(FALSE           != bRes,  ulRes);
+    BOOL blRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
+    /*DEBUG*/xASSERT_RET(FALSE           != blRes,  ulRes);
     //--/*DEBUG*/xASSERT_RET(_m_uiExitStatus == ulRes, ulRes);
 #elif xOS_ENV_UNIX
     ulRes = _m_uiExitStatus;
@@ -876,22 +874,22 @@ CxThread::ulGetExitStatus() const {
 
     return ulRes;
 }
-//BOOL
+//bool
 ///*CxThread::*/bPost() {
 //
 //long sys_tgkill (int tgid, int pid, int sig);
 //}
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bSetDebugName(
-    const std::string_t &csName
+    const std::tstring &csName
 ) const
 {
-    /////*DEBUG*/xASSERT_RET(0  < _m_ulId,       FALSE);
-    /////*DEBUG*/xASSERT_RET(32 > csName.size(), FALSE); //MAX_NAME_SIZE 32
+    /////*DEBUG*/xASSERT_RET(0  < _m_ulId,       false);
+    /////*DEBUG*/xASSERT_RET(32 > csName.size(), false); //MAX_NAME_SIZE 32
 
-    xCHECK_RET(FALSE == CxDebugger::bIsPresent(), TRUE);
+    xCHECK_RET(false == CxDebugger::bIsPresent(), true);
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -933,10 +931,10 @@ CxThread::bSetDebugName(
     (void)pthread_set_name_np(ulGetId(), csName.c_str());
 #elif xOS_ENV_UNIX
     int iRes = ::prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -951,7 +949,7 @@ CxThread::bSetDebugName(
 CxThread::TxHandle
 CxThread::hOpen(
     const ULONG culAccess,
-    const BOOL  cbInheritHandle,
+    const bool  cbInheritHandle,
     const ULONG culId
 )
 {
@@ -988,14 +986,14 @@ CxThread::uiOnRun(
 ) /* = 0*/
 {
     /*DEBUG*/// n/a
-    /*DEBUG*/xASSERT_MSG_RET(FALSE, xT("It's virtual method"), 0U);
+    /*DEBUG*/xASSERT_MSG_RET(false, xT("It's virtual method"), 0U);
 
     UINT uiRes = 0U;
 
     #if xTEMP_DISABLED
         for ( ; ; ) {
-            BOOL bRes = bIsTimeToExit();
-            xCHECK_DO(FALSE != bRes, break);
+            bool bRes = bIsTimeToExit();
+            xCHECK_DO(false != bRes, break);
 
             //...
         }
@@ -1012,27 +1010,27 @@ CxThread::uiOnRun(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::bIsTimeToExit() {
     /*DEBUG*/// n/a
 
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     //-------------------------------------
     //exit
     bRes = bIsExited();
-    xCHECK_RET(FALSE != bRes, TRUE);
+    xCHECK_RET(false != bRes, true);
 
     //-------------------------------------
     //pause / resume
     bRes = bIsPaused();
-    xCHECK_RET(FALSE != bRes, static_cast<BOOL>( !_bWaitResumption() ));
+    xCHECK_RET(false != bRes, static_cast<bool>( !_bWaitResumption() ));
 
     //-------------------------------------
     //flags
     // n/a
 
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 
@@ -1052,7 +1050,7 @@ CxThread::_s_uiJobEntry(
     /*DEBUG*/xASSERT_RET(NULL != pvParam, 0);
 
     UINT uiRes = 0;
-    BOOL bRes  = FALSE;     xUNUSED(bRes);
+    bool bRes  = false;     xUNUSED(bRes);
 
     CxThread *pthThis = static_cast<CxThread *>( pvParam );
     /*DEBUG*/xASSERT_RET(NULL != pthThis, 0);
@@ -1069,7 +1067,7 @@ CxThread::_s_uiJobEntry(
 
     //-------------------------------------
     //if created suspended thread - wait for resumption
-    xCHECK_DO(TRUE == pthThis->bIsPaused(), (void)pthThis->_bWaitResumption());
+    xCHECK_DO(true == pthThis->bIsPaused(), (void)pthThis->_bWaitResumption());
 
     {
         //-------------------------------------
@@ -1080,7 +1078,7 @@ CxThread::_s_uiJobEntry(
             #endif
         }
         catch (...) {
-            /*DEBUG*/xASSERT(FALSE);
+            /*DEBUG*/xASSERT(false);
         }
 
         //-------------------------------------
@@ -1090,10 +1088,10 @@ CxThread::_s_uiJobEntry(
         }
         catch (std::exception &e) {
             std::string asWhat = e.what();
-            xASSERT_MSG(FALSE, xS2TS(asWhat).c_str());
+            xASSERT_MSG(false, xS2TS(asWhat).c_str());
         }
         catch (...) {
-            /*DEBUG*/xASSERT(FALSE);
+            /*DEBUG*/xASSERT(false);
         }
 
         //-------------------------------------
@@ -1104,7 +1102,7 @@ CxThread::_s_uiJobEntry(
             #endif
         }
         catch (...) {
-            /*DEBUG*/xASSERT(FALSE);
+            /*DEBUG*/xASSERT(false);
         }
     }
 
@@ -1112,7 +1110,7 @@ CxThread::_s_uiJobEntry(
     //clean members (is need to close???)
 #if xOS_ENV_WIN
     bRes = pthThis->_m_hThread.bClose();
-    /*DEBUG*/xASSERT(FALSE != bRes);
+    /*DEBUG*/xASSERT(false != bRes);
 #elif xOS_ENV_UNIX
     //TODO: _m_hThread.bClose()
 #endif
@@ -1128,7 +1126,7 @@ CxThread::_s_uiJobEntry(
 
     //-------------------------------------
     //auto delete oneself
-    xCHECK_DO(TRUE == pthThis->_m_cbIsAutoDelete, xPTR_DELETE(pthThis));
+    xCHECK_DO(true == pthThis->_m_cbIsAutoDelete, xPTR_DELETE(pthThis));
 
 #if xOS_ENV_WIN
     return  pthThis->_m_uiExitStatus;
@@ -1137,7 +1135,7 @@ CxThread::_s_uiJobEntry(
 #endif
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxThread::_bWaitResumption() {
     /*DEBUG*/
 
@@ -1149,11 +1147,11 @@ CxThread::_bWaitResumption() {
     /*_m_bIsExited*///  n/a
 
     CxEvent::EObjectState osRes = _m_evPause.osWait();
-    /*DEBUG*/xASSERT_RET(CxEvent::osFailed   != osRes, FALSE);
-    /*DEBUG*/xASSERT_RET(CxEvent::osTimeout  != osRes, FALSE);
-    /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, FALSE);
+    /*DEBUG*/xASSERT_RET(CxEvent::osFailed   != osRes, false);
+    /*DEBUG*/xASSERT_RET(CxEvent::osTimeout  != osRes, false);
+    /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, false);
 
-    return static_cast<BOOL>( CxEvent::osSignaled == osRes );
+    return static_cast<bool>( CxEvent::osSignaled == osRes );
 }
 //---------------------------------------------------------------------------
 void
@@ -1162,8 +1160,8 @@ CxThread::_vSetStatesDefault() {
 
     //-------------------------------------
     //flags
-    _m_bIsCreated  = FALSE;
-    _m_bIsRunning  = FALSE;
+    _m_bIsCreated  = false;
+    _m_bIsRunning  = false;
     /*_m_bIsPaused*/// n/a
     /*_m_bIsExited*/// n/a
 }

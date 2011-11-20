@@ -56,31 +56,31 @@ class CxClipboard :
         virtual ~CxClipboard    ();
             ///< destructor
 
-        BOOL     bSetOwner      (const HWND chWndOwner);
+        bool     bSetOwner      (const HWND chWndOwner);
             ///< set owner
-        BOOL     bGetText       (std::string_t *psText);
+        bool     bGetText       (std::tstring *psText);
             ///< get text
-        BOOL     bSetText       (const std::string_t &csText);
+        bool     bSetText       (const std::tstring &csText);
             ///< set text
-        BOOL     bIsHasFormat   (const EFormat cfmFormat);
+        bool     bIsHasFormat   (const EFormat cfmFormat);
             ///<  is has format
-        BOOL     bRegisterFormat(const std::string_t &csText, EFormat *pfmFormat);
+        bool     bRegisterFormat(const std::tstring &csText, EFormat *pfmFormat);
             ///< register format
-        BOOL     bClear         ();
+        bool     bClear         ();
             ///< clear
 
     private:
         HANDLE  _m_hObject;     ///< handle
         HWND    _m_hWndOwner;   ///< owner handle
 
-        BOOL    bOpen           ();
+        bool    bOpen           ();
             ///< open
-        BOOL    bClose          ();
+        bool    bClose          ();
             ///< close
 
-        BOOL    bGetData        (const EFormat cfmFormat);
+        bool    bGetData        (const EFormat cfmFormat);
             ///< get data
-        BOOL    bSetData        (const EFormat cfmFormat, const HANDLE chData);
+        bool    bSetData        (const EFormat cfmFormat, const HANDLE chData);
             ///< set data
 };
 

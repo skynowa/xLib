@@ -26,22 +26,22 @@ class CxDecrypt :
         virtual             ~CxDecrypt    ();
             ///< destructor
 
-        BOOL                 bInit        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        bool                 bInit        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
             ///< initializes a decryption operation
-        BOOL                 bMake        (CK_BYTE_PTR pEncryptedData, CK_ULONG ulEncryptedDataLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
+        bool                 bMake        (CK_BYTE_PTR pEncryptedData, CK_ULONG ulEncryptedDataLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
             ///< decrypts encrypted data in a single part
-        BOOL                 bUpdate      (CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen);
+        bool                 bUpdate      (CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen);
             ///< continues a multiple-part decryption operation
-        BOOL                 bFinal       (CK_BYTE_PTR pLastPart, CK_ULONG_PTR pulLastPartLen);
+        bool                 bFinal       (CK_BYTE_PTR pLastPart, CK_ULONG_PTR pulLastPartLen);
             ///< finishes a multiple-part decryption operation
 
-        BOOL                 bDigestUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
+        bool                 bDigestUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
             ///< continues a multiple-part decryption and digesting operation
-        BOOL                 bVerifyUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
+        bool                 bVerifyUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
             ///< continues a multiple-part decryption and verify operation
 
         //Utils
-        BOOL                 bMakeFile    (const std::string_t &csInFilePath, const std::string_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        bool                 bMakeFile    (const std::tstring &csInFilePath, const std::tstring &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
             ///< make file
 
     private:

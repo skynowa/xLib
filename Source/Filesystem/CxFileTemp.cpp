@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /*explicit*/
 CxFileTemp::CxFileTemp(
-    const BOOL cbIsAutoDelete
+    const bool cbIsAutoDelete
 ) :
     _m_cbIsAutoDelete(cbIsAutoDelete),
     _m_sFilePath     ()
@@ -32,29 +32,29 @@ CxFileTemp::CxFileTemp(
 CxFileTemp::~CxFileTemp() {
     (void)(*_m_pfFile).bClose();
 
-    if (FALSE != _m_cbIsAutoDelete) {
+    if (false != _m_cbIsAutoDelete) {
         (void)CxFile::bDelete(_m_sFilePath);
     }
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFileTemp::bCreate(
-    const std::string_t  &csFilePath,
-    const std::string_t  &csDirPath,
+    const std::tstring  &csFilePath,
+    const std::tstring  &csDirPath,
     CxFile              *pfFile
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE == pfFile->bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
+    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  false);
+    /*DEBUG*/xASSERT_RET(false == pfFile->bIsValid(), false);
 
-    const std::string_t csFileNameTemplate = xT("XXXXXX");
+    const std::tstring csFileNameTemplate = xT("XXXXXX");
 
 
     FILE *_pfStdFile = NULL;
 
-    BOOL bRes = CxDir::bCreateForce(csDirPath);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = CxDir::bCreateForce(csDirPath);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
@@ -62,35 +62,35 @@ CxFileTemp::bCreate(
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
-        char_t *pszFile = std::xTMKSTEMP(&_m_sFilePath.at(0));
-        /*DEBUG*/xASSERT_RET(NULL != pszFile, FALSE);
+        tchar *pszFile = std::xTMKSTEMP(&_m_sFilePath.at(0));
+        /*DEBUG*/xASSERT_RET(NULL != pszFile, false);
 
         _pfStdFile = std::xTFOPEN(pszFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
-        /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, FALSE);
+        /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, false);
     #else
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
         errno_t iError = ::xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
-        /*DEBUG*/xASSERT_RET(0 == iError, FALSE);
+        /*DEBUG*/xASSERT_RET(0 == iError, false);
 
         _pfStdFile = std::xTFOPEN(_m_sFilePath.c_str(), CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
-        /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, FALSE);
+        /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, false);
     #endif
 #elif xOS_ENV_UNIX
     int iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
-    /*DEBUG*/xASSERT_RET(- 1 != iFile, FALSE);
+    /*DEBUG*/xASSERT_RET(- 1 != iFile, false);
 
     _pfStdFile = ::xTFDOPEN(iFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
-    /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, false);
 #endif
 
     //out
     bRes = (*pfFile).bAttach(_pfStdFile);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     _m_pfFile = pfFile;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

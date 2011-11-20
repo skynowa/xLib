@@ -17,7 +17,7 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxLocale::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -35,7 +35,7 @@ CxTest_CxLocale::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetCurrent( CxLocale::sGetCurrent() );
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -43,7 +43,7 @@ CxTest_CxLocale::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetDefault();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -51,9 +51,9 @@ CxTest_CxLocale::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

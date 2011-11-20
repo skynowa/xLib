@@ -28,15 +28,15 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 CxReport::CxReport(
     const EType        &crtType,
-    const std::string_t &csExp,
+    const std::tstring &csExp,
     const ULONG         culLastError,
-    const std::string_t &csFile,
+    const std::tstring &csFile,
     const ULONG         culLine,
-    const std::string_t &csFunc,
-    const std::string_t &csDate,
-    const std::string_t &csTime,
-    const std::string_t &csStackTrace,
-    const std::string_t &csComment
+    const std::tstring &csFunc,
+    const std::tstring &csDate,
+    const std::tstring &csTime,
+    const std::tstring &csStackTrace,
+    const std::tstring &csComment
 ) :
     _m_rtType         (rtUnknown),
     _m_sReport        (),
@@ -76,15 +76,15 @@ CxReport::CxReport(
 //---------------------------------------------------------------------------
 CxReport::CxReport(
     const EType        &crtType,
-    const std::string_t &csExp,
+    const std::tstring &csExp,
     const ULONG         culLastError,
-    const std::string_t &csFile,
+    const std::tstring &csFile,
     const ULONG         culLine,
-    const std::string_t &csFunc,
-    const std::string_t &csDate,
-    const std::string_t &csTime,
-    const std::string_t &csStackTrace,
-    const char_t        *pcszComment, ...
+    const std::tstring &csFunc,
+    const std::tstring &csDate,
+    const std::tstring &csTime,
+    const std::tstring &csStackTrace,
+    const tchar        *pcszComment, ...
 ) :
     _m_rtType         (rtUnknown),
     _m_sReport        (),
@@ -108,7 +108,7 @@ CxReport::CxReport(
 {
     /*DEBUG*/
 
-    std::string_t sComment;
+    std::tstring sComment;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszComment);
@@ -141,14 +141,14 @@ CxReport::rtGetType() const {
     return _m_rtType;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetReport() const {
     /*DEBUG*/
 
     return _m_sReport;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetProgram() const {
     /*DEBUG*/
 
@@ -169,14 +169,14 @@ CxReport::ulGetThreadId() const {
     return _m_ulThreadId;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetFileSize() const {
     /*DEBUG*/
 
     return _m_sFileSize;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetSourceFile() const {
     /*DEBUG*/
 
@@ -190,14 +190,14 @@ CxReport::ulGetSourceLine() const {
     return _m_ulSourceLine;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetFunctionName() const {
     /*DEBUG*/
 
     return _m_sFunctionName;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetExpression() const {
     /*DEBUG*/
 
@@ -211,56 +211,56 @@ CxReport::ulGetLastError() const {
     return _m_ulLastError;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetLastErrorStr() const {
     /*DEBUG*/
 
     return _m_sLastErrorStr;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetCurrentDate() const {
     /*DEBUG*/
 
     return _m_sCurrentDate;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetBuildDate() const {
     /*DEBUG*/
 
     return _m_sBuildDate;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetBuildType() const {
     /*DEBUG*/
 
     return _m_sBuildType;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetOsVersion() const {
     /*DEBUG*/
 
     return _m_sOsVersion;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetOsArchitecture() const {
     /*DEBUG*/
 
     return _m_sOsArchitecture;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetComment() const {
     /*DEBUG*/
 
     return _m_sComment;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxReport::sGetStackTrace() const {
     /*DEBUG*/
 
@@ -274,18 +274,18 @@ CxReport::sGetStackTrace() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxReport::_bInitVars(
     const EType        &crtType,
-    const std::string_t &csExp,
+    const std::tstring &csExp,
     const ULONG         culLastError,
-    const std::string_t &csFile,
+    const std::tstring &csFile,
     const ULONG         culLine,
-    const std::string_t &csFunc,
-    const std::string_t &csDate,
-    const std::string_t &csTime,
-    const std::string_t &csStackTrace,
-    const std::string_t &csComment
+    const std::tstring &csFunc,
+    const std::tstring &csDate,
+    const std::tstring &csTime,
+    const std::tstring &csStackTrace,
+    const std::tstring &csComment
 )
 {
     /*DEBUG*/
@@ -307,7 +307,7 @@ CxReport::_bInitVars(
 
     _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
     _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
-    _m_sBuildType      = (TRUE == CxDebugger::bIsDebugBuild()) ? xT("debug") : xT("release");
+    _m_sBuildType      = (true == CxDebugger::bIsDebugBuild()) ? xT("debug") : xT("release");
     _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     _m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
@@ -336,10 +336,10 @@ CxReport::_bInitVars(
     _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxReport::_bInitPlain() {
     _m_sReport = CxString::sFormat(
         xT("%s\n")        //CxReport
@@ -390,10 +390,10 @@ CxReport::_bInitPlain() {
 
         xT("Comment:         "), sGetComment().c_str());
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxReport::_bInitHtml() {
     _m_sReport = CxString::sFormat(
         xT("<pre>")
@@ -445,10 +445,10 @@ CxReport::_bInitHtml() {
 
         xT("Comment:         "), sGetComment().c_str());
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxReport::_bInitFormated() {
 #if xOS_ENV_WIN
     _m_sReport = CxString::sFormat(
@@ -535,11 +535,11 @@ CxReport::_bInitFormated() {
         xT("#  Thread id:       "), ulGetThreadId(),
         xT("#  File size:       "), sGetFileSize().c_str(),
 
-        xT("#  Source file:     "), CxConsole().bSetTextColor( sGetSourceFile(),                          CxConsole::fgWhite,   TRUE, FALSE, CxConsole::bgBlack, FALSE ).c_str(),
-        xT("#  Source line:     "), CxConsole().bSetTextColor( CxString::lexical_cast(ulGetSourceLine()), CxConsole::fgMagenta, TRUE, TRUE,  CxConsole::bgBlack, FALSE ).c_str(),
-        xT("#  Function name:   "), CxConsole().bSetTextColor( sGetFunctionName(),                        CxConsole::fgCyan,    TRUE, FALSE, CxConsole::bgBlack, FALSE ).c_str(),
-        xT("#  Expression:      "), CxConsole().bSetTextColor( sGetExpression(),                          CxConsole::fgYellow,  TRUE, FALSE, CxConsole::bgBlack, FALSE ).c_str(),
-        xT("#  Last error:      "), CxConsole().bSetTextColor( sGetLastErrorStr(),                        CxConsole::fgRed,     TRUE, FALSE, CxConsole::bgBlack, FALSE ).c_str(),
+        xT("#  Source file:     "), CxConsole().bSetTextColor( sGetSourceFile(),                          CxConsole::fgWhite,   true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Source line:     "), CxConsole().bSetTextColor( CxString::lexical_cast(ulGetSourceLine()), CxConsole::fgMagenta, true, true,  CxConsole::bgBlack, false ).c_str(),
+        xT("#  Function name:   "), CxConsole().bSetTextColor( sGetFunctionName(),                        CxConsole::fgCyan,    true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Expression:      "), CxConsole().bSetTextColor( sGetExpression(),                          CxConsole::fgYellow,  true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Last error:      "), CxConsole().bSetTextColor( sGetLastErrorStr(),                        CxConsole::fgRed,     true, false, CxConsole::bgBlack, false ).c_str(),
 
         xT("#  Current date:    "), sGetCurrentDate().c_str(),
         xT("#  Build date:      "), sGetBuildDate().c_str(),
@@ -548,11 +548,11 @@ CxReport::_bInitFormated() {
         xT("#  OS architecture: "), sGetOsArchitecture().c_str(),
         xT("#  Stack trace:     "), sGetStackTrace().c_str(),
 
-        xT("#  Comment:         "), CxConsole().bSetTextColor( sGetComment(),                             CxConsole::fgYellow_, FALSE, FALSE, CxConsole::bgBlue,  FALSE ).c_str()
+        xT("#  Comment:         "), CxConsole().bSetTextColor( sGetComment(),                             CxConsole::fgYellow_, false, false, CxConsole::bgBlue,  false ).c_str()
     );
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

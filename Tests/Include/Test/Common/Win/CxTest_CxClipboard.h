@@ -18,7 +18,7 @@ class CxTest_CxClipboard :
                      CxTest_CxClipboard();
        virtual      ~CxTest_CxClipboard();
 
-       virtual BOOL  bUnit             (const ULONGLONG cullBlockLoops);
+       virtual bool  bUnit             (const ULONGLONG cullBlockLoops);
 
     private:
 };

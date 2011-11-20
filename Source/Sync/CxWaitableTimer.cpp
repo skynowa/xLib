@@ -26,47 +26,47 @@ CxWaitableTimer::CxWaitableTimer() :
 //---------------------------------------------------------------------------
 //DONE: ~CxWaitableTimer ()
 CxWaitableTimer::~CxWaitableTimer() {
-    /*DEBUG*/xASSERT(FALSE != _m_hWaitableTimer.bIsValid());
+    /*DEBUG*/xASSERT(false != _m_hWaitableTimer.bIsValid());
 
 }
 //---------------------------------------------------------------------------
 //DONE: hGetHandle ()
 HANDLE
 CxWaitableTimer::hGetHandle() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), NULL);
+    /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), NULL);
 
     return _m_hWaitableTimer.hGet();
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate ()
-BOOL
+bool
 CxWaitableTimer::bCreate(
-    const BOOL                   bManualReset,
-    const std::string_t          &csName,
+    const bool                   bManualReset,
+    const std::tstring          &csName,
     const LPSECURITY_ATTRIBUTES  pcsaTimerAttributes
 )
 {
-    /*DEBUG*/xASSERT_RET(FALSE == _m_hWaitableTimer.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == _m_hWaitableTimer.bIsValid(), false);
 
     HANDLE hRes = NULL;
 
     hRes = ::CreateWaitableTimer(pcsaTimerAttributes, bManualReset, csName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != hRes, false);
 
     _m_hWaitableTimer.bSet(hRes);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bOpen ()
-BOOL
+bool
 CxWaitableTimer::bOpen(
-    const std::string_t &csName,
+    const std::tstring &csName,
     const ULONG         culDesiredAccess,
-    const BOOL          cbInheritHandle
+    const bool          cbInheritHandle
 )
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
 
     HANDLE hRes = NULL;
 
@@ -80,37 +80,35 @@ CxWaitableTimer::bOpen(
 #endif
 
     hRes = ::OpenWaitableTimer(culDesiredAccess, cbInheritHandle, csName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != hRes, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != hRes, false);
 
     _m_hWaitableTimer.bSet(hRes);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bCancel ()
-BOOL
+bool
 CxWaitableTimer::bCancel() const {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
 
-    BOOL bRes = FALSE;
+    BOOL bRes = ::CancelWaitableTimer(_m_hWaitableTimer.hGet());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 
-    bRes = ::CancelWaitableTimer(_m_hWaitableTimer.hGet());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
-
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bSet ()
-BOOL
+bool
 CxWaitableTimer::bSet(
     const LONGLONG   cllDueTime,
     const LONG       cliPeriod,
     PTIMERAPCROUTINE pfnCompletionRoutine,
     LPVOID           pvArgToCompletionRoutine,
-    const BOOL       cbResume
+    const bool       cbResume
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
 
     /*
     #define _SECOND 10000000   // ���� ������� ��� ���������� �������
@@ -119,31 +117,29 @@ CxWaitableTimer::bSet(
     qwTimeInterval = -2 * _SECOND;
     */
 
-    BOOL bRes = FALSE;  //#define _SECOND 10000000   // ���� ������� ��� ���������� �������
-
     LARGE_INTEGER liDueTime = {{0}};
     liDueTime.QuadPart = cllDueTime;
 
-    bRes = ::SetWaitableTimer(_m_hWaitableTimer.hGet(), &liDueTime, cliPeriod, pfnCompletionRoutine, pvArgToCompletionRoutine, cbResume);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    BOOL bRes = ::SetWaitableTimer(_m_hWaitableTimer.hGet(), &liDueTime, cliPeriod, pfnCompletionRoutine, pvArgToCompletionRoutine, cbResume);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bWait ()
-BOOL
+bool
 CxWaitableTimer::bWait(
     const ULONG culTimeout
 ) const
 {
-    /*DEBUG*/xASSERT_RET(FALSE != _m_hWaitableTimer.bIsValid(), FALSE);
+    /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
 
     ULONG ulRes = WAIT_FAILED;
 
     ulRes = ::WaitForSingleObject(_m_hWaitableTimer.hGet(), culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, FALSE);
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

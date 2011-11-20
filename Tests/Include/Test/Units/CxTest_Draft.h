@@ -19,7 +19,7 @@ class CxTest_Draft :
         virtual      ~CxTest_Draft();
             ///< destructor
 
-        virtual BOOL  bUnit       (const ULONGLONG cullBlockLoops);
+        virtual bool  bUnit       (const ULONGLONG cullBlockLoops);
             ///< unit test
 
     private:

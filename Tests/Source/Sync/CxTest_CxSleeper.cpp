@@ -17,7 +17,7 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxSleeper::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -29,7 +29,7 @@ CxTest_CxSleeper::bUnit(
         CxSleeper objSleeper;
 
         m_bRes = objSleeper.bIsSleeping();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -40,16 +40,16 @@ CxTest_CxSleeper::bUnit(
 
         for (size_t i = 0; i < 3; ++ i) {
             m_bRes = objSleeper.bIsSleeping();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
 
             m_bRes = objSleeper.bSleep(5);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = objSleeper.bIsSleeping();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
 
             m_bRes = objSleeper.bIsSleeping();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
         }
     }
 
@@ -61,10 +61,10 @@ CxTest_CxSleeper::bUnit(
             CxSleeper objSleeper;
 
             m_bRes = objSleeper.bWakeUp();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #endif
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

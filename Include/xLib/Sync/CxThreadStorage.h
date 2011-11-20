@@ -21,11 +21,11 @@ class CxThreadStorage :
         virtual ~CxThreadStorage();
             ///< destructor
 
-        BOOL     bIsSet         () const;
+        bool     bIsSet         () const;
 
         void    *pvGetValue     () const;
             ///< get the value
-        BOOL     bSetValue      (void *pvValue) const;
+        bool     bSetValue      (void *pvValue) const;
             ///< set value
 
     private:
@@ -35,9 +35,9 @@ class CxThreadStorage :
         typedef pthread_key_t TxIndex;
     #endif
 
-        BOOL     _bAlloc        ();
+        bool     _bAlloc        ();
             ///< allocates a thread storage index
-        BOOL     _bFree         ();
+        bool     _bFree         ();
             ///< releases a thread storage index
 
         TxIndex  _m_indIndex;

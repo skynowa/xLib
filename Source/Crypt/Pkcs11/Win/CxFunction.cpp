@@ -34,7 +34,7 @@ CxFunction::~CxFunction() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFunction::bGetList(
     CK_FUNCTION_LIST_PTR_PTR ppFunctionList  ///< receives pointer to function list
 )
@@ -42,41 +42,41 @@ CxFunction::bGetList(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GetFunctionList(ppFunctionList);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFunction::bGetStatus() {
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GetFunctionStatus(_m_hSession );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFunction::bCancel() {
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_CancelFunction(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFunction::bGetListEx() {
     /*DEBUG*/
 
     #if xTODO
         CK_RV ulRes = _m_pFunc->ETC_GetFunctionListEx();
-        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
     #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

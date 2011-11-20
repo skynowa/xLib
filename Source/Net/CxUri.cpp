@@ -40,10 +40,10 @@ CxUri::CxUri(const std::string &csUri) :
     _m_sQuery    (),
     _m_sFragment ()
 {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     bRes = _bParse(csUri);
-    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    /*DEBUG*/xASSERT_DO(false != bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxUri
@@ -113,11 +113,11 @@ CxUri::sGetUri() const {
 
     return sRes;
 }
-BOOL
+bool
 CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment) {
     /*DEBUG*/
 
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     bRes = bSetScheme   (csScheme);
     bRes = bSetAuthority(csAuthority);
@@ -125,7 +125,7 @@ CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority, cons
     bRes = bSetQuery    (csQuery);
     bRes = bSetFragment (csFragment);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: sGetScheme
@@ -133,11 +133,11 @@ std::string
 CxUri::sGetScheme() const {
     return sEncodeComponent(_m_sScheme);
 }
-BOOL
+bool
 CxUri::bSetScheme(const std::string &csScheme) {
     _m_sScheme = sDecodeComponent(csScheme);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetAuthority
@@ -156,18 +156,18 @@ CxUri::sGetAuthority() const {
         sTempAuthority += _m_sHost;
     }
 
-    if (0 < _m_usPort && FALSE == _bIsDefaultPort()) {
+    if (0 < _m_usPort && false == _bIsDefaultPort()) {
         sTempAuthority += ":";
         sTempAuthority += CxString::lexical_cast(_m_usPort);
     }
 
     return sEncodeComponent(sTempAuthority/*_m_sAuthority*/);
 }
-BOOL
+bool
 CxUri::bSetAuthority(const std::string &csAuthority) {
     _m_sAuthority = sDecodeComponent(csAuthority);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetUserInfo
@@ -175,13 +175,13 @@ std::string
 CxUri::sGetUserInfo() const {
     return sEncodeComponent(_m_sUserInfo);
 }
-BOOL
+bool
 CxUri::bSetUserInfo(const std::string &csUserInfo) {
     _m_sUserInfo = sDecodeComponent(csUserInfo);
 
     //TODO: bSetAuthority
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetHost
@@ -189,13 +189,13 @@ std::string
 CxUri::sGetHost() const {
     return sEncodeComponent(_m_sHost);
 }
-BOOL
+bool
 CxUri::bSetHost(const std::string &csHost) {
     _m_sHost = sDecodeComponent(csHost);
 
     //TODO: bSetAuthority
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: usGetPort
@@ -203,13 +203,13 @@ USHORT
 CxUri::usGetPort() {
     return _m_usPort;
 }
-BOOL
+bool
 CxUri::bSetPort(const USHORT &cusPort) {
     _m_usPort = cusPort;
 
     //TODO: bSetAuthority
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetPath
@@ -217,11 +217,11 @@ std::string
 CxUri::sGetPath() const {
     return sEncodeComponent(_m_sPath);
 }
-BOOL
+bool
 CxUri::bSetPath(const std::string &csPath) {
     _m_sPath = sDecodeComponent(csPath);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetQuery
@@ -229,11 +229,11 @@ std::string
 CxUri::sGetQuery() const {
     return sEncodeComponent(_m_sQuery);
 }
-BOOL
+bool
 CxUri::bSetQuery(const std::string &csQuery) {
     _m_sQuery = sDecodeComponent(csQuery);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetFragment
@@ -241,17 +241,17 @@ std::string
 CxUri::sGetFragment() const {
     return sEncodeComponent(_m_sFragment);
 }
-BOOL
+bool
 CxUri::bSetFragment(const std::string &csFragment) {
     _m_sFragment = sDecodeComponent(csFragment);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bClear ()
-BOOL
+bool
 CxUri::bClear() {
-    ////BOOL bRes = FALSE;
+    ////bool bRes = false;
 
     _m_sScheme.clear();
     _m_sAuthority.clear();
@@ -262,7 +262,7 @@ CxUri::bClear() {
     _m_sQuery.clear();
     _m_sFragment.clear();
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: sEscape ()
@@ -373,14 +373,14 @@ CxUri::sDecodeComponent(const std::string &csUri) {
         if (c == '%') {
             if (it == end) {
                 //throw SyntaxException("URI encoding: no hex digit following percent sign", csUri);
-                /*DEBUG*/xASSERT_RET(FALSE, "");
+                /*DEBUG*/xASSERT_RET(false, "");
             }
 
             char hi = *it ++;
 
             if (it == end) {
                 //throw SyntaxException("URI encoding: two hex digits must follow percent sign", csUri);
-                /*DEBUG*/xASSERT_RET(FALSE, "");
+                /*DEBUG*/xASSERT_RET(false, "");
             }
 
             char lo = *it ++;
@@ -393,7 +393,7 @@ CxUri::sDecodeComponent(const std::string &csUri) {
                 c = hi - 'a' + 10;
             } else {
                 //throw SyntaxException("URI encoding: not a hex digit");
-                /*DEBUG*/xASSERT_RET(FALSE, "");
+                /*DEBUG*/xASSERT_RET(false, "");
             }
 
             c *= 16;
@@ -406,7 +406,7 @@ CxUri::sDecodeComponent(const std::string &csUri) {
                 c += lo - 'a' + 10;
             } else {
                 //throw SyntaxException("URI encoding: not a hex digit");
-                /*DEBUG*/xASSERT_RET(FALSE, "");
+                /*DEBUG*/xASSERT_RET(false, "");
             }
         }
 
@@ -454,22 +454,22 @@ data   : text/plain;charset=iso-8859-7,%be%fg%be
 tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
-BOOL
+bool
 CxUri::_bParse(const std::string &csUri) {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     //Normilize();
 
     bRes = bClear();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     //-------------------------------------
     //[scheme] - [foo]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiSchemeStart = 0;
     size_t uiSchemeEnd   = csUri.find_first_of(CxConst::xCOLON);
-    /*DEBUG*/xASSERT_RET(std::string::npos       != uiSchemeEnd, FALSE);
-    /*DEBUG*/xASSERT_RET(7/*SCHEME_MAX_SIZE + 1*/ > uiSchemeEnd, FALSE);
+    /*DEBUG*/xASSERT_RET(std::string::npos       != uiSchemeEnd, false);
+    /*DEBUG*/xASSERT_RET(7/*SCHEME_MAX_SIZE + 1*/ > uiSchemeEnd, false);
 
     _m_sScheme = CxString::sCut(csUri, uiSchemeStart, uiSchemeEnd);
 
@@ -574,19 +574,19 @@ CxUri::_bParse(const std::string &csUri) {
     _m_sFragment = CxString::sCut(csUri, uiFragmentStart, uiFragmentEnd);
 
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: _bNormilize ()
-BOOL
+bool
 CxUri::_bNormilize(const std::string &csUri) {
-    ////BOOL bRes = FALSE;
+    ////bool bRes = false;
 
     //trim
     //lowcase(_m_sScheme)
     //remove dot-segment
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: _usGetDefaultPort ()
@@ -614,9 +614,9 @@ CxUri::_usGetDefaultPort() const {
 }
 //---------------------------------------------------------------------------
 //TODO: _bIsDefaultPort ()
-BOOL
+bool
 CxUri::_bIsDefaultPort() const {
-    return static_cast<BOOL>( _m_usPort == _usGetDefaultPort() );
+    return static_cast<bool>( _m_usPort == _usGetDefaultPort() );
 }
 //---------------------------------------------------------------------------
 

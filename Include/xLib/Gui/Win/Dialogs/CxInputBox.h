@@ -35,13 +35,13 @@ class CxInputBox :
         virtual                ~CxInputBox  ();
             ///< destructor
 
-        EModalResult            mrShowModal (const std::string_t &csCaption, const std::string_t &csPrompt, const std::string_t &csText);
+        EModalResult            mrShowModal (const std::tstring &csCaption, const std::tstring &csPrompt, const std::tstring &csText);
             ///< show modal
-        std::string_t            sGetText    ();
+        std::tstring            sGetText    ();
             ///< get text
 
     private:
-        std::string_t            _m_sText;        ///< text
+        std::tstring            _m_sText;        ///< text
         HWND                    _m_hWndMain;    ///< handle to main window
         HWND                    _m_hBtnOk;        ///< handle to button "Ok"
         HWND                    _m_hBtnCancel;    ///< handle to button "Cancel"

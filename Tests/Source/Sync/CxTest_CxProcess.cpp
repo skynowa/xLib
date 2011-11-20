@@ -17,7 +17,7 @@ CxTest_CxProcess::~CxTest_CxProcess() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxProcess::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -27,15 +27,15 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::string_t csFilePath = xT("explorer.exe");
-            const std::string_t csCmdLine  = xT("");
+            const std::tstring csFilePath = xT("explorer.exe");
+            const std::tstring csCmdLine  = xT("");
         #elif xOS_ENV_UNIX
-            const std::string_t csFilePath = xT("dolphin");
-            const std::string_t csCmdLine  = xT("");
+            const std::tstring csFilePath = xT("dolphin");
+            const std::tstring csCmdLine  = xT("");
         #endif
 
         ////m_bRes = CxProcess::bExec(csFilePath, csCmdLine.c_str(), 0);
-        ////xTEST_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -43,7 +43,7 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         ////m_bRes = CxProcess::bExit(CxProcess::ulGetCurrParentId(), 0);
-        ////xTEST_DIFF(FALSE, m_bRes);
+        ////xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -51,9 +51,9 @@ CxTest_CxProcess::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
-        //xTEST_DIFF(FALSE, m_bRes);
+        //xTEST_DIFF(false, m_bRes);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

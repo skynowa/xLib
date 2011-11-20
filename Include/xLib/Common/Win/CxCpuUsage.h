@@ -25,7 +25,7 @@ class CxCpuUsage :
         INT           GetCpuUsage(LPCTSTR pProcessName);
         INT           GetCpuUsage(DWORD dwProcessID);
 
-        BOOL          EnablePerformaceCounters(BOOL bEnable = TRUE);
+        bool          EnablePerformaceCounters(bool bEnable = true);
 
     private:
         bool          m_bFirstTime;

@@ -26,9 +26,9 @@ class CxLogin :
         virtual             ~CxLogin();
             ///< constructor
 
-        BOOL                 bLogin (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
+        bool                 bLogin (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
             ///< login user into a token
-        BOOL                 bLogout();
+        bool                 bLogout();
             ///< logout user from a token
 
     private:

@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxSleeper::CxSleeper() :
-    _m_objEvent(FALSE, FALSE)
+    _m_objEvent(false, false)
 {
 
 }
@@ -26,7 +26,7 @@ CxSleeper::~CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSleeper::bSleep(
     const ULONG culTimeout  ///< in milliseconds
 )
@@ -34,22 +34,22 @@ CxSleeper::bSleep(
     /*DEBUG*/// n/a
 
     CxEvent::EObjectState osRes = _m_objEvent.osWait(culTimeout);
-    /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes, FALSE);
+    /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSleeper::bWakeUp() {
     /*DEBUG*/// n/a
 
-    BOOL bRes = _m_objEvent.bSet();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = _m_objEvent.bSet();
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSleeper::bIsSleeping() {
     /*DEBUG*/// n/a
 

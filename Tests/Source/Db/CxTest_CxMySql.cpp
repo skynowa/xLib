@@ -17,17 +17,17 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxMySql::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    std::string_t csHost       = xT("127.0.0.1");
-    std::string_t csUser       = xT("root");
-    std::string_t csPassword   = xT("root");
-    std::string_t csDbName     = xT("db_test");
+    std::tstring csHost       = xT("127.0.0.1");
+    std::tstring csUser       = xT("root");
+    std::tstring csPassword   = xT("root");
+    std::tstring csDbName     = xT("db_test");
     UINT    uiPort       = 0;
-    std::string_t sTableName   = xT("t_main");
+    std::tstring sTableName   = xT("t_main");
 
 
     /****************************************************************************
@@ -49,7 +49,7 @@ CxTest_CxMySql::bUnit(
     //bIsValid
     {
         m_bRes = conConn.bIsValid();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -59,21 +59,21 @@ CxTest_CxMySql::bUnit(
         const void  *cpvArg   = NULL;
 
         m_bRes = conConn.bOptions(moOption, cpvArg);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
     //bConnect
     {
-        std::string_t csUnixSocket = xT("");
+        std::tstring csUnixSocket = xT("");
         ULONG   ulClientFlag = 0;
 
         m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, ulClientFlag);
-        if (FALSE == m_bRes) {
+        if (false == m_bRes) {
             csDbName = xT("");
 
             m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, ulClientFlag);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -82,7 +82,7 @@ CxTest_CxMySql::bUnit(
     {
         //create Db
         m_bRes = conConn.bQuery("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8", csDbName.c_str());
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         //create table
         m_bRes = conConn.bQuery(
@@ -95,7 +95,7 @@ CxTest_CxMySql::bUnit(
                                 "       PRIMARY KEY(`f_id`)"
                                 "   )"),
                                 sTableName.c_str());
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         //insert records
         m_bRes = conConn.bQuery(
@@ -108,11 +108,11 @@ CxTest_CxMySql::bUnit(
                                 "    ('Vasya', 24),"
                                 "    ('Sasha', 20)"),
                                 sTableName.c_str());
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         //select all records
         m_bRes = conConn.bQuery(xT("SELECT * FROM `t_main`"));
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -143,7 +143,7 @@ CxTest_CxMySql::bUnit(
     *
     *****************************************************************************/
 
-    CxMySQLRecordset recRec(conConn, FALSE);
+    CxMySQLRecordset recRec(conConn, false);
 
     //--------------------------------------------------
     //pmrGet
@@ -156,7 +156,7 @@ CxTest_CxMySql::bUnit(
     //bIsValid
     {
         m_bRes = recRec.bIsValid();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -181,7 +181,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchField(&mfField);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -191,7 +191,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchFieldDirect(uiFieldNumber, &mfField);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -200,7 +200,7 @@ CxTest_CxMySql::bUnit(
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchFields(&mfField);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     #if xTODO
@@ -210,7 +210,7 @@ CxTest_CxMySql::bUnit(
             MYSQL_ROW mrRow;
 
             m_bRes = recRec.bFetchRow(&mrRow);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         //--------------------------------------------------
@@ -219,7 +219,7 @@ CxTest_CxMySql::bUnit(
             ULONG *pulFieldLengths = NULL;
 
             m_bRes = recRec.bFetchLengths(&pulFieldLengths);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
             xASSERT(NULL  != pulFieldLengths);
         }
     #endif
@@ -227,11 +227,11 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bFetchRow
     {
-        std::vector<std::string_t> vsRow;
+        std::vector<std::tstring> vsRow;
 
         for (my_ulonglong i = 0; i < recRec.ullRowsNum(); ++ i) {
             m_bRes = recRec.bFetchRow(&vsRow);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             //CxString::vStdVectorPrintT(vsRow);
         }
@@ -241,11 +241,11 @@ CxTest_CxMySql::bUnit(
     //drop Db
     {
         m_bRes = conConn.bQuery(xT("DROP TABLE IF EXISTS `%s`"), sTableName.c_str());
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         #if xTODO
             m_bRes = conConn.bQuery(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #endif
     }
 
@@ -253,9 +253,9 @@ CxTest_CxMySql::bUnit(
     //bClose
     {
         m_bRes = conConn.bClose();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

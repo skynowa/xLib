@@ -34,7 +34,7 @@ class CxCom :
             ///< destructor
 
         //static
-        static BOOL bIsInit();
+        static bool bIsInit();
             ///< is initiated
 
     private:

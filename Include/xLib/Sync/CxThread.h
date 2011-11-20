@@ -55,71 +55,71 @@ class CxThread :
 
         volatile LONG       m_ulTag;    ///< tag
 
-                            CxThread              (const BOOL cbAutoDelete);
+                            CxThread              (const bool cbAutoDelete);
             ///< constructor
         virtual            ~CxThread              () = 0;
             ///< destructor
 
         //actions
-        BOOL                bCreate               (const BOOL cbIsPaused, const UINT cuiStackSize, void *pvParam);
+        bool                bCreate               (const bool cbIsPaused, const UINT cuiStackSize, void *pvParam);
             ///< start
-        BOOL                bResume               ();
+        bool                bResume               ();
             ///< resume
-        BOOL                bPause                ();
+        bool                bPause                ();
             ///< pause
-        BOOL                bExit                 ();
+        bool                bExit                 ();
             ///< exit (set flag "exit")
-        BOOL                bKill                 (const ULONG culTimeout);
+        bool                bKill                 (const ULONG culTimeout);
             ///< kill
-        BOOL                bWait                 (const ULONG culTimeout) const;
+        bool                bWait                 (const ULONG culTimeout) const;
             ///< wait
 
         //flags
-        BOOL                bIsCreated            () const;
+        bool                bIsCreated            () const;
             ///< is created
-        BOOL                bIsRunning            () const;
+        bool                bIsRunning            () const;
             ///< is runnig
-        BOOL                bIsPaused             ();
+        bool                bIsPaused             ();
             ///< is paused
-        BOOL                bIsExited             ();
+        bool                bIsExited             ();
             ///< is exited (is set flag "exit")
 
     #if xOS_ENV_WIN
         //messages
-        BOOL                bPostMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        bool                bPostMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
             ///< post message from thread to window
-        BOOL                bSendMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        bool                bSendMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
             ///< send message from thread to window
-        BOOL                bPostThreadMessage    (UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        bool                bPostThreadMessage    (UINT uiMsg, UINT uiParam1, LONG liParam2) const;
             ///< post message from thread to thread
-        BOOL                bTryPostThreadMessage (UINT uiMsg, UINT uiParam1, LONG liParam2, ULONG ulAttemps, ULONG ulAttempTimeout) const;
+        bool                bTryPostThreadMessage (UINT uiMsg, UINT uiParam1, LONG liParam2, ULONG ulAttemps, ULONG ulAttempTimeout) const;
             ///< try post message from thread to thread
-        BOOL                bMessageWaitQueue     (UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const;
+        bool                bMessageWaitQueue     (UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const;
             ///< waiting for message with params from other thread
-        BOOL                bMessageWaitQueue     (const std::vector<UINT> &cvuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
+        bool                bMessageWaitQueue     (const std::vector<UINT> &cvuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
             ///< waiting for message with params from other thread
     #endif
 
         //priority
-        BOOL                bSetPriority          (const EPriority ctpPriority) const;
+        bool                bSetPriority          (const EPriority ctpPriority) const;
             ///< set priority (under Linux must use admin privilege)
         EPriority           tpGetPriority         () const;
             ///< get priotity
-        std::string_t        sGetPriorityString    () const;
+        std::tstring        sGetPriorityString    () const;
             ///< get priority as string
-        BOOL                bPriorityUp           () const;
+        bool                bPriorityUp           () const;
             ///< increase priority on one level
-        BOOL                bPriorityDown         () const;
+        bool                bPriorityDown         () const;
             ///< decrease priority on one level
-        BOOL                bIsPriorityBoost      () const;
+        bool                bIsPriorityBoost      () const;
             ///< get priority boost control state
-        BOOL                bSetPriorityBoost     (const BOOL cbIsEnabled) const;
+        bool                bSetPriorityBoost     (const bool cbIsEnabled) const;
             ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
         //CPU
-        BOOL                bSetCpuAffinity       (const int ciProcNum) const;
+        bool                bSetCpuAffinity       (const int ciProcNum) const;
             ///< set processor affinity
-        BOOL                bSetCpuIdeal          (const ULONG culIdealCpu) const;
+        bool                bSetCpuIdeal          (const ULONG culIdealCpu) const;
             ///< sets preferred processor for a thread
         ULONG               ulGetCpuIdeal         () const;
             ///< get current ideal processor without changing it
@@ -131,15 +131,15 @@ class CxThread :
             ///< get handle
         TxId                ulGetId               () const;
             ///< get ID
-        BOOL                bIsCurrent            () const;
+        bool                bIsCurrent            () const;
             ///< is current
         ULONG               ulGetExitStatus       () const;
             ///< get termination status
-        BOOL                bSetDebugName         (const std::string_t &csName) const;
+        bool                bSetDebugName         (const std::tstring &csName) const;
             ///< set name your threads in the debugger thread list
 
         //static
-        static TxHandle     hOpen                 (const ULONG culAccess, const BOOL cbInheritHandle, const ULONG culId);
+        static TxHandle     hOpen                 (const ULONG culAccess, const bool cbInheritHandle, const ULONG culId);
             ///< opens an existing thread object
 
     protected:
@@ -149,7 +149,7 @@ class CxThread :
         //--virtual void    vOnEnter              ();
         //--virtual void    vOnExit               ();
 
-        BOOL                bIsTimeToExit         ();
+        bool                bIsTimeToExit         ();
             ///< is need to exit from work thread function
 
     private:
@@ -168,14 +168,14 @@ class CxThread :
         TxId                _m_ulId;                    ///< ID
         UINT                _m_uiExitStatus;            ///< exit code
         void               *_m_pvParam;                 ///< param for job function
-        const BOOL          _m_cbIsAutoDelete;          ///< is autodelete thread object
+        const bool          _m_cbIsAutoDelete;          ///< is autodelete thread object
 
         //flags
         //TODO: make struct SFlags
-        BOOL                _m_bIsCreated;              ///< is created
-        BOOL                _m_bIsRunning;              ///< is running
-        /*BOOL              _m_bIsPaused;*/// n/a
-        /*BOOL              _m_bIsExited;*/// n/a
+        bool                _m_bIsCreated;              ///< is created
+        bool                _m_bIsRunning;              ///< is running
+        /*bool              _m_bIsPaused;*/// n/a
+        /*bool              _m_bIsExited;*/// n/a
 
         //other
         CxEvent            *_m_pevStarter;              ///< starter event
@@ -191,7 +191,7 @@ class CxThread :
         static TxExitStatus xSTDCALL
                             _s_uiJobEntry     (void *pvParam);
             ///< callback
-        BOOL                _bWaitResumption  ();
+        bool                _bWaitResumption  ();
             ///< waiting for reset pause
         void                _vSetStatesDefault();
             ///< set states as default

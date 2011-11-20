@@ -18,19 +18,19 @@ class CxTraceLog :
     /// tracing
 {
     public:
-        explicit CxTraceLog (const BOOL cbIsUseTimeStr);
+        explicit CxTraceLog (const bool cbIsUseTimeStr);
             ///< constructor
         virtual ~CxTraceLog ();
             ///< destructor
 
-        BOOL     bSetEnabled(const BOOL cbFlag);
+        bool     bSetEnabled(const bool cbFlag);
             ///< set enabled
-        BOOL     bWrite     (const char_t *pcszFormat, ...);
+        bool     bWrite     (const tchar *pcszFormat, ...);
             ///< write
 
     private:
-        BOOL     _m_bIsEnable;        ///< is enabled
-        BOOL     _m_bIsUseTimeStr;    ///< is use time string
+        bool     _m_bIsEnable;        ///< is enabled
+        bool     _m_bIsUseTimeStr;    ///< is use time string
 };
 
 xNAMESPACE_END(NxLib)

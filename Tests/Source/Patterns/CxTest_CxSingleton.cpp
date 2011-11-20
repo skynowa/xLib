@@ -33,7 +33,7 @@ CxTest_CxSingleton::~CxTest_CxSingleton() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxSingleton::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -71,6 +71,6 @@ CxTest_CxSingleton::bUnit(
         ////xPTR_DELETE(pobjLoggerSingleton);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

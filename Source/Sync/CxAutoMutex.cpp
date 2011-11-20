@@ -23,21 +23,21 @@ CxAutoMutex::CxAutoMutex(
 ) :
     _m_mtMutex(mtMutex)
 {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
-    bRes = _m_mtMutex.bCreate(NULL, FALSE, xT(""));
-    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    bRes = _m_mtMutex.bCreate(NULL, false, xT(""));
+    /*DEBUG*/xASSERT_DO(false != bRes, return);
 
     bRes = _m_mtMutex.bWait(INFINITE);
-    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    /*DEBUG*/xASSERT_DO(false != bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxAutoMutex ()
 CxAutoMutex::~CxAutoMutex() {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     bRes = _m_mtMutex.bRelease();
-    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    /*DEBUG*/xASSERT_DO(false != bRes, return);
 }
 //---------------------------------------------------------------------------
 

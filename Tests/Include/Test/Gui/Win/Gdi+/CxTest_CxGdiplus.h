@@ -21,7 +21,7 @@ class CxTest_CxGdiplus :
                      CxTest_CxGdiplus();
         virtual     ~CxTest_CxGdiplus();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

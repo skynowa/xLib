@@ -18,7 +18,7 @@ class CxTest_CxAsyncSocket :
                      CxTest_CxAsyncSocket();
         virtual     ~CxTest_CxAsyncSocket();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

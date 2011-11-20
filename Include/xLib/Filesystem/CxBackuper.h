@@ -41,7 +41,7 @@ class CxBackuper :
         virtual             ~CxBackuper();
             ///< destructor
 
-        EErrorType           etExecute (const std::string_t &csFilePath, const std::string_t &csDestDirPath, std::string_t *psDestFilePath);
+        EErrorType           etExecute (const std::tstring &csFilePath, const std::tstring &csDestDirPath, std::tstring *psDestFilePath);
             ///< backup
 
     private:

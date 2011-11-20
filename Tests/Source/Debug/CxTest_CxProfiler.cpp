@@ -17,7 +17,7 @@ CxTest_CxProfiler::~CxTest_CxProfiler() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxProfiler::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -35,18 +35,18 @@ CxTest_CxProfiler::bUnit(
     };
 
     for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
-        const std::string_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("___Log.log");
+        const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("___Log.log");
 
         CxProfiler pfP(pmPerformMode[i]);
 
         m_bRes = pfP.bSetLogPath(csFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_sRes = pfP.sGetLogPath();
         xTEST_EQ(csFilePath, m_sRes);
 
         m_bRes = pfP.bStart();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         for (size_t y = 0; y < 10; ++ y) {
             for (size_t j = 0; j < 2; ++ j) {
@@ -56,13 +56,13 @@ CxTest_CxProfiler::bUnit(
             }
 
             pfP.bPulse(xT("Variable i: %zu"), y);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         pfP.bStop(xT(""));
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

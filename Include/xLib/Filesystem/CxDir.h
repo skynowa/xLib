@@ -16,41 +16,41 @@ class CxDir :
     /// directory
 {
     public:
-        static BOOL         bIsExists   (const std::string_t &csDirPath);
+        static bool         bIsExists   (const std::tstring &csDirPath);
             ///< check for existence
-        static BOOL         bIsEmpty    (const std::string_t &csDirPath, const std::string_t &csMask = CxConst::xMASK_ALL);
+        static bool         bIsEmpty    (const std::tstring &csDirPath, const std::tstring &csMask = CxConst::xMASK_ALL);
             ///< is empty
-        static BOOL         bIsRoot     (const std::string_t &csDirPath);
+        static bool         bIsRoot     (const std::tstring &csDirPath);
             ///< is root
-        static BOOL         bIsDir      (const std::string_t &csDirPath);
+        static bool         bIsDir      (const std::tstring &csDirPath);
             ///< is dir
-        static std::string_t sGetCurrent ();
+        static std::tstring sGetCurrent ();
             ///< get current
-        static BOOL         bSetCurrent (const std::string_t &csDirPath);
+        static bool         bSetCurrent (const std::tstring &csDirPath);
             ///< set current
-        static std::string_t sGetTemp    ();
+        static std::tstring sGetTemp    ();
             ///< get path to system var %Temp%
-        static BOOL         bCreate     (const std::string_t &csDirPath);
+        static bool         bCreate     (const std::tstring &csDirPath);
             ///< create
-        static BOOL         bCreateForce(const std::string_t &csDirPath);
+        static bool         bCreateForce(const std::tstring &csDirPath);
             ///< creation of all dirs that not exists in path
-        static BOOL         bCopy       (const std::string_t &csDirPathFrom, const std::string_t &csDirPathTo, const BOOL cbFailIfExists);
+        static bool         bCopy       (const std::tstring &csDirPathFrom, const std::tstring &csDirPathTo, const bool cbFailIfExists);
             ///< copy
-        static BOOL         bMove       (const std::string_t &csDirPathFrom, const std::string_t &csDirPathTo, const BOOL cbFailIfExists);
+        static bool         bMove       (const std::tstring &csDirPathFrom, const std::tstring &csDirPathTo, const bool cbFailIfExists);
             ///< move
 
-        static BOOL         bDelete     (const std::string_t &csDirPath);
+        static bool         bDelete     (const std::tstring &csDirPath);
             ///< deletion dir which empty
-        static BOOL         bTryDelete  (const std::string_t &csDirPath, const size_t cuiAttempts, const ULONG culTimeoutMsec);
+        static bool         bTryDelete  (const std::tstring &csDirPath, const size_t cuiAttempts, const ULONG culTimeoutMsec);
             ///< try deleting, max 100 attempts
-        static BOOL         bClearForce (const std::string_t &csDirPath);
+        static bool         bClearForce (const std::tstring &csDirPath);
             ///< detetion all content of dir
-        static BOOL         bDeleteForce(const std::string_t &csDirPath);
+        static bool         bDeleteForce(const std::tstring &csDirPath);
             ///< detetion dir fnd all content of it
 
-        static BOOL         bFindFiles  (const std::string_t &csDirPath, const std::string_t &cMask, const BOOL cbIsRecurse, std::vector<std::string_t> *pvsFilePathes);
+        static bool         bFindFiles  (const std::tstring &csDirPath, const std::tstring &cMask, const bool cbIsRecurse, std::vector<std::tstring> *pvsFilePathes);
             ///< search files
-        static BOOL         bFindDirs   (const std::string_t &csDirPath, const std::string_t &cMask, const BOOL cbIsRecurse, std::vector<std::string_t> *pvsDirPathes);
+        static bool         bFindDirs   (const std::tstring &csDirPath, const std::tstring &cMask, const bool cbIsRecurse, std::vector<std::tstring> *pvsDirPathes);
             ///< search subdirs
 
     private:

@@ -17,7 +17,7 @@ CxTest_CxShell::~CxTest_CxShell() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxShell::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -74,11 +74,11 @@ CxTest_CxShell::bUnit(
     xTEST_BLOCK(cullBlockLoops) {
         #if (xWINVER >= xWIN32_2K)
             m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
-            xTEST_EQ(std::string_t(xT("C:\\WINDOWS\\Fonts")), m_sRes);
+            xTEST_EQ(std::tstring(xT("C:\\WINDOWS\\Fonts")), m_sRes);
         #endif //xWIN32_2K
     }
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

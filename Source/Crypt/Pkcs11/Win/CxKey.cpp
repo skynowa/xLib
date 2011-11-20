@@ -34,7 +34,7 @@ CxKey::~CxKey() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxKey::bGenerate(
     CK_MECHANISM_PTR     pMechanism,  ///< key generation mech.
     CK_ATTRIBUTE_PTR     pTemplate,   ///< template for new key
@@ -45,12 +45,12 @@ CxKey::bGenerate(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GenerateKey(_m_hSession, pMechanism, pTemplate, ulCount, phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxKey::bGeneratePair(
     CK_MECHANISM_PTR     pMechanism,                  ///< key-gen mech.
     CK_ATTRIBUTE_PTR     pPublicKeyTemplate,          ///< template for pub key
@@ -64,12 +64,12 @@ CxKey::bGeneratePair(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GenerateKeyPair(_m_hSession, pMechanism, pPublicKeyTemplate, ulPublicKeyAttributeCount, pPrivateKeyTemplate, ulPrivateKeyAttributeCount, phPublicKey, phPrivateKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxKey::bDerive(
     CK_MECHANISM_PTR     pMechanism,        ///< key deriv. mech.
     CK_OBJECT_HANDLE     hBaseKey,          ///< base key
@@ -81,12 +81,12 @@ CxKey::bDerive(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_DeriveKey(_m_hSession, pMechanism, hBaseKey, pTemplate, ulAttributeCount, phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxKey::bWrap(
     CK_MECHANISM_PTR pMechanism,      ///< the wrapping mechanism
     CK_OBJECT_HANDLE hWrappingKey,    ///< wrapping key
@@ -98,12 +98,12 @@ CxKey::bWrap(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_WrapKey(_m_hSession, pMechanism, hWrappingKey, hKey, pWrappedKey, pulWrappedKeyLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxKey::bUnwrap(
     CK_MECHANISM_PTR     pMechanism,        ///< unwrapping mech.
     CK_OBJECT_HANDLE     hUnwrappingKey,    ///< unwrapping key
@@ -117,12 +117,12 @@ CxKey::bUnwrap(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_UnwrapKey(_m_hSession, pMechanism, hUnwrappingKey, pWrappedKey, ulWrappedKeyLen, pTemplate, ulAttributeCount, phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxKey::bSeedRandom(
     CK_BYTE_PTR pSeed,     ///< the seed material
     CK_ULONG    ulSeedLen  ///< length of seed material
@@ -131,12 +131,12 @@ CxKey::bSeedRandom(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_SeedRandom(_m_hSession, pSeed, ulSeedLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxKey::bGenerateRandom(
     CK_BYTE_PTR pRandomData,  ///< receives the random data
     CK_ULONG    ulRandomLen   ///< # of bytes to generate
@@ -145,9 +145,9 @@ CxKey::bGenerateRandom(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GenerateRandom(_m_hSession, pRandomData, ulRandomLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

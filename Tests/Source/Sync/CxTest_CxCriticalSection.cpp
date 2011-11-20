@@ -17,7 +17,7 @@ CxTest_CxCriticalSection::~CxTest_CxCriticalSection() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxCriticalSection::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -32,12 +32,12 @@ CxTest_CxCriticalSection::bUnit(
         CxCriticalSection csCS;
 
         m_bRes = csCS.bLock();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         ++ uiVal;
 
         m_bRes = csCS.bUnlock();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -47,12 +47,12 @@ CxTest_CxCriticalSection::bUnit(
         CxCriticalSection csCS;
 
         m_bRes = csCS.bTryLock();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         ++ uiVal;
 
         m_bRes = csCS.bUnlock();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -65,14 +65,14 @@ CxTest_CxCriticalSection::bUnit(
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bLock();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bUnlock();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -86,17 +86,17 @@ CxTest_CxCriticalSection::bUnit(
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bTryLock();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bUnlock();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

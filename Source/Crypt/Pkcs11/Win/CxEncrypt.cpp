@@ -35,7 +35,7 @@ CxEncrypt::~CxEncrypt() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxEncrypt::bInit(
     CK_MECHANISM_PTR pMechanism,  ///< the encryption mechanism
     CK_OBJECT_HANDLE hKey         ///< handle of encryption key
@@ -44,12 +44,12 @@ CxEncrypt::bInit(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_EncryptInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxEncrypt::bMake(
     CK_BYTE_PTR  pData,               ///< the plaintext data
     CK_ULONG     ulDataLen,           ///< bytes of plaintext
@@ -60,12 +60,12 @@ CxEncrypt::bMake(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_Encrypt(_m_hSession, pData, ulDataLen, pEncryptedData, pulEncryptedDataLen  );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxEncrypt::bUpdate(
     CK_BYTE_PTR  pPart,              ///< the plaintext data
     CK_ULONG     ulPartLen,          ///< plaintext data len
@@ -76,12 +76,12 @@ CxEncrypt::bUpdate(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_EncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxEncrypt::bFinal(
     CK_BYTE_PTR  pLastEncryptedPart,      ///< last c-text
     CK_ULONG_PTR pulLastEncryptedPartLen  ///< gets last size
@@ -90,9 +90,9 @@ CxEncrypt::bFinal(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_EncryptFinal(_m_hSession, pLastEncryptedPart, pulLastEncryptedPartLen );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -103,32 +103,32 @@ CxEncrypt::bFinal(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxEncrypt::bMakeFile(
-    const std::string_t &csInFilePath,
-    const std::string_t &csOutFilePath,
+    const std::tstring &csInFilePath,
+    const std::tstring &csOutFilePath,
     CK_MECHANISM_PTR    pMechanism,
     CK_OBJECT_HANDLE    hKey
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csInFilePath.empty(),  FALSE);
-    /*DEBUG*/xASSERT_RET(false == csOutFilePath.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pMechanism,            FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != hKey,                  FALSE);
+    /*DEBUG*/xASSERT_RET(false == csInFilePath.empty(),  false);
+    /*DEBUG*/xASSERT_RET(false == csOutFilePath.empty(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != pMechanism,            false);
+    /*DEBUG*/xASSERT_RET(NULL  != hKey,                  false);
 
     //-------------------------------------
     //������ ����� � �����
-    BOOL         bRes        = FALSE;
+    bool         bRes        = false;
     std::ustring usPlainData;
 
     {
         CxFile sfFileRaw;
 
-        bRes = sfFileRaw.bCreate(csInFilePath, CxFile::omBinRead, TRUE);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+        bRes = sfFileRaw.bCreate(csInFilePath, CxFile::omBinRead, true);
+        /*DEBUG*/xASSERT_RET(false != bRes, false);
 
         bRes = sfFileRaw.bRead(&usPlainData);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+        /*DEBUG*/xASSERT_RET(false != bRes, false);
     }
 
     //-------------------------------------
@@ -152,10 +152,10 @@ CxEncrypt::bMakeFile(
             }
 
             bRes = bInit(pMechanism, hKey);
-            xCHECK_RET(FALSE == bRes, FALSE);
+            xCHECK_RET(false == bRes, false);
 
             bRes = bMake(&usPlainData[0] + ulOffset, ulPadSize, &usEncryptedData[0] + ulOffset2, &usEncryptedDataSize);
-            xCHECK_RET(FALSE == bRes, FALSE);
+            xCHECK_RET(false == bRes, false);
 
             ulOffset2 += usEncryptedDataSize;
         }
@@ -169,14 +169,14 @@ CxEncrypt::bMakeFile(
     {
         CxFile sfFileEncrypt;
 
-        bRes = sfFileEncrypt.bCreate(csOutFilePath, CxFile::omBinWrite, TRUE);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+        bRes = sfFileEncrypt.bCreate(csOutFilePath, CxFile::omBinWrite, true);
+        /*DEBUG*/xASSERT_RET(false != bRes, false);
 
         bRes = sfFileEncrypt.bWrite(usEncryptedData);
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+        /*DEBUG*/xASSERT_RET(false != bRes, false);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

@@ -55,34 +55,34 @@ class CxConsole :
             bgBlack_ = 100, bgRed_ = 101, bgGreen_ = 102, bgYellow_ = 103, bgBlue_ = 104, bgMagenta_ = 105, bgCyan_ = 106, bgWhite_ = 107
         };
 
-        std::string_t bSetTextColor (const std::string_t &csText, const EForeground cfgForeground, const BOOL cbIsBold, const BOOL cbIsUnderline, const EBackground cbgBackground, const BOOL cbIsBlink);
+        std::tstring bSetTextColor (const std::tstring &csText, const EForeground cfgForeground, const bool cbIsBold, const bool cbIsUnderline, const EBackground cbgBackground, const bool cbIsBlink);
             ///< set text color
-        std::string_t sRead         ();
+        std::tstring sRead         ();
             ///< read
-        BOOL         bWrite        (const std::string_t &csStr);
+        bool         bWrite        (const std::tstring &csStr);
             ///< write
-        BOOL         bWriteLine    (const std::string_t &csStr = xT(""));
+        bool         bWriteLine    (const std::tstring &csStr = xT(""));
             ///< write line
-        BOOL         bWriteErrLine (const std::string_t &csStr);
+        bool         bWriteErrLine (const std::tstring &csStr);
             ///< write error message
-        EModalResult iMsgBox       (const std::string_t &csText, const std::string_t &csTitle, const UINT cuiType);
+        EModalResult iMsgBox       (const std::tstring &csText, const std::tstring &csTitle, const UINT cuiType);
             ///< show console message dialog
-        BOOL         bPrompt       (const std::string_t &csPrompt, const BOOL cbIsVisible, std::string_t *psAnswer);
+        bool         bPrompt       (const std::tstring &csPrompt, const bool cbIsVisible, std::tstring *psAnswer);
             ///< show console prompt dialog
-        BOOL         bPause        ();
+        bool         bPause        ();
             ///< pause
-        BOOL         bClear        ();
+        bool         bClear        ();
             ///< clear
 
-        std::string_t sGetTitle     ();
+        std::tstring sGetTitle     ();
             ///< get title string
-        BOOL         bSetTitle     (const std::string_t &csTitle);
+        bool         bSetTitle     (const std::tstring &csTitle);
             ///< set title string
-        BOOL         bCenterWindow ();
+        bool         bCenterWindow ();
             ///< allign to center
-        BOOL         bSetFullScreen();
+        bool         bSetFullScreen();
             ///< set full screen
-        BOOL         bEnableClose  (const BOOL cbFlag);
+        bool         bEnableClose  (const bool cbFlag);
             ///< enable close button
 
     private:
@@ -94,7 +94,7 @@ class CxConsole :
 
         HWND         _hGetWndHandle ();
             ///< get console window handle
-        HMENU        _hGetMenuHandle(const BOOL cbRevert);
+        HMENU        _hGetMenuHandle(const bool cbRevert);
             ///< get console menu handle
     #elif xOS_ENV_UNIX
 
@@ -112,7 +112,7 @@ xNAMESPACE_END(NxLib)
     #include <stdio.h>
     #include <windows.h>
 
-    BOOL
+    bool
     create_console() {
       FreeConsole();
       if (AllocConsole()) {
@@ -123,9 +123,9 @@ xNAMESPACE_END(NxLib)
         *stderr = *(::_fdopen(hCrt, "w"));
         ::setvbuf(stderr, NULL, _IONBF, 0);
 
-        return TRUE;
+        return true;
       }
-      return FALSE;
+      return false;
     }
 
     usage:
@@ -166,7 +166,7 @@ xNAMESPACE_END(NxLib)
 
         initscr();             /* start curses mode */
         cbreak();
-        keypad(stdscr, TRUE);  /* enable keyboard mapping */
+        keypad(stdscr, true);  /* enable keyboard mapping */
         noecho();              /* turn off echoing */
 
         int key = 0;

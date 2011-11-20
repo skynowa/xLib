@@ -25,9 +25,9 @@ class CxMechanism :
         virtual             ~CxMechanism();
             ///< destructor
 
-        BOOL                 bGetInfo   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);
+        bool                 bGetInfo   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);
             ///< obtains information about a particular mechanism possibly supported by a token
-        BOOL                 bGetList   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);
+        bool                 bGetList   (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);
             ///< obtains a list of mechanism types supported by a token
 
     private:

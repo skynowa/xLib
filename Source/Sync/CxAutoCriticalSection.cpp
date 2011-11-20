@@ -17,16 +17,16 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 CxAutoCriticalSection::CxAutoCriticalSection(
     CxCriticalSection &csCS,
-    const BOOL         cbIsUseTry /* = FALSE*/
+    const bool         cbIsUseTry /* = false*/
 ) :
     _m_csCS     (csCS),
-    _m_bIsLocked(FALSE)
+    _m_bIsLocked(false)
 {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
-    if (FALSE == cbIsUseTry) {
+    if (false == cbIsUseTry) {
         bRes = _m_csCS.bLock();
-        /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+        /*DEBUG*/xASSERT_DO(false != bRes, return);
     } else {
         bRes = _m_csCS.bTryLock();
         /*DEBUG*/// n/a
@@ -36,15 +36,15 @@ CxAutoCriticalSection::CxAutoCriticalSection(
 }
 //---------------------------------------------------------------------------
 CxAutoCriticalSection::~CxAutoCriticalSection() {
-    if (FALSE != _m_bIsLocked) {
-        BOOL bRes = _m_csCS.bUnlock();
-        /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    if (false != _m_bIsLocked) {
+        bool bRes = _m_csCS.bUnlock();
+        /*DEBUG*/xASSERT_DO(false != bRes, return);
     }
 
-    _m_bIsLocked = FALSE;
+    _m_bIsLocked = false;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxAutoCriticalSection::bIsLocked() const {
     return _m_bIsLocked;
 }

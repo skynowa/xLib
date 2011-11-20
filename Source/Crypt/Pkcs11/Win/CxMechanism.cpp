@@ -32,7 +32,7 @@ CxMechanism::~CxMechanism() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMechanism::bGetInfo(
     CK_SLOT_ID            slotID,  ///< ID of the token's slot
     CK_MECHANISM_TYPE     type,    ///< type of mechanism
@@ -42,12 +42,12 @@ CxMechanism::bGetInfo(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GetMechanismInfo(slotID, type, pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxMechanism::bGetList(
     CK_SLOT_ID            slotID,          ///< ID of token's slot
     CK_MECHANISM_TYPE_PTR pMechanismList,  ///< gets mech. array
@@ -57,9 +57,9 @@ CxMechanism::bGetList(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_GetMechanismList(slotID, pMechanismList, pulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

@@ -17,7 +17,7 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxAtomicLongInt::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -63,18 +63,18 @@ CxTest_CxAtomicLongInt::bUnit(
     //CxAtomicLongInt& operator +=   (const LONG cliRight);
     //CxAtomicLongInt& operator -=   (const LONG cliRight);
     //CxAtomicLongInt& operator =    (const LONG cliRight);
-    //BOOL             operator ==   (const CxAtomicLongInt &cRight);
-    //BOOL             operator !=   (const CxAtomicLongInt &cRight);
-    //BOOL             operator ==   (const LONG cliRight);
-    //BOOL             operator !=   (const LONG cliRight);
+    //bool             operator ==   (const CxAtomicLongInt &cRight);
+    //bool             operator !=   (const CxAtomicLongInt &cRight);
+    //bool             operator ==   (const LONG cliRight);
+    //bool             operator !=   (const LONG cliRight);
     //operator LONG ();
-    //operator BOOL ();
+    //operator bool ();
     //CxAtomicLongInt& operator ++   (int iPos);
     //CxAtomicLongInt& operator --   (int iPos);
 #elif xOS_ENV_UNIX
 
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

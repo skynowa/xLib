@@ -17,7 +17,7 @@ CxTest_CxSmtp::~CxTest_CxSmtp() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxSmtp::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -71,22 +71,22 @@ CxTest_CxSmtp::bUnit(
     //-------------------------------------
     //bCreate
     m_bRes = objSmtp.bCreate(csUser, csPass, csServer, usPort);
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
     //-------------------------------------
     //bConnect
     m_bRes = objSmtp.bConnect();
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
     //-------------------------------------
     //bLogin
     ////m_bRes = objSmtp.bLogin();
-    ////xTEST_DIFF(FALSE, m_bRes);
+    ////xTEST_DIFF(false, m_bRes);
 
     //-------------------------------------
     //bSend
     m_bRes = objSmtp.bSend(csText, csFrom, csTo);
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
     //-------------------------------------
     //bSendRaw
@@ -94,7 +94,7 @@ CxTest_CxSmtp::bUnit(
     g_vsRes = CxDir::vsListFiles(csDirPath, "*.eml");
     for (size_t i = 0; i < g_vsRes.size(); i ++) {
         m_bRes = objSmtp.bSendRaw(csDirPath + "\\" + g_vsRes.at(i), csFrom, csTo);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
         /*LOG*///printf("Send msg %s\n", g_vsRes.at(i).c_str());
     }
 #endif
@@ -102,21 +102,21 @@ CxTest_CxSmtp::bUnit(
     //-------------------------------------
     //bNoop
     m_bRes = objSmtp.bNoop();
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
     //-------------------------------------
     //bRset
     m_bRes = objSmtp.bRset();
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
     //-------------------------------------
     //bDisconnect
     m_bRes = objSmtp.bDisconnect();
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 #elif xOS_ENV_UNIX
 
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

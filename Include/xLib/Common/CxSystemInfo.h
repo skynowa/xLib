@@ -54,19 +54,19 @@ class CxSystemInfo :
 
         static EOsType      osGetOS           ();
             ///< get information about the current OS
-        static std::string_t sFormatOsType     (const EOsType otOsType);
+        static std::tstring sFormatOsType     (const EOsType otOsType);
             ///< format OS type
 
         static EOsArch      oaGetOsArch       ();
             ///< get OS architecture
-        static std::string_t sFormatOsArch     (const EOsArch oaOsArch);
+        static std::tstring sFormatOsArch     (const EOsArch oaOsArch);
             ///< format get OS architecture
 
-        static std::string_t sGetComputerName  ();
+        static std::tstring sGetComputerName  ();
             ///< get the NetBIOS name of the local computer
-        static BOOL         bIsUserAnAdmin    ();
+        static bool         bIsUserAnAdmin    ();
             ///< is current user an admin
-        static std::string_t sGetUserName      ();
+        static std::tstring sGetUserName      ();
             ///< get the name of the user associated with the current thread
         static ULONG        ulGetNumOfCpus    ();
             ///< get num of CPUs

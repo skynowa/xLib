@@ -16,30 +16,30 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxFileAttribute::bIsExists(
-    const std::string_t &csFilePath,
+    const std::tstring &csFilePath,
     const EAttribute   cfaValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// cfaValue
 
 #if xTEMP_DISABLED
     #if xOS_ENV_WIN
-        xCHECK_RET((atGet(csFilePath) & BS_TYPEMASK) == cfaValue, TRUE);
+        xCHECK_RET((atGet(csFilePath) & BS_TYPEMASK) == cfaValue, true);
     #endif
 #endif
 
-    xCHECK_RET(cfaValue == (atGet(csFilePath) & cfaValue), TRUE);
+    xCHECK_RET(cfaValue == (atGet(csFilePath) & cfaValue), true);
 
-    return FALSE;
+    return false;
 }
 //---------------------------------------------------------------------------
 /*static*/
 CxFileAttribute::EAttribute
 CxFileAttribute::atGet(
-    const std::string_t &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/// csFilePath - n/a
@@ -65,61 +65,61 @@ CxFileAttribute::atGet(
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxFileAttribute::bSet(
-    const std::string_t &csFilePath,
+    const std::tstring &csFilePath,
     const EAttribute    cfaValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// cfaValue
 
 #if xOS_ENV_WIN
     BOOL bRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ULONG>(cfaValue));
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, FALSE);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxFileAttribute::bAdd(
-    const std::string_t &csFilePath,
+    const std::tstring &csFilePath,
     const EAttribute    cfaValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// cfaValue
 
     return bModify(csFilePath, static_cast<EAttribute>(0), cfaValue);
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxFileAttribute::bRemove(
-    const std::string_t &csFilePath,
+    const std::tstring &csFilePath,
     const EAttribute    cfaValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// cfaValue
 
     return bModify(csFilePath, cfaValue, static_cast<EAttribute>(0));
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxFileAttribute::bModify(
-    const std::string_t &csFilePath,
+    const std::tstring &csFilePath,
     const EAttribute    cfaRemoveValue,
     const EAttribute    cfaAddValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// cfaRemoveValue
     /*DEBUG*/// cfaAddValue
 
@@ -131,20 +131,20 @@ CxFileAttribute::bModify(
     cfaValue = static_cast<EAttribute>( static_cast<ULONG>(cfaValue) |  cfaAddValue    );
 
     //change the attributes
-    BOOL bRes = bSet(csFilePath, cfaValue);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = bSet(csFilePath, cfaValue);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bClear ()
 /*static*/
-BOOL
+bool
 CxFileAttribute::bClear(
-    const std::string_t &csFilePath
+    const std::tstring &csFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
 
     return bSet(csFilePath, faNormal);
 }

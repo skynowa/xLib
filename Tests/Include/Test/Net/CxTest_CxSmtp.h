@@ -18,7 +18,7 @@ class CxTest_CxSmtp :
                      CxTest_CxSmtp();
         virtual     ~CxTest_CxSmtp();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

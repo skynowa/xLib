@@ -20,7 +20,7 @@ class CxUtils :
     /// Pkcs11 utils
 {
     public:
-        static std::string_t sErrorStr(const CK_RV culCode);
+        static std::tstring sErrorStr(const CK_RV culCode);
             ///< get error string by code, SDK 4.53
 
     private:

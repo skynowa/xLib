@@ -20,7 +20,7 @@ class CxTest_CxCurrentProcess :
 	    virtual      ~CxTest_CxCurrentProcess();
 	        ///< destructor
 
-	    virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
+	    virtual bool  bUnit(const ULONGLONG cullBlockLoops);
 	        ///< unit test
 
 	private:

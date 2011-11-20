@@ -17,12 +17,12 @@ CxTest_CxFile::~CxTest_CxFile() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxFile::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    const std::string_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
 
     /****************************************************************************
@@ -33,7 +33,7 @@ CxTest_CxFile::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFile::bDelete(csFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
 
@@ -49,8 +49,8 @@ CxTest_CxFile::bUnit(
         CxFile F;
 
         for (size_t i = 0; i < 1; ++ i) {
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -60,12 +60,12 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         for (size_t i = 0; i < 7; ++ i) {
-            m_bRes = F.bReopen(csFilePath, CxFile::omOpenReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bReopen(csFilePath, CxFile::omOpenReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -76,10 +76,10 @@ CxTest_CxFile::bUnit(
         CxFile _F;
 
         m_bRes = _F.bAttach(stdout);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = _F.bIsValid();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         FILE *pFile = _F.pDetach();
         xTEST_PTR(pFile);
@@ -92,8 +92,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         FILE *pFile = F.pGet();
         xASSERT(NULL != pFile);
@@ -105,8 +105,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_sRes = F.sGetPath();
         xTEST_EQ(csFilePath, m_sRes);
@@ -122,15 +122,15 @@ CxTest_CxFile::bUnit(
     //uiWrite, uiRead
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sBuffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
-        std::string_t sBuffRead  = xT("");       sBuffRead.resize(sBuffWrite.size());
+        std::tstring sBuffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
+        std::tstring sBuffRead  = xT("");       sBuffRead.resize(sBuffWrite.size());
 
         //uiWrite
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             F.uiWrite(&sBuffWrite.at(0), sBuffWrite.size());
         }
@@ -139,8 +139,8 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, true);
+            xTEST_DIFF(false, m_bRes);
 
             F.uiRead(&sBuffRead.at(0), sBuffWrite.size());
         }
@@ -162,11 +162,11 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bWrite(sContent);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         //-------------------------------------
@@ -174,11 +174,11 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bRead(&usText1);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         //-------------------------------------
@@ -186,11 +186,11 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(sGetWorkDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxFile::omBinWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(sGetWorkDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxFile::omBinWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bWrite(usText1);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         //-------------------------------------
@@ -198,11 +198,11 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinRead, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bRead(&usText2);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             xTEST_EQ(usText1.size(), usText2.size());
             xASSERT(usText1 == usText2);
@@ -213,29 +213,29 @@ CxTest_CxFile::bUnit(
     //bWriteLine, bReadLine
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sBuffWrite = xT("<test1><test2><test3><...>");
-        std::string_t sBuffRead  = xT("");
+        std::tstring sBuffWrite = xT("<test1><test2><test3><...>");
+        std::tstring sBuffRead  = xT("");
 
         //bWriteLine
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bWriteLine(sBuffWrite);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         //bReadLine
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omRead, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omRead, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bReadLine(&sBuffRead, sBuffWrite.size());
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         //assert
@@ -247,30 +247,30 @@ CxTest_CxFile::bUnit(
     //bWriteChar, chReadChar, bUngetChar
     xTEST_BLOCK(cullBlockLoops)
     {
-        const char_t chChar = xT('W');
+        const tchar chChar = xT('W');
 
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bWriteChar(chChar);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bSetPosition(0, CxFile::ppBegin);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
         m_chRes = F.chReadChar();
         xTEST_EQ(chChar, m_chRes);
 
         m_bRes = F.bSetPosition(0, CxFile::ppBegin);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
         m_bRes = F.bWriteChar(chChar);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bSetPosition(0, CxFile::ppBegin);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
         m_bRes = F.bUngetChar(chChar);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -279,11 +279,11 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bClear();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
 
@@ -299,8 +299,8 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, FALSE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, false);
+            xTEST_DIFF(false, m_bRes);
         }
 
         const time_t ctmCreate   = 1319714265;
@@ -308,14 +308,14 @@ CxTest_CxFile::bUnit(
         const time_t ctmModified = 1319714452;
 
         m_bRes = CxFile::bSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         time_t tmCreate   = 0;
         time_t tmAccess   = 0;
         time_t tmModified = 0;
 
         m_bRes = CxFile::bGetTime(csFilePath, &tmCreate, &tmAccess, &tmModified);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
     #if xOS_ENV_WIN
         xTEST_EQ(ctmCreate, tmCreate);
@@ -337,28 +337,28 @@ CxTest_CxFile::bUnit(
     //bRead
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t csTestContent = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
+        const std::tstring csTestContent = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             int iResFprintf = F.iWrite(csTestContent.c_str());
             xTEST_LESS(0, iResFprintf);
         }
 
-        std::string_t sContent;
+        std::tstring sContent;
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omRead, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omRead, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bRead(&sContent);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
         xTEST_EQ(csTestContent, sContent);
@@ -370,8 +370,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         int iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
         xTEST_LESS(0, iResFprintf);
@@ -383,7 +383,7 @@ CxTest_CxFile::bUnit(
     {
         struct SWriter {
             static void
-            DoV(const CxFile &csfFile, const char_t *pcszFormat, ...) {
+            DoV(const CxFile &csfFile, const tchar *pcszFormat, ...) {
                 va_list args;
                 xVA_START(args, pcszFormat);
 
@@ -396,8 +396,8 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         SWriter::DoV(F, xT("%s"), xT("zzz"));
     }
@@ -414,17 +414,17 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bResize(1024);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bLocking(CxFile::lmLock, 10);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bLocking(CxFile::lmUnlock, 10);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -433,11 +433,11 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bSetPosition(0, CxFile::ppBegin);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         LONG liRes = F.liGetPosition();
         xTEST_EQ(0L, liRes);
@@ -451,11 +451,11 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bResize(culNewSize);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         LONG liSize = F.liGetSize();
         xTEST_EQ(culNewSize, liSize);
@@ -467,11 +467,11 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bResize(0);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -482,11 +482,11 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bSetVBuff(&asBuffRead.at(0), CxFile::bmFull, asBuffRead.size() * 2);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -495,12 +495,12 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         #if xOS_ENV_WIN
             m_bRes = F.bSetMode(CxFile::tmBinary);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #elif xOS_ENV_UNIX
             //TODO: bSetMode
         #endif
@@ -512,12 +512,12 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         #if xOS_ENV_WIN
             m_bRes = F.bSetMode(CxFile::tmText);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #elif xOS_ENV_UNIX
             //TODO: bSetMode
         #endif
@@ -536,16 +536,16 @@ CxTest_CxFile::bUnit(
         CxFile F;
 
         m_bRes = F.bIsValid();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsValid();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bClose();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -555,19 +555,19 @@ CxTest_CxFile::bUnit(
         CxFile F;
 
         m_bRes = F.bIsOpen();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsOpen();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bClose();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsOpen();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -576,23 +576,23 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsEmpty();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_iRes = F.iWrite(xT("%s"), xT("xxasdfascefaweo4i57y2390450c1mxr,-1345rt3458854hbvx"));
         xTEST_LESS(0, m_iRes);
 
         m_bRes = F.bIsEmpty();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
 
         m_bRes = F.bClear();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsEmpty();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -601,11 +601,11 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsEof();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
@@ -614,11 +614,11 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsError();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
@@ -627,11 +627,11 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bErrorClear();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
 
@@ -646,14 +646,14 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bFlush();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsValid();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -662,25 +662,25 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bClose();
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = F.bIsValid();
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //bUnit1
     m_bRes = bUnit1(cullBlockLoops);
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
     //bUnitePrivate
     m_bRes = bUnitPrivate(cullBlockLoops);
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -692,14 +692,14 @@ CxTest_CxFile::bUnit(
 
 //---------------------------------------------------------------------------
 //DONE: bUnit1 ()
-BOOL
+bool
 CxTest_CxFile::bUnit1(
     const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
 
-    const std::string_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
     /****************************************************************************
     *   static
@@ -711,13 +711,13 @@ CxTest_CxFile::bUnit1(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFile::bIsFile(csFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bIsFile(xT(""));
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
 
         m_bRes = CxFile::bIsFile(sGetWorkDirPath());
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
@@ -725,16 +725,16 @@ CxTest_CxFile::bUnit1(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFile::bIsExists(csFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bIsExists(csFilePath + xT("wrong_path"));
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
 
         m_bRes = CxFile::bIsExists(xT(""));
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
 
         m_bRes = CxFile::bIsExists(sGetWorkDirPath());
-        xTEST_EQ(FALSE, m_bRes);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
@@ -742,8 +742,8 @@ CxTest_CxFile::bUnit1(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_sRes = CxFile::sIsExists(csFilePath);
-        xTEST_DIFF(FALSE, CxFile::bIsExists(csFilePath));
-        xTEST_EQ(FALSE, CxFile::bIsExists(m_sRes));
+        xTEST_DIFF(false, CxFile::bIsExists(csFilePath));
+        xTEST_EQ(false, CxFile::bIsExists(m_sRes));
 
         ////xTRACEV(xT("\tCxFile::sIsExists: %s"), m_sRes.c_str());
     }
@@ -753,7 +753,7 @@ CxTest_CxFile::bUnit1(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFile::bAccess(csFilePath, CxFile::amExistence);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -761,26 +761,26 @@ CxTest_CxFile::bUnit1(
     xTEST_BLOCK(cullBlockLoops)
     {
         m_bRes = CxFile::bChmod(csFilePath, CxFile::pmReadWrite);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bRename
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxFile::bTextWrite(csFilePath, xT("Simple text"));
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bDelete(csNewFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bRename(csFilePath, csNewFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bDelete(csNewFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -791,12 +791,12 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             for (size_t i = 0; i < cullLinesNum; ++ i) {
                 m_bRes = F.bWriteLine( CxString::lexical_cast(i) );
-                xTEST_DIFF(FALSE, m_bRes);
+                xTEST_DIFF(false, m_bRes);
             }
         }
 
@@ -808,43 +808,43 @@ CxTest_CxFile::bUnit1(
     //bCopy
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t sFilePathFrom = sGetWorkDirPath() + CxConst::xSLASH + xT("test_copy.txt");
-        const std::string_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
+        const std::tstring sFilePathFrom = sGetWorkDirPath() + CxConst::xSLASH + xT("test_copy.txt");
+        const std::tstring sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(sFilePathFrom, CxFile::omBinCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(sFilePathFrom, CxFile::omBinCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = F.bResize(1024 * 5);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
 
-        m_bRes = CxFile::bCopy(sFilePathFrom, sFilePathTo, FALSE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = CxFile::bCopy(sFilePathFrom, sFilePathTo, false);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bIsExists(sFilePathTo);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
-        m_bRes = CxFile::bCopy(sFilePathFrom, sFilePathTo, TRUE);
-        xTEST_EQ(FALSE, m_bRes);
+        m_bRes = CxFile::bCopy(sFilePathFrom, sFilePathTo, true);
+        xTEST_EQ(false, m_bRes);
     }
 
     //-------------------------------------
     //bMove
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxFile::bTextWrite(csNewFilePath, xT("Simple text"));
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bDelete(sGetWorkDirPath() + CxConst::xSLASH + csNewFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bMove(csNewFilePath, sGetWorkDirPath());
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
@@ -853,7 +853,7 @@ CxTest_CxFile::bUnit1(
     {
         #if xTEMP_DISABLED
             m_bRes = CxFile::bUnlink(csNewFilePath);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         #endif
     }
 
@@ -861,23 +861,23 @@ CxTest_CxFile::bUnit1(
     //bClear
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxFile::bClear(csNewFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //-------------------------------------
     //bDelete
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRes = CxFile::bDelete(csNewFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bDelete(csNewFilePath);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
     }
 
     //--------------------------------------------------
@@ -885,31 +885,31 @@ CxTest_CxFile::bUnit1(
     xTEST_BLOCK(cullBlockLoops)
     {
         #if xTODO
-            const std::string_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+            const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
             for (size_t i = 0; i < 20; ++ i) {
                 if (i < 10) {
                     CxFile F;
 
-                    m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-                    xTEST_DIFF(FALSE, m_bRes);
+                    m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+                    xTEST_DIFF(false, m_bRes);
 
                     m_bRes = F.bResize(1024);
-                    xTEST_DIFF(FALSE, m_bRes);
+                    xTEST_DIFF(false, m_bRes);
 
                     m_bRes = F.bLocking(CxFile::lmLock, 10);
-                    xTEST_DIFF(FALSE, m_bRes);
+                    xTEST_DIFF(false, m_bRes);
 
                     //try
                     m_bRes = CxFile::bTryDelete(csFilePath, 2000);
-                    xTEST_EQ(FALSE, m_bRes);
+                    xTEST_EQ(false, m_bRes);
 
                     m_bRes = F.bLocking(CxFile::lmUnlock, 10);
-                    xTEST_DIFF(FALSE, m_bRes);
+                    xTEST_DIFF(false, m_bRes);
                 } else {
                     //try
                     m_bRes = CxFile::bTryDelete(csFilePath, 33);
-                    xTEST_DIFF(FALSE, m_bRes);
+                    xTEST_DIFF(false, m_bRes);
                 }
             }
         #endif
@@ -922,8 +922,8 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_iRes = F.iWrite(xT("0123456789"));
             xTEST_DIFF(static_cast<int>( CxFile::etError ), m_iRes);
@@ -931,7 +931,7 @@ CxTest_CxFile::bUnit1(
 
         for (size_t i = 0; i < 3; ++ i) {
             m_bRes = CxFile::bWipe(csFilePath, 10);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -942,32 +942,32 @@ CxTest_CxFile::bUnit1(
     *****************************************************************************/
 
     //-------------------------------------
-    //bTextRead, bTextWrite (std::string_t)
+    //bTextRead, bTextWrite (std::tstring)
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sFileContent;
+        std::tstring sFileContent;
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             for (size_t i = 0; i < 7; ++ i) {
                 m_bRes = F.bWriteLine(xT("asducfgnoawifgumoaeriuatgmoi"));
-                xTEST_DIFF(FALSE, m_bRes);
+                xTEST_DIFF(false, m_bRes);
             }
         }
 
         m_bRes = CxFile::bTextRead(csFilePath, &sFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bTextWrite(csFilePath, sFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
-        std::string_t sStr;
+        std::tstring sStr;
         m_bRes = CxFile::bTextRead(csFilePath, &sStr);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xTEST_EQ(sFileContent.size(), sStr.size());
         xTEST_EQ(sFileContent, sStr);
@@ -976,24 +976,24 @@ CxTest_CxFile::bUnit1(
     //empty content
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::string_t sFileContent;
+        std::tstring sFileContent;
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
         }
 
         m_bRes = CxFile::bTextRead(csFilePath, &sFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bTextWrite(csFilePath, sFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
-        std::string_t sStr;
+        std::tstring sStr;
         m_bRes = CxFile::bTextRead(csFilePath, &sStr);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xTEST_EQ(sFileContent.size(), sStr.size());
         xTEST_EQ(sFileContent, sStr);
@@ -1003,29 +1003,29 @@ CxTest_CxFile::bUnit1(
     //bTextRead, bTextWrite (std::vector)
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector<std::string_t> vsFileContent;
+        std::vector<std::tstring> vsFileContent;
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             for (size_t i = 0; i < 10; ++ i) {
                 m_bRes = F.bWriteLine(xT("asducfgnoawifgumoaeriuatgmoi"));
-                xTEST_DIFF(FALSE, m_bRes);
+                xTEST_DIFF(false, m_bRes);
             }
         }
 
         m_bRes = CxFile::bTextRead(csFilePath, &vsFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bTextWrite(csFilePath, vsFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
-        std::vector<std::string_t> vsStr;
+        std::vector<std::tstring> vsStr;
         m_bRes = CxFile::bTextRead(csFilePath, &vsStr);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xTEST_EQ(vsFileContent.size(), vsStr.size());
         xASSERT(vsFileContent == vsStr);
@@ -1034,24 +1034,24 @@ CxTest_CxFile::bUnit1(
     //empty content
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector<std::string_t> vsFileContent;
+        std::vector<std::tstring> vsFileContent;
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
         }
 
         m_bRes = CxFile::bTextRead(csFilePath, &vsFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bTextWrite(csFilePath, vsFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
-        std::vector<std::string_t> vsStr;
+        std::vector<std::tstring> vsStr;
         m_bRes = CxFile::bTextRead(csFilePath, &vsStr);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xTEST_EQ(vsFileContent.size(), vsStr.size());
         xASSERT(vsFileContent == vsStr);
@@ -1061,30 +1061,30 @@ CxTest_CxFile::bUnit1(
     //bTextRead, bTextWrite (std::vector)
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::map<std::string_t, std::string_t> cmsFileContent;
-        const std::string_t              csSeparator = CxConst::xEQUAL;
+        std::map<std::tstring, std::tstring> cmsFileContent;
+        const std::tstring              csSeparator = CxConst::xEQUAL;
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             for (size_t i = 0; i < 10; ++ i) {
                 m_bRes = F.bWriteLine(xT("asducfgnoawifg") + csSeparator + xT("umoaeriuatgmoi"));
-                xTEST_DIFF(FALSE, m_bRes);
+                xTEST_DIFF(false, m_bRes);
             }
         }
 
         m_bRes = CxFile::bTextRead(csFilePath, csSeparator, &cmsFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
-        std::map<std::string_t, std::string_t> msStr;
+        std::map<std::tstring, std::tstring> msStr;
         m_bRes = CxFile::bTextRead(csFilePath, csSeparator, &msStr);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xTEST_EQ(cmsFileContent.size(), msStr.size());
         xASSERT(cmsFileContent == msStr);
@@ -1093,25 +1093,25 @@ CxTest_CxFile::bUnit1(
     //empty content
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::map<std::string_t, std::string_t> cmsFileContent;
-        const std::string_t              csSeparator = CxConst::xEQUAL;
+        std::map<std::tstring, std::tstring> cmsFileContent;
+        const std::tstring              csSeparator = CxConst::xEQUAL;
 
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
         }
 
         m_bRes = CxFile::bTextRead(csFilePath, csSeparator, &cmsFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         m_bRes = CxFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
-        std::map<std::string_t, std::string_t> msStr;
+        std::map<std::tstring, std::tstring> msStr;
         m_bRes = CxFile::bTextRead(csFilePath, csSeparator, &msStr);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xTEST_EQ(cmsFileContent.size(), msStr.size());
         xASSERT(cmsFileContent == msStr);
@@ -1126,25 +1126,25 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
 
             m_iRes = F.iWrite(xT("0123456789"));
             xTEST_LESS(0, m_iRes);
 
             m_bRes = F.bResize(1024 * 5);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_iRes = F.iWrite(xT("0123456789"));
             xTEST_LESS(0, m_iRes);
         }
 
         m_bRes = CxFile::bBinWrite(csFilePath, usFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         std::ustring usStr;
         m_bRes = CxFile::bBinRead(csFilePath, &usStr);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xASSERT(usFileContent == usStr);
     }
@@ -1157,32 +1157,32 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, TRUE);
-            xTEST_DIFF(FALSE, m_bRes);
+            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
+            xTEST_DIFF(false, m_bRes);
         }
 
         m_bRes = CxFile::bBinWrite(csFilePath, usFileContent);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         std::ustring usStr;
         m_bRes = CxFile::bBinRead(csFilePath, &usStr);
-        xTEST_DIFF(FALSE, m_bRes);
+        xTEST_DIFF(false, m_bRes);
 
         xASSERT(usFileContent == usStr);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bUnitPrivate ()
-BOOL
+bool
 CxTest_CxFile::bUnitPrivate(
     const ULONGLONG cullBlockLoops
 )
 {
     /*DEBUG*/
 
-    const std::string_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
 
     //--------------------------------------------------
@@ -1191,8 +1191,8 @@ CxTest_CxFile::bUnitPrivate(
     {
         CxFile sfFile;
 
-        m_bRes = sfFile.bCreate(csFilePath, CxFile::omRead, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = sfFile.bCreate(csFilePath, CxFile::omRead, true);
+        xTEST_DIFF(false, m_bRes);
 
         m_iRes = CxFile::_iGetHandle( sfFile.pGet() );
         xTEST_DIFF((int)CxFile::etError, m_iRes);
@@ -1207,8 +1207,8 @@ CxTest_CxFile::bUnitPrivate(
 
         CxFile sfFile;
 
-        m_bRes = sfFile.bCreate(csFilePath, comMode, TRUE);
-        xTEST_DIFF(FALSE, m_bRes);
+        m_bRes = sfFile.bCreate(csFilePath, comMode, true);
+        xTEST_DIFF(false, m_bRes);
 
         int iFile = CxFile::_iGetHandle(sfFile.pGet());
         xTEST_DIFF((int)CxFile::etError, iFile);
@@ -1222,7 +1222,7 @@ CxTest_CxFile::bUnitPrivate(
     //_sGetOpenMode
     xTEST_BLOCK(cullBlockLoops)
     {
-        std::vector< std::pair<CxFile::EOpenMode, std::string_t> > vpData;
+        std::vector< std::pair<CxFile::EOpenMode, std::tstring> > vpData;
 
         vpData.push_back( std::make_pair(CxFile::omRead,               xT("r")) );
         vpData.push_back( std::make_pair(CxFile::omWrite,              xT("w")) );
@@ -1240,13 +1240,13 @@ CxTest_CxFile::bUnitPrivate(
 
         for (size_t i = 0; i < vpData.size(); ++ i) {
             CxFile::EOpenMode omRes = vpData.at(i).first;
-            std::string_t                sRes  = vpData.at(i).second;
+            std::tstring                sRes  = vpData.at(i).second;
 
             m_sRes = CxFile::_sGetOpenMode(omRes);
             xTEST_EQ(sRes, m_sRes);
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

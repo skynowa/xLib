@@ -22,11 +22,11 @@ class CxSleeper :
         virtual ~CxSleeper  ();
             ///< destructor
 
-        BOOL     bSleep     (const ULONG culTimeout);
+        bool     bSleep     (const ULONG culTimeout);
             ///< sleep
-        BOOL     bWakeUp    ();
+        bool     bWakeUp    ();
             ///< wake up
-        BOOL     bIsSleeping();
+        bool     bIsSleeping();
             ///< check for sleeping
 
     private:

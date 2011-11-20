@@ -17,7 +17,7 @@ CxTest_CxException::~CxTest_CxException() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxException::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -30,7 +30,7 @@ CxTest_CxException::bUnit(
             throw CxException();
         }
         catch (CxException &e) {
-            xTEST_EQ(std::string_t(), e.sGetWhat());
+            xTEST_EQ(std::tstring(), e.sGetWhat());
             //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
         catch (...) {
@@ -39,10 +39,10 @@ CxTest_CxException::bUnit(
     }
 
     //--------------------------------------------------
-    //CxException(std::string_t), what
+    //CxException(std::tstring), what
     xTEST_BLOCK(cullBlockLoops)
     {
-        const std::string_t sTestData[][2] = {
+        const std::tstring sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("TEST_STRING_1")},
             {xT("TEST_STRING_2"),        xT("TEST_STRING_2")},
             {xT("TEST_STRING_3"),        xT("TEST_STRING_3")},
@@ -83,7 +83,7 @@ CxTest_CxException::bUnit(
     xTEST_BLOCK(cullBlockLoops)
     {
         try {
-            std::string_t sStr;
+            std::tstring sStr;
 
             sStr.at(0);
         }
@@ -100,16 +100,16 @@ CxTest_CxException::bUnit(
     xTEST_BLOCK(cullBlockLoops) {
         #if xTODO
             xTRY {
-                std::string_t sStr;
+                std::tstring sStr;
 
                 sStr.at(0);
             }
             xCATCH_ALL;
 
-            return TRUE;
+            return true;
         #endif
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

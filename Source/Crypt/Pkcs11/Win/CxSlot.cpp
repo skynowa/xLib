@@ -33,54 +33,54 @@ CxSlot::~CxSlot() {
 }
 //---------------------------------------------------------------------------
 #if xTEMP_DISABLED
-    BOOL CxSlot::bGetList(
+    bool CxSlot::bGetList(
         CK_BBOOL       bTokenPresent,  ///< only slots with tokens?
         CK_SLOT_ID_PTR pSlotList,      ///< receives array of slot IDs
         CK_ULONG_PTR   pulCount        ///< receives number of slots
     )
 #endif
 
-BOOL
+bool
 CxSlot::bGetList(
     CK_BBOOL                 bTokenPresent,     ///< only slots with tokens?
     std::vector<CK_SLOT_ID> *pvecSlotList       ///< receives array of slot IDs
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,     FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,     false);
     /*DEBUG*/// bTokenPresent - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pvecSlotList, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pvecSlotList, false);
 
     CK_ULONG ulCount = 0;
 
     (*pvecSlotList).clear();
 
     CK_RV ulRes = _m_pFunc->C_GetSlotList(bTokenPresent, NULL_PTR, &ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
-    xCHECK_RET(0 == ulCount, TRUE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    xCHECK_RET(0 == ulCount, true);
 
     (*pvecSlotList).resize(ulCount);
 
     ulRes = _m_pFunc->C_GetSlotList(bTokenPresent, &(*pvecSlotList).at(0), &ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
-    /*DEBUG*/xASSERT_RET    ((*pvecSlotList).size() == ulCount,                                        FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    /*DEBUG*/xASSERT_RET    ((*pvecSlotList).size() == ulCount,                                        false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSlot::bGetInfo(
     CK_SLOT_ID       slotID,  ///< the ID of the slot
     CK_SLOT_INFO_PTR pInfo    ///< receives the slot information
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
     /*DEBUG*/// slotID - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pInfo,    FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pInfo,    false);
 
     CK_RV ulRes = _m_pFunc->C_GetSlotInfo(slotID, pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 CxSlot::ENotification
@@ -102,8 +102,8 @@ CxSlot::nfWaitForEvent(
     //�������� ������� ������ � �����
     CK_SLOT_INFO siInfo = {{0}};
 
-    BOOL bRes = bGetInfo(*pSlot, &siInfo);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, nfError);
+    bool bRes = bGetInfo(*pSlot, &siInfo);
+    /*DEBUG*/xASSERT_RET(false != bRes, nfError);
 
     xCHECK_RET(siInfo.flags & CKF_TOKEN_PRESENT, nfInsertion);
 

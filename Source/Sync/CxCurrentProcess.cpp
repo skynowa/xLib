@@ -53,8 +53,8 @@ CxCurrentProcess::ulGetParentId() {
     *(FARPROC *)&NtQueryInformationProcess = ::GetProcAddress(hModule, "NtQueryInformationProcess");
     /*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
 
-    BOOL bRes = ( NtQueryInformationProcess(CxHandleT<hvNull>::hGetCurrentProcess(), 0, &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi) );
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, culInvalidId);
+    bool bRes = ( NtQueryInformationProcess(CxHandleT<hvNull>::hGetCurrentProcess(), 0, &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi) );
+    /*DEBUG*/xASSERT_RET(false != bRes, culInvalidId);
 
     ulRes = pbi[5];
 #elif xOS_ENV_UNIX

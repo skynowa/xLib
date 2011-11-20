@@ -45,20 +45,20 @@ class CxEvent :
         };
 
 
-                           CxEvent    (const BOOL bIsAutoReset, const BOOL cbIsSignaled);
+                           CxEvent    (const bool bIsAutoReset, const bool cbIsSignaled);
             ///< constructor
         virtual          ~CxEvent    ();
             ///< destructor
 
         const TxHandle &  hGet       () const;
             ///< get handle
-        BOOL              bSet       ();
+        bool              bSet       ();
             ///< signal the event for the waiting thread (!!! unlock !!!)
-        BOOL               bReset     ();
+        bool               bReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
         EObjectState      osWait     (const ULONG culTimeout = xTIMEOUT_INFINITE);
             ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
-        BOOL               bIsSignaled();
+        bool               bIsSignaled();
             ///< is signaled
 
     private:
@@ -67,8 +67,8 @@ class CxEvent :
     #elif xOS_ENV_UNIX
         CxCriticalSection _m_csCS;          ///< critical section
         TxHandle          _m_cndCond;       ///< condition variable
-        volatile BOOL     _m_bIsAutoReset;  ///< auto-reset flag
-        volatile BOOL     _m_bIsSignaled;   ///< is signaled flag
+        volatile bool     _m_bIsAutoReset;  ///< auto-reset flag
+        volatile bool     _m_bIsSignaled;   ///< is signaled flag
     #endif
 };
 

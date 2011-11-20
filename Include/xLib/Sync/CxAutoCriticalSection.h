@@ -17,16 +17,16 @@ class CxAutoCriticalSection :
     /// auto critical section
 {
     public:
-                           CxAutoCriticalSection(CxCriticalSection &csCS, const BOOL cbIsUseTry = FALSE);
+                           CxAutoCriticalSection(CxCriticalSection &csCS, const bool cbIsUseTry = false);
             ///< constructor
         virtual           ~CxAutoCriticalSection();
             ///< destructor
-        BOOL               bIsLocked            () const;
+        bool               bIsLocked            () const;
             ///< is locked
 
     private:
         CxCriticalSection &_m_csCS;         ///< critical section
-        BOOL               _m_bIsLocked;    ///< lock flag for explicit unlock
+        bool               _m_bIsLocked;    ///< lock flag for explicit unlock
 };
 
 xNAMESPACE_END(NxLib)

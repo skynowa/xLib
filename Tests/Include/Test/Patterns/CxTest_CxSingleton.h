@@ -18,7 +18,7 @@ class CxTest_CxSingleton :
                      CxTest_CxSingleton();
         virtual     ~CxTest_CxSingleton();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

@@ -52,7 +52,7 @@ CxCrc32::ulCalc(
 /*static*/
 ULONG
 CxCrc32::ulCalcFile(
-    const std::string_t &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
@@ -61,8 +61,8 @@ CxCrc32::ulCalcFile(
 
     std::ustring usFile;
 
-    BOOL bRes = CxFile::bBinRead(csFilePath, &usFile);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = CxFile::bBinRead(csFilePath, &usFile);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     if (true == usFile.empty()) {
         ulRes = 0;
@@ -179,7 +179,7 @@ CxCrc32::ulCalcFast(
 /*static*/
 ULONG
 CxCrc32::ulCalcFileFast(
-    const std::string_t &csFilePath
+    const std::tstring &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
@@ -188,8 +188,8 @@ CxCrc32::ulCalcFileFast(
 
     std::ustring usFile;
 
-    BOOL bRes = CxFile::bBinRead(csFilePath, &usFile);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bool bRes = CxFile::bBinRead(csFilePath, &usFile);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     if (true == usFile.empty()) {
         ulRes = 0;
@@ -201,14 +201,14 @@ CxCrc32::ulCalcFileFast(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::string_t
+std::tstring
 CxCrc32::sFormatHex(
     const ULONG culCrc32
 )
 {
     /*DEBUG*/
 
-    std::string_t      sRes;
+    std::tstring      sRes;
     const size_t uiCrc32Size = 8;
 
     sRes = CxString::sFormat(xT("%X"), culCrc32);    //0AADDEA0
@@ -217,7 +217,7 @@ CxCrc32::sFormatHex(
     if (0 != uiAdditionalZeros) {
         sRes.insert(0, uiAdditionalZeros, xT('0'));
     }
-    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), std::string_t());
+    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), std::tstring());
 
     return sRes;
 }

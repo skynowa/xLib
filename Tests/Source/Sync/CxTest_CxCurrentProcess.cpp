@@ -17,7 +17,7 @@ CxTest_CxCurrentProcess::~CxTest_CxCurrentProcess() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxCurrentProcess::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -38,6 +38,6 @@ CxTest_CxCurrentProcess::bUnit(
         xTEST_LESS_EQ(0UL, (ULONG)ulRes);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

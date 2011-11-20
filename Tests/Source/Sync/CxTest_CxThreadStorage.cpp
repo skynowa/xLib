@@ -17,7 +17,7 @@ CxTest_CxThreadStorage::~CxTest_CxThreadStorage() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxThreadStorage::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -37,25 +37,25 @@ CxTest_CxThreadStorage::bUnit(
             ULONG *pulValue = new ULONG(culData);
 
             m_bRes = tlsTls.bIsSet();
-            xTEST_EQ(FALSE, m_bRes);
+            xTEST_EQ(false, m_bRes);
 
             m_bRes = tlsTls.bSetValue(static_cast<void *>( pulValue ));
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = tlsTls.bIsSet();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             ULONG *pulRes = static_cast<ULONG *>( tlsTls.pvGetValue() );
             xTEST_PTR(pulRes);
             xTEST_EQ(culData, ULONG(*pulRes));
 
             m_bRes = tlsTls.bIsSet();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             delete pulRes;
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

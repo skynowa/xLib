@@ -26,11 +26,11 @@ xNAMESPACE_BEGIN(CxMsgBoxRtf)
         mrSendReport    = 5
     };
 
-    BOOL             bCreateContent(HWND hParent);
+    bool             bCreateContent(HWND hParent);
         ///< create content
     INT_PTR CALLBACK DialogProc    (HWND hDlg, UINT uiMsg, WPARAM wParam, LPARAM lParam);
         ///< window callback
-    EModalResult     iShow         (HWND hwndOwner, const std::string_t &csMessage, const std::string_t &csTiltle);
+    EModalResult     iShow         (HWND hwndOwner, const std::tstring &csMessage, const std::tstring &csTiltle);
         ///< show
 
 xNAMESPACE_END(CxMsgBoxRtf)

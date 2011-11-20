@@ -19,7 +19,7 @@ class CxTest_CxImage :
                      CxTest_CxImage();
         virtual     ~CxTest_CxImage();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

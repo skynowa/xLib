@@ -119,14 +119,20 @@
 int
 xTMAIN(
     int    iArgCount,
-    char_t *paszArgs[]
+    tchar *paszArgs[]
 )
 {
+    bool bVal = false;
+    std::ustring usVal;
+
+    std::tcout << bVal << std::endl;
+    std::tcout << usVal << std::endl;
+
     //--------------------------------------------------
     //set commandline args for xLib
     {
-        BOOL bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
-        xTEST_DIFF(FALSE, bRes);
+        bool bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
+        xTEST_EQ((bool)true, (bool)bRes);   //TODO: xTEST_EQ
     }
 
 
@@ -137,21 +143,21 @@ xTMAIN(
 
     //--------------------------------------------------
     //options (default)
-    BOOL      bIsUseTracing = TRUE;
+    bool      bIsUseTracing = true;
     ULONGLONG ullAllLoops   = 1UL;
     ULONGLONG ullUnitLoops  = 1UL;
     ULONGLONG ullBlockLoops = 1UL;
 
     {
-        std::vector<std::string_t> vsArgs;
+        std::vector<std::tstring> vsArgs;
 
-        BOOL bRes = CxCommandLine::bGetArgs(&vsArgs);
-        xTEST_DIFF(FALSE, bRes);
+        bool bRes = CxCommandLine::bGetArgs(&vsArgs);
+        xTEST_EQ((bool)true, (bool)bRes);   //TODO: xTEST_EQ
 
         //usage
         if (2 == iArgCount) {
             bRes = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
-            if (TRUE == bRes) {
+            if (true == bRes) {
                 std::tcout << "\nUsage: xlib_r is_tracing all_loops unit_loops\n"
                               "  - xlib_r      (binary file path)\n"
                               "  - is_tracing  (is tracing)\n"
@@ -162,12 +168,12 @@ xTMAIN(
                 std::tcout << "\nUnknown switches\n" << std::endl;
             }
 
-            return TRUE;
+            return true;
         }
 
         //loops number
         if (5 == iArgCount) {
-            bIsUseTracing = static_cast<BOOL>( CxString::lexical_cast<int>( vsArgs.at(1) ) );
+            bIsUseTracing = CxString::lexical_cast<bool>( vsArgs.at(1) );
             ullAllLoops   = CxString::lexical_cast<ULONGLONG>( vsArgs.at(2) );
             ullUnitLoops  = CxString::lexical_cast<ULONGLONG>( vsArgs.at(3) );
             ullBlockLoops = CxString::lexical_cast<ULONGLONG>( vsArgs.at(4) );
@@ -298,7 +304,7 @@ xTMAIN(
         (void)tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 #endif //xLib_UnitTestH

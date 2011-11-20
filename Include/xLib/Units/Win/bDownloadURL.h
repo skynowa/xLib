@@ -13,7 +13,7 @@
 
     xNAMESPACE_BEGIN(NxLib)
 
-        BOOL bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
+        bool bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
             ///< download file using ftp, http, https
 
     xNAMESPACE_END(NxLib)
@@ -25,14 +25,14 @@
 
 //---------------------------------------------------------------------------
 /*int main(int argc, char* argv[]) {
-    BOOL        bRes         = FALSE;
+    bool        bRes         = false;
     std::string sUrl         = xT("http://dn0.berloga.net/78938/Uraliskaya_rybalka_v.02.rar"); //xT("http://forum.vingrad.ru/forum/borland-c++builder.html");
     std::string sFileContent = xT("");
     std::string sFilePath    = xT("C:/test.rar");
 
 
     bRes = bDownloadURL(sUrl.c_str(), sFilePath.c_str());
-    if (TRUE == bRes) {
+    if (true == bRes) {
         std::cout << "Yes" << std::endl;
     } else {
         std::cout << "No" << std::endl;

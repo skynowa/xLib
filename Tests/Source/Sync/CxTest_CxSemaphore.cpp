@@ -9,18 +9,18 @@
 
 #if xOS_ENV_WIN
 //---------------------------------------------------------------------------
-BOOL m_bRes = FALSE;
+bool m_bRes = false;
 CxSemaphore m_Semaphore;
 //---------------------------------------------------------------------------
 unsigned __stdcall
 vTest( void* pArguments ) {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     /*LOG*/std::cout << "Start" << std::endl;
 
     for (int i = 1; i < 100; i ++) {
         bRes = m_Semaphore.bWait(INFINITE);
-        xTEST_DIFF(FALSE, bRes);
+        xTEST_DIFF(false, bRes);
 
         /*LOG*/std::cout << i << std::endl;
     }
@@ -39,13 +39,13 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxSemaphore::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
     m_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));
-    xTEST_DIFF(FALSE, m_bRes);
+    xTEST_DIFF(false, m_bRes);
 
     if (NULL == _beginthreadex(0, 0, &vTest, 0, 0, NULL)) {
         std::cout << "Error begin thread " << std::endl;
@@ -58,11 +58,11 @@ CxTest_CxSemaphore::bUnit(
 
         for (int x = 0; x < 2; x ++) {
             m_bRes = m_Semaphore.bRelease(1, NULL);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 #elif xOS_ENV_UNIX

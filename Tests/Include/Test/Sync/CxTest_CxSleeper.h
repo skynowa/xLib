@@ -18,7 +18,7 @@ class CxTest_CxSleeper :
                      CxTest_CxSleeper();
         virtual     ~CxTest_CxSleeper();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

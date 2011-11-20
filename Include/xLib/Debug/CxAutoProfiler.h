@@ -17,14 +17,14 @@ class CxAutoProfiler :
     /// auto code profiling
 {
     public:
-                     CxAutoProfiler(const std::string_t &csFilePath, const CxProfiler::EMode cpmMode, const char_t *pcszComment, ...);
+                     CxAutoProfiler(const std::tstring &csFilePath, const CxProfiler::EMode cpmMode, const tchar *pcszComment, ...);
             ///< constructor
         virtual     ~CxAutoProfiler();
             ///< destructor
 
     private:
         CxProfiler   _m_pfProfiler; ///< profiler
-        std::string_t _m_sComment;   ///< comment
+        std::tstring _m_sComment;   ///< comment
 };
 
 xNAMESPACE_END(NxLib)

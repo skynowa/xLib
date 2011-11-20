@@ -19,9 +19,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxTraceLog::CxTraceLog(
-    const BOOL cbIsUseTimeStr
+    const bool cbIsUseTimeStr
 ) :
-    _m_bIsEnable    (TRUE),
+    _m_bIsEnable    (true),
     _m_bIsUseTimeStr(cbIsUseTimeStr)
 {
 }
@@ -30,32 +30,32 @@ CxTraceLog::~CxTraceLog() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxTraceLog::bSetEnabled(
-    const BOOL cbFlag
+    const bool cbFlag
 )
 {
     /*DEBUG*/// cbFlag - n/a
 
     _m_bIsEnable = cbFlag;
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxTraceLog::bWrite(
-    const char_t *pcszFormat, ...
+    const tchar *pcszFormat, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
 
-    xCHECK_RET(FALSE == _m_bIsEnable, TRUE);
+    xCHECK_RET(false == _m_bIsEnable, true);
 
     //-------------------------------------
     //time
-    std::string_t sTime;
+    std::tstring sTime;
 
-    if (TRUE == _m_bIsUseTimeStr) {
+    if (true == _m_bIsUseTimeStr) {
         sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
     } else {
         sTime = xT("");
@@ -63,7 +63,7 @@ CxTraceLog::bWrite(
 
     //-------------------------------------
     //comment
-    std::string_t sParam;
+    std::tstring sParam;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);
@@ -79,7 +79,7 @@ CxTraceLog::bWrite(
     std::tcout << sTime << sParam << std::endl;
 #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

@@ -42,49 +42,49 @@ CxFileLog::~CxFileLog() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFileLog::bSetFilePath(
-    const std::string_t &csFilePath
+    const std::tstring &csFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), FALSE);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
 
-    if (std::string_t::npos == csFilePath.find(CxConst::xSLASH)) {
+    if (std::tstring::npos == csFilePath.find(CxConst::xSLASH)) {
         _m_sFilePath.assign( CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath);
     } else {
         _m_sFilePath.assign( csFilePath );
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-const std::string_t &
+const std::tstring &
 CxFileLog::sGetFilePath() const {
     /*DEBUG*/
 
     return _m_sFilePath;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFileLog::bWrite(
-    const char_t *pcszFormat, ...
+    const tchar *pcszFormat, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
 
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     bRes = _bDeleteIfFull();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     //-------------------------------------
     //time
-    std::string_t sTime;
+    std::tstring sTime;
     sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment
-    std::string_t sParam;
+    std::tstring sParam;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);
@@ -99,41 +99,41 @@ CxFileLog::bWrite(
 
     CxFile sfFile;
 
-    bRes = sfFile.bCreate(sGetFilePath(), CxFile::omAppend, FALSE);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    bRes = sfFile.bCreate(sGetFilePath(), CxFile::omAppend, false);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
     int iRes = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
-    /*DEBUG*/xASSERT_RET(iRes != CxFile::etError, FALSE);
+    /*DEBUG*/xASSERT_RET(iRes != CxFile::etError, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFileLog::bClear() {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     #if xTODO
         CxAutoMutex SL(_m_mtFile);
     #endif
 
     bRes = CxFile::bClear(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFileLog::bDelete() {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     #if xTODO
         CxAutoMutex SL(_m_mtFile);
     #endif
 
     bRes = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -144,27 +144,27 @@ CxFileLog::bDelete() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxFileLog::_bDeleteIfFull() {
-    BOOL bRes = FALSE;
+    bool bRes = false;
 
     #if xTODO
         CxAutoMutex SL(_m_mtFile);
     #endif
 
     bRes = CxFile::bIsExists(sGetFilePath());
-    xCHECK_RET(FALSE == bRes, TRUE);
+    xCHECK_RET(false == bRes, true);
 
     //-------------------------------------
     //delete log, if full
     ULONG ulSize = static_cast<ULONG>( CxFile::liGetSize(sGetFilePath()) );
 
-    xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, TRUE);
+    xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, true);
 
     bRes = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, FALSE);
+    /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

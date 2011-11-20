@@ -34,7 +34,7 @@ CxVerify::~CxVerify() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxVerify::bInit(
     CK_MECHANISM_PTR pMechanism,  ///< the verification mechanism
     CK_OBJECT_HANDLE hKey         ///< verification key
@@ -43,12 +43,12 @@ CxVerify::bInit(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_VerifyInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxVerify::bMake(
     CK_BYTE_PTR pData,          ///< signed data
     CK_ULONG    ulDataLen,      ///< length of signed data
@@ -59,12 +59,12 @@ CxVerify::bMake(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_Verify(_m_hSession, pData, ulDataLen, pSignature, ulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxVerify::bFinal(
     CK_BYTE_PTR pSignature,     ///< signature to verify
     CK_ULONG    ulSignatureLen  ///< signature length
@@ -73,12 +73,12 @@ CxVerify::bFinal(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_VerifyFinal(_m_hSession, pSignature, ulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxVerify::bRecoverInit(
     CK_MECHANISM_PTR pMechanism,  ///< the verification mechanism
     CK_OBJECT_HANDLE hKey         ///< verification key
@@ -87,12 +87,12 @@ CxVerify::bRecoverInit(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_VerifyRecoverInit(_m_hSession, pMechanism, hKey );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxVerify::bRecover(
     CK_BYTE_PTR  pSignature,      ///< signature to verify
     CK_ULONG     ulSignatureLen,  ///< signature length
@@ -103,12 +103,12 @@ CxVerify::bRecover(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_VerifyRecover(_m_hSession, pSignature,ulSignatureLen, pData, pulDataLen );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxVerify::bUpdate(
     CK_BYTE_PTR pPart,     ///< signed data
     CK_ULONG    ulPartLen  ///< length of signed data
@@ -117,9 +117,9 @@ CxVerify::bUpdate(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_VerifyUpdate(_m_hSession, pPart, ulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

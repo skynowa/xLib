@@ -26,7 +26,7 @@ CxCom::CxCom(
 {
     /*DEBUG*/// n/a ?
 
-    ////xCHECK_DO(TRUE == CxCom::bIsInit(ccmCoModel), return);
+    ////xCHECK_DO(true == CxCom::bIsInit(ccmCoModel), return);
 
     if (0L == _ms_lInitCount ++) {
         HRESULT hrRes = ::CoInitializeEx(NULL, _m_ulConModel);
@@ -49,7 +49,7 @@ CxCom::~CxCom() {
 
 //---------------------------------------------------------------------------
 /*static*/
-BOOL
+bool
 CxCom::bIsInit() {
     /*DEBUG*/// n/a
 

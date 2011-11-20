@@ -34,7 +34,7 @@ CxSign::~CxSign() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSign::bInit(
     CK_MECHANISM_PTR pMechanism,  ///< the signature mechanism
     CK_OBJECT_HANDLE hKey         ///< handle of signature key
@@ -43,12 +43,12 @@ CxSign::bInit(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_SignInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSign::bMake(
     CK_BYTE_PTR  pData,           ///< the data to sign
     CK_ULONG     ulDataLen,       ///< count of bytes to sign
@@ -59,12 +59,12 @@ CxSign::bMake(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_Sign(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSign::bUpdate(
     CK_BYTE_PTR pPart,     ///< the data to sign
     CK_ULONG    ulPartLen  ///< count of bytes to sign
@@ -73,12 +73,12 @@ CxSign::bUpdate(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_SignUpdate(_m_hSession, pPart, ulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSign::bEncryptUpdate(
     CK_BYTE_PTR  pPart,               ///< the plaintext data
     CK_ULONG     ulPartLen,           ///< plaintext length
@@ -89,12 +89,12 @@ CxSign::bEncryptUpdate(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_SignEncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSign::bFinal(
     CK_BYTE_PTR  pSignature,      ///< gets the signature
     CK_ULONG_PTR pulSignatureLen  ///< gets signature length
@@ -103,12 +103,12 @@ CxSign::bFinal(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_SignFinal(_m_hSession, pSignature, pulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSign::bRecoverInit(
     CK_MECHANISM_PTR pMechanism, ///< the signature mechanism
     CK_OBJECT_HANDLE hKey        ///< handle of the signature key
@@ -117,12 +117,12 @@ CxSign::bRecoverInit(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_SignRecoverInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxSign::bRecover(
     CK_BYTE_PTR  pData,           ///< the data to sign
     CK_ULONG     ulDataLen,       ///< count of bytes to sign
@@ -133,9 +133,9 @@ CxSign::bRecover(
     /*DEBUG*/
 
     CK_RV ulRes = _m_pFunc->C_SignRecover(_m_hSession, pData, ulDataLen, pSignature, pulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), FALSE);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

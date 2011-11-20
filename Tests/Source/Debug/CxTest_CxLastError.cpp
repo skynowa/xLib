@@ -17,7 +17,7 @@ CxTest_CxLastError::~CxTest_CxLastError() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxLastError::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -50,7 +50,7 @@ CxTest_CxLastError::bUnit(
         #endif
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
-            std::string_t sError = CxLastError::sGet();
+            std::tstring sError = CxLastError::sGet();
             xTEST_EQ(false, sError.empty());
         }
     }
@@ -67,7 +67,7 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
         }
     }
 
@@ -83,10 +83,10 @@ CxTest_CxLastError::bUnit(
 
         for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             m_bRes = CxLastError::bReset();
-            xTEST_DIFF(FALSE, m_bRes);
+            xTEST_DIFF(false, m_bRes);
 
             xTEST_EQ(0UL, CxLastError::ulGet());
         }
@@ -110,6 +110,6 @@ CxTest_CxLastError::bUnit(
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

@@ -42,23 +42,23 @@ CxWndLog::~CxWndLog() {
 
 }
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxWndLog::bWrite(
     const HWND chWnd,
     LPCTSTR    pcszFormat, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != chWnd,      FALSE);
-    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, FALSE);
+    /*DEBUG*/xASSERT_RET(NULL != chWnd,      false);
+    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
 
     //-------------------------------------
     //time
-    std::string_t sTime;
+    std::tstring sTime;
     sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment
-    std::string_t sParam;
+    std::tstring sParam;
     va_list palArgs = NULL;
 
     xVA_START(palArgs, pcszFormat);
@@ -78,13 +78,13 @@ CxWndLog::bWrite(
                 break;
 
             default: {
-                    /*DEBUG*/xASSERT_RET(FALSE, FALSE);
+                    /*DEBUG*/xASSERT_RET(false, false);
                 }
                 break;
         }
     #endif
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
 

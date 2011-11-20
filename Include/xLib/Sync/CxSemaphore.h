@@ -28,18 +28,18 @@ class CxSemaphore :
         virtual        ~CxSemaphore();
 
         HANDLE          hGetHandle () const;
-        BOOL            bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const LONG cliInitialCount, const LONG cliMaxCount, const std::string_t &csName);
-        BOOL            bOpen      (const ULONG culAccess, const BOOL cbInheritHandle, const std::string_t &csName) ;
-        BOOL            bRelease   (const LONG cliReleaseCount/* = 1*/, LONG *pliOldCount/* = NULL*/) const;
-        BOOL            bWait      (const ULONG culTimeout) const;
+        bool            bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const LONG cliInitialCount, const LONG cliMaxCount, const std::tstring &csName);
+        bool            bOpen      (const ULONG culAccess, const bool cbInheritHandle, const std::tstring &csName) ;
+        bool            bRelease   (const LONG cliReleaseCount/* = 1*/, LONG *pliOldCount/* = NULL*/) const;
+        bool            bWait      (const ULONG culTimeout) const;
 
         LONG            liGetValue () const;
-        BOOL            bReset     (const LONG cliInitialCount, const LONG cliMaxCount);
+        bool            bReset     (const LONG cliInitialCount, const LONG cliMaxCount);
 
     private:
         CxHandle              _m_hSemaphore;
         LPSECURITY_ATTRIBUTES _m_psaAttributes;
-        std::string_t          _m_sName;
+        std::tstring          _m_sName;
 };
 
 xNAMESPACE_END(NxLib)

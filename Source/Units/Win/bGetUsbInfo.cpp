@@ -24,16 +24,16 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 bGetUsbInfo(
-    const std::string_t        &csDrive,
-    std::vector<std::string_t> *pvsInfo
+    const std::tstring        &csDrive,
+    std::vector<std::tstring> *pvsInfo
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csDrive.empty(), FALSE);
-    /*DEBUG*/xASSERT_RET(NULL  != pvsInfo,         FALSE);
+    /*DEBUG*/xASSERT_RET(false == csDrive.empty(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsInfo,         false);
 
-    BOOL                     bRes                   = FALSE;
+    bool                     bRes                   = false;
     int                      mapiRes                = CR_FAILURE;
     int                      iRes                   = ! 0;
     HDEVINFO                 hPnP                   = INVALID_HANDLE_VALUE;
@@ -44,13 +44,13 @@ bGetUsbInfo(
     HKEY                     hKey                   = NULL;
 
     hPnP = ::SetupDiGetClassDevs(&GUID_DEVINTERFACE_VOLUME, NULL, 0, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);
-    /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hPnP, FALSE);
+    /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hPnP, false);
 
     //__try {
     didDeviceInterfaceData.cbSize = sizeof(SP_DEVICE_INTERFACE_DATA);
 
     for (ULONG ulMemberIndex = 0UL; ; ++ ulMemberIndex) {
-        bRes = ::SetupDiEnumDeviceInterfaces(hPnP, NULL, &(GUID_DEVINTERFACE_VOLUME), ulMemberIndex, &didDeviceInterfaceData);
+        BOOL bRes = ::SetupDiEnumDeviceInterfaces(hPnP, NULL, &(GUID_DEVINTERFACE_VOLUME), ulMemberIndex, &didDeviceInterfaceData);
         if (FALSE == bRes) {
             bRes = FALSE;
             break;
@@ -72,7 +72,7 @@ bGetUsbInfo(
             diddDeviceInterfaceDetailData->cbSize = sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA);
 
             bRes = ::SetupDiGetDeviceInterfaceDetail(hPnP, &didDeviceInterfaceData, diddDeviceInterfaceDetailData, ulBytesReturned, &ulBytesReturned, &ddDevinfoData);
-            /*DEBUG*/xASSERT(TRUE == bRes);
+            /*DEBUG*/xASSERT(FALSE != bRes);
             if (FALSE == bRes) {
                 xBUFF_FREE(diddDeviceInterfaceDetailData);
                 continue;
@@ -80,8 +80,8 @@ bGetUsbInfo(
 
             //-------------------------------------
             //?????????? ??? MountPoitName - ?
-            std::string_t sMountPointNameFromLetter     = CxVolume::sGetVolumeNameForVolumeMountPoint(csDrive);
-            std::string_t sMountPointNameFromDevicePath = CxVolume::sGetVolumeNameForVolumeMountPoint(std::string_t(diddDeviceInterfaceDetailData->DevicePath));
+            std::tstring sMountPointNameFromLetter     = CxVolume::sGetVolumeNameForVolumeMountPoint(csDrive);
+            std::tstring sMountPointNameFromDevicePath = CxVolume::sGetVolumeNameForVolumeMountPoint(std::tstring(diddDeviceInterfaceDetailData->DevicePath));
             if (sMountPointNameFromLetter != sMountPointNameFromDevicePath) {
                 xBUFF_FREE(diddDeviceInterfaceDetailData);
                 continue;
@@ -107,11 +107,11 @@ bGetUsbInfo(
                 bRes = FALSE;
             } else {
                 ULONG  ulResSize      = 256UL;
-                char_t szRes[256 + 1] = {0};
+                tchar szRes[256 + 1] = {0};
 
                 if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, xT("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
-                    bRes = CxString::bSplit(std::string_t(szRes, ulResSize / sizeof(char_t)), xT("#"), pvsInfo);
-                    /*DEBUG*/xASSERT(TRUE == bRes);
+                    bool _bRes = CxString::bSplit(std::tstring(szRes, ulResSize / sizeof(tchar)), xT("#"), pvsInfo);
+                    /*DEBUG*/xASSERT(true == _bRes);
                 }
 
                 if (NULL != hKey) {

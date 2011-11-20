@@ -59,37 +59,37 @@ class CxHandleT
 
         HANDLE              hGet                    () const;
             ///< get
-        BOOL                bSet                    (const HANDLE chHandle);
+        bool                bSet                    (const HANDLE chHandle);
             ///< set
 
-        BOOL                bIsValid                () const;
+        bool                bIsValid                () const;
             ///< is valid
-        BOOL                bAttach                 (const HANDLE chHandle);
+        bool                bAttach                 (const HANDLE chHandle);
             ///< attach
         HANDLE              hDetach                 ();
             ///< detach
-        BOOL                bClose                  ();
+        bool                bClose                  ();
             ///< close
 
         ULONG               ulGetInformation        () const;
             ///< get certain properties of an object handle
-        BOOL                bSetInformation         (const ULONG culMask, const ULONG culFlags);
+        bool                bSetInformation         (const ULONG culMask, const ULONG culFlags);
             ///< set information
-        BOOL                 bIsFlagInherit          () const;
+        bool                 bIsFlagInherit          () const;
             ///< is flag inherit
-        BOOL                bIsFlagProtectFromClose () const;
+        bool                bIsFlagProtectFromClose () const;
             ///< is flag protect from close
-        BOOL                bSetFlagInherit         (const BOOL cbFlagInherit);
+        bool                bSetFlagInherit         (const bool cbFlagInherit);
             ///< set flaginherit
-        BOOL                bSetFlagProtectFromClose(const BOOL cbFlagProtectFromClose);
+        bool                bSetFlagProtectFromClose(const bool cbFlagProtectFromClose);
             ///< set flag protect from close
-        HANDLE              hDuplicate              (const HANDLE chTargetProcess, const ULONG cluDesiredAccess, const BOOL cbInheritHandle/* = FALSE*/, const ULONG cluOptions/* = 0*/) const;
+        HANDLE              hDuplicate              (const HANDLE chTargetProcess, const ULONG cluDesiredAccess, const bool cbInheritHandle/* = false*/, const ULONG cluOptions/* = 0*/) const;
             ///< duplicates an object handle
 
         //static
         static HANDLE       hGetCurrentProcess      ();
             ///< get a pseudo handle for the current process
-        static BOOL         bIsValid                (const HANDLE chHandle);
+        static bool         bIsValid                (const HANDLE chHandle);
             ///< is valid
 
     private:

@@ -19,7 +19,7 @@ class CWorkThread :
     public:
         size_t       m_uiIndex;
 
-                     CWorkThread(const BOOL cbAutoDelete);
+                     CWorkThread(const bool cbAutoDelete);
         virtual     ~CWorkThread();
 
     protected:
@@ -33,7 +33,7 @@ class CxTest_CxThread :
                      CxTest_CxThread();
         virtual     ~CxTest_CxThread();
 
-        virtual BOOL bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ULONGLONG cullBlockLoops);
 
     private:
 };

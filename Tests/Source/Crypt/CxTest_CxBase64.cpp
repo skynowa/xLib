@@ -17,7 +17,7 @@ CxTest_CxBase64::~CxTest_CxBase64() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_CxBase64::bUnit(
     const ULONGLONG cullBlockLoops
 )
@@ -84,7 +84,7 @@ CxTest_CxBase64::bUnit(
             for (size_t i = 0; i < csValidChars.size(); ++ i) {
                 m_bRes = CxBase64::bIsCharValid(csValidChars.at(i));
                 //xTRACEV(xT("csValidChars.at(i): %c"), csValidChars.at(i));
-                xTEST_DIFF(FALSE, m_bRes);
+                xTEST_DIFF(false, m_bRes);
             }
         }
 
@@ -94,11 +94,11 @@ CxTest_CxBase64::bUnit(
             for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
                 m_bRes = CxBase64::bIsCharValid(csNonValidChars.at(i));
                 //xTRACEV(xT("csNonValidChars.at(i): %c"), csNonValidChars.at(i));
-                xTEST_EQ(FALSE, m_bRes);
+                xTEST_EQ(false, m_bRes);
             }
         }
     }
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------

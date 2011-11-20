@@ -48,12 +48,12 @@ CxStackTrace::~CxStackTrace() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-BOOL
+bool
 CxStackTrace::bGet(
-    std::vector<std::string_t> *pvsStack
+    std::vector<std::tstring> *pvsStack
 )
 {
-    std::vector<std::string_t> vsStack;
+    std::vector<std::tstring> vsStack;
 
 #if xOS_ENV_WIN
     void        *pvStack[_m_culMaxFrames] = {0};
@@ -62,25 +62,25 @@ CxStackTrace::bGet(
 
     hProcess = CxCurrentProcess::hGetHandle();
 
-    BOOL bRes = ::SymInitialize(hProcess, NULL, TRUE);
-    xCHECK_RET(FALSE == bRes, FALSE);
+    BOOL bRes = ::SymInitialize(hProcess, NULL, true);
+    xCHECK_RET(FALSE == bRes, false);
 
     USHORT usFramesNum      = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
-    xCHECK_RET(usFramesNum == 0U, FALSE);
+    xCHECK_RET(usFramesNum == 0U, false);
 
-    psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(char_t) ];
+    psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar) ];
     psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
     psiSymbol->MaxNameLen   = 255UL;
 
     for (USHORT i = 1U; i < usFramesNum; ++ i) {
-        std::string_t sStackLine;
+        std::tstring sStackLine;
 
         bRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
         if (FALSE == bRes) {
             sStackLine = xUNKNOWN_STRING;
         } else {
 	        const ULONG64       ullAddress = psiSymbol->Address;
-	        const std::string_t csName     = std::string_t(psiSymbol->Name);
+	        const std::tstring csName     = std::tstring(psiSymbol->Name);
 	
 	        //sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
 	        sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, ullAddress, csName.c_str());
@@ -97,13 +97,13 @@ CxStackTrace::bGet(
         void *pvStack[_m_culMaxFrames] = {0};
 
         int iFramesNum  = ::backtrace(pvStack, _m_culMaxFrames);
-        xCHECK_RET(iFramesNum <= 0, FALSE);
+        xCHECK_RET(iFramesNum <= 0, false);
 
-        char_t **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);
-        xCHECK_RET(NULL == ppszSymbols, FALSE);
+        tchar **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);
+        xCHECK_RET(NULL == ppszSymbols, false);
 
         for (int i = 1; i < iFramesNum; ++ i) {
-            std::string_t sStackLine;
+            std::tstring sStackLine;
 
             Dl_info dlinfo = {0};
 
@@ -111,8 +111,8 @@ CxStackTrace::bGet(
             if (0 == iRes) {
                 sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
             } else {
-                const char_t *pcszSymName     = NULL;
-                char_t       *pszDemangleName = NULL;
+                const tchar *pcszSymName     = NULL;
+                tchar       *pszDemangleName = NULL;
                 int          iStatus         = - 1;
 
                 pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
@@ -138,20 +138,20 @@ CxStackTrace::bGet(
 
     std::swap(*pvsStack, vsStack);
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
-std::string_t
+std::tstring
 CxStackTrace::sGet(
-    const std::string_t &csLinesSeparator /* = xT("\n") */
+    const std::tstring &csLinesSeparator /* = xT("\n") */
 )
 {
-    std::string_t sRes;
+    std::tstring sRes;
 
-    std::vector<std::string_t> vsStack;
+    std::vector<std::tstring> vsStack;
 
-    BOOL bRes = bGet(&vsStack);
-    if (FALSE == bRes) {
+    bool bRes = bGet(&vsStack);
+    if (false == bRes) {
         sRes.clear();
     } else {
         sRes = CxString::sJoin(vsStack, csLinesSeparator);

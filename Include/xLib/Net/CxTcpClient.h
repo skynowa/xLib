@@ -22,23 +22,23 @@ class CxTcpClient :
         virtual    ~CxTcpClient  ();
             ///< constructor
 
-        BOOL        bIsReadable        ();
+        bool        bIsReadable        ();
             ///< checking for readability
-        BOOL        bIsWritable        ();
+        bool        bIsWritable        ();
             ///< checking for writability
-        BOOL        bConnect           (const std::string_t &csIp, USHORT usPort);
+        bool        bConnect           (const std::tstring &csIp, USHORT usPort);
             ///< connecting
 
-        BOOL        bIoctl             (LONG liCmd, ULONG *pulArgp);
+        bool        bIoctl             (LONG liCmd, ULONG *pulArgp);
             ///< controls the i/o mode
-        BOOL        bSetNonBlockingMode(const BOOL cbFlag);
+        bool        bSetNonBlockingMode(const bool cbFlag);
             ///< set nonblocking mode
-        BOOL        bGetTimeout        (LONG *pliSec, LONG *pliMicroSec);
+        bool        bGetTimeout        (LONG *pliSec, LONG *pliMicroSec);
             ///< get timeout
-        BOOL        bSetTimeout        (LONG liSec,   LONG liMicroSec);
+        bool        bSetTimeout        (LONG liSec,   LONG liMicroSec);
             ///< set timeout
 
-        static BOOL bIsServerAlive     (const std::string_t &csIp, USHORT usPort);
+        static bool bIsServerAlive     (const std::tstring &csIp, USHORT usPort);
             ///< is sever socket available
 
     protected:

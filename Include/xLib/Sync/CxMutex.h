@@ -28,10 +28,10 @@ class CxMutex :
         virtual ~CxMutex   ();
 
         HANDLE   hGetHandle() const;
-        BOOL     bCreate   (const LPSECURITY_ATTRIBUTES pcsaAttributes, const BOOL cbInitialOwner, const std::string_t &csName);
-        BOOL     bOpen     (const ULONG culAccess, const BOOL cbInheritHandle, const std::string_t &csName);
-        BOOL     bRelease  () const;
-        BOOL     bWait     (const ULONG culTimeout) const;
+        bool     bCreate   (const LPSECURITY_ATTRIBUTES pcsaAttributes, const bool cbInitialOwner, const std::tstring &csName);
+        bool     bOpen     (const ULONG culAccess, const bool cbInheritHandle, const std::tstring &csName);
+        bool     bRelease  () const;
+        bool     bWait     (const ULONG culTimeout) const;
 
     private:
         CxHandle _m_hMutex;

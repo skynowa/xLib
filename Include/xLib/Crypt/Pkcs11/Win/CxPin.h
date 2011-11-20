@@ -26,17 +26,17 @@ class CxPin :
         virtual             ~CxPin         ();
              ///< destructor
 
-        BOOL                 bInitToken    (CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);
+        bool                 bInitToken    (CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);
             ///< initializes a token
-        BOOL                 bInitPIN      (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
+        bool                 bInitPIN      (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
             ///< initializes the normal user's PIN
-        BOOL                 bSetPIN       (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
+        bool                 bSetPIN       (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
             ///< modifies the PIN of the user who is logged in
 
         //Utils
     #if xTODO
-        std::string_t              sChangeUserPin(const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
-        std::string_t              sChangeSOPin  (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
+        std::tstring              sChangeUserPin(const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
+        std::tstring              sChangeSOPin  (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
     #endif
 
     private:
