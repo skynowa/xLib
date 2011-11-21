@@ -24,7 +24,7 @@ CxTest_CxLastError::bUnit(
 {
     //-------------------------------------
     //ulGet
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
@@ -41,7 +41,7 @@ CxTest_CxLastError::bUnit(
 
     //-------------------------------------
     //ulGet
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
@@ -57,7 +57,7 @@ CxTest_CxLastError::bUnit(
 
     //-------------------------------------
     //bSet
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
@@ -73,7 +73,7 @@ CxTest_CxLastError::bUnit(
 
     //-------------------------------------
     //bReset
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;
@@ -94,7 +94,7 @@ CxTest_CxLastError::bUnit(
 
     //-------------------------------------
     //sFormat
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;

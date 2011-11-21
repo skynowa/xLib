@@ -25,7 +25,7 @@ CxTest_CxAutoMutex::bUnit(
     #if xOS_ENV_WIN
         //-------------------------------------
         //CxAutoMutex
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             CxMutex mtMutex;
 

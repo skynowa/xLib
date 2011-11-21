@@ -105,7 +105,7 @@ CxTest_CxRandom::bUnit(
 
     //-------------------------------------
     //bSetSeed, liGetInt, liGetIntEx
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const LONG caliData[][2] = {
             {0, 100},
@@ -133,7 +133,7 @@ CxTest_CxRandom::bUnit(
 
     //--------------------------------------------------
     //sGetString
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const size_t cuiStrSize = 10;
 

@@ -24,7 +24,7 @@ CxTest_CxStackTrace::bUnit(
 {
     //--------------------------------------------------
     //bGet
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxStackTrace stStack;
         std::vector<std::tstring> vsStack;
@@ -36,7 +36,7 @@ CxTest_CxStackTrace::bUnit(
 
     //--------------------------------------------------
     //sGet
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxStackTrace stStack;
         std::tstring sStack;

@@ -37,7 +37,7 @@ CxTest_CxCookiePv1::bUnit(
 
     //--------------------------------------------------
     //CxCookiePv1()
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxCookiePv1 ckCookiePv1;
 
@@ -96,7 +96,7 @@ CxTest_CxCookiePv1::bUnit(
 
     //--------------------------------------------------
     //CxCookiePv1(const std::tstring &);
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxCookiePv1 ckCookiePv1(csRawCookie);
 

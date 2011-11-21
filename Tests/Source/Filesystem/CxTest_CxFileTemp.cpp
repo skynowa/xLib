@@ -24,7 +24,7 @@ CxTest_CxFileTemp::bUnit(
 {
     //-------------------------------------
     //sTempCreate, bTempClose
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;

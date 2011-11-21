@@ -50,7 +50,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bSet, atGet
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bSet(csFilePath, cfaValue);
         xTEST_DIFF(false, m_bRes);
@@ -63,7 +63,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bAdd
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xTEST_DIFF(false, m_bRes);
@@ -77,7 +77,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bRemove
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             CxFileAttribute::EAttribute faAttr  = CxFileAttribute::faHidden;
@@ -135,7 +135,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bModify
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const CxFileAttribute::EAttribute cfaRemoveValue = cfaValue;
@@ -151,7 +151,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bIsExists
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             CxFileAttribute::EAttribute faAttr = CxFileAttribute::faNormal;
@@ -168,7 +168,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bClear
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xTEST_DIFF(false, m_bRes);

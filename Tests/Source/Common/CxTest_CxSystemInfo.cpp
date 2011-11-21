@@ -24,7 +24,7 @@ CxTest_CxSystemInfo::bUnit(
 {
     //--------------------------------------------------
     //osGetOS
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxSystemInfo::EOsType otType = CxSystemInfo::otUnknown;
 
@@ -42,7 +42,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //-------------------------------------
     //sFormatOsType
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             std::map<CxSystemInfo::EOsType, std::tstring> mapData;
@@ -78,7 +78,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //--------------------------------------------------
     //oaGetOsArch
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxSystemInfo::EOsArch oaRes = CxSystemInfo::oaUnknown;
 
@@ -88,7 +88,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //--------------------------------------------------
     //sFormatOsArch
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_sRes = CxSystemInfo::sFormatOsArch(CxSystemInfo::oaUnknown);
         xTEST_EQ(false, m_sRes.empty());
@@ -102,7 +102,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //-------------------------------------
     //sGetComputerName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_sRes = CxSystemInfo::sGetComputerName();
         xTEST_EQ(false, m_sRes.empty());
@@ -113,7 +113,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //--------------------------------------------------
     //bIsUserAnAdmin
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxSystemInfo::bIsUserAnAdmin();
         #if xTEST_IGNORE
@@ -123,7 +123,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //-------------------------------------
     //sGetUserName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_sRes = CxSystemInfo::sGetUserName();
         xTEST_EQ(false, m_sRes.empty());
@@ -134,7 +134,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //-------------------------------------
     //ulGetNumOfCpus
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_ulRes = CxSystemInfo::ulGetNumOfCpus();
         #if xTEST_IGNORE
@@ -145,7 +145,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //-------------------------------------
     //ulGetCurrentCpuNum
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
         #if xTEST_IGNORE
@@ -157,7 +157,7 @@ CxTest_CxSystemInfo::bUnit(
 
     //--------------------------------------------------
     //TODO: ullGetCpuSpeed
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         ////m_iRes = CxSystemInfo::ullGetCpuSpeed();
         ////xTEST_LESS(0, m_iRes);

@@ -375,7 +375,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Common\CxArray.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\CxAutoBuffer.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxCommandLine.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />

@@ -24,7 +24,7 @@ CxTest_CxLocale::bUnit(
 {
     //-------------------------------------
     //sGetCurrent
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_sRes = CxLocale::sGetCurrent();
         xTEST_EQ(false, m_sRes.empty());
@@ -32,7 +32,7 @@ CxTest_CxLocale::bUnit(
 
     //-------------------------------------
     //bSetCurrent
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetCurrent( CxLocale::sGetCurrent() );
         xTEST_DIFF(false, m_bRes);
@@ -40,7 +40,7 @@ CxTest_CxLocale::bUnit(
 
     //-------------------------------------
     //bSetDefault
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetDefault();
         xTEST_DIFF(false, m_bRes);
@@ -48,7 +48,7 @@ CxTest_CxLocale::bUnit(
 
     //-------------------------------------
     //bSetCurrent
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
         xTEST_DIFF(false, m_bRes);

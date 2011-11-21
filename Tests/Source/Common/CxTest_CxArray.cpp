@@ -29,7 +29,7 @@ CxTest_CxArray::bUnit(
 
     //--------------------------------------------------
     //operator[]
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
             xTEST_EQ(i, aszArray[i]);
@@ -38,7 +38,7 @@ CxTest_CxArray::bUnit(
 
     //--------------------------------------------------
     //at
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
             xTEST_EQ(i, aszArray.at(i));
@@ -47,7 +47,7 @@ CxTest_CxArray::bUnit(
 
     //--------------------------------------------------
     //uiGetSize
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_stRes = aszArray.size();
         xTEST_EQ(cuiArraySize, m_stRes);
@@ -55,13 +55,13 @@ CxTest_CxArray::bUnit(
 
     //--------------------------------------------------
     //bClear
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         /*m_bRes =*/ aszArray.clear();
         ////xTEST_DIFF(false, m_bRes);
     }
 
-    xTEST_BLOCK(cullBlockLoops) {
+    xTEST_CASE(cullBlockLoops) {
         NxArray::make_array<std::tstring>( xT("0"),  xT("1") );
         NxArray::make_array<std::tstring>( xT("0"),  xT("1"),  xT("2") );
     }

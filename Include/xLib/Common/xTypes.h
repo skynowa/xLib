@@ -48,19 +48,19 @@ xNAMESPACE_END(NxLib)
 xNAMESPACE_BEGIN(std)
 
     typedef basic_string<tchar, char_traits<tchar>, allocator<tchar> >        tstring;
-    typedef basic_string<UCHAR, char_traits<UCHAR>, allocator<UCHAR> >           ustring;
+    typedef basic_string<UCHAR, char_traits<UCHAR>, allocator<UCHAR> >        ustring;
 
-    typedef basic_istream <tchar, char_traits<tchar> >                         tistream;
-    typedef basic_ostream <tchar, char_traits<tchar> >                         tostream;
-    typedef basic_iostream<tchar, char_traits<tchar> >                         tiostream;
+    typedef basic_istream <tchar, char_traits<tchar> >                        tistream;
+    typedef basic_ostream <tchar, char_traits<tchar> >                        tostream;
+    typedef basic_iostream<tchar, char_traits<tchar> >                        tiostream;
 
     typedef basic_istringstream<tchar, char_traits<tchar>, allocator<tchar> > tistringstream;
     typedef basic_ostringstream<tchar, char_traits<tchar>, allocator<tchar> > tostringstream;
     typedef basic_stringstream <tchar, char_traits<tchar>, allocator<tchar> > tstringstream;
 
-    typedef basic_ifstream<tchar, char_traits<tchar> >                         tifstream;
-    typedef basic_ofstream<tchar, char_traits<tchar> >                         tofstream;
-    typedef basic_fstream <tchar, char_traits<tchar> >                         tfstream;
+    typedef basic_ifstream<tchar, char_traits<tchar> >                        tifstream;
+    typedef basic_ofstream<tchar, char_traits<tchar> >                        tofstream;
+    typedef basic_fstream <tchar, char_traits<tchar> >                        tfstream;
 
 xNAMESPACE_END(std)
 //---------------------------------------------------------------------------

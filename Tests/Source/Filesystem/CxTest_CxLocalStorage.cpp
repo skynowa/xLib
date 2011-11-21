@@ -39,7 +39,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //CxLocalStorage()
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxLocalStorage iniIni;
     }
@@ -55,7 +55,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bCreateDefault
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = iniIni.bCreateDefault(csContent);
         xTEST_DIFF(false, m_bRes);
@@ -63,7 +63,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //sGetPath
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_sRes = iniIni.sGetPath();
         xTEST_EQ(csFilePath, m_sRes);
@@ -71,7 +71,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bSetPath
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = iniIni.bSetPath(csFilePath);
         xTEST_DIFF(false, m_bRes);
@@ -82,7 +82,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //cmsGet, bFlush
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         NxLib::TLocalStorage &riniIni = iniIni.cmsGet();
         xTEST_EQ(true, riniIni.empty());
@@ -111,7 +111,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bKeyIsExists
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         NxLib::TLocalStorage &riniIni = iniIni.cmsGet();
         xTEST_EQ(true, riniIni.empty());
@@ -172,7 +172,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bKeyWriteString, sKeyReadString
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //success
         {
@@ -199,7 +199,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //iKeyReadInt, bKeyWriteInt
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const LONG cliValue = 10L;
 
@@ -212,7 +212,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //dKeyReadFloat, bKeyWriteFloat
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const double cdValue = 777.0f;
 
@@ -225,7 +225,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bKeyReadBool, bKeyWriteBool
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const bool cbValue = false;
 
@@ -238,7 +238,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //usKeyReadBin, bKeyWriteBin
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::ustring cusValue(10, 'z');
         const std::ustring cusDefaultValue(10, 'd');
@@ -254,7 +254,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bKeyClear
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = iniIni.bKeyClear(csKey3);
         xTEST_DIFF(false, m_bRes);
@@ -266,7 +266,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bKeyDelete
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring csKey   = xT("Key");
         const std::tstring csValue = xT("");
@@ -282,7 +282,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bClear
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = iniIni.bClear();
         xTEST_DIFF(false, m_bRes);
@@ -291,7 +291,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //bDelete
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = iniIni.bDelete();
         xTEST_DIFF(false, m_bRes);

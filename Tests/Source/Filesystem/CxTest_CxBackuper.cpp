@@ -28,7 +28,7 @@ CxTest_CxBackuper::bUnit(
 
     //--------------------------------------------------
     //bBackup
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const LONG cliFileSize = 100L;
 

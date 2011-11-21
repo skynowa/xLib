@@ -94,7 +94,7 @@ CxTest::bUnit(
     #if xTODO
         //-------------------------------------
         //[FUNCTION_NAME]
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             const std::tstring casData[][2] = {
                 {xT("TEST_STRING_1"), xT("MUST_BE_1")},

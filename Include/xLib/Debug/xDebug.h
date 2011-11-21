@@ -177,10 +177,10 @@
     ///< auto profiler, comment contains name of current function
 
 #if xTEST_BLOCK_WITH_TRACE_POINT
-    #define xTEST_BLOCK(uiLoops)                            xTRACE_POINT; for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
+    #define xTEST_CASE(uiLoops)                            xTRACE_POINT; for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
         ///< test block with trace point
 #else
-    #define xTEST_BLOCK(uiLoops)                                          for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
+    #define xTEST_CASE(uiLoops)                                          for (size_t _uiBlockLoops = 0; _uiBlockLoops < uiLoops; ++ _uiBlockLoops)
         ///< test block without trace point
 #endif
 //-------------------------------------------------------------------------

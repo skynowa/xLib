@@ -132,7 +132,7 @@ xTMAIN(
     //set commandline args for xLib
     {
         bool bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
-        xTEST_EQ(true, bRes);   //TODO: xTEST_EQ
+        xTEST_EQ(true, bRes);
     }
 
 
@@ -152,7 +152,7 @@ xTMAIN(
         std::vector<std::tstring> vsArgs;
 
         bool bRes = CxCommandLine::bGetArgs(&vsArgs);
-        xTEST_EQ((bool)true, (bool)bRes);   //TODO: xTEST_EQ
+        xTEST_EQ(true, bRes); 
 
         //usage
         if (2 == iArgCount) {

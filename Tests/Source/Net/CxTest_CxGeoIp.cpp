@@ -36,7 +36,7 @@ CxTest_CxGeoIp::bUnit(
 
     //--------------------------------------------------
     //bOpen
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;
@@ -48,7 +48,7 @@ CxTest_CxGeoIp::bUnit(
 
     //--------------------------------------------------
     //bIsValid
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;
@@ -66,7 +66,7 @@ CxTest_CxGeoIp::bUnit(
 
     //--------------------------------------------------
     //sGetCountryCodeByAddress, sGetCountryCode3ByAddress
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             const std::tstring sTestData[][3] = {
@@ -103,7 +103,7 @@ CxTest_CxGeoIp::bUnit(
 
     //--------------------------------------------------
     //bClose
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;

@@ -54,7 +54,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetExe
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         sRes = CxPath::sGetExe();
         xTEST_EQ(true, CxFile::bIsExists(sRes));
@@ -62,7 +62,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetDll
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         sRes = CxPath::sGetDll();
         #if xTODO
@@ -72,7 +72,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetExeDir
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         sRes = CxPath::sGetExeDir();
         xTEST_EQ(true, CxDir::bIsExists(sRes));
@@ -80,7 +80,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetDrive
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
         sRes    = CxPath::sGetDrive(csFilePath);
@@ -90,7 +90,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetDir
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][2] = {
@@ -117,7 +117,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetDirName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][2] = {
@@ -144,7 +144,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetFullName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][2] = {
@@ -171,7 +171,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][2] = {
@@ -198,7 +198,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetExt
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][2] = {
@@ -227,7 +227,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetStandartExt
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_sRes = CxPath::sGetStandartExt(CxPath::seExe);
         #if xOS_ENV_WIN
@@ -260,7 +260,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sSetDrive
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][3] = {
@@ -285,7 +285,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sSetDir
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][3] = {
@@ -323,7 +323,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sSetFullName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][3] = {
@@ -358,7 +358,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sSetName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][3] = {
@@ -396,7 +396,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sSetExt
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring sData[][3] = {
             {xT("C:\\Test.doc"),                  xT("xls"),    xT("C:\\Test.xls")},
@@ -421,7 +421,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sRemoveExt
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][2] = {
@@ -448,21 +448,21 @@ CxTest_CxPath::bUnit(
 
     //--------------------------------------------------
     //bIsValid
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //TODO: bIsValid
     }
 
     //--------------------------------------------------
     //bIsNameValid
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //TODO: bIsNameValid
     }
 
     //--------------------------------------------------
     //bIsAbsolute
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //must true
         {
@@ -515,7 +515,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sSetValidName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
     #if xOS_ENV_WIN
         const std::tstring sTestData[][2] =
@@ -632,7 +632,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sToWin
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring csUnixPath = xT("C:/TestDir");
         const std::tstring csWinPath  = xT("C:\\TestDir");
@@ -652,7 +652,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sToNix
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring csUnixPath = xT("/home/user/Soft/TestDir");
         const std::tstring csWinPath  = xT("\\home\\user\\Soft\\TestDir");
@@ -672,7 +672,7 @@ CxTest_CxPath::bUnit(
 
     //--------------------------------------------------
     //sToCurrentOs
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring csUnixPath = xT("C:/TestDir");
@@ -709,7 +709,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sGetAbsolute
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         std::vector<std::tstring> vsArgs;
 
@@ -721,7 +721,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //TODO: sMinimizeName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring sData[][2] = {
             {xT("Name"),                   xT("Name")},
@@ -744,7 +744,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sMinimize
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             sRes    = CxPath::sMinimize(csFilePath, 4);
@@ -760,7 +760,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sSlashAppend
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][3] = {
@@ -793,7 +793,7 @@ CxTest_CxPath::bUnit(
 
     //-------------------------------------
     //sSlashRemove
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sData[][3] = {
@@ -826,7 +826,7 @@ CxTest_CxPath::bUnit(
 
     //--------------------------------------------------
     //uiGetMaxSize
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_uiRes = CxPath::uiGetMaxSize();
         xTEST_LESS(0U, m_uiRes);
@@ -834,7 +834,7 @@ CxTest_CxPath::bUnit(
 
     //--------------------------------------------------
     //uiGetNameMaxSize
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_uiRes = CxPath::uiGetNameMaxSize();
         xTEST_LESS(0U, m_uiRes);

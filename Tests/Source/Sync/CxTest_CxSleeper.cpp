@@ -24,7 +24,7 @@ CxTest_CxSleeper::bUnit(
 {
     //--------------------------------------------------
     //bIsSleeping
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxSleeper objSleeper;
 
@@ -34,7 +34,7 @@ CxTest_CxSleeper::bUnit(
 
     //--------------------------------------------------
     //bSleep
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxSleeper objSleeper;
 
@@ -55,7 +55,7 @@ CxTest_CxSleeper::bUnit(
 
     //--------------------------------------------------
     //bWakeUp
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xTODO
             CxSleeper objSleeper;

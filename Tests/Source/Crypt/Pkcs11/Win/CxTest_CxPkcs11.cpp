@@ -33,7 +33,7 @@ CxTest_CxPkcs11::bUnit(
 
     //-------------------------------------
     //bSetData
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
     //    const std::tstring csUserPin   = xT("1111");
     //    const std::tstring csDataLabel = xT("Label_Id");
@@ -46,7 +46,7 @@ CxTest_CxPkcs11::bUnit(
 
     //-------------------------------------
     //bGetData
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
     //    const std::tstring csUserPin   = xT("1111");
     //    const std::tstring csDataLabel = xT("Label_Id");
@@ -58,7 +58,7 @@ CxTest_CxPkcs11::bUnit(
 
     //-------------------------------------
     //
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring csUserPin   = xT("1111");
         const std::tstring csDataLabel = xT("Key1.tkey");
@@ -66,7 +66,7 @@ CxTest_CxPkcs11::bUnit(
         std::ustring       usData      = xS2US(csData);
 
         m_bRes = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
-        xTEST_EQ((bool)true, (bool)m_bRes);   //TODO: xTEST_EQ
+        xTEST_EQ(true, m_bRes);
     }
 #elif xOS_ENV_UNIX
 

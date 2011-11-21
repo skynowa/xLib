@@ -28,7 +28,7 @@ CxTest_CxFileLog::bUnit(
 
     //--------------------------------------------------
     //bSetFilePath, sGetFilePath
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = flLog.bSetFilePath(csFilePath);
         xTEST_DIFF(false, m_bRes);
@@ -39,7 +39,7 @@ CxTest_CxFileLog::bUnit(
 
     //--------------------------------------------------
     //bWrite
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = flLog.bWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
@@ -50,7 +50,7 @@ CxTest_CxFileLog::bUnit(
 
     //--------------------------------------------------
     //bClear
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = flLog.bClear();
         xTEST_DIFF(false, m_bRes);
@@ -59,7 +59,7 @@ CxTest_CxFileLog::bUnit(
 
     //--------------------------------------------------
     //bDelete
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = flLog.bDelete();
         xTEST_DIFF(false, m_bRes);

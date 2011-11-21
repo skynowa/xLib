@@ -26,7 +26,7 @@ CxTest_CxSocketInit::bUnit(
 
     //-------------------------------------
     //CxSocketInit
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxSocketInit siInit10(1, 0);
         CxSocketInit siInit11(1, 1);

@@ -36,7 +36,7 @@ CxTest_CxAutoProfiler::bUnit(
 
     //-------------------------------------
     //CxAutoProfiler
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
             CxAutoProfiler _apfAP(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i], xT("%i"), 777);
@@ -53,7 +53,7 @@ CxTest_CxAutoProfiler::bUnit(
 
     //-------------------------------------
     //xAUTO_PERFORM_FUNC
-    xTEST_BLOCK(cullBlockLoops) {
+    xTEST_CASE(cullBlockLoops) {
         for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
             xAUTO_PROFILER_FUNC(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i]);
 

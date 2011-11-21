@@ -26,7 +26,7 @@ CxTest_CxCurrentThread::bUnit(
 {
     //--------------------------------------------------
     //bIsCurrent
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxId aulData[5][2] = {{0}};
 
@@ -56,7 +56,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //ulGetId
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxId idRes = CxCurrentThread::ulGetId();
         xTEST_LESS(0UL, (ULONG)idRes);
@@ -64,7 +64,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //hGetHandle
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
         xTEST_DIFF(0UL, (ULONG)hRes);
@@ -72,7 +72,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //ulGetId
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxId idRes = CxCurrentThread::ulGetId();
         xTEST_LESS(0UL, (ULONG)idRes);
@@ -80,7 +80,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //hGetHandle
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
         xTEST_LESS((ULONG)0, (ULONG)hRes);
@@ -88,7 +88,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //bYield
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxCurrentThread::bYield();
         xTEST_DIFF(false, m_bRes);
@@ -96,7 +96,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //bSleep
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const ULONG caulData[] = {
             0,

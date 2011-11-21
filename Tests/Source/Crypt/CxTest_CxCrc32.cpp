@@ -40,14 +40,14 @@ CxTest_CxCrc32::bUnit(
 
     //-------------------------------------
     //ulCalc
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //ulCalcFile, sFormatHex
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_ulRes = CxCrc32::ulCalcFile(csFilePath);
         xTEST_LESS(0UL, m_ulRes);
@@ -59,14 +59,14 @@ CxTest_CxCrc32::bUnit(
 
     //-------------------------------------
     //ulCalcFast
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //------------------------------------
     //ulCalcFileFast, sFormatHex
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_ulRes = CxCrc32::ulCalcFileFast(csFilePath);
         xTEST_LESS(0UL, m_ulRes);

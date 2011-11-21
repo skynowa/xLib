@@ -24,7 +24,7 @@ CxTest_CxProcess::bUnit(
 {
     //--------------------------------------------------
     //bExec
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring csFilePath = xT("explorer.exe");
@@ -40,7 +40,7 @@ CxTest_CxProcess::bUnit(
 
     //--------------------------------------------------
     //bExit
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         ////m_bRes = CxProcess::bExit(CxProcess::ulGetCurrParentId(), 0);
         ////xTEST_DIFF(false, m_bRes);
@@ -48,7 +48,7 @@ CxTest_CxProcess::bUnit(
 
     //--------------------------------------------------
     //bTerminate
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
         //xTEST_DIFF(false, m_bRes);
