@@ -7,26 +7,18 @@
 #ifndef xLib_Common_Win_xCommon_WinH
 #define xLib_Common_Win_xCommon_WinH
 //---------------------------------------------------------------------------
-//win version
-#define xWINVER      WINVER
-#define xWIN32_NT4   0x0400    //Windows NT 4.0
-#define xWIN32_2K    0x0500    //Windows 2000
-#define xWIN32_XP    0x0501    //Windows Server 2003, Windows XP
-#define xWIN32_S03   0x0502    //Windows Server 2003 with SP1, Windows XP with SP2
-#define xWIN32_VISTA 0x0600    //Windows Vista, Windows Server 2008
-#define xWIN32_7     0x0601    //Windows 7, Windows Server 2008 R2
-
-
 //xCOMPILER_MS
 #if xCOMPILER_MS
     #pragma warning (disable : 4996)    //function or variable may be unsafe (deprecated)
     #pragma warning (disable : 4355)    //'this' : used in base member initializer list
     #pragma warning (disable : 4101)    //'e' : unreferenced local variable
 
-    #define VC_EXTRALEAN
+    #if !defined(VC_EXTRALEAN)
+        #define VC_EXTRALEAN 1
+    #endif
 
     #if !defined(WIN32_LEAN_AND_MEAN)
-        #define WIN32_LEAN_AND_MEAN
+        #define WIN32_LEAN_AND_MEAN 1
     #endif
 
     ////#define _CRT_SECURE_NO_WARNINGS

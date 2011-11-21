@@ -44,8 +44,17 @@
 
 
 // OS version
-#define xOS_WIN_VER     WINVER
+#define xOS_WIN_VER  WINVER
+
+#define xWIN32_NT4   0x0400    ///< Windows NT 4.0
+#define xWIN32_2K    0x0500    ///< Windows 2000
+#define xWIN32_XP    0x0501    ///< Windows Server 2003, Windows XP
+#define xWIN32_S03   0x0502    ///< Windows Server 2003 with SP1, Windows XP with SP2
+#define xWIN32_VISTA 0x0600    ///< Windows Vista, Windows Server 2008
+#define xWIN32_7     0x0601    ///< Windows 7, Windows Server 2008 R2
+
 #define xOS_LINUX_VER   0
+
 #define xOS_FREEBSD_VER __FreeBSD__
 
 //---------------------------------------------------------------------------

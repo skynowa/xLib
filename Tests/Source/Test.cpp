@@ -132,7 +132,7 @@ xTMAIN(
     //set commandline args for xLib
     {
         bool bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
-        xTEST_EQ((bool)true, (bool)bRes);   //TODO: xTEST_EQ
+        xTEST_EQ(true, bRes);   //TODO: xTEST_EQ
     }
 
 
