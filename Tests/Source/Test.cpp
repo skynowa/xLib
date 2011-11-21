@@ -119,11 +119,11 @@
 int
 xTMAIN(
     int    iArgCount,
-    tchar *paszArgs[]
+    tchar_t *paszArgs[]
 )
 {
     bool bVal = false;
-    std::ustring usVal;
+    std::ustring_t usVal;
 
     std::tcout << bVal << std::endl;
     std::tcout << usVal << std::endl;
@@ -144,12 +144,12 @@ xTMAIN(
     //--------------------------------------------------
     //options (default)
     bool      bIsUseTracing = true;
-    ULONGLONG ullAllLoops   = 1UL;
-    ULONGLONG ullUnitLoops  = 1UL;
-    ULONGLONG ullBlockLoops = 1UL;
+    ulonglong_t ullAllLoops   = 1UL;
+    ulonglong_t ullUnitLoops  = 1UL;
+    ulonglong_t ullBlockLoops = 1UL;
 
     {
-        std::vector<std::tstring> vsArgs;
+        std::vector<std::tstring_t> vsArgs;
 
         bool bRes = CxCommandLine::bGetArgs(&vsArgs);
         xTEST_EQ(true, bRes); 
@@ -174,9 +174,9 @@ xTMAIN(
         //loops number
         if (5 == iArgCount) {
             bIsUseTracing = CxString::lexical_cast<bool>( vsArgs.at(1) );
-            ullAllLoops   = CxString::lexical_cast<ULONGLONG>( vsArgs.at(2) );
-            ullUnitLoops  = CxString::lexical_cast<ULONGLONG>( vsArgs.at(3) );
-            ullBlockLoops = CxString::lexical_cast<ULONGLONG>( vsArgs.at(4) );
+            ullAllLoops   = CxString::lexical_cast<ulonglong_t>( vsArgs.at(2) );
+            ullUnitLoops  = CxString::lexical_cast<ulonglong_t>( vsArgs.at(3) );
+            ullBlockLoops = CxString::lexical_cast<ulonglong_t>( vsArgs.at(4) );
         }
     }
 

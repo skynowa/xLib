@@ -38,8 +38,8 @@ class CxCom :
             ///< is initiated
 
     private:
-        ULONG       _m_ulConModel;  ///< COM model
-        static LONG _ms_lInitCount; ///< init counter
+        ulong_t       _m_ulConModel;  ///< COM model
+        static long_t _ms_lInitCount; ///< init counter
 };
 
 xNAMESPACE_END(NxLib)

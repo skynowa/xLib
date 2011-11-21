@@ -14,9 +14,9 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
-const std::tstring CxMimeHeader::_ms_csAttrDelimiter = xT(":");
-const std::tstring CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n");
-const std::tstring CxMimeHeader::_ms_csEndOfLine     = xT("\r\n");
+const std::tstring_t CxMimeHeader::_ms_csAttrDelimiter = xT(":");
+const std::tstring_t CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n");
+const std::tstring_t CxMimeHeader::_ms_csEndOfLine     = xT("\r\n");
 //---------------------------------------------------------------------------
 //DONE: CxMimeHeader
 CxMimeHeader::CxMimeHeader() :
@@ -35,7 +35,7 @@ CxMimeHeader::~CxMimeHeader () {
 //DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
 bool
 CxMimeHeader::bParse(
-    const std::tstring &csRawHeader
+    const std::tstring_t &csRawHeader
 )
 {
 #if xTODO
@@ -62,13 +62,13 @@ CxMimeHeader::bParse(
 
     */
 
-    std::vector<std::tstring> vsHeader;
+    std::vector<std::tstring_t> vsHeader;
     _m_bRes = CxString::bSplit(csRawHeader, _ms_csEndOfLine, &vsHeader);
     /*DEBUG*///TODO:
 
     //-------------------------------------
     //???? ???? "+OK..." ? ?????? ??????, ?? ??????? ??? ??????
-    if (std::tstring::npos != vsHeader.at(0).find(xT("+OK"))) {
+    if (std::tstring_t::npos != vsHeader.at(0).find(xT("+OK"))) {
         vsHeader.erase(vsHeader.begin() + 0);
     }
 
@@ -107,17 +107,17 @@ CxMimeHeader::bParse(
     //-------------------------------------
     //std::vector -> std::map
     for (size_t i = 0; i < vsHeader.size(); i ++) {
-        std::vector<std::tstring> vsLines;
+        std::vector<std::tstring_t> vsLines;
         //--vsLines = vsSplit(": ", vsHeader.at(i));
         _m_bRes = CxString::bSplitKeyValue(vsHeader.at(i), _ms_csAttrDelimiter, &vsLines);
         /*DEBUG*/xASSERT_RET(false != _m_bRes,           false);
         /*DEBUG*/xASSERT_RET(false == vsLines.empty(), false);
 
         //????????? ? ?????? "????" ? "????????"
-        std::tstring sKey   = CxString::sTrimSpace(vsLines.at(0));
-        std::tstring sValue = CxString::sTrimSpace(vsLines.at(1));
+        std::tstring_t sKey   = CxString::sTrimSpace(vsLines.at(0));
+        std::tstring_t sValue = CxString::sTrimSpace(vsLines.at(1));
 
-        _m_mmsHeader.insert(std::pair<std::tstring, std::tstring>(sKey, sValue));
+        _m_mmsHeader.insert(std::pair<std::tstring_t, std::tstring_t>(sKey, sValue));
     }
 #endif
 
@@ -125,19 +125,19 @@ CxMimeHeader::bParse(
 }
 //---------------------------------------------------------------------------
 //DONE: sGetField
-std::tstring
+std::tstring_t
 CxMimeHeader::sGetField(
-    const std::tstring &csName
+    const std::tstring_t &csName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_mmsHeader.empty(), std::tstring());
-    /*DEBUG*/xASSERT_RET(false == csName.empty(),       std::tstring());
+    /*DEBUG*/xASSERT_RET(false == _m_mmsHeader.empty(), std::tstring_t());
+    /*DEBUG*/xASSERT_RET(false == csName.empty(),       std::tstring_t());
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
-    std::pair<std::multimap<std::tstring, std::tstring>::iterator, std::multimap<std::tstring, std::tstring>::iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
+    std::pair<std::multimap<std::tstring_t, std::tstring_t>::iterator, std::multimap<std::tstring_t, std::tstring_t>::iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
 
-    std::multimap<std::tstring, std::tstring>::iterator it;
+    std::multimap<std::tstring_t, std::tstring_t>::iterator it;
     for (it = prEqualRange.first; it != prEqualRange.second; ++ it) {
         sRes = (*it).second;
     }
@@ -154,12 +154,12 @@ CxMimeHeader::uiCount() {
 //TODO:  bLoadFromFile
 #if xTODO
     bool
-    CxMimeHeader::bLoadFromFile(const std::tstring &csFilePath) {
+    CxMimeHeader::bLoadFromFile(const std::tstring_t &csFilePath) {
      /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),                 false);
      /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(csFilePath), false);
 
-     std::tstring       sUknownEmail("Uknown@Uknown.Uknown");
-     std::tstring       sLine("");
+     std::tstring_t       sUknownEmail("Uknown@Uknown.Uknown");
+     std::tstring_t       sLine("");
      std::ifstream     ifsStream(csFilePath.c_str());
      /*DEBUG*/xASSERT_RET(ifsStream,           false);
      /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   false);
@@ -167,12 +167,12 @@ CxMimeHeader::uiCount() {
      /*DEBUG*/xASSERT_RET(ifsStream.is_open(), false);
      /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    false);
 
-     ULONG ulCountBreaks = 0;
-     for (ULONG i = 0; !ifsStream.eof();  ++ i) {
+     ulong_t ulCountBreaks = 0;
+     for (ulong_t i = 0; !ifsStream.eof();  ++ i) {
          std::getline(ifsStream, sLine);
 
          //���� �� ������ csFrom (From:)
-         if (std::tstring::npos != sLine.find(csFrom + ":")) {
+         if (std::tstring_t::npos != sLine.find(csFrom + ":")) {
              //From: ����<test_1@localhost>
              return sReplaceAll(vsSplit(_ms_csAttrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
          }
@@ -196,14 +196,14 @@ CxMimeHeader::uiCount() {
 
 bool
 CxMimeHeader::bLoadFromFile(
-    const std::tstring &csRawMessageFilePath
+    const std::tstring_t &csRawMessageFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csRawMessageFilePath.empty(),                 false);
     /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(csRawMessageFilePath), false);
 
-    std::tstring sRawHeader;
-    std::tstring sLine;
+    std::tstring_t sRawHeader;
+    std::tstring_t sLine;
 
     //-------------------------------------
     //������������� ��������� ������
@@ -212,14 +212,14 @@ CxMimeHeader::bLoadFromFile(
 
     //-------------------------------------
     //������ ���������� ����� � ������ �� ����� ������ (\r\n\r\n - ������ ������)
-    std::tifstream ifsStream(csRawMessageFilePath.c_str());
+    std::tifstream_t ifsStream(csRawMessageFilePath.c_str());
     /*DEBUG*/xASSERT_RET(ifsStream,           false);
     /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   false);
     /*DEBUG*/xASSERT_RET(ifsStream.good(),    false);
     /*DEBUG*/xASSERT_RET(ifsStream.is_open(), false);
     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    false);
 
-    ////ULONG ulCountBreaks = 0;
+    ////ulong_t ulCountBreaks = 0;
     for (; !ifsStream.eof(); ) {
         std::getline(ifsStream, sLine);
 
@@ -239,7 +239,7 @@ CxMimeHeader::bLoadFromFile(
 //TODO: bSaveToFile
 bool
 CxMimeHeader::bSaveToFile(
-    const std::tstring &csFilePath
+    const std::tstring_t &csFilePath
 )
 {
     //_m_mmsHeader
@@ -249,12 +249,12 @@ CxMimeHeader::bSaveToFile(
 //---------------------------------------------------------------------------
 //TODO: sGenerateMessageID (������� Message-ID ��� "<", ">")
 /*static*/
-std::tstring
+std::tstring_t
 CxMimeHeader::sGenerateMessageID() {
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     sRes = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sGetComputerName().c_str());
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring());
+    /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring_t());
 
     return sRes;
 }

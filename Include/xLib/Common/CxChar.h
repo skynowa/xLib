@@ -16,34 +16,34 @@ class CxChar :
     /// character
 {
     public:
-        static bool  bIsAlphaNum(const tchar cchChar);
+        static bool  bIsAlphaNum(const tchar_t cchChar);
             ///< Check if character is alphanumeric
-        static bool  bIsAlpha   (const tchar cchChar);
+        static bool  bIsAlpha   (const tchar_t cchChar);
             ///< Check if character is alphabetic
-        static bool  bIsControl (const tchar cchChar);
+        static bool  bIsControl (const tchar_t cchChar);
             ///< Check if character is a control character
-        static bool  bIsDigitDec(const tchar cchChar);
+        static bool  bIsDigitDec(const tchar_t cchChar);
             ///< Check if character is decimal digit
-        static bool  bIsDigitHex(const tchar cchChar);
+        static bool  bIsDigitHex(const tchar_t cchChar);
             ///< Check if character is hexadecimal digit
 
-        static bool  bIsGraph   (const tchar cchChar);
+        static bool  bIsGraph   (const tchar_t cchChar);
             ///< Check if character has graphical representation
-        static bool  bIsPrint   (const tchar cchChar);
+        static bool  bIsPrint   (const tchar_t cchChar);
             ///< Check if character is printable
-        static bool  bIsPunct   (const tchar cchChar);
+        static bool  bIsPunct   (const tchar_t cchChar);
             ///< Check if character is a punctuation character
-        static bool  bIsSpace   (const tchar cchChar);
+        static bool  bIsSpace   (const tchar_t cchChar);
             ///< Check if character is a white-space
 
-        static bool  bIsLower   (const tchar cchChar);
+        static bool  bIsLower   (const tchar_t cchChar);
             ///< Check if character is lowercase letter
-        static bool  bIsUpper   (const tchar cchChar);
+        static bool  bIsUpper   (const tchar_t cchChar);
             ///< Check if character is uppercase letter
 
-        static tchar chToLower  (const tchar cchChar);
+        static tchar_t chToLower  (const tchar_t cchChar);
             ///< Convert uppercase letter to lowercase
-        static tchar chToUpper  (const tchar cchChar);
+        static tchar_t chToUpper  (const tchar_t cchChar);
             ///< Convert lowercase letter to uppercase
 
     private:

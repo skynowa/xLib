@@ -17,27 +17,27 @@ class CxDnsClient :
     /// DNS client
 {
     public:
-        static bool bGetHostAddrByName  (const std::tstring &csHostName, std::tstring *psHostAddr);
+        static bool bGetHostAddrByName  (const std::tstring_t &csHostName, std::tstring_t *psHostAddr);
             ///< get host address by name
-        static bool bGetHostNameByAddr  (const std::tstring &csHostAddr, CxSocket::EAddressFamily afFamily, std::tstring *psHostName);
+        static bool bGetHostNameByAddr  (const std::tstring_t &csHostAddr, CxSocket::EAddressFamily afFamily, std::tstring_t *psHostName);
             ///< get host name by address
-        static bool bGetLocalHostName   (std::tstring *psHostName);
+        static bool bGetLocalHostName   (std::tstring_t *psHostName);
             ///< get local host name
-        static bool bGetNameInfo        (CxSocket::EAddressFamily afFamily, const std::tstring &csHostAddr, USHORT usPort);
+        static bool bGetNameInfo        (CxSocket::EAddressFamily afFamily, const std::tstring_t &csHostAddr, ushort_t usPort);
             ///< get name info
-        static bool bGetHostAddrInfo    (const std::tstring &csHostName, const std::tstring &csPort, const ADDRINFOT *pHints, ADDRINFOT **ppResult);
+        static bool bGetHostAddrInfo    (const std::tstring_t &csHostName, const std::tstring_t &csPort, const addrinfo_t *pHints, addrinfo_t **ppResult);
             ///< get host addr info
 
         //protocol
-        static bool bGetProtocolByName  (const std::tstring &csProtocolName, std::tstring *psName, std::vector<std::tstring> *pvsAliases, SHORT *psiNumber);
+        static bool bGetProtocolByName  (const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiNumber);
             ///< get protocol by name
-        static bool bGetProtocolByNumber(SHORT siNumber, std::tstring *psName, std::vector<std::tstring> *pvsAliases, SHORT *psiNum);
+        static bool bGetProtocolByNumber(short_t siNumber, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiNum);
             ///< get protocol by number
 
         //service
-        static bool bGetServiceByName   (const std::tstring &csServiceName, const std::tstring &csProtocolName, std::tstring *psName, std::vector<std::tstring> *pvsAliases, SHORT *psiPort,  std::tstring *psProtocolName);
+        static bool bGetServiceByName   (const std::tstring_t &csServiceName, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
             ///< get service by name
-        static bool bGetServiceByPort   (SHORT siPort, const std::tstring &csProtocolName, std::tstring *psName, std::vector<std::tstring> *pvsAliases, SHORT *psiPort,  std::tstring *psProtocolName);
+        static bool bGetServiceByPort   (short_t siPort, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
             ///< get service by port
 
     private:

@@ -18,7 +18,7 @@ class CxTest_CxTcpClient :
                      CxTest_CxTcpClient();
         virtual     ~CxTest_CxTcpClient();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

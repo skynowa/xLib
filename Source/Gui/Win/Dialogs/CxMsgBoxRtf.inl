@@ -42,8 +42,8 @@ xNAMESPACE_BEGIN(CxMsgBoxRtf)
 #define xCXTAB_CONTROL_CLASS                    WC_TABCONTROL
 //---------------------------------------------------------------------------
 EModalResult g_mrRes          = mrNone;
-std::tstring g_sTitle;
-std::tstring g_sMessage;
+std::tstring_t g_sTitle;
+std::tstring_t g_sMessage;
 
 const int    ID_staImg        = 200;
 const int    ID_redtText      = 201;
@@ -198,7 +198,7 @@ bCreateContent(
 INT_PTR CALLBACK
 DialogProc(
     HWND   hDlg,
-    UINT   uiMsg,
+    uint_t   uiMsg,
     WPARAM wParam,
     LPARAM lParam
 )
@@ -262,8 +262,8 @@ DialogProc(
 EModalResult
 iShow(
     HWND                hwndOwner,
-    const std::tstring &csMessage,
-    const std::tstring &csTiltle
+    const std::tstring_t &csMessage,
+    const std::tstring_t &csTiltle
 )
 {
     HMODULE           hmRichEdtDll = NULL;

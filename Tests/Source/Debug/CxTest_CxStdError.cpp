@@ -19,7 +19,7 @@ CxTest_CxStdError::~CxTest_CxStdError() {
 /*virtual*/
 bool
 CxTest_CxStdError::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------
@@ -42,7 +42,7 @@ CxTest_CxStdError::bUnit(
         const int ciMaxErrors = 200;    /*0...132*/
 
         for (int i = 0; i < ciMaxErrors; ++ i) {
-            std::tstring sError = CxStdError::sGet();
+            std::tstring_t sError = CxStdError::sGet();
             xTEST_EQ(false, sError.empty());
         }
     }
@@ -86,7 +86,7 @@ CxTest_CxStdError::bUnit(
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
-        for (ULONG i = 0; i < cuiMaxErrors; ++ i) {
+        for (ulong_t i = 0; i < cuiMaxErrors; ++ i) {
             m_sRes = CxStdError::sFormat(i);
             xTEST_EQ(false, m_sRes.empty());
 

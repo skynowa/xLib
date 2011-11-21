@@ -28,9 +28,9 @@ xNAMESPACE_BEGIN(CxMsgBoxRtf)
 
     bool             bCreateContent(HWND hParent);
         ///< create content
-    INT_PTR CALLBACK DialogProc    (HWND hDlg, UINT uiMsg, WPARAM wParam, LPARAM lParam);
+    INT_PTR CALLBACK DialogProc    (HWND hDlg, uint_t uiMsg, WPARAM wParam, LPARAM lParam);
         ///< window callback
-    EModalResult     iShow         (HWND hwndOwner, const std::tstring &csMessage, const std::tstring &csTiltle);
+    EModalResult     iShow         (HWND hwndOwner, const std::tstring_t &csMessage, const std::tstring_t &csTiltle);
         ///< show
 
 xNAMESPACE_END(CxMsgBoxRtf)

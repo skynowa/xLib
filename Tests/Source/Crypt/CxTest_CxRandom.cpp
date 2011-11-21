@@ -19,7 +19,7 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 /*virtual*/
 bool
 CxTest_CxRandom::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     #if xTODO
@@ -28,7 +28,7 @@ CxTest_CxRandom::bUnit(
         //--------------------------------------------------
         //bSetSeed
         {
-            m_bRes = rndR.bSetSeed( static_cast<ULONG>( time(NULL) ) );
+            m_bRes = rndR.bSetSeed( static_cast<ulong_t>( time(NULL) ) );
             xTEST_DIFF(false, m_bRes);
         }
 
@@ -107,7 +107,7 @@ CxTest_CxRandom::bUnit(
     //bSetSeed, liGetInt, liGetIntEx
     xTEST_CASE(cullBlockLoops)
     {
-        const LONG caliData[][2] = {
+        const long_t caliData[][2] = {
             {0, 100},
             {500, 1000},
             {50000, 100000},
@@ -117,8 +117,8 @@ CxTest_CxRandom::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caliData); ++ i) {
-            const LONG cliMin = caliData[i][0];
-            const LONG cliMax = caliData[i][1];
+            const long_t cliMin = caliData[i][0];
+            const long_t cliMax = caliData[i][1];
 
             m_bRes = CxRandom::bSetSeed();
             xTEST_DIFF(false, m_bRes);

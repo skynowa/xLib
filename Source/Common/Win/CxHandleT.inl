@@ -201,11 +201,11 @@ CxHandleT<hvTag>::bClose() {
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-ULONG
+ulong_t
 CxHandleT<hvTag>::ulGetInformation() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), 0UL);
 
-    ULONG ulFlags = 0UL;
+    ulong_t ulFlags = 0UL;
 
     bool bRes = ::GetHandleInformation(_m_hHandle, &ulFlags);
     /*DEBUG*/xASSERT_RET(false != bRes,    0UL);
@@ -217,8 +217,8 @@ CxHandleT<hvTag>::ulGetInformation() const {
 template<EHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bSetInformation(
-    const ULONG culMask,
-    const ULONG culFlags
+    const ulong_t culMask,
+    const ulong_t culFlags
 )
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
@@ -273,9 +273,9 @@ template<EHandleValue hvTag>
 HANDLE
 CxHandleT<hvTag>::hDuplicate(
     const HANDLE chTargetProcess,
-    const ULONG  culDesiredAccess,
+    const ulong_t  culDesiredAccess,
     const bool   cbInheritHandle /* = false*/,
-    const ULONG  culOptions      /* = 0*/
+    const ulong_t  culOptions      /* = 0*/
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), TxFailValue::get());

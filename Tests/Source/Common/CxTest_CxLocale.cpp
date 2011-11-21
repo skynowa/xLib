@@ -19,7 +19,7 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 /*virtual*/
 bool
 CxTest_CxLocale::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------

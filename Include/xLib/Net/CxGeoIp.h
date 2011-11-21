@@ -32,13 +32,13 @@ class CxGeoIp :
         virtual      ~CxGeoIp                  ();
             ///< destructor
 
-        bool          bOpen                    (const std::tstring &csFilePath, const EOption copOption);
+        bool          bOpen                    (const std::tstring_t &csFilePath, const EOption copOption);
             ///< open
         bool          bIsValid                 () const;
             ///< validating handle
-        std::tstring  sGetCountryCodeByAddress (const std::tstring &csAddress) const;
+        std::tstring_t  sGetCountryCodeByAddress (const std::tstring_t &csAddress) const;
             ///< get country code by address
-        std::tstring  sGetCountryCode3ByAddress(const std::tstring &csAddress) const;
+        std::tstring_t  sGetCountryCode3ByAddress(const std::tstring_t &csAddress) const;
             ///< get country code by address
         bool          bClose                   ();
             ///< close

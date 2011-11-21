@@ -19,11 +19,11 @@ CxTest_CxMutex::~CxTest_CxMutex() {
 /*virtual*/
 bool
 CxTest_CxMutex::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
-    const std::tstring csName = CxString::sCreateGuid();
+    const std::tstring_t csName = CxString::sCreateGuid();
 
 
     CxMutex mtMutex;
@@ -48,7 +48,7 @@ CxTest_CxMutex::bUnit(
     //-------------------------------------
     //bOpen
     {
-        const ULONG culAccess       = MUTEX_ALL_ACCESS;
+        const ulong_t culAccess       = MUTEX_ALL_ACCESS;
         const bool  cbInheritHandle = false;
 
         m_bRes = mtMutex.bOpen(culAccess, cbInheritHandle,  csName.c_str());
@@ -58,7 +58,7 @@ CxTest_CxMutex::bUnit(
     //-------------------------------------
     //bWait
     {
-        const ULONG culTimeout = 1000;
+        const ulong_t culTimeout = 1000;
 
         m_bRes = mtMutex.bWait(culTimeout);
         xTEST_DIFF(false, m_bRes);

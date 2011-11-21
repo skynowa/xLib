@@ -32,7 +32,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 /*static*/ bool          CxDebugger::_ms_bIsEnabled = true;
-/*static*/ std::tstring CxDebugger::_ms_sLogPath;
+/*static*/ std::tstring_t CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
 /*static*/
@@ -64,7 +64,7 @@ CxDebugger::bIsPresent() {
     bRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &bIsRemoteDebuggerPresent);
     xCHECK_RET(FALSE == bRes || FALSE == bIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
-    std::tstring sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
+    std::tstring_t sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
     xCHECK_RET(false == CxString::bCompareNoCase(xT("yes"), sRes), false);
 #endif
 
@@ -105,7 +105,7 @@ CxDebugger::bBreak() {
 /*static*/
 bool
 CxDebugger::bSetLogPath(
-    const std::tstring &csFilePath
+    const std::tstring_t &csFilePath
 )
 {
     _ms_sLogPath = csFilePath;
@@ -114,7 +114,7 @@ CxDebugger::bSetLogPath(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxDebugger::sGetLogPath() {
     return _ms_sLogPath;
 }
@@ -127,7 +127,7 @@ CxDebugger::bReportMake(
 {
     //-------------------------------------
     //never corrupt the last error value
-    const ULONG culLastError = crpReport.ulGetLastError();
+    const ulong_t culLastError = crpReport.ulGetLastError();
 
     CxReport::EType rtRes = crpReport.rtGetType();
     switch (rtRes) {
@@ -151,12 +151,12 @@ CxDebugger::bReportMake(
 /*static*/
 bool
 CxDebugger::bTrace(
-    const tchar *pcszFormat, ...
+    const tchar_t *pcszFormat, ...
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszFormat);
@@ -177,7 +177,7 @@ CxDebugger::bTrace(
 /*static*/
 bool
 CxDebugger::bTrace(
-    const std::tstring &csMsg
+    const std::tstring_t &csMsg
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -188,8 +188,8 @@ CxDebugger::bTrace(
 /*static*/
 bool
 CxDebugger::bBeep(
-    const ULONG culFrequency /*= 800*/,
-    const ULONG culDuration  /*= 100*/
+    const ulong_t culFrequency /*= 800*/,
+    const ulong_t culDuration  /*= 100*/
 ) 
 {
 #if xOS_ENV_WIN
@@ -256,9 +256,9 @@ CxDebugger::_bMsgboxPlain(
     xCHECK_RET(false == bGetEnabled(), true);
 
 #if xOS_ENV_WIN
-    ULONG ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
+    ulong_t ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
 #elif xOS_ENV_UNIX
-    ULONG ulType = 1UL;
+    ulong_t ulType = 1UL;
 #endif
 
     CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.sGetReport(), CxPath::sGetExe(), ulType);
@@ -510,7 +510,7 @@ CxDebugger::_bLoggingPlain(
 
     //--------------------------------------------------
     //get log file path
-    std::tstring sFilePath;
+    std::tstring_t sFilePath;
 
     if (true == sGetLogPath().empty()) {
         sFilePath = CxPath::sSetExt(CxPath::sGetExe(), xT("debug"));
@@ -524,7 +524,7 @@ CxDebugger::_bLoggingPlain(
     xCHECK_RET(NULL == pFile, false);
 
     try {
-        const std::tstring csMsg = CxString::sFormat(
+        const std::tstring_t csMsg = CxString::sFormat(
             xT("\n")
             xT("####################################################################################################\n")
             xT("%s\n")

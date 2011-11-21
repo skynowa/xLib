@@ -22,7 +22,7 @@ CxTest_CxTcpServer::~CxTest_CxTcpServer() {
 /*virtual*/
 bool
 CxTest_CxTcpServer::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     /*DEBUG*/
@@ -31,12 +31,12 @@ CxTest_CxTcpServer::bUnit(
     CxSocket::EType          tpType     = CxSocket::tpStream;
     CxSocket::EProtocol      ptProtocol = CxSocket::ptIp;
 
-    const std::tstring     csDomain        = xT("127.0.0.1");
-    std::tstring           sIp             = xT("");
-    USHORT            usPort          = 80;
+    const std::tstring_t     csDomain        = xT("127.0.0.1");
+    std::tstring_t           sIp             = xT("");
+    ushort_t            usPort          = 80;
 
-    std::tstring           sSendBuff       = xT("TEST_STRING");
-    tchar             szRecvBuff[1024 * sizeof(tchar)]  = {0};
+    std::tstring_t           sSendBuff       = xT("TEST_STRING");
+    tchar_t             szRecvBuff[1024 * sizeof(tchar_t)]  = {0};
 
     CxSocketInit      siInit(2, 2);
     CxTcpServer objListenSocket;
@@ -73,7 +73,7 @@ CxTest_CxTcpServer::bUnit(
         m_iRes = objClientSocket.iRecv(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
         xTEST_DIFF((int)CxTcpServer::etError, m_iRes);
 
-        std::tcout << std::tstring(szRecvBuff, m_iRes) << std::endl;
+        std::tcout << std::tstring_t(szRecvBuff, m_iRes) << std::endl;
     }
 
     //-------------------------------------

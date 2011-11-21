@@ -19,7 +19,7 @@ CxTest_CxAsyncSocket::~CxTest_CxAsyncSocket() {
 /*virtual*/
 bool
 CxTest_CxAsyncSocket::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     /*DEBUG*/

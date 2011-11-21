@@ -35,11 +35,11 @@ class CxImage :
         virtual        ~CxImage          ();
             ///< destructor
 
-        bool            bLoad            (const std::tstring &csFilePath);
+        bool            bLoad            (const std::tstring_t &csFilePath);
             ///< load
         bool            bLoad            (IStream *pisStream);
             ///< load
-        bool            bSave            (const std::tstring &csFilePath, EEncoderType etType);
+        bool            bSave            (const std::tstring_t &csFilePath, EEncoderType etType);
             ///< save
         bool            bSave            (IStream *pisStream, EEncoderType etType);
             ///< save
@@ -54,21 +54,21 @@ class CxImage :
         bool            bIsLoaded        ();
             ///< is loaded
 
-        UINT            uiGetWidth       ();
+        uint_t            uiGetWidth       ();
             ///< get width
-        UINT            uiGetHeight      ();
+        uint_t            uiGetHeight      ();
             ///< get height
 
         Gdiplus::Status stGetLastStatus  ();
             ///< get last status
-        std::tstring    sGetLastStatus   (Gdiplus::Status stCode);
+        std::tstring_t    sGetLastStatus   (Gdiplus::Status stCode);
             ///< get last status
 
     private:
         Gdiplus::Status _m_stRes;        ///< for private use
         Gdiplus::Image *_m_pimgImage;    ///< pointer to GDI+ image
 
-        bool            _bGetEncoderClsid(const std::tstring &csFormat, CLSID *pcidClsid);
+        bool            _bGetEncoderClsid(const std::tstring_t &csFormat, CLSID *pcidClsid);
             ///< get encoder clsid
 };
 

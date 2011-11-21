@@ -38,14 +38,14 @@ CxConsoleLog::~CxConsoleLog() {
 //---------------------------------------------------------------------------
 bool
 CxConsoleLog::bWrite(
-    const tchar *pcszFormat, ...
+    const tchar_t *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
 
     //-------------------------------------
     //time
-    std::tstring sTime;
+    std::tstring_t sTime;
 
     if (true == _m_bIsUseTimeStr) {
         sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
@@ -55,7 +55,7 @@ CxConsoleLog::bWrite(
 
     //-------------------------------------
     //comment
-    std::tstring sParam;
+    std::tstring_t sParam;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);

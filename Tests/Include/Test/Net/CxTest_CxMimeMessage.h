@@ -21,7 +21,7 @@ class CxTest_CxMimeMessage :
                      CxTest_CxMimeMessage();
         virtual     ~CxTest_CxMimeMessage();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

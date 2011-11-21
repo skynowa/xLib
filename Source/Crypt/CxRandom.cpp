@@ -21,7 +21,7 @@ const int CxRandom::Q = M / A;
 const int CxRandom::R = M % A;
 //---------------------------------------------------------------------------
 CxRandom::CxRandom(
-    LONG liSeed
+    long_t liSeed
 ) :
     _m_liSeed               (0),
     _m_dNextNextGaussian    (false),
@@ -39,7 +39,7 @@ CxRandom::~CxRandom() {
 //---------------------------------------------------------------------------
 bool
 CxRandom::bSetSeed(
-    LONG liSeed
+    long_t liSeed
 )
 {
     std::srand(liSeed);
@@ -83,7 +83,7 @@ CxRandom::iNextInt(
     return iNextInt() % (b - a) + a;
 }
 //---------------------------------------------------------------------------
-LONG
+long_t
 CxRandom::liNextLong() {
     return liNext();
 }
@@ -153,12 +153,12 @@ bool
 CxRandom::bSetSeed() {
     /*DEBUG*/// n/a
 
-    UINT uiSeed = 0;
+    uint_t uiSeed = 0;
 
 #if xOS_ENV_WIN
-    uiSeed = static_cast<UINT>( ::GetTickCount() );
+    uiSeed = static_cast<uint_t>( ::GetTickCount() );
 #elif xOS_ENV_UNIX
-    uiSeed = static_cast<UINT>( std::time(NULL) );
+    uiSeed = static_cast<uint_t>( std::time(NULL) );
 #endif
 
     std::srand(uiSeed);
@@ -168,15 +168,15 @@ CxRandom::bSetSeed() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-LONG
+long_t
 CxRandom::liGetInt(
-    const LONG cliMin,
-    const LONG cliMax
+    const long_t cliMin,
+    const long_t cliMax
 )
 {
     /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0L);
 
-    LONG liRes = 0;
+    long_t liRes = 0;
 
 #if 1
     liRes   = (::rand() % (cliMax - cliMin))  + cliMin;
@@ -188,17 +188,17 @@ CxRandom::liGetInt(
 }
 //---------------------------------------------------------------------------
 /*static*/
-LONG
+long_t
 CxRandom::liGetIntEx(
-    const LONG cliMin,
-    const LONG cliMax
+    const long_t cliMin,
+    const long_t cliMax
 )
 {
     /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0)
 
-    std::vector<LONG> vliRes;
+    std::vector<long_t> vliRes;
 
-    for (LONG i = cliMin; i < cliMax; ++ i) {
+    for (long_t i = cliMin; i < cliMax; ++ i) {
         vliRes.push_back(i);
     }
 
@@ -210,50 +210,50 @@ CxRandom::liGetIntEx(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxRandom::sGetString(
     const size_t cuiLength
 )
 {
     /*DEBUG*/
 
-    xCHECK_RET(0 == cuiLength, std::tstring());
+    xCHECK_RET(0 == cuiLength, std::tstring_t());
 
     const bool cbIsLetters      = true;
     const bool cbIsNumbers      = true;
     const bool cbIsAsciiSymbols = true;
 
-    std::tstring sRes;
-    std::tstring sAllPossible;
+    std::tstring_t sRes;
+    std::tstring_t sAllPossible;
 
     if (true == cbIsLetters) {
         for (int i = 65; i <= 90; ++ i) {
-            sAllPossible.push_back( static_cast<tchar>(i) );         //upper case
-            sAllPossible.push_back( static_cast<tchar>(i + 32) );    //lower case
+            sAllPossible.push_back( static_cast<tchar_t>(i) );         //upper case
+            sAllPossible.push_back( static_cast<tchar_t>(i + 32) );    //lower case
         }
     }
 
     if (true == cbIsNumbers) {
         for (int i = 48; i <= 57; ++ i) {
-            sAllPossible.push_back( static_cast<tchar>(i) );
+            sAllPossible.push_back( static_cast<tchar_t>(i) );
         }
     }
 
     if (true == cbIsAsciiSymbols) {
         for (int i = 33; i <= 47; ++ i) {
-            sAllPossible.push_back( static_cast<tchar>(i) );
+            sAllPossible.push_back( static_cast<tchar_t>(i) );
         }
 
         for (int i = 58; i <= 64; ++ i) {
-            sAllPossible.push_back( static_cast<tchar>(i) );
+            sAllPossible.push_back( static_cast<tchar_t>(i) );
         }
 
         for (int i = 91; i <= 96; ++ i) {
-            sAllPossible.push_back( static_cast<tchar>(i) );
+            sAllPossible.push_back( static_cast<tchar_t>(i) );
         }
 
         for (int i = 123; i <= 126; ++ i) {
-            sAllPossible.push_back( static_cast<tchar>(i) );
+            sAllPossible.push_back( static_cast<tchar_t>(i) );
         }
     }
 
@@ -273,7 +273,7 @@ CxRandom::sGetString(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-LONG
+long_t
 CxRandom::liNext() {
     #if xTEMP_DISABLED
         int tmp = A * (_m_liSeed % Q) - R * (_m_liSeed / Q);

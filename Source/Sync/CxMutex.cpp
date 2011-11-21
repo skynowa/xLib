@@ -43,7 +43,7 @@ bool
 CxMutex::bCreate(
     const LPSECURITY_ATTRIBUTES  pcsaAttributes,
     const bool                   cbInitialOwner,
-    const std::tstring          &csName
+    const std::tstring_t          &csName
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_hMutex.bIsValid(), false);
@@ -64,9 +64,9 @@ CxMutex::bCreate(
 //DONE: bOpen ()
 bool
 CxMutex::bOpen(
-    const ULONG         culAccess,
+    const ulong_t         culAccess,
     const bool          cbInheritHandle,
-    const std::tstring &csName
+    const std::tstring_t &csName
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_hMutex.bIsValid(), false);
@@ -98,13 +98,13 @@ CxMutex::bRelease() const {
 //DONE: bWait ()
 bool
 CxMutex::bWait(
-    const ULONG culTimeout
+    const ulong_t culTimeout
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hMutex.bIsValid(), false);
     /*DEBUG*///culTimeout - n/a
 
-    ULONG ulRes = WAIT_FAILED;
+    ulong_t ulRes = WAIT_FAILED;
 
     ulRes = ::WaitForSingleObject(_m_hMutex.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRes, false);

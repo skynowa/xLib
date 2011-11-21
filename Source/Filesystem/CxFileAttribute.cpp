@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxFileAttribute::bIsExists(
-    const std::tstring &csFilePath,
+    const std::tstring_t &csFilePath,
     const EAttribute   cfaValue
 )
 {
@@ -39,7 +39,7 @@ CxFileAttribute::bIsExists(
 /*static*/
 CxFileAttribute::EAttribute
 CxFileAttribute::atGet(
-    const std::tstring &csFilePath
+    const std::tstring_t &csFilePath
 )
 {
     /*DEBUG*/// csFilePath - n/a
@@ -67,7 +67,7 @@ CxFileAttribute::atGet(
 /*static*/
 bool
 CxFileAttribute::bSet(
-    const std::tstring &csFilePath,
+    const std::tstring_t &csFilePath,
     const EAttribute    cfaValue
 )
 {
@@ -75,7 +75,7 @@ CxFileAttribute::bSet(
     /*DEBUG*/// cfaValue
 
 #if xOS_ENV_WIN
-    BOOL bRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ULONG>(cfaValue));
+    BOOL bRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ulong_t>(cfaValue));
     /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
@@ -88,7 +88,7 @@ CxFileAttribute::bSet(
 /*static*/
 bool
 CxFileAttribute::bAdd(
-    const std::tstring &csFilePath,
+    const std::tstring_t &csFilePath,
     const EAttribute    cfaValue
 )
 {
@@ -101,7 +101,7 @@ CxFileAttribute::bAdd(
 /*static*/
 bool
 CxFileAttribute::bRemove(
-    const std::tstring &csFilePath,
+    const std::tstring_t &csFilePath,
     const EAttribute    cfaValue
 )
 {
@@ -114,7 +114,7 @@ CxFileAttribute::bRemove(
 /*static*/
 bool
 CxFileAttribute::bModify(
-    const std::tstring &csFilePath,
+    const std::tstring_t &csFilePath,
     const EAttribute    cfaRemoveValue,
     const EAttribute    cfaAddValue
 )
@@ -127,8 +127,8 @@ CxFileAttribute::bModify(
     EAttribute cfaValue = atGet(csFilePath);
 
     //change bits:
-    cfaValue = static_cast<EAttribute>( static_cast<ULONG>(cfaValue) & ~cfaRemoveValue );
-    cfaValue = static_cast<EAttribute>( static_cast<ULONG>(cfaValue) |  cfaAddValue    );
+    cfaValue = static_cast<EAttribute>( static_cast<ulong_t>(cfaValue) & ~cfaRemoveValue );
+    cfaValue = static_cast<EAttribute>( static_cast<ulong_t>(cfaValue) |  cfaAddValue    );
 
     //change the attributes
     bool bRes = bSet(csFilePath, cfaValue);
@@ -141,7 +141,7 @@ CxFileAttribute::bModify(
 /*static*/
 bool
 CxFileAttribute::bClear(
-    const std::tstring &csFilePath
+    const std::tstring_t &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);

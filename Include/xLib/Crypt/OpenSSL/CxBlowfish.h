@@ -30,29 +30,29 @@ class CxBlowfish :
         virtual      ~CxBlowfish          ();
             ///< destructor
 
-        bool          bSetKey             (UCHAR *pucKey, const int ciKeySize);
+        bool          bSetKey             (uchar_t *pucKey, const int ciKeySize);
             ///< set key
-        bool          bSetKey             (const std::ustring &cusKey);
+        bool          bSetKey             (const std::ustring_t &cusKey);
             ///< set key
-        bool          bSetKey             (const std::tstring &csKey);
+        bool          bSetKey             (const std::tstring_t &csKey);
             ///< set key
-        bool          bSetFileKey         (const std::tstring &csFilePath);
+        bool          bSetFileKey         (const std::tstring_t &csFilePath);
             ///< set key as file
         static size_t uiGetMaxKeySize     ();
             ///< get maximum key size
 
         //cfb64
-        bool          bEncryptCfb64       (UCHAR *pucIn, UCHAR *pucOut, const LONG cliInSize, int *piNum, const ECryptMode cmMode);
+        bool          bEncryptCfb64       (uchar_t *pucIn, uchar_t *pucOut, const long_t cliInSize, int *piNum, const ECryptMode cmMode);
             ///< encrypt buffer
-        bool          bEncryptCfb64       (const std::ustring &cusIn, std::ustring *pusOut, const ECryptMode cmMode);
-            ///< encrypt std::ustring
-        bool          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const ECryptMode cmMode);
+        bool          bEncryptCfb64       (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ECryptMode cmMode);
+            ///< encrypt std::ustring_t
+        bool          bEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ECryptMode cmMode);
             ///< encrypt file
 
         //
-        bool          bEncryptFileCfb64   (const std::tstring &csFilePathIn, const std::tstring &csFilePathOut, const std::ustring &cusStamp, const ECryptMode cmCryptMode);
+        bool          bEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const std::ustring_t &cusStamp, const ECryptMode cmCryptMode);
             ///< encrypt file
-        ECryptMode    cmGetFileCryptStatus(const std::tstring &csFilePath, const std::ustring &cusStamp);
+        ECryptMode    cmGetFileCryptStatus(const std::tstring_t &csFilePath, const std::ustring_t &cusStamp);
             ///< get file crypt status
 
     private:
@@ -64,7 +64,7 @@ class CxBlowfish :
         };
 
         BF_KEY        _m_bfKey;             ///< crypt key
-        UCHAR         _m_ucIvec[IVEC_SIZE]; ///< ivec
+        uchar_t         _m_ucIvec[IVEC_SIZE]; ///< ivec
 };
 
 xNAMESPACE_END(NxLib)
@@ -77,9 +77,9 @@ void  BF_set_key      (BF_KEY *key, int len, unsigned char *data);
 void  BF_ecb_encrypt  (unsigned char *in, unsigned char *out, BF_KEY *key, int enc);
 void  BF_encrypt      (BF_LONG *data, BF_KEY *key);
 void  BF_decrypt      (BF_LONG *data, BF_KEY *key);
-void  BF_cbc_encrypt  (unsigned char *in, unsigned char *out, long length, BF_KEY *ks,       unsigned char *iv,             int enc);
-void  BF_cfb64_encrypt(unsigned char *in, unsigned char *out, long length, BF_KEY *schedule, unsigned char *ivec, int *num, int enc);
-void  BF_ofb64_encrypt(unsigned char *in, unsigned char *out, long length, BF_KEY *schedule, unsigned char *ivec, int *num);
+void  BF_cbc_encrypt  (unsigned char *in, unsigned char *out, long_t length, BF_KEY *ks,       unsigned char *iv,             int enc);
+void  BF_cfb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int *num, int enc);
+void  BF_ofb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int *num);
 char *BF_options      (void);
 */
 

@@ -38,9 +38,9 @@ CxBackuper::~CxBackuper() {
 //---------------------------------------------------------------------------
 CxBackuper::EErrorType
 CxBackuper::etExecute(
-    const std::tstring &csFilePath,
-    const std::tstring &csDestDirPath,
-    std::tstring       *psDestFilePath
+    const std::tstring_t &csFilePath,
+    const std::tstring_t &csDestDirPath,
+    std::tstring_t       *psDestFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    etUnknown);
@@ -59,7 +59,7 @@ CxBackuper::etExecute(
 
     //-------------------------------------
     //process backup period
-    std::tstring sDateTimeStamp;
+    std::tstring_t sDateTimeStamp;
 
     switch (_m_cbpPeriod) {
         //TODO: case bpHourly:    { ; }    break;
@@ -74,7 +74,7 @@ CxBackuper::etExecute(
 
     //-------------------------------------
     //format file full name
-    std::tstring sBackupFilePath =
+    std::tstring_t sBackupFilePath =
                         CxPath::sSlashAppend(csDestDirPath) +
                         CxPath::sGetFullName(csFilePath)    +
                         xT(".bak [") + sDateTimeStamp + xT("]");
@@ -84,12 +84,12 @@ CxBackuper::etExecute(
 
     //-------------------------------------
     //check for enough space
-    ULONGLONG ullTotalFreeBytes = 0ULL;
+    ulonglong_t ullTotalFreeBytes = 0ULL;
 
     bRes = CxVolume::bGetFreeSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
     xCHECK_RET(false == bRes, etUnknown);
 
-    if (static_cast<ULONGLONG>( CxFile::liGetSize(csFilePath) ) > ullTotalFreeBytes) {
+    if (static_cast<ulonglong_t>( CxFile::liGetSize(csFilePath) ) > ullTotalFreeBytes) {
         return etNotEnoughFreeSpace;
     }
 

@@ -20,7 +20,7 @@ class CxTest_CxFileTemp :
         virtual      ~CxTest_CxFileTemp();
             ///< destructor
 
-        virtual bool  bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool  bUnit(const ulonglong_t cullBlockLoops);
             ///< unit test
 
     private:

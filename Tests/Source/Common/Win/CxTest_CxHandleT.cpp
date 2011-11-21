@@ -21,7 +21,7 @@ CxTest_CxHandleT::~CxTest_CxHandleT() {
 /*virtual*/
 bool
 CxTest_CxHandleT::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN

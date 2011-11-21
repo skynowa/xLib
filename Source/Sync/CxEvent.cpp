@@ -117,7 +117,7 @@ CxEvent::bReset() {
 //---------------------------------------------------------------------------
 CxEvent::EObjectState
 CxEvent::osWait(
-    const ULONG culTimeout /*= xTIMEOUT_INFINITE*/  ///< in milliseconds
+    const ulong_t culTimeout /*= xTIMEOUT_INFINITE*/  ///< in milliseconds
 )
 {
     /*DEBUG*/// culTimeout - n/a
@@ -183,7 +183,7 @@ CxEvent::bIsSignaled() {
     /*DEBUG*/// n/a
 
 #if xOS_ENV_WIN
-    ULONG ulRes = ::WaitForSingleObject(hGet(), 0UL);
+    ulong_t ulRes = ::WaitForSingleObject(hGet(), 0UL);
     /*DEBUG*/// n/a
 
     return (false != _m_hEvent.bIsValid()) && (osSignaled == ulRes);

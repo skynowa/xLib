@@ -30,23 +30,23 @@ class CxDebugger :
             ///< is debug build (is NDEBUG macros is don't set)
         static bool         bBreak          ();
             ///< attach to OS debugger
-        static bool         bSetLogPath     (const std::tstring &csFilePath);
+        static bool         bSetLogPath     (const std::tstring_t &csFilePath);
             ///< set log file path
-        static std::tstring sGetLogPath     ();
+        static std::tstring_t sGetLogPath     ();
             ///< get log file path
         static bool         bReportMake     (const CxReport &crpReport);
             ///< make report
-        static bool         bTrace          (const tchar *pcszFormat, ...);
+        static bool         bTrace          (const tchar_t *pcszFormat, ...);
             ///< tracing to debugger, std::cout
-        static bool         bTrace          (const std::tstring &csMsg);
+        static bool         bTrace          (const std::tstring_t &csMsg);
             ///< tracing to debugger, std::cout
-        static bool         bBeep           (const ULONG culFrequency = 800, const ULONG culDuration = 100);
+        static bool         bBeep           (const ulong_t culFrequency = 800, const ulong_t culDuration = 100);
             ///< play sound
 
     private:
         static bool         _ms_bIsEnabled;
             ///< is debugger enabled
-        static std::tstring _ms_sLogPath;
+        static std::tstring_t _ms_sLogPath;
             ///< log path
 
                             CxDebugger      ();

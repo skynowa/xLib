@@ -19,7 +19,7 @@ CxTest_CxBase64::~CxTest_CxBase64() {
 /*virtual*/
 bool
 CxTest_CxBase64::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------

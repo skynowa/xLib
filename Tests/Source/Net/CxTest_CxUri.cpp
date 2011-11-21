@@ -19,7 +19,7 @@ CxTest_CxUri::~CxTest_CxUri() {
 /*virtual*/
 bool
 CxTest_CxUri::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     std::string m_sRes;
@@ -44,7 +44,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xTEST_EQ((USHORT)8042u, m_usiRes);
+        xTEST_EQ((ushort_t)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
         xTEST_EQ(std::string("/over/there"), m_sRes);
@@ -76,7 +76,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xTEST_EQ((USHORT)8042u, m_usiRes);
+        xTEST_EQ((ushort_t)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
         xTEST_EQ(std::string("/over/there"), m_sRes);
@@ -108,7 +108,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xTEST_EQ((USHORT)8042u, m_usiRes);
+        xTEST_EQ((ushort_t)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
         xTEST_EQ(std::string("/over/there"), m_sRes);
@@ -140,7 +140,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xTEST_EQ((USHORT)8042u, m_usiRes);
+        xTEST_EQ((ushort_t)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
         xTEST_EQ(std::string(), m_sRes);
@@ -172,7 +172,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("example.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xTEST_EQ((USHORT)0, m_usiRes);
+        xTEST_EQ((ushort_t)0, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
         xTEST_EQ(std::string(), m_sRes);
@@ -204,7 +204,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("weather.yahoo.com"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xTEST_EQ((USHORT)80u, m_usiRes);
+        xTEST_EQ((ushort_t)80u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
         xTEST_EQ(std::string("/ukraine/kiev-city-municipality/kiev-924938/"), m_sRes);
@@ -236,7 +236,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("dn1.berloga.net"), m_sRes);
 
         m_usiRes = objUri.usGetPort();
-        xTEST_EQ((USHORT)80u, m_usiRes);
+        xTEST_EQ((ushort_t)80u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
         xTEST_EQ(std::string("/83841/zombie_baseball_2.swf"), m_sRes);

@@ -19,13 +19,13 @@ CxTest_CxClipboard::~CxTest_CxClipboard() {
 /*virtual*/
 bool
 CxTest_CxClipboard::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
     CxClipboard cbCB;
 
-    const std::tstring csText = xT("Simple text");
+    const std::tstring_t csText = xT("Simple text");
 
     //-------------------------------------
     //bSetOwner

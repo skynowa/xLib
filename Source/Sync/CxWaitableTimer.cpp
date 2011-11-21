@@ -42,7 +42,7 @@ CxWaitableTimer::hGetHandle() const {
 bool
 CxWaitableTimer::bCreate(
     const bool                   bManualReset,
-    const std::tstring          &csName,
+    const std::tstring_t          &csName,
     const LPSECURITY_ATTRIBUTES  pcsaTimerAttributes
 )
 {
@@ -61,8 +61,8 @@ CxWaitableTimer::bCreate(
 //DONE: bOpen ()
 bool
 CxWaitableTimer::bOpen(
-    const std::tstring &csName,
-    const ULONG         culDesiredAccess,
+    const std::tstring_t &csName,
+    const ulong_t         culDesiredAccess,
     const bool          cbInheritHandle
 )
 {
@@ -101,8 +101,8 @@ CxWaitableTimer::bCancel() const {
 //DONE: bSet ()
 bool
 CxWaitableTimer::bSet(
-    const LONGLONG   cllDueTime,
-    const LONG       cliPeriod,
+    const longlong_t   cllDueTime,
+    const long_t       cliPeriod,
     PTIMERAPCROUTINE pfnCompletionRoutine,
     LPVOID           pvArgToCompletionRoutine,
     const bool       cbResume
@@ -129,12 +129,12 @@ CxWaitableTimer::bSet(
 //DONE: bWait ()
 bool
 CxWaitableTimer::bWait(
-    const ULONG culTimeout
+    const ulong_t culTimeout
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
 
-    ULONG ulRes = WAIT_FAILED;
+    ulong_t ulRes = WAIT_FAILED;
 
     ulRes = ::WaitForSingleObject(_m_hWaitableTimer.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);

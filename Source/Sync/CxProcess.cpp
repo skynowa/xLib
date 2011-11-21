@@ -23,14 +23,14 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxProcess::bExec(
-    const std::tstring &csFilePath,
-    const tchar        *pcszCmdLine, ...
+    const std::tstring_t &csFilePath,
+    const tchar_t        *pcszCmdLine, ...
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        false);
 
-    std::tstring sCmdLine;
+    std::tstring_t sCmdLine;
 
     va_list palArgs;
     xVA_START(palArgs, pcszCmdLine);
@@ -62,7 +62,7 @@ CxProcess::bExec(
         if (0 == pid) {
             //TODO: csFilePath is executable
 
-            int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar *>( NULL ));
+            int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
             /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
             ::_exit(EXIT_SUCCESS);  /* Note that we do not use exit() */
@@ -81,7 +81,7 @@ CxProcess::bExec(
 bool
 CxProcess::bExit(
     const TxId culPid,
-    const UINT cuiExitCode
+    const uint_t cuiExitCode
 )
 {
     /*DEBUG*/// uiExitCode - n/a

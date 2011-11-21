@@ -19,10 +19,10 @@ CxTest_CxFileLog::~CxTest_CxFileLog() {
 /*virtual*/
 bool
 CxTest_CxFileLog::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
-    const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.log");
+    const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.log");
 
     CxFileLog flLog(1);
 

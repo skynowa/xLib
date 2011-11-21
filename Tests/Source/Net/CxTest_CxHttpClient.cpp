@@ -19,7 +19,7 @@ CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 /*virtual*/
 bool
 CxTest_CxHttpClient::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     xTEST_CASE(cullBlockLoops)

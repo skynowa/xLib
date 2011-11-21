@@ -54,7 +54,7 @@ class CParam {
             ////xSTD_COUT_FUNC;
         };
 
-        std::tstring sSetName(void *uiIndex) {
+        std::tstring_t sSetName(void *uiIndex) {
 
 
             return xT("Class_C");
@@ -71,7 +71,7 @@ class CThread {
             ////xSTD_COUT_FUNC;
         };
 
-        void vRun(const CxFunctorT<CParam, std::tstring, void *> &bF) {
+        void vRun(const CxFunctorT<CParam, std::tstring_t, void *> &bF) {
             ////xSTD_COUT_FUNC;
         };
 };
@@ -87,7 +87,7 @@ CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 //---------------------------------------------------------------------------
 bool
 CxTest_CxFunctorT::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------
@@ -152,10 +152,10 @@ CxTest_CxFunctorT::bUnit(
     //Execute
     xTEST_CASE(cullBlockLoops)
     {
-        CxFunctorT<CParam, std::tstring, void *> bF(&objParam, &CParam::sSetName);
+        CxFunctorT<CParam, std::tstring_t, void *> bF(&objParam, &CParam::sSetName);
 
         m_sRes = bF.Execute(0);
-        xTEST_EQ(std::tstring(xT("Class_C")), m_sRes);
+        xTEST_EQ(std::tstring_t(xT("Class_C")), m_sRes);
     }
 
     return true;

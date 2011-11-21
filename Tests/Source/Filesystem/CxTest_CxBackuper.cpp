@@ -19,18 +19,18 @@ CxTest_CxBackuper::~CxTest_CxBackuper() {
 /*virtual*/
 bool
 CxTest_CxBackuper::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
-    const std::tstring csFilePath  = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
-    const std::tstring csBackupDir = sGetWorkDirPath() + CxConst::xSLASH + xT("Backup_dir");
+    const std::tstring_t csFilePath  = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring_t csBackupDir = sGetWorkDirPath() + CxConst::xSLASH + xT("Backup_dir");
 
 
     //--------------------------------------------------
     //bBackup
     xTEST_CASE(cullBlockLoops)
     {
-        const LONG cliFileSize = 100L;
+        const long_t cliFileSize = 100L;
 
         {
             CxFile F;
@@ -45,7 +45,7 @@ CxTest_CxBackuper::bUnit(
         for (size_t i = 0; i < 10; ++ i) {
             CxBackuper bkBackuper(CxBackuper::bpDaily);
 
-            std::tstring sBackupFilePath;
+            std::tstring_t sBackupFilePath;
 
             CxBackuper::EErrorType etRes = bkBackuper.etExecute(csFilePath, csBackupDir, &sBackupFilePath);
             xTEST_EQ(CxBackuper::etSuccess, etRes);

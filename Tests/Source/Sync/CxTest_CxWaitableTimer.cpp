@@ -19,7 +19,7 @@ CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 /*virtual*/
 bool
 CxTest_CxWaitableTimer::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN

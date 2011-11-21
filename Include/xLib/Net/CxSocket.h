@@ -212,18 +212,18 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        //void *, std::tstring, std::ustring
+        //void *, std::tstring_t, std::ustring_t
 
-        int          iSend          (const tchar *pcszBuff, int iBuffSize, int iFlags);
+        int          iSend          (const tchar_t *pcszBuff, int iBuffSize, int iFlags);
             ///< send data
-        bool         bSendAll       (const std::tstring &csBuff, int iFlags);
+        bool         bSendAll       (const std::tstring_t &csBuff, int iFlags);
             ///< send data by blocks
 
-        int          iRecv          (tchar *pszBuff,  int iBuffSize, int iFlags);
+        int          iRecv          (tchar_t *pszBuff,  int iBuffSize, int iFlags);
             ///< recieve data
-        std::tstring sRecvAll       (int iFlags);
+        std::tstring_t sRecvAll       (int iFlags);
             ///< recieve data
-        std::tstring sRecvAll       (int iFlags, const std::tstring &csDelimiter);
+        std::tstring_t sRecvAll       (int iFlags, const std::tstring_t &csDelimiter);
             ///< recive data to delimiter, includs it
 
         int          iSendBytes     (char *pszBuff, int iMessageLength);
@@ -237,9 +237,9 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        bool         bGetPeerName   (std::tstring *psPeerAddr, USHORT *pusPeerPort);
+        bool         bGetPeerName   (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
             ///< get address of the peer to which a socket is connected
-        bool         bGetSocketName (std::tstring *psSocketAddr, USHORT *pusSocketPort);
+        bool         bGetSocketName (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
             ///< get local name for a socket
 
         /****************************************************************************
@@ -255,9 +255,9 @@ class CxSocket :
 
     protected:
         SOCKET       _m_puiSocket;    ///< handle to socket
-        SHORT        _m_siFamily;   ///< family
-        std::tstring _m_sIp;        ///< IP
-        USHORT       _m_usPort;     ///< port
+        short_t        _m_siFamily;   ///< family
+        std::tstring_t _m_sIp;        ///< IP
+        ushort_t       _m_usPort;     ///< port
 
     private:
 };
@@ -272,10 +272,10 @@ xNAMESPACE_END(NxLib)
 #endif
 
 #if xTODO
-    std::tstring sStr = xT("Some string!!!");
-    ::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring::value_type), 0);
+    std::tstring_t sStr = xT("Some string!!!");
+    ::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring_t::value_type), 0);
 
-    sizeof(std::tstring::value_type)
+    sizeof(std::tstring_t::value_type)
 #endif
 
 #if xTODO

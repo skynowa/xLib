@@ -19,7 +19,7 @@ CxTest_CxReport::~CxTest_CxReport() {
 /*virtual*/
 bool
 CxTest_CxReport::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------
@@ -35,7 +35,7 @@ CxTest_CxReport::bUnit(
     //CxReport
     xTEST_CASE(cullBlockLoops)
     {
-        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), std::tstring(xT("Simple comment")));
+        CxReport rpReport(CxReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), std::tstring_t(xT("Simple comment")));
         m_sRes = rpReport.sGetReport();
         //xTRACE(m_sRes);
     }

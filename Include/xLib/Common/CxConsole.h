@@ -55,28 +55,28 @@ class CxConsole :
             bgBlack_ = 100, bgRed_ = 101, bgGreen_ = 102, bgYellow_ = 103, bgBlue_ = 104, bgMagenta_ = 105, bgCyan_ = 106, bgWhite_ = 107
         };
 
-        std::tstring bSetTextColor (const std::tstring &csText, const EForeground cfgForeground, const bool cbIsBold, const bool cbIsUnderline, const EBackground cbgBackground, const bool cbIsBlink);
+        std::tstring_t bSetTextColor (const std::tstring_t &csText, const EForeground cfgForeground, const bool cbIsBold, const bool cbIsUnderline, const EBackground cbgBackground, const bool cbIsBlink);
             ///< set text color
-        std::tstring sRead         ();
+        std::tstring_t sRead         ();
             ///< read
-        bool         bWrite        (const std::tstring &csStr);
+        bool         bWrite        (const std::tstring_t &csStr);
             ///< write
-        bool         bWriteLine    (const std::tstring &csStr = xT(""));
+        bool         bWriteLine    (const std::tstring_t &csStr = xT(""));
             ///< write line
-        bool         bWriteErrLine (const std::tstring &csStr);
+        bool         bWriteErrLine (const std::tstring_t &csStr);
             ///< write error message
-        EModalResult iMsgBox       (const std::tstring &csText, const std::tstring &csTitle, const UINT cuiType);
+        EModalResult iMsgBox       (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t cuiType);
             ///< show console message dialog
-        bool         bPrompt       (const std::tstring &csPrompt, const bool cbIsVisible, std::tstring *psAnswer);
+        bool         bPrompt       (const std::tstring_t &csPrompt, const bool cbIsVisible, std::tstring_t *psAnswer);
             ///< show console prompt dialog
         bool         bPause        ();
             ///< pause
         bool         bClear        ();
             ///< clear
 
-        std::tstring sGetTitle     ();
+        std::tstring_t sGetTitle     ();
             ///< get title string
-        bool         bSetTitle     (const std::tstring &csTitle);
+        bool         bSetTitle     (const std::tstring_t &csTitle);
             ///< set title string
         bool         bCenterWindow ();
             ///< allign to center
@@ -116,7 +116,7 @@ xNAMESPACE_END(NxLib)
     create_console() {
       FreeConsole();
       if (AllocConsole()) {
-        int hCrt = _open_osfhandle((long) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
+        int hCrt = _open_osfhandle((long_t) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
         *stdout = *(::_fdopen(hCrt, "w"));
         ::setvbuf(stdout, NULL, _IONBF, 0);
 

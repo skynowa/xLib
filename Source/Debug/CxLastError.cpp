@@ -16,14 +16,14 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
-ULONG
+ulong_t
 CxLastError::ulGet() {
-    ULONG ulCode = 0UL; /*= culCodeSuccess*/;
+    ulong_t ulCode = 0UL; /*= culCodeSuccess*/;
 
 #if xOS_ENV_WIN
     ulCode = ::GetLastError();
 #elif xOS_ENV_UNIX
-    ulCode = static_cast<ULONG>( errno );
+    ulCode = static_cast<ulong_t>( errno );
 #endif
 
     (void)bReset();
@@ -32,7 +32,7 @@ CxLastError::ulGet() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxLastError::sGet() {
     return sFormat(ulGet());
 }
@@ -40,7 +40,7 @@ CxLastError::sGet() {
 /*static*/
 bool
 CxLastError::bSet(
-    const ULONG culCode
+    const ulong_t culCode
 )
 {
 #if xOS_ENV_WIN
@@ -55,23 +55,23 @@ CxLastError::bSet(
 /*static*/
 bool
 CxLastError::bReset() {
-    const ULONG culCodeSuccess = 0UL;
+    const ulong_t culCodeSuccess = 0UL;
 
     return bSet(culCodeSuccess);
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxLastError::sFormat(
-    const ULONG culCode
+    const ulong_t culCode
 )
 {
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     sRes = CxString::sFormat(xT("%lu - "), culCode);
 
 #if xOS_ENV_WIN
-    ULONG  ulRes  = 0UL;
+    ulong_t  ulRes  = 0UL;
     LPVOID pvBuff = NULL;
 
     ulRes = ::FormatMessage(
@@ -86,7 +86,7 @@ CxLastError::sFormat(
     xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRes.append(xT("Unknown error")));
     xCHECK_RET(0UL                    == ulRes,   sRes.append(xT("[Cann't format error message]")));
 
-    std::tstring sMessage;
+    std::tstring_t sMessage;
 
     sMessage.assign( static_cast<LPCTSTR>( pvBuff ), ulRes );
     sMessage.assign( CxString::sRemoveEol(sMessage) );
@@ -99,7 +99,7 @@ CxLastError::sFormat(
     #if xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        const tchar *pcszError = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        const tchar_t *pcszError = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(pcszError);

@@ -38,7 +38,7 @@ CxProfiler::~CxProfiler() {
 //---------------------------------------------------------------------------
 bool
 CxProfiler::bSetLogPath(
-    const std::tstring &csLogPath
+    const std::tstring_t &csLogPath
 )
 {
     /*DEBUG*/
@@ -49,7 +49,7 @@ CxProfiler::bSetLogPath(
     return true;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::tstring_t &
 CxProfiler::sGetLogPath() const {
     /*DEBUG*/
 
@@ -131,12 +131,12 @@ CxProfiler::bStart() {
 //--------------------------------------------------------------------------
 bool
 CxProfiler::bStop(
-    const tchar *pcszComment, ...
+    const tchar_t *pcszComment, ...
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_bIsStarted, false);
 
-    std::tstring sTimeString = xT("0:00:00:000");
+    std::tstring_t sTimeString = xT("0:00:00:000");
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
@@ -209,7 +209,7 @@ CxProfiler::bStop(
 
     //-------------------------------------
     //format comment
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszComment);
@@ -230,12 +230,12 @@ CxProfiler::bStop(
 //--------------------------------------------------------------------------
 bool
 CxProfiler::bPulse(
-    const tchar *pcszComment, ...
+    const tchar_t *pcszComment, ...
 )
 {
     //-------------------------------------
     //format comment
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     va_list palArgs;
     xVA_START(palArgs, pcszComment);
@@ -346,13 +346,13 @@ CxProfiler::gettimeofday(
 )
 {
 #if xCOMPILER_MS || defined(_MSC_EXTENSIONS)
-    ULONGLONG DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
+    ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
 #else
-    ULONGLONG DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
+    ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
 #endif
 
     FILETIME   ftTime  = {0};
-    ULONGLONG  ullRes  = 0ULL;
+    ulonglong_t  ullRes  = 0ULL;
     static int iTzFlag = 0;
 
     if (NULL != tv) {
@@ -367,8 +367,8 @@ CxProfiler::gettimeofday(
 
         //converting file time to unix epoch
         ullRes -= DELTA_EPOCH_IN_MICROSECS;
-        tv->tv_sec  = static_cast<long>( ullRes / 1000000UL );
-        tv->tv_usec = static_cast<long>( ullRes % 1000000UL );
+        tv->tv_sec  = static_cast<long_t>( ullRes / 1000000UL );
+        tv->tv_usec = static_cast<long_t>( ullRes % 1000000UL );
     }
 
     if (NULL != tz) {

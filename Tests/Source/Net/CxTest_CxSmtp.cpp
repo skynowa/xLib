@@ -19,7 +19,7 @@ CxTest_CxSmtp::~CxTest_CxSmtp() {
 /*virtual*/
 bool
 CxTest_CxSmtp::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
@@ -28,7 +28,7 @@ CxTest_CxSmtp::bUnit(
     //const std::string  csUser     = "domen";
     //const std::string  csPass     = "control6";
     //const std::string  csServer   = "mail.ipnet.kiev.ua";
-    //USHORT             usPort     = 25;
+    //ushort_t             usPort     = 25;
     //const std::string  csFrom     = "domen@ipnet.kiev.ua";
     //const std::string  csTo       = "skynowa@gmail.com";
     //const std::string  csFilePath = "C:/Temp/test.eml";
@@ -39,7 +39,7 @@ CxTest_CxSmtp::bUnit(
     const std::string  csUser     = "test_1";
     const std::string  csPass     = "test_1";
     const std::string  csServer   = "127.0.0.1";
-    USHORT             usPort     = 25;
+    ushort_t             usPort     = 25;
     const std::string  csFrom     = "test_1@serg.com";
     const std::string  csTo       = "test_2@serg.com";
     const std::string  csFilePath = "C:/Temp2/test.eml";
@@ -50,7 +50,7 @@ CxTest_CxSmtp::bUnit(
     //const std::string  csUser     = "test_1@serg.com";
     //const std::string  csPass     = "test_1";
     //const std::string  csServer   = "127.0.0.1";
-    //USHORT             usPort     = 25;
+    //ushort_t             usPort     = 25;
     //const std::string  csFrom     = "test_1@serg.com";
     //const std::string  csTo       = "test_2@serg.com";
     //const std::string  csFilePath = "C:/Temp2/test.eml";
@@ -58,11 +58,11 @@ CxTest_CxSmtp::bUnit(
 
     //-------------------------------------
     //
-    ULONG              ulSum      = 0;
-    ULONG              ulSize     = 0;
-    ULONG              ulMsgID    = 1;
-    std::vector<ULONG> veculList;
-    ULONG              ulIndex    = 1;
+    ulong_t              ulSum      = 0;
+    ulong_t              ulSize     = 0;
+    ulong_t              ulMsgID    = 1;
+    std::vector<ulong_t> veculList;
+    ulong_t              ulIndex    = 1;
     int                iNum       = 1;
     const std::string  csText     = "HELO";
 

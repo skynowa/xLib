@@ -26,7 +26,7 @@ CxException::~CxException() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::tstring_t &
 CxException::sGetWhat() const {
     /*DEBUG*/
 

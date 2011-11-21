@@ -18,7 +18,7 @@ class CxTest_CxPop3 :
                      CxTest_CxPop3();
         virtual     ~CxTest_CxPop3();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

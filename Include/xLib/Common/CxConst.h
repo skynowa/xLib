@@ -20,7 +20,7 @@ class CxConst
             ///< empty string (ansi)
         static const std::wstring xSTR_EMPTY_W;
             ///< empty string (unicode)
-        static const std::tstring xSTR_EMPTY;
+        static const std::tstring_t xSTR_EMPTY;
             ///< empty string (ansi or unicode)
 
         //xCR
@@ -28,7 +28,7 @@ class CxConst
             ///< carriage return (ansi)
         static const std::wstring xCR_W;
             ///< carriage return (unicode)
-        static const std::tstring xCR;
+        static const std::tstring_t xCR;
             ///< carriage return (ansi or unicode)
 
         //xNL
@@ -36,7 +36,7 @@ class CxConst
             ///< newline (ansi)
         static const std::wstring xNL_W;
             ///< newline (unicode)
-        static const std::tstring xNL;
+        static const std::tstring_t xNL;
             ///< newline (ansi or unicode)
 
         //xCRNL
@@ -44,7 +44,7 @@ class CxConst
             ///< carriage return + newline (ansi)
         static const std::wstring xCRNL_W;
             ///< carriage return + newline (unicode)
-        static const std::tstring  xCRNL;
+        static const std::tstring_t  xCRNL;
             ///< carriage return + newline (ansi or unicode)
 
         //xCOLON
@@ -52,7 +52,7 @@ class CxConst
             ///< colon (ansi)
         static const std::wstring xCOLON_W;
             ///< colon (unicode)
-        static const std::tstring xCOLON;
+        static const std::tstring_t xCOLON;
             ///< colon (ansi or unicode)
 
         //xWIN_SLASH
@@ -60,7 +60,7 @@ class CxConst
             ///< windows backslash (ansi)
         static const std::wstring xWIN_SLASH_W;
             ///< windows backslash (unicode)
-        static const std::tstring xWIN_SLASH;
+        static const std::tstring_t xWIN_SLASH;
             ///< windows backslash (ansi or unicode)
 
         //xNIX_SLASH
@@ -68,7 +68,7 @@ class CxConst
             ///< nix backslash (ansi)
         static const std::wstring xNIX_SLASH_W;
             ///< nix backslash (unicode)
-        static const std::tstring xNIX_SLASH;
+        static const std::tstring_t xNIX_SLASH;
             ///< nix backslash (ansi or unicode)
 
         //xSLASH
@@ -76,7 +76,7 @@ class CxConst
             ///< backslash for specific OS (ansi)
         static const std::wstring xSLASH_W;
             ///< backslash for specific OS (unicode)
-        static const std::tstring xSLASH;
+        static const std::tstring_t xSLASH;
             ///< backslash for specific OS (ansi or unicode)
 
         //xEOL
@@ -84,7 +84,7 @@ class CxConst
             ///< end of line (ansi)
         static const std::wstring xEOL_W;
             ///< end of line (unicode)
-        static const std::tstring xEOL;
+        static const std::tstring_t xEOL;
             ///< end of line (ansi or unicode)
 
         //xDRIVE_SEP
@@ -92,7 +92,7 @@ class CxConst
             ///< drive separator (ansi)
         static const std::wstring xDRIVE_SEP_W;
             ///< drive separator (unicode)
-        static const std::tstring xDRIVE_SEP;
+        static const std::tstring_t xDRIVE_SEP;
             ///< drive separator (ansi or unicode)
 
         //xSEMICOLON
@@ -100,7 +100,7 @@ class CxConst
             ///< path separator (ansi)
         static const std::wstring xSEMICOLON_W;
             ///< path separator (unicode)
-        static const std::tstring xSEMICOLON;
+        static const std::tstring_t xSEMICOLON;
             ///< path separator (ansi or unicode)
 
         //xDOT
@@ -108,7 +108,7 @@ class CxConst
             ///< 1 dot (ansi)
         static const std::wstring xDOT_W;
             ///< 1 dot (unicode)
-        static const std::tstring xDOT;
+        static const std::tstring_t xDOT;
             ///< 1 dot (ansi or unicode)
 
         //x2DOT
@@ -116,7 +116,7 @@ class CxConst
             ///< 2 dots (ansi)
         static const std::wstring x2DOT_W;
             ///< 2 dots (unicode)
-        static const std::tstring x2DOT;
+        static const std::tstring_t x2DOT;
             ///< 2 dots
 
         //x3DOT
@@ -124,7 +124,7 @@ class CxConst
             ///< 3 dots (ansi)
         static const std::wstring x3DOT_W;
             ///< 3 dots (unicode)
-        static const std::tstring x3DOT;
+        static const std::tstring_t x3DOT;
             ///< 3 dots (ansi or unicode)
 
         //xMASK_FILES_ALL
@@ -132,7 +132,7 @@ class CxConst
             ///< all files mask (ansi)
         static const std::wstring xMASK_FILES_ALL_W;
             ///< all files mask (unicode)
-        static const std::tstring xMASK_FILES_ALL;
+        static const std::tstring_t xMASK_FILES_ALL;
             ///< all files mask (ansi or unicode)
 
         //xMASK_ALL
@@ -140,7 +140,7 @@ class CxConst
             ///< all files mask (ansi)
         static const std::wstring xMASK_ALL_W;
             ///< all files mask (unicode)
-        static const std::tstring xMASK_ALL;
+        static const std::tstring_t xMASK_ALL;
             ///< all files mask (ansi or unicode)
 
         //xHT
@@ -148,7 +148,7 @@ class CxConst
             ///< horizontal tab (ansi)
         static const std::wstring xHT_W;
             ///< horizontal tab (unicode)
-        static const std::tstring xHT;
+        static const std::tstring_t xHT;
             ///< horizontal tab (ansi or unicode)
 
         //xVT
@@ -156,7 +156,7 @@ class CxConst
             ///< vertical tab (ansi)
         static const std::wstring xVT_W;
             ///< vertical tab (unicode)
-        static const std::tstring xVT;
+        static const std::tstring_t xVT;
             ///< vertical tab (ansi or unicode)
 
         //xSPACE
@@ -164,7 +164,7 @@ class CxConst
             ///< space (ansi)
         static const std::wstring xSPACE_W;
             ///< space (unicode)
-        static const std::tstring xSPACE;
+        static const std::tstring_t xSPACE;
             ///< space (ansi or unicode)
 
         //xBELL
@@ -172,7 +172,7 @@ class CxConst
             ///< alert (ansi)
         static const std::wstring xBELL_W;
             ///< alert (unicode)
-        static const std::tstring xBELL;
+        static const std::tstring_t xBELL;
             ///< alert (ansi or unicode)
 
         //xBS
@@ -180,7 +180,7 @@ class CxConst
             ///< backspace (ansi)
         static const std::wstring xBS_W;
             ///< backspace (unicode)
-        static const std::tstring xBS;
+        static const std::tstring_t xBS;
             ///< backspace (ansi or unicode)
 
         //xFF
@@ -188,7 +188,7 @@ class CxConst
             ///< formfeed (ansi)
         static const std::wstring xFF_W;
             ///< formfeed (unicode)
-        static const std::tstring xFF;
+        static const std::tstring_t xFF;
             ///< formfeed (ansi or unicode)
 
         //xQM
@@ -196,7 +196,7 @@ class CxConst
             ///< question mark (ansi)
         static const std::wstring xQM_W;
             ///< question mark (unicode)
-        static const std::tstring xQM;
+        static const std::tstring_t xQM;
             ///< question mark (ansi or unicode)
 
         //xSQM
@@ -204,7 +204,7 @@ class CxConst
             ///< single quotation mark (ansi)
         static const std::wstring xSQM_W;
             ///< single quotation mark (unicode)
-        static const std::tstring xSQM;
+        static const std::tstring_t xSQM;
             ///< single quotation mark (ansi or unicode)
 
         //xDQM
@@ -212,7 +212,7 @@ class CxConst
             ///< double quotation mark (ansi)
         static const std::wstring xDQM_W;
             ///< double quotation mark (unicode)
-        static const std::tstring xDQM;
+        static const std::tstring_t xDQM;
             ///< double quotation mark (ansi or unicode)
 
         //xWHITE_SPACES
@@ -220,7 +220,7 @@ class CxConst
             ///< white spaces (ansi)
         static const std::wstring xWHITE_SPACES_W;
             ///< white spaces (unicode)
-        static const std::tstring xWHITE_SPACES;
+        static const std::tstring_t xWHITE_SPACES;
             ///< white spaces (ansi or unicode)
 
         //xEQUAL
@@ -228,7 +228,7 @@ class CxConst
             ///< equal sign (ansi)
         static const std::wstring xEQUAL_W;
             ///< equal sign (unicode)
-        static const std::tstring xEQUAL;
+        static const std::tstring_t xEQUAL;
             ///< equal sign (ansi or unicode)
 
         //xHYPHEN
@@ -236,7 +236,7 @@ class CxConst
             ///< hyphen (ansi)
         static const std::wstring xHYPHEN_W;
             ///< hyphen (unicode)
-        static const std::tstring xHYPHEN;
+        static const std::tstring_t xHYPHEN;
             ///< hyphen (ansi or unicode)
 
         #if xTEMP_DISABLED
@@ -245,7 +245,7 @@ class CxConst
                 ///< xxxxx (ansi)
             static const std::wstring xXXXXX_W;
                 ///< xxxxx (unicode)
-            static const std::tstring xXXXXX;
+            static const std::tstring_t xXXXXX;
                 ///< xxxxx (ansi or unicode)
         #endif
 

@@ -19,7 +19,7 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 /*virtual*/
 bool
 CxTest_CxPkcs11::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
@@ -35,10 +35,10 @@ CxTest_CxPkcs11::bUnit(
     //bSetData
     xTEST_CASE(cullBlockLoops)
     {
-    //    const std::tstring csUserPin   = xT("1111");
-    //    const std::tstring csDataLabel = xT("Label_Id");
-    //    const std::tstring csData      = xT("1203456789");
-    //    std::ustring       usData      = xS2US(csData);
+    //    const std::tstring_t csUserPin   = xT("1111");
+    //    const std::tstring_t csDataLabel = xT("Label_Id");
+    //    const std::tstring_t csData      = xT("1203456789");
+    //    std::ustring_t       usData      = xS2US(csData);
 
     //    m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
     //    xTEST_DIFF(false, m_bRes);
@@ -48,9 +48,9 @@ CxTest_CxPkcs11::bUnit(
     //bGetData
     xTEST_CASE(cullBlockLoops)
     {
-    //    const std::tstring csUserPin   = xT("1111");
-    //    const std::tstring csDataLabel = xT("Label_Id");
-    //    std::ustring       usData;
+    //    const std::tstring_t csUserPin   = xT("1111");
+    //    const std::tstring_t csDataLabel = xT("Label_Id");
+    //    std::ustring_t       usData;
 
     //    m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
     //    xTEST_DIFF(false, m_bRes);
@@ -60,10 +60,10 @@ CxTest_CxPkcs11::bUnit(
     //
     xTEST_CASE(cullBlockLoops)
     {
-        const std::tstring csUserPin   = xT("1111");
-        const std::tstring csDataLabel = xT("Key1.tkey");
-        const std::tstring csData      = xT("1203456789");
-        std::ustring       usData      = xS2US(csData);
+        const std::tstring_t csUserPin   = xT("1111");
+        const std::tstring_t csDataLabel = xT("Key1.tkey");
+        const std::tstring_t csData      = xT("1203456789");
+        std::ustring_t       usData      = xS2US(csData);
 
         m_bRes = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
         xTEST_EQ(true, m_bRes);

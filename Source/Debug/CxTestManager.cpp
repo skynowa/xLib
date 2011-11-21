@@ -41,7 +41,7 @@ CxTestManager::~CxTestManager() {
 bool
 CxTestManager::bAdd(
     CxTest             *pvtTest,
-    const std::tstring &csTestName /* = CxConst::xSTR_EMPTY*/
+    const std::tstring_t &csTestName /* = CxConst::xSTR_EMPTY*/
 )
 {
     /*DEBUG*/
@@ -60,9 +60,9 @@ CxTestManager::bAdd(
 //---------------------------------------------------------------------------
 bool
 CxTestManager::bRun(
-    const ULONGLONG cullAllLoops,
-    const ULONGLONG cullUnitLoops,
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullAllLoops,
+    const ulonglong_t cullUnitLoops,
+    const ulonglong_t cullBlockLoops
 )
 {
     /*DEBUG*/
@@ -72,7 +72,7 @@ CxTestManager::bRun(
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::sGetExe().c_str()));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(", unit loops: %") xPR_I64u xT(", block loops: %") xPR_I64u xT(", unit number: %")  xPR_SIZET xT("\n"), cullAllLoops, cullUnitLoops, cullBlockLoops, _m_ctnTests.size()));
 
-    for (ULONGLONG i = 0ULL; i < cullAllLoops; ++ i) {
+    for (ulonglong_t i = 0ULL; i < cullAllLoops; ++ i) {
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 

@@ -19,7 +19,7 @@ CxTest_CxCommandLine::~CxTest_CxCommandLine() {
 /*virtual*/
 bool
 CxTest_CxCommandLine::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------

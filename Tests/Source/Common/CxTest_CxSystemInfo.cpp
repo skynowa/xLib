@@ -19,7 +19,7 @@ CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 /*virtual*/
 bool
 CxTest_CxSystemInfo::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------
@@ -45,24 +45,24 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            std::map<CxSystemInfo::EOsType, std::tstring> mapData;
+            std::map<CxSystemInfo::EOsType, std::tstring_t> mapData;
 
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindows3,               xT("Windows 3.1")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindows95,              xT("Windows 95")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindows98,              xT("Windows 98")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsNT,              xT("Windows NT 4.0")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindows2000,            xT("Windows 2000")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsXP,              xT("Windows XP")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsXPProx64Edition, xT("Windows XP Pro x64 Edition")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsServer2003,      xT("Windows Server 2003")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsHomeServer,      xT("Windows Home Server")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsServer2003R2,    xT("Windows Server 2003 R2")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsVista,           xT("Windows Vista")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsServer2008,      xT("Windows Server 2008")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindowsServer2008R2,    xT("Windows Server 2008 R2")) );
-            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring>(CxSystemInfo::otWindows7,               xT("Windows 7")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows3,               xT("Windows 3.1")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows95,              xT("Windows 95")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows98,              xT("Windows 98")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsNT,              xT("Windows NT 4.0")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows2000,            xT("Windows 2000")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsXP,              xT("Windows XP")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsXPProx64Edition, xT("Windows XP Pro x64 Edition")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsServer2003,      xT("Windows Server 2003")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsHomeServer,      xT("Windows Home Server")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsServer2003R2,    xT("Windows Server 2003 R2")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsVista,           xT("Windows Vista")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsServer2008,      xT("Windows Server 2008")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsServer2008R2,    xT("Windows Server 2008 R2")) );
+            mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows7,               xT("Windows 7")) );
 
-            std::map<CxSystemInfo::EOsType, std::tstring>::const_iterator it;
+            std::map<CxSystemInfo::EOsType, std::tstring_t>::const_iterator it;
             for (it = mapData.begin(); it != mapData.end(); ++ it) {
                 m_sRes = CxSystemInfo::sFormatOsType((*it).first);
                 xTEST_EQ((*it).second, m_sRes);
@@ -151,7 +151,7 @@ CxTest_CxSystemInfo::bUnit(
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %lu"), m_ulRes);
         #endif
-        xTEST_DIFF(static_cast<ULONG>( - 1 ), m_ulRes);
+        xTEST_DIFF(static_cast<ulong_t>( - 1 ), m_ulRes);
         xTEST_EQ(true, 0 <= m_ulRes && CxSystemInfo::ulGetNumOfCpus() > m_ulRes);
     }
 

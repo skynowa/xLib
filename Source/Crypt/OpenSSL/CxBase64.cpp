@@ -56,7 +56,7 @@ CxBase64::sEncode(
     /*DEBUG*/xASSERT_RET(0                                <  iWritten, std::string());
     /*DEBUG*/xASSERT_RET(static_cast<int>( csStr.size() ) == iWritten, std::string());
 
-    LONG liRes = BIO_get_mem_ptr(pbioContainer, &pbmBuffMemory);
+    long_t liRes = BIO_get_mem_ptr(pbioContainer, &pbmBuffMemory);
     /*DEBUG*/xASSERT_RET(0 < liRes, std::string());
 
     sRes.assign(pbmBuffMemory->data, pbmBuffMemory->length);

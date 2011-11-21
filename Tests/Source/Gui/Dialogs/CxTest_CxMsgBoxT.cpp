@@ -19,7 +19,7 @@ CxTest_CxMsgBoxT::~CxTest_CxMsgBoxT() {
 /*virtual*/
 bool
 CxTest_CxMsgBoxT::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xTEST_IGNORE
@@ -29,9 +29,9 @@ CxTest_CxMsgBoxT::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         const HWND         chWnd   = NULL;
-        const std::tstring csText  = xT("\nmessage box with 3 params...\n");
-        const std::tstring csTitle = xT("Simple title");
-        const UINT         cuiType = 0;
+        const std::tstring_t csText  = xT("\nmessage box with 3 params...\n");
+        const std::tstring_t csTitle = xT("Simple title");
+        const uint_t         cuiType = 0;
 
         CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(chWnd, csText, csTitle, cuiType);
         xUNUSED(mrRes);
@@ -42,9 +42,9 @@ CxTest_CxMsgBoxT::bUnit(
     //iShow (3 params)
     xTEST_CASE(cullBlockLoops)
     {
-        const std::tstring csText  = xT("\nmessage box with 3 params...\n");
-        const std::tstring csTitle = xT("Simple title");
-        const UINT         cuiType = 0;
+        const std::tstring_t csText  = xT("\nmessage box with 3 params...\n");
+        const std::tstring_t csTitle = xT("Simple title");
+        const uint_t         cuiType = 0;
 
         CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(csText, csTitle, cuiType);
         xUNUSED(mrRes);
@@ -54,8 +54,8 @@ CxTest_CxMsgBoxT::bUnit(
     //iShow (2 params)
     xTEST_CASE(cullBlockLoops)
     {
-        const std::tstring csText  = xT("\nmessage box with 2 params...\n");
-        const std::tstring csTitle = xT("Simple title");
+        const std::tstring_t csText  = xT("\nmessage box with 2 params...\n");
+        const std::tstring_t csTitle = xT("Simple title");
 
         CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(csText, csTitle);
         xUNUSED(mrRes);
@@ -65,7 +65,7 @@ CxTest_CxMsgBoxT::bUnit(
     //iShow (1 param)
     xTEST_CASE(cullBlockLoops)
     {
-        const std::tstring csText  = xT("\nmessage box with 1 param...\n");
+        const std::tstring_t csText  = xT("\nmessage box with 1 param...\n");
 
         CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(csText);
         xUNUSED(mrRes);

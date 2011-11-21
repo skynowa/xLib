@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 //TODO: CxCOMPort (�����������)
 CxCOMPort::CxCOMPort(
-    const std::tstring &sPortNum
+    const std::tstring_t &sPortNum
 ) :
     _m_bRes    (false),
     _m_sPortNum(sPortNum)
@@ -77,7 +77,7 @@ CxCOMPort::bConfig() {
 
     ::SetCommMask(_m_hComPort, EV_DSR);
 
-    ULONG lpEvtMask = 0;
+    ulong_t lpEvtMask = 0;
     ::WaitCommEvent(_m_hComPort, &lpEvtMask, NULL);
     //CTest->OnRead();
 
@@ -91,17 +91,17 @@ CxCOMPort::bClearData() {
 
     ::PurgeComm(_m_hComPort, PURGE_RXCLEAR | PURGE_TXCLEAR); ////PurgeComm(_m_hComPort, PURGE_TXCLEAR | PURGE_RXCLEAR | PURGE_TXABORT | PURGE_RXABORT);
 
-    ULONG ulErrors;
+    ulong_t ulErrors;
     ::ClearCommError(_m_hComPort, &ulErrors, 0);
 
     return true;
 }
 //--------------------------------------------------------------------------
 //TODO: bReadData (������ ������)
-std::tstring
+std::tstring_t
 CxCOMPort::bReadData(
     LPTSTR pszBuff,
-    ULONG  dwNumOfBytesToRead
+    ulong_t  dwNumOfBytesToRead
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_hComPort.bIsValid(), false);
@@ -111,13 +111,13 @@ CxCOMPort::bReadData(
     DWORD dwNumOfBytesRead = 0;
     BOOL  bRes             = ::ReadFile(_m_hComPort, pszBuff, dwNumOfBytesToRead/*cuiSendStrLen*/, &dwNumOfBytesRead, NULL);
     if (FALSE == bRes) {
-        return std::tstring();
+        return std::tstring_t();
     }
     if (dwNumOfBytesRead != dwNumOfBytesToRead) {
-        return std::tstring();
+        return std::tstring_t();
     }
 
-    return std::tstring(pszBuff, dwNumOfBytesRead);
+    return std::tstring_t(pszBuff, dwNumOfBytesRead);
 }
 //--------------------------------------------------------------------------
 //TODO: iReadDataWaiting ()
@@ -137,7 +137,7 @@ CxCOMPort::bWriteData(
 {
     /*DEBUG*/xASSERT_RET(false != _m_hComPort.bIsValid(), false);
 
-    ULONG dwNumOfBytesWritten = 0;
+    ulong_t dwNumOfBytesWritten = 0;
     if (false == ::WriteFile(_m_hComPort, pcszBuff, dwNumOfBytesToWrite, &dwNumOfBytesWritten, NULL)) {
         return false;
     }
@@ -192,11 +192,11 @@ CxCOMPort::bClose() {
 }
 //--------------------------------------------------------------------------
 //TODO: ulInputBuffTest ()
-ULONG
+ulong_t
 CxCOMPort::ulInputBuffTest() {
     /*DEBUG*/xASSERT_RET(false != _m_hComPort.bIsValid(), false);
 
-    ULONG    dwErrors;
+    ulong_t    dwErrors;
     _COMSTAT csStat;
 
     if (false == ::ClearCommError(_m_hComPort, &dwErrors, &csStat)) {

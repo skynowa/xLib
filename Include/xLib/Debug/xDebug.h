@@ -191,7 +191,7 @@
         ///< tracing
     #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
         ///< tracing, comment with current function name
-    #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::tstring(xFUNCTION) + xT(": ") + std::tstring(s)); }
+    #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::tstring_t(xFUNCTION) + xT(": ") + std::tstring_t(s)); }
         ///< tracing, comment with current function name and message
     #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
         ///< trace point (use CxDebugger)

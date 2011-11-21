@@ -22,7 +22,7 @@ class CxConsoleLog :
         virtual                 ~CxConsoleLog();
             ///< destructor
 
-        bool                     bWrite      (const tchar *pcszFormat, ...);
+        bool                     bWrite      (const tchar_t *pcszFormat, ...);
             ///< write
 
     private:

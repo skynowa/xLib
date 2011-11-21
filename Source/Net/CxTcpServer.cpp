@@ -20,7 +20,7 @@ CxTcpServer::~CxTcpServer() {
 //---------------------------------------------------------------------------
 bool
 CxTcpServer::bBind(
-    USHORT usPort
+    ushort_t usPort
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        false);
@@ -59,7 +59,7 @@ CxTcpServer::bListen(
 bool
 CxTcpServer::bAccept(
     CxTcpServer *pscktAcceptSocket,
-    std::tstring      *psFromIp
+    std::tstring_t      *psFromIp
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,      false);

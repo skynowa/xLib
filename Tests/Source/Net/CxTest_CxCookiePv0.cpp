@@ -19,17 +19,17 @@ CxTest_CxCookiePv0::~CxTest_CxCookiePv0() {
 /*virtual*/
 bool
 CxTest_CxCookiePv0::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
-    const std::tstring csName      = xT("Name0");
-    const std::tstring csValue     = xT("Value0");
-    const std::tstring csDomain    = xT(".domain.com0");
-    const std::tstring csPath      = xT("/0");
-    const std::tstring csExpires   = xT("Wed, 13-Jan-2021 22:23:01 GMT");  //Thu, 22 Mar 2012 18:16:13 GMT
+    const std::tstring_t csName      = xT("Name0");
+    const std::tstring_t csValue     = xT("Value0");
+    const std::tstring_t csDomain    = xT(".domain.com0");
+    const std::tstring_t csPath      = xT("/0");
+    const std::tstring_t csExpires   = xT("Wed, 13-Jan-2021 22:23:01 GMT");  //Thu, 22 Mar 2012 18:16:13 GMT
     const bool    cbSecure    = true;
     const bool    cbHttpOnly  = true;
-    const std::tstring csRawCookie = CxString::sFormat(
+    const std::tstring_t csRawCookie = CxString::sFormat(
                                     xT("%s=%s; Domain=%s; Path=%s; Expires=%s; Secure; HttpOnly"),
                                     csName.c_str(), csValue.c_str(), csDomain.c_str(), csPath.c_str(), csExpires.c_str() /*cbSecure = true, cbHttpOnly = true*/
                                 );
@@ -89,7 +89,7 @@ CxTest_CxCookiePv0::bUnit(
     }
 
     //--------------------------------------------------
-    //CxCookiePv0(const std::tstring &)
+    //CxCookiePv0(const std::tstring_t &)
     xTEST_CASE(cullBlockLoops)
     {
         CxCookiePv0 ckCookiePv0(csRawCookie);

@@ -53,7 +53,7 @@ class CxThread :
         typedef pthread_t TxId;     ///< ID
     #endif
 
-        volatile LONG       m_ulTag;    ///< tag
+        volatile long_t       m_ulTag;    ///< tag
 
                             CxThread              (const bool cbAutoDelete);
             ///< constructor
@@ -61,7 +61,7 @@ class CxThread :
             ///< destructor
 
         //actions
-        bool                bCreate               (const bool cbIsPaused, const UINT cuiStackSize, void *pvParam);
+        bool                bCreate               (const bool cbIsPaused, const uint_t cuiStackSize, void *pvParam);
             ///< start
         bool                bResume               ();
             ///< resume
@@ -69,9 +69,9 @@ class CxThread :
             ///< pause
         bool                bExit                 ();
             ///< exit (set flag "exit")
-        bool                bKill                 (const ULONG culTimeout);
+        bool                bKill                 (const ulong_t culTimeout);
             ///< kill
-        bool                bWait                 (const ULONG culTimeout) const;
+        bool                bWait                 (const ulong_t culTimeout) const;
             ///< wait
 
         //flags
@@ -86,17 +86,17 @@ class CxThread :
 
     #if xOS_ENV_WIN
         //messages
-        bool                bPostMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        bool                bPostMessage          (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
             ///< post message from thread to window
-        bool                bSendMessage          (HWND hHwnd, UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        bool                bSendMessage          (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
             ///< send message from thread to window
-        bool                bPostThreadMessage    (UINT uiMsg, UINT uiParam1, LONG liParam2) const;
+        bool                bPostThreadMessage    (uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
             ///< post message from thread to thread
-        bool                bTryPostThreadMessage (UINT uiMsg, UINT uiParam1, LONG liParam2, ULONG ulAttemps, ULONG ulAttempTimeout) const;
+        bool                bTryPostThreadMessage (uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const;
             ///< try post message from thread to thread
-        bool                bMessageWaitQueue     (UINT uiMsg, UINT *puiParam1, LONG *pliParam2) const;
+        bool                bMessageWaitQueue     (uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
             ///< waiting for message with params from other thread
-        bool                bMessageWaitQueue     (const std::vector<UINT> &cvuiMsg, UINT *puiMsg, UINT *puiParam1, LONG *pliParam2) const;
+        bool                bMessageWaitQueue     (const std::vector<uint_t> &cvuiMsg, uint_t *puiMsg, uint_t *puiParam1, long_t *pliParam2) const;
             ///< waiting for message with params from other thread
     #endif
 
@@ -105,7 +105,7 @@ class CxThread :
             ///< set priority (under Linux must use admin privilege)
         EPriority           tpGetPriority         () const;
             ///< get priotity
-        std::tstring        sGetPriorityString    () const;
+        std::tstring_t        sGetPriorityString    () const;
             ///< get priority as string
         bool                bPriorityUp           () const;
             ///< increase priority on one level
@@ -119,11 +119,11 @@ class CxThread :
         //CPU
         bool                bSetCpuAffinity       (const int ciProcNum) const;
             ///< set processor affinity
-        bool                bSetCpuIdeal          (const ULONG culIdealCpu) const;
+        bool                bSetCpuIdeal          (const ulong_t culIdealCpu) const;
             ///< sets preferred processor for a thread
-        ULONG               ulGetCpuIdeal         () const;
+        ulong_t               ulGetCpuIdeal         () const;
             ///< get current ideal processor without changing it
-        static ULONG        ulGetCpuCount         ();
+        static ulong_t        ulGetCpuCount         ();
             ///< get CPU count on machine
 
         //other
@@ -133,18 +133,18 @@ class CxThread :
             ///< get ID
         bool                bIsCurrent            () const;
             ///< is current
-        ULONG               ulGetExitStatus       () const;
+        ulong_t               ulGetExitStatus       () const;
             ///< get termination status
-        bool                bSetDebugName         (const std::tstring &csName) const;
+        bool                bSetDebugName         (const std::tstring_t &csName) const;
             ///< set name your threads in the debugger thread list
 
         //static
-        static TxHandle     hOpen                 (const ULONG culAccess, const bool cbInheritHandle, const ULONG culId);
+        static TxHandle     hOpen                 (const ulong_t culAccess, const bool cbInheritHandle, const ulong_t culId);
             ///< opens an existing thread object
 
     protected:
         //events
-        virtual UINT        uiOnRun               (void *pvParam) = 0;
+        virtual uint_t        uiOnRun               (void *pvParam) = 0;
             ///< work thread function, must be overrided
         //--virtual void    vOnEnter              ();
         //--virtual void    vOnExit               ();
@@ -154,8 +154,8 @@ class CxThread :
 
     private:
         //constants
-        static const ULONG  _ms_culStillActiveTimeout = 2UL;    ///< still active timeout (msec)
-        static const ULONG  _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
+        static const ulong_t  _ms_culStillActiveTimeout = 2UL;    ///< still active timeout (msec)
+        static const ulong_t  _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
 
 
         //thread data
@@ -166,7 +166,7 @@ class CxThread :
     #endif
 
         TxId                _m_ulId;                    ///< ID
-        UINT                _m_uiExitStatus;            ///< exit code
+        uint_t                _m_uiExitStatus;            ///< exit code
         void               *_m_pvParam;                 ///< param for job function
         const bool          _m_cbIsAutoDelete;          ///< is autodelete thread object
 
@@ -183,7 +183,7 @@ class CxThread :
         CxEvent             _m_evExit;                  ///< exit event
 
     #if xOS_ENV_WIN
-        typedef UINT     TxExitStatus;
+        typedef uint_t     TxExitStatus;
     #elif xOS_ENV_UNIX
         typedef void *   TxExitStatus;
     #endif

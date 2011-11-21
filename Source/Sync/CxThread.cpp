@@ -80,7 +80,7 @@ CxThread::~CxThread() {
 bool
 CxThread::bCreate(
     const bool cbIsPaused,
-    const UINT cuiStackSize,
+    const uint_t cuiStackSize,
     void       *pvParam
 )
 {
@@ -108,7 +108,7 @@ CxThread::bCreate(
     HANDLE hRes = NULL;
     TxId   ulId = 0;
 
-    hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, cuiStackSize, _s_uiJobEntry, this, 0U, (UINT *)&ulId) );
+    hRes = reinterpret_cast<HANDLE>( _beginthreadex(NULL, cuiStackSize, _s_uiJobEntry, this, 0U, (uint_t *)&ulId) );
     /*DEBUG*/xASSERT_RET(NULL != hRes, false);
     /*DEBUG*/xASSERT_RET(0    <  ulId, false);
 
@@ -236,11 +236,11 @@ CxThread::bExit() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bKill(
-    const ULONG culTimeout
+    const ulong_t culTimeout
 )
 {
     bool  bRes  = false;
-    ULONG ulRes = 0UL;
+    ulong_t ulRes = 0UL;
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
@@ -288,7 +288,7 @@ CxThread::bKill(
 //---------------------------------------------------------------------------
 bool
 CxThread::bWait(
-    const ULONG culTimeout
+    const ulong_t culTimeout
 ) const
 {
 #if xOS_ENV_WIN
@@ -302,7 +302,7 @@ CxThread::bWait(
     /*DEBUG*/xASSERT(CxCurrentThread::ulGetId() != _m_ulId);
     xCHECK_RET(CxCurrentThread::ulGetId() == _m_ulId, true);
 
-    ULONG ulRes = WAIT_FAILED;
+    ulong_t ulRes = WAIT_FAILED;
     ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
 #elif xOS_ENV_UNIX
@@ -343,7 +343,7 @@ CxThread::bIsRunning() const {
     bool bRes = false;
 
 #if xOS_ENV_WIN
-    ULONG ulRes = 0;
+    ulong_t ulRes = 0;
 
     (void)::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
 
@@ -412,9 +412,9 @@ CxThread::bIsExited() {
 bool
 CxThread::bPostMessage(
     HWND hHwnd,
-    UINT uiMsg,
-    UINT uiParam1,
-    LONG liParam2
+    uint_t uiMsg,
+    uint_t uiParam1,
+    long_t liParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
@@ -430,9 +430,9 @@ CxThread::bPostMessage(
 bool
 CxThread::bSendMessage(
     HWND hHwnd,
-    UINT uiMsg,
-    UINT uiParam1,
-    LONG liParam2
+    uint_t uiMsg,
+    uint_t uiParam1,
+    long_t liParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
@@ -447,9 +447,9 @@ CxThread::bSendMessage(
 //---------------------------------------------------------------------------
 bool
 CxThread::bPostThreadMessage(
-    UINT uiMsg,
-    UINT uiParam1,
-    LONG liParam2
+    uint_t uiMsg,
+    uint_t uiParam1,
+    long_t liParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
@@ -462,16 +462,16 @@ CxThread::bPostThreadMessage(
 //---------------------------------------------------------------------------
 bool
 CxThread::bTryPostThreadMessage(
-    UINT  uiMsg,
-    UINT  uiParam1,
-    LONG  liParam2,
-    ULONG ulAttemps,
-    ULONG ulAttempTimeout
+    uint_t  uiMsg,
+    uint_t  uiParam1,
+    long_t  liParam2,
+    ulong_t ulAttemps,
+    ulong_t ulAttempTimeout
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    for (ULONG i = 0UL; i < ulAttemps; ++ i) {
+    for (ulong_t i = 0UL; i < ulAttemps; ++ i) {
         BOOL blRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>(uiParam1), static_cast<LPARAM>(liParam2));
 
         xCHECK_RET(FALSE != blRes, true);
@@ -483,15 +483,15 @@ CxThread::bTryPostThreadMessage(
 //---------------------------------------------------------------------------
 bool
 CxThread::bMessageWaitQueue(
-    UINT  uiMsg,
-    UINT *puiParam1,
-    LONG *pliParam2
+    uint_t  uiMsg,
+    uint_t *puiParam1,
+    long_t *pliParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
     /*DEBUG*/xASSERT_RET(0     <  uiMsg,                 false);
 
-    std::vector<UINT> vuiMsg;
+    std::vector<uint_t> vuiMsg;
     vuiMsg.push_back(uiMsg);
 
     bool bRes = bMessageWaitQueue(vuiMsg, NULL, puiParam1, pliParam2);
@@ -502,10 +502,10 @@ CxThread::bMessageWaitQueue(
 //---------------------------------------------------------------------------
 bool
 CxThread::bMessageWaitQueue(
-    const std::vector<UINT> &cvuiMsg,
-    UINT                    *puiMsg,
-    UINT                    *puiParam1,
-    LONG                    *pliParam2
+    const std::vector<uint_t> &cvuiMsg,
+    uint_t                    *puiMsg,
+    uint_t                    *puiParam1,
+    long_t                    *pliParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
@@ -521,8 +521,8 @@ CxThread::bMessageWaitQueue(
             xCHECK_DO(cvuiMsg.at(i) != msgMsg.message, continue);
 
             xPTR_ASSIGN(puiMsg,    msgMsg.message                    );
-            xPTR_ASSIGN(puiParam1, static_cast<UINT>( msgMsg.wParam ));
-            xPTR_ASSIGN(pliParam2, static_cast<LONG>( msgMsg.lParam ));
+            xPTR_ASSIGN(puiParam1, static_cast<uint_t>( msgMsg.wParam ));
+            xPTR_ASSIGN(pliParam2, static_cast<long_t>( msgMsg.lParam ));
 
             return true;
         }
@@ -622,7 +622,7 @@ CxThread::tpGetPriority() const {
     return tpRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::tstring_t
 CxThread::sGetPriorityString() const {
     /*DEBUG*/// n/a
 
@@ -772,16 +772,16 @@ CxThread::bSetCpuAffinity(
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetCpuIdeal(
-    const ULONG culIdealCpu    ///< value is zero-based
+    const ulong_t culIdealCpu    ///< value is zero-based
 ) const
 {
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    ULONG ulRes = (ULONG) - 1;
+    ulong_t ulRes = (ulong_t) - 1;
 
     ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), culIdealCpu);
-    /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, false);
+    /*DEBUG*/xASSERT_RET((ulong_t) - 1 != ulRes, false);
 
     //TODO: xASSERT_RET
     ////*DEBUG*/xASSERT_RET(ulIdealCpu != ulRes, false);
@@ -792,7 +792,7 @@ CxThread::bSetCpuIdeal(
     return true;
 }
 //---------------------------------------------------------------------------
-ULONG
+ulong_t
 CxThread::ulGetCpuIdeal() const {
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), 0UL);
@@ -800,11 +800,11 @@ CxThread::ulGetCpuIdeal() const {
 
 #endif
 
-    ULONG ulRes = (ULONG) - 1;
+    ulong_t ulRes = (ulong_t) - 1;
 
 #if xOS_ENV_WIN
     ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), MAXIMUM_PROCESSORS);
-    /*DEBUG*/xASSERT_RET((ULONG) - 1 != ulRes, (ULONG) - 1);
+    /*DEBUG*/xASSERT_RET((ulong_t) - 1 != ulRes, (ulong_t) - 1);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -813,9 +813,9 @@ CxThread::ulGetCpuIdeal() const {
 }
 //---------------------------------------------------------------------------
 /*static*/
-ULONG
+ulong_t
 CxThread::ulGetCpuCount() {
-    ULONG ulRes = CxSystemInfo::ulGetNumOfCpus();
+    ulong_t ulRes = CxSystemInfo::ulGetNumOfCpus();
     xCHECK_RET(ulRes < 1UL || ulRes > 32UL, 1UL);
 
     return ulRes;
@@ -858,9 +858,9 @@ CxThread::bIsCurrent() const {
     return CxCurrentThread::bIsCurrent( CxCurrentThread::ulGetId() );
 }
 //---------------------------------------------------------------------------
-ULONG
+ulong_t
 CxThread::ulGetExitStatus() const {
-    ULONG ulRes = 0;
+    ulong_t ulRes = 0;
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), 0UL);
@@ -877,13 +877,13 @@ CxThread::ulGetExitStatus() const {
 //bool
 ///*CxThread::*/bPost() {
 //
-//long sys_tgkill (int tgid, int pid, int sig);
+//long_t sys_tgkill (int tgid, int pid, int sig);
 //}
 
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetDebugName(
-    const std::tstring &csName
+    const std::tstring_t &csName
 ) const
 {
     /////*DEBUG*/xASSERT_RET(0  < _m_ulId,       false);
@@ -948,9 +948,9 @@ CxThread::bSetDebugName(
 /*static*/
 CxThread::TxHandle
 CxThread::hOpen(
-    const ULONG culAccess,
+    const ulong_t culAccess,
     const bool  cbInheritHandle,
-    const ULONG culId
+    const ulong_t culId
 )
 {
     /*DEBUG*///ulAccess       - n/a
@@ -980,7 +980,7 @@ CxThread::hOpen(
 
 //---------------------------------------------------------------------------
 /*virtual*/
-UINT
+uint_t
 CxThread::uiOnRun(
     void *pvParam
 ) /* = 0*/
@@ -988,7 +988,7 @@ CxThread::uiOnRun(
     /*DEBUG*/// n/a
     /*DEBUG*/xASSERT_MSG_RET(false, xT("It's virtual method"), 0U);
 
-    UINT uiRes = 0U;
+    uint_t uiRes = 0U;
 
     #if xTEMP_DISABLED
         for ( ; ; ) {
@@ -1049,7 +1049,7 @@ CxThread::_s_uiJobEntry(
 {
     /*DEBUG*/xASSERT_RET(NULL != pvParam, 0);
 
-    UINT uiRes = 0;
+    uint_t uiRes = 0;
     bool bRes  = false;     xUNUSED(bRes);
 
     CxThread *pthThis = static_cast<CxThread *>( pvParam );

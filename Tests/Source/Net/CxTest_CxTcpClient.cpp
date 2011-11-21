@@ -21,17 +21,17 @@ CxTest_CxTcpClient::~CxTest_CxTcpClient() {
 /*virtual*/
 bool
 CxTest_CxTcpClient::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     CxSocket::EAddressFamily afAf           = CxSocket::afInet;
     CxSocket::EType          tpType         = CxSocket::tpStream;
     CxSocket::EProtocol      ptProtocol     = CxSocket::ptIp;
 
-    const std::tstring             csDomain        = xT("127.0.0.1");
-    std::tstring                     sIp            = xT("127.0.0.1");
-    USHORT                   usPort         = 80;
-    std::tstring                  sSendBuff      = xT("TEST_STRING");
+    const std::tstring_t             csDomain        = xT("127.0.0.1");
+    std::tstring_t                     sIp            = xT("127.0.0.1");
+    ushort_t                   usPort         = 80;
+    std::tstring_t                  sSendBuff      = xT("TEST_STRING");
     ////char                     szRecvBuff[32] = {0};
 
     //-------------------------------------
@@ -72,8 +72,8 @@ CxTest_CxTcpClient::bUnit(
     //-------------------------------------
     //bGetPeerName
     {
-        std::tstring _sIp;
-        USHORT  _usPort = 0;
+        std::tstring_t _sIp;
+        ushort_t  _usPort = 0;
 
         m_bRes = objSocket.bGetPeerName(&_sIp, &_usPort);
         xTEST_DIFF(false, m_bRes);
@@ -82,8 +82,8 @@ CxTest_CxTcpClient::bUnit(
     //-------------------------------------
     //bGetSocketName
     {
-        std::tstring _sIp;
-        USHORT  _usPort = 0;
+        std::tstring_t _sIp;
+        ushort_t  _usPort = 0;
 
         m_bRes = objSocket.bGetSocketName(&_sIp, &_usPort);
         xTEST_DIFF(false, m_bRes);
@@ -95,7 +95,7 @@ CxTest_CxTcpClient::bUnit(
     ////xTEST_DIFF(false, m_bRes);
 
     for (; ;) {
-        std::tstring sText;
+        std::tstring_t sText;
 
         sText.resize(256);
 

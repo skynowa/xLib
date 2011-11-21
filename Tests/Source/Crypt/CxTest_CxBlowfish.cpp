@@ -19,32 +19,32 @@ CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 /*virtual*/
 bool
 CxTest_CxBlowfish::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------
     //bEncryptCfb64
     xTEST_CASE(cullBlockLoops)
     {
-        const std::ustring usPlain[] = {
-            std::ustring(1,  'a'),
-            std::ustring(2,  'b'),
-            std::ustring(3,  'c'),
-            std::ustring(8,  'd'),
-            std::ustring(11, 'e'),
-            std::ustring(12, 'f'),
-            std::ustring(16, 'j'),
-            std::ustring(17, 'h'),
-            std::ustring(28, 'i'),
-            std::ustring(32, 'j'),
-            std::ustring(51, 'k')
+        const std::ustring_t usPlain[] = {
+            std::ustring_t(1,  'a'),
+            std::ustring_t(2,  'b'),
+            std::ustring_t(3,  'c'),
+            std::ustring_t(8,  'd'),
+            std::ustring_t(11, 'e'),
+            std::ustring_t(12, 'f'),
+            std::ustring_t(16, 'j'),
+            std::ustring_t(17, 'h'),
+            std::ustring_t(28, 'i'),
+            std::ustring_t(32, 'j'),
+            std::ustring_t(51, 'k')
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(usPlain); i ++) {
             CxBlowfish BF;
-            std::tstring sKey       = xT("888888888");
-            std::ustring sEncrypted;
-            std::ustring sDecrypted;
+            std::tstring_t sKey       = xT("888888888");
+            std::ustring_t sEncrypted;
+            std::ustring_t sDecrypted;
 
             m_bRes = BF.bSetKey(sKey);
             xTEST_DIFF(false, m_bRes);
@@ -64,10 +64,10 @@ CxTest_CxBlowfish::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxBlowfish BF;
-        std::tstring sKey           = xT("888888888");
-        std::tstring sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
-        std::tstring sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
-        std::tstring sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
+        std::tstring_t sKey           = xT("888888888");
+        std::tstring_t sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
+        std::tstring_t sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
+        std::tstring_t sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
         //prepare
         {
@@ -93,12 +93,12 @@ CxTest_CxBlowfish::bUnit(
         CxBlowfish BF;
 
         CxBlowfish::ECryptMode cmRes = CxBlowfish::cmUnknown;
-        std::tstring sKey           = xT("888888888");
-        std::tstring sStamp         = xT("stamp");
-        std::ustring usStamp        = xS2US(sStamp);
-        std::tstring sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
-        std::tstring sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
-        std::tstring sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
+        std::tstring_t sKey           = xT("888888888");
+        std::tstring_t sStamp         = xT("stamp");
+        std::ustring_t usStamp        = xS2US(sStamp);
+        std::tstring_t sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
+        std::tstring_t sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
+        std::tstring_t sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
         m_bRes = BF.bSetKey(sKey);
         xTEST_DIFF(false, m_bRes);

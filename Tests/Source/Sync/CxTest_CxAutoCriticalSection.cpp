@@ -19,7 +19,7 @@ CxTest_CxAutoCriticalSection::~CxTest_CxAutoCriticalSection() {
 /*virtual*/
 bool
 CxTest_CxAutoCriticalSection::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------

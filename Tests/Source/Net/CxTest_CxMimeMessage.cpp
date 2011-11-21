@@ -19,7 +19,7 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 /*virtual*/
 bool
 CxTest_CxMimeMessage::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     std::string m_sRes;
@@ -31,20 +31,20 @@ CxTest_CxMimeMessage::bUnit(
     const std::string csUser     = "test_1@serg.com";
     const std::string csPass     = "test_1";
     const std::string csServer   = "127.0.0.1";
-    const USHORT      usPort     = 110;
+    const ushort_t      usPort     = 110;
 
     //-------------------------------------
     //IPNET
     //const std::string csUser     = "domen";
     //const std::string csPass     = "control6";
     //const std::string csServer   = "mail.ipnet.kiev.ua";
-    //USHORT            usPort     = 110;
+    //ushort_t            usPort     = 110;
 
 
     const std::string csDirPath  = "C:/Temp";
     const std::string csFilePath = "C:/Temp/1.eml";
-    ULONG             ulSum      = 0;
-    ULONG             ulSize     = 0;
+    ulong_t             ulSum      = 0;
+    ulong_t             ulSize     = 0;
 
 
 
@@ -127,7 +127,7 @@ CxTest_CxMimeMessage::bUnit(
     //bTop
     std::string sRawHeader = "";
 
-    for (ULONG i = 1; i <= ulSum; i ++) {
+    for (ulong_t i = 1; i <= ulSum; i ++) {
         //-------------------------------------
         //CxMimeMessage
         CxMimeMessage objMessage;
@@ -174,7 +174,7 @@ CxTest_CxMimeMessage::bUnit(
 
     //-------------------------------------
     //bRetrieveHeader
-    for (ULONG y = 1; y <= ulSum; y ++) {
+    for (ulong_t y = 1; y <= ulSum; y ++) {
         CxMimeHeader objHeader;
 
         //-------------------------------------

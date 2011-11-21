@@ -21,7 +21,7 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 /*virtual*/
 bool
 CxTest_CxCurrentThread::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------
@@ -33,7 +33,7 @@ CxTest_CxCurrentThread::bUnit(
         aulData[0][0] = (CxThread::TxId)CxCurrentThread::ulGetId();
         aulData[0][1] = (CxThread::TxId)true;
 
-        aulData[1][0] = (CxThread::TxId)((ULONG)CxCurrentThread::ulGetId() - 1);
+        aulData[1][0] = (CxThread::TxId)((ulong_t)CxCurrentThread::ulGetId() - 1);
         aulData[1][1] = (CxThread::TxId)false;
 
         aulData[2][0] = (CxThread::TxId)0;
@@ -47,7 +47,7 @@ CxTest_CxCurrentThread::bUnit(
 
         for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
             const CxThread::TxId culId = aulData[i][0];
-            const bool           cbRes = xINT_AS_BOOL( (ULONG)aulData[i][1] );
+            const bool           cbRes = xINT_AS_BOOL( (ulong_t)aulData[i][1] );
 
             m_bRes = CxCurrentThread::bIsCurrent(culId);
             xTEST_EQ(cbRes, m_bRes);
@@ -59,7 +59,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxId idRes = CxCurrentThread::ulGetId();
-        xTEST_LESS(0UL, (ULONG)idRes);
+        xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
     //--------------------------------------------------
@@ -67,7 +67,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
-        xTEST_DIFF(0UL, (ULONG)hRes);
+        xTEST_DIFF(0UL, (ulong_t)hRes);
     }
 
     //--------------------------------------------------
@@ -75,7 +75,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxId idRes = CxCurrentThread::ulGetId();
-        xTEST_LESS(0UL, (ULONG)idRes);
+        xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
     //--------------------------------------------------
@@ -83,7 +83,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
-        xTEST_LESS((ULONG)0, (ULONG)hRes);
+        xTEST_LESS((ulong_t)0, (ulong_t)hRes);
     }
 
     //--------------------------------------------------
@@ -98,15 +98,15 @@ CxTest_CxCurrentThread::bUnit(
     //bSleep
     xTEST_CASE(cullBlockLoops)
     {
-        const ULONG caulData[] = {
+        const ulong_t caulData[] = {
             0,
             1,
-            (std::numeric_limits<ULONG>::min)(),
-            //(std::numeric_limits<ULONG>::max)()
+            (std::numeric_limits<ulong_t>::min)(),
+            //(std::numeric_limits<ulong_t>::max)()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
-            const UINT cuiMsec = caulData[i];
+            const uint_t cuiMsec = caulData[i];
 
             CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
 

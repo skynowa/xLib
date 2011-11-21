@@ -19,12 +19,12 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 /*virtual*/
 bool
 CxTest_CxAtomicLongInt::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
 #if xTEMP_DISABLED
-    LONG iRes = 0;
+    long_t iRes = 0;
 
     CxAtomicLongInt alAL_1;
     CxAtomicLongInt alAL_2;
@@ -60,14 +60,14 @@ CxTest_CxAtomicLongInt::bUnit(
     //CxAtomicLongInt& operator +=   (const CxAtomicLongInt &cRight);
     //CxAtomicLongInt& operator -=   (const CxAtomicLongInt &cRight);
     //CxAtomicLongInt& operator =    (const CxAtomicLongInt &cRight);
-    //CxAtomicLongInt& operator +=   (const LONG cliRight);
-    //CxAtomicLongInt& operator -=   (const LONG cliRight);
-    //CxAtomicLongInt& operator =    (const LONG cliRight);
+    //CxAtomicLongInt& operator +=   (const long_t cliRight);
+    //CxAtomicLongInt& operator -=   (const long_t cliRight);
+    //CxAtomicLongInt& operator =    (const long_t cliRight);
     //bool             operator ==   (const CxAtomicLongInt &cRight);
     //bool             operator !=   (const CxAtomicLongInt &cRight);
-    //bool             operator ==   (const LONG cliRight);
-    //bool             operator !=   (const LONG cliRight);
-    //operator LONG ();
+    //bool             operator ==   (const long_t cliRight);
+    //bool             operator !=   (const long_t cliRight);
+    //operator long_t ();
     //operator bool ();
     //CxAtomicLongInt& operator ++   (int iPos);
     //CxAtomicLongInt& operator --   (int iPos);
