@@ -1460,7 +1460,7 @@ CxFile::_iGetHandle(
 #elif defined(xOS_ENV_UNIX)
     #if defined(xOS_FREEBSD)
         int iRes =   fileno(pfFile);
-    #elif
+    #else
         int iRes = ::fileno(pfFile);
     #endif
 #endif
