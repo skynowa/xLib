@@ -24,7 +24,7 @@ CxTest_CxAutoCriticalSection::bUnit(
 {
     //-------------------------------------
     //CxAutoCriticalSection
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         size_t            uiCounter = 0;
         CxCriticalSection csCS;

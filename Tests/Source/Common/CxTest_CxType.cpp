@@ -24,7 +24,7 @@ CxTest_CxType::bUnit(
 {
     //-------------------------------------
     //sGetName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         std::tstring sObject;
 
@@ -34,7 +34,7 @@ CxTest_CxType::bUnit(
 
     //-------------------------------------
     //sGetRawName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         std::tstring sObject;
 
@@ -44,7 +44,7 @@ CxTest_CxType::bUnit(
 
     //-------------------------------------
     //bIsEquals
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
          std::string  sObject1;
         std::wstring sObject2;

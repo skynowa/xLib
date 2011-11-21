@@ -26,7 +26,7 @@ CxTest_CxMsgBoxT::bUnit(
     //--------------------------------------------------
     //iShow
 #if xOS_ENV_WIN
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const HWND         chWnd   = NULL;
         const std::tstring csText  = xT("\nmessage box with 3 params...\n");
@@ -40,7 +40,7 @@ CxTest_CxMsgBoxT::bUnit(
 
     //--------------------------------------------------
     //iShow (3 params)
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring csText  = xT("\nmessage box with 3 params...\n");
         const std::tstring csTitle = xT("Simple title");
@@ -52,7 +52,7 @@ CxTest_CxMsgBoxT::bUnit(
 
     //--------------------------------------------------
     //iShow (2 params)
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring csText  = xT("\nmessage box with 2 params...\n");
         const std::tstring csTitle = xT("Simple title");
@@ -63,7 +63,7 @@ CxTest_CxMsgBoxT::bUnit(
 
     //--------------------------------------------------
     //iShow (1 param)
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring csText  = xT("\nmessage box with 1 param...\n");
 

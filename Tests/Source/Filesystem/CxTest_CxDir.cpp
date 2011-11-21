@@ -63,7 +63,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bCreate
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bCreate(csDirPath2);
         xTEST_DIFF(false, m_bRes);
@@ -71,7 +71,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bIsDir
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bIsDir(csDirPath2);
         xTEST_DIFF(false, m_bRes);
@@ -79,7 +79,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bIsExists
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bIsExists(csDirPath);
         xTEST_DIFF(false, m_bRes);
@@ -99,7 +99,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bIsEmpty
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bIsEmpty(csDirPath, CxConst::xMASK_ALL);
         xTEST_EQ(false, m_bRes);
@@ -113,7 +113,7 @@ CxTest_CxDir::bUnit(
 
     //--------------------------------------------------
     //bIsRoot
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring sTestData[][2] = {
@@ -150,7 +150,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bSetCurrent
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_sRes = CxDir::sGetCurrent();
         xTEST_EQ(false, m_sRes.empty());
@@ -164,7 +164,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //sGetCurrent
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         std::tstring sRes = CxDir::sGetCurrent();
         xTEST_EQ(m_sRes, sRes);
@@ -172,7 +172,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //sGetTempPath
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_sRes = CxDir::sGetTemp();
         #if xTEST_IGNORE
@@ -183,7 +183,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bCreateForce
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bCreateForce(csDirPath);
         xTEST_DIFF(false, m_bRes);
@@ -191,7 +191,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bCopy
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
@@ -233,7 +233,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bMove
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
@@ -263,7 +263,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bFindDirs
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
@@ -305,7 +305,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bFindFiles
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create files)
@@ -351,7 +351,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bClearForce
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bClearForce(csDirPath);
         xTEST_DIFF(false, m_bRes);
@@ -359,7 +359,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bDelete
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bDelete(csDirPath2);
         xTEST_DIFF(false, m_bRes);
@@ -367,7 +367,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bTryDelete
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bCreateForce(csDirPath2);
         xTEST_DIFF(false, m_bRes);
@@ -378,7 +378,7 @@ CxTest_CxDir::bUnit(
 
     //-------------------------------------
     //bDeleteForce
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDir::bCreateForce(csDirPath);
         xTEST_DIFF(false, m_bRes);

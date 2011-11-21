@@ -24,7 +24,7 @@ CxTest_CxException::bUnit(
 {
     //--------------------------------------------------
     //CxException(), sGetWhat, e.sGetName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         try {
             throw CxException();
@@ -40,7 +40,7 @@ CxTest_CxException::bUnit(
 
     //--------------------------------------------------
     //CxException(std::tstring), what
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::tstring sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("TEST_STRING_1")},
@@ -65,7 +65,7 @@ CxTest_CxException::bUnit(
 
     //--------------------------------------------------
     //catch CxException
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         try {
             throw CxException() << "CxException_test_exception";
@@ -80,7 +80,7 @@ CxTest_CxException::bUnit(
 
     //--------------------------------------------------
     //catch std::exception
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         try {
             std::tstring sStr;
@@ -97,7 +97,7 @@ CxTest_CxException::bUnit(
 
     //--------------------------------------------------
     //
-    xTEST_BLOCK(cullBlockLoops) {
+    xTEST_CASE(cullBlockLoops) {
         #if xTODO
             xTRY {
                 std::tstring sStr;

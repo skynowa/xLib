@@ -27,7 +27,7 @@ CxTest_CxCriticalSection::bUnit(
 
     //--------------------------------------------------
     //bLock, bUnlock
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxCriticalSection csCS;
 
@@ -42,7 +42,7 @@ CxTest_CxCriticalSection::bUnit(
 
     //--------------------------------------------------
     //bTryLock, bUnlock
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxCriticalSection csCS;
 
@@ -57,7 +57,7 @@ CxTest_CxCriticalSection::bUnit(
 
     //--------------------------------------------------
     //bLock, bUnlock
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxCriticalSection csCS;
 
@@ -78,7 +78,7 @@ CxTest_CxCriticalSection::bUnit(
 
     //--------------------------------------------------
     //bTryLock, bUnlock
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxCriticalSection csCS;
 

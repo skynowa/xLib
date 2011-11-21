@@ -22,7 +22,7 @@ CxTest_CxHttpClient::bUnit(
     const ULONGLONG cullBlockLoops
 )
 {
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxHttpClient hcHttpClient;
     }

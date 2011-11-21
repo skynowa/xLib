@@ -25,7 +25,7 @@ CxTest_CxGdiplus::bUnit(
 {
     /*DEBUG*/
 
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxGdiplus gpGdiPlus;
     }

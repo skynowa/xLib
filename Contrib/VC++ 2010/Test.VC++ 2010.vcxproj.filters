@@ -1097,9 +1097,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxArray.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\CxAutoBuffer.h">
-      <Filter>xLib\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>

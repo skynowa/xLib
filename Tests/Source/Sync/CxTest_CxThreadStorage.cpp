@@ -24,7 +24,7 @@ CxTest_CxThreadStorage::bUnit(
 {
     //--------------------------------------------------
     //bSetValue, pvGetValue
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const ULONG caulData[] = {0, 1, 2, 777};
 

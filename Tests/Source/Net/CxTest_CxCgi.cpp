@@ -24,7 +24,7 @@ CxTest_CxCgi::bUnit(
 {
     //--------------------------------------------------
     //bPageShow
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xTEST_IGNORE
             const std::tstring csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -49,7 +49,7 @@ CxTest_CxCgi::bUnit(
 
     //--------------------------------------------------
     //bRedirect
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xTEMP_DISABLED
             CxCgi::bRedirect(xT("http://yandex.ru/"));
@@ -64,7 +64,7 @@ CxTest_CxCgi::bUnit(
     #endif
 
 
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //std::tcout << xT("<pre>");
 
@@ -220,7 +220,7 @@ CxTest_CxCgi::bUnit(
 
     //-------------------------------------
     //bUriEncode, bUriDecode
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //1
         {

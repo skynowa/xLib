@@ -24,7 +24,7 @@ CxTest_CxVolume::bUnit(
 {
     //-------------------------------------
     //bIsReady
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //true
         {
@@ -63,7 +63,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bIsEmpty
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         //true
         {
@@ -106,7 +106,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bGetFreeSpace
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring  csVolumePathWithSlash     = xT("C:\\");
@@ -171,7 +171,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //dtGetType
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring csVolumePath = xT("C:");
@@ -185,7 +185,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bGetInfo
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring csVolumePath = xT("C:");
@@ -210,7 +210,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bGetLogicalDrives
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             std::vector<std::tstring> vsDrives;
@@ -224,7 +224,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bGetLogicalDrives2
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
             std::vector<std::tstring> vsDrives;
@@ -238,105 +238,105 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bDefineDosDevice
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //bDeleteVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //hFindFirstVolume
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //hFindFirstVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //sFindNextVolume
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //bFindNextVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //bFindVolumeClose
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //bFindVolumeMountPointClose
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //sGetLogicalStrings
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //sGetVolumeNameForVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //sGetVolumePathName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //sGetVolumePathNamesForVolumeName
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //sQueryDosDevice
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //bSetVolumeLabel
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }
 
     //-------------------------------------
     //bSetVolumeMountPoint
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
 
     }

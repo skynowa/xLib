@@ -27,7 +27,7 @@ CxTest_CxCom::bUnit(
 #if xOS_ENV_WIN
     //-------------------------------------
     //bIsInit
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         {
             CxCom cmCom(CxCom::cmMultiThreaded);

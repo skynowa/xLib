@@ -391,16 +391,10 @@ CxFile::bLocking(
 )
 {
 #if xOS_ENV_WIN
-    #if xCOMPILER_CODEGEAR
-        #define xLOCKING locking
-    #else
-        #define xLOCKING _locking
-    #endif
-
     int iRes = ::xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::lockf(_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
+    int iRes = ::lockf   (_iGetHandle(pGet()), clmMode, static_cast<off_t>( cliBytes ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
@@ -471,15 +465,12 @@ CxFile::liGetSize() const {
     LONG liStreamSize    = - 1L;
     LONG liCurrStreamPos = - 1L;
 
-    //Get current position
     liCurrStreamPos = liGetPosition();
 
-    //seek to the end of file
     xCHECK_RET(false == bSetPosition(0, ppEnd), etError);
 
     liStreamSize = liGetPosition();
 
-    //Get back to the stored position
     xCHECK_RET(false == bSetPosition(liCurrStreamPos, ppBegin), etError);
 
     return liStreamSize;
@@ -556,7 +547,7 @@ bool
 CxFile::bErrorClear() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
 
-    (void)std::clearerr(pGet());
+    (void)std::clearerr( pGet() );
 
     return true;
 }
@@ -647,8 +638,7 @@ CxFile::bIsExists(
     xCHECK_RET(false == bIsFile(csFilePath), false);
 
     int iRes       = ::xTACCESS(csFilePath.c_str(), amExistence);
-    int iLastError = CxStdError::iGet();
-    xCHECK_RET((- 1 == iRes) && (ENOENT == iLastError), false);
+    xCHECK_RET((- 1 == iRes) && (ENOENT == CxStdError::iGet()), false);
 
     return true;
 }

@@ -51,6 +51,13 @@
         #define xTMKSTEMP       mkstemp
     #endif
 
+        //locking
+    #if   xCOMPILER_MS
+        #define xLOCKING        _locking
+    #else
+        #define xLOCKING        locking
+    #endif
+
         #define xTRENAME        _wrename
         #define xTUNLINK        _wunlink
         #define xTREMOVE        _wremove
@@ -134,6 +141,13 @@
         #define xTMKSTEMP       mkstemp
     #else
         #define xTMKSTEMP       mktemp
+    #endif
+
+        //locking
+    #if   xCOMPILER_MS
+        #define xLOCKING        _locking
+    #else
+        #define xLOCKING        locking
     #endif
 
         #define xTRENAME        rename

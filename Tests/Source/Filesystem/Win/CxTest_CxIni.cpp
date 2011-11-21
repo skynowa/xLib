@@ -36,7 +36,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bCreateDefault
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             std::tstring sContent;
             sContent.append(xT("[DEFAULT_SECTION]\n"));
@@ -55,7 +55,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //sGetPath
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_sRes = objIni.sGetPath();
             #ifdef TEST_DEF_CONSTRUCTOR
@@ -67,7 +67,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bSetPath
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bSetPath(csIniPath);
             xTEST_EQ(true, m_bRes);
@@ -81,7 +81,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //iKeyReadInt, bKeyWriteInt
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bKeyWriteInt(xT("Section_Int_1"), xT("Key_1"), 1);
             xTEST_EQ(true, m_bRes);
@@ -98,7 +98,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //dKeyReadFloat, bKeyWriteFloat
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bKeyWriteFloat(xT("Section_Double_1"), xT("Key_1"), 1.1f);
             xTEST_EQ(true, m_bRes);
@@ -115,7 +115,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bKeyReadBool, bKeyWriteBool
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bKeyWriteBool(xT("Section_Bool_1"), xT("Key_1"), true);
             xTEST_EQ(true, m_bRes);
@@ -132,7 +132,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //sKeyReadString, bKeyWriteString
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bKeyWriteString(xT("Section_String_1"), xT("Key_1"), xT("Begin_Value_1_Value_1_Value_1_Value_End"));
             xTEST_EQ(true, m_bRes);
@@ -149,7 +149,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //sReadBin, bKeyWriteBin
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             std::ustring usRes;
 
@@ -172,7 +172,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bKeyClear
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bKeyClear(xT("Section_Bin_2"), xT("Key_1"));
             xTEST_EQ(true, m_bRes);
@@ -180,7 +180,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bKeyDelete
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bKeyDelete(xT("Section_Bin_2"), xT("Key_1"));
             xTEST_EQ(true, m_bRes);
@@ -188,7 +188,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bKeyIsExists
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bKeyIsExists(xT("Section_Bin_1"), xT("Key_1"));
             xTEST_EQ(true, m_bRes);
@@ -208,7 +208,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bSectionRead, bSectionWrite
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
              std::map<std::tstring, std::tstring> msContent;
              msContent[xT("qqq")] = xT("111");
@@ -225,7 +225,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bSectionClear
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bSectionClear(xT("Section_Section_1"));
             xTEST_EQ(true, m_bRes);
@@ -233,7 +233,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bSectionIsExists
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bSectionIsExists(xT("Section_Bin_1"));
             xTEST_EQ(true, m_bRes);
@@ -244,7 +244,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bSectionDelete
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bSectionDelete(xT("Section_Section_1"));
             xTEST_EQ(true, m_bRes);
@@ -252,7 +252,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bSectionsReadNames
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             std::vector<std::tstring> vsNames;
 
@@ -262,7 +262,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bFlush
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bFlush();
             xTEST_EQ(true, m_bRes);
@@ -270,7 +270,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bClear
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             m_bRes = objIni.bClear();
             xTEST_EQ(true, m_bRes);
@@ -278,7 +278,7 @@ CxTest_CxIni::bUnit(
 
         //-------------------------------------
         //bSectionsReadNames
-        xTEST_BLOCK(cullBlockLoops)
+        xTEST_CASE(cullBlockLoops)
         {
             std::vector<std::tstring> vsNames;
 

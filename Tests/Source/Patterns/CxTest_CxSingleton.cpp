@@ -40,7 +40,7 @@ CxTest_CxSingleton::bUnit(
 {
     //-------------------------------------
     //test
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         typedef CxSingleton<CLogger> TLoggerSingleton;
 
@@ -49,7 +49,7 @@ CxTest_CxSingleton::bUnit(
         TLoggerSingleton::GetInstance().vClose();
     }
 
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxSingleton<CLogger>::GetInstance().vOpen();
         CxSingleton<CLogger>::GetInstance().vWrite();
@@ -58,14 +58,14 @@ CxTest_CxSingleton::bUnit(
 
     //-------------------------------------
     //construct CxSingleton on stack
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         ////TLoggerSingleton objLoggerSingleton;
     }
 
     //-------------------------------------
     //construct CxSingleton on heap
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         ////TLoggerSingleton *pobjLoggerSingleton = new TLoggerSingleton;
         ////xPTR_DELETE(pobjLoggerSingleton);

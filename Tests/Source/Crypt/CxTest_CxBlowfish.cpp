@@ -24,7 +24,7 @@ CxTest_CxBlowfish::bUnit(
 {
     //-------------------------------------
     //bEncryptCfb64
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         const std::ustring usPlain[] = {
             std::ustring(1,  'a'),
@@ -61,7 +61,7 @@ CxTest_CxBlowfish::bUnit(
 
     //-------------------------------------
     //bEncryptFileCfb64
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxBlowfish BF;
         std::tstring sKey           = xT("888888888");
@@ -88,7 +88,7 @@ CxTest_CxBlowfish::bUnit(
 
     //-------------------------------------
     //bEncryptFileCfb64 (with stamp)
-    xTEST_BLOCK(cullBlockLoops)
+    xTEST_CASE(cullBlockLoops)
     {
         CxBlowfish BF;
 
