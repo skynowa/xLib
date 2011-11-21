@@ -24,7 +24,7 @@ class CxCurrentThread :
             ///< get pseudo handle for the calling thread
         static bool                bYield         ();
             ///< yield
-        static bool                bSleep         (const ULONG culMsec);
+        static bool                bSleep         (const ulong_t culMsec);
             ///< sleep
     private:
                                    CxCurrentThread();

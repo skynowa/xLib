@@ -20,7 +20,7 @@ class CxMimeBody :
        virtual ~CxMimeBody();
 
     private:
-        std::multimap<std::tstring, std::tstring> _m_mmsBody;
+        std::multimap<std::tstring_t, std::tstring_t> _m_mmsBody;
 };
 
 xNAMESPACE_END(NxLib)

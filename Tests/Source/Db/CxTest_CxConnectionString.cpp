@@ -20,7 +20,7 @@ CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 /*virtual*/
 bool
 CxTest_CxConnectionString::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     /*DEBUG*/

@@ -33,7 +33,7 @@ CxImage::~CxImage() {
 //---------------------------------------------------------------------------
 bool
 CxImage::bLoad(
-    const std::tstring &csFilePath
+    const std::tstring_t &csFilePath
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
@@ -72,7 +72,7 @@ CxImage::bLoad(
 //---------------------------------------------------------------------------
 bool
 CxImage::bSave(
-    const std::tstring &csFilePath,
+    const std::tstring_t &csFilePath,
     EEncoderType        etType
 )
 {
@@ -80,7 +80,7 @@ CxImage::bSave(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// etType - n/a
 
-    std::tstring sEncoderType;
+    std::tstring_t sEncoderType;
     switch (etType) {
         case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
@@ -116,7 +116,7 @@ CxImage::bSave(
     /*DEBUG*/xASSERT_RET(NULL != pisStream,    false);
     /*DEBUG*/// etType - n/a
 
-    std::tstring sEncoderType;
+    std::tstring_t sEncoderType;
     switch (etType) {
         case etBmp:     { sEncoderType = xT("image/bmp");  }    break;
         case etJpeg:    { sEncoderType = xT("image/jpeg"); }    break;
@@ -238,14 +238,14 @@ CxImage::bIsLoaded() {
     return NULL != _m_pimgImage;
 }
 //---------------------------------------------------------------------------
-UINT
+uint_t
 CxImage::uiGetWidth() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
 
     return _m_pimgImage->GetWidth();
 }
 //---------------------------------------------------------------------------
-UINT
+uint_t
 CxImage::uiGetHeight() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pimgImage, 0);
 
@@ -259,14 +259,14 @@ CxImage::stGetLastStatus() {
     return _m_pimgImage->GetLastStatus();
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::tstring_t
 CxImage::sGetLastStatus(
     Gdiplus::Status stCode
 )
 {
     /*DEBUG*/// _m_pimgImage - n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     switch (stCode) {
         case Gdiplus::Ok:                        { sRes = xT("Ok");                         }    break;
@@ -307,7 +307,7 @@ CxImage::sGetLastStatus(
 //---------------------------------------------------------------------------
 bool
 CxImage::_bGetEncoderClsid(
-    const std::tstring &csFormat,
+    const std::tstring_t &csFormat,
     CLSID              *pcidClsid
 )
 {
@@ -315,8 +315,8 @@ CxImage::_bGetEncoderClsid(
     /*DEBUG*/xASSERT_RET(false == csFormat.empty(), false);
     /*DEBUG*/xASSERT_RET(NULL != pcidClsid,         false);
 
-    UINT uiNum  = 0;    //number of image encoders
-    UINT uiSize = 0;    //size of the image encoder array in bytes
+    uint_t uiNum  = 0;    //number of image encoders
+    uint_t uiSize = 0;    //size of the image encoder array in bytes
 
     _m_stRes = Gdiplus::GetImageEncodersSize(&uiNum, &uiSize);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, false);
@@ -330,7 +330,7 @@ CxImage::_bGetEncoderClsid(
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes, false);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_pimgImage->GetLastStatus(), false);
 
-    for (UINT j = 0; j < uiNum; ++ j) {
+    for (uint_t j = 0; j < uiNum; ++ j) {
     #if xUNICODE
         if (csFormat == pImageCodecInfo[j].MimeType) {
     #else

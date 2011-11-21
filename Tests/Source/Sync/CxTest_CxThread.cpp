@@ -28,7 +28,7 @@ CWorkThread::~CWorkThread() {
 
 }
 //---------------------------------------------------------------------------
-UINT
+uint_t
 CWorkThread::uiOnRun(
     void *pvData
 )
@@ -37,7 +37,7 @@ CWorkThread::uiOnRun(
         xTRACEV(xT("\n\tCWorkThread: start #%lu"), m_ulTag);
     #endif
 
-    UINT uiRes = 0;
+    uint_t uiRes = 0;
     bool bRes  = false;
 
     //bIsCurrent
@@ -96,7 +96,7 @@ CxTest_CxThread::~CxTest_CxThread() {
 /*virtual*/
 bool
 CxTest_CxThread::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     const bool cbIsPaused   = true;
@@ -184,7 +184,7 @@ CxTest_CxThread::bUnit(
     {
         #if xTODO
             m_sRes = pthT->sGetPriorityString();
-            xTEST_EQ(std::tstring(xT("Lowest")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("Lowest")), m_sRes);
         #endif
     }
 
@@ -291,7 +291,7 @@ CxTest_CxThread::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxHandle hRes = pthT->hGet();
-        xTEST_DIFF(0UL, (ULONG)hRes);
+        xTEST_DIFF(0UL, (ulong_t)hRes);
     }
 
     //--------------------------------------------------
@@ -299,7 +299,7 @@ CxTest_CxThread::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxThread::TxId idRes = pthT->ulGetId();
-        xTEST_DIFF(0UL, (ULONG)idRes);
+        xTEST_DIFF(0UL, (ulong_t)idRes);
     }
 
     //--------------------------------------------------
@@ -341,7 +341,7 @@ CxTest_CxThread::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xTODO
-            THandle hRes = CxThread::hOpen(const ULONG culAccess, const bool cbInheritHandle, const ULONG culId);
+            THandle hRes = CxThread::hOpen(const ulong_t culAccess, const bool cbInheritHandle, const ulong_t culId);
         #endif
     }
 
@@ -398,7 +398,7 @@ CxTest_CxThread::bUnit(
         #endif
     }
 
-    ULONG ulRes = pthT->ulGetExitStatus();
+    ulong_t ulRes = pthT->ulGetExitStatus();
     xUNUSED(ulRes);
     #if xTEST_IGNORE
         xTRACEV("\tulGetExitStatus(): %lu", ulRes);

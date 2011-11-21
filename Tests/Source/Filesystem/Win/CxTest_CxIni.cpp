@@ -19,14 +19,14 @@ CxTest_CxIni::~CxTest_CxIni() {
 /*virtual*/
 bool
 CxTest_CxIni::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
     #define TEST_DEF_CONSTRUCTOR 1
 
     {
-        const std::tstring csIniPath = xT("C:\\Test\\__Test.ini");
+        const std::tstring_t csIniPath = xT("C:\\Test\\__Test.ini");
 
     #ifdef TEST_DEF_CONSTRUCTOR
         CxIni objIni;
@@ -38,7 +38,7 @@ CxTest_CxIni::bUnit(
         //bCreateDefault
         xTEST_CASE(cullBlockLoops)
         {
-            std::tstring sContent;
+            std::tstring_t sContent;
             sContent.append(xT("[DEFAULT_SECTION]\n"));
             sContent.append(xT("default_key_1=111\n"));
             sContent.append(xT("default_key_2=222\n"));
@@ -138,35 +138,35 @@ CxTest_CxIni::bUnit(
             xTEST_EQ(true, m_bRes);
 
             m_sRes = objIni.sKeyReadString(xT("Section_String_1"), xT("Key_1"), xT(""));
-            xTEST_EQ(std::tstring(xT("Begin_Value_1_Value_1_Value_1_Value_End")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("Begin_Value_1_Value_1_Value_1_Value_End")), m_sRes);
 
             m_bRes = objIni.bKeyWriteString(xT("Section_String_2"), xT("Key_1"), xT("Value_1"));
             xTEST_EQ(true, m_bRes);
 
             m_sRes = objIni.sKeyReadString(xT("Section_String_2"), xT("Key_1"), xT(""));
-            xTEST_EQ(std::tstring(xT("Value_1")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("Value_1")), m_sRes);
         }
 
         //-------------------------------------
         //sReadBin, bKeyWriteBin
         xTEST_CASE(cullBlockLoops)
         {
-            std::ustring usRes;
+            std::ustring_t usRes;
 
-            std::ustring usValue_1(10, 's');
-            std::ustring usValue_2(10, 'y');
+            std::ustring_t usValue_1(10, 's');
+            std::ustring_t usValue_2(10, 'y');
 
 
             m_bRes = objIni.bKeyWriteBin(xT("Section_Bin_1"), xT("Key_1"), usValue_1);
             xTEST_EQ(true, m_bRes);
 
-            usRes = objIni.usKeyReadBin(xT("Section_Bin_1"), xT("Key_1"), std::ustring());
+            usRes = objIni.usKeyReadBin(xT("Section_Bin_1"), xT("Key_1"), std::ustring_t());
             xASSERT(usValue_1 == usRes);
 
             m_bRes = objIni.bKeyWriteBin(xT("Section_Bin_2"), xT("Key_1"), usValue_2);
             xTEST_EQ(true, m_bRes);
 
-            usRes = objIni.usKeyReadBin(xT("Section_Bin_2"), xT("Key_1"), std::ustring());
+            usRes = objIni.usKeyReadBin(xT("Section_Bin_2"), xT("Key_1"), std::ustring_t());
             xASSERT(usValue_2 == usRes);
         }
 
@@ -210,7 +210,7 @@ CxTest_CxIni::bUnit(
         //bSectionRead, bSectionWrite
         xTEST_CASE(cullBlockLoops)
         {
-             std::map<std::tstring, std::tstring> msContent;
+             std::map<std::tstring_t, std::tstring_t> msContent;
              msContent[xT("qqq")] = xT("111");
              msContent[xT("www")] = xT("222");
              msContent[xT("eee")] = xT("333");
@@ -254,7 +254,7 @@ CxTest_CxIni::bUnit(
         //bSectionsReadNames
         xTEST_CASE(cullBlockLoops)
         {
-            std::vector<std::tstring> vsNames;
+            std::vector<std::tstring_t> vsNames;
 
             m_bRes = objIni.bSectionsReadNames(&vsNames);
             xTEST_EQ(true, m_bRes);
@@ -280,7 +280,7 @@ CxTest_CxIni::bUnit(
         //bSectionsReadNames
         xTEST_CASE(cullBlockLoops)
         {
-            std::vector<std::tstring> vsNames;
+            std::vector<std::tstring_t> vsNames;
 
             m_bRes = objIni.bSectionsReadNames(&vsNames);
             xTEST_EQ(true, m_bRes);

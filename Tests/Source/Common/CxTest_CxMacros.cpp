@@ -19,7 +19,7 @@ CxTest_CxMacros::~CxTest_CxMacros() {
 /*virtual*/
 bool
 CxTest_CxMacros::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------
@@ -135,7 +135,7 @@ CxTest_CxMacros::bUnit(
     //xBUFF_ZERO
     xTEST_CASE(cullBlockLoops)
     {
-        tchar szBuff[255 + 1];
+        tchar_t szBuff[255 + 1];
 
         xBUFF_ZERO(szBuff);
 
@@ -149,7 +149,7 @@ CxTest_CxMacros::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         {
-            tchar szBuff[256] = {0};
+            tchar_t szBuff[256] = {0};
             m_uiRes = xARRAY_SIZE(szBuff);
             xTEST_EQ(256U, m_uiRes);
 
@@ -157,14 +157,14 @@ CxTest_CxMacros::bUnit(
             m_uiRes = xARRAY_SIZE(aiBuff);
             xTEST_EQ(256U, m_uiRes);
 
-            std::tstring asBuff[256];
+            std::tstring_t asBuff[256];
             m_uiRes = xARRAY_SIZE(asBuff);
             xTEST_EQ(256U, m_uiRes);
         }
 
         //must compile-error
         {
-            ////tchar *pszBuff = NULL;
+            ////tchar_t *pszBuff = NULL;
             ////m_uiRes = xARRAY_SIZE(pszBuff);
         }
     }
@@ -223,58 +223,58 @@ CxTest_CxMacros::bUnit(
     {
         //1
         {
-            const tchar *pcszBuff = xT("xxxxx");
+            const tchar_t *pcszBuff = xT("xxxxx");
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring(pcszBuff), m_sRes);
+            xTEST_EQ(std::tstring_t(pcszBuff), m_sRes);
         }
 
         //2
         {
-            const tchar *pcszBuff = xT("1236cnqwieru872692*qwer8lkl;l<l;hoihljkhlwcruqw");
+            const tchar_t *pcszBuff = xT("1236cnqwieru872692*qwer8lkl;l<l;hoihljkhlwcruqw");
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring(pcszBuff), m_sRes);
+            xTEST_EQ(std::tstring_t(pcszBuff), m_sRes);
         }
 
         //3
         {
-            const tchar *pcszBuff = xT("/n/n/n/n/n/n/n/t/t/t/t/t/t");
+            const tchar_t *pcszBuff = xT("/n/n/n/n/n/n/n/t/t/t/t/t/t");
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring(pcszBuff), m_sRes);
+            xTEST_EQ(std::tstring_t(pcszBuff), m_sRes);
         }
 
         //4
         {
-            const tchar *pcszBuff = xT("");
+            const tchar_t *pcszBuff = xT("");
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring(pcszBuff), m_sRes);
+            xTEST_EQ(std::tstring_t(pcszBuff), m_sRes);
         }
 
         //5
         {
-            const tchar *pcszBuff = NULL;
+            const tchar_t *pcszBuff = NULL;
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring(), m_sRes);
+            xTEST_EQ(std::tstring_t(), m_sRes);
         }
 
         //7
         {
-            const tchar cszBuff[] = xT("sdjkrtfwo34892vnm3,9rfx12j304y81-34m8905-");
+            const tchar_t cszBuff[] = xT("sdjkrtfwo34892vnm3,9rfx12j304y81-34m8905-");
 
             m_sRes = CxMacros::sAsTString(cszBuff);
-            xTEST_EQ(std::tstring(cszBuff), m_sRes);
+            xTEST_EQ(std::tstring_t(cszBuff), m_sRes);
         }
 
         //8
         {
-            const tchar cszBuff[] = {0};
+            const tchar_t cszBuff[] = {0};
 
             m_sRes = CxMacros::sAsTString(cszBuff);
-            xTEST_EQ(std::tstring(cszBuff), m_sRes);
+            xTEST_EQ(std::tstring_t(cszBuff), m_sRes);
         }
     }
 
@@ -292,7 +292,7 @@ CxTest_CxMacros::bUnit(
 
         //xPR_I64d
         {
-            const LONGLONG cllValue = 36745723;
+            const longlong_t cllValue = 36745723;
 
             m_sRes = CxString::sFormat(xT("%")xPR_I64d, cllValue);
             xTEST_EQ(CxString::lexical_cast(cllValue), m_sRes);
@@ -300,7 +300,7 @@ CxTest_CxMacros::bUnit(
 
         //xPR_I64u
         {
-            const ULONGLONG cullValue = 4767834;
+            const ulonglong_t cullValue = 4767834;
 
             m_sRes = CxString::sFormat(xT("%")xPR_I64u, cullValue);
             xTEST_EQ(CxString::lexical_cast(cullValue), m_sRes);
@@ -308,7 +308,7 @@ CxTest_CxMacros::bUnit(
 
         //xPR_I64x
         {
-            const LONGLONG cllValue = 57830;
+            const longlong_t cllValue = 57830;
 
             m_sRes = CxString::sFormat(xT("%")xPR_I64x, cllValue);
             xTEST_EQ(CxString::sToLowerCase( CxString::lexical_cast(cllValue, 16) ), m_sRes);

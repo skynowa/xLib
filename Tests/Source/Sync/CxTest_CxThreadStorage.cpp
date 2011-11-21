@@ -19,22 +19,22 @@ CxTest_CxThreadStorage::~CxTest_CxThreadStorage() {
 /*virtual*/
 bool
 CxTest_CxThreadStorage::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------
     //bSetValue, pvGetValue
     xTEST_CASE(cullBlockLoops)
     {
-        const ULONG caulData[] = {0, 1, 2, 777};
+        const ulong_t caulData[] = {0, 1, 2, 777};
 
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             CxThreadStorage tlsTls;
 
-            const ULONG culData = caulData[i];
+            const ulong_t culData = caulData[i];
 
-            ULONG *pulValue = new ULONG(culData);
+            ulong_t *pulValue = new ulong_t(culData);
 
             m_bRes = tlsTls.bIsSet();
             xTEST_EQ(false, m_bRes);
@@ -45,9 +45,9 @@ CxTest_CxThreadStorage::bUnit(
             m_bRes = tlsTls.bIsSet();
             xTEST_DIFF(false, m_bRes);
 
-            ULONG *pulRes = static_cast<ULONG *>( tlsTls.pvGetValue() );
+            ulong_t *pulRes = static_cast<ulong_t *>( tlsTls.pvGetValue() );
             xTEST_PTR(pulRes);
-            xTEST_EQ(culData, ULONG(*pulRes));
+            xTEST_EQ(culData, ulong_t(*pulRes));
 
             m_bRes = tlsTls.bIsSet();
             xTEST_DIFF(false, m_bRes);

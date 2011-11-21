@@ -25,10 +25,10 @@ class CxCompletionPort :
                  CxCompletionPort();
         virtual ~CxCompletionPort();
 
-        bool     bCreate         (ULONG ulThreadsNum /*= 0*/);
+        bool     bCreate         (ulong_t ulThreadsNum /*= 0*/);
         bool     bAssociate      (HANDLE hFile, ULONG_PTR pulCompletionKey);
-        bool     bGetStatus      (LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, ULONG ulMilliseconds);
-        bool     bPostStatus     (ULONG ulNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
+        bool     bGetStatus      (LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, ulong_t ulMilliseconds);
+        bool     bPostStatus     (ulong_t ulNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
 
     private:
         CxHandle _m_hCP;

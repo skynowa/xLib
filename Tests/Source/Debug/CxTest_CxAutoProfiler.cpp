@@ -19,7 +19,7 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 /*virtual*/
 bool
 CxTest_CxAutoProfiler::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     const CxProfiler::EMode pmPerformMode[] = {

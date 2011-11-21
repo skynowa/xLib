@@ -18,18 +18,18 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
-ULONG
+ulong_t
 CxCrc32::ulCalc(
-    UCHAR       *pucBuff,
-    const ULONG  culSize
+    uchar_t       *pucBuff,
+    const ulong_t  culSize
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pucBuff, 0);
     /*DEBUG*/xASSERT_RET(0    <  culSize, 0);
 
-    ULONG crc            = 0;
-    ULONG crc_table[256] = {0};
-    ULONG ulSize         = culSize;
+    ulong_t crc            = 0;
+    ulong_t crc_table[256] = {0};
+    ulong_t ulSize         = culSize;
 
     for (int i = 0; i < 256; ++ i) {
         crc = i;
@@ -50,16 +50,16 @@ CxCrc32::ulCalc(
 }
 //---------------------------------------------------------------------------
 /*static*/
-ULONG
+ulong_t
 CxCrc32::ulCalcFile(
-    const std::tstring &csFilePath
+    const std::tstring_t &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
-    ULONG ulRes = 0;
+    ulong_t ulRes = 0;
 
-    std::ustring usFile;
+    std::ustring_t usFile;
 
     bool bRes = CxFile::bBinRead(csFilePath, &usFile);
     /*DEBUG*/xASSERT_RET(false != bRes, false);
@@ -74,17 +74,17 @@ CxCrc32::ulCalcFile(
 }
 //---------------------------------------------------------------------------
 /*static*/
-ULONG
+ulong_t
 CxCrc32::ulCalcFast(
-    UCHAR       *pucBuff,
-    const ULONG  culSize
+    uchar_t       *pucBuff,
+    const ulong_t  culSize
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pucBuff,  0);
     /*DEBUG*/xASSERT_RET(0    <  culSize,  0);
 
-    ULONG crc            = 0;
-    ULONG crc_table[256] = {
+    ulong_t crc            = 0;
+    ulong_t crc_table[256] = {
         0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
         0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
         0x0EDB8832, 0x79DCB8A4, 0xE0D5E91E, 0x97D2D988,
@@ -165,7 +165,7 @@ CxCrc32::ulCalcFast(
         0xB3667A2E, 0xC4614AB8, 0x5D681B02, 0x2A6F2B94,
         0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D
     };
-    ULONG ulSize = culSize;
+    ulong_t ulSize = culSize;
 
     crc = 0xFFFFFFFFUL;
 
@@ -177,16 +177,16 @@ CxCrc32::ulCalcFast(
 }
 //---------------------------------------------------------------------------
 /*static*/
-ULONG
+ulong_t
 CxCrc32::ulCalcFileFast(
-    const std::tstring &csFilePath
+    const std::tstring_t &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
-    ULONG ulRes = 0;
+    ulong_t ulRes = 0;
 
-    std::ustring usFile;
+    std::ustring_t usFile;
 
     bool bRes = CxFile::bBinRead(csFilePath, &usFile);
     /*DEBUG*/xASSERT_RET(false != bRes, false);
@@ -201,14 +201,14 @@ CxCrc32::ulCalcFileFast(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxCrc32::sFormatHex(
-    const ULONG culCrc32
+    const ulong_t culCrc32
 )
 {
     /*DEBUG*/
 
-    std::tstring      sRes;
+    std::tstring_t      sRes;
     const size_t uiCrc32Size = 8;
 
     sRes = CxString::sFormat(xT("%X"), culCrc32);    //0AADDEA0
@@ -217,7 +217,7 @@ CxCrc32::sFormatHex(
     if (0 != uiAdditionalZeros) {
         sRes.insert(0, uiAdditionalZeros, xT('0'));
     }
-    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), std::tstring());
+    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), std::tstring_t());
 
     return sRes;
 }

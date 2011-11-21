@@ -63,7 +63,7 @@ CxThreadPool<TaskT>::~CxThreadPool() {
 //TODO: bCreateGroup (��������)
 template<class TaskT>
 bool
-CxThreadPool<TaskT>::bCreateGroup(UINT uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks) {
+CxThreadPool<TaskT>::bCreateGroup(uint_t uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, uint_t uiNumTasks, uint_t uiMaxRunningTasks) {
     /*DEBUG*/xASSERT_RET(0    <= uiStackSize,       false);    //TODO: MaxValue
     /*DEBUG*/xASSERT_RET(NULL == fpFuncPtr,         false);
     /*DEBUG*/xASSERT_RET(NULL != pvParam,           false);
@@ -155,7 +155,7 @@ CxThreadPool<TaskT>::bPauseGroup() {
 //TODO: bExitGroup (�����)
 template<class TaskT>
 bool
-CxThreadPool<TaskT>::bExitGroup(ULONG ulTimeout) {
+CxThreadPool<TaskT>::bExitGroup(ulong_t ulTimeout) {
     /*DEBUG*/
 
     bool bRes = false;
@@ -186,7 +186,7 @@ CxThreadPool<TaskT>::bExitGroup(ULONG ulTimeout) {
 //TODO: uiKillGroup (����������)
 template<class TaskT>
 bool
-CxThreadPool<TaskT>::bKillGroup(ULONG ulTimeout) {
+CxThreadPool<TaskT>::bKillGroup(ulong_t ulTimeout) {
     /*DEBUG*/xASSERT_RET(NULL != this, false);
 
     bool bRes = false;
@@ -217,7 +217,7 @@ CxThreadPool<TaskT>::bKillGroup(ULONG ulTimeout) {
 //TODO: bWaitGroup (�������� ����������)
 template<class TaskT>
 bool
-CxThreadPool<TaskT>::bWaitGroup(ULONG ulTimeout) {
+CxThreadPool<TaskT>::bWaitGroup(ulong_t ulTimeout) {
     /*DEBUG*/
 
     bool bRes = false;
@@ -255,7 +255,7 @@ CxThreadPool<TaskT>::bWaitGroup(ULONG ulTimeout) {
 //---------------------------------------------------------------------------
 //TODO: uiGetMaxTasks (���-�� ������������ ���������� �������)
 template<class TaskT>
-UINT
+uint_t
 CxThreadPool<TaskT>::uiGetMaxTasks() const {
     /*DEBUG*/// n/a
 
@@ -265,7 +265,7 @@ CxThreadPool<TaskT>::uiGetMaxTasks() const {
 //TODO: bSetMaxTasks (��������� ���-�� ������������ ���������� �������)
 template<class TaskT>
 bool
-CxThreadPool<TaskT>::bSetMaxTasks(UINT uiNum)  {
+CxThreadPool<TaskT>::bSetMaxTasks(uint_t uiNum)  {
     /*DEBUG*/// n/a
 
     bool bRes = false;
@@ -325,7 +325,7 @@ CxThreadPool<TaskT>::bSetMaxTasks(UINT uiNum)  {
 //---------------------------------------------------------------------------
 //TODO: uiGetNumTasks (����� �������)
 template<class TaskT>
-UINT
+uint_t
 CxThreadPool<TaskT>::uiGetNumTasks() const {
     /*DEBUG*/// n/a
 
@@ -335,7 +335,7 @@ CxThreadPool<TaskT>::uiGetNumTasks() const {
 //TODO: bSetNumTasks (��������� ���-�� �������)
 template<class TaskT>
 bool
-CxThreadPool<TaskT>::bSetNumTasks(UINT uiNum) {
+CxThreadPool<TaskT>::bSetNumTasks(uint_t uiNum) {
     /*DEBUG*/// n/a
 
     _m_uiNumTasks = uiNum;
@@ -379,11 +379,11 @@ CxThreadPool<TaskT>::bIsFull() const {
 //---------------------------------------------------------------------------
 //TODO: uiSize (���-�� ������� � ����)
 template<class TaskT>
-UINT
+uint_t
 CxThreadPool<TaskT>::uiGetSize() const {
     /*DEBUG*///xASSERT_RET(CONDITION, RET_VALUE);
 
-    UINT uiRes = 0;
+    uint_t uiRes = 0;
 
     CxAutoCriticalSection CS(_m_csList, true);
 
@@ -403,11 +403,11 @@ CxThreadPool<TaskT>::uiGetSize() const {
 //---------------------------------------------------------------------------
 //TODO: uiOnRun (������� �������)
 template<class TaskT>
-UINT
+uint_t
 CxThreadPool<TaskT>::uiOnRun(void *pvParam) {
     /*DEBUG*/
 
-    UINT uiRes = 0;
+    uint_t uiRes = 0;
     bool bRes  = false;
 
     //-------------------------------------

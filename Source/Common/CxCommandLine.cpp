@@ -15,16 +15,16 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-/*static*/ std::vector<std::tstring> CxCommandLine::_ms_vsArgs;
+/*static*/ std::vector<std::tstring_t> CxCommandLine::_ms_vsArgs;
 //--------------------------------------------------------------------------
-LONG
+long_t
 CxCommandLine::liGetArgsMax() {
-    LONG liRes = 0L;
+    long_t liRes = 0L;
 
 #if xOS_ENV_WIN
     liRes = 32L * 1024L;
 #elif xOS_ENV_UNIX
-    liRes = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring::value_type);
+    liRes = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
     /*DEBUG*/xASSERT_RET(- 1 != liRes, 0L);
 #endif
 
@@ -32,15 +32,15 @@ CxCommandLine::liGetArgsMax() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxCommandLine::sGet() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
 #if xOS_ENV_WIN
     LPCTSTR pcszRes = ::GetCommandLine();
-    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring_t());
 
     sRes.assign( CxString::sTrimSpace(pcszRes) );
 #elif xOS_ENV_UNIX
@@ -53,7 +53,7 @@ CxCommandLine::sGet() {
 /*static*/
 bool
 CxCommandLine::bGetArgs(
-    std::vector<std::tstring> *pvsArgs
+    std::vector<std::tstring_t> *pvsArgs
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsArgs, false);
@@ -69,12 +69,12 @@ CxCommandLine::bGetArgs(
 bool
 CxCommandLine::bSetArgs(
     const int  ciArgsCount,
-    tchar     *paszArgs[]
+    tchar_t     *paszArgs[]
 )
 {
     /*DEBUG*/// n/a (because we'll have a recursion)
 
-    std::vector<std::tstring> vsArgs;
+    std::vector<std::tstring_t> vsArgs;
 
     for (int i = 0; i < ciArgsCount; ++ i) {
         vsArgs.push_back(paszArgs[i]);

@@ -56,14 +56,14 @@ CxTest::~CxTest() /* = 0*/ {
 //---------------------------------------------------------------------------
 bool
 CxTest::bRun(
-    const ULONGLONG cullUnitLoops,
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullUnitLoops,
+    const ulonglong_t cullBlockLoops
 ) 
 {
     /*DEBUG*/
 
     try {
-        for (ULONGLONG i = 0ULL; i < cullUnitLoops; ++ i) {
+        for (ulonglong_t i = 0ULL; i < cullUnitLoops; ++ i) {
             bool bRes = bUnit(cullBlockLoops);
             /*DEBUG*/xASSERT_MSG_RET(false != bRes, sGetName() + xT(": fail"), false);
         }
@@ -86,7 +86,7 @@ CxTest::bRun(
 /*virtual*/
 bool
 CxTest::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 ) /*= 0*/
 {
     /*DEBUG*/// n/a
@@ -96,7 +96,7 @@ CxTest::bUnit(
         //[FUNCTION_NAME]
         xTEST_CASE(cullBlockLoops)
         {
-            const std::tstring casData[][2] = {
+            const std::tstring_t casData[][2] = {
                 {xT("TEST_STRING_1"), xT("MUST_BE_1")},
                 {xT("TEST_STRING_2"), xT("MUST_BE_2")},
                 {xT("TEST_STRING_3"), xT("MUST_BE_3")},
@@ -114,7 +114,7 @@ CxTest::bUnit(
 //---------------------------------------------------------------------------
 bool
 CxTest::bCreateWorkDir(
-    const std::tstring &csDirName
+    const std::tstring_t &csDirName
 )
 {
     /*DEBUG*/// n/a
@@ -131,14 +131,14 @@ CxTest::bCreateWorkDir(
     return true;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::tstring_t &
 CxTest::sGetWorkDirPath() const {
     /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::tstring_t &
 CxTest::sGetName() const {
     /*DEBUG*/
 
@@ -147,7 +147,7 @@ CxTest::sGetName() const {
 //---------------------------------------------------------------------------
 bool
 CxTest::bSetName(
-    const std::tstring &csTestName
+    const std::tstring_t &csTestName
 )
 {
     /*DEBUG*/

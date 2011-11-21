@@ -42,9 +42,9 @@ CxSemaphore::hGetHandle() const {
 bool
 CxSemaphore::bCreate(
     const LPSECURITY_ATTRIBUTES  pcsaAttributes,
-    const LONG                   cliInitialCount,
-    const LONG                   cliMaxCount,
-    const std::tstring          &csName
+    const long_t                   cliInitialCount,
+    const long_t                   cliMaxCount,
+    const std::tstring_t          &csName
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_hSemaphore.bIsValid(),                      false);
@@ -67,9 +67,9 @@ CxSemaphore::bCreate(
 //DONE: bOpen ()
 bool
 CxSemaphore::bOpen(
-    const ULONG         culAccess,
+    const ulong_t         culAccess,
     const bool          cbInheritHandle,
-    const std::tstring &csName
+    const std::tstring_t &csName
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
@@ -89,8 +89,8 @@ CxSemaphore::bOpen(
 //DONE: bRelease ()
 bool
 CxSemaphore::bRelease(
-    const LONG  cliReleaseCount,
-    LONG       *pliOldCount
+    const long_t  cliReleaseCount,
+    long_t       *pliOldCount
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
@@ -106,13 +106,13 @@ CxSemaphore::bRelease(
 //DONE: bWait ()
 bool
 CxSemaphore::bWait(
-    const ULONG culTimeout
+    const ulong_t culTimeout
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
-    ULONG ulRes = WAIT_FAILED;
+    ulong_t ulRes = WAIT_FAILED;
 
     ulRes = ::WaitForSingleObject(_m_hSemaphore.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
@@ -121,11 +121,11 @@ CxSemaphore::bWait(
 }
 //---------------------------------------------------------------------------
 //DONE: liGetValue ()
-LONG
+long_t
 CxSemaphore::liGetValue() const {
     /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), - 1);
 
-    LONG liRes = - 1;
+    long_t liRes = - 1;
     bool bRes  = false;
 
     bRes = bRelease(0, &liRes);
@@ -137,8 +137,8 @@ CxSemaphore::liGetValue() const {
 //DONE: bReset ()
 bool
 CxSemaphore::bReset(
-    const LONG cliInitialCount,
-    const LONG cliMaxCount
+    const long_t cliInitialCount,
+    const long_t cliMaxCount
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(),                      false);

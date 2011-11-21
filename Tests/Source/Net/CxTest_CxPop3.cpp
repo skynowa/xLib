@@ -19,49 +19,49 @@ CxTest_CxPop3::~CxTest_CxPop3() {
 /*virtual*/
 bool
 CxTest_CxPop3::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 #if xOS_ENV_WIN
     //-------------------------------------
     //
-    //const std::tstring csUser     = xT("Sergey");        //"test_1";
-    //const std::tstring csPass     = xT("12345");            //"test_1";
-    //const std::tstring csServer   = xT("192.168.1.47");    //"127.0.0.1";
-    //const USHORT  cusPort    = 110;
+    //const std::tstring_t csUser     = xT("Sergey");        //"test_1";
+    //const std::tstring_t csPass     = xT("12345");            //"test_1";
+    //const std::tstring_t csServer   = xT("192.168.1.47");    //"127.0.0.1";
+    //const ushort_t  cusPort    = 110;
 
     //-------------------------------------
     //CourierMS.exe
-    //const std::tstring csUser     = xT("test_1@serg.com");
-    //const std::tstring csPass     = xT("test_1");
-    //const std::tstring csServer   = xT("127.0.0.1");
-    //const USHORT  cusPort    = 110;
+    //const std::tstring_t csUser     = xT("test_1@serg.com");
+    //const std::tstring_t csPass     = xT("test_1");
+    //const std::tstring_t csServer   = xT("127.0.0.1");
+    //const ushort_t  cusPort    = 110;
 
     //-------------------------------------
     //IPNET
-    const std::tstring  csUser     = xT("domen");
-    const std::tstring  csPass     = xT("control6");
-    const std::tstring  csServer   = xT("mail.ipnet.kiev.ua");
-    const USHORT   cusPort    = 110;
+    const std::tstring_t  csUser     = xT("domen");
+    const std::tstring_t  csPass     = xT("control6");
+    const std::tstring_t  csServer   = xT("mail.ipnet.kiev.ua");
+    const ushort_t   cusPort    = 110;
 
     //-------------------------------------
     //hMailServer
-    ////const std::tstring  csUser     = xT("test_2@serg.com");
-    ////const std::tstring  csPass     = xT("test_2");
-    ////const std::tstring  csServer   = xT("127.0.0.1");
-    ////const USHORT   cusPort    = 110;
+    ////const std::tstring_t  csUser     = xT("test_2@serg.com");
+    ////const std::tstring_t  csPass     = xT("test_2");
+    ////const std::tstring_t  csServer   = xT("127.0.0.1");
+    ////const ushort_t   cusPort    = 110;
 
 
     //-------------------------------------
     //
-    ULONG              ulSum      = 0;
-    ULONG              ulSize     = 0;
-    ULONG              ulMsgID    = 1;
-    std::vector<ULONG> veculList;
-    ////ULONG              ulIndex    = 1;
+    ulong_t              ulSum      = 0;
+    ulong_t              ulSize     = 0;
+    ulong_t              ulMsgID    = 1;
+    std::vector<ulong_t> veculList;
+    ////ulong_t              ulIndex    = 1;
     int                iNum       = 1;
-    const std::tstring      csDirPath  = xT("C:/Temp2");
-    const std::tstring      csFileName = xT("MailFileName");
+    const std::tstring_t      csDirPath  = xT("C:/Temp2");
+    const std::tstring_t      csFileName = xT("MailFileName");
 
 
     CxPop3 objPop3;
@@ -113,11 +113,11 @@ CxTest_CxPop3::bUnit(
 
     //-------------------------------------
     //bTop
-    for (ULONG i = 1; i <= ulSum; i ++) {
+    for (ulong_t i = 1; i <= ulSum; i ++) {
         //////-------------------------------------
         //////CxMimeMessage
         ////CxMimeMessage objMessage;
-        ////std::tstring       sRawHeader;
+        ////std::tstring_t       sRawHeader;
 
         //////-------------------------------------
         //////CxMimeHeader
@@ -144,7 +144,7 @@ CxTest_CxPop3::bUnit(
 
     //-------------------------------------
     //bRetriveRaw
-    for (ULONG i = 1; i <= ulSum; i ++) {
+    for (ulong_t i = 1; i <= ulSum; i ++) {
         CxDir::bCreateForce(csDirPath);
 
         m_bRes = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::lexical_cast(i) + xT(".eml"));
@@ -155,7 +155,7 @@ CxTest_CxPop3::bUnit(
 
     //-------------------------------------
     //bRetrieveHeader
-    for (ULONG i = 1; i <= ulSum; i ++) {
+    for (ulong_t i = 1; i <= ulSum; i ++) {
         CxMimeHeader mhMimeHeader;
 
         m_bRes = objPop3.bRetrieveHeader(iNum, mhMimeHeader);

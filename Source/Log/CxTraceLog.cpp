@@ -44,7 +44,7 @@ CxTraceLog::bSetEnabled(
 //---------------------------------------------------------------------------
 bool
 CxTraceLog::bWrite(
-    const tchar *pcszFormat, ...
+    const tchar_t *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
@@ -53,7 +53,7 @@ CxTraceLog::bWrite(
 
     //-------------------------------------
     //time
-    std::tstring sTime;
+    std::tstring_t sTime;
 
     if (true == _m_bIsUseTimeStr) {
         sTime = xT("[") + CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime) + xT("] ");
@@ -63,7 +63,7 @@ CxTraceLog::bWrite(
 
     //-------------------------------------
     //comment
-    std::tstring sParam;
+    std::tstring_t sParam;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);

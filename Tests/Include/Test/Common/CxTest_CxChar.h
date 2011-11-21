@@ -18,7 +18,7 @@ class CxTest_CxChar :
                      CxTest_CxChar();
         virtual     ~CxTest_CxChar();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

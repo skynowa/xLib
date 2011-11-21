@@ -22,7 +22,7 @@ class CxSleeper :
         virtual ~CxSleeper  ();
             ///< destructor
 
-        bool     bSleep     (const ULONG culTimeout);
+        bool     bSleep     (const ulong_t culTimeout);
             ///< sleep
         bool     bWakeUp    ();
             ///< wake up

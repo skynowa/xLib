@@ -1,6 +1,6 @@
 /**
  * \file  CxAtomicLongInt.cpp
- * \brief atomic operartions with LONG
+ * \brief atomic operartions with long_t
  */
 
 
@@ -71,7 +71,7 @@ CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)    {
 //---------------------------------------------------------------------------
 //DONE: operator += ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator += (const LONG cliRight) {
+CxAtomicLongInt::operator += (const long_t cliRight) {
 #if xOS_ENV_WIN
     ::InterlockedExchangeAdd(&_m_liValue, cliRight);
 #elif xOS_ENV_UNIX
@@ -83,7 +83,7 @@ CxAtomicLongInt::operator += (const LONG cliRight) {
 //---------------------------------------------------------------------------
 //DONE: operator -= ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator -= (const LONG cliRight) {
+CxAtomicLongInt::operator -= (const long_t cliRight) {
 #if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, _m_liValue - cliRight);
 #elif xOS_ENV_UNIX
@@ -95,7 +95,7 @@ CxAtomicLongInt::operator -= (const LONG cliRight) {
 //---------------------------------------------------------------------------
 //DONE: operator = ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator = (const LONG cliRight) {
+CxAtomicLongInt::operator = (const long_t cliRight) {
 #if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, cliRight);
 #elif xOS_ENV_UNIX
@@ -119,18 +119,18 @@ CxAtomicLongInt::operator != (const CxAtomicLongInt &cRight) const {
 //---------------------------------------------------------------------------
 //DONE: operator == ()
 bool
-CxAtomicLongInt::operator == (const LONG cliRight) const {
+CxAtomicLongInt::operator == (const long_t cliRight) const {
     return (bool)(_m_liValue == cliRight);
 }
 //---------------------------------------------------------------------------
 //DONE: operator != ()
 bool
-CxAtomicLongInt::operator != (const LONG cliRight) const {
+CxAtomicLongInt::operator != (const long_t cliRight) const {
     return (bool)( !(_m_liValue == cliRight) );
 }
 //---------------------------------------------------------------------------
-//DONE: operator LONG ()
-CxAtomicLongInt::operator LONG () const {
+//DONE: operator long_t ()
+CxAtomicLongInt::operator long_t () const {
     return _m_liValue;
 }
 //---------------------------------------------------------------------------

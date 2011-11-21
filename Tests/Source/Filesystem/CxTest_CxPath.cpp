@@ -21,28 +21,28 @@ CxTest_CxPath::~CxTest_CxPath() {
 /*virtual*/
 bool
 CxTest_CxPath::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------
     //vars
-    std::tstring       sRes          = xT("");
-    std::vector<std::tstring> vsRes;
+    std::tstring_t       sRes          = xT("");
+    std::vector<std::tstring_t> vsRes;
 
     #if xOS_ENV_WIN
-        const std::tstring csFilePath    = xT("C:\\Test.txt");
-        const std::tstring csNewFilePath = xT("C:\\New.Test.txt");
-        const std::tstring csBakFilePath = xT("C:\\Test_Static.txt.bak");
-        const std::tstring csFilePathSt  = xT("C:\\Test_Static.txt");
-        const std::tstring csFileName    = xT("TestName");
-        const std::tstring csFileExt     = xT("doc");
+        const std::tstring_t csFilePath    = xT("C:\\Test.txt");
+        const std::tstring_t csNewFilePath = xT("C:\\New.Test.txt");
+        const std::tstring_t csBakFilePath = xT("C:\\Test_Static.txt.bak");
+        const std::tstring_t csFilePathSt  = xT("C:\\Test_Static.txt");
+        const std::tstring_t csFileName    = xT("TestName");
+        const std::tstring_t csFileExt     = xT("doc");
     #elif xOS_ENV_UNIX
-        const std::tstring csFilePath    = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
-        const std::tstring csNewFilePath = xT("/home/user/Soft/New.Test.txt");
-        const std::tstring csBakFilePath = xT("/home/user/Soft/Test_Static.txt.bak");
-        const std::tstring csFilePathSt  = xT("/home/user/Soft/Test_Static.txt");
-        const std::tstring csFileName    = xT("TestName");
-        const std::tstring csFileExt     = xT("doc");
+        const std::tstring_t csFilePath    = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
+        const std::tstring_t csNewFilePath = xT("/home/user/Soft/New.Test.txt");
+        const std::tstring_t csBakFilePath = xT("/home/user/Soft/Test_Static.txt.bak");
+        const std::tstring_t csFilePathSt  = xT("/home/user/Soft/Test_Static.txt");
+        const std::tstring_t csFileName    = xT("TestName");
+        const std::tstring_t csFileExt     = xT("doc");
     #endif
 
 
@@ -84,7 +84,7 @@ CxTest_CxPath::bUnit(
     {
         #if xOS_ENV_WIN
         sRes    = CxPath::sGetDrive(csFilePath);
-        xTEST_EQ(sRes, std::tstring(xT("C:")));
+        xTEST_EQ(sRes, std::tstring_t(xT("C:")));
         #endif
     }
 
@@ -93,14 +93,14 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("C:\\Test111")},
                 {xT("C:\\Test.txt"),                                     xT("C:")},
                 {xT("Test.txt"),                                         xT("")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("/home/user/Soft/eclipse/Test.txt"),           xT("/home/user/Soft/eclipse")},
                 {xT("/home/Test.txt"),                             xT("/home")},
                 {xT("Test.txt"),                                   xT("")},
@@ -109,8 +109,8 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sGetDir(sData[i][0]);
-            std::tstring sStr2 = sData[i][1];
+            std::tstring_t sStr1 = CxPath::sGetDir(sData[i][0]);
+            std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -120,14 +120,14 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("Test111")},
                 {xT("C:\\Test.txt"),                                     xT("C:")},
                 {xT("Test.txt"),                                         xT("")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("Borland C++")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("/home/user/Soft/eclipse/Test.txt"),           xT("eclipse")},
                 {xT("/home/Test.txt"),                             xT("home")},
                 {xT("Test.txt"),                                   xT("")},
@@ -136,8 +136,8 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sGetDirName(sData[i][0]);
-            std::tstring sStr2 = sData[i][1];
+            std::tstring_t sStr1 = CxPath::sGetDirName(sData[i][0]);
+            std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -147,14 +147,14 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("Test.txt")},
                 {xT("C:\\Test"),                                         xT("Test")},
                 {xT("Test.txt"),                                         xT("Test.txt")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("pLaunchProject.exe")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("/home/Test111/Test.txt"),                           xT("Test.txt")},
                 {xT("/home/Test"),                                       xT("Test")},
                 {xT("Test.txt"),                                         xT("Test.txt")},
@@ -163,8 +163,8 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sGetFullName(sData[i][0]);
-            std::tstring sStr2 = sData[i][1];
+            std::tstring_t sStr1 = CxPath::sGetFullName(sData[i][0]);
+            std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -174,14 +174,14 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("Test")},
                 {xT("C:\\Test"),                                         xT("Test")},
                 {xT("Test.txt"),                                         xT("Test")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("pLaunchProject")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("/home/Test111/Test.txt"),                           xT("Test")},
                 {xT("/home/Test"),                                       xT("Test")},
                 {xT("Test.txt"),                                         xT("Test")},
@@ -190,8 +190,8 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sGetName(sData[i][0]);
-            std::tstring sStr2 = sData[i][1];
+            std::tstring_t sStr1 = CxPath::sGetName(sData[i][0]);
+            std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -201,7 +201,7 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("txt")},
                 {xT("C:\\Test"),                                         xT("")},
                 {xT("Test.txt"),                                         xT("txt")},
@@ -209,7 +209,7 @@ CxTest_CxPath::bUnit(
                 {xT("D:\\My projects\\Borlan.d C++\\pLaunchProject"),    xT("")},
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("/home/Test111/Test.txt"),                           xT("txt")},
                 {xT("/home/Test"),                                       xT("")},
                 {xT("Test.txt"),                                         xT("txt")},
@@ -219,8 +219,8 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sGetExt(sData[i][0]);
-            std::tstring sStr2 = sData[i][1];
+            std::tstring_t sStr1 = CxPath::sGetExt(sData[i][0]);
+            std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -231,30 +231,30 @@ CxTest_CxPath::bUnit(
     {
         m_sRes = CxPath::sGetStandartExt(CxPath::seExe);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring(xT("exe")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("exe")), m_sRes);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring(xT("")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("")), m_sRes);
         #endif
 
         m_sRes = CxPath::sGetStandartExt(CxPath::seDll);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring(xT("dll")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("dll")), m_sRes);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring(xT("so")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("so")), m_sRes);
         #endif
 
         m_sRes = CxPath::sGetStandartExt(CxPath::seLib);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring(xT("lib")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("lib")), m_sRes);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring(xT("a")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("a")), m_sRes);
         #endif
 
         m_sRes = CxPath::sGetStandartExt(CxPath::seObj);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring(xT("obj")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("obj")), m_sRes);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring(xT("o")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("o")), m_sRes);
         #endif
     }
 
@@ -263,7 +263,7 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("F:"),    xT("F:\\Test.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),    xT("T:\\okoval@winnerauto.ua.info")},
                 ////{xT("TEST_STRING_3.doc"),             xT("R:"),    xT("")},
@@ -272,12 +272,12 @@ CxTest_CxPath::bUnit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-                std::tstring sStr1 = CxPath::sSetDrive(sData[i][0], sData[i][1]);
-                std::tstring sStr2 = CxPath::sSetDrive(sData[i][2], sData[i][1]);
+                std::tstring_t sStr1 = CxPath::sSetDrive(sData[i][0], sData[i][1]);
+                std::tstring_t sStr2 = CxPath::sSetDrive(sData[i][2], sData[i][1]);
                 xTEST_EQ(sStr1, sStr2);
 
-                std::tstring sStr3 = CxPath::sSetDrive(sData[i][0], sData[i][1]);
-                std::tstring sStr4 = sData[i][2];
+                std::tstring_t sStr3 = CxPath::sSetDrive(sData[i][0], sData[i][1]);
+                std::tstring_t sStr4 = sData[i][2];
                 xTEST_EQ(sStr3, sStr4);
             }
         #endif
@@ -288,7 +288,7 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("F:\\"),      xT("F:\\Test.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:\\"),      xT("T:\\okoval@winnerauto.ua.info")},
                 ////{xT("TEST_STRING_3.doc"),         xT("R:\\"),      xT("")},
@@ -299,7 +299,7 @@ CxTest_CxPath::bUnit(
 
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("/home/Test.doc"),                  xT("/job"),              xT("/job/Test.doc")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("/job/room"),         xT("/job/room/okoval@winnerauto.ua.info")},
                 ////{xT("TEST_STRING_3.doc"),           xT("R:\\"),              xT("")},
@@ -311,12 +311,12 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            //std::tstring sStr1 = CxPath::sSetDir(sData[i][0], sData[i][1]);
-            //std::tstring sStr2 = CxPath::sSetDir(sData[i][2], sData[i][1]);
+            //std::tstring_t sStr1 = CxPath::sSetDir(sData[i][0], sData[i][1]);
+            //std::tstring_t sStr2 = CxPath::sSetDir(sData[i][2], sData[i][1]);
             //xTEST_EQ(sStr1, sStr2);
 
-            std::tstring sStr3 = CxPath::sSetDir(sData[i][0], sData[i][1]);
-            std::tstring sStr4 = sData[i][2];
+            std::tstring_t sStr3 = CxPath::sSetDir(sData[i][0], sData[i][1]);
+            std::tstring_t sStr4 = sData[i][2];
             xTEST_EQ(sStr3, sStr4);
         }
     }
@@ -326,7 +326,7 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 /*FilePath*/                          /*NewFileName*/   /*MustBe*/
                 {xT("C:\\Test.doc"),                  xT("aaaa.xls"),    xT("C:\\aaaa.xls")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty.fdm"),    xT("Z:\\qwerty.fdm")},
@@ -335,7 +335,7 @@ CxTest_CxPath::bUnit(
                 ////{xT("TEST_STRING_3.f"),           xT("fff.qq"),        xT("fff.qq")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 /*FilePath*/                            /*NewFileName*/   /*MustBe*/
                 {xT("/home/Test.doc"),                  xT("aaaa.xls"),   xT("/home/aaaa.xls")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("qwerty.fdm"), xT("/home/qwerty.fdm")},
@@ -346,12 +346,12 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
-            std::tstring sStr2 = CxPath::sSetFullName(sData[i][2], sData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
+            std::tstring_t sStr2 = CxPath::sSetFullName(sData[i][2], sData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring sStr3 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
-            std::tstring sStr4 = sData[i][2];
+            std::tstring_t sStr3 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
+            std::tstring_t sStr4 = sData[i][2];
             xTEST_EQ(sStr3, sStr4);
         }
     }
@@ -361,7 +361,7 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("xxx"),      xT("C:\\xxx.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty"),      xT("Z:\\qwerty.info")},
                 ////{xT("TEST_STRING_3.doc"),         xT(""),          xT("")},
@@ -372,7 +372,7 @@ CxTest_CxPath::bUnit(
 
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("/home/Test.doc"),                  xT("xxx"),      xT("/home/xxx.doc")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("qwerty"),   xT("/home/qwerty.info")},
                 ////{xT("TEST_STRING_3.doc"),           xT(""),           xT("")},
@@ -384,12 +384,12 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sSetName(sData[i][0], sData[i][1]);
-            std::tstring sStr2 = CxPath::sSetName(sData[i][2], sData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSetName(sData[i][0], sData[i][1]);
+            std::tstring_t sStr2 = CxPath::sSetName(sData[i][2], sData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring sStr3 = CxPath::sSetName(sData[i][0], sData[i][1]);
-            std::tstring sStr4 = sData[i][2];
+            std::tstring_t sStr3 = CxPath::sSetName(sData[i][0], sData[i][1]);
+            std::tstring_t sStr4 = sData[i][2];
             xTEST_EQ(sStr3, sStr4);
         }
     }
@@ -398,7 +398,7 @@ CxTest_CxPath::bUnit(
     //sSetExt
     xTEST_CASE(cullBlockLoops)
     {
-        const std::tstring sData[][3] = {
+        const std::tstring_t sData[][3] = {
             {xT("C:\\Test.doc"),                  xT("xls"),    xT("C:\\Test.xls")},
             {xT("C:\\Test"),                      xT("xls"),    xT("C:\\Test.xls")},
             {xT("Z:\\okoval@winnerauto.ua.info"), xT("fdm"),    xT("Z:\\okoval@winnerauto.ua.fdm")},
@@ -409,12 +409,12 @@ CxTest_CxPath::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sSetExt(sData[i][0], sData[i][1]);
-            std::tstring sStr2 = CxPath::sSetExt(sData[i][2], sData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSetExt(sData[i][0], sData[i][1]);
+            std::tstring_t sStr2 = CxPath::sSetExt(sData[i][2], sData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring sStr3 = CxPath::sSetExt(sData[i][0], sData[i][1]);
-            std::tstring sStr4 = sData[i][2];
+            std::tstring_t sStr3 = CxPath::sSetExt(sData[i][0], sData[i][1]);
+            std::tstring_t sStr4 = sData[i][2];
             xTEST_EQ(sStr3, sStr4);
         }
     }
@@ -424,14 +424,14 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("C:\\Test.111\\Test.txt"),                           xT("C:\\Test.111\\Test")},
                 {xT("C:\\Test"),                                         xT("C:\\Test")},
                 {xT("Test.txt"),                                         xT("Test")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++\\pLaunchProject")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("/home/Test.111/Test.txt"),                          xT("/home/Test.111/Test")},
                 {xT("/home/Test"),                                       xT("/home/Test")},
                 {xT("Test.txt"),                                         xT("Test")},
@@ -440,8 +440,8 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sRemoveExt(sData[i][0]);
-            std::tstring sStr2 = sData[i][1];
+            std::tstring_t sStr1 = CxPath::sRemoveExt(sData[i][0]);
+            std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -466,7 +466,7 @@ CxTest_CxPath::bUnit(
     {
         //must true
         {
-            const std::tstring casData[] = {
+            const std::tstring_t casData[] = {
                 #if xOS_ENV_WIN
                     xT("C:\\"),
                     xT("D:\\Downloads\\XXL\\I_am_a_Champion_-_coach_speech_[RUS_subtitles].flv"),
@@ -488,7 +488,7 @@ CxTest_CxPath::bUnit(
 
         //must false
         {
-            const std::tstring casData[] = {
+            const std::tstring_t casData[] = {
                 #if xOS_ENV_WIN
                     xT("../../../Source/Debug/CxTest.cpp"),
                     xT("../../../Source/Filesystem/CxPath"),
@@ -518,7 +518,7 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
     #if xOS_ENV_WIN
-        const std::tstring sTestData[][2] =
+        const std::tstring_t sTestData[][2] =
         {
             {xT("CLOCK$"),         xT("")},
             {xT("AUX"),             xT("")},
@@ -613,19 +613,19 @@ CxTest_CxPath::bUnit(
             {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("ValidTestName")},
         };
     #elif xOS_ENV_UNIX
-        const std::tstring sTestData[][2] =
+        const std::tstring_t sTestData[][2] =
         {
             {xT("xxxx"),       xT("xxxx")},
         };
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring sStr1 = CxPath::sSetValidName(sTestData[i][0]);
-            std::tstring sStr2 = CxPath::sSetValidName(sTestData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSetValidName(sTestData[i][0]);
+            std::tstring_t sStr2 = CxPath::sSetValidName(sTestData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring sStr3 = CxPath::sSetValidName(sTestData[i][0]);
-            std::tstring sStr4 = sTestData[i][1];
+            std::tstring_t sStr3 = CxPath::sSetValidName(sTestData[i][0]);
+            std::tstring_t sStr4 = sTestData[i][1];
             xTEST_EQ(sStr3, sStr4);
         }
     }
@@ -634,40 +634,40 @@ CxTest_CxPath::bUnit(
     //sToWin
     xTEST_CASE(cullBlockLoops)
     {
-        const std::tstring csUnixPath = xT("C:/TestDir");
-        const std::tstring csWinPath  = xT("C:\\TestDir");
+        const std::tstring_t csUnixPath = xT("C:/TestDir");
+        const std::tstring_t csWinPath  = xT("C:\\TestDir");
 
         sRes    = CxPath::sToWin(csUnixPath, false);
-        xTEST_EQ(sRes, std::tstring(xT("C:\\TestDir")));
+        xTEST_EQ(sRes, std::tstring_t(xT("C:\\TestDir")));
 
         sRes    = CxPath::sToWin(csUnixPath, true);
-        xTEST_EQ(sRes, std::tstring(xT("C:\\TestDir\\")));
+        xTEST_EQ(sRes, std::tstring_t(xT("C:\\TestDir\\")));
 
         sRes    = CxPath::sToWin(csWinPath, true);
-        xTEST_EQ(sRes, std::tstring(xT("C:\\TestDir\\")));
+        xTEST_EQ(sRes, std::tstring_t(xT("C:\\TestDir\\")));
 
         sRes    = CxPath::sToWin(csWinPath, false);
-        xTEST_EQ(sRes, std::tstring(xT("C:\\TestDir")));
+        xTEST_EQ(sRes, std::tstring_t(xT("C:\\TestDir")));
     }
 
     //-------------------------------------
     //sToNix
     xTEST_CASE(cullBlockLoops)
     {
-        const std::tstring csUnixPath = xT("/home/user/Soft/TestDir");
-        const std::tstring csWinPath  = xT("\\home\\user\\Soft\\TestDir");
+        const std::tstring_t csUnixPath = xT("/home/user/Soft/TestDir");
+        const std::tstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
         sRes    = CxPath::sToNix(csUnixPath,  false);
-        xTEST_EQ(sRes, std::tstring(xT("/home/user/Soft/TestDir")));
+        xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
 
         sRes    = CxPath::sToNix(csUnixPath,  true);
-        xTEST_EQ(sRes, std::tstring(xT("/home/user/Soft/TestDir/")));
+        xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
         sRes    = CxPath::sToNix(csWinPath,  true);
-        xTEST_EQ(sRes, std::tstring(xT("/home/user/Soft/TestDir/")));
+        xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
         sRes    = CxPath::sToNix(csWinPath,  false);
-        xTEST_EQ(sRes, std::tstring(xT("/home/user/Soft/TestDir")));
+        xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
     }
 
     //--------------------------------------------------
@@ -675,35 +675,35 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring csUnixPath = xT("C:/TestDir");
-            const std::tstring csWinPath  = xT("C:\\TestDir");
+            const std::tstring_t csUnixPath = xT("C:/TestDir");
+            const std::tstring_t csWinPath  = xT("C:\\TestDir");
 
             sRes = CxPath::sToCurrentOs(csWinPath,  false);
-            xTEST_EQ(sRes, std::tstring(xT("C:\\TestDir")));
+            xTEST_EQ(sRes, std::tstring_t(xT("C:\\TestDir")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  true);
-            xTEST_EQ(sRes, std::tstring(xT("C:\\TestDir\\")));
+            xTEST_EQ(sRes, std::tstring_t(xT("C:\\TestDir\\")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  true);
-            xTEST_EQ(sRes, std::tstring(xT("C:\\TestDir\\")));
+            xTEST_EQ(sRes, std::tstring_t(xT("C:\\TestDir\\")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  false);
-            xTEST_EQ(sRes, std::tstring(xT("C:\\TestDir")));
+            xTEST_EQ(sRes, std::tstring_t(xT("C:\\TestDir")));
         #elif xOS_ENV_UNIX
-            const std::tstring csUnixPath = xT("/home/user/Soft/TestDir");
-            const std::tstring csWinPath  = xT("\\home\\user\\Soft\\TestDir");
+            const std::tstring_t csUnixPath = xT("/home/user/Soft/TestDir");
+            const std::tstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
             sRes = CxPath::sToCurrentOs(csWinPath,  false);
-            xTEST_EQ(sRes, std::tstring(xT("/home/user/Soft/TestDir")));
+            xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  true);
-            xTEST_EQ(sRes, std::tstring(xT("/home/user/Soft/TestDir/")));
+            xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  true);
-            xTEST_EQ(sRes, std::tstring(xT("/home/user/Soft/TestDir/")));
+            xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
             sRes = CxPath::sToCurrentOs(csWinPath,  false);
-            xTEST_EQ(sRes, std::tstring(xT("/home/user/Soft/TestDir")));
+            xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
         #endif
     }
 
@@ -711,7 +711,7 @@ CxTest_CxPath::bUnit(
     //sGetAbsolute
     xTEST_CASE(cullBlockLoops)
     {
-        std::vector<std::tstring> vsArgs;
+        std::vector<std::tstring_t> vsArgs;
 
         CxCommandLine::bGetArgs(&vsArgs);
 
@@ -723,7 +723,7 @@ CxTest_CxPath::bUnit(
     //TODO: sMinimizeName
     xTEST_CASE(cullBlockLoops)
     {
-        const std::tstring sData[][2] = {
+        const std::tstring_t sData[][2] = {
             {xT("Name"),                   xT("Name")},
             {xT("full name"),              xT("ful~")},
             {xT("file name with ext"),     xT("fil~")},
@@ -736,8 +736,8 @@ CxTest_CxPath::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sMinimizeName(sData[i][0], 4);
-            std::tstring sStr2 = sData[i][1];
+            std::tstring_t sStr1 = CxPath::sMinimizeName(sData[i][0], 4);
+            std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
@@ -750,7 +750,7 @@ CxTest_CxPath::bUnit(
             sRes    = CxPath::sMinimize(csFilePath, 4);
             // n/a
 
-            std::tstring sFilePath = xT("D:/xVCL/Include\\xVCL/Units/Gui/vSpeedButton_LoadDrives.cpp");
+            std::tstring_t sFilePath = xT("D:/xVCL/Include\\xVCL/Units/Gui/vSpeedButton_LoadDrives.cpp");
             sRes    = CxPath::sMinimize(sFilePath, 45);
             // n/a
         #elif xOS_ENV_UNIX
@@ -763,7 +763,7 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("C:\\Test.doc\\")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("Z:\\okoval@winnerauto.ua.info\\")},
                 {xT("TEST_STRING_3.doc\\"),           xT("TEST_STRING_3.doc\\")},
@@ -771,7 +771,7 @@ CxTest_CxPath::bUnit(
                 {xT("TEST_STRING_3.f\\"),             xT("TEST_STRING_3.f\\")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("/home/Test.doc"),                  xT("/home/Test.doc/")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("/home/okoval@winnerauto.ua.info/")},
                 {xT("TEST_STRING_3.doc//"),             xT("TEST_STRING_3.doc/")},
@@ -781,12 +781,12 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sSlashAppend(sData[i][0]);
-            std::tstring sStr2 = CxPath::sSlashAppend(sData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSlashAppend(sData[i][0]);
+            std::tstring_t sStr2 = CxPath::sSlashAppend(sData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring sStr3 = CxPath::sSlashAppend(sData[i][0]);
-            std::tstring sStr4 = sData[i][1];
+            std::tstring_t sStr3 = CxPath::sSlashAppend(sData[i][0]);
+            std::tstring_t sStr4 = sData[i][1];
             xTEST_EQ(sStr3, sStr3);
         }
     }
@@ -796,7 +796,7 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("C:\\Test.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("Z:\\okoval@winnerauto.ua.info")},
                 {xT("TEST_STRING_3.doc\\"),           xT("TEST_STRING_3.doc")},
@@ -804,7 +804,7 @@ CxTest_CxPath::bUnit(
                 {xT("TEST_STRING_3.f\\"),             xT("TEST_STRING_3.f")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring sData[][3] = {
+            const std::tstring_t sData[][3] = {
                 {xT("/home/Test.doc"),                  xT("/home/Test.doc")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("/home/okoval@winnerauto.ua.info")},
                 {xT("TEST_STRING_3.doc//"),             xT("TEST_STRING_3.doc")},
@@ -814,12 +814,12 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring sStr1 = CxPath::sSlashRemove(sData[i][0]);
-            std::tstring sStr2 = CxPath::sSlashRemove(sData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSlashRemove(sData[i][0]);
+            std::tstring_t sStr2 = CxPath::sSlashRemove(sData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring sStr3 = CxPath::sSlashRemove(sData[i][0]);
-            std::tstring sStr4 = sData[i][1];
+            std::tstring_t sStr3 = CxPath::sSlashRemove(sData[i][0]);
+            std::tstring_t sStr4 = sData[i][1];
             xTEST_EQ(sStr3, sStr3);
         }
     }

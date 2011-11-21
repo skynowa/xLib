@@ -19,15 +19,15 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 /*virtual*/
 bool
 CxTest_CxMySql::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
-    std::tstring csHost       = xT("127.0.0.1");
-    std::tstring csUser       = xT("root");
-    std::tstring csPassword   = xT("root");
-    std::tstring csDbName     = xT("db_test");
-    UINT    uiPort       = 0;
-    std::tstring sTableName   = xT("t_main");
+    std::tstring_t csHost       = xT("127.0.0.1");
+    std::tstring_t csUser       = xT("root");
+    std::tstring_t csPassword   = xT("root");
+    std::tstring_t csDbName     = xT("db_test");
+    uint_t    uiPort       = 0;
+    std::tstring_t sTableName   = xT("t_main");
 
 
     /****************************************************************************
@@ -65,8 +65,8 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bConnect
     {
-        std::tstring csUnixSocket = xT("");
-        ULONG   ulClientFlag = 0;
+        std::tstring_t csUnixSocket = xT("");
+        ulong_t   ulClientFlag = 0;
 
         m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, ulClientFlag);
         if (false == m_bRes) {
@@ -187,7 +187,7 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bFetchFieldDirect
     {
-        UINT        uiFieldNumber = 0;
+        uint_t        uiFieldNumber = 0;
         MYSQL_FIELD mfField;
 
         m_bRes = recRec.bFetchFieldDirect(uiFieldNumber, &mfField);
@@ -216,7 +216,7 @@ CxTest_CxMySql::bUnit(
         //--------------------------------------------------
         //bFetchLengths
         {
-            ULONG *pulFieldLengths = NULL;
+            ulong_t *pulFieldLengths = NULL;
 
             m_bRes = recRec.bFetchLengths(&pulFieldLengths);
             xTEST_DIFF(false, m_bRes);
@@ -227,7 +227,7 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bFetchRow
     {
-        std::vector<std::tstring> vsRow;
+        std::vector<std::tstring_t> vsRow;
 
         for (my_ulonglong i = 0; i < recRec.ullRowsNum(); ++ i) {
             m_bRes = recRec.bFetchRow(&vsRow);

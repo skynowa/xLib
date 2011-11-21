@@ -56,7 +56,7 @@ class CxEvent :
             ///< signal the event for the waiting thread (!!! unlock !!!)
         bool               bReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
-        EObjectState      osWait     (const ULONG culTimeout = xTIMEOUT_INFINITE);
+        EObjectState      osWait     (const ulong_t culTimeout = xTIMEOUT_INFINITE);
             ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
         bool               bIsSignaled();
             ///< is signaled

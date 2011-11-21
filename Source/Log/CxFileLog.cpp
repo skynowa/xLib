@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxFileLog::CxFileLog(
-    const ULONG culMaxFileSizeBytes
+    const ulong_t culMaxFileSizeBytes
 ) :
     _m_sFilePath         (),
     _m_ulMaxFileSizeBytes(culMaxFileSizeBytes)
@@ -44,12 +44,12 @@ CxFileLog::~CxFileLog() {
 //---------------------------------------------------------------------------
 bool
 CxFileLog::bSetFilePath(
-    const std::tstring &csFilePath
+    const std::tstring_t &csFilePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
 
-    if (std::tstring::npos == csFilePath.find(CxConst::xSLASH)) {
+    if (std::tstring_t::npos == csFilePath.find(CxConst::xSLASH)) {
         _m_sFilePath.assign( CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath);
     } else {
         _m_sFilePath.assign( csFilePath );
@@ -58,7 +58,7 @@ CxFileLog::bSetFilePath(
     return true;
 }
 //---------------------------------------------------------------------------
-const std::tstring &
+const std::tstring_t &
 CxFileLog::sGetFilePath() const {
     /*DEBUG*/
 
@@ -67,7 +67,7 @@ CxFileLog::sGetFilePath() const {
 //---------------------------------------------------------------------------
 bool
 CxFileLog::bWrite(
-    const tchar *pcszFormat, ...
+    const tchar_t *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
@@ -79,12 +79,12 @@ CxFileLog::bWrite(
 
     //-------------------------------------
     //time
-    std::tstring sTime;
+    std::tstring_t sTime;
     sTime = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment
-    std::tstring sParam;
+    std::tstring_t sParam;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszFormat);
@@ -157,7 +157,7 @@ CxFileLog::_bDeleteIfFull() {
 
     //-------------------------------------
     //delete log, if full
-    ULONG ulSize = static_cast<ULONG>( CxFile::liGetSize(sGetFilePath()) );
+    ulong_t ulSize = static_cast<ulong_t>( CxFile::liGetSize(sGetFilePath()) );
 
     xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, true);
 

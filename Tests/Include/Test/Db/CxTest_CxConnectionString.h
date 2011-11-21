@@ -18,7 +18,7 @@ class CxTest_CxConnectionString :
                      CxTest_CxConnectionString();
         virtual     ~CxTest_CxConnectionString();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

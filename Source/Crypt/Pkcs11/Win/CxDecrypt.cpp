@@ -137,8 +137,8 @@ CxDecrypt::bVerifyUpdate(
 //---------------------------------------------------------------------------
 bool
 CxDecrypt::bMakeFile(
-    const std::tstring &csInFilePath,
-    const std::tstring &csOutFilePath,
+    const std::tstring_t &csInFilePath,
+    const std::tstring_t &csOutFilePath,
     CK_MECHANISM_PTR    pMechanism,
     CK_OBJECT_HANDLE    hKey
 )
@@ -151,7 +151,7 @@ CxDecrypt::bMakeFile(
     //-------------------------------------
     //������ ����-����� � �����
     bool         bRes            = false;
-    std::ustring usEncryptedData;
+    std::ustring_t usEncryptedData;
 
     {
         CxFile sfFileRaw;
@@ -165,14 +165,14 @@ CxDecrypt::bMakeFile(
 
     //-------------------------------------
     //������������ ������
-    ULONG ulPadSize        = 128;  //��� DES 64 ����
-    ULONG ulOffset         = 0;
-    ULONG ulOffset2        = 0;
-    ULONG ulResDecryptSize = 0;
+    ulong_t ulPadSize        = 128;  //��� DES 64 ����
+    ulong_t ulOffset         = 0;
+    ulong_t ulOffset2        = 0;
+    ulong_t ulResDecryptSize = 0;
 
     ////CK_BYTE  usDecryptedData[128]   = {0};
-    const ULONG  g_culBuffSize       = 8192 * 4;  //FIX_ME:
-    std::ustring usDecryptedData;    usDecryptedData.resize(g_culBuffSize);
+    const ulong_t  g_culBuffSize       = 8192 * 4;  //FIX_ME:
+    std::ustring_t usDecryptedData;    usDecryptedData.resize(g_culBuffSize);
     CK_ULONG     usDecryptedDataSize = g_culBuffSize;
 
     {

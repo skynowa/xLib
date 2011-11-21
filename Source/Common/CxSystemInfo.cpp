@@ -92,14 +92,14 @@ CxSystemInfo::osGetOS() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxSystemInfo::sFormatOsType(
     const EOsType otOsType
 )
 {
     /*DEBUG*/// otOsType - n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
 #if xOS_ENV_WIN
     switch (otOsType) {
@@ -125,7 +125,7 @@ CxSystemInfo::sFormatOsType(
     utsname unKernelInfo= {{0}};
 
     int iRes = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring_t());
 
     sRes.assign( CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine) );
 #endif
@@ -162,7 +162,7 @@ CxSystemInfo::oaGetOsArch() {
 
     int iRes = ::uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes,                                       oaUnknown);
-    /*DEBUG*/xASSERT_RET(0   != std::tstring(unKernelInfo.machine).size(), oaUnknown);
+    /*DEBUG*/xASSERT_RET(0   != std::tstring_t(unKernelInfo.machine).size(), oaUnknown);
 
     //32-bit checks
     if      (true == CxString::bCompareNoCase(xT("i386"), unKernelInfo.machine)) {
@@ -199,14 +199,14 @@ CxSystemInfo::oaGetOsArch() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxSystemInfo::sFormatOsArch(
     const EOsArch oaOsArch
 )
 {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     switch (oaOsArch) {
         case CxSystemInfo::oa32bit:     sRes = xT("32-bit");    break;
@@ -220,15 +220,15 @@ CxSystemInfo::sFormatOsArch(
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxSystemInfo::sGetComputerName() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    ULONG  ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
-    tchar szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
+    ulong_t  ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
+    tchar_t szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
 
     BOOL bRes = ::GetComputerName(szBuff, &ulBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("localhost"));
@@ -293,18 +293,18 @@ CxSystemInfo::bIsUserAnAdmin() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxSystemInfo::sGetUserName() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    ULONG ulBuffSize        = UNLEN;
-    tchar szBuff[UNLEN + 1] = {0};
+    ulong_t ulBuffSize        = UNLEN;
+    tchar_t szBuff[UNLEN + 1] = {0};
 
     BOOL bRes = ::GetUserName(&szBuff[0], &ulBuffSize);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring_t());
 
     sRes.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
@@ -312,7 +312,7 @@ CxSystemInfo::sGetUserName() {
     //http://www.metalshell.com/source_code/83/Get_GID_Name.html
 
     passwd *ppwPassword = ::getpwuid(getuid());
-    /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::tstring_t());
 
     sRes.assign(ppwPassword->pw_name);
 #endif
@@ -321,11 +321,11 @@ CxSystemInfo::sGetUserName() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-ULONG
+ulong_t
 CxSystemInfo::ulGetNumOfCpus() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = 0UL;
+    ulong_t ulRes = 0UL;
 
 #if xOS_ENV_WIN
     SYSTEM_INFO siSysInfo = {{0}};
@@ -341,10 +341,10 @@ CxSystemInfo::ulGetNumOfCpus() {
         int iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRes, &uiResSize, NULL, 0);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, 0);
     #else
-        LONG liRes = ::sysconf(_SC_NPROCESSORS_ONLN);
+        long_t liRes = ::sysconf(_SC_NPROCESSORS_ONLN);
         /*DEBUG*/xASSERT_RET(- 1 != liRes, 0);
 
-        ulRes = static_cast<ULONG>( liRes );
+        ulRes = static_cast<ulong_t>( liRes );
     #endif
 #endif
 
@@ -353,11 +353,11 @@ CxSystemInfo::ulGetNumOfCpus() {
 //---------------------------------------------------------------------------
 //TODO: ulGetCurrentCpuNum
 /*static*/
-ULONG
+ulong_t
 CxSystemInfo::ulGetCurrentCpuNum() {
     /*DEBUG*/// n/a
 
-    ULONG ulRes = static_cast<ULONG>( - 1 );
+    ulong_t ulRes = static_cast<ulong_t>( - 1 );
 
 #if xOS_ENV_WIN
     #if (xWINVER >= xWIN32_7)
@@ -378,17 +378,17 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         ulRes = 0;
     #else
         #if defined(SYS_getcpu)
-            ULONG ulCpu = 0UL;
+            ulong_t ulCpu = 0UL;
 
             int iRes = ::syscall(SYS_getcpu, &ulCpu, NULL, NULL);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( - 1 ));
 
             ulRes = ulCpu;
         #else
             int iRes = sched_getcpu();
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ULONG>( - 1 ));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( - 1 ));
 
-            ulRes = static_cast<ULONG>( iRes );
+            ulRes = static_cast<ulong_t>( iRes );
         #endif
     #endif
 #endif
@@ -398,11 +398,11 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 //---------------------------------------------------------------------------
 //TODO: ullGetCpuSpeed
 /*static*/
-ULONGLONG
+ulonglong_t
 CxSystemInfo::ullGetCpuSpeed() {
     /*DEBUG*/// n/a
 
-    ULONGLONG ullRes = 0ULL;
+    ulonglong_t ullRes = 0ULL;
 
 #if xOS_ENV_WIN
     //TODO: ullGetCpuSpeed
@@ -414,8 +414,8 @@ CxSystemInfo::ullGetCpuSpeed() {
         };
 
         unsigned __int64 CxCycle::ullGetCount() {
-                UINT uiTimeHigh = 0;
-                UINT uiTimeLow  = 0;
+                uint_t uiTimeHigh = 0;
+                uint_t uiTimeLow  = 0;
 
                 __asm {
                     rdtsc
@@ -427,7 +427,7 @@ CxSystemInfo::ullGetCpuSpeed() {
         };
 
 
-        const ULONGLONG ullStartCycle = CxCycle::ullGetCount();
+        const ulonglong_t ullStartCycle = CxCycle::ullGetCount();
 
         bSleep(1000UL);
 

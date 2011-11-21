@@ -23,7 +23,7 @@ class CWorkThread :
         virtual     ~CWorkThread();
 
     protected:
-        virtual UINT uiOnRun    (void *pData);
+        virtual uint_t uiOnRun    (void *pData);
 };
 //---------------------------------------------------------------------------
 class CxTest_CxThread :
@@ -33,7 +33,7 @@ class CxTest_CxThread :
                      CxTest_CxThread();
         virtual     ~CxTest_CxThread();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

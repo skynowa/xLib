@@ -19,7 +19,7 @@ CxTest_CxCriticalSection::~CxTest_CxCriticalSection() {
 /*virtual*/
 bool
 CxTest_CxCriticalSection::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     size_t uiVal = 0;

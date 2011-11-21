@@ -25,7 +25,7 @@ CxMsgBoxT::iShow(
     const HWND    chWnd,
     const TextT  &cText,
     const TitleT &cTitle,
-    const UINT    cuiType
+    const uint_t    cuiType
 )
 {
     EModalResult mrRes = mrAbort;
@@ -47,7 +47,7 @@ CxMsgBoxT::EModalResult
 CxMsgBoxT::iShow(
     const TextT  &cText,
     const TitleT &cTitle,
-    const UINT    cuiType
+    const uint_t    cuiType
 )
 {
     EModalResult mrRes = mrAbort;
@@ -59,7 +59,7 @@ CxMsgBoxT::iShow(
                             CxString::lexical_cast(cTitle).c_str(),
                             cuiType) );
 #elif xOS_ENV_UNIX
-    std::tstring sMsg = CxString::sFormat(
+    std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
@@ -88,7 +88,7 @@ CxMsgBoxT::iShow(
                             CxString::lexical_cast(cTitle).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
-    std::tstring sMsg = CxString::sFormat(
+    std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
@@ -116,7 +116,7 @@ CxMsgBoxT::iShow(
                             CxPath::sGetFullName( CxPath::sGetExe() ).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
-    std::tstring sMsg = CxString::sFormat(
+    std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::lexical_cast(cText).c_str(),
                             xT("Message box"),

@@ -19,7 +19,7 @@ CxTest_CxCurrentProcess::~CxTest_CxCurrentProcess() {
 /*virtual*/
 bool
 CxTest_CxCurrentProcess::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------
@@ -27,7 +27,7 @@ CxTest_CxCurrentProcess::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxProcess::TxId ulRes = CxCurrentProcess::ulGetId();
-        xTEST_LESS_EQ(0UL, (ULONG)ulRes);
+        xTEST_LESS_EQ(0UL, (ulong_t)ulRes);
     }
 
     //--------------------------------------------------
@@ -35,7 +35,7 @@ CxTest_CxCurrentProcess::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         CxProcess::TxId ulRes = CxCurrentProcess::ulGetParentId();
-        xTEST_LESS_EQ(0UL, (ULONG)ulRes);
+        xTEST_LESS_EQ(0UL, (ulong_t)ulRes);
     }
 
     return true;

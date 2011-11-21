@@ -35,7 +35,7 @@ CxTest_CxSingleton::~CxTest_CxSingleton() {
 /*virtual*/
 bool
 CxTest_CxSingleton::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------

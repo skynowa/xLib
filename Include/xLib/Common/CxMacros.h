@@ -41,22 +41,22 @@
 
 //---------------------------------------------------------------------------
 //converters
-#define xS2US(s)                std::ustring( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::tstring to std::ustring
-#define xUS2S(us)               std::tstring( (us).begin(), (us).begin() + (us).size() )
-    ///< convert std::ustring to std::tstring
-#define xS2TS(s)                std::tstring( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::string to std::tstring
+#define xS2US(s)                std::ustring_t( (s).begin(),  (s).begin()  + (s).size()  )
+    ///< convert std::tstring_t to std::ustring_t
+#define xUS2S(us)               std::tstring_t( (us).begin(), (us).begin() + (us).size() )
+    ///< convert std::ustring_t to std::tstring_t
+#define xS2TS(s)                std::tstring_t( (s).begin(),  (s).begin()  + (s).size()  )
+    ///< convert std::string to std::tstring_t
 #define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
-    ///< convert std::tstring to std::string
+    ///< convert std::tstring_t to std::string
 
 #if xCOMPILER_CODEGEAR
-    #define xD2S(s)   std::tstring((s).c_str())
-        ///< convert Delphi::String::c_str() to std::tstring
-    #define xD2AS(s)  std::tstring((s).t_str())
-        ///< convert Delphi::String::t_str() to std::tstring
+    #define xD2S(s)   std::tstring_t((s).c_str())
+        ///< convert Delphi::String::c_str() to std::tstring_t
+    #define xD2AS(s)  std::tstring_t((s).t_str())
+        ///< convert Delphi::String::t_str() to std::tstring_t
     #define xS2D(s)   String((s).c_str())
-        ///< convert std::tstring to Delphi::String
+        ///< convert std::tstring_t to Delphi::String
     #define xD2WD(s)  WideString((s))
         ///< convert Delphi::String to Delphi::WideString
 #endif
@@ -169,7 +169,7 @@
         ///< catch block
 
     //xTRY_LONG
-    #define xTRY_LONG(ret_error_value)    LONG liRes = ret_error_value;  \
+    #define xTRY_LONG(ret_error_value)    long_t liRes = ret_error_value;  \
                 try {                \
                     {                \
                         liRes =         \
@@ -327,48 +327,48 @@
         #define xPR_SIZET xT("I")
             ///< qualifier for std::size_t
         #define xPR_I64d  xT("I64d")
-            ///< qualifier for  long long int
+            ///< qualifier for  long_t long_t int
         #define xPR_I64u  xT("I64u")
-            ///< qualifier for unsigned long long int
+            ///< qualifier for unsigned long_t long_t int
         #define xPR_I64x  xT("I64x")
-            ///< qualifier for long long int (hex)
+            ///< qualifier for long_t long_t int (hex)
         #define xPR_I64X  xT("I64X")
-            ///< qualifier for long long int (hex)
+            ///< qualifier for long_t long_t int (hex)
     #else
         #define xPR_SIZET xT("u")
             ///< qualifier for std::size_t
         #define xPR_I64d  xT("lld")
-            ///< qualifier for  long long int
+            ///< qualifier for  long_t long_t int
         #define xPR_I64u  xT("llu")
-            ///< qualifier for unsigned long long in
+            ///< qualifier for unsigned long_t long_t in
         #define xPR_I64x  xT("llx")
-            ///< qualifier for long long int (hex)
+            ///< qualifier for long_t long_t int (hex)
         #define xPR_I64X  xT("llX")
-            ///< qualifier for long long int (hex)
+            ///< qualifier for long_t long_t int (hex)
     #endif
 #elif xOS_ENV_UNIX
     #ifdef xCPU_64BIT
         #define xPR_SIZET xT("zu")
             ///< qualifier for std::size_t
         #define xPR_I64d  xT("lld")
-            ///< qualifier for  long long int
+            ///< qualifier for  long_t long_t int
         #define xPR_I64u  xT("llu")
-            ///< qualifier for unsigned long long int
+            ///< qualifier for unsigned long_t long_t int
         #define xPR_I64x  xT("llx")
-            ///< qualifier for long long int (hex)
+            ///< qualifier for long_t long_t int (hex)
         #define xPR_I64X  xT("llX")
-            ///< qualifier for long long int (hex)
+            ///< qualifier for long_t long_t int (hex)
     #else
         #define xPR_SIZET xT("zu")
             ///< qualifier for std::size_t
         #define xPR_I64d  xT("lld")
-            ///< qualifier for  long long int
+            ///< qualifier for  long_t long_t int
         #define xPR_I64u  xT("llu")
-            ///< qualifier for unsigned long long int
+            ///< qualifier for unsigned long_t long_t int
         #define xPR_I64x  xT("llx")
-            ///< qualifier for long long int (hex)
+            ///< qualifier for long_t long_t int (hex)
         #define xPR_I64X  xT("llX")
-            ///< qualifier for long long int (hex)
+            ///< qualifier for long_t long_t int (hex)
     #endif
 #endif
 
@@ -478,19 +478,19 @@ class CxMacros :
             ///< allows any pointer to be converted into any other pointer type
 
         template <class T>
-        static inline std::tstring
+        static inline std::tstring_t
         sAsTString(const T &x) {
-            return (NULL != x) ? (std::tstring(x)) : (std::tstring());
+            return (NULL != x) ? (std::tstring_t(x)) : (std::tstring_t());
         }
-            ///< convert C-string to std::tstring
+            ///< convert C-string to std::tstring_t
 
         //TODO: tests
         template <class T>
-        static inline const tchar *
+        static inline const tchar_t *
         pcszAsCString(const T &x) {
             return (true == x.empty()) ? (NULL) : (x.c_str());
         }
-            ///< convert std::tstring to C-string
+            ///< convert std::tstring_t to C-string
 
     private:
                 CxMacros();

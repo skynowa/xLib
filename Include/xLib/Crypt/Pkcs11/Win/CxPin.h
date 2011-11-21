@@ -35,8 +35,8 @@ class CxPin :
 
         //Utils
     #if xTODO
-        std::tstring              sChangeUserPin(const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
-        std::tstring              sChangeSOPin  (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
+        std::tstring_t              sChangeUserPin(const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
+        std::tstring_t              sChangeSOPin  (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);
     #endif
 
     private:

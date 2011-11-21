@@ -18,7 +18,7 @@ class CxTest_CxLocalStorage :
                       CxTest_CxLocalStorage();
         virtual      ~CxTest_CxLocalStorage();
 
-        virtual  bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual  bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

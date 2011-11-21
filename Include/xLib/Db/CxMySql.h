@@ -35,19 +35,19 @@ class CxMySQLConnection :
             ///< validating handle
         bool                     bOptions         (const mysql_option cmoOption, const void *cpvArg) const;
             ///< set extra connect options and affect behavior
-        bool                     bConnect         (const std::tstring &csHost, const std::tstring &csUser, const std::tstring &csPassword, const std::tstring &csDb, const UINT cuiPort, const std::tstring &csUnixSocket, const ULONG culClientFlag);
+        bool                     bConnect         (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t cuiPort, const std::tstring_t &csUnixSocket, const ulong_t culClientFlag);
             ///< attempts to establish a connection to a MySQL database engine running on host
-        bool                     bQuery           (const tchar *pcszSqlFormat, ...) const;
+        bool                     bQuery           (const tchar_t *pcszSqlFormat, ...) const;
             ///< executes the SQL statement
-        UINT                     uiFieldCount     () const;
+        uint_t                     uiFieldCount     () const;
             ///< number of columns in a result set
         bool                     bClose           ();
             ///< closes a previously opened connection
 
         //errors
-        UINT                     uiGetLastError   () const;
+        uint_t                     uiGetLastError   () const;
             ///< error code for the most recently invoked API function that can succeed or fail
-        std::tstring             sGetLastErrorStr () const;
+        std::tstring_t             sGetLastErrorStr () const;
             ///< error message for the most recently invoked API function that failed
 
     private:
@@ -70,17 +70,17 @@ class CxMySQLRecordset :
         bool                     bIsValid         () const;
             ///< validating handle
 
-        UINT                     uiFieldsNum      () const;
+        uint_t                     uiFieldsNum      () const;
             ///< number of columns in a result set
         my_ulonglong             ullRowsNum       () const;
             ///< number of rows in the result set
         bool                     bFetchField      (MYSQL_FIELD *pmfField) const;
             ///< The MYSQL_FIELD structure for the current column
-        bool                     bFetchFieldDirect(const UINT cuiFieldNumber, MYSQL_FIELD *pmfField) const;
+        bool                     bFetchFieldDirect(const uint_t cuiFieldNumber, MYSQL_FIELD *pmfField) const;
             ///< The MYSQL_FIELD structure for the specified column
         bool                     bFetchFields     (MYSQL_FIELD *pmfField) const;
             ///< An array of MYSQL_FIELD structures for all columns of a result set
-        bool                     bFetchRow        (std::vector<std::tstring> *pvsRow) const;
+        bool                     bFetchRow        (std::vector<std::tstring_t> *pvsRow) const;
             ///< fetching row
 
     private:
@@ -89,8 +89,8 @@ class CxMySQLRecordset :
         MYSQL_RES               *_m_pmrResult;
             ///< for private use
 
-        bool                     _bFetchLengths   (ULONG **ppulFieldLengths) const;
-            ///< An array of unsigned long integers representing the size of each column
+        bool                     _bFetchLengths   (ulong_t **ppulFieldLengths) const;
+            ///< An array of unsigned long_t integers representing the size of each column
         bool                     _bFetchRow       (MYSQL_ROW *pmrRow) const;
             ///< A MYSQL_ROW structure for the next row
 };
@@ -102,7 +102,7 @@ xNAMESPACE_END(NxLib)
 
 #if xTODO
     MYSQL_ROW row;
-    unsigned long *lengths;
+    unsigned long_t *lengths;
     unsigned int num_fields;
     unsigned int i;
 

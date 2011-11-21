@@ -19,7 +19,7 @@ CxTest_CxProcess::~CxTest_CxProcess() {
 /*virtual*/
 bool
 CxTest_CxProcess::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------
@@ -27,11 +27,11 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring csFilePath = xT("explorer.exe");
-            const std::tstring csCmdLine  = xT("");
+            const std::tstring_t csFilePath = xT("explorer.exe");
+            const std::tstring_t csCmdLine  = xT("");
         #elif xOS_ENV_UNIX
-            const std::tstring csFilePath = xT("dolphin");
-            const std::tstring csCmdLine  = xT("");
+            const std::tstring_t csFilePath = xT("dolphin");
+            const std::tstring_t csCmdLine  = xT("");
         #endif
 
         ////m_bRes = CxProcess::bExec(csFilePath, csCmdLine.c_str(), 0);

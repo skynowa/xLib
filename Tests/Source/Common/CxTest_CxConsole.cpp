@@ -19,7 +19,7 @@ CxTest_CxConsole::~CxTest_CxConsole() {
 /*virtual*/
 bool
 CxTest_CxConsole::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------
@@ -29,7 +29,7 @@ CxTest_CxConsole::bUnit(
         #if xTODO
             CxConsole cnConsole;
 
-            const std::tstring     csText;
+            const std::tstring_t     csText;
             const EForeground cfgForeground;
             const bool        cbIsBold;
             const bool        cbIsUnderline;
@@ -58,7 +58,7 @@ CxTest_CxConsole::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring csStr = xT("\tConsole_test_string");
+            const std::tstring_t csStr = xT("\tConsole_test_string");
 
 
             CxConsole cnConsole;
@@ -73,7 +73,7 @@ CxTest_CxConsole::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring csStr = xT("\tConsole_test_line");
+            const std::tstring_t csStr = xT("\tConsole_test_line");
 
 
             CxConsole cnConsole;
@@ -88,7 +88,7 @@ CxTest_CxConsole::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring csStr = xT("\tConsole_test_error");
+            const std::tstring_t csStr = xT("\tConsole_test_error");
 
 
             CxConsole cnConsole;
@@ -103,9 +103,9 @@ CxTest_CxConsole::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring csText  = xT("iMsgBox_text");
-            const std::tstring csTitle = xT("iMsgBox_title");
-            const UINT    cuiType = 0U;
+            const std::tstring_t csText  = xT("iMsgBox_text");
+            const std::tstring_t csTitle = xT("iMsgBox_title");
+            const uint_t    cuiType = 0U;
 
 
             CxConsole cnConsole;
@@ -120,9 +120,9 @@ CxTest_CxConsole::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring csPrompt    = xT("bPrompt_simple_prompt");
+            const std::tstring_t csPrompt    = xT("bPrompt_simple_prompt");
             const bool    cbIsVisible = true;
-            std::tstring       sAnswer     = xT("sAnswer_bla-bla-bla");
+            std::tstring_t       sAnswer     = xT("sAnswer_bla-bla-bla");
 
 
             CxConsole cnConsole;
@@ -161,7 +161,7 @@ CxTest_CxConsole::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if 1 && xOS_ENV_WIN
-            std::tstring csTitle = xT("Title1");
+            std::tstring_t csTitle = xT("Title1");
 
 
             CxConsole cnConsole;
@@ -179,7 +179,7 @@ CxTest_CxConsole::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring csTitle = xT("Title1");
+            const std::tstring_t csTitle = xT("Title1");
 
 
             CxConsole cnConsole;

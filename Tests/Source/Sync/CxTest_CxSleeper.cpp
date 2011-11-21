@@ -19,7 +19,7 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 /*virtual*/
 bool
 CxTest_CxSleeper::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //--------------------------------------------------

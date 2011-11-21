@@ -48,11 +48,11 @@ class CxObject :
             ///< destroys an object
 
         //Utils
-        static bool          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, const std::ustring &cusDataLabel, std::ustring *pusData);
+        static bool          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, std::ustring_t *pusData);
             ///< get data
-        static bool          bSetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, const std::ustring &cusDataLabel, const std::ustring &cusData);
+        static bool          bSetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, const std::ustring_t &cusData);
             ///< set data
-        static bool          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring &cusUserPin, std::vector<std::ustring> *pusDataLabel, std::vector<std::ustring> *pusDataValue);
+        static bool          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, std::vector<std::ustring_t> *pusDataLabel, std::vector<std::ustring_t> *pusDataValue);
             ///< get data
 
     private:

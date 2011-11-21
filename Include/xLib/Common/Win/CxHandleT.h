@@ -71,9 +71,9 @@ class CxHandleT
         bool                bClose                  ();
             ///< close
 
-        ULONG               ulGetInformation        () const;
+        ulong_t               ulGetInformation        () const;
             ///< get certain properties of an object handle
-        bool                bSetInformation         (const ULONG culMask, const ULONG culFlags);
+        bool                bSetInformation         (const ulong_t culMask, const ulong_t culFlags);
             ///< set information
         bool                 bIsFlagInherit          () const;
             ///< is flag inherit
@@ -83,7 +83,7 @@ class CxHandleT
             ///< set flaginherit
         bool                bSetFlagProtectFromClose(const bool cbFlagProtectFromClose);
             ///< set flag protect from close
-        HANDLE              hDuplicate              (const HANDLE chTargetProcess, const ULONG cluDesiredAccess, const bool cbInheritHandle/* = false*/, const ULONG cluOptions/* = 0*/) const;
+        HANDLE              hDuplicate              (const HANDLE chTargetProcess, const ulong_t cluDesiredAccess, const bool cbInheritHandle/* = false*/, const ulong_t cluOptions/* = 0*/) const;
             ///< duplicates an object handle
 
         //static

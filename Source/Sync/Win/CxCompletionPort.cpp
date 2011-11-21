@@ -31,7 +31,7 @@ CxCompletionPort::~CxCompletionPort() {
 //DONE: bCreate (Creates an input/output (I/O) completion port and associates it with a specified file handle, or creates an I/O completion port that is not yet associated with a file handle, allowing association at a later time.)
 bool
 CxCompletionPort::bCreate(
-    ULONG ulThreadsNum
+    ulong_t ulThreadsNum
 )
 {
     /*DEBUG*/// _m_hCP       - n/a
@@ -67,7 +67,7 @@ CxCompletionPort::bGetStatus(
     LPDWORD       lpNumberOfBytes,
     PULONG_PTR    lpCompletionKey,
     LPOVERLAPPED *lpOverlapped,
-    ULONG         ulMilliseconds
+    ulong_t         ulMilliseconds
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_hCP.bIsValid(), false);
@@ -85,7 +85,7 @@ CxCompletionPort::bGetStatus(
 //DONE: bPostStatus (Posts an I/O completion packet to an I/O completion port.)
 bool
 CxCompletionPort::bPostStatus(
-    ULONG        ulNumberOfBytesTransferred,
+    ulong_t        ulNumberOfBytesTransferred,
     ULONG_PTR    ulCompletionKey,
     LPOVERLAPPED lpOverlapped
 )

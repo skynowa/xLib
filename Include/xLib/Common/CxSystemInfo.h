@@ -54,25 +54,25 @@ class CxSystemInfo :
 
         static EOsType      osGetOS           ();
             ///< get information about the current OS
-        static std::tstring sFormatOsType     (const EOsType otOsType);
+        static std::tstring_t sFormatOsType     (const EOsType otOsType);
             ///< format OS type
 
         static EOsArch      oaGetOsArch       ();
             ///< get OS architecture
-        static std::tstring sFormatOsArch     (const EOsArch oaOsArch);
+        static std::tstring_t sFormatOsArch     (const EOsArch oaOsArch);
             ///< format get OS architecture
 
-        static std::tstring sGetComputerName  ();
+        static std::tstring_t sGetComputerName  ();
             ///< get the NetBIOS name of the local computer
         static bool         bIsUserAnAdmin    ();
             ///< is current user an admin
-        static std::tstring sGetUserName      ();
+        static std::tstring_t sGetUserName      ();
             ///< get the name of the user associated with the current thread
-        static ULONG        ulGetNumOfCpus    ();
+        static ulong_t        ulGetNumOfCpus    ();
             ///< get num of CPUs
-        static ULONG        ulGetCurrentCpuNum();
+        static ulong_t        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
-        static ULONGLONG    ullGetCpuSpeed    ();
+        static ulonglong_t    ullGetCpuSpeed    ();
             ///< get the CPU speed in MHz
 
    private:

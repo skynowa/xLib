@@ -19,7 +19,7 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 /*virtual*/
 bool
 CxTest_CxEvent::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------
@@ -116,7 +116,7 @@ CxTest_CxEvent::bUnit(
             xTEST_EQ(cbInitialState, m_bRes);
 
             CxEvent::EObjectState osRes = objEvent.osWait(5);
-            xTEST_EQ((ULONG)CxEvent::osTimeout, (ULONG)osRes);
+            xTEST_EQ((ulong_t)CxEvent::osTimeout, (ulong_t)osRes);
 
             m_bRes = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRes);
@@ -136,7 +136,7 @@ CxTest_CxEvent::bUnit(
 
             //BUG: objEvent.osWait(5);
         #if xTODO
-            xTEST_EQ((ULONG)CxEvent::osSignaled, (ULONG)osRes);   //LINUX   - osSignaled
+            xTEST_EQ((ulong_t)CxEvent::osSignaled, (ulong_t)osRes);   //LINUX   - osSignaled
                                                                   //Windows - osTimeout
         #endif
             m_bRes = objEvent.bIsSignaled();

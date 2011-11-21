@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxChar::bIsAlphaNum(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISALNUM(cchChar) );
@@ -27,7 +27,7 @@ CxChar::bIsAlphaNum(
 /*static*/
 bool
 CxChar::bIsAlpha(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( ::xTISALPHA(cchChar) );
@@ -36,7 +36,7 @@ CxChar::bIsAlpha(
 /*static*/
 bool
 CxChar::bIsControl(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISCNTRL(cchChar) );
@@ -45,7 +45,7 @@ CxChar::bIsControl(
 /*static*/
 bool
 CxChar::bIsDigitDec(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISDIGIT(cchChar) );
@@ -54,7 +54,7 @@ CxChar::bIsDigitDec(
 /*static*/
 bool
 CxChar::bIsDigitHex(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISXDIGIT(cchChar) );
@@ -63,7 +63,7 @@ CxChar::bIsDigitHex(
 /*static*/
 bool
 CxChar::bIsGraph(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISGRAPH(cchChar) );
@@ -72,7 +72,7 @@ CxChar::bIsGraph(
 /*static*/
 bool
 CxChar::bIsPrint(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISPRINT(cchChar) );
@@ -81,7 +81,7 @@ CxChar::bIsPrint(
 /*static*/
 bool
 CxChar::bIsPunct(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISPUNCT(cchChar) );
@@ -90,7 +90,7 @@ CxChar::bIsPunct(
 /*static*/
 bool
 CxChar::bIsSpace(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISSPACE(cchChar) );
@@ -99,7 +99,7 @@ CxChar::bIsSpace(
 /*static*/
 bool
 CxChar::bIsLower(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISLOWER(cchChar) );
@@ -108,25 +108,25 @@ CxChar::bIsLower(
 /*static*/
 bool
 CxChar::bIsUpper(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xINT_AS_BOOL( std::xTISUPPER(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
-tchar
+tchar_t
 CxChar::chToLower(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xTTOLOWER(cchChar);
 }
 //---------------------------------------------------------------------------
 /*static*/
-tchar
+tchar_t
 CxChar::chToUpper(
-    const tchar cchChar
+    const tchar_t cchChar
 )
 {
     return xTTOUPPER(cchChar);

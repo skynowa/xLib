@@ -11,7 +11,7 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-LONG CxCom::_ms_lInitCount = 0;
+long_t CxCom::_ms_lInitCount = 0;
 
 /****************************************************************************
 *    public
@@ -22,7 +22,7 @@ LONG CxCom::_ms_lInitCount = 0;
 CxCom::CxCom(
     const EConcurrencyModel ccmCoModel/* = cmMultiThreaded*/
 ) :
-    _m_ulConModel(static_cast<ULONG>( ccmCoModel ))
+    _m_ulConModel(static_cast<ulong_t>( ccmCoModel ))
 {
     /*DEBUG*/// n/a ?
 

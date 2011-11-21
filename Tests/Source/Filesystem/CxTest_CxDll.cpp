@@ -19,11 +19,11 @@ CxTest_CxDll::~CxTest_CxDll() {
 /*virtual*/
 bool
 CxTest_CxDll::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     #if xOS_ENV_WIN
-        const std::tstring sData[][2] = {
+        const std::tstring_t sData[][2] = {
             {xT("kernel32.dll"), xT("Beep")}
         };
     #elif xOS_ENV_UNIX
@@ -31,11 +31,11 @@ CxTest_CxDll::bUnit(
             //if -static CxDll::bLoad don't load any 'so'-libraries
             return true;
 
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("libm.so"), xT("cos")}
             };
         #else
-            const std::tstring sData[][2] = {
+            const std::tstring_t sData[][2] = {
                 {xT("libm.so"), xT("cos")}
             };
         #endif
@@ -70,7 +70,7 @@ CxTest_CxDll::bUnit(
         xASSERT(NULL != fpRes);
 
     #if xOS_ENV_WIN
-        typedef void (__stdcall *pDllFunc)(ULONG, ULONG);
+        typedef void (__stdcall *pDllFunc)(ulong_t, ulong_t);
 
         pDllFunc pLoadBeepFunc = NULL;
 

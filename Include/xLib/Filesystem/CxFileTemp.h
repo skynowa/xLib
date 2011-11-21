@@ -21,7 +21,7 @@ class CxFileTemp :
         virtual      ~CxFileTemp();
             ///< destructor
 
-        bool          bCreate   (const std::tstring &csFilePath, const std::tstring &csDirPath, CxFile *pfFile);
+        bool          bCreate   (const std::tstring_t &csFilePath, const std::tstring_t &csDirPath, CxFile *pfFile);
             ///< create temporary file, open it
 
     private:
@@ -29,7 +29,7 @@ class CxFileTemp :
 
         const bool    _m_cbIsAutoDelete;    ///< autodelete flag
         CxFile       *_m_pfFile;            ///< temporary file handle
-        std::tstring  _m_sFilePath;         ///< temporary file path
+        std::tstring_t  _m_sFilePath;         ///< temporary file path
 };
 
 xNAMESPACE_END(NxLib)

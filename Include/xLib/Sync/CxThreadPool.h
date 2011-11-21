@@ -31,7 +31,7 @@ class CxThreadPool :
     private:
         mutable bool              _m_bRes;
 
-        UINT                      _m_uiStackSize;
+        uint_t                      _m_uiStackSize;
         TFuncPtr                  _m_fpFuncPtr;
         void                     *_m_pvParam;
 
@@ -62,18 +62,18 @@ class CxThreadPool :
         virtual                  ~CxThreadPool ();
 
         //�������� � �������
-        bool                      bCreateGroup (UINT uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, UINT uiNumTasks, UINT uiMaxRunningTasks);
+        bool                      bCreateGroup (uint_t uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, uint_t uiNumTasks, uint_t uiMaxRunningTasks);
         bool                      bResumeGroup ();
         bool                      bPauseGroup  ();
-        bool                      bExitGroup   (ULONG ulTimeout);
-        bool                      bKillGroup   (ULONG ulTimeout);
-        bool                      bWaitGroup   (ULONG ulTimeout);
+        bool                      bExitGroup   (ulong_t ulTimeout);
+        bool                      bKillGroup   (ulong_t ulTimeout);
+        bool                      bWaitGroup   (ulong_t ulTimeout);
 
         size_t                    uiGetMaxTasks() const;
-        bool                      bSetMaxTasks (UINT uiNum);
+        bool                      bSetMaxTasks (uint_t uiNum);
 
         size_t                    uiGetNumTasks() const;
-        bool                      bSetNumTasks (UINT uiNum);
+        bool                      bSetNumTasks (uint_t uiNum);
 
         bool                      bIsEmpty     () const;
         bool                      bIsFull      () const;
@@ -82,7 +82,7 @@ class CxThreadPool :
         //������
 
     protected:
-        virtual UINT              uiOnRun      (void *pvParam);    /*overload*/
+        virtual uint_t              uiOnRun      (void *pvParam);    /*overload*/
 };
 
 xNAMESPACE_END(NxLib)
@@ -108,5 +108,5 @@ xNAMESPACE_END(NxLib)
 /*
 ����� ������������ ������ ������:
 
-m_bRes = thpTP->bCreateGroup(0, (UINT (WINAPI *)(void *))&CTest::s_uiThreadFunc, NULL);
+m_bRes = thpTP->bCreateGroup(0, (uint_t (WINAPI *)(void *))&CTest::s_uiThreadFunc, NULL);
 */

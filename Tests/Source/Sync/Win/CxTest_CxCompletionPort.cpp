@@ -19,7 +19,7 @@ CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
 /*virtual*/
 bool
 CxTest_CxCompletionPort::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     /*DEBUG*/

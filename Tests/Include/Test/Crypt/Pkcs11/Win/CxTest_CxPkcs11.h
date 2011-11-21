@@ -21,7 +21,7 @@ class CxTest_CxPkcs11 :
                      CxTest_CxPkcs11();
         virtual     ~CxTest_CxPkcs11();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

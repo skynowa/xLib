@@ -19,7 +19,7 @@ CxTest_CxArray::~CxTest_CxArray() {
 /*virtual*/
 bool
 CxTest_CxArray::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     const size_t cuiArraySize = 5;
@@ -62,8 +62,8 @@ CxTest_CxArray::bUnit(
     }
 
     xTEST_CASE(cullBlockLoops) {
-        NxArray::make_array<std::tstring>( xT("0"),  xT("1") );
-        NxArray::make_array<std::tstring>( xT("0"),  xT("1"),  xT("2") );
+        NxArray::make_array<std::tstring_t>( xT("0"),  xT("1") );
+        NxArray::make_array<std::tstring_t>( xT("0"),  xT("1"),  xT("2") );
     }
 
     return true;

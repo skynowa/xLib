@@ -18,7 +18,7 @@ class CxTest_bGetUsbInfo :
                      CxTest_bGetUsbInfo();
         virtual     ~CxTest_bGetUsbInfo();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

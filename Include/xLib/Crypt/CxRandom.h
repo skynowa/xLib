@@ -16,12 +16,12 @@ class CxRandom :
     /// random
 {
     public:
-                            CxRandom     (LONG liSeed = time(NULL));
+                            CxRandom     (long_t liSeed = time(NULL));
             ///< constructor
         virtual            ~CxRandom     ();
             ///< destructor
 
-        bool                bSetSeed     (LONG liSeed);
+        bool                bSetSeed     (long_t liSeed);
             ///< set seed
         int                 iNextInt     ();
             ///< next int
@@ -29,8 +29,8 @@ class CxRandom :
             ///< next int
         int                 iNextInt     (int a, int b);
             ///< next int
-        LONG                liNextLong   ();
-            ///< next long
+        long_t                liNextLong   ();
+            ///< next long_t
         bool                bNextBoolean ();
             ///< next boolean
         float               fNextFloat   ();
@@ -46,16 +46,16 @@ class CxRandom :
 
         static bool         bSetSeed     ();
             ///< set seed
-        static LONG         liGetInt     (const LONG cliMin, const LONG cliMax);
+        static long_t         liGetInt     (const long_t cliMin, const long_t cliMax);
             ///< generates a random number between specified min/max boundaries
-        static LONG         liGetIntEx   (const LONG cliMin, const LONG cliMax);
+        static long_t         liGetIntEx   (const long_t cliMin, const long_t cliMax);
             ///< generates a random number between specified min/max boundaries using a vector to shuffle
-        static std::tstring sGetString   (const size_t cuiSize);
+        static std::tstring_t sGetString   (const size_t cuiSize);
             ///< get random string
 
     protected:
-        LONG                liNext       ();
-            ///< next long
+        long_t                liNext       ();
+            ///< next long_t
 
     private:
         static const int    A;  ///< for private use
@@ -63,7 +63,7 @@ class CxRandom :
         static const int    Q;  ///< for private use
         static const int    R;  ///< for private use
 
-        LONG                _m_liSeed;                  ///< for private use
+        long_t                _m_liSeed;                  ///< for private use
         double              _m_dNextNextGaussian;       ///< for private use
         bool                _m_bHaveNextNextGaussian;   ///< for private use
 };

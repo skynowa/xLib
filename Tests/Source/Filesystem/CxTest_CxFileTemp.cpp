@@ -19,7 +19,7 @@ CxTest_CxFileTemp::~CxTest_CxFileTemp() {
 /*virtual*/
 bool
 CxTest_CxFileTemp::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     //-------------------------------------

@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxDir::bIsExists(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -41,8 +41,8 @@ CxDir::bIsExists(
 /*static*/
 bool
 CxDir::bIsEmpty(
-    const std::tstring &csDirPath,
-    const std::tstring &csMask
+    const std::tstring_t &csDirPath,
+    const std::tstring_t &csMask
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -68,13 +68,13 @@ CxDir::bIsEmpty(
 #if xOS_ENV_WIN
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData   = {0};
-    std::tstring    sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, false );
+    std::tstring_t    sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, false );
 
     hFile = ::FindFirstFile(sDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, true);
 
     do {
-        std::tstring sFileName = fdData.cFileName;
+        std::tstring_t sFileName = fdData.cFileName;
 
         if (CxConst::xDOT != sFileName && CxConst::x2DOT != sFileName) {
             bRes = false;    //not empty
@@ -98,7 +98,7 @@ CxDir::bIsEmpty(
     xCHECK_RET(NULL == pdrEntry, true);
 
     do {
-        std::tstring sFileName = pdrEntry->d_name;
+        std::tstring_t sFileName = pdrEntry->d_name;
 
         if (CxConst::xDOT != sFileName && CxConst::x2DOT != sFileName) {
             bRes = false;   //not empty
@@ -119,7 +119,7 @@ CxDir::bIsEmpty(
 /*static*/
 bool
 CxDir::bIsRoot(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/// n/a
@@ -142,7 +142,7 @@ CxDir::bIsRoot(
 /*static*/
 bool
 CxDir::bIsDir(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -154,23 +154,23 @@ CxDir::bIsDir(
 }
 //--------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxDir::sGetCurrent() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
-    std::tstring sBuff(xPATH_MAX + 1, 0);
+    std::tstring_t sRes;
+    std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
 #if xOS_ENV_WIN
-    ULONG ulRes = ::GetCurrentDirectory(xPATH_MAX, &sBuff[0]);
-    /*DEBUG*/xASSERT_RET(0UL   != ulRes,    std::tstring());
-    /*DEBUG*/xASSERT_RET(ulRes <  MAX_PATH, std::tstring());
+    ulong_t ulRes = ::GetCurrentDirectory(xPATH_MAX, &sBuff[0]);
+    /*DEBUG*/xASSERT_RET(0UL   != ulRes,    std::tstring_t());
+    /*DEBUG*/xASSERT_RET(ulRes <  MAX_PATH, std::tstring_t());
 
     sRes.assign(sBuff, 0, ulRes);
 #elif xOS_ENV_UNIX
-    tchar *pszRes = ::getcwd(&sBuff[0], xPATH_MAX);
-    /*DEBUG*/xASSERT_RET(NULL         != pszRes, std::tstring());
-    /*DEBUG*/xASSERT_RET(&sBuff.at(0) == pszRes, std::tstring());
+    tchar_t *pszRes = ::getcwd(&sBuff[0], xPATH_MAX);
+    /*DEBUG*/xASSERT_RET(NULL         != pszRes, std::tstring_t());
+    /*DEBUG*/xASSERT_RET(&sBuff.at(0) == pszRes, std::tstring_t());
 
     sRes.assign(pszRes);
 #endif
@@ -181,12 +181,12 @@ CxDir::sGetCurrent() {
 /*static*/
 bool
 CxDir::bSetCurrent(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
 
-    std::tstring sDirPath = CxPath::sSlashAppend(csDirPath);
+    std::tstring_t sDirPath = CxPath::sSlashAppend(csDirPath);
 
 #if xOS_ENV_WIN
     BOOL blRes = ::SetCurrentDirectory(sDirPath.c_str());
@@ -200,25 +200,25 @@ CxDir::bSetCurrent(
 }
 //--------------------------------------------------------------------------
 /*static*/
-std::tstring
+std::tstring_t
 CxDir::sGetTemp() {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    std::tstring sBuff(xPATH_MAX + 1, 0);
+    std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
-    ULONG ulRes = ::GetTempPath(xPATH_MAX, &sBuff[0]);
-    /*DEBUG*/xASSERT_RET(0     != ulRes,     std::tstring());
-    /*DEBUG*/xASSERT_RET(ulRes <  xPATH_MAX, std::tstring());
+    ulong_t ulRes = ::GetTempPath(xPATH_MAX, &sBuff[0]);
+    /*DEBUG*/xASSERT_RET(0     != ulRes,     std::tstring_t());
+    /*DEBUG*/xASSERT_RET(ulRes <  xPATH_MAX, std::tstring_t());
 
     sRes.assign(sBuff, 0, ulRes);
 #elif xOS_ENV_UNIX
     sRes.assign(xT(P_tmpdir));
 #endif
 
-    /*DEBUG*/xASSERT_RET(true == bIsExists(sRes), std::tstring());
+    /*DEBUG*/xASSERT_RET(true == bIsExists(sRes), std::tstring_t());
 
     return sRes;
 }
@@ -226,7 +226,7 @@ CxDir::sGetTemp() {
 /*static*/
 bool
 CxDir::bCreate(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -249,14 +249,14 @@ CxDir::bCreate(
 //---------------------------------------------------------------------------
 bool
 CxDir::bCreateForce(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
 
     bool                      bRes = false;
-    std::vector<std::tstring> vsPathParts;
-    std::tstring              sBuildPath;
+    std::vector<std::tstring_t> vsPathParts;
+    std::tstring_t              sBuildPath;
 
     //-------------------------------------
     //split csDirPath into parts
@@ -265,7 +265,7 @@ CxDir::bCreateForce(
 
     //-------------------------------------
     //create dirs by steps
-    for (std::vector<std::tstring>::const_iterator it = vsPathParts.begin(); it != vsPathParts.end(); ++ it){
+    for (std::vector<std::tstring_t>::const_iterator it = vsPathParts.begin(); it != vsPathParts.end(); ++ it){
         sBuildPath.append(*it).append(CxConst::xSLASH);
 
         bRes = bCreate(sBuildPath);
@@ -280,8 +280,8 @@ CxDir::bCreateForce(
 /*static*/
 bool
 CxDir::bCopy(
-    const std::tstring &csDirPathFrom,
-    const std::tstring &csDirPathTo,
+    const std::tstring_t &csDirPathFrom,
+    const std::tstring_t &csDirPathTo,
     const bool          cbFailIfExists
 )
 {
@@ -303,7 +303,7 @@ CxDir::bCopy(
 
     //--------------------------------------------------
     //get lists of files
-    std::vector<std::tstring> vsFilePathes;
+    std::vector<std::tstring_t> vsFilePathes;
 
     vsFilePathes.clear();
     bRes = bFindFiles(csDirPathFrom, CxConst::xMASK_ALL, true, &vsFilePathes);
@@ -311,14 +311,14 @@ CxDir::bCopy(
 
     //--------------------------------------------------
     //copy
-    for (std::vector<std::tstring>::reverse_iterator it = vsFilePathes.rbegin();
+    for (std::vector<std::tstring_t>::reverse_iterator it = vsFilePathes.rbegin();
         it != vsFilePathes.rend() && false == vsFilePathes.empty();
         ++ it)
     {
-        std::tstring sFilePathTo = *it;
+        std::tstring_t sFilePathTo = *it;
 
         size_t uiPosBegin = sFilePathTo.find(csDirPathFrom);
-        /*DEBUG*/xASSERT_RET(std::tstring::npos != uiPosBegin, false);
+        /*DEBUG*/xASSERT_RET(std::tstring_t::npos != uiPosBegin, false);
 
         sFilePathTo.replace(uiPosBegin, uiPosBegin + csDirPathFrom.size(), csDirPathTo);
 
@@ -338,8 +338,8 @@ CxDir::bCopy(
 /*static*/
 bool
 CxDir::bMove(
-    const std::tstring &csDirPathFrom,
-    const std::tstring &csDirPathTo,
+    const std::tstring_t &csDirPathFrom,
+    const std::tstring_t &csDirPathTo,
     const bool          cbFailIfExists
 )
 {
@@ -360,7 +360,7 @@ CxDir::bMove(
 /*static*/
 bool
 CxDir::bDelete(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -387,9 +387,9 @@ CxDir::bDelete(
 /*static*/
 bool
 CxDir::bTryDelete(
-    const std::tstring &csDirPath,
+    const std::tstring_t &csDirPath,
     const size_t   cuiAttempts,
-    const ULONG    culTimeoutMsec
+    const ulong_t    culTimeoutMsec
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -414,7 +414,7 @@ CxDir::bTryDelete(
 /*static*/
 bool
 CxDir::bClearForce(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),    false);
@@ -428,13 +428,13 @@ CxDir::bClearForce(
     //-------------------------------------
     //delete files
     {
-        std::vector<std::tstring> vsFilePathes;
+        std::vector<std::tstring_t> vsFilePathes;
 
         vsFilePathes.clear();
         bRes = bFindFiles(csDirPath, CxConst::xMASK_ALL, true, &vsFilePathes);
         /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-        for (std::vector<std::tstring>::reverse_iterator it = vsFilePathes.rbegin();
+        for (std::vector<std::tstring_t>::reverse_iterator it = vsFilePathes.rbegin();
             it != vsFilePathes.rend() && false == vsFilePathes.empty();
             ++ it)
         {
@@ -446,13 +446,13 @@ CxDir::bClearForce(
     //-------------------------------------
     //delete subdirs
     {
-        std::vector<std::tstring> vsDirPathes;
+        std::vector<std::tstring_t> vsDirPathes;
 
         vsDirPathes.clear();
         bRes = bFindDirs(csDirPath, CxConst::xMASK_ALL, true, &vsDirPathes);
         /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-        for (std::vector<std::tstring>::reverse_iterator it = vsDirPathes.rbegin();
+        for (std::vector<std::tstring_t>::reverse_iterator it = vsDirPathes.rbegin();
             it != vsDirPathes.rend() && false == vsDirPathes.empty();
             ++ it)
         {
@@ -469,7 +469,7 @@ CxDir::bClearForce(
 /*static*/
 bool
 CxDir::bDeleteForce(
-    const std::tstring &csDirPath
+    const std::tstring_t &csDirPath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -493,10 +493,10 @@ CxDir::bDeleteForce(
 /*static*/
 bool
 CxDir::bFindFiles(
-    const std::tstring        &csDirPath,
-    const std::tstring        &cMask,
+    const std::tstring_t        &csDirPath,
+    const std::tstring_t        &cMask,
     const bool                 cbIsRecurse,
-    std::vector<std::tstring> *pvsFilePathes    ///< \note must be empty
+    std::vector<std::tstring_t> *pvsFilePathes    ///< \note must be empty
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -513,10 +513,10 @@ CxDir::bFindFiles(
 #if xOS_ENV_WIN
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData        = {0};
-    std::tstring    sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
-    std::tstring    sFileFullName = CxPath::sGetFullName(sFilePath);
-    std::tstring    sPart;
-    std::tstring    sTmpPath;
+    std::tstring_t    sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
+    std::tstring_t    sFileFullName = CxPath::sGetFullName(sFilePath);
+    std::tstring_t    sPart;
+    std::tstring_t    sTmpPath;
 
     //-------------------------------------
     //subdirs
@@ -532,8 +532,8 @@ CxDir::bFindFiles(
             do {
                 //skipping files, dirs "." and ".."
                 xCHECK_DO(!(fdData.dwFileAttributes & CxFileAttribute::faDirectory), continue);
-                xCHECK_DO(CxConst::xDOT  == std::tstring(fdData.cFileName),               continue);
-                xCHECK_DO(CxConst::x2DOT == std::tstring(fdData.cFileName),               continue);
+                xCHECK_DO(CxConst::xDOT  == std::tstring_t(fdData.cFileName),               continue);
+                xCHECK_DO(CxConst::x2DOT == std::tstring_t(fdData.cFileName),               continue);
 
                 sPart    = fdData.cFileName;
                 sTmpPath = CxPath::sSetFullName(sTmpPath, sPart);
@@ -583,10 +583,10 @@ CxDir::bFindFiles(
             //dirs
             if (DT_DIR == pdrEntry->d_type) {
                 //skipping "." ".."
-                xCHECK_DO(CxConst::xDOT  == std::tstring(pdrEntry->d_name), continue);
-                xCHECK_DO(CxConst::x2DOT == std::tstring(pdrEntry->d_name), continue);
+                xCHECK_DO(CxConst::xDOT  == std::tstring_t(pdrEntry->d_name), continue);
+                xCHECK_DO(CxConst::x2DOT == std::tstring_t(pdrEntry->d_name), continue);
 
-                std::tstring sDirPath = csDirPath + CxConst::xSLASH + std::tstring(pdrEntry->d_name);
+                std::tstring_t sDirPath = csDirPath + CxConst::xSLASH + std::tstring_t(pdrEntry->d_name);
 
                 //is search in subdirs ?
                 xCHECK_DO(false == cbIsRecurse, continue);
@@ -596,7 +596,7 @@ CxDir::bFindFiles(
             }
             //TODO: files
             else if (DT_REG == pdrEntry->d_type) {
-                std::tstring sFilePath = csDirPath + CxConst::xSLASH + std::tstring(pdrEntry->d_name);
+                std::tstring_t sFilePath = csDirPath + CxConst::xSLASH + std::tstring_t(pdrEntry->d_name);
 
                 (*pvsFilePathes).push_back(sFilePath);
             }
@@ -624,7 +624,7 @@ CxDir::bFindFiles(
                 //skipping dirs
                 xCHECK_DO(DT_DIR == pdrEntry->d_type, continue);
 
-                std::tstring sFilePath = csDirPath + CxConst::xSLASH + pdrEntry->d_name;
+                std::tstring_t sFilePath = csDirPath + CxConst::xSLASH + pdrEntry->d_name;
 
                 (*pvsFilePathes).push_back(sFilePath);
             }
@@ -642,10 +642,10 @@ CxDir::bFindFiles(
 /*static*/
 bool
 CxDir::bFindDirs(
-    const std::tstring        &csDirPath,
-    const std::tstring        &cMask,
+    const std::tstring_t        &csDirPath,
+    const std::tstring_t        &cMask,
     const bool                 cbIsRecurse,
-    std::vector<std::tstring> *pvsDirPathes    ///< \note must be empty
+    std::vector<std::tstring_t> *pvsDirPathes    ///< \note must be empty
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -661,7 +661,7 @@ CxDir::bFindDirs(
 #if xOS_ENV_WIN
     HANDLE          hFile        = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData       = {0};
-    std::tstring    sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
+    std::tstring_t    sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
 
     hFile = ::FindFirstFile(sRootDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, false);
@@ -670,10 +670,10 @@ CxDir::bFindDirs(
         //dirs
         if (CxFileAttribute::faDirectory == (fdData.dwFileAttributes & CxFileAttribute::faDirectory)) {
             //skipping "." ".."
-            xCHECK_DO(CxConst::xDOT  == std::tstring(fdData.cFileName), continue);
-            xCHECK_DO(CxConst::x2DOT == std::tstring(fdData.cFileName), continue);
+            xCHECK_DO(CxConst::xDOT  == std::tstring_t(fdData.cFileName), continue);
+            xCHECK_DO(CxConst::x2DOT == std::tstring_t(fdData.cFileName), continue);
 
-            std::tstring sDirPath = csDirPath + CxConst::xWIN_SLASH + std::tstring(fdData.cFileName);
+            std::tstring_t sDirPath = csDirPath + CxConst::xWIN_SLASH + std::tstring_t(fdData.cFileName);
 
             (*pvsDirPathes).push_back(sDirPath);
 
@@ -706,10 +706,10 @@ CxDir::bFindDirs(
         //dirs
         if (DT_DIR == pdrEntry->d_type) {
             //skipping "." ".."
-            xCHECK_DO(CxConst::xDOT  == std::tstring(pdrEntry->d_name), continue);
-            xCHECK_DO(CxConst::x2DOT == std::tstring(pdrEntry->d_name), continue);
+            xCHECK_DO(CxConst::xDOT  == std::tstring_t(pdrEntry->d_name), continue);
+            xCHECK_DO(CxConst::x2DOT == std::tstring_t(pdrEntry->d_name), continue);
 
-            std::tstring sDirPath = csDirPath + CxConst::xSLASH + std::tstring(pdrEntry->d_name);
+            std::tstring_t sDirPath = csDirPath + CxConst::xSLASH + std::tstring_t(pdrEntry->d_name);
 
             (*pvsDirPathes).push_back(sDirPath);
 

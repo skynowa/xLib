@@ -19,12 +19,12 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 /*virtual*/
 bool
 CxTest_CxCrc32::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     /*DEBUG*/
 
-    const std::tstring csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
+    const std::tstring_t csFilePath = sGetWorkDirPath()  + CxConst::xSLASH + xT("Test.txt");;
 
     //-------------------------------------
     //Prepare

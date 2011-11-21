@@ -37,16 +37,16 @@ class CxProfiler :
         virtual            ~CxProfiler ();
             ///< destructor
 
-        bool                bSetLogPath(const std::tstring &csLogPath);
+        bool                bSetLogPath(const std::tstring_t &csLogPath);
             ///< set log path
-        const std::tstring &sGetLogPath() const;
+        const std::tstring_t &sGetLogPath() const;
             ///< get log path
 
         bool                bStart     ();
             ///< start measurement
-        bool                bStop      (const tchar *pcszComment, ...);
+        bool                bStop      (const tchar_t *pcszComment, ...);
             ///< stop measurement
-        bool                bPulse     (const tchar *pcszComment, ...);
+        bool                bPulse     (const tchar_t *pcszComment, ...);
             ///< stop, start measurement
 
     private:
@@ -68,8 +68,8 @@ class CxProfiler :
 
     #if xOS_ENV_WIN
         //pmTickCount
-        ULONG               _m_ulTicksStart;        ///< start value
-        ULONG               _m_ulTicksStop;         ///< stop value
+        ulong_t               _m_ulTicksStart;        ///< start value
+        ulong_t               _m_ulTicksStop;         ///< stop value
 
         //pmPerformanceCount
         LARGE_INTEGER       _m_liCountersPerfFreq;  ///< ticks per second

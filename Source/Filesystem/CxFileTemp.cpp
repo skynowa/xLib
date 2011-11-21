@@ -39,8 +39,8 @@ CxFileTemp::~CxFileTemp() {
 //---------------------------------------------------------------------------
 bool
 CxFileTemp::bCreate(
-    const std::tstring  &csFilePath,
-    const std::tstring  &csDirPath,
+    const std::tstring_t  &csFilePath,
+    const std::tstring_t  &csDirPath,
     CxFile              *pfFile
 )
 {
@@ -48,7 +48,7 @@ CxFileTemp::bCreate(
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  false);
     /*DEBUG*/xASSERT_RET(false == pfFile->bIsValid(), false);
 
-    const std::tstring csFileNameTemplate = xT("XXXXXX");
+    const std::tstring_t csFileNameTemplate = xT("XXXXXX");
 
 
     FILE *_pfStdFile = NULL;
@@ -62,7 +62,7 @@ CxFileTemp::bCreate(
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
-        tchar *pszFile = std::xTMKSTEMP(&_m_sFilePath.at(0));
+        tchar_t *pszFile = std::xTMKSTEMP(&_m_sFilePath.at(0));
         /*DEBUG*/xASSERT_RET(NULL != pszFile, false);
 
         _pfStdFile = std::xTFOPEN(pszFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());

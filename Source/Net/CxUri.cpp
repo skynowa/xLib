@@ -199,12 +199,12 @@ CxUri::bSetHost(const std::string &csHost) {
 }
 //---------------------------------------------------------------------------
 //DONE: usGetPort
-USHORT
+ushort_t
 CxUri::usGetPort() {
     return _m_usPort;
 }
 bool
-CxUri::bSetPort(const USHORT &cusPort) {
+CxUri::bSetPort(const ushort_t &cusPort) {
     _m_usPort = cusPort;
 
     //TODO: bSetAuthority
@@ -347,7 +347,7 @@ CxUri::sEncodeComponent(const std::string &csUri) {
         */
         else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::string::npos /*|| reserved.find(c) != std::string::npos*/) {
             //� -> %FF
-            sRes += CxString::sFormat(xT("%%%02X"), (UINT)(UCHAR)c);
+            sRes += CxString::sFormat(xT("%%%02X"), (uint_t)(uchar_t)c);
         }
         else {
             sRes += c;
@@ -525,7 +525,7 @@ CxUri::_bParse(const std::string &csUri) {
 
     if (std::string::npos != uiPortStart) {
         std::string sPort = CxString::sCut(_m_sAuthority, uiPortStart + 1/*":"*/, uiPortEnd);
-        _m_usPort = CxString::lexical_cast<USHORT>(sPort);
+        _m_usPort = CxString::lexical_cast<ushort_t>(sPort);
     }
     if (0 == _m_usPort) {
         _m_usPort = _usGetDefaultPort();
@@ -590,7 +590,7 @@ CxUri::_bNormilize(const std::string &csUri) {
 }
 //---------------------------------------------------------------------------
 //TODO: _usGetDefaultPort ()
-USHORT
+ushort_t
 CxUri::_usGetDefaultPort() const {
     if (       "ftp"    == _m_sScheme) {
         return 21;

@@ -19,14 +19,14 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 template<class T>
 /*static*/
-std::tstring
+std::tstring_t
 CxType::sGetRawName(
     const T &cObjectT
 )
 {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     std::string asClassName;
 
@@ -39,14 +39,14 @@ CxType::sGetRawName(
 //---------------------------------------------------------------------------
 template<class T>
 /*static*/
-std::tstring
+std::tstring_t
 CxType::sGetName(
     const T &cObjectT
 )
 {
     /*DEBUG*/// n/a
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
     std::string asClassName;
 

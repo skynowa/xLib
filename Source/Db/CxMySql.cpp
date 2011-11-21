@@ -64,7 +64,7 @@ CxMySQLConnection::bOptions(
     /*DEBUG*/// cpvArg   - n/a
 
 #if MYSQL_VERSION_ID < 50154
-    int iRes = ::mysql_options(_m_pmsConnection, cmoOption, static_cast<const tchar *>( cpvArg ));
+    int iRes = ::mysql_options(_m_pmsConnection, cmoOption, static_cast<const tchar_t *>( cpvArg ));
 #else
     int iRes = ::mysql_options(_m_pmsConnection, cmoOption, cpvArg);
 #endif
@@ -75,13 +75,13 @@ CxMySQLConnection::bOptions(
 //---------------------------------------------------------------------------
 bool
 CxMySQLConnection::bConnect(
-    const std::tstring &csHost,
-    const std::tstring &csUser,
-    const std::tstring &csPassword,
-    const std::tstring &csDb,
-    const UINT          cuiPort,
-    const std::tstring &csUnixSocket,
-    const ULONG         culClientFlag
+    const std::tstring_t &csHost,
+    const std::tstring_t &csUser,
+    const std::tstring_t &csPassword,
+    const std::tstring_t &csDb,
+    const uint_t          cuiPort,
+    const std::tstring_t &csUnixSocket,
+    const ulong_t         culClientFlag
 )
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
@@ -104,30 +104,30 @@ CxMySQLConnection::bConnect(
 //---------------------------------------------------------------------------
 bool
 CxMySQLConnection::bQuery(
-    const tchar *pcszSqlFormat, ...
+    const tchar_t *pcszSqlFormat, ...
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(),    false);
     /*DEBUG*/xASSERT_RET(NULL  != pcszSqlFormat, false);
 
-    std::tstring csSqlQuery;
+    std::tstring_t csSqlQuery;
     va_list      palArgs;
 
     xVA_START(palArgs, pcszSqlFormat);
     csSqlQuery = CxString::sFormatV(pcszSqlFormat, palArgs);
     xVA_END(palArgs);
 
-    int iRes = ::mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ULONG>( csSqlQuery.size() * sizeof(std::tstring::value_type) ));
+    int iRes = ::mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ulong_t>( csSqlQuery.size() * sizeof(std::tstring_t::value_type) ));
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr().c_str(), false);
 
     return true;
 }
 //---------------------------------------------------------------------------
-UINT
+uint_t
 CxMySQLConnection::uiFieldCount() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), 0);
 
-    UINT uiRes = ::mysql_field_count(_m_pmsConnection);
+    uint_t uiRes = ::mysql_field_count(_m_pmsConnection);
     /*DEBUG*/// n/a
 
     return uiRes;
@@ -154,26 +154,26 @@ CxMySQLConnection::bClose() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-UINT
+uint_t
 CxMySQLConnection::uiGetLastError() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), 0);
 
-    UINT uiRes = ::mysql_errno(_m_pmsConnection);
+    uint_t uiRes = ::mysql_errno(_m_pmsConnection);
     /*DEBUG*/// n/a
 
     return uiRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::tstring_t
 CxMySQLConnection::sGetLastErrorStr() const {
-    /*DEBUG*/xASSERT_RET(false != bIsValid(), std::tstring());
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), std::tstring_t());
 
-    std::tstring sRes;
+    std::tstring_t sRes;
 
-    const UINT cuiLastError = uiGetLastError();
+    const uint_t cuiLastError = uiGetLastError();
     const char *cpszRes     = ::mysql_error(_m_pmsConnection);
     /*DEBUG*/// n/a
-    /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::tstring());
+    /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::tstring_t());
 
     if (0 == cuiLastError) {
         sRes.assign( CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success")) );
@@ -240,11 +240,11 @@ CxMySQLRecordset::bIsValid() const {
     return static_cast<bool>( NULL != _m_pmrResult );
 }
 //---------------------------------------------------------------------------
-UINT
+uint_t
 CxMySQLRecordset::uiFieldsNum() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), 0);
 
-    UINT uiRes = ::mysql_num_fields(_m_pmrResult);
+    uint_t uiRes = ::mysql_num_fields(_m_pmrResult);
     /*DEBUG*/// n/a
 
     return uiRes;
@@ -276,7 +276,7 @@ CxMySQLRecordset::bFetchField(
 //---------------------------------------------------------------------------
 bool
 CxMySQLRecordset::bFetchFieldDirect(
-    const UINT   cuiFieldNumber,
+    const uint_t   cuiFieldNumber,
     MYSQL_FIELD *pmfField
 ) const
 {
@@ -306,23 +306,23 @@ CxMySQLRecordset::bFetchFields(
 //---------------------------------------------------------------------------
 bool
 CxMySQLRecordset::bFetchRow(
-    std::vector<std::tstring> *pvsRow
+    std::vector<std::tstring_t> *pvsRow
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
     /*DEBUG*/xASSERT_RET(NULL  != pvsRow,     false);
 
-    UINT       uiFieldsNum     = 0;
+    uint_t       uiFieldsNum     = 0;
     MYSQL_ROW  mrRow           = NULL;
-    ULONG     *pulFieldLengths = NULL;
+    ulong_t     *pulFieldLengths = NULL;
 
     (*pvsRow).clear();
 
     #if xTODO
-        //--UINT   uiFieldsNum   = mysql_num_fields   (_m_pmrResult);
-        UINT       uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
+        //--uint_t   uiFieldsNum   = mysql_num_fields   (_m_pmrResult);
+        uint_t       uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
         MYSQL_ROW  ppmrRow       = mysql_fetch_row    (_m_pmrResult);   //array of strings
-        ULONG     *pulRowLengths = mysql_fetch_lengths(_m_pmrResult);   //TODO: maybe 64-bit bug
+        ulong_t     *pulRowLengths = mysql_fetch_lengths(_m_pmrResult);   //TODO: maybe 64-bit bug
     #endif
 
     //fields count
@@ -338,13 +338,13 @@ CxMySQLRecordset::bFetchRow(
     xASSERT(NULL  != pulFieldLengths);
 
     //push to std::vector
-    std::tstring sField;
+    std::tstring_t sField;
 
-    for (UINT i = 0; i < uiFieldsNum; ++ i) {
+    for (uint_t i = 0; i < uiFieldsNum; ++ i) {
         if (NULL == mrRow[i]) {
-            sField = std::tstring();
+            sField = std::tstring_t();
         } else {
-            sField = std::tstring(mrRow[i], pulFieldLengths[i]);
+            sField = std::tstring_t(mrRow[i], pulFieldLengths[i]);
         }
 
         (*pvsRow).push_back(sField);
@@ -378,7 +378,7 @@ CxMySQLRecordset::_bFetchRow(
 //---------------------------------------------------------------------------
 bool
 CxMySQLRecordset::_bFetchLengths(
-    ULONG **ppulFieldLengths
+    ulong_t **ppulFieldLengths
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(),        false);

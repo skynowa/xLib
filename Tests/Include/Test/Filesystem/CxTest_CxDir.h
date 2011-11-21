@@ -19,7 +19,7 @@ class CxTest_CxDir :
                      CxTest_CxDir();
         virtual     ~CxTest_CxDir();
 
-        virtual bool bUnit(const ULONGLONG cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullBlockLoops);
 
     private:
 };

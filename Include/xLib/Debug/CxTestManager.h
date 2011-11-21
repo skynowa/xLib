@@ -22,9 +22,9 @@ class CxTestManager :
         virtual   ~CxTestManager();
             ///< destructor
 
-        bool       bAdd         (CxTest *pvtTest, const std::tstring &csTestName = CxConst::xSTR_EMPTY);
+        bool       bAdd         (CxTest *pvtTest, const std::tstring_t &csTestName = CxConst::xSTR_EMPTY);
             ///< add CxTest
-        bool       bRun         (const ULONGLONG cullAllLoops, const ULONGLONG cullUnitLoops, const ULONGLONG cullBlockLoops);
+        bool       bRun         (const ulonglong_t cullAllLoops, const ulonglong_t cullUnitLoops, const ulonglong_t cullBlockLoops);
             ///< run all tests
 
     private:

@@ -34,9 +34,9 @@ CxInputBox::~CxInputBox() {
 //---------------------------------------------------------------------------
 CxInputBox::EModalResult
 CxInputBox::mrShowModal(
-    const std::tstring &csCaption,
-    const std::tstring &csPrompt,
-    const std::tstring &csText
+    const std::tstring_t &csCaption,
+    const std::tstring_t &csPrompt,
+    const std::tstring_t &csText
 )
 {
     /*DEBUG*/// csCaption - n/a
@@ -81,7 +81,7 @@ CxInputBox::mrShowModal(
                             NULL);
     /*DEBUG*/xASSERT_RET(NULL != _m_hWndMain, mrCancel);
 
-    ::SetWindowLong(_m_hWndMain, 0, (LONG)this);
+    ::SetWindowLong(_m_hWndMain, 0, (long_t)this);
 
     //-------------------------------------
     //_m_hStaPrompt
@@ -184,7 +184,7 @@ CxInputBox::mrShowModal(
     return static_cast<EModalResult>(msgMsg.wParam);
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::tstring_t
 CxInputBox::sGetText() {
     return _m_sText;
 }
@@ -201,7 +201,7 @@ CxInputBox::sGetText() {
 LRESULT CALLBACK
 CxInputBox::_ms_pWndProc(
     HWND   hWnd,
-    UINT   uiMsg,
+    uint_t   uiMsg,
     WPARAM wParam,
     LPARAM lParam
 )
@@ -217,10 +217,10 @@ CxInputBox::_ms_pWndProc(
 
                 pibThis->_m_sText.resize(iTextSize);
 
-                UINT uiTextSize = ::GetDlgItemText(hWnd, ID_edtText, &pibThis->_m_sText.at(0), pibThis->_m_sText.size());
+                uint_t uiTextSize = ::GetDlgItemText(hWnd, ID_edtText, &pibThis->_m_sText.at(0), pibThis->_m_sText.size());
 
                 //�������� ������ �� '\0'
-                pibThis->_m_sText = std::tstring(pibThis->_m_sText, 0, uiTextSize);
+                pibThis->_m_sText = std::tstring_t(pibThis->_m_sText, 0, uiTextSize);
 
                 ::PostQuitMessage(mrOk);
                 return 0;

@@ -48,7 +48,7 @@ CxSmtp::~CxSmtp() {
 //---------------------------------------------------------------------------
 //DONE: bCreate
 bool
-CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const std::string &csServer, USHORT usPort) {
+CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const std::string &csServer, ushort_t usPort) {
     /*DEBUG*/xASSERT_RET(false == csUser.empty(),          false);
     /*DEBUG*/////xASSERT_RET(false == csPass.empty(),          false);
     /*DEBUG*/xASSERT_RET(false == csServer.empty(),        false);

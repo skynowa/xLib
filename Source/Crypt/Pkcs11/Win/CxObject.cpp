@@ -199,9 +199,9 @@ CxObject::bDestroy() {
 bool
 CxObject::bGetData(
     CK_SLOT_ID          ulSlotId,
-    const std::ustring &cusUserPin,
-    const std::ustring &cusDataLabel,
-    std::ustring       *pusData
+    const std::ustring_t &cusUserPin,
+    const std::ustring_t &cusDataLabel,
+    std::ustring_t       *pusData
 )
 {
     /*DEBUG*/
@@ -256,8 +256,8 @@ CxObject::bGetData(
     bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
     /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    ULONG  ulValueLen = atrTamplate[0].ulValueLen;
-    UCHAR *pucValue      = new UCHAR[ulValueLen];
+    ulong_t  ulValueLen = atrTamplate[0].ulValueLen;
+    uchar_t *pucValue      = new uchar_t[ulValueLen];
     {
         memset(pucValue, '\0', ulValueLen);
 
@@ -266,7 +266,7 @@ CxObject::bGetData(
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
         /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-        std::ustring usValue = std::ustring(pucValue, ulValueLen);
+        std::ustring_t usValue = std::ustring_t(pucValue, ulValueLen);
 
         (*pusData) = usValue;
 
@@ -289,9 +289,9 @@ CxObject::bGetData(
 bool
 CxObject::bGetData(
     CK_SLOT_ID                 ulSlotId,
-    const std::ustring        &cusUserPin,
-    std::vector<std::ustring> *pusDataLabel,
-    std::vector<std::ustring> *pusDataValue
+    const std::ustring_t        &cusUserPin,
+    std::vector<std::ustring_t> *pusDataLabel,
+    std::vector<std::ustring_t> *pusDataValue
 )
 {
     /*DEBUG*/// ulSlotId - n/a
@@ -358,15 +358,15 @@ CxObject::bGetData(
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
         /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-        std::ustring usLabel;
-        std::ustring usValue;
+        std::ustring_t usLabel;
+        std::ustring_t usValue;
 
         {
-            ULONG ulLabelLen      = atrTamplate[0].ulValueLen;
+            ulong_t ulLabelLen      = atrTamplate[0].ulValueLen;
             usLabel.resize(ulLabelLen);
             atrTamplate[0].pValue = &usLabel.at(0);
 
-            ULONG ulValueLen      = atrTamplate[1].ulValueLen;
+            ulong_t ulValueLen      = atrTamplate[1].ulValueLen;
             usValue.resize(ulValueLen);
             atrTamplate[1].pValue = &usValue.at(0);
         }
@@ -395,9 +395,9 @@ CxObject::bGetData(
 bool
 CxObject::bSetData(
     CK_SLOT_ID          ulSlotId,
-    const std::ustring &cusUserPin,
-    const std::ustring &cusDataLabel,
-    const std::ustring &cusData
+    const std::ustring_t &cusUserPin,
+    const std::ustring_t &cusDataLabel,
+    const std::ustring_t &cusData
 )
 {
     /*DEBUG*/
@@ -459,7 +459,7 @@ CxObject::bSetData(
         CK_OBJECT_CLASS ocData    = CKO_DATA;
         CK_BBOOL        bFalse    = false;
         CK_BBOOL        bTrue     = true;
-        std::ustring         usApplication;
+        std::ustring_t         usApplication;
 
         CK_ATTRIBUTE atrTamplate [] = {
             {CKA_CLASS,       &ocData,                            sizeof(ocData)      },

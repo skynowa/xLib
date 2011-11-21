@@ -32,12 +32,12 @@ class CxMsgBoxT :
 
     #if xOS_ENV_WIN
         template <typename TextT, typename TitleT>
-        static EModalResult iShow(const HWND chWnd, const TextT &cText, const TitleT &cTitle, const UINT cuiType);
+        static EModalResult iShow(const HWND chWnd, const TextT &cText, const TitleT &cTitle, const uint_t cuiType);
             ///< message box has parent window, with custom text, custom title, custom type
     #endif
 
         template <typename TextT, typename TitleT>
-        static EModalResult iShow(const TextT &cText, const TitleT &cTitle, const UINT cuiType);
+        static EModalResult iShow(const TextT &cText, const TitleT &cTitle, const uint_t cuiType);
             ///< message box with custom text, custom title, custom type
 
         template <typename TextT, typename TitleT>

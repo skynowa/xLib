@@ -145,7 +145,7 @@ CxSocket::bClose() {
 //TODO: LINUX: ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 int
 CxSocket::iSend(
-    const tchar *pcszBuff,
+    const tchar_t *pcszBuff,
     int          iBuffSize,
     int          iFlags
 )
@@ -155,9 +155,9 @@ CxSocket::iSend(
     /*DEBUG*//////xASSERT_RET(0         <  ::lstrlen(pcszBuff), etError);
 
 #if xOS_ENV_WIN
-    int     iRes = ::send(_m_puiSocket, (LPCSTR)pcszBuff, iBuffSize * sizeof(tchar), iFlags);
+    int     iRes = ::send(_m_puiSocket, (LPCSTR)pcszBuff, iBuffSize * sizeof(tchar_t), iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRes && WSAEWOULDBLOCK != iGetLastError(), etError);
-    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar) >= iRes,                                      etError);
+    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar_t) >= iRes,                                      etError);
 #elif xOS_ENV_UNIX
     #if !defined(MSG_NOSIGNAL)
         #define MSG_NOSIGNAL  0x20000
@@ -165,16 +165,16 @@ CxSocket::iSend(
 
     ssize_t iRes = ::send(_m_puiSocket, pcszBuff, iBuffSize, MSG_NOSIGNAL);
     /*DEBUG*/xASSERT_RET(etError                        != iRes, etError);
-    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar) >= iRes, etError);
+    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar_t) >= iRes, etError);
 #endif
 
-    return iRes / sizeof(tchar);
+    return iRes / sizeof(tchar_t);
 }
 //---------------------------------------------------------------------------
 //TODO: bSendAll
 bool
 CxSocket::bSendAll(
-    const std::tstring &csBuff,
+    const std::tstring_t &csBuff,
     int                 iFlags
 )
 {
@@ -185,7 +185,7 @@ CxSocket::bSendAll(
     //-------------------------------------
     //������ �� ������ ������� � ����� � ������
     int iCurrPos  = 0;
-    int iLeftSize = csBuff.size() * sizeof(tchar);            //TODO: !!!!!!  bSendAll (overflow)
+    int iLeftSize = csBuff.size() * sizeof(tchar_t);            //TODO: !!!!!!  bSendAll (overflow)
 
     //if size of data more than size of buffer - sizeof buffer SOCKET_BUFF_SIZE
     int iBuffOutSize  = 0;
@@ -207,7 +207,7 @@ CxSocket::bSendAll(
 
         //id data is finished - exit from loop
         if (0 >= iLeftSize) {
-            /*DEBUG*/xASSERT_RET((int)csBuff.size() * (int)sizeof(tchar) == iCurrPos, false);
+            /*DEBUG*/xASSERT_RET((int)csBuff.size() * (int)sizeof(tchar_t) == iCurrPos, false);
             break;
         }
     }
@@ -217,7 +217,7 @@ CxSocket::bSendAll(
 //---------------------------------------------------------------------------
 int
 CxSocket::iRecv(
-    tchar *pszBuff,
+    tchar_t *pszBuff,
     int    iBuffSize,
     int    iFlags
 )
@@ -226,36 +226,36 @@ CxSocket::iRecv(
     /*DEBUG*/xASSERT_RET(NULL      != pszBuff,      etError);
     /*DEBUG*/xASSERT_RET(0          < iBuffSize,    etError);
 
-    std::memset(pszBuff, 0, iBuffSize * sizeof(tchar));
+    std::memset(pszBuff, 0, iBuffSize * sizeof(tchar_t));
 
 #if xOS_ENV_WIN
-    int     iRes = ::recv(_m_puiSocket, (LPSTR)pszBuff, iBuffSize * sizeof(tchar), iFlags);
+    int     iRes = ::recv(_m_puiSocket, (LPSTR)pszBuff, iBuffSize * sizeof(tchar_t), iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRes && WSAEWOULDBLOCK != iGetLastError(), etError);
     /*DEBUG*/xASSERT_RET(0                              != iRes,                                      etError);  //gracefully closed
-    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar) >= iRes,                                      etError);
+    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar_t) >= iRes,                                      etError);
 #elif xOS_ENV_UNIX
-    ssize_t iRes = ::recv(_m_puiSocket, (char *)pszBuff, iBuffSize * sizeof(tchar), iFlags);
+    ssize_t iRes = ::recv(_m_puiSocket, (char *)pszBuff, iBuffSize * sizeof(tchar_t), iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRes,                                      etError);
     /*DEBUG*/xASSERT_RET(0                              != iRes,                                      etError);  //gracefully closed
-    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar) >= iRes,                                      etError);
+    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar_t) >= iRes,                                      etError);
 #endif
 
-    return iRes / sizeof(tchar);
+    return iRes / sizeof(tchar_t);
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::tstring_t
 CxSocket::sRecvAll(
     int iFlags
 )
 {
-    std::tstring      sRes;
+    std::tstring_t      sRes;
 
-    const size_t cuiBuffSize             = 1024 * sizeof(tchar);
-    tchar        szBuff[cuiBuffSize + 1] = {0};
+    const size_t cuiBuffSize             = 1024 * sizeof(tchar_t);
+    tchar_t        szBuff[cuiBuffSize + 1] = {0};
 
     for (;;) {
         int   iRes  = - 1;
-        ULONG ulArg = (ULONG)false;
+        ulong_t ulArg = (ulong_t)false;
 
     #if xOS_ENV_WIN
         iRes = ::ioctlsocket(_m_puiSocket, FIONREAD, &ulArg);
@@ -276,15 +276,15 @@ CxSocket::sRecvAll(
     return sRes;
 }
 //---------------------------------------------------------------------------
-std::tstring
+std::tstring_t
 CxSocket::sRecvAll(
     int                 iFlags,
-    const std::tstring &csDelimiter
+    const std::tstring_t &csDelimiter
 )
 {
-    std::tstring sRes;
-    const size_t cuiInSize = SOCKET_BUFF_SIZE * sizeof(tchar);
-    std::tstring sIn(cuiInSize, xT('\0'));
+    std::tstring_t sRes;
+    const size_t cuiInSize = SOCKET_BUFF_SIZE * sizeof(tchar_t);
+    std::tstring_t sIn(cuiInSize, xT('\0'));
 
     //-------------------------------------
     //read from socket by blocks, write to string
@@ -297,7 +297,7 @@ CxSocket::sRecvAll(
 
         //if delimiter was finded - break
         size_t uiDelimiterPos = sRes.find(csDelimiter);        //TODO: from unicode ???
-        xCHECK_DO(std::tstring::npos != uiDelimiterPos, break);
+        xCHECK_DO(std::tstring_t::npos != uiDelimiterPos, break);
     }
 
     return sRes;
@@ -321,7 +321,7 @@ CxSocket::iSendBytes(
     fd_set fds;    FD_ZERO(&fds);
     FD_SET(_m_puiSocket, &fds);
 
-    //..as long as we need to send data...
+    //..as long_t as we need to send data...
     while (iMessageLength > 0) {
         iRC = ::select(0, NULL, &fds, NULL, &SendTimeout);
 
@@ -397,8 +397,8 @@ CxSocket::iReceiveBytes(
 //---------------------------------------------------------------------------
 bool
 CxSocket::bGetPeerName(
-    std::tstring *psPeerAddr,
-    USHORT       *pusPeerPort
+    std::tstring_t *psPeerAddr,
+    ushort_t       *pusPeerPort
 )
 {
     /*DEBUG*///psPeerAddr  - n/a
@@ -434,8 +434,8 @@ CxSocket::bGetPeerName(
 //---------------------------------------------------------------------------
 bool
 CxSocket::bGetSocketName(
-    std::tstring *psSocketAddr,
-    USHORT       *pusSocketPort
+    std::tstring_t *psSocketAddr,
+    ushort_t       *pusSocketPort
 )
 {
     /*DEBUG*///psPeerAddr  - n/a

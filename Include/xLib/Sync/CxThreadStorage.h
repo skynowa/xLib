@@ -30,7 +30,7 @@ class CxThreadStorage :
 
     private:
     #if xOS_ENV_WIN
-        typedef ULONG         TxIndex;
+        typedef ulong_t         TxIndex;
     #elif xOS_ENV_UNIX
         typedef pthread_key_t TxIndex;
     #endif

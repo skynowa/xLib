@@ -20,7 +20,7 @@ CxTest_CxGdiplus::~CxTest_CxGdiplus() {
 /*virtual*/
 bool
 CxTest_CxGdiplus::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     /*DEBUG*/

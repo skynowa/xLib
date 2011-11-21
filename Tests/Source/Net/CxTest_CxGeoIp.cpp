@@ -19,10 +19,10 @@ CxTest_CxGeoIp::~CxTest_CxGeoIp() {
 /*virtual*/
 bool
 CxTest_CxGeoIp::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
-    const std::tstring csFilePath = xT("./Tests/Source/_TestData/GeoIP.dat");
+    const std::tstring_t csFilePath = xT("./Tests/Source/_TestData/GeoIP.dat");
 
     const CxGeoIp::EOption copOption[] = {
         CxGeoIp::opStandard,
@@ -69,7 +69,7 @@ CxTest_CxGeoIp::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
-            const std::tstring sTestData[][3] = {
+            const std::tstring_t sTestData[][3] = {
                 {xT("216.236.135.152"), xT("US"), xT("USA") },
                 {xT("192.106.51.100"),  xT("IT"), xT("ITA") },
                 {xT("147.251.48.1"),    xT("CZ"), xT("CZE") },
@@ -83,9 +83,9 @@ CxTest_CxGeoIp::bUnit(
             };
 
             for (size_t a = 0; a < xARRAY_SIZE(sTestData); ++ a) {
-                const std::tstring csAddress   = sTestData[a][0];
-                const std::tstring csMustCode2 = sTestData[a][1];
-                const std::tstring csMustCode3 = sTestData[a][2];
+                const std::tstring_t csAddress   = sTestData[a][0];
+                const std::tstring_t csMustCode2 = sTestData[a][1];
+                const std::tstring_t csMustCode3 = sTestData[a][2];
 
                 CxGeoIp giGeoIp;
 

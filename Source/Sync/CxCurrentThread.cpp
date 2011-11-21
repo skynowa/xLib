@@ -89,7 +89,7 @@ CxCurrentThread::bYield() {
 /*static*/
 bool
 CxCurrentThread::bSleep(
-    const ULONG culMsec
+    const ulong_t culMsec
 ) {
     /*DEBUG*/// n/a
 

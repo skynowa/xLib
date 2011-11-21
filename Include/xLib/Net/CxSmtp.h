@@ -22,7 +22,7 @@ class CxSmtp :
                             CxSmtp     ();
                            ~CxSmtp     ();
 
-        bool                bCreate    (const std::string &csUser, const std::string &csPass, const std::string &csServer, USHORT usPort);
+        bool                bCreate    (const std::string &csUser, const std::string &csPass, const std::string &csServer, ushort_t usPort);
         bool                bConnect   ();
         bool                bLogin     ();
         bool                bNoop      ();
@@ -37,7 +37,7 @@ class CxSmtp :
         std::string         _m_sUser;
         std::string         _m_sPass;
         std::string         _m_sServer;
-        USHORT              _m_usPort;
+        ushort_t              _m_usPort;
         bool                _m_bConnected;
 
         bool                _bCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/

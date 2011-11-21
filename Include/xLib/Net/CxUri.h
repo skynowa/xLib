@@ -35,8 +35,8 @@ class CxUri :
         std::string        sGetHost         () const;
         bool               bSetHost         (const std::string &csHost);
 
-        USHORT             usGetPort        ();
-        bool               bSetPort         (const USHORT &cusPort);
+        ushort_t             usGetPort        ();
+        bool               bSetPort         (const ushort_t &cusPort);
 
         std::string        sGetPath         () const;
         bool               bSetPath         (const std::string &csPath);
@@ -65,14 +65,14 @@ class CxUri :
         std::string        _m_sAuthority;
         std::string        _m_sUserInfo;
         std::string        _m_sHost;
-        USHORT             _m_usPort;
+        ushort_t             _m_usPort;
         std::string        _m_sPath;
         std::string        _m_sQuery;
         std::string        _m_sFragment;
 
         bool               _bParse          (const std::string &csUri);
         bool               _bNormilize      (const std::string &csUri);
-        USHORT             _usGetDefaultPort() const;
+        ushort_t             _usGetDefaultPort() const;
         bool               _bIsDefaultPort  () const;
 };
 

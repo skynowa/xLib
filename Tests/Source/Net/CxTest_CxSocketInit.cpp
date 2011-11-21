@@ -19,7 +19,7 @@ CxTest_CxSocketInit::~CxTest_CxSocketInit() {
 /*virtual*/
 bool
 CxTest_CxSocketInit::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
     /*DEBUG*/

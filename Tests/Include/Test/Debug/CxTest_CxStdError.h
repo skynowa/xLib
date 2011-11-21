@@ -20,7 +20,7 @@ class CxTest_CxStdError :
         virtual      ~CxTest_CxStdError();
             ///< destructor
 
-        virtual bool  bUnit            (const ULONGLONG cullBlockLoops);
+        virtual bool  bUnit            (const ulonglong_t cullBlockLoops);
             ///< unit test
 
     private:
