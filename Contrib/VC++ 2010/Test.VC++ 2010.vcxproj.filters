@@ -55,12 +55,6 @@
     <Filter Include="xLib\Log">
       <UniqueIdentifier>{507dcbb8-e914-4a84-ba70-9c353d05b69b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Log\Win">
-      <UniqueIdentifier>{0e24200e-3bca-4c3b-a7f9-2571681df432}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Log\Linux">
-      <UniqueIdentifier>{17aa22fe-3658-4e21-82af-4eed1d45676d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Net">
       <UniqueIdentifier>{4c863252-9f31-4e98-ade5-25e9ed5b2eca}</UniqueIdentifier>
     </Filter>
@@ -227,9 +221,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp">
       <Filter>xLib\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Log\Win\CxWndLog.cpp">
-      <Filter>xLib\Log\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Net\CxAsyncSocket.cpp">
       <Filter>xLib\Net</Filter>
@@ -711,6 +702,9 @@
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCurrentProcess.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Log\CxWndLog.cpp">
+      <Filter>xLib\Log</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -766,9 +760,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\CxTraceLog.h">
       <Filter>xLib\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Log\Win\CxWndLog.h">
-      <Filter>xLib\Log\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Net\CxAsyncSocket.h">
       <Filter>xLib\Net</Filter>
@@ -1315,6 +1306,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentProcess.h">
       <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Log\CxWndLog.h">
+      <Filter>xLib\Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
