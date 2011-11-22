@@ -32,11 +32,9 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -55,12 +53,12 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</RunCodeAnalysis>
     <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</RunCodeAnalysis>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\xLib\Tests\Include;D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;$(IncludePath);D:\Libs\OpenSSL\OpenSSL-Win32\include</IncludePath>
-    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;D:\xLib\Tests\Source;$(SourcePath)</SourcePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Libs\OpenSSL\OpenSSL-Win32\include;D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;D:\xLib\Tests\Include;$(IncludePath)</IncludePath>
-    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\xLib\Tests\Source;$(SourcePath)</SourcePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Libs\OpenSSL\OpenSSL-Win32\lib;D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC\static;D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC;C:\Program Files\MySQL\MySQL Server 5.1\lib\opt;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC\static;D:\Libs\GeoIP\GeoIP-1.4.7\libGeoIP;D:\Libs\OpenSSL\OpenSSL-Win32\lib\VC;D:\Libs\OpenSSL\OpenSSL-Win32\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IncludePath)</IncludePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SourcePath)</SourcePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IncludePath)</IncludePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SourcePath)</SourcePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <BuildLog>
@@ -209,7 +207,7 @@
     <ClCompile Include="..\..\Source\Log\CxFileLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxSystemLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp" />
-    <ClCompile Include="..\..\Source\Log\Win\CxWndLog.cpp" />
+    <ClCompile Include="..\..\Source\Log\CxWndLog.cpp" />
     <ClCompile Include="..\..\Source\Net\CxAsyncSocket.cpp" />
     <ClCompile Include="..\..\Source\Net\CxCgi.cpp" />
     <ClCompile Include="..\..\Source\Net\CxCookiePv0.cpp" />
@@ -418,6 +416,7 @@
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxSystemLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\CxWndLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\xLogs.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxTcpClient.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxTcpServer.h" />
@@ -557,7 +556,6 @@
     <ClInclude Include="..\..\Include\xLib\Log\CxConsoleLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxFileLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxTraceLog.h" />
-    <ClInclude Include="..\..\Include\xLib\Log\Win\CxWndLog.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxAsyncSocket.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxCgi.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxCookiePv0.h" />
