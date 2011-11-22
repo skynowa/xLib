@@ -10,8 +10,6 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
-
 xNAMESPACE_BEGIN(NxLib)
 
 class CxWndLog :
@@ -30,16 +28,14 @@ class CxWndLog :
         virtual                    ~CxWndLog();
             ///< destructor
 
-        bool                        bWrite  (const HWND chWnd, LPCTSTR pcszFormat, ...);
+        bool                        bWrite  (const HWND chWnd, const tchar_t *pcszFormat, ...);
             ///< write
 
        private:
-           EWindowClass             _m_eWC;            ///< window class
-           static CxCriticalSection _ms_csListBox;    ///< critical section
+           EWindowClass             _m_eWC;         ///< window class
+           static CxCriticalSection _ms_csListBox;  ///< critical section
 };
 
 xNAMESPACE_END(NxLib)
-
-#endif
 //---------------------------------------------------------------------------
 #endif

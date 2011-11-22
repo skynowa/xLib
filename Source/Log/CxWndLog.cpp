@@ -4,19 +4,12 @@
  */
 
 
-#include <xLib/Log/Win/CxWndLog.h>
+#include <xLib/Log/CxWndLog.h>
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Sync/CxAutoCriticalSection.h>
 
-#if xOS_ENV_WIN
-    #include <xLib/Sync/CxAutoCriticalSection.h>
-#elif xOS_ENV_UNIX
-
-#endif
-
-
-#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -38,14 +31,15 @@ CxWndLog::CxWndLog(
     /*DEBUG*/xASSERT_DO(wcListBox == _m_eWC, return);
 }
 //---------------------------------------------------------------------------
+/*virtual*/
 CxWndLog::~CxWndLog() {
 
 }
 //---------------------------------------------------------------------------
 bool
 CxWndLog::bWrite(
-    const HWND chWnd,
-    LPCTSTR    pcszFormat, ...
+    const HWND     chWnd,
+    const tchar_t *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != chWnd,      false);
@@ -89,5 +83,3 @@ CxWndLog::bWrite(
 //---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
-
-#endif
