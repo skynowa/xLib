@@ -16,12 +16,31 @@ class CxSystemLog :
     /// logging to system event log
 {
     public:
-                CxSystemLog();
-           ///< constructor
-       virtual ~CxSystemLog();
-           ///< destructor
+        enum ELevel
+            /// log level
+        {
+            lvEmerg    = 0,
+            lvAlert    = 1,
+            lvCritical = 2,
+            lvError    = 3,
+            lvWarning  = 4,
+            lvNotice   = 5,
+            lvInfo     = 6,
+            lvDebug    = 7
+        };
+
+        explicit CxSystemLog(const std::tstring_t &csLogName);
+            ///< constructor
+        virtual ~CxSystemLog();
+            ///< destructor
+
+        bool     bSetEnabled(const bool cbFlag);
+            ///< set enabled
+        bool     bWrite     (const ELevel lvLevel, const tchar_t *pcszFormat, ...);
+            ///< write to log
 
     private:
+        bool     _m_bIsEnable;        ///< is enabled
 
 };
 
