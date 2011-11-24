@@ -17,6 +17,13 @@ class CxWndLog :
     /// logging to window
 {
     public:
+    #if xOS_ENV_WIN
+        typedef HWND    TxHandle; ///< window handle
+    #elif xOS_ENV_UNIX
+        typedef int     TxHandle; ///< window handle
+    #endif
+
+
         enum EWindowClass
             /// window classes
         {
@@ -28,7 +35,7 @@ class CxWndLog :
         virtual                    ~CxWndLog();
             ///< destructor
 
-        bool                        bWrite  (const HWND chWnd, const tchar_t *pcszFormat, ...);
+        bool                        bWrite  (const TxHandle chWnd, const tchar_t *pcszFormat, ...);
             ///< write
 
        private:

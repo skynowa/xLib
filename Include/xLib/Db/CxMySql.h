@@ -35,19 +35,21 @@ class CxMySQLConnection :
             ///< validating handle
         bool                     bOptions         (const mysql_option cmoOption, const void *cpvArg) const;
             ///< set extra connect options and affect behavior
+        static bool              bIsExists        (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t cuiPort, const std::tstring_t &csUnixSocket, const ulong_t culClientFlag);
+            ///<
         bool                     bConnect         (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t cuiPort, const std::tstring_t &csUnixSocket, const ulong_t culClientFlag);
             ///< attempts to establish a connection to a MySQL database engine running on host
         bool                     bQuery           (const tchar_t *pcszSqlFormat, ...) const;
             ///< executes the SQL statement
-        uint_t                     uiFieldCount     () const;
+        uint_t                   uiFieldCount     () const;
             ///< number of columns in a result set
         bool                     bClose           ();
             ///< closes a previously opened connection
 
         //errors
-        uint_t                     uiGetLastError   () const;
+        uint_t                   uiGetLastError   () const;
             ///< error code for the most recently invoked API function that can succeed or fail
-        std::tstring_t             sGetLastErrorStr () const;
+        std::tstring_t           sGetLastErrorStr () const;
             ///< error message for the most recently invoked API function that failed
 
     private:
@@ -70,7 +72,7 @@ class CxMySQLRecordset :
         bool                     bIsValid         () const;
             ///< validating handle
 
-        uint_t                     uiFieldsNum      () const;
+        uint_t                   uiFieldsNum      () const;
             ///< number of columns in a result set
         my_ulonglong             ullRowsNum       () const;
             ///< number of rows in the result set

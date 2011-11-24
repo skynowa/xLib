@@ -38,8 +38,8 @@ CxWndLog::~CxWndLog() {
 //---------------------------------------------------------------------------
 bool
 CxWndLog::bWrite(
-    const HWND     chWnd,
-    const tchar_t *pcszFormat, ...
+    const TxHandle  chWnd,
+    const tchar_t  *pcszFormat, ...
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != chWnd,      false);

@@ -72,6 +72,57 @@ CxMySQLConnection::bOptions(
 
     return true;
 }
+//----------------------------------------------------------------------------------------------------
+/*static*/
+bool
+CxMySQLConnection::bIsExists(
+    const std::tstring_t &csHost,
+    const std::tstring_t &csUser,
+    const std::tstring_t &csPassword,
+    const std::tstring_t &csDb,
+    const uint_t          cuiPort,
+    const std::tstring_t &csUnixSocket,
+    const ulong_t         culClientFlag
+)
+{
+    bool bRes = false;
+
+    CxMySQLConnection conConn;
+
+    {
+        bRes = conConn.bIsValid();
+        xCHECK_RET(false == bRes, false);
+
+        bRes = conConn.bConnect(csHost, csUser, csPassword, xT(""), cuiPort, csUnixSocket, culClientFlag);
+        xCHECK_RET(false == bRes, false);
+
+        bRes = conConn.bQuery(
+                    xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
+                    csDb.c_str());
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
+    }
+
+
+    CxMySQLRecordset recRec(conConn, false);
+
+    {
+        bRes = recRec.bIsValid();
+        /*DEBUG*/xASSERT_RET(true == bRes,                false);
+        /*DEBUG*/xASSERT_RET(1ULL == recRec.ullRowsNum(), false);
+
+        std::vector<std::tstring_t> vsRow;
+
+        bRes = recRec.bFetchRow(&vsRow);
+        /*DEBUG*/xASSERT_RET(true == bRes,         false);
+        /*DEBUG*/xASSERT_RET(1    == vsRow.size(), false);
+
+        xCHECK_RET(true == CxString::bCompareNoCase(xT("false"), vsRow.at(0)), false);
+
+        /*DEBUG*/xASSERT_RET(true == CxString::bCompareNoCase(xT("true"), vsRow.at(0)), false);
+    }
+
+    return true;
+}
 //---------------------------------------------------------------------------
 bool
 CxMySQLConnection::bConnect(
@@ -89,11 +140,12 @@ CxMySQLConnection::bConnect(
     /*DEBUG*/// csUser       - n/a
     /*DEBUG*/// csPassword   - n/a
     /*DEBUG*/// csDb         - n/a
-    /*DEBUG*/// uiPort       - n/a
+    /*DEBUG*/// cuiPort      - n/a
     /*DEBUG*/// csUnixSocket - n/a
     /*DEBUG*/// ulClientFlag - n/a
 
     MYSQL *pmsConnection = ::mysql_real_connect(_m_pmsConnection, csHost.c_str(), csUser.c_str(), csPassword.c_str(), csDb.c_str(), cuiPort, csUnixSocket.c_str(), culClientFlag);
+
     /*DEBUG*/xASSERT_MSG_RET(NULL             != pmsConnection, sGetLastErrorStr().c_str(), false);
     /*DEBUG*/xASSERT_MSG_RET(_m_pmsConnection == pmsConnection, sGetLastErrorStr().c_str(), false);
 
