@@ -10,9 +10,9 @@
 #include <xLib/Filesystem/CxPath.h>
 
 #if defined(xOS_ENV_WIN)
-    #include <syslog.h>
-#elif defined(xOS_ENV_UNIX)
 
+#elif defined(xOS_ENV_UNIX)
+    #include <syslog.h>
 #endif
 
 
@@ -50,7 +50,7 @@ CxSystemLog::~CxSystemLog() {
 }
 //---------------------------------------------------------------------------
 bool
-CxTraceLog::bSetEnabled(
+CxSystemLog::bSetEnabled(
     const bool cbFlag
 )
 {

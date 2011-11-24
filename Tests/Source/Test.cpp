@@ -152,7 +152,7 @@ xTMAIN(
         std::vector<std::tstring_t> vsArgs;
 
         bool bRes = CxCommandLine::bGetArgs(&vsArgs);
-        xTEST_EQ(true, bRes); 
+        xTEST_EQ(true, bRes);
 
         //usage
         if (2 == iArgCount) {
@@ -218,7 +218,7 @@ xTMAIN(
 
         //Db
         (void)tmManager.bAdd(new CxTest_CxConnectionString);
-        //(void)tmManager.bAdd(new CxTest_CxMySql);
+        (void)tmManager.bAdd(new CxTest_CxMySql);
 
         //Debug
         (void)tmManager.bAdd(new CxTest_CxStdError);
