@@ -1017,7 +1017,7 @@ CxTest_CxString::bUnit(
 
             for (size_t i = 0; i < xARRAY_SIZE(asBuff); ++ i) {
                 m_pvRes = CxString::pvMemoryZeroSecure(&asBuff[i].at(0), asBuff[i].size() * sizeof(std::tstring_t::value_type));
-                xASSERT(NULL != m_pvRes);
+                xTEST_PTR(m_pvRes);
 
                 for (size_t x = 0; x < asBuff[i].size() * sizeof(std::tstring_t::value_type); ++ x) {
                     xASSERT(0 == asBuff[i].at(x));

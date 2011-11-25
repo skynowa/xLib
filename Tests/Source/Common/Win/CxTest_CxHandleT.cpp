@@ -152,7 +152,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_hRes = objHandle.hDuplicate(CxHandle::hGetCurrentProcess(), 0, false, 0);
-            xASSERT(NULL != m_hRes);
+            xTEST_PTR(m_hRes);
         #endif
     }
 
@@ -161,7 +161,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_hRes = objHandle.hDetach();
-            xASSERT(NULL != m_hRes);
+            xTEST_PTR(m_hRes);
         #endif
     }
 

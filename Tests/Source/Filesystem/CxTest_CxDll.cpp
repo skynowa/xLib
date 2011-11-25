@@ -67,7 +67,7 @@ CxTest_CxDll::bUnit(
         CxDll::TxProcAddress fpRes = NULL;
 
         fpRes = objDll.fpGetProcAddress(sData[i][1]);
-        xASSERT(NULL != fpRes);
+        xTEST_PTR(fpRes);
 
     #if xOS_ENV_WIN
         typedef void (__stdcall *pDllFunc)(ulong_t, ulong_t);
