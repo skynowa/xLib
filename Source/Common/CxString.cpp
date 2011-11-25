@@ -54,8 +54,7 @@ CxString::sTrimLeftChars(
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring_t sRes;
-    sRes.assign(csStr);
+    std::tstring_t sRes(csStr);
 
     return sRes.erase(0, sRes.find_first_not_of(csChars));
 }
@@ -70,8 +69,7 @@ CxString::sTrimRightChars(
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring_t sRes;
-    sRes.assign(csStr);
+    std::tstring_t sRes(csStr);
 
     return sRes.erase(sRes.find_last_not_of(csChars) + 1);
 }
@@ -86,11 +84,10 @@ CxString::sTrimChars(
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring_t sRes;
-    sRes.assign(csStr);
+    std::tstring_t sRes(csStr);
 
-    sRes.assign( sTrimRightChars(sRes, csChars) );
-    sRes.assign( sTrimLeftChars (sRes, csChars) );
+    sRes = sTrimRightChars(sRes, csChars);
+    sRes = sTrimLeftChars (sRes, csChars);
 
     return sRes;
 }
@@ -132,8 +129,7 @@ CxString::sReplaceAll(
     xCHECK_RET(true == csStr.empty(),    csStr);
     xCHECK_RET(true == csOldStr.empty(), csStr);
 
-    std::tstring_t sRes;
-    sRes.assign(csStr);
+    std::tstring_t sRes(csStr);
 
     size_t uiPos = 0;
 
@@ -324,8 +320,7 @@ CxString::sToLowerCase(
     xCHECK_RET(true == csStr.empty(), std::tstring_t());
     xCHECK_DO (csStr.size() < uiLength, uiLength = csStr.size());
 
-    std::tstring_t sRes;
-    sRes.assign(csStr);
+    std::tstring_t sRes(csStr);
 
 #if xOS_ENV_WIN
     ulong_t ulRes = ::CharLowerBuff(static_cast<LPTSTR>( &sRes[0] ), uiLength);
@@ -349,8 +344,7 @@ CxString::sToUpperCase(
     xCHECK_RET(true == csStr.empty(), std::tstring_t());
     xCHECK_DO (csStr.size() < uiLength, uiLength = csStr.size());
 
-    std::tstring_t sRes;
-    sRes.assign(csStr);
+    std::tstring_t sRes(csStr);
 
 #if xOS_ENV_WIN
     ulong_t ulRes = ::CharUpperBuff(static_cast<LPTSTR>( &sRes[0] ), uiLength);
@@ -550,7 +544,7 @@ CxString::sMinimize(
             sRes = csStr.substr(0, cuiMaxLen - CxConst::x3DOT.size()) + CxConst::x3DOT;
         }
     } else {
-        sRes.assign(csStr);
+        sRes = csStr;
     }
 
     return sRes;
@@ -643,11 +637,10 @@ CxString::sTranslitLatToRus(
         {xT("ь"), xT("'")},   {xT("б"), xT("b")},  {xT("ю"), xT("yu")}
     };
 
-    std::tstring_t sRes;
-    sRes.assign(csStr);
+    std::tstring_t sRes(csStr);
 
     for (size_t i = 0; i < xARRAY_SIZE(csDict); ++ i) {
-        sRes.assign( sReplaceAll(sRes, csDict[i][0], csDict[i][1]) );
+        sRes = sReplaceAll(sRes, csDict[i][0], csDict[i][1]);
     }
 
     return sRes;

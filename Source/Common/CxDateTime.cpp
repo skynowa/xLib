@@ -1106,9 +1106,9 @@ CxDateTime::_bParse(
                 //replace ":" to " ", "-" to " "
                 std::tstring_t sDT;
 
-                sDT.assign(csDT);
-                sDT.assign( CxString::sReplaceAll(sDT, CxConst::xCOLON,  CxConst::xSPACE) );
-                sDT.assign( CxString::sReplaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE) );
+                sDT = csDT;
+                sDT = CxString::sReplaceAll(sDT, CxConst::xCOLON,  CxConst::xSPACE);
+                sDT = CxString::sReplaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE);
 
                 //split by separator " "
                 std::vector<std::tstring_t> vsDates;

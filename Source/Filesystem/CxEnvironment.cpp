@@ -196,7 +196,7 @@ CxEnvironment::sExpandStrings(
 #elif xOS_ENV_UNIX
     const std::tstring_t csSep = xT("%");
 
-    sRes.assign(csVar);
+    sRes = csVar;
 
     for ( ; ; ) {
         //--------------------------------------------------

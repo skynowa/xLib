@@ -87,7 +87,7 @@ CxLocalStorage::bSetPath(
     bool bRes = CxDir::bCreateForce(CxPath::sGetDir(csFilePath));
     /*DEBUG*/xASSERT_RET(false != bRes, false);
 
-    _m_sFilePath.assign(csFilePath);
+    _m_sFilePath = csFilePath;
 
     return true;
 }

@@ -298,7 +298,7 @@ CxUri::sEscape(const std::string &csUri) {
 
     std::string sRes;
 
-    sRes.assign(csUri);
+    sRes = csUri;
 
 
 

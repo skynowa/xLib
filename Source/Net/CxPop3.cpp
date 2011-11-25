@@ -274,7 +274,7 @@ CxPop3::bTop(int iNum, int iLines, std::tstring_t &sBuff) {
     bool bRes = _bCommand(sTopCmd, "\r\n.\r\n", &_m_sRes);
     xCHECK_RET(false == bRes, false);
 
-    sBuff.assign(_m_sRes);
+    sBuff = _m_sRes;
 
     return true;
 }
@@ -548,7 +548,7 @@ CxPop3::_bCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDeli
     _m_sRes = _m_scktSocket.sRecvAll(0, csReplyDelimiter);
     /*DEBUG*/////xASSERT_MSG_RET(false == _bIsError(_m_sRes), _m_sRes.c_str(), false);
 
-    (*psReply).assign(_m_sRes);
+    (*psReply) = _m_sRes;
 
 #ifdef _DEBUG
     /*DEBUG*/////_m_clLog.bWrite("Command :  %s          Response: %s\n", csCmd.c_str(), _m_sRes.c_str());

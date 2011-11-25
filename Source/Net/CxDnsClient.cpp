@@ -42,7 +42,7 @@ CxDnsClient::bGetHostAddrByName(
     );
     /*DEBUG*/xASSERT_RET(false == sRes.empty(), false);
 
-    (*psHostAddr).assign(sRes);
+    (*psHostAddr) = sRes;
 
     return true;
 }

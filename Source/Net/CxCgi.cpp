@@ -901,7 +901,7 @@ CxCgiFormData::_bInit() {
 
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
-                _m_sFormData.assign(_m_ccgCgi.Environment.sGetQueryString());
+                _m_sFormData = _m_ccgCgi.Environment.sGetQueryString();
             }
             break;
 
@@ -938,7 +938,7 @@ CxCgiFormData::_bInit() {
 
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
-                _m_sFormData.assign(sBuff);
+                _m_sFormData = sBuff;
 
                 (void)sfFile.pDetach();
             }

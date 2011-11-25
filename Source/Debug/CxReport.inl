@@ -66,7 +66,7 @@ CxReport::CxReport(
             ossStream << xT("\n                      (")  << _m_sComment << xT(")");
         }
 
-        sComment.assign( ossStream.str() );
+        sComment = ossStream.str();
     }
 
     (void)_bInitVars(crtType, sExpr, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment);

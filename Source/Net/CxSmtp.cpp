@@ -341,7 +341,7 @@ CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelimiter,
     sRes = _m_scktSocket.sRecvAll(0, csReplyDelimiter);
     /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(sRes), sRes.c_str(), false);
 
-    sReply.assign(sRes);
+    sReply = sRes;
 
 #ifdef _DEBUG
     /*DEBUG*/_m_ConsoleLog.bWrite("Command :  %s          Response: %s\n", csCmd.c_str(), sRes.c_str());

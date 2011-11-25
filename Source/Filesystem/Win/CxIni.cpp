@@ -89,7 +89,7 @@ CxIni::bSetPath(
     /*DEBUG*///_m_sFilePath - n/a
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
 
-    _m_sFilePath.assign(csFilePath);
+    _m_sFilePath = csFilePath;
 
     bool bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
     /*DEBUG*/xASSERT_RET(false != bRes, false);

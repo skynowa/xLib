@@ -215,7 +215,7 @@ CxDir::sGetTemp() {
 
     sRes.assign(sBuff, 0, ulRes);
 #elif xOS_ENV_UNIX
-    sRes.assign(xT(P_tmpdir));
+    sRes = xT(P_tmpdir);
 #endif
 
     /*DEBUG*/xASSERT_RET(true == bIsExists(sRes), std::tstring_t());
