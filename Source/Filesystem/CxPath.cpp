@@ -402,11 +402,11 @@ CxPath::bIsValid(
     bool bRes = false;
 
     //is empty
-    bRes = static_cast<bool>( csFilePath.empty() );
+    bRes = csFilePath.empty();
     xCHECK_RET(true == bRes, false);
 
     //check for size
-    bRes = static_cast<bool>( xPATH_MAX < csFilePath.size() );
+    bRes = (xPATH_MAX < csFilePath.size());
     xCHECK_RET(true == bRes, false);
 
     return true;
@@ -426,11 +426,11 @@ CxPath::bIsNameValid(
     const std::tstring_t csFileName = CxPath::sGetFullName(csFilePath);
 
     //is empty
-    bRes = static_cast<bool>( csFileName.empty() );
+    bRes = csFileName.empty();
     xCHECK_RET(true == bRes, false);
 
     //check for name size
-    bRes = static_cast<bool>( xNAME_MAX < csFileName.size() );
+    bRes = (xNAME_MAX < csFileName.size());
     xCHECK_RET(true == bRes, false);
 
     //cm. sSetValidName

@@ -107,7 +107,7 @@ bool
 CxSocket::bIsValid() const {
     /*DEBUG*/// n/a
 
-    return static_cast<bool>( _m_puiSocket >= 0 );
+    return (_m_puiSocket >= 0);
 }
 //---------------------------------------------------------------------------
 bool

@@ -616,7 +616,7 @@ CxUri::_usGetDefaultPort() const {
 //TODO: _bIsDefaultPort ()
 bool
 CxUri::_bIsDefaultPort() const {
-    return static_cast<bool>( _m_usPort == _usGetDefaultPort() );
+    return (_m_usPort == _usGetDefaultPort());
 }
 //---------------------------------------------------------------------------
 

@@ -26,10 +26,10 @@ CxCurrentThread::bIsCurrent(
     bool bRes = false;
 
 #if xOS_ENV_WIN
-    bRes = static_cast<bool>( ulGetId() == culId );
+    bRes = (ulGetId() == culId);
 #elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    bRes = static_cast<bool>( ::pthread_equal(ulGetId(), culId) );
+    bRes = ::pthread_equal(ulGetId(), culId);
 #endif
 
     return bRes;

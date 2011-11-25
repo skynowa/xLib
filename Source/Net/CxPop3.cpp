@@ -554,7 +554,7 @@ CxPop3::_bCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDeli
     /*DEBUG*/////_m_clLog.bWrite("Command :  %s          Response: %s\n", csCmd.c_str(), _m_sRes.c_str());
 #endif
 
-    return static_cast<bool>( !_bIsError(_m_sRes)/*true*/ );
+    return (! _bIsError(_m_sRes)/*true*/);
 }
 //---------------------------------------------------------------------------
 //DONE: _bIsError ()
