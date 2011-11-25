@@ -45,27 +45,27 @@ CxTest_CxTcpServer::bUnit(
     //-------------------------------------
     //bCreate
     m_bRes = objListenSocket.bCreate(afAf, tpType, ptProtocol);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bGetHostAddrByName
     m_bRes = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bConnect
     m_bRes = objListenSocket.bBind(usPort);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bListen
     m_bRes = objListenSocket.bListen(SOMAXCONN);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bAccept
     m_bRes = objListenSocket.bAccept(&objClientSocket, &sIp);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     for (; ;) {
         //-------------------------------------
@@ -79,7 +79,7 @@ CxTest_CxTcpServer::bUnit(
     //-------------------------------------
     //bClose
     m_bRes = objClientSocket.bClose();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //iSend
@@ -89,12 +89,12 @@ CxTest_CxTcpServer::bUnit(
     //-------------------------------------
     //bClose
     m_bRes = objListenSocket.bClose();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //iGetLastError
     m_iRes = CxTcpServer::iGetLastError();
-    //xTEST_DIFF(false, m_bRes);
+    //xTEST_EQ(true, m_bRes);
 
     return true;
 }

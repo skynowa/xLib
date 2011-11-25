@@ -34,13 +34,13 @@ CxTest_CxDebugger::bUnit(
         xTEST_EQ(cbTrue, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbFalse);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
         xTEST_EQ(cbFalse, m_bRes);
 
         m_bRes = CxDebugger::bSetEnabled(cbTrue);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = CxDebugger::bGetEnabled();
         xTEST_EQ(cbTrue, m_bRes);
@@ -82,13 +82,13 @@ CxTest_CxDebugger::bUnit(
         xTEST_EQ(true, m_sRes.empty());
 
         m_bRes = CxDebugger::bSetLogPath(csFilePath);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
         xTEST_EQ(csFilePath, m_sRes);
 
         m_bRes = CxDebugger::bSetLogPath(xT(""));
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_sRes = CxDebugger::sGetLogPath();
         xTEST_EQ(true, m_sRes.empty());
@@ -111,7 +111,7 @@ CxTest_CxDebugger::bUnit(
             CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
 
             //m_bRes = CxDebugger::bReportMake(rpReport);
-            //xTEST_DIFF(false, m_bRes);
+            //xTEST_EQ(true, m_bRes);
         }
     }
 
@@ -121,7 +121,7 @@ CxTest_CxDebugger::bUnit(
     {
         #if xTEST_IGNORE
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -133,7 +133,7 @@ CxTest_CxDebugger::bUnit(
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
         #endif
 
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -141,7 +141,7 @@ CxTest_CxDebugger::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxDebugger::bBeep();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------

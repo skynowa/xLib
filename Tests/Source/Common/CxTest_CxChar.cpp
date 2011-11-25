@@ -32,7 +32,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsAlphaNum(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -57,7 +57,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsAlpha(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -82,7 +82,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsControl(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -107,7 +107,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsDigitDec(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -132,7 +132,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsDigitHex(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -157,7 +157,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsGraph(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -182,7 +182,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsPrint(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -209,7 +209,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsPunct(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -234,7 +234,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsSpace(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -259,7 +259,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsLower(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 
@@ -284,7 +284,7 @@ CxTest_CxChar::bUnit(
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
                 m_bRes = CxChar::bIsUpper(sDataTrue.at(i));
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 

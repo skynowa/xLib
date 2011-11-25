@@ -31,7 +31,7 @@ CxTest_bGetUsbInfo::bUnit(
         std::vector<std::tstring_t> vsInfo;
 
         m_bRes = bGetUsbInfo(csDrive, &vsInfo);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         xTEST_EQ(std::tstring_t(xT("\\??\\USB")),                              vsInfo.at(0));
         xTEST_EQ(std::tstring_t(xT("Vid_058f&Pid_6387")),                      vsInfo.at(1));

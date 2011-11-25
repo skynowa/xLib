@@ -41,37 +41,37 @@ CxTest_CxCookiePv0::bUnit(
         CxCookiePv0 ckCookiePv0;
 
         m_bRes = ckCookiePv0.bSetName(csName);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
         m_sRes = ckCookiePv0.sGetName();
         xTEST_EQ(csName, m_sRes);
 
         m_bRes = ckCookiePv0.bSetValue(csValue);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
         m_sRes = ckCookiePv0.sGetValue();
         xTEST_EQ(csValue, m_sRes);
 
         m_bRes = ckCookiePv0.bSetDomain(csDomain);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
         m_sRes = ckCookiePv0.sGetDomain();
         xTEST_EQ(csDomain, m_sRes);
 
         m_bRes = ckCookiePv0.bSetPath(csPath);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
         m_sRes = ckCookiePv0.sGetPath();
         xTEST_EQ(csPath, m_sRes);
 
         m_bRes = ckCookiePv0.bSetExpires(csExpires);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
         m_sRes = ckCookiePv0.sGetExpires();
         xTEST_EQ(csExpires, m_sRes);
 
         m_bRes = ckCookiePv0.bSetSecure(cbSecure);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
         m_bRes = ckCookiePv0.bGetSecure();
         xTEST_EQ(cbSecure, m_bRes);
 
         m_bRes = ckCookiePv0.bSetHttpOnly(cbHttpOnly);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
         m_bRes = ckCookiePv0.bGetHttpOnly();
         xTEST_EQ(cbHttpOnly, m_bRes);
 
@@ -85,7 +85,7 @@ CxTest_CxCookiePv0::bUnit(
         }
 
         m_bRes = ckCookiePv0.bClear();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
@@ -119,7 +119,7 @@ CxTest_CxCookiePv0::bUnit(
         xTEST_EQ(csRawCookie, m_sRes);
 
         m_bRes = ckCookiePv0.bClear();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     return true;

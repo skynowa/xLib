@@ -35,7 +35,7 @@ CxTest_CxProcess::bUnit(
         #endif
 
         ////m_bRes = CxProcess::bExec(csFilePath, csCmdLine.c_str(), 0);
-        ////xTEST_DIFF(false, m_bRes);
+        ////xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
@@ -43,7 +43,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         ////m_bRes = CxProcess::bExit(CxProcess::ulGetCurrParentId(), 0);
-        ////xTEST_DIFF(false, m_bRes);
+        ////xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
@@ -51,7 +51,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
-        //xTEST_DIFF(false, m_bRes);
+        //xTEST_EQ(true, m_bRes);
     }
 
     return true;

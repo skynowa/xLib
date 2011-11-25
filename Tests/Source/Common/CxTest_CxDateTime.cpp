@@ -123,7 +123,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 == dtDt2);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -156,7 +156,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 <= dtDt2);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -178,7 +178,7 @@ CxTest_CxDateTime::bUnit(
         CxDateTime dtDt2;
 
         m_bRes = (dtDt1 >= dtDt2);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
 
@@ -259,10 +259,10 @@ CxTest_CxDateTime::bUnit(
         ushort_t     usMSec   = 666;
 
         m_bRes = dtDT.bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = dtDT.bGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         xTEST_EQ((ushort_t)2010, usYear);
         xTEST_EQ((ushort_t)1,    usMonth);
@@ -314,10 +314,10 @@ CxTest_CxDateTime::bUnit(
         ushort_t     usMSec   = 0;
 
         m_bRes = dtDT.bSet(ui64DT);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = dtDT.bGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         xTEST_EQ((ushort_t)0, usYear);
         xTEST_EQ((ushort_t)0, usMonth);
@@ -440,7 +440,7 @@ CxTest_CxDateTime::bUnit(
                 ////ushort_t usMSec   = causiNonValid[i][6];
 
                 ////m_bRes = CxDateTime::bIsValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-                ////xTEST_DIFF(false, m_bRes);
+                ////xTEST_EQ(true, m_bRes);
             }
         }
     }
@@ -535,7 +535,7 @@ CxTest_CxDateTime::bUnit(
 
             ////for (size_t i = 0; i < xARRAY_SIZE(causNonValid); ++ i) {
             ////    m_bRes = CxDateTime::bIsLeapYear(causNonValid[i]);
-            ////    xTEST_DIFF(false, m_bRes);
+            ////    xTEST_EQ(true, m_bRes);
             ////}
         }
     }
@@ -563,7 +563,7 @@ CxTest_CxDateTime::bUnit(
             FILETIME     ftFileTime  = {0};
 
             m_bRes = CxDateTime::bUnixTimeToFileTime(ctmUnixTime, &ftFileTime);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 

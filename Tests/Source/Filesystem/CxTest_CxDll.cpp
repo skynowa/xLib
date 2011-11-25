@@ -50,12 +50,12 @@ CxTest_CxDll::bUnit(
         //-------------------------------------
         //bLoad
         m_bRes = objDll.bLoad(sData[i][0]);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         //-------------------------------------
         //bIsProcExists
@@ -91,7 +91,7 @@ CxTest_CxDll::bUnit(
         //-------------------------------------
         //bFree
         m_bRes = objDll.bFree();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         //-------------------------------------
         //bIsLoaded

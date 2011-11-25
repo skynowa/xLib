@@ -42,7 +42,7 @@ CxTest_CxGeoIp::bUnit(
             CxGeoIp giGeoIp;
 
             m_bRes = giGeoIp.bOpen(csFilePath, copOption[i]);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
     }
 
@@ -57,10 +57,10 @@ CxTest_CxGeoIp::bUnit(
             xTEST_EQ(false, m_bRes);
 
             m_bRes = giGeoIp.bOpen(csFilePath, copOption[i]);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = giGeoIp.bIsValid();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
     }
 
@@ -90,7 +90,7 @@ CxTest_CxGeoIp::bUnit(
                 CxGeoIp giGeoIp;
 
                 m_bRes = giGeoIp.bOpen(csFilePath, copOption[i]);
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
 
                 m_sRes = giGeoIp.sGetCountryCodeByAddress(csAddress);
                 xTEST_EQ(csMustCode2, m_sRes);
@@ -109,10 +109,10 @@ CxTest_CxGeoIp::bUnit(
             CxGeoIp giGeoIp;
 
             m_bRes = giGeoIp.bOpen(csFilePath, copOption[i]);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = giGeoIp.bClose();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
     }
 

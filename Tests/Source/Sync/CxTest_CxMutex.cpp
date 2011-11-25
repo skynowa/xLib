@@ -42,7 +42,7 @@ CxTest_CxMutex::bUnit(
         const bool                  cbInitialOwner  = false;
 
         m_bRes = mtMutex.bCreate(lpcsaAttributes, cbInitialOwner, csName.c_str());
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -52,7 +52,7 @@ CxTest_CxMutex::bUnit(
         const bool  cbInheritHandle = false;
 
         m_bRes = mtMutex.bOpen(culAccess, cbInheritHandle,  csName.c_str());
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -61,14 +61,14 @@ CxTest_CxMutex::bUnit(
         const ulong_t culTimeout = 1000;
 
         m_bRes = mtMutex.bWait(culTimeout);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
     //bRelease
     {
         m_bRes = mtMutex.bRelease();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 #elif xOS_ENV_UNIX
 

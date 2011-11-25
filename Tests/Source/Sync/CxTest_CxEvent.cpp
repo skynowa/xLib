@@ -28,7 +28,7 @@ CxTest_CxEvent::bUnit(
         CxEvent objEvent(true, true);
 
         #if xOS_ENV_WIN
-            xTEST_DIFF(false, objEvent.hGet().bIsValid())
+            xTEST_EQ(true, objEvent.hGet().bIsValid())
         #elif xOS_ENV_UNIX
             //TODO: hRes
         #endif
@@ -41,7 +41,7 @@ CxTest_CxEvent::bUnit(
             CxEvent objEvent(true, true);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
 
         {
@@ -62,7 +62,7 @@ CxTest_CxEvent::bUnit(
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
             xTEST_EQ(false, m_bRes);
@@ -70,10 +70,10 @@ CxTest_CxEvent::bUnit(
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bSet();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
     }
 
@@ -87,15 +87,15 @@ CxTest_CxEvent::bUnit(
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bSet();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             m_bRes = objEvent.bReset();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = objEvent.bIsSignaled();
             xTEST_EQ(false, m_bRes);
