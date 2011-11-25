@@ -33,17 +33,17 @@ CxTest_CxAutoCriticalSection::bUnit(
             CxAutoCriticalSection acsCS(csCS);
 
             m_bRes = acsCS.bIsLocked();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             for (size_t i = 0; i < 10; ++ i) {
                 m_bRes = acsCS.bIsLocked();
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
 
                 ++ uiCounter;
             }
 
             m_bRes = acsCS.bIsLocked();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
     }
 

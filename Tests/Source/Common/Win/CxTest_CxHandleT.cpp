@@ -36,10 +36,10 @@ CxTest_CxHandleT::bUnit(
         xTEST_EQ(false, m_bRes);
 
         m_bRes = objHandle.bSet( CxHandle::hGetCurrentProcess() );
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = objHandle.bIsValid();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
         xTEST_EQ(CxHandle::hGetCurrentProcess(), objHandle.hGet());
     }
 
@@ -74,13 +74,13 @@ CxTest_CxHandleT::bUnit(
         xTEST_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
 
         m_bRes = objHandle.bSet(NULL);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_hRes = objHandle.hGet();
         xASSERT(NULL == m_hRes);
 
         m_bRes = objHandle.bSet(CxHandle::hGetCurrentProcess());
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_hRes = objHandle.hGet();
         xTEST_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
@@ -90,7 +90,7 @@ CxTest_CxHandleT::bUnit(
     //bIsValid
     {
         m_bRes = objHandle.bIsValid();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -98,7 +98,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bSetInformation(7, HANDLE_FLAG_INHERIT);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -116,7 +116,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bSetFlagInherit(true);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -125,7 +125,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTEMP_DISABLED
             m_bRes = objHandle.bIsFlagInherit();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -134,7 +134,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bSetFlagProtectFromClose(false);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -170,7 +170,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bAttach(CxHandle::hGetCurrentProcess());
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -179,7 +179,7 @@ CxTest_CxHandleT::bUnit(
     {
         #if xTODO
             m_bRes = objHandle.bClose();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -187,7 +187,7 @@ CxTest_CxHandleT::bUnit(
     //bIsValid
     {
         m_bRes = CxHandleT<hvNull>::bIsValid(CxHandle::hGetCurrentProcess());
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -199,7 +199,7 @@ CxTest_CxHandleT::bUnit(
 
     //detach handle
     m_bRes = objHandle.bSet(NULL);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 #endif
 
     return true;

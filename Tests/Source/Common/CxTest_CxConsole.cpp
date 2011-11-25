@@ -37,7 +37,7 @@ CxTest_CxConsole::bUnit(
             const bool        cbIsBlink;
 
             m_sRes = cnConsole.bSetTextColor(csText, cfgForeground, cbIsBold, cbIsUnderline, cbgBackground, cbIsBlink);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -64,7 +64,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bWrite(csStr);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -79,7 +79,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bWriteLine(csStr);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -94,7 +94,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bWriteLine(csStr);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -128,7 +128,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bPrompt(csPrompt, cbIsVisible, &sAnswer);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -140,7 +140,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bPause();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -152,7 +152,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bClear();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -167,7 +167,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetTitle(csTitle);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_sRes = cnConsole.sGetTitle();
             xTEST_EQ(m_sRes, csTitle);
@@ -185,7 +185,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetTitle(csTitle);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             #if 1 && xOS_ENV_WIN
                 m_sRes = cnConsole.sGetTitle();
@@ -202,7 +202,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bCenterWindow();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -214,7 +214,7 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetFullScreen();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 
@@ -226,10 +226,10 @@ CxTest_CxConsole::bUnit(
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bEnableClose(false);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = cnConsole.bEnableClose(true);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         #endif
     }
 

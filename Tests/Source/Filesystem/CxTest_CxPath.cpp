@@ -482,7 +482,7 @@ CxTest_CxPath::bUnit(
 
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
                 m_bRes = CxPath::bIsAbsolute(casData[i]);
-                xTEST_DIFF(false, m_bRes);
+                xTEST_EQ(true, m_bRes);
             }
         }
 

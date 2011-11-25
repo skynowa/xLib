@@ -41,7 +41,7 @@ CxTest_CxPkcs11::bUnit(
     //    std::ustring_t       usData      = xS2US(csData);
 
     //    m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
-    //    xTEST_DIFF(false, m_bRes);
+    //    xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -53,7 +53,7 @@ CxTest_CxPkcs11::bUnit(
     //    std::ustring_t       usData;
 
     //    m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
-    //    xTEST_DIFF(false, m_bRes);
+    //    xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------

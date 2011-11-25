@@ -69,47 +69,47 @@ CxTest_CxPop3::bUnit(
     //-------------------------------------
     //bCreate
     m_bRes = objPop3.bCreate(csUser, csPass, csServer, cusPort);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bConnect
     m_bRes = objPop3.bConnect();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bLogin
     m_bRes = objPop3.bLogin();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bStat
     m_bRes = objPop3.bStat(ulSum, ulSize);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bList
     ////m_bRes = objPop3.bList(veculList);
-    ////xTEST_DIFF(false, m_bRes);
+    ////xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bListAt
     ////m_bRes = objPop3.bListAt(ulIndex);
-    ////xTEST_DIFF(false, m_bRes);
+    ////xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bNoop
     m_bRes = objPop3.bNoop();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bDelete
     m_bRes = objPop3.bDelete(ulMsgID);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bRset
     m_bRes = objPop3.bRset();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bTop
@@ -124,11 +124,11 @@ CxTest_CxPop3::bUnit(
         ////CxMimeHeader objHeader;
 
         ////m_bRes = objPop3.bTop(iNum, 0, /*ref*/sRawHeader);
-        ////xTEST_DIFF(false, m_bRes);
+        ////xTEST_EQ(true, m_bRes);
         /////*LOG*/printf("bTop %i\n", i);
 
         ////m_bRes = objHeader.bParse(sRawHeader);
-        ////xTEST_DIFF(false, m_bRes);
+        ////xTEST_EQ(true, m_bRes);
 
         ////m_sRes = objHeader.sGetField(xT("Message-Id"));
         ////xTEST_EQ(false, m_sRes.empty());
@@ -139,7 +139,7 @@ CxTest_CxPop3::bUnit(
         ////////CxMimeBody objBody;
 
         //////m_bRes = m_Body.bParse(sRawMessage);
-        //////xTEST_DIFF(false, m_bRes);
+        //////xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -148,7 +148,7 @@ CxTest_CxPop3::bUnit(
         CxDir::bCreateForce(csDirPath);
 
         m_bRes = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::lexical_cast(i) + xT(".eml"));
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         /*LOG*/printf("bRetriveRaw %lu\n", i);
     }
@@ -159,7 +159,7 @@ CxTest_CxPop3::bUnit(
         CxMimeHeader mhMimeHeader;
 
         m_bRes = objPop3.bRetrieveHeader(iNum, mhMimeHeader);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         /*LOG*/printf("bRetrieveHeader %lu\n", i);
     }
@@ -167,7 +167,7 @@ CxTest_CxPop3::bUnit(
     //-------------------------------------
     //bDisconnect
     m_bRes = objPop3.bDisconnect();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 #elif xOS_ENV_UNIX
 
 #endif

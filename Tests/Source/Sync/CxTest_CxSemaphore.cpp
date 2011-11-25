@@ -20,7 +20,7 @@ vTest( void* pArguments ) {
 
     for (int i = 1; i < 100; i ++) {
         bRes = m_Semaphore.bWait(INFINITE);
-        xTEST_DIFF(false, bRes);
+        xTEST_EQ(true, bRes);
 
         /*LOG*/std::cout << i << std::endl;
     }
@@ -45,7 +45,7 @@ CxTest_CxSemaphore::bUnit(
 )
 {
     m_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     if (NULL == _beginthreadex(0, 0, &vTest, 0, 0, NULL)) {
         std::cout << "Error begin thread " << std::endl;
@@ -58,7 +58,7 @@ CxTest_CxSemaphore::bUnit(
 
         for (int x = 0; x < 2; x ++) {
             m_bRes = m_Semaphore.bRelease(1, NULL);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
     }
 

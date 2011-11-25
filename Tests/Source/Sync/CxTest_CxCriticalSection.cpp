@@ -32,12 +32,12 @@ CxTest_CxCriticalSection::bUnit(
         CxCriticalSection csCS;
 
         m_bRes = csCS.bLock();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         ++ uiVal;
 
         m_bRes = csCS.bUnlock();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
@@ -47,12 +47,12 @@ CxTest_CxCriticalSection::bUnit(
         CxCriticalSection csCS;
 
         m_bRes = csCS.bTryLock();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         ++ uiVal;
 
         m_bRes = csCS.bUnlock();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
@@ -65,14 +65,14 @@ CxTest_CxCriticalSection::bUnit(
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bLock();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bUnlock();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
     }
 
@@ -86,14 +86,14 @@ CxTest_CxCriticalSection::bUnit(
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bTryLock();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bUnlock();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
         }
     }
 

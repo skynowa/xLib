@@ -91,7 +91,7 @@ CxTest_CxCurrentThread::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxCurrentThread::bYield();
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
@@ -111,7 +111,7 @@ CxTest_CxCurrentThread::bUnit(
             CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
 
             m_bRes = CxCurrentThread::bSleep(cuiMsec);
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
 

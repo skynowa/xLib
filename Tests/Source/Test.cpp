@@ -218,7 +218,7 @@ xTMAIN(
 
         //Db
         (void)tmManager.bAdd(new CxTest_CxConnectionString);
-        (void)tmManager.bAdd(new CxTest_CxMySql);
+        //(void)tmManager.bAdd(new CxTest_CxMySql);
 
         //Debug
         (void)tmManager.bAdd(new CxTest_CxStdError);

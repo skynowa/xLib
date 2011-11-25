@@ -58,7 +58,7 @@ CxTest_CxArray::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         /*m_bRes =*/ aszArray.clear();
-        ////xTEST_DIFF(false, m_bRes);
+        ////xTEST_EQ(true, m_bRes);
     }
 
     xTEST_CASE(cullBlockLoops) {

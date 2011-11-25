@@ -47,7 +47,7 @@ CxTest_CxCommandLine::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         m_bRes = CxCommandLine::bGetArgs(&m_vsRes);
-        xTEST_DIFF(false,  m_bRes);
+        xTEST_EQ(true,  m_bRes);
         xTEST_EQ(false, m_vsRes.empty());
     }
 

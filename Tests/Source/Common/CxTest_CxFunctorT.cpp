@@ -101,7 +101,7 @@ CxTest_CxFunctorT::bUnit(
         xASSERT(NULL != pbF);
 
         m_bRes = (*pbF)(a);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         delete pbF;
     }
@@ -117,7 +117,7 @@ CxTest_CxFunctorT::bUnit(
         xASSERT(NULL != pbF);
 
         m_bRes = pbF->Execute(a);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         delete pbF;
     }
@@ -131,7 +131,7 @@ CxTest_CxFunctorT::bUnit(
         CxFunctorT<B, bool, A> bF(&b, &B::methodB);
 
         m_bRes = bF(a);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -144,7 +144,7 @@ CxTest_CxFunctorT::bUnit(
         CxFunctorT<B, bool, A> bF(&b, &B::methodB);
 
         m_bRes = bF.Execute(a);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
 

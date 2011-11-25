@@ -71,14 +71,14 @@ CxTest_CxImage::bUnit(
         usInFileContent.assign(cucInFileContent, xARRAY_SIZE(cucInFileContent));
 
         m_bRes = CxFile::bBinWrite(csInFilePath, usInFileContent);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
     //bLoad
     {
         m_bRes = m_imgImage.bLoad(csInFilePath);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -91,19 +91,19 @@ CxTest_CxImage::bUnit(
     //bSave
     {
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.bmp"), CxImage::etBmp);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.jpeg"), CxImage::etJpeg);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.gif"), CxImage::etGif);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.tiff"), CxImage::etTiff);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = m_imgImage.bSave(sGetWorkDirPath() + CxConst::xSLASH + xT("Test1.Saved.png"), CxImage::etPng);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------

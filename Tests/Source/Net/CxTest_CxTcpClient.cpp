@@ -42,22 +42,22 @@ CxTest_CxTcpClient::bUnit(
     //-------------------------------------
     //bCreate
     m_bRes = objSocket.bCreate(afAf, tpType, ptProtocol);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bIsServerAlive
     ////m_bRes = objSocket.bIsServerAlive(sIp, usPort);
-    ////xTEST_DIFF(false, m_bRes);
+    ////xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bDnsParse
     m_bRes = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bConnect
     m_bRes = objSocket.bConnect(sIp, usPort);
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bIsReadable
@@ -67,7 +67,7 @@ CxTest_CxTcpClient::bUnit(
     //-------------------------------------
     //bIsWritable
     m_bRes = objSocket.bIsWritable();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //bGetPeerName
@@ -76,7 +76,7 @@ CxTest_CxTcpClient::bUnit(
         ushort_t  _usPort = 0;
 
         m_bRes = objSocket.bGetPeerName(&_sIp, &_usPort);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
@@ -86,13 +86,13 @@ CxTest_CxTcpClient::bUnit(
         ushort_t  _usPort = 0;
 
         m_bRes = objSocket.bGetSocketName(&_sIp, &_usPort);
-        xTEST_DIFF(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
     //bIsReadible
     ////m_bRes = objSocket.bIsReadable();
-    ////xTEST_DIFF(false, m_bRes);
+    ////xTEST_EQ(true, m_bRes);
 
     for (; ;) {
         std::tstring_t sText;
@@ -116,12 +116,12 @@ CxTest_CxTcpClient::bUnit(
     //-------------------------------------
     //bClose
     m_bRes = objSocket.bClose();
-    xTEST_DIFF(false, m_bRes);
+    xTEST_EQ(true, m_bRes);
 
     //-------------------------------------
     //iGetLastError
     m_iRes = CxTcpClient::iGetLastError();
-    //xTEST_DIFF(false, m_bRes);
+    //xTEST_EQ(true, m_bRes);
 
     return true;
 }

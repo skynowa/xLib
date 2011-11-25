@@ -40,17 +40,17 @@ CxTest_CxThreadStorage::bUnit(
             xTEST_EQ(false, m_bRes);
 
             m_bRes = tlsTls.bSetValue(static_cast<void *>( pulValue ));
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             m_bRes = tlsTls.bIsSet();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             ulong_t *pulRes = static_cast<ulong_t *>( tlsTls.pvGetValue() );
             xTEST_PTR(pulRes);
             xTEST_EQ(culData, ulong_t(*pulRes));
 
             m_bRes = tlsTls.bIsSet();
-            xTEST_DIFF(false, m_bRes);
+            xTEST_EQ(true, m_bRes);
 
             delete pulRes;
         }
