@@ -114,7 +114,7 @@ CxTest_CxMacros::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         int *pPtr = new int();
-        xASSERT(NULL != pPtr);
+        xTEST_PTR(pPtr);
 
         /*CxMacros::*/xPTR_DELETE(pPtr);
         xASSERT(NULL == pPtr);
@@ -125,7 +125,7 @@ CxTest_CxMacros::bUnit(
     xTEST_CASE(cullBlockLoops)
     {
         int *pPtr = new int[5];
-        xASSERT(NULL != pPtr);
+        xTEST_PTR(pPtr);
 
         /*CxMacros::*/xARRAY_DELETE(pPtr);
         xASSERT(NULL == pPtr);

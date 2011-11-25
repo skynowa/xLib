@@ -98,7 +98,7 @@ CxTest_CxFunctorT::bUnit(
         B b;
 
         CxFunctorT<B, bool, A> *pbF = new CxFunctorT<B, bool, A>(&b, &B::methodB);
-        xASSERT(NULL != pbF);
+        xTEST_PTR(pbF);
 
         m_bRes = (*pbF)(a);
         xTEST_EQ(true, m_bRes);
@@ -114,7 +114,7 @@ CxTest_CxFunctorT::bUnit(
         B b;
 
         CxFunctorT<B, bool, A> *pbF = new CxFunctorT<B, bool, A>(&b, &B::methodB);
-        xASSERT(NULL != pbF);
+        xTEST_PTR(pbF);
 
         m_bRes = pbF->Execute(a);
         xTEST_EQ(true, m_bRes);

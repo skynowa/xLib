@@ -96,7 +96,7 @@ CxTest_CxFile::bUnit(
         xTEST_EQ(true, m_bRes);
 
         FILE *pFile = F.pGet();
-        xASSERT(NULL != pFile);
+        xTEST_PTR(pFile);
     }
 
     //-------------------------------------
