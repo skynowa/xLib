@@ -333,7 +333,7 @@ CxThread::bIsCreated() const {
     bRes = (false != _m_bIsCreated) && (0UL   != _m_hThread);
 #endif
 
-    return static_cast<bool>( bRes );
+    return bRes;
 }
 //---------------------------------------------------------------------------
 bool
@@ -367,7 +367,7 @@ CxThread::bIsRunning() const {
     bRes = bCond1 && bCond2 && bCond3 /*&& bCond4 && bCond5*/;
 #endif
 
-    return static_cast<bool>( bRes );
+    return bRes;
 }
 //---------------------------------------------------------------------------
 bool
@@ -382,7 +382,7 @@ CxThread::bIsPaused() {
     bRes = (!_m_evPause.bIsSignaled()) /*&& (0UL   != _m_hThread)*/;
 #endif
 
-    return static_cast<bool>( bRes );
+    return bRes;
 }
 //---------------------------------------------------------------------------
 bool
@@ -397,7 +397,7 @@ CxThread::bIsExited() {
     bRes = (_m_evExit.bIsSignaled()) /*&& (0UL   != _m_hThread)*/;
 #endif
 
-    return static_cast<bool>( bRes );
+    return bRes;
 }
 //---------------------------------------------------------------------------
 
@@ -1024,7 +1024,7 @@ CxThread::bIsTimeToExit() {
     //-------------------------------------
     //pause / resume
     bRes = bIsPaused();
-    xCHECK_RET(false != bRes, static_cast<bool>( !_bWaitResumption() ));
+    xCHECK_RET(false != bRes, ! _bWaitResumption());
 
     //-------------------------------------
     //flags
@@ -1151,7 +1151,7 @@ CxThread::_bWaitResumption() {
     /*DEBUG*/xASSERT_RET(CxEvent::osTimeout  != osRes, false);
     /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, false);
 
-    return static_cast<bool>( CxEvent::osSignaled == osRes );
+    return (CxEvent::osSignaled == osRes);
 }
 //---------------------------------------------------------------------------
 void

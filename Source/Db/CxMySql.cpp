@@ -50,7 +50,7 @@ bool
 CxMySQLConnection::bIsValid() const {
     /*DEBUG*/// n/a
 
-    return static_cast<bool>( NULL != _m_pmsConnection );
+    return (NULL != _m_pmsConnection);
 }
 //---------------------------------------------------------------------------
 bool
@@ -289,7 +289,7 @@ bool
 CxMySQLRecordset::bIsValid() const {
     /*DEBUG*/// n/a
 
-    return static_cast<bool>( NULL != _m_pmrResult );
+    return (NULL != _m_pmrResult);
 }
 //---------------------------------------------------------------------------
 uint_t

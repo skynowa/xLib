@@ -507,7 +507,7 @@ bool
 CxFile::bIsValid() const {
     /*DEBUG*/
 
-    return static_cast<bool>( NULL != _m_pFile );
+    return (NULL != _m_pFile);
 }
 //---------------------------------------------------------------------------
 bool

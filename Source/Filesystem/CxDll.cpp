@@ -29,7 +29,7 @@ bool
 CxDll::bIsLoaded() const {
     /*DEBUG*/// n/a
 
-    return static_cast<bool>( NULL != _m_hDLL );
+    return (NULL != _m_hDLL);
 }
 //---------------------------------------------------------------------------
 bool

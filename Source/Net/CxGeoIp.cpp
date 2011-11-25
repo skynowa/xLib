@@ -58,7 +58,7 @@ bool
 CxGeoIp::bIsValid() const {
     /*DEBUG*/// n/a
 
-    return static_cast<bool>( NULL != _m_pgiGeoIp );
+    return (NULL != _m_pgiGeoIp);
 }
 //---------------------------------------------------------------------------
 std::tstring_t
