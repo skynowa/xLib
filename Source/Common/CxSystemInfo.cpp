@@ -127,7 +127,7 @@ CxSystemInfo::sFormatOsType(
     int iRes = ::uname(&unKernelInfo);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring_t());
 
-    sRes.assign( CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine) );
+    sRes = CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine);
 #endif
 
     return sRes;

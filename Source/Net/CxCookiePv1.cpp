@@ -321,9 +321,9 @@ CxCookiePv1::bInit(
     TStringMap   msCookie;
     std::tstring_t sCookie;
 
-    sCookie.assign( csRawCookie );
-    sCookie.assign( CxString::sRemoveAll(sCookie, CxConst::xSQM) );
-    sCookie.assign( CxString::sRemoveAll(sCookie, CxConst::xDQM) );
+    sCookie = csRawCookie;
+    sCookie = CxString::sRemoveAll(sCookie, CxConst::xSQM);
+    sCookie = CxString::sRemoveAll(sCookie, CxConst::xDQM);
 
     //split into pairs (name1=value1; name2=value2; nameN=valueN)
     std::vector<std::tstring_t> vsPairs;

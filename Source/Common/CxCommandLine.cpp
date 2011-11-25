@@ -42,9 +42,9 @@ CxCommandLine::sGet() {
     LPCTSTR pcszRes = ::GetCommandLine();
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring_t());
 
-    sRes.assign( CxString::sTrimSpace(pcszRes) );
+    sRes = CxString::sTrimSpace(pcszRes);
 #elif xOS_ENV_UNIX
-    sRes.assign( CxString::sJoin(_ms_vsArgs, CxConst::xSPACE) );
+    sRes = CxString::sJoin(_ms_vsArgs, CxConst::xSPACE);
 #endif
 
     return sRes;
@@ -60,7 +60,7 @@ CxCommandLine::bGetArgs(
 
     xCHECK_DO(true == _ms_vsArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
 
-    (*pvsArgs).assign(_ms_vsArgs.begin(), _ms_vsArgs.end());
+    (*pvsArgs) = _ms_vsArgs;
 
     return true;
 }

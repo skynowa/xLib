@@ -32,7 +32,7 @@ CxType::sGetRawName(
 
     asClassName.assign( typeid(cObjectT).name() );
 
-    sRes.assign( xS2TS(asClassName) );
+    sRes = xS2TS(asClassName);
 
     return sRes;
 }
@@ -63,7 +63,7 @@ CxType::sGetName(
     //or use UnDecorateSymbolName
 #endif
 
-    sRes.assign( xS2TS(asClassName) );
+    sRes = xS2TS(asClassName);
 
     return sRes;
 }

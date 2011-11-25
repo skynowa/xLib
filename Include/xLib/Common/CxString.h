@@ -15,11 +15,6 @@ xNAMESPACE_BEGIN(std)
 
     template<class Traits>
     inline basic_ostream<tchar_t, Traits> &
-    operator << (basic_ostream<tchar_t, Traits> &osOut, bool cbValue);
-        ///< overload operators << for bool
-
-    template<class Traits>
-    inline basic_ostream<tchar_t, Traits> &
     operator << (basic_ostream<tchar_t, Traits> &osOut, const std::ustring_t &cusValue);
         ///< overload operators << for std::ustring_t
 

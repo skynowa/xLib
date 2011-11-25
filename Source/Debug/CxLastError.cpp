@@ -89,8 +89,8 @@ CxLastError::sFormat(
     std::tstring_t sMessage;
 
     sMessage.assign( static_cast<LPCTSTR>( pvBuff ), ulRes );
-    sMessage.assign( CxString::sRemoveEol(sMessage) );
-    sMessage.assign( CxString::sTrimRightChars(sMessage, CxConst::xDOT) );
+    sMessage = CxString::sRemoveEol(sMessage);
+    sMessage = CxString::sTrimRightChars(sMessage, CxConst::xDOT);
 
     sRes.append(sMessage);
 

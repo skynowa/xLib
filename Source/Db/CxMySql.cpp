@@ -228,9 +228,9 @@ CxMySQLConnection::sGetLastErrorStr() const {
     /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::tstring_t());
 
     if (0 == cuiLastError) {
-        sRes.assign( CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success")) );
+        sRes = CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success"));
     } else {
-        sRes.assign( CxString::sFormat(xT("%u - \"%s\""), cuiLastError, cpszRes) );
+        sRes = CxString::sFormat(xT("%u - \"%s\""), cuiLastError, cpszRes);
     }
 
     return sRes;

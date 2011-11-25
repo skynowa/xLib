@@ -50,9 +50,9 @@ CxFileLog::bSetFilePath(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
 
     if (std::tstring_t::npos == csFilePath.find(CxConst::xSLASH)) {
-        _m_sFilePath.assign( CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath);
+        _m_sFilePath = CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath;
     } else {
-        _m_sFilePath.assign( csFilePath );
+        _m_sFilePath = csFilePath;
     }
 
     return true;

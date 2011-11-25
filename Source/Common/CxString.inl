@@ -12,23 +12,6 @@
 xNAMESPACE_BEGIN(std)
 
 //---------------------------------------------------------------------------
-//DONE: operator << for bool
-template<class Traits>
-inline basic_ostream<tchar_t, Traits> &
-operator << (
-    basic_ostream<tchar_t, Traits> &osOut,
-    bool                     cbValue
-)
-{
-    std::tstring_t sRes;
-
-    sRes.assign( CxString::sBoolToStr(cbValue) );
-
-    --osOut << sRes << std::flush;
-
-    return osOut;
-}
-//---------------------------------------------------------------------------
 //DONE: operator << for std::ustring_t
 template<class Traits>
 inline basic_ostream<tchar_t, Traits> &
@@ -147,7 +130,7 @@ CxString::lexical_cast(
         ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
         ossRes << cValueT;
 
-        sRes.assign(ossRes.str());
+        sRes = ossRes.str();
     } catch (std::tostringstream_t::failure &e) {
         sRes.clear();
     } catch (...) {
@@ -176,7 +159,7 @@ CxString::lexical_cast(
         ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
         ossRes << std::setbase(ciBase) << std::uppercase << cValueT;  //std::showbase
 
-        sRes.assign(ossRes.str());
+        sRes = ossRes.str();
     } catch (std::tostringstream_t::failure &e) {
         sRes.clear();
     } catch (...) {

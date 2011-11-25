@@ -319,7 +319,7 @@ CxFile::bWriteLine(
 
     std::tstring_t sLine;
 
-    sLine.assign(csStr);
+    sLine = csStr;
     sLine.append(CxConst::xEOL);
 
     size_t uiRes = uiWrite(&sLine.at(0), sLine.size());
@@ -1485,21 +1485,21 @@ CxFile::_sGetOpenMode(
     std::tstring_t sRes;
 
     switch (comMode) {
-        case omRead:                { sRes.assign( xT("r")   ); }   break;
-        case omWrite:               { sRes.assign( xT("w")   ); }   break;
-        case omAppend:              { sRes.assign( xT("a")   ); }   break;
-        case omOpenReadWrite:       { sRes.assign( xT("r+")  ); }   break;
-        case omCreateReadWrite:     { sRes.assign( xT("w+")  ); }   break;
-        case omOpenReadAppend:      { sRes.assign( xT("a+")  ); }   break;
+        case omRead:                { sRes = xT("r");   }   break;
+        case omWrite:               { sRes = xT("w");   }   break;
+        case omAppend:              { sRes = xT("a");   }   break;
+        case omOpenReadWrite:       { sRes = xT("r+");  }   break;
+        case omCreateReadWrite:     { sRes = xT("w+");  }   break;
+        case omOpenReadAppend:      { sRes = xT("a+");  }   break;
 
-        case omBinRead:             { sRes.assign( xT("rb")  ); }   break;
-        case omBinWrite:            { sRes.assign( xT("wb")  ); }   break;
-        case omBinAppend:           { sRes.assign( xT("ab")  ); }   break;
-        case omBinOpenReadWrite:    { sRes.assign( xT("rb+") ); }   break;
-        case omBinCreateReadWrite:  { sRes.assign( xT("wb+") ); }   break;
-        case omBinOpenReadAppend:   { sRes.assign( xT("ab+") ); }   break;
+        case omBinRead:             { sRes = xT("rb");  }   break;
+        case omBinWrite:            { sRes = xT("wb");  }   break;
+        case omBinAppend:           { sRes = xT("ab");  }   break;
+        case omBinOpenReadWrite:    { sRes = xT("rb+"); }   break;
+        case omBinCreateReadWrite:  { sRes = xT("wb+"); }   break;
+        case omBinOpenReadAppend:   { sRes = xT("ab+"); }   break;
 
-        default:                    { sRes.assign( xT("r")   ); }    break;
+        default:                    { sRes = xT("r");   }    break;
     }
 
     return sRes;

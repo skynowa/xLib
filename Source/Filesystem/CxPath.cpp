@@ -58,7 +58,7 @@ CxPath::sGetExe() {
             /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring_t());
             /*DEBUG*/xASSERT_RET(false == bIsAbsolute(vsArgs.at(0)), std::tstring_t());
 
-            sRes.assign( sGetAbsolute(vsArgs.at(0)) );
+            sRes = sGetAbsolute(vsArgs.at(0));
         #endif
     #else
         const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxCurrentProcess::ulGetId());
@@ -263,8 +263,7 @@ CxPath::sSetDrive(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring_t());
     /*DEBUG*/// csDrivePath
 
-    std::tstring_t sRes;
-    sRes.assign(csFilePath);
+    std::tstring_t sRes(csFilePath);
 
     std::tstring_t sDrive = sGetDrive(sRes);
     /*DEBUG*/xASSERT_RET(false == sDrive.empty(), std::tstring_t());
@@ -287,8 +286,7 @@ CxPath::sSetDir(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring_t());
     /*DEBUG*/// csDirPath
 
-    std::tstring_t sRes;
-    sRes.assign(csFilePath);
+    std::tstring_t sRes(csFilePath);
 
     std::tstring_t sDir = sGetDir(sRes);
     /*DEBUG*/xASSERT_RET(false == sDir.empty(), std::tstring_t());
@@ -309,8 +307,7 @@ CxPath::sSetFullName(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring_t());
     /*DEBUG*/// csFullName
 
-    std::tstring_t sRes;
-    sRes.assign(csFilePath);
+    std::tstring_t sRes(csFilePath);
 
     std::tstring_t sFullName = sGetFullName(sRes);
     /*DEBUG*/xASSERT_RET(false == sFullName.empty(), std::tstring_t());
@@ -331,8 +328,7 @@ CxPath::sSetName(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring_t());
     /*DEBUG*/// csName
 
-    std::tstring_t sRes;
-    sRes.assign(csFilePath);
+    std::tstring_t sRes(csFilePath);
 
     std::tstring_t sName = sGetName(sRes);
     /*DEBUG*/xASSERT_RET(false == sName.empty(), std::tstring_t());
@@ -465,8 +461,7 @@ CxPath::sSetValidName(
 {
     /*DEBUG*/// n/a
 
-    std::tstring_t sRes;
-    sRes.assign(csFileName);
+    std::tstring_t sRes(csFileName);
 
     //-------------------------------------
     //is empty
@@ -621,7 +616,7 @@ CxPath::sGetAbsolute(
 
     sBuff.resize(ulRes);
 
-    sRes.assign(sBuff);
+    sRes = sBuff;
 #elif xOS_ENV_UNIX
     std::tstring_t sBuff;
 
@@ -686,7 +681,7 @@ CxPath::sMinimize(
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    sRes.assign(csFilePath);
+    sRes = csFilePath;
 
     std::tstring_t sDrive = sGetDrive(sRes);                                          /* D: */
     std::tstring_t sDir   = sGetDir(sRes).erase(0, sDrive.size()) + CxConst::xSLASH;  /* \xLib\Test\CxString\Project\Debug */
@@ -743,7 +738,7 @@ CxPath::sMinimize(
         sRes = sDrive + sDir + sName;
     }
 #elif xOS_ENV_UNIX
-    sRes.assign(csFilePath);
+    sRes = csFilePath;
 #endif
 
     return sRes;
