@@ -18,7 +18,7 @@ class CxTest_CxGeoIp :
                  CxTest_CxGeoIp();
         virtual ~CxTest_CxGeoIp();
 
-        virtual  bool bUnit(const ulonglong_t cullBlockLoops);
+        virtual  bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };

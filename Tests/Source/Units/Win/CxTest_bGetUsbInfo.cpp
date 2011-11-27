@@ -19,13 +19,13 @@ CxTest_bGetUsbInfo::~CxTest_bGetUsbInfo() {
 /*virtual*/
 bool
 CxTest_bGetUsbInfo::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
 #if xOS_ENV_WIN
     //-------------------------------------
     //bGetUsbInfo
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t        csDrive = xT("I:");
         std::vector<std::tstring_t> vsInfo;
@@ -42,7 +42,7 @@ CxTest_bGetUsbInfo::bUnit(
         //std::cout << "sGetFlashSerialFromDrive: " << sRes.c_str() << std::endl;
     }
 
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         ////const std::tstring_t        csDrive = xT("Y:");
         ////std::vector<std::tstring_t> vsInfo;

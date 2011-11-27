@@ -19,7 +19,7 @@ CxTest_CxDll::~CxTest_CxDll() {
 /*virtual*/
 bool
 CxTest_CxDll::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     #if xOS_ENV_WIN

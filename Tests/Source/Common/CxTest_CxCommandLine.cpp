@@ -19,12 +19,12 @@ CxTest_CxCommandLine::~CxTest_CxCommandLine() {
 /*virtual*/
 bool
 CxTest_CxCommandLine::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //--------------------------------------------------
     //liGetArgsMax
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_liRes = CxCommandLine::liGetArgsMax();
         xTEST_LESS(0L, m_liRes);
@@ -33,7 +33,7 @@ CxTest_CxCommandLine::bUnit(
 
     //-------------------------------------
     //sGet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_sRes = CxCommandLine::sGet();
         #if xTEST_IGNORE
@@ -44,7 +44,7 @@ CxTest_CxCommandLine::bUnit(
 
     //-------------------------------------
     //bGetArgs
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxCommandLine::bGetArgs(&m_vsRes);
         xTEST_EQ(true,  m_bRes);
@@ -53,7 +53,7 @@ CxTest_CxCommandLine::bUnit(
 
     //--------------------------------------------------
     //bSetArgs
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTEST_IGNORE
             m_bRes = CxCommandLine::bSetArgs(ciArgsCount, paszArgs);

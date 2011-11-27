@@ -19,12 +19,12 @@ CxTest_CxAutoCriticalSection::~CxTest_CxAutoCriticalSection() {
 /*virtual*/
 bool
 CxTest_CxAutoCriticalSection::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //CxAutoCriticalSection
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         size_t            uiCounter = 0;
         CxCriticalSection csCS;

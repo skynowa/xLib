@@ -19,12 +19,12 @@ CxTest_CxThreadStorage::~CxTest_CxThreadStorage() {
 /*virtual*/
 bool
 CxTest_CxThreadStorage::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //--------------------------------------------------
     //bSetValue, pvGetValue
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const ulong_t caulData[] = {0, 1, 2, 777};
 

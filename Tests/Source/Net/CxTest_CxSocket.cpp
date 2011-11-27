@@ -19,7 +19,7 @@ CxTest_CxSocket::~CxTest_CxSocket() {
 /*virtual*/
 bool
 CxTest_CxSocket::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/

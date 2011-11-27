@@ -19,7 +19,7 @@ CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 /*virtual*/
 bool
 CxTest_CxDnsClient::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
@@ -214,6 +214,22 @@ CxTest_CxDnsClient::bUnit(
         //std::tcout << xT("  --------------------")                 << std::endl;
         //std::tcout << std::endl;
     }
+
+
+    //--------------------------------------------------
+    //bIsOnLan
+    xTEST_CASE(cullCaseLoops)
+    {
+	    //TODO: m_bRes = CxDnsClient::bIsOnLan(const ulong_t culIp);
+    }
+
+    //--------------------------------------------------
+    //bIsBroadcast
+    xTEST_CASE(cullCaseLoops)
+    {
+	    //TODO: m_bRes = CxDnsClient::bIsBroadcast(const ulong_t culIp);
+    }
+
 
     return true;
 }

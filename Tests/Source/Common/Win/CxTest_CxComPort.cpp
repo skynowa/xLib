@@ -19,7 +19,7 @@ CxTest_CxComPort::~CxTest_CxComPort() {
 /*virtual*/
 bool
 CxTest_CxComPort::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/

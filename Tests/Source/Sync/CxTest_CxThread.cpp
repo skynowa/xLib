@@ -96,7 +96,7 @@ CxTest_CxThread::~CxTest_CxThread() {
 /*virtual*/
 bool
 CxTest_CxThread::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const bool cbIsPaused   = true;
@@ -126,7 +126,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //flags
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = pthT->bIsCreated();
         xTEST_EQ(true, m_bRes);
@@ -144,7 +144,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //messages
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
             m_bRes = pthT->bPostMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
@@ -159,7 +159,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //bSetPriority, tpGetPriority
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const CxThread::EPriority ctpPriority = CxThread::tpLowest;
 
@@ -180,7 +180,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //sGetPriorityString
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
             m_sRes = pthT->sGetPriorityString();
@@ -190,7 +190,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //bPriorityUp, bPriorityDown
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             m_bRes = pthT->bPriorityUp();
@@ -205,7 +205,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //bIsPriorityBoost
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             m_bRes = pthT->bIsPriorityBoost();
@@ -217,7 +217,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //bSetPriorityBoost
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             m_bRes = pthT->bSetPriorityBoost(false);
@@ -242,7 +242,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //bSetCpuAffinity
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < CxSystemInfo::ulGetNumOfCpus(); ++ i) {
             m_bRes = pthT->bSetCpuAffinity(i);
@@ -252,7 +252,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //bSetCpuIdeal, ulGetCpuIdeal
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             m_bRes = pthT->bSetCpuIdeal(0);
@@ -276,7 +276,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //ulGetCpuCount
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_ulRes = CxThread::ulGetCpuCount();
         xTEST_LESS(0UL, m_ulRes);
@@ -288,7 +288,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //hGet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxThread::TxHandle hRes = pthT->hGet();
         xTEST_DIFF(0UL, (ulong_t)hRes);
@@ -296,7 +296,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //ulGetId
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxThread::TxId idRes = pthT->ulGetId();
         xTEST_DIFF(0UL, (ulong_t)idRes);
@@ -304,7 +304,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //bIsCurrent
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = pthT->bIsCurrent();
         xTEST_EQ(true, m_bRes);
@@ -312,7 +312,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //ulGetExitCode
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_ulRes = pthT->ulGetExitStatus();
         xTEST_LESS_EQ(0UL, m_ulRes);
@@ -320,7 +320,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //bSetDebugName
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = pthT->bSetDebugName(xT("CxThread_Test_Name"));
         xTEST_EQ(true, m_bRes);
@@ -328,7 +328,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //hOpen
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
             m_hRes = CxThread::hOpen(THREAD_ALL_ACCESS, false, CxThread::ulGetCurrentId());
@@ -338,7 +338,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //hOpen
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
             THandle hRes = CxThread::hOpen(const ulong_t culAccess, const bool cbInheritHandle, const ulong_t culId);
@@ -347,7 +347,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //bResume (start thread)
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = pthT->bResume();
         xTEST_EQ(true, m_bRes);
@@ -358,7 +358,7 @@ CxTest_CxThread::bUnit(
 
     //-------------------------------------
     //bPause
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if 1
             m_bRes = pthT->bIsPaused();
@@ -380,7 +380,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //var
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
             m_bRes = pthT->bExit(xTIMEOUT_INFINITE);
@@ -390,7 +390,7 @@ CxTest_CxThread::bUnit(
 
     //--------------------------------------------------
     //var
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
             m_uiRes = pthT->uiKill(xTIMEOUT_INFINITE);

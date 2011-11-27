@@ -21,12 +21,12 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 /*virtual*/
 bool
 CxTest_CxCurrentThread::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //--------------------------------------------------
     //bIsCurrent
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxThread::TxId aulData[5][2] = {{0}};
 
@@ -56,7 +56,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //ulGetId
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxThread::TxId idRes = CxCurrentThread::ulGetId();
         xTEST_LESS(0UL, (ulong_t)idRes);
@@ -64,7 +64,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //hGetHandle
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
         xTEST_DIFF(0UL, (ulong_t)hRes);
@@ -72,7 +72,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //ulGetId
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxThread::TxId idRes = CxCurrentThread::ulGetId();
         xTEST_LESS(0UL, (ulong_t)idRes);
@@ -80,7 +80,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //hGetHandle
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
         xTEST_LESS((ulong_t)0, (ulong_t)hRes);
@@ -88,7 +88,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //bYield
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxCurrentThread::bYield();
         xTEST_EQ(true, m_bRes);
@@ -96,7 +96,7 @@ CxTest_CxCurrentThread::bUnit(
 
     //--------------------------------------------------
     //bSleep
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0,

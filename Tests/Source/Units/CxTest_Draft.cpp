@@ -19,7 +19,7 @@ CxTest_Draft::~CxTest_Draft() {
 /*virtual*/
 bool
 CxTest_Draft::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     #if xTEMP_DISABLED
@@ -43,7 +43,7 @@ CxTest_Draft::bUnit(
     //--------------------------------------------------
     //std::tstring_t::operator=, std::tstring_t::assign, std::swap
     #if xTEMP_DISABLED
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             const size_t cuiLoops = 1000000000;
             std::tstring_t csStr    = xT("qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=");

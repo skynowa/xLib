@@ -19,7 +19,7 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 /*virtual*/
 bool
 CxTest_CxAutoProfiler::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const CxProfiler::EMode pmPerformMode[] = {
@@ -36,7 +36,7 @@ CxTest_CxAutoProfiler::bUnit(
 
     //-------------------------------------
     //CxAutoProfiler
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
             CxAutoProfiler _apfAP(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i], xT("%i"), 777);
@@ -53,7 +53,7 @@ CxTest_CxAutoProfiler::bUnit(
 
     //-------------------------------------
     //xAUTO_PERFORM_FUNC
-    xTEST_CASE(cullBlockLoops) {
+    xTEST_CASE(cullCaseLoops) {
         for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
             xAUTO_PROFILER_FUNC(sGetWorkDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i]);
 

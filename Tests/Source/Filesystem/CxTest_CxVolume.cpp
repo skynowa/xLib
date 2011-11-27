@@ -19,12 +19,12 @@ CxTest_CxVolume::~CxTest_CxVolume() {
 /*virtual*/
 bool
 CxTest_CxVolume::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //bIsReady
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -63,7 +63,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bIsEmpty
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -106,7 +106,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bGetFreeSpace
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring_t  csVolumePathWithSlash     = xT("C:\\");
@@ -171,7 +171,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //dtGetType
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring_t csVolumePath = xT("C:");
@@ -185,7 +185,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bGetInfo
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring_t csVolumePath = xT("C:");
@@ -210,7 +210,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bGetLogicalDrives
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             std::vector<std::tstring_t> vsDrives;
@@ -224,7 +224,7 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bGetLogicalDrives2
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             std::vector<std::tstring_t> vsDrives;
@@ -238,105 +238,105 @@ CxTest_CxVolume::bUnit(
 
     //-------------------------------------
     //bDefineDosDevice
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //bDeleteVolumeMountPoint
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //hFindFirstVolume
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //hFindFirstVolumeMountPoint
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //sFindNextVolume
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //bFindNextVolumeMountPoint
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //bFindVolumeClose
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //bFindVolumeMountPointClose
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //sGetLogicalStrings
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //sGetVolumeNameForVolumeMountPoint
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //sGetVolumePathName
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //sGetVolumePathNamesForVolumeName
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //sQueryDosDevice
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //bSetVolumeLabel
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }
 
     //-------------------------------------
     //bSetVolumeMountPoint
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
 
     }

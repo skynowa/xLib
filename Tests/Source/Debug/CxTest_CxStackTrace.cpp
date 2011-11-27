@@ -19,12 +19,12 @@ CxTest_CxStackTrace::~CxTest_CxStackTrace() {
 /*virtual*/
 bool
 CxTest_CxStackTrace::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //--------------------------------------------------
     //bGet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxStackTrace stStack;
         std::vector<std::tstring_t> vsStack;
@@ -36,7 +36,7 @@ CxTest_CxStackTrace::bUnit(
 
     //--------------------------------------------------
     //sGet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxStackTrace stStack;
         std::tstring_t sStack;

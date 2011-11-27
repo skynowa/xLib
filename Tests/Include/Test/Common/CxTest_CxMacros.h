@@ -18,7 +18,7 @@ class CxTest_CxMacros :
                        CxTest_CxMacros();
         virtual       ~CxTest_CxMacros();
 
-        virtual  bool  bUnit          (const ulonglong_t cullBlockLoops);
+        virtual  bool  bUnit          (const ulonglong_t cullCaseLoops);
 
     private:
 };

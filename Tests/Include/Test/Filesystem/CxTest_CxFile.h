@@ -18,11 +18,11 @@ class CxTest_CxFile :
                        CxTest_CxFile();
         virtual       ~CxTest_CxFile();
 
-        virtual  bool  bUnit        (const ulonglong_t cullBlockLoops);
+        virtual  bool  bUnit        (const ulonglong_t cullCaseLoops);
 
     private:
-        bool           bUnit1       (const ulonglong_t cullBlockLoops);
-        bool           bUnitPrivate (const ulonglong_t cullBlockLoops);
+        bool           bUnit1       (const ulonglong_t cullCaseLoops);
+        bool           bUnitPrivate (const ulonglong_t cullCaseLoops);
 
 };
 //---------------------------------------------------------------------------

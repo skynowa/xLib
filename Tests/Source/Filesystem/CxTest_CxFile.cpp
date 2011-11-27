@@ -19,7 +19,7 @@ CxTest_CxFile::~CxTest_CxFile() {
 /*virtual*/
 bool
 CxTest_CxFile::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -30,7 +30,7 @@ CxTest_CxFile::bUnit(
     *
     *****************************************************************************/
 
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxFile::bDelete(csFilePath);
         xTEST_EQ(true, m_bRes);
@@ -44,7 +44,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bCreate
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -56,7 +56,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bReopen
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -71,7 +71,7 @@ CxTest_CxFile::bUnit(
 
     //--------------------------------------------------
     //bAttach
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile _F;
 
@@ -88,7 +88,7 @@ CxTest_CxFile::bUnit(
 
     //--------------------------------------------------
     //pGet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -101,7 +101,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //sGetPath
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -120,7 +120,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //uiWrite, uiRead
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sBuffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
         std::tstring_t sBuffRead  = xT("");       sBuffRead.resize(sBuffWrite.size());
@@ -150,7 +150,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bRead, bWrite
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::ustring_t sContent(10, 5);
 
@@ -211,7 +211,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bWriteLine, bReadLine
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sBuffWrite = xT("<test1><test2><test3><...>");
         std::tstring_t sBuffRead  = xT("");
@@ -245,7 +245,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bWriteChar, chReadChar, bUngetChar
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const tchar_t chChar = xT('W');
 
@@ -275,7 +275,7 @@ CxTest_CxFile::bUnit(
 
     //--------------------------------------------------
     //bClear
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -294,7 +294,7 @@ CxTest_CxFile::bUnit(
 
     //--------------------------------------------------
     //bGetTime, bSetTime
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         {
             CxFile F;
@@ -335,7 +335,7 @@ CxTest_CxFile::bUnit(
 
     //--------------------------------------------------
     //bRead
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t csTestContent = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
 
@@ -366,7 +366,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //iWrite
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -379,7 +379,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //iWriteV
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         struct SWriter {
             static void
@@ -410,7 +410,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bLocking
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -429,7 +429,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bSetPosition, liGetPosition
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -445,7 +445,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //liGetSize
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const long_t culNewSize = 1024;
 
@@ -463,7 +463,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bResize
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -476,7 +476,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bSetVBuff
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::string asBuffRead;       asBuffRead.resize(1024);
 
@@ -491,7 +491,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bSetMode
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -508,7 +508,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bSetMode
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -531,7 +531,7 @@ CxTest_CxFile::bUnit(
 
     //--------------------------------------------------
     //bIsValid
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -550,7 +550,7 @@ CxTest_CxFile::bUnit(
 
     //--------------------------------------------------
     //bIsOpen
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -572,7 +572,7 @@ CxTest_CxFile::bUnit(
 
     //--------------------------------------------------
     //bIsEmpty
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -597,7 +597,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bIsEof
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -610,7 +610,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bIsError
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -623,7 +623,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bErrorClear
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -642,7 +642,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bFlush
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -658,7 +658,7 @@ CxTest_CxFile::bUnit(
 
     //-------------------------------------
     //bClose
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile F;
 
@@ -673,11 +673,11 @@ CxTest_CxFile::bUnit(
     }
 
     //bUnit1
-    m_bRes = bUnit1(cullBlockLoops);
+    m_bRes = bUnit1(cullCaseLoops);
     xTEST_EQ(true, m_bRes);
 
     //bUnitePrivate
-    m_bRes = bUnitPrivate(cullBlockLoops);
+    m_bRes = bUnitPrivate(cullCaseLoops);
     xTEST_EQ(true, m_bRes);
 
     return true;
@@ -694,7 +694,7 @@ CxTest_CxFile::bUnit(
 //DONE: bUnit1 ()
 bool
 CxTest_CxFile::bUnit1(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -708,7 +708,7 @@ CxTest_CxFile::bUnit1(
 
     //--------------------------------------------------
     //bIsFile
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxFile::bIsFile(csFilePath);
         xTEST_EQ(true, m_bRes);
@@ -722,7 +722,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bIsExists
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxFile::bIsExists(csFilePath);
         xTEST_EQ(true, m_bRes);
@@ -739,7 +739,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //sIsExists
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_sRes = CxFile::sIsExists(csFilePath);
         xTEST_EQ(true, CxFile::bIsExists(csFilePath));
@@ -750,7 +750,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bAccess
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxFile::bAccess(csFilePath, CxFile::amExistence);
         xTEST_EQ(true, m_bRes);
@@ -758,7 +758,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bChmod
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxFile::bChmod(csFilePath, CxFile::pmReadWrite);
         xTEST_EQ(true, m_bRes);
@@ -766,7 +766,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bRename
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
@@ -785,7 +785,7 @@ CxTest_CxFile::bUnit1(
 
     //--------------------------------------------------
     //ullGetLines
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const ulonglong_t cullLinesNum = 17;
         {
@@ -806,7 +806,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bCopy
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t sFilePathFrom = sGetWorkDirPath() + CxConst::xSLASH + xT("test_copy.txt");
         const std::tstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
@@ -833,7 +833,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bMove
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
@@ -849,7 +849,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bUnlink
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTEMP_DISABLED
             m_bRes = CxFile::bUnlink(csNewFilePath);
@@ -859,7 +859,7 @@ CxTest_CxFile::bUnit1(
 
     //--------------------------------------------------
     //bClear
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
@@ -869,7 +869,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bDelete
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
@@ -882,7 +882,7 @@ CxTest_CxFile::bUnit1(
 
     //--------------------------------------------------
     //bTryDelete
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
             const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
@@ -917,7 +917,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bWipe
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         {
             CxFile F;
@@ -943,7 +943,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //bTextRead, bTextWrite (std::tstring_t)
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sFileContent;
 
@@ -974,7 +974,7 @@ CxTest_CxFile::bUnit1(
     }
 
     //empty content
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sFileContent;
 
@@ -1001,7 +1001,7 @@ CxTest_CxFile::bUnit1(
 
     //--------------------------------------------------
     //bTextRead, bTextWrite (std::vector)
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::vector<std::tstring_t> vsFileContent;
 
@@ -1032,7 +1032,7 @@ CxTest_CxFile::bUnit1(
     }
 
     //empty content
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::vector<std::tstring_t> vsFileContent;
 
@@ -1059,7 +1059,7 @@ CxTest_CxFile::bUnit1(
 
     //--------------------------------------------------
     //bTextRead, bTextWrite (std::vector)
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::map<std::tstring_t, std::tstring_t> cmsFileContent;
         const std::tstring_t              csSeparator = CxConst::xEQUAL;
@@ -1091,7 +1091,7 @@ CxTest_CxFile::bUnit1(
     }
 
     //empty content
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::map<std::tstring_t, std::tstring_t> cmsFileContent;
         const std::tstring_t              csSeparator = CxConst::xEQUAL;
@@ -1119,7 +1119,7 @@ CxTest_CxFile::bUnit1(
 
     //-------------------------------------
     //binary
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::ustring_t usFileContent;   usFileContent.resize(1024 * 5);
 
@@ -1150,7 +1150,7 @@ CxTest_CxFile::bUnit1(
     }
 
     //empty content
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::ustring_t usFileContent;
 
@@ -1177,7 +1177,7 @@ CxTest_CxFile::bUnit1(
 //DONE: bUnitPrivate ()
 bool
 CxTest_CxFile::bUnitPrivate(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -1187,7 +1187,7 @@ CxTest_CxFile::bUnitPrivate(
 
     //--------------------------------------------------
     //_iGetHandle
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFile sfFile;
 
@@ -1201,7 +1201,7 @@ CxTest_CxFile::bUnitPrivate(
     //--------------------------------------------------
     //_pfGetHandle
 #if xTODO
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const CxFile::EOpenMode comMode = CxFile::omOpenReadWrite;
 
@@ -1220,7 +1220,7 @@ CxTest_CxFile::bUnitPrivate(
 
     //--------------------------------------------------
     //_sGetOpenMode
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::vector< std::pair<CxFile::EOpenMode, std::tstring_t> > vpData;
 

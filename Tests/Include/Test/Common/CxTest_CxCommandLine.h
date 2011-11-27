@@ -18,7 +18,7 @@ class CxTest_CxCommandLine :
                      CxTest_CxCommandLine();
         virtual     ~CxTest_CxCommandLine();
 
-        virtual bool bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };

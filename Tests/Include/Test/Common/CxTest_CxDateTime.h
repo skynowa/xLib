@@ -18,7 +18,7 @@ class CxTest_CxDateTime :
                      CxTest_CxDateTime();
         virtual     ~CxTest_CxDateTime();
 
-        virtual bool bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };

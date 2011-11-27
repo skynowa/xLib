@@ -19,12 +19,12 @@ CxTest_CxStdError::~CxTest_CxStdError() {
 /*virtual*/
 bool
 CxTest_CxStdError::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //iGet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const int ciMaxErrors = 200;  /*0...132*/;
 
@@ -37,7 +37,7 @@ CxTest_CxStdError::bUnit(
 
     //-------------------------------------
     //iGet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const int ciMaxErrors = 200;    /*0...132*/
 
@@ -49,7 +49,7 @@ CxTest_CxStdError::bUnit(
 
     //-------------------------------------
     //bSet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const int ciMaxErrors = 200;    /*0...132*/
 
@@ -61,7 +61,7 @@ CxTest_CxStdError::bUnit(
 
     //-------------------------------------
     //bReset
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const int ciMaxErrors = 200;    /*0...132*/
 
@@ -78,7 +78,7 @@ CxTest_CxStdError::bUnit(
 
     //-------------------------------------
     //sFormat
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             const size_t cuiMaxErrors = 17000;  /*0...15999*/;

@@ -18,7 +18,7 @@ class CxTest_CxDebugger :
                      CxTest_CxDebugger();
         virtual     ~CxTest_CxDebugger();
 
-        virtual bool bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };

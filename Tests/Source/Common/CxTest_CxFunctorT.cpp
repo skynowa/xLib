@@ -87,12 +87,12 @@ CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 //---------------------------------------------------------------------------
 bool
 CxTest_CxFunctorT::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //operator ()
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         A a;
         B b;
@@ -108,7 +108,7 @@ CxTest_CxFunctorT::bUnit(
 
     //-------------------------------------
     //Execute
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         A a;
         B b;
@@ -124,7 +124,7 @@ CxTest_CxFunctorT::bUnit(
 
     //-------------------------------------
     //operator ()
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         A a;
         B b;
@@ -136,7 +136,7 @@ CxTest_CxFunctorT::bUnit(
 
     //-------------------------------------
     //Execute
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         A a;
         B b;
@@ -150,7 +150,7 @@ CxTest_CxFunctorT::bUnit(
 
     //-------------------------------------
     //Execute
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFunctorT<CParam, std::tstring_t, void *> bF(&objParam, &CParam::sSetName);
 

@@ -22,7 +22,7 @@ CxTest_CxTcpServer::~CxTest_CxTcpServer() {
 /*virtual*/
 bool
 CxTest_CxTcpServer::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/

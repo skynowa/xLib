@@ -83,7 +83,7 @@
 #include <Test/Net/CxTest_CxTcpClient.h>
 #include <Test/Net/CxTest_CxTcpServer.h>
 #include <Test/Net/CxTest_CxHttpClient.h>
-#include <Test/Net/CxTest_CxGeoIp.h>
+////#include <Test/Net/CxTest_CxGeoIp.h>
 
 //Patterns
 #include <Test/Patterns/CxTest_CxSingleton.h>

@@ -19,7 +19,7 @@ CxTest_CxCriticalSection::~CxTest_CxCriticalSection() {
 /*virtual*/
 bool
 CxTest_CxCriticalSection::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     size_t uiVal = 0;
@@ -27,7 +27,7 @@ CxTest_CxCriticalSection::bUnit(
 
     //--------------------------------------------------
     //bLock, bUnlock
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxCriticalSection csCS;
 
@@ -42,7 +42,7 @@ CxTest_CxCriticalSection::bUnit(
 
     //--------------------------------------------------
     //bTryLock, bUnlock
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxCriticalSection csCS;
 
@@ -57,7 +57,7 @@ CxTest_CxCriticalSection::bUnit(
 
     //--------------------------------------------------
     //bLock, bUnlock
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxCriticalSection csCS;
 
@@ -78,7 +78,7 @@ CxTest_CxCriticalSection::bUnit(
 
     //--------------------------------------------------
     //bTryLock, bUnlock
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxCriticalSection csCS;
 

@@ -19,13 +19,13 @@ CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 /*virtual*/
 bool
 CxTest_CxAutoMutex::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     #if xOS_ENV_WIN
         //-------------------------------------
         //CxAutoMutex
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             CxMutex mtMutex;
 

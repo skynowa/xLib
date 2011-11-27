@@ -19,7 +19,7 @@ CxTest_CxArray::~CxTest_CxArray() {
 /*virtual*/
 bool
 CxTest_CxArray::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const size_t cuiArraySize = 5;
@@ -29,7 +29,7 @@ CxTest_CxArray::bUnit(
 
     //--------------------------------------------------
     //operator[]
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
             xTEST_EQ(i, aszArray[i]);
@@ -38,7 +38,7 @@ CxTest_CxArray::bUnit(
 
     //--------------------------------------------------
     //at
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < aszArray.size(); ++ i) {
             xTEST_EQ(i, aszArray.at(i));
@@ -47,7 +47,7 @@ CxTest_CxArray::bUnit(
 
     //--------------------------------------------------
     //uiGetSize
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_stRes = aszArray.size();
         xTEST_EQ(cuiArraySize, m_stRes);
@@ -55,13 +55,13 @@ CxTest_CxArray::bUnit(
 
     //--------------------------------------------------
     //bClear
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         /*m_bRes =*/ aszArray.clear();
         ////xTEST_EQ(true, m_bRes);
     }
 
-    xTEST_CASE(cullBlockLoops) {
+    xTEST_CASE(cullCaseLoops) {
         NxArray::make_array<std::tstring_t>( xT("0"),  xT("1") );
         NxArray::make_array<std::tstring_t>( xT("0"),  xT("1"),  xT("2") );
     }

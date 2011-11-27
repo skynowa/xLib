@@ -19,12 +19,12 @@ CxTest_CxFileTemp::~CxTest_CxFileTemp() {
 /*virtual*/
 bool
 CxTest_CxFileTemp::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //sTempCreate, bTempClose
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;

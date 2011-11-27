@@ -19,12 +19,12 @@ CxTest_CxCgi::~CxTest_CxCgi() {
 /*virtual*/
 bool
 CxTest_CxCgi::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //--------------------------------------------------
     //bPageShow
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -49,7 +49,7 @@ CxTest_CxCgi::bUnit(
 
     //--------------------------------------------------
     //bRedirect
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTEMP_DISABLED
             CxCgi::bRedirect(xT("http://yandex.ru/"));
@@ -64,7 +64,7 @@ CxTest_CxCgi::bUnit(
     #endif
 
 
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //std::tcout << xT("<pre>");
 
@@ -220,7 +220,7 @@ CxTest_CxCgi::bUnit(
 
     //-------------------------------------
     //bUriEncode, bUriDecode
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //1
         {

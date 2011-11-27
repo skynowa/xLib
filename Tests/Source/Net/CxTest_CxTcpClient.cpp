@@ -21,7 +21,7 @@ CxTest_CxTcpClient::~CxTest_CxTcpClient() {
 /*virtual*/
 bool
 CxTest_CxTcpClient::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     CxSocket::EAddressFamily afAf           = CxSocket::afInet;
