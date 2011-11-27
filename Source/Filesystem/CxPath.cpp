@@ -92,7 +92,7 @@ CxPath::sGetExe() {
 #if defined(xOS_ENV_WIN)
     extern "C" IMAGE_DOS_HEADER __ImageBase;
 #elif defined(xOS_ENV_UNIX)
-    
+	static void vFunction() { }
 #endif
 
 /*static*/
@@ -103,8 +103,6 @@ CxPath::sGetDll() {
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-
-
     sRes.resize(xPATH_MAX);
 
     ulong_t ulStored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ), &sRes.at(0), sRes.size());
@@ -112,17 +110,13 @@ CxPath::sGetDll() {
 
     sRes.resize(ulStored);
 #elif xOS_ENV_UNIX
-    struct SProcAddress {
-        static volatile void vFunction() { };
-    };
-
     Dl_info  diInfo        = {0};
-    void    *fpProcAddress = SProcAddress::vFunction;
+    void    *fpProcAddress = (void *)vFunction;
 
     int iRes = ::dladdr(fpProcAddress, &diInfo);
     /*DEBUF*/xASSERT_RET(0 < iRes, CxConst::xSTR_EMPTY);
 
-    sRes.assign(diInfo.dli_filename);
+    sRes = sGetAbsolute(diInfo.dli_fname);
 #endif
 
     return sRes;
