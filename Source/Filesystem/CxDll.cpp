@@ -6,6 +6,12 @@
 
 #include <xLib/Filesystem/CxDll.h>
 
+#if defined(xOS_ENV_WIN)
+    //lib: n/a
+#elif defined(xOS_ENV_UNIX)
+    //lib: -ldl, -lc (FreeBSD)
+#endif
+
 
 xNAMESPACE_BEGIN(NxLib)
 
