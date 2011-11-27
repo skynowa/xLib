@@ -118,15 +118,11 @@
 //---------------------------------------------------------------------------
 int
 xTMAIN(
-    int    iArgCount,
+    int      iArgCount,
     tchar_t *paszArgs[]
 )
 {
     bool bVal = false;
-    std::ustring_t usVal;
-
-    std::tcout << bVal << std::endl;
-    std::tcout << usVal << std::endl;
 
     //--------------------------------------------------
     //set commandline args for xLib
@@ -134,8 +130,7 @@ xTMAIN(
         bool bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
         xTEST_EQ(true, bRes);
     }
-
-
+    
     #if xTEMP_DISABLED
         std::tcout << "Content-type: text/html\n\n" << std::endl;
         std::tcout << "<pre>\n\n"                   << std::endl;
@@ -143,7 +138,7 @@ xTMAIN(
 
     //--------------------------------------------------
     //options (default)
-    bool      bIsUseTracing = true;
+    bool        bIsUseTracing = true;
     ulonglong_t ullAllLoops   = 1UL;
     ulonglong_t ullUnitLoops  = 1UL;
     ulonglong_t ullBlockLoops = 1UL;
@@ -163,7 +158,7 @@ xTMAIN(
                               "  - is_tracing  (is tracing)\n"
                               "  - all_loops   (loops for all tests)\n"
                               "  - unit_loops  (loops for unit test)\n"
-                              "  - block_loops (loops for unit test)\n" << std::endl;
+                              "  - case_loops  (loops for unit test)\n" << std::endl;
             } else {
                 std::tcout << "\nUnknown switches\n" << std::endl;
             }
@@ -173,7 +168,7 @@ xTMAIN(
 
         //loops number
         if (5 == iArgCount) {
-            bIsUseTracing = CxString::lexical_cast<bool>( vsArgs.at(1) );
+            bIsUseTracing = CxString::lexical_cast<bool>       ( vsArgs.at(1) );
             ullAllLoops   = CxString::lexical_cast<ulonglong_t>( vsArgs.at(2) );
             ullUnitLoops  = CxString::lexical_cast<ulonglong_t>( vsArgs.at(3) );
             ullBlockLoops = CxString::lexical_cast<ulonglong_t>( vsArgs.at(4) );
