@@ -89,6 +89,12 @@ CxPath::sGetExe() {
 }
 //---------------------------------------------------------------------------
 //TODO: sGetDll
+#if defined(xOS_ENV_WIN)
+    extern "C" IMAGE_DOS_HEADER __ImageBase;
+#elif defined(xOS_ENV_UNIX)
+    
+#endif
+
 /*static*/
 std::tstring_t
 CxPath::sGetDll() {
@@ -97,25 +103,26 @@ CxPath::sGetDll() {
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    #if xTODO
-        MEMORY_BASIC_INFORMATION mbi;
-        VirtualQuery(&symbol,&mbi,sizeof(mbi));
-        HMODULE mod = mbi.AllocationBase;
 
-        LPTSTR buf = new tchar_t[255];
-        GetModuleFileName(mod,buf,255);
-        Array<uchar_t> arr(strlen(buf));
-        for(idx_t i = 0; i < strlen(buf);i++) {
-            arr[i] = buf[i];
-        }
-        String fullpath = arr;
-    #endif
+
+    sRes.resize(xPATH_MAX);
+
+    ulong_t ulStored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ), &sRes.at(0), sRes.size());
+    /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring_t());
+
+    sRes.resize(ulStored);
 #elif xOS_ENV_UNIX
-    #if xTODO
-        Dl_info info;
-        dladdr(&symbol,&info);
-        String fullpath = info.dli_filename;
-    #endif
+    struct SProcAddress {
+        static volatile void vFunction() { };
+    };
+
+    Dl_info  diInfo        = {0};
+    void    *fpProcAddress = SProcAddress::vFunction;
+
+    int iRes = ::dladdr(fpProcAddress, &diInfo);
+    /*DEBUF*/xASSERT_RET(0 < iRes, CxConst::xSTR_EMPTY);
+
+    sRes.assign(diInfo.dli_filename);
 #endif
 
     return sRes;

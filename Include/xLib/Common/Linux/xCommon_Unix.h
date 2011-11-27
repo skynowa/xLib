@@ -34,7 +34,7 @@
 #include <sys/sem.h>
 
 //dll
-#include <dlfcn.h>      //lib: -ldl, -lc (FreeBSD)
+#include <dlfcn.h>
 
 #if xOS_FREEBSD
     #include <osreldate.h>
