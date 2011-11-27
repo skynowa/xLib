@@ -17,7 +17,7 @@ class CxTest_CxDnsClient :
                      CxTest_CxDnsClient();
         virtual     ~CxTest_CxDnsClient();
 
-        virtual bool bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };

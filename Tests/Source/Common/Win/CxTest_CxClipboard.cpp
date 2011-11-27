@@ -19,7 +19,7 @@ CxTest_CxClipboard::~CxTest_CxClipboard() {
 /*virtual*/
 bool
 CxTest_CxClipboard::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
 #if xOS_ENV_WIN

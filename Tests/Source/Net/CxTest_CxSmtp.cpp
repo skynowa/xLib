@@ -19,7 +19,7 @@ CxTest_CxSmtp::~CxTest_CxSmtp() {
 /*virtual*/
 bool
 CxTest_CxSmtp::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
 #if xOS_ENV_WIN

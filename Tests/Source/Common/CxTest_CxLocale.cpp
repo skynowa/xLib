@@ -19,12 +19,12 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 /*virtual*/
 bool
 CxTest_CxLocale::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //sGetCurrent
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_sRes = CxLocale::sGetCurrent();
         xTEST_EQ(false, m_sRes.empty());
@@ -32,7 +32,7 @@ CxTest_CxLocale::bUnit(
 
     //-------------------------------------
     //bSetCurrent
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxLocale::bSetCurrent( CxLocale::sGetCurrent() );
         xTEST_EQ(true, m_bRes);
@@ -40,7 +40,7 @@ CxTest_CxLocale::bUnit(
 
     //-------------------------------------
     //bSetDefault
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxLocale::bSetDefault();
         xTEST_EQ(true, m_bRes);
@@ -48,7 +48,7 @@ CxTest_CxLocale::bUnit(
 
     //-------------------------------------
     //bSetCurrent
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
         xTEST_EQ(true, m_bRes);

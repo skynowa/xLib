@@ -19,7 +19,7 @@ CxTest_CxMutex::~CxTest_CxMutex() {
 /*virtual*/
 bool
 CxTest_CxMutex::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
 #if xOS_ENV_WIN

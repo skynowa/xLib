@@ -19,7 +19,7 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 /*virtual*/
 bool
 CxTest_CxMimeMessage::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     std::string m_sRes;

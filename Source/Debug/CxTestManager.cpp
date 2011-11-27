@@ -62,7 +62,7 @@ bool
 CxTestManager::bRun(
     const ulonglong_t cullAllLoops,
     const ulonglong_t cullUnitLoops,
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -70,13 +70,13 @@ CxTestManager::bRun(
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::sGetExe().c_str()));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(", unit loops: %") xPR_I64u xT(", block loops: %") xPR_I64u xT(", unit number: %")  xPR_SIZET xT("\n"), cullAllLoops, cullUnitLoops, cullBlockLoops, _m_ctnTests.size()));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(", unit loops: %") xPR_I64u xT(", block loops: %") xPR_I64u xT(", unit number: %")  xPR_SIZET xT("\n"), cullAllLoops, cullUnitLoops, cullCaseLoops, _m_ctnTests.size()));
 
     for (ulonglong_t i = 0ULL; i < cullAllLoops; ++ i) {
         for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 
-            bool bRes = (*it)->bRun(cullUnitLoops, cullBlockLoops);
+            bool bRes = (*it)->bRun(cullUnitLoops, cullCaseLoops);
             xASSERT_MSG_RET(false != bRes, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()), false);
 
             //xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("...Ok")));

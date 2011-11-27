@@ -19,7 +19,7 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 /*virtual*/
 bool
 CxTest_CxAtomicLongInt::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
 #if xOS_ENV_WIN

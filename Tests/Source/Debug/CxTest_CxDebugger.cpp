@@ -19,13 +19,13 @@ CxTest_CxDebugger::~CxTest_CxDebugger() {
 /*virtual*/
 bool
 CxTest_CxDebugger::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
 
     //-------------------------------------
     //bGetEnabled, bGetEnabled
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const bool cbTrue  = true;
         const bool cbFalse = false;
@@ -48,14 +48,14 @@ CxTest_CxDebugger::bUnit(
 
     //-------------------------------------
     //bIsPresent
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxDebugger::bIsPresent();
     }
 
     //-------------------------------------
     //bIsDebugBuild
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxDebugger::bIsDebugBuild();
         #if defined(NDEBUG)
@@ -67,14 +67,14 @@ CxTest_CxDebugger::bUnit(
 
     //-------------------------------------
     //bBreak
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //TODO: bBreak
     }
 
     //-------------------------------------
     //bSetLogPath, sGetLogPath
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t csFilePath = xT("");
 
@@ -96,7 +96,7 @@ CxTest_CxDebugger::bUnit(
 
     //-------------------------------------
     //bReportMake
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const CxReport::EType crtType[] = {
             CxReport::rtMsgboxPlain,
@@ -117,7 +117,7 @@ CxTest_CxDebugger::bUnit(
 
     //-------------------------------------
     //bTrace
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTEST_IGNORE
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
@@ -127,7 +127,7 @@ CxTest_CxDebugger::bUnit(
 
     //-------------------------------------
     //bTrace
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTEST_IGNORE || 0
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
@@ -138,7 +138,7 @@ CxTest_CxDebugger::bUnit(
 
     //-------------------------------------
     //bBeep
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxDebugger::bBeep();
         xTEST_EQ(true, m_bRes);
@@ -146,14 +146,14 @@ CxTest_CxDebugger::bUnit(
 
     //--------------------------------------------------
     //xNOT_IMPLEMENTED_RET
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //TODO: xNOT_IMPLEMENTED_RET
     }
 
     //--------------------------------------------------
     //xASSERT
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sVar1 = xT("xxx");
         std::tstring_t sVar2 = xT("xxx");
@@ -162,7 +162,7 @@ CxTest_CxDebugger::bUnit(
 
     //--------------------------------------------------
     //xASSERT_RET
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sVar1 = xT("xxx");
         std::tstring_t sVar2 = xT("xxx");
@@ -171,7 +171,7 @@ CxTest_CxDebugger::bUnit(
 
     //--------------------------------------------------
     //xASSERT_DO
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sVar1 = xT("xxx");
         std::tstring_t sVar2 = xT("xxx");
@@ -180,7 +180,7 @@ CxTest_CxDebugger::bUnit(
 
     //--------------------------------------------------
     //xASSERT_MSG
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sVar1 = xT("xxx");
         std::tstring_t sVar2 = xT("xxx");
@@ -189,7 +189,7 @@ CxTest_CxDebugger::bUnit(
 
     //--------------------------------------------------
     //xASSERT_MSG_RET
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sVar1 = xT("xxx");
         std::tstring_t sVar2 = xT("xxx");
@@ -198,7 +198,7 @@ CxTest_CxDebugger::bUnit(
 
     //--------------------------------------------------
     //xASSERT_MSG_DO
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sVar1 = xT("xxx");
         std::tstring_t sVar2 = xT("xxx");
@@ -210,35 +210,35 @@ CxTest_CxDebugger::bUnit(
 
     //with int
     {
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             int iVar1 = 1;
             int iVar2 = 1;
             xTEST_EQ(iVar1, iVar2);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             int iVar1 = 0;
             int iVar2 = 1;
             xTEST_DIFF(iVar1, iVar2);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             int iVar1 = 1;
             int iVar2 = 122;
             xTEST_LESS(iVar1, iVar2);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             int iVar1 = 110;
             int iVar2 = 10;
             xTEST_GREATER(iVar1, iVar2);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             int iVar1 = 50;
             int iVar2 = 122;
@@ -249,7 +249,7 @@ CxTest_CxDebugger::bUnit(
             xTEST_LESS_EQ(iVar3, iVar4);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             int iVar1 = 500;
             int iVar2 = 147;
@@ -266,35 +266,35 @@ CxTest_CxDebugger::bUnit(
 
     //with std::tstring_t
     {
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");
             xTEST_EQ(sVar1, sVar2);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             std::tstring_t sVar1 = xT("bbb");
             std::tstring_t sVar2 = xT("BBB");
             xTEST_DIFF(sVar1, sVar2);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("ccc");
             xTEST_LESS(sVar1, sVar2);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             std::tstring_t sVar1 = xT("bbb");
             std::tstring_t sVar2 = xT("aaa");
             xTEST_GREATER(sVar1, sVar2);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");
@@ -305,7 +305,7 @@ CxTest_CxDebugger::bUnit(
             xTEST_LESS_EQ(sVar3, sVar4);
         }
 
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");

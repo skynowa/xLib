@@ -19,7 +19,7 @@ CxTest_CxCom::~CxTest_CxCom() {
 /*virtual*/
 bool
 CxTest_CxCom::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -27,7 +27,7 @@ CxTest_CxCom::bUnit(
 #if xOS_ENV_WIN
     //-------------------------------------
     //bIsInit
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         {
             CxCom cmCom(CxCom::cmMultiThreaded);

@@ -40,6 +40,11 @@ class CxDnsClient :
         static bool bGetServiceByPort   (short_t siPort, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
             ///< get service by port
 
+        static BOOL bIsOnLan            (const ulong_t culIp);
+            ///< return true if IP is on this LAN
+        static BOOL bIsBroadcast        (const ulong_t culIp);
+            ///< return true if IP is a (directed) ip-broadcast address
+
     private:
                     CxDnsClient         ();
             ///< constructor

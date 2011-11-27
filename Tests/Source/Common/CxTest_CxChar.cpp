@@ -19,12 +19,12 @@ CxTest_CxChar::~CxTest_CxChar() {
 /*virtual*/
 bool
 CxTest_CxChar::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //--------------------------------------------------
     //bIsAlphaNum
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -49,7 +49,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsAlpha
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -74,7 +74,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsControl
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -99,7 +99,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsDigitDec
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -124,7 +124,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsDigitHex
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -149,7 +149,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsGraph
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -174,7 +174,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsPrint
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -201,7 +201,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsPunct
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -226,7 +226,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsSpace
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -251,7 +251,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsLower
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -276,7 +276,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //bIsUpper
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //true
         {
@@ -301,7 +301,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //chToLower
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         const std::tstring_t sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
@@ -314,7 +314,7 @@ CxTest_CxChar::bUnit(
 
     //--------------------------------------------------
     //chToUpper
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
         const std::tstring_t sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");

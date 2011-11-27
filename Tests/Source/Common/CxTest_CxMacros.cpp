@@ -19,12 +19,12 @@ CxTest_CxMacros::~CxTest_CxMacros() {
 /*virtual*/
 bool
 CxTest_CxMacros::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //--------------------------------------------------
     //several combinations of preprocessor's defines
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         /*
             if (DEFINE_VAL == NOT_ZERO_DIGIT) {
@@ -111,7 +111,7 @@ CxTest_CxMacros::bUnit(
 
     //-------------------------------------
     //xPTR_DELETE
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         int *pPtr = new int();
         xTEST_PTR(pPtr);
@@ -122,7 +122,7 @@ CxTest_CxMacros::bUnit(
 
     //-------------------------------------
     //xARRAY_DELETE
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         int *pPtr = new int[5];
         xTEST_PTR(pPtr);
@@ -133,7 +133,7 @@ CxTest_CxMacros::bUnit(
 
     //-------------------------------------
     //xBUFF_ZERO
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         tchar_t szBuff[255 + 1];
 
@@ -146,7 +146,7 @@ CxTest_CxMacros::bUnit(
 
     //-------------------------------------
     //xARRAY_SIZE
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         {
             tchar_t szBuff[256] = {0};
@@ -171,7 +171,7 @@ CxTest_CxMacros::bUnit(
 
     //-------------------------------------
     //xMAX
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_uiRes = xMAX(0, 1);
         xTEST_EQ(1U, m_uiRes);
@@ -179,14 +179,14 @@ CxTest_CxMacros::bUnit(
 
     //-------------------------------------
     //xMIN
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_uiRes = xMIN(5, 8);
         xTEST_EQ(5U, m_uiRes);
     }
     //-------------------------------------
     //xUNUSED
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         size_t uiArg = 0;
 
@@ -195,31 +195,31 @@ CxTest_CxMacros::bUnit(
 
     //-------------------------------------
     //xS2US
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
     }
 
     //-------------------------------------
     //xUS2S
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
     }
 
     //-------------------------------------
     //xS2TS
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
     }
 
     //-------------------------------------
     //xTS2S
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
     }
 
     //-------------------------------------
     //xAsTString
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //1
         {
@@ -258,7 +258,7 @@ CxTest_CxMacros::bUnit(
             const tchar_t *pcszBuff = NULL;
 
             m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring_t(), m_sRes);
+            xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
         }
 
         //7
@@ -280,7 +280,7 @@ CxTest_CxMacros::bUnit(
 
     //-------------------------------------
     //qualifiers
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //xPR_SIZET
         {

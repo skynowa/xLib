@@ -19,7 +19,7 @@ CxTest_CxPop3::~CxTest_CxPop3() {
 /*virtual*/
 bool
 CxTest_CxPop3::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
 #if xOS_ENV_WIN

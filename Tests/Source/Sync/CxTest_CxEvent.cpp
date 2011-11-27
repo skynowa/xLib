@@ -19,7 +19,7 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 /*virtual*/
 bool
 CxTest_CxEvent::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------

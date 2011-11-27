@@ -35,12 +35,12 @@ CxTest_CxSingleton::~CxTest_CxSingleton() {
 /*virtual*/
 bool
 CxTest_CxSingleton::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //test
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         typedef CxSingleton<CLogger> TLoggerSingleton;
 
@@ -49,7 +49,7 @@ CxTest_CxSingleton::bUnit(
         TLoggerSingleton::GetInstance().vClose();
     }
 
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxSingleton<CLogger>::GetInstance().vOpen();
         CxSingleton<CLogger>::GetInstance().vWrite();
@@ -58,14 +58,14 @@ CxTest_CxSingleton::bUnit(
 
     //-------------------------------------
     //construct CxSingleton on stack
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         ////TLoggerSingleton objLoggerSingleton;
     }
 
     //-------------------------------------
     //construct CxSingleton on heap
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         ////TLoggerSingleton *pobjLoggerSingleton = new TLoggerSingleton;
         ////xPTR_DELETE(pobjLoggerSingleton);

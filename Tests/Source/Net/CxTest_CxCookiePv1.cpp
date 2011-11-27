@@ -19,7 +19,7 @@ CxTest_CxCookiePv1::~CxTest_CxCookiePv1() {
 /*virtual*/
 bool
 CxTest_CxCookiePv1::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const std::tstring_t   csName      = xT("Name1");
@@ -37,7 +37,7 @@ CxTest_CxCookiePv1::bUnit(
 
     //--------------------------------------------------
     //CxCookiePv1()
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxCookiePv1 ckCookiePv1;
 
@@ -96,7 +96,7 @@ CxTest_CxCookiePv1::bUnit(
 
     //--------------------------------------------------
     //CxCookiePv1(const std::tstring_t &);
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxCookiePv1 ckCookiePv1(csRawCookie);
 

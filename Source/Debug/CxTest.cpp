@@ -57,14 +57,14 @@ CxTest::~CxTest() /* = 0*/ {
 bool
 CxTest::bRun(
     const ulonglong_t cullUnitLoops,
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 ) 
 {
     /*DEBUG*/
 
     try {
         for (ulonglong_t i = 0ULL; i < cullUnitLoops; ++ i) {
-            bool bRes = bUnit(cullBlockLoops);
+            bool bRes = bUnit(cullCaseLoops);
             /*DEBUG*/xASSERT_MSG_RET(false != bRes, sGetName() + xT(": fail"), false);
         }
     }
@@ -86,7 +86,7 @@ CxTest::bRun(
 /*virtual*/
 bool
 CxTest::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 ) /*= 0*/
 {
     /*DEBUG*/// n/a
@@ -94,7 +94,7 @@ CxTest::bUnit(
     #if xTODO
         //-------------------------------------
         //[FUNCTION_NAME]
-        xTEST_CASE(cullBlockLoops)
+        xTEST_CASE(cullCaseLoops)
         {
             const std::tstring_t casData[][2] = {
                 {xT("TEST_STRING_1"), xT("MUST_BE_1")},

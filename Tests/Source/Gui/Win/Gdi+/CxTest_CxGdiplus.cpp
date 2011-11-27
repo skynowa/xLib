@@ -20,12 +20,12 @@ CxTest_CxGdiplus::~CxTest_CxGdiplus() {
 /*virtual*/
 bool
 CxTest_CxGdiplus::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/
 
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxGdiplus gpGdiPlus;
     }

@@ -19,7 +19,7 @@ CxTest_CxGeoIp::~CxTest_CxGeoIp() {
 /*virtual*/
 bool
 CxTest_CxGeoIp::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = xT("./Tests/Source/_TestData/GeoIP.dat");
@@ -36,7 +36,7 @@ CxTest_CxGeoIp::bUnit(
 
     //--------------------------------------------------
     //bOpen
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;
@@ -48,7 +48,7 @@ CxTest_CxGeoIp::bUnit(
 
     //--------------------------------------------------
     //bIsValid
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;
@@ -66,7 +66,7 @@ CxTest_CxGeoIp::bUnit(
 
     //--------------------------------------------------
     //sGetCountryCodeByAddress, sGetCountryCode3ByAddress
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             const std::tstring_t sTestData[][3] = {
@@ -103,7 +103,7 @@ CxTest_CxGeoIp::bUnit(
 
     //--------------------------------------------------
     //bClose
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(copOption); ++ i) {
             CxGeoIp giGeoIp;

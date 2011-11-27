@@ -19,14 +19,14 @@ CxTest_CxSocketInit::~CxTest_CxSocketInit() {
 /*virtual*/
 bool
 CxTest_CxSocketInit::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/
 
     //-------------------------------------
     //CxSocketInit
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxSocketInit siInit10(1, 0);
         CxSocketInit siInit11(1, 1);

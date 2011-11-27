@@ -19,7 +19,7 @@ CxTest_CxShell::~CxTest_CxShell() {
 /*virtual*/
 bool
 CxTest_CxShell::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -27,7 +27,7 @@ CxTest_CxShell::bUnit(
 #if xOS_ENV_WIN
     //-------------------------------------
     //bFindExecutable
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_sRes = CxShell::bFindExecutable(xT("win.ini"), xT("C:"));
         xTEST_EQ(false, m_sRes.empty());
@@ -35,7 +35,7 @@ CxTest_CxShell::bUnit(
 
     //-------------------------------------
     //bExecuteEx
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //SHELLEXECUTEINFO eiExecInfo = {0};
         //m_bRes = CxShell::bExecuteEx(&eiExecInfo);
@@ -43,35 +43,35 @@ CxTest_CxShell::bUnit(
 
     //-------------------------------------
     //bExecute
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         //m_bRes = CxShell::bExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int iShowCmd);
     }
 
     //-------------------------------------
     //bExecuteHttp
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         ////m_bRes = CxShell::bExecuteHttp(xT(" http://www.google.ru/ "));
     }
 
     //-------------------------------------
     //bExecuteFtp
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         ////m_bRes = CxShell::bExecuteFtp(xT(" ftp://ftp.drweb.com/ "));
     }
 
     //-------------------------------------
     //bExecuteEmail
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         ////m_bRes = CxShell::bExecuteEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
     }
 
     //-------------------------------------
     //sGetSpecialDirPath
-    xTEST_CASE(cullBlockLoops) {
+    xTEST_CASE(cullCaseLoops) {
         #if (xWINVER >= xWIN32_2K)
             m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
             xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRes);

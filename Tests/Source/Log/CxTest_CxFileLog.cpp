@@ -19,7 +19,7 @@ CxTest_CxFileLog::~CxTest_CxFileLog() {
 /*virtual*/
 bool
 CxTest_CxFileLog::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.log");
@@ -28,7 +28,7 @@ CxTest_CxFileLog::bUnit(
 
     //--------------------------------------------------
     //bSetFilePath, sGetFilePath
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = flLog.bSetFilePath(csFilePath);
         xTEST_EQ(true, m_bRes);
@@ -39,7 +39,7 @@ CxTest_CxFileLog::bUnit(
 
     //--------------------------------------------------
     //bWrite
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
             m_bRes = flLog.bWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
@@ -50,7 +50,7 @@ CxTest_CxFileLog::bUnit(
 
     //--------------------------------------------------
     //bClear
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = flLog.bClear();
         xTEST_EQ(true, m_bRes);
@@ -59,7 +59,7 @@ CxTest_CxFileLog::bUnit(
 
     //--------------------------------------------------
     //bDelete
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = flLog.bDelete();
         xTEST_EQ(true, m_bRes);

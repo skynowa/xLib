@@ -19,12 +19,12 @@ CxTest_CxType::~CxTest_CxType() {
 /*virtual*/
 bool
 CxTest_CxType::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //sGetName
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sObject;
 
@@ -34,7 +34,7 @@ CxTest_CxType::bUnit(
 
     //-------------------------------------
     //sGetRawName
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         std::tstring_t sObject;
 
@@ -44,7 +44,7 @@ CxTest_CxType::bUnit(
 
     //-------------------------------------
     //bIsEquals
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
          std::string  sObject1;
         std::wstring sObject2;

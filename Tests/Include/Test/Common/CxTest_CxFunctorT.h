@@ -18,7 +18,7 @@ class CxTest_CxFunctorT :
                      CxTest_CxFunctorT();
         virtual     ~CxTest_CxFunctorT();
 
-        virtual bool bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };

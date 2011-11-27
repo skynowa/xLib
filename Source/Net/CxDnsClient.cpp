@@ -413,6 +413,30 @@ CxDnsClient::bGetServiceByPort(
     return true;
 }
 //---------------------------------------------------------------------------
+/*static*/
+BOOL 
+CxDnsClient::bIsOnLan(
+    const ulong_t culIp
+)
+{ 
+    const ulong_t culMyIpAddress = INADDR_ANY;     //IP of local interface (network order)
+    const ulong_t culNetMask     = INADDR_NONE;    //netmask for IP (network order)
+ 
+    return (0L == ((::ntohl(culIp) ^ ::ntohl(culMyIpAddress)) & ::ntohl(culNetMask)));
+}
+//---------------------------------------------------------------------------
+/*static*/
+BOOL 
+CxDnsClient::bIsBroadcast(
+    const ulong_t culIp
+)
+{
+    const ulong_t culMyIpAddress = INADDR_ANY;     //IP of local interface (network order)
+    const ulong_t culNetMask     = INADDR_NONE;    //netmask for IP (network order)
+
+    return (0L == (~::ntohl(culIp) & ~::ntohl(culNetMask)));
+}
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************

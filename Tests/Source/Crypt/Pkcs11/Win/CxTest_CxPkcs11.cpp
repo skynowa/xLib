@@ -19,7 +19,7 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 /*virtual*/
 bool
 CxTest_CxPkcs11::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
 #if xOS_ENV_WIN
@@ -33,7 +33,7 @@ CxTest_CxPkcs11::bUnit(
 
     //-------------------------------------
     //bSetData
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
     //    const std::tstring_t csUserPin   = xT("1111");
     //    const std::tstring_t csDataLabel = xT("Label_Id");
@@ -46,7 +46,7 @@ CxTest_CxPkcs11::bUnit(
 
     //-------------------------------------
     //bGetData
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
     //    const std::tstring_t csUserPin   = xT("1111");
     //    const std::tstring_t csDataLabel = xT("Label_Id");
@@ -58,7 +58,7 @@ CxTest_CxPkcs11::bUnit(
 
     //-------------------------------------
     //
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t csUserPin   = xT("1111");
         const std::tstring_t csDataLabel = xT("Key1.tkey");

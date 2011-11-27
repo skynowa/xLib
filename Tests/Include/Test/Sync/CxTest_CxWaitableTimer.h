@@ -18,7 +18,7 @@ class CxTest_CxWaitableTimer :
                      CxTest_CxWaitableTimer();
         virtual     ~CxTest_CxWaitableTimer();
 
-        virtual bool bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };

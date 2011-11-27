@@ -58,9 +58,9 @@ class CxTest :
         virtual                   ~CxTest         () = 0;
             ///< destructor
 
-        bool                       bRun           (const ulonglong_t cullUnitLoops, const ulonglong_t cullBlockLoops);
+        bool                       bRun           (const ulonglong_t cullUnitLoops, const ulonglong_t cullCaseLoops);
             ///< run test units
-        virtual bool               bUnit          (const ulonglong_t cullBlockLoops) = 0;
+        virtual bool               bUnit          (const ulonglong_t cullCaseLoops) = 0;
             ///< test unit
         bool                       bCreateWorkDir (const std::tstring_t &csDirName);
             ///< create work dir

@@ -19,7 +19,7 @@ CxTest_CxProfiler::~CxTest_CxProfiler() {
 /*virtual*/
 bool
 CxTest_CxProfiler::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const CxProfiler::EMode pmPerformMode[] = {

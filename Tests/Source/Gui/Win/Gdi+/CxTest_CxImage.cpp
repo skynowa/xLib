@@ -20,7 +20,7 @@ CxTest_CxImage::~CxTest_CxImage() {
 /*virtual*/
 bool
 CxTest_CxImage::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     /*DEBUG*/

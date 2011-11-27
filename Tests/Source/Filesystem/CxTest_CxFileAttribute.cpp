@@ -19,7 +19,7 @@ CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 /*virtual*/
 bool
 CxTest_CxFileAttribute::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -50,7 +50,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bSet, atGet
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxFileAttribute::bSet(csFilePath, cfaValue);
         xTEST_EQ(true, m_bRes);
@@ -63,7 +63,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bAdd
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xTEST_EQ(true, m_bRes);
@@ -77,7 +77,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bRemove
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             CxFileAttribute::EAttribute faAttr  = CxFileAttribute::faHidden;
@@ -135,7 +135,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bModify
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             const CxFileAttribute::EAttribute cfaRemoveValue = cfaValue;
@@ -151,7 +151,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bIsExists
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             CxFileAttribute::EAttribute faAttr = CxFileAttribute::faNormal;
@@ -168,7 +168,7 @@ CxTest_CxFileAttribute::bUnit(
 
     //--------------------------------------------------
     //bClear
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         m_bRes = CxFileAttribute::bClear(csFilePath);
         xTEST_EQ(true, m_bRes);

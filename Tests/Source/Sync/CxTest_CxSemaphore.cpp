@@ -41,7 +41,7 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 /*virtual*/
 bool
 CxTest_CxSemaphore::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     m_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));

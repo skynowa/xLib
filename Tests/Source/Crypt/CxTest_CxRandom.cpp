@@ -19,7 +19,7 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 /*virtual*/
 bool
 CxTest_CxRandom::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     #if xTODO
@@ -105,7 +105,7 @@ CxTest_CxRandom::bUnit(
 
     //-------------------------------------
     //bSetSeed, liGetInt, liGetIntEx
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const long_t caliData[][2] = {
             {0, 100},
@@ -133,7 +133,7 @@ CxTest_CxRandom::bUnit(
 
     //--------------------------------------------------
     //sGetString
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const size_t cuiStrSize = 10;
 

@@ -20,7 +20,7 @@ class CxTest_CxMsgBoxT :
         virtual      ~CxTest_CxMsgBoxT();
             ///< destructor
 
-        virtual bool  bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool  bUnit(const ulonglong_t cullCaseLoops);
             ///< test unit
 
     private:

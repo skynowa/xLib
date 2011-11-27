@@ -19,12 +19,12 @@ CxTest_CxBase64::~CxTest_CxBase64() {
 /*virtual*/
 bool
 CxTest_CxBase64::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
     //sEncode, sDecode
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::string sTestData[][1] = {
             {"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
@@ -48,7 +48,7 @@ CxTest_CxBase64::bUnit(
 
     //-------------------------------------
     //sEncode, sDecode
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         const std::string casData[][2] = {
             {"YOYO!", "WU9ZTyE="},
@@ -76,7 +76,7 @@ CxTest_CxBase64::bUnit(
 
     //--------------------------------------------------
     //bIsCharValid
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         {
             const std::string csValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

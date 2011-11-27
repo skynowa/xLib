@@ -18,7 +18,7 @@ class CxTest_CxAutoMutex :
                      CxTest_CxAutoMutex();
         virtual     ~CxTest_CxAutoMutex();
 
-        virtual bool bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };

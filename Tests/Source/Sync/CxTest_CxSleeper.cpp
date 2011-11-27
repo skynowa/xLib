@@ -19,12 +19,12 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 /*virtual*/
 bool
 CxTest_CxSleeper::bUnit(
-    const ulonglong_t cullBlockLoops
+    const ulonglong_t cullCaseLoops
 )
 {
     //--------------------------------------------------
     //bIsSleeping
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxSleeper objSleeper;
 
@@ -34,7 +34,7 @@ CxTest_CxSleeper::bUnit(
 
     //--------------------------------------------------
     //bSleep
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         CxSleeper objSleeper;
 
@@ -55,7 +55,7 @@ CxTest_CxSleeper::bUnit(
 
     //--------------------------------------------------
     //bWakeUp
-    xTEST_CASE(cullBlockLoops)
+    xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
             CxSleeper objSleeper;
