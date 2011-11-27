@@ -414,7 +414,7 @@ CxDnsClient::bGetServiceByPort(
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL 
+bool 
 CxDnsClient::bIsOnLan(
     const ulong_t culIp
 )
@@ -426,7 +426,7 @@ CxDnsClient::bIsOnLan(
 }
 //---------------------------------------------------------------------------
 /*static*/
-BOOL 
+bool 
 CxDnsClient::bIsBroadcast(
     const ulong_t culIp
 )
