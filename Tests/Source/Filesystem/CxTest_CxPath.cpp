@@ -66,7 +66,7 @@ CxTest_CxPath::bUnit(
     {
         sRes = CxPath::sGetDll();
         xTEST_EQ(false, sRes.empty());
-        xTRACEV(xT("\tCxPath::sGetDll(): %s"), sRes.c_str());
+        //xTRACEV(xT("\tCxPath::sGetDll(): %s"), sRes.c_str());
     }
 
     //-------------------------------------
@@ -82,8 +82,8 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
-        sRes    = CxPath::sGetDrive(csFilePath);
-        xTEST_EQ(sRes, std::tstring_t(xT("C:")));
+            sRes    = CxPath::sGetDrive(csFilePath);
+            xTEST_EQ(sRes, std::tstring_t(xT("C:")));
         #endif
     }
 
