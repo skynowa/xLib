@@ -88,7 +88,6 @@ CxPath::sGetExe() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetDll
 #if defined(xOS_ENV_WIN)
     extern "C" IMAGE_DOS_HEADER __ImageBase;
 #elif defined(xOS_ENV_UNIX)
