@@ -26,7 +26,7 @@ CxTest_CxMySql::bUnit(
     const std::tstring_t csUser        = xT("root");
     const std::tstring_t csPassword    = xT("root");
     const std::tstring_t csDbName      = xT("db_test");
-    const uint_t         uiPort        = 0U;
+    const uint_t         cuiPort       = 0U;
     const std::tstring_t sTableName    = xT("t_main");
     const std::tstring_t csUnixSocket;
     const ulong_t        culClientFlag = 0UL;
@@ -76,7 +76,7 @@ CxTest_CxMySql::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-            bool bRes1 = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, casData[i][0], uiPort, csUnixSocket, culClientFlag);
+            bool bRes1 = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, casData[i][0], cuiPort, csUnixSocket, culClientFlag);
             bool bRes2 = CxString::bStrToBool(casData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
@@ -87,30 +87,30 @@ CxTest_CxMySql::bUnit(
     {
         bool bIsDbExists = false;
 
-        bIsDbExists = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, culClientFlag);
+        bIsDbExists = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
         if (false == bIsDbExists) {
             //create Db
             std::tstring_t csDbDefaultName = xT("");
 
-            m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbDefaultName, uiPort, csUnixSocket, culClientFlag);
+            m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbDefaultName, cuiPort, csUnixSocket, culClientFlag);
             xTEST_EQ(true, m_bRes);
 
             m_bRes = conConn.bQuery("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8", csDbName.c_str());
             xTEST_EQ(true, m_bRes);
         } else {
             //connect to Db
-            m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, culClientFlag);
+            m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
             xTEST_EQ(true, m_bRes);
         }
 
-        m_bRes = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, culClientFlag);
+        m_bRes = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
         xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
     //bQuery
     {
-        m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, culClientFlag);
+        m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
         xTEST_EQ(true, m_bRes);
 
         //create table
@@ -280,7 +280,7 @@ CxTest_CxMySql::bUnit(
         m_bRes = conConn.bQuery(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
         xTEST_EQ(true, m_bRes);
 
-        m_bRes = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, uiPort, csUnixSocket, culClientFlag);
+        m_bRes = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
         xTEST_EQ(false, m_bRes);
     }
 

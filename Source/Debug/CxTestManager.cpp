@@ -40,7 +40,7 @@ CxTestManager::~CxTestManager() {
 //---------------------------------------------------------------------------
 bool
 CxTestManager::bAdd(
-    CxTest             *pvtTest,
+    CxTest               *pvtTest,
     const std::tstring_t &csTestName /* = CxConst::xSTR_EMPTY*/
 )
 {

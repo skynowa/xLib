@@ -122,19 +122,18 @@ xTMAIN(
     tchar_t *paszArgs[]
 )
 {
-    bool bVal = false;
-
     //--------------------------------------------------
     //set commandline args for xLib
     {
         bool bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
         xTEST_EQ(true, bRes);
     }
-    
+
     #if xTEMP_DISABLED
         std::tcout << "Content-type: text/html\n\n" << std::endl;
         std::tcout << "<pre>\n\n"                   << std::endl;
     #endif
+
 
     //--------------------------------------------------
     //options (default)

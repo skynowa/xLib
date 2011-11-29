@@ -22,30 +22,81 @@ CxTest_Draft::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    #if xTEMP_DISABLED
-        {
+    //--------------------------------------------------
+    //bool type
+    xTEST_CASE(cullCaseLoops)
+    {
+        #if 0
+            bool bVal = false;
+
+            bVal = false;
+            xTRACEV(xT("Expr: [bVal = false], bVal = %i"), bVal);
+
+            bVal = true;
+            xTRACEV(xT("Expr: [bVal = true],  bVal = %i"), bVal);
+
+            bVal = - 2;
+            xTRACEV(xT("Expr: [bVal = - 2],   bVal = %i"), bVal);
+
+            bVal = - 1;
+            xTRACEV(xT("Expr: [bVal = - 1],   bVal = %i"), bVal);
+
+            bVal = 0;
+            xTRACEV(xT("Expr: [bVal = 0],     bVal = %i"), bVal);
+
+            bVal = 1;
+            xTRACEV(xT("Expr: [bVal = 1],     bVal = %i"), bVal);
+
+            bVal = 2;
+            xTRACEV(xT("Expr: [bVal = 2],     bVal = %i"), bVal);
+
+            /*
+                Expr: [bVal = false], bVal = 0
+                Expr: [bVal = true],  bVal = 1
+                Expr: [bVal = - 2],   bVal = 1
+                Expr: [bVal = - 1],   bVal = 1
+                Expr: [bVal = 0],     bVal = 0
+                Expr: [bVal = 1],     bVal = 1
+                Expr: [bVal = 2],     bVal = 1
+            */
+        #endif
+    }
+
+    //--------------------------------------------------
+    //int, not int
+    xTEST_CASE(cullCaseLoops)
+    {
+        #if 0
             int iTest = - 2;
 
-            xTRACEV("(i =  %i): %i", iTest, iTest);
-            xTRACEV("(i = !%i): %i", iTest, !iTest);
-        }
-    #endif
+            xTRACEV("Expr: [i =  %i]: %i", iTest, iTest);
+            xTRACEV("Expr: [i = !%i]: %i", iTest, !iTest);
 
-    #if xTEMP_DISABLED
-        {
+            /*
+                Expr: [i =  -2]: -2
+                Expr: [i = !-2]: 0
+            */
+        #endif
+    }
+
+    //--------------------------------------------------
+    //CxThread priority
+    xTEST_CASE(cullCaseLoops)
+    {
+        #if 0
             int iMin = CxThread::_iGetPriorityMin();
             int iMax = CxThread::_iGetPriorityMax();
 
             xTRACEV("Tnread prior: %i ... %i", iMin, iMax);
-        }
-    #endif
+        #endif
+    }
 
     //--------------------------------------------------
     //std::tstring_t::operator=, std::tstring_t::assign, std::swap
-    #if xTEMP_DISABLED
-        xTEST_CASE(cullCaseLoops)
-        {
-            const size_t cuiLoops = 1000000000;
+    xTEST_CASE(1)
+    {
+        #if 0
+            const size_t   cuiLoops = 1000000000;
             std::tstring_t csStr    = xT("qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=");
             std::tstring_t sRes     = xT(" qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,.1234567890-= ");
 
@@ -57,7 +108,7 @@ CxTest_Draft::bUnit(
                 }
             }
 
-            xTRACE(sRes.c_str());
+            xTRACE(sRes);
 
             {
                 xAUTO_PROFILER(xT("./__std_tstring.profile"), CxProfiler::pmStdClock, xT("%s"), xT("std::tstring_t::assign"));
@@ -67,9 +118,9 @@ CxTest_Draft::bUnit(
                 }
             }
 
-            xTRACE(sRes.c_str());
+            xTRACE(sRes);
 
-           {
+            {
                 xAUTO_PROFILER(xT("./__std_tstring.profile"), CxProfiler::pmStdClock, xT("%s"), xT("std::tstring_t::swap"));
 
                 for (size_t i = 0; i < cuiLoops; ++ i) {
@@ -77,13 +128,18 @@ CxTest_Draft::bUnit(
                 }
             }
 
-            xTRACE(sRes.c_str());
-        }
-    #endif
+            xTRACE(sRes);
+        #endif
+    }
 
-    #if 0
-        xASSERT(false);
-    #endif
+    //--------------------------------------------------
+    //xASSERT
+    xTEST_CASE(1)
+    {
+        #if 0
+            xASSERT(false);
+        #endif
+    }
 
     return true;
 }
