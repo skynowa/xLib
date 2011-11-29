@@ -133,6 +133,7 @@
 #define xSTR_CONCAT(x, y)  x ## y
     ///< concatinate strings
 
+
 #if xOS_ENV_WIN
 #   define xTODO_TASK(text) { message(__FILE__ "(" xSTRINGIZE(__LINE__) ") [" xFUNCTION "]: warning TODO: [" xFUNCTION "] " ## text) }
 #   define xTODO_IMPL       { xTODO("Implement " xFUNCTION " function!") }
