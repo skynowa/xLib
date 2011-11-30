@@ -20,7 +20,7 @@ class CxTest_[CxTemplate] :
 	    virtual      ~CxTest_[CxTemplate]();
 	        ///< destructor
 
-	    virtual BOOL  bUnit(const ULONGLONG cullBlockLoops);
+	    virtual bool  bUnit(const ulonglong_t cullBlockLoops);
 	        ///< unit test
 
 	private:

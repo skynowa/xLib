@@ -17,13 +17,13 @@ CxTest_[CxTemplate]::~CxTest_[CxTemplate]() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-BOOL
+bool
 CxTest_[CxTemplate]::bUnit(
-    const ULONGLONG cullBlockLoops
+    const ulonglong_t cullBlockLoops
 )
 {
 
 
-    return TRUE;
+    return true;
 }
 //---------------------------------------------------------------------------
