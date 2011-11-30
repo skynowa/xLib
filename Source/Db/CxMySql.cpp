@@ -9,7 +9,7 @@
 #if xOS_ENV_WIN
     #pragma comment(lib, "libmysql.lib")
 #elif xOS_ENV_UNIX
-    // -lmysqlclient
+    // lib: -lmysqlclient
 #endif
 
 
@@ -222,8 +222,8 @@ CxMySQLConnection::sGetLastErrorStr() const {
 
     std::tstring_t sRes;
 
-    const uint_t cuiLastError = uiGetLastError();
-    const char *cpszRes     = ::mysql_error(_m_pmsConnection);
+    const uint_t  cuiLastError = uiGetLastError();
+    const char   *cpszRes      = ::mysql_error(_m_pmsConnection);
     /*DEBUG*/// n/a
     /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::tstring_t());
 
