@@ -24,11 +24,11 @@
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<OutputExt>exe</OutputExt>
 			<LinkPackageStatics>rtl.lib;vcl.lib</LinkPackageStatics>
-			<ILINK_LibraryPath>..\..\Source\Filesystem\Win\;..\..\Include\xLib\Filesystem\Win\;..\..\Source\Common\Win\;..\..\Include\xLib\Common\Win\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Tests\Include\Test\Common\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Common\;..\..\Tests\;D:\xLib\Tests\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<ILINK_LibraryPath>..\..\Tests\Source\Common\Win\;..\..\Tests\Include\Test\Common\Win\;..\..\Source\Filesystem\Win\;..\..\Include\xLib\Filesystem\Win\;..\..\Source\Common\Win\;..\..\Include\xLib\Common\Win\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Tests\Include\Test\Common\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Common\;..\..\Tests\;D:\xLib\Tests\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<PackageImports>vcl.bpi;rtl.bpi;bcbie.bpi;vclx.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;svnui.bpi;svn.bpi;bdertl.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vclimg.bpi;vcldb.bpi;dbrtl.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;vclib.bpi;ibxpress.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;inet.bpi;intrawebdb_110_150.bpi;Intraweb_110_150.bpi;vclie.bpi;websnap.bpi;webdsnap.bpi;inetdb.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DataSnapIndy10ServerTransport.bpi;DataSnapProviderClient.bpi;DbxClientDriver.bpi;DataSnapClient.bpi;dbxcds.bpi;DataSnapServer.bpi;AzureCloud.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;DBXFirebirdDriver.bpi;DBXSybaseASEDriver.bpi;DBXSybaseASADriver.bpi;DBXOracleDriver.bpi;DBXMSSQLDriver.bpi;DBXInformixDriver.bpi;DBXDb2Driver.bpi;CodeSiteExpressVcl.bpi;Rave90VCL.bpi</PackageImports>
 			<NoVCL>true</NoVCL>
 			<Multithreaded>true</Multithreaded>
-			<IncludePath>..\..\Source\Filesystem\Win\;..\..\Include\xLib\Filesystem\Win\;..\..\Source\Common\Win\;..\..\Include\xLib\Common\Win\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Tests\Include\Test\Common\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Common\;..\..\Tests\;D:\xLib\Tests\;$(IncludePath)</IncludePath>
+			<IncludePath>..\..\Tests\Source\Common\Win\;..\..\Tests\Include\Test\Common\Win\;..\..\Source\Filesystem\Win\;..\..\Include\xLib\Filesystem\Win\;..\..\Source\Common\Win\;..\..\Include\xLib\Common\Win\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Tests\Include\Test\Common\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Pkcs11\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Pkcs11\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;..\..\Include\xLib\Common\;..\..\Tests\;D:\xLib\Tests\;$(IncludePath)</IncludePath>
 			<AllPackageLibs>rtl.lib;vcl.lib</AllPackageLibs>
 			<ProjectType>CppConsoleApplication</ProjectType>
 			<_TCHARMapping>wchar_t</_TCHARMapping>
@@ -43,6 +43,10 @@
 			<ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<BCC_MonitorGlobalAndStackData>true</BCC_MonitorGlobalAndStackData>
+			<BCC_MonitorThis>true</BCC_MonitorThis>
+			<BCC_AllCodeguardOptions>true</BCC_AllCodeguardOptions>
+			<BCC_MonitorInlinePtrAccess>true</BCC_MonitorInlinePtrAccess>
 			<_TCHARMapping>char</_TCHARMapping>
 			<BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
 			<BCC_DisableOptimizations>true</BCC_DisableOptimizations>
@@ -112,19 +116,25 @@
 				<BuildOrder>14</BuildOrder>
 			</None>
 			<None Include="..\..\Include\xLib\Common\Win\CxClipboard.h">
-				<BuildOrder>300</BuildOrder>
+				<BuildOrder>314</BuildOrder>
 			</None>
 			<None Include="..\..\Include\xLib\Common\Win\CxCom.h">
-				<BuildOrder>301</BuildOrder>
+				<BuildOrder>314</BuildOrder>
 			</None>
 			<None Include="..\..\Include\xLib\Common\Win\CxComPort.h">
-				<BuildOrder>302</BuildOrder>
+				<BuildOrder>312</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\Win\CxCpuUsage.h">
+				<BuildOrder>313</BuildOrder>
 			</None>
 			<None Include="..\..\Include\xLib\Common\Win\CxHandleT.h">
-				<BuildOrder>304</BuildOrder>
+				<BuildOrder>313</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\Win\CxPerfCounters.h">
+				<BuildOrder>314</BuildOrder>
 			</None>
 			<None Include="..\..\Include\xLib\Common\Win\CxShell.h">
-				<BuildOrder>306</BuildOrder>
+				<BuildOrder>314</BuildOrder>
 			</None>
 			<None Include="..\..\Include\xLib\Common\Win\xCommon_Win.h">
 				<BuildOrder>307</BuildOrder>
@@ -392,9 +402,6 @@
 			<CppCompile Include="..\..\Source\Common\Win\CxComPort.cpp">
 				<BuildOrder>310</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Source\Common\Win\CxCpuUsage.cpp">
-				<BuildOrder>311</BuildOrder>
-			</CppCompile>
 			<None Include="..\..\Source\Common\Win\CxHandleT.inl"/>
 			<CppCompile Include="..\..\Source\Common\Win\CxShell.cpp">
 				<BuildOrder>313</BuildOrder>
@@ -516,9 +523,10 @@
 			<CppCompile Include="..\..\Source\Net\CxMimeMessage.cpp">
 				<BuildOrder>141</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxPop3.cpp">
+			<None Include="..\..\Source\Net\CxPop3.cpp">
+				<Exclude>True</Exclude>
 				<BuildOrder>142</BuildOrder>
-			</CppCompile>
+			</None>
 			<CppCompile Include="..\..\Source\Net\CxSmtp.cpp">
 				<BuildOrder>143</BuildOrder>
 			</CppCompile>
@@ -625,11 +633,20 @@
 			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxType.h">
 				<BuildOrder>178</BuildOrder>
 			</None>
-			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h">
-				<BuildOrder>179</BuildOrder>
+			<None Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxClipboard.h">
+				<BuildOrder>315</BuildOrder>
 			</None>
-			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h">
-				<BuildOrder>180</BuildOrder>
+			<None Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h">
+				<BuildOrder>316</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxComPort.h">
+				<BuildOrder>317</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxHandleT.h">
+				<BuildOrder>318</BuildOrder>
+			</None>
+			<None Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxShell.h">
+				<BuildOrder>319</BuildOrder>
 			</None>
 			<None Include="..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h">
 				<BuildOrder>181</BuildOrder>
@@ -823,11 +840,20 @@
 			<CppCompile Include="..\..\Tests\Source\Common\CxTest_CxType.cpp">
 				<BuildOrder>245</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp">
-				<BuildOrder>246</BuildOrder>
+			<CppCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxClipboard.cpp">
+				<BuildOrder>323</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp">
-				<BuildOrder>247</BuildOrder>
+			<CppCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp">
+				<BuildOrder>324</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxComPort.cpp">
+				<BuildOrder>320</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxHandleT.cpp">
+				<BuildOrder>321</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxShell.cpp">
+				<BuildOrder>322</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp">
 				<BuildOrder>248</BuildOrder>
@@ -896,9 +922,10 @@
 			<CppCompile Include="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp">
 				<BuildOrder>269</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxAsyncSocket.cpp">
+			<None Include="..\..\Tests\Source\Net\CxTest_CxAsyncSocket.cpp">
+				<Exclude>True</Exclude>
 				<BuildOrder>270</BuildOrder>
-			</CppCompile>
+			</None>
 			<CppCompile Include="..\..\Tests\Source\Net\CxTest_CxCgi.cpp">
 				<BuildOrder>271</BuildOrder>
 			</CppCompile>

@@ -9,7 +9,7 @@
 #include <xLib/Filesystem/CxPath.h>
 
 
-extern char **environ;  //from <env.h>
+////extern char **environ;  //from <env.h>
 
 xNAMESPACE_BEGIN(NxLib)
 
