@@ -6,7 +6,7 @@
 
 #include <Test/Common/Win/CxTest_CxHandleT.h>
 
-#include <xLib/Sync/CxProcess.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 
 
 //---------------------------------------------------------------------------
@@ -35,12 +35,12 @@ CxTest_CxHandleT::bUnit(
         m_bRes = objHandle.bIsValid();
         xTEST_EQ(false, m_bRes);
 
-        m_bRes = objHandle.bSet( CxHandle::hGetCurrentProcess() );
+        m_bRes = objHandle.bSet( CxCurrentProcess::hGetHandle() );
         xTEST_EQ(true, m_bRes);
 
         m_bRes = objHandle.bIsValid();
         xTEST_EQ(true, m_bRes);
-        xTEST_EQ(CxHandle::hGetCurrentProcess(), objHandle.hGet());
+        xTEST_EQ(CxCurrentProcess::hGetHandle(), objHandle.hGet());
     }
 
     //-------------------------------------
@@ -71,7 +71,7 @@ CxTest_CxHandleT::bUnit(
     //hGet, bSet
     {
         m_hRes = objHandle.hGet();
-        xTEST_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
+        xTEST_EQ(CxCurrentProcess::hGetHandle(), m_hRes);
 
         m_bRes = objHandle.bSet(NULL);
         xTEST_EQ(true, m_bRes);
@@ -79,11 +79,11 @@ CxTest_CxHandleT::bUnit(
         m_hRes = objHandle.hGet();
         xASSERT(NULL == m_hRes);
 
-        m_bRes = objHandle.bSet(CxHandle::hGetCurrentProcess());
+        m_bRes = objHandle.bSet(CxCurrentProcess::hGetHandle());
         xTEST_EQ(true, m_bRes);
 
         m_hRes = objHandle.hGet();
-        xTEST_EQ(CxHandle::hGetCurrentProcess(), m_hRes);
+        xTEST_EQ(CxCurrentProcess::hGetHandle(), m_hRes);
     }
 
     //-------------------------------------
@@ -151,7 +151,7 @@ CxTest_CxHandleT::bUnit(
     //hDuplicate
     {
         #if xTODO
-            m_hRes = objHandle.hDuplicate(CxHandle::hGetCurrentProcess(), 0, false, 0);
+            m_hRes = objHandle.hDuplicate(CxCurrentProcess::hGetHandle(), 0, false, 0);
             xTEST_PTR(m_hRes);
         #endif
     }
@@ -169,7 +169,7 @@ CxTest_CxHandleT::bUnit(
     //bAttach
     {
         #if xTODO
-            m_bRes = objHandle.bAttach(CxHandle::hGetCurrentProcess());
+            m_bRes = objHandle.bAttach(CxCurrentProcess::hGetHandle());
             xTEST_EQ(true, m_bRes);
         #endif
     }
@@ -186,14 +186,14 @@ CxTest_CxHandleT::bUnit(
     //-------------------------------------
     //bIsValid
     {
-        m_bRes = CxHandleT<hvNull>::bIsValid(CxHandle::hGetCurrentProcess());
+        m_bRes = CxHandleT<hvNull>::bIsValid(CxCurrentProcess::hGetHandle());
         xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
     //bIsValid
     {
-        m_bRes = CxHandleT<hvInvalid>::bIsValid(CxHandle::hGetCurrentProcess());
+        m_bRes = CxHandleT<hvInvalid>::bIsValid(CxCurrentProcess::hGetHandle());
         xTEST_EQ(false, m_bRes);
     }
 

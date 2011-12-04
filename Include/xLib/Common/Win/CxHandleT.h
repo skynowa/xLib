@@ -14,23 +14,23 @@
 
 xNAMESPACE_ANONYM_BEGIN
 
-    enum EHandleValue {
-        hvNull,
-        hvInvalid
-    };
+enum EHandleValue {
+    hvNull,
+    hvInvalid
+};
 
-    template<EHandleValue hvTag>
-    struct CxHandleFailValue;
+template<EHandleValue hvTag>
+struct CxHandleFailValue;
 
-    template<>
-    struct CxHandleFailValue<hvNull> {
-        static HANDLE get () { return NULL; }
-    };
+template<>
+struct CxHandleFailValue<hvNull> {
+    static HANDLE get () { return NULL; }
+};
 
-    template<>
-    struct CxHandleFailValue<hvInvalid> {
-        static HANDLE get () { return INVALID_HANDLE_VALUE; }
-    };
+template<>
+struct CxHandleFailValue<hvInvalid> {
+    static HANDLE get () { return INVALID_HANDLE_VALUE; }
+};
 
 xNAMESPACE_ANONYM_END
 //---------------------------------------------------------------------------
@@ -71,11 +71,11 @@ class CxHandleT
         bool                bClose                  ();
             ///< close
 
-        ulong_t               ulGetInformation        () const;
+        ulong_t             ulGetInformation        () const;
             ///< get certain properties of an object handle
         bool                bSetInformation         (const ulong_t culMask, const ulong_t culFlags);
             ///< set information
-        bool                 bIsFlagInherit          () const;
+        bool                bIsFlagInherit          () const;
             ///< is flag inherit
         bool                bIsFlagProtectFromClose () const;
             ///< is flag protect from close
@@ -87,8 +87,6 @@ class CxHandleT
             ///< duplicates an object handle
 
         //static
-        static HANDLE       hGetCurrentProcess      ();
-            ///< get a pseudo handle for the current process
         static bool         bIsValid                (const HANDLE chHandle);
             ///< is valid
 
@@ -96,7 +94,6 @@ class CxHandleT
         typedef CxHandleFailValue<hvTag>  TxFailValue;
 
         HANDLE              _m_hHandle;                 ///< handle
-        static const HANDLE _ms_chCurrProcessHandle;    ///< current process handle
 };
 //---------------------------------------------------------------------------
 typedef CxHandleT<hvNull>    CxHandle;
