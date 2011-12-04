@@ -4,6 +4,9 @@
  */
 
 
+#include <xLib/Sync/CxCurrentProcess.h>
+
+
 #if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
@@ -40,7 +43,7 @@ CxHandleT<hvTag>::CxHandleT(
 {
     /*DEBUG*/
 
-    _m_hHandle = chHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, false, DUPLICATE_SAME_ACCESS);
+    _m_hHandle = chHandle.hDuplicate(CxCurrentProcess::hGetHandle(), DUPLICATE_SAME_ACCESS, false, DUPLICATE_SAME_ACCESS);
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -106,7 +109,7 @@ CxHandleT<hvTag>::operator = (
         }
     }
 
-    _m_hHandle = chHandle.hDuplicate(hGetCurrentProcess(), DUPLICATE_SAME_ACCESS, false, DUPLICATE_SAME_ACCESS);
+    _m_hHandle = chHandle.hDuplicate(CxCurrentProcess::hGetHandle(), DUPLICATE_SAME_ACCESS, false, DUPLICATE_SAME_ACCESS);
     /*DEBUG*/xASSERT_RET(TxFailValue::get() != _m_hHandle, TxFailValue::get());
 
     return *this;
@@ -192,8 +195,8 @@ CxHandleT<hvTag>::bClose() {
 
     xCHECK_RET(false == bIsValid(), true);
 
-    BOOL bRes = ::CloseHandle(_m_hHandle);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::CloseHandle(_m_hHandle);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     _m_hHandle = TxFailValue::get();
 
@@ -207,8 +210,8 @@ CxHandleT<hvTag>::ulGetInformation() const {
 
     ulong_t ulFlags = 0UL;
 
-    bool bRes = ::GetHandleInformation(_m_hHandle, &ulFlags);
-    /*DEBUG*/xASSERT_RET(false != bRes,    0UL);
+    BOOL blRes = ::GetHandleInformation(_m_hHandle, &ulFlags);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes,   0UL);
     /*DEBUG*/xASSERT_RET(0UL   != ulFlags, 0UL);
 
     return ulFlags;
@@ -225,8 +228,8 @@ CxHandleT<hvTag>::bSetInformation(
     /*DEBUG*///ulMask  - n/a
     /*DEBUG*///ulFlags - ????
 
-    bool bRes = ::SetHandleInformation(_m_hHandle, culMask, culFlags);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    BOOL blRes = ::SetHandleInformation(_m_hHandle, culMask, culFlags);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
 }
@@ -236,7 +239,7 @@ bool
 CxHandleT<hvTag>::bIsFlagInherit() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
 
-    return 0UL != (ulGetInformation() & HANDLE_FLAG_INHERIT);
+    return (0UL != (ulGetInformation() & HANDLE_FLAG_INHERIT));
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -244,7 +247,7 @@ bool
 CxHandleT<hvTag>::bIsFlagProtectFromClose() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
 
-    return 0UL != (ulGetInformation() & HANDLE_FLAG_PROTECT_FROM_CLOSE);
+    return (0UL != (ulGetInformation() & HANDLE_FLAG_PROTECT_FROM_CLOSE));
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -272,18 +275,18 @@ CxHandleT<hvTag>::bSetFlagProtectFromClose(
 template<EHandleValue hvTag>
 HANDLE
 CxHandleT<hvTag>::hDuplicate(
-    const HANDLE chTargetProcess,
-    const ulong_t  culDesiredAccess,
-    const bool   cbInheritHandle /* = false*/,
-    const ulong_t  culOptions      /* = 0*/
+    const HANDLE  chTargetProcess,
+    const ulong_t culDesiredAccess,
+    const bool    cbInheritHandle /* = false*/,
+    const ulong_t culOptions      /* = 0*/
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), TxFailValue::get());
 
     HANDLE hRes = TxFailValue::get();
 
-    bool bRes = ::DuplicateHandle(hGetCurrentProcess(), _m_hHandle, chTargetProcess, &hRes, culDesiredAccess, cbInheritHandle, culOptions);
-    /*DEBUG*/xASSERT_RET(false != bRes, TxFailValue::get());
+    BOOL bRes = ::DuplicateHandle(CxCurrentProcess::hGetHandle(), _m_hHandle, chTargetProcess, &hRes, culDesiredAccess, cbInheritHandle, culOptions);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, TxFailValue::get());
 
     return hRes;
 }
@@ -297,28 +300,6 @@ CxHandleT<hvTag>::hDuplicate(
 
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-const HANDLE
-CxHandleT<hvTag>::_ms_chCurrProcessHandle = (HANDLE)- 1;
-//---------------------------------------------------------------------------
-template<EHandleValue hvTag>
-/*static*/
-HANDLE
-CxHandleT<hvTag>::hGetCurrentProcess() {
-    /*DEBUG*///n/a
-
-    HANDLE hRes = NULL;
-
-#if xDEPRECIATE
-    hRes = ::OpenProcess(PROCESS_ALL_ACCESS, false, CxProcess::ulGetCurrId());
-#else
-    hRes = ::GetCurrentProcess();
-#endif
-    /*DEBUG*/xASSERT_RET(_ms_chCurrProcessHandle == hRes, NULL);
-
-    return hRes;
-}
-//---------------------------------------------------------------------------
-template<EHandleValue hvTag>
 /*static*/
 bool
 CxHandleT<hvTag>::bIsValid(
@@ -327,7 +308,7 @@ CxHandleT<hvTag>::bIsValid(
 {
     /*DEBUG*/// n/a
 
-    return TxFailValue::get() != chHandle;
+    return (TxFailValue::get() != chHandle);
 }
 //---------------------------------------------------------------------------
 

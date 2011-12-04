@@ -9,7 +9,9 @@
 #include <xLib/Filesystem/CxPath.h>
 
 
-////extern char **environ;  //from <env.h>
+#if !(xCOMPILER_CODEGEAR)
+    extern char **environ;  //from <env.h>
+#endif
 
 xNAMESPACE_BEGIN(NxLib)
 
