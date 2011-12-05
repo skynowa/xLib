@@ -31,7 +31,7 @@ xNAMESPACE_BEGIN(NxLib)
 *
 *****************************************************************************/
 
-/*static*/ bool          CxDebugger::_ms_bIsEnabled = true;
+/*static*/ bool           CxDebugger::_ms_bIsEnabled = true;
 /*static*/ std::tstring_t CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------

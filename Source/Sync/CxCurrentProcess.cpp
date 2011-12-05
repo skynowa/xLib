@@ -44,7 +44,7 @@ CxCurrentProcess::ulGetParentId() {
     const CxProcess::TxId culInvalidId = (ulong_t)- 1;
 
     ULONG_PTR pbi[6] = {0};
-    ulong_t     ulSize = 0UL;
+    ulong_t   ulSize = 0UL;
     long_t (WINAPI *NtQueryInformationProcess)(HANDLE ProcessHandle, ulong_t ProcessInformationClass, PVOID ProcessInformation, ulong_t ProcessInformationLength, PULONG ReturnLength);
 
     HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
