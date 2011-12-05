@@ -315,8 +315,8 @@ CxReport::_bInitVars(
     _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #else
     _m_sProgram        = xT("");
-    _m_ulProcessId     = (ulong_t)CxProcess::ulGetCurrId();
-    _m_ulThreadId      = (ulong_t)CxThread::ulGetCurrId();
+    _m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
+    _m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
     _m_sFileSize       = xT("");
 
     _m_sSourceFile     = csFile;
