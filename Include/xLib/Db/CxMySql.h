@@ -8,14 +8,9 @@
 #define xLib_Db_CxMySqlH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
-#if xOS_ENV_WIN
-    #include <mysql.h>
-    #include <errmsg.h>
-#elif xOS_ENV_UNIX
-    #include <mysql/mysql.h>
-    #include <mysql/errmsg.h>
-#endif
+#include <mysql/mysql.h>
+#include <mysql/errmsg.h>
+#include <mysql/mysqld_error.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

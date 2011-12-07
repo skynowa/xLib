@@ -119,9 +119,7 @@ CxTest_CxMySql::bUnit(
                                 "   `%s` ("
                                 "       `f_id`    int(11)     NOT NULL AUTO_INCREMENT,"
                                 "       `f_name`  char(30)    NOT NULL,"
-                                "       `f_age`   SMALLINT(6) NOT NULL,"
-                                ""
-                                "       PRIMARY KEY(`f_id`)"
+                                "       `f_age`   SMALLINT(6) NOT NULL"
                                 "   )"),
                                 sTableName.c_str());
         xTEST_EQ(true, m_bRes);
