@@ -6,6 +6,7 @@
 
 #include <Test/Net/CxTest_CxTcpClient.h>
 
+#include <xLib/Net/CxSocketInit.h>
 #include <xLib/Net/CxDnsClient.h>
 
 

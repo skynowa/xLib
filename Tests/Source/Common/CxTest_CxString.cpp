@@ -6,6 +6,8 @@
 
 #include <Test/Common/CxTest_CxString.h>
 
+#include <xLib/Crypt/CxRandom.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxString::CxTest_CxString() {

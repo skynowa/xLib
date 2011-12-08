@@ -7,6 +7,7 @@
 #include <xLib/Debug/CxTestManager.h>
 
 #include <xLib/Common/CxType.h>
+#include <xLib/Filesystem/CxPath.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

@@ -6,6 +6,8 @@
 
 #include <Test/Filesystem/Win/CxTest_CxIni.h>
 
+#include <xLib/Filesystem/CxPath.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxIni::CxTest_CxIni() {
