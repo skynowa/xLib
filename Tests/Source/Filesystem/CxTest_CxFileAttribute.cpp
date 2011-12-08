@@ -6,6 +6,9 @@
 
 #include <Test/Filesystem/CxTest_CxFileAttribute.h>
 
+#include <xLib/Filesystem/CxPath.h>
+#include <xLib/Filesystem/CxFile.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxFileAttribute::CxTest_CxFileAttribute() {

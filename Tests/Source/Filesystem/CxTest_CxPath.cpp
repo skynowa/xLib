@@ -7,6 +7,8 @@
 #include <Test/Filesystem/CxTest_CxPath.h>
 
 #include <xLib/Common/CxCommandLine.h>
+#include <xLib/Filesystem/CxFile.h>
+#include <xLib/Filesystem/CxDir.h>
 
 
 //---------------------------------------------------------------------------

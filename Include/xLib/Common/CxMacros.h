@@ -9,9 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if xTEST_PRIVATE_METHODS
-     #define private  public
-         ///< test private methods (it's !!!dirty hack!!!)
+#if xTEST_PRIVATE_DATA
+     //#define private  public
+     #define xFRIEND_TEST(class_name)  friend class CxTest_##class_name
+         ///< test private methods
 #endif
 
 

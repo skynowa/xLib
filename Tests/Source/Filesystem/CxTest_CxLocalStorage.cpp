@@ -6,6 +6,9 @@
 
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
 
+#include <xLib/Filesystem/CxFile.h>
+#include <xLib/Filesystem/CxPath.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxLocalStorage::CxTest_CxLocalStorage() {

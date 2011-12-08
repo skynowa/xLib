@@ -9,6 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
+#include <xLib/Net/CxDnsClient.h>
 //---------------------------------------------------------------------------
 class CxTest_CxDnsClient :
     public CxTest

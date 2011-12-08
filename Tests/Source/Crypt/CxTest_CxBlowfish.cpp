@@ -6,6 +6,8 @@
 
 #include <Test/Crypt/CxTest_CxBlowfish.h>
 
+#include <xLib/Filesystem/CxFile.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxBlowfish::CxTest_CxBlowfish() {

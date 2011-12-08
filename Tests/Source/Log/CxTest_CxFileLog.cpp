@@ -6,6 +6,8 @@
 
 #include <Test/Log/CxTest_CxFileLog.h>
 
+#include <xLib/Filesystem/CxFile.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxFileLog::CxTest_CxFileLog() {

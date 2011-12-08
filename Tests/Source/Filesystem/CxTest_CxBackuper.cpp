@@ -6,6 +6,9 @@
 
 #include <Test/Filesystem/CxTest_CxBackuper.h>
 
+#include <xLib/Filesystem/CxFile.h>
+#include <xLib/Filesystem/CxDir.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxBackuper::CxTest_CxBackuper() {

@@ -6,6 +6,8 @@
 
 #include <Test/Filesystem/CxTest_CxFileTemp.h>
 
+#include <xLib/Filesystem/CxPath.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxFileTemp::CxTest_CxFileTemp() {

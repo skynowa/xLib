@@ -6,6 +6,8 @@
 
 #include <Test/Net/CxTest_CxPop3.h>
 
+#include <xLib/Filesystem/CxDir.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxPop3::CxTest_CxPop3() {

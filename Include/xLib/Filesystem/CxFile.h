@@ -8,6 +8,7 @@
 #define xLib_Filesystem_CxFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <Test/Filesystem/CxTest_CxFile.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -15,8 +16,15 @@ class CxFile :
     public CxNonCopyable
     /// file
 {
-    public:
+        //xFRIEND_TEST(CxTest_CxFile);
+        friend class CxTest_CxFile;
 
+    public:
+        enum EErrorType
+            /// error type
+        {
+            etError = - 1
+        };
 
         enum EOpenMode
             /// open mode
@@ -114,165 +122,159 @@ class CxFile :
         };
 
         //constructors, destructor
-                             CxFile       ();
+                               CxFile       ();
             ///< constructor
 
-        virtual             ~CxFile       ();
+        virtual               ~CxFile       ();
             ///< destructor
 
         //open, get
-        bool                 bCreate      (const std::tstring_t &csFilePath, const EOpenMode omMode, const bool cbIsUseBuffering);
+        bool                   bCreate      (const std::tstring_t &csFilePath, const EOpenMode omMode, const bool cbIsUseBuffering);
             ///< open
-        bool                 bReopen      (const std::tstring_t &csFilePath, const EOpenMode omMode, const bool cbIsUseBuffering);
+        bool                   bReopen      (const std::tstring_t &csFilePath, const EOpenMode omMode, const bool cbIsUseBuffering);
             ///< reopen with different file or mode
-        bool                 bAttach      (std::FILE *pflFile);
+        bool                   bAttach      (std::FILE *pflFile);
             ///< attach to stream
-        std::FILE *          pDetach      ();
+        std::FILE *            pDetach      ();
             ///< detach from stream
-        std::FILE           *pGet         () const;
+        std::FILE             *pGet         () const;
             ///< get handle
-        std::tstring_t        sGetPath     () const;
+        std::tstring_t         sGetPath     () const;
             ///< get file path
 
         //read, write
-        size_t               uiRead       (void *pvBuff,        const size_t cuiCount) const;
+        size_t                 uiRead       (void *pvBuff,        const size_t cuiCount) const;
             ///< read block of data
-        size_t               uiWrite      (const void *pcvBuff, const size_t cuiCount) const;
+        size_t                 uiWrite      (const void *pcvBuff, const size_t cuiCount) const;
             ///< write block of data
-        bool                 bRead        (std::ustring_t *psBuff) const;
+        bool                   bRead        (std::ustring_t *psBuff) const;
             ///< read to std::ustring_t
-        bool                 bWrite       (const std::ustring_t &csBuff) const;
+        bool                   bWrite       (const std::ustring_t &csBuff) const;
             ///< write from std::ustring_t
-        bool                 bRead        (std::tstring_t *psBuff) const;
+        bool                   bRead        (std::tstring_t *psBuff) const;
             ///< read to std::tstring_t
-        int                  iWrite       (const tchar_t *pcszFormat, ...) const;
+        int                    iWrite       (const tchar_t *pcszFormat, ...) const;
             ///< write formatted output to stream
-        int                  iWriteV      (const tchar_t *pcszFormat, va_list arg) const;
+        int                    iWriteV      (const tchar_t *pcszFormat, va_list arg) const;
             ///< write formatted variable argument list to stream
-        bool                 bReadLine    (std::tstring_t *psStr, const size_t cuiMaxCount) const;
+        bool                   bReadLine    (std::tstring_t *psStr, const size_t cuiMaxCount) const;
             ///< read string to newline or to the end of file
-        bool                 bWriteLine   (const std::tstring_t &csStr) const;
+        bool                   bWriteLine   (const std::tstring_t &csStr) const;
             ///< write string and end of line
         tchar_t                chReadChar   () const;
             ///< get character
-        bool                 bWriteChar   (const tchar_t ccChar) const;
+        bool                   bWriteChar   (const tchar_t ccChar) const;
             ///< write character
-        bool                 bUngetChar   (const tchar_t ccChar) const;
+        bool                   bUngetChar   (const tchar_t ccChar) const;
             ///< unget character from stream
-        bool                 bClear       () const;
+        bool                   bClear       () const;
             ///< clear
 
         //times
 
         //other
-        bool                 bLocking     (const ELockingMode clmMode, const long_t cliBytes);
+        bool                   bLocking     (const ELockingMode clmMode, const long_t cliBytes);
             ///< locks or unlocks bytes of a file
-        bool                 bSetPosition (const long_t clOffset, const EPointerPosition cppPos) const;
+        bool                   bSetPosition (const long_t clOffset, const EPointerPosition cppPos) const;
             ///< set stream position indicator
         long_t                 liGetPosition() const;
             ///< get current position in stream
-        bool                 bSetVBuff    (char *pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
+        bool                   bSetVBuff    (char *pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
             ///< change stream buffering
 
     #if xOS_ENV_WIN
-        bool                 bSetMode     (const ETranslationMode tmMode) const;
+        bool                   bSetMode     (const ETranslationMode tmMode) const;
             ///< sets the file translation mode
     #endif
 
         long_t                 liGetSize    () const;
             ///< get file size
-        bool                 bResize      (const long_t cliSize) const;
+        bool                   bResize      (const long_t cliSize) const;
             ///< changes the file size
 
         //error handling
-        bool                 bIsValid     () const;
+        bool                   bIsValid     () const;
             ///< validating handle
-        bool                 bIsOpen      () const;
+        bool                   bIsOpen      () const;
             ///< is open
-        bool                 bIsEmpty     () const;
+        bool                   bIsEmpty     () const;
             ///< is empty
-        bool                 bIsEof       () const;
+        bool                   bIsEof       () const;
             ///< check end of file indicator
-        bool                 bIsError     () const;
+        bool                   bIsError     () const;
             ///< check error indicator
-        bool                 bErrorClear  () const;
+        bool                   bErrorClear  () const;
             ///< clear error indicators
 
         //closing
-        bool                 bFlush       () const;
+        bool                   bFlush       () const;
             ///< flush
-        bool                 bClose       ();
+        bool                   bClose       ();
             ///< close
 
         //static
-        static bool          bIsFile      (const std::tstring_t &csFilePath);
+        static bool            bIsFile      (const std::tstring_t &csFilePath);
             ///< check for file
-        static bool          bIsExists    (const std::tstring_t &csFilePath);
+        static bool            bIsExists    (const std::tstring_t &csFilePath);
             ///< check for existence
         static std::tstring_t  sIsExists    (const std::tstring_t &csFilePath);
             ///< check for existence, if exists - generate new file name (file path), which not exists
-        static bool          bAccess      (const std::tstring_t &csFilePath, const EAccessMode camMode);
+        static bool            bAccess      (const std::tstring_t &csFilePath, const EAccessMode camMode);
             ///< determine file-access permission
-        static bool          bChmod       (const std::tstring_t &csFilePath, const EPermissionMode cpmMode);
+        static bool            bChmod       (const std::tstring_t &csFilePath, const EPermissionMode cpmMode);
             ///< change the file-permission settings
-        static bool          bClear       (const std::tstring_t &csFilePath);
+        static bool            bClear       (const std::tstring_t &csFilePath);
             ///< clear content
-        static bool          bDelete      (const std::tstring_t &csFilePath);
+        static bool            bDelete      (const std::tstring_t &csFilePath);
             ///< deleting
-        static bool          bTryDelete   (const std::tstring_t &csFilePath, const size_t cuiAttempts, const ulong_t culTimeoutMsec);
+        static bool            bTryDelete   (const std::tstring_t &csFilePath, const size_t cuiAttempts, const ulong_t culTimeoutMsec);
             ///< try deleting, max 100 attempts
-        static bool          bWipe        (const std::tstring_t &csFilePath, const size_t cuiPasses);
+        static bool            bWipe        (const std::tstring_t &csFilePath, const size_t cuiPasses);
             ///< wipe
-        static bool          bUnlink      (const std::tstring_t &csFilePath);
+        static bool            bUnlink      (const std::tstring_t &csFilePath);
             ///< deleting
-        static bool          bRename      (const std::tstring_t &csOldFilePath,  const std::tstring_t &csNewFilePath);
+        static bool            bRename      (const std::tstring_t &csOldFilePath,  const std::tstring_t &csNewFilePath);
             ///< renaming
-        static bool          bMove        (const std::tstring_t &csFilePath,     const std::tstring_t &csDirPath);
+        static bool            bMove        (const std::tstring_t &csFilePath,     const std::tstring_t &csDirPath);
             ///< move
-        static bool          bCopy        (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool cbFailIfExists);
+        static bool            bCopy        (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool cbFailIfExists);
             ///< copy
         static long_t          liGetSize    (const std::tstring_t &csFilePath);
             ///< get size
         static ulonglong_t     ullGetLines  (const std::tstring_t &csFilePath);
             ///< get number of lines
-        static bool          bGetTime     (const std::tstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
+        static bool            bGetTime     (const std::tstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
             ///< get time
-        static bool          bSetTime     (const std::tstring_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
+        static bool            bSetTime     (const std::tstring_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
             ///< set time
 
         //text
-        static bool          bTextRead    (const std::tstring_t &csFilePath, std::tstring_t *psContent);
+        static bool            bTextRead    (const std::tstring_t &csFilePath, std::tstring_t *psContent);
             ///< read to std::tstring_t
-        static bool          bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csContent);
+        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csContent);
             ///< write std::tstring_t
-        static bool          bTextRead    (const std::tstring_t &csFilePath, std::vector<std::tstring_t> *pvsContent);
+        static bool            bTextRead    (const std::tstring_t &csFilePath, std::vector<std::tstring_t> *pvsContent);
             ///< read to std::vector
-        static bool          bTextWrite   (const std::tstring_t &csFilePath, const std::vector<std::tstring_t> &cvsContent);
+        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::vector<std::tstring_t> &cvsContent);
             ///< write std::vector
-        static bool          bTextRead    (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, std::map<std::tstring_t, std::tstring_t> *pmsContent);
+        static bool            bTextRead    (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, std::map<std::tstring_t, std::tstring_t> *pmsContent);
             ///< read text to std::map
-        static bool          bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, const std::map<std::tstring_t, std::tstring_t> &cmsContent);
+        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, const std::map<std::tstring_t, std::tstring_t> &cmsContent);
             ///< write text from std::map
 
         //binary
-        static bool          bBinRead     (const std::tstring_t &csFilePath, std::ustring_t *pusContent);
+        static bool            bBinRead     (const std::tstring_t &csFilePath, std::ustring_t *pusContent);
             ///< read binary data
-        static bool          bBinWrite    (const std::tstring_t &csFilePath, const std::ustring_t &cusContent);
+        static bool            bBinWrite    (const std::tstring_t &csFilePath, const std::ustring_t &cusContent);
             ///< write binary data
 
     private:
-            enum EErrorType
-            /// error type
-        {
-            etError = - 1
-        };
-
-        std::FILE            *_m_pFile;      ///< file handle
+        std::FILE             *_m_pFile;      ///< file handle
         std::tstring_t         _m_sFilePath;  ///< file path
 
-        static int           _iGetHandle  (std::FILE *pfFile);
+        static int             _iGetHandle  (std::FILE *pfFile);
             ///< gets the file descriptor associated with a stream
-        static std::FILE *   _pfGetHandle (int iFileHandle, const EOpenMode omMode);
+        static std::FILE *     _pfGetHandle (int iFileHandle, const EOpenMode omMode);
             ///< get stream by handle
         static std::tstring_t  _sGetOpenMode(const EOpenMode comMode);
             ///< get open mode as string, by default use "r"

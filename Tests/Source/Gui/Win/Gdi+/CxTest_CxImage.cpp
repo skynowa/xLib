@@ -6,6 +6,8 @@
 
 #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
 
+#include <xLib/Filesystem/CxFile.h>
+
 
 #if xOS_ENV_WIN
 //---------------------------------------------------------------------------
