@@ -16,19 +16,17 @@ class CxFileTemp :
     public CxNonCopyable
 {
     public:
-        explicit      CxFileTemp(const bool cbIsAutoDelete);
+        explicit        CxFileTemp(const bool cbIsAutoDelete);
             ///< constructor
-        virtual      ~CxFileTemp();
+        virtual        ~CxFileTemp();
             ///< destructor
 
-        bool          bCreate   (const std::tstring_t &csFilePath, const std::tstring_t &csDirPath, CxFile *pfFile);
+        bool            bCreate   (const std::tstring_t &csFilePath, const std::tstring_t &csDirPath, CxFile *pfFile);
             ///< create temporary file, open it
 
     private:
-        friend class CxFile;
-
-        const bool    _m_cbIsAutoDelete;    ///< autodelete flag
-        CxFile       *_m_pfFile;            ///< temporary file handle
+        const bool      _m_cbIsAutoDelete;    ///< autodelete flag
+        CxFile         *_m_pfFile;            ///< temporary file handle
         std::tstring_t  _m_sFilePath;         ///< temporary file path
 };
 

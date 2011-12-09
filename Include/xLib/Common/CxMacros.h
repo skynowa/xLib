@@ -10,9 +10,11 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if xTEST_PRIVATE_DATA
-     //#define private  public
-     #define xFRIEND_TEST(class_name)  friend class CxTest_##class_name
-         ///< test private methods
+     #define private   public
+     #define protected public
+     //#define class     struct
+
+     //--#define xFRIEND_TEST(class_name)  friend class CxTest_##class_name
 #endif
 
 
