@@ -8,7 +8,6 @@
 #define xLib_Filesystem_CxFileH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <Test/Filesystem/CxTest_CxFile.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -16,9 +15,6 @@ class CxFile :
     public CxNonCopyable
     /// file
 {
-        //xFRIEND_TEST(CxTest_CxFile);
-        friend class CxTest_CxFile;
-
     public:
         enum EErrorType
             /// error type
@@ -278,6 +274,8 @@ class CxFile :
             ///< get stream by handle
         static std::tstring_t  _sGetOpenMode(const EOpenMode comMode);
             ///< get open mode as string, by default use "r"
+
+        friend class CxFileTemp;
 };
 
 xNAMESPACE_END(NxLib)

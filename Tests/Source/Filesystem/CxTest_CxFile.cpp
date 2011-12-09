@@ -691,7 +691,6 @@ CxTest_CxFile::bUnit(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: bUnit1 ()
 bool
 CxTest_CxFile::bUnit1(
     const ulonglong_t cullCaseLoops
@@ -1174,7 +1173,6 @@ CxTest_CxFile::bUnit1(
     return true;
 }
 //---------------------------------------------------------------------------
-//DONE: bUnitPrivate ()
 bool
 CxTest_CxFile::bUnitPrivate(
     const ulonglong_t cullCaseLoops
@@ -1182,6 +1180,7 @@ CxTest_CxFile::bUnitPrivate(
 {
     /*DEBUG*/
 
+#if xTEST_PRIVATE_DATA
     const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
 
 
@@ -1200,7 +1199,7 @@ CxTest_CxFile::bUnitPrivate(
 
     //--------------------------------------------------
     //_pfGetHandle
-#if xTODO
+    #if xTODO
     xTEST_CASE(cullCaseLoops)
     {
         const CxFile::EOpenMode comMode = CxFile::omOpenReadWrite;
@@ -1216,7 +1215,7 @@ CxTest_CxFile::bUnitPrivate(
         FILE *pfFile = CxFile::_pfGetHandle(iFile, comMode);
         xTEST_PTR(pfFile);
     }
-#endif
+    #endif
 
     //--------------------------------------------------
     //_sGetOpenMode
@@ -1246,6 +1245,7 @@ CxTest_CxFile::bUnitPrivate(
             xTEST_EQ(sRes, m_sRes);
         }
     }
+#endif
 
     return true;
 }
