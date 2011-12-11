@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Test.Eclipse.Win</name>
+	<name>G++_win</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -27,7 +27,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/Test.Eclipse.Win/Debug}</value>
+					<value>${workspace_loc:/G++_win/Default}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.contents</key>
@@ -72,17 +72,12 @@
 		<link>
 			<name>Include</name>
 			<type>2</type>
-			<location>D:/xLib/Include/xLib</location>
+			<location>D:/xLib/Include</location>
 		</link>
 		<link>
 			<name>Source</name>
 			<type>2</type>
 			<location>D:/xLib/Source</location>
-		</link>
-		<link>
-			<name>TODO.txt</name>
-			<type>1</type>
-			<location>D:/xLib/TODO.txt</location>
 		</link>
 		<link>
 			<name>Tests</name>

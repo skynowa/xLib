@@ -6,6 +6,8 @@
 
 #include <xLib/Sync/CxCurrentProcess.h>
 
+#include <xLib/Filesystem/CxDll.h>
+ 
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -43,17 +45,21 @@ CxCurrentProcess::ulGetParentId() {
 #if xOS_ENV_WIN
     const CxProcess::TxId culInvalidId = (ulong_t)- 1;
 
-    ULONG_PTR pbi[6] = {0};
+    bool      bRes   = false;
+    CxDll     objDll;
+
+    ULONG_PTR pbi[6] = {0}; 
     ulong_t   ulSize = 0UL;
-    long_t (WINAPI *NtQueryInformationProcess)(HANDLE ProcessHandle, ulong_t ProcessInformationClass, PVOID ProcessInformation, ulong_t ProcessInformationLength, PULONG ReturnLength);
+    typedef long_t (WINAPI *fpProcAddress)(HANDLE ProcessHandle, ulong_t ProcessInformationClass, PVOID ProcessInformation, ulong_t ProcessInformationLength, PULONG ReturnLength);
 
-    HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
-    /*DEBUG*/xASSERT_RET(NULL != hModule, culInvalidId);
+    bRes = objDll.bLoad(xT("ntdll.dll"));
+    /*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
 
-    *(FARPROC *)&NtQueryInformationProcess = ::GetProcAddress(hModule, "NtQueryInformationProcess");
+    fpProcAddress NtQueryInformationProcess = (fpProcAddress)objDll.fpGetProcAddress("NtQueryInformationProcess");
     /*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
 
-    bool bRes = ( NtQueryInformationProcess(hGetHandle(), 0, &pbi, sizeof(pbi), &ulSize) >= 0 && ulSize == sizeof(pbi) );
+    NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), NULL, &pbi, sizeof(pbi), &ulSize);
+    bRes = (ntsRes >= 0) && (ulSize == sizeof(pbi));
     /*DEBUG*/xASSERT_RET(false != bRes, culInvalidId);
 
     ulRes = pbi[5];
