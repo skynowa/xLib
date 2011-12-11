@@ -39,7 +39,7 @@ CxCurrentProcess::ulGetParentId() {
     /*DEBUG*/// n/a
 
     CxProcess::TxId ulRes;
-
+    
 #if xOS_ENV_WIN
     const CxProcess::TxId culInvalidId = (ulong_t)- 1;
 
@@ -74,7 +74,7 @@ CxCurrentProcess::hGetHandle() {
 
 #if xOS_ENV_WIN
     #if xDEPRECIATE
-        hRes = ::OpenProcess(PROCESS_ALL_ACCESS, false, CxProcess::ulGetCurrId());
+        hRes = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, ulGetId());
     #else
         hRes = ::GetCurrentProcess();
     #endif

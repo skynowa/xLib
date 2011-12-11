@@ -50,17 +50,6 @@
 #define xTS2S(ts)               std::string( (ts).begin(), (ts).begin() + (ts).size() )
     ///< convert std::tstring_t to std::string
 
-#if xCOMPILER_CODEGEAR
-    #define xD2S(s)   std::tstring_t((s).c_str())
-        ///< convert Delphi::String::c_str() to std::tstring_t
-    #define xD2AS(s)  std::tstring_t((s).t_str())
-        ///< convert Delphi::String::t_str() to std::tstring_t
-    #define xS2D(s)   String((s).c_str())
-        ///< convert std::tstring_t to Delphi::String
-    #define xD2WD(s)  WideString((s))
-        ///< convert Delphi::String to Delphi::WideString
-#endif
-
 
 #define xPTR_DELETE(p)          { CxMacros::vPtrDelete(p); }
     ///< delete object by pointer
@@ -132,89 +121,6 @@
     ///< make as string
 #define xSTR_CONCAT(x, y)  x ## y
     ///< concatinate strings
-
-
-#if xOS_ENV_WIN
-#   define xTODO_TASK(text) { message(__FILE__ "(" xSTRINGIZE(__LINE__) ") [" xFUNCTION "]: warning TODO: [" xFUNCTION "] " ## text) }
-#   define xTODO_IMPL       { xTODO("Implement " xFUNCTION " function!") }
-#elif xOS_ENV_UNIX
-#   define xPRAGMA(s)       { _Pragma (#s) }
-#   define xTODO_TASK(s)    { xPRAGMA( message(" TODO: "(s)) ) }
-#   define xNOT_IMPL(s)     { xPRAGMA( message(" Not implemented: "(s)) ) }
-#endif
-
-
-#if xCOMPILER_CODEGEAR
-    //xTRY_BOOL
-    #define xTRY_BOOL    \
-                bool bRes = false;  \
-                try {                \
-                    {
-        ///< try block
-
-    #define xCATCH_BOOL_RET    \
-                    }    \
-                    bRes = true;    \
-                } \
-                catch (Exception &e) {    \
-                    xASSERT_MSG(false, xD2AS(e.Message).c_str());    \
-                }                             \
-                catch (std::exception e) {   \
-                    std::string asWhat = e.what();    \
-                    xASSERT_MSG(false, xS2TS(asWhat).c_str());    \
-                }    \
-                catch (...) {    \
-                    xASSERT_MSG(false, xT("Uknown error"));    \
-                }    \
-                return bRes;
-        ///< catch block
-
-    //xTRY_LONG
-    #define xTRY_LONG(ret_error_value)    long_t liRes = ret_error_value;  \
-                try {                \
-                    {                \
-                        liRes =         \
-        ///< try block
-
-    #define xCATCH_LONG_RET    \
-                    }    \
-                }    \
-                catch (Exception &e) {    \
-                    xASSERT_MSG(false, xD2AS(e.Message).c_str());    \
-                }    \
-                catch (std::exception e) {    \
-                    std::string asWhat = e.what();    \
-                    xASSERT_MSG(false, xS2TS(asWhat).c_str());    \
-                }    \
-                catch (...) {    \
-                    xASSERT_MSG(false, xT("Uknown error"));    \
-                }    \
-                return liRes;
-        ///< catch block
-
-    //xTRY_VARIANT
-    #define xTRY_VARIANT(ret_error_value)    Variant vRes = ret_error_value;  \
-                try {                \
-                    {                \
-                        vRes =         \
-        ///< try block
-
-    #define xCATCH_VARIANT_RET    \
-                    }    \
-                }    \
-                catch (Exception &e) {    \
-                    xASSERT_MSG(false, xD2AS(e.Message).c_str());    \
-                }    \
-                catch (std::exception e) {    \
-                    std::string asWhat = e.what();    \
-                    xASSERT_MSG(false, xS2TS(asWhat).c_str());    \
-                }    \
-                catch (...) {    \
-                    xASSERT_MSG(false, xT("Uknown error"));    \
-                }    \
-                return vRes;
-        ///< catch block
-#endif //xCOMPILER_CODEGEAR
 
 
 //--------------------------------------------------
@@ -289,12 +195,12 @@
     ///< incoming and outcoming param
 
 
-//TODO: HOST_NAME_MAX
-#if !defined(HOST_NAME_MAX)
-    #define HOST_NAME_MAX   MAXHOSTNAMELEN
-        ///< max host name length
+#if defined(xOS_ENV_WIN)
+    #define xHOST_NAME_MAX   MAX_COMPUTERNAME_LENGTH
+#elif defined(xOS_ENV_UNIX)
+    #define xHOST_NAME_MAX   MAXHOSTNAMELEN
 #endif
-
+    ///< max host name length
 #define xPATH_MAX       (CxPath::uiGetMaxSize())
     ///< max path length
 #define xNAME_MAX       (CxPath::uiGetNameMaxSize())
