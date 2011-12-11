@@ -80,6 +80,7 @@
 #include <Objbase.h>
 #include <process.h>
 #include <Lmcons.h>
+#include <Winternl.h>
 
 #include <sys/locking.h>
 #include <io.h>
