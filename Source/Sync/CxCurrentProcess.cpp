@@ -50,7 +50,7 @@ CxCurrentProcess::ulGetParentId() {
 
     ULONG_PTR pbi[6] = {0}; 
     ulong_t   ulSize = 0UL;
-    typedef long_t (WINAPI *fpProcAddress)(HANDLE ProcessHandle, ulong_t ProcessInformationClass, PVOID ProcessInformation, ulong_t ProcessInformationLength, PULONG ReturnLength);
+    typedef long_t (WINAPI *fpProcAddress)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ulong_t ProcessInformationLength, PULONG ReturnLength);
 
     bRes = objDll.bLoad(xT("ntdll.dll"));
     /*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
@@ -58,7 +58,7 @@ CxCurrentProcess::ulGetParentId() {
     fpProcAddress NtQueryInformationProcess = (fpProcAddress)objDll.fpGetProcAddress("NtQueryInformationProcess");
     /*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
 
-    NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), NULL, &pbi, sizeof(pbi), &ulSize);
+    NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pbi, sizeof(pbi), &ulSize);
     bRes = (ntsRes >= 0) && (ulSize == sizeof(pbi));
     /*DEBUG*/xASSERT_RET(false != bRes, culInvalidId);
 
