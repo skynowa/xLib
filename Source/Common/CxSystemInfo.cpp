@@ -227,8 +227,8 @@ CxSystemInfo::sGetComputerName() {
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    ulong_t  ulBuffSize                          = MAX_COMPUTERNAME_LENGTH;
-    tchar_t szBuff[MAX_COMPUTERNAME_LENGTH + 1] = {0};
+    ulong_t ulBuffSize                 = xHOST_NAME_MAX;
+    tchar_t szBuff[xHOST_NAME_MAX + 1] = {0};
 
     BOOL bRes = ::GetComputerName(szBuff, &ulBuffSize);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("localhost"));
