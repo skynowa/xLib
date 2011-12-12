@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Common/Win/CxHandleT.h>
+#include <xLib/Common/CxHandleT.h>
 //---------------------------------------------------------------------------
 class CxTest_CxHandleT :
     public CxTest

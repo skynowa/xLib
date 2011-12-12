@@ -8,12 +8,7 @@
 #define xLib_Common_CxConsoleH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
-#if xOS_ENV_WIN
-    #include <xLib/Common/Win/CxHandleT.h>
-#elif xOS_ENV_UNIX
-
-#endif
+#include <xLib/Common/CxHandleT.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

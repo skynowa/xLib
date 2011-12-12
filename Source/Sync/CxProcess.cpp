@@ -6,10 +6,6 @@
 
 #include <xLib/Sync/CxProcess.h>
 
-#if xOS_ENV_WIN
-    #include <xLib/Common/Win/CxHandleT.h>
-#endif
-
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -38,12 +34,11 @@ CxProcess::bExec(
     xVA_END(palArgs);
 
 #if xOS_ENV_WIN
-    BOOL blRes = FALSE;
-
+    BOOL                blRes  = FALSE;
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
-    blRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, false, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
+    blRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     blRes = ::CloseHandle(piInfo.hThread);
@@ -52,26 +47,21 @@ CxProcess::bExec(
     blRes = ::CloseHandle(piInfo.hProcess);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
-    #if xDEPRECIATE
-        int iRes = execlp(csFilePath.c_str(), sCmdLine.c_str(), static_cast<LPCTSTR>( NULL ));
+    pid_t pdId = ::fork();
+    /*DEBUG*/xASSERT_RET(- 1 == pdId, false);
+
+    if (0 == pdId) {
+        //TODO: csFilePath is executable
+
+        int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
         /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
-    #else
-        pid_t pid = ::fork();
-        /*DEBUG*/xASSERT_RET(- 1 == pid, false);
 
-        if (0 == pid) {
-            //TODO: csFilePath is executable
+        (void)::_exit(EXIT_SUCCESS);  /* Note that we do not use exit() */
 
-            int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
-
-            ::_exit(EXIT_SUCCESS);  /* Note that we do not use exit() */
-
-            return true;
-        } else {
-            return true;
-        }
-    #endif
+        return true;
+    } else {
+        return true;
+    }
 #endif
 
     return true;
@@ -80,11 +70,11 @@ CxProcess::bExec(
 /*static*/
 bool
 CxProcess::bExit(
-    const TxId culPid,
+    const TxId   culPid,
     const uint_t cuiExitCode
 )
 {
-    /*DEBUG*/// uiExitCode - n/a
+    /*DEBUG*/
 
 #if xOS_ENV_WIN
     (void)::ExitProcess(cuiExitCode);
@@ -101,7 +91,7 @@ CxProcess::bTerminate(
     const TxId culPid
 )
 {
-    /*DEBUG*/// uiExitCode - n/a
+    /*DEBUG*/
 
 #if xOS_ENV_WIN
     CxHandle hProcess;
@@ -109,7 +99,7 @@ CxProcess::bTerminate(
     hProcess = ::OpenProcess(PROCESS_TERMINATE, false, culPid);
     /*DEBUG*/xASSERT_RET(NULL != hProcess, false);
 
-    BOOL blRes = ::TerminateProcess(hProcess, 0/*uiExitCode*/);
+    BOOL blRes = ::TerminateProcess(hProcess, 0U);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::kill(culPid, SIGKILL);

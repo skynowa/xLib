@@ -8,14 +8,9 @@
 #define xLib_Sync_CxEventH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Common/CxHandleT.h>
 #include <xLib/Sync/CxCriticalSection.h>
 #include <xLib/Sync/CxAutoCriticalSection.h>
-
-#if xOS_ENV_WIN
-    #include <xLib/Common/Win/CxHandleT.h>
-#elif xOS_ENV_UNIX
-
-#endif
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

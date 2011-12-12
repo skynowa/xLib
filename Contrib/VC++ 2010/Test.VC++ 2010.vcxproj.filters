@@ -537,9 +537,6 @@
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxComPort.cpp">
       <Filter>Test\Common\Win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxHandleT.cpp">
-      <Filter>Test\Common\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxShell.cpp">
       <Filter>Test\Common\Win</Filter>
     </ClCompile>
@@ -704,6 +701,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Log\CxWndLog.cpp">
       <Filter>xLib\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp">
+      <Filter>Test\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -901,9 +901,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Units\Win\bGetUsbInfo.h">
       <Filter>xLib\Units\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxHandleT.h">
-      <Filter>xLib\Common\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxVolume.h">
       <Filter>xLib\Filesystem</Filter>
@@ -1104,9 +1101,6 @@
       <Filter>Test\Common\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h">
-      <Filter>Test\Common\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxHandleT.h">
       <Filter>Test\Common\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxShell.h">
@@ -1310,13 +1304,16 @@
     <ClInclude Include="..\..\Include\xLib\Log\CxWndLog.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\CxHandleT.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Source\Sync\CxThreadPool.inl">
       <Filter>xLib\Sync</Filter>
-    </None>
-    <None Include="..\..\Source\Common\Win\CxHandleT.inl">
-      <Filter>xLib\Common\Win</Filter>
     </None>
     <None Include="..\..\TODO.txt">
       <Filter>Test</Filter>
@@ -1340,6 +1337,9 @@
       <Filter>xLib\Gui\Dialogs</Filter>
     </None>
     <None Include="..\..\Source\Common\CxFunctorT.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
+    <None Include="..\..\Source\Common\CxHandleT.inl">
       <Filter>xLib\Common</Filter>
     </None>
   </ItemGroup>

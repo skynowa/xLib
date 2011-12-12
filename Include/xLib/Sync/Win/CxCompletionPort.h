@@ -8,10 +8,7 @@
 #define xLib_Sync_CxCompletionPortH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
-#if xOS_ENV_WIN
-    #include <xLib/Common/Win/CxHandleT.h>
-#endif
+#include <xLib/Common/CxHandleT.h>
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
