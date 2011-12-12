@@ -64,7 +64,7 @@ class CxBlowfish :
         };
 
         BF_KEY        _m_bfKey;             ///< crypt key
-        uchar_t         _m_ucIvec[IVEC_SIZE]; ///< ivec
+        uchar_t       _m_ucIvec[IVEC_SIZE]; ///< ivec
 };
 
 xNAMESPACE_END(NxLib)

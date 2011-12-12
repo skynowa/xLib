@@ -36,16 +36,16 @@ class CxBackuper :
             //TODO: bpMonthly
         };
 
-        explicit             CxBackuper(const EBackupPeriod cbpPeriod);
+        explicit            CxBackuper(const EBackupPeriod cbpPeriod);
             ///< constructor
-        virtual             ~CxBackuper();
+        virtual            ~CxBackuper();
             ///< destructor
 
-        EErrorType           etExecute (const std::tstring_t &csFilePath, const std::tstring_t &csDestDirPath, std::tstring_t *psDestFilePath);
+        EErrorType          etExecute (const std::tstring_t &csFilePath, const std::tstring_t &csDestDirPath, std::tstring_t *psDestFilePath);
             ///< backup
 
     private:
-        const EBackupPeriod  _m_cbpPeriod;  ///< backup period
+        const EBackupPeriod _m_cbpPeriod;  ///< backup period
 
 };
 

@@ -45,20 +45,20 @@ class CxPop3 :
         bool              bDisconnect         ();
 
     private:
-        std::tstring_t      _m_sRes;
+        std::tstring_t    _m_sRes;
         /////CxSocketInit _m_siInit;
         CxTcpClient       _m_scktSocket;
         CxConsoleLog      _m_clLog;
-        std::tstring_t      _m_sUser;
-        std::tstring_t      _m_sPass;
-        std::tstring_t      _m_sServer;
-        ushort_t            _m_usPort;
+        std::tstring_t    _m_sUser;
+        std::tstring_t    _m_sPass;
+        std::tstring_t    _m_sServer;
+        ushort_t          _m_usPort;
         bool              _m_bConnected;
 
         bool              _bCommand           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply);
         bool              _bIsError           (const std::tstring_t &csText);
-        ulong_t             _ulMailsSum         (const std::tstring_t &csServerAnswer);
-        ulong_t             _ulMailsSize        (const std::tstring_t &csServerAnswer);
+        ulong_t           _ulMailsSum         (const std::tstring_t &csServerAnswer);
+        ulong_t           _ulMailsSize        (const std::tstring_t &csServerAnswer);
 };
 
 xNAMESPACE_END(NxLib)

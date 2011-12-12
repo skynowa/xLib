@@ -59,6 +59,34 @@
     #endif
 
     //--------------------------------------------------
+    //standard C libraries
+    #if   xSTD_LIBC_GNU
+        #pragma message("xLib: xSTD_LIBC_GNU")
+    #elif xSTD_LIBC_UC
+        #pragma message("xLib: xSTD_LIBC_UC")
+    #elif xSTD_LIBC_VMS
+        #pragma message("xLib: xSTD_LIBC_VMS")
+    #elif xSTD_LIBC_ZOS
+        #pragma message("xLib: xSTD_LIBC_ZOS")
+    #else
+        #pragma message("xLib: unsupported standard C library")
+    #endif
+
+    //--------------------------------------------------
+    //standard C++ libraries
+    #if   XSTD_LIBCPP_DINKUMWARE
+        #pragma message("xLib: XSTD_LIBCPP_DINKUMWARE")
+    #elif xSTD_LIBCPP_GNUSTDCPP
+        #pragma message("xLib: xSTD_LIBCPP_GNUSTDCPP")
+    #elif xSTD_LIBCPP_INTEL
+        #pragma message("xLib: xSTD_LIBCPP_INTEL")
+    #elif XSTD_LIBCPP_LIBCPP
+        #pragma message("xLib: XSTD_LIBCPP_LIBCPP")
+    #else
+        #pragma message("xLib: unsupported standard C++ library")
+    #endif
+
+    //--------------------------------------------------
     //unicode, ansi
     #if xUNICODE
         #pragma message("xLib: xUNICODE")
@@ -97,6 +125,7 @@
     #else
         #pragma message("xLib: unsupported build")
     #endif
+
 #endif
 //---------------------------------------------------------------------------
 #endif //xLib_Common_xTracingH

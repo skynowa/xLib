@@ -118,34 +118,34 @@ class CxShell :
 
         static std::tstring_t bFindExecutable   (const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath);
             ///< find executable file path
-        static bool         bExecute          (const HWND chOwner, const EOperation copOperation, const std::tstring_t &csFilePath, const std::tstring_t &csParams, const std::tstring_t &csDir, const EShowFlag csfShowCmd);
+        static bool           bExecute          (const HWND chOwner, const EOperation copOperation, const std::tstring_t &csFilePath, const std::tstring_t &csParams, const std::tstring_t &csDir, const EShowFlag csfShowCmd);
             ///< execute
-        static bool         bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
+        static bool           bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
             ///< execute
-        static bool         bExecuteHttp      (const std::tstring_t &csUrl);
+        static bool           bExecuteHttp      (const std::tstring_t &csUrl);
             ///< execute HTTP
-        static bool         bExecuteFtp       (const std::tstring_t &csUrl);
+        static bool           bExecuteFtp       (const std::tstring_t &csUrl);
             ///< execute FTP
-        static bool         bExecuteEmail     (const std::tstring_t &csToEmail, const std::tstring_t &csSubject, const std::tstring_t &csBody);
+        static bool           bExecuteEmail     (const std::tstring_t &csToEmail, const std::tstring_t &csSubject, const std::tstring_t &csBody);
             ///< execute email
         static std::tstring_t sGetSpecialDirPath(const ESpecialDir csfDir, const HANDLE chToken);
             ///< get special dir path
-        static bool         bCreateShortcut   (const std::tstring_t &csShortCutFilePath,
-                                               const std::tstring_t &csFilePath,
-                                               const std::tstring_t &csWorkingDirectory,
-                                               const std::tstring_t &csArguments,
-                                               const WORD          cwHotKey,
-                                               const int           ciCmdShow,
-                                               const std::tstring_t &csIconFilePath,
-                                               const int           ciIconIndex,
-                                               const std::tstring_t &csDescription
-                                              );
+        static bool           bCreateShortcut   (const std::tstring_t &csShortCutFilePath,
+                                                 const std::tstring_t &csFilePath,
+                                                 const std::tstring_t &csWorkingDirectory,
+                                                 const std::tstring_t &csArguments,
+                                                 const WORD          cwHotKey,
+                                                 const int           ciCmdShow,
+                                                 const std::tstring_t &csIconFilePath,
+                                                 const int           ciIconIndex,
+                                                 const std::tstring_t &csDescription
+                                                );
             ///< create shortcut
 
     private:
-                            CxShell           ();
+                              CxShell           ();
             ///< constructor
-        virtual            ~CxShell           ();
+        virtual              ~CxShell           ();
             ///< destructor
 };
 

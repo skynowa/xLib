@@ -37,11 +37,11 @@ class CxInputBox :
 
         EModalResult            mrShowModal (const std::tstring_t &csCaption, const std::tstring_t &csPrompt, const std::tstring_t &csText);
             ///< show modal
-        std::tstring_t            sGetText    ();
+        std::tstring_t          sGetText    ();
             ///< get text
 
     private:
-        std::tstring_t            _m_sText;        ///< text
+        std::tstring_t          _m_sText;        ///< text
         HWND                    _m_hWndMain;    ///< handle to main window
         HWND                    _m_hBtnOk;        ///< handle to button "Ok"
         HWND                    _m_hBtnCancel;    ///< handle to button "Cancel"

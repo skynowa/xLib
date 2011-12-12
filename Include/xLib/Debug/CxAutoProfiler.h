@@ -17,13 +17,13 @@ class CxAutoProfiler :
     /// auto code profiling
 {
     public:
-                     CxAutoProfiler(const std::tstring_t &csFilePath, const CxProfiler::EMode cpmMode, const tchar_t *pcszComment, ...);
+                       CxAutoProfiler(const std::tstring_t &csFilePath, const CxProfiler::EMode cpmMode, const tchar_t *pcszComment, ...);
             ///< constructor
-        virtual     ~CxAutoProfiler();
+        virtual       ~CxAutoProfiler();
             ///< destructor
 
     private:
-        CxProfiler   _m_pfProfiler; ///< profiler
+        CxProfiler     _m_pfProfiler; ///< profiler
         std::tstring_t _m_sComment;   ///< comment
 };
 

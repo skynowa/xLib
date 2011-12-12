@@ -32,9 +32,9 @@ namespace NxCgi {
                 rmPost
             };
 
-                               CxCgiEnvironment       (CxCgi &ccgCgi);
+                                 CxCgiEnvironment       (CxCgi &ccgCgi);
                 ///< constructor
-            virtual           ~CxCgiEnvironment       ();
+            virtual             ~CxCgiEnvironment       ();
                 ///< destructor
 
             const std::tstring_t &sGetAuthType          () const;
@@ -98,13 +98,13 @@ namespace NxCgi {
             const std::tstring_t &sGetCountryCode       () const;
                 ///< get country code
 
-            ERequestMethod      rmGetRequestMethod    () const;
+            ERequestMethod        rmGetRequestMethod    () const;
                 ///< get request method
             std::tstring_t        sGetDump              () const;
                 ///< get dump
 
         private:
-            CxCgi              &_m_ccgCgi;                ///< CxCgi onject
+            CxCgi                &_m_ccgCgi;                ///< CxCgi onject
             std::tstring_t        _m_sAuthType;            ///< auth type
             std::tstring_t        _m_sContentLength;        ///< content length
             std::tstring_t        _m_sContentType;        ///< content type
@@ -135,9 +135,9 @@ namespace NxCgi {
             std::tstring_t        _m_sHttpHost;            ///< HTTP host
             std::tstring_t        _m_sHttpAcceptLanguage;    ///< HTTP accept language
             std::tstring_t        _m_sCountryCode;        ///< country code
-            ERequestMethod      _m_rmRequestMethod;        ///< request method
+            ERequestMethod        _m_rmRequestMethod;        ///< request method
 
-            bool                _bInit                ();
+            bool                  _bInit                ();
                 ///< initiate class data
     };
     //---------------------------------------------------------------------------
@@ -151,11 +151,11 @@ namespace NxCgi {
         public:
             typedef std::vector<CxCookiePv0 *> TCookies;
 
-            TCookies      Items;    ///< cookie items
+            TCookies        Items;    ///< cookie items
 
-                          CxCgiCookies(CxCgi &ccgCgi);
+                            CxCgiCookies(CxCgi &ccgCgi);
                 ///< constructor
-            virtual      ~CxCgiCookies();
+            virtual        ~CxCgiCookies();
                 ///< destructor
 
             std::tstring_t  sGetDump    () const;
@@ -164,9 +164,9 @@ namespace NxCgi {
                 ///< no case searchig cookie value by name from list
 
         private:
-            CxCgi        &_m_ccgCgi;    ///< CxCgi object
+            CxCgi          &_m_ccgCgi;    ///< CxCgi object
 
-            bool          _bInit      ();
+            bool            _bInit      ();
                 ///< initiate class data
     };
     //---------------------------------------------------------------------------
@@ -178,9 +178,9 @@ namespace NxCgi {
         /// CGI form data
     {
         public:
-                                CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize);
+                                  CxCgiFormData(CxCgi &ccgCgi, const size_t cuiMaxSize);
                 ///< constructor
-            virtual            ~CxCgiFormData();
+            virtual              ~CxCgiFormData();
                 ///< destructor
 
             const std::tstring_t &sGetRawData  () const;
@@ -190,12 +190,12 @@ namespace NxCgi {
 
         private:
             //consts
-            const size_t        _m_cuiMaxData;    ///< maximum data size
+            const size_t          _m_cuiMaxData;    ///< maximum data size
 
-            CxCgi               &_m_ccgCgi;        ///< CxCgi object
-            std::tstring_t        _m_sFormData;    ///< form data
+            CxCgi                &_m_ccgCgi;        ///< CxCgi object
+            std::tstring_t        _m_sFormData;     ///< form data
 
-            bool                _bInit       ();
+            bool                  _bInit       ();
                 ///< initiate class data
     };
     //---------------------------------------------------------------------------
@@ -221,7 +221,7 @@ class CxCgi :
         virtual                ~CxCgi          ();
             ///< destructor
 
-        std::tstring_t            sGetDump       () const;
+        std::tstring_t          sGetDump       () const;
             ///< get dump
         static bool             bRedirect      (const std::tstring_t &csUrl);
             ///< redirect to URL

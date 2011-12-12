@@ -31,7 +31,7 @@ class CxThreadPool :
     private:
         mutable bool              _m_bRes;
 
-        uint_t                      _m_uiStackSize;
+        uint_t                    _m_uiStackSize;
         TFuncPtr                  _m_fpFuncPtr;
         void                     *_m_pvParam;
 
@@ -82,7 +82,7 @@ class CxThreadPool :
         //������
 
     protected:
-        virtual uint_t              uiOnRun      (void *pvParam);    /*overload*/
+        virtual uint_t            uiOnRun      (void *pvParam);    /*overload*/
 };
 
 xNAMESPACE_END(NxLib)

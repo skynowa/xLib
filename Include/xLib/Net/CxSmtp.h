@@ -37,7 +37,7 @@ class CxSmtp :
         std::string         _m_sUser;
         std::string         _m_sPass;
         std::string         _m_sServer;
-        ushort_t              _m_usPort;
+        ushort_t            _m_usPort;
         bool                _m_bConnected;
 
         bool                _bCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/

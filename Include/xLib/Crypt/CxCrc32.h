@@ -30,9 +30,9 @@ class CxCrc32 :
             ///< format Crc32 like "0AADDEA0"
 
     private:
-                            CxCrc32       ();
+                              CxCrc32       ();
             ///< constructor
-        virtual            ~CxCrc32       ();
+        virtual              ~CxCrc32       ();
             ///< destructor
 };
 

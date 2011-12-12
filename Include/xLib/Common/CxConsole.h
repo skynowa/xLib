@@ -59,42 +59,42 @@ class CxConsole :
             ///< set text color
         std::tstring_t sRead         ();
             ///< read
-        bool         bWrite        (const std::tstring_t &csStr);
+        bool           bWrite        (const std::tstring_t &csStr);
             ///< write
-        bool         bWriteLine    (const std::tstring_t &csStr = xT(""));
+        bool           bWriteLine    (const std::tstring_t &csStr = xT(""));
             ///< write line
-        bool         bWriteErrLine (const std::tstring_t &csStr);
+        bool           bWriteErrLine (const std::tstring_t &csStr);
             ///< write error message
-        EModalResult iMsgBox       (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t cuiType);
+        EModalResult   iMsgBox       (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t cuiType);
             ///< show console message dialog
-        bool         bPrompt       (const std::tstring_t &csPrompt, const bool cbIsVisible, std::tstring_t *psAnswer);
+        bool           bPrompt       (const std::tstring_t &csPrompt, const bool cbIsVisible, std::tstring_t *psAnswer);
             ///< show console prompt dialog
-        bool         bPause        ();
+        bool           bPause        ();
             ///< pause
-        bool         bClear        ();
+        bool           bClear        ();
             ///< clear
 
         std::tstring_t sGetTitle     ();
             ///< get title string
-        bool         bSetTitle     (const std::tstring_t &csTitle);
+        bool           bSetTitle     (const std::tstring_t &csTitle);
             ///< set title string
-        bool         bCenterWindow ();
+        bool           bCenterWindow ();
             ///< allign to center
-        bool         bSetFullScreen();
+        bool          bSetFullScreen ();
             ///< set full screen
-        bool         bEnableClose  (const bool cbFlag);
+        bool           bEnableClose  (const bool cbFlag);
             ///< enable close button
 
     private:
     #if xOS_ENV_WIN
-        HWND         _m_hWnd;       ///< console window handle
-        HMENU        _m_hMenu;      ///< console menu handle
-        CxFileHandle _m_hStdIn;     ///< standart input handle
-        CxFileHandle _m_hStdOut;    ///< standart output handle
+        HWND           _m_hWnd;       ///< console window handle
+        HMENU          _m_hMenu;      ///< console menu handle
+        CxFileHandle   _m_hStdIn;     ///< standart input handle
+        CxFileHandle  _m_hStdOut;    ///< standart output handle
 
-        HWND         _hGetWndHandle ();
+        HWND           _hGetWndHandle ();
             ///< get console window handle
-        HMENU        _hGetMenuHandle(const bool cbRevert);
+        HMENU          _hGetMenuHandle(const bool cbRevert);
             ///< get console menu handle
     #elif xOS_ENV_UNIX
 

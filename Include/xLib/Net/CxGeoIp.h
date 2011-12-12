@@ -27,24 +27,24 @@ class CxGeoIp :
             opMmapCache   = GEOIP_MMAP_CACHE
         };
 
-                      CxGeoIp                  ();
+                        CxGeoIp                  ();
             ///< constructor
-        virtual      ~CxGeoIp                  ();
+        virtual        ~CxGeoIp                  ();
             ///< destructor
 
-        bool          bOpen                    (const std::tstring_t &csFilePath, const EOption copOption);
+        bool            bOpen                    (const std::tstring_t &csFilePath, const EOption copOption);
             ///< open
-        bool          bIsValid                 () const;
+        bool            bIsValid                 () const;
             ///< validating handle
         std::tstring_t  sGetCountryCodeByAddress (const std::tstring_t &csAddress) const;
             ///< get country code by address
         std::tstring_t  sGetCountryCode3ByAddress(const std::tstring_t &csAddress) const;
             ///< get country code by address
-        bool          bClose                   ();
+        bool            bClose                   ();
             ///< close
 
     private:
-        GeoIP        *_m_pgiGeoIp;    ///< pointer to GeoIP
+        GeoIP          *_m_pgiGeoIp;    ///< pointer to GeoIP
 };
 
 xNAMESPACE_END(NxLib)

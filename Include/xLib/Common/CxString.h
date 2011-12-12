@@ -43,69 +43,69 @@ class CxString :
 {
     public:
         template<class T>
-        static  std::tstring_t lexical_cast      (const T &cValueT);
+        static std::tstring_t lexical_cast      (const T &cValueT);
             ///< convert type to std::tstring_t
 
         template<class T>
-        static  std::tstring_t lexical_cast      (const T &cValueT, const int ciBase);
+        static std::tstring_t lexical_cast      (const T &cValueT, const int ciBase);
             ///< convert type to std::tstring_t by base
 
         template<class T>
-        static T             lexical_cast      (const std::tstring_t &csStr);
+        static T              lexical_cast      (const std::tstring_t &csStr);
             ///< convert std::tstring_t to type
 
         template<class T>
-        static T             lexical_cast      (const std::tstring_t &csStr, const int ciBase);
+        static T              lexical_cast      (const std::tstring_t &csStr, const int ciBase);
             ///< convert std::tstring_t by base (8, 10, 16) to type
 
-        static std::tstring_t  sBoolToStr        (const bool cbBool);
+        static std::tstring_t sBoolToStr        (const bool cbBool);
             ///< bool to std::tstring_t
-        static bool          bStrToBool        (const std::tstring_t &csStr);
+        static bool           bStrToBool        (const std::tstring_t &csStr);
             ///< convert std::tstring_t to bool
 
-        static std::tstring_t  sTrimLeftChars    (const std::tstring_t &csStr, const std::tstring_t &csChars);
+        static std::tstring_t sTrimLeftChars    (const std::tstring_t &csStr, const std::tstring_t &csChars);
             ///< trim left chars
-        static std::tstring_t  sTrimRightChars   (const std::tstring_t &csStr, const std::tstring_t &csChars);
+        static std::tstring_t sTrimRightChars   (const std::tstring_t &csStr, const std::tstring_t &csChars);
             ///< trim left chars
-        static std::tstring_t  sTrimChars        (const std::tstring_t &csStr, const std::tstring_t &csChars);
+        static std::tstring_t sTrimChars        (const std::tstring_t &csStr, const std::tstring_t &csChars);
             ///< trim left, right chars
-        static std::tstring_t  sTrimSpace        (const std::tstring_t &csStr);
+        static std::tstring_t sTrimSpace        (const std::tstring_t &csStr);
             ///< trim left, right spaces
-        static std::tstring_t  sRemoveEol        (const std::tstring_t &csStr);
+        static std::tstring_t sRemoveEol        (const std::tstring_t &csStr);
             ///< remove end of line from end of string
 
-        static std::tstring_t  sReplaceAll       (const std::tstring_t &csStr, const std::tstring_t &csOldStr, const std::tstring_t &csNewStr);
+        static std::tstring_t sReplaceAll       (const std::tstring_t &csStr, const std::tstring_t &csOldStr, const std::tstring_t &csNewStr);
             ///< replace all strings
-        static std::tstring_t  sReplaceAll       (const std::tstring_t &csStr, const tchar_t ccOldStr, const tchar_t ccNewStr);
+        static std::tstring_t sReplaceAll       (const std::tstring_t &csStr, const tchar_t ccOldStr, const tchar_t ccNewStr);
             ///< replace all chars
-        static std::tstring_t  sRemoveAll        (const std::tstring_t &csStr, const std::tstring_t &csRemoveStr);
+        static std::tstring_t sRemoveAll        (const std::tstring_t &csStr, const std::tstring_t &csRemoveStr);
             ///< remove all strings
 
-        static bool          bSplit            (const std::tstring_t &csStr, const std::tstring_t &csSep, std::vector<std::tstring_t> *pvsOut);
+        static bool           bSplit            (const std::tstring_t &csStr, const std::tstring_t &csSep, std::vector<std::tstring_t> *pvsOut);
             ///< split by separator
-        static std::tstring_t  sJoin             (const std::vector<std::tstring_t> &cvsVec, const tchar_t cchSep);
+        static std::tstring_t sJoin             (const std::vector<std::tstring_t> &cvsVec, const tchar_t cchSep);
             ///< join with char separator
-        static std::tstring_t  sJoin             (const std::vector<std::tstring_t> &cvsVec, const std::tstring_t &csSep);
+        static std::tstring_t sJoin             (const std::vector<std::tstring_t> &cvsVec, const std::tstring_t &csSep);
             ///< oin with string separator
-        static std::tstring_t  sCut              (const std::tstring_t &csStr, const std::tstring_t &csLeftSep, const std::tstring_t &csRightSep);
+        static std::tstring_t sCut              (const std::tstring_t &csStr, const std::tstring_t &csLeftSep, const std::tstring_t &csRightSep);
             ///< cut using strings
-        static std::tstring_t  sCut              (const std::tstring_t &csStr, const size_t cuiStartPos = 0, const size_t cuiEndPos = std::tstring_t::npos);
+        static std::tstring_t sCut              (const std::tstring_t &csStr, const size_t cuiStartPos = 0, const size_t cuiEndPos = std::tstring_t::npos);
             ///< cut using string positions
 
-        static std::tstring_t  sToLowerCase      (const std::tstring_t &csStr);
+        static std::tstring_t sToLowerCase      (const std::tstring_t &csStr);
             ///< convert to lowcase
-        static std::tstring_t  sToUpperCase      (const std::tstring_t &csStr);
+        static std::tstring_t sToUpperCase      (const std::tstring_t &csStr);
             ///< convert to uppercase
-        static std::tstring_t  sToLowerCase      (const std::tstring_t &csStr, size_t uiLength);
+        static std::tstring_t sToLowerCase      (const std::tstring_t &csStr, size_t uiLength);
             ///< convert to lowcase
-        static std::tstring_t  sToUpperCase      (const std::tstring_t &csStr, size_t uiLength);
+        static std::tstring_t sToUpperCase      (const std::tstring_t &csStr, size_t uiLength);
             ///< convert to uppercase
 
-        static std::tstring_t  sFormat           (const tchar_t *pcszFormat, ...);
+        static std::tstring_t sFormat           (const tchar_t *pcszFormat, ...);
             ///< format
-        static std::tstring_t  sFormatV          (const tchar_t *pcszFormat, va_list palArgs);
+        static std::tstring_t sFormatV          (const tchar_t *pcszFormat, va_list palArgs);
             ///< format
-        static std::tstring_t  sMinimize         (const std::tstring_t &csStr, const size_t cuiMaxLen);
+        static std::tstring_t sMinimize         (const std::tstring_t &csStr, const size_t cuiMaxLen);
             ///< minimize
 
         /****************************************************************************
@@ -113,7 +113,7 @@ class CxString :
         *
         *****************************************************************************/
 
-        static bool          bCompareNoCase    (const std::tstring_t &csStr1, const std::tstring_t &csStr2);
+        static bool           bCompareNoCase    (const std::tstring_t &csStr1, const std::tstring_t &csStr2);
             ///< no case compare
 
         /****************************************************************************
@@ -121,26 +121,26 @@ class CxString :
         *
         *****************************************************************************/
 
-        static std::tstring_t  sTranslitLatToRus (const std::tstring_t &csStr);
+        static std::tstring_t sTranslitLatToRus (const std::tstring_t &csStr);
             ///< translit
-        static std::tstring_t  sFormatBytes      (const double cdBytes);
+        static std::tstring_t sFormatBytes      (const double cdBytes);
             ///< format bytes (like Bit(s), Byte(s), MB, GB, TB)
-        static std::tstring_t  sFormatBytes      (const ulonglong_t cullBytes);
+        static std::tstring_t sFormatBytes      (const ulonglong_t cullBytes);
             ///< ormat bytes (like Bit(s), Byte(s), MB, GB, TB)
-        static std::tstring_t  sFormatPercentage (ulonglong_t ullMaxValue, ulonglong_t ullCurrValue);
+        static std::tstring_t sFormatPercentage (ulonglong_t ullMaxValue, ulonglong_t ullCurrValue);
             ///< formatting percentage
 
-        static std::wstring  sStrToWStr        (const std::string  &csStr,  const uint_t cuiCodePage);
+        static std::wstring   sStrToWStr        (const std::string  &csStr,  const uint_t cuiCodePage);
             ///< std::string in std::wstring
-        static std::string   sWStrToStr        (const std::wstring &cwsStr, const uint_t cuiCodePage);
+        static std::string    sWStrToStr        (const std::wstring &cwsStr, const uint_t cuiCodePage);
             ///< std::wstring in std::string
 
-        static std::string   sConvertCodePage  (const std::string &csSource, const uint_t cuiCodePageSource, const uint_t cuiCodePageDest);
+        static std::string    sConvertCodePage  (const std::string &csSource, const uint_t cuiCodePageSource, const uint_t cuiCodePageDest);
             ///< convert codepage
 
-        static std::string   asCharToOemBuff   (const std::tstring_t &csSrc);
+        static std::string    asCharToOemBuff   (const std::tstring_t &csSrc);
             ///< convert char to oem
-        static std::tstring_t  sOemToCharBuff    (const std::string  &csSrc);
+        static std::tstring_t sOemToCharBuff    (const std::string  &csSrc);
             ///< convert oem to char
 
 
@@ -149,7 +149,7 @@ class CxString :
         *
         *****************************************************************************/
 
-        static void *        pvMemoryZeroSecure(void *pvBuff, size_t  uiBuffSize);
+        static void *         pvMemoryZeroSecure(void *pvBuff, size_t  uiBuffSize);
             ///< secure zero memory
 
 
@@ -158,15 +158,15 @@ class CxString :
         *
         *****************************************************************************/
 
-        static std::tstring_t  sCreateGuid       ();
+        static std::tstring_t  sCreateGuid      ();
             ///< generate GUID
-        static bool          bIsRepeated       (const std::tstring_t &csStr);
+        static bool            bIsRepeated      (const std::tstring_t &csStr);
             ///< is repeated
 
     private:
-                             CxString          ();
+                               CxString         ();
             ///< constructor
-        virtual             ~CxString          ();
+        virtual               ~CxString         ();
             ///< destructor
 };
 

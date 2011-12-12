@@ -28,7 +28,7 @@ class CxLocalStorage :
         //creation
         bool                   bCreateDefault (const std::tstring_t &csContent) const;
             ///< create default file
-        std::tstring_t           sGetPath       () const;
+        std::tstring_t         sGetPath       () const;
             ///< get file path
         bool                   bSetPath       (const std::tstring_t &csFilePath);
             ///< set file path
@@ -46,12 +46,12 @@ class CxLocalStorage :
         bool                   bKeyIsExists   (const std::tstring_t &csKey) const;
             ///< is exists
 
-        std::tstring_t           sKeyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue);
+        std::tstring_t         sKeyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue);
             ///< read std::tstring_t
         bool                   bKeyWriteString(const std::tstring_t &csKey, const std::tstring_t &csValue);
             ///< write std::tstring_t
 
-        long_t                   iKeyReadInt    (const std::tstring_t &csKey, const long_t     cliDefaultValue);
+        long_t                 iKeyReadInt    (const std::tstring_t &csKey, const long_t     cliDefaultValue);
             ///< read int
         bool                   bKeyWriteInt   (const std::tstring_t &csKey, const long_t     cliValue);
             ///< write int
@@ -66,7 +66,7 @@ class CxLocalStorage :
         bool                   bKeyWriteBool  (const std::tstring_t &csKey, const bool     cbValue);
             ///< write bool
 
-        std::ustring_t           usKeyReadBin   (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue);
+        std::ustring_t         usKeyReadBin   (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue);
             ///< write std::ustring_t
         bool                   bKeyWriteBin   (const std::tstring_t &csKey, const std::ustring_t &cusValue);
             ///< read std::ustring_t
@@ -77,10 +77,10 @@ class CxLocalStorage :
             ///< delete key and value
 
     private:
-        const std::tstring_t     _m_csSeparator;  ///< separator between key and value
-        const std::tstring_t     _m_csFileExt;    ///< ini-file extension
+        const std::tstring_t   _m_csSeparator;  ///< separator between key and value
+        const std::tstring_t   _m_csFileExt;    ///< ini-file extension
 
-        std::tstring_t           _m_sFilePath;    ///< file path to ini-file
+        std::tstring_t         _m_sFilePath;    ///< file path to ini-file
         NxLib::TLocalStorage   _m_msIni;        ///< std::map of keys and values
 
         bool                   _bRead         (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue, std::tstring_t *psValue);

@@ -18,12 +18,12 @@ class CxStackTrace :
     /// stack trace
 {
     public:
-        explicit     CxStackTrace();
+        explicit       CxStackTrace();
             ///< constructor
-        virtual     ~CxStackTrace();
+        virtual       ~CxStackTrace();
             ///< destructor
 
-        bool         bGet        (std::vector<std::tstring_t> *pvsStack);
+        bool           bGet        (std::vector<std::tstring_t> *pvsStack);
             ///< get stack trace
         std::tstring_t sGet        (const std::tstring_t &csLinesSeparator = xT("\n"));
             ///< get stack trace
@@ -32,7 +32,7 @@ class CxStackTrace :
     #if xOS_ENV_WIN
         static const ulong_t _m_culMaxFrames = 62UL;    //from MSDN, ::CaptureStackBackTrace
     #elif xOS_ENV_UNIX
-        static const int   _m_culMaxFrames = 256;     //this should be enough
+        static const int     _m_culMaxFrames = 256;     //this should be enough
     #endif
             ///< maximum frames for report
 };

@@ -20,9 +20,9 @@ class CxConnectionString :
             ///< Microsoft.Jet.OLEDB.4.0
 
     private:
-                            CxConnectionString();
+                              CxConnectionString();
             ///< constructor
-        virtual            ~CxConnectionString();
+        virtual              ~CxConnectionString();
             ///< destructor
 };
 
