@@ -8,11 +8,8 @@
 #define xLib_Sync_CxThreadH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Common/CxHandleT.h>
 #include <xLib/Sync/CxEvent.h>
-
-#if xOS_ENV_WIN
-    #include <xLib/Common/Win/CxHandleT.h>
-#endif
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

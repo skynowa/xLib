@@ -16,6 +16,7 @@
 #include <Test/Common/CxTest_CxMacros.h>
 #include <Test/Common/CxTest_CxException.h>
 #include <Test/Common/CxTest_CxType.h>
+#include <Test/Common/CxTest_CxHandleT.h>
 #include <Test/Common/CxTest_CxFunctorT.h>
 #include <Test/Common/CxTest_CxArray.h>
 #include <Test/Common/CxTest_CxChar.h>
@@ -27,7 +28,6 @@
 #include <Test/Common/CxTest_CxCommandLine.h>
 
 #if xOS_ENV_WIN
-    #include <Test/Common/Win/CxTest_CxHandleT.h>
     #include <Test/Common/Win/CxTest_CxCom.h>
     #include <Test/Common/Win/CxTest_CxClipboard.h>
     #include <Test/Common/Win/CxTest_CxShell.h>
@@ -183,6 +183,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxMacros);
         (void)tmManager.bAdd(new CxTest_CxException);
         (void)tmManager.bAdd(new CxTest_CxType);
+        (void)tmManager.bAdd(new CxTest_CxHandleT);
         (void)tmManager.bAdd(new CxTest_CxFunctorT);
         (void)tmManager.bAdd(new CxTest_CxArray);
         (void)tmManager.bAdd(new CxTest_CxChar);
@@ -194,7 +195,6 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxCommandLine);
 
     #if xOS_ENV_WIN
-        (void)tmManager.bAdd(new CxTest_CxHandleT);
         (void)tmManager.bAdd(new CxTest_CxCom);
         (void)tmManager.bAdd(new CxTest_CxClipboard);
         (void)tmManager.bAdd(new CxTest_CxShell);

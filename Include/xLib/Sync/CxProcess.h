@@ -8,6 +8,7 @@
 #define xLib_Sync_CxProcessH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Common/CxHandleT.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

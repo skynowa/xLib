@@ -274,6 +274,7 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxDateTime.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxException.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxLocale.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxMacros.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxString.cpp" />
@@ -282,7 +283,6 @@
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxClipboard.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxComPort.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxHandleT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxShell.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp" />
@@ -369,6 +369,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxArray.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxCommandLine.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxHandleT.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Unix.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
@@ -425,6 +426,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxException.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxMacros.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxString.h" />
@@ -433,7 +435,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxClipboard.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxComPort.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxHandleT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxShell.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h" />
@@ -516,7 +517,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Units\Win\CxTest_bGetUsbInfo.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxBase64.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxHandleT.h" />
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
     <ClInclude Include="..\..\Include\xLib\Db\CxConnectionString.h" />
@@ -626,9 +626,9 @@
   <ItemGroup>
     <None Include="..\..\Source\Common\CxArray.inl" />
     <None Include="..\..\Source\Common\CxFunctorT.inl" />
+    <None Include="..\..\Source\Common\CxHandleT.inl" />
     <None Include="..\..\Source\Common\CxString.inl" />
     <None Include="..\..\Source\Common\CxType.inl" />
-    <None Include="..\..\Source\Common\Win\CxHandleT.inl" />
     <None Include="..\..\Source\Debug\CxReport.inl" />
     <None Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
