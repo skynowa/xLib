@@ -9,9 +9,9 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 template<class T>
 CxReport::CxReport(
-    const EType        &crtType,
-    const T            &cVarT1,
-    const T            &cVarT2,
+    const EType          &crtType,
+    const T              &cVarT1,
+    const T              &cVarT2,
     const std::tstring_t &csExpr1,
     const std::tstring_t &csExpr2,
     const std::tstring_t &csExprSign,

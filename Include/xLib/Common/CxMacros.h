@@ -113,6 +113,8 @@
     ///< can remove code
 #define xTEST_IGNORE            0
     ///< ignore test code
+#define xREVIEW                 1
+    ///< code for review
 
 
 #define xSTRINGIZE2(x)     #x
@@ -181,7 +183,7 @@
 #if defined(__COUNTER__)
     #define xCOUNTER   __COUNTER__
 #else
-    #define xCOUNTER   0
+    #define xCOUNTER   0UL
 #endif
     ///< Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
 
@@ -198,7 +200,7 @@
 #if defined(xOS_ENV_WIN)
     #define xHOST_NAME_MAX   MAX_COMPUTERNAME_LENGTH
 #elif defined(xOS_ENV_UNIX)
-    #define xHOST_NAME_MAX   MAXHOSTNAMELEN
+    #define xHOST_NAME_MAX   HOST_NAME_MAX
 #endif
     ///< max host name length
 #define xPATH_MAX       (CxPath::uiGetMaxSize())
