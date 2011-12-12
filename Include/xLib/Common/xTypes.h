@@ -10,6 +10,7 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+
         typedef unsigned char          uchar_t;
 
         typedef signed short int       short_t;
@@ -31,7 +32,7 @@ xNAMESPACE_BEGIN(NxLib)
         #define xT(x)                  xTEXT(x)
 
         typedef char                   tchar_t;
-    #endif //xUNICODE
+    #endif
 
     #if xOS_ENV_WIN
         #if xCOMPILER_MINGW32
@@ -42,7 +43,7 @@ xNAMESPACE_BEGIN(NxLib)
     #elif xOS_ENV_UNIX
         typedef addrinfo               addrinfo_t;
     #endif
-    
+
 xNAMESPACE_END(NxLib)
 
 
