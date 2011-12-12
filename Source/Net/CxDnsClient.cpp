@@ -107,11 +107,7 @@ CxDnsClient::bGetLocalHostName(
 {
     /*DEBUG*/xASSERT_RET(NULL != psHostName, false);
 
-#if xOS_ENV_WIN
-    std::string asRes(255 + 1, '0');
-#elif xOS_ENV_UNIX
-    std::string asRes(HOST_NAME_MAX, '0');
-#endif
+    std::string asRes(xHOST_NAME_MAX, '0');
 
     int iRes = ::gethostname(&asRes.at(0), asRes.size() * sizeof(std::string::value_type));
     /*DEBUG*/xASSERT_RET(0 == iRes, false);

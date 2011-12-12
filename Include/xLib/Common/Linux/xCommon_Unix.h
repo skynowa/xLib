@@ -26,7 +26,7 @@
 #include <sys/wait.h>
 #include <sys/uio.h>
 #include <sys/syscall.h>
-
+#include <sys/param.h>
 
 //thread
 #include <pthread.h>    //lib: -pthread
@@ -39,7 +39,6 @@
 #if xOS_FREEBSD
     #include <osreldate.h>
     #include <pthread_np.h>    //lib: libpthread, -lpthread (FreeBSD)
-    #include <sys/param.h>
     #include <sys/mount.h>
     #include <sys/statvfs.h>
     #include <sys/resource.h>

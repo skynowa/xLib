@@ -155,9 +155,9 @@
     #error xLib: incorrect debug mode
 #endif
 //-------------------------------------------------------------------------
-#define xCHECK_RET(expr, return_expr)                       { if ((expr)) { return (return_expr);                               } }
+#define xCHECK_RET(expr, return_expr)                       { if ((expr)) { return (return_expr);                                        } }
     ///< check expression and return value
-#define xCHECK_DO(expr, do_instructions)                    { if ((expr)) { do_instructions;                                    } }
+#define xCHECK_DO(expr, do_instructions)                    { if ((expr)) { do_instructions;                                             } }
     ///< check expression and do instructions
 #define xCHECK_MSG(expr, comment)                           { if ((expr)) { std::tcout << (comment) << std::endl;                        } }
     ///< check expression and show message with comment
@@ -185,17 +185,17 @@
 #endif
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
-    #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                        }
+    #define xTRACEV(format, ...)                            { CxDebugger::bTrace(format, __VA_ARGS__);                                      }
         ///< tracing
-    #define xTRACE(msg)                                     { CxDebugger::bTrace(msg);                                        }
+    #define xTRACE(msg)                                     { CxDebugger::bTrace(msg);                                                      }
         ///< tracing
-    #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                  }
+    #define xTRACE_FUNC                                     { CxDebugger::bTrace(xFUNCTION);                                                }
         ///< tracing, comment with current function name
     #define xTRACE_FUNC_MSG(s)                              { CxDebugger::bTrace(std::tstring_t(xFUNCTION) + xT(": ") + std::tstring_t(s)); }
         ///< tracing, comment with current function name and message
     #define xTRACE_POINT                                    { CxDebugger::bTrace(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
         ///< trace point (use CxDebugger)
-    #define xSTD_TRACE_POINT                                { std::tcout << xT("<<< Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << std::endl; }
+    #define xSTD_TRACE_POINT                                { std::tcout << xT("Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << std::endl; }
         ///< trace point (use std::cout)
 #else
     #define xTRACEV(format, ...)                            { /* n/a */ }

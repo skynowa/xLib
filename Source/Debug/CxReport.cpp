@@ -27,7 +27,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxReport::CxReport(
-    const EType        &crtType,
+    const EType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
     const std::tstring_t &csFile,
@@ -75,7 +75,7 @@ CxReport::CxReport(
 }
 //---------------------------------------------------------------------------
 CxReport::CxReport(
-    const EType        &crtType,
+    const EType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
     const std::tstring_t &csFile,
@@ -109,7 +109,7 @@ CxReport::CxReport(
     /*DEBUG*/
 
     std::tstring_t sComment;
-    va_list      palArgs;
+    va_list        palArgs;
 
     xVA_START(palArgs, pcszComment);
     sComment = CxString::sFormatV(pcszComment, palArgs);
@@ -276,7 +276,7 @@ CxReport::sGetStackTrace() const {
 //---------------------------------------------------------------------------
 bool
 CxReport::_bInitVars(
-    const EType        &crtType,
+    const EType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
     const std::tstring_t &csFile,
