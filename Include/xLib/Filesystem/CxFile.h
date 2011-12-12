@@ -275,7 +275,7 @@ class CxFile :
         static std::tstring_t  _sGetOpenMode(const EOpenMode comMode);
             ///< get open mode as string, by default use "r"
 
-        friend class CxFileTemp;
+        friend class           CxFileTemp;
 };
 
 xNAMESPACE_END(NxLib)

@@ -18,26 +18,26 @@ class CxAtomicLongInt :
     /// atomic operartions with long_t
 {
     public:
-                         CxAtomicLongInt();
-        virtual         ~CxAtomicLongInt();
+                         CxAtomicLongInt ();
+        virtual         ~CxAtomicLongInt ();
 
-        CxAtomicLongInt& operator +=   (const CxAtomicLongInt &cRight);
-        CxAtomicLongInt& operator -=   (const CxAtomicLongInt &cRight);
-        CxAtomicLongInt& operator =    (const CxAtomicLongInt &cRight);
-        CxAtomicLongInt& operator +=   (const long_t cliRight);
-        CxAtomicLongInt& operator -=   (const long_t cliRight);
-        CxAtomicLongInt& operator =    (const long_t cliRight);
-        bool             operator ==   (const CxAtomicLongInt &cRight) const ;
-        bool             operator !=   (const CxAtomicLongInt &cRight) const ;
-        bool             operator ==   (const long_t cliRight) const ;
-        bool             operator !=   (const long_t cliRight) const ;
+        CxAtomicLongInt& operator +=     (const CxAtomicLongInt &cRight);
+        CxAtomicLongInt& operator -=     (const CxAtomicLongInt &cRight);
+        CxAtomicLongInt& operator =      (const CxAtomicLongInt &cRight);
+        CxAtomicLongInt& operator +=     (const long_t cliRight);
+        CxAtomicLongInt& operator -=     (const long_t cliRight);
+        CxAtomicLongInt& operator =      (const long_t cliRight);
+        bool             operator ==     (const CxAtomicLongInt &cRight) const ;
+        bool             operator !=     (const CxAtomicLongInt &cRight) const ;
+        bool             operator ==     (const long_t cliRight) const ;
+        bool             operator !=     (const long_t cliRight) const ;
                          operator long_t () const ;
-                         operator bool () const ;
-        CxAtomicLongInt& operator ++   (int iPos);
-        CxAtomicLongInt& operator --   (int iPos);
+                         operator bool   () const ;
+        CxAtomicLongInt& operator ++     (int iPos);
+        CxAtomicLongInt& operator --     (int iPos);
 
     private:
-        long_t             _m_liValue;
+        long_t           _m_liValue;
 };
 
 xNAMESPACE_END(NxLib)

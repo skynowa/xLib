@@ -54,14 +54,14 @@ class CxImage :
         bool            bIsLoaded        ();
             ///< is loaded
 
-        uint_t            uiGetWidth       ();
+        uint_t          uiGetWidth       ();
             ///< get width
-        uint_t            uiGetHeight      ();
+        uint_t          uiGetHeight      ();
             ///< get height
 
         Gdiplus::Status stGetLastStatus  ();
             ///< get last status
-        std::tstring_t    sGetLastStatus   (Gdiplus::Status stCode);
+        std::tstring_t  sGetLastStatus   (Gdiplus::Status stCode);
             ///< get last status
 
     private:

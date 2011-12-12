@@ -23,32 +23,32 @@ class CxCOMPort :
     /// COM port
 {
     public:
-                     CxCOMPort       (const std::tstring_t &sPortNum/* = xT("COM1")*/);
-        virtual     ~CxCOMPort       ();
+                       CxCOMPort       (const std::tstring_t &sPortNum/* = xT("COM1")*/);
+        virtual       ~CxCOMPort       ();
 
-        bool         bOpen           ();
-        bool         bConfig         ();
-        bool         bClearData      ();
+        bool           bOpen           ();
+        bool           bConfig         ();
+        bool           bClearData      ();
         std::tstring_t bReadData       (LPTSTR pszBuff, ulong_t ulNumOfBytesToRead);
-        int          iReadDataWaiting();
-        bool         bWriteData      (LPCTSTR pcszBuff, ulong_t ulNumOfBytesToWrite);
-        bool         bClose          ();
+        int            iReadDataWaiting();
+        bool           bWriteData      (LPCTSTR pcszBuff, ulong_t ulNumOfBytesToWrite);
+        bool           bClose          ();
 
         ulong_t        ulInputBuffTest ();
-        bool         bClearCLRDTR    ();
-        bool         bClearCLRRTS    ();
-        bool         bSetSETDTR      ();
-        bool         bSetSETRTS      ();
+        bool           bClearCLRDTR    ();
+        bool           bClearCLRRTS    ();
+        bool           bSetSETDTR      ();
+        bool           bSetSETRTS      ();
 
     private:
-        bool         _m_bRes;
-        CxFileHandle _m_hComPort;
+        bool           _m_bRes;
+        CxFileHandle   _m_hComPort;
         std::tstring_t _m_sPortNum;
 
-        COMMTIMEOUTS CommTimeOuts;
-        DCB          dcb;
-        COMSTAT      ComState;
-        OVERLAPPED   Overlap;
+        COMMTIMEOUTS   CommTimeOuts;
+        DCB            dcb;
+        COMSTAT        ComState;
+        OVERLAPPED     Overlap;
 };
 
 xNAMESPACE_END(NxLib)

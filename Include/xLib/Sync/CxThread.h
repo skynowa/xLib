@@ -53,7 +53,7 @@ class CxThread :
         typedef pthread_t TxId;     ///< ID
     #endif
 
-        volatile long_t       m_ulTag;    ///< tag
+        volatile long_t     m_ulTag;    ///< tag
 
                             CxThread              (const bool cbAutoDelete);
             ///< constructor
@@ -105,7 +105,7 @@ class CxThread :
             ///< set priority (under Linux must use admin privilege)
         EPriority           tpGetPriority         () const;
             ///< get priotity
-        std::tstring_t        sGetPriorityString    () const;
+        std::tstring_t      sGetPriorityString    () const;
             ///< get priority as string
         bool                bPriorityUp           () const;
             ///< increase priority on one level
@@ -121,9 +121,9 @@ class CxThread :
             ///< set processor affinity
         bool                bSetCpuIdeal          (const ulong_t culIdealCpu) const;
             ///< sets preferred processor for a thread
-        ulong_t               ulGetCpuIdeal         () const;
+        ulong_t             ulGetCpuIdeal         () const;
             ///< get current ideal processor without changing it
-        static ulong_t        ulGetCpuCount         ();
+        static ulong_t      ulGetCpuCount         ();
             ///< get CPU count on machine
 
         //other
@@ -133,7 +133,7 @@ class CxThread :
             ///< get ID
         bool                bIsCurrent            () const;
             ///< is current
-        ulong_t               ulGetExitStatus       () const;
+        ulong_t             ulGetExitStatus       () const;
             ///< get termination status
         bool                bSetDebugName         (const std::tstring_t &csName) const;
             ///< set name your threads in the debugger thread list
@@ -144,7 +144,7 @@ class CxThread :
 
     protected:
         //events
-        virtual uint_t        uiOnRun               (void *pvParam) = 0;
+        virtual uint_t      uiOnRun               (void *pvParam) = 0;
             ///< work thread function, must be overrided
         //--virtual void    vOnEnter              ();
         //--virtual void    vOnExit               ();
@@ -166,7 +166,7 @@ class CxThread :
     #endif
 
         TxId                _m_ulId;                    ///< ID
-        uint_t                _m_uiExitStatus;            ///< exit code
+        uint_t              _m_uiExitStatus;            ///< exit code
         void               *_m_pvParam;                 ///< param for job function
         const bool          _m_cbIsAutoDelete;          ///< is autodelete thread object
 
@@ -183,9 +183,9 @@ class CxThread :
         CxEvent             _m_evExit;                  ///< exit event
 
     #if xOS_ENV_WIN
-        typedef uint_t     TxExitStatus;
+        typedef uint_t      TxExitStatus;
     #elif xOS_ENV_UNIX
-        typedef void *   TxExitStatus;
+        typedef void *      TxExitStatus;
     #endif
 
         static TxExitStatus xSTDCALL

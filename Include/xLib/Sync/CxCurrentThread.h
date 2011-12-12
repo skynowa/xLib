@@ -16,20 +16,20 @@ class CxCurrentThread :
     public CxNonCopyable
 {
     public:
-        static bool                bIsCurrent     (const CxThread::TxId culId);
+        static bool               bIsCurrent     (const CxThread::TxId culId);
             ///< is current id
-        static CxThread::TxId      ulGetId        ();
+        static CxThread::TxId     ulGetId        ();
             ///< get the thread identifier of the calling thread
-        static CxThread::TxHandle  hGetHandle     ();
+        static CxThread::TxHandle hGetHandle     ();
             ///< get pseudo handle for the calling thread
-        static bool                bYield         ();
+        static bool               bYield         ();
             ///< yield
-        static bool                bSleep         (const ulong_t culMsec);
+        static bool               bSleep         (const ulong_t culMsec);
             ///< sleep
     private:
-                                   CxCurrentThread();
+                                  CxCurrentThread();
             ///< constructor
-        virtual                   ~CxCurrentThread();
+        virtual                  ~CxCurrentThread();
             ///< destructor
 };
 

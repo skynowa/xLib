@@ -24,9 +24,9 @@ class CxUtils :
             ///< get error string by code, SDK 4.53
 
     private:
-                            CxUtils  ();
+                              CxUtils  ();
             ///< constructor
-        virtual            ~CxUtils  ();
+        virtual              ~CxUtils  ();
             ///< destructor
 };
 

@@ -16,17 +16,17 @@ class CxCurrentProcess :
     public CxNonCopyable
 {
 	public:
-        static CxProcess::TxId      ulGetId         ();
+        static CxProcess::TxId     ulGetId         ();
             ///< process ID of the calling process
-        static CxProcess::TxId      ulGetParentId   ();
+        static CxProcess::TxId     ulGetParentId   ();
             ///< process ID of the parent of the calling process
-        static CxProcess::TxHandle  hGetHandle      ();
+        static CxProcess::TxHandle hGetHandle      ();
             ///< get pseudo handle for the calling process
 
     private:
-				                    CxCurrentProcess();
+				                   CxCurrentProcess();
             ///< constructor
-		virtual                    ~CxCurrentProcess();
+		virtual                   ~CxCurrentProcess();
 		    ///< destructor
 };
 

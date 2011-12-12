@@ -16,35 +16,35 @@ class CxRandom :
     /// random
 {
     public:
-                            CxRandom     (long_t liSeed = time(NULL));
+                              CxRandom     (long_t liSeed = time(NULL));
             ///< constructor
-        virtual            ~CxRandom     ();
+        virtual              ~CxRandom     ();
             ///< destructor
 
-        bool                bSetSeed     (long_t liSeed);
+        bool                  bSetSeed     (long_t liSeed);
             ///< set seed
-        int                 iNextInt     ();
+        int                   iNextInt     ();
             ///< next int
-        int                 iNextInt     (int max);
+        int                   iNextInt     (int max);
             ///< next int
-        int                 iNextInt     (int a, int b);
+        int                   iNextInt     (int a, int b);
             ///< next int
         long_t                liNextLong   ();
             ///< next long_t
-        bool                bNextBoolean ();
+        bool                  bNextBoolean ();
             ///< next boolean
-        float               fNextFloat   ();
+        float                 fNextFloat   ();
             ///< next float
-        double              bNextDouble  ();
+        double                bNextDouble  ();
             ///< next double
-        char                chNextChar   ();
+        char                  chNextChar   ();
             ///< next char
-        char                chNextFigure ();
+        char                  chNextFigure ();
             ///< next figure
-        double              dNextGaussian();
+        double                dNextGaussian();
             ///< next gaussian
 
-        static bool         bSetSeed     ();
+        static bool           bSetSeed     ();
             ///< set seed
         static long_t         liGetInt     (const long_t cliMin, const long_t cliMax);
             ///< generates a random number between specified min/max boundaries
@@ -58,14 +58,14 @@ class CxRandom :
             ///< next long_t
 
     private:
-        static const int    A;  ///< for private use
-        static const int    M;  ///< for private use
-        static const int    Q;  ///< for private use
-        static const int    R;  ///< for private use
+        static const int      A;  ///< for private use
+        static const int      M;  ///< for private use
+        static const int      Q;  ///< for private use
+        static const int      R;  ///< for private use
 
         long_t                _m_liSeed;                  ///< for private use
-        double              _m_dNextNextGaussian;       ///< for private use
-        bool                _m_bHaveNextNextGaussian;   ///< for private use
+        double                _m_dNextNextGaussian;       ///< for private use
+        bool                  _m_bHaveNextNextGaussian;   ///< for private use
 };
 
 xNAMESPACE_END(NxLib)

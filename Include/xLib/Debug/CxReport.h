@@ -29,17 +29,17 @@ class CxReport :
             rtLoggingHtml       ///< to log with HTML text
         };
 
-                              CxReport            (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
+                                CxReport          (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< constructor
-                              CxReport            (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const tchar_t *pcszComment, ...);
+                                CxReport          (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const tchar_t *pcszComment, ...);
             ///< constructor
-                              template<class T>
-                              CxReport            (const EType &crtType, const T &cVatT1, const T &cVatT2, const std::tstring_t &csExpr1, const std::tstring_t &csExpr2, const std::tstring_t &csExprSign, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
+                                template<class T>
+                                CxReport          (const EType &crtType, const T &cVatT1, const T &cVatT2, const std::tstring_t &csExpr1, const std::tstring_t &csExpr2, const std::tstring_t &csExprSign, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< constructor
-        virtual              ~CxReport            ();
+        virtual                ~CxReport          ();
             ///< destructor
 
-        EType                 rtGetType           () const;
+        EType                   rtGetType         () const;
             ///< get type
         const std::tstring_t &  sGetReport        () const;
             ///< get report
@@ -109,13 +109,13 @@ class CxReport :
         std::tstring_t          _m_sComment;        ///< comment
 
 
-        bool                  _bInitVars          (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
+        bool                    _bInitVars        (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< initiate class members
-        bool                  _bInitPlain         ();
+        bool                    _bInitPlain       ();
             ///< initiate plain report
-        bool                  _bInitHtml          ();
+        bool                    _bInitHtml        ();
             ///< initiate HTML report
-        bool                  _bInitFormated      ();
+        bool                    _bInitFormated    ();
             ///< initiate formatrd report
 };
 

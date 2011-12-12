@@ -18,12 +18,12 @@ class CxMimeMessage :
     /// MIME message (RFC 822)
 {
     public:
-                     CxMimeMessage   ();
-        virtual           ~CxMimeMessage   ();
+                       CxMimeMessage   ();
+        virtual       ~CxMimeMessage   ();
 
-        static bool  bParse          (const std::tstring_t &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
-        static bool  bLoadFromRawFile(const std::tstring_t &csFilePath);       //csFilePath - raw msg
-        static bool  bSaveToRawFile  (const std::tstring_t &csFilePath);       //csFilePath - raw msg
+        static bool    bParse          (const std::tstring_t &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
+        static bool    bLoadFromRawFile(const std::tstring_t &csFilePath);       //csFilePath - raw msg
+        static bool    bSaveToRawFile  (const std::tstring_t &csFilePath);       //csFilePath - raw msg
 
     private:
         std::tstring_t _m_csRawMessage;

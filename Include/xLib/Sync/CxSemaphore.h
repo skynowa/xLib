@@ -24,22 +24,22 @@ class CxSemaphore :
     /// semaphore
 {
     public:
-                        CxSemaphore();
-        virtual        ~CxSemaphore();
+                              CxSemaphore();
+        virtual              ~CxSemaphore();
 
-        HANDLE          hGetHandle () const;
-        bool            bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const long_t cliInitialCount, const long_t cliMaxCount, const std::tstring_t &csName);
-        bool            bOpen      (const ulong_t culAccess, const bool cbInheritHandle, const std::tstring_t &csName) ;
-        bool            bRelease   (const long_t cliReleaseCount/* = 1*/, long_t *pliOldCount/* = NULL*/) const;
-        bool            bWait      (const ulong_t culTimeout) const;
+        HANDLE                hGetHandle () const;
+        bool                  bCreate    (const PSECURITY_ATTRIBUTES pcsaAttributes, const long_t cliInitialCount, const long_t cliMaxCount, const std::tstring_t &csName);
+        bool                  bOpen      (const ulong_t culAccess, const bool cbInheritHandle, const std::tstring_t &csName) ;
+        bool                  bRelease   (const long_t cliReleaseCount/* = 1*/, long_t *pliOldCount/* = NULL*/) const;
+        bool                  bWait      (const ulong_t culTimeout) const;
 
-        long_t            liGetValue () const;
-        bool            bReset     (const long_t cliInitialCount, const long_t cliMaxCount);
+        long_t                liGetValue () const;
+        bool                  bReset     (const long_t cliInitialCount, const long_t cliMaxCount);
 
     private:
         CxHandle              _m_hSemaphore;
         LPSECURITY_ATTRIBUTES _m_psaAttributes;
-        std::tstring_t          _m_sName;
+        std::tstring_t        _m_sName;
 };
 
 xNAMESPACE_END(NxLib)

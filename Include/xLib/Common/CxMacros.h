@@ -15,7 +15,7 @@
 #endif
 
 
-#if !xCOMPILER_MS && !xCOMPILER_CODEGEAR
+#if xCOM
     #define __forceinline  inline
 #endif
     ///< inline

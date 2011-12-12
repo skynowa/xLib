@@ -52,19 +52,19 @@ class CxSystemInfo :
             oa64bit
         };
 
-        static EOsType      osGetOS           ();
+        static EOsType        osGetOS           ();
             ///< get information about the current OS
         static std::tstring_t sFormatOsType     (const EOsType otOsType);
             ///< format OS type
 
-        static EOsArch      oaGetOsArch       ();
+        static EOsArch        oaGetOsArch       ();
             ///< get OS architecture
         static std::tstring_t sFormatOsArch     (const EOsArch oaOsArch);
             ///< format get OS architecture
 
         static std::tstring_t sGetComputerName  ();
             ///< get the NetBIOS name of the local computer
-        static bool         bIsUserAnAdmin    ();
+        static bool           bIsUserAnAdmin    ();
             ///< is current user an admin
         static std::tstring_t sGetUserName      ();
             ///< get the name of the user associated with the current thread
@@ -76,9 +76,9 @@ class CxSystemInfo :
             ///< get the CPU speed in MHz
 
    private:
-                            CxSystemInfo      ();
+                              CxSystemInfo      ();
             ///< constructor
-        virtual            ~CxSystemInfo      ();
+        virtual              ~CxSystemInfo      ();
             ///< destructor
 };
 

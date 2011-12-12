@@ -16,21 +16,21 @@ class CxStdError :
     /// standard C library last error
 {
     public:
-        static int          iGet      ();
+        static int            iGet      ();
             ///< get the calling thread's last-error code value
         static std::tstring_t sGet      ();
             ///< get as string
-        static bool         bSet      (const int ciCode);
+        static bool           bSet      (const int ciCode);
             ///< set the last error code for the calling thread
-        static bool         bReset    ();
+        static bool           bReset    ();
             ///< set last error code to 0
         static std::tstring_t sFormat   (const int ciCode);
             ///< get last error as string
 
     private:
-                            CxStdError();
+                              CxStdError();
             ///< constructor
-        virtual            ~CxStdError();
+        virtual              ~CxStdError();
             ///< destructor
 };
 

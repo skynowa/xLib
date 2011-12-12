@@ -173,12 +173,12 @@ class CxSocket :
             SOCKET_BUFF_SIZE = 32768    ///< 32 KB
         };
 
-                     CxSocket       ();
+                       CxSocket       ();
             ///< constructor
-        virtual     ~CxSocket       () = 0;
+        virtual       ~CxSocket       () = 0;
             ///< destructor
 
-        bool         bAssign        (SOCKET scktSocket);
+        bool           bAssign        (SOCKET scktSocket);
             ///< assign to another socket
 
         /****************************************************************************
@@ -186,9 +186,9 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        CxSocket &   operator =     (SOCKET s);
+        CxSocket &     operator =     (SOCKET s);
             ///< operator =
-                     operator SOCKET();
+                       operator SOCKET();
             ///< operator SOCKET
 
 
@@ -197,13 +197,13 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        bool         bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
+        bool           bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
             ///< creates a socket that is bound to a specific transport service provider
-        SOCKET       iGetSocket     () const;
+        SOCKET         iGetSocket     () const;
             ///< get socket
-        bool         bIsValid       () const;
+        bool           bIsValid       () const;
             ///< checking for validness
-        bool         bClose         ();
+        bool           bClose         ();
             ///< close
 
 
@@ -214,21 +214,21 @@ class CxSocket :
 
         //void *, std::tstring_t, std::ustring_t
 
-        int          iSend          (const tchar_t *pcszBuff, int iBuffSize, int iFlags);
+        int            iSend          (const tchar_t *pcszBuff, int iBuffSize, int iFlags);
             ///< send data
-        bool         bSendAll       (const std::tstring_t &csBuff, int iFlags);
+        bool           bSendAll       (const std::tstring_t &csBuff, int iFlags);
             ///< send data by blocks
 
-        int          iRecv          (tchar_t *pszBuff,  int iBuffSize, int iFlags);
+        int            iRecv          (tchar_t *pszBuff,  int iBuffSize, int iFlags);
             ///< recieve data
         std::tstring_t sRecvAll       (int iFlags);
             ///< recieve data
         std::tstring_t sRecvAll       (int iFlags, const std::tstring_t &csDelimiter);
             ///< recive data to delimiter, includs it
 
-        int          iSendBytes     (char *pszBuff, int iMessageLength);
+        int            iSendBytes     (char *pszBuff, int iMessageLength);
             ///< send bytes
-        int          iReceiveBytes  (char *pszBuff, int iStillToReceive);
+        int            iReceiveBytes  (char *pszBuff, int iStillToReceive);
             ///< recieve bytes
 
 
@@ -237,9 +237,9 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        bool         bGetPeerName   (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
+        bool           bGetPeerName   (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
             ///< get address of the peer to which a socket is connected
-        bool         bGetSocketName (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
+        bool           bGetSocketName (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
             ///< get local name for a socket
 
         /****************************************************************************
@@ -248,13 +248,13 @@ class CxSocket :
         *****************************************************************************/
 
         ////getsockopt
-        static int   iSelect        (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
+        static int     iSelect        (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
             ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
-        static int   iGetLastError  ();
+        static int     iGetLastError  ();
             ///< get error status for the last operation that failed
 
     protected:
-        SOCKET       _m_puiSocket;    ///< handle to socket
+        SOCKET         _m_puiSocket;    ///< handle to socket
         short_t        _m_siFamily;   ///< family
         std::tstring_t _m_sIp;        ///< IP
         ushort_t       _m_usPort;     ///< port
