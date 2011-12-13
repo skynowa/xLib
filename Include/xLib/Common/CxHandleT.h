@@ -17,10 +17,11 @@
 xNAMESPACE_ANONYM_BEGIN
 
 #if xOS_ENV_WIN
-    typedef HANDLE TxHandle; ///< handle
+    typedef HANDLE TxHandle;
 #elif xOS_ENV_UNIX
-    typedef pid_t  TxHandle; ///< handle
+    typedef pid_t  TxHandle;
 #endif
+    ///< native handle
 
 enum EHandleValue {
     hvNull,
@@ -28,18 +29,22 @@ enum EHandleValue {
 };
 
 template<EHandleValue hvTag>
-struct CxHandleFailValue;
+struct CxHandleError;
 
 template<>
-struct CxHandleFailValue<hvNull> {
-    static TxHandle get () { return NULL; }
+struct CxHandleError<hvNull> {
+    #if defined(xOS_ENV_WIN)
+        static TxHandle get () { return NULL; }
+    #elif defined(xOS_ENV_UNIX)
+        // n/a
+    #endif
 };
 
 template<>
-struct CxHandleFailValue<hvInvalid> {
-    static TxHandle get () { 
+struct CxHandleError<hvInvalid> {
+    static TxHandle get () {
     #if defined(xOS_ENV_WIN)
-        return INVALID_HANDLE_VALUE; 
+        return INVALID_HANDLE_VALUE;
     #elif defined(xOS_ENV_UNIX)
         return - 1;
     #endif
@@ -82,9 +87,13 @@ class CxHandleT
             ///< attach
         TxHandle    hDetach                 ();
             ///< detach
+        TxHandle    hDuplicate              (const TxHandle chTargetProcess, const ulong_t cluDesiredAccess, const bool cbInheritHandle/* = false*/, const ulong_t cluOptions/* = 0*/) const;
+            ///< duplicates an object handle
         bool        bClose                  ();
             ///< close
 
+
+    #if defined(xOS_ENV_WIN)
         ulong_t     ulGetInformation        () const;
             ///< get certain properties of an object handle
         bool        bSetInformation         (const ulong_t culMask, const ulong_t culFlags);
@@ -97,15 +106,15 @@ class CxHandleT
             ///< set flaginherit
         bool        bSetFlagProtectFromClose(const bool cbFlagProtectFromClose);
             ///< set flag protect from close
-        TxHandle    hDuplicate              (const TxHandle chTargetProcess, const ulong_t cluDesiredAccess, const bool cbInheritHandle/* = false*/, const ulong_t cluOptions/* = 0*/) const;
-            ///< duplicates an object handle
+    #endif
+
 
         //static
         static bool bIsValid                (const TxHandle chHandle);
             ///< is valid
 
     private:
-        typedef CxHandleFailValue<hvTag>  TxFailValue;
+        typedef CxHandleError<hvTag>  TxErrorValue;
 
         TxHandle    _m_hHandle;    ///< handle
 };

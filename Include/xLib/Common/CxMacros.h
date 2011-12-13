@@ -57,6 +57,8 @@
     ///< delete array by pointer
 #define xARRAY_SIZE(a)          ( CxMacros::uiCountOf(a) )
     ///< get array size
+#define xARRAY_SIZE2(a)         ( sizeof(a) / sizeof((a)[0]) )
+    ///< get array size
 #define xBUFF_ZERO(Buff)        { std::memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
     ///< zero buffer memory
 #define xSTRUCT_ZERO(Buff)      { std::memset(static_cast<void *>( &(Buff) ),    0, sizeof(Buff)); }
