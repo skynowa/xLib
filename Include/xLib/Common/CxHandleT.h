@@ -87,7 +87,7 @@ class CxHandleT
             ///< attach
         TxHandle    hDetach                 ();
             ///< detach
-        TxHandle    hDuplicate              (const TxHandle chTargetProcess, const ulong_t cluDesiredAccess, const bool cbInheritHandle/* = false*/, const ulong_t cluOptions/* = 0*/) const;
+        TxHandle    hDuplicate              (const TxHandle chTargetProcesss) const;
             ///< duplicates an object handle
         bool        bClose                  ();
             ///< close

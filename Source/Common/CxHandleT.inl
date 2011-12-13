@@ -190,18 +190,29 @@ CxHandleT<hvTag>::hDetach() {
 template<EHandleValue hvTag>
 TxHandle
 CxHandleT<hvTag>::hDuplicate(
-    const TxHandle chTargetProcess,
-    const ulong_t  culDesiredAccess,
-    const bool     cbInheritHandle /* = false*/,
-    const ulong_t  culOptions      /* = 0*/
+    const TxHandle chTargetProcess
 ) const
 {
     /*DEBUG*/xASSERT_RET(true == bIsValid(), TxErrorValue::get());
 
     TxHandle hRes = TxErrorValue::get();
 
+/*
+    BOOL WINAPI DuplicateHandle(
+      __in   HANDLE   hSourceProcessHandle,
+      __in   HANDLE   hSourceHandle,
+      __in   HANDLE   hTargetProcessHandle,
+      __out  LPHANDLE lpTargetHandle,
+      __in   DWORD    dwDesiredAccess,
+      __in   BOOL     bInheritHandle,
+      __in   DWORD    dwOptions
+    );
+
+    _m_hHandle = chHandle.hDuplicate(CxCurrentProcess::hGetHandle(), DUPLICATE_SAME_ACCESS, false, DUPLICATE_SAME_ACCESS);
+*/
+
 #if defined(xOS_ENV_WIN)
-    BOOL blRes = ::DuplicateHandle(CxCurrentProcess::hGetHandle(), _m_hHandle, chTargetProcess, &hRes, culDesiredAccess, cbInheritHandle, culOptions);
+    BOOL blRes = ::DuplicateHandle(CxCurrentProcess::hGetHandle(), _m_hHandle, chTargetProcess, &hRes, DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::get());
 #elif defined(xOS_ENV_UNIX)
     //int iRes dup(int oldfd);

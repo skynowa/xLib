@@ -117,20 +117,24 @@
     //TODO: standard C libraries
 #endif
 
-#if   defined(__GNU_LIBRARY__) || defined(__GLIBC__)
-    #define xSTD_LIBC_GNU 1
-        ///< GNU glibc
-#elif defined(__UCLIBC__)
-    #define xSTD_LIBC_UC  1
-        ///< uClibc
-#elif defined(__CRTL_VER)
-    #define xSTD_LIBC_VMS 1
-        ///< VMS libc
-#elif defined(__LIBREL__) || defined(__TARGET_LIB__)
-    #define xSTD_LIBC_ZOS 1
-        ///< z/OS libc
-#else
-    #error xLib: unsupported standard C library
+#if defined(xOS_ENV_WIN)
+
+#elif defined(xOS_ENV_UNIX)
+    #if   defined(__GNU_LIBRARY__) || defined(__GLIBC__)
+        #define xSTD_LIBC_GNU 1
+            ///< GNU glibc
+    #elif defined(__UCLIBC__)
+        #define xSTD_LIBC_UC  1
+            ///< uClibc
+    #elif defined(__CRTL_VER)
+        #define xSTD_LIBC_VMS 1
+            ///< VMS libc
+    #elif defined(__LIBREL__) || defined(__TARGET_LIB__)
+        #define xSTD_LIBC_ZOS 1
+            ///< z/OS libc
+    #else
+        #error xLib: unsupported standard C library
+    #endif
 #endif
 
 //--------------------------------------------------
@@ -142,20 +146,24 @@
 
 //--------------------------------------------------
 // standard C++ libraries
-#if   defined(__CPPLIB_VER)
-    #define XSTD_LIBCPP_DINKUMWARE 1
-        ///< Dinkumware
-#elif defined(__GLIBCPP__) || defined(__GLIBCXX__)
-    #define xSTD_LIBCPP_GNUSTDCPP  1
-        ///< GNU libstdc++
-#elif defined(__INTEL_CXXLIB_ICC)
-    #define xSTD_LIBCPP_INTEL      1
-        ///< Intel C++ Run-Time Libraries
-#elif defined(_LIBCPP_VERSION) || defined(_LIBCPP_ABI_VERSION)
-    #define XSTD_LIBCPP_LIBCPP     1
-        ///< libc++
-#else
-    #error xLib: unsupported standard C++ library
+#if defined(xOS_ENV_WIN)
+
+#elif defined(xOS_ENV_UNIX)
+    #if   defined(__CPPLIB_VER)
+        #define XSTD_LIBCPP_DINKUMWARE 1
+            ///< Dinkumware
+    #elif defined(__GLIBCPP__) || defined(__GLIBCXX__)
+        #define xSTD_LIBCPP_GNUSTDCPP  1
+            ///< GNU libstdc++
+    #elif defined(__INTEL_CXXLIB_ICC)
+        #define xSTD_LIBCPP_INTEL      1
+            ///< Intel C++ Run-Time Libraries
+    #elif defined(_LIBCPP_VERSION) || defined(_LIBCPP_ABI_VERSION)
+        #define XSTD_LIBCPP_LIBCPP     1
+            ///< libc++
+    #else
+        #error xLib: unsupported standard C++ library
+    #endif
 #endif
 
 //--------------------------------------------------
