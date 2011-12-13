@@ -9,14 +9,6 @@
 //----------------------------------------------------------------------------------------------------
 #include <stdlib.h>         // compilres
 #include <limits.h>         // standard C libraries
-
-#if defined(xOS_ENV_WIN)
-
-#elif defined(xOS_ENV_UNIX)
-    #include <features.h>       // standard C libraries
-    #include <bits/c++config.h> // standard C++ libraries
-#endif
-
 //----------------------------------------------------------------------------------------------------
 // xLib info
 #define xLIB_VERSION xT("1.0.000")
@@ -118,6 +110,13 @@
 
 //--------------------------------------------------
 // standard C libraries
+#if defined(xOS_ENV_UNIX)
+    #include <features.h>       // standard C libraries
+    #include <bits/c++config.h> // standard C++ libraries
+#else
+    //TODO: standard C libraries
+#endif
+
 #if   defined(__GNU_LIBRARY__) || defined(__GLIBC__)
     #define xSTD_LIBC_GNU 1
         ///< GNU glibc
@@ -131,7 +130,7 @@
     #define xSTD_LIBC_ZOS 1
         ///< z/OS libc
 #else
-    /////#error xLib: unsupported standard C library
+    #error xLib: unsupported standard C library
 #endif
 
 //--------------------------------------------------
@@ -156,7 +155,7 @@
     #define XSTD_LIBCPP_LIBCPP     1
         ///< libc++
 #else
-    ///////#error xLib: unsupported standard C++ library
+    #error xLib: unsupported standard C++ library
 #endif
 
 //--------------------------------------------------
