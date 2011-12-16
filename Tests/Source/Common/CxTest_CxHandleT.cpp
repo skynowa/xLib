@@ -183,20 +183,6 @@ CxTest_CxHandleT::bUnit(
         #endif
     }
 
-    //-------------------------------------
-    //bIsValid
-    {
-        m_bRes = CxHandleT<hvNull>::bIsValid(CxCurrentProcess::hGetHandle());
-        xTEST_EQ(true, m_bRes);
-    }
-
-    //-------------------------------------
-    //bIsValid
-    {
-        m_bRes = CxHandleT<hvInvalid>::bIsValid(CxCurrentProcess::hGetHandle());
-        xTEST_EQ(false, m_bRes);
-    }
-
     //detach handle
     m_bRes = objHandle.bSet(NULL);
     xTEST_EQ(true, m_bRes);

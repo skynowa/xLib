@@ -386,7 +386,7 @@ CxMySQLRecordset::bFetchRow(
 
     //field lengths
     bRes = _bFetchLengths(&pulFieldLengths);
-    xASSERT(false != bRes);
+    xASSERT(true == bRes);
     xASSERT(NULL  != pulFieldLengths);
 
     //push to std::vector

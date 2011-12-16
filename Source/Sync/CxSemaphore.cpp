@@ -129,7 +129,7 @@ CxSemaphore::liGetValue() const {
     bool bRes  = false;
 
     bRes = bRelease(0, &liRes);
-    /*DEBUG*/xASSERT_RET(false != bRes, - 1);
+    /*DEBUG*/xASSERT_RET(true == bRes, - 1);
 
     return liRes;
 }
@@ -155,10 +155,10 @@ CxSemaphore::bReset(
     */
 
     bRes = _m_hSemaphore.bClose();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     bRes = bCreate(_m_psaAttributes, cliInitialCount, cliMaxCount, _m_sName);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }

@@ -75,7 +75,7 @@ CxFileLog::bWrite(
     bool bRes = false;
 
     bRes = _bDeleteIfFull();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //time
@@ -100,7 +100,7 @@ CxFileLog::bWrite(
     CxFile sfFile;
 
     bRes = sfFile.bCreate(sGetFilePath(), CxFile::omAppend, false);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     int iRes = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
     /*DEBUG*/xASSERT_RET(iRes != CxFile::etError, false);
@@ -117,7 +117,7 @@ CxFileLog::bClear() {
     #endif
 
     bRes = CxFile::bClear(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -131,7 +131,7 @@ CxFileLog::bDelete() {
     #endif
 
     bRes = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -162,7 +162,7 @@ CxFileLog::_bDeleteIfFull() {
     xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, true);
 
     bRes = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }

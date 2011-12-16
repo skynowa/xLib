@@ -27,7 +27,7 @@ CxIni::CxIni() :
     /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(), return);
 
     bool bRes = bSetPath(CxPath::sSetExt( CxPath::sGetExe(), xT("ini") ));
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //-------------------------------------------------------------------------
 CxIni::CxIni(
@@ -39,7 +39,7 @@ CxIni::CxIni(
     /*DEBUG*/xASSERT_DO(false == csFilePath.empty(),   return);
 
     bool bRes = bSetPath(csFilePath);
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //-------------------------------------------------------------------------
 /*virtual*/
@@ -58,13 +58,13 @@ CxIni::bCreateDefault(
 
     //�������� �����
     bool bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //�������� �����
     CxFile sfFile;
 
     bRes = sfFile.bCreate(_m_sFilePath, CxFile::omCreateReadWrite, true);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     int iRes = sfFile.iWrite(csContent.c_str());
     /*DEBUG*/xASSERT_RET(CxFile::etError != iRes, false);
@@ -92,7 +92,7 @@ CxIni::bSetPath(
     _m_sFilePath = csFilePath;
 
     bool bRes = CxDir::bCreateForce(CxPath::sGetDir(_m_sFilePath));
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -116,11 +116,11 @@ CxIni::bClear() {
     std::vector<std::tstring_t> vsNames;
 
     bool bRes = bSectionsReadNames(&vsNames);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     for (std::size_t i = 0; i < vsNames.size(); ++ i) {
         bRes = bSectionDelete(vsNames.at(i));
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     return true;
@@ -147,7 +147,7 @@ CxIni::bKeyIsExists(
     std::map<std::tstring_t, std::tstring_t> msContent;
 
     bool bRes = bSectionRead(csSection, &msContent);
-    xASSERT(false != bRes);
+    xASSERT(true == bRes);
 
     if (msContent.end() == msContent.find(csKey)) {
         return false;
@@ -464,7 +464,7 @@ CxIni::bSectionRead(
 
     if (std::tstring_t::npos != sBuff.find(CxConst::xNL)) {
         bool bRes = CxString::bSplit(sBuff, CxConst::xNL, &vsContent);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     } else {
         vsContent.push_back(sBuff);
     }
@@ -483,7 +483,7 @@ CxIni::bSectionRead(
 
     for (std::vector<std::tstring_t>::const_iterator it = vsContent.begin(); it != vsContent.end(); ++ it) {
         bool bRes = CxString::bSplit(*it, xT("="), &vsKeyValue);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         itRet = (*pmsContent).insert( std::pair<std::tstring_t, std::tstring_t>(vsKeyValue.at(0), vsKeyValue.at(1)) );
         /*DEBUG*/xASSERT_RET(false != itRet.second, false);        //element 'z' already existed
@@ -566,7 +566,7 @@ CxIni::bSectionsReadNames(
     /*DEBUG*/
 
     bool bRes = CxString::bSplit(sBuff, CxConst::xNL, pvsNames);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }

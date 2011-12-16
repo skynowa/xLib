@@ -217,14 +217,14 @@ CxObject::bGetData(
     CxSession objSession(objPkcs11);
 
     bRes = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
     bRes = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //CxObject
@@ -254,7 +254,7 @@ CxObject::bGetData(
 
     //Get data issuer, subject, and value attributes
     bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     ulong_t  ulValueLen = atrTamplate[0].ulValueLen;
     uchar_t *pucValue      = new uchar_t[ulValueLen];
@@ -264,7 +264,7 @@ CxObject::bGetData(
         atrTamplate[0].pValue = pucValue;
 
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         std::ustring_t usValue = std::ustring_t(pucValue, ulValueLen);
 
@@ -356,7 +356,7 @@ CxObject::bGetData(
 
         //Get data issuer, subject, and value attributes
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         std::ustring_t usLabel;
         std::ustring_t usValue;
@@ -372,7 +372,7 @@ CxObject::bGetData(
         }
 
         bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-        xASSERT_RET(false != bRes, false);
+        xASSERT_RET(true == bRes, false);
 
         //���������
         pusDataLabel->push_back(usLabel);
@@ -413,14 +413,14 @@ CxObject::bSetData(
     CxSession objSession(objPkcs11);
 
     bRes = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, NULL_PTR, 0);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
     bRes = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //CxObject
@@ -451,7 +451,7 @@ CxObject::bSetData(
         };
 
         bRes = objData.bSetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
     else {
         //-------------------------------------
@@ -472,18 +472,18 @@ CxObject::bSetData(
         };
 
         bRes = objData.bCreate(atrTamplate, xARRAY_SIZE(atrTamplate));
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     //-------------------------------------
     //
     bRes = objLogin.bLogout();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //
     bRes = objSession.bClose();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }

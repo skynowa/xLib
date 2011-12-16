@@ -157,10 +157,10 @@ CxDecrypt::bMakeFile(
         CxFile sfFileRaw;
 
         bRes = sfFileRaw.bCreate(csInFilePath, CxFile::omBinRead, true);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         bRes = sfFileRaw.bRead(&usEncryptedData);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     //-------------------------------------
@@ -201,10 +201,10 @@ CxDecrypt::bMakeFile(
         CxFile sfFileDecrypt;
 
         bRes = sfFileDecrypt.bCreate(csOutFilePath, CxFile::omBinWrite, true);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         bRes = sfFileDecrypt.bWrite(usDecryptedData);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     return true;

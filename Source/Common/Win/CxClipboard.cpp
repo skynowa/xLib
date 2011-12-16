@@ -95,14 +95,14 @@ CxClipboard::bGetText(
     /*DEBUG*/xASSERT_RET(NULL != psText, false);
 
     bool bRes = bOpen();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
 #if xUNICODE
     bRes = bGetData(fmUnicodeText);
 #else
     bRes = bGetData(fmText);
 #endif
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     LPVOID pvData = ::GlobalLock(_m_hObject);
     /*DEBUG*/xASSERT_RET(NULL != pvData, false);
@@ -119,7 +119,7 @@ CxClipboard::bGetText(
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     bRes = bClose();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -132,13 +132,13 @@ CxClipboard::bSetText(
     /*DEBUG*/
 
     bool bRes = bClear();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     bRes = bOpen();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     ////bRes = ::EmptyClipboard();
-    /////*DEBUG*/xASSERT_RET(false != bRes, false);
+    /////*DEBUG*/xASSERT_RET(true == bRes, false);
 
     const SIZE_T cuiBytes = (csText.size() + 1 ) * sizeof(std::tstring_t::value_type);    //'\0'
 
@@ -159,10 +159,10 @@ CxClipboard::bSetText(
 #else
     bRes = bSetData(fmText,        _m_hObject);
 #endif
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     bRes = bClose();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -172,13 +172,13 @@ CxClipboard::bClear() {
     /*DEBUG*///
 
     bool bRes = bOpen();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     BOOL blRes = ::EmptyClipboard();
     /*DEBUG*/xASSERT(FALSE != blRes);
 
     bRes = bClose();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }

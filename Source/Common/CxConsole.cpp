@@ -151,7 +151,7 @@ CxConsole::bWriteLine(
 #endif
 
     bool bRes = bWrite(csStr + CxConst::xNL);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -168,10 +168,10 @@ CxConsole::bWriteErrLine(
 #endif
 
     bool bRes = bWriteLine(xT("Error: ") + csStr);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     bRes = bPause();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -225,7 +225,7 @@ CxConsole::bPrompt(
 
     while (true) {
         bool bRes = bWrite(csPrompt + xT(": "));
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         while (true) {
             const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );   std::tcin.ignore();
@@ -243,7 +243,7 @@ CxConsole::bPrompt(
         }
 
         bRes = bWriteLine(CxConst::xSTR_EMPTY);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         xCHECK_DO(true == (*psAnswer).empty(), continue);
 
@@ -273,7 +273,7 @@ CxConsole::bPause() {
 #endif
 
     bool bRes = bWrite(xT("Press [ENTER] to continue..."));
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     std::cin.clear();
     std::cin.ignore();
@@ -316,7 +316,7 @@ CxConsole::bClear() {
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 #elif xOS_ENV_UNIX
     bool bRes = bWriteLine(CxConst::xFF);
-    /*DEBUG*/xASSERT_RET(false != bRes,  false);
+    /*DEBUG*/xASSERT_RET(true == bRes,  false);
 #endif
 
     return true;
@@ -394,7 +394,7 @@ CxConsole::bSetTitle(
     //TODO: bSetTitle
 
     bool bRes = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), csTitle.c_str(), xT('\007')) );
-    /*DEBUG*/xASSERT_RET(false != bRes,  false);
+    /*DEBUG*/xASSERT_RET(true == bRes,  false);
 #endif
 
     return true;
@@ -423,7 +423,7 @@ CxConsole::bSetFullScreen() {
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 
     bool bRes = bCenterWindow();
-    /*DEBUG*/xASSERT_RET(false != bRes,  false);
+    /*DEBUG*/xASSERT_RET(true == bRes,  false);
 #elif xOS_ENV_UNIX
     //TODO: bSetFullScreen
     bool bRes = false;
@@ -493,7 +493,7 @@ CxConsole::_hGetWndHandle() {
 
     //Change current window title.
     bRes = bSetTitle(sNewWndTitle);
-    /*DEBUG*/xASSERT_RET(false != bRes, NULL);
+    /*DEBUG*/xASSERT_RET(true == bRes, NULL);
 
     //Ensure window title has been updated.
     CxCurrentThread::bSleep(50UL);
@@ -504,7 +504,7 @@ CxConsole::_hGetWndHandle() {
 
     //Restore original window title.
     bRes = bSetTitle(sOldWndTitle);
-    /*DEBUG*/xASSERT_RET(false != bRes, NULL);
+    /*DEBUG*/xASSERT_RET(true == bRes, NULL);
 
     return hRes;
 }

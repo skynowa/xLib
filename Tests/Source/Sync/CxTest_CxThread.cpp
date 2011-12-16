@@ -49,9 +49,9 @@ CWorkThread::uiOnRun(
         //interrupt point
         bRes = bIsTimeToExit();
         #if xTEST_IGNORE
-            xCHECK_DO(false != bRes, xTRACE(xT("\tCWorkThread: break")));
+            xCHECK_DO(true == bRes, xTRACE(xT("\tCWorkThread: break")));
         #endif
-        xCHECK_DO(false != bRes, break);
+        xCHECK_DO(true == bRes, break);
 
         //jobs
         {

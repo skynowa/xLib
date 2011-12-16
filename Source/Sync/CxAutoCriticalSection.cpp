@@ -26,7 +26,7 @@ CxAutoCriticalSection::CxAutoCriticalSection(
 
     if (false == cbIsUseTry) {
         bRes = _m_csCS.bLock();
-        /*DEBUG*/xASSERT_DO(false != bRes, return);
+        /*DEBUG*/xASSERT_DO(true == bRes, return);
     } else {
         bRes = _m_csCS.bTryLock();
         /*DEBUG*/// n/a
@@ -38,7 +38,7 @@ CxAutoCriticalSection::CxAutoCriticalSection(
 CxAutoCriticalSection::~CxAutoCriticalSection() {
     if (false != _m_bIsLocked) {
         bool bRes = _m_csCS.bUnlock();
-        /*DEBUG*/xASSERT_DO(false != bRes, return);
+        /*DEBUG*/xASSERT_DO(true == bRes, return);
     }
 
     _m_bIsLocked = false;

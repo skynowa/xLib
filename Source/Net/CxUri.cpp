@@ -43,7 +43,7 @@ CxUri::CxUri(const std::string &csUri) :
     bool bRes = false;
 
     bRes = _bParse(csUri);
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxUri
@@ -461,7 +461,7 @@ CxUri::_bParse(const std::string &csUri) {
     //Normilize();
 
     bRes = bClear();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //[scheme] - [foo]

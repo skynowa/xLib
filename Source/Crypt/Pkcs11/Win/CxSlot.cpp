@@ -103,7 +103,7 @@ CxSlot::nfWaitForEvent(
     CK_SLOT_INFO siInfo = {{0}};
 
     bool bRes = bGetInfo(*pSlot, &siInfo);
-    /*DEBUG*/xASSERT_RET(false != bRes, nfError);
+    /*DEBUG*/xASSERT_RET(true == bRes, nfError);
 
     xCHECK_RET(siInfo.flags & CKF_TOKEN_PRESENT, nfInsertion);
 

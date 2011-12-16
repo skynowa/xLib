@@ -57,8 +57,8 @@ CxInputBox::mrShowModal(
     wndClass.hCursor       = ::LoadCursor(NULL, IDC_ARROW);
     wndClass.cbWndExtra    = 4;    //4�����
 
-    BOOL bRes = ::RegisterClass(&wndClass);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, CxInputBox::mrCancel);
+    BOOL blRes = ::RegisterClass(&wndClass);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, CxInputBox::mrCancel);
 
     //-------------------------------------
     //_m_hWndMain
@@ -178,10 +178,10 @@ CxInputBox::mrShowModal(
     }
 
     ::DestroyWindow(_m_hWndMain);
-    bRes = ::UnregisterClass(xT("CxInputBox"), hInstance);
-    /*DEBUG*/xASSERT_RET(false != bRes, CxInputBox::mrCancel);
+    blRes = ::UnregisterClass(xT("CxInputBox"), hInstance);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, CxInputBox::mrCancel);
 
-    return static_cast<EModalResult>(msgMsg.wParam);
+    return static_cast<EModalResult>( msgMsg.wParam );
 }
 //---------------------------------------------------------------------------
 std::tstring_t

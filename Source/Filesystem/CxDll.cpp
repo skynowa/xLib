@@ -47,7 +47,7 @@ CxDll::bLoad(
     /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), false);
 
     bool bRes = bFree();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
 #if xOS_ENV_WIN
     _m_hDLL = ::LoadLibrary(csDllPath.c_str());

@@ -20,7 +20,7 @@ CxTcpClient::CxTcpClient() :
     _m_tvTimeout()
 {
     bool bRes = bSetTimeout(0, SOCKET_TIMEOUT);
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
 CxTcpClient::~CxTcpClient() {
@@ -109,7 +109,7 @@ CxTcpClient::bSetNonBlockingMode(
     ulong_t ulNonBlockingMode = static_cast<ulong_t>(cbFlag);
 
     bool bRes = bIoctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     /*
     int bOptVal = true;
@@ -194,7 +194,7 @@ CxTcpClient::bIsServerAlive(
     //-------------------------------------
     //bCreate
     bRes = objSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //bConnect
