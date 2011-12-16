@@ -132,7 +132,7 @@ CxFileAttribute::bModify(
 
     //change the attributes
     bool bRes = bSet(csFilePath, cfaValue);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }

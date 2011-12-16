@@ -62,7 +62,7 @@ CxCrc32::ulCalcFile(
     std::ustring_t usFile;
 
     bool bRes = CxFile::bBinRead(csFilePath, &usFile);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     if (true == usFile.empty()) {
         ulRes = 0;
@@ -189,7 +189,7 @@ CxCrc32::ulCalcFileFast(
     std::ustring_t usFile;
 
     bool bRes = CxFile::bBinRead(csFilePath, &usFile);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     if (true == usFile.empty()) {
         ulRes = 0;

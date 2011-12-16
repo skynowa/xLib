@@ -26,10 +26,10 @@ CxAutoMutex::CxAutoMutex(
     bool bRes = false;
 
     bRes = _m_mtMutex.bCreate(NULL, false, xT(""));
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 
     bRes = _m_mtMutex.bWait(INFINITE);
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxAutoMutex ()
@@ -37,7 +37,7 @@ CxAutoMutex::~CxAutoMutex() {
     bool bRes = false;
 
     bRes = _m_mtMutex.bRelease();
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
 

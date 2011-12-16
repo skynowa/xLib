@@ -105,7 +105,7 @@ CxShell::bExecuteHttp(
     xCHECK_RET(true == sUrl.empty(), false);
 
     bool bRes = bExecute(NULL, opOpen, xT("IEXPLORE.EXE"), sUrl, xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -123,7 +123,7 @@ CxShell::bExecuteFtp(
     xCHECK_RET(true == sUrl.empty(), false);
 
     bool bRes = bExecute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + sUrl, xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -160,7 +160,7 @@ CxShell::bExecuteEmail(
     //iMsgBox(sCmd);
 
     bool bRes = bExecute(NULL, opOpen, sCmd, xT(""), xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }

@@ -63,7 +63,7 @@ CxBlowfish::bSetKey(
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= cusKey.size(),  false);
 
     bool bRes = bSetKey(const_cast<uchar_t *>( cusKey.data() ), cusKey.size());
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -77,7 +77,7 @@ CxBlowfish::bSetKey(
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= csKey.size() * sizeof(std::tstring_t::value_type), false);
 
     bool bRes = bSetKey(std::ustring_t(csKey.begin(), csKey.end()));
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -94,7 +94,7 @@ CxBlowfish::bSetFileKey(
     CxFile       sfFile;
 
     bool bRes = sfFile.bCreate(csFilePath, CxFile::omBinRead, true);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     long_t liFileSize = sfFile.liGetSize();
     /*DEBUG*/xASSERT_RET(0L           <  liFileSize, false);
@@ -106,7 +106,7 @@ CxBlowfish::bSetFileKey(
     /*DEBUG*/xASSERT_RET(usFile.size() == uiRes, false);
 
     bRes = bSetKey(usFile);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     /*SECURE*/usFile.clear();
 
@@ -163,7 +163,7 @@ CxBlowfish::bEncryptCfb64(
     (*pusOut).resize( cusIn.size() );
 
     bool bRes = bEncryptCfb64(const_cast<uchar_t *>( &cusIn.at(0) ), &(*pusOut).at(0), cusIn.size(), &iNum, cmMode);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
     /*DEBUG*/xASSERT_RET(- 1   <  iNum, false);
 
     return true;
@@ -187,23 +187,23 @@ CxBlowfish::bEncryptFileCfb64(
         CxFile sfFileIn;
 
         bRes = sfFileIn.bCreate(csFilePathIn, CxFile::omBinRead, true);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         bRes = sfFileIn.bRead(&usIn);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     bRes = bEncryptCfb64(usIn, &usOut, cmMode);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     {
         CxFile sfFileOut;
 
         bRes = sfFileOut.bCreate(csFilePathOut, CxFile::omBinCreateReadWrite, true);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         bRes = sfFileOut.bWrite(usOut);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     return true;
@@ -246,10 +246,10 @@ CxBlowfish::bEncryptFileCfb64(
     CxFile sfFileOut;
 
     bool bRes = sfFileIn.bCreate(csFilePathIn,   CxFile::omBinRead, true);
-    /*DEBUF*/xASSERT_RET(false != bRes, false);
+    /*DEBUF*/xASSERT_RET(true == bRes, false);
 
     bRes = sfFileOut.bCreate(csFilePathOut, CxFile::omBinWrite, true);
-    /*DEBUF*/xASSERT_RET(false != bRes, false);
+    /*DEBUF*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //
@@ -274,7 +274,7 @@ CxBlowfish::bEncryptFileCfb64(
                 usCrc32.resize(cuiCrc32StrSize);
 
                 bRes = sfFileIn.bSetPosition(cusStamp.size(), CxFile::ppBegin);
-                /*DEBUF*/xASSERT_RET(false != bRes, false);
+                /*DEBUF*/xASSERT_RET(true == bRes, false);
 
                 size_t uiReadedSize = sfFileIn.uiRead(&usCrc32.at(0), usCrc32.size());
                 /*DEBUF*/xASSERT_RET(usCrc32.size() == uiReadedSize, false);
@@ -282,7 +282,7 @@ CxBlowfish::bEncryptFileCfb64(
                 usCrc32FromStamp = usCrc32;
 
                 bRes = sfFileIn.bSetPosition(cusStamp.size() + cuiCrc32StrSize, CxFile::ppBegin);
-                /*DEBUF*/xASSERT_RET(false != bRes, false);
+                /*DEBUF*/xASSERT_RET(true == bRes, false);
             }
             break;
 
@@ -307,17 +307,17 @@ CxBlowfish::bEncryptFileCfb64(
         xCHECK_DO(uiInSize <= 0, break);
 
         bRes = bEncryptCfb64(&usIn.at(0), &usOut.at(0), usIn.size(), &iNum, cmCryptMode);
-        /*DEBUF*/xASSERT_RET(false != bRes, false);
+        /*DEBUF*/xASSERT_RET(true == bRes, false);
 
         size_t uiOutSize = sfFileOut.uiWrite(&usOut.at(0), uiInSize);
         /*DEBUF*/xASSERT_RET(uiInSize == uiOutSize, false);
     }
 
     bRes = sfFileIn.bClose();
-    /*DEBUF*/xASSERT_RET(false != bRes, false);
+    /*DEBUF*/xASSERT_RET(true == bRes, false);
 
     bRes = sfFileOut.bClose();
-    /*DEBUF*/xASSERT_RET(false != bRes, false);
+    /*DEBUF*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //
@@ -330,20 +330,20 @@ CxBlowfish::bEncryptFileCfb64(
     //-------------------------------------
     //File.txt.tmp -> File.txt
     bRes = CxFile::bWipe(csFilePathIn, 1);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //
     switch (cmCryptMode) {
         case CxBlowfish::cmEncrypt: {
                 bRes = CxFile::bRename(csFilePathOut, csFilePathIn + CxConst::xDOT + csCryptFileExt);
-                /*DEBUG*/xASSERT_RET(false != bRes, false);
+                /*DEBUG*/xASSERT_RET(true == bRes, false);
             }
             break;
 
         case CxBlowfish::cmDecrypt: {
                 bRes = CxFile::bRename(csFilePathOut, CxPath::sRemoveExtIf(csFilePathIn, csCryptFileExt));
-                /*DEBUG*/xASSERT_RET(false != bRes, false);
+                /*DEBUG*/xASSERT_RET(true == bRes, false);
             }
             break;
 
@@ -383,7 +383,7 @@ CxBlowfish::cmGetFileCryptStatus(
     CxFile sfFile;
 
     bool bRes = sfFile.bCreate(csFilePath, CxFile::omBinRead, true);
-    /*DEBUG*/xASSERT_RET(false != bRes, CxBlowfish::cmUnknown);
+    /*DEBUG*/xASSERT_RET(true == bRes, CxBlowfish::cmUnknown);
 
     usStamp.resize(cusStamp.size());
     /*DEBUG*/xASSERT_RET(usStamp.size() == cusStamp.size(), CxBlowfish::cmUnknown);

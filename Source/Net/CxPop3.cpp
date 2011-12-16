@@ -326,7 +326,7 @@ CxPop3::bRetriveRaw(int iNum, const std::tstring_t &csDirPath, const std::tstrin
     CxFile stdFile;
 
     bRes = stdFile.bCreate(csDirPath + "\\" + csFileName, CxFile::omBinWrite, true);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     size_t uiWriteSize = stdFile.uiWrite(&_m_sRes[0], _m_sRes.size());
     /*DEBUG*///???
@@ -499,7 +499,7 @@ CxPop3::_ulMailsSum(const std::tstring_t &csServerAnswer) {
     std::vector<std::tstring_t> vsRes;
 
     bool bRes = CxString::bSplit(csServerAnswer, " ", &vsRes);
-    /*DEBUG*/xASSERT_RET(false != bRes, 0UL);
+    /*DEBUG*/xASSERT_RET(true == bRes, 0UL);
 
     sSum  = vsRes.at(1);
     ulSum = ::atol(sSum.c_str());        // ul -> l
@@ -518,7 +518,7 @@ CxPop3::_ulMailsSize(const std::tstring_t &csServerAnswer) {
     std::vector<std::tstring_t> vsRes;
 
     bool bRes = CxString::bSplit(csServerAnswer, " ", &vsRes);
-    /*DEBUG*/xASSERT_RET(false != bRes, 0UL);
+    /*DEBUG*/xASSERT_RET(true == bRes, 0UL);
 
     sSize  = vsRes.at(2);
     ulSize = ::atol(sSize.c_str());    // ul+\r\n -> l

@@ -125,10 +125,10 @@ CxEncrypt::bMakeFile(
         CxFile sfFileRaw;
 
         bRes = sfFileRaw.bCreate(csInFilePath, CxFile::omBinRead, true);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         bRes = sfFileRaw.bRead(&usPlainData);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     //-------------------------------------
@@ -170,10 +170,10 @@ CxEncrypt::bMakeFile(
         CxFile sfFileEncrypt;
 
         bRes = sfFileEncrypt.bCreate(csOutFilePath, CxFile::omBinWrite, true);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         bRes = sfFileEncrypt.bWrite(usEncryptedData);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     return true;

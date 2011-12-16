@@ -59,7 +59,7 @@ CxThread::~CxThread() {
         if (false == bRes) {
             bRes = bKill(_ms_culExitTimeout);
             if (false == bRes) {
-                /*DEBUG*/xASSERT_DO(false != bRes, /*nothing*/);
+                /*DEBUG*/xASSERT_DO(true == bRes, /*nothing*/);
             }
         }
     }
@@ -113,7 +113,7 @@ CxThread::bCreate(
     /*DEBUG*/xASSERT_RET(0    <  ulId, false);
 
     bRes = _m_hThread.bSet(hRes);
-    /*DEBUG*/xASSERT_RET(false != bRes,                  false);
+    /*DEBUG*/xASSERT_RET(true == bRes,                  false);
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
     _m_ulId = ulId;
@@ -154,10 +154,10 @@ CxThread::bCreate(
 
         if (false != cbIsPaused) {
             bRes = bPause();
-            /*DEBUG*/xASSERT_RET(false != bRes, false);
+            /*DEBUG*/xASSERT_RET(true == bRes, false);
         } else {
             bRes = bResume();
-            /*DEBUG*/xASSERT_RET(false != bRes, false);
+            /*DEBUG*/xASSERT_RET(true == bRes, false);
         }
 
         /*_m_bIsExited*/// n/a
@@ -166,7 +166,7 @@ CxThread::bCreate(
     //-------------------------------------
     //construction is complete, start job entry
     bRes = _m_pevStarter->bSet();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -180,7 +180,7 @@ CxThread::bResume() {
 #endif
 
     bool bRes = _m_evPause.bSet();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //flags
@@ -201,7 +201,7 @@ CxThread::bPause() {
 #endif
 
     bool bRes = _m_evPause.bReset();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //flags
@@ -222,7 +222,7 @@ CxThread::bExit() {
 #endif
 
     bool bRes = _m_evExit.bSet();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //-------------------------------------
     //flags
@@ -255,21 +255,21 @@ CxThread::bKill(
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
         bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
-        /*DEBUG*/xASSERT_DO(false != bRes, break);
+        /*DEBUG*/xASSERT_DO(true == bRes, break);
     }
 #elif xOS_ENV_UNIX
     int iRes = ::pthread_kill(_m_ulId, SIGALRM);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
     bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
-    /*DEBUG*/xASSERT(false != bRes);
+    /*DEBUG*/xASSERT(true == bRes);
 #endif
 
     //-------------------------------------
     //clean members
 #if xOS_ENV_WIN
     bRes = _m_hThread.bClose();
-    /*DEBUG*/xASSERT(false != bRes);
+    /*DEBUG*/xASSERT(true == bRes);
 #elif xOS_ENV_UNIX
     _m_hThread = 0UL;
 #endif
@@ -495,7 +495,7 @@ CxThread::bMessageWaitQueue(
     vuiMsg.push_back(uiMsg);
 
     bool bRes = bMessageWaitQueue(vuiMsg, NULL, puiParam1, pliParam2);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -993,7 +993,7 @@ CxThread::uiOnRun(
     #if xTEMP_DISABLED
         for ( ; ; ) {
             bool bRes = bIsTimeToExit();
-            xCHECK_DO(false != bRes, break);
+            xCHECK_DO(true == bRes, break);
 
             //...
         }
@@ -1019,12 +1019,12 @@ CxThread::bIsTimeToExit() {
     //-------------------------------------
     //exit
     bRes = bIsExited();
-    xCHECK_RET(false != bRes, true);
+    xCHECK_RET(true == bRes, true);
 
     //-------------------------------------
     //pause / resume
     bRes = bIsPaused();
-    xCHECK_RET(false != bRes, ! _bWaitResumption());
+    xCHECK_RET(true == bRes, ! _bWaitResumption());
 
     //-------------------------------------
     //flags
@@ -1110,7 +1110,7 @@ CxThread::_s_uiJobEntry(
     //clean members (is need to close???)
 #if xOS_ENV_WIN
     bRes = pthThis->_m_hThread.bClose();
-    /*DEBUG*/xASSERT(false != bRes);
+    /*DEBUG*/xASSERT(true == bRes);
 #elif xOS_ENV_UNIX
     //TODO: _m_hThread.bClose()
 #endif

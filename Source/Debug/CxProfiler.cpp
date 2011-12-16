@@ -32,7 +32,7 @@ CxProfiler::CxProfiler(
 CxProfiler::~CxProfiler() {
     if (false == _flLog.sGetFilePath().empty()) {
         bool bRes = _flLog.bWrite(xT("----------------------------------------"));
-        /*DEBUG*/xASSERT_DO(false != bRes, return);
+        /*DEBUG*/xASSERT_DO(true == bRes, return);
     }
 }
 //---------------------------------------------------------------------------
@@ -44,7 +44,7 @@ CxProfiler::bSetLogPath(
     /*DEBUG*/
 
     bool bRes = _flLog.bSetFilePath(csLogPath);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -61,11 +61,11 @@ CxProfiler::bStart() {
     /*DEBUG*/xASSERT_RET(false == _m_bIsStarted, false);
 
     bool bRes = _bResetData();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     #if xTODO
         bRes = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
-        /*DEBUG*/xASSERT(false != bRes);
+        /*DEBUG*/xASSERT(true == bRes);
     #endif
 
     CxCurrentThread::bSleep(10UL);
@@ -221,7 +221,7 @@ CxProfiler::bStop(
     //-------------------------------------
     //write to log
     bool bRes = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRes.c_str());
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     _m_bIsStarted = false;
 
@@ -247,10 +247,10 @@ CxProfiler::bPulse(
     //-------------------------------------
     //stop, start
     bool bRes = bStop(sRes.c_str());
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     bRes = bStart();
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
@@ -267,7 +267,7 @@ bool
 CxProfiler::_bResetData() {
     #if xTODO
         bool bRes = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpNormal);
-        /*DEBUG*/xASSERT(false != bRes);
+        /*DEBUG*/xASSERT(true == bRes);
     #endif
 
     _m_bIsStarted                       = false;

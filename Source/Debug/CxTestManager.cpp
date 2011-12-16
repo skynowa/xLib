@@ -78,7 +78,7 @@ CxTestManager::bRun(
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 
             bool bRes = (*it)->bRun(cullUnitLoops, cullCaseLoops);
-            xASSERT_MSG_RET(false != bRes, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()), false);
+            xASSERT_MSG_RET(true == bRes, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()), false);
 
             //xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("...Ok")));
         }

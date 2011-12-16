@@ -431,7 +431,7 @@ CxVolume::bGetLogicalDrives(
     }
 #elif xOS_ENV_UNIX
     bool bRes = CxDir::bFindDirs(xT("/"), CxConst::xMASK_ALL, false, &vsRes);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //TODO: filter by cdtDriveType
 #endif
@@ -539,7 +539,7 @@ CxVolume::sGetVolumeNameForVolumeMountPoint(
     tchar_t szRes[50 + 1] = {0};
 
     BOOL blRes = ::GetVolumeNameForVolumeMountPoint(CxPath::sSlashAppend(csVolumeMountPoint).c_str(), &szRes[0], xPATH_MAX);
-    /*DEBUG*/////xASSERT_RET(false != bRes, std::tstring_t());
+    /*DEBUG*/////xASSERT_RET(true == bRes, std::tstring_t());
     xCHECK_RET(FALSE == blRes, std::tstring_t());
 
     return std::tstring_t(szRes);
@@ -593,7 +593,7 @@ CxVolume::sGetVolumePathNamesForVolumeName(
 //        bRes        = ::GetVolumePathNamesForVolumeName(csVolumeName.c_str(), &sVolumePathNames[0], culBuffSize, &ulReturnLength);
 //        ulLastError = ::GetLastError();
 //    }
-//    /*DEBUG*/xASSERT_RET(false != bRes && ulLastError != ERROR_MORE_DATA, std::tstring_t());
+//    /*DEBUG*/xASSERT_RET(true == bRes && ulLastError != ERROR_MORE_DATA, std::tstring_t());
 
     return std::tstring_t(sVolumePathNames, ulReturnLength);
 }

@@ -57,7 +57,7 @@ CxPkcs11::_bLoadETPkcs11() {
     /*DEBUG*/
 
     bool bRes = _m_dllETPkcs11.bLoad(xT("eTPkcs11.dll"));
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     CK_C_GetFunctionList pFunctionList = NULL;
 

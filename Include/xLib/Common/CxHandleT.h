@@ -14,8 +14,6 @@
     #include <xLib/Sync/CxCurrentProcess.h>
 #endif
 //---------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
-
 #if xOS_ENV_WIN
     typedef HANDLE TxHandle;
 #elif xOS_ENV_UNIX
@@ -23,7 +21,11 @@ xNAMESPACE_ANONYM_BEGIN
 #endif
     ///< native handle
 
-enum EHandleValue {
+xNAMESPACE_ANONYM_BEGIN
+
+enum EHandleValue 
+    ///< error handle type
+{
     hvNull,
     hvInvalid
 };
@@ -33,16 +35,18 @@ struct CxHandleError;
 
 template<>
 struct CxHandleError<hvNull> {
+    static TxHandle hGet () {
     #if defined(xOS_ENV_WIN)
-        static TxHandle get () { return NULL; }
+        return NULL;
     #elif defined(xOS_ENV_UNIX)
-        // n/a
+        return 0;
     #endif
+    }
 };
 
 template<>
 struct CxHandleError<hvInvalid> {
-    static TxHandle get () {
+    static TxHandle hGet () {
     #if defined(xOS_ENV_WIN)
         return INVALID_HANDLE_VALUE;
     #elif defined(xOS_ENV_UNIX)
@@ -80,6 +84,8 @@ class CxHandleT
             ///< get
         bool        bSet                    (const TxHandle chHandle);
             ///< set
+        TxHandle    hDuplicate              () const;
+            ///< duplicates handle
 
         bool        bIsValid                () const;
             ///< is valid
@@ -87,11 +93,8 @@ class CxHandleT
             ///< attach
         TxHandle    hDetach                 ();
             ///< detach
-        TxHandle    hDuplicate              (const TxHandle chTargetProcesss) const;
-            ///< duplicates an object handle
         bool        bClose                  ();
             ///< close
-
 
     #if defined(xOS_ENV_WIN)
         ulong_t     ulGetInformation        () const;
@@ -107,11 +110,6 @@ class CxHandleT
         bool        bSetFlagProtectFromClose(const bool cbFlagProtectFromClose);
             ///< set flag protect from close
     #endif
-
-
-        //static
-        static bool bIsValid                (const TxHandle chHandle);
-            ///< is valid
 
     private:
         typedef CxHandleError<hvTag>  TxErrorValue;

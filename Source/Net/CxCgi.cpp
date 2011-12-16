@@ -84,7 +84,7 @@ CxCgi::bPageShow(
     std::tstring_t sFileContent;
 
     bRes = CxFile::bTextRead(csFilePath, &sFileContent);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     std::tcout << sFileContent << std::endl;
 
@@ -820,7 +820,7 @@ CxCgiCookies::_bInit() {
     TCookies             vecckCookies;
 
     bRes = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     for (std::vector<std::tstring_t>::const_iterator it = vsRawCookies.begin(); it != vsRawCookies.end(); ++ it) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
@@ -909,7 +909,7 @@ CxCgiFormData::_bInit() {
                 bool bRes = false;
 
                 bRes = CxString::bCompareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.sGetContentType());
-                /*DEBUG*/xASSERT_RET(false != bRes, false);
+                /*DEBUG*/xASSERT_RET(true == bRes, false);
 
                 //get content length
                 size_t uiPostSize = 0;  // in bytes
@@ -929,7 +929,7 @@ CxCgiFormData::_bInit() {
                 std::tstring_t sBuff;
 
                 bRes = sfFile.bAttach(stdin);
-                /*DEBUG*/xASSERT_RET(false != bRes, false);
+                /*DEBUG*/xASSERT_RET(true == bRes, false);
 
                 sBuff.resize(uiPostSize);
 

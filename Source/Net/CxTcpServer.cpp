@@ -85,7 +85,7 @@ CxTcpServer::bAccept(
     //TODO: bAccept
     ////scktAcceptSocket = scktClient;
     bool bRes = (* pscktAcceptSocket).bAssign(scktClient);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //конверт из UNICODE
     std::string asFromIp = ::inet_ntoa(cliaddr.sin_addr);

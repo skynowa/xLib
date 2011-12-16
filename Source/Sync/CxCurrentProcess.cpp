@@ -60,7 +60,7 @@ CxCurrentProcess::ulGetParentId() {
 
     NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pbi, sizeof(pbi), &ulSize);
     bRes = (ntsRes >= 0) && (ulSize == sizeof(pbi));
-    /*DEBUG*/xASSERT_RET(false != bRes, culInvalidId);
+    /*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
 
     ulRes = pbi[5];
 #elif xOS_ENV_UNIX

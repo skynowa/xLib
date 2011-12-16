@@ -33,7 +33,7 @@ CxCookiePv1::CxCookiePv1() :
     bool bRes = false;
 
     bRes = bInit(std::tstring_t());
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
 CxCookiePv1::CxCookiePv1(
@@ -53,7 +53,7 @@ CxCookiePv1::CxCookiePv1(
     bool bRes = false;
 
     bRes = bInit(csRawCookie);
-    /*DEBUG*/xASSERT_DO(false != bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
 /*virtual*/
@@ -329,14 +329,14 @@ CxCookiePv1::bInit(
     std::vector<std::tstring_t> vsPairs;
 
     bRes = CxString::bSplit(sCookie, CxConst::xSEMICOLON, &vsPairs);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     for (size_t i = 0; i < vsPairs.size(); ++ i) {
         //split into name, value (name=value)
         std::vector<std::tstring_t> vsTemp;
 
         bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         std::tstring_t sCookieName  = CxString::sTrimSpace(vsTemp.at(0));
         std::tstring_t sCookieValue = ( (1 == vsTemp.size()) ? std::tstring_t() : vsTemp.at(1) );

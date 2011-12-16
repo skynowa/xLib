@@ -65,7 +65,7 @@ CxTest::bRun(
     try {
         for (ulonglong_t i = 0ULL; i < cullUnitLoops; ++ i) {
             bool bRes = bUnit(cullCaseLoops);
-            /*DEBUG*/xASSERT_MSG_RET(false != bRes, sGetName() + xT(": fail"), false);
+            /*DEBUG*/xASSERT_MSG_RET(true == bRes, sGetName() + xT(": fail"), false);
         }
     }
     catch (const CxException &e) {
@@ -125,7 +125,7 @@ CxTest::bCreateWorkDir(
         _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + csDirName;
 
         bool bRes = CxDir::bCreateForce(_m_sWorkDirPath);
-        /*DEBUG*/xASSERT_RET(false != bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
 
     return true;

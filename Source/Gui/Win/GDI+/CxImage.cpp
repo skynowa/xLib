@@ -130,7 +130,7 @@ CxImage::bSave(
     //Save the altered image.
     CLSID cidClsid = {0};
     bool bRes = _bGetEncoderClsid(sEncoderType, &cidClsid);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     _m_stRes = _m_pimgImage->Save(pisStream, &cidClsid, NULL);
     /*DEBUG*/xASSERT_RET(Gdiplus::Ok == _m_stRes,                      false);

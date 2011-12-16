@@ -54,7 +54,7 @@ CxPath::sGetExe() {
             std::vector<std::tstring_t> vsArgs;
 
             bool bRes = CxCommandLine::bGetArgs(&vsArgs);
-            /*DEBUG*/xASSERT_RET(false != bRes,                      std::tstring_t());
+            /*DEBUG*/xASSERT_RET(true == bRes,                      std::tstring_t());
             /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring_t());
             /*DEBUG*/xASSERT_RET(false == bIsAbsolute(vsArgs.at(0)), std::tstring_t());
 

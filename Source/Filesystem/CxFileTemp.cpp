@@ -54,7 +54,7 @@ CxFileTemp::bCreate(
     FILE *_pfStdFile = NULL;
 
     bool bRes = CxDir::bCreateForce(csDirPath);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath) + csFileNameTemplate;
 
@@ -86,7 +86,7 @@ CxFileTemp::bCreate(
 
     //out
     bRes = (*pfFile).bAttach(_pfStdFile);
-    /*DEBUG*/xASSERT_RET(false != bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     _m_pfFile = pfFile;
 

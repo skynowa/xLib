@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT() :
-    _m_hHandle( TxErrorValue::get() )
+    _m_hHandle( TxErrorValue::hGet() )
 {
     /*DEBUG*/// n/a
 }
@@ -34,13 +34,11 @@ template<EHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT(
     const CxHandleT &chHandle
 ) :
-    _m_hHandle( TxErrorValue::get() )
+    _m_hHandle( TxErrorValue::hGet() )
 {
     /*DEBUG*/
 
-    #if xTODO
-        _m_hHandle = chHandle.hDuplicate(CxCurrentProcess::hGetHandle(), DUPLICATE_SAME_ACCESS, false, DUPLICATE_SAME_ACCESS);
-    #endif
+    _m_hHandle = chHandle.hDuplicate();
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -64,21 +62,15 @@ CxHandleT<hvTag>::operator = (
     const TxHandle chHandle
 )
 {
-    /*DEBUG*/xASSERT_DO(false == bIsValid(), TxErrorValue::get());
+    /*DEBUG*/xASSERT_DO(false == bIsValid(), TxErrorValue::hGet());
     /*DEBUG*///hHandle - n/a
 
     //Try m_Handle.Attach(other.Detach(), if you got an assertion here.
 
-    xCHECK_RET(this->_m_hHandle == &chHandle, *this);
+    xCHECK_RET(_m_hHandle == &chHandle, *this);
 
-    //TODO:
-    bool bRes = bIsValid();
-    if (true == bRes) {
-        bRes = bClose();
-        if (false == bRes) {
-            /*DEBUG*/xASSERT(false);
-        }
-    }
+    bool bRes = bClose();
+    /*DEBUG*/xASSERT_RET(true == bRes, *this);
 
     _m_hHandle = chHandle;
 
@@ -91,25 +83,16 @@ CxHandleT<hvTag>::operator = (
     const CxHandleT &chHandle
 )
 {
-    /*DEBUG*/xASSERT_DO(false == bIsValid(), TxErrorValue::get());
+    /*DEBUG*/xASSERT_DO(false == bIsValid(), TxErrorValue::hGet());
     /*DEBUG*///CxHandleT - n/a
 
     xCHECK_RET(this == &chHandle, *this);
 
-    //TODO:
-    bool bRes = bIsValid();
-    if (true == bRes) {
+    bool bRes = bClose();
+    /*DEBUG*/xASSERT_RET(true == bRes, TxErrorValue::hGet());
 
-        bRes = bClose();
-        if (false == bRes) {
-            /*DEBUG*/xASSERT(false);
-        }
-    }
-
-    #if xTODO
-        _m_hHandle = chHandle.hDuplicate(CxCurrentProcess::hGetHandle(), DUPLICATE_SAME_ACCESS, false, DUPLICATE_SAME_ACCESS);
-        /*DEBUG*/xASSERT_RET(TxErrorValue::get() != _m_hHandle, TxErrorValue::get());
-    #endif
+    _m_hHandle = chHandle.hDuplicate();
+    /*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != _m_hHandle, TxErrorValue::hGet());
 
     return *this;
 }
@@ -143,20 +126,58 @@ CxHandleT<hvTag>::bSet(
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
+TxHandle
+CxHandleT<hvTag>::hDuplicate() const {
+    /*DEBUG*/xASSERT_RET(true == bIsValid(), TxErrorValue::hGet());
+
+    TxHandle hRes = TxErrorValue::hGet();
+
+#if defined(xOS_ENV_WIN)
+    TxHandle hCurrentProcess = CxCurrentProcess::hGetHandle();
+
+    BOOL blRes = ::DuplicateHandle(
+                    hCurrentProcess, 
+                    _m_hHandle, 
+                    hCurrentProcess, 
+                    &hRes, 
+                    DUPLICATE_SAME_ACCESS, 
+                    FALSE, 
+                    DUPLICATE_SAME_ACCESS
+    );
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::hGet());
+#elif defined(xOS_ENV_UNIX)
+    hRes = ::dup(_m_hHandle);
+    /*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != hRes, TxErrorValue::hGet());
+#endif
+
+    return hRes;
+}
+//---------------------------------------------------------------------------
+template<EHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bIsValid() const {
     /*DEBUG*///n/a
 
-    bool bCond1 = (reinterpret_cast<TxHandle>(0xCDCDCDCD) != _m_hHandle); //Created but not initialised
-    bool bCond2 = (reinterpret_cast<TxHandle>(0xCCCCCCCC) != _m_hHandle);    //Uninitialized locals in VC6 when you compile w/ /GZ
-    bool bCond3 = (reinterpret_cast<TxHandle>(0xBAADF00D) != _m_hHandle);    //indicate an uninitialised variable
-    bool bCond4 = (reinterpret_cast<TxHandle>(0xFDFDFDFD) != _m_hHandle);    //No man's land (normally outside of a process)
-    bool bCond5 = (reinterpret_cast<TxHandle>(0xFEEEFEEE) != _m_hHandle);    //Freed memory set by NT's heap manager
-    bool bCond6 = (reinterpret_cast<TxHandle>(0xDDDDDDDD) != _m_hHandle);    //Deleted
-    bool bCond7 = (TxErrorValue::get()                    != _m_hHandle);
+    bool bRes = false;
 
-    return (true == bCond1) && (true == bCond2) && (true == bCond3) && (true == bCond4) &&
-           (true == bCond5) && (true == bCond6) && (true == bCond7);
+#if defined(xOS_ENV_WIN)
+    bool bCond1 = (reinterpret_cast<TxHandle>(0xCDCDCDCD) != _m_hHandle);   //created but not initialised
+    bool bCond2 = (reinterpret_cast<TxHandle>(0xCCCCCCCC) != _m_hHandle);   //uninitialized locals in VC6 when you compile w/ /GZ
+    bool bCond3 = (reinterpret_cast<TxHandle>(0xBAADF00D) != _m_hHandle);   //indicate an uninitialized variable
+    bool bCond4 = (reinterpret_cast<TxHandle>(0xFDFDFDFD) != _m_hHandle);   //no man's land (normally outside of a process)
+    bool bCond5 = (reinterpret_cast<TxHandle>(0xFEEEFEEE) != _m_hHandle);   //freed memory set by NT's heap manager
+    bool bCond6 = (reinterpret_cast<TxHandle>(0xDDDDDDDD) != _m_hHandle);   //deleted
+    bool bCond7 = (TxErrorValue::hGet()                   != _m_hHandle);   //compare with error handle value
+
+    bRes = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
+#elif defined(xOS_ENV_UNIX)
+    bool bCond1 = (TxErrorValue::hGet()                   != _m_hHandle);   //compare with error handle value
+    bool bCond2 = (TxErrorValue::hGet()                   <  _m_hHandle);   //handle value is negative
+
+    bRes = bCond1 && bCond2;
+#endif
+
+    return bRes;
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -182,43 +203,9 @@ CxHandleT<hvTag>::hDetach() {
 
     TxHandle hHandle = _m_hHandle;
 
-    _m_hHandle = TxErrorValue::get();
+    _m_hHandle = TxErrorValue::hGet();
 
     return hHandle;
-}
-//---------------------------------------------------------------------------
-template<EHandleValue hvTag>
-TxHandle
-CxHandleT<hvTag>::hDuplicate(
-    const TxHandle chTargetProcess
-) const
-{
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), TxErrorValue::get());
-
-    TxHandle hRes = TxErrorValue::get();
-
-/*
-    BOOL WINAPI DuplicateHandle(
-      __in   HANDLE   hSourceProcessHandle,
-      __in   HANDLE   hSourceHandle,
-      __in   HANDLE   hTargetProcessHandle,
-      __out  LPHANDLE lpTargetHandle,
-      __in   DWORD    dwDesiredAccess,
-      __in   BOOL     bInheritHandle,
-      __in   DWORD    dwOptions
-    );
-
-    _m_hHandle = chHandle.hDuplicate(CxCurrentProcess::hGetHandle(), DUPLICATE_SAME_ACCESS, false, DUPLICATE_SAME_ACCESS);
-*/
-
-#if defined(xOS_ENV_WIN)
-    BOOL blRes = ::DuplicateHandle(CxCurrentProcess::hGetHandle(), _m_hHandle, chTargetProcess, &hRes, DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::get());
-#elif defined(xOS_ENV_UNIX)
-    //int iRes dup(int oldfd);
-#endif
-
-    return hRes;
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -226,17 +213,17 @@ bool
 CxHandleT<hvTag>::bClose() {
     /*DEBUG*/// n/a
 
-    xCHECK_RET(false == bIsValid(), true);
+    xCHECK_DO(false == bIsValid(), _m_hHandle = TxErrorValue::hGet(); return true);
 
 #if defined(xOS_ENV_WIN)
     BOOL blRes = ::CloseHandle(_m_hHandle);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif defined(xOS_ENV_UNIX)
-    int iRes = ::close(_m_hHandle);
+    int  iRes  = ::close(_m_hHandle);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
-    _m_hHandle = TxErrorValue::get();
+    _m_hHandle = TxErrorValue::hGet();
 
     return true;
 }
@@ -314,7 +301,7 @@ CxHandleT<hvTag>::bSetFlagInherit(
 {
     /*DEBUG*/xASSERT_RET(true == bIsValid(), false);
 
-    return bSetInformation(HANDLE_FLAG_INHERIT, (true == cbFlagInherit) ? HANDLE_FLAG_INHERIT : 0);
+    return bSetInformation(HANDLE_FLAG_INHERIT, cbFlagInherit ? HANDLE_FLAG_INHERIT : 0);
 }
 
 #endif
@@ -329,30 +316,10 @@ CxHandleT<hvTag>::bSetFlagProtectFromClose(
 {
     /*DEBUG*/xASSERT_RET(true == bIsValid(), false);
 
-    return bSetInformation(HANDLE_FLAG_PROTECT_FROM_CLOSE, (true == cbFlagProtectFromClose) ? HANDLE_FLAG_PROTECT_FROM_CLOSE : 0UL);
+    return bSetInformation(HANDLE_FLAG_PROTECT_FROM_CLOSE, cbFlagProtectFromClose ? HANDLE_FLAG_PROTECT_FROM_CLOSE : 0UL);
 }
 
 #endif
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    public, static
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-template<EHandleValue hvTag>
-/*static*/
-bool
-CxHandleT<hvTag>::bIsValid(
-    const TxHandle chHandle
-)
-{
-    /*DEBUG*/// n/a
-
-    return (TxErrorValue::get() != chHandle);
-}
 //---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
