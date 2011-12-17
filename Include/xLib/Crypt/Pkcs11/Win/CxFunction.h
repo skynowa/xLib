@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxFunction :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 function
 {
     public:

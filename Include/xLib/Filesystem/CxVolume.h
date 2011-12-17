@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxVolume :
-    public CxNonCopyable
+    private CxNonCopyable
     /// volume
 {
     public:

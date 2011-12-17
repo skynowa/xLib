@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxTraceLog :
-    public CxNonCopyable
+    private CxNonCopyable
     /// tracing
 {
     public:

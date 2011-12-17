@@ -16,7 +16,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSlot :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 slot
 {
     public:

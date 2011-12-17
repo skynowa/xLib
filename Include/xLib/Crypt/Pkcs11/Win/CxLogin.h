@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxLogin :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 login
 {
     public:

@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxLastError :
-    public CxNonCopyable
+    private CxNonCopyable
     /// system last error
 {
     public:

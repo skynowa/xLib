@@ -38,7 +38,7 @@ xNAMESPACE_END(std)
 xNAMESPACE_BEGIN(NxLib)
 
 class CxString :
-    public CxNonCopyable
+    private CxNonCopyable
     /// strings utils
 {
     public:

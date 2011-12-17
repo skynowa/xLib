@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxConsoleLog :
-    public CxNonCopyable
+    private CxNonCopyable
     /// logging to console
 {
     public:

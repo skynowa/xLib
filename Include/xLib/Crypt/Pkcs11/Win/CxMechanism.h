@@ -16,7 +16,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMechanism :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 mechanism
 {
     public:

@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxThreadStorage :
-    public CxNonCopyable
+    private CxNonCopyable
     /// thread local storage
 {
     public:

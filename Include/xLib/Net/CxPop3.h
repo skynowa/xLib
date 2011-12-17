@@ -18,7 +18,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxPop3 :
-    public CxNonCopyable
+    private CxNonCopyable
     /// POP3 (RFC 2821)
 {
     public:

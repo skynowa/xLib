@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxIni :
-    public CxNonCopyable
+    private CxNonCopyable
     /// ini
 {
     public:

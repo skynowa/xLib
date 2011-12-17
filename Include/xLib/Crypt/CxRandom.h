@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxRandom :
-    public CxNonCopyable
+    private CxNonCopyable
     /// random
 {
     public:

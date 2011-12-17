@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxWndLog :
-    public CxNonCopyable
+    private CxNonCopyable
     /// logging to window
 {
     public:

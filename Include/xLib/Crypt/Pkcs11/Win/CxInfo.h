@@ -16,7 +16,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxInfo :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 info
 {
     public:

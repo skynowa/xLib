@@ -16,7 +16,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxImage :
-    public CxNonCopyable
+    private CxNonCopyable
     /// GDI+ image
 {
     public:

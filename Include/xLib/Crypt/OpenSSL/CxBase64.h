@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxBase64 :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Base64
 {
     public:

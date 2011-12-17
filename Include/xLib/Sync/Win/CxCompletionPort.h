@@ -15,7 +15,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCompletionPort :
-    public CxNonCopyable
+    private CxNonCopyable
     /// completion port
 {
     public:

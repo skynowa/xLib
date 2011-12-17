@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMimeMessage :
-    public CxNonCopyable
+    private CxNonCopyable
     /// MIME message (RFC 822)
 {
     public:

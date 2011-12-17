@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSign :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 sign
 {
     public:

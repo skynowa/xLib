@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxAsyncSocket :
-    public CxNonCopyable
+    private CxNonCopyable
     /// async socket
 {
     public:

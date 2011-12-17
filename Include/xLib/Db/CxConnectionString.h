@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxConnectionString :
-    public CxNonCopyable
+    private CxNonCopyable
     /// DB connection string
 {
     public:

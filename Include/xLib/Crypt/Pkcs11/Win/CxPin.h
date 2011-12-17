@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxPin :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 pin
 {
     public:

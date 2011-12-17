@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSocketInit :
-    public CxNonCopyable
+    private CxNonCopyable
     /// initiates use of the Winsock DLL by a process
 {
     public:

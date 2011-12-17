@@ -304,7 +304,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxDebugger;
 
 class CxMacros :
-    public CxNonCopyable
+    private CxNonCopyable
     /// help macroses
 {
     public:

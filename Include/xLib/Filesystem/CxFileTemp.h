@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxFileTemp :
-    public CxNonCopyable
+    private CxNonCopyable
 {
     public:
         explicit        CxFileTemp(const bool cbIsAutoDelete);

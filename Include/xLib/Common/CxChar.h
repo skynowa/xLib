@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxChar :
-    public CxNonCopyable
+    private CxNonCopyable
     /// character
 {
     public:

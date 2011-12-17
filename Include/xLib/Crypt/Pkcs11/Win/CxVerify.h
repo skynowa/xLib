@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxVerify :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 verify
 {
     public:

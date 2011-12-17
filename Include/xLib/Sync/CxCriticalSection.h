@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCriticalSection :
-    public CxNonCopyable
+    private CxNonCopyable
     /// critical section
 {
     public:

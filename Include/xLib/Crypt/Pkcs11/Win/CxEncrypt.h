@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxEncrypt :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 encrypt
 {
     public:

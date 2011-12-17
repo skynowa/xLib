@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxKey :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 key
 {
     public:

@@ -19,7 +19,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxInputBox :
-    public CxNonCopyable
+    private CxNonCopyable
     /// input box
 {
     public:

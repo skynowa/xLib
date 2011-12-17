@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxGeoIp :
-    public CxNonCopyable
+    private CxNonCopyable
     /// GeoIP
 {
     public:

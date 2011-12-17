@@ -15,7 +15,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSemaphore :
-    public CxNonCopyable
+    private CxNonCopyable
     /// semaphore
 {
     public:
