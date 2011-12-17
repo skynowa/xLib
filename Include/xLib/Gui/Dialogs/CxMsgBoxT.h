@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMsgBoxT :
-    public CxNonCopyable
+    private CxNonCopyable
     /// message box
 {
     public:

@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCurrentProcess :
-    public CxNonCopyable
+    private CxNonCopyable
 {
 	public:
         static CxProcess::TxId     ulGetId         ();

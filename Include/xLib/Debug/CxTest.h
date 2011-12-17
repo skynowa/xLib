@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxTest :
-    public CxNonCopyable
+    private CxNonCopyable
     /// testing
 {
     public:

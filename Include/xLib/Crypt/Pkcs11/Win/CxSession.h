@@ -16,7 +16,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSession :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 session
 {
     public:

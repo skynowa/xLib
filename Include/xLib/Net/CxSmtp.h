@@ -15,7 +15,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSmtp :
-    public CxNonCopyable
+    private CxNonCopyable
     /// SMTP (RFC 2821)
 {
     public:

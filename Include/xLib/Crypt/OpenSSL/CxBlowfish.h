@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxBlowfish :
-    public CxNonCopyable
+    private CxNonCopyable
     /// blowfish (openssl-1.0.0a)
 {
     public:

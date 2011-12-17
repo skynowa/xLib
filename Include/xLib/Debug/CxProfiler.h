@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxProfiler :
-    public CxNonCopyable
+    private CxNonCopyable
     /// code profiling (msec)
 {
     public:

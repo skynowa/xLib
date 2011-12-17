@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxAutoCriticalSection :
-    public CxNonCopyable
+    private CxNonCopyable
     /// auto critical section
 {
     public:

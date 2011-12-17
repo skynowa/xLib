@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxGdiplus :
-    public CxNonCopyable
+    private CxNonCopyable
     /// GDI+
 {
     public:

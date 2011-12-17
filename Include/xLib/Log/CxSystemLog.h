@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSystemLog :
-    public CxNonCopyable
+    private CxNonCopyable
     /// logging to system event log
 {
     public:

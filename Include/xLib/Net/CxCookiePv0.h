@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCookiePv0 :
-    public CxNonCopyable
+    private CxNonCopyable
     /// cookie version 0
 {
     public:

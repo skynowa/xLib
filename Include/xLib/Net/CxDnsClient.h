@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxDnsClient :
-    public CxNonCopyable
+    private CxNonCopyable
     /// DNS client
 {
     public:

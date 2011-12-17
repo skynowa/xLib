@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCommandLine :
-    public CxNonCopyable
+    private CxNonCopyable
 {
     public:
         static long_t         liGetArgsMax ();

@@ -22,7 +22,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMySQLConnection :
-    public CxNonCopyable
+    private CxNonCopyable
     /// MySQL connection
 {
     public:
@@ -60,7 +60,7 @@ class CxMySQLConnection :
 };
 //---------------------------------------------------------------------------
 class CxMySQLRecordset :
-    public CxNonCopyable
+    private CxNonCopyable
     /// MySQL recordset
 {
     public:

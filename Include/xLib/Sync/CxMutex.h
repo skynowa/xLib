@@ -15,7 +15,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMutex :
-    public CxNonCopyable
+    private CxNonCopyable
     /// mutex
 {
     public:

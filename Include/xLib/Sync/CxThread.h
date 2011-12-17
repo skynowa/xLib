@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxThread :
-    public CxNonCopyable
+    private CxNonCopyable
     /// thread
 {
     public:

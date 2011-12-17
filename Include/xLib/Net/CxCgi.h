@@ -20,7 +20,7 @@ namespace NxCgi {
 
     //---------------------------------------------------------------------------
     class CxCgiEnvironment :
-        public CxNonCopyable
+        private CxNonCopyable
         /// CGI environment
     {
         public:
@@ -145,7 +145,7 @@ namespace NxCgi {
 
     //---------------------------------------------------------------------------
     class CxCgiCookies :
-        public CxNonCopyable
+        private CxNonCopyable
         /// CGI cookies
     {
         public:
@@ -174,7 +174,7 @@ namespace NxCgi {
 
     //---------------------------------------------------------------------------
     class CxCgiFormData :
-        public CxNonCopyable
+        private CxNonCopyable
         /// CGI form data
     {
         public:
@@ -206,7 +206,7 @@ namespace NxCgi {
 
 //---------------------------------------------------------------------------
 class CxCgi :
-    public CxNonCopyable
+    private CxNonCopyable
     /// CGI
 {
     public:

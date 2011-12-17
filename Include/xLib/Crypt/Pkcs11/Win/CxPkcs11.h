@@ -16,7 +16,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxPkcs11 :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Aladdin eToken, PKCS#11
 {
     public:

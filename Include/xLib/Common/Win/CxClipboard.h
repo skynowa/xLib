@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxClipboard :
-    public CxNonCopyable
+    private CxNonCopyable
     /// clipboard
 {
     public:

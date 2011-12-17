@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCom :
-    public CxNonCopyable
+    private CxNonCopyable
     /// COM
 {
     public:

@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxDigest :
-    public CxNonCopyable
+    private CxNonCopyable
     /// Pkcs11 digest
 {
     public:

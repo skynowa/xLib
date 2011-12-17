@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxHttpClient :
-    public CxNonCopyable
+    private CxNonCopyable
     /// protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 {
     public:

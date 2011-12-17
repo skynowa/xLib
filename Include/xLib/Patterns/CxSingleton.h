@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 template <class ClassNameT>
 class CxSingleton :
-    public CxNonCopyable
+    private CxNonCopyable
     /// singleton
 {
     public:

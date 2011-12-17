@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxLocale :
-    public CxNonCopyable
+    private CxNonCopyable
     /// locale
 {
     public:

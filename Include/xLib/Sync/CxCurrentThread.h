@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCurrentThread :
-    public CxNonCopyable
+    private CxNonCopyable
 {
     public:
         static bool               bIsCurrent     (const CxThread::TxId culId);

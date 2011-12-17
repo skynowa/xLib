@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 #endif
 
 class CxSocket :
-    public CxNonCopyable
+    private CxNonCopyable
     /// socket
 {
     public:
