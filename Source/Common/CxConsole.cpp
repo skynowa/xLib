@@ -73,7 +73,7 @@ CxConsole::bSetTextColor(
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
 
-    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut, cfgForeground);
+    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), cfgForeground);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, std::tstring_t());
 #elif xOS_ENV_UNIX
     xCHECK_DO(true == cbIsUnderline, sRes += CxString::sFormat(xT("\033[%im"), atUnderscore));
@@ -102,7 +102,7 @@ CxConsole::sRead() {
     const ulong_t culBuffSize             = 1024UL * 4UL;
     tchar_t       szBuff[culBuffSize + 1] = {0};
 
-    BOOL blRes = ::ReadConsole(_m_hStdIn, &szBuff[0], culBuffSize, &ulRead, NULL);
+    BOOL blRes = ::ReadConsole(_m_hStdIn.hGet(), &szBuff[0], culBuffSize, &ulRead, NULL);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  std::tstring_t());
     /*DEBUG*/xASSERT_RET(NULL  != szBuff, std::tstring_t());
 
@@ -126,7 +126,7 @@ CxConsole::bWrite(
 
     ulong_t ulWritten = 0UL;
 
-    BOOL blRes = ::WriteConsole(_m_hStdOut, &csStr.at(0), csStr.size(), &ulWritten, NULL);
+    BOOL blRes = ::WriteConsole(_m_hStdOut.hGet(), &csStr.at(0), csStr.size(), &ulWritten, NULL);
     /*DEBUG*/xASSERT_RET(FALSE     != blRes,        false);
     /*DEBUG*/xASSERT_RET(ulWritten == csStr.size(), false);
 #elif xOS_ENV_UNIX
@@ -294,25 +294,25 @@ CxConsole::bClear() {
     ulong_t                      ulConSize     = 0UL;     //number of character cells in the current buffer
 
     //get the number of character cells in the current buffer
-    BOOL blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut, &csbi);
+    BOOL blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.hGet(), &csbi);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 
     ulConSize = csbi.dwSize.X * csbi.dwSize.Y;
 
     //fill the entire screen with blanks
-    blRes = ::FillConsoleOutputCharacter(_m_hStdOut, (tchar_t)xT(' '), ulConSize, coordScreen, &cCharsWritten);
+    blRes = ::FillConsoleOutputCharacter(_m_hStdOut.hGet(), (tchar_t)xT(' '), ulConSize, coordScreen, &cCharsWritten);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 
     //get the current text attribute
-    blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut, &csbi);
+    blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.hGet(), &csbi);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 
     //now set the buffer's attributes accordingly
-    blRes = ::FillConsoleOutputAttribute(_m_hStdOut, csbi.wAttributes, ulConSize, coordScreen, &cCharsWritten);
+    blRes = ::FillConsoleOutputAttribute(_m_hStdOut.hGet(), csbi.wAttributes, ulConSize, coordScreen, &cCharsWritten);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 
     //put the cursor at (0, 0)
-    blRes = ::SetConsoleCursorPosition(_m_hStdOut, coordScreen );
+    blRes = ::SetConsoleCursorPosition(_m_hStdOut.hGet(), coordScreen );
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 #elif xOS_ENV_UNIX
     bool bRes = bWriteLine(CxConst::xFF);
@@ -408,7 +408,7 @@ CxConsole::bSetFullScreen() {
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
 
-    COORD crdCoord = ::GetLargestConsoleWindowSize(_m_hStdOut);
+    COORD crdCoord = ::GetLargestConsoleWindowSize(_m_hStdOut.hGet());
     xCHECK_RET(crdCoord.X == 0 && crdCoord.Y == 0, false);
 
     crdCoord.X -= 2;
@@ -416,10 +416,10 @@ CxConsole::bSetFullScreen() {
 
     SMALL_RECT recSmallRec = {0, 0, crdCoord.X - 2, crdCoord.Y - 2};
 
-    BOOL blRes = ::SetConsoleScreenBufferSize(_m_hStdOut, crdCoord);
+    BOOL blRes = ::SetConsoleScreenBufferSize(_m_hStdOut.hGet(), crdCoord);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 
-    blRes = ::SetConsoleWindowInfo(_m_hStdOut, true, &recSmallRec);
+    blRes = ::SetConsoleWindowInfo(_m_hStdOut.hGet(), true, &recSmallRec);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 
     bool bRes = bCenterWindow();

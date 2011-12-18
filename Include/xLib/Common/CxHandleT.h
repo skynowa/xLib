@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxMacros.h>
 
-#if xTODO
+#if 0
     #include <xLib/Sync/CxCurrentProcess.h>
 #endif
 //---------------------------------------------------------------------------
@@ -77,15 +77,13 @@ class CxHandleT
             ///< operator =
         CxHandleT & operator =              (const CxHandleT &chHandle);
             ///< operator =
-                    operator TxHandle       () const;
-            ///< operator TxHandle
 
         TxHandle    hGet                    () const;
             ///< get
         bool        bSet                    (const TxHandle chHandle);
             ///< set
         TxHandle    hDuplicate              () const;
-            ///< duplicates handle
+            ///< duplicate handle
 
         bool        bIsValid                () const;
             ///< is valid
@@ -101,14 +99,6 @@ class CxHandleT
             ///< get certain properties of an object handle
         bool        bSetInformation         (const ulong_t culMask, const ulong_t culFlags);
             ///< set information
-        bool        bIsFlagInherit          () const;
-            ///< is flag inherit
-        bool        bIsFlagProtectFromClose () const;
-            ///< is flag protect from close
-        bool        bSetFlagInherit         (const bool cbFlagInherit);
-            ///< set flaginherit
-        bool        bSetFlagProtectFromClose(const bool cbFlagProtectFromClose);
-            ///< set flag protect from close
     #endif
 
     private:

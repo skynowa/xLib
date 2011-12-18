@@ -35,6 +35,10 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include <Common/CxException.inl>
 //---------------------------------------------------------------------------
+#define xTHROW \
+    throw CxException() << "";
+
+
 #define xTRY try
     ///< like try
 

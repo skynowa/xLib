@@ -20,11 +20,7 @@
     #if !defined(WIN32_LEAN_AND_MEAN)
         #define WIN32_LEAN_AND_MEAN 1
     #endif
-
-    ////#define _CRT_SECURE_NO_WARNINGS
-    ////#define _SCL_SECURE_NO_WARNINGS
-    ////#define _SECURE_SCL
-
+    
     #if !defined(STRICT)
         #define STRICT 1
     #endif

@@ -97,9 +97,9 @@ CxProcess::bTerminate(
     CxHandle hProcess;
 
     hProcess = ::OpenProcess(PROCESS_TERMINATE, false, culPid);
-    /*DEBUG*/xASSERT_RET(NULL != hProcess, false);
+    /*DEBUG*/xASSERT_RET(NULL != hProcess.hGet(), false);
 
-    BOOL blRes = ::TerminateProcess(hProcess, 0U);
+    BOOL blRes = ::TerminateProcess(hProcess.hGet(), 0U);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::kill(culPid, SIGKILL);
