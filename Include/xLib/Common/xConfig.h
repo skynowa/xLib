@@ -42,5 +42,11 @@
 
 #define xTEST_BLOCK_WITH_TRACE_POINT    0
     ///< test block uses with trace point
+
+#define _CRT_SECURE_NO_WARNINGS         1
+    ///< disable Win CRT warnings
+
+#define _SCL_SECURE_NO_WARNINGS         1
+    ///< disable Win SCL warnings
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xConfigH

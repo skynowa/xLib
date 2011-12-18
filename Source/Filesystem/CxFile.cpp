@@ -1060,7 +1060,7 @@ CxFile::bGetTime(
     m_hHandle = ::CreateFile(csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
     /*DEBUG*/xASSERT_RET(false != m_hHandle.bIsValid(), false);
 
-    BOOL bRes = ::GetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
+    BOOL bRes = ::GetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
     /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 
     xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = CxDateTime::tmFileTimeToUnixTime(ftCreate));
@@ -1114,7 +1114,7 @@ CxFile::bSetTime(
     m_hHandle = ::CreateFile(csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
     /*DEBUG*/xASSERT_RET(false != m_hHandle.bIsValid(), false);
 
-    BOOL blRes = ::SetFileTime(m_hHandle, &ftCreate, &ftAccess, &ftModified);
+    BOOL blRes = ::SetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     utimbuf tbTimes = {0};

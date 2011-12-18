@@ -83,25 +83,18 @@ CxHandleT<hvTag>::operator = (
     const CxHandleT &chHandle
 )
 {
-    /*DEBUG*/xASSERT_DO(false == bIsValid(), TxErrorValue::hGet());
+    /*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
     /*DEBUG*///CxHandleT - n/a
 
     xCHECK_RET(this == &chHandle, *this);
 
     bool bRes = bClose();
-    /*DEBUG*/xASSERT_RET(true == bRes, TxErrorValue::hGet());
+    /*DEBUG*/xASSERT_RET(true == bRes, *this);
 
     _m_hHandle = chHandle.hDuplicate();
-    /*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != _m_hHandle, TxErrorValue::hGet());
+    /*DEBUG*/// n/a;
 
     return *this;
-}
-//---------------------------------------------------------------------------
-template<EHandleValue hvTag>
-CxHandleT<hvTag>::operator TxHandle() const {
-    /*DEBUG*///???
-
-    return _m_hHandle;
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -128,12 +121,13 @@ CxHandleT<hvTag>::bSet(
 template<EHandleValue hvTag>
 TxHandle
 CxHandleT<hvTag>::hDuplicate() const {
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), TxErrorValue::hGet());
+    /*DEBUG*/// n/a
+    xCHECK_RET(false == bIsValid(), TxErrorValue::hGet());
 
     TxHandle hRes = TxErrorValue::hGet();
 
 #if defined(xOS_ENV_WIN)
-    TxHandle hCurrentProcess = CxCurrentProcess::hGetHandle();
+    TxHandle hCurrentProcess = ::GetCurrentProcess();
 
     BOOL blRes = ::DuplicateHandle(
                     hCurrentProcess, 
@@ -186,7 +180,8 @@ CxHandleT<hvTag>::bAttach(
     const TxHandle chHandle
 )
 {
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), false);
+    /*DEBUG*/// n/a
+    xCHECK_RET(false == bIsValid(), true);
 
     bool bRes = bClose();
     /*DEBUG*/xASSERT_RET(true == bRes, false);
@@ -263,60 +258,6 @@ CxHandleT<hvTag>::bSetInformation(
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
-}
-
-#endif
-//---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
-
-template<EHandleValue hvTag>
-bool
-CxHandleT<hvTag>::bIsFlagInherit() const {
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), false);
-
-    return (0UL != (ulGetInformation() & HANDLE_FLAG_INHERIT));
-}
-
-#endif
-//---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
-
-template<EHandleValue hvTag>
-bool
-CxHandleT<hvTag>::bIsFlagProtectFromClose() const {
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), false);
-
-    return (0UL != (ulGetInformation() & HANDLE_FLAG_PROTECT_FROM_CLOSE));
-}
-
-#endif
-//---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
-
-template<EHandleValue hvTag>
-bool
-CxHandleT<hvTag>::bSetFlagInherit(
-    const bool cbFlagInherit
-)
-{
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), false);
-
-    return bSetInformation(HANDLE_FLAG_INHERIT, cbFlagInherit ? HANDLE_FLAG_INHERIT : 0);
-}
-
-#endif
-//---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
-
-template<EHandleValue hvTag>
-bool
-CxHandleT<hvTag>::bSetFlagProtectFromClose(
-    const bool cbFlagProtectFromClose
-)
-{
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), false);
-
-    return bSetInformation(HANDLE_FLAG_PROTECT_FROM_CLOSE, cbFlagProtectFromClose ? HANDLE_FLAG_PROTECT_FROM_CLOSE : 0UL);
 }
 
 #endif
