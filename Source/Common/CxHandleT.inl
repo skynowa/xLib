@@ -67,7 +67,7 @@ CxHandleT<hvTag>::operator = (
 
     //Try m_Handle.Attach(other.Detach(), if you got an assertion here.
 
-    xCHECK_RET(_m_hHandle == &chHandle, *this);
+    xCHECK_RET(_m_hHandle == chHandle, *this);
 
     bool bRes = bClose();
     /*DEBUG*/xASSERT_RET(true == bRes, *this);
