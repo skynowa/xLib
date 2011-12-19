@@ -504,8 +504,6 @@ CxDir::bFindFiles(
     /*DEBUG*/// cbIsRecurse - n/a
     /*DEBUG*/xASSERT_RET(NULL  != pvsFilePathes,     false);
 
-    bool bRes = false;
-
     #if xTODO
         (*pvsFilePathes).clear();
     #endif
@@ -513,10 +511,10 @@ CxDir::bFindFiles(
 #if xOS_ENV_WIN
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData        = {0};
-    std::tstring_t    sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
-    std::tstring_t    sFileFullName = CxPath::sGetFullName(sFilePath);
-    std::tstring_t    sPart;
-    std::tstring_t    sTmpPath;
+    std::tstring_t  sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
+    std::tstring_t  sFileFullName = CxPath::sGetFullName(sFilePath);
+    std::tstring_t  sPart;
+    std::tstring_t  sTmpPath;
 
     //-------------------------------------
     //subdirs
@@ -538,8 +536,7 @@ CxDir::bFindFiles(
                 sPart    = fdData.cFileName;
                 sTmpPath = CxPath::sSetFullName(sTmpPath, sPart);
 
-                bRes = bFindFiles(sTmpPath, sFileFullName, true, pvsFilePathes);
-                /*DEBUG*/// n/a
+                (void)bFindFiles(sTmpPath, sFileFullName, true, pvsFilePathes);
             }
             while (false != ::FindNextFile(hFile, &fdData));
 
@@ -591,8 +588,7 @@ CxDir::bFindFiles(
                 //is search in subdirs ?
                 xCHECK_DO(false == cbIsRecurse, continue);
 
-                bRes = bFindFiles(sDirPath, cMask, cbIsRecurse, pvsFilePathes); //recursion
-                /*DEBUG*/// n/a
+                (void)bFindFiles(sDirPath, cMask, cbIsRecurse, pvsFilePathes); //recursion
             }
             //TODO: files
             else if (DT_REG == pdrEntry->d_type) {
@@ -652,8 +648,6 @@ CxDir::bFindDirs(
     /*DEBUG*/// cbIsRecurse - n/a
     /*DEBUG*/xASSERT_RET(NULL  != pvsDirPathes,      false);
 
-    bool bRes = false;
-
     #if xTODO
         (*pvsDirPathes).clear();
     #endif
@@ -661,7 +655,7 @@ CxDir::bFindDirs(
 #if xOS_ENV_WIN
     HANDLE          hFile        = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData       = {0};
-    std::tstring_t    sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
+    std::tstring_t  sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
 
     hFile = ::FindFirstFile(sRootDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, false);
@@ -716,8 +710,7 @@ CxDir::bFindDirs(
             //is search in subdirs ?
             xCHECK_DO(false == cbIsRecurse, continue);
 
-            bRes = bFindDirs(sDirPath, cMask, cbIsRecurse, pvsDirPathes); //recursion
-            /*DEBUG*/// n/a
+            (void)bFindDirs(sDirPath, cMask, cbIsRecurse, pvsDirPathes); //recursion
         }
         //TODO: files
         else if (DT_REG == pdrEntry->d_type) {

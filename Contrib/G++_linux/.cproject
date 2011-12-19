@@ -107,6 +107,12 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.release.799057292.1815361756" name="CxHandleT.inl" rcbsApplicability="disable" resourcePath="Source/Common/CxHandleT.inl" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.279252103.288160762">
+						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.279252103.288160762" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.279252103"/>
+					</fileInfo>
+					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>

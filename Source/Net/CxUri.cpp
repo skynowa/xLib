@@ -117,7 +117,7 @@ bool
 CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment) {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRes = false;  xUNUSED(bRes);
 
     bRes = bSetScheme   (csScheme);
     bRes = bSetAuthority(csAuthority);

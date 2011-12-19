@@ -14,48 +14,36 @@
     #include <xLib/Sync/CxCurrentProcess.h>
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
-    typedef HANDLE TxHandle;
-#elif xOS_ENV_UNIX
-    typedef pid_t  TxHandle;
-#endif
-    ///< native handle
+xNAMESPACE_BEGIN(NxLib)
 
-xNAMESPACE_ANONYM_BEGIN
-
-enum EHandleValue 
+enum EHandleValue
     ///< error handle type
 {
-    hvNull,
-    hvInvalid
+    hvNull,     ///< like "null"
+    hvInvalid   ///< like "invalid"
 };
 
 template<EHandleValue hvTag>
 struct CxHandleError;
+    ///< handle error
 
 template<>
-struct CxHandleError<hvNull> {
-    static TxHandle hGet () {
-    #if defined(xOS_ENV_WIN)
-        return NULL;
-    #elif defined(xOS_ENV_UNIX)
-        return 0;
-    #endif
-    }
+struct CxHandleError<hvNull>
+    ///< handle error is hvNull
+{
+    static TxNativeHandle
+    hGet () { return xNATIVE_HANDLE_NULL; }
 };
 
 template<>
-struct CxHandleError<hvInvalid> {
-    static TxHandle hGet () {
-    #if defined(xOS_ENV_WIN)
-        return INVALID_HANDLE_VALUE;
-    #elif defined(xOS_ENV_UNIX)
-        return - 1;
-    #endif
-    }
+struct CxHandleError<hvInvalid>
+    ///< handle error is hvInvalid
+{
+    static TxNativeHandle
+    hGet () { return xNATIVE_HANDLE_INVALID; }
 };
 
-xNAMESPACE_ANONYM_END
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -64,47 +52,47 @@ class CxHandleT
     /// handle
 {
     public:
-                    CxHandleT               ();
+                       CxHandleT       ();
             ///< constructor
-        explicit    CxHandleT               (const TxHandle chHandle);
+        explicit       CxHandleT       (const TxNativeHandle chHandle);
             ///< constructor
-        explicit    CxHandleT               (const CxHandleT &chHandle);
+        explicit       CxHandleT       (const CxHandleT &chHandle);
             ///< constructor
-        virtual    ~CxHandleT               ();
+        virtual       ~CxHandleT       ();
             ///< destructor
 
-        CxHandleT & operator =              (const TxHandle chHandle);
+        CxHandleT &    operator =      (const TxNativeHandle chHandle);
             ///< operator =
-        CxHandleT & operator =              (const CxHandleT &chHandle);
+        CxHandleT &    operator =      (const CxHandleT &chHandle);
             ///< operator =
 
-        TxHandle    hGet                    () const;
+        TxNativeHandle hGet            () const;
             ///< get
-        bool        bSet                    (const TxHandle chHandle);
+        bool           bSet            (const TxNativeHandle chHandle);
             ///< set
-        TxHandle    hDuplicate              () const;
+        TxNativeHandle hDuplicate      () const;
             ///< duplicate handle
 
-        bool        bIsValid                () const;
+        bool           bIsValid        () const;
             ///< is valid
-        bool        bAttach                 (const TxHandle chHandle);
+        bool           bAttach         (const TxNativeHandle chHandle);
             ///< attach
-        TxHandle    hDetach                 ();
+        TxNativeHandle hDetach         ();
             ///< detach
-        bool        bClose                  ();
+        bool           bClose          ();
             ///< close
 
     #if defined(xOS_ENV_WIN)
-        ulong_t     ulGetInformation        () const;
+        ulong_t        ulGetInformation() const;
             ///< get certain properties of an object handle
-        bool        bSetInformation         (const ulong_t culMask, const ulong_t culFlags);
+        bool           bSetInformation (const ulong_t culMask, const ulong_t culFlags);
             ///< set information
     #endif
 
     private:
         typedef CxHandleError<hvTag>  TxErrorValue;
 
-        TxHandle    _m_hHandle;    ///< handle
+        TxNativeHandle _m_hHandle;    ///< handle
 };
 //---------------------------------------------------------------------------
 typedef CxHandleT<hvNull>    CxHandle;

@@ -10,15 +10,24 @@
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 #if xTEST_PRIVATE_DATA
-     #define private   public
-     #define protected public
+    #define private   public
+    #define protected public
 #endif
 
 
-#if xCOM
-    #define __forceinline  inline
+//keywords
+#if defined(xCOMPILER_MINGW32)
+    #define xFORCE_INLINE  __attribute__((__always_inline__)) inline
+#elif defined(xCOMPILER_INTEL)
+    #define xFORCE_INLINE  __forceinline
+#elif defined(xCOMPILER_MS)
+    #define xFORCE_INLINE  __forceinline
+#elif defined(xCOMPILER_GNUC)
+    #define xFORCE_INLINE  __attribute__((__always_inline__)) inline
+#else
+    #define xFORCE_INLINE  inline
 #endif
-    ///< inline
+    ///< keyword "inline"
 
 
 #if xOS_ENV_WIN
@@ -75,7 +84,7 @@
     ///< get max value
 #define xMIN(a, b)              ( ((a) < (b)) ? (a) : (b) )
     ///< get min value
-#define xINT_AS_BOOL(expr)      ( (0 == (expr)) ? false : true )
+#define xINT_TO_BOOL(expr)      ( (0 == (expr)) ? false : true )
     ///< convert int to bool
 
 
@@ -89,9 +98,11 @@
 #else
     #define xUNUSED(arg)          ( (void)(arg) )
 
-    //#define xUNUSED(arg)            ( (arg) = (arg) )   //( (void)(arg) )
-    //#define xUNUSED(a)              do { (a) = (a); } while (&(a) < (typeof(a) *)0);
-    //#define xUNUSED(a)              do { (a) = (true) ? (a) : (a); } while (&(a) < (typeof(a) *)0);
+    #if xTODO
+        #define xUNUSED(arg)            ( (arg) = (arg) )   //( (void)(arg) )
+        #define xUNUSED(a)              do { (a) = (a); } while (&(a) < (typeof(a) *)0);
+        #define xUNUSED(a)              do { (a) = (true) ? (a) : (a); } while (&(a) < (typeof(a) *)0);
+    #endif
 #endif
 
 
@@ -141,7 +152,7 @@
 #if defined(__LINE__)
     #define xLINE      __LINE__
 #else
-    #define xLINE      0
+    #define xLINE      0UL
 #endif
     ///< source code line number
 
@@ -288,7 +299,25 @@
 #if xOS_ENV_WIN
     #define xTIMEOUT_INFINITE   INFINITE    ///< infinite timeout
 #elif xOS_ENV_UNIX
-    #define xTIMEOUT_INFINITE   ~(0UL)      ///< infinite timeout
+    #define xTIMEOUT_INFINITE   ( ~(0UL) )      ///< infinite timeout
+#endif
+
+
+//native handle
+#if xOS_ENV_WIN
+    typedef HANDLE TxNativeHandle;  ///< native handle
+#elif xOS_ENV_UNIX
+    typedef int    TxNativeHandle;  ///< native handle
+#endif
+
+
+//native handle value
+#if defined(xOS_ENV_WIN)
+    #define xNATIVE_HANDLE_NULL    ( static_cast<TxNativeHandle>( NULL ) )                  ///< native handle value "null"
+    #define xNATIVE_HANDLE_INVALID ( static_cast<TxNativeHandle>( INVALID_HANDLE_VALUE ) )  ///< native handle value "invalid"
+#elif defined(xOS_ENV_UNIX)
+    #define xNATIVE_HANDLE_NULL    ( static_cast<TxNativeHandle>( 0 ) )                     ///< native handle value "null"
+    #define xNATIVE_HANDLE_INVALID ( static_cast<TxNativeHandle>( - 1 ) )                   ///< native handle value "invalid"
 #endif
 
 
