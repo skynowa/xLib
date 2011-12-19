@@ -36,9 +36,10 @@ class CxTest :
         std::vector<std::tstring_t> m_vsRes;      ///< for global use
         std::map<std::tstring_t, std::tstring_t>      m_msRes;  ///< for global use
         std::multimap<std::tstring_t, std::tstring_t> m_mmsRes; ///< for global use
+        TxNativeHandle              m_hRes;       ///< for global use
 
     #if xOS_ENV_WIN
-        HANDLE                      m_hRes;       ///< for global use
+        ////HANDLE                      m_hRes;       ///< for global use
         HWND                        m_hwndRes;    ///< for global use
     #elif xOS_ENV_UNIX
 

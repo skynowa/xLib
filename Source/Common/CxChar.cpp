@@ -21,7 +21,7 @@ CxChar::bIsAlphaNum(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISALNUM(cchChar) );
+    return xINT_TO_BOOL( std::xTISALNUM(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -30,7 +30,7 @@ CxChar::bIsAlpha(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( ::xTISALPHA(cchChar) );
+    return xINT_TO_BOOL( ::xTISALPHA(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -39,7 +39,7 @@ CxChar::bIsControl(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISCNTRL(cchChar) );
+    return xINT_TO_BOOL( std::xTISCNTRL(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -48,7 +48,7 @@ CxChar::bIsDigitDec(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISDIGIT(cchChar) );
+    return xINT_TO_BOOL( std::xTISDIGIT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -57,7 +57,7 @@ CxChar::bIsDigitHex(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISXDIGIT(cchChar) );
+    return xINT_TO_BOOL( std::xTISXDIGIT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -66,7 +66,7 @@ CxChar::bIsGraph(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISGRAPH(cchChar) );
+    return xINT_TO_BOOL( std::xTISGRAPH(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -75,7 +75,7 @@ CxChar::bIsPrint(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISPRINT(cchChar) );
+    return xINT_TO_BOOL( std::xTISPRINT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -84,7 +84,7 @@ CxChar::bIsPunct(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISPUNCT(cchChar) );
+    return xINT_TO_BOOL( std::xTISPUNCT(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -93,7 +93,7 @@ CxChar::bIsSpace(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISSPACE(cchChar) );
+    return xINT_TO_BOOL( std::xTISSPACE(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -102,7 +102,7 @@ CxChar::bIsLower(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISLOWER(cchChar) );
+    return xINT_TO_BOOL( std::xTISLOWER(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -111,7 +111,7 @@ CxChar::bIsUpper(
     const tchar_t cchChar
 )
 {
-    return xINT_AS_BOOL( std::xTISUPPER(cchChar) );
+    return xINT_TO_BOOL( std::xTISUPPER(cchChar) );
 }
 //---------------------------------------------------------------------------
 /*static*/

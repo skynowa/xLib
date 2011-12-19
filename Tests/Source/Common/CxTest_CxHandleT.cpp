@@ -30,7 +30,7 @@ CxTest_CxHandleT::bUnit(
     {
 	    CxHandle objNullHandle;
         xTEST_EQ(false, objNullHandle.bIsValid());
-	
+
 	    CxFileHandle objInvalidHandle;
         xTEST_EQ(false, objInvalidHandle.bIsValid());
     }
@@ -66,7 +66,7 @@ CxTest_CxHandleT::bUnit(
     }
 
     //--------------------------------------------------
-    //operator = (const TxHandle chHandle)
+    //operator = (const TxNativeHandle chHandle)
     xTEST_CASE(cullCaseLoops)
     {
 	    CxHandle hHandle;
@@ -101,11 +101,11 @@ CxTest_CxHandleT::bUnit(
         m_hRes = hHandle.hGet();
         xTEST_EQ(false, hHandle.bIsValid());
 
-        m_bRes = hHandle.bSet(NULL);
+        m_bRes = hHandle.bSet(TxNativeHandle());
         xTEST_EQ(true, m_bRes);
 
         m_hRes = hHandle.hGet();
-        xASSERT(NULL == m_hRes);
+        xASSERT(TxNativeHandle() == m_hRes);
 
         m_bRes = hHandle.bSet(CxCurrentProcess::hGetHandle());
         xTEST_EQ(true, m_bRes);
@@ -208,7 +208,7 @@ CxTest_CxHandleT::bUnit(
 
             hHandle = CxCurrentProcess::hGetHandle();
             xTEST_EQ(true, hHandle.bIsValid());
-        
+
             m_bRes = hHandle.bSetInformation(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
             xTEST_EQ(true, m_bRes);
 

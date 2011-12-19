@@ -531,7 +531,7 @@ bool
 CxFile::bIsEof() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
 
-    return xINT_AS_BOOL( std::feof(pGet()) );
+    return xINT_TO_BOOL( std::feof(pGet()) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
@@ -539,7 +539,7 @@ bool
 CxFile::bIsError() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
 
-    return xINT_AS_BOOL( std::ferror(pGet()) );
+    return xINT_TO_BOOL( std::ferror(pGet()) );
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------

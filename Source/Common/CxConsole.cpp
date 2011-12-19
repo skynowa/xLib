@@ -426,7 +426,6 @@ CxConsole::bSetFullScreen() {
     /*DEBUG*/xASSERT_RET(true == bRes,  false);
 #elif xOS_ENV_UNIX
     //TODO: bSetFullScreen
-    bool bRes = false;
     xNOT_IMPLEMENTED_RET(false);
 #endif
     return true;

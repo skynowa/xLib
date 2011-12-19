@@ -22,7 +22,7 @@ CxHandleT<hvTag>::CxHandleT() :
 template<EHandleValue hvTag>
 /*explicit*/
 CxHandleT<hvTag>::CxHandleT(
-    const TxHandle chHandle
+    const TxNativeHandle chHandle
 ) :
     _m_hHandle(chHandle)
 {
@@ -59,10 +59,10 @@ CxHandleT<hvTag>::~CxHandleT() {
 template<EHandleValue hvTag>
 CxHandleT<hvTag> &
 CxHandleT<hvTag>::operator = (
-    const TxHandle chHandle
+    const TxNativeHandle chHandle
 )
 {
-    /*DEBUG*/xASSERT_DO(false == bIsValid(), TxErrorValue::hGet());
+    /*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
     /*DEBUG*///hHandle - n/a
 
     //Try m_Handle.Attach(other.Detach(), if you got an assertion here.
@@ -98,7 +98,7 @@ CxHandleT<hvTag>::operator = (
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-TxHandle
+TxNativeHandle
 CxHandleT<hvTag>::hGet() const {
     /*DEBUG*/
 
@@ -108,7 +108,7 @@ CxHandleT<hvTag>::hGet() const {
 template<EHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bSet(
-    const TxHandle chHandle
+    const TxNativeHandle chHandle
 )
 {
     /*DEBUG*/
@@ -119,23 +119,23 @@ CxHandleT<hvTag>::bSet(
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-TxHandle
+TxNativeHandle
 CxHandleT<hvTag>::hDuplicate() const {
     /*DEBUG*/// n/a
     xCHECK_RET(false == bIsValid(), TxErrorValue::hGet());
 
-    TxHandle hRes = TxErrorValue::hGet();
+    TxNativeHandle hRes = TxErrorValue::hGet();
 
 #if defined(xOS_ENV_WIN)
-    TxHandle hCurrentProcess = ::GetCurrentProcess();
+    TxNativeHandle hCurrentProcess = ::GetCurrentProcess();
 
     BOOL blRes = ::DuplicateHandle(
-                    hCurrentProcess, 
-                    _m_hHandle, 
-                    hCurrentProcess, 
-                    &hRes, 
-                    DUPLICATE_SAME_ACCESS, 
-                    FALSE, 
+                    hCurrentProcess,
+                    _m_hHandle,
+                    hCurrentProcess,
+                    &hRes,
+                    DUPLICATE_SAME_ACCESS,
+                    FALSE,
                     DUPLICATE_SAME_ACCESS
     );
     /*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::hGet());
@@ -155,13 +155,13 @@ CxHandleT<hvTag>::bIsValid() const {
     bool bRes = false;
 
 #if defined(xOS_ENV_WIN)
-    bool bCond1 = (reinterpret_cast<TxHandle>(0xCDCDCDCD) != _m_hHandle);   //created but not initialised
-    bool bCond2 = (reinterpret_cast<TxHandle>(0xCCCCCCCC) != _m_hHandle);   //uninitialized locals in VC6 when you compile w/ /GZ
-    bool bCond3 = (reinterpret_cast<TxHandle>(0xBAADF00D) != _m_hHandle);   //indicate an uninitialized variable
-    bool bCond4 = (reinterpret_cast<TxHandle>(0xFDFDFDFD) != _m_hHandle);   //no man's land (normally outside of a process)
-    bool bCond5 = (reinterpret_cast<TxHandle>(0xFEEEFEEE) != _m_hHandle);   //freed memory set by NT's heap manager
-    bool bCond6 = (reinterpret_cast<TxHandle>(0xDDDDDDDD) != _m_hHandle);   //deleted
-    bool bCond7 = (TxErrorValue::hGet()                   != _m_hHandle);   //compare with error handle value
+    bool bCond1 = (reinterpret_cast<TxNativeHandle>(0xCDCDCDCD) != _m_hHandle);   //created but not initialised
+    bool bCond2 = (reinterpret_cast<TxNativeHandle>(0xCCCCCCCC) != _m_hHandle);   //uninitialized locals in VC6 when you compile w/ /GZ
+    bool bCond3 = (reinterpret_cast<TxNativeHandle>(0xBAADF00D) != _m_hHandle);   //indicate an uninitialized variable
+    bool bCond4 = (reinterpret_cast<TxNativeHandle>(0xFDFDFDFD) != _m_hHandle);   //no man's land (normally outside of a process)
+    bool bCond5 = (reinterpret_cast<TxNativeHandle>(0xFEEEFEEE) != _m_hHandle);   //freed memory set by NT's heap manager
+    bool bCond6 = (reinterpret_cast<TxNativeHandle>(0xDDDDDDDD) != _m_hHandle);   //deleted
+    bool bCond7 = (TxErrorValue::hGet()                         != _m_hHandle);   //compare with error handle value
 
     bRes = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
 #elif defined(xOS_ENV_UNIX)
@@ -177,7 +177,7 @@ CxHandleT<hvTag>::bIsValid() const {
 template<EHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bAttach(
-    const TxHandle chHandle
+    const TxNativeHandle chHandle
 )
 {
     /*DEBUG*/// n/a
@@ -192,11 +192,11 @@ CxHandleT<hvTag>::bAttach(
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-TxHandle
+TxNativeHandle
 CxHandleT<hvTag>::hDetach() {
     /*DEBUG*///n/a
 
-    TxHandle hHandle = _m_hHandle;
+    TxNativeHandle hHandle = _m_hHandle;
 
     _m_hHandle = TxErrorValue::hGet();
 

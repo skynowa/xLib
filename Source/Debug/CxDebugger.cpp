@@ -31,8 +31,8 @@ xNAMESPACE_BEGIN(NxLib)
 *
 *****************************************************************************/
 
-/*static*/ bool           CxDebugger::_ms_bIsEnabled = true;
-/*static*/ std::tstring_t CxDebugger::_ms_sLogPath;
+bool           CxDebugger::_ms_bIsEnabled = true;
+std::tstring_t CxDebugger::_ms_sLogPath;
 
 //---------------------------------------------------------------------------
 /*static*/
@@ -74,11 +74,15 @@ CxDebugger::bIsPresent() {
 /*static*/
 bool
 CxDebugger::bIsDebugBuild() {
+    bool bRes = false;
+
 #if xBUILD_DEBUG
-    return true;
+    bRes = true;
 #else
-    return false;
+    bRes = false;
 #endif
+
+    return bRes;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -190,7 +194,7 @@ bool
 CxDebugger::bBeep(
     const ulong_t culFrequency /*= 800*/,
     const ulong_t culDuration  /*= 100*/
-) 
+)
 {
 #if xOS_ENV_WIN
     #if xTODO

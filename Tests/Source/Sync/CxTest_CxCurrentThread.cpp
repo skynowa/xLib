@@ -47,7 +47,7 @@ CxTest_CxCurrentThread::bUnit(
 
         for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
             const CxThread::TxId culId = aulData[i][0];
-            const bool           cbRes = xINT_AS_BOOL( (ulong_t)aulData[i][1] );
+            const bool           cbRes = xINT_TO_BOOL( (ulong_t)aulData[i][1] );
 
             m_bRes = CxCurrentThread::bIsCurrent(culId);
             xTEST_EQ(cbRes, m_bRes);

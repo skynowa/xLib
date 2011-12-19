@@ -39,8 +39,8 @@ CxTest::CxTest() :
     m_usRes        (),
     m_vsRes        (),
     m_msRes        (),
+    m_hRes         (),  //TODO: m_hRes
 #if xOS_ENV_WIN
-    m_hRes         (INVALID_HANDLE_VALUE),
     m_hwndRes      (NULL),
 #endif
     _m_sWorkDirPath(),
@@ -58,7 +58,7 @@ bool
 CxTest::bRun(
     const ulonglong_t cullUnitLoops,
     const ulonglong_t cullCaseLoops
-) 
+)
 {
     /*DEBUG*/
 
