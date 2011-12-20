@@ -202,7 +202,7 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //ullRowsNum
     {
-        my_ulonglong ullRes = recRec.ullRowsNum();
+        my_ulonglong ullRes = recRec.ullRowsNum(); xUNUSED(ullRes);
         //xTRACE("ullRowsNum: %lli", ullRes);
         //TODO: xTEST_LESS(0ULL, ullRes);
     }

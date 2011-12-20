@@ -96,7 +96,7 @@ CxSystemLog::bWrite(
 #if xOS_ENV_WIN
 
 #elif xOS_ENV_UNIX
-    (void)::syslog(lvLevel, sData.c_str());
+    (void)::syslog(lvLevel, "%s", sData.c_str());
 #endif
 
     return true;
