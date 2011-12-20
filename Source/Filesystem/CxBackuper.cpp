@@ -46,8 +46,7 @@ CxBackuper::etExecute(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    etUnknown);
     /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), etUnknown);
 
-    EErrorType etRes = etUnknown;
-    bool       bRes  = false;
+    bool bRes  = false;
 
     (*psDestFilePath).clear();
 

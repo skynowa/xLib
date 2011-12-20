@@ -674,8 +674,7 @@ CxDir::bFindDirs(
             //is search in subdirs ?
             xCHECK_DO(false == cbIsRecurse, continue);
 
-            bRes = bFindDirs(sDirPath, cMask, cbIsRecurse, pvsDirPathes);    //recursion
-            /*DEBUG*/// n/a
+            (void)bFindDirs(sDirPath, cMask, cbIsRecurse, pvsDirPathes);    //recursion
         }
         //files
         else {

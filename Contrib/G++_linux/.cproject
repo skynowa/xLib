@@ -83,6 +83,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Source}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Tests/Include}&quot;"/>
 								</option>
+								<option id="gnu.cpp.compiler.option.warnings.pedantic.867161581" superClass="gnu.cpp.compiler.option.warnings.pedantic" value="true" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1322820317" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1888810266" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release">
@@ -107,9 +108,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.release.799057292.1815361756" name="CxHandleT.inl" rcbsApplicability="disable" resourcePath="Source/Common/CxHandleT.inl" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.279252103.288160762">
-						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.279252103.288160762" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.279252103"/>
-					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
