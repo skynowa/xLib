@@ -14,9 +14,9 @@
 
 //Common
 #include <Test/Common/CxTest_CxMacros.h>
+#include <Test/Common/CxTest_CxHandleT.h>
 #include <Test/Common/CxTest_CxException.h>
 #include <Test/Common/CxTest_CxType.h>
-#include <Test/Common/CxTest_CxHandleT.h>
 #include <Test/Common/CxTest_CxFunctorT.h>
 #include <Test/Common/CxTest_CxArray.h>
 #include <Test/Common/CxTest_CxChar.h>
@@ -181,9 +181,9 @@ xTMAIN(
 
         //Common
         (void)tmManager.bAdd(new CxTest_CxMacros);
+        (void)tmManager.bAdd(new CxTest_CxHandleT);
         (void)tmManager.bAdd(new CxTest_CxException);
         (void)tmManager.bAdd(new CxTest_CxType);
-        (void)tmManager.bAdd(new CxTest_CxHandleT);
         (void)tmManager.bAdd(new CxTest_CxFunctorT);
         (void)tmManager.bAdd(new CxTest_CxArray);
         (void)tmManager.bAdd(new CxTest_CxChar);
