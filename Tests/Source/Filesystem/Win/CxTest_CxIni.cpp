@@ -28,7 +28,7 @@ CxTest_CxIni::bUnit(
     #define TEST_DEF_CONSTRUCTOR 1
 
     {
-        const std::tstring_t csIniPath = xT("C:\\Test\\__Test.ini");
+        const std::tstring_t csIniPath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.ini");
 
     #ifdef TEST_DEF_CONSTRUCTOR
         CxIni objIni;
