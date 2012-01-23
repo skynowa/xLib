@@ -20,7 +20,7 @@
  *       Cx          - class
  *       Sx          - struct
  *       Ux          - union
- *       Ex          - enumerator
+ *       Ex          - enumeration
  *       p           - pointer
  *       T           - template
  *       Tx          - type
@@ -44,14 +44,14 @@
  *       
  *       i           - int
  *       ui          - unsigned int
- *       uc          - uchar_t          (unsigned char)
- *       si          - short_t          (short int)
- *       li          - long_t           (long int)
- *       lli         - longlong_t       (long long int)
- *       ui          - uint_t           (unsigned int)
- *       us          - ushort_t         (unsigned short int)
- *       ul          - ulong_t          (unsigned long int)
- *       ull         - ulonglong_t      (unsigned long long int)
+ *       uc          - uchar_t                  (unsigned char)
+ *       si          - short_t                  (short int)
+ *       li          - long_t                   (long int)
+ *       lli         - longlong_t               (long long int)
+ *       ui          - uint_t                   (unsigned int)
+ *       us          - ushort_t                 (unsigned short int)
+ *       ul          - ulong_t                  (unsigned long int)
+ *       ull         - ulonglong_t              (unsigned long long int)
  *       
  *       f           - float
  *       d           - double
@@ -60,20 +60,20 @@
  *       sz          - C-string
  *
  *   STL types:
- *       s           - tstring_t        (std::string)
- *       us          - ustring_t        (std::ustring)
+ *       s           - std::tstring_t           (std::string)
+ *       us          - std::ustring_t           (std::ustring)
  *
- *       ism         - tistream_t       (std::istream)
- *       osm         - tostream_t       (std::ostream)
- *       iosm        - tiostream_t      (std::iostream)
+ *       ism         - std::tistream_t          (std::istream)
+ *       osm         - std::tostream_t          (std::ostream)
+ *       iosm        - std::tiostream_t         (std::iostream)
  *
- *       issm        - tistringstream_t (std::istringstream)
- *       ossm        - tostringstream_t (std::ostringstream)
- *       ssm         - tstringstream_t  (std::stringstream)
+ *       issm        - std::tistringstream_t    (std::istringstream)
+ *       ossm        - std::tostringstream_t    (std::ostringstream)
+ *       ssm         - std::tstringstream_t     (std::stringstream)
  *
- *       ifsm        - tifstream_t      (std::ifstream)
- *       ofsm        - tofstream_t      (std::ofstream)
- *       fsm         - tfstream_t       (std::fstream)
+ *       ifsm        - std::tifstream_t         (std::ifstream)
+ *       ofsm        - std::tofstream_t         (std::ofstream)
+ *       fsm         - std::tfstream_t          (std::fstream)
  *       
  *       v[type]     - std::vector
  *       d[type]     - std::deque
