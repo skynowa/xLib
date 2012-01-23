@@ -7,11 +7,90 @@
  * \mainpage
  *
  * This library is cross-platform and can be compiled and used on
- * Linux, BSD and Windows
+ * Linux, BSD and Windows (x32, x64)
  *
  * \author  skynowa@gmail.com
- * \date    2008 - 2011
- * \section Samples
+ * \date    2008 - 2012
+ *
+ * \section sec_code_convention Code conventions
+ * 
+ * <pre>
+ *   Data:
+ *       Nx          - namespace
+ *       Cx          - class
+ *       Sx          - struct
+ *       Ux          - union
+ *       Ex          - enumerator
+ *       p           - pointer
+ *       T           - template
+ *       Tx          - type
+ *
+ *   Access:
+ *       g           - global
+ *       s           - static
+ *       m           - member of some data structure
+ *       fr          - friend
+ *       
+ *   Modify:
+ *       c           - const
+ *       v           - volatile
+ *       m           - mutable
+ *       
+ *   Types:
+ *       a           - array
+ *   
+ *       v           - void
+ *       b           - bool
+ *       
+ *       i           - int
+ *       ui          - unsigned int
+ *       uc          - uchar_t          (unsigned char)
+ *       si          - short_t          (short int)
+ *       li          - long_t           (long int)
+ *       lli         - longlong_t       (long long int)
+ *       ui          - uint_t           (unsigned int)
+ *       us          - ushort_t         (unsigned short int)
+ *       ul          - ulong_t          (unsigned long int)
+ *       ull         - ulonglong_t      (unsigned long long int)
+ *       
+ *       f           - float
+ *       d           - double
+ *       ld          - long double
+ *
+ *       sz          - C-string
+ *
+ *   STL types:
+ *       s           - tstring_t        (std::string)
+ *       us          - ustring_t        (std::ustring)
+ *
+ *       ism         - tistream_t       (std::istream)
+ *       osm         - tostream_t       (std::ostream)
+ *       iosm        - tiostream_t      (std::iostream)
+ *
+ *       issm        - tistringstream_t (std::istringstream)
+ *       ossm        - tostringstream_t (std::ostringstream)
+ *       ssm         - tstringstream_t  (std::stringstream)
+ *
+ *       ifsm        - tifstream_t      (std::ifstream)
+ *       ofsm        - tofstream_t      (std::ofstream)
+ *       fsm         - tfstream_t       (std::fstream)
+ *       
+ *       v[type]     - std::vector
+ *       d[type]     - std::deque
+ *       l[type]     - std::list
+ *       
+ *       st[type]    - std::stack
+ *       q[type]     - std::queue
+ *       pq[type]    - std::priority_queue
+ *       
+ *       s[type]     - std::set
+ *       ms[type]    - std::multiset
+ *       m[type]     - std::map
+ *       mm[type]    - std::multimap
+ *       bs[type]    - std::bitset
+ * </pre>
+ *
+ * \section sec_samples Samples
  * \ref     Units
  */
 
