@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Common\CxCommandLine.cpp" />
     <ClCompile Include="..\..\Source\Common\CxConsole.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxShell.cpp" />
     <ClCompile Include="..\..\Source\Common\CxType.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxRandom.cpp" />
@@ -262,7 +263,6 @@
     <ClCompile Include="..\..\Source\Common\Win\CxClipboard.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxComPort.cpp" />
-    <ClCompile Include="..\..\Source\Common\Win\CxShell.cpp" />
     <ClCompile Include="..\..\Source\Sync\Win\CxCompletionPort.cpp" />
     <ClCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp" />
@@ -277,13 +277,13 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxLocale.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxMacros.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxShell.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxString.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxType.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxClipboard.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxComPort.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxShell.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp" />
@@ -370,6 +370,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxCommandLine.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxHandleT.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxShell.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Unix.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
@@ -429,13 +430,13 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxMacros.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxShell.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxString.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxType.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxClipboard.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxComPort.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxShell.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h" />
@@ -614,7 +615,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxClipboard.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxCom.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxComPort.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxShell.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\xCommon_Win.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

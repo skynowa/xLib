@@ -4,6 +4,45 @@
  */
 
 
+#ifndef xLib_Common_CxHandleErrorTH
+#define xLib_Common_CxHandleErrorTH
+//---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
+enum EHandleValue
+    /// error handle type
+{
+    hvNull,     ///< like "null"
+    hvInvalid   ///< like "invalid"
+};
+
+template<EHandleValue hvTag>
+struct CxHandleErrorT;
+    /// handle error
+
+template<>
+struct CxHandleErrorT<hvNull>
+    /// handle error is hvNull
+{
+    static TxNativeHandle
+    hGet () { return xNATIVE_HANDLE_NULL; }
+};
+
+template<>
+struct CxHandleErrorT<hvInvalid>
+    /// handle error is hvInvalid
+{
+    static TxNativeHandle
+    hGet () { return xNATIVE_HANDLE_INVALID; }
+};
+
+xNAMESPACE_END(NxLib)
+//---------------------------------------------------------------------------
+#endif    //xLib_Common_CxHandleErrorTH
+
+
+
+
 #ifndef xLib_Common_CxHandleTH
 #define xLib_Common_CxHandleTH
 //---------------------------------------------------------------------------
@@ -13,37 +52,6 @@
 #if 0
     #include <xLib/Sync/CxCurrentProcess.h>
 #endif
-//---------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
-
-enum EHandleValue
-    ///< error handle type
-{
-    hvNull,     ///< like "null"
-    hvInvalid   ///< like "invalid"
-};
-
-template<EHandleValue hvTag>
-struct CxHandleError;
-    ///< handle error
-
-template<>
-struct CxHandleError<hvNull>
-    ///< handle error is hvNull
-{
-    static TxNativeHandle
-    hGet () { return xNATIVE_HANDLE_NULL; }
-};
-
-template<>
-struct CxHandleError<hvInvalid>
-    ///< handle error is hvInvalid
-{
-    static TxNativeHandle
-    hGet () { return xNATIVE_HANDLE_INVALID; }
-};
-
-xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -90,7 +98,7 @@ class CxHandleT
     #endif
 
     private:
-        typedef CxHandleError<hvTag>  TxErrorValue;
+        typedef CxHandleErrorT<hvTag>  TxErrorValue;
 
         TxNativeHandle _m_hHandle;    ///< handle
 };

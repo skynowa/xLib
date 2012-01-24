@@ -26,11 +26,11 @@
 #include <Test/Common/CxTest_CxSystemInfo.h>
 #include <Test/Common/CxTest_CxConsole.h>
 #include <Test/Common/CxTest_CxCommandLine.h>
+#include <Test/Common/CxTest_CxShell.h>
 
 #if xOS_ENV_WIN
     #include <Test/Common/Win/CxTest_CxCom.h>
     #include <Test/Common/Win/CxTest_CxClipboard.h>
-    #include <Test/Common/Win/CxTest_CxShell.h>
     #include <Test/Common/Win/CxTest_CxComPort.h>
 #endif
 
@@ -193,11 +193,11 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxSystemInfo);
         (void)tmManager.bAdd(new CxTest_CxConsole);
         (void)tmManager.bAdd(new CxTest_CxCommandLine);
+        (void)tmManager.bAdd(new CxTest_CxShell);
 
     #if xOS_ENV_WIN
         (void)tmManager.bAdd(new CxTest_CxCom);
         (void)tmManager.bAdd(new CxTest_CxClipboard);
-        (void)tmManager.bAdd(new CxTest_CxShell);
         (void)tmManager.bAdd(new CxTest_CxComPort);
     #elif xOS_ENV_UNIX
 
