@@ -4,7 +4,7 @@
  */
 
 
-#include <Test/Common/Win/CxTest_CxShell.h>
+#include <Test/Common/CxTest_CxShell.h>
 
 
 //---------------------------------------------------------------------------
@@ -23,6 +23,38 @@ CxTest_CxShell::bUnit(
 )
 {
     /*DEBUG*/
+
+    //-------------------------------------
+    //bIsAvailable
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_bRes = CxShell::bIsAvailable();
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //-------------------------------------
+    //bExecute
+    xTEST_CASE(cullCaseLoops)
+    {
+        const std::tstring_t casData[][2] = {
+            { xT("cd"), xT("./") },
+            { xT(""),   xT("")   },
+
+        #if   xOS_ENV_WIN
+
+        #elif xOS_ENV_UNIX
+
+        #endif
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
+            const std::tstring_t csFilePath = casData[i][0];
+            const std::tstring_t csParams   = casData[i][1];
+
+            m_bRes = CxShell::bExecute(csFilePath, csParams);
+            xTEST_EQ(true, m_bRes);
+        }
+    }
 
 #if xOS_ENV_WIN
     //-------------------------------------
