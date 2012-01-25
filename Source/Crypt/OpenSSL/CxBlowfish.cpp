@@ -96,7 +96,7 @@ CxBlowfish::bSetFileKey(
     bool bRes = sfFile.bCreate(csFilePath, CxFile::omBinRead, true);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    long_t liFileSize = sfFile.liGetSize();
+    long_t liFileSize = sfFile.lliGetSize();
     /*DEBUG*/xASSERT_RET(0L           <  liFileSize, false);
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= liFileSize, false);
 
@@ -373,7 +373,7 @@ CxBlowfish::cmGetFileCryptStatus(
     //CHECK
     xCHECK_RET(false == CxFile::bIsExists(csFilePath), CxBlowfish::cmUnknown);
 
-    liFileSize = CxFile::liGetSize(csFilePath);
+    liFileSize = CxFile::lliGetSize(csFilePath);
 
     xCHECK_RET(0L == liFileSize,                                     CxBlowfish::cmDecrypt);
     xCHECK_RET(cusStamp.size() >= static_cast<size_t>( liFileSize ), CxBlowfish::cmDecrypt);
