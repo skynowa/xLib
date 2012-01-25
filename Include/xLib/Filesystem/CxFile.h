@@ -183,7 +183,7 @@ class CxFile :
             ///< sets the file translation mode
     #endif
 
-        longlong_t             lliGetSize   () const;
+        longlong_t             llGetSize   () const;
             ///< get file size
         bool                   bResize      (const long_t cliSize) const;
             ///< changes the file size
@@ -235,7 +235,7 @@ class CxFile :
             ///< move
         static bool            bCopy        (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool cbFailIfExists);
             ///< copy
-        static longlong_t      lliGetSize   (const std::tstring_t &csFilePath);
+        static longlong_t      llGetSize   (const std::tstring_t &csFilePath);
             ///< get size
         static ulonglong_t     ullGetLines  (const std::tstring_t &csFilePath);
             ///< get number of lines
