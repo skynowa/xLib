@@ -444,21 +444,21 @@ CxTest_CxFile::bUnit(
     }
 
     //-------------------------------------
-    //lliGetSize
+    //llGetSize
     xTEST_CASE(cullCaseLoops)
     {
-        const long_t culNewSize = 1024;
+        const longlong_t cllNewSize = 1024LL;
 
         CxFile F;
 
         m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
         xTEST_EQ(true, m_bRes);
 
-        m_bRes = F.bResize(culNewSize);
+        m_bRes = F.bResize(cllNewSize);
         xTEST_EQ(true, m_bRes);
 
-        longlong_t llSize = F.lliGetSize();
-        xTEST_EQ(culNewSize, lliSize);
+        longlong_t llSize = F.llGetSize();
+        xTEST_EQ(cllNewSize, llSize);
     }
 
     //-------------------------------------

@@ -157,7 +157,7 @@ CxFileLog::_bDeleteIfFull() {
 
     //-------------------------------------
     //delete log, if full
-    ulong_t ulSize = static_cast<ulong_t>( CxFile::lliGetSize(sGetFilePath()) );
+    ulong_t ulSize = static_cast<ulong_t>( CxFile::llGetSize(sGetFilePath()) );
 
     xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, true);
 

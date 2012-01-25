@@ -96,11 +96,11 @@ CxBlowfish::bSetFileKey(
     bool bRes = sfFile.bCreate(csFilePath, CxFile::omBinRead, true);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    long_t liFileSize = sfFile.lliGetSize();
-    /*DEBUG*/xASSERT_RET(0L           <  liFileSize, false);
-    /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= liFileSize, false);
+    longlong_t llFileSize = sfFile.llGetSize();
+    /*DEBUG*/xASSERT_RET(0LL          <  llFileSize, false);
+    /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= llFileSize, false);
 
-    usFile.resize(liFileSize);
+    usFile.resize( static_cast<size_t>( llFileSize ) );
 
     uiRes = sfFile.uiRead(&usFile.at(0), usFile.size());
     /*DEBUG*/xASSERT_RET(usFile.size() == uiRes, false);
@@ -364,19 +364,19 @@ CxBlowfish::cmGetFileCryptStatus(
 {
     /*DEBUG*/
 
-    ECryptMode   cmRes        = cmUnknown;
+    ECryptMode     cmRes        = cmUnknown;
     std::ustring_t usStamp;
-    size_t       uiReadedSize = 0;
-    long_t         liFileSize   = (ulong_t)- 1;
+    size_t         uiReadedSize = 0;
+    longlong_t     llFileSize   = (ulonglong_t)- 1;
 
     //-------------------------------------
     //CHECK
     xCHECK_RET(false == CxFile::bIsExists(csFilePath), CxBlowfish::cmUnknown);
 
-    liFileSize = CxFile::lliGetSize(csFilePath);
+    llFileSize = CxFile::llGetSize(csFilePath);
 
-    xCHECK_RET(0L == liFileSize,                                     CxBlowfish::cmDecrypt);
-    xCHECK_RET(cusStamp.size() >= static_cast<size_t>( liFileSize ), CxBlowfish::cmDecrypt);
+    xCHECK_RET(0LL == llFileSize,                                    CxBlowfish::cmDecrypt);
+    xCHECK_RET(cusStamp.size() >= static_cast<size_t>( llFileSize ), CxBlowfish::cmDecrypt);
 
     //-------------------------------------
     //
