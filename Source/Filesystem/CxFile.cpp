@@ -199,7 +199,7 @@ CxFile::bRead(
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
     /*DEBUG*/xASSERT_RET(NULL  != psBuff,     false);
 
-    long_t liFileSize = liGetSize();
+    long_t liFileSize = lliGetSize();
     /*DEBUG*/xASSERT_RET(ppError != liFileSize, false);
 
     (*psBuff).clear();
@@ -234,7 +234,7 @@ CxFile::bRead(
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
     /*DEBUG*/xASSERT_RET(NULL  != psBuff,     false);
 
-    long_t liFileSize = liGetSize();
+    long_t liFileSize = lliGetSize();
     /*DEBUG*/xASSERT_RET(ppError != liFileSize, false);
 
     (*psBuff).clear();
@@ -458,22 +458,20 @@ CxFile::bSetMode(
 #endif
 //---------------------------------------------------------------------------
 //NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
-long_t
-CxFile::liGetSize() const {
+longlong_t
+CxFile::lliGetSize() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), etError);
 
-    long_t liStreamSize    = - 1L;
-    long_t liCurrStreamPos = - 1L;
+    longlong_t llRes = - 1LL;
 
-    liCurrStreamPos = liGetPosition();
+    xTSTAT_STRUCT stStat = {0};
 
-    xCHECK_RET(false == bSetPosition(0, ppEnd), etError);
+    int iRes = ::xTSTAT(_m_sFilePath.c_str(), &stStat);
+    xCHECK_RET(- 1 == iRes, 0LL);
 
-    liStreamSize = liGetPosition();
+    llRes = stStat.st_size;
 
-    xCHECK_RET(false == bSetPosition(liCurrStreamPos, ppBegin), etError);
-
-    return liStreamSize;
+    return llRes;
 }
 //---------------------------------------------------------------------------
 bool
@@ -491,7 +489,7 @@ CxFile::bResize(
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
-    /*DEBUG*/xASSERT_RET(cliSize == liGetSize(), false);
+    /*DEBUG*/xASSERT_RET(cliSize == lliGetSize(), false);
 
     return true;
 }
@@ -521,7 +519,7 @@ bool
 CxFile::bIsEmpty() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
 
-    long_t liFileSize = liGetSize();
+    long_t liFileSize = lliGetSize();
     /*DEBUG*/xASSERT_RET(- 1L != liFileSize, true);
 
     return (0L == liFileSize);
@@ -802,7 +800,7 @@ CxFile::bWipe(
         bRes = sfFile.bCreate(csFilePath, omBinWrite, true);
         /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-        long_t liSize = sfFile.liGetSize();
+        long_t liSize = sfFile.lliGetSize();
         if (0L < liSize) {
             //--------------------------------------------------
             //fill by 0x55, 0xAA, random char
@@ -989,27 +987,27 @@ CxFile::bCopy(
 
     //--------------------------------------------------
     //test for size, maybe CRC
-    xCHECK_DO(liGetSize(csFilePathFrom) != liGetSize(csFilePathTo), (void)bDelete(csFilePathTo); return false);
+    xCHECK_DO(lliGetSize(csFilePathFrom) != lliGetSize(csFilePathTo), (void)bDelete(csFilePathTo); return false);
 
     return true;
 }
 //--------------------------------------------------------------------------
 /*static*/
-long_t
-CxFile::liGetSize(
+longlong_t
+CxFile::lliGetSize(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    - 1L);
-    /*DEBUG*/xASSERT_RET(true  == bIsExists(csFilePath), - 1L);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    - 1LL);
+    /*DEBUG*/xASSERT_RET(true  == bIsExists(csFilePath), - 1LL);
 
     CxFile sfFile;
 
     bool bRes = sfFile.bCreate(csFilePath, omRead, true);
-    /*DEBUG*/xASSERT_RET(true == bRes, - 1L);
+    /*DEBUG*/xASSERT_RET(true == bRes, - 1LL);
 
-    long_t liRes = sfFile.liGetSize();
-    /*DEBUG*/xASSERT_RET(0L <= liRes, - 1L);
+    longlong_t liRes = sfFile.lliGetSize();
+    /*DEBUG*/xASSERT_RET(0LL <= liRes, - 1LL);
 
     return liRes;
 }
@@ -1154,7 +1152,7 @@ CxFile::bTextRead(
     bool bRes = sfFile.bCreate(csFilePath, omBinRead, true);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    long_t liFileSize = sfFile.liGetSize();
+    long_t liFileSize = sfFile.lliGetSize();
     /*DEBUG*/xASSERT_RET(ppError != liFileSize, false);
 
     xCHECK_DO(0L == liFileSize, (*psContent).clear(); return true);
@@ -1259,7 +1257,7 @@ CxFile::bTextRead(
     /*DEBUG*/xASSERT_RET(NULL  != pmsContent,            false);
 
     //if file empty
-    xCHECK_DO(0L == liGetSize(csFilePath), (*pmsContent).clear(); return true);
+    xCHECK_DO(0L == lliGetSize(csFilePath), (*pmsContent).clear(); return true);
 
     bool bRes = false;
 
@@ -1386,7 +1384,7 @@ CxFile::bBinRead(
     bRes = sfFile.bCreate(csFilePath, omBinRead, true);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    long_t liFileSize = sfFile.liGetSize();
+    long_t liFileSize = sfFile.lliGetSize();
     /*DEBUG*/xASSERT_RET(ppError != liFileSize, false);
 
     xCHECK_DO(0 == liFileSize, (*pusContent).clear(); return true);

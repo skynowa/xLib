@@ -36,8 +36,8 @@ CxTest_CxFileTemp::bUnit(
             xTRACEV(xT("\tsTemp: %s"), fJobber.sGetPath().c_str());
         #endif
 
-        m_liRes = fJobber.liGetSize();
-        xTEST_EQ(0L, m_liRes);
+        m_llRes = fJobber.lliGetSize();
+        xTEST_EQ(0LL, m_llRes);
 
         m_bRes = fJobber.bWriteLine(xT("qwertyuiop"));
         xTEST_EQ(true, m_bRes);

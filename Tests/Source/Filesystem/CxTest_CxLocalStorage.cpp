@@ -289,7 +289,7 @@ CxTest_CxLocalStorage::bUnit(
     {
         m_bRes = iniIni.bClear();
         xTEST_EQ(true, m_bRes);
-        xTEST_EQ(0L, CxFile::liGetSize( iniIni.sGetPath() ));
+        xTEST_EQ(0LL, CxFile::lliGetSize( iniIni.sGetPath() ));
     }
 
     //--------------------------------------------------

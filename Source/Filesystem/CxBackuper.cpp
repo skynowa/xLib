@@ -88,7 +88,7 @@ CxBackuper::etExecute(
     bRes = CxVolume::bGetFreeSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
     xCHECK_RET(false == bRes, etUnknown);
 
-    if (static_cast<ulonglong_t>( CxFile::liGetSize(csFilePath) ) > ullTotalFreeBytes) {
+    if (static_cast<ulonglong_t>( CxFile::lliGetSize(csFilePath) ) > ullTotalFreeBytes) {
         return etNotEnoughFreeSpace;
     }
 
@@ -100,7 +100,7 @@ CxBackuper::etExecute(
     //-------------------------------------
     //check for a valid backup
     xCHECK_RET(false                               == CxFile::bIsExists(sBackupFilePath),       etCopyingFail);
-    xCHECK_RET(CxFile::liGetSize(csFilePath)       != CxFile::liGetSize(sBackupFilePath),       etCopyingFail);
+    xCHECK_RET(CxFile::lliGetSize(csFilePath)       != CxFile::lliGetSize(sBackupFilePath),       etCopyingFail);
     xCHECK_RET(CxCrc32::ulCalcFileFast(csFilePath) != CxCrc32::ulCalcFileFast(sBackupFilePath), etCopyingFail);
 
     //[out]

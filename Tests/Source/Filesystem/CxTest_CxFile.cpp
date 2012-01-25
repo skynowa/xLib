@@ -444,7 +444,7 @@ CxTest_CxFile::bUnit(
     }
 
     //-------------------------------------
-    //liGetSize
+    //lliGetSize
     xTEST_CASE(cullCaseLoops)
     {
         const long_t culNewSize = 1024;
@@ -457,8 +457,8 @@ CxTest_CxFile::bUnit(
         m_bRes = F.bResize(culNewSize);
         xTEST_EQ(true, m_bRes);
 
-        long_t liSize = F.liGetSize();
-        xTEST_EQ(culNewSize, liSize);
+        longlong_t llSize = F.lliGetSize();
+        xTEST_EQ(culNewSize, lliSize);
     }
 
     //-------------------------------------
