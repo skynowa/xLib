@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxDir.h>
 
 #if xOS_ENV_WIN
-
+    #pragma comment(lib, "mpr.lib")
 #elif xOS_ENV_UNIX
     #include <sys/mount.h>
 #endif
@@ -32,7 +32,7 @@ CxVolume::bIsReady(
 {
     /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), false);
 
-    bool         bRes        = false;
+    bool           bRes        = false;
     std::tstring_t sVolumePath = CxPath::sSlashAppend(csVolumePath);
     std::tstring_t sOldDirPath;
 
@@ -135,39 +135,56 @@ CxVolume::bGetFreeSpace(
     return true;
 }
 //---------------------------------------------------------------------------
-//TODO: bMount
 /*static*/
 bool
 CxVolume::bMount(
-    const std::tstring_t &csSourcePath,
-    const std::tstring_t &csDestPath
+    const std::tstring_t &csSourcePath, ///< source path
+    const std::tstring_t &csDestPath    ///< destination path
 )
 {
     /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), false);
     /*DEBUG*/xASSERT_RET(false == csDestPath.empty(),   false);
 
 #if xOS_ENV_WIN
-    //TODO: bMount
-    #if xTODO
-        DWORD WNetAddConnection2(
-          __in  LPNETRESOURCE lpNetResource,
-          __in  LPCTSTR lpPassword,
-          __in  LPCTSTR lpUsername,
-          __in  DWORD dwFlags
-        );
-    #endif
+    NETRESOURCE nrNetResource = {0};
+
+    nrNetResource.dwScope       = RESOURCE_GLOBALNET;
+    nrNetResource.dwType        = RESOURCETYPE_DISK;
+    nrNetResource.dwDisplayType = RESOURCEDISPLAYTYPE_GENERIC;
+    nrNetResource.dwUsage       = RESOURCEUSAGE_CONTAINER;
+    nrNetResource.lpLocalName   = const_cast<tchar_t *>( csDestPath.c_str() );
+    nrNetResource.lpRemoteName  = const_cast<tchar_t *>( csSourcePath.c_str() );
+    nrNetResource.lpComment     = NULL;
+    nrNetResource.lpProvider    = NULL;
+
+    DWORD dwRes = ::WNetAddConnection2(&nrNetResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
+    /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
 #elif xOS_ENV_UNIX
-    //TODO: bMount
+    int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), NULL, MS_REMOUNT, NULL);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+#endif
 
-    #if xTODO
-        const std::tstring_t  csFilesytemType;
-        const ulong_t         culMountFlags = 0UL;
-        const void         *pcvData       = NULL;
+    return true;
+}
+//--------------------------------------------------------------------------
+/*static*/
+bool
+CxVolume::bUnMount(
+    const std::tstring_t &csSourcePath, ///< source path
+    const bool            cbIsForce     ///< force unmount even if busy
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), false);
+    /*DEBUG*/// cbIsForce - n/a
 
-        int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), csFilesytemType.c_str(), culMountFlags, pcvData);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
-    #endif
+#if xOS_ENV_WIN
+    DWORD dwRes = ::WNetCancelConnection2(csSourcePath.c_str(), CONNECT_UPDATE_PROFILE, cbIsForce);
+    /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
+#elif xOS_ENV_UNIX
+    const int ciFlag = cbIsForce ? MNT_FORCE : MNT_DETACH;
 
+    int iRes = ::umount2(csSourcePath.c_str(), ciFlag);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
     return true;

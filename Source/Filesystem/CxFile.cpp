@@ -1148,7 +1148,7 @@ CxFile::bTextRead(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/xASSERT_RET(NULL  != psContent,          false);
 
-    CxFile       sfFile;
+    CxFile         sfFile;
     std::tstring_t sRes;
 
     bool bRes = sfFile.bCreate(csFilePath, omBinRead, true);
@@ -1207,7 +1207,7 @@ CxFile::bTextRead(
     /*DEBUG*/xASSERT_RET(true  == bIsExists(csFilePath), false);
     /*DEBUG*/xASSERT_RET(NULL  != pvsContent,            false);
 
-    bool                      bRes = false;
+    bool                        bRes = false;
     std::vector<std::tstring_t> vsRes;
     std::tstring_t              sFileContent;
 
@@ -1235,7 +1235,7 @@ CxFile::bTextWrite(
 
     //TODO: if cvsContent.empty()
 
-    bool         bRes = false;
+    bool           bRes = false;
     std::tstring_t sFileContent;
 
     sFileContent = CxString::sJoin(cvsContent, CxConst::xNL);
@@ -1249,8 +1249,8 @@ CxFile::bTextWrite(
 /*static*/
 bool
 CxFile::bTextRead(
-    const std::tstring_t                   &csFilePath,
-    const std::tstring_t                   &csSeparator,
+    const std::tstring_t                     &csFilePath,
+    const std::tstring_t                     &csSeparator,
     std::map<std::tstring_t, std::tstring_t> *pmsContent
 )
 {
@@ -1271,8 +1271,8 @@ CxFile::bTextRead(
     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    false);
 
     std::map<std::tstring_t, std::tstring_t> msRes;
-    std::tstring_t                         sLine;
-    std::vector<std::tstring_t>            vsLine;
+    std::tstring_t                           sLine;
+    std::vector<std::tstring_t>              vsLine;
 
     for (size_t i = 0; !ifsStream.eof(); ++ i) {
         std::getline(ifsStream, sLine);
@@ -1290,9 +1290,9 @@ CxFile::bTextRead(
 
 
 #if xTODO
-    bool                                 bRes = false;
+    bool                                     bRes = false;
     std::map<std::tstring_t, std::tstring_t> msRes;
-    std::vector<std::tstring_t>            vsRes;
+    std::vector<std::tstring_t>              vsRes;
 
     bRes = bTextRead(csFilePath, &vsRes);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
@@ -1317,8 +1317,8 @@ CxFile::bTextRead(
 /*static*/
 bool
 CxFile::bTextWrite(
-    const std::tstring_t                         &csFilePath,
-    const std::tstring_t                         &csSeparator,
+    const std::tstring_t                           &csFilePath,
+    const std::tstring_t                           &csSeparator,
     const std::map<std::tstring_t, std::tstring_t> &cmsContent
 )
 {

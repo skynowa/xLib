@@ -24,6 +24,8 @@ class CxVolume :
             ///< get free space
         static bool         bMount                             (const std::tstring_t &csSourcePath, const std::tstring_t &csDestPath);
             ///< mount
+        static bool         bUnMount                           (const std::tstring_t &csSourcePath, const bool cbIsForce);
+            ///< unmount
 
     #if xOS_ENV_WIN
         enum EType
