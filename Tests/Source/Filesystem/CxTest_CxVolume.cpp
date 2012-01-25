@@ -170,6 +170,25 @@ CxTest_CxVolume::bUnit(
     }
 
     //-------------------------------------
+    //bMount, bUnMount
+    xTEST_CASE(cullCaseLoops)
+    {
+        #if xOS_ENV_WIN
+            const std::tstring_t csSourcePath = xT("\\\\KSF\\Files\\INSTALL");
+            const std::tstring_t csDestPath   = xT("T:");
+        #elif xOS_ENV_UNIX
+            const std::tstring_t csSourcePath = xT("~");
+            const std::tstring_t csDestPath   = xT("~\test_volume");
+        #endif
+
+        m_bRes = CxVolume::bMount(csSourcePath, csDestPath);
+        xTEST_EQ(true, m_bRes);
+
+        m_bRes = CxVolume::bUnMount(csDestPath, true);
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //-------------------------------------
     //dtGetType
     xTEST_CASE(cullCaseLoops)
     {

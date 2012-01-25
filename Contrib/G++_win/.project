@@ -27,7 +27,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/G++_win/Default}</value>
+					<value>${workspace_loc:/G++_win/Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.contents</key>
@@ -70,19 +70,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Include</name>
-			<type>2</type>
-			<location>D:/xLib/Include</location>
-		</link>
-		<link>
-			<name>Source</name>
-			<type>2</type>
-			<location>D:/xLib/Source</location>
-		</link>
-		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<location>D:/xLib/Tests</location>
+			<location>D:/Projects/xLib/Tests</location>
 		</link>
 	</linkedResources>
 </projectDescription>

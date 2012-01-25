@@ -32,10 +32,11 @@ Library/C++Builder XE/Release/
 ##### G++_win #####
 Contrib/G++_win/Debug/
 Contrib/G++_win/Release/
+Contrib/G++_win/.settings/
 
 Library/G++_win/Debug/
 Library/G++_win/Release/
-
+Library/G++_win/.settings/
 
 ##### G++_linux #####
 Contrib/G++_linux/Debug/
@@ -44,7 +45,7 @@ Contrib/G++_linux/.settings/
 
 Library/G++_linux/Debug/
 Library/G++_linux/Release/
-
+Library/G++_linux/.settings/
 
 ##### VC++ 2008 #####
 Contrib/VC++ 2008/Debug/
