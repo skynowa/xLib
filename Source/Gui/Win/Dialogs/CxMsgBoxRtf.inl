@@ -67,7 +67,7 @@ HWND         g_hBtnSendReport = NULL;
 const int    ciLeft           = 350;
 const int    ciTop            = 200;
 const int    ciWidth          = 270;
-const int    ciHeight         = 190;
+const int    ciHeight         = 230;
 
 const int    ciBtnWidth       = 75;
 const int    ciBtnHeight      = 25;
@@ -106,7 +106,7 @@ bCreateContent(
                         xCXRICHEDIT10_CONTROL_CLASS /*xT("RICHEDIT")*/,
                         xT(""),
                         WS_CHILD | WS_VISIBLE | ES_LEFT | ES_MULTILINE | ES_WANTRETURN | ES_READONLY,
-                        90, 8, 420, 320,
+                        90, 8, 420, 400,
                         hParent,
                         (HMENU)ID_redtText,
                         g_hInst,
@@ -129,7 +129,7 @@ bCreateContent(
                         xCXBUTTON_CONTROL_CLASS,
                         xT("Abort"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                        ciBtnLeftMargin, 340, ciBtnWidth, ciBtnHeight,
+                        ciBtnLeftMargin, 420, ciBtnWidth, ciBtnHeight,
                         hParent,
                         (HMENU)ID_btnAbort,
                         g_hInst,
@@ -143,7 +143,7 @@ bCreateContent(
                         xCXBUTTON_CONTROL_CLASS,
                         xT("Break"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                        ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 1, 340, ciBtnWidth, ciBtnHeight,
+                        ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 1, 420, ciBtnWidth, ciBtnHeight,
                         hParent,
                         (HMENU)ID_btnRetry,
                         g_hInst,
@@ -157,7 +157,7 @@ bCreateContent(
                         xCXBUTTON_CONTROL_CLASS,
                         xT("Ignore"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                        ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 2, 340, ciBtnWidth, ciBtnHeight,
+                        ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 2, 420, ciBtnWidth, ciBtnHeight,
                         hParent,
                         (HMENU)ID_btnIgnore,
                         g_hInst,
@@ -171,7 +171,7 @@ bCreateContent(
                         xCXBUTTON_CONTROL_CLASS,
                         xT("Copy"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                        ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 3, 340, ciBtnWidth, ciBtnHeight,
+                        ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 3, 420, ciBtnWidth, ciBtnHeight,
                         hParent,
                         (HMENU)ID_btnCopyToClip,
                         g_hInst,
@@ -185,7 +185,7 @@ bCreateContent(
                         xCXBUTTON_CONTROL_CLASS,
                         xT("Report"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
-                        ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 4, 340, ciBtnWidth, ciBtnHeight,
+                        ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 4, 420, ciBtnWidth, ciBtnHeight,
                         hParent,
                         (HMENU)ID_btnSendReport,
                         g_hInst,
@@ -261,7 +261,7 @@ DialogProc(
 //---------------------------------------------------------------------------
 EModalResult
 iShow(
-    HWND                hwndOwner,
+    HWND                  hwndOwner,
     const std::tstring_t &csMessage,
     const std::tstring_t &csTiltle
 )

@@ -47,8 +47,8 @@ CxFile::~CxFile() {
 bool
 CxFile::bCreate(
     const std::tstring_t &csFilePath,
-    const EOpenMode     comMode,
-    const bool          cbIsUseBuffering
+    const EOpenMode       comMode,
+    const bool            cbIsUseBuffering
 )
 {
     /*DEBUG*/xASSERT_RET(false == bIsValid(),                       false);
@@ -83,8 +83,8 @@ CxFile::bCreate(
 bool
 CxFile::bReopen(
     const std::tstring_t &csFilePath,
-    const EOpenMode     comMode,
-    const bool          cbIsUseBuffering
+    const EOpenMode       comMode,
+    const bool            cbIsUseBuffering
 )
 {
     /*DEBUG*/// _m_pFile - n/a
@@ -269,7 +269,7 @@ CxFile::iWrite(
 int
 CxFile::iWriteV(
     const tchar_t *pcszFormat,
-    va_list      vlArgs
+    va_list        vlArgs
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), etError);
@@ -285,12 +285,12 @@ CxFile::iWriteV(
 bool
 CxFile::bReadLine(
     std::tstring_t *psStr,
-    const size_t  cuiMaxCount
+    const size_t    cuiMaxCount
 ) const
 {
-    /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != psStr,      false);
-    /*DEBUG*/xASSERT_RET(0     < cuiMaxCount, false);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(),  false);
+    /*DEBUG*/xASSERT_RET(NULL  != psStr,       false);
+    /*DEBUG*/xASSERT_RET(0     <  cuiMaxCount, false);
 
     #if xTEMP_DISABLED
         if ((*psStr).size() != cuiMaxCount) {
@@ -387,7 +387,7 @@ CxFile::bClear() const {
 bool
 CxFile::bLocking(
     const ELockingMode clmMode,
-    const long_t         cliBytes
+    const long_t       cliBytes
 )
 {
 #if xOS_ENV_WIN
@@ -403,7 +403,7 @@ CxFile::bLocking(
 //---------------------------------------------------------------------------
 bool
 CxFile::bSetPosition(
-    const long_t             clOffset,
+    const long_t           clOffset,
     const EPointerPosition cppPos
 ) const
 {
@@ -460,38 +460,59 @@ CxFile::bSetMode(
 //NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
 longlong_t
 CxFile::llGetSize() const {
-    /*DEBUG*/xASSERT_RET(false != bIsValid(), etError);
+    /*DEBUG*/xASSERT_RET(false != bIsValid(), 0LL);
 
-    longlong_t llRes = - 1LL;
+#if xDEPRECIATE
+    bool bRes = bFlush();
+    /*DEBUG*/xASSERT_RET(true == bRes, 0LL);
 
     xTSTAT_STRUCT stStat = {0};
 
     int iRes = ::xTSTAT(_m_sFilePath.c_str(), &stStat);
-    xCHECK_RET(- 1 == iRes, 0LL);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, 0LL);
 
-    llRes = stStat.st_size;
+    return stStat.st_size;
+#else
+    long_t liStreamSize    = - 1L;
+    long_t liCurrStreamPos = - 1L;
 
-    return llRes;
+    liCurrStreamPos = liGetPosition();
+
+    xCHECK_RET(false == bSetPosition(0, ppEnd), etError);
+
+    liStreamSize = liGetPosition();
+
+    xCHECK_RET(false == bSetPosition(liCurrStreamPos, ppBegin), etError);
+
+    return static_cast<longlong_t>( liStreamSize );
+#endif
 }
 //---------------------------------------------------------------------------
 bool
 CxFile::bResize(
-    const long_t cliSize
+    const longlong_t cllSize
 ) const
 {
     /*DEBUG*/// n/a
 
 #if xOS_ENV_WIN
-    int iRes = ::chsize(_iGetHandle(pGet()), cliSize);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    errno_t iRes = ::_chsize_s(_iGetHandle(pGet()), cllSize);
+    /*DEBUG*/xASSERT_RET(0 == iRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cliSize ));
+    int iRes = ::ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cllSize ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
-    xTEST_EQ((longlong_t)cliSize, llGetSize());
-    /*DEBUG*/xASSERT_RET(cliSize == llGetSize(), false);
+#if 0
+    bool bRes = bFlush();
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 
+    longlong_t w1 = llGetSize();
+    longlong_t w2 = cllSize;
+    xTEST_EQ(w1, w2);
+
+    /*DEBUG*/xASSERT_RET(cllSize == llGetSize(), false);
+#endif
     return true;
 }
 //---------------------------------------------------------------------------
@@ -600,7 +621,6 @@ CxFile::bIsFile(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/// csFilePath - n/a
 
     bool bRes = false;
 
@@ -636,7 +656,7 @@ CxFile::bIsExists(
     /*DEBUG*/// csFilePath - n/a
     xCHECK_RET(false == bIsFile(csFilePath), false);
 
-    int iRes       = ::xTACCESS(csFilePath.c_str(), amExistence);
+    int iRes = ::xTACCESS(csFilePath.c_str(), amExistence);
     xCHECK_RET((- 1 == iRes) && (ENOENT == CxStdError::iGet()), false);
 
     return true;
@@ -672,7 +692,7 @@ CxFile::sIsExists(
 bool
 CxFile::bAccess(
     const std::tstring_t &csFilePath,
-    const EAccessMode   camMode
+    const EAccessMode     camMode
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
@@ -687,7 +707,7 @@ CxFile::bAccess(
 /*static*/
 bool
 CxFile::bChmod(
-    const std::tstring_t    &csFilePath,
+    const std::tstring_t  &csFilePath,
     const EPermissionMode  cpmMode
 )
 {
@@ -750,7 +770,7 @@ CxFile::bDelete(
 bool
 CxFile::bTryDelete(
     const std::tstring_t &csFilePath,
-    const size_t        cuiAttempts,
+    const size_t          cuiAttempts,
     const ulong_t         culTimeoutMsec
 )
 {
@@ -778,7 +798,7 @@ CxFile::bTryDelete(
 bool
 CxFile::bWipe(
     const std::tstring_t &csFilePath,
-    const size_t        cuiPasses
+    const size_t          cuiPasses
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
@@ -942,7 +962,7 @@ bool
 CxFile::bCopy(
     const std::tstring_t &csFilePathFrom,
     const std::tstring_t &csFilePathTo,
-    const bool          cbFailIfExists
+    const bool            cbFailIfExists
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePathFrom.empty(), false);
@@ -1039,9 +1059,9 @@ CxFile::ullGetLines(
 bool
 CxFile::bGetTime(
     const std::tstring_t &csFilePath,
-    time_t             *ptmCreate,
-    time_t             *ptmAccess,
-    time_t             *ptmModified
+    time_t               *ptmCreate,
+    time_t               *ptmAccess,
+    time_t               *ptmModified
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
@@ -1083,9 +1103,9 @@ CxFile::bGetTime(
 bool
 CxFile::bSetTime(
     const std::tstring_t &csFilePath,
-    const time_t       &ctmCreate,
-    const time_t       &ctmAccess,
-    const time_t       &ctmModified
+    const time_t         &ctmCreate,
+    const time_t         &ctmAccess,
+    const time_t         &ctmModified
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);

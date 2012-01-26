@@ -83,7 +83,6 @@
 #include <Test/Net/CxTest_CxTcpClient.h>
 #include <Test/Net/CxTest_CxTcpServer.h>
 #include <Test/Net/CxTest_CxHttpClient.h>
-////#include <Test/Net/CxTest_CxGeoIp.h>
 
 //Patterns
 #include <Test/Patterns/CxTest_CxSingleton.h>
@@ -253,7 +252,6 @@ xTMAIN(
         //(void)tmManager.bAdd(new CxTest_CxTcpClient);
         //(void)tmManager.bAdd(new CxTest_CxTcpServer);
         //(void)tmManager.bAdd(new CxTest_CxHttpClient);
-        //(void)tmManager.bAdd(new CxTest_CxGeoIp);
 
         //Patterns
         (void)tmManager.bAdd(new CxTest_CxSingleton);

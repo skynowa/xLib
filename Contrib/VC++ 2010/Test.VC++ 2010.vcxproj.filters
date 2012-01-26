@@ -339,9 +339,6 @@
     <ClCompile Include="..\..\Source\Filesystem\CxVolume.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Net\CxGeoIp.cpp">
-      <Filter>xLib\Net</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Sync\CxSharedMemory.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
@@ -400,9 +397,6 @@
       <Filter>Test\Net</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxDnsClient.cpp">
-      <Filter>Test\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxGeoIp.cpp">
       <Filter>Test\Net</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp">
@@ -902,9 +896,6 @@
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxVolume.h">
       <Filter>xLib\Filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Net\CxGeoIp.h">
-      <Filter>xLib\Net</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\CxSharedMemory.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
@@ -984,9 +975,6 @@
       <Filter>Test\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h">
-      <Filter>Test\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxGeoIp.h">
       <Filter>Test\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
