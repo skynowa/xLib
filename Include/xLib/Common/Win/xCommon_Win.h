@@ -7,6 +7,40 @@
 #ifndef xLib_Common_Win_xCommon_WinH
 #define xLib_Common_Win_xCommon_WinH
 //---------------------------------------------------------------------------
+#if !defined(WIN32_LEAN_AND_MEAN)
+    #define WIN32_LEAN_AND_MEAN 1
+#endif
+
+#if !defined(STRICT)
+    #define STRICT 1
+#endif
+
+//Required for VS 2008 (fails on XP and Win2000 without this fix)
+#if !defined(_WIN32_WINNT)
+    #define _WIN32_WINNT 0x0600
+#endif
+
+#if WINVER
+    #undef  WINVER
+    #define WINVER 0x0600
+#else
+    #define WINVER 0x0600
+#endif
+
+#if _WIN32_WINNT
+    #undef  _WIN32_WINNT
+    #define _WIN32_WINNT 0x0600
+#else
+    #define _WIN32_WINNT 0x0600
+#endif
+
+//OBM_ (#include <winuser.h>)
+#define OEMRESOURCE
+
+//Prevent winsock.h #include's
+#define _WINSOCKAPI_
+
+
 //xCOMPILER_MS
 #if xCOMPILER_MS
     #pragma warning (disable : 4996)    //function or variable may be unsafe (deprecated)
@@ -16,39 +50,6 @@
     #if !defined(VC_EXTRALEAN)
         #define VC_EXTRALEAN 1
     #endif
-
-    #if !defined(WIN32_LEAN_AND_MEAN)
-        #define WIN32_LEAN_AND_MEAN 1
-    #endif
-
-    #if !defined(STRICT)
-        #define STRICT 1
-    #endif
-
-    //Required for VS 2008 (fails on XP and Win2000 without this fix)
-    #if !defined(_WIN32_WINNT)
-        #define _WIN32_WINNT 0x0600
-    #endif
-
-    #if WINVER
-        #undef  WINVER
-        #define WINVER 0x0600
-    #else
-        #define WINVER 0x0600
-    #endif
-
-    #if _WIN32_WINNT
-        #undef  _WIN32_WINNT
-        #define _WIN32_WINNT 0x0600
-    #else
-        #define _WIN32_WINNT 0x0600
-    #endif
-
-    //OBM_ (#include <winuser.h>)
-    #define OEMRESOURCE
-
-    //Prevent winsock.h #include's
-    #define _WINSOCKAPI_
 #endif
 
 //xCOMPILER_MINGW32
@@ -73,10 +74,10 @@
 #include <tchar.h>
 #include <windowsx.h>
 #include <winuser.h>
-#include <Objbase.h>
+#include <objbase.h>
 #include <process.h>
 #include <Lmcons.h>
-#include <Winternl.h>
+#include <winternl.h>   //NtQueryInformationFile for mingw 
 
 #include <sys/locking.h>
 #include <io.h>

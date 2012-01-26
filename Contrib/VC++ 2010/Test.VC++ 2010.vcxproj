@@ -211,10 +211,6 @@
     <ClCompile Include="..\..\Source\Net\CxCookiePv0.cpp" />
     <ClCompile Include="..\..\Source\Net\CxCookiePv1.cpp" />
     <ClCompile Include="..\..\Source\Net\CxDnsClient.cpp" />
-    <ClCompile Include="..\..\Source\Net\CxGeoIp.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Net\CxHttpClient.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -318,10 +314,6 @@
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCookiePv1.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxDnsClient.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxGeoIp.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -471,10 +463,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxGeoIp.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -571,10 +559,6 @@
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuildStep>
-    <ClInclude Include="..\..\Include\xLib\Net\CxGeoIp.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Net\CxSocket.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxSocketInit.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpClientSocket.h" />

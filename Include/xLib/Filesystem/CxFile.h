@@ -183,9 +183,9 @@ class CxFile :
             ///< sets the file translation mode
     #endif
 
-        longlong_t             llGetSize   () const;
+        longlong_t             llGetSize    () const;
             ///< get file size
-        bool                   bResize      (const long_t cliSize) const;
+        bool                   bResize      (const longlong_t cllSize) const;
             ///< changes the file size
 
         //error handling
@@ -235,7 +235,7 @@ class CxFile :
             ///< move
         static bool            bCopy        (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool cbFailIfExists);
             ///< copy
-        static longlong_t      llGetSize   (const std::tstring_t &csFilePath);
+        static longlong_t      llGetSize    (const std::tstring_t &csFilePath);
             ///< get size
         static ulonglong_t     ullGetLines  (const std::tstring_t &csFilePath);
             ///< get number of lines
@@ -281,24 +281,3 @@ class CxFile :
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif  //xLib_Filesystem_CxFileH
-
-
-#if xTODO
-    int64_t
-    CxFile::getSize(const String &path) {
-        int64_t size = -1;
-
-    #ifdef CCXX_OS_WINDOWS
-
-        struct _stati64 stbuf;
-        if (::_stati64(removeTrailingSeparators(path).c_str(), &stbuf) == 0)
-            size = stbuf.st_size;
-    #else
-        struct stat stbuf;
-        if (::stat(path.c_str(), &stbuf) == 0)
-            size = stbuf.st_size;
-    #endif
-
-        return size;
-    }
-#endif
