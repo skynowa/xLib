@@ -503,16 +503,8 @@ CxFile::bResize(
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
-#if 0
-    bool bRes = bFlush();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
-
-    longlong_t w1 = llGetSize();
-    longlong_t w2 = cllSize;
-    xTEST_EQ(w1, w2);
-
     /*DEBUG*/xASSERT_RET(cllSize == llGetSize(), false);
-#endif
+
     return true;
 }
 //---------------------------------------------------------------------------
