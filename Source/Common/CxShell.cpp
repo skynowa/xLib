@@ -335,9 +335,9 @@ CxShell::~CxShell() {
 }
 //---------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
-
 #endif
+
+xNAMESPACE_END(NxLib)
 
 
 #if xTODO
