@@ -56,7 +56,7 @@ CxShell::bExecute(
     FILE *pflShell = ::popen(csFilePath.c_str(), xT("w"));
     /*DEBUG*/xASSERT_RET(NULL != pflShell, false);
 
-    iRes = std::xTVFPRINTF(pflShell, xT("%s"), csParams.c_str());
+    iRes = std::xTFPRINTF(pflShell, xT("%s"), csParams.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
     iRes = ::pclose(pflShell);
