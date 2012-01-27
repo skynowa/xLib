@@ -24,6 +24,9 @@ CxAutoCriticalSection::CxAutoCriticalSection(
 {
     bool bRes = false;
 
+    bRes = csCS.bCreate();
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
+
     if (false == cbIsUseTry) {
         bRes = _m_csCS.bLock();
         /*DEBUG*/xASSERT_DO(true == bRes, return);

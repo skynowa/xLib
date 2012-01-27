@@ -22,47 +22,43 @@ CxTest_CxMutex::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-#if xOS_ENV_WIN
     const std::tstring_t csName = CxString::sCreateGuid();
 
 
-    CxMutex mtMutex;
+    
 
     //-------------------------------------
-    //hGetHandle
+    //hGet
     {
-        m_hRes = mtMutex.hGet();
-        xASSERT(NULL == m_hRes);
+        ////CxMutex::TxHandle hRes = mtMutex.hGet();
+        ////xTEST_EQ(false, hRes.bIsValid());
     }
 
     //-------------------------------------
     //bCreate
     {
-        const LPSECURITY_ATTRIBUTES lpcsaAttributes = NULL;
-        const bool                  cbInitialOwner  = false;
+        CxMutex mtMutex;
 
-        m_bRes = mtMutex.bCreate(lpcsaAttributes, cbInitialOwner, csName.c_str());
+        m_bRes = mtMutex.bCreate(csName);
         xTEST_EQ(true, m_bRes);
     }
 
     //-------------------------------------
-    //bWait
+    //bLock, bUnlock
     {
-        const ulong_t culTimeout = 1000;
+        const ulong_t culTimeout = 1000UL;
 
-        m_bRes = mtMutex.bWait(culTimeout);
+        CxMutex mtMutex;
+
+        m_bRes = mtMutex.bCreate(csName);
+        xTEST_EQ(true, m_bRes);
+
+        m_bRes = mtMutex.bLock(culTimeout);
+        xTEST_EQ(true, m_bRes);
+
+        m_bRes = mtMutex.bUnlock();
         xTEST_EQ(true, m_bRes);
     }
-
-    //-------------------------------------
-    //bRelease
-    {
-        m_bRes = mtMutex.bRelease();
-        xTEST_EQ(true, m_bRes);
-    }
-#elif xOS_ENV_UNIX
-
-#endif
 
     return true;
 }

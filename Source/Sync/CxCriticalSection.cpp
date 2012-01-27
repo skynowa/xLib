@@ -18,6 +18,13 @@ xNAMESPACE_BEGIN(NxLib)
 CxCriticalSection::CxCriticalSection() :
     _m_hHandle()
 {
+
+}
+//---------------------------------------------------------------------------
+bool
+CxCriticalSection::bCreate() {
+    /*DEBUG*/
+
 #if xOS_ENV_WIN
     bool bRes = false;
 
@@ -29,30 +36,32 @@ CxCriticalSection::CxCriticalSection() :
         bRes = false;
     }
 
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    /*DEBUG*/xASSERT_RET(true == bRes, false);
 #elif xOS_ENV_UNIX
     int iRes = - 1;
 
     pthread_mutexattr_t maAttr;    // n/a {{0}}
 
     iRes = ::pthread_mutexattr_init(&maAttr);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
     //TODO: PTHREAD_PROCESS_PRIVATE or PTHREAD_PROCESS_SHARED
     iRes = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
     
     iRes = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
     {
         iRes = ::pthread_mutex_init(&_m_hHandle, &maAttr);
-        /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+        /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
     }
 
     iRes = ::pthread_mutexattr_destroy(&maAttr);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 #endif
+
+    return true;
 }
 //---------------------------------------------------------------------------
 /*virtual*/

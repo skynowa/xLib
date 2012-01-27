@@ -23,16 +23,16 @@ class CxMutex :
         typedef pthread_mutex_t  TxHandle;
     #endif
 
-                          CxMutex   ();
-        virtual          ~CxMutex   ();
+                          CxMutex();
+        virtual          ~CxMutex();
 
-        const TxHandle &  hGet      () const;
+        const TxHandle &  hGet   () const;
             ///< get handle
-        bool              bCreate   (const LPSECURITY_ATTRIBUTES pcsaAttributes, const bool cbInitialOwner, const std::tstring_t &csName);
+        bool              bCreate(const std::tstring_t &csName);
             ///< create
-        bool              bRelease  () const;
+        bool              bUnlock() const;
             ///< lock
-        bool              bWait     (const ulong_t culTimeout) const;
+        bool              bLock  (const ulong_t culTimeout) const;
             ///< unlock
 
     private:

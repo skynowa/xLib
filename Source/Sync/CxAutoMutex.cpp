@@ -7,8 +7,6 @@
 #include <xLib/Sync/CxAutoMutex.h>
 
 
-#if xOS_ENV_WIN
-
 xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
@@ -17,30 +15,22 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxAutoMutex ()
 CxAutoMutex::CxAutoMutex(
     CxMutex &mtMutex
 ) :
     _m_mtMutex(mtMutex)
 {
-    bool bRes = false;
-
-    bRes = _m_mtMutex.bCreate(NULL, false, xT(""));
+    bool bRes = _m_mtMutex.bCreate(xT(""));
     /*DEBUG*/xASSERT_DO(true == bRes, return);
 
-    bRes = _m_mtMutex.bWait(INFINITE);
+    bRes = _m_mtMutex.bLock(xTIMEOUT_INFINITE);
     /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxAutoMutex ()
 CxAutoMutex::~CxAutoMutex() {
-    bool bRes = false;
-
-    bRes = _m_mtMutex.bRelease();
+    bool bRes = _m_mtMutex.bUnlock();
     /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
-
-#endif
