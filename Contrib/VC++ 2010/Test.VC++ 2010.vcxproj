@@ -361,6 +361,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxArray.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxCommandLine.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxHandleErrorT.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxHandleT.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxShell.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
