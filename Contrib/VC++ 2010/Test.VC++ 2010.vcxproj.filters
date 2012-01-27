@@ -1298,6 +1298,9 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxShell.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\CxHandleErrorT.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Source\Sync\CxThreadPool.inl">
