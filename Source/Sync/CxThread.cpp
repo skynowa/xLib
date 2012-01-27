@@ -306,7 +306,7 @@ CxThread::bWait(
     ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::pthread_join(_m_ulId, NULL);
+    int iRes = ::pthread_join(_m_ulId, NULL);   //TODO: thread must not be detached
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 #endif
 
