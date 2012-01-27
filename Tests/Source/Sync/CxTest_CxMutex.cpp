@@ -31,7 +31,7 @@ CxTest_CxMutex::bUnit(
     //-------------------------------------
     //hGetHandle
     {
-        m_hRes = mtMutex.hGetHandle();
+        m_hRes = mtMutex.hGet();
         xASSERT(NULL == m_hRes);
     }
 
@@ -42,16 +42,6 @@ CxTest_CxMutex::bUnit(
         const bool                  cbInitialOwner  = false;
 
         m_bRes = mtMutex.bCreate(lpcsaAttributes, cbInitialOwner, csName.c_str());
-        xTEST_EQ(true, m_bRes);
-    }
-
-    //-------------------------------------
-    //bOpen
-    {
-        const ulong_t culAccess       = MUTEX_ALL_ACCESS;
-        const bool  cbInheritHandle = false;
-
-        m_bRes = mtMutex.bOpen(culAccess, cbInheritHandle,  csName.c_str());
         xTEST_EQ(true, m_bRes);
     }
 

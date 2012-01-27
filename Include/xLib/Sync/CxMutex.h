@@ -10,8 +10,6 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
-
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMutex :
@@ -19,22 +17,29 @@ class CxMutex :
     /// mutex
 {
     public:
-                 CxMutex   ();
-        virtual ~CxMutex   ();
+    #if xOS_ENV_WIN
+        typedef CxHandle         TxHandle;
+    #elif xOS_ENV_UNIX
+        typedef pthread_mutex_t  TxHandle;
+    #endif
 
-        HANDLE   hGetHandle() const;
-        bool     bCreate   (const LPSECURITY_ATTRIBUTES pcsaAttributes, const bool cbInitialOwner, const std::tstring_t &csName);
-        bool     bOpen     (const ulong_t culAccess, const bool cbInheritHandle, const std::tstring_t &csName);
-        bool     bRelease  () const;
-        bool     bWait     (const ulong_t culTimeout) const;
+                          CxMutex   ();
+        virtual          ~CxMutex   ();
+
+        const TxHandle &  hGet      () const;
+            ///< get handle
+        bool              bCreate   (const LPSECURITY_ATTRIBUTES pcsaAttributes, const bool cbInitialOwner, const std::tstring_t &csName);
+            ///< create
+        bool              bRelease  () const;
+            ///< lock
+        bool              bWait     (const ulong_t culTimeout) const;
+            ///< unlock
 
     private:
-        CxHandle _m_hMutex;
+        TxHandle          _m_hHandle;   ///< mutex section handle
 };
 
 xNAMESPACE_END(NxLib)
-
-#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxMutexH
 

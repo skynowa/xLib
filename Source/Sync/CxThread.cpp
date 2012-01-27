@@ -129,6 +129,7 @@ CxThread::bCreate(
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
     if (0 != cuiStackSize) {
+        //TODO: size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRes = ::pthread_attr_setstacksize(&paAttributes, cuiStackSize);
         /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
     }
