@@ -67,7 +67,7 @@ else
 BINARY_DIR					:=	./Contrib/G++_linux/Release
 endif
 
-INSTALL_DIR					:=	/usr/local/crystal_trader2.5/lib/xLib
+INSTALL_DIR					:=	/usr/local/lib/xLib
 
 SOURCE_SUBDIRS				:= 	. \
 								Common \
@@ -113,13 +113,10 @@ TESTS_SOURCE_SUBDIRS		:= 	. \
 								Units \
 								Units/Win
 
-OTHER_INCLUDE_DIR			:=	/usr/local/crystal_trader2.5/include \
-                    			/usr/local/include \
+OTHER_INCLUDE_DIR			:=	/usr/local/include \
                     			/usr/include
 
-LIB_DIRS					:=	/usr/local/crystal_trader2.5/lib \
-                    			/usr/local/crystal_trader2.5/lib/mysql \
-                    			/usr/local/lib \
+LIB_DIRS					:=	/usr/local/lib \
                     			/usr/lib \
                     			/usr/local/lib/mysql \
                     			/usr/lib/mysql
@@ -128,9 +125,9 @@ COMPILE_FLAGS				:=	-Wall -pipe
 LINK_FLAGS					:=	-pthread -s -pipe -rdynamic	#-static
 
 ifeq ($(cOS), Linux)
-LIBRARIES               	:=	-ldl -lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP
+LIBRARIES               	:=	-ldl -lmysqlclient -lm -lcrypto -lz -lssl
 else
-LIBRARIES               	:=	-lmysqlclient -lm -lcrypto -lz -lssl -lGeoIP	# -lc only with out -static
+LIBRARIES               	:=	-lmysqlclient -lm -lcrypto -lz -lssl	# -lc only with out -static
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))

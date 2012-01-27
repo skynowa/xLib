@@ -22,7 +22,7 @@ bool
 CxShell::bIsAvailable() {
     /*DEBUG*/// n/a
 
-    int iRes = xTSYSTEM(NULL);
+    int iRes = std::xTSYSTEM(NULL);
     
 #if   xOS_ENV_WIN
     xCHECK_RET(0 == iRes && ENOENT == CxStdError::iGet(), false);
@@ -46,20 +46,20 @@ CxShell::bExecute(
     xCHECK_RET(false == bIsAvailable(), false);
   
 #if   xOS_ENV_WIN
-    std::tstring_t sCommand = CxString::sFormat("%s %s", csFilePath.c_str(), csParams.c_str());
+    std::tstring_t sCommand = CxString::sFormat(xT("%s %s"), csFilePath.c_str(), csParams.c_str());
 
-    int iRes = xTSYSTEM(sCommand.c_str());
+    int iRes = std::xTSYSTEM(sCommand.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #elif xOS_ENV_UNIX
     int iRes = - 1;
 
-    FILE *pflShell = popen(csFilePath.c_str(), "w");
+    FILE *pflShell = ::popen(csFilePath.c_str(), xT("w"));
     /*DEBUG*/xASSERT_RET(NULL != pflShell, false);
 
-    iRes = fprintf(pflShell, csParams.c_str());
+    iRes = std::xTVFPRINTF(pflShell, xT("%s"), csParams.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
-    iRes = pclose(pflShell);
+    iRes = ::pclose(pflShell);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 

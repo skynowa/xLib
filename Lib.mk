@@ -49,8 +49,7 @@ PROGRAM_NAME			:=	$(PROGRAM_PREFIX)xlib$(PROGRAM_EXT)
 ROOT_INCLUDE_DIR		:=	Include Source
 ROOT_SOURCE_DIR			:=	Source
 
-OTHER_INCLUDE_DIR		:=	/usr/local/crystal_trader2.5/include \
-							/usr/local/include \
+OTHER_INCLUDE_DIR		:=	/usr/local/include \
 							/usr/include
 
 SOURCE_SUBDIRS			:=	 . \
@@ -76,16 +75,14 @@ SOURCE_SUBDIRS			:=	 . \
 							Units \
 							Units/Win
 
-LIB_DIRS				:=	/usr/local/crystal_trader2.5/lib \
-							/usr/local/crystal_trader2.5/lib/mysql \
-							/usr/local/lib \
+LIB_DIRS				:=	/usr/local/lib \
 							/usr/lib \
 							/usr/local/lib/mysql \
 							/usr/lib/mysql
 
 BINARY_DIR				:=	Library/G++_linux/Release
-INSTALL_INCLUDE_DIR		:=	/usr/local/crystal_trader2.5/include/xLib
-INSTALL_DIR				:=	/usr/local/crystal_trader2.5/lib/xLib
+INSTALL_INCLUDE_DIR		:=	/usr/local/include/xLib
+INSTALL_DIR				:=	/usr/local/lib/xLib
 PROGRAM_PATH			:=	../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
 COMPILER				:=	$(CXX)
