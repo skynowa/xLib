@@ -38,6 +38,10 @@ CxCriticalSection::CxCriticalSection() :
     iRes = ::pthread_mutexattr_init(&maAttr);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
+    //TODO: PTHREAD_PROCESS_PRIVATE or PTHREAD_PROCESS_SHARED
+    iRes = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    
     iRes = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
 
