@@ -31,6 +31,9 @@ CxTest_CxCriticalSection::bUnit(
     {
         CxCriticalSection csCS;
 
+        m_bRes = csCS.bCreate();
+        xTEST_EQ(true, m_bRes);
+
         m_bRes = csCS.bLock();
         xTEST_EQ(true, m_bRes);
 
@@ -45,6 +48,9 @@ CxTest_CxCriticalSection::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         CxCriticalSection csCS;
+
+        m_bRes = csCS.bCreate();
+        xTEST_EQ(true, m_bRes);
 
         m_bRes = csCS.bTryLock();
         xTEST_EQ(true, m_bRes);
@@ -62,6 +68,9 @@ CxTest_CxCriticalSection::bUnit(
         CxCriticalSection csCS;
 
         const size_t cuiLocks = 10;
+
+        m_bRes = csCS.bCreate();
+        xTEST_EQ(true, m_bRes);
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bLock();
@@ -83,6 +92,9 @@ CxTest_CxCriticalSection::bUnit(
         CxCriticalSection csCS;
 
         const size_t cuiLocks = 10;
+
+        m_bRes = csCS.bCreate();
+        xTEST_EQ(true, m_bRes);
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRes = csCS.bTryLock();

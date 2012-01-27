@@ -10,8 +10,6 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxMutex.h>
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
-
 xNAMESPACE_BEGIN(NxLib)
 
 class CxAutoMutex :
@@ -27,7 +25,5 @@ class CxAutoMutex :
 };
 
 xNAMESPACE_END(NxLib)
-
-#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAutoMutexH

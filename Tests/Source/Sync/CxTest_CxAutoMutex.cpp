@@ -22,18 +22,14 @@ CxTest_CxAutoMutex::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    #if xOS_ENV_WIN
-        //-------------------------------------
-        //CxAutoMutex
-        xTEST_CASE(cullCaseLoops)
-        {
-            CxMutex mtMutex;
+    //-------------------------------------
+    //CxAutoMutex
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxMutex mtMutex;
 
-            CxAutoMutex objAutoMutex(mtMutex);
-        }
-    #elif xOS_ENV_UNIX
-
-    #endif
+        CxAutoMutex objAutoMutex(mtMutex);
+    }
 
     return true;
 }
