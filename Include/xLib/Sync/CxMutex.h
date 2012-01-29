@@ -18,9 +18,9 @@ class CxMutex :
 {
     public:
     #if xOS_ENV_WIN
-        typedef CxHandle         TxHandle;
+        typedef CxHandle  TxHandle;
     #elif xOS_ENV_UNIX
-        typedef pthread_mutex_t  TxHandle;
+        typedef int       TxHandle;
     #endif
 
                           CxMutex();
