@@ -14,8 +14,8 @@
         #define DBGHELP_TRANSLATE_TCHAR
     #endif
 
-//    #include <DbgHelp.h>
-//    #pragma comment(lib, "DbgHelp.Lib")
+    #include <DbgHelp.h>
+    #pragma comment(lib, "DbgHelp.Lib")
 #elif xOS_ENV_UNIX
     #include <execinfo.h>
     #include <cxxabi.h>
