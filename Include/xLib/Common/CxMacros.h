@@ -128,6 +128,8 @@
     ///< ignore test code
 #define xREVIEW                 1
     ///< code for review
+#define xNA                     ;
+	///< at this point the code is not applicable
 
 
 #define xSTRINGIZE2(x)     #x
