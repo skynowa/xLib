@@ -57,6 +57,6 @@ class CxMsgBoxT :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Gui/Dialogs/CxMsgBoxT.inl>
+#include "CxMsgBoxT.inl"
 //---------------------------------------------------------------------------
 #endif    //xLib_Gui_CxMsgBoxTH

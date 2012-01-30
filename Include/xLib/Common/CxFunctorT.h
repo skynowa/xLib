@@ -36,7 +36,7 @@ class CxFunctorT
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Common/CxFunctorT.inl>
+#include "CxFunctorT.inl"
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxFunctorH
 

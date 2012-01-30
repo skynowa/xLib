@@ -1303,35 +1303,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Source\Sync\CxThreadPool.inl">
-      <Filter>xLib\Sync</Filter>
-    </None>
     <None Include="..\..\TODO.txt">
       <Filter>Test</Filter>
-    </None>
-    <None Include="..\..\Source\Common\CxArray.inl">
-      <Filter>xLib\Common</Filter>
-    </None>
-    <None Include="..\..\Source\Debug\CxReport.inl">
-      <Filter>xLib\Debug</Filter>
-    </None>
-    <None Include="..\..\Source\Common\CxString.inl">
-      <Filter>xLib\Common</Filter>
-    </None>
-    <None Include="..\..\Source\Common\CxType.inl">
-      <Filter>xLib\Common</Filter>
-    </None>
-    <None Include="..\..\Source\Gui\Win\Dialogs\CxMsgBoxRtf.inl">
-      <Filter>xLib\Gui\Win\Dialogs</Filter>
-    </None>
-    <None Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.inl">
-      <Filter>xLib\Gui\Dialogs</Filter>
-    </None>
-    <None Include="..\..\Source\Common\CxFunctorT.inl">
-      <Filter>xLib\Common</Filter>
-    </None>
-    <None Include="..\..\Source\Common\CxHandleT.inl">
-      <Filter>xLib\Common</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

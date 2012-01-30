@@ -70,6 +70,6 @@ typedef CxHandleT<hvInvalid> CxFileHandle;
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Common/CxHandleT.inl>
+#include "CxHandleT.inl"
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxHandleTH

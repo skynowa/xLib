@@ -33,7 +33,7 @@ class CxException
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Common/CxException.inl>
+#include "CxException.inl"
 //---------------------------------------------------------------------------
 #define xTHROW \
     throw CxException() << "";

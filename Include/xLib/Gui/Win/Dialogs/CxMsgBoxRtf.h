@@ -37,6 +37,6 @@ xNAMESPACE_END(CxMsgBoxRtf)
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Gui/Win/Dialogs/CxMsgBoxRtf.inl>
+#include "CxMsgBoxRtf.inl"
 //---------------------------------------------------------------------------
 #endif //xLib_Gui_Dialogs_CxMsgBoxRtfH

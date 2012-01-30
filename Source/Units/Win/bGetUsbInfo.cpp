@@ -15,7 +15,6 @@
 #include <basetyps.h>
 #include <cfgmgr32.h>
 #include <initguid.h>
-#include <objbase.h>
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxVolume.h>
@@ -39,7 +38,7 @@ bGetUsbInfo(
     HDEVINFO                 hPnP                   = INVALID_HANDLE_VALUE;
     SP_DEVINFO_DATA          ddDevinfoData          = {0};
     SP_DEVICE_INTERFACE_DATA didDeviceInterfaceData = {0};
-    ulong_t                    ulBytesReturned        = 0L;
+    ulong_t                  ulBytesReturned        = 0UL;
     DEVINST                  Inst                   = {0};
     HKEY                     hKey                   = NULL;
 

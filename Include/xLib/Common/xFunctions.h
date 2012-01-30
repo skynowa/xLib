@@ -51,13 +51,6 @@
         #define xTMKSTEMP       mkstemp
     #endif
 
-        //locking
-    #if   xCOMPILER_MS
-        #define xLOCKING        _locking
-    #else
-        #define xLOCKING        locking
-    #endif
-
         #define xTRENAME        _wrename
         #define xTUNLINK        _wunlink
         #define xTREMOVE        _wremove
@@ -85,6 +78,21 @@
         #define xTSTAT          _tstat64
     #else
         #define xTSTAT          _wstat
+    #endif
+
+    //strerror
+    #if defined(xCOMPILER_MINGW32)
+        #define xSTRERROR       _wcserror
+    #elif defined(xCOMPILER_INTEL)
+        #define xSTRERROR       _tcserror
+    #elif defined(xCOMPILER_MS)
+        #define xSTRERROR       _tcserror
+    #elif defined(xCOMPILER_GNUC)
+        #define xSTRERROR       strerror_r
+    #elif defined(xCOMPILER_CODEGEAR)
+        #define xSTRERROR       _tcserror
+    #else
+        #define xSTRERROR       _wstrerror
     #endif
 
         //chars
@@ -143,13 +151,6 @@
         #define xTMKSTEMP       mktemp
     #endif
 
-        //locking
-    #if   xCOMPILER_MS
-        #define xLOCKING        _locking
-    #else
-        #define xLOCKING        locking
-    #endif
-
         #define xTRENAME        rename
         #define xTUNLINK        unlink
         #define xTREMOVE        remove
@@ -179,6 +180,21 @@
         #define xTSTAT          stat
     #endif
 
+    //strerror
+    #if defined(xCOMPILER_MINGW32)
+        #define xSTRERROR       strerror
+    #elif defined(xCOMPILER_INTEL)
+        #define xSTRERROR       _tcserror
+    #elif defined(xCOMPILER_MS)
+        #define xSTRERROR       _tcserror
+    #elif defined(xCOMPILER_GNUC)
+        #define xSTRERROR       strerror_r
+    #elif defined(xCOMPILER_CODEGEAR)
+        #define xSTRERROR       _tcserror
+    #else
+        #define xSTRERROR       strerror
+    #endif
+
         //chars
         #define xTISALNUM       isalnum
         #define xTISALPHA       isalpha
@@ -194,5 +210,30 @@
         #define xTTOLOWER       tolower
         #define xTTOUPPER       toupper
 #endif //xUNICODE
+
+
+//locking
+#if   xCOMPILER_MS
+    #define xLOCKING            _locking
+#elif xCOMPILER_MINGW32
+    #define xLOCKING            _locking
+#else
+    #define xLOCKING            locking
+#endif
+
+//chsize
+#if   defined(xCOMPILER_MINGW32)
+    #define xCHSIZE             chsize
+#elif defined(xCOMPILER_INTEL)
+    #define xCHSIZE             _chsize_s
+#elif defined(xCOMPILER_MS)
+    #define xCHSIZE             _chsize_s
+#elif defined(xCOMPILER_CODEGEAR)
+    #define xCHSIZE             chsize
+#elif defined(xCOMPILER_GNUC)
+    #error xLib: xCHSIZE not defined
+#else
+    #define xCHSIZE             chsize
+#endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xFunctionsH

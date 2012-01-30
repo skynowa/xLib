@@ -121,6 +121,6 @@ class CxReport :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Debug/CxReport.inl>
+#include "CxReport.inl"
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxReportH

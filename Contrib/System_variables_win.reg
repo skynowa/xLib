@@ -1,0 +1,14 @@
+REGEDIT4
+
+; System variables for xLib (windows-platform)
+; 
+; xLib and some additional paths to libraries,
+; can be overridden for user
+; 
+
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment]
+"Atl"="C:\\Program Files\\Microsoft Visual Studio 10.0\\VC\\atlmfc"
+"OpenSSL"="D:\\Libs\\OpenSSL-Win32"
+"MySQL"="C:\\Program Files\\MySQL\\MySQL Server 5.1"
+"xLib"="D:\\Projects\\xLib"

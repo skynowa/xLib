@@ -77,7 +77,10 @@
 #include <objbase.h>
 #include <process.h>
 #include <Lmcons.h>
-#include <winternl.h>   //NtQueryInformationFile for mingw 
+
+#if !xCOMPILER_MINGW32
+    #include <winternl.h>   //NtQueryInformationFile for mingw
+#endif
 
 #include <sys/locking.h>
 #include <io.h>

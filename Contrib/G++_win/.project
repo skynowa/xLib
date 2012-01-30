@@ -70,9 +70,14 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Source</name>
+			<name>Tests/Source</name>
 			<type>2</type>
 			<location>D:/Projects/xLib/Tests/Source</location>
+		</link>
+		<link>
+			<name>xLib/Source</name>
+			<type>2</type>
+			<location>D:/Projects/xLib/Source</location>
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -44,7 +44,7 @@ CxTest_CxSemaphore::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    m_bRes = m_Semaphore.bCreate(NULL, 4, 2048, xT(""));
+    m_bRes = m_Semaphore.bCreate(4, 2048, xT(""));
     xTEST_EQ(true, m_bRes);
 
     if (NULL == _beginthreadex(0, 0, &vTest, 0, 0, NULL)) {

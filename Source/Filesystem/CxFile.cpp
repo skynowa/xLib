@@ -496,7 +496,7 @@ CxFile::bResize(
     /*DEBUG*/// n/a
 
 #if xOS_ENV_WIN
-    errno_t iRes = ::_chsize_s(_iGetHandle(pGet()), cllSize);
+    int iRes = static_cast<int>( ::xCHSIZE(_iGetHandle(pGet()), cllSize) );
     /*DEBUG*/xASSERT_RET(0 == iRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::ftruncate(_iGetHandle(pGet()), static_cast<off_t>( cllSize ));

@@ -32,7 +32,7 @@ CxTest_CxLastError::bUnit(
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
-        for (ulong_t i = 0; i < cuiMaxErrors; ++ i) {
+        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
             ulong_t ulCode = CxLastError::ulGet();
             xTEST_EQ(0UL, CxLastError::ulGet());
             xTEST_LESS_EQ(0UL, ulCode);
@@ -49,7 +49,7 @@ CxTest_CxLastError::bUnit(
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
-        for (ulong_t i = 0; i < cuiMaxErrors; ++ i) {
+        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
             std::tstring_t sError = CxLastError::sGet();
             xTEST_EQ(false, sError.empty());
         }
@@ -65,7 +65,7 @@ CxTest_CxLastError::bUnit(
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
-        for (ulong_t i = 0; i < cuiMaxErrors; ++ i) {
+        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
             xTEST_EQ(true, m_bRes);
         }
@@ -81,7 +81,7 @@ CxTest_CxLastError::bUnit(
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
-        for (ulong_t i = 0; i < cuiMaxErrors; ++ i) {
+        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
             m_bRes = CxLastError::bSet(i);
             xTEST_EQ(true, m_bRes);
 
@@ -102,7 +102,7 @@ CxTest_CxLastError::bUnit(
             const size_t cuiMaxErrors = 200;    /*0...132*/
         #endif
 
-        for (ulong_t i = 0; i < cuiMaxErrors; ++ i) {
+        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
             m_sRes = CxLastError::sFormat(i);
             xTEST_EQ(false, m_sRes.empty());
 
