@@ -6,8 +6,8 @@
 
 #include <xLib/Sync/CxSemaphore.h>
 
+#include <xLib/Filesystem/CxPath.h>
 
-#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -17,58 +17,51 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxSemaphore
 CxSemaphore::CxSemaphore() :
-    _m_hSemaphore   (),
-    _m_psaAttributes(NULL),
-    _m_sName        ()
+    _m_hSemaphore(),
+    _m_sName     ()
 {
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxSemaphore
 CxSemaphore::~CxSemaphore() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-//DONE: hGetHandle ()
-HANDLE
-CxSemaphore::hGetHandle() const {
-    /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), NULL);
+const CxSemaphore::TxHandle &
+CxSemaphore::hGet() const {
+    /*DEBUG*/
 
-    return _m_hSemaphore.hGet();
+    return _m_hSemaphore;
 }
 //---------------------------------------------------------------------------
-//DONE: bCreate (Creates or opens a named or unnamed semaphore object)
 bool
 CxSemaphore::bCreate(
-    const LPSECURITY_ATTRIBUTES  pcsaAttributes,
-    const long_t                   cliInitialCount,
-    const long_t                   cliMaxCount,
-    const std::tstring_t          &csName
+    const long_t          cliInitialCount,
+    const long_t          cliMaxCount,
+    const std::tstring_t &csName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_hSemaphore.bIsValid(),                      false);
-    /*DEBUG*///pcsaAttributes - n/a
-    /*DEBUG*/xASSERT_RET(0 <= cliInitialCount && cliInitialCount <= cliMaxCount, false);
-    /*DEBUG*/xASSERT_RET(MAX_PATH > csName.size(),                               false);
+    /*DEBUG*/xASSERT_RET(false == _m_hSemaphore.bIsValid(),                       false);
+    /*DEBUG*/xASSERT_RET(0L <= cliInitialCount && cliInitialCount <= cliMaxCount, false);
+    /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize() > csName.size(),                  false);
 
-    HANDLE hRes = NULL;
-
-    hRes = ::CreateSemaphore(pcsaAttributes, cliInitialCount, cliMaxCount, CxMacros::pcszAsCString(csName));
+#if defined(xOS_ENV_WIN)
+    HANDLE hRes = ::CreateSemaphore(NULL, cliInitialCount, cliMaxCount, CxMacros::pcszAsCString(csName));
     /*DEBUG*/xASSERT_RET(NULL != hRes, false);
 
     _m_hSemaphore.bSet(hRes);
-    _m_psaAttributes = pcsaAttributes;
-    _m_sName         = csName;
+    _m_sName = csName;
+#elif defined(xOS_ENV_UNIX)
+
+#endif
 
     return true;
 }
 //---------------------------------------------------------------------------
-//DONE: bOpen ()
 bool
 CxSemaphore::bOpen(
     const ulong_t         culAccess,
-    const bool          cbInheritHandle,
+    const bool            cbInheritHandle,
     const std::tstring_t &csName
 )
 {
@@ -76,17 +69,18 @@ CxSemaphore::bOpen(
     /*DEBUG*///culAccess - n/a
     /*DEBUG*///csName    - n/a
 
-    HANDLE hRes = NULL;
-
-    hRes = ::OpenSemaphore(culAccess, cbInheritHandle, csName.c_str());
+#if defined(xOS_ENV_WIN)
+    HANDLE hRes = ::OpenSemaphore(culAccess, cbInheritHandle, csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRes, false);
 
     _m_hSemaphore.bSet(hRes);
+#elif defined(xOS_ENV_UNIX)
+
+#endif
 
     return true;
 }
 //---------------------------------------------------------------------------
-//DONE: bRelease ()
 bool
 CxSemaphore::bRelease(
     const long_t  cliReleaseCount,
@@ -97,13 +91,16 @@ CxSemaphore::bRelease(
     /*DEBUG*///liReleaseCount - n/a
     /*DEBUG*///pliOldCount    - n/a
 
-    BOOL bRes = ::ReleaseSemaphore(_m_hSemaphore.hGet(), cliReleaseCount, pliOldCount);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+#if defined(xOS_ENV_WIN)
+    BOOL blRes = ::ReleaseSemaphore(_m_hSemaphore.hGet(), cliReleaseCount, pliOldCount);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+#elif defined(xOS_ENV_UNIX)
+
+#endif
 
     return true;
 }
 //---------------------------------------------------------------------------
-//DONE: bWait ()
 bool
 CxSemaphore::bWait(
     const ulong_t culTimeout
@@ -112,29 +109,32 @@ CxSemaphore::bWait(
     /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
-    ulong_t ulRes = WAIT_FAILED;
-
-    ulRes = ::WaitForSingleObject(_m_hSemaphore.hGet(), culTimeout);
+#if defined(xOS_ENV_WIN)
+    DWORD ulRes = ::WaitForSingleObject(_m_hSemaphore.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
+#elif defined(xOS_ENV_UNIX)
+
+#endif
 
     return true;
 }
 //---------------------------------------------------------------------------
-//DONE: liGetValue ()
 long_t
 CxSemaphore::liGetValue() const {
-    /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), - 1);
+    /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), - 1L);
 
     long_t liRes = - 1;
-    bool bRes  = false;
 
-    bRes = bRelease(0, &liRes);
-    /*DEBUG*/xASSERT_RET(true == bRes, - 1);
+#if defined(xOS_ENV_WIN)
+    bool bRes = bRelease(0, &liRes);
+    /*DEBUG*/xASSERT_RET(true == bRes, - 1L);
+#elif defined(xOS_ENV_UNIX)
+
+#endif
 
     return liRes;
 }
 //---------------------------------------------------------------------------
-//DONE: bReset ()
 bool
 CxSemaphore::bReset(
     const long_t cliInitialCount,
@@ -146,24 +146,23 @@ CxSemaphore::bReset(
 
     bool bRes = false;
 
-    /*
-    void Reset(int init = 0)    {
-        sem_destroy(&S);
-
-        sem_init(&S, 0, init);
-    }
-    */
-
+#if defined(xOS_ENV_WIN)
     bRes = _m_hSemaphore.bClose();
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    bRes = bCreate(_m_psaAttributes, cliInitialCount, cliMaxCount, _m_sName);
+    bRes = bCreate(cliInitialCount, cliMaxCount, _m_sName);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
+#elif defined(xOS_ENV_UNIX)
+    #if xTODO
+        void Reset(int init = 0)    {
+            ::sem_destroy(&S);
+            ::sem_init(&S, 0, init);
+        }
+    #endif
+#endif
 
     return true;
 }
 //---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
-
-#endif

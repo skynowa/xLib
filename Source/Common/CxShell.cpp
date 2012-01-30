@@ -93,12 +93,12 @@ CxShell::bFindExecutable(
 /*static*/
 bool
 CxShell::bExecute(
-    const HWND          chOwner,
-    const EOperation    copOperation,
+    const HWND            chOwner,
+    const EOperation      copOperation,
     const std::tstring_t &csFilePath,
     const std::tstring_t &csParams,
     const std::tstring_t &csDir,
-    const EShowFlag     csfShowCmd
+    const EShowFlag       csfShowCmd
 )
 {
     /*DEBUG*/// chOwner      - n/a
@@ -251,15 +251,15 @@ CxShell::sGetSpecialDirPath(
 bool
 CxShell::bCreateShortcut(
     const std::tstring_t &csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
-                                            ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
-                                            ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
+                                              ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
+                                              ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
     const std::tstring_t &csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
     const std::tstring_t &csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
     const std::tstring_t &csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.Txt"
-    const WORD          cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
-    const int           ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
+    const WORD            cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
+    const int             ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
     const std::tstring_t &csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
-    const int           ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
+    const int             ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
     const std::tstring_t &csDescription       ///< description
 )
 {
@@ -338,36 +338,3 @@ CxShell::~CxShell() {
 #endif
 
 xNAMESPACE_END(NxLib)
-
-
-#if xTODO
-    How to find the application associated with particular file extension.
-
-    May 30th
-
-    Posted by Jijo Raj in Codeproject
-
-    No comments
-
-
-
-    Did you ever noticed that, While starting up some media player applications, they says that - �Some of its proprietary file formats are not associated with it and do you want to associate now?�. How these application are checking the associated application of particular filetype?
-
-
-    For a given file extension, you can find the executable associated with it by calling the api � AssocQueryString(). See the sample code snippet below.
-    #include "Shlwapi.h"
-    ...
-    DWORD dwSize = MAX_PATH;
-    tchar_t tchApplicationPath[ MAX_PATH ] = { 0 };
-    HRESULT hr = AssocQueryString( 0,
-    ASSOCSTR_EXECUTABLE,
-    xT( ".mp3" ),
-    xT( "open" ),
-    tchApplicationPath,
-    &dwSize );
-
-    if( FAILED( hr ))
-    {
-    // Failed to get the associated application.
-    }
-#endif

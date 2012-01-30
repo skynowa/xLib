@@ -36,6 +36,6 @@ class CxType :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Common/CxType.inl>
+#include "CxType.inl"
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxTypeH

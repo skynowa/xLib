@@ -239,6 +239,6 @@ namespace NxArray {
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Common/CxArray.inl>
+#include "CxArray.inl"
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxArrayH

@@ -172,7 +172,7 @@ class CxString :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <Common/CxString.inl>
+#include "CxString.inl"
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxStringH
 

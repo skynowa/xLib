@@ -40,7 +40,7 @@ class CxEvent :
         };
 
 
-                          CxEvent    (const bool bIsAutoReset, const bool cbIsSignaled);
+                          CxEvent    (const bool cbIsAutoReset, const bool cbIsSignaled);
             ///< constructor
         virtual          ~CxEvent    ();
             ///< destructor

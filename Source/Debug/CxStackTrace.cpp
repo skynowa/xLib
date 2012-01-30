@@ -14,8 +14,8 @@
         #define DBGHELP_TRANSLATE_TCHAR
     #endif
 
-    #include <DbgHelp.h>
-    #pragma comment(lib, "DbgHelp.Lib")
+//    #include <DbgHelp.h>
+//    #pragma comment(lib, "DbgHelp.Lib")
 #elif xOS_ENV_UNIX
     #include <execinfo.h>
     #include <cxxabi.h>
@@ -81,7 +81,7 @@ CxStackTrace::bGet(
         } else {
 	        const ULONG64       ullAddress = psiSymbol->Address;
 	        const std::tstring_t csName     = std::tstring_t(psiSymbol->Name);
-	
+
 	        //sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
 	        sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, ullAddress, csName.c_str());
         }
