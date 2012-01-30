@@ -8,6 +8,7 @@
 #define xLib_Common_xFunctionsH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Common/CxMacros.h>
 //---------------------------------------------------------------------------
 #if xUNICODE
         #define tcin            wcin
@@ -231,7 +232,7 @@
 #elif defined(xCOMPILER_CODEGEAR)
     #define xCHSIZE             chsize
 #elif defined(xCOMPILER_GNUC)
-    #error xLib: xCHSIZE not defined
+    xNA
 #else
     #define xCHSIZE             chsize
 #endif
