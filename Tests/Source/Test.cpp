@@ -150,14 +150,14 @@ xTMAIN(
         if (2 == iArgCount) {
             bRes = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
             if (true == bRes) {
-                std::tcout << "\nUsage: xlib_r is_tracing all_loops unit_loops\n"
-                              "  - xlib_r      (binary file path)\n"
-                              "  - is_tracing  (is tracing)\n"
-                              "  - all_loops   (loops for all tests)\n"
-                              "  - unit_loops  (loops for unit test)\n"
-                              "  - case_loops  (loops for unit test)\n" << std::endl;
+                std::tcout << xT("\nUsage: xlib_r is_tracing all_loops unit_loops\n")
+                              xT("  - xlib_r      (binary file path)\n")
+                              xT("  - is_tracing  (is tracing)\n")
+                              xT("  - all_loops   (loops for all tests)\n")
+                              xT("  - unit_loops  (loops for unit test)\n")
+                              xT("  - case_loops  (loops for unit test)\n") << std::endl;
             } else {
-                std::tcout << "\nUnknown switches\n" << std::endl;
+                std::tcout << xT("\nUnknown switches\n") << std::endl;
             }
 
             return true;
