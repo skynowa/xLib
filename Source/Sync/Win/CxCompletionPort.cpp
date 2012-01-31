@@ -67,7 +67,7 @@ CxCompletionPort::bGetStatus(
     LPDWORD       lpNumberOfBytes,
     PULONG_PTR    lpCompletionKey,
     LPOVERLAPPED *lpOverlapped,
-    ulong_t         ulMilliseconds
+    ulong_t       ulMilliseconds
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_hCP.bIsValid(), false);
@@ -76,8 +76,8 @@ CxCompletionPort::bGetStatus(
     /*DEBUG*/xASSERT_RET(NULL  != lpOverlapped,      false);
     /*DEBUG*/// ulMilliseconds - n/a
 
-    BOOL bRes = ::GetQueuedCompletionStatus(_m_hCP.hGet(), lpNumberOfBytes, lpCompletionKey, lpOverlapped, ulMilliseconds);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::GetQueuedCompletionStatus(_m_hCP.hGet(), lpNumberOfBytes, lpCompletionKey, lpOverlapped, ulMilliseconds);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
 }
@@ -85,7 +85,7 @@ CxCompletionPort::bGetStatus(
 //DONE: bPostStatus (Posts an I/O completion packet to an I/O completion port.)
 bool
 CxCompletionPort::bPostStatus(
-    ulong_t        ulNumberOfBytesTransferred,
+    ulong_t      ulNumberOfBytesTransferred,
     ULONG_PTR    ulCompletionKey,
     LPOVERLAPPED lpOverlapped
 )
@@ -95,8 +95,8 @@ CxCompletionPort::bPostStatus(
     /*DEBUG*/// ulCompletionKey            - n/a
     /*DEBUG*/xASSERT_RET(NULL  != lpOverlapped,      false);
 
-    BOOL bRes = ::PostQueuedCompletionStatus(_m_hCP.hGet(), ulNumberOfBytesTransferred, ulCompletionKey, lpOverlapped);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::PostQueuedCompletionStatus(_m_hCP.hGet(), ulNumberOfBytesTransferred, ulCompletionKey, lpOverlapped);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
 }

@@ -31,8 +31,8 @@ CxSystemInfo::osGetOS() {
 
     ovVer.dwOSVersionInfoSize = sizeof(ovVer);
 
-    BOOL bRes = ::GetVersionEx(&ovVer);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, otUnknown);
+    BOOL blRes = ::GetVersionEx(&ovVer);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, otUnknown);
 
     switch (ovVer.dwPlatformId) {
         case VER_PLATFORM_WIN32s: {
@@ -41,24 +41,24 @@ CxSystemInfo::osGetOS() {
             break;
 
         case VER_PLATFORM_WIN32_WINDOWS: {
-                xCHECK_DO(0  == ovVer.dwMinorVersion, otRes = otWindows95; break);
-                xCHECK_DO(10 == ovVer.dwMinorVersion, otRes = otWindows98; break);
-                xCHECK_DO(90 == ovVer.dwMinorVersion, otRes = otWindows98; break);
+                xCHECK_DO(0UL  == ovVer.dwMinorVersion, otRes = otWindows95; break);
+                xCHECK_DO(10UL == ovVer.dwMinorVersion, otRes = otWindows98; break);
+                xCHECK_DO(90UL == ovVer.dwMinorVersion, otRes = otWindows98; break);
             }
             break;
 
         case VER_PLATFORM_WIN32_NT: {
-                xCHECK_DO(ovVer.dwMajorVersion <= 4,                              otRes = otWindowsNT;              break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindows2000;            break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsXP;              break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsXPProx64Edition; break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003;      break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsHomeServer;      break);
-                xCHECK_DO(5 == ovVer.dwMajorVersion && 2 == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2;    break);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsVista;           break);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 0 == ovVer.dwMinorVersion, otRes = otWindowsServer2008;      break);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2;    break);
-                xCHECK_DO(6 == ovVer.dwMajorVersion && 1 == ovVer.dwMinorVersion, otRes = otWindows7;               break);
+                xCHECK_DO(ovVer.dwMajorVersion <= 4UL,                                otRes = otWindowsNT;              break);
+                xCHECK_DO(5UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindows2000;            break);
+                xCHECK_DO(5UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindowsXP;              break);
+                xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsXPProx64Edition; break);
+                xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsServer2003;      break);
+                xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsHomeServer;      break);
+                xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2;    break);
+                xCHECK_DO(6UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindowsVista;           break);
+                xCHECK_DO(6UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindowsServer2008;      break);
+                xCHECK_DO(6UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2;    break);
+                xCHECK_DO(6UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindows7;               break);
 
                 //for unknown windows/newest windows version
                 otRes = otUnknown;
@@ -144,15 +144,15 @@ CxSystemInfo::oaGetOsArch() {
     #if xCPU_64BIT
         oaRes = oa64bit;
     #elif xCPU_32BIT
-        BOOL bIs64BitOs          = FALSE;
-        BOOL bIsWin32MethodExist = FALSE;
+        BOOL blIs64BitOs          = FALSE;
+        BOOL blIsWin32MethodExist = FALSE;
         {
             CxDll dlDll;
-            bIsWin32MethodExist = ( dlDll.bLoad(xT("kernel32.dll")) && dlDll.bIsProcExists(xT("IsWow64Process")) );
+            blIsWin32MethodExist = ( dlDll.bLoad(xT("kernel32.dll")) && dlDll.bIsProcExists(xT("IsWow64Process")) );
         }
-        BOOL bIsWow64Process     = ::IsWow64Process(CxCurrentProcess::hGetHandle(), &bIs64BitOs);
+        BOOL blIsWow64Process    = ::IsWow64Process(CxCurrentProcess::hGetHandle(), &blIs64BitOs);
 
-        oaRes = (bIsWin32MethodExist && bIsWow64Process && bIs64BitOs) ? oa64bit : oa32bit;
+        oaRes = (blIsWin32MethodExist && blIsWow64Process && blIs64BitOs) ? oa64bit : oa32bit;
     #else
         // 64-bit Windows does not support Win16
         oaRes = oaUnknown;
@@ -230,8 +230,8 @@ CxSystemInfo::sGetComputerName() {
     ulong_t ulBuffSize                 = xHOST_NAME_MAX;
     tchar_t szBuff[xHOST_NAME_MAX + 1] = {0};
 
-    BOOL bRes = ::GetComputerName(szBuff, &ulBuffSize);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, xT("localhost"));
+    BOOL blRes = ::GetComputerName(szBuff, &ulBuffSize);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, xT("localhost"));
 
     sRes.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
@@ -256,16 +256,16 @@ CxSystemInfo::bIsUserAnAdmin() {
     SID_IDENTIFIER_AUTHORITY siaNtAuthority        = { SECURITY_NT_AUTHORITY };
     PSID                     psAdministratorsGroup = NULL;
 
-    BOOL bRes = ::AllocateAndInitializeSid(&siaNtAuthority, 2,
-                                           SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL,
-                                           &psAdministratorsGroup);
-    xCHECK_RET(FALSE == bRes, false);
+    BOOL blRes = ::AllocateAndInitializeSid(&siaNtAuthority, 2,
+                                            SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL,
+                                            &psAdministratorsGroup);
+    xCHECK_RET(FALSE == blRes, false);
 
     {
-	    BOOL bIsMember = FALSE;
+	    BOOL blIsMember = FALSE;
 
-	    bRes = ::CheckTokenMembership(NULL, psAdministratorsGroup, &bIsMember);
-        if (FALSE == bRes || FALSE == bIsMember) {
+	    blRes = ::CheckTokenMembership(NULL, psAdministratorsGroup, &blIsMember);
+        if (FALSE == blRes || FALSE == blIsMember) {
             bIsAdmin = false;
         } else {
             bIsAdmin = true;
@@ -300,11 +300,11 @@ CxSystemInfo::sGetUserName() {
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    ulong_t ulBuffSize        = UNLEN;
+    DWORD   ulBuffSize        = UNLEN;
     tchar_t szBuff[UNLEN + 1] = {0};
 
-    BOOL bRes = ::GetUserName(&szBuff[0], &ulBuffSize);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring_t());
+    BOOL blRes = ::GetUserName(&szBuff[0], &ulBuffSize);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, std::tstring_t());
 
     sRes.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
@@ -338,7 +338,7 @@ CxSystemInfo::ulGetNumOfCpus() {
         int    aiMib[]   = {CTL_HW, HW_NCPU};
         size_t uiResSize = sizeof(ulRes);
 
-        int iRes = sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRes, &uiResSize, NULL, 0);
+        int iRes = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRes, &uiResSize, NULL, 0);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, 0);
     #else
         long_t liRes = ::sysconf(_SC_NPROCESSORS_ONLN);
@@ -385,7 +385,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
             ulRes = ulCpu;
         #else
-            int iRes = sched_getcpu();
+            int iRes = ::sched_getcpu();
             /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( - 1 ));
 
             ulRes = static_cast<ulong_t>( iRes );

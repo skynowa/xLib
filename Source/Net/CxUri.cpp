@@ -40,9 +40,7 @@ CxUri::CxUri(const std::string &csUri) :
     _m_sQuery    (),
     _m_sFragment ()
 {
-    bool bRes = false;
-
-    bRes = _bParse(csUri);
+    bool bRes = _bParse(csUri);
     /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------

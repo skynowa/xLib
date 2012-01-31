@@ -83,8 +83,8 @@ CxMutex::bUnlock() const {
     /*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
 
 #if defined(xOS_ENV_WIN)
-    BOOL bRes = ::ReleaseMutex(_m_hHandle.hGet());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::ReleaseMutex(_m_hHandle.hGet());
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif defined(xOS_ENV_UNIX)
 
 #endif

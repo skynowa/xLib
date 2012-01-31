@@ -193,7 +193,7 @@ double
 CxIni::dKeyReadFloat(
     const std::tstring_t &csSection,
     const std::tstring_t &csKey,
-    double              dDefaultValue
+    double                dDefaultValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0.0);
@@ -209,7 +209,7 @@ bool
 CxIni::bKeyWriteFloat(
     const std::tstring_t &csSection,
     const std::tstring_t &csKey,
-    double              dValue
+    double                dValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
@@ -225,7 +225,7 @@ bool
 CxIni::bKeyReadBool(
     const std::tstring_t &csSection,
     const std::tstring_t &csKey,
-    bool                bDefaultValue
+    bool                  bDefaultValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
@@ -249,7 +249,7 @@ bool
 CxIni::bKeyWriteBool(
     const std::tstring_t &csSection,
     const std::tstring_t &csKey,
-    bool                bValue
+    bool                  bValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
@@ -277,14 +277,13 @@ CxIni::sKeyReadString(
     /*DEBUG*///csKey          - n/a
     /*DEBUG*///csDefaultValue - n/a
 
-    std::tstring_t      sRes;
+    std::tstring_t    sRes;
     const std::size_t cuiLineSize = 32;
-    ulong_t             ulRes       = 0UL;
 
     sRes.resize(cuiLineSize);
 
     for ( ; ; ) {
-        ulRes = ::GetPrivateProfileString(csSection.c_str(), csKey.c_str(), csDefaultValue.c_str(), &sRes.at(0), sRes.size(), _m_sFilePath.c_str());
+        DWORD ulRes = ::GetPrivateProfileString(csSection.c_str(), csKey.c_str(), csDefaultValue.c_str(), &sRes.at(0), sRes.size(), _m_sFilePath.c_str());
         /*DEBUG*/// n/a
 
         if (ulRes < sRes.size() - 2) {
@@ -408,13 +407,12 @@ CxIni::bSectionIsExists(
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    false);
 
-    ulong_t             ulRes       = 0;
-    std::tstring_t           sRes;
+    std::tstring_t    sRes;
     const std::size_t cuiLineSize = 32;
 
     sRes.resize(cuiLineSize);
 
-    ulRes = ::GetPrivateProfileString(csSection.c_str(), NULL, xT(""), &sRes.at(0), sRes.size(), _m_sFilePath.c_str());
+    DWORD ulRes = ::GetPrivateProfileString(csSection.c_str(), NULL, xT(""), &sRes.at(0), sRes.size(), _m_sFilePath.c_str());
 
     return (ulRes > 0UL);
 }
@@ -422,7 +420,7 @@ CxIni::bSectionIsExists(
 //DONE: bSectionRead
 bool
 CxIni::bSectionRead(
-    const std::tstring_t                   &csSection,
+    const std::tstring_t                     &csSection,
     std::map<std::tstring_t, std::tstring_t> *pmsContent
 )
 {
@@ -430,14 +428,13 @@ CxIni::bSectionRead(
     /*DEBUG*/xASSERT_RET(false == csSection.empty(),    false);
     /*DEBUG*/xASSERT_RET(NULL  != pmsContent,         false);
 
-    std::tstring_t      sBuff;
+    std::tstring_t    sBuff;
     const std::size_t cuiSectionSize = 32 * 4;
-    ulong_t             ulRes          = 0;
 
     sBuff.resize(cuiSectionSize);
 
     for ( ; ; ) {
-        ulRes = ::GetPrivateProfileSection(csSection.c_str(), &sBuff.at(0), /*DWORD*/sBuff.size(), _m_sFilePath.c_str());
+        DWORD ulRes = ::GetPrivateProfileSection(csSection.c_str(), &sBuff.at(0), /*DWORD*/sBuff.size(), _m_sFilePath.c_str());
         /*DEBUG*/// n/a
         xCHECK_RET(0 == ulRes, true);    //������ ����� ��� �� ����������
 
@@ -495,7 +492,7 @@ CxIni::bSectionRead(
 //DONE: bSectionWrite
 bool
 CxIni::bSectionWrite(
-    const std::tstring_t                         &csSection,
+    const std::tstring_t                           &csSection,
     const std::map<std::tstring_t, std::tstring_t> &msContent
 )
 {
@@ -532,11 +529,11 @@ CxIni::bSectionsReadNames(
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != pvsNames,           false);
+    /*DEBUG*/xASSERT_RET(NULL  != pvsNames,             false);
 
-    std::tstring_t           sBuff;
+    std::tstring_t    sBuff;
     const std::size_t cuiSectionsNamesSize = 32 * 8;
-    ulong_t             ulRes                = 0;
+    DWORD             ulRes                = 0UL;
 
     sBuff.resize(cuiSectionsNamesSize);
 

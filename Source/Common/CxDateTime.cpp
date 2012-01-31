@@ -398,7 +398,7 @@ CxDateTime::usGetDayOfWeek() const {
     /*DEBUG*/
 
     ushort_t usRes      = 0;
-    tm     tmTimeInfo = {0};
+    tm       tmTimeInfo = {0};
 
     tmTimeInfo.tm_year = _m_usYear  - 1900;
     tmTimeInfo.tm_mon  = _m_usMonth - 1;
@@ -660,8 +660,7 @@ CxDateTime::dtGetCurrent() {
 #if xOS_ENV_WIN
     SYSTEMTIME stDateTime = {0};
 
-    ::GetLocalTime(&stDateTime);
-    /*DEBUG*/// n/a
+    (void)::GetLocalTime(&stDateTime);
     /*DEBUG*/xASSERT_RET(false != bIsValid(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds), CxDateTime());
 
     return CxDateTime(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds);
@@ -878,7 +877,7 @@ CxDateTime::sGetZodiacSign(
 /*static*/
 std::tstring_t
 CxDateTime::sGetMonthStr(
-    ushort_t     usMonth,
+    ushort_t   usMonth,
     const bool cbIsShortName
 )
 {
@@ -936,7 +935,7 @@ CxDateTime::sGetMonthStr(
 ushort_t
 CxDateTime::usGetMonthNum(
     const std::tstring_t &csMonth,
-    const bool          cbIsShortName
+    const bool            cbIsShortName
 )
 {
     /*DEBUG*/
@@ -984,7 +983,7 @@ CxDateTime::usGetMonthNum(
 /*static*/
 std::tstring_t
 CxDateTime::sGetWeekDayStr(
-    ushort_t     usDay,
+    ushort_t   usDay,
     const bool cbIsShortName
 )
 {
@@ -1030,7 +1029,7 @@ CxDateTime::sGetWeekDayStr(
 ushort_t
 CxDateTime::usGetWeekDayNum(
     const std::tstring_t &csDay,
-    const bool          cbIsShortName
+    const bool            cbIsShortName
 )
 {
     /*DEBUG*/
@@ -1078,8 +1077,8 @@ CxDateTime::usGetWeekDayNum(
 bool
 CxDateTime::_bParse(
     const std::tstring_t &csDT,
-    const EFormatType   cftFormat,
-    CxDateTime         *pdtDT) {
+    const EFormatType     cftFormat,
+    CxDateTime           *pdtDT) {
     /*DEBUG*/
 
     bool bRes = false;

@@ -614,7 +614,6 @@ CxFile::bIsFile(
     const std::tstring_t &csFilePath
 )
 {
-
     bool bRes = false;
 
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
@@ -650,7 +649,7 @@ CxFile::bIsExists(
     xCHECK_RET(false == bIsFile(csFilePath), false);
 
     int iRes = ::xTACCESS(csFilePath.c_str(), amExistence);
-    xCHECK_RET((- 1 == iRes) && (ENOENT == CxStdError::iGet()), false);
+    xCHECK_RET(- 1 == iRes && ENOENT == CxStdError::iGet(), false);
 
     return true;
 }
@@ -984,7 +983,7 @@ CxFile::bCopy(
         //--------------------------------------------------
         //copy files
         const size_t cuiBuffSize         = 1024;
-        uchar_t        ucBuff[cuiBuffSize] = {0};
+        uchar_t      ucBuff[cuiBuffSize] = {0};
 
         for ( ; ; ) {
             const size_t uiReaded  = sfFrom.uiRead(ucBuff, cuiBuffSize);
@@ -1072,8 +1071,8 @@ CxFile::bGetTime(
     m_hHandle = ::CreateFile(csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
     /*DEBUG*/xASSERT_RET(false != m_hHandle.bIsValid(), false);
 
-    BOOL bRes = ::GetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::GetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     xCHECK_DO(NULL != ptmCreate,   *ptmCreate   = CxDateTime::tmFileTimeToUnixTime(ftCreate));
     xCHECK_DO(NULL != ptmAccess,   *ptmAccess   = CxDateTime::tmFileTimeToUnixTime(ftAccess));
@@ -1353,7 +1352,7 @@ CxFile::bTextWrite(
     }
 
 #if xTODO
-    bool         bRes = false;
+    bool           bRes = false;
     std::tstring_t sRes;
 
     std::map<std::tstring_t, std::tstring_t>::const_iterator it;
@@ -1391,8 +1390,8 @@ CxFile::bBinRead(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/xASSERT_RET(NULL  != pusContent,         false);
 
-    bool         bRes = false;
-    CxFile       sfFile;
+    bool           bRes = false;
+    CxFile         sfFile;
     std::ustring_t usRes;
 
     bRes = sfFile.bCreate(csFilePath, omBinRead, true);

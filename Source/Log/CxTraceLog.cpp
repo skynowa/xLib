@@ -73,8 +73,7 @@ CxTraceLog::bWrite(
     //-------------------------------------
     //tracing
 #if xOS_ENV_WIN
-    ::OutputDebugString((sTime + sParam + CxConst::xNL).c_str());
-    /*DEBUG*/// n/a
+    (void)::OutputDebugString((sTime + sParam + CxConst::xNL).c_str());
 #elif xOS_ENV_UNIX
     std::tcout << sTime << sParam << std::endl;
 #endif

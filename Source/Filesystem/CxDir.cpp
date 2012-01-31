@@ -68,7 +68,7 @@ CxDir::bIsEmpty(
 #if xOS_ENV_WIN
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData   = {0};
-    std::tstring_t    sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, false );
+    std::tstring_t  sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, false );
 
     hFile = ::FindFirstFile(sDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, true);
@@ -162,9 +162,9 @@ CxDir::sGetCurrent() {
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
 #if xOS_ENV_WIN
-    ulong_t ulRes = ::GetCurrentDirectory(xPATH_MAX, &sBuff[0]);
-    /*DEBUG*/xASSERT_RET(0UL   != ulRes,    std::tstring_t());
-    /*DEBUG*/xASSERT_RET(ulRes <  MAX_PATH, std::tstring_t());
+    DWORD ulRes = ::GetCurrentDirectory(xPATH_MAX, &sBuff[0]);
+    /*DEBUG*/xASSERT_RET(0UL   != ulRes,     std::tstring_t());
+    /*DEBUG*/xASSERT_RET(ulRes <  xPATH_MAX, std::tstring_t());
 
     sRes.assign(sBuff, 0, ulRes);
 #elif xOS_ENV_UNIX
@@ -209,8 +209,8 @@ CxDir::sGetTemp() {
 #if xOS_ENV_WIN
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
-    ulong_t ulRes = ::GetTempPath(xPATH_MAX, &sBuff[0]);
-    /*DEBUG*/xASSERT_RET(0     != ulRes,     std::tstring_t());
+    DWORD ulRes = ::GetTempPath(xPATH_MAX, &sBuff[0]);
+    /*DEBUG*/xASSERT_RET(0UL   != ulRes,     std::tstring_t());
     /*DEBUG*/xASSERT_RET(ulRes <  xPATH_MAX, std::tstring_t());
 
     sRes.assign(sBuff, 0, ulRes);
@@ -254,7 +254,7 @@ CxDir::bCreateForce(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
 
-    bool                      bRes = false;
+    bool                        bRes = false;
     std::vector<std::tstring_t> vsPathParts;
     std::tstring_t              sBuildPath;
 
@@ -282,7 +282,7 @@ bool
 CxDir::bCopy(
     const std::tstring_t &csDirPathFrom,
     const std::tstring_t &csDirPathTo,
-    const bool          cbFailIfExists
+    const bool            cbFailIfExists
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPathFrom.empty(),    false);
@@ -340,7 +340,7 @@ bool
 CxDir::bMove(
     const std::tstring_t &csDirPathFrom,
     const std::tstring_t &csDirPathTo,
-    const bool          cbFailIfExists
+    const bool            cbFailIfExists
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPathFrom.empty(),    false);
@@ -388,8 +388,8 @@ CxDir::bDelete(
 bool
 CxDir::bTryDelete(
     const std::tstring_t &csDirPath,
-    const size_t   cuiAttempts,
-    const ulong_t    culTimeoutMsec
+    const size_t          cuiAttempts,
+    const ulong_t         culTimeoutMsec
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -477,8 +477,7 @@ CxDir::bDeleteForce(
     bool bRes = bIsExists(csDirPath);
     xCHECK_RET(false == bRes, true);
 
-    bRes = bClearForce(csDirPath);
-    /*DEBUG*/// n/a
+    (void)bClearForce(csDirPath);
 
     bRes = bDelete(csDirPath);
     /*DEBUG*/// n/a
@@ -495,7 +494,7 @@ bool
 CxDir::bFindFiles(
     const std::tstring_t        &csDirPath,
     const std::tstring_t        &cMask,
-    const bool                 cbIsRecurse,
+    const bool                   cbIsRecurse,
     std::vector<std::tstring_t> *pvsFilePathes    ///< \note must be empty
 )
 {
@@ -640,7 +639,7 @@ bool
 CxDir::bFindDirs(
     const std::tstring_t        &csDirPath,
     const std::tstring_t        &cMask,
-    const bool                 cbIsRecurse,
+    const bool                   cbIsRecurse,
     std::vector<std::tstring_t> *pvsDirPathes    ///< \note must be empty
 )
 {

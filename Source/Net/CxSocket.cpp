@@ -146,8 +146,8 @@ CxSocket::bClose() {
 int
 CxSocket::iSend(
     const tchar_t *pcszBuff,
-    int          iBuffSize,
-    int          iFlags
+    int            iBuffSize,
+    int            iFlags
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,        etError);
@@ -175,7 +175,7 @@ CxSocket::iSend(
 bool
 CxSocket::bSendAll(
     const std::tstring_t &csBuff,
-    int                 iFlags
+    int                   iFlags
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket,   false);
@@ -218,8 +218,8 @@ CxSocket::bSendAll(
 int
 CxSocket::iRecv(
     tchar_t *pszBuff,
-    int    iBuffSize,
-    int    iFlags
+    int      iBuffSize,
+    int      iFlags
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_puiSocket, etError);
@@ -248,9 +248,9 @@ CxSocket::sRecvAll(
     int iFlags
 )
 {
-    std::tstring_t      sRes;
+    std::tstring_t sRes;
 
-    const size_t cuiBuffSize             = 1024 * sizeof(tchar_t);
+    const size_t   cuiBuffSize             = 1024 * sizeof(tchar_t);
     tchar_t        szBuff[cuiBuffSize + 1] = {0};
 
     for (;;) {
@@ -278,7 +278,7 @@ CxSocket::sRecvAll(
 //---------------------------------------------------------------------------
 std::tstring_t
 CxSocket::sRecvAll(
-    int                 iFlags,
+    int                   iFlags,
     const std::tstring_t &csDelimiter
 )
 {

@@ -814,10 +814,10 @@ bool
 CxCgiCookies::_bInit() {
     /*DEBUG*/
 
-    bool                 bRes           = false;
+    bool                        bRes           = false;
     std::tstring_t              sRawCookies    = _m_ccgCgi.Environment.sGetHttpCookie();
     std::vector<std::tstring_t> vsRawCookies;
-    TCookies             vecckCookies;
+    TCookies                    vecckCookies;
 
     bRes = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
     /*DEBUG*/xASSERT_RET(true == bRes, false);

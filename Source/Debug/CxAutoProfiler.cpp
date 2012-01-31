@@ -16,9 +16,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxAutoProfiler::CxAutoProfiler(
-    const std::tstring_t      &csFilePath,
+    const std::tstring_t    &csFilePath,
     const CxProfiler::EMode  cpmMode,
-    const tchar_t             *pcszComment, ...
+    const tchar_t           *pcszComment, ...
 ) :
     _m_pfProfiler(cpmMode),
     _m_sComment  ()
@@ -41,7 +41,7 @@ CxAutoProfiler::CxAutoProfiler(
 //---------------------------------------------------------------------------
 /*virtual*/
 CxAutoProfiler::~CxAutoProfiler() {
-    (void)_m_pfProfiler.bStop(_m_sComment.c_str());
+    (void)_m_pfProfiler.bStop(xT("%s"), _m_sComment.c_str());
 }
 //---------------------------------------------------------------------------
 

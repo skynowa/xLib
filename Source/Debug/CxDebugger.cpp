@@ -56,13 +56,13 @@ CxDebugger::bSetEnabled(
 bool
 CxDebugger::bIsPresent() {
 #if xOS_ENV_WIN
-    BOOL bRes = ::IsDebuggerPresent();
-    xCHECK_RET(FALSE != bRes, true);
+    BOOL blRes = ::IsDebuggerPresent();
+    xCHECK_RET(FALSE != blRes, true);
 
-    BOOL bIsRemoteDebuggerPresent = FALSE;
+    BOOL blIsRemoteDebuggerPresent = FALSE;
 
-    bRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &bIsRemoteDebuggerPresent);
-    xCHECK_RET(FALSE == bRes || FALSE == bIsRemoteDebuggerPresent, false);
+    blRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &blIsRemoteDebuggerPresent);
+    xCHECK_RET(FALSE == blRes || FALSE == blIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
     std::tstring_t sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
     xCHECK_RET(false == CxString::bCompareNoCase(xT("yes"), sRes), false);
