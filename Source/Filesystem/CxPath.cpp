@@ -33,8 +33,8 @@ CxPath::sGetExe() {
 #if xOS_ENV_WIN
     sRes.resize(xPATH_MAX);
 
-    ulong_t ulStored = ::GetModuleFileName(NULL, &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring_t());
+    DWORD ulStored = ::GetModuleFileName(NULL, &sRes.at(0), sRes.size());
+    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
 
     sRes.resize(ulStored);
 #elif xOS_ENV_UNIX
@@ -104,8 +104,8 @@ CxPath::sGetDll() {
 #if xOS_ENV_WIN
     sRes.resize(xPATH_MAX);
 
-    ulong_t ulStored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ), &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != ulStored, std::tstring_t());
+    DWORD ulStored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ), &sRes.at(0), sRes.size());
+    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
 
     sRes.resize(ulStored);
 #elif xOS_ENV_UNIX
@@ -139,7 +139,7 @@ CxPath::sGetDrive(
 
     size_t uiDriveDelimPos = csFilePath.find(CxConst::xDRIVE_SEP);
     /*DEBUG*/xASSERT_RET(std::tstring_t::npos != uiDriveDelimPos, std::tstring_t());
-    /*DEBUG*/xASSERT_RET(1                  == uiDriveDelimPos, std::tstring_t());
+    /*DEBUG*/xASSERT_RET(1                    == uiDriveDelimPos, std::tstring_t());
 
     return csFilePath.substr(0, uiDriveDelimPos + CxConst::xDRIVE_SEP.size());
 }
@@ -603,7 +603,7 @@ CxPath::sGetAbsolute(
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    ulong_t   ulRes = 0UL;
+    DWORD          ulRes = 0UL;
     std::tstring_t sBuff;
 
     ulRes = ::GetFullPathName(&csFilePath.at(0), 0, NULL, NULL);
@@ -672,7 +672,7 @@ CxPath::sMinimizeName(
 std::tstring_t
 CxPath::sMinimize(
     const std::tstring_t &csFilePath,
-    const size_t        cuiMaxSize
+    const size_t          cuiMaxSize
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring_t());

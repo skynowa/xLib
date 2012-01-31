@@ -74,8 +74,8 @@ CxThreadStorage::bSetValue(
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, false);
 
-    BOOL bRes = ::TlsSetValue(_m_indIndex, pvValue);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::TlsSetValue(_m_indIndex, pvValue);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, false);
 
@@ -120,8 +120,8 @@ CxThreadStorage::_bFree() {
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, false);
 
-    BOOL bRes = ::TlsFree(_m_indIndex);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::TlsFree(_m_indIndex);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     _m_indIndex = TLS_OUT_OF_INDEXES;
 #elif xOS_ENV_UNIX

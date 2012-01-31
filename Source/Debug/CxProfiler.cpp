@@ -9,6 +9,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -246,7 +247,7 @@ CxProfiler::bPulse(
 
     //-------------------------------------
     //stop, start
-    bool bRes = bStop(sRes.c_str());
+    bool bRes = bStop(xT("%s"), sRes.c_str());
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     bRes = bStart();
@@ -266,7 +267,7 @@ CxProfiler::bPulse(
 bool
 CxProfiler::_bResetData() {
     #if xTODO
-        bool bRes = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpNormal);
+        bool bRes = CxProcess::bSetPriority(CxCurrentProcess::ulGetId(), CxProcess::tpNormal);
         /*DEBUG*/xASSERT(true == bRes);
     #endif
 
@@ -351,15 +352,15 @@ CxProfiler::gettimeofday(
     ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
 #endif
 
-    FILETIME   ftTime  = {0};
-    ulonglong_t  ullRes  = 0ULL;
-    static int iTzFlag = 0;
+    FILETIME    ftTime  = {0};
+    ulonglong_t ullRes  = 0ULL;
+    static int  iTzFlag = 0;
 
     if (NULL != tv) {
-        ::GetSystemTimeAsFileTime(&ftTime);
+        (void)::GetSystemTimeAsFileTime(&ftTime);
 
         ullRes |= ftTime.dwHighDateTime;
-        ullRes <<= 32;
+        ullRes <<= 32ULL;
         ullRes |= ftTime.dwLowDateTime;
 
         //convert into microseconds
@@ -367,6 +368,7 @@ CxProfiler::gettimeofday(
 
         //converting file time to unix epoch
         ullRes -= DELTA_EPOCH_IN_MICROSECS;
+
         tv->tv_sec  = static_cast<long_t>( ullRes / 1000000UL );
         tv->tv_usec = static_cast<long_t>( ullRes % 1000000UL );
     }

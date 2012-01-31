@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 bool
 CxFileAttribute::bIsExists(
     const std::tstring_t &csFilePath,
-    const EAttribute   cfaValue
+    const EAttribute      cfaValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
@@ -68,15 +68,15 @@ CxFileAttribute::atGet(
 bool
 CxFileAttribute::bSet(
     const std::tstring_t &csFilePath,
-    const EAttribute    cfaValue
+    const EAttribute      cfaValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// cfaValue
 
 #if xOS_ENV_WIN
-    BOOL bRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ulong_t>(cfaValue));
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ulong_t>(cfaValue));
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
@@ -108,15 +108,15 @@ CxFileAttribute::bRemove(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// cfaValue
 
-    return bModify(csFilePath, cfaValue, static_cast<EAttribute>(0));
+    return bModify(csFilePath, cfaValue, static_cast<EAttribute>( 0 ));
 }
 //---------------------------------------------------------------------------
 /*static*/
 bool
 CxFileAttribute::bModify(
     const std::tstring_t &csFilePath,
-    const EAttribute    cfaRemoveValue,
-    const EAttribute    cfaAddValue
+    const EAttribute      cfaRemoveValue,
+    const EAttribute      cfaAddValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);

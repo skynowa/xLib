@@ -46,7 +46,7 @@ CxBackuper::etExecute(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    etUnknown);
     /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), etUnknown);
 
-    bool bRes  = false;
+    bool bRes = false;
 
     (*psDestFilePath).clear();
 
@@ -111,4 +111,3 @@ CxBackuper::etExecute(
 //---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
-

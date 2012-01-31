@@ -39,9 +39,9 @@ CxFileTemp::~CxFileTemp() {
 //---------------------------------------------------------------------------
 bool
 CxFileTemp::bCreate(
-    const std::tstring_t  &csFilePath,
-    const std::tstring_t  &csDirPath,
-    CxFile              *pfFile
+    const std::tstring_t &csFilePath,
+    const std::tstring_t &csDirPath,
+    CxFile               *pfFile
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);

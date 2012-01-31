@@ -27,9 +27,9 @@ sGetEan13BarCode(
     /*DEBUG*/}
 
     std::tstring_t sRes;
-    int     iFirst    = 0;
-    bool    bTableA   = false;
-    std::tstring_t sData     = csData;
+    int            iFirst  = 0;
+    bool           bTableA = false;
+    std::tstring_t sData   = csData;
 
     //-------------------------------------
     //x - ����� ������

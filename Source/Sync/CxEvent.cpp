@@ -32,9 +32,7 @@ CxEvent::CxEvent(
     /*DEBUG*/xASSERT_DO(false == _m_hEvent.bIsValid(), return);
     /*DEBUG*/
 
-    HANDLE hRes = NULL;
-
-    hRes = ::CreateEvent(NULL, ! cbIsAutoReset, cbIsSignaled, NULL);
+    HANDLE hRes = ::CreateEvent(NULL, ! cbIsAutoReset, cbIsSignaled, NULL);
     /*DEBUG*/xASSERT_DO(NULL != hRes, return);
 
     _m_hEvent.bSet(hRes);
@@ -75,8 +73,8 @@ CxEvent::bSet() {
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), false);
     /*DEBUG*/
 
-    BOOL bRes = ::SetEvent(hGet().hGet());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::SetEvent(hGet().hGet());
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
@@ -102,8 +100,8 @@ CxEvent::bReset() {
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), false);
     /*DEBUG*/
 
-    BOOL bRes = ::ResetEvent(hGet().hGet());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::ResetEvent(hGet().hGet());
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
@@ -183,7 +181,7 @@ CxEvent::bIsSignaled() {
     /*DEBUG*/// n/a
 
 #if xOS_ENV_WIN
-    ulong_t ulRes = ::WaitForSingleObject(hGet().hGet(), 0UL);
+    DWORD ulRes = ::WaitForSingleObject(hGet().hGet(), 0UL);
     /*DEBUG*/// n/a
 
     return (false != _m_hEvent.bIsValid()) && (osSignaled == ulRes);

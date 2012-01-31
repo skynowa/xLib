@@ -47,11 +47,11 @@
 #include <xLib/Common/Win/CxPerfCounters.h>
 #pragma pack(pop)
 
-#define SYSTEM_OBJECT_INDEX                    2        // 'System' object
-#define PROCESS_OBJECT_INDEX                230        // 'Process' object
-#define PROCESSOR_OBJECT_INDEX                238        // 'Processor' object
-#define TOTAL_PROCESSOR_TIME_COUNTER_INDEX    240        // '% Total processor time' counter (valid in WinNT under 'System' object)
-#define PROCESSOR_TIME_COUNTER_INDEX        6        // '% processor time' counter (for Win2K/XP)
+#define SYSTEM_OBJECT_INDEX                 2   // 'System' object
+#define PROCESS_OBJECT_INDEX                230 // 'Process' object
+#define PROCESSOR_OBJECT_INDEX              238 // 'Processor' object
+#define TOTAL_PROCESSOR_TIME_COUNTER_INDEX  240 // '% Total processor time' counter (valid in WinNT under 'System' object)
+#define PROCESSOR_TIME_COUNTER_INDEX        6   // '% processor time' counter (for Win2K/XP)
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -93,20 +93,17 @@ GetPlatform() {
     return UNKNOWN;
 }
 //---------------------------------------------------------------------------
-//TODO: FUNCTION_NAME (COMMENTS)
 CxCpuUsage::CxCpuUsage() {
     m_bFirstTime = true;
     m_lnOldValue = 0;
     memset(&m_OldPerfTime100nSec, 0, sizeof(m_OldPerfTime100nSec));
 }
 //---------------------------------------------------------------------------
-//TODO: FUNCTION_NAME (COMMENTS)
 /*virtual*/
 CxCpuUsage::~CxCpuUsage() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: FUNCTION_NAME (COMMENTS)
 bool
 CxCpuUsage::EnablePerformaceCounters(bool bEnable) {
     if (GetPlatform() != WIN2K_XP)
@@ -134,7 +131,6 @@ CxCpuUsage::EnablePerformaceCounters(bool bEnable) {
     return true;
 }
 //---------------------------------------------------------------------------
-//TODO: - FUNCTION_NAME (COMMENTS)
 //
 //    GetCpuUsage returns the system-wide cpu usage.
 //    Since we calculate the cpu usage by two samplings, the first
@@ -212,7 +208,6 @@ CxCpuUsage::GetCpuUsage() {
     return CpuUsage;
 }
 //---------------------------------------------------------------------------
-//TODO: - FUNCTION_NAME (COMMENTS)
 INT
 CxCpuUsage::GetCpuUsage(LPCTSTR pProcessName) {
     static EPlarform Platform = GetPlatform();
@@ -258,7 +253,6 @@ CxCpuUsage::GetCpuUsage(LPCTSTR pProcessName) {
     return CpuUsage;
 }
 //---------------------------------------------------------------------------
-//TODO: - FUNCTION_NAME (COMMENTS)
 INT
 CxCpuUsage::GetCpuUsage(DWORD dwProcessID) {
     static EPlarform Platform = GetPlatform();

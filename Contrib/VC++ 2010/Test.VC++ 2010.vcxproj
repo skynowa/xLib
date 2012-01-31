@@ -258,7 +258,6 @@
     <ClCompile Include="..\..\Source\Common\CxSystemInfo.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxClipboard.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp" />
-    <ClCompile Include="..\..\Source\Common\Win\CxComPort.cpp" />
     <ClCompile Include="..\..\Source\Sync\Win\CxCompletionPort.cpp" />
     <ClCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp" />
@@ -279,7 +278,6 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxType.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxClipboard.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxComPort.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp" />
@@ -429,7 +427,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxType.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxClipboard.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxComPort.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h" />
@@ -599,7 +596,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\xTypes.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxClipboard.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxCom.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxComPort.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\xCommon_Win.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

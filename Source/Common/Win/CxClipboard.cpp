@@ -44,8 +44,8 @@ bool
 CxClipboard::bOpen() {
     /*DEBUG*///
 
-    BOOL bRes = ::OpenClipboard(_m_hWndOwner);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::OpenClipboard(_m_hWndOwner);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
 }
@@ -54,8 +54,8 @@ bool
 CxClipboard::bClose() {
     /*DEBUG*///
 
-    BOOL bRes = ::CloseClipboard();
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL blRes = ::CloseClipboard();
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
 }
@@ -205,7 +205,7 @@ CxClipboard::bRegisterFormat(
     /*DEBUG*/// csText
     /*DEBUG*/xASSERT_RET(NULL != pfmFormat, false);
 
-    uint_t uiRes = ::RegisterClipboardFormat(csText.c_str());
+    UINT uiRes = ::RegisterClipboardFormat(csText.c_str());
     /*DEBUG*/xASSERT_RET(0 != uiRes, false);
 
     *pfmFormat = static_cast<EFormat>( uiRes );

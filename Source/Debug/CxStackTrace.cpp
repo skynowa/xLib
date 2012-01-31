@@ -14,7 +14,7 @@
         #define DBGHELP_TRANSLATE_TCHAR
     #endif
 
-////    #include <DbgHelp.h>
+    #include <DbgHelp.h>
     #pragma comment(lib, "DbgHelp.Lib")
 #elif xOS_ENV_UNIX
     #include <execinfo.h>
@@ -62,10 +62,10 @@ CxStackTrace::bGet(
 
     hProcess = CxCurrentProcess::hGetHandle();
 
-    BOOL bRes = ::SymInitialize(hProcess, NULL, true);
-    xCHECK_RET(FALSE == bRes, false);
+    BOOL blRes = ::SymInitialize(hProcess, NULL, true);
+    xCHECK_RET(FALSE == blRes, false);
 
-    ushort_t usFramesNum      = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
+    ushort_t usFramesNum = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
     xCHECK_RET(usFramesNum == 0U, false);
 
     psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
@@ -75,8 +75,8 @@ CxStackTrace::bGet(
     for (ushort_t i = 1U; i < usFramesNum; ++ i) {
         std::tstring_t sStackLine;
 
-        bRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
-        if (FALSE == bRes) {
+        blRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
+        if (FALSE == blRes) {
             sStackLine = xUNKNOWN_STRING;
         } else {
 	        const ULONG64       ullAddress = psiSymbol->Address;
@@ -113,7 +113,7 @@ CxStackTrace::bGet(
             } else {
                 const tchar_t *pcszSymName     = NULL;
                 tchar_t       *pszDemangleName = NULL;
-                int          iStatus         = - 1;
+                int            iStatus         = - 1;
 
                 pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
                 if (NULL != pszDemangleName && 0 == iStatus) {

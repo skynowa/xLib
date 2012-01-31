@@ -116,8 +116,8 @@ CxCriticalSection::bLock() {
 bool
 CxCriticalSection::bTryLock() {
 #if xOS_ENV_WIN
-    BOOL bRes = ::TryEnterCriticalSection(&_m_hHandle);
-    xCHECK_RET(FALSE == bRes, false);
+    BOOL blRes = ::TryEnterCriticalSection(&_m_hHandle);
+    xCHECK_RET(FALSE == blRes, false);
 #elif xOS_ENV_UNIX
     int iRes = ::pthread_mutex_trylock(&_m_hHandle);
     xCHECK_RET(0 != iRes, false);

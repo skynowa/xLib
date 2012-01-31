@@ -71,7 +71,7 @@ CxLastError::sFormat(
     sRes = CxString::sFormat(xT("%lu - "), culCode);
 
 #if xOS_ENV_WIN
-    ulong_t  ulRes  = 0UL;
+    DWORD  ulRes  = 0UL;
     LPVOID pvBuff = NULL;
 
     ulRes = ::FormatMessage(

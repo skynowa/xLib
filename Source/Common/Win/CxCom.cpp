@@ -11,7 +11,7 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-long_t CxCom::_ms_lInitCount = 0;
+long_t CxCom::_ms_lInitCount = 0L;
 
 /****************************************************************************
 *    public

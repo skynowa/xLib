@@ -38,7 +38,7 @@ CxVolume::bIsReady(
 
 #if xOS_ENV_WIN
     std::tstring_t sRes;
-    uint_t         uiOldErrorMode = 0;
+    UINT           uiOldErrorMode = 0U;
 
     uiOldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
     /*DEBUG*/// n/a
@@ -49,8 +49,7 @@ CxVolume::bIsReady(
     bRes = !!::SetCurrentDirectory(sVolumePath.c_str());
     /*DEBUG*/// n/a
 
-    CxDir::bSetCurrent(sOldDirPath);
-    /*DEBUG*/// n/a
+    (void)CxDir::bSetCurrent(sOldDirPath);
 
     (void)::SetErrorMode(uiOldErrorMode);
 #elif xOS_ENV_UNIX

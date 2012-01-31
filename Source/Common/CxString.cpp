@@ -274,8 +274,8 @@ CxString::sCut(
 std::tstring_t
 CxString::sCut(
     const std::tstring_t &csStr,
-    const size_t        cuiStartPos /*= 0*/,
-    const size_t        cuiEndPos   /*= std::tstring_t:npos*/
+    const size_t          cuiStartPos /*= 0*/,
+    const size_t          cuiEndPos   /*= std::tstring_t:npos*/
 )
 {
     xCHECK_RET(true        == csStr.empty(), std::tstring_t());
@@ -312,7 +312,7 @@ CxString::sToUpperCase(
 std::tstring_t
 CxString::sToLowerCase(
     const std::tstring_t &csStr,
-    size_t              uiLength
+    size_t                uiLength
 )
 {
     /*DEBUG*/// n/a
@@ -336,7 +336,7 @@ CxString::sToLowerCase(
 std::tstring_t
 CxString::sToUpperCase(
     const std::tstring_t &csStr,
-    size_t              uiLength
+    size_t                uiLength
 )
 {
     /*DEBUG*/// n/a
@@ -449,7 +449,7 @@ CxString::sFormat(
     std::tstring_t
     CxString::sFormatV(
         const tchar_t *pcszFormat,
-        va_list      palArgs
+        va_list        palArgs
     )
     {
         /*DEBUG*/// n/a
@@ -487,7 +487,7 @@ CxString::sFormat(
         xCHECK_RET(NULL == pcszFormat, std::tstring_t());
 
         std::tstring_t sBuff(64, 0);
-        int          iWrittenSize = - 1;
+        int            iWrittenSize = - 1;
 
         //--------------------------------------------------
         //calc size
@@ -528,7 +528,7 @@ CxString::sFormat(
 std::tstring_t
 CxString::sMinimize(
     const std::tstring_t &csStr,
-    const size_t        cuiMaxLen
+    const size_t          cuiMaxLen
 )
 {
     /*DEBUG*/// n/a
@@ -745,7 +745,7 @@ CxString::sFormatPercentage(
 std::wstring
 CxString::sStrToWStr(
     const std::string &csStr,
-    const uint_t         cuiCodePage
+    const uint_t       cuiCodePage
 )
 {
     /*DEBUG*/// csStr - n/a
@@ -772,7 +772,7 @@ CxString::sStrToWStr(
 std::string
 CxString::sWStrToStr(
     const std::wstring &cwsStr,
-    const uint_t          cuiCodePage
+    const uint_t        cuiCodePage
 )
 {
     /*DEBUG*/// cwsStr - n/a
@@ -799,8 +799,8 @@ CxString::sWStrToStr(
 std::string
 CxString::sConvertCodePage(
     const std::string &csSource,
-    const uint_t         cuiCodePageSource,
-    const uint_t         cuiCodePageDest
+    const uint_t       cuiCodePageSource,
+    const uint_t       cuiCodePageDest
 )
 {
 //    /*DEBUG*/xASSERT_RET(false == csSource.empty(), std::string());        //FIX: csStr    - n/a

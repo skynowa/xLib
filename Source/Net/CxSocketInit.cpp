@@ -51,7 +51,7 @@ CxSocketInit::~CxSocketInit() {
     int iRes = ::WSACleanup();
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
 #elif xOS_ENV_UNIX
-    // n/a
+    xNA
 #endif
 }
 //---------------------------------------------------------------------------

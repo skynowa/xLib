@@ -57,11 +57,11 @@ CxConsole::~CxConsole() {
 std::tstring_t
 CxConsole::bSetTextColor(
     const std::tstring_t &csText,
-    const EForeground   cfgForeground,
-    const bool          cbIsBold,
-    const bool          cbIsUnderline,
-    const EBackground   cbgBackground,
-    const bool          cbIsBlink
+    const EForeground     cfgForeground,
+    const bool            cbIsBold,
+    const bool            cbIsUnderline,
+    const EBackground     cbgBackground,
+    const bool            cbIsBlink
 )
 {
     /*DEBUG*/// n/a
@@ -216,7 +216,7 @@ CxConsole::iMsgBox(
 bool
 CxConsole::bPrompt(
     const std::tstring_t &csPrompt,
-    const bool          cbIsVisible,
+    const bool            cbIsVisible,
     std::tstring_t       *psAnswer
 )
 {
