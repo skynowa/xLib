@@ -155,7 +155,7 @@ CxSystemInfo::oaGetOsArch() {
         oaRes = (bIsWin32MethodExist && bIsWow64Process && bIs64BitOs) ? oa64bit : oa32bit;
     #else
         // 64-bit Windows does not support Win16
-        oaRes = oaUnknown;  
+        oaRes = oaUnknown;
     #endif
 #elif xOS_ENV_UNIX
     utsname unKernelInfo= {{0}};
@@ -253,12 +253,12 @@ CxSystemInfo::bIsUserAnAdmin() {
 
 #if xOS_ENV_WIN
     bool                     bIsAdmin              = false;
-    SID_IDENTIFIER_AUTHORITY siaNtAuthority        = SECURITY_NT_AUTHORITY;
-    PSID                     psAdministratorsGroup = NULL; 
+    SID_IDENTIFIER_AUTHORITY siaNtAuthority        = { SECURITY_NT_AUTHORITY };
+    PSID                     psAdministratorsGroup = NULL;
 
-    BOOL bRes = ::AllocateAndInitializeSid(&siaNtAuthority, 2, 
-                                           SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, 
-                                           &psAdministratorsGroup); 
+    BOOL bRes = ::AllocateAndInitializeSid(&siaNtAuthority, 2,
+                                           SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL,
+                                           &psAdministratorsGroup);
     xCHECK_RET(FALSE == bRes, false);
 
     {
@@ -272,7 +272,7 @@ CxSystemInfo::bIsUserAnAdmin() {
         }
     }
 
-    (void)::FreeSid(psAdministratorsGroup); 
+    (void)::FreeSid(psAdministratorsGroup);
 
     xCHECK_RET(false == bIsAdmin, false);
 #elif xOS_ENV_UNIX

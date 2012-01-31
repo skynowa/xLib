@@ -468,6 +468,7 @@ CxFile::llGetSize() const {
 
     xTSTAT_STRUCT stStat = {0};
 
+    //TODO: fstat
     int iRes = ::xTSTAT(_m_sFilePath.c_str(), &stStat);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, 0LL);
 
@@ -1062,9 +1063,9 @@ CxFile::bGetTime(
     /*DEBUG*/// pftModified - n/a
 
 #if xOS_ENV_WIN
-    FILETIME ftCreate   = {{0}};
-    FILETIME ftAccess   = {{0}};
-    FILETIME ftModified = {{0}};
+    FILETIME ftCreate   = {0};
+    FILETIME ftAccess   = {0};
+    FILETIME ftModified = {0};
 
     CxFileHandle m_hHandle;
 

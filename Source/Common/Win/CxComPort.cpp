@@ -42,7 +42,7 @@ CxCOMPort::bOpen() {
     /*DEBUG*/xASSERT_RET(false != _m_hComPort.bIsValid(), false);
 
     CxFileHandle hComPort;
-    
+
     hComPort = ::CreateFile(_m_sPortNum.c_str(), GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, FILE_FLAG_OVERLAPPED, 0);
     /*DEBUG*/xASSERT_RET(true == hComPort.bIsValid(), false);
 
@@ -106,7 +106,7 @@ CxCOMPort::bReadData(
     ulong_t  dwNumOfBytesToRead
 )
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hComPort.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(false != _m_hComPort.bIsValid(), std::tstring_t());
 
     CxCurrentThread::bSleep(5UL);
 
