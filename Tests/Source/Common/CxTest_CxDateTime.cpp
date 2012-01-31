@@ -576,6 +576,7 @@ CxTest_CxDateTime::bUnit(
             FILETIME ftFileTime = {0};
 
             tmUnixTime = CxDateTime::tmFileTimeToUnixTime(ftFileTime);
+            xTEST_EQ(static_cast<time_t>( 0 ), tmUnixTime);
         #endif
     }
 

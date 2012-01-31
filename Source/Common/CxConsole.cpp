@@ -69,9 +69,9 @@ CxConsole::bSetTextColor(
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::tstring_t());
+    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  std::tstring_t());
+    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), std::tstring_t());
 
     BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), cfgForeground);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, std::tstring_t());

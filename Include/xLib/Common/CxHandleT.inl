@@ -4,6 +4,9 @@
  */
 
 
+#include <xLib/Debug/CxLastError.h>
+
+
 xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
@@ -230,7 +233,7 @@ ulong_t
 CxHandleT<hvTag>::ulGetInformation() const {
     /*DEBUG*/xASSERT_RET(true == bIsValid(), 0UL);
 
-    ulong_t ulFlags = 0UL;
+    DWORD ulFlags = 0UL;
 
     BOOL blRes = ::GetHandleInformation(_m_hHandle, &ulFlags);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,   0UL);
