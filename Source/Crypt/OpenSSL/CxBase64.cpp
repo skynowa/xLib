@@ -44,7 +44,7 @@ CxBase64::sEncode(
     pbioBase64 = ::BIO_new(BIO_f_base64());
     /*DEBUG*/xASSERT_RET(NULL != pbioBase64, std::string());
 
-    (void)::BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
+    (void)BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
 
     pbioMemory = ::BIO_new(::BIO_s_mem());
     /*DEBUG*/xASSERT_RET(NULL != pbioMemory, std::string());
@@ -52,7 +52,7 @@ CxBase64::sEncode(
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
     /*DEBUG*/// n/a
 
-    int iWritten = ::BIO_write(pbioContainer, &csStr.at(0), csStr.size());    BIO_flush(pbioContainer);
+    int iWritten = ::BIO_write(pbioContainer, &csStr.at(0), csStr.size());    (void)BIO_flush(pbioContainer);
     /*DEBUG*/xASSERT_RET(0                                <  iWritten, std::string());
     /*DEBUG*/xASSERT_RET(static_cast<int>( csStr.size() ) == iWritten, std::string());
 
@@ -86,7 +86,7 @@ CxBase64::sDecode(
     pbioBase64 = ::BIO_new(BIO_f_base64());
     /*DEBUG*/xASSERT_RET(NULL != pbioBase64, std::string());
 
-    (void)::BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
+    (void)BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
 
     //push a Base64 filter so that reading from buffer decodes it
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);

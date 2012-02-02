@@ -31,7 +31,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/xLib_test/Release}</value>
+					<value>${workspace_loc:/xLib_test/Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
@@ -88,24 +88,24 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Include</name>
-			<type>2</type>
-			<location>/home/sergey/Coding/xLib/Include</location>
-		</link>
-		<link>
-			<name>Source</name>
-			<type>2</type>
-			<location>/home/sergey/Coding/xLib/Source</location>
-		</link>
-		<link>
-			<name>TODO.txt</name>
-			<type>1</type>
-			<location>/home/sergey/Coding/xLib/TODO.txt</location>
-		</link>
-		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<location>/home/sergey/Coding/xLib/Tests</location>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>xLib</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>Tests/Source</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Tests/Source</locationURI>
+		</link>
+		<link>
+			<name>xLib/Source</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Source</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
