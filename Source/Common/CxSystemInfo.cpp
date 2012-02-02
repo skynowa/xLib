@@ -385,14 +385,11 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
             ulRes = ulCpu;
         #else
-//            int iRes = ::sched_getcpu();
-//            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( - 1 ));
-//
-//            ulRes = static_cast<ulong_t>( iRes );
+            //TODO: fix sched_getcpu()
+            int iRes = ::sched_getcpu();
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( - 1 ));
 
-
-
-
+            ulRes = static_cast<ulong_t>( iRes );
         #endif
     #endif
 #endif
