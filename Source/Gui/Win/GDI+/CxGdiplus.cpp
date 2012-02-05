@@ -10,7 +10,10 @@
 
 #include <GDIPlus.h>
 
-#pragma comment (lib, "Gdiplus.lib")
+#if !xCOMPILER_MINGW32
+    #pragma comment (lib, "Gdiplus.lib")
+#endif
+
 
 
 xNAMESPACE_BEGIN(NxLib)

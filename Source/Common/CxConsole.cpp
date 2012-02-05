@@ -414,7 +414,11 @@ CxConsole::bSetFullScreen() {
     crdCoord.X -= 2;
     crdCoord.Y -= 2;
 
-    SMALL_RECT recSmallRec = {0, 0, crdCoord.X - 2, crdCoord.Y - 2};
+    SMALL_RECT recSmallRec = {0};
+    recSmallRec.Left   = 0;
+    recSmallRec.Top    = 0;
+    recSmallRec.Right  = crdCoord.X - 2;
+    recSmallRec.Bottom = crdCoord.Y - 2;
 
     BOOL blRes = ::SetConsoleScreenBufferSize(_m_hStdOut.hGet(), crdCoord);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);

@@ -13,8 +13,8 @@
 #include <xLib/Debug/CxStackTrace.h>
 #include <xLib/Debug/CxReport.h>
 #include <xLib/Debug/CxDebugger.h>
-#include <xLib/Debug/CxStackTrace.h>
 //---------------------------------------------------------------------------
+
 #if xDEBUG_MODE_MSGBOX_PLAIN
     #define xASSERT(expr)                                   { if ( !(expr) )                { CxReport rpReport(CxReport::rtMsgboxPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport);}                       }
     #define xASSERT_RET(expr, return_expr)                  { if ( !(expr) )                { CxReport rpReport(CxReport::rtMsgboxPlain, xT(#expr), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger::bReportMake(rpReport); return (return_expr);} }
