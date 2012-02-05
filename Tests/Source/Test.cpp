@@ -202,10 +202,11 @@ xTMAIN(
 
         //Crypt
         (void)tmManager.bAdd(new CxTest_CxCrc32);
-        (void)tmManager.bAdd(new CxTest_CxBase64);
-        (void)tmManager.bAdd(new CxTest_CxCrc32);
-        (void)tmManager.bAdd(new CxTest_CxBlowfish);
         (void)tmManager.bAdd(new CxTest_CxRandom);
+    #if !xCOMPILER_MINGW32
+        (void)tmManager.bAdd(new CxTest_CxBase64);
+        (void)tmManager.bAdd(new CxTest_CxBlowfish);
+    #endif
 
         //Db
         (void)tmManager.bAdd(new CxTest_CxConnectionString);

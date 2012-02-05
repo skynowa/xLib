@@ -8,6 +8,10 @@
 
 #include <xLib/Common/Win/CxCom.h>
 
+#if xCOMPILER_MINGW32
+    //  lib: -luuid (for IID_IPersistFile)
+#endif
+
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -23,7 +27,7 @@ CxShell::bIsAvailable() {
     /*DEBUG*/// n/a
 
     int iRes = std::xTSYSTEM(NULL);
-    
+
 #if   xOS_ENV_WIN
     xCHECK_RET(0 == iRes && ENOENT == CxStdError::iGet(), false);
 #elif xOS_ENV_UNIX
@@ -34,9 +38,9 @@ CxShell::bIsAvailable() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-bool 
+bool
 CxShell::bExecute(
-    const std::tstring_t &csFilePath,   ///< file path to binary file 
+    const std::tstring_t &csFilePath,   ///< file path to binary file
     const std::tstring_t &csParams      ///< command line params for binary file
 )
 {
@@ -44,7 +48,7 @@ CxShell::bExecute(
     /*DEBUG*/// csParams   - n/a
 
     xCHECK_RET(false == bIsAvailable(), false);
-  
+
 #if   xOS_ENV_WIN
     std::tstring_t sCommand = CxString::sFormat(xT("%s %s"), csFilePath.c_str(), csParams.c_str());
 

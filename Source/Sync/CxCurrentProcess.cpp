@@ -44,30 +44,36 @@ CxCurrentProcess::ulGetParentId() {
 
 #if xOS_ENV_WIN
 	#if xCOMPILER_MINGW32
-    	xNOT_IMPLEMENTED_RET(0UL);
-	#else
-		typedef NTSTATUS (WINAPI *fpProcAddress)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
+    	//typedef __success(return >= 0) LONG NTSTATUS;
+        typedef LONG NTSTATUS;
 
-		const CxProcess::TxId culInvalidId = (ulong_t)- 1;
-
-		bool  bRes   = false;
-		CxDll objDll;
-
-		bRes = objDll.bLoad(xT("ntdll.dll"));
-		/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
-
-		ULONG_PTR pulProcessInformation[6] = {0};
-		ULONG     ulReturnLength           = 0UL;
-
-		fpProcAddress NtQueryInformationProcess = (fpProcAddress)objDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
-		/*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
-
-		NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
-		bRes = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
-		/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
-
-		ulRes = pulProcessInformation[5];
+        typedef enum _PROCESSINFOCLASS {
+            ProcessBasicInformation = 0,
+            ProcessWow64Information = 26
+        } PROCESSINFOCLASS;
 	#endif
+
+	typedef NTSTATUS (WINAPI *fpProcAddress)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
+
+	const CxProcess::TxId culInvalidId = (ulong_t)- 1;
+
+	bool  bRes   = false;
+	CxDll objDll;
+
+	bRes = objDll.bLoad(xT("ntdll.dll"));
+	/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
+
+	ULONG_PTR pulProcessInformation[6] = {0};
+	ULONG     ulReturnLength           = 0UL;
+
+	fpProcAddress NtQueryInformationProcess = (fpProcAddress)objDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
+	/*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
+
+	NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
+	bRes = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
+	/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
+
+	ulRes = pulProcessInformation[5];
 #elif xOS_ENV_UNIX
     ulRes = ::getppid();
     /*DEBUG*/// n/a
