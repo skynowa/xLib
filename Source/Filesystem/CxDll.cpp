@@ -65,7 +65,7 @@ CxDll::bIsProcExists(
     const std::tstring_t &csProcName
 ) const
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, NULL);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hDLL, false);
 
 #if xOS_ENV_WIN
     TxProcAddress fpRes = ::GetProcAddress(_m_hDLL, xTS2S(csProcName).c_str());
@@ -74,7 +74,7 @@ CxDll::bIsProcExists(
     const char *pszError = NULL;
 
     pszError = ::dlerror();
-    /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
+    /*DEBUG*/xASSERT_RET(NULL == pszError, false);
 
     (void)::dlsym(_m_hDLL, csProcName.c_str());
 

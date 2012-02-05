@@ -57,7 +57,7 @@ CxWndLog::bWrite(
     //-------------------------------------
     //comment
     std::tstring_t sParam;
-    va_list palArgs = NULL;
+    va_list palArgs;
 
     xVA_START(palArgs, pcszFormat);
     sParam = CxString::sFormatV(pcszFormat, palArgs);

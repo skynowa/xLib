@@ -1,4 +1,4 @@
-﻿/**
+/**
  * \file  CxImage.cpp
  * \brief GDI+ image
  */

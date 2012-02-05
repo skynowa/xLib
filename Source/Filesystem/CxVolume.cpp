@@ -182,6 +182,10 @@ CxVolume::bUnMount(
     DWORD dwRes = ::WNetCancelConnection2(csSourcePath.c_str(), CONNECT_UPDATE_PROFILE, cbIsForce);
     /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
 #elif xOS_ENV_UNIX
+    #ifndef MNT_DETACH
+        #define MNT_DETACH MNT_FORCE
+    #endif
+
     const int ciFlag = cbIsForce ? MNT_FORCE : MNT_DETACH;
 
     int iRes = ::umount2(csSourcePath.c_str(), ciFlag);

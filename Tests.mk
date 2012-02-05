@@ -118,6 +118,7 @@ OTHER_INCLUDE_DIR			:=	/usr/local/include \
 
 LIB_DIRS					:=	/usr/local/lib \
                     			/usr/lib \
+                    			/usr/lib64 \
                     			/usr/local/lib/mysql \
                     			/usr/lib/mysql
 

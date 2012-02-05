@@ -7,6 +7,15 @@
 #ifndef xLib_Common_CxHandleTH
 #define xLib_Common_CxHandleTH
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
+class CxLastError;
+class CxStackTrace;
+class CxReport;
+class CxDebugger;
+
+xNAMESPACE_END(NxLib)
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxMacros.h>
 #include <xLib/Common/CxHandleErrorT.h>
@@ -16,11 +25,6 @@
 #endif
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
-
-class CxLastError;
-class CxStackTrace;
-class CxReport;
-class CxDebugger;
 
 template<EHandleValue hvTag>
 class CxHandleT
