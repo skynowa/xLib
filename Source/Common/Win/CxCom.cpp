@@ -6,6 +6,10 @@
 
 #include <xLib/Common/Win/CxCom.h>
 
+#if xCOMPILER_MINGW32
+    // lib: -lole32
+#endif
+
 
 #if xOS_ENV_WIN
 

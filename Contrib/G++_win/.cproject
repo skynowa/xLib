@@ -18,12 +18,12 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.1815328485." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.base.756807771" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.base">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.PE" id="cdt.managedbuild.target.gnu.platform.mingw.base.1423240487" name="Debug Platform" osList="win32" superClass="cdt.managedbuild.target.gnu.platform.mingw.base"/>
-							<builder buildPath="${workspace_loc:/G++_win/Debug}" id="cdt.managedbuild.tool.gnu.builder.mingw.base.1567691380" keepEnvironmentInBuildfile="false" name="CDT Internal Builder" parallelBuildOn="false" parallelizationNumber="4" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
+							<builder buildPath="${workspace_loc:/G++_win/Debug}" id="cdt.managedbuild.tool.gnu.builder.mingw.base.1567691380" keepEnvironmentInBuildfile="false" name="CDT Internal Builder" parallelBuildOn="true" parallelizationNumber="8" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.base.391883438" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.base">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1779928369" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.mingw.base.896465840" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.mingw.base"/>
-							<tool command="g++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} -fpermissive" id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.2125125982" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base">
+							<tool command="g++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.2125125982" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base">
 								<option id="gnu.cpp.compiler.option.include.paths.1653653221" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${Atl}\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${OpenSSL}\include&quot;"/>
@@ -42,6 +42,15 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.base.554470409" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base.497656275" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base">
+								<option id="gnu.cpp.link.option.libs.801361371" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="ws2_32"/>
+									<listOptionValue builtIn="false" value="uuid"/>
+									<listOptionValue builtIn="false" value="ole32"/>
+									<listOptionValue builtIn="false" value="DbgHelp"/>
+									<listOptionValue builtIn="false" value="Gdiplus"/>
+									<listOptionValue builtIn="false" value="mpr"/>
+									<listOptionValue builtIn="false" value="wininet"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1580406084" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -51,8 +60,8 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="Tests|xLib|Tests/Source/Crypt/CxTest_CxBlowfish.cpp|Tests/Source/Crypt/CxTest_CxBase64.cpp|Tests/Source/Db/CxTest_CxMySql.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Tests"/>
-						<entry excluding="Source/Common/Win/CxCpuUsage.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="xLib"/>
+						<entry excluding="Source/Units/Win/bGetUsbInfo.cpp|Source/Net/CxSmtp.cpp|Source/Db/CxMySql.cpp|Source/Crypt/OpenSSL/CxBlowfish.cpp|Source/Crypt/OpenSSL/CxBase64.cpp|Source/Common/Win/CxCpuUsage.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="xLib"/>
+						<entry excluding="Source/Units/Win/CxTest_bGetUsbInfo.cpp|Source/Net/CxTest_CxSmtp.cpp|Source/Db/CxTest_CxMySql.cpp|Source/Crypt/CxTest_CxBlowfish.cpp|Source/Crypt/CxTest_CxBase64.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Tests"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -73,7 +82,7 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.927361032." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.release.1693043935" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.release">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.release.2128047471" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.release"/>
-							<builder buildPath="${workspace_loc:/G++_win/Release}" id="cdt.managedbuild.tool.gnu.builder.mingw.base.1600015713" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" parallelBuildOn="false" parallelizationNumber="4" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
+							<builder buildPath="${workspace_loc:/G++_win/Release}" id="cdt.managedbuild.tool.gnu.builder.mingw.base.1600015713" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" parallelBuildOn="true" parallelizationNumber="8" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.release.1545450703" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.release">
 								<option id="gnu.both.asm.option.include.paths.1076994703" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1176867227" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
@@ -98,6 +107,11 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.release.896146980" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release.796838768" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release">
+								<option id="gnu.cpp.link.option.libs.1465220653" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="ws2_32"/>
+									<listOptionValue builtIn="false" value="wininet"/>
+									<listOptionValue builtIn="false" value="libeay32"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1622064715" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -107,8 +121,8 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="Tests|xLib|Tests/Source/Crypt/CxTest_CxBlowfish.cpp|Tests/Source/Crypt/CxTest_CxBase64.cpp|Tests/Source/Db/CxTest_CxMySql.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Tests"/>
-						<entry excluding="Source/Common/Win/CxCpuUsage.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="xLib"/>
+						<entry excluding="Source/Units/Win/bGetUsbInfo.cpp|Source/Net/CxSmtp.cpp|Source/Db/CxMySql.cpp|Source/Crypt/OpenSSL/CxBlowfish.cpp|Source/Crypt/OpenSSL/CxBase64.cpp|Source/Common/Win/CxCpuUsage.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="xLib"/>
+						<entry excluding="Source/Units/Win/CxTest_bGetUsbInfo.cpp|Source/Net/CxTest_CxSmtp.cpp|Source/Db/CxTest_CxMySql.cpp|Source/Crypt/CxTest_CxBlowfish.cpp|Source/Crypt/CxTest_CxBase64.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Tests"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

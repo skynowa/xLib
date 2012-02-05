@@ -7,6 +7,8 @@
 #ifndef xLib_Common_CxHandleErrorTH
 #define xLib_Common_CxHandleErrorTH
 //---------------------------------------------------------------------------
+#include <xLib/Common/xCommon.h>
+//---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 enum EHandleValue

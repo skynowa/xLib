@@ -50,7 +50,7 @@ template<EHandleValue hvTag>
 CxHandleT<hvTag>::~CxHandleT() {
     /*DEBUG*/// n/a
 
-    (void)bClose();
+    (void)this->bClose();
 }
 //---------------------------------------------------------------------------
 
@@ -143,7 +143,7 @@ CxHandleT<hvTag>::hDuplicate() const {
                     FALSE,
                     DUPLICATE_SAME_ACCESS
     );
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::hGet());
+    /////*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::hGet());
 #elif defined(xOS_ENV_UNIX)
     hRes = ::dup(_m_hHandle);
     /////*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != hRes, TxErrorValue::hGet());
@@ -217,7 +217,7 @@ CxHandleT<hvTag>::bClose() {
 
 #if defined(xOS_ENV_WIN)
     BOOL blRes = ::CloseHandle(_m_hHandle);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /////*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif defined(xOS_ENV_UNIX)
     int  iRes  = ::close(_m_hHandle);
     /////*DEBUG*/xASSERT_RET(- 1 != iRes, false);
@@ -233,13 +233,13 @@ CxHandleT<hvTag>::bClose() {
 template<EHandleValue hvTag>
 ulong_t
 CxHandleT<hvTag>::ulGetInformation() const {
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), 0UL);
+    /////*DEBUG*/xASSERT_RET(true == bIsValid(), 0UL);
 
     DWORD ulFlags = 0UL;
 
     BOOL blRes = ::GetHandleInformation(_m_hHandle, &ulFlags);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,   0UL);
-    /*DEBUG*/xASSERT_RET(0UL   != ulFlags, 0UL);
+    /////*DEBUG*/xASSERT_RET(FALSE != blRes,   0UL);
+    /////*DEBUG*/xASSERT_RET(0UL   != ulFlags, 0UL);
 
     return ulFlags;
 }
@@ -255,12 +255,12 @@ CxHandleT<hvTag>::bSetInformation(
     const ulong_t culFlags
 )
 {
-    /*DEBUG*/xASSERT_RET(true == bIsValid(), false);
+    /////*DEBUG*/xASSERT_RET(true == bIsValid(), false);
     /*DEBUG*///ulMask  - n/a
     /*DEBUG*///ulFlags - ????
 
     BOOL blRes = ::SetHandleInformation(_m_hHandle, culMask, culFlags);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /////*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
 }
