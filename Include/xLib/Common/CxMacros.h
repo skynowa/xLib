@@ -332,7 +332,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxDebugger;
+//--class CxDebugger;
 
 class CxMacros :
     private CxNonCopyable

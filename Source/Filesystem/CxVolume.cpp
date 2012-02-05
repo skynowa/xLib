@@ -10,7 +10,9 @@
 #include <xLib/Filesystem/CxDir.h>
 
 #if xOS_ENV_WIN
-    #pragma comment(lib, "mpr.lib")
+    #if !xCOMPILER_MINGW32
+        #pragma comment(lib, "mpr.lib")
+    #endif
 #elif xOS_ENV_UNIX
     #include <sys/mount.h>
 #endif

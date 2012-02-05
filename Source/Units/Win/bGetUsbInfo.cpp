@@ -11,7 +11,11 @@
 
 #include <winioctl.h>
 #include <setupapi.h>
-#pragma comment(lib, "setupapi")
+
+#if !xCOMPILER_MINGW32
+    #pragma comment(lib, "setupapi")
+#endif
+
 #include <basetyps.h>
 #include <cfgmgr32.h>
 #include <initguid.h>

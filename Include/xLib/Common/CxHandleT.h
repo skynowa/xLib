@@ -17,6 +17,11 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
+class CxLastError;
+class CxStackTrace;
+class CxReport;
+class CxDebugger;
+
 template<EHandleValue hvTag>
 class CxHandleT
     /// handle
@@ -64,12 +69,16 @@ class CxHandleT
 
         TxNativeHandle _m_hHandle;    ///< handle
 };
-//---------------------------------------------------------------------------
-typedef CxHandleT<hvNull>    CxHandle;
-typedef CxHandleT<hvInvalid> CxFileHandle;
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include "CxHandleT.inl"
+//---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
+typedef CxHandleT<hvNull>    CxHandle;
+typedef CxHandleT<hvInvalid> CxFileHandle;
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxHandleTH
