@@ -41,7 +41,7 @@ CxSemaphore::bCreate(
     const std::tstring_t &csName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_hSemaphore.bIsValid(),                       false);
+    /////*DEBUG*/xASSERT_RET(false == _m_hSemaphore.bIsValid(),                       false);
     /*DEBUG*/xASSERT_RET(0L <= cliInitialCount && cliInitialCount <= cliMaxCount, false);
     /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize() > csName.size(),                  false);
 
@@ -65,7 +65,7 @@ CxSemaphore::bOpen(
     const std::tstring_t &csName
 )
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
+    /////*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
     /*DEBUG*///culAccess - n/a
     /*DEBUG*///csName    - n/a
 
@@ -87,7 +87,7 @@ CxSemaphore::bRelease(
     long_t       *pliOldCount
 ) const
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
+    /////*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
     /*DEBUG*///liReleaseCount - n/a
     /*DEBUG*///pliOldCount    - n/a
 
@@ -106,7 +106,7 @@ CxSemaphore::bWait(
     const ulong_t culTimeout
 ) const
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
+    /////*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
 #if defined(xOS_ENV_WIN)
@@ -121,7 +121,7 @@ CxSemaphore::bWait(
 //---------------------------------------------------------------------------
 long_t
 CxSemaphore::liGetValue() const {
-    /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), - 1L);
+    /////*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), - 1L);
 
     long_t liRes = - 1;
 
@@ -141,7 +141,7 @@ CxSemaphore::bReset(
     const long_t cliMaxCount
 )
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(),                      false);
+    /////*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(),                      false);
     /*DEBUG*/xASSERT_RET(0 <= cliInitialCount && cliInitialCount <= cliMaxCount, false);
 
     bool bRes = false;

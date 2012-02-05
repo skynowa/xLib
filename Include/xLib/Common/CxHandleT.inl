@@ -67,7 +67,7 @@ CxHandleT<hvTag>::operator = (
     const TxNativeHandle chHandle
 )
 {
-    /*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
+    /////*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
     /*DEBUG*///hHandle - n/a
 
     //Try m_Handle.Attach(other.Detach(), if you got an assertion here.
@@ -75,7 +75,7 @@ CxHandleT<hvTag>::operator = (
     xCHECK_RET(_m_hHandle == chHandle, *this);
 
     bool bRes = bClose();
-    /*DEBUG*/xASSERT_RET(true == bRes, *this);
+    /////*DEBUG*/xASSERT_RET(true == bRes, *this);
 
     _m_hHandle = chHandle;
 
@@ -88,13 +88,13 @@ CxHandleT<hvTag>::operator = (
     const CxHandleT &chHandle
 )
 {
-    /*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
+    ///*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
     /*DEBUG*///CxHandleT - n/a
 
     xCHECK_RET(this == &chHandle, *this);
 
     bool bRes = bClose();
-    /*DEBUG*/xASSERT_RET(true == bRes, *this);
+    /////*DEBUG*/xASSERT_RET(true == bRes, *this);
 
     _m_hHandle = chHandle.hDuplicate();
     /*DEBUG*/// n/a;
@@ -146,7 +146,7 @@ CxHandleT<hvTag>::hDuplicate() const {
     /*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::hGet());
 #elif defined(xOS_ENV_UNIX)
     hRes = ::dup(_m_hHandle);
-    /*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != hRes, TxErrorValue::hGet());
+    /////*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != hRes, TxErrorValue::hGet());
 #endif
 
     return hRes;
@@ -189,7 +189,7 @@ CxHandleT<hvTag>::bAttach(
     xCHECK_RET(false == bIsValid(), true);
 
     bool bRes = bClose();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    /////*DEBUG*/xASSERT_RET(true == bRes, false);
 
     _m_hHandle = chHandle;
 
@@ -220,7 +220,7 @@ CxHandleT<hvTag>::bClose() {
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif defined(xOS_ENV_UNIX)
     int  iRes  = ::close(_m_hHandle);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    /////*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
     _m_hHandle = TxErrorValue::hGet();

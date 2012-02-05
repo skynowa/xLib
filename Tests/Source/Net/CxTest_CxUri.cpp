@@ -1,4 +1,4 @@
-﻿/**
+/**
  * \file   CxTest_CxUri.cpp
  * \brief
  */

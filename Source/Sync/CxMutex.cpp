@@ -44,7 +44,7 @@ CxMutex::bCreate(
     const std::tstring_t &csName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_hHandle.bIsValid(), false);
+    /////*DEBUG*/xASSERT_RET(false == _m_hHandle.bIsValid(), false);
     /*DEBUG*///csName - n/a
 
 #if defined(xOS_ENV_WIN)
@@ -64,7 +64,7 @@ CxMutex::bLock(
     const ulong_t culTimeout
 ) const
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
+    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
     /*DEBUG*///culTimeout - n/a
 
 #if defined(xOS_ENV_WIN)
@@ -80,7 +80,7 @@ CxMutex::bLock(
 //---------------------------------------------------------------------------
 bool
 CxMutex::bUnlock() const {
-    /*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
+    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
 
 #if defined(xOS_ENV_WIN)
     BOOL blRes = ::ReleaseMutex(_m_hHandle.hGet());
