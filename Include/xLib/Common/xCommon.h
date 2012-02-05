@@ -13,7 +13,7 @@
  * \date    2008 - 2012
  *
  * \section sec_code_convention Code conventions
- * 
+ *
  * <pre>
  *   Data:
  *       Nx          - namespace
@@ -30,18 +30,18 @@
  *       s           - static
  *       m           - member of some data structure
  *       fr          - friend
- *       
+ *
  *   Modify:
  *       c           - const
  *       v           - volatile
  *       m           - mutable
- *       
+ *
  *   Types:
  *       a           - array
- *   
+ *
  *       v           - void
  *       b           - bool
- *       
+ *
  *       i           - int
  *       ui          - unsigned int
  *       uc          - uchar_t                  (unsigned char)
@@ -52,7 +52,7 @@
  *       us          - ushort_t                 (unsigned short int)
  *       ul          - ulong_t                  (unsigned long int)
  *       ull         - ulonglong_t              (unsigned long long int)
- *       
+ *
  *       f           - float
  *       d           - double
  *       ld          - long double
@@ -74,15 +74,15 @@
  *       ifsm        - std::tifstream_t         (std::ifstream)
  *       ofsm        - std::tofstream_t         (std::ofstream)
  *       fsm         - std::tfstream_t          (std::fstream)
- *       
+ *
  *       v[type]     - std::vector
  *       d[type]     - std::deque
  *       l[type]     - std::list
- *       
+ *
  *       st[type]    - std::stack
  *       q[type]     - std::queue
  *       pq[type]    - std::priority_queue
- *       
+ *
  *       s[type]     - std::set
  *       ms[type]    - std::multiset
  *       m[type]     - std::map

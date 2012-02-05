@@ -9,7 +9,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
-#include <xLib/Debug/CxReport.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

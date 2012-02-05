@@ -7,7 +7,9 @@
 #include <xLib/Db/CxMySql.h>
 
 #if xOS_ENV_WIN
-    #pragma comment(lib, "libmysql.lib")
+    #if !xCOMPILER_MINGW32
+        #pragma comment(lib, "libmysql.lib")
+    #endif
 #elif xOS_ENV_UNIX
     // lib: -lmysqlclient
 #endif
