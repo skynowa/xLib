@@ -43,27 +43,31 @@ CxCurrentProcess::ulGetParentId() {
     CxProcess::TxId ulRes;
 
 #if xOS_ENV_WIN
-    typedef NTSTATUS (WINAPI *fpProcAddress)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
-    
-    const CxProcess::TxId culInvalidId = (ulong_t)- 1;
+	#if xCOMPILER_MINGW32
+    	xNOT_IMPLEMENTED_RET(0UL);
+	#else
+		typedef NTSTATUS (WINAPI *fpProcAddress)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
 
-    bool  bRes   = false;
-    CxDll objDll;
+		const CxProcess::TxId culInvalidId = (ulong_t)- 1;
 
-    bRes = objDll.bLoad(xT("ntdll.dll"));
-    /*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
+		bool  bRes   = false;
+		CxDll objDll;
 
-    ULONG_PTR pulProcessInformation[6] = {0};
-    ULONG     ulReturnLength           = 0UL;
+		bRes = objDll.bLoad(xT("ntdll.dll"));
+		/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
 
-    fpProcAddress NtQueryInformationProcess = (fpProcAddress)objDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
-    /*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
+		ULONG_PTR pulProcessInformation[6] = {0};
+		ULONG     ulReturnLength           = 0UL;
 
-    NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
-    bRes = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
-    /*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
+		fpProcAddress NtQueryInformationProcess = (fpProcAddress)objDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
+		/*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
 
-    ulRes = pulProcessInformation[5];
+		NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
+		bRes = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
+		/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
+
+		ulRes = pulProcessInformation[5];
+	#endif
 #elif xOS_ENV_UNIX
     ulRes = ::getppid();
     /*DEBUG*/// n/a

@@ -78,7 +78,9 @@
 #include <process.h>
 #include <Lmcons.h>
 
-#if !xCOMPILER_MINGW32
+#if xCOMPILER_MINGW32
+
+#else
     #include <winternl.h>   //NtQueryInformationFile for mingw
 #endif
 

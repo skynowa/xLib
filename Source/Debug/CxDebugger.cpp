@@ -9,6 +9,7 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxConsole.h>
+#include <xLib/Debug/CxReport.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Sync/CxCurrentProcess.h>
@@ -96,7 +97,7 @@ CxDebugger::bBreak() {
     #elif xCOMPILER_MINGW32
         asm("int $3");
     #else
-        abort();
+        ::abort();
     #endif
 #elif xOS_ENV_UNIX
     int iRes = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
