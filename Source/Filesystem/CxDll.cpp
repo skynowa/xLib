@@ -28,12 +28,12 @@ CxDll::CxDll() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxDll::~CxDll() {
-    (void)bFree();
+    (void)_bFree();
 }
 //---------------------------------------------------------------------------
 bool
 CxDll::bIsLoaded() const {
-    /*DEBUG*/// n/a
+    xDEBUG_VARS_NA;
 
     return (NULL != _m_hDLL);
 }
@@ -43,10 +43,10 @@ CxDll::bLoad(
     const std::tstring_t &csDllPath
 )
 {
-    /*DEBUG*/// n/a
+    xDEBUG_VARS_NA;
     /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), false);
 
-    bool bRes = bFree();
+    bool bRes = _bFree();
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
 #if xOS_ENV_WIN
@@ -104,7 +104,7 @@ CxDll::fpGetProcAddress(
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
 
     fpRes = ::dlsym(_m_hDLL, csProcName.c_str());
-    /*DEBUG*/// n/a
+    xDEBUG_VAR_NA(fpRes)
 
     pszError = ::dlerror();
     /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
@@ -113,9 +113,17 @@ CxDll::fpGetProcAddress(
     return fpRes;
 }
 //---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    private
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
 bool
-CxDll::bFree() {
-    /*DEBUG*/// n/a
+CxDll::_bFree() {
+    xDEBUG_VARS_NA;
 
     xCHECK_RET(false == bIsLoaded(), true);
 

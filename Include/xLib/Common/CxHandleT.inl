@@ -50,7 +50,7 @@ template<EHandleValue hvTag>
 CxHandleT<hvTag>::~CxHandleT() {
     /*DEBUG*/// n/a
 
-    (void)this->bClose();
+    (void)bClose();
 }
 //---------------------------------------------------------------------------
 

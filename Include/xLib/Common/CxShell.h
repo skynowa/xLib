@@ -133,14 +133,14 @@ class CxShell :
         static std::tstring_t sGetSpecialDirPath(const ESpecialDir csfDir, const HANDLE chToken);
             ///< get special dir path
         static bool           bCreateShortcut   (const std::tstring_t &csShortCutFilePath,
-                                                    const std::tstring_t &csFilePath,
-                                                    const std::tstring_t &csWorkingDirectory,
-                                                    const std::tstring_t &csArguments,
-                                                    const WORD          cwHotKey,
-                                                    const int           ciCmdShow,
-                                                    const std::tstring_t &csIconFilePath,
-                                                    const int           ciIconIndex,
-                                                    const std::tstring_t &csDescription
+                                                 const std::tstring_t &csFilePath,
+                                                 const std::tstring_t &csWorkingDirectory,
+                                                 const std::tstring_t &csArguments,
+                                                 const WORD            cwHotKey,
+                                                 const int             ciCmdShow,
+                                                 const std::tstring_t &csIconFilePath,
+                                                 const int             ciIconIndex,
+                                                 const std::tstring_t &csDescription
                                                 );
             ///< create shortcut
     #endif
