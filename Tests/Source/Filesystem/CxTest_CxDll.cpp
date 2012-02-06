@@ -89,14 +89,10 @@ CxTest_CxDll::bUnit(
     #endif
 
         //-------------------------------------
-        //bFree
-        m_bRes = objDll.bFree();
-        xTEST_EQ(true, m_bRes);
-
-        //-------------------------------------
         //bIsLoaded
         m_bRes = objDll.bIsLoaded();
-        xTEST_EQ(false, m_bRes);
+        xTEST_EQ(true, m_bRes);
+
     } //for
 
     return true;

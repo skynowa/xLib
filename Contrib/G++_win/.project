@@ -70,6 +70,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>TODO.txt</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/TODO.txt</locationURI>
+		</link>
+		<link>
 			<name>Tests/Source</name>
 			<type>2</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Tests/Source</locationURI>

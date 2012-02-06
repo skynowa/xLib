@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxShell::bIsAvailable() {
-    /*DEBUG*/// n/a
+    xDEBUG_VARS_NA;
 
     int iRes = std::xTSYSTEM(NULL);
 
@@ -44,8 +44,8 @@ CxShell::bExecute(
     const std::tstring_t &csParams      ///< command line params for binary file
 )
 {
-    /*DEBUG*/// csFilePath - n/a
-    /*DEBUG*/// csParams   - n/a
+    xDEBUG_VAR_NA(csFilePath);
+    xDEBUG_VAR_NA(csParams);
 
     xCHECK_RET(false == bIsAvailable(), false);
 
@@ -85,7 +85,7 @@ CxShell::bFindExecutable(
     /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::tstring_t());
     /*DEBUG*/// csFindDirPath - n/a
 
-    int   iRes            = SE_ERR_FNF;
+    int     iRes            = SE_ERR_FNF;
     tchar_t szRes[MAX_PATH] = {0};
 
     iRes = reinterpret_cast<int>( ::FindExecutable(csFileName.c_str(), csFindDirPath.c_str(), szRes) );

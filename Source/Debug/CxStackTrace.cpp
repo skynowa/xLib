@@ -14,8 +14,11 @@
         #define DBGHELP_TRANSLATE_TCHAR
     #endif
 
-    #include <DbgHelp.h>
-    #pragma comment(lib, "DbgHelp.Lib")
+    #if !xCOMPILER_MINGW32
+        #include <DbgHelp.h>
+        #pragma comment(lib, "DbgHelp.Lib")
+    #endif
+
 #elif xOS_ENV_UNIX
     #include <execinfo.h>
     #include <cxxabi.h>
@@ -56,42 +59,54 @@ CxStackTrace::bGet(
     std::vector<std::tstring_t> vsStack;
 
 #if xOS_ENV_WIN
-    void        *pvStack[_m_culMaxFrames] = {0};
-    SYMBOL_INFO *psiSymbol                = NULL;
-    HANDLE       hProcess                 = NULL;
+    #if   xCOMPILER_MINGW32
+        //TODO: CxStackTrace::bGet
+    #elif xCOMPILER_INTEL
 
-    hProcess = CxCurrentProcess::hGetHandle();
+    #elif xCOMPILER_MS
+        void        *pvStack[_m_culMaxFrames] = {0};
+        SYMBOL_INFO *psiSymbol                = NULL;
+        HANDLE       hProcess                 = NULL;
 
-    BOOL blRes = ::SymInitialize(hProcess, NULL, true);
-    xCHECK_RET(FALSE == blRes, false);
+        hProcess = CxCurrentProcess::hGetHandle();
 
-    ushort_t usFramesNum = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
-    xCHECK_RET(usFramesNum == 0U, false);
+        BOOL blRes = ::SymInitialize(hProcess, NULL, true);
+        xCHECK_RET(FALSE == blRes, false);
 
-    psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
-    psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
-    psiSymbol->MaxNameLen   = 255UL;
+        ushort_t usFramesNum = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
+        xCHECK_RET(usFramesNum == 0U, false);
 
-    for (ushort_t i = 1U; i < usFramesNum; ++ i) {
-        std::tstring_t sStackLine;
+        psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
+        psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
+        psiSymbol->MaxNameLen   = 255UL;
 
-        blRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
-        if (FALSE == blRes) {
-            sStackLine = xUNKNOWN_STRING;
-        } else {
-	        const ULONG64       ullAddress = psiSymbol->Address;
-	        const std::tstring_t csName    = std::tstring_t(psiSymbol->Name);
+        for (ushort_t i = 1U; i < usFramesNum; ++ i) {
+            std::tstring_t sStackLine;
 
-	        //sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
-	        sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, ullAddress, csName.c_str());
+            blRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
+            if (FALSE == blRes) {
+                sStackLine = xUNKNOWN_STRING;
+            } else {
+                const ULONG64       ullAddress = psiSymbol->Address;
+                const std::tstring_t csName    = std::tstring_t(psiSymbol->Name);
+
+                //sStackLine = CxString::sFormat(xT("%i: %s - 0x%0X"), usFramesNum - i - 1, psiSymbol->Name, psiSymbol->Address);
+                sStackLine = CxString::sFormat(xT("%u: %p    %s"), usFramesNum - i - 1U, ullAddress, csName.c_str());
+            }
+
+            vsStack.push_back(sStackLine);
         }
 
-        vsStack.push_back(sStackLine);
-    }
+        xARRAY_DELETE(psiSymbol);
 
-    xARRAY_DELETE(psiSymbol);
+        (void)::SymCleanup(hProcess);
+    #elif xCOMPILER_CODEGEAR
 
-    (void)::SymCleanup(hProcess);
+    #elif xCOMPILER_GNUC
+
+    #else
+
+    #endif
 #elif xOS_ENV_UNIX
     #if xOS_LINUX
         void *pvStack[_m_culMaxFrames] = {0};

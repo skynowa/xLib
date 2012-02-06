@@ -1,6 +1,6 @@
 /**
  * \file  CxCom.h
- * \brief COM
+ * \brief Component Object Model (COM)
  */
 
 
@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxCom :
     private CxNonCopyable
-    /// COM
+    /// Component Object Model (COM)
 {
     public:
         enum EConcurrencyModel

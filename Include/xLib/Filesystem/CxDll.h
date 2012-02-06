@@ -34,8 +34,6 @@ class CxDll :
             ///< is function exists
         TxProcAddress fpGetProcAddress(const std::tstring_t &csProcName) const;
             ///< get address of an exported function or variable
-        bool          bFree           ();
-            ///< free
 
     private:
     #if xOS_ENV_WIN
@@ -45,6 +43,9 @@ class CxDll :
     #endif
 
         TxHandle      _m_hDLL;   ///< dll module handle
+
+        bool          _bFree          ();
+            ///< free
 };
 
 xNAMESPACE_END(NxLib)
