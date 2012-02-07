@@ -339,10 +339,10 @@ CxSystemInfo::ulGetNumOfCpus() {
         size_t uiResSize = sizeof(ulRes);
 
         int iRes = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRes, &uiResSize, NULL, 0);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
     #else
         long_t liRes = ::sysconf(_SC_NPROCESSORS_ONLN);
-        /*DEBUG*/xASSERT_RET(- 1 != liRes, 0);
+        /*DEBUG*/xASSERT_RET(- 1 != liRes, 0UL);
 
         ulRes = static_cast<ulong_t>( liRes );
     #endif
@@ -375,21 +375,40 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 #elif xOS_ENV_UNIX
     #if xOS_FREEBSD
         //TODO: ulGetCurrentCpuNum
-        ulRes = 0;
+        ulRes = 0UL;
     #else
         #if defined(SYS_getcpu)
             ulong_t ulCpu = 0UL;
 
             int iRes = ::syscall(SYS_getcpu, &ulCpu, NULL, NULL);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( - 1 ));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( 0UL ));
 
             ulRes = ulCpu;
         #else
-            //TODO: fix sched_getcpu()
-            int iRes = ::sched_getcpu();
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( - 1 ));
+            #if (__GLIBC__ > 2) || \
+                (__GLIBC__ == 2 && (__GLIBC_MINOR__ > 6 || (__GLIBC_MINOR__ == 6 /*&& __GLIBC_PATCHLEVEL__ >= 19*/)))
 
-            ulRes = static_cast<ulong_t>( iRes );
+                //for GLibc > 2.6.19
+                //::getcpu() was added in kernel 2.6.19 for x86_64 and i386
+                //int getcpu(unsigned *cpu, unsigned *nodestruct getcpu_cache *" tcache );
+                uint_t uiCpu = 0U;
+
+                int iRes = ::getcpu(&uiCpu, NULL, NULL);
+                /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( 0UL ));
+
+                ulRes = uiCpu;
+            #else
+                ulRes = 0UL;
+            #endif
+
+            #if xTEMP_DISABLED
+                //::sched_getcpu() function is available since glibc 2.6, it is glibc specific
+                int iRes = ::sched_getcpu();
+                /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( 0UL ));
+
+                ulRes = static_cast<ulong_t>( iRes );
+            #endif
+
         #endif
     #endif
 #endif
