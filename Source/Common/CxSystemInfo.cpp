@@ -357,7 +357,7 @@ ulong_t
 CxSystemInfo::ulGetCurrentCpuNum() {
     /*DEBUG*/// n/a
 
-    ulong_t ulRes = static_cast<ulong_t>( - 1 );
+    ulong_t ulRes = 0UL;
 
 #if xOS_ENV_WIN
     #if (xWINVER >= xWIN32_7)
@@ -381,12 +381,12 @@ CxSystemInfo::ulGetCurrentCpuNum() {
             ulong_t ulCpu = 0UL;
 
             int iRes = ::syscall(SYS_getcpu, &ulCpu, NULL, NULL);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( 0UL ));
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
             ulRes = ulCpu;
         #else
-            #if (__GLIBC__ > 2) || \
-                (__GLIBC__ == 2 && (__GLIBC_MINOR__ > 6 || (__GLIBC_MINOR__ == 6 /*&& __GLIBC_PATCHLEVEL__ >= 19*/)))
+            #if (xSTD_LIBC_GNU_VER > 2) || \
+                (xSTD_LIBC_GNU_VER == 2 && (xSTD_LIBC_GNU_VER_MINOR > 6 || (xSTD_LIBC_GNU_VER_MINOR == 6 /*&& __GLIBC_PATCHLEVEL__ >= 19*/)))
 
                 //for GLibc > 2.6.19
                 //::getcpu() was added in kernel 2.6.19 for x86_64 and i386
@@ -394,7 +394,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
                 uint_t uiCpu = 0U;
 
                 int iRes = ::getcpu(&uiCpu, NULL, NULL);
-                /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( 0UL ));
+                /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
                 ulRes = uiCpu;
             #else
@@ -404,7 +404,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
             #if xTEMP_DISABLED
                 //::sched_getcpu() function is available since glibc 2.6, it is glibc specific
                 int iRes = ::sched_getcpu();
-                /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<ulong_t>( 0UL ));
+                /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
                 ulRes = static_cast<ulong_t>( iRes );
             #endif

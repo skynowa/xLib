@@ -110,16 +110,16 @@
 
 //--------------------------------------------------
 // standard C libraries
-#if defined(xOS_ENV_UNIX)
+#if xOS_ENV_UNIX
     #include <features.h>       // standard C libraries
     #include <bits/c++config.h> // standard C++ libraries
 #else
     //TODO: standard C libraries
 #endif
 
-#if defined(xOS_ENV_WIN)
-
-#elif defined(xOS_ENV_UNIX)
+#if   xOS_ENV_WIN
+    // n/a
+#elif xOS_ENV_UNIX
     #if   defined(__GNU_LIBRARY__) || defined(__GLIBC__)
         #define xSTD_LIBC_GNU 1
             ///< GNU glibc
@@ -139,16 +139,18 @@
 
 //--------------------------------------------------
 //TODO: standard C libraries versions
-#define xSTD_LIBC_GNU_VER 0
-#define xSTD_LIBC_UC_VER  0
-#define xSTD_LIBC_VMS_VER 0
-#define xSTD_LIBC_ZOS_VER 0
+#define xSTD_LIBC_GNU_VER       __GLIBC__
+#define xSTD_LIBC_GNU_VER_MINOR __GLIBC_MINOR__
+
+#define xSTD_LIBC_UC_VER        0
+#define xSTD_LIBC_VMS_VER       0
+#define xSTD_LIBC_ZOS_VER       0
 
 //--------------------------------------------------
 // standard C++ libraries
-#if defined(xOS_ENV_WIN)
-
-#elif defined(xOS_ENV_UNIX)
+#if   xOS_ENV_WIN
+    // n/a
+#elif xOS_ENV_UNIX
     #if   defined(__CPPLIB_VER)
         #define XSTD_LIBCPP_DINKUMWARE 1
             ///< Dinkumware
