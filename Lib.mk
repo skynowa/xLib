@@ -46,11 +46,11 @@ endif
 
 PROGRAM_NAME			:=	$(PROGRAM_PREFIX)xlib$(PROGRAM_EXT)
 
-ROOT_INCLUDE_DIR		:=	Include Source
-ROOT_SOURCE_DIR			:=	Source
+ROOT_INCLUDE_DIR		:=	./Include
+ROOT_SOURCE_DIR			:=	./Source
 
-OTHER_INCLUDE_DIR		:=	/usr/local/include \
-							/usr/include
+OTHER_INCLUDE_DIR		:=	/usr/include \
+							/usr/local/include
 
 SOURCE_SUBDIRS			:=	 . \
 							Common \
@@ -75,13 +75,14 @@ SOURCE_SUBDIRS			:=	 . \
 							Units \
 							Units/Win
 
-LIB_DIRS				:=	/usr/local/lib \
-							/usr/lib \
-							/usr/lib64 \
-							/usr/local/lib/mysql \
-							/usr/lib/mysql
+LIB_DIRS				:=	/usr/lib64 \
+                    		/usr/lib \
+                    		/usr/lib64/mysql \
+                    		/usr/lib/mysql \
+                    		/usr/local/lib64 \
+							/usr/local/lib
 
-BINARY_DIR				:=	Library/G++_linux/Release
+BINARY_DIR				:=	./Library/G++_linux/Release
 INSTALL_INCLUDE_DIR		:=	/usr/local/include/xLib
 INSTALL_DIR				:=	/usr/local/lib/xLib
 PROGRAM_PATH			:=	../../../$(BINARY_DIR)/$(PROGRAM_NAME)
@@ -97,7 +98,16 @@ else
 BUILD_FLAGS				:=	-O3 -g0
 endif
 
-PARANOID_FLAGS			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 -Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion -Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits -Wbad-function-cast -Wc++-compat -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wlogical-op -Waggregate-return -Wstrict-prototypes -Wold-style-declaration -Wold-style-definition -Wmissing-prototypes  -Wmissing-declarations  -Wmissing-field-initializers -Wmissing-format-attribute -Wpacked -Wpadded -Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla -Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
+PARANOID_FLAGS			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
+							-Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 \
+							-Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion \
+							-Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits \
+							-Wbad-function-cast -Wc++-compat -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion \
+							-Wlogical-op -Waggregate-return -Wstrict-prototypes -Wold-style-declaration \
+							-Wold-style-definition -Wmissing-prototypes  -Wmissing-declarations \
+							-Wmissing-field-initializers -Wmissing-format-attribute -Wpacked -Wpadded \
+							-Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla \
+							-Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
 
 RELATIVE_INCLUDE_DIRS	:=	$(addprefix ../../../, $(ROOT_INCLUDE_DIR))
 RELATIVE_SOURCE_DIRS	:=	$(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))

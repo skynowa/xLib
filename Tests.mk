@@ -56,10 +56,10 @@ PROGRAM_SIZE				:=	$(stat --printf="%s" $(PROGRAM_NAME))
 PATH_PREFIX					:=	../../../
 VPATH 						:=	$(PATH_PREFIX)
 
-ROOT_INCLUDE_DIR			:=	Include Source
-ROOT_SOURCE_DIR				:=	Source
-TESTS_ROOT_INCLUDE_DIR		:=	Tests/Include
-TESTS_ROOT_SOURCE_DIR		:=	Tests/Source
+ROOT_INCLUDE_DIR			:=	./Include
+ROOT_SOURCE_DIR				:=	./Source
+TESTS_ROOT_INCLUDE_DIR		:=	./Tests/Include
+TESTS_ROOT_SOURCE_DIR		:=	./Tests/Source
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 BINARY_DIR					:=	./Contrib/G++_linux/Debug
@@ -109,18 +109,20 @@ TESTS_SOURCE_SUBDIRS		:= 	. \
 								Log \
 								Net \
 								Patterns \
+								Sync \
 								Sync/Win \
 								Units \
 								Units/Win
 
-OTHER_INCLUDE_DIR			:=	/usr/local/include \
-                    			/usr/include
+OTHER_INCLUDE_DIR			:=	/usr/include \
+                    			/usr/local/include
 
-LIB_DIRS					:=	/usr/local/lib \
+LIB_DIRS					:=	/usr/lib64 \
                     			/usr/lib \
-                    			/usr/lib64 \
-                    			/usr/local/lib/mysql \
-                    			/usr/lib/mysql
+                    			/usr/lib64/mysql \
+                    			/usr/lib/mysql \
+                    			/usr/local/lib64 \
+								/usr/local/lib
 
 COMPILE_FLAGS				:=	-Wall -pipe
 LINK_FLAGS					:=	-pthread -s -pipe -rdynamic	#-static
@@ -128,7 +130,7 @@ LINK_FLAGS					:=	-pthread -s -pipe -rdynamic	#-static
 ifeq ($(cOS), Linux)
 LIBRARIES               	:=	-ldl -lmysqlclient -lm -lcrypto -lz -lssl
 else
-LIBRARIES               	:=	-lmysqlclient -lm -lcrypto -lz -lssl	# -lc only with out -static
+LIBRARIES               	:=	-lmysqlclient -lm -lcrypto -lz -lssl # -lc only with out -static
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))

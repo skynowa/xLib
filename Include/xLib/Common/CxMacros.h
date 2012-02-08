@@ -133,7 +133,7 @@
 #define xDEBUG_VARS_NA          ;
     ///< at this point debug code for variables is not applicable
 #define xNA                     ;
-	///< at this point the code is not applicable
+    ///< at this point the code is not applicable
 
 
 #define xSTRINGIZE2(x)     #x

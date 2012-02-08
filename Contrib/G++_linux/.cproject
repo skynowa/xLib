@@ -42,7 +42,6 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1134708706" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.859442459" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ssl"/>
-									<listOptionValue builtIn="false" value="GeoIP"/>
 									<listOptionValue builtIn="false" value="mysqlclient"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1604826827" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -52,22 +51,6 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.563970989" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1748656140" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
-							</tool>
-						</toolChain>
-					</folderInfo>
-					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.1828615682.891427886" name="/" resourcePath="Tests/Source">
-						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.2032188727" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug" unusedChildren="">
-							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1686949092" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1301588912"/>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1383352357" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.34441514">
-								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1285296686" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1611311884" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.398517860">
-								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1269647849" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
-							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1492892087" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug.101505258"/>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1337530589" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1134708706"/>
-							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1285936812" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug.563970989">
-								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.566045356" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
@@ -118,7 +101,6 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.2007247847" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
 								<option id="gnu.cpp.link.option.libs.1501994813" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ssl"/>
-									<listOptionValue builtIn="false" value="GeoIP"/>
 									<listOptionValue builtIn="false" value="mysqlclient"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1540191120" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -128,22 +110,6 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.2104377337" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1201536824" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
-							</tool>
-						</toolChain>
-					</folderInfo>
-					<folderInfo id="cdt.managedbuild.config.gnu.exe.release.799057292.48517196" name="/" resourcePath="Tests/Source">
-						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.release.1241020812" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.release" unusedChildren="">
-							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1470817319" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1628563988"/>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1779247513" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.279252103">
-								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1749076778" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1553160913" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1888810266">
-								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.307005952" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
-							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.1998660045" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release.1569344581"/>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.836611050" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.2007247847"/>
-							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.1495273568" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release.2104377337">
-								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1485804917" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
