@@ -50,8 +50,6 @@
         #pragma message("xLib: xCOMPILER_MS")
     #elif xCOMPILER_CODEGEAR
         #pragma message("xLib: xCOMPILER_CODEGEAR")
-    #elif xCOMPILER_INTEL
-        #pragma message("xLib: xCOMPILER_INTEL")
     #elif xCOMPILER_GNUC
         #pragma message("xLib: xCOMPILER_GNUC")
     #else

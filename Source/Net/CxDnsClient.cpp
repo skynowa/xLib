@@ -140,18 +140,12 @@ CxDnsClient::bGetNameInfo(
     saGNI.sin_addr.s_addr = ::inet_addr(casHostAddr.c_str());
     saGNI.sin_port        = htons(usPort);
 
-    tchar_t szHostName[NI_MAXHOST] = {0};
-    tchar_t szServInfo[NI_MAXSERV] = {0};
+    tchar_t szHostName[NI_MAXHOST + 1] = {0};
+    tchar_t szServInfo[NI_MAXSERV + 1] = {0};
 
-#if xOS_ENV_WIN
     //TODO: bGetNameInfo
-    int iRes = ::GetNameInfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    int iRes = ::xGETNAMEINFO((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     /*DEBUG*/xASSERT_RET(0 == iRes, false);
-#elif xOS_ENV_UNIX
-    //TODO: bGetNameInfo
-    int iRes = ::getnameinfo((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
-    /*DEBUG*/xASSERT_RET(0 == iRes, false);
-#endif
 
     //hostname
 
@@ -173,13 +167,8 @@ CxDnsClient::bGetHostAddrInfo(
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
 
-#if xOS_ENV_WIN
-    int iRes = ::GetAddrInfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
+    int iRes = ::xGETADDRINFO(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
     /*DEBUG*/xASSERT_RET(0 == iRes, false);
-#elif xOS_ENV_UNIX
-    int iRes = ::getaddrinfo(csHostName.c_str(), csPort.c_str(), pHints, ppResult);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxString::lexical_cast(iRes), false);
-#endif
 
     return true;
 }

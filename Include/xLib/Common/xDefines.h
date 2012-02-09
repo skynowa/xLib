@@ -80,9 +80,6 @@
 #if   defined(__MINGW32__) || defined(__MINGW64__)
     #define xCOMPILER_MINGW32  1
         ///< compiler MinGW
-#elif defined(__INTEL_COMPILER) || defined(__ICC) || defined(__ECC) || defined(__ICL)
-    #define xCOMPILER_INTEL    1
-        ///< compiler Intel C/C++
 #elif defined(_MSC_VER) || defined(_MSC_FULL_VER) || defined(_MSC_BUILD)
     #define xCOMPILER_MS       1
         ///< compiler Microsoft Visual C++
@@ -98,12 +95,11 @@
 
 //--------------------------------------------------
 // compiler version
-#define xCOMPILER_MINGW32_MAJOR_VER __MINGW32_MAJOR_VERSION
-#define xCOMPILER_MINGW32_MINOR_VER __MINGW32_MINOR_VERSION
-#define xCOMPILER_MINGW64_MAJOR_VER __MINGW64_VERSION_MAJOR    //defined if <stdlib.h> is included
-#define xCOMPILER_MINGW64_MINOR_VER __MINGW64_VERSION_MINOR
+#define xCOMPILER_MINGW32_VER_MAJOR __MINGW32_MAJOR_VERSION
+#define xCOMPILER_MINGW32_VER_MINOR __MINGW32_MINOR_VERSION
+#define xCOMPILER_MINGW64_VER_MAJOR __MINGW64_VERSION_MAJOR    //defined if <stdlib.h> is included
+#define xCOMPILER_MINGW64_VER_MINOR __MINGW64_VERSION_MINOR
 
-#define xCOMPILER_INTEL_VER         __INTEL_COMPILER
 #define xCOMPILER_MS_VER            _MSC_VER
 #define xCOMPILER_CODEGEAR_VER      __CODEGEARC__
 #define xCOMPILER_GNUC_VER          __GNUC_VERSION__

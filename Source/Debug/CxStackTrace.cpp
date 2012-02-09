@@ -61,8 +61,6 @@ CxStackTrace::bGet(
 #if xOS_ENV_WIN
     #if   xCOMPILER_MINGW32
         //TODO: CxStackTrace::bGet
-    #elif xCOMPILER_INTEL
-
     #elif xCOMPILER_MS
         void        *pvStack[_m_culMaxFrames] = {0};
         SYMBOL_INFO *psiSymbol                = NULL;
