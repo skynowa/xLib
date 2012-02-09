@@ -134,7 +134,7 @@
         #define xSTD_LIBC_ZOS 1
             ///< z/OS libc
     #else
-        ////#error xLib: unsupported standard C library
+        #warning xLib: unsupported standard C library
     #endif
 #endif
 
@@ -165,7 +165,7 @@
         #define XSTD_LIBCPP_LIBCPP     1
             ///< libc++
     #else
-        #error xLib: unsupported standard C++ library
+        #warning xLib: unsupported standard C++ library
     #endif
 #endif
 
