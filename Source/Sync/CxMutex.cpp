@@ -25,9 +25,9 @@ CxMutex::CxMutex() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxMutex::~CxMutex() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 }
@@ -47,12 +47,12 @@ CxMutex::bCreate(
     /////*DEBUG*/xASSERT_RET(false == _m_hHandle.bIsValid(), false);
     /*DEBUG*///csName - n/a
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     HANDLE hRes = ::CreateMutex(NULL, FALSE, CxMacros::pcszAsCString(csName));
     /*DEBUG*/xASSERT_RET(NULL != hRes, false);
 
     _m_hHandle.bSet(hRes);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -67,11 +67,11 @@ CxMutex::bLock(
     /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
     /*DEBUG*///culTimeout - n/a
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     DWORD ulRes = ::WaitForSingleObject(_m_hHandle.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRes, false);
     /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRes, false);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -82,10 +82,10 @@ bool
 CxMutex::bUnlock() const {
     /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL blRes = ::ReleaseMutex(_m_hHandle.hGet());
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 
 #endif
 

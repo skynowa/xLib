@@ -131,7 +131,7 @@ CxHandleT<hvTag>::hDuplicate() const {
 
     TxNativeHandle hRes = TxErrorValue::hGet();
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     TxNativeHandle hCurrentProcess = ::GetCurrentProcess();
 
     BOOL blRes = ::DuplicateHandle(
@@ -144,7 +144,7 @@ CxHandleT<hvTag>::hDuplicate() const {
                     DUPLICATE_SAME_ACCESS
     );
     /////*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::hGet());
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     hRes = ::dup(_m_hHandle);
     /////*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != hRes, TxErrorValue::hGet());
 #endif
@@ -159,7 +159,7 @@ CxHandleT<hvTag>::bIsValid() const {
 
     bool bRes = false;
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     bool bCond1 = (reinterpret_cast<TxNativeHandle>(0xCDCDCDCD) != _m_hHandle);   //created but not initialised
     bool bCond2 = (reinterpret_cast<TxNativeHandle>(0xCCCCCCCC) != _m_hHandle);   //uninitialized locals in VC6 when you compile w/ /GZ
     bool bCond3 = (reinterpret_cast<TxNativeHandle>(0xBAADF00D) != _m_hHandle);   //indicate an uninitialized variable
@@ -169,9 +169,9 @@ CxHandleT<hvTag>::bIsValid() const {
     bool bCond7 = (TxErrorValue::hGet()                         != _m_hHandle);   //compare with error handle value
 
     bRes = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
-#elif defined(xOS_ENV_UNIX)
-    bool bCond1 = (TxErrorValue::hGet()                   != _m_hHandle);   //compare with error handle value
-    bool bCond2 = (TxErrorValue::hGet()                   <  _m_hHandle);   //handle value is negative
+#elif xOS_ENV_UNIX
+    bool bCond1 = (TxErrorValue::hGet()                         != _m_hHandle);   //compare with error handle value
+    bool bCond2 = (TxErrorValue::hGet()                         <  _m_hHandle);   //handle value is negative
 
     bRes = bCond1 && bCond2;
 #endif
@@ -215,10 +215,10 @@ CxHandleT<hvTag>::bClose() {
 
     xCHECK_DO(false == bIsValid(), _m_hHandle = TxErrorValue::hGet(); return true);
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     BOOL blRes = ::CloseHandle(_m_hHandle);
     /////*DEBUG*/xASSERT_RET(FALSE != blRes, false);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     int  iRes  = ::close(_m_hHandle);
     /////*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
@@ -228,7 +228,7 @@ CxHandleT<hvTag>::bClose() {
     return true;
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 template<EHandleValue hvTag>
 ulong_t
@@ -246,7 +246,7 @@ CxHandleT<hvTag>::ulGetInformation() const {
 
 #endif
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
 template<EHandleValue hvTag>
 bool
