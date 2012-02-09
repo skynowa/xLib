@@ -69,24 +69,19 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Include</name>
-			<type>2</type>
-			<location>/usr/home/alca/Coding/C++/xLib/Include</location>
-		</link>
-		<link>
 			<name>Source</name>
 			<type>2</type>
-			<location>/usr/home/alca/Coding/C++/xLib/Source</location>
+			<locationURI>PARENT-2-PROJECT_LOC/Source</locationURI>
 		</link>
 		<link>
 			<name>TODO.txt</name>
 			<type>1</type>
-			<location>/usr/home/alca/Coding/C++/xLib/TODO.txt</location>
+			<locationURI>PARENT-2-PROJECT_LOC/TODO.txt</locationURI>
 		</link>
 		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<location>/usr/home/alca/Coding/C++/xLib/Tests</location>
+			<locationURI>PARENT-2-PROJECT_LOC/Tests</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
