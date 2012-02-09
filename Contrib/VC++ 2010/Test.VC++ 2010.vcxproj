@@ -363,7 +363,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxHandleT.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxShell.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Unix.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\Unix\xCommon_Unix.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xFunctions.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xTracing.h" />
