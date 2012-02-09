@@ -47,6 +47,16 @@ Library/G++_linux/Debug/
 Library/G++_linux/Release/
 Library/G++_linux/.settings/
 
+
+##### G++_FreeBSD #####
+Contrib/G++_FreeBSD/Debug/
+Contrib/G++_FreeBSD/Release/
+Contrib/G++_FreeBSD/.settings/
+
+Library/G++_FreeBSD/Debug/
+Library/G++_FreeBSD/Release/
+Library/G++_FreeBSD/.settings/
+
 ##### VC++ 2008 #####
 Contrib/VC++ 2008/Debug/
 Contrib/VC++ 2008/Release/
