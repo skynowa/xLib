@@ -50,9 +50,9 @@ CxDnsClient::bGetHostAddrByName(
 /*static*/
 bool
 CxDnsClient::bGetHostNameByAddr(
-    const std::tstring_t       &csHostAddr,
+    const std::tstring_t     &csHostAddr,
     CxSocket::EAddressFamily  afFamily,
-    std::tstring_t             *psHostName
+    std::tstring_t           *psHostName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csHostAddr.empty(), false);
@@ -124,8 +124,8 @@ CxDnsClient::bGetLocalHostName(
 bool
 CxDnsClient::bGetNameInfo(
     CxSocket::EAddressFamily  afFamily,
-    const std::tstring_t       &csHostAddr,
-    ushort_t                    usPort
+    const std::tstring_t     &csHostAddr,
+    ushort_t                  usPort
 )
 {
     /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);

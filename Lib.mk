@@ -80,7 +80,9 @@ LIB_DIRS				:=	/usr/lib64 \
                     		/usr/lib64/mysql \
                     		/usr/lib/mysql \
                     		/usr/local/lib64 \
-							/usr/local/lib
+							/usr/local/lib \
+							/usr/local/lib64/mysql \
+							/usr/local/lib/mysql							
 
 BINARY_DIR				:=	./Library/G++_linux/Release
 INSTALL_INCLUDE_DIR		:=	/usr/local/include/xLib

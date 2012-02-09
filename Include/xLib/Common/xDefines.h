@@ -106,11 +106,16 @@
 
 //--------------------------------------------------
 // standard C libraries
-#if xOS_ENV_UNIX
-    #include <features.h>       // standard C libraries
-    #include <bits/c++config.h> // standard C++ libraries
-#else
+#if   xOS_ENV_WIN
     //TODO: standard C libraries
+#elif xOS_ENV_UNIX
+    #if xOS_FREEBSD
+		//TODO: standard C libraries
+    #else
+    	#include <features.h>   // standard C libraries
+    #endif
+
+    #include <bits/c++config.h>	// standard C++ libraries
 #endif
 
 #if   xOS_ENV_WIN
@@ -129,7 +134,7 @@
         #define xSTD_LIBC_ZOS 1
             ///< z/OS libc
     #else
-        #error xLib: unsupported standard C library
+        ////#error xLib: unsupported standard C library
     #endif
 #endif
 
