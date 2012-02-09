@@ -14,7 +14,7 @@
         #pragma comment(lib, "mpr.lib")
     #endif
 #elif xOS_ENV_UNIX
-    #include <sys/mount.h>
+    #include <sys/param.h>
 #endif
 
 
@@ -161,8 +161,13 @@ CxVolume::bMount(
     DWORD dwRes = ::WNetAddConnection2(&nrNetResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
     /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), NULL, MS_REMOUNT, NULL);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+	#if xOS_FREEBSD
+    	int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), MNT_UPDATE, NULL);
+    	/*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    #else
+    	int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), NULL, MS_REMOUNT, NULL);
+    	/*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    #endif
 #endif
 
     return true;
@@ -182,16 +187,21 @@ CxVolume::bUnMount(
     DWORD dwRes = ::WNetCancelConnection2(csSourcePath.c_str(), CONNECT_UPDATE_PROFILE, cbIsForce);
     /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
 #elif xOS_ENV_UNIX
-    #ifdef MNT_DETACH
-        #define xMNT_DETACH MNT_DETACH
+	#ifdef MNT_DETACH
+		#define xMNT_DETACH MNT_DETACH
+	#else
+		#define xMNT_DETACH MNT_FORCE
+	#endif
+
+	const int ciFlag = cbIsForce ? MNT_FORCE : xMNT_DETACH;
+
+    #if xOS_FREEBSD
+		int iRes = ::unmount(csSourcePath.c_str(), ciFlag);
+		/*DEBUG*/xASSERT_RET(- 1 != iRes, false);
     #else
-        #define xMNT_DETACH MNT_FORCE
+		int iRes = ::umount2(csSourcePath.c_str(), ciFlag);
+		/*DEBUG*/xASSERT_RET(- 1 != iRes, false);
     #endif
-
-    const int ciFlag = cbIsForce ? MNT_FORCE : xMNT_DETACH;
-
-    int iRes = ::umount2(csSourcePath.c_str(), ciFlag);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
     return true;
