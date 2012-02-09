@@ -40,8 +40,6 @@
         //mkstemp
     #if   xCOMPILER_MINGW32
         #define xTMKSTEMP       _wmktemp
-    #elif xCOMPILER_INTEL
-        #define xTMKSTEMP       _tmktemp_s
     #elif xCOMPILER_MS
         #define xTMKSTEMP       _tmktemp_s
     #elif xCOMPILER_CODEGEAR
@@ -64,33 +62,39 @@
         #define xTSYSTEM        _wsystem
 
     //struct stat
-    #if xCOMPILER_CODEGEAR
-        #define xTSTAT_STRUCT   struct _stat
+    #if   xCOMPILER_MINGW32
+        #define xTSTAT_STRUCT   struct stat
     #elif xCOMPILER_MS
         #define xTSTAT_STRUCT   struct _tstat64
+    #elif xCOMPILER_CODEGEAR
+        #define xTSTAT_STRUCT   struct _stat
+    #elif xCOMPILER_GNUC
+        #define xTSTAT_STRUCT   struct stat
     #else
         #define xTSTAT_STRUCT   struct stat
     #endif
 
     //stat
-    #if xCOMPILER_CODEGEAR
-        #define xTSTAT          _tstat
+    #if   xCOMPILER_MINGW32
+        #define xTSTAT          _wstat
     #elif xCOMPILER_MS
         #define xTSTAT          _tstat64
+    #elif xCOMPILER_CODEGEAR
+        #define xTSTAT          _tstat
+    #elif xCOMPILER_GNUC
+        #define xTSTAT          _wstat
     #else
         #define xTSTAT          _wstat
     #endif
 
     //strerror
-    #if defined(xCOMPILER_MINGW32)
+    #if   xCOMPILER_MINGW32
         #define xSTRERROR       _wcserror
-    #elif defined(xCOMPILER_INTEL)
+    #elif xCOMPILER_MS
         #define xSTRERROR       _tcserror
-    #elif defined(xCOMPILER_MS)
-        #define xSTRERROR       _tcserror
-    #elif defined(xCOMPILER_GNUC)
+    #elif xCOMPILER_GNUC
         #define xSTRERROR       strerror_r
-    #elif defined(xCOMPILER_CODEGEAR)
+    #elif xCOMPILER_CODEGEAR
         #define xSTRERROR       _tcserror
     #else
         #define xSTRERROR       _wstrerror
@@ -140,8 +144,6 @@
         //mkstemp
     #if   xCOMPILER_MINGW32
         #define xTMKSTEMP       _mktemp
-    #elif xCOMPILER_INTEL
-        #define xTMKSTEMP       _tmktemp_s
     #elif xCOMPILER_MS
         #define xTMKSTEMP       _tmktemp_s
     #elif xCOMPILER_CODEGEAR
@@ -164,33 +166,39 @@
         #define xTSYSTEM        system
 
     //struct stat
-    #if xCOMPILER_CODEGEAR
-        #define xTSTAT_STRUCT   struct _stat
+    #if   xCOMPILER_MINGW32
+        #define xTSTAT_STRUCT   struct stat
     #elif xCOMPILER_MS
         #define xTSTAT_STRUCT   struct _tstat64
+    #elif xCOMPILER_CODEGEAR
+        #define xTSTAT_STRUCT   struct _stat
+    #elif xCOMPILER_GNUC
+        #define xTSTAT_STRUCT   struct stat
     #else
         #define xTSTAT_STRUCT   struct stat
     #endif
 
     //stat
-    #if xCOMPILER_CODEGEAR
-        #define xTSTAT          _tstat
+    #if   xCOMPILER_MINGW32
+        #define xTSTAT          stat
     #elif xCOMPILER_MS
         #define xTSTAT          _tstat64
+    #elif xCOMPILER_CODEGEAR
+        #define xTSTAT          _tstat
+    #elif xCOMPILER_GNUC
+        #define xTSTAT          stat
     #else
         #define xTSTAT          stat
     #endif
 
     //strerror
-    #if defined(xCOMPILER_MINGW32)
+    #if   xCOMPILER_MINGW32
         #define xSTRERROR       strerror
-    #elif defined(xCOMPILER_INTEL)
+    #elif xCOMPILER_MS
         #define xSTRERROR       _tcserror
-    #elif defined(xCOMPILER_MS)
-        #define xSTRERROR       _tcserror
-    #elif defined(xCOMPILER_GNUC)
+    #elif xCOMPILER_GNUC
         #define xSTRERROR       strerror_r
-    #elif defined(xCOMPILER_CODEGEAR)
+    #elif xCOMPILER_CODEGEAR
         #define xSTRERROR       _tcserror
     #else
         #define xSTRERROR       strerror
@@ -214,27 +222,55 @@
 
 
 //locking
-#if   xCOMPILER_MS
+#if   xCOMPILER_MINGW32
     #define xLOCKING            _locking
-#elif xCOMPILER_MINGW32
+#elif xCOMPILER_MS
     #define xLOCKING            _locking
+#elif xCOMPILER_CODEGEAR
+    #define xLOCKING            locking
+#elif xCOMPILER_GNUC
+    #define xLOCKING            locking
 #else
     #define xLOCKING            locking
 #endif
 
 //chsize
-#if   defined(xCOMPILER_MINGW32)
+#if   xCOMPILER_MINGW32
     #define xCHSIZE             chsize
-#elif defined(xCOMPILER_INTEL)
+#elif xCOMPILER_MS
     #define xCHSIZE             _chsize_s
-#elif defined(xCOMPILER_MS)
-    #define xCHSIZE             _chsize_s
-#elif defined(xCOMPILER_CODEGEAR)
+#elif xCOMPILER_CODEGEAR
     #define xCHSIZE             chsize
-#elif defined(xCOMPILER_GNUC)
-    xNA
+#elif xCOMPILER_GNUC
+    xNA;
 #else
     #define xCHSIZE             chsize
+#endif
+
+//getaddrinfo
+#if   xCOMPILER_MINGW32
+    #define xGETADDRINFO        getaddrinfo
+#elif xCOMPILER_MS
+    #define xGETADDRINFO        GetAddrInfo
+#elif xCOMPILER_CODEGEAR
+    #define xGETADDRINFO        GetAddrInfo
+#elif xCOMPILER_GNUC
+    #define xGETADDRINFO        getaddrinfo
+#else
+    #define xGETADDRINFO        getaddrinfo
+#endif
+
+//getnameinfo
+#if   xCOMPILER_MINGW32
+    #define xGETNAMEINFO        getnameinfo
+#elif xCOMPILER_MS
+    #define xGETNAMEINFO        GetNameInfo
+#elif xCOMPILER_CODEGEAR
+    #define xGETNAMEINFO        GetNameInfo
+#elif xCOMPILER_GNUC
+    #define xGETNAMEINFO        getnameinfo
+#else
+    #define xGETNAMEINFO        getnameinfo
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xFunctionsH

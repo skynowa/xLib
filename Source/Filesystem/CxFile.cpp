@@ -1456,15 +1456,7 @@ CxFile::_iGetHandle(
 {
     /*DEBUG*/xASSERT_RET(NULL != pfFile, - 1);
 
-#if defined(xOS_ENV_WIN)
-    int iRes = ::fileno(pfFile);
-#elif defined(xOS_ENV_UNIX)
-    #if defined(xOS_FREEBSD)
-        int iRes =   fileno(pfFile);
-    #else
-        int iRes = ::fileno(pfFile);
-    #endif
-#endif
+    int iRes = /*::*/fileno(pfFile);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, - 1);
 
     return iRes;

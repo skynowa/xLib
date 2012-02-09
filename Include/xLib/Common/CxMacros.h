@@ -18,8 +18,6 @@
 //keywords
 #if defined(xCOMPILER_MINGW32)
     #define xFORCE_INLINE  __attribute__((__always_inline__)) inline
-#elif defined(xCOMPILER_INTEL)
-    #define xFORCE_INLINE  __forceinline
 #elif defined(xCOMPILER_MS)
     #define xFORCE_INLINE  __forceinline
 #elif defined(xCOMPILER_GNUC)
@@ -89,7 +87,7 @@
 
 
 /// hide "unused variable" warnings
-#if xCOMPILER_MINGW32 || xCOMPILER_MS || xCOMPILER_INTEL
+#if xCOMPILER_MINGW32 || xCOMPILER_MS
     #define xUNUSED(arg)          ( (void)(arg) )
 #elif xCOMPILER_CODEGEAR
     #define xUNUSED(arg)          ( (void)(arg) )
@@ -163,7 +161,7 @@
     ///< source code line number
 
 
-#if xCOMPILER_MS || xCOMPILER_INTEL
+#if xCOMPILER_MS
     #define xFUNCTION   xT(__FUNCTION__)
 #elif xCOMPILER_CODEGEAR
     #define xFUNCTION   xT(__FUNC__)
@@ -336,7 +334,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-//--class CxDebugger;
+class CxDebugger;
 
 class CxMacros :
     private CxNonCopyable
