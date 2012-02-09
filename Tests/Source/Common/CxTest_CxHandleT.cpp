@@ -180,7 +180,7 @@ CxTest_CxHandleT::bUnit(
     //bSetInformation
     xTEST_CASE(cullCaseLoops)
     {
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         #if xTODO
             CxHandle hHandle;
 
@@ -193,7 +193,7 @@ CxTest_CxHandleT::bUnit(
             m_ulRes = hHandle.ulGetInformation();
             xTEST_EQ((ulong_t)HANDLE_FLAG_INHERIT, m_ulRes);
         #endif
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
 
     #endif
     }
@@ -202,7 +202,7 @@ CxTest_CxHandleT::bUnit(
     //ulGetInformation
     xTEST_CASE(cullCaseLoops)
     {
-    #if defined(xOS_ENV_WIN)
+    #if xOS_ENV_WIN
         #if xTODO
             CxHandle hHandle;
 
@@ -215,7 +215,7 @@ CxTest_CxHandleT::bUnit(
             m_ulRes = hHandle.ulGetInformation();
             xTEST_EQ((ulong_t)HANDLE_FLAG_PROTECT_FROM_CLOSE, m_ulRes);
         #endif
-    #elif defined(xOS_ENV_UNIX)
+    #elif xOS_ENV_UNIX
 
     #endif
     }

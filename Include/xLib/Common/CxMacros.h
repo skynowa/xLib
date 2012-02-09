@@ -214,9 +214,9 @@
     ///< incoming and outcoming param
 
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #define xHOST_NAME_MAX   MAX_COMPUTERNAME_LENGTH
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #define xHOST_NAME_MAX   HOST_NAME_MAX
 #endif
     ///< max host name length
@@ -316,10 +316,10 @@
 
 
 //native handle value
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL    ( static_cast<TxNativeHandle>( NULL ) )                  ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID ( static_cast<TxNativeHandle>( INVALID_HANDLE_VALUE ) )  ///< native handle value "invalid"
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #define xNATIVE_HANDLE_NULL    ( static_cast<TxNativeHandle>( 0 ) )                     ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID ( static_cast<TxNativeHandle>( - 1 ) )                   ///< native handle value "invalid"
 #endif

@@ -42,9 +42,9 @@ CxWndLog::bWrite(
     const tchar_t  *pcszFormat, ...
 )
 {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL != chWnd,      false);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(- 1  != chWnd,      false);
 #endif
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);

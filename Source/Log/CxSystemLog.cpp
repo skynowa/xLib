@@ -9,9 +9,9 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
 
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     #include <syslog.h>
 #endif
 
@@ -30,9 +30,9 @@ CxSystemLog::CxSystemLog(
     _m_bIsEnable(true)
 {
 
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //HANDLE OpenEventLog(__in  LPCTSTR lpUNCServerName, __in  LPCTSTR lpSourceName);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     //(void)::openlog(csLogName.c_str(), int __option, int __facility);
 
     //int setlogmask (int __mask) __THROW;
@@ -42,9 +42,9 @@ CxSystemLog::CxSystemLog(
 //---------------------------------------------------------------------------
 /*virtual*/
 CxSystemLog::~CxSystemLog() {
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     //BOOL CloseEventLog(__inout  HANDLE hEventLog);
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
     (void)::closelog();
 #endif
 }

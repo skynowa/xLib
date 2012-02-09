@@ -135,12 +135,12 @@ CxTest_CxEvent::bUnit(
             CxEvent::EObjectState osRes = objEvent.osWait(5);
 
             //BUG: objEvent.osWait(5);
-        #if defined(xOS_ENV_WIN)
+        #if xOS_ENV_WIN
             #if xTODO
                 xTEST_EQ((ulong_t)CxEvent::osSignaled, (ulong_t)osRes);   //LINUX   - osSignaled
                                                                           //Windows - osTimeout
             #endif
-        #elif defined(xOS_ENV_UNIX)
+        #elif xOS_ENV_UNIX
             xTEST_EQ((ulong_t)CxEvent::osSignaled, (ulong_t)osRes);   //LINUX   - osSignaled
                                                                       //Windows - osTimeout
         #endif

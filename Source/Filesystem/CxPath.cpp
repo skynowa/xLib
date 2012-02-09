@@ -88,9 +88,9 @@ CxPath::sGetExe() {
     return sRes;
 }
 //---------------------------------------------------------------------------
-#if defined(xOS_ENV_WIN)
+#if xOS_ENV_WIN
     extern "C" IMAGE_DOS_HEADER __ImageBase;
-#elif defined(xOS_ENV_UNIX)
+#elif xOS_ENV_UNIX
 	static void vFunction() { }
 #endif
 
