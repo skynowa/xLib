@@ -70,9 +70,6 @@
     <Filter Include="xLib\Common\Win">
       <UniqueIdentifier>{f1f01a02-c42c-4a74-9113-080038952039}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Common\Linux">
-      <UniqueIdentifier>{b204125e-5803-4619-9ecf-22067a589e50}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Units">
       <UniqueIdentifier>{1c657a2d-d04a-4cdf-9e8b-8c16abad6039}</UniqueIdentifier>
     </Filter>
@@ -156,6 +153,9 @@
     </Filter>
     <Filter Include="Test\Sync\Win">
       <UniqueIdentifier>{31a83dad-3469-402e-a21a-654773870a24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xLib\Common\Unix">
+      <UniqueIdentifier>{b204125e-5803-4619-9ecf-22067a589e50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1238,9 +1238,6 @@
     <ClInclude Include="..\..\Include\xLib\Net\CxTcpServer.h">
       <Filter>xLib\Net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\Linux\xCommon_Unix.h">
-      <Filter>xLib\Common\Linux</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Sync\Win\CxCompletionPort.h">
       <Filter>xLib\Sync\Win</Filter>
     </ClInclude>
@@ -1288,6 +1285,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\CxHandleErrorT.h">
       <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Common\Unix\xCommon_Unix.h">
+      <Filter>xLib\Common\Unix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
