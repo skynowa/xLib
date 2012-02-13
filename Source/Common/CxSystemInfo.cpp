@@ -330,7 +330,7 @@ CxSystemInfo::ulGetNumOfCpus() {
 #if xOS_ENV_WIN
     SYSTEM_INFO siSysInfo = {{0}};
 
-    (void)::GetSystemInfo(&siSysInfo);
+    (void)::GetNativeSystemInfo(&siSysInfo);
 
     ulRes = siSysInfo.dwNumberOfProcessors;
 #elif xOS_ENV_UNIX
@@ -458,11 +458,49 @@ CxSystemInfo::ullGetCpuSpeed() {
 #elif xOS_ENV_UNIX
     //TODO: iGetCpuSpeed
     ullRes = 0UL;
+
+    #if xTODO
+        FILE *pfCpuInfo = fopen("/proc/cpuinfo", "r");
+
+        fclose(pfCpuInfo);
+    #endif
 #endif
 
     return ullRes;
 }
 //---------------------------------------------------------------------------
+/*static*/
+ulong_t
+CxSystemInfo::ulGetPageSize() {
+    xDEBUG_VARS_NA;
+
+    ulong_t ulRes = 0UL;
+
+#if   xOS_ENV_WIN
+    SYSTEM_INFO siSysInfo = {{0}};
+
+    (void)::GetNativeSystemInfo(&siSysInfo);
+
+    ulRes = siSysInfo.dwPageSize;
+#elif xOS_ENV_UNIX
+    #if   defined(_SC_PAGESIZE)
+        #define xSC_PAGESIZE _SC_PAGESIZE
+    #elif defined(_SC_PAGE_SIZE)
+        #define xSC_PAGESIZE _SC_PAGE_SIZE
+    #elif defined()
+        #error xLib: xSC_PAGESIZE not defined
+    #endif
+
+    int iRes = ::sysconf(xSC_PAGESIZE);
+    /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+    /*DEBUG*/xASSERT_RET(0   <  iRes, 0UL);
+
+    ulRes = static_cast<ulong_t>( iRes );
+#endif
+
+    return ulRes;
+}
+//----------------------------------------------------------------------------------------------------
 
 
 /****************************************************************************
