@@ -75,6 +75,10 @@ class CxSystemInfo :
         static ulonglong_t    ullGetCpuSpeed    ();
             ///< get the CPU speed in MHz
 
+
+        static ulong_t        ulGetPageSize     ();
+            ///< get Size of a page in bytes
+
    private:
                               CxSystemInfo      ();
             ///< constructor

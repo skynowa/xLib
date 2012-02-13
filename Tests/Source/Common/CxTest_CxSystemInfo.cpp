@@ -163,6 +163,14 @@ CxTest_CxSystemInfo::bUnit(
         ////xTEST_LESS(0, m_iRes);
     }
 
+    //--------------------------------------------------
+    //ulGetPageSize
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_ulRes = CxSystemInfo::ulGetPageSize();
+        xTEST_LESS(0UL, m_ulRes);
+    }
+
     return true;
 }
 //---------------------------------------------------------------------------
