@@ -15,6 +15,7 @@
     #endif
 #elif xOS_ENV_UNIX
     #include <sys/param.h>
+    #include <sys/mount.h>
 #endif
 
 
