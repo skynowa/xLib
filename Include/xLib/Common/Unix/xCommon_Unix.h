@@ -8,6 +8,10 @@
 #ifndef xLib_Common_Unix_xCommon_UnixH
 #define xLib_Common_Unix_xCommon_UnixH
 //----------------------------------------------------------------------------------------------------
+#define _GNU_SOURCE 1
+
+//---------------------------------------------------------------------------
+
 //POSIX
 #include <string.h>
 #include <cpio.h>
