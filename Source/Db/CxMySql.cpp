@@ -8,7 +8,7 @@
 
 #if xOS_ENV_WIN
     #if !xCOMPILER_MINGW32
-        #pragma comment(lib, "libmysql.lib")
+        #pragma comment(lib, "mysqlclient.lib")
     #endif
 #elif xOS_ENV_UNIX
     // lib: -lmysqlclient
