@@ -11,6 +11,61 @@
 #include <xLib/Sync/CxCurrentProcess.h>
 
 
+
+static ULARGE_INTEGER lastCPU, lastSysCPU, lastUserCPU;
+static int numProcessors;
+static HANDLE self;
+
+
+
+
+
+    double getCurrentValue(){
+        //init
+        {
+            SYSTEM_INFO sysInfo;
+            FILETIME ftime, fsys, fuser;
+
+
+            GetSystemInfo(&sysInfo);
+            numProcessors = sysInfo.dwNumberOfProcessors;
+
+
+            GetSystemTimeAsFileTime(&ftime);
+            memcpy(&lastCPU, &ftime, sizeof(FILETIME));
+
+
+            self = GetCurrentProcess();
+            GetProcessTimes(self, &ftime, &ftime, &fsys, &fuser);
+            memcpy(&lastSysCPU, &fsys, sizeof(FILETIME));
+            memcpy(&lastUserCPU, &fuser, sizeof(FILETIME));
+        }
+
+
+        FILETIME ftime, fsys, fuser;
+        ULARGE_INTEGER now, sys, user;
+        double percent;
+
+
+        GetSystemTimeAsFileTime(&ftime);
+        memcpy(&now, &ftime, sizeof(FILETIME));
+
+
+        GetProcessTimes(self, &ftime, &ftime, &fsys, &fuser);
+        memcpy(&sys, &fsys, sizeof(FILETIME));
+        memcpy(&user, &fuser, sizeof(FILETIME));
+        percent = (sys.QuadPart - lastSysCPU.QuadPart) +
+                (user.QuadPart - lastUserCPU.QuadPart);
+        percent /= (now.QuadPart - lastCPU.QuadPart);
+        percent /= numProcessors;
+        lastCPU = now;
+        lastUserCPU = user;
+        lastSysCPU = sys;
+
+
+        return percent * 100;
+    }
+
 xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
@@ -418,43 +473,28 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 //---------------------------------------------------------------------------
 //TODO: ullGetCpuSpeed
 /*static*/
-ulonglong_t
-CxSystemInfo::ullGetCpuSpeed() {
+ulong_t
+CxSystemInfo::ulGetCpuSpeed() {
     /*DEBUG*/// n/a
 
-    ulonglong_t ullRes = 0ULL;
+    ulong_t ulRes = 0ULL;
 
 #if xOS_ENV_WIN
-    //TODO: ullGetCpuSpeed
-    #if xTODO
-        //TODO: CxCycle
-        class CxCycle {
-            public:
-                static /*inline*/ unsigned __int64 ullGetCount();
-        };
+    DWORD dwCpuSpeedMHz = 0UL;
+    HKEY  hKey          = NULL;
+    DWORD dwBuffSize    = _MAX_PATH;
 
-        unsigned __int64 CxCycle::ullGetCount() {
-                uint_t uiTimeHigh = 0;
-                uint_t uiTimeLow  = 0;
+    LONG lRes = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE,
+                               xT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"),
+                               0UL,
+                               KEY_READ,
+                               &hKey);
+    /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0ULL);
 
-                __asm {
-                    rdtsc
-                    mov uiTimeHigh, edx;
-                    mov uiTimeLow,  eax;
-                }
+    lRes = ::RegQueryValueEx(hKey, xT("~MHz"), NULL, NULL, &dwCpuSpeedMHz, &dwBuffSize);
+    /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0ULL);
 
-                return ((unsigned __int64)uiTimeHigh << 32) + (unsigned __int64)uiTimeLow;
-        };
-
-
-        const ulonglong_t ullStartCycle = CxCycle::ullGetCount();
-
-        bSleep(1000UL);
-
-        ullRes = (CxCycle::ullGetCount() - ullStartCycle) / 1000000;
-    #endif
-
-    ullRes = 0UL;
+    ulRes = dwCpuSpeedMHz;
 #elif xOS_ENV_UNIX
     //TODO: iGetCpuSpeed
     ullRes = 0UL;
@@ -466,7 +506,7 @@ CxSystemInfo::ullGetCpuSpeed() {
     #endif
 #endif
 
-    return ullRes;
+    return ulRes;
 }
 //---------------------------------------------------------------------------
 /*static*/

@@ -72,7 +72,7 @@ class CxSystemInfo :
             ///< get num of CPUs
         static ulong_t        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
-        static ulonglong_t    ullGetCpuSpeed    ();
+        static ulong_t        ulGetCpuSpeed     ();
             ///< get the CPU speed in MHz
 
 

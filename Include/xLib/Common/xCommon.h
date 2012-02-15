@@ -153,7 +153,7 @@ namespace NxLib { }
     using namespace NxLib;
 #endif
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #include <xLib/Common/Win/xCommon_Win.h>
 #elif xOS_ENV_UNIX
     #include <xLib/Common/Unix/xCommon_Unix.h>
