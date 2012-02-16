@@ -176,7 +176,10 @@
     <ClCompile Include="..\..\Source\Crypt\Pkcs11\Win\CxUtils.cpp" />
     <ClCompile Include="..\..\Source\Crypt\Pkcs11\Win\CxVerify.cpp" />
     <ClCompile Include="..\..\Source\Db\CxConnectionString.cpp" />
-    <ClCompile Include="..\..\Source\Db\CxMySql.cpp" />
+    <ClCompile Include="..\..\Source\Db\CxMySql.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Debug\CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxDebugger.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxLastError.cpp" />
@@ -284,7 +287,10 @@
     <ClCompile Include="..\..\Tests\Source\Crypt\CxTest_CxRandom.cpp" />
     <ClCompile Include="..\..\Tests\Source\Crypt\Pkcs11\Win\CxTest_CxPkcs11.cpp" />
     <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp" />
@@ -433,7 +439,10 @@
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\Pkcs11\Win\CxTest_CxPkcs11.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h" />
@@ -507,7 +516,10 @@
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h" />
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
     <ClInclude Include="..\..\Include\xLib\Db\CxConnectionString.h" />
-    <ClInclude Include="..\..\Include\xLib\Db\CxMySql.h" />
+    <ClInclude Include="..\..\Include\xLib\Db\CxMySql.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\CxAutoProfiler.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxDebugger.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxLastError.h" />
