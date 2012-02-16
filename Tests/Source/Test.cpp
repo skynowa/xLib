@@ -38,7 +38,7 @@
 #include <Test/Crypt/CxTest_CxCrc32.h>
 #include <Test/Crypt/CxTest_CxBlowfish.h>
 #include <Test/Crypt/CxTest_CxRandom.h>
-#include <Test/Crypt/Pkcs11/Win/CxTest_CxPkcs11.h>
+#include <Test/Crypt/Pkcs11/CxTest_CxPkcs11.h>
 
 //Db
 #include <Test/Db/CxTest_CxConnectionString.h>

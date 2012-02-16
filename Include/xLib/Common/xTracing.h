@@ -58,7 +58,9 @@
 
     //--------------------------------------------------
     //standard C libraries
-    #if   xSTD_LIBC_GNU
+    #if   xSTD_LIBC_MSVCRT
+        #pragma message("xLib: xSTD_LIBC_MSVCRT")
+    #elif xSTD_LIBC_GNU
         #pragma message("xLib: xSTD_LIBC_GNU")
     #elif xSTD_LIBC_UC
         #pragma message("xLib: xSTD_LIBC_UC")
@@ -72,7 +74,9 @@
 
     //--------------------------------------------------
     //standard C++ libraries
-    #if   XSTD_LIBCPP_DINKUMWARE
+    #if   xSTD_LIBCPP_GNUSTDCPP
+        #pragma message("xLib: xSTD_LIBCPP_GNUSTDCPP")
+    #elif XSTD_LIBCPP_DINKUMWARE
         #pragma message("xLib: XSTD_LIBCPP_DINKUMWARE")
     #elif xSTD_LIBCPP_GNUSTDCPP
         #pragma message("xLib: xSTD_LIBCPP_GNUSTDCPP")
