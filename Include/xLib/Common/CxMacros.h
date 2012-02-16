@@ -336,6 +336,36 @@
 #endif
 
 
+//page size
+#if   xOS_ENV_WIN
+    xNA
+#elif xOS_ENV_UNIX
+    #if   defined(_SC_PAGESIZE)
+        #define xPAGE_SIZE _SC_PAGESIZE
+    #elif defined(_SC_PAGE_SIZE)
+        #define xPAGE_SIZE _SC_PAGE_SIZE
+    #else
+        #error xLib: xPAGE_SIZE not defined
+    #endif
+#endif
+    ///< filesystem page size
+
+
+//statfs (struct and function)
+#if   xOS_ENV_WIN
+    xNA
+#elif xOS_ENV_UNIX
+    #if xOS_FREEBSD
+        #define xSTATVFS          statvfs
+        #define xSTATVFS_F_FRSIZE f_frsize
+    #else
+        #define xSTATVFS          statfs64
+        #define xSTATVFS_F_FRSIZE f_bsize
+    #endif
+#endif
+    ///< filesystem statfs (struct and function)
+
+
 //other
 #define xUNKNOWN_STRING xT("[unknown]")      ///< unknown string value
 
