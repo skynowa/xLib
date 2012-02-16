@@ -11,61 +11,6 @@
 #include <xLib/Sync/CxCurrentProcess.h>
 
 
-
-static ULARGE_INTEGER lastCPU, lastSysCPU, lastUserCPU;
-static int numProcessors;
-static HANDLE self;
-
-
-
-
-
-    double getCurrentValue(){
-        //init
-        {
-            SYSTEM_INFO sysInfo;
-            FILETIME ftime, fsys, fuser;
-
-
-            GetSystemInfo(&sysInfo);
-            numProcessors = sysInfo.dwNumberOfProcessors;
-
-
-            GetSystemTimeAsFileTime(&ftime);
-            memcpy(&lastCPU, &ftime, sizeof(FILETIME));
-
-
-            self = GetCurrentProcess();
-            GetProcessTimes(self, &ftime, &ftime, &fsys, &fuser);
-            memcpy(&lastSysCPU, &fsys, sizeof(FILETIME));
-            memcpy(&lastUserCPU, &fuser, sizeof(FILETIME));
-        }
-
-
-        FILETIME ftime, fsys, fuser;
-        ULARGE_INTEGER now, sys, user;
-        double percent;
-
-
-        GetSystemTimeAsFileTime(&ftime);
-        memcpy(&now, &ftime, sizeof(FILETIME));
-
-
-        GetProcessTimes(self, &ftime, &ftime, &fsys, &fuser);
-        memcpy(&sys, &fsys, sizeof(FILETIME));
-        memcpy(&user, &fuser, sizeof(FILETIME));
-        percent = (sys.QuadPart - lastSysCPU.QuadPart) +
-                (user.QuadPart - lastUserCPU.QuadPart);
-        percent /= (now.QuadPart - lastCPU.QuadPart);
-        percent /= numProcessors;
-        lastCPU = now;
-        lastUserCPU = user;
-        lastSysCPU = sys;
-
-
-        return percent * 100;
-    }
-
 xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
@@ -480,21 +425,20 @@ CxSystemInfo::ulGetCpuSpeed() {
     ulong_t ulRes = 0ULL;
 
 #if xOS_ENV_WIN
-    DWORD dwCpuSpeedMHz = 0UL;
-    HKEY  hKey          = NULL;
-    DWORD dwBuffSize    = _MAX_PATH;
+    DWORD dwBuffSize            = 64;
+    TCHAR szCpuSpeedMHz[64 + 1] = {0};
+    HKEY  hKey                  = NULL;
 
-    LONG lRes = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-                               xT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"),
-                               0UL,
-                               KEY_READ,
-                               &hKey);
-    /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0ULL);
+    LONG lRes = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, xT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0UL, KEY_READ, &hKey);
+    /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0UL);
 
-    lRes = ::RegQueryValueEx(hKey, xT("~MHz"), NULL, NULL, &dwCpuSpeedMHz, &dwBuffSize);
-    /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0ULL);
+    lRes = ::RegQueryValueEx(hKey, xT("~MHz"), NULL, NULL, reinterpret_cast<LPBYTE>( &szCpuSpeedMHz[0] ), &dwBuffSize);
+    /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0UL);
 
-    ulRes = dwCpuSpeedMHz;
+    lRes = ::RegCloseKey(hKey);    hKey = NULL;
+    /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0UL);
+
+    ulRes = CxString::lexical_cast<ulong_t>( szCpuSpeedMHz );
 #elif xOS_ENV_UNIX
     //TODO: iGetCpuSpeed
     ullRes = 0UL;
@@ -523,15 +467,7 @@ CxSystemInfo::ulGetPageSize() {
 
     ulRes = siSysInfo.dwPageSize;
 #elif xOS_ENV_UNIX
-    #if   defined(_SC_PAGESIZE)
-        #define xSC_PAGESIZE _SC_PAGESIZE
-    #elif defined(_SC_PAGE_SIZE)
-        #define xSC_PAGESIZE _SC_PAGE_SIZE
-    #elif defined()
-        #error xLib: xSC_PAGESIZE not defined
-    #endif
-
-    int iRes = ::sysconf(xSC_PAGESIZE);
+    int iRes = ::sysconf(xPAGE_SIZE);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
     /*DEBUG*/xASSERT_RET(0   <  iRes, 0UL);
 

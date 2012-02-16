@@ -104,7 +104,7 @@ CxVolume::bGetFreeSpace(
         _sDirPath = csDirPath;
     }
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ULARGE_INTEGER ullAvailable = {{0}};
     ULARGE_INTEGER ullTotal     = {{0}};
     ULARGE_INTEGER ullFree      = {{0}};
@@ -116,14 +116,6 @@ CxVolume::bGetFreeSpace(
     xPTR_ASSIGN(pullTotal,     ullTotal.QuadPart);
     xPTR_ASSIGN(pullFree,      ullFree.QuadPart);
 #elif xOS_ENV_UNIX
-    #if xOS_FREEBSD
-        #define xSTATVFS          statvfs
-        #define xSTATVFS_F_FRSIZE f_frsize
-    #else
-        #define xSTATVFS          statfs64
-        #define xSTATVFS_F_FRSIZE f_bsize
-    #endif
-
     struct xSTATVFS stfInfo = {0};
 
     int iRes = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);

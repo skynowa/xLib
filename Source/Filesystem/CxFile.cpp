@@ -1034,7 +1034,7 @@ CxFile::ullGetLines(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    0LL);
     /*DEBUG*/xASSERT_RET(true  == bIsExists(csFilePath), 0LL);
 
-    ulonglong_t       ullRes = 0LL;
+    ulonglong_t      ullRes = 0LL;
     std::tifstream_t ifsStream(csFilePath.c_str(), std::ios::in);
 
     xCHECK_RET(!ifsStream || ifsStream.fail() || !ifsStream.good() || !ifsStream.is_open() || ifsStream.eof(), 0LL);
