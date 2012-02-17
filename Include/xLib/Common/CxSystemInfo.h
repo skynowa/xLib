@@ -78,7 +78,7 @@ class CxSystemInfo :
 
         static ulong_t        ulGetPageSize     ();
             ///< get Size of a page in bytes
-
+struct rusage
    private:
                               CxSystemInfo      ();
             ///< constructor
