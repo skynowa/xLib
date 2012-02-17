@@ -363,48 +363,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         ulRes = ::GetCurrentProcessorNumber();
         xDEBUG_VAR_NA(ulRes);
     #else
-        #if xCOMPILER_MINGW32
-            //TODO: ulGetCurrentCpuNum
-            int iSyscallResult = - 1;
-
-            __asm__ __volatile__(
-                "movl $0x126, %eax\n"
-                "leal 4(%esp), %edx\n"
-                "int  $0x2e\n"
-                "movl -4(%ebp), %eax\n"
-            );
-
-            /*DEBUG*/xASSERT_MSG_RET(- 1 != iSyscallResult, xT("Syscall don't work"), 0UL);
-
-            ulRes = iSyscallResult;
-        #else
-            int iSyscallResult = - 1;
-
-            _asm {
-                mov eax, 0x126              ; 0x126 is NtGetCurrentProcessorNumber
-                lea edx, [esp+4]
-                int 0x2e
-                                            ; now we try to save the result
-                mov dword ptr [ebp-4], eax  ; NOTE: try “ebp-8” as necessary
-            }
-
-            /*DEBUG*/xASSERT_MSG_RET(- 1 != iSyscallResult, xT("Syscall don't work"), 0UL);
-
-            ulRes = iSyscallResult;
-        #endif
-
-        #if xTEMP_DISABLED
-            _asm {mov eax, 1}
-            _asm {cpuid}
-            _asm {shr ebx, 24}
-            _asm {mov eax, ebx}
-        #endif
-
-        #if xTEMP_DISABLED
-            #define _PCR fs:[0]
-
-            __asm {  movzx eax, _PCR KPCR.Number  }
-        #endif
+        ulRes = 0UL;
     #endif
 #elif xOS_ENV_UNIX
     #if xOS_FREEBSD
@@ -422,9 +381,8 @@ CxSystemInfo::ulGetCurrentCpuNum() {
             #if (xSTD_LIBC_GNU_VER > 2) || \
                 (xSTD_LIBC_GNU_VER == 2 && (xSTD_LIBC_GNU_VER_MINOR > 6 || (xSTD_LIBC_GNU_VER_MINOR == 6 /*&& __GLIBC_PATCHLEVEL__ >= 19*/)))
 
-                //for GLibc > 2.6.19
-                //::getcpu() was added in kernel 2.6.19 for x86_64 and i386
-                //int getcpu(unsigned *cpu, unsigned *nodestruct getcpu_cache *" tcache );
+                // for GLibc > 2.6.19
+                // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
                 uint_t uiCpu = 0U;
 
                 int iRes = ::getcpu(&uiCpu, NULL, NULL);
@@ -436,7 +394,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
             #endif
 
             #if xTEMP_DISABLED
-                //::sched_getcpu() function is available since glibc 2.6, it is glibc specific
+                // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
                 int iRes = ::sched_getcpu();
                 /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
