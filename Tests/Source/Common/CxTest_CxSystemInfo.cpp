@@ -6,6 +6,8 @@
 
 #include <Test/Common/CxTest_CxSystemInfo.h>
 
+#include <xLib/Sync/CxCurrentThread.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxSystemInfo::CxTest_CxSystemInfo() {
@@ -30,7 +32,8 @@ CxTest_CxSystemInfo::bUnit(
 
         otType = CxSystemInfo::osGetOS();
         #if xOS_ENV_WIN
-            xTEST_EQ(CxSystemInfo::otWindowsXP, otType);
+            xTEST_DIFF(CxSystemInfo::otLinux,   otType);
+            xTEST_DIFF(CxSystemInfo::otFreeBSD, otType);
         #elif xOS_ENV_UNIX
             #if xOS_FREEBSD
                 xTEST_EQ(CxSystemInfo::otFreeBSD, otType);
@@ -156,11 +159,25 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //TODO: ullGetCpuSpeed
+    //TODO: ulGetCpuSpeed
     xTEST_CASE(cullCaseLoops)
     {
-        ////m_iRes = CxSystemInfo::ullGetCpuSpeed();
-        ////xTEST_LESS(0, m_iRes);
+        //m_ulRes = CxSystemInfo::ulGetCpuSpeed();
+        //xTEST_LESS(0UL, m_ulRes);
+    }
+
+    //--------------------------------------------------
+    //ulGetCpuUsage
+    xTEST_CASE(cullCaseLoops)
+    {
+        for (size_t i = 0; i < 10; ++ i) {
+            CxCurrentThread::bSleep(1000UL);
+
+            m_ulRes = CxSystemInfo::ulGetCpuUsage();
+            //xTEST_LESS(0UL, m_ulRes);
+
+            xTRACEV(xT("CPU usage: %ld"), m_ulRes);
+        }
     }
 
     //--------------------------------------------------

@@ -113,8 +113,8 @@ CxTest_CxEnvironment::bUnit(
     {
     #if xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
-            {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\WINDOWS")},
-            {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\WINDOWS ")}
+            {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\Windows")},
+            {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\Windows ")}
         };
     #elif xOS_ENV_UNIX
         const std::tstring_t sData[][2] = {

@@ -73,12 +73,13 @@ class CxSystemInfo :
         static ulong_t        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
         static ulong_t        ulGetCpuSpeed     ();
-            ///< get the CPU speed in MHz
-
+            ///< get CPU speed in MHz
+        static ulong_t        ulGetCpuUsage     ();
+            ///< get CPU usage
 
         static ulong_t        ulGetPageSize     ();
             ///< get Size of a page in bytes
-struct rusage
+
    private:
                               CxSystemInfo      ();
             ///< constructor
