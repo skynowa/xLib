@@ -10,6 +10,16 @@
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
+#if   xOS_ENV_WIN
+    #include "pdh.h"
+
+    #if   !xCOMPILER_MINGW32
+        #pragma comment (lib, "pdh.lib")
+    #endif
+#elif xOS_ENV_UNIX
+
+#endif
+
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -408,7 +418,6 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-//TODO: ullGetCpuSpeed
 /*static*/
 ulong_t
 CxSystemInfo::ulGetCpuSpeed() {
@@ -432,7 +441,7 @@ CxSystemInfo::ulGetCpuSpeed() {
 
     ulRes = CxString::lexical_cast<ulong_t>( szCpuSpeedMHz );
 #elif xOS_ENV_UNIX
-    //TODO: iGetCpuSpeed
+    //TODO: ulGetCpuSpeed
     ullRes = 0UL;
 
     #if xTODO
@@ -441,6 +450,68 @@ CxSystemInfo::ulGetCpuSpeed() {
         fclose(pfCpuInfo);
     #endif
 #endif
+
+    return ulRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+ulong_t
+CxSystemInfo::ulGetCpuUsage() {
+    xDEBUG_VARS_NA;
+
+    ulong_t ulRes = 0UL;
+
+#if   xOS_ENV_WIN
+PDH_HQUERY hQuery;
+    PdhOpenQuery(0, 0, &hQuery);
+    
+    PDH_HCOUNTER hCounter;
+ 
+    TCHAR szCompName[MAX_PATH]={0};
+    DWORD dw=MAX_PATH;
+    GetComputerName(szCompName,&dw);
+    TCHAR szBuf[MAX_PATH]={0};
+ 
+ 
+    TCHAR szQuery[MAX_PATH];
+    dw=MAX_PATH;
+    if(PdhLookupPerfNameByIndex(szCompName,238/*подобрал*/,szBuf,&dw)!=ERROR_SUCCESS)
+        return 0;
+    _tcscpy(szQuery,_T("\\"));
+    _tcscat(szQuery,szBuf);
+    _tcscat(szQuery,_T("(_Total)\\"));
+    dw=MAX_PATH;
+    if(PdhLookupPerfNameByIndex(szCompName,6/*подобрал*/,szBuf,&dw)!=ERROR_SUCCESS)
+        return 0;
+    _tcscat(szQuery,szBuf);
+ 
+    PdhAddCounter(hQuery, szQuery, 0, &hCounter);
+ 
+ 
+    PdhCollectQueryData(hQuery);
+    //for (int i = 0; i < 10; ++i)
+    //{
+       //// Sleep(1000);
+        PdhCollectQueryData(hQuery);
+ 
+        PDH_FMT_COUNTERVALUE value;
+        PDH_STATUS status = PdhGetFormattedCounterValue(hCounter, PDH_FMT_DOUBLE, 0, &value);
+ 
+        if (status == ERROR_SUCCESS)
+            std::cout << value.doubleValue << "\n";
+        else
+            std::cout << "Error\n";
+
+        ulRes = value.doubleValue;
+    //}
+    PdhRemoveCounter(hCounter);
+    PdhCloseQuery(hQuery); 
+
+    
+#elif xOS_ENV_UNIX
+
+#endif
+
 
     return ulRes;
 }

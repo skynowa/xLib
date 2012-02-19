@@ -132,7 +132,6 @@ xTMAIN(
         std::tcout << "<pre>\n\n"                   << std::endl;
     #endif
 
-
     //--------------------------------------------------
     //options (default)
     bool        bIsUseTracing = true;

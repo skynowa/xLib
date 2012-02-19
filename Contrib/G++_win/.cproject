@@ -44,6 +44,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base.497656275" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base">
 								<option id="gnu.cpp.link.option.libs.801361371" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ws2_32"/>
+									<listOptionValue builtIn="false" value="pdh"/>
 									<listOptionValue builtIn="false" value="uuid"/>
 									<listOptionValue builtIn="false" value="ole32"/>
 									<listOptionValue builtIn="false" value="Gdiplus"/>
