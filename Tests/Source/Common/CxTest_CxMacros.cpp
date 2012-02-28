@@ -279,6 +279,27 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
+    //dRound
+    xTEST_CASE(cullCaseLoops)
+    {
+        const double cdData[][2] = {
+            {10.5,   11.0},
+            {10.0,   10.0},
+            {10.4,   10.0},
+            {0.0,    0.0},
+            {-10.4, -10.0},
+            //TODO: {-10.5, -11.0},
+            {-10.6, -11.0}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(cdData); ++ i) {
+            double dRes0 = CxMacros::dRound(cdData[i][0]);
+            double dRes1 = cdData[i][1];
+            xTEST_EQ(dRes0, dRes1);
+        }
+    }
+
+    //-------------------------------------
     //qualifiers
     xTEST_CASE(cullCaseLoops)
     {

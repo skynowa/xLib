@@ -6,6 +6,7 @@
 
 #include <xLib/Common/CxSystemInfo.h>
 
+#include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxCurrentProcess.h>
@@ -423,7 +424,7 @@ ulong_t
 CxSystemInfo::ulGetCpuSpeed() {
     /*DEBUG*/// n/a
 
-    ulong_t ulRes = 0ULL;
+    ulong_t ulRes = 0UL;
 
 #if xOS_ENV_WIN
     DWORD ulCpuSpeedMHz = 0UL;
@@ -441,16 +442,19 @@ CxSystemInfo::ulGetCpuSpeed() {
 
     ulRes = ulCpuSpeedMHz;
 #elif xOS_ENV_UNIX
-    //TODO: ulGetCpuSpeed
-    ullRes = 0UL;
+    // target proc line: "cpu MHz         : 2796.380"
+    std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("cpu MHz"));
 
-    #if xTODO
-        // cpu MHz         : 2796.380
+    size_t uiDelimPos = sRes.find(xT(":"));
+    /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
 
-        FILE *pfCpuInfo = fopen("/proc/cpuinfo", "r");
+    sRes = sRes.substr(uiDelimPos + 1);
 
-        fclose(pfCpuInfo);
-    #endif
+    sRes = CxString::sTrimSpace(sRes);
+
+    double dCpuSpeedMHz = CxString::lexical_cast<double>( sRes );
+
+    ulRes = static_cast<ulong_t>( CxMacros::dRound(dCpuSpeedMHz) );
 #endif
 
     return ulRes;
