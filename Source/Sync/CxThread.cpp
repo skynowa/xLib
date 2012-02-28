@@ -781,9 +781,6 @@ CxThread::bSetCpuIdeal(
 
     ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), culIdealCpu);
     /*DEBUG*/xASSERT_RET((DWORD) - 1 != ulRes, false);
-
-    //TODO: xASSERT_RET
-    ////*DEBUG*/xASSERT_RET(ulIdealCpu != ulRes, false);
 #elif xOS_ENV_UNIX
     return false;
 #endif
