@@ -101,6 +101,11 @@ class CxPath :
         static size_t         uiGetNameMaxSize();
             ///< get max name length in symbols
 
+    #if xOS_ENV_UNIX || 1
+        static std::tstring_t sGetProcLine    (const std::tstring_t  &csProcPath, const std::tstring_t &csTargetStr);
+            ///< get UNIX proc file content
+    #endif
+
     private:
                               CxPath          ();
             ///< constructor

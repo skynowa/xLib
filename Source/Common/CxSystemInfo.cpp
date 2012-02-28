@@ -445,6 +445,8 @@ CxSystemInfo::ulGetCpuSpeed() {
     ullRes = 0UL;
 
     #if xTODO
+        // cpu MHz         : 2796.380
+
         FILE *pfCpuInfo = fopen("/proc/cpuinfo", "r");
 
         fclose(pfCpuInfo);
