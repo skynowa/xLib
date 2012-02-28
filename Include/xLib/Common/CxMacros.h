@@ -238,6 +238,22 @@
     ///< max file name length
 
 
+#if xOS_ENV_WIN
+    #define xLINE_MAX     2048 //custom define
+#elif xOS_ENV_UNIX
+    #if   defined(LINE_MAX)
+        #define xLINE_MAX LINE_MAX
+    #elif defined(_SC_LINE_MAX)
+        #define xLINE_MAX _SC_LINE_MAX
+    #else
+        #error xLib: xLINE_MAX not defined
+    #endif
+#endif
+    ///< maximum length of a utility's input line, either from standard input or from a file
+
+    
+
+
 //var args
 #if defined(va_start)
     #define xVA_START(val, fmt) ( va_start(val, fmt) )

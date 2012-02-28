@@ -54,7 +54,7 @@ CxPath::sGetExe() {
             std::vector<std::tstring_t> vsArgs;
 
             bool bRes = CxCommandLine::bGetArgs(&vsArgs);
-            /*DEBUG*/xASSERT_RET(true == bRes,                      std::tstring_t());
+            /*DEBUG*/xASSERT_RET(true  == bRes,                      std::tstring_t());
             /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring_t());
             /*DEBUG*/xASSERT_RET(false == bIsAbsolute(vsArgs.at(0)), std::tstring_t());
 
@@ -64,26 +64,25 @@ CxPath::sGetExe() {
         const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxCurrentProcess::ulGetId());
 
         bool bRes = CxFile::bIsExists(csProcFile);
-        if (true == bRes) {
-            sRes.resize(xPATH_MAX);
+        xCHECK_RET(false == bRes, std::tstring_t());
 
-            int iReaded = - 1;
+        int iReaded = - 1;
+        sRes.resize(xPATH_MAX);
 
-            for ( ; ; ) {
-                iReaded = ::readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring_t::value_type));
-                /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring_t());
+        for ( ; ; ) {
+            iReaded = ::readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring_t::value_type));
+            /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring_t());
 
-                xCHECK_DO(sRes.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
+            xCHECK_DO(sRes.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
 
-                sRes.resize(sRes.size() * 2);
-            }
-
-            sRes.resize(iReaded);
+            sRes.resize(sRes.size() * 2);
         }
+
+        sRes.resize(iReaded);
     #endif
 #endif
 
-    /*DEBUG*/xASSERT_RET(false != CxFile::bIsExists(sRes), std::tstring_t());
+    /*DEBUG*/xASSERT_RET(true == CxFile::bIsExists(sRes), std::tstring_t());
 
     return sRes;
 }
@@ -852,6 +851,36 @@ CxPath::uiGetNameMaxSize() {
 
     return uiRes;
 }
+//---------------------------------------------------------------------------
+#if xOS_ENV_UNIX || 1
+
+/*static*/
+std::tstring_t
+CxPath::sGetProcLine(
+    const std::tstring_t &csProcPath,   ///< file path to proc-file
+    const std::tstring_t &csTargetStr   ///< target search string
+)
+{
+    std::tstring_t sRes;
+
+    std::tifstream_t ifsStream(csProcPath.c_str());
+    /*DEBUG*/xASSERT_RET(ifsStream,           std::tstring_t());
+    /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   std::tstring_t());
+    /*DEBUG*/xASSERT_RET(ifsStream.good(),    std::tstring_t());
+    /*DEBUG*/xASSERT_RET(ifsStream.is_open(), std::tstring_t());
+    /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    std::tstring_t());
+
+    for ( ; !ifsStream.eof(); ) {
+        std::getline(ifsStream, sRes);
+
+        size_t uiPos = sRes.find(csTargetStr);
+        xCHECK_DO(std::tstring_t::npos != uiPos, break);
+    }
+
+    return sRes;
+}
+
+#endif
 //---------------------------------------------------------------------------
 
 
