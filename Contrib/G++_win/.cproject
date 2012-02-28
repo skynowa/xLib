@@ -25,7 +25,6 @@
 							<tool id="cdt.managedbuild.tool.gnu.archiver.mingw.base.896465840" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.mingw.base"/>
 							<tool command="g++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.2125125982" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base">
 								<option id="gnu.cpp.compiler.option.include.paths.1653653221" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${Atl}\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${OpenSSL}\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${MySQL}\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${xLib}\Include&quot;"/>
@@ -92,7 +91,6 @@
 								<option id="gnu.cpp.compiler.mingw.exe.release.option.optimization.level.1957633895" name="Optimization Level" superClass="gnu.cpp.compiler.mingw.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.mingw.exe.release.option.debugging.level.1366569473" name="Debug Level" superClass="gnu.cpp.compiler.mingw.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.328937740" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${Atl}\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${OpenSSL}\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${MySQL}\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${xLib}\Include&quot;"/>
