@@ -251,7 +251,7 @@
 #endif
     ///< maximum length of a utility's input line, either from standard input or from a file
 
-    
+
 
 
 //var args
@@ -493,6 +493,13 @@ class CxMacros :
             return (true == x.empty()) ? (NULL) : (x.c_str());
         }
             ///< convert std::tstring_t to C-string
+
+        static inline
+        double
+        dRound(const double cdValue) {
+            return ::floor(cdValue + 0.5);
+        }
+            ///< round double value to the integer part
 
     private:
                 CxMacros();
