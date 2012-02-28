@@ -84,7 +84,8 @@
     ///< get min value
 #define xINT_TO_BOOL(expr)      ( (0 == (expr)) ? false : true )
     ///< convert int to bool
-
+#define xSAFE_DIV(x, y)         ( (0 == (y)) ? (0) : ((x) / (y)) )
+    ///< safe division
 
 /// hide "unused variable" warnings
 #if xCOMPILER_MINGW32 || xCOMPILER_MS
