@@ -261,15 +261,6 @@ CxTest_CxThread::bUnit(
 
             m_ulRes = pthT->ulGetCpuIdeal();
             xTEST_LESS_EQ(0UL, m_ulRes);
-
-            m_bRes = pthT->bSetCpuIdeal(10);
-            xTEST_EQ(true, m_bRes);
-
-            m_bRes = pthT->bSetCpuIdeal(0);
-            xTEST_EQ(true, m_bRes);
-
-            m_ulRes = pthT->ulGetCpuIdeal();
-            xTEST_EQ(0UL, m_ulRes);
         #elif xOS_ENV_UNIX
 
         #endif
