@@ -162,8 +162,12 @@ CxTest_CxSystemInfo::bUnit(
     //TODO: ulGetCpuSpeed
     xTEST_CASE(cullCaseLoops)
     {
-        //m_ulRes = CxSystemInfo::ulGetCpuSpeed();
-        //xTEST_LESS(0UL, m_ulRes);
+        m_ulRes = CxSystemInfo::ulGetCpuSpeed();
+        #if   xOS_ENV_WIN
+            xTEST_LESS(0UL, m_ulRes);
+        #elif xOS_ENV_UNIX
+            ////xTEST_LESS(0UL, m_ulRes)
+        #endif
     }
 
     //--------------------------------------------------
@@ -171,12 +175,14 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
-            CxCurrentThread::bSleep(1000UL);
-
             m_ulRes = CxSystemInfo::ulGetCpuUsage();
-            //xTEST_LESS(0UL, m_ulRes);
+            xDEBUG_VAR_NA(m_ulRes);
 
-            xTRACEV(xT("CPU usage: %ld"), m_ulRes);
+            #if xTEST_IGNORE
+                xTRACEV(xT("CPU usage: %ld"), m_ulRes);
+
+                CxCurrentThread::bSleep(400UL);
+            #endif
         }
     }
 

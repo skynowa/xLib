@@ -426,20 +426,20 @@ CxSystemInfo::ulGetCpuSpeed() {
     ulong_t ulRes = 0ULL;
 
 #if xOS_ENV_WIN
-    DWORD dwBuffSize            = 64;
-    TCHAR szCpuSpeedMHz[64 + 1] = {0};
-    HKEY  hKey                  = NULL;
+    DWORD ulCpuSpeedMHz = 0UL;
+    DWORD dwBuffSize    = sizeof(ulCpuSpeedMHz);
+    HKEY  hKey          = NULL;
 
     LONG lRes = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, xT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0UL, KEY_READ, &hKey);
     /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0UL);
 
-    lRes = ::RegQueryValueEx(hKey, xT("~MHz"), NULL, NULL, reinterpret_cast<LPBYTE>( &szCpuSpeedMHz[0] ), &dwBuffSize);
+    lRes = ::RegQueryValueEx(hKey, xT("~MHz"), NULL, NULL, reinterpret_cast<LPBYTE>( &ulCpuSpeedMHz ), &dwBuffSize);
     /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0UL);
 
     lRes = ::RegCloseKey(hKey);    hKey = NULL;
     /*DEBUG*/xASSERT_RET(ERROR_SUCCESS == lRes, 0UL);
 
-    ulRes = CxString::lexical_cast<ulong_t>( szCpuSpeedMHz );
+    ulRes = ulCpuSpeedMHz;
 #elif xOS_ENV_UNIX
     //TODO: ulGetCpuSpeed
     ullRes = 0UL;
@@ -462,56 +462,47 @@ CxSystemInfo::ulGetCpuUsage() {
     ulong_t ulRes = 0UL;
 
 #if   xOS_ENV_WIN
-PDH_HQUERY hQuery;
-    PdhOpenQuery(0, 0, &hQuery);
-    
-    PDH_HCOUNTER hCounter;
- 
-    TCHAR szCompName[MAX_PATH]={0};
-    DWORD dw=MAX_PATH;
-    GetComputerName(szCompName,&dw);
-    TCHAR szBuf[MAX_PATH]={0};
- 
- 
-    TCHAR szQuery[MAX_PATH];
-    dw=MAX_PATH;
-    if(PdhLookupPerfNameByIndex(szCompName,238/*подобрал*/,szBuf,&dw)!=ERROR_SUCCESS)
-        return 0;
-    _tcscpy(szQuery,_T("\\"));
-    _tcscat(szQuery,szBuf);
-    _tcscat(szQuery,_T("(_Total)\\"));
-    dw=MAX_PATH;
-    if(PdhLookupPerfNameByIndex(szCompName,6/*подобрал*/,szBuf,&dw)!=ERROR_SUCCESS)
-        return 0;
-    _tcscat(szQuery,szBuf);
- 
-    PdhAddCounter(hQuery, szQuery, 0, &hCounter);
- 
- 
-    PdhCollectQueryData(hQuery);
-    //for (int i = 0; i < 10; ++i)
-    //{
-       //// Sleep(1000);
-        PdhCollectQueryData(hQuery);
- 
-        PDH_FMT_COUNTERVALUE value;
-        PDH_STATUS status = PdhGetFormattedCounterValue(hCounter, PDH_FMT_DOUBLE, 0, &value);
- 
-        if (status == ERROR_SUCCESS)
-            std::cout << value.doubleValue << "\n";
-        else
-            std::cout << "Error\n";
+    ULONGLONG             ullRes         = 0UL;
 
-        ulRes = value.doubleValue;
-    //}
-    PdhRemoveCounter(hCounter);
-    PdhCloseQuery(hQuery); 
+    FILETIME              ftSysIdle      = {0};
+    FILETIME              ftSysKernel    = {0};
+    FILETIME              ftSysUser      = {0};
 
-    
+    ULARGE_INTEGER        ulSysIdle      = {{0}};
+    ULARGE_INTEGER        ulSysKernel    = {{0}};
+    ULARGE_INTEGER        ulSysUser      = {{0}};
+
+    static ULARGE_INTEGER ulSysIdleOld   = {{0}};
+    static ULARGE_INTEGER ulSysKernelOld = {{0}};
+    static ULARGE_INTEGER ulSysUserOld   = {{0}};
+
+
+    BOOL blRes = ::GetSystemTimes(&ftSysIdle, &ftSysKernel, &ftSysUser);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, 0UL);
+
+    (void)CopyMemory(&ulSysIdle,   &ftSysIdle,   sizeof(ftSysIdle));
+    (void)CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
+    (void)CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
+
+    ullRes = xSAFE_DIV(
+                (
+                    (ulSysKernel.QuadPart - ulSysKernelOld.QuadPart) +
+                    (ulSysUser.QuadPart   - ulSysUserOld.QuadPart)   -
+                    (ulSysIdle.QuadPart   - ulSysIdleOld.QuadPart)
+                ) * 100ULL
+                ,
+                (ulSysKernel.QuadPart - ulSysKernelOld.QuadPart) +
+                (ulSysUser.QuadPart - ulSysUserOld.QuadPart)
+    );
+
+    ulSysIdleOld.QuadPart   = ulSysIdle.QuadPart;
+    ulSysUserOld.QuadPart   = ulSysUser.QuadPart;
+    ulSysKernelOld.QuadPart = ulSysKernel.QuadPart;
+
+    ulRes = static_cast<ulong_t>( ullRes );
 #elif xOS_ENV_UNIX
 
 #endif
-
 
     return ulRes;
 }
