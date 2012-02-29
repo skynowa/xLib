@@ -871,10 +871,12 @@ CxPath::sGetProcLine(
     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    std::tstring_t());
 
     for ( ; !ifsStream.eof(); ) {
-        std::getline(ifsStream, sRes);
+        std::tstring_t sLine;
 
-        size_t uiPos = sRes.find(csTargetStr);
-        xCHECK_DO(std::tstring_t::npos != uiPos, break);
+        std::getline(ifsStream, sLine);
+
+        size_t uiPos = sLine.find(csTargetStr);
+        xCHECK_DO(std::tstring_t::npos != uiPos, sRes = sLine; break);
     }
 
     return sRes;
