@@ -166,7 +166,7 @@ CxTest_CxSystemInfo::bUnit(
         xTEST_LESS(0UL, m_ulRes);
         xTEST_EQ(2796UL, m_ulRes);
 
-        #if xTEST_IGNORE || 1
+        #if xTEST_IGNORE
             xTRACEV(xT("CPU speed: %ld"), m_ulRes);
         #endif
     }
