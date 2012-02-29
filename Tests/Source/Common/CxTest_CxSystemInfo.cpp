@@ -182,7 +182,7 @@ CxTest_CxSystemInfo::bUnit(
             #if xTEST_IGNORE
                 xTRACEV(xT("CPU usage: %ld"), m_ulRes);
 
-                CxCurrentThread::bSleep(400UL);
+                CxCurrentThread::bSleep(1000UL);
             #endif
         }
     }

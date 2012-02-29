@@ -507,7 +507,7 @@ CxSystemInfo::ulGetCpuUsage() {
 
     ulRes = static_cast<ulong_t>( ullRes );
 #elif xOS_ENV_UNIX
-    ULONGLONG          ullRes             = 0ULL;
+    double             dRes             = 0.0;
     int                iRes               = - 1;
 
     static bool        bIsFirstRun        = true;
@@ -517,12 +517,12 @@ CxSystemInfo::ulGetCpuUsage() {
     static ulonglong_t ullSysTotalOld     = 0ULL;
     static ulonglong_t ullTotalIdleOld    = 0ULL;
 
-    ulonglong_t        ullUserTotal       = 0ULL; 
-    ulonglong_t        ullUserTotalLow    = 0ULL; 
+    ulonglong_t        ullUserTotal       = 0ULL;
+    ulonglong_t        ullUserTotalLow    = 0ULL;
     ulonglong_t        ullSysTotal        = 0ULL;
     ulonglong_t        ullTotalIdle       = 0ULL;
     ulonglong_t        ullTotal           = 0ULL;
-    
+
     //read proc file for the first time
     if (true == bIsFirstRun) {
         FILE *pFile = fopen("/proc/stat", "r");
@@ -533,7 +533,7 @@ CxSystemInfo::ulGetCpuUsage() {
 
         iRes = fclose(pFile);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
-        
+
         bIsFirstRun = false;
     }
 
@@ -541,26 +541,25 @@ CxSystemInfo::ulGetCpuUsage() {
     {
 	    FILE *pFile = fopen("/proc/stat", "r");
 	    /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
-	
+
 	    iRes = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotal, &ullUserTotalLow, &ullSysTotal, &ullTotalIdle);
 	    /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
-	
+
 	    iRes = fclose(pFile);
 	    /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
     }
-
 
     if (ullUserTotal < ullUserTotalOld || ullUserTotalLow < ullUserTotalLowOld ||
         ullSysTotal  < ullSysTotalOld  || ullTotalIdle    < ullTotalIdleOld)
     {
         //Overflow detection. Just skip this value.
-        ullRes    = 0ULL;
+        dRes      = 0.0;
     } else {
         ullTotal  = (ullUserTotal - ullUserTotalOld) + (ullUserTotalLow - ullUserTotalLowOld) + (ullSysTotal - ullSysTotalOld);
-        ullRes    = ullTotal;
+        dRes      = ullTotal;
         ullTotal += (ullTotalIdle - ullTotalIdleOld);
-        ullRes   /= ullTotal;
-        ullRes   *= 100ULL;
+        dRes     /= ullTotal;
+        dRes     *= 100ULL;
     }
 
     ullUserTotalOld    = ullUserTotal;
@@ -568,7 +567,7 @@ CxSystemInfo::ulGetCpuUsage() {
     ullSysTotalOld     = ullSysTotal;
     ullTotalIdleOld    = ullTotalIdle;
 
-    ulRes = static_cast<ulong_t>( ullRes );
+    ulRes = static_cast<ulong_t>( dRes );
 #endif
 
     return ulRes;
