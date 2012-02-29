@@ -11,16 +11,6 @@
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
-#if   xOS_ENV_WIN
-    #include "pdh.h"
-
-    #if   !xCOMPILER_MINGW32
-        #pragma comment (lib, "pdh.lib")
-    #endif
-#elif xOS_ENV_UNIX
-
-#endif
-
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -486,9 +476,9 @@ CxSystemInfo::ulGetCpuUsage() {
     BOOL blRes = ::GetSystemTimes(&ftSysIdle, &ftSysKernel, &ftSysUser);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, 0UL);
 
-    (void)CopyMemory(&ulSysIdle,   &ftSysIdle,   sizeof(ftSysIdle));
-    (void)CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
-    (void)CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
+    (void)::CopyMemory(&ulSysIdle,   &ftSysIdle,   sizeof(ftSysIdle));
+    (void)::CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
+    (void)::CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
 
     ullRes = xSAFE_DIV(
                 (
@@ -507,7 +497,7 @@ CxSystemInfo::ulGetCpuUsage() {
 
     ulRes = static_cast<ulong_t>( ullRes );
 #elif xOS_ENV_UNIX
-    double             dRes             = 0.0;
+    double             dRes               = 0.0;
     int                iRes               = - 1;
 
     static bool        bIsFirstRun        = true;
