@@ -49,23 +49,10 @@ CxShell::bExecute(
 
     xCHECK_RET(false == bIsAvailable(), false);
 
-#if   xOS_ENV_WIN
     std::tstring_t sCommand = CxString::sFormat(xT("%s %s"), csFilePath.c_str(), csParams.c_str());
 
     int iRes = std::xTSYSTEM(sCommand.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
-#elif xOS_ENV_UNIX
-    int iRes = - 1;
-
-    FILE *pflShell = ::popen(csFilePath.c_str(), xT("w"));
-    /*DEBUG*/xASSERT_RET(NULL != pflShell, false);
-
-    iRes = std::xTFPRINTF(pflShell, xT("%s"), csParams.c_str());
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
-
-    iRes = ::pclose(pflShell);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
-#endif
 
     return true;
 }
