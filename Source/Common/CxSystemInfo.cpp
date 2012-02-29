@@ -468,7 +468,7 @@ CxSystemInfo::ulGetCpuUsage() {
     ulong_t ulRes = 0UL;
 
 #if   xOS_ENV_WIN
-    ULONGLONG             ullRes         = 0UL;
+    ULONGLONG             ullRes         = 0ULL;
 
     FILETIME              ftSysIdle      = {0};
     FILETIME              ftSysKernel    = {0};
@@ -507,7 +507,68 @@ CxSystemInfo::ulGetCpuUsage() {
 
     ulRes = static_cast<ulong_t>( ullRes );
 #elif xOS_ENV_UNIX
+    ULONGLONG          ullRes             = 0ULL;
+    int                iRes               = - 1;
 
+    static bool        bIsFirstRun        = true;
+
+    static ulonglong_t ullUserTotalOld    = 0ULL;
+    static ulonglong_t ullUserTotalLowOld = 0ULL;
+    static ulonglong_t ullSysTotalOld     = 0ULL;
+    static ulonglong_t ullTotalIdleOld    = 0ULL;
+
+    ulonglong_t        ullUserTotal       = 0ULL; 
+    ulonglong_t        ullUserTotalLow    = 0ULL; 
+    ulonglong_t        ullSysTotal        = 0ULL;
+    ulonglong_t        ullTotalIdle       = 0ULL;
+    ulonglong_t        ullTotal           = 0ULL;
+    
+    //read proc file for the first time
+    if (true == bIsFirstRun) {
+        FILE *pFile = fopen("/proc/stat", "r");
+        /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
+
+        iRes = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotalOld, &ullUserTotalLowOld, &ullSysTotalOld, &ullTotalIdleOld);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+
+        iRes = fclose(pFile);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+        
+        bIsFirstRun = false;
+    }
+
+    //read proc file for the next times
+    {
+	    FILE *pFile = fopen("/proc/stat", "r");
+	    /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
+	
+	    iRes = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotal, &ullUserTotalLow, &ullSysTotal, &ullTotalIdle);
+	    /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+	
+	    iRes = fclose(pFile);
+	    /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+    }
+
+
+    if (ullUserTotal < ullUserTotalOld || ullUserTotalLow < ullUserTotalLowOld ||
+        ullSysTotal  < ullSysTotalOld  || ullTotalIdle    < ullTotalIdleOld)
+    {
+        //Overflow detection. Just skip this value.
+        ullRes    = 0ULL;
+    } else {
+        ullTotal  = (ullUserTotal - ullUserTotalOld) + (ullUserTotalLow - ullUserTotalLowOld) + (ullSysTotal - ullSysTotalOld);
+        ullRes    = ullTotal;
+        ullTotal += (ullTotalIdle - ullTotalIdleOld);
+        ullRes   /= ullTotal;
+        ullRes   *= 100ULL;
+    }
+
+    ullUserTotalOld    = ullUserTotal;
+    ullUserTotalLowOld = ullUserTotalLow;
+    ullSysTotalOld     = ullSysTotal;
+    ullTotalIdleOld    = ullTotalIdle;
+
+    ulRes = static_cast<ulong_t>( ullRes );
 #endif
 
     return ulRes;
