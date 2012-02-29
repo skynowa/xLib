@@ -159,7 +159,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //TODO: ulGetCpuSpeed
+    //ulGetCpuSpeed
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRes = CxSystemInfo::ulGetCpuSpeed();
