@@ -163,7 +163,8 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRes = CxSystemInfo::ulGetCpuSpeed();
-        xTEST_LESS(0UL, m_ulRes)
+        xTEST_LESS(0UL, m_ulRes);
+        xTEST_EQ(2796UL, m_ulRes);
 
         #if xTEST_IGNORE || 1
             xTRACEV(xT("CPU speed: %ld"), m_ulRes);
