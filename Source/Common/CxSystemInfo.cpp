@@ -335,17 +335,17 @@ CxSystemInfo::ulGetNumOfCpus() {
 
     ulRes = siSysInfo.dwNumberOfProcessors;
 #elif xOS_ENV_UNIX
-    #if xOS_FREEBSD
+    #if   xOS_LINUX
+        long_t liRes = ::sysconf(_SC_NPROCESSORS_ONLN);
+        /*DEBUG*/xASSERT_RET(- 1 != liRes, 0UL);
+
+        ulRes = static_cast<ulong_t>( liRes );
+    #elif xOS_FREEBSD
         int    aiMib[]   = {CTL_HW, HW_NCPU};
         size_t uiResSize = sizeof(ulRes);
 
         int iRes = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRes, &uiResSize, NULL, 0);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
-    #else
-        long_t liRes = ::sysconf(_SC_NPROCESSORS_ONLN);
-        /*DEBUG*/xASSERT_RET(- 1 != liRes, 0UL);
-
-        ulRes = static_cast<ulong_t>( liRes );
     #endif
 #endif
 
@@ -367,10 +367,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
         ulRes = 0UL;
     #endif
 #elif xOS_ENV_UNIX
-    #if xOS_FREEBSD
-        //TODO: ulGetCurrentCpuNum
-        ulRes = 0UL;
-    #else
+    #if   xOS_LINUX
         #if defined(SYS_getcpu)
             ulong_t ulCpu = 0UL;
 
@@ -403,6 +400,9 @@ CxSystemInfo::ulGetCurrentCpuNum() {
             #endif
 
         #endif
+    #elif xOS_FREEBSD
+        //TODO: ulGetCurrentCpuNum
+        ulRes = 0UL;
     #endif
 #endif
 
@@ -454,14 +454,19 @@ CxSystemInfo::ulGetCpuSpeed() {
         /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
         ulRes = ulCpuSpeedMHz;
-    #else
-        #error xLib: unsupported OS
     #endif
 #endif
 
     return ulRes;
 }
 //---------------------------------------------------------------------------
+struct SCpuLoad {
+    ulong_t ulLoad[5];
+};
+
+static SCpuLoad clFresh = {{0}};
+
+
 /*static*/
 ulong_t
 CxSystemInfo::ulGetCpuUsage() {
@@ -509,73 +514,97 @@ CxSystemInfo::ulGetCpuUsage() {
 
     ulRes = static_cast<ulong_t>( ullRes );
 #elif xOS_ENV_UNIX
-    #if   xOS_LINUX
-        double             dRes               = 0.0;
-        int                iRes               = - 1;
+    double             dRes               = 0.0;
+    int                iRes               = - 1;
 
-        static bool        bIsFirstRun        = true;
+    static bool        bIsFirstRun        = true;
 
-        static ulonglong_t ullUserTotalOld    = 0ULL;
-        static ulonglong_t ullUserTotalLowOld = 0ULL;
-        static ulonglong_t ullSysTotalOld     = 0ULL;
-        static ulonglong_t ullTotalIdleOld    = 0ULL;
+    static ulonglong_t ullUserTotalOld    = 0ULL;
+    static ulonglong_t ullUserTotalLowOld = 0ULL;
+    static ulonglong_t ullSysTotalOld     = 0ULL;
+    static ulonglong_t ullTotalIdleOld    = 0ULL;
 
-        ulonglong_t        ullUserTotal       = 0ULL;
-        ulonglong_t        ullUserTotalLow    = 0ULL;
-        ulonglong_t        ullSysTotal        = 0ULL;
-        ulonglong_t        ullTotalIdle       = 0ULL;
-        ulonglong_t        ullTotal           = 0ULL;
+    ulonglong_t        ullUserTotal       = 0ULL;
+    ulonglong_t        ullUserTotalLow    = 0ULL;
+    ulonglong_t        ullSysTotal        = 0ULL;
+    ulonglong_t        ullTotalIdle       = 0ULL;
+    ulonglong_t        ullTotal           = 0ULL;
 
-        //read proc file for the first time
-        if (true == bIsFirstRun) {
-            FILE *pFile = fopen("/proc/stat", "r");
-            /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
+    //read proc file for the first time
+    if (true == bIsFirstRun) {
+        FILE *pFile = fopen("/proc/stat", "r");
+        /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
 
-            iRes = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotalOld, &ullUserTotalLowOld, &ullSysTotalOld, &ullTotalIdleOld);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+        iRes = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotalOld, &ullUserTotalLowOld, &ullSysTotalOld, &ullTotalIdleOld);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-            iRes = fclose(pFile);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+        iRes = fclose(pFile);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-            bIsFirstRun = false;
-        }
+        bIsFirstRun = false;
+    }
 
-        //read proc file for the next times
-        {
-            FILE *pFile = fopen("/proc/stat", "r");
-            /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
+    //read proc file for the next times
+    {
+        FILE *pFile = fopen("/proc/stat", "r");
+        /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
 
-            iRes = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotal, &ullUserTotalLow, &ullSysTotal, &ullTotalIdle);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+        iRes = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotal, &ullUserTotalLow, &ullSysTotal, &ullTotalIdle);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-            iRes = fclose(pFile);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
-        }
+        iRes = fclose(pFile);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+    }
 
-        if (ullUserTotal < ullUserTotalOld || ullUserTotalLow < ullUserTotalLowOld ||
-            ullSysTotal  < ullSysTotalOld  || ullTotalIdle    < ullTotalIdleOld)
-        {
-            //Overflow detection. Just skip this value.
-            dRes      = 0.0;
-        } else {
-            ullTotal  = (ullUserTotal - ullUserTotalOld) + (ullUserTotalLow - ullUserTotalLowOld) + (ullSysTotal - ullSysTotalOld);
-            dRes      = ullTotal;
-            ullTotal += (ullTotalIdle - ullTotalIdleOld);
-            dRes     /= ullTotal;
-            dRes     *= 100ULL;
-        }
+    if (ullUserTotal < ullUserTotalOld || ullUserTotalLow < ullUserTotalLowOld ||
+        ullSysTotal  < ullSysTotalOld  || ullTotalIdle    < ullTotalIdleOld)
+    {
+        //Overflow detection. Just skip this value.
+        dRes      = 0.0;
+    } else {
+        ullTotal  = (ullUserTotal - ullUserTotalOld) + (ullUserTotalLow - ullUserTotalLowOld) + (ullSysTotal - ullSysTotalOld);
+        dRes      = ullTotal;
+        ullTotal += (ullTotalIdle - ullTotalIdleOld);
+        dRes     /= ullTotal;
+        dRes     *= 100ULL;
+    }
 
-        ullUserTotalOld    = ullUserTotal;
-        ullUserTotalLowOld = ullUserTotalLow;
-        ullSysTotalOld     = ullSysTotal;
-        ullTotalIdleOld    = ullTotalIdle;
+    ullUserTotalOld    = ullUserTotal;
+    ullUserTotalLowOld = ullUserTotalLow;
+    ullSysTotalOld     = ullSysTotal;
+    ullTotalIdleOld    = ullTotalIdle;
 
-        ulRes = static_cast<ulong_t>( dRes );
-    #elif xOS_FREEBSD
-        //TODO: ulGetCpuUsage()
-    #else
-        #error xLib: unsupported OS
-    #endif
+    ulRes = static_cast<ulong_t>( dRes );
+#elif xOS_ENV_BSD
+    double         dCpuUsage            = 0.0;
+
+    static ulong_t cpu_used             = - 1UL;
+    static ulong_t s_ulTotalOld         = - 1UL;
+    static ulong_t s_ulUsedOld          = - 1UL;
+
+    ulong_t        ulUsed               = - 1UL;
+    ulong_t        ulTotal              = - 1UL;
+    ulong_t        aulCpIime[CPUSTATES] = {0};
+    size_t         uiCpTimeSize         = sizeof(aulCpIime);
+
+    int iRes = ::sysctlbyname("kern.cp_time", &aulCpIime, &uiCpTimeSize, NULL, 0);
+    /*DEBUG*/xASSSERT_RET(- 1 != iRes, 0UL);
+
+    clFresh.ulLoad[0] = aulCpIime[CP_USER];
+    clFresh.ulLoad[1] = aulCpIime[CP_NICE];
+    clFresh.ulLoad[2] = aulCpIime[CP_SYS];
+    clFresh.ulLoad[3] = aulCpIime[CP_IDLE];
+    clFresh.ulLoad[4] = aulCpIime[CP_IDLE];
+
+    ulUsed       = clFresh.ulLoad[0] + clFresh.ulLoad[1] + clFresh.ulLoad[2];
+    ulTotal      = clFresh.ulLoad[0] + clFresh.ulLoad[1] + clFresh.ulLoad[2] + clFresh.ulLoad[3];
+
+    dCpuUsage    = xSAFE_DIV(double)(ulUsed - s_ulUsedOld), (double)(ulTotal - s_ulTotalOld));
+
+    s_ulUsedOld  = ulUsed;
+    s_ulTotalOld = ulTotal;
+
+    ulRes = static_cast<ulong_t>( CxMacros::dRound(dCpuUsage) );
 #endif
 
     return ulRes;

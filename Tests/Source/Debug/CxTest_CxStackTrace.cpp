@@ -45,6 +45,19 @@ CxTest_CxStackTrace::bUnit(
         xTEST_EQ(false, sStack.empty());
     }
 
+    /*****************************************************************************/
+    #if xTEMP_DISABLED
+        std::vector<std::string> vsStack;
+
+        CxStackTrace stStack;
+
+        stStack.bGet(&vsStack, 64);
+
+        std::tcerr << "stack trace:" << std::endl;
+        std::tcerr << vsStack        << std::endl;
+    #endif
+    /*****************************************************************************/
+
     return true;
 }
 //---------------------------------------------------------------------------
