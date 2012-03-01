@@ -79,9 +79,9 @@ CxThread::~CxThread() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bCreate(
-    const bool cbIsPaused,
+    const bool   cbIsPaused,
     const uint_t cuiStackSize,
-    void       *pvParam
+    void        *pvParam
 )
 {
 #if xOS_ENV_WIN
@@ -753,10 +753,10 @@ CxThread::bSetCpuAffinity(
     /*DEBUG*/xASSERT_RET(0                       != uiRes, false);
     /*DEBUG*/xASSERT_RET(ERROR_INVALID_PARAMETER != uiRes, false);
 #elif xOS_ENV_UNIX
-    #if xOS_FREEBSD
-        cpuset_t  csCpuSet;
-    #else
+    #if   xOS_LINUX
         cpu_set_t csCpuSet;
+    #elif xOS_FREEBSD
+        cpuset_t  csCpuSet;
     #endif
 
     CPU_ZERO(&csCpuSet);
@@ -923,11 +923,13 @@ CxThread::bSetDebugName(
     #else
         //TODO: bSetDebugName
     #endif
-#elif xOS_FREEBSD
-    (void)pthread_set_name_np(ulGetId(), csName.c_str());
 #elif xOS_ENV_UNIX
-    int iRes = ::prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    #if   xOS_LINUX
+        int iRes = ::prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    #elif xOS_FREEBSD
+         (void)pthread_set_name_np(ulGetId(), csName.c_str());
+    #endif
 #endif
 
     return true;

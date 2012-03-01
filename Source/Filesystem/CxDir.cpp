@@ -48,19 +48,6 @@ CxDir::bIsEmpty(
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
     /*DEBUG*/xASSERT_RET(false == csMask.empty(),    false);
 
-/*****************************************************************************/
-#if xTEMP_DISABLED
-    std::vector<std::string> vsStack;
-
-    CxStackTrace stStack;
-
-    stStack.bGet(&vsStack, 64);
-
-    std::tcerr << "stack trace:" << std::endl;
-    std::tcerr << vsStack        << std::endl;
-#endif
-/*****************************************************************************/
-
     bool bRes = false;
 
     //TODO: CxPath::sToCurrentOs + CxPath::sSlashAppend

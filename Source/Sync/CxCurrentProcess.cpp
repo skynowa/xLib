@@ -47,10 +47,12 @@ CxCurrentProcess::ulGetParentId() {
     	//typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
 
-        typedef enum _PROCESSINFOCLASS {
+        enum PROCESSINFOCLASS
+            /// process info type
+        {
             ProcessBasicInformation = 0,
             ProcessWow64Information = 26
-        } PROCESSINFOCLASS;
+        };
 	#endif
 
 	typedef NTSTATUS (WINAPI *fpProcAddress)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);

@@ -68,14 +68,14 @@ CxStdError::sFormat(
 
     sRes.append(pcszError);
 #elif xOS_ENV_UNIX
-    #if xOS_LINUX
+    #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
         const tchar_t *pcszError = ::strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
         sRes.append(pcszError);
-    #else
+    #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
         int iRes = ::strerror_r(static_cast<int>( ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));

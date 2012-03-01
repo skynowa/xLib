@@ -38,7 +38,26 @@ CxPath::sGetExe() {
 
     sRes.resize(ulStored);
 #elif xOS_ENV_UNIX
-    #if xOS_FREEBSD
+    #if   xOS_LINUX
+        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxCurrentProcess::ulGetId());
+
+        bool bRes = CxFile::bIsExists(csProcFile);
+        xCHECK_RET(false == bRes, std::tstring_t());
+
+        int iReaded = - 1;
+        sRes.resize(xPATH_MAX);
+
+        for ( ; ; ) {
+            iReaded = ::readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring_t::value_type));
+            /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring_t());
+
+            xCHECK_DO(sRes.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
+
+            sRes.resize(sRes.size() * 2);
+        }
+
+        sRes.resize(iReaded);
+    #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
             sRes.resize(xPATH_MAX);
 
@@ -60,25 +79,6 @@ CxPath::sGetExe() {
 
             sRes = sGetAbsolute(vsArgs.at(0));
         #endif
-    #else
-        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxCurrentProcess::ulGetId());
-
-        bool bRes = CxFile::bIsExists(csProcFile);
-        xCHECK_RET(false == bRes, std::tstring_t());
-
-        int iReaded = - 1;
-        sRes.resize(xPATH_MAX);
-
-        for ( ; ; ) {
-            iReaded = ::readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring_t::value_type));
-            /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring_t());
-
-            xCHECK_DO(sRes.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
-
-            sRes.resize(sRes.size() * 2);
-        }
-
-        sRes.resize(iReaded);
     #endif
 #endif
 
@@ -838,7 +838,7 @@ CxPath::uiGetNameMaxSize() {
         ulLastError = CxLastError::ulGet();
         /*DEBUG*/xASSERT_RET(- 1L == liRes && 0UL != culSavedError, 0);
 
-        if (- 1 == liRes && culSavedError == ulLastError) {
+        if (- 1L == liRes && culSavedError == ulLastError) {
             //system does not have a limit for the requested resource
             const size_t cuiDefaultSize = 1024;
 
@@ -852,7 +852,7 @@ CxPath::uiGetNameMaxSize() {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-#if xOS_ENV_UNIX || 1
+#if xOS_ENV_UNIX
 
 /*static*/
 std::tstring_t

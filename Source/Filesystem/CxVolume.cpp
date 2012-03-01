@@ -154,12 +154,12 @@ CxVolume::bMount(
     DWORD dwRes = ::WNetAddConnection2(&nrNetResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
     /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
 #elif xOS_ENV_UNIX
-	#if xOS_FREEBSD
-    	int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), MNT_UPDATE, NULL);
-    	/*DEBUG*/xASSERT_RET(- 1 != iRes, false);
-    #else
-    	int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), NULL, MS_REMOUNT, NULL);
-    	/*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    #if   xOS_LINUX
+        int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), NULL, MS_REMOUNT, NULL);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    #elif xOS_FREEBSD
+        int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), MNT_UPDATE, NULL);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
     #endif
 #endif
 
@@ -188,12 +188,12 @@ CxVolume::bUnMount(
 
 	const int ciFlag = cbIsForce ? MNT_FORCE : xMNT_DETACH;
 
-    #if xOS_FREEBSD
-		int iRes = ::unmount(csSourcePath.c_str(), ciFlag);
-		/*DEBUG*/xASSERT_RET(- 1 != iRes, false);
-    #else
-		int iRes = ::umount2(csSourcePath.c_str(), ciFlag);
-		/*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    #if   xOS_LINUX
+        int iRes = ::umount2(csSourcePath.c_str(), ciFlag);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    #elif xOS_FREEBSD
+        int iRes = ::unmount(csSourcePath.c_str(), ciFlag);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
     #endif
 #endif
 

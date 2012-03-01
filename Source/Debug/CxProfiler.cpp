@@ -352,9 +352,9 @@ CxProfiler::gettimeofday(
     ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
 #endif
 
-    FILETIME    ftTime  = {0};
-    ulonglong_t ullRes  = 0ULL;
-    static int  iTzFlag = 0;
+    FILETIME    ftTime    = {0};
+    ulonglong_t ullRes    = 0ULL;
+    static int  s_iTzFlag = 0;
 
     if (NULL != tv) {
         (void)::GetSystemTimeAsFileTime(&ftTime);
@@ -374,9 +374,9 @@ CxProfiler::gettimeofday(
     }
 
     if (NULL != tz) {
-        if (!iTzFlag) {
+        if (!s_iTzFlag) {
             _tzset();
-            ++ iTzFlag;
+            ++ s_iTzFlag;
         }
 
         tz->tz_minuteswest = _timezone / 60;

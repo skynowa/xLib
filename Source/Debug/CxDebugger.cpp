@@ -203,13 +203,13 @@ CxDebugger::bBeep(
         xCHECK_RET(false == bRes, false);
     #endif
 #elif xOS_ENV_UNIX
-    #if xOS_FREEBSD
-        //TODO: bBeep
-    #else
+    #if   xOS_LINUX
         #if xTODO
             int iRes = std::xTSYSTEM(xT("xkbbell"));
             xASSERT_RET(- 1 == iRes, false);
         #endif
+    #elif xOS_FREEBSD
+        //TODO: bBeep
     #endif
 
     #if xTEMP_DISABLED
