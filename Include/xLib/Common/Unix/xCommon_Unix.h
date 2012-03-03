@@ -31,6 +31,7 @@
 #include <sys/uio.h>
 #include <sys/syscall.h>
 #include <sys/param.h>
+#include <sys/sysinfo.h>
 
 //thread
 #include <pthread.h>    //lib: -pthread

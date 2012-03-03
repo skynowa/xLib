@@ -468,19 +468,19 @@ CxSystemInfo::ulGetCpuUsage() {
     ulong_t ulRes = 0UL;
 
 #if   xOS_ENV_WIN
-    ULONGLONG             ullRes         = 0ULL;
+    double                dRes             = 0.0;
 
-    FILETIME              ftSysIdle      = {0};
-    FILETIME              ftSysKernel    = {0};
-    FILETIME              ftSysUser      = {0};
+    FILETIME              ftSysIdle        = {0};
+    FILETIME              ftSysKernel      = {0};
+    FILETIME              ftSysUser        = {0};
 
-    ULARGE_INTEGER        ulSysIdle      = {{0}};
-    ULARGE_INTEGER        ulSysKernel    = {{0}};
-    ULARGE_INTEGER        ulSysUser      = {{0}};
+    ULARGE_INTEGER        ulSysIdle        = {{0}};
+    ULARGE_INTEGER        ulSysKernel      = {{0}};
+    ULARGE_INTEGER        ulSysUser        = {{0}};
 
-    static ULARGE_INTEGER ulSysIdleOld   = {{0}};
-    static ULARGE_INTEGER ulSysKernelOld = {{0}};
-    static ULARGE_INTEGER ulSysUserOld   = {{0}};
+    static ULARGE_INTEGER s_ulSysIdleOld   = {{0}};
+    static ULARGE_INTEGER s_ulSysKernelOld = {{0}};
+    static ULARGE_INTEGER s_ulSysUserOld   = {{0}};
 
 
     BOOL blRes = ::GetSystemTimes(&ftSysIdle, &ftSysKernel, &ftSysUser);
@@ -490,20 +490,20 @@ CxSystemInfo::ulGetCpuUsage() {
     (void)::CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
     (void)::CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
 
-    ullRes = xSAFE_DIV(
-                (ulSysKernel.QuadPart - ulSysKernelOld.QuadPart) +
-                (ulSysUser.QuadPart   - ulSysUserOld.QuadPart)   -
-                (ulSysIdle.QuadPart   - ulSysIdleOld.QuadPart)
+    dRes = xSAFE_DIV(
+                (ulSysKernel.QuadPart - s_ulSysKernelOld.QuadPart) +
+                (ulSysUser.QuadPart   - s_ulSysUserOld.QuadPart)   -
+                (ulSysIdle.QuadPart   - s_ulSysIdleOld.QuadPart)
                 ,
-                (ulSysKernel.QuadPart - ulSysKernelOld.QuadPart) +
-                (ulSysUser.QuadPart - ulSysUserOld.QuadPart)
-    ) * 100ULL;
+                (ulSysKernel.QuadPart - s_ulSysKernelOld.QuadPart) +
+                (ulSysUser.QuadPart - s_ulSysUserOld.QuadPart)
+    ) * 100.0;
 
-    ulSysIdleOld.QuadPart   = ulSysIdle.QuadPart;
-    ulSysUserOld.QuadPart   = ulSysUser.QuadPart;
-    ulSysKernelOld.QuadPart = ulSysKernel.QuadPart;
+    s_ulSysIdleOld.QuadPart   = ulSysIdle.QuadPart;
+    s_ulSysUserOld.QuadPart   = ulSysUser.QuadPart;
+    s_ulSysKernelOld.QuadPart = ulSysKernel.QuadPart;
 
-    ulRes = static_cast<ulong_t>( ullRes );
+    ulRes = static_cast<ulong_t>( dRes );
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         double             dRes               = 0.0;
@@ -585,7 +585,7 @@ CxSystemInfo::ulGetCpuUsage() {
         ulUsed       = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS];
         ulTotal      = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS] + aulCpIime[CP_IDLE];
 
-        dCpuUsage    = xSAFE_DIV((double)(ulUsed - s_ulUsedOld), (double)(ulTotal - s_ulTotalOld)) * 100.0;
+        dCpuUsage    = xSAFE_DIV(ulUsed - s_ulUsedOld, ulTotal - s_ulTotalOld) * 100.0;
 
         s_ulUsedOld  = ulUsed;
         s_ulTotalOld = ulTotal;
@@ -596,7 +596,40 @@ CxSystemInfo::ulGetCpuUsage() {
 
     return ulRes;
 }
-//---------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
+/*static*/
+ulong_t
+CxSystemInfo::ulGetMemoryUsage() {
+    xDEBUG_VARS_NA;
+
+    ulong_t ulRes = 0UL;
+
+#if   xOS_ENV_WIN
+    MEMORYSTATUSEX msStatus = {0};
+    msStatus.dwLength = sizeof(msStatus);
+
+    BOOL blRes = ::GlobalMemoryStatusEx(&msStatus);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, 0UL);
+
+    ulRes = msStatus.dwMemoryLoad;
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        struct sysinfo siInfo = {0};
+
+        int iRes = ::sysinfo(&siInfo);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+
+        printf("Total Ram: %lluk\tFree: %lluk\n",
+                siInfo.totalram * (unsigned long long)siInfo.mem_unit / 1024,
+                siInfo.freeram  * (unsigned long long)siInfo.mem_unit / 1024);
+    #elif xOS_FREEBSD
+
+    #endif
+#endif
+
+    return ulRes;
+}
+//----------------------------------------------------------------------------------------------------
 /*static*/
 ulong_t
 CxSystemInfo::ulGetPageSize() {

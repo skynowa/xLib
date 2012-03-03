@@ -84,7 +84,7 @@
     ///< get min value
 #define xINT_TO_BOOL(expr)      ( (0 == (expr)) ? false : true )
     ///< convert int to bool
-#define xSAFE_DIV(x, y)         ( (0 == (y)) ? (0) : ((x) / (y)) )
+#define xSAFE_DIV(x, y)         ( (0 == (y)) ? (0) : (static_cast<double>( x ) / static_cast<double>( y )) )
     ///< safe division
 
 /// hide "unused variable" warnings
