@@ -619,9 +619,9 @@ CxSystemInfo::ulGetMemoryUsage() {
         int iRes = ::sysinfo(&siInfo);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-        printf("Total Ram: %lluk\tFree: %lluk\n",
-                siInfo.totalram * (unsigned long long)siInfo.mem_unit / 1024,
-                siInfo.freeram  * (unsigned long long)siInfo.mem_unit / 1024);
+        ulong_t ulUsage = siInfo.totalram - siInfo.freeram;
+
+        ulRes = ulUsage * 100UL / siInfo.totalram;
     #elif xOS_FREEBSD
 
     #endif

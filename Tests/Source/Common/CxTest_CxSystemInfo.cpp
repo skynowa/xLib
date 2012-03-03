@@ -190,11 +190,11 @@ CxTest_CxSystemInfo::bUnit(
     //ulGetMemoryUsage
     xTEST_CASE(cullCaseLoops)
     {
-        for (size_t i = 0; i < 10; ++ i) {
+        for (size_t i = 0; i < 10000; ++ i) {
             m_ulRes = CxSystemInfo::ulGetMemoryUsage();
             xDEBUG_VAR_NA(m_ulRes);
 
-            #if xTEST_IGNORE || 1
+            #if xTEST_IGNORE
                 xTRACEV(xT("\tMemory usage: %ld"), m_ulRes);
 
                 CxCurrentThread::bSleep(1000UL);
