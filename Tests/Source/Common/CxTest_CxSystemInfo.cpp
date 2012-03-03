@@ -166,7 +166,7 @@ CxTest_CxSystemInfo::bUnit(
         xTEST_LESS(0UL, m_ulRes);
 
         #if xTEST_IGNORE
-            xTRACEV(xT("CPU speed: %ld"), m_ulRes);
+            xTRACEV(xT("\tCPU speed: %ld"), m_ulRes);
         #endif
     }
 
@@ -174,12 +174,28 @@ CxTest_CxSystemInfo::bUnit(
     //ulGetCpuUsage
     xTEST_CASE(cullCaseLoops)
     {
-        for (size_t i = 0; i < 1000; ++ i) {
+        for (size_t i = 0; i < 10; ++ i) {
             m_ulRes = CxSystemInfo::ulGetCpuUsage();
             xDEBUG_VAR_NA(m_ulRes);
 
             #if xTEST_IGNORE
-                xTRACEV(xT("CPU usage: %ld"), m_ulRes);
+                xTRACEV(xT("\tCPU usage: %ld"), m_ulRes);
+
+                CxCurrentThread::bSleep(1000UL);
+            #endif
+        }
+    }
+
+    //--------------------------------------------------
+    //ulGetMemoryUsage
+    xTEST_CASE(cullCaseLoops)
+    {
+        for (size_t i = 0; i < 10; ++ i) {
+            m_ulRes = CxSystemInfo::ulGetMemoryUsage();
+            xDEBUG_VAR_NA(m_ulRes);
+
+            #if xTEST_IGNORE || 1
+                xTRACEV(xT("\tMemory usage: %ld"), m_ulRes);
 
                 CxCurrentThread::bSleep(1000UL);
             #endif

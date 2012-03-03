@@ -90,7 +90,7 @@ CxPath::sGetExe() {
 #if xOS_ENV_WIN
     extern "C" IMAGE_DOS_HEADER __ImageBase;
 #elif xOS_ENV_UNIX
-	static void vFunction() { }
+	static void vFunction() { ; }
 #endif
 
 /*static*/

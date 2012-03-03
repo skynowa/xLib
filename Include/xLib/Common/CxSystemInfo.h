@@ -76,6 +76,8 @@ class CxSystemInfo :
             ///< get CPU speed in MHz
         static ulong_t        ulGetCpuUsage     ();
             ///< get CPU usage
+        static ulong_t        ulGetMemoryUsage  ();
+            ///< get memory usage
 
         static ulong_t        ulGetPageSize     ();
             ///< get Size of a page in bytes
