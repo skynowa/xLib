@@ -460,13 +460,6 @@ CxSystemInfo::ulGetCpuSpeed() {
     return ulRes;
 }
 //---------------------------------------------------------------------------
-struct SCpuLoad {
-    ulong_t ulLoad[5];
-};
-
-static SCpuLoad clFresh = {{0}};
-
-
 /*static*/
 ulong_t
 CxSystemInfo::ulGetCpuUsage() {
@@ -498,15 +491,13 @@ CxSystemInfo::ulGetCpuUsage() {
     (void)::CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
 
     ullRes = xSAFE_DIV(
-                (
-                    (ulSysKernel.QuadPart - ulSysKernelOld.QuadPart) +
-                    (ulSysUser.QuadPart   - ulSysUserOld.QuadPart)   -
-                    (ulSysIdle.QuadPart   - ulSysIdleOld.QuadPart)
-                ) * 100ULL
+                (ulSysKernel.QuadPart - ulSysKernelOld.QuadPart) +
+                (ulSysUser.QuadPart   - ulSysUserOld.QuadPart)   -
+                (ulSysIdle.QuadPart   - ulSysIdleOld.QuadPart)
                 ,
                 (ulSysKernel.QuadPart - ulSysKernelOld.QuadPart) +
                 (ulSysUser.QuadPart - ulSysUserOld.QuadPart)
-    );
+    ) * 100ULL;
 
     ulSysIdleOld.QuadPart   = ulSysIdle.QuadPart;
     ulSysUserOld.QuadPart   = ulSysUser.QuadPart;
@@ -579,28 +570,22 @@ CxSystemInfo::ulGetCpuUsage() {
     #elif xOS_FREEBSD
         double         dCpuUsage            = 0.0;
 
-        static ulong_t cpu_used             = - 1UL;
         static ulong_t s_ulTotalOld         = - 1UL;
         static ulong_t s_ulUsedOld          = - 1UL;
 
         ulong_t        ulUsed               = - 1UL;
         ulong_t        ulTotal              = - 1UL;
+
         ulong_t        aulCpIime[CPUSTATES] = {0};
         size_t         uiCpTimeSize         = sizeof(aulCpIime);
 
         int iRes = ::sysctlbyname("kern.cp_time", &aulCpIime, &uiCpTimeSize, NULL, 0);
-        /*DEBUG*/xASSSERT_RET(- 1 != iRes, 0UL);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-        clFresh.ulLoad[0] = aulCpIime[CP_USER];
-        clFresh.ulLoad[1] = aulCpIime[CP_NICE];
-        clFresh.ulLoad[2] = aulCpIime[CP_SYS];
-        clFresh.ulLoad[3] = aulCpIime[CP_IDLE];
-        clFresh.ulLoad[4] = aulCpIime[CP_IDLE];
+        ulUsed       = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS];
+        ulTotal      = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS] + aulCpIime[CP_IDLE];
 
-        ulUsed       = clFresh.ulLoad[0] + clFresh.ulLoad[1] + clFresh.ulLoad[2];
-        ulTotal      = clFresh.ulLoad[0] + clFresh.ulLoad[1] + clFresh.ulLoad[2] + clFresh.ulLoad[3];
-
-        dCpuUsage    = xSAFE_DIV(double)(ulUsed - s_ulUsedOld), (double)(ulTotal - s_ulTotalOld));
+        dCpuUsage    = xSAFE_DIV((double)(ulUsed - s_ulUsedOld), (double)(ulTotal - s_ulTotalOld)) * 100.0;
 
         s_ulUsedOld  = ulUsed;
         s_ulTotalOld = ulTotal;

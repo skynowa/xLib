@@ -24,8 +24,8 @@
 <option id="gnu.cpp.compiler.option.debugging.level.1332114906" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.include.paths.878314382" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/local/include"/>
-<listOptionValue builtIn="false" value="/home/alca/Coding/C++/xLib/Include"/>
-<listOptionValue builtIn="false" value="/home/alca/Coding/C++/xLib/Tests/Include"/>
+<listOptionValue builtIn="false" value="/usr/home/alca/Projects/xLib/Include"/>
+<listOptionValue builtIn="false" value="/usr/home/alca/Projects/xLib/Tests/Include"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.642876646" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
@@ -916,6 +916,8 @@
 <listOptionValue builtIn="false" value="/usr/home/alca/Coding/C++/xLib/Tests/Include"/>
 <listOptionValue builtIn="false" value="/home/alca/Coding/C++/xLib/Include"/>
 <listOptionValue builtIn="false" value="/home/alca/Coding/C++/xLib/Tests/Include"/>
+<listOptionValue builtIn="false" value="/usr/home/alca/Projects/xLib/Include"/>
+<listOptionValue builtIn="false" value="/usr/home/alca/Projects/xLib/Tests/Include"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2032183948" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
