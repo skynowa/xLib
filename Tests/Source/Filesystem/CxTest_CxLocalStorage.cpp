@@ -37,8 +37,8 @@ CxTest_CxLocalStorage::bUnit(
     const std::tstring_t csValue3   = xT("3");
 
     const std::tstring_t csContent  = csKey1 + CxConst::xEQUAL + csValue1 + CxConst::xNL +
-                                    csKey2 + CxConst::xEQUAL + csValue2 + CxConst::xNL +
-                                    csKey3 + CxConst::xEQUAL + csValue3 + CxConst::xNL;
+                                      csKey2 + CxConst::xEQUAL + csValue2 + CxConst::xNL +
+                                      csKey3 + CxConst::xEQUAL + csValue3 + CxConst::xNL;
 
     //--------------------------------------------------
     //CxLocalStorage()
@@ -49,6 +49,9 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //CxLocalStorage(csFilePath)
+    m_bRes = CxFile::bDelete(csFilePath);
+    xTEST_EQ(true, m_bRes);
+
     CxLocalStorage iniIni(csFilePath);
 
     /****************************************************************************

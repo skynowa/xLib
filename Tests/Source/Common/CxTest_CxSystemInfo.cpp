@@ -174,7 +174,7 @@ CxTest_CxSystemInfo::bUnit(
     //ulGetCpuUsage
     xTEST_CASE(cullCaseLoops)
     {
-        for (size_t i = 0; i < 10; ++ i) {
+        for (size_t i = 0; i < 1000; ++ i) {
             m_ulRes = CxSystemInfo::ulGetCpuUsage();
             xDEBUG_VAR_NA(m_ulRes);
 

@@ -64,6 +64,7 @@ CxFile::bCreate(
 
     //create, open file
     std::FILE *pFile = std::xTFOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());
+//BUG: 26 - text file busy
     /*DEBUG*/xASSERT_RET(NULL != pFile, false);
 
     _m_pFile     = pFile;
