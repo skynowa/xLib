@@ -145,7 +145,7 @@
         #define xSTD_LIBC_ZOS    1
             ///< z/OS libc
     #else
-        #warning xLib: unsupported standard C library
+        //#warning xLib: unsupported standard C library
     #endif
 #endif
 

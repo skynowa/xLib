@@ -31,7 +31,6 @@
 #include <sys/uio.h>
 #include <sys/syscall.h>
 #include <sys/param.h>
-#include <sys/sysinfo.h>
 
 //thread
 #include <pthread.h>    //lib: -pthread
@@ -41,16 +40,17 @@
 //dll
 #include <dlfcn.h>
 
-#if xOS_FREEBSD
+#if   xOS_LINUX
+    #include <sys/vfs.h>
+    #include <sys/prctl.h>
+    #include <sys/sysinfo.h>
+#elif xOS_FREEBSD
     #include <osreldate.h>
     #include <pthread_np.h>    //lib: libpthread, -lpthread (FreeBSD)
     #include <sys/mount.h>
     #include <sys/statvfs.h>
     #include <sys/resource.h>
     #include <sys/sysctl.h>
-#else
-    #include <sys/vfs.h>
-    #include <sys/prctl.h>
 #endif
 
 //socket

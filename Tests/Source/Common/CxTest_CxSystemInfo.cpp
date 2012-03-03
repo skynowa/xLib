@@ -194,7 +194,7 @@ CxTest_CxSystemInfo::bUnit(
             m_ulRes = CxSystemInfo::ulGetMemoryUsage();
             xDEBUG_VAR_NA(m_ulRes);
 
-            #if xTEST_IGNORE
+            #if xTEST_IGNORE || 1
                 xTRACEV(xT("\tMemory usage: %ld"), m_ulRes);
 
                 CxCurrentThread::bSleep(1000UL);

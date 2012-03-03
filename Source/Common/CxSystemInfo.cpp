@@ -496,7 +496,7 @@ CxSystemInfo::ulGetCpuUsage() {
                 (ulSysIdle.QuadPart   - s_ulSysIdleOld.QuadPart)
                 ,
                 (ulSysKernel.QuadPart - s_ulSysKernelOld.QuadPart) +
-                (ulSysUser.QuadPart - s_ulSysUserOld.QuadPart)
+                (ulSysUser.QuadPart   - s_ulSysUserOld.QuadPart)
     ) * 100.0;
 
     s_ulSysIdleOld.QuadPart   = ulSysIdle.QuadPart;
@@ -623,7 +623,7 @@ CxSystemInfo::ulGetMemoryUsage() {
 
         ulRes = ulUsage * 100UL / siInfo.totalram;
     #elif xOS_FREEBSD
-
+        //TODO: ulGetMemoryUsage()
     #endif
 #endif
 
