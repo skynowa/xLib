@@ -624,6 +624,30 @@ CxSystemInfo::ulGetMemoryUsage() {
         ulRes = ulUsage * 100UL / siInfo.totalram;
     #elif xOS_FREEBSD
         //TODO: ulGetMemoryUsage()
+
+        ulong_t ulMemoryTotal = 0UL;
+        {
+            int     mib[]             = {CTL_HW, HW_PHYSMEM};
+
+            size_t  uiMemoryTotalSize = sizeof(ulMemoryTotal);
+
+            int iRes = ::sysctl(mib, 2, &ulMemoryTotal, &uiMemoryTotalSize, NULL, 0);
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+        }
+
+        ulong_t ulMemoryFree = 0UL;
+        {
+            size_t ulMemoryFreeSize = sizeof(ulMemoryFree);
+
+            int iRes = ::sysctlbyname("vm.stats.vm.v_free_count", &ulMemoryFree, &ulMemoryFreeSize, NULL, 0);
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+        }
+
+        ulong_t ulUsage = ulMemoryTotal - ulMemoryFree;
+
+        ulRes = ulUsage * 100UL / ulMemoryTotal;
+
+        xTRACEV("ulMemoryTotal: %ld, ulMemoryFree: %ld, usage: [%ld]", ulMemoryTotal, ulMemoryFree, ulUsage);
     #endif
 #endif
 
