@@ -84,8 +84,7 @@
     ///< get min value
 #define xINT_TO_BOOL(expr)      ( (0 == (expr)) ? false : true )
     ///< convert int to bool
-#define xSAFE_DIV(x, y)         ( (0 == (y)) ? (0) : (static_cast<double>( x ) / static_cast<double>( y )) )
-    ///< safe division
+
 
 /// hide "unused variable" warnings
 #if xCOMPILER_MINGW32 || xCOMPILER_MS
@@ -443,8 +442,7 @@ class CxMacros :
 
         //TODO: xSwapAddr
         template <class T>
-        static inline
-        void
+        static inline void
         xSwapAddr(T** a) {
             T* addr = *a; T temp = *addr; ++ addr; **a= *addr; *addr = temp; *a = addr + 1;
         }
@@ -452,8 +450,7 @@ class CxMacros :
 
         //TODO: xSign
         template <class T>
-        static inline
-        const T
+        static inline const T
         xSign(const T& x ) {
             return x >= 0 ? (T)1 : (T)- 1;
         }
@@ -494,12 +491,19 @@ class CxMacros :
         }
             ///< convert std::tstring_t to C-string
 
-        static inline
-        double
+        static inline double
         dRound(const double cdValue) {
             return ::floor(cdValue + 0.5);
         }
             ///< round double value to the integer part
+
+        template <class T1, class T2>
+        static inline double
+        dSafeDiv(const T1 cVal1T, const T2 cVal2T) {
+
+            return ( (static_cast<T2>( 0 ) == cVal2T) ? (0.0) : (static_cast<double>( cVal1T ) / static_cast<double>( cVal2T )) );
+        }
+            ///< safe division
 
     private:
                 CxMacros();

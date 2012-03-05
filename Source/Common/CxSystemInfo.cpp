@@ -490,7 +490,7 @@ CxSystemInfo::ulGetCpuUsage() {
     (void)::CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
     (void)::CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
 
-    dRes = xSAFE_DIV(
+    dRes = CxMacros::dSafeDiv(
                 (ulSysKernel.QuadPart - s_ulSysKernelOld.QuadPart) +
                 (ulSysUser.QuadPart   - s_ulSysUserOld.QuadPart)   -
                 (ulSysIdle.QuadPart   - s_ulSysIdleOld.QuadPart)
@@ -585,7 +585,7 @@ CxSystemInfo::ulGetCpuUsage() {
         ulUsed       = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS];
         ulTotal      = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS] + aulCpIime[CP_IDLE];
 
-        dCpuUsage    = xSAFE_DIV(ulUsed - s_ulUsedOld, ulTotal - s_ulTotalOld) * 100.0;
+        dCpuUsage    = CxMacros::dSafeDiv(ulUsed - s_ulUsedOld, ulTotal - s_ulTotalOld) * 100.0;
 
         s_ulUsedOld  = ulUsed;
         s_ulTotalOld = ulTotal;
