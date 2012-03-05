@@ -251,6 +251,12 @@
     ///< maximum length of a utility's input line, either from standard input or from a file
 
 
+#if xOS_ENV_WIN
+    #define xENV_MAX 32767 //custom define
+#elif xOS_ENV_UNIX
+    #define xENV_MAX _MAX_ENV
+#endif
+    ///< maximum permissible string length of an environmental variable
 
 
 //var args

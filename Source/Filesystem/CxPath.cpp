@@ -65,7 +65,7 @@ CxPath::sGetExe() {
 
             size_t uiResSize = sRes.size() * sizeof(std::tstring_t::value_type);
 
-            int iRes = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &sRes.at(0), &uiResSize, NULL, 0);
+            int iRes = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sRes.at(0), &uiResSize, NULL, 0);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring_t());
 
             sRes.resize(uiResSize);
