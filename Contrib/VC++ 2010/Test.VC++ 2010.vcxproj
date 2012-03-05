@@ -182,9 +182,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Debug\CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxDebugger.cpp" />
+    <ClCompile Include="..\..\Source\Debug\CxErrorReport.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxLastError.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxProfiler.cpp" />
-    <ClCompile Include="..\..\Source\Debug\CxReport.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxStackTrace.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxStdError.cpp" />
     <ClCompile Include="..\..\Source\Debug\CxTest.cpp" />
@@ -293,9 +293,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxErrorReport.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxReport.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxStackTrace.cpp" />
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxStdError.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxBackuper.cpp" />
@@ -399,6 +399,7 @@
     <ClInclude Include="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11.h" />
     <ClInclude Include="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11f.h" />
     <ClInclude Include="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h" />
+    <ClInclude Include="..\..\Include\xLib\Debug\CxErrorReport.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxStackTrace.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxStdError.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h" />
@@ -445,9 +446,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxErrorReport.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxReport.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxStackTrace.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxStdError.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxBackuper.h" />
@@ -524,7 +525,6 @@
     <ClInclude Include="..\..\Include\xLib\Debug\CxDebugger.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxLastError.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxProfiler.h" />
-    <ClInclude Include="..\..\Include\xLib\Debug\CxReport.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxTest.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\xDebug.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxDir.h" />
@@ -620,6 +620,7 @@
     <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">
       <FileType>Document</FileType>
     </CustomBuildStep>
+    <None Include="..\..\Include\xLib\Debug\CxErrorReport.inl" />
     <None Include="..\..\TODO.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

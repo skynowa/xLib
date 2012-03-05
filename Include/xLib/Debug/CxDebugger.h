@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxReport;
+class CxErrorReport;
 
 class CxDebugger :
     private CxNonCopyable
@@ -33,7 +33,7 @@ class CxDebugger :
             ///< set log file path
         static std::tstring_t sGetLogPath     ();
             ///< get log file path
-        static bool           bReportMake     (const CxReport &crpReport);
+        static bool           bReportMake     (const CxErrorReport &crpReport);
             ///< make report
         static bool           bTrace          (const tchar_t *pcszFormat, ...);
             ///< tracing to debugger, std::cout
@@ -53,19 +53,19 @@ class CxDebugger :
         virtual              ~CxDebugger      ();
             ///< destructor
 
-        static bool           _bMsgboxPlain   (const CxReport &crpReport);
+        static bool           _bMsgboxPlain   (const CxErrorReport &crpReport);
             ///< show message box with plain report
-        static bool           _bMsgboxFormated(const CxReport &crpReport);
+        static bool           _bMsgboxFormated(const CxErrorReport &crpReport);
             ///< show message box with formated report, std::cerr
 
-        static bool           _bStdoutPlain   (const CxReport &crpReport);
+        static bool           _bStdoutPlain   (const CxErrorReport &crpReport);
             ///< show plain report in std::cout
-        static bool           _bStdoutHtml    (const CxReport &crpReport);
+        static bool           _bStdoutHtml    (const CxErrorReport &crpReport);
             ///< show html report in std::cout
 
-        static bool           _bLoggingPlain  (const CxReport &crpReport);
+        static bool           _bLoggingPlain  (const CxErrorReport &crpReport);
             ///< log plain report to file
-        static bool           _bLoggingHtml   (const CxReport &crpReport);
+        static bool           _bLoggingHtml   (const CxErrorReport &crpReport);
             ///< log html report to file
 };
 

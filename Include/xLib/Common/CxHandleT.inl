@@ -6,7 +6,7 @@
 #include <xLib/Debug/CxLastError.h>
 #include <xLib/Debug/CxStdError.h>
 #include <xLib/Debug/CxStackTrace.h>
-#include <xLib/Debug/CxReport.h>
+#include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
 
 xNAMESPACE_BEGIN(NxLib)

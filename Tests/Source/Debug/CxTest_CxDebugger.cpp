@@ -98,17 +98,17 @@ CxTest_CxDebugger::bUnit(
     //bReportMake
     xTEST_CASE(cullCaseLoops)
     {
-        const CxReport::EType crtType[] = {
-            CxReport::rtMsgboxPlain,
-            CxReport::rtMsgboxFormated,
-            CxReport::rtStdoutPlain,
-            CxReport::rtStdoutHtml,
-            CxReport::rtLoggingPlain,
-            CxReport::rtLoggingHtml
+        const CxErrorReport::EType crtType[] = {
+            CxErrorReport::rtMsgboxPlain,
+            CxErrorReport::rtMsgboxFormated,
+            CxErrorReport::rtStdoutPlain,
+            CxErrorReport::rtStdoutHtml,
+            CxErrorReport::rtLoggingPlain,
+            CxErrorReport::rtLoggingHtml
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {
-            CxReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
+            CxErrorReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
 
             //m_bRes = CxDebugger::bReportMake(rpReport);
             //xTEST_EQ(true, m_bRes);

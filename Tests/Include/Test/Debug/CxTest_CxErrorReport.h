@@ -1,5 +1,5 @@
 /**
- * \file   CxTest_CxReport.h
+ * \file   CxTest_CxErrorReport.h
  * \brief
  */
 
@@ -9,14 +9,14 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxTest.h>
-#include <xLib/Debug/CxReport.h>
+#include <xLib/Debug/CxErrorReport.h>
 //---------------------------------------------------------------------------
-class CxTest_CxReport :
+class CxTest_CxErrorReport :
     public CxTest
 {
     public:
-                     CxTest_CxReport();
-        virtual     ~CxTest_CxReport();
+                     CxTest_CxErrorReport();
+        virtual     ~CxTest_CxErrorReport();
 
         virtual bool bUnit(const ulonglong_t cullCaseLoops);
 

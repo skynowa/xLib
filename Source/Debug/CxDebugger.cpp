@@ -9,7 +9,7 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxConsole.h>
-#include <xLib/Debug/CxReport.h>
+#include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Sync/CxCurrentProcess.h>
@@ -127,21 +127,21 @@ CxDebugger::sGetLogPath() {
 /*static*/
 bool
 CxDebugger::bReportMake(
-    const CxReport &crpReport
+    const CxErrorReport &crpReport
 )
 {
     //-------------------------------------
     //never corrupt the last error value
     const ulong_t culLastError = crpReport.ulGetLastError();
 
-    CxReport::EType rtRes = crpReport.rtGetType();
+    CxErrorReport::EType rtRes = crpReport.rtGetType();
     switch (rtRes) {
-        case CxReport::rtMsgboxPlain:    { _bMsgboxPlain   (crpReport); } break;
-        case CxReport::rtMsgboxFormated: { _bMsgboxFormated(crpReport); } break;
-        case CxReport::rtStdoutPlain:    { _bStdoutPlain   (crpReport); } break;
-        case CxReport::rtStdoutHtml:     { _bStdoutHtml    (crpReport); } break;
-        case CxReport::rtLoggingPlain:   { _bLoggingPlain  (crpReport); } break;
-        case CxReport::rtLoggingHtml:    { _bLoggingHtml   (crpReport); } break;
+        case CxErrorReport::rtMsgboxPlain:    { _bMsgboxPlain   (crpReport); } break;
+        case CxErrorReport::rtMsgboxFormated: { _bMsgboxFormated(crpReport); } break;
+        case CxErrorReport::rtStdoutPlain:    { _bStdoutPlain   (crpReport); } break;
+        case CxErrorReport::rtStdoutHtml:     { _bStdoutHtml    (crpReport); } break;
+        case CxErrorReport::rtLoggingPlain:   { _bLoggingPlain  (crpReport); } break;
+        case CxErrorReport::rtLoggingHtml:    { _bLoggingHtml   (crpReport); } break;
 
         default:                         { _bStdoutPlain   (crpReport); } break;
     }
@@ -255,7 +255,7 @@ CxDebugger::~CxDebugger() {
 /*static*/
 bool
 CxDebugger::_bMsgboxPlain(
-    const CxReport &crpReport
+    const CxErrorReport &crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -296,7 +296,7 @@ CxDebugger::_bMsgboxPlain(
 /*static*/
 bool
 CxDebugger::_bMsgboxFormated(
-    const CxReport &crpReport
+    const CxErrorReport &crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -387,7 +387,7 @@ CxDebugger::_bMsgboxFormated(
 /*static*/
 bool
 CxDebugger::_bStdoutPlain(
-    const CxReport &crpReport
+    const CxErrorReport &crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -446,7 +446,7 @@ CxDebugger::_bStdoutPlain(
 /*static*/
 bool
 CxDebugger::_bStdoutHtml(
-    const CxReport &crpReport
+    const CxErrorReport &crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -508,7 +508,7 @@ CxDebugger::_bStdoutHtml(
 /*static*/
 bool
 CxDebugger::_bLoggingPlain(
-    const CxReport &crpReport
+    const CxErrorReport &crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -549,7 +549,7 @@ CxDebugger::_bLoggingPlain(
 /*static*/
 bool
 CxDebugger::_bLoggingHtml(
-    const CxReport &crpReport
+    const CxErrorReport &crpReport
 )
 {
     //TODO: bLoggingHtml
