@@ -1,10 +1,10 @@
 /**
- * \file  CxReport.cpp
+ * \file  CxErrorReport.cpp
  * \brief debug report
  */
 
 
-#include <xLib/Debug/CxReport.h>
+#include <xLib/Debug/CxErrorReport.h>
 
 #include <xLib/Common/CxException.h>
 #include <xLib/Common/CxString.h>
@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxReport::CxReport(
+CxErrorReport::CxErrorReport(
     const EType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
@@ -74,7 +74,7 @@ CxReport::CxReport(
     }
 }
 //---------------------------------------------------------------------------
-CxReport::CxReport(
+CxErrorReport::CxErrorReport(
     const EType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
@@ -130,138 +130,138 @@ CxReport::CxReport(
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-CxReport::~CxReport() {
+CxErrorReport::~CxErrorReport() {
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-CxReport::EType
-CxReport::rtGetType() const {
+CxErrorReport::EType
+CxErrorReport::rtGetType() const {
     /*DEBUG*/
 
     return _m_rtType;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetReport() const {
+CxErrorReport::sGetReport() const {
     /*DEBUG*/
 
     return _m_sReport;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetProgram() const {
+CxErrorReport::sGetProgram() const {
     /*DEBUG*/
 
     return _m_sProgram;
 }
 //---------------------------------------------------------------------------
 ulong_t
-CxReport::ulGetProcessId() const {
+CxErrorReport::ulGetProcessId() const {
     /*DEBUG*/
 
     return _m_ulProcessId;
 }
 //---------------------------------------------------------------------------
 ulong_t
-CxReport::ulGetThreadId() const {
+CxErrorReport::ulGetThreadId() const {
     /*DEBUG*/
 
     return _m_ulThreadId;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetFileSize() const {
+CxErrorReport::sGetFileSize() const {
     /*DEBUG*/
 
     return _m_sFileSize;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetSourceFile() const {
+CxErrorReport::sGetSourceFile() const {
     /*DEBUG*/
 
     return _m_sSourceFile;
 }
 //---------------------------------------------------------------------------
 ulong_t
-CxReport::ulGetSourceLine() const {
+CxErrorReport::ulGetSourceLine() const {
     /*DEBUG*/
 
     return _m_ulSourceLine;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetFunctionName() const {
+CxErrorReport::sGetFunctionName() const {
     /*DEBUG*/
 
     return _m_sFunctionName;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetExpression() const {
+CxErrorReport::sGetExpression() const {
     /*DEBUG*/
 
     return _m_sExpression;
 }
 //---------------------------------------------------------------------------
 ulong_t
-CxReport::ulGetLastError() const {
+CxErrorReport::ulGetLastError() const {
     /*DEBUG*/
 
     return _m_ulLastError;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetLastErrorStr() const {
+CxErrorReport::sGetLastErrorStr() const {
     /*DEBUG*/
 
     return _m_sLastErrorStr;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetCurrentDate() const {
+CxErrorReport::sGetCurrentDate() const {
     /*DEBUG*/
 
     return _m_sCurrentDate;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetBuildDate() const {
+CxErrorReport::sGetBuildDate() const {
     /*DEBUG*/
 
     return _m_sBuildDate;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetBuildType() const {
+CxErrorReport::sGetBuildType() const {
     /*DEBUG*/
 
     return _m_sBuildType;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetOsVersion() const {
+CxErrorReport::sGetOsVersion() const {
     /*DEBUG*/
 
     return _m_sOsVersion;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetOsArchitecture() const {
+CxErrorReport::sGetOsArchitecture() const {
     /*DEBUG*/
 
     return _m_sOsArchitecture;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetComment() const {
+CxErrorReport::sGetComment() const {
     /*DEBUG*/
 
     return _m_sComment;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxReport::sGetStackTrace() const {
+CxErrorReport::sGetStackTrace() const {
     /*DEBUG*/
 
     return _m_sStackTrace;
@@ -275,7 +275,7 @@ CxReport::sGetStackTrace() const {
 
 //---------------------------------------------------------------------------
 bool
-CxReport::_bInitVars(
+CxErrorReport::_bInitVars(
     const EType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
@@ -340,9 +340,9 @@ CxReport::_bInitVars(
 }
 //---------------------------------------------------------------------------
 bool
-CxReport::_bInitPlain() {
+CxErrorReport::_bInitPlain() {
     _m_sReport = CxString::sFormat(
-        xT("%s\n")        //CxReport
+        xT("%s\n")        //CxErrorReport
         xT("\n")
 
         xT("%s%s\n")      //Program
@@ -368,7 +368,7 @@ CxReport::_bInitPlain() {
 
         xT("%s%s"),       //Comment
 
-        xT("CxReport         "),
+        xT("CxErrorReport    "),
 
         xT("Program:         "), sGetProgram().c_str(),
         xT("Process id:      "), ulGetProcessId(),
@@ -394,10 +394,10 @@ CxReport::_bInitPlain() {
 }
 //---------------------------------------------------------------------------
 bool
-CxReport::_bInitHtml() {
+CxErrorReport::_bInitHtml() {
     _m_sReport = CxString::sFormat(
         xT("<pre>")
-        xT("<b><u>%s</u></b>\n") //CxReport
+        xT("<b><u>%s</u></b>\n") //CxErrorReport
         xT("\n")
 
         xT("<b>%s</b>%s\n")      //Program
@@ -424,7 +424,7 @@ CxReport::_bInitHtml() {
         xT("<b>%s</b>%s")        //Comment
         xT("</pre>"),
 
-        xT("CxReport         "),
+        xT("CxErrorReport    "),
         xT("Program:         "), sGetProgram().c_str(),
         xT("Process id:      "), ulGetProcessId(),
         xT("Thread id:       "), ulGetThreadId(),
@@ -449,7 +449,7 @@ CxReport::_bInitHtml() {
 }
 //---------------------------------------------------------------------------
 bool
-CxReport::_bInitFormated() {
+CxErrorReport::_bInitFormated() {
 #if xOS_ENV_WIN
     _m_sReport = CxString::sFormat(
         xT("{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}{\\f1\\fnil DejaVu Sans Mono;}{\\f2\\fswiss\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f3\\fswiss\\fprq2\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f4\\fswiss\\fprq2\\fcharset0 Arial;}}")
@@ -477,7 +477,7 @@ CxReport::_bInitFormated() {
         xT("\\b %s\\b0  \\lang1033\\f0   %s\\lang1049\\f2\\par")
         xT("}"),
 
-        xT("CxReport "),
+        xT("CxErrorReport "),
 
         xT("Program:         "), sGetProgram().c_str(),
         xT("Process id:      "), ulGetProcessId(),
@@ -501,7 +501,7 @@ CxReport::_bInitFormated() {
     );
 #elif xOS_ENV_UNIX
     _m_sReport = CxString::sFormat(
-        xT("%s\n")        //CxReport
+        xT("%s\n")        //CxErrorReport
         xT("#  \n")
 
         xT("%s%s\n")      //Program
@@ -528,7 +528,7 @@ CxReport::_bInitFormated() {
         xT("%s%s\n")      //Comment
         xT("#  "),
 
-        xT("#  CxReport         "),
+        xT("#  CxErrorReport    "),
 
         xT("#  Program:         "), sGetProgram().c_str(),
         xT("#  Process id:      "), ulGetProcessId(),

@@ -1,5 +1,5 @@
 /**
- * \file  CxReport.inl
+ * \file  CxErrorReport.inl
  * \brief debug report
  */
 
@@ -8,7 +8,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 template<class T>
-CxReport::CxReport(
+CxErrorReport::CxErrorReport(
     const EType          &crtType,
     const T              &cVarT1,
     const T              &cVarT2,

@@ -11,7 +11,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxLastError;
 class CxStackTrace;
-class CxReport;
+class CxErrorReport;
 class CxDebugger;
 
 xNAMESPACE_END(NxLib)

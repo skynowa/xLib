@@ -183,9 +183,6 @@
     <ClCompile Include="..\..\Source\Debug\CxProfiler.cpp">
       <Filter>xLib\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Debug\CxReport.cpp">
-      <Filter>xLib\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Debug\CxTest.cpp">
       <Filter>xLib\Debug</Filter>
     </ClCompile>
@@ -444,9 +441,6 @@
     <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp">
       <Filter>Test\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxReport.cpp">
-      <Filter>Test\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp">
       <Filter>Test\Db</Filter>
     </ClCompile>
@@ -690,6 +684,12 @@
     <ClCompile Include="..\..\Tests\Source\Crypt\Pkcs11\CxTest_CxPkcs11.cpp">
       <Filter>Test\Crypt\Pkcs11</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Debug\CxErrorReport.cpp">
+      <Filter>xLib\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Debug\CxTest_CxErrorReport.cpp">
+      <Filter>Test\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -711,9 +711,6 @@
       <Filter>xLib\Debug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\CxProfiler.h">
-      <Filter>xLib\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Debug\CxReport.h">
       <Filter>xLib\Debug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\CxTest.h">
@@ -1016,9 +1013,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h">
       <Filter>Test\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxReport.h">
-      <Filter>Test\Debug</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h">
       <Filter>Test\Db</Filter>
     </ClInclude>
@@ -1286,10 +1280,19 @@
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\Pkcs11\CxTest_CxPkcs11.h">
       <Filter>Test\Crypt\Pkcs11</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Debug\CxErrorReport.h">
+      <Filter>xLib\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Debug\CxTest_CxErrorReport.h">
+      <Filter>Test\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\TODO.txt">
       <Filter>Test</Filter>
+    </None>
+    <None Include="..\..\Include\xLib\Debug\CxErrorReport.inl">
+      <Filter>xLib\Debug</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
