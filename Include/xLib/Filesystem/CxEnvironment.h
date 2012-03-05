@@ -18,6 +18,10 @@ class CxEnvironment :
     public:
         static bool           bIsExists     (const std::tstring_t &csVarName);
             ///< check for existence
+        static bool           bIsValidVar   (const std::tstring_t &csVarName);
+            ///< is valid environment variable name
+        static bool           bIsValidValue (const std::tstring_t &csVarValue);
+            ///< is valid environment variable value
         static std::tstring_t sGetVar       (const std::tstring_t &csVarName);
             ///< get value by name
         static bool           bSetVar       (const std::tstring_t &csVarName, const std::tstring_t &csValue);
