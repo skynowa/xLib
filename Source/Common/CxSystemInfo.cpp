@@ -637,10 +637,13 @@ CxSystemInfo::ulGetMemoryUsage() {
 
         ulong_t ulMemoryFree = 0UL;
         {
-            size_t ulMemoryFreeSize = sizeof(ulMemoryFree);
+            ulong_t ullAvailPhysPages     = 0UL;
+            size_t  ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
-            int iRes = ::sysctlbyname("vm.stats.vm.v_free_count", &ulMemoryFree, &ulMemoryFreeSize, NULL, 0);
+            int iRes = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+
+            ulMemoryFree = (ullAvailPhysPages / 1024UL) * ulGetPageSize(); 
         }
 
         ulong_t ulUsage = ulMemoryTotal - ulMemoryFree;

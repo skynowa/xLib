@@ -50,7 +50,7 @@ CxEnvironment::bIsExists(
 //---------------------------------------------------------------------------
 /*static*/
 bool
-CxEnvironment::bIsValidVar(
+CxEnvironment::bIsVarValid(
     const std::tstring_t &csVarName
 )
 {
@@ -59,28 +59,18 @@ CxEnvironment::bIsValidVar(
     xCHECK_RET(true              == csVarName.empty(),       false);
     xCHECK_RET(std::string::npos != csVarName.find(xT("=")), false);
 
-#if   xOS_ENV_WIN
-
-#elif xOS_ENV_UNIX
-
-#endif
-
     return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
 bool
-CxEnvironment::bIsValidValue(
+CxEnvironment::bIsValueValid(
     const std::tstring_t &csVarValue
 )
 {
     xDEBUG_VAR_NA(csVarValue);
 
-#if   xOS_ENV_WIN
-    xCHECK_RET(_MAX_ENV < csVarValue.size(), false);
-#elif xOS_ENV_UNIX
-
-#endif
+    xCHECK_RET(xENV_MAX < csVarValue.size(), false);
 
     return true;
 }

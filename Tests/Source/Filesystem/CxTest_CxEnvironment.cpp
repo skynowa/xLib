@@ -65,12 +65,12 @@ CxTest_CxEnvironment::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             bool bStr1 = CxEnvironment::bIsExists(sData[i][0]);
-            xTEST_EQ((sData[i][1] == xT("false") ? false : true), bStr1);
+            xTEST_EQ(CxString::bStrToBool(sData[i][1]), bStr1);
         }
     }
 
     //--------------------------------------------------
-    //bIsValidVar
+    //bIsVarValid
     xTEST_CASE(cullCaseLoops)
     {
     #if xOS_ENV_WIN
@@ -79,14 +79,16 @@ CxTest_CxEnvironment::bUnit(
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
             {xT("ENV_TEST_4"), xT("true")},
-
-            {xT("OS="),        xT("false") },
+            {xT("OS="),        xT("false")},
             {xT("XX=XL"),      xT("false")},
-            {xT("=windir"),    xT("false") },
-            {xT(""),           xT("false") }
+            {xT("=windir"),    xT("false")},
+            {xT(""),           xT("false")}
         };
     #elif xOS_ENV_UNIX
         const std::tstring_t sData[][2] = {
+            {xT("OS="),        xT("false")},
+            {xT("XX=XL"),      xT("false")},
+            {xT("=windir"),    xT("false")},
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -95,13 +97,13 @@ CxTest_CxEnvironment::bUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool bStr1 = CxEnvironment::bIsValidVar(sData[i][0]);
-            xTEST_EQ((sData[i][1] == xT("false") ? false : true), bStr1);
+            bool bStr1 = CxEnvironment::bIsVarValid(sData[i][0]);
+            xTEST_EQ(CxString::bStrToBool(sData[i][1]), bStr1);
         }
     }
 
     //--------------------------------------------------
-    //bIsValidValue
+    //bIsValueValid
     xTEST_CASE(cullCaseLoops)
     {
     #if xOS_ENV_WIN
@@ -110,10 +112,10 @@ CxTest_CxEnvironment::bUnit(
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
             {xT("ENV_TEST_4"), xT("true")},
-
-            {xT("OS"),         xT("true") },
+            {xT("OS"),         xT("true")},
             {xT("XXXL"),       xT("true")},
-            {xT("windir"),     xT("true") }
+            {xT("windir"),     xT("true")},
+            {xT(""),           xT("true")}
         };
     #elif xOS_ENV_UNIX
         const std::tstring_t sData[][2] = {
@@ -121,12 +123,13 @@ CxTest_CxEnvironment::bUnit(
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
             {xT("ENV_TEST_4"), xT("true")},
+            {xT(""),           xT("true")}
         };
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool bStr1 = CxEnvironment::bIsValidValue(sData[i][0]);
-            xTEST_EQ((sData[i][1] == xT("false") ? false : true), bStr1);
+            bool bStr1 = CxEnvironment::bIsValueValid(sData[i][0]);
+            xTEST_EQ(CxString::bStrToBool(sData[i][1]), bStr1);
         }
     }
 
