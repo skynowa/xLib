@@ -49,6 +49,43 @@ CxEnvironment::bIsExists(
 }
 //---------------------------------------------------------------------------
 /*static*/
+bool
+CxEnvironment::bIsValidVar(
+    const std::tstring_t &csVarName
+)
+{
+    xDEBUG_VAR_NA(csVarName);
+
+    xCHECK_RET(true              == csVarName.empty(),       false);
+    xCHECK_RET(std::string::npos != csVarName.find(xT("=")), false);
+
+#if   xOS_ENV_WIN
+
+#elif xOS_ENV_UNIX
+
+#endif
+
+    return true;
+}
+//---------------------------------------------------------------------------
+/*static*/
+bool
+CxEnvironment::bIsValidValue(
+    const std::tstring_t &csVarValue
+)
+{
+    xDEBUG_VAR_NA(csVarValue);
+
+#if   xOS_ENV_WIN
+    xCHECK_RET(_MAX_ENV < csVarValue.size(), false);
+#elif xOS_ENV_UNIX
+
+#endif
+
+    return true;
+}
+//---------------------------------------------------------------------------
+/*static*/
 std::tstring_t
 CxEnvironment::sGetVar(
     const std::tstring_t &csVarName
