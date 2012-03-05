@@ -252,9 +252,9 @@
 
 
 #if xOS_ENV_WIN
-    #define xENV_MAX 32767 //custom define
-#elif xOS_ENV_UNIX
     #define xENV_MAX _MAX_ENV
+#elif xOS_ENV_UNIX
+    #define xENV_MAX 32767 //custom define
 #endif
     ///< maximum permissible string length of an environmental variable
 
