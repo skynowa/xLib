@@ -46,53 +46,10 @@ CxStackTrace::~CxStackTrace() {
 
 
 /****************************************************************************
-*    private
+*    public
 *
 *****************************************************************************/
 
-//---------------------------------------------------------------------------
-#if xOS_FREEBSD
-
-//#include <dlfcn.h>
-//#include <pthread.h>
-#include <setjmp.h>
-//#include <stddef.h>
-//#include <stdio.h>
-
-struct frame {
-    long    arg0[8];
-    long    arg1[6];
-    struct frame *fr_savfp;
-    long    fr_savpc;
-};
-
-int backtrace( void **buffer, int max_frames )
-{
-    #define FRAME_PTR_OFFSET 1
-    #define FRAME_OFFSET 0
-
-    struct frame *fp;
-    jmp_buf ctx;
-    int i;
-    /* get stack- and framepointer */
-    setjmp(ctx);
-    fp = (struct frame*)(((size_t*)(ctx))[FRAME_PTR_OFFSET]);
-    for ( i=0; (i<FRAME_OFFSET) && (fp!=0); i++)
-        fp = fp->fr_savfp;
-
-    /* iterate through backtrace */
-    for (i=0; fp && fp->fr_savpc && i<max_frames; i++)
-    {
-        /* store frame */
-        *(buffer++) = (void *)fp->fr_savpc;
-        /* next frame */
-        fp=fp->fr_savfp;
-    }
-
-    return i;
-}
-
-#endif
 //---------------------------------------------------------------------------
 bool
 CxStackTrace::bGet(
