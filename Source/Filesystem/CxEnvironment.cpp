@@ -117,8 +117,8 @@ CxEnvironment::bSetVar(
     const std::tstring_t &csValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVarName.empty(), false);
-    /*DEBUG*/// csValue - n/a
+    /*DEBUG*/xASSERT_RET(true == bIsVarValid(csVarName), false);
+    /*DEBUG*/xASSERT_RET(true == bIsVarValid(csValue),   false);
 
 #if xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
