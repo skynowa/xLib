@@ -22,7 +22,6 @@ CxTest_CxAtomicLongInt::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-#if xOS_ENV_WIN
 #if xTEMP_DISABLED
     long_t iRes = 0;
 
@@ -52,27 +51,6 @@ CxTest_CxAtomicLongInt::bUnit(
 
 
     iRes = alAL_1;
-#endif
-
-
-
-
-    //CxAtomicLongInt& operator +=   (const CxAtomicLongInt &cRight);
-    //CxAtomicLongInt& operator -=   (const CxAtomicLongInt &cRight);
-    //CxAtomicLongInt& operator =    (const CxAtomicLongInt &cRight);
-    //CxAtomicLongInt& operator +=   (const long_t cliRight);
-    //CxAtomicLongInt& operator -=   (const long_t cliRight);
-    //CxAtomicLongInt& operator =    (const long_t cliRight);
-    //bool             operator ==   (const CxAtomicLongInt &cRight);
-    //bool             operator !=   (const CxAtomicLongInt &cRight);
-    //bool             operator ==   (const long_t cliRight);
-    //bool             operator !=   (const long_t cliRight);
-    //operator long_t ();
-    //operator bool ();
-    //CxAtomicLongInt& operator ++   (int iPos);
-    //CxAtomicLongInt& operator --   (int iPos);
-#elif xOS_ENV_UNIX
-
 #endif
 
     return true;

@@ -9,8 +9,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
-
 xNAMESPACE_BEGIN(NxLib)
 
 class CxAtomicLongInt :
@@ -31,17 +29,13 @@ class CxAtomicLongInt :
         bool             operator !=     (const CxAtomicLongInt &cRight) const ;
         bool             operator ==     (const long_t cliRight) const ;
         bool             operator !=     (const long_t cliRight) const ;
-                         operator long_t () const ;
-                         operator bool   () const ;
-        CxAtomicLongInt& operator ++     (int iPos);
-        CxAtomicLongInt& operator --     (int iPos);
+        CxAtomicLongInt& operator ++     (const long_t cliPos);
+        CxAtomicLongInt& operator --     (const long_t cliPos);
 
     private:
-        long_t           _m_liValue;
+        volatile long_t  _m_liValue;
 };
 
 xNAMESPACE_END(NxLib)
-
-#endif
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAtomicLongIntH

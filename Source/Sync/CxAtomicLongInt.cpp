@@ -7,8 +7,6 @@
 #include <xLib/Sync/CxAtomicLongInt.h>
 
 
-#if xOS_ENV_WIN
-
 xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
@@ -17,25 +15,25 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//DONE: CxAtomicLongInt ()
 CxAtomicLongInt::CxAtomicLongInt() :
-    _m_liValue(0)
+    _m_liValue(0L)
 {
 #if xOS_ENV_WIN
-    ::InterlockedExchange(&_m_liValue, 0);
+    ::InterlockedExchange(&_m_liValue, 0L);
 #elif xOS_ENV_UNIX
     //TODO:
 #endif
 }
 //---------------------------------------------------------------------------
-//DONE: ~CxAtomicLongInt ()
 CxAtomicLongInt::~CxAtomicLongInt() {
 
 }
 //---------------------------------------------------------------------------
-//DONE: operator += ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
+CxAtomicLongInt::operator += (
+    const CxAtomicLongInt &cRight
+)
+{
 #if xOS_ENV_WIN
     ::InterlockedExchangeAdd(&_m_liValue, cRight._m_liValue);
 #elif xOS_ENV_UNIX
@@ -45,9 +43,11 @@ CxAtomicLongInt::operator += (const CxAtomicLongInt &cRight) {
     return *this;
 }
 //---------------------------------------------------------------------------
-//DONE: operator -= ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
+CxAtomicLongInt::operator -= (
+    const CxAtomicLongInt &cRight
+)
+{
 #if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, _m_liValue - cRight._m_liValue);
 #elif xOS_ENV_UNIX
@@ -57,9 +57,11 @@ CxAtomicLongInt::operator -= (const CxAtomicLongInt &cRight) {
     return *this;
 }
 //---------------------------------------------------------------------------
-//DONE: operator = ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)    {
+CxAtomicLongInt::operator = (
+    const CxAtomicLongInt &cRight
+)
+{
 #if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, cRight._m_liValue);
 #elif xOS_ENV_UNIX
@@ -69,9 +71,11 @@ CxAtomicLongInt::operator = (const CxAtomicLongInt &cRight)    {
     return *this;
 }
 //---------------------------------------------------------------------------
-//DONE: operator += ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator += (const long_t cliRight) {
+CxAtomicLongInt::operator += (
+    const long_t cliRight
+)
+{
 #if xOS_ENV_WIN
     ::InterlockedExchangeAdd(&_m_liValue, cliRight);
 #elif xOS_ENV_UNIX
@@ -81,9 +85,11 @@ CxAtomicLongInt::operator += (const long_t cliRight) {
     return *this;
 }
 //---------------------------------------------------------------------------
-//DONE: operator -= ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator -= (const long_t cliRight) {
+CxAtomicLongInt::operator -= (
+    const long_t cliRight
+)
+{
 #if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, _m_liValue - cliRight);
 #elif xOS_ENV_UNIX
@@ -93,9 +99,11 @@ CxAtomicLongInt::operator -= (const long_t cliRight) {
     return *this;
 }
 //---------------------------------------------------------------------------
-//DONE: operator = ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator = (const long_t cliRight) {
+CxAtomicLongInt::operator = (
+    const long_t cliRight
+)
+{
 #if xOS_ENV_WIN
     ::InterlockedExchange(&_m_liValue, cliRight);
 #elif xOS_ENV_UNIX
@@ -105,73 +113,73 @@ CxAtomicLongInt::operator = (const long_t cliRight) {
     return *this;
 }
 //---------------------------------------------------------------------------
-//DONE: operator == ()
 bool
-CxAtomicLongInt::operator == (const CxAtomicLongInt &cRight) const {
-    return (bool)(_m_liValue == cRight._m_liValue);
+CxAtomicLongInt::operator == (
+    const CxAtomicLongInt &cRight
+) const
+{
+    return (_m_liValue == cRight._m_liValue);
 }
 //---------------------------------------------------------------------------
-//DONE: operator != ()
 bool
-CxAtomicLongInt::operator != (const CxAtomicLongInt &cRight) const {
-    return (bool)(!(_m_liValue == cRight._m_liValue));
+CxAtomicLongInt::operator != (
+    const CxAtomicLongInt &cRight
+) const
+{
+    return !(_m_liValue == cRight._m_liValue);
 }
 //---------------------------------------------------------------------------
-//DONE: operator == ()
 bool
-CxAtomicLongInt::operator == (const long_t cliRight) const {
-    return (bool)(_m_liValue == cliRight);
+CxAtomicLongInt::operator == (
+    const long_t cliRight
+) const
+{
+    return (_m_liValue == cliRight);
 }
 //---------------------------------------------------------------------------
-//DONE: operator != ()
 bool
-CxAtomicLongInt::operator != (const long_t cliRight) const {
-    return (bool)( !(_m_liValue == cliRight) );
+CxAtomicLongInt::operator != (
+    const long_t cliRight
+) const
+{
+    return !(_m_liValue == cliRight);
 }
 //---------------------------------------------------------------------------
-//DONE: operator long_t ()
-CxAtomicLongInt::operator long_t () const {
-    return _m_liValue;
-}
-//---------------------------------------------------------------------------
-//DONE: operator bool ()
-CxAtomicLongInt::operator bool () const {
-    return _m_liValue ? true : false;
-}
-//---------------------------------------------------------------------------
-//DONE: operator ++ ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator ++ (int iPos) {
-    #if xOS_ENV_WIN
-        if (0 == iPos) {
-            ::InterlockedIncrement(&_m_liValue);
-        } else {
-            ::InterlockedExchangeAdd(&_m_liValue, iPos + 1);
-        }
-    #elif xOS_ENV_UNIX
-        //TODO:
-    #endif
+CxAtomicLongInt::operator ++ (
+    const long_t cliPos
+)
+{
+#if xOS_ENV_WIN
+    if (0L == cliPos) {
+        ::InterlockedIncrement(&_m_liValue);
+    } else {
+        ::InterlockedExchangeAdd(&_m_liValue, cliPos + 1L);
+    }
+#elif xOS_ENV_UNIX
+    //TODO:
+#endif
 
     return *this;
 }
 //---------------------------------------------------------------------------
-//DONE: operator -- ()
 CxAtomicLongInt &
-CxAtomicLongInt::operator -- (int iPos) {
-    #if xOS_ENV_WIN
-        if (0 == iPos) {
-            ::InterlockedDecrement(&_m_liValue);
-        } else {
-            ::InterlockedExchangeAdd(&_m_liValue, - (iPos + 1));
-        }
-    #elif xOS_ENV_UNIX
-        //TODO:
-    #endif
+CxAtomicLongInt::operator -- (
+    const long_t cliPos
+)
+{
+#if xOS_ENV_WIN
+    if (0L == cilPos) {
+        ::InterlockedDecrement(&_m_liValue);
+    } else {
+        ::InterlockedExchangeAdd(&_m_liValue, - (cliPos + 1L));
+    }
+#elif xOS_ENV_UNIX
+    //TODO:
+#endif
 
     return *this;
 }
 //---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
-
-#endif
