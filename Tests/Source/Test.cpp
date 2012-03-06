@@ -87,6 +87,7 @@
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
 //Sync
+#include <Test/Sync/CxTest_CxAtomicLongInt.h>
 #include <Test/Sync/CxTest_CxThreadStorage.h>
 #include <Test/Sync/CxTest_CxCriticalSection.h>
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
@@ -262,6 +263,7 @@ xTMAIN(
     #endif
 
         //Sync
+        (void)tmManager.bAdd(new CxTest_CxAtomicLongInt);
         (void)tmManager.bAdd(new CxTest_CxThreadStorage);
         (void)tmManager.bAdd(new CxTest_CxCriticalSection);
         (void)tmManager.bAdd(new CxTest_CxAutoCriticalSection);

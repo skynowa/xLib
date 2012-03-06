@@ -16,21 +16,28 @@ class CxAtomicLongInt :
     /// atomic operartions with long_t
 {
     public:
-                         CxAtomicLongInt ();
-        virtual         ~CxAtomicLongInt ();
+                         CxAtomicLongInt();
+        virtual         ~CxAtomicLongInt();
 
-        CxAtomicLongInt& operator +=     (const CxAtomicLongInt &cRight);
-        CxAtomicLongInt& operator -=     (const CxAtomicLongInt &cRight);
-        CxAtomicLongInt& operator =      (const CxAtomicLongInt &cRight);
-        CxAtomicLongInt& operator +=     (const long_t cliRight);
-        CxAtomicLongInt& operator -=     (const long_t cliRight);
-        CxAtomicLongInt& operator =      (const long_t cliRight);
-        bool             operator ==     (const CxAtomicLongInt &cRight) const ;
-        bool             operator !=     (const CxAtomicLongInt &cRight) const ;
-        bool             operator ==     (const long_t cliRight) const ;
-        bool             operator !=     (const long_t cliRight) const ;
-        CxAtomicLongInt& operator ++     (const long_t cliPos);
-        CxAtomicLongInt& operator --     (const long_t cliPos);
+        CxAtomicLongInt& operator +=    (const CxAtomicLongInt &calValue);
+        CxAtomicLongInt& operator +=    (const long_t cliRight);
+
+        CxAtomicLongInt& operator -=    (const CxAtomicLongInt &calValue);
+        CxAtomicLongInt& operator -=    (const long_t cliRight);
+
+        CxAtomicLongInt& operator =     (const CxAtomicLongInt &calValue);
+        CxAtomicLongInt& operator =     (const long_t cliRight);
+
+        bool             operator ==    (const CxAtomicLongInt &calValue) const ;
+        bool             operator ==    (const long_t cliRight) const ;
+
+        bool             operator !=    (const CxAtomicLongInt &calValue) const ;
+        bool             operator !=    (const long_t cliRight) const ;
+
+        CxAtomicLongInt& operator ++    (const int ciValue);
+        CxAtomicLongInt& operator --    (const int ciValue);
+
+        long_t           liGetValue     () const;
 
     private:
         volatile long_t  _m_liValue;
@@ -39,3 +46,9 @@ class CxAtomicLongInt :
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAtomicLongIntH
+
+
+/*
+    InterlockedCompareExchange - __sync_val_compare_and_swap
+
+*/

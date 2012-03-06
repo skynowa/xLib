@@ -17,9 +17,9 @@ class CxNonCopyable
     public:
 
     protected:
-        CxNonCopyable() { }
+        CxNonCopyable() { ; }
             ///< constructor
-       ~CxNonCopyable() { }
+       ~CxNonCopyable() { ; }
             ///< dectructor
 
     private:
