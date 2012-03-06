@@ -506,7 +506,6 @@ class CxMacros :
         template <class T1, class T2>
         static inline double
         dSafeDiv(const T1 cVal1T, const T2 cVal2T) {
-
             return ( (static_cast<T2>( 0 ) == cVal2T) ? (0.0) : (static_cast<double>( cVal1T ) / static_cast<double>( cVal2T )) );
         }
             ///< safe division
