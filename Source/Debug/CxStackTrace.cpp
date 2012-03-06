@@ -53,8 +53,24 @@ CxStackTrace::~CxStackTrace() {
 //---------------------------------------------------------------------------
 #if xOS_FREEBSD
 
+//#include <dlfcn.h>
+//#include <pthread.h>
+#include <setjmp.h>
+//#include <stddef.h>
+//#include <stdio.h>
+
+struct frame {
+    long    arg0[8];
+    long    arg1[6];
+    struct frame *fr_savfp;
+    long    fr_savpc;
+};
+
 int backtrace( void **buffer, int max_frames )
 {
+    #define FRAME_PTR_OFFSET 1
+    #define FRAME_OFFSET 0
+
     struct frame *fp;
     jmp_buf ctx;
     int i;
