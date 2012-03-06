@@ -51,6 +51,33 @@ CxStackTrace::~CxStackTrace() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
+#if xOS_FREEBSD
+
+int backtrace( void **buffer, int max_frames )
+{
+    struct frame *fp;
+    jmp_buf ctx;
+    int i;
+    /* get stack- and framepointer */
+    setjmp(ctx);
+    fp = (struct frame*)(((size_t*)(ctx))[FRAME_PTR_OFFSET]);
+    for ( i=0; (i<FRAME_OFFSET) && (fp!=0); i++)
+        fp = fp->fr_savfp;
+
+    /* iterate through backtrace */
+    for (i=0; fp && fp->fr_savpc && i<max_frames; i++)
+    {
+        /* store frame */
+        *(buffer++) = (void *)fp->fr_savpc;
+        /* next frame */
+        fp=fp->fr_savfp;
+    }
+
+    return i;
+}
+
+#endif
+//---------------------------------------------------------------------------
 bool
 CxStackTrace::bGet(
     std::vector<std::tstring_t> *pvsStack
@@ -99,14 +126,10 @@ CxStackTrace::bGet(
 
         (void)::SymCleanup(hProcess);
     #elif xCOMPILER_CODEGEAR
-
-    #elif xCOMPILER_GNUC
-
-    #else
-
+        //TODO: CxStackTrace::bGet
     #endif
 #elif xOS_ENV_UNIX
-    #if xOS_LINUX
+    //--#if xOS_LINUX
         void *pvStack[_m_culMaxFrames] = {0};
 
         int iFramesNum  = ::backtrace(pvStack, _m_culMaxFrames);
@@ -142,9 +165,9 @@ CxStackTrace::bGet(
 
             vsStack.push_back(sStackLine);
         }
-    #elif xOS_FREEBSD
+    //--#elif xOS_FREEBSD
         //TODO: CxStackTrace::bGet
-    #endif
+    //--#endif
 #endif
 
     std::reverse(vsStack.begin(), vsStack.end());
