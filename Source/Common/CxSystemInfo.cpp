@@ -621,14 +621,12 @@ CxSystemInfo::ulGetMemoryUsage() {
 
         ulong_t ulUsage = siInfo.totalram - siInfo.freeram;
 
-        ulRes = ulUsage * 100UL / siInfo.totalram;
+        ulRes = CxMacros::dSafeDiv(ulUsage * 100.0, siInfo.totalram);
+        /*DEBUG*/xASSERT_RET(siInfo.totalram == ulUsage + siInfo.freeram, 0UL);
     #elif xOS_FREEBSD
-        //TODO: ulGetMemoryUsage()
-
         ulong_t ulMemoryTotal = 0UL;
         {
             int     aiMib[]           = {CTL_HW, HW_PHYSMEM};
-
             size_t  uiMemoryTotalSize = sizeof(ulMemoryTotal);
 
             int iRes = ::sysctl(aiMib, 2, &ulMemoryTotal, &uiMemoryTotalSize, NULL, 0);
@@ -643,14 +641,13 @@ CxSystemInfo::ulGetMemoryUsage() {
             int iRes = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-            ulMemoryFree = (ullAvailPhysPages / 1024UL) * ulGetPageSize(); 
+            ulMemoryFree = ullAvailPhysPages * ulGetPageSize();
         }
 
         ulong_t ulUsage = ulMemoryTotal - ulMemoryFree;
 
-        ulRes = ulUsage * 100UL / ulMemoryTotal;
-
-        xTRACEV("ulMemoryTotal: %ld, ulMemoryFree: %ld, usage: [%ld]", ulMemoryTotal, ulMemoryFree, ulUsage);
+        ulRes = CxMacros::dSafeDiv(ulUsage * 100.0, ulMemoryTotal);
+        /*DEBUG*/xASSERT_RET(ulMemoryTotal == ulUsage + ulMemoryFree, 0UL);
     #endif
 #endif
 
@@ -677,6 +674,8 @@ CxSystemInfo::ulGetPageSize() {
 
     ulRes = static_cast<ulong_t>( iRes );
 #endif
+
+    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
 
     return ulRes;
 }
