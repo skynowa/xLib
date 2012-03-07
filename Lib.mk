@@ -38,10 +38,10 @@ BIN_TYPE				:=	$(cBIN_TYPE_LIB)
 # xLib
 ifeq ($(BIN_TYPE), $(cBIN_TYPE_LIB))
 PROGRAM_PREFIX			:=	lib
-PROGRAM_EXT  			:=	.a
+PROGRAM_EXT				:=	.a
 else
 PROGRAM_PREFIX			:=
-PROGRAM_EXT  			:=
+PROGRAM_EXT				:=
 endif
 
 PROGRAM_NAME			:=	$(PROGRAM_PREFIX)xlib$(PROGRAM_EXT)
@@ -52,7 +52,7 @@ ROOT_SOURCE_DIR			:=	./Source
 OTHER_INCLUDE_DIR		:=	/usr/include \
 							/usr/local/include
 
-SOURCE_SUBDIRS			:=	 . \
+SOURCE_SUBDIRS			:=	. \
 							Common \
 							Common/Win \
 							Crypt \
@@ -76,13 +76,13 @@ SOURCE_SUBDIRS			:=	 . \
 							Units/Win
 
 LIB_DIRS				:=	/usr/lib64 \
-                    		/usr/lib \
-                    		/usr/lib64/mysql \
-                    		/usr/lib/mysql \
-                    		/usr/local/lib64 \
+							/usr/lib \
+							/usr/lib64/mysql \
+							/usr/lib/mysql \
+							/usr/local/lib64 \
 							/usr/local/lib \
 							/usr/local/lib64/mysql \
-							/usr/local/lib/mysql							
+							/usr/local/lib/mysql
 
 BINARY_DIR				:=	./Library/G++_linux/Release
 INSTALL_INCLUDE_DIR		:=	/usr/local/include/xLib
