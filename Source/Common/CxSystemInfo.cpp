@@ -621,7 +621,7 @@ CxSystemInfo::ulGetMemoryUsage() {
 
         ulong_t ulUsage = siInfo.totalram - siInfo.freeram;
 
-        ulRes = CxMacros::dSafeDiv(ulUsage * 100.0, siInfo.totalram);
+        ulRes = static_cast<ulong_t>( CxMacros::dSafeDiv(ulUsage * 100.0, siInfo.totalram) );
         /*DEBUG*/xASSERT_RET(siInfo.totalram == ulUsage + siInfo.freeram, 0UL);
     #elif xOS_FREEBSD
         ulong_t ulMemoryTotal = 0UL;
@@ -646,7 +646,7 @@ CxSystemInfo::ulGetMemoryUsage() {
 
         ulong_t ulUsage = ulMemoryTotal - ulMemoryFree;
 
-        ulRes = CxMacros::dSafeDiv(ulUsage * 100.0, ulMemoryTotal);
+        ulRes = static_cast<ulong_t>( CxMacros::dSafeDiv(ulUsage * 100.0, ulMemoryTotal) );
         /*DEBUG*/xASSERT_RET(ulMemoryTotal == ulUsage + ulMemoryFree, 0UL);
     #endif
 #endif
