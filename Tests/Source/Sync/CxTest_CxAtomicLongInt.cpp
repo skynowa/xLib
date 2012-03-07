@@ -153,6 +153,109 @@ CxTest_CxAtomicLongInt::bUnit(
     }
 
     //--------------------------------------------------
+    //operator < (const long_t &cliValue)
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxAtomicLongInt alLong1;
+
+        alLong1 = 7L;
+
+        m_bRes = ( alLong1 < 10L );
+        xTEST_EQ(true, m_bRes);
+    }
+    //--------------------------------------------------
+    //operator < (const CxAtomicLongInt &calValue)
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxAtomicLongInt alLong1;
+        CxAtomicLongInt alLong2;
+
+        alLong1 = 7L;
+        alLong2 = 10L;
+
+        m_bRes = ( alLong1 < alLong2 );
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //operator <= (const long_t &cliValue)
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxAtomicLongInt alLong1;
+
+        alLong1 = 7L;
+
+        m_bRes = ( alLong1 <= 10L );
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //operator <= (const CxAtomicLongInt &calValue)
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxAtomicLongInt alLong1;
+        CxAtomicLongInt alLong2;
+
+        alLong1 = 7L;
+        alLong2 = 10L;
+
+        m_bRes = ( alLong1 <= alLong2 );
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //operator > (const long_t &cliValue)
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxAtomicLongInt alLong1;
+
+        alLong1 = 10L;
+
+        m_bRes = ( alLong1 > 7L );
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //operator > (const CxAtomicLongInt &calValue)
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxAtomicLongInt alLong1;
+        CxAtomicLongInt alLong2;
+
+        alLong1 = 10L;
+        alLong2 = 7L;
+
+        m_bRes = ( alLong1 > alLong2 );
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //operator >= (const long_t &cliValue)
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxAtomicLongInt alLong1;
+
+        alLong1 = 10L;
+
+        m_bRes = ( alLong1  >= 7L);
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //operator >= (const CxAtomicLongInt &calValue)
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxAtomicLongInt alLong1;
+        CxAtomicLongInt alLong2;
+
+        alLong1 = 10L;
+        alLong2 = 7L;
+
+        m_bRes = ( alLong1 >= alLong2 );
+        xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
     //operator ++ (const int ciPos)
     xTEST_CASE(cullCaseLoops)
     {

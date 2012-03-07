@@ -1,6 +1,6 @@
 /**
  * \file  CxAtomicLongInt.cpp
- * \brief atomic operartions with long_t
+ * \brief CxAtomicLongInt operartions with long_t
  */
 
 
@@ -42,13 +42,13 @@ CxAtomicLongInt::operator += (
 //---------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator += (
-    const long_t cliRight
+    const long_t cliValue
 )
 {
 #if xOS_ENV_WIN
-    (void)::InterlockedExchangeAdd(&_m_liValue, cliRight);
+    (void)::InterlockedExchangeAdd(&_m_liValue, cliValue);
 #elif xOS_ENV_UNIX
-    (void)::__sync_add_and_fetch(&_m_liValue, cliRight);
+    (void)::__sync_add_and_fetch(&_m_liValue, cliValue);
 #endif
 
     return *this;
@@ -60,7 +60,7 @@ CxAtomicLongInt::operator -= (
 )
 {
 #if xOS_ENV_WIN
-    (void)::InterlockedExchange(&_m_liValue, _m_liValue - calValue._m_liValue);
+    (void)::InterlockedExchangeAdd(&_m_liValue, - calValue._m_liValue);
 #elif xOS_ENV_UNIX
     (void)::__sync_sub_and_fetch(&_m_liValue, calValue._m_liValue);
 #endif
@@ -70,13 +70,13 @@ CxAtomicLongInt::operator -= (
 //---------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator -= (
-    const long_t cliRight
+    const long_t cliValue
 )
 {
 #if xOS_ENV_WIN
-    (void)::InterlockedExchange(&_m_liValue, _m_liValue - cliRight);
+    (void)::InterlockedExchangeAdd(&_m_liValue, - cliValue);
 #elif xOS_ENV_UNIX
-    (void)::__sync_sub_and_fetch(&_m_liValue, cliRight);
+    (void)::__sync_sub_and_fetch(&_m_liValue, cliValue);
 #endif
 
     return *this;
@@ -98,13 +98,13 @@ CxAtomicLongInt::operator = (
 //---------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator = (
-    const long_t cliRight
+    const long_t cliValue
 )
 {
 #if xOS_ENV_WIN
-    (void)::InterlockedExchange(&_m_liValue, cliRight);
+    (void)::InterlockedExchange(&_m_liValue, cliValue);
 #elif xOS_ENV_UNIX
-    (void)::__sync_lock_test_and_set (&_m_liValue, cliRight);
+    (void)::__sync_lock_test_and_set (&_m_liValue, cliValue);
 #endif
 
     return *this;
@@ -120,10 +120,10 @@ CxAtomicLongInt::operator == (
 //---------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator == (
-    const long_t cliRight
+    const long_t cliValue
 ) const
 {
-    return (_m_liValue == cliRight);
+    return (_m_liValue == cliValue);
 }
 //---------------------------------------------------------------------------
 bool
@@ -136,10 +136,74 @@ CxAtomicLongInt::operator != (
 //---------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator != (
-    const long_t cliRight
+    const long_t cliValue
 ) const
 {
-    return (_m_liValue != cliRight);
+    return (_m_liValue != cliValue);
+}
+//---------------------------------------------------------------------------
+bool
+CxAtomicLongInt::operator < (
+    const long_t &cliValue
+) const
+{
+    return (_m_liValue < cliValue);
+}
+//---------------------------------------------------------------------------
+bool
+CxAtomicLongInt::operator < (
+    const CxAtomicLongInt &calValue
+) const
+{
+    return (_m_liValue < calValue.liGetValue());
+}
+//---------------------------------------------------------------------------
+bool
+CxAtomicLongInt::operator <= (
+    const long_t &cliValue
+) const
+{
+    return (_m_liValue <= cliValue);
+}
+//---------------------------------------------------------------------------
+bool
+CxAtomicLongInt::operator <= (
+    const CxAtomicLongInt &calValue
+) const
+{
+    return (_m_liValue <= calValue.liGetValue());
+}
+//---------------------------------------------------------------------------
+bool
+CxAtomicLongInt::operator > (
+    const long_t &cliValue
+) const
+{
+    return (_m_liValue > cliValue);
+}
+//---------------------------------------------------------------------------
+bool
+CxAtomicLongInt::operator > (
+    const CxAtomicLongInt &calValue
+) const
+{
+    return (_m_liValue > calValue.liGetValue());
+}
+//---------------------------------------------------------------------------
+bool
+CxAtomicLongInt::operator >= (
+    const long_t &cliValue
+) const
+{
+    return (_m_liValue >= cliValue);
+}
+//---------------------------------------------------------------------------
+bool
+CxAtomicLongInt::operator >= (
+    const CxAtomicLongInt &calValue
+) const
+{
+    return (_m_liValue >= calValue.liGetValue());
 }
 //---------------------------------------------------------------------------
 CxAtomicLongInt &
@@ -154,7 +218,7 @@ CxAtomicLongInt::operator ++ (
         (void)::InterlockedExchangeAdd(&_m_liValue, ciValue + 1);
     }
 #elif xOS_ENV_UNIX
-    (void)::__sync_fetch_and_add(&_m_liValue, 1);
+    (void)::__sync_add_and_fetch(&_m_liValue, 1);
 #endif
 
     return *this;
@@ -172,7 +236,7 @@ CxAtomicLongInt::operator -- (
         (void)::InterlockedExchangeAdd(&_m_liValue, - (ciValue + 1));
     }
 #elif xOS_ENV_UNIX
-    (void)::__sync_fetch_and_sub(&_m_liValue, 1);
+    (void)::__sync_sub_and_fetch(&_m_liValue, 1);
 #endif
 
     return *this;
@@ -180,7 +244,11 @@ CxAtomicLongInt::operator -- (
 //---------------------------------------------------------------------------
 long_t
 CxAtomicLongInt::liGetValue() const {
+#if   xOS_ENV_WIN
     return _m_liValue;
+#elif xOS_ENV_UNIX
+    return ::__sync_fetch_and_add(&_m_liValue, 0L);
+#endif
 }
 //---------------------------------------------------------------------------
 
