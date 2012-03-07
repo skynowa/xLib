@@ -5,8 +5,7 @@
 
 
 #include <Test/Debug/CxTest_CxStackTrace.h>
-    #include <execinfo.h>   // lib: -lexecinfo (FreeBSD)
-    #include <cxxabi.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxStackTrace::CxTest_CxStackTrace() {
