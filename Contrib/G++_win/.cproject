@@ -49,6 +49,7 @@
 									<listOptionValue builtIn="false" value="wininet"/>
 									<listOptionValue builtIn="false" value="gdiplus"/>
 								</option>
+								<option id="gnu.cpp.link.option.flags.1541949104" superClass="gnu.cpp.link.option.flags" value="-static-libgcc -static-libstdc++" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1580406084" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -112,6 +113,7 @@
 									<listOptionValue builtIn="false" value="mpr"/>
 									<listOptionValue builtIn="false" value="gdiplus"/>
 								</option>
+								<option id="gnu.cpp.link.option.flags.1126716450" superClass="gnu.cpp.link.option.flags" value="-static-libgcc -static-libstdc++" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1622064715" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>

@@ -1,6 +1,6 @@
 /**
  * \file  CxAtomicLongInt.h
- * \brief atomic operartions with long_t
+ * \brief CxAtomicLongInt operartions with long_t
  */
 
 
@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxAtomicLongInt :
     private CxNonCopyable
-    /// atomic operartions with long_t
+    /// CxAtomicLongInt operartions with long_t
 {
     public:
                          CxAtomicLongInt();
@@ -33,6 +33,18 @@ class CxAtomicLongInt :
 
         bool             operator !=    (const CxAtomicLongInt &calValue) const ;
         bool             operator !=    (const long_t cliRight) const ;
+
+        bool             operator <     (const long_t &cliValue) const;
+        bool             operator <     (const CxAtomicLongInt &calValue) const;
+
+        bool             operator <=    (const long_t &cliValue) const;
+        bool             operator <=    (const CxAtomicLongInt &calValue) const;
+
+        bool             operator >     (const long_t &cliValue) const;
+        bool             operator >     (const CxAtomicLongInt &calValue) const;
+
+        bool             operator >=    (const long_t &cliValue) const;
+        bool             operator >=    (const CxAtomicLongInt &calValue) const;
 
         CxAtomicLongInt& operator ++    (const int ciValue);
         CxAtomicLongInt& operator --    (const int ciValue);
