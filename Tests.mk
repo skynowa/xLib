@@ -40,7 +40,7 @@ BUILD_TYPE					:=	$(cBUILD_TYPE_RELEASE)
 ##################################################
 # xLib
 PROGRAM_PREFIX				:=
-PROGRAM_SHORT_NAME	    	:=	xlib
+PROGRAM_SHORT_NAME			:=	xlib
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 PROGRAM_POSTFIX				:=	_d
@@ -69,7 +69,7 @@ endif
 
 INSTALL_DIR					:=	/usr/local/lib/xLib
 
-SOURCE_SUBDIRS				:= 	. \
+SOURCE_SUBDIRS				:=	. \
 								Common \
 								Common/Win \
 								Crypt \
@@ -92,7 +92,7 @@ SOURCE_SUBDIRS				:= 	. \
 								Units \
 								Units/Win
 
-TESTS_SOURCE_SUBDIRS		:= 	. \
+TESTS_SOURCE_SUBDIRS		:=	. \
 								Common \
 								Common/Win \
 								Crypt \
@@ -115,13 +115,13 @@ TESTS_SOURCE_SUBDIRS		:= 	. \
 								Units/Win
 
 OTHER_INCLUDE_DIR			:=	/usr/include \
-                    			/usr/local/include
+								/usr/local/include
 
 LIB_DIRS					:=	/usr/lib64 \
-                    			/usr/lib \
-                    			/usr/lib64/mysql \
-                    			/usr/lib/mysql \
-                    			/usr/local/lib64 \
+								/usr/lib \
+								/usr/lib64/mysql \
+								/usr/lib/mysql \
+								/usr/local/lib64 \
 								/usr/local/lib \
 								/usr/local/lib64/mysql \
 								/usr/local/lib/mysql
@@ -130,15 +130,15 @@ COMPILE_FLAGS				:=	-Wall -pipe
 LINK_FLAGS					:=	-pthread -s -pipe -rdynamic	#-static
 
 ifeq ($(cOS), Linux)
-LIBRARIES               	:=	-ldl -lmysqlclient -lm -lcrypto -lz -lssl
+LIBRARIES					:=	-ldl -lmysqlclient -lm -lcrypto -lz -lssl
 else
-LIBRARIES               	:=	-lmysqlclient -lm -lcrypto -lz -lssl # -lc only with out -static
+LIBRARIES					:=	-lmysqlclient -lm -lcrypto -lz -lssl # -lc only with out -static
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-BUILD_FLAGS     			:=	-O0 -g3 -g
+BUILD_FLAGS					:=	-O0 -g3 -g
 else
-BUILD_FLAGS     			:=	-O3 -g0 -fomit-frame-pointer
+BUILD_FLAGS					:=	-O3 -g0 -fomit-frame-pointer
 endif
 
 PARANOID_FLAGS				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
@@ -151,7 +151,7 @@ PARANOID_FLAGS				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-in
 								-Wmissing-field-initializers -Wmissing-format-attribute -Wpacked -Wpadded \
 								-Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla \
 								-Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
-							
+
 RELATIVE_INCLUDE_DIRS		:=	$(addprefix $(PATH_PREFIX), $(ROOT_INCLUDE_DIR))
 RELATIVE_SOURCE_DIRS		:=	$(addprefix $(PATH_PREFIX)$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
 OBJECTS_DIRS				:=	$(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
@@ -200,7 +200,7 @@ OBJ_DIRS:
 %.o:							%.cpp
 								$(cCOMPILER) $(COMPILE_FLAGS) $(BUILD_FLAGS) -c $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR)) -o $@ $<
 
-.PHONY: 						clean
+.PHONY:							clean
 
 install:
 #								@echo "[Install ...]"
