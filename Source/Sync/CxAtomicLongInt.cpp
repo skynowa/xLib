@@ -247,7 +247,7 @@ CxAtomicLongInt::liGetValue() const {
 #if   xOS_ENV_WIN
     return _m_liValue;
 #elif xOS_ENV_UNIX
-    return ::__sync_fetch_and_add(&_m_liValue, 0L);
+    return ::__sync_fetch_and_add(const_cast<volatile long_t *>( &_m_liValue ), 0L);
 #endif
 }
 //---------------------------------------------------------------------------

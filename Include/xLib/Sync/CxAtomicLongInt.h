@@ -58,9 +58,3 @@ class CxAtomicLongInt :
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxAtomicLongIntH
-
-
-/*
-    InterlockedCompareExchange - __sync_val_compare_and_swap
-
-*/
