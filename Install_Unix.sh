@@ -13,7 +13,7 @@ echo -e "Install xLib ($OSTYPE) ... "
 echo -e
 
 # prepare
-if   [ "$OSTYPE" = "Linux"   ]; then
+if   [ "$OSTYPE" = "linux-gnu"   ]; then
     MAKE=make
 elif [ "$OSTYPE" = "FreeBSD" ]; then
     MAKE=gmake
