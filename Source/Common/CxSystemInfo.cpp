@@ -376,27 +376,27 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
             ulRes = ulCpu;
         #else
-            #if (xSTD_LIBC_GNU_VER > 2) || \
-                (xSTD_LIBC_GNU_VER == 2 && (xSTD_LIBC_GNU_VER_MINOR > 6 || (xSTD_LIBC_GNU_VER_MINOR == 6 /*&& __GLIBC_PATCHLEVEL__ >= 19*/)))
+            // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
+            int iRes = ::sched_getcpu();
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-                // for GLibc > 2.6.19
-                // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
-                uint_t uiCpu = 0U;
-
-                int iRes = ::getcpu(&uiCpu, NULL, NULL);
-                /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
-
-                ulRes = uiCpu;
-            #else
-                ulRes = 0UL;
-            #endif
+            ulRes = static_cast<ulong_t>( iRes );
 
             #if xTEMP_DISABLED
-                // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
-                int iRes = ::sched_getcpu();
-                /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+                #if (xSTD_LIBC_GNU_VER > 2) || \
+                    (xSTD_LIBC_GNU_VER == 2 && (xSTD_LIBC_GNU_VER_MINOR > 6 || (xSTD_LIBC_GNU_VER_MINOR == 6 /*&& __GLIBC_PATCHLEVEL__ >= 19*/)))
 
-                ulRes = static_cast<ulong_t>( iRes );
+                    // for kernel > 2.6.19
+                    // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
+                    uint_t uiCpu = 0U;
+
+                    int iRes = ::getcpu(&uiCpu, NULL, NULL);
+                    /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+
+                    ulRes = uiCpu;
+                #else
+                    ulRes = 0UL;
+                #endif
             #endif
 
         #endif
