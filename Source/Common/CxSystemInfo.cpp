@@ -222,7 +222,7 @@ CxSystemInfo::sFormatOsArch(
 //---------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxSystemInfo::sGetComputerName() {
+CxSystemInfo::sGetHostName() {
     /*DEBUG*/// n/a
 
     std::tstring_t sRes;
@@ -410,6 +410,125 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 }
 //---------------------------------------------------------------------------
 /*static*/
+CxSystemInfo::ECpuVendor
+CxSystemInfo::cvGetCpuVendor() {
+    ECpuVendor cvRes = cvUnknown;
+
+#if   xOS_ENV_WIN
+    uint_t uiHighestFeature = 0U;
+    int    aiCpuInfo[4]     = {0};
+    char   szMan[13]        = {0};
+
+    (void)::__cpuid(aiCpuInfo, 0);
+
+    uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
+
+    *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
+    *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
+    *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
+
+    if      (std::string("GenuineIntel") == szMan) {
+        cvRes = cvIntel;
+    }
+    else if (std::string("AuthenticAMD") == szMan) {
+        cvRes = cvAmd;
+    }
+    else {
+        cvRes = cvUnknown;
+    }
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        // target proc line: "vendor_id : GenuineIntel"
+        std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("vendor_id"));
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(), cvUnknown);
+
+        size_t uiDelimPos = sRes.find(xT(":"));
+        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, cvUnknown);
+
+        sRes = sRes.substr(uiDelimPos + 1);
+
+        sRes = CxString::sTrimSpace(sRes);
+
+        if      (std::string("GenuineIntel") == sRes) {
+            cvRes = cvIntel;
+        }
+        else if (std::string("AuthenticAMD") == sRes) {
+            cvRes = cvAmd;
+        }
+        else {
+            cvRes = cvUnknown;
+        }
+    #elif xOS_FREEBSD
+        //TODO: CxSystemInfo::cvGetCpuVendor()
+    #endif
+#endif
+
+    return cvRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+std::tstring_t
+CxSystemInfo::sGetCpuModel() {
+    std::tstring_t sRes;
+
+#if   xOS_ENV_WIN
+    char szMan[13] = {0};
+
+    // get szMan
+    {
+        int aiCpuInfo[4] = {0};
+
+        (void)::__cpuid(aiCpuInfo, 0);
+
+        uint_t uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
+
+        *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
+        *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
+        *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
+    }
+
+    // get highest extended feature
+    int aiCpuInfo[4] = {0};
+
+    (void)::__cpuid(aiCpuInfo, 0x80000000);
+
+    uint_t uiHighestFeatureEx = static_cast<uint_t>( aiCpuInfo[0] );
+
+    // get processor brand name
+    if (uiHighestFeatureEx >= 0x80000004) {
+        char szCpuName[49] = {0};
+
+        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[0]  ), 0x80000002);
+        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[16] ), 0x80000003);
+        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[32] ), 0x80000004);
+
+        std::tstring_t sCpuName = CxString::sTrimSpace(szCpuName);
+
+        sRes = CxString::sFormat(xT("%s (%s)"), sCpuName.c_str(), szMan);
+    } else {
+        sRes = CxString::sFormat(xT("%s"), szMan);
+    }
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
+        sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("model name"));
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring_t());
+
+        size_t uiDelimPos = sRes.find(xT(":"));
+        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, std::tstring_t());
+
+        sRes = sRes.substr(uiDelimPos + 1);
+
+        sRes = CxString::sTrimSpace(sRes);
+    #elif xOS_FREEBSD
+        //TODO: CxSystemInfo::sGetCpuModel()
+    #endif
+#endif
+
+    return sRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
 ulong_t
 CxSystemInfo::ulGetCpuSpeed() {
     /*DEBUG*/// n/a
@@ -435,6 +554,7 @@ CxSystemInfo::ulGetCpuSpeed() {
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
         std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("cpu MHz"));
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(), 0UL);
 
         size_t uiDelimPos = sRes.find(xT(":"));
         /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
@@ -756,6 +876,7 @@ CxSystemInfo::ulGetPageSize() {
     return ulRes;
 }
 //----------------------------------------------------------------------------------------------------
+
 
 
 /****************************************************************************
