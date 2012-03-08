@@ -33,6 +33,7 @@ bGetUsbInfo(
     std::vector<std::tstring_t> *pvsInfo
 )
 {
+#if 0
     /*DEBUG*/xASSERT_RET(false == csDrive.empty(), false);
     /*DEBUG*/xASSERT_RET(NULL  != pvsInfo,         false);
 
@@ -137,6 +138,9 @@ bGetUsbInfo(
     //}
 
     return bRes;
+#endif
+
+    return false;
 }
 //---------------------------------------------------------------------------
 

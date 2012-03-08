@@ -85,7 +85,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("name=ferret"), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
     }
 
     xTEST_CASE(cullCaseLoops)
@@ -114,10 +114,10 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("/over/there"), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
     }
 
     xTEST_CASE(cullCaseLoops)
@@ -143,13 +143,13 @@ CxTest_CxUri::bUnit(
         xTEST_EQ((ushort_t)8042u, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
     }
 
     xTEST_CASE(cullCaseLoops)
@@ -175,15 +175,15 @@ CxTest_CxUri::bUnit(
         xTEST_EQ((ushort_t)0, m_usiRes);
 
         m_sRes  = objUri.sGetPath();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
     }
-
+     
     xTEST_CASE(cullCaseLoops)
     {
         CxUri objUri("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c");
@@ -198,7 +198,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("//weather.yahoo.com"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetHost();
         xTEST_EQ(std::string("weather.yahoo.com"), m_sRes);
@@ -213,7 +213,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("unit=c"), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
     }
 
     xTEST_CASE(cullCaseLoops)
@@ -230,7 +230,7 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("//dn1.berloga.net"), m_sRes);
 
         m_sRes  = objUri.sGetUserInfo();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetHost();
         xTEST_EQ(std::string("dn1.berloga.net"), m_sRes);
@@ -242,10 +242,10 @@ CxTest_CxUri::bUnit(
         xTEST_EQ(std::string("/83841/zombie_baseball_2.swf"), m_sRes);
 
         m_sRes  = objUri.sGetQuery();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
 
         m_sRes  = objUri.sGetFragment();
-        xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
+        xTEST_EQ(std::string(), m_sRes);
     }
 
     //-------------------------------------

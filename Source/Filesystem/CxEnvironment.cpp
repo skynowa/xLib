@@ -9,7 +9,7 @@
 #include <xLib/Filesystem/CxPath.h>
 
 
-#if !xCOMPILER_CODEGEAR
+#if xOS_ENV_UNIX
     extern char **environ;  //from <env.h>
 #endif
 
