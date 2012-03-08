@@ -64,7 +64,6 @@ CxFile::bCreate(
 
     //create, open file
     std::FILE *pFile = ::xTFOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());
-//BUG: 26 - text file busy
     /*DEBUG*/xASSERT_RET(NULL != pFile, false);
 
     _m_pFile     = pFile;
@@ -1196,7 +1195,7 @@ CxFile::bTextWrite(
 
     bool   bRes = false;
     CxFile sfFile;
-//BUG: line 1206
+
     bRes = sfFile.bCreate(csFilePath, omBinWrite, true);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 

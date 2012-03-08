@@ -122,13 +122,25 @@ CxSystemInfo::sFormatOsType(
         default:                        { sRes = xUNKNOWN_STRING;                  }    break;
     }
 #elif xOS_ENV_UNIX
-    //TODO: sFormatOsType
-    utsname unKernelInfo= {{0}};
+    if (osGetOS() == otOsType) {
+        // current OS type - get info about OS kernel
+        utsname unKernelInfo= {{0}};
 
-    int iRes = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring_t());
+        int iRes = ::uname(&unKernelInfo);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring_t());
 
-    sRes = CxString::sFormat(xT("%s %s (%s) %s"), unKernelInfo.sysname, unKernelInfo.release, unKernelInfo.version, unKernelInfo.machine);
+        sRes = CxString::sFormat(xT("%s %s (%s) %s"), 
+                                 unKernelInfo.sysname, unKernelInfo.release, 
+                                 unKernelInfo.version, unKernelInfo.machine);
+    } else {
+        // not current OS type, can't get info about OS kernel - return simple-formatted string
+        switch (otOsType) {
+            case otLinux:   { sRes = xT("Linux");     } break;
+            case otFreeBSD: { sRes = xT("FreeBSD");   } break;
+
+            default:        { sRes = xUNKNOWN_STRING; } break;
+        }    
+    }
 #endif
 
     return sRes;
