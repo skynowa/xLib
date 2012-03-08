@@ -1,16 +1,25 @@
+#!/bin/sh
+#
+# xxxxxxxx
+#
+
+
+# vars
 MAKE=
 
-# prepare
+
 clear
 echo -e "Install xLib ($OSTYPE) ... "
 echo -e
 
-if   [[ 'linux'*   == $OSTYPE ]]; then
+# prepare
+if   [ "$OSTYPE" = "Linux"   ]; then
     MAKE=make
-elif [[ 'freebsd'* == $OSTYPE ]]; then
+elif [ "$OSTYPE" = "FreeBSD" ]; then
     MAKE=gmake
 else
     echo -e "Unknown OS"
+    exit 1
 fi
 
 # execute

@@ -5,6 +5,7 @@
 html
 Contrib/html
 
+
 ##### C++Builder2010 #####
 Contrib/C++Builder2010/Debug/
 Contrib/C++Builder2010/Release/
@@ -58,14 +59,15 @@ Library/G++_linux/Release/
 Library/G++_linux/.settings/
 
 
-##### G++_FreeBSD #####
-Contrib/G++_FreeBSD/Debug/
-Contrib/G++_FreeBSD/Release/
-Contrib/G++_FreeBSD/.settings/
+##### G++_freebsd #####
+Contrib/G++_freebsd/Debug/
+Contrib/G++_freebsd/Release/
+Contrib/G++_freebsd/.settings/
 
-Library/G++_FreeBSD/Debug/
-Library/G++_FreeBSD/Release/
-Library/G++_FreeBSD/.settings/
+Library/G++_freebsd/Debug/
+Library/G++_freebsd/Release/
+Library/G++_freebsd/.settings/
+
 
 ##### VC++2008 #####
 Contrib/VC++2008/Debug/
