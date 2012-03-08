@@ -26,7 +26,7 @@ bool
 CxShell::bIsAvailable() {
     xDEBUG_VARS_NA;
 
-    int iRes = std::xTSYSTEM(NULL);
+    int iRes = ::xTSYSTEM(NULL);
 
 #if   xOS_ENV_WIN
     xCHECK_RET(0 == iRes && ENOENT == CxStdError::iGet(), false);
@@ -51,7 +51,7 @@ CxShell::bExecute(
 
     std::tstring_t sCommand = CxString::sFormat(xT("%s %s"), csFilePath.c_str(), csParams.c_str());
 
-    int iRes = std::xTSYSTEM(sCommand.c_str());
+    int iRes = ::xTSYSTEM(sCommand.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
     return true;

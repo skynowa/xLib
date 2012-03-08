@@ -12,7 +12,6 @@
 xNAMESPACE_BEGIN(std)
 
 //---------------------------------------------------------------------------
-//DONE: operator << for std::ustring_t
 template<class Traits>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
@@ -29,12 +28,11 @@ operator << (
     return osOut;
 }
 //---------------------------------------------------------------------------
-//DONE: operator << for std::vector
 template<class Traits, class T>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &osOut,
-    const vector<T>              &cvValueT
+    const vector<T>                &cvValueT
 )
 {
     osOut << std::endl;
@@ -53,12 +51,11 @@ operator << (
     return osOut;
 }
 //---------------------------------------------------------------------------
-//DONE: operator << for std::map
 template<class Traits, class T1, class T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &osOut,
-    const map<T1, T2>            &cmValueT
+    const map<T1, T2>              &cmValueT
 )
 {
     osOut << std::endl;
@@ -77,12 +74,11 @@ operator << (
     return osOut;
 }
 //---------------------------------------------------------------------------
-//DONE: operator << for std::multimap
 template<class Traits, class T1, class T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &osOut,
-    const multimap<T1, T2>       &cmmValueT
+    const multimap<T1, T2>         &cmmValueT
 )
 {
     osOut << std::endl;

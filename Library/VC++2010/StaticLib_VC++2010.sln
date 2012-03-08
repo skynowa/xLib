@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StaticLib_VC++2010", "StaticLib_VC++2010.vcxproj", "{3A316730-27E5-405F-AC2C-A2A9D2AE2505}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		xLibA_Debug|Win32 = xLibA_Debug|Win32
+		xLibA_Release|Win32 = xLibA_Release|Win32
+		xLibW_Debug|Win32 = xLibW_Debug|Win32
+		xLibW_Release|Win32 = xLibW_Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.Debug|Win32.Build.0 = Debug|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.Release|Win32.ActiveCfg = Release|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.Release|Win32.Build.0 = Release|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibA_Debug|Win32.ActiveCfg = xLibA_Debug|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibA_Debug|Win32.Build.0 = xLibA_Debug|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibA_Release|Win32.ActiveCfg = xLibA_Release|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibA_Release|Win32.Build.0 = xLibA_Release|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibW_Debug|Win32.ActiveCfg = xLibW_Debug|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibW_Debug|Win32.Build.0 = xLibW_Debug|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibW_Release|Win32.ActiveCfg = xLibW_Release|Win32
+		{3A316730-27E5-405F-AC2C-A2A9D2AE2505}.xLibW_Release|Win32.Build.0 = xLibW_Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

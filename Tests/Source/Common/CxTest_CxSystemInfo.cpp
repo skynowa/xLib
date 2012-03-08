@@ -171,6 +171,20 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
+    //ullGetRamTotal
+    {
+        m_ullRes = CxSystemInfo::ullGetRamTotal();
+        xTEST_LESS(0ULL, m_ullRes);
+    }
+
+    //--------------------------------------------------
+    //ullGetRamAvailable
+    {
+        m_ullRes = CxSystemInfo::ullGetRamAvailable();
+        xTEST_LESS(0ULL, m_ullRes);
+    }
+
+    //--------------------------------------------------
     //ulGetCpuUsage
     xTEST_CASE(cullCaseLoops)
     {
@@ -187,11 +201,11 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //ulGetMemoryUsage
+    //ulGetRamUsage
     xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
-            m_ulRes = CxSystemInfo::ulGetMemoryUsage();
+            m_ulRes = CxSystemInfo::ulGetRamUsage();
             xDEBUG_VAR_NA(m_ulRes);
 
             #if xTEST_IGNORE

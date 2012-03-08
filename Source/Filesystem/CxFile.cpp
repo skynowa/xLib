@@ -63,7 +63,7 @@ CxFile::bCreate(
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //create, open file
-    std::FILE *pFile = std::xTFOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());
+    std::FILE *pFile = ::xTFOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());
 //BUG: 26 - text file busy
     /*DEBUG*/xASSERT_RET(NULL != pFile, false);
 
@@ -93,7 +93,7 @@ CxFile::bReopen(
     /*DEBUG*/xASSERT_RET(false != CxPath::bIsNameValid(csFilePath), false);
     /*DEBUG*/// omMode - n/a
 
-    std::FILE *pFile = std::xTFREOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str(), _m_pFile);
+    std::FILE *pFile = ::xTFREOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str(), _m_pFile);
     /*DEBUG*/xASSERT_RET(NULL != pFile, false);
 
     _m_pFile     = pFile;
@@ -751,7 +751,7 @@ CxFile::bDelete(
     bool bRes = bChmod(csFilePath, pmWrite);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    int iRes = std::xTREMOVE(csFilePath.c_str());
+    int iRes = ::xTREMOVE(csFilePath.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
     /*DEBUG*/xASSERT_RET(false == bIsExists(csFilePath), false);
@@ -928,7 +928,7 @@ CxFile::bRename(
     /*DEBUG*/xASSERT_RET(false == csOldFilePath.empty(), false);
     /*DEBUG*/xASSERT_RET(false == csNewFilePath.empty(), false);
 
-    int iRes = std::xTRENAME(csOldFilePath.c_str(), csNewFilePath.c_str());
+    int iRes = ::xTRENAME(csOldFilePath.c_str(), csNewFilePath.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
     return true;

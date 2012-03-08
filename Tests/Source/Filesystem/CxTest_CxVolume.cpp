@@ -199,169 +199,79 @@ CxTest_CxVolume::bUnit(
 
             CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
             xTEST_EQ(CxVolume::dtFixed, dtRes);
-        #elif xOS_ENV_UNIX
-            //TODO: xOS_ENV_UNIX
         #endif
     }
 
     //-------------------------------------
+    //bGetVolumes
+    xTEST_CASE(cullCaseLoops)
+    {
+        #if xOS_ENV_WIN
+            std::vector<std::tstring_t> vsDrives;
+
+            m_bRes = CxVolume::bGetVolumes(&vsDrives);
+            xTEST_EQ(true, m_bRes);
+
+            #if xTEST_IGNORE
+                std::tcout << vsDrives << std::endl;
+            #endif
+        #endif
+    }
+
+    //-------------------------------------
+    //bIsVolumeLetterValid
+    xTEST_CASE(cullCaseLoops)
+    {
+        #if xOS_ENV_WIN
+            {
+                std::tstring_t sDataTrue = xT("qwertyuiopasdfghjklzxcvbnm");
+
+                for (size_t i = 0; i < sDataTrue.size(); ++ i) {
+                    m_bRes = CxVolume::bIsVolumeLetterValid( sDataTrue.at(i) );
+                    xTEST_EQ(true, m_bRes);
+                }
+            }
+
+            {
+                std::tstring_t sDataFalse = xT("1234567890-=/*-+!@#$%^&*()_+:\"<>?|");
+
+                for (size_t i = 0; i < sDataFalse.size(); ++ i) {
+                    m_bRes = CxVolume::bIsVolumeLetterValid( sDataFalse.at(i) );
+                    xTEST_EQ(false, m_bRes);
+                }
+            }
+        #endif
+    }
+
+    //--------------------------------------------------
     //bGetInfo
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
-            const std::tstring_t csVolumePath = xT("C:");
-            std::tstring_t szVolumeName;
-            ulong_t   ulVolumeSerialNumber     = 0;
-            ulong_t   ulMaximumComponentLength = 0;
-            ulong_t   ulFileSystemFlags        = 0;
-            std::tstring_t sFileSystemName;
+        std::vector<std::tstring_t> vsVolumes;
 
-            m_bRes = CxVolume::bGetInfo(
-                                csVolumePath,
-                                &szVolumeName,
-                                &ulVolumeSerialNumber,
-                                &ulMaximumComponentLength,
-                                &ulFileSystemFlags,
-                                &sFileSystemName);
+        m_bRes = CxVolume::bGetVolumes(&vsVolumes);
+        xTEST_EQ(true, m_bRes);
+
+        for (size_t i = 0; i < vsVolumes.size(); ++ i) {
+            xCHECK_DO(false == CxVolume::bIsReady(vsVolumes.at(i)), continue);
+
+            std::tstring_t  sDrivePath               = vsVolumes.at(i);
+            std::tstring_t  sVolumeName;
+            ulong_t         ulVolumeSerialNumber     = 0UL;
+            ulong_t         ulMaximumComponentLength = 0UL;
+            ulong_t         ulFileSystemFlags        = 0UL;
+            std::tstring_t  sFileSystemName;
+
+            m_bRes  = CxVolume::bGetInfo(sDrivePath,
+                                         &sVolumeName,
+                                         &ulVolumeSerialNumber,
+                                         &ulMaximumComponentLength,
+                                         &ulFileSystemFlags,
+                                         &sFileSystemName);
             xTEST_EQ(true, m_bRes);
-        #elif xOS_ENV_UNIX
-            //TODO: xOS_ENV_UNIX
-        #endif
+        }
     }
-
-    //-------------------------------------
-    //bGetLogicalDrives
-    xTEST_CASE(cullCaseLoops)
-    {
-        #if xOS_ENV_WIN
-            std::vector<std::tstring_t> vsDrives;
-
-            m_bRes = CxVolume::bGetLogicalDrives(&vsDrives);
-            xTEST_EQ(true, m_bRes);
-        #elif xOS_ENV_UNIX
-            //TODO: xOS_ENV_UNIX
-        #endif
-    }
-
-    //-------------------------------------
-    //bGetLogicalDrives2
-    xTEST_CASE(cullCaseLoops)
-    {
-        #if xOS_ENV_WIN
-            std::vector<std::tstring_t> vsDrives;
-
-            m_bRes = CxVolume::bGetLogicalDrives(&vsDrives, CxVolume::dtFixed);
-            xTEST_EQ(true, m_bRes);
-        #elif xOS_ENV_UNIX
-            //TODO: xOS_ENV_UNIX
-        #endif
-    }
-
-    //-------------------------------------
-    //bDefineDosDevice
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //bDeleteVolumeMountPoint
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //hFindFirstVolume
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //hFindFirstVolumeMountPoint
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //sFindNextVolume
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //bFindNextVolumeMountPoint
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //bFindVolumeClose
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //bFindVolumeMountPointClose
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //sGetLogicalStrings
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //sGetVolumeNameForVolumeMountPoint
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //sGetVolumePathName
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //sGetVolumePathNamesForVolumeName
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //sQueryDosDevice
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //bSetVolumeLabel
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
-    //-------------------------------------
-    //bSetVolumeMountPoint
-    xTEST_CASE(cullCaseLoops)
-    {
-
-    }
-
+    
     return true;
 }
 //---------------------------------------------------------------------------
