@@ -376,15 +376,17 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
             ulRes = ulCpu;
         #else
-            // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
-            int iRes = ::sched_getcpu();
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+            #if xTEMP_DISABLED
+                // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
+                int iRes = ::sched_getcpu();
+                /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-            ulRes = static_cast<ulong_t>( iRes );
+                ulRes = static_cast<ulong_t>( iRes );
+            #endif
 
             #if xTEMP_DISABLED
-                #if (xSTD_LIBC_GNU_VER > 2) || \
-                    (xSTD_LIBC_GNU_VER == 2 && (xSTD_LIBC_GNU_VER_MINOR > 6 || (xSTD_LIBC_GNU_VER_MINOR == 6 /*&& __GLIBC_PATCHLEVEL__ >= 19*/)))
+                #if (__GNUC__ > 2) || \
+                    (__GNUC__ == 2 && (__GNUC_MINOR__ > 6 || (__GNUC_MINOR__ == 6 && __GNUC__PATCHLEVEL__ >= 19)))
 
                     // for kernel > 2.6.19
                     // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
@@ -394,11 +396,11 @@ CxSystemInfo::ulGetCurrentCpuNum() {
                     /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
                     ulRes = uiCpu;
-                #else
-                    ulRes = 0UL;
                 #endif
             #endif
 
+            //TODO: ulGetCurrentCpuNum
+            ulRes = 0UL;
         #endif
     #elif xOS_FREEBSD
         //TODO: ulGetCurrentCpuNum
@@ -660,8 +662,6 @@ CxSystemInfo::ullGetRamAvailable() {
 
         ullRes = siInfo.freeram * siInfo.mem_unit;
     #elif xOS_FREEBSD
-        ulonglong_t ullRamFree = 0ULL;
-
         ulonglong_t ullAvailPhysPages     = 0ULL;
         size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
