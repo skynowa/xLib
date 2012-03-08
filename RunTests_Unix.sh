@@ -13,7 +13,7 @@ echo -e "Test xLib ($OSTYPE) ... "
 echo -e
 
 # prepare
-if   [ "$OSTYPE" = "Linux"   ]; then
+if   [ "$OSTYPE" = "linux-gnu"   ]; then
     TARGET_DIR=./Contrib/G++_linux/Release
 elif [ "$OSTYPE" = "FreeBSD" ]; then
     TARGET_DIR=./Contrib/G++_freebsd/Release
