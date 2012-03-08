@@ -376,31 +376,29 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
             ulRes = ulCpu;
         #else
-            #if xTEMP_DISABLED
+            #if (xSTD_LIBC_GNU_VER > 2) || \
+                (xSTD_LIBC_GNU_VER == 2 && xSTD_LIBC_GNU_VER_MINOR > 6)
+
                 // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
                 int iRes = ::sched_getcpu();
                 /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
                 ulRes = static_cast<ulong_t>( iRes );
+            #else
+                //TODO: ulGetCurrentCpuNum
+                ulRes = 0UL;
             #endif
 
             #if xTEMP_DISABLED
-                #if (__GNUC__ > 2) || \
-                    (__GNUC__ == 2 && (__GNUC_MINOR__ > 6 || (__GNUC_MINOR__ == 6 && __GNUC__PATCHLEVEL__ >= 19)))
+                // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
+                uint_t uiCpu = 0U;
 
-                    // for kernel > 2.6.19
-                    // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
-                    uint_t uiCpu = 0U;
+                int iRes = ::getcpu(&uiCpu, NULL, NULL);
+                /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
 
-                    int iRes = ::getcpu(&uiCpu, NULL, NULL);
-                    /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
-
-                    ulRes = uiCpu;
-                #endif
+                ulRes = uiCpu;
             #endif
 
-            //TODO: ulGetCurrentCpuNum
-            ulRes = 0UL;
         #endif
     #elif xOS_FREEBSD
         //TODO: ulGetCurrentCpuNum
