@@ -65,7 +65,7 @@ CxDnsClient::bGetHostNameByAddr(
 
     switch (afFamily) {
         case CxSocket::afInet6: {
-            #if (xWINVER >= xWIN32_VISTA)
+            #if (xWINVER >= xOS_WIN_VISTA)
                 #if xTODO
                     IN6_ADDR iaAddr6 = {0};
 
@@ -75,7 +75,7 @@ CxDnsClient::bGetHostNameByAddr(
                     pHostent = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
                     /*DEBUG*/xASSERT_RET(NULL != pHostent, false);
                 #endif
-            #endif //xWIN32_VISTA
+            #endif //xOS_WIN_VISTA
             }
             break;
 

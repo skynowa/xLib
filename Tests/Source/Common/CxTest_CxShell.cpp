@@ -106,10 +106,10 @@ CxTest_CxShell::bUnit(
     //-------------------------------------
     //sGetSpecialDirPath
     xTEST_CASE(cullCaseLoops) {
-        #if (xWINVER >= xWIN32_2K)
+        #if (xWINVER >= xOS_WIN_2K)
             m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
             xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRes);
-        #endif //xWIN32_2K
+        #endif //xOS_WIN_2K
     }
 #endif
 
