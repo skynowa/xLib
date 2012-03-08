@@ -253,7 +253,7 @@ std::tstring_t
 CxMimeHeader::sGenerateMessageID() {
     std::tstring_t sRes;
 
-    sRes = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sGetComputerName().c_str());
+    sRes = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sGetHostName().c_str());
     /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring_t());
 
     return sRes;

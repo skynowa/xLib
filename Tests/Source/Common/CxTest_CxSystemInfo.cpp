@@ -104,13 +104,13 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //-------------------------------------
-    //sGetComputerName
+    //sGetHostName
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sGetComputerName();
+        m_sRes = CxSystemInfo::sGetHostName();
         xTEST_EQ(false, m_sRes.empty());
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::sGetComputerName(): %s"), m_sRes.c_str());
+            xTRACEV(xT("\tCxSystemInfo::sGetHostName(): %s"), m_sRes.c_str());
         #endif
     }
 
@@ -156,6 +156,26 @@ CxTest_CxSystemInfo::bUnit(
         #endif
         xTEST_EQ(true, 0 <= m_ulRes);
         xTEST_EQ(true, CxSystemInfo::ulGetNumOfCpus() > m_ulRes);
+    }
+
+    //--------------------------------------------------
+    //cvGetCpuVendor
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxSystemInfo::ECpuVendor cvType = CxSystemInfo::cvGetCpuVendor();
+        xTEST_EQ(true, CxSystemInfo::cvIntel == cvType || CxSystemInfo::cvAmd == cvType);
+    }
+
+    //--------------------------------------------------
+    //sGetCpuModel
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_sRes = CxSystemInfo::sGetCpuModel();
+        xTEST_EQ(false, m_sRes.empty());
+
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCPU model: %s"), m_sRes.c_str());
+        #endif
     }
 
     //--------------------------------------------------

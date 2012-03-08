@@ -875,6 +875,7 @@ CxPath::sGetProcLine(
 
         std::getline(ifsStream, sLine);
 
+        //TODO: no case search
         size_t uiPos = sLine.find(csTargetStr);
         xCHECK_DO(std::tstring_t::npos != uiPos, sRes = sLine; break);
     }
