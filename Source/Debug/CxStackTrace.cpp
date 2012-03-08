@@ -14,13 +14,14 @@
         #define DBGHELP_TRANSLATE_TCHAR
     #endif
 
-    #if !xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW32
+        //
+    #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         #include <DbgHelp.h>
         #pragma comment(lib, "DbgHelp.Lib")
     #endif
-
 #elif xOS_ENV_UNIX
-    #include <execinfo.h>
+    #include <execinfo.h>   // lib: -lexecinfo (FreeBSD)
     #include <cxxabi.h>
 #endif
 
@@ -43,57 +44,6 @@ CxStackTrace::~CxStackTrace() {
 
 }
 //---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    private
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-#if xOS_FREEBSD
-
-//#include <dlfcn.h>
-//#include <pthread.h>
-#include <setjmp.h>
-//#include <stddef.h>
-//#include <stdio.h>
-
-struct frame {
-    long    arg0[8];
-    long    arg1[6];
-    struct frame *fr_savfp;
-    long    fr_savpc;
-};
-
-int backtrace( void **buffer, int max_frames )
-{
-    #define FRAME_PTR_OFFSET 1
-    #define FRAME_OFFSET 0
-
-    struct frame *fp;
-    jmp_buf ctx;
-    int i;
-    /* get stack- and framepointer */
-    setjmp(ctx);
-    fp = (struct frame*)(((size_t*)(ctx))[FRAME_PTR_OFFSET]);
-    for ( i=0; (i<FRAME_OFFSET) && (fp!=0); i++)
-        fp = fp->fr_savfp;
-
-    /* iterate through backtrace */
-    for (i=0; fp && fp->fr_savpc && i<max_frames; i++)
-    {
-        /* store frame */
-        *(buffer++) = (void *)fp->fr_savpc;
-        /* next frame */
-        fp=fp->fr_savfp;
-    }
-
-    return i;
-}
-
-#endif
-//---------------------------------------------------------------------------
 bool
 CxStackTrace::bGet(
     std::vector<std::tstring_t> *pvsStack
@@ -104,7 +54,7 @@ CxStackTrace::bGet(
 #if xOS_ENV_WIN
     #if   xCOMPILER_MINGW32
         //TODO: CxStackTrace::bGet
-    #elif xCOMPILER_MS
+    #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         void        *pvStack[_m_culMaxFrames] = {0};
         SYMBOL_INFO *psiSymbol                = NULL;
         HANDLE       hProcess                 = NULL;
@@ -141,49 +91,43 @@ CxStackTrace::bGet(
         xARRAY_DELETE(psiSymbol);
 
         (void)::SymCleanup(hProcess);
-    #elif xCOMPILER_CODEGEAR
-        //TODO: CxStackTrace::bGet
     #endif
 #elif xOS_ENV_UNIX
-    //--#if xOS_LINUX
-        void *pvStack[_m_culMaxFrames] = {0};
+    void *pvStack[_m_culMaxFrames] = {0};
 
-        int iFramesNum  = ::backtrace(pvStack, _m_culMaxFrames);
-        xCHECK_RET(iFramesNum <= 0, false);
+    int iFramesNum = ::backtrace(pvStack, _m_culMaxFrames);
+    xCHECK_RET(iFramesNum <= 0, false);
 
-        tchar_t **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);
-        xCHECK_RET(NULL == ppszSymbols, false);
+    tchar_t **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);
+    xCHECK_RET(NULL == ppszSymbols, false);
 
-        for (int i = 1; i < iFramesNum; ++ i) {
-            std::tstring_t sStackLine;
+    for (int i = 1; i < iFramesNum; ++ i) {
+        std::tstring_t sStackLine;
 
-            Dl_info dlinfo = {0};
+        Dl_info dlinfo = {0};
 
-            int iRes = ::dladdr(pvStack[i], &dlinfo);
-            if (0 == iRes) {
-                sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
+        int iRes = ::dladdr(pvStack[i], &dlinfo);
+        if (0 == iRes) {
+            sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
+        } else {
+            const tchar_t *pcszSymName     = NULL;
+            tchar_t       *pszDemangleName = NULL;
+            int            iStatus         = - 1;
+
+            pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
+            if (NULL != pszDemangleName && 0 == iStatus) {
+                pcszSymName = pszDemangleName;
             } else {
-                const tchar_t *pcszSymName     = NULL;
-                tchar_t       *pszDemangleName = NULL;
-                int            iStatus         = - 1;
-
-                pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
-                if (NULL != pszDemangleName && 0 == iStatus) {
-                    pcszSymName = pszDemangleName;
-                } else {
-                    pcszSymName = dlinfo.dli_sname;
-                }
-
-                sStackLine = CxString::sFormat(xT("%u: %s    %p    %s"), iFramesNum - i - 1, dlinfo.dli_fname, dlinfo.dli_fbase, pcszSymName);
-
-                xBUFF_FREE(pszDemangleName);
+                pcszSymName = dlinfo.dli_sname;
             }
 
-            vsStack.push_back(sStackLine);
+            sStackLine = CxString::sFormat(xT("%u: %s    %p    %s"), iFramesNum - i - 1, dlinfo.dli_fname, dlinfo.dli_fbase, pcszSymName);
+
+            xBUFF_FREE(pszDemangleName);
         }
-    //--#elif xOS_FREEBSD
-        //TODO: CxStackTrace::bGet
-    //--#endif
+
+        vsStack.push_back(sStackLine);
+    }
 #endif
 
     std::reverse(vsStack.begin(), vsStack.end());

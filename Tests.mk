@@ -132,7 +132,7 @@ LINK_FLAGS					:=	-pthread -s -pipe -rdynamic	#-static
 ifeq ($(cOS), Linux)
 LIBRARIES					:=	-ldl -lmysqlclient -lm -lcrypto -lz -lssl
 else
-LIBRARIES					:=	-lmysqlclient -lm -lcrypto -lz -lssl # -lc only with out -static
+LIBRARIES					:=	-lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
