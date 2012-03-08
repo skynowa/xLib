@@ -258,38 +258,6 @@ CxDateTime::operator = (
 
     return *this;
 }
-//--------------------------------------------------------------------------
-#if xOS_ENV_WIN && xCOMPILER_CODEGEAR
-
-const CxDateTime &
-CxDateTime::operator = (
-    const TDateTime &cdtDT
-)
-{
-    /*DEBUG*/xASSERT_RET(false != bIsValid(), *this);
-    /*DEBUG*/
-
-    ushort_t usYear        = 0;
-    ushort_t usMonth       = 0;
-    ushort_t usDay         = 0;
-    ushort_t usHour        = 0;
-    ushort_t usMinute      = 0;
-    ushort_t usSecond      = 0;
-    ushort_t usMillisecond = 0;
-
-    cdtDT.DecodeDate(&usYear, &usMonth, &usDay);
-    /*DEBUG*/// n/a
-
-    cdtDT.DecodeTime(&usHour, &usMinute, &usSecond, &usMillisecond);
-    /*DEBUG*/// n/a
-
-    bool bRes = bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond);
-    /*DEBUG*/xASSERT_RET(true == bRes, *this);
-
-    return *this;
-}
-
-#endif
 //---------------------------------------------------------------------------
 const CxDateTime &
 CxDateTime::operator = (

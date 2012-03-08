@@ -108,12 +108,16 @@ CxTest_CxCurrentThread::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const uint_t cuiMsec = caulData[i];
 
-            CxDateTime dtTime1 = CxDateTime::dtGetCurrent();
+            CxDateTime dtTime1;
+            
+            dtTime1 = CxDateTime::dtGetCurrent();
 
             m_bRes = CxCurrentThread::bSleep(cuiMsec);
             xTEST_EQ(true, m_bRes);
 
-            CxDateTime dtTime2 = CxDateTime::dtGetCurrent();
+            CxDateTime dtTime2;
+            
+            dtTime2 = CxDateTime::dtGetCurrent();
 
             xTEST_GREATER_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
             //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());

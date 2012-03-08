@@ -8,11 +8,13 @@
 #ifndef xLib_Common_Unix_xCommon_UnixH
 #define xLib_Common_Unix_xCommon_UnixH
 //----------------------------------------------------------------------------------------------------
-#define _GNU_SOURCE 1
+#if !defined(_GNU_SOURCE)
+    #define _GNU_SOURCE 1
+#endif
 
 //----------------------------------------------------------------------------------------------------
 
-//POSIX
+// POSIX
 #include <string.h>
 #include <cpio.h>
 #include <dirent.h>
@@ -32,12 +34,12 @@
 #include <sys/syscall.h>
 #include <sys/param.h>
 
-//thread
-#include <pthread.h>    //lib: -pthread
+// thread
+#include <pthread.h>    // lib: -pthread
 #include <sched.h>
 #include <sys/sem.h>
 
-//dll
+// dll
 #include <dlfcn.h>
 
 #if   xOS_LINUX
@@ -46,19 +48,19 @@
     #include <sys/sysinfo.h>
 #elif xOS_FREEBSD
     #include <osreldate.h>
-    #include <pthread_np.h>    //lib: libpthread, -lpthread (FreeBSD)
+    #include <pthread_np.h>    // lib: libpthread, -lpthread (FreeBSD)
     #include <sys/mount.h>
     #include <sys/statvfs.h>
     #include <sys/resource.h>
     #include <sys/sysctl.h>
 #endif
 
-//socket
+// socket
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 //----------------------------------------------------------------------------------------------------
-#endif //xLib_Common_Unix_xCommon_UnixH
+#endif // xLib_Common_Unix_xCommon_UnixH
 //----------------------------------------------------------------------------------------------------

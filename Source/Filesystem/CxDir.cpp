@@ -64,10 +64,10 @@ CxDir::bIsEmpty(
         std::tstring_t sFileName = fdData.cFileName;
 
         if (CxConst::xDOT != sFileName && CxConst::x2DOT != sFileName) {
-            bRes = false;    //not empty
+            bRes = false;   // not empty
             break;
         } else {
-            bRes = true;    //empty
+            bRes = true;    // empty
         }
     }
     while (false != ::FindNextFile(hFile, &fdData));
@@ -88,10 +88,10 @@ CxDir::bIsEmpty(
         std::tstring_t sFileName = pdrEntry->d_name;
 
         if (CxConst::xDOT != sFileName && CxConst::x2DOT != sFileName) {
-            bRes = false;   //not empty
+            bRes = false;   // not empty
             break;
         } else {
-            bRes = true;    //empty
+            bRes = true;    // empty
         }
     }
     while (NULL != (pdrEntry = ::readdir(pDir)));

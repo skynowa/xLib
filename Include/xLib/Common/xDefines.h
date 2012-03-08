@@ -49,12 +49,12 @@
 // OS version
 #define xOS_WIN_VER     WINVER      ///< Windows version
 
-#define xWIN32_NT4      0x0400      ///< Windows NT 4.0
-#define xWIN32_2K       0x0500      ///< Windows 2000
-#define xWIN32_XP       0x0501      ///< Windows Server 2003, Windows XP
-#define xWIN32_S03      0x0502      ///< Windows Server 2003 with SP1, Windows XP with SP2
-#define xWIN32_VISTA    0x0600      ///< Windows Vista, Windows Server 2008
-#define xWIN32_7        0x0601      ///< Windows 7, Windows Server 2008 R2
+#define xOS_WIN_NT4     0x0400      ///< Windows NT 4.0
+#define xOS_WIN_2K      0x0500      ///< Windows 2000
+#define xOS_WIN_XP      0x0501      ///< Windows Server 2003, Windows XP
+#define xOS_WIN_S03     0x0502      ///< Windows Server 2003 with SP1, Windows XP with SP2
+#define xOS_WIN_VISTA   0x0600      ///< Windows Vista, Windows Server 2008
+#define xOS_WIN_7       0x0601      ///< Windows 7, Windows Server 2008 R2
 
 #define xOS_LINUX_VER   0           ///< Linux version
 
@@ -104,7 +104,7 @@
 
 #define xCOMPILER_CODEGEAR_VER        __CODEGEARC__
 
-#define xCOMPILER_GNUC_VER            __GNUC__
+#define xCOMPILER_GNUC_VER_MAJOR      __GNUC__
 #define xCOMPILER_GNUC_VER_MINOR      __GNUC_MINOR__
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
 
@@ -155,7 +155,7 @@
 
 //--------------------------------------------------
 //TODO: standard C libraries versions
-#define xSTD_LIBC_GNU_VER       __GLIBC__
+#define xSTD_LIBC_GNU_VER_MAJOR __GLIBC__
 #define xSTD_LIBC_GNU_VER_MINOR __GLIBC_MINOR__
 
 #define xSTD_LIBC_UC_VER        0

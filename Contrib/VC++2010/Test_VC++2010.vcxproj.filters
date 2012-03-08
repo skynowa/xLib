@@ -833,12 +833,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxSystemInfo.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\xClosure.h">
-      <Filter>xLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\xClosureImpl.h">
-      <Filter>xLib\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\xCommon.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
