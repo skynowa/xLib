@@ -1,3 +1,10 @@
+#!/bin/sh
+#
+# xxxxxxxx
+#
+
+
+# vars
 MAKE=
 TARGET_DIR=
 
@@ -7,14 +14,15 @@ echo -e "Build xLib ($OSTYPE) ... "
 echo -e
 
 # prepare
-if   [[ 'linux'*   == $OSTYPE ]]; then
+if   [ "$OSTYPE" = "Linux"   ]; then
     MAKE=make
     TARGET_DIR=./Contrib/G++_linux/Release
-elif [[ 'freebsd'* == $OSTYPE ]]; then
+elif [ "$OSTYPE" = "FreeBSD" ]; then
     MAKE=gmake
     TARGET_DIR=./Contrib/G++_freebsd/Release
 else
     echo -e "Unknown OS"
+    exit 1
 fi
 
 # execute
