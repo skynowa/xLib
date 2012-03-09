@@ -175,11 +175,3 @@ xNAMESPACE_END(NxLib)
 #include "CxString.inl"
 //---------------------------------------------------------------------------
 #endif    //xLib_Common_CxStringH
-
-
-/*
-std::string str("i am string");
-std::vector<unsigned char> data;//i am array
-std::copy(str.begin(), str.end(), std::back_inserter(data));
-*/
-

@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Common\CxCommandLine.cpp" />
     <ClCompile Include="..\..\Source\Common\CxConsole.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxProcessInfo.cpp" />
     <ClCompile Include="..\..\Source\Common\CxShell.cpp" />
     <ClCompile Include="..\..\Source\Common\CxType.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp" />
@@ -274,6 +275,7 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxLocale.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxMacros.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxProcessInfo.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxShell.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxString.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp" />
@@ -365,6 +367,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxHandleErrorT.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxHandleT.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxProcessInfo.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxShell.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Unix\xCommon_Unix.h" />
@@ -426,6 +429,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxMacros.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxProcessInfo.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxShell.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxString.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h" />

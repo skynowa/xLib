@@ -30,15 +30,13 @@ Library/C++BuilderXE/Release/
 
 
 ##### C++BuilderXE2 #####
-Contrib/C++BuilderXE2/Debug/
-Contrib/C++BuilderXE2/Release/
+Contrib/C++BuilderXE2/Win32/
 Contrib/C++BuilderXE2/*.~dsk
 Contrib/C++BuilderXE2/*.local
 Contrib/C++BuilderXE2/*.dsk
 Contrib/C++BuilderXE2/*.rc
 
-Library/C++BuilderXE2/Debug/
-Library/C++BuilderXE2/Release/
+Library/C++BuilderXE2/Win32/
 
 
 ##### G++_win #####

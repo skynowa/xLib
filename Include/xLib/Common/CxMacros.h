@@ -124,6 +124,8 @@
     ///< ignore test code
 #define xREVIEW                     1
     ///< code for review
+#define xCOMMENT                    0
+    ///< comment for code
 #define xDEBUG_VAR_NA(var)          ;
     ///< at this point debug code for variable is not applicable
 #define xDEBUG_VARS_NA              ;
@@ -242,7 +244,7 @@
     ///< max path length
 
 
-// xNAME_MAX    
+// xNAME_MAX
 #define xNAME_MAX                   (CxPath::uiGetNameMaxSize())
     ///< max file name length
 
@@ -264,7 +266,11 @@
 
 // xENV_MAX
 #if xOS_ENV_WIN
-    #define xENV_MAX                _MAX_ENV
+    #if   xCOMPILER_MS
+        #define xENV_MAX            _MAX_ENV
+    #else
+        #define xENV_MAX            32767 //custom define
+    #endif
 #elif xOS_ENV_UNIX
     #define xENV_MAX                32767 //custom define
 #endif
@@ -358,7 +364,7 @@
 #if xOS_ENV_WIN
     typedef HANDLE TxNativeHandle;
 #elif xOS_ENV_UNIX
-    typedef int    TxNativeHandle;  
+    typedef int    TxNativeHandle;
 #endif
     ///< native handle
 
@@ -438,7 +444,7 @@
 
 
 // other
-#define xUNKNOWN_STRING             xT("[unknown]")      
+#define xUNKNOWN_STRING             xT("[unknown]")
     ///< unknown string value
 
 //---------------------------------------------------------------------------

@@ -856,9 +856,9 @@ CxPath::uiGetNameMaxSize() {
 
 /*static*/
 std::tstring_t
-CxPath::sGetProcLine(
+CxPath::sGetProcValue(
     const std::tstring_t &csProcPath,   ///< file path to proc-file
-    const std::tstring_t &csTargetStr   ///< target search string
+    const std::tstring_t &csData        ///< target search data string
 )
 {
     std::tstring_t sRes;
@@ -875,9 +875,18 @@ CxPath::sGetProcLine(
 
         std::getline(ifsStream, sLine);
 
-        //TODO: no case search
-        size_t uiPos = sLine.find(csTargetStr);
-        xCHECK_DO(std::tstring_t::npos != uiPos, sRes = sLine; break);
+        // TODO: no case search
+        size_t uiPos = sLine.find(csData);
+        xCHECK_DO(std::tstring_t::npos == uiPos, continue);
+
+        // parse value
+        size_t uiDelimPos = sLine.find(xT(":"));
+        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, std::tstring_t());
+
+        sRes = sLine.substr(uiDelimPos + 1);
+        sRes = CxString::sTrimSpace(sRes);
+
+        break;
     }
 
     return sRes;

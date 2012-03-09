@@ -27,7 +27,7 @@ CxTest_CxCurrentProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         CxProcess::TxId ulRes = CxCurrentProcess::ulGetId();
-        xTEST_LESS_EQ(0UL, (ulong_t)ulRes);
+        xTEST_LESS(0UL, (ulong_t)ulRes);
     }
 
     //--------------------------------------------------
@@ -35,7 +35,7 @@ CxTest_CxCurrentProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         CxProcess::TxId ulRes = CxCurrentProcess::ulGetParentId();
-        xTEST_LESS_EQ(0UL, (ulong_t)ulRes);
+        xTEST_LESS(0UL, (ulong_t)ulRes);
     }
 
     return true;

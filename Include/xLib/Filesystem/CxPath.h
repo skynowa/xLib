@@ -102,8 +102,8 @@ class CxPath :
             ///< get max name length in symbols
 
     #if xOS_ENV_UNIX
-        static std::tstring_t sGetProcLine    (const std::tstring_t  &csProcPath, const std::tstring_t &csTargetStr);
-            ///< get UNIX proc file content
+        static std::tstring_t sGetProcValue   (const std::tstring_t &csProcPath, const std::tstring_t &csData);
+            ///< get from UNIX proc file content value by data
     #endif
 
     private:
@@ -116,40 +116,3 @@ class CxPath :
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxPathH
-
-
-/*
-_MAX_DIR
-_MAX_DRIVE
-_MAX_EXT
-_MAX_FNAME
-_MAX_PATH
-*/
-
-
-
-//static std::tstring_t sGetRelativePath     (const std::tstring_t &csFilePath);
-
-/*ExpandUNCFileName*/
-/*ExtractShortPathName*/
-/*ProcessPath*/
-
-/*
- String
-   FileUtilities::GetShortPath(const String &sInPath)
-   {
-      tchar_t szModuleShort[_MAX_PATH];
-      GetShortPathName(sInPath, szModuleShort, _MAX_PATH );
-
-      return szModuleShort;
-   }
-
-   String
-   FileUtilities::GetLongPath(const String &sInPath)
-   {
-      tchar_t szLong[_MAX_PATH];
-      GetLongPathName(sInPath, szLong, _MAX_PATH );
-
-      return szLong;
-   }
-*/
