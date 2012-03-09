@@ -513,8 +513,8 @@ CxDir::bFindFiles(
             do {
                 //skipping files, dirs "." and ".."
                 xCHECK_DO(!(fdData.dwFileAttributes & CxFileAttribute::faDirectory), continue);
-                xCHECK_DO(CxConst::xDOT  == std::tstring_t(fdData.cFileName),               continue);
-                xCHECK_DO(CxConst::x2DOT == std::tstring_t(fdData.cFileName),               continue);
+                xCHECK_DO(CxConst::xDOT  == std::tstring_t(fdData.cFileName),        continue);
+                xCHECK_DO(CxConst::x2DOT == std::tstring_t(fdData.cFileName),        continue);
 
                 sPart    = fdData.cFileName;
                 sTmpPath = CxPath::sSetFullName(sTmpPath, sPart);
