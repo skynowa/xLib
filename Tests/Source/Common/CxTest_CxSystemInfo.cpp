@@ -155,7 +155,6 @@ CxTest_CxSystemInfo::bUnit(
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %lu"), m_ulRes);
         #endif
-        xTEST_EQ(true, 0 <= m_ulRes);
         xTEST_EQ(true, CxSystemInfo::ulGetNumOfCpus() > m_ulRes);
     }
 

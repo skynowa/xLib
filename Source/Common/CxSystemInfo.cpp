@@ -126,8 +126,8 @@ CxSystemInfo::sFormatOsType(
         int iRes = ::uname(&unKernelInfo);
         /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring_t());
 
-        sRes = CxString::sFormat(xT("%s %s (%s) %s"), 
-                                 unKernelInfo.sysname, unKernelInfo.release, 
+        sRes = CxString::sFormat(xT("%s %s (%s) %s"),
+                                 unKernelInfo.sysname, unKernelInfo.release,
                                  unKernelInfo.version, unKernelInfo.machine);
     } else {
         // not current OS type, can't get info about OS kernel - return simple-formatted string
@@ -136,7 +136,7 @@ CxSystemInfo::sFormatOsType(
             case otFreeBSD: { sRes = xT("FreeBSD");   } break;
 
             default:        { sRes = xUNKNOWN_STRING; } break;
-        }    
+        }
     }
 #endif
 
@@ -419,27 +419,31 @@ CxSystemInfo::cvGetCpuVendor() {
     ECpuVendor cvRes = cvUnknown;
 
 #if   xOS_ENV_WIN
-    uint_t uiHighestFeature = 0U;
-    int    aiCpuInfo[4]     = {0};
-    char   szMan[13]        = {0};
+    #if   xCOMPILER_MINGW32 || xCOMPILER_MS
+        uint_t uiHighestFeature = 0U;
+        int    aiCpuInfo[4]     = {0};
+        char   szMan[13]        = {0};
 
-    (void)::__cpuid(aiCpuInfo, 0);
+        (void)::__cpuid(aiCpuInfo, 0);
 
-    uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
+        uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
 
-    *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
-    *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
-    *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
+        *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
+        *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
+        *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
 
-    if      (std::string("GenuineIntel") == szMan) {
-        cvRes = cvIntel;
-    }
-    else if (std::string("AuthenticAMD") == szMan) {
-        cvRes = cvAmd;
-    }
-    else {
+        if      (std::string("GenuineIntel") == szMan) {
+            cvRes = cvIntel;
+        }
+        else if (std::string("AuthenticAMD") == szMan) {
+            cvRes = cvAmd;
+        }
+        else {
+            cvRes = cvUnknown;
+        }
+    #elif xCOMPILER_CODEGEAR
         cvRes = cvUnknown;
-    }
+    #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
@@ -476,42 +480,46 @@ CxSystemInfo::sGetCpuModel() {
     std::tstring_t sRes;
 
 #if   xOS_ENV_WIN
-    char szMan[13] = {0};
+    #if   xCOMPILER_MINGW32 || xCOMPILER_MS
+        char szMan[13] = {0};
 
-    // get szMan
-    {
+        // get szMan
+        {
+            int aiCpuInfo[4] = {0};
+
+            (void)::__cpuid(aiCpuInfo, 0);
+
+            uint_t uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
+
+            *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
+            *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
+            *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
+        }
+
+        // get highest extended feature
         int aiCpuInfo[4] = {0};
 
-        (void)::__cpuid(aiCpuInfo, 0);
+        (void)::__cpuid(aiCpuInfo, 0x80000000);
 
-        uint_t uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
+        uint_t uiHighestFeatureEx = static_cast<uint_t>( aiCpuInfo[0] );
 
-        *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
-        *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
-        *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
-    }
+        // get processor brand name
+        if (uiHighestFeatureEx >= 0x80000004) {
+            char szCpuName[49] = {0};
 
-    // get highest extended feature
-    int aiCpuInfo[4] = {0};
+            (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[0]  ), 0x80000002);
+            (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[16] ), 0x80000003);
+            (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[32] ), 0x80000004);
 
-    (void)::__cpuid(aiCpuInfo, 0x80000000);
+            std::tstring_t sCpuName = CxString::sTrimSpace(szCpuName);
 
-    uint_t uiHighestFeatureEx = static_cast<uint_t>( aiCpuInfo[0] );
-
-    // get processor brand name
-    if (uiHighestFeatureEx >= 0x80000004) {
-        char szCpuName[49] = {0};
-
-        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[0]  ), 0x80000002);
-        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[16] ), 0x80000003);
-        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[32] ), 0x80000004);
-
-        std::tstring_t sCpuName = CxString::sTrimSpace(szCpuName);
-
-        sRes = CxString::sFormat(xT("%s (%s)"), sCpuName.c_str(), szMan);
-    } else {
-        sRes = CxString::sFormat(xT("%s"), szMan);
-    }
+            sRes = CxString::sFormat(xT("%s (%s)"), sCpuName.c_str(), szMan);
+        } else {
+            sRes = CxString::sFormat(xT("%s"), szMan);
+        }
+    #elif xCOMPILER_CODEGEAR
+        sRes = xUNKNOWN_STRING;
+    #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"

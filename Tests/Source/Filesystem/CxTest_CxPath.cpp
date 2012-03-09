@@ -788,7 +788,7 @@ CxTest_CxPath::bUnit(
 
             std::tstring_t sStr3 = CxPath::sSlashAppend(sData[i][0]);
             std::tstring_t sStr4 = sData[i][1];
-            xTEST_EQ(sStr3, sStr3);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -821,7 +821,7 @@ CxTest_CxPath::bUnit(
 
             std::tstring_t sStr3 = CxPath::sSlashRemove(sData[i][0]);
             std::tstring_t sStr4 = sData[i][1];
-            xTEST_EQ(sStr3, sStr3);
+            xTEST_EQ(sStr3, sStr4);
         }
     }
 
