@@ -19,6 +19,7 @@ class CxProcessInfo :
         static ulong_t ulGetRamUsage(const CxProcess::TxId cidId);
             ///< get RAM usage (percentage)
         static ulong_t ulGetIOBytes (const CxProcess::TxId cidId);
+            ///<
 
     private:
     			       CxProcessInfo();

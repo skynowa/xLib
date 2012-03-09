@@ -24,6 +24,7 @@
 #include <Test/Common/CxTest_CxString.h>
 #include <Test/Common/CxTest_CxDateTime.h>
 #include <Test/Common/CxTest_CxSystemInfo.h>
+#include <Test/Common/CxTest_CxProcessInfo.h>
 #include <Test/Common/CxTest_CxConsole.h>
 #include <Test/Common/CxTest_CxCommandLine.h>
 #include <Test/Common/CxTest_CxShell.h>
@@ -188,6 +189,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxString);
         (void)tmManager.bAdd(new CxTest_CxDateTime);
         (void)tmManager.bAdd(new CxTest_CxSystemInfo);
+        (void)tmManager.bAdd(new CxTest_CxProcessInfo);
         (void)tmManager.bAdd(new CxTest_CxConsole);
         (void)tmManager.bAdd(new CxTest_CxCommandLine);
         (void)tmManager.bAdd(new CxTest_CxShell);

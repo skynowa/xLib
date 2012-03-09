@@ -47,7 +47,7 @@ CxCriticalSection::bCreate() {
 
     iRes = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
-    
+
     iRes = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
