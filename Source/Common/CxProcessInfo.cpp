@@ -6,6 +6,8 @@
 
 #include <xLib/Common/CxProcessInfo.h>
 
+#include <xLib/Filesystem/CxPath.h>
+
 
 /****************************************************************************
 *   public
@@ -47,8 +49,8 @@ CxProcessInfo::ulGetRamUsage(
     return ulRes;
 }
 //---------------------------------------------------------------------------
-/*static*/ 
-ulong_t 
+/*static*/
+ulong_t
 CxProcessInfo::ulGetIOBytes(
     const CxProcess::TxId cidId
 )
@@ -87,6 +89,8 @@ CxProcessInfo::ulGetIOBytes(
     }
 
     ulRes = ulReadBytes + ulWriteBytes;
+
+    xTRACEV("\tulReadBytes: %lu, ulWriteBytes: %lu", ulReadBytes, ulWriteBytes);
 #endif
 
     return ulRes;
