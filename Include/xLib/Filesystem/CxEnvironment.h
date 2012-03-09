@@ -43,5 +43,3 @@ class CxEnvironment :
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Filesystem_CxEnvironmentH
-
-//_MAX_ENV
