@@ -10,6 +10,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
+#include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
 
@@ -202,7 +203,14 @@ CxDir::sGetTemp() {
 
     sRes.assign(sBuff, 0, ulRes);
 #elif xOS_ENV_UNIX
-    sRes = xT(P_tmpdir);
+    const std::tstring_t csEnvDirTemp = xT("TMPDIR");
+
+    bool bRes = CxEnvironment::bIsExists(csEnvDirTemp);
+    if (true == bRes) {
+        sRes = CxEnvironment::sGetVar(csEnvDirTemp);
+    } else {
+        sRes = xDIR_TEMP;
+    }
 #endif
 
     /*DEBUG*/xASSERT_RET(true == bIsExists(sRes), std::tstring_t());
@@ -252,7 +260,7 @@ CxDir::bCreateForce(
 
     //-------------------------------------
     //create dirs by steps
-    for (std::vector<std::tstring_t>::const_iterator it = vsPathParts.begin(); it != vsPathParts.end(); ++ it){
+    xFOREACH_CONST(std::vector<std::tstring_t>, it, vsPathParts) {
         sBuildPath.append(*it).append(CxConst::xSLASH);
 
         bRes = bCreate(sBuildPath);
@@ -298,10 +306,7 @@ CxDir::bCopy(
 
     //--------------------------------------------------
     //copy
-    for (std::vector<std::tstring_t>::reverse_iterator it = vsFilePathes.rbegin();
-        it != vsFilePathes.rend() && false == vsFilePathes.empty();
-        ++ it)
-    {
+    xFOREACH_R_CONST(std::vector<std::tstring_t>, it, vsFilePathes) {
         std::tstring_t sFilePathTo = *it;
 
         size_t uiPosBegin = sFilePathTo.find(csDirPathFrom);
@@ -421,12 +426,8 @@ CxDir::bClearForce(
         bRes = bFindFiles(csDirPath, CxConst::xMASK_ALL, true, &vsFilePathes);
         /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-        for (std::vector<std::tstring_t>::reverse_iterator it = vsFilePathes.rbegin();
-            it != vsFilePathes.rend() && false == vsFilePathes.empty();
-            ++ it)
-        {
-            bRes = CxFile::bDelete(*it);
-            /*DEBUG*/// n/a
+        xFOREACH_R(std::vector<std::tstring_t>, it, vsFilePathes) {
+            (void)CxFile::bDelete(*it);
         }
     }
 
@@ -439,12 +440,8 @@ CxDir::bClearForce(
         bRes = bFindDirs(csDirPath, CxConst::xMASK_ALL, true, &vsDirPathes);
         /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-        for (std::vector<std::tstring_t>::reverse_iterator it = vsDirPathes.rbegin();
-            it != vsDirPathes.rend() && false == vsDirPathes.empty();
-            ++ it)
-        {
-            bRes = bDelete(*it);
-            /*DEBUG*/// n/a
+        xFOREACH_R(std::vector<std::tstring_t>, it, vsDirPathes) {
+            (void)bDelete(*it);
         }
     }
 
