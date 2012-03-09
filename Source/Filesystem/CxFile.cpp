@@ -1308,7 +1308,7 @@ CxFile::bTextRead(
     bRes = bTextRead(csFilePath, &vsRes);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    std::vector<std::tstring_t>::const_iterator it;
+    std::vector<std::tstring_t>::_const_iterator it;
     for (it = vsRes.begin(); it != vsRes.end(); ++ it) {
         std::vector<std::tstring_t> vsLine;
 
@@ -1345,8 +1345,9 @@ CxFile::bTextWrite(
     bRes = stdFile.bCreate(csFilePath, omWrite, true);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    std::map<std::tstring_t, std::tstring_t>::const_iterator it;
-    for (it = cmsContent.begin(); it != cmsContent.end(); ++ it) {
+    typedef std::map<std::tstring_t, std::tstring_t> TContent;
+
+    xFOREACH_CONST(TContent, it, cmsContent) {
         bRes = stdFile.bWriteLine((*it).first + csSeparator + (*it).second);
         /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
@@ -1355,7 +1356,7 @@ CxFile::bTextWrite(
     bool           bRes = false;
     std::tstring_t sRes;
 
-    std::map<std::tstring_t, std::tstring_t>::const_iterator it;
+    std::map<std::tstring_t, std::tstring_t>::_const_iterator it;
     for (it = cmsContent.begin(); it != cmsContent.end(); ++ it) {
         sRes.append((*it).first);
         sRes.append(csSeparator);

@@ -323,7 +323,7 @@ std::string
 CxUri::sEncodeComponent(const std::string &csUri) {
     std::string sRes;
 
-    for (std::string::const_iterator it = csUri.begin(); it != csUri.end(); ++ it) {
+    xFOREACH_CONST(std::string, it, csUri) {
         char c = *it;
 
         if (

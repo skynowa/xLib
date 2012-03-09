@@ -476,9 +476,9 @@ CxIni::bSectionRead(
     (*pmsContent).clear();
 
     std::vector<std::tstring_t> vsKeyValue;
-    std::pair<std::map<std::tstring_t, std::tstring_t>::iterator, bool> itRet;
+    std::pair<std::map<std::tstring_t, std::tstring_t>::const_iterator, bool> itRet;
 
-    for (std::vector<std::tstring_t>::const_iterator it = vsContent.begin(); it != vsContent.end(); ++ it) {
+    xFOREACH_CONST(std::vector<std::tstring_t>, it, vsContent) {
         bool bRes = CxString::bSplit(*it, xT("="), &vsKeyValue);
         /*DEBUG*/xASSERT_RET(true == bRes, false);
 
@@ -504,10 +504,9 @@ CxIni::bSectionWrite(
 
     //-------------------------------------
     //������ std::map
-    for (std::map<std::tstring_t, std::tstring_t>::const_iterator it = msContent.begin();
-        it != msContent.end();
-        ++ it)
-    {
+    typedef std::map<std::tstring_t, std::tstring_t> TContent;
+
+    xFOREACH_CONST(TContent, it, msContent) {
         sContent.append((*it).first);
         sContent.append(xT("="));
         sContent.append((*it).second);
