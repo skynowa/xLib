@@ -63,7 +63,7 @@ CxStdError::sFormat(
     sRes = CxString::sFormat(xT("%lu - "), ciCode);
 
 #if xOS_ENV_WIN
-    tchar_t *pcszError = std::xSTRERROR(ciCode);
+    tchar_t *pcszError = ::xSTRERROR(ciCode);
     xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
 
     sRes.append(pcszError);

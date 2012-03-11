@@ -78,6 +78,9 @@ Contrib/VC++2008/*.user
 
 Library/VC++2008/Debug/
 Library/VC++2008/Release/
+Library/VC++2008/*.ncb
+Library/VC++2008/*.suo
+Library/VC++2008/*.user
 
 
 ##### VC++2010 #####
@@ -92,6 +95,12 @@ Contrib/VC++2010/ipch
 
 Library/VC++2010/Debug/
 Library/VC++2010/Release/
+Library/VC++2010/*.ncb
+Library/VC++2010/*.suo
+Library/VC++2010/*.user
+Library/VC++2010/*.sdf
+Library/VC++2010/*.opensdf
+Library/VC++2010/ipch
 
 
 ##### files #####

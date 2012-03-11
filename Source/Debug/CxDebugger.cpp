@@ -525,7 +525,7 @@ CxDebugger::_bLoggingPlain(
 
     //--------------------------------------------------
     //write to file
-    std::FILE *pFile = std::xTFOPEN(sFilePath.c_str(), xT("ab"));
+    std::FILE *pFile = ::xTFOPEN(sFilePath.c_str(), xT("ab"));
     xCHECK_RET(NULL == pFile, false);
 
     try {
