@@ -203,13 +203,13 @@ CxTest_CxVolume::bUnit(
     }
 
     //-------------------------------------
-    //bGetLogicalDrives
+    //bGetVolumes
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             std::vector<std::tstring_t> vsDrives;
 
-            m_bRes = CxVolume::bGetLogicalDrives(&vsDrives);
+            m_bRes = CxVolume::bGetVolumes(&vsDrives);
             xTEST_EQ(true, m_bRes);
 
             #if xTEST_IGNORE
@@ -219,7 +219,7 @@ CxTest_CxVolume::bUnit(
     }
 
     //-------------------------------------
-    //bIsValidDriveLetter
+    //bIsVolumeLetterValid
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
@@ -227,7 +227,7 @@ CxTest_CxVolume::bUnit(
                 std::tstring_t sDataTrue = xT("qwertyuiopasdfghjklzxcvbnm");
 
                 for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                    m_bRes = CxVolume::bIsValidDriveLetter( sDataTrue.at(i) );
+                    m_bRes = CxVolume::bIsVolumeLetterValid( sDataTrue.at(i) );
                     xTEST_EQ(true, m_bRes);
                 }
             }
@@ -236,13 +236,42 @@ CxTest_CxVolume::bUnit(
                 std::tstring_t sDataFalse = xT("1234567890-=/*-+!@#$%^&*()_+:\"<>?|");
 
                 for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                    m_bRes = CxVolume::bIsValidDriveLetter( sDataFalse.at(i) );
+                    m_bRes = CxVolume::bIsVolumeLetterValid( sDataFalse.at(i) );
                     xTEST_EQ(false, m_bRes);
                 }
             }
         #endif
     }
 
+    //--------------------------------------------------
+    //bGetInfo
+    xTEST_CASE(cullCaseLoops)
+    {
+        std::vector<std::tstring_t> vsVolumes;
+
+        m_bRes = CxVolume::bGetVolumes(&vsVolumes);
+        xTEST_EQ(true, m_bRes);
+
+        for (size_t i = 0; i < vsVolumes.size(); ++ i) {
+            xCHECK_DO(false == CxVolume::bIsReady(vsVolumes.at(i)), continue);
+
+            std::tstring_t  sDrivePath               = vsVolumes.at(i);
+            std::tstring_t  sVolumeName;
+            ulong_t         ulVolumeSerialNumber     = 0UL;
+            ulong_t         ulMaximumComponentLength = 0UL;
+            ulong_t         ulFileSystemFlags        = 0UL;
+            std::tstring_t  sFileSystemName;
+
+            m_bRes  = CxVolume::bGetInfo(sDrivePath,
+                                         &sVolumeName,
+                                         &ulVolumeSerialNumber,
+                                         &ulMaximumComponentLength,
+                                         &ulFileSystemFlags,
+                                         &sFileSystemName);
+            xTEST_EQ(true, m_bRes);
+        }
+    }
+    
     return true;
 }
 //---------------------------------------------------------------------------

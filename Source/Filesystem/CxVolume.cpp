@@ -205,12 +205,12 @@ CxVolume::bUnMount(
 
 CxVolume::EType
 CxVolume::dtGetType(
-    const std::tstring_t &csDrivePath
+    const std::tstring_t &csVolumePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csDrivePath.empty(), dtUnknown);
+    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), dtUnknown);
 
-    return static_cast<EType>( ::GetDriveType(CxPath::sSlashAppend(csDrivePath).c_str()) );
+    return static_cast<EType>( ::GetDriveType(CxPath::sSlashAppend(csVolumePath).c_str()) );
     /*DEBUG*/// n/a
 }
 
@@ -220,11 +220,11 @@ CxVolume::dtGetType(
 #if   xOS_ENV_WIN
 
 bool
-CxVolume::bGetLogicalDrives(
-    std::vector<std::tstring_t> *pvsDrives
+CxVolume::bGetVolumes(
+    std::vector<std::tstring_t> *pvsVolumes
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pvsDrives, false);
+    /*DEBUG*/xASSERT_RET(NULL != pvsVolumes, false);
 
     std::vector<std::tstring_t> vsRes;
     std::tstring_t              sRes;
@@ -242,7 +242,7 @@ CxVolume::bGetLogicalDrives(
         vsRes.push_back(s);
     }
 
-    std::swap(*pvsDrives, vsRes);
+    std::swap(*pvsVolumes, vsRes);
 
     return true;
 }
@@ -253,20 +253,67 @@ CxVolume::bGetLogicalDrives(
 
 /*static*/
 bool
-CxVolume::bIsValidDriveLetter(
-    const tchar_t cchDriveLetter
+CxVolume::bIsVolumeLetterValid(
+    const tchar_t cchVolumeLetter
 )
 {
-    /*DEBUG*/// cchDriveLetter - n/a
+    /*DEBUG*/// cchVolumeLetter - n/a
 
-    bool bRes = (xT('a') <= cchDriveLetter && cchDriveLetter <= xT('z')) ||
-                (xT('A') <= cchDriveLetter && cchDriveLetter <= xT('Z'));
+    bool bRes = (xT('a') <= cchVolumeLetter && cchVolumeLetter <= xT('z')) ||
+                (xT('A') <= cchVolumeLetter && cchVolumeLetter <= xT('Z'));
 
     return bRes;
 }
 
 #endif
 //---------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
+/*static*/
+bool
+CxVolume::bGetInfo(
+    const std::tstring_t &csVolumePath,
+    std::tstring_t       *psVolumeName,
+    ulong_t              *pulVolumeSerialNumber,
+    ulong_t              *pulMaximumComponentLength,
+    ulong_t              *pulFileSystemFlags,
+    std::tstring_t       *psFileSystemName
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), false);
+    /*DEBUG*/// psVolumeName              - n/a
+    /*DEBUG*/// pulVolumeSerialNumber     - n/a
+    /*DEBUG*/// pulMaximumComponentLength - n/a
+    /*DEBUG*/// pulFileSystemFlags        - n/a
+    /*DEBUG*/// psFileSystemName          - n/a
+
+    if (NULL != psVolumeName) {
+        (*psVolumeName).clear();
+        (*psVolumeName).resize(xPATH_MAX + 1);
+    }
+
+    if (NULL != psFileSystemName) {
+        (*psFileSystemName).clear();
+        (*psFileSystemName).resize(xPATH_MAX + 1);
+    }
+
+    BOOL blRes = ::GetVolumeInformation(
+                        CxPath::sSlashAppend(csVolumePath).c_str(),
+                        (NULL == psVolumeName)     ? NULL :  &(*psVolumeName).at(0),
+                        (NULL == psVolumeName)     ? 0UL  :   (*psVolumeName).size(),
+                        pulVolumeSerialNumber,
+                        pulMaximumComponentLength,
+                        pulFileSystemFlags,
+                        (NULL == psFileSystemName) ? NULL : &(*psFileSystemName).at(0),
+                        (NULL == psFileSystemName) ? 0UL  :  (*psFileSystemName).size()
+    );
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+
+    return true;
+}
+
+#endif
+//--------------------------------------------------------------------------
 
 
 /****************************************************************************

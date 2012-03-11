@@ -40,15 +40,21 @@ class CxVolume :
             dtRam       = DRIVE_RAMDISK
         };
 
-        static EType dtGetType          (const std::tstring_t &csDrivePath);
-        static bool  bGetLogicalDrives  (std::vector<std::tstring_t> *pvsDrives);
-        static bool  bIsValidDriveLetter(const tchar_t cchDriveLetter);
+        static EType dtGetType            (const std::tstring_t &csVolumePath);
+        static bool  bGetVolumes          (std::vector<std::tstring_t> *pvsVolumes);
+        static bool  bIsVolumeLetterValid (const tchar_t cchDriveLetter);
+        static bool  bGetInfo             (const std::tstring_t &csVolumePath,
+                                           std::tstring_t       *psVolumeName,
+                                           ulong_t              *pulVolumeSerialNumber,
+                                           ulong_t              *pulMaximumComponentLength,
+                                           ulong_t              *pulFileSystemFlags,
+                                           std::tstring_t       *psFileSystemName);
     #endif
 
     private:
-                     CxVolume           ();
+                     CxVolume             ();
             ///< constructor
-        virtual     ~CxVolume           ();
+        virtual     ~CxVolume             ();
             ///< destructor
 };
 
