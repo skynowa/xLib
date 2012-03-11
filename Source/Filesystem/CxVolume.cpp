@@ -287,27 +287,31 @@ CxVolume::bGetInfo(
     /*DEBUG*/// pulFileSystemFlags        - n/a
     /*DEBUG*/// psFileSystemName          - n/a
 
-    if (NULL != psVolumeName) {
-        (*psVolumeName).clear();
-        (*psVolumeName).resize(xPATH_MAX + 1);
-    }
+    tchar_t szVolumeName    [MAX_PATH + 1] = {0};
+    ulong_t ulVolumeSerialNumber           = 0UL;
+    ulong_t ulMaximumComponentLength       = 0UL;
+    ulong_t ulFileSystemFlags              = 0UL;
+    tchar_t szFileSystemName[MAX_PATH + 1] = {0};
 
-    if (NULL != psFileSystemName) {
-        (*psFileSystemName).clear();
-        (*psFileSystemName).resize(xPATH_MAX + 1);
-    }
 
     BOOL blRes = ::GetVolumeInformation(
                         CxPath::sSlashAppend(csVolumePath).c_str(),
-                        (NULL == psVolumeName)     ? NULL :  &(*psVolumeName).at(0),
-                        (NULL == psVolumeName)     ? 0UL  :   (*psVolumeName).size(),
-                        pulVolumeSerialNumber,
-                        pulMaximumComponentLength,
-                        pulFileSystemFlags,
-                        (NULL == psFileSystemName) ? NULL : &(*psFileSystemName).at(0),
-                        (NULL == psFileSystemName) ? 0UL  :  (*psFileSystemName).size()
+                        &szVolumeName[0],
+                        xARRAY_SIZE(szVolumeName),
+                        &ulVolumeSerialNumber,
+                        &ulMaximumComponentLength,
+                        &ulFileSystemFlags,
+                        &szFileSystemName[0],
+                        xARRAY_SIZE(szFileSystemName)
     );
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+
+    // out
+    xPTR_ASSIGN(psVolumeName,              szVolumeName);
+    xPTR_ASSIGN(pulVolumeSerialNumber,     ulVolumeSerialNumber);
+    xPTR_ASSIGN(pulMaximumComponentLength, ulMaximumComponentLength);
+    xPTR_ASSIGN(pulFileSystemFlags,        ulFileSystemFlags);
+    xPTR_ASSIGN(psFileSystemName,          szFileSystemName);
 
     return true;
 }
