@@ -42,7 +42,7 @@ class CxVolume :
 
         static EType dtGetType            (const std::tstring_t &csVolumePath);
         static bool  bGetVolumes          (std::vector<std::tstring_t> *pvsVolumes);
-        static bool  bIsVolumeLetterValid (const tchar_t cchDriveLetter);
+        static bool  bIsVolumeLetterValid (const tchar_t cchVolumeLetter);
         static bool  bGetInfo             (const std::tstring_t &csVolumePath,
                                            std::tstring_t       *psVolumeName,
                                            ulong_t              *pulVolumeSerialNumber,
