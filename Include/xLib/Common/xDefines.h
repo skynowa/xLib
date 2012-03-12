@@ -95,14 +95,18 @@
 
 //--------------------------------------------------
 // compiler version
-#define xCOMPILER_MINGW32_VER_MAJOR __MINGW32_MAJOR_VERSION
-#define xCOMPILER_MINGW32_VER_MINOR __MINGW32_MINOR_VERSION
-#define xCOMPILER_MINGW64_VER_MAJOR __MINGW64_VERSION_MAJOR    //defined if <stdlib.h> is included
-#define xCOMPILER_MINGW64_VER_MINOR __MINGW64_VERSION_MINOR
+#define xCOMPILER_MINGW32_VER_MAJOR   __MINGW32_MAJOR_VERSION
+#define xCOMPILER_MINGW32_VER_MINOR   __MINGW32_MINOR_VERSION
+#define xCOMPILER_MINGW64_VER_MAJOR   __MINGW64_VERSION_MAJOR    //defined if <stdlib.h> is included
+#define xCOMPILER_MINGW64_VER_MINOR   __MINGW64_VERSION_MINOR
 
-#define xCOMPILER_MS_VER            _MSC_VER
-#define xCOMPILER_CODEGEAR_VER      __CODEGEARC__
-#define xCOMPILER_GNUC_VER          __GNUC_VERSION__
+#define xCOMPILER_MS_VER              _MSC_VER
+
+#define xCOMPILER_CODEGEAR_VER        __CODEGEARC__
+
+#define xCOMPILER_GNUC_VER            __GNUC__
+#define xCOMPILER_GNUC_VER_MINOR      __GNUC_MINOR__
+#define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
 
 //--------------------------------------------------
 // standard C libraries
