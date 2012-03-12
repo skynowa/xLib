@@ -30,7 +30,6 @@
 
 #if xOS_ENV_WIN
     #include <Test/Common/Win/CxTest_CxCom.h>
-    #include <Test/Common/Win/CxTest_CxClipboard.h>
 #endif
 
 //Crypt
@@ -195,7 +194,6 @@ xTMAIN(
 
     #if xOS_ENV_WIN
         (void)tmManager.bAdd(new CxTest_CxCom);
-        (void)tmManager.bAdd(new CxTest_CxClipboard);
     #elif xOS_ENV_UNIX
 
     #endif
