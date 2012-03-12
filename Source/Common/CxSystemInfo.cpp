@@ -614,11 +614,22 @@ CxSystemInfo::ullGetRamTotal() {
     ullRes = msStatus.ullTotalPhys;
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
+        struct sysinfo siInfo = {0};
 
+        int iRes = ::sysinfo(&siInfo);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0ULL);
+
+        ullRes = siInfo.totalram * siInfo.mem_unit;
     #elif xOS_FREEBSD
+        ulonglong_t ullRamTotal    = 0ULL;
 
-    #else
+        int         aiMib[]        = {CTL_HW, HW_PHYSMEM};
+        size_t      uiRamTotalSize = sizeof(ullRamTotal);
 
+        int iRes = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+
+        ullRes = ullRamTotal;
     #endif
 #endif
 
@@ -652,30 +663,30 @@ CxSystemInfo::ulGetRamUsage() {
         ulRes = static_cast<ulong_t>( CxMacros::dSafeDiv(ulUsage * 100.0, siInfo.totalram) );
         /*DEBUG*/xASSERT_RET(siInfo.totalram == ulUsage + siInfo.freeram, 0UL);
     #elif xOS_FREEBSD
-        ulong_t ulMemoryTotal = 0UL;
+        ulonglong_t ullRamTotal = 0ULL;
         {
-            int     aiMib[]           = {CTL_HW, HW_PHYSMEM};
-            size_t  uiMemoryTotalSize = sizeof(ulMemoryTotal);
+            int     aiMib[]        = {CTL_HW, HW_PHYSMEM};
+            size_t  uiRamTotalSize = sizeof(ullRamTotal);
 
-            int iRes = ::sysctl(aiMib, 2, &ulMemoryTotal, &uiMemoryTotalSize, NULL, 0);
+            int iRes = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
             /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
         }
 
-        ulong_t ulMemoryFree = 0UL;
+        ulonglong_t ullRamFree = 0ULL;
         {
-            ulong_t ullAvailPhysPages     = 0UL;
-            size_t  ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
+            ulonglong_t ullAvailPhysPages     = 0ULL;
+            size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
             int iRes = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0UL);
+            /*DEBUG*/xASSERT_RET(- 1 != iRes, 0ULL);
 
-            ulMemoryFree = ullAvailPhysPages * ulGetPageSize();
+            ullRamFree = ullAvailPhysPages * ulGetPageSize();
         }
 
-        ulong_t ulUsage = ulMemoryTotal - ulMemoryFree;
+        ulonglong_t ullRamUsage = ullRamTotal - ullRamFree;
 
-        ulRes = static_cast<ulong_t>( CxMacros::dSafeDiv(ulUsage * 100.0, ulMemoryTotal) );
-        /*DEBUG*/xASSERT_RET(ulMemoryTotal == ulUsage + ulMemoryFree, 0UL);
+        ulRes = static_cast<ulong_t>( CxMacros::dSafeDiv(ullRamUsage * 100.0, ullRamTotal) );
+        /*DEBUG*/xASSERT_RET(ullRamTotal == ullRamUsage + ullRamFree, 0UL);
     #endif
 #endif
 
