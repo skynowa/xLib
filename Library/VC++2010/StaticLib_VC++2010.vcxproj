@@ -379,7 +379,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxSystemInfo.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Unix\xCommon_Unix.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxClipboard.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxCom.h" />
     <ClInclude Include="..\..\Include\xLib\Common\Win\xCommon_Win.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCheks.h" />
@@ -516,7 +515,6 @@
     <ClCompile Include="..\..\Source\Common\CxString.cpp" />
     <ClCompile Include="..\..\Source\Common\CxSystemInfo.cpp" />
     <ClCompile Include="..\..\Source\Common\CxType.cpp" />
-    <ClCompile Include="..\..\Source\Common\Win\CxClipboard.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxRandom.cpp" />

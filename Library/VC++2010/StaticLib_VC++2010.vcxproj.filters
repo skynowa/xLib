@@ -279,9 +279,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\Unix\xCommon_Unix.h">
       <Filter>xLib</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxClipboard.h">
-      <Filter>xLib</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxCom.h">
       <Filter>xLib</Filter>
     </ClInclude>
@@ -728,9 +725,6 @@
       <Filter>xLib</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\CxType.cpp">
-      <Filter>xLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Common\Win\CxClipboard.cpp">
       <Filter>xLib</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp">

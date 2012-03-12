@@ -312,9 +312,6 @@
     <ClCompile Include="..\..\Source\Common\CxSystemInfo.cpp">
       <Filter>xLib\Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Common\Win\CxClipboard.cpp">
-      <Filter>xLib\Common\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp">
       <Filter>xLib\Common\Win</Filter>
     </ClCompile>
@@ -511,9 +508,6 @@
       <Filter>Test\Filesystem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp">
-      <Filter>Test\Common\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Common\Win\CxTest_CxClipboard.cpp">
       <Filter>Test\Common\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp">
@@ -860,9 +854,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\xTypes.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Common\Win\CxClipboard.h">
-      <Filter>xLib\Common\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\Win\CxCom.h">
       <Filter>xLib\Common\Win</Filter>
     </ClInclude>
@@ -1063,9 +1054,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxLocalStorage.h">
       <Filter>Test\Filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxClipboard.h">
-      <Filter>Test\Common\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h">
       <Filter>Test\Common\Win</Filter>
