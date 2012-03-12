@@ -637,6 +637,45 @@ CxSystemInfo::ullGetRamTotal() {
 }
 //----------------------------------------------------------------------------------------------------
 /*static*/
+ulonglong_t
+CxSystemInfo::ullGetRamAvailable() {
+    xDEBUG_VARS_NA;
+
+    ulonglong_t ullRes = 0ULL;
+
+#if   xOS_ENV_WIN
+    MEMORYSTATUSEX msStatus = {0};
+    msStatus.dwLength = sizeof(msStatus);
+
+    BOOL blRes = ::GlobalMemoryStatusEx(&msStatus);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, 0UL);
+
+    ullRes = msStatus.ullAvailPhys;
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        struct sysinfo siInfo = {0};
+
+        int iRes = ::sysinfo(&siInfo);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0ULL);
+
+        ullRes = siInfo.freeram * siInfo.mem_unit;
+    #elif xOS_FREEBSD
+        ulonglong_t ullRamFree = 0ULL;
+
+        ulonglong_t ullAvailPhysPages     = 0ULL;
+        size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
+
+        int iRes = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
+        /*DEBUG*/xASSERT_RET(- 1 != iRes, 0ULL);
+
+        ullRes = ullAvailPhysPages * ulGetPageSize();
+    #endif
+#endif
+
+    return ullRes;
+}
+//----------------------------------------------------------------------------------------------------
+/*static*/
 ulong_t
 CxSystemInfo::ulGetRamUsage() {
     xDEBUG_VARS_NA;
