@@ -660,8 +660,6 @@ CxSystemInfo::ullGetRamAvailable() {
 
         ullRes = siInfo.freeram * siInfo.mem_unit;
     #elif xOS_FREEBSD
-        ulonglong_t ullRamFree = 0ULL;
-
         ulonglong_t ullAvailPhysPages     = 0ULL;
         size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
