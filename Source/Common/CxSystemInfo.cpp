@@ -598,8 +598,36 @@ CxSystemInfo::ulGetCpuUsage() {
 }
 //----------------------------------------------------------------------------------------------------
 /*static*/
+ulonglong_t
+CxSystemInfo::ullGetRamTotal() {
+    xDEBUG_VARS_NA;
+
+    ulonglong_t ullRes = 0ULL;
+
+#if   xOS_ENV_WIN
+    MEMORYSTATUSEX msStatus = {0};
+    msStatus.dwLength = sizeof(msStatus);
+
+    BOOL blRes = ::GlobalMemoryStatusEx(&msStatus);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, 0UL);
+
+    ullRes = msStatus.ullTotalPhys;
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+
+    #elif xOS_FREEBSD
+
+    #else
+
+    #endif
+#endif
+
+    return ullRes;
+}
+//----------------------------------------------------------------------------------------------------
+/*static*/
 ulong_t
-CxSystemInfo::ulGetMemoryUsage() {
+CxSystemInfo::ulGetRamUsage() {
     xDEBUG_VARS_NA;
 
     ulong_t ulRes = 0UL;

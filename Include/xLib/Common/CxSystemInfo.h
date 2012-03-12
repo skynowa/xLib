@@ -68,19 +68,23 @@ class CxSystemInfo :
             ///< is current user an admin
         static std::tstring_t sGetUserName      ();
             ///< get the name of the user associated with the current thread
+        
         static ulong_t        ulGetNumOfCpus    ();
             ///< get num of CPUs
         static ulong_t        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
         static ulong_t        ulGetCpuSpeed     ();
-            ///< get CPU speed in MHz
+            ///< get CPU speed (MHz)
         static ulong_t        ulGetCpuUsage     ();
-            ///< get CPU usage
-        static ulong_t        ulGetMemoryUsage  ();
-            ///< get memory usage
+            ///< get CPU usage (percentage)
+
+        static ulonglong_t    ullGetRamTotal    ();
+            ///< get total RAM (bytes)
+        static ulong_t        ulGetRamUsage     ();
+            ///< get RAM usage (percentage)
 
         static ulong_t        ulGetPageSize     ();
-            ///< get Size of a page in bytes
+            ///< get Size of a page (bytes)
 
    private:
                               CxSystemInfo      ();
