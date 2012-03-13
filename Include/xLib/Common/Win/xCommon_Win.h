@@ -77,6 +77,7 @@
 #include <objbase.h>
 #include <process.h>
 #include <Lmcons.h>
+#include <intrin.h>
 
 #if xCOMPILER_MINGW32
 
