@@ -159,6 +159,26 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
+    //ctGetCpuType
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxSystemInfo::ECpuType ctType = CxSystemInfo::ctGetCpuType();
+        xTEST_EQ(true, CxSystemInfo::ctIntel == ctType || CxSystemInfo::ctAmd == ctType);
+    }
+
+    //--------------------------------------------------
+    //sGetCpuVendor
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_sRes = CxSystemInfo::sGetCpuVendor();
+        xTEST_EQ(false, m_sRes.empty());
+
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCPU vendor: %s"), m_sRes.c_str());
+        #endif
+    }
+
+    //--------------------------------------------------
     //ulGetCpuSpeed
     xTEST_CASE(cullCaseLoops)
     {

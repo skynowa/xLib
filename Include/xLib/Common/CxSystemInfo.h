@@ -52,6 +52,15 @@ class CxSystemInfo :
             oa64bit
         };
 
+        enum ECpuType
+            /// CPU type
+        {
+            ctUnknown,
+            ctIntel,
+            ctAmd
+        };
+
+        // OS
         static EOsType        osGetOS           ();
             ///< get information about the current OS
         static std::tstring_t sFormatOsType     (const EOsType otOsType);
@@ -62,6 +71,7 @@ class CxSystemInfo :
         static std::tstring_t sFormatOsArch     (const EOsArch oaOsArch);
             ///< format get OS architecture
 
+        // users
         static std::tstring_t sGetComputerName  ();
             ///< get the NetBIOS name of the local computer
         static bool           bIsUserAnAdmin    ();
@@ -69,15 +79,21 @@ class CxSystemInfo :
         static std::tstring_t sGetUserName      ();
             ///< get the name of the user associated with the current thread
 
+        // CPU
         static ulong_t        ulGetNumOfCpus    ();
             ///< get num of CPUs
         static ulong_t        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
+        static ECpuType       ctGetCpuType      ();
+            ///< get CPU type
+        static std::tstring_t sGetCpuVendor     ();
+            ///< get CPU vendor
         static ulong_t        ulGetCpuSpeed     ();
             ///< get CPU speed (MHz)
         static ulong_t        ulGetCpuUsage     ();
             ///< get CPU usage (percentage)
 
+        // RAM
         static ulonglong_t    ullGetRamTotal    ();
             ///< get total RAM (bytes)
         static ulonglong_t    ullGetRamAvailable();
@@ -85,6 +101,7 @@ class CxSystemInfo :
         static ulong_t        ulGetRamUsage     ();
             ///< get RAM usage (percentage)
 
+        //
         static ulong_t        ulGetPageSize     ();
             ///< get Size of a page (bytes)
 

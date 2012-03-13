@@ -410,6 +410,89 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 }
 //---------------------------------------------------------------------------
 /*static*/
+CxSystemInfo::ECpuType
+CxSystemInfo::ctGetCpuType() {
+    ECpuType ctRes = ctUnknown;
+
+#if   xOS_ENV_WIN
+    uint_t uiHighestFeature = 0U;
+    int    aiCpuInfo[4]     = {0};
+    char   szMan[13]        = {0};
+
+    (void)::__cpuid(aiCpuInfo, 0);
+
+    uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
+
+    *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
+    *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
+    *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
+
+    if      (std::string("AuthenticAMD") == szMan) {
+        ctRes = ctAmd;
+    }
+    else if (std::string("GenuineIntel") == szMan) {
+        ctRes = ctIntel;
+    }
+    else {
+        ctRes = ctUnknown;
+    }
+#elif xOS_ENV_UNIX
+    //TODO: CxSystemInfo::ctGetCpuType()
+#endif
+
+    return ctRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+std::tstring_t
+CxSystemInfo::sGetCpuVendor() {
+    std::tstring_t sRes;
+
+#if   xOS_ENV_WIN
+    char szMan[13] = {0};
+
+    // get szMan
+    {
+        int aiCpuInfo[4] = {0};
+
+        (void)::__cpuid(aiCpuInfo, 0);
+
+        uint_t uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
+
+        *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
+        *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
+        *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
+    }
+
+    // get highest extended feature
+    int aiCpuInfo[4] = {0};
+
+    (void)::__cpuid(aiCpuInfo, 0x80000000);
+
+    uint_t uiHighestFeatureEx = static_cast<uint_t>( aiCpuInfo[0] );
+
+    // get processor brand name
+    if (uiHighestFeatureEx >= 0x80000004) {
+        char szCpuName[49] = {0};
+
+        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[0]  ), 0x80000002);
+        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[16] ), 0x80000003);
+        (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[32] ), 0x80000004);
+
+        std::tstring_t sCpuName = CxString::sTrimSpace(szCpuName);
+
+        sRes = CxString::sFormat(xT("%s (%s)"), sCpuName.c_str(), szMan);
+    } else {
+        sRes = CxString::sFormat(xT("%s"), szMan);
+    }
+#elif xOS_ENV_UNIX
+    //TODO: CxSystemInfo::sGetCpuVendor()
+#endif
+
+    return sRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
 ulong_t
 CxSystemInfo::ulGetCpuSpeed() {
     /*DEBUG*/// n/a
@@ -756,6 +839,7 @@ CxSystemInfo::ulGetPageSize() {
     return ulRes;
 }
 //----------------------------------------------------------------------------------------------------
+
 
 
 /****************************************************************************
