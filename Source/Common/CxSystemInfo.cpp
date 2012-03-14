@@ -468,7 +468,7 @@ CxSystemInfo::cvGetCpuVendor() {
 //---------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxSystemInfo::sGetCpuName() {
+CxSystemInfo::sGetCpuModel() {
     std::tstring_t sRes;
 
 #if   xOS_ENV_WIN
@@ -521,7 +521,7 @@ CxSystemInfo::sGetCpuName() {
 
         sRes = CxString::sTrimSpace(sRes);
     #elif xOS_FREEBSD
-        //TODO: CxSystemInfo::sGetCpuName()
+        //TODO: CxSystemInfo::sGetCpuModel()
     #endif
 #endif
 

@@ -86,7 +86,7 @@ class CxSystemInfo :
             ///< get the number of the processor the current thread was running on during the call to this function
         static ECpuVendor     cvGetCpuVendor    ();
             ///< get CPU vendor
-        static std::tstring_t sGetCpuName       ();
+        static std::tstring_t sGetCpuModel      ();
             ///< get CPU model name
         static ulong_t        ulGetCpuSpeed     ();
             ///< get CPU speed (MHz)
