@@ -159,22 +159,22 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //ctGetCpuType
+    //cvGetCpuVendor
     xTEST_CASE(cullCaseLoops)
     {
-        CxSystemInfo::ECpuType ctType = CxSystemInfo::ctGetCpuType();
-        xTEST_EQ(true, CxSystemInfo::ctIntel == ctType || CxSystemInfo::ctAmd == ctType);
+        CxSystemInfo::ECpuVendor cvType = CxSystemInfo::cvGetCpuVendor();
+        xTEST_EQ(true, CxSystemInfo::cvIntel == cvType || CxSystemInfo::cvAmd == cvType);
     }
 
     //--------------------------------------------------
-    //sGetCpuVendor
+    //sGetCpuName
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sGetCpuVendor();
+        m_sRes = CxSystemInfo::sGetCpuName();
         xTEST_EQ(false, m_sRes.empty());
 
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCPU vendor: %s"), m_sRes.c_str());
+            xTRACEV(xT("\tCPU name: %s"), m_sRes.c_str());
         #endif
     }
 
