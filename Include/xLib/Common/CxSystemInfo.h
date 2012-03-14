@@ -72,7 +72,7 @@ class CxSystemInfo :
             ///< format get OS architecture
 
         // users
-        static std::tstring_t sGetComputerName  ();
+        static std::tstring_t sGetHostName      ();
             ///< get the NetBIOS name of the local computer
         static bool           bIsUserAnAdmin    ();
             ///< is current user an admin
