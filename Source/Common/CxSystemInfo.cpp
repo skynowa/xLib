@@ -440,10 +440,10 @@ CxSystemInfo::cvGetCpuVendor() {
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
         std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("vendor_id"));
-        /*DEBUG*/xASSERT_RET(false == sRes.empty());
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(), cvUnknown);
 
         size_t uiDelimPos = sRes.find(xT(":"));
-        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
+        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, cvUnknown);
 
         sRes = sRes.substr(uiDelimPos + 1);
 
@@ -511,11 +511,11 @@ CxSystemInfo::sGetCpuModel() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
-        std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("model name"));
-        /*DEBUG*/xASSERT_RET(false == sRes.empty());
+        sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("model name"));
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring_t());
 
         size_t uiDelimPos = sRes.find(xT(":"));
-        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
+        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, std::tstring_t());
 
         sRes = sRes.substr(uiDelimPos + 1);
 
@@ -554,7 +554,7 @@ CxSystemInfo::ulGetCpuSpeed() {
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
         std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("cpu MHz"));
-        /*DEBUG*/xASSERT_RET(false == sRes.empty());
+        /*DEBUG*/xASSERT_RET(false == sRes.empty(), 0UL);
 
         size_t uiDelimPos = sRes.find(xT(":"));
         /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
