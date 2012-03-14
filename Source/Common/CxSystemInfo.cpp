@@ -427,31 +427,40 @@ CxSystemInfo::cvGetCpuVendor() {
     *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
     *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
 
-    if      (std::string("AuthenticAMD") == szMan) {
-        cvRes = cvAmd;
-    }
-    else if (std::string("GenuineIntel") == szMan) {
+    if      (std::string("GenuineIntel") == szMan) {
         cvRes = cvIntel;
+    }
+    else if (std::string("AuthenticAMD") == szMan) {
+        cvRes = cvAmd;
     }
     else {
         cvRes = cvUnknown;
     }
 #elif xOS_ENV_UNIX
-    //TODO: CxSystemInfo::ctGetCpuType()
+    #if   xOS_LINUX
+        // target proc line: "vendor_id : GenuineIntel"
+        std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("vendor_id"));
+        /*DEBUG*/xASSERT_RET(false == sRes.empty());
 
-    // target proc line: "vendor_id : GenuineIntel"
-    std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("cpu MHz"));
+        size_t uiDelimPos = sRes.find(xT(":"));
+        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
 
-    size_t uiDelimPos = sRes.find(xT(":"));
-    /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
+        sRes = sRes.substr(uiDelimPos + 1);
 
-    sRes = sRes.substr(uiDelimPos + 1);
+        sRes = CxString::sTrimSpace(sRes);
 
-    sRes = CxString::sTrimSpace(sRes);
-
-    double dCpuSpeedMHz = CxString::lexical_cast<double>( sRes );
-
-    ulRes = static_cast<ulong_t>( CxMacros::dRound(dCpuSpeedMHz) );
+        if      (std::string("GenuineIntel") == sRes) {
+            cvRes = cvIntel;
+        }
+        else if (std::string("AuthenticAMD") == sRes) {
+            cvRes = cvAmd;
+        }
+        else {
+            cvRes = cvUnknown;
+        }
+    #elif xOS_FREEBSD
+        //TODO: CxSystemInfo::cvGetCpuVendor()
+    #endif
 #endif
 
     return cvRes;
@@ -500,21 +509,20 @@ CxSystemInfo::sGetCpuName() {
         sRes = CxString::sFormat(xT("%s"), szMan);
     }
 #elif xOS_ENV_UNIX
-    //TODO: CxSystemInfo::sGetCpuVendor()
+    #if   xOS_LINUX
+        // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
+        std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("model name"));
+        /*DEBUG*/xASSERT_RET(false == sRes.empty());
 
-    // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
-    std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("cpu MHz"));
+        size_t uiDelimPos = sRes.find(xT(":"));
+        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
 
-    size_t uiDelimPos = sRes.find(xT(":"));
-    /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
+        sRes = sRes.substr(uiDelimPos + 1);
 
-    sRes = sRes.substr(uiDelimPos + 1);
-
-    sRes = CxString::sTrimSpace(sRes);
-
-    double dCpuSpeedMHz = CxString::lexical_cast<double>( sRes );
-
-    ulRes = static_cast<ulong_t>( CxMacros::dRound(dCpuSpeedMHz) );
+        sRes = CxString::sTrimSpace(sRes);
+    #elif xOS_FREEBSD
+        //TODO: CxSystemInfo::sGetCpuName()
+    #endif
 #endif
 
     return sRes;
@@ -546,6 +554,7 @@ CxSystemInfo::ulGetCpuSpeed() {
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
         std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("cpu MHz"));
+        /*DEBUG*/xASSERT_RET(false == sRes.empty());
 
         size_t uiDelimPos = sRes.find(xT(":"));
         /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
