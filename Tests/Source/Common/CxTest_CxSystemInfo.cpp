@@ -104,13 +104,13 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //-------------------------------------
-    //sGetComputerName
+    //sGetHostName
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sGetComputerName();
+        m_sRes = CxSystemInfo::sGetHostName();
         xTEST_EQ(false, m_sRes.empty());
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::sGetComputerName(): %s"), m_sRes.c_str());
+            xTRACEV(xT("\tCxSystemInfo::sGetHostName(): %s"), m_sRes.c_str());
         #endif
     }
 

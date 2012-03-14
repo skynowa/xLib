@@ -222,7 +222,7 @@ CxSystemInfo::sFormatOsArch(
 //---------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxSystemInfo::sGetComputerName() {
+CxSystemInfo::sGetHostName() {
     /*DEBUG*/// n/a
 
     std::tstring_t sRes;
