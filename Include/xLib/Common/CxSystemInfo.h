@@ -55,9 +55,9 @@ class CxSystemInfo :
         enum ECpuVendor
             /// CPU type
         {
-            cvUnknown,
-            cvIntel,
-            cvAmd
+            ctUnknown,
+            ctIntel,
+            ctAmd
         };
 
         // OS

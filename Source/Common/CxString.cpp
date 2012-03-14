@@ -583,7 +583,7 @@ CxString::sCreateGuid() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-bool 
+bool
 CxString::bIsRepeated(
     const std::tstring_t &csStr
 )
