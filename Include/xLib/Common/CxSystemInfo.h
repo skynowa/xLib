@@ -52,12 +52,12 @@ class CxSystemInfo :
             oa64bit
         };
 
-        enum ECpuType
+        enum ECpuVendor
             /// CPU type
         {
-            ctUnknown,
-            ctIntel,
-            ctAmd
+            cvUnknown,
+            cvIntel,
+            cvAmd
         };
 
         // OS
@@ -84,10 +84,10 @@ class CxSystemInfo :
             ///< get num of CPUs
         static ulong_t        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
-        static ECpuType       ctGetCpuType      ();
-            ///< get CPU type
-        static std::tstring_t sGetCpuVendor     ();
+        static ECpuVendor     cvGetCpuVendor    ();
             ///< get CPU vendor
+        static std::tstring_t sGetCpuName       ();
+            ///< get CPU model name
         static ulong_t        ulGetCpuSpeed     ();
             ///< get CPU speed (MHz)
         static ulong_t        ulGetCpuUsage     ();

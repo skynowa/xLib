@@ -410,9 +410,9 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxSystemInfo::ECpuType
-CxSystemInfo::ctGetCpuType() {
-    ECpuType ctRes = ctUnknown;
+CxSystemInfo::ECpuVendor
+CxSystemInfo::cvGetCpuVendor() {
+    ECpuVendor cvRes = cvUnknown;
 
 #if   xOS_ENV_WIN
     uint_t uiHighestFeature = 0U;
@@ -428,24 +428,38 @@ CxSystemInfo::ctGetCpuType() {
     *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
 
     if      (std::string("AuthenticAMD") == szMan) {
-        ctRes = ctAmd;
+        cvRes = cvAmd;
     }
     else if (std::string("GenuineIntel") == szMan) {
-        ctRes = ctIntel;
+        cvRes = cvIntel;
     }
     else {
-        ctRes = ctUnknown;
+        cvRes = cvUnknown;
     }
 #elif xOS_ENV_UNIX
     //TODO: CxSystemInfo::ctGetCpuType()
+
+    // target proc line: "vendor_id : GenuineIntel"
+    std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("cpu MHz"));
+
+    size_t uiDelimPos = sRes.find(xT(":"));
+    /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
+
+    sRes = sRes.substr(uiDelimPos + 1);
+
+    sRes = CxString::sTrimSpace(sRes);
+
+    double dCpuSpeedMHz = CxString::lexical_cast<double>( sRes );
+
+    ulRes = static_cast<ulong_t>( CxMacros::dRound(dCpuSpeedMHz) );
 #endif
 
-    return ctRes;
+    return cvRes;
 }
 //---------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxSystemInfo::sGetCpuVendor() {
+CxSystemInfo::sGetCpuName() {
     std::tstring_t sRes;
 
 #if   xOS_ENV_WIN
@@ -487,6 +501,20 @@ CxSystemInfo::sGetCpuVendor() {
     }
 #elif xOS_ENV_UNIX
     //TODO: CxSystemInfo::sGetCpuVendor()
+
+    // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
+    std::tstring_t sRes = CxPath::sGetProcLine(xT("/proc/cpuinfo"), xT("cpu MHz"));
+
+    size_t uiDelimPos = sRes.find(xT(":"));
+    /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos, 0UL);
+
+    sRes = sRes.substr(uiDelimPos + 1);
+
+    sRes = CxString::sTrimSpace(sRes);
+
+    double dCpuSpeedMHz = CxString::lexical_cast<double>( sRes );
+
+    ulRes = static_cast<ulong_t>( CxMacros::dRound(dCpuSpeedMHz) );
 #endif
 
     return sRes;
