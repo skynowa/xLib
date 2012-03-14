@@ -167,14 +167,14 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //sGetCpuName
+    //sGetCpuModel
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sGetCpuName();
+        m_sRes = CxSystemInfo::sGetCpuModel();
         xTEST_EQ(false, m_sRes.empty());
 
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCPU name: %s"), m_sRes.c_str());
+            xTRACEV(xT("\tCPU model: %s"), m_sRes.c_str());
         #endif
     }
 
