@@ -69,7 +69,10 @@ CxTest_CxDebugger::bUnit(
     //bBreak
     xTEST_CASE(cullCaseLoops)
     {
-        //TODO: bBreak
+        #if xTEST_IGNORE
+            m_bRes = CxDebugger::bBreak();
+            xTEST_EQ(true, m_bRes);
+        #endif
     }
 
     //-------------------------------------
