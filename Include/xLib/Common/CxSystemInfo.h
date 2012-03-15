@@ -100,8 +100,6 @@ class CxSystemInfo :
             ///< get available RAM (bytes)
         static ulong_t        ulGetRamUsage     ();
             ///< get RAM usage (percentage)
-
-        //
         static ulong_t        ulGetPageSize     ();
             ///< get Size of a page (bytes)
 
