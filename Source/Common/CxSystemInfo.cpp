@@ -388,8 +388,8 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
             ulRes = ulCpu;
         #else
-            #if (xSTD_LIBC_GNU_VER > 2) || \
-                (xSTD_LIBC_GNU_VER == 2 && xSTD_LIBC_GNU_VER_MINOR > 6)
+            #if (xSTD_LIBC_GNU_VER_MAJOR > 2) || \
+                (xSTD_LIBC_GNU_VER_MAJOR == 2 && xSTD_LIBC_GNU_VER_MINOR > 6)
 
                 // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
                 int iRes = ::sched_getcpu();

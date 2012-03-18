@@ -596,8 +596,6 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxNonCopyable.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxString.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxSystemInfo.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\xClosure.h" />
-    <ClInclude Include="..\..\Include\xLib\Common\xClosureImpl.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xCommon.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xConfig.h" />
     <ClInclude Include="..\..\Include\xLib\Common\xDefines.h" />

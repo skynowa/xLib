@@ -104,7 +104,7 @@
 
 #define xCOMPILER_CODEGEAR_VER        __CODEGEARC__
 
-#define xCOMPILER_GNUC_VER            __GNUC__
+#define xCOMPILER_GNUC_VER_MAJOR      __GNUC__
 #define xCOMPILER_GNUC_VER_MINOR      __GNUC_MINOR__
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
 
@@ -155,7 +155,7 @@
 
 //--------------------------------------------------
 //TODO: standard C libraries versions
-#define xSTD_LIBC_GNU_VER       __GLIBC__
+#define xSTD_LIBC_GNU_VER_MAJOR __GLIBC__
 #define xSTD_LIBC_GNU_VER_MINOR __GLIBC_MINOR__
 
 #define xSTD_LIBC_UC_VER        0
