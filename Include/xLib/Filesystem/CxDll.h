@@ -42,7 +42,7 @@ class CxDll :
         typedef void *   TxHandle;
     #endif
 
-        TxHandle      _m_hDLL;   ///< dll module handle
+        TxHandle      _m_hDll;   ///< dll module handle
 
         bool          _bFree          ();
             ///< free
