@@ -55,23 +55,26 @@ CxCurrentProcess::ulGetParentId() {
         };
 	#endif
 
-	typedef NTSTATUS (WINAPI *fpProcAddress)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
+	typedef NTSTATUS (WINAPI *TDllNtQueryInformationProcess)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
 
 	const CxProcess::TxId culInvalidId = (ulong_t)- 1;
 
 	bool  bRes   = false;
-	CxDll objDll;
+	CxDll dlDll;
 
-	bRes = objDll.bLoad(xT("ntdll.dll"));
+	bRes = dlDll.bLoad(xT("ntdll.dll"));
 	/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
+
+    bRes = dlDll.bIsProcExists(xT("GetCurrentProcessorNumber"));
+    xCHECK_RET(false == bRes, culInvalidId);
 
 	ULONG_PTR pulProcessInformation[6] = {0};
 	ULONG     ulReturnLength           = 0UL;
 
-	fpProcAddress NtQueryInformationProcess = (fpProcAddress)objDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
-	/*DEBUG*/xASSERT_RET(NULL != NtQueryInformationProcess, culInvalidId);
+	TDllNtQueryInformationProcess DllNtQueryInformationProcess = (TDllNtQueryInformationProcess)dlDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
+	/*DEBUG*/xASSERT_RET(NULL != DllNtQueryInformationProcess, culInvalidId);
 
-	NTSTATUS ntsRes = NtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
+	NTSTATUS ntsRes = DllNtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
 	bRes = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
 	/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
 

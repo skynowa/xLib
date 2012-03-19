@@ -16,22 +16,24 @@
 #endif
 
 //Required for VS 2008 (fails on XP and Win2000 without this fix)
-#if !defined(_WIN32_WINNT)
-    #define _WIN32_WINNT 0x0600
-#endif
+#if xTEMP_DISABLED
+    #if !defined(_WIN32_WINNT)
+        #define _WIN32_WINNT 0x0600
+    #endif
 
-#if WINVER
-    #undef  WINVER
-    #define WINVER 0x0600
-#else
-    #define WINVER 0x0600
-#endif
+    #if WINVER
+        #undef  WINVER
+        #define WINVER 0x0600
+    #else
+        #define WINVER 0x0600
+    #endif
 
-#if _WIN32_WINNT
-    #undef  _WIN32_WINNT
-    #define _WIN32_WINNT 0x0600
-#else
-    #define _WIN32_WINNT 0x0600
+    #if _WIN32_WINNT
+        #undef  _WIN32_WINNT
+        #define _WIN32_WINNT 0x0600
+    #else
+        #define _WIN32_WINNT 0x0600
+    #endif
 #endif
 
 //OBM_ (#include <winuser.h>)

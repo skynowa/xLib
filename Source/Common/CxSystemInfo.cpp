@@ -23,13 +23,10 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 CxSystemInfo::EOsType
 CxSystemInfo::osGetOS() {
-    /*DEBUG*/// n/a
-
     EOsType otRes = otUnknown;
 
 #if xOS_ENV_WIN
     OSVERSIONINFO ovVer = {0};
-
     ovVer.dwOSVersionInfoSize = sizeof(ovVer);
 
     BOOL blRes = ::GetVersionEx(&ovVer);
@@ -98,7 +95,7 @@ CxSystemInfo::sFormatOsType(
     const EOsType otOsType
 )
 {
-    /*DEBUG*/// otOsType - n/a
+    xDEBUG_VAR_NA(otOsType);
 
     std::tstring_t sRes;
 
@@ -149,23 +146,21 @@ CxSystemInfo::sFormatOsType(
 /*static*/
 CxSystemInfo::EOsArch
 CxSystemInfo::oaGetOsArch() {
-    /*DEBUG*/// n/a
-
     EOsArch oaRes = oaUnknown;
 
 #if xOS_ENV_WIN
     #if xCPU_64BIT
         oaRes = oa64bit;
     #elif xCPU_32BIT
-        BOOL blIs64BitOs          = FALSE;
-        BOOL blIsWin32MethodExist = FALSE;
+        BOOL blIs64BitOs   = FALSE;
+        BOOL blIsFuncExist = FALSE;
         {
             CxDll dlDll;
-            blIsWin32MethodExist = ( dlDll.bLoad(xT("kernel32.dll")) && dlDll.bIsProcExists(xT("IsWow64Process")) );
+            blIsFuncExist = ( dlDll.bLoad(xT("kernel32.dll")) && dlDll.bIsProcExists(xT("IsWow64Process")) );
         }
         BOOL blIsWow64Process    = ::IsWow64Process(CxCurrentProcess::hGetHandle(), &blIs64BitOs);
 
-        oaRes = (blIsWin32MethodExist && blIsWow64Process && blIs64BitOs) ? oa64bit : oa32bit;
+        oaRes = (blIsFuncExist && blIsWow64Process && blIs64BitOs) ? oa64bit : oa32bit;
     #else
         // 64-bit Windows does not support Win16
         oaRes = oaUnknown;
@@ -217,8 +212,6 @@ CxSystemInfo::sFormatOsArch(
     const EOsArch oaOsArch
 )
 {
-    /*DEBUG*/// n/a
-
     std::tstring_t sRes;
 
     switch (oaOsArch) {
@@ -235,8 +228,6 @@ CxSystemInfo::sFormatOsArch(
 /*static*/
 std::tstring_t
 CxSystemInfo::sGetHostName() {
-    /*DEBUG*/// n/a
-
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
@@ -262,8 +253,6 @@ CxSystemInfo::sGetHostName() {
 /*static*/
 bool
 CxSystemInfo::bIsUserAnAdmin() {
-    /*DEBUG*/
-
 #if xOS_ENV_WIN
     bool                     bIsAdmin              = false;
     SID_IDENTIFIER_AUTHORITY siaNtAuthority        = { SECURITY_NT_AUTHORITY };
@@ -294,11 +283,11 @@ CxSystemInfo::bIsUserAnAdmin() {
     uid_t       uiUserId  = 0;
 
     uiUserId = ::getuid();
-    /*DEBUG*/// n/a
+    xDEBUG_VARS_NA;
     xCHECK_RET(cuiRootId != uiUserId, false);
 
     uiUserId = ::geteuid();
-    /*DEBUG*/// n/a
+    xDEBUG_VARS_NA;
     xCHECK_RET(cuiRootId != uiUserId, false);
 #endif
 
@@ -308,8 +297,6 @@ CxSystemInfo::bIsUserAnAdmin() {
 /*static*/
 std::tstring_t
 CxSystemInfo::sGetUserName() {
-    /*DEBUG*/// n/a
-
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
@@ -336,8 +323,6 @@ CxSystemInfo::sGetUserName() {
 /*static*/
 ulong_t
 CxSystemInfo::ulGetNumOfCpus() {
-    /*DEBUG*/// n/a
-
     ulong_t ulRes = 0UL;
 
 #if xOS_ENV_WIN
@@ -367,17 +352,24 @@ CxSystemInfo::ulGetNumOfCpus() {
 /*static*/
 ulong_t
 CxSystemInfo::ulGetCurrentCpuNum() {
-    /*DEBUG*/// n/a
-
     ulong_t ulRes = 0UL;
 
 #if xOS_ENV_WIN
-    #if (xOS_WIN_VER >= xWIN32_VISTA) && 0
-        ulRes = ::GetCurrentProcessorNumber();
-        xDEBUG_VAR_NA(ulRes);
-    #else
-        ulRes = 0UL;
-    #endif
+	typedef DWORD (WINAPI *TDllGetCurrentProcessorNumber)(void);
+
+	CxDll dlDll;
+
+	bool bRes = dlDll.bLoad(xT("kernel32.dll"));
+	/*DEBUG*/xASSERT_RET(true == bRes, 0UL);
+
+    bRes = dlDll.bIsProcExists(xT("GetCurrentProcessorNumber"));
+    xCHECK_RET(false == bRes, 0UL);
+
+	TDllGetCurrentProcessorNumber DllGetCurrentProcessorNumber = (TDllGetCurrentProcessorNumber)dlDll.fpGetProcAddress(xT("GetCurrentProcessorNumber"));
+	/*DEBUG*/xASSERT_RET(NULL != DllGetCurrentProcessorNumber, 0UL);
+
+	ulRes = DllGetCurrentProcessorNumber();
+	xDEBUG_VAR_NA(ulRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         #if defined(SYS_getcpu)
@@ -543,8 +535,6 @@ CxSystemInfo::sGetCpuModel() {
 /*static*/
 ulong_t
 CxSystemInfo::ulGetCpuSpeed() {
-    /*DEBUG*/// n/a
-
     ulong_t ulRes = 0UL;
 
 #if xOS_ENV_WIN
@@ -595,8 +585,6 @@ CxSystemInfo::ulGetCpuSpeed() {
 /*static*/
 ulong_t
 CxSystemInfo::ulGetCpuUsage() {
-    xDEBUG_VARS_NA;
-
     ulong_t ulRes = 0UL;
 
 #if   xOS_ENV_WIN
@@ -732,8 +720,6 @@ CxSystemInfo::ulGetCpuUsage() {
 /*static*/
 ulonglong_t
 CxSystemInfo::ullGetRamTotal() {
-    xDEBUG_VARS_NA;
-
     ulonglong_t ullRes = 0ULL;
 
 #if   xOS_ENV_WIN
@@ -771,8 +757,6 @@ CxSystemInfo::ullGetRamTotal() {
 /*static*/
 ulonglong_t
 CxSystemInfo::ullGetRamAvailable() {
-    xDEBUG_VARS_NA;
-
     ulonglong_t ullRes = 0ULL;
 
 #if   xOS_ENV_WIN
@@ -808,8 +792,6 @@ CxSystemInfo::ullGetRamAvailable() {
 /*static*/
 ulong_t
 CxSystemInfo::ulGetRamUsage() {
-    xDEBUG_VARS_NA;
-
     ulong_t ulRes = 0UL;
 
 #if   xOS_ENV_WIN
@@ -865,8 +847,6 @@ CxSystemInfo::ulGetRamUsage() {
 /*static*/
 ulong_t
 CxSystemInfo::ulGetPageSize() {
-    xDEBUG_VARS_NA;
-
     ulong_t ulRes = 0UL;
 
 #if   xOS_ENV_WIN
