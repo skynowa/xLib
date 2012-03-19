@@ -29,7 +29,7 @@ class CxDateTime
             ///< constructor
         explicit              CxDateTime          (const std::tstring_t &csDT, const EFormatType cftFormat);
             ///< constructor
-        explicit              CxDateTime          (const CxDateTime &cdtDT);
+        /*explicit*/          CxDateTime          (const CxDateTime &cdtDT);
             ///< constructor
         explicit              CxDateTime          (const ulonglong_t cullMilliseconds);
             ///< constructor
