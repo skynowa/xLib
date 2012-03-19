@@ -15,7 +15,7 @@
     #define STRICT 1
 #endif
 
-//Required for VS 2008 (fails on XP and Win2000 without this fix)
+// Required for VS 2008 (fails on XP and Win2000 without this fix)
 #if xTEMP_DISABLED
     #if !defined(_WIN32_WINNT)
         #define _WIN32_WINNT 0x0600
@@ -36,63 +36,57 @@
     #endif
 #endif
 
-//OBM_ (#include <winuser.h>)
-#define OEMRESOURCE
+// OBM_ (#include <winuser.h>)
+#if !defined(OEMRESOURCE)
+    #define OEMRESOURCE 1
+#endif
 
-//Prevent winsock.h #include's
-#define _WINSOCKAPI_
-
-
-//xCOMPILER_MS
+// xCOMPILER_MS
 #if xCOMPILER_MS
-    #pragma warning (disable : 4996)    //function or variable may be unsafe (deprecated)
-    #pragma warning (disable : 4355)    //'this' : used in base member initializer list
-    #pragma warning (disable : 4101)    //'e' : unreferenced local variable
+    #pragma warning (disable: 4996)    // function or variable may be unsafe (deprecated)
+    #pragma warning (disable: 4355)    // 'this' : used in base member initializer list
+    #pragma warning (disable: 4101)    // 'e' : unreferenced local variable
 
     #if !defined(VC_EXTRALEAN)
         #define VC_EXTRALEAN 1
     #endif
 #endif
 
-//xCOMPILER_MINGW32
+// xCOMPILER_MINGW32
 #if xCOMPILER_MINGW32
 
 #endif
 
-//xCOMPILER_CODEGEAR
+// xCOMPILER_CODEGEAR
 #if xCOMPILER_CODEGEAR
-    #pragma option -w-8027  //function not expanded inline
-    #pragma option -w-8057  //parameter is never used
-    #pragma option -w-8058  //cannot create pre-compiled header: initialized data in header
-    #pragma option -w-8004  //is assigned a value that is never used
-    #pragma option -w-8022  //hides virtual function 'Image::Clone()'
-    #pragma option -w-8008  //Condition is always true
+    #pragma option -w-8027  // function not expanded inline
+    #pragma option -w-8057  // parameter is never used
+    #pragma option -w-8058  // cannot create pre-compiled header: initialized data in header
+    #pragma option -w-8004  // is assigned a value that is never used
+    #pragma option -w-8022  // hides virtual function 'Image::Clone()'
+    #pragma option -w-8008  // Condition is always true
 #endif
 //---------------------------------------------------------------------------
 #include <winsock2.h>
 #include <ws2tcpip.h>
-
 #include <windows.h>
 #include <tchar.h>
 #include <windowsx.h>
 #include <winuser.h>
 #include <objbase.h>
 #include <process.h>
-#include <Lmcons.h>
+#include <lmcons.h>
 #include <intrin.h>
+#include <sys/locking.h>
+#include <io.h>
 
 #if xCOMPILER_MINGW32
 
 #else
-    #include <winternl.h>   //NtQueryInformationFile for mingw
+    #include <winternl.h>   // NtQueryInformationFile for mingw
 #endif
 
-#include <sys/locking.h>
-#include <io.h>
-#include <errno.h>
-
 #if xCOMPILER_CODEGEAR
-	#include <xVCL/xCommon.h>
     #include <dir.h>
 #endif
 //---------------------------------------------------------------------------
