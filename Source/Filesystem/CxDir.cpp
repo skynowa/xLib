@@ -202,7 +202,14 @@ CxDir::sGetTemp() {
 
     sRes.assign(sBuff, 0, ulRes);
 #elif xOS_ENV_UNIX
-    sRes = xT(P_tmpdir);
+    const std::tstring_t csEnvDirTemp = xT("TMPDIR");
+
+    bool bRes = CxEnvironment::bIsExists(csEnvDirTemp);
+    if (true == bRes) {
+        sRes = CxEnvironment::sGetVar(csEnvDirTemp); 
+    } else {
+        sRes = xDIR_TEMP;
+    }
 #endif
 
     /*DEBUG*/xASSERT_RET(true == bIsExists(sRes), std::tstring_t());

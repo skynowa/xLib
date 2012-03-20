@@ -15,7 +15,7 @@
 #endif
 
 
-//keywords
+// xFORCE_INLINE
 #if defined(xCOMPILER_MINGW32)
     #define xFORCE_INLINE           __attribute__((__always_inline__)) inline
 #elif defined(xCOMPILER_MS)
@@ -28,6 +28,7 @@
     ///< keyword "inline"
 
 
+// xSTDCALL
 #if xOS_ENV_WIN
     #define xSTDCALL                __stdcall
 #elif xOS_ENV_UNIX
@@ -36,6 +37,7 @@
     ///< calling convention
 
 
+// namespace
 #define xNAMESPACE_BEGIN(n)         namespace n {
             ///< begin namespace
 #define xNAMESPACE_END(n)           }
@@ -46,8 +48,8 @@
 #define xNAMESPACE_ANONYM_END       }
             ///< end anonymous namespace
 
-//---------------------------------------------------------------------------
-//converters
+
+// converters
 #define xS2US(s)                    std::ustring_t( (s).begin(),  (s).begin()  + (s).size()  )
     ///< convert std::tstring_t to std::ustring_t
 #define xUS2S(us)                   std::tstring_t( (us).begin(), (us).begin() + (us).size() )
@@ -58,6 +60,7 @@
     ///< convert std::tstring_t to std::string
 
 
+// utils
 #define xPTR_DELETE(p)              { CxMacros::vPtrDelete(p); }
     ///< delete object by pointer
 #define xARRAY_DELETE(p)            { CxMacros::vArrayDelete(p); }
@@ -86,7 +89,7 @@
     ///< convert int to bool
 
 
-/// hide "unused variable" warnings
+// xUNUSED
 #if xCOMPILER_MINGW32 || xCOMPILER_MS
     #define xUNUSED(arg)            ( static_cast<void>( arg ) )
 #elif xCOMPILER_CODEGEAR
@@ -96,16 +99,17 @@
 #else
     #define xUNUSED(arg)            ( static_cast<void>( arg ) )
 #endif
+    /// < hide "unused variable" warnings
 
 
-//enum
+// xENUM_INC, xENUM_DEC
 #define xENUM_INC(type, obj)        { (obj) = static_cast<type>( static_cast<int>( obj ) + 1 ); }
     ///< increment enumerator
 #define xENUM_DEC(type, obj)        { (obj) = static_cast<type>( static_cast<int>( obj ) - 1 ); }
     ///< decriment enumerator
 
 
-//temporary enable/disable code
+// temporary enable/disable code
 #define xTEMP_ENABLED               1
     ///< temporary code enabled
 #define xTEMP_DISABLED              0
@@ -128,6 +132,7 @@
     ///< at this point the code is not applicable
 
 
+// string utils
 #define xSTRINGIZE2(x)              #x
     ///< make as string
 #define xSTRINGIZE(x)               xSTRINGIZE2(x)
@@ -139,6 +144,7 @@
 //--------------------------------------------------
 //buildin macroses
 
+// xFILE
 #if defined(__FILE__)
     #define xFILE                   xT(__FILE__)
 #else
@@ -147,6 +153,7 @@
     ///< source file path
 
 
+// xLINE
 #if defined(__LINE__)
     #define xLINE                   __LINE__
 #else
@@ -155,6 +162,7 @@
     ///< source code line number
 
 
+// xFUNCTION
 #if xCOMPILER_MS
     #define xFUNCTION               xT(__FUNCTION__)
 #elif xCOMPILER_CODEGEAR
@@ -167,6 +175,7 @@
     ///< source function name
 
 
+// xDATE
 #if defined(__DATE__)
     #define xDATE                   xT(__DATE__)
 #else
@@ -175,6 +184,7 @@
     ///< build source date stamp
 
 
+// xTIME
 #if defined(__TIME__)
     #define xTIME                   xT(__TIME__)
 #else
@@ -183,6 +193,7 @@
     ///< build source time stamp
 
 
+// xDATETIME
 #if defined(__DATE__) && defined(__TIME__)
     #define xDATETIME               xT(__DATE__) xT(" ") xT(__TIME__)
 #else
@@ -191,6 +202,7 @@
     ///< build source datetime stamp
 
 
+// xCOUNTER
 #if defined(__COUNTER__)
     #define xCOUNTER                __COUNTER__
 #else
@@ -199,7 +211,7 @@
     ///< Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
 
 
-//function params
+// function params
 #define xIN
     ///< incoming param
 #define xOUT
@@ -207,7 +219,7 @@
 #define xIN_OUT
     ///< incoming and outcoming param
 
-
+// xHOST_NAME_MAX
 #if xOS_ENV_WIN
 	#if defined(MAX_COMPUTERNAME_LENGTH)
     	#define xHOST_NAME_MAX      MAX_COMPUTERNAME_LENGTH
@@ -225,12 +237,17 @@
 #endif
     ///< max host name length
 
+// xPATH_MAX
 #define xPATH_MAX                   (CxPath::uiGetMaxSize())
     ///< max path length
+
+
+// xNAME_MAX    
 #define xNAME_MAX                   (CxPath::uiGetNameMaxSize())
     ///< max file name length
 
 
+// xLINE_MAX
 #if xOS_ENV_WIN
     #define xLINE_MAX               2048 //custom define
 #elif xOS_ENV_UNIX
@@ -245,6 +262,7 @@
     ///< maximum length of a utility's input line, either from standard input or from a file
 
 
+// xENV_MAX
 #if xOS_ENV_WIN
     #define xENV_MAX                _MAX_ENV
 #elif xOS_ENV_UNIX
@@ -253,7 +271,7 @@
     ///< maximum permissible string length of an environmental variable
 
 
-//var args
+// var args
 #if defined(va_start)
     #define xVA_START(val, fmt)     ( va_start(val, fmt) )
         ///< initializes ap for subsequent use by xVA_ARG() and xVA_END(), and must be called first
@@ -274,7 +292,7 @@
 #endif
 
 
-//qualifiers
+// qualifiers
 #if xOS_ENV_WIN
     #ifdef xCPU_64BIT
         #define xPR_SIZET           xT("I")
@@ -324,25 +342,28 @@
             ///< qualifier for long_t long_t int (hex)
     #endif
 #endif
+    ///< qualifiers
 
 
-//timeout
+// xTIMEOUT_INFINITE
 #if xOS_ENV_WIN
-    #define xTIMEOUT_INFINITE       INFINITE    ///< infinite timeout
+    #define xTIMEOUT_INFINITE       INFINITE
 #elif xOS_ENV_UNIX
-    #define xTIMEOUT_INFINITE       ( ~(0UL) )      ///< infinite timeout
+    #define xTIMEOUT_INFINITE       ( ~(0UL) )
 #endif
+    ///< infinite timeout
 
 
-//native handle
+// TxNativeHandle
 #if xOS_ENV_WIN
-    typedef HANDLE TxNativeHandle;  ///< native handle
+    typedef HANDLE TxNativeHandle;
 #elif xOS_ENV_UNIX
-    typedef int    TxNativeHandle;  ///< native handle
+    typedef int    TxNativeHandle;  
 #endif
+    ///< native handle
 
 
-//native handle value
+// xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
 #if xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL     ( static_cast<TxNativeHandle>( NULL ) )                  ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID  ( static_cast<TxNativeHandle>( INVALID_HANDLE_VALUE ) )  ///< native handle value "invalid"
@@ -352,7 +373,7 @@
 #endif
 
 
-//page size
+// xPAGE_SIZE
 #if   xOS_ENV_WIN
     xNA
 #elif xOS_ENV_UNIX
@@ -367,7 +388,7 @@
     ///< filesystem page size
 
 
-//statfs (struct and function)
+// xSTATVFS (struct and function)
 #if   xOS_ENV_WIN
     xNA
 #elif xOS_ENV_UNIX
@@ -382,7 +403,24 @@
     ///< filesystem statfs (struct and function)
 
 
-//other
+// xDIR_TEMP temprory directory
+#if xOS_ENV_WIN
+    #if defined(P_tmpdir)
+        #define xDIR_TEMP           xT(P_tmpdir)
+    #else
+        #define xDIR_TEMP           xT("C:\\Temp")  // custom define
+    #endif
+#elif xOS_ENV_UNIX
+    #if defined(P_tmpdir)
+        #define xDIR_TEMP           xT(P_tmpdir)
+    #else
+        #define xDIR_TEMP           xT("/tmp")      // custom define
+    #endif
+#endif
+    ///< temprory directory
+
+
+// other
 #define xUNKNOWN_STRING             xT("[unknown]")      ///< unknown string value
 
 //---------------------------------------------------------------------------
