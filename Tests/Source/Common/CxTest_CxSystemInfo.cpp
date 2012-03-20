@@ -48,7 +48,9 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
-            std::map<CxSystemInfo::EOsType, std::tstring_t> mapData;
+            typedef std::map<CxSystemInfo::EOsType, std::tstring_t> TData;
+
+            TData mapData;
 
             mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows3,               xT("Windows 3.1")) );
             mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows95,              xT("Windows 95")) );
@@ -65,8 +67,7 @@ CxTest_CxSystemInfo::bUnit(
             mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindowsServer2008R2,    xT("Windows Server 2008 R2")) );
             mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows7,               xT("Windows 7")) );
 
-            std::map<CxSystemInfo::EOsType, std::tstring_t>::const_iterator it;
-            for (it = mapData.begin(); it != mapData.end(); ++ it) {
+            xFOREACH_CONST(TData, it, mapData) {
                 m_sRes = CxSystemInfo::sFormatOsType((*it).first);
                 xTEST_EQ((*it).second, m_sRes);
             }

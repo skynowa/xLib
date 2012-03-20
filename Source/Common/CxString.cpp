@@ -221,7 +221,7 @@ CxString::sJoin(
 
     std::tstring_t sRes;
 
-    for (std::vector<std::tstring_t>::const_iterator it = cvsVec.begin(); it != cvsVec.end(); ++ it) {
+    xFOREACH_CONST(std::vector<std::tstring_t>, it, cvsVec) {
         sRes.append(*it);
 
         xCHECK_DO(it < cvsVec.end() - 1, sRes.append(csSep));
