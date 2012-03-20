@@ -31,7 +31,7 @@ CxTestManager::CxTestManager(
 //---------------------------------------------------------------------------
 /*virtual*/
 CxTestManager::~CxTestManager() {
-    for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
+    xFOREACH(TContainer, it, _m_ctnTests) {
         /*CxMacros::*/xPTR_DELETE(*it);
     }
 
@@ -74,7 +74,7 @@ CxTestManager::bRun(
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(", unit loops: %") xPR_I64u xT(", block loops: %") xPR_I64u xT(", unit number: %")  xPR_SIZET xT("\n"), cullAllLoops, cullUnitLoops, cullCaseLoops, _m_ctnTests.size()));
 
     for (ulonglong_t i = 0ULL; i < cullAllLoops; ++ i) {
-        for (TContainer::iterator it = _m_ctnTests.begin(); it != _m_ctnTests.end(); ++ it) {
+        xFOREACH_CONST(TContainer, it, _m_ctnTests) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 
             bool bRes = (*it)->bRun(cullUnitLoops, cullCaseLoops);

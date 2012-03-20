@@ -135,9 +135,9 @@ CxMimeHeader::sGetField(
 
     std::tstring_t sRes;
 
-    std::pair<std::multimap<std::tstring_t, std::tstring_t>::iterator, std::multimap<std::tstring_t, std::tstring_t>::iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
+    std::pair<std::multimap<std::tstring_t, std::tstring_t>::const_iterator, std::multimap<std::tstring_t, std::tstring_t>::const_iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
 
-    std::multimap<std::tstring_t, std::tstring_t>::iterator it;
+    std::multimap<std::tstring_t, std::tstring_t>::const_iterator it;
     for (it = prEqualRange.first; it != prEqualRange.second; ++ it) {
         sRes = (*it).second;
     }

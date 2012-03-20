@@ -112,7 +112,7 @@ CxCgi::bUriEncode(
     std::tstring_t       *psEncodedStr
 )
 {
-    for (std::tstring_t::const_iterator it = csUri.begin(); it != csUri.end(); ++ it) {
+    xFOREACH_CONST(std::tstring_t, it, csUri) {
         char chChar = *it;
 
         if ((chChar >= 'a' && chChar <= 'z') || (chChar >= 'A' && chChar <= 'Z') || (chChar >= '0' && chChar <= '9') ||
@@ -748,7 +748,7 @@ CxCgiCookies::CxCgiCookies(
 //---------------------------------------------------------------------------
 /*virtual*/
 CxCgiCookies::~CxCgiCookies() {
-    for (TCookies::iterator it = Items.begin(); it != Items.end(); ++ it) {
+    xFOREACH(TCookies, it, Items) {
         xPTR_DELETE(*it);
     }
 }
@@ -760,7 +760,7 @@ CxCgiCookies::operator [] (
 {
     /*DEBUG*/
 
-    for (TCookies::const_iterator it = Items.begin(); it != Items.end(); ++ it) {
+    xFOREACH_CONST(TCookies, it, Items) {
         xCHECK_DO(false == CxString::bCompareNoCase(csCookieName, (*it)->sGetValue()), continue);
 
         return (*it)->sGetValue();
@@ -777,7 +777,7 @@ CxCgiCookies::sGetDump() const {
 
     sRes.append(xT("[CxCgiCookies dump]\n\n"));
 
-    for (TCookies::const_iterator it = Items.begin(); it != Items.end(); ++ it) {
+    xFOREACH_CONST(TCookies, it, Items) {
         std::tstring_t sItemN = CxString::sFormat(
                 xT("Name: %s\n")
                 xT("Value: %s\n")
@@ -822,7 +822,7 @@ CxCgiCookies::_bInit() {
     bRes = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-    for (std::vector<std::tstring_t>::const_iterator it = vsRawCookies.begin(); it != vsRawCookies.end(); ++ it) {
+    xFOREACH_CONST(std::vector<std::tstring_t>, it, vsRawCookies) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
         /*DEBUG*/xASSERT_RET(NULL != pckItem, false);
 
