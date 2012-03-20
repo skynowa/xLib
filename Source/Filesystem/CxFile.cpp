@@ -1356,8 +1356,7 @@ CxFile::bTextWrite(
     bool           bRes = false;
     std::tstring_t sRes;
 
-    std::map<std::tstring_t, std::tstring_t>::_const_iterator it;
-    for (it = cmsContent.begin(); it != cmsContent.end(); ++ it) {
+    xFOREACH_CONST(TContent, it, cmsContent) {
         sRes.append((*it).first);
         sRes.append(csSeparator);
         sRes.append((*it).second);
