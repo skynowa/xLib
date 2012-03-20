@@ -10,6 +10,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
+#include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
 
@@ -206,7 +207,7 @@ CxDir::sGetTemp() {
 
     bool bRes = CxEnvironment::bIsExists(csEnvDirTemp);
     if (true == bRes) {
-        sRes = CxEnvironment::sGetVar(csEnvDirTemp); 
+        sRes = CxEnvironment::sGetVar(csEnvDirTemp);
     } else {
         sRes = xDIR_TEMP;
     }
@@ -319,7 +320,7 @@ CxDir::bCopy(
         bRes = CxFile::bCopy(*it, sFilePathTo, cbFailIfExists);
         /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
-     
+
     //--------------------------------------------------
     //TODO: rollback
 
