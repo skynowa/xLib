@@ -305,10 +305,7 @@ CxDir::bCopy(
 
     //--------------------------------------------------
     //copy
-    for (std::vector<std::tstring_t>::reverse_iterator it = vsFilePathes.rbegin();
-        it != vsFilePathes.rend() && false == vsFilePathes.empty();
-        ++ it)
-    {
+    xFOREACH_R_CONST(std::vector<std::tstring_t>, it, vsFilePathes) {
         std::tstring_t sFilePathTo = *it;
 
         size_t uiPosBegin = sFilePathTo.find(csDirPathFrom);
@@ -322,7 +319,7 @@ CxDir::bCopy(
         bRes = CxFile::bCopy(*it, sFilePathTo, cbFailIfExists);
         /*DEBUG*/xASSERT_RET(true == bRes, false);
     }
-
+     
     //--------------------------------------------------
     //TODO: rollback
 
