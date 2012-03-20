@@ -259,7 +259,7 @@ CxDir::bCreateForce(
 
     //-------------------------------------
     //create dirs by steps
-    for (std::vector<std::tstring_t>::const_iterator it = vsPathParts.begin(); it != vsPathParts.end(); ++ it){
+    xFOREACH_CONST(std::vector<std::tstring_t>, it, vsPathParts) {
         sBuildPath.append(*it).append(CxConst::xSLASH);
 
         bRes = bCreate(sBuildPath);

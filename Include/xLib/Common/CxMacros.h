@@ -419,9 +419,17 @@
 #endif
     ///< temprory directory
 
+// xFOREACH, xFOREACH_CONST
+#define xFOREACH(it_t, it, cont)  \
+                                    for (it_t::iterator       it = cont.begin(); it != cont.end(); ++ it)
+
+#define xFOREACH_CONST(it_t, it, cont) \
+                                    for (it_t::const_iterator it = cont.begin(); it != cont.end(); ++ it)
+
 
 // other
-#define xUNKNOWN_STRING             xT("[unknown]")      ///< unknown string value
+#define xUNKNOWN_STRING             xT("[unknown]")      
+    ///< unknown string value
 
 //---------------------------------------------------------------------------
 #include <xLib/Common/CxNonCopyable.h>
@@ -552,20 +560,3 @@ class CxMacros :
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxMacrosH
-
-
-#if xTODO
-    //http://www.gizmosdk.com/docs/html/gizmobase/html/gz_basic_types_8h-source.html
-#endif
-
-#if xTODO
-    // this:
-    #define foreach( x, y, z ) for( vector<##x##>::iterator y = z.begin(); y != z.end(); ++y )
-
-    // turns:
-    foreach( string, iter, infoVector )
-    // ( foreach string iter in infoVector )
-
-    // into:
-    for(vector<string>::iterator iter = infoVector.begin(); iter != infoVector.end(); ++iter)
-#endif
