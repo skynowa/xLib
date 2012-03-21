@@ -78,11 +78,11 @@
 #include <lmcons.h>
 #include <sys/locking.h>
 #include <io.h>
+#include <winternl.h>
 
 #if   xCOMPILER_MINGW32
-	//
+	#include <intrin.h>
 #elif xCOMPILER_MS
-	#include <winternl.h>
 	#include <intrin.h>
 #elif xCOMPILER_CODEGEAR
 	#include <dir.h>

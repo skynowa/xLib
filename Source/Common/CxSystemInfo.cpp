@@ -419,9 +419,7 @@ CxSystemInfo::cvGetCpuVendor() {
     ECpuVendor cvRes = cvUnknown;
 
 #if   xOS_ENV_WIN
-    #if   xCOMPILER_MINGW32
-        cvRes = cvUnknown;
-    #elif xCOMPILER_MS
+    #if   xCOMPILER_MINGW32 || xCOMPILER_MS
         uint_t uiHighestFeature = 0U;
         int    aiCpuInfo[4]     = {0};
         char   szMan[13]        = {0};
@@ -482,9 +480,7 @@ CxSystemInfo::sGetCpuModel() {
     std::tstring_t sRes;
 
 #if   xOS_ENV_WIN
-    #if   xCOMPILER_MINGW32
-        sRes = xUNKNOWN_STRING;
-    #elif xCOMPILER_MS
+    #if   xCOMPILER_MINGW32 || xCOMPILER_MS
         char szMan[13] = {0};
 
         // get szMan

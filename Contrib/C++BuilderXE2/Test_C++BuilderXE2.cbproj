@@ -34,8 +34,8 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<ILINK_LibraryPath>..\..\Source\Crypt\Pkcs11\;..\..\Source\Crypt\OpenSSL\;..\..\Include\xLib\Crypt\Pkcs11\;..\..\Include\xLib\Crypt\OpenSSL\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-			<IncludePath>..\..\Source\Crypt\Pkcs11\;..\..\Source\Crypt\OpenSSL\;..\..\Include\xLib\Crypt\Pkcs11\;..\..\Include\xLib\Crypt\OpenSSL\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;$(IncludePath)</IncludePath>
+			<ILINK_LibraryPath>..\..\Source\Units\Win\;..\..\Source\Sync\Win\;..\..\Source\Common\Win\;..\..\Source\Filesystem\Win\;..\..\Include\xLib\Units\Win\;..\..\Include\xLib\Sync\Win\;..\..\Include\xLib\Filesystem\Win\;..\..\Include\xLib\Common\Unix\;..\..\Include\xLib\Common\Win\;..\..\Source\Crypt\Pkcs11\;..\..\Source\Crypt\OpenSSL\;..\..\Include\xLib\Crypt\Pkcs11\;..\..\Include\xLib\Crypt\OpenSSL\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<IncludePath>..\..\Source\Units\Win\;..\..\Source\Sync\Win\;..\..\Source\Common\Win\;..\..\Source\Filesystem\Win\;..\..\Include\xLib\Units\Win\;..\..\Include\xLib\Sync\Win\;..\..\Include\xLib\Filesystem\Win\;..\..\Include\xLib\Common\Unix\;..\..\Include\xLib\Common\Win\;..\..\Source\Crypt\Pkcs11\;..\..\Source\Crypt\OpenSSL\;..\..\Include\xLib\Crypt\Pkcs11\;..\..\Include\xLib\Crypt\OpenSSL\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;$(IncludePath)</IncludePath>
 			<AllPackageLibs>rtl.lib</AllPackageLibs>
 			<Multithreaded>true</Multithreaded>
 			<_TCHARMapping>char</_TCHARMapping>
@@ -143,6 +143,15 @@
 				<BuildOrder>88</BuildOrder>
 			</None>
 			<None Include="..\..\Include\xLib\Common\CxType.inl"/>
+			<None Include="..\..\Include\xLib\Common\Unix\xCommon_Unix.h">
+				<BuildOrder>347</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\Win\CxCom.h">
+				<BuildOrder>345</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Common\Win\xCommon_Win.h">
+				<BuildOrder>346</BuildOrder>
+			</None>
 			<None Include="..\..\Include\xLib\Common\xCheks.h">
 				<BuildOrder>90</BuildOrder>
 			</None>
@@ -300,6 +309,9 @@
 			<None Include="..\..\Include\xLib\Filesystem\CxVolume.h">
 				<BuildOrder>24</BuildOrder>
 			</None>
+			<None Include="..\..\Include\xLib\Filesystem\Win\CxIni.h">
+				<BuildOrder>348</BuildOrder>
+			</None>
 			<None Include="..\..\Include\xLib\Log\CxConsoleLog.h">
 				<BuildOrder>25</BuildOrder>
 			</None>
@@ -418,8 +430,17 @@
 			<None Include="..\..\Include\xLib\Sync\CxWaitableTimer.h">
 				<BuildOrder>64</BuildOrder>
 			</None>
+			<None Include="..\..\Include\xLib\Sync\Win\CxCompletionPort.h">
+				<BuildOrder>349</BuildOrder>
+			</None>
 			<None Include="..\..\Include\xLib\Units\sGetEan13BarCode.h">
 				<BuildOrder>65</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Units\Win\bDownloadURL.h">
+				<BuildOrder>350</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Units\Win\bGetUsbInfo.h">
+				<BuildOrder>351</BuildOrder>
 			</None>
 			<CppCompile Include="..\..\Source\Common\CxChar.cpp">
 				<BuildOrder>98</BuildOrder>
@@ -453,6 +474,9 @@
 			</CppCompile>
 			<CppCompile Include="..\..\Source\Common\CxType.cpp">
 				<BuildOrder>108</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Common\Win\CxCom.cpp">
+				<BuildOrder>353</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="..\..\Source\Crypt\CxCrc32.cpp">
 				<BuildOrder>109</BuildOrder>
@@ -580,6 +604,9 @@
 			<CppCompile Include="..\..\Source\Filesystem\CxVolume.cpp">
 				<BuildOrder>131</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp">
+				<BuildOrder>352</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="..\..\Source\Log\CxConsoleLog.cpp">
 				<BuildOrder>132</BuildOrder>
 			</CppCompile>
@@ -692,8 +719,17 @@
 			<CppCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp">
 				<BuildOrder>168</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="..\..\Source\Sync\Win\CxCompletionPort.cpp">
+				<BuildOrder>354</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp">
 				<BuildOrder>169</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp">
+				<BuildOrder>355</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Units\Win\bGetUsbInfo.cpp">
+				<BuildOrder>356</BuildOrder>
 			</CppCompile>
 			<None Include="..\..\Tests\Include\Test\Common\CxTest_CxArray.h">
 				<BuildOrder>224</BuildOrder>
