@@ -43,7 +43,7 @@ CxCurrentProcess::ulGetParentId() {
     CxProcess::TxId ulRes;
 
 #if xOS_ENV_WIN
-	#if xCOMPILER_MINGW32
+	#if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
     	//typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
 
