@@ -8,17 +8,22 @@
 #define xLib_CxProcessInfoH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Sync/CxProcess.h>
 //---------------------------------------------------------------------------
 class CxProcessInfo :
     public CxNonCopyable
 {
 	public:
-				 CxProcessInfo();
-            ///< constructor
-		virtual ~CxProcessInfo();
-		    ///< destructor
+        static ulong_t ulGetCpuUsage(const CxProcess::TxId cidId);
+            ///< get CPU usage (percentage)
+        static ulong_t ulGetRamUsage(const CxProcess::TxId cidId);
+            ///< get RAM usage (percentage)
 
     private:
+    			       CxProcessInfo();
+            ///< constructor
+		virtual       ~CxProcessInfo();
+		    ///< destructor
 
 };
 //---------------------------------------------------------------------------
