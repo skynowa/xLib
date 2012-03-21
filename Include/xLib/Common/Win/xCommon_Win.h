@@ -76,18 +76,16 @@
 #include <objbase.h>
 #include <process.h>
 #include <lmcons.h>
-#include <intrin.h>
 #include <sys/locking.h>
 #include <io.h>
 
-#if xCOMPILER_MINGW32
-
-#else
-    #include <winternl.h>   // NtQueryInformationFile for mingw
-#endif
-
-#if xCOMPILER_CODEGEAR
-    #include <dir.h>
+#if   xCOMPILER_MINGW32
+	//
+#elif xCOMPILER_MS
+	#include <winternl.h>
+	#include <intrin.h>
+#elif xCOMPILER_CODEGEAR
+	#include <dir.h>
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_Win_xCommon_WinH

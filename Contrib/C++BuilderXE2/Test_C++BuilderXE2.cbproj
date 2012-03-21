@@ -34,8 +34,8 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<ILINK_LibraryPath>..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-			<IncludePath>..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;$(IncludePath)</IncludePath>
+			<ILINK_LibraryPath>..\..\Source\Crypt\Pkcs11\;..\..\Source\Crypt\OpenSSL\;..\..\Include\xLib\Crypt\Pkcs11\;..\..\Include\xLib\Crypt\OpenSSL\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<IncludePath>..\..\Source\Crypt\Pkcs11\;..\..\Source\Crypt\OpenSSL\;..\..\Include\xLib\Crypt\Pkcs11\;..\..\Include\xLib\Crypt\OpenSSL\;..\..\Tests\Source\;..\..\Tests\Source\Units\;..\..\Tests\Source\Sync\;..\..\Tests\Source\Patterns\;..\..\Tests\Source\Net\;..\..\Tests\Source\Log\;..\..\Tests\Source\Filesystem\;..\..\Tests\Source\Debug\;..\..\Tests\Source\Db\;..\..\Tests\Source\Crypt\;..\..\Tests\Source\Common\;..\..\Tests\Include\Test\Common\;..\..\Tests\Include\Test\Units\;..\..\Tests\Include\Test\Sync\;..\..\Tests\Include\Test\Patterns\;..\..\Tests\Include\Test\Net\;..\..\Tests\Include\Test\Log\;..\..\Tests\Include\Test\Filesystem\;..\..\Tests\Include\Test\Debug\;..\..\Tests\Include\Test\Db\;..\..\Tests\Include\Test\Crypt\;..\..\Source\Units\;..\..\Source\Sync\;..\..\Source\Patterns\;..\..\Source\Net\;..\..\Source\Log\;..\..\Source\Filesystem\;..\..\Source\Debug\;..\..\Source\Db\;..\..\Source\Crypt\;..\..\Source\Common\;..\..\Include\xLib\Common\;..\..\Include\xLib\Units\;..\..\Include\xLib\Sync\;..\..\Include\xLib\Patterns\;..\..\Include\xLib\Net\;..\..\Include\xLib\Log\;..\..\Include\xLib\Filesystem\;..\..\Include\xLib\Debug\;..\..\Include\xLib\Db\;..\..\Include\xLib\Crypt\;$(IncludePath)</IncludePath>
 			<AllPackageLibs>rtl.lib</AllPackageLibs>
 			<Multithreaded>true</Multithreaded>
 			<_TCHARMapping>char</_TCHARMapping>
@@ -172,6 +172,66 @@
 			</None>
 			<None Include="..\..\Include\xLib\Crypt\CxRandom.h">
 				<BuildOrder>1</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\OpenSSL\CxBase64.h">
+				<BuildOrder>307</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h">
+				<BuildOrder>308</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\All.h">
+				<BuildOrder>309</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\Common.h">
+				<BuildOrder>310</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxDecrypt.h">
+				<BuildOrder>311</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxDigest.h">
+				<BuildOrder>312</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxEncrypt.h">
+				<BuildOrder>313</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxFunction.h">
+				<BuildOrder>314</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxInfo.h">
+				<BuildOrder>315</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxKey.h">
+				<BuildOrder>316</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxLogin.h">
+				<BuildOrder>317</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxMechanism.h">
+				<BuildOrder>318</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxObject.h">
+				<BuildOrder>319</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxPin.h">
+				<BuildOrder>320</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxPkcs11.h">
+				<BuildOrder>321</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxSession.h">
+				<BuildOrder>322</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxSign.h">
+				<BuildOrder>323</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxSlot.h">
+				<BuildOrder>324</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxUtils.h">
+				<BuildOrder>325</BuildOrder>
+			</None>
+			<None Include="..\..\Include\xLib\Crypt\Pkcs11\CxVerify.h">
+				<BuildOrder>326</BuildOrder>
 			</None>
 			<None Include="..\..\Include\xLib\Db\CxConnectionString.h">
 				<BuildOrder>2</BuildOrder>
@@ -400,12 +460,69 @@
 			<CppCompile Include="..\..\Source\Crypt\CxRandom.cpp">
 				<BuildOrder>110</BuildOrder>
 			</CppCompile>
+			<None Include="..\..\Source\Crypt\OpenSSL\CxBase64.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>327</BuildOrder>
+			</None>
+			<None Include="..\..\Source\Crypt\OpenSSL\CxBlowfish.cpp">
+				<Exclude>True</Exclude>
+				<BuildOrder>328</BuildOrder>
+			</None>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxDecrypt.cpp">
+				<BuildOrder>329</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxDigest.cpp">
+				<BuildOrder>330</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxEncrypt.cpp">
+				<BuildOrder>331</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxFunction.cpp">
+				<BuildOrder>332</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxInfo.cpp">
+				<BuildOrder>333</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxKey.cpp">
+				<BuildOrder>334</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxLogin.cpp">
+				<BuildOrder>335</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxMechanism.cpp">
+				<BuildOrder>336</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxObject.cpp">
+				<BuildOrder>337</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxPin.cpp">
+				<BuildOrder>338</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxPkcs11.cpp">
+				<BuildOrder>339</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxSession.cpp">
+				<BuildOrder>340</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxSign.cpp">
+				<BuildOrder>341</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxSlot.cpp">
+				<BuildOrder>342</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxUtils.cpp">
+				<BuildOrder>343</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\..\Source\Crypt\Pkcs11\CxVerify.cpp">
+				<BuildOrder>344</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="..\..\Source\Db\CxConnectionString.cpp">
 				<BuildOrder>111</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Source\Db\CxMySql.cpp">
+			<None Include="..\..\Source\Db\CxMySql.cpp">
+				<Exclude>True</Exclude>
 				<BuildOrder>112</BuildOrder>
-			</CppCompile>
+			</None>
 			<CppCompile Include="..\..\Source\Debug\CxAutoProfiler.cpp">
 				<BuildOrder>113</BuildOrder>
 			</CppCompile>
@@ -481,9 +598,10 @@
 			<CppCompile Include="..\..\Source\Net\CxAsyncSocket.cpp">
 				<BuildOrder>137</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Source\Net\CxCgi.cpp">
+			<None Include="..\..\Source\Net\CxCgi.cpp">
+				<Exclude>True</Exclude>
 				<BuildOrder>138</BuildOrder>
-			</CppCompile>
+			</None>
 			<CppCompile Include="..\..\Source\Net\CxCookiePv0.cpp">
 				<BuildOrder>139</BuildOrder>
 			</CppCompile>
@@ -826,9 +944,10 @@
 			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp">
 				<BuildOrder>252</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp">
+			<None Include="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp">
+				<Exclude>True</Exclude>
 				<BuildOrder>253</BuildOrder>
-			</CppCompile>
+			</None>
 			<CppCompile Include="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp">
 				<BuildOrder>254</BuildOrder>
 			</CppCompile>
@@ -838,9 +957,10 @@
 			<CppCompile Include="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp">
 				<BuildOrder>256</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
+			<None Include="..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
+				<Exclude>True</Exclude>
 				<BuildOrder>257</BuildOrder>
-			</CppCompile>
+			</None>
 			<CppCompile Include="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp">
 				<BuildOrder>258</BuildOrder>
 			</CppCompile>
@@ -1043,6 +1163,7 @@
 					<Platform value="OSX32">False</Platform>
 					<Platform value="Win32">True</Platform>
 				</Platforms>
+				<ModelSupport>False</ModelSupport>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
 		</ProjectExtensions>
