@@ -63,7 +63,7 @@ class CxFileAttribute :
         static bool       bModify        (const std::tstring_t &csFilePath, const EAttribute cfaRemoveValue, const EAttribute cfaAddValue);
             ///< modify
         static bool       bClear         (const std::tstring_t &csFilePath);
-            ///< clear
+            ///< clear (set normal attributes)
 
     private:
                           CxFileAttribute();

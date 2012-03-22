@@ -31,12 +31,12 @@ CxDir::bIsExists(
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
 
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
-    /*DEBUG*/// n/a
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, false);
 
     bool bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+    xCHECK_RET(false == bRes, false);
 
-    return bRes;
+    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
