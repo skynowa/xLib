@@ -107,7 +107,11 @@ bool
 CxSocket::bIsValid() const {
     /*DEBUG*/// n/a
 
+#if xOS_ENV_WIN
     return (_m_puiSocket >= 0);
+#elif xOS_ENV_UNIX
+    return (_m_puiSocket >= 0);
+#endif
 }
 //---------------------------------------------------------------------------
 bool

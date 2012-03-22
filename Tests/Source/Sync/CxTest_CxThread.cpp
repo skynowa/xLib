@@ -260,7 +260,7 @@ CxTest_CxThread::bUnit(
             xTEST_EQ(true, m_bRes);
 
             m_ulRes = pthT->ulGetCpuIdeal();
-            xTEST_LESS_EQ(0UL, m_ulRes);
+            xTEST_EQ(true, CxSystemInfo::ulGetNumOfCpus() > m_ulRes);
         #elif xOS_ENV_UNIX
 
         #endif
@@ -307,7 +307,7 @@ CxTest_CxThread::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRes = pthT->ulGetExitStatus();
-        xTEST_LESS_EQ(0UL, m_ulRes);
+        // n/a
     }
 
     //--------------------------------------------------

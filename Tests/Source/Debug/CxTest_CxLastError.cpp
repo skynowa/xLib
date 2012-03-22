@@ -35,7 +35,6 @@ CxTest_CxLastError::bUnit(
         for (size_t i = 0; i < cuiMaxErrors; ++ i) {
             ulong_t ulCode = CxLastError::ulGet();
             xTEST_EQ(0UL, CxLastError::ulGet());
-            xTEST_LESS_EQ(0UL, ulCode);
         }
     }
 
