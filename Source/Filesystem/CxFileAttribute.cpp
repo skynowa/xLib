@@ -75,10 +75,10 @@ CxFileAttribute::bSet(
     /*DEBUG*/// cfaValue
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ulong_t>(cfaValue));
+    BOOL blRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ulong_t>( cfaValue ));
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>(cfaValue));
+    int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cfaValue ));
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
@@ -89,20 +89,20 @@ CxFileAttribute::bSet(
 bool
 CxFileAttribute::bAdd(
     const std::tstring_t &csFilePath,
-    const EAttribute    cfaValue
+    const EAttribute      cfaValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/// cfaValue
 
-    return bModify(csFilePath, static_cast<EAttribute>(0), cfaValue);
+    return bModify(csFilePath, static_cast<EAttribute>( 0 ), cfaValue);
 }
 //---------------------------------------------------------------------------
 /*static*/
 bool
 CxFileAttribute::bRemove(
     const std::tstring_t &csFilePath,
-    const EAttribute    cfaValue
+    const EAttribute      cfaValue
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
@@ -123,21 +123,20 @@ CxFileAttribute::bModify(
     /*DEBUG*/// cfaRemoveValue
     /*DEBUG*/// cfaAddValue
 
-    //get the current attributes
+    // get the current attributes
     EAttribute cfaValue = atGet(csFilePath);
 
-    //change bits:
-    cfaValue = static_cast<EAttribute>( static_cast<ulong_t>(cfaValue) & ~cfaRemoveValue );
-    cfaValue = static_cast<EAttribute>( static_cast<ulong_t>(cfaValue) |  cfaAddValue    );
+    // change bits
+    cfaValue = static_cast<EAttribute>( static_cast<ulong_t>( cfaValue ) & ~cfaRemoveValue );
+    cfaValue = static_cast<EAttribute>( static_cast<ulong_t>( cfaValue ) |  cfaAddValue    );
 
-    //change the attributes
+    // change the attributes
     bool bRes = bSet(csFilePath, cfaValue);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
 }
 //---------------------------------------------------------------------------
-//DONE: bClear ()
 /*static*/
 bool
 CxFileAttribute::bClear(
