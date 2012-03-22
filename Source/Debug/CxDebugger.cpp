@@ -269,7 +269,7 @@ CxDebugger::_bMsgboxPlain(
     CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.sGetReport(), CxPath::sGetExe(), ulType);
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
             }
             break;
 
@@ -284,7 +284,7 @@ CxDebugger::_bMsgboxPlain(
                     (void)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
                 }
             }
             break;
@@ -307,7 +307,7 @@ CxDebugger::_bMsgboxFormated(
     CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.sGetReport(), CxPath::sGetExe());
     switch (mrRes) {
         case CxMsgBoxRtf::mrAbort: {
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
             }
             break;
 
@@ -322,7 +322,7 @@ CxDebugger::_bMsgboxFormated(
                     (void)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"), MB_OK | MB_ICONWARNING);
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
                 }
             }
             break;
@@ -410,7 +410,7 @@ CxDebugger::_bStdoutPlain(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
             }
             break;
 
@@ -434,7 +434,7 @@ CxDebugger::_bStdoutPlain(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
                 }
             }
             break;
@@ -470,7 +470,7 @@ CxDebugger::_bStdoutHtml(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
             }
             break;
 
@@ -494,7 +494,7 @@ CxDebugger::_bStdoutHtml(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                    CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
                 }
             }
             break;
