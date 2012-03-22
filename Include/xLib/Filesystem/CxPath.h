@@ -102,8 +102,8 @@ class CxPath :
             ///< get max name length in symbols
 
     #if xOS_ENV_UNIX
-        static std::tstring_t sGetProcLine    (const std::tstring_t  &csProcPath, const std::tstring_t &csTargetStr);
-            ///< get UNIX proc file content
+        static std::tstring_t sGetProcValue   (const std::tstring_t &csProcPath, const std::tstring_t &csData);
+            ///< get from UNIX proc file content value by data
     #endif
 
     private:

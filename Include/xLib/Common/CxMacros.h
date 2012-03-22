@@ -124,6 +124,8 @@
     ///< ignore test code
 #define xREVIEW                     1
     ///< code for review
+#define xCOMMENT                    0
+    ///< comment for code
 #define xDEBUG_VAR_NA(var)          ;
     ///< at this point debug code for variable is not applicable
 #define xDEBUG_VARS_NA              ;
