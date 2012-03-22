@@ -143,7 +143,7 @@ CxDebugger::bReportMake(
         case CxErrorReport::rtLoggingPlain:   { _bLoggingPlain  (crpReport); } break;
         case CxErrorReport::rtLoggingHtml:    { _bLoggingHtml   (crpReport); } break;
 
-        default:                         { _bStdoutPlain   (crpReport); } break;
+        default:                              { _bStdoutPlain   (crpReport); } break;
     }
 
     //-------------------------------------
@@ -171,7 +171,7 @@ CxDebugger::bTrace(
 #if xOS_ENV_WIN
     (void)::OutputDebugString(sRes.c_str());
 #elif xOS_ENV_UNIX
-    // n/a
+    xNA;
 #endif
 
     std::tcout << sRes << std::endl;
@@ -275,7 +275,7 @@ CxDebugger::_bMsgboxPlain(
 
         default:
         case CxMsgBoxT::mrIgnore: {
-                // n/a
+                xNA;
             }
             break;
 
@@ -313,7 +313,7 @@ CxDebugger::_bMsgboxFormated(
 
         default:
         case CxMsgBoxRtf::mrIgnore: {
-                // n/a
+                xNA;
             }
             break;
 
