@@ -29,6 +29,25 @@ xNAMESPACE_BEGIN(NxLib)
 //--------------------------------------------------------------------------
 /*static*/
 bool
+CxVolume::bIsValid(
+    const std::tstring_t &csVolumePath
+)
+{
+    xDEBUG_VAR_NA(csVolumePath);
+
+#if   xOS_ENV_WIN
+    bRes = CxDir::bIsRoot(csVolumePath);
+    xCHECK_RET(false == bRes, false);
+#elif xOS_ENV_UNIX
+    xCHECK_RET(true                  == csVolumePath.empty(), false);
+    xCHECK_RET(CxConst::xSLASH.at(0) != csVolumePath.at(0),   false);
+#endif
+
+    return true;
+}
+//--------------------------------------------------------------------------
+/*static*/
+bool
 CxVolume::bIsReady(
     const std::tstring_t &csVolumePath
 )
@@ -201,6 +220,59 @@ CxVolume::bUnMount(
 }
 //--------------------------------------------------------------------------
 /*static*/
+bool
+CxVolume::bGetPaths(
+    std::vector<std::tstring_t> *pvsVolumePaths
+)
+{
+    /*DEBUG*/xASSERT_RET(NULL != pvsVolumePaths, false);
+
+    std::vector<std::tstring_t> vsRes;
+
+#if   xOS_ENV_WIN
+    std::tstring_t sRes;
+    DWORD          ulRes = 0UL;
+
+    ulRes = ::GetLogicalDriveStrings(0UL, NULL);
+    /*DEBUG*/xASSERT_RET(0UL != ulRes, false);
+
+    sRes.resize(ulRes);
+
+    ulRes = ::GetLogicalDriveStrings(sRes.size(), &sRes.at(0));
+    /*DEBUG*/xASSERT_RET(0UL != ulRes, false);
+
+    for (const tchar_t *s = &sRes.at(0); NULL != *s; s += _tcslen(s) + sizeof(xT('\0'))) {
+        vsRes.push_back(s);
+    }
+#elif xOS_ENV_UNIX
+    struct _SMounts {
+        std::tstring_t m_sDevice;
+        std::tstring_t m_sDestination;
+        std::tstring_t m_sFsType;
+        std::tstring_t m_sOptions;
+        int            m_iDump;
+        int            m_iPass;
+    };
+
+    std::tifstream_t fsProcMounts(xT("/proc/mounts"));
+
+    for ( ; !fsProcMounts.eof(); ) {
+        _SMounts mntMounts;
+
+        fsProcMounts >> mntMounts.m_sDevice  >> mntMounts.m_sDestination >> mntMounts.m_sFsType >>
+                        mntMounts.m_sOptions >> mntMounts.m_iDump        >> mntMounts.m_iPass;
+        xCHECK_DO(true == mntMounts.m_sDevice.empty(), continue);
+
+        vsRes.push_back(mntMounts.m_sDestination);
+    }
+#endif
+
+    std::swap(*pvsVolumePaths, vsRes);
+
+    return true;
+}
+//--------------------------------------------------------------------------
+/*static*/
 #if xOS_ENV_WIN
 
 CxVolume::EType
@@ -216,57 +288,6 @@ CxVolume::dtGetType(
 
 #endif
 //--------------------------------------------------------------------------
-/*static*/
-#if   xOS_ENV_WIN
-
-bool
-CxVolume::bGetVolumes(
-    std::vector<std::tstring_t> *pvsVolumes
-)
-{
-    /*DEBUG*/xASSERT_RET(NULL != pvsVolumes, false);
-
-    std::vector<std::tstring_t> vsRes;
-    std::tstring_t              sRes;
-    DWORD                       ulRes = 0UL;
-
-    ulRes = ::GetLogicalDriveStrings(0UL, NULL);
-    /*DEBUG*/xASSERT_RET(0UL != ulRes, false);
-
-    sRes.resize(ulRes);
-
-    ulRes = ::GetLogicalDriveStrings(sRes.size(), &sRes.at(0));
-    /*DEBUG*/xASSERT_RET(0UL != ulRes, false);
-
-    for (const tchar_t *s = &sRes.at(0); NULL != *s; s += _tcslen(s) + sizeof(xT('\0'))) {
-        vsRes.push_back(s);
-    }
-
-    std::swap(*pvsVolumes, vsRes);
-
-    return true;
-}
-
-#endif
-//--------------------------------------------------------------------------
-#if xOS_ENV_WIN
-
-/*static*/
-bool
-CxVolume::bIsVolumeLetterValid(
-    const tchar_t cchVolumeLetter
-)
-{
-    /*DEBUG*/// cchVolumeLetter - n/a
-
-    bool bRes = (xT('a') <= cchVolumeLetter && cchVolumeLetter <= xT('z')) ||
-                (xT('A') <= cchVolumeLetter && cchVolumeLetter <= xT('Z'));
-
-    return bRes;
-}
-
-#endif
-//---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
 /*static*/

@@ -7,6 +7,7 @@
 #include <xLib/Common/CxProcessInfo.h>
 
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 /****************************************************************************
