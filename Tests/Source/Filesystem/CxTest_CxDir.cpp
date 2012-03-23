@@ -30,9 +30,9 @@ CxTest_CxDir::bUnit(
     const std::tstring_t csRootTestDirPath = sGetWorkDirPath() + xT("\\Test_Dir");
     const std::tstring_t csDirPath         = sGetWorkDirPath() + xT("\\Test_Dir\\1\\2\\3");
     const std::tstring_t csDirPath2        = sGetWorkDirPath() + xT("\\Test_Dir\\1\\2\\3\\4");
-    const std::tstring_t csNewFilePath        = sGetWorkDirPath() + xT("\\New.Test.txt");
-    const std::tstring_t csBakFilePath        = sGetWorkDirPath() + xT("\\Test_Static.txt.bak");
-    const std::tstring_t csFilePathSt        = sGetWorkDirPath() + xT("\\Test_Static.txt");
+    const std::tstring_t csNewFilePath     = sGetWorkDirPath() + xT("\\New.Test.txt");
+    const std::tstring_t csBakFilePath     = sGetWorkDirPath() + xT("\\Test_Static.txt.bak");
+    const std::tstring_t csFilePathSt      = sGetWorkDirPath() + xT("\\Test_Static.txt");
 #elif xOS_ENV_UNIX
     const std::tstring_t csFilePath        = sGetWorkDirPath() + xT("/Test.txt");
     const std::tstring_t csRootTestDirPath = sGetWorkDirPath() + xT("/Test_Dir");

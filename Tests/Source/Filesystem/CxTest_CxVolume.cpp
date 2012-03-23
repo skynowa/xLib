@@ -23,6 +23,47 @@ CxTest_CxVolume::bUnit(
 )
 {
     //-------------------------------------
+    //bIsValid
+    xTEST_CASE(cullCaseLoops)
+    {
+        //true
+        {
+            std::vector<std::tstring_t> vsData;
+
+            m_bRes = CxVolume::bGetPaths(&vsData);
+
+            xFOREACH(std::vector<std::tstring_t>, it, vsData) {
+                m_bRes = CxVolume::bIsValid(*it);
+                xTEST_EQ(true, m_bRes);
+            }
+        }
+
+        //false
+        {
+            const std::tstring_t csData[] = {
+                #if   xOS_ENV_WIN
+                    xT("1"),
+                    xT("0"),
+                    xT("xxxxxx"),
+                    xT("-C:"),
+                    xT("*T")
+                #elif xOS_ENV_UNIX
+                    xT("1"),
+                    xT("0"),
+                    xT("xxxxxx"),
+                    xT("-/etc"),
+                    xT("*/home")
+                #endif
+            };
+
+            for (size_t i = 0; i < xARRAY_SIZE(csData); ++ i) {
+                m_bRes = CxVolume::bIsValid(csData[i]);
+                xTEST_EQ(false, m_bRes);
+            }
+        }
+    }
+
+    //-------------------------------------
     //bIsReady
     xTEST_CASE(cullCaseLoops)
     {
@@ -191,6 +232,20 @@ CxTest_CxVolume::bUnit(
     }
 
     //-------------------------------------
+    //bGetPaths
+    xTEST_CASE(cullCaseLoops)
+    {
+        std::vector<std::tstring_t> vsVolumePaths;
+
+        m_bRes = CxVolume::bGetPaths(&vsVolumePaths);
+        xTEST_EQ(true, m_bRes);
+
+        #if xTEST_IGNORE || 1
+            std::tcout << vsVolumePaths << std::endl;
+        #endif
+    }
+
+    //-------------------------------------
     //dtGetType
     xTEST_CASE(cullCaseLoops)
     {
@@ -199,22 +254,6 @@ CxTest_CxVolume::bUnit(
 
             CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
             xTEST_EQ(CxVolume::dtFixed, dtRes);
-        #endif
-    }
-
-    //-------------------------------------
-    //bGetVolumes
-    xTEST_CASE(cullCaseLoops)
-    {
-        #if xOS_ENV_WIN
-            std::vector<std::tstring_t> vsDrives;
-
-            m_bRes = CxVolume::bGetVolumes(&vsDrives);
-            xTEST_EQ(true, m_bRes);
-
-            #if xTEST_IGNORE
-                std::tcout << vsDrives << std::endl;
-            #endif
         #endif
     }
 
