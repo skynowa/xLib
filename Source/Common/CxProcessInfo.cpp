@@ -96,6 +96,65 @@ CxProcessInfo::ulGetIOBytes(
     return ulRes;
 }
 //---------------------------------------------------------------------------
+/*static*/
+std::tstring_t
+CxProcessInfo::sGetExeName(
+    const CxProcess::TxId cidId
+)
+{
+    std::tstring_t sRes;
+
+#if   xOS_ENV_WIN
+    // TODO: CxProcessInfo::sGetExeName
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), cidId);
+
+        bool bRes = CxFile::bIsExists(csProcFile);
+        xCHECK_RET(false == bRes, std::tstring_t());
+
+        int iReaded = - 1;
+        sRes.resize(xPATH_MAX);
+
+        for ( ; ; ) {
+            iReaded = ::readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring_t::value_type));
+            /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring_t());
+
+            xCHECK_DO(sRes.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
+
+            sRes.resize(sRes.size() * 2);
+        }
+
+        sRes.resize(iReaded);
+    #elif xOS_FREEBSD
+        // TODO: CxProcessInfo::sGetExeName
+    #endif
+#endif
+
+    return sRes;
+}
+//----------------------------------------------------------------------------------------------------
+/*static*/
+ulong_t
+CxProcessInfo::ulGetParentId(
+    const CxProcess::TxId cidId
+)
+{
+    ulong_t ulRes = 0UL;
+
+#if   xOS_ENV_WIN
+    // TODO: CxProcessInfo::ulGetParentProcessId
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        // TODO: CxProcessInfo::ulGetParentProcessId
+    #elif xOS_FREEBSD
+        // TODO: CxProcessInfo::ulGetParentProcessId
+    #endif
+#endif
+
+    return ulRes;
+}
+//----------------------------------------------------------------------------------------------------
 
 
 /****************************************************************************
