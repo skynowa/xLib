@@ -14,17 +14,21 @@ class CxProcessInfo :
     public CxNonCopyable
 {
 	public:
-        static ulong_t ulGetCpuUsage(const CxProcess::TxId cidId);
+        static ulong_t        ulGetCpuUsage(const CxProcess::TxId cidId);
             ///< get CPU usage (percentage)
-        static ulong_t ulGetRamUsage(const CxProcess::TxId cidId);
+        static ulong_t        ulGetRamUsage(const CxProcess::TxId cidId);
             ///< get RAM usage (percentage)
-        static ulong_t ulGetIOBytes (const CxProcess::TxId cidId);
-            ///<
+        static ulong_t        ulGetIOBytes (const CxProcess::TxId cidId);
+            ///< get total read and written bytes
+        static std::tstring_t sGetExeName  (const CxProcess::TxId cidId);
+            ///< get exe name
+        static ulong_t        ulGetParentId(const CxProcess::TxId cidId);
+            ///< get parent process id
 
     private:
-    			       CxProcessInfo();
+    			              CxProcessInfo();
             ///< constructor
-		virtual       ~CxProcessInfo();
+		virtual              ~CxProcessInfo();
 		    ///< destructor
 
 };
