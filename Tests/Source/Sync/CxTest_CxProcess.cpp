@@ -32,7 +32,7 @@ CxTest_CxProcess::bUnit(
             const std::tstring_t csFilePath = xT("explorer.exe");
             const std::tstring_t csCmdLine  = xT("");
         #elif xOS_ENV_UNIX
-            const std::tstring_t csFilePath = xT("nautilus");
+            const std::tstring_t csFilePath = xT("/usr/bin/nautilus");
             const std::tstring_t csCmdLine  = xT("");
         #endif
 
@@ -43,7 +43,11 @@ CxTest_CxProcess::bUnit(
         xTEST_EQ(true, m_bRes);
 
         m_ulRes = prProc.ulWait(xTIMEOUT_INFINITE);
-        xTRACEV(xT("CxProcess::ulWait: %lu"), m_ulRes);
+        #if xTEST_IGNORE
+            xTRACEV(xT("CxProcess::ulWait: %lu"), m_ulRes);
+
+            ::sleep(10);
+        #endif
     }
 
     //--------------------------------------------------

@@ -349,7 +349,7 @@ CxDebugger::_bMsgboxFormated(
         case cmAbort: {
                 std::tcerr << xT("Abort...\n\n");  std::tcerr.flush();
 
-                CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                CxCurrentProcess::bExit(0U);
             }
             break;
 
@@ -373,7 +373,7 @@ CxDebugger::_bMsgboxFormated(
                     std::tcerr << xT("\n\n");
                     std::tcerr.flush();
 
-                    CxProcess::bExit(CxCurrentProcess::ulGetId(), false);
+                    CxCurrentProcess::bExit(0U);
                 }
             }
             break;
