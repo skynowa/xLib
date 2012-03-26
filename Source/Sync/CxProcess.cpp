@@ -79,7 +79,7 @@ CxProcess::bCreate(
     _m_ulPid   = piInfo.dwProcessId;
 #elif xOS_ENV_UNIX
     pid_t liPid = ::fork();
-    /*DEBUG*/xASSERT_RET(- 1L == pdId, false);
+    /*DEBUG*/xASSERT_RET(- 1L != liPid, false);
 
     if (0L == liPid) {
         // TODO: csFilePath is executable
@@ -120,7 +120,7 @@ CxProcess::ulWait(
     while (liRes < 0 && errno == EINTR);
     /*DEBUG*/xASSERT_RET(liRes == _m_ulPid, static_cast<EWaitResult>( iStatus ));
 
-    wrStatus = WEXITSTATUS(iStatus);
+    wrStatus = static_cast<EWaitResult>( WEXITSTATUS(iStatus) );
 #endif
 
     return wrStatus;
