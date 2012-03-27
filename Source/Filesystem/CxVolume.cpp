@@ -101,7 +101,7 @@ CxVolume::bIsEmpty(
 //--------------------------------------------------------------------------
 /*static*/
 bool
-CxVolume::bGetFreeSpace(
+CxVolume::bGetSpace(
     const std::tstring_t &csDirPath,
     ulonglong_t          *pullAvailable,   ///< for unprivileged users
     ulonglong_t          *pullTotal,
@@ -268,6 +268,75 @@ CxVolume::bGetPaths(
 #endif
 
     std::swap(*pvsVolumePaths, vsRes);
+
+    return true;
+}
+//--------------------------------------------------------------------------
+/*static*/
+std::tstring_t
+CxVolume::sGetLabel(
+    const std::tstring_t &csVolumePath
+)
+{
+    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), std::tstring_t());
+
+    std::tstring_t sRes;
+
+    bool bRes = bIsReady(csVolumePath);
+    xCHECK_RET(false == bRes, std::tstring_t());
+
+#if   xOS_ENV_WIN
+    tchar_t szVolumeName[MAX_PATH + 1] = {0};
+
+    CxLastError::bReset();
+
+    BOOL blRes = ::GetVolumeInformation(
+                        CxPath::sSlashAppend(csVolumePath).c_str(),
+                        &szVolumeName[0],
+                        xARRAY_SIZE(szVolumeName),
+                        NULL,
+                        NULL,
+                        NULL,
+                        NULL,
+                        0
+    );
+    /*DEBUG*/xASSERT_RET(FALSE != blRes && 0UL == CxLastError::ulGet(), std::tstring_t());
+
+    sRes.assign(szVolumeName);
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        // TODO: CxVolume::sGetLabel
+    #elif xOS_FREEBSD
+        // TODO: CxVolume::sGetLabel
+    #endif
+#endif
+
+    return sRes;
+}
+//--------------------------------------------------------------------------
+/*static*/
+bool
+CxVolume::bSetLabel(
+    const std::tstring_t &csVolumePath,
+    const std::tstring_t &csVolumeName
+)
+{
+    /*DEBUG*/
+    /*DEBUG*/
+
+    bool bRes = bIsReady(csVolumePath);
+    xCHECK_RET(false == bRes, false);
+
+#if   xOS_ENV_WIN
+    BOOL blRes = ::SetVolumeLabel(csVolumePath.c_str(), csVolumeName.c_str());
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        // TODO: CxVolume::bSetLabel
+    #elif xOS_FREEBSD
+        // TODO: CxVolume::bSetLabel
+    #endif
+#endif
 
     return true;
 }

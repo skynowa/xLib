@@ -146,7 +146,7 @@ CxTest_CxVolume::bUnit(
     }
 
     //-------------------------------------
-    //bGetFreeSpace
+    //bGetSpace
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
@@ -162,7 +162,7 @@ CxTest_CxVolume::bUnit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
+            m_bRes = CxVolume::bGetSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
             xTEST_LESS(0ULL, ullAvailable);
             xTEST_LESS(0ULL, ullTotal);
@@ -174,7 +174,7 @@ CxTest_CxVolume::bUnit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, NULL, NULL, NULL);
+            m_bRes = CxVolume::bGetSpace(csVolumePathWithSlash, NULL, NULL, NULL);
             xTEST_EQ(true, m_bRes);
             xTEST_EQ(0ULL, ullAvailable);
             xTEST_EQ(0ULL, ullTotal);
@@ -186,7 +186,7 @@ CxTest_CxVolume::bUnit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
+            m_bRes = CxVolume::bGetSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
             xTEST_LESS(0ULL, ullAvailable);
             xTEST_LESS(0ULL, ullTotal);
@@ -202,7 +202,7 @@ CxTest_CxVolume::bUnit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            m_bRes = CxVolume::bGetFreeSpace(CxConst::xSTR_EMPTY, &ullAvailable, &ullTotal, &ullFree);
+            m_bRes = CxVolume::bGetSpace(CxConst::xSTR_EMPTY, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
             xTEST_LESS(0ULL, ullAvailable);
             xTEST_LESS(0ULL, ullTotal);
@@ -247,6 +247,42 @@ CxTest_CxVolume::bUnit(
         #if xTEST_IGNORE
             std::tcout << vsVolumePaths << std::endl;
         #endif
+    }
+
+
+    //--------------------------------------------------
+    //sGetLabel
+    xTEST_CASE(cullCaseLoops)
+    {
+        std::vector<std::tstring_t> vsVolumePaths;
+
+        m_bRes = CxVolume::bGetPaths(&vsVolumePaths);
+        xTEST_EQ(true, m_bRes);
+
+        xFOREACH(std::vector<std::tstring_t>, it, vsVolumePaths) {
+            m_sRes = CxVolume::sGetLabel(*it);
+            // n/a
+            #if xTEST_IGNORE
+                std::tcout << m_sRes << std::endl;
+            #endif
+        }
+    }
+
+    //--------------------------------------------------
+    //bSetLabel
+    xTEST_CASE(cullCaseLoops)
+    {
+        std::vector<std::tstring_t> vsVolumePaths;
+
+        m_bRes = CxVolume::bGetPaths(&vsVolumePaths);
+        xTEST_EQ(true, m_bRes);
+
+        xFOREACH(std::vector<std::tstring_t>, it, vsVolumePaths) {
+            m_sRes = CxVolume::sGetLabel(*it);
+
+            m_bRes = CxVolume::bSetLabel(*it, m_sRes);
+            xTEST_EQ(true, m_bRes);
+        }
     }
 
     //-------------------------------------
