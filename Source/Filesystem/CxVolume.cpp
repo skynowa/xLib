@@ -36,7 +36,7 @@ CxVolume::bIsValid(
     xDEBUG_VAR_NA(csVolumePath);
 
 #if   xOS_ENV_WIN
-    bRes = CxDir::bIsRoot(csVolumePath);
+    bool bRes = CxDir::bIsRoot(csVolumePath);
     xCHECK_RET(false == bRes, false);
 #elif xOS_ENV_UNIX
     xCHECK_RET(true                  == csVolumePath.empty(), false);

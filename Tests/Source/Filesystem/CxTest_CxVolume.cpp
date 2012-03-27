@@ -158,9 +158,9 @@ CxTest_CxVolume::bUnit(
         #endif
 
         {
-            ulonglong_t ullAvailable = 0;
-            ulonglong_t ullTotal     = 0;
-            ulonglong_t ullFree      = 0;
+            ulonglong_t ullAvailable = 0ULL;
+            ulonglong_t ullTotal     = 0ULL;
+            ulonglong_t ullFree      = 0ULL;
 
             m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
@@ -170,9 +170,9 @@ CxTest_CxVolume::bUnit(
         }
 
         {
-            ulonglong_t ullAvailable = 0;
-            ulonglong_t ullTotal     = 0;
-            ulonglong_t ullFree      = 0;
+            ulonglong_t ullAvailable = 0ULL;
+            ulonglong_t ullTotal     = 0ULL;
+            ulonglong_t ullFree      = 0ULL;
 
             m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, NULL, NULL, NULL);
             xTEST_EQ(true, m_bRes);
@@ -182,9 +182,9 @@ CxTest_CxVolume::bUnit(
         }
 
         {
-            ulonglong_t ullAvailable = 0;
-            ulonglong_t ullTotal     = 0;
-            ulonglong_t ullFree      = 0;
+            ulonglong_t ullAvailable = 0ULL;
+            ulonglong_t ullTotal     = 0ULL;
+            ulonglong_t ullFree      = 0ULL;
 
             m_bRes = CxVolume::bGetFreeSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
@@ -192,13 +192,15 @@ CxTest_CxVolume::bUnit(
             xTEST_LESS(0ULL, ullTotal);
             xTEST_LESS(0ULL, ullFree);
 
-            //xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
+            #if xTEST_IGNORE
+                xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
+            #endif
         }
 
         {
-            ulonglong_t ullAvailable = 0;
-            ulonglong_t ullTotal     = 0;
-            ulonglong_t ullFree      = 0;
+            ulonglong_t ullAvailable = 0ULL;
+            ulonglong_t ullTotal     = 0ULL;
+            ulonglong_t ullFree      = 0ULL;
 
             m_bRes = CxVolume::bGetFreeSpace(CxConst::xSTR_EMPTY, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
@@ -206,7 +208,9 @@ CxTest_CxVolume::bUnit(
             xTEST_LESS(0ULL, ullTotal);
             xTEST_LESS(0ULL, ullFree);
 
-            //xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
+            #if xTEST_IGNORE
+                xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
+            #endif
         }
     }
 
@@ -214,7 +218,7 @@ CxTest_CxVolume::bUnit(
     //bMount, bUnMount
     xTEST_CASE(cullCaseLoops)
     {
-#if xTEST_IGNORE
+    #if xTEST_IGNORE
         #if xOS_ENV_WIN
             const std::tstring_t csSourcePath = xT("\\\\KSF\\Files\\INSTALL");
             const std::tstring_t csDestPath   = xT("T:");
@@ -228,7 +232,7 @@ CxTest_CxVolume::bUnit(
 
         m_bRes = CxVolume::bUnMount(csDestPath, true);
         xTEST_EQ(true, m_bRes);
-#endif
+    #endif
     }
 
     //-------------------------------------
@@ -240,7 +244,7 @@ CxTest_CxVolume::bUnit(
         m_bRes = CxVolume::bGetPaths(&vsVolumePaths);
         xTEST_EQ(true, m_bRes);
 
-        #if xTEST_IGNORE || 1
+        #if xTEST_IGNORE
             std::tcout << vsVolumePaths << std::endl;
         #endif
     }
@@ -257,31 +261,6 @@ CxTest_CxVolume::bUnit(
         #endif
     }
 
-    //-------------------------------------
-    //bIsVolumeLetterValid
-    xTEST_CASE(cullCaseLoops)
-    {
-        #if xOS_ENV_WIN
-            {
-                std::tstring_t sDataTrue = xT("qwertyuiopasdfghjklzxcvbnm");
-
-                for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                    m_bRes = CxVolume::bIsVolumeLetterValid( sDataTrue.at(i) );
-                    xTEST_EQ(true, m_bRes);
-                }
-            }
-
-            {
-                std::tstring_t sDataFalse = xT("1234567890-=/*-+!@#$%^&*()_+:\"<>?|");
-
-                for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                    m_bRes = CxVolume::bIsVolumeLetterValid( sDataFalse.at(i) );
-                    xTEST_EQ(false, m_bRes);
-                }
-            }
-        #endif
-    }
-
     //--------------------------------------------------
     //bGetInfo
     xTEST_CASE(cullCaseLoops)
@@ -289,7 +268,7 @@ CxTest_CxVolume::bUnit(
         #if xOS_ENV_WIN
             std::vector<std::tstring_t> vsVolumes;
 
-            m_bRes = CxVolume::bGetVolumes(&vsVolumes);
+            m_bRes = CxVolume::bGetPaths(&vsVolumes);
             xTEST_EQ(true, m_bRes);
 
             for (size_t i = 0; i < vsVolumes.size(); ++ i) {
