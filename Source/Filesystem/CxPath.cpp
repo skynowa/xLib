@@ -9,6 +9,7 @@
 #include <xLib/Common/CxChar.h>
 #include <xLib/Common/CxCommandLine.h>
 #include <xLib/Filesystem/CxFile.h>
+#include <xLib/Filesystem/CxDir.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
 
