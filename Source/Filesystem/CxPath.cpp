@@ -861,6 +861,13 @@ CxPath::sGetProcValue(
     const std::tstring_t &csData        ///< target search data string
 )
 {
+    bool bRes = CxDir::bIsExists(xT("/proc/"));
+    if (false == bRes) {
+	    /*DEBUG*/xASSERT_MSG(false, xT("Proc dir not mount"));
+
+        return std::tstring_t();
+    }
+
     std::tstring_t sRes;
 
     std::tifstream_t ifsStream(csProcPath.c_str());
