@@ -28,7 +28,9 @@ CxDir::bIsExists(
     const std::tstring_t &csDirPath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
+    /*DEBUG*/// n/a
+    
+    xCHECK_RET(true == csDirPath.empty(), false);
 
     CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, false);
