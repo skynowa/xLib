@@ -122,6 +122,9 @@ CxVolume::bGetSpace(
     } else {
         _sDirPath = csDirPath;
     }
+    
+    bool bRes = CxDir::bIsExists(_sDirPath);
+    xCHECK_RET(false == bRes, false);
 
 #if   xOS_ENV_WIN
     ULARGE_INTEGER ullAvailable = {{0}};

@@ -149,48 +149,50 @@ CxTest_CxVolume::bUnit(
     //bGetSpace
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
-            const std::tstring_t  csVolumePathWithSlash     = xT("C:\\");
-            const std::tstring_t  csVolumeePathWithoutSlash = xT("C:");
-        #elif xOS_ENV_UNIX
-            const std::tstring_t  csVolumePathWithSlash     = xT("/");
-            const std::tstring_t  csVolumeePathWithoutSlash = xT("//");
-        #endif
+        std::vector<std::tstring_t> vsData;
 
-        {
+        m_bRes = CxVolume::bGetPaths(&vsData);
+
+        xFOREACH(std::vector<std::tstring_t>, it, vsData) {
             ulonglong_t ullAvailable = 0ULL;
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            m_bRes = CxVolume::bGetSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
+            xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
+            
+            m_bRes = CxVolume::bGetSpace(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
-            xTEST_LESS(0ULL, ullAvailable);
-            xTEST_LESS(0ULL, ullTotal);
-            xTEST_LESS(0ULL, ullFree);
+            xTEST_LESS_EQ(0ULL, ullAvailable);
+            xTEST_LESS_EQ(0ULL, ullTotal);
+            xTEST_LESS_EQ(0ULL, ullFree);
         }
 
-        {
+        xFOREACH(std::vector<std::tstring_t>, it, vsData) {
             ulonglong_t ullAvailable = 0ULL;
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            m_bRes = CxVolume::bGetSpace(csVolumePathWithSlash, NULL, NULL, NULL);
+            xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
+
+            m_bRes = CxVolume::bGetSpace(*it, NULL, NULL, NULL);
             xTEST_EQ(true, m_bRes);
-            xTEST_EQ(0ULL, ullAvailable);
-            xTEST_EQ(0ULL, ullTotal);
-            xTEST_EQ(0ULL, ullFree);
+            xTEST_LESS_EQ(0ULL, ullAvailable);
+            xTEST_LESS_EQ(0ULL, ullTotal);
+            xTEST_LESS_EQ(0ULL, ullFree);
         }
 
-        {
+        xFOREACH(std::vector<std::tstring_t>, it, vsData) {
             ulonglong_t ullAvailable = 0ULL;
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            m_bRes = CxVolume::bGetSpace(csVolumePathWithSlash, &ullAvailable, &ullTotal, &ullFree);
+            xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
+
+            m_bRes = CxVolume::bGetSpace(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
-            xTEST_LESS(0ULL, ullAvailable);
-            xTEST_LESS(0ULL, ullTotal);
-            xTEST_LESS(0ULL, ullFree);
+            xTEST_LESS_EQ(0ULL, ullAvailable);
+            xTEST_LESS_EQ(0ULL, ullTotal);
+            xTEST_LESS_EQ(0ULL, ullFree);
 
             #if xTEST_IGNORE
                 xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
@@ -204,9 +206,9 @@ CxTest_CxVolume::bUnit(
 
             m_bRes = CxVolume::bGetSpace(CxConst::xSTR_EMPTY, &ullAvailable, &ullTotal, &ullFree);
             xTEST_EQ(true, m_bRes);
-            xTEST_LESS(0ULL, ullAvailable);
-            xTEST_LESS(0ULL, ullTotal);
-            xTEST_LESS(0ULL, ullFree);
+            xTEST_LESS_EQ(0ULL, ullAvailable);
+            xTEST_LESS_EQ(0ULL, ullTotal);
+            xTEST_LESS_EQ(0ULL, ullFree);
 
             #if xTEST_IGNORE
                 xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
@@ -279,6 +281,8 @@ CxTest_CxVolume::bUnit(
 
         xFOREACH(std::vector<std::tstring_t>, it, vsVolumePaths) {
             m_sRes = CxVolume::sGetLabel(*it);
+
+            xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
 
             m_bRes = CxVolume::bSetLabel(*it, m_sRes);
             xTEST_EQ(true, m_bRes);
