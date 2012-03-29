@@ -7,6 +7,8 @@
 #include <Test/Common/CxTest_CxProcessInfo.h>
 
 #include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Filesystem/CxPath.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxProcessInfo::CxTest_CxProcessInfo() {
@@ -24,7 +26,7 @@ CxTest_CxProcessInfo::bUnit(
 )
 {
     //--------------------------------------------------
-    //var
+    //ulGetCpuUsage
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRes = CxProcessInfo::ulGetCpuUsage(CxCurrentProcess::ulGetId());
@@ -35,7 +37,7 @@ CxTest_CxProcessInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //var
+    //ulGetRamUsage
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRes = CxProcessInfo::ulGetRamUsage(CxCurrentProcess::ulGetId());
@@ -45,13 +47,21 @@ CxTest_CxProcessInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //var
+    //ulGetIOBytes
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRes = CxProcessInfo::ulGetIOBytes(CxCurrentProcess::ulGetId());
         #if xTEST_IGNORE || 1
             xTRACEV(xT("\tCxProcessInfo::ulGetIOBytes(): %lu"), m_ulRes);
         #endif
+    }
+
+    //--------------------------------------------------
+    //sGetExeName
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_sRes = CxProcessInfo::sGetExeName( CxCurrentProcess::ulGetId() );
+        xTEST_EQ(m_sRes, CxPath::sGetExe());
     }
 
     return true;

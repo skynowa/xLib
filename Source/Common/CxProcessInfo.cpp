@@ -8,6 +8,7 @@
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
+#include <xLib/Sync/CxProcess.h>
 
 
 /****************************************************************************
@@ -106,7 +107,14 @@ CxProcessInfo::sGetExeName(
     std::tstring_t sRes;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::sGetExeName
+    sRes.resize(xPATH_MAX);
+
+    CxProcess::TxHandle hHandle = CxProcess::ulGetHandleById(cidId);
+
+    DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRes.at(0), sRes.size());
+    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
+
+    sRes.resize(ulStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), cidId);
