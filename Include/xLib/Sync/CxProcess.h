@@ -25,18 +25,23 @@ class CxProcess :
         typedef pid_t  TxId;     ///< ID
     #endif
 
-        static bool  bExec     (const std::tstring_t &csFilePath, const tchar_t *pcszCmdLine, ...);
+        static bool     bExec          (const std::tstring_t &csFilePath, const tchar_t *pcszCmdLine, ...);
             ///< execute a file
-        static bool  bExit     (const TxId culPid, const uint_t cuiExitCode);
+        static bool     bExit          (const TxId culPid, const uint_t cuiExitCode);
             ///< ends the calling process and all its threads
-        static bool  bTerminate(const TxId culPid);
+        static bool     bTerminate     (const TxId culPid);
             ///< kills the calling process and all of its threads
 
         //wait
 
+        static TxId     ulGetIdByHandle(const TxHandle &chHandle);
+            ///< ge ID by handle
+        static TxHandle ulGetHandleById(const TxId &culId);
+            ///< ge handle by ID
+
     private:
-                     CxProcess ();
-        virtual     ~CxProcess ();
+                        CxProcess      ();
+        virtual        ~CxProcess      ();
 };
 
 xNAMESPACE_END(NxLib)

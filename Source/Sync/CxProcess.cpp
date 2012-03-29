@@ -2,9 +2,17 @@
  * \file  CxProcess.cpp
  * \brief process
  */
- 
+
 
 #include <xLib/Sync/CxProcess.h>
+
+#if xOS_ENV_WIN
+    #if !xCOMPILER_MINGW32
+        #pragma comment(lib, "psapi.lib")
+    #endif
+#elif xOS_ENV_UNIX
+    xNA;
+#endif
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -96,7 +104,7 @@ CxProcess::bTerminate(
 #if xOS_ENV_WIN
     CxHandle hProcess;
 
-    hProcess = ::OpenProcess(PROCESS_TERMINATE, false, culPid);
+    hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, culPid);
     /*DEBUG*/xASSERT_RET(NULL != hProcess.hGet(), false);
 
     BOOL blRes = ::TerminateProcess(hProcess.hGet(), 0U);
@@ -107,6 +115,42 @@ CxProcess::bTerminate(
 #endif
 
     return true;
+}
+//---------------------------------------------------------------------------
+/*static*/
+CxProcess::TxId
+CxProcess::ulGetIdByHandle(
+    const TxHandle &chHandle    ///< handle
+)
+{
+    TxId ulRes;
+
+#if   xOS_ENV_WIN
+    ulRes = ::GetProcessId(chHandle);
+    xDEBUG_VAR_NA(ulRes);
+#elif xOS_ENV_UNIX
+    ulRes = static_cast<TxId>( chHandle );
+#endif
+
+    return ulRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+CxProcess::TxHandle
+CxProcess::ulGetHandleById(
+    const TxId &culId   ///< ID
+)
+{
+    TxHandle hRes;
+
+#if   xOS_ENV_WIN
+    hRes = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, culId);
+    xDEBUG_VAR_NA(hRes);
+#elif xOS_ENV_UNIX
+    hRes = static_cast<TxHandle>( culId );
+#endif
+
+    return hRes;
 }
 //---------------------------------------------------------------------------
 

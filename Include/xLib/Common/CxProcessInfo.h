@@ -30,7 +30,6 @@ class CxProcessInfo :
             ///< constructor
 		virtual              ~CxProcessInfo();
 		    ///< destructor
-
 };
 //---------------------------------------------------------------------------
 #endif //xLib_CxProcessInfoH

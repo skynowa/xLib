@@ -6,6 +6,8 @@
 
 #include <Test/Sync/CxTest_CxProcess.h>
 
+#include <xLib/Sync/CxCurrentProcess.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxProcess::CxTest_CxProcess() {
@@ -52,6 +54,22 @@ CxTest_CxProcess::bUnit(
     {
         //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
         //xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
+    //ulGetIdByHandle
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxProcess::TxId ulId = CxProcess::ulGetIdByHandle( CxCurrentProcess::hGetHandle() );
+        xTEST_DIFF(0UL, ulId);
+    }
+
+    //--------------------------------------------------
+    //ulGetHandleById
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxProcess::TxHandle hHandle = CxProcess::ulGetHandleById( CxCurrentProcess::ulGetId() );
+        xTEST_EQ(true, CxHandle(hHandle).bIsValid());
     }
 
     return true;

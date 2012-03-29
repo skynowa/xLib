@@ -79,6 +79,7 @@
 #include <sys/locking.h>
 #include <io.h>
 #include <winternl.h>
+#include <psapi.h>
 
 #if   xCOMPILER_MINGW32
 	#include <intrin.h>
