@@ -677,59 +677,50 @@ CxPath::sGetShort(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring_t());
     /*DEBUG*/xASSERT_RET(0     <  cuiMaxSize,         std::tstring_t());
 
+    // util fuction
     struct _SSlashes
     {
         static void
-        vMake(std::tstring_t &Str, size_t &Num) {
-            size_t Position = 0;
-            size_t Index    = 0;
+        vMake(std::tstring_t &cStr, size_t &uiNum) {
+            size_t uiIndex = 0;
 
-            do {
-                Position = Str.find( CxConst::xSLASH );
+            for ( ; ; ) {
+                size_t uiPos = cStr.find(CxConst::xSLASH);
 
-                Str.erase(0, Position + CxConst::xSLASH.size());
+                cStr.erase(0, uiPos + CxConst::xSLASH.size());
 
-                if (std::tstring_t::npos != Position) {
-                    ++ Index;
-                }
-
-                if (Index == Num && 0 != Num) {
-                    break;
-                }
+                xCHECK_DO(std::tstring_t::npos != uiPos,  ++ uiIndex);
+                xCHECK_DO(uiIndex == uiNum && 0 != uiNum, break);
+                xCHECK_DO(std::tstring_t::npos == uiPos,  break);
             }
-            while (std::tstring_t::npos != Position);
 
-            Num = Index;
-        };
+            uiNum = uiIndex;
+        }
     };
 
 
-    std::tstring_t sRes   = csFilePath;
-    size_t         Num    = 0;
-    size_t         NewNum = 0;
-    size_t         P      = 0;
-    std::tstring_t Path   = csFilePath;
+    std::tstring_t sRes  = csFilePath;
+    std::tstring_t sPath = csFilePath;
+    size_t         uiNum = 0;
 
-    _SSlashes::vMake(Path, Num);
+    _SSlashes::vMake(sPath, uiNum);
 
-    while ((sRes.size() > cuiMaxSize) && (Num > 2)) {
-        NewNum = Num / 2;
+    while (sRes.size() > cuiMaxSize && uiNum > 2) {
+        sPath = sRes;
 
-        Path = sRes;
+        size_t uiNumNew = uiNum / 2;
 
-        _SSlashes::vMake(Path, NewNum);
+        _SSlashes::vMake(sPath, uiNumNew);
 
-        P = sRes.find(Path);
+        sRes.erase(sRes.find(sPath), sPath.size());
 
-        sRes.erase(P, Path.size());
+        uiNumNew = 2;
+        _SSlashes::vMake(sPath, uiNumNew);
 
-        NewNum = 2;
-        _SSlashes::vMake(Path, NewNum);
+        sRes.append(CxConst::x3DOT + CxConst::xSLASH + sPath);
 
-        sRes = sRes + CxConst::x3DOT + CxConst::xSLASH + Path;
-
-        -- Num;
-    };
+        -- uiNum;
+    }
 
     return sRes;
 }

@@ -721,7 +721,7 @@ CxTest_CxPath::bUnit(
     }
 
     //-------------------------------------
-    //TODO: sMinimizeName
+    //sGetShortName
     xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t sData[][2] = {
