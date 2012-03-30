@@ -635,7 +635,7 @@ CxPath::sGetAbsolute(
 //--------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxPath::sMinimizeName(
+CxPath::sGetShortName(
     const std::tstring_t &csFileName,
     const size_t          cuiMaxSize
 )
@@ -667,10 +667,9 @@ CxPath::sMinimizeName(
     return sRes;
 }
 //---------------------------------------------------------------------------
-//TODO: sMinimize
 /*static*/
 std::tstring_t
-CxPath::sMinimize(
+CxPath::sGetShort(
     const std::tstring_t &csFilePath,
     const size_t          cuiMaxSize
 )
@@ -678,68 +677,59 @@ CxPath::sMinimize(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring_t());
     /*DEBUG*/xASSERT_RET(0     <  cuiMaxSize,         std::tstring_t());
 
-    std::tstring_t sRes;
+    struct _SSlashes
+    {
+        static void
+        vMake(std::tstring_t &Str, size_t &Num) {
+            size_t Position = 0;
+            size_t Index    = 0;
 
-#if xOS_ENV_WIN
-    sRes = csFilePath;
+            do {
+                Position = Str.find( CxConst::xSLASH );
 
-    std::tstring_t sDrive = sGetDrive(sRes);                                          /* D: */
-    std::tstring_t sDir   = sGetDir(sRes).erase(0, sDrive.size()) + CxConst::xSLASH;  /* \xLib\Test\CxString\Project\Debug */
-    std::tstring_t sName  = sGetFullName(sRes);                                       /* Test.exe */
+                Str.erase(0, Position + CxConst::xSLASH.size());
 
-    while (((false == sDir.empty()) || (false == sDrive.empty())) && (sRes.size() > cuiMaxSize)) {
-        if ((CxConst::xSLASH + xT("...") + CxConst::xSLASH) == sDir ) {
-            sDrive.clear();
-            sDir = xT("...") + CxConst::xSLASH;
-        }
-        else if (true == sDir.empty()) {
-            sDrive.clear();
-        }
-        else {
-            bool   bRoot = false;
-            size_t uiPos = std::tstring_t::npos;
-
-            if (CxConst::xSLASH == sDir) {
-                sDir.clear();
-            }
-            else {
-                if (sDir.at(0) == CxConst::xSLASH.at(0)) {
-                    bRoot = true;
-                    //������� � 1(0) ������� 1 ������
-                    //Delete(S, 1, 1);
-                    sDir.erase(0, 1);
-                } else {
-                    bRoot = false;
+                if (std::tstring_t::npos != Position) {
+                    ++ Index;
                 }
 
-                if (CxConst::xDOT.at(0) == sDir.at(0)) {
-                    //Delete(S, 1, 4);
-                    sDir.erase(0, 4);
-                }
-
-                //uiPos = AnsiPos("\\", S);
-                uiPos = sDir.find_first_of(CxConst::xSLASH);
-                if (std::tstring_t::npos == uiPos) {
-                    sDir.clear();
-                } else {
-                    //Delete(S, 1, uiPos); - c ������� 1(0) uiPos ��������
-                    sDir.erase(0, uiPos + CxConst::xSLASH.size());
-                    sDir = xT("...") + CxConst::xSLASH + sDir;
-                }
-
-                if (true == bRoot) {
-                    sDir = CxConst::xSLASH + sDir;
+                if (Index == Num && 0 != Num) {
+                    break;
                 }
             }
-            //-------------------------------
+            while (std::tstring_t::npos != Position);
 
-        }
+            Num = Index;
+        };
+    };
 
-        sRes = sDrive + sDir + sName;
-    }
-#elif xOS_ENV_UNIX
-    sRes = csFilePath;
-#endif
+
+    std::tstring_t sRes   = csFilePath;
+    size_t         Num    = 0;
+    size_t         NewNum = 0;
+    size_t         P      = 0;
+    std::tstring_t Path   = csFilePath;
+
+    _SSlashes::vMake(Path, Num);
+
+    while ((sRes.size() > cuiMaxSize) && (Num > 2)) {
+        NewNum = Num / 2;
+
+        Path = sRes;
+
+        _SSlashes::vMake(Path, NewNum);
+
+        P = sRes.find(Path);
+
+        sRes.erase(P, Path.size());
+
+        NewNum = 2;
+        _SSlashes::vMake(Path, NewNum);
+
+        sRes = sRes + CxConst::x3DOT + CxConst::xSLASH + Path;
+
+        -- Num;
+    };
 
     return sRes;
 }

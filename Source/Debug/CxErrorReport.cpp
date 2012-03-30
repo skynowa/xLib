@@ -293,7 +293,7 @@ CxErrorReport::_bInitVars(
     _m_rtType          = crtType;
 
 #if 1
-    _m_sProgram        = CxPath::sGetExe();
+    _m_sProgram        = CxPath::sGetShort(CxPath::sGetExe(), 15);
     _m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
     _m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
     _m_sFileSize       = CxString::sFormatBytes( static_cast<ulonglong_t>( CxFile::llGetSize(CxPath::sGetExe())) );

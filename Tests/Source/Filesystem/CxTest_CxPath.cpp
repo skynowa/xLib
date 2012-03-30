@@ -737,26 +737,32 @@ CxTest_CxPath::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = CxPath::sMinimizeName(sData[i][0], 4);
+            std::tstring_t sStr1 = CxPath::sGetShortName(sData[i][0], 4);
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
 
     //-------------------------------------
-    //sMinimize
+    //sGetShort
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
-            sRes    = CxPath::sMinimize(csFilePath, 4);
-            // n/a
+        {
+	        m_sRes = CxPath::sGetShort(csFilePath, 4);
+	        xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRes);
+        }
 
-            std::tstring_t sFilePath = xT("D:/xVCL/Include\\xVCL/Units/Gui/vSpeedButton_LoadDrives.cpp");
-            sRes    = CxPath::sMinimize(sFilePath, 45);
-            // n/a
-        #elif xOS_ENV_UNIX
-            //TODO: sMinimize
-        #endif
+        {
+	        m_sRes = CxPath::sGetShort(csFilePath, 200);
+	        xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRes);
+        }
+
+        {
+	        std::tstring_t sFilePath = xT("D:\\xVCL\\Include\\xVCL\\Units\\Gui\\vSpeedButton_LoadDrives.cpp");
+	
+	        m_sRes = CxPath::sGetShort(sFilePath, 15);
+	        xTEST_EQ(std::tstring_t(xT("D:\\...\\vSpeedButton_LoadDrives.cpp")), m_sRes);
+        }
     }
 
     //-------------------------------------
