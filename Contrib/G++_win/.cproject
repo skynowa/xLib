@@ -43,13 +43,14 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base.497656275" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base">
 								<option id="gnu.cpp.link.option.libs.801361371" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ws2_32"/>
+									<listOptionValue builtIn="false" value="psapi"/>
 									<listOptionValue builtIn="false" value="uuid"/>
 									<listOptionValue builtIn="false" value="ole32"/>
 									<listOptionValue builtIn="false" value="mpr"/>
 									<listOptionValue builtIn="false" value="wininet"/>
 									<listOptionValue builtIn="false" value="gdiplus"/>
 								</option>
-								<option id="gnu.cpp.link.option.flags.1541949104" superClass="gnu.cpp.link.option.flags" value="-static-libgcc -static-libstdc++" valueType="string"/>
+								<option id="gnu.cpp.link.option.flags.1541949104" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-static-libgcc -static-libstdc++" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1580406084" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -107,13 +108,14 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release.796838768" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release">
 								<option id="gnu.cpp.link.option.libs.1465220653" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ws2_32"/>
-									<listOptionValue builtIn="false" value="wininet"/>
+									<listOptionValue builtIn="false" value="psapi"/>
 									<listOptionValue builtIn="false" value="uuid"/>
 									<listOptionValue builtIn="false" value="ole32"/>
 									<listOptionValue builtIn="false" value="mpr"/>
+									<listOptionValue builtIn="false" value="wininet"/>
 									<listOptionValue builtIn="false" value="gdiplus"/>
 								</option>
-								<option id="gnu.cpp.link.option.flags.1126716450" superClass="gnu.cpp.link.option.flags" value="-static-libgcc -static-libstdc++" valueType="string"/>
+								<option id="gnu.cpp.link.option.flags.1126716450" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-static-libgcc -static-libstdc++" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1622064715" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
