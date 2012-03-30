@@ -84,10 +84,10 @@ class CxPath :
         static std::tstring_t sGetAbsolute    (const std::tstring_t &csFilePath);
             ///< get absolute path
 
-        static std::tstring_t sMinimizeName   (const std::tstring_t &csFileName, const size_t cuiMaxSize);
-            ///< minimize name
-        static std::tstring_t sMinimize       (const std::tstring_t &csFilePath, const size_t cuiMaxSize);
-            ///< minimize path
+        static std::tstring_t sGetShortName   (const std::tstring_t &csFileName, const size_t cuiMaxSize);
+            ///< get short name
+        static std::tstring_t sGetShort       (const std::tstring_t &csFilePath, const size_t cuiMaxSize);
+            ///< get short path
         static std::tstring_t sSetValidName   (const std::tstring_t &csFileName);
             ///< set name as valid
 
