@@ -61,7 +61,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         CxProcess::TxId ulId = CxProcess::ulGetIdByHandle( CxCurrentProcess::hGetHandle() );
-        xTEST_DIFF(0UL, ulId);
+        xTEST_DIFF(0UL, static_cast<ulong_t>( ulId ));
     }
 
     //--------------------------------------------------
