@@ -27,26 +27,6 @@ CxTest_CxPath::bUnit(
 )
 {
     //-------------------------------------
-    //vars
-    std::vector<std::tstring_t> vsRes;
-
-//    #if xOS_ENV_WIN
-//        const std::tstring_t csFilePath    = xT("C:\\Test.txt");
-//        const std::tstring_t csNewFilePath = xT("C:\\New.Test.txt");
-//        const std::tstring_t csBakFilePath = xT("C:\\Test_Static.txt.bak");
-//        const std::tstring_t csFilePathSt  = xT("C:\\Test_Static.txt");
-//        const std::tstring_t csFileName    = xT("TestName");
-//        const std::tstring_t csFileExt     = xT("doc");
-//    #elif xOS_ENV_UNIX
-//        const std::tstring_t csFilePath    = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
-//        const std::tstring_t csNewFilePath = xT("/home/user/Soft/New.Test.txt");
-//        const std::tstring_t csBakFilePath = xT("/home/user/Soft/Test_Static.txt.bak");
-//        const std::tstring_t csFilePathSt  = xT("/home/user/Soft/Test_Static.txt");
-//        const std::tstring_t csFileName    = xT("TestName");
-//        const std::tstring_t csFileExt     = xT("doc");
-//    #endif
-
-    //-------------------------------------
     //sGetExe
     xTEST_CASE(cullCaseLoops)
     {
@@ -742,48 +722,55 @@ CxTest_CxPath::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 std::tstring_t sFilePath = xT("C:\\Test.txt");
             #elif xOS_ENV_UNIX
                 std::tstring_t sFilePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
             #endif
 
 	        m_sRes = CxPath::sGetShort(sFilePath, 4);
-            #if defined(xOS_ENV_WIN)
+            #if   xOS_ENV_WIN
                 xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRes);
-            #elif defined(xOS_ENV_UNIX)
+            #elif xOS_ENV_UNIX
                 xTEST_EQ(std::tstring_t(xT("/.../filename")), m_sRes);
             #endif
         }
 
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 std::tstring_t sFilePath = xT("C:\\Test.txt");
             #elif xOS_ENV_UNIX
                 std::tstring_t sFilePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
             #endif
 
 	        m_sRes = CxPath::sGetShort(sFilePath, 200);
-            #if defined(xOS_ENV_WIN)
+            #if   xOS_ENV_WIN
+                xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRes);
+            #elif xOS_ENV_UNIX
                 xTEST_EQ(std::tstring_t(xT("/.../filename")), m_sRes);
-            #elif defined(xOS_ENV_UNIX)
-
             #endif
         }
 
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 std::tstring_t sFilePath = xT("D:\\xVCL\\Include\\xVCL\\Units\\Gui\\vSpeedButton_LoadDrives.cpp");
             #elif xOS_ENV_UNIX
                 std::tstring_t sFilePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
             #endif
 
 	        m_sRes = CxPath::sGetShort(sFilePath, 15);
-            #if defined(xOS_ENV_WIN)
+            #if   xOS_ENV_WIN
                 xTEST_EQ(std::tstring_t(xT("D:\\...\\vSpeedButton_LoadDrives.cpp")), m_sRes);
-            #elif defined(xOS_ENV_UNIX)
+            #elif xOS_ENV_UNIX
                 xTEST_EQ(std::tstring_t(xT("/.../filename")), m_sRes);
             #endif
+        }
+
+        {
+            std::tstring_t sFilePath = xT("D:/xVCL\\Include/xVCL\\Units/Gui/Tools/LoadDrives.cpp");
+
+	        m_sRes = CxPath::sGetShort(sFilePath, 15);
+            xTEST_EQ(std::tstring_t(xT("D:\\...\\LoadDrives.cpp")), m_sRes);
         }
     }
 
