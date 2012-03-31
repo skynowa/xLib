@@ -122,7 +122,7 @@ CxVolume::bGetSpace(
     } else {
         _sDirPath = csDirPath;
     }
-    
+
     bool bRes = CxDir::bIsExists(_sDirPath);
     xCHECK_RET(false == bRes, false);
 
@@ -244,7 +244,7 @@ CxVolume::bGetPaths(
     ulRes = ::GetLogicalDriveStrings(sRes.size(), &sRes.at(0));
     /*DEBUG*/xASSERT_RET(0UL != ulRes, false);
 
-    for (const tchar_t *s = &sRes.at(0); NULL != *s; s += _tcslen(s) + sizeof(xT('\0'))) {
+    for (const tchar_t *s = &sRes.at(0); 0 != *s; s += _tcslen(s) + sizeof(xT('\0'))) {
         vsRes.push_back(s);
     }
 #elif xOS_ENV_UNIX
