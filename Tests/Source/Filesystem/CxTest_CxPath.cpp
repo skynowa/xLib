@@ -652,22 +652,22 @@ CxTest_CxPath::bUnit(
     }
 
     //-------------------------------------
-    //sToNix
+    //sToUnix
     xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t csUnixPath = xT("/home/user/Soft/TestDir");
         const std::tstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
-        sRes    = CxPath::sToNix(csUnixPath,  false);
+        sRes    = CxPath::sToUnix(csUnixPath,  false);
         xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
 
-        sRes    = CxPath::sToNix(csUnixPath,  true);
+        sRes    = CxPath::sToUnix(csUnixPath,  true);
         xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-        sRes    = CxPath::sToNix(csWinPath,  true);
+        sRes    = CxPath::sToUnix(csWinPath,  true);
         xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-        sRes    = CxPath::sToNix(csWinPath,  false);
+        sRes    = CxPath::sToUnix(csWinPath,  false);
         xTEST_EQ(sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
     }
 

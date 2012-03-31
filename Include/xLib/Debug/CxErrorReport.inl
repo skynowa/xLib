@@ -24,25 +24,25 @@ CxErrorReport::CxErrorReport(
     const std::tstring_t &csStackTrace,
     const std::tstring_t &csComment
 ) :
-    _m_rtType         (rtUnknown),
-    _m_sReport        (),
-    _m_sProgram       (),
-    _m_ulProcessId    (0UL),
-    _m_ulThreadId     (0UL),
-    _m_sFileSize      (),
-    _m_sSourceFile    (),
-    _m_ulSourceLine   (0UL),
-    _m_sFunctionName  (),
-    _m_sExpression    (),
-    _m_ulLastError    (0UL),
-    _m_sLastErrorStr  (),
-    _m_sCurrentDate   (),
-    _m_sBuildDate     (),
-    _m_sBuildType     (),
-    _m_sOsVersion     (),
-    _m_sOsArchitecture(),
-    _m_sStackTrace    (),
-    _m_sComment       ()
+    m_rtType         (rtUnknown),
+    m_sReport        (),
+    m_sProgram       (),
+    m_ulProcessId    (0UL),
+    m_ulThreadId     (0UL),
+    m_sFileSize      (),
+    m_sSourceFile    (),
+    m_ulSourceLine   (0UL),
+    m_sFunctionName  (),
+    m_sExpression    (),
+    m_ulLastError    (0UL),
+    m_sLastErrorStr  (),
+    m_sCurrentDate   (),
+    m_sBuildDate     (),
+    m_sBuildType     (),
+    m_sOsVersion     (),
+    m_sOsArchitecture(),
+    m_sStackTrace    (),
+    m_sComment       ()
 {
     /*DEBUG*/
 
@@ -62,8 +62,8 @@ CxErrorReport::CxErrorReport(
                   << xT("                    ")
                   << std::left << std::setw(uiAlignWidth) << csExpr2 << xT(": ") << cVarT2;
 
-        if (false == _m_sComment.empty()) {
-            ossStream << xT("\n                      (")  << _m_sComment << xT(")");
+        if (false == m_sComment.empty()) {
+            ossStream << xT("\n                      (")  << m_sComment << xT(")");
         }
 
         sComment = ossStream.str();

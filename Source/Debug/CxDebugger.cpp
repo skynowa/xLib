@@ -132,9 +132,9 @@ CxDebugger::bReportMake(
 {
     //-------------------------------------
     //never corrupt the last error value
-    const ulong_t culLastError = crpReport.ulGetLastError();
+    const ulong_t culLastError = crpReport.m_ulLastError;
 
-    CxErrorReport::EType rtRes = crpReport.rtGetType();
+    CxErrorReport::EType rtRes = crpReport.m_rtType;
     switch (rtRes) {
         case CxErrorReport::rtMsgboxPlain:    { _bMsgboxPlain   (crpReport); } break;
         case CxErrorReport::rtMsgboxFormated: { _bMsgboxFormated(crpReport); } break;
@@ -266,7 +266,7 @@ CxDebugger::_bMsgboxPlain(
     ulong_t ulType = 1UL;
 #endif
 
-    CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.sGetReport(), CxPath::sGetExe(), ulType);
+    CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.m_sReport, CxPath::sGetExe(), ulType);
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
                 CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
@@ -304,7 +304,7 @@ CxDebugger::_bMsgboxFormated(
 #if xOS_ENV_WIN
     //-------------------------------------
     //show message
-    CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.sGetReport(), CxPath::sGetExe());
+    CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.m_sReport, CxPath::sGetExe());
     switch (mrRes) {
         case CxMsgBoxRtf::mrAbort: {
                 CxProcess::bExit(CxCurrentProcess::ulGetId(), 0U);
@@ -335,7 +335,7 @@ CxDebugger::_bMsgboxFormated(
     };
 
     std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, true, false, CxConsole::bgBlack, false );
-    std::tcerr << crpReport.sGetReport();
+    std::tcerr << crpReport.m_sReport;
     std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, true, false, CxConsole::bgBlack, false );
     std::tcerr << xT("\n");
     std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
@@ -399,7 +399,7 @@ CxDebugger::_bStdoutPlain(
     };
 
     std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << crpReport.sGetReport();
+    std::tcout << crpReport.m_sReport;
     std::tcout << xT("\n####################################################################################################\n");
     std::tcout << xT("\n");
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
@@ -459,7 +459,7 @@ CxDebugger::_bStdoutHtml(
 
     std::tcout << xT("<pre>");
     std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << crpReport.sGetReport();
+    std::tcout << crpReport.m_sReport;
     std::tcout << xT("\n####################################################################################################\n");
     std::tcout << xT("\n");
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
@@ -534,7 +534,7 @@ CxDebugger::_bLoggingPlain(
             xT("####################################################################################################\n")
             xT("%s\n")
             xT("####################################################################################################\n"),
-            crpReport.sGetReport().c_str()
+            crpReport.m_sReport.c_str()
         );
 
         std::xTFPRINTF(pFile, xT("%s"), csMsg.data());

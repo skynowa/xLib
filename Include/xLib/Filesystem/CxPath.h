@@ -77,7 +77,7 @@ class CxPath :
 
         static std::tstring_t sToWin          (const std::tstring_t &csFilePath, const bool cbIsSlashAtEnd);
             ///< convert slashes to Windows style
-        static std::tstring_t sToNix          (const std::tstring_t &csFilePath, const bool cbIsSlashAtEnd);
+        static std::tstring_t sToUnix         (const std::tstring_t &csFilePath, const bool cbIsSlashAtEnd);
             ///< convert slashes to Nix style
         static std::tstring_t sToCurrentOs    (const std::tstring_t &csFilePath, const bool cbIsSlashAtEnd);
             ///< convert slashes to current OS style

@@ -209,7 +209,6 @@
     <ClCompile Include="..\..\Source\Log\CxFileLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxSystemLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp" />
-    <ClCompile Include="..\..\Source\Log\CxWndLog.cpp" />
     <ClCompile Include="..\..\Source\Net\CxAsyncSocket.cpp" />
     <ClCompile Include="..\..\Source\Net\CxCgi.cpp" />
     <ClCompile Include="..\..\Source\Net\CxCookiePv0.cpp" />
@@ -411,7 +410,6 @@
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxSystemLog.h" />
-    <ClInclude Include="..\..\Include\xLib\Log\CxWndLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\xLogs.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxTcpClient.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxTcpServer.h" />

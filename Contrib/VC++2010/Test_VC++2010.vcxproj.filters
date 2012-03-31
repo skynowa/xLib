@@ -615,9 +615,6 @@
     <ClCompile Include="..\..\Tests\Source\Sync\CxTest_CxCurrentProcess.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Log\CxWndLog.cpp">
-      <Filter>xLib\Log</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
@@ -1168,9 +1165,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentProcess.h">
       <Filter>Test\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Log\CxWndLog.h">
-      <Filter>xLib\Log</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\CxHandleT.h">
       <Filter>xLib\Common</Filter>
