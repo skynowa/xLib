@@ -30,53 +30,53 @@ class CxErrorReport :
         };
 
 
-        EType                   m_rtType;          ///< report type
-        std::tstring_t          m_sReport;         ///< repoer message
+        EType          m_rtType;          ///< report type
+        std::tstring_t m_sReport;         ///< repoer message
 
         //exe
-        std::tstring_t          m_sProgram;        ///< program name
-        ulong_t                 m_ulProcessId;     ///< current process id
-        ulong_t                 m_ulThreadId;      ///< current thread id
-        std::tstring_t          m_sFileSize;       ///< file size
+        std::tstring_t m_sProgram;        ///< program name
+        ulong_t        m_ulProcessId;     ///< current process id
+        ulong_t        m_ulThreadId;      ///< current thread id
+        std::tstring_t m_sFileSize;       ///< file size
 
         //source
-        std::tstring_t          m_sSourceFile;     ///< source file path
-        ulong_t                 m_ulSourceLine;    ///< source file line
-        std::tstring_t          m_sFunctionName;   ///< source function name
-        std::tstring_t          m_sExpression;     ///< expression
-        ulong_t                 m_ulLastError;     ///< system last error
-        std::tstring_t          m_sLastErrorStr;   ///< system last error as string
+        std::tstring_t m_sSourceFile;     ///< source file path
+        ulong_t        m_ulSourceLine;    ///< source file line
+        std::tstring_t m_sFunctionName;   ///< source function name
+        std::tstring_t m_sExpression;     ///< expression
+        ulong_t        m_ulLastError;     ///< system last error
+        std::tstring_t m_sLastErrorStr;   ///< system last error as string
 
         //other
-        std::tstring_t          m_sCurrentDate;    ///< current date, time
-        std::tstring_t          m_sBuildDate;      ///< build date, time
-        std::tstring_t          m_sBuildType;      ///< get build type
-        std::tstring_t          m_sOsVersion;      ///< build OS version
-        std::tstring_t          m_sOsArchitecture; ///< OS architecture
-        std::tstring_t          m_sStackTrace;     ///< stack trace
+        std::tstring_t m_sCurrentDate;    ///< current date, time
+        std::tstring_t m_sBuildDate;      ///< build date, time
+        std::tstring_t m_sBuildType;      ///< get build type
+        std::tstring_t m_sOsVersion;      ///< build OS version
+        std::tstring_t m_sOsArchitecture; ///< OS architecture
+        std::tstring_t m_sStackTrace;     ///< stack trace
 
         //comment
-        std::tstring_t          m_sComment;        ///< comment
+        std::tstring_t m_sComment;        ///< comment
 
 
-                                CxErrorReport     (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
+                       CxErrorReport(const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< constructor
-                                CxErrorReport     (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const tchar_t *pcszComment, ...);
+                       CxErrorReport(const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const tchar_t *pcszComment, ...);
             ///< constructor
-                                template<class T>
-                                CxErrorReport     (const EType &crtType, const T &cVatT1, const T &cVatT2, const std::tstring_t &csExpr1, const std::tstring_t &csExpr2, const std::tstring_t &csExprSign, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
+                       template<class T>
+                       CxErrorReport(const EType &crtType, const T &cVatT1, const T &cVatT2, const std::tstring_t &csExpr1, const std::tstring_t &csExpr2, const std::tstring_t &csExprSign, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< constructor
-        virtual                ~CxErrorReport     ();
+        virtual       ~CxErrorReport();
             ///< destructor
 
     private:
-        bool                    _bInitVars        (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
+        bool          _bInitVars    (const EType &crtType, const std::tstring_t &csExp, const ulong_t culLastError, const std::tstring_t &csFile, const ulong_t culLine, const std::tstring_t &csFunc, const std::tstring_t &csDate, const std::tstring_t &csTime, const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< initiate class members
-        bool                    _bInitPlain       ();
+        bool          _bInitPlain   ();
             ///< initiate plain report
-        bool                    _bInitHtml        ();
+        bool          _bInitHtml    ();
             ///< initiate HTML report
-        bool                    _bInitFormated    ();
+        bool          _bInitFormated();
             ///< initiate formatrd report
 };
 
