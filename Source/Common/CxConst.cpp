@@ -45,10 +45,10 @@ const std::string    CxConst::xWIN_SLASH_A      ("\\");
 const std::wstring   CxConst::xWIN_SLASH_W      (L"\\");
 const std::tstring_t CxConst::xWIN_SLASH        (xT("\\"));
 
-//xNIX_SLASH
-const std::string    CxConst::xNIX_SLASH_A      ("/");
-const std::wstring   CxConst::xNIX_SLASH_W      (L"/");
-const std::tstring_t CxConst::xNIX_SLASH        (xT("/"));
+//xUNIX_SLASH
+const std::string    CxConst::xUNIX_SLASH_A     ("/");
+const std::wstring   CxConst::xUNIX_SLASH_W     (L"/");
+const std::tstring_t CxConst::xUNIX_SLASH       (xT("/"));
 
 //xSLASH
 #if xOS_ENV_WIN
@@ -56,9 +56,9 @@ const std::string    CxConst::xSLASH_A          (CxConst::xWIN_SLASH_A);
 const std::wstring   CxConst::xSLASH_W          (CxConst::xWIN_SLASH_W);
 const std::tstring_t CxConst::xSLASH            (CxConst::xWIN_SLASH);
 #elif xOS_ENV_UNIX
-const std::string    CxConst::xSLASH_A          (CxConst::xNIX_SLASH_A);
-const std::wstring   CxConst::xSLASH_W          (CxConst::xNIX_SLASH_W);
-const std::tstring_t CxConst::xSLASH            (CxConst::xNIX_SLASH);
+const std::string    CxConst::xSLASH_A          (CxConst::xUNIX_SLASH_A);
+const std::wstring   CxConst::xSLASH_W          (CxConst::xUNIX_SLASH_W);
+const std::tstring_t CxConst::xSLASH            (CxConst::xUNIX_SLASH);
 #endif
 
 //xEOL
@@ -166,75 +166,6 @@ const std::tstring_t CxConst::xEQUAL            (xT("="));
 const std::string    CxConst::xHYPHEN_A         ("-");
 const std::wstring   CxConst::xHYPHEN_W         (L"-");
 const std::tstring_t CxConst::xHYPHEN           (xT("-"));
-
-#if xTEMP_DISABLED
-    //xXXXXX
-    const std::string    CxConst::xXXXXX_A          ("XXXXX");
-    const std::wstring   CxConst::xXXXXX_W          (L"XXXXX");
-    const std::tstring_t CxConst::xXXXXX            (xT("XXXXX"));
-#endif
-
-
-//---------------------------------------------------------------------------
-#if xTODO
-    const std::tstring_t xOPEN_BRACKET     ("{");
-    const std::tstring_t xCLOSE_BRACKET    ("}");
-    const std::tstring_t xOPEN_LINE_COMMENT("//");
-    const std::tstring_t xOPEN_COMMENT     ("/*");
-    const std::tstring_t xCLOSE_COMMENT    ("*/");
-
-    const std::tstring_t xASSIGN           ("=");
-    const std::tstring_t xPLUS_ASSIGN      ("+=");
-    const std::tstring_t xMINUS_ASSIGN     ("-=");
-    const std::tstring_t xMULT_ASSIGN      ("*=");
-    const std::tstring_t xDIV_ASSIGN       ("/=");
-    const std::tstring_t xMOD_ASSIGN       ("%=");
-    const std::tstring_t xOR_ASSIGN        ("|=");
-    const std::tstring_t xAND_ASSIGN       ("&=");
-    const std::tstring_t xXOR_ASSIGN       ("^=");
-    const std::tstring_t xGR_GR_ASSIGN     (">>=");
-    const std::tstring_t xLS_LS_ASSIGN     ("<<=");
-    const std::tstring_t xGR_GR_GR_ASSIGN  (">>>=");
-    const std::tstring_t xLS_LS_LS_ASSIGN  ("<<<=");
-    const std::tstring_t xGCC_MIN_ASSIGN   ("<?");
-    const std::tstring_t xGCC_MAX_ASSIGN   (">?");
-
-    const std::tstring_t xEQUAL               ("==");
-    const std::tstring_t xPLUS_PLUS        ("++");
-    const std::tstring_t xMINUS_MINUS      ("--");
-    const std::tstring_t xNOT_EQUAL        ("!=");
-    const std::tstring_t xGR_EQUAL         (">=");
-    const std::tstring_t xGR_GR               (">>");
-    const std::tstring_t xGR_GR_GR         (">>>");
-    const std::tstring_t xLS_EQUAL         ("<=");
-    const std::tstring_t xLS_LS               ("<<");
-    const std::tstring_t xLS_LS_LS         ("<<<");
-    const std::tstring_t xQUESTION_QUESTION("??");
-    const std::tstring_t xEQUAL_GR         ("=>");
-    const std::tstring_t xARROW               ("->");
-    const std::tstring_t xAND               ("&&");
-    const std::tstring_t xOR               ("||");
-    const std::tstring_t xCOLON_COLON      ("::");
-    const std::tstring_t xPAREN_PAREN      ("()");
-    const std::tstring_t xBLPAREN_BLPAREN  ("[]");
-
-    const std::tstring_t xPLUS               ("+");
-    const std::tstring_t xMINUS               ("-");
-    const std::tstring_t xMULT               ("*");
-    const std::tstring_t xDIV               ("/");
-    const std::tstring_t xMOD               ("%");
-    const std::tstring_t xGR               (">");
-    const std::tstring_t xLS                  ("<");
-    const std::tstring_t xNOT               ("!");
-    const std::tstring_t xBIT_OR           ("|");
-    const std::tstring_t xBIT_AND          ("&");
-    const std::tstring_t xBIT_NOT          ("~");
-    const std::tstring_t xBIT_XOR          ("^");
-    const std::tstring_t xQUESTION         ("?");
-    const std::tstring_t xCOLON               (":");
-    const std::tstring_t xCOMMA               (",");
-    const std::tstring_t xSEMICOLON        (";");
-#endif
 //---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

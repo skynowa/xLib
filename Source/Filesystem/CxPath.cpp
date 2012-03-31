@@ -540,7 +540,7 @@ CxPath::sToWin(
         sRes = sSlashRemove(csFilePath);
     }
 
-    sRes = CxString::sReplaceAll(sRes, CxConst::xNIX_SLASH, CxConst::xWIN_SLASH);
+    sRes = CxString::sReplaceAll(sRes, CxConst::xUNIX_SLASH, CxConst::xWIN_SLASH);
 
     return sRes;
 }
@@ -563,13 +563,12 @@ CxPath::sToUnix(
         sRes = sSlashRemove(csFilePath);
     }
 
-    sRes = CxString::sReplaceAll(sRes, CxConst::xWIN_SLASH, CxConst::xNIX_SLASH);
+    sRes = CxString::sReplaceAll(sRes, CxConst::xWIN_SLASH, CxConst::xUNIX_SLASH);
 
     return sRes;
 }
 //--------------------------------------------------------------------------
 /*static*/
-//TODO: make test
 std::tstring_t
 CxPath::sToCurrentOs(
     const std::tstring_t &csFilePath,
@@ -587,7 +586,11 @@ CxPath::sToCurrentOs(
         sRes = sSlashRemove(csFilePath);
     }
 
-    sRes = CxString::sReplaceAll(sRes, CxConst::xWIN_SLASH, CxConst::xSLASH);
+#if   xOS_ENV_WIN
+    sRes = CxString::sReplaceAll(sRes, CxConst::xUNIX_SLASH, CxConst::xSLASH);
+#elif xOS_ENV_UNIX
+    sRes = CxString::sReplaceAll(sRes, CxConst::xWIN_SLASH,  CxConst::xSLASH);
+#endif
 
     return sRes;
 }
@@ -685,7 +688,7 @@ CxPath::sGetShort(
             size_t uiIndex = 0;
 
             for ( ; ; ) {
-                size_t uiPos = cStr.find(CxConst::xSLASH);
+                size_t uiPos = cStr.find_first_of(CxConst::xWIN_SLASH + CxConst::xUNIX_SLASH);
 
                 cStr.erase(0, uiPos + CxConst::xSLASH.size());
 
@@ -721,6 +724,8 @@ CxPath::sGetShort(
 
         -- uiNum;
     }
+
+    sRes = sToCurrentOs(sRes, false);
 
     return sRes;
 }

@@ -119,7 +119,7 @@ CxDir::bIsRoot(
 
     bool bRes1 = CxChar::bIsAlpha(csDirPath.at(0));
     bool bRes2 = (csDirPath.at(1) == CxConst::xCOLON.at(0));
-    bool bRes3 = (csDirPath.at(2) == CxConst::xWIN_SLASH.at(0) || csDirPath.at(2) == CxConst::xNIX_SLASH.at(0));
+    bool bRes3 = (csDirPath.at(2) == CxConst::xWIN_SLASH.at(0) || csDirPath.at(2) == CxConst::xUNIX_SLASH.at(0));
 
     xCHECK_RET(false == bRes1 || false == bRes2 || false == bRes3, false);
 #elif xOS_ENV_UNIX
