@@ -27,7 +27,7 @@ CxTest_CxErrorReport::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         CxErrorReport rpReport(CxErrorReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("Simple comment: %s"), xT("comment"));
-        m_sRes = rpReport.sGetReport();
+        m_sRes = rpReport.m_sReport;
         //xTRACE(m_sRes);
     }
 
@@ -36,7 +36,7 @@ CxTest_CxErrorReport::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         CxErrorReport rpReport(CxErrorReport::rtMsgboxPlain, xT("Expression"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), std::tstring_t(xT("Simple comment")));
-        m_sRes = rpReport.sGetReport();
+        m_sRes = rpReport.m_sReport;
         //xTRACE(m_sRes);
     }
 

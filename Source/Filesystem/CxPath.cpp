@@ -547,7 +547,7 @@ CxPath::sToWin(
 //--------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxPath::sToNix(
+CxPath::sToUnix(
     const std::tstring_t &csFilePath,
     const bool            cbIsSlashAtEnd
 )

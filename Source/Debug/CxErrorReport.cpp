@@ -38,25 +38,25 @@ CxErrorReport::CxErrorReport(
     const std::tstring_t &csStackTrace,
     const std::tstring_t &csComment
 ) :
-    _m_rtType         (rtUnknown),
-    _m_sReport        (),
-    _m_sProgram       (),
-    _m_ulProcessId    (0UL),
-    _m_ulThreadId     (0UL),
-    _m_sFileSize      (),
-    _m_sSourceFile    (),
-    _m_ulSourceLine   (0UL),
-    _m_sFunctionName  (),
-    _m_sExpression    (),
-    _m_ulLastError    (0UL),
-    _m_sLastErrorStr  (),
-    _m_sCurrentDate   (),
-    _m_sBuildDate     (),
-    _m_sBuildType     (),
-    _m_sOsVersion     (),
-    _m_sOsArchitecture(),
-    _m_sStackTrace    (),
-    _m_sComment       ()
+    m_rtType         (rtUnknown),
+    m_sReport        (),
+    m_sProgram       (),
+    m_ulProcessId    (0UL),
+    m_ulThreadId     (0UL),
+    m_sFileSize      (),
+    m_sSourceFile    (),
+    m_ulSourceLine   (0UL),
+    m_sFunctionName  (),
+    m_sExpression    (),
+    m_ulLastError    (0UL),
+    m_sLastErrorStr  (),
+    m_sCurrentDate   (),
+    m_sBuildDate     (),
+    m_sBuildType     (),
+    m_sOsVersion     (),
+    m_sOsArchitecture(),
+    m_sStackTrace    (),
+    m_sComment       ()
 {
     /*DEBUG*/
 
@@ -86,25 +86,25 @@ CxErrorReport::CxErrorReport(
     const std::tstring_t &csStackTrace,
     const tchar_t        *pcszComment, ...
 ) :
-    _m_rtType         (rtUnknown),
-    _m_sReport        (),
-    _m_sProgram       (),
-    _m_ulProcessId    (0UL),
-    _m_ulThreadId     (0UL),
-    _m_sFileSize      (),
-    _m_sSourceFile    (),
-    _m_ulSourceLine   (0UL),
-    _m_sFunctionName  (),
-    _m_sExpression    (),
-    _m_ulLastError    (0),
-    _m_sLastErrorStr  (),
-    _m_sCurrentDate   (),
-    _m_sBuildDate     (),
-    _m_sBuildType     (),
-    _m_sOsVersion     (),
-    _m_sOsArchitecture(),
-    _m_sStackTrace    (),
-    _m_sComment       ()
+    m_rtType         (rtUnknown),
+    m_sReport        (),
+    m_sProgram       (),
+    m_ulProcessId    (0UL),
+    m_ulThreadId     (0UL),
+    m_sFileSize      (),
+    m_sSourceFile    (),
+    m_ulSourceLine   (0UL),
+    m_sFunctionName  (),
+    m_sExpression    (),
+    m_ulLastError    (0),
+    m_sLastErrorStr  (),
+    m_sCurrentDate   (),
+    m_sBuildDate     (),
+    m_sBuildType     (),
+    m_sOsVersion     (),
+    m_sOsArchitecture(),
+    m_sStackTrace    (),
+    m_sComment       ()
 {
     /*DEBUG*/
 
@@ -134,139 +134,7 @@ CxErrorReport::~CxErrorReport() {
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-CxErrorReport::EType
-CxErrorReport::rtGetType() const {
-    /*DEBUG*/
 
-    return _m_rtType;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetReport() const {
-    /*DEBUG*/
-
-    return _m_sReport;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetProgram() const {
-    /*DEBUG*/
-
-    return _m_sProgram;
-}
-//---------------------------------------------------------------------------
-ulong_t
-CxErrorReport::ulGetProcessId() const {
-    /*DEBUG*/
-
-    return _m_ulProcessId;
-}
-//---------------------------------------------------------------------------
-ulong_t
-CxErrorReport::ulGetThreadId() const {
-    /*DEBUG*/
-
-    return _m_ulThreadId;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetFileSize() const {
-    /*DEBUG*/
-
-    return _m_sFileSize;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetSourceFile() const {
-    /*DEBUG*/
-
-    return _m_sSourceFile;
-}
-//---------------------------------------------------------------------------
-ulong_t
-CxErrorReport::ulGetSourceLine() const {
-    /*DEBUG*/
-
-    return _m_ulSourceLine;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetFunctionName() const {
-    /*DEBUG*/
-
-    return _m_sFunctionName;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetExpression() const {
-    /*DEBUG*/
-
-    return _m_sExpression;
-}
-//---------------------------------------------------------------------------
-ulong_t
-CxErrorReport::ulGetLastError() const {
-    /*DEBUG*/
-
-    return _m_ulLastError;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetLastErrorStr() const {
-    /*DEBUG*/
-
-    return _m_sLastErrorStr;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetCurrentDate() const {
-    /*DEBUG*/
-
-    return _m_sCurrentDate;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetBuildDate() const {
-    /*DEBUG*/
-
-    return _m_sBuildDate;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetBuildType() const {
-    /*DEBUG*/
-
-    return _m_sBuildType;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetOsVersion() const {
-    /*DEBUG*/
-
-    return _m_sOsVersion;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetOsArchitecture() const {
-    /*DEBUG*/
-
-    return _m_sOsArchitecture;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetComment() const {
-    /*DEBUG*/
-
-    return _m_sComment;
-}
-//---------------------------------------------------------------------------
-const std::tstring_t &
-CxErrorReport::sGetStackTrace() const {
-    /*DEBUG*/
-
-    return _m_sStackTrace;
-}
-//---------------------------------------------------------------------------
 
 /****************************************************************************
 *    private
@@ -290,50 +158,50 @@ CxErrorReport::_bInitVars(
 {
     /*DEBUG*/
 
-    _m_rtType          = crtType;
+    m_rtType          = crtType;
 
 #if 1
-    _m_sProgram        = CxPath::sGetShort(CxPath::sGetExe(), 35);
-    _m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
-    _m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
-    _m_sFileSize       = CxString::sFormatBytes( static_cast<ulonglong_t>( CxFile::llGetSize(CxPath::sGetExe())) );
+    m_sProgram        = CxPath::sToUnix( CxPath::sGetShort(CxPath::sGetExe(), 50), false );
+    m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
+    m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
+    m_sFileSize       = CxString::sFormatBytes( static_cast<ulonglong_t>( CxFile::llGetSize(CxPath::sGetExe())) );
 
-    _m_sSourceFile     = CxPath::sGetShort(csFile, 35);
-    _m_ulSourceLine    = culLine;
-    _m_sFunctionName   = csFunc;
-    _m_sExpression     = csExp;
-    _m_ulLastError     = culLastError;
-    _m_sLastErrorStr   = CxLastError::sFormat(culLastError);
+    m_sSourceFile     = CxPath::sToUnix( CxPath::sGetShort(csFile, 50), false );
+    m_ulSourceLine    = culLine;
+    m_sFunctionName   = csFunc;
+    m_sExpression     = csExp;
+    m_ulLastError     = culLastError;
+    m_sLastErrorStr   = CxLastError::sFormat(culLastError);
 
-    _m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
-    _m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
-    _m_sBuildType      = (true == CxDebugger::bIsDebugBuild()) ? xT("debug") : xT("release");
-    _m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
-    _m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
+    m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
+    m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
+    m_sBuildType      = (true == CxDebugger::bIsDebugBuild()) ? xT("debug") : xT("release");
+    m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
+    m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
-    _m_sStackTrace     = csStackTrace;
-    _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
+    m_sStackTrace     = csStackTrace;
+    m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #else
-    _m_sProgram        = xT("");
-    _m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
-    _m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
-    _m_sFileSize       = xT("");
+    m_sProgram        = xT("");
+    m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
+    m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
+    m_sFileSize       = xT("");
 
-    _m_sSourceFile     = csFile;
-    _m_ulSourceLine    = culLine;
-    _m_sFunctionName   = csFunc;
-    _m_sExpression     = csExp;
-    _m_ulLastError     = culLastError;
-    _m_sLastErrorStr   = CxLastError::sFormat(culLastError);
+    m_sSourceFile     = csFile;
+    m_ulSourceLine    = culLine;
+    m_sFunctionName   = csFunc;
+    m_sExpression     = csExp;
+    m_ulLastError     = culLastError;
+    m_sLastErrorStr   = CxLastError::sFormat(culLastError);
 
-    _m_sCurrentDate    = xT("");
-    _m_sBuildDate      = xT("");
-    _m_sBuildType      = xT("");
-    _m_sOsVersion      = xT("");
-    _m_sOsArchitecture = xT("");
+    m_sCurrentDate    = xT("");
+    m_sBuildDate      = xT("");
+    m_sBuildType      = xT("");
+    m_sOsVersion      = xT("");
+    m_sOsArchitecture = xT("");
 
-    _m_sStackTrace     = csStackTrace;
-    _m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
+    m_sStackTrace     = csStackTrace;
+    m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #endif
 
     return true;
@@ -341,7 +209,7 @@ CxErrorReport::_bInitVars(
 //---------------------------------------------------------------------------
 bool
 CxErrorReport::_bInitPlain() {
-    _m_sReport = CxString::sFormat(
+    m_sReport = CxString::sFormat(
         xT("%s\n")        //CxErrorReport
         xT("\n")
 
@@ -370,32 +238,32 @@ CxErrorReport::_bInitPlain() {
 
         xT("CxErrorReport    "),
 
-        xT("Program:         "), sGetProgram().c_str(),
-        xT("Process id:      "), ulGetProcessId(),
-        xT("Thread id:       "), ulGetThreadId(),
-        xT("File size:       "), sGetFileSize().c_str(),
+        xT("Program:         "), m_sProgram.c_str(),
+        xT("Process id:      "), m_ulProcessId,
+        xT("Thread id:       "), m_ulThreadId,
+        xT("File size:       "), m_sFileSize.c_str(),
 
-        xT("Source file:     "), sGetSourceFile().c_str(),
-        xT("Source line:     "), ulGetSourceLine(),
-        xT("Function name:   "), sGetFunctionName().c_str(),
-        xT("Expression:      "), sGetExpression().c_str(),
-        xT("Last error:      "), sGetLastErrorStr().c_str(),
+        xT("Source file:     "), m_sSourceFile.c_str(),
+        xT("Source line:     "), m_ulSourceLine,
+        xT("Function name:   "), m_sFunctionName.c_str(),
+        xT("Expression:      "), m_sExpression.c_str(),
+        xT("Last error:      "), m_sLastErrorStr.c_str(),
 
-        xT("Current date:    "), sGetCurrentDate().c_str(),
-        xT("Build date:      "), sGetBuildDate().c_str(),
-        xT("Build type:      "), sGetBuildType().c_str(),
-        xT("OS version:      "), sGetOsVersion().c_str(),
-        xT("OS architecture: "), sGetOsArchitecture().c_str(),
-        xT("Stack trace:     "), sGetStackTrace().c_str(),
+        xT("Current date:    "), m_sCurrentDate.c_str(),
+        xT("Build date:      "), m_sBuildDate.c_str(),
+        xT("Build type:      "), m_sBuildType.c_str(),
+        xT("OS version:      "), m_sOsVersion.c_str(),
+        xT("OS architecture: "), m_sOsArchitecture.c_str(),
+        xT("Stack trace:     "), m_sStackTrace.c_str(),
 
-        xT("Comment:         "), sGetComment().c_str());
+        xT("Comment:         "), m_sComment.c_str());
 
     return true;
 }
 //---------------------------------------------------------------------------
 bool
 CxErrorReport::_bInitHtml() {
-    _m_sReport = CxString::sFormat(
+    m_sReport = CxString::sFormat(
         xT("<pre>")
         xT("<b><u>%s</u></b>\n") //CxErrorReport
         xT("\n")
@@ -425,25 +293,25 @@ CxErrorReport::_bInitHtml() {
         xT("</pre>"),
 
         xT("CxErrorReport    "),
-        xT("Program:         "), sGetProgram().c_str(),
-        xT("Process id:      "), ulGetProcessId(),
-        xT("Thread id:       "), ulGetThreadId(),
-        xT("File size:       "), sGetFileSize().c_str(),
+        xT("Program:         "), m_sProgram.c_str(),
+        xT("Process id:      "), m_ulProcessId,
+        xT("Thread id:       "), m_ulThreadId,
+        xT("File size:       "), m_sFileSize.c_str(),
 
-        xT("Source file:     "), sGetSourceFile().c_str(),
-        xT("Source line:     "), ulGetSourceLine(),
-        xT("Function name:   "), sGetFunctionName().c_str(),
-        xT("Expression:      "), sGetExpression().c_str(),
-        xT("Last error:      "), sGetLastErrorStr().c_str(),
+        xT("Source file:     "), m_sSourceFile.c_str(),
+        xT("Source line:     "), m_ulSourceLine,
+        xT("Function name:   "), m_sFunctionName.c_str(),
+        xT("Expression:      "), m_sExpression.c_str(),
+        xT("Last error:      "), m_sLastErrorStr.c_str(),
 
-        xT("Current date:    "), sGetCurrentDate().c_str(),
-        xT("Build date:      "), sGetBuildDate().c_str(),
-        xT("Build type:      "), sGetBuildType().c_str(),
-        xT("OS version:      "), sGetOsVersion().c_str(),
-        xT("OS architecture: "), sGetOsArchitecture().c_str(),
-        xT("Stack trace:     "), sGetStackTrace().c_str(),
+        xT("Current date:    "), m_sCurrentDate.c_str(),
+        xT("Build date:      "), m_sBuildDate.c_str(),
+        xT("Build type:      "), m_sBuildType.c_str(),
+        xT("OS version:      "), m_sOsVersion.c_str(),
+        xT("OS architecture: "), m_sOsArchitecture.c_str(),
+        xT("Stack trace:     "), m_sStackTrace.c_str(),
 
-        xT("Comment:         "), sGetComment().c_str());
+        xT("Comment:         "), m_sComment.c_str());
 
     return true;
 }
@@ -451,7 +319,7 @@ CxErrorReport::_bInitHtml() {
 bool
 CxErrorReport::_bInitFormated() {
 #if xOS_ENV_WIN
-    _m_sReport = CxString::sFormat(
+    m_sReport = CxString::sFormat(
         xT("{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}{\\f1\\fnil DejaVu Sans Mono;}{\\f2\\fswiss\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f3\\fswiss\\fprq2\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f4\\fswiss\\fprq2\\fcharset0 Arial;}}")
         xT("{\\colortbl ;\\red255\\green0\\blue0;\\red0\\green0\\blue0;\\red255\\green0\\blue255;\\red0\\green255\\blue255;\\red255\\green255\\blue0;}")
         xT("\\viewkind4\\uc1\\pard\\lang1033\\ul\\b\\f0\\fs20 %s\\cf1\\lang1049\\ulnone\\b0\\f1\\fs16\\par")
@@ -479,28 +347,28 @@ CxErrorReport::_bInitFormated() {
 
         xT("CxErrorReport "),
 
-        xT("Program:         "), sGetProgram().c_str(),
-        xT("Process id:      "), ulGetProcessId(),
-        xT("Thread id:       "), ulGetThreadId(),
-        xT("File size:       "), sGetFileSize().c_str(),
+        xT("Program:         "), m_sProgram.c_str(),
+        xT("Process id:      "), m_ulProcessId,
+        xT("Thread id:       "), m_ulThreadId,
+        xT("File size:       "), m_sFileSize.c_str(),
 
-        xT("Source file:     "), sGetSourceFile().c_str(),
-        xT("Source line:     "), ulGetSourceLine(),
-        xT("Function name:   "), sGetFunctionName().c_str(),
-        xT("Expression:      "), sGetExpression().c_str(),
-        xT("Last error:      "), sGetLastErrorStr().c_str(),
+        xT("Source file:     "), m_sSourceFile.c_str(),
+        xT("Source line:     "), m_ulSourceLine,
+        xT("Function name:   "), m_sFunctionName.c_str(),
+        xT("Expression:      "), m_sExpression.c_str(),
+        xT("Last error:      "), m_sLastErrorStr.c_str(),
 
-        xT("Current date:    "), sGetCurrentDate().c_str(),
-        xT("Build date:      "), sGetBuildDate().c_str(),
-        xT("Build type:      "), sGetBuildType().c_str(),
-        xT("OS version:      "), sGetOsVersion().c_str(),
-        xT("OS architecture: "), sGetOsArchitecture().c_str(),
+        xT("Current date:    "), m_sCurrentDate.c_str(),
+        xT("Build date:      "), m_sBuildDate.c_str(),
+        xT("Build type:      "), m_sBuildType.c_str(),
+        xT("OS version:      "), m_sOsVersion.c_str(),
+        xT("OS architecture: "), m_sOsArchitecture.c_str(),
 
-        xT("Stack trace:     "), sGetStackTrace().c_str(),
-        xT("Comment:         "), sGetComment().c_str()
+        xT("Stack trace:     "), m_sStackTrace.c_str(),
+        xT("Comment:         "), m_sComment.c_str()
     );
 #elif xOS_ENV_UNIX
-    _m_sReport = CxString::sFormat(
+    m_sReport = CxString::sFormat(
         xT("%s\n")        //CxErrorReport
         xT("#  \n")
 
@@ -530,25 +398,25 @@ CxErrorReport::_bInitFormated() {
 
         xT("#  CxErrorReport    "),
 
-        xT("#  Program:         "), sGetProgram().c_str(),
-        xT("#  Process id:      "), ulGetProcessId(),
-        xT("#  Thread id:       "), ulGetThreadId(),
-        xT("#  File size:       "), sGetFileSize().c_str(),
+        xT("#  Program:         "), m_sProgram.c_str(),
+        xT("#  Process id:      "), m_ulProcessId,
+        xT("#  Thread id:       "), m_ulThreadId,
+        xT("#  File size:       "), m_sFileSize.c_str(),
 
-        xT("#  Source file:     "), CxConsole().bSetTextColor( sGetSourceFile(),                          CxConsole::fgWhite,   true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Source line:     "), CxConsole().bSetTextColor( CxString::lexical_cast(ulGetSourceLine()), CxConsole::fgMagenta, true, true,  CxConsole::bgBlack, false ).c_str(),
-        xT("#  Function name:   "), CxConsole().bSetTextColor( sGetFunctionName(),                        CxConsole::fgCyan,    true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Expression:      "), CxConsole().bSetTextColor( sGetExpression(),                          CxConsole::fgYellow,  true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Last error:      "), CxConsole().bSetTextColor( sGetLastErrorStr(),                        CxConsole::fgRed,     true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Source file:     "), CxConsole().bSetTextColor( m_sSourceFile,                          CxConsole::fgWhite,   true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Source line:     "), CxConsole().bSetTextColor( CxString::lexical_cast(m_ulSourceLine), CxConsole::fgMagenta, true, true,  CxConsole::bgBlack, false ).c_str(),
+        xT("#  Function name:   "), CxConsole().bSetTextColor( m_sFunctionName,                        CxConsole::fgCyan,    true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Expression:      "), CxConsole().bSetTextColor( m_sExpression,                          CxConsole::fgYellow,  true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Last error:      "), CxConsole().bSetTextColor( m_sLastErrorStr,                        CxConsole::fgRed,     true, false, CxConsole::bgBlack, false ).c_str(),
 
-        xT("#  Current date:    "), sGetCurrentDate().c_str(),
-        xT("#  Build date:      "), sGetBuildDate().c_str(),
-        xT("#  Build type:      "), sGetBuildType().c_str(),
-        xT("#  OS version:      "), sGetOsVersion().c_str(),
-        xT("#  OS architecture: "), sGetOsArchitecture().c_str(),
-        xT("#  Stack trace:     "), sGetStackTrace().c_str(),
+        xT("#  Current date:    "), m_sCurrentDate.c_str(),
+        xT("#  Build date:      "), m_sBuildDate.c_str(),
+        xT("#  Build type:      "), m_sBuildType.c_str(),
+        xT("#  OS version:      "), m_sOsVersion.c_str(),
+        xT("#  OS architecture: "), m_sOsArchitecture.c_str(),
+        xT("#  Stack trace:     "), m_sStackTrace.c_str(),
 
-        xT("#  Comment:         "), CxConsole().bSetTextColor( sGetComment(),                             CxConsole::fgYellow_, false, false, CxConsole::bgBlue,  false ).c_str()
+        xT("#  Comment:         "), CxConsole().bSetTextColor( m_sComment,                             CxConsole::fgYellow_, false, false, CxConsole::bgBlue,  false ).c_str()
     );
 #endif
 

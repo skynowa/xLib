@@ -8,7 +8,7 @@
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MS
-        #pragma comment(lib, "WS2_32.Lib")
+        #pragma comment(lib, "ws2_32.Lib")
     #endif
 #elif xOS_ENV_UNIX
     // n/a
