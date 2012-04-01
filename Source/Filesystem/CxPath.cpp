@@ -848,12 +848,17 @@ CxPath::sGetProcValue(
     const std::tstring_t &csData        ///< target search data string
 )
 {
-    bool bRes = CxDir::bIsExists(xT("/proc/"));
-    if (false == bRes) {
-	    /*DEBUG*/xASSERT_MSG(false, xT("Proc dir not mount"));
+    // check for existance "/proc/" directory
+    {
+        bool bRes = false;
 
-        return std::tstring_t();
+        bRes = CxDir::bIsExists(xT("/proc/"));
+        xCHECK_MSG_RET(false == bRes, xT("Proc dir not mount"), std::tstring_t());
+
+        bRes = CxDir::bIsEmpty(xT("/proc/"));
+        xCHECK_MSG_RET(false == bRes, xT("Proc dir is empty"),  std::tstring_t());
     }
+
 
     std::tstring_t sRes;
 
