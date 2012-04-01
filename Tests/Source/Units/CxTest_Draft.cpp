@@ -6,6 +6,9 @@
 
 #include <Test/Units/CxTest_Draft.h>
 
+#include <xLib/Filesystem/CxFile.h>
+
+
 
 //---------------------------------------------------------------------------
 CxTest_Draft::CxTest_Draft() {
@@ -139,6 +142,16 @@ CxTest_Draft::bUnit(
         #if 0
             xASSERT(false);
         #endif
+    }
+
+    //--------------------------------------------------
+    //bAccess
+    xTEST_CASE(cullCaseLoops)
+    {
+    #if 0
+        m_bRes = CxFile::bAccess(xT("G:"), CxFile::amWrite);
+        xTEST_EQ(false, m_bRes);
+    #endif
     }
 
     return true;

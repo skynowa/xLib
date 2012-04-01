@@ -179,7 +179,7 @@ CxErrorReport::_bInitVars(
     m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
-    m_sStackTrace     = csStackTrace;
+    m_sStackTrace     = csStackTrace; 
     m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #else
     m_sProgram        = xT("");
