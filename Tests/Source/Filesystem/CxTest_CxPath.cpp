@@ -740,14 +740,14 @@ CxTest_CxPath::bUnit(
             #if   xOS_ENV_WIN
                 std::tstring_t sFilePath = xT("C:\\Test.txt");
             #elif xOS_ENV_UNIX
-                std::tstring_t sFilePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
+                std::tstring_t sFilePath = xT("/home/filename");
             #endif
 
 	        m_sRes = CxPath::sGetShort(sFilePath, 200);
             #if   xOS_ENV_WIN
                 xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRes);
             #elif xOS_ENV_UNIX
-                xTEST_EQ(std::tstring_t(xT("/.../filename")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("/home/filename")), m_sRes);
             #endif
         }
 
@@ -770,7 +770,11 @@ CxTest_CxPath::bUnit(
             std::tstring_t sFilePath = xT("D:/xVCL\\Include/xVCL\\Units/Gui/Tools/LoadDrives.cpp");
 
 	        m_sRes = CxPath::sGetShort(sFilePath, 15);
-            xTEST_EQ(std::tstring_t(xT("D:\\...\\LoadDrives.cpp")), m_sRes);
+            #if defined(xOS_ENV_WIN)
+                xTEST_EQ(std::tstring_t(xT("D:\\...\\LoadDrives.cpp")), m_sRes);
+            #elif defined(xOS_ENV_UNIX)
+                xTEST_EQ(std::tstring_t(xT("D:/.../LoadDrives.cpp")), m_sRes);
+            #endif
         }
     }
 
