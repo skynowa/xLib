@@ -25,7 +25,7 @@ CxTest_CxProcess::bUnit(
 )
 {
     //--------------------------------------------------
-    //bExec
+    // bExec
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
@@ -41,7 +41,7 @@ CxTest_CxProcess::bUnit(
     }
 
     //--------------------------------------------------
-    //bExit
+    // TODO: bExit
     xTEST_CASE(cullCaseLoops)
     {
         ////m_bRes = CxProcess::bExit(CxProcess::ulGetCurrParentId(), 0);
@@ -49,7 +49,15 @@ CxTest_CxProcess::bUnit(
     }
 
     //--------------------------------------------------
-    //bTerminate
+    // TODO: ulWait
+    xTEST_CASE(cullCaseLoops)
+    {
+        //m_bRes = CxProcess::ulWait();
+        //xTEST_EQ(true, m_bRes);
+    }
+
+    //--------------------------------------------------
+    // TODO: bTerminate
     xTEST_CASE(cullCaseLoops)
     {
         //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
@@ -57,7 +65,7 @@ CxTest_CxProcess::bUnit(
     }
 
     //--------------------------------------------------
-    //ulGetIdByHandle
+    // ulGetIdByHandle
     xTEST_CASE(cullCaseLoops)
     {
         CxProcess::TxId ulId = CxProcess::ulGetIdByHandle( CxCurrentProcess::hGetHandle() );
@@ -65,7 +73,7 @@ CxTest_CxProcess::bUnit(
     }
 
     //--------------------------------------------------
-    //ulGetHandleById
+    // ulGetHandleById
     xTEST_CASE(cullCaseLoops)
     {
         CxProcess::TxHandle hHandle = CxProcess::ulGetHandleById( CxCurrentProcess::ulGetId() );

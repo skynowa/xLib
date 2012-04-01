@@ -93,6 +93,35 @@ CxProcess::bExit(
     return true;
 }
 //---------------------------------------------------------------------------
+ulong_t
+CxProcess::ulWait(
+    const TxId    culPid,
+    const ulong_t culTimeout
+)
+{
+    ulong_t ulStatus = 0UL;
+
+#if xOS_ENV_WIN
+    DWORD ulRes = ::WaitForSingleObject(ulGetHandleById(culPid), culTimeout);
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, 0UL);
+
+    ulStatus = ulRes;
+#elif xOS_ENV_UNIX
+    pid_t liRes   = - 1;
+    int   iStatus = 0;
+
+    do {
+        liRes = ::waitpid(culPid, &iStatus, 0);
+    }
+    while (liRes < 0 && errno == EINTR);
+    /*DEBUG*/xASSERT_RET(liRes == culPid, 0UL);
+
+    ulStatus = WEXITSTATUS(iStatus);
+#endif
+
+    return ulStatus;
+}
+//---------------------------------------------------------------------------
 /*static*/
 bool
 CxProcess::bTerminate(
