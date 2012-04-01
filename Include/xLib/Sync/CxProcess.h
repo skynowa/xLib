@@ -29,6 +29,8 @@ class CxProcess :
             ///< execute a file
         static bool     bExit          (const TxId culPid, const uint_t cuiExitCode);
             ///< ends the calling process and all its threads
+        static ulong_t  ulWait         (const TxId culPid, const ulong_t culTimeout);
+            ///< wait for termonation
         static bool     bTerminate     (const TxId culPid);
             ///< kills the calling process and all of its threads
 
