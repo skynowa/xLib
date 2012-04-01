@@ -132,10 +132,9 @@ CxDebugger::bReportMake(
 {
     //-------------------------------------
     //never corrupt the last error value
-    const ulong_t culLastError = crpReport.m_ulLastError;
+    const ulong_t culLastError = CxLastError::ulGet();
 
-    CxErrorReport::EType rtRes = crpReport.m_rtType;
-    switch (rtRes) {
+    switch (crpReport.m_rtType) {
         case CxErrorReport::rtMsgboxPlain:    { _bMsgboxPlain   (crpReport); } break;
         case CxErrorReport::rtMsgboxFormated: { _bMsgboxFormated(crpReport); } break;
         case CxErrorReport::rtStdoutPlain:    { _bStdoutPlain   (crpReport); } break;

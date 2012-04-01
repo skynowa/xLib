@@ -57,6 +57,9 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="xLib/Source/Net/CxSmtp.cpp|xLib/Source/Net/CxPop3.cpp|xLib/Source/Db/CxMySql.cpp|Tests/Source/Db/CxTest_CxMySql.cpp|Tests/Source/Crypt/CxTest_CxBlowfish.cpp|Tests/Source/Crypt/CxTest_CxBase64.cpp|xLib/Source/Crypt/OpenSSL" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -115,6 +118,9 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="xLib/Source/Net/CxSmtp.cpp|xLib/Source/Net/CxPop3.cpp|xLib/Source/Db/CxMySql.cpp|Tests/Source/Db/CxTest_CxMySql.cpp|Tests/Source/Crypt/CxTest_CxBlowfish.cpp|Tests/Source/Crypt/CxTest_CxBase64.cpp|xLib/Source/Crypt/OpenSSL" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
