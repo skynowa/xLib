@@ -856,7 +856,7 @@ CxPath::sGetProcValue(
         xCHECK_MSG_RET(false == bRes, xT("Proc dir not mount"), std::tstring_t());
 
         bRes = CxDir::bIsEmpty(xT("/proc/"));
-        xCHECK_MSG_RET(false == bRes, xT("Proc dir is empty"),  std::tstring_t());
+        xCHECK_MSG_RET(true == bRes, xT("Proc dir is empty"),  std::tstring_t());
     }
 
 
