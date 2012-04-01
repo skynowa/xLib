@@ -67,7 +67,6 @@ class CxPath :
         static std::tstring_t sRemoveExtIf    (const std::tstring_t &csFilePath, const std::tstring_t &csExt);
             ///< remove extension if it equal some string
 
-        //normalize
         static bool           bIsValid        (const std::tstring_t &csFilePath);
             ///< path validation
         static bool           bIsNameValid    (const std::tstring_t &csFilePath);
