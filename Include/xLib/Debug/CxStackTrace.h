@@ -29,12 +29,7 @@ class CxStackTrace :
             ///< get stack trace
 
     private:
-    #if xOS_ENV_WIN
-        static const ulong_t _m_culMaxFrames = 62UL;    //from MSDN, ::CaptureStackBackTrace
-    #elif xOS_ENV_UNIX
-        static const int     _m_culMaxFrames = 256;     //this should be enough
-    #endif
-            ///< maximum frames for report
+
 };
 
 xNAMESPACE_END(NxLib)

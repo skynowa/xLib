@@ -55,16 +55,16 @@ CxStackTrace::bGet(
     #if   xCOMPILER_MINGW32
         //TODO: CxStackTrace::bGet
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
-        void        *pvStack[_m_culMaxFrames] = {0};
-        SYMBOL_INFO *psiSymbol                = NULL;
-        HANDLE       hProcess                 = NULL;
+        void        *pvStack[xFRAMES_MAX] = {0};
+        SYMBOL_INFO *psiSymbol            = NULL;
+        HANDLE       hProcess             = NULL;
 
         hProcess = CxCurrentProcess::hGetHandle();
 
         BOOL blRes = ::SymInitialize(hProcess, NULL, true);
         xCHECK_RET(FALSE == blRes, false);
 
-        ushort_t usFramesNum = ::CaptureStackBackTrace(0UL, _m_culMaxFrames, pvStack, NULL);
+        ushort_t usFramesNum = ::CaptureStackBackTrace(0UL, xFRAMES_MAX, pvStack, NULL);
         xCHECK_RET(usFramesNum == 0U, false);
 
         psiSymbol               = new SYMBOL_INFO [ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
@@ -93,9 +93,9 @@ CxStackTrace::bGet(
         (void)::SymCleanup(hProcess);
     #endif
 #elif xOS_ENV_UNIX
-    void *pvStack[_m_culMaxFrames] = {0};
+    void *pvStack[xFRAMES_MAX] = {0};
 
-    int iFramesNum = ::backtrace(pvStack, _m_culMaxFrames);
+    int iFramesNum = ::backtrace(pvStack, xFRAMES_MAX);
     xCHECK_RET(iFramesNum <= 0, false);
 
     tchar_t **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);

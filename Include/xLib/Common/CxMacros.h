@@ -269,13 +269,20 @@
     #if   xCOMPILER_MS
         #define xENV_MAX            _MAX_ENV
     #else
-        #define xENV_MAX            32767 //custom define
+        #define xENV_MAX            32767 // custom define
     #endif
 #elif xOS_ENV_UNIX
-    #define xENV_MAX                32767 //custom define
+    #define xENV_MAX                32767 // custom define
 #endif
     ///< maximum permissible string length of an environmental variable
 
+// xFRAMES_MAX
+#if   xOS_ENV_WIN
+    #define xFRAMES_MAX             62UL    // from MSDN, ::CaptureStackBackTrace
+#elif xOS_ENV_UNIX
+    #define xFRAMES_MAX             256     // custom define, this should be enough
+#endif
+    ///< maximum frames for stack trace
 
 // var args
 #if defined(va_start)
