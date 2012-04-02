@@ -25,27 +25,25 @@ CxTest_CxProcess::bUnit(
 )
 {
     //--------------------------------------------------
-    // bExec
+    // bCreate, ulWait
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
             const std::tstring_t csFilePath = xT("explorer.exe");
             const std::tstring_t csCmdLine  = xT("");
         #elif xOS_ENV_UNIX
-            const std::tstring_t csFilePath = xT("dolphin");
+            const std::tstring_t csFilePath = xT("nautilus");
             const std::tstring_t csCmdLine  = xT("");
         #endif
 
-        ////m_bRes = CxProcess::bExec(csFilePath, csCmdLine.c_str(), 0);
-        ////xTEST_EQ(true, m_bRes);
-    }
 
-    //--------------------------------------------------
-    // TODO: bExit
-    xTEST_CASE(cullCaseLoops)
-    {
-        ////m_bRes = CxProcess::bExit(CxProcess::ulGetCurrParentId(), 0);
-        ////xTEST_EQ(true, m_bRes);
+        CxProcess prProc;
+
+        m_bRes = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+        xTEST_EQ(true, m_bRes);
+
+        m_ulRes = prProc.ulWait(xTIMEOUT_INFINITE);
+        xTRACEV(xT("CxProcess::ulWait: %lu"), m_ulRes);
     }
 
     //--------------------------------------------------
@@ -57,10 +55,10 @@ CxTest_CxProcess::bUnit(
     }
 
     //--------------------------------------------------
-    // TODO: bTerminate
+    // TODO: bKill
     xTEST_CASE(cullCaseLoops)
     {
-        //m_bRes = CxProcess::bTerminate(CxProcess::ulGetCurrParentId());
+        //m_bRes = CxProcess::bKill();
         //xTEST_EQ(true, m_bRes);
     }
 

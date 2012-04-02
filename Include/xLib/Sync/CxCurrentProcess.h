@@ -22,6 +22,8 @@ class CxCurrentProcess :
             ///< process ID of the parent of the calling process
         static CxProcess::TxHandle hGetHandle      ();
             ///< get pseudo handle for the calling process
+        static bool                bExit           (const uint_t cuiExitCode);
+            ///< ends the calling process and all its threads
 
     private:
 				                   CxCurrentProcess();
