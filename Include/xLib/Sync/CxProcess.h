@@ -25,25 +25,41 @@ class CxProcess :
         typedef pid_t  TxId;     ///< ID
     #endif
 
-        static bool     bExec          (const std::tstring_t &csFilePath, const tchar_t *pcszCmdLine, ...);
+        enum EWaitResult {
+            #if   xOS_ENV_WIN
+                wrAbandoned = WAIT_ABANDONED,
+                wrObject0   = WAIT_OBJECT_0,
+                wrTimeout   = WAIT_TIMEOUT,
+                wrFailed    = WAIT_FAILED
+            #elif xOS_ENV_UNIX
+
+                wrFailed    = - 1
+            #endif
+        };
+
+
+                        CxProcess      ();
+        virtual        ~CxProcess      ();
+
+        bool            bCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszCmdLine, ...);
             ///< execute a file
-        static bool     bExit          (const TxId culPid, const uint_t cuiExitCode);
-            ///< ends the calling process and all its threads
-        static ulong_t  ulWait         (const TxId culPid, const ulong_t culTimeout);
+        EWaitResult     ulWait         (const ulong_t culTimeout);
             ///< wait for termonation
-        static bool     bTerminate     (const TxId culPid);
+        bool            bKill          ();
             ///< kills the calling process and all of its threads
 
-        //wait
-
-        static TxId     ulGetIdByHandle(const TxHandle &chHandle);
+        static TxId     ulGetIdByHandle(const TxHandle chHandle);
             ///< ge ID by handle
-        static TxHandle ulGetHandleById(const TxId &culId);
+        static TxHandle ulGetHandleById(const TxId culId);
             ///< ge handle by ID
 
     private:
-                        CxProcess      ();
-        virtual        ~CxProcess      ();
+        TxHandle        _m_hHandle;
+    #if xOS_ENV_WIN
+        HANDLE          _m_hThread;
+    #endif
+        TxId            _m_ulPid;
+
 };
 
 xNAMESPACE_END(NxLib)

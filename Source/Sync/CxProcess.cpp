@@ -23,10 +23,33 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//http://www-theorie.physik.unizh.ch/~dpotter/howto/daemonize
-/*static*/
+CxProcess::CxProcess() :
+    _m_hHandle(0),
+#if xOS_ENV_WIN
+    _m_hThread(NULL),
+#endif
+    _m_ulPid  (0UL)
+{
+
+}
+//---------------------------------------------------------------------------
+/*virtual*/
+CxProcess::~CxProcess() {
+#if xOS_ENV_WIN
+    BOOL blRes = FALSE;
+
+    blRes = ::CloseHandle(_m_hHandle);
+    /*DEBUG*/xASSERT(FALSE != blRes);
+
+    blRes = ::CloseHandle(_m_hThread);
+    /*DEBUG*/xASSERT(FALSE != blRes);
+#elif xOS_ENV_UNIX
+
+#endif
+}
+//---------------------------------------------------------------------------
 bool
-CxProcess::bExec(
+CxProcess::bCreate(
     const std::tstring_t &csFilePath,
     const tchar_t        *pcszCmdLine, ...
 )
@@ -38,7 +61,9 @@ CxProcess::bExec(
 
     va_list palArgs;
     xVA_START(palArgs, pcszCmdLine);
-    sCmdLine = CxString::sFormatV(pcszCmdLine, palArgs);
+
+    sCmdLine = csFilePath + CxString::sFormatV(pcszCmdLine, palArgs);
+
     xVA_END(palArgs);
 
 #if xOS_ENV_WIN
@@ -49,126 +74,85 @@ CxProcess::bExec(
     blRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    blRes = ::CloseHandle(piInfo.hThread);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
-
-    blRes = ::CloseHandle(piInfo.hProcess);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    _m_hHandle = piInfo.hProcess;
+    _m_hThread = piInfo.hThread;
+    _m_ulPid   = piInfo.dwProcessId;
 #elif xOS_ENV_UNIX
-    #if 0
-        int status;
+    pid_t liPid = ::fork();
+    /*DEBUG*/xASSERT_RET(- 1L == pdId, false);
 
-        pid_t pid = fork();
-        if (0 == pid) {
-            /* This is the child process.  Execute the shell command. */
-            execl (SHELL, SHELL, "-c", command, NULL);
-            _exit (EXIT_FAILURE);
-        }
-        else if (pid < 0) {
-            /* The fork failed.  Report failure.  */
-            status = -1;
-        }
-        else {
-            /* This is the parent process.  Wait for the child to complete.  */
-            if (waitpid (pid, &status, 0) != pid) {
-                status = - 1;
-            }
-        }
-
-        return status;
-    #endif
-
-    pid_t pdId = ::fork();
-    /*DEBUG*/xASSERT_RET(- 1 == pdId, false);
-
-    if (0L == pdId) {
-        //TODO: csFilePath is executable
+    if (0L == liPid) {
+        // TODO: csFilePath is executable
 
         int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
         /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
-        (void)::_exit(EXIT_FAILURE);  /* not exit() */
+        (void)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
+
+    _m_hHandle = liPid;
+    _m_ulPid   = liPid;
 #endif
 
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
-bool
-CxProcess::bExit(
-    const TxId   culPid,
-    const uint_t cuiExitCode
-)
-{
-    /*DEBUG*/
-
-#if xOS_ENV_WIN
-    (void)::ExitProcess(cuiExitCode);
-#elif xOS_ENV_UNIX
-    (void)::exit(static_cast<int>( cuiExitCode ));
-#endif
-
-    return true;
-}
-//---------------------------------------------------------------------------
-ulong_t
+// TODO: ulWait (not work)
+CxProcess::EWaitResult
 CxProcess::ulWait(
-    const TxId    culPid,
     const ulong_t culTimeout
 )
 {
-    ulong_t ulStatus = 0UL;
+    EWaitResult wrStatus = wrFailed;
 
 #if xOS_ENV_WIN
-    DWORD ulRes = ::WaitForSingleObject(ulGetHandleById(culPid), culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, 0UL);
+    DWORD ulRes = ::WaitForSingleObject(_m_hHandle, culTimeout);
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, static_cast<EWaitResult>( ulRes ));
 
-    ulStatus = ulRes;
+    wrStatus = static_cast<EWaitResult>( ulRes );
 #elif xOS_ENV_UNIX
     pid_t liRes   = - 1;
     int   iStatus = 0;
 
     do {
-        liRes = ::waitpid(culPid, &iStatus, 0);
+        liRes = ::waitpid(_m_ulPid, &iStatus, 0);
     }
     while (liRes < 0 && errno == EINTR);
-    /*DEBUG*/xASSERT_RET(liRes == culPid, 0UL);
+    /*DEBUG*/xASSERT_RET(liRes == _m_ulPid, static_cast<EWaitResult>( iStatus ));
 
-    ulStatus = WEXITSTATUS(iStatus);
+    wrStatus = WEXITSTATUS(iStatus);
 #endif
 
-    return ulStatus;
+    return wrStatus;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
-CxProcess::bTerminate(
-    const TxId culPid
-)
-{
+CxProcess::bKill() {
     /*DEBUG*/
 
 #if xOS_ENV_WIN
-    CxHandle hProcess;
-
-    hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, culPid);
-    /*DEBUG*/xASSERT_RET(NULL != hProcess.hGet(), false);
-
-    BOOL blRes = ::TerminateProcess(hProcess.hGet(), 0U);
+    BOOL blRes = ::TerminateProcess(_m_hHandle, 0U);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::kill(culPid, SIGKILL);
+    int iRes = ::kill(_m_ulPid, SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 #endif
 
     return true;
 }
 //---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    public, static
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
 /*static*/
 CxProcess::TxId
 CxProcess::ulGetIdByHandle(
-    const TxHandle &chHandle    ///< handle
+    const TxHandle chHandle    ///< handle
 )
 {
     TxId ulRes;
@@ -186,7 +170,7 @@ CxProcess::ulGetIdByHandle(
 /*static*/
 CxProcess::TxHandle
 CxProcess::ulGetHandleById(
-    const TxId &culId   ///< ID
+    const TxId culId   ///< ID
 )
 {
     TxHandle hRes;
@@ -199,23 +183,6 @@ CxProcess::ulGetHandleById(
 #endif
 
     return hRes;
-}
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    private
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-CxProcess::CxProcess() {
-
-}
-//---------------------------------------------------------------------------
-/*virtual*/
-CxProcess::~CxProcess() {
-
 }
 //---------------------------------------------------------------------------
 

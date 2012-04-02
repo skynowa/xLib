@@ -87,6 +87,7 @@ CxCurrentProcess::ulGetParentId() {
     return ulRes;
 }
 //---------------------------------------------------------------------------
+// TODO: tests
 /*static*/
 CxProcess::TxHandle
 CxCurrentProcess::hGetHandle() {
@@ -107,6 +108,24 @@ CxCurrentProcess::hGetHandle() {
 #endif
 
     return hRes;
+}
+//---------------------------------------------------------------------------
+// TODO: tests
+/*static*/
+bool
+CxCurrentProcess::bExit(
+    const uint_t cuiExitCode
+)
+{
+    /*DEBUG*/
+
+#if xOS_ENV_WIN
+    (void)::ExitProcess(cuiExitCode);
+#elif xOS_ENV_UNIX
+    (void)::exit(static_cast<int>( cuiExitCode ));
+#endif
+
+    return true;
 }
 //---------------------------------------------------------------------------
 
