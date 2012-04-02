@@ -55,20 +55,39 @@ CxProcess::bExec(
     blRes = ::CloseHandle(piInfo.hProcess);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
+    #if 0
+        int status;
+
+        pid_t pid = fork();
+        if (0 == pid) {
+            /* This is the child process.  Execute the shell command. */
+            execl (SHELL, SHELL, "-c", command, NULL);
+            _exit (EXIT_FAILURE);
+        }
+        else if (pid < 0) {
+            /* The fork failed.  Report failure.  */
+            status = -1;
+        }
+        else {
+            /* This is the parent process.  Wait for the child to complete.  */
+            if (waitpid (pid, &status, 0) != pid) {
+                status = - 1;
+            }
+        }
+
+        return status;
+    #endif
+
     pid_t pdId = ::fork();
     /*DEBUG*/xASSERT_RET(- 1 == pdId, false);
 
-    if (0 == pdId) {
+    if (0L == pdId) {
         //TODO: csFilePath is executable
 
         int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
         /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
-        (void)::_exit(EXIT_SUCCESS);  /* Note that we do not use exit() */
-
-        return true;
-    } else {
-        return true;
+        (void)::_exit(EXIT_FAILURE);  /* not exit() */
     }
 #endif
 

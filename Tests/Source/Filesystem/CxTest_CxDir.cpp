@@ -84,7 +84,7 @@ CxTest_CxDir::bUnit(
         m_bRes = CxDir::bIsExists(csDirPath);
         xTEST_EQ(true, m_bRes);
 
-        m_bRes = CxDir::bIsExists(xT("y:"));
+        m_bRes = CxDir::bIsExists(xT("b:"));
         xTEST_EQ(false, m_bRes);
 
         m_bRes = CxDir::bIsExists(xT("sdfasdf:"));
