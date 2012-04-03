@@ -22,7 +22,8 @@ class CxPath :
             seExe,  ///< execute module
             seDll,  ///< dynamically linked shared library
             seLib,  ///< static library
-            seObj   ///< object file
+            seObj,  ///< object file
+            seBat   ///< shell script file
         };
 
         static std::tstring_t sGetExe         ();

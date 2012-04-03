@@ -156,9 +156,9 @@ CxSystemInfo::oaGetOsArch() {
         BOOL blIsFuncExist = FALSE;
         {
             CxDll dlDll;
-            blIsFuncExist = ( dlDll.bLoad(xT("kernel32.dll")) && dlDll.bIsProcExists(xT("IsWow64Process")) );
+            blIsFuncExist = dlDll.bLoad(xT("kernel32.dll")) && dlDll.bIsProcExists(xT("IsWow64Process"));
         }
-        BOOL blIsWow64Process    = ::IsWow64Process(CxCurrentProcess::hGetHandle(), &blIs64BitOs);
+        BOOL blIsWow64Process = ::IsWow64Process(CxCurrentProcess::hGetHandle(), &blIs64BitOs);
 
         oaRes = (blIsFuncExist && blIsWow64Process && blIs64BitOs) ? oa64bit : oa32bit;
     #else

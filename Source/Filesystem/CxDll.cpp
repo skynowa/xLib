@@ -53,7 +53,7 @@ CxDll::bLoad(
     _m_hDll = ::LoadLibrary(csDllPath.c_str());
     /*DEBUG*/xASSERT_RET(NULL != _m_hDll, false);
 #elif xOS_ENV_UNIX
-    _m_hDll = ::dlopen(csDllPath.c_str(), RTLD_LAZY);
+    _m_hDll = ::dlopen(csDllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
     /*DEBUG*/xASSERT_RET(NULL != _m_hDll, false);
 #endif
 
