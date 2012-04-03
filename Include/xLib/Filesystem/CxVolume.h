@@ -35,20 +35,26 @@ class CxVolume :
         static bool           bSetLabel(const std::tstring_t &csVolumePath, const std::tstring_t &csVolumeName);
             ///< set label
 
-    #if   xOS_ENV_WIN
+
         enum EType
             /// filesystem type
         {
-            dtUnknown   = DRIVE_UNKNOWN,
-            dtNoRoot    = DRIVE_NO_ROOT_DIR,
-            dtRemovable = DRIVE_REMOVABLE,
-            dtFixed     = DRIVE_FIXED,
-            dtRemote    = DRIVE_REMOTE,
-            dtCdRom     = DRIVE_CDROM,
-            dtRam       = DRIVE_RAMDISK
+            #if   xOS_ENV_WIN
+                dtUnknown   = DRIVE_UNKNOWN,
+                dtNoRoot    = DRIVE_NO_ROOT_DIR,
+                dtRemovable = DRIVE_REMOVABLE,
+                dtFixed     = DRIVE_FIXED,
+                dtRemote    = DRIVE_REMOTE,
+                dtCdRom     = DRIVE_CDROM,
+                dtRam       = DRIVE_RAMDISK
+            #elif xOS_ENV_UNIX
+
+            #endif
         };
 
         static EType          dtGetType(const std::tstring_t &csVolumePath);
+
+    #if   xOS_ENV_WIN
         static bool           bGetInfo (const std::tstring_t &csVolumePath,
                                         std::tstring_t       *psVolumeName,
                                         ulong_t              *pulVolumeSerialNumber,
