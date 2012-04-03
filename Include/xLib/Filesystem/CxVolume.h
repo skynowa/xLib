@@ -48,7 +48,13 @@ class CxVolume :
                 dtCdRom     = DRIVE_CDROM,
                 dtRam       = DRIVE_RAMDISK
             #elif xOS_ENV_UNIX
-
+                dtUnknown   = 0,
+                dtNoRoot    = 1,
+                dtRemovable = 2,
+                dtFixed     = 3,
+                dtRemote    = 4,
+                dtCdRom     = 5,
+                dtRam       = 6
             #endif
         };
 
