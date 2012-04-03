@@ -59,10 +59,17 @@ CxProcess::bCreate(
 
     std::tstring_t sCmdLine;
 
+#if   xOS_ENV_WIN
     va_list palArgs;
     xVA_START(palArgs, pcszParams);
     sCmdLine = csFilePath + CxConst::xSPACE + CxString::sFormatV(pcszParams, palArgs);
     xVA_END(palArgs);
+#elif xOS_ENV_UNIX
+    va_list palArgs;
+    xVA_START(palArgs, pcszParams);
+    sCmdLine = CxString::sFormatV(pcszParams, palArgs);
+    xVA_END(palArgs);
+#endif
 
     //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
 
@@ -96,11 +103,10 @@ CxProcess::bCreate(
     return true;
 }
 //---------------------------------------------------------------------------
-// TODO: ulWait (not work)
 CxProcess::EWaitResult
 CxProcess::ulWait(
     const ulong_t culTimeout
-)
+) const
 {
     EWaitResult wrStatus = wrFailed;
 
@@ -110,13 +116,13 @@ CxProcess::ulWait(
 
     wrStatus = static_cast<EWaitResult>( ulRes );
 #elif xOS_ENV_UNIX
-    pid_t liRes   = - 1;
+    pid_t liRes   = - 1L;
     int   iStatus = 0;
 
     do {
         liRes = ::waitpid(_m_ulPid, &iStatus, 0);
     }
-    while (liRes < 0 && errno == EINTR);
+    while (liRes < 0L && EINTR == CxLastError::ulGet());
     /*DEBUG*/xASSERT_RET(liRes == _m_ulPid, static_cast<EWaitResult>( iStatus ));
 
     wrStatus = static_cast<EWaitResult>( WEXITSTATUS(iStatus) );
@@ -138,6 +144,20 @@ CxProcess::bKill() {
 #endif
 
     return true;
+}
+//---------------------------------------------------------------------------
+CxProcess::TxHandle
+CxProcess::hGet() const {
+    /*DEBUG*/
+
+    return _m_hHandle;
+}
+//---------------------------------------------------------------------------
+CxProcess::TxId
+CxProcess::ulGetId() const {
+    /*DEBUG*/
+
+    return _m_ulPid;
 }
 //---------------------------------------------------------------------------
 
