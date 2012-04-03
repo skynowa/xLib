@@ -22,66 +22,62 @@ CxTest_CxLastError::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
+    #if xOS_ENV_WIN
+        const ulong_t cuiMaxErrors = 17000;  /*0...15999*/;
+    #elif xOS_ENV_UNIX
+        const ulong_t cuiMaxErrors = 200;    /*0...132*/
+    #endif
+
     //-------------------------------------
-    //ulGet
+    // ulGet
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
-            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif xOS_ENV_UNIX
-            const size_t cuiMaxErrors = 200;    /*0...132*/
-        #endif
-
-        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
-            ulong_t ulCode = CxLastError::ulGet();
-            xTEST_EQ(0UL, CxLastError::ulGet());
-        }
+        (void)CxLastError::ulGet();
+        xTEST_EQ(0UL, CxLastError::ulGet());
     }
 
     //-------------------------------------
-    //ulGet
+    // sGet
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
-            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif xOS_ENV_UNIX
-            const size_t cuiMaxErrors = 200;    /*0...132*/
-        #endif
-
-        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
-            std::tstring_t sError = CxLastError::sGet();
-            xTEST_EQ(false, sError.empty());
-        }
+        m_sRes = CxLastError::sGet();
+        xTEST_EQ(0UL,   CxLastError::ulGet());
+        xTEST_EQ(false, m_sRes.empty());
     }
 
     //-------------------------------------
-    //bSet
+    // bSet
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
-            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif xOS_ENV_UNIX
-            const size_t cuiMaxErrors = 200;    /*0...132*/
-        #endif
+        const ulong_t caulData[] = {
+            0UL,
+            cuiMaxErrors - 10UL,
+            cuiMaxErrors + 10UL
+        };
 
-        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
-            m_bRes = CxLastError::bSet(i);
+        for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
+            const ulong_t culLasError = caulData[i];
+
+            m_bRes = CxLastError::bSet(culLasError);
+            xTEST_EQ(culLasError, CxLastError::ulGet());
             xTEST_EQ(true, m_bRes);
         }
     }
 
     //-------------------------------------
-    //bReset
+    // bReset
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
-            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif xOS_ENV_UNIX
-            const size_t cuiMaxErrors = 200;    /*0...132*/
-        #endif
+        const ulong_t caulData[] = {
+            0UL,
+            cuiMaxErrors - 10UL,
+            cuiMaxErrors + 10UL
+        };
 
-        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
-            m_bRes = CxLastError::bSet(i);
+        for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
+            const ulong_t culLasError = caulData[i];
+
+            m_bRes = CxLastError::bSet(culLasError);
             xTEST_EQ(true, m_bRes);
 
             m_bRes = CxLastError::bReset();
@@ -92,20 +88,20 @@ CxTest_CxLastError::bUnit(
     }
 
     //-------------------------------------
-    //sFormat
+    // sFormat
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
-            const size_t cuiMaxErrors = 17000;  /*0...15999*/;
-        #elif xOS_ENV_UNIX
-            const size_t cuiMaxErrors = 200;    /*0...132*/
-        #endif
+        const ulong_t caulData[] = {
+            0UL,
+            cuiMaxErrors - 10UL,
+            cuiMaxErrors + 10UL
+        };
 
-        for (size_t i = 0; i < cuiMaxErrors; ++ i) {
-            m_sRes = CxLastError::sFormat(i);
+        for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
+            const ulong_t culLasError = caulData[i];
+
+            m_sRes = CxLastError::sFormat(culLasError);
             xTEST_EQ(false, m_sRes.empty());
-
-            //xTRACEV(xT("\tCxLastError::sFormat(%lu) = %s (size = %lu)"), i, m_sRes.c_str(), m_sRes.size() - 4);
         }
     }
 
