@@ -51,27 +51,26 @@ CxProcess::~CxProcess() {
 bool
 CxProcess::bCreate(
     const std::tstring_t &csFilePath,
-    const tchar_t        *pcszCmdLine, ...
+    const tchar_t        *pcszParams, ...
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != pcszCmdLine,        false);
+    /*DEBUG*/xASSERT_RET(NULL  != pcszParams,         false);
 
     std::tstring_t sCmdLine;
 
     va_list palArgs;
-    xVA_START(palArgs, pcszCmdLine);
-
-    sCmdLine = csFilePath + CxString::sFormatV(pcszCmdLine, palArgs);
-
+    xVA_START(palArgs, pcszParams);
+    sCmdLine = csFilePath + CxConst::xSPACE + CxString::sFormatV(pcszParams, palArgs);
     xVA_END(palArgs);
 
+    //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
+
 #if xOS_ENV_WIN
-    BOOL                blRes  = FALSE;
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
-    blRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
+    BOOL blRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     _m_hHandle = piInfo.hProcess;
