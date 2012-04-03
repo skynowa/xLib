@@ -46,19 +46,51 @@ CxTest_CxProcess::bUnit(
     }
 
     //--------------------------------------------------
-    // TODO: ulWait
+    // bKill
     xTEST_CASE(cullCaseLoops)
     {
-        //m_bRes = CxProcess::ulWait();
-        //xTEST_EQ(true, m_bRes);
+        #if xOS_ENV_WIN
+            const std::tstring_t csFilePath = xT("attrib.exe");
+            const std::tstring_t csCmdLine  = xT("/?");
+        #elif xOS_ENV_UNIX
+            const std::tstring_t csFilePath = xT("/usr/bin/nautilus");
+            const std::tstring_t csCmdLine  = xT("");
+        #endif
+
+        CxProcess prProc;
+
+        m_bRes = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+        xTEST_EQ(true, m_bRes);
+
+        m_bRes = prProc.bKill();
+        xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
-    // TODO: bKill
+    // hGet, ulGetId
     xTEST_CASE(cullCaseLoops)
     {
-        //m_bRes = CxProcess::bKill();
-        //xTEST_EQ(true, m_bRes);
+        #if xOS_ENV_WIN
+            const std::tstring_t csFilePath = xT("attrib.exe");
+            const std::tstring_t csCmdLine  = xT("/?");
+        #elif xOS_ENV_UNIX
+            const std::tstring_t csFilePath = xT("/usr/bin/nautilus");
+            const std::tstring_t csCmdLine  = xT("");
+        #endif
+
+        CxProcess prProc;
+
+        m_bRes = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+        xTEST_EQ(true, m_bRes);
+
+        CxProcess::TxHandle hHandle = prProc.hGet();
+        xTEST_DIFF(static_cast<CxProcess::TxHandle>( NULL ), hHandle);
+
+        CxProcess::TxId ulId = prProc.ulGetId();
+        xTEST_LESS(static_cast<CxProcess::TxId>( 0 ), ulId);
+
+        CxProcess::EWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
+        xTEST_EQ(CxProcess::wrObject0, wrRes);
     }
 
     //--------------------------------------------------

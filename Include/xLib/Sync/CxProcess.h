@@ -43,10 +43,15 @@ class CxProcess :
 
         bool            bCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
             ///< execute a file
-        EWaitResult     ulWait         (const ulong_t culTimeout);
+        EWaitResult     ulWait         (const ulong_t culTimeout) const;
             ///< wait for termonation
         bool            bKill          ();
             ///< kills the calling process and all of its threads
+
+        TxHandle        hGet           () const;
+            ///< get handle
+        TxId            ulGetId        () const;
+            ///< get ID
 
         static TxId     ulGetIdByHandle(const TxHandle chHandle);
             ///< ge ID by handle
