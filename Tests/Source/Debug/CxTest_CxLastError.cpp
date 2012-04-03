@@ -52,6 +52,7 @@ CxTest_CxLastError::bUnit(
         const ulong_t caulData[] = {
             0UL,
             cuiMaxErrors - 10UL,
+            cuiMaxErrors,
             cuiMaxErrors + 10UL
         };
 
@@ -71,6 +72,7 @@ CxTest_CxLastError::bUnit(
         const ulong_t caulData[] = {
             0UL,
             cuiMaxErrors - 10UL,
+            cuiMaxErrors,
             cuiMaxErrors + 10UL
         };
 
@@ -82,7 +84,6 @@ CxTest_CxLastError::bUnit(
 
             m_bRes = CxLastError::bReset();
             xTEST_EQ(true, m_bRes);
-
             xTEST_EQ(0UL, CxLastError::ulGet());
         }
     }
@@ -94,6 +95,7 @@ CxTest_CxLastError::bUnit(
         const ulong_t caulData[] = {
             0UL,
             cuiMaxErrors - 10UL,
+            cuiMaxErrors,
             cuiMaxErrors + 10UL
         };
 
