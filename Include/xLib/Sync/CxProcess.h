@@ -32,7 +32,9 @@ class CxProcess :
                 wrTimeout   = WAIT_TIMEOUT,
                 wrFailed    = WAIT_FAILED
             #elif xOS_ENV_UNIX
-
+                wrAbandoned = 0,
+                wrObject0   = 1,
+                wrTimeout   = 2,
                 wrFailed    = - 1
             #endif
         };
