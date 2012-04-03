@@ -23,9 +23,9 @@ CxTest_CxLastError::bUnit(
 )
 {
     #if xOS_ENV_WIN
-        const ulong_t cuiMaxErrors = 17000;  /*0...15999*/;
+        const ulong_t cuiMaxErrors = 15999;  /*0...15999*/;
     #elif xOS_ENV_UNIX
-        const ulong_t cuiMaxErrors = 200;    /*0...132*/
+        const ulong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 
     //-------------------------------------
