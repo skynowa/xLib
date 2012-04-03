@@ -41,7 +41,7 @@ class CxProcess :
                         CxProcess      ();
         virtual        ~CxProcess      ();
 
-        bool            bCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszCmdLine, ...);
+        bool            bCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
             ///< execute a file
         EWaitResult     ulWait         (const ulong_t culTimeout);
             ///< wait for termonation

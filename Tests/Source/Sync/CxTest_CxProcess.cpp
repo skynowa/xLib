@@ -29,25 +29,20 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring_t csFilePath = xT("explorer.exe");
-            const std::tstring_t csCmdLine  = xT("");
+            const std::tstring_t csFilePath = xT("attrib.exe");
+            const std::tstring_t csCmdLine  = xT("/?");
         #elif xOS_ENV_UNIX
             const std::tstring_t csFilePath = xT("/usr/bin/nautilus");
             const std::tstring_t csCmdLine  = xT("");
         #endif
-
 
         CxProcess prProc;
 
         m_bRes = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
         xTEST_EQ(true, m_bRes);
 
-        m_ulRes = prProc.ulWait(xTIMEOUT_INFINITE);
-        #if xTEST_IGNORE
-            xTRACEV(xT("CxProcess::ulWait: %lu"), m_ulRes);
-
-            ::sleep(10);
-        #endif
+        CxProcess::EWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
+        xTEST_EQ(CxProcess::wrObject0, wrRes);
     }
 
     //--------------------------------------------------
