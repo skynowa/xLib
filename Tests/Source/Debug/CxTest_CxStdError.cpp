@@ -22,7 +22,7 @@ CxTest_CxStdError::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    const int ciMaxErrors = 200;  /*0...132*/;
+    const int ciMaxErrors = 132;  /*0...132*/;
 
     //-------------------------------------
     //iGet
