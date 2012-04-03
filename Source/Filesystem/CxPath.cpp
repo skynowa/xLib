@@ -239,11 +239,13 @@ CxPath::sGetStandartExt(
         case seDll: { sRes = xT("dll"); }   break;
         case seLib: { sRes = xT("lib"); }   break;
         case seObj: { sRes = xT("obj"); }   break;
+        case seBat: { sRes = xT("bat"); }   break;
     #elif xOS_ENV_UNIX
         case seExe: { sRes = xT("");    }   break;
         case seDll: { sRes = xT("so");  }   break;
         case seLib: { sRes = xT("a");   }   break;
         case seObj: { sRes = xT("o");   }   break;
+        case seBat: { sRes = xT("sh");  }   break;
     #endif
         default:    { sRes = xT("");    }   break;
     }

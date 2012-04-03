@@ -29,7 +29,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring_t csFilePath = xT("attrib.exe");
+            const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
             const std::tstring_t csCmdLine  = xT("/?");
         #elif xOS_ENV_UNIX
             const std::tstring_t csFilePath = xT("/usr/bin/nautilus");
@@ -50,7 +50,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring_t csFilePath = xT("attrib.exe");
+            const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
             const std::tstring_t csCmdLine  = xT("/?");
         #elif xOS_ENV_UNIX
             const std::tstring_t csFilePath = xT("/usr/bin/nautilus");
@@ -71,7 +71,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring_t csFilePath = xT("attrib.exe");
+            const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
             const std::tstring_t csCmdLine  = xT("/?");
         #elif xOS_ENV_UNIX
             const std::tstring_t csFilePath = xT("/usr/bin/nautilus");

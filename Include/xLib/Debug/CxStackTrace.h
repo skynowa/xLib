@@ -18,7 +18,7 @@ class CxStackTrace :
     /// stack trace
 {
     public:
-        explicit       CxStackTrace();
+                       CxStackTrace();
             ///< constructor
         virtual       ~CxStackTrace();
             ///< destructor

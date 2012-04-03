@@ -6,6 +6,8 @@
 
 #include <xLib/Sync/CxProcess.h>
 
+#include <xLib/Filesystem/CxFile.h>
+
 #if xOS_ENV_WIN
     #if !xCOMPILER_MINGW32
         #pragma comment(lib, "psapi.lib")
@@ -38,10 +40,10 @@ CxProcess::~CxProcess() {
 #if xOS_ENV_WIN
     BOOL blRes = FALSE;
 
-    blRes = ::CloseHandle(_m_hHandle);
+    blRes = ::CloseHandle(_m_hThread);
     /*DEBUG*/xASSERT(FALSE != blRes);
 
-    blRes = ::CloseHandle(_m_hThread);
+    blRes = ::CloseHandle(_m_hHandle);
     /*DEBUG*/xASSERT(FALSE != blRes);
 #elif xOS_ENV_UNIX
 
@@ -54,22 +56,16 @@ CxProcess::bCreate(
     const tchar_t        *pcszParams, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != pcszParams,         false);
+    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),            false);
+    /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(csFilePath), false);
+    /*DEBUG*/xASSERT_RET(NULL  != pcszParams,                    false);
 
     std::tstring_t sCmdLine;
 
-#if   xOS_ENV_WIN
-    va_list palArgs;
-    xVA_START(palArgs, pcszParams);
-    sCmdLine = csFilePath + CxConst::xSPACE + CxString::sFormatV(pcszParams, palArgs);
-    xVA_END(palArgs);
-#elif xOS_ENV_UNIX
     va_list palArgs;
     xVA_START(palArgs, pcszParams);
     sCmdLine = CxString::sFormatV(pcszParams, palArgs);
     xVA_END(palArgs);
-#endif
 
     //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
 
@@ -77,7 +73,9 @@ CxProcess::bCreate(
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
-    BOOL blRes = ::CreateProcess(NULL, &sCmdLine.at(0), NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &siInfo, &piInfo);
+    BOOL blRes = ::CreateProcess(csFilePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ), 
+                                 NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, 
+                                 &siInfo, &piInfo);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     _m_hHandle = piInfo.hProcess;

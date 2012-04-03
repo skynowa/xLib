@@ -230,6 +230,13 @@ CxTest_CxPath::bUnit(
         #elif xOS_ENV_UNIX
             xTEST_EQ(std::tstring_t(xT("o")), m_sRes);
         #endif
+
+        m_sRes = CxPath::sGetStandartExt(CxPath::seBat);
+        #if xOS_ENV_WIN
+            xTEST_EQ(std::tstring_t(xT("bat")), m_sRes);
+        #elif xOS_ENV_UNIX
+            xTEST_EQ(std::tstring_t(xT("sh")), m_sRes);
+        #endif
     }
 
     //-------------------------------------
