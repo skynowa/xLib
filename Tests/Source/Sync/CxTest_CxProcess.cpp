@@ -62,7 +62,7 @@ CxTest_CxProcess::bUnit(
         m_bRes = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
         xTEST_EQ(true, m_bRes);
 
-        m_bRes = prProc.bKill();
+        m_bRes = prProc.bKill(10UL);
         xTEST_EQ(true, m_bRes);
     }
 
