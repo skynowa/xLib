@@ -236,7 +236,7 @@ CxThread::bExit() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bKill(
-    const ulong_t culTimeout
+    const ulong_t culTimeout    // FIX:  culTimeout - not used
 )
 {
     bool    bRes  = false;
@@ -305,7 +305,9 @@ CxThread::bWait(
     DWORD ulRes = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::pthread_join(_m_ulId, NULL);   //TODO: thread must not be detached
+    // TODO: thread must not be detached
+    // FIX:  culTimeout
+    int iRes = ::pthread_join(_m_ulId, NULL);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 #endif
 

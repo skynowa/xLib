@@ -7,13 +7,15 @@
 #include <xLib/Sync/CxProcess.h>
 
 #include <xLib/Filesystem/CxFile.h>
+#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 
 #if xOS_ENV_WIN
     #if !xCOMPILER_MINGW32
         #pragma comment(lib, "psapi.lib")
     #endif
 #elif xOS_ENV_UNIX
-    xNA;
+    xNA
 #endif
 
 
@@ -26,11 +28,12 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxProcess::CxProcess() :
-    _m_hHandle(0),
+    _m_hHandle     (0),
 #if xOS_ENV_WIN
-    _m_hThread(NULL),
+    _m_hThread     (NULL),
 #endif
-    _m_ulPid  (0UL)
+    _m_ulPid       (0UL),
+    _m_uiExitStatus(0U)
 {
 
 }
@@ -73,8 +76,8 @@ CxProcess::bCreate(
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
-    BOOL blRes = ::CreateProcess(csFilePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ), 
-                                 NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, 
+    BOOL blRes = ::CreateProcess(csFilePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ),
+                                 NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL,
                                  &siInfo, &piInfo);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
@@ -123,22 +126,47 @@ CxProcess::ulWait(
     while (liRes < 0L && EINTR == CxLastError::ulGet());
     /*DEBUG*/xASSERT_RET(liRes == _m_ulPid, static_cast<EWaitResult>( iStatus ));
 
-    wrStatus = static_cast<EWaitResult>( WEXITSTATUS(iStatus) );
+    _m_uiExitStatus = WEXITSTATUS(iStatus);
+    wrStatus        = static_cast<EWaitResult>( WEXITSTATUS(iStatus) );
 #endif
 
     return wrStatus;
 }
 //---------------------------------------------------------------------------
 bool
-CxProcess::bKill() {
+CxProcess::bKill(
+    const ulong_t culTimeout    // FIX: culTimeout not used
+)
+{
     /*DEBUG*/
 
+    bool    bRes  = false;
+    ulong_t ulRes = 0UL;
+
 #if xOS_ENV_WIN
-    BOOL blRes = ::TerminateProcess(_m_hHandle, 0U);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hHandle, false);
+    /*DEBUG*/// ulTimeout - n/a
+
+    _m_uiExitStatus = 0U;
+
+    BOOL blRes = ::TerminateProcess(_m_hHandle, _m_uiExitStatus);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+
+    for ( ; ; ) {
+        ulRes = ulGetExitStatus();
+        xCHECK_DO(STILL_ACTIVE != ulRes, break);
+
+        bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
+        /*DEBUG*/xASSERT_DO(true == bRes, break);
+    }
 #elif xOS_ENV_UNIX
     int iRes = ::kill(_m_ulPid, SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+
+    bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
+    /*DEBUG*/xASSERT(true == bRes);
+
+    _m_uiExitStatus = 0U;
 #endif
 
     return true;
@@ -156,6 +184,29 @@ CxProcess::ulGetId() const {
     /*DEBUG*/
 
     return _m_ulPid;
+}
+//---------------------------------------------------------------------------
+bool
+CxProcess::bIsCurrent() const {
+    /*DEBUG*/
+
+    return CxCurrentProcess::bIsCurrent( CxCurrentProcess::ulGetId() );
+}
+//---------------------------------------------------------------------------
+ulong_t
+CxProcess::ulGetExitStatus() const {
+    /*DEBUG*/
+
+    ulong_t ulRes = 0UL;
+
+#if xOS_ENV_WIN
+    BOOL blRes = ::GetExitCodeProcess(_m_hHandle, &ulRes);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, ulRes);
+#elif xOS_ENV_UNIX
+    ulRes = _m_uiExitStatus;
+#endif
+
+    return ulRes;
 }
 //---------------------------------------------------------------------------
 

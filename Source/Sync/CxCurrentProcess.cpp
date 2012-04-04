@@ -18,6 +18,26 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
+bool
+CxCurrentProcess::bIsCurrent(
+    const CxProcess::TxId culId
+)
+{
+    /*DEBUG*/
+
+    bool bRes = false;
+
+#if xOS_ENV_WIN
+    bRes = (ulGetId() == culId);
+#elif xOS_ENV_UNIX
+    // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
+    // bRes = ::pthread_equal(ulGetId(), culId);
+#endif
+
+    return bRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
 CxProcess::TxId
 CxCurrentProcess::ulGetId() {
     /*DEBUG*/// n/a
@@ -65,7 +85,7 @@ CxCurrentProcess::ulGetParentId() {
 	bRes = dlDll.bLoad(xT("ntdll.dll"));
 	/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
 
-    bRes = dlDll.bIsProcExists(xT("GetCurrentProcessorNumber"));
+    bRes = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRes, culInvalidId);
 
 	ULONG_PTR pulProcessInformation[6] = {0};
