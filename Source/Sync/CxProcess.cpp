@@ -107,7 +107,7 @@ CxProcess::bCreate(
 CxProcess::EWaitResult
 CxProcess::ulWait(
     const ulong_t culTimeout
-) const
+)
 {
     EWaitResult wrStatus = wrFailed;
 
