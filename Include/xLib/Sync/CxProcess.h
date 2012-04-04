@@ -67,10 +67,6 @@ class CxProcess :
             ///< ge handle by ID
 
     private:
-        //constants
-        static const ulong_t  _ms_culStillActiveTimeout = 2UL;    ///< still active timeout (msec)
-        static const ulong_t  _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
-
         TxHandle        _m_hHandle;
     #if xOS_ENV_WIN
         HANDLE          _m_hThread;

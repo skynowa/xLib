@@ -156,14 +156,14 @@ CxProcess::bKill(
         ulRes = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
-        bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
+        bRes = CxCurrentThread::bSleep(culTimeout);
         /*DEBUG*/xASSERT_DO(true == bRes, break);
     }
 #elif xOS_ENV_UNIX
     int iRes = ::kill(_m_ulPid, SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
 
-    bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
+    bRes = CxCurrentThread::bSleep(culTimeout);
     /*DEBUG*/xASSERT(true == bRes);
 
     _m_uiExitStatus = 0U;
