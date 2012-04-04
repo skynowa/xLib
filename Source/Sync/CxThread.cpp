@@ -59,7 +59,7 @@ CxThread::~CxThread() {
         if (false == bRes) {
             bRes = bKill(_ms_culExitTimeout);
             if (false == bRes) {
-                /*DEBUG*/xASSERT_DO(true == bRes, /*nothing*/);
+                /*DEBUG*/xASSERT(false);
             }
         }
     }
@@ -236,7 +236,7 @@ CxThread::bExit() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bKill(
-    const ulong_t culTimeout    // FIX:  culTimeout - not used
+    const ulong_t culTimeout
 )
 {
     bool    bRes  = false;
@@ -247,6 +247,7 @@ CxThread::bKill(
     /*DEBUG*///ulTimeout - n/a
 
     _m_uiExitStatus = 0U;
+
     BOOL blRes = ::TerminateThread(_m_hThread.hGet(), _m_uiExitStatus);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
@@ -254,14 +255,14 @@ CxThread::bKill(
         ulRes = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRes, break);
 
-        bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
+        bRes = CxCurrentThread::bSleep(culTimeout);
         /*DEBUG*/xASSERT_DO(true == bRes, break);
     }
 #elif xOS_ENV_UNIX
     int iRes = ::pthread_kill(_m_ulId, SIGALRM);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
 
-    bRes = CxCurrentThread::bSleep(_ms_culStillActiveTimeout);
+    bRes = CxCurrentThread::bSleep(culTimeout);
     /*DEBUG*/xASSERT(true == bRes);
 #endif
 
@@ -329,9 +330,9 @@ CxThread::bIsCreated() const {
     bool bRes = false;
 
 #if xOS_ENV_WIN
-    bRes = (false != _m_bIsCreated) && (false != _m_hThread.bIsValid());
+    bRes = (true == _m_bIsCreated) && (false != _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
-    bRes = (false != _m_bIsCreated) && (0UL   != _m_hThread);
+    bRes = (true == _m_bIsCreated) && (0UL   != _m_hThread);
 #endif
 
     return bRes;
@@ -348,21 +349,21 @@ CxThread::bIsRunning() const {
 
     (void)::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
 
-    bool bCond1 = ( false         != _m_hThread.bIsValid()                       );
-    bool bCond2 = ( 0UL           <  _m_ulId                                     );
-    bool bCond3 = ( true          == _m_bIsRunning                               );
-    bool bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0) );
-    bool bCond5 = ( STILL_ACTIVE  == ulRes                                       );
+    bool bCond1 = ( false         != _m_hThread.bIsValid()                         );
+    bool bCond2 = ( 0UL           <  _m_ulId                                       );
+    bool bCond3 = ( true          == _m_bIsRunning                                 );
+    bool bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0UL) );
+    bool bCond5 = ( STILL_ACTIVE  == ulRes                                         );
 
     bRes = bCond1 && bCond2 && bCond3 && bCond4 && bCond5;
 #elif xOS_ENV_UNIX
-    bool bCond1 = ( 0UL           != _m_hThread                                  );
-    bool bCond2 = ( 0UL            <  _m_ulId                                    );
-    bool bCond3 = ( true          == _m_bIsRunning                               );
+    bool bCond1 = ( 0UL           != _m_hThread                                    );
+    bool bCond2 = ( 0UL           <  _m_ulId                                       );
+    bool bCond3 = ( true          == _m_bIsRunning                                 );
 
     #if xTODO
-        bool bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0) );
-        bool bCond5 = ( STILL_ACTIVE  == ulRes                                       );
+        bool bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0UL) );
+        bool bCond5 = ( STILL_ACTIVE  == ulRes                                         );
     #endif
 
     bRes = bCond1 && bCond2 && bCond3 /*&& bCond4 && bCond5*/;
@@ -393,9 +394,9 @@ CxThread::bIsExited() {
     bool bRes = false;
 
 #if xOS_ENV_WIN
-    bRes = (_m_evExit.bIsSignaled()) && (false != _m_hThread.bIsValid());
+    bRes = (true == _m_evExit.bIsSignaled()) && (false != _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
-    bRes = (_m_evExit.bIsSignaled()) /*&& (0UL   != _m_hThread)*/;
+    bRes = (true == _m_evExit.bIsSignaled()) && (0UL   != _m_hThread);
 #endif
 
     return bRes;
@@ -408,8 +409,9 @@ CxThread::bIsExited() {
 *
 *****************************************************************************/
 
-#if xOS_ENV_WIN
 //---------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
 bool
 CxThread::bPostMessage(
     HWND   hHwnd,
@@ -427,7 +429,11 @@ CxThread::bPostMessage(
 
     return true;
 }
+
+#endif
 //---------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
 bool
 CxThread::bSendMessage(
     HWND   hHwnd,
@@ -445,7 +451,11 @@ CxThread::bSendMessage(
 
     return true;
 }
+
+#endif
 //---------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
 bool
 CxThread::bPostThreadMessage(
     uint_t uiMsg,
@@ -460,7 +470,11 @@ CxThread::bPostThreadMessage(
 
     return true;
 }
+
+#endif
 //---------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
 bool
 CxThread::bTryPostThreadMessage(
     uint_t  uiMsg,
@@ -481,7 +495,11 @@ CxThread::bTryPostThreadMessage(
 
     return false;
 }
+
+#endif
 //---------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
 bool
 CxThread::bMessageWaitQueue(
     uint_t  uiMsg,
@@ -500,7 +518,11 @@ CxThread::bMessageWaitQueue(
 
     return true;
 }
+
+#endif
 //---------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
 bool
 CxThread::bMessageWaitQueue(
     const std::vector<uint_t> &cvuiMsg,
@@ -521,7 +543,7 @@ CxThread::bMessageWaitQueue(
         for (size_t i = 0; i < cvuiMsg.size(); ++ i) {
             xCHECK_DO(cvuiMsg.at(i) != msgMsg.message, continue);
 
-            xPTR_ASSIGN(puiMsg,    msgMsg.message                    );
+            xPTR_ASSIGN(puiMsg,    msgMsg.message                      );
             xPTR_ASSIGN(puiParam1, static_cast<uint_t>( msgMsg.wParam ));
             xPTR_ASSIGN(pliParam2, static_cast<long_t>( msgMsg.lParam ));
 
@@ -531,8 +553,9 @@ CxThread::bMessageWaitQueue(
 
     return true;
 }
-//---------------------------------------------------------------------------
+
 #endif
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************
@@ -550,7 +573,7 @@ CxThread::_iGetPriorityMin() {
     iRes = THREAD_PRIORITY_IDLE;
 #elif xOS_ENV_UNIX
     iRes = ::sched_get_priority_min(SCHED_FIFO);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), false);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), 0);
 #endif
 
     return iRes;
@@ -565,7 +588,7 @@ CxThread::_iGetPriorityMax() {
     iRes = THREAD_PRIORITY_TIME_CRITICAL;
 #elif xOS_ENV_UNIX
     iRes = ::sched_get_priority_max(SCHED_FIFO);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), false);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), 0);
 #endif
 
     return iRes;
@@ -654,15 +677,15 @@ CxThread::bPriorityUp() const {
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpIdle:            tpiNewLevel = tpLowest;                 break;
-        case tpLowest:          tpiNewLevel = tpBelowNormal;            break;
-        case tpBelowNormal:     tpiNewLevel = tpNormal;                 break;
-        case tpNormal:          tpiNewLevel = tpAboveNormal;            break;
-        case tpAboveNormal:     tpiNewLevel = tpHighest;                break;
-        case tpHighest:         tpiNewLevel = tpTimeCritical;           break;
-        case tpTimeCritical:    return true;                            break;
+        case tpIdle:            tpiNewLevel = tpLowest;             break;
+        case tpLowest:          tpiNewLevel = tpBelowNormal;        break;
+        case tpBelowNormal:     tpiNewLevel = tpNormal;             break;
+        case tpNormal:          tpiNewLevel = tpAboveNormal;        break;
+        case tpAboveNormal:     tpiNewLevel = tpHighest;            break;
+        case tpHighest:         tpiNewLevel = tpTimeCritical;       break;
+        case tpTimeCritical:    return true;                        break;
 
-        default:                /*DEBUG*/xASSERT_RET(false, false);     break;
+        default:                /*DEBUG*/xASSERT_RET(false, false); break;
     }
 
     return bSetPriority(tpiNewLevel);
@@ -681,15 +704,15 @@ CxThread::bPriorityDown() const {
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpIdle:            return true;                            break;
-        case tpLowest:          tpiNewLevel = tpIdle;                   break;
-        case tpBelowNormal:     tpiNewLevel = tpLowest;                 break;
-        case tpNormal:          tpiNewLevel = tpBelowNormal;            break;
-        case tpAboveNormal:     tpiNewLevel = tpNormal;                 break;
-        case tpHighest:         tpiNewLevel = tpAboveNormal;            break;
-        case tpTimeCritical:    tpiNewLevel = tpHighest;                break;
+        case tpIdle:            return true;                        break;
+        case tpLowest:          tpiNewLevel = tpIdle;               break;
+        case tpBelowNormal:     tpiNewLevel = tpLowest;             break;
+        case tpNormal:          tpiNewLevel = tpBelowNormal;        break;
+        case tpAboveNormal:     tpiNewLevel = tpNormal;             break;
+        case tpHighest:         tpiNewLevel = tpAboveNormal;        break;
+        case tpTimeCritical:    tpiNewLevel = tpHighest;            break;
 
-        default:                /*DEBUG*/xASSERT_RET(false, false);     break;
+        default:                /*DEBUG*/xASSERT_RET(false, false); break;
     }
 
     return bSetPriority(tpiNewLevel);
@@ -802,7 +825,7 @@ CxThread::ulGetCpuIdeal() const {
 
 #if xOS_ENV_WIN
     ulRes = ::SetThreadIdealProcessor(_m_hThread.hGet(), MAXIMUM_PROCESSORS);
-    /*DEBUG*/xASSERT_RET((ulong_t) - 1 != ulRes, (ulong_t) - 1);
+    /*DEBUG*/xASSERT_RET((ulong_t) - 1 != ulRes, 0UL);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -864,8 +887,7 @@ CxThread::ulGetExitStatus() const {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), 0UL);
 
     BOOL blRes = ::GetExitCodeThread(_m_hThread.hGet(), &ulRes);
-    /*DEBUG*/xASSERT_RET(FALSE           != blRes,  ulRes);
-    //--/*DEBUG*/xASSERT_RET(_m_uiExitStatus == ulRes, ulRes);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, ulRes);
 #elif xOS_ENV_UNIX
     ulRes = _m_uiExitStatus;
 #endif
@@ -961,9 +983,8 @@ CxThread::hOpen(
     TxHandle hRes = ::OpenThread(culAccess, cbInheritHandle, culId);
     /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
 #elif xOS_ENV_UNIX
-    TxHandle hRes = 0;
-
     //TODO: hOpen
+    TxHandle hRes = 0;
 #endif
 
     return hRes;
@@ -1047,7 +1068,7 @@ CxThread::_s_uiJobEntry(
 {
     /*DEBUG*/xASSERT_RET(NULL != pvParam, 0);
 
-    uint_t uiRes = 0;
+    uint_t uiRes = 0U;
     bool   bRes  = false;     xUNUSED(bRes);
 
     CxThread *pthThis = static_cast<CxThread *>( pvParam );
