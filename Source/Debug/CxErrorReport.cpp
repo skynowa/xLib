@@ -158,15 +158,18 @@ CxErrorReport::_bInitVars(
 {
     /*DEBUG*/
 
+    const size_t cuiReportWidthMax = 46;
+
+
     m_rtType          = crtType;
 
 #if 1
-    m_sProgram        = CxPath::sToUnix( CxPath::sGetShort(CxPath::sGetExe(), 50), false );
+    m_sProgram        = CxPath::sToUnix( CxPath::sGetShort(CxPath::sGetExe(), cuiReportWidthMax), false );
     m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
     m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
     m_sFileSize       = CxString::sFormatBytes( static_cast<ulonglong_t>( CxFile::llGetSize(CxPath::sGetExe())) );
 
-    m_sSourceFile     = CxPath::sToUnix( CxPath::sGetShort(csFile, 50), false );
+    m_sSourceFile     = CxPath::sToUnix( CxPath::sGetShort(csFile, cuiReportWidthMax), false );
     m_ulSourceLine    = culLine;
     m_sFunctionName   = csFunc;
     m_sExpression     = csExp;
@@ -179,7 +182,7 @@ CxErrorReport::_bInitVars(
     m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
-    m_sStackTrace     = csStackTrace; 
+    m_sStackTrace     = csStackTrace;
     m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
 #else
     m_sProgram        = xT("");
