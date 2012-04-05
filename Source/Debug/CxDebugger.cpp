@@ -186,7 +186,7 @@ CxDebugger::bTrace(
 {
     xCHECK_RET(false == bGetEnabled(), true);
 
-    return bTrace(csMsg.c_str());
+    return bTrace(xT("%s"), csMsg.c_str());
 }
 //---------------------------------------------------------------------------
 /*static*/
