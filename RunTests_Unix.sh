@@ -9,9 +9,9 @@ echo -e
 clear
 ./Tests_Unix.sh
 
-if   [[ linux-gnu == $OSTYPE ]]; then
+if   [[ 'linux'*   == $OSTYPE ]]; then
     TARGET_DIR=./Contrib/G++_linux/Release
-elif [[ freebsd   == $OSTYPE ]]; then
+elif [[ 'freebsd'* == $OSTYPE ]]; then
     TARGET_DIR=./Contrib/G++_freebsd/Release
 else
     echo -e "Unknown OS"

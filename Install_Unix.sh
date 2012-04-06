@@ -5,9 +5,9 @@ clear
 echo -e "Install xLib ($OSTYPE) ... "
 echo -e
 
-if   [[ linux-gnu == $OSTYPE ]]; then
+if   [[ 'linux'*   == $OSTYPE ]]; then
     MAKE=make
-elif [[ freebsd   == $OSTYPE ]]; then
+elif [[ 'freebsd'* == $OSTYPE ]]; then
     MAKE=gmake
 else
     echo -e "Unknown OS"

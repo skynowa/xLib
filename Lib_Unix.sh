@@ -6,10 +6,10 @@ clear
 echo -e "Lib xLib ($OSTYPE) ... "
 echo -e
 
-if   [[ linux-gnu == $OSTYPE ]]; then
+if   [[ 'linux'*   == $OSTYPE ]]; then
     MAKE=make
     TARGET_DIR=./Contrib/G++_linux/Release
-elif [[ freebsd   == $OSTYPE ]]; then
+elif [[ 'freebsd'* == $OSTYPE ]]; then
     MAKE=gmake
     TARGET_DIR=./Contrib/G++_freebsd/Release
 else
