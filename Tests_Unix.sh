@@ -14,7 +14,7 @@ echo -e "Build xLib ($OSTYPE) ... "
 echo -e
 
 # prepare
-if   [ "$OSTYPE" -eq "linux-gnu"   ]; then
+if   [ "$OSTYPE" = "linux-gnu"   ]; then
     MAKE=make
     TARGET_DIR=./Contrib/G++_linux/Release
 elif [ "$OSTYPE" = "FreeBSD" ]; then
