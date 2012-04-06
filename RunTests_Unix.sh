@@ -1,7 +1,7 @@
+#!/bin/sh
 #
 # xxxxxxxx
 #
-
 
 # vars
 TARGET_DIR=
