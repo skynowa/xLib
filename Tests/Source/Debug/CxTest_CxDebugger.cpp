@@ -22,6 +22,15 @@ CxTest_CxDebugger::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
+    //--------------------------------------------------
+    // operator <<
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxDebugger() << "\tTest_vars: " 
+                     << 777  << xT(";")
+                     << 5.0f << xT(";")
+                     << std::vector<std::tstring_t>() << xT(";");
+    }
 
     //-------------------------------------
     //bGetEnabled, bGetEnabled

@@ -19,6 +19,15 @@ class CxDebugger :
     /// debbuger
 {
     public:
+                              CxDebugger      ();
+            ///< constructor
+        virtual              ~CxDebugger      ();
+            ///< destructor
+
+        template<class T>
+        friend CxDebugger &   operator <<     (CxDebugger &cdbgDebugger, const T &cMessage);
+            ///< tracing to debugger, std::cout
+
         static bool           bGetEnabled     ();
             ///< is debugging enabled
         static bool           bSetEnabled     (const bool cbFlag);
@@ -43,32 +52,45 @@ class CxDebugger :
             ///< play sound
 
     private:
+        std::tostringstream_t _m_ossTracer;
+
         static bool           _ms_bIsEnabled;
             ///< is debugger enabled
         static std::tstring_t _ms_sLogPath;
             ///< log path
 
-                              CxDebugger      ();
-            ///< constructor
-        virtual              ~CxDebugger      ();
-            ///< destructor
-
         static bool           _bMsgboxPlain   (const CxErrorReport &crpReport);
             ///< show message box with plain report
         static bool           _bMsgboxFormated(const CxErrorReport &crpReport);
             ///< show message box with formated report, std::cerr
-
         static bool           _bStdoutPlain   (const CxErrorReport &crpReport);
             ///< show plain report in std::cout
         static bool           _bStdoutHtml    (const CxErrorReport &crpReport);
             ///< show html report in std::cout
-
         static bool           _bLoggingPlain  (const CxErrorReport &crpReport);
             ///< log plain report to file
         static bool           _bLoggingHtml   (const CxErrorReport &crpReport);
             ///< log html report to file
 };
+//---------------------------------------------------------------------------
+template<class T>
+CxDebugger &
+operator << (
+    CxDebugger &dbgDebugger,
+    const T    &cMessage
+)
+{
+    dbgDebugger._m_ossTracer << CxString::lexical_cast(cMessage);
 
+    return dbgDebugger;
+}
+//---------------------------------------------------------------------------
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Debug_CxDebuggerH
+
+
+
+
+
+
