@@ -9,9 +9,11 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
+#include <xLib/Common/CxString.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
+class CxString;
 class CxErrorReport;
 
 class CxDebugger :
@@ -73,17 +75,7 @@ class CxDebugger :
             ///< log html report to file
 };
 //---------------------------------------------------------------------------
-template<class T>
-CxDebugger &
-operator << (
-    CxDebugger &dbgDebugger,
-    const T    &cMessage
-)
-{
-    dbgDebugger._m_ossTracer << CxString::lexical_cast(cMessage);
-
-    return dbgDebugger;
-}
+#include "CxDebugger.inl"
 //---------------------------------------------------------------------------
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
