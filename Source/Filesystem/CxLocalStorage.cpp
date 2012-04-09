@@ -92,7 +92,7 @@ CxLocalStorage::bSetPath(
     return true;
 }
 //---------------------------------------------------------------------------
-NxLib::TLocalStorage &
+TLocalStorage &
 CxLocalStorage::cmsGet() {
     /*DEBUG*/
 
@@ -148,7 +148,7 @@ CxLocalStorage::bKeyIsExists(
 {
     /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
 
-    NxLib::TLocalStorage mmsIni;
+    TLocalStorage mmsIni;
 
     bool bRes = CxFile::bTextRead(_m_sFilePath, _m_csSeparator, &mmsIni);
     /*DEBUG*/xASSERT_RET(true == bRes, false);
@@ -378,7 +378,7 @@ CxLocalStorage::_bRead(
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     //read to TLocalStorage
-    NxLib::TLocalStorage::iterator it = _m_msIni.find(csKey);
+    TLocalStorage::iterator it = _m_msIni.find(csKey);
     if (_m_msIni.end() == it) {
         bRes = _bWrite(csKey, csDefaultValue);
         /*DEBUG*/xASSERT_RET(true == bRes, false);
@@ -402,7 +402,7 @@ CxLocalStorage::_bWrite(
     /*DEBUG*/// csValue - n/a
 
     //write to TLocalStorage
-    NxLib::TLocalStorage::iterator it = _m_msIni.find(csKey);
+    TLocalStorage::iterator it = _m_msIni.find(csKey);
     if (_m_msIni.end() == it) {
         _m_msIni.insert( std::pair<std::tstring_t, std::tstring_t>(csKey, csValue) );
     } else {

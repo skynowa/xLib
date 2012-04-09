@@ -90,7 +90,7 @@ CxTest_CxLocalStorage::bUnit(
     //cmsGet, bFlush
     xTEST_CASE(cullCaseLoops)
     {
-        NxLib::TLocalStorage &riniIni = iniIni.cmsGet();
+        TLocalStorage &riniIni = iniIni.cmsGet();
         xTEST_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
@@ -119,7 +119,7 @@ CxTest_CxLocalStorage::bUnit(
     //bKeyIsExists
     xTEST_CASE(cullCaseLoops)
     {
-        NxLib::TLocalStorage &riniIni = iniIni.cmsGet();
+        TLocalStorage &riniIni = iniIni.cmsGet();
         xTEST_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;

@@ -32,7 +32,7 @@ class CxLocalStorage :
             ///< get file path
         bool                   bSetPath       (const std::tstring_t &csFilePath);
             ///< set file path
-        NxLib::TLocalStorage & cmsGet         ();
+        TLocalStorage &        cmsGet         ();
             ///< get innner TLocalStorage, may be used with bFlush
 
         bool                   bFlush         () const;
@@ -81,7 +81,7 @@ class CxLocalStorage :
         const std::tstring_t   _m_csFileExt;    ///< ini-file extension
 
         std::tstring_t         _m_sFilePath;    ///< file path to ini-file
-        NxLib::TLocalStorage   _m_msIni;        ///< std::map of keys and values
+        TLocalStorage          _m_msIni;        ///< std::map of keys and values
 
         bool                   _bRead         (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue, std::tstring_t *psValue);
             ///< parse file
