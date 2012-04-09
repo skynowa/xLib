@@ -7,3 +7,8 @@ Authors:        skynowa
 E-mail:         skynowa@gmail.com
 Jabber:         skynowa@jabber.ru
 Web:            https://bitbucket.org/skynowa/xlib/
+
+
+Prerequisites:
+    - bash-compatible Unix command shell
+
