@@ -26,7 +26,7 @@ CxTest_CxDebugger::bUnit(
     // operator <<
     xTEST_CASE(cullCaseLoops)
     {
-        CxDebugger() << "\tTest_vars: " 
+        CxDebugger() << xT("\tTest_vars: ")
                      << 777  << xT(";")
                      << 5.0f << xT(";")
                      << std::vector<std::tstring_t>() << xT(";");
