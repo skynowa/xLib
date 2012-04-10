@@ -9,9 +9,11 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
+#include <xLib/Common/CxString.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
+class CxString;
 class CxErrorReport;
 
 class CxDebugger :
