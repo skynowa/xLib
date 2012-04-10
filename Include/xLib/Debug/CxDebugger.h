@@ -27,7 +27,7 @@ class CxDebugger :
             ///< destructor
 
         template<class T>
-        friend CxDebugger &   operator <<     (CxDebugger &cdbgDebugger, const T &cMessage);
+        friend CxDebugger &   operator <<     (CxDebugger &cdbgDebugger, const T &cMessageT);
             ///< tracing to debugger, std::cout
 
         static bool           bGetEnabled     ();
