@@ -109,8 +109,8 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
 /*static*/
+template<class T>
 inline std::tstring_t
 CxString::lexical_cast(
     const T &cValueT
@@ -136,8 +136,8 @@ CxString::lexical_cast(
     return sRes;
 }
 //---------------------------------------------------------------------------
-template<class T>
 /*static*/
+template<class T>
 inline std::tstring_t
 CxString::lexical_cast(
     const T   &cValueT,
@@ -165,8 +165,8 @@ CxString::lexical_cast(
     return sRes;
 }
 //---------------------------------------------------------------------------
-template<class T>
 /*static*/
+template<class T>
 inline T
 CxString::lexical_cast(
     const std::tstring_t &csStr
@@ -190,8 +190,8 @@ CxString::lexical_cast(
     return ResT;
 }
 //---------------------------------------------------------------------------
-template<class T>
 /*static*/
+template<class T>
 inline T
 CxString::lexical_cast(
     const std::tstring_t &csStr,
