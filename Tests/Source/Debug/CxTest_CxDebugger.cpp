@@ -40,34 +40,40 @@ CxTest_CxDebugger::bUnit(
         const bool cbTrue  = true;
         const bool cbFalse = false;
 
-        m_bRes = CxDebugger::bGetEnabled();
+        CxDebugger dbgDebugger;
+
+        m_bRes = dbgDebugger.bGetEnabled();
         xTEST_EQ(cbTrue, m_bRes);
 
-        m_bRes = CxDebugger::bSetEnabled(cbFalse);
+        m_bRes = dbgDebugger.bSetEnabled(cbFalse);
         xTEST_EQ(true, m_bRes);
 
-        m_bRes = CxDebugger::bGetEnabled();
+        m_bRes = dbgDebugger.bGetEnabled();
         xTEST_EQ(cbFalse, m_bRes);
 
-        m_bRes = CxDebugger::bSetEnabled(cbTrue);
+        m_bRes = dbgDebugger.bSetEnabled(cbTrue);
         xTEST_EQ(true, m_bRes);
 
-        m_bRes = CxDebugger::bGetEnabled();
+        m_bRes = dbgDebugger.bGetEnabled();
         xTEST_EQ(cbTrue, m_bRes);
     }
 
     //-------------------------------------
     //bIsPresent
     xTEST_CASE(cullCaseLoops)
-    {
-        m_bRes = CxDebugger::bIsPresent();
+    {   
+        CxDebugger dbgDebugger;
+
+        m_bRes = dbgDebugger.bIsPresent();
     }
 
     //-------------------------------------
     //bIsDebugBuild
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxDebugger::bIsDebugBuild();
+        CxDebugger dbgDebugger;
+
+        m_bRes = dbgDebugger.bIsDebugBuild();
         #if defined(NDEBUG)
             xTEST_EQ(false, m_bRes);
         #else
@@ -79,8 +85,10 @@ CxTest_CxDebugger::bUnit(
     //bBreak
     xTEST_CASE(cullCaseLoops)
     {
+        CxDebugger dbgDebugger;
+
         #if xTEST_IGNORE
-            m_bRes = CxDebugger::bBreak();
+            m_bRes = dbgDebugger.bBreak();
             xTEST_EQ(true, m_bRes);
         #endif
     }
@@ -91,19 +99,21 @@ CxTest_CxDebugger::bUnit(
     {
         const std::tstring_t csFilePath = xT("");
 
-        m_sRes = CxDebugger::sGetLogPath();
+        CxDebugger dbgDebugger;
+
+        m_sRes = dbgDebugger.sGetLogPath();
         xTEST_EQ(true, m_sRes.empty());
 
-        m_bRes = CxDebugger::bSetLogPath(csFilePath);
+        m_bRes = dbgDebugger.bSetLogPath(csFilePath);
         xTEST_EQ(true, m_bRes);
 
-        m_sRes = CxDebugger::sGetLogPath();
+        m_sRes = dbgDebugger.sGetLogPath();
         xTEST_EQ(csFilePath, m_sRes);
 
-        m_bRes = CxDebugger::bSetLogPath(xT(""));
+        m_bRes = dbgDebugger.bSetLogPath(xT(""));
         xTEST_EQ(true, m_bRes);
 
-        m_sRes = CxDebugger::sGetLogPath();
+        m_sRes = dbgDebugger.sGetLogPath();
         xTEST_EQ(true, m_sRes.empty());
     }
 
@@ -123,7 +133,9 @@ CxTest_CxDebugger::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {
             CxErrorReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
 
-            //m_bRes = CxDebugger::bReportMake(rpReport);
+            CxDebugger dbgDebugger;
+
+            //m_bRes = dbgDebugger.bReportMake(rpReport);
             //xTEST_EQ(true, m_bRes);
         }
     }
@@ -153,7 +165,9 @@ CxTest_CxDebugger::bUnit(
     //bBeep
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxDebugger::bBeep();
+        CxDebugger dbgDebugger;
+
+        m_bRes = dbgDebugger.bBeep();
         xTEST_EQ(true, m_bRes);
     }
 

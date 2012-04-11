@@ -909,7 +909,7 @@ CxThread::bSetDebugName(
     /////*DEBUG*/xASSERT_RET(0  < _m_ulId,       false);
     /////*DEBUG*/xASSERT_RET(32 > csName.size(), false); //MAX_NAME_SIZE 32
 
-    xCHECK_RET(false == CxDebugger::bIsPresent(), true);
+    //// TODO: xCHECK_RET(false == CxDebugger().bIsPresent(), true);
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MS || xCOMPILER_CODEGEAR

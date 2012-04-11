@@ -32,19 +32,20 @@ xNAMESPACE_BEGIN(NxLib)
 *
 *****************************************************************************/
 
-bool           CxDebugger::_ms_bIsEnabled = true;
-std::tstring_t CxDebugger::_ms_sLogPath;
-
 //---------------------------------------------------------------------------
 CxDebugger::CxDebugger() :
-    _m_ossTracer()
+    _ms_bIsEnabled(true),
+    _ms_sLogPath  (),
+    _m_ossTracer  ()
 {
     _m_ossTracer.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxDebugger::~CxDebugger() {
-    (void)bTrace(xT("%s"), _m_ossTracer.str().c_str());
+    if (false == _m_ossTracer.str().empty()) {
+        (void)bTrace(xT("%s"), _m_ossTracer.str().c_str());
+    }
 }
 //---------------------------------------------------------------------------
 
@@ -55,13 +56,11 @@ CxDebugger::~CxDebugger() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::bGetEnabled() {
     return _ms_bIsEnabled;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::bSetEnabled(
     const bool cbFlag
@@ -72,7 +71,6 @@ CxDebugger::bSetEnabled(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::bIsPresent() {
 #if xOS_ENV_WIN
@@ -91,7 +89,6 @@ CxDebugger::bIsPresent() {
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::bIsDebugBuild() {
     bool bRes = false;
@@ -105,7 +102,6 @@ CxDebugger::bIsDebugBuild() {
     return bRes;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::bBreak() {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -126,7 +122,6 @@ CxDebugger::bBreak() {
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::bSetLogPath(
     const std::tstring_t &csFilePath
@@ -137,13 +132,11 @@ CxDebugger::bSetLogPath(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 std::tstring_t
 CxDebugger::sGetLogPath() {
     return _ms_sLogPath;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::bReportMake(
     const CxErrorReport &crpReport
@@ -177,7 +170,7 @@ CxDebugger::bTrace(
     const tchar_t *pcszFormat, ...
 )
 {
-    xCHECK_RET(false == bGetEnabled(), true);
+    //-- xCHECK_RET(false == bGetEnabled(), true);
 
     std::tstring_t sRes;
 
@@ -203,7 +196,7 @@ CxDebugger::bTrace(
     const std::tstring_t &csMsg
 )
 {
-    xCHECK_RET(false == bGetEnabled(), true);
+    //-- xCHECK_RET(false == bGetEnabled(), true);
 
     return bTrace(xT("%s"), csMsg.c_str());
 }
@@ -261,7 +254,6 @@ CxDebugger::bBeep(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::_bMsgboxPlain(
     const CxErrorReport &crpReport
@@ -302,7 +294,6 @@ CxDebugger::_bMsgboxPlain(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::_bMsgboxFormated(
     const CxErrorReport &crpReport
@@ -393,7 +384,6 @@ CxDebugger::_bMsgboxFormated(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::_bStdoutPlain(
     const CxErrorReport &crpReport
@@ -452,7 +442,6 @@ CxDebugger::_bStdoutPlain(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::_bStdoutHtml(
     const CxErrorReport &crpReport
@@ -514,7 +503,6 @@ CxDebugger::_bStdoutHtml(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::_bLoggingPlain(
     const CxErrorReport &crpReport
@@ -555,7 +543,6 @@ CxDebugger::_bLoggingPlain(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
 bool
 CxDebugger::_bLoggingHtml(
     const CxErrorReport &crpReport

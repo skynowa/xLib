@@ -178,7 +178,7 @@ CxErrorReport::_bInitVars(
 
     m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
     m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
-    m_sBuildType      = (true == CxDebugger::bIsDebugBuild()) ? xT("debug") : xT("release");
+    m_sBuildType      = (true == CxDebugger().bIsDebugBuild()) ? xT("debug") : xT("release");
     m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
