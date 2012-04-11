@@ -450,6 +450,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Include\xLib\Debug\CxDebugger.inl"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\Crypt\Pkcs11\CxDecrypt.cpp"
 				>
 			</File>
@@ -1083,14 +1087,6 @@
 			</File>
 			<File
 				RelativePath="..\..\Include\xLib\Sync\CxWaitableTimer.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Source\Log\CxWndLog.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Include\xLib\Log\CxWndLog.h"
 				>
 			</File>
 			<File

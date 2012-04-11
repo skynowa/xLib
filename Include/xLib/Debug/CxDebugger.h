@@ -28,48 +28,48 @@ class CxDebugger :
         friend CxDebugger &   operator <<     (CxDebugger &cdbgDebugger, const T &cMessageT);
             ///< tracing to debugger, std::cout
 
-        static bool           bGetEnabled     ();
+        bool           bGetEnabled     ();
             ///< is debugging enabled
-        static bool           bSetEnabled     (const bool cbFlag);
+        bool           bSetEnabled     (const bool cbFlag);
             ///< set debugging mode on/off
-        static bool           bIsPresent      ();
+        bool           bIsPresent      ();
             ///< is OS debugger presents
-        static bool           bIsDebugBuild   ();
+        bool           bIsDebugBuild   ();
             ///< is debug build (is NDEBUG macros is don't set)
-        static bool           bBreak          ();
+        bool           bBreak          ();
             ///< attach to OS debugger
-        static bool           bSetLogPath     (const std::tstring_t &csFilePath);
+        bool           bSetLogPath     (const std::tstring_t &csFilePath);
             ///< set log file path
-        static std::tstring_t sGetLogPath     ();
+        std::tstring_t sGetLogPath     ();
             ///< get log file path
-        static bool           bReportMake     (const CxErrorReport &crpReport);
+        bool           bReportMake     (const CxErrorReport &crpReport);
             ///< make report
-        static bool           bTrace          (const tchar_t *pcszFormat, ...);
+        static bool    bTrace          (const tchar_t *pcszFormat, ...);
             ///< tracing to debugger, std::cout
-        static bool           bTrace          (const std::tstring_t &csMsg);
+        static bool    bTrace          (const std::tstring_t &csMsg);
             ///< tracing to debugger, std::cout
-        static bool           bBeep           (const ulong_t culFrequency = 800, const ulong_t culDuration = 100);
+        static bool    bBeep           (const ulong_t culFrequency = 800, const ulong_t culDuration = 100);
             ///< play sound
 
     private:
-        std::tostringstream_t _m_ossTracer;
-
-        static bool           _ms_bIsEnabled;
+        bool                  _ms_bIsEnabled;
             ///< is debugger enabled
-        static std::tstring_t _ms_sLogPath;
+        std::tstring_t        _ms_sLogPath;
             ///< log path
+        std::tostringstream_t _m_ossTracer;
+            ///< 
 
-        static bool           _bMsgboxPlain   (const CxErrorReport &crpReport);
+        bool           _bMsgboxPlain   (const CxErrorReport &crpReport);
             ///< show message box with plain report
-        static bool           _bMsgboxFormated(const CxErrorReport &crpReport);
+        bool           _bMsgboxFormated(const CxErrorReport &crpReport);
             ///< show message box with formated report, std::cerr
-        static bool           _bStdoutPlain   (const CxErrorReport &crpReport);
+        bool           _bStdoutPlain   (const CxErrorReport &crpReport);
             ///< show plain report in std::cout
-        static bool           _bStdoutHtml    (const CxErrorReport &crpReport);
+        bool           _bStdoutHtml    (const CxErrorReport &crpReport);
             ///< show html report in std::cout
-        static bool           _bLoggingPlain  (const CxErrorReport &crpReport);
+        bool           _bLoggingPlain  (const CxErrorReport &crpReport);
             ///< log plain report to file
-        static bool           _bLoggingHtml   (const CxErrorReport &crpReport);
+        bool           _bLoggingHtml   (const CxErrorReport &crpReport);
             ///< log html report to file
 };
 
