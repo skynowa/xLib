@@ -26,11 +26,19 @@ CxTest_CxDebugger::bUnit(
     // operator <<
     xTEST_CASE(cullCaseLoops)
     {
-//        CxDebugger() << xT("\tTest_vars: ")
-//                     << 777  << xT(";")
-//                     << 5.0f << xT(";")
-//                     << std::vector<std::tstring_t>() << xT(";");
-        CxDebugger() << 777;
+        #if xTODO
+            CxDebugger() << xT("\tTest_vars: ")
+                         << 777  << xT(";")
+                         << 5.0f << xT(";")
+                         << std::vector<std::tstring_t>() << xT(";");
+        #endif
+
+        CxDebugger dbgDebugger;
+
+        dbgDebugger << xT("\tTest_vars: ")
+                    << 777  << xT(";")
+                    << 5.0f << xT(";")
+                    << std::vector<std::tstring_t>() << xT(";");
     }
 
     //-------------------------------------
@@ -61,7 +69,7 @@ CxTest_CxDebugger::bUnit(
     //-------------------------------------
     //bIsPresent
     xTEST_CASE(cullCaseLoops)
-    {   
+    {
         CxDebugger dbgDebugger;
 
         m_bRes = dbgDebugger.bIsPresent();
