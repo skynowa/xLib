@@ -34,8 +34,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxDebugger::CxDebugger() :
-    _ms_bIsEnabled(true),
-    _ms_sLogPath  (),
+    _m_bIsEnabled(true),
+    _m_sLogPath  (),
     _m_ossTracer  ()
 {
     _m_ossTracer.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
@@ -58,7 +58,7 @@ CxDebugger::~CxDebugger() {
 //---------------------------------------------------------------------------
 bool
 CxDebugger::bGetEnabled() {
-    return _ms_bIsEnabled;
+    return _m_bIsEnabled;
 }
 //---------------------------------------------------------------------------
 bool
@@ -66,7 +66,7 @@ CxDebugger::bSetEnabled(
     const bool cbFlag
 )
 {
-    _ms_bIsEnabled = cbFlag;
+    _m_bIsEnabled = cbFlag;
 
     return true;
 }
@@ -127,14 +127,14 @@ CxDebugger::bSetLogPath(
     const std::tstring_t &csFilePath
 )
 {
-    _ms_sLogPath = csFilePath;
+    _m_sLogPath = csFilePath;
 
     return true;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
 CxDebugger::sGetLogPath() {
-    return _ms_sLogPath;
+    return _m_sLogPath;
 }
 //---------------------------------------------------------------------------
 bool
@@ -204,8 +204,8 @@ CxDebugger::bTrace(
 /*static*/
 bool
 CxDebugger::bBeep(
-    const ulong_t culFrequency /*= 800*/,
-    const ulong_t culDuration  /*= 100*/
+    const ulong_t culFrequency /*= 800UL*/,
+    const ulong_t culDuration  /*= 100UL*/
 )
 {
 #if xOS_ENV_WIN
