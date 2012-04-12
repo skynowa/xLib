@@ -122,7 +122,7 @@ xTMAIN(
 )
 {
     //--------------------------------------------------
-    //set commandline args for xLib
+    // set commandline args for xLib
     {
         bool bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
         xTEST_EQ(true, bRes);
@@ -134,7 +134,7 @@ xTMAIN(
     #endif
 
     //--------------------------------------------------
-    //options (default)
+    // options (default)
     bool        bIsUseTracing = true;
     ulonglong_t ullAllLoops   = 1UL;
     ulonglong_t ullUnitLoops  = 1UL;
@@ -146,7 +146,7 @@ xTMAIN(
         bool bRes = CxCommandLine::bGetArgs(&vsArgs);
         xTEST_EQ(true, bRes);
 
-        //usage
+        // usage
         if (2 == iArgCount) {
             bRes = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
             if (true == bRes) {
@@ -163,7 +163,7 @@ xTMAIN(
             return true;
         }
 
-        //loops number
+        // loops number
         if (5 == iArgCount) {
             bIsUseTracing = CxString::lexical_cast<bool>       ( vsArgs.at(1) );
             ullAllLoops   = CxString::lexical_cast<ulonglong_t>( vsArgs.at(2) );
@@ -173,7 +173,7 @@ xTMAIN(
     }
 
     //--------------------------------------------------
-    //add and run tests
+    // add and run tests
     {
         CxTestManager tmManager(bIsUseTracing);
 
@@ -200,7 +200,7 @@ xTMAIN(
 
     #endif
 
-        //Crypt
+        // Crypt
         (void)tmManager.bAdd(new CxTest_CxCrc32);
         (void)tmManager.bAdd(new CxTest_CxRandom);
     #if !xCOMPILER_MINGW32
@@ -208,11 +208,11 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxBlowfish);
     #endif
 
-        //Db
+        // Db
         (void)tmManager.bAdd(new CxTest_CxConnectionString);
         //(void)tmManager.bAdd(new CxTest_CxMySql);
 
-        //Debug
+        // Debug
         (void)tmManager.bAdd(new CxTest_CxStdError);
         (void)tmManager.bAdd(new CxTest_CxLastError);
         (void)tmManager.bAdd(new CxTest_CxStackTrace);
@@ -221,7 +221,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxProfiler);
         (void)tmManager.bAdd(new CxTest_CxAutoProfiler);
 
-        //Filesystem
+        // Filesystem
         (void)tmManager.bAdd(new CxTest_CxPath);
         (void)tmManager.bAdd(new CxTest_CxFileAttribute);
         (void)tmManager.bAdd(new CxTest_CxFile);
@@ -239,10 +239,10 @@ xTMAIN(
 
     #endif
 
-        //Log
+        // Log
         (void)tmManager.bAdd(new CxTest_CxFileLog);
 
-        //Net
+        // Net
         (void)tmManager.bAdd(new CxTest_CxCookiePv0);
         (void)tmManager.bAdd(new CxTest_CxCookiePv1);
         (void)tmManager.bAdd(new CxTest_CxCgi);
@@ -252,17 +252,17 @@ xTMAIN(
         //(void)tmManager.bAdd(new CxTest_CxTcpServer);
         //(void)tmManager.bAdd(new CxTest_CxHttpClient);
 
-        //Patterns
+        // Patterns
         (void)tmManager.bAdd(new CxTest_CxSingleton);
 
-        //Pkcs11
+        // Pkcs11
     #if xOS_ENV_WIN
         ////(void)tmManager.bAdd(new CxTest_CxPkcs11);
     #elif xOS_ENV_UNIX
 
     #endif
 
-        //Sync
+        // Sync
         (void)tmManager.bAdd(new CxTest_CxAtomicLongInt);
         (void)tmManager.bAdd(new CxTest_CxThreadStorage);
         (void)tmManager.bAdd(new CxTest_CxCriticalSection);
@@ -281,7 +281,7 @@ xTMAIN(
 
     #endif
 
-        //Gui
+        // Gui
         (void)tmManager.bAdd(new CxTest_CxMsgBoxT);
 
     #if xOS_ENV_WIN
@@ -289,7 +289,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxImage);
     #endif
 
-        //Units
+        // Units
         (void)tmManager.bAdd(new CxTest_Draft);
 
 
