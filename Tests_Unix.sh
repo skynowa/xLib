@@ -20,7 +20,6 @@ TARGET_DIR=
 clear
 
 echo -e
-echo -e
 echo -e $COL_GREEN"Prepare..."\($OSTYPE\) $COL_NORM
 echo -e
 
@@ -40,35 +39,35 @@ mkdir -p $TARGET_DIR
 
 # build
 echo -e
-echo -e
 echo ${COL_GREEN}"Build..."${COL_NORM}
 
 $MAKE --directory=$TARGET_DIR --makefile=../../../Tests.mk > ./$HOSTNAME.out 2> ./$HOSTNAME.err
 
 # output
+ERRORS=
 if [ $? != 0 ]; then
     echo -e 
     echo -e "===================================================================================================="
     echo -e "${COL_RED}Errors:${COL_NORM}\n"
     cat ./$HOSTNAME.err
     echo -e "===================================================================================================="
-
-    set $?=1
-else
-    if [ -f "$TARGET_DIR/xlib_r" ]; then
-        echo -e "${COL_RED}[FAILED]${COL_NORM}\n"
-        exit 1
-    fi
-
-    set $?=0
 fi
 
-echo -e 
-echo -e "===================================================================================================="
-echo -e "${COL_YELLOW_BOLD}Warnings:${COL_NORM}\n"
-cat ./$HOSTNAME.err | grep warning
-echo -e "===================================================================================================="
+WARNINGS=`cat ./$HOSTNAME.err | grep warning`
+if [ "$WARNINGS" != "" ]; then
+    echo -e 
+    echo -e "===================================================================================================="
+    echo -e "${COL_YELLOW_BOLD}Warnings:${COL_NORM}\n"
+    echo -e "$WARNINGS"
+    echo -e "===================================================================================================="
+fi
 
+
+# checks
+if [ ! -f "$TARGET_DIR/xlib_r" ]; then
+    echo -e "${COL_RED}[FAILED]${COL_NORM}\n"
+    exit 1
+fi
 
 # finished
 echo -e
