@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-# xxxxxxxx
+# \file  RunTests_Unix.sh
+# \brief run tests for Unix OS
 #
+
 
 # vars
 TARGET_DIR=

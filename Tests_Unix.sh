@@ -1,19 +1,28 @@
 #!/bin/sh
 #
-# xxxxxxxx
+# \file  Tests_Unix.sh
+# \brief build tests for Unix OS
 #
 
+
+# constants
+COL_NORM="$(tput setaf 9)"
+COL_RED="$(tput setaf 1)"
+COL_GREEN="$(tput setaf 2)"
 
 # vars
 MAKE=
 TARGET_DIR=
 
 
+# prepare
 clear
-echo -e "Build xLib ($OSTYPE) ... "
+
+echo -e
+echo -e 
+echo -e ${COL_GREEN}"Prepare..."($OSTYPE)${COL_NORM}
 echo -e
 
-# prepare
 if   [ "$OSTYPE" = "linux-gnu"   ]; then
     MAKE=make
     TARGET_DIR=./Contrib/G++_linux/Release
@@ -25,11 +34,20 @@ else
     exit 1
 fi
 
-# execute
 mkdir -p $TARGET_DIR
+
+
+# build
+echo -e
+echo -e
+echo -e ${COL_GREEN}"Build..."${COL_NORM}
+echo -e
+
 $MAKE --directory=$TARGET_DIR --makefile=../../../Tests.mk
+
 
 # finished
 echo -e
-echo -e "Finished."
+echo -e
+echo -e ${COL_GREEN}"Finished."${COL_NORM}
 echo -e
