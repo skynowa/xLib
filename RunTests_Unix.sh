@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # \file  RunTests_Unix.sh
 # \brief run tests for Unix OS
