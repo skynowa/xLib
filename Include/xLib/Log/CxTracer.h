@@ -24,6 +24,8 @@ class CxTracer :
             ///< get CxTracer object for tracing
         static bool        bWrite      (const tchar_t *pcszFormat, ...);
             ///< tracing to debugger, std::cout
+        static bool        bWrite      (const std::tstring_t &csMsg);
+            ///< tracing to debugger, std::cout
 
     private:
         std::ostringstream _m_ossStream;    ///< string stream
