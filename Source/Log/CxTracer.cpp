@@ -32,7 +32,7 @@ CxTracer::Write() {
 //---------------------------------------------------------------------------
 /*static*/
 bool
-CxTracer::bTrace(
+CxTracer::bWrite(
     const tchar_t *pcszFormat, ...
 )
 {
