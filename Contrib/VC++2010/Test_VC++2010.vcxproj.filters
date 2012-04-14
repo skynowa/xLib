@@ -687,6 +687,12 @@
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxProcessInfo.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxTracer.cpp">
+      <Filter>Test\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Log\CxTracer.cpp">
+      <Filter>xLib\Log</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1273,6 +1279,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxProcessInfo.h">
       <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxTracer.h">
+      <Filter>Test\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Log\CxTracer.h">
+      <Filter>xLib\Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
