@@ -70,6 +70,7 @@
 #endif
 
 //Log
+#include <Test/Log/CxTest_CxTracer.h>
 #include <Test/Log/CxTest_CxFileLog.h>
 
 //Net
@@ -240,6 +241,7 @@ xTMAIN(
     #endif
 
         // Log
+        (void)tmManager.bAdd(new CxTest_CxTracer);
         (void)tmManager.bAdd(new CxTest_CxFileLog);
 
         // Net
