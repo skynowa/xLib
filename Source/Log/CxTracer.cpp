@@ -30,6 +30,30 @@ CxTracer::Write() {
     return CxTracer();
 }
 //---------------------------------------------------------------------------
+/*static*/
+bool
+CxTracer::bTrace(
+    const tchar_t *pcszFormat, ...
+)
+{
+    std::tstring_t sRes;
+
+    va_list palArgs;
+    xVA_START(palArgs, pcszFormat);
+    sRes = CxString::sFormatV(pcszFormat, palArgs);
+    xVA_END(palArgs);
+
+#if xOS_ENV_WIN
+    (void)::OutputDebugString((sRes + CxConst::xNL).c_str());
+#elif xOS_ENV_UNIX
+    xNA;
+#endif
+
+    std::tcout << sRes << std::endl;
+
+    return true;
+}
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************
