@@ -24,10 +24,6 @@ class CxDebugger :
         virtual              ~CxDebugger      ();
             ///< destructor
 
-        template<class T>
-        friend CxDebugger &   operator <<     (CxDebugger &cdbgDebugger, const T &cMessageT);
-            ///< tracing to debugger, std::cout
-
         bool                  bGetEnabled     ();
             ///< is debugging enabled
         bool                  bSetEnabled     (const bool cbFlag);
@@ -44,10 +40,6 @@ class CxDebugger :
             ///< get log file path
         bool                  bReportMake     (const CxErrorReport &crpReport);
             ///< make report
-        static bool           bTrace          (const tchar_t *pcszFormat, ...);
-            ///< tracing to debugger, std::cout
-        static bool           bTrace          (const std::tstring_t &csMsg);
-            ///< tracing to debugger, std::cout
         static bool           bBeep           (const ulong_t culFrequency = 800UL, const ulong_t culDuration = 100UL);
             ///< play sound
 
@@ -56,8 +48,6 @@ class CxDebugger :
             ///< is debugger enabled
         std::tstring_t        _m_sLogPath;
             ///< log path
-        std::tostringstream_t _m_ossTracer;
-            ///< 
 
         bool                  _bMsgboxPlain   (const CxErrorReport &crpReport);
             ///< show message box with plain report
@@ -74,7 +64,5 @@ class CxDebugger :
 };
 
 xNAMESPACE_END(NxLib)
-//---------------------------------------------------------------------------
-#include "CxDebugger.inl"
 //---------------------------------------------------------------------------
 #endif    //xLib_Debug_CxDebuggerH

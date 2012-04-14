@@ -13,6 +13,7 @@
 #include <xLib/Debug/CxStackTrace.h>
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
+#include <xLib/Log/CxTracer.h>
 //---------------------------------------------------------------------------
 #define _xASSERT(report_type, expr)                               { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport);}                       }
 #define _xASSERT_RET(report_type, expr, return_expr)              { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); return (return_expr);} }
@@ -201,16 +202,16 @@
 #endif
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
-    #define xTRACEV(format, ...)                        { CxDebugger::bTrace(format, __VA_ARGS__);        }
+    #define xTRACEV(format, ...)                        { CxTracer::bWrite(format, __VA_ARGS__);        }
         ///< tracing
-    #define xTRACE(msg)                                 { CxDebugger::bTrace(msg);                        }
+    #define xTRACE(msg)                                 { CxTracer::bWrite(msg);                        }
         ///< tracing
-    #define xTRACE_FUNC                                 { CxDebugger::bTrace(xT("%s"), xFUNCTION);        }
+    #define xTRACE_FUNC                                 { CxTracer::bWrite(xT("%s"), xFUNCTION);        }
         ///< tracing, comment with current function name
-    #define xTRACE_FUNC_MSG(s)                          { CxDebugger::bTrace(xT("%s: %s"), xFUNCTION, s); }
+    #define xTRACE_FUNC_MSG(s)                          { CxTracer::bWrite(xT("%s: %s"), xFUNCTION, s); }
         ///< tracing, comment with current function name and message
-    #define xTRACE_POINT                                { CxDebugger::bTrace(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
-        ///< trace point (use CxDebugger)
+    #define xTRACE_POINT                                { CxTracer::bWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
+        ///< trace point (use CxTracer)
     #define xSTD_TRACE_POINT                            { std::tcout << xT("Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << std::endl; }
         ///< trace point (use std::cout)
 #else

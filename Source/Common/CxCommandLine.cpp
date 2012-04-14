@@ -58,7 +58,7 @@ CxCommandLine::bGetArgs(
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsArgs, false);
 
-    xCHECK_DO(true == _ms_vsArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
+    xCHECK_DO(true == _ms_vsArgs.empty(), CxTracer::bWrite(xT("xLib: warning (command line is empty)")));
 
     (*pvsArgs) = _ms_vsArgs;
 
@@ -83,7 +83,7 @@ CxCommandLine::bSetArgs(
     //out
     std::swap(_ms_vsArgs, vsArgs);
 
-    xCHECK_DO(true == _ms_vsArgs.empty(), CxDebugger::bTrace(xT("xLib: warning (command line is empty)")));
+    xCHECK_DO(true == _ms_vsArgs.empty(), CxTracer::bWrite(xT("xLib: warning (command line is empty)")));
 
     return true;
 }

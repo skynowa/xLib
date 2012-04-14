@@ -35,17 +35,14 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 CxDebugger::CxDebugger() :
     _m_bIsEnabled(true),
-    _m_sLogPath  (),
-    _m_ossTracer  ()
+    _m_sLogPath  ()
 {
-    _m_ossTracer.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
+
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxDebugger::~CxDebugger() {
-    if (false == _m_ossTracer.str().empty()) {
-        (void)bTrace(xT("%s"), _m_ossTracer.str().c_str());
-    }
+
 }
 //---------------------------------------------------------------------------
 
@@ -162,43 +159,6 @@ CxDebugger::bReportMake(
     (void)CxLastError::bSet(culLastError);
 
     return true;
-}
-//---------------------------------------------------------------------------
-/*static*/
-bool
-CxDebugger::bTrace(
-    const tchar_t *pcszFormat, ...
-)
-{
-    //-- xCHECK_RET(false == bGetEnabled(), true);
-
-    std::tstring_t sRes;
-
-    va_list palArgs;
-    xVA_START(palArgs, pcszFormat);
-    sRes = CxString::sFormatV(pcszFormat, palArgs);
-    xVA_END(palArgs);
-
-#if xOS_ENV_WIN
-    (void)::OutputDebugString((sRes + CxConst::xNL).c_str());
-#elif xOS_ENV_UNIX
-    xNA;
-#endif
-
-    std::tcout << sRes << std::endl;
-
-    return true;
-}
-//---------------------------------------------------------------------------
-/*static*/
-bool
-CxDebugger::bTrace(
-    const std::tstring_t &csMsg
-)
-{
-    //-- xCHECK_RET(false == bGetEnabled(), true);
-
-    return bTrace(xT("%s"), csMsg.c_str());
 }
 //---------------------------------------------------------------------------
 /*static*/
