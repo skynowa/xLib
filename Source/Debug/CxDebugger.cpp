@@ -180,7 +180,7 @@ CxDebugger::bTrace(
     xVA_END(palArgs);
 
 #if xOS_ENV_WIN
-    (void)::OutputDebugString(sRes.c_str());
+    (void)::OutputDebugString((sRes + CxConst::xNL).c_str());
 #elif xOS_ENV_UNIX
     xNA;
 #endif
