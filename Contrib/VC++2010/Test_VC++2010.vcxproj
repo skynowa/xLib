@@ -263,7 +263,6 @@
     <ClCompile Include="..\..\Source\Common\CxSystemInfo.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp" />
     <ClCompile Include="..\..\Source\Sync\Win\CxCompletionPort.cpp" />
-    <ClCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bGetUsbInfo.cpp" />
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxArray.cpp" />
@@ -613,7 +612,6 @@
     <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuildStep>
-    <ClInclude Include="..\..\Include\xLib\Units\sGetEan13BarCode.h" />
     <ClInclude Include="..\..\Include\xLib\Units\Win\bDownloadURL.h" />
     <ClInclude Include="..\..\Include\xLib\Units\Win\bGetUsbInfo.h" />
   </ItemGroup>

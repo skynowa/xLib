@@ -26,15 +26,15 @@ CxTest_CxTracer::bUnit(
     // Write
     xTEST_CASE(cullCaseLoops)
     {
-        CxTracer::Write() << xT("Msg: ") << 12345 << xT(' ') << CxConst::x3DOT;
-        CxTracer::Write() << xT("Msg: ") << 12345 << xT(' ') << CxConst::x3DOT;
+        CxTracer::Write() << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT;
+        CxTracer::Write() << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT;
     }
 
     //--------------------------------------------------
     // bWrite
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxTracer::bWrite(xT("%s: %d"), "test_str", 12345);
+        m_bRes = CxTracer::bWrite(xT("\t%s: %d"), "test_str", 12345);
         xTEST_EQ(true, m_bRes);
     }
 
