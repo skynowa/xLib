@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # \file  Lib_Unix.sh
 # \brief build static lib for Unix OS

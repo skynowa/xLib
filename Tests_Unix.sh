@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # \file  Tests_Unix.sh
 # \brief build tests for Unix OS
