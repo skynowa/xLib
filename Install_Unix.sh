@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # \file  Install_Unix.sh
 # \brief install xLib for Unix OS
