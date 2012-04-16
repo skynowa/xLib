@@ -315,9 +315,6 @@
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp">
       <Filter>xLib\Common\Win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp">
-      <Filter>xLib\Units</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp">
       <Filter>xLib\Units\Win</Filter>
     </ClCompile>
@@ -862,9 +859,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Common\Win\xCommon_Win.h">
       <Filter>xLib\Common\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Units\sGetEan13BarCode.h">
-      <Filter>xLib\Units</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Units\Win\bDownloadURL.h">
       <Filter>xLib\Units\Win</Filter>
