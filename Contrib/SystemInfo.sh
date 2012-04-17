@@ -14,6 +14,7 @@ COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
 
 # vars
 cOS_INFO=`uname -a`
+cOS_TYPE=$OSTYPE
 cOS_BIT=`getconf LONG_BIT`
 cOS_ARCH=`uname -m`
 cGCC_INFO=`gcc -dumpversion`
@@ -22,7 +23,7 @@ cBINUTILS_INFO=`ld --version | head -n 1`
 cGDB=`gdb --version | head -n 1`
 cMAKE=`make --version | head -n 1`
 cPATCH=`patch --version | head -n 1`
-cSHELL=`echo $SHELL`
+cSHELL=$SHELL
 
 
 # print info
@@ -31,6 +32,7 @@ echo "************************************************************"
 echo "* System info"
 echo "*"
 echo "* OS:       " $cOS_INFO
+echo "* OS type:  " $cOS_TYPE
 echo "* OS bit:   " $cOS_BIT \($cOS_ARCH\)
 echo "* GCC:      " $cGCC_INFO
 echo "* GLIBC:    " $cGLIBC_INFO
