@@ -1,24 +1,12 @@
 ######################################################################################################
-# Class name:
-# Description: make file (static library, Linux, release)
 # File name:   Lib.mk
-# Author:      skynowa
-# E-mail:      skynowa@gmail.com
-# Created:     30.06.2011
+# Description: make file for static library (Unix OS)
 #
 ######################################################################################################
 
 
 ##################################################
 # constants
-cOS						:=	$(shell uname -s)
-cOS_BIT					:=	$(shell getconf LONG_BIT)
-cOS_ARCH 				:=	$(shell gcc -dumpmachine)	#$(shell uname -m)
-cOS_INFO 				:=	$(shell uname -a)
-cGCC_INFO				:=	$(shell gcc -dumpversion)
-cGLIBC_INFO				:=	##$(shell ldd --version)	#TODO: not implemented
-cBINUTILS_INFO			:=	n/a
-
 cBUILD_TYPE_DEBUG		:=	debug
 cBUILD_TYPE_RELEASE		:=	release
 
@@ -134,56 +122,18 @@ VPATH					:= ../../../
 .PHONY:					clean
 
 all:
-#						clear
-
-#						@echo "************************************************************"
-#						@echo "* OS info:         " $(cOS_INFO)
-#						@echo "* OS architecture: " $(cOS_BIT)
-#						@echo "* GCC info:        " $(cGCC_INFO)
-#						@echo "* GLIBC info:      " #$(cGLIBC_INFO)
-#						@echo "* Binutils info:   " $(cBINUTILS_INFO)
-#						@echo "*"
-#						@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
-#						@echo "* Bin type:        " $(BIN_TYPE)
-#						@echo "* Build type:      " $(BUILD_TYPE)
-#						@echo "*"
-#						@echo "************************************************************"
-#						@echo ""
-
-#						@echo "[Prepare ...]"
 						mkdir -p $(BINARY_DIR)
-#						@echo ""
-
-#						@echo "[Build ...]"
 						$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../Lib.mk
-#						@echo ""
-
-#						@echo "[Finish ...]"
-#						@echo ""
 
 install:
-#						@echo "[Install ...]"
 						mkdir -p $(INSTALL_DIR)
 						cp    ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
 
 						mkdir -p $(INSTALL_INCLUDE_DIR)
 						cp -r ./$(ROOT_INCLUDE_DIR) $(INSTALL_INCLUDE_DIR)
-#						@echo ""
 
 clean:
-#						@echo "[Clean ...]"
 						rm -rf $(BINARY_DIR)
-
-#						@echo "[Finish ...]"
-#						@echo ""
 
 include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
 
-
-# gcc -dumpversion
-# gcc -dumpmachine
-
-# OS   := $(shell uname -s)
-# ARCH := $(shell uname -m)
-# KERN := $(shell uname -r | cut -d. -f 1,2)
-# BDIR := $(OS)_$(KERN).$(ARCH)

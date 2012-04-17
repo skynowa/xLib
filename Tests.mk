@@ -1,24 +1,12 @@
 ######################################################################################################
-# Class name:
-# Description: make file (static library, Linux, release)
-# File name:   makefile
-# Author:      skynowa
-# E-mail:      skynowa@gmail.com
-# Created:     30.06.2011
+# File name:   Tests.mk
+# Description: make file for tests (Unix OS)
 #
 ######################################################################################################
 
 
 ##################################################
 # Constants
-cOS							:=	$(shell uname -s)
-cOS_BIT						:=	$(shell getconf LONG_BIT)
-cOS_ARCH 					:=	$(shell gcc -dumpmachine) #$(shell uname -m)
-cOS_INFO 					:=	$(shell uname -a)
-cGCC_INFO					:=	$(shell gcc -dumpversion)
-cGLIBC_INFO					:=	n/a	##$(shell ldd --version)	#TODO: not implemented
-cBINUTILS_INFO				:=	n/a
-
 cBUILD_TYPE_DEBUG			:=	debug
 cBUILD_TYPE_RELEASE			:=	release
 
@@ -174,24 +162,6 @@ $(PROGRAM_PATH): 				OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS) $(RELATIVE_INCLUDE_DIR
 								$(cCOMPILER) $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBRARIES) -o $@
 
 OBJ_DIRS:
-#								clear
-#
-#								@echo "************************************************************"
-#								@echo "* Description:     " $(cDESCRIPTION)
-#								@echo "*"
-#								@echo "* OS info:         " $(cOS_INFO)
-#								@echo "* OS architecture: " $(cOS_BIT)
-#								@echo "* GCC info:        " $(cGCC_INFO)
-#								@echo "* GLIBC info:      " $(cGLIBC_INFO)
-#								@echo "* Binutils info:   " $(cBINUTILS_INFO)
-#								@echo "*"
-#								@echo "* Program name:    " $(PROGRAM_NAME)	" ("$(BINARY_DIR)")"
-#								@echo "* File size:       " $(PROGRAM_SIZE)
-#								@echo "* Build type:      " $(BUILD_TYPE)
-#								@echo "*"
-#								@echo "************************************************************"
-#								@echo ""
-
 								mkdir -p $(OBJECTS_DIRS) $(TESTS_OBJECTS_DIRS)
 
 #%.o:							%.h
@@ -203,10 +173,8 @@ OBJ_DIRS:
 .PHONY:							clean
 
 install:
-#								@echo "[Install ...]"
 								mkdir -p $(INSTALL_DIR)
 								cp $(BINARY_DIR)/$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_EXT) $(INSTALL_DIR)
-#								@echo ""
 
 clean:
 								rm -rf $(BINARY_DIR)
@@ -216,3 +184,4 @@ help:
 
 include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
 include $(wildcard $(addsuffix /*.d, $(TESTS_OBJECTS_DIRS)))
+
