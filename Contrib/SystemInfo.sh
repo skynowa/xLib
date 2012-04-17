@@ -44,3 +44,14 @@ echo "* SHELL:    " $cSHELL
 echo "*"
 echo "************************************************************"
 echo ""
+
+
+
+# gcc -dumpversion
+# gcc -dumpmachine
+
+# OS   := $(shell uname -s)
+# ARCH := $(shell uname -m)
+# KERN := $(shell uname -r | cut -d. -f 1,2)
+# BDIR := $(OS)_$(KERN).$(ARCH)
+
