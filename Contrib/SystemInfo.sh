@@ -18,11 +18,33 @@ cOS_TYPE=$OSTYPE
 cOS_BIT=`getconf LONG_BIT`
 cOS_ARCH=`uname -m`
 cGCC_INFO=`gcc -dumpversion`
+
 cGLIBC_INFO=`ldd --version | head -n 1`
+if [ "" = "$cGLIBC_INFO" ]; then
+    cGLIBC_INFO=`ldd --version`    
+fi
+
 cBINUTILS_INFO=`ld --version | head -n 1`
+if [ "" = "$cBINUTILS_INFO" ]; then
+    cBINUTILS_INFO=`ld --version`    
+fi
+
 cGDB=`gdb --version | head -n 1`
+if [ "" = "$cGDB" ]; then
+    cGDB=`gdb --version`
+fi
+
 cMAKE=`make --version | head -n 1`
+if [ "" = "$cMAKE" ]; then
+    cMAKE=`make --version`
+fi
+
 cPATCH=`patch --version | head -n 1`
+if [ "" = "$cPATCH" ]; then
+    cGDB=`patch --version`
+fi
+
+
 cSHELL=$SHELL
 
 
