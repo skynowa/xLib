@@ -132,10 +132,10 @@ CxSystemInfo::sFormatOsType(
     } else {
         // not current OS type, can't get info about OS kernel - return simple-formatted string
         switch (otOsType) {
-            case otLinux:   { sRes = xT("Linux");     } break;
-            case otFreeBSD: { sRes = xT("FreeBSD");   } break;
+            case otLinux:   { sRes = xT("Linux");              } break;
+            case otFreeBSD: { sRes = xT("FreeBSD");            } break;
 
-            default:        { sRes = xUNKNOWN_STRING; } break;
+            default:        { sRes = CxConst::xUNKNOWN_STRING; } break;
         }
     }
 #endif
