@@ -497,7 +497,7 @@ CxDir::bFindFiles(
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData        = {0};
     std::tstring_t  sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
-    std::tstring_t  sFileFullName = CxPath::sGetFullName(sFilePath);
+    std::tstring_t  sFileFullName = CxPath::sGetFileName(sFilePath);
     std::tstring_t  sPart;
     std::tstring_t  sTmpPath;
 
@@ -505,7 +505,7 @@ CxDir::bFindFiles(
     //subdirs
     if (true == cbIsRecurse) {
         sPart    = CxConst::xMASK_ALL;
-        sTmpPath = CxPath::sSetFullName(sFilePath, sPart);
+        sTmpPath = CxPath::sSetFileName(sFilePath, sPart);
 
         //make search, if dir exists
         fdData.dwFileAttributes = CxFileAttribute::faDirectory;
@@ -519,7 +519,7 @@ CxDir::bFindFiles(
                 xCHECK_DO(CxConst::x2DOT == std::tstring_t(fdData.cFileName),        continue);
 
                 sPart    = fdData.cFileName;
-                sTmpPath = CxPath::sSetFullName(sTmpPath, sPart);
+                sTmpPath = CxPath::sSetFileName(sTmpPath, sPart);
 
                 (void)bFindFiles(sTmpPath, sFileFullName, true, pvsFilePathes);
             }
@@ -540,7 +540,7 @@ CxDir::bFindFiles(
         xCHECK_DO(fdData.dwFileAttributes & CxFileAttribute::faDirectory, continue);
 
         sPart    = fdData.cFileName;
-        sTmpPath = CxPath::sSetFullName(sFilePath/*sTmpPath*/, sPart);
+        sTmpPath = CxPath::sSetFileName(sFilePath/*sTmpPath*/, sPart);
 
         (*pvsFilePathes).push_back(sTmpPath);
     }

@@ -181,7 +181,7 @@ CxPath::sGetDirName(
 //---------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxPath::sGetFullName(
+CxPath::sGetFileName(
     const std::tstring_t &csFilePath
 )
 {
@@ -195,7 +195,7 @@ CxPath::sGetFullName(
 //--------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxPath::sGetName(
+CxPath::sGetFileBaseName(
     const std::tstring_t &csFilePath
 )
 {
@@ -301,7 +301,7 @@ CxPath::sSetDir(
 //---------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxPath::sSetFullName(
+CxPath::sSetFileName(
     const std::tstring_t &csFilePath,
     const std::tstring_t &csFullName
 )
@@ -311,7 +311,7 @@ CxPath::sSetFullName(
 
     std::tstring_t sRes(csFilePath);
 
-    std::tstring_t sFullName = sGetFullName(sRes);
+    std::tstring_t sFullName = sGetFileName(sRes);
     /*DEBUG*/xASSERT_RET(false == sFullName.empty(), std::tstring_t());
 
     size_t uiPos = sRes.rfind(sFullName);
@@ -322,7 +322,7 @@ CxPath::sSetFullName(
 //---------------------------------------------------------------------------
 /*static*/
 std::tstring_t
-CxPath::sSetName(
+CxPath::sSetFileBaseName(
     const std::tstring_t &csFilePath,
     const std::tstring_t &csName
 )
@@ -332,7 +332,7 @@ CxPath::sSetName(
 
     std::tstring_t sRes(csFilePath);
 
-    std::tstring_t sName = sGetName(sRes);
+    std::tstring_t sName = sGetFileBaseName(sRes);
     /*DEBUG*/xASSERT_RET(false == sName.empty(), std::tstring_t());
 
     size_t uiPos = sRes.rfind(sName);
@@ -421,7 +421,7 @@ CxPath::bIsNameValid(
 
     bool bRes = false;
 
-    const std::tstring_t csFileName = CxPath::sGetFullName(csFilePath);
+    const std::tstring_t csFileName = CxPath::sGetFileName(csFilePath);
 
     //is empty
     bRes = csFileName.empty();

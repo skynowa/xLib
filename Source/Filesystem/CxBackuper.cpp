@@ -75,7 +75,7 @@ CxBackuper::etExecute(
     //format file full name
     std::tstring_t sBackupFilePath =
                         CxPath::sSlashAppend(csDestDirPath) +
-                        CxPath::sGetFullName(csFilePath)    +
+                        CxPath::sGetFileName(csFilePath)    +
                         xT(".bak [") + sDateTimeStamp + xT("]");
 
     bRes = CxFile::bIsExists(sBackupFilePath);
