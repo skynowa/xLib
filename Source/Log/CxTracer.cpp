@@ -25,9 +25,11 @@ CxTracer::~CxTracer() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxTracer
+CxTracer &
 CxTracer::Write() {
-    return CxTracer();
+    static CxTracer trcTracer;
+
+    return trcTracer;
 }
 //---------------------------------------------------------------------------
 /*static*/
