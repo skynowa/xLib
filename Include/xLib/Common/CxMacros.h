@@ -449,11 +449,6 @@
                                     for (it_t::const_reverse_iterator it = (cont).rbegin(); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
 
-
-// other
-#define xUNKNOWN_STRING             xT("[unknown]")
-    ///< unknown string value
-
 //---------------------------------------------------------------------------
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Common/xTypes.h>

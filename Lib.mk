@@ -83,9 +83,9 @@ COMPILE_FLAGS			:=	-Wall -pipe
 LINK_FLAGS				:=	-pthread -s -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-BUILD_FLAGS				:=	-O0 -g3 -g
+BUILD_FLAGS				:=	-O0 -g3 -g -fexceptions
 else
-BUILD_FLAGS				:=	-O3 -g0
+BUILD_FLAGS				:=	-O3 -g0 -fexceptions
 endif
 
 PARANOID_FLAGS			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
