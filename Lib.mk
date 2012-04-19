@@ -7,6 +7,8 @@
 
 ##################################################
 # constants
+cOS                     :=  $(shell uname -s)
+
 cBUILD_TYPE_DEBUG		:=	debug
 cBUILD_TYPE_RELEASE		:=	release
 

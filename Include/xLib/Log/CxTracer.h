@@ -20,7 +20,7 @@ class CxTracer :
         template<class T>
         CxTracer &         operator << (const T &cValueT);
             ///< operator <<
-        static CxTracer    Write       ();
+        static CxTracer &  Write       ();
             ///< get CxTracer object for tracing
         static bool        bWrite      (const tchar_t *pcszFormat, ...);
             ///< tracing to debugger, std::cout
