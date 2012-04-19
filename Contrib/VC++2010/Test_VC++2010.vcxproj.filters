@@ -489,9 +489,6 @@
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp">
       <Filter>Test\Gui\Win\Gdi+</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Common\CxType.cpp">
-      <Filter>xLib\Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxType.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>

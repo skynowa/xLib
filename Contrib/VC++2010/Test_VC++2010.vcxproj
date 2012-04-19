@@ -156,7 +156,6 @@
     <ClCompile Include="..\..\Source\Common\CxConsole.cpp" />
     <ClCompile Include="..\..\Source\Common\CxProcessInfo.cpp" />
     <ClCompile Include="..\..\Source\Common\CxShell.cpp" />
-    <ClCompile Include="..\..\Source\Common\CxType.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxRandom.cpp" />
     <ClCompile Include="..\..\Source\Crypt\OpenSSL\CxBase64.cpp" />
