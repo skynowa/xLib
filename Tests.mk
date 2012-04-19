@@ -124,9 +124,9 @@ LIBRARIES					:=	-lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-BUILD_FLAGS					:=	-O0 -g3 -g
+BUILD_FLAGS					:=	-O0 -g3 -g -fexceptions
 else
-BUILD_FLAGS					:=	-O3 -g0 -fomit-frame-pointer
+BUILD_FLAGS					:=	-O3 -g0 -fomit-frame-pointer -fexceptions
 endif
 
 PARANOID_FLAGS				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \

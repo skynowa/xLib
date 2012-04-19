@@ -116,7 +116,7 @@ CxSystemInfo::sFormatOsType(
         case otWindowsServer2008R2:     { sRes = xT("Windows Server 2008 R2");     }    break;
         case otWindows7:                { sRes = xT("Windows 7");                  }    break;
 
-        default:                        { sRes = xUNKNOWN_STRING;                  }    break;
+        default:                        { sRes = CxConst::xUNKNOWN_STRING;         }    break;
     }
 #elif xOS_ENV_UNIX
     if (osGetOS() == otOsType) {
@@ -215,11 +215,11 @@ CxSystemInfo::sFormatOsArch(
     std::tstring_t sRes;
 
     switch (oaOsArch) {
-        case CxSystemInfo::oa32bit:     sRes = xT("32-bit");    break;
-        case CxSystemInfo::oa64bit:     sRes = xT("64-bit");    break;
-        case CxSystemInfo::oaUnknown:   sRes = xUNKNOWN_STRING; break;
+        case CxSystemInfo::oa32bit:     sRes = xT("32-bit");             break;
+        case CxSystemInfo::oa64bit:     sRes = xT("64-bit");             break;
+        case CxSystemInfo::oaUnknown:   sRes = CxConst::xUNKNOWN_STRING; break;
 
-        default:                        sRes = xUNKNOWN_STRING; break;
+        default:                        sRes = CxConst::xUNKNOWN_STRING; break;
     }
 
     return sRes;

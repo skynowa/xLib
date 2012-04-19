@@ -137,11 +137,11 @@ CxPath::sGetDrive(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), std::tstring_t());
 
-    size_t uiDriveDelimPos = csFilePath.find(CxConst::xDRIVE_SEP);
+    size_t uiDriveDelimPos = csFilePath.find(CxConst::xCOLON);
     /*DEBUG*/xASSERT_RET(std::tstring_t::npos != uiDriveDelimPos, std::tstring_t());
     /*DEBUG*/xASSERT_RET(1                    == uiDriveDelimPos, std::tstring_t());
 
-    return csFilePath.substr(0, uiDriveDelimPos + CxConst::xDRIVE_SEP.size());
+    return csFilePath.substr(0, uiDriveDelimPos + CxConst::xCOLON.size());
 }
 
 #endif
