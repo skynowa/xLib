@@ -75,8 +75,8 @@ LIB_DIRS				:=	/usr/lib64 \
 							/usr/local/lib/mysql
 
 BINARY_DIR				:=	./Library/G++_linux/Release
-INSTALL_INCLUDE_DIR		:=	/usr/local/include/xLib
-INSTALL_DIR				:=	/usr/local/lib/xLib
+INSTALL_INCLUDE_DIR		:=	/usr/local/include
+INSTALL_DIR				:=	/usr/local/lib
 PROGRAM_PATH			:=	../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
 COMPILER				:=	$(CXX)
@@ -129,10 +129,10 @@ all:
 
 install:
 						mkdir -p $(INSTALL_DIR)
-						cp    ./$(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)
+						cp    $(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)/$(PROGRAM_NAME)
 
 						mkdir -p $(INSTALL_INCLUDE_DIR)
-						cp -r ./$(ROOT_INCLUDE_DIR) $(INSTALL_INCLUDE_DIR)
+						cp -r $(ROOT_INCLUDE_DIR)/xLib $(INSTALL_INCLUDE_DIR)
 
 clean:
 						rm -rf $(BINARY_DIR)
