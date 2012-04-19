@@ -41,9 +41,9 @@ class CxPath :
             ///< get dir path, without a trailing backslash '\'
         static std::tstring_t sGetDirName     (const std::tstring_t &csFilePath);
             ///< get dir name
-        static std::tstring_t sGetFullName    (const std::tstring_t &csFilePath);
+        static std::tstring_t sGetFileName    (const std::tstring_t &csFilePath);
             ///< get name.extension
-        static std::tstring_t sGetName        (const std::tstring_t &csFilePath);
+        static std::tstring_t sGetFileBaseName(const std::tstring_t &csFilePath);
             ///< get name without extension
         static std::tstring_t sGetExt         (const std::tstring_t &csFilePath);
             ///< get extension
@@ -56,9 +56,9 @@ class CxPath :
     #endif
         static std::tstring_t sSetDir         (const std::tstring_t &csFilePath, const std::tstring_t &csDirPath);
             ///< set dir
-        static std::tstring_t sSetFullName    (const std::tstring_t &csFilePath, const std::tstring_t &csFullName);
+        static std::tstring_t sSetFileName    (const std::tstring_t &csFilePath, const std::tstring_t &csFullName);
             ///< set full name
-        static std::tstring_t sSetName        (const std::tstring_t &csFilePath, const std::tstring_t &csName);
+        static std::tstring_t sSetFileBaseName(const std::tstring_t &csFilePath, const std::tstring_t &csName);
             ///< set name
         static std::tstring_t sSetExt         (const std::tstring_t &csFilePath, const std::tstring_t &csExt);
             ///< set extension

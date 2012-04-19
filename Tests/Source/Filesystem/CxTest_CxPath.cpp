@@ -117,7 +117,7 @@ CxTest_CxPath::bUnit(
     }
 
     //-------------------------------------
-    //sGetFullName
+    //sGetFileName
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
@@ -137,14 +137,14 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = CxPath::sGetFullName(sData[i][0]);
+            std::tstring_t sStr1 = CxPath::sGetFileName(sData[i][0]);
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
 
     //-------------------------------------
-    //sGetName
+    //sGetFileBaseName
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
@@ -164,7 +164,7 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = CxPath::sGetName(sData[i][0]);
+            std::tstring_t sStr1 = CxPath::sGetFileBaseName(sData[i][0]);
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
@@ -303,7 +303,7 @@ CxTest_CxPath::bUnit(
     }
 
     //-------------------------------------
-    //sSetFullName
+    //sSetFileName
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
@@ -327,18 +327,18 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
-            std::tstring_t sStr2 = CxPath::sSetFullName(sData[i][2], sData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSetFileName(sData[i][0], sData[i][1]);
+            std::tstring_t sStr2 = CxPath::sSetFileName(sData[i][2], sData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring_t sStr3 = CxPath::sSetFullName(sData[i][0], sData[i][1]);
+            std::tstring_t sStr3 = CxPath::sSetFileName(sData[i][0], sData[i][1]);
             std::tstring_t sStr4 = sData[i][2];
             xTEST_EQ(sStr3, sStr4);
         }
     }
 
     //-------------------------------------
-    //sSetName
+    //sSetFileBaseName
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
@@ -365,11 +365,11 @@ CxTest_CxPath::bUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = CxPath::sSetName(sData[i][0], sData[i][1]);
-            std::tstring_t sStr2 = CxPath::sSetName(sData[i][2], sData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSetFileBaseName(sData[i][0], sData[i][1]);
+            std::tstring_t sStr2 = CxPath::sSetFileBaseName(sData[i][2], sData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring_t sStr3 = CxPath::sSetName(sData[i][0], sData[i][1]);
+            std::tstring_t sStr3 = CxPath::sSetFileBaseName(sData[i][0], sData[i][1]);
             std::tstring_t sStr4 = sData[i][2];
             xTEST_EQ(sStr3, sStr4);
         }

@@ -665,7 +665,7 @@ CxFile::sIsExists(
     std::tstring_t sRes;
 
     std::tstring_t sFileDir  = CxPath::sGetDir(csFilePath);
-    std::tstring_t sFileName = CxPath::sGetName(csFilePath);
+    std::tstring_t sFileName = CxPath::sGetFileBaseName(csFilePath);
     std::tstring_t sFileExt  = CxPath::sGetExt(csFilePath);
 
     xCHECK_DO(false == sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
@@ -943,7 +943,7 @@ CxFile::bMove(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  false);
 
-    bool bRes = bRename(csFilePath, CxPath::sSlashAppend(csDirPath) + CxPath::sGetFullName(csFilePath));
+    bool bRes = bRename(csFilePath, CxPath::sSlashAppend(csDirPath) + CxPath::sGetFileName(csFilePath));
     /*DEBUG*/xASSERT_RET(true == bRes, false);
 
     return true;
