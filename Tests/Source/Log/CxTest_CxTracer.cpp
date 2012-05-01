@@ -23,18 +23,36 @@ CxTest_CxTracer::bUnit(
 )
 {
     //--------------------------------------------------
-    // Write
+    // operator <<
     xTEST_CASE(cullCaseLoops)
     {
-        CxTracer::Write() << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT;
-        CxTracer::Write() << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT;
+        CxTracer trTracer;
+
+        trTracer << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT;
+    }
+
+    //--------------------------------------------------
+    // operator <<
+    xTEST_CASE(cullCaseLoops)
+    {
+        CxTracer() << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT;
+    }
+
+    //--------------------------------------------------
+    // bWrite(...)
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_bRes = CxTracer::bWrite(xT("\t%s: %d"), "test_str", 12345);
+        xTEST_EQ(true, m_bRes);
     }
 
     //--------------------------------------------------
     // bWrite
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxTracer::bWrite(xT("\t%s: %d"), "test_str", 12345);
+        std::tstring_t sData = xT("\ttest_str");
+
+        m_bRes = CxTracer::bWrite(sData);
         xTEST_EQ(true, m_bRes);
     }
 
