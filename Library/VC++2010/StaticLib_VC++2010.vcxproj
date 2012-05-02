@@ -9,356 +9,56 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="xLibA_Debug|Win32">
-      <Configuration>xLibA_Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="xLibA_Release|Win32">
-      <Configuration>xLibA_Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="xLibW_Debug|Win32">
-      <Configuration>xLibW_Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="xLibW_Release|Win32">
-      <Configuration>xLibW_Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3A316730-27E5-405F-AC2C-A2A9D2AE2505}</ProjectGuid>
-    <RootNamespace>xLibStaticLib</RootNamespace>
+    <ProjectGuid>{2ABC7C6E-BFC8-4EE6-8D77-2DF5471C9013}</ProjectGuid>
+    <RootNamespace>StaticLib_VC2010</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseOfAtl>false</UseOfAtl>
-    <CharacterSet>NotSet</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseOfAtl>false</UseOfAtl>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>NotSet</CharacterSet>
+    <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseOfAtl>false</UseOfAtl>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">$(ProjectDir)</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">$(ProjectDir)</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">$(ProjectDir)</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'">$(ProjectDir)</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'" />
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <BuildLog>
-      <Path>
-      </Path>
-    </BuildLog>
     <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <BuildLog>
-      <Path>
-      </Path>
-    </BuildLog>
     <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">
-    <BuildLog>
-      <Path>
-      </Path>
-    </BuildLog>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(Configuration).lib</OutputFile>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">
-    <BuildLog>
-      <Path>
-      </Path>
-    </BuildLog>
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(Configuration).lib</OutputFile>
-    </Lib>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">
-    <BuildLog>
-      <Path>
-      </Path>
-    </BuildLog>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(Configuration).lib</OutputFile>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'">
-    <BuildLog>
-      <Path>
-      </Path>
-    </BuildLog>
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(Configuration).lib</OutputFile>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemGroup>
-    <CustomBuildStep Include="..\..\Include\xLib\xLinking.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxBase64.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxRandom.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Db\CxConnectionString.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Debug\CxTest.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Debug\CxTodo.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Fso\CxDll.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Fso\CxMemoryIni.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Fso\CxStdioFile.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\GDI+\Win\CxGdiplus.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\GDI+\Win\CxImage.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Log\CxConsoleLog.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Log\CxDbLog.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Log\CxFileLog.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Log\CxTraceLog.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Log\xLog.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxAsyncSocket.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxCgi.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxDnsClient.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxHttpClient.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeBody.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeHeader.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeMessage.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxPop3.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxQueryList.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxSocket.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxSocketInit.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpClientSocket.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpServerSocket.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxUri.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CXUrlCoder.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\tstringmultimap.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Patterns\CxSingleton.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\All.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\Common.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxDecrypt.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxDigest.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxEncrypt.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxFunction.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxInfo.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxKey.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxLogin.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxMechanism.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxObject.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxPin.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxPkcs11.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxSession.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxSign.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxSlot.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxUtils.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Pkcs11\CxVerify.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxAtomicLongInt.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxAutoCriticalSection.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxAutoMutex.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxCompletionPort.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxCriticalSection.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxEvent.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxMutex.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxSemaphore.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxSleeper.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxThread.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxThreadPool.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxTls.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Sync\CxWaitableTimer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuildStep Include="..\..\Source\Sync\CxThreadPool.inl">
-      <FileType>Document</FileType>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Source\Common\CxFunctorT.inl">
-      <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibA_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='xLibW_Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Common\CxArray.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxChar.h" />
@@ -374,6 +74,7 @@
     <ClInclude Include="..\..\Include\xLib\Common\CxMacros.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxNonAssignable.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxNonCopyable.h" />
+    <ClInclude Include="..\..\Include\xLib\Common\CxProcessInfo.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxShell.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxString.h" />
     <ClInclude Include="..\..\Include\xLib\Common\CxSystemInfo.h" />
@@ -420,6 +121,7 @@
     <ClInclude Include="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h" />
     <ClInclude Include="..\..\Include\xLib\Db\CxConnectionString.h" />
     <ClInclude Include="..\..\Include\xLib\Db\CxMySql.h" />
+    <ClInclude Include="..\..\Include\xLib\Db\Win\adodefs.h" />
     <ClInclude Include="..\..\Include\xLib\Db\Win\CxAdo.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxAutoProfiler.h" />
     <ClInclude Include="..\..\Include\xLib\Debug\CxDebugger.h" />
@@ -451,7 +153,7 @@
     <ClInclude Include="..\..\Include\xLib\Log\CxFileLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxSystemLog.h" />
     <ClInclude Include="..\..\Include\xLib\Log\CxTraceLog.h" />
-    <ClInclude Include="..\..\Include\xLib\Log\CxWndLog.h" />
+    <ClInclude Include="..\..\Include\xLib\Log\CxTracer.h" />
     <ClInclude Include="..\..\Include\xLib\Log\xLogs.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxAsyncSocket.h" />
     <ClInclude Include="..\..\Include\xLib\Net\CxCgi.h" />
@@ -487,7 +189,6 @@
     <ClInclude Include="..\..\Include\xLib\Sync\CxThreadStorage.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\CxWaitableTimer.h" />
     <ClInclude Include="..\..\Include\xLib\Sync\Win\CxCompletionPort.h" />
-    <ClInclude Include="..\..\Include\xLib\Units\sGetEan13BarCode.h" />
     <ClInclude Include="..\..\Include\xLib\Units\Win\bDownloadURL.h" />
     <ClInclude Include="..\..\Include\xLib\Units\Win\bGetUsbInfo.h" />
   </ItemGroup>
@@ -511,10 +212,10 @@
     <ClCompile Include="..\..\Source\Common\CxDateTime.cpp" />
     <ClCompile Include="..\..\Source\Common\CxException.cpp" />
     <ClCompile Include="..\..\Source\Common\CxLocale.cpp" />
+    <ClCompile Include="..\..\Source\Common\CxProcessInfo.cpp" />
     <ClCompile Include="..\..\Source\Common\CxShell.cpp" />
     <ClCompile Include="..\..\Source\Common\CxString.cpp" />
     <ClCompile Include="..\..\Source\Common\CxSystemInfo.cpp" />
-    <ClCompile Include="..\..\Source\Common\CxType.cpp" />
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp" />
     <ClCompile Include="..\..\Source\Crypt\CxRandom.cpp" />
@@ -559,7 +260,6 @@
     <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxVolume.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp" />
-    <ClCompile Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp" />
@@ -567,7 +267,7 @@
     <ClCompile Include="..\..\Source\Log\CxFileLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxSystemLog.cpp" />
     <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp" />
-    <ClCompile Include="..\..\Source\Log\CxWndLog.cpp" />
+    <ClCompile Include="..\..\Source\Log\CxTracer.cpp" />
     <ClCompile Include="..\..\Source\Net\CxAsyncSocket.cpp" />
     <ClCompile Include="..\..\Source\Net\CxCgi.cpp" />
     <ClCompile Include="..\..\Source\Net\CxCookiePv0.cpp" />
@@ -584,7 +284,6 @@
     <ClCompile Include="..\..\Source\Net\CxTcpClient.cpp" />
     <ClCompile Include="..\..\Source\Net\CxTcpServer.cpp" />
     <ClCompile Include="..\..\Source\Net\CxUri.cpp" />
-    <ClCompile Include="..\..\Source\Patterns\CxSingleton.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxAutoCriticalSection.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxAutoMutex.cpp" />
@@ -601,7 +300,6 @@
     <ClCompile Include="..\..\Source\Sync\CxThreadStorage.cpp" />
     <ClCompile Include="..\..\Source\Sync\CxWaitableTimer.cpp" />
     <ClCompile Include="..\..\Source\Sync\Win\CxCompletionPort.cpp" />
-    <ClCompile Include="..\..\Source\Units\sGetEan13BarCode.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bDownloadURL.cpp" />
     <ClCompile Include="..\..\Source\Units\Win\bGetUsbInfo.cpp" />
   </ItemGroup>
