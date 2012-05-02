@@ -25,10 +25,14 @@ CxTest_CxCom::bUnit(
     /*DEBUG*/
 
 #if xOS_ENV_WIN
+
     //-------------------------------------
-    //bIsInit
+    // bIsInit
     xTEST_CASE(cullCaseLoops)
     {
+        m_bRes = CxCom::bIsInit();
+        xTEST_EQ(false, m_bRes);
+
         {
             CxCom cmCom(CxCom::cmMultiThreaded);
 
@@ -39,6 +43,7 @@ CxTest_CxCom::bUnit(
         m_bRes = CxCom::bIsInit();
         xTEST_EQ(false, m_bRes);
     }
+
 #endif
 
     return true;
