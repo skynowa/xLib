@@ -17,6 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 long_t CxCom::_ms_lInitCount = 0L;
 
+
 /****************************************************************************
 *    public
 *
@@ -24,22 +25,24 @@ long_t CxCom::_ms_lInitCount = 0L;
 
 //---------------------------------------------------------------------------
 CxCom::CxCom(
-    const EConcurrencyModel ccmCoModel/* = cmMultiThreaded*/
+    const EConcurrencyModel ccmCoModel /* = cmMultiThreaded*/
 ) :
-    _m_ulConModel(static_cast<ulong_t>( ccmCoModel ))
+    _m_ulConModel(static_cast<DWORD>( ccmCoModel ))
 {
     /*DEBUG*/// n/a ?
 
     ////xCHECK_DO(true == CxCom::bIsInit(ccmCoModel), return);
 
-    if (0L == _ms_lInitCount ++) {
+    ++ _ms_lInitCount;
+    if (0L == _ms_lInitCount) {
         HRESULT hrRes = ::CoInitializeEx(NULL, _m_ulConModel);
         /*DEBUG*/xASSERT_DO(SUCCEEDED(hrRes), return);
     }
 }
 //---------------------------------------------------------------------------
 CxCom::~CxCom() {
-    if (0 == -- _ms_lInitCount) {
+    -- _ms_lInitCount;
+    if (0L == _ms_lInitCount) {
         (void)::CoUninitialize();
     }
 }
@@ -47,7 +50,7 @@ CxCom::~CxCom() {
 
 
 /****************************************************************************
-*    static
+*    public, static
 *
 *****************************************************************************/
 
