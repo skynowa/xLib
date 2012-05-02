@@ -200,8 +200,6 @@
     <ClCompile Include="..\..\Source\Filesystem\CxLocalStorage.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxVolume.cpp" />
-    <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp" />
-    <ClCompile Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp" />
@@ -307,7 +305,6 @@
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxLocalStorage.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp" />
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp" />
-    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp" />
     <ClCompile Include="..\..\Tests\Source\Gui\Dialogs\CxTest_CxMsgBoxT.cpp" />
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp" />
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp" />
@@ -462,7 +459,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxLocalStorage.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h" />
-    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Dialogs\CxTest_CxMsgBoxT.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h" />
@@ -619,6 +615,8 @@
       <FileType>Document</FileType>
     </CustomBuildStep>
     <None Include="..\..\Include\xLib\Debug\CxErrorReport.inl" />
+    <None Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
+    <None Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
     <None Include="..\..\TODO.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

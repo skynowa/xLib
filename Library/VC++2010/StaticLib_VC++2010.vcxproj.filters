@@ -59,9 +59,6 @@
     <Filter Include="xLib\Debug">
       <UniqueIdentifier>{606d218b-f825-473b-bdd1-839181ca0a06}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Filesystem\Win">
-      <UniqueIdentifier>{ff9617a2-abcd-4b16-9d9d-d85d79b3321f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Gui\Dialogs">
       <UniqueIdentifier>{837d29a1-95bf-46bc-942a-0dc7cc214eb6}</UniqueIdentifier>
     </Filter>
@@ -273,9 +270,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxVolume.h">
       <Filter>xLib\Filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxIni.h">
-      <Filter>xLib\Filesystem\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.h">
       <Filter>xLib\Gui\Dialogs</Filter>
@@ -510,6 +504,7 @@
     <None Include="..\..\Include\xLib\Sync\CxThreadPool.inl">
       <Filter>xLib\Sync</Filter>
     </None>
+    <None Include="..\..\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Common\Win\CxCom.cpp">
@@ -604,9 +599,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp">
       <Filter>xLib\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp">
-      <Filter>xLib\Filesystem\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Filesystem\CxBackuper.cpp">
       <Filter>xLib\Filesystem</Filter>
