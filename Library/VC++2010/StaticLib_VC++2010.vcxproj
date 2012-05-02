@@ -143,7 +143,6 @@
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxLocalStorage.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxPath.h" />
     <ClInclude Include="..\..\Include\xLib\Filesystem\CxVolume.h" />
-    <ClInclude Include="..\..\Include\xLib\Filesystem\Win\CxIni.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Win\Dialogs\CxInputBox.h" />
     <ClInclude Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h" />
@@ -203,6 +202,7 @@
     <None Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
     <None Include="..\..\Include\xLib\Sync\CxThreadPool.inl" />
+    <None Include="..\..\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Common\CxChar.cpp" />
@@ -259,7 +259,6 @@
     <ClCompile Include="..\..\Source\Filesystem\CxLocalStorage.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\Source\Filesystem\CxVolume.cpp" />
-    <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxImage.cpp" />

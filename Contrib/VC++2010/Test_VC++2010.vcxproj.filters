@@ -16,20 +16,11 @@
     <Filter Include="xLib\Db\Win">
       <UniqueIdentifier>{bc8cdac2-7967-4bbc-88a5-66172ce46f17}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Db\Linux">
-      <UniqueIdentifier>{14206c46-9cb2-4995-99c0-e2c17b1b1bb6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Debug">
       <UniqueIdentifier>{71aecd21-76ae-4b09-a053-113e53f08f36}</UniqueIdentifier>
     </Filter>
     <Filter Include="xLib\Filesystem">
       <UniqueIdentifier>{f798187f-3aab-4c60-9d9d-0b6795bdaaa1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Filesystem\Win">
-      <UniqueIdentifier>{7052e481-7ca0-4379-9019-1724a1bf119d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Filesystem\Linux">
-      <UniqueIdentifier>{25bddafd-8e3b-4941-a7e9-ea94edf9c65b}</UniqueIdentifier>
     </Filter>
     <Filter Include="xLib\Gui">
       <UniqueIdentifier>{bceb7553-8105-4895-93d1-6f471ead80f6}</UniqueIdentifier>
@@ -45,12 +36,6 @@
     </Filter>
     <Filter Include="xLib\Gui\Win\GDI+\Win">
       <UniqueIdentifier>{168f43ab-e7f4-4588-8bf7-cefc7a73f877}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Gui\Win\GDI+\Linux">
-      <UniqueIdentifier>{b41db549-47d2-42ee-be7d-a1c847b18cfc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Gui\Linux">
-      <UniqueIdentifier>{14ff1907-58c8-4e86-a249-a6e543da2849}</UniqueIdentifier>
     </Filter>
     <Filter Include="xLib\Log">
       <UniqueIdentifier>{507dcbb8-e914-4a84-ba70-9c353d05b69b}</UniqueIdentifier>
@@ -112,9 +97,6 @@
     <Filter Include="Test\Patterns">
       <UniqueIdentifier>{3d08b3ea-a519-4c05-90bb-2b68361972f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test\Filesystem\Win">
-      <UniqueIdentifier>{97fb30c2-d064-4143-a262-7cc253d23568}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Test\Gui\Win">
       <UniqueIdentifier>{1838b8c7-e8b4-4ae8-abe1-72d26f790f0c}</UniqueIdentifier>
     </Filter>
@@ -133,9 +115,6 @@
     <Filter Include="Test\Gui\Dialogs">
       <UniqueIdentifier>{af266401-f06d-4f08-ab1f-c192c391559c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test\Crypt\Pkcs11">
-      <UniqueIdentifier>{cba7a5ec-c45d-4da1-8ff7-7e80bc8213f9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Crypt\Pkcs11">
       <UniqueIdentifier>{cb4526d4-fc6a-431b-b3e9-7c2e21ad634f}</UniqueIdentifier>
     </Filter>
@@ -153,6 +132,15 @@
     </Filter>
     <Filter Include="xLib\Crypt\Pkcs11\SDK\4.53">
       <UniqueIdentifier>{ecd9993c-8e0a-45de-9a79-cc67cdfe7373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xLib\Gui\Unix">
+      <UniqueIdentifier>{14ff1907-58c8-4e86-a249-a6e543da2849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xLib\Gui\Win\GDI+\Unix">
+      <UniqueIdentifier>{b41db549-47d2-42ee-be7d-a1c847b18cfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xLib\Db\Unix">
+      <UniqueIdentifier>{14206c46-9cb2-4995-99c0-e2c17b1b1bb6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +188,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Filesystem\CxPath.cpp">
       <Filter>xLib\Filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Filesystem\Win\CxIni.cpp">
-      <Filter>xLib\Filesystem\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
@@ -495,9 +480,6 @@
     <ClCompile Include="..\..\Source\Filesystem\CxLocalStorage.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp">
-      <Filter>Test\Filesystem\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Filesystem\CxTest_CxLocalStorage.cpp">
       <Filter>Test\Filesystem</Filter>
     </ClCompile>
@@ -515,9 +497,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxConsole.cpp">
       <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Gui\Dialogs\CxMsgBoxT.cpp">
-      <Filter>xLib\Gui\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Gui\Dialogs\CxTest_CxMsgBoxT.cpp">
       <Filter>Test\Gui\Dialogs</Filter>
@@ -666,9 +645,6 @@
     <ClCompile Include="..\..\Source\Crypt\Pkcs11\CxDecrypt.cpp">
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Crypt\Pkcs11\CxTest_CxPkcs11.cpp">
-      <Filter>Test\Crypt\Pkcs11</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Debug\CxErrorReport.cpp">
       <Filter>xLib\Debug</Filter>
     </ClCompile>
@@ -686,6 +662,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Log\CxTracer.cpp">
       <Filter>xLib\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Crypt\Pkcs11\CxTest_CxPkcs11.cpp">
+      <Filter>Test\Crypt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1043,9 +1022,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Common\CxTest_CxType.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h">
-      <Filter>Test\Filesystem\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Filesystem\CxTest_CxLocalStorage.h">
       <Filter>Test\Filesystem</Filter>
     </ClInclude>
@@ -1256,9 +1232,6 @@
     <ClInclude Include="..\..\Include\xLib\Crypt\Pkcs11\CxVerify.h">
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Crypt\Pkcs11\CxTest_CxPkcs11.h">
-      <Filter>Test\Crypt\Pkcs11</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\CxErrorReport.h">
       <Filter>xLib\Debug</Filter>
     </ClInclude>
@@ -1277,6 +1250,9 @@
     <ClInclude Include="..\..\Include\xLib\Log\CxTracer.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Crypt\Pkcs11\CxTest_CxPkcs11.h">
+      <Filter>Test\Crypt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\TODO.txt">
@@ -1285,6 +1261,12 @@
     <None Include="..\..\Include\xLib\Debug\CxErrorReport.inl">
       <Filter>xLib\Debug</Filter>
     </None>
+    <None Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl">
+      <Filter>xLib\Gui\Dialogs</Filter>
+    </None>
+    <None Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl">
+      <Filter>xLib\Gui\Win\Dialogs</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h">
@@ -1292,9 +1274,6 @@
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h">
       <Filter>xLib\Crypt\OpenSSL</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\Win\CxIni.h">
-      <Filter>xLib\Filesystem\Win</Filter>
     </CustomBuildStep>
     <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxInputBox.h">
       <Filter>xLib\Gui\Win\Dialogs</Filter>

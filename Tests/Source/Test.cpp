@@ -65,10 +65,6 @@
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
 #include <Test/Filesystem/CxTest_CxBackuper.h>
 
-#if xOS_ENV_WIN
-    #include <Test/Filesystem/Win/CxTest_CxIni.h>
-#endif
-
 //Log
 #include <Test/Log/CxTest_CxTracer.h>
 #include <Test/Log/CxTest_CxFileLog.h>
@@ -233,12 +229,6 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxEnvironment);
         (void)tmManager.bAdd(new CxTest_CxLocalStorage);
         (void)tmManager.bAdd(new CxTest_CxBackuper);
-
-    #if xOS_ENV_WIN
-        (void)tmManager.bAdd(new CxTest_CxIni);
-    #elif xOS_ENV_UNIX
-
-    #endif
 
         // Log
         (void)tmManager.bAdd(new CxTest_CxTracer);
