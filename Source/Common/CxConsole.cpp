@@ -223,22 +223,20 @@ CxConsole::bPrompt(
     /*DEBUG*/xASSERT_RET(false == csPrompt.empty(), false);
     /*DEBUG*/xASSERT_RET(NULL  != psAnswer,         false);
 
-    while (true) {
+    for ( ; ; ) {
         bool bRes = bWrite(csPrompt + xT(": "));
         /*DEBUG*/xASSERT_RET(true == bRes, false);
 
-        while (true) {
+        for ( ; ; ) {
             const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );   
-            
-            //std::tcin.ignore();
 
-            //asterisks
+            // asterisks
             xCHECK_DO(true == cbIsVisible, bWrite(xT("*")));
 
-            //ENTER
+            // ENTER
             xCHECK_DO(10 == chLetter, break);
 
-            //BACKSPACE
+            // BACKSPACE
             xCHECK_DO(0x8 == chLetter, (*psAnswer).clear(); continue);
 
             (*psAnswer).push_back(chLetter);
@@ -260,13 +258,13 @@ CxConsole::bPause() {
     /*DEBUG*/
 
 #if xTODO
-    #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)  // every keypress registered, also arrow keys
-        cout << endl << "Press any key to continue..." << endl;
+    #if   xOS_ENV_UNIX
+        std::tcout << std::endl << "Press any key to continue..." << std::endl;
 
         ::FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
         _getch();
-    #elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
-        cout << endl << "Press ENTER to continue..." << endl;
+    #elif xOS_ENV_UNIX
+        std::tcout << std::endl << "Press ENTER to continue..." << std::endl;
 
         std::cin.clear();
         std::cin.ignore(std::cin.rdbuf()->in_avail());
@@ -285,15 +283,17 @@ CxConsole::bPause() {
 //---------------------------------------------------------------------------
 bool
 CxConsole::bClear() {
+    /*DEBUG*/
+
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
 
     COORD                      coordScreen   = {0};     //here's where we'll home the cursor
-    ulong_t                      cCharsWritten = 0UL;
+    ulong_t                    cCharsWritten = 0UL;
     CONSOLE_SCREEN_BUFFER_INFO csbi          = {{0}};   //to get buffer info
-    ulong_t                      ulConSize     = 0UL;     //number of character cells in the current buffer
+    ulong_t                    ulConSize     = 0UL;     //number of character cells in the current buffer
 
     //get the number of character cells in the current buffer
     BOOL blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.hGet(), &csbi);
@@ -329,6 +329,8 @@ CxConsole::bEnableClose(
     const bool cbFlag
 )
 {
+    /*DEBUG*/
+
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
@@ -357,6 +359,8 @@ CxConsole::bEnableClose(
 //---------------------------------------------------------------------------
 std::tstring_t
 CxConsole::sGetTitle() {
+    /*DEBUG*/
+
     std::tstring_t sRes;
 
 #if xOS_ENV_WIN
@@ -385,6 +389,8 @@ CxConsole::bSetTitle(
     const std::tstring_t &csTitle
 )
 {
+    /*DEBUG*/
+
 #if xOS_ENV_WIN
     /*DEBUG*///_m_hWnd - n/a
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
@@ -404,6 +410,8 @@ CxConsole::bSetTitle(
 //---------------------------------------------------------------------------
 bool
 CxConsole::bSetFullScreen() {
+    /*DEBUG*/
+
 #if xOS_ENV_WIN
     //TODO: xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
@@ -439,6 +447,8 @@ CxConsole::bSetFullScreen() {
 //---------------------------------------------------------------------------
 bool
 CxConsole::bCenterWindow() {
+    /*DEBUG*/
+
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
