@@ -49,12 +49,6 @@ class CxBlowfish :
         bool          bEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ECryptMode cmMode);
             ///< encrypt file
 
-        //
-        bool          bEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const std::ustring_t &cusStamp, const ECryptMode cmCryptMode);
-            ///< encrypt file
-        ECryptMode    cmGetFileCryptStatus(const std::tstring_t &csFilePath, const std::ustring_t &cusStamp);
-            ///< get file crypt status
-
     private:
         enum
             /// constants
