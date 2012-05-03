@@ -73,7 +73,7 @@ CxBlowfish::bSetKey(
     const std::tstring_t &csKey
 )
 {
-    /*DEBUG*/xASSERT_RET(false        == csKey.empty(),                                   false);
+    /*DEBUG*/xASSERT_RET(false        == csKey.empty(),                                     false);
     /*DEBUG*/xASSERT_RET(MAX_KEY_SIZE >= csKey.size() * sizeof(std::tstring_t::value_type), false);
 
     bool bRes = bSetKey(std::ustring_t(csKey.begin(), csKey.end()));
