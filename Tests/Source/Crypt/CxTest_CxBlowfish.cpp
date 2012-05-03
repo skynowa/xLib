@@ -88,36 +88,6 @@ CxTest_CxBlowfish::bUnit(
         xTEST_EQ(true, m_bRes);
     }
 
-    //-------------------------------------
-    //bEncryptFileCfb64 (with stamp)
-    xTEST_CASE(cullCaseLoops)
-    {
-        CxBlowfish BF;
-
-        CxBlowfish::ECryptMode cmRes = CxBlowfish::cmUnknown;
-        std::tstring_t sKey           = xT("888888888");
-        std::tstring_t sStamp         = xT("stamp");
-        std::ustring_t usStamp        = xS2US(sStamp);
-        std::tstring_t sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
-        std::tstring_t sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
-        std::tstring_t sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
-
-        m_bRes = BF.bSetKey(sKey);
-        xTEST_EQ(true, m_bRes);
-
-        cmRes = BF.cmGetFileCryptStatus(sFilePlain, usStamp);
-        xTEST_EQ(CxBlowfish::cmDecrypt, cmRes);
-
-    #if xTODO
-        m_bRes = BF.bEncryptFileCfb64(sFilePlain,     sFileEncrypted, usStamp);
-        xTEST_EQ(true, m_bRes);
-
-        m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, usStamp);
-        xTEST_EQ(true, m_bRes);
-    #endif
-    }
-
-
     return true;
 }
 //---------------------------------------------------------------------------
