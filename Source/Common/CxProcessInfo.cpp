@@ -11,6 +11,8 @@
 #include <xLib/Sync/CxProcess.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *   public
 *
@@ -195,3 +197,5 @@ CxProcessInfo::~CxProcessInfo() {
 
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

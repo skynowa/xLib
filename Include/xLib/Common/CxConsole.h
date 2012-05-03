@@ -75,7 +75,7 @@ class CxConsole :
             ///< set title string
         bool           bCenterWindow ();
             ///< allign to center
-        bool          bSetFullScreen ();
+        bool           bSetFullScreen ();
             ///< set full screen
         bool           bEnableClose  (const bool cbFlag);
             ///< enable close button
@@ -85,14 +85,14 @@ class CxConsole :
         HWND           _m_hWnd;       ///< console window handle
         HMENU          _m_hMenu;      ///< console menu handle
         CxFileHandle   _m_hStdIn;     ///< standart input handle
-        CxFileHandle  _m_hStdOut;    ///< standart output handle
+        CxFileHandle   _m_hStdOut;    ///< standart output handle
 
         HWND           _hGetWndHandle ();
             ///< get console window handle
         HMENU          _hGetMenuHandle(const bool cbRevert);
             ///< get console menu handle
     #elif xOS_ENV_UNIX
-
+        xNA;
     #endif
 };
 

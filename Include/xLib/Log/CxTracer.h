@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxTracer :
     private CxNonCopyable
     /// tracing
@@ -32,7 +34,11 @@ class CxTracer :
         std::ostringstream  _m_ossStream;    ///< string stream
 
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 template<class T>
 CxTracer &
 CxTracer::operator << (const T &cValueT) {
@@ -40,5 +46,7 @@ CxTracer::operator << (const T &cValueT) {
 
     return *this;
 }
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_CxTracerH

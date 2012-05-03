@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxProcess.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxProcessInfo :
     public CxNonCopyable
 {
@@ -31,5 +33,7 @@ class CxProcessInfo :
 		virtual              ~CxProcessInfo();
 		    ///< destructor
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_CxProcessInfoH

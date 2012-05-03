@@ -1,6 +1,6 @@
 /**
  * \file   CxCommandLine.cpp
- * \brief
+ * \brief  command line
  */
 
 

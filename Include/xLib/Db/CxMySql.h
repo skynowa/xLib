@@ -58,7 +58,11 @@ class CxMySQLConnection :
         MYSQL                   *_m_pmsConnection;
             ///< pointer to connection
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxMySQLRecordset :
     private CxNonCopyable
     /// MySQL recordset
