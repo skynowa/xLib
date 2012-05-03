@@ -228,7 +228,9 @@ CxConsole::bPrompt(
         /*DEBUG*/xASSERT_RET(true == bRes, false);
 
         while (true) {
-            const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );   std::tcin.ignore();
+            const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );   
+            
+            //std::tcin.ignore();
 
             //asterisks
             xCHECK_DO(true == cbIsVisible, bWrite(xT("*")));

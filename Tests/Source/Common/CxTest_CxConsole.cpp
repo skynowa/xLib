@@ -119,9 +119,9 @@ CxTest_CxConsole::bUnit(
     //bPrompt
     xTEST_CASE(cullCaseLoops)
     {
-        #if xTEST_IGNORE
+        #if xTEST_IGNORE || 1
             const std::tstring_t csPrompt    = xT("bPrompt_simple_prompt");
-            const bool    cbIsVisible = true;
+            const bool           cbIsVisible = true;
             std::tstring_t       sAnswer     = xT("sAnswer_bla-bla-bla");
 
 
