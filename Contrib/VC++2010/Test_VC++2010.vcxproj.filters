@@ -1267,6 +1267,9 @@
     <None Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
     </None>
+    <None Include="..\..\Include\xLib\Common\CxException.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h">

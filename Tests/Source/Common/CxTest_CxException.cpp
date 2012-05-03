@@ -22,8 +22,9 @@ CxTest_CxException::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
+
     //--------------------------------------------------
-    //CxException(), sGetWhat, e.sGetName
+    // CxException(), sGetWhat, e.sGetName
     xTEST_CASE(cullCaseLoops)
     {
         try {
@@ -39,7 +40,7 @@ CxTest_CxException::bUnit(
     }
 
     //--------------------------------------------------
-    //CxException(std::tstring_t), what
+    // CxException(std::tstring_t), what
     xTEST_CASE(cullCaseLoops)
     {
         const std::tstring_t sTestData[][2] = {
@@ -64,11 +65,11 @@ CxTest_CxException::bUnit(
     }
 
     //--------------------------------------------------
-    //catch CxException
+    // catch CxException
     xTEST_CASE(cullCaseLoops)
     {
         try {
-            throw CxException() << "CxException_test_exception";
+            throw CxException() << xT("CxException_test_exception");
         }
         catch (CxException &e) {
             //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
@@ -79,7 +80,7 @@ CxTest_CxException::bUnit(
     }
 
     //--------------------------------------------------
-    //catch std::exception
+    // catch std::exception
     xTEST_CASE(cullCaseLoops)
     {
         try {
@@ -96,17 +97,27 @@ CxTest_CxException::bUnit(
     }
 
     //--------------------------------------------------
-    //
-    xTEST_CASE(cullCaseLoops) {
-        #if xTODO
+    // xTRY, xCATCH_ALL, xTHROW
+    xTEST_CASE(cullCaseLoops) 
+    {
+        #if 1
+            xTRY {
+                /*
+                std::tstring_t sStr;
+
+                sStr.at(0);
+                */
+
+                xTHROW() << xT("Function: ") << xFUNCTION << xT(" Line: ") << xLINE;
+            }
+            xCATCH_ALL;
+
             xTRY {
                 std::tstring_t sStr;
 
                 sStr.at(0);
             }
             xCATCH_ALL;
-
-            return true;
         #endif
     }
 

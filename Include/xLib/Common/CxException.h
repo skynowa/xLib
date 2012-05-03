@@ -15,19 +15,19 @@ class CxException
     /// exception
 {
     public:
-                              CxException ();
+                               CxException ();
             ///< constructor
-        virtual              ~CxException ();
+        virtual               ~CxException ();
             ///< destructor
 
-        const std::tstring_t &sGetWhat    () const;
+        const std::tstring_t & sGetWhat    () const;
             ///< get message
         template<class T>
-        CxException &         operator << (const T &cMessageT);
+        CxException &          operator << (const T &cMessageT);
             ///< put message
 
     private:
-        std::tstring_t        _m_sMsg;
+        std::tstring_t         _m_sMsg;
             ///< message
 };
 
@@ -36,24 +36,24 @@ xNAMESPACE_END(NxLib)
 #include "CxException.inl"
 //---------------------------------------------------------------------------
 #define xTHROW \
-    throw CxException() << "";
+            throw CxException
+        ///< like throw
 
-
-#define xTRY try
-    ///< like try
+#define xTRY \
+            try
+        ///< like try
 
 #define xCATCH_ALL \
-    catch (const CxException &e) { \
-        /*DEBUG*/xASSERT_MSG_RET(false, e.sGetWhat(), false); \
-    } \
-    catch (const std::exception &cexE) { \
-        std::string asMsg = cexE.what(); \
-                                         \
-        /*DEBUG*/xASSERT_MSG_RET(false, xS2TS(asMsg), false); \
-    } \
-    catch (...) { \
-        /*DEBUG*/xASSERT_MSG_RET(false, xT("unknown error"), false); \
-    }
-    ///< catch CxException, std::exception and all other exceptions
+            catch (const CxException &exExp) {           \
+                xASSERT_MSG(false, exExp.sGetWhat());    \
+            }                                            \
+            catch (const std::exception &cexExp) {       \
+                std::string asMsg = cexExp.what();       \
+                xASSERT_MSG(false, xS2TS(asMsg));        \
+            }                                            \
+            catch (...) {                                \
+                xASSERT_MSG(false, xT("unknown error")); \
+            }
+        ///< catch CxException, std::exception and all other exceptions
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxExceptionH

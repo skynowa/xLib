@@ -160,7 +160,7 @@ CxTest_CxConsole::bUnit(
     //sGetTitle
     xTEST_CASE(cullCaseLoops)
     {
-        #if 1 && xOS_ENV_WIN
+        #if xOS_ENV_WIN && xTEST_IGNORE
             std::tstring_t csTitle = xT("Title1");
 
 
@@ -210,7 +210,7 @@ CxTest_CxConsole::bUnit(
     //bSetFullScreen
     xTEST_CASE(cullCaseLoops)
     {
-        #if xTEST_IGNORE && xOS_ENV_WIN
+        #if xOS_ENV_WIN && xTEST_IGNORE
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bSetFullScreen();
@@ -222,7 +222,7 @@ CxTest_CxConsole::bUnit(
     //bEnableClose
     xTEST_CASE(cullCaseLoops)
     {
-        #if 0 && xOS_ENV_WIN
+        #if xOS_ENV_WIN && xTEST_IGNORE
             CxConsole cnConsole;
 
             m_bRes = cnConsole.bEnableClose(false);

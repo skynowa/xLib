@@ -1,6 +1,6 @@
 /**
  * \file   CxCommandLine.h
- * \brief
+ * \brief  command line
  */
 
 
@@ -13,6 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxCommandLine :
     private CxNonCopyable
+    /// command line
 {
     public:
         static long_t         liGetArgsMax ();

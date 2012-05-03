@@ -7,6 +7,8 @@
 #include <xLib/Log/CxTracer.h>
 
 
+xNAMESPACE_BEGIN(NxLib)
+
 /****************************************************************************
 *   public
 *
@@ -63,3 +65,5 @@ CxTracer::bWrite(
     return bWrite(xT("%s"), csMsg.c_str());
 }
 //---------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)
