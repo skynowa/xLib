@@ -8,7 +8,7 @@
 #define CxTest_CxCriticalSectionH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 class CxTest_CxCriticalSection :

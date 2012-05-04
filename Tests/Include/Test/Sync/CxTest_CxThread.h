@@ -8,7 +8,7 @@
 #define CxTest_CxThreadH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxCurrentThread.h>
 //---------------------------------------------------------------------------

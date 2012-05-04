@@ -8,7 +8,7 @@
 #define CxTest_CxDebuggerH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Debug/CxDebugger.h>
 //---------------------------------------------------------------------------
 class CxTest_CxDebugger :

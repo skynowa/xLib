@@ -11,7 +11,7 @@
 
 #if xOS_ENV_WIN
 
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 //---------------------------------------------------------------------------
 class CxTest_CxGdiplus :

@@ -47,11 +47,10 @@ SOURCE_SUBDIRS			:=	. \
 							Common/Win \
 							Crypt \
 							Crypt/OpenSSL \
-							Crypt/Pkcs11/Win \
+							Crypt/Pkcs11 \
 							Db \
 							Debug \
 							Filesystem \
-							Filesystem/Win \
 							Gui \
 							Gui/Dialogs \
 							Gui/Win \
@@ -62,6 +61,7 @@ SOURCE_SUBDIRS			:=	. \
 							Patterns \
 							Sync \
 							Sync/Win \
+                            Test \
 							Units \
 							Units/Win
 

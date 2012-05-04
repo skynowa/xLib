@@ -8,7 +8,7 @@
 #define CxTest_CxCgiH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxCgi.h>
 //---------------------------------------------------------------------------
 class CxTest_CxCgi :

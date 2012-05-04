@@ -100,7 +100,7 @@ CxTest_CxException::bUnit(
     // xTRY, xCATCH_ALL, xTHROW
     xTEST_CASE(cullCaseLoops) 
     {
-        #if 1
+        #if 0
             xTRY {
                 /*
                 std::tstring_t sStr;

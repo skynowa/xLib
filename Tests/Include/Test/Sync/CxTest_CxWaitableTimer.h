@@ -8,7 +8,7 @@
 #define CxTest_CxWaitableTimerH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxWaitableTimer.h>
 //---------------------------------------------------------------------------
 class CxTest_CxWaitableTimer :

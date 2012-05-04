@@ -8,7 +8,7 @@
 #define CxTest_CxSystemInfoH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxSystemInfo.h>
 //---------------------------------------------------------------------------
 class CxTest_CxSystemInfo :

@@ -8,7 +8,7 @@
 #define CxTest_Log_CxTracerH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Log/CxTracer.h>
 //---------------------------------------------------------------------------
 class CxTest_CxTracer :

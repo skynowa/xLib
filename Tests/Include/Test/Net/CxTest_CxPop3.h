@@ -8,7 +8,7 @@
 #define CxTest_CxPop3H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxPop3.h>
 //---------------------------------------------------------------------------
 class CxTest_CxPop3 :

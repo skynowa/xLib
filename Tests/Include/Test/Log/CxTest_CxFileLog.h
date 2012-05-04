@@ -8,7 +8,7 @@
 #define CxTest_CxFileLogH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Log/CxFileLog.h>
 //---------------------------------------------------------------------------
 class CxTest_CxFileLog :

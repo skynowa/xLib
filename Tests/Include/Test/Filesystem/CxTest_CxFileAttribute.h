@@ -8,7 +8,7 @@
 #define CxTest_CxFileAttributeH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
 //---------------------------------------------------------------------------
 class CxTest_CxFileAttribute :

@@ -8,7 +8,7 @@
 #define CxTest_CxLocalStorageH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxLocalStorage.h>
 //---------------------------------------------------------------------------
 class CxTest_CxLocalStorage :

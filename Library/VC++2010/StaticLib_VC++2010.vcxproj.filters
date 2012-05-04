@@ -80,6 +80,9 @@
     <Filter Include="xLib\Units\Win">
       <UniqueIdentifier>{882f128c-9759-4f13-9444-8ed94fd1e3a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xLib\Test">
+      <UniqueIdentifier>{292e53c6-d315-4b39-825b-aea95425f8d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Common\CxArray.h">
@@ -232,12 +235,6 @@
     <ClInclude Include="..\..\Include\xLib\Debug\CxStdError.h">
       <Filter>xLib\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Debug\CxTest.h">
-      <Filter>xLib\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h">
-      <Filter>xLib\Debug</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\xDebug.h">
       <Filter>xLib\Debug</Filter>
     </ClInclude>
@@ -347,9 +344,6 @@
       <Filter>xLib\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Net\CxUri.h">
-      <Filter>xLib\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Net\CxAsyncSocket.h">
       <Filter>xLib\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Patterns\CxSingleton.h">
@@ -471,6 +465,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Db\CxMySql.h">
       <Filter>xLib\Db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Test\CxTest.h">
+      <Filter>xLib\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Test\CxTestManager.h">
+      <Filter>xLib\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -594,12 +594,6 @@
     <ClCompile Include="..\..\Source\Debug\CxStdError.cpp">
       <Filter>xLib\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Debug\CxTest.cpp">
-      <Filter>xLib\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp">
-      <Filter>xLib\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Filesystem\CxBackuper.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
@@ -653,9 +647,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Log\CxTracer.cpp">
       <Filter>xLib\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Net\CxAsyncSocket.cpp">
-      <Filter>xLib\Net</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Net\CxCgi.cpp">
       <Filter>xLib\Net</Filter>
@@ -794,6 +785,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Db\CxMySql.cpp">
       <Filter>xLib\Db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Test\CxTest.cpp">
+      <Filter>xLib\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Test\CxTestManager.cpp">
+      <Filter>xLib\Test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

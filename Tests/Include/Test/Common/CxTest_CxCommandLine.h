@@ -8,7 +8,7 @@
 #define CxTest_CxCommandLineH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxCommandLine.h>
 //---------------------------------------------------------------------------
 class CxTest_CxCommandLine :

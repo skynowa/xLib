@@ -8,7 +8,7 @@
 #define CxTest_CxCookiePv1H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxCookiePv1.h>
 //---------------------------------------------------------------------------
 class CxTest_CxCookiePv1 :

@@ -8,7 +8,7 @@
 #define CxTest_CxArrayH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxArray.h>
 //---------------------------------------------------------------------------
 class CxTest_CxArray :

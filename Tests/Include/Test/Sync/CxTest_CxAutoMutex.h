@@ -8,7 +8,7 @@
 #define CxTest_CxAutoMutexH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxAutoMutex.h>
 //---------------------------------------------------------------------------
 class CxTest_CxAutoMutex :

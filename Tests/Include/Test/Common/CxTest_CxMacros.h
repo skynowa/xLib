@@ -8,7 +8,7 @@
 #define CxTest_CxMacrosH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxMacros.h>
 //---------------------------------------------------------------------------
 class CxTest_CxMacros :

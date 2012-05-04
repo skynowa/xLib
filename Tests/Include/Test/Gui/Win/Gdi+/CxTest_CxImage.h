@@ -8,7 +8,7 @@
 #define CxTest_CxImageH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Gui/Win/GDI+/CxGdiplus.h>
 #include <xLib/Gui/Win/GDI+/CxImage.h>
 //---------------------------------------------------------------------------

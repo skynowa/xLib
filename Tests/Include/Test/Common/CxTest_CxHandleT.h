@@ -8,7 +8,7 @@
 #define CxHandleT_CxHandleTH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxHandleT.h>
 //---------------------------------------------------------------------------
 class CxTest_CxHandleT :
