@@ -8,7 +8,7 @@
 #define xLib_UnitTestH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTestManager.h>
+#include <xLib/Test/CxTestManager.h>
 #include <xLib/Common/CxConsole.h>
 #include <xLib/Common/CxCommandLine.h>
 

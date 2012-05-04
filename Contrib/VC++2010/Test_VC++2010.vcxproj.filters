@@ -142,6 +142,12 @@
     <Filter Include="xLib\Db\Unix">
       <UniqueIdentifier>{14206c46-9cb2-4995-99c0-e2c17b1b1bb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test\Test">
+      <UniqueIdentifier>{70af9b61-975c-44cc-bf4d-58e6f36abd7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xLib\Test">
+      <UniqueIdentifier>{4aad3fc1-5772-4750-a912-deacd027ceab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Crypt\CxCrc32.cpp">
@@ -171,9 +177,6 @@
     <ClCompile Include="..\..\Source\Debug\CxProfiler.cpp">
       <Filter>xLib\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Debug\CxTest.cpp">
-      <Filter>xLib\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Filesystem\CxDir.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
@@ -200,9 +203,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Log\CxTraceLog.cpp">
       <Filter>xLib\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Net\CxAsyncSocket.cpp">
-      <Filter>xLib\Net</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Net\CxCgi.cpp">
       <Filter>xLib\Net</Filter>
@@ -354,9 +354,6 @@
     <ClCompile Include="..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp">
       <Filter>Test\Patterns</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxAsyncSocket.cpp">
-      <Filter>Test\Net</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCgi.cpp">
       <Filter>Test\Net</Filter>
     </ClCompile>
@@ -461,9 +458,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp">
       <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Debug\CxTestManager.cpp">
-      <Filter>xLib\Debug</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp">
       <Filter>xLib\Gui\Win\GDI+\Win</Filter>
@@ -666,6 +660,12 @@
     <ClCompile Include="..\..\Tests\Source\Crypt\Pkcs11\CxTest_CxPkcs11.cpp">
       <Filter>Test\Crypt</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Test\CxTest.cpp">
+      <Filter>xLib\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Test\CxTestManager.cpp">
+      <Filter>xLib\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -687,9 +687,6 @@
       <Filter>xLib\Debug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\CxProfiler.h">
-      <Filter>xLib\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Debug\CxTest.h">
       <Filter>xLib\Debug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Debug\xDebug.h">
@@ -718,9 +715,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Log\CxTraceLog.h">
       <Filter>xLib\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Net\CxAsyncSocket.h">
-      <Filter>xLib\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Net\CxCgi.h">
       <Filter>xLib\Net</Filter>
@@ -911,9 +905,6 @@
     <ClInclude Include="..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h">
       <Filter>Test\Patterns</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxAsyncSocket.h">
-      <Filter>Test\Net</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCgi.h">
       <Filter>Test\Net</Filter>
     </ClInclude>
@@ -994,9 +985,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h">
       <Filter>Test\Crypt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\xLib\Debug\CxTestManager.h">
-      <Filter>xLib\Debug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h">
       <Filter>xLib\Gui\Win\GDI+\Win</Filter>
@@ -1252,6 +1240,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Tests\Include\Test\Crypt\Pkcs11\CxTest_CxPkcs11.h">
       <Filter>Test\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Test\CxTest.h">
+      <Filter>xLib\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\xLib\Test\CxTestManager.h">
+      <Filter>xLib\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

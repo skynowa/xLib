@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 
 #include <xLib/Common/CxException.h>
 #include <xLib/Filesystem/CxPath.h>

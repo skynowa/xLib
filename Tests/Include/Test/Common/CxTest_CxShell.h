@@ -8,7 +8,7 @@
 #define CxTest_CxShellH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxShell.h>
 //---------------------------------------------------------------------------
 class CxTest_CxShell :

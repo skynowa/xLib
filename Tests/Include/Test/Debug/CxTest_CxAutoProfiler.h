@@ -8,7 +8,7 @@
 #define CxTest_CxAutoProfilerH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Debug/CxAutoProfiler.h>
 //---------------------------------------------------------------------------
 class CxTest_CxAutoProfiler :

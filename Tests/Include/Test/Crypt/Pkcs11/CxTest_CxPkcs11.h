@@ -8,7 +8,7 @@
 #define CxTest_CxPkcs11H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 
 #if xOS_ENV_WIN
     #include <xLib/Crypt/Pkcs11/All.h>

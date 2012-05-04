@@ -8,7 +8,7 @@
 #define CxTest_CxSemaphoreH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxSemaphore.h>
 //---------------------------------------------------------------------------
 class CxTest_CxSemaphore :

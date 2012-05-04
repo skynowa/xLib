@@ -8,7 +8,7 @@
 #define CxTest_CxMySqlH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Db/CxMySql.h>
 //---------------------------------------------------------------------------
 class CxTest_CxMySql :

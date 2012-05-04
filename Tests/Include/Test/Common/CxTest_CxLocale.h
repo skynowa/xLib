@@ -8,7 +8,7 @@
 #define CxTest_CxLocaleH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxLocale.h>
 //---------------------------------------------------------------------------
 class CxTest_CxLocale :

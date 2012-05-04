@@ -8,7 +8,7 @@
 #define CxTest_CxUriH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxUri.h>
 //---------------------------------------------------------------------------
 class CxTest_CxUri :

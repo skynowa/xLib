@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Net/CxTcpClient.h>
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 //---------------------------------------------------------------------------
 class CxTest_CxTcpClient :
     public CxTest

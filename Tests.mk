@@ -41,7 +41,6 @@ endif
 PROGRAM_EXT  				:=
 PROGRAM_NAME				:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 PROGRAM_PATH				:=	$(PROGRAM_NAME)
-PROGRAM_SIZE				:=	$(stat --printf="%s" $(PROGRAM_NAME))
 
 PATH_PREFIX					:=	../../../
 VPATH 						:=	$(PATH_PREFIX)
@@ -86,11 +85,10 @@ TESTS_SOURCE_SUBDIRS		:=	. \
 								Common \
 								Common/Win \
 								Crypt \
-								Crypt/Pkcs11/Win \
+								Crypt/Pkcs11 \
 								Db \
 								Debug \
 								Filesystem \
-								Filesystem/Win \
 								Gui \
 								Gui/Dialogs \
 								Gui/Win \
@@ -101,6 +99,7 @@ TESTS_SOURCE_SUBDIRS		:=	. \
 								Patterns \
 								Sync \
 								Sync/Win \
+                                Test \
 								Units \
 								Units/Win
 

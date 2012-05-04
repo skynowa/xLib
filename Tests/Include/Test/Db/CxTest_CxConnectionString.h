@@ -8,7 +8,7 @@
 #define CxTest_CxConnectionStringH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Db/CxConnectionString.h>
 //---------------------------------------------------------------------------
 class CxTest_CxConnectionString :

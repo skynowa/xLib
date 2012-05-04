@@ -8,7 +8,7 @@
 #define CxTest_CxTest_CxProcessH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxProcess.h>
 //---------------------------------------------------------------------------
 class CxTest_CxProcess :

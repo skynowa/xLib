@@ -8,7 +8,7 @@
 #define CxTest_CxComH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/Win/CxCom.h>
 //---------------------------------------------------------------------------
 class CxTest_CxCom :

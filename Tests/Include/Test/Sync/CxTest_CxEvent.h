@@ -8,7 +8,7 @@
 #define CxTest_CxEventH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxEvent.h>
 //---------------------------------------------------------------------------
 class CxTest_CxEvent :

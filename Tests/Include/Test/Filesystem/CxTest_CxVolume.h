@@ -8,7 +8,7 @@
 #define CxTest_CxVolumeH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxVolume.h>
 //---------------------------------------------------------------------------
 class CxTest_CxVolume : public CxTest {

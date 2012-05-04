@@ -8,7 +8,7 @@
 #define CxTest_CxMimeMessageH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxMimeMessage.h>
 #include <xLib/Net/CxPop3.h>
 #include <xLib/Net/CxSmtp.h>

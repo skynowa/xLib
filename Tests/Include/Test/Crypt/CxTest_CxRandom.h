@@ -8,7 +8,7 @@
 #define CxTest_CxRandomH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Crypt/CxRandom.h>
 //---------------------------------------------------------------------------
 class CxTest_CxRandom :

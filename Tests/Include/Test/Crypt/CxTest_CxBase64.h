@@ -8,7 +8,7 @@
 #define CxTest_CxBase64H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Crypt/OpenSSL/CxBase64.h>
 //---------------------------------------------------------------------------
 class CxTest_CxBase64 :

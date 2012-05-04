@@ -8,7 +8,7 @@
 #define CxTest_CxExceptionH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxException.h>
 //---------------------------------------------------------------------------
 class CxTest_CxException :

@@ -8,7 +8,7 @@
 #define CxTest_CxCrc32H
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Debug/CxTest.h>
+#include <xLib/Test/CxTest.h>
 #include <xLib/Crypt/CxCrc32.h>
 #include <xLib/Filesystem/CxFile.h>
 //---------------------------------------------------------------------------
