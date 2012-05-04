@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxException::CxException() :
-    _m_sMsg()
+    _m_sMessage()
 {
     /*DEBUG*/// n/a
 }
@@ -30,7 +30,7 @@ const std::tstring_t &
 CxException::sGetWhat() const {
     /*DEBUG*/
 
-    return _m_sMsg;
+    return _m_sMessage;
 }
 //---------------------------------------------------------------------------
 

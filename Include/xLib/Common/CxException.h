@@ -27,7 +27,7 @@ class CxException
             ///< put message
 
     private:
-        std::tstring_t         _m_sMsg;
+        std::tstring_t         _m_sMessage;
             ///< message
 };
 
