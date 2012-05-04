@@ -48,12 +48,12 @@ CxTest_CxDebugger::bUnit(
     }
 
     //-------------------------------------
-    //bIsPresent
+    //bIsActive
     xTEST_CASE(cullCaseLoops)
     {
         CxDebugger dbgDebugger;
 
-        m_bRes = dbgDebugger.bIsPresent();
+        m_bRes = dbgDebugger.bIsActive();
     }
 
     //-------------------------------------

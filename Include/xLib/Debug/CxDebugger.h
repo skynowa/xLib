@@ -32,7 +32,7 @@ class CxDebugger :
             ///< is debugging enabled
         bool                  bSetEnabled     (const bool cbFlag);
             ///< set debugging mode on/off
-        bool                  bIsPresent      ();
+        bool                  bIsActive       ();
             ///< is OS debugger presents
         bool                  bIsDebugBuild   ();
             ///< is debug build (is NDEBUG macros is don't set)

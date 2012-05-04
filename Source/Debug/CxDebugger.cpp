@@ -69,7 +69,7 @@ CxDebugger::bSetEnabled(
 }
 //---------------------------------------------------------------------------
 bool
-CxDebugger::bIsPresent() {
+CxDebugger::bIsActive() {
 #if xOS_ENV_WIN
     BOOL blRes = ::IsDebuggerPresent();
     xCHECK_RET(FALSE != blRes, true);
@@ -79,8 +79,30 @@ CxDebugger::bIsPresent() {
     blRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &blIsRemoteDebuggerPresent);
     xCHECK_RET(FALSE == blRes || FALSE == blIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
-    std::tstring_t sRes = CxEnvironment::sGetVar(xT("xLIB_ENABLE_DEBUGGER"));
-    xCHECK_RET(false == CxString::bCompareNoCase(xT("yes"), sRes), false);
+    #if   xOS_LINUX
+        std::tstring_t sRes = CxEnvironment::sGetVar(xT("XLIB_ENABLE_DEBUGGER"));
+        xCHECK_RET(false == CxString::bCompareNoCase(xT("yes"), sRes), false);
+    #elif xOS_FREEBSD
+        int               aiMib[4]   = {0};
+        struct kinfo_proc kiInfo     = {0};
+        size_t            uiInfoSize = 0;
+
+        aiMib[0] = CTL_KERN;
+        aiMib[1] = KERN_PROC;
+        aiMib[2] = KERN_PROC_PID;
+        aiMib[3] = ::getpid();
+
+        // if sysctl fails for some bizarre reason, we get a predictable result
+        kiInfo.kp_proc.p_flag = 0;
+
+        uiInfoSize = sizeof(kiInfo);
+
+        int iRes = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &kiInfo, &uiInfoSize, NULL, 0);
+        xCHECK_RET(- 1 == iRes, false);
+
+        // We're being debugged if the P_TRACED flag is set.
+        xCHECK_RET(0 == (kiInfo.kp_proc.p_flag & P_TRACED), false);
+    #endif
 #endif
 
     return true;
@@ -241,7 +263,7 @@ CxDebugger::_bMsgboxPlain(
             break;
 
         case CxMsgBoxT::mrRetry: {
-                if (true == bIsPresent()) {
+                if (true == bIsActive()) {
                     (void)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
@@ -278,7 +300,7 @@ CxDebugger::_bMsgboxFormated(
             break;
 
         case CxMsgBoxRtf::mrRetry: {
-                if (true == bIsPresent()) {
+                if (true == bIsActive()) {
                     (void)bBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"), MB_OK | MB_ICONWARNING);
@@ -323,7 +345,7 @@ CxDebugger::_bMsgboxFormated(
         case cmRetry: {
                 std::tcerr << xT("Retry...\n\n");
 
-                if (true == bIsPresent()) {
+                if (true == bIsActive()) {
                     (void)bBreak();
                 } else {
                     std::tcerr << xT("\n####################################################################################################\n");
@@ -382,7 +404,7 @@ CxDebugger::_bStdoutPlain(
         case cmRetry: {
                 std::tcout << xT("Retry...\n\n");
 
-                if (true == bIsPresent()) {
+                if (true == bIsActive()) {
                     (void)bBreak();
                 } else {
                     std::tcout << xT("\n####################################################################################################\n");
@@ -441,7 +463,7 @@ CxDebugger::_bStdoutHtml(
         case cmRetry: {
                 std::tcout << xT("Retry...\n\n");
 
-                if (true == bIsPresent()) {
+                if (true == bIsActive()) {
                     (void)bBreak();
                 } else {
                     std::tcout << xT("\n####################################################################################################\n");
