@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Test_G++_FreeBSD</name>
+	<name>xLib_Test</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -27,7 +27,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/Test_G++_FreeBSD/Debug}</value>
+					<value>${workspace_loc:/xLib_test/Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.contents</key>
@@ -69,11 +69,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Source</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Source</locationURI>
-		</link>
-		<link>
 			<name>TODO.txt</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/TODO.txt</locationURI>
@@ -81,7 +76,22 @@
 		<link>
 			<name>Tests</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Tests</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>xLib</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>Tests/Source</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Tests/Source</locationURI>
+		</link>
+		<link>
+			<name>xLib/Source</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Source</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
