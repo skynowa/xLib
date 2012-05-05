@@ -18,9 +18,14 @@
 #if xOS_ENV_WIN
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxRtf.h>
 #elif xOS_ENV_UNIX
-    #if xTEMP_DISABLED
-        #include <linux/kd.h>   //bBeep
-        #include <X11/Xlib.h>   //bBeep -lX11
+    #if   xOS_LINUX
+        #if xTEMP_DISABLED
+            #include <linux/kd.h>   //bBeep
+            #include <X11/Xlib.h>   //bBeep -lX11
+        #endif
+    #elif xOS_FREEBSD
+        #include <sys/user.h>
+        #include <sys/proc.h>
     #endif
 #endif
 
@@ -71,17 +76,20 @@ CxDebugger::bSetEnabled(
 bool
 CxDebugger::bIsActive() {
 #if xOS_ENV_WIN
+    // local debugger
     BOOL blRes = ::IsDebuggerPresent();
     xCHECK_RET(FALSE != blRes, true);
 
+    // remote debugger
     BOOL blIsRemoteDebuggerPresent = FALSE;
 
     blRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &blIsRemoteDebuggerPresent);
     xCHECK_RET(FALSE == blRes || FALSE == blIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        std::tstring_t sRes = CxEnvironment::sGetVar(xT("XLIB_ENABLE_DEBUGGER"));
-        xCHECK_RET(false == CxString::bCompareNoCase(xT("yes"), sRes), false);
+        // if ppid != sid, some process spawned our app, probably a debugger
+        bool bRes = ( ::getsid(::getpid()) != ::getppid() );
+        xCHECK_RET(false == bRes, false);
     #elif xOS_FREEBSD
         int               aiMib[4]   = {0};
         struct kinfo_proc kiInfo     = {0};
@@ -90,10 +98,10 @@ CxDebugger::bIsActive() {
         aiMib[0] = CTL_KERN;
         aiMib[1] = KERN_PROC;
         aiMib[2] = KERN_PROC_PID;
-        aiMib[3] = ::getpid();
+        aiMib[3] = CxCurrentProcess::ulGetId();
 
         // if sysctl fails for some bizarre reason, we get a predictable result
-        kiInfo.kp_proc.p_flag = 0;
+        kiInfo.ki_flag = 0;
 
         uiInfoSize = sizeof(kiInfo);
 
@@ -101,7 +109,7 @@ CxDebugger::bIsActive() {
         xCHECK_RET(- 1 == iRes, false);
 
         // We're being debugged if the P_TRACED flag is set.
-        xCHECK_RET(0 == (kiInfo.kp_proc.p_flag & P_TRACED), false);
+        xCHECK_RET(0 == (kiInfo.ki_flag & P_TRACED), false);
     #endif
 #endif
 
