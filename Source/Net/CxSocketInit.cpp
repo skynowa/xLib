@@ -28,30 +28,24 @@ CxSocketInit::CxSocketInit(
     const ushort_t cusMinorVersion
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     WSADATA wdData = {0};
 
     int iRes = ::WSAStartup(MAKEWORD(cusMajorVersion, cusMinorVersion), &wdData);
-    /*DEBUG*/xASSERT_DO(0 == iRes, return);
-
-    //Confirm that the WinSock DLL supports some version
-    if (HIBYTE(wdData.wVersion) != cusMinorVersion || LOBYTE(wdData.wVersion) != cusMajorVersion) {
-        iRes = ::WSACleanup();
-        /*DEBUG*/xASSERT_DO(0 == iRes, return);
-
-        /*DEBUG*/xASSERT_DO(false,     return);
-    }
+    xASSERT_DO(0 == iRes,                                  return);
+    xASSERT_DO(HIBYTE(wdData.wVersion) == cusMinorVersion, return);
+    xASSERT_DO(LOBYTE(wdData.wVersion) == cusMajorVersion, return);
 #elif xOS_ENV_UNIX
-    // n/a
+    xNA;
 #endif
 }
 //---------------------------------------------------------------------------
 CxSocketInit::~CxSocketInit() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int iRes = ::WSACleanup();
     /*DEBUG*/xASSERT_DO(0 == iRes, return);
 #elif xOS_ENV_UNIX
-    xNA
+    xNA;
 #endif
 }
 //---------------------------------------------------------------------------
