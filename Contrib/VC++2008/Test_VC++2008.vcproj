@@ -517,14 +517,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Filesystem\Win\CxTest_CxIni.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\Win\CxTest_CxIni.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxLocalStorage.cpp"
 					>
 				</File>
@@ -600,14 +592,6 @@
 			<Filter
 				Name="Net"
 				>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxAsyncSocket.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxAsyncSocket.h"
-					>
-				</File>
 				<File
 					RelativePath="..\..\Tests\Source\Net\CxTest_CxCgi.cpp"
 					>
@@ -869,6 +853,10 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Test"
+				>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="xLib"
@@ -1014,10 +1002,6 @@
 				</File>
 				<File
 					RelativePath="..\..\Include\xLib\Common\CxSystemInfo.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxType.cpp"
 					>
 				</File>
 				<File
@@ -1401,22 +1385,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Debug\CxTest.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxTest.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Debug\CxTestManager.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxTestManager.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\Include\xLib\Debug\xDebug.h"
 					>
 				</File>
@@ -1504,18 +1472,6 @@
 					RelativePath="..\..\Include\xLib\Filesystem\CxVolume.h"
 					>
 				</File>
-				<Filter
-					Name="Win"
-					>
-					<File
-						RelativePath="..\..\Source\Filesystem\Win\CxIni.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Filesystem\Win\CxIni.h"
-						>
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
 				Name="Gui"
@@ -1574,10 +1530,6 @@
 							RelativePath="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl"
 							>
 						</File>
-						<File
-							RelativePath="..\..\Source\Gui\Dialogs\CxMsgBoxT.cpp"
-							>
-						</File>
 					</Filter>
 				</Filter>
 			</Filter>
@@ -1632,14 +1584,6 @@
 			<Filter
 				Name="Net"
 				>
-				<File
-					RelativePath="..\..\Source\Net\CxAsyncSocket.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Net\CxAsyncSocket.h"
-					>
-				</File>
 				<File
 					RelativePath="..\..\Source\Net\CxCgi.cpp"
 					>
@@ -1764,10 +1708,6 @@
 			<Filter
 				Name="Patterns"
 				>
-				<File
-					RelativePath="..\..\Source\Patterns\CxSingleton.cpp"
-					>
-				</File>
 				<File
 					RelativePath="..\..\Include\xLib\Patterns\CxSingleton.h"
 					>
@@ -1920,10 +1860,6 @@
 			<Filter
 				Name="Units"
 				>
-				<File
-					RelativePath="..\..\Source\Units\sGetEan13BarCode.cpp"
-					>
-				</File>
 				<Filter
 					Name="Win"
 					>
@@ -1936,6 +1872,10 @@
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="Test"
+				>
 			</Filter>
 		</Filter>
 		<File
