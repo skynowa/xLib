@@ -78,6 +78,7 @@ SOURCE_SUBDIRS				:=	. \
 								Patterns \
 								Sync \
 								Sync/Win \
+								Test \
 								Units \
 								Units/Win
 
