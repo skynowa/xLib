@@ -99,7 +99,7 @@ TESTS_SOURCE_SUBDIRS		:=	. \
 								Patterns \
 								Sync \
 								Sync/Win \
-                                Test \
+								Test \
 								Units \
 								Units/Win
 
