@@ -6,7 +6,6 @@
 
 #include <xLib/Log/CxSystemLog.h>
 
-#include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 
 #if xOS_ENV_WIN
@@ -27,13 +26,19 @@ xNAMESPACE_BEGIN(NxLib)
 CxSystemLog::CxSystemLog(
     const std::tstring_t &csLogName
 ) :
+#if   xOS_ENV_WIN
+    _m_SysLog   (NULL),
+#elif xOS_ENV_UNIX
+
+#endif
     _m_bIsEnable(true)
 {
 
 #if xOS_ENV_WIN
-    //HANDLE OpenEventLog(__in  LPCTSTR lpUNCServerName, __in  LPCTSTR lpSourceName);
+    _m_SysLog = ::RegisterEventSource(NULL, csLogName.c_str());
+    /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, return);
 #elif xOS_ENV_UNIX
-    //(void)::openlog(csLogName.c_str(), int __option, int __facility);
+    (void)::openlog(csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 
     //int setlogmask (int __mask) __THROW;
 #endif
@@ -43,7 +48,10 @@ CxSystemLog::CxSystemLog(
 /*virtual*/
 CxSystemLog::~CxSystemLog() {
 #if xOS_ENV_WIN
-    //BOOL CloseEventLog(__inout  HANDLE hEventLog);
+    /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, return);
+
+    BOOL bRes = ::DeregisterEventSource(_m_SysLog);
+    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
 #elif xOS_ENV_UNIX
     (void)::closelog();
 #endif
@@ -68,9 +76,13 @@ CxSystemLog::bWrite(
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
+#if   xOS_ENV_WIN
+    /*DEBUG*/xASSERT_RET(NULL != _m_SysLog,  false);
+#elif xOS_ENV_UNIX
+
+#endif
 
     xCHECK_RET(false == _m_bIsEnable, true);
-
 
     //-------------------------------------
     //comment
@@ -82,21 +94,23 @@ CxSystemLog::bWrite(
     xVA_END(alArgs);
 
     //-------------------------------------
-    //data
-    std::tstring_t sData;
-
-    sData = CxString::sFormat(
-                xT("[%s] %s"),
-                CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftTime).c_str(),
-                sMessage.c_str()
-    );
-
-    //-------------------------------------
     //write
 #if xOS_ENV_WIN
+    #if xTODO
+        BOOL bRes = ::ReportEvent(_m_SysLog, lvLevel,
+          __in  WORD wCategory,
+          __in  DWORD dwEventID,
+          __in  PSID lpUserSid,
+          __in  WORD wNumStrings,
+          __in  DWORD dwDataSize,
+          __in  LPCTSTR *lpStrings,
+          __in  LPVOID lpRawData
+        );
+        /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    #endif
 
 #elif xOS_ENV_UNIX
-    (void)::syslog(lvLevel, "%s", sData.c_str());
+    (void)::syslog(lvLevel, xT("%s"), sMessage.c_str());
 #endif
 
     return true;
