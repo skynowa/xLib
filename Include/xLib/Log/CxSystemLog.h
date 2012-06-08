@@ -45,7 +45,8 @@ class CxSystemLog :
             EVENTLOG_AUDIT_SUCCESS  //Success Audit event
         #endif
 
-
+                 CxSystemLog();
+            ///< constructor
         explicit CxSystemLog(const std::tstring_t &csLogName);
             ///< constructor
         virtual ~CxSystemLog();
@@ -57,13 +58,13 @@ class CxSystemLog :
             ///< write to log
 
     private:
-        bool     _m_bIsEnable;        ///< is enabled
+        bool     _m_bIsEnable;  ///< is enabled
 
     #if   xOS_ENV_WIN
-        HANDLE   _m_SysLog;
-    #elif xOS_ENV_UNIX
-
+        HANDLE   _m_SysLog;     ///< eventlog handle
     #endif
+
+        bool     _bInit     (const std::tstring_t &csLogName);
 
 };
 

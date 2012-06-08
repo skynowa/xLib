@@ -68,6 +68,7 @@
 //Log
 #include <Test/Log/CxTest_CxTracer.h>
 #include <Test/Log/CxTest_CxFileLog.h>
+#include <Test/Log/CxTest_CxSystemLog.h>
 
 //Net
 #include <Test/Net/CxTest_CxCookiePv0.h>
@@ -233,6 +234,7 @@ xTMAIN(
         // Log
         (void)tmManager.bAdd(new CxTest_CxTracer);
         (void)tmManager.bAdd(new CxTest_CxFileLog);
+        (void)tmManager.bAdd(new CxTest_CxSystemLog);
 
         // Net
         (void)tmManager.bAdd(new CxTest_CxCookiePv0);
