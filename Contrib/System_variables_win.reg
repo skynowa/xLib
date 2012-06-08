@@ -8,6 +8,6 @@ REGEDIT4
 
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment]
-"OpenSSL"="D:\\Libs\\OpenSSL-Win32"
-"MySQL"="C:\\Program Files\\MySQL\\MySQL Server 5.1"
-"xLib"="D:\\Projects\\xLib"
+"xLib"    = "D:/Projects/xLib"
+"OpenSSL" = "D:/Libs/OpenSSL/OpenSSL-Win32"
+"MySQL"   = "C:/Program Files/MySQL/MySQL Server 5.1"
