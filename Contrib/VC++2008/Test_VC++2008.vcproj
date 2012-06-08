@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="Test.VC++ 2008"
 	ProjectGUID="{BD92A805-400C-4F61-B0EE-9A3605B34831}"
 	RootNamespace="Test.VC++ 2008"
@@ -201,6 +201,10 @@
 		<Filter
 			Name="Tests"
 			>
+			<File
+				RelativePath="..\..\Tests\Source\Test.cpp"
+				>
+			</File>
 			<Filter
 				Name="Common"
 				>
@@ -581,6 +585,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\Tests\Source\Log\CxTest_CxSystemLog.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\Tests\Include\Test\Log\CxTest_CxSystemLog.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\Tests\Source\Log\CxTest_CxTracer.cpp"
 					>
 				</File>
@@ -861,10 +873,6 @@
 		<Filter
 			Name="xLib"
 			>
-			<File
-				RelativePath="..\..\Tests\Source\Test.cpp"
-				>
-			</File>
 			<Filter
 				Name="Common"
 				>

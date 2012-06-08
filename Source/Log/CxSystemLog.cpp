@@ -23,26 +23,26 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxSystemLog::CxSystemLog(
-    const std::tstring_t &csLogName
-) :
-#if   xOS_ENV_WIN
+CxSystemLog::CxSystemLog() :
+#if xOS_ENV_WIN
     _m_SysLog   (NULL),
-#elif xOS_ENV_UNIX
-
 #endif
     _m_bIsEnable(true)
 {
-
+    bool bRes = _bInit(CxPath::sGetExe());
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
+}
+//---------------------------------------------------------------------------
+CxSystemLog::CxSystemLog(
+    const std::tstring_t &csLogName
+) :
 #if xOS_ENV_WIN
-    _m_SysLog = ::RegisterEventSource(NULL, csLogName.c_str());
-    /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, return);
-#elif xOS_ENV_UNIX
-    (void)::openlog(csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
-
-    //int setlogmask (int __mask) __THROW;
+    _m_SysLog   (NULL),
 #endif
-
+    _m_bIsEnable(true)
+{
+    bool bRes = _bInit(csLogName);
+    /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------
 /*virtual*/
@@ -52,6 +52,8 @@ CxSystemLog::~CxSystemLog() {
 
     BOOL bRes = ::DeregisterEventSource(_m_SysLog);
     /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+
+    _m_SysLog = NULL;
 #elif xOS_ENV_UNIX
     (void)::closelog();
 #endif
@@ -76,13 +78,11 @@ CxSystemLog::bWrite(
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL != _m_SysLog,  false);
-#elif xOS_ENV_UNIX
-
 #endif
 
-    xCHECK_RET(false == _m_bIsEnable, true);
+    xCHECK_RET(false == _m_bIsEnable, false);
 
     //-------------------------------------
     //comment
@@ -96,21 +96,35 @@ CxSystemLog::bWrite(
     //-------------------------------------
     //write
 #if xOS_ENV_WIN
-    #if xTODO
-        BOOL bRes = ::ReportEvent(_m_SysLog, lvLevel,
-          __in  WORD wCategory,
-          __in  DWORD dwEventID,
-          __in  PSID lpUserSid,
-          __in  WORD wNumStrings,
-          __in  DWORD dwDataSize,
-          __in  LPCTSTR *lpStrings,
-          __in  LPVOID lpRawData
-        );
-        /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
-    #endif
+    LPCTSTR pcszStrings = sMessage.c_str();
 
+    BOOL bRes = ::ReportEvent(_m_SysLog, lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
+    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
 #elif xOS_ENV_UNIX
     (void)::syslog(lvLevel, xT("%s"), sMessage.c_str());
+#endif
+
+    return true;
+}
+//---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    private
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+bool
+CxSystemLog::_bInit(
+    const std::tstring_t &csLogName
+)
+{
+#if xOS_ENV_WIN
+    _m_SysLog = ::RegisterEventSource(NULL, csLogName.c_str());
+    /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, false);
+#elif xOS_ENV_UNIX
+    (void)::openlog(csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
 
     return true;
