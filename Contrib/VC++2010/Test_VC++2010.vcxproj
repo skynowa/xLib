@@ -308,6 +308,7 @@
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp" />
     <ClCompile Include="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp" />
     <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp" />
+    <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxSystemLog.cpp" />
     <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxTracer.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCgi.cpp" />
     <ClCompile Include="..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp" />
@@ -462,6 +463,7 @@
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h" />
+    <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxSystemLog.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxTracer.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCgi.h" />
     <ClInclude Include="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h" />

@@ -29,7 +29,7 @@ CxSystemLog::CxSystemLog() :
 #endif
     _m_bIsEnable(true)
 {
-    bool bRes = _bInit(CxPath::sGetExe());
+    bool bRes = _bInit( CxPath::sGetFileBaseName(CxPath::sGetExe()) );
     /*DEBUG*/xASSERT_DO(true == bRes, return);
 }
 //---------------------------------------------------------------------------

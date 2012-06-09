@@ -70,7 +70,7 @@ CxTest_CxSystemLog::bUnit(
         CxSystemLog slSytemLog;
 
         for (size_t i = 0; i < xARRAY_SIZE(alvLogLevel); ++ i) {
-            m_bRes = slSytemLog.bWrite(alvLogLevel[i], xT("%s ")xPR_SIZET, xT("This is test system log message #"), i);
+            m_bRes = slSytemLog.bWrite(alvLogLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
             xTEST_EQ(true, m_bRes);
         }
     }
