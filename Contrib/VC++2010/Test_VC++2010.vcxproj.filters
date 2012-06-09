@@ -666,6 +666,9 @@
     <ClCompile Include="..\..\Source\Test\CxTestManager.cpp">
       <Filter>xLib\Test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Tests\Source\Log\CxTest_CxSystemLog.cpp">
+      <Filter>Test\Log</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xLib\Crypt\CxRandom.h">
@@ -1246,6 +1249,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\xLib\Test\CxTestManager.h">
       <Filter>xLib\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Tests\Include\Test\Log\CxTest_CxSystemLog.h">
+      <Filter>Test\Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
