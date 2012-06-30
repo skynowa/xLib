@@ -17,9 +17,13 @@ cBIN_TYPE_TESTS			:=	tests
 
 cDESCRIPTION 			:=	C++ class library
 
+cCOMPILER				:=	$(CXX)
+cARCHIVER				:=	$(AR)
+
 
 ##################################################
 # Settings
+#BUILD_TYPE				:=	$(cBUILD_TYPE_DEBUG)
 BUILD_TYPE				:=	$(cBUILD_TYPE_RELEASE)
 BIN_TYPE				:=	$(cBIN_TYPE_LIB)
 
@@ -28,13 +32,17 @@ BIN_TYPE				:=	$(cBIN_TYPE_LIB)
 # xLib
 ifeq ($(BIN_TYPE), $(cBIN_TYPE_LIB))
 PROGRAM_PREFIX			:=	lib
+PROGRAM_SHORT_NAME		:=	xlib
+PROGRAM_POSTFIX			:=	
 PROGRAM_EXT				:=	.a
 else
 PROGRAM_PREFIX			:=
-PROGRAM_EXT				:=
+PROGRAM_SHORT_NAME		:=	xlib
+PROGRAM_POSTFIX			:=
+PROGRAM_EXT				:=	
 endif
 
-PROGRAM_NAME			:=	$(PROGRAM_PREFIX)xlib$(PROGRAM_EXT)
+PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 
 ROOT_INCLUDE_DIR		:=	./Include
 ROOT_SOURCE_DIR			:=	./Source
@@ -81,13 +89,12 @@ PROGRAM_PATH			:=	../../../$(BINARY_DIR)/$(PROGRAM_NAME)
 
 COMPILER				:=	$(CXX)
 ARCHIVER				:=	$(AR)
-COMPILE_FLAGS			:=	-Wall -pipe
-LINK_FLAGS				:=	-pthread -s -pipe
+COMPILE_FLAGS			:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-BUILD_FLAGS				:=	-O0 -g3 -g -fexceptions
+LINK_FLAGS				:=	-pthread -s -pipe -O0 -g3 -g -fexceptions
 else
-BUILD_FLAGS				:=	-O3 -g0 -fexceptions
+LINK_FLAGS				:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions
 endif
 
 PARANOID_FLAGS			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
@@ -104,25 +111,23 @@ PARANOID_FLAGS			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-inc
 RELATIVE_INCLUDE_DIRS	:=	$(addprefix ../../../, $(ROOT_INCLUDE_DIR))
 RELATIVE_SOURCE_DIRS	:=	$(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
 OBJECTS_DIRS			:=	$(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS					:=	$(patsubst ../../../%, %, $(wildcard $(addsuffix /*.c*, $(RELATIVE_SOURCE_DIRS))))
+OBJECTS					:=	$(patsubst ../../../%, %, $(wildcard $(addsuffix /*.cpp, $(RELATIVE_SOURCE_DIRS))))
 OBJECTS					:=	$(OBJECTS:.cpp=.o)
-OBJECTS					:=	$(OBJECTS:.c=.o)
 
 
-
-$(PROGRAM_PATH):		obj_dirs $(OBJECTS)
+$(PROGRAM_PATH):		OBJ_DIRS $(OBJECTS)
 						$(ARCHIVER) rc $@ $(OBJECTS)
 
-obj_dirs:
+OBJ_DIRS:
 						mkdir -p $(OBJECTS_DIRS)
 
 VPATH					:= ../../../
 
 %.o:					%.cpp
-						$(COMPILER) $(COMPILE_FLAGS) $(BUILD_FLAGS) -c $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR)) -o $@ $<
+						$(COMPILER) -c $(COMPILE_FLAGS) $(LINK_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR)) -o $@ $<
 
-.PHONY:					clean
 
+# targets
 all:
 						mkdir -p $(BINARY_DIR)
 						$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../Lib.mk
@@ -134,6 +139,7 @@ install:
 						mkdir -p $(INSTALL_INCLUDE_DIR)
 						cp -r $(ROOT_INCLUDE_DIR)/xLib $(INSTALL_INCLUDE_DIR)
 
+.PHONY:					clean
 clean:
 						rm -rf $(BINARY_DIR)
 

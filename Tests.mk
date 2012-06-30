@@ -15,7 +15,7 @@ cBUILD_TYPE_RELEASE			:=	release
 cBIN_TYPE_LIB				:=	static library
 cBIN_TYPE_TESTS				:=	tests
 
-cDESCRIPTION 				:=	tests for xLib \(C++ class library\)
+cDESCRIPTION 				:=	tests for xLib
 
 cCOMPILER					:=	$(CXX)
 cARCHIVER					:=	$(AR)
@@ -29,16 +29,18 @@ BUILD_TYPE					:=	$(cBUILD_TYPE_RELEASE)
 
 ##################################################
 # xLib
+ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 PROGRAM_PREFIX				:=
 PROGRAM_SHORT_NAME			:=	xlib
-
-ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 PROGRAM_POSTFIX				:=	_d
+PROGRAM_EXT					:=
 else
+PROGRAM_PREFIX				:=
+PROGRAM_SHORT_NAME			:=	xlib
 PROGRAM_POSTFIX				:=	_r
+PROGRAM_EXT					:=
 endif
 
-PROGRAM_EXT  				:=
 PROGRAM_NAME				:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 PROGRAM_PATH				:=	$(PROGRAM_NAME)
 
@@ -116,19 +118,18 @@ LIB_DIRS					:=	/usr/lib64 \
 								/usr/local/lib64/mysql \
 								/usr/local/lib/mysql
 
-COMPILE_FLAGS				:=	-Wall -pipe
-LINK_FLAGS					:=	-pthread -s -pipe -rdynamic	#-static
+COMPILE_FLAGS				:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(cOS), Linux)
-LIBRARIES					:=	-lmysqlclient -lm -lcrypto -lz -lssl -ldl
+LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -ldl
 else
-LIBRARIES					:=	-lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
+LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-BUILD_FLAGS					:=	-O0 -g3 -g -fexceptions
+LINK_FLAGS					:=	-pthread -s -pipe -O0 -g3 -g -fexceptions -rdynamic	#-static
 else
-BUILD_FLAGS					:=	-O3 -g0 -fomit-frame-pointer -fexceptions
+LINK_FLAGS					:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions -rdynamic	#-static
 endif
 
 PARANOID_FLAGS				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
@@ -145,39 +146,35 @@ PARANOID_FLAGS				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-in
 RELATIVE_INCLUDE_DIRS		:=	$(addprefix $(PATH_PREFIX), $(ROOT_INCLUDE_DIR))
 RELATIVE_SOURCE_DIRS		:=	$(addprefix $(PATH_PREFIX)$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
 OBJECTS_DIRS				:=	$(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS						:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.c*, $(RELATIVE_SOURCE_DIRS))))
+OBJECTS						:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.cpp, $(RELATIVE_SOURCE_DIRS))))
 OBJECTS						:=	$(OBJECTS:.cpp=.o)
-OBJECTS						:=	$(OBJECTS:.c=.o)
 
 TESTS_RELATIVE_INCLUDE_DIRS	:=	$(addprefix $(PATH_PREFIX), $(TESTS_ROOT_INCLUDE_DIR))
 TESTS_RELATIVE_SOURCE_DIRS	:=	$(addprefix $(PATH_PREFIX)$(TESTS_ROOT_SOURCE_DIR)/, $(TESTS_SOURCE_SUBDIRS))
 TESTS_OBJECTS_DIRS			:=	$(addprefix $(TESTS_ROOT_SOURCE_DIR)/, $(TESTS_SOURCE_SUBDIRS))
-TESTS_OBJECTS				:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.c*, $(TESTS_RELATIVE_SOURCE_DIRS))))
+TESTS_OBJECTS				:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.cpp, $(TESTS_RELATIVE_SOURCE_DIRS))))
 TESTS_OBJECTS				:=	$(TESTS_OBJECTS:.cpp=.o)
-TESTS_OBJECTS				:=	$(TESTS_OBJECTS:.c=.o)
 
-
-
-all: 							$(PROGRAM_PATH)
 
 $(PROGRAM_PATH): 				OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS) $(RELATIVE_INCLUDE_DIRS)
-								$(cCOMPILER) $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBRARIES) -o $@
+								$(cCOMPILER) $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBS) -o $@
 
 OBJ_DIRS:
 								mkdir -p $(OBJECTS_DIRS) $(TESTS_OBJECTS_DIRS)
 
-#%.o:							%.h
-#								$(cCOMPILER) -c -o $@ $< $(COMPILE_FLAGS) $(BUILD_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR))
-
 %.o:							%.cpp
-								$(cCOMPILER) $(COMPILE_FLAGS) $(BUILD_FLAGS) -c $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR)) -o $@ $<
+								$(cCOMPILER) -c $(COMPILE_FLAGS) $(LINK_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR)) -o $@ $<
 
-.PHONY:							clean
+
+# targets
+all: 							$(PROGRAM_PATH)
+
 
 install:
 								mkdir -p $(INSTALL_DIR)
 								cp $(BINARY_DIR)/$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_EXT) $(INSTALL_DIR)
 
+.PHONY:							clean
 clean:
 								rm -rf $(BINARY_DIR)
 
