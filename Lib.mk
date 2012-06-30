@@ -47,9 +47,6 @@ PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROG
 DIR_ROOT_INCLUDE		:=	./Include
 DIR_ROOT_SOURCE			:=	./Source
 
-DIR_OTHER_INCLUDE		:=	/usr/include \
-							/usr/local/include
-
 SUBDIRS_SOURCE			:=	. \
 							Common \
 							Common/Win \
@@ -72,15 +69,6 @@ SUBDIRS_SOURCE			:=	. \
                             Test \
 							Units \
 							Units/Win
-
-DIRS_LIB				:=	/usr/lib64 \
-							/usr/lib \
-							/usr/lib64/mysql \
-							/usr/lib/mysql \
-							/usr/local/lib64 \
-							/usr/local/lib \
-							/usr/local/lib64/mysql \
-							/usr/local/lib/mysql
 
 DIR_BINARY				:=	./Library/G++_linux/Release
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
@@ -124,7 +112,8 @@ OBJ_DIRS:
 VPATH					:= ../../../
 
 %.o:					%.cpp
-						$(COMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(DIR_OTHER_INCLUDE)) -o $@ $<
+						$(COMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE)) -o $@ $<
+
 
 
 # targets
