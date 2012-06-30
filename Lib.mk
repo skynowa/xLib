@@ -44,13 +44,13 @@ endif
 
 PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 
-ROOT_INCLUDE_DIR		:=	./Include
-ROOT_SOURCE_DIR			:=	./Source
+DIR_ROOT_INCLUDE		:=	./Include
+DIR_ROOT_SOURCE			:=	./Source
 
-OTHER_INCLUDE_DIR		:=	/usr/include \
+DIR_OTHER_INCLUDE		:=	/usr/include \
 							/usr/local/include
 
-SOURCE_SUBDIRS			:=	. \
+SUBDIRS_SOURCE			:=	. \
 							Common \
 							Common/Win \
 							Crypt \
@@ -73,7 +73,7 @@ SOURCE_SUBDIRS			:=	. \
 							Units \
 							Units/Win
 
-LIB_DIRS				:=	/usr/lib64 \
+DIRS_LIB				:=	/usr/lib64 \
 							/usr/lib \
 							/usr/lib64/mysql \
 							/usr/lib/mysql \
@@ -82,22 +82,22 @@ LIB_DIRS				:=	/usr/lib64 \
 							/usr/local/lib64/mysql \
 							/usr/local/lib/mysql
 
-BINARY_DIR				:=	./Library/G++_linux/Release
-INSTALL_INCLUDE_DIR		:=	/usr/local/include
-INSTALL_DIR				:=	/usr/local/lib
-PROGRAM_PATH			:=	../../../$(BINARY_DIR)/$(PROGRAM_NAME)
+DIR_BINARY				:=	./Library/G++_linux/Release
+DIR_INSTALL_INCLUDE		:=	/usr/local/include
+DIR_INSTALL				:=	/usr/local/lib
+PROGRAM_PATH			:=	../../../$(DIR_BINARY)/$(PROGRAM_NAME)
 
 COMPILER				:=	$(CXX)
 ARCHIVER				:=	$(AR)
-COMPILE_FLAGS			:=	$(CPPFLAGS) -Wall -pipe
+FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-LINK_FLAGS				:=	-pthread -s -pipe -O0 -g3 -g -fexceptions
+FLAGS_LINK				:=	-pthread -s -pipe -O0 -g3 -g -fexceptions
 else
-LINK_FLAGS				:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions
+FLAGS_LINK				:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions
 endif
 
-PARANOID_FLAGS			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
+FLAGS_PARANOID			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
 							-Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 \
 							-Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion \
 							-Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits \
@@ -108,10 +108,10 @@ PARANOID_FLAGS			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-inc
 							-Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla \
 							-Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
 
-RELATIVE_INCLUDE_DIRS	:=	$(addprefix ../../../, $(ROOT_INCLUDE_DIR))
-RELATIVE_SOURCE_DIRS	:=	$(addprefix ../../../$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS_DIRS			:=	$(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS					:=	$(patsubst ../../../%, %, $(wildcard $(addsuffix /*.cpp, $(RELATIVE_SOURCE_DIRS))))
+DIRS_RELATIVE_INCLUDE	:=	$(addprefix ../../../, $(DIR_ROOT_INCLUDE))
+DIRS_RELATIVE_SOURCE	:=	$(addprefix ../../../$(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
+DIRS_OBJECTS			:=	$(addprefix $(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
+OBJECTS					:=	$(patsubst ../../../%, %, $(wildcard $(addsuffix /*.cpp, $(DIRS_RELATIVE_SOURCE))))
 OBJECTS					:=	$(OBJECTS:.cpp=.o)
 
 
@@ -119,29 +119,29 @@ $(PROGRAM_PATH):		OBJ_DIRS $(OBJECTS)
 						$(ARCHIVER) rc $@ $(OBJECTS)
 
 OBJ_DIRS:
-						mkdir -p $(OBJECTS_DIRS)
+						mkdir -p $(DIRS_OBJECTS)
 
 VPATH					:= ../../../
 
 %.o:					%.cpp
-						$(COMPILER) -c $(COMPILE_FLAGS) $(LINK_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR)) -o $@ $<
+						$(COMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(DIR_OTHER_INCLUDE)) -o $@ $<
 
 
 # targets
 all:
-						mkdir -p $(BINARY_DIR)
-						$(MAKE) --directory=./$(BINARY_DIR) --makefile=../../../Lib.mk
+						mkdir -p $(DIR_BINARY)
+						$(MAKE) --directory=./$(DIR_BINARY) --makefile=../../../Lib.mk
 
 install:
-						mkdir -p $(INSTALL_DIR)
-						cp    $(BINARY_DIR)/$(PROGRAM_NAME) $(INSTALL_DIR)/$(PROGRAM_NAME)
+						mkdir -p $(DIR_INSTALL)
+						cp    $(DIR_BINARY)/$(PROGRAM_NAME) $(DIR_INSTALL)/$(PROGRAM_NAME)
 
-						mkdir -p $(INSTALL_INCLUDE_DIR)
-						cp -r $(ROOT_INCLUDE_DIR)/xLib $(INSTALL_INCLUDE_DIR)
+						mkdir -p $(DIR_INSTALL_INCLUDE)
+						cp -r $(DIR_ROOT_INCLUDE)/xLib $(DIR_INSTALL_INCLUDE)
 
 .PHONY:					clean
 clean:
-						rm -rf $(BINARY_DIR)
+						rm -rf $(DIR_BINARY)
 
-include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
+include $(wildcard $(addsuffix /*.d, $(DIRS_OBJECTS)))
 
