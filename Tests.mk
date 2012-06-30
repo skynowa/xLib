@@ -2,7 +2,7 @@
 # File name:   Tests.mk
 # Description: make file for tests (Unix OS)
 #
-######################################################################################################
+#####################################################################################################
 
 
 ##################################################
@@ -106,18 +106,6 @@ SUBDIRS_TESTS_SOURCE		:=	. \
 								Units \
 								Units/Win
 
-DIR_OTHER_INCLUDE			:=	/usr/include \
-								/usr/local/include
-
-DIRS_LIB					:=	/usr/lib64 \
-								/usr/lib \
-								/usr/lib64/mysql \
-								/usr/lib/mysql \
-								/usr/local/lib64 \
-								/usr/local/lib \
-								/usr/local/lib64/mysql \
-								/usr/local/lib/mysql
-
 FLAGS_COMPILE				:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(cOS), Linux)
@@ -127,9 +115,9 @@ LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc on
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-FLAGS_LINK					:=	-pthread -s -pipe -O0 -g3 -g -fexceptions -rdynamic	#-static
+FLAGS_LINK					:=	-pthread -s -pipe -O0 -g3 -g -fexceptions -rdynamic # -static
 else
-FLAGS_LINK					:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions -rdynamic	#-static
+FLAGS_LINK					:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions -rdynamic # -static
 endif
 
 FLAGS_PARANOID				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
@@ -157,13 +145,14 @@ TESTS_OBJECTS				:=	$(TESTS_OBJECTS:.cpp=.o)
 
 
 $(PROGRAM_PATH): 				OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS) $(DIRS_RELATIVE_INCLUDE)
-								$(cCOMPILER) $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(DIRS_LIB)) $(FLAGS_LINK) $(LIBS) -o $@
+								$(cCOMPILER) $(OBJECTS) $(TESTS_OBJECTS) $(FLAGS_LINK) $(LIBS) -o $@
 
 OBJ_DIRS:
 								mkdir -p $(DIRS_OBJECTS) $(TESTS_DIRS_OBJECTS)
 
 %.o:							%.cpp
-								$(cCOMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(TESTS_DIRS_RELATIVE_INCLUDE) $(DIR_OTHER_INCLUDE)) -o $@ $<
+								$(cCOMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(TESTS_DIRS_RELATIVE_INCLUDE)) -o $@ $<
+
 
 
 # targets
