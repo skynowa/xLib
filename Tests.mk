@@ -47,20 +47,20 @@ PROGRAM_PATH				:=	$(PROGRAM_NAME)
 PATH_PREFIX					:=	../../../
 VPATH 						:=	$(PATH_PREFIX)
 
-ROOT_INCLUDE_DIR			:=	./Include
-ROOT_SOURCE_DIR				:=	./Source
-TESTS_ROOT_INCLUDE_DIR		:=	./Tests/Include
-TESTS_ROOT_SOURCE_DIR		:=	./Tests/Source
+DIR_ROOT_INCLUDE			:=	./Include
+DIR_ROOT_SOURCE				:=	./Source
+DIR_TESTS_ROOT_INCLUDE		:=	./Tests/Include
+DIR_TESTS_ROOT_SOURCE		:=	./Tests/Source
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-BINARY_DIR					:=	./Contrib/G++_linux/Debug
+DIR_BINARY					:=	./Contrib/G++_linux/Debug
 else
-BINARY_DIR					:=	./Contrib/G++_linux/Release
+DIR_BINARY					:=	./Contrib/G++_linux/Release
 endif
 
-INSTALL_DIR					:=	/usr/local/lib/xLib
+DIR_INSTALL					:=	/usr/local/lib/xLib
 
-SOURCE_SUBDIRS				:=	. \
+SUBDIRS_SOURCE				:=	. \
 								Common \
 								Common/Win \
 								Crypt \
@@ -84,7 +84,7 @@ SOURCE_SUBDIRS				:=	. \
 								Units \
 								Units/Win
 
-TESTS_SOURCE_SUBDIRS		:=	. \
+SUBDIRS_TESTS_SOURCE		:=	. \
 								Common \
 								Common/Win \
 								Crypt \
@@ -106,10 +106,10 @@ TESTS_SOURCE_SUBDIRS		:=	. \
 								Units \
 								Units/Win
 
-OTHER_INCLUDE_DIR			:=	/usr/include \
+DIR_OTHER_INCLUDE			:=	/usr/include \
 								/usr/local/include
 
-LIB_DIRS					:=	/usr/lib64 \
+DIRS_LIB					:=	/usr/lib64 \
 								/usr/lib \
 								/usr/lib64/mysql \
 								/usr/lib/mysql \
@@ -118,7 +118,7 @@ LIB_DIRS					:=	/usr/lib64 \
 								/usr/local/lib64/mysql \
 								/usr/local/lib/mysql
 
-COMPILE_FLAGS				:=	$(CPPFLAGS) -Wall -pipe
+FLAGS_COMPILE				:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(cOS), Linux)
 LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -ldl
@@ -127,12 +127,12 @@ LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc on
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-LINK_FLAGS					:=	-pthread -s -pipe -O0 -g3 -g -fexceptions -rdynamic	#-static
+FLAGS_LINK					:=	-pthread -s -pipe -O0 -g3 -g -fexceptions -rdynamic	#-static
 else
-LINK_FLAGS					:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions -rdynamic	#-static
+FLAGS_LINK					:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions -rdynamic	#-static
 endif
 
-PARANOID_FLAGS				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
+FLAGS_PARANOID				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
 								-Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 \
 								-Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion \
 								-Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits \
@@ -143,27 +143,27 @@ PARANOID_FLAGS				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-in
 								-Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla \
 								-Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
 
-RELATIVE_INCLUDE_DIRS		:=	$(addprefix $(PATH_PREFIX), $(ROOT_INCLUDE_DIR))
-RELATIVE_SOURCE_DIRS		:=	$(addprefix $(PATH_PREFIX)$(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS_DIRS				:=	$(addprefix $(ROOT_SOURCE_DIR)/, $(SOURCE_SUBDIRS))
-OBJECTS						:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.cpp, $(RELATIVE_SOURCE_DIRS))))
+DIRS_RELATIVE_INCLUDE		:=	$(addprefix $(PATH_PREFIX), $(DIR_ROOT_INCLUDE))
+DIRS_RELATIVE_SOURCE		:=	$(addprefix $(PATH_PREFIX)$(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
+DIRS_OBJECTS				:=	$(addprefix $(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
+OBJECTS						:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.cpp, $(DIRS_RELATIVE_SOURCE))))
 OBJECTS						:=	$(OBJECTS:.cpp=.o)
 
-TESTS_RELATIVE_INCLUDE_DIRS	:=	$(addprefix $(PATH_PREFIX), $(TESTS_ROOT_INCLUDE_DIR))
-TESTS_RELATIVE_SOURCE_DIRS	:=	$(addprefix $(PATH_PREFIX)$(TESTS_ROOT_SOURCE_DIR)/, $(TESTS_SOURCE_SUBDIRS))
-TESTS_OBJECTS_DIRS			:=	$(addprefix $(TESTS_ROOT_SOURCE_DIR)/, $(TESTS_SOURCE_SUBDIRS))
-TESTS_OBJECTS				:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.cpp, $(TESTS_RELATIVE_SOURCE_DIRS))))
+TESTS_DIRS_RELATIVE_INCLUDE	:=	$(addprefix $(PATH_PREFIX), $(DIR_TESTS_ROOT_INCLUDE))
+TESTS_DIRS_RELATIVE_SOURCE	:=	$(addprefix $(PATH_PREFIX)$(DIR_TESTS_ROOT_SOURCE)/, $(SUBDIRS_TESTS_SOURCE))
+TESTS_DIRS_OBJECTS			:=	$(addprefix $(DIR_TESTS_ROOT_SOURCE)/, $(SUBDIRS_TESTS_SOURCE))
+TESTS_OBJECTS				:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.cpp, $(TESTS_DIRS_RELATIVE_SOURCE))))
 TESTS_OBJECTS				:=	$(TESTS_OBJECTS:.cpp=.o)
 
 
-$(PROGRAM_PATH): 				OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS) $(RELATIVE_INCLUDE_DIRS)
-								$(cCOMPILER) $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(LIB_DIRS)) $(LINK_FLAGS) $(LIBS) -o $@
+$(PROGRAM_PATH): 				OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS) $(DIRS_RELATIVE_INCLUDE)
+								$(cCOMPILER) $(OBJECTS) $(TESTS_OBJECTS) $(addprefix -L, $(DIRS_LIB)) $(FLAGS_LINK) $(LIBS) -o $@
 
 OBJ_DIRS:
-								mkdir -p $(OBJECTS_DIRS) $(TESTS_OBJECTS_DIRS)
+								mkdir -p $(DIRS_OBJECTS) $(TESTS_DIRS_OBJECTS)
 
 %.o:							%.cpp
-								$(cCOMPILER) -c $(COMPILE_FLAGS) $(LINK_FLAGS) $(addprefix -I, $(RELATIVE_INCLUDE_DIRS) $(TESTS_RELATIVE_INCLUDE_DIRS) $(OTHER_INCLUDE_DIR)) -o $@ $<
+								$(cCOMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(TESTS_DIRS_RELATIVE_INCLUDE) $(DIR_OTHER_INCLUDE)) -o $@ $<
 
 
 # targets
@@ -171,16 +171,16 @@ all: 							$(PROGRAM_PATH)
 
 
 install:
-								mkdir -p $(INSTALL_DIR)
-								cp $(BINARY_DIR)/$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_EXT) $(INSTALL_DIR)
+								mkdir -p $(DIR_INSTALL)
+								cp $(DIR_BINARY)/$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_EXT) $(DIR_INSTALL)
 
 .PHONY:							clean
 clean:
-								rm -rf $(BINARY_DIR)
+								rm -rf $(DIR_BINARY)
 
 help:
 								#TODO: help
 
-include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
-include $(wildcard $(addsuffix /*.d, $(TESTS_OBJECTS_DIRS)))
+include $(wildcard $(addsuffix /*.d, $(DIRS_OBJECTS)))
+include $(wildcard $(addsuffix /*.d, $(TESTS_DIRS_OBJECTS)))
 
