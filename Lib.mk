@@ -92,9 +92,9 @@ ARCHIVER				:=	$(AR)
 FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-FLAGS_LINK				:=	-pthread -s -pipe -O0 -g3 -g -fexceptions
+FLAGS_LINK				:=	-pthread -s -O0 -g3 -g -fexceptions
 else
-FLAGS_LINK				:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions
+FLAGS_LINK				:=	-pthread -s -O3 -g0 -fomit-frame-pointer -fexceptions
 endif
 
 FLAGS_PARANOID			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
