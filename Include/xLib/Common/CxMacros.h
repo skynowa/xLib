@@ -462,7 +462,7 @@
 
 
 // other
-                  
+
 
 //---------------------------------------------------------------------------
 #include <xLib/Common/CxNonCopyable.h>
@@ -531,7 +531,7 @@ class CxMacros :
         template <class T>
         static inline const T
         xSign(const T& x ) {
-            return x >= 0 ? (T)1 : (T)- 1;
+            return x >= 0 ? static_cast<T>( 1 ) : static_cast<T>( - 1 );
         }
             ///< sign
 
@@ -546,10 +546,10 @@ class CxMacros :
         template <class ToT, class FromT>
         static inline ToT
         xreinterpret_cast(FromT p) {
-            void *pvVoidCast = static_cast<void *>(p);
+            void *pvVoidCast = static_cast<void *>( p );
             /////*DEBUG*/xASSERT(NULL != pvVoidCast);
 
-            ToT ResT = static_cast<ToT>(pvVoidCast);
+            ToT ResT = static_cast<ToT>( pvVoidCast );
 
             return ResT;
         }

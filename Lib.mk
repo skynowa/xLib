@@ -47,8 +47,8 @@ PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROG
 DIR_ROOT_INCLUDE		:=	./Include
 DIR_ROOT_SOURCE			:=	./Source
 
-DIR_OTHER_INCLUDE		:=	/usr/include \
-							/usr/local/include
+DIR_OTHER_INCLUDE		:=	#/usr/include \
+							#/usr/local/include
 
 SUBDIRS_SOURCE			:=	. \
 							Common \
