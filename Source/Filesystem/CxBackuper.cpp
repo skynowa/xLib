@@ -45,6 +45,7 @@ CxBackuper::etExecute(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    etUnknown);
     /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), etUnknown);
+    /*DEBUG*/xASSERT_RET(NULL  != psDestFilePath,        etUnknown);
 
     bool bRes = false;
 
@@ -61,10 +62,10 @@ CxBackuper::etExecute(
     std::tstring_t sDateTimeStamp;
 
     switch (_m_cbpPeriod) {
-        //TODO: case bpHourly:    { ; }    break;
-        case bpDaily:    { sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDate);     }    break;
-        //TODO: case bpWeekly:    { ; }    break;
-        //TODO: case bpMonthly:    { ; }    break;
+        //TODO: case bpHourly:  { ; }   break;
+        case bpDaily:   { sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDate);     }    break;
+        //TODO: case bpWeekly:  { ; }   break;
+        //TODO: case bpMonthly: { ; }   break;
 
         default:        { sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDateTime); }    break;
     }
