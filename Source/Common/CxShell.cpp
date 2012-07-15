@@ -49,7 +49,7 @@ CxShell::bExecute(
 
     xCHECK_RET(false == bIsAvailable(), false);
 
-    std::tstring_t sCommand = CxString::sFormat(xT("%s %s"), csFilePath.c_str(), csParams.c_str());
+    std::tstring_t sCommand = CxString::sFormat(xT("\"%s\" \"%s\""), csFilePath.c_str(), csParams.c_str());
 
     int iRes = ::xTSYSTEM(sCommand.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
