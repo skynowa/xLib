@@ -74,15 +74,5 @@
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/TODO.txt</locationURI>
 		</link>
-		<link>
-			<name>Tests/Source</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Tests/Source</locationURI>
-		</link>
-		<link>
-			<name>xLib/Source</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Source</locationURI>
-		</link>
 	</linkedResources>
 </projectDescription>

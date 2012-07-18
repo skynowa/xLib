@@ -56,6 +56,22 @@ CxTest_CxTracer::bUnit(
         xTEST_EQ(true, m_bRes);
     }
 
+    //--------------------------------------------------
+    // xTRACE_VAR
+    xTEST_CASE(cullCaseLoops)
+    {
+        std::tstring_t sData  = xT("data1");
+        ulong_t        ulData = 777UL;
+        double         aData  = 4.4;
+        const tchar_t *szData = xT("data2");
+
+        CxTracer() << xT("\t")
+                   << xTRACE_VAR(sData)
+                   << xTRACE_VAR(ulData) 
+                   << xTRACE_VAR(aData)
+                   << xTRACE_VAR(szData);
+    }
+
     return true;
 }
 //---------------------------------------------------------------------------
