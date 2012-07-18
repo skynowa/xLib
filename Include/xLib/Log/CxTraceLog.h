@@ -9,9 +9,10 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
-#include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+
+class CxCriticalSection;
 
 class CxTraceLog :
     private CxNonCopyable

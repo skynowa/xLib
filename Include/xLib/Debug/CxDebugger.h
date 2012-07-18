@@ -14,10 +14,6 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxErrorReport;
 
-xNAMESPACE_END(NxLib)
-//---------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
-
 class CxDebugger :
     private CxNonCopyable
     /// debugger

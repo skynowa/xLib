@@ -371,9 +371,9 @@
 
 // TxNativeHandle
 #if xOS_ENV_WIN
-    typedef HANDLE TxNativeHandle;
+    typedef HANDLE                  TxNativeHandle;
 #elif xOS_ENV_UNIX
-    typedef int    TxNativeHandle;
+    typedef int                     TxNativeHandle;
 #endif
     ///< native handle
 
@@ -387,6 +387,14 @@
     #define xNATIVE_HANDLE_INVALID  ( static_cast<TxNativeHandle>( - 1 ) )                   ///< native handle value "invalid"
 #endif
 
+
+// xSOCKET
+#if xOS_ENV_WIN
+    typedef SOCKET                  TxSocket;
+#elif xOS_ENV_UNIX
+    typedef int                     TxSocket;
+#endif
+    ///< socket native handle
 
 // xPAGE_SIZE
 #if   xOS_ENV_WIN

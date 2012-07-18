@@ -11,10 +11,6 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-#if xOS_ENV_UNIX
-    typedef int SOCKET;
-#endif
-
 class CxSocket :
     private CxNonCopyable
     /// socket
@@ -178,7 +174,7 @@ class CxSocket :
         virtual       ~CxSocket       () = 0;
             ///< destructor
 
-        bool           bAssign        (SOCKET scktSocket);
+        bool           bAssign        (const TxSocket &csktSocket);
             ///< assign to another socket
 
         /****************************************************************************
@@ -186,10 +182,10 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        CxSocket &     operator =     (SOCKET s);
+        CxSocket &     operator =     (const TxSocket &csktSocket);
             ///< operator =
-                       operator SOCKET();
-            ///< operator SOCKET
+                       operator TxSocket();
+            ///< operator TxSocket
 
 
         /****************************************************************************
@@ -254,7 +250,7 @@ class CxSocket :
             ///< get error status for the last operation that failed
 
     protected:
-        SOCKET         _m_puiSocket;    ///< handle to socket
+        TxSocket       _m_sktSocket;    ///< handle to socket
         short_t        _m_siFamily;   ///< family
         std::tstring_t _m_sIp;        ///< IP
         ushort_t       _m_usPort;     ///< port

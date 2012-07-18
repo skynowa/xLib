@@ -9,7 +9,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Crypt/Pkcs11/Common.h>
-#include <xLib/Crypt/Pkcs11/CxPkcs11.h>
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 

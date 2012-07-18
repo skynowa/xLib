@@ -9,9 +9,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/xClosure.h>
-#include <xLib/Sync/CxCriticalSection.h>
-#include <xLib/Sync/CxAutoCriticalSection.h>
-#include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxSemaphore.h>
 
 #include <list>
@@ -22,6 +19,10 @@
 #if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
+
+class CxCriticalSection;
+class CxAutoCriticalSection;
+class CxThread;
 
 template<class TaskT>
 class CxThreadPool :
@@ -87,6 +88,9 @@ class CxThreadPool :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
+#include <xLib/Sync/CxCriticalSection.h>
+#include <xLib/Sync/CxAutoCriticalSection.h>
+#include <xLib/Sync/CxThread.h>
 #include <Sync/CxThreadPool.inl>
 
 #endif

@@ -616,6 +616,7 @@
     <None Include="..\..\Include\xLib\Debug\CxErrorReport.inl" />
     <None Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
+    <None Include="..\..\Include\xLib\Sync\CxThreadPool.inl" />
     <None Include="..\..\TODO.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

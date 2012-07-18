@@ -9,7 +9,6 @@
 #define xLib_Debug_CxStackTraceH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/CxConst.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

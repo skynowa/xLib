@@ -7,6 +7,8 @@
 #include <xLib/Net/CxPop3.h>
 
 #include <xLib/Filesystem/CxFile.h>
+#include <xLib/Net/CxMimeHeader.h>
+#include <xLib/Net/CxMimeBody.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

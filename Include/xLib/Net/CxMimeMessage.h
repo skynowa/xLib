@@ -8,10 +8,11 @@
 #define xLib_Net_CxMimeMessageH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Net/CxMimeHeader.h>
-#include <xLib/Net/CxMimeBody.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+
+class CxMimeHeader;
+class CxMimeBody;
 
 class CxMimeMessage :
     private CxNonCopyable

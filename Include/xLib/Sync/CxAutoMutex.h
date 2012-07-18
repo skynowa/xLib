@@ -8,9 +8,10 @@
 #define xLib_Sync_CxAutoMutexH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Sync/CxMutex.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+
+class CxMutex;
 
 class CxAutoMutex :
     private CxNonCopyable

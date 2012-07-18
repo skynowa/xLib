@@ -1270,6 +1270,9 @@
     <None Include="..\..\Include\xLib\Common\CxException.inl">
       <Filter>xLib\Common</Filter>
     </None>
+    <None Include="..\..\Include\xLib\Sync\CxThreadPool.inl">
+      <Filter>xLib\Sync</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h">

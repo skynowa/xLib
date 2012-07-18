@@ -8,9 +8,10 @@
 #define xLib_Sync_CxAutoCriticalSectionH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+
+class CxCriticalSection;
 
 class CxAutoCriticalSection :
     private CxNonCopyable

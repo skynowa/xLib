@@ -6,6 +6,8 @@
 
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
 
+#include <xLib/Sync/CxCriticalSection.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxAutoCriticalSection::CxTest_CxAutoCriticalSection() {

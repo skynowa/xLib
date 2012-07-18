@@ -9,12 +9,13 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Crypt/Pkcs11/Common.h>
-#include <xLib/Crypt/Pkcs11/CxPkcs11.h>
-#include <xLib/Crypt/Pkcs11/CxSession.h>
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
+
+class CxPkcs11;
+class CxSession;
 
 class CxLogin :
     private CxNonCopyable
