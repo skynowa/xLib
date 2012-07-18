@@ -144,7 +144,7 @@
 
 
 //--------------------------------------------------
-//buildin macroses
+// buildin macroses
 
 // xFILE
 #if defined(__FILE__)
@@ -221,6 +221,7 @@
 #define xIN_OUT
     ///< incoming and outcoming param
 
+
 // xHOST_NAME_MAX
 #if xOS_ENV_WIN
 	#if defined(MAX_COMPUTERNAME_LENGTH)
@@ -238,6 +239,7 @@
     #endif
 #endif
     ///< max host name length
+
 
 // xPATH_MAX
 #define xPATH_MAX                   (CxPath::uiGetMaxSize())
@@ -432,6 +434,7 @@
 #endif
     ///< temprory directory
 
+
 // xFOREACH
 #define xFOREACH(it_t, it, cont)  \
                                     for (it_t::iterator               it = (cont).begin();  it != (cont).end();  ++ it)
@@ -448,6 +451,10 @@
 #define xFOREACH_R_CONST(it_t, it, cont)  \
                                     for (it_t::const_reverse_iterator it = (cont).rbegin(); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
+
+
+// other
+                  
 
 //---------------------------------------------------------------------------
 #include <xLib/Common/CxNonCopyable.h>
