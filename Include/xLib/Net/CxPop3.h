@@ -11,11 +11,13 @@
 #include <xLib/Net/CxTcpClient.h>
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Common/xCommon.h>
-#include <xLib/Net/CxMimeMessage.h>
 #include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+
+class CxMimeHeader;
+class CxMimeBody;
 
 class CxPop3 :
     private CxNonCopyable

@@ -6,6 +6,8 @@
 
 #include <xLib/Sync/CxAutoMutex.h>
 
+#include <xLib/Sync/CxMutex.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 

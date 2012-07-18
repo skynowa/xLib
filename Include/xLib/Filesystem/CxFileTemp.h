@@ -8,9 +8,10 @@
 #define xLib_CxFileTempH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Filesystem/CxFile.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+
+class CxFile;
 
 class CxFileTemp :
     private CxNonCopyable

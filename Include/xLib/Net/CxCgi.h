@@ -8,13 +8,12 @@
 #define xLib_Net_CxCgiH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-
-#include <xLib/Net/CxCookiePv0.h>
-#include <xLib/Net/CxCookiePv1.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCgi;
+class CxCookiePv0;
+class CxCookiePv1;
 
 namespace NxCgi {
 

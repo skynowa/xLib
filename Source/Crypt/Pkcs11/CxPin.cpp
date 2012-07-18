@@ -6,6 +6,8 @@
 
 #include <xLib/Crypt/Pkcs11/CxPin.h>
 
+#include <xLib/Crypt/Pkcs11/CxPkcs11.h>
+#include <xLib/Crypt/Pkcs11/CxSession.h>
 #include <xLib/Crypt/Pkcs11/CxUtils.h>
 
 

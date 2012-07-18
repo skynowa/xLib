@@ -9,6 +9,8 @@
 #include <xLib/Common/CxMacros.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Filesystem/CxFile.h>
+#include <xLib/Net/CxCookiePv0.h>
+#include <xLib/Net/CxCookiePv1.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

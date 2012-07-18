@@ -6,6 +6,9 @@
 
 #include <xLib/Net/CxMimeMessage.h>
 
+#include <xLib/Net/CxMimeHeader.h>
+#include <xLib/Net/CxMimeBody.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 

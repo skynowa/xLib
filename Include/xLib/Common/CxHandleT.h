@@ -17,12 +17,7 @@ class CxDebugger;
 xNAMESPACE_END(NxLib)
 
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/CxMacros.h>
 #include <xLib/Common/CxHandleErrorT.h>
-
-#if 0
-    #include <xLib/Sync/CxCurrentProcess.h>
-#endif
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

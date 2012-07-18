@@ -8,7 +8,6 @@
 #define xLib_Common_CxStringH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/CxNonCopyable.h>
 //---------------------------------------------------------------------------
 //overload operators << for std::basic_ostream
 xNAMESPACE_BEGIN(std)

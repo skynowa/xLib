@@ -9,6 +9,7 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
+#include <xLib/Sync/CxCriticalSection.h>
 #include <xLib/Sync/CxAutoCriticalSection.h>
 
 

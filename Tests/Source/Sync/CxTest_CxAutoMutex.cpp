@@ -6,6 +6,8 @@
 
 #include <Test/Sync/CxTest_CxAutoMutex.h>
 
+#include <xLib/Sync/CxMutex.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxAutoMutex::CxTest_CxAutoMutex() {

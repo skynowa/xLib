@@ -6,6 +6,7 @@
 
 #include <xLib/Filesystem/CxFileTemp.h>
 
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
@@ -23,6 +24,7 @@ CxFileTemp::CxFileTemp(
     const bool cbIsAutoDelete
 ) :
     _m_cbIsAutoDelete(cbIsAutoDelete),
+    _m_pfFile        (NULL),
     _m_sFilePath     ()
 {
 

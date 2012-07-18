@@ -7,8 +7,8 @@
 #ifndef xLib_Net_CxTcpClientH
 #define xLib_Net_CxTcpClientH
 //---------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxSocket.h>
+#include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

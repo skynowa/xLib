@@ -8,9 +8,10 @@
 #define xLib_Log_CxConsoleLogH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Sync/CxCriticalSection.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+
+class CxCriticalSection;
 
 class CxConsoleLog :
     private CxNonCopyable
