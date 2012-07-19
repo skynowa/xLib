@@ -218,67 +218,6 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xAsTString
-    xTEST_CASE(cullCaseLoops)
-    {
-        //1
-        {
-            const tchar_t *pcszBuff = xT("xxxxx");
-
-            m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring_t(pcszBuff), m_sRes);
-        }
-
-        //2
-        {
-            const tchar_t *pcszBuff = xT("1236cnqwieru872692*qwer8lkl;l<l;hoihljkhlwcruqw");
-
-            m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring_t(pcszBuff), m_sRes);
-        }
-
-        //3
-        {
-            const tchar_t *pcszBuff = xT("/n/n/n/n/n/n/n/t/t/t/t/t/t");
-
-            m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring_t(pcszBuff), m_sRes);
-        }
-
-        //4
-        {
-            const tchar_t *pcszBuff = xT("");
-
-            m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(std::tstring_t(pcszBuff), m_sRes);
-        }
-
-        //5
-        {
-            const tchar_t *pcszBuff = NULL;
-
-            m_sRes = CxMacros::sAsTString(pcszBuff);
-            xTEST_EQ(CxConst::xSTR_EMPTY, m_sRes);
-        }
-
-        //7
-        {
-            const tchar_t cszBuff[] = xT("sdjkrtfwo34892vnm3,9rfx12j304y81-34m8905-");
-
-            m_sRes = CxMacros::sAsTString(cszBuff);
-            xTEST_EQ(std::tstring_t(cszBuff), m_sRes);
-        }
-
-        //8
-        {
-            const tchar_t cszBuff[] = {0};
-
-            m_sRes = CxMacros::sAsTString(cszBuff);
-            xTEST_EQ(std::tstring_t(cszBuff), m_sRes);
-        }
-    }
-
-    //-------------------------------------
     //dRound
     xTEST_CASE(cullCaseLoops)
     {
