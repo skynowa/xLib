@@ -66,7 +66,7 @@ CxTcpServer::bAccept(
     /*DEBUG*/xASSERT_RET(NULL      != pscktAcceptSocket, false);
     /*DEBUG*/xASSERT_RET(NULL      != psFromIp,          false);
 
-    SOCKET scktClient = etInvalid;
+    TxSocket scktClient = etInvalid;
 
 #if xOS_ENV_WIN
     struct sockaddr_in cliaddr  = {0};

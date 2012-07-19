@@ -28,7 +28,7 @@ CxTest_CxStdError::bUnit(
     //iGet
     xTEST_CASE(cullCaseLoops)
     {
-        int iCode = CxStdError::iGet();
+        (int)CxStdError::iGet();
         xTEST_EQ(0, CxStdError::iGet());
     }
 

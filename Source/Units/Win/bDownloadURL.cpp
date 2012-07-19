@@ -7,6 +7,7 @@
 #include <xLib/Units/Win/bDownloadURL.h>
 
 #if xOS_ENV_WIN
+
 #include <wininet.h>
 
 #if xCOMPILER_MS

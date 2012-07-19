@@ -195,7 +195,7 @@ class CxSocket :
 
         bool           bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
             ///< creates a socket that is bound to a specific transport service provider
-        SOCKET         iGetSocket     () const;
+        TxSocket       iGetSocket     () const;
             ///< get socket
         bool           bIsValid       () const;
             ///< checking for validness
@@ -250,7 +250,7 @@ class CxSocket :
             ///< get error status for the last operation that failed
 
     protected:
-        TxSocket       _m_sktSocket;    ///< handle to socket
+        TxSocket       _m_sktSocket;  ///< handle to socket
         short_t        _m_siFamily;   ///< family
         std::tstring_t _m_sIp;        ///< IP
         ushort_t       _m_usPort;     ///< port

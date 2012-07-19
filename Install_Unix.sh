@@ -13,6 +13,7 @@ clear
 echo -e "Install xLib ($OSTYPE) ... "
 echo -e
 
+
 # prepare
 if   [ "$OSTYPE" = "linux-gnu"   ]; then
     MAKE=make
@@ -23,8 +24,10 @@ else
     exit 1
 fi
 
-# execute
+
+# install
 $MAKE install -f ./Lib.mk
+
 
 # finished
 echo -e

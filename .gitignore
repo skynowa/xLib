@@ -107,6 +107,3 @@ Library/VC++2010/ipch
 TODO.txt
 *.log
 *.core
-*.err
-*.out
-

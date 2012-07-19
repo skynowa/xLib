@@ -13,6 +13,7 @@ clear
 echo -e "Test xLib ($OSTYPE) ... "
 echo -e
 
+
 # prepare
 if   [ "$OSTYPE" = "linux-gnu"   ]; then
     TARGET_DIR=./Contrib/G++_linux/Release
@@ -23,9 +24,11 @@ else
     exit 1
 fi
 
-# execute
+
+# run
 ./Tests_Unix.sh
 $TARGET_DIR/xlib_r 1 1 1 1
+
 
 # finished
 echo -e
