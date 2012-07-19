@@ -612,7 +612,11 @@
     <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">
       <FileType>Document</FileType>
     </CustomBuildStep>
+    <None Include="..\..\Include\xLib\Common\CxArray.inl" />
     <None Include="..\..\Include\xLib\Common\CxException.inl" />
+    <None Include="..\..\Include\xLib\Common\CxFunctorT.inl" />
+    <None Include="..\..\Include\xLib\Common\CxString.inl" />
+    <None Include="..\..\Include\xLib\Common\CxType.inl" />
     <None Include="..\..\Include\xLib\Debug\CxErrorReport.inl" />
     <None Include="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
