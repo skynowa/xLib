@@ -43,25 +43,6 @@ echo ${COL_GREEN}"Build..."${COL_NORM}
 
 $MAKE --directory=$TARGET_DIR --makefile=../../../Tests.mk
 
-# output
-ERRORS=
-if [ $? != 0 ]; then
-    echo -e 
-    echo -e "===================================================================================================="
-    echo -e "${COL_RED}Errors:${COL_NORM}\n"
-    cat ./$HOSTNAME.err
-    echo -e "===================================================================================================="
-fi
-
-WARNINGS=`cat ./$HOSTNAME.err | grep warning`
-if [ "$WARNINGS" != "" ]; then
-    echo -e 
-    echo -e "===================================================================================================="
-    echo -e "${COL_YELLOW_BOLD}Warnings:${COL_NORM}\n"
-    echo -e "$WARNINGS"
-    echo -e "===================================================================================================="
-fi
-
 
 # checks
 if [ ! -f "$TARGET_DIR/xlib_r" ]; then
@@ -69,8 +50,10 @@ if [ ! -f "$TARGET_DIR/xlib_r" ]; then
     exit 1
 fi
 
+
 # finished
 echo -e
 echo -e
 echo -e ${COL_GREEN}"Finished."${COL_NORM}
 echo -e
+

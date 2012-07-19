@@ -106,8 +106,8 @@ SUBDIRS_TESTS_SOURCE		:=	. \
 								Units \
 								Units/Win
 
-DIR_OTHER_INCLUDE			:=	/usr/include \
-								/usr/local/include
+DIR_OTHER_INCLUDE			:=	#/usr/include \
+								#/usr/local/include
 
 DIRS_LIB					:=	/usr/lib64 \
 								/usr/lib \
@@ -127,9 +127,9 @@ LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc on
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-FLAGS_LINK					:=	-pthread -s -pipe -O0 -g3 -g -fexceptions -rdynamic	#-static
+FLAGS_LINK					:=	-pthread -s -pipe -O0 -g3 -g -fexceptions -rdynamic #-static
 else
-FLAGS_LINK					:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions -rdynamic	#-static
+FLAGS_LINK					:=	-pthread -s -pipe -O3 -g0 -fomit-frame-pointer -fexceptions -rdynamic #-static
 endif
 
 FLAGS_PARANOID				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \

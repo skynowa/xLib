@@ -11,12 +11,12 @@
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-    xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(NxLib)
 
-        bool bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
-            ///< download file using ftp, http, https
+bool bDownloadURL(LPCTSTR pszUrl, LPCTSTR pszFilePath);
+    ///< download file using ftp, http, https
 
-    xNAMESPACE_END(NxLib)
+xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
