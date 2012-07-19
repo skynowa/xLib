@@ -46,7 +46,9 @@ CxSemaphore::bCreate(
     /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize() > csName.size(),                  false);
 
 #if xOS_ENV_WIN
-    HANDLE hRes = ::CreateSemaphore(NULL, cliInitialCount, cliMaxCount, CxMacros::pcszAsCString(csName));
+    const tchar_t *pcszName = (true == csName.empty()) ? (NULL) : (csName.c_str());
+
+    HANDLE hRes = ::CreateSemaphore(NULL, cliInitialCount, cliMaxCount, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, false);
 
     _m_hSemaphore.bSet(hRes);

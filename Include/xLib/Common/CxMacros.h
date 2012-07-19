@@ -282,7 +282,7 @@
 #if   xOS_ENV_WIN
     #define xFRAMES_MAX             62UL    // from MSDN, ::CaptureStackBackTrace
 #elif xOS_ENV_UNIX
-    #define xFRAMES_MAX             256     // custom define, this should be enough
+    #define xFRAMES_MAX             256    // custom define, this should be enough
 #endif
     ///< maximum frames for stack trace
 
@@ -478,108 +478,104 @@ class CxMacros :
 {
     public:
         template<class T>
-        static inline void
-        vPtrDelete(T *&ptr) {
-            if (NULL != ptr) { delete ptr;   ptr = NULL; }
+        static inline 
+        void
+        vPtrDelete(T *&pPtrT) {
+            if (NULL != pPtrT) { 
+                delete pPtrT; pPtrT = NULL; 
+            }
         }
             ///< delete object by pointer
 
         template<class T>
-        static inline void
-        vArrayDelete(T *&ptr) {
-            if (NULL != ptr) { delete [] ptr; ptr = NULL; }
+        static inline 
+        void
+        vArrayDelete(T *&pPtrT) {
+            if (NULL != pPtrT) { 
+                delete [] pPtrT;  pPtrT = NULL; 
+            }
         }
             ///< delete array by pointer
 
         template <typename ArrayT, const size_t cuiArraySize>
-        static inline size_t
-        uiCountOf(ArrayT const (&)[cuiArraySize]) {
+        static inline 
+        size_t
+        uiCountOf(const ArrayT (&)[cuiArraySize]) {
             return cuiArraySize;
         }
             ///< get array size
 
         template <class T>
-        static inline const T &
-        xMax(const T& x , const T& y) {
-            return x > y ? x : y;
+        static inline 
+        const T &
+        xMax(const T &x , const T &y) {
+            return (x > y) ? x : y;
         }
             ///< get max value
 
         template <class T>
-        static inline const T &
-        xMin(const T& x , const T& y) {
-            return x < y ? x : y;
+        static inline 
+        const T &
+        xMin(const T &x , const T &y) {
+            return (x < y) ? x : y;
         }
             ///< get min value
 
         template <class T>
-        static inline void
-        xSwap(T& a, T& b ) {
-            T temp = a; a = b; b = temp;
+        static inline 
+        void
+        xSwap(T &a, T &b) {
+            T temp = a; 
+            a = b; 
+            b = temp;
         }
             ///< swap variables
 
-        //TODO: xSwapAddr
-        template <class T>
-        static inline void
-        xSwapAddr(T** a) {
-            T* addr = *a; T temp = *addr; ++ addr; **a= *addr; *addr = temp; *a = addr + 1;
-        }
-            ///< swap addresses
-
-        //TODO: xSign
-        template <class T>
-        static inline const T
-        xSign(const T& x ) {
-            return x >= 0 ? (T)1 : (T)- 1;
-        }
-            ///< sign
-
         //TODO: numeric_limits_check
         template <class T>
-        static inline bool
-        numeric_limits_check(const T& x) {
-            return ((std::numeric_limits<T>::min)() <= x) && ((std::numeric_limits<T>::max)() >= x);
+        static inline 
+        bool
+        numeric_limits_check(const T &x) {
+            bool bRes = ((std::numeric_limits<T>::min)() <= x) && 
+                        ((std::numeric_limits<T>::max)() >= x);
+
+            return bRes;
         }
             ///< check numeric limites for type
 
         template <class ToT, class FromT>
-        static inline ToT
-        xreinterpret_cast(FromT p) {
-            void *pvVoidCast = static_cast<void *>(p);
+        static inline 
+        ToT
+        xreinterpret_cast(const FromT &pPtrT) {
+            void *pvVoidCast = static_cast<void *>( pPtrT );
             /////*DEBUG*/xASSERT(NULL != pvVoidCast);
 
-            ToT ResT = static_cast<ToT>(pvVoidCast);
+            ToT ResT = static_cast<ToT>( pvVoidCast );
 
             return ResT;
         }
             ///< allows any pointer to be converted into any other pointer type
 
-        template <class T>
-        static inline std::tstring_t
-        sAsTString(const T &x) {
-            return (NULL != x) ? (std::tstring_t(x)) : (std::tstring_t());
-        }
-            ///< convert C-string to std::tstring_t
-
-        //TODO: tests
-        template <class T>
-        static inline const tchar_t *
-        pcszAsCString(const T &x) {
-            return (true == x.empty()) ? (NULL) : (x.c_str());
-        }
-            ///< convert std::tstring_t to C-string
-
-        static inline double
-        dRound(const double cdValue) {
+        static inline 
+        double
+        dRound(const double &cdValue) {
             return ::floor(cdValue + 0.5);
         }
             ///< round double value to the integer part
 
         template <class T1, class T2>
-        static inline double
-        dSafeDiv(const T1 cVal1T, const T2 cVal2T) {
-            return ( (static_cast<T2>( 0 ) == cVal2T) ? (0.0) : (static_cast<double>( cVal1T ) / static_cast<double>( cVal2T )) );
+        static inline 
+        double
+        dSafeDiv(const T1 &cVal1T, const T2 &cVal2T) {
+            double dRes = 0.0;
+            
+            if (static_cast<T2>( 0 ) == cVal2T) {
+                dRes = 0.0;
+            } else {
+                dRes = static_cast<double>( cVal1T ) / static_cast<double>( cVal2T );
+            }
+
+            return dRes;
         }
             ///< safe division
 

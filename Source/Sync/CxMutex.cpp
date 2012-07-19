@@ -48,7 +48,9 @@ CxMutex::bCreate(
     /*DEBUG*///csName - n/a
 
 #if xOS_ENV_WIN
-    HANDLE hRes = ::CreateMutex(NULL, FALSE, CxMacros::pcszAsCString(csName));
+    const tchar_t *pcszName = (true == csName.empty()) ? (NULL) : (csName.c_str());
+
+    HANDLE hRes = ::CreateMutex(NULL, FALSE, pcszName);
     /*DEBUG*/xASSERT_RET(NULL != hRes, false);
 
     _m_hHandle.bSet(hRes);
