@@ -1273,6 +1273,18 @@
     <None Include="..\..\Include\xLib\Sync\CxThreadPool.inl">
       <Filter>xLib\Sync</Filter>
     </None>
+    <None Include="..\..\Include\xLib\Common\CxArray.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
+    <None Include="..\..\Include\xLib\Common\CxFunctorT.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
+    <None Include="..\..\Include\xLib\Common\CxString.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
+    <None Include="..\..\Include\xLib\Common\CxType.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h">
