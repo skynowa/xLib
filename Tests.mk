@@ -118,7 +118,7 @@ DIRS_LIB					:=	#/usr/lib64 \
 								#/usr/local/lib64/mysql \
 								#/usr/local/lib/mysql
 
-FLAGS_COMPILE				:=	$(CPPFLAGS) -Wall -pedantic -pipe
+FLAGS_COMPILE				:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(cOS), Linux)
 LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -ldl
