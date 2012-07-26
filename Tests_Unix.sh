@@ -11,6 +11,7 @@ COL_RED="$(tput bold; tput setaf 1)"
 COL_GREEN="$(tput bold; tput setaf 2)"
 COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
 
+
 # vars
 MAKE=
 TARGET_DIR=
@@ -20,7 +21,7 @@ TARGET_DIR=
 clear
 
 echo -e
-echo -e $COL_GREEN"Prepare...($OSTYPE)" $COL_NORM
+echo -e $COL_GREEN"Prepare...($OSTYPE)"$COL_NORM
 echo -e
 
 if   [ "$OSTYPE" = "linux-gnu" ]; then
@@ -40,19 +41,12 @@ mkdir -p $TARGET_DIR
 # build
 echo -e
 echo ${COL_GREEN}"Build..."${COL_NORM}
+echo -e
 
 $MAKE --directory=$TARGET_DIR --makefile="../../../Tests.mk"
 
 
-# checks
-if [ ! -f "$TARGET_DIR/xlib_r" ]; then
-    echo -e "${COL_RED}[FAILED]${COL_NORM}\n"
-    exit 1
-fi
-
-
 # finished
-echo -e
 echo -e
 echo -e ${COL_GREEN}"Finished."${COL_NORM}
 echo -e

@@ -5,16 +5,29 @@
 #
 
 
+# constants
+COL_NORM="$(tput setaf 9)"
+COL_RED="$(tput bold; tput setaf 1)"
+COL_GREEN="$(tput bold; tput setaf 2)"
+COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
+
+
 # vars
 MAKE=
 TARGET_DIR=
 
 
 clear
-echo -e "Lib xLib ($OSTYPE) ... "
+
+echo -e
+echo -e $COL_GREEN"Lib xLib ($OSTYPE) ... "$COL_NORM
 echo -e
 
 # prepare
+echo -e
+echo -e $COL_GREEN"Prepare...($OSTYPE)"$COL_NORM
+echo -e
+
 if   [ "$OSTYPE" = "linux-gnu" ]; then
     MAKE=make
     TARGET_DIR="./Library/G++_linux/Release"
@@ -30,17 +43,14 @@ mkdir -p $TARGET_DIR
 
 
 # build
+echo -e
+echo ${COL_GREEN}"Build..."${COL_NORM}
+echo -e
+
 $MAKE all --makefile="./Lib.mk"
-
-
-# checks
-if [ ! -f "$TARGET_DIR/libxlib.a" ]; then
-    echo -e "${COL_RED}[FAILED]${COL_NORM}\n"
-    exit 1
-fi
 
 
 # finished
 echo -e
-echo -e "Finished."
+echo -e ${COL_GREEN}"Finished."${COL_NORM}
 echo -e
