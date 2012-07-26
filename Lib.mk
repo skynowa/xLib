@@ -22,7 +22,7 @@ cARCHIVER				:=	$(AR)
 
 
 ##################################################
-# Settings
+# settings
 #BUILD_TYPE				:=	$(cBUILD_TYPE_DEBUG)
 BUILD_TYPE				:=	$(cBUILD_TYPE_RELEASE)
 BIN_TYPE				:=	$(cBIN_TYPE_LIB)
@@ -92,9 +92,9 @@ ARCHIVER				:=	$(AR)
 FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-FLAGS_LINK				:=	-pthread -s -O0 -g3 -g
+FLAGS_LINK				:=	-pthread -O0 -g3
 else
-FLAGS_LINK				:=	-pthread -s -O3 -g0 -fomit-frame-pointer
+FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer
 endif
 
 FLAGS_PARANOID			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \

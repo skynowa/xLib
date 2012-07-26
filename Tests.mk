@@ -6,7 +6,7 @@
 
 
 ##################################################
-# Constants
+# constants
 cOS                         :=  $(shell uname -s)
 
 cBUILD_TYPE_DEBUG			:=	debug
@@ -22,7 +22,7 @@ cARCHIVER					:=	$(AR)
 
 
 ##################################################
-# Settings
+# settings
 #BUILD_TYPE					:=	$(cBUILD_TYPE_DEBUG)
 BUILD_TYPE					:=	$(cBUILD_TYPE_RELEASE)
 
@@ -127,9 +127,9 @@ LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc on
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-FLAGS_LINK					:=	-pthread -s -O0 -g3 -g -rdynamic #-static
+FLAGS_LINK					:=	-pthread -O0 -g3 -rdynamic #-static
 else
-FLAGS_LINK					:=	-pthread -s -O3 -g0 -fomit-frame-pointer -rdynamic #-static
+FLAGS_LINK					:=	-pthread -O3 -g0 -s -fomit-frame-pointer -rdynamic #-static
 endif
 
 FLAGS_PARANOID				:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
