@@ -40,7 +40,7 @@ mkdir -p $TARGET_DIR
 
 # build
 echo -e
-echo ${COL_GREEN}"Build..."${COL_NORM}
+echo -e ${COL_GREEN}"Build..."${COL_NORM}
 echo -e
 
 $MAKE --directory=$TARGET_DIR --makefile="../../../Tests.mk"

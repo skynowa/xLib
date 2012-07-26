@@ -40,7 +40,7 @@ fi
 
 # run
 echo -e
-echo ${COL_GREEN}"Build and run..."${COL_NORM}
+echo -e ${COL_GREEN}"Build and run..."${COL_NORM}
 echo -e
 
 ./Tests_Unix.sh
