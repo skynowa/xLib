@@ -26,7 +26,7 @@ fi
 
 
 # install
-$MAKE install -f ./Lib.mk
+$MAKE install --makefile="./Lib.mk"
 
 
 # finished

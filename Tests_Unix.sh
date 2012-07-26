@@ -41,7 +41,7 @@ mkdir -p $TARGET_DIR
 echo -e
 echo ${COL_GREEN}"Build..."${COL_NORM}
 
-$MAKE --directory=$TARGET_DIR --makefile=../../../Tests.mk
+$MAKE --directory=$TARGET_DIR --makefile="../../../Tests.mk"
 
 
 # checks
