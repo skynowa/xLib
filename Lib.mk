@@ -89,7 +89,7 @@ PROGRAM_PATH			:=	../../../$(DIR_BINARY)/$(PROGRAM_NAME)
 
 COMPILER				:=	$(CXX)
 ARCHIVER				:=	$(AR)
-FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pedantic -pipe
+FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 FLAGS_LINK				:=	-pthread -O0 -g3
@@ -105,7 +105,7 @@ OBJECTS					:=	$(OBJECTS:.cpp=.o)
 
 
 $(PROGRAM_PATH):		OBJ_DIRS $(OBJECTS)
-						$(ARCHIVER) rc $@ $(OBJECTS)
+						$(ARCHIVER) -rc $@ $(OBJECTS)
 
 OBJ_DIRS:
 						mkdir -p $(DIRS_OBJECTS)
