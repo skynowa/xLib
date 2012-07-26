@@ -54,7 +54,8 @@ class CxVolume :
                 dtFixed     = 3,
                 dtRemote    = 4,
                 dtCdRom     = 5,
-                dtRam       = 6
+                dtRam       = 6,
+                dtOther     = 7    // TODO: CxVolume::dtGetType
             #endif
         };
 

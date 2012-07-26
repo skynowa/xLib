@@ -296,10 +296,11 @@ CxTest_CxVolume::bUnit(
         #if   xOS_ENV_WIN
             const std::tstring_t csVolumePath = xT("C:");
         #elif xOS_ENV_UNIX
-            const std::tstring_t csVolumePath = xT("\\");
+            const std::tstring_t csVolumePath = xT("/");
         #endif
 
         CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
+        CxTracer() << xTRACE_VAR(dtRes);
         xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
 
