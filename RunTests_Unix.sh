@@ -15,10 +15,10 @@ echo -e
 
 
 # prepare
-if   [ "$OSTYPE" = "linux-gnu"   ]; then
-    TARGET_DIR=./Contrib/G++_linux/Release
+if   [ "$OSTYPE" = "linux-gnu" ]; then
+    TARGET_DIR="./Contrib/G++_linux/Release"
 elif [ "$OSTYPE" = "FreeBSD" ]; then
-    TARGET_DIR=./Contrib/G++_freebsd/Release
+    TARGET_DIR="./Contrib/G++_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1
