@@ -300,7 +300,7 @@ CxTest_CxVolume::bUnit(
         #endif
 
         CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
-        CxTracer() << xTRACE_VAR(dtRes);
+        // CxTracer() << xTRACE_VAR(dtRes);
         xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
 
