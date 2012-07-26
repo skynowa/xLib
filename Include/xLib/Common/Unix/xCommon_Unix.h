@@ -34,6 +34,9 @@
 #include <sys/syscall.h>
 #include <sys/param.h>
 
+// filesystem
+#include <mntent.h>
+
 // thread
 #include <pthread.h>    // lib: -pthread
 #include <sched.h>

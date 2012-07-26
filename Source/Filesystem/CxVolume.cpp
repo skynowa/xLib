@@ -162,6 +162,7 @@ CxVolume::bMount(
     /*DEBUG*/xASSERT_RET(false == csDestPath.empty(),   false);
 
 #if xOS_ENV_WIN
+    // TODO: CxVolume::bMount - is it correct?
     NETRESOURCE nrNetResource = {0};
 
     nrNetResource.dwScope       = RESOURCE_GLOBALNET;
@@ -199,6 +200,7 @@ CxVolume::bUnMount(
     /*DEBUG*/// cbIsForce - n/a
 
 #if xOS_ENV_WIN
+    // TODO: CxVolume::bUnMount - is it correct?
     DWORD dwRes = ::WNetCancelConnection2(csSourcePath.c_str(), CONNECT_UPDATE_PROFILE, cbIsForce);
     /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
 #elif xOS_ENV_UNIX
@@ -358,8 +360,27 @@ CxVolume::dtGetType(
     dtRes = static_cast<EType>( ::GetDriveType(CxPath::sSlashAppend(csVolumePath).c_str()) );
     xDEBUG_VAR_NA(dtRes);
 #elif xOS_ENV_UNIX
-    // TODO: CxVolume::dtGetType
-    dtRes = dtUnknown;
+    FILE *pfFile = ::setmntent(xT("/etc/mtab"), xT("r"));
+    xASSERT_RET(NULL != pfFile, dtUnknown);
+
+    for ( ; ; ) {
+        const mntent *pmteMountPoint = ::getmntent(pfFile);
+        xCHECK_DO(NULL == pmteMountPoint, break);
+
+         printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
+                pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
+
+        bool bRes = CxString::bCompareNoCase(csVolumePath, std::tstring_t(pmteMountPoint->mnt_dir));
+        xCHECK_DO(false == bRes, continue);
+
+        // TODO: CxVolume::dtGetType
+        dtRes = (NULL == pmteMountPoint->mnt_type) ? dtUnknown : dtOther;
+
+        break;
+    }
+
+    int iRes = ::endmntent(pfFile);
+    xASSERT_RET(1 == iRes, dtUnknown);
 #endif
 
     return dtRes;
