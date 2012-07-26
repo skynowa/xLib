@@ -5,16 +5,29 @@
 #
 
 
+# constants
+COL_NORM="$(tput setaf 9)"
+COL_RED="$(tput bold; tput setaf 1)"
+COL_GREEN="$(tput bold; tput setaf 2)"
+COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
+
+
 # vars
 MAKE=
 
 
 clear
-echo -e "Install xLib ($OSTYPE) ... "
+
+echo -e
+echo -e $COL_GREEN"Install xLib ($OSTYPE) ... "$COL_NORM
 echo -e
 
 
 # prepare
+echo -e
+echo -e $COL_GREEN"Prepare...($OSTYPE)"$COL_NORM
+echo -e
+
 if   [ "$OSTYPE" = "linux-gnu" ]; then
     MAKE=make
 elif [ "$OSTYPE" = "FreeBSD" ]; then
@@ -26,10 +39,14 @@ fi
 
 
 # install
+echo -e
+echo ${COL_GREEN}"Install..."${COL_NORM}
+echo -e
+
 $MAKE install --makefile="./Lib.mk"
 
 
 # finished
 echo -e
-echo -e "Finished."
+echo -e ${COL_GREEN}"Finished."${COL_NORM}
 echo -e
