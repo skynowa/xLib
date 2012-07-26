@@ -15,12 +15,12 @@ echo -e "Lib xLib ($OSTYPE) ... "
 echo -e
 
 # prepare
-if   [ "$OSTYPE" = "linux-gnu"   ]; then
+if   [ "$OSTYPE" = "linux-gnu" ]; then
     MAKE=make
-    TARGET_DIR=./Library/G++_linux/Release
+    TARGET_DIR="./Library/G++_linux/Release"
 elif [ "$OSTYPE" = "FreeBSD" ]; then
     MAKE=gmake
-    TARGET_DIR=./Library/G++_freebsd/Release
+    TARGET_DIR="./Library/G++_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1
