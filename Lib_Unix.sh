@@ -30,7 +30,7 @@ mkdir -p $TARGET_DIR
 
 
 # build
-$MAKE all -f ./Lib.mk
+$MAKE all --makefile="./Lib.mk"
 
 
 # checks
