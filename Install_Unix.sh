@@ -40,7 +40,7 @@ fi
 
 # install
 echo -e
-echo ${COL_GREEN}"Install..."${COL_NORM}
+echo -e ${COL_GREEN}"Install..."${COL_NORM}
 echo -e
 
 $MAKE install --makefile="./Lib.mk"
