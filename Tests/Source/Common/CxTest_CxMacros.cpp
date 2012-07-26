@@ -202,6 +202,8 @@ CxTest_CxMacros::bUnit(
 
 	    m_sRes = xLEX_TO_STR(liVal);
 	    xTEST_EQ(std::tstring_t(xT("liVal")), m_sRes);
+
+	    liVal = 0;
     }
 
     //-------------------------------------
@@ -212,6 +214,8 @@ CxTest_CxMacros::bUnit(
 
 	    xLEX_CAT(s, Val) = xT("XLIB_VAL");
         xTEST_EQ(std::tstring_t(xT("XLIB_VAL")), sVal);
+
+        sVal.clear();
     }
 
     //-------------------------------------
