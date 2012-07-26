@@ -17,6 +17,7 @@ cOS_INFO=`uname -a`
 cOS_TYPE=$OSTYPE
 cOS_BIT=`getconf LONG_BIT`
 cOS_ARCH=`uname -m`
+cGCC_MACHINE=`gcc -dumpmachine`
 cGCC_INFO=`gcc -dumpversion`
 cGLIBC_INFO=`ldd --version | head -n 1`
 cBINUTILS_INFO=`ld --version | head -n 1`
@@ -31,16 +32,17 @@ echo ""
 echo "************************************************************"
 echo "* System info"
 echo "*"
-echo "* OS:       " $cOS_INFO
-echo "* OS type:  " $cOS_TYPE
-echo "* OS bit:   " $cOS_BIT \($cOS_ARCH\)
-echo "* GCC:      " $cGCC_INFO
-echo "* GLIBC:    " $cGLIBC_INFO
-echo "* Binutils: " $cBINUTILS_INFO
-echo "* GDB:      " $cGDB
-echo "* Make:     " $cMAKE
-echo "* Patch:    " $cPATCH
-echo "* SHELL:    " $cSHELL
+echo "* OS:       $cOS_INFO"
+echo "* OS type:  $cOS_TYPE"
+echo "* OS bit:   $cOS_BIT ($cOS_ARCH)"
+echo "* Machine:  $cGCC_MACHINE"
+echo "* GCC:      $cGCC_INFO"
+echo "* GLIBC:    $cGLIBC_INFO"
+echo "* Binutils: $cBINUTILS_INFO"
+echo "* GDB:      $cGDB"
+echo "* Make:     $cMAKE"
+echo "* Patch:    $cPATCH"
+echo "* Shell:    $cSHELL"
 echo "*"
 echo "************************************************************"
 echo ""
