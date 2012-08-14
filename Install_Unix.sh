@@ -16,7 +16,7 @@ COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
 MAKE=
 
 
-clear
+#clear
 
 echo -e
 echo -e $COL_GREEN"Install xLib ($OSTYPE) ... "$COL_NORM

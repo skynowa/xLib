@@ -16,7 +16,7 @@ COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
 TARGET_DIR=
 
 
-clear
+#clear
 
 echo -e
 echo -e $COL_GREEN"Test xLib ($OSTYPE) ... "$COL_NORM
