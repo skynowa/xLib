@@ -52,15 +52,15 @@ DIR_TESTS_ROOT_SOURCE		:=	./Tests/Source
 
 ifeq ($(cOS), Linux)
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY		:=	./Contrib/G++_linux/Debug
+		DIR_BINARY			:=	./Contrib/G++_linux/Debug
 	else
-		DIR_BINARY		:=	./Contrib/G++_linux/Release
+		DIR_BINARY			:=	./Contrib/G++_linux/Release
 	endif
 else
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY		:=	./Contrib/G++_freebsd/Debug
+		DIR_BINARY			:=	./Contrib/G++_freebsd/Debug
 	else
-		DIR_BINARY		:=	./Contrib/G++_freebsd/Release
+		DIR_BINARY			:=	./Contrib/G++_freebsd/Release
 	endif
 endif
 
