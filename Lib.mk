@@ -73,14 +73,14 @@ SUBDIRS_SOURCE			:=	. \
 							Units \
 							Units/Win
 
-DIRS_LIB				:=	/usr/lib64 \
-							/usr/lib \
-							/usr/lib64/mysql \
-							/usr/lib/mysql \
-							/usr/local/lib64 \
-							/usr/local/lib \
-							/usr/local/lib64/mysql \
-							/usr/local/lib/mysql
+DIRS_LIB				:=	#/usr/lib64 \
+							#/usr/lib \
+							#/usr/lib64/mysql \
+							#/usr/lib/mysql \
+							#/usr/local/lib64 \
+							#/usr/local/lib \
+							#/usr/local/lib64/mysql \
+							#/usr/local/lib/mysql
 
 DIR_BINARY				:=	./Library/G++_linux/Release
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
@@ -89,24 +89,13 @@ PROGRAM_PATH			:=	../../../$(DIR_BINARY)/$(PROGRAM_NAME)
 
 COMPILER				:=	$(CXX)
 ARCHIVER				:=	$(AR)
-FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
+FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pedantic -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 FLAGS_LINK				:=	-pthread -O0 -g3
 else
 FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer
 endif
-
-FLAGS_PARANOID			:=	-pedantic -Wall -Wextra -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default \
-							-Wswitch-enum -Wsync-nand -Wstrict-overflow=1 -Wstrict-overflow=2 -Wstrict-overflow=3 \
-							-Wstrict-overflow=4 -Wstrict-overflow=5 -Wfloat-equal -Wtraditional -Wtraditional-conversion \
-							-Wdeclaration-after-statement -Wundef -Wshadow -Wunsafe-loop-optimizations -Wtype-limits \
-							-Wbad-function-cast -Wc++-compat -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion \
-							-Wlogical-op -Waggregate-return -Wstrict-prototypes -Wold-style-declaration \
-							-Wold-style-definition -Wmissing-prototypes  -Wmissing-declarations \
-							-Wmissing-field-initializers -Wmissing-format-attribute -Wpacked -Wpadded \
-							-Wredundant-decls -Wnested-externs -Winline -Winvalid-pch -Wvariadic-macros -Wvla \
-							-Wvolatile-register-var -Wdisabled-optimization -Wpointer-sign -Wstack-protector
 
 DIRS_RELATIVE_INCLUDE	:=	$(addprefix ../../../, $(DIR_ROOT_INCLUDE))
 DIRS_RELATIVE_SOURCE	:=	$(addprefix ../../../$(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
