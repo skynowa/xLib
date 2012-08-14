@@ -6,6 +6,12 @@
 
 
 ##################################################
+# settings
+#BUILD_TYPE				:=	$(cBUILD_TYPE_DEBUG)
+BUILD_TYPE				:=	$(cBUILD_TYPE_RELEASE)
+
+
+##################################################
 # constants
 cOS                     :=  $(shell uname -s)
 
@@ -15,17 +21,8 @@ cBUILD_TYPE_RELEASE		:=	"release"
 cBIN_TYPE_LIB			:=	"static library"
 cBIN_TYPE_TESTS			:=	"tests"
 
-cDESCRIPTION 			:=	"C++ class library"
-
 cCOMPILER				:=	$(CXX)
 cARCHIVER				:=	$(AR)
-
-
-##################################################
-# settings
-#BUILD_TYPE				:=	$(cBUILD_TYPE_DEBUG)
-BUILD_TYPE				:=	$(cBUILD_TYPE_RELEASE)
-BIN_TYPE				:=	$(cBIN_TYPE_LIB)
 
 
 ##################################################
@@ -82,7 +79,12 @@ DIRS_LIB				:=	#/usr/lib64 \
 							#/usr/local/lib64/mysql \
 							#/usr/local/lib/mysql
 
+ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
+DIR_BINARY				:=	./Library/G++_linux/Debug
+else
 DIR_BINARY				:=	./Library/G++_linux/Release
+endif
+
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
 DIR_INSTALL				:=	/usr/local/lib
 PROGRAM_PATH			:=	../../../$(DIR_BINARY)/$(PROGRAM_NAME)
