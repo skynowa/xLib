@@ -35,7 +35,7 @@
 #include <sys/param.h>
 
 // filesystem
-#include <mntent.h>
+
 
 // thread
 #include <pthread.h>    // lib: -pthread
@@ -49,6 +49,7 @@
     #include <sys/vfs.h>
     #include <sys/prctl.h>
     #include <sys/sysinfo.h>
+    #include <mntent.h>
 #elif xOS_FREEBSD
     #include <osreldate.h>
     #include <pthread_np.h>    // lib: libpthread, -lpthread (FreeBSD)
