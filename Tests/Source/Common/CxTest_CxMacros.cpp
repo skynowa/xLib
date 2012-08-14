@@ -23,7 +23,7 @@ CxTest_CxMacros::bUnit(
 )
 {
     //--------------------------------------------------
-    //several combinations of preprocessor's defines
+    // several combinations of preprocessor's defines
     xTEST_CASE(cullCaseLoops)
     {
         /*
@@ -110,7 +110,7 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xPTR_DELETE
+    // xPTR_DELETE
     xTEST_CASE(cullCaseLoops)
     {
         int *pPtr = new int();
@@ -121,7 +121,7 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xARRAY_DELETE
+    // xARRAY_DELETE
     xTEST_CASE(cullCaseLoops)
     {
         int *pPtr = new int[5];
@@ -132,7 +132,7 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xBUFF_ZERO
+    // xBUFF_ZERO
     xTEST_CASE(cullCaseLoops)
     {
         tchar_t szBuff[255 + 1];
@@ -145,7 +145,7 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xARRAY_SIZE
+    // xARRAY_SIZE
     xTEST_CASE(cullCaseLoops)
     {
         {
@@ -170,7 +170,7 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xMAX
+    // xMAX
     xTEST_CASE(cullCaseLoops)
     {
         m_uiRes = xMAX(0, 1);
@@ -178,14 +178,15 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xMIN
+    // xMIN
     xTEST_CASE(cullCaseLoops)
     {
         m_uiRes = xMIN(5, 8);
         xTEST_EQ(5U, m_uiRes);
     }
+
     //-------------------------------------
-    //xUNUSED
+    // xUNUSED
     xTEST_CASE(cullCaseLoops)
     {
         size_t uiArg = 0;
@@ -194,31 +195,51 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //xS2US
+    // xLEX_TO_STR
+    xTEST_CASE(cullCaseLoops)
+    {
+        long_t liVal;
+
+	    m_sRes = xLEX_TO_STR(liVal);
+	    xTEST_EQ(std::tstring_t(xT("liVal")), m_sRes);
+    }
+
+    //-------------------------------------
+    // xLEX_CAT
+    xTEST_CASE(cullCaseLoops)
+    {
+        std::string sVal;
+
+	    xLEX_CAT(s, Val) = xT("XLIB_VAL");
+        xTEST_EQ(std::tstring_t(xT("XLIB_VAL")), sVal);
+    }
+
+    //-------------------------------------
+    // xS2US
     xTEST_CASE(cullCaseLoops)
     {
     }
 
     //-------------------------------------
-    //xUS2S
+    // xUS2S
     xTEST_CASE(cullCaseLoops)
     {
     }
 
     //-------------------------------------
-    //xS2TS
+    // xS2TS
     xTEST_CASE(cullCaseLoops)
     {
     }
 
     //-------------------------------------
-    //xTS2S
+    // xTS2S
     xTEST_CASE(cullCaseLoops)
     {
     }
 
     //-------------------------------------
-    //dRound
+    // dRound
     xTEST_CASE(cullCaseLoops)
     {
         const double cdData[][2] = {
@@ -239,10 +260,10 @@ CxTest_CxMacros::bUnit(
     }
 
     //-------------------------------------
-    //qualifiers
+    // qualifiers
     xTEST_CASE(cullCaseLoops)
     {
-        //xPR_SIZET
+        // xPR_SIZET
         {
             const size_t cuiValue = 2356567;
 
@@ -250,7 +271,7 @@ CxTest_CxMacros::bUnit(
             xTEST_EQ(CxString::lexical_cast(cuiValue), m_sRes);
         }
 
-        //xPR_I64d
+        // xPR_I64d
         {
             const longlong_t cllValue = 36745723;
 
@@ -258,7 +279,7 @@ CxTest_CxMacros::bUnit(
             xTEST_EQ(CxString::lexical_cast(cllValue), m_sRes);
         }
 
-        //xPR_I64u
+        // xPR_I64u
         {
             const ulonglong_t cullValue = 4767834;
 
@@ -266,7 +287,7 @@ CxTest_CxMacros::bUnit(
             xTEST_EQ(CxString::lexical_cast(cullValue), m_sRes);
         }
 
-        //xPR_I64x
+        // xPR_I64x
         {
             const longlong_t cllValue = 57830;
 

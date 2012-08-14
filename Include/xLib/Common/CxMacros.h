@@ -135,11 +135,9 @@
 
 
 // string utils
-#define xSTRINGIZE2(x)              #x
+#define xLEX_TO_STR(a)              (#a)
     ///< make as string
-#define xSTRINGIZE(x)               xSTRINGIZE2(x)
-    ///< make as string
-#define xSTR_CONCAT(x, y)           x##y
+#define xLEX_CAT(a, b)              (a##b)
     ///< concatinate strings
 
 
