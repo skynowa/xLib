@@ -18,7 +18,7 @@ TARGET_DIR=
 
 
 # prepare
-clear
+#clear
 
 echo -e
 echo -e $COL_GREEN"Prepare...($OSTYPE)"$COL_NORM
