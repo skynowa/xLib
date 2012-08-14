@@ -360,27 +360,31 @@ CxVolume::dtGetType(
     dtRes = static_cast<EType>( ::GetDriveType(CxPath::sSlashAppend(csVolumePath).c_str()) );
     xDEBUG_VAR_NA(dtRes);
 #elif xOS_ENV_UNIX
-    FILE *pfFile = ::setmntent(xT("/etc/mtab"), xT("r"));
-    xASSERT_RET(NULL != pfFile, dtUnknown);
+    #if   xOS_LINUX
+        FILE *pfFile = ::setmntent(xT("/etc/mtab"), xT("r"));
+        xASSERT_RET(NULL != pfFile, dtUnknown);
 
-    for ( ; ; ) {
-        const mntent *pmteMountPoint = ::getmntent(pfFile);
-        xCHECK_DO(NULL == pmteMountPoint, break);
+        for ( ; ; ) {
+            const mntent *pmteMountPoint = ::getmntent(pfFile);
+            xCHECK_DO(NULL == pmteMountPoint, break);
 
-         printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
-                pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
+             printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
+                    pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
 
-        bool bRes = CxString::bCompareNoCase(csVolumePath, std::tstring_t(pmteMountPoint->mnt_dir));
-        xCHECK_DO(false == bRes, continue);
+            bool bRes = CxString::bCompareNoCase(csVolumePath, std::tstring_t(pmteMountPoint->mnt_dir));
+            xCHECK_DO(false == bRes, continue);
 
+            // TODO: CxVolume::dtGetType
+            dtRes = (NULL == pmteMountPoint->mnt_type) ? dtUnknown : dtOther;
+
+            break;
+        }
+
+        int iRes = ::endmntent(pfFile);
+        xASSERT_RET(1 == iRes, dtUnknown);
+    #elif xOS_FREEBSD
         // TODO: CxVolume::dtGetType
-        dtRes = (NULL == pmteMountPoint->mnt_type) ? dtUnknown : dtOther;
-
-        break;
-    }
-
-    int iRes = ::endmntent(pfFile);
-    xASSERT_RET(1 == iRes, dtUnknown);
+    #endif
 #endif
 
     return dtRes;
