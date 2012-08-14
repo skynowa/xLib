@@ -1,90 +1,56 @@
 #!/usr/bin/env bash
 #
-# \file  xLib.sh
-# \brief build, install, test, ... for Unix OS
+# \file  Lib_Unix.sh
+# \brief build static lib for Unix OS
 #
 
 
-# 
-# 1 - build static lib
-# 2 - install static lib
-# 3 - build share lib
-# 4 - install share lib
-# 5 - build tests
-# 6 - run tests
-# 7 - quit
-#
+# constants
+COL_NORM="$(tput setaf 9)"
+COL_RED="$(tput bold; tput setaf 1)"
+COL_GREEN="$(tput bold; tput setaf 2)"
+COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
 
 
-#
 # vars
-#
-
-options=( \
-    "build static lib" \
-    "install static lib" \
-    "build share lib" \
-    "install share lib" \
-    "build tests" \
-    "run tests" \
-    "quit" \
-)
+MAKE=
+TARGET_DIR=
 
 
-#
-# functions
-#
+clear
 
-function f_build_static_lib {
-    echo -e "build static lib"
-} 
+echo -e
+echo -e $COL_GREEN"Lib xLib ($OSTYPE) ... "$COL_NORM
+echo -e
 
-function f_install_static_lib {
-    echo -e "install static lib"
-} 
+# prepare
+echo -e
+echo -e $COL_GREEN"Prepare...($OSTYPE)"$COL_NORM
+echo -e
 
-function f_build_share_lib {
-    echo -e "build share lib"
-} 
+if   [ "$OSTYPE" = "linux-gnu" ]; then
+    MAKE=make
+    TARGET_DIR="./Library/G++_linux/Release"
+elif [ "$OSTYPE" = "FreeBSD" ]; then
+    MAKE=gmake
+    TARGET_DIR="./Library/G++_freebsd/Release"
+else
+    echo -e "Unknown OS"
+    exit 1
+fi
 
-function f_install_sharelib {
-    echo -e "install share lib"
-} 
-
-function f_build_tests {
-    echo -e "build tests"
-} 
-
-function f_run_tests {
-    echo -e "run tests"
-}
-
-function f_quit {
-    echo -e "quit"
-    exit
-}
-
-function f_invalid_option {
-    echo -e "invalid option"
-}
+mkdir -p $TARGET_DIR
 
 
-#
-# main
-#
+# build
+echo -e
+echo -e ${COL_GREEN}"Build..."${COL_NORM}
+echo -e
 
-PS3='Please enter your choice: '
+$MAKE all --makefile="./Lib.mk"
 
-select opt in "${options[@]}"
-do
-    case $opt in
-        "build static lib")     f_build_static_lib;;
-        "install static lib")   f_install_static_lib;;
-        "build share lib")      f_build_share_lib;;
-        "install share lib")    f_install_sharelib;;
-        "build tests")          f_build_tests;;
-        "run tests")            f_run_tests;;            
-        "quit")                 f_quit;;
-        *)                      f_invalid_option;;
-    esac
-done
+
+# finished
+echo -e
+echo -e ${COL_GREEN}"Finished."${COL_NORM}
+echo -e
