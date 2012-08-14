@@ -76,15 +76,14 @@ function f_invalid_option {
 PS3='Please enter your choice: '
 
 select opt in "${options[@]}"
-do
-    case $opt in
-        "build static lib")     f_build_static_lib;;
-        "install static lib")   f_install_static_lib;;
-        "build share lib")      f_build_share_lib;;
-        "install share lib")    f_install_sharelib;;
-        "build tests")          f_build_tests;;
-        "run tests")            f_run_tests;;            
-        "quit")                 f_quit;;
-        *)                      f_invalid_option;;
-    esac
-done
+case $opt in
+    "build static lib")     f_build_static_lib;;
+    "install static lib")   f_install_static_lib;;
+    "build share lib")      f_build_share_lib;;
+    "install share lib")    f_install_sharelib;;
+    "build tests")          f_build_tests;;
+    "run tests")            f_run_tests;;            
+    "quit")                 f_quit;;
+    *)                      f_invalid_option;;
+esac
+
