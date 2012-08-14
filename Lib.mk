@@ -30,16 +30,16 @@ BIN_TYPE				:=	$(cBIN_TYPE_LIB)
 
 ##################################################
 # xLib
-ifeq ($(BIN_TYPE), $(cBIN_TYPE_LIB))
+ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 PROGRAM_PREFIX			:=	lib
 PROGRAM_SHORT_NAME		:=	xlib
-PROGRAM_POSTFIX			:=	
+PROGRAM_POSTFIX			:=	_d
 PROGRAM_EXT				:=	.a
 else
-PROGRAM_PREFIX			:=
+PROGRAM_PREFIX			:=	lib
 PROGRAM_SHORT_NAME		:=	xlib
-PROGRAM_POSTFIX			:=
-PROGRAM_EXT				:=	
+PROGRAM_POSTFIX			:=	_r
+PROGRAM_EXT				:=	.a
 endif
 
 PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
