@@ -9,13 +9,13 @@
 # constants
 cOS                     :=  $(shell uname -s)
 
-cBUILD_TYPE_DEBUG		:=	debug
-cBUILD_TYPE_RELEASE		:=	release
+cBUILD_TYPE_DEBUG		:=	"debug"
+cBUILD_TYPE_RELEASE		:=	"release"
 
-cBIN_TYPE_LIB			:=	static library
-cBIN_TYPE_TESTS			:=	tests
+cBIN_TYPE_LIB			:=	"static library"
+cBIN_TYPE_TESTS			:=	"tests"
 
-cDESCRIPTION 			:=	C++ class library
+cDESCRIPTION 			:=	"C++ class library"
 
 cCOMPILER				:=	$(CXX)
 cARCHIVER				:=	$(AR)
@@ -87,8 +87,6 @@ DIR_INSTALL_INCLUDE		:=	/usr/local/include
 DIR_INSTALL				:=	/usr/local/lib
 PROGRAM_PATH			:=	../../../$(DIR_BINARY)/$(PROGRAM_NAME)
 
-COMPILER				:=	$(CXX)
-ARCHIVER				:=	$(AR)
 FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
@@ -105,7 +103,7 @@ OBJECTS					:=	$(OBJECTS:.cpp=.o)
 
 
 $(PROGRAM_PATH):		OBJ_DIRS $(OBJECTS)
-						$(ARCHIVER) -rc $@ $(OBJECTS)
+						$(cARCHIVER) -rc $@ $(OBJECTS)
 
 OBJ_DIRS:
 						mkdir -p $(DIRS_OBJECTS)
@@ -113,7 +111,7 @@ OBJ_DIRS:
 VPATH					:= ../../../
 
 %.o:					%.cpp
-						$(COMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(DIR_OTHER_INCLUDE)) -o $@ $<
+						$(cCOMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(DIR_OTHER_INCLUDE)) -o $@ $<
 
 
 # targets

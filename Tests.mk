@@ -9,13 +9,13 @@
 # constants
 cOS                         :=  $(shell uname -s)
 
-cBUILD_TYPE_DEBUG			:=	debug
-cBUILD_TYPE_RELEASE			:=	release
+cBUILD_TYPE_DEBUG			:=	"debug"
+cBUILD_TYPE_RELEASE			:=	"release"
 
-cBIN_TYPE_LIB				:=	static library
-cBIN_TYPE_TESTS				:=	tests
+cBIN_TYPE_LIB				:=	"static library"
+cBIN_TYPE_TESTS				:=	"tests"
 
-cDESCRIPTION 				:=	tests for xLib
+cDESCRIPTION 				:=	"tests for xLib"
 
 cCOMPILER					:=	$(CXX)
 cARCHIVER					:=	$(AR)
