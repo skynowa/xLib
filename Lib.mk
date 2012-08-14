@@ -79,10 +79,18 @@ DIRS_LIB				:=	#/usr/lib64 \
 							#/usr/local/lib64/mysql \
 							#/usr/local/lib/mysql
 
-ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-DIR_BINARY				:=	./Library/G++_linux/Debug
+ifeq ($(cOS), Linux)
+	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
+		DIR_BINARY		:=	./Library/G++_linux/Debug
+	else
+		DIR_BINARY		:=	./Library/G++_linux/Release
+	endif
 else
-DIR_BINARY				:=	./Library/G++_linux/Release
+	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
+		DIR_BINARY		:=	./Library/G++_freebsd/Debug
+	else
+		DIR_BINARY		:=	./Library/G++_freebsd/Release
+	endif
 endif
 
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
