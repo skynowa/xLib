@@ -17,7 +17,7 @@ MAKE=
 TARGET_DIR=
 
 
-#clear
+clear
 
 echo -e
 echo -e $COL_GREEN"Lib xLib ($OSTYPE) ... "$COL_NORM

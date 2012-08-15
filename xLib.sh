@@ -28,19 +28,15 @@ MAKE=
 TARGET_DIR=
 
 
-# params
-opt=$1
-
-
 #
 # functions
 #
 
 
-f_usage() {
+usage() {
     echo -e 
     echo -e "---------------------------------"
-    echo -e "   U S A G E"
+    echo -e "   `basename $0` usage"
     echo -e "---------------------------------"
     echo -e "1. Build static lib"
     echo -e "2. Install static lib"
@@ -53,49 +49,45 @@ f_usage() {
     echo -e 
 }
 
-f_build_static_lib() {
-    echo -e 
-    echo -e "build static lib"
-    echo -e 
-    
+xlib_build_static_lib() {
     ./Lib_Unix.sh
 } 
 
-f_install_static_lib() {
+xlib_install_static_lib() {
     ./Install_Unix.sh
 } 
 
-f_build_share_lib() {
+xlib_build_share_lib() {
     echo -e 
-    echo -e "f_build_share_lib"
+    echo -e "TODO: build_share_lib"
     echo -e
 } 
 
-f_install_sharelib() {
+xlib_install_sharelib() {
     echo -e 
-    echo -e "f_install_sharelib"
+    echo -e "TODO: install_sharelib"
     echo -e      
 } 
 
-f_build_tests() {
+xlib_build_tests() {
     ./Tests_Unix.sh
 } 
 
-f_run_tests() {
+xlib_run_tests() {
     ./RunTests_Unix.sh
 }
 
-f_quit() {
+quit() {
     echo -e 
-    echo -e "quit"
+    echo -e "Quit"
     echo -e 
 
     exit
 }
 
-f_invalid_option() {
+invalid_option() {
     echo -e 
-    echo -e "invalid option"
+    echo -e "Invalid option"
     echo -e 
 }
 
@@ -104,24 +96,24 @@ f_invalid_option() {
 # main
 #
 
-
-# show menu
-if [ ! $opt ]; then
-    f_usage
-    read -r -p "Enter your choice [1-7] : " opt
+if [ 0 = $# ]; then
+    usage
+    exit 0
 fi
-    
+
+opt=$1
+
 
 # take action
 case $opt in
-    1)  f_build_static_lib;;
-    2)  f_install_static_lib;;
-    3)  f_build_share_lib;;
-    4)  f_install_sharelib;;
-    5)  f_build_tests;;
-    6)  f_run_tests;;            
-    7)  f_quit;;
-    *)  f_invalid_option;;
+    1)  xlib_build_static_lib;;
+    2)  xlib_install_static_lib;;
+    3)  xlib_build_share_lib;;
+    4)  xlib_install_sharelib;;
+    5)  xlib_build_tests;;
+    6)  xlib_run_tests;;            
+    7)  quit;;
+    *)  invalid_option;;
 esac
 
 
