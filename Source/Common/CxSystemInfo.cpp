@@ -359,7 +359,7 @@ CxSystemInfo::sGetUseHomeDir() {
         passwd *ppwPass = ::getpwuid( ::getuid() );
         xASSERT_RET(NULL != ppwPass, std::tstring_t());
 
-        sRes.assign(pw->pw_dir);
+        sRes.assign(ppwPass->pw_dir);
     }
 #endif
 
