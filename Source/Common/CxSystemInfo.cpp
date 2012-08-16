@@ -308,10 +308,13 @@ CxSystemInfo::sGetUserName() {
 
     sRes.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
-    //http://www.metalshell.com/source_code/107/List_Users.html
-    //http://www.metalshell.com/source_code/83/Get_GID_Name.html
+    // FAQ: http://www.metalshell.com/source_code/107/List_Users.html
+    // FAQ: http://www.metalshell.com/source_code/83/Get_GID_Name.html
 
-    passwd *ppwPassword = ::getpwuid(getuid());
+    const uid_t cuiUserId = ::getuid();
+    xDEBUG_VAR_NA(cuiUserId);
+
+    passwd *ppwPassword = ::getpwuid(cuiUserId);
     /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::tstring_t());
 
     sRes.assign(ppwPassword->pw_name);
