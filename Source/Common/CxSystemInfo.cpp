@@ -11,6 +11,10 @@
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
+#if xOS_ENV_WIN
+    #include <shlobj.h>
+#endif
+
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -318,6 +322,45 @@ CxSystemInfo::sGetUserName() {
     /*DEBUG*/xASSERT_RET(NULL != ppwPassword, std::tstring_t());
 
     sRes.assign(ppwPassword->pw_name);
+#endif
+
+    return sRes;
+}
+//---------------------------------------------------------------------------
+/*static*/
+std::tstring_t 
+CxSystemInfo::sGetUseHomeDir() {
+    std::tstring_t sRes;
+
+#if xOS_ENV_WIN
+    tchar_t szBuff[MAX_PATH + 1] = {0};
+
+    HRESULT hrRes = SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0UL, &szBuff[0]);
+    xASSERT_RET(S_OK  == hrRes, std::tstring_t());
+
+    sRes.assign(szBuff);
+#elif xOS_ENV_UNIX
+   /*
+    * MAN: 
+    *
+    * Login programs use the value of this field to initialize 
+    * the HOME environment variable for the login shell. 
+    * An application that wants to determine its user's home directory 
+    * should inspect the value of HOME (rather than the value getpwuid(getuid())->pw_dir) 
+    * since this allows the user to modify their notion of "the home directory" 
+    * during a login session. To determine the (initial) home directory of another user, 
+    * it is necessary to use getpwnam("username")->pw_dir or similar.
+    */
+
+    bool bRes = CxEnvironment::bIsExists(xT("HOME"));
+    if (true == bRes) {
+        sRes = CxEnvironment::sGetVar(xT("HOME"));
+    } else {
+        passwd *ppwPass = ::getpwuid( ::getuid() );
+        xASSERT_RET(NULL != ppwPass, std::tstring_t());
+
+        sRes.assign(pw->pw_dir);
+    }
 #endif
 
     return sRes;

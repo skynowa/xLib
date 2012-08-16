@@ -78,6 +78,8 @@ class CxSystemInfo :
             ///< is current user an admin
         static std::tstring_t sGetUserName      ();
             ///< get the name of the user associated with the current thread
+        static std::tstring_t sGetUseHomeDir    ();
+            ///< 
 
         // CPU
         static ulong_t        ulGetNumOfCpus    ();
