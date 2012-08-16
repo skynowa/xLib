@@ -6,6 +6,7 @@
 
 #include <Test/Common/CxTest_CxSystemInfo.h>
 
+#include <xLib/Filesystem/CxDir.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
 
@@ -133,6 +134,18 @@ CxTest_CxSystemInfo::bUnit(
         xTEST_EQ(false, m_sRes.empty());
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::sGetUserName(): %s"), m_sRes.c_str());
+        #endif
+    }
+
+    //-------------------------------------
+    // sGetUseHomeDir
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_sRes = CxSystemInfo::sGetUseHomeDir();
+        xTEST_EQ(false, m_sRes.empty());
+        xTEST_EQ(true,  CxDir::bIsExists(m_sRes));
+        #if xTEST_IGNORE || 1
+            xTRACEV(xT("\tCxSystemInfo::sGetUseHomeDir(): %s"), m_sRes.c_str());
         #endif
     }
 
