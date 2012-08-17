@@ -70,9 +70,24 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>TODO.txt</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/TODO.txt</locationURI>
+			<name>Project</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>Tests</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>Project/Source</name>
+			<type>2</type>
+			<location>D:/xLib/Project/Source</location>
+		</link>
+		<link>
+			<name>Tests/Source</name>
+			<type>2</type>
+			<location>D:/xLib/Tests/Source</location>
 		</link>
 	</linkedResources>
 </projectDescription>

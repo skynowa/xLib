@@ -2,105 +2,104 @@
 
 
 ##### dirs #####
-html
-Contrib/html
+Docs/html
 
 
 ##### C++Builder2010 #####
-Contrib/C++Builder2010/Debug/
-Contrib/C++Builder2010/Release/
-Contrib/C++Builder2010/*.~dsk
-Contrib/C++Builder2010/*.local
-Contrib/C++Builder2010/*.dsk
-Contrib/C++Builder2010/*.rc
+Build/Tests/C++Builder2010/Debug/
+Build/Tests/C++Builder2010/Release/
+Build/Tests/C++Builder2010/*.~dsk
+Build/Tests/C++Builder2010/*.local
+Build/Tests/C++Builder2010/*.dsk
+Build/Tests/C++Builder2010/*.rc
 
-Library/C++Builder2010/Debug/
-Library/C++Builder2010/Release/
+Build/Libs/C++Builder2010/Debug/
+Build/Libs/C++Builder2010/Release/
 
 
 ##### C++BuilderXE #####
-Contrib/C++BuilderXE/Debug/
-Contrib/C++BuilderXE/Release/
-Contrib/C++BuilderXE/*.~dsk
-Contrib/C++BuilderXE/*.local
-Contrib/C++BuilderXE/*.dsk
-Contrib/C++BuilderXE/*.rc
+Build/Tests/C++BuilderXE/Debug/
+Build/Tests/C++BuilderXE/Release/
+Build/Tests/C++BuilderXE/*.~dsk
+Build/Tests/C++BuilderXE/*.local
+Build/Tests/C++BuilderXE/*.dsk
+Build/Tests/C++BuilderXE/*.rc
 
-Library/C++BuilderXE/Debug/
-Library/C++BuilderXE/Release/
+Build/Libs/C++BuilderXE/Debug/
+Build/Libs/C++BuilderXE/Release/
 
 
 ##### C++BuilderXE2 #####
-Contrib/C++BuilderXE2/Win32/
-Contrib/C++BuilderXE2/*.~dsk
-Contrib/C++BuilderXE2/*.local
-Contrib/C++BuilderXE2/*.dsk
-Contrib/C++BuilderXE2/*.rc
+Build/Tests/C++BuilderXE2/Win32/
+Build/Tests/C++BuilderXE2/*.~dsk
+Build/Tests/C++BuilderXE2/*.local
+Build/Tests/C++BuilderXE2/*.dsk
+Build/Tests/C++BuilderXE2/*.rc
 
-Library/C++BuilderXE2/Win32/
+Build/Libs/C++BuilderXE2/Win32/
 
 
 ##### G++_win #####
-Contrib/G++_win/Debug/
-Contrib/G++_win/Release/
-Contrib/G++_win/.settings/
+Build/Tests/G++_win/Debug/
+Build/Tests/G++_win/Release/
+Build/Tests/G++_win/.settings/
 
-Library/G++_win/Debug/
-Library/G++_win/Release/
-Library/G++_win/.settings/
+Build/Libs/G++_win/Debug/
+Build/Libs/G++_win/Release/
+Build/Libs/G++_win/.settings/
 
 ##### G++_linux #####
-Contrib/G++_linux/Debug/
-Contrib/G++_linux/Release/
-Contrib/G++_linux/.settings/
+Build/Tests/G++_linux/Debug/
+Build/Tests/G++_linux/Release/
+Build/Tests/G++_linux/.settings/
 
-Library/G++_linux/Debug/
-Library/G++_linux/Release/
-Library/G++_linux/.settings/
+Build/Libs/G++_linux/Debug/
+Build/Libs/G++_linux/Release/
+Build/Libs/G++_linux/.settings/
 
 
 ##### G++_freebsd #####
-Contrib/G++_freebsd/Debug/
-Contrib/G++_freebsd/Release/
-Contrib/G++_freebsd/.settings/
+Build/Tests/G++_freebsd/Debug/
+Build/Tests/G++_freebsd/Release/
+Build/Tests/G++_freebsd/.settings/
 
-Library/G++_freebsd/Debug/
-Library/G++_freebsd/Release/
-Library/G++_freebsd/.settings/
+Build/Libs/G++_freebsd/Debug/
+Build/Libs/G++_freebsd/Release/
+Build/Libs/G++_freebsd/.settings/
 
 
 ##### VC++2008 #####
-Contrib/VC++2008/Debug/
-Contrib/VC++2008/Release/
-Contrib/VC++2008/*.ncb
-Contrib/VC++2008/*.suo
-Contrib/VC++2008/*.user
+Build/Tests/VC++2008/Debug/
+Build/Tests/VC++2008/Release/
+Build/Tests/VC++2008/*.ncb
+Build/Tests/VC++2008/*.suo
+Build/Tests/VC++2008/*.user
 
-Library/VC++2008/Debug/
-Library/VC++2008/Release/
-Library/VC++2008/*.ncb
-Library/VC++2008/*.suo
-Library/VC++2008/*.user
+Build/Libs/VC++2008/Debug/
+Build/Libs/VC++2008/Release/
+Build/Libs/VC++2008/*.ncb
+Build/Libs/VC++2008/*.suo
+Build/Libs/VC++2008/*.user
 
 
 ##### VC++2010 #####
-Contrib/VC++2010/Debug/
-Contrib/VC++2010/Release/
-Contrib/VC++2010/*.ncb
-Contrib/VC++2010/*.suo
-Contrib/VC++2010/*.user
-Contrib/VC++2010/*.sdf
-Contrib/VC++2010/*.opensdf
-Contrib/VC++2010/ipch
+Build/Tests/VC++2010/Debug/
+Build/Tests/VC++2010/Release/
+Build/Tests/VC++2010/*.ncb
+Build/Tests/VC++2010/*.suo
+Build/Tests/VC++2010/*.user
+Build/Tests/VC++2010/*.sdf
+Build/Tests/VC++2010/*.opensdf
+Build/Tests/VC++2010/ipch
 
-Library/VC++2010/Debug/
-Library/VC++2010/Release/
-Library/VC++2010/*.ncb
-Library/VC++2010/*.suo
-Library/VC++2010/*.user
-Library/VC++2010/*.sdf
-Library/VC++2010/*.opensdf
-Library/VC++2010/ipch
+Build/Libs/VC++2010/Debug/
+Build/Libs/VC++2010/Release/
+Build/Libs/VC++2010/*.ncb
+Build/Libs/VC++2010/*.suo
+Build/Libs/VC++2010/*.user
+Build/Libs/VC++2010/*.sdf
+Build/Libs/VC++2010/*.opensdf
+Build/Libs/VC++2010/ipch
 
 
 ##### files #####
