@@ -26,10 +26,10 @@ echo -e
 
 if   [ "$OSTYPE" = "linux-gnu" ]; then
     MAKE=make
-    TARGET_DIR="./Contrib/G++_linux/Release"
+    TARGET_DIR="./Build/Tests/G++_linux/Release"
 elif [ "$OSTYPE" = "FreeBSD" ]; then
     MAKE=gmake
-    TARGET_DIR="./Contrib/G++_freebsd/Release"
+    TARGET_DIR="./Build/Tests/G++_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1
@@ -43,7 +43,7 @@ echo -e
 echo -e ${COL_GREEN}"Build..."${COL_NORM}
 echo -e
 
-$MAKE --directory=$TARGET_DIR --makefile="../../../Tests.mk"
+$MAKE --directory=$TARGET_DIR --makefile="../../../../Tests.mk"
 
 
 # finished

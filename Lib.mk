@@ -41,8 +41,8 @@ endif
 
 PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 
-DIR_ROOT_INCLUDE		:=	./Include
-DIR_ROOT_SOURCE			:=	./Source
+DIR_ROOT_INCLUDE		:=	./Project/Include
+DIR_ROOT_SOURCE			:=	./Project/Source
 
 DIR_OTHER_INCLUDE		:=	#/usr/include \
 							#/usr/local/include
@@ -81,21 +81,21 @@ DIRS_LIB				:=	#/usr/lib64 \
 
 ifeq ($(cOS), Linux)
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY		:=	./Library/G++_linux/Debug
+		DIR_BINARY		:=	./Build/Libs/G++_linux/Debug
 	else
-		DIR_BINARY		:=	./Library/G++_linux/Release
+		DIR_BINARY		:=	./Build/Libs/G++_linux/Release
 	endif
 else
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY		:=	./Library/G++_freebsd/Debug
+		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Debug
 	else
-		DIR_BINARY		:=	./Library/G++_freebsd/Release
+		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Release
 	endif
 endif
 
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
 DIR_INSTALL				:=	/usr/local/lib
-PROGRAM_PATH			:=	../../../$(DIR_BINARY)/$(PROGRAM_NAME)
+PROGRAM_PATH			:=	../../../../$(DIR_BINARY)/$(PROGRAM_NAME)
 
 FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
@@ -105,10 +105,10 @@ else
 FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer
 endif
 
-DIRS_RELATIVE_INCLUDE	:=	$(addprefix ../../../, $(DIR_ROOT_INCLUDE))
-DIRS_RELATIVE_SOURCE	:=	$(addprefix ../../../$(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
+DIRS_RELATIVE_INCLUDE	:=	$(addprefix ../../../../, $(DIR_ROOT_INCLUDE))
+DIRS_RELATIVE_SOURCE	:=	$(addprefix ../../../../$(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
 DIRS_OBJECTS			:=	$(addprefix $(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
-OBJECTS					:=	$(patsubst ../../../%, %, $(wildcard $(addsuffix /*.cpp, $(DIRS_RELATIVE_SOURCE))))
+OBJECTS					:=	$(patsubst ../../../../%, %, $(wildcard $(addsuffix /*.cpp, $(DIRS_RELATIVE_SOURCE))))
 OBJECTS					:=	$(OBJECTS:.cpp=.o)
 
 
@@ -118,7 +118,7 @@ $(PROGRAM_PATH):		OBJ_DIRS $(OBJECTS)
 OBJ_DIRS:
 						mkdir -p $(DIRS_OBJECTS)
 
-VPATH					:= ../../../
+VPATH					:= ../../../../
 
 %.o:					%.cpp
 						$(cCOMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(DIR_OTHER_INCLUDE)) -o $@ $<
@@ -127,7 +127,7 @@ VPATH					:= ../../../
 # targets
 all:
 						mkdir -p $(DIR_BINARY)
-						$(MAKE) --directory=./$(DIR_BINARY) --makefile=../../../Lib.mk
+						$(MAKE) --directory=./$(DIR_BINARY) --makefile=../../../../Lib.mk
 
 install:
 						mkdir -p $(DIR_INSTALL)
