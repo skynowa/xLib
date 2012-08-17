@@ -88,24 +88,24 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Project</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>Tests</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>xLib</name>
+			<name>Project/Source</name>
 			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
+			<location>/home/skynowa/Projects/xLib/Project/Source</location>
 		</link>
 		<link>
 			<name>Tests/Source</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Tests/Source</locationURI>
-		</link>
-		<link>
-			<name>xLib/Source</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Source</locationURI>
+			<location>/home/skynowa/Projects/xLib/Tests/Source</location>
 		</link>
 	</linkedResources>
 </projectDescription>

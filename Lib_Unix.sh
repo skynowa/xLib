@@ -30,10 +30,10 @@ echo -e
 
 if   [ "$OSTYPE" = "linux-gnu" ]; then
     MAKE=make
-    TARGET_DIR="./Library/G++_linux/Release"
+    TARGET_DIR="./Build/Libs/G++_linux/Release"
 elif [ "$OSTYPE" = "FreeBSD" ]; then
     MAKE=gmake
-    TARGET_DIR="./Library/G++_freebsd/Release"
+    TARGET_DIR="./Build/Libs/G++_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1
@@ -47,6 +47,7 @@ echo -e
 echo -e ${COL_GREEN}"Build..."${COL_NORM}
 echo -e
 
+# TODO: --directory=$TARGET_DIR
 $MAKE all --makefile="./Lib.mk"
 
 

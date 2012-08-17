@@ -31,8 +31,8 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.869984985" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.248847376" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def"/>
 								<option id="gnu.cpp.compiler.option.include.paths.2027708481" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${xLib}/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${xLib}/Tests/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${xLib}/Project/Include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1578464683" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -88,11 +88,8 @@
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.614622107" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.1845903657" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.572619345" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Source}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Tests/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${xLib}/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${xLib}/Tests/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${xLib}/Project/Include&quot;"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.warnings.pedantic.867161581" name="Pedantic (-pedantic)" superClass="gnu.cpp.compiler.option.warnings.pedantic" value="false" valueType="boolean"/>
 								<option id="gnu.cpp.compiler.option.warnings.syntax.1501292159" name="Check syntax only (-fsyntax-only)" superClass="gnu.cpp.compiler.option.warnings.syntax" value="false" valueType="boolean"/>

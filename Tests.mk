@@ -42,25 +42,25 @@ endif
 PROGRAM_NAME				:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 PROGRAM_PATH				:=	$(PROGRAM_NAME)
 
-PATH_PREFIX					:=	../../../
+PATH_PREFIX					:=	../../../../
 VPATH 						:=	$(PATH_PREFIX)
 
-DIR_ROOT_INCLUDE			:=	./Include
-DIR_ROOT_SOURCE				:=	./Source
+DIR_ROOT_INCLUDE			:=	./Project/Include
+DIR_ROOT_SOURCE				:=	./Project/Source
 DIR_TESTS_ROOT_INCLUDE		:=	./Tests/Include
 DIR_TESTS_ROOT_SOURCE		:=	./Tests/Source
 
 ifeq ($(cOS), Linux)
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY			:=	./Contrib/G++_linux/Debug
+		DIR_BINARY			:=	./Build/Tests/G++_linux/Debug
 	else
-		DIR_BINARY			:=	./Contrib/G++_linux/Release
+		DIR_BINARY			:=	./Build/Tests/G++_linux/Release
 	endif
 else
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY			:=	./Contrib/G++_freebsd/Debug
+		DIR_BINARY			:=	./Build/Tests/G++_freebsd/Debug
 	else
-		DIR_BINARY			:=	./Contrib/G++_freebsd/Release
+		DIR_BINARY			:=	./Build/Tests/G++_freebsd/Release
 	endif
 endif
 
