@@ -104,11 +104,6 @@
 //Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
 
-#if xOS_ENV_WIN
-    #include <Test/Gui/Win/Gdi+/CxTest_CxGdiplus.h>
-    #include <Test/Gui/Win/Gdi+/CxTest_CxImage.h>
-#endif
-
 //Units
 //TODO: test Units
 #include <Test/Units/CxTest_Draft.h>
@@ -277,11 +272,6 @@ xTMAIN(
 
         // Gui
         (void)tmManager.bAdd(new CxTest_CxMsgBoxT);
-
-    #if xOS_ENV_WIN
-        (void)tmManager.bAdd(new CxTest_CxGdiplus);
-        (void)tmManager.bAdd(new CxTest_CxImage);
-    #endif
 
         // Units
         (void)tmManager.bAdd(new CxTest_Draft);

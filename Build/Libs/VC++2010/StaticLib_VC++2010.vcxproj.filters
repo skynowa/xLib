@@ -65,14 +65,8 @@
     <Filter Include="xLib\Gui\Win">
       <UniqueIdentifier>{ef74d4d4-0c6a-447d-961e-de8401e9bc12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Gui\Unix">
-      <UniqueIdentifier>{73ce53a2-408d-45af-9f94-5100f21c1bcf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Gui\Win\Dialogs">
       <UniqueIdentifier>{b5062365-e56d-45f7-8584-ef2e170439a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Gui\Win\GDI+">
-      <UniqueIdentifier>{64ba9393-419f-4907-80da-da5009b984fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="xLib\Sync\Win">
       <UniqueIdentifier>{cda77029-2c2d-4aea-99b6-9c725a31a74c}</UniqueIdentifier>
@@ -330,12 +324,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\GDI+\CxGdiplus.h">
-      <Filter>xLib\Gui\Win\GDI+</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\GDI+\CxImage.h">
-      <Filter>xLib\Gui\Win\GDI+</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxFileLog.h">
       <Filter>xLib\Log</Filter>
@@ -607,12 +595,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Gui\Win\GDI+\CxGdiplus.cpp">
-      <Filter>xLib\Gui\Win\GDI+</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Gui\Win\GDI+\CxImage.cpp">
-      <Filter>xLib\Gui\Win\GDI+</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Log\CxFileLog.cpp">
       <Filter>xLib\Log</Filter>

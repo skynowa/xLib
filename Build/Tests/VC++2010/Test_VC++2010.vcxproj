@@ -282,8 +282,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxInputBox.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\GDI+\CxImage.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxConsoleLog.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxFileLog.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxSystemLog.h" />
@@ -371,8 +369,6 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Gui\Dialogs\CxTest_CxMsgBoxT.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxSystemLog.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxTracer.h" />
@@ -476,8 +472,6 @@
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxVolume.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Gui\Win\GDI+\CxGdiplus.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Gui\Win\GDI+\CxImage.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxConsoleLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxFileLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxSystemLog.cpp" />
@@ -562,8 +556,6 @@
     <ClCompile Include="..\..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Gui\Dialogs\CxTest_CxMsgBoxT.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxFileLog.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxSystemLog.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxTracer.cpp" />
