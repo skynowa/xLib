@@ -367,33 +367,6 @@
     ///< infinite timeout
 
 
-// TxNativeHandle
-#if xOS_ENV_WIN
-    typedef HANDLE                  TxNativeHandle;
-#elif xOS_ENV_UNIX
-    typedef int                     TxNativeHandle;
-#endif
-    ///< native handle
-
-
-// xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
-#if xOS_ENV_WIN
-    #define xNATIVE_HANDLE_NULL     ( static_cast<TxNativeHandle>( NULL ) )                  ///< native handle value "null"
-    #define xNATIVE_HANDLE_INVALID  ( static_cast<TxNativeHandle>( INVALID_HANDLE_VALUE ) )  ///< native handle value "invalid"
-#elif xOS_ENV_UNIX
-    #define xNATIVE_HANDLE_NULL     ( static_cast<TxNativeHandle>( 0 ) )                     ///< native handle value "null"
-    #define xNATIVE_HANDLE_INVALID  ( static_cast<TxNativeHandle>( - 1 ) )                   ///< native handle value "invalid"
-#endif
-
-
-// xSOCKET
-#if xOS_ENV_WIN
-    typedef SOCKET                  TxSocket;
-#elif xOS_ENV_UNIX
-    typedef int                     TxSocket;
-#endif
-    ///< socket native handle
-
 // xPAGE_SIZE
 #if   xOS_ENV_WIN
     xNA

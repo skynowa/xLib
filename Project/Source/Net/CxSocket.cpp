@@ -32,7 +32,7 @@ CxSocket::~CxSocket() {
 //---------------------------------------------------------------------------
 bool
 CxSocket::bAssign(
-    const TxSocket &csktSocket
+    const socket_t &csktSocket
 )
 {
     /*DEBUG*/// _m_sktSocket - n/a
@@ -53,7 +53,7 @@ CxSocket::bAssign(
 //---------------------------------------------------------------------------
 CxSocket &
 CxSocket::operator = (
-    const TxSocket &csktSocket
+    const socket_t &csktSocket
 )
 {
     /*DEBUG*/// _m_sktSocket - n/a
@@ -64,7 +64,7 @@ CxSocket::operator = (
     return *this;
 }
 //---------------------------------------------------------------------------
-CxSocket::operator TxSocket () {
+CxSocket::operator socket_t () {
     /*DEBUG*/// _m_sktSocket - n/a
     /*DEBUG*/// scktSocket   - n/a
 
@@ -96,7 +96,7 @@ CxSocket::bCreate(
     return true;
 }
 //---------------------------------------------------------------------------
-TxSocket
+socket_t
 CxSocket::iGetSocket() const {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket, etInvalid);
 

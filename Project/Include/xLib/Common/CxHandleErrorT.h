@@ -26,7 +26,7 @@ template<>
 struct CxHandleErrorT<hvNull>
     /// handle error is hvNull
 {
-    static TxNativeHandle
+    static native_handle_t
     hGet () { return xNATIVE_HANDLE_NULL; }
 };
 
@@ -34,7 +34,7 @@ template<>
 struct CxHandleErrorT<hvInvalid>
     /// handle error is hvInvalid
 {
-    static TxNativeHandle
+    static native_handle_t
     hGet () { return xNATIVE_HANDLE_INVALID; }
 };
 

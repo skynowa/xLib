@@ -43,6 +43,31 @@ xNAMESPACE_BEGIN(NxLib)
     #elif xOS_ENV_UNIX
         typedef addrinfo               addrinfo_t;
     #endif
+    
+    // native_handle_t
+    #if xOS_ENV_WIN
+        typedef HANDLE                 native_handle_t;
+    #elif xOS_ENV_UNIX
+        typedef int                    native_handle_t;
+    #endif
+        ///< native handle
+        
+    // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
+    #if xOS_ENV_WIN
+        #define xNATIVE_HANDLE_NULL    ( static_cast<native_handle_t>( NULL ) )                  ///< native handle value "null"
+        #define xNATIVE_HANDLE_INVALID ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )  ///< native handle value "invalid"
+    #elif xOS_ENV_UNIX
+        #define xNATIVE_HANDLE_NULL    ( static_cast<native_handle_t>( 0 ) )                     ///< native handle value "null"
+        #define xNATIVE_HANDLE_INVALID ( static_cast<native_handle_t>( - 1 ) )                   ///< native handle value "invalid"
+    #endif
+    
+    // socket_t
+    #if xOS_ENV_WIN
+        typedef SOCKET                 socket_t;
+    #elif xOS_ENV_UNIX
+        typedef int                    socket_t;
+    #endif
+        ///< socket native handle
 
 xNAMESPACE_END(NxLib)
 
