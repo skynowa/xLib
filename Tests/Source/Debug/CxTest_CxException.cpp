@@ -4,7 +4,7 @@
  */
 
 
-#include <Test/Common/CxTest_CxException.h>
+#include <Test/Debug/CxTest_CxException.h>
 
 
 //---------------------------------------------------------------------------

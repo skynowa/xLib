@@ -106,9 +106,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxDateTime.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxException.h">
-      <Filter>xLib\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
@@ -406,12 +403,12 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h">
       <Filter>xLib\Units\Win</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxException.h">
+      <Filter>xLib\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
-      <Filter>xLib\Common</Filter>
-    </None>
-    <None Include="..\..\..\Project\Include\xLib\Common\CxException.inl">
       <Filter>xLib\Common</Filter>
     </None>
     <None Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.inl">
@@ -435,6 +432,9 @@
     <None Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
     </None>
+    <None Include="..\..\..\Project\Include\xLib\Debug\CxException.inl">
+      <Filter>xLib\Debug</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp">
@@ -453,9 +453,6 @@
       <Filter>xLib\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Common\CxDateTime.cpp">
-      <Filter>xLib\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Common\CxException.cpp">
       <Filter>xLib\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Common\CxLocale.cpp">
@@ -715,6 +712,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp">
       <Filter>xLib\Units\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxException.cpp">
+      <Filter>xLib\Debug</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

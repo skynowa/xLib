@@ -17,7 +17,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxConst.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxDateTime.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxException.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleErrorT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleT.h" />
@@ -75,6 +74,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxAutoProfiler.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxDebugger.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxErrorReport.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxException.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxLastError.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxProfiler.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxStackTrace.h" />
@@ -123,12 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl" />
-    <None Include="..\..\..\Project\Include\xLib\Common\CxException.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxHandleT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxString.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxType.inl" />
     <None Include="..\..\..\Project\Include\xLib\Debug\CxErrorReport.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Debug\CxException.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
   </ItemGroup>
@@ -138,7 +138,6 @@
     <ClCompile Include="..\..\..\Project\Source\Common\CxConsole.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxConst.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxDateTime.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Common\CxException.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxLocale.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxProcessInfo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxShell.cpp" />
@@ -171,6 +170,7 @@
     <ClCompile Include="..\..\..\Project\Source\Debug\CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxDebugger.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxErrorReport.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxException.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxLastError.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxProfiler.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxStackTrace.cpp" />

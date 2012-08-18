@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Common/CxException.h>
+#include <xLib/Debug/CxException.h>
 //---------------------------------------------------------------------------
 class CxTest_CxException :
     public CxTest

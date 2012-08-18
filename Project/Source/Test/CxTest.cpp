@@ -6,7 +6,7 @@
 
 #include <xLib/Test/CxTest.h>
 
-#include <xLib/Common/CxException.h>
+#include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxEnvironment.h>

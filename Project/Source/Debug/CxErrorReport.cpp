@@ -6,11 +6,11 @@
 
 #include <xLib/Debug/CxErrorReport.h>
 
-#include <xLib/Common/CxException.h>
 #include <xLib/Common/CxString.h>
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxConsole.h>
+#include <xLib/Debug/CxException.h>
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
