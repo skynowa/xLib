@@ -15,7 +15,6 @@
 //Common
 #include <Test/Common/CxTest_CxMacros.h>
 #include <Test/Common/CxTest_CxHandleT.h>
-#include <Test/Common/CxTest_CxException.h>
 #include <Test/Common/CxTest_CxType.h>
 #include <Test/Common/CxTest_CxFunctorT.h>
 #include <Test/Common/CxTest_CxArray.h>
@@ -47,6 +46,7 @@
 //Debug
 #include <Test/Debug/CxTest_CxStdError.h>
 #include <Test/Debug/CxTest_CxLastError.h>
+#include <Test/Debug/CxTest_CxException.h>
 #include <Test/Debug/CxTest_CxStackTrace.h>
 #include <Test/Debug/CxTest_CxErrorReport.h>
 #include <Test/Debug/CxTest_CxDebugger.h>
@@ -173,7 +173,6 @@ xTMAIN(
         //Common
         (void)tmManager.bAdd(new CxTest_CxMacros);
         (void)tmManager.bAdd(new CxTest_CxHandleT);
-        (void)tmManager.bAdd(new CxTest_CxException);
         (void)tmManager.bAdd(new CxTest_CxType);
         (void)tmManager.bAdd(new CxTest_CxFunctorT);
         (void)tmManager.bAdd(new CxTest_CxArray);
@@ -208,6 +207,7 @@ xTMAIN(
         // Debug
         (void)tmManager.bAdd(new CxTest_CxStdError);
         (void)tmManager.bAdd(new CxTest_CxLastError);
+        (void)tmManager.bAdd(new CxTest_CxException);
         (void)tmManager.bAdd(new CxTest_CxStackTrace);
         (void)tmManager.bAdd(new CxTest_CxDebugger);
         (void)tmManager.bAdd(new CxTest_CxErrorReport);
