@@ -174,7 +174,7 @@ class CxSocket :
         virtual       ~CxSocket       () = 0;
             ///< destructor
 
-        bool           bAssign        (const TxSocket &csktSocket);
+        bool           bAssign        (const socket_t &csktSocket);
             ///< assign to another socket
 
         /****************************************************************************
@@ -182,10 +182,10 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        CxSocket &     operator =     (const TxSocket &csktSocket);
+        CxSocket &     operator =     (const socket_t &csktSocket);
             ///< operator =
-                       operator TxSocket();
-            ///< operator TxSocket
+                       operator socket_t();
+            ///< operator socket_t
 
 
         /****************************************************************************
@@ -195,7 +195,7 @@ class CxSocket :
 
         bool           bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
             ///< creates a socket that is bound to a specific transport service provider
-        TxSocket       iGetSocket     () const;
+        socket_t       iGetSocket     () const;
             ///< get socket
         bool           bIsValid       () const;
             ///< checking for validness
@@ -250,7 +250,7 @@ class CxSocket :
             ///< get error status for the last operation that failed
 
     protected:
-        TxSocket       _m_sktSocket;  ///< handle to socket
+        socket_t       _m_sktSocket;  ///< handle to socket
         short_t        _m_siFamily;   ///< family
         std::tstring_t _m_sIp;        ///< IP
         ushort_t       _m_usPort;     ///< port

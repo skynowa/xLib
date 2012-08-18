@@ -28,30 +28,30 @@ class CxHandleT
     public:
                        CxHandleT       ();
             ///< constructor
-        explicit       CxHandleT       (const TxNativeHandle chHandle);
+        explicit       CxHandleT       (const native_handle_t chHandle);
             ///< constructor
         explicit       CxHandleT       (const CxHandleT &chHandle);
             ///< constructor
         virtual       ~CxHandleT       ();
             ///< destructor
 
-        CxHandleT &    operator =      (const TxNativeHandle chHandle);
+        CxHandleT &    operator =      (const native_handle_t chHandle);
             ///< operator =
         CxHandleT &    operator =      (const CxHandleT &chHandle);
             ///< operator =
 
-        TxNativeHandle hGet            () const;
+        native_handle_t hGet            () const;
             ///< get
-        bool           bSet            (const TxNativeHandle chHandle);
+        bool           bSet            (const native_handle_t chHandle);
             ///< set
-        TxNativeHandle hDuplicate      () const;
+        native_handle_t hDuplicate      () const;
             ///< duplicate handle
 
         bool           bIsValid        () const;
             ///< is valid
-        bool           bAttach         (const TxNativeHandle chHandle);
+        bool           bAttach         (const native_handle_t chHandle);
             ///< attach
-        TxNativeHandle hDetach         ();
+        native_handle_t hDetach         ();
             ///< detach
         bool           bClose          ();
             ///< close
@@ -66,7 +66,7 @@ class CxHandleT
     private:
         typedef CxHandleErrorT<hvTag>  TxErrorValue;
 
-        TxNativeHandle _m_hHandle;    ///< handle
+        native_handle_t _m_hHandle;    ///< handle
 };
 
 xNAMESPACE_END(NxLib)

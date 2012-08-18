@@ -29,7 +29,7 @@ CxHandleT<hvTag>::CxHandleT() :
 template<EHandleValue hvTag>
 /*explicit*/
 CxHandleT<hvTag>::CxHandleT(
-    const TxNativeHandle chHandle
+    const native_handle_t chHandle
 ) :
     _m_hHandle(chHandle)
 {
@@ -66,7 +66,7 @@ CxHandleT<hvTag>::~CxHandleT() {
 template<EHandleValue hvTag>
 CxHandleT<hvTag> &
 CxHandleT<hvTag>::operator = (
-    const TxNativeHandle chHandle
+    const native_handle_t chHandle
 )
 {
     /////*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
@@ -105,7 +105,7 @@ CxHandleT<hvTag>::operator = (
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-TxNativeHandle
+native_handle_t
 CxHandleT<hvTag>::hGet() const {
     /*DEBUG*/
 
@@ -115,7 +115,7 @@ CxHandleT<hvTag>::hGet() const {
 template<EHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bSet(
-    const TxNativeHandle chHandle
+    const native_handle_t chHandle
 )
 {
     /*DEBUG*/
@@ -126,15 +126,15 @@ CxHandleT<hvTag>::bSet(
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-TxNativeHandle
+native_handle_t
 CxHandleT<hvTag>::hDuplicate() const {
     /*DEBUG*/// n/a
     xCHECK_RET(false == bIsValid(), TxErrorValue::hGet());
 
-    TxNativeHandle hRes = TxErrorValue::hGet();
+    native_handle_t hRes = TxErrorValue::hGet();
 
 #if xOS_ENV_WIN
-    TxNativeHandle hCurrentProcess = ::GetCurrentProcess();
+    native_handle_t hCurrentProcess = ::GetCurrentProcess();
 
     BOOL blRes = ::DuplicateHandle(
                     hCurrentProcess,
@@ -162,12 +162,12 @@ CxHandleT<hvTag>::bIsValid() const {
     bool bRes = false;
 
 #if xOS_ENV_WIN
-    bool bCond1 = (reinterpret_cast<TxNativeHandle>(0xCDCDCDCD) != _m_hHandle);   //created but not initialised
-    bool bCond2 = (reinterpret_cast<TxNativeHandle>(0xCCCCCCCC) != _m_hHandle);   //uninitialized locals in VC6 when you compile w/ /GZ
-    bool bCond3 = (reinterpret_cast<TxNativeHandle>(0xBAADF00D) != _m_hHandle);   //indicate an uninitialized variable
-    bool bCond4 = (reinterpret_cast<TxNativeHandle>(0xFDFDFDFD) != _m_hHandle);   //no man's land (normally outside of a process)
-    bool bCond5 = (reinterpret_cast<TxNativeHandle>(0xFEEEFEEE) != _m_hHandle);   //freed memory set by NT's heap manager
-    bool bCond6 = (reinterpret_cast<TxNativeHandle>(0xDDDDDDDD) != _m_hHandle);   //deleted
+    bool bCond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _m_hHandle);   //created but not initialised
+    bool bCond2 = (reinterpret_cast<native_handle_t>(0xCCCCCCCC) != _m_hHandle);   //uninitialized locals in VC6 when you compile w/ /GZ
+    bool bCond3 = (reinterpret_cast<native_handle_t>(0xBAADF00D) != _m_hHandle);   //indicate an uninitialized variable
+    bool bCond4 = (reinterpret_cast<native_handle_t>(0xFDFDFDFD) != _m_hHandle);   //no man's land (normally outside of a process)
+    bool bCond5 = (reinterpret_cast<native_handle_t>(0xFEEEFEEE) != _m_hHandle);   //freed memory set by NT's heap manager
+    bool bCond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _m_hHandle);   //deleted
     bool bCond7 = (TxErrorValue::hGet()                         != _m_hHandle);   //compare with error handle value
 
     bRes = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
@@ -184,7 +184,7 @@ CxHandleT<hvTag>::bIsValid() const {
 template<EHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bAttach(
-    const TxNativeHandle chHandle
+    const native_handle_t chHandle
 )
 {
     /*DEBUG*/// n/a
@@ -199,11 +199,11 @@ CxHandleT<hvTag>::bAttach(
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
-TxNativeHandle
+native_handle_t
 CxHandleT<hvTag>::hDetach() {
     /*DEBUG*///n/a
 
-    TxNativeHandle hHandle = _m_hHandle;
+    native_handle_t hHandle = _m_hHandle;
 
     _m_hHandle = TxErrorValue::hGet();
 

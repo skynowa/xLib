@@ -66,7 +66,7 @@ CxTest_CxHandleT::bUnit(
     }
 
     //--------------------------------------------------
-    //operator = (const TxNativeHandle chHandle)
+    //operator = (const native_handle_t chHandle)
     xTEST_CASE(cullCaseLoops)
     {
 	    CxHandle hHandle;
@@ -101,11 +101,11 @@ CxTest_CxHandleT::bUnit(
         m_hRes = hHandle.hGet();
         xTEST_EQ(false, hHandle.bIsValid());
 
-        m_bRes = hHandle.bSet(TxNativeHandle());
+        m_bRes = hHandle.bSet(native_handle_t());
         xTEST_EQ(true, m_bRes);
 
         m_hRes = hHandle.hGet();
-        xASSERT(TxNativeHandle() == m_hRes);
+        xASSERT(native_handle_t() == m_hRes);
 
         m_bRes = hHandle.bSet(CxCurrentProcess::hGetHandle());
         xTEST_EQ(true, m_bRes);
