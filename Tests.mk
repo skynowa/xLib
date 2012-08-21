@@ -80,7 +80,6 @@ SUBDIRS_SOURCE				:=	. \
 								Gui/Dialogs \
 								Gui/Win \
 								Gui/Win/Dialogs \
-								Gui/Win/GDI+ \
 								Log \
 								Net \
 								Patterns \
@@ -102,7 +101,6 @@ SUBDIRS_TESTS_SOURCE		:=	. \
 								Gui/Dialogs \
 								Gui/Win \
 								Gui/Win/Dialogs \
-								Gui/Win/GDI+ \
 								Log \
 								Net \
 								Patterns \
@@ -112,17 +110,17 @@ SUBDIRS_TESTS_SOURCE		:=	. \
 								Units \
 								Units/Win
 
-DIR_OTHER_INCLUDE			:=	#/usr/include \
-								#/usr/local/include
+DIR_OTHER_INCLUDE			:=	/usr/include \
+								/usr/local/include
 
-DIRS_LIB					:=	#/usr/lib64 \
-								#/usr/lib \
-								#/usr/lib64/mysql \
-								#/usr/lib/mysql \
-								#/usr/local/lib64 \
-								#/usr/local/lib \
-								#/usr/local/lib64/mysql \
-								#/usr/local/lib/mysql
+DIRS_LIB					:=	/usr/lib64 \
+								/usr/lib \
+								/usr/lib64/mysql \
+								/usr/lib/mysql \
+								/usr/local/lib64 \
+								/usr/local/lib \
+								/usr/local/lib64/mysql \
+								/usr/local/lib/mysql
 
 FLAGS_COMPILE				:=	$(CPPFLAGS) -Wall -pipe
 
