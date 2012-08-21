@@ -44,8 +44,8 @@ PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROG
 DIR_ROOT_INCLUDE		:=	./Project/Include
 DIR_ROOT_SOURCE			:=	./Project/Source
 
-DIR_OTHER_INCLUDE		:=	#/usr/include \
-							#/usr/local/include
+DIR_OTHER_INCLUDE		:=	/usr/include \
+							/usr/local/include
 
 SUBDIRS_SOURCE			:=	. \
 							Common \
@@ -60,7 +60,6 @@ SUBDIRS_SOURCE			:=	. \
 							Gui/Dialogs \
 							Gui/Win \
 							Gui/Win/Dialogs \
-							Gui/Win/GDI+ \
 							Log \
 							Net \
 							Patterns \
@@ -70,14 +69,14 @@ SUBDIRS_SOURCE			:=	. \
 							Units \
 							Units/Win
 
-DIRS_LIB				:=	#/usr/lib64 \
-							#/usr/lib \
-							#/usr/lib64/mysql \
-							#/usr/lib/mysql \
-							#/usr/local/lib64 \
-							#/usr/local/lib \
-							#/usr/local/lib64/mysql \
-							#/usr/local/lib/mysql
+DIRS_LIB				:=	/usr/lib64 \
+							/usr/lib \
+							/usr/lib64/mysql \
+							/usr/lib/mysql \
+							/usr/local/lib64 \
+							/usr/local/lib \
+							/usr/local/lib64/mysql \
+							/usr/local/lib/mysql
 
 ifeq ($(cOS), Linux)
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))

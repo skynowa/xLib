@@ -69,9 +69,14 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Project</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>TODO.txt</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/TODO.txt</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/TODO.txt</locationURI>
 		</link>
 		<link>
 			<name>Tests</name>
@@ -79,19 +84,14 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>xLib</name>
+			<name>Project/Source</name>
 			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/Project/Source</locationURI>
 		</link>
 		<link>
 			<name>Tests/Source</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Tests/Source</locationURI>
-		</link>
-		<link>
-			<name>xLib/Source</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Source</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/Tests/Source</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
