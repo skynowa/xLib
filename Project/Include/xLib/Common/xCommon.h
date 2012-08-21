@@ -98,19 +98,19 @@
 #ifndef xLib_Common_xCommonH
 #define xLib_Common_xCommonH
 //---------------------------------------------------------------------------
-//config
+// config
 #include <xLib/Common/xConfig.h>
 #include <xLib/Common/xDefines.h>
 
-//tracing
+// tracing
 #include <xLib/Common/xTracing.h>
 
-//POSIX
-#include <sys/types.h>  //must be at the top (it's portable)
+// POSIX
+#include <sys/types.h>  // must be at the top (it's portable)
 #include <fcntl.h>
 #include <sys/stat.h>
 
-//C library
+// C library
 #include <stdio.h>
 #include <stdlib.h>
 #include <cctype>
@@ -129,7 +129,7 @@
     #include <wctype.h>
 #endif
 
-//stl
+// STL
 #include <typeinfo>
 #include <string>
 #include <sstream>
@@ -146,7 +146,7 @@
 #include <stdexcept>
 #include <locale.h>
 
-//xLib
+// xLib
 namespace NxLib { }
 
 #if xUSING_NAMESPACE_NXLIB
@@ -154,9 +154,9 @@ namespace NxLib { }
 #endif
 
 #if   xOS_ENV_WIN
-    #include <xLib/Common/Win/xCommon_Win.h>
+    #include <xLib/Common/xCommon_Win.h>
 #elif xOS_ENV_UNIX
-    #include <xLib/Common/Unix/xCommon_Unix.h>
+    #include <xLib/Common/xCommon_Unix.h>
 #endif
 
 #include <xLib/Common/xFunctions.h>
@@ -168,9 +168,8 @@ namespace NxLib { }
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Common/CxString.h>
-#include <xLib/Common/CxConsole.h>
 
-//checks
+// checks
 #include <xLib/Common/xCheks.h>
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xCommonH

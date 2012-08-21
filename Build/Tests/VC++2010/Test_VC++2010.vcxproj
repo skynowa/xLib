@@ -213,11 +213,11 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxString.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxSystemInfo.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxType.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\Unix\xCommon_Unix.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\CxCom.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\xCommon_Win.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Unix.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Win.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xConfig.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xDefines.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xFunctions.h" />
@@ -414,6 +414,7 @@
     <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
     <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl" />
+    <None Include="..\..\..\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\CxChar.cpp" />
@@ -427,6 +428,7 @@
     <ClCompile Include="..\..\..\Project\Source\Common\CxString.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxSystemInfo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\xCommon.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\CxCrc32.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\CxRandom.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\OpenSSL\CxBase64.cpp" />

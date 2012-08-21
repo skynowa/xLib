@@ -79,13 +79,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\Unix\xCommon_Unix.h">
-      <Filter>xLib\Common\Unix</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\CxCom.h">
-      <Filter>xLib\Common\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\xCommon_Win.h">
       <Filter>xLib\Common\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxArray.h">
@@ -406,6 +400,12 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxException.h">
       <Filter>xLib\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Unix.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Win.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -715,6 +715,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Debug\CxException.cpp">
       <Filter>xLib\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Common\xCommon.cpp">
+      <Filter>xLib\Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
